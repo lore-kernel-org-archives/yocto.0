@@ -1,36 +1,40 @@
-Return-Path: <Siva.Borra@enea.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5719BE00ACD; Mon, 24 Aug 2015 01:32:41 -0700 (PDT)
+	id E0B74E00ACC; Mon, 24 Aug 2015 02:44:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	URIBL_BLACK autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	*  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
-	*      [URIs: configure.ac]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2E478E00ABE
-	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 01:32:33 -0700 (PDT)
-Received: from [172.16.141.161] (172.16.141.161) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 24 Aug 2015 10:32:31 +0200
-Message-ID: <55DAD69F.7050409@enea.com>
-Date: Mon, 24 Aug 2015 10:32:31 +0200
-From: Siva Borra <siva.borra@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A40ABE00ABE
+	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 02:43:54 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t7O9he2D023878
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 24 Aug 2015 02:43:41 -0700 (PDT)
+Received: from [128.224.162.176] (128.224.162.176) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.235.1;
+	Mon, 24 Aug 2015 02:43:40 -0700
+Message-ID: <55DAE749.8030103@windriver.com>
+Date: Mon, 24 Aug 2015 17:43:37 +0800
+From: wenzong fan <wenzong.fan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>	<1439960637-8744-1-git-send-email-lixin.fnst@cn.fujitsu.com>	<DDB0C57E45663A458C5CACB7B5688BC21D8DB4FD@SESTOEX04.enea.se>	<A8FC939F80655644A89BB21CCD3741E8011BCBB87A@G08CNEXMBPEKD03.g08.fujitsu.local>
-	<A8FC939F80655644A89BB21CCD3741E8011BCBC2E2@G08CNEXMBPEKD03.g08.fujitsu.local>
-In-Reply-To: <A8FC939F80655644A89BB21CCD3741E8011BCBC2E2@G08CNEXMBPEKD03.g08.fujitsu.local>
-X-Originating-IP: [172.16.141.161]
-Subject: Re: [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 -> 1.0.12
+To: Philip Tricca <flihp@twobit.us>
+References: <1439645701-15785-1-git-send-email-flihp@twobit.us>
+	<55D69175.7080708@twobit.us> <55D6EACC.1000703@windriver.com>
+	<55D74B76.5070405@twobit.us>
+In-Reply-To: <55D74B76.5070405@twobit.us>
+Cc: yocto@yoctoproject.org, "Radzykewycz, T \(Radzy\)" <radzy@windriver.com>
+Subject: Re: [meta-selinux][PATCH] Use the SELinux project release tarballs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,716 +46,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Aug 2015 08:32:41 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 24 Aug 2015 09:44:04 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Li,
-The error reproducible on ppc32.
-Here are the error messages:
-
-make[2]: Entering directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm/admin'
-echo Creating lrmadmin.8
-
-Creating lrmadmin.8
-
-chmod a+x lrmadmin
-
-help2man --output lrmadmin.8 --no-info --section 8 --name "Part of the=20
-Linux-HA project" /usr/sbin/lrmadmin
-
-make[2]: *** [lrmadmin.8] Error 1
-make[2]: Leaving directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm/admin'
-
-make[1]: *** [all-recursive] Error 1
-make[1]: Leaving directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm'
-
-make: *** [all-recursive] Error 1
-
-+ die 'oe_runmake failed'
-+ bbfatal 'oe_runmake failed'
-+ echo 'ERROR: oe_runmake failed'
-ERROR: oe_runmake failed
-+ exit 1
-+ bb_exit_handler
-
-+ ret=3D1
-+ case $ret in
-+ case $BASH_VERSION in
-+ echo 'WARNING:=20
-/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-glu=
-e/1.0.12-r0/temp/run.do_compile.47522:1=20
-exit 1 from
-   exit' 1
-WARNING:=20
-/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-glu=
-e/1.0.12-r0/temp/run.do_compile.47522:1=20
-exit 1 from
-   exit 1
-+ exit 1
-
-for `all'.
-make[2]: Leaving directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm/lrmd'
-Making all in admin
-make[2]: Entering directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm/admin'
-echo Creating lrmadmin.8
-Creating lrmadmin.8
-chmod a+x lrmadmin
-help2man --output lrmadmin.8 --no-info --section 8 --name "Part of the=20
-Linux-HA project" /usr/sbin/lrmadmin
-make[2]: *** [lrmadmin.8] Error 1
-make[2]: Leaving directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm/admin'
-make[1]: *** [all-recursive] Error 1
-make[1]: Leaving directory=20
-`/media/data/fb/zsibo/CGL/P2041_RC/tmp/work/ppce500mc-enea-linux/cluster-gl=
-ue/1.0.12-r0/build/lrm'
-make: *** [all-recursive] Error 1
-
-Regards,
-Siva Borra.
-
-On 2015-08-24 08:43, Li, Xin wrote:
-> Hi, Alex V.
+On 08/22/2015 12:01 AM, Philip Tricca wrote:
+> Greetings Wenzong,
 >
-> I bitbake cluster-glue for x86, Arm, and Powerpc. But I can't produce the=
- error.
-> Would you mind providing the error message for me?
+> On 08/21/2015 02:09 AM, wenzong fan wrote:
+>> On 08/21/2015 10:48 AM, Philip Tricca wrote:
+>>> Any opinions / thoughts on this one? I've got an upgrade for the
+>>> toolstack (2.3 -> 2.4) ready to go but I've based it on the release URIs
+>>> from the wiki so it depends on this patch.
+>>
+>> Good to know you have made the selinux toolstack upgrade (2.3 -> 2.4).
+>>
+>> Did you fix the refpolicy-* build issues with 2.4 tools?
 >
-> Regards,
-> Li
+> I think so :)
 >
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.=
-org]
->> On Behalf Of Li, Xin
->> Sent: Friday, August 21, 2015 10:51 AM
->> To: Alexandru Vaduva; yocto@yoctoproject.org
->> Subject: Re: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 ->=
- 1.0.12
->>
->> Hi, Alex V.
->>
->> Thanks a lot.
->>
->> Indeed, the error does not occur on my system.
->> I will do some extra test, and resend the patch.
->>
->> Regards,
->> Li
->>
->>> -----Original Message-----
->>> From: Alexandru Vaduva [mailto:Alexandru.Vaduva@enea.com]
->>> Sent: Thursday, August 20, 2015 10:51 PM
->>> To: Li, Xin/=E6=9D=8E =E6=AC=A3; yocto@yoctoproject.org
->>> Subject: RE: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5
->>> -> 1.0.12
->>>
->>> Hello,
->>>
->>> Could you please take one more look on this since for me the build is
->>> failing in the do_compile stage.
->>> Due to this error I was not able to build the other two patches
->>> heardbleat and pacemaker. :D
->>>
->>> Alex V.
->>>
->>> -----Original Message-----
->>> From: yocto-bounces@yoctoproject.org
->>> [mailto:yocto-bounces@yoctoproject.org]
->>> On Behalf Of Li xin
->>> Sent: Wednesday, August 19, 2015 8:04 AM
->>> To: yocto@yoctoproject.org
->>> Subject: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 ->
->>> 1.0.12
->>>
->>> * Add patch to aviod build Error and Warning.
->>>   --0001-don-t-compile-doc-and-Error-Fix.patch
->>>   --0001-ribcl.py.in-Warning-Fix.patch
->>>
->>> * Dropped backported patch:
->>>   --fix-const-cast.patch
->>>   --glue-remove-getpid-check.patch
->>>   --glue-repair-deprecated-glib-support.patch
->>>   --glue-repair-libxml-support.patch
->>>
->>> * Replace the hardcoded strings "/usr/lib" "/etc/" "/usr/sbin" "/usr/sh=
-are"
->>>
->>> Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->>> ---
->>> .../0001-don-t-compile-doc-and-Error-Fix.patch     |  50 ++++++++++
->>> .../0001-ribcl.py.in-Warning-Fix.patch             |  34 +++++++
->>> .../cluster-glue/cluster-glue/fix-const-cast.patch | 103 --------------=
--------
->>> .../cluster-glue/glue-remove-getpid-check.patch    |  31 -------
->>> .../glue-repair-deprecated-glib-support.patch      |  12 ---
->>> .../cluster-glue/glue-repair-libxml-support.patch  |  14
->>> ---  ...luster-glue_1.0.5.bb =3D> cluster-glue_1.0.12.bb} |  76
->>> ++++++++-------
->>> 7 files changed, 125 insertions(+), 195 deletions(-)  create mode
->>> 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compil
->>> e-doc-and
->>> -Error-Fix.patch
->>> create mode 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-=
-Warning-Fi
->> x.
->>> patch
->>> delete mode 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.pa
->>> tch
->>> delete mode 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpi
->>> d-check.p
->>> atch
->>> delete mode 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-depre
->>> cated-glib-
->>> support.patch
->>> delete mode 100644
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxm
->>> l-support.p
->>> atch
->>> rename meta-cgl-common/recipes-cgl/cluster-glue/{cluster-glue_1.0.5.bb
->>> =3D> cluster-glue_1.0.12.bb} (49%)
->>>
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-comp
->>> ile-doc-a
->>> nd-Error-Fix.patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-comp
->>> ile-doc-a
->>> nd-Error-Fix.patch
->>> new file mode 100644
->>> index 0000000..471b1e4
->>> --- /dev/null
->>> +++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-
->>> +++ c
->>> +++ ompile-doc-and-Error-Fix.patch
->>> @@ -0,0 +1,50 @@
->>> +From b64b676f7abf896ca714341eb330099f2ff04213 Mon Sep 17 00:00:00 2001
->>> +From: Li xin <lixin.fnst@cn.fujitsu.com>
->>> +Date: Tue, 18 Aug 2015 17:43:29 +0900
->>> +Subject: [PATCH] don't compile doc and Error Fix
->>> +
->>> +| help2man: can't get `--help' info from ../../lrm/admin/lrmadmin
->>> +| make[2]: *** [lrmadmin.8] Error 1
->>> +
->>> +| make[2]: a2x: Command not found
->>> +| /usr/bin/xsltproc \
->>> +|       --xinclude \
->>> +|
->>> +| http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.
->>> +| x
->>> +| sl ha_logd.xml
->>> +| make[2]: *** [hb_report.8] Error 127
->>> +
->>> +Upstream-Status: pending
->>> +
->>> +Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->>> +---
->>> + Makefile.am           | 2 +-
->>> + configure.ac          | 6 ++++++
->>> + lrm/admin/Makefile.am | 2 +-
->>> + 3 files changed, 8 insertions(+), 2 deletions(-)
->>> +
->>> +diff --git a/Makefile.am b/Makefile.am index 93dbaf6..2f4d03b 100644
->>> +--- a/Makefile.am
->>> ++++ b/Makefile.am
->>> +@@ -23,7 +23,7 @@ MAINTAINERCLEANFILES	=3D Makefile.in aclocal.m4
->> configure
->>> DRF/config-h.in \
->>> + 			  DRF/stamp-h.in libtool.m4 ltdl.m4 libltdl.tar
->>> +
->>> + SUBDIRS			=3D include $(LIBLTDL_DIR) replace lib lrm logd \
->>> +-			  hb_report doc config
->>> ++			  hb_report config
->>> +
->>> + install-exec-local:
->>> + 	$(INSTALL) -d $(DESTDIR)/$(HA_COREDIR) diff --git
->>> +a/lrm/admin/Makefile.am b/lrm/admin/Makefile.am index a92cd72..ed938e0
->>> +100644
->>> +--- a/lrm/admin/Makefile.am
->>> ++++ b/lrm/admin/Makefile.am
->>> +@@ -36,5 +36,5 @@ man8_MANS =3D	$(sbin_PROGRAMS:%=3D%.8)
->>> + %.8:	%
->>> + 	echo Creating $@
->>> + 	chmod a+x $<
->>> +-	help2man --output $@ --no-info --section 8 --name "Part of the Linux=
--HA
->>> project" $(top_builddir)/lrm/admin/$<
->>> ++	help2man --output $@ --no-info --section 8 --name "Part of the
->>> ++Linux-HA project" /usr/sbin/$<
->>> + endif
->>> +--
->>> +1.8.4.2
->>> +
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.i
->>> n-Warning-F
->>> ix.patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.i
->>> n-Warning-F
->>> ix.patch
->>> new file mode 100644
->>> index 0000000..31010d4
->>> --- /dev/null
->>> +++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.
->>> +++ p
->>> +++ y.in-Warning-Fix.patch
->>> @@ -0,0 +1,34 @@
->>> +From a2c66927b75547cee1db1340a67449ded0812df3 Mon Sep 17 00:00:00 2001
->>> +From: Li xin <lixin.fnst@cn.fujitsu.com>
->>> +Date: Wed, 19 Aug 2015 11:13:46 +0900
->>> +Subject: [PATCH] ribcl.py.in: Warning Fix
->>> +
->>> +WARNING: QA Issue:
->>> +/usr/lib/stonith/plugins/stonith2/ribcl.py_cluster-glue-plugin-stonith
->>> +2 -ribcl contained in package cluster-glue-plugin-stonith2-ribcl
->>> +requires /usr/local/bin/python, but no providers found in its RDEPENDS
->>> +[file-rdeps]
->>> +
->>> +Add target python handling
->>> +Allow the build to specify a path for the python instead of reusing
->>> +the PYTHON variable which can lead to inconsistencies if we are cross
->>> +compiling.
->>> +
->>> +Upstream-Status: pending
->>> +
->>> +Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->>> +---
->>> + lib/plugins/stonith/ribcl.py.in | 2 +-
->>> + 1 file changed, 1 insertion(+), 1 deletion(-)
->>> +
->>> +diff --git a/lib/plugins/stonith/ribcl.py.in
->>> +b/lib/plugins/stonith/ribcl.py.in index 14e070c..01205e3 100644
->>> +--- a/lib/plugins/stonith/ribcl.py.in
->>> ++++ b/lib/plugins/stonith/ribcl.py.in
->>> +@@ -1,4 +1,4 @@
->>> +-#!@PYTHON@
->>> ++#!@TRAGET_PYTHON@
->>> +
->>> +
->>> + #
->>> +--
->>> +1.8.4.2
->>> +
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.
->>> patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.
->>> patch
->>> deleted file mode 100644
->>> index 6de65bf..0000000
->>> ---
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.
->>> patch
->>> +++ /dev/null
->>> @@ -1,103 +0,0 @@
->>> -This patch gets rid of new warning introduced with gcc 4.5 -Warning is
->>> explained here
->>> -http://gcc.gnu.org/viewcvs/trunk/gcc/doc/invoke.texi?r1=3D148037&r2=3D=
-1480
->>> 53&diff
->>> _format=3Dh
->>> -
->>> --Khem
->>> --updated by Alexandru Vaduva - patch needed redone
->>> -
->>> -diff -Naur a/lib/plugins/stonith/apcsmart.c b/lib/plugins/stonith/apcs=
-mart.c
->>> ---- a/lib/plugins/stonith/apcsmart.c	2014-07-09 17:14:24.492455034 +02=
-00
->>> -+++ b/lib/plugins/stonith/apcsmart.c	2014-07-09 17:15:03.386817399 +02=
-00
->>> -@@ -719,7 +719,7 @@
->>> - 	}
->>> - 	ERRIFNOTCONFIGED(s,NULL);
->>> -
->>> --	return OurImports->CopyHostList((const char **)ad->hostlist);
->>> -+    return OurImports->CopyHostList(CONST_CAST(ad->hostlist));
->>> - }
->>> -
->>> - static gboolean
->>> -diff -Naur a/lib/plugins/stonith/external.c b/lib/plugins/stonith/exte=
-rnal.c
->>> ---- a/lib/plugins/stonith/external.c	2014-07-09 17:15:28.661753145 +02=
-00
->>> -+++ b/lib/plugins/stonith/external.c	2014-07-09 17:17:03.873743634 +02=
-00
->>> -@@ -540,7 +540,7 @@
->>> - 		sd->confignames[dircount] =3D NULL;
->>> - 	}
->>> -
->>> --	return (const char **)sd->confignames;
->>> -+    return CONST_CAST(sd->confignames);
->>> - }
->>> -
->>> - /*
->>> -diff -Naur a/lib/plugins/stonith/meatware.c b/lib/plugins/stonith/meat=
-ware.c
->>> ---- a/lib/plugins/stonith/meatware.c	2014-07-09 17:18:47.597375001 +02=
-00
->>> -+++ b/lib/plugins/stonith/meatware.c	2014-07-09 17:19:35.943338541 +02=
-00
->>> -@@ -136,7 +136,7 @@
->>> - 		return(NULL);
->>> - 	}
->>> -
->>> --	return OurImports->CopyHostList((const char **)nd->hostlist);
->>> -+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
->>> - }
->>> -
->>> - /*
->>> -diff -Naur a/lib/plugins/stonith/null.c b/lib/plugins/stonith/null.c
->>> ---- a/lib/plugins/stonith/null.c	2014-07-09 17:20:12.389803230 +0200
->>> -+++ b/lib/plugins/stonith/null.c	2014-07-09 17:20:55.156001606 +0200
->>> -@@ -126,7 +126,7 @@
->>> - 	struct pluginDevice*	nd =3D (struct pluginDevice*)s;
->>> -
->>> - 	ERRIFWRONGDEV(s, NULL);
->>> --	return OurImports->CopyHostList((const char**)nd->hostlist);
->>> -+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
->>> - }
->>> -
->>> -
->>> -diff -Naur a/lib/plugins/stonith/rcd_serial.c b/lib/plugins/stonith/rc=
-d_serial.c
->>> ---- a/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:12.603266573 +=
-0200
->>> -+++ b/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:56.341423862 +=
-0200
->>> -@@ -347,7 +347,7 @@
->>> - 		return(NULL);
->>> - 	}
->>> -
->>> --	return OurImports->CopyHostList((const char **)rcd->hostlist);
->>> -+    return OurImports->CopyHostList(CONST_CAST(rcd->hostlist));
->>> - }
->>> -
->>> - /*
->>> -diff -Naur a/lib/plugins/stonith/rhcs.c b/lib/plugins/stonith/rhcs.c
->>> ---- a/lib/plugins/stonith/rhcs.c	2014-07-09 17:17:27.652742171 +0200
->>> -+++ b/lib/plugins/stonith/rhcs.c	2014-07-09 17:18:18.562597957 +0200
->>> -@@ -703,7 +703,7 @@
->>> - 		sd->confignames[dircount] =3D NULL;
->>> - 	}
->>> -
->>> --	return (const char **)sd->confignames;
->>> -+    return CONST_CAST(sd->confignames);
->>> - }
->>> -
->>> - /*
->>> -diff -Naur a/lib/plugins/stonith/ssh.c b/lib/plugins/stonith/ssh.c
->>> ---- a/lib/plugins/stonith/ssh.c	2014-07-09 17:22:15.320624229 +0200
->>> -+++ b/lib/plugins/stonith/ssh.c	2014-07-09 17:22:53.499015642 +0200
->>> -@@ -161,7 +161,7 @@
->>> - 		return(NULL);
->>> - 	}
->>> -
->>> --	return OurImports->CopyHostList((const char **)sd->hostlist);
->>> -+    return OurImports->CopyHostList(CONST_CAST(sd->hostlist));
->>> - }
->>> -
->>> -
->>> -diff -Naur a/lib/plugins/stonith/stonith_plugin_common.h
->>> b/lib/plugins/stonith/stonith_plugin_common.h
->>> ---- a/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09
->>> 17:23:16.954027367 +0200
->>> -+++ b/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09
->>> 17:24:38.538609129 +0200
->>> -@@ -123,5 +123,8 @@
->>> -     return; \
->>> -   }
->>> -
->>> -+#define CONST_CAST(s) \
->>> -+    (__extension__(union {char ** a; const char** b;})(s)).b
->>> -+
->>> - #endif
->>> -
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-get
->>> pid-check
->>> .patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-get
->>> pid-check
->>> .patch
->>> deleted file mode 100644
->>> index 30f422c..0000000
->>> ---
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-get
->>> pid-check
->>> .patch
->>> +++ /dev/null
->>> @@ -1,31 +0,0 @@
->>> -diff -Naur a/configure.ac b/configure.ac
->>> ---- a/configure.ac	2014-07-09 17:05:51.602037193 +0200
->>> -+++ b/configure.ac	2014-07-09 17:08:44.566761961 +0200
->>> -@@ -441,24 +441,9 @@
->>> - AC_MSG_RESULT($BUILD_VERSION)
->>> - AC_SUBST(BUILD_VERSION)
->>> -
->>> --
->>> --dnl check if there are getpid() inconsistency
->>> --dnl	Note: reduce LIBS; in particular, ltdl can cause confusion.
->>> --dnl	Possibly better:  move 'LIBS=3D"$LIBS -lltdl"' from above to beyo=
-nd here.
->>> --dnl
->>> --AC_MSG_CHECKING(for getpid() consistency in multi-process/threads
->>> program) --ac_save_LIBS=3D$LIBS --LIBS=3D"-lpthread"
->>> --AC_TRY_RUN(`cat $srcdir/config/pidtest.c`, --AC_MSG_RESULT(ok),
->>> --[AC_MSG_RESULT(fail); AC_DEFINE(GETPID_INCONSISTENT, 1 , [pid
->>> inconsistent])],) --LIBS=3D$ac_save_LIBS
->>> --
->>> --dnl check byte order
->>> --AC_MSG_CHECKING(for byteorder)
->>> --AC_TRY_RUN(`cat $srcdir/config/byteorder_test.c`,
->>> --[AC_MSG_RESULT(little-endian); AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1,
->>> [little-endian])], --[AC_MSG_RESULT(big-endian);
->>> AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big-endian])],)
->>> -+AC_C_BIGENDIAN(
->>> -+  [AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big])],
->>> -+  [AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1, [little])])
->>> -
->>> -
->>> - dnl =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-dep
->>> recated-gli
->>> b-support.patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-dep
->>> recated-gli
->>> b-support.patch
->>> deleted file mode 100644
->>> index 16fc679..0000000
->>> ---
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-dep
->>> recated-gli
->>> b-support.patch
->>> +++ /dev/null
->>> @@ -1,12 +0,0 @@
->>> -diff -Naur a/include/clplumbing/cl_uuid.h b/include/clplumbing/cl_uuid=
-.h
->>> ---- a/include/clplumbing/cl_uuid.h	2014-07-14 14:25:24.127378762 +0200
->>> -+++ b/include/clplumbing/cl_uuid.h	2014-07-14 14:23:32.120193782 +0200
->>> -@@ -16,7 +16,7 @@
->>> -
->>> - #ifndef _CL_UUID_H_
->>> - #define _CL_UUID_H_
->>> --#include <glib/gtypes.h>
->>> -+#include <glib.h>
->>> -
->>> - typedef struct cl_uuid_s{
->>> - 	unsigned char	uuid[16];
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-lib
->>> xml-support
->>> .patch
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-lib
->>> xml-support
->>> .patch
->>> deleted file mode 100644
->>> index a436575..0000000
->>> ---
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-lib
->>> xml-support
->>> .patch
->>> +++ /dev/null
->>> @@ -1,14 +0,0 @@
->>> -diff -Naur a/configure.ac b/configure.ac
->>> ---- a/configure.ac	2014-07-14 13:02:42.016652860 +0200
->>> -+++ b/configure.ac	2014-07-14 13:03:59.585322332 +0200
->>> -@@ -679,8 +679,8 @@
->>> -
->>> - CPPFLAGS=3D"$CPPFLAGS $XML2HEAD"
->>> -
->>> --AC_CHECK_HEADERS(libxml/xpath.h)
->>> --if test "$ac_cv_header_libxml_xpath_h" !=3D "yes"; then
->>> -+AC_CHECK_HEADERS(libxml2/libxml/xpath.h)
->>> -+if test x"$ac_cv_header_libxml2_libxml_xpath_h" !=3D x"yes"; then
->>> -    AC_MSG_ERROR(The libxml developement headers were not found)
->>> - fi
->>> -
->>> diff --git
->>> a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
->>> b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->>> similarity index 49%
->>> rename from
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
->>> rename to
->>> meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->>> index f1b4a78..be04469 100644
->>> --- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
->>> +++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->>> @@ -7,21 +7,20 @@ LICENSE =3D "GPLv2"
->>> DEPENDS =3D "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi=
-"
->>>
->>> SRC_URI =3D " \
->>> -	http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
->>> -    file://glue-repair-libxml-support.patch \
->>> -    file://glue-repair-deprecated-glib-support.patch \
->>> -    file://glue-remove-getpid-check.patch \
->>> -    file://fix-const-cast.patch \
->>> +    http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
->>> +    file://0001-don-t-compile-doc-and-Error-Fix.patch \
->>> +    file://0001-ribcl.py.in-Warning-Fix.patch \
->>>      file://volatiles \
->>>      file://tmpfiles \
->>> -	"
->>> +"
->>> SRC_URI_append_libc-uclibc =3D " file://kill-stack-protector.patch"
->>> -SRC_URI[md5sum] =3D "d2b6f798e58ef2497526e404b8ad640a"
->>> -SRC_URI[sha256sum] =3D
->>> "0e1922373aba1c3811f6ef61559a9c407c0bec71d2ebc451a4db5b940ded8ec0"
->>> +
->>> +SRC_URI[md5sum] =3D "ec620466d6f23affa3b074b72bca7870"
->>> +SRC_URI[sha256sum] =3D
->>> "feba102fa1e24b6be2005089ebe362b82d6567af60005cf371679b1b44ec503f"
->>>
->>> LIC_FILES_CHKSUM =3D
->>> "file://${COREBASE}/meta/COPYING.GPLv2;md5=3D751419260aa954499f7abaabaa=
-8
->> 8
->>> 2bbe"
->>>
->>> -inherit autotools useradd
->>> +inherit autotools useradd pkgconfig
->>>
->>> S =3D "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
->>>
->>> @@ -70,43 +69,50 @@ PACKAGES +=3D "\
->>> 	 ${PN}-plugin-interfacemgr-dbg \
->>> 	 ${PN}-plugin-interfacemgr-staticdev \
->>> 	 ${PN}-lrmtest \
->>> +         ${PN}-plugin-compress \
->>> +         ${PN}-plugin-compress-dbg \
->>> +         ${PN}-plugin-compress-staticdev \
->>> 	 "
->>>
->>> -FILES_${PN} =3D "/etc/ /var /usr/lib/lib*.so.* /usr/sbin
->>> /usr/share/cluster-glue/*sh /usr/share/cluster-glue/*pl\
->>> -	/usr/lib/heartbeat/transient-test.sh \
->>> -	/usr/lib/heartbeat/logtest \
->>> -	/usr/lib/heartbeat/ipctransientserver \
->>> -	/usr/lib/heartbeat/base64_md5_test \
->>> -	/usr/lib/heartbeat/ipctest \
->>> -	/usr/lib/heartbeat/ipctransientclient \
->>> -	/usr/lib/heartbeat/ha_logd \
->>> -	/usr/lib/heartbeat/lrmd \
->>> +FILES_${PN} =3D "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir}
->>> ${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
->>> +	${libdir}/heartbeat/transient-test.sh \
->>> +	${libdir}/heartbeat/logtest \
->>> +	${libdir}/heartbeat/ipctransientserver \
->>> +	${libdir}/heartbeat/base64_md5_test \
->>> +	${libdir}/heartbeat/ipctest \
->>> +	${libdir}/heartbeat/ipctransientclient \
->>> +	${libdir}/heartbeat/ha_logd \
->>> +	${libdir}/heartbeat/lrmd \
->>> 	"
->>>
->>> -FILES_${PN}-dbg +=3D "/usr/lib/heartbeat/.debug/"
->>> +FILES_${PN}-dbg +=3D "${libdir}/heartbeat/.debug/ \
->>> +                   "
->>> +FILES_${PN}-plugin-compress =3D "${libdir}/heartbeat/plugins/compress/=
-*.so"
->>> +FILES_${PN}-plugin-compress-staticdev =3D
->>> "${libdir}/heartbeat/plugins/compress/*.*a"
->>> +FILES_${PN}-plugin-compress-dbg =3D
->>> "${libdir}/heartbeat/plugins/compress/.debug/"
->>>
->>> -FILES_${PN}-plugin-test =3D "/usr/lib/heartbeat/plugins/test/test.so"
->>> -FILES_${PN}-plugin-test-staticdev =3D "/usr/lib/heartbeat/plugins/test=
-/test.*a"
->>> -FILES_${PN}-plugin-test-dbg =3D "/usr/lib/heartbeat/plugins/test/.debu=
-g/"
->>> +FILES_${PN}-plugin-test =3D "${libdir}/heartbeat/plugins/test/test.so"
->>> +FILES_${PN}-plugin-test-staticdev =3D "${libdir}/heartbeat/plugins/tes=
-t/test.*a"
->>> +FILES_${PN}-plugin-test-dbg =3D "${libdir}/heartbeat/plugins/test/.deb=
-ug/"
->>> FILES_${PN}-plugin-stonith2 =3D " \
->>> -	/usr/lib/stonith/plugins/xen0-ha-dom0-stonith-helper \
->>> -	/usr/lib/stonith/plugins/stonith2/*.so \
->>> +	${libdir}/stonith/plugins/xen0-ha-dom0-stonith-helper \
->>> +	${libdir}/stonith/plugins/stonith2/*.so \
->>> 	"
->>> -FILES_${PN}-plugin-stonith2-ribcl =3D "/usr/lib/stonith/plugins/stonit=
-h2/ribcl.py"
->>> +FILES_${PN}-plugin-stonith2-ribcl =3D "${libdir}/stonith/plugins/stoni=
-th2/ribcl.py"
->>>
->>> -FILES_${PN}-plugin-stonith2-dbg =3D "/usr/lib/stonith/plugins/stonith2=
-/.debug/"
->>> -FILES_${PN}-plugin-stonith2-staticdev =3D "/usr/lib/stonith/plugins/st=
-onith2/*.*a"
->>> +FILES_${PN}-plugin-stonith2-dbg =3D "${libdir}/stonith/plugins/stonith=
-2/.debug/"
->>> +FILES_${PN}-plugin-stonith2-staticdev =3D "${libdir}/stonith/plugins/s=
-tonith2/*.*a"
->>>
->>> -FILES_${PN}-plugin-stonith-external =3D "/usr/lib/stonith/plugins/exte=
-rnal/"
->>> -FILES_${PN}-plugin-raexec =3D "/usr/lib/heartbeat/plugins/RAExec/*.so"
->>> -FILES_${PN}-plugin-raexec-staticdev =3D "/usr/lib/heartbeat/plugins/RA=
-Exec/*.*a"
->>> -FILES_${PN}-plugin-raexec-dbg =3D "/usr/lib/heartbeat/plugins/RAExec/.=
-debug/"
->>> +FILES_${PN}-plugin-stonith-external =3D "${libdir}/stonith/plugins/ext=
-ernal/"
->>> +FILES_${PN}-plugin-raexec =3D "${libdir}/heartbeat/plugins/RAExec/*.so=
-"
->>> +FILES_${PN}-plugin-raexec-staticdev =3D "${libdir}/heartbeat/plugins/R=
-AExec/*.*a"
->>> +FILES_${PN}-plugin-raexec-dbg =3D "${libdir}/heartbeat/plugins/RAExec/=
-.debug/"
->>>
->>> -FILES_${PN}-plugin-interfacemgr =3D
->>> "/usr/lib/heartbeat/plugins/InterfaceMgr/generic.so"
->>> -FILES_${PN}-plugin-interfacemgr-staticdev =3D
->>> "/usr/lib/heartbeat/plugins/InterfaceMgr/generic.*a"
->>> -FILES_${PN}-plugin-interfacemgr-dbg =3D
->>> "/usr/lib/heartbeat/plugins/InterfaceMgr/.debug/"
->>> +FILES_${PN}-plugin-interfacemgr =3D
->>> "${libdir}/heartbeat/plugins/InterfaceMgr/generic.so"
->>> +FILES_${PN}-plugin-interfacemgr-staticdev =3D
->>> "${libdir}/heartbeat/plugins/InterfaceMgr/generic.*a"
->>> +FILES_${PN}-plugin-interfacemgr-dbg =3D
->>> "${libdir}/heartbeat/plugins/InterfaceMgr/.debug/"
->>>
->>> -FILES_${PN}-lrmtest =3D "/usr/share/cluster-glue/lrmtest/"
->>> +FILES_${PN}-lrmtest =3D "${datadir}/cluster-glue/lrmtest/"
->>>
->>> RDEPENDS_${PN} +=3D "perl"
->>> RDEPENDS_${PN}-plugin-stonith2 +=3D "bash"
->>> --
->>> 1.8.4.2
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>> The policy store is moved to /var/lib/selinux, the install logic from
+>> refpolicy_common.inc may fail to build policy DB and generate contexts
+>> files.
+>
+> Indeed it failed spectacularly. Additionally the format of the policy
+> store has changed a bit with the addition of the CIL. I've got all of
+> this up on github in a branch if you'd like to give it a review. It
+> currently works but I'm sure it can be improved:
+>
+> https://github.com/flihp/meta-selinux/tree/upgrade
 
+Yes, both build & runtime work well.
+
+It also solves my concern about how to build refpolicies with new tools:)
+
+Thanks
+Wenzong
+
+>
+> Best,
+> Philip
+>
+>>> On 08/15/2015 06:35 AM, Philip Tricca wrote:
+>>>> The SRC_URI used for the last SELinux userspace upgrade was the
+>>>> wrong one. We were using the URI generated by GitHub when tags are
+>>>> added to a repo. These are not the SELinux release tarballs.
+>>>>
+>>>> The SELinux project generates and releases tarballs for each tool
+>>>> and posts them to their GitHub wiki 'Releases' page:
+>>>> https://github.com/SELinuxProject/selinux/wiki/Releases. This patch
+>>>> fixes this URI, fixes the SELINUX_RELEASE variable that didn't get
+>>>> updated during the last upgrade, removes the workaround for the 'S'
+>>>> variable and fixes up the SRC_URI hashes.
+>>>>
+>>>> Signed-off-by: Philip Tricca <flihp@twobit.us>
+>>>> ---
+>>>>    recipes-security/selinux/checkpolicy_2.3.bb     | 4 ++--
+>>>>    recipes-security/selinux/libselinux_2.3.bb      | 4 ++--
+>>>>    recipes-security/selinux/libsemanage_2.3.bb     | 4 ++--
+>>>>    recipes-security/selinux/libsepol_2.3.bb        | 4 ++--
+>>>>    recipes-security/selinux/policycoreutils_2.3.bb | 4 ++--
+>>>>    recipes-security/selinux/selinux_20140506.inc   | 4 ++--
+>>>>    recipes-security/selinux/selinux_common.inc     | 4 ----
+>>>>    recipes-security/selinux/sepolgen_1.2.1.bb      | 4 ++--
+>>>>    8 files changed, 14 insertions(+), 18 deletions(-)
+>>>>
+>>>> diff --git a/recipes-security/selinux/checkpolicy_2.3.bb
+>>>> b/recipes-security/selinux/checkpolicy_2.3.bb
+>>>> index 9f68487..0efc94e 100644
+>>>> --- a/recipes-security/selinux/checkpolicy_2.3.bb
+>>>> +++ b/recipes-security/selinux/checkpolicy_2.3.bb
+>>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>>
+>>>> -SRC_URI[md5sum] = "920f1a048b6023a22e1bae7b40fd413c"
+>>>> -SRC_URI[sha256sum] =
+>>>> "8072c12121613ba943417bbb6d33224d12373ea19d75c5acd1846a35e0e05b74"
+>>>> +SRC_URI[md5sum] = "90caed59291291b184890f563bf6c095"
+>>>> +SRC_URI[sha256sum] =
+>>>> "90632d11afecb66997971d4c5c5d70dfb02d3969ec610ee2918ba6df99c8207b"
+>>>> diff --git a/recipes-security/selinux/libselinux_2.3.bb
+>>>> b/recipes-security/selinux/libselinux_2.3.bb
+>>>> index 81e599d..ff74b61 100644
+>>>> --- a/recipes-security/selinux/libselinux_2.3.bb
+>>>> +++ b/recipes-security/selinux/libselinux_2.3.bb
+>>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+>>>>
+>>>> -SRC_URI[md5sum] = "d27e249ad8450e7182203134cf4d85e2"
+>>>> -SRC_URI[sha256sum] =
+>>>> "03fe2baa7ceeea531a64fd321b44ecf09a55f3af5ef66a58a4135944f34e9851"
+>>>> +SRC_URI[md5sum] = "b11d4d95ef4bde732dbc8462df57a1e5"
+>>>> +SRC_URI[sha256sum] =
+>>>> "0b1e0b43ecd84a812713d09564019b08e7c205d89072b5cbcd07b052cd8e77b2"
+>>>>
+>>>>    SRC_URI += "\
+>>>>            file://libselinux-drop-Wno-unused-but-set-variable.patch \
+>>>> diff --git a/recipes-security/selinux/libsemanage_2.3.bb
+>>>> b/recipes-security/selinux/libsemanage_2.3.bb
+>>>> index 5eada94..a238e08 100644
+>>>> --- a/recipes-security/selinux/libsemanage_2.3.bb
+>>>> +++ b/recipes-security/selinux/libsemanage_2.3.bb
+>>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>>>>
+>>>> -SRC_URI[md5sum] = "cc313b400637d94e3a549bf77555d8c3"
+>>>> -SRC_URI[sha256sum] =
+>>>> "4c984379a98ee9f05b80ff6e57dd2de886273d7136146456cabdce21ac32ed7f"
+>>>> +SRC_URI[md5sum] = "e564e2b92d18db35707060da29cddab9"
+>>>> +SRC_URI[sha256sum] =
+>>>> "03e09e35e611c286e446bef92b6023ef2623815996f5a53394bb02e49a312e4b"
+>>>>
+>>>>    SRC_URI += "\
+>>>>        file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
+>>>> diff --git a/recipes-security/selinux/libsepol_2.3.bb
+>>>> b/recipes-security/selinux/libsepol_2.3.bb
+>>>> index 0c07d41..478a6ee 100644
+>>>> --- a/recipes-security/selinux/libsepol_2.3.bb
+>>>> +++ b/recipes-security/selinux/libsepol_2.3.bb
+>>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>>>>
+>>>> -SRC_URI[md5sum] = "c6b3dc07bf19ab4f364f21bbecb44beb"
+>>>> -SRC_URI[sha256sum] =
+>>>> "5a4481bfd0fad6fdad1511c786d69de1fc3eddc28154eae1691e1bf4e9e505c3"
+>>>> +SRC_URI[md5sum] = "e47e8527b5d4ea971726c455f847efdd"
+>>>> +SRC_URI[sha256sum] =
+>>>> "cc8d8642c3b7b95d6928d65dcbca2ab0627abc1c05166637851e63c1a6eae68f"
+>>>> diff --git a/recipes-security/selinux/policycoreutils_2.3.bb
+>>>> b/recipes-security/selinux/policycoreutils_2.3.bb
+>>>> index c837266..b77094e 100644
+>>>> --- a/recipes-security/selinux/policycoreutils_2.3.bb
+>>>> +++ b/recipes-security/selinux/policycoreutils_2.3.bb
+>>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>>
+>>>> -SRC_URI[md5sum] = "4f5c508e3c3867c8beb343e993d353dd"
+>>>> -SRC_URI[sha256sum] =
+>>>> "11e8815ac13debb87897d2781381b89ec5c6c746a3d44223a493bc7ace6cc71f"
+>>>> +SRC_URI[md5sum] = "9a5db20adfe2250f53833b277ac796ae"
+>>>> +SRC_URI[sha256sum] =
+>>>> "864cfaee58b5d2f15b140c354e59666e57143293c89f2b2e85bc0d0e4beefcd2"
+>>>>
+>>>>    SRC_URI += "\
+>>>>        file://policycoreutils-fix-sepolicy-install-path.patch \
+>>>> diff --git a/recipes-security/selinux/selinux_20140506.inc
+>>>> b/recipes-security/selinux/selinux_20140506.inc
+>>>> index 01cc52f..beaaff0 100644
+>>>> --- a/recipes-security/selinux/selinux_20140506.inc
+>>>> +++ b/recipes-security/selinux/selinux_20140506.inc
+>>>> @@ -1,5 +1,5 @@
+>>>> -SELINUX_RELEASE = "20131030"
+>>>> +SELINUX_RELEASE = "20140506"
+>>>>
+>>>> -SRC_URI =
+>>>> "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
+>>>> +SRC_URI =
+>>>> "https://raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
+>>>>
+>>>>
+>>>>    include selinux_common.inc
+>>>> diff --git a/recipes-security/selinux/selinux_common.inc
+>>>> b/recipes-security/selinux/selinux_common.inc
+>>>> index e53792d..7efa694 100644
+>>>> --- a/recipes-security/selinux/selinux_common.inc
+>>>> +++ b/recipes-security/selinux/selinux_common.inc
+>>>> @@ -5,10 +5,6 @@ HOMEPAGE = "https://github.com/SELinuxProject"
+>>>>    # we redefine EXTRA_OEMAKE here
+>>>>    EXTRA_OEMAKE = "-e"
+>>>>
+>>>> -# Releases are now from the base of the full tree, necessitating our
+>>>> skipping
+>>>> -# through an extra level of directories.
+>>>> -S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
+>>>> -
+>>>>    do_compile() {
+>>>>        oe_runmake all \
+>>>>                INCLUDEDIR='${STAGING_INCDIR}' \
+>>>> diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb
+>>>> b/recipes-security/selinux/sepolgen_1.2.1.bb
+>>>> index b47ff26..c636ac3 100644
+>>>> --- a/recipes-security/selinux/sepolgen_1.2.1.bb
+>>>> +++ b/recipes-security/selinux/sepolgen_1.2.1.bb
+>>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>>
+>>>>    LIC_FILES_CHKSUM =
+>>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>>
+>>>> -SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
+>>>> -SRC_URI[sha256sum] =
+>>>> "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
+>>>> +SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
+>>>> +SRC_URI[sha256sum] =
+>>>> "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
+>>>>
+>>>
+>
+>
 
