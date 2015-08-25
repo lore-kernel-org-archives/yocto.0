@@ -1,49 +1,45 @@
-Return-Path: <mei.yeen.ng@intel.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AEC0E00BCE; Mon, 24 Aug 2015 19:21:53 -0700 (PDT)
+	id 7E83FE00BFE; Mon, 24 Aug 2015 23:57:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9CD6E009C5
-	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 19:21:48 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga103.jf.intel.com with ESMTP; 24 Aug 2015 19:21:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,743,1432623600"; d="scan'208";a="547905574"
-Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
-	by FMSMGA003.fm.intel.com with ESMTP; 24 Aug 2015 19:21:47 -0700
-Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.42]) by
-	KMSMSX152.gar.corp.intel.com ([169.254.11.233]) with mapi id
-	14.03.0224.002; Tue, 25 Aug 2015 10:20:10 +0800
-From: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>
-To: Randy Witt <randy.e.witt@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Packages in packagegroup are not installed in image
-Thread-Index: AdC/JTdQ3JBuJ199QBOTZNoIWPVvUAGCRJuABmtOKSA=
-Date: Tue, 25 Aug 2015 02:20:09 +0000
-Message-ID: <62355CE5B24AE3438DF93AF114E1F91B2DC08180@PGSMSX103.gar.corp.intel.com>
-References: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
-	<55B12B8B.7060509@linux.intel.com>
-In-Reply-To: <55B12B8B.7060509@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.205]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 478BFE00978
+	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 23:57:38 -0700 (PDT)
+X-Halon-ID: 8e627c8b-4af6-11e5-b20a-005056917c0c
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Tue, 25 Aug 2015 08:57:31 +0200 (CEST)
 MIME-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
-	Randy E" <randy.e.witt@intel.com>
-Subject: Re: Packages in packagegroup are not installed in image
+Date: Tue, 25 Aug 2015 08:57:34 +0200
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Alex J Lennon <ajlennon@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <55D1A82F.9020506@gmail.com>
+References: <1439312679-24989-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+	<1439312679-24989-2-git-send-email-ajlennon@dynamicdevices.co.uk>
+	<f770f8743b500dde78803cd8b0826854@technux.se>
+	<CAK18fxHq-iSARt0mEBHQoNC+jZuK+0ix50y6838OCpmRc7VyoQ@mail.gmail.com>
+	<8cc28d589389102b4fccf052fe2389c2@technux.se>
+	<55D1A82F.9020506@gmail.com>
+Message-ID: <02548fc1921b30fcdb6a0791bd7a6361@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 2/2] linux-raspberrypi: build audio driver into kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,70 +48,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Aug 2015 02:21:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 25 Aug 2015 06:57:42 -0000
+Content-Type: multipart/alternative;
+	boundary="=_946a6ace4a3b7c553dce91ec9281cee7"
+
+--=_946a6ace4a3b7c553dce91ec9281cee7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+
+ 
+
+2015-08-17 11:23 skrev Alex J Lennon: 
+
+> On 17/08/2015 09:11,
+Petter Mabäcker wrote:
+> 
+>> 2015-08-17 09:57 skrev Andrei Gherzan: 
+>>
+
+>>> Hello, On Tuesday, August 11, 2015, Petter Mabäcker
+<petter@technux.se <mailto:petter@technux.se>> wrote: 2015-08-11 19:04
+skrev Alex J Lennon: Signed-off-by: Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> ---
+recipes-kernel/linux/linux-raspberrypi.inc | 4 ++++ 1 file changed, 4
+insertions(+) diff --git a/recipes-kernel/linux/linux-raspberrypi.inc
+b/recipes-kernel/linux/linux-raspberrypi.inc index e38d905..8024412
+100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
+b/recipes-kernel/linux/linux-raspberrypi.inc @@ -6,6 +6,10 @@ SECTION =
+"kernel" LICENSE = "GPLv2" LIC_FILES_CHKSUM =
+"file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7" +SRC_URI += " +
+file://build-in-audio.cfg [1] + " This one didn't make it. -- Andrei
+Gherzan -- -- Andrei Gherzan
+>> Think you got the wrong receiver =) I
+notified Alex about this some days ago, Alex can you send up a v2 for
+this?
+> 
+> The build-in-audio.cfg patch was just for testing of fragment
+support.
+> It's understood that we're not going to have this build into
+the kernel
+> by default, although I do still need to find some words to
+add to the
+> README on audio routing setup and so forth.
+> 
+> I started
+testing a build with master over the weekend and it built OK.
+> Just
+need to find some time to run up a couple of kernels and will
+> resubmit
+the v2 patch with Petter's enhanced commit message.
+> 
+> I don't have an
+RPiv1 around at the moment but I will probably double
+> check the kernel
+does still actually build for RPiv1 machine
+> 
+> Cheers,
+> 
+> Alex
+> 
+>>
+BR, Petter
+
+Hi Alex, Any news for the v2 changeset? Would be awesome to
+get the 4.x integrated soon. 
+
+BR Petter 
+
+Links:
+------
+[1]
+file://build-in-audio.cfg
+
+--=_946a6ace4a3b7c553dce91ec9281cee7
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-Hi Randy,
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>&nbsp;</p>
+<p>2015-08-17 11:23 skrev Alex J Lennon:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On 17/08/2015 09:11, Petter Mab&auml;cker wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">2015-08-17 09:57 skrev Andrei Gherzan=
+:
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">Hello, On Tuesday, August 11, 2015, P=
+etter Mab&auml;cker &lt;<a href=3D"mailto:petter@technux.se">petter@technux=
+=2Ese</a> &lt;mailto:<a href=3D"mailto:petter@technux.se">petter@technux.se=
+</a>&gt;&gt; wrote: 2015-08-11 19:04 skrev Alex J Lennon: Signed-off-by: Al=
+ex J Lennon &lt;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk">ajlennon@d=
+ynamicdevices.co.uk</a>&gt; --- recipes-kernel/linux/linux-raspberrypi.inc =
+| 4 ++++ 1 file changed, 4 insertions(+) diff --git a/recipes-kernel/linux/=
+linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc index e3=
+8d905..8024412 100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++ =
+b/recipes-kernel/linux/linux-raspberrypi.inc @@ -6,6 +6,10 @@ SECTION =3D "=
+kernel" LICENSE =3D "GPLv2" LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd781=
+0fab7487fb0aad327b76f1be7cd7" +SRC_URI +=3D " \ + <a href=3D"file://build-i=
+n-audio.cfg">file://build-in-audio.cfg</a> \ + " This one didn't make it. -=
+- Andrei Gherzan -- -- Andrei Gherzan</blockquote>
+Think you got the wrong receiver =3D) I notified Alex about this some days =
+ago, Alex can you send up a v2 for this?</blockquote>
+<pre>The build-in-audio.cfg patch was just for testing of fragment support=
+=2E
+It's understood that we're not going to have this build into the kernel
+by default, although I do still need to find some words to add to the
+README on audio routing setup and so forth.
 
-The packagegroups is added into the image as below:
+I started testing a build with master over the weekend and it built OK.
+Just need to find some time to run up a couple of kernels and will
+resubmit the v2 patch with Petter's enhanced commit message.
 
-1) Create a bbappend of the image core-image-full-cmdline.bbappend in our n=
-ew layer
-2) In the core-image-full-cmdline.bbappend, enable the following lines:
+I don't have an RPiv1 around at the moment but I will probably double
+check the kernel does still actually build for RPiv1 machine
 
-	DESCRIPTION =3D "Custom list of packages for build essentials for commandl=
-ine image"
+Cheers,
 
-	IMAGE_INSTALL +=3D "packagegroup-core-buildessential-extended"
-	IMAGE_INSTALL +=3D "packagegroup-core-devtools"
+Alex</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">BR, Petter</blockquote>
+</blockquote>
+<p>Hi Alex, Any news for the v2 changeset? Would be awesome to get the 4.x =
+integrated soon.</p>
+<p>BR Petter</p>
+</body></html>
 
-3) Update the local.conf to include EXTRA_IMAGE_FEATURES =3D "debug-tweaks =
-tools-testapps tools-debug"
-
-Thanks,
-MY
-
------Original Message-----
-From: Randy Witt [mailto:randy.e.witt@linux.intel.com]=20
-Sent: Friday, July 24, 2015 2:00 AM
-To: Ng, Mei Yeen; yocto@yoctoproject.org
-Cc: Hart, Darren; Witt, Randy E
-Subject: Re: [yocto] Packages in packagegroup are not installed in image
-
-Hi Mei,
-
-On 07/15/2015 10:40 AM, Ng, Mei Yeen wrote:
-> Hi,
->
-> I need help for issue where packages in packagegroup that compiles perfec=
-tly fine with core-images, but when verified in the image, they are not ins=
-talled for some reason.
-> My understanding was that packages listed under RDEPENDS in the packagegr=
-oup would get compiled and installed.
->
-> Some packages would appear in 1 image and then disappear in the next comp=
-iled image.
-> I'm seeing this when compiling with core-image-full-cmdline and core-imag=
-e-sato.
->
-> I have attached the following package group created:
->
-> -        graphics package group- ldd would not be installed in the image
->
-> -        build essentials extended package group - gdb were not install, =
-gcc and mkdosfs will intermittently not install into the image
-
-Could you perhaps provide the recipe that creates the package group and sho=
-w how you are adding the package group to the image?
-
-> Any help to shed some light on this is very much appreciated.
->
-> Thanks,
-> MY
->
->
->
-
-
+--=_946a6ace4a3b7c553dce91ec9281cee7--
