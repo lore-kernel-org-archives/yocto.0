@@ -1,53 +1,40 @@
-Return-Path: <pierre-yves.mordret@st.com>
+Return-Path: <randy.e.witt@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DCB0E00C28; Tue, 25 Aug 2015 09:36:17 -0700 (PDT)
+	id 5EE14E00C2B; Tue, 25 Aug 2015 13:04:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [62.209.51.94 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 545 seconds by postgrey-1.32 at yocto-www;
-	Tue, 25 Aug 2015 09:36:15 PDT
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
-	[62.209.51.94])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 399BCE00BEB
-	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 09:36:15 -0700 (PDT)
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-	by m0046037.ppops.net (8.14.5/8.14.5) with SMTP id t7PGN8gJ006943
-	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 18:27:09 +0200
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by m0046037.ppops.net with ESMTP id 1wgq0xsp6a-1
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 18:27:09 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 63F4D34
-	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 16:27:00 +0000 (GMT)
-Received: from Webmail-eu.st.com (safex1hubcas6.st.com [10.75.90.73])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 872E6ABE2
-	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 16:27:07 +0000 (GMT)
-Received: from Safex1mail5.st.com ([fe80::e860:6123:e5ab:d646]) by
-	safex1hubcas6.st.com ([::1]) with mapi; Tue, 25 Aug 2015 18:27:06 +0200
-From: Pierre Yves MORDRET <pierre-yves.mordret@st.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 25 Aug 2015 18:27:06 +0200
-Thread-Topic: building external modules 
-Thread-Index: AdDfUJe7rpK55shUTZ6yHhjxiUKnYg==
-Message-ID: <BFFC96E2B4AD594695C8501F384CF8EF1073FBE1@SAFEX1MAIL5.st.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2761BE00A92
+	for <yocto@yoctoproject.org>; Tue, 25 Aug 2015 13:04:47 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP; 25 Aug 2015 13:04:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,747,1437462000"; d="scan'208";a="790818193"
+Received: from bitbang.jf.intel.com ([10.7.201.51])
+	by orsmga002.jf.intel.com with ESMTP; 25 Aug 2015 13:04:46 -0700
+To: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
+	<55B12B8B.7060509@linux.intel.com>
+	<62355CE5B24AE3438DF93AF114E1F91B2DC08180@PGSMSX103.gar.corp.intel.com>
+From: Randy Witt <randy.e.witt@linux.intel.com>
+Message-ID: <55DCCA5E.4080907@linux.intel.com>
+Date: Tue, 25 Aug 2015 13:04:46 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.1.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.14.151, 1.0.33,
-	0.0.0000
-	definitions=2015-08-25_07:2015-08-24, 2015-08-25,
-	1970-01-01 signatures=0
-Subject: building external modules
+In-Reply-To: <62355CE5B24AE3438DF93AF114E1F91B2DC08180@PGSMSX103.gar.corp.intel.com>
+Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
+	Randy E" <randy.e.witt@intel.com>
+Subject: Re: Packages in packagegroup are not installed in image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,35 +46,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Aug 2015 16:36:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 25 Aug 2015 20:04:51 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 08/24/2015 07:20 PM, Ng, Mei Yeen wrote:
+> Hi Randy,
+>
+> The packagegroups is added into the image as below:
+>
+> 1) Create a bbappend of the image core-image-full-cmdline.bbappend in our new layer
+> 2) In the core-image-full-cmdline.bbappend, enable the following lines:
+>
+> 	DESCRIPTION = "Custom list of packages for build essentials for commandline image"
+>
+> 	IMAGE_INSTALL += "packagegroup-core-buildessential-extended"
+> 	IMAGE_INSTALL += "packagegroup-core-devtools"
 
-I have a sporadic compilation issue for a while and I never found out so fa=
-r where it came from until now (perhaps).=20
-I mean by sporadic that it happens "sometimes" (2% of a time)=20
-I'm using daisy branch and the build failure happens in a Kernel External. =
-It ends up like this:
+Could you try using _append like below, and see if that gives you the 
+consistency you want?
 
-DEBUG: Executing shell function do_compile
-NOTE: make -j 24 -e ...  -C <sysroot>/usr/src/kernel O=3D<sysroot>/usr/src/=
-kernel KBUILD_VERBOSE=3D1 M=3D<external_mod_path> ... modules
-   [...]
-   arm-rdk-linux-gnueabi-ld -EL    -r -o <object>.o [...] ; scripts/mod/mod=
-post <object>.o
-  /bin/sh: scripts/mod/modpost: Permission denied
+IMAGE_INSTALL_append = " packagegroup-core-buildessential-extended"
+IMAGE_INSTALL_append = " packagegroup-core-devtools"
 
-Looking at logs and bbclass, I've seen a "make scripts"(module.bbclass/do_m=
-ake_scripts) is issued anytime we build a Kernel External module.
-Even if there is a "lock" mechanism to prevent race condition during this "=
-do_make_scripts", nothing prevent to call "do_make_scripts" from a Ext Mod =
-1 during a "do_compile" from a Ext Mod 2.
+> 3) Update the local.conf to include EXTRA_IMAGE_FEATURES = "debug-tweaks tools-testapps tools-debug"
+>
+> Thanks,
+> MY
+>
+> -----Original Message-----
+> From: Randy Witt [mailto:randy.e.witt@linux.intel.com]
+> Sent: Friday, July 24, 2015 2:00 AM
+> To: Ng, Mei Yeen; yocto@yoctoproject.org
+> Cc: Hart, Darren; Witt, Randy E
+> Subject: Re: [yocto] Packages in packagegroup are not installed in image
+>
+> Hi Mei,
+>
+> On 07/15/2015 10:40 AM, Ng, Mei Yeen wrote:
+>> Hi,
+>>
+>> I need help for issue where packages in packagegroup that compiles perfectly fine with core-images, but when verified in the image, they are not installed for some reason.
+>> My understanding was that packages listed under RDEPENDS in the packagegroup would get compiled and installed.
+>>
+>> Some packages would appear in 1 image and then disappear in the next compiled image.
+>> I'm seeing this when compiling with core-image-full-cmdline and core-image-sato.
+>>
+>> I have attached the following package group created:
+>>
+>> -        graphics package group- ldd would not be installed in the image
+>>
+>> -        build essentials extended package group - gdb were not install, gcc and mkdosfs will intermittently not install into the image
+>
+> Could you perhaps provide the recipe that creates the package group and show how you are adding the package group to the image?
+>
+>> Any help to shed some light on this is very much appreciated.
+>>
+>> Thanks,
+>> MY
+>>
+>>
+>>
+>
 
-I think (but not sure) this is another race condition here.
-Do I miss something ?
-
-Thanks in advance
 
