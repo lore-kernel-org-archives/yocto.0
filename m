@@ -1,40 +1,46 @@
-Return-Path: <javier@osg.samsung.com>
+Return-Path: <mei.yeen.ng@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24682E00BD2; Mon, 24 Aug 2015 13:25:37 -0700 (PDT)
+	id 6AEC0E00BCE; Mon, 24 Aug 2015 19:21:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [54.187.51.154 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57A79E00AA5
-	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 13:25:35 -0700 (PDT)
-Received: from [192.168.1.131] (121.108.23.95.dynamic.jazztel.es
-	[95.23.108.121])
-	by lists.s-osg.org (Postfix) with ESMTPSA id A78054632B;
-	Mon, 24 Aug 2015 13:25:33 -0700 (PDT)
-To: Andrei Gherzan <andrei@gherzan.ro>, Khem Raj <raj.khem@gmail.com>
-References: <1439485643-31467-1-git-send-email-javier@osg.samsung.com>
-	<1439485643-31467-5-git-send-email-javier@osg.samsung.com>
-	<2A2C0AE8-7998-4E9E-BCD1-C4526449F31D@gmail.com>
-	<CAK18fxE30A1EYFBgk31aYWqwK9mid8j+hSSnwuiPsrqvVzqvtg@mail.gmail.com>
-	<55D1B054.2050403@osg.samsung.com>
-From: Javier Martinez Canillas <javier@osg.samsung.com>
-Message-ID: <55DB7DBA.7030902@osg.samsung.com>
-Date: Mon, 24 Aug 2015 22:25:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.0.1
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9CD6E009C5
+	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 19:21:48 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga103.jf.intel.com with ESMTP; 24 Aug 2015 19:21:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,743,1432623600"; d="scan'208";a="547905574"
+Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
+	by FMSMGA003.fm.intel.com with ESMTP; 24 Aug 2015 19:21:47 -0700
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.42]) by
+	KMSMSX152.gar.corp.intel.com ([169.254.11.233]) with mapi id
+	14.03.0224.002; Tue, 25 Aug 2015 10:20:10 +0800
+From: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>
+To: Randy Witt <randy.e.witt@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Packages in packagegroup are not installed in image
+Thread-Index: AdC/JTdQ3JBuJ199QBOTZNoIWPVvUAGCRJuABmtOKSA=
+Date: Tue, 25 Aug 2015 02:20:09 +0000
+Message-ID: <62355CE5B24AE3438DF93AF114E1F91B2DC08180@PGSMSX103.gar.corp.intel.com>
+References: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
+	<55B12B8B.7060509@linux.intel.com>
+In-Reply-To: <55B12B8B.7060509@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-In-Reply-To: <55D1B054.2050403@osg.samsung.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Derek Foreman <derekf@osg.samsung.com>,
-	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH v2 4/4] README: Add a section about graphic stacks
+Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
+	Randy E" <randy.e.witt@intel.com>
+Subject: Re: Packages in packagegroup are not installed in image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,53 +52,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Aug 2015 20:25:37 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Aug 2015 02:21:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Randy,
 
-On 08/17/2015 11:58 AM, Javier Martinez Canillas wrote:
-> On 08/17/2015 09:57 AM, Andrei Gherzan wrote:
->> On Thursday, August 13, 2015, Khem Raj <raj.khem@gmail.com> wrote:
+The packagegroups is added into the image as below:
 
-[snip]
+1) Create a bbappend of the image core-image-full-cmdline.bbappend in our n=
+ew layer
+2) In the core-image-full-cmdline.bbappend, enable the following lines:
 
->>>>
->>>> +2.O. Graphic stacks
->>>> +===================
->>>> +The Raspberry Pi boards can use one of two graphics stacks: The userland
->>>> +user-space driver or the vc4 DRM/KMS kernel driver. By default userland
->>>> +is used since the vc4 is still experimental. But this can be changed by
->>>> +modifying the defaults for the kernel, egl, gles2, libgl and mesa
->>> providers.
->>>> +This is explained in the conf/machine/include/rpi-default-providers.inc
->>> file.
->>>> +
->>>
->>> you may want to add pointer to the commented out code that you have added
->>> to select them
->>> in rpi-default-providers.inc
->>>
->>
->> It would be nice to have some detailed info on what and where to comment
->> out the configuration.
->>
-> 
-> On patch 3/4 I added that documentation to rpi-default-providers but didn't
-> add it to the README and instead pointed out to rpi-default-providers to
-> have a level of indirection in case the providers change and to not have
-> duplicated information but I will add it to the README as well.
-> 
-> Do you have comments on the other patches in the series so I can address
-> all of them before re-spinning?
-> 
+	DESCRIPTION =3D "Custom list of packages for build essentials for commandl=
+ine image"
 
-Gentle ping about this. Thanks!
+	IMAGE_INSTALL +=3D "packagegroup-core-buildessential-extended"
+	IMAGE_INSTALL +=3D "packagegroup-core-devtools"
 
-Best regards,
--- 
-Javier Martinez Canillas
-Open Source Group
-Samsung Research America
+3) Update the local.conf to include EXTRA_IMAGE_FEATURES =3D "debug-tweaks =
+tools-testapps tools-debug"
+
+Thanks,
+MY
+
+-----Original Message-----
+From: Randy Witt [mailto:randy.e.witt@linux.intel.com]=20
+Sent: Friday, July 24, 2015 2:00 AM
+To: Ng, Mei Yeen; yocto@yoctoproject.org
+Cc: Hart, Darren; Witt, Randy E
+Subject: Re: [yocto] Packages in packagegroup are not installed in image
+
+Hi Mei,
+
+On 07/15/2015 10:40 AM, Ng, Mei Yeen wrote:
+> Hi,
+>
+> I need help for issue where packages in packagegroup that compiles perfec=
+tly fine with core-images, but when verified in the image, they are not ins=
+talled for some reason.
+> My understanding was that packages listed under RDEPENDS in the packagegr=
+oup would get compiled and installed.
+>
+> Some packages would appear in 1 image and then disappear in the next comp=
+iled image.
+> I'm seeing this when compiling with core-image-full-cmdline and core-imag=
+e-sato.
+>
+> I have attached the following package group created:
+>
+> -        graphics package group- ldd would not be installed in the image
+>
+> -        build essentials extended package group - gdb were not install, =
+gcc and mkdosfs will intermittently not install into the image
+
+Could you perhaps provide the recipe that creates the package group and sho=
+w how you are adding the package group to the image?
+
+> Any help to shed some light on this is very much appreciated.
+>
+> Thanks,
+> MY
+>
+>
+>
+
 
