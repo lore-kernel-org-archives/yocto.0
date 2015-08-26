@@ -1,37 +1,37 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <Viktor.Lenivyy@author.kiev.ua>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0068EE00A28; Wed, 26 Aug 2015 05:53:15 -0700 (PDT)
+	id 227E5E00AA8; Wed, 26 Aug 2015 07:53:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [46.164.133.27 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC58E007AC
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 05:53:12 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t7QCrBjS001549
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 05:53:11 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
-	Wed, 26 Aug 2015 05:53:11 -0700
-Message-ID: <55DDB6A1.5050809@windriver.com>
-Date: Wed, 26 Aug 2015 08:52:49 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 993 seconds by postgrey-1.32 at yocto-www;
+	Wed, 26 Aug 2015 07:53:40 PDT
+Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98E55E00992
+	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 07:53:40 -0700 (PDT)
+Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
+	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZUbp2-000FFF-B9
+	for yocto@yoctoproject.org; Wed, 26 Aug 2015 17:37:04 +0300
+From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to recreate rootfs image
+Thread-Index: AdDgC7q1SC3tRJNPTzu1QekdUOcXkg==
+Date: Wed, 26 Aug 2015 14:37:03 +0000
+Message-ID: <f42259e1da79432a951109af8c20574d@E2013a.CORP.ICS.COM.UA>
+Accept-Language: uk-UA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
 MIME-Version: 1.0
-To: <rongqing.li@windriver.com>, <yocto@yoctoproject.org>
-References: <1440568134-25471-1-git-send-email-rongqing.li@windriver.com>
-In-Reply-To: <1440568134-25471-1-git-send-email-rongqing.li@windriver.com>
-Subject: Re: [PATCH][meta-virtualization] openvsitch: set CONFIGUREOPT_DEPTRACK to empty
+Subject: How to recreate rootfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,47 +43,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Aug 2015 12:53:16 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 26 Aug 2015 14:53:44 -0000
+Content-Language: ru-RU
+Content-Type: multipart/alternative;
+	boundary="_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_"
 
-On 15-08-26 01:48 AM, rongqing.li@windriver.com wrote:
-> From: Roy Li <rongqing.li@windriver.com>
->
-> compilation failed since the needed dirs maybe not created when make
-> ".in" target, fix it by creating the needed dirs before, but mainstream
-> thinks the needed dirs should be created when do configuration.
-> at last, find CONFIGUREOPT_DEPTRACK disable the creation, so empty
-> it
-> http://openvswitch.org/pipermail/dev/2015-August/059189.html
->
-> set CONFIGUREOPT_DEPTRACK to empty, is lower effective, but harmless,
-> and can fix the parallel building issue;
-> see oe-core 970e0ae6108[autotools: Disable dependency tracking
+--_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This should have gone to the meta-virtualization mailing list, but no
-need to re-send .. I have it from here and have merged it.
+SGVsbG8uDQpJIGhhdmUg4oCcYWx0ZXJhLWltYWdlLW1pbmltYWzigJ0gcmVjaXBlIHdoaWNoIGNy
+ZWF0ZXMgbWluaW1hbCByb290ZnMgYmFzZWQgb24gTGludXgga2VybmVsIHByb3ZpZGVkIGJ5IOKA
+nGxpbnV4LWFsdGVyYS1sb2NhbOKAnSByZWNpcGUuIFRoaXMga2VybmVsIGlzIGZldGNoZWQgZnJv
+bSBsb2NhbCBkaXJlY3RvcnkuDQpBZnRlciBmaXJzdCB0aW1lIGJ1aWxkaW5nIOKAnGFsdGVyYS1p
+bWFnZS1taW5pbWFs4oCdLCBpdCBwcm9kdWNlZCByb290ZnMgd2l0aCBtb2R1bGVzIHZlcnNpb24g
+Y29udGFpbmVkIOKAnC1kaXJ0eeKAnSBhdCB0aGUgZW5kLiBIb3dldmVyIGtlcm5lbCBidWlsdCBm
+cm9tIHNvdXJjZXMgaW4gbG9jYWwgZGlyZWN0b3J5IGRvZXNu4oCZdCBoYXZlIOKAnC1kaXJ0eeKA
+nSBpbiB2ZXJzaW9uIHN0cmluZy4gVGh1cyBrZXJuZWwgY2Fu4oCZdCBydW4gd2l0aCBwcm9kdWNl
+ZCByb290ZnMuDQpJIG9wZW5lZCBkaXJlY3Rvcnkgd2hpY2ggY29udGFpbnMgWW9jdG/igJlzIGNv
+cHkgb2YgTGludXggc291cmNlcw0KYnVpbGQvdG1wL3dvcmsvc29jZnBnYV9zb2NyYXRlcy1wb2t5
+LWxpbnV4LWdudWVhYmkvbGludXgtYWx0ZXJhLWxvY2FsLTEuMC1yMS9zb2NyYXRlc19saW51eC8N
+CnRoZW4gcnVuIOKAnG1ha2UgQVJDSD1hcm0ga2VybmVscmVsZWFzZeKAnSB0byBpbnZlc3RpZ2F0
+ZSBrZXJuZWwgdmVyc2lvbi4gVGhpcyBjb21tYW5kIG91dHB1dHMgdGhlIHZlcnNpb24gd2l0aCDi
+gJwtZGlydHnigJ0uIEkgaGF2ZSBmb3VuZCB0aGF0IOKAnC1kaXJ0eeKAnSBzdHJpbmcgaXMgYXBw
+ZW5kZWQgZnJvbSBzY3JpcHQgaW4ga2VybmVsIHNvdXJjZXMuIFRoYXQgc2NyaXB0IHVzZXMgb3V0
+cHV0IGZyb20g4oCcZ2l0IGRpZmYtaW5kZXggLS1uYW1lLW9ubHkgSEVBROKAnSB0byBkZXRlcm1p
+bmUgaWYgd29ya2luZyBkaXJlY3RvcnkgaXMg4oCcZGlydHnigJ0uIFRvIGZpbmQgY2hhbmdlZCBm
+aWxlcywgSSByYW4gc2FtZSBjb21tYW5kLCBpdOKAmXMgb2RkbHkgYnV0IHRoZSBvdXRwdXQgd2Fz
+IGVtcHR5LiBUaGVuIEkgcmVydW4g4oCcbWFrZSBBUkNIPWFybSBrZXJuZWxyZWxlYXNl4oCdLiBU
+aGlzIHRpbWUgaXQgcHJpbnRzICB0aGUgdmVyc2lvbiB3aXRob3V0IOKAnC1kaXJ0eeKAnS4NCkRv
+ZXMgc29tZW9uZSBoYXZlIGFueSBjbHVlIHdoeSBpdCBjYW4gYmUgc28/DQoNCk15IG1haW4gcXVl
+c3Rpb24gaXM6IGhvdyBjYW4gSSByZWNyZWF0ZSByb290ZnMgaW1hZ2Ugc3RhcnRpbmcgZnJvbSB0
+aGUgcG9pbnQgYWZ0ZXIgZmV0Y2hpbmcgTGludXggc291cmNlcywgc28gWW9jdG/igJlzIGNvcHkg
+d2lsbCByZW1haW4gaW50YWN0Pw0KDQpJIHNwZW50IGxvdCBvZiB0aW1lIHRyeWluZyB0byBmaWd1
+cmUgaXQgb3V0IGJ5IG15c2VsZiB3aXRoIG5vIGx1Y2suIE15IGlkZWEgd2FzIHRvIGZpbmQgc2Vx
+dWVuY2Ugb2YgY29tbWFuZHMgdXNlZCB0byBjcmVhdGUgaW1hZ2UgYW5kIHJ1biBvbmx5IGNvbW1h
+bmRzIGFmdGVyIGZldGNoaW5nIGtlcm5lbCBzb3VyY2VzLiBVbmZvcnR1bmF0ZWx5IEkgZGlkbuKA
+mXQgbWFuYWdlIHRvIGZpbmQgdGhlIHNlcXVlbmNlIGFueXdoZXJlLiBIb3cgc3VjaCB0aGluZ3Mg
+bmVlZCB0byBiZSBzb2x2ZWQgaW4gWW9jdG8/DQo=
 
-Bruce
+--_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
->
-> Signed-off-by: Roy Li <rongqing.li@windriver.com>
-> ---
->   recipes-networking/openvswitch/openvswitch.inc | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/recipes-networking/openvswitch/openvswitch.inc b/recipes-networking/openvswitch/openvswitch.inc
-> index 58c8352..454aadf 100644
-> --- a/recipes-networking/openvswitch/openvswitch.inc
-> +++ b/recipes-networking/openvswitch/openvswitch.inc
-> @@ -39,6 +39,7 @@ EXTRA_OECONF += "\
->   	TARGET_PYTHON=${bindir}/python \
->   	TARGET_PERL=${bindir}/perl \
->   	"
-> +CONFIGUREOPT_DEPTRACK = ""
->
->   # Don't compile kernel modules by default since it heavily depends on
->   # kernel version. Use the in-kernel module for now.
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3Jp
+dHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
+aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFp
+bFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERl
+ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBX
+b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjQyLjVwdCA0Mi41
+cHQgNDIuNXB0IDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJVSyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBs
+ZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiPkhlbGxvLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIGhhdmUg4oCcYWx0ZXJhLWltYWdlLW1pbmlt
+YWzigJ0gcmVjaXBlIHdoaWNoIGNyZWF0ZXMgbWluaW1hbCByb290ZnMgYmFzZWQgb24gTGludXgg
+a2VybmVsIHByb3ZpZGVkIGJ5IOKAnGxpbnV4LWFsdGVyYS1sb2NhbOKAnSByZWNpcGUuIFRoaXMg
+a2VybmVsIGlzIGZldGNoZWQgZnJvbSBsb2NhbCBkaXJlY3RvcnkuPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkFmdGVyIGZpcnN0
+IHRpbWUgYnVpbGRpbmcg4oCcYWx0ZXJhLWltYWdlLW1pbmltYWzigJ0sIGl0IHByb2R1Y2VkIHJv
+b3RmcyB3aXRoIG1vZHVsZXMgdmVyc2lvbiBjb250YWluZWQg4oCcLWRpcnR54oCdIGF0IHRoZSBl
+bmQuIEhvd2V2ZXIga2VybmVsIGJ1aWx0IGZyb20gc291cmNlcyBpbiBsb2NhbCBkaXJlY3Rvcnkg
+ZG9lc27igJl0IGhhdmUg4oCcLWRpcnR54oCdIGluIHZlcnNpb24gc3RyaW5nLiBUaHVzDQoga2Vy
+bmVsIGNhbuKAmXQgcnVuIHdpdGggcHJvZHVjZWQgcm9vdGZzLjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIG9wZW5lZCBkaXJl
+Y3Rvcnkgd2hpY2ggY29udGFpbnMgWW9jdG/igJlzIGNvcHkgb2YgTGludXggc291cmNlczxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij5idWlsZC90bXAvd29yay9zb2NmcGdhX3NvY3JhdGVzLXBva3ktbGludXgtZ251ZWFiaS9saW51
+eC1hbHRlcmEtbG9jYWwtMS4wLXIxL3NvY3JhdGVzX2xpbnV4LzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj50aGVuIHJ1biDigJxt
+YWtlIEFSQ0g9YXJtIGtlcm5lbHJlbGVhc2XigJ0gdG8gaW52ZXN0aWdhdGUga2VybmVsIHZlcnNp
+b24uIFRoaXMgY29tbWFuZCBvdXRwdXRzIHRoZSB2ZXJzaW9uIHdpdGgg4oCcLWRpcnR54oCdLiBJ
+IGhhdmUgZm91bmQgdGhhdCDigJwtZGlydHnigJ0gc3RyaW5nIGlzIGFwcGVuZGVkIGZyb20gc2Ny
+aXB0IGluIGtlcm5lbCBzb3VyY2VzLiBUaGF0IHNjcmlwdCB1c2VzIG91dHB1dA0KIGZyb20g4oCc
+Z2l0IGRpZmYtaW5kZXggLS1uYW1lLW9ubHkgSEVBROKAnSB0byBkZXRlcm1pbmUgaWYgd29ya2lu
+ZyBkaXJlY3RvcnkgaXMg4oCcZGlydHnigJ0uIFRvIGZpbmQgY2hhbmdlZCBmaWxlcywgSSByYW4g
+c2FtZSBjb21tYW5kLCBpdOKAmXMgb2RkbHkgYnV0IHRoZSBvdXRwdXQgd2FzIGVtcHR5LiBUaGVu
+IEkgcmVydW4g4oCcbWFrZSBBUkNIPWFybSBrZXJuZWxyZWxlYXNl4oCdLiBUaGlzIHRpbWUgaXQg
+cHJpbnRzICZuYnNwO3RoZSB2ZXJzaW9uIHdpdGhvdXQg4oCcLWRpcnR54oCdLjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5Eb2Vz
+IHNvbWVvbmUgaGF2ZSBhbnkgY2x1ZSB3aHkgaXQgY2FuIGJlIHNvPzxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+TXkgbWFpbiBxdWVzdGlvbiBpczogaG93IGNhbiBJIHJlY3JlYXRlIHJvb3RmcyBpbWFnZSBz
+dGFydGluZyBmcm9tIHRoZSBwb2ludCBhZnRlciBmZXRjaGluZyBMaW51eCBzb3VyY2VzLCBzbyBZ
+b2N0b+KAmXMgY29weSB3aWxsIHJlbWFpbiBpbnRhY3Q/PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIHNw
+ZW50IGxvdCBvZiB0aW1lIHRyeWluZyB0byBmaWd1cmUgaXQgb3V0IGJ5IG15c2VsZiB3aXRoIG5v
+IGx1Y2suIE15IGlkZWEgd2FzIHRvIGZpbmQgc2VxdWVuY2Ugb2YgY29tbWFuZHMgdXNlZCB0byBj
+cmVhdGUgaW1hZ2UgYW5kIHJ1biBvbmx5IGNvbW1hbmRzIGFmdGVyIGZldGNoaW5nIGtlcm5lbCBz
+b3VyY2VzLiBVbmZvcnR1bmF0ZWx5IEkgZGlkbuKAmXQgbWFuYWdlIHRvIGZpbmQNCiB0aGUgc2Vx
+dWVuY2UgYW55d2hlcmUuIEhvdyBzdWNoIHRoaW5ncyBuZWVkIHRvIGJlIHNvbHZlZCBpbiBZb2N0
+bz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
+--_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_--
