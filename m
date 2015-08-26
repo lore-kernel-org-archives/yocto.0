@@ -1,35 +1,50 @@
-Return-Path: <Viktor.Lenivyy@author.kiev.ua>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F5F0E00708; Wed, 26 Aug 2015 08:42:48 -0700 (PDT)
+	id 3871FE00474; Wed, 26 Aug 2015 08:47:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [46.164.133.27 listed in list.dnswl.org]
+	*      [193.201.172.119 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (picmaster[at]mail.bg)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CD9DE00461
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 08:42:44 -0700 (PDT)
-Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
-	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZUcqX-000G6t-M6
-	for yocto@yoctoproject.org; Wed, 26 Aug 2015 18:42:41 +0300
-From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to recreate rootfs image
-Thread-Index: AdDgFTZqKhIZops8Tay4pkfuzS2ZhQ==
-Date: Wed, 26 Aug 2015 15:42:40 +0000
-Message-ID: <700cc51e9bf5463da878800d449c292c@E2013a.CORP.ICS.COM.UA>
-Accept-Language: uk-UA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx3.mail.bg (mx3.mail.bg [193.201.172.119])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFCCFE0034B
+	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 08:47:10 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx3.mail.bg (Postfix) with ESMTPSA id 22BF420CD5A6;
+	Wed, 26 Aug 2015 18:47:09 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1440604029; bh=n33NsyTpqdx7GD5ZXEt3b7ZwihZKYE7onsUDet5Dm1A=;
+	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=IkCTsX6HtdrdBMXPxl/lzkRU8qOGQKg1jEJuDLYjpxvwodI61Z2t+OPyz3w8HYcFI
+	lxYB7PSPIDDtoD1rPFF4jQp0WcULBlWslB7AfG6ivRWphXe9SsA+cux3fZbdA/JzRu
+	hBZBVSx1IOdjnGmk1Yd9iRsGxwNWH65X/IHDkCrw=
+Message-ID: <55DDDF7C.1010804@mail.bg>
+Date: Wed, 26 Aug 2015 18:47:08 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-Subject: How to recreate rootfs image
+To: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <700cc51e9bf5463da878800d449c292c@E2013a.CORP.ICS.COM.UA>
+In-Reply-To: <700cc51e9bf5463da878800d449c292c@E2013a.CORP.ICS.COM.UA>
+Subject: Re: How to recreate rootfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,113 +56,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Aug 2015 15:42:48 -0000
-Content-Language: ru-RU
-Content-Type: multipart/alternative;
-	boundary="_000_700cc51e9bf5463da878800d449c292cE2013aCORPICSCOMUA_"
+X-List-Received-Date: Wed, 26 Aug 2015 15:47:18 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_000_700cc51e9bf5463da878800d449c292cE2013aCORPICSCOMUA_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Lenivyy Viktor,
 
-PiBDYW4geW91IHBsZWFzZSB0cnkgdGhpcyBhbmQgc2hhcmUgaWYgaXQgd29ya3MgZm9yIHlvdToN
-Cj4NCj4gYml0YmFrZSAtYyBjbGVhbmFsbCBkaXJ0eXBhY2thZ2UgbXlpbWFnZQ0KPiBiaXRiYWtl
-IG15aW1hZ2UNCj4NCj4gUmVnYXJkcywNCj4gTmlrb2xheQ0KDQpXaGF0IGlzIGRpcnR5cGFja2Fn
-ZT8gTXlpbWFnZSB3aWxsIGJlIGFsdGVyYS1pbWFnZS1taW5pbWFsIGluIG15IGNhc2UsIEkgZ3Vl
-c3MuDQpJ4oCZbSB3b25kZXJpbmcgd2hldGhlciBjbGVhbmFsbCBkb2VzbuKAmXQgcmVtb3ZlIFlv
-Y3Rv4oCZcyBjb3B5IG9mIGtlcm5lbCBzb3VyY2VzPw0K
+On 08/26/2015 06:42 PM, Lenivyy Viktor wrote:
+>>  Can you please try this and share if it works for you:
+>
+>>
+>
+>>  bitbake -c cleanall dirtypackage myimage
+>
+>>  bitbake myimage
+>
+>>
+>
+>>  Regards,
+>
+>>  Nikolay
+>
+> What is dirtypackage? Myimagewill be altera-image-minimal in my case, I
+> guess.
+>
+> I’m wondering whether cleanall doesn’t remove Yocto’s copy of kernel
+> sources?
+>
 
---_000_700cc51e9bf5463da878800d449c292cE2013aCORPICSCOMUA_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+dirtypackage is the one which you want to rebuild and redeploy in the
+rootfs. If the package source is local, cleanall won't do big harm, but
+otherwise you're correct, it will clean the sources. You can use
+"clean" instead.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3Jp
-dHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
-aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoi0KHRgtCw0L3QtNCw0YDRgtC9
-0YvQuSBIVE1MINCX0L3QsNC6IjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFw
-dDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KcC5N
-c29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFw
-aA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowY207DQoJbWFyZ2luLXJp
-Z2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjBjbTsNCgltYXJnaW4tbGVmdDozNi4wcHQ7DQoJbWFy
-Z2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpzcGFu
-LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFu
-LkhUTUwNCgl7bXNvLXN0eWxlLW5hbWU6ItCh0YLQsNC90LTQsNGA0YLQvdGL0LkgSFRNTCDQl9C9
-0LDQuiI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiLQodGC0LDQ
-vdC00LDRgNGC0L3Ri9C5IEhUTUwiOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6VUs7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
-ZXhwb3J0LW9ubHk7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNl
-Y3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo0Mi41cHQgNDIuNXB0IDQy
-LjVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0K
-LS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpl
-eHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0
-ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6
-ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0t
-Pg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iVUsiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0K
-PGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3Vy
-aWVyIE5ldyZxdW90Oztjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0K
-PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nv
-dXJpZXIgTmV3JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5DYW4g
-eW91IHBsZWFzZSB0cnkgdGhpcyBhbmQgc2hhcmUgaWYgaXQgd29ya3MgZm9yIHlvdTo8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIg
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
-dDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPiZndDs8L3NwYW4+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVv
-dDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztj
-b2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0KPC9zcGFuPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7
-O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5iaXRiYWtlIC1jIGNsZWFuYWxs
-IGRpcnR5cGFja2FnZSBteWltYWdlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxh
-bmd1YWdlOlVLIj4mZ3Q7DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6VUsiPmJpdGJha2UgbXlpbWFnZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjpibGFjazttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ozwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjpibGFjazttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpVSyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0
-LWxhbmd1YWdlOlVLIj4mZ3Q7DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6VUsiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0
-LWxhbmd1YWdlOlVLIj4mZ3Q7DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6VUsiPk5pa29sYXk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPldoYXQgaXMgPC9zcGFu
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+ZGlydHlw
-YWNrYWdlPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6YmxhY2s7bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6VUsiPj8NCjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2s7bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPk15aW1hZ2U8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOmJs
-YWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj4NCjxzcGFuIGxhbmc9IkVOLVVTIj53aWxsIGJl
-IGFsdGVyYS1pbWFnZS1taW5pbWFsIGluIG15IGNhc2UsIEkgZ3Vlc3MuPG86cD48L286cD48L3Nw
-YW4+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iY29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPknigJltIHdvbmRlcmlu
-ZyB3aGV0aGVyIGNsZWFuYWxsIGRvZXNu4oCZdCByZW1vdmUgWW9jdG/igJlzIGNvcHkgb2Yga2Vy
-bmVsIHNvdXJjZXM/PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0
-bWw+DQo=
+Regards,
+Nikolay
 
---_000_700cc51e9bf5463da878800d449c292cE2013aCORPICSCOMUA_--
