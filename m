@@ -1,50 +1,35 @@
-Return-Path: <picmaster@mail.bg>
+Return-Path: <Viktor.Lenivyy@author.kiev.ua>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3871FE00474; Wed, 26 Aug 2015 08:47:18 -0700 (PDT)
+	id F2123E00AA5; Wed, 26 Aug 2015 09:13:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [193.201.172.119 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (picmaster[at]mail.bg)
+	*      [46.164.133.27 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mx3.mail.bg (mx3.mail.bg [193.201.172.119])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFCCFE0034B
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 08:47:10 -0700 (PDT)
-Received: from [192.168.0.62] (unknown [93.152.143.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mx3.mail.bg (Postfix) with ESMTPSA id 22BF420CD5A6;
-	Wed, 26 Aug 2015 18:47:09 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1440604029; bh=n33NsyTpqdx7GD5ZXEt3b7ZwihZKYE7onsUDet5Dm1A=;
-	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
-	In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	b=IkCTsX6HtdrdBMXPxl/lzkRU8qOGQKg1jEJuDLYjpxvwodI61Z2t+OPyz3w8HYcFI
-	lxYB7PSPIDDtoD1rPFF4jQp0WcULBlWslB7AfG6ivRWphXe9SsA+cux3fZbdA/JzRu
-	hBZBVSx1IOdjnGmk1Yd9iRsGxwNWH65X/IHDkCrw=
-Message-ID: <55DDDF7C.1010804@mail.bg>
-Date: Wed, 26 Aug 2015 18:47:08 +0300
-From: Nikolay Dimitrov <picmaster@mail.bg>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DDAEE0049B
+	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 09:13:35 -0700 (PDT)
+Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
+	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZUdKQ-000GML-Pn
+	for yocto@yoctoproject.org; Wed, 26 Aug 2015 19:13:34 +0300
+From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to recreate rootfs image
+Thread-Index: AdDgGXlt5Znij9bETGSEsrN5W6D86A==
+Date: Wed, 26 Aug 2015 16:13:33 +0000
+Message-ID: <ad28bcb1a9ca4653ac92686fe92a4ae3@E2013a.CORP.ICS.COM.UA>
+Accept-Language: uk-UA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
 MIME-Version: 1.0
-To: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <700cc51e9bf5463da878800d449c292c@E2013a.CORP.ICS.COM.UA>
-In-Reply-To: <700cc51e9bf5463da878800d449c292c@E2013a.CORP.ICS.COM.UA>
-Subject: Re: How to recreate rootfs image
+Subject: How to recreate rootfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,39 +41,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Aug 2015 15:47:18 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 26 Aug 2015 16:13:39 -0000
+Content-Language: ru-RU
+Content-Type: multipart/alternative;
+	boundary="_000_ad28bcb1a9ca4653ac92686fe92a4ae3E2013aCORPICSCOMUA_"
 
-Hi Lenivyy Viktor,
+--_000_ad28bcb1a9ca4653ac92686fe92a4ae3E2013aCORPICSCOMUA_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 08/26/2015 06:42 PM, Lenivyy Viktor wrote:
->>  Can you please try this and share if it works for you:
->
->>
->
->>  bitbake -c cleanall dirtypackage myimage
->
->>  bitbake myimage
->
->>
->
->>  Regards,
->
->>  Nikolay
->
-> What is dirtypackage? Myimagewill be altera-image-minimal in my case, I
-> guess.
->
-> I’m wondering whether cleanall doesn’t remove Yocto’s copy of kernel
-> sources?
->
+PiBkaXJ0eXBhY2thZ2UgaXMgdGhlIG9uZSB3aGljaCB5b3Ugd2FudCB0byByZWJ1aWxkIGFuZCBy
+ZWRlcGxveSBpbiB0aGUNCj4gcm9vdGZzLiBJZiB0aGUgcGFja2FnZSBzb3VyY2UgaXMgbG9jYWws
+IGNsZWFuYWxsIHdvbid0IGRvIGJpZyBoYXJtLCBidXQNCj4gb3RoZXJ3aXNlIHlvdSdyZSBjb3Jy
+ZWN0LCBpdCB3aWxsIGNsZWFuIHRoZSBzb3VyY2VzLiBZb3UgY2FuIHVzZQ0KPiAiY2xlYW4iIGlu
+c3RlYWQuDQoNCj4gUmVnYXJkcywNCj4gTmlrb2xheQ0KDQpJIGRvbuKAmXQga25vdyBleGFjdGx5
+IHdoaWNoIHBhY2thZ2UgSSBuZWVkIHRvIHJlYnVpbGQsIGJ1dCBJIGd1ZXNzIGl04oCZcyBrZXJu
+ZWwtbW9kdWxlcyBhcyBtb2R1bGVzIGZvbGRlciBoYXZlIHdyb25nIHZlcnNpb24uDQpBZnRlcg0K
+Yml0YmFrZSAtYyBjbGVhbiBrZXJuZWwtbW9kdWxlcyBhbHRlcmEtaW1hZ2UtbWluaW1hbA0KDQp0
+aGVyZSBpcyBhbiBlcnJvcjoNCuKApg0KRVJST1I6IE5vdGhpbmcgUFJPVklERVMgJ2tlcm5lbC1t
+b2R1bGVzJw0K4oCmDQoNCg0KDQoNCg==
 
-dirtypackage is the one which you want to rebuild and redeploy in the
-rootfs. If the package source is local, cleanall won't do big harm, but
-otherwise you're correct, it will clean the sources. You can use
-"clean" instead.
+--_000_ad28bcb1a9ca4653ac92686fe92a4ae3E2013aCORPICSCOMUA_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Regards,
-Nikolay
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3Jp
+dHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
+aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoi0KHRgtCw0L3QtNCw0YDRgtC9
+0YvQuSBIVE1MINCX0L3QsNC6IjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFw
+dDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KcC5N
+c29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFw
+aA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowY207DQoJbWFyZ2luLXJp
+Z2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjBjbTsNCgltYXJnaW4tbGVmdDozNi4wcHQ7DQoJbWFy
+Z2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNh
+bGlicmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpzcGFu
+LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFu
+LkhUTUwNCgl7bXNvLXN0eWxlLW5hbWU6ItCh0YLQsNC90LTQsNGA0YLQvdGL0LkgSFRNTCDQl9C9
+0LDQuiI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiLQodGC0LDQ
+vdC00LDRgNGC0L3Ri9C5IEhUTUwiOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6VUs7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
+ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgltc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIu
+MHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjQyLjVwdCA0Mi41cHQgNDIuNXB0IDcwLjg1cHQ7fQ0KZGl2
+LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYg
+Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0i
+MTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86
+c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEi
+IC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBs
+YW5nPSJVSyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2Vj
+dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
+b250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9y
+OmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj4mZ3Q7DQo8L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29s
+b3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPmRpcnR5cGFja2FnZSBpcyB0aGUgb25l
+IHdoaWNoIHlvdSB3YW50IHRvIHJlYnVpbGQgYW5kIHJlZGVwbG95IGluIHRoZTxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
+ZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztj
+b2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0KPC9zcGFuPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7
+O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5yb290ZnMuIElmIHRoZSBwYWNr
+YWdlIHNvdXJjZSBpcyBsb2NhbCwgY2xlYW5hbGwgd29uJ3QgZG8gYmlnIGhhcm0sIGJ1dDxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+IiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZx
+dW90Oztjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0KPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3
+JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5vdGhlcndpc2UgeW91
+J3JlIGNvcnJlY3QsIGl0IHdpbGwgY2xlYW4gdGhlIHNvdXJjZXMuIFlvdSBjYW4gdXNlPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1
+b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj4mZ3Q7DQo8L3NwYW4+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcm
+cXVvdDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPiZxdW90O2NsZWFuJnF1
+b3Q7IGluc3RlYWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBO
+ZXcmcXVvdDs7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6VUsiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+IiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZx
+dW90Oztjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0KPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3
+JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5SZWdhcmRzLDxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+IiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZx
+dW90Oztjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpVSyI+Jmd0Ow0KPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3
+JnF1b3Q7O2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOlVLIj5OaWtvbGF5PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IGxhbmc9IkVOLVVTIj5JIGRvbuKAmXQga25vdyBleGFjdGx5IHdoaWNoIHBhY2thZ2UgSSBuZWVk
+IHRvIHJlYnVpbGQsIGJ1dCBJIGd1ZXNzIGl04oCZcyBrZXJuZWwtbW9kdWxlcyBhcyBtb2R1bGVz
+IGZvbGRlciBoYXZlIHdyb25nIHZlcnNpb24uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkFmdGVyPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPmJpdGJha2UgLWMg
+Y2xlYW4ga2VybmVsLW1vZHVsZXMgYWx0ZXJhLWltYWdlLW1pbmltYWw8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPnRoZXJlIGlzIGFuIGVycm9yOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj7igKY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+RVJST1I6IE5vdGhpbmcgUFJP
+VklERVMgJ2tlcm5lbC1tb2R1bGVzJzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj7igKY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
+--_000_ad28bcb1a9ca4653ac92686fe92a4ae3E2013aCORPICSCOMUA_--
