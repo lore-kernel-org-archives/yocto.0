@@ -1,37 +1,50 @@
-Return-Path: <Viktor.Lenivyy@author.kiev.ua>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 227E5E00AA8; Wed, 26 Aug 2015 07:53:44 -0700 (PDT)
+	id 88EF2E00992; Wed, 26 Aug 2015 08:16:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [46.164.133.27 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (picmaster[at]mail.bg)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [193.201.172.119 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 993 seconds by postgrey-1.32 at yocto-www;
-	Wed, 26 Aug 2015 07:53:40 PDT
-Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98E55E00992
-	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 07:53:40 -0700 (PDT)
-Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
-	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZUbp2-000FFF-B9
-	for yocto@yoctoproject.org; Wed, 26 Aug 2015 17:37:04 +0300
-From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to recreate rootfs image
-Thread-Index: AdDgC7q1SC3tRJNPTzu1QekdUOcXkg==
-Date: Wed, 26 Aug 2015 14:37:03 +0000
-Message-ID: <f42259e1da79432a951109af8c20574d@E2013a.CORP.ICS.COM.UA>
-Accept-Language: uk-UA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx3.mail.bg (mx3.mail.bg [193.201.172.119])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 331E0E00349
+	for <yocto@yoctoproject.org>; Wed, 26 Aug 2015 08:15:58 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx3.mail.bg (Postfix) with ESMTPSA id 4EBB7205A4E7;
+	Wed, 26 Aug 2015 18:15:56 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1440602156; bh=Uhb3NM/o9jdoviBMzS/b4eTcu135HnAyIzkyW+SAJJ4=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=XYSCmTNl8cmRqUYNMduqVkbCoBLcSnvBd9smNQNGNk+FtfyVAh1Rv+AyPkOy5Laul
+	bLpmwyKdwKpb9gwlJKebJVz8Cr0sXwJ3U2oVuvzRmlc64vdMuXwDGrR3CUvcaCJZNl
+	CCQLU2jghpTwZSj/D9VOmMEImX+l2Dxv5eszGmYg=
+Message-ID: <55DDD82B.6030804@mail.bg>
+Date: Wed, 26 Aug 2015 18:15:55 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-Subject: How to recreate rootfs image
+To: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
+References: <f42259e1da79432a951109af8c20574d@E2013a.CORP.ICS.COM.UA>
+In-Reply-To: <f42259e1da79432a951109af8c20574d@E2013a.CORP.ICS.COM.UA>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to recreate rootfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,117 +56,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Aug 2015 14:53:44 -0000
-Content-Language: ru-RU
-Content-Type: multipart/alternative;
-	boundary="_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_"
+X-List-Received-Date: Wed, 26 Aug 2015 15:16:01 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Lenivyy Viktor,
 
-SGVsbG8uDQpJIGhhdmUg4oCcYWx0ZXJhLWltYWdlLW1pbmltYWzigJ0gcmVjaXBlIHdoaWNoIGNy
-ZWF0ZXMgbWluaW1hbCByb290ZnMgYmFzZWQgb24gTGludXgga2VybmVsIHByb3ZpZGVkIGJ5IOKA
-nGxpbnV4LWFsdGVyYS1sb2NhbOKAnSByZWNpcGUuIFRoaXMga2VybmVsIGlzIGZldGNoZWQgZnJv
-bSBsb2NhbCBkaXJlY3RvcnkuDQpBZnRlciBmaXJzdCB0aW1lIGJ1aWxkaW5nIOKAnGFsdGVyYS1p
-bWFnZS1taW5pbWFs4oCdLCBpdCBwcm9kdWNlZCByb290ZnMgd2l0aCBtb2R1bGVzIHZlcnNpb24g
-Y29udGFpbmVkIOKAnC1kaXJ0eeKAnSBhdCB0aGUgZW5kLiBIb3dldmVyIGtlcm5lbCBidWlsdCBm
-cm9tIHNvdXJjZXMgaW4gbG9jYWwgZGlyZWN0b3J5IGRvZXNu4oCZdCBoYXZlIOKAnC1kaXJ0eeKA
-nSBpbiB2ZXJzaW9uIHN0cmluZy4gVGh1cyBrZXJuZWwgY2Fu4oCZdCBydW4gd2l0aCBwcm9kdWNl
-ZCByb290ZnMuDQpJIG9wZW5lZCBkaXJlY3Rvcnkgd2hpY2ggY29udGFpbnMgWW9jdG/igJlzIGNv
-cHkgb2YgTGludXggc291cmNlcw0KYnVpbGQvdG1wL3dvcmsvc29jZnBnYV9zb2NyYXRlcy1wb2t5
-LWxpbnV4LWdudWVhYmkvbGludXgtYWx0ZXJhLWxvY2FsLTEuMC1yMS9zb2NyYXRlc19saW51eC8N
-CnRoZW4gcnVuIOKAnG1ha2UgQVJDSD1hcm0ga2VybmVscmVsZWFzZeKAnSB0byBpbnZlc3RpZ2F0
-ZSBrZXJuZWwgdmVyc2lvbi4gVGhpcyBjb21tYW5kIG91dHB1dHMgdGhlIHZlcnNpb24gd2l0aCDi
-gJwtZGlydHnigJ0uIEkgaGF2ZSBmb3VuZCB0aGF0IOKAnC1kaXJ0eeKAnSBzdHJpbmcgaXMgYXBw
-ZW5kZWQgZnJvbSBzY3JpcHQgaW4ga2VybmVsIHNvdXJjZXMuIFRoYXQgc2NyaXB0IHVzZXMgb3V0
-cHV0IGZyb20g4oCcZ2l0IGRpZmYtaW5kZXggLS1uYW1lLW9ubHkgSEVBROKAnSB0byBkZXRlcm1p
-bmUgaWYgd29ya2luZyBkaXJlY3RvcnkgaXMg4oCcZGlydHnigJ0uIFRvIGZpbmQgY2hhbmdlZCBm
-aWxlcywgSSByYW4gc2FtZSBjb21tYW5kLCBpdOKAmXMgb2RkbHkgYnV0IHRoZSBvdXRwdXQgd2Fz
-IGVtcHR5LiBUaGVuIEkgcmVydW4g4oCcbWFrZSBBUkNIPWFybSBrZXJuZWxyZWxlYXNl4oCdLiBU
-aGlzIHRpbWUgaXQgcHJpbnRzICB0aGUgdmVyc2lvbiB3aXRob3V0IOKAnC1kaXJ0eeKAnS4NCkRv
-ZXMgc29tZW9uZSBoYXZlIGFueSBjbHVlIHdoeSBpdCBjYW4gYmUgc28/DQoNCk15IG1haW4gcXVl
-c3Rpb24gaXM6IGhvdyBjYW4gSSByZWNyZWF0ZSByb290ZnMgaW1hZ2Ugc3RhcnRpbmcgZnJvbSB0
-aGUgcG9pbnQgYWZ0ZXIgZmV0Y2hpbmcgTGludXggc291cmNlcywgc28gWW9jdG/igJlzIGNvcHkg
-d2lsbCByZW1haW4gaW50YWN0Pw0KDQpJIHNwZW50IGxvdCBvZiB0aW1lIHRyeWluZyB0byBmaWd1
-cmUgaXQgb3V0IGJ5IG15c2VsZiB3aXRoIG5vIGx1Y2suIE15IGlkZWEgd2FzIHRvIGZpbmQgc2Vx
-dWVuY2Ugb2YgY29tbWFuZHMgdXNlZCB0byBjcmVhdGUgaW1hZ2UgYW5kIHJ1biBvbmx5IGNvbW1h
-bmRzIGFmdGVyIGZldGNoaW5nIGtlcm5lbCBzb3VyY2VzLiBVbmZvcnR1bmF0ZWx5IEkgZGlkbuKA
-mXQgbWFuYWdlIHRvIGZpbmQgdGhlIHNlcXVlbmNlIGFueXdoZXJlLiBIb3cgc3VjaCB0aGluZ3Mg
-bmVlZCB0byBiZSBzb2x2ZWQgaW4gWW9jdG8/DQo=
+On 08/26/2015 05:37 PM, Lenivyy Viktor wrote:
+> Hello.
+>
+> I have “altera-image-minimal” recipe which creates minimal rootfs based
+> on Linux kernel provided by “linux-altera-local” recipe. This kernel is
+> fetched from local directory.
+>
+> After first time building “altera-image-minimal”, it produced rootfs
+> with modules version contained “-dirty” at the end. However kernel built
+> from sources in local directory doesn’t have “-dirty” in version string.
+> Thus kernel can’t run with produced rootfs.
+>
+> I opened directory which contains Yocto’s copy of Linux sources
+>
+> build/tmp/work/socfpga_socrates-poky-linux-gnueabi/linux-altera-local-1.0-r1/socrates_linux/
+>
+> then run “make ARCH=arm kernelrelease” to investigate kernel version.
+> This command outputs the version with “-dirty”. I have found that
+> “-dirty” string is appended from script in kernel sources. That script
+> uses output from “git diff-index --name-only HEAD” to determine if
+> working directory is “dirty”. To find changed files, I ran same command,
+> it’s oddly but the output was empty. Then I rerun “make ARCH=arm
+> kernelrelease”. This time it prints  the version without “-dirty”.
+>
+> Does someone have any clue why it can be so?
+>
+> My main question is: how can I recreate rootfs image starting from the
+> point after fetching Linux sources, so Yocto’s copy will remain intact?
+>
+> I spent lot of time trying to figure it out by myself with no luck. My
+> idea was to find sequence of commands used to create image and run only
+> commands after fetching kernel sources. Unfortunately I didn’t manage to
+> find the sequence anywhere. How such things need to be solved in Yocto?
+>
 
---_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Can you please try this and share if it works for you:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3Jp
-dHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
-aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFp
-bFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERl
-ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBX
-b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjQyLjVwdCA0Mi41
-cHQgNDIuNXB0IDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJVSyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBs
-ZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gbGFuZz0iRU4tVVMiPkhlbGxvLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIGhhdmUg4oCcYWx0ZXJhLWltYWdlLW1pbmlt
-YWzigJ0gcmVjaXBlIHdoaWNoIGNyZWF0ZXMgbWluaW1hbCByb290ZnMgYmFzZWQgb24gTGludXgg
-a2VybmVsIHByb3ZpZGVkIGJ5IOKAnGxpbnV4LWFsdGVyYS1sb2NhbOKAnSByZWNpcGUuIFRoaXMg
-a2VybmVsIGlzIGZldGNoZWQgZnJvbSBsb2NhbCBkaXJlY3RvcnkuPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkFmdGVyIGZpcnN0
-IHRpbWUgYnVpbGRpbmcg4oCcYWx0ZXJhLWltYWdlLW1pbmltYWzigJ0sIGl0IHByb2R1Y2VkIHJv
-b3RmcyB3aXRoIG1vZHVsZXMgdmVyc2lvbiBjb250YWluZWQg4oCcLWRpcnR54oCdIGF0IHRoZSBl
-bmQuIEhvd2V2ZXIga2VybmVsIGJ1aWx0IGZyb20gc291cmNlcyBpbiBsb2NhbCBkaXJlY3Rvcnkg
-ZG9lc27igJl0IGhhdmUg4oCcLWRpcnR54oCdIGluIHZlcnNpb24gc3RyaW5nLiBUaHVzDQoga2Vy
-bmVsIGNhbuKAmXQgcnVuIHdpdGggcHJvZHVjZWQgcm9vdGZzLjxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIG9wZW5lZCBkaXJl
-Y3Rvcnkgd2hpY2ggY29udGFpbnMgWW9jdG/igJlzIGNvcHkgb2YgTGludXggc291cmNlczxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij5idWlsZC90bXAvd29yay9zb2NmcGdhX3NvY3JhdGVzLXBva3ktbGludXgtZ251ZWFiaS9saW51
-eC1hbHRlcmEtbG9jYWwtMS4wLXIxL3NvY3JhdGVzX2xpbnV4LzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj50aGVuIHJ1biDigJxt
-YWtlIEFSQ0g9YXJtIGtlcm5lbHJlbGVhc2XigJ0gdG8gaW52ZXN0aWdhdGUga2VybmVsIHZlcnNp
-b24uIFRoaXMgY29tbWFuZCBvdXRwdXRzIHRoZSB2ZXJzaW9uIHdpdGgg4oCcLWRpcnR54oCdLiBJ
-IGhhdmUgZm91bmQgdGhhdCDigJwtZGlydHnigJ0gc3RyaW5nIGlzIGFwcGVuZGVkIGZyb20gc2Ny
-aXB0IGluIGtlcm5lbCBzb3VyY2VzLiBUaGF0IHNjcmlwdCB1c2VzIG91dHB1dA0KIGZyb20g4oCc
-Z2l0IGRpZmYtaW5kZXggLS1uYW1lLW9ubHkgSEVBROKAnSB0byBkZXRlcm1pbmUgaWYgd29ya2lu
-ZyBkaXJlY3RvcnkgaXMg4oCcZGlydHnigJ0uIFRvIGZpbmQgY2hhbmdlZCBmaWxlcywgSSByYW4g
-c2FtZSBjb21tYW5kLCBpdOKAmXMgb2RkbHkgYnV0IHRoZSBvdXRwdXQgd2FzIGVtcHR5LiBUaGVu
-IEkgcmVydW4g4oCcbWFrZSBBUkNIPWFybSBrZXJuZWxyZWxlYXNl4oCdLiBUaGlzIHRpbWUgaXQg
-cHJpbnRzICZuYnNwO3RoZSB2ZXJzaW9uIHdpdGhvdXQg4oCcLWRpcnR54oCdLjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5Eb2Vz
-IHNvbWVvbmUgaGF2ZSBhbnkgY2x1ZSB3aHkgaXQgY2FuIGJlIHNvPzxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyI+TXkgbWFpbiBxdWVzdGlvbiBpczogaG93IGNhbiBJIHJlY3JlYXRlIHJvb3RmcyBpbWFnZSBz
-dGFydGluZyBmcm9tIHRoZSBwb2ludCBhZnRlciBmZXRjaGluZyBMaW51eCBzb3VyY2VzLCBzbyBZ
-b2N0b+KAmXMgY29weSB3aWxsIHJlbWFpbiBpbnRhY3Q/PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5JIHNw
-ZW50IGxvdCBvZiB0aW1lIHRyeWluZyB0byBmaWd1cmUgaXQgb3V0IGJ5IG15c2VsZiB3aXRoIG5v
-IGx1Y2suIE15IGlkZWEgd2FzIHRvIGZpbmQgc2VxdWVuY2Ugb2YgY29tbWFuZHMgdXNlZCB0byBj
-cmVhdGUgaW1hZ2UgYW5kIHJ1biBvbmx5IGNvbW1hbmRzIGFmdGVyIGZldGNoaW5nIGtlcm5lbCBz
-b3VyY2VzLiBVbmZvcnR1bmF0ZWx5IEkgZGlkbuKAmXQgbWFuYWdlIHRvIGZpbmQNCiB0aGUgc2Vx
-dWVuY2UgYW55d2hlcmUuIEhvdyBzdWNoIHRoaW5ncyBuZWVkIHRvIGJlIHNvbHZlZCBpbiBZb2N0
-bz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+bitbake -c cleanall dirtypackage myimage
+bitbake myimage
 
---_000_f42259e1da79432a951109af8c20574dE2013aCORPICSCOMUA_--
+Regards,
+Nikolay
+
