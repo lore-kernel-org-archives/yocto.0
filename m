@@ -1,34 +1,49 @@
-Return-Path: <Viktor.Lenivyy@author.kiev.ua>
+Return-Path: <yuq825@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B127EE00BC6; Thu, 27 Aug 2015 01:25:47 -0700 (PDT)
+	id 62DB6E00BEB; Thu, 27 Aug 2015 04:40:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [46.164.133.27 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yuq825[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F9D9E009C3
-	for <yocto@yoctoproject.org>; Thu, 27 Aug 2015 01:25:42 -0700 (PDT)
-Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
-	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZUsV9-000O7h-Ai
-	for yocto@yoctoproject.org; Thu, 27 Aug 2015 11:25:39 +0300
-From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to recreate rootfs image
-Thread-Index: AQHQ4KHzHc0Su54xUkCv+WfUTZWhhA==
-Date: Thu, 27 Aug 2015 08:25:38 +0000
-Message-ID: <c3b592dd4c494830a1259662eb37bfa1@E2013a.CORP.ICS.COM.UA>
-Accept-Language: uk-UA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.169 listed in list.dnswl.org]
+Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
+	[209.85.213.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 554F9E00985
+	for <yocto@yoctoproject.org>; Thu, 27 Aug 2015 04:40:30 -0700 (PDT)
+Received: by ignq3 with SMTP id q3so6516478ign.1
+	for <yocto@yoctoproject.org>; Thu, 27 Aug 2015 04:40:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=UCMqw3a6XRCZfMWAnMRmceccgjDPbLgOeKY35DKZS/U=;
+	b=xPUkEdb7E1RfmKy0YuplZlHUQAwj0WaJlhl95IZ4xR49dyOxz/I95ueXYiR5c0jqde
+	RzYEppN+CyN3M12oiYLNblhRmCb7fIQobUI3djYIoj3JZsw+5Y7UXyiF5+hnk54iOIT8
+	yVJgsUk2XdAw3morBaZTKOJiherZAXgwxDJJxI9A/MXARvu8mxqFV5X3gfYp6f/NqdSd
+	bfa2TYwHokP7JvSQZa08nKhlHcuxI0HBzQ8qWPiVU5IkBVCaX1q882sVASwHm88A2QBn
+	ZvqsCY9Zgmkd/0wTjvPi4AstMxvQPPwddF3egQ2f4+5r3e2L5CAOyHiIEePDNKfk8qqY
+	Zedw==
 MIME-Version: 1.0
-Subject: How to recreate rootfs image
+X-Received: by 10.50.138.232 with SMTP id qt8mr16909741igb.21.1440675629779;
+	Thu, 27 Aug 2015 04:40:29 -0700 (PDT)
+Received: by 10.36.29.148 with HTTP; Thu, 27 Aug 2015 04:40:29 -0700 (PDT)
+Date: Thu, 27 Aug 2015 19:40:29 +0800
+Message-ID: <CAKGbVbu-gzaAfkuZVQP8Pua=SMYwxoHsvHqDci+Eo3FyPh+CQA@mail.gmail.com>
+From: Qiang Yu <yuq825@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How to disable OVERRIDES temperally
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +55,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Aug 2015 08:25:47 -0000
-Content-Language: uk-UA
-Content-Type: text/plain; charset="windows-1251"
+X-List-Received-Date: Thu, 27 Aug 2015 11:40:32 -0000
+Content-Type: multipart/alternative; boundary=089e01184cba265359051e496fcc
+
+--089e01184cba265359051e496fcc
+Content-Type: text/plain; charset=UTF-8
+
+Hi all,
+
+I want to load kernel module ci_hdrc_imx at boot time and add a conf file
+in /etc/modprobe.d. I find it can be done by add
+module_conf_ci_hdrc_imx = "my configure"
+
+But the suffix "imx" is in OVERRIDES, so I get
+module_conf_ci_hdrc = "my configure"
+
+How to disable the OVERRIDES temperally here? Or may be there is another
+way?
+
+Thanks,
+Qiang
+
+--089e01184cba265359051e496fcc
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-> In your kernel recipe are you using SRC_URI to fetch from a git=0A=
-> repository (e.g. git:// URI) or from a local directory?=0A=
-=0A=
-This kernel is fetched from local directory.=0A=
-=0A=
-> I guess that if you're using a local path, there can be either some=0A=
-> uncommitted changes, or a stale git index.=0A=
-=0A=
-No, because kernel built from sources in local directory doesn=92t have =93=
--dirty=94 in version string.=0A=
-=0A=
-> You can try just for the experiment to add your current kernel sources=0A=
-> to a test git repo and point the SRC_URI to it, so bitbake can clone=0A=
-> the repo by git revision (SRCREV =3D "${AUTOREV}" will skip the need to=
-=0A=
-> update the recipe revision constantly during development). This should=0A=
-> work fine, without the "-dirty" version suffix.=0A=
-=0A=
-I can try this, but it doesn't answer main question:=0A=
-how can I recreate rootfs image starting from the point after fetching Linu=
-x sources, so Yocto=92s copy will remain intact?=0A=
-=0A=
-Regards,=0A=
-Nikolay=
+<div dir=3D"ltr">Hi all,<div><br></div><div>I want to load kernel module ci=
+_hdrc_imx at boot time and add a conf file in /etc/modprobe.d. I find it ca=
+n be done by add</div><div>module_conf_ci_hdrc_imx =3D &quot;my configure&q=
+uot;</div><div><br></div><div>But the suffix &quot;imx&quot; is in OVERRIDE=
+S, so I get</div><div>module_conf_ci_hdrc =3D &quot;my configure&quot;<br><=
+/div><div><br></div><div>How to disable the=C2=A0OVERRIDES temperally here?=
+ Or may be there is another</div><div>way?</div><div><br></div><div>Thanks,=
+</div><div>Qiang</div></div>
 
+--089e01184cba265359051e496fcc--
