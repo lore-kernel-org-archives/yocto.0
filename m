@@ -1,50 +1,32 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CBC8E00C78; Fri, 28 Aug 2015 08:39:59 -0700 (PDT)
+	id 7BD55E00C0F; Fri, 28 Aug 2015 09:48:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88E17E00A3C
-	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 08:39:55 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Aug 2015 08:39:54 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55B0BE00AF6
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 09:48:14 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga101.jf.intel.com with ESMTP; 28 Aug 2015 09:47:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,425,1437462000"; 
-	d="scan'208,217";a="792808879"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2015 08:39:48 -0700
-Received: from orsmsx162.amr.corp.intel.com (10.22.240.85) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 28 Aug 2015 08:39:48 -0700
-Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
-	ORSMSX162.amr.corp.intel.com (10.22.240.85) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 28 Aug 2015 08:39:48 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.103]) by
-	FMSMSX114.amr.corp.intel.com ([10.18.116.8]) with mapi id
-	14.03.0224.002; Fri, 28 Aug 2015 08:39:47 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW35
-Thread-Index: AdDhp8Px8OU0FdwrSYSkTNEUx6LVXQ==
-Date: Fri, 28 Aug 2015 15:39:46 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E556387E3@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-MIME-Version: 1.0
-Subject: Yocto Project Status WW35
+X-IronPort-AV: E=Sophos;i="5.17,425,1437462000"; d="scan'208";a="792954952"
+Received: from cbshires-mobl1.amr.corp.intel.com (HELO
+	mlopezva-MOBL2.amr.corp.intel.com) ([10.252.129.15])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Aug 2015 09:47:45 -0700
+From: mariano.lopez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Fri, 28 Aug 2015 11:47:41 -0500
+Message-Id: <1440780461-8378-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [rrs][PATCH] rrs/views: Fix mismatch in summary and recipe list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,655 +38,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Aug 2015 15:39:59 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556387E3fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 28 Aug 2015 16:48:18 -0000
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556387E3fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
 
-Current Dev Position: 1.9 Milestone 3 (M3)
-Next Deadline: M3 cut off of August 24th at noon GMT (On hold until most li=
-kely late next week)
+This fixes the issue with the mismatch in the
+statistics bar and the recipe list. The mismatch
+is caused by the gcc-source recipe, because every
+version of the recipe is counted in Upstream History
+but not in Recipe Upgrade.
 
-SWAT team rotation: Alejandro -> Jussi
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+Also added the TODO.rrs to track bugs and issues with
+rrs.
 
-Key Status/Updates:
+Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
+---
+ TODO.rrs      |  4 ++++
+ rrs/models.py | 35 +++++++++++++++++++++++++++++++++++
+ rrs/views.py  | 16 +++++++---------
+ 3 files changed, 46 insertions(+), 9 deletions(-)
+ create mode 100644 TODO.rrs
 
-  *   Reminder: The current version that is in development will launch with=
- YP 2.0 in October, 2015.
-  *   We have renamed YP 1.9 M4 to YP 2.0.  This will be the stabilization =
-milestone for YP 2.0 release.
-  *   The autobuilder situation is still problematic.  We are continuing to=
- try to improve its stability.
-  *   We have passed the YP 1.9 M3 final cut off, but due to our need to ge=
-t a stable build; we don't expect it to go into QA until later next week.
-  *   Since we have passed YP 1.9 M3; we are at YP 1.9 / 2.0 feature freeze=
-.   All enhancements now will be pushed YP 2.1.
+diff --git a/TODO.rrs b/TODO.rrs
+new file mode 100644
+index 0000000..8f1acf9
+--- /dev/null
++++ b/TODO.rrs
+@@ -0,0 +1,4 @@
++TODO:
++
++Bugs:
++  - gcc-source recipe has his own recipes per version. This is triggered in gcc-source.inc
+diff --git a/rrs/models.py b/rrs/models.py
+index abc9d5b..186e56f 100644
+--- a/rrs/models.py
++++ b/rrs/models.py
+@@ -429,6 +429,41 @@ class Raw():
+         return stats
+ 
+     @staticmethod
++    def get_reup_statistics(date, date_id):
++        """ Special case to get recipes statistics removing gcc-source duplicates """
++        recipes = []
++        updated = 0
++        not_updated = 0
++        cant = 0
++        unknown = 0
++
++        all_recipes = Raw.get_reupg_by_date(date)
++        for re in all_recipes:
++            recipes.append(re["id"])
++
++        if date_id:
++            recipes = str(recipes).strip('[]')
++            qry = """SELECT id, status, no_update_reason
++                    FROM rrs_RecipeUpstream"""
++            qry += "\nWHERE history_id = '%s'" % str(date_id.id)
++            qry += "\nAND recipe_id IN (%s);" % recipes
++            cur = connection.cursor()
++            cur.execute(qry)
++
++            for re in Raw.dictfetchall(cur):
++                if re["status"] == "Y":
++                    updated += 1
++                elif re["status"]  == "N" and re["no_update_reason"] == "":
++                    not_updated += 1
++                elif re["status"] == "N":
++                    cant += 1
++                # We count downgrade as unknown
++                else:
++                    unknown += 1
++
++        return (updated, not_updated, cant, unknown)
++
++    @staticmethod
+     def get_reup_by_recipes_and_date(recipes_id, date_id=None):
+         """ Get Recipe Upstream based on Recipes and Recipe Upstream History """
+         stats = []
+diff --git a/rrs/views.py b/rrs/views.py
+index 01f14f5..8cbbe49 100644
+--- a/rrs/views.py
++++ b/rrs/views.py
+@@ -47,16 +47,14 @@ def _get_milestone_statistics(milestone, maintainer_name=None):
+     )
+ 
+     if maintainer_name is None:
++        t_updated, t_not_updated, t_cant, t_unknown = \
++            Raw.get_reup_statistics(milestone.end_date, recipe_upstream_history)
+         milestone_statistics['all'] = \
+-            RecipeUpstream.get_all_recipes(recipe_upstream_history).count()
+-        milestone_statistics['up_to_date'] = \
+-            RecipeUpstream.get_recipes_up_to_date(recipe_upstream_history).count()
+-        milestone_statistics['not_updated'] = \
+-            RecipeUpstream.get_recipes_not_updated(recipe_upstream_history).count()
+-        milestone_statistics['cant_be_updated'] = \
+-            RecipeUpstream.get_recipes_cant_be_updated(recipe_upstream_history).count()
+-        milestone_statistics['unknown'] = \
+-            RecipeUpstream.get_recipes_unknown(recipe_upstream_history).count()
++            t_updated + t_not_updated + t_cant + t_unknown
++        milestone_statistics['up_to_date'] = t_updated
++        milestone_statistics['not_updated'] = t_not_updated
++        milestone_statistics['cant_be_updated'] = t_cant
++        milestone_statistics['unknown'] = t_unknown
+         milestone_statistics['percentage'] = 0
+         milestone_statistics['all_upgraded'] = 0
+         milestone_statistics['all_not_upgraded'] = 0
+-- 
+1.9.1
 
-Key YP 1.9 Dates:
-YP Final - 2.0 Cut off: Sept. 28, 2015 noon GMT
-1.9 M3 Release Target: Before Sept. 11 2015  (Will be late)
-2.0 final Release Target: Before Oct. 30, 2015
 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-Tracking Metrics:
-            WDD 2023 (last week 1950)
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556387E3fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:37704898;
-	mso-list-template-ids:-719657544;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:221017286;
-	mso-list-template-ids:1200530148;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2
-	{mso-list-id:569584003;
-	mso-list-template-ids:-1865110108;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:1475753810;
-	mso-list-template-ids:-438819340;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Current Dev Position: 1.9 Milestone 3 (M3) &nb=
-sp;</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman=
-&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Next Deadline: M3 cut off of August 24th at no=
-on GMT (On hold until most likely late next week)</span><span style=3D"font=
--size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">SWAT team rotation: Alejandro -&gt; Jussi</spa=
-n><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&=
-quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11.0pt;fo=
-nt-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_=
-Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status/Updates:</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"MsoNormal" style=3D"color:black;mso-list:l3 level1 lfo5;vertic=
-al-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Remind=
-er: The current version that is in development will launch with YP 2.0 in O=
-ctober, 2015.<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:=
-black;mso-list:l3 level1 lfo5;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">We hav=
-e renamed YP 1.9 M4 to YP 2.0. &nbsp;This will be the stabilization milesto=
-ne for YP 2.0 release. &nbsp;<o:p></o:p></span></li><li class=3D"MsoNormal"=
- style=3D"color:black;mso-list:l3 level1 lfo5;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">The au=
-tobuilder situation is still problematic. &nbsp;We are continuing to try to=
- improve its stability.<o:p></o:p></span></li><li class=3D"MsoNormal" style=
-=3D"color:black;mso-list:l3 level1 lfo5;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">We hav=
-e passed the YP 1.9 M3 final cut off, but due to our need to get a stable b=
-uild; we don&#8217;t expect it to go into QA until later next week.<o:p></o=
-:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l3 lev=
-el1 lfo5;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Since =
-we have passed YP 1.9 M3; we are at YP 1.9 / 2.0 feature freeze. &nbsp;&nbs=
-p;All enhancements now will be pushed YP 2.1. &nbsp;<o:p></o:p></span></li>=
-</ul>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key YP 1.9 Dates:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP Final - 2.0 Cut =
-off: Sept. 28, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M3 Release Targ=
-et: Before Sept. 11 2015 &nbsp;(Will be late)</span><span style=3D"font-siz=
-e:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">2.0 final Release T=
-arget: Before Oct. 30, 2015</span><span style=3D"font-size:12.0pt;font-fami=
-ly:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status Links for YP:</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_v1.9_Status"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v1.9_Status</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Schedule"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedul=
-e</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Features"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Feature=
-s</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Tracking Metrics:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; WDD 2023 (last week 1950)</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-famil=
-y:Consolas;color:black">(</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoc=
-toproject.org/charts/combo.html"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a></span><span style=3D"font-family:=
-Consolas;color:black">)</span><span style=3D"font-size:12.0pt;font-family:&=
-quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;color:black">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
-ot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">[If anyone has suggestions for other informati=
-on you&#8217;d like to see on this weekly status update, let us know!]<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Thanks,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556387E3fmsmsx111amrcor_--
