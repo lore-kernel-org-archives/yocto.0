@@ -1,6 +1,6 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <Viktor.Lenivyy@author.kiev.ua>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3184BE00BAB; Fri, 28 Aug 2015 05:25:48 -0700 (PDT)
+	id 23240E00C1B; Fri, 28 Aug 2015 06:39:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,29 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+	*      [46.164.133.27 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 99E21E00474
-	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 05:25:42 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Fri, 28 Aug 2015 14:25:40 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Josep Puigdemont <josep.puigdemont@enea.com>
-Thread-Topic: [yocto] [PATCH 1/1] Enable iSCSI configs.
-Thread-Index: AQHQ4N4RyBdk5VxVZE2ZaIGSNDTY954hK7mAgAAqZcA=
-Date: Fri, 28 Aug 2015 12:25:40 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8E0AF5@SESTOEX04.enea.se>
-References: <1440689671-5122-1-git-send-email-Alexandru.Vaduva@enea.com>
-	<20150828114844.GA9463@iapetus.enea.se>
-In-Reply-To: <20150828114844.GA9463@iapetus.enea.se>
-Accept-Language: en-US
+Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 430BCE00AF7
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 06:39:46 -0700 (PDT)
+Received: from [10.7.0.96] (helo=mail.incom.ua) by relay.incom.ua with esmtps
+	(envelope-from <Viktor.Lenivyy@author.kiev.ua>) id 1ZVJsc-0002LO-23
+	for yocto@yoctoproject.org; Fri, 28 Aug 2015 16:39:42 +0300
+From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] How to recreate rootfs image
+Thread-Index: AQHQ4KHzHc0Su54xUkCv+WfUTZWhhJ4g/vQAgAA8a0CAAC89YA==
+Date: Fri, 28 Aug 2015 13:32:23 +0000
+Message-ID: <3a01e2ad749d46e2addcdcdec22eb968@E2013a.CORP.ICS.COM.UA>
+References: <c3b592dd4c494830a1259662eb37bfa1@E2013a.CORP.ICS.COM.UA>
+	<5075633.xNTnaMU5g6@peggleto-mobl.ger.corp.intel.com> 
+Accept-Language: uk-UA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.168]
+x-ms-exchange-transport-fromentityheader: Hosted
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] Enable iSCSI configs.
+Subject: How to recreate rootfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,69 +42,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Aug 2015 12:25:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 28 Aug 2015 13:39:51 -0000
+Content-Language: ru-RU
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks Josep,
-
-I kind of agree with your opinion here.
-The patch does seem to add a target support that it is not mandatory for CG=
-L and together with it some pretty specific configurations that might need =
-extra comments added before the patch would be merged upstream :D
-
-
-Alex V.
-
------Original Message-----
-From: Josep Puigdemont [mailto:josep.puigdemont@enea.com]=20
-Sent: Friday, August 28, 2015 2:49 PM
-To: Alexandru Vaduva
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] [PATCH 1/1] Enable iSCSI configs.
-
-On Thu, Aug 27, 2015 at 05:34:31PM +0200, Alexandru.Vaduva wrote:
-> From: Siva Borra <siva.borra@enea.com>
->=20
-> Enable iSCSI target and supported devices.
->=20
-> Signed-off-by: Siva Borra <siva.borra@enea.com>
-> ---
->  .../recipes-kernel/linux/files/cfg/00023-open-scsi.cfg         | 10 ++++=
-+++++-
-
-Not that it is specific to this patch but, why are all configuration fragme=
-nts prefixed with a serial number?
-
->  1 file changed, 9 insertions(+), 1 deletion(-)
->=20
-> diff --git=20
-> a/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg=20
-> b/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg
-> index e5075cb..90d5b3f 100644
-> ---=20
-> a/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg
-> +++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.c
-> +++ fg
-> @@ -1,4 +1,12 @@
->  CONFIG_SCSI_ISCSI_ATTRS=3Dy
->  CONFIG_ISCSI_TCP=3Dy
->  CONFIG_ISCSI_BOOT_SYSFS=3Dy
-> -
-> +CONFIG_ISCSI_TARGET=3Dy
-> +CONFIG_TARGET_CORE=3Dy
-> +CONFIG_BE2ISCSI=3Dy
-> +CONFIG_CNIC=3Dy
-> +CONFIG_QLCNIC=3Dy
-> +CONFIG_SCSI_QLA_ISCSI=3Dy
-> +CONFIG_SCSI_CXGB4_ISCSI=3Dy
-> +CONFIG_SCSI_BNX2_ISCSI=3Dy
-> +CONFIG_SCSI_CXGB3_ISCSI=3Dy
-
-Are the device drivers actually required? If so, would it be possible to ha=
-ve them built as modules instead? I imagine not all users would want to hav=
-e these drivers built in the kernel by default.
-
-/Josep
+PiBIaSBWaWt0b3IsDQo+IA0KPiBPbiBUaHVyc2RheSAyNyBBdWd1c3QgMjAxNSAwODoyNTozOCBM
+ZW5pdnl5IFZpa3RvciB3cm90ZToNCj4gPiA+IEluIHlvdXIga2VybmVsIHJlY2lwZSBhcmUgeW91
+IHVzaW5nIFNSQ19VUkkgdG8gZmV0Y2ggZnJvbSBhIGdpdCANCj4gPiA+IHJlcG9zaXRvcnkgKGUu
+Zy4gZ2l0Oi8vIFVSSSkgb3IgZnJvbSBhIGxvY2FsIGRpcmVjdG9yeT8NCj4gPg0KPiA+IFRoaXMg
+a2VybmVsIGlzIGZldGNoZWQgZnJvbSBsb2NhbCBkaXJlY3RvcnkuDQo+ID4NCj4gPiA+IEkgZ3Vl
+c3MgdGhhdCBpZiB5b3UncmUgdXNpbmcgYSBsb2NhbCBwYXRoLCB0aGVyZSBjYW4gYmUgZWl0aGVy
+IA0KPiA+ID4gc29tZSB1bmNvbW1pdHRlZCBjaGFuZ2VzLCBvciBhIHN0YWxlIGdpdCBpbmRleC4N
+Cj4gPg0KPiA+IE5vLCBiZWNhdXNlIGtlcm5lbCBidWlsdCBmcm9tIHNvdXJjZXMgaW4gbG9jYWwg
+ZGlyZWN0b3J5IGRvZXNu4oCZdCANCj4gPiBoYXZlIOKAnC1kaXJ0eeKAnSBpbiB2ZXJzaW9uIHN0
+cmluZy4NCj4gPiA+IFlvdSBjYW4gdHJ5IGp1c3QgZm9yIHRoZSBleHBlcmltZW50IHRvIGFkZCB5
+b3VyIGN1cnJlbnQga2VybmVsIA0KPiA+ID4gc291cmNlcyB0byBhIHRlc3QgZ2l0IHJlcG8gYW5k
+IHBvaW50IHRoZSBTUkNfVVJJIHRvIGl0LCBzbyBiaXRiYWtlIA0KPiA+ID4gY2FuIGNsb25lIHRo
+ZSByZXBvIGJ5IGdpdCByZXZpc2lvbiAoU1JDUkVWID0gIiR7QVVUT1JFVn0iIHdpbGwgDQo+ID4g
+PiBza2lwIHRoZSBuZWVkIHRvIHVwZGF0ZSB0aGUgcmVjaXBlIHJldmlzaW9uIGNvbnN0YW50bHkg
+ZHVyaW5nIA0KPiA+ID4gZGV2ZWxvcG1lbnQpLiBUaGlzIHNob3VsZCB3b3JrIGZpbmUsIHdpdGhv
+dXQgdGhlICItZGlydHkiIHZlcnNpb24gc3VmZml4Lg0KPiA+DQo+ID4gSSBjYW4gdHJ5IHRoaXMs
+IGJ1dCBpdCBkb2Vzbid0IGFuc3dlciBtYWluIHF1ZXN0aW9uOg0KPiA+IGhvdyBjYW4gSSByZWNy
+ZWF0ZSByb290ZnMgaW1hZ2Ugc3RhcnRpbmcgZnJvbSB0aGUgcG9pbnQgYWZ0ZXIgDQo+ID4gZmV0
+Y2hpbmcgTGludXggc291cmNlcywgc28gWW9jdG/igJlzIGNvcHkgd2lsbCByZW1haW4gaW50YWN0
+Pw0KPiANCj4gV2VsbCBvbmUgd2F5IHdvdWxkIGJlOg0KPiANCj4gIGJpdGJha2UgLUMgY29tcGls
+ZSB2aXJ0dWFsL2tlcm5lbCA8aW1hZ2VuYW1lPg0KPiANCj4gKG5vdGUgdGhlIGNhcGl0YWwgLUMs
+IG5vdCAtYykuDQo+IA0KDQpIaSwgUGF1bC4gQW5kIHRoYW5rIHlvdS4NCkxvb2tzIGxpa2UgdGhl
+IG1vc3QgcmVsZXZhbnQgYW5zd2VyLg0KSU1PIHRoaXMgIi1DIiBmbGFnIGlzIHBvb3JseSBkb2N1
+bWVudGVkLiBUaHVzIGlmIHlvdSBkb24ndCBrbm93IHdoYXQgaXQncyBkb2luZywgeW91IGNhbid0
+IGZpZ3VyZSBvdXQgdG8gdXNlIGl0Lg0KT25seSBzb21lIGluZm8gaW4gbWFpbGxpc3RzIGZvdW5k
+IGJ5IEdvb2dsZSBjYW4gZ2l2ZSBhIGNsdWUgd2hhdCAiLS1jbGVhci1zdGFtcCIgaXMgaW50ZW5k
+ZWQgZm9yLg0KDQo+IEluIHRoZSBuZWFyIGZ1dHVyZSAiZGV2dG9vbCBtb2RpZnkiIHNob3VsZCBz
+dXBwb3J0IHRoZSBraW5kIG9mIA0KPiB3b3JrZmxvdyB0aGF0IGl0IGxvb2tzIGxpa2UgeW91J3Jl
+IGF0dGVtcHRpbmcgdG8gZ2V0ICh3aGVyZSB5b3Ugd2FudCANCj4gdG8gbW9kaWZ5IHRoZSBrZXJu
+ZWwgc291cmNlcyBsb2NhbGx5IGFuZCB0aGVuIGJ1aWxkIHRoZW0gYW5kL29yIA0KPiBpbmNvcnBv
+cmF0ZSB0aGVtIGluIGFuIGltYWdlKSAtIGl0IGFscmVhZHkgd29ya3Mgd2VsbCBmb3Igbm9uLWtl
+cm5lbCByZWNpcGVzLg0KDQpJIHRoaW5rIHRoaXMgd29ya2Zsb3cgaXMgdXNlZnVsIGZvciBtYW55
+IHRoaW5ncywgbm90IG9ubHkgZm9yIHdvcmthcm91bmQgIi1kaXJ0eSIsIGFzIGluIG15IGNhc2Uu
+IEl0J3Mgbm90IHZlcnkgY29udmVuaWVudCB0byB3YWl0IGZvciBmZXRjaGluZyBzb3VyY2VzIGV2
+ZXJ5IHRpbWUgeW91IGRvIHNvbWUgbGl0dGxlIG1vZGlmaWNhdGlvbi4NCldoeSB3ZSBuZWVkIHNl
+cGFyYXRlIGNvbW1hbmQgaS5lLiAiZGV2dG9vbCBtb2RpZnkiIGlmIHdlIGNhbiBnbyB3aXRob3V0
+IGl0Pw0K
 
