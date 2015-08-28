@@ -1,37 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <josep.puigdemont@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83DBFE00C14; Fri, 28 Aug 2015 03:06:58 -0700 (PDT)
+	id D7E2EE00C34; Fri, 28 Aug 2015 04:48:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F6F4E00474
-	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 03:06:53 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 28 Aug 2015 03:06:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,424,1437462000"; d="scan'208";a="792638560"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
-	([10.252.13.245])
-	by orsmga002.jf.intel.com with ESMTP; 28 Aug 2015 03:06:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
-Date: Fri, 28 Aug 2015 11:06:50 +0100
-Message-ID: <5075633.xNTnaMU5g6@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.5-100.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <c3b592dd4c494830a1259662eb37bfa1@E2013a.CORP.ICS.COM.UA>
-References: <c3b592dd4c494830a1259662eb37bfa1@E2013a.CORP.ICS.COM.UA>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id A0462E009BE
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 04:48:51 -0700 (PDT)
+Received: from iapetus.enea.se (172.16.141.187) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 28 Aug 2015 13:48:44 +0200
+Date: Fri, 28 Aug 2015 13:48:45 +0200
+From: Josep Puigdemont <josep.puigdemont@enea.com>
+To: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
+Message-ID: <20150828114844.GA9463@iapetus.enea.se>
+References: <1440689671-5122-1-git-send-email-Alexandru.Vaduva@enea.com>
 MIME-Version: 1.0
+In-Reply-To: <1440689671-5122-1-git-send-email-Alexandru.Vaduva@enea.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Received-SPF: None (SESTOEX03.enea.se: josep.puigdemont@enea.com does not
+	designate permitted sender hosts)
 Cc: yocto@yoctoproject.org
-Subject: Re: How to recreate rootfs image
+Subject: Re: [PATCH 1/1] Enable iSCSI configs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,59 +40,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Aug 2015 10:06:58 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Fri, 28 Aug 2015 11:48:53 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Hi Viktor,
+On Thu, Aug 27, 2015 at 05:34:31PM +0200, Alexandru.Vaduva wrote:
+> From: Siva Borra <siva.borra@enea.com>
+> 
+> Enable iSCSI target and supported devices.
+> 
+> Signed-off-by: Siva Borra <siva.borra@enea.com>
+> ---
+>  .../recipes-kernel/linux/files/cfg/00023-open-scsi.cfg         | 10 +++++++++-
 
-On Thursday 27 August 2015 08:25:38 Lenivyy Viktor wrote:
-> > In your kernel recipe are you using SRC_URI to fetch from a git
-> > repository (e.g. git:// URI) or from a local directory?
->=20
-> This kernel is fetched from local directory.
->=20
-> > I guess that if you're using a local path, there can be either some=
+Not that it is specific to this patch but, why are all configuration
+fragments prefixed with a serial number?
 
-> > uncommitted changes, or a stale git index.
->=20
-> No, because kernel built from sources in local directory doesn=E2=80=99=
-t have
-> =E2=80=9C-dirty=E2=80=9D in version string.
-> > You can try just for the experiment to add your current kernel sour=
-ces
-> > to a test git repo and point the SRC_URI to it, so bitbake can clon=
-e
-> > the repo by git revision (SRCREV =3D "${AUTOREV}" will skip the nee=
-d to
-> > update the recipe revision constantly during development). This sho=
-uld
-> > work fine, without the "-dirty" version suffix.
->=20
-> I can try this, but it doesn't answer main question:
-> how can I recreate rootfs image starting from the point after fetchin=
-g Linux
-> sources, so Yocto=E2=80=99s copy will remain intact?
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg
+> index e5075cb..90d5b3f 100644
+> --- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg
+> +++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00023-open-scsi.cfg
+> @@ -1,4 +1,12 @@
+>  CONFIG_SCSI_ISCSI_ATTRS=y
+>  CONFIG_ISCSI_TCP=y
+>  CONFIG_ISCSI_BOOT_SYSFS=y
+> -
+> +CONFIG_ISCSI_TARGET=y
+> +CONFIG_TARGET_CORE=y
+> +CONFIG_BE2ISCSI=y
+> +CONFIG_CNIC=y
+> +CONFIG_QLCNIC=y
+> +CONFIG_SCSI_QLA_ISCSI=y
+> +CONFIG_SCSI_CXGB4_ISCSI=y
+> +CONFIG_SCSI_BNX2_ISCSI=y
+> +CONFIG_SCSI_CXGB3_ISCSI=y
 
-Well one way would be:
+Are the device drivers actually required? If so, would it be possible
+to have them built as modules instead? I imagine not all users would
+want to have these drivers built in the kernel by default.
 
- bitbake -C compile virtual/kernel <imagename>
-
-(note the capital -C, not -c).
-
-In the near future "devtool modify" should support the kind of workflow=
- that it=20
-looks like you're attempting to get (where you want to modify the kerne=
-l=20
-sources locally and then build them and/or incorporate them in an image=
-) - it=20
-already works well for non-kernel recipes.
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+/Josep
 
