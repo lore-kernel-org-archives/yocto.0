@@ -1,40 +1,43 @@
-Return-Path: <Viktor.Lenivyy@author.kiev.ua>
+Return-Path: <yoctolist@wadefalk.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 920EEE00C77; Fri, 28 Aug 2015 08:06:33 -0700 (PDT)
+	id 9EAC9E00C6B; Fri, 28 Aug 2015 08:35:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [46.164.133.27 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	XPRIO autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [81.236.60.204 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from relay.incom.ua (relay.incom.ua [46.164.133.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CEB6E00C1C
-	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 08:06:28 -0700 (PDT)
-Received: from [10.7.0.95] (helo=mail.incom.ua) by relay.incom.ua with esmtps
-	(envelope-from <Viktor.Lenivyy@author.kiev.ua>)
-	id 1ZVLEW-0004Ak-J6; Fri, 28 Aug 2015 18:06:24 +0300
-From: Lenivyy Viktor <Viktor.Lenivyy@author.kiev.ua>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto]  How to recreate rootfs image
-Thread-Index: AQHQ4ZjmWQ7MyesDhEOnJBEMmc7brp4hgbzA
-Date: Fri, 28 Aug 2015 15:06:24 +0000
-Message-ID: <66421f31460c46a69a78ed5d8ba19e6d@E2013a.CORP.ICS.COM.UA>
-References: <c3b592dd4c494830a1259662eb37bfa1@E2013a.CORP.ICS.COM.UA>
-	<5075633.xNTnaMU5g6@peggleto-mobl.ger.corp.intel.com>
-	<3a01e2ad749d46e2addcdcdec22eb968@E2013a.CORP.ICS.COM.UA>
-	<7748623.B9dvoC9P17@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <7748623.B9dvoC9P17@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: uk-UA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
+	*      [score: 0.0000] *  1.0 XPRIO Has X-Priority header
+X-Greylist: delayed 127 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Aug 2015 08:35:37 PDT
+Received: from v-smtpgw1.han.skanova.net (v-smtpgw1.han.skanova.net
+	[81.236.60.204])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3CFEE00A3C
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 08:35:37 -0700 (PDT)
+Received: from serverjudas.localdomain ([81.225.137.249]) by cmsmtp with SMTP
+	id VLegZ48SUFhmqVLegZ2iAj; Fri, 28 Aug 2015 17:33:27 +0200
+Received: by serverjudas.localdomain (Postfix, from userid 65534)
+	id 5196818041A; Fri, 28 Aug 2015 17:33:06 +0200 (CEST)
+Received: from wadefalk.se (localhost.localdomain [127.0.0.1])
+	(Authenticated sender: yoctolist@wadefalk.se)
+	by serverjudas.localdomain (Postfix) with ESMTPA id 18D69180418
+	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 17:32:57 +0200 (CEST)
+Received: from 46.59.120.190 (proxying for unknown)
+	(SquirrelMail authenticated user yoctolist@wadefalk.se)
+	by wadefalk.se with HTTP; Fri, 28 Aug 2015 17:33:03 +0200
+Message-ID: <14e7bf51c4542c3fd89b378dae079b90.squirrel@wadefalk.se>
+Date: Fri, 28 Aug 2015 17:33:03 +0200
+From: yoctolist@wadefalk.se
+To: yocto@yoctoproject.org
+User-Agent: SquirrelMail/1.4.21
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to recreate rootfs image
+X-Priority: 3 (Normal)
+Importance: Normal
+X-CMAE-Envelope: MS4wfH2Bbo1tULV60WgYi3L0sPzjOM3fggKcefnV0d8C+UkoupDBmEIoZ3/z+Qehh1t+sq4L5mwXiw7+mXpYgU3wmCfPVefhLT77OWsv4gMkraQOHRV/RfdxXxpsjZymYfCGE/6SePcVE2uCGhlv6Ybz+SF6z0NskM+rrMsAQk16La4gZVHWKwL1/i7G0onjASjOrA==
+Subject: Failing building meta-toolchain-qt (fido, ubuntu 14.04), compiling gstreamer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +49,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Aug 2015 15:06:33 -0000
-Content-Language: ru-RU
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 28 Aug 2015 15:35:39 -0000
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-PiBUaGUgYXNzdW1wdGlvbiBpcyB0aGF0IHlvdSB3b3VsZG4ndCBub3JtYWxseSBiZSBmZXRjaGlu
-ZyB0aGUgc291cmNlIGZyb20gYQ0KPiBsb2NhbCBwYXRoIGFzIHlvdSBhcmUsIHlvdSB3b3VsZCBm
-ZXRjaCBpdCBmcm9tIHNvbWUgcmVwb3NpdG9yeSAodGhvdWdoIHRoYXQNCj4gcmVwb3NpdG9yeSBt
-YXkgYmUgaW50ZXJuYWwgdG8geW91ciBvcmdhbmlzYXRpb24pLiBBdCBzb21lIHBvaW50IHlvdSBy
-dW4NCj4gImRldnRvb2wgbW9kaWZ5IiB3aGljaCBpcyBlZmZlY3RpdmVseSBhIHdheSBvZiBzYXlp
-bmcgIkkgd2FudCB0byBzdGFydCB3b3JraW5nIG9uDQo+IHRoZSBzb3VyY2UgZm9yIHRoaXMgcGFy
-dGljdWxhciByZWNpcGUgaW4gdGhpcyBsb2NhdGlvbiIgLSBhdCB3aGljaCBwb2ludCBlaXRoZXIN
-Cj4geW91J3JlIHNwZWNpZnlpbmcgYW4gZXhpc3Rpbmcgc291cmNlIGNoZWNrb3V0IHRoYXQgeW91
-J3ZlIHByZXBhcmVkLCBvciB5b3UNCj4gc3BlY2lmeSAteCBhbmQgaXQgcHJlcGFyZXMgaXQgZm9y
-IHlvdS4gSGF2aW5nIHJ1biB0aGF0LCB0aGUgZmV0Y2gvdW5wYWNrIHRhc2tzIGFyZQ0KPiBkaXNh
-YmxlZCwgYW5kIHRoZSBzcGVjaWZpZWQgZXh0ZXJuYWwgc291cmNlIHRyZWUgd2lsbCBiZSB1c2Vk
-IGluIHRoZSBidWlsZC4NCj4gQWRkaXRpb25hbGx5LCB0aGF0IGV4dGVybmFsIHNvdXJjZSB0cmVl
-IGlzIHlvdXJzIHRvIGtlZXAgc2hvdWxkIHlvdSB3aXNoIC0gaXQgd2lsbA0KPiBuZXZlciBiZSBk
-ZWxldGVkIGJ5IHRoZSBidWlsZCBzeXN0ZW07IHRoZSBzYW1lICpjYW5ub3QqIGJlIHNhaWQgb2Yg
-dGhlIGJ1aWxkDQo+IHN5c3RlbSdzIHRlbXBvcmFyeSBzb3VyY2UgY2hlY2tvdXQgdW5kZXIgdG1w
-L3dvcmsgLSB5b3VyIHdvcmsgaW4gcHJvZ3Jlc3MNCj4gY2FuIGJlIGxvc3QgaW4gYW4gaW5zdGFu
-dCBpZiB5b3UgcnVuIC1jIGNsZWFuIG9yIGhhdmUgcm1fd29yayBlbmFibGVkLiBUaGVyZQ0KPiBy
-ZWFsbHkgYXJlIHR3byBkaWZmZXJlbnQgbW9kZXMgaGVyZSAtIG5vcm1hbCBidWlsZCwgd2hlcmUg
-eW91IHdhbnQgdGhlIHNvdXJjZXMNCj4gYXMgYW55b25lIGVsc2UgYnVpbGRpbmcgdGhlIHN5c3Rl
-bSB3b3VsZCBmZXRjaCwgYW5kIGRldmVsb3BtZW50LCB3aGVyZSB5b3UNCj4gd2FudCB5b3VyIG93
-biBzb3VyY2VzIHRoYXQgeW91IGFyZSBpbiBjb250cm9sIG9mLg0KPiANClRoYW5rIHlvdSBmb3Ig
-ZGV0YWlsZWQgYW5zd2VyLCBQYXVsLiBJdCBuZWVkcyB0byBiZSBhZGRlZCB0byBkb2N1bWVudGF0
-aW9uLg0K
+This build problem is really weird.
+It's quite a clean build and yet still it fails on gstreamer_0.10.36-r2
+
+Any clues? Do I need some patch? There is a done file in downloads that
+probably is related:
+
+/opt/rpiyocto/downloads/gstreamer-change-priv_gst_parse_yylex-arguments.patch.done
+
+and in gstreamer folder:
+
+drwxr-xr-x  7 jenkins yocto 4,0K aug 28 16:31 .
+drwxr-xr-x  3 jenkins yocto 4,0K aug 28 16:29 ..
+-rw-r--r--  1 jenkins yocto 1,2K aug 28 16:29
+0001-baseparse-Fix-self-comparison-always-evaluates-to-tr.patch
+drwxr-xr-x 13 jenkins yocto 4,0K aug 28 16:31 build
+-rw-r--r--  1 jenkins yocto  692 aug 28 16:29 check_fix.patch
+-rw-r--r--  1 jenkins yocto   33 aug 28 16:31 configure.sstate
+-rw-r--r--  1 jenkins yocto  652 aug 28 16:29 gst-inspect-check-error.patch
+drwxr-xr-x 17 jenkins yocto 4,0K aug 28 16:30 gstreamer-0.10.36
+-rw-r--r--  1 jenkins yocto 1004 aug 28 16:29
+gstreamer-change-priv_gst_parse_yylex-arguments.patch
+drwxr-xr-x  3 jenkins yocto 4,0K aug 28 16:29 license-destdir
+drwxr-xr-x  2 jenkins yocto 4,0K aug 28 16:29 sstate-install-populate_lic
+drwxr-xr-x  2 jenkins yocto 4,0K aug 28 16:31 temp
+
+
+Something about the build error:
+
+| lex.priv_gst_parse_yy.c:1009:5: warning: redundant redeclaration of
+'priv_gst_parse_yyget_column' [-Wredundant-decls]
+|
+|      ^
+| lex.priv_gst_parse_yy.c:4:19: note: previous declaration of
+'priv_gst_parse_yyget_column' was here
+|  static inline int priv_gst_parse_yyget_column  (void * yyscanner);
+|                    ^
+| lex.priv_gst_parse_yy.c:1011:6: warning: redundant redeclaration of
+'priv_gst_parse_yyset_column' [-Wredundant-decls]
+|
+|       ^
+| lex.priv_gst_parse_yy.c:5:20: note: previous declaration of
+'priv_gst_parse_yyset_column' was here
+|  static inline void priv_gst_parse_yyset_column (int  column_no , void *
+yyscanner);
+|
+
+
+...
+
+
+
+| grammar.tab.c: In function 'priv_gst_parse_yyparse':
+| grammar.tab.c:67:25: error: too many arguments to function
+'priv_gst_parse_yylex'
+|  #define yylex           priv_gst_parse_yylex
+|                          ^
+| grammar.tab.c:1299:16: note: in expansion of macro 'yylex'
+|
+|                 ^
+| grammar.tab.c:1978:16: note: in expansion of macro 'YYLEX'
+|    if (yychar == YYEMPTY)
+|                 ^
+|
+/var/lib/jenkins/workspace/build-yocto/rpi-build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/gstreamer/0.10.36-r2/gstreamer-0.10.36/gst/parse/grammar.y:39:5:
+note: declared here
+|  int priv_gst_parse_yylex (yyscan_t yyscanner);
+|      ^
+| make[4]: *** [libgstparse_la-grammar.tab.lo] Error 1
+
+
+
 
