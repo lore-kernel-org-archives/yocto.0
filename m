@@ -1,32 +1,49 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BD55E00C0F; Fri, 28 Aug 2015 09:48:18 -0700 (PDT)
+	id 4B962E00B59; Sat, 29 Aug 2015 18:48:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55B0BE00AF6
-	for <yocto@yoctoproject.org>; Fri, 28 Aug 2015 09:48:14 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 28 Aug 2015 09:47:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,425,1437462000"; d="scan'208";a="792954952"
-Received: from cbshires-mobl1.amr.corp.intel.com (HELO
-	mlopezva-MOBL2.amr.corp.intel.com) ([10.252.129.15])
-	by fmsmga002.fm.intel.com with ESMTP; 28 Aug 2015 09:47:45 -0700
-From: mariano.lopez@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Fri, 28 Aug 2015 11:47:41 -0500
-Message-Id: <1440780461-8378-1-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [rrs][PATCH] rrs/views: Fix mismatch in summary and recipe list
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yk0-f169.google.com (mail-yk0-f169.google.com
+	[209.85.160.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE021E00B18
+	for <yocto@yoctoproject.org>; Sat, 29 Aug 2015 18:48:20 -0700 (PDT)
+Received: by ykdz80 with SMTP id z80so48992306ykd.0
+	for <yocto@yoctoproject.org>; Sat, 29 Aug 2015 18:48:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=uW8wKrXJ9pDMTHdHN5gQ4qr1c533WANpTkHzLaELhaA=;
+	b=V8x05jdxO3xzBz5ccn1JDGzFZfr3K7dcuT3UuaCDPqTd68IHO3aGEfYjNBLCuBtgyE
+	41FeofBSJ2W7RNJ68b9IPDIM4f6v9KvkJgsomiJXxNj5jRV/0/hPPLVmw8KqLV4DmqB4
+	ayDFRV+NWNLSL1UlTxLcOwG4Fs8AL6MZjjemg4gksQjWk4lmkNZR1B3PP8Y8rqccUCvO
+	5wPhAIs0IdrYFH2p35TPYe1QyoWU+XyiytvwLHYyJY0VnmHkpsAC6Vok5Yo71YqwgBT7
+	agVGV6psH9lBzlnvoIdKxFq9kwGVUeqYgjZMm5EeI6NxH/hQKWf3GQP6pGgLf3Ep1acL
+	/p+Q==
+MIME-Version: 1.0
+X-Received: by 10.129.80.136 with SMTP id e130mr15970854ywb.94.1440899300411; 
+	Sat, 29 Aug 2015 18:48:20 -0700 (PDT)
+Received: by 10.129.56.133 with HTTP; Sat, 29 Aug 2015 18:48:20 -0700 (PDT)
+Date: Sat, 29 Aug 2015 22:48:20 -0300
+Message-ID: <CAF3SDA6ahVQkDng1eD1F3ELsnDdzdpwodRnz2O8MNnAm0-gprQ@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Using device tree on raspberrypi with poky distro.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,112 +55,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Aug 2015 16:48:18 -0000
+X-List-Received-Date: Sun, 30 Aug 2015 01:48:23 -0000
+Content-Type: multipart/alternative; boundary=001a1147e58af55182051e7d822f
 
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
+--001a1147e58af55182051e7d822f
+Content-Type: text/plain; charset=UTF-8
 
-This fixes the issue with the mismatch in the
-statistics bar and the recipe list. The mismatch
-is caused by the gcc-source recipe, because every
-version of the recipe is counted in Upstream History
-but not in Recipe Upgrade.
+Hi all, I'm trying to test my nrf24l01+ driver on rasp B. I've edited the
+bcm2708-rpi-b.dts file adding this in place of spidev@0 node.
 
-Also added the TODO.rrs to track bugs and issues with
-rrs.
+        nrf24l01p@0 {
+                compatible = "nrf24";
+                reg = <0>;
+                gpio-irq = <&gpio 24 0>;
+                gpio-ce   = <&gpio 25 0>;
+                spi-max-frequency = <8000000>;
+       };
 
-Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
----
- TODO.rrs      |  4 ++++
- rrs/models.py | 35 +++++++++++++++++++++++++++++++++++
- rrs/views.py  | 16 +++++++---------
- 3 files changed, 46 insertions(+), 9 deletions(-)
- create mode 100644 TODO.rrs
+Compiled the kernel and copy kernel and dtb to first partition of SDCard
+containing the rpi image. I expect to get /sys/class/spi_master/spi0.0
+folder but got nothing. spi_master folder is empty. What I'm missing?
 
-diff --git a/TODO.rrs b/TODO.rrs
-new file mode 100644
-index 0000000..8f1acf9
---- /dev/null
-+++ b/TODO.rrs
-@@ -0,0 +1,4 @@
-+TODO:
-+
-+Bugs:
-+  - gcc-source recipe has his own recipes per version. This is triggered in gcc-source.inc
-diff --git a/rrs/models.py b/rrs/models.py
-index abc9d5b..186e56f 100644
---- a/rrs/models.py
-+++ b/rrs/models.py
-@@ -429,6 +429,41 @@ class Raw():
-         return stats
- 
-     @staticmethod
-+    def get_reup_statistics(date, date_id):
-+        """ Special case to get recipes statistics removing gcc-source duplicates """
-+        recipes = []
-+        updated = 0
-+        not_updated = 0
-+        cant = 0
-+        unknown = 0
-+
-+        all_recipes = Raw.get_reupg_by_date(date)
-+        for re in all_recipes:
-+            recipes.append(re["id"])
-+
-+        if date_id:
-+            recipes = str(recipes).strip('[]')
-+            qry = """SELECT id, status, no_update_reason
-+                    FROM rrs_RecipeUpstream"""
-+            qry += "\nWHERE history_id = '%s'" % str(date_id.id)
-+            qry += "\nAND recipe_id IN (%s);" % recipes
-+            cur = connection.cursor()
-+            cur.execute(qry)
-+
-+            for re in Raw.dictfetchall(cur):
-+                if re["status"] == "Y":
-+                    updated += 1
-+                elif re["status"]  == "N" and re["no_update_reason"] == "":
-+                    not_updated += 1
-+                elif re["status"] == "N":
-+                    cant += 1
-+                # We count downgrade as unknown
-+                else:
-+                    unknown += 1
-+
-+        return (updated, not_updated, cant, unknown)
-+
-+    @staticmethod
-     def get_reup_by_recipes_and_date(recipes_id, date_id=None):
-         """ Get Recipe Upstream based on Recipes and Recipe Upstream History """
-         stats = []
-diff --git a/rrs/views.py b/rrs/views.py
-index 01f14f5..8cbbe49 100644
---- a/rrs/views.py
-+++ b/rrs/views.py
-@@ -47,16 +47,14 @@ def _get_milestone_statistics(milestone, maintainer_name=None):
-     )
- 
-     if maintainer_name is None:
-+        t_updated, t_not_updated, t_cant, t_unknown = \
-+            Raw.get_reup_statistics(milestone.end_date, recipe_upstream_history)
-         milestone_statistics['all'] = \
--            RecipeUpstream.get_all_recipes(recipe_upstream_history).count()
--        milestone_statistics['up_to_date'] = \
--            RecipeUpstream.get_recipes_up_to_date(recipe_upstream_history).count()
--        milestone_statistics['not_updated'] = \
--            RecipeUpstream.get_recipes_not_updated(recipe_upstream_history).count()
--        milestone_statistics['cant_be_updated'] = \
--            RecipeUpstream.get_recipes_cant_be_updated(recipe_upstream_history).count()
--        milestone_statistics['unknown'] = \
--            RecipeUpstream.get_recipes_unknown(recipe_upstream_history).count()
-+            t_updated + t_not_updated + t_cant + t_unknown
-+        milestone_statistics['up_to_date'] = t_updated
-+        milestone_statistics['not_updated'] = t_not_updated
-+        milestone_statistics['cant_be_updated'] = t_cant
-+        milestone_statistics['unknown'] = t_unknown
-         milestone_statistics['percentage'] = 0
-         milestone_statistics['all_upgraded'] = 0
-         milestone_statistics['all_not_upgraded'] = 0
+
+Best regards,
+- dhs
+
+
 -- 
-1.9.1
+*"Do or do not. There is no try"*
+  *Yoda Master*
 
+--001a1147e58af55182051e7d822f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>Hi all, I&#39;m trying to test my nrf24l01+ driv=
+er on rasp B. I&#39;ve edited the bcm2708-rpi-b.dts file adding this in pla=
+ce of spidev@0 node.<br><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nrf2=
+4l01p@0 {<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D &quot;nrf24&quot;;<br>=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 reg =3D &lt;0&gt;;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio-irq =3D &lt;&amp;gpio=
+ 24 0&gt;;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio-ce=C2=A0=C2=A0 =3D &lt;&amp;gpio 25 0&g=
+t;;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 spi-max-frequency =3D &lt;8000000&gt;;<br>=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };<br><br></div>Compiled the kernel and copy=
+ kernel and dtb to first partition of SDCard containing the rpi image. I ex=
+pect to get /sys/class/spi_master/spi0.0 folder but got nothing. spi_master=
+ folder is empty. What I&#39;m missing?<br><br><br></div><div>Best regards,=
+<br></div><div>- dhs<br></div><div><div><br clear=3D"all"><div><br>-- <br><=
+div class=3D"gmail_signature"><div style=3D"text-align:right"><i>&quot;Do o=
+r do not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b><=
+/i><br></div></div>
+</div></div></div></div>
+
+--001a1147e58af55182051e7d822f--
