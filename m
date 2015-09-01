@@ -1,54 +1,49 @@
-Return-Path: <caiortp@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3481BE00D90; Tue,  1 Sep 2015 07:54:53 -0700 (PDT)
+	id 2ABF5E00D39; Tue,  1 Sep 2015 08:26:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (caiortp[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f44.google.com (mail-la0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1B07E006D5
-	for <yocto@yoctoproject.org>; Tue,  1 Sep 2015 07:54:51 -0700 (PDT)
-Received: by lamp12 with SMTP id p12so1565288lam.0
-	for <yocto@yoctoproject.org>; Tue, 01 Sep 2015 07:54:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=e7J2mzEKF20M5B9dYsUZ5q/uDPccEfHin2MHfnQRd9s=;
-	b=gR3YkES2u8Tgy9j5CFTAtFzj7d60rPM0D4VGdIzt2wWIFNI9TYfarYgl1ptbhqBLnm
-	FKn5TwvCjxijelc0BfV7cvfXQya98Wd1EcmApv8wL6TfxKBYc37JEWmz9tsUGK2Lp5RF
-	fPUmETpmtoFEA9tYNJ1FBgeKqNf4ikEorE6tKt/yH/h+gDz39V7NQd6kb+U0FlGJkW1Y
-	w4AavUT3UF392DILRHci8y/1OmtwHgFHV4Otnr8G78vmUNzDG4VKxbHe7GMV8CN4WmG9
-	oI/cz7yoD0xkeJbyf9v/OtmZKUxX/hgWVQGacf+dnhIiXuZo1vllfP/uKJe0Frx3oN8U
-	tJJw==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1CDAE00AC1
+	for <yocto@yoctoproject.org>; Tue,  1 Sep 2015 08:26:29 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga103.jf.intel.com with ESMTP; 01 Sep 2015 08:26:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,449,1437462000"; 
+	d="scan'208,217";a="553115396"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by FMSMGA003.fm.intel.com with ESMTP; 01 Sep 2015 08:26:30 -0700
+Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Tue, 1 Sep 2015 08:26:28 -0700
+Received: from fmsmsx105.amr.corp.intel.com (10.18.124.203) by
+	ORSMSX112.amr.corp.intel.com (10.22.240.13) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Tue, 1 Sep 2015 08:26:28 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.174]) by
+	FMSMSX105.amr.corp.intel.com ([169.254.4.125]) with mapi id
+	14.03.0224.002; Tue, 1 Sep 2015 08:26:28 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Sept.
+	1, 2015 8:00 AM US Pacific Time
+Thread-Index: AdDkypADkpdExIrgSs2y2zbFMszuQQ==
+Date: Tue, 1 Sep 2015 15:26:26 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E556624B3@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-X-Received: by 10.152.170.130 with SMTP id am2mr13263426lac.54.1441119289095; 
-	Tue, 01 Sep 2015 07:54:49 -0700 (PDT)
-Received: by 10.112.161.231 with HTTP; Tue, 1 Sep 2015 07:54:48 -0700 (PDT)
-In-Reply-To: <55E5B48B.7030309@siemens.com>
-References: <CAJqtCyYTZ_X-xNZTCxMJDE2QnvTxp=RW3bCUwa4uVAVQOT7huw@mail.gmail.com>
-	<55E5B48B.7030309@siemens.com>
-Date: Tue, 1 Sep 2015 11:54:48 -0300
-Message-ID: <CAJqtCybvjh79geHsOcsvX_cvWnSL+1fCnB3scsAXS6azOj9Gwg@mail.gmail.com>
-From: Caio <caiortp@gmail.com>
-To: Pascal Bach <pascal.bach@siemens.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5] Missing qt5declarative rootfs
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Sept. 1, 2015 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,241 +55,290 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Sep 2015 14:54:53 -0000
-Content-Type: multipart/alternative; boundary=089e011615684e3df2051eb0bb43
+X-List-Received-Date: Tue, 01 Sep 2015 15:26:32 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556624B3fmsmsx111amrcor_"
 
---089e011615684e3df2051eb0bb43
-Content-Type: text/plain; charset=UTF-8
-
-Pascal,
-
-You're right, was my mistake.
-I updated the recipe to use RDEPENDS_${PN} , but now I'm having problem
-with dependence ( qtquickcontrols). I'm trying to fix.
-
-
-SUMMARY = "QT5  package group"
-LICENSE = "MIT"
-
-PR = "0"
-
-inherit packagegroup
-
-RDEPENDS_${PN} += " \
-    qtbase \
-    qtbase-plugins \
-    qtbase-fonts \
-    qtdeclarative \
-    qtdeclarative-plugins \
-    qtdeclarative-qmlplugins \
-    qtsvg \
-    qtsvg-plugins \
-    qtimageformats \
-    qtimageformats-plugins \
-    qtmultimedia \
-    qtmultimedia-plugins \
-    qtmultimedia-qmlplugins \
-    qtserialport \
-    qtscript \
-    qtgraphicaleffects-qmlplugins \
-    qtconnectivity-qmlplugins \
-    qtxmlpatterns \
-    qtquick1 \
-    qtquick1-plugins \
-    qtquick1-qmlplugins \
-    qtquickcontrols \
-    qtquickcontrols-qmlplugins \
-    qtgstreamer \
-    "
-
-Error:
-
-Configuring packagegroup-gstreamer.
-Configuring opkg-collateral.
-Configuring poky-feed-config-opkg.
-Configuring quitbattery.
-Configuring psplash.
-Collected errors:
- * satisfy_dependencies_for: Cannot satisfy the following dependencies for
-packagegroup-qt5:
- *     qtquickcontrols *
- * opkg_install_cmd: Cannot install package packagegroup-qt5.
-
-ERROR: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.3458
-ERROR: Task 7
-(/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/images/
-core-image-minimal.bb, do_rootfs) failed with exit code '1'
-
-
-Thank you very much,
-
-Regards,
-
-Caio Pereira
-
-
-2015-09-01 11:22 GMT-03:00 Pascal Bach <pascal.bach@siemens.com>:
-
-> >
-> >
-> > my package group
-> >
-> > packagegroup-qt5_0.1.bb <http://packagegroup-qt5_0.1.bb>
-> >
-> > SUMMARY = "QT5  package group"
-> > LICENSE = "MIT"
-> >
-> > PR = "0"
-> >
-> > inherit packagegroup
-> >
-> > VIRTUAL_KEYBOARD ?= "maliit-framework-qt5 maliit-plugins-qt5"
-> >
-> I don't know if you can use IMAGE_INSTALL in a package group.
-> Unitl now I have only seen RDEPENDS_${PN} used. IMAGE_INSTALL is normaly
-> only used in images.
->
-> > IMAGE_INSTALL+ = " \
-> >     dbus \
-> >     qtbase \
-> >     qtbase-plugins \
-> >     qtbase-fonts \
-> >     qtdeclarative \
-> >     qtdeclarative-plugins \
-> >     qtdeclarative-qmlplugins \
-> >     qtmultimedia \
-> >     qtmultimedia-plugins \
-> >     qtmultimedia-qmlplugins \
-> >     qtserialport \
-> >     qtscript \
-> >     qtgraphicaleffects-qmlplugins \
-> >     qtconnectivity-qmlplugins \
-> >     qtxmlpatterns \
-> >     qtquick1 \
-> >     qtquickcontrols \
-> >     qtquickcontrols-qmlplugins \
-> >     qtgstreamer \
-> >     qtsvg \
-> >     qtsvg-plugins \
-> >     qtimageformats \
-> >     qtimageformats-plugin \
-> >     "
-> >
-> > RDEPENDS_${PN}= "qtquickcontrols-qmlplugins qtdeclarative-qmlplugins
-> qtdeclarative-plugins"
-> >
-> >
-> Pascal
->
->
-
-
--- 
-----------------------------------------------
-Caio Pereira
-
---089e011615684e3df2051eb0bb43
-Content-Type: text/html; charset=UTF-8
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556624B3fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Pascal,<br><br></div>You&#39;re right, was my mi=
-stake.<br>I updated the recipe to use RDEPENDS_${PN} , but now I&#39;m havi=
-ng problem with dependence ( qtquickcontrols). I&#39;m trying to fix.<br><b=
-r></div><div><br>SUMMARY =3D &quot;QT5=C2=A0 package group&quot;<span><br>L=
-ICENSE =3D &quot;MIT&quot;<br><br>PR =3D &quot;0&quot;<br><br>inherit packa=
-gegroup<br><br></span>RDEPENDS_${PN} +=3D &quot; \<span><br>=C2=A0=C2=A0=C2=
-=A0 qtbase \<br>=C2=A0=C2=A0=C2=A0 qtbase-plugins \<br>=C2=A0=C2=A0=C2=A0 q=
-tbase-fonts \<br>=C2=A0=C2=A0=C2=A0 qtdeclarative \<br>=C2=A0=C2=A0=C2=A0 q=
-tdeclarative-plugins \<br>=C2=A0=C2=A0=C2=A0 qtdeclarative-qmlplugins \<br>=
-</span>=C2=A0=C2=A0=C2=A0 qtsvg \<br>=C2=A0=C2=A0=C2=A0 qtsvg-plugins \<br>=
-=C2=A0=C2=A0=C2=A0 qtimageformats \<br>=C2=A0=C2=A0=C2=A0 qtimageformats-pl=
-ugins \<span><br>=C2=A0=C2=A0=C2=A0 qtmultimedia \<br>=C2=A0=C2=A0=C2=A0 qt=
-multimedia-plugins \<br>=C2=A0=C2=A0=C2=A0 qtmultimedia-qmlplugins \<br>=C2=
-=A0=C2=A0=C2=A0 qtserialport \<br>=C2=A0=C2=A0=C2=A0 qtscript \<br>=C2=A0=
-=C2=A0=C2=A0 qtgraphicaleffects-qmlplugins \<br>=C2=A0=C2=A0=C2=A0 qtconnec=
-tivity-qmlplugins \<br>=C2=A0=C2=A0=C2=A0 qtxmlpatterns \<br>=C2=A0=C2=A0=
-=C2=A0 qtquick1 \<br></span>=C2=A0=C2=A0=C2=A0 qtquick1-plugins \<br>=C2=A0=
-=C2=A0=C2=A0 qtquick1-qmlplugins \<br>=C2=A0=C2=A0=C2=A0 qtquickcontrols \<=
-br>=C2=A0=C2=A0=C2=A0 qtquickcontrols-qmlplugins \<br>=C2=A0=C2=A0=C2=A0 qt=
-gstreamer \<br>=C2=A0=C2=A0=C2=A0 &quot;<br><br>Error:<br><br>Configuring p=
-ackagegroup-gstreamer.<br>Configuring opkg-collateral.<br>Configuring poky-=
-feed-config-opkg.<br>Configuring quitbattery.<br>Configuring psplash.<br>Co=
-llected errors:<br>=C2=A0* satisfy_dependencies_for: Cannot satisfy the fol=
-lowing dependencies for packagegroup-qt5:<br>=C2=A0* =C2=A0=C2=A0=C2=A0 qtq=
-uickcontrols * <br>=C2=A0* opkg_install_cmd: Cannot install package package=
-group-qt5.<br><br>ERROR: Function failed: do_rootfs<br>ERROR: Logfile of fa=
-ilure stored in: /home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/wor=
-k/colibri_imx6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_roo=
-tfs.3458<br>ERROR: Task 7 (/home/icchw/fsl-community-bsp/sources/poky/meta/=
-recipes-core/images/<a href=3D"http://core-image-minimal.bb">core-image-min=
-imal.bb</a>, do_rootfs) failed with exit code &#39;1&#39;<br><br><br></div>=
-<div>Thank you very much,<br><br></div><div>Regards,<br><br></div><div>Caio=
- Pereira<br></div><div><br></div></div><div class=3D"gmail_extra"><br><div =
-class=3D"gmail_quote">2015-09-01 11:22 GMT-03:00 Pascal Bach <span dir=3D"l=
-tr">&lt;<a href=3D"mailto:pascal.bach@siemens.com" target=3D"_blank">pascal=
-.bach@siemens.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt;<br=
->
-&gt;<br>
-&gt; my package group<br>
-&gt;<br>
-&gt; <a href=3D"http://packagegroup-qt5_0.1.bb" rel=3D"noreferrer" target=
-=3D"_blank">packagegroup-qt5_0.1.bb</a> &lt;<a href=3D"http://packagegroup-=
-qt5_0.1.bb" rel=3D"noreferrer" target=3D"_blank">http://packagegroup-qt5_0.=
-1.bb</a>&gt;<br>
-<span class=3D"">&gt;<br>
-&gt; SUMMARY =3D &quot;QT5=C2=A0 package group&quot;<br>
-&gt; LICENSE =3D &quot;MIT&quot;<br>
-&gt;<br>
-&gt; PR =3D &quot;0&quot;<br>
-&gt;<br>
-&gt; inherit packagegroup<br>
-&gt;<br>
-&gt; VIRTUAL_KEYBOARD ?=3D &quot;maliit-framework-qt5 maliit-plugins-qt5&qu=
-ot;<br>
-&gt;<br>
-</span>I don&#39;t know if you can use IMAGE_INSTALL in a package group.<br=
->
-Unitl now I have only seen RDEPENDS_${PN} used. IMAGE_INSTALL is normaly on=
-ly used in images.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt; IMAGE_INSTALL+ =3D &quot; \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0dbus \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtbase \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtbase-plugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtbase-fonts \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-plugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-qmlplugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-plugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-qmlplugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtserialport \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtscript \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtgraphicaleffects-qmlplugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtconnectivity-qmlplugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtxmlpatterns \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtquick1 \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols-qmlplugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtgstreamer \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtsvg \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtsvg-plugins \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtimageformats \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0qtimageformats-plugin \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt;<br>
-&gt; RDEPENDS_${PN}=3D &quot;qtquickcontrols-qmlplugins qtdeclarative-qmlpl=
-ugins qtdeclarative-plugins&quot;<br>
-&gt;<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">Pascal<br>
-<br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature">----------------------------------------------<br>Cai=
-o Pereira</div>
-</div>
+Attendees: Armin, Stephen, Jussi, Beth, Randy, Belen, Brian, Michael, Brand=
+an, Paul,
 
---089e011615684e3df2051eb0bb43--
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
+
+YP 1.9 will be called YP 2.0 due to the 5 years of successful releases of Y=
+P.   All YP 1.9 M4 bugs are now YP 2.0 bugs.  All former YP 2.0 bugs are no=
+w YP 2.1 bugs.  YP 2.0 will release the end of October.  We are now in a st=
+abilization phase and will no longer accepting enhancements into YP 2.0.  A=
+ll enhancements will go to YP 2.1 which is planned to be released in April'=
+16.
+
+Due to a critical CVE discovered; YP 1.7.3 and YP 1.8.1 will be released as=
+ soon as a stable builds and clean QA's are done on them.
+
+* Opens - 10 min
+
+Beth - Discussion of the addition of a LICENSE-SRC field which would descri=
+be the src level licensing of a recipe. This is useful for images that woul=
+d include the source of recipes. Deferred for next release.
+
+* Team Sharing - 10 min
+
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556624B3fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Armin, Stephen, Jussi, Beth, Randy, Bel=
+en, Brian, Michael, Brandan, Paul,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.9_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+9_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.9_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.9 will be called YP 2.0 due to the 5 years of=
+ successful releases of YP.&nbsp;&nbsp; All YP 1.9 M4 bugs are now YP 2.0 b=
+ugs.&nbsp; All former YP 2.0 bugs are now YP 2.1 bugs.&nbsp;
+ YP 2.0 will release the end of October.&nbsp; We are now in a stabilizatio=
+n phase and will no longer accepting enhancements into YP 2.0.&nbsp; All en=
+hancements will go to YP 2.1 which is planned to be released in April&#8217=
+;16.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Due to a critical CVE discovered; YP 1.7.3 and YP =
+1.8.1 will be released as soon as a stable builds and clean QA&#8217;s are =
+done on them.&nbsp;
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Beth &#8211; Discussion of the addition of a LICEN=
+SE-SRC field which would describe the src level licensing of a recipe. This=
+ is useful for images that would include the
+ source of recipes. Deferred for next release.<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556624B3fmsmsx111amrcor_--
