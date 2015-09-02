@@ -1,56 +1,60 @@
-Return-Path: <caiortp@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D18EE00CB1; Wed,  2 Sep 2015 06:04:30 -0700 (PDT)
+	id 46EFEE00B6A; Wed,  2 Sep 2015 06:18:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (caiortp[at]gmail.com)
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
+	*      [209.85.212.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56ACCE00BC6
-	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 06:04:23 -0700 (PDT)
-Received: by laeb10 with SMTP id b10so6610063lae.1
-	for <yocto@yoctoproject.org>; Wed, 02 Sep 2015 06:04:22 -0700 (PDT)
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F13F1E009C3
+	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 06:17:59 -0700 (PDT)
+Received: by wiclp12 with SMTP id lp12so18935934wic.1
+	for <yocto@yoctoproject.org>; Wed, 02 Sep 2015 06:17:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=6upbflHUuVUKP5a1y2Bs4agh311tczLhXz1z/f7SeIk=;
-	b=lqZsx+KbmMTQeoo9CHx7sMhjriF46kdhbFcxT1lRyUHwFdzsI+toUkXKsnLNiRKKLZ
-	HsNTNfG15YHd3YrkbJIbviC+IhmH8GwqovGRjWtgL7OKsVykNuEbD1DRRGukk9cXUYE7
-	nSAmI0SAJRbSx4HCrQLUz3qudhcx1XO3Ngg6FQns96uXb+lp2sfhb0pRg/4yVIRPBklE
-	/oJ+dNG+mq20evTywjE9h4loAvUk/SKoLsBmNv7prXyBJtls+z4ay0Fdc+x0DEaNUV6V
-	nXAdqiGWH2dnMSboBwinupE9ZnOg98oo2Flf8kpx2o+1eyzeX96Qo8GWrOAp+Dw73rZt
-	miVQ==
-MIME-Version: 1.0
-X-Received: by 10.112.157.130 with SMTP id wm2mr9045523lbb.24.1441199059780;
-	Wed, 02 Sep 2015 06:04:19 -0700 (PDT)
-Received: by 10.112.161.231 with HTTP; Wed, 2 Sep 2015 06:04:19 -0700 (PDT)
-In-Reply-To: <20150901215732.GF2458@jama>
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=oCOvqtbI7009HFLTLWdyNv8aBxB5NouPOoPypc7Kmc4=;
+	b=v44vhLTJn1NOkec+1lBtjxvV0NqXvQELBQ5W6qOjxwNOqfjeymggh9GLM8raFWTEll
+	Uq44kxByYdEX8dtB3Vp/OOy1LSirOyw2xXwOpojEORciuoaZsxNTU/AI8NMxYTwQmyoE
+	96FnxcoeSZ5UsMI4KXivCZTQh9eL+ML6jzkbK+DnwdfILEqHQyQ4CH79119RGgC9C/Sb
+	A5INY7elwG7CLJCC+xa0HQmUznEqf/BV9KA3ZQLD900jSdA7CmgCmv5ng+CXiAgGcje7
+	jzoKzqS062f74GmQhb0EbywYpaYVpW3B5diB6T/iq0mavqCyQI6PcWJ/kImUNamxq+Fl
+	El2g==
+X-Received: by 10.180.87.37 with SMTP id u5mr4135613wiz.42.1441199877933;
+	Wed, 02 Sep 2015 06:17:57 -0700 (PDT)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id 4sm32380065wjt.46.2015.09.02.06.17.56
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 02 Sep 2015 06:17:56 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Wed, 2 Sep 2015 15:18:17 +0200
+To: Caio <caiortp@gmail.com>
+Message-ID: <20150902131817.GB2470@jama>
 References: <CAJqtCyYTZ_X-xNZTCxMJDE2QnvTxp=RW3bCUwa4uVAVQOT7huw@mail.gmail.com>
 	<55E5B48B.7030309@siemens.com>
 	<CAJqtCybvjh79geHsOcsvX_cvWnSL+1fCnB3scsAXS6azOj9Gwg@mail.gmail.com>
 	<CAJqtCybfSCcTaqZ84LW6yK=mXS6q5nJQUjpQ6o+j2o=Mq4TNNg@mail.gmail.com>
 	<20150901215732.GF2458@jama>
-Date: Wed, 2 Sep 2015 10:04:19 -0300
-Message-ID: <CAJqtCybHU52+xvFt95eZCfhYCCbp2zs_JjGiAsS6hT3=gQkGcA@mail.gmail.com>
-From: Caio <caiortp@gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
+	<CAJqtCybHU52+xvFt95eZCfhYCCbp2zs_JjGiAsS6hT3=gQkGcA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAJqtCybHU52+xvFt95eZCfhYCCbp2zs_JjGiAsS6hT3=gQkGcA@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: Yocto Project Discussion <yocto@yoctoproject.org>
 Subject: Re: [meta-qt5] Missing qt5declarative rootfs
 X-BeenThere: yocto@yoctoproject.org
@@ -64,419 +68,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Sep 2015 13:04:30 -0000
-Content-Type: multipart/alternative; boundary=001a11c33c080249ec051ec34eca
+X-List-Received-Date: Wed, 02 Sep 2015 13:18:03 -0000
+X-Groupsio-MsgNum: 26279
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="i9LlY+UWpKt15+FH"
+Content-Disposition: inline
 
---001a11c33c080249ec051ec34eca
-Content-Type: text/plain; charset=UTF-8
+--i9LlY+UWpKt15+FH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I had the same dependency error.
+On Wed, Sep 02, 2015 at 10:04:19AM -0300, Caio wrote:
+> I had the same dependency error.
+>=20
+> Collected errors:
+>  * satisfy_dependencies_for: Cannot satisfy the following dependencies for
+> packagegroup-qt5:
+>  *     qtquickcontrols-plugins *     qtquickcontrols *
+>  * opkg_install_cmd: Cannot install package packagegroup-qt5.
+>=20
+> ERROR: Function failed: do_rootfs
+> ERROR: Logfile of failure stored in:
+> /home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx6-=
+poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.2872
+> ERROR: Task 7
+> (/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/images/
+> core-image-minimal.bb, do_rootfs) failed with exit code '1'
 
-Collected errors:
- * satisfy_dependencies_for: Cannot satisfy the following dependencies for
-packagegroup-qt5:
- *     qtquickcontrols-plugins *     qtquickcontrols *
- * opkg_install_cmd: Cannot install package packagegroup-qt5.
+And fixing that by creating empty packages is the worst thing you can do..
 
-ERROR: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.2872
-ERROR: Task 7
-(/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/images/
-core-image-minimal.bb, do_rootfs) failed with exit code '1'
+qtquickcontrols is probably empty because you didn't enable right
+PACKAGECONFIG options for qtbase (accessiblity), see README and
+qtbase_git.bb
 
+> Which option is better to add Qt5 packages? Create a package group or add
+> the packages in the Image recipe?
 
+It doesn't matter, packagegroup is better if you want to group all qt5
+related packages together and/or reuse the same packagegroup from
+various images.
 
-Which option is better to add Qt5 packages? Create a package group or add
-the packages in the Image recipe?
-
-
-Thanks
-
-Caio Pereira
-
-
-2015-09-01 18:57 GMT-03:00 Martin Jansa <martin.jansa@gmail.com>:
-
-> On Tue, Sep 01, 2015 at 06:05:58PM -0300, Caio wrote:
-> > I created a bbappend for qtquickcontrol with ALLOW_EMPTY_${PN} = "1" to
-> > fix. (Thanks Sergio Prado)
+> 2015-09-01 18:57 GMT-03:00 Martin Jansa <martin.jansa@gmail.com>:
+>=20
+> > On Tue, Sep 01, 2015 at 06:05:58PM -0300, Caio wrote:
+> > > I created a bbappend for qtquickcontrol with ALLOW_EMPTY_${PN} =3D "1=
+" to
+> > > fix. (Thanks Sergio Prado)
+> > >
+> > > #cat qtquickcontrol_%.bbappend
+> > > ALLOW_EMPTY_${PN} =3D "1"
 > >
-> > #cat qtquickcontrol_%.bbappend
-> > ALLOW_EMPTY_${PN} = "1"
->
-> And what do you expect from empty package installed in your rootfs?
->
-> If you need qtquickcontrol-plugins, then you should add
-> qtquickcontrol-plugins to RDEPENDS, installing empty package is as good
-> as not installing qtquickcontrol at all.
->
-> > 2015-09-01 11:54 GMT-03:00 Caio <caiortp@gmail.com>:
+> > And what do you expect from empty package installed in your rootfs?
 > >
-> > > Pascal,
+> > If you need qtquickcontrol-plugins, then you should add
+> > qtquickcontrol-plugins to RDEPENDS, installing empty package is as good
+> > as not installing qtquickcontrol at all.
+> >
+> > > 2015-09-01 11:54 GMT-03:00 Caio <caiortp@gmail.com>:
 > > >
-> > > You're right, was my mistake.
-> > > I updated the recipe to use RDEPENDS_${PN} , but now I'm having problem
-> > > with dependence ( qtquickcontrols). I'm trying to fix.
+> > > > Pascal,
+> > > >
+> > > > You're right, was my mistake.
+> > > > I updated the recipe to use RDEPENDS_${PN} , but now I'm having pro=
+blem
+> > > > with dependence ( qtquickcontrols). I'm trying to fix.
+> > > >
+> > > >
+> > > > SUMMARY =3D "QT5  package group"
+> > > > LICENSE =3D "MIT"
+> > > >
+> > > > PR =3D "0"
+> > > >
+> > > > inherit packagegroup
+> > > >
+> > > > RDEPENDS_${PN} +=3D " \
+> > > >     qtbase \
+> > > >     qtbase-plugins \
+> > > >     qtbase-fonts \
+> > > >     qtdeclarative \
+> > > >     qtdeclarative-plugins \
+> > > >     qtdeclarative-qmlplugins \
+> > > >     qtsvg \
+> > > >     qtsvg-plugins \
+> > > >     qtimageformats \
+> > > >     qtimageformats-plugins \
+> > > >     qtmultimedia \
+> > > >     qtmultimedia-plugins \
+> > > >     qtmultimedia-qmlplugins \
+> > > >     qtserialport \
+> > > >     qtscript \
+> > > >     qtgraphicaleffects-qmlplugins \
+> > > >     qtconnectivity-qmlplugins \
+> > > >     qtxmlpatterns \
+> > > >     qtquick1 \
+> > > >     qtquick1-plugins \
+> > > >     qtquick1-qmlplugins \
+> > > >     qtquickcontrols \
+> > > >     qtquickcontrols-qmlplugins \
+> > > >     qtgstreamer \
+> > > >     "
+> > > >
+> > > > Error:
+> > > >
+> > > > Configuring packagegroup-gstreamer.
+> > > > Configuring opkg-collateral.
+> > > > Configuring poky-feed-config-opkg.
+> > > > Configuring quitbattery.
+> > > > Configuring psplash.
+> > > > Collected errors:
+> > > >  * satisfy_dependencies_for: Cannot satisfy the following dependenc=
+ies
+> > for
+> > > > packagegroup-qt5:
+> > > >  *     qtquickcontrols *
+> > > >  * opkg_install_cmd: Cannot install package packagegroup-qt5.
+> > > >
+> > > > ERROR: Function failed: do_rootfs
+> > > > ERROR: Logfile of failure stored in:
+> > > >
+> > /home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx=
+6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.3458
+> > > > ERROR: Task 7
+> > > > (/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/image=
+s/
+> > > > core-image-minimal.bb, do_rootfs) failed with exit code '1'
+> > > >
+> > > >
+> > > > Thank you very much,
+> > > >
+> > > > Regards,
+> > > >
+> > > > Caio Pereira
+> > > >
+> > > >
+> > > > 2015-09-01 11:22 GMT-03:00 Pascal Bach <pascal.bach@siemens.com>:
+> > > >
+> > > >> >
+> > > >> >
+> > > >> > my package group
+> > > >> >
+> > > >> > packagegroup-qt5_0.1.bb <http://packagegroup-qt5_0.1.bb>
+> > > >> >
+> > > >> > SUMMARY =3D "QT5  package group"
+> > > >> > LICENSE =3D "MIT"
+> > > >> >
+> > > >> > PR =3D "0"
+> > > >> >
+> > > >> > inherit packagegroup
+> > > >> >
+> > > >> > VIRTUAL_KEYBOARD ?=3D "maliit-framework-qt5 maliit-plugins-qt5"
+> > > >> >
+> > > >> I don't know if you can use IMAGE_INSTALL in a package group.
+> > > >> Unitl now I have only seen RDEPENDS_${PN} used. IMAGE_INSTALL is
+> > normaly
+> > > >> only used in images.
+> > > >>
+> > > >> > IMAGE_INSTALL+ =3D " \
+> > > >> >     dbus \
+> > > >> >     qtbase \
+> > > >> >     qtbase-plugins \
+> > > >> >     qtbase-fonts \
+> > > >> >     qtdeclarative \
+> > > >> >     qtdeclarative-plugins \
+> > > >> >     qtdeclarative-qmlplugins \
+> > > >> >     qtmultimedia \
+> > > >> >     qtmultimedia-plugins \
+> > > >> >     qtmultimedia-qmlplugins \
+> > > >> >     qtserialport \
+> > > >> >     qtscript \
+> > > >> >     qtgraphicaleffects-qmlplugins \
+> > > >> >     qtconnectivity-qmlplugins \
+> > > >> >     qtxmlpatterns \
+> > > >> >     qtquick1 \
+> > > >> >     qtquickcontrols \
+> > > >> >     qtquickcontrols-qmlplugins \
+> > > >> >     qtgstreamer \
+> > > >> >     qtsvg \
+> > > >> >     qtsvg-plugins \
+> > > >> >     qtimageformats \
+> > > >> >     qtimageformats-plugin \
+> > > >> >     "
+> > > >> >
+> > > >> > RDEPENDS_${PN}=3D "qtquickcontrols-qmlplugins qtdeclarative-qmlp=
+lugins
+> > > >> qtdeclarative-plugins"
+> > > >> >
+> > > >> >
+> > > >> Pascal
+> > > >>
+> > > >>
+> > > >
+> > > >
+> > > > --
+> > > > ----------------------------------------------
+> > > > Caio Pereira
+> > > >
 > > >
-> > >
-> > > SUMMARY = "QT5  package group"
-> > > LICENSE = "MIT"
-> > >
-> > > PR = "0"
-> > >
-> > > inherit packagegroup
-> > >
-> > > RDEPENDS_${PN} += " \
-> > >     qtbase \
-> > >     qtbase-plugins \
-> > >     qtbase-fonts \
-> > >     qtdeclarative \
-> > >     qtdeclarative-plugins \
-> > >     qtdeclarative-qmlplugins \
-> > >     qtsvg \
-> > >     qtsvg-plugins \
-> > >     qtimageformats \
-> > >     qtimageformats-plugins \
-> > >     qtmultimedia \
-> > >     qtmultimedia-plugins \
-> > >     qtmultimedia-qmlplugins \
-> > >     qtserialport \
-> > >     qtscript \
-> > >     qtgraphicaleffects-qmlplugins \
-> > >     qtconnectivity-qmlplugins \
-> > >     qtxmlpatterns \
-> > >     qtquick1 \
-> > >     qtquick1-plugins \
-> > >     qtquick1-qmlplugins \
-> > >     qtquickcontrols \
-> > >     qtquickcontrols-qmlplugins \
-> > >     qtgstreamer \
-> > >     "
-> > >
-> > > Error:
-> > >
-> > > Configuring packagegroup-gstreamer.
-> > > Configuring opkg-collateral.
-> > > Configuring poky-feed-config-opkg.
-> > > Configuring quitbattery.
-> > > Configuring psplash.
-> > > Collected errors:
-> > >  * satisfy_dependencies_for: Cannot satisfy the following dependencies
-> for
-> > > packagegroup-qt5:
-> > >  *     qtquickcontrols *
-> > >  * opkg_install_cmd: Cannot install package packagegroup-qt5.
-> > >
-> > > ERROR: Function failed: do_rootfs
-> > > ERROR: Logfile of failure stored in:
-> > >
-> /home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.3458
-> > > ERROR: Task 7
-> > > (/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/images/
-> > > core-image-minimal.bb, do_rootfs) failed with exit code '1'
-> > >
-> > >
-> > > Thank you very much,
-> > >
-> > > Regards,
-> > >
-> > > Caio Pereira
-> > >
-> > >
-> > > 2015-09-01 11:22 GMT-03:00 Pascal Bach <pascal.bach@siemens.com>:
-> > >
-> > >> >
-> > >> >
-> > >> > my package group
-> > >> >
-> > >> > packagegroup-qt5_0.1.bb <http://packagegroup-qt5_0.1.bb>
-> > >> >
-> > >> > SUMMARY = "QT5  package group"
-> > >> > LICENSE = "MIT"
-> > >> >
-> > >> > PR = "0"
-> > >> >
-> > >> > inherit packagegroup
-> > >> >
-> > >> > VIRTUAL_KEYBOARD ?= "maliit-framework-qt5 maliit-plugins-qt5"
-> > >> >
-> > >> I don't know if you can use IMAGE_INSTALL in a package group.
-> > >> Unitl now I have only seen RDEPENDS_${PN} used. IMAGE_INSTALL is
-> normaly
-> > >> only used in images.
-> > >>
-> > >> > IMAGE_INSTALL+ = " \
-> > >> >     dbus \
-> > >> >     qtbase \
-> > >> >     qtbase-plugins \
-> > >> >     qtbase-fonts \
-> > >> >     qtdeclarative \
-> > >> >     qtdeclarative-plugins \
-> > >> >     qtdeclarative-qmlplugins \
-> > >> >     qtmultimedia \
-> > >> >     qtmultimedia-plugins \
-> > >> >     qtmultimedia-qmlplugins \
-> > >> >     qtserialport \
-> > >> >     qtscript \
-> > >> >     qtgraphicaleffects-qmlplugins \
-> > >> >     qtconnectivity-qmlplugins \
-> > >> >     qtxmlpatterns \
-> > >> >     qtquick1 \
-> > >> >     qtquickcontrols \
-> > >> >     qtquickcontrols-qmlplugins \
-> > >> >     qtgstreamer \
-> > >> >     qtsvg \
-> > >> >     qtsvg-plugins \
-> > >> >     qtimageformats \
-> > >> >     qtimageformats-plugin \
-> > >> >     "
-> > >> >
-> > >> > RDEPENDS_${PN}= "qtquickcontrols-qmlplugins qtdeclarative-qmlplugins
-> > >> qtdeclarative-plugins"
-> > >> >
-> > >> >
-> > >> Pascal
-> > >>
-> > >>
 > > >
 > > >
 > > > --
 > > > ----------------------------------------------
 > > > Caio Pereira
-> > >
 > >
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
 > >
 > >
 > > --
-> > ----------------------------------------------
-> > Caio Pereira
->
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
->
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->
+> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> >
+>=20
+>=20
+>=20
+> --=20
+> ----------------------------------------------
+> Caio Pereira
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--i9LlY+UWpKt15+FH
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
--- 
-----------------------------------------------
-Caio Pereira
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
---001a11c33c080249ec051ec34eca
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+iEYEARECAAYFAlXm9xkACgkQN1Ujt2V2gBzKWACfQIxTC32jpWn+Gb/Ul094YcJi
+RmkAoJ/vdUcxkmNnNy73SWyzglxur57P
+=MCyD
+-----END PGP SIGNATURE-----
 
-<div dir=3D"ltr"><div>I had the same dependency error.<br></div><div><div><=
-br>Collected errors:<br>=C2=A0* satisfy_dependencies_for: Cannot satisfy th=
-e following dependencies for packagegroup-qt5:<br>=C2=A0* =C2=A0=C2=A0=C2=
-=A0 qtquickcontrols-plugins * =C2=A0=C2=A0=C2=A0 qtquickcontrols * <br>=C2=
-=A0* opkg_install_cmd: Cannot install package packagegroup-qt5.<br><br>ERRO=
-R: Function failed: do_rootfs<br>ERROR: Logfile of failure stored in: /home=
-/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colibri_imx6-poky-li=
-nux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.2872<br>ERROR: Tas=
-k 7 (/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/images/<a=
- href=3D"http://core-image-minimal.bb">core-image-minimal.bb</a>, do_rootfs=
-) failed with exit code &#39;1&#39;<br><br><br><br>Which option is better t=
-o add Qt5 packages? Create a package group or add the packages in the Image=
- recipe?<br><br><br></div><div>Thanks<br><br></div><div>Caio Pereira<br></d=
-iv><div><br></div></div></div><div class=3D"gmail_extra"><br><div class=3D"=
-gmail_quote">2015-09-01 18:57 GMT-03:00 Martin Jansa <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gm=
-ail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">=
-On Tue, Sep 01, 2015 at 06:05:58PM -0300, Caio wrote:<br>
-&gt; I created a bbappend for qtquickcontrol with ALLOW_EMPTY_${PN} =3D &qu=
-ot;1&quot; to<br>
-&gt; fix. (Thanks Sergio Prado)<br>
-&gt;<br>
-&gt; #cat qtquickcontrol_%.bbappend<br>
-&gt; ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-<br>
-</span>And what do you expect from empty package installed in your rootfs?<=
-br>
-<br>
-If you need qtquickcontrol-plugins, then you should add<br>
-qtquickcontrol-plugins to RDEPENDS, installing empty package is as good<br>
-as not installing qtquickcontrol at all.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt; 2015-09-01 11:54 GMT-03:00 Caio &lt;<a href=3D"mailto:caiortp@gmail.co=
-m">caiortp@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; &gt; Pascal,<br>
-&gt; &gt;<br>
-&gt; &gt; You&#39;re right, was my mistake.<br>
-&gt; &gt; I updated the recipe to use RDEPENDS_${PN} , but now I&#39;m havi=
-ng problem<br>
-&gt; &gt; with dependence ( qtquickcontrols). I&#39;m trying to fix.<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; SUMMARY =3D &quot;QT5=C2=A0 package group&quot;<br>
-&gt; &gt; LICENSE =3D &quot;MIT&quot;<br>
-&gt; &gt;<br>
-&gt; &gt; PR =3D &quot;0&quot;<br>
-&gt; &gt;<br>
-&gt; &gt; inherit packagegroup<br>
-&gt; &gt;<br>
-&gt; &gt; RDEPENDS_${PN} +=3D &quot; \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase-fonts \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtsvg \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtsvg-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtimageformats \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtimageformats-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtserialport \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtscript \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtgraphicaleffects-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtconnectivity-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtxmlpatterns \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquick1 \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquick1-plugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquick1-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols-qmlplugins \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtgstreamer \<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt; &gt;<br>
-&gt; &gt; Error:<br>
-&gt; &gt;<br>
-&gt; &gt; Configuring packagegroup-gstreamer.<br>
-&gt; &gt; Configuring opkg-collateral.<br>
-&gt; &gt; Configuring poky-feed-config-opkg.<br>
-&gt; &gt; Configuring quitbattery.<br>
-&gt; &gt; Configuring psplash.<br>
-&gt; &gt; Collected errors:<br>
-&gt; &gt;=C2=A0 * satisfy_dependencies_for: Cannot satisfy the following de=
-pendencies for<br>
-&gt; &gt; packagegroup-qt5:<br>
-&gt; &gt;=C2=A0 *=C2=A0 =C2=A0 =C2=A0qtquickcontrols *<br>
-&gt; &gt;=C2=A0 * opkg_install_cmd: Cannot install package packagegroup-qt5=
-.<br>
-&gt; &gt;<br>
-&gt; &gt; ERROR: Function failed: do_rootfs<br>
-&gt; &gt; ERROR: Logfile of failure stored in:<br>
-&gt; &gt; /home/icchw/fsl-community-bsp/toradex_colibri_imx6/tmp/work/colib=
-ri_imx6-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.345=
-8<br>
-&gt; &gt; ERROR: Task 7<br>
-&gt; &gt; (/home/icchw/fsl-community-bsp/sources/poky/meta/recipes-core/ima=
-ges/<br>
-&gt; &gt; <a href=3D"http://core-image-minimal.bb" rel=3D"noreferrer" targe=
-t=3D"_blank">core-image-minimal.bb</a>, do_rootfs) failed with exit code &#=
-39;1&#39;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; Thank you very much,<br>
-&gt; &gt;<br>
-&gt; &gt; Regards,<br>
-&gt; &gt;<br>
-&gt; &gt; Caio Pereira<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; 2015-09-01 11:22 GMT-03:00 Pascal Bach &lt;<a href=3D"mailto:pasc=
-al.bach@siemens.com">pascal.bach@siemens.com</a>&gt;:<br>
-&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; my package group<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; <a href=3D"http://packagegroup-qt5_0.1.bb" rel=3D"norefe=
-rrer" target=3D"_blank">packagegroup-qt5_0.1.bb</a> &lt;<a href=3D"http://p=
-ackagegroup-qt5_0.1.bb" rel=3D"noreferrer" target=3D"_blank">http://package=
-group-qt5_0.1.bb</a>&gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; SUMMARY =3D &quot;QT5=C2=A0 package group&quot;<br>
-&gt; &gt;&gt; &gt; LICENSE =3D &quot;MIT&quot;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; PR =3D &quot;0&quot;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; inherit packagegroup<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; VIRTUAL_KEYBOARD ?=3D &quot;maliit-framework-qt5 maliit-=
-plugins-qt5&quot;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; I don&#39;t know if you can use IMAGE_INSTALL in a package gr=
-oup.<br>
-&gt; &gt;&gt; Unitl now I have only seen RDEPENDS_${PN} used. IMAGE_INSTALL=
- is normaly<br>
-&gt; &gt;&gt; only used in images.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt; IMAGE_INSTALL+ =3D &quot; \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0dbus \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase-plugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtbase-fonts \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-plugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtdeclarative-qmlplugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-plugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtmultimedia-qmlplugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtserialport \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtscript \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtgraphicaleffects-qmlplugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtconnectivity-qmlplugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtxmlpatterns \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquick1 \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtquickcontrols-qmlplugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtgstreamer \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtsvg \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtsvg-plugins \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtimageformats \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0qtimageformats-plugin \<br>
-&gt; &gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; RDEPENDS_${PN}=3D &quot;qtquickcontrols-qmlplugins qtdec=
-larative-qmlplugins<br>
-&gt; &gt;&gt; qtdeclarative-plugins&quot;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; Pascal<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt; ----------------------------------------------<br>
-&gt; &gt; Caio Pereira<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; ----------------------------------------------<br>
-&gt; Caio Pereira<br>
-<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-<br>
-<br>
---<br>
-Martin &#39;JaMa&#39; Jansa=C2=A0 =C2=A0 =C2=A0jabber: <a href=3D"mailto:Ma=
-rtin.Jansa@gmail.com">Martin.Jansa@gmail.com</a><br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature">----------------------------------------------<br>Cai=
-o Pereira</div>
-</div>
-
---001a11c33c080249ec051ec34eca--
+--i9LlY+UWpKt15+FH--
