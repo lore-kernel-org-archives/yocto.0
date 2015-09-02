@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35ADBE00D0E; Wed,  2 Sep 2015 11:31:31 -0700 (PDT)
+	id 99E93E00AAA; Wed,  2 Sep 2015 16:22:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
+	*      [98.136.218.253 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,34 +19,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6C61E00A7B
-	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 11:31:27 -0700 (PDT)
-Received: by igbut12 with SMTP id ut12so21141966igb.1
-	for <yocto@yoctoproject.org>; Wed, 02 Sep 2015 11:31:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=aLZpDLjMecMcx7TX5J723J1tUDzhLgO3sH3xMsHrppg=;
-	b=RFZBNnCKSOx3d2vCKaySobmAX1mDeWjpDHmSWHXhF+wI09RUjosj0fK4lcjWAAJ9/3
-	+1YgmGFgjjp0CZlwB9FApTluGl3+4VfbUov71wgJ8LJqusQGYI+LWAAW1qox7ksWClhp
-	Q4QdUTAXGpT8dR+tYfkJJvwx1itAz1DezPA1TA2XLPkYCoy3SC1YHHo388oDslq8uG7d
-	QQWL0SgTi8Cke5gzPU3pN57Q18G3CNeq2OeVapMzJ82fkVinpB3HySe94OI8c6824v1Q
-	Lx3gJnGHBl+4VYUr2SMGActlJA1MAk43Fbj+nRAue0851O8Ntm3VAai+v45v4vE+z0xr
-	0OAA==
-X-Received: by 10.50.55.73 with SMTP id q9mr5538554igp.11.1441218686417; Wed,
-	02 Sep 2015 11:31:26 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.202 with HTTP; Wed, 2 Sep 2015 11:30:57 -0700 (PDT)
-In-Reply-To: <167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69@EX2010-CO-02.AERO.BALL.com>
-References: <167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69@EX2010-CO-02.AERO.BALL.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 2 Sep 2015 11:30:57 -0700
-Message-ID: <CAMKF1sojKoVwJOCfqTYNEJYOAAb2K9vPADOhXmjWFkUgeb3B-g@mail.gmail.com>
-To: "Smith, Daniel W" <dwsmith@ball.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ADA Support?
+Received: from nm14-vm2.bullet.mail.gq1.yahoo.com
+	(nm14-vm2.bullet.mail.gq1.yahoo.com [98.136.218.253])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7905AE00A5B
+	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 16:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1441236173; bh=HEOHlGhOQOZPUkYbXCV+JehMzvh9aw6DETBEflzREhM=;
+	h=From:To:Cc:Subject:Date:From:Subject;
+	b=T2L+IODKX+HNcEsNYQK82+BeEtjY26evDo0KWsOtDHMr1jgHXqdkhNi0m/WZMrNToewbNUKZkSIsJ6T0pNSO/x/EimRxEAg+lE6QCthGa2tMiJ0of22d4KxptnSQ22e2gs1Uv9z0RsI2ZZDJvjtI/R6QEsG6GNhSgiIruinc40v1Lilnk1jyVihxCcMyujfzJwAYr1DI1gSxoaTpCmP8X2KIB/ZQYLdjxy33UtBtWBOVsfRN890+9lOACf2LsD9HII/6gY5rCTp/Qx7GImU1EBKD3JpCtVwU4KFd19zVczOTqgrgM5p+UyF2QWKIcrh/XDTYRjmnIOdfeyXlAK7b1Q==
+Received: from [98.137.12.190] by nm14.bullet.mail.gq1.yahoo.com with NNFMP;
+	02 Sep 2015 23:22:53 -0000
+Received: from [98.136.164.71] by tm11.bullet.mail.gq1.yahoo.com with NNFMP;
+	02 Sep 2015 23:22:53 -0000
+Received: from [127.0.0.1] by smtp233.mail.gq1.yahoo.com with NNFMP;
+	02 Sep 2015 23:22:53 -0000
+X-Yahoo-Newman-Id: 493368.64965.bm@smtp233.mail.gq1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: 3kQHbWoVM1nEpNnytVL9fa.2GpP2mPkeyYIhCC3XSrNO_GB
+	d0LbuM5hBm5PMv4YWOE_1OMn1YRe7pgEIy5VcHk5WYTk0dHfYJozuc5uZ.Xr
+	.lPy8Jp_2YJOwYqdPA1UzGzkvnRiveTM3ioyfVGTG9tJvRSPGpFkfh5V3siz
+	wtb.4zY.3YyD1EmZ52y0X9S2SHn.RPotCvG_WY5xsKBcXOJ5IDqLqlOp9qwv
+	_O_RzMUisvGMIA6I61_hTiq0rsh6bUvHgkiLC.LdDPzJBDPMaHB7E.gYiMgy
+	cJcfaMutA6y.rNtDaWu1I11MKSh5xXG23__DYvuFHIAJVLwntkDYq.F4TAfL
+	o9grEFBgZRjPYOiBIIQq4fB4c6WLgcBrDHLvu7hlwOTC5Y06FkpdZZ5p2KMJ
+	_iDw98rOcfsSyy1vvXW8P5kkMInmshm8CXpUmRKYAGMPWRwSls24BpkYshbb
+	rcOOyGKWiBLxYfI2ByI3dl8osmaKOP_L7zM0XsGpCDVbQ9JGrpy9kd1WWXqW
+	pZF1YiCFlqTamuDIg101Eln1AW0Hq0.cIxgnXBhm9k2DcYUKOXEDiWOwBb.J
+	Em85yuf1RCS7MV5o-
+X-Yahoo-SMTP: nOggmNuswBA1X.L67jJQBEggMWwFMkOGtH3lM4PRRQ--
+From: vaduvajanalexandru@yahoo.com
+To: yocto@yoctoproject.org
+Date: Thu,  3 Sep 2015 02:22:48 +0300
+Message-Id: <1441236168-22599-1-git-send-email-alexandru.vaduva@linux.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-cgl][PATCH] sysvinit: move the bbappend into the according layer location
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,80 +64,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Sep 2015 18:31:31 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Sep 2015 23:22:56 -0000
 
-On Wed, Sep 2, 2015 at 8:38 AM, Smith, Daniel W <dwsmith@ball.com> wrote:
-> Hello,
->
->
->
-> I=E2=80=99m trying to figure out what is the best an easiest way to add A=
-DA/GNAT
-> support for PPC.  I=E2=80=99m currently running poky-fido-13.0.0.  I=E2=
-=80=99m new to Yocto.
->
->
->
-> Does anyone have any experience with this or suggestions?  Ideally I=E2=
-=80=99d be
-> able to cross compile using devtool and bitbake recipes or ADT, but I wou=
-ld
-> be even be satisfied with just compiling the ADA source natively on the
-> target.
->
+Signed-off-by: Alexandru.Vaduva <alexandru.vaduva@linux.com>
+---
+ .../recipes-core}/sysvinit/sysvinit_2.88dsf.bbappend                      | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename {recipes-core => meta-cgl-common/recipes-core}/sysvinit/sysvinit_2.88dsf.bbappend (100%)
 
-it will be bit involved effort. you have to look into
+diff --git a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend b/meta-cgl-common/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+similarity index 100%
+rename from recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+rename to meta-cgl-common/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
+-- 
+1.9.1
 
-meta/recipes-devtools/gcc/gcc-configure-common.inc
-LANGUAGES ?=3D "c,c++${FORTRAN}${JAVA}"
-
-so you need to add it there and then also package and build the
-resulting ada runtime
-that should get you going. There will be few other notches needed but minor=
-.
-
-
->
->
-> From what I can tell support for ADA hasn=E2=80=99t been added in any of =
-these
-> fashions yet.
->
->
->
-> Thanks for any help you can provide.
->
-> -Daniel Smith
->
->
->
->
->
->
->
->
->
->
->
-> This message and any enclosures are intended only for the addressee. Plea=
-se
-> notify the sender by email if you are not the intended recipient. If you =
-are
-> not the intended recipient, you may not use, copy, disclose, or distribut=
-e
-> this
-> message or its contents or enclosures to any other person and any such
-> actions
-> may be unlawful. Ball reserves the right to monitor and review all messag=
-es
-> and enclosures sent to or from this email address.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
