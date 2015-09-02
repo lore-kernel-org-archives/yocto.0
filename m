@@ -1,38 +1,50 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <dwsmith@ball.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA891E00A8C; Wed,  2 Sep 2015 07:02:54 -0700 (PDT)
+	id 72B9FE00D23; Wed,  2 Sep 2015 09:07:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+	*      [67.231.144.99 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 77CC5E00CEE
-	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 07:02:48 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Wed, 2 Sep 2015 16:02:45 +0200
-From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: Iulian Popa <Iulian.Popa@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [PATCH] packagegroup: Replace the syslog-ng with rsyslog
-Thread-Index: AQHQ5Xkxp4fOVE4CrkOONMFB09zosJ4pMq9r
-Date: Wed, 2 Sep 2015 14:02:45 +0000
-Message-ID: <C35DE6E3665B10419D70F74D9884ABD4049EED65@SESTOEX04.enea.se>
-References: <1441196165-13966-1-git-send-email-iulian.popa@enea.com>
-In-Reply-To: <1441196165-13966-1-git-send-email-iulian.popa@enea.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 1748 seconds by postgrey-1.32 at yocto-www;
+	Wed, 02 Sep 2015 09:07:23 PDT
+Received: from mx0a-0014fe01.pphosted.com (mx0a-0014fe01.pphosted.com
+	[67.231.144.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4792AE00AC0
+	for <yocto@yoctoproject.org>; Wed,  2 Sep 2015 09:07:23 -0700 (PDT)
+Received: from pps.filterd (m0000457.ppops.net [127.0.0.1])
+	by mx0a-0014fe01.pphosted.com (8.15.0.59/8.15.0.59) with SMTP id
+	t82FZZan007250
+	for <yocto@yoctoproject.org>; Wed, 2 Sep 2015 09:38:14 -0600
+Received: from owa.ballaerospace.com ([162.18.172.11])
+	by mx0a-0014fe01.pphosted.com with ESMTP id 1wnx3h9pqt-1
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Wed, 02 Sep 2015 09:38:14 -0600
+Received: from EX2010-CO-02.AERO.BALL.com ([fe80::1c1b:3704:218f:e8b6]) by
+	EX2010-CO-01.AERO.BALL.com ([fe80::ac1f:1297:aedc:98d2%12]) with mapi
+	id 14.03.0181.006; Wed, 2 Sep 2015 09:38:14 -0600
+From: "Smith, Daniel W" <dwsmith@ball.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ADA Support?
+Thread-Index: AdDllV3AayFOKkgzRcOgniYxaVe3og==
+Date: Wed, 2 Sep 2015 15:38:13 +0000
+Message-ID: <167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69@EX2010-CO-02.AERO.BALL.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.1.190]
+x-originating-ip: [10.70.255.105]
 MIME-Version: 1.0
-Cc: Iulian Popa <Iulian.Popa@enea.com>
-Subject: Re: [PATCH] packagegroup: Replace the syslog-ng with rsyslog
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.14.151, 1.0.33,
+	0.0.0000
+	definitions=2015-09-02_06:2015-09-02, 2015-09-02,
+	1970-01-01 signatures=0
+Subject: ADA Support?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,48 +56,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Sep 2015 14:02:54 -0000
+X-List-Received-Date: Wed, 02 Sep 2015 16:07:27 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69EX2010CO02AEROB_"
+
+--_000_167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69EX2010CO02AEROB_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I agree with using rsyslog instead. It's a bit weird that we have both incl=
-uded in the image already. So I approve the change.=0A=
-=0A=
-Iulian, next time please include the [meta-cgl] prefix in the email subject=
-.=0A=
-=0A=
---Adrian=0A=
-=0A=
-________________________________________=0A=
-From: Iulian Popa [iulian.popa@enea.com]=0A=
-Sent: Wednesday, September 02, 2015 2:16 PM=0A=
-To: yocto@yoctoproject.org=0A=
-Cc: Joe_MacDonald@mentor.com; Adrian Dudau; alexandru.vaduva@linux.com; Iul=
-ian Popa=0A=
-Subject: [PATCH] packagegroup: Replace the syslog-ng with rsyslog=0A=
-=0A=
-Looks like the 'rsyslog' is better maintained and more widely known.=0A=
-=0A=
-Signed-off-by: Iulian Popa <iulian.popa@enea.com>=0A=
----=0A=
- meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb | 1 -=0A=
- 1 file changed, 1 deletion(-)=0A=
-=0A=
-diff --git a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb=
- b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb=0A=
-index 48dc182..2af2461 100644=0A=
---- a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb=0A=
-+++ b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb=0A=
-@@ -40,7 +40,6 @@ RDEPENDS_packagegroup-cgl-applications =3D " \=0A=
-     quota \=0A=
-     smartmontools \=0A=
-     monit \=0A=
--    syslog-ng \=0A=
-     ocfs2-tools \=0A=
-     logcheck \=0A=
-     samhain-client \=0A=
---=0A=
-1.9.1=0A=
-=0A=
+Hello,
 
+I'm trying to figure out what is the best an easiest way to add ADA/GNAT su=
+pport for PPC.  I'm currently running poky-fido-13.0.0.  I'm new to Yocto.
+
+Does anyone have any experience with this or suggestions?  Ideally I'd be a=
+ble to cross compile using devtool and bitbake recipes or ADT, but I would =
+be even be satisfied with just compiling the ADA source natively on the tar=
+get.
+
+From what I can tell support for ADA hasn't been added in any of these fash=
+ions yet.
+
+Thanks for any help you can provide.
+-Daniel Smith
+
+
+
+
+
+
+This message and any enclosures are intended only for the addressee.  Pleas=
+e=20
+notify the sender by email if you are not the intended recipient.  If you a=
+re=20
+not the intended recipient, you may not use, copy, disclose, or distribute =
+this=20
+message or its contents or enclosures to any other person and any such acti=
+ons=20
+may be unlawful.  Ball reserves the right to monitor and review all message=
+s=20
+and enclosures sent to or from this email address.
+
+--_000_167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69EX2010CO02AEROB_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m trying to figure out what is the best an e=
+asiest way to add ADA/GNAT support for PPC.&nbsp; I&#8217;m currently runni=
+ng poky-fido-13.0.0.&nbsp; I&#8217;m new to Yocto.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Does anyone have any experience with this or suggest=
+ions?&nbsp; Ideally I&#8217;d be able to cross compile using devtool and bi=
+tbake recipes or ADT, but I would be even be satisfied with just compiling =
+the ADA source natively on the target.&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">From what I can tell support for ADA hasn&#8217;t be=
+en added in any of these fashions yet.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks for any help you can provide.<o:p></o:p></p>
+<p class=3D"MsoNormal">-Daniel Smith<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+
+<DIV>
+<BR>
+<BR>
+This message and any enclosures are intended only for the addressee.  Pleas=
+e <BR>
+notify the sender by email if you are not the intended recipient.  If you a=
+re <BR>
+not the intended recipient, you may not use, copy, disclose, or distribute =
+this <BR>
+message or its contents or enclosures to any other person and any such acti=
+ons <BR>
+may be unlawful.  Ball reserves the right to monitor and review all message=
+s <BR>
+and enclosures sent to or from this email address.<BR>
+</DIV></body>
+</html>
+
+--_000_167A17EDB344B047B2D335D8E4C5A2FA8DDA7A69EX2010CO02AEROB_--
