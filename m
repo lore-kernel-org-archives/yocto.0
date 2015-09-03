@@ -1,58 +1,43 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <jerome.olivier@outlook.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73A4DE00CBD; Thu,  3 Sep 2015 08:32:10 -0700 (PDT)
+	id 0E845E00C5C; Thu,  3 Sep 2015 09:45:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [98.138.91.22 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jerome.olivier[at]outlook.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.30 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm28-vm0.bullet.mail.ne1.yahoo.com
-	(nm28-vm0.bullet.mail.ne1.yahoo.com [98.138.91.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 200D9E009B3
-	for <yocto@yoctoproject.org>; Thu,  3 Sep 2015 08:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1441294326; bh=5j3RX1AFQp9blGHa4iBy5xv8JTxh/PfUnt6nWYUJQ4o=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=cANoDLsJZeZdTjRemN8n9o11D/XhQvAfm4/wiKG7XX0wVkeWI8QrSjvyXm3TpG0F9yIShAceha0NC7A5cKWi8d2KZw+KZbAfJYgMCjxzQvNDz1a8DcRtydKj1ZqUitb4lK2o2uQMWPA8ZY9eLubLDc85FkgBY6yc6dsKmM4t8/O5FFHUHF/yoqYBQbugvts9weswohWR6AmI7e/legNTWTtnOxD1f99aT+W5rXGd4wnZzoDKSUGRJsLA+sy84t/1yXtmIrvFBvgsN1tIGwO7BzvBkvXMrQtSDXQLdcXpErJRCxPl6KM7lC0ZAweTQBf+38P+0+VqDCwV1BOW/UCR9Q==
-Received: from [98.138.100.113] by nm28.bullet.mail.ne1.yahoo.com with NNFMP;
-	03 Sep 2015 15:32:06 -0000
-Received: from [98.138.89.198] by tm104.bullet.mail.ne1.yahoo.com with NNFMP;
-	03 Sep 2015 15:32:06 -0000
-Received: from [127.0.0.1] by omp1056.mail.ne1.yahoo.com with NNFMP;
-	03 Sep 2015 15:32:06 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 489132.57323.bm@omp1056.mail.ne1.yahoo.com
-X-YMail-OSG: s53R8tcVM1lxRbN2lzTNMjB_65EtMaqsa_0v8MD7ABODVo0S3bxwU5af_pR0jqW
-	LL0zshDMSWttH3F6__wehE0xzhlGRZS.La54cv59CSFXjn_hnGArFZbRi4_AJyu5HbuAWEfmw4dw
-	XjstsdQ.MqNmS2fyQ5JBQ_rk_41XMNFu.lJi_LoLWCk.YvfuKbpDXKvGaI2LpJCumaS3yqHICG8Q
-	aW.cn4MnzRSskzLISLdZv_GVIeNSZAvq9YRd6MMqYHaZovrWBMux.LZ4feEFiEHGeKo4n0ZflBA4
-	uhQax_VJW2J.Wy07wj_b_etY7I_X2t0.c.qYEDE.wCl6dqbC30HpHgceHLaaxL2pdZbTqnEA5nY1
-	wlJT1tiGvz0Fampyx0r5l4hZXN1cmlQT7M9GYLvM6H_kLI8kupzv.MUi8dmXRtcD9WlIWcfzCr4g
-	j2ZTK9XXbgN2oJqF7CPWZtLEnBnYWbLvAU7IWbxisJYZhDEK1VfUkUjcHWohiZNvEqJR6nMi9rMQ
-	J66RCrzDVRlCfDUpWG8AitzKSddy6hSNhJLS_HSbgktOw47v.SEPCy39tvQdCZA--
-Received: by 98.138.105.244; Thu, 03 Sep 2015 15:32:05 +0000 
-Date: Thu, 3 Sep 2015 15:27:45 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Thu, 03 Sep 2015 09:45:11 PDT
+Received: from DUB004-OMC3S21.hotmail.com (dub004-omc3s21.hotmail.com
+	[157.55.2.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BB0E00BBA
+	for <yocto@yoctoproject.org>; Thu,  3 Sep 2015 09:45:11 -0700 (PDT)
+Received: from DUB125-W61 ([157.55.2.7]) by DUB004-OMC3S21.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Thu, 3 Sep 2015 09:44:08 -0700
+X-TMN: [fdtW2UkUA9EEkdN9dpimfRzH3FTftMCUUkrZTfqyolk=]
+X-Originating-Email: [jerome.olivier@outlook.com]
+Message-ID: <DUB125-W611D8949CB12EED389AA618A680@phx.gbl>
+From: =?utf-8?B?SsOpcsO0bWUgT0xJVklFUg==?= <jerome.olivier@outlook.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1950824736.1081760.1441294065347.JavaMail.yahoo@mail.yahoo.com>
+Date: Thu, 3 Sep 2015 16:44:07 +0000
+Importance: Normal
 MIME-Version: 1.0
-Subject: missing certificates
+X-OriginalArrivalTime: 03 Sep 2015 16:44:08.0530 (UTC)
+	FILETIME=[C0DA5B20:01D0E667]
+Subject: apt sources.list configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,66 +46,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Sep 2015 15:32:10 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1081759_930545228.1441294065343"
+X-List-Received-Date: Thu, 03 Sep 2015 16:45:13 -0000
+Content-Type: multipart/alternative;
+	boundary="_0243b5c1-c807-4c67-875a-7b155a2be00b_"
 
-------=_Part_1081759_930545228.1441294065343
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_0243b5c1-c807-4c67-875a-7b155a2be00b_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello All,In July 2015, several messages were posted with regard to missing=
- certificatesfrom Gary Thomas, Christopher Larson, and An=C3=ADbal Lim=C3=
-=B3n.I am working with a Raspberry Pi 2 B and having a problem with fetchin=
-g a bitbucket repository using HG (Mercurial)=C2=A0 which is certificate is=
-sue.=C2=A0=C2=A0Is this a python or O/S issue.=C2=A0 I have been checking t=
-he site mentioned by=20
-An=C3=ADbal Lim=C3=B3n https://www.python.org/dev/peps/pep-0476/
-I noticed that very bottom there is a link https://hg.python.org/peps/file/=
-tip/pep-0476.txt date Wed, 02 Sep 2015 15:00:42 -0400 (20 hours ago).After =
-reading this several times I am still not sure how to proceed.This problem =
-occurs when I am trying to install "yosys"=C2=A0 which during the build pro=
-cess tries=C2=A0 "hg clone https://bitbucket.org/alanmi/abc abc"
-How best to get this working on my core-image-sato.Thanks in advance.
+SGkgZXZlcnlvbmUsDQoNCkkgaGF2ZSBiZWVuIHRyeWluZyBsYXRlbHkgdG8gc2V0IHVwIGEgcGFj
+a2FnZSBmZWVkIGZyb20gbXkgaG9zdCBtYWNoaW5lIGZvciB0aGUgeW9jdG8gZGlzdHJpYiBydW5u
+aW5nIG9uIGEgcWVtdSBvbiB0aGUgaG9zdCBtYWNoaW5lLg0KDQpJIGFkZGVkIGFzIHRvbGQgImFw
+dCIgdG8gdGhlIElNQUdFX0lOU1RBTEwgYW5kIGFkZGVkIHRoZSBwYWNrYWdlLW1hbmFnbWVudCBp
+biB0aGUgRVhUUkFfRkVBVFVSRQ0KDQpUaGVuIEkgc2V0dGVkIHVwIGFuIEFwYWNoZSAyIGh0dHAg
+c2VydmVyIHdpdGggdGhlIGZvbGxvd2luZyB0aGUgY29uZmlnOg0KDQpBbGlhcyAvZGViIH4veW9j
+dG8vYnVpbGQtcWVtdWFybS90bXAtZ2xpYmMvZGVwbG95L2RlYg0KPERpcmVjdG9yeSAifi95b2N0
+by9idWlsZC1xZW11YXJtL3RtcC1nbGliYy9kZXBsb3kvZGViIj4NCk9wdGlvbnMgK0luZGV4ZXMN
+CjwvRGlyZWN0b3J5Pg0KDQpUaGVuIEkgdHJpZWQgd2l0aG91dCBzdWNjZXNzIHRvIHNldCB1cCB0
+aGUgc291cmNlcy5saXN0IG9uIHRoZSB0YXJnZXQgKHFlbXUpDQoNCkkgbG9va2VkIG92ZXIgdGhl
+IEludGVybmV0IGJ1dCBubyB3YXkgdG8gZmluZCBjb25jcmV0ZSBleGFtcGxlIGZvciBhcHQgc2V0
+LXVwLCBvbmx5IGZvciBpcGsvcnBtLiBJIGFtIHF1aXRlIGxvc3QgaW4gaG93IHRvIHNldCB1cCB0
+aGUNCm1hbmRhdG9yeSBzdWl0ZSBvcHRpb24gYW5kIGNvbXBvbmVudHMuDQoNCkhlcmUgaXMgdGhl
+IGxpc3Rpbmcgb2YgdGhlIGRlcGxveS9kZWIgZGlyIHdpdGhvdXQgYWxsIHRoZSAqLmRldiBwYWNr
+YWdlczoNCiB0cmVlIC1JICouZGViDQouDQrilJzilIDilIAgYWxsDQrilIIgICDilJzilIDilIAg
+UGFja2FnZXMNCuKUgiAgIOKUnOKUgOKUgCBQYWNrYWdlcy5neg0K4pSCICAg4pSU4pSA4pSAIFJl
+bGVhc2UNCuKUnOKUgOKUgCBhcm12NXRlDQrilIIgICDilJzilIDilIAgUGFja2FnZXMNCuKUgiAg
+IOKUnOKUgOKUgCBQYWNrYWdlcy5neg0K4pSCICAg4pSU4pSA4pSAIFJlbGVhc2UNCuKUlOKUgOKU
+gCBxZW11YXJtDQogICAg4pSc4pSA4pSAIFBhY2thZ2VzDQogICAg4pSc4pSA4pSAIFBhY2thZ2Vz
+Lmd6DQogICAg4pSU4pSA4pSAIFJlbGVhc2UNCg0KDQpIZXJlIGlzIG15IHNvdXJjZXMubGlzdCB1
+cCB0byBub3c6DQpkZWIgaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAvYWxsIGFsbCBhbGwNCg0KSGVy
+ZSBpcyB0aGUgbG9nIG9mIGFwdC1nZXQgdXBkYXRlIDoNCg0Kcm9vdEBxZW11YXJtOi9ldGMvYXB0
+L3NvdXJjZXMubGlzdC5kIyBhcHQtZ2V0IHVwZGF0ZSANCklnbiBodHRwOi8vMTkyLjE2OC43LjE6
+ODAwMCBhbGwgSW5SZWxlYXNlDQpJZ24gaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAgYWxsIFJlbGVh
+c2UuZ3BnDQpJZ24gaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAgYWxsIFJlbGVhc2UNCkVyciBodHRw
+Oi8vMTkyLjE2OC43LjE6ODAwMCBhbGwvYWxsIGFybWVsIFBhY2thZ2VzDQogIDQwNCAgRmlsZSBu
+b3QgZm91bmQNCklnbiBodHRwOi8vMTkyLjE2OC43LjE6ODAwMCBhbGwvYWxsIFRyYW5zbGF0aW9u
+LWVuDQpXOiBGYWlsZWQgdG8gZmV0Y2ggaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAvYWxsL2Rpc3Rz
+L2FsbC9hbGwvYmluYXJ5LWFybWVsL1BhY2thZ2VzICA0MDQgIEZpbGUgbm90IGZvdW5kDQoNCkU6
+IFNvbWUgaW5kZXggZmlsZXMgZmFpbGVkIHRvIGRvd25sb2FkLiBUaGV5IGhhdmUgYmVlbiBpZ25v
+cmVkLCBvciBvbGQgb25lcyB1c2VkIGluc3RlYWQuDQpyb290QHFlbXVhcm06L2V0Yy9hcHQvc291
+cmNlcy5saXN0LmQjIGFwdC1nZXQgdXBkYXRlDQpFcnIgaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAg
+YWxsIEluUmVsZWFzZQ0KICANCkVyciBodHRwOi8vMTkyLjE2OC43LjE6ODAwMCBhbGwgUmVsZWFz
+ZS5ncGcNCiAgVW5hYmxlIHRvIGNvbm5lY3QgdG8gMTkyLjE2OC43LjE6ODAwMDoNClJlYWRpbmcg
+cGFja2FnZSBsaXN0cy4uLiBEb25lDQpXOiBGYWlsZWQgdG8gZmV0Y2ggaHR0cDovLzE5Mi4xNjgu
+Ny4xOjgwMDAvYWxsL2Rpc3RzL2FsbC9JblJlbGVhc2UgIA0KDQpXOiBGYWlsZWQgdG8gZmV0Y2gg
+aHR0cDovLzE5Mi4xNjguNy4xOjgwMDAvYWxsL2Rpc3RzL2FsbC9SZWxlYXNlLmdwZyAgVW5hYmxl
+IHRvIGNvbm5lY3QgdG8gMTkyLjE2OC43LjE6ODAwMDoNCg0KVzogU29tZSBpbmRleCBmaWxlcyBm
+YWlsZWQgdG8gZG93bmxvYWQuIFRoZXkgaGF2ZSBiZWVuIGlnbm9yZWQsIG9yIG9sZCBvbmVzIHVz
+ZWQgaW5zdGVhZC4NCg0KSSB0cmllZCBmb3IgbXkgc291cmNlcy5saXN0Og0KZGViIGh0dHA6Ly8x
+OTIuMTY4LjcuMTo4MDAwIGFsbA0KDQpCdXQgZ290Og0KRTogTWFsZm9ybWVkIGxpbmUgMSBpbiBz
+b3VyY2UgbGlzdCAvZXRjL2FwdC9zb3VyY2VzLmxpc3QuZC9vZS5saXN0IChkaXN0IHBhcnNlKQ0K
+RTogVGhlIGxpc3Qgb2Ygc291cmNlcyBjb3VsZCBub3QgYmUgcmVhZC4NCg0KU28gaWYgYW55Ym9k
+eSBnb3QgbW9yZSBkZWJpYW4gcGFja2FnZSBleHBlcmllbmNlIHRoYW4gbWUsIGFuZC9vciBoYXMg
+YWxyZWFkeSB0cmllZCB0byBkbyB0aGUgc2FtZSBhcyBtZSwgSSB3b3VsZCBiZSBoYXBweSB5byBo
+YXZlIHNvbWUgY2x1ZXMuDQoNClRoYW5rcywNCi0tIA0KSsOpcsO0bWUgT0xJVklFUg0KIAkJIAkg
+ICAJCSAg
 
-=C2=A0Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+--_0243b5c1-c807-4c67-875a-7b155a2be00b_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-------=_Part_1081759_930545228.1441294065343
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
+DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
+bnQtZmFtaWx5OkNhbGlicmkNCn0NCi0tPjwvc3R5bGU+PC9oZWFkPg0KPGJvZHkgY2xhc3M9J2ht
+bWVzc2FnZSc+PGRpdiBkaXI9J2x0cic+SGkgZXZlcnlvbmUsPGJyPjxicj5JIGhhdmUgYmVlbiB0
+cnlpbmcgbGF0ZWx5IHRvIHNldCB1cCBhIHBhY2thZ2UgZmVlZCBmcm9tIG15IGhvc3QgbWFjaGlu
+ZSBmb3IgdGhlIHlvY3RvIGRpc3RyaWIgcnVubmluZyBvbiBhIHFlbXUgb24gdGhlIGhvc3QgbWFj
+aGluZS48YnI+PGJyPkkgYWRkZWQgYXMgdG9sZCAiYXB0IiB0byB0aGUgSU1BR0VfSU5TVEFMTCBh
+bmQgYWRkZWQgdGhlIHBhY2thZ2UtbWFuYWdtZW50IGluIHRoZSBFWFRSQV9GRUFUVVJFPGJyPjxi
+cj5UaGVuIEkgc2V0dGVkIHVwIGFuIEFwYWNoZSAyIGh0dHAgc2VydmVyIHdpdGggdGhlIGZvbGxv
+d2luZyB0aGUgY29uZmlnOjxicj48YnI+QWxpYXMgL2RlYiB+L3lvY3RvL2J1aWxkLXFlbXVhcm0v
+dG1wLWdsaWJjL2RlcGxveS9kZWI8YnI+Jmx0O0RpcmVjdG9yeSAifi95b2N0by9idWlsZC1xZW11
+YXJtL3RtcC1nbGliYy9kZXBsb3kvZGViIiZndDs8YnI+T3B0aW9ucyArSW5kZXhlczxicj4mbHQ7
+L0RpcmVjdG9yeSZndDs8YnI+PGJyPlRoZW4gSSB0cmllZCB3aXRob3V0IHN1Y2Nlc3MgdG8gc2V0
+IHVwIHRoZSBzb3VyY2VzLmxpc3Qgb24gdGhlIHRhcmdldCAocWVtdSk8YnI+PGJyPkkgbG9va2Vk
+IG92ZXIgdGhlIEludGVybmV0IGJ1dCBubyB3YXkgdG8gZmluZCBjb25jcmV0ZSBleGFtcGxlIGZv
+ciBhcHQgc2V0LXVwLCBvbmx5IGZvciBpcGsvcnBtLiBJIGFtIHF1aXRlIGxvc3QgaW4gaG93IHRv
+IHNldCB1cCB0aGU8YnI+bWFuZGF0b3J5IHN1aXRlIG9wdGlvbiBhbmQgY29tcG9uZW50cy48YnI+
+PGJyPkhlcmUgaXMgdGhlIGxpc3Rpbmcgb2YgdGhlIGRlcGxveS9kZWIgZGlyIHdpdGhvdXQgYWxs
+IHRoZSAqLmRldiBwYWNrYWdlczo8YnI+Jm5ic3A7dHJlZSAtSSAqLmRlYjxicj4uPGJyPuKUnOKU
+gOKUgCBhbGw8YnI+4pSCJm5ic3A7Jm5ic3A7IOKUnOKUgOKUgCBQYWNrYWdlczxicj7ilIImbmJz
+cDsmbmJzcDsg4pSc4pSA4pSAIFBhY2thZ2VzLmd6PGJyPuKUgiZuYnNwOyZuYnNwOyDilJTilIDi
+lIAgUmVsZWFzZTxicj7ilJzilIDilIAgYXJtdjV0ZTxicj7ilIImbmJzcDsmbmJzcDsg4pSc4pSA
+4pSAIFBhY2thZ2VzPGJyPuKUgiZuYnNwOyZuYnNwOyDilJzilIDilIAgUGFja2FnZXMuZ3o8YnI+
+4pSCJm5ic3A7Jm5ic3A7IOKUlOKUgOKUgCBSZWxlYXNlPGJyPuKUlOKUgOKUgCBxZW11YXJtPGJy
+PiZuYnNwOyZuYnNwOyZuYnNwOyDilJzilIDilIAgUGFja2FnZXM8YnI+Jm5ic3A7Jm5ic3A7Jm5i
+c3A7IOKUnOKUgOKUgCBQYWNrYWdlcy5nejxicj4mbmJzcDsmbmJzcDsmbmJzcDsg4pSU4pSA4pSA
+IFJlbGVhc2U8YnI+PGJyPjxicj5IZXJlIGlzIG15IHNvdXJjZXMubGlzdCB1cCB0byBub3c6PGJy
+PmRlYiA8YSBocmVmPSJodHRwOi8vMTkyLjE2OC43LjE6ODAwMC9hbGwiIHRhcmdldD0iX2JsYW5r
+Ij5odHRwOi8vMTkyLjE2OC43LjE6ODAwMC9hbGw8L2E+IGFsbCBhbGw8YnI+PGJyPkhlcmUgaXMg
+dGhlIGxvZyBvZiBhcHQtZ2V0IHVwZGF0ZSA6PGJyPjxicj5yb290QHFlbXVhcm06L2V0Yy9hcHQv
+c291cmNlcy5saXN0LmQjIGFwdC1nZXQgdXBkYXRlIDxicj5JZ24gaHR0cDovLzE5Mi4xNjguNy4x
+OjgwMDAgYWxsIEluUmVsZWFzZTxicj5JZ24gaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAgYWxsIFJl
+bGVhc2UuZ3BnPGJyPklnbiBodHRwOi8vMTkyLjE2OC43LjE6ODAwMCBhbGwgUmVsZWFzZTxicj5F
+cnIgaHR0cDovLzE5Mi4xNjguNy4xOjgwMDAgYWxsL2FsbCBhcm1lbCBQYWNrYWdlczxicj4mbmJz
+cDsgNDA0Jm5ic3A7IEZpbGUgbm90IGZvdW5kPGJyPklnbiBodHRwOi8vMTkyLjE2OC43LjE6ODAw
+MCBhbGwvYWxsIFRyYW5zbGF0aW9uLWVuPGJyPlc6IEZhaWxlZCB0byBmZXRjaCBodHRwOi8vMTky
+LjE2OC43LjE6ODAwMC9hbGwvZGlzdHMvYWxsL2FsbC9iaW5hcnktYXJtZWwvUGFja2FnZXMmbmJz
+cDsgNDA0Jm5ic3A7IEZpbGUgbm90IGZvdW5kPGJyPjxicj5FOiBTb21lIGluZGV4IGZpbGVzIGZh
+aWxlZCB0byBkb3dubG9hZC4gVGhleSBoYXZlIGJlZW4gaWdub3JlZCwgb3Igb2xkIG9uZXMgdXNl
+ZCBpbnN0ZWFkLjxicj5yb290QHFlbXVhcm06L2V0Yy9hcHQvc291cmNlcy5saXN0LmQjIGFwdC1n
+ZXQgdXBkYXRlPGJyPkVyciBodHRwOi8vMTkyLjE2OC43LjE6ODAwMCBhbGwgSW5SZWxlYXNlPGJy
+PiZuYnNwOyA8YnI+RXJyIGh0dHA6Ly8xOTIuMTY4LjcuMTo4MDAwIGFsbCBSZWxlYXNlLmdwZzxi
+cj4mbmJzcDsgVW5hYmxlIHRvIGNvbm5lY3QgdG8gMTkyLjE2OC43LjE6ODAwMDo8YnI+UmVhZGlu
+ZyBwYWNrYWdlIGxpc3RzLi4uIERvbmU8YnI+VzogRmFpbGVkIHRvIGZldGNoIGh0dHA6Ly8xOTIu
+MTY4LjcuMTo4MDAwL2FsbC9kaXN0cy9hbGwvSW5SZWxlYXNlJm5ic3A7IDxicj48YnI+VzogRmFp
+bGVkIHRvIGZldGNoIGh0dHA6Ly8xOTIuMTY4LjcuMTo4MDAwL2FsbC9kaXN0cy9hbGwvUmVsZWFz
+ZS5ncGcmbmJzcDsgVW5hYmxlIHRvIGNvbm5lY3QgdG8gMTkyLjE2OC43LjE6ODAwMDo8YnI+PGJy
+Plc6IFNvbWUgaW5kZXggZmlsZXMgZmFpbGVkIHRvIGRvd25sb2FkLiBUaGV5IGhhdmUgYmVlbiBp
+Z25vcmVkLCBvciBvbGQgb25lcyB1c2VkIGluc3RlYWQuPGJyPjxicj5JIHRyaWVkIGZvciBteSBz
+b3VyY2VzLmxpc3Q6PGJyPmRlYiA8YSBocmVmPSJodHRwOi8vMTkyLjE2OC43LjE6ODAwMCIgdGFy
+Z2V0PSJfYmxhbmsiPmh0dHA6Ly8xOTIuMTY4LjcuMTo4MDAwPC9hPiBhbGw8YnI+PGJyPkJ1dCBn
+b3Q6PGJyPkU6IE1hbGZvcm1lZCBsaW5lIDEgaW4gc291cmNlIGxpc3QgL2V0Yy9hcHQvc291cmNl
+cy5saXN0LmQvb2UubGlzdCAoZGlzdCBwYXJzZSk8YnI+RTogVGhlIGxpc3Qgb2Ygc291cmNlcyBj
+b3VsZCBub3QgYmUgcmVhZC48YnI+PGJyPlNvIGlmIGFueWJvZHkgZ290IG1vcmUgZGViaWFuIHBh
+Y2thZ2UgZXhwZXJpZW5jZSB0aGFuIG1lLCBhbmQvb3IgaGFzIGFscmVhZHkgdHJpZWQgdG8gZG8g
+dGhlIHNhbWUgYXMgbWUsIEkgd291bGQgYmUgaGFwcHkgeW8gaGF2ZSBzb21lIGNsdWVzLjxicj48
+YnI+VGhhbmtzLDxicj4tLSA8YnI+SsOpcsO0bWUgT0xJVklFUjxicj4gCQkgCSAgIAkJICA8L2Rp
+dj48L2JvZHk+DQo8L2h0bWw+
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:16px"><div id=3D"yui_3_16_0_1_1441292713189_2531"><span id=3D"yui_3=
-_16_0_1_1441292713189_3128">Hello All,</span></div><div id=3D"yui_3_16_0_1_=
-1441292713189_3117"><span id=3D"yui_3_16_0_1_1441292713189_3116">In July 20=
-15, several messages were posted with regard to missing certificates</span>=
-</div><div id=3D"yui_3_16_0_1_1441292713189_2749" dir=3D"ltr"><span id=3D"y=
-ui_3_16_0_1_1441292713189_2748" class=3D"">from Gary Thomas,</span><i class=
-=3D""> Christopher Larson, and </i><i id=3D"yui_3_16_0_1_1441292713189_2913=
-" class=3D"">An=C3=ADbal Lim=C3=B3n.</i></div><div id=3D"yui_3_16_0_1_14412=
-92713189_2825" dir=3D"ltr"><i id=3D"yui_3_16_0_1_1441292713189_3151" class=
-=3D"">I am working with a Raspberry Pi 2 B and having a problem with fetchi=
-ng a bitbucket repository using HG (Mercurial)&nbsp; which is certificate i=
-ssue.&nbsp;&nbsp;</i></div><div id=3D"yui_3_16_0_1_1441292713189_2914" dir=
-=3D"ltr"><i id=3D"yui_3_16_0_1_1441292713189_2955" class=3D"">Is this a pyt=
-hon or O/S issue.&nbsp; I have been checking the site mentioned by </i><br =
-id=3D"yui_3_16_0_1_1441292713189_2954"><i id=3D"yui_3_16_0_1_1441292713189_=
-2913" class=3D"">An=C3=ADbal Lim=C3=B3n <a id=3D"yui_3_16_0_1_1441292713189=
-_2948" href=3D"https://www.python.org/dev/peps/pep-0476/">https://www.pytho=
-n.org/dev/peps/pep-0476/</a><br></i></div><div dir=3D"ltr" id=3D"yui_3_16_0=
-_1_1441292713189_2914">I noticed that very bottom there is a link <a id=3D"=
-yui_3_16_0_1_1441292713189_3015" href=3D"https://hg.python.org/peps/file/ti=
-p/pep-0476.txt">https://hg.python.org/peps/file/tip/pep-0476.txt</a> date
- Wed, 02 Sep 2015 15:00:42 -0400 (20 hours ago).</div><div id=3D"yui_3_16_0=
-_1_1441292713189_3217" dir=3D"ltr">After reading this several times I am st=
-ill not sure how to proceed.</div><div id=3D"yui_3_16_0_1_1441292713189_323=
-5" dir=3D"ltr">This problem occurs when I am trying to install "yosys"&nbsp=
-; which during the build process tries&nbsp; "hg clone https://bitbucket.or=
-g/alanmi/abc abc"<br></div><div dir=3D"ltr">How best to get this working on=
- my core-image-sato.</div><div dir=3D"ltr">Thanks in advance.<br></div><div=
- id=3D"yui_3_16_0_1_1441292713189_2914"><br></div><div>&nbsp;</div><div cla=
-ss=3D"signature">Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-161=
-3</div></div></body></html>
-
-------=_Part_1081759_930545228.1441294065343--
+--_0243b5c1-c807-4c67-875a-7b155a2be00b_--
