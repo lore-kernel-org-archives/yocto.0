@@ -1,6 +1,6 @@
 Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53258E00B7C; Sat,  5 Sep 2015 11:12:59 -0700 (PDT)
+	id E5D11E00B05; Sat,  5 Sep 2015 11:17:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,36 +21,36 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
 	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BCA7E00B03
-	for <yocto@yoctoproject.org>; Sat,  5 Sep 2015 11:12:57 -0700 (PDT)
-Received: by padhy16 with SMTP id hy16so52258233pad.1
-	for <yocto@yoctoproject.org>; Sat, 05 Sep 2015 11:12:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DC83E0076A
+	for <yocto@yoctoproject.org>; Sat,  5 Sep 2015 11:17:04 -0700 (PDT)
+Received: by padhy16 with SMTP id hy16so52311396pad.1
+	for <yocto@yoctoproject.org>; Sat, 05 Sep 2015 11:17:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
 	:references:mime-version:content-transfer-encoding:content-type;
-	bh=hLTmoDm46kLhD6yt09hbYzsc9Kl4/ic6yAWIfkHwoG8=;
-	b=fLhnSp/F2VYdITzei95h6pF9CVHrsTRUEoo4u5pX4XGDsei0VfTPgEZXRqrxnGAlhr
-	5vCvGev/RR6JXuXk0FjAiWeT2YCE5RtCUy5b+krJSR9HirVie3NWItg0TwVcWuK+XBdL
-	ytLx9ZN/qUd5TDCQ5eoPS6TOgibBjvgevM1B/anwmOLomYgXfXzIV+XEDNE+AIvrK5eP
-	1Q8Qsg8TMUWTMKnNWJqEBAKi1s+EoNzgDmDVhf2aUl5LHjhhntozHzY+PAEb52YNEgsr
-	AFkuntYf1WOYk/jaCZ2Ye7ApiYItY5bfzLrPh3RM8qxx9CoAM8j9KTfioubvE93DBIda
-	eTuQ==
-X-Received: by 10.68.133.167 with SMTP id pd7mr24043230pbb.23.1441476777621;
-	Sat, 05 Sep 2015 11:12:57 -0700 (PDT)
+	bh=HvK0/HE1XTSXERrP7XKSOwBtZ4q/BgalKRFuhffkcbY=;
+	b=00o51+w6ZOif3ulTAHlEDDPbrNtj+JXlcM2ulXFj+jKK4+gJ7ZEIz0DM3lNJGvtuv4
+	eGgjWgPb8UpYfKkGCbY32Gwd/p4hklIzdNx7t2J2LhgHodMcBVL32E3K6qlndZXjKaSN
+	LP8gaROyPXhvGgvaQpxQQ4fJMj88fTJyrXVaobVN4PNi5WeOrr1Q9UwvIGd1hKN54UaW
+	JaK96/IJbe9DpjlG/QYUIgGQeReqro5dypTZrak60rwGGaQPNYzNFtTr/Ak55nIP5Eq2
+	AAGk+Vxv/5VDIki3djyeAGwjW8/eOXKq+32W5K/XCCPFjHpqDwEJbntUspvgUXr10fGY
+	g0rA==
+X-Received: by 10.66.235.4 with SMTP id ui4mr2322448pac.119.1441477024313;
+	Sat, 05 Sep 2015 11:17:04 -0700 (PDT)
 Received: from rjs-mbpro.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
 	by smtp.gmail.com with ESMTPSA id
-	pe5sm6538720pac.17.2015.09.05.11.12.56
+	xi1sm6566652pac.48.2015.09.05.11.17.03
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 05 Sep 2015 11:12:56 -0700 (PDT)
+	Sat, 05 Sep 2015 11:17:03 -0700 (PDT)
 From: Rudolf J Streif <rudolf.streif@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 05 Sep 2015 11:12:55 -0700
-Message-ID: <9131288.7yJWbP0P4p@rjs-mbpro.streifs.net>
+Date: Sat, 05 Sep 2015 11:17:03 -0700
+Message-ID: <1971883.3UVTULYkXL@rjs-mbpro.streifs.net>
 User-Agent: KMail/4.14.6 (Linux/3.19.3-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <1588577.KDHg4vLlIx@rjs-mbpro.streifs.net>
+In-Reply-To: <55EB302E.8050209@reliableembeddedsystems.com>
 References: <msd33a$81v$1@ger.gmane.org>
-	<55EB098B.7040401@reliableembeddedsystems.com>
 	<1588577.KDHg4vLlIx@rjs-mbpro.streifs.net>
+	<55EB302E.8050209@reliableembeddedsystems.com>
 MIME-Version: 1.0
 Cc: Robert Berger <gmane@reliableembeddedsystems.com>
 Subject: Re: gdb/gdbserver vs. eclipse
@@ -65,18 +65,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Sep 2015 18:12:59 -0000
+X-List-Received-Date: Sat, 05 Sep 2015 18:17:04 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Robert,
+Hi Robert,
+> 
+> Which Yocto version do you use? I use 1.8
 
-What version of Poky/OpenEmbedded Core (meta) are you using?
+I am using 1.8, too. Just sent another e-mail about the TCF agent. However, 
+that's only in addition since TCF is not used for debugging with GDB. Eclipse 
+wraps around GDB which then communicates directly with the GDB server on the 
+target.
+> So let's try to summarize what seems to be necessary:
+> 
+> 1) right .gdbinit on the right place ;)
 
-I found that including Fido (1.8) the tcf-agent built by meta was stuck at 
-version 0.4.0. That causes issues with running on the target and getting the 
-console output back to Eclipse. That's now updated to 1.3 in master for 
-Eclipse Mars. I built 1.2 for Luna which works, but 1.3 works with Luna too.
+yeap
+
+> 2) Debug Configurations -> Debugger -> Main -> Use full file path to set
+> breakpoints (might not even be necessary)
+
+I don't need that.
+
+> 3) Debug Configurations -> Debugger -> Shared Libraries -> Load shared
+> library symbols automatically
+> 
+
+yeap
 
 Cheers,
 Rudi
