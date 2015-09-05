@@ -1,48 +1,58 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52A4AE00D22; Sat,  5 Sep 2015 11:11:15 -0700 (PDT)
+	id 53258E00B7C; Sat,  5 Sep 2015 11:12:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*      [209.85.220.52 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (rudolf.streif[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E7DEE00B05
-	for <yocto@yoctoproject.org>; Sat,  5 Sep 2015 11:11:08 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1ZYHvd-0004Qy-Dn
-	for yocto@yoctoproject.org; Sat, 05 Sep 2015 20:11:05 +0200
-Received: from ppp-2-86-147-22.home.otenet.gr ([2.86.147.22])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 05 Sep 2015 20:11:05 +0200
-Received: from gmane by ppp-2-86-147-22.home.otenet.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 05 Sep 2015 20:11:05 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BCA7E00B03
+	for <yocto@yoctoproject.org>; Sat,  5 Sep 2015 11:12:57 -0700 (PDT)
+Received: by padhy16 with SMTP id hy16so52258233pad.1
+	for <yocto@yoctoproject.org>; Sat, 05 Sep 2015 11:12:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
+	:references:mime-version:content-transfer-encoding:content-type;
+	bh=hLTmoDm46kLhD6yt09hbYzsc9Kl4/ic6yAWIfkHwoG8=;
+	b=fLhnSp/F2VYdITzei95h6pF9CVHrsTRUEoo4u5pX4XGDsei0VfTPgEZXRqrxnGAlhr
+	5vCvGev/RR6JXuXk0FjAiWeT2YCE5RtCUy5b+krJSR9HirVie3NWItg0TwVcWuK+XBdL
+	ytLx9ZN/qUd5TDCQ5eoPS6TOgibBjvgevM1B/anwmOLomYgXfXzIV+XEDNE+AIvrK5eP
+	1Q8Qsg8TMUWTMKnNWJqEBAKi1s+EoNzgDmDVhf2aUl5LHjhhntozHzY+PAEb52YNEgsr
+	AFkuntYf1WOYk/jaCZ2Ye7ApiYItY5bfzLrPh3RM8qxx9CoAM8j9KTfioubvE93DBIda
+	eTuQ==
+X-Received: by 10.68.133.167 with SMTP id pd7mr24043230pbb.23.1441476777621;
+	Sat, 05 Sep 2015 11:12:57 -0700 (PDT)
+Received: from rjs-mbpro.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
+	by smtp.gmail.com with ESMTPSA id
+	pe5sm6538720pac.17.2015.09.05.11.12.56
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 05 Sep 2015 11:12:56 -0700 (PDT)
+From: Rudolf J Streif <rudolf.streif@gmail.com>
 To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Sat, 05 Sep 2015 21:10:54 +0300
-Message-ID: <55EB302E.8050209@reliableembeddedsystems.com>
-References: <msd33a$81v$1@ger.gmane.org>	<21521607.ihPEg5j6zl@rjs-mbpro.streifs.net>	<55EB098B.7040401@reliableembeddedsystems.com>
-	<1588577.KDHg4vLlIx@rjs-mbpro.streifs.net>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp-2-86-147-22.home.otenet.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Date: Sat, 05 Sep 2015 11:12:55 -0700
+Message-ID: <9131288.7yJWbP0P4p@rjs-mbpro.streifs.net>
+User-Agent: KMail/4.14.6 (Linux/3.19.3-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
 In-Reply-To: <1588577.KDHg4vLlIx@rjs-mbpro.streifs.net>
-Cc: Robert Berger
-	<public-gmane-G/ASJRsgvFgvW+L+VdN226ESeJV5RFUqQQ4Iyu8u01E@plane.gmane.org>,
-	Robert Berger
-	<public-public-gmane-G/ASJRsgvFgvW+L+VdN226ESeJV5RFUqQQ4Iyu8u01E-wOFGN7rlS/M9smdsby/KFg@plane.gmane.org>
+References: <msd33a$81v$1@ger.gmane.org>
+	<55EB098B.7040401@reliableembeddedsystems.com>
+	<1588577.KDHg4vLlIx@rjs-mbpro.streifs.net>
+MIME-Version: 1.0
+Cc: Robert Berger <gmane@reliableembeddedsystems.com>
 Subject: Re: gdb/gdbserver vs. eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,94 +65,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Sep 2015 18:11:15 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 05 Sep 2015 18:12:59 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+Robert,
 
-On 09/05/2015 07:17 PM, Rudolf J Streif wrote:>>
-> I do not have to do that. As a matter of fact the executable on my
-target is
-> copied to /usr/bin from the Eclipse workspace. See "Remote Absolute
-File Path"
-> in the Debug Configuration.
+What version of Poky/OpenEmbedded Core (meta) are you using?
 
-You are right. I erased the other folder on my target, moved it there as
-well and it still works.
+I found that including Fido (1.8) the tcf-agent built by meta was stuck at 
+version 0.4.0. That causes issues with running on the target and getting the 
+console output back to Eclipse. That's now updated to 1.3 in master for 
+Eclipse Mars. I built 1.2 for Luna which works, but 1.3 works with Luna too.
 
->
->
->> 2) .gdbinit
->>
->> I copied my gdbinit on the host to
->>
->> /home/student/BBBworkspace/HelloBBBAutotooled/.gdbinit
->>
->
-> Yes, that's where Eclipse's Debug Configuration expects it if you do
-not change
-> the setting of "GDB Command File" in the Main subtab of the Debugger
-tab in
-> the Debug configuration.
-
-...
-
->
->
-> Yes, looks like mine except that my target is a MinnowBoard Max and I
-> installed my SDK in a different location.
-
-Hmmm
-
->
->
->> 3) Once you enter the debug view you need to go to the gdb console and:
->>
->> source /home/student/BBBworkspace/HelloBBBAutotooled/.gdbinit
->>
->
-> Strange. I don't have to do that if GDB command file is set to the
-path in the
-> workspace.
-
-Seems to work as well without sourcing ;)
-
-> I would expect that Eclipse passes the .gdbinit from the workspace
-> explicitly to GDB. However, I do have
->
-
-
-> add-auto-load-safe-path .
->
-> in my global .gdbinit (~/.gdbinit).
-
-.gdbinit loads automatically for me now, I don't need to source and also
-no add-auto-load-safe-path
-
-Which Yocto version do you use? I use 1.8
-
->
-> Cheers,
-> Rudi
->
-
-So let's try to summarize what seems to be necessary:
-
-1) right .gdbinit on the right place ;)
-2) Debug Configurations -> Debugger -> Main -> Use full file path to set
-breakpoints (might not even be necessary)
-3) Debug Configurations -> Debugger -> Shared Libraries -> Load shared
-library symbols automatically
-
-Regards,
-
-Robert
-..."A successful tool is one that was used to do something undreamed of
-by its author." - S. C. Johnson
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
-
+Cheers,
+Rudi
 
