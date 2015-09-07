@@ -1,59 +1,31 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F4BFE00D48; Mon,  7 Sep 2015 00:40:22 -0700 (PDT)
+	id BCEB5E00D55; Mon,  7 Sep 2015 00:54:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5DAEE00B57
-	for <yocto@yoctoproject.org>; Mon,  7 Sep 2015 00:40:17 -0700 (PDT)
-Received: by igcpb10 with SMTP id pb10so53543015igc.1
-	for <yocto@yoctoproject.org>; Mon, 07 Sep 2015 00:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=en/SmUUNhZDDCkcK7KdVcg6tXm1Qiwu9vZD2zS58klE=;
-	b=YR8W4H9wF94KPOY9LdqV9vlexuSz+qES79KSPFM6iC9r6hbdUJmy5WN4dC5h/Cn/C1
-	oSELKee5cb5ng5ByUtSE2G/rULSX331pqI6GMpRp/m9GbfxlLvEXnZmBDrycJk1GqHSW
-	HIsm04qhlbV68rk9DVn73p1/WEy+tRlC9Zcl9PCGP02/ziRUWYaRFws3+BXXlMSTRBGk
-	pMcGwXcUWpmGfdN9+ThqjrglShfqFOZB7MZFkq1EhbeWK8XNgndHbrLYy+bn5V1RMu2y
-	eJ94KiHa7IQCVmTxcdNGUW4JFoZ3zRcFUxFdwMeY3WFQebYs0DtN5bMg3fJpACSvK1bv
-	+XaA==
-X-Received: by 10.50.85.6 with SMTP id d6mr25591079igz.26.1441611617575;
-	Mon, 07 Sep 2015 00:40:17 -0700 (PDT)
-Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	d3sm7363430igx.5.2015.09.07.00.40.14
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 07 Sep 2015 00:40:16 -0700 (PDT)
-To: Khem Raj <raj.khem@gmail.com>
-References: <55ECF934.80902@gmail.com>
-	<31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <55ED3F5A.2060903@gmail.com>
-Date: Mon, 7 Sep 2015 03:40:10 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
-MIME-Version: 1.0
-In-Reply-To: <31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] du giving non-integer result?
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D9D7E00AFD
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2015 00:54:07 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga103.fm.intel.com with ESMTP; 07 Sep 2015 00:53:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,484,1437462000"; d="scan'208";a="763922658"
+Received: from tmglnx.jf.intel.com ([10.7.200.136])
+	by orsmga001.jf.intel.com with ESMTP; 07 Sep 2015 00:53:49 -0700
+From: "Graydon, Tracy" <tracy.graydon@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon,  7 Sep 2015 00:50:33 -0700
+Message-Id: <1441612233-21508-1-git-send-email-tracy.graydon@intel.com>
+X-Mailer: git-send-email 1.9.3
+Subject: [PATCH] buildset-config.iot-devkit/*
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,27 +37,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Sep 2015 07:40:22 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Sep 2015 07:54:10 -0000
 
-On 09/07/15 03:21, Khem Raj wrote:
->> On Sep 6, 2015, at 7:40 PM, Trevor Woerner <twoerner@gmail.com> wrote:
->>
->> I can't explain why, but when I build "core-image-minimal" for
->> MACHINE=raspberrpi2 I get the following SD creation error:
->>
-> which shell do you use for /bin/sh
+[YOCTO: #7703]
 
-$ ls -l /bin/sh
-lrwxrwxrwx 1 root root 4 Nov 22  2014 /bin/sh -> bash
+Added buildset-config.iot-devkit/*. This buildset uses the following repos/branches:
 
-$ /bin/bash --version
-GNU bash, version 4.2.53(1)-release (x86_64-suse-linux-gnu)
-Copyright (C) 2011 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later
-<http://gnu.org/licenses/gpl.html>
+poky: dizzy
+meta-intel-iot-devkit: master
+meta-intel-iot-middleware: dizzy
+meta-intel-quark: dizzy
+meta-intel-galileo: dizzy
+meta-openembedded: dizzy
 
-This is free software; you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+And builds the following images:
+
+iot-devkit-image
+iot-devkit-prof-image
+iot-devkit-prof-dev-image
+
+Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+---
+ buildset-config.iot-devkit/iot-devkit.conf | 33 ++++++++++++++++++++++++++++++
+ buildset-config.iot-devkit/yoctoAB.conf    |  2 ++
+ 2 files changed, 35 insertions(+)
+ create mode 100644 buildset-config.iot-devkit/iot-devkit.conf
+ create mode 100644 buildset-config.iot-devkit/yoctoAB.conf
+
+diff --git a/buildset-config.iot-devkit/iot-devkit.conf b/buildset-config.iot-devkit/iot-devkit.conf
+new file mode 100644
+index 0000000..c34d1fd
+--- /dev/null
++++ b/buildset-config.iot-devkit/iot-devkit.conf
+@@ -0,0 +1,33 @@
++[iot-devkit]
++builders: 'example-worker'
++repos: [{'poky':
++            {'repourl':'git://git.yoctoproject.org/poky',
++             'layerversion':{'core':'meta', 'yocto':'meta-yocto', 'yoctobsp':'meta-yocto-bsp'},
++             'branch':'dizzy'}},
++        {'meta-intel-iot-devkit':
++            {'repourl':'git://git.yoctoproject.org/meta-intel-iot-devkit',
++             'branch':'master'}},
++        {'meta-intel-iot-middleware':
++            {'repourl':'git://git.yoctoproject.org/meta-intel-iot-middleware',
++             'branch':'dizzy'}},
++        {'meta-intel-quark':
++            {'repourl':'git://git.yoctoproject.org/meta-intel-quark',
++             'branch':'dizzy'}},
++        {'meta-intel-galileo':
++            {'repourl':'git://git.yoctoproject.org/meta-intel-galileo',
++             'branch':'dizzy'}},
++        {'meta-openembedded':
++            {'repourl':'git://git.openembedded.org/meta-openembedded',
++             'branch':'dizzy'}}]
++steps: [{'SetDest':{}},
++        {'CheckOutLayers': {}},
++        {'RunPreamble': {}},
++        {'GetDistroVersion' : {'distro': 'poky'}},
++        {'CreateAutoConf': {'machine': 'quark', 'SDKMACHINE' : 'x86_64', 'distro': 'iot-devkit-multilibc'}},
++        {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs': ['meta-yocto', 'meta-intel-iot-devkit', 
++          'meta-intel-iot-middleware', 'meta-intel-quark', 'meta-intel-galileo', 'meta-openembedded/meta-oe',
++          'meta-openembedded/meta-filesystems']}},
++        {'BuildImages': {'images': 'iot-devkit-image iot-devkit-prof-image iot-devkit-prof-dev-image'}},
++        {'PublishLayerTarballs':{}},
++        {'SendErrorReport': {}},
++        {'PublishArtifacts': {'artifacts': ['quark', 'ipk', 'md5sums']}}]
+diff --git a/buildset-config.iot-devkit/yoctoAB.conf b/buildset-config.iot-devkit/yoctoAB.conf
+new file mode 100644
+index 0000000..0c0cf33
+--- /dev/null
++++ b/buildset-config.iot-devkit/yoctoAB.conf
+@@ -0,0 +1,2 @@
++[BuildSets]
++order: ['iot-devkit']
+-- 
+1.9.3
+
 
