@@ -1,50 +1,55 @@
-Return-Path: <edivya.vyas@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29D7CE00CCA; Sun,  6 Sep 2015 10:41:36 -0700 (PDT)
+	id 24121E00CE0; Sun,  6 Sep 2015 19:41:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, UPPERCASE_50_75 autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (edivya.vyas[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.47 listed in list.dnswl.org]
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 UPPERCASE_50_75 message body is 50-75% uppercase
-Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
-	[209.85.218.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2A3DE00B0B
-	for <yocto@yoctoproject.org>; Sun,  6 Sep 2015 10:41:35 -0700 (PDT)
-Received: by oixx17 with SMTP id x17so34496900oix.0
-	for <yocto@yoctoproject.org>; Sun, 06 Sep 2015 10:41:34 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7B0EE00C22
+	for <yocto@yoctoproject.org>; Sun,  6 Sep 2015 19:40:57 -0700 (PDT)
+Received: by iofh134 with SMTP id h134so75362517iof.0
+	for <yocto@yoctoproject.org>; Sun, 06 Sep 2015 19:40:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=Ro6lIMBhi0Aj5NxYRjtLiYQdTCI9ivEloCA403qFjv0=;
-	b=CF++dYtVeYQgPq/v4wIwBMto6vPtY2Z0/4plvmsRgnzwrQSEQDrBeiV5jAAlxBYQbd
-	RgCT+BtCf8LCCxPcO+2FjkSd/pP1KV4ZQrcaJRVGMr3hzKcKPvuxucMg7kGAL/9OY59J
-	NfWRJQ8L4ha9cNFMQUT5+rAJpEmnaQCgW/hYM5Uces63CXHEG5opyKL7ZorYrezK0AZ8
-	qH0irHiQMCJQ6fZHiQwzrhttfJNTbUNSUDrFZoUrVIoO92Q35ojVT3pdCsS98VmLAioP
-	lO1NX/EySTLOR6rp8d9l4hW9InZzm/Ekoc9RUMldtR//aDOC+Wl/TJtyEgOy/RmZvDKH
-	GEbA==
-X-Received: by 10.202.83.19 with SMTP id h19mr11182293oib.119.1441561294639;
-	Sun, 06 Sep 2015 10:41:34 -0700 (PDT)
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-type:content-transfer-encoding;
+	bh=uzDupExA9mrLsGOXlQGFB/bYNM779pNA6glF8h08IgA=;
+	b=NaJ+C1iY4DT+gN2Avv2yyXbCChTvLvkcSyINeJnWqRprI93LQAZW4OPXZ+K/z3XQAX
+	86LhYfADu39yL73qYW8F4YPi6kr52g1bmhaX1XBTtqJPbPxFPDx5tSoaOGww8FL2h0hd
+	GwdSLHLVp8jmB1KZQi1P5WMaHx5IBfOoB8ZK85wMuC6EflyM1xOHRzHAP37erxvBMfPZ
+	30hlUK+0axfoyvLfBJ1GSZW8O3pkyGhmSEvawQDqlgwmn8uyw5o4iOm57lHtYPa1sv0X
+	AlDoOx3IIySrf0W4DTZKndRdLr1uS9YROz9d+qklMIBGLXT/GdwrtYIyP2hJGAJ/GiwC
+	u+HQ==
+X-Received: by 10.107.135.169 with SMTP id r41mr14598180ioi.152.1441593656945; 
+	Sun, 06 Sep 2015 19:40:56 -0700 (PDT)
+Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	k2sm4943552igx.0.2015.09.06.19.40.56 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 06 Sep 2015 19:40:56 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <55ECF934.80902@gmail.com>
+Date: Sun, 6 Sep 2015 22:40:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-Received: by 10.60.38.137 with HTTP; Sun, 6 Sep 2015 10:41:15 -0700 (PDT)
-From: Divya Vyas <edivya.vyas@gmail.com>
-Date: Sun, 6 Sep 2015 23:11:15 +0530
-Message-ID: <CAGfiMvD-RLdedD9hJQOEiwnh5MJ7tzdoB2gthchq1=+EeceEBQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: SELinux XATTR error - check_rootsfs failing
+Subject: [meta-raspberrypi] du giving non-integer result?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,108 +61,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Sep 2015 17:41:36 -0000
-Content-Type: multipart/alternative; boundary=001a113d2e96e39688051f17a457
+X-List-Received-Date: Mon, 07 Sep 2015 02:41:00 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a113d2e96e39688051f17a457
-Content-Type: text/plain; charset=UTF-8
+I can't explain why, but when I build "core-image-minimal" for
+MACHINE=raspberrpi2 I get the following SD creation error:
 
-Hi,
-
-Hi,
-
-I am getting this error while booting the selinux enabled image
-(core-image-selinux)
-
-
-* SELinux requires the root '/' filesystem support extended
-  filesystem attributes (XATTRs).  It does not appear that this
-  filesystem has extended attribute support or it is not enabled.
-
-  - To continue using SELinux you will need to enable extended
-    attribute support on the root device.
-
-  - To disable SELinux, please add "selinux=0" in the kernel
-    command line.
-
-* Halting the system now.
-
-My fstab is below :
-
-rootfs                  /               ext3
-defaults,acl,user_xattr 0 1
+    ERROR: Error: The image creation script
+    '/z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/create_image.rpi-sdimg'
+    returned 2:
+    expr: non-integer argument
+    WARNING:
+    /z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/create_image.rpi-sdimg:1
+    exit 2 from
+      ROOTFS_SIZE_ALIGNED=$(expr 12288.0 + 4096 - 1)
 
 
-Here is the kernel  configuration :
+Looking at meta-raspberrypi/classes/sdcard_image-rpi.bbclass, line 83:
 
-KERNEL_CONFIG_AUDIT="y"
-KERNEL_CONFIG_NETWORK_SECMARK=
-"y"
-KERNEL_CONFIG_EXT2_FS_SECURITY="y"
-KERNEL_CONFIG_EXT3_FS_SECURITY="y"
-KERNEL_CONFIG_EXT4_FS_SECURITY="y"
-KERNEL_CONFIG_EXT2_FS_ATTR="y"
-KERNEL_CONFIG_EXT3_FS_ATTR="y"
-KERNEL_CONFIG_JFS_SECURITY="y"
-KERNEL_CONFIG_REISERFS_FS_SECURITY="y"
-KERNEL_CONFIG_JFFS2_FS_SECURITY="y"
-KERNEL_CONFIG_SECURITY_NETWORK="y"
-KERNEL_CONFIG_SECURITY_SELINUX="y"
-KERNEL_CONFIG_SECURITY_SELINUX_BOOTPARAM="y"
-KERNEL_CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE="1"
-KERNEL_CONFIG_SECURITY_SELINUX_DISABLE="y"
-KERNEL_CONFIG_SECURITY_SELINUX_DEVELOP="y"
-KERNEL_CONFIG_SECURITY_SELINUX_AVC_STATS="y"
-KERNEL_CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE="1"
-KERNEL_CONFIG_SECURITY="y"
-KERNEL_CONFIG_SECURITYFS="y"
-KERNEL_CONFIG_AUDIT_GENERIC="y"
-KERNEL_CONFIG_DEFAULT_SECURITY_SELINUX="y"
-KERNEL_CONFIG_SECURITY_PATH="y"
+    ROOTFS_SIZE_ALIGNED=$(expr ${ROOTFS_SIZE} +
+${IMAGE_ROOTFS_ALIGNMENT} - 1)
 
-My filesystem is ext3 . I think all configs are enabled.
+which looks like the offending line. ROOTFS_SIZE seems to come from the
+line immediately above:
 
+    ROOTFS_SIZE=`du -bks ${SDIMG_ROOTFS} | awk '{print $1}'`
 
-Any idea where is the problem?
+But 'du' doesn't return non-integer values, does it? When I invoke the
+host's 'du' I get the correct value:
 
-Thanks,
+    du -bks
+/z/layerindex-master/raspi2/tmp/deploy/images/raspberrypi2/core-image-minimal-raspberrypi2-20150906234844.rootfs.ext3
+| awk '{print $1}'
+    12288
 
---001a113d2e96e39688051f17a457
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Does anyone have any idea why the ".0" is getting tacked on?
 
-<div dir=3D"ltr">Hi,<br><br><div>Hi,<br><br></div><div>I am getting this er=
-ror while booting the selinux enabled image (core-image-selinux) <br><br><b=
-r>* SELinux requires the root &#39;/&#39; filesystem support extended<br>=
-=C2=A0 filesystem attributes (XATTRs).=C2=A0 It does not appear that this<b=
-r>=C2=A0 filesystem has extended attribute support or it is not enabled.<br=
-><br>=C2=A0 - To continue using SELinux you will need to enable extended<br=
->=C2=A0=C2=A0=C2=A0 attribute support on the root device.<br><br>=C2=A0 - T=
-o disable SELinux, please add &quot;selinux=3D0&quot; in the kernel<br>=C2=
-=A0=C2=A0=C2=A0 command line.<br><br>* Halting the system now.<br><br></div=
-><div>My fstab is below :<br></div><br>rootfs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 ext3=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 defaults,acl,user_xattr 0 1 <br><br><br>Here is the kernel=C2=A0 con=
-figuration :<br><br>KERNEL_CONFIG_AUDIT=3D&quot;y&quot;<br>KERNEL_CONFIG_NE=
-TWORK_SECMARK=3D<div>&quot;y&quot;<br>KERNEL_CONFIG_EXT2_FS_SECURITY=3D&quo=
-t;y&quot;<br>KERNEL_CONFIG_EXT3_FS_SECURITY=3D&quot;y&quot;<br>KERNEL_CONFI=
-G_EXT4_FS_SECURITY=3D&quot;y&quot;<br>KERNEL_CONFIG_EXT2_FS_ATTR=3D&quot;y&=
-quot;<br>KERNEL_CONFIG_EXT3_FS_ATTR=3D&quot;y&quot;<br>KERNEL_CONFIG_JFS_SE=
-CURITY=3D&quot;y&quot;<br>KERNEL_CONFIG_REISERFS_FS_SECURITY=3D&quot;y&quot=
-;<br>KERNEL_CONFIG_JFFS2_FS_SECURITY=3D&quot;y&quot;<br>KERNEL_CONFIG_SECUR=
-ITY_NETWORK=3D&quot;y&quot;<br>KERNEL_CONFIG_SECURITY_SELINUX=3D&quot;y&quo=
-t;<br>KERNEL_CONFIG_SECURITY_SELINUX_BOOTPARAM=3D&quot;y&quot;<br>KERNEL_CO=
-NFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D&quot;1&quot;<br>KERNEL_CONFIG_SECU=
-RITY_SELINUX_DISABLE=3D&quot;y&quot;<br>KERNEL_CONFIG_SECURITY_SELINUX_DEVE=
-LOP=3D&quot;y&quot;<br>KERNEL_CONFIG_SECURITY_SELINUX_AVC_STATS=3D&quot;y&q=
-uot;<br>KERNEL_CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D&quot;1&quot;<b=
-r>KERNEL_CONFIG_SECURITY=3D&quot;y&quot;<br>KERNEL_CONFIG_SECURITYFS=3D&quo=
-t;y&quot;<br>KERNEL_CONFIG_AUDIT_GENERIC=3D&quot;y&quot;<br>KERNEL_CONFIG_D=
-EFAULT_SECURITY_SELINUX=3D&quot;y&quot;<br>KERNEL_CONFIG_SECURITY_PATH=3D&q=
-uot;y&quot;<br><br></div>My filesystem is ext3 . I think all configs are en=
-abled. <br><br><br><div>Any idea where is the problem?<br><br></div>Thanks,=
-<br></div>
+Best regards,
+    Trevor
 
---001a113d2e96e39688051f17a457--
