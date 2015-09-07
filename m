@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27A18E00C14; Mon,  7 Sep 2015 00:21:53 -0700 (PDT)
+	id 0F4BFE00D48; Mon,  7 Sep 2015 00:40:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.47 listed in list.dnswl.org]
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,39 +16,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1BEBE00AFD
-	for <yocto@yoctoproject.org>; Mon,  7 Sep 2015 00:21:49 -0700 (PDT)
-Received: by pacfv12 with SMTP id fv12so90805960pac.2
-	for <yocto@yoctoproject.org>; Mon, 07 Sep 2015 00:21:49 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5DAEE00B57
+	for <yocto@yoctoproject.org>; Mon,  7 Sep 2015 00:40:17 -0700 (PDT)
+Received: by igcpb10 with SMTP id pb10so53543015igc.1
+	for <yocto@yoctoproject.org>; Mon, 07 Sep 2015 00:40:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=sWKswPFly5ae8oEF3sxluB3wke1P45nWDwmWhoqeqsY=;
-	b=ihBnaEE8Yh69lp+Pwabu2kMh8Vjfk2fWAm0VJa8fKRl627uP3dV9e6xedzpE2+VWuF
-	MvDnBgYB+LtwwsALV53c2qs80/iLi1c/SLtH884VX0TKWFnHBQ0DJTDF2EUnIw8hoV4c
-	xzHZnmCb4UbqdkCUerr8n51622M5SrnsFqTmOsWAsXhDpHEDIJpbCb71X/93j4iIiNuQ
-	ddSjz5lh42mHjU+7k9rl6NyOwq9K9HOX5/nNqFxtpafohOe3hVD/k1eRTUcdiSeLxUk+
-	Ftukii2WcQbozBOvSVFfPOM/NkT7uLkPkgf+93ngY46PP9bcpvC3qpPSaF/MZwCqZufi
-	IEDw==
-X-Received: by 10.68.103.132 with SMTP id fw4mr43095229pbb.62.1441610509040;
-	Mon, 07 Sep 2015 00:21:49 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:7c54:cfc4:2548:2f79?
-	([2601:646:8601:4580:7c54:cfc4:2548:2f79])
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-type:content-transfer-encoding;
+	bh=en/SmUUNhZDDCkcK7KdVcg6tXm1Qiwu9vZD2zS58klE=;
+	b=YR8W4H9wF94KPOY9LdqV9vlexuSz+qES79KSPFM6iC9r6hbdUJmy5WN4dC5h/Cn/C1
+	oSELKee5cb5ng5ByUtSE2G/rULSX331pqI6GMpRp/m9GbfxlLvEXnZmBDrycJk1GqHSW
+	HIsm04qhlbV68rk9DVn73p1/WEy+tRlC9Zcl9PCGP02/ziRUWYaRFws3+BXXlMSTRBGk
+	pMcGwXcUWpmGfdN9+ThqjrglShfqFOZB7MZFkq1EhbeWK8XNgndHbrLYy+bn5V1RMu2y
+	eJ94KiHa7IQCVmTxcdNGUW4JFoZ3zRcFUxFdwMeY3WFQebYs0DtN5bMg3fJpACSvK1bv
+	+XaA==
+X-Received: by 10.50.85.6 with SMTP id d6mr25591079igz.26.1441611617575;
+	Mon, 07 Sep 2015 00:40:17 -0700 (PDT)
+Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
 	by smtp.gmail.com with ESMTPSA id
-	pg5sm10791685pdb.81.2015.09.07.00.21.48
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 07 Sep 2015 00:21:48 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5.1
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <55ECF934.80902@gmail.com>
-Date: Mon, 7 Sep 2015 00:21:42 -0700
-Message-Id: <31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
+	d3sm7363430igx.5.2015.09.07.00.40.14
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 07 Sep 2015 00:40:16 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
 References: <55ECF934.80902@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Mailer: Apple Mail (2.2104)
+	<31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <55ED3F5A.2060903@gmail.com>
+Date: Mon, 7 Sep 2015 03:40:10 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] du giving non-integer result?
 X-BeenThere: yocto@yoctoproject.org
@@ -65,86 +65,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Sep 2015 07:21:53 -0000
-X-Groupsio-MsgNum: 26307
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A68D30C3-4C98-44AD-B2BC-F4DA4E831303";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_A68D30C3-4C98-44AD-B2BC-F4DA4E831303
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-
-> On Sep 6, 2015, at 7:40 PM, Trevor Woerner <twoerner@gmail.com> wrote:
->=20
-> I can't explain why, but when I build "core-image-minimal" for
-> MACHINE=3Draspberrpi2 I get the following SD creation error:
->=20
-
-which shell do you use for /bin/sh
-
->    ERROR: Error: The image creation script
->    =
-'/z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/core=
--image-minimal/1.0-r0/temp/create_image.rpi-sdimg'
->    returned 2:
->    expr: non-integer argument
->    WARNING:
->    =
-/z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/core-=
-image-minimal/1.0-r0/temp/create_image.rpi-sdimg:1
->    exit 2 from
->      ROOTFS_SIZE_ALIGNED=3D$(expr 12288.0 + 4096 - 1)
->=20
->=20
-> Looking at meta-raspberrypi/classes/sdcard_image-rpi.bbclass, line 83:
->=20
->    ROOTFS_SIZE_ALIGNED=3D$(expr ${ROOTFS_SIZE} +
-> ${IMAGE_ROOTFS_ALIGNMENT} - 1)
->=20
-> which looks like the offending line. ROOTFS_SIZE seems to come from =
-the
-> line immediately above:
->=20
->    ROOTFS_SIZE=3D`du -bks ${SDIMG_ROOTFS} | awk '{print $1}'`
->=20
-> But 'du' doesn't return non-integer values, does it? When I invoke the
-> host's 'du' I get the correct value:
->=20
->    du -bks
-> =
-/z/layerindex-master/raspi2/tmp/deploy/images/raspberrypi2/core-image-mini=
-mal-raspberrypi2-20150906234844.rootfs.ext3
-> | awk '{print $1}'
->    12288
->=20
-> Does anyone have any idea why the ".0" is getting tacked on?
->=20
-> Best regards,
->    Trevor
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_A68D30C3-4C98-44AD-B2BC-F4DA4E831303
+X-List-Received-Date: Mon, 07 Sep 2015 07:40:22 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+On 09/07/15 03:21, Khem Raj wrote:
+>> On Sep 6, 2015, at 7:40 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+>>
+>> I can't explain why, but when I build "core-image-minimal" for
+>> MACHINE=raspberrpi2 I get the following SD creation error:
+>>
+> which shell do you use for /bin/sh
 
-iEYEARECAAYFAlXtOwoACgkQuwUzVZGdMxQ0OACfRXBHe/Qvm5CK3dHCeAEkJCR+
-DBgAnRiNTqbvnfK0ODG0Z5aRlKo84gRY
-=Xxad
------END PGP SIGNATURE-----
+$ ls -l /bin/sh
+lrwxrwxrwx 1 root root 4 Nov 22  2014 /bin/sh -> bash
 
---Apple-Mail=_A68D30C3-4C98-44AD-B2BC-F4DA4E831303--
+$ /bin/bash --version
+GNU bash, version 4.2.53(1)-release (x86_64-suse-linux-gnu)
+Copyright (C) 2011 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later
+<http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
