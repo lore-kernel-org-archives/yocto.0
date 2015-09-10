@@ -1,43 +1,49 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96A7CE00CD2; Wed,  9 Sep 2015 15:21:41 -0700 (PDT)
+	id AA61FE00C62; Thu, 10 Sep 2015 07:09:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ED02E00AB5
-	for <yocto@yoctoproject.org>; Wed,  9 Sep 2015 15:21:35 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t89MLV31001343
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 9 Sep 2015 15:21:31 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.235.1; Wed, 9 Sep 2015 15:21:31 -0700
-To: <maninder1.s@samsung.com>
-References: <1484215526.122031430894028615.JavaMail.weblogic@epmlwas03a>
-From: Mark Hatle <mark.hatle@windriver.com>
-X-Enigmail-Draft-Status: N1110
-Organization: Wind River Systems
-Message-ID: <55F0B0EA.8080507@windriver.com>
-Date: Wed, 9 Sep 2015 17:21:30 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
-	Gecko/20100101 Thunderbird/38.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25FF8E00B5D
+	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 07:09:08 -0700 (PDT)
+Received: by vkfp126 with SMTP id p126so9635373vkf.3
+	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 07:09:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=j5A4tbShE9WbQG9fiMR0/fR+1IgQxJRQWjtE+mkuKRc=;
+	b=0SVd7qHjjRs3NAsil/h6yBJrKB9Q144mm3+hxi+7yLsInCwCbnlYasw3I7rS7vktm6
+	sPLbq5lW7a/WthCN2hlsF56DAjeZHuyyrjBkrAT1S2BtrO6SDKcumL/anXXzcMHP3RpU
+	WwLuuD8hvwapaNnonXypPV52NyzWP2RZ5VmJzgl3L5O4DuVP5WNdCDfV6MtPsubtqtRi
+	OAYZu7AqHMNSvaaJwaV/XOFdZJu1gX8y5nQCd8dFG57tikDHsfTvgReTj7W88iBpwWOI
+	WFb6o0zVUzvLKTQjfXCGTbOcKkJCp5fuU6cgjDsd9BFb0mhoMRH8+lTZmv54HSzjrh3J
+	o+Ug==
 MIME-Version: 1.0
-In-Reply-To: <1484215526.122031430894028615.JavaMail.weblogic@epmlwas03a>
-Cc: AJEET YADAV <ajeet.y@samsung.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	AKHILESH KUMAR <akhilesh.k@samsung.com>,
-	"v.narang@samsung.com" <v.narang@samsung.com>
-Subject: Re: [EDT][prelink-cross] possible memory leak in opd_size
+X-Received: by 10.31.190.148 with SMTP id o142mr1299789vkf.67.1441894147954;
+	Thu, 10 Sep 2015 07:09:07 -0700 (PDT)
+Received: by 10.31.179.12 with HTTP; Thu, 10 Sep 2015 07:09:07 -0700 (PDT)
+Date: Thu, 10 Sep 2015 19:39:07 +0530
+Message-ID: <CALLyC8Rw+cJk+cUBrVA+QttAPh+otCZQoQjhR1pSZ=EzzGGY_g@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: yocto@yoctoproject.org
+Subject: dropbear is working after including in IMAGE_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,52 +55,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Sep 2015 22:21:41 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 10 Sep 2015 14:09:11 -0000
+Content-Type: multipart/alternative; boundary=001a11439d787e20c1051f6524b7
 
-I'm finally getting caught up on these items.  I've looked at this, the function
-in question is only used on arch-ia64.  I don't have any way to test arch-ia64,
-nor do I think it's used much anymore (especially in the embedded space).  So
-I'm going to be skipping this particular patch -- unless someone can convince me
-it is the right fix -- or can verify behavior on an IA64 system.  (Note, ia64,
-not x86-64)
+--001a11439d787e20c1051f6524b7
+Content-Type: text/plain; charset=UTF-8
 
---Mark
-
-On 5/6/15 1:33 AM, Maninder Singh wrote:
-> EP-F6AA0618C49C4AEDA73BFF1B39950BAB
-> 
-> Hi,
-> 
-> we found one issue through code-walk through
-> and it seems we are creating unusable OPD table , Not sure about fix, please check below fix. 
-> 
-> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
-> Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
-> Reviewed-by: Ajeet Yadav <ajeet.y@samsung.com>
-> ---
->  trunk/src/fptr.c |    1 +
->  1 files changed, 1 insertions(+), 0 deletions(-)
-> 
-> diff --git a/trunk/src/fptr.c b/trunk/src/fptr.c
-> index cfe3aed..39271d5 100644
-> --- a/trunk/src/fptr.c
-> +++ b/trunk/src/fptr.c
-> @@ -458,6 +458,7 @@ opd_size (struct prelink_info *info, GElf_Word entsize)
->     e->val = f->val;
->     e->gp = f->gp;
->     e->opd = ret | OPD_ENT_NEW;
-> +   f->ent = e;
->     ret += entsize;
->        }
-> 
-> --
-> 1.7.1
-> 
-> 
-> Thanks and Regards,
-> Maninder Singh
-> 
+Hi,
+      I have included IMAGE_FEATURES += "ssh-server-dropbear" in my recipe
+image. and created the image.
+But after flashing the image i was not able to connect to target from my
+host machine. but target to host is working fine. Can any one tell me why
+it is not working. Is there any package need to add?
 
 
+Thanks and Regards
+         vivek
+
+--001a11439d787e20c1051f6524b7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 =C2=A0 I have included=C2=A0IMAGE_FE=
+ATURES +=3D &quot;ssh-server-dropbear&quot; in my recipe image. and created=
+ the image.</div><div>But after flashing the image i was not able to connec=
+t to target from my host machine. but target to host is working fine. Can a=
+ny one tell me why it is not working. Is there any package need to add?</di=
+v><div><br></div><div><br></div><div>Thanks and Regards</div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0vivek</div><div><br></div></div>
+
+--001a11439d787e20c1051f6524b7--
