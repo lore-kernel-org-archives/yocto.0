@@ -1,50 +1,45 @@
-Return-Path: <kaback@googlemail.com>
+Return-Path: <steven.muellener@sius.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85D3FE00D60; Fri, 18 Sep 2015 07:38:27 -0700 (PDT)
+	id 505A6E00B9A; Thu, 10 Sep 2015 02:12:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kaback[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.181 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
-	[209.85.212.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6729EE00B66
-	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 07:38:24 -0700 (PDT)
-Received: by wiclk2 with SMTP id lk2so33826236wic.1
-	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 07:38:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Frr4Ch38vByTrfY1/+gRtc45CJdUNypk6P8YbPL5N0k=;
-	b=eHsgdRFe4qJxLJT2IBJK4jd5EZmwsvcS1py+eA9eoqmmM+IIYER+B6uhL+QEcimY+K
-	AEb4hh+t/o5J0xgHn6m9g9lFefLfP+u1x4ASXpNCVKyAgod3piD2v6x8nwJ6ynw5G1A0
-	EUwH9waCHAXh/h9J3Bhr8ElXe/EnlNUfJYEO/jWuZPtJsB1F2x8Hi1mD7EWe+4N1WSnr
-	AG072gzPQ2tEzMedsI+UihLKhIVobKdj/CcQcJqMpP9zzNxYKXdZ7M0CyRKqOGj4CpPH
-	HwAJLZTiMgYv8vQa4bC0NIJL68vu6by0zVw7ISUGKMM+5z248vYFFXyvrbcZnb30kbDK
-	iWLw==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
+	[209.85.213.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93298E00B67
+	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
+Received: by vkgd64 with SMTP id d64so5988283vkg.0
+	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=V9P77DYq9vAH1J5YtZ8gLs89ERtTGNQI9HweGLcsaUM=;
+	b=LC1wXXpOgGj+ftxmVUlq2JuCtN10TePSTEbnXfXjrVfvgb2DH265yz0rDWeflRwOk5
+	Z7k0nIuwtJulR7UpVdA3FI7kE/symJhClhtiEhxSXlPAPvea9OZL/a5YOPNitQpQyNDm
+	ZEzEPE/Wc3CsEcWU9OL+Vq/fp537I+cgcirfc4HpYDV3mEwuIeIPndxVShDJzIV8/KKz
+	S+gyZSjk9U77qJrFTDhxbjcshkcRIRpngOq0Zn5/yySAwnvGsvfQQ0TvAYXBP6aWEOPh
+	CMxr6i4pKTIwNPIcR2QafWMrpfoU8pg0Wkaa7jcuAB63Go47PtlNhzOmsSVwu2NQhqGl
+	IcjQ==
+X-Gm-Message-State: ALoCoQmAhwRbGmjcoHrcn5QBP4y4DQg+0tqFeRqrZQDipeeU8/AGB9AUKATNRodEqkQ9WPQy/J0u
 MIME-Version: 1.0
-X-Received: by 10.180.91.131 with SMTP id ce3mr39899367wib.84.1442587104230;
-	Fri, 18 Sep 2015 07:38:24 -0700 (PDT)
-Received: by 10.194.33.228 with HTTP; Fri, 18 Sep 2015 07:38:24 -0700 (PDT)
-Date: Fri, 18 Sep 2015 16:38:24 +0200
-Message-ID: <CADS8tSLihx5e0u1PeOQL7d8DjO50Yh8sn+aA8=TiBMSGjoRU3w@mail.gmail.com>
-From: Karsten von Hornbostel <kaback@googlemail.com>
+X-Received: by 10.31.16.202 with SMTP id 71mr985597vkq.125.1441876345166; Thu,
+	10 Sep 2015 02:12:25 -0700 (PDT)
+Received: by 10.31.154.138 with HTTP; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
+Date: Thu, 10 Sep 2015 11:12:25 +0200
+Message-ID: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
+From: =?UTF-8?Q?M=C3=BCllener=2C_Steven?= <steven.muellener@sius.com>
 To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Fri, 18 Sep 2015 10:19:14 -0700
-Subject: Raspberrypi2 mesa/libgl conflicts
+X-Mailman-Approved-At: Fri, 18 Sep 2015 10:22:27 -0700
+Subject: Eclipse Yocto Plugin: Preference Profile "Save As..."-Button not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,81 +51,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Sep 2015 14:38:27 -0000
+X-List-Received-Date: Thu, 10 Sep 2015 09:12:31 -0000
+Content-Type: multipart/alternative; boundary=001a114364fc5d6246051f60ff0e
+
+--001a114364fc5d6246051f60ff0e
 Content-Type: text/plain; charset=UTF-8
 
-I try to build gnuradio-demo-image from meta-sdr for raspberrypi 2 (the new B+).
+I have the problem that my Eclipse Yocto Plugin Preferences can not be
+saved and seem to be lost after closing the Preferences Window. It seems
+like other people have the same problem as well
 
-First i did the kickstart guide for raspberry pi 2 from here:
-    https://github.com/Nuand/bladeRF/wiki/Creating-Linux-based-Embedded-System-Images-with-Yocto
-and the "bibbake core-image-minimal" went fine.
+e.g. http://community.phytec.com/forum/topic/Yocto-Projects-in-Eclipse.htm
 
-Then i tried "bitbake gnuradio-demo-image", but there was an ERROR
-after "preparing RunQueue". I considered this Error to be not
-critical, since the build process starts:
+I tried many combinations of Eclipse versions (Kepler, Luna, Mars) with
+their corresponding Yocto Plugin releases without any luck.
 
-kaback@ThinkPad-T500:~/builds/build/sdr$ bitbake gnuradio-demo-image
-Parsing recipes: 100%
-|################################################################################################################################################################|
-Time: 00:01:36
-Parsing of 1705 .bb files complete (0 cached, 1705 parsed). 2202
-targets, 101 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+I also changed the permissions for the entire folder <Eclipse installation
+folder> as well as the <Eclipse workspace folder> recursively to rwx for
+everyone without any success. Also running Eclipse as root did not help.
 
-Build Configuration:
-BB_VERSION        = "1.26.0"
-BUILD_SYS         = "i686-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "raspberrypi2"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.8"
-TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard
-vfpv4 cortexa7"
-TARGET_FPU        = "vfp-vfpv4-neon"
-meta
-meta-yocto
-meta-yocto-bsp    = "fido:b50596d8f6e858e2e733f2d9913a19c6f3cd5863"
-meta-oe
-meta-filesystems
-meta-networking
-meta-python       = "fido:6c5bce759e96bede1678264b68131984188904f6"
-meta-sdr          = "master:3ca726d7b5cfb8f76cb2765e245f52f42c525155"
-meta-raspberrypi  = "fido:b896a7da70dd7a16ba7ffd664f7747cb37e1d142"
+What could be the problem here?
 
-NOTE: Preparing RunQueue
-ERROR: Multiple .bb files are due to be built which each provide
-virtual/mesa (/home/kaback/builds/poky-fido-1.8/meta/recipes-graphics/mesa/mesa_10.4.4.bb
-/home/kaback/builds/poky-fido-1.8/meta/recipes-graphics/mesa/mesa-gl_10.4.4.bb).
- This usually means one provides something the other doesn't and should.
-ERROR: Multiple .bb files are due to be built which each provide
-virtual/libgl (/home/kaback/builds/poky-fido-1.8/meta/recipes-graphics/mesa/mesa_10.4.4.bb
-/home/kaback/builds/poky-fido-1.8/meta/recipes-graphics/mesa/mesa-gl_10.4.4.bb).
- This usually means one provides something the other doesn't and should.
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-Currently 2 running tasks (3025 of 6542):
+Thank you
 
-After some time of compiling, another Error rises and compiling stopped
-http://pastebin.ca/3163780
+--001a114364fc5d6246051f60ff0e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-ERROR: If the above message is too much, the simpler version is you're
-advised to wipe out tmp and rebuild (reusing sstate is fine). That
-will likely fix things in most (but not all) cases.
-ERROR: Function failed: sstate_task_postfunc
-ERROR: Logfile of failure stored in:
-/home/kaback/builds/build/sdr/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/mesa/2_10.4.4-r0/temp/log.do_packagedata.21868
+<div dir=3D"ltr"><div>I have the problem that my Eclipse Yocto Plugin Prefe=
+rences can not be saved and seem to be lost after closing the Preferences W=
+indow. It seems like other people have the same problem as well<br></div><d=
+iv><br></div><div>e.g. <a href=3D"http://community.phytec.com/forum/topic/Y=
+octo-Projects-in-Eclipse.htm">http://community.phytec.com/forum/topic/Yocto=
+-Projects-in-Eclipse.htm</a></div><div><br></div><div>I tried many combinat=
+ions of Eclipse versions (Kepler, Luna, Mars) with their corresponding Yoct=
+o Plugin releases without any luck.</div><div><br></div><div>I also changed=
+ the permissions for the entire folder &lt;Eclipse installation folder&gt; =
+as well as the &lt;Eclipse workspace folder&gt; recursively to rwx for ever=
+yone without any success. Also running Eclipse as root did not help.</div><=
+div><br></div><div>What could be the problem here?=C2=A0</div><div><br></di=
+v><div>Thank you</div><div><br></div><div><br></div><div><br></div></div>
 
-Since I am new to openembedded/yocto I have no idea whats going wrong.
-From my understanding there are two *.bb files that write libs/files
-into the same file/directory.
-
-I googled a bit, but did not find a solution. Please note, that i try
-to build for raspberrypi 2 (the new B+), not for the older pi.
-
-Is there any workaround for this error? What can i do to find out the
-cause of the error?
-
-Regards,
-Karsten
-
+--001a114364fc5d6246051f60ff0e--
