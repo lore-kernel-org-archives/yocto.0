@@ -1,61 +1,38 @@
-Return-Path: <bfleming@meteorcomm.com>
+Return-Path: <brad@taser.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77E36E00C34; Thu, 10 Sep 2015 12:12:13 -0700 (PDT)
+	id F3F74E00DC1; Thu, 10 Sep 2015 12:12:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.65.145.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [74.206.119.92 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 212 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 Sep 2015 12:12:11 PDT
-Received: from s12p02o142.mxlogic.net (s12p02o142.mxlogic.net [208.65.145.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09EC2E00B5D
-	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 12:12:10 -0700 (PDT)
-Received: from unknown [66.194.68.138] (EHLO mail.meteorcomm.com)
-	by s12p02o142.mxlogic.net(mxl_mta-8.4.0-3) with ESMTP id
-	b06d1f55.7f4ffb5fe700.79351.00-561.237763.s12p02o142.mxlogic.net
-	(envelope-from <bfleming@meteorcomm.com>); 
-	Thu, 10 Sep 2015 13:12:11 -0600 (MDT)
-X-MXL-Hash: 55f1d60b469e90f3-3e6f121c136fbad880ea51a5d7985bcf8b82f8ed
-Received: from unknown [66.194.68.138] (EHLO mail.meteorcomm.com)
-	by s12p02o142.mxlogic.net(mxl_mta-8.4.0-3)
-	with ESMTP id 635d1f55.0.75337.00-091.225647.s12p02o142.mxlogic.net
-	(envelope-from <bfleming@meteorcomm.com>); 
-	Thu, 10 Sep 2015 13:08:40 -0600 (MDT)
-X-MXL-Hash: 55f1d538650f4e91-cde1cfeb7669da0e1b55796cf5c359f8ffb4c46f
-Received: from MCCRENEX01.MeteorComm.lan (10.20.0.34) by
-	MCCRENEX02.meteorcomm.lan (10.20.0.35) with Microsoft SMTP Server (TLS)
-	id 15.0.1076.9; Thu, 10 Sep 2015 12:08:37 -0700
-Received: from MCCRENEX01.MeteorComm.lan ([fe80::752d:6914:6d6:db29]) by
-	MCCRENEX01.meteorcomm.lan ([fe80::752d:6914:6d6:db29%14]) with mapi id
-	15.00.1076.000; Thu, 10 Sep 2015 12:08:37 -0700
-From: Benjamin Fleming <bfleming@meteorcomm.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from LOKI.atmoss (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F027EE00DB9
+	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 12:12:46 -0700 (PDT)
+Received: from TI-ODIN.tasernet.com (172.16.1.112) by email.taser.com
+	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.3.235.1;
+	Thu, 10 Sep 2015 12:12:46 -0700
+Received: from TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789]) by
+	TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8%20]) with mapi id
+	14.03.0235.001; Thu, 10 Sep 2015 12:12:45 -0700
+From: Brad Litterell <brad@taser.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: kernel change detection for packages that depend on kernel
-	version?
-Thread-Index: AdDr94B1s/mNl8bYTDSvuT5U1aYNLA==
-Date: Thu, 10 Sep 2015 19:08:36 +0000
-Message-ID: <b8928a04ba194c4a90d890c8610b3202@MCCRENEX01.meteorcomm.lan>
+Thread-Topic: Peripheral hardware support
+Thread-Index: AdDr/FX+0zMKbatMRzCIciCy1raASw==
+Date: Thu, 10 Sep 2015 19:12:44 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8D09EACEE1@TI-THOR.tasernet.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.17.166]
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-X-AnalysisOut: [v=2.1 cv=Uul3NoAB c=1 sm=1 tr=0 a=TjRZ7Zekk1wF9OVcTBmBEQ==]
-X-AnalysisOut: [:117 a=TjRZ7Zekk1wF9OVcTBmBEQ==:17 a=oLoTwKZ2AAAA:8 a=YlVT]
-X-AnalysisOut: [AMxIAAAA:8 a=QP8GsjE2h34A:10 a=kj9zAlcOel0A:10 a=xqWC_Br6k]
-X-AnalysisOut: [Y4A:10 a=ff-B7xzCdYMA:10 a=NEAV23lmAAAA:8 a=90h5VryXmAj5Wn]
-X-AnalysisOut: [KuhfcA:9 a=CjuIK1q_8ugA:10]
-X-Spam: [F=0.5000000000; CM=0.500; MH=0.500(2015091023); S=0.200(2015072901)]
-X-MAIL-FROM: <bfleming@meteorcomm.com>
-X-SOURCE-IP: [66.194.68.138]
-Subject: kernel change detection for packages that depend on kernel version?
+Subject: Peripheral hardware support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,41 +44,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Sep 2015 19:12:13 -0000
+X-List-Received-Date: Thu, 10 Sep 2015 19:12:50 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8D09EACEE1TITHORtasernetc_"
+
+--_000_E51394554A503C4E852F9BEE46B03E8D09EACEE1TITHORtasernetc_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm running into an issue where the branch for my kernel received some new =
-commits, changing what the kernel version string looks like. When I rebuilt=
- my system (bitbake my-image) the kernel was rebuilt (I believe at some poi=
-nt I probably also ran bitbake virtual/kernel -c clean), however several OO=
-T kernel module packages were not rebuilt (one of our modules, as well as l=
-ttng-modules). In addition, I have the kernel-devsrc package included in my=
- TOOLCHAIN_TARGET_TASK, and running "... -c populate_sdk" seems to have bui=
-lt an SDK containing the old kernel source. Cleaning those recipes allowed =
-them to rebuild properly, but it seems like rebuilding should have happened=
- automatically...
-My image recipe looks like this (very abbreviated):
-inherit core-image
-IMAGE_INSTALL_append =3D " packagegroup-core-boot kernel-modules my-oot-mod=
-ule"
-IMAGE_FEATURES +=3D "package-management"
-TOOLCHAIN_TARGET_TASK_append =3D " kernel-devsrc"
+I'd like to include a RFID reader in a Yocto-based project.
 
-This brings me to my questions:
+What is the best way to find devices that have driver support already or th=
+at provide open-source drivers suitable for inclusion?
 
-1. How do recipes that depend on the kernel headers tell when they need to =
-rebuild? Is there something wrong with my kernel recipe? (for reference, I'=
-m using this one: https://github.com/kraj/meta-altera/blob/master/recipes-k=
-ernel/linux/linux-altera-ltsi-rt_3.10.bb)
+Is there a hardware support list for stuff like that somewhere?
 
-2. Why didn't kernel-devsrc rebuild after the kernel changed?
+Thanks,
+Brad
 
-3. How do I clean the populate_sdk output? Will do_clean clean the populate=
-_sdk output as well? I know I can force it to rerun with "... -f -c populat=
-e_sdk"
 
-Thanks for your help,
-Ben
+--_000_E51394554A503C4E852F9BEE46B03E8D09EACEE1TITHORtasernetc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.CRComment, li.CRComment, div.CRComment
+	{mso-style-name:"CR Comment";
+	mso-style-link:"CR Comment Char";
+	margin-top:7.5pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:15.0pt;
+	background:#F0F0F0;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	color:#333333;}
+span.CRCommentChar
+	{mso-style-name:"CR Comment Char";
+	mso-style-link:"CR Comment";
+	font-family:"Arial",sans-serif;
+	color:#333333;
+	background:#F0F0F0;}
+p.code, li.code, div.code
+	{mso-style-name:code;
+	mso-style-link:"code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	background:whitesmoke;
+	font-size:11.0pt;
+	font-family:"Courier New";
+	color:#333333;}
+span.codeChar
+	{mso-style-name:"code Char";
+	mso-style-link:code;
+	font-family:"Courier New";
+	color:#333333;
+	background:whitesmoke;}
+span.EmailStyle21
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;d like to include a RFID reader in a Yocto-b=
+ased project.&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What is the best way to find devices that have drive=
+r support already or that provide open-source drivers suitable for inclusio=
+n?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there a hardware support list for stuff like that=
+ somewhere?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Brad<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_E51394554A503C4E852F9BEE46B03E8D09EACEE1TITHORtasernetc_--
