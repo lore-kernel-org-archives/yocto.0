@@ -1,34 +1,32 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <pascal.bach@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86A55E00C3B; Fri, 11 Sep 2015 02:50:40 -0700 (PDT)
+	id B6EDAE00DB0; Fri, 11 Sep 2015 04:06:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.35.17.28 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BE3E00B63
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 02:50:37 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t8B9oblt029762
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 02:50:37 -0700 (PDT)
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.235.1;
-	Fri, 11 Sep 2015 02:50:37 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 11 Sep 2015 05:50:35 -0400
-Message-ID: <1441965035-166887-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH][meta-selinux] audit/auvirt: get inline functions work with C99
+Received: from goliath.siemens.de (goliath.siemens.de [192.35.17.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F68DE00B6D
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 04:06:27 -0700 (PDT)
+Received: from mail2.siemens.de (mail2.siemens.de [139.25.208.11])
+	by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id t8BB6JPT031530
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 13:06:19 +0200
+Received: from dev.sbt.siemens.com (MD1FZU9C.ww002.siemens.net [139.16.78.24])
+	by mail2.siemens.de (8.15.1/8.15.1) with ESMTP id t8BB6JiB012887;
+	Fri, 11 Sep 2015 13:06:19 +0200
+From: Pascal Bach <pascal.bach@siemens.com>
+To: yocto@yoctoproject.org
+Date: Fri, 11 Sep 2015 13:06:12 +0200
+Message-Id: <1441969572-24321-1-git-send-email-pascal.bach@siemens.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [yocto-docs][PATCH] adt-manual: Change mentioning of YOCTOADT_IPKG_REPO to YOCTOADT_REPO
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,104 +38,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Sep 2015 09:50:40 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 11 Sep 2015 11:06:30 -0000
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
-
-This fixes link errors:
-
-  auvirt.c:484: undefined reference to `copy_str'
-  auvirt.c:667: undefined reference to `is_resource'
-
-As gcc5 doc about "Different semantics for inline functions":
-
-  > C99 extern inline: An externally visible function is generated; \
-  > same as GNU89 inline.
-
-  > To fix this, either mark the function foo as extern, or add the \
-  > following declaration: extern inline int foo (void);
-
-(from https://gcc.gnu.org/gcc-5/porting_to.html)
-
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
 ---
- ...auvirt-get-inline-functions-work-with-C99.patch | 52 ++++++++++++++++++++++
- recipes-security/audit/audit_2.4.3.bb              |  1 +
- 2 files changed, 53 insertions(+)
- create mode 100644 recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-C99.patch
+ documentation/adt-manual/adt-prepare.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-C99.patch b/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-C99.patch
-new file mode 100644
-index 0000000..b5b39e4
---- /dev/null
-+++ b/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-C99.patch
-@@ -0,0 +1,52 @@
-+From 15036dd4fa9eb209f5e148c6f7ee081f5ca78fa4 Mon Sep 17 00:00:00 2001
-+From: Wenzong Fan <wenzong.fan@windriver.com>
-+Date: Fri, 11 Sep 2015 03:37:13 -0400
-+Subject: [PATCH] audit/auvirt: get inline functions work with C99
-+
-+This fixes link errors:
-+
-+  auvirt.c:484: undefined reference to `copy_str'
-+  auvirt.c:667: undefined reference to `is_resource'
-+
-+As gcc5 doc about "Different semantics for inline functions":
-+
-+  > C99 extern inline: An externally visible function is generated; \
-+  > same as GNU89 inline.
-+
-+  > To fix this, either mark the function foo as extern, or add the \
-+  > following declaration: extern inline int foo (void);
-+
-+(from https://gcc.gnu.org/gcc-5/porting_to.html)
-+
-+Upstream Status: pending
-+
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+---
-+ tools/auvirt/auvirt.c | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/tools/auvirt/auvirt.c b/tools/auvirt/auvirt.c
-+index 655c454..b16d718 100644
-+--- a/tools/auvirt/auvirt.c
-++++ b/tools/auvirt/auvirt.c
-+@@ -138,7 +138,7 @@ void event_free(struct event *event)
-+ 	}
-+ }
-+ 
-+-inline char *copy_str(const char *str)
-++extern inline char *copy_str(const char *str)
-+ {
-+ 	return (str) ? strdup(str) : NULL;
-+ }
-+@@ -650,7 +650,7 @@ int process_control_event(auparse_state_t *au)
-+ 	return 0;
-+ }
-+ 
-+-inline int is_resource(const char *res)
-++extern inline int is_resource(const char *res)
-+ {
-+ 	if (res == NULL ||
-+ 	    res[0] == '\0' ||
-+-- 
-+1.9.1
-+
-diff --git a/recipes-security/audit/audit_2.4.3.bb b/recipes-security/audit/audit_2.4.3.bb
-index 0fcf145..9a700d4 100644
---- a/recipes-security/audit/audit_2.4.3.bb
-+++ b/recipes-security/audit/audit_2.4.3.bb
-@@ -15,6 +15,7 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
-            file://auditd \
-            file://auditd.service \
-            file://audit-volatile.conf \
-+           file://audit-auvirt-get-inline-functions-work-with-C99.patch \
- "
- SRC_URI[md5sum] = "544d863af2016b76afd8d1691b251164"
- SRC_URI[sha256sum] = "9c914704fecc602e143e37152f3efbab2469692684c1a8cc1b801c1b49c7abc6"
+diff --git a/documentation/adt-manual/adt-prepare.xml b/documentation/adt-manual/adt-prepare.xml
+index 01f569f..c69966e 100644
+--- a/documentation/adt-manual/adt-prepare.xml
++++ b/documentation/adt-manual/adt-prepare.xml
+@@ -199,7 +199,7 @@
+                             NFS booting to work.</note></para></listitem>
+                     <listitem><para><filename>YOCTOADT_ROOTFS_</filename><replaceable>arch</replaceable>: The root
+                         filesystem images you want to download from the
+-                        <filename>YOCTOADT_IPKG_REPO</filename> repository.</para></listitem>
++                        <filename>YOCTOADT_REPO</filename> repository.</para></listitem>
+                     <listitem><para><filename>YOCTOADT_TARGET_SYSROOT_IMAGE_</filename><replaceable>arch</replaceable>: The
+                         particular root filesystem used to extract and create the target sysroot.
+                         The value of this variable must have been specified with
 -- 
-1.9.1
+2.1.4
 
 
