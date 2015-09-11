@@ -1,6 +1,6 @@
 Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 980AEE00B7F; Fri, 11 Sep 2015 06:43:44 -0700 (PDT)
+	id 37769E00BC6; Fri, 11 Sep 2015 07:09:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,35 +8,33 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 371C5E00939
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 06:43:39 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D1EE00939
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 07:09:26 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t8BDhZl5018639
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t8BE9IEB022559
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 Sep 2015 06:43:35 -0700 (PDT)
+	Fri, 11 Sep 2015 07:09:23 -0700 (PDT)
 Received: from Marks-MacBook-Pro.local (172.25.36.227) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.235.1; Fri, 11 Sep 2015 06:43:34 -0700
-To: <maninder1.s@samsung.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <2324891.319351431925345938.JavaMail.weblogic@ep2mlwas03d>
+	14.3.235.1; Fri, 11 Sep 2015 07:09:16 -0700
+To: <maninder1.s@samsung.com>
+References: <205051265.113801430888822142.JavaMail.weblogic@epmlwas03a>
 From: Mark Hatle <mark.hatle@windriver.com>
-X-Enigmail-Draft-Status: N1110
 Organization: Wind River Systems
-Message-ID: <55F2DA85.7020501@windriver.com>
-Date: Fri, 11 Sep 2015 08:43:33 -0500
+Message-ID: <55F2E08B.1010206@windriver.com>
+Date: Fri, 11 Sep 2015 09:09:15 -0500
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
 	Gecko/20100101 Thunderbird/38.2.0
 MIME-Version: 1.0
-In-Reply-To: <2324891.319351431925345938.JavaMail.weblogic@ep2mlwas03d>
-Cc: "v.narang@samsung.com" <v.narang@samsung.com>,
-	AJEET YADAV <ajeet.y@samsung.com>
-Subject: Re: [EDT][prelink-cross][PATCH 1/1] bugifx for soname mismatch
+In-Reply-To: <205051265.113801430888822142.JavaMail.weblogic@epmlwas03a>
+Cc: "v.narang@samsung.com" <v.narang@samsung.com>, yocto@yoctoproject.org,
+	AKHILESH KUMAR <akhilesh.k@samsung.com>
+Subject: Re: [EDT] [PATCH] [prelink-cross] realloc fix memory leak
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,126 +46,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Sep 2015 13:43:44 -0000
+X-List-Received-Date: Fri, 11 Sep 2015 14:09:29 -0000
 Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-I believe the change is incorrect.  The soname must match the required soname.
+Merged to the staging branch.
 
-So if I am understanding this properly:
-
-1. Create a library (libB.so) with an SONAME of 'libB.so'.
-2. Link app to libB.so
-3. Create a library (libA.so) with an SONAME of 'libA.so'.
-4. remove libB.so ; ln -sf libA.so libB.so
-
-prelink sees that the library SONAME isn't consistent with the file on the disk
-and fails.  This would be the correct behavior.
-
-When using ldconfig (ld.so.cache) then system will capture the sonames and
-filenames.  In the case above the loader may fail because it can't find the
-soname of libB.so.  W/o the ld.so.cache, the system will fall back to the disk
-and load the file of that name -- however, this is an undefined situation and it
-would be within reason for the rtld to open the library see it doesn't have the
-required soname and error/unload that particular file.
-
---Mark
-
-On 5/18/15 12:02 AM, Maninder Singh wrote:
-> EP-F6AA0618C49C4AEDA73BFF1B39950BAB
+On 5/6/15 12:07 AM, Maninder Singh wrote:
+>  EP-F6AA0618C49C4AEDA73BFF1B39950BAB
 > 
-> Hi,
+> Hi Mark,
 > 
-> Subject: [PATCH 1/1] bugifx for soname mismatch
-> 
-> As per my understanding, this issue needs to be fixed in loader, But if can not be fixed 
-> then there is work around for following issue.
-> 
-> Issue case:-
-> 1. Create a library libB.so having soname libB.so
-> 2. At compile time we linked libB.so to binary, and thus in NEEDED section it will show libB.so
-> 	gcc test.c -o test -lB
-> 3. Now create a softlink as below:-
-> 	ln -sf libA.so libB.so
-> 	(libB.so -> libA.so)
-> 4. No when we do prelink, Library list section '.gnu.liblist' contains  entries as below:
-> 	0: libA.so              2014-12-02T04:28:40 0x95c929e5 0       0 //SONAME
-> 5. And at run time prelink will be failed because of dependency mismatch due to soname issue.
-> 	expect libA.so, found /lib/libB.so in dependency order
-> 	prelink checking: failed
-> 	
-> Issue is prelink fills soname in gnu.liblist section but loader uses filename not soname.So we
-> created a workaround for this issue.
-> 
-> To use filename instead of soname in gnu.liblist
-> Usage :./prelink -s or ./prelink --ignore-soname
-> 
+> Free previously allocated memory if realloc fails.
 > 
 > Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
-> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
-> Reviewed-by: Ajeet Yadav <ajeet.y@samsung.com>
-> Reviewed-by: Geon-ho Kim <gh007.kim@samsung.com>
+> Signed-off-by: Vaneet narang <v.narang@samsung.com>
+> Reviewed-by: Akhilesh Kumar <akhilesh.k@samsung.com>
 > ---
->  src/get.c     |    2 ++
->  src/main.c    |    5 +++++
->  src/prelink.h |    1 +
->  3 files changed, 8 insertions(+), 0 deletions(-)
+>  trunk/src/doit.c    |    4 +++-
+>  trunk/src/gather.c  |    4 +++-
+>  trunk/src/undoall.c |    4 +++-
+>  3 files changed, 9 insertions(+), 3 deletions(-)
 > 
-> diff --git a/src/get.c b/src/get.c
-> index ffefe73..bb01331 100644
-> --- a/src/get.c
-> +++ b/src/get.c
-> @@ -182,6 +182,8 @@ prelink_record_relocations (struct prelink_info *info, FILE *f,
->  		}
->  	    }
->  	}
-> +      if(ignore_soname) 
-> +          soname = strrchr(filename, '/') + 1;
+> diff --git a/trunk/src/doit.c b/trunk/src/doit.c
+> index c94fc53..0995fce 100644
+> --- a/trunk/src/doit.c
+> +++ b/trunk/src/doit.c
+> @@ -53,7 +53,7 @@ prelink_ent (struct prelink_entry *ent)
+>    DSO *dso;
+>    struct stat64 st;
+>    struct prelink_link *hardlink;
+> -  char *move = NULL;
+> +  char *move = NULL, *move_temp;
+>    size_t movelen = 0;
 >  
->        if (! tdeps)
->  	deps[0].ent = info->ent;
-> diff --git a/src/main.c b/src/main.c
-> index 15c1d53..5891dbc 100644
-> --- a/src/main.c
-> +++ b/src/main.c
-> @@ -61,6 +61,7 @@ const char *prelink_cache = PRELINK_CACHE;
->  const char *undo_output;
->  int noreexecinit;
->  time_t initctime;
-> +int ignore_soname = 0;
+>    for (i = 0; i < ent->ndepends; ++i)
+> @@ -176,9 +176,11 @@ prelink_ent (struct prelink_entry *ent)
+>        if (len + sizeof (".#prelink#") > movelen)
+>  	{
+>  	  movelen = len + sizeof (".#prelink#");
+> +	  move_temp = move;
+>  	  move = realloc (move, movelen);
+>  	  if (move == NULL)
+>  	    {
+> +		  free(move_temp);
+>  	      error (0, ENOMEM, "Could not hardlink %s to %s",
+>  		     hardlink->canon_filename, ent->canon_filename);
+>  	      movelen = 0;
+> diff --git a/trunk/src/gather.c b/trunk/src/gather.c
+> index c3d3128..733b49f 100644
+> --- a/trunk/src/gather.c
+> +++ b/trunk/src/gather.c
+> @@ -64,7 +64,7 @@ gather_deps (DSO *dso, struct prelink_entry *ent)
+>    const char *argv[6];
+>    const char *envp[5];
+>    char *line = NULL, *p, *q = NULL;
+> -  const char **depends = NULL;
+> +  const char **depends = NULL, **depends_temp;
+>    size_t ndepends = 0, ndepends_alloced = 0;
+>    size_t len = 0;
+>    ssize_t n;
+> @@ -261,11 +261,13 @@ gather_deps (DSO *dso, struct prelink_entry *ent)
+>        if (ndepends == ndepends_alloced)
+>  	{
+>  	  ndepends_alloced += 10;
+> +	  depends_temp = depends;
+>  	  depends =
+>  	    (const char **) realloc (depends,
+>  				     ndepends_alloced * sizeof (char *));
+>  	  if (depends == NULL)
+>  	    {
+> +		  free(depends_temp);
+>  	      error (0, ENOMEM, "%s: Could not record dependencies",
+>  		     ent->filename);
+>  	      goto error_out;
+> diff --git a/trunk/src/undoall.c b/trunk/src/undoall.c
+> index 90e9240..6163da3 100644
+> --- a/trunk/src/undoall.c
+> +++ b/trunk/src/undoall.c
+> @@ -33,7 +33,7 @@ undo_one (void **p, void *info)
+>    DSO *dso;
+>    struct stat64 st;
+>    struct prelink_link *hardlink;
+> -  char *move = NULL;
+> +  char *move = NULL, *move_temp;
+>    size_t movelen = 0;
 >  
->  const char *argp_program_version = PRELINK_PROG PKGVERSION " 1.0";
->  
-> @@ -123,6 +124,7 @@ static struct argp_option options[] = {
->    {"rtld",		OPT_RTLD, "RTLD", OPTION_HIDDEN, "" },
->    {"init",		'i', 0, 0,  "Do not re-execute init" },
->    {"allow-textrel",	OPT_ALLOW_TEXTREL, 0, 0, "Allow text relocations even on architectures where they may not work" },
-> +  {"ignore-soname",	's', 0, 0,  "To use filename instead of soname in gnu.liblist" },
->    { 0 }
->  };
->  
-> @@ -250,6 +252,9 @@ parse_opt (int key, char *arg, struct argp_state *state)
->      case OPT_ALLOW_TEXTREL:
->        allow_bad_textrel = 1;
->        break;
-> +    case 's':
-> +      ignore_soname = 1;
-> +      break; 
->      default:
->        return ARGP_ERR_UNKNOWN;
->      }
-> diff --git a/src/prelink.h b/src/prelink.h
-> index 66aba99..778e67a 100644
-> --- a/src/prelink.h
-> +++ b/src/prelink.h
-> @@ -597,6 +597,7 @@ extern enum verify_method_t verify_method;
->  extern int quick;
->  extern long long seed;
->  extern GElf_Addr mmap_reg_start, mmap_reg_end, layout_page_size;
-> +extern int ignore_soname;
->  
->  extern const char *sysroot;
->  
+>    if (ent->done != 2)
+> @@ -116,9 +116,11 @@ undo_one (void **p, void *info)
+>        if (len + sizeof (".#prelink#") > movelen)
+>  	{
+>  	  movelen = len + sizeof (".#prelink#");
+> +	  move_temp = move;
+>  	  move = realloc (move, movelen);
+>  	  if (move == NULL)
+>  	    {
+> +		  free(move_temp);
+>  	      error (0, ENOMEM, "Could not hardlink %s to %s",
+>  		     hardlink->canon_filename, ent->canon_filename);
+>  	      movelen = 0;
 > 
 
 
