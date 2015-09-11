@@ -1,49 +1,58 @@
-Return-Path: <edivya.vyas@gmail.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F20CE00D63; Fri, 11 Sep 2015 04:53:55 -0700 (PDT)
+	id 8F418E00D93; Fri, 11 Sep 2015 05:45:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (edivya.vyas[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3969EE00B71
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 04:53:54 -0700 (PDT)
-Received: by oibi136 with SMTP id i136so41267352oib.3
-	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 04:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=2ID44ZeLIE5x39gWGgyTV63w+R9ffOtR6NhbnLByGxA=;
-	b=yaggqlW9KgNlx8AztXyBL7fP1bH6fNUs8aOk54XsWHKOXAVAru71pMGZrCmUWYxzeG
-	UMYrh784E8hUab5qhwIH6Qrdx2ctuq9N981esZWDWnCoktikQ5BUNqvfvbIPDhwVkPEB
-	vfx2qrKuTDZgrLV2329Y2iJAGJEJSYR0lNdB6/i5JrFSPpIZEHNqY+pGNoz4sYpgqVSm
-	TqLpIhiCPrGkTnhF/zeX8f/JxQy6EFAwMD3jQZAkW/zEJBTnyoYDQ9C5BAmGmbEKQaeb
-	mqArigU+NRdQ49demEQUrxTx0tD+y+1M8WQdSKBSSehXbYLWeAme3vqer+nKWnyaSn9C
-	udlg==
-X-Received: by 10.202.50.137 with SMTP id y131mr35577213oiy.83.1441972434153; 
-	Fri, 11 Sep 2015 04:53:54 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.60.38.137 with HTTP; Fri, 11 Sep 2015 04:53:34 -0700 (PDT)
-From: Divya Vyas <edivya.vyas@gmail.com>
-Date: Fri, 11 Sep 2015 17:23:34 +0530
-Message-ID: <CAGfiMvBAh+ju4OgkjGFw47iYQV5EFu-xwpAOBReGJyVj2zoL8Q@mail.gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C0F9E00BB3
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 05:45:07 -0700 (PDT)
+Received: by lamp12 with SMTP id p12so46385989lam.0
+	for <yocto@yoctoproject.org>; Fri, 11 Sep 2015 05:45:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-type:content-disposition
+	:in-reply-to:organization:user-agent;
+	bh=s8kFlny5rFXitgFIKF9bPcM2tgh5H6fmPnbMHlu5yIY=;
+	b=eQEDbNRutaTj7GnHjSgKkKFZC/EQRTBQCUdS8hIoke640vcGOAOfEVTsHZYtYKXoK5
+	vkop6YuykX6tKVo0SBbGlVGY9hwFqW6CZ8xYmw8fIk/ZssmUAeg4CelfwRuFhfA0HdMK
+	2GxTkDzbRaLq0uhfngyzeHPPxPsFGtdOiVgqaXUpk1B4hwu9MJniRtSHNNKvyfIKnEul
+	eKZEbvcQjNINcSXZWSNffOB3wSVmPX6xOrfOmXkRXcd38Uvex+SdtEB/CQUZy1hsO3g5
+	Fdj4ka7hmL1AO5oh+IupLLo8n5aKaV9jl97nZoh36XfEfL3WcQZAIIw6ynNGZpo4oD4X
+	OwKg==
+X-Gm-Message-State: ALoCoQleqy2ABF1HIKX74UUBpwrVUbqcCV7Y4l8WV69kEtUPYVy5Tsc+J/0J3G6azcQAiPVlup/7
+X-Received: by 10.112.138.37 with SMTP id qn5mr35579940lbb.52.1441975505889;
+	Fri, 11 Sep 2015 05:45:05 -0700 (PDT)
+Received: from ad.chargestorm.se (213-64-219-84-no126.business.telia.com.
+	[213.64.219.84])
+	by smtp.gmail.com with ESMTPSA id w5sm32612laa.17.2015.09.11.05.45.04
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 11 Sep 2015 05:45:05 -0700 (PDT)
+Date: Fri, 11 Sep 2015 14:45:03 +0200
+From: Anders Darander <anders@chargestorm.se>
 To: yocto@yoctoproject.org
-Subject: meta-selinux minimum policy
+Message-ID: <20150911124503.GB22497@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <CALLyC8QMNEAfwAuvTb88mjP7La2P4eYo5xw9CaFCqzR9NFxH_Q@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CALLyC8QMNEAfwAuvTb88mjP7La2P4eYo5xw9CaFCqzR9NFxH_Q@mail.gmail.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: Re: How can i modify the dropbear.service file in ssh-server-dropbear IMAGE_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,49 +64,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Sep 2015 11:53:55 -0000
-Content-Type: multipart/alternative; boundary=001a113ceef4b6b65f051f775e8c
+X-List-Received-Date: Fri, 11 Sep 2015 12:45:13 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a113ceef4b6b65f051f775e8c
-Content-Type: text/plain; charset=UTF-8
+* Vivek Per <pervivek@gmail.com> [150911 11:18]:
+>      I want to modify changes to the dropbear.service and
+> dropbearkey.service files before yocto  creating the final image (This
+> resides in /lib/systemd/system/*******.services). This dropbear is added
+> through *IMAGE_FEATURES =+ "ssh-server-dropbear" *in image recipe*.*
+> Can i able to change dropbear.service file before creating final image.
 
-Hi,
+Sure, add a bbappend-file in your layer, and add your own versions of
+those two service-files in your layer.
 
-I have mls and targeted policy installed on my system. I want to have a
-minimum policy with all user unconfined and nothing restricted.
+Cheers,
+Anders
 
-I took a minimum policy from selinux-policy-minium noarch rpm and kept in
-/etc/selinux folder and edit SELINUXTYPE=minimum. Is this enough to load a
-new policy .
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
-load_policy
-SELinux:  Could not open policy file <=
-/etc/selinux/minimum/policy/policy.28:  No such file or directory
-load_policy:  Can't load policy:  No such file or directory
-
-Getting this error while the policy.28 exists in the path.
-
-Please guide me to have a minimum unrestricted policy.
-
-
-Thanks,
-Divya
-
---001a113ceef4b6b65f051f775e8c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div>Hi,<br><br></div>I have mls =
-and targeted policy installed on my system. I want to have a minimum policy=
- with all user unconfined and nothing restricted.<br><br></div>I took a min=
-imum policy from selinux-policy-minium noarch rpm and kept in /etc/selinux =
-folder and edit SELINUXTYPE=3Dminimum. Is this enough to load a new policy =
-.<br><br>load_policy <br>SELinux:=C2=A0 Could not open policy file &lt;=3D =
-/etc/selinux/minimum/policy/policy.28:=C2=A0 No such file or directory<br>l=
-oad_policy:=C2=A0 Can&#39;t load policy:=C2=A0 No such file or directory<br=
-><br></div>Getting this error while the policy.28 exists in the path.<br><b=
-r></div>Please guide me to have a minimum unrestricted policy. <br><br><br>=
-</div>Thanks,<br></div>Divya <br><div><div><div><br><br><div><br><br></div>=
-</div></div></div></div>
-
---001a113ceef4b6b65f051f775e8c--
