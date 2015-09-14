@@ -1,46 +1,48 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <star@gmx.li>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87FF1E00D0C; Mon, 14 Sep 2015 01:48:38 -0700 (PDT)
+	id 2B0E5E00D06; Mon, 14 Sep 2015 06:23:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.86.89.62 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (star[at]gmx.li)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.15 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from elasmtp-dupuy.atl.sa.earthlink.net
-	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6DA3E00821
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 01:48:37 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=Rl+34godwMCB+e25kN07xXdM0MDGL/w1m4g79vphhhW5pdzDZr76B/uYqIBaQRr7;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [45.49.236.199] (helo=PAULD)
-	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1ZbPR9-0006NX-B6
-	for yocto@yoctoproject.org; Mon, 14 Sep 2015 04:48:31 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-References: <CBE84E2773C74A3AB4EA3A80074BCFB3@PAULD>
-	<90A8BD5E-50DE-4AF8-946D-62620C29AF12@shotspotter.com>
-In-Reply-To: <90A8BD5E-50DE-4AF8-946D-62620C29AF12@shotspotter.com>
-Date: Mon, 14 Sep 2015 01:48:32 -0700
-Message-ID: <D5E58E49104F4B9E8106F22CA3B3C36E@PAULD>
+X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
+	Mon, 14 Sep 2015 06:23:28 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A486E00C66
+	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 06:23:28 -0700 (PDT)
+Received: from [62.225.157.198] by 3capp-gmx-bs36.server.lan (via HTTP);
+	Mon, 14 Sep 2015 15:18:22 +0200
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdDuYPUVhS0FImuORRu4v3X7tO4CNQAC9SEAABbTwNA=
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688906510894f62d840411c277489a30ffa350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 45.49.236.199
-Subject: Re: Warning about auto generated BSP description
+Message-ID: <trinity-372e164a-af55-434b-8076-b79aa5e218f5-1442236702251@3capp-gmx-bs36>
+From: star@gmx.li
+To: yocto@yoctoproject.org
+Date: Mon, 14 Sep 2015 15:18:22 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K0:EcdXwO8b0HgL2jQwSefYrxa8+zVD0ouuzWQQqy0L9qG
+	hBI95SKDS+hrPbh5Rk3R5iXzyFHrokCOaLUEZrSNXKhSGs1bVd
+	67nHcz75qRX4MSiHFySx5xL4vse5mBWxMtlRAkrP8wBSNfeBBJ
+	9ul5WQMvFRYEwLoeVdvoRtxBHH4erFbR87ixdmNn12k6804T/v
+	r2zlqalwDVdiYnB6P+BmCfRUIjTKURx1eUs23uUX0US39bUqcr
+	8Fono0rAyFrTpz6DcuNzZ43hYXQL1WFuC1dyzEFcKHUftmciwc WSEAFw=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:u2eZ8wFpJoo=:l1HZ2mTie1vJdFfcKSD99x
+	vNPfYi7Tu7TR4KcdCFqIl8/jc2GnWKRkkwPFKfsD5m9UnRuUv8szaKvrI918q5J5ZElXg0rCe
+	CvLnaFzvM+wcLtHEE1EyaBthODl+vgMVGkHy+HEPEnJ8hm1QAAxeRUrS7UjMFXo6AD6DyrIlp
+	rVB5jOfEGTwKQXd8xlQfTPcoiGI4T4bvo0xso2wszb+phRBcH+MAOyvTB2AU4v12LfjadlQIz
+	UM5jrhNpNZaLWpDIkIUVLhShs3P6rjc7ZW3DJ+4mhEnl9DKyrgdRKdBlTpzitq0IR8kKCkflY
+	mRJ/7ucuaQLaJ/N14adAX1cIgHuuS7MI6i6nPWg0ZxC+BGqRzgubGAJGXqOK4srLsfIeOLFj3
+	oPzMbPskwQaVTVyu9KCn2mkozwtzA3+TKVWTQEbEzwbDcBg8fWdawJiAsszshyW7i7i7NHRFb
+	xWDNWEts+g==
+Subject: Problem with ADT and Eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,50 +54,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Sep 2015 08:48:38 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Sep 2015 13:23:30 -0000
+Content-Type: text/plain; charset=UTF-8
 
-> From: Robert Calhoun [mailto:rcalhoun@shotspotter.com] 
-> 
-> Your kernel recipe needs to have an entry for the machine, 
-> e.g. a kernel recipe called linux-mainline.bb contains
-> COMPATIBLE_MACHINE_mymachine = "mymachine"
-> 
-> Also, your machine config file mymachine.conf needs to have a 
-> preferred kernel version, e.g:
-> PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
-> PREFERRED_VERSION_linux-yocto ?= "3.19%"
-> PREFERRED_VERSION_linux-mainline ?= "4.2%"
-> 
-> 
-> (I am not certain these will fix your error but you should 
-> have them defined.)
+I go for the manual:
+http://www.yoctoproject.org/docs/1.8/dev-manual/dev-manual.html#adt-eclipse
 
-The linux-yocto-rt_3.14.bbappend file created by the yocto-bsp script
-includes:
+I could compile this Yocto Project ADT Autotools Project "hello world"
+It generates a lot of files and I am lost how to add more source files and headers.
 
-    COMPATIBLE_MACHINE_chroma_bsp = "chroma_bsp"
+I added a second c-file with a function "sub" and header and included the header in the hello world.c.
 
-My bblayers.conf file contains:
+But I get linker problems and the second c file isn't get compiled. What do I have to do if the project gets bigger with more files ...? In the old times I added something to makefile, but I have two and both are crowded ...
 
-    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+  
+make all 
+make  all-recursive
+make[1]: Entering directory `/home/user/ws/sp_test'
+Making all in src
+make[2]: Entering directory `/home/user/ws/sp_test/src'
+../arm-poky-linux-gnueabi-libtool  --tag=CC   --mode=link arm-poky-linux-gnueabi-gcc  -march=armv7-a -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a9 --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7  -g -O0  --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7  --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7 -o sp_test sp_test-sp_test.o  
+arm-poky-linux-gnueabi-libtool: link: arm-poky-linux-gnueabi-gcc -march=armv7-a -mfloat-abi=softfp -mfpu=neon -mtune=cortex-a9 --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7 -g -O0 --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7 --sysroot=/home/user/yocto_microzed/tmp/sysroots/microzed-zynq7 -o sp_test spi_test-spi_test.o 
+sp_test-sp_test.o: In function `main':
+/home/user/ws/spi_test/src/sp_test.c:40: undefined reference to `sub'
+collect2: error: ld returned 1 exit status
 
-The chroma-bsp.conf file created by the script (in
-meta-chroma-bsp/conf/machine/) includes:
 
-    PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-rt"
-    PREFERRED_VERSION_linux-yocto-rt ?= "3.14%"
+The second issue is with qemu:
 
-I'm not sure if or how the last file is getting read.
+I get the message
 
-Since I'm definitely using the RT kernel, I would assume I'd only need
-references to linux-yocto-rt. See anything wrong?
+Error: unknow fuile arg [path to my uImage]
 
--- 
+This is the automatical generated config:
+-e "source /home/user/yocto_microzed/tmp/environment-setup-cortexa9-vfp-neon-poky-linux-gnueabi;runqemu  /home/user/yocto_microzed/tmp/deploy/images/microzed-zynq7/uImage /home/user/yocto_microzed/tmp/sysroots/microzed-zynq7 ;bash"
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+and here what can be found at this locations:
 
+user@vb:~$ ll /home/user/yocto_microzed/tmp/deploy/images/microzed-zynq7/uImage
+lrwxrwxrwx 1 user user 72 Aug 28 11:29 /home/user/yocto_microzed/tmp/deploy/images/microzed-zynq7/uImage -> uImage--3.14-xilinx+git0+2b48a8aeea-r0-microzed-zynq7-20150828065234.bin
+
+user@vb:~$ ll /home/user/yocto_microzed/tmp/sysroots/microzed-zynq7
+total 32
+drwxr-xr-x 8 user user 4096 Sep 14 07:39 ./
+drwxr-xr-x 7 user user 4096 Sep 11 13:32 ../
+drwxr-xr-x 2 user user 4096 Aug 28 10:06 etc/
+drwxr-xr-x 5 user user 4096 Aug 28 10:35 lib/
+drwxr-xr-x 7 user user 4096 Sep 11 13:32 pkgdata/
+drwxr-xr-x 2 user user 4096 Sep 14 07:39 sysroot-providers/
+drwxr-xr-x 7 user user 4096 Sep 10 12:06 usr/
+drwxr-xr-x 3 user user 4096 Aug 28 10:06 var/
+
+I hope someone can help a YOCTO 1.8 beginner.
 
