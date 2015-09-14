@@ -1,47 +1,46 @@
-Return-Path: <jkrishnanjanappa@mvista.com>
+Return-Path: <pderocco@ix.netcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F26FFE00D31; Mon, 14 Sep 2015 09:32:37 -0700 (PDT)
+	id 7A9D8E00C91; Mon, 14 Sep 2015 10:39:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.45 listed in list.dnswl.org]
+	*      [209.86.89.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
-	[209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C24E00B0B
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 09:32:33 -0700 (PDT)
-Received: by padhy16 with SMTP id hy16so148317261pad.1
-	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 09:32:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ZzIz7et/BuvyQgzU1xmTPb/1ISOtMtV2T1RASTHu25Q=;
-	b=ZMMWpNCaaFlRMIXyZnhcrYuX85sXjV4GjLXDTgJOMUOEcW3+eZvtpklYf4EzVx+HxE
-	M9jKG5jWbryG10Kkl7OSt54lEGH6ElxFlzKoqy/D8tPqZ6OY5y5x+kAmnKarEtiYPURU
-	QSbfsR0thpRuGOJ/64WssdYzDKWt1DkS3JGWRt4gOJTaqyxkz9w/8xAdx0xKFjbe+Fu5
-	143p0y6GewqkdNWd/3b02eHisAsSh9d+BZ2Qh89Df6KzjEcGXEduHT2UVS9zsAChYTWs
-	YMIVASitbp2wPm48omcFD3hcSVmEVVWolkyne50w1swgZkFupjvN7PyR7oU3oSRPjFOw
-	iABg==
-X-Gm-Message-State: ALoCoQk1Yj7Y6CFOdY7NkaGuD8NUHI4hUhB5dlTGibZUmhauaNLqkCSmm6/+kwM2Txy1CuGJ1oEr
-X-Received: by 10.66.100.168 with SMTP id ez8mr36033685pab.142.1442248353442; 
-	Mon, 14 Sep 2015 09:32:33 -0700 (PDT)
-Received: from ubuntu64.mvista.com ([111.93.218.67])
-	by smtp.gmail.com with ESMTPSA id
-	im2sm17123751pbc.34.2015.09.14.09.32.31
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 14 Sep 2015 09:32:33 -0700 (PDT)
-From: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
-To: yocto@yoctoproject.org
-Date: Mon, 14 Sep 2015 22:02:26 +0530
-Message-Id: <1442248346-28160-1-git-send-email-jkrishnanjanappa@mvista.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-security][PATCH] paxctl: add new recipe
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8051E006F6
+	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 10:39:02 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=NWGNshMoAilf8KXcx8wupX2FI7H8otxUhtrDomIHbp9JV9dt25XlpSQaKPB0D7iH;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [45.49.236.199] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1ZbXiD-000292-19; Mon, 14 Sep 2015 13:38:41 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Bruce Ashfield'" <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
+References: <CBE84E2773C74A3AB4EA3A80074BCFB3@PAULD>
+	<55F6D5A6.2000607@windriver.com>
+In-Reply-To: <55F6D5A6.2000607@windriver.com>
+Date: Mon, 14 Sep 2015 10:38:42 -0700
+Message-ID: <17509C1F9D0D41DE8575215D4D609FBC@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: AdDu91Et8JvygeApTXOGPD0M0XsJlQAG18JA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606880d29a23af2420c516819e7542ab80799350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 45.49.236.199
+Subject: Re: Warning about auto generated BSP description
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,48 +52,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Sep 2015 16:32:38 -0000
+X-List-Received-Date: Mon, 14 Sep 2015 17:39:04 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-paxctl  is  a tool that allows PaX flags to be modified on a per-binary
-basis.  PaX is part of common  security-enhancing  kernel  patches  and
-secure distributions, such as GrSecurity or Adamantix and Hardened Gen-
-too, respectively.  Your system needs to be running a properly  patched
-and configured kernel for this program to have any effect.
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com] 
+> 
+> The tool may have created these files, but the question is .. 
+> What release are you using ? If you check something in the kernel meta
+> directory, I can tell you if the warning is wrong, or something is 
+> really being missed.
 
-Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
-Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
----
- recipes-security/paxctl/paxctl_0.9.bb | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 recipes-security/paxctl/paxctl_0.9.bb
+I'm using Fido.
 
-diff --git a/recipes-security/paxctl/paxctl_0.9.bb b/recipes-security/paxctl/paxctl_0.9.bb
-new file mode 100644
-index 0000000..8eadad1
---- /dev/null
-+++ b/recipes-security/paxctl/paxctl_0.9.bb
-@@ -0,0 +1,20 @@
-+DESCRIPTION = "paxctl  is  a tool that allows PaX flags to be modified on a \
-+               per-binary basis. PaX is part of common  security-enhancing  \
-+               kernel  patches  and secure distributions, such as \
-+               GrSecurity or Adamantix and Hardened Gen-too, respectively."
-+HOMEPAGE = "https://pax.grsecurity.net/"	       
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://paxctl.c;beginline=1;endline=5;md5=0ddd065c61020dda79729e6bedaed2c7 \
-+                    file://paxctl-elf.c;beginline=1;endline=5;md5=99f453ce7f6d1687ee808982e2924813 \
-+		   "
-+
-+SRC_URI = "http://pax.grsecurity.net/paxctl-${PV}.tar.gz"
-+SRC_URI[md5sum] = "9bea59b1987dc4e16c2d22d745374e64"
-+SRC_URI[sha256sum] = "a330ddd812688169802a3ba29e5e3b19956376b8f6f73b8d7e9586eb04423c2e"
-+
-+do_install() {
-+	oe_runmake 'DESTDIR=${D}' install
-+}
-+
-+FILES_${PN} = "${base_sbindir}/paxctl"
-+FILES_${PN}-doc = "${mandir}/man1/paxctl.1"
+> The reason I asked about the release, is that the location of 
+> the kernel
+> meta directory will be in a different place between the various
+> releases. But it is always in the kernel source directory, 
+> whether it is
+> in work-shared, or in work. So if you head to that directory and look
+> for either .meta or .kernel-meta, you should see a file 
+> "top_tgt" in that
+> directory.
+> 
+> Look at the contents of that file. It should point to those generated
+> files you referenced above. If it doesn't .. they weren't used, and we
+> need to figure out why.
+
+The file
+"/home/pauld/yocto-fido/build/tmp/work-shared/chroma-bsp/kernel-source/.me
+ta/top_tgt" contains
+"/home/pauld/yocto-fido/build/tmp/work-shared/chroma-bsp/kernel-source/.me
+ta/cfg/scratch/obj/home/pauld/yocto-fido/meta-chroma-bsp/recipes-kernel/li
+nux/files/chroma-bsp-preempt-rt.scc". That referenced folder includes a
+copy of all the .scc and .cfg files I mentioned before. I guess that means
+that they are in fact being used.
+
+Does that mean that this warning message is spurious, and can be ignored?
+My kernel is hanging during the boot at this point, but I suspect my real
+problem is elsewhere.
+
+Thanks so much for your time helping me to figure this out.
+
 -- 
-1.8.2.3
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
