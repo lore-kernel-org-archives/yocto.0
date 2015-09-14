@@ -1,72 +1,26 @@
-Return-Path: <rcalhoun@shotspotter.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBA49E00D1F; Sun, 13 Sep 2015 18:55:49 -0700 (PDT)
+	id ACF9AE00CBF; Sun, 13 Sep 2015 21:26:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.85 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0085.outbound.protection.outlook.com [65.55.169.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E3C9E00B36
-	for <yocto@yoctoproject.org>; Sun, 13 Sep 2015 18:55:45 -0700 (PDT)
-Received: from BY2PR0401MB0902.namprd04.prod.outlook.com (10.160.64.139) by
-	BY2PR0401MB0901.namprd04.prod.outlook.com (10.160.64.13) with Microsoft
-	SMTP Server (TLS) id 15.1.268.17; Mon, 14 Sep 2015 01:40:23 +0000
-Received: from BY2PR0401MB0902.namprd04.prod.outlook.com ([10.160.64.139]) by
-	BY2PR0401MB0902.namprd04.prod.outlook.com ([10.160.64.139]) with
-	mapi id 15.01.0268.017; Mon, 14 Sep 2015 01:40:22 +0000
-From: Robert Calhoun <rcalhoun@shotspotter.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Warning about auto generated BSP description
-Thread-Index: AdDuYPUVhS0FImuORRu4v3X7tO4CNQAC9SEA
-Date: Mon, 14 Sep 2015 01:40:22 +0000
-Message-ID: <90A8BD5E-50DE-4AF8-946D-62620C29AF12@shotspotter.com>
-References: <CBE84E2773C74A3AB4EA3A80074BCFB3@PAULD>
-In-Reply-To: <CBE84E2773C74A3AB4EA3A80074BCFB3@PAULD>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/0.0.0.150807
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=rcalhoun@shotspotter.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [172.77.112.35]
-x-microsoft-exchange-diagnostics: 1; BY2PR0401MB0901;
-	5:RDeswOG/91Fdc5Ii8qU2UJvTf/r188H0YwaF+IH8Ysn5c7Q+8tU7AXAKR/LZm3aLks0TaYUflE4eG8wwnoWzrkw/R9eFxr/LqDjqf3dPn+WR1YpWzY6U4clPjpdV0cVq9guQMDj4I9LfYWt/SMspBA==;
-	24:2I+8bMDIGBQJTYhXBi5bwc+lclGDB4foMMBwhRKphgYFBlsccy0FD9WoDLiBi3BZs0BLpRNVKV7py91TTXCkvng6yIBwvt65uzNUGy81X0s=;
-	20:OBMbJHsCUISdTSX3rI3U/mXafaMSMDPR9dkwOix4IByJWY4QovSu4V0ZCFIrrUGCWrmPx004gOcKF4CwkJB0+Q==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR0401MB0901;
-x-microsoft-antispam-prvs: <BY2PR0401MB090183273C5138097C9E988BCE5D0@BY2PR0401MB0901.namprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(8121501046)(3002001);
-	SRVR:BY2PR0401MB0901; BCL:0; PCL:0; RULEID:;
-	SRVR:BY2PR0401MB0901; 
-x-forefront-prvs: 0699FCD394
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(199003)(377454003)(479174004)(24454002)(189002)(2501003)(40100003)(99286002)(105586002)(101416001)(106356001)(5004730100002)(19580395003)(5007970100001)(19580405001)(5001830100001)(5001770100001)(5002640100001)(10400500002)(102836002)(77096005)(86362001)(68736005)(122556002)(189998001)(33656002)(5001960100002)(107886002)(46102003)(4001350100001)(81156007)(5001860100001)(87936001)(92566002)(4001540100001)(97736004)(83506001)(62966003)(77156002)(83716003)(54356999)(76176999)(2900100001)(82746002)(2950100001)(50986999)(64706001)(36756003)(66066001)(7059030)(104396002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR0401MB0901;
-	H:BY2PR0401MB0902.namprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: shotspotter.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0C82E00821
+	for <yocto@yoctoproject.org>; Sun, 13 Sep 2015 21:26:52 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 0AD34849626C
+	for <yocto@yoctoproject.org>; Mon, 14 Sep 2015 00:26:52 -0400 (EDT)
 MIME-Version: 1.0
-X-OriginatorOrg: shotspotter.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2015 01:40:22.4939 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 375a7f95-52d1-443a-aa60-167b2aefb8af
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR0401MB0901
-Subject: Re: Warning about auto generated BSP description
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 14 Sep 2015 04:26:52 -0000
+Message-ID: <20150914042652.27273.3554@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,50 +32,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Sep 2015 01:55:49 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 14 Sep 2015 04:26:57 -0000
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <FB5DBBC7ED705242BB5E0B629618CAF7@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-WW91ciBrZXJuZWwgcmVjaXBlIG5lZWRzIHRvIGhhdmUgYW4gZW50cnkgZm9yIHRoZSBtYWNoaW5l
-LCBlLmcuIGEga2VybmVsIHJlY2lwZSBjYWxsZWQgbGludXgtbWFpbmxpbmUuYmIgY29udGFpbnMN
-CkNPTVBBVElCTEVfTUFDSElORV9teW1hY2hpbmUgPSAibXltYWNoaW5lIg0KDQpBbHNvLCB5b3Vy
-IG1hY2hpbmUgY29uZmlnIGZpbGUgbXltYWNoaW5lLmNvbmYgbmVlZHMgdG8gaGF2ZSBhIHByZWZl
-cnJlZCBrZXJuZWwgdmVyc2lvbiwgZS5nOg0KUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwva2Vy
-bmVsID89ICJsaW51eC1tYWlubGluZSINClBSRUZFUlJFRF9WRVJTSU9OX2xpbnV4LXlvY3RvID89
-ICIzLjE5JSINClBSRUZFUlJFRF9WRVJTSU9OX2xpbnV4LW1haW5saW5lID89ICI0LjIlIg0KDQoN
-CihJIGFtIG5vdCBjZXJ0YWluIHRoZXNlIHdpbGwgZml4IHlvdXIgZXJyb3IgYnV0IHlvdSBzaG91
-bGQgaGF2ZSB0aGVtIGRlZmluZWQuKQ0KLVJvYg0KDQoNCg0KDQpPbiA5LzEzLzE1LCA0OjE1IFBN
-LCAieW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIG9uIGJlaGFsZiBvZiBQYXVsIEQuIERl
-Um9jY28iIDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgb24gYmVoYWxmIG9mIHBkZXJv
-Y2NvQGl4Lm5ldGNvbS5jb20+IHdyb3RlOg0KDQo+SSdtIGdldHRpbmcgdGhlIGZvbGxvd2luZyB3
-YXJuaW5nOg0KPg0KPltrZXJuZWxdOiBBbiBhdXRvIGdlbmVyYXRlZCBCU1AgZGVzY3JpcHRpb24g
-d2FzIHVzZWQsIHRoaXMgbm9ybWFsbHkNCj5pbmRpY2F0ZXMgYSBtaXNjb25maWd1cmF0aW9uLg0K
-PkNoZWNrIHRoYXQgeW91ciBtYWNoaW5lIChjaHJvbWEtYnNwKSBoYXMgYW4gYXNzb2NpYXRlZCBr
-ZXJuZWwgZGVzY3JpcHRpb24uDQo+DQo+R29vZ2xpbmcgdHVybnMgdXAgdGhlIGluZm9ybWF0aW9u
-IHRoYXQgdGhpcyBpcyBzb21ldGltZXMgYSBzcHVyaW91cyBlcnJvcg0KPmFuZCBub3RoaW5nIHRv
-IHdvcnJ5IGFib3V0LCBiZWNhdXNlIGEgZnVsbCBCU1AgZGVzY3JpcHRpb24gaXNuJ3Qgc3RyaWN0
-bHkNCj5yZXF1aXJlZC4gSG93ZXZlciwgYXMgZmFyIGFzIEkgY2FuIHNlZSBJIGRvIGluZGVlZCBo
-YXZlIGEgQlNQIGRlc2NyaXB0aW9uLg0KPkkgYnVpbHQgdGhlIEJTUCB1c2luZyB0aGUgeW9jdG8t
-YnNwIHRvb2wuIEl0IGNyZWF0ZWQgYQ0KPmxpbnV4LXlvY3RvLXJ0XzMuMTQuYmJhcHBlbmQgKHNp
-bmNlIEknbSB1c2luZyB0aGUgUlQga2VybmVsKSwgYW5kIHRoZQ0KPmZvbGxvd2luZyBmaWxlczoN
-Cj4NCj4gICAgY2hyb21hLWJzcC5jZmcNCj4gICAgY2hyb21hLWJzcC5zY2MNCj4gICAgY2hyb21h
-LWJzcC1wcmVlbXB0LXJ0LnNjYw0KPiAgICBjaHJvbWEtYnNwLXN0YW5kYXJkLnNjYw0KPiAgICBj
-aHJvbWEtYnNwLXRpbnkuc2NjDQo+ICAgIGNocm9tYS1ic3AtdXNlci1jb25maWcuY2ZnDQo+ICAg
-IGNocm9tYS1ic3AtdXNlci1mZWF0dXJlcy5zY2MNCj4gICAgY2hyb21hLWJzcC11c2VyLXBhdGNo
-ZXMuc2NjDQo+DQo+VGhlIGJiYXBwZW5kIHJlZmVycyB0byBjaHJvbWEtYnNwLXByZWVtcHQtcnQu
-c2NjIGFuZCB0aGUgbGFzdCB0aHJlZQ0KPihlbXB0eSkgZmlsZXMuIGNocm9tYS1ic3AtcHJlZW1w
-dC1ydC5zY2MgY29udGFpbnMgdGhlIHJlcXVpc2l0ZSBLTUFDSElORSwNCj5LVFlQRSBhbmQgS0FS
-Q0gsIGFuZCBpbmNsdWRlcyBjaHJvbWEtYnNwLnNjYywgd2hpY2ggcmVmZXJzIHRvDQo+Y2hyb21h
-LWJzcC5jZmcuIFRoaXMgc2VlbXMgdG8gZml0IHRoZSBkZWZpbml0aW9uIG9mIGEgIkJTUCBkZXNj
-cmlwdGlvbiIgaW4NCj4zLjQuNSBvZiB0aGUgS2VybmVsIERldmVsb3BtZW50IE1hbnVhbC4gVGhl
-IHdob2xlIEJTUCB0cmVlIGlzIGNhbGxlZA0KPiJtZXRhLWNocm9tYS1ic3AiIGFuZCB0aGF0IGlz
-IGluZGVlZCBsaXN0ZWQgaW4gbXkgYmJsYXllcnMuY29uZi4gU28gd2h5IGlzDQo+aXQgY29tcGxh
-aW5pbmc/DQo+DQo+QWxzbywgSSBkb24ndCBrbm93IHRoYXQgIkNoZWNrIHRoYXQgeW91ciBtYWNo
-aW5lIGhhcyBhbiBhc3NvY2lhdGVkIGtlcm5lbA0KPmRlc2NyaXB0aW9uIiBtZWFucy4gVGhlIHRl
-cm0gImtlcm5lbCBkZXNjcmlwdGlvbiIgZG9lc24ndCBhcHBlYXIgYW55d2hlcmUNCj5pbiB0aGUg
-ZG9jcy4NCj4NCj4tLSANCj4NCj5DaWFvLCAgICAgICAgICAgICAgIFBhdWwgRC4gRGVSb2Njbw0K
-PlBhdWwgICAgICAgICAgICAgICAgbWFpbHRvOnBkZXJvY2NvQGl4Lm5ldGNvbS5jb20gDQo+DQo+
-LS0gDQo=
+This mail was sent out by Recipe reporting system.
+
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
+
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+
+You can check the detail information at:
+
+http://packages.yoctoproject.org/
+
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1        1.3.2                 Alejandro Hernandez
+python                2.7.9        2.7.10                Alejandro Hernandez
+libusb1               1.0.19       1.0.20                Alejandro Hernandez
+ruby                  2.2.2        2.2.3                 Alexander Kanavin
+gcr                   3.16.0       3.17.4                Alexander Kanavin
+gnome-desktop3        3.16.2       3.17.91               Alexander Kanavin
+libsecret             0.18.2       0.18.3                Alexander Kanavin
+p11-kit               0.22.1       0.23.1                Alexander Kanavin
+iso-codes             3.58         3.61                  Alexander Kanavin
+acpid                 2.0.23       2.0.25                Aníbal Limón
+apt                   1.0.10.1     1.0.10.2              Aníbal Limón
+sqlite3               3.8.10.2     3.8.11.1              Aníbal Limón
+pinentry              0.9.2        0.9.6                 Armin Kuster
+linux-libc-headers    4.1          4.2                   Bruce Ashfield
+guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
+resolvconf            1.77         1.78                  Chen Qi
+dbus-test             1.8.20       1.10.0                Chen Qi
+dbus                  1.8.20       1.10.0                Chen Qi
+systemd               225+gitX     226+gitAUTOINC+42...  Chen Qi
+util-linux            2.26.2       2.27                  Chen Qi
+cpio                  2.11         2.12                  Chen Qi
+cups                  2.0.4        2.1.0                 Chen Qi
+sysstat               11.1.5       11.1.6-1              Chen Qi
+bluez5                5.33         5.34                  Cristian Iorga
+iproute2              4.1.1        4.2.0                 Cristian Iorga
+libpcap               1.6.2        1.7.4                 Cristian Iorga
+ofono                 1.16         1.17                  Cristian Iorga
+build-appliance-i...  12.0.1       13.0.0                Cristian Iorga
+db                    6.0.30       6.1.26                Cristian Iorga       Updating to 6.1.x requires ...
+libical               1.0.0        1.0.1                 Cristian Iorga
+libtirpc              0.2.5        0.3.2                 Cristian Iorga
+harfbuzz              1.0.2        1.0.3                 Cristian Iorga
+kernelshark           2.5.3+gitX   2.6+gitAUTOINC+9b...  Darren Hart
+trace-cmd             2.5.3+gitX   2.6+gitAUTOINC+9b...  Darren Hart
+dhcp                  4.3.2        4.3.3                 Hongxu Jia
+ncurses               5.9          6.0-20150912          Hongxu Jia
+qmmp                  0.8.6        0.9.1                 Hongxu Jia
+pax-utils             1.0.5        1.1.2                 Hongxu Jia
+createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.3        1.6.4                 Hongxu Jia
+help2man-native       1.47.1       1.47.2                Hongxu Jia
+gnupg                 2.1.7        2.1.8                 Hongxu Jia
+waffle                1.5.1        1.5.2                 Jussi Kukkonen
+libinput              0.21.0       1.0.1                 Jussi Kukkonen
+wayland               1.8.1        1.8.92                Jussi Kukkonen
+weston                1.8.0        1.8.92                Jussi Kukkonen
+gtk-icon-utils-na...  3.16.6       3.17.8                Jussi Kukkonen
+libxcb                1.11         1.11.1                Jussi Kukkonen
+libxi                 1.7.4        1.7.5                 Jussi Kukkonen
+pixman                0.32.6       0.33.2                Jussi Kukkonen
+xserver-xorg          1.17.2       1.17.99.901           Jussi Kukkonen
+vala                  0.28.0       0.28.1                Jussi Kukkonen
+vte                   0.28.2       0.40.2                Jussi Kukkonen       matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.8        3.0.10                Jussi Kukkonen
+glew                  1.12.0       1.13.0                Jussi Kukkonen
+python-mako           1.0.1        1.0.2                 Khem Raj
+python-nose           1.3.6        1.3.7                 Khem Raj
+python-numpy          1.7.0        1.9.2                 Khem Raj
+rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
+dmidecode             2.12         3.0                   No maintainer
+orc                   0.4.23       0.4.24                No maintainer
+midori                0.5.8        0.5.11                No maintainer
+webkit-gtk            1.8.3        1.9.92                No maintainer
+sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
+binutils-cross-ca...  2.25.1       20131001              No maintainer
+binutils-cross-i586   2.25.1       20131001              No maintainer
+binutils-crosssdk...  2.25.1       20131001              No maintainer
+ifupdown              0.7.48.1     0.7.54ubuntu1         No maintainer
+xuser-account         0.1          1.0                   No maintainer
+swig                  3.0.6        3.0.7                 No maintainer
+python3-pip           6.1.1        7.1.2                 No maintainer
+python3-setuptools    18.2         18.3.1                No maintainer
+uclibc-initial        0.9.33+gitX  0.9.33.2+gitAUTOI...  No maintainer
+apt-native            1.0.10.1     1.0.10.2              No maintainer
+gcc-source-4.8.4      4.8.4        4.8.5                 No maintainer
+gdb-cross-canadia...  7.9.1        7.10                  No maintainer
+gdb-cross-i586        7.9.1        7.10                  No maintainer
+python3-native        3.4.3        3.5.0                 No maintainer
+python-native         2.7.9        2.7.10                No maintainer
+libav                 9.18         11.4                  Paul Eggleton
+gpgme                 1.5.4        1.6.0                 Paul Eggleton
+libevdev              1.4.2        1.4.4                 Paul Eggleton
+libgpg-error          1.19         1.20                  Paul Eggleton
+libpng                1.6.17       1.6.18                Randy Witt
+libtasn1              4.5          4.6                   Randy Witt
+unfs3                 0.9.22.r490  0.9.22.r495           Randy Witt
+libunistring          0.9.5        0.9.6                 Randy Witt
+btrfs-tools           4.1.2        4.2                   Richard Purdie
+lttng-modules         2.6.2+gitX   2.6.3+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.6.2+gitX   2.6.3+gitAUTOINC+...  Richard Purdie
+gdb                   7.9.1        7.10                  Richard Purdie
+python-pygobject      2.28.3       3.17.90               Richard Purdie       Newer versions of python-py...
+subversion            1.8.13       1.9.1                 Richard Purdie
+libdrm                2.4.62       2.4.64                Richard Purdie
+e2fsprogs             1.42.9       1.42.13               Robert Yang          Updating backported patches...
+git                   2.5.0        2.5.2                 Robert Yang
+gmp                   6.0.0        6.0.0a                Robert Yang
+less                  479          481                   Robert Yang
+ltp                   20150420     20150903              Robert Yang
+liberation-fonts      1.04         2.00.1                Ross Burton          2.x depends on fontforge pa...
+base-passwd           3.5.29       3.5.38                Ross Burton          Version 3.5.38 requires cde...
+kbd                   2.0.2        2.0.3                 Ross Burton
+uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Ross Burton
+systemtap             2.7+gitX     2.8+gitAUTOINC+08...  Ross Burton
+tiff                  4.0.4        4.0.6                 Ross Burton
+mkelfimage            4.0+gitX     4.1+gitAUTOINC+6c...  Ross Burton          mkelfimage has been removed...
+mtd-utils             1.5.1+gitX   1.5.2+gitAUTOINC+...  Ross Burton
+icu                   55.1         55.1-AIX7.1-VA2       Ross Burton
+liburcu               0.8.7        0.8.8                 Ross Burton
+nss                   3.19.2       3.20                  Ross Burton
+libidn                1.30         1.32                  Ross Burton
+lighttpd              1.4.36       1.4.37                Ross Burton
+libassuan             2.2.1        2.3.0                 Ross Burton
+procps                3.3.10       3.3.11                Ross Burton
+pulseaudio            6.0          6.99.2                Tanu Kaskinen
+systemtap-uprobes     2.7+gitX     2.8+gitAUTOINC+08...  Tom Zanussi
+gettext               0.19.4       0.19.6                Wenzong Fan
+chkconfig             1.3.58       1.5                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 108
+Upgradable total count: 118
+
+The based commit is:
+
+commit 2c8c3d9c4b65d2a5c7976d530138ebcaac2b1447
+Author: Roy Li <rongqing.li@windriver.com>
+Date:   Fri Aug 7 16:11:03 2015 +0800
+
+    gcc: reformat 0063-nativesdk-gcc-support.patch
+    
+    0063-nativesdk-gcc-support.patch can not be applied to source code due to
+    the buggy patch command on sled11, so reformat it, nothing is changed.
+    
+    Signed-off-by: Roy Li <rongqing.li@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
