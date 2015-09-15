@@ -1,56 +1,42 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <wmills@ti.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4447CE00CF0; Tue, 15 Sep 2015 07:53:32 -0700 (PDT)
+	id A51D2E00D9A; Tue, 15 Sep 2015 08:40:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.47.26.153 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA3D2E00B51
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 07:53:31 -0700 (PDT)
-Received: by igcpb10 with SMTP id pb10so16075857igc.1
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 07:53:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=Ykf7AEh78zhV+N6eDscFlw6orDiL2I6yNDjXNaAMhUs=;
-	b=JbQQc1I49haMaO1d9v3Sh6yBM4MuPMHrNzyQCjYvI0tXv3fqHUMfYxDfxRkZ2ltz9Y
-	vHvXnjJE7NP6jNkwfLXlFB4u31RRw1UZGjBwBitpnUtQXocbxkfysC1oWnb2f0we3CG/
-	F87MXWnW/huc2T7oMRZ+4uifmf9oDGqp3jqzZCkpUOAzQ+nNGrXLwEvtN5CYSuHDHTO6
-	IEbDNKuNroFG2Ui+we0lm9xMq38c5JwYuTsxgQS9g4Jp+8PiOR1tk2ZrCtXpPnOhBYIF
-	ZpTnW7dmyQ5qVUm9XXdzcPhCwmpTj55wRUnpasxZsz/cwOU7OTnbXrRMCzECf+9aW1iP
-	G9uw==
-X-Received: by 10.50.124.4 with SMTP id me4mr6764029igb.34.1442328811454;
-	Tue, 15 Sep 2015 07:53:31 -0700 (PDT)
-Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	ro10sm7742125igb.1.2015.09.15.07.53.26
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 15 Sep 2015 07:53:30 -0700 (PDT)
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, yocto@yoctoproject.org
-References: <A240ECF1A90D49B7ACC78379329FE808@PAULD> <55F82F8A.0@gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <55F830DF.5030804@gmail.com>
-Date: Tue, 15 Sep 2015 10:53:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6A3BE00B5C
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 08:40:11 -0700 (PDT)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t8FFd9uF013442;
+	Tue, 15 Sep 2015 10:39:09 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8FFd9jO006002;
+	Tue, 15 Sep 2015 10:39:09 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 15 Sep 2015 10:39:09 -0500
+Received: from [137.167.41.114] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t8FFd7DW001531;
+	Tue, 15 Sep 2015 10:39:08 -0500
+Message-ID: <55F83B9D.3020002@ti.com>
+Date: Tue, 15 Sep 2015 11:39:09 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-In-Reply-To: <55F82F8A.0@gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>, "Paul D. DeRocco"
+	<pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
+References: <A240ECF1A90D49B7ACC78379329FE808@PAULD> <55F82F8A.0@gmail.com>
+	<55F830DF.5030804@gmail.com>
+In-Reply-To: <55F830DF.5030804@gmail.com>
 Subject: Re: I hate busybox!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,15 +49,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 14:53:32 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 15 Sep 2015 15:40:13 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
-On 09/15/15 10:47, Trevor Woerner wrote:
-> The only place busybox (and
-> toybox) are needed today are in the MMU-less-type systems, such as
-> Cortex-Ms etc.
 
-Actually, the presence or lack of MMU is irrelevant, I meant to single
-out those systems with limited on-SoC flash.
+On 09/15/2015 10:53 AM, Trevor Woerner wrote:
+> On 09/15/15 10:47, Trevor Woerner wrote:
+>> The only place busybox (and
+>> toybox) are needed today are in the MMU-less-type systems, such as
+>> Cortex-Ms etc.
+> 
+> Actually, the presence or lack of MMU is irrelevant, I meant to single
+> out those systems with limited on-SoC flash.
+> 
+
+OE-core is capable of building a system that has no GPLv3.
+This capability is still important to some users and busybox is needed
+for that as I understand.
+
+(Other users want the capability to build a system w/o proprietary code.
+ OE serves both needs.)
+
+
 
