@@ -1,45 +1,41 @@
-Return-Path: <andy.pont@sdcsystems.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53EB2E00C38; Tue, 15 Sep 2015 04:16:23 -0700 (PDT)
+	id DDF82E00C51; Tue, 15 Sep 2015 06:53:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
-	characters
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.40.44.230 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0001]
-Received: from smtprelay.hostedemail.com (smtprelay0230.hostedemail.com
-	[216.40.44.230])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE790E00B72
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 04:16:17 -0700 (PDT)
-Received: from filter.hostedemail.com (unknown [216.40.38.60])
-	by smtprelay02.hostedemail.com (Postfix) with ESMTP id 66D6F12BA1C
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 11:16:16 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: pain86_70e7659754748
-X-Filterd-Recvd-Size: 887
-Received: from sdcapont (unknown [5.133.41.213])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf11.hostedemail.com (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 11:16:15 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 15 Sep 2015 12:16:10 +0100
-Organization: SDC Systems Limited
-Message-ID: <006a01d0efa7$ed9387b0$c8ba9710$@pont@sdcsystems.com>
+	*      [score: 0.0000]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B683E00B51
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 06:53:08 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t8FDr5eu018664
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 15 Sep 2015 06:53:05 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.228) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.235.1; Tue, 15 Sep 2015 06:53:05 -0700
+To: <andy.pont@sdcsystems.com>, <yocto@yoctoproject.org>
+References: <006a01d0efa7$ed9387b0$c8ba9710$@pont@sdcsystems.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <55F822C0.8030404@windriver.com>
+Date: Tue, 15 Sep 2015 08:53:04 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.2.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdDvp+yvo3Xc1BwkS7+ztzYK3PgqRA==
-Subject: Dumping sysvinit
+In-Reply-To: <006a01d0efa7$ed9387b0$c8ba9710$@pont@sdcsystems.com>
+Subject: Re: Dumping sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,20 +44,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 11:16:23 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Tue, 15 Sep 2015 13:53:08 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
-Content-Language: en-gb
 
-Hello,
+On 9/15/15 6:16 AM, Andy Pont wrote:
+> Hello,
+> 
+> Bit of a newbie question (probably) but what is the easiest way to dump
+> sysvinit and use Busybox init in a core-image-minimal image?
 
-Bit of a newbie question (probably) but what is the easiest way to dump
-sysvinit and use Busybox init in a core-image-minimal image?
+It has been a while since I've done this.  But unless things have changed
+dramatically.  You will need to define your own custom image.
 
-Thanks,
+One that does not include the sysvinit component or base initscripts.  You will
+then have to provide your own base initscripts for your system to startup and
+function.  (You might be able to copy some from the initscripts, but many expect
+the sysvinit [or systemd] to be present on the device.)
 
-Andy.
+You are moving into pure custom boot optimization and implementation at this point.
 
+--Mark
+
+> Thanks,
+> 
+> Andy.
+> 
+> 
 
 
