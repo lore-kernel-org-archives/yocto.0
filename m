@@ -1,48 +1,38 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44E70E00CF0; Tue, 15 Sep 2015 10:22:44 -0700 (PDT)
+	id 2FAA5E00C91; Tue, 15 Sep 2015 10:32:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*      [74.55.86.74 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30560E00B72
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 10:22:40 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Zbtw9-0000kX-2m
-	for yocto@yoctoproject.org; Tue, 15 Sep 2015 19:22:33 +0200
-Received: from ppp-2-86-165-64.home.otenet.gr ([2.86.165.64])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 19:22:33 +0200
-Received: from gmane by ppp-2-86-165-64.home.otenet.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 19:22:33 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Tue, 15 Sep 2015 20:22:09 +0300
-Message-ID: <55F853C1.6030503@reliableembeddedsystems.com>
-References: <55F7DB62.20302@2net.co.uk>	<22897052.oHQR6DBFiy@peggleto-mobl.ger.corp.intel.com>	<55F7E2E7.7050609@2net.co.uk>	<1442310354.26666.50.camel@linuxfoundation.org>
-	<55F8269A.4060705@2net.co.uk>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp-2-86-165-64.home.otenet.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-In-Reply-To: <55F8269A.4060705@2net.co.uk>
-Cc: Paul Eggleton
-	<public-paul.eggleton-VuQAYsv1563Yd54FQh9/CA@plane.gmane.org>,
-	public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
-Subject: Re: gcc reports sysroot is /not/exist!
+X-Greylist: delayed 1851 seconds by postgrey-1.32 at yocto-www;
+	Tue, 15 Sep 2015 10:32:46 PDT
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07DADE00B72
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 10:32:46 -0700 (PDT)
+Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
+	[73.194.208.34])
+	by smtp.webfaction.com (Postfix) with ESMTP id BC3CC2078288;
+	Tue, 15 Sep 2015 17:01:54 +0000 (UTC)
+To: Romain Perier <romain.perier@gmail.com>, William Mills <wmills@ti.com>
+References: <A240ECF1A90D49B7ACC78379329FE808@PAULD> <55F82F8A.0@gmail.com>
+	<55F830DF.5030804@gmail.com> <55F83B9D.3020002@ti.com>
+	<CABgxDoLS0nZa3vK-NnkLk_sCPj4N9AxqSmrCBNSKCXxWQ3+8uQ@mail.gmail.com>
+From: Bob Cochran <yocto@mindchasers.com>
+Message-ID: <55F84EFE.7080002@mindchasers.com>
+Date: Tue, 15 Sep 2015 13:01:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <CABgxDoLS0nZa3vK-NnkLk_sCPj4N9AxqSmrCBNSKCXxWQ3+8uQ@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: I hate busybox!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,38 +44,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 17:22:44 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 15 Sep 2015 17:32:49 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 09/15/2015 12:38 PM, Romain Perier wrote:
+> Hi all,
+>
+> I disagree,
+> Unfortunately some embedded devices in the industry are not like most
+> of the tablets and smartphones in the market (no quad or octo cores
+> with few GB of ram... and few GB of flash...)   ;)  .For example,
+> these days, at work, we're designing a board with the SoC zynq-7000
+> and a quad-spi NOR flash. The NOR only has 16MB... now remove ~2Mb for
+> u-boot... 4Mb for the bistream (fpga)... I only have 10MB for my
+> kernel and my rootfs.
+>
+> Embedded projects like uclibc, musl or busybox are very appreciated in
+> cases like this one :)
+>
+> I am not saying that it is a great thing to have busybox built and
+> enabled by default, but that is a great thing to be able to use it.
+> In fact, it strongly depends on your needs for the target...
 
-I had a similar problem with you, but was able to fix it by replacing in
-some global makefile:
+Agreed.
 
-CXX=${CROSS_COMPILE}g++
-CC=${CROSS_COMPILE}gcc
-LINKER=${CROSS_COMPILE}gcc
-LOADER=${CROSS_COMPILE}ldd
+I just tack on IMAGE_INSTALL_append = " tar findutils tree etc..." in my 
+image recipe when I have the rootfs space, and I want the full tool. 
+The build system seems to do a nice job of creating the links properly.
 
-with:
 
-#CXX=${CROSS_COMPILE}g++
-#CC=${CROSS_COMPILE}gcc
-#LINKER=${CROSS_COMPILE}gcc
-LINKER=$(CC)
-#LOADER=${CROSS_COMPILE}ldd
-
-Regards,
-
-Robert
-..."Whereas Europeans generally pronouce my name the right way (Ni-klows
-Virt), Americans invariably mangle it into 'Nickle-less Worth'. This is
-to say that Europeans call me by name, but Americans call me by value."
--- Niklaus Wirth
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
+>
+> Regards,
+> Romain
+>
+> 2015-09-15 17:39 GMT+02:00 William Mills <wmills@ti.com>:
+>>
+>> On 09/15/2015 10:53 AM, Trevor Woerner wrote:
+>>> On 09/15/15 10:47, Trevor Woerner wrote:
+>>>> The only place busybox (and
+>>>> toybox) are needed today are in the MMU-less-type systems, such as
+>>>> Cortex-Ms etc.
+>>>
+>>> Actually, the presence or lack of MMU is irrelevant, I meant to single
+>>> out those systems with limited on-SoC flash.
+>>>
+>>
+>> OE-core is capable of building a system that has no GPLv3.
+>> This capability is still important to some users and busybox is needed
+>> for that as I understand.
+>>
+>> (Other users want the capability to build a system w/o proprietary code.
+>>   OE serves both needs.)
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
 
