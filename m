@@ -1,39 +1,48 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB567E00D5B; Tue, 15 Sep 2015 02:46:25 -0700 (PDT)
+	id 0BAA4E00DA9; Tue, 15 Sep 2015 03:44:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45456E00B72
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 02:46:21 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	t8F9kBEd006970; Tue, 15 Sep 2015 10:46:11 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id yf7HazC0hwYD; Tue, 15 Sep 2015 10:46:11 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	t8F9jsDV006940
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 15 Sep 2015 10:46:06 +0100
-Message-ID: <1442310354.26666.50.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: chris@2net.co.uk
-Date: Tue, 15 Sep 2015 10:45:54 +0100
-In-Reply-To: <55F7E2E7.7050609@2net.co.uk>
-References: <55F7DB62.20302@2net.co.uk>
-	<22897052.oHQR6DBFiy@peggleto-mobl.ger.corp.intel.com>
-	<55F7E2E7.7050609@2net.co.uk>
-X-Mailer: Evolution 3.12.11-0ubuntu3 
-Mime-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: gcc reports sysroot is /not/exist!
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46EFDE00B72
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 03:44:44 -0700 (PDT)
+Received: by qkfq186 with SMTP id q186so69824731qkf.1
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 03:44:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=ALLqVFzg99mzH/maUog9n7Hof0sNzFPdBU9GrdvIOqs=;
+	b=ivt6zRS8iajIVZ7pvakJ1+kJ7j/BVP0cATywESNdctspRfQx+O8GmAyDhx2qcmBpnS
+	ohI+U7ma0ZO+lD3yVo0b5uTMGsG1sRE+K76CxrzK0rVxwK4iXm1U/dbLhLDUvfbbbWga
+	654Atq40fcZOHPmdyxKZuI/+RxKL2e3a7MOTNyLPPD74bV3V7VoThD1MatljTsSgmO2/
+	PGXoSX3PTedXdE8j2NWKkDjJLS9ISlpKUeFFUjHZjj8AJLyJFXWzjFSHt6Km7cTYJT0E
+	GfOWi0gd+055ny927uqIlHexf10lAYmVH76BDXLld6pSTdXiU2KglGZUMYGrDmOcTfR4
+	w8ZA==
+X-Gm-Message-State: ALoCoQms8dtvpNF97XLCxDdRrBzFNw4ZekWRA+V5mYPJjNe6ZgzjQqA3mBlQ447H1/1YO3Re5NR1
+X-Received: by 10.55.195.86 with SMTP id a83mr30037902qkj.72.1442313883884;
+	Tue, 15 Sep 2015 03:44:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.94.86 with HTTP; Tue, 15 Sep 2015 03:44:24 -0700 (PDT)
+In-Reply-To: <2359992.oyyONspMKy@peggleto-mobl.ger.corp.intel.com>
+References: <A240ECF1A90D49B7ACC78379329FE808@PAULD>
+	<2359992.oyyONspMKy@peggleto-mobl.ger.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 15 Sep 2015 11:44:24 +0100
+Message-ID: <CAJTo0LZr0W+Zynh4jpm=7FchKE1kFNWCmbSTMuQ6L8-2U8WxUw@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: I hate busybox!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,98 +54,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 09:46:25 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Sep 2015 10:44:48 -0000
+Content-Type: multipart/alternative; boundary=001a1142b950b43b73051fc6de64
 
-On Tue, 2015-09-15 at 10:20 +0100, Chris Simmonds wrote:
-> On 15/09/15 09:58, Paul Eggleton wrote:
-> > Hi Chris,
-> > 
-> > On Tuesday 15 September 2015 09:48:34 Chris Simmonds wrote:
-> >> I am using Yocto fido (1.8) to generate an SDK for a BeaglBone. I
-> >> generate the it using the command:
-> >>
-> >> $ bitbake core-image-minimal -c populate_sdk
-> >>
-> >> Having installed the resulting SDK and sourced
-> >> /opt/poky/1.8/environment-setup-cortexa8hf-vfp-neon-poky-linux-gnueabi
-> >>
-> >> I find that the sysroot is not set:
-> >>
-> >> $ arm-poky-linux-gnueabi-gcc -print-sysroot
-> >> /not/exist
-> >>
-> >> This used to work fine in 1.7 and earlier. It looks like now I have to
-> >> use $CC in place of arm-poky-linux-gnueabi-gcc, but that messes up many
-> >> Makefiles which set the compiler with something like
-> >>
-> >> CC=$(CROSS_COMPILE)gcc
-> >>
-> >> What to do? Why is gcc not configured with a sysroot any more?
-> > 
-> > AIUI this had to be done in order to have a per-architecture compiler rather 
-> > than a per-machine one. I believe if you use make -e then variables set in the 
-> > environment will take precedence over those set in the makefile, which will 
-> > allow the CC value set by the SDK's environment setup script to be used.
-> > 
-> > (If we haven't documented this somewhere, we definitely ought to.)
-> > 
-> > Cheers,
-> > Paul
-> > 
-> 
-> Well, that works as far as it goes, but it also overrides my CFLAGS,
-> LDFLAGS and so on, so I still have to change my Makefiles, of which
-> there are many.
-> 
-> Also, I am not convinced this is a step in the right direction. I expect
-> to be able to compile a simple program using:
-> 
-> $ gcc hello.c -o hello
-> 
-> But with this new cross compiler setup, this happens:
-> 
-> $ arm-poky-linux-gnueabi-gcc hello.c -o hello
-> hello.c:1:19: fatal error: stdio.h: No such file or directory
->  #include <stdio.h>
->                    ^
-> compilation terminated.
+--001a1142b950b43b73051fc6de64
+Content-Type: text/plain; charset=UTF-8
 
-If we hardcode the path to the sysroot into the compiler, we hit several
-issues. Firstly, we rely on the relocation code within gcc to get this
-relocated correctly at install time. That doesn't work for the way we
-currently build the compilers so the default sysroot only works for the
-default installation directory. Yes, that one is fixable with some
-jumping through hoops.
+On 15 September 2015 at 09:45, Paul Eggleton <paul.eggleton@linux.intel.com>
+wrote:
 
-However if you don't want to set CFLAGS either, that implies we'd have
-to code the flags into the compiler as well. 
+> core-image-full-cmdline (and the packagegroup it uses,
+> packagegroup-core-full-
+> cmdline) should give you the former, and the full tools will in almost all
+> cases take precedence simply by being installed by virtue of the
+> alternatives
+> system. In order to actually remove busybox though you'd need to break
+> apart
+> packagegroup-core-boot (i.e. include its constituent parts separately into
+> your image instead of the packagegroup itself).
+>
 
-So we'd build a compiler per target sysroot and per set of optimisation
-flags for said target. That is grossly inefficient.
+Wind River have started to send patches to enable this, so oe-core 2.0 may
+be able to have images without busybox.
 
-We've always had the environment file there and we've always set CFLAGS
-this way, even in 1.7. If you used a non-default installation directory
-in 1.7, it likely didn't work properly without passing the right flags
-to gcc so you just go lucky even there. In 1.8, we poisoned the default
-sysroot, so we could clearly identify any software which wasn't using
-the CC and CFLAGS in ways we didn't expect. We did this to make our core
-builds deterministic. We decided to do the same with the SDK.
+Ross
 
-If you really object to having to configure the compiler, I'd suggest
-creating some simple wrapper scripts which simply add in the sysroot and
-possibly other compiler flag options you need. The main reason we
-accepted doing the change to the defaults is that there is a
-comparatively simple workaround available for those that feel as you
-do. 
+--001a1142b950b43b73051fc6de64
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-We could even have that code in the main repo, I've just felt so far
-that letting people see whats going on is better than hiding it behind
-more magic scripts.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 15 September 2015 at 09:45, Paul Eggleton <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@l=
+inux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ id=3D":33f" class=3D"a3s" style=3D"overflow:hidden">core-image-full-cmdlin=
+e (and the packagegroup it uses, packagegroup-core-full-<br>
+cmdline) should give you the former, and the full tools will in almost all<=
+br>
+cases take precedence simply by being installed by virtue of the alternativ=
+es<br>
+system. In order to actually remove busybox though you&#39;d need to break =
+apart<br>
+packagegroup-core-boot (i.e. include its constituent parts separately into<=
+br>
+your image instead of the packagegroup itself).</div></blockquote></div><br=
+>Wind River have started to send patches to enable this, so oe-core 2.0 may=
+ be able to have images without busybox.</div><div class=3D"gmail_extra"><b=
+r></div><div class=3D"gmail_extra">Ross</div></div>
 
-Cheers,
-
-Richard
-
-
+--001a1142b950b43b73051fc6de64--
