@@ -1,43 +1,36 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18793E00D95; Tue, 15 Sep 2015 01:26:57 -0700 (PDT)
+	id A0384E00D54; Tue, 15 Sep 2015 01:45:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.86.89.69 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from elasmtp-mealy.atl.sa.earthlink.net
-	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEF35E00BCE
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 01:26:53 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=MR8IdSj+D5GFdJqzkkG66kL5hP211RdzDmnD1rxyFUh3rxF9Zkv4kSBknFK/bArb;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [45.49.236.199] (helo=PAULD)
-	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1ZblZa-0003TN-Qt
-	for yocto@yoctoproject.org; Tue, 15 Sep 2015 04:26:43 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 15 Sep 2015 01:26:20 -0700
-Message-ID: <A240ECF1A90D49B7ACC78379329FE808@PAULD>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5033BE00BC6
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 01:45:02 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga103.jf.intel.com with ESMTP; 15 Sep 2015 01:45:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,534,1437462000"; d="scan'208";a="805422922"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.2.210])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Sep 2015 01:45:01 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Tue, 15 Sep 2015 09:45 +0100
+Message-ID: <2359992.oyyONspMKy@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.6-100.fc21.x86_64; KDE/4.14.9; x86_64; ; )
+In-Reply-To: <A240ECF1A90D49B7ACC78379329FE808@PAULD>
+References: <A240ECF1A90D49B7ACC78379329FE808@PAULD>
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdDvkDKswJL21M00SKSur4gSt6f5Pw==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688344a08772d4444e55558e427b92f6f27350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 45.49.236.199
-Subject: I hate busybox!
+Cc: yocto@yoctoproject.org
+Subject: Re: I hate busybox!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,19 +42,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 08:26:57 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Sep 2015 08:45:03 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-My embedded system has enough room in it for full-featured command line
-tools, instead of the wretched busybox. Does the Yocto meta-data include a
-layer that provides such tools? Or does OE? And how would I disable
-busybox in order to use the better tools?
+Hi Paul,
+
+On Tuesday 15 September 2015 01:26:20 Paul D. DeRocco wrote:
+> My embedded system has enough room in it for full-featured command line
+> tools, instead of the wretched busybox. Does the Yocto meta-data include a
+> layer that provides such tools? Or does OE? And how would I disable
+> busybox in order to use the better tools?
+
+core-image-full-cmdline (and the packagegroup it uses, packagegroup-core-full-
+cmdline) should give you the former, and the full tools will in almost all 
+cases take precedence simply by being installed by virtue of the alternatives 
+system. In order to actually remove busybox though you'd need to break apart 
+packagegroup-core-boot (i.e. include its constituent parts separately into 
+your image instead of the packagegroup itself).
+
+Cheers,
+Paul
 
 -- 
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
