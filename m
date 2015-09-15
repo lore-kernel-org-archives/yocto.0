@@ -1,52 +1,49 @@
-Return-Path: <rkocisko@gmail.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7021CE00DA0; Tue, 15 Sep 2015 08:58:17 -0700 (PDT)
+	id 90AA4E00C13; Tue, 15 Sep 2015 09:03:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rkocisko[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
+	characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.224 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C863E00B5C
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 08:58:13 -0700 (PDT)
-Received: by igbkq10 with SMTP id kq10so17423479igb.0
-	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 08:58:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=31v8XvjduJXNlVwrqUMAB3BXpmX+9Fr1T8lTu7j6MbA=;
-	b=qE74O2Upz6gnoLIdkIEcbIWNsS1gFs1VLCOXV+15mrm3kNNV851du3B60BDAQCICdr
-	9EQHBSSu0uLsSbGGLsUw1yMIT4l9Ex/VyEu/jlyOpth4BZyf5oX1kingxT/tkZNI06HH
-	STsODj777W10zeaRGFYYpzP41vOycyN6uQ3vaSU/YV0CtJaVsy2jqf3R4F8cJZ4rAzlz
-	FYW9YwsFjoeMZWZwYTjf/ch8sYpkrHXphhbwYggGrjkwvzJeBG9aTDe2PHymqppG/IS/
-	+8Yiif5LsEb8VcPGapeNybr33a7Hf4FTF43IElaJnRpwCWxWdDqUv8GPBZo+uRq/tIWU
-	Q9pQ==
-X-Received: by 10.50.6.16 with SMTP id w16mr7204493igw.74.1442332692966; Tue,
-	15 Sep 2015 08:58:12 -0700 (PDT)
+Received: from smtprelay.hostedemail.com (smtprelay0224.hostedemail.com
+	[216.40.44.224])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 837A0E00B5C
+	for <yocto@yoctoproject.org>; Tue, 15 Sep 2015 09:03:49 -0700 (PDT)
+Received: from filter.hostedemail.com (unknown [216.40.38.60])
+	by smtprelay06.hostedemail.com (Postfix) with ESMTP id 2D6299ED95;
+	Tue, 15 Sep 2015 16:03:48 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: debt64_3de636b6de0d
+X-Filterd-Recvd-Size: 2632
+Received: from sdcapont (unknown [5.133.41.213])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf04.hostedemail.com (Postfix) with ESMTPA;
+	Tue, 15 Sep 2015 16:03:46 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "'Mark Hatle'" <mark.hatle@windriver.com>,
+	<yocto@yoctoproject.org>
+References: <006a01d0efa7$ed9387b0$c8ba9710$@pont@sdcsystems.com>
+	<55F822C0.8030404@windriver.com>
+In-Reply-To: <55F822C0.8030404@windriver.com>
+Date: Tue, 15 Sep 2015 17:03:40 +0100
+Organization: SDC Systems Limited
+Message-ID: <000f01d0efd0$17ac53b0$4704fb10$@pont@sdcsystems.com>
 MIME-Version: 1.0
-Received: by 10.107.20.150 with HTTP; Tue, 15 Sep 2015 08:57:53 -0700 (PDT)
-From: Robert D Kocisko <rkocisko@gmail.com>
-Date: Tue, 15 Sep 2015 11:57:53 -0400
-Message-ID: <CAGF=AeTb4fve9dNPije6+1m1FzapsYrTEpfJ1H6fY-w+FKySMg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Trouble installing from usb
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdDvvdjdeu5/gqjOTBevYENvUTo2oAAET+0w
+Subject: Re: Dumping sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,65 +52,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Sep 2015 15:58:17 -0000
-Content-Type: multipart/alternative; boundary=047d7ba97972cff2c7051fcb3f08
+X-List-Received-Date: Tue, 15 Sep 2015 16:03:51 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-gb
 
---047d7ba97972cff2c7051fcb3f08
-Content-Type: text/plain; charset=UTF-8
+Mark wrote...
 
-Hello,
+> > Bit of a newbie question (probably) but what is the easiest way to dump
+> > sysvinit and use Busybox init in a core-image-minimal image?
+> 
+> It has been a while since I've done this.  But unless things have changed
+> dramatically.  You will need to define your own custom image.
 
-I am attempting to create an image for a fitlet-x computer (AMD A4
-Micro-6400T SoC). I followed the instructions for creating a minimal image
-and then used Hob to customize the minimal image as follows:
+On the basis that sounded like more hard work than I have time for I thought
+I would try switching to systemd.  Following the instructions in the dev
+manual [1].
 
-machine: genericx86-64
-image recipe: core-image-minimal-dev
-recipe edits: added xserver-xorg package
+If I add the extra variables to build/conf/local.conf then with the machine
+type set to genericx86 I get this build error:
 
-I then built and deployed the image to usb (.iso), and booted up the usb.
-I got a grub menu with the options "boot" and "install".  If I select boot,
-everything appears to be working as expected (believe it's just running the
-image directly from usb).
+ERROR: Function failed: do_configure (log file is located at
+XXXXX/build/tmp/work/x86_64-linux/qemu-native/2.2.0-r1/temp/log.do_configure
+.1926)
+ERROR: Logfile of failure stored in:
+XXXXX/build/tmp/work/x86_64-linux/qemu-native/2.2.0-r1/temp/log.do_configure
+.1926
+Log data follows:
+| DEBUG: Executing python function sysroot_cleansstate
+| DEBUG: Python function sysroot_cleansstate finished
+| DEBUG: Executing shell function autotools_preconfigure
+| DEBUG: Shell function autotools_preconfigure finished
+| DEBUG: Executing python function autotools_copy_aclocals
+| DEBUG: Python function autotools_copy_aclocals finished
+| DEBUG: Executing shell function do_configure
+| 
+| ERROR: User requested feature sdl
+|        configure was not able to find it.
+|        Install SDL devel
 
-However, when I select install, the screen goes black (does not disconnect)
-and nothing happens even if I leave the system running for multiple minutes.
+I'm guessing that this is me being dim and that build/conf/local.conf isn't
+what the documentation refers to as "your distribution configuration file".
+Can someone point me in the right direction?
 
-I've started to dive into the world of bootloaders to see if I can debug
-this but it would be great to get some guiding tips from you to help guide
-me in that process.
+Thanks,
 
-Oh I should mention that the first time I built a genericx86-64 image it
-generated a warning while building yocto-kernel.  Unfortunately I didn't
-record it anywhere and now it appears that that kernel recipe is cached
-because subsequent builds haven't shown the same error.
+Andy.
 
-Thanks in advance,
-Bob
+[1]
+http://www.yoctoproject.org/docs/1.8/dev-manual/dev-manual.html#selecting-an
+-initialization-manager
 
---047d7ba97972cff2c7051fcb3f08
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<div><br></div><div>I am attempting to create an ima=
-ge for a fitlet-x computer (AMD A4 Micro-6400T SoC). I followed the instruc=
-tions for creating a minimal image and then used Hob to customize the minim=
-al image as follows:</div><div><br></div><div>machine: genericx86-64</div><=
-div>image recipe: core-image-minimal-dev</div><div>recipe edits: added xser=
-ver-xorg package</div><div><br></div><div>I then built and deployed the ima=
-ge to usb (.iso), and booted up the usb.=C2=A0 I got a grub menu with the o=
-ptions &quot;boot&quot; and &quot;install&quot;.=C2=A0 If I select boot, ev=
-erything appears to be working as expected (believe it&#39;s just running t=
-he image directly from usb).</div><div><br></div><div>However, when I selec=
-t install, the screen goes black (does not disconnect) and nothing happens =
-even if I leave the system running for multiple minutes.</div><div><br></di=
-v><div>I&#39;ve started to dive into the world of bootloaders to see if I c=
-an debug this but it would be great to get some guiding tips from you to he=
-lp guide me in that process.</div><div><br></div><div>Oh I should mention t=
-hat the first time I built a genericx86-64 image it generated a warning whi=
-le building yocto-kernel.=C2=A0 Unfortunately I didn&#39;t record it anywhe=
-re and now it appears that that kernel recipe is cached because subsequent =
-builds haven&#39;t shown the same error.</div><div><br></div><div>Thanks in=
- advance,</div><div>Bob</div></div>
-
---047d7ba97972cff2c7051fcb3f08--
