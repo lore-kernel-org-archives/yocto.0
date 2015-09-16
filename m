@@ -1,52 +1,52 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7073E00C96; Wed, 16 Sep 2015 00:44:31 -0700 (PDT)
+	id 86FF4E00D3C; Wed, 16 Sep 2015 02:25:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.50 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
+	characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.152 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
-	[209.85.192.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0C4CE00BAD
-	for <yocto@yoctoproject.org>; Wed, 16 Sep 2015 00:44:27 -0700 (PDT)
-Received: by qgev79 with SMTP id v79so164172426qge.0
-	for <yocto@yoctoproject.org>; Wed, 16 Sep 2015 00:44:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=+ucp8BogZ3U/rnm4KhXgx52vzOFXFGA/6Hf7n2t2vZY=;
-	b=Ii4D0fq/BZt9KcH5Gaf78CYJxX4I0JwWdgVQenITqzSrM0FxgXQxvZUO7PbhuuHzPD
-	AhkvJd+VOViK88VXn1vzojR+DKE85X7q8+UEbhhVdf2TBfz39UkBBSIVCt2Y7b5U+ETB
-	it2FndemKsNDbZyUOuNz+2emFjItY3Ab73RQqpDGnCwGHDaFdiq7n4DAhesqz1nRBG0v
-	w/6ISGDhV92L88iVsrlfmw2cb8+Sk9eIfETi0JTk/x0KNr2zTodKpdcNf7JPEoGrHEo2
-	L78UCZtx46HOG1CN1Uff+ZWeAIomAIm6eF5ONwCfbuabdooUli/yDA1NeHc5Z4MD64uZ
-	kSDw==
-X-Gm-Message-State: ALoCoQmhwozG+s3Ev1dhrhWYi2d1rug1FF2kAHROju9JZJeIYVdxL7nXXlg1z7ZMLmbU5afIIcNv
-X-Received: by 10.140.93.53 with SMTP id c50mr38675348qge.59.1442389467366;
-	Wed, 16 Sep 2015 00:44:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.94.86 with HTTP; Wed, 16 Sep 2015 00:44:07 -0700 (PDT)
-In-Reply-To: <55F846D8.4020808@gmail.com>
+Received: from smtprelay.hostedemail.com (smtprelay0152.hostedemail.com
+	[216.40.44.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45AAAE00C06
+	for <yocto@yoctoproject.org>; Wed, 16 Sep 2015 02:25:08 -0700 (PDT)
+Received: from filter.hostedemail.com (unknown [216.40.38.60])
+	by smtprelay02.hostedemail.com (Postfix) with ESMTP id 1935E12BCFE;
+	Wed, 16 Sep 2015 09:25:07 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: doll80_499d4020a130c
+X-Filterd-Recvd-Size: 2205
+Received: from sdcapont (unknown [5.133.41.213])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf05.hostedemail.com (Postfix) with ESMTPA;
+	Wed, 16 Sep 2015 09:25:05 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>,
+	"'Trevor Woerner'" <twoerner@gmail.com>
 References: <55F822C0.8030404@windriver.com>
 	<55f84188.e17c420a.cd394.2235SMTPIN_ADDED_BROKEN@mx.google.com>
 	<55F846D8.4020808@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 16 Sep 2015 08:44:07 +0100
-Message-ID: <CAJTo0LaXx_DR7j0og26UK7mvmmR6fPk6ZnGiyVSOeGfw7JYQ7g@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAJTo0LaXx_DR7j0og26UK7mvmmR6fPk6ZnGiyVSOeGfw7JYQ7g@mail.gmail.com>
+In-Reply-To: <CAJTo0LaXx_DR7j0og26UK7mvmmR6fPk6ZnGiyVSOeGfw7JYQ7g@mail.gmail.com>
+Date: Wed, 16 Sep 2015 10:24:59 +0100
+Organization: SDC Systems Limited
+Message-ID: <008c01d0f061$904fd7b0$b0ef8710$@pont@sdcsystems.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdDwU4NTPVHD7dZyRLGZcOm1AZIkgQADV5mA
+Cc: yocto@yoctoproject.org
 Subject: Re: Dumping sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,38 +55,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Sep 2015 07:44:31 -0000
-Content-Type: multipart/alternative; boundary=001a113a63c0d4a47f051fd877dd
-
---001a113a63c0d4a47f051fd877dd
-Content-Type: text/plain; charset=UTF-8
-
-On 15 September 2015 at 17:27, Trevor Woerner <twoerner@gmail.com> wrote:
-
-> I think if you remove/comment-out the last of those 3 lines or install
-> your host's SDL-devel package you'll solve this issue (?)
->
-
-Yes, that's right.  Either disable the graphical qemu support, or install
-the host's sdl-devel package so it can build.
-
-Ross
-
---001a113a63c0d4a47f051fd877dd
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 16 Sep 2015 09:25:11 -0000
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-gb
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 15 September 2015 at 17:27, Trevor Woerner <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;=
-</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":20c" class=3D"=
-a3s" style=3D"overflow:hidden">I think if you remove/comment-out the last o=
-f those 3 lines or install<br>
-your host&#39;s SDL-devel package you&#39;ll solve this issue (?)<br></div>=
-</blockquote><div><br></div><div>Yes, that&#39;s right.=C2=A0 Either disabl=
-e the graphical qemu support, or install the host&#39;s sdl-devel package s=
-o it can build.</div><div><br></div><div>Ross=C2=A0</div></div><br></div></=
-div>
+Hello all,
 
---001a113a63c0d4a47f051fd877dd--
+> > I think if you remove/comment-out the last of those 3 lines or =
+install
+> > your host's SDL-devel package you'll solve this issue (?)
+> >
+> Yes, that's right.  Either disable the graphical qemu support, or =
+install
+> the host's sdl-devel package so it can build.
+
+On my CentOS 6.7 host system running the package manager reports that =
+SDL-devel is already installed:
+
+# yum install SDL-devel
+Package SDL-devel-1.2.14-6.el6.x86_64 already installed and latest =
+version
+Nothing to do
+
+This is probably something to do with the fact that in order to get Fido =
+to build I have to use the devtoolset-2.1 package to get a recent gcc =
+version and it probably isn't aware of the standard SDL-devel libraries.
+
+Commenting out just the last line of the 3 QEMU/SDL related lines throws =
+out a couple of errors whereas removing all of them gives me a build.
+
+Now to figure out why the tar.gz file for the root file system has grown =
+from just under 3MiB to almost 15MiB!
+
+Thanks for all the help and advice.
+
+Andy.
+
+
+
+
+
