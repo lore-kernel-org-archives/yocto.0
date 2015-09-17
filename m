@@ -1,60 +1,36 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <PStath@Axxcelera.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6316EE00E85; Thu, 17 Sep 2015 09:49:14 -0700 (PDT)
+	id 3FA40E00E85; Thu, 17 Sep 2015 09:50:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.50 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	HTML_MESSAGE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D49CCE00C36
-	for <yocto@yoctoproject.org>; Thu, 17 Sep 2015 09:49:12 -0700 (PDT)
-Received: by padhk3 with SMTP id hk3so24193689pad.3
-	for <yocto@yoctoproject.org>; Thu, 17 Sep 2015 09:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=sThBUWHpyG/cHmJG+Bx6H/VxFGCmxZR02KQY0TkeP40=;
-	b=l7/wvOEMIGpYUYl1TAjZE8O44Hk1GQ+zMiEVQZnQ7BuCAmY0c+PZ9zSbcRzUQP75ae
-	t+Bwif36Wu1m6oMDv0eb5O53AvRUn/KXcIWW7V9UElYpPfwHRxOOY7rMSXHLgvHSlwgi
-	ZD9wc79un+iv1ixBdW6R/RXIhJ22rTbAfd4aq4g8gMFzT9tDjeTl9NPhS+OJFQLME/ky
-	Dma16J8ZMGMJqFSy81J9sg7kI1FDQp+GUksL8lRw0Y1en4coCjZH8WVzN1zRGXCUYmk8
-	D4NZHk+BHPzzDV+t55g/SSzz32jnf8GwxIvBw8Lhe+9vGiG8IeF+55LW/8tzXFfCZV+I
-	nR5w==
-X-Received: by 10.68.69.40 with SMTP id b8mr244295pbu.84.1442508551891;
-	Thu, 17 Sep 2015 09:49:11 -0700 (PDT)
-Received: from ?IPv6:2601:202:4000:1239:49aa:86d2:553e:adcc?
-	([2601:202:4000:1239:49aa:86d2:553e:adcc])
-	by smtp.googlemail.com with ESMTPSA id
-	ch3sm4406181pbb.18.2015.09.17.09.49.10
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 17 Sep 2015 09:49:10 -0700 (PDT)
-Message-ID: <55FAEF05.1050206@gmail.com>
-Date: Thu, 17 Sep 2015 09:49:09 -0700
-From: akuster808 <akuster808@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
+	Thu, 17 Sep 2015 09:50:16 PDT
+Received: from RIC-MS02.MWSG.int (static-96-253-69-114.rcmdva.fios.verizon.net
+	[96.253.69.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C55FE00C36
+	for <yocto@yoctoproject.org>; Thu, 17 Sep 2015 09:50:16 -0700 (PDT)
+Received: from RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845]) by
+	RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845%10]) with mapi id
+	14.03.0123.003; Thu, 17 Sep 2015 12:49:09 -0400
+From: "Stath, Paul" <PStath@Axxcelera.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: build host toolchain
+Thread-Index: AdDxUHwJMvKgeb/lSse2pkvXoZtmmg==
+Date: Thu, 17 Sep 2015 16:49:09 +0000
+Message-ID: <5B5D636C5F0AA747B37D0EFC72B563C42D695DAD@RIC-MS02.MWSG.int>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.10.129]
 MIME-Version: 1.0
-To: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>, 
-	yocto@yoctoproject.org
-References: <1442248346-28160-1-git-send-email-jkrishnanjanappa@mvista.com>
-In-Reply-To: <1442248346-28160-1-git-send-email-jkrishnanjanappa@mvista.com>
-Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: Re: [meta-security][PATCH] paxctl: add new recipe
+Subject: build host toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,54 +42,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Sep 2015 16:49:14 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 Sep 2015 16:50:18 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5B5D636C5F0AA747B37D0EFC72B563C42D695DADRICMS02MWSGint_"
 
-In queue for merging.
+--_000_5B5D636C5F0AA747B37D0EFC72B563C42D695DADRICMS02MWSGint_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-thanks,
-Armin
+I was recently tasked with migrating our Jenkins based build server to new =
+hardware.
+During this migration, the OS was also upgraded to the latest Ubuntu LTS re=
+lease.
 
-On 09/14/2015 09:32 AM, Jagadeesh Krishnanjanappa wrote:
-> paxctl  is  a tool that allows PaX flags to be modified on a per-binary
-> basis.  PaX is part of common  security-enhancing  kernel  patches  and
-> secure distributions, such as GrSecurity or Adamantix and Hardened Gen-
-> too, respectively.  Your system needs to be running a properly  patched
-> and configured kernel for this program to have any effect.
-> 
-> Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
-> Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
-> ---
->  recipes-security/paxctl/paxctl_0.9.bb | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 recipes-security/paxctl/paxctl_0.9.bb
-> 
-> diff --git a/recipes-security/paxctl/paxctl_0.9.bb b/recipes-security/paxctl/paxctl_0.9.bb
-> new file mode 100644
-> index 0000000..8eadad1
-> --- /dev/null
-> +++ b/recipes-security/paxctl/paxctl_0.9.bb
-> @@ -0,0 +1,20 @@
-> +DESCRIPTION = "paxctl  is  a tool that allows PaX flags to be modified on a \
-> +               per-binary basis. PaX is part of common  security-enhancing  \
-> +               kernel  patches  and secure distributions, such as \
-> +               GrSecurity or Adamantix and Hardened Gen-too, respectively."
-> +HOMEPAGE = "https://pax.grsecurity.net/"	       
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://paxctl.c;beginline=1;endline=5;md5=0ddd065c61020dda79729e6bedaed2c7 \
-> +                    file://paxctl-elf.c;beginline=1;endline=5;md5=99f453ce7f6d1687ee808982e2924813 \
-> +		   "
-> +
-> +SRC_URI = "http://pax.grsecurity.net/paxctl-${PV}.tar.gz"
-> +SRC_URI[md5sum] = "9bea59b1987dc4e16c2d22d745374e64"
-> +SRC_URI[sha256sum] = "a330ddd812688169802a3ba29e5e3b19956376b8f6f73b8d7e9586eb04423c2e"
-> +
-> +do_install() {
-> +	oe_runmake 'DESTDIR=${D}' install
-> +}
-> +
-> +FILES_${PN} = "${base_sbindir}/paxctl"
-> +FILES_${PN}-doc = "${mandir}/man1/paxctl.1"
-> 
+The previous build server was hosted on Ubuntu 12.04 LTS.
+The new build server is hosted on Ubuntu 14.04 LTS.
 
+We have a couple of existing Yocto projects which are based on older Poky r=
+eleases.
+The Freescale SDK that is being used is based on Dylan.
+So alas, no updating to Fido. (sigh)
+
+During the migration, I had trouble building these two projects due to newe=
+r versions
+of tools on the build host platform.
+
+Specifically:
+
+tar:         v1.26   -->  v1.27.1
+texinfo:     v4.13   -->  v5.2
+perl:        v5.14.2 -->  v5.18.2
+gcc:         v4.6.3  -->  v4.8.4
+
+The tar command in 1.27.1 got more stringent on argument parsing and refuse=
+d to allow
+the '-s' argument in concert with '-c'.
+(Note: this is patched by commits bf19a8617d05f17506dcb7154e19e2aa2b61838b
+and d3846f06d1e3faedcbc3c28e22c427bb0088683d, which were introduced in 'dor=
+a'.)
+
+In texinfo, between v4.13 and v5.2 the parser became a lot more strict,
+and several recipes failed when generating documentation.
+
+In perl, the pod2* programs also also became stricter, and several recipes
+failed when 'pod2man' was used to generate man pages.
+
+
+I was able to work around these issues by downloading and compiling the
+old versions of the above tools, and installing them in a non-standard
+bin directory, and adding that to the beginning of PATH prior to running bi=
+tbake.
+
+The real pain was the errors that occurred because of the gcc compiler on t=
+he build host
+going from v4.6.3 to v4.8.4.  I suppose I could have solved it as above,
+compiling a v4.6.3 version of GCC and putting it at the beginning of PATH.
+However, I ended up cherry-picking commits from Dora that corrected the iss=
+ues.
+
+It looks like a buildtools-tarball target was added in Dora to generate
+a stable set of build host executables.
+The packages in the recipe (Dora) are python, chrpath, tar, git, pigz, make=
+.
+
+Has anyone backported the buildtool-tarball recipe to pre-Dora releases,
+and could one bbappend other native packages such as texinfo-native, and gc=
+c-native?
+
+---
+Paul Stath
+Senior Software Engineer
+Axxcelera Broadband Wireless
+email: pstath@axxcelera.com
+
+
+
+--_000_5B5D636C5F0AA747B37D0EFC72B563C42D695DADRICMS02MWSGint_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Arial;color: #000000;font-size: 1=
+2pt;"><font face=3D"Courier New">I was recently tasked with migrating our J=
+enkins based build server to new hardware.<br>
+During this migration, the OS was also upgraded to the latest Ubuntu LTS re=
+lease.<br>
+<br>
+The previous build server was hosted on Ubuntu 12.04 LTS.<br>
+The new build server is hosted on Ubuntu 14.04 LTS.<br>
+<br>
+We have a couple of existing Yocto projects which are based on older Poky r=
+eleases.<br>
+The Freescale SDK that is being used is based on Dylan.<br>
+So alas, no updating to Fido. (sigh)<br>
+<br>
+During the migration, I had trouble building these two projects due to newe=
+r versions<br>
+of tools on the build host platform.<br>
+<br>
+Specifically:<br>
+<br>
+tar:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v1.26&nbsp;&nbsp; --&g=
+t;&nbsp; v1.27.1<br>
+texinfo:&nbsp;&nbsp;&nbsp;&nbsp; v4.13&nbsp;&nbsp; --&gt;&nbsp; v5.2<br>
+perl:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v5.14.2 --&gt;&nbsp; v5.18.=
+2<br>
+gcc:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v4.6.3&nbsp; --&gt;&nb=
+sp; v4.8.4<br>
+<br>
+The tar command in 1.27.1 got more stringent on argument parsing and refuse=
+d to allow<br>
+the '-s' argument in concert with '-c'.<br>
+(Note: this is patched by commits bf19a8617d05f17506dcb7154e19e2aa2b61838b<=
+br>
+and d3846f06d1e3faedcbc3c28e22c427bb0088683d, which were introduced in 'dor=
+a'.)<br>
+<br>
+In texinfo, between v4.13 and v5.2 the parser became a lot more strict,<br>
+and several recipes failed when generating documentation.<br>
+<br>
+In perl, the pod2* programs also also became stricter, and several recipes<=
+br>
+failed when 'pod2man' was used to generate man pages.<br>
+<br>
+<br>
+I was able to work around these issues by downloading and compiling the<br>
+old versions of the above tools, and installing them in a non-standard<br>
+bin directory, and adding that to the beginning of PATH prior to running bi=
+tbake.<br>
+<br>
+The real pain was the errors that occurred because of the gcc compiler on t=
+he build host<br>
+going from v4.6.3 to v4.8.4.&nbsp; I suppose I could have solved it as abov=
+e,<br>
+compiling a v4.6.3 version of GCC and putting it at the beginning of PATH.<=
+br>
+However, I ended up cherry-picking commits from Dora that corrected the iss=
+ues.<br>
+<br>
+It looks like a buildtools-tarball target was added in Dora to generate<br>
+a stable set of build host executables.<br>
+The packages in the recipe (Dora) are python, chrpath, tar, git, pigz, make=
+.<br>
+<br>
+Has anyone backported the buildtool-tarball recipe to pre-Dora releases,<br=
+>
+and could one bbappend other native packages such as texinfo-native, and gc=
+c-native?<br>
+<br>
+---<br>
+Paul Stath<br>
+Senior Software Engineer<br>
+Axxcelera Broadband Wireless<br>
+email: pstath@axxcelera.com<br>
+<br>
+<br>
+</font></div>
+</body>
+</html>
+
+--_000_5B5D636C5F0AA747B37D0EFC72B563C42D695DADRICMS02MWSGint_--
