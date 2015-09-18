@@ -1,45 +1,46 @@
-Return-Path: <steven.muellener@sius.com>
+Return-Path: <jessica.zhang@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 505A6E00B9A; Thu, 10 Sep 2015 02:12:31 -0700 (PDT)
+	id 77459E0034B; Fri, 18 Sep 2015 10:24:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93298E00B67
-	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
-Received: by vkgd64 with SMTP id d64so5988283vkg.0
-	for <yocto@yoctoproject.org>; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=V9P77DYq9vAH1J5YtZ8gLs89ERtTGNQI9HweGLcsaUM=;
-	b=LC1wXXpOgGj+ftxmVUlq2JuCtN10TePSTEbnXfXjrVfvgb2DH265yz0rDWeflRwOk5
-	Z7k0nIuwtJulR7UpVdA3FI7kE/symJhClhtiEhxSXlPAPvea9OZL/a5YOPNitQpQyNDm
-	ZEzEPE/Wc3CsEcWU9OL+Vq/fp537I+cgcirfc4HpYDV3mEwuIeIPndxVShDJzIV8/KKz
-	S+gyZSjk9U77qJrFTDhxbjcshkcRIRpngOq0Zn5/yySAwnvGsvfQQ0TvAYXBP6aWEOPh
-	CMxr6i4pKTIwNPIcR2QafWMrpfoU8pg0Wkaa7jcuAB63Go47PtlNhzOmsSVwu2NQhqGl
-	IcjQ==
-X-Gm-Message-State: ALoCoQmAhwRbGmjcoHrcn5QBP4y4DQg+0tqFeRqrZQDipeeU8/AGB9AUKATNRodEqkQ9WPQy/J0u
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDB7DE00306
+	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 10:24:21 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP; 18 Sep 2015 10:24:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,554,1437462000"; 
+	d="scan'208,217";a="808237856"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga002.fm.intel.com with ESMTP; 18 Sep 2015 10:24:21 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.100]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.1.234]) with mapi id
+	14.03.0224.002; Fri, 18 Sep 2015 10:24:20 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: =?utf-8?B?TcO8bGxlbmVyLCBTdGV2ZW4=?= <steven.muellener@sius.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Eclipse Yocto Plugin: Preference Profile "Save
+	As..."-Button not working
+Thread-Index: AQHQ8jauMpnA/wW2rEaFV/AqQvDUF55CiTKw
+Date: Fri, 18 Sep 2015 17:24:19 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847CA109BDC8@ORSMSX103.amr.corp.intel.com>
+References: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
+In-Reply-To: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-Received: by 10.31.16.202 with SMTP id 71mr985597vkq.125.1441876345166; Thu,
-	10 Sep 2015 02:12:25 -0700 (PDT)
-Received: by 10.31.154.138 with HTTP; Thu, 10 Sep 2015 02:12:25 -0700 (PDT)
-Date: Thu, 10 Sep 2015 11:12:25 +0200
-Message-ID: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
-From: =?UTF-8?Q?M=C3=BCllener=2C_Steven?= <steven.muellener@sius.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Fri, 18 Sep 2015 10:22:27 -0700
-Subject: Eclipse Yocto Plugin: Preference Profile "Save As..."-Button not working
+Subject: Re: Eclipse Yocto Plugin: Preference Profile "Save	As..."-Button not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,45 +52,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Sep 2015 09:12:31 -0000
-Content-Type: multipart/alternative; boundary=001a114364fc5d6246051f60ff0e
+X-List-Received-Date: Fri, 18 Sep 2015 17:24:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_"
 
---001a114364fc5d6246051f60ff0e
-Content-Type: text/plain; charset=UTF-8
+--_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I have the problem that my Eclipse Yocto Plugin Preferences can not be
-saved and seem to be lost after closing the Preferences Window. It seems
-like other people have the same problem as well
+UGxlYXNlIGZpbGUgYSBidWcgaW4gQnVnemlsbGEuDQoNClRoYW5rcywNCkplc3NpY2ENCg0KRnJv
+bTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5
+b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTcO8bGxlbmVyLCBTdGV2ZW4NClNlbnQ6IFRo
+dXJzZGF5LCBTZXB0ZW1iZXIgMTAsIDIwMTUgMjoxMiBBTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmcNClN1YmplY3Q6IFt5b2N0b10gRWNsaXBzZSBZb2N0byBQbHVnaW46IFByZWZlcmVuY2Ug
+UHJvZmlsZSAiU2F2ZSBBcy4uLiItQnV0dG9uIG5vdCB3b3JraW5nDQoNCkkgaGF2ZSB0aGUgcHJv
+YmxlbSB0aGF0IG15IEVjbGlwc2UgWW9jdG8gUGx1Z2luIFByZWZlcmVuY2VzIGNhbiBub3QgYmUg
+c2F2ZWQgYW5kIHNlZW0gdG8gYmUgbG9zdCBhZnRlciBjbG9zaW5nIHRoZSBQcmVmZXJlbmNlcyBX
+aW5kb3cuIEl0IHNlZW1zIGxpa2Ugb3RoZXIgcGVvcGxlIGhhdmUgdGhlIHNhbWUgcHJvYmxlbSBh
+cyB3ZWxsDQoNCmUuZy4gaHR0cDovL2NvbW11bml0eS5waHl0ZWMuY29tL2ZvcnVtL3RvcGljL1lv
+Y3RvLVByb2plY3RzLWluLUVjbGlwc2UuaHRtDQoNCkkgdHJpZWQgbWFueSBjb21iaW5hdGlvbnMg
+b2YgRWNsaXBzZSB2ZXJzaW9ucyAoS2VwbGVyLCBMdW5hLCBNYXJzKSB3aXRoIHRoZWlyIGNvcnJl
+c3BvbmRpbmcgWW9jdG8gUGx1Z2luIHJlbGVhc2VzIHdpdGhvdXQgYW55IGx1Y2suDQoNCkkgYWxz
+byBjaGFuZ2VkIHRoZSBwZXJtaXNzaW9ucyBmb3IgdGhlIGVudGlyZSBmb2xkZXIgPEVjbGlwc2Ug
+aW5zdGFsbGF0aW9uIGZvbGRlcj4gYXMgd2VsbCBhcyB0aGUgPEVjbGlwc2Ugd29ya3NwYWNlIGZv
+bGRlcj4gcmVjdXJzaXZlbHkgdG8gcnd4IGZvciBldmVyeW9uZSB3aXRob3V0IGFueSBzdWNjZXNz
+LiBBbHNvIHJ1bm5pbmcgRWNsaXBzZSBhcyByb290IGRpZCBub3QgaGVscC4NCg0KV2hhdCBjb3Vs
+ZCBiZSB0aGUgcHJvYmxlbSBoZXJlPw0KDQpUaGFuayB5b3UNCg0KDQoNCg==
 
-e.g. http://community.phytec.com/forum/topic/Yocto-Projects-in-Eclipse.htm
+--_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I tried many combinations of Eclipse versions (Kepler, Luna, Mars) with
-their corresponding Yocto Plugin releases without any luck.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
+MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
+cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlBsZWFzZSBmaWxlIGEgYnVnIGluIEJ1Z3pp
+bGxhLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmtzLDxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjojMUY0OTdEIj5KZXNzaWNhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9hPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5j
+ZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+TcO8bGxlbmVyLCBTdGV2
+ZW48YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIFNlcHRlbWJlciAxMCwgMjAxNSAyOjEyIEFN
+PGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8
+L2I+IFt5b2N0b10gRWNsaXBzZSBZb2N0byBQbHVnaW46IFByZWZlcmVuY2UgUHJvZmlsZSAmcXVv
+dDtTYXZlIEFzLi4uJnF1b3Q7LUJ1dHRvbiBub3Qgd29ya2luZzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgdGhlIHByb2JsZW0gdGhhdCBteSBFY2xp
+cHNlIFlvY3RvIFBsdWdpbiBQcmVmZXJlbmNlcyBjYW4gbm90IGJlIHNhdmVkIGFuZCBzZWVtIHRv
+IGJlIGxvc3QgYWZ0ZXIgY2xvc2luZyB0aGUgUHJlZmVyZW5jZXMgV2luZG93LiBJdCBzZWVtcyBs
+aWtlIG90aGVyIHBlb3BsZSBoYXZlIHRoZSBzYW1lIHByb2JsZW0gYXMgd2VsbDxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5lLmcuIDxhIGhyZWY9
+Imh0dHA6Ly9jb21tdW5pdHkucGh5dGVjLmNvbS9mb3J1bS90b3BpYy9Zb2N0by1Qcm9qZWN0cy1p
+bi1FY2xpcHNlLmh0bSI+DQpodHRwOi8vY29tbXVuaXR5LnBoeXRlYy5jb20vZm9ydW0vdG9waWMv
+WW9jdG8tUHJvamVjdHMtaW4tRWNsaXBzZS5odG08L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgdHJpZWQgbWFueSBjb21iaW5hdGlvbnMg
+b2YgRWNsaXBzZSB2ZXJzaW9ucyAoS2VwbGVyLCBMdW5hLCBNYXJzKSB3aXRoIHRoZWlyIGNvcnJl
+c3BvbmRpbmcgWW9jdG8gUGx1Z2luIHJlbGVhc2VzIHdpdGhvdXQgYW55IGx1Y2suPG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYWxzbyBjaGFu
+Z2VkIHRoZSBwZXJtaXNzaW9ucyBmb3IgdGhlIGVudGlyZSBmb2xkZXIgJmx0O0VjbGlwc2UgaW5z
+dGFsbGF0aW9uIGZvbGRlciZndDsgYXMgd2VsbCBhcyB0aGUgJmx0O0VjbGlwc2Ugd29ya3NwYWNl
+IGZvbGRlciZndDsgcmVjdXJzaXZlbHkgdG8gcnd4IGZvciBldmVyeW9uZSB3aXRob3V0IGFueSBz
+dWNjZXNzLiBBbHNvIHJ1bm5pbmcgRWNsaXBzZSBhcyByb290IGRpZCBub3QgaGVscC48bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hhdCBjb3Vs
+ZCBiZSB0aGUgcHJvYmxlbSBoZXJlPyZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFuayB5b3U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-I also changed the permissions for the entire folder <Eclipse installation
-folder> as well as the <Eclipse workspace folder> recursively to rwx for
-everyone without any success. Also running Eclipse as root did not help.
-
-What could be the problem here?
-
-Thank you
-
---001a114364fc5d6246051f60ff0e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I have the problem that my Eclipse Yocto Plugin Prefe=
-rences can not be saved and seem to be lost after closing the Preferences W=
-indow. It seems like other people have the same problem as well<br></div><d=
-iv><br></div><div>e.g. <a href=3D"http://community.phytec.com/forum/topic/Y=
-octo-Projects-in-Eclipse.htm">http://community.phytec.com/forum/topic/Yocto=
--Projects-in-Eclipse.htm</a></div><div><br></div><div>I tried many combinat=
-ions of Eclipse versions (Kepler, Luna, Mars) with their corresponding Yoct=
-o Plugin releases without any luck.</div><div><br></div><div>I also changed=
- the permissions for the entire folder &lt;Eclipse installation folder&gt; =
-as well as the &lt;Eclipse workspace folder&gt; recursively to rwx for ever=
-yone without any success. Also running Eclipse as root did not help.</div><=
-div><br></div><div>What could be the problem here?=C2=A0</div><div><br></di=
-v><div>Thank you</div><div><br></div><div><br></div><div><br></div></div>
-
---001a114364fc5d6246051f60ff0e--
+--_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_--
