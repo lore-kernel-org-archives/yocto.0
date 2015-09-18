@@ -1,46 +1,47 @@
-Return-Path: <jessica.zhang@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77459E0034B; Fri, 18 Sep 2015 10:24:25 -0700 (PDT)
+	id 2BE19E00B5D; Fri, 18 Sep 2015 13:07:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDB7DE00306
-	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 10:24:21 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga103.fm.intel.com with ESMTP; 18 Sep 2015 10:24:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,554,1437462000"; 
-	d="scan'208,217";a="808237856"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Sep 2015 10:24:21 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.100]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.234]) with mapi id
-	14.03.0224.002; Fri, 18 Sep 2015 10:24:20 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: =?utf-8?B?TcO8bGxlbmVyLCBTdGV2ZW4=?= <steven.muellener@sius.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Eclipse Yocto Plugin: Preference Profile "Save
-	As..."-Button not working
-Thread-Index: AQHQ8jauMpnA/wW2rEaFV/AqQvDUF55CiTKw
-Date: Fri, 18 Sep 2015 17:24:19 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847CA109BDC8@ORSMSX103.amr.corp.intel.com>
-References: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
-In-Reply-To: <CAAstOJQ0jCTpJRCMHDfthGtouJ5KzViNDEzEgH0Ee9iYh0dVGw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02396E00A9C
+	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 13:07:33 -0700 (PDT)
+Received: by qgev79 with SMTP id v79so47817048qge.0
+	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 13:07:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=0dBmiIWyFvFzxB70RLj9r9JA3BJe1HU1ZkwWMSOIQk4=;
+	b=j/jSrMRW1xaN7m2mfeLr5BSg9NtNi6mfRKsFA+wMZMP2IpD/ynbbuA7EU4wzWa2PXk
+	lXBIlmyl9P/iQboJP7dNzbxAcpuCovFpziSbx4FZWVnVphT58KgQ4eXymHTlPPkGONIr
+	DfGFBARAw+4faSbdlZMrP86ksCIFiSOUNNBFsm0/yO93s22Sxz+RfML+90bZGLHqU6NA
+	pQuNIQUxG3Np7ExWzL1X5TehjXEWDoODSPZzfuLYBnSjMc8U3jfn+h5QrNxAG97Nulu7
+	eEIhtnQuMIfW73WuZrm16dAKDawPq65QEQk/eNe3/FgWI6sCBllzftozJvmKFrRCfnof
+	M6wQ==
+X-Gm-Message-State: ALoCoQltWxqHpxUeTNTRUiDqpcKxi/sUTTENeVLFDzzzlumOKpXyOMTWP0OBaT3/GtWKGVZ7tupI
+X-Received: by 10.140.20.20 with SMTP id 20mr8604316qgi.87.1442606852447; Fri,
+	18 Sep 2015 13:07:32 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Eclipse Yocto Plugin: Preference Profile "Save	As..."-Button not working
+Received: by 10.140.94.86 with HTTP; Fri, 18 Sep 2015 13:07:13 -0700 (PDT)
+In-Reply-To: <1960827785.38335.1441967539008.JavaMail.zimbra@visser.se>
+References: <1960827785.38335.1441967539008.JavaMail.zimbra@visser.se>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 18 Sep 2015 21:07:13 +0100
+Message-ID: <CAJTo0LZY5kfRN3Ed1tBicPSX3yZOYExcO=U6eiccv2AkO4pE+g@mail.gmail.com>
+To: Sander Visser <sander@visser.se>, danw@gnome.org
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: libsoup license
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,116 +53,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Sep 2015 17:24:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_"
+X-List-Received-Date: Fri, 18 Sep 2015 20:07:38 -0000
+Content-Type: multipart/alternative; boundary=001a11c13cbcfdcd5305200b1444
 
---_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11c13cbcfdcd5305200b1444
+Content-Type: text/plain; charset=UTF-8
 
-UGxlYXNlIGZpbGUgYSBidWcgaW4gQnVnemlsbGEuDQoNClRoYW5rcywNCkplc3NpY2ENCg0KRnJv
-bTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTcO8bGxlbmVyLCBTdGV2ZW4NClNlbnQ6IFRo
-dXJzZGF5LCBTZXB0ZW1iZXIgMTAsIDIwMTUgMjoxMiBBTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmcNClN1YmplY3Q6IFt5b2N0b10gRWNsaXBzZSBZb2N0byBQbHVnaW46IFByZWZlcmVuY2Ug
-UHJvZmlsZSAiU2F2ZSBBcy4uLiItQnV0dG9uIG5vdCB3b3JraW5nDQoNCkkgaGF2ZSB0aGUgcHJv
-YmxlbSB0aGF0IG15IEVjbGlwc2UgWW9jdG8gUGx1Z2luIFByZWZlcmVuY2VzIGNhbiBub3QgYmUg
-c2F2ZWQgYW5kIHNlZW0gdG8gYmUgbG9zdCBhZnRlciBjbG9zaW5nIHRoZSBQcmVmZXJlbmNlcyBX
-aW5kb3cuIEl0IHNlZW1zIGxpa2Ugb3RoZXIgcGVvcGxlIGhhdmUgdGhlIHNhbWUgcHJvYmxlbSBh
-cyB3ZWxsDQoNCmUuZy4gaHR0cDovL2NvbW11bml0eS5waHl0ZWMuY29tL2ZvcnVtL3RvcGljL1lv
-Y3RvLVByb2plY3RzLWluLUVjbGlwc2UuaHRtDQoNCkkgdHJpZWQgbWFueSBjb21iaW5hdGlvbnMg
-b2YgRWNsaXBzZSB2ZXJzaW9ucyAoS2VwbGVyLCBMdW5hLCBNYXJzKSB3aXRoIHRoZWlyIGNvcnJl
-c3BvbmRpbmcgWW9jdG8gUGx1Z2luIHJlbGVhc2VzIHdpdGhvdXQgYW55IGx1Y2suDQoNCkkgYWxz
-byBjaGFuZ2VkIHRoZSBwZXJtaXNzaW9ucyBmb3IgdGhlIGVudGlyZSBmb2xkZXIgPEVjbGlwc2Ug
-aW5zdGFsbGF0aW9uIGZvbGRlcj4gYXMgd2VsbCBhcyB0aGUgPEVjbGlwc2Ugd29ya3NwYWNlIGZv
-bGRlcj4gcmVjdXJzaXZlbHkgdG8gcnd4IGZvciBldmVyeW9uZSB3aXRob3V0IGFueSBzdWNjZXNz
-LiBBbHNvIHJ1bm5pbmcgRWNsaXBzZSBhcyByb290IGRpZCBub3QgaGVscC4NCg0KV2hhdCBjb3Vs
-ZCBiZSB0aGUgcHJvYmxlbSBoZXJlPw0KDQpUaGFuayB5b3UNCg0KDQoNCg==
+Hi all,
 
---_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+[CC'ing Dan Winship, the libsoup maintainer]
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
-MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
-cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlBsZWFzZSBmaWxlIGEgYnVnIGluIEJ1Z3pp
-bGxhLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmtzLDxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-Zjtjb2xvcjojMUY0OTdEIj5KZXNzaWNhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9hPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
-ZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5j
-ZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+TcO8bGxlbmVyLCBTdGV2
-ZW48YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIFNlcHRlbWJlciAxMCwgMjAxNSAyOjEyIEFN
-PGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8
-L2I+IFt5b2N0b10gRWNsaXBzZSBZb2N0byBQbHVnaW46IFByZWZlcmVuY2UgUHJvZmlsZSAmcXVv
-dDtTYXZlIEFzLi4uJnF1b3Q7LUJ1dHRvbiBub3Qgd29ya2luZzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgdGhlIHByb2JsZW0gdGhhdCBteSBFY2xp
-cHNlIFlvY3RvIFBsdWdpbiBQcmVmZXJlbmNlcyBjYW4gbm90IGJlIHNhdmVkIGFuZCBzZWVtIHRv
-IGJlIGxvc3QgYWZ0ZXIgY2xvc2luZyB0aGUgUHJlZmVyZW5jZXMgV2luZG93LiBJdCBzZWVtcyBs
-aWtlIG90aGVyIHBlb3BsZSBoYXZlIHRoZSBzYW1lIHByb2JsZW0gYXMgd2VsbDxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5lLmcuIDxhIGhyZWY9
-Imh0dHA6Ly9jb21tdW5pdHkucGh5dGVjLmNvbS9mb3J1bS90b3BpYy9Zb2N0by1Qcm9qZWN0cy1p
-bi1FY2xpcHNlLmh0bSI+DQpodHRwOi8vY29tbXVuaXR5LnBoeXRlYy5jb20vZm9ydW0vdG9waWMv
-WW9jdG8tUHJvamVjdHMtaW4tRWNsaXBzZS5odG08L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgdHJpZWQgbWFueSBjb21iaW5hdGlvbnMg
-b2YgRWNsaXBzZSB2ZXJzaW9ucyAoS2VwbGVyLCBMdW5hLCBNYXJzKSB3aXRoIHRoZWlyIGNvcnJl
-c3BvbmRpbmcgWW9jdG8gUGx1Z2luIHJlbGVhc2VzIHdpdGhvdXQgYW55IGx1Y2suPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYWxzbyBjaGFu
-Z2VkIHRoZSBwZXJtaXNzaW9ucyBmb3IgdGhlIGVudGlyZSBmb2xkZXIgJmx0O0VjbGlwc2UgaW5z
-dGFsbGF0aW9uIGZvbGRlciZndDsgYXMgd2VsbCBhcyB0aGUgJmx0O0VjbGlwc2Ugd29ya3NwYWNl
-IGZvbGRlciZndDsgcmVjdXJzaXZlbHkgdG8gcnd4IGZvciBldmVyeW9uZSB3aXRob3V0IGFueSBz
-dWNjZXNzLiBBbHNvIHJ1bm5pbmcgRWNsaXBzZSBhcyByb290IGRpZCBub3QgaGVscC48bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hhdCBjb3Vs
-ZCBiZSB0aGUgcHJvYmxlbSBoZXJlPyZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFuayB5b3U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+On 11 September 2015 at 11:32, Sander Visser <sander@visser.se> wrote:
 
---_000_C6510F6D410BB64A8C15398EDC6B847CA109BDC8ORSMSX103amrcor_--
+> Does anyone know why the license is marked LGPL2 and not LGPL2+ in
+> libsoup-2.4_2.50.0.bb? It seems "or (at your option) any later version"
+> is allowed via for example libsoup/soup-requester.h.
+>
+> Nowhere could I see that the "or (at your option) any later version" is
+> missing.
+>
+
+To be honest libsoup isn't very clear - the COPYING is the standard LGPL
+boilerplate, the README just says "LGPL", and very few source files specify
+the license at all.
+
+Dan: exactly what license is libsoup under?  LGPL v2 precisely, or LGPL v2
+or greater?
+
+Thanks,
+Ross
+
+--001a11c13cbcfdcd5305200b1444
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi all,</div><div class=3D"gmai=
+l_extra"><br></div><div class=3D"gmail_extra">[CC&#39;ing Dan Winship, the =
+libsoup maintainer]</div><div class=3D"gmail_extra"><br><div class=3D"gmail=
+_quote">On 11 September 2015 at 11:32, Sander Visser <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:sander@visser.se" target=3D"_blank">sander@visser.se</a>&=
+gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1fm" class=
+=3D"a3s" style=3D"overflow:hidden">Does anyone know why the license is mark=
+ed LGPL2 and not LGPL2+ in <a href=3D"http://libsoup-2.4_2.50.0.bb" rel=3D"=
+noreferrer" target=3D"_blank">libsoup-2.4_2.50.0.bb</a>? It seems &quot;or =
+(at your option) any later version&quot; is allowed via for example libsoup=
+/soup-requester.h.<br>
+<br>
+Nowhere could I see that the &quot;or (at your option) any later version&qu=
+ot; is missing.<br></div></blockquote></div><br>To be honest libsoup isn&#3=
+9;t very clear - the COPYING is the standard LGPL boilerplate, the README j=
+ust says &quot;LGPL&quot;, and very few source files specify the license at=
+ all.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">=
+Dan: exactly what license is libsoup under?=C2=A0 LGPL v2 precisely, or LGP=
+L v2 or greater?</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
+ail_extra">Thanks,</div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a11c13cbcfdcd5305200b1444--
