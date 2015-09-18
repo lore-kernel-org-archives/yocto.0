@@ -1,40 +1,31 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58097E00D74; Thu, 17 Sep 2015 22:29:42 -0700 (PDT)
+	id 251E6E00DDB; Fri, 18 Sep 2015 04:30:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
-	Thu, 17 Sep 2015 22:29:40 PDT
-Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
-	[203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 858A9E00C81
-	for <yocto@yoctoproject.org>; Thu, 17 Sep 2015 22:29:40 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Fri, 18 Sep 2015 15:28:26 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 18 Sep 2015 15:28:24 +1000
-Thread-Topic: Busybox hwclock.sh initscript issues
-Thread-Index: AdDx0hGlc/P0UeoZTYGCTolsUwzOpQ==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A40227C5AD19F4@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1239-8.000.1202-21822.004
-x-tm-as-result: No--40.398900-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61A8AE00BF4
+	for <yocto@yoctoproject.org>; Fri, 18 Sep 2015 04:30:34 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D977AF811E0; Fri, 18 Sep 2015 05:30:33 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 1E029F811E0;
+	Fri, 18 Sep 2015 05:30:33 -0600 (MDT)
+To: yocto@yoctoproject.org
+References: <5500469A22567C4BAF673A6E86AFA3A40227C5AD19F4@IR-CENTRAL.corp.innerrange.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <55FBF5DF.6000801@mlbassoc.com>
+Date: Fri, 18 Sep 2015 05:30:39 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-Subject: Busybox hwclock.sh initscript issues
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40227C5AD19F4@IR-CENTRAL.corp.innerrange.com>
+Subject: Re: Busybox hwclock.sh initscript issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,27 +37,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Sep 2015 05:29:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 18 Sep 2015 11:30:39 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm using Yocto dizzy. I've found a couple of issues with the Busybox hwclo=
-ck.sh initscript.
+On 2015-09-17 23:28, Craig McQueen wrote:
+> I'm using Yocto dizzy. I've found a couple of issues with the Busybox hwclock.sh initscript.
+>
+> 1) The script checks that /sbin/hwclock exists at the start. But after that it runs hwclock without an explicit /sbin/hwclock path. So it only works if /sbin/ is in the PATH. Thus it doesn't run properly when called from e.g. cronie which doesn't run with /sbin/ in the PATH.
+>
+> 2) The bootmisc.sh initscript uses the time from /etc/timestamp if the hwclock time is older. That's good. But then by default, hwclock.sh runs after bootmisc.sh, and unconditionally overwrites the system time from the hwclock. So on a system without a functional hwclock, the /etc/timestamp feature basically doesn't work. One solution is modify INITSCRIPT_PARAMS_${PN}-hwclock so it doesn't run at start-up (I am doing that in a busybox bbappend).
 
-1) The script checks that /sbin/hwclock exists at the start. But after that=
- it runs hwclock without an explicit /sbin/hwclock path. So it only works i=
-f /sbin/ is in the PATH. Thus it doesn't run properly when called from e.g.=
- cronie which doesn't run with /sbin/ in the PATH.
+Why do you think it doesn't work?  On a system without a
+functioning hardware clock, at least the time stamp moves
+forward on every boot/shutdown.
 
-2) The bootmisc.sh initscript uses the time from /etc/timestamp if the hwcl=
-ock time is older. That's good. But then by default, hwclock.sh runs after =
-bootmisc.sh, and unconditionally overwrites the system time from the hwcloc=
-k. So on a system without a functional hwclock, the /etc/timestamp feature =
-basically doesn't work. One solution is modify INITSCRIPT_PARAMS_${PN}-hwcl=
-ock so it doesn't run at start-up (I am doing that in a busybox bbappend).
-
---=20
-Craig McQueen
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
