@@ -1,34 +1,55 @@
-Return-Path: <thshin@telechips.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02C80E00E3D; Mon, 21 Sep 2015 19:06:25 -0700 (PDT)
+	id BCAD5E00DDE; Mon, 21 Sep 2015 19:48:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE,T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
-	Mon, 21 Sep 2015 19:06:22 PDT
-Received: from telegweb.telechips.com (unknown [219.240.43.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13629E00B53
-	for <yocto@yoctoproject.org>; Mon, 21 Sep 2015 19:06:22 -0700 (PDT)
-x-mimeole: Produced By Microsoft Exchange V6.5
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27F4DE009C5
+	for <yocto@yoctoproject.org>; Mon, 21 Sep 2015 19:48:00 -0700 (PDT)
+Received: by igbkq10 with SMTP id kq10so91735764igb.0
+	for <yocto@yoctoproject.org>; Mon, 21 Sep 2015 19:48:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-type:content-transfer-encoding;
+	bh=wTcd/nQxOHt7VvcOIHDhcEcraEGaGSO3nkhkRg6NV3E=;
+	b=Nq3Yl+K6D/gwaI4UWt2Cr1UFwAE7deFXuZ6fwUGT1eQU0Y1XJfuEUZjybcSavHWl/x
+	oQW+Mt+/MA+Q4bANTh2lCoK1ZH4pWYLfvCl60zU9jiU0O8gIfJr+JEjkMOivUq28J5zP
+	PUhTv/bbfiQqcsNni0qtQhCPEA7odvFNlOTqP0dm9/aQ45Fqy7SGviQGDwLnWW3hTXq7
+	l61iI+pOXQ1EGOUfC6m2wBC0Job+YG7GogttTaaEkjNgf7n5LETpPpgeFVdU2HEmMQL7
+	bIrYlJITM0An7SZLd4YEwuG9WmDnuR99UCJ0ykZmMDesGh4QqtitwUg59Nn6Y8YyKDDs
+	Zh7w==
+X-Received: by 10.50.143.4 with SMTP id sa4mr13778151igb.33.1442890080251;
+	Mon, 21 Sep 2015 19:48:00 -0700 (PDT)
+Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	gb7sm292898igd.20.2015.09.21.19.47.59 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 21 Sep 2015 19:47:59 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <5600C15B.2020908@gmail.com>
+Date: Mon, 21 Sep 2015 22:47:55 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-Date: Tue, 22 Sep 2015 11:04:15 +0900
-Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F0AB278@telegweb.telechips.com>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: Re: packageconfig for non-autotooled project 
-Thread-Index: AdD02vvbUwYZJ+yQQmCG2cgWhZzdIg==
-From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
-	<thshin@telechips.com>
-To: <yocto@yoctoproject.org>
-Subject: Re: packageconfig for non-autotooled project
+Subject: specify compiler version in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,309 +61,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Sep 2015 02:06:26 -0000
-Content-class: urn:content-classes:message
-Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01D0F4DB.6C715048"
+X-List-Received-Date: Tue, 22 Sep 2015 02:48:01 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-------_=_NextPart_001_01D0F4DB.6C715048
-Content-Type: text/plain;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Create a sunxi-mali_git.bbappend file, to see the pc file of the MESA =
-Project can be used to manually create a .pc file.
+It looks like I already know the answer to this one... ;-)
 
-=20
+I'm guessing it isn't possible to specify the compiler version in a
+recipe? That's probably way too late in the parse stage?
 
-sunxi-mali_git.bbappend file
+There are some vendor Linux kernels for some BSPs that are old enough to
+pre-date the:
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+    fatal error: linux/compiler-gcc5.h: No such file or directory
 
-FILESEXTRAPATHS_append :=3D ":${THISDIR}/${PN}"
+issue. Which means we have to rely on users reading the README and
+updating their conf/local.conf files to include
 
-=20
+    GCCVERSION = "4.9%"
 
-SRC_URI +=3D "file://egl.pc"
+Unfortunately that process is error-prone. It would be great to have
+that occur automatically. In other words: if you want to use the
+community/default/upstream kernel then use the latest compiler (but you
+won't have accelerated graphics). If you want accelerated graphics then
+you have to PREFER an older kernel *and* specify which version of gcc to
+use in your conf/local.conf.
 
-=20
+Can anyone think of a clever trick for this one?
 
-do_install_append() {
-
-install -d ${D}${libdir}/pkgconfig
-
-cp ${WORKDIR}/egl.pc      ${D}${libdir}/pkgconfig
-
-}
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-=20
-
-this is my egl.pc file
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-prefix=3D/usr
-
-exec_prefix=3D${prefix}
-
-libdir=3D/usr/lib
-
-includedir=3D/usr/include
-
-=20
-
-Name: egl
-
-Description: Telechips EGL library
-
-Requires.private:=20
-
-Version: 10.1.3
-
-Libs: -L${libdir} -lEGL -lGLESv2 -lMali -lUMP
-
-Libs.private:=20
-
-Cflags: -I${includedir}/EGL/ -I${includedir}
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-=20
-
-=20
-
-=20
+Are BSP maintainers patching their old kernels to support post-gcc-5.0
+versions?
 
 Best regards,
+    Trevor
 
-Wily Taekhyun Shin
-
-=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-Wily Taekhyun Shin
-
-Research Engineer
-R&D Center
-Telechips Inc.
-Tel : + 82-2-3443-6792(Ext.390)
-
-Fax : + 82-2-6424-7793=20
-
-Mobile : + 82-10-4376-5530
-
-E-mail : thshin@telechips.com =
-<blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked::=
-blocked::blocked::mailto:ksjeon@telechips.com>=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-
-
-
-=20
-
-
-------_=_NextPart_001_01D0F4DB.6C715048
-Content-Type: text/html;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dks_c_5601-1987"><meta name=3DGenerator content=3D"Microsoft =
-Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B1=BC=B8=B2";
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"=B1=DB=C0=DA=B8=B8 Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"=B1=DB=C0=DA=B8=B8 Char";
-	mso-style-priority:99;
-	mso-style-link:=B1=DB=C0=DA=B8=B8;
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DKO link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-lang=3DEN-US>Create a sunxi-mali_git.bbappend file, to see the pc file =
-of the MESA Project can be used to manually create a .pc =
-file.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>sunxi-mali_git.bbappend file<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p></span></p>=
-<p class=3DMsoNormal><span lang=3DEN-US>FILESEXTRAPATHS_append :=3D =
-&quot;:${THISDIR}/${PN}&quot;<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>SRC_URI +=3D =
-&quot;file://egl.pc&quot;<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>do_install_append() =
-{<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>install =
--d ${D}${libdir}/pkgconfig<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>cp =
-${WORKDIR}/egl.pc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-${D}${libdir}/pkgconfig<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>}<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p></span></p>=
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>this is my egl.pc =
-file<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>prefix=3D/usr<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>exec_prefix=3D${prefix}<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>libdir=3D/usr/lib<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>includedir=3D/usr/include<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Name: egl<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Description: Telechips EGL =
-library<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Requires.private: <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Version: =
-10.1.3<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Libs: -L${libdir} -lEGL -lGLESv2 -lMali =
--lUMP<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Libs.private: <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Cflags: -I${includedir}/EGL/ =
--I${includedir}<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Best =
-regards,<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>Wily Taekhyun Shin<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br></span><b><span =
-lang=3DEN-US style=3D'font-family:"Arial","sans-serif";color:blue'>Wily =
-Taekhyun Shin<o:p></o:p></span></b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>Research =
-Engineer<br>R&amp;D Center<br></span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'>Telechips =
-Inc.<br></span></b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Tel : + =
-82-2-3443-6792(Ext.390)</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'><o:p></o:p></span><=
-/b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Fax : + =
-82-2-6424-7793 </span><span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Mobile : + =
-82-10-4376-5530<o:p></o:p></span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>E-mail : =
-</span><span lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><a =
-href=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::bl=
-ocked::blocked::blocked::mailto:ksjeon@telechips.com" target=3D"_blank" =
-title=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::b=
-locked::blocked::blocked::blocked::mailto:ksjeon@telechips.com&#10;blocke=
-d::blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked=
-::blocked::mailto:ksjeon@telechips.com&#10;blocked::b"><b><span =
-style=3D'font-family:"Arial","sans-serif";color:blue'>thshin@telechips.co=
-m</span></b></a><br></span><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br><br></span><span =
-lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-
-------_=_NextPart_001_01D0F4DB.6C715048--
