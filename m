@@ -1,54 +1,51 @@
-Return-Path: <aguirre.nicolas@gmail.com>
+Return-Path: <Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94C69E01089; Tue, 22 Sep 2015 11:34:49 -0700 (PDT)
+	id 4DBBBE0108A; Tue, 22 Sep 2015 11:34:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (aguirre.nicolas[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.44 listed in list.dnswl.org]
-Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
-	[209.85.218.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB2CFE01088
-	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 11:34:40 -0700 (PDT)
-Received: by oixx17 with SMTP id x17so10739070oix.0
-	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 11:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=9bjIakXTNGsh2wSd6eo6lX1K4DxfrOzBmIMasuwUcEY=;
-	b=We4RqyaRbX0bnBSK5o3cVdtM7Xhz+6+YlpNAqtaSMZCrJ2ePuUo32SpD9CNa46o13q
-	/7ViTTo0/3dUgOzV7gVzTWo4++DKpHpHgzLRH2yB5J2lMvJDgpkn/3P6audOu0Dq1Sh7
-	oebuf9jCNujZHUemUMeFvRjvYp+unEwqrqWWhzxgfVcH6UdfjiR4B+FuISdj8RFj1gdi
-	ljpUZ5V0+ldU/uI9n7MTMulB+x2i0hwqQKAQAIhYcrBuzTLiJLXrZ1QUYHRLU3QLPN7w
-	KwYsRUbBTl0Q58nQG8NHh3j7FaT1FLgN+cmS5rW8XfxjKYMepjaoGcZQc0coH8utRE3l
-	W0ug==
-X-Received: by 10.202.188.197 with SMTP id m188mr1749351oif.70.1442946879747; 
-	Tue, 22 Sep 2015 11:34:39 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 68 seconds by postgrey-1.32 at yocto-www;
+	Tue, 22 Sep 2015 11:34:55 PDT
+Received: from FLEMING.seektech.com (unknown [66.192.149.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95529E01088
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 11:34:55 -0700 (PDT)
+Received: from WRIGHT.seescan.com (192.168.11.30) by mail.seektech.com
+	(192.168.3.10) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Tue, 22 Sep 2015 11:33:43 -0700
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Tue, 22 Sep 2015 11:33:44 -0700
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Tue, 22 Sep 2015 11:33:44 -0700
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, 'Mantas Mikulenas'
+	<grawity@gmail.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [systemd-devel] How to automount
+Thread-Index: AdD07JOgxjxVizetTnuI7JjPXGw5QAAcbW9gAAGEMkw=
+Date: Tue, 22 Sep 2015 18:33:43 +0000
+Message-ID: <1442946736651.15866@seescan.com>
+References: <F9B37C5086864E2EA06AC70C09CF7C25@PAULD>
+	<CAFKnvs6eVMrfcH3AOS28vAG237UUbYdLKR=FGB9PBipOQZbqYg@mail.gmail.com>
+	<3DB96F2F9D444EFE931CA8443BAFBACE@PAULD>
+	<CAPWNY8XTWDDS83JwizV8jH=xkxs9hdRgBLB5CsacTYQsqCwG=Q@mail.gmail.com>,
+	<DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD>
+In-Reply-To: <DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
 MIME-Version: 1.0
-Received: by 10.202.214.213 with HTTP; Tue, 22 Sep 2015 11:34:20 -0700 (PDT)
-In-Reply-To: <56018F9D.8060709@gmail.com>
-References: <56018F9D.8060709@gmail.com>
-From: Nicolas Aguirre <aguirre.nicolas@gmail.com>
-Date: Tue, 22 Sep 2015 20:34:20 +0200
-Message-ID: <CAHTvVMfHyTajGt5wuoQByjBnCGbTuJdQDkmbHpFXd=dWMzw8FA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sergey Lapin <slapin@ossfans.org>,
-	Enrico Butera <ebutera@users.sourceforge.net>
-Subject: Re: sunxi mali binary driver
+X-GFI-SMTP-Submission: 1
+X-GFI-SMTP-HelloDomain: WRIGHT.seescan.com
+X-GFI-SMTP-RemoteIP: 192.168.11.30
+Subject: Re: [systemd-devel] How to automount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,50 +57,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Sep 2015 18:34:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 22 Sep 2015 18:34:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-2015-09-22 19:27 GMT+02:00 Trevor Woerner <twoerner@gmail.com>:
-> Hello,
->
-
- Hi Trevor,
-
-> I'm trying to build an image for my cubietruck that uses the binary
-> accelerated mali driver (sunxi-mali) and have a couple questions.
->
-> It was my impression that the binary user-space libraries (sunxi-mali?)
-> only work with specific versions of the kernel.
->
-
-sunxi-mali binary driver build by this recipe
-(https://github.com/linux-sunxi/meta-sunxi/blob/master/recipes-graphics/libgles/sunxi-mali_git.bb)
-only works with 3.4 kernel.
-You can find some informations about sunxi-mali here :
-http://linux-sunxi.org/Mali_binary_driver
-
-The problem is that linux-sunxi 3.4.x kernel contains mali r3p0 driver
-(https://github.com/linux-sunxi/linux-sunxi/tree/sunxi-3.4/drivers/gpu/mali)
-where linux mainline doesn't.
-
-> By default the cubietruck machine definition will try to build the
-> upstream kernel, but by default it also sets the preferred providers of
-> egl, gles1, and gles2 to sunxi-mali. Wouldn't that cause problems? If I
-> want to use the accelerated, binary mali driver, don't I have to stick
-> with the sunxi kernel (3.4.90) too?
->
-
-We could maybe avoid the build of sunxi-mali recipe when a mainline
-kernel is built.
-
-> Best regards,
->     Trevor
-
-Best Regards,
-Nicolas
--- 
-Nicolas Aguirre
-Mail: aguirre.nicolas@gmail.com
-Web: http://www.calaos.fr
-Blog: http://dev.enlightenment.fr/~captainigloo/
+This is in the package: udev-extraconf=0A=
+=0A=
+On your system look here:=0A=
+=0A=
+/etc/udev/rules.d/automount.rules=0A=
+=0A=
+In this file, you'll find the following rules.=0A=
+=0A=
+The second one auto unmounts.=0A=
+=0A=
+SUBSYSTEM=3D=3D"block", ACTION=3D=3D"add"    RUN+=3D"/etc/udev/scripts/moun=
+t.sh"=0A=
+=0A=
+SUBSYSTEM=3D=3D"block", ACTION=3D=3D"remove" RUN+=3D"/etc/udev/scripts/moun=
+t.sh"=0A=
+=0A=
+SUBSYSTEM=3D=3D"block", ACTION=3D=3D"change", =0A=
+ENV{DISK_MEDIA_CHANGE}=3D=3D"1" RUN+=3D"/etc/udev/scripts/mount.sh"=0A=
+=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Paul D. DeRocco <pderocco@ix.netcom.com>=0A=
+Sent: Tuesday, September 22, 2015 10:45 AM=0A=
+To: 'Mantas Mikulenas'; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] [systemd-devel] How to automount=0A=
+=0A=
+> From: Mantas Mikulenas [mailto:grawity@gmail.com]=0A=
+>=0A=
+> > I don't think there's any way to have something auto-unmount=0A=
+>=0A=
+> There certainly is - udev has been unmounting unplugged=0A=
+> drives for many years. It's done by default.=0A=
+=0A=
+If creating a udev mount rule automatically does the unmount, then the=0A=
+simplest thing for me would probably be to do that, and have my=0A=
+application do a sync after each user-initiated operation. That way, the=0A=
+drive would remain mounted after the operation, so I could still poke=0A=
+around on it while debugging, yet there would be no corruption when it's=0A=
+removed. Thanks for the tip.=0A=
+=0A=
+--=0A=
+=0A=
+Ciao,               Paul D. DeRocco=0A=
+Paul                mailto:pderocco@ix.netcom.com=0A=
+=0A=
+--=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=
 
