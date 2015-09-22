@@ -1,49 +1,54 @@
-Return-Path: <mayank77fromindia@gmail.com>
+Return-Path: <gilles.carry@st.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0A66E00E9E; Tue, 22 Sep 2015 02:36:12 -0700 (PDT)
+	id 5F7A6E00DA3; Tue, 22 Sep 2015 06:39:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mayank77fromindia[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.209.51.94 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
-	[209.85.218.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 586FEE005B1
-	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 02:36:09 -0700 (PDT)
-Received: by oixx17 with SMTP id x17so2054379oix.0
-	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 02:36:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=aEb2++6h27pLQpJvc3KC9nHj8X1xj2kZeWNEq5gZfeY=;
-	b=GuZHUrDi3GMBaGtkjDiyyqkqhG4hfMmVGXHNk6AdDVHe5sHXZYQh3orKVOPNEot+Ye
-	L2hlNQuoQrAXKHGxK70X/4VybcANdoBWKU51QvdmQsqCCXj/i78OcJ/ReHuO3qWsMWW6
-	oSHO+sgWTwen5SzWshD9oRWa/eO1CoKVYWXh/sVOtjyH3o8UlnF9VRZTfsl1QdqhUHhp
-	r6jpjHyl8/GcT5DD3WmuJnfj4vJneAcWF1gpUMD7AGsUlu9VFzjcQjjftmq4uZJ7fJnQ
-	q51+9Sh5oFXB2WKYPlpWKxdojyE6h8farCpOh44zuLb2+Xo1W/Ur/VHh8BKS8s5Oeoyq
-	okew==
+X-Greylist: delayed 1684 seconds by postgrey-1.32 at yocto-www;
+	Tue, 22 Sep 2015 06:39:12 PDT
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
+	[62.209.51.94])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5442E006EA
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 06:39:12 -0700 (PDT)
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+	by m0046037.ppops.net (8.14.5/8.14.5) with SMTP id t8MD7EIc009509
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 15:11:06 +0200
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by m0046037.ppops.net with ESMTP id 1x16dnqmdf-1
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 15:11:06 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 74F8041
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 13:10:50 +0000 (GMT)
+Received: from Webmail-eu.st.com (safex1hubcas6.st.com [10.75.90.73])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 09CBFA50C
+	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 13:11:05 +0000 (GMT)
+Received: from Safex1mail1.st.com ([fe80::38a0:4c7c:3de6:5e4b]) by
+	safex1hubcas6.st.com ([::1]) with mapi; Tue, 22 Sep 2015 15:11:04 +0200
+From: Gilles CARRY <gilles.carry@st.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 22 Sep 2015 15:11:03 +0200
+Thread-Topic: Easy tracking of dependencies
+Thread-Index: AdD1OCID8gh5S6ViRwOf0YRXJeaxZg==
+Message-ID: <9A1915A5EDF1BD429C7E67EC45EFD43501570B6336@SAFEX1MAIL1.st.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.202.211.10 with SMTP id k10mr14073802oig.34.1442914568628;
-	Tue, 22 Sep 2015 02:36:08 -0700 (PDT)
-Received: by 10.202.61.67 with HTTP; Tue, 22 Sep 2015 02:36:08 -0700 (PDT)
-Date: Tue, 22 Sep 2015 15:06:08 +0530
-Message-ID: <CAKjpqyJDgoV=+4QqtJ5Q5p2WcdqkioFDR5LMNicc+h42seEbpA@mail.gmail.com>
-From: Mayank Agarwal <mayank77fromindia@gmail.com>
-To: yocto@yoctoproject.org
-Subject: error in do_rootfs
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.14.151, 1.0.33,
+	0.0.0000
+	definitions=2015-09-22_04:2015-09-22, 2015-09-22,
+	1970-01-01 signatures=0
+Subject: Easy tracking of dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,40 +60,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Sep 2015 09:36:12 -0000
-Content-Type: multipart/alternative; boundary=001a113d2cd64df144052052bae1
+X-List-Received-Date: Tue, 22 Sep 2015 13:39:17 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9A1915A5EDF1BD429C7E67EC45EFD43501570B6336SAFEX1MAIL1st_"
 
---001a113d2cd64df144052052bae1
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-I am getting the below error in do_rootfs:
-
-ERROR: Unable to install packages. Command
- returned 255:
-
-
-I uderstand this error comes from certificate validation
-failure.
-
-Is there any option i can override the certificate validation
-in do_rootfs and get the binaries imstalled in final image
-
-Regards
-Mayank
-
---001a113d2cd64df144052052bae1
-Content-Type: text/html; charset=UTF-8
+--_000_9A1915A5EDF1BD429C7E67EC45EFD43501570B6336SAFEX1MAIL1st_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am getting the below error in do_=
-rootfs:</div><div><br></div><div>ERROR: Unable to install packages. Command=
-</div><div><div>=C2=A0returned 255:</div></div><div><br></div><div><br></di=
-v><div>I uderstand this error comes from certificate validation</div><div>f=
-ailure.</div><div><br></div><div>Is there any option i can override the cer=
-tificate validation</div><div>in do_rootfs and get the binaries imstalled i=
-n final image</div><div><br></div><div>Regards</div><div>Mayank</div><div><=
-br></div></div>
+Hello,
 
---001a113d2cd64df144052052bae1--
+I'm facing many cases in which bitbake spuriously rebuilds too many (all?) =
+components despite the shared state cache. I'm not detailing these cases as=
+ I know it just a matter of variables and new tasks we added in our build p=
+rocess.
+My concern is about how I can track these dependencies when the spurious re=
+builds occur. I have done this in the past and used commands or log files e=
+xplaining what caused the rebuild of such or such component. Unfortunately,=
+ I just can't remember what it was. (my fault)
+
+Does Yocto provide a way to track these dependencies? (ie. This task was tr=
+iggered because this variable changed)
+Sorry if this question has already been asked but I'm failing to find the a=
+nswer from the Yocto doc or from the web.
+
+Thanks.
+Gilles.
+
+--_000_9A1915A5EDF1BD429C7E67EC45EFD43501570B6336SAFEX1MAIL1st_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Arial",sans-serif;
+	color:#002052;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1906336584;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-209178468 1160969768 67698691 67698693 67698689 676=
+98691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Arial",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3D"#0563C1=
+" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><span la=
+ng=3DFR style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#002=
+052'>Hello,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DFR style=
+=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#002052'><o:p>&nb=
+sp;</o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;fo=
+nt-family:"Arial",sans-serif;color:#002052'>I&#8217;m facing many cases in =
+which bitbake spuriously rebuilds too many (all?) components despite the sh=
+ared state cache. I&#8217;m not detailing these cases as I know it just a m=
+atter of variables and new tasks we added in our build process.<o:p></o:p><=
+/span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:=
+"Arial",sans-serif;color:#002052'>My concern is about how I can track these=
+ dependencies when the spurious rebuilds occur. I have done this in the pas=
+t and used commands or log files explaining what caused the rebuild of such=
+ or such component. Unfortunately, I just can&#8217;t remember what it was.=
+ (my fault)<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-s=
+ize:10.0pt;font-family:"Arial",sans-serif;color:#002052'><o:p>&nbsp;</o:p><=
+/span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:=
+"Arial",sans-serif;color:#002052'>Does Yocto provide a way to track these d=
+ependencies? (ie. This task was triggered because this variable changed)<o:=
+p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;fon=
+t-family:"Arial",sans-serif;color:#002052'>Sorry if this question has alrea=
+dy been asked but I&#8217;m failing to find the answer from the Yocto doc o=
+r from the web.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'fo=
+nt-size:10.0pt;font-family:"Arial",sans-serif;color:#002052'><o:p>&nbsp;</o=
+:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-fam=
+ily:"Arial",sans-serif;color:#002052'>Thanks.<o:p></o:p></span></p><p class=
+=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Arial",sans-serif=
+;color:#002052'>Gilles.<o:p></o:p></span></p></div></body></html>=
+
+--_000_9A1915A5EDF1BD429C7E67EC45EFD43501570B6336SAFEX1MAIL1st_--
