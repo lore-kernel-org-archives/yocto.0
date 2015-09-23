@@ -1,52 +1,52 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4855E00F74; Wed, 23 Sep 2015 15:25:00 -0700 (PDT)
+	id 60794E00DDF; Wed, 23 Sep 2015 15:27:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.173 listed in list.dnswl.org]
-Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
-	[209.85.212.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D9E7E0055C
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:24:56 -0700 (PDT)
-Received: by wicfx3 with SMTP id fx3so4177793wic.1
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:24:55 -0700 (PDT)
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3962E0055C
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:27:25 -0700 (PDT)
+Received: by wicfx3 with SMTP id fx3so4233487wic.1
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:27:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=jUoYZUcDudZCa7iay2B5laFpiXrq86THkiCJxP1dTjk=;
-	b=YEx9RNPH8z+BWBpz7aEKHZaUFNWs8EHxWGwRFpGZS2uzQcD29Sd2raDAzHukp9px2o
-	DWKJXlj5UWY/TjDwYCcGaQqPEuRvAcjP3wzJr/qO4YFYdkLhCSM6ZUYm35dqs+6DiAcD
-	JOw9NDa8Bh/2dvjGPi7MmQlFADQ/m1dJemlMKoiXfAOJppigwkVzselcCL0bhQSt80e6
-	Xr78dR9bcngB2lrkwPKkWn6fibafshkNzAKXmicSIsxccOU2zVpg8ua3dQsdL40PEaT9
-	f2f9X3rQo1SVoZy26y6KBSGoaOl+0zQz/kaXBE4HKegAro368qNhTA3YnSVG7vQUI71q
-	3xSw==
-X-Gm-Message-State: ALoCoQnFtvMRHmdmRE+TehcxXooVZ00gqOYF5WJwsZnbTA/WOjECFLHMf2mdh1j5zt9jdMLKRNm7
-X-Received: by 10.194.204.195 with SMTP id la3mr22089936wjc.77.1443047095890; 
-	Wed, 23 Sep 2015 15:24:55 -0700 (PDT)
+	bh=659zuyjwpO4fr2jHHhPc/12zJB8MNkC011RyO2dr2tU=;
+	b=QGzjDWo80l1ueyiq4uxwxYFlhCH1MrOfY0PvFXqnmE4kJUb9stO/pA9iu7uX5fZpV6
+	/buh/i6BhspSkSgn3uydrCurZB5052uta0cYOZpoKI75cwrM+L77qgQchSwQMfhpEvc+
+	eMIWQ7S5Q2mrRo1HWuxUIend3pQYcZJWCTTdVmY6BYII4yd/Zxp1jY5evrG8Q8qf1wsL
+	5xkot0n2iiQWFwIZ3JdXkyaxpeoL+249GUB2pzZQn4+Rzl/VrHJ7yJYFhV/1ZVon9cCv
+	bVOFVjYj+x4PKkUZuT5uUqILWfRBQvxlIeRhuLd/PjWnpGbrKGEkoL4ySDf6W9uw8qJH
+	M69A==
+X-Gm-Message-State: ALoCoQnf7lmjKjWvAxEDsL6Zf3ouHH5dHHvNbTpJBL2XybtTBjGTnWcCtH9cweNI7M7qgTVFXOKK
+X-Received: by 10.194.7.232 with SMTP id m8mr26877206wja.56.1443047244826;
+	Wed, 23 Sep 2015 15:27:24 -0700 (PDT)
 Received: from resin (dslb-088-067-185-139.088.067.pools.vodafone-ip.de.
 	[88.67.185.139])
-	by smtp.gmail.com with ESMTPSA id uq5sm9367093wjc.3.2015.09.23.15.24.54
+	by smtp.gmail.com with ESMTPSA id w1sm9334301wjz.37.2015.09.23.15.27.23
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 23 Sep 2015 15:24:54 -0700 (PDT)
-Date: Thu, 24 Sep 2015 01:24:52 +0300
+	Wed, 23 Sep 2015 15:27:23 -0700 (PDT)
+Date: Thu, 24 Sep 2015 01:27:21 +0300
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Jonathan Liu <net147@gmail.com>
-Message-ID: <20150923222452.GB23493@resin>
-References: <1442632046-6793-1-git-send-email-net147@gmail.com>
+To: Edward Vidal <develone@sbcglobal.net>
+Message-ID: <20150923222721.GC23493@resin>
+References: <998678350.1550167.1442063545537.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-In-Reply-To: <1442632046-6793-1-git-send-email-net147@gmail.com>
+In-Reply-To: <998678350.1550167.1442063545537.JavaMail.yahoo@mail.yahoo.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: use existing ROOTFS_SIZE variable
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] rootfs fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,21 +58,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 22:25:00 -0000
+X-List-Received-Date: Wed, 23 Sep 2015 22:27:27 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hello,
+Hello guys,
 
-On Sat, Sep 19, 2015 at 01:07:26PM +1000, Jonathan Liu wrote:
-> The ROOTFS_SIZE variable is already set to the aligned root filesystem size.
+On Sat, Sep 12, 2015 at 01:12:25PM +0000, Edward Vidal wrote:
+>    Hello All,
+>    Thanks after doing "bitbake core-image-sato -c cleansstate"
+>    followed by  "bitbake core-image-sato" was able to get the image.
+>    During the core-image-sato with no IMAGE_INSTALL_append =  I did see a
+>    few warnings that I have not seen before (see below).
+>        WARNING: QA Issue: gstreamer1.0-plugins-bad: configure was passed
+>        unrecognised options: --with-egl-window-system
+>    [unknown-configure-option]
 >
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> ---
->  classes/sdcard_image-rpi.bbclass | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+>        WARNING: QA Issue: /home/vidal/wkg/yocto/RaspberryPi2/poky/build/
+>        tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/perl/
+>        5.22.0-r0/packages-split/perl-ptest/usr/lib/perl/ptest/hints/
+>        epix.sh is owned by uid 1000, which is the same as the user running
+>    bitbake.
+>         This may be due to host contamination [host-user-contaminated]
+>    Another strange happening is python is missing items to do "python
+>    setup.py install" on package
+>        both repo072015 & repo091015 are using python 2.7.9-r1
+>        -python-distribute-0.6.32 is missing and 2 new RPMs are installed
+>        +python-pip-7.1.0 is now being using instead of python-pip-1.5.6
+>        +python-setuptools-18.2 is now being used.
+>    Could this be related to rootfs failing at times?
+>    Regards,
+>    Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
 
-Merged to master. Thanks.
+I merged a patch that should fix this issue. Can you try to replicate with
+current HEAD?
 
 --
 Andrei Gherzan
