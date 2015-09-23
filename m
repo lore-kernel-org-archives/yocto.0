@@ -1,38 +1,45 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2A3AE00DE4; Wed, 23 Sep 2015 07:02:08 -0700 (PDT)
+	id 8FA77E0106A; Wed, 23 Sep 2015 08:10:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
+	characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.232 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50ECCE00D31
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 07:01:59 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id BF6A3F811E0; Wed, 23 Sep 2015 08:01:58 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D53EBF811DA;
-	Wed, 23 Sep 2015 08:01:57 -0600 (MDT)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <55FFF9AA.2020402@mlbassoc.com>
-	<2165861.gxy7TRHp8B@peggleto-mobl.ger.corp.intel.com>
-	<5602ADEE.2000803@mlbassoc.com>
-	<5030350.EsmU006QGn@peggleto-mobl.ger.corp.intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <5602B0D6.9090501@mlbassoc.com>
-Date: Wed, 23 Sep 2015 08:01:58 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+Received: from smtprelay.hostedemail.com (smtprelay0232.hostedemail.com
+	[216.40.44.232])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54528E00CDF
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 08:10:00 -0700 (PDT)
+Received: from filter.hostedemail.com (unknown [216.40.38.60])
+	by smtprelay04.hostedemail.com (Postfix) with ESMTP id B1A88352005
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:09:59 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: honey85_9159c0976b532
+X-Filterd-Recvd-Size: 1350
+Received: from sdcapont (unknown [5.133.41.213])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf02.hostedemail.com (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 15:09:58 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 23 Sep 2015 16:09:55 +0100
+Organization: SDC Systems Limited
+Message-ID: <00a201d0f611$e88dd2f0$b9a978d0$@pont@sdcsystems.com>
 MIME-Version: 1.0
-In-Reply-To: <5030350.EsmU006QGn@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Change in bitbake behaviour?
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdD2Eec7QOj2V+fIQLKT9hBeiqPwIQ==
+Subject: psplash wierdness
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,58 +48,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 14:02:08 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 23 Sep 2015 15:10:04 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-language: en-gb
 
-On 2015-09-23 07:52, Paul Eggleton wrote:
-> On Wednesday 23 September 2015 07:49:34 Gary Thomas wrote:
->> On 2015-09-23 07:46, Paul Eggleton wrote:
->>> Hi Gary,
->>>
->>> On Monday 21 September 2015 06:35:54 Gary Thomas wrote:
->>>> I just updated to the latest Poky/Yocto master
->>>> and I noticed this change in behaviour when I tried to stop
->>>>
->>>> a build:
->>>>      Keyboard Interrupt, closing down...
->>>>
->>>>      NOTE: Tasks Summary: Attempted 86 tasks of which 36 didn't need to be
->>>>
->>>> rerun and all succeeded. ERROR: Command execution failed: Stopped build
->>>>
->>>>      Summary: There was 1 ERROR message shown, returning a non-zero exit
->>>>      code.
->>>>
->>>> Execution was interrupted, returning a non-zero exit code.
->>>>
->>>>      timed out
->>>>
->>>> It took more than a minute between the last two lines at which time
->>>> I thought it might be hung.  I left it and then found the "timed out"
->>>> line somewhat later.
->>>>
->>>> Is this to be expected?
->>>
->>> No, this sounds like a bug - but was this somehow related to your other
->>> build issue or do you still see this?
->>
->> No, I'm still seeing it, but only occasionally.  It's most
->> pronounced if I try and abort a build, but I have seen it
->> also with a successful run (it hangs when seemingly complete
->> the prints 'timed out' after a fairly long time)
->
-> OK... is a PR server enabled in your configuration and if so is it being
-> started automatically or running on a different machine?
+I have spent all morning fine tuning psplash on a PXE booting system using
+an NFS mounted root file system (all built with Yocto 1.8 for the
+intel-core2-32 machine) and all is exactly as I need.
 
-Started automatically on this machine.  I routinely have this
-in my local.conf:
-   # Enable local PR server - edit this to use a shared server
-   PRSERV_HOST = "localhost:0"
+When I boot the system using an initrd of the same file system the first
+output from the init process is:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+/etc/init.d/rc: /etc/rcS.d/S00psplash.sh: line 28: can't open '/dev/null'
+
+Line 28 of S00psplash.sh corresponds to the call to /usr/bin/psplash to
+display the image to hide the init messages.
+
+Am I being a complete numpty (highly probable) or have I missed something
+about using an initrd?
+
+Thanks,
+
+Andy.
+
+
 
