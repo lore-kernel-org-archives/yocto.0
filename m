@@ -1,47 +1,60 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5AA5DE00CDC; Wed, 23 Sep 2015 03:01:43 -0700 (PDT)
+	id 6076CE00C0E; Wed, 23 Sep 2015 03:09:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f52.google.com (mail-qg0-f52.google.com
-	[209.85.192.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F619E007B3
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:01:38 -0700 (PDT)
-Received: by qgt47 with SMTP id 47so15004568qgt.2
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:01:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=9H9vBJFmqyjsQxw9RkUFphJkL7PbMQ9fefcK5mERmp0=;
-	b=ehA8YL70J+Gm4Klfg7lbbllqHItfK6x8Uq6t79hDRhhz9eg++lQyCw1+5GYBed/04c
-	acLPUM1iGEfvaZTVP5OdmUQLwWfoZW8dwNBs/e3ES97EWJ3lWnfS9SYWh2pfxedWcpPD
-	vejiqYa0mhzv7fgVHwq6x08rrZyIjJatm3aCAkBAgLXGNu9cOB8pr6xtX7KdmDMiYHbw
-	OYnv8Iw5uHyqQU0rE6cX6/2yuFnaAJIKnMPee/zk/SjvZ8HR27Uz3M4Ac0zav9gpbc5l
-	wqNYwplIN6aZKHm3bzelvwP4x/NnsNpdwAOJQ1iNhgyddohlEIYB6tPBfC+ARYqUNUCi
-	+B1A==
-X-Gm-Message-State: ALoCoQlKry5xl2gk1wcGWt+6xJ1VDsyDhLSotKj3qHhJJgUqTW4djVB3yhVJ0UwVtnCAE/zt+8yQ
-X-Received: by 10.140.133.202 with SMTP id 193mr36929324qhf.52.1443002497434; 
-	Wed, 23 Sep 2015 03:01:37 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.170 listed in list.dnswl.org]
+Received: from mail-yk0-f170.google.com (mail-yk0-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BB86E007B3
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:09:29 -0700 (PDT)
+Received: by ykdt18 with SMTP id t18so36219728ykd.3
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:09:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=wAWKWJVtmnCFJcUesxxqEtIPV+m2YH5PQO6oUsXS/sQ=;
+	b=xas1pJgML3nn5mTyvtTlFli9D16g2REYfhztN/IOjBNhYE3kgT4qQ4iPJ15/BbIoXI
+	X/IFaVjyJ5wlgwOaYQbrrqeE//p3ccGucCATrqM5CGTHHYGVAKuAMRg3DtrM+EtM4QHp
+	vpabzw++qDIm59h9CT6jnCv8JzWwXIrLdMSwHVt7CB9YKo+tKYJZXxPtKm39CcKM+w2g
+	m8fDA6H0RMILr8hOtbrBz0YlgVV3JCvFzoSPPlxOEiWbc9fM0LVQ3r0QNiqONBCCN6Go
+	/MPTreDrsw4H3C3bHsvb9yitC7DNnOcxj5cBEumHvHAimio10tPBkxazQSdwnj4lb7Bd
+	yWew==
 MIME-Version: 1.0
-Received: by 10.140.94.86 with HTTP; Wed, 23 Sep 2015 03:01:18 -0700 (PDT)
-In-Reply-To: <CALLyC8Qt4X-=Ea7jcOY4TEnBUrGBJq_nPhALteENznRhmooCdA@mail.gmail.com>
-References: <CALLyC8Qt4X-=Ea7jcOY4TEnBUrGBJq_nPhALteENznRhmooCdA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 23 Sep 2015 11:01:18 +0100
-Message-ID: <CAJTo0LY2TTt=ebrz0dd0X313+tgY49+WKTOWW2-ZnyjGaiF6+Q@mail.gmail.com>
-To: Vivek Per <pervivek@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Does mount.cifs command includes in busybox package
+X-Received: by 10.13.204.81 with SMTP id o78mr25354021ywd.108.1443002969114;
+	Wed, 23 Sep 2015 03:09:29 -0700 (PDT)
+Received: by 10.129.148.199 with HTTP; Wed, 23 Sep 2015 03:09:28 -0700 (PDT)
+Received: by 10.129.148.199 with HTTP; Wed, 23 Sep 2015 03:09:28 -0700 (PDT)
+In-Reply-To: <54D97D1C25A94C8987390AB26D5EBF79@PAULD>
+References: <F9B37C5086864E2EA06AC70C09CF7C25@PAULD>
+	<CAFKnvs6eVMrfcH3AOS28vAG237UUbYdLKR=FGB9PBipOQZbqYg@mail.gmail.com>
+	<3DB96F2F9D444EFE931CA8443BAFBACE@PAULD>
+	<CAPWNY8XTWDDS83JwizV8jH=xkxs9hdRgBLB5CsacTYQsqCwG=Q@mail.gmail.com>
+	<DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD>
+	<1442946736651.15866@seescan.com> <560252C3.80207@topic.nl>
+	<54D97D1C25A94C8987390AB26D5EBF79@PAULD>
+Date: Wed, 23 Sep 2015 07:09:28 -0300
+Message-ID: <CAF3SDA6D2-SNdU0bbCH0+5vk7XbYgdx-O1Wm+Z_5xQfjbv===Q@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [systemd-devel] How to automount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,35 +66,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 10:01:43 -0000
-Content-Type: multipart/alternative; boundary=001a1135a4f445225705206733ec
+X-List-Received-Date: Wed, 23 Sep 2015 10:09:34 -0000
+Content-Type: multipart/alternative; boundary=001a114820c4626ad00520674f4a
 
---001a1135a4f445225705206733ec
+--001a114820c4626ad00520674f4a
 Content-Type: text/plain; charset=UTF-8
 
-mount.cifs is provided by Samba.
+I think that sync just flushes data to disk and umount clears the dirty
+bit. There is no sync.vfat that I know.
+Em 23/09/2015 05:31, "Paul D. DeRocco" <pderocco@ix.netcom.com> escreveu:
 
-Ross
-
-On 23 September 2015 at 10:56, Vivek Per <pervivek@gmail.com> wrote:
-
-> hi all,
->      Does mount.cifs command includes in busybox package . If so then it
-> includes what package
+> > From: Mike Looijmans
+> >
+> > This only serves to remove a mounted directory after
+> > "yanking" the device. It
+> > doesn't really do anything useful though, you'll still get corrupted
+> > filesystems, because Linux is way too lazy in writing out dirty data.
+> >
+> > Proper solution would be to have the system mount a removable
+> > device as
+> > read-only, and promote it to r/w once someone tries to write
+> > to it. And then
+> > after a timeout, it should go back to readonly.
+> >
+> > Supposedly, "autofs" can accomplish this, but I've never met
+> > anyone who got
+> > that to actually work.
 >
-> PN= busybox
+> In my system, the removable drive is used only for backing up or restoring
+> various data files in response to user commands. If I do a sync after each
+> such command, shouldn't that be enough to guarantee the file system
+> doesn't get corrupted when the drive is removed? Will it also ensure the
+> dirty flag is clear, or does that get set anyway?
 >
+> --
 >
-> PACKAGES =+ "${PN}-httpd ${PN}-udhcpd ${PN}-udhcpc ${PN}-syslog ${PN}-mdev
-> ${PN}-hwclock"
->
-> in which package cifs command include
->
-> If not does it includes in
-> utils-linux package
->
-> Thanks and regards
->         vivek
+> Ciao,               Paul D. DeRocco
+> Paul                mailto:pderocco@ix.netcom.com
 >
 > --
 > _______________________________________________
@@ -89,33 +110,59 @@ On 23 September 2015 at 10:56, Vivek Per <pervivek@gmail.com> wrote:
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
->
 
---001a1135a4f445225705206733ec
+--001a114820c4626ad00520674f4a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">mount.cifs is provided by Samba.<div><br></div><div>Ross</=
-div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 23 S=
-eptember 2015 at 10:56, Vivek Per <span dir=3D"ltr">&lt;<a href=3D"mailto:p=
-ervivek@gmail.com" target=3D"_blank">pervivek@gmail.com</a>&gt;</span> wrot=
-e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">hi all,<div>=C2=A0 =
-=C2=A0 =C2=A0Does mount.cifs command includes in busybox package . If so th=
-en it includes what package=C2=A0</div><div><br></div><div>PN=3D busybox</d=
-iv><div><br></div><div><br></div><div>PACKAGES =3D+ &quot;${PN}-httpd ${PN}=
--udhcpd ${PN}-udhcpc ${PN}-syslog ${PN}-mdev ${PN}-hwclock&quot;<br></div><=
-div><br></div><div>in which package cifs command include</div><div><br></di=
-v><div>If not does it includes in=C2=A0</div><div>utils-linux package</div>=
-<div><br></div><div>Thanks and regards</div><span class=3D"HOEnZb"><font co=
-lor=3D"#888888"><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 vivek</div></font></span><=
-/div>
-<br>--<br>
+<p dir=3D"ltr">I think that sync just flushes data to disk and umount clear=
+s the dirty bit. There is no sync.vfat that I know.</p>
+<div class=3D"gmail_quote">Em 23/09/2015 05:31, &quot;Paul D. DeRocco&quot;=
+ &lt;<a href=3D"mailto:pderocco@ix.netcom.com">pderocco@ix.netcom.com</a>&g=
+t; escreveu:<br type=3D"attribution"><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt; Fr=
+om: Mike Looijmans<br>
+&gt;<br>
+&gt; This only serves to remove a mounted directory after<br>
+&gt; &quot;yanking&quot; the device. It<br>
+&gt; doesn&#39;t really do anything useful though, you&#39;ll still get cor=
+rupted<br>
+&gt; filesystems, because Linux is way too lazy in writing out dirty data.<=
+br>
+&gt;<br>
+&gt; Proper solution would be to have the system mount a removable<br>
+&gt; device as<br>
+&gt; read-only, and promote it to r/w once someone tries to write<br>
+&gt; to it. And then<br>
+&gt; after a timeout, it should go back to readonly.<br>
+&gt;<br>
+&gt; Supposedly, &quot;autofs&quot; can accomplish this, but I&#39;ve never=
+ met<br>
+&gt; anyone who got<br>
+&gt; that to actually work.<br>
+<br>
+In my system, the removable drive is used only for backing up or restoring<=
+br>
+various data files in response to user commands. If I do a sync after each<=
+br>
+such command, shouldn&#39;t that be enough to guarantee the file system<br>
+doesn&#39;t get corrupted when the drive is removed? Will it also ensure th=
+e<br>
+dirty flag is clear, or does that get set anyway?<br>
+<br>
+--<br>
+<br>
+Ciao,=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Paul D. DeRocco=
+<br>
+Paul=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mailto:<a href=
+=3D"mailto:pderocco@ix.netcom.com">pderocco@ix.netcom.com</a><br>
+<br>
+--<br>
 _______________________________________________<br>
 yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
+</blockquote></div>
 
---001a1135a4f445225705206733ec--
+--001a114820c4626ad00520674f4a--
