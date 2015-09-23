@@ -1,32 +1,73 @@
-Return-Path: <thshin@telechips.com>
+Return-Path: <mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED8EBE00E5D; Tue, 22 Sep 2015 23:53:23 -0700 (PDT)
+	id 1233AE00DE5; Wed, 23 Sep 2015 01:17:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE,T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [46.165.232.184 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from telegweb.telechips.com (unknown [219.240.43.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5658CE00B5E
-	for <yocto@yoctoproject.org>; Tue, 22 Sep 2015 23:53:14 -0700 (PDT)
-x-mimeole: Produced By Microsoft Exchange V6.5
-MIME-Version: 1.0
-Date: Wed, 23 Sep 2015 15:52:15 +0900
-Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F1ACB9F@telegweb.telechips.com>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: RE: error in do_rootfs 
-Thread-Index: AdD1zGGYXaJaVMUiQH+9LOhaioYC/Q==
-From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
-	<thshin@telechips.com>
+X-Greylist: delayed 3388 seconds by postgrey-1.32 at yocto-www;
+	Wed, 23 Sep 2015 01:17:12 PDT
+Received: from mx12-14.smtp.antispamcloud.com (mx12-14.smtp.antispamcloud.com
+	[46.165.232.184])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0670E0076A
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:17:12 -0700 (PDT)
+Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
+	helo=TOP-EX01.TOPIC.LOCAL)
+	by mx12.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
+	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1ZeeM0-0002ft-Sv
+	for yocto@yoctoproject.org; Wed, 23 Sep 2015 09:20:41 +0200
+Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
+	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Wed, 23 Sep 2015 09:19:54 +0200
 To: <yocto@yoctoproject.org>
-Subject: Re: error in do_rootfs
+References: <F9B37C5086864E2EA06AC70C09CF7C25@PAULD>
+	<CAFKnvs6eVMrfcH3AOS28vAG237UUbYdLKR=FGB9PBipOQZbqYg@mail.gmail.com>
+	<3DB96F2F9D444EFE931CA8443BAFBACE@PAULD>
+	<CAPWNY8XTWDDS83JwizV8jH=xkxs9hdRgBLB5CsacTYQsqCwG=Q@mail.gmail.com>
+	<DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD>
+	<1442946736651.15866@seescan.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <560252C3.80207@topic.nl>
+Date: Wed, 23 Sep 2015 09:20:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <1442946736651.15866@seescan.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t0di
+	2A4r9us+Fq8MBvFDhJgKfqZbW/75LCi3G0ymnSdzpiigmRopPcaelV+RpJ7ivmbjO41FyBEqIaDu
+	dcVplPEV5fdZbBgAYjRktFsnBOu68dy9p6gE/g99Plm2mIQhBQ00JYCpdDQoJU79BjIi5W2Z3JKV
+	mi72ocgY5kMQSjs70ALn042Wb7mIcbVJi7pqphHamFlRvlxL+MzCKMvMkk78ZQ0AiyqMiTY+IYva
+	kPBr0z6bhalFEM/pjPCQA+BAlkniC5++pOyFfhmFBNq2PYR7Zn6OGQcTLcl+10S2CCSFSbZLiIzq
+	6RHISf0BeR/9lxlAbFwXFyuSr4goiWKeWbtWBb39uS1TjWG2Inx+Ts2Q85bpu8v0MLjfVaUXUvFy
+	TEwEAmRywCEMPg5NNGTMxTwq5H2HisnUiFGNBznFCJKEejk40iyx8hQPmbkJabHvUAAjMhPl4Vhd
+	NvMNOfYY5VjTiEw2ui8TVPldBCj8jBAT9EIYxHyidUrHJfz9kNKga+jb5NA413zESMJef949r2h3
+	KLwbXHjHpxz8VOWtxaqRRTlHFazPXt/x3tAgKOX3Wg==
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJUb3OPwsHaH0Fvg5oXltHd/JUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
+	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
+	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
+	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
+X-Originating-IP: 88.159.208.100
+X-Spampanel-Domain: topic.nl
+X-Spampanel-Username: 88.159.208.100
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=88.159.208.100@topic.nl
+X-Spampanel-Outgoing-Class: ham
+X-Spampanel-Outgoing-Evidence: Combined (0.00)
+X-Recommended-Action: accept
+Subject: Re: [systemd-devel] How to automount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,241 +79,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 06:53:24 -0000
-Content-class: urn:content-classes:message
-Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01D0F5CC.D2BBE1AA"
-
-------_=_NextPart_001_01D0F5CC.D2BBE1AA
-Content-Type: text/plain;
-	charset="ks_c_5601-1987"
+X-List-Received-Date: Wed, 23 Sep 2015 08:17:17 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-bitbake -u depexp -g name segfault because of not gui environment
+=EF=BB=BFOn 22-09-15 20:33, Fred Ollinger wrote:
+...
+> SUBSYSTEM=3D=3D"block", ACTION=3D=3D"remove" RUN+=3D"/etc/udev/scripts/mo=
+unt.sh"
 
-you can get dpendency dot file using bitbake image-name -g. not bitbake =
-bash -g
+This only serves to remove a mounted directory after "yanking" the device. =
+It=20
+doesn't really do anything useful though, you'll still get corrupted=20
+filesystems, because Linux is way too lazy in writing out dirty data.
 
+Proper solution would be to have the system mount a removable device as=20
+read-only, and promote it to r/w once someone tries to write to it. And the=
+n=20
+after a timeout, it should go back to readonly.
+
+Supposedly, "autofs" can accomplish this, but I've never met anyone who got=
 =20
-
-I think that the problem is do_rootfs error cause is busybox=20
-
-when you create rootfs, it is stranged to create a bash link not /bin/sh
-
->> Error: not linking /1.0-r0/rootfs//bin/bash to /bin/busybox.nosuid =
-since
-
->> rootfs//bin/bash exists and is not a link
-
-=20
-
-Also, if you use systemd, bash is installed because of the dependence of =
-systemd.
-
-=20
-
-Thanks
-
-=20
-
-Best regards,
-
-Wily Taekhyun Shin
-
-=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-Wily Taekhyun Shin
-
-Research Engineer
-R&D Center
-Telechips Inc.
-Tel : + 82-2-3443-6792(Ext.390)
-
-Fax : + 82-2-6424-7793=20
-
-Mobile : + 82-10-4376-5530
-
-E-mail : thshin@telechips.com =
-<blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked::=
-blocked::blocked::mailto:ksjeon@telechips.com>=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
+that to actually work.
 
 
 
-=20
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Embedded Products
+Eindhovenseweg 32-C, NL-5683 KH Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+Telefax: +31 (0) 499 33 69 70
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
 
 
-------_=_NextPart_001_01D0F5CC.D2BBE1AA
-Content-Type: text/html;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dks_c_5601-1987"><meta name=3DGenerator content=3D"Microsoft =
-Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B1=BC=B8=B2";
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"=B1=DB=C0=DA=B8=B8 Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"=B1=DB=C0=DA=B8=B8 Char";
-	mso-style-priority:99;
-	mso-style-link:=B1=DB=C0=DA=B8=B8;
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DKO link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-lang=3DEN-US>bitbake -u depexp -g name segfault because of not gui =
-environment<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>you can get dpendency dot file using bitbake image-name -g. =
-not bitbake bash -g<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I think that the problem is do_rootfs error cause is =
-busybox <o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>when you create rootfs, it is stranged to create a bash =
-link not /bin/sh<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>&gt;&gt; Error: not linking /1.0-r0/rootfs//bin/bash to =
-/bin/busybox.nosuid since<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>&gt;&gt; rootfs//bin/bash exists =
-and is not a link<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Also, if you use systemd, bash is installed because of the =
-dependence of systemd.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Thanks<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
-align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Best regards,<o:p></o:p></span></p><p =
-class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Wily Taekhyun Shin<o:p></o:p></span></p><p =
-class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
-/span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br></span><b><span =
-lang=3DEN-US style=3D'font-family:"Arial","sans-serif";color:blue'>Wily =
-Taekhyun Shin<o:p></o:p></span></b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>Research =
-Engineer<br>R&amp;D Center<br></span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'>Telechips =
-Inc.<br></span></b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Tel : + =
-82-2-3443-6792(Ext.390)</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'><o:p></o:p></span><=
-/b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Fax : + =
-82-2-6424-7793 </span><span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Mobile : + =
-82-10-4376-5530<o:p></o:p></span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>E-mail : =
-</span><span lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><a =
-href=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::bl=
-ocked::blocked::blocked::mailto:ksjeon@telechips.com" target=3D"_blank" =
-title=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::b=
-locked::blocked::blocked::blocked::mailto:ksjeon@telechips.com&#10;blocke=
-d::blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked=
-::blocked::mailto:ksjeon@telechips.com&#10;blocked::b"><b><span =
-style=3D'font-family:"Arial","sans-serif";color:blue'>thshin@telechips.co=
-m</span></b></a><br></span><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br><br></span><span =
-lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
 
-------_=_NextPart_001_01D0F5CC.D2BBE1AA--
+
+
