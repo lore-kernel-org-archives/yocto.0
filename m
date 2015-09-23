@@ -1,31 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C7B5E01041; Wed, 23 Sep 2015 05:27:08 -0700 (PDT)
+	id EB45EE0103E; Wed, 23 Sep 2015 06:46:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B3B1E00A4C
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 05:27:02 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id DD7ECF81199; Wed, 23 Sep 2015 06:27:01 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 21111F81199;
-	Wed, 23 Sep 2015 06:27:01 -0600 (MDT)
-To: yocto@yoctoproject.org
-References: <CAKjpqyJ0JARxdDF3Ux1g8Yh7ncCae3pF5MrPRbFo2Tr5rWsF+w@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56029A96.5070408@mlbassoc.com>
-Date: Wed, 23 Sep 2015 06:27:02 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8D32E00BEF
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 06:46:25 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 23 Sep 2015 06:46:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,577,1437462000"; d="scan'208";a="566949440"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.4.127])
+	by FMSMGA003.fm.intel.com with ESMTP; 23 Sep 2015 06:46:23 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 23 Sep 2015 14:46:22 +0100
+Message-ID: <2165861.gxy7TRHp8B@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.6-100.fc21.x86_64; KDE/4.14.9; x86_64; ; )
+In-Reply-To: <55FFF9AA.2020402@mlbassoc.com>
+References: <55FFF9AA.2020402@mlbassoc.com>
 MIME-Version: 1.0
-In-Reply-To: <CAKjpqyJ0JARxdDF3Ux1g8Yh7ncCae3pF5MrPRbFo2Tr5rWsF+w@mail.gmail.com>
-Subject: Re: Error in do_rootfs
+Cc: yocto@yoctoproject.org
+Subject: Re: Change in bitbake behaviour?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,40 +42,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 12:27:08 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Sep 2015 13:46:29 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2015-09-23 06:13, Mayank Agarwal wrote:
-> Hi,
->
->
-> To give you more detail,I am trying to add gstreamer-1.0 support in framework which is already having gstreamer-0.10.
-> Now gstreamer binaries are built in Intel 80386 32 bit format,while my machine is amd,64 bit.So what i am doing i am configuring
-> and compiling the gstreamer plugin packages on ubuntu and copy the whole source from there,after that i am doing do_install
-> in my recipe.In my recipe i have set noexec=1 for do_fetch,do_configure,do_compile.It is able to install binaries in image/usr/lib and sysroot folder according to what i write in
-> do_install but in installing the binaries to final image it is giving these errors:
->
-> i hope what i am doing above is right.
->
-> In log.do_rootfs file i am getting below error:
->
-> ERROR: Unable to install packages. Command  returned 255:
->
->
-> update-alternatives: Error: not linking /rootfs//bin/bash to /bin/busybox.nosuid since rootfs//bin/bash exists and is not a link
->
-> What changes i should do in recipe file in order to overcome these errors.
+Hi Gary,
 
-Why are you trying to move binaries around (from your build host
-directly into the target)?  You should be able to just add the
-gstreamer-1.x recipes to your build and have it work.  Note there
-is no problem with gstreamer-1.x being installed alongside the
-older gstreamer-0.10
+On Monday 21 September 2015 06:35:54 Gary Thomas wrote:
+> I just updated to the latest Poky/Yocto master
+> and I noticed this change in behaviour when I tried to stop
+> a build:
+>    Keyboard Interrupt, closing down...
+> 
+>    NOTE: Tasks Summary: Attempted 86 tasks of which 36 didn't need to be
+> rerun and all succeeded. ERROR: Command execution failed: Stopped build
+> 
+>    Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> Execution was interrupted, returning a non-zero exit code.
+>    timed out
+> 
+> It took more than a minute between the last two lines at which time
+> I thought it might be hung.  I left it and then found the "timed out"
+> line somewhat later.
+> 
+> Is this to be expected?
+
+No, this sounds like a bug - but was this somehow related to your other build 
+issue or do you still see this?
+
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
