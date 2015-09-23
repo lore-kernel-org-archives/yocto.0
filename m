@@ -1,51 +1,46 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D19B9E00B52; Wed, 23 Sep 2015 12:33:27 -0700 (PDT)
+	id 0DD98E00FF4; Wed, 23 Sep 2015 12:41:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f173.google.com (mail-yk0-f173.google.com
-	[209.85.160.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D938E00AB0
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 12:33:22 -0700 (PDT)
-Received: by ykft14 with SMTP id t14so52415385ykf.0
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 12:33:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=hy4HNqmCZr475L2EB77/cvcZ3eU83PFY2q9NaR0/ZlY=;
-	b=L3xZHetBC/qhuQBGFyZMNQr2eU23RQhKHvlFSxcc13nYGQNRUhVsCPuOiXv1DNcxMV
-	1ocJfhaIh7SkfDaXCgUIvI3z295i5/+4E9eImX6nqmRUl+zqpf5JI0A7ihr5OwkoVChF
-	wa/j+CYjCANMxRa0DP8qArUHHeOuCKOK1uw88D/OFmBDcAgEC+AInSZB5MbxI7RocC5y
-	xdadE2FiEjmTen/9GO4UjxRCXZbJBN1WLEP9yCPsFdKLADAT66IZe9dTMlB0sn5Ba5se
-	1JZdR6tB7uQHwYQT30/eltOZbc4DqDznb3lnK4lV6Xwu1scXNCEQ2fuQgwXPJa0c/lWo
-	lwLQ==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.54 listed in list.dnswl.org]
+Received: from mail-qg0-f54.google.com (mail-qg0-f54.google.com
+	[209.85.192.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 510F5E00AB0
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 12:41:34 -0700 (PDT)
+Received: by qgt47 with SMTP id 47so28132371qgt.2
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 12:41:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=VQmIWfHH2mCmjeBriZraZA2x4zk8dzClIT+WjYj42Nw=;
+	b=JGCDd+8Qxi9Vf7OjwWtOnkcE4dkuPw9SO6JBm3hqQtherzH1VVbiUGWMgtAqb2la2t
+	vLxSt93Qj7IxQLHzyXtCQjrhYAgFt4PTvCH7PJvqtNeTgYf1jcjgTcAFa8peNMdWBqpt
+	qrqweqobt8PGN+zh0MVKN0e/JZTGPl0dmV7eAh0MgyKQiV1XpojD5rPdY7pl5MM3mcST
+	yKAAzW5GSYWeVRnNig3BisvjAY+FNX1VHcRFspc5+nGol8OITIYEXoKyLQzwMnbGvCZU
+	MoN5JcH47GK8ug9QIbo1fNJEDX0znQbf2W10aed8GqgNtHfix8YRXLEnqspGztYkkO72
+	4Osw==
+X-Gm-Message-State: ALoCoQk5AG7DEsQUdbyBgSvXBiVV0RT03SV72l/yOPMjNRg4llmp4xl+4RGHWZbnYoW9V8UjENxw
+X-Received: by 10.140.93.53 with SMTP id c50mr38054757qge.59.1443037294425;
+	Wed, 23 Sep 2015 12:41:34 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.129.29.11 with SMTP id d11mr23752913ywd.58.1443036801712;
-	Wed, 23 Sep 2015 12:33:21 -0700 (PDT)
-Received: by 10.129.148.199 with HTTP; Wed, 23 Sep 2015 12:33:21 -0700 (PDT)
-In-Reply-To: <20150923132707.4b1dfc77@seebs-worktop>
+Received: by 10.140.94.86 with HTTP; Wed, 23 Sep 2015 12:41:14 -0700 (PDT)
+In-Reply-To: <CAF3SDA5EL7FCf5pp9Bj2i3iR8Q8esFGGn9m31NrknxGOwrWg9g@mail.gmail.com>
 References: <20150923132707.4b1dfc77@seebs-worktop>
-Date: Wed, 23 Sep 2015 16:33:21 -0300
-Message-ID: <CAF3SDA5EL7FCf5pp9Bj2i3iR8Q8esFGGn9m31NrknxGOwrWg9g@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Peter Seebach <peter.seebach@windriver.com>
+	<CAF3SDA5EL7FCf5pp9Bj2i3iR8Q8esFGGn9m31NrknxGOwrWg9g@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 23 Sep 2015 20:41:14 +0100
+Message-ID: <CAJTo0Lbxnov1czjowK5k4NZDrO=9qP871tTAGdrVzw5zmeCYxw@mail.gmail.com>
+To: "Daniel." <danielhilst@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-mingw] gcc 5.2 partial patches
 X-BeenThere: yocto@yoctoproject.org
@@ -59,81 +54,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 19:33:27 -0000
-Content-Type: multipart/alternative; boundary=001a11429b82f6cc6d05206f2fe2
+X-List-Received-Date: Wed, 23 Sep 2015 19:41:39 -0000
+Content-Type: multipart/alternative; boundary=001a113a63c0551a3305206f4ded
 
---001a11429b82f6cc6d05206f2fe2
+--001a113a63c0551a3305206f4ded
 Content-Type: text/plain; charset=UTF-8
 
-I'm really curious, what that % means on recipe names?
+On 23 September 2015 at 20:33, Daniel. <danielhilst@gmail.com> wrote:
 
-Cheers,
-- dhs
-
-2015-09-23 15:27 GMT-03:00 Peter Seebach <peter.seebach@windriver.com>:
-
-> So I've got patches for meta-mingw which make it fail in an interesting way
-> instead of in a boring way.
->
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=seebs/gcc52gw
->
-> With these, we get past all the obvious not-even-applying, and blow up
-> because one of the mingw headers complains that it can't be compiled except
-> for WIN32 targets. Have not further explored yet.
->
-> -s
-> --
-> Listen, get this.  Nobody with a good compiler needs to be justified.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> I'm really curious, what that % means on recipe names?
 >
 
+It's a wildcard character that's only valid on bbappends: instead of
+needing to version accurately you can say recipe_1.%.bbappend to append to
+all 1.* versions of recipe.
 
+Ross
 
--- 
-*"Do or do not. There is no try"*
-  *Yoda Master*
-
---001a11429b82f6cc6d05206f2fe2
+--001a113a63c0551a3305206f4ded
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>I&#39;m really curious, what that % means on rec=
-ipe names?<br><br></div>Cheers,<br></div>- dhs<br></div><div class=3D"gmail=
-_extra"><br><div class=3D"gmail_quote">2015-09-23 15:27 GMT-03:00 Peter See=
-bach <span dir=3D"ltr">&lt;<a href=3D"mailto:peter.seebach@windriver.com" t=
-arget=3D"_blank">peter.seebach@windriver.com</a>&gt;</span>:<br><blockquote=
- class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
-d;padding-left:1ex">So I&#39;ve got patches for meta-mingw which make it fa=
-il in an interesting way<br>
-instead of in a boring way.<br>
-<br>
-<a href=3D"http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=3Dse=
-ebs/gcc52gw" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.o=
-rg/cgit.cgi/poky-contrib/commit/?h=3Dseebs/gcc52gw</a><br>
-<br>
-With these, we get past all the obvious not-even-applying, and blow up<br>
-because one of the mingw headers complains that it can&#39;t be compiled ex=
-cept<br>
-for WIN32 targets. Have not further explored yet.<br>
-<br>
--s<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-Listen, get this.=C2=A0 Nobody with a good compiler needs to be justified.<=
-br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature"><div style=3D"text-align:right"><i>&quot;Do or do not=
-. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><br><=
-/div></div>
-</div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 23 September 2015 at 20:33, Daniel. <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><div>I&#39;m really curious=
+, what that % means on recipe names?<br></div></blockquote></div><br>It&#39=
+;s a wildcard character that&#39;s only valid on bbappends: instead of need=
+ing to version accurately you can say recipe_1.%.bbappend to append to all =
+1.* versions of recipe.</div><div class=3D"gmail_extra"><br></div><div clas=
+s=3D"gmail_extra">Ross</div></div>
 
---001a11429b82f6cc6d05206f2fe2--
+--001a113a63c0551a3305206f4ded--
