@@ -1,48 +1,47 @@
-Return-Path: <adraszik@digisoft.tv>
+Return-Path: <pderocco@ix.netcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDBA9E00DF3; Wed, 23 Sep 2015 01:20:17 -0700 (PDT)
+	id 03A18E00FA6; Wed, 23 Sep 2015 01:31:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
+	*      [209.86.89.69 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A6A1E0076A
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:20:15 -0700 (PDT)
-Received: by lahg1 with SMTP id g1so41411629lah.1
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=vLUP/rCkZmQ8sJaDL5Ql17BnphV3LeLOYG1NFi0Ba6o=;
-	b=UOb6v+s9mYBeuOOLeAIcpibX9vUNbnOb/2XbWWK96ePWW3UB7yH3yfmWHqjaD2o+7z
-	hj6/gLawN9JCCZrRW4p3gzSo6NpMOwUa8VHhagKMOQdiqdVrEnWSezPmi2uZok/jNtfx
-	as/W6sdCQ41WtnguGiWuSx7cRx56JOl9KxuEDl/6cC0kIzZ+vzZDo29vTIl6JdvYqgyX
-	5+5Imswsq5+O57T662bzidZzAxPL5a+i4RfTXU9+NZ2k0b0JZ0rWbpLWnGiPfTpmo9e7
-	IQXNYBA2JgCKemWpA4W3vIsq54pBI1FkdXRm9TNuXYb2IFjMsfq2P7YaWCQfb/eupQUn
-	Ufzw==
-X-Gm-Message-State: ALoCoQmisqi914B+wJPvulO6M7UcQow6olupPgC1HyI8VO876LoeQ99Y6Jfe9rbmISQi7a9B54GB
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1E6E0076A
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:31:04 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=LgeClzC/z3yRhM7QxRNtrnBPomjmlSy16gX1eBUgOr36Kq3BmoARiMyW35SRjnBc;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [45.49.236.199] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1ZefRr-00043h-VI; Wed, 23 Sep 2015 04:30:44 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Mike Looijmans'" <mike.looijmans@topic.nl>,
+	<yocto@yoctoproject.org>
+References: <F9B37C5086864E2EA06AC70C09CF7C25@PAULD><CAFKnvs6eVMrfcH3AOS28vAG237UUbYdLKR=FGB9PBipOQZbqYg@mail.gmail.com><3DB96F2F9D444EFE931CA8443BAFBACE@PAULD><CAPWNY8XTWDDS83JwizV8jH=xkxs9hdRgBLB5CsacTYQsqCwG=Q@mail.gmail.com><DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD><1442946736651.15866@seescan.com>
+	<560252C3.80207@topic.nl>
+In-Reply-To: <560252C3.80207@topic.nl>
+Date: Wed, 23 Sep 2015 01:30:48 -0700
+Message-ID: <54D97D1C25A94C8987390AB26D5EBF79@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.112.137.105 with SMTP id qh9mr11204443lbb.54.1442996414282; 
-	Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
-Received: by 10.25.210.72 with HTTP; Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
-In-Reply-To: <1438070678-10554-1-git-send-email-adraszik@digisoft.tv>
-References: <20150727163405.GE307@jama>
-	<1438070678-10554-1-git-send-email-adraszik@digisoft.tv>
-Date: Wed, 23 Sep 2015 09:20:14 +0100
-Message-ID: <CAJvP4ezDm4jsAFH1Q7sj4i7+bcNe-3-NeQ_F32mVGdZwDR1nvQ@mail.gmail.com>
-From: =?UTF-8?Q?Andr=C3=A9_Draszik?= <adraszik@digisoft.tv>
-To: yocto@yoctoproject.org
-Cc: scott.m.rifenbark@intel.com
-Subject: Re: [yocto-docs][PATCH] ref-manual: clarify allarch wrt RDPENDS and TUNE_PKGARCH
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: AdD12Gks5KtLCj6ET92PsMFpi1+g/AAANLyw
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068802fb1c2fc85a4371f82804d0cf9db40f350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 45.49.236.199
+Subject: Re: [systemd-devel] How to automount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,70 +53,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 08:20:17 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Sep 2015 08:31:08 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+> From: Mike Looijmans
+> 
+> This only serves to remove a mounted directory after 
+> "yanking" the device. It 
+> doesn't really do anything useful though, you'll still get corrupted 
+> filesystems, because Linux is way too lazy in writing out dirty data.
+> 
+> Proper solution would be to have the system mount a removable 
+> device as 
+> read-only, and promote it to r/w once someone tries to write 
+> to it. And then 
+> after a timeout, it should go back to readonly.
+> 
+> Supposedly, "autofs" can accomplish this, but I've never met 
+> anyone who got 
+> that to actually work.
 
-Is there anything wrong with this patch?
+In my system, the removable drive is used only for backing up or restoring
+various data files in response to user commands. If I do a sync after each
+such command, shouldn't that be enough to guarantee the file system
+doesn't get corrupted when the drive is removed? Will it also ensure the
+dirty flag is clear, or does that get set anyway?
 
+-- 
 
-Cheers,
-Andre'
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com
 
-
-On 28 July 2015 at 09:04,  <adraszik@digisoft.tv> wrote:
-> From: Andr=C3=A9 Draszik <git@andred.net>
->
-> See e.g.
-> http://permalink.gmane.org/gmane.comp.handhelds.openembedded/64067
->
-> Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
-> ---
->  documentation/ref-manual/ref-classes.xml | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref=
--manual/ref-classes.xml
-> index d482ca0..a9b2f3c 100644
-> --- a/documentation/ref-manual/ref-classes.xml
-> +++ b/documentation/ref-manual/ref-classes.xml
-> @@ -51,6 +51,22 @@
->          that produce executable binaries (such as building the cross-com=
-piler
->          and a C library as pre-requisites, and splitting out of debug sy=
-mbols
->          during packaging).
-> +        <note>
-> +            Unlike e.g. Debian, OpenEmbedded recipes that produce packag=
-es
-> +            which
-> +            <link linkend=3D'var-RDEPENDS'><filename>RDEPENDS</filename>=
-</link>
-> +            on
-> +            <link linkend=3D'var-TUNE_PKGARCH'><filename>TUNE_PKGARCH</f=
-ilename></link>
-> +            packages should never be made <filename>allarch</filename>, =
-even
-> +            if they do not produce architecture-specific output. This wo=
-uld
-> +            cause the do_package_write_* tasks to have different signatu=
-res
-> +            for
-> +            <link linkend=3D'var-MACHINE'><filename>MACHINE</filename></=
-link>s
-> +            with different
-> +            <link linkend=3D'var-TUNE_PKGARCH'><filename>TUNE_PKGARCH</f=
-ilename></link>,
-> +            thus unnecessary rebuilds every single time an image for a d=
-ifferent
-> +            MACHINE is built (even without any change to the recipe).
-> +        </note>
->      </para>
->
->      <para>
-> --
-> 2.1.4
->
 
