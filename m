@@ -1,51 +1,48 @@
-Return-Path: <pervivek@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0E60E00EF7; Wed, 23 Sep 2015 03:31:36 -0700 (PDT)
+	id 61BEEE00C6C; Wed, 23 Sep 2015 04:12:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pervivek[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.50 listed in list.dnswl.org]
-Received: from mail-vk0-f50.google.com (mail-vk0-f50.google.com
-	[209.85.213.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EA31E00992
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:31:34 -0700 (PDT)
-Received: by vkfp126 with SMTP id p126so24236159vkf.3
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 03:31:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=Zkyi8T78ySaXtVzm0PDQLFfrXJExrDpI316mT7dkkVM=;
-	b=GKWZ8t8Ds+M6xGp0gAc/nTRKPs4dt28Y8QilhCn1h2ajhH+dXr5hoa5R89yiIP43sg
-	WEgaxktPxMrDKXKQ8n41gWB7nBs/aIMeMLuf9T9BZoxtNlKl5Gzec3Tn2uN/GOe5hG7u
-	fBfS9W16l0EwtjsWM9uYVULl5XTj92wnApP2nF8uvtlO9ZbfSD9dEvMjkI/J4xWrBZkY
-	zkTZGREbL/Hu40ho5u7EQ1IqUVDJv/LH1Jj7fz+3NjiH2pOj32eSMoxRpwAkNqXHOvN+
-	ISA/x/YomY/mkHP0v250+pgVyLb1YYeTPU0DlchR94bj12cmGrM7dOdx3T1YJrD4J6dD
-	PRdg==
+	*      [209.85.192.44 listed in list.dnswl.org]
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B870E00A4C
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 04:12:25 -0700 (PDT)
+Received: by qgez77 with SMTP id z77so16160952qge.1
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 04:12:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=/g48YHpql/v+cP3J93JwMdIYwd7OXiZPPLa7kpiejaw=;
+	b=Ei47bw/siTaezsUVzq+4vqNk+QJRGd6du7WMD4IvU/IYL0RqcVT9Wlke8w2y3Kjsbj
+	cNDEOKNu31N9Hh8D5xn7fitCzSCMYx4tS/qmDA0TB9h7joPd95/PhWDPk0Ka06QGOwd6
+	/NxJuysroHseuiwSJnNLWQlicaW2unqSfzQnaUOevhHUaVkj4NHYhRD8I7MqSKug4S4A
+	23BV2QD4+tY7A25yfTjsb4QOnmDPTZ5IXgsmwo6FwI5JFbfPvbT8iHheTNxB/DXj/hwE
+	dHoZKDWKgc5TdnmeV7f9M/UrzbCcyZLMiD/o37EClFTj0JsgMZ3zIj/JxlrPedEqyDlB
+	U3CA==
+X-Gm-Message-State: ALoCoQlwVruP0TuxjCfSLIQqXim0FwBDKmaGL+5PlBqLX0v6fYMSeqEtW++4qakPIXdu1soHy84K
+X-Received: by 10.140.44.11 with SMTP id f11mr20103096qga.80.1443006745193;
+	Wed, 23 Sep 2015 04:12:25 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.31.172.70 with SMTP id v67mr21570081vke.47.1443004294036;
-	Wed, 23 Sep 2015 03:31:34 -0700 (PDT)
-Received: by 10.31.179.207 with HTTP; Wed, 23 Sep 2015 03:31:33 -0700 (PDT)
-In-Reply-To: <CAJTo0LY2TTt=ebrz0dd0X313+tgY49+WKTOWW2-ZnyjGaiF6+Q@mail.gmail.com>
+Received: by 10.140.94.86 with HTTP; Wed, 23 Sep 2015 04:12:05 -0700 (PDT)
+In-Reply-To: <CALLyC8TMiby0cPf-9Dugs+0Dn0juPFyXrCnCFY586mi-N_4iSA@mail.gmail.com>
 References: <CALLyC8Qt4X-=Ea7jcOY4TEnBUrGBJq_nPhALteENznRhmooCdA@mail.gmail.com>
 	<CAJTo0LY2TTt=ebrz0dd0X313+tgY49+WKTOWW2-ZnyjGaiF6+Q@mail.gmail.com>
-Date: Wed, 23 Sep 2015 16:01:33 +0530
-Message-ID: <CALLyC8TMiby0cPf-9Dugs+0Dn0juPFyXrCnCFY586mi-N_4iSA@mail.gmail.com>
-From: Vivek Per <pervivek@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>, yocto@yoctoproject.org
+	<CALLyC8TMiby0cPf-9Dugs+0Dn0juPFyXrCnCFY586mi-N_4iSA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 23 Sep 2015 12:12:05 +0100
+Message-ID: <CAJTo0LY88hbXHz3KugW1AWKQZ44-HUbj7gc_7+rnX7JqLe7FxQ@mail.gmail.com>
+To: Vivek Per <pervivek@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Does mount.cifs command includes in busybox package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -58,92 +55,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 10:31:36 -0000
-Content-Type: multipart/alternative; boundary=001a114406145b05dc0520679ed6
+X-List-Received-Date: Wed, 23 Sep 2015 11:12:27 -0000
+Content-Type: multipart/alternative; boundary=001a113b41bc7501170520683034
 
---001a114406145b05dc0520679ed6
+--001a113b41bc7501170520683034
 Content-Type: text/plain; charset=UTF-8
 
-HI
+On 23 September 2015 at 11:31, Vivek Per <pervivek@gmail.com> wrote:
 
-Thanks Ross
-          i saw  cifs-utils recipe from openembedded ( from samba) provides
-mount.cifs command other than that any other package provides same command?
-
-thanks and regards
-       vivek
-
-On Wed, Sep 23, 2015 at 3:31 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> mount.cifs is provided by Samba.
->
-> Ross
->
-> On 23 September 2015 at 10:56, Vivek Per <pervivek@gmail.com> wrote:
->
->> hi all,
->>      Does mount.cifs command includes in busybox package . If so then it
->> includes what package
->>
->> PN= busybox
->>
->>
->> PACKAGES =+ "${PN}-httpd ${PN}-udhcpd ${PN}-udhcpc ${PN}-syslog
->> ${PN}-mdev ${PN}-hwclock"
->>
->> in which package cifs command include
->>
->> If not does it includes in
->> utils-linux package
->>
->> Thanks and regards
->>         vivek
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
+>           i saw  cifs-utils recipe from openembedded ( from samba)
+> provides mount.cifs command other than that any other package provides same
+> command?
 >
 
---001a114406145b05dc0520679ed6
+CIFS is "a bit" complex so Samba is the canonical implementation of it
+outside of Windows
+
+Ross
+
+--001a113b41bc7501170520683034
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">HI<div>=C2=A0 =C2=A0 =C2=A0</div><div>Thanks Ross</div><di=
-v>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 i saw =C2=A0cifs-utils recipe from ope=
-nembedded ( from samba) provides mount.cifs command other than that any oth=
-er package provides same command?</div><div><br></div><div>thanks and regar=
-ds=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0vivek</div></div><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Sep 23, 2015 at 3:3=
-1 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@inte=
-l.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex"><div dir=3D"ltr">mount.cifs is provided by Samb=
-a.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br><div c=
-lass=3D"gmail_quote"><div><div class=3D"h5">On 23 September 2015 at 10:56, =
-Vivek Per <span dir=3D"ltr">&lt;<a href=3D"mailto:pervivek@gmail.com" targe=
-t=3D"_blank">pervivek@gmail.com</a>&gt;</span> wrote:<br></div></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
- solid;padding-left:1ex"><div><div class=3D"h5"><div dir=3D"ltr">hi all,<di=
-v>=C2=A0 =C2=A0 =C2=A0Does mount.cifs command includes in busybox package .=
- If so then it includes what package=C2=A0</div><div><br></div><div>PN=3D b=
-usybox</div><div><br></div><div><br></div><div>PACKAGES =3D+ &quot;${PN}-ht=
-tpd ${PN}-udhcpd ${PN}-udhcpc ${PN}-syslog ${PN}-mdev ${PN}-hwclock&quot;<b=
-r></div><div><br></div><div>in which package cifs command include</div><div=
-><br></div><div>If not does it includes in=C2=A0</div><div>utils-linux pack=
-age</div><div><br></div><div>Thanks and regards</div><span><font color=3D"#=
-888888"><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 vivek</div></font></span></div>
-<br></div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></font></span></blockquote></div><br></div>
-</blockquote></div><br></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 23 September 2015 at 11:31, Vivek Per <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:pervivek@gmail.com" target=3D"_blank">pervivek@gmail.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 i saw =C2=A0cifs-utils recipe from openembedded ( from samba) pr=
+ovides mount.cifs command other than that any other package provides same c=
+ommand?</div><div></div></blockquote></div><br>CIFS is &quot;a bit&quot; co=
+mplex so Samba is the canonical implementation of it outside of Windows</di=
+v><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div=
+></div>
 
---001a114406145b05dc0520679ed6--
+--001a113b41bc7501170520683034--
