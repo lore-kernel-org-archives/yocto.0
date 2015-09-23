@@ -1,6 +1,6 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <adraszik@digisoft.tv>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1233AE00DE5; Wed, 23 Sep 2015 01:17:17 -0700 (PDT)
+	id BDBA9E00DF3; Wed, 23 Sep 2015 01:20:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,66 +8,41 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [46.165.232.184 listed in list.dnswl.org]
+	*      [209.85.215.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 3388 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Sep 2015 01:17:12 PDT
-Received: from mx12-14.smtp.antispamcloud.com (mx12-14.smtp.antispamcloud.com
-	[46.165.232.184])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0670E0076A
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:17:12 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx12.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1ZeeM0-0002ft-Sv
-	for yocto@yoctoproject.org; Wed, 23 Sep 2015 09:20:41 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Wed, 23 Sep 2015 09:19:54 +0200
-To: <yocto@yoctoproject.org>
-References: <F9B37C5086864E2EA06AC70C09CF7C25@PAULD>
-	<CAFKnvs6eVMrfcH3AOS28vAG237UUbYdLKR=FGB9PBipOQZbqYg@mail.gmail.com>
-	<3DB96F2F9D444EFE931CA8443BAFBACE@PAULD>
-	<CAPWNY8XTWDDS83JwizV8jH=xkxs9hdRgBLB5CsacTYQsqCwG=Q@mail.gmail.com>
-	<DEEBEF6233F54A17BB00A9E93D0A54EC@PAULD>
-	<1442946736651.15866@seescan.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <560252C3.80207@topic.nl>
-Date: Wed, 23 Sep 2015 09:20:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A6A1E0076A
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:20:15 -0700 (PDT)
+Received: by lahg1 with SMTP id g1so41411629lah.1
+	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=vLUP/rCkZmQ8sJaDL5Ql17BnphV3LeLOYG1NFi0Ba6o=;
+	b=UOb6v+s9mYBeuOOLeAIcpibX9vUNbnOb/2XbWWK96ePWW3UB7yH3yfmWHqjaD2o+7z
+	hj6/gLawN9JCCZrRW4p3gzSo6NpMOwUa8VHhagKMOQdiqdVrEnWSezPmi2uZok/jNtfx
+	as/W6sdCQ41WtnguGiWuSx7cRx56JOl9KxuEDl/6cC0kIzZ+vzZDo29vTIl6JdvYqgyX
+	5+5Imswsq5+O57T662bzidZzAxPL5a+i4RfTXU9+NZ2k0b0JZ0rWbpLWnGiPfTpmo9e7
+	IQXNYBA2JgCKemWpA4W3vIsq54pBI1FkdXRm9TNuXYb2IFjMsfq2P7YaWCQfb/eupQUn
+	Ufzw==
+X-Gm-Message-State: ALoCoQmisqi914B+wJPvulO6M7UcQow6olupPgC1HyI8VO876LoeQ99Y6Jfe9rbmISQi7a9B54GB
 MIME-Version: 1.0
-In-Reply-To: <1442946736651.15866@seescan.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t0di
-	2A4r9us+Fq8MBvFDhJgKfqZbW/75LCi3G0ymnSdzpiigmRopPcaelV+RpJ7ivmbjO41FyBEqIaDu
-	dcVplPEV5fdZbBgAYjRktFsnBOu68dy9p6gE/g99Plm2mIQhBQ00JYCpdDQoJU79BjIi5W2Z3JKV
-	mi72ocgY5kMQSjs70ALn042Wb7mIcbVJi7pqphHamFlRvlxL+MzCKMvMkk78ZQ0AiyqMiTY+IYva
-	kPBr0z6bhalFEM/pjPCQA+BAlkniC5++pOyFfhmFBNq2PYR7Zn6OGQcTLcl+10S2CCSFSbZLiIzq
-	6RHISf0BeR/9lxlAbFwXFyuSr4goiWKeWbtWBb39uS1TjWG2Inx+Ts2Q85bpu8v0MLjfVaUXUvFy
-	TEwEAmRywCEMPg5NNGTMxTwq5H2HisnUiFGNBznFCJKEejk40iyx8hQPmbkJabHvUAAjMhPl4Vhd
-	NvMNOfYY5VjTiEw2ui8TVPldBCj8jBAT9EIYxHyidUrHJfz9kNKga+jb5NA413zESMJef949r2h3
-	KLwbXHjHpxz8VOWtxaqRRTlHFazPXt/x3tAgKOX3Wg==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJUb3OPwsHaH0Fvg5oXltHd/JUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
-	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
-	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
-	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
-X-Originating-IP: 88.159.208.100
-X-Spampanel-Domain: topic.nl
-X-Spampanel-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: Combined (0.00)
-X-Recommended-Action: accept
-Subject: Re: [systemd-devel] How to automount
+X-Received: by 10.112.137.105 with SMTP id qh9mr11204443lbb.54.1442996414282; 
+	Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
+Received: by 10.25.210.72 with HTTP; Wed, 23 Sep 2015 01:20:14 -0700 (PDT)
+In-Reply-To: <1438070678-10554-1-git-send-email-adraszik@digisoft.tv>
+References: <20150727163405.GE307@jama>
+	<1438070678-10554-1-git-send-email-adraszik@digisoft.tv>
+Date: Wed, 23 Sep 2015 09:20:14 +0100
+Message-ID: <CAJvP4ezDm4jsAFH1Q7sj4i7+bcNe-3-NeQ_F32mVGdZwDR1nvQ@mail.gmail.com>
+From: =?UTF-8?Q?Andr=C3=A9_Draszik?= <adraszik@digisoft.tv>
+To: yocto@yoctoproject.org
+Cc: scott.m.rifenbark@intel.com
+Subject: Re: [yocto-docs][PATCH] ref-manual: clarify allarch wrt RDPENDS and TUNE_PKGARCH
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,48 +54,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Sep 2015 08:17:17 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Wed, 23 Sep 2015 08:20:17 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 22-09-15 20:33, Fred Ollinger wrote:
-...
-> SUBSYSTEM=3D=3D"block", ACTION=3D=3D"remove" RUN+=3D"/etc/udev/scripts/mo=
-unt.sh"
+Hi,
 
-This only serves to remove a mounted directory after "yanking" the device. =
-It=20
-doesn't really do anything useful though, you'll still get corrupted=20
-filesystems, because Linux is way too lazy in writing out dirty data.
-
-Proper solution would be to have the system mount a removable device as=20
-read-only, and promote it to r/w once someone tries to write to it. And the=
-n=20
-after a timeout, it should go back to readonly.
-
-Supposedly, "autofs" can accomplish this, but I've never met anyone who got=
-=20
-that to actually work.
+Is there anything wrong with this patch?
 
 
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-Telefax: +31 (0) 499 33 69 70
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
+Cheers,
+Andre'
 
 
-
-
-
+On 28 July 2015 at 09:04,  <adraszik@digisoft.tv> wrote:
+> From: Andr=C3=A9 Draszik <git@andred.net>
+>
+> See e.g.
+> http://permalink.gmane.org/gmane.comp.handhelds.openembedded/64067
+>
+> Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
+> ---
+>  documentation/ref-manual/ref-classes.xml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref=
+-manual/ref-classes.xml
+> index d482ca0..a9b2f3c 100644
+> --- a/documentation/ref-manual/ref-classes.xml
+> +++ b/documentation/ref-manual/ref-classes.xml
+> @@ -51,6 +51,22 @@
+>          that produce executable binaries (such as building the cross-com=
+piler
+>          and a C library as pre-requisites, and splitting out of debug sy=
+mbols
+>          during packaging).
+> +        <note>
+> +            Unlike e.g. Debian, OpenEmbedded recipes that produce packag=
+es
+> +            which
+> +            <link linkend=3D'var-RDEPENDS'><filename>RDEPENDS</filename>=
+</link>
+> +            on
+> +            <link linkend=3D'var-TUNE_PKGARCH'><filename>TUNE_PKGARCH</f=
+ilename></link>
+> +            packages should never be made <filename>allarch</filename>, =
+even
+> +            if they do not produce architecture-specific output. This wo=
+uld
+> +            cause the do_package_write_* tasks to have different signatu=
+res
+> +            for
+> +            <link linkend=3D'var-MACHINE'><filename>MACHINE</filename></=
+link>s
+> +            with different
+> +            <link linkend=3D'var-TUNE_PKGARCH'><filename>TUNE_PKGARCH</f=
+ilename></link>,
+> +            thus unnecessary rebuilds every single time an image for a d=
+ifferent
+> +            MACHINE is built (even without any change to the recipe).
+> +        </note>
+>      </para>
+>
+>      <para>
+> --
+> 2.1.4
+>
 
