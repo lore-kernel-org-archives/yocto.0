@@ -1,37 +1,51 @@
-Return-Path: <colin.helliwell@LN-Systems.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F36DE00804; Thu, 24 Sep 2015 09:10:54 -0700 (PDT)
+	id B2877E00E21; Thu, 24 Sep 2015 09:21:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
+	characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
-	[62.49.123.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8722E00708
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:10:51 -0700 (PDT)
-Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
-	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
-	t8OG7v1U012752
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 17:08:01 +0100
-From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
-To: <yocto@yoctoproject.org>
-References: <027601d0f6e0$03e682d0$0bb38870$@LN-Systems.com>
-	<56041D04.9060908@mlbassoc.com>
-In-Reply-To: <56041D04.9060908@mlbassoc.com>
-Date: Thu, 24 Sep 2015 17:10:46 +0100
-Organization: LN Systems Limited
-Message-ID: <028101d0f6e3$94797020$bd6c5060$@LN-Systems.com>
+Received: from smtprelay.hostedemail.com (smtprelay0171.hostedemail.com
+	[216.40.44.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66A77E00306
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:21:46 -0700 (PDT)
+Received: from filter.hostedemail.com (unknown [216.40.38.60])
+	by smtprelay07.hostedemail.com (Postfix) with ESMTP id 25330C2138;
+	Thu, 24 Sep 2015 16:21:46 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: lake45_669fd4daf260d
+X-Filterd-Recvd-Size: 1972
+Received: from sdcapont (unknown [5.133.41.213])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf11.hostedemail.com (Postfix) with ESMTPA;
+	Thu, 24 Sep 2015 16:21:45 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "'Rudolf J Streif'" <rudolf.streif@gmail.com>,
+	<yocto@yoctoproject.org>
+References: <5603f9ce.e9d1440a.dc3ac.43adSMTPIN_ADDED_BROKEN@mx.google.com>
+	<CAF3SDA4j6h=5btgBtVVdxwFwR+eT+SdtmYXk7Wd9mrXk9WyL5g@mail.gmail.com>
+	<CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
+	<7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
+In-Reply-To: <7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
+Date: Thu, 24 Sep 2015 17:21:41 +0100
+Organization: SDC Systems Limited
+Message-ID: <009301d0f6e5$197dc180$4c794480$@pont@sdcsystems.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQH8HtcrCjs6uz/Id9eDeryjJeJP1gF5EV9enem/5MA=
-Subject: Re: Getting bitbake to use 'local' versions of local.conf/bblayers.conf
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdD23BKoIR7ijfuiTPaq1nXdUBwM2AACJfyw
+Subject: Re: Setting root password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@LN-Systems.com
+Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,60 +54,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 16:10:54 -0000
+X-List-Received-Date: Thu, 24 Sep 2015 16:21:48 -0000
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Content-Language: en-gb
 
-Thanks Gary - I'll give that a try, looks like just what I'm after.
+Rudi wrote=85
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Gary Thomas
-Sent: 24 September 2015 16:56
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] Getting bitbake to use 'local' versions of
-local.conf/bblayers.conf
-
-On 2015-09-24 09:45, Colin Helliwell wrote:
-> We have an automated build which pulls our own layers & amendments 
-> from our version control system. We don't really want (need?) to have a
-full *unpacked* Yocto in the repository too, so we have just the Fido
-tarball in there, and unpack this as the first step of the build.
+> > Still, I think is a good ideia to understand what is going wrong =
+with
+> > EXTRA_USERS_PARAMS, other users may having the same problem.
 >
-> But, we then need to copy our local.conf and bblayers.conf across into 
-> the (transient) build directory. Is there a way to tell bitbake to 
-> override the default ones (in
-> build/local/) with ours?  I did see that it's maybe possible to set up 
-> variables for the 'oe-init-build-env' script, but I think this will 
-> still copy them into build/local/  - what we want is to leave them in 
-> place (so if we make any changes they will remain under, and trackable 
-> by, the version control)
+> EXTRA_USERS_PARAMS works for me all the time. The stanza is what I am
+using=20
+> in my image recipes:
+>=A0
+> EXTRA_USERS_PARAMS =3D "\
+> groupadd developers; \
+> useradd -p `openssl passwd ${DEV_PASSWORD}` developer; \
+> useradd -g developers developer; \
+> usermod -p `openssl passwd ${ROOT_PASSWORD}` root; \
+>"
+>
+> If this is an accurate copy of what you are using
+>
+> EXTRA_USERS_PARAMS =3D "usermod -P <encrypted_password> root;"
+>
+> then the issue probably is the capital -P. It should be lowercase.
 
-Just put "bblayers.conf.sample" and/or "local.conf.sample" in one of your
-layers.  I do this with the BSPs I build and then set up the basic
-configuration quite automatically.  For example, I have a pesudo-BSP (layer)
-for the RaspberryPi which includes
-   meta-rpi/conf/
-   meta-rpi/conf/local.conf.sample
-   meta-rpi/conf/bblayers.conf.sample
-   meta-rpi/conf/layer.conf
-Then to configure a build using this layer I run
-   % TEMPLATECONF=meta-rpi/conf . ${YOCTO}/oe-init-build-env ${BUILD}
+Good spot.  I copied and pasted it from an article I found on the web!
+Having changed it to lower case it now works as expected!
 
-In this way, it's easy to keep the meta-rpi under my own SCM and manage any
-changes there.
+Thanks,
 
---
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Andy.
 
 
