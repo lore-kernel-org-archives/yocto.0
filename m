@@ -1,51 +1,49 @@
-Return-Path: <andy.pont@sdcsystems.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2877E00E21; Thu, 24 Sep 2015 09:21:48 -0700 (PDT)
+	id 2C1B3E00E68; Thu, 24 Sep 2015 09:30:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
-	characters
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.40.44.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtprelay.hostedemail.com (smtprelay0171.hostedemail.com
-	[216.40.44.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66A77E00306
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:21:46 -0700 (PDT)
-Received: from filter.hostedemail.com (unknown [216.40.38.60])
-	by smtprelay07.hostedemail.com (Postfix) with ESMTP id 25330C2138;
-	Thu, 24 Sep 2015 16:21:46 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: lake45_669fd4daf260d
-X-Filterd-Recvd-Size: 1972
-Received: from sdcapont (unknown [5.133.41.213])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf11.hostedemail.com (Postfix) with ESMTPA;
-	Thu, 24 Sep 2015 16:21:45 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: "'Rudolf J Streif'" <rudolf.streif@gmail.com>,
-	<yocto@yoctoproject.org>
-References: <5603f9ce.e9d1440a.dc3ac.43adSMTPIN_ADDED_BROKEN@mx.google.com>
-	<CAF3SDA4j6h=5btgBtVVdxwFwR+eT+SdtmYXk7Wd9mrXk9WyL5g@mail.gmail.com>
-	<CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
-	<7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
-In-Reply-To: <7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
-Date: Thu, 24 Sep 2015 17:21:41 +0100
-Organization: SDC Systems Limited
-Message-ID: <009301d0f6e5$197dc180$4c794480$@pont@sdcsystems.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdD23BKoIR7ijfuiTPaq1nXdUBwM2AACJfyw
-Subject: Re: Setting root password
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E4B6E00306
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:30:28 -0700 (PDT)
+Received: by wiclk2 with SMTP id lk2so36252686wic.0
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:30:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=x/bIlxROjLiOp9l8tnzT34SNLvmX5scQoiXA+4N8a5U=;
+	b=ZBIEJHbyICLXi5HPRUMGrUY7HATXsd0H81h53DT/OMiWN5fMFC+LrGVyQCi3QJbzJF
+	MEcZcTDmyzgRKPBZWtrjYiSJ7iUFyKK8fw+KA1BIWvIP+YXRDVQjUqAKAHuB2L0r2+Gp
+	6Y7Tr1QxmVnN0tAwgZw1tqb7lSUIftCS/Z/u83KnV7uDrh3prTy5TqHN9csHBPC4h56Y
+	e/EK10x60PZMo4r8ZC/eSKSK+MLK3peF2QIEorVwd0LAFqaot4JmmrR0P7PsLkG+4qXU
+	9eRbJP/sbfaAFFyJVyUdvhMRRwaRAoV+WUTAoTpRZEFe1QbaC90BC7WotX0gowkDItVL
+	m9mw==
+X-Gm-Message-State: ALoCoQnXgOkFUgPjM1jUPYodVmp8KN1dzUbKw+JgUG5fMBVZv/+vnG0f8L2F5FRahgLtXqbYHJ8j
+X-Received: by 10.194.80.38 with SMTP id o6mr692723wjx.52.1443112227528;
+	Thu, 24 Sep 2015 09:30:27 -0700 (PDT)
+Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
+	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
+	ki7sm13044701wjc.28.2015.09.24.09.30.26
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 24 Sep 2015 09:30:26 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 24 Sep 2015 17:23:18 +0100
+Message-Id: <1443111800-2978-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [PATCH][autobuilder 1/3] buildset-config.controller: remove unused meta-qt3 from buildsets
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,40 +52,406 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 16:21:48 -0000
-Content-Type: text/plain;
-	charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-gb
+X-List-Received-Date: Thu, 24 Sep 2015 16:30:31 -0000
 
-Rudi wrote=85
+Many buildsets pull in meta-qt3 but don't use it, so remove the layer from those
+buildsets.
 
-> > Still, I think is a good ideia to understand what is going wrong =
-with
-> > EXTRA_USERS_PARAMS, other users may having the same problem.
->
-> EXTRA_USERS_PARAMS works for me all the time. The stanza is what I am
-using=20
-> in my image recipes:
->=A0
-> EXTRA_USERS_PARAMS =3D "\
-> groupadd developers; \
-> useradd -p `openssl passwd ${DEV_PASSWORD}` developer; \
-> useradd -g developers developer; \
-> usermod -p `openssl passwd ${ROOT_PASSWORD}` root; \
->"
->
-> If this is an accurate copy of what you are using
->
-> EXTRA_USERS_PARAMS =3D "usermod -P <encrypted_password> root;"
->
-> then the issue probably is the capital -P. It should be lowercase.
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ buildset-config.controller/nightly-arm.conf          | 3 ---
+ buildset-config.controller/nightly-arm64.conf        | 3 ---
+ buildset-config.controller/nightly-deb-non-deb.conf  | 3 ---
+ buildset-config.controller/nightly-deb.conf          | 3 ---
+ buildset-config.controller/nightly-fsl-arm.conf      | 3 ---
+ buildset-config.controller/nightly-fsl-ppc.conf      | 3 ---
+ buildset-config.controller/nightly-ipk.conf          | 3 ---
+ buildset-config.controller/nightly-mips.conf         | 3 ---
+ buildset-config.controller/nightly-mips64.conf       | 3 ---
+ buildset-config.controller/nightly-multilib.conf     | 3 ---
+ buildset-config.controller/nightly-no-x11.conf       | 3 ---
+ buildset-config.controller/nightly-non-gpl3.conf     | 3 ---
+ buildset-config.controller/nightly-oecore.conf       | 3 ---
+ buildset-config.controller/nightly-ppc.conf          | 3 ---
+ buildset-config.controller/nightly-rpm-non-rpm.conf  | 3 ---
+ buildset-config.controller/nightly-rpm.conf          | 3 ---
+ buildset-config.controller/nightly-world-lsb.conf    | 3 ---
+ buildset-config.controller/nightly-world-uclibc.conf | 3 ---
+ buildset-config.controller/nightly-world.conf        | 3 ---
+ buildset-config.controller/nightly-x32.conf          | 3 ---
+ buildset-config.controller/nightly-x86-64.conf       | 3 ---
+ buildset-config.controller/nightly-x86.conf          | 3 ---
+ buildset-config.controller/poky-tiny.conf            | 3 ---
+ buildset-config.controller/ptest-x86-64.conf         | 3 ---
+ buildset-config.controller/ptest-x86.conf            | 3 ---
+ buildset-config.old/minnow.conf                      | 3 ---
+ 26 files changed, 78 deletions(-)
 
-Good spot.  I copied and pasted it from an article I found on the web!
-Having changed it to lower case it now works as expected!
-
-Thanks,
-
-Andy.
+diff --git a/buildset-config.controller/nightly-arm.conf b/buildset-config.controller/nightly-arm.conf
+index 5035bbc..f5d29a8 100644
+--- a/buildset-config.controller/nightly-arm.conf
++++ b/buildset-config.controller/nightly-arm.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-arm64.conf b/buildset-config.controller/nightly-arm64.conf
+index 634e75c..8c31fff 100644
+--- a/buildset-config.controller/nightly-arm64.conf
++++ b/buildset-config.controller/nightly-arm64.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+                 'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-deb-non-deb.conf b/buildset-config.controller/nightly-deb-non-deb.conf
+index 2c2b6d3..716332c 100644
+--- a/buildset-config.controller/nightly-deb-non-deb.conf
++++ b/buildset-config.controller/nightly-deb-non-deb.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-deb.conf b/buildset-config.controller/nightly-deb.conf
+index f6ed955..fa8813c 100644
+--- a/buildset-config.controller/nightly-deb.conf
++++ b/buildset-config.controller/nightly-deb.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-fsl-arm.conf b/buildset-config.controller/nightly-fsl-arm.conf
+index e5ca381..d9e69d3 100644
+--- a/buildset-config.controller/nightly-fsl-arm.conf
++++ b/buildset-config.controller/nightly-fsl-arm.conf
+@@ -6,9 +6,6 @@ repos: [{'poky':
+              'branch':'master'}},
+         {'meta-fsl-arm':
+             {'repourl':'git://git.yoctoproject.org/meta-fsl-arm',
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-fsl-ppc.conf b/buildset-config.controller/nightly-fsl-ppc.conf
+index f506d0e..a66f19f 100644
+--- a/buildset-config.controller/nightly-fsl-ppc.conf
++++ b/buildset-config.controller/nightly-fsl-ppc.conf
+@@ -6,9 +6,6 @@ repos: [{'poky':
+              'branch':'master'}},
+         {'meta-fsl-ppc':
+             {'repourl':'git://git.yoctoproject.org/meta-fsl-ppc',
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-ipk.conf b/buildset-config.controller/nightly-ipk.conf
+index c0cea21..ba78f8c 100644
+--- a/buildset-config.controller/nightly-ipk.conf
++++ b/buildset-config.controller/nightly-ipk.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-mips.conf b/buildset-config.controller/nightly-mips.conf
+index 9798796..77ed604 100644
+--- a/buildset-config.controller/nightly-mips.conf
++++ b/buildset-config.controller/nightly-mips.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-mips64.conf b/buildset-config.controller/nightly-mips64.conf
+index 7d326f1..732d956 100644
+--- a/buildset-config.controller/nightly-mips64.conf
++++ b/buildset-config.controller/nightly-mips64.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-multilib.conf b/buildset-config.controller/nightly-multilib.conf
+index ebd4b64..a836974 100644
+--- a/buildset-config.controller/nightly-multilib.conf
++++ b/buildset-config.controller/nightly-multilib.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-no-x11.conf b/buildset-config.controller/nightly-no-x11.conf
+index 409c601..4881154 100644
+--- a/buildset-config.controller/nightly-no-x11.conf
++++ b/buildset-config.controller/nightly-no-x11.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-non-gpl3.conf b/buildset-config.controller/nightly-non-gpl3.conf
+index 25b6157..864e54d 100644
+--- a/buildset-config.controller/nightly-non-gpl3.conf
++++ b/buildset-config.controller/nightly-non-gpl3.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-oecore.conf b/buildset-config.controller/nightly-oecore.conf
+index b7c4492..8361e0c 100644
+--- a/buildset-config.controller/nightly-oecore.conf
++++ b/buildset-config.controller/nightly-oecore.conf
+@@ -6,9 +6,6 @@ repos: [{'oecore':
+              'branch':'master'}},
+         {'bitbake':
+             {'repourl':'git://git.openembedded.org/bitbake',
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-ppc.conf b/buildset-config.controller/nightly-ppc.conf
+index aeddca2..ce98dfe 100644
+--- a/buildset-config.controller/nightly-ppc.conf
++++ b/buildset-config.controller/nightly-ppc.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-rpm-non-rpm.conf b/buildset-config.controller/nightly-rpm-non-rpm.conf
+index 6e4c998..c98e6f4 100644
+--- a/buildset-config.controller/nightly-rpm-non-rpm.conf
++++ b/buildset-config.controller/nightly-rpm-non-rpm.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-rpm.conf b/buildset-config.controller/nightly-rpm.conf
+index 4422f78..5ece0b8 100644
+--- a/buildset-config.controller/nightly-rpm.conf
++++ b/buildset-config.controller/nightly-rpm.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-world-lsb.conf b/buildset-config.controller/nightly-world-lsb.conf
+index b90f59a..4596d62 100644
+--- a/buildset-config.controller/nightly-world-lsb.conf
++++ b/buildset-config.controller/nightly-world-lsb.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-world-uclibc.conf b/buildset-config.controller/nightly-world-uclibc.conf
+index dc438cd..35b5a4f 100644
+--- a/buildset-config.controller/nightly-world-uclibc.conf
++++ b/buildset-config.controller/nightly-world-uclibc.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-world.conf b/buildset-config.controller/nightly-world.conf
+index 1c4fed9..b4e2614 100644
+--- a/buildset-config.controller/nightly-world.conf
++++ b/buildset-config.controller/nightly-world.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-x32.conf b/buildset-config.controller/nightly-x32.conf
+index f9fbc22..19f285a 100644
+--- a/buildset-config.controller/nightly-x32.conf
++++ b/buildset-config.controller/nightly-x32.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-x86-64.conf b/buildset-config.controller/nightly-x86-64.conf
+index 817a86f..9040076 100644
+--- a/buildset-config.controller/nightly-x86-64.conf
++++ b/buildset-config.controller/nightly-x86-64.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/nightly-x86.conf b/buildset-config.controller/nightly-x86.conf
+index 5f34c31..614f8e6 100644
+--- a/buildset-config.controller/nightly-x86.conf
++++ b/buildset-config.controller/nightly-x86.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/poky-tiny.conf b/buildset-config.controller/poky-tiny.conf
+index 33999fe..7682b52 100644
+--- a/buildset-config.controller/poky-tiny.conf
++++ b/buildset-config.controller/poky-tiny.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/ptest-x86-64.conf b/buildset-config.controller/ptest-x86-64.conf
+index 8f90b90..44332c4 100644
+--- a/buildset-config.controller/ptest-x86-64.conf
++++ b/buildset-config.controller/ptest-x86-64.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.controller/ptest-x86.conf b/buildset-config.controller/ptest-x86.conf
+index e72a892..dcd380d 100644
+--- a/buildset-config.controller/ptest-x86.conf
++++ b/buildset-config.controller/ptest-x86.conf
+@@ -3,9 +3,6 @@ builders: 'example-worker'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+-             'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config.old/minnow.conf b/buildset-config.old/minnow.conf
+index 401727a..69eefd5 100644
+--- a/buildset-config.old/minnow.conf
++++ b/buildset-config.old/minnow.conf
+@@ -4,9 +4,6 @@ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+              'branch':'master'}},
+-        {'meta-qt3':
+-            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+-             'branch':'master'}},
+         {'meta-intel':
+             {'repourl':'git://git.yoctoproject.org/meta-intel',
+              'branch':'master'}},
+-- 
+2.1.4
 
 
