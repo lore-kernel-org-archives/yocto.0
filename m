@@ -1,35 +1,45 @@
-Return-Path: <colin.helliwell@LN-Systems.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A730E00F5E; Thu, 24 Sep 2015 04:52:16 -0700 (PDT)
+	id 139EDE00E83; Thu, 24 Sep 2015 06:24:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
+	characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.236 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
-	[62.49.123.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72DDDE00BA1
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:52:11 -0700 (PDT)
-Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
-	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
-	t8OBnIdR010388
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 12:49:20 +0100
-From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
+Received: from smtprelay.hostedemail.com (smtprelay0236.hostedemail.com
+	[216.40.44.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0983E009EF
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 06:24:31 -0700 (PDT)
+Received: from filter.hostedemail.com (unknown [216.40.38.60])
+	by smtprelay03.hostedemail.com (Postfix) with ESMTP id E77856B52B
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 13:24:24 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: peace18_956232ea0119
+X-Filterd-Recvd-Size: 2099
+Received: from sdcapont (unknown [5.133.41.213])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf10.hostedemail.com (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 13:24:24 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 24 Sep 2015 12:51:59 +0100
-Organization: LN Systems Limited
-Message-ID: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
+Date: Thu, 24 Sep 2015 14:24:20 +0100
+Organization: SDC Systems Limited
+Message-ID: <004101d0f6cc$52e3da90$f8ab8fb0$@pont@sdcsystems.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AdD2vOKx3F9dJT84SCKldptcvyFvAg==
-Subject: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdD2zFHE2gTC3L45SW+OgjOzWAze1A==
+Subject: Setting root password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@LN-Systems.com
+Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -38,98 +48,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 11:52:16 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_01DF_01D0F6C7.D31AFB30"
-Content-Language: en-gb
-
-------=_NextPart_000_01DF_01D0F6C7.D31AFB30
+X-List-Received-Date: Thu, 24 Sep 2015 13:24:36 -0000
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Language: en-gb
 
-This may just be 'the way it is', but the stock Fido/BeagleBoneBlack BSP
-[core-image-minimal] builds the am335x-boneblack dtb file, and creates in
-build/tmp/deploy/images/beaglebone a symlink named
-'zImage-am335x-boneblack.dtb'. However - and this is borne out by
-README.hardware - uboot is set up to look for 'am335x-boneblack.dtb'.
+Hello,
 
-I daresay I can do some sort of fixup, but I was curious why it's like this?
+Looking around the web and reading the assorted documents it seems to be
+that the defined way to set the root password is to remove "debug-tweaks"
+from EXTRA_IMAGE_FEATURES and to add the following lines to local.conf:
 
- 
+require conf/distro/include/security_flags.inc
+INHERIT += "extrausers"
+EXTRA_USERS_PARAMS = "usermod -P <encrypted_password> root;"
+
+When I try to build core-image-minimal then the build fails with the
+following:
+
+| DEBUG: Executing shell function set_user_group
+| NOTE: Performing usermod with [-R
+XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-minimal-initramfs/
+1.0-r0/rootfs -P Hkw6rBJlcfhvM root] and 1 times of retry
+| Server refused shutdown.  Remaining client fds: 2
+| Client pids: 3878 16245
+| Server will shut down after all clients exit.
+| WARNING: usermod command did not succeed. Retrying...
+| ERROR: Tried running usermod command 1 times without success, giving up
+| WARNING:
+XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-minimal-initramfs/
+1.0-r0/temp/run.set_user_group.3878:1 exit 1 from
+|   exit 1
+| DEBUG: Python function do_rootfs finished
+| ERROR: Function failed: set_user_group (log file is located at
+XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-minimal-initramfs/
+1.0-r0/temp/log.do_rootfs.3878)
+
+Any ideas on how to make this work?
+
+Thanks,
+
+Andy.
 
 
-------=_NextPart_000_01DF_01D0F6C7.D31AFB30
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>This may =
-just be &#8216;the way it is&#8217;, but the stock Fido/BeagleBoneBlack =
-BSP [core-image-minimal] builds the am335x-boneblack dtb file, and =
-creates in build/tmp/deploy/images/beaglebone a symlink named =
-&#8216;zImage-am335x-boneblack.dtb&#8217;. However &#8211; and this is =
-borne out by README.hardware &#8211; uboot is set up to look for =
-&#8216;am335x-boneblack.dtb&#8217;.<o:p></o:p></p><p class=3DMsoNormal>I =
-daresay I can do some sort of fixup, but I was curious why it&#8217;s =
-like this?<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-
-------=_NextPart_000_01DF_01D0F6C7.D31AFB30--
