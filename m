@@ -1,45 +1,53 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91223E00C0E; Thu, 24 Sep 2015 16:39:11 -0700 (PDT)
+	id B5EEAE00DAF; Thu, 24 Sep 2015 16:47:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.46 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rudolf.streif[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
-	[209.85.192.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08B9BE00B1E
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:39:10 -0700 (PDT)
-Received: by qgt47 with SMTP id 47so57706585qgt.2
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:39:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=sByKJShh83duwpKr1UNRsIxUwlQAzjiKxWxoLRVsEgU=;
-	b=fnJhDZ8IM8ViZWwO1t9QUM1I4FRLhWa8mHLz+HdbER/IIf0ZrU76W1sLVN0NEd/zWf
-	nM02k7CkaEiHgDne96/Qs5DK407ivz0hy3NTx5SPRPv1QgUZZBCl3InHmmFjZlvBA8TC
-	ckksnsOuHKxXF0DKjQQS4CfoY0EfPLMiJShaMUszw9Dm8HLUXaNQlntIlsWTbKS4lEmJ
-	zEf7mLgYUw54GDqCOY1Xi3UZEeDTjurR1Wajf+N4HeN3FhLznCKt3zT54KA+00F09ssH
-	T0moDRKGVRxGwh7KZC0VLaL8oiXWEC/4I3XQXcCJQL1Yp1cEsu3mtr61ESg11MiPz+Rg
-	2BUA==
-X-Gm-Message-State: ALoCoQlD4j+78MqcsTtjh/KZRtdY/GjejJVVUl4TEWKRdCw/n3p4N+Mr/IX7C4NJeQAbw8oHi17c
-X-Received: by 10.140.134.211 with SMTP id 202mr3111805qhg.51.1443137949736;
-	Thu, 24 Sep 2015 16:39:09 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
+	[209.85.218.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C4A4E00AC5
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:47:32 -0700 (PDT)
+Received: by oiev17 with SMTP id v17so50232282oie.1
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:47:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=aMItdbU6aeqlxPxvexdi+sd/f3wfE0vuAnqicY++yBU=;
+	b=SYkcfyc3jKIIECTh1jggttfSaRHm1QJU0JRhk2Kq/Dz5S5tvRZYzyjEGjolNl1AH9q
+	THDW9SrGtt1Btwt8DhMA1BenO6eJJkDGfu4QLszKIq1HnIdoBjO1D35U4adhCcwfnAQe
+	e9nBoVL6QyMVLHaTQXfF04LMQbwAUmxel3pBJvEXAFhNtofLumbf6uQ4+LPm6xpQFQ+L
+	ZF2QfwITNLcQuVxMJs1dN8/ZG0rGfhc3YX4vQ0KE2NtF3aHSI2NoWW27Yujf1WtU79lb
+	THbDscZ7fpr0xPDTBnYjx1zRbvo0wsHk/7Iy8S0U27zyld/7FXYlI9pBINeMadwe/ALf
+	P/zA==
 MIME-Version: 1.0
-Received: by 10.140.98.55 with HTTP; Thu, 24 Sep 2015 16:38:50 -0700 (PDT)
+X-Received: by 10.202.183.3 with SMTP id h3mr1266869oif.58.1443138451588; Thu,
+	24 Sep 2015 16:47:31 -0700 (PDT)
+Received: by 10.76.147.104 with HTTP; Thu, 24 Sep 2015 16:47:30 -0700 (PDT)
+Received: by 10.76.147.104 with HTTP; Thu, 24 Sep 2015 16:47:30 -0700 (PDT)
 In-Reply-To: <C1A04CEA-EE1B-49E0-B675-4C319BA62244@curtisembedded.com>
 References: <C1A04CEA-EE1B-49E0-B675-4C319BA62244@curtisembedded.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 24 Sep 2015 16:38:50 -0700
-Message-ID: <CAP71WjxOAdOav6Mr-_THVURQ4BJOovBQP=KMsyprb=d5mSCxwQ@mail.gmail.com>
+Date: Thu, 24 Sep 2015 16:47:30 -0700
+Message-ID: <CAEKp-aYpV_d8Xx_82uxp=Z-AodLZ+RfPEYFUevu-ka_-Ny2wzw@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@gmail.com>
 To: Allen Curtis <allen.curtis@curtisembedded.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
 Subject: Re: bbappend a "required" bb file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,25 +60,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 23:39:11 -0000
+X-List-Received-Date: Thu, 24 Sep 2015 23:47:33 -0000
+Content-Type: multipart/alternative; boundary=001a113ce59cc4ca4d052086da95
+
+--001a113ce59cc4ca4d052086da95
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Sep 24, 2015 at 4:26 PM, Allen Curtis
-<allen.curtis@curtisembedded.com> wrote:
-> I am working with a BSP that has multiple image recipes.
->
-> foo-hwbringup-image.bb
-> foo-qt5demo-image.bb
->
-> foo-qt5demo-image.bb contains "require foo-hwbringup-image.bb"
->
-> However if I create foo-hwbringup-image.bbappend, it gets ignored.
 >
 > What are the rules with appending included recipes?
+>
+File inclusions with include or require are literal: the content of the
+referenced file is inserted at the very position of the statement. The file
+extension is irrelevant, meaning any appends to a recipe do not get
+included.
 
+:rjs
 
-you can only append to a 'recipe' file, e.g. the .bb file.
+--001a113ce59cc4ca4d052086da95
+Content-Type: text/html; charset=UTF-8
 
-If xyz.bb file includes/requires abc.bb, you recipe name still is xyz.
-So you can use xyz.bbappend, but abc.bbappend won't be read/processed.
+<p dir="ltr"><br>
+&gt;<br>
+&gt; What are the rules with appending included recipes?<br>
+&gt;<br>
+File inclusions with include or require are literal: the content of the referenced file is inserted at the very position of the statement. The file extension is irrelevant, meaning any appends to a recipe do not get included. </p>
+<p dir="ltr">:rjs<br>
+</p>
 
+--001a113ce59cc4ca4d052086da95--
