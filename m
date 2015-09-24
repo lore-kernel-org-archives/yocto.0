@@ -1,62 +1,38 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <colin.helliwell@LN-Systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ADEEE00D94; Thu, 24 Sep 2015 08:17:06 -0700 (PDT)
+	id DD554E00D46; Thu, 24 Sep 2015 08:22:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.49 listed in list.dnswl.org]
-Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
-	[209.85.220.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F90DE00D6B
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:17:05 -0700 (PDT)
-Received: by pacfv12 with SMTP id fv12so77020093pac.2
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:17:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
-	:references:mime-version:content-type:content-transfer-encoding;
-	bh=q49KYoJVYgFbQjCgtLYEN797LlloIn+2yLatAaRdygg=;
-	b=Bihb/QA1euu5CGLQK1mIZJXx+/lWsDFe64zTOwzbiUrRC2+9xB1cJVUGj+E7skbJS2
-	emSQaj2FAhnUW6f2CEI7xJ0gQUjj1PIEN2beueXXM5DNupqP1BwCjojr+78MVBObT/8Z
-	WYZgUcAnO9k6WXb9a7GF44Ryi9AMvsxTq3CutCgYdR8Qv1TbbG/GKW4tV3pcbP1eJbM2
-	TnJztRUpk6gUCEnX3YyM5ZkMphGeHqIc89OPOXqpYm0pFd+8qAaKsHmgdFRXJ5sD2qtc
-	F2OpmojIiuvhGFIUyZwdgxlG6dZmiZH1byDect0U/RKXpchemD7HuDZTSCqhLcfUVo2x
-	mUGw==
-X-Received: by 10.66.142.101 with SMTP id rv5mr257034pab.25.1443107825420;
-	Thu, 24 Sep 2015 08:17:05 -0700 (PDT)
-Received: from rjs-mbpro.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
-	by smtp.gmail.com with ESMTPSA id
-	df2sm14281063pad.19.2015.09.24.08.17.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 24 Sep 2015 08:17:04 -0700 (PDT)
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 24 Sep 2015 08:17:02 -0700
-Message-ID: <7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
-User-Agent: KMail/4.14.6 (Linux/3.19.3-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
-References: <5603f9ce.e9d1440a.dc3ac.43adSMTPIN_ADDED_BROKEN@mx.google.com>
-	<CAF3SDA4j6h=5btgBtVVdxwFwR+eT+SdtmYXk7Wd9mrXk9WyL5g@mail.gmail.com>
-	<CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
+Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
+	[62.49.123.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77AEBE00804
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:22:29 -0700 (PDT)
+Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
+	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
+	t8OFJZYG012304
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:19:38 +0100
+From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
+To: <yocto@yoctoproject.org>
+References: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>	<CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
+	<024901d0f6db$87284b60$9578e220$@LN-Systems.com>
+In-Reply-To: <024901d0f6db$87284b60$9578e220$@LN-Systems.com>
+Date: Thu, 24 Sep 2015 16:22:23 +0100
+Organization: LN Systems Limited
+Message-ID: <025a01d0f6dc$d2836990$778a3cb0$@LN-Systems.com>
 MIME-Version: 1.0
-Subject: Re: Setting root password
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQIoxgDbPdzAQnqrzD634HohN+Uv/QGr4apWASt+YZOdhXH0sA==
+Subject: Re: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@LN-Systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,106 +41,247 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 15:17:06 -0000
-Content-Type: multipart/alternative; boundary="nextPart21868170.yRdZpcOMlu"
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 24 Sep 2015 15:22:32 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_025B_01D0F6E5.3447D190"
+Content-Language: en-gb
 
---nextPart21868170.yRdZpcOMlu
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="iso-8859-1"
+------=_NextPart_000_025B_01D0F6E5.3447D190
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQW5keSwgRGFuaWVsCgpPbiBUaHVyc2RheSwgU2VwdGVtYmVyIDI0LCAyMDE1IDExOjIwOjM3
-IEFNIERhbmllbC4gd3JvdGU6CgoKPiBTdGlsbCwgSSB0aGluayBpcyBhIGdvb2QgaWRlaWEgdG8g
-dW5kZXJzdGFuZCB3aGF0IGlzIGdvaW5nIHdyb25nIHdpdGgKPiBFWFRSQV9VU0VSU19QQVJBTVMs
-IG90aGVyIHVzZXJzIG1heSBoYXZpbmcgdGhlIHNhbWUgcHJvYmxlbS4KCgpFWFRSQV9VU0VSU19Q
-QVJBTVMgd29ya3MgZm9yIG1lIGFsbCB0aGUgdGltZS4gVGhlIHN0YW56YSBpcyB3aGF0IEkgYW0g
-dXNpbmcgaW4gCm15IGltYWdlIHJlY2lwZXM6CgpFWFRSQV9VU0VSU19QQVJBTVMgPSAiXGdyb3Vw
-YWRkIGRldmVsb3BlcnM7IFx1c2VyYWRkIC1wIGBvcGVuc3NsIHBhc3N3ZCAKJHtERVZfUEFTU1dP
-UkR9YCBkZXZlbG9wZXI7IFx1c2VyYWRkIC1nIGRldmVsb3BlcnMgZGV2ZWxvcGVyOyBcCnVzZXJt
-b2QgLXAgYG9wZW5zc2wgcGFzc3dkICR7Uk9PVF9QQVNTV09SRH1gIHJvb3Q7IFwKIgoKSWYgdGhp
-cyBpcyBhbiBhY2N1cmF0ZSBjb3B5IG9mIHdoYXQgeW91IGFyZSB1c2luZwAgKGZyb20geW91IGZp
-cnN0IGVtYWlsKQoKPiBFWFRSQV9VU0VSU19QQVJBTVMgPSAidXNlcm1vZCAtUCA8ZW5jcnlwdGVk
-X3Bhc3N3b3JkPiByb290OyIKCnRoZW4gdGhlIGlzc3VlIHByb2JhYmx5IGlzIHRoZSBjYXBpdGFs
-IC1QLiBJdCBzaG91bGQgYmUgbG93ZXJjYXNlLgoKQ2hlZXJzLApSdWRpCgo=
+Actually, that=E2=80=99s incorrect =E2=80=93 the stock Fido =
+=E2=80=98core-image-mininal=E2=80=99 *doesn=E2=80=99t* put the kernel =
+into the rootfs tarball either (It=E2=80=99s my own modified =
+configuration that I=E2=80=99ve added that to).
 
---nextPart21868170.yRdZpcOMlu
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="iso-8859-1"
+=20
 
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMC8vRU4iICJodHRwOi8v
-d3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwL3N0cmljdC5kdGQiPgo8aHRtbD48aGVhZD48bWV0YSBu
-YW1lPSJxcmljaHRleHQiIGNvbnRlbnQ9IjEiIC8+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KcCwg
-bGkgeyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7IH0KPC9zdHlsZT48L2hlYWQ+PGJvZHkgc3R5bGU9
-IiBmb250LWZhbWlseTonU2FucyBTZXJpZic7IGZvbnQtc2l6ZToxMHB0OyBmb250LXdlaWdodDo0
-MDA7IGZvbnQtc3R5bGU6bm9ybWFsOyI+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdp
-bi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9j
-ay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+SGkgQW5keSwg
-RGFuaWVsPC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9w
-OjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBw
-eDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBz
-dHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4
-OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsg
-LXF0LXVzZXItc3RhdGU6MDsiPk9uIFRodXJzZGF5LCBTZXB0ZW1iZXIgMjQsIDIwMTUgMTE6MjA6
-MzcgQU0gRGFuaWVsLiB3cm90ZTo8YnIgLz48L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7
-IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1x
-dC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0
-OyBTdGlsbCwgSSB0aGluayBpcyBhIGdvb2QgaWRlaWEgdG8gdW5kZXJzdGFuZCB3aGF0IGlzIGdv
-aW5nIHdyb25nIHdpdGg8L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0
-b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRl
-bnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+Jmd0OyBFWFRSQV9VU0VS
-U19QQVJBTVMsIG90aGVyIHVzZXJzIG1heSBoYXZpbmcgdGhlIHNhbWUgcHJvYmxlbS48YnIgLz48
-L3A+CjxwIHN0eWxlPSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4t
-bGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRl
-bnQ6MHB4OyAtcXQtdXNlci1zdGF0ZTowOyI+RVhUUkFfVVNFUlNfUEFSQU1TIHdvcmtzIGZvciBt
-ZSBhbGwgdGhlIHRpbWUuIFRoZSBzdGFuemEgaXMgd2hhdCBJIGFtIHVzaW5nIGluIG15IGltYWdl
-IHJlY2lwZXM6PC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4t
-dG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0
-OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8
-cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6
-MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBw
-eDsgLXF0LXVzZXItc3RhdGU6MDsiPjxzcGFuIHN0eWxlPSIgZm9udC1mYW1pbHk6J2RlamF2dSBz
-YW5zJzsgY29sb3I6IzAwMDAwMDsiPkVYVFJBX1VTRVJTX1BBUkFNUyA9ICZxdW90O1w8YnIgLz5n
-cm91cGFkZCBkZXZlbG9wZXJzOyBcPGJyIC8+dXNlcmFkZCAtcCBgb3BlbnNzbCBwYXNzd2QgJHtE
-RVZfUEFTU1dPUkR9YCBkZXZlbG9wZXI7IFw8YnIgLz51c2VyYWRkIC1nIGRldmVsb3BlcnMgZGV2
-ZWxvcGVyOyBcPC9zcGFuPjwvcD4KPHAgc3R5bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJv
-dHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWlu
-ZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1xdC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0i
-IGZvbnQtZmFtaWx5OidkZWphdnUgc2Fucyc7IGNvbG9yOiMwMDAwMDA7Ij51c2VybW9kIC1wIGBv
-cGVuc3NsIHBhc3N3ZCAke1JPT1RfUEFTU1dPUkR9YCByb290OyBcPC9zcGFuPjwvcD4KPHAgc3R5
-bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsg
-bWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1x
-dC11c2VyLXN0YXRlOjA7Ij48c3BhbiBzdHlsZT0iIGZvbnQtZmFtaWx5OidkZWphdnUgc2Fucyc7
-IGNvbG9yOiMwMDAwMDA7Ij4mcXVvdDs8L3NwYW4+PC9wPgo8cCBzdHlsZT0iLXF0LXBhcmFncmFw
-aC10eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1s
-ZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVu
-dDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBtYXJnaW4tYm90
-dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQtYmxvY2staW5k
-ZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPklmIHRoaXMgaXMgYW4g
-YWNjdXJhdGUgY29weSBvZiB3aGF0IHlvdSBhcmUgdXNpbmcAIChmcm9tIHlvdSBmaXJzdCBlbWFp
-bCk8L3A+CjxwIHN0eWxlPSItcXQtcGFyYWdyYXBoLXR5cGU6ZW1wdHk7IG1hcmdpbi10b3A6MHB4
-OyBtYXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAt
-cXQtYmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgIj4mbmJzcDs8L3A+CjxwIHN0eWxl
-PSIgbWFyZ2luLXRvcDowcHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1h
-cmdpbi1yaWdodDowcHg7IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAtcXQt
-dXNlci1zdGF0ZTowOyI+Jmd0OyBFWFRSQV9VU0VSU19QQVJBTVMgPSAmcXVvdDt1c2VybW9kIC1Q
-ICZsdDtlbmNyeXB0ZWRfcGFzc3dvcmQmZ3Q7IHJvb3Q7JnF1b3Q7PC9wPgo8cCBzdHlsZT0iLXF0
-LXBhcmFncmFwaC10eXBlOmVtcHR5OyBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7
-IG1hcmdpbi1sZWZ0OjBweDsgbWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0
-ZXh0LWluZGVudDowcHg7ICI+Jm5ic3A7PC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBt
-YXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQt
-YmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPnRoZW4g
-dGhlIGlzc3VlIHByb2JhYmx5IGlzIHRoZSBjYXBpdGFsIC1QLiBJdCBzaG91bGQgYmUgbG93ZXJj
-YXNlLjwvcD4KPHAgc3R5bGU9Ii1xdC1wYXJhZ3JhcGgtdHlwZTplbXB0eTsgbWFyZ2luLXRvcDow
-cHg7IG1hcmdpbi1ib3R0b206MHB4OyBtYXJnaW4tbGVmdDowcHg7IG1hcmdpbi1yaWdodDowcHg7
-IC1xdC1ibG9jay1pbmRlbnQ6MDsgdGV4dC1pbmRlbnQ6MHB4OyAiPiZuYnNwOzwvcD4KPHAgc3R5
-bGU9IiBtYXJnaW4tdG9wOjBweDsgbWFyZ2luLWJvdHRvbTowcHg7IG1hcmdpbi1sZWZ0OjBweDsg
-bWFyZ2luLXJpZ2h0OjBweDsgLXF0LWJsb2NrLWluZGVudDowOyB0ZXh0LWluZGVudDowcHg7IC1x
-dC11c2VyLXN0YXRlOjA7Ij5DaGVlcnMsPC9wPgo8cCBzdHlsZT0iIG1hcmdpbi10b3A6MHB4OyBt
-YXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQt
-YmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgLXF0LXVzZXItc3RhdGU6MDsiPlJ1ZGk8
-L3A+CjxwIHN0eWxlPSItcXQtcGFyYWdyYXBoLXR5cGU6ZW1wdHk7IG1hcmdpbi10b3A6MHB4OyBt
-YXJnaW4tYm90dG9tOjBweDsgbWFyZ2luLWxlZnQ6MHB4OyBtYXJnaW4tcmlnaHQ6MHB4OyAtcXQt
-YmxvY2staW5kZW50OjA7IHRleHQtaW5kZW50OjBweDsgIj4mbmJzcDs8L3A+PC9ib2R5PjwvaHRt
-bD4=
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Colin Helliwell
+Sent: 24 September 2015 16:13
+To: 'Christopher Larson'; yocto@yoctoproject.org
+Subject: Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
+(Fido/BeagleBoneBlack)
 
---nextPart21868170.yRdZpcOMlu--
+=20
+
+Hmmm, ok =E2=80=93 maybe I should be baking beyond =
+=E2=80=98core-image-minimal=E2=80=99?
+
+=20
+
+As background:
+
+Up until now I=E2=80=99ve just been manually copying/renaming/extracting =
+the various items - rootfs,modules,kernel,dtb,MLO,uboot - from =
+build/tmp/deploy/images/beaglebone into the necessary places on SD card. =
+i.e. that bake *isn=E2=80=99t* putting the dtb into the rootfs tgz in =
+that directory (though the kernel, together with a symlink =
+=E2=80=98zImage=E2=80=99, *is* in the tgz).
+
+Today I=E2=80=99ve started looking at using wic (based on info in =
+https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887.html ) =
+to create a single SD image file. I have this successfully pulling =
+everything into the image =E2=80=93 automagically doing all the steps =
+I=E2=80=99ve previously being doing manually. Except that the waiting =
+dtb has the wrong name, as described.=20
+
+So I=E2=80=99m unsure of the best point of attack to amend this=E2=80=A6
+
+=20
+
+=20
+
+From: Christopher Larson [mailto:clarson@kergoth.com]=20
+Sent: 24 September 2015 15:27
+To: colin.helliwell@ln-systems.com; yocto@yoctoproject.org
+Subject: Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
+(Fido/BeagleBoneBlack)
+
+=20
+
+It's installed into /boot on the rootfs with the zImage prefix, and =
+update-alternatives creates a symlink to the correct path so uboot can =
+find it. Not sure why this indirection exists, but it does work.
+
+On Thu, Sep 24, 2015 at 4:52 AM Colin Helliwell =
+<colin.helliwell@ln-systems.com> wrote:
+
+This may just be =E2=80=98the way it is=E2=80=99, but the stock =
+Fido/BeagleBoneBlack BSP [core-image-minimal] builds the =
+am335x-boneblack dtb file, and creates in =
+build/tmp/deploy/images/beaglebone a symlink named =
+=E2=80=98zImage-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and =
+this is borne out by README.hardware =E2=80=93 uboot is set up to look =
+for =E2=80=98am335x-boneblack.dtb=E2=80=99.
+
+I daresay I can do some sort of fixup, but I was curious why =
+it=E2=80=99s like this?
+
+=20
+
+
+------=_NextPart_000_025B_01D0F6E5.3447D190
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-GB;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Actually, that=E2=80=99s incorrect =E2=80=93 the stock Fido =
+=E2=80=98core-image-mininal=E2=80=99 *<b>doesn=E2=80=99t</b>* put the =
+kernel into the rootfs tarball either (It=E2=80=99s my own modified =
+configuration that I=E2=80=99ve added that to).<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Colin Helliwell<br><b>Sent:</b> 24 September 2015 =
+16:13<br><b>To:</b> 'Christopher Larson'; =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] =
+am335x-boneblack.dtb 'misnamed'? =
+(Fido/BeagleBoneBlack)<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Hmmm, ok =E2=80=93 maybe I should be baking beyond =
+=E2=80=98core-image-minimal=E2=80=99?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>As background:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Up until now I=E2=80=99ve just been manually =
+copying/renaming/extracting the various items - =
+rootfs,modules,kernel,dtb,MLO,uboot - from =
+build/tmp/deploy/images/beaglebone into the necessary places on SD card. =
+i.e. that bake *<b>isn=E2=80=99t</b>* putting the dtb into the rootfs =
+tgz in that directory (though the kernel, together with a symlink =
+=E2=80=98zImage=E2=80=99, *<b>is</b>* in the =
+tgz).<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Today I=E2=80=99ve started looking at using wic (based on info in <a =
+href=3D"https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887=
+.html">https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887.=
+html</a> ) to create a single SD image file. I have this successfully =
+pulling everything into the image =E2=80=93 automagically doing all the =
+steps I=E2=80=99ve previously being doing manually. Except that the =
+waiting dtb has the wrong name, as described. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>So I=E2=80=99m unsure of the best point of attack to amend =
+this=E2=80=A6<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span =
+lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Christopher Larson [<a =
+href=3D"mailto:clarson@kergoth.com">mailto:clarson@kergoth.com</a>] =
+<br><b>Sent:</b> 24 September 2015 15:27<br><b>To:</b> <a =
+href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln-systems=
+.com</a>; <a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>S=
+ubject:</b> Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
+(Fido/BeagleBoneBlack)<o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>It's =
+installed into /boot on the rootfs with the zImage prefix, and =
+update-alternatives creates a symlink to the correct path so uboot can =
+find it. Not sure why this indirection exists, but it does =
+work.<o:p></o:p></p><div><div><p class=3DMsoNormal>On Thu, Sep 24, 2015 =
+at 4:52 AM Colin Helliwell &lt;<a =
+href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln-systems=
+.com</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
+6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;margin-bottom:5=
+.0pt'><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This may =
+just be =E2=80=98the way it is=E2=80=99, but the stock =
+Fido/BeagleBoneBlack BSP [core-image-minimal] builds the =
+am335x-boneblack dtb file, and creates in =
+build/tmp/deploy/images/beaglebone a symlink named =
+=E2=80=98zImage-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and =
+this is borne out by README.hardware =E2=80=93 uboot is set up to look =
+for =E2=80=98am335x-boneblack.dtb=E2=80=99.<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I daresay I =
+can do some sort of fixup, but I was curious why it=E2=80=99s like =
+this?<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><o:p>&nbsp;<=
+/o:p></p></div></div></blockquote></div></div></body></html>
+
+------=_NextPart_000_025B_01D0F6E5.3447D190--
