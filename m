@@ -1,53 +1,40 @@
-Return-Path: <h4nn35.work@gmail.com>
+Return-Path: <colin.helliwell@LN-Systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC654E00D40; Wed, 23 Sep 2015 23:04:40 -0700 (PDT)
+	id 866FCE01062; Thu, 24 Sep 2015 01:17:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (h4nn35.work[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.179 listed in list.dnswl.org]
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
-	[209.85.212.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9168E009DB
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 23:04:38 -0700 (PDT)
-Received: by wiclk2 with SMTP id lk2so98068455wic.1
-	for <yocto@yoctoproject.org>; Wed, 23 Sep 2015 23:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=Ll12IfnDC/AcmKbfdAQLwD1qAzcLO7lKIvd5FHEt9TM=;
-	b=izpRnPJ8l2bqN46+QYgu+5oMNaDeq4thnPG1fzly5TImeW2u0p56T7G6AVrpQHtFwQ
-	/SsPnDUHMKFw2AXOh3/Opos1usuHaCY/i52G9i89i9/GCCUTGKDYecwFarsMhjXTMtn6
-	IkqM4X5LajQ1Zq+a8A8/b9uS14U9WjFtW8H4m/pocwRd0wob8P0yi+hqoOo5a33cSUA+
-	Rd+C8j+7jRZ/JD0S8z9OJZjFOEVkIdlKpbCVNBoyp5wFoNFmpg5sNhhsaUPA+e+hfh0d
-	e04WTDEnmDPFSJcQ9GfMKK3eWw016LSf4utf1GQf5WDcMcGMFlDd1ZBvBT3SFdc2+7A5
-	HjNw==
+X-Greylist: delayed 2413 seconds by postgrey-1.32 at yocto-www;
+	Thu, 24 Sep 2015 01:17:02 PDT
+Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
+	[62.49.123.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C95E5E00A8C
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 01:17:01 -0700 (PDT)
+Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
+	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
+	t8O7Xl6U008154; Thu, 24 Sep 2015 08:33:50 +0100
+From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
+To: "'Andrei Gherzan'" <andrei@gherzan.ro>, "'Jonathan Liu'" <net147@gmail.com>
+References: <55ECF934.80902@gmail.com>
+	<55F2304B.6070601@gmail.com>	<CANwerB3PB=JQRQmjcHkCrpW8_fTSN1DrmPFFT70CA3WJtN6CYw@mail.gmail.com>
+	<20150923201253.GA23493@resin>
+In-Reply-To: <20150923201253.GA23493@resin>
+Date: Thu, 24 Sep 2015 08:36:34 +0100
+Organization: LN Systems Limited
+Message-ID: <019701d0f69b$bfb88890$3f2999b0$@LN-Systems.com>
 MIME-Version: 1.0
-X-Received: by 10.180.8.101 with SMTP id q5mr8161219wia.16.1443074677706; Wed,
-	23 Sep 2015 23:04:37 -0700 (PDT)
-Received: by 10.27.222.203 with HTTP; Wed, 23 Sep 2015 23:04:37 -0700 (PDT)
-Date: Thu, 24 Sep 2015 08:04:37 +0200
-Message-ID: <CAHvQdo2iC6MdHw8Dfe=SDW8vm_RxQ_nhmmMSX3-jDGkc968_UQ@mail.gmail.com>
-From: Johannes Pointner <h4nn35.work@gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [systemd-devel] How to automount
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQLJ9fXGiqxo6UXX4Hla4131rGNyaQI9U1ObAYsGKGsCJuduhpwp0Gew
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] du giving non-integer result?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@LN-Systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,55 +43,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 06:04:40 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 24 Sep 2015 08:17:05 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-gb
 
-Hello Paul,
+On my 'to do' list is pulling together the fs partitions into a single SD
+card image file that can be copied in-one using a Windows tool (such as
+Win32 Disk Imager) - primarily because my build machine is off-site. 
+I've seen a few recipes along those lines (I'm on a BeagleBone), but perhaps
+wic is a better way to go. Can wic create a single card image?
 
-I'm using autofs to do the trick. It's working fine for me.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of Andrei Gherzan
+Sent: 23 September 2015 21:13
+To: Jonathan Liu
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-raspberrypi] du giving non-integer result?
 
-To get the umount working I use a timeout of 2 seconds, which seems to
-be ok so far.
+....
+
+Hi guys,
+
+I'm testing and reviewing this as we speak. As well, it would be a good idea
+to drop the sd card generation class for good and replace it completely by
+wic support.
+
+Something to be done. Wnat to pick this up? I know that there were people
+around testing wic and we had configuration too.
 
 Regards,
-Hannes
+
+--
+Andrei Gherzan
+--
 
 
-2015-09-23 21:28 GMT+02:00 Daniel. <danielhilst@gmail.com>:
-> I agree with you that is intrinsically unworkable, if there is no physical
-> media, how can it be umounted!? If anyone make this possible, maybe some
-> day, in that day, umounting will be obsolete.
->
-> Cheers,
-> - dhs
->
-> 2015-09-23 15:31 GMT-03:00 Paul D. DeRocco <pderocco@ix.netcom.com>:
->>
->> > From: Daniel. [mailto:danielhilst@gmail.com]
->> >
->> > I think that sync just flushes data to disk and umount clears
->> > the dirty bit. There is no sync.vfat that I know.
->>
->> That would seem to make auto-unmount (triggered by removal) an
->> intrinsically unworkable concept. Or is that only the case for FAT file
->> systems?
->>
->> --
->>
->> Ciao,               Paul D. DeRocco
->> Paul                mailto:pderocco@ix.netcom.com
->>
->
->
->
-> --
-> "Do or do not. There is no try"
->   Yoda Master
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
