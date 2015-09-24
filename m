@@ -1,51 +1,35 @@
-Return-Path: <h4nn35.work@gmail.com>
+Return-Path: <colin.helliwell@LN-Systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE3A0E00C88; Thu, 24 Sep 2015 04:25:41 -0700 (PDT)
+	id 3A730E00F5E; Thu, 24 Sep 2015 04:52:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (h4nn35.work[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.176 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2034E00AD0
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:25:40 -0700 (PDT)
-Received: by wicfx3 with SMTP id fx3so108007603wic.0
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=ciWUjwpFSS3POfkUaV40zsytM34gk1mfFLIXR8eYLtI=;
-	b=RiMzWf2VJ+oPJaXZ+QK/TnUMGawTKmixLJxJuiG6JQrGmxwVSNeGeIk/4psTo2nwQm
-	dq16LgnLgnkGfWsEHqXJ4wXKXTeIzkYCzzPhhctdh/DpAuBEWk2Dm98Ul798Te8OgEeq
-	JT4XEuigc/MEuRd2r9H36Cd52/yQ63W7Y5U/0x44yg+zZ050zHgEnmyfbCPG204XZ2fv
-	h2GWHbCF064uJH+oqoS/GDut3M5PpABwAJy9zj+BbLqtjx+8LKv3kNMlktfFuTMkFIXN
-	m61wH69rlf8LN8n13n6FtcragH9TLvV0ZCf/478tn6AdlCteRdyOotMnek04SSMiI/2c
-	/5iA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
+	[62.49.123.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72DDDE00BA1
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:52:11 -0700 (PDT)
+Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
+	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
+	t8OBnIdR010388
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 12:49:20 +0100
+From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 24 Sep 2015 12:51:59 +0100
+Organization: LN Systems Limited
+Message-ID: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
 MIME-Version: 1.0
-X-Received: by 10.194.24.68 with SMTP id s4mr16521531wjf.12.1443093939457;
-	Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
-Received: by 10.27.222.203 with HTTP; Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
-Date: Thu, 24 Sep 2015 13:25:39 +0200
-Message-ID: <CAHvQdo3CuJP2rAVS6gZVe0OWciXucZzv-Gd0NLVbJXBKH8_fog@mail.gmail.com>
-From: Johannes Pointner <h4nn35.work@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [systemd-devel] How to automount
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdD2vOKx3F9dJT84SCKldptcvyFvAg==
+Subject: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@LN-Systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,81 +38,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 11:25:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 24 Sep 2015 11:52:16 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_01DF_01D0F6C7.D31AFB30"
+Content-Language: en-gb
 
-I have to admit, I don't use systemd at the embedded system, but I use
-the following files to do it for the usb flash drives:
-/etc/auto.master:
-+auto.master
-/var/autofs /etc/auto.usb       --timeout=2
+------=_NextPart_000_01DF_01D0F6C7.D31AFB30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-/etc/auto.usb:
-usb1    -fstype=vfat,rw,sync,noatime,nodiratime,nodev,nosuid,noexec,uid=1000
-   :/dev/usba
-usb2    -fstype=vfat,rw,sync,noatime,nodiratime,nodev,nosuid,noexec,uid=1000
-   :/dev/usbb
+This may just be 'the way it is', but the stock Fido/BeagleBoneBlack BSP
+[core-image-minimal] builds the am335x-boneblack dtb file, and creates in
+build/tmp/deploy/images/beaglebone a symlink named
+'zImage-am335x-boneblack.dtb'. However - and this is borne out by
+README.hardware - uboot is set up to look for 'am335x-boneblack.dtb'.
 
-Furthermore I have a additional udev rule for the usb interfaces:
-/etc/udev/rules.d/99-mount-usb-key.rules:
-SUBSYSTEMS=="usb", SUBSYSTEM=="block", KERNELS=="1-1", ENV{USB_HUB}="usb2"
-SUBSYSTEMS=="usb", SUBSYSTEM=="block", KERNELS=="2-1", ENV{USB_HUB}="usb1"
+I daresay I can do some sort of fixup, but I was curious why it's like this?
 
-ENV{USB_HUB}=="usb1", SUBSYSTEM=="block", KERNEL=="sd[a-z]*", SYMLINK+="usba"
-ENV{USB_HUB}=="usb2", SUBSYSTEM=="block", KERNEL=="sd[a-z]*", SYMLINK+="usbb"
+ 
 
-But I also use automount on my desktop PC and there with systemd, but
-no for a flash drives instead for cifs shares and this looks like
-this:
 
-/etc/autofs/aut.cifs-shares:
-exchange -fstype=cifs,nosuid,rw,credentials=/home/h4nn35/.smbcredentials,dir_mode=0777,file_mode=0666
-://server/exchange
+------=_NextPart_000_01DF_01D0F6C7.D31AFB30
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-/etc/autofs/auto.master:
-+auto.master
-/home/h4nn35/NetShares /etc/autofs/auto.cifs-shares --timeout=60 --ghost
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>This may =
+just be &#8216;the way it is&#8217;, but the stock Fido/BeagleBoneBlack =
+BSP [core-image-minimal] builds the am335x-boneblack dtb file, and =
+creates in build/tmp/deploy/images/beaglebone a symlink named =
+&#8216;zImage-am335x-boneblack.dtb&#8217;. However &#8211; and this is =
+borne out by README.hardware &#8211; uboot is set up to look for =
+&#8216;am335x-boneblack.dtb&#8217;.<o:p></o:p></p><p class=3DMsoNormal>I =
+daresay I can do some sort of fixup, but I was curious why it&#8217;s =
+like this?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-I hope this helps.
-
-2015-09-24 12:58 GMT+02:00 Mike Looijmans <mike.looijmans@topic.nl>:
-> On 24-09-15 08:04, Johannes Pointner wrote:
->>
->> I'm using autofs to do the trick. It's working fine for me.
->>
->> To get the umount working I use a timeout of 2 seconds, which seems to
->> be ok so far.
->
->
->
-> I am very very interested in how you got that to actually work. Please show
-> us your configuration files and/or recipes and enlighten us!
->
-> So far, all I ever got autofs to accomplish was giving me a major headache.
->
->
-> Kind regards,
->
-> Mike Looijmans
-> System Expert
->
-> TOPIC Embedded Products
-> Eindhovenseweg 32-C, NL-5683 KH Best
-> Postbus 440, NL-5680 AK Best
-> Telefoon: +31 (0) 499 33 69 79
-> Telefax: +31 (0) 499 33 69 70
-> E-mail: mike.looijmans@topicproducts.com
-> Website: www.topicproducts.com
->
-> Please consider the environment before printing this e-mail
->
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+------=_NextPart_000_01DF_01D0F6C7.D31AFB30--
