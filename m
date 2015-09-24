@@ -1,6 +1,6 @@
 Return-Path: <colin.helliwell@LN-Systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD554E00D46; Thu, 24 Sep 2015 08:22:32 -0700 (PDT)
+	id 90485E00DE5; Thu, 24 Sep 2015 08:41:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,23 +11,23 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
 	[62.49.123.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77AEBE00804
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:22:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46CEAE00708
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:41:42 -0700 (PDT)
 Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
 	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
-	t8OFJZYG012304
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:19:38 +0100
+	t8OFcmq7012469
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:38:52 +0100
 From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
 To: <yocto@yoctoproject.org>
-References: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>	<CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
-	<024901d0f6db$87284b60$9578e220$@LN-Systems.com>
-In-Reply-To: <024901d0f6db$87284b60$9578e220$@LN-Systems.com>
-Date: Thu, 24 Sep 2015 16:22:23 +0100
+References: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
+	<CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
+In-Reply-To: <CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
+Date: Thu, 24 Sep 2015 16:41:36 +0100
 Organization: LN Systems Limited
-Message-ID: <025a01d0f6dc$d2836990$778a3cb0$@LN-Systems.com>
+Message-ID: <026b01d0f6df$81e4cda0$85ae68e0$@LN-Systems.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQIoxgDbPdzAQnqrzD634HohN+Uv/QGr4apWASt+YZOdhXH0sA==
+Thread-Index: AQIoxgDbPdzAQnqrzD634HohN+Uv/QGr4apWnY7S+IA=
 Subject: Re: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,56 +41,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 15:22:32 -0000
+X-List-Received-Date: Thu, 24 Sep 2015 15:41:45 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_025B_01D0F6E5.3447D190"
+	boundary="----=_NextPart_000_026C_01D0F6E7.E3AC42E0"
 Content-Language: en-gb
 
-------=_NextPart_000_025B_01D0F6E5.3447D190
+------=_NextPart_000_026C_01D0F6E7.E3AC42E0
 Content-Type: text/plain;
 	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Actually, that=E2=80=99s incorrect =E2=80=93 the stock Fido =
-=E2=80=98core-image-mininal=E2=80=99 *doesn=E2=80=99t* put the kernel =
-into the rootfs tarball either (It=E2=80=99s my own modified =
-configuration that I=E2=80=99ve added that to).
+Ah, ok =E2=80=93 I see what you mean now. =
+=E2=80=98core-image-base=E2=80=99 puts the dtb and kernel (with =
+symlinks) into /boot in the rootfs tarball.
 
-=20
-
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Colin Helliwell
-Sent: 24 September 2015 16:13
-To: 'Christopher Larson'; yocto@yoctoproject.org
-Subject: Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
-(Fido/BeagleBoneBlack)
-
-=20
-
-Hmmm, ok =E2=80=93 maybe I should be baking beyond =
-=E2=80=98core-image-minimal=E2=80=99?
-
-=20
-
-As background:
-
-Up until now I=E2=80=99ve just been manually copying/renaming/extracting =
-the various items - rootfs,modules,kernel,dtb,MLO,uboot - from =
-build/tmp/deploy/images/beaglebone into the necessary places on SD card. =
-i.e. that bake *isn=E2=80=99t* putting the dtb into the rootfs tgz in =
-that directory (though the kernel, together with a symlink =
-=E2=80=98zImage=E2=80=99, *is* in the tgz).
-
-Today I=E2=80=99ve started looking at using wic (based on info in =
-https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887.html ) =
-to create a single SD image file. I have this successfully pulling =
-everything into the image =E2=80=93 automagically doing all the steps =
-I=E2=80=99ve previously being doing manually. Except that the waiting =
-dtb has the wrong name, as described.=20
-
-So I=E2=80=99m unsure of the best point of attack to amend this=E2=80=A6
-
-=20
+Thanks for the pointer =E2=80=93 that may get me moving onwards again =
+now=E2=80=A6
 
 =20
 
@@ -122,8 +88,14 @@ it=E2=80=99s like this?
 
 =20
 
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-------=_NextPart_000_025B_01D0F6E5.3447D190
+
+------=_NextPart_000_026C_01D0F6E7.E3AC42E0
 Content-Type: text/html;
 	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -157,30 +129,14 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-GB;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle20
+span.EmailStyle17
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
@@ -194,69 +150,23 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
 vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
 style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Actually, that=E2=80=99s incorrect =E2=80=93 the stock Fido =
-=E2=80=98core-image-mininal=E2=80=99 *<b>doesn=E2=80=99t</b>* put the =
-kernel into the rootfs tarball either (It=E2=80=99s my own modified =
-configuration that I=E2=80=99ve added that to).<o:p></o:p></span></p><p =
+D'>Ah, ok =E2=80=93 I see what you mean now. =
+=E2=80=98core-image-base=E2=80=99 puts the dtb and kernel (with =
+symlinks) into /boot in the rootfs tarball.<o:p></o:p></span></p><p =
 class=3DMsoNormal><span =
 style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><div><div =
-style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm'><p class=3DMsoNormal><b><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
-</b><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
-<b>On Behalf Of </b>Colin Helliwell<br><b>Sent:</b> 24 September 2015 =
-16:13<br><b>To:</b> 'Christopher Larson'; =
-yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] =
-am335x-boneblack.dtb 'misnamed'? =
-(Fido/BeagleBoneBlack)<o:p></o:p></span></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Hmmm, ok =E2=80=93 maybe I should be baking beyond =
-=E2=80=98core-image-minimal=E2=80=99?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>As background:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Up until now I=E2=80=99ve just been manually =
-copying/renaming/extracting the various items - =
-rootfs,modules,kernel,dtb,MLO,uboot - from =
-build/tmp/deploy/images/beaglebone into the necessary places on SD card. =
-i.e. that bake *<b>isn=E2=80=99t</b>* putting the dtb into the rootfs =
-tgz in that directory (though the kernel, together with a symlink =
-=E2=80=98zImage=E2=80=99, *<b>is</b>* in the =
-tgz).<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Today I=E2=80=99ve started looking at using wic (based on info in <a =
-href=3D"https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887=
-.html">https://lists.yoctoproject.org/pipermail/meta-ti/2014-July/004887.=
-html</a> ) to create a single SD image file. I have this successfully =
-pulling everything into the image =E2=80=93 automagically doing all the =
-steps I=E2=80=99ve previously being doing manually. Except that the =
-waiting dtb has the wrong name, as described. <o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>So I=E2=80=99m unsure of the best point of attack to amend =
-this=E2=80=A6<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+D'>Thanks for the pointer =E2=80=93 that may get me moving onwards again =
+now=E2=80=A6<o:p></o:p></span></p><p class=3DMsoNormal><span =
 style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
 D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span =
 lang=3DEN-US =
 style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
 </b><span lang=3DEN-US =
 style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-Christopher Larson [<a =
-href=3D"mailto:clarson@kergoth.com">mailto:clarson@kergoth.com</a>] =
-<br><b>Sent:</b> 24 September 2015 15:27<br><b>To:</b> <a =
-href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln-systems=
-.com</a>; <a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>S=
-ubject:</b> Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
+Christopher Larson [mailto:clarson@kergoth.com] <br><b>Sent:</b> 24 =
+September 2015 15:27<br><b>To:</b> colin.helliwell@ln-systems.com; =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] =
+am335x-boneblack.dtb 'misnamed'? =
 (Fido/BeagleBoneBlack)<o:p></o:p></span></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>It's =
 installed into /boot on the rootfs with the zImage prefix, and =
@@ -267,8 +177,7 @@ at 4:52 AM Colin Helliwell &lt;<a =
 href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln-systems=
 .com</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
 style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
-6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0cm;margin-bottom:5=
-.0pt'><div><div><p class=3DMsoNormal =
+6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><p class=3DMsoNormal =
 style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This may =
 just be =E2=80=98the way it is=E2=80=99, but the stock =
 Fido/BeagleBoneBlack BSP [core-image-minimal] builds the =
@@ -281,7 +190,13 @@ class=3DMsoNormal =
 style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I daresay I =
 can do some sort of fixup, but I was curious why it=E2=80=99s like =
 this?<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><o:p>&nbsp;<=
-/o:p></p></div></div></blockquote></div></div></body></html>
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div></div><p =
+class=3DMsoNormal>--<br>_______________________________________________<b=
+r>yocto mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" =
+target=3D"_blank">yocto@yoctoproject.org</a><br><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><o:p><=
+/o:p></p></blockquote></div></div></body></html>
 
-------=_NextPart_000_025B_01D0F6E5.3447D190--
+------=_NextPart_000_026C_01D0F6E7.E3AC42E0--
