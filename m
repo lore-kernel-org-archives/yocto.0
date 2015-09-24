@@ -1,56 +1,44 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96482E00CBF; Thu, 24 Sep 2015 07:20:40 -0700 (PDT)
+	id AF3ADE00C2E; Thu, 24 Sep 2015 07:27:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f173.google.com (mail-yk0-f173.google.com
-	[209.85.160.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D18DEE00927
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 07:20:38 -0700 (PDT)
-Received: by ykdg206 with SMTP id g206so81274186ykd.1
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 07:20:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=oZa1paeEPeQd1hLw8ypuSgCfdgZ/hgblwgKEMdqaU90=;
-	b=XmuRZYhv2M5pRQvLTxhPfBfk1DFc7kVaSBIMUF5hyRuYbnMF57nzmn6176AwJxiVfz
-	lmIbHQeK6C9xAze6Axl4DJDFs3Hm3AiS0k/ej2x0zZUXDRwgNv2lu8e3TRKGb1tN+2dH
-	4x4aN4xXcQ2zRSeRDvOJO/gv3wyg4Mj1dinQ9z99Lr+W5ftKgvip1mQt+ECSMnNNcDQo
-	Pmh84gkA8IRfANfPJSj2fyRueyBNrlrRCSJlY3RDJ5qdWYlp3gpF6nKxs68fBdIliOZy
-	gF2PgKbNB23l1Ip9Jx4uMp4o1T7i+znzPdiJJFo29cdi+Ml6eHhoGlg1nc/x8zfVFNez
-	AVSw==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.173 listed in list.dnswl.org]
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74E4CE00927
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 07:26:54 -0700 (PDT)
+Received: by igbkq10 with SMTP id kq10so16196939igb.0
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 07:26:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:content-type;
+	bh=MQ5JHSiJYAqqQKKmbmuIwA/6wbbbxUXQ/oAnRqmvYno=;
+	b=P/NCvxGssAU/ljN5XtMZSR+7jhH+So+mswMi44Ub8n5myWnNKPyoqH10z3gAcWikSR
+	4Tu0ORdK4vGSbVwhzb+lVk5qMDXQdgkDxjFZ4Z/wbXM7mPi3Fjjj8zYm0ZpSW1e1xcjJ
+	jNNywUf0oWDdPlZYkYV4LWBLjPkuof5EkpNLXKVl8WDCzGPUn4msVIP1eWB0ooo5ihem
+	pMPfIUEMKNNUrJiLn3bSZomcbaZ5arA3jR2QNrLyf6Wp148amIwFaF+tp53BsEMLJ5Eh
+	LZY9Ev8CDodGehYtYO4/IaYuBdfdrXV2MKerXHBxXbqioRbT2doZ14eiQ7rk0lvxdT39
+	sxig==
+X-Received: by 10.50.43.170 with SMTP id x10mr28790592igl.68.1443104813482;
+	Thu, 24 Sep 2015 07:26:53 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.13.255.4 with SMTP id p4mr20959570ywf.88.1443104437246; Thu,
-	24 Sep 2015 07:20:37 -0700 (PDT)
-Received: by 10.129.148.199 with HTTP; Thu, 24 Sep 2015 07:20:37 -0700 (PDT)
-In-Reply-To: <CAF3SDA4j6h=5btgBtVVdxwFwR+eT+SdtmYXk7Wd9mrXk9WyL5g@mail.gmail.com>
-References: <5603f9ce.e9d1440a.dc3ac.43adSMTPIN_ADDED_BROKEN@mx.google.com>
-	<CAF3SDA7SE==bdZO45njNYnbtViyJ1JTH+AKofNM3+brKdW2iAA@mail.gmail.com>
-	<560401bd.46256b0a.11836.2eefSMTPIN_ADDED_BROKEN@mx.google.com>
-	<CAF3SDA4j6h=5btgBtVVdxwFwR+eT+SdtmYXk7Wd9mrXk9WyL5g@mail.gmail.com>
-Date: Thu, 24 Sep 2015 11:20:37 -0300
-Message-ID: <CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: andy.pont@sdcsystems.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting root password
+References: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
+In-Reply-To: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Thu, 24 Sep 2015 14:26:43 +0000
+Message-ID: <CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
+To: colin.helliwell@ln-systems.com, yocto@yoctoproject.org
+Subject: Re: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,166 +50,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 14:20:40 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0874e65b29df05207eefc4
+X-List-Received-Date: Thu, 24 Sep 2015 14:27:02 -0000
+Content-Type: multipart/alternative; boundary=089e01176cadc80b7305207f059c
 
---94eb2c0874e65b29df05207eefc4
+--089e01176cadc80b7305207f059c
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Still, I think is a good ideia to understand what is going wrong with
-EXTRA_USERS_PARAMS, other users may having the same problem.
+It's installed into /boot on the rootfs with the zImage prefix, and
+update-alternatives creates a symlink to the correct path so uboot can find
+it. Not sure why this indirection exists, but it does work.
+On Thu, Sep 24, 2015 at 4:52 AM Colin Helliwell <
+colin.helliwell@ln-systems.com> wrote:
 
-Regards,
-- dhs
-
-2015-09-24 11:16 GMT-03:00 Daniel. <danielhilst@gmail.com>:
-
-> My image .class file has includes a lot of recipes that I wrote for
-> specific reasons so it will not work as it is for you without that recipes,
-> instead here is the minimal you may need to get this working. I use a class
-> file because I have lot of images differing in little things, like which
-> kernel modules are auto loaded. So for your case I think this simple recipe
-> would suffice. If you want you can save this as .class file and import from
-> other images as I do.
+> This may just be =E2=80=98the way it is=E2=80=99, but the stock Fido/Beag=
+leBoneBlack BSP
+> [core-image-minimal] builds the am335x-boneblack dtb file, and creates in
+> build/tmp/deploy/images/beaglebone a symlink named
+> =E2=80=98zImage-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and this=
+ is borne out by
+> README.hardware =E2=80=93 uboot is set up to look for =E2=80=98am335x-bon=
+eblack.dtb=E2=80=99.
 >
-> http://pastebin.com/raw.php?i=1qds5hKF
->
-> Regards,
-> - dhs
->
-> 2015-09-24 10:59 GMT-03:00 Andy Pont <andy.pont@sdcsystems.com>:
->
->> Hi Daniel,
->>
->> > I didn't know about this EXTRA_USERS_PARAMS. What I do is adding this
->> function to
->> > my image.
->> > # This function sets the password for root based on ROOT_PASSWD variable
->> > set_root_password () {
->> >         local p=$(openssl passwd -1 -salt "My salt" "${ROOT_PASSWD}")
->> >        sed -e "s/root:[^:]*:/root:${p}:/" -i ${IMAGE_ROOTFS}/etc/shadow
->> > }
->> > And append it to ROOTFS_POSTPROCESS_COMMAND:
->> > ROOTFS_POSTPROCESS_COMMAND += "set_root_password; "
->> > I did all this in a class file which I import on all my images,
->>
->> As your method works and the EXTRA_USERS_PARAMS appears not to be doing
->> could you send me your class file to save me having to reinvent the wheel?
->>
->> > About your problem, can you get the "usermod" error from log.do_rootfs
->>
->> The end of the log.do_roots file just contains the following:
->>
->> NOTE: Executing set_user_group ...
->> DEBUG: Executing shell function set_user_group
->> NOTE: Performing usermod with [-R
->> XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-minimal-initramfs/1.0-r0/rootfs
->> -P Hkw6rBJlcfhvM root] and 1 times of retry
->> Server refused shutdown.  Remaining client fds: 2
->> Client pids: 3878 16245
->> Server will shut down after all clients exit.
->> WARNING: usermod command did not succeed. Retrying...
->> ERROR: Tried running usermod command 1 times without success, giving up
->> WARNING:
->> XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-minimal-initramfs/1.0-r0/temp/run.set_user_group.3878:1
->> exit 1 from
->>   exit 1
->> DEBUG: Python function do_rootfs finished
->>
->> Thanks,
->>
->> Andy.
->>
->>
+> I daresay I can do some sort of fixup, but I was curious why it=E2=80=99s=
+ like
+> this?
 >
 >
 > --
-> *"Do or do not. There is no try"*
->   *Yoda Master*
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-
-
--- 
-*"Do or do not. There is no try"*
-  *Yoda Master*
-
---94eb2c0874e65b29df05207eefc4
+--089e01176cadc80b7305207f059c
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Still, I think is a good ideia to understand wha=
-t is going wrong with EXTRA_USERS_PARAMS, other users may having the same p=
-roblem.<br><br></div>Regards,<br></div>- dhs<br></div><div class=3D"gmail_e=
-xtra"><br><div class=3D"gmail_quote">2015-09-24 11:16 GMT-03:00 Daniel. <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:danielhilst@gmail.com" target=3D"_blan=
-k">danielhilst@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<div dir=3D"ltr"><div>My image .class file has includes a lot of recipes th=
-at I wrote for specific reasons so it will not work as it is for you withou=
-t that recipes, instead here is the minimal you may need to get this workin=
-g. I use a class file because I have lot of images differing in little thin=
-gs, like which kernel modules are auto loaded. So for your case I think thi=
-s simple recipe would suffice. If you want you can save this as .class file=
- and import from other images as I do.<br><br><a href=3D"http://pastebin.co=
-m/raw.php?i=3D1qds5hKF" target=3D"_blank">http://pastebin.com/raw.php?i=3D1=
-qds5hKF</a><br><br></div><div>Regards,<br></div><div>- dhs<br></div></div><=
-div class=3D"gmail_extra"><div><div class=3D"h5"><br><div class=3D"gmail_qu=
-ote">2015-09-24 10:59 GMT-03:00 Andy Pont <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:andy.pont@sdcsystems.com" target=3D"_blank">andy.pont@sdcsystems.com=
-</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Daniel,<br>
-<span><br>
-&gt; I didn&#39;t know about this EXTRA_USERS_PARAMS. What I do is adding t=
-his function to<br>
-&gt; my image.<br>
-&gt; # This function sets the password for root based on ROOT_PASSWD variab=
-le<br>
-&gt; set_root_password () {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0local p=3D$(openssl passwd -1 -salt &=
-quot;My salt&quot; &quot;${ROOT_PASSWD}&quot;)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 sed -e &quot;s/root:[^:]*:/root:${p}:/&quot=
-; -i ${IMAGE_ROOTFS}/etc/shadow<br>
-&gt; }<br>
-&gt; And append it to ROOTFS_POSTPROCESS_COMMAND:<br>
-&gt; ROOTFS_POSTPROCESS_COMMAND +=3D &quot;set_root_password; &quot;<br>
-&gt; I did all this in a class file which I import on all my images,<br>
-<br>
-</span>As your method works and the EXTRA_USERS_PARAMS appears not to be do=
-ing could you send me your class file to save me having to reinvent the whe=
-el?<br>
-<span><br>
-&gt; About your problem, can you get the &quot;usermod&quot; error from log=
-.do_rootfs<br>
-<br>
-</span>The end of the log.do_roots file just contains the following:<br>
-<br>
-NOTE: Executing set_user_group ...<br>
-<span>DEBUG: Executing shell function set_user_group<br>
-</span>NOTE: Performing usermod with [-R XXXXX/build/tmp/work/intel_core2_3=
-2-poky-linux/core-image-minimal-initramfs/1.0-r0/rootfs -P Hkw6rBJlcfhvM ro=
-ot] and 1 times of retry<br>
-<span>Server refused shutdown.=C2=A0 Remaining client fds: 2<br>
-Client pids: 3878 16245<br>
-Server will shut down after all clients exit.<br>
-WARNING: usermod command did not succeed. Retrying...<br>
-ERROR: Tried running usermod command 1 times without success, giving up<br>
-</span>WARNING: XXXXX/build/tmp/work/intel_core2_32-poky-linux/core-image-m=
-inimal-initramfs/1.0-r0/temp/run.set_user_group.3878:1 exit 1 from<br>
-<span>=C2=A0 exit 1<br>
-DEBUG: Python function do_rootfs finished<br>
-<br>
-</span>Thanks,<br>
-<br>
-Andy.<br>
-<br>
-</blockquote></div><br><br clear=3D"all"><br></div></div><span class=3D"">-=
-- <br><div><div style=3D"text-align:right"><i>&quot;Do or do not. There is =
-no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><br></div></div>
-</span></div>
-</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
-nature"><div style=3D"text-align:right"><i>&quot;Do or do not. There is no =
-try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><br></div></div>
-</div>
+It&#39;s installed into /boot on the rootfs with the zImage prefix, and upd=
+ate-alternatives creates a symlink to the correct path so uboot can find it=
+. Not sure why this indirection exists, but it does work.<br><div class=3D"=
+gmail_quote"><div dir=3D"ltr">On Thu, Sep 24, 2015 at 4:52 AM Colin Helliwe=
+ll &lt;<a href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln=
+-systems.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div la=
+ng=3D"EN-GB" link=3D"blue" vlink=3D"purple"><div><p class=3D"MsoNormal">Thi=
+s may just be =E2=80=98the way it is=E2=80=99, but the stock Fido/BeagleBon=
+eBlack BSP [core-image-minimal] builds the am335x-boneblack dtb file, and c=
+reates in build/tmp/deploy/images/beaglebone a symlink named =E2=80=98zImag=
+e-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and this is borne out by=
+ README.hardware =E2=80=93 uboot is set up to look for =E2=80=98am335x-bone=
+black.dtb=E2=80=99.<u></u><u></u></p><p class=3D"MsoNormal">I daresay I can=
+ do some sort of fixup, but I was curious why it=E2=80=99s like this?<u></u=
+><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div>--<b=
+r>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
---94eb2c0874e65b29df05207eefc4--
+--089e01176cadc80b7305207f059c--
