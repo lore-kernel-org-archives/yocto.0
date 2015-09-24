@@ -1,65 +1,47 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <h4nn35.work@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CE6CE010D7; Thu, 24 Sep 2015 03:59:01 -0700 (PDT)
+	id AE3A0E00C88; Thu, 24 Sep 2015 04:25:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.244.64.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (h4nn35.work[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx18-09.smtp.antispamcloud.com (mx18-09.smtp.antispamcloud.com
-	[207.244.64.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A342E00AFD
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 03:58:59 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx18.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1Zf4Eq-0006i2-8L
-	for yocto@yoctoproject.org; Thu, 24 Sep 2015 12:58:59 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Thu, 24 Sep 2015 12:58:12 +0200
-To: <yocto@yoctoproject.org>
-References: <CAHvQdo2iC6MdHw8Dfe=SDW8vm_RxQ_nhmmMSX3-jDGkc968_UQ@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <5603D76E.9010409@topic.nl>
-Date: Thu, 24 Sep 2015 12:58:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2034E00AD0
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:25:40 -0700 (PDT)
+Received: by wicfx3 with SMTP id fx3so108007603wic.0
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=ciWUjwpFSS3POfkUaV40zsytM34gk1mfFLIXR8eYLtI=;
+	b=RiMzWf2VJ+oPJaXZ+QK/TnUMGawTKmixLJxJuiG6JQrGmxwVSNeGeIk/4psTo2nwQm
+	dq16LgnLgnkGfWsEHqXJ4wXKXTeIzkYCzzPhhctdh/DpAuBEWk2Dm98Ul798Te8OgEeq
+	JT4XEuigc/MEuRd2r9H36Cd52/yQ63W7Y5U/0x44yg+zZ050zHgEnmyfbCPG204XZ2fv
+	h2GWHbCF064uJH+oqoS/GDut3M5PpABwAJy9zj+BbLqtjx+8LKv3kNMlktfFuTMkFIXN
+	m61wH69rlf8LN8n13n6FtcragH9TLvV0ZCf/478tn6AdlCteRdyOotMnek04SSMiI/2c
+	/5iA==
 MIME-Version: 1.0
-In-Reply-To: <CAHvQdo2iC6MdHw8Dfe=SDW8vm_RxQ_nhmmMSX3-jDGkc968_UQ@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t0di
-	2A4r9us+Fq8MBvFDhJi8aDi5Iz3nSDSm0ZFkgVodYSLtywIyudc7eVwSLPDODWbjO41FyBEqIaDu
-	dcVplPEV5fdZbBgAYjRktFsnBOu68dy9p6gE/g99Plm2mIQhBQ00JYCpdDQoJU79BjIi5W2Z3JKV
-	mi72ocgY5kMQSjs70ALn042Wb7mIcbVJi7pqphHamFlRvlxL+MzCKMvMkk78ZQ0AiyqMiTY+IYva
-	kPBr0z6bhalFEM/pjPCQA+BAlkniC5++pOyFfhmFBNq2PYR7Zn6OGQcTLcl+10S2CCSFSbZLiIzq
-	6RHISf0BeR/9lxlAbFwXFyuSr4goiWKeWbtWBb39uS1TjWG2Inx+Ts2Q85bpu8v0MLjfVaUXUvFy
-	TEwEAmRywCEMPg5NNGTMxTwq5H2HisnUiFGNBznFCJKEUI/fDof9VJyYmVuBI9C3sgAjMhPl4Vhd
-	NvMNOfYY5VjTiEw2ui8TVPldBCj8jBATBFN2Wfesu1/OIRyQoEZNQG2ltCpWyO6HQmWtbGwhy4GG
-	RvoYN0Ho4Cw0MNEjGmDXnGJ9QPXvcgJG/6oZpQ9d/Q==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJUb3OPwsHaH0Fvg5oXltHd/JUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
-	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
-	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
-	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
-X-Originating-IP: 88.159.208.100
-X-Spampanel-Domain: topic.nl
-X-Spampanel-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: Combined (0.00)
-X-Recommended-Action: accept
+X-Received: by 10.194.24.68 with SMTP id s4mr16521531wjf.12.1443093939457;
+	Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
+Received: by 10.27.222.203 with HTTP; Thu, 24 Sep 2015 04:25:39 -0700 (PDT)
+Date: Thu, 24 Sep 2015 13:25:39 +0200
+Message-ID: <CAHvQdo3CuJP2rAVS6gZVe0OWciXucZzv-Gd0NLVbJXBKH8_fog@mail.gmail.com>
+From: Johannes Pointner <h4nn35.work@gmail.com>
+To: yocto@yoctoproject.org
 Subject: Re: [systemd-devel] How to automount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -72,41 +54,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 10:59:01 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 24 Sep 2015 11:25:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-=EF=BB=BFOn 24-09-15 08:04, Johannes Pointner wrote:
-> I'm using autofs to do the trick. It's working fine for me.
+I have to admit, I don't use systemd at the embedded system, but I use
+the following files to do it for the usb flash drives:
+/etc/auto.master:
++auto.master
+/var/autofs /etc/auto.usb       --timeout=2
+
+/etc/auto.usb:
+usb1    -fstype=vfat,rw,sync,noatime,nodiratime,nodev,nosuid,noexec,uid=1000
+   :/dev/usba
+usb2    -fstype=vfat,rw,sync,noatime,nodiratime,nodev,nosuid,noexec,uid=1000
+   :/dev/usbb
+
+Furthermore I have a additional udev rule for the usb interfaces:
+/etc/udev/rules.d/99-mount-usb-key.rules:
+SUBSYSTEMS=="usb", SUBSYSTEM=="block", KERNELS=="1-1", ENV{USB_HUB}="usb2"
+SUBSYSTEMS=="usb", SUBSYSTEM=="block", KERNELS=="2-1", ENV{USB_HUB}="usb1"
+
+ENV{USB_HUB}=="usb1", SUBSYSTEM=="block", KERNEL=="sd[a-z]*", SYMLINK+="usba"
+ENV{USB_HUB}=="usb2", SUBSYSTEM=="block", KERNEL=="sd[a-z]*", SYMLINK+="usbb"
+
+But I also use automount on my desktop PC and there with systemd, but
+no for a flash drives instead for cifs shares and this looks like
+this:
+
+/etc/autofs/aut.cifs-shares:
+exchange -fstype=cifs,nosuid,rw,credentials=/home/h4nn35/.smbcredentials,dir_mode=0777,file_mode=0666
+://server/exchange
+
+/etc/autofs/auto.master:
++auto.master
+/home/h4nn35/NetShares /etc/autofs/auto.cifs-shares --timeout=60 --ghost
+
+I hope this helps.
+
+2015-09-24 12:58 GMT+02:00 Mike Looijmans <mike.looijmans@topic.nl>:
+> On 24-09-15 08:04, Johannes Pointner wrote:
+>>
+>> I'm using autofs to do the trick. It's working fine for me.
+>>
+>> To get the umount working I use a timeout of 2 seconds, which seems to
+>> be ok so far.
 >
-> To get the umount working I use a timeout of 2 seconds, which seems to
-> be ok so far.
-
-
-I am very very interested in how you got that to actually work. Please show=
- us=20
-your configuration files and/or recipes and enlighten us!
-
-So far, all I ever got autofs to accomplish was giving me a major headache.
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-Telefax: +31 (0) 499 33 69 70
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
-
+>
+>
+> I am very very interested in how you got that to actually work. Please show
+> us your configuration files and/or recipes and enlighten us!
+>
+> So far, all I ever got autofs to accomplish was giving me a major headache.
+>
+>
+> Kind regards,
+>
+> Mike Looijmans
+> System Expert
+>
+> TOPIC Embedded Products
+> Eindhovenseweg 32-C, NL-5683 KH Best
+> Postbus 440, NL-5680 AK Best
+> Telefoon: +31 (0) 499 33 69 79
+> Telefax: +31 (0) 499 33 69 70
+> E-mail: mike.looijmans@topicproducts.com
+> Website: www.topicproducts.com
+>
+> Please consider the environment before printing this e-mail
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
