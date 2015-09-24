@@ -1,6 +1,6 @@
 Return-Path: <colin.helliwell@LN-Systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90485E00DE5; Thu, 24 Sep 2015 08:41:45 -0700 (PDT)
+	id DE167E00DE6; Thu, 24 Sep 2015 08:45:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,24 +11,21 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from lnsystems.lincoln.ln-systems.com (post.ln-systems.com
 	[62.49.123.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46CEAE00708
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:41:42 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 526A0E00708
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 08:45:20 -0700 (PDT)
 Received: from LNSYSCH2 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
 	by lnsystems.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
-	t8OFcmq7012469
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:38:52 +0100
+	t8OFgRjr012520
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 16:42:30 +0100
 From: "Colin Helliwell" <colin.helliwell@LN-Systems.com>
 To: <yocto@yoctoproject.org>
-References: <01de01d0f6bf$714d6b70$53e84250$@LN-Systems.com>
-	<CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
-In-Reply-To: <CABcZANkG+5FgFz2i7UEFfoWQc2h6JSaYTz6KT5tXrqZgr23keA@mail.gmail.com>
-Date: Thu, 24 Sep 2015 16:41:36 +0100
+Date: Thu, 24 Sep 2015 16:45:15 +0100
 Organization: LN Systems Limited
-Message-ID: <026b01d0f6df$81e4cda0$85ae68e0$@LN-Systems.com>
+Message-ID: <027601d0f6e0$03e682d0$0bb38870$@LN-Systems.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQIoxgDbPdzAQnqrzD634HohN+Uv/QGr4apWnY7S+IA=
-Subject: Re: am335x-boneblack.dtb 'misnamed'? (Fido/BeagleBoneBlack)
+Thread-Index: AdD2wnoeheQTZ4rQQe+romr9DeWwCQ==
+Subject: Getting bitbake to use 'local' versions of local.conf/bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,63 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2015 15:41:45 -0000
+X-List-Received-Date: Thu, 24 Sep 2015 15:45:26 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_026C_01D0F6E7.E3AC42E0"
+	boundary="----=_NextPart_000_0277_01D0F6E8.65AAEAD0"
 Content-Language: en-gb
 
-------=_NextPart_000_026C_01D0F6E7.E3AC42E0
+------=_NextPart_000_0277_01D0F6E8.65AAEAD0
 Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Ah, ok =E2=80=93 I see what you mean now. =
-=E2=80=98core-image-base=E2=80=99 puts the dtb and kernel (with =
-symlinks) into /boot in the rootfs tarball.
+We have an automated build which pulls our own layers & amendments from our
+version control system. We don't really want (need?) to have a full
+*unpacked* Yocto in the repository too, so we have just the Fido tarball in
+there, and unpack this as the first step of the build.
 
-Thanks for the pointer =E2=80=93 that may get me moving onwards again =
-now=E2=80=A6
+But, we then need to copy our local.conf and bblayers.conf across into the
+(transient) build directory. Is there a way to tell bitbake to override the
+default ones (in build/local/) with ours?  I did see that it's maybe
+possible to set up variables for the 'oe-init-build-env' script, but I think
+this will still copy them into build/local/  - what we want is to leave them
+in place (so if we make any changes they will remain under, and trackable
+by, the version control)
 
-=20
-
-From: Christopher Larson [mailto:clarson@kergoth.com]=20
-Sent: 24 September 2015 15:27
-To: colin.helliwell@ln-systems.com; yocto@yoctoproject.org
-Subject: Re: [yocto] am335x-boneblack.dtb 'misnamed'? =
-(Fido/BeagleBoneBlack)
-
-=20
-
-It's installed into /boot on the rootfs with the zImage prefix, and =
-update-alternatives creates a symlink to the correct path so uboot can =
-find it. Not sure why this indirection exists, but it does work.
-
-On Thu, Sep 24, 2015 at 4:52 AM Colin Helliwell =
-<colin.helliwell@ln-systems.com> wrote:
-
-This may just be =E2=80=98the way it is=E2=80=99, but the stock =
-Fido/BeagleBoneBlack BSP [core-image-minimal] builds the =
-am335x-boneblack dtb file, and creates in =
-build/tmp/deploy/images/beaglebone a symlink named =
-=E2=80=98zImage-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and =
-this is borne out by README.hardware =E2=80=93 uboot is set up to look =
-for =E2=80=98am335x-boneblack.dtb=E2=80=99.
-
-I daresay I can do some sort of fixup, but I was curious why =
-it=E2=80=99s like this?
-
-=20
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+ 
 
 
-------=_NextPart_000_026C_01D0F6E7.E3AC42E0
+------=_NextPart_000_0277_01D0F6E8.65AAEAD0
 Content-Type: text/html;
-	charset="UTF-8"
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
@@ -105,22 +74,20 @@ xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
 xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
 xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 14 (filtered =
-medium)"><style><!--
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0cm;
 	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:blue;
@@ -130,11 +97,12 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-reply;
+	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
+	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
+	font-size:10.0pt;
 	font-family:"Calibri","sans-serif";
 	mso-fareast-language:EN-US;}
 @page WordSection1
@@ -148,55 +116,20 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Ah, ok =E2=80=93 I see what you mean now. =
-=E2=80=98core-image-base=E2=80=99 puts the dtb and kernel (with =
-symlinks) into /boot in the rootfs tarball.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Thanks for the pointer =E2=80=93 that may get me moving onwards again =
-now=E2=80=A6<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span =
-lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
-</b><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-Christopher Larson [mailto:clarson@kergoth.com] <br><b>Sent:</b> 24 =
-September 2015 15:27<br><b>To:</b> colin.helliwell@ln-systems.com; =
-yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] =
-am335x-boneblack.dtb 'misnamed'? =
-(Fido/BeagleBoneBlack)<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>It's =
-installed into /boot on the rootfs with the zImage prefix, and =
-update-alternatives creates a symlink to the correct path so uboot can =
-find it. Not sure why this indirection exists, but it does =
-work.<o:p></o:p></p><div><div><p class=3DMsoNormal>On Thu, Sep 24, 2015 =
-at 4:52 AM Colin Helliwell &lt;<a =
-href=3D"mailto:colin.helliwell@ln-systems.com">colin.helliwell@ln-systems=
-.com</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
-6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This may =
-just be =E2=80=98the way it is=E2=80=99, but the stock =
-Fido/BeagleBoneBlack BSP [core-image-minimal] builds the =
-am335x-boneblack dtb file, and creates in =
-build/tmp/deploy/images/beaglebone a symlink named =
-=E2=80=98zImage-am335x-boneblack.dtb=E2=80=99. However =E2=80=93 and =
-this is borne out by README.hardware =E2=80=93 uboot is set up to look =
-for =E2=80=98am335x-boneblack.dtb=E2=80=99.<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I daresay I =
-can do some sort of fixup, but I was curious why it=E2=80=99s like =
-this?<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div></div><p =
-class=3DMsoNormal>--<br>_______________________________________________<b=
-r>yocto mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" =
-target=3D"_blank">yocto@yoctoproject.org</a><br><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><o:p><=
-/o:p></p></blockquote></div></div></body></html>
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>We have an =
+automated build which pulls our own layers &amp; amendments from our =
+version control system. We don&#8217;t really want (need?) to have a =
+full *unpacked* Yocto in the repository too, so we have just the Fido =
+tarball in there, and unpack this as the first step of the =
+build.<o:p></o:p></p><p class=3DMsoNormal>But, we then need to copy our =
+local.conf and bblayers.conf across into the (transient) build =
+directory. Is there a way to tell bitbake to override the default ones =
+(in build/local/) with ours?&nbsp; I did see that it&#8217;s maybe =
+possible to set up variables for the &#8216;oe-init-build-env&#8217; =
+script, but I think this will still copy them into build/local/&nbsp; - =
+what we want is to leave them in place (so if we make any changes they =
+will remain under, and trackable by, the version =
+control)<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_026C_01D0F6E7.E3AC42E0--
+------=_NextPart_000_0277_01D0F6E8.65AAEAD0--
