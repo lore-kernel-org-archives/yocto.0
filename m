@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85AACE00E7B; Thu, 24 Sep 2015 09:30:32 -0700 (PDT)
+	id 97CC0E00E75; Thu, 24 Sep 2015 09:30:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,42 +8,42 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.182 listed in list.dnswl.org]
+	*      [209.85.212.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E82D2E00708
+Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
+	[209.85.212.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4D73E00306
 	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:30:29 -0700 (PDT)
-Received: by wicfx3 with SMTP id fx3so36083578wic.1
-	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:30:28 -0700 (PDT)
+Received: by wicge5 with SMTP id ge5so259759811wic.0
+	for <yocto@yoctoproject.org>; Thu, 24 Sep 2015 09:30:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=LNHz3ZjUZvGqTzKFZ0Tmp06xrVb063fpH3XN3Wm8bcM=;
-	b=OYidOmtJa6zoejkJiThs4tx0FXvtFzyGQhTTgRgXxjFTzseFFKMek3p/PtSzai5o0g
-	rRQxBcJNubn387ED6kNfciFmRO1WLBFSA0Usk/tGccj97kzhoA+uWROIyIqWf0ILmBLd
-	lh4GHT6bSUYG0FnrdIfmWq3XFkHng46tOBfBPejeVVC43ib7e1sv5Nx6xVjOcFoWRnqR
-	IxB9+HQIfuQI0MKwfXj0pTDu8DQ/kiDJI2QBMVDJOPlaOIiya9cDd+XAhkugQbgrfSb/
-	Z8Z2w3YsrME74JQ7MZeNzsp0V9V+MvtRZJForNBh7r0Caxyco45Z1auL44uhqdKAo9gI
-	kt5g==
-X-Gm-Message-State: ALoCoQnnm3lmJTEZDmEUCTxETleyU9khhgq0PHNZ/lji75lO7MncKS/4JoLTNDDBXjXULGykpK9n
-X-Received: by 10.180.103.199 with SMTP id fy7mr1331195wib.85.1443112228512;
-	Thu, 24 Sep 2015 09:30:28 -0700 (PDT)
+	bh=a7/p2ESd11vnmxAAsF7vLTVqtioQmeW1O216enz9rMs=;
+	b=gqcGIYHcKjVCKI3bccmlkF47q0r2PgWTYQCmmR7Om1PeG6wy1C2ZG4nDQcLHjdyxEx
+	LLyF/OqClw4llZVno7T6Cq9BFTnITfq57Asq1hWvecWMHqqo5F/ZAm6Aneae1kWaoawN
+	Y0BF6z4VzYJYCJ6VFzOJQevWmHJ8lsHgSQVC5Y+SeDkCSQaoTRWvZAnqY5wOZ/bjglXD
+	Mo5IDdvsSJR7JZ6ZqqNj3goOqYnsZCwHhET9u49yGo5hugJuMPGVjhQvPdVRAeiFhaVn
+	56HTvAFJgW2KKHF5Zi5a4mH9Gyh7x9HJv6+F+oaso2/VD7FH7ttu2qeNVbM1Sgb/3+I4
+	5/eA==
+X-Gm-Message-State: ALoCoQmdjVE4Eco02wTrHTmFqo7yJJ4sJvKGw64vwL/iWCAWCYMM6J6nNaK584F/w2OJ/ZgjwI0N
+X-Received: by 10.180.8.200 with SMTP id t8mr1473874wia.34.1443112229260;
+	Thu, 24 Sep 2015 09:30:29 -0700 (PDT)
 Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
 	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	ki7sm13044701wjc.28.2015.09.24.09.30.27
+	ki7sm13044701wjc.28.2015.09.24.09.30.28
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
 	Thu, 24 Sep 2015 09:30:28 -0700 (PDT)
 From: Ross Burton <ross.burton@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 24 Sep 2015 17:23:19 +0100
-Message-Id: <1443111800-2978-2-git-send-email-ross.burton@intel.com>
+Date: Thu, 24 Sep 2015 17:23:20 +0100
+Message-Id: <1443111800-2978-3-git-send-email-ross.burton@intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1443111800-2978-1-git-send-email-ross.burton@intel.com>
 References: <1443111800-2978-1-git-send-email-ross.burton@intel.com>
-Subject: [PATCH][autobuilder 2/3] buildset-config.controller: don't specify test suites explicitly
+Subject: [PATCH][autobuilder 3/3] nightly-multilib: improve multilib build determinism
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,76 +57,31 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 24 Sep 2015 16:30:32 -0000
 
-The autobuilder was specifying the test list explicitly in several buildsets
-because in the past the SMART and RPM tests didn't skip automatically on non-RPM
-images.  However we're removing the dmesg test as it is obsolete (replaced by
-parselogs) but the autobuilder still attempts to run it.
+There are patches for oe-core which improve the behaviour of multilib images but
+show that the RPM-based multilib image construction was working more by luck
+than anything else.
 
-Now that the RPM and SMART tests skip correctly, remove all explict test suite
-lists and instead either let the image specify what test suites to run, or use
-suitesappend.
+Explicitly set RPM_PREFER_ARCH_ELF="1" to prefer 32-bit binaries when both
+options are being installed.
 
 Signed-off-by: Ross Burton <ross.burton@intel.com>
 ---
- buildset-config.controller/nightly-deb-non-deb.conf | 4 +---
- buildset-config.controller/nightly-deb.conf         | 4 +---
- buildset-config.controller/nightly-ipk.conf         | 4 +---
- buildset-config.controller/nightly-multilib.conf    | 3 +--
- 4 files changed, 4 insertions(+), 11 deletions(-)
+ buildset-config.controller/nightly-multilib.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/buildset-config.controller/nightly-deb-non-deb.conf b/buildset-config.controller/nightly-deb-non-deb.conf
-index 716332c..691ff01 100644
---- a/buildset-config.controller/nightly-deb-non-deb.conf
-+++ b/buildset-config.controller/nightly-deb-non-deb.conf
-@@ -11,7 +11,5 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False, 'packages': 'deb'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal'}},
--        {'RunSanityTests': {'images' : 'core-image-sato', 'suites' : 'ping ssh auto'}},
--        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'SendErrorReport': {}}]
-diff --git a/buildset-config.controller/nightly-deb.conf b/buildset-config.controller/nightly-deb.conf
-index fa8813c..4d2fd8c 100644
---- a/buildset-config.controller/nightly-deb.conf
-+++ b/buildset-config.controller/nightly-deb.conf
-@@ -11,7 +11,5 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False, 'packages': 'deb'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal'}},
--        {'RunSanityTests': {'images' : 'core-image-sato', 'suites' : 'ping ssh auto'}},
--        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'SendErrorReport': {}}]
-diff --git a/buildset-config.controller/nightly-ipk.conf b/buildset-config.controller/nightly-ipk.conf
-index ba78f8c..797a622 100644
---- a/buildset-config.controller/nightly-ipk.conf
-+++ b/buildset-config.controller/nightly-ipk.conf
-@@ -11,7 +11,5 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False, 'packages': 'ipk'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images' : 'core-image-minimal'}},
--        {'RunSanityTests': {'images' : 'core-image-sato', 'suites' : 'ping ssh auto'}},
--        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}},
-+        {'RunSanityTests': {'images' : 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'SendErrorReport': {}}]
 diff --git a/buildset-config.controller/nightly-multilib.conf b/buildset-config.controller/nightly-multilib.conf
-index a836974..6bd68f0 100644
+index 6bd68f0..7cf75c3 100644
 --- a/buildset-config.controller/nightly-multilib.conf
 +++ b/buildset-config.controller/nightly-multilib.conf
-@@ -32,8 +32,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky', 'packages' : 'ipk',
-                             'atextappend' : '\nIMAGE_INSTALL_append = " lib32-connman-gnome"\n'}},
+@@ -24,7 +24,7 @@ steps: [{'SetDest':{}},
+         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
+                             'buildhistory' : False, 'multilib': 'lib32',
+                             'distro': 'poky',
+-                            'atextappend' : '\nIMAGE_INSTALL_append = " lib32-connman-gnome"\n'}},
++                            'atextappend' : '\nRPM_PREFER_ELF_ARCH = "1"\nIMAGE_INSTALL_append = " lib32-connman-gnome"\n'}},
          {'BuildImages': {'images': 'core-image-sato'}},
--        {'RunSanityTests': {'images': 'core-image-sato',
--                            'suites' : 'ping ssh connman xorg multilib dmesg auto'}},
-+        {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'multilib'}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686',
-                             'buildhistory' : False, 'multilib': 'lib64',
-                             'distro': 'poky'}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'multilib'}},
+         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
 -- 
 2.1.4
 
