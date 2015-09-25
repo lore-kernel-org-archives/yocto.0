@@ -1,49 +1,54 @@
-Return-Path: <pervivek@gmail.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8622FE00EDA; Fri, 25 Sep 2015 02:02:26 -0700 (PDT)
+	id B89A9E00F08; Fri, 25 Sep 2015 07:20:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pervivek[at]gmail.com)
+	mail provider *      (davewolaver[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99515E00A3B
-	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 02:02:25 -0700 (PDT)
-Received: by vkgd64 with SMTP id d64so52511641vkg.0
-	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=nv6BXJ34sXToWPIE1qBBFV5tkVnzaXWJjkkigc6gukk=;
-	b=mo3MZdCSxPIs1iDWZAzRcL9scCn428lcb5X5AKB1a4nqEhgW0D/I8H4q5mlp63CNGb
-	GVhDxUbPQBd2vsAdSuJIYkCCX3aV98NcTWfg5m4WSTC89HIOBjEB3y6GoTbxsJCaSqBU
-	uXDoH7lNePmLAwUMxc4svaU1ty6OFqA/QJXMcr5FtnO9wUIwEhKVfjaG/14NfRe4A/Hr
-	j4LLRajnBhrsW14xGJ6TuVv1KJmvlLMY2AK+CgUxF++qFWFYxJ6rA3zDB4Uv0yaT+HsA
-	n3Q+2yyVZTyLli86gyut8chYdep/viLiGK7JZUnE1YvHdvtPJ4ZQfZRwUa4zQfp+zohh
-	16PA==
-MIME-Version: 1.0
-X-Received: by 10.31.56.140 with SMTP id f134mr2524231vka.108.1443171744457;
-	Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
-Received: by 10.31.179.207 with HTTP; Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
-Date: Fri, 25 Sep 2015 14:32:24 +0530
-Message-ID: <CALLyC8QsBDa-O7Htf+qOhsARY9SKTyuLYkdOZtczpc-M1poJjA@mail.gmail.com>
-From: Vivek Per <pervivek@gmail.com>
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 521F4E007C9
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 07:20:07 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1ZfTr1-0006i0-Cd
+	for yocto@yoctoproject.org; Fri, 25 Sep 2015 16:20:03 +0200
+Received: from c-76-109-88-21.hsd1.fl.comcast.net ([76.109.88.21])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 16:20:03 +0200
+Received: from davewolaver by c-76-109-88-21.hsd1.fl.comcast.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 16:20:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-Subject: How can i install busybox "mount" command instead of util-linux "mount" command
+From: Dave Wolaver <davewolaver@gmail.com>
+Date: Fri, 25 Sep 2015 14:12:05 +0000 (UTC)
+Message-ID: <loom.20150925T160727-227@post.gmane.org>
+References: <55ECF934.80902@gmail.com>
+	<31635424-0451-4ECF-A65E-F45B8D316B0B@gmail.com>
+	<55ED3F5A.2060903@gmail.com>
+	<DBXPR03MB1588505B5901171124C0CFAEE530@DBXPR03MB158.eurprd03.prod.outlook.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 76.109.88.21 (Mozilla/5.0 (Windows NT 6.1;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.99
+	Safari/537.36)
+Subject: Re: [meta-raspberrypi] du giving non-integer result?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,40 +60,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Sep 2015 09:02:26 -0000
-Content-Type: multipart/alternative; boundary=001a1143f0cc2dae1805208e9be7
+X-List-Received-Date: Fri, 25 Sep 2015 14:20:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
---001a1143f0cc2dae1805208e9be7
-Content-Type: text/plain; charset=UTF-8
+Michael Fainstein <Michael.Fainstein@...> writes:
 
-Hi all,
-     Can any one can please tell me how can i install busybox "mount"
-command instead of util-linux "mount" . By default util-linux "mount" and
-"umount" commnad is installing . But rest of the commands are installing
-from busybox like ls,cat and so on.
-     In the final image log file (list of packages installed in the image)
-showing util.linux-mount and util.linux-umount packages is installing by
-default even i am not including those . How can i overcome  the issue. i
-want  to install busybox "mount" command only not form util-linux "mount"
-command .
+> 
+> I saw such behavior in 'expr' when I upgraded bash 3.1 - it started 
+printing floats instead of integers.
+> You can solve it using awk's OFMT:  awk '{OFMT="%.0f";print $1}'
+> 
+> Michael
+> 
 
-Thanks and regards
-      vivek
 
---001a1143f0cc2dae1805208e9be7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This worked for me, but it needed one small tweak... Need to add +0 so 
+that awk actually applies the format.
 
-<div dir=3D"ltr">Hi all,<div>=C2=A0 =C2=A0 =C2=A0Can any one can please tel=
-l me how can i install busybox &quot;mount&quot; command instead of util-li=
-nux &quot;mount&quot; . By default util-linux &quot;mount&quot; and &quot;u=
-mount&quot; commnad is installing . But rest of the commands are installing=
- from busybox like ls,cat and so on.</div><div>=C2=A0 =C2=A0 =C2=A0In the f=
-inal image log file (list of packages installed in the image) showing util.=
-linux-mount and util.linux-umount packages is installing by default even i =
-am not including those . How can i overcome =C2=A0the issue. i want =C2=A0t=
-o install busybox &quot;mount&quot; command only not form util-linux &quot;=
-mount&quot; command .</div><div><br></div><div>Thanks and regards</div><div=
->=C2=A0 =C2=A0 =C2=A0 vivek</div></div>
+You can solve it using awk's OFMT:  awk '{OFMT="%.0f";print $1+0}'
 
---001a1143f0cc2dae1805208e9be7--
+Thanks Michael!
+
+
+
+
