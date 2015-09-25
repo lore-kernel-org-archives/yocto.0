@@ -1,70 +1,48 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D801E00F7C; Fri, 25 Sep 2015 09:50:04 -0700 (PDT)
+	id A9711E00E4E; Fri, 25 Sep 2015 10:12:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (edwingate8[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1995 seconds by postgrey-1.32 at yocto-www;
-	Fri, 25 Sep 2015 09:50:01 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0139.outbound.protection.outlook.com [157.56.110.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE9DE006CD
-	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 09:50:01 -0700 (PDT)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) by
-	BN3PR0501MB1092.namprd05.prod.outlook.com (10.160.113.139) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.274.16; Fri, 25 Sep 2015 16:16:43 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) with
-	mapi id 15.01.0274.009; Fri, 25 Sep 2015 16:16:43 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: GDB with Eclipse *almost* working...
-Thread-Index: AdD3pgDeWRsZeE8CTIyUjOFoKNJfGA==
-Date: Fri, 25 Sep 2015 16:16:43 +0000
-Message-ID: <BN3PR0501MB10901E0D24587CDA1AF6D5F1BB420@BN3PR0501MB1090.namprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-originating-ip: [98.100.91.242]
-x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1092;
-	5:uCQNdObl2LLuERP2PrnnWuU7pgq6wpBZ8DHwd0MnVAIH4wGPhBpojLIQ82CnrdVLQbJ3DGamngOXun8xXAGSiWbzoTD/QRumprpNCQfw2W3hyoRly002magiCOlUkaU9NViDrVuqbIWwNmrBkULP7Q==;
-	24:uaILRXIneVu6vueAm3uKvncOVup/LQzFipNQLRgzS3D8NQa/KZb6vQJD5BnqVEKctvzUJvH8UOxvIaCYYVTR9nC4W9ZMbYJpH4rVr1/uPoE=;
-	20:wacPCMrs8FeW9ES6raqGRonjLieDphrPj/GPo0YOXOk4n9d3Ms6IBkzxI6Xw8hCaiuv0omnF/8EYaA8Xq6ZQmg==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1092;
-x-microsoft-antispam-prvs: <BN3PR0501MB10923F96B785A23DD617024CBB420@BN3PR0501MB1092.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(5005006)(520078)(8121501046)(3002001);
-	SRVR:BN3PR0501MB1092; BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1092; 
-x-forefront-prvs: 07106EF9B9
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(199003)(189002)(164054003)(5002640100001)(10400500002)(107886002)(110136002)(5001960100002)(74316001)(66066001)(189998001)(87936001)(122556002)(2501003)(64706001)(105586002)(50986999)(229853001)(92566002)(68736005)(5001830100001)(76576001)(2351001)(46102003)(77096005)(40100003)(5001860100001)(5004730100002)(5007970100001)(5003600100002)(11100500001)(4001540100001)(62966003)(54356999)(2900100001)(106356001)(81156007)(101416001)(77156002)(450100001)(99286002)(102836002)(33656002)(97736004)(86362001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1092;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED91CE006F6
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 10:12:27 -0700 (PDT)
+Received: by lacrr8 with SMTP id rr8so26159222lac.2
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 10:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=PELAJXmKxmCfQ98FmYNpxEsT9SjvNKzXcR9OLBg05Ns=;
+	b=fQoPLwz3HP1OeWc0LKJt4Nscjf9ffKeOn9EPFU6oWTwoNiIJh+DeS7mE7jDHI9rH8+
+	YEBy5k829FVBZcUWDJqD21PoLpZS/wgo2A/VwldC9JK4y3wId+Ff9wCL88hSNfxOdwkz
+	M5wQ0k04bWgQLz5xiTfJSA5ZCMb/qCbWLcIvaIImFsVFUwdog5GSgrdpYOGJPKDVSrYN
+	QYJ9DsWBHgKr4NdXXp5jxq5qL/s/e6d5WDvNMtttOKuTixZKtzBOWDxvTuXsK+nlfoSO
+	atq+DPBsO3QEcdo5wyN6qzenzii2pnZB1griebc+o0jp0ShICDU19IS9UkeUrKhaM4HD
+	F6IQ==
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2015 16:16:43.2240 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1092
-Subject: GDB with Eclipse *almost* working...
+X-Received: by 10.25.154.5 with SMTP id c5mr1319260lfe.103.1443201145579; Fri,
+	25 Sep 2015 10:12:25 -0700 (PDT)
+Received: by 10.114.245.38 with HTTP; Fri, 25 Sep 2015 10:12:25 -0700 (PDT)
+Date: Fri, 25 Sep 2015 10:12:25 -0700
+Message-ID: <CAGMdoF=KwoU1NaQN4QHheh2O8rexgrCtXOMHU_APiPTqPKfhjg@mail.gmail.com>
+From: Edward Wingate <edwingate8@gmail.com>
+To: yocto@yoctoproject.org
+Subject: CONFIG_ENV_IS_IN_UBI not working nicely with CONFIG_SPI_FLASH_MTD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,48 +54,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Sep 2015 16:50:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 25 Sep 2015 17:12:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-All,
+I have been using u-boot with CONFIG_SPI_FLASH_MTD.  This has allowed
+me to use MTD/UBI/UBIFS with SPI flash.  I now want to use
+CONFIG_ENV_IS_IN_UBI, but after enabling this, u-boot can't read the
+environment on start-up:
 
-I almost have a full working setup with GDB in Eclipse for debugging remote=
-ly on my target hardware, but it's not quite there.  Here's what I've done =
-and where I'm at so far:
+===
+U-Boot 2015.07 (Sep 24 2015 - 17:10:41 -0700)
 
-1. I have a custom image that I build, plus a few userspace applications.  =
-I use bitbake at the command line to build the full image.  I have also bui=
-lt an SDK based on my production image and have been successfully using tha=
-t SDK to build applications through Eclipse.
-2. Followed the instructions for Eclipse as detailed in the "Working with E=
-clipse" section of the manual to install all the remote debugging related t=
-ools (GDB, TCF, etc.).
-3. Created a dev image recipe that is the same as my base image recipe, exc=
-ept I added dev-pkgs and eclipse-debug to IMAGE_FEATURES.  For the userspac=
-e applications I want to debug, I changed their reference in IMAGE_INSTALL =
-to list the "-dbg" packages instead of the standard packages.  I also added=
- gdbserver to the IMAGE_INSTALL list.
-4. Built my dev image and burned it to flash on my target hardware.
-5. Upon starting my target hardware, I noticed that the executables and oth=
-er supporting files for the packages I listed as -dbg were missing.  I then=
- by hand installed the standard packages (opkg install foo) to get all the =
-files I needed.
-6. From Eclipse, I created a new Debug configuration as detailed in "Deploy=
-ing and Debugging the Application" section to setup for Remote Application =
-debugging using TCF.
-7. I added a "set sysroot" line to the .gdbinit for my application to point=
- to the sysroot listed in the SDK I built in step 1.
-8. I then launch debug and I am able to start the application on my target =
-hardware.  However, none of the source files are viewable.  I get the error=
- "No source available for main()" in the source window.  I can run and paus=
-e the application and see the disassembly, but I can't see the source and s=
-et breakpoints.
+Model: Zynq Zed Development Board
+I2C:   ready
+DRAM:  ECC disabled 512 MiB
+MMC:   zynq_sdhci: 0
+Device nor0 not found!
+Error initializing mtdparts!
 
-This is the closest I've ever got to debugging with GDB.  Anyone know what =
-final step I may be missing? =20
+** Cannot find mtd partition "uboot-env-itb"
+Using default environment
+===
 
-Thanks,
-Bryan
+"mtdparts" and "saveenv" do not work until after I do "sf probe".
+
+I'm using u-boot on a Zynq 7020 SoC.  Can someone help me with what sf
+probe-equivalent function call to make and where?  I'm guessing in
+board_init_f() or board_init_r()?
+
+Thanks for your help.
 
