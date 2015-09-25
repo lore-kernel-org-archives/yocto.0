@@ -1,29 +1,49 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77387E00D03; Fri, 25 Sep 2015 01:55:37 -0700 (PDT)
+	id 8622FE00EDA; Fri, 25 Sep 2015 02:02:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 637 seconds by postgrey-1.32 at yocto-www;
-	Fri, 25 Sep 2015 01:55:29 PDT
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31017E00A3B
-	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 01:55:29 -0700 (PDT)
-Received: from localhost.localdomain (unknown [31.182.60.238])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id E5B6F235871;
-	Fri, 25 Sep 2015 10:44:48 +0200 (CEST)
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: Scott@yoctoproject.org, "Rifenbark <scott.m.rifenbark"@intel.com,
-	yocto@yoctoproject.org
-Date: Fri, 25 Sep 2015 10:44:41 +0200
-Message-Id: <1443170681-31019-1-git-send-email-maciej.borzecki@open-rnd.pl>
-X-Mailer: git-send-email 1.9.3
-Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: [PATCH] dev-manual: Fix devtool build help note
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99515E00A3B
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 02:02:25 -0700 (PDT)
+Received: by vkgd64 with SMTP id d64so52511641vkg.0
+	for <yocto@yoctoproject.org>; Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=nv6BXJ34sXToWPIE1qBBFV5tkVnzaXWJjkkigc6gukk=;
+	b=mo3MZdCSxPIs1iDWZAzRcL9scCn428lcb5X5AKB1a4nqEhgW0D/I8H4q5mlp63CNGb
+	GVhDxUbPQBd2vsAdSuJIYkCCX3aV98NcTWfg5m4WSTC89HIOBjEB3y6GoTbxsJCaSqBU
+	uXDoH7lNePmLAwUMxc4svaU1ty6OFqA/QJXMcr5FtnO9wUIwEhKVfjaG/14NfRe4A/Hr
+	j4LLRajnBhrsW14xGJ6TuVv1KJmvlLMY2AK+CgUxF++qFWFYxJ6rA3zDB4Uv0yaT+HsA
+	n3Q+2yyVZTyLli86gyut8chYdep/viLiGK7JZUnE1YvHdvtPJ4ZQfZRwUa4zQfp+zohh
+	16PA==
+MIME-Version: 1.0
+X-Received: by 10.31.56.140 with SMTP id f134mr2524231vka.108.1443171744457;
+	Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
+Received: by 10.31.179.207 with HTTP; Fri, 25 Sep 2015 02:02:24 -0700 (PDT)
+Date: Fri, 25 Sep 2015 14:32:24 +0530
+Message-ID: <CALLyC8QsBDa-O7Htf+qOhsARY9SKTyuLYkdOZtczpc-M1poJjA@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How can i install busybox "mount" command instead of util-linux "mount" command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,30 +55,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Sep 2015 08:55:37 -0000
+X-List-Received-Date: Fri, 25 Sep 2015 09:02:26 -0000
+Content-Type: multipart/alternative; boundary=001a1143f0cc2dae1805208e9be7
 
-An annotation for devtool build command incorrectly referenced devtool
-update-recipe.
+--001a1143f0cc2dae1805208e9be7
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
----
- documentation/dev-manual/dev-manual-model.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi all,
+     Can any one can please tell me how can i install busybox "mount"
+command instead of util-linux "mount" . By default util-linux "mount" and
+"umount" commnad is installing . But rest of the commands are installing
+from busybox like ls,cat and so on.
+     In the final image log file (list of packages installed in the image)
+showing util.linux-mount and util.linux-umount packages is installing by
+default even i am not including those . How can i overcome  the issue. i
+want  to install busybox "mount" command only not form util-linux "mount"
+command .
 
-diff --git a/documentation/dev-manual/dev-manual-model.xml b/documentation/dev-manual/dev-manual-model.xml
-index 6e0ded2f174fa0727d9222f3dc72458c1254ffdb..5379602a2bd49f667a8847aea13dc4df3534f05f 100644
---- a/documentation/dev-manual/dev-manual-model.xml
-+++ b/documentation/dev-manual/dev-manual-model.xml
-@@ -2183,7 +2183,7 @@
-                 </literallayout>
-                 <note>
-                     For complete syntax, use the
--                    <filename>devtool update-recipe --help</filename> command.
-+                    <filename>devtool build --help</filename> command.
-                 </note>
-                 Building your software using <filename>devtool build</filename>
-                 is identical to using BitBake to build the software.
--- 
-1.9.3
+Thanks and regards
+      vivek
 
+--001a1143f0cc2dae1805208e9be7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi all,<div>=C2=A0 =C2=A0 =C2=A0Can any one can please tel=
+l me how can i install busybox &quot;mount&quot; command instead of util-li=
+nux &quot;mount&quot; . By default util-linux &quot;mount&quot; and &quot;u=
+mount&quot; commnad is installing . But rest of the commands are installing=
+ from busybox like ls,cat and so on.</div><div>=C2=A0 =C2=A0 =C2=A0In the f=
+inal image log file (list of packages installed in the image) showing util.=
+linux-mount and util.linux-umount packages is installing by default even i =
+am not including those . How can i overcome =C2=A0the issue. i want =C2=A0t=
+o install busybox &quot;mount&quot; command only not form util-linux &quot;=
+mount&quot; command .</div><div><br></div><div>Thanks and regards</div><div=
+>=C2=A0 =C2=A0 =C2=A0 vivek</div></div>
+
+--001a1143f0cc2dae1805208e9be7--
