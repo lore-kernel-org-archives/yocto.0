@@ -1,39 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Stuart.Weaver@datapath.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EAC7E00DEE; Tue, 29 Sep 2015 02:04:59 -0700 (PDT)
+	id F3078E00CC6; Tue, 29 Sep 2015 02:38:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.245.231.137 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E65B4E006F1
-	for <yocto@yoctoproject.org>; Tue, 29 Sep 2015 02:04:57 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP; 29 Sep 2015 02:04:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,607,1437462000"; d="scan'208";a="654204737"
-Received: from gegelmee-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.7.91])
-	by orsmga003.jf.intel.com with ESMTP; 29 Sep 2015 02:04:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Date: Tue, 29 Sep 2015 10:04:54 +0100
-Message-ID: <1669590.fvIgRMTgGi@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.6-100.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
-References: <5603f9ce.e9d1440a.dc3ac.43adSMTPIN_ADDED_BROKEN@mx.google.com>
-	<CAF3SDA7LLcZP5D8Tr7=fZ+xsBK2DbW8GtKVi4SVng-dPnuog2g@mail.gmail.com>
-	<7720054.5AybCaxdE3@rjs-mbpro.streifs.net>
+Received: from mail1.bemta5.messagelabs.com (mail1.bemta5.messagelabs.com
+	[195.245.231.137])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E906E00A81
+	for <yocto@yoctoproject.org>; Tue, 29 Sep 2015 02:38:15 -0700 (PDT)
+Received: from [85.158.139.19] by server-1.bemta-5.messagelabs.com id
+	66/15-32615-60C5A065; Tue, 29 Sep 2015 09:38:14 +0000
+X-Env-Sender: Stuart.Weaver@datapath.co.uk
+X-Msg-Ref: server-5.tower-178.messagelabs.com!1443519494!55224023!1
+X-Originating-IP: [77.107.122.35]
+X-StarScan-Received: 
+X-StarScan-Version: 6.13.16; banners=datapath.co.uk,-,-
+X-VirusChecked: Checked
+Received: (qmail 6665 invoked from network); 29 Sep 2015 09:38:14 -0000
+Received: from unknown (HELO LEICESTER.internal.datapath.co.uk) (77.107.122.35)
+	by server-5.tower-178.messagelabs.com with AES128-SHA encrypted SMTP;
+	29 Sep 2015 09:38:14 -0000
+Received: from LEICESTER.internal.datapath.co.uk ([::1]) by
+	LEICESTER.internal.datapath.co.uk ([::1]) with mapi id 14.03.0248.002;
+	Tue, 29 Sep 2015 10:38:12 +0100
+From: Stuart Weaver <Stuart.Weaver@datapath.co.uk>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: yocto Digest, Vol 60, Issue 78
+Thread-Index: AQHQ+iASxOUnWmqgpk6ch7SG2iKQhZ5TOJsw
+Date: Tue, 29 Sep 2015 09:38:12 +0000
+Message-ID: <2DCC166D4F5C8443941662E1E67FD5C17871C98D@LEICESTER.internal.datapath.co.uk>
+References: <mailman.7.1443466802.26370.yocto@yoctoproject.org>
+In-Reply-To: <mailman.7.1443466802.26370.yocto@yoctoproject.org>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.20.0.187]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Setting root password
+Subject: Re: yocto Digest, Vol 60, Issue 78
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,29 +56,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Sep 2015 09:04:59 -0000
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 29 Sep 2015 09:38:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-T24gVGh1cnNkYXkgMjQgU2VwdGVtYmVyIDIwMTUgMDg6MTc6MDIgUnVkb2xmIEogU3RyZWlmIHdy
-b3RlOgo+IE9uIFRodXJzZGF5LCBTZXB0ZW1iZXIgMjQsIDIwMTUgMTE6MjA6MzcgQU0gRGFuaWVs
-LiB3cm90ZToKPiA+IFN0aWxsLCBJIHRoaW5rIGlzIGEgZ29vZCBpZGVpYSB0byB1bmRlcnN0YW5k
-IHdoYXQgaXMgZ29pbmcgd3Jvbmcgd2l0aAo+ID4gRVhUUkFfVVNFUlNfUEFSQU1TLCBvdGhlciB1
-c2VycyBtYXkgaGF2aW5nIHRoZSBzYW1lIHByb2JsZW0uCj4gCj4gRVhUUkFfVVNFUlNfUEFSQU1T
-IHdvcmtzIGZvciBtZSBhbGwgdGhlIHRpbWUuIFRoZSBzdGFuemEgaXMgd2hhdCBJIGFtIHVzaW5n
-Cj4gaW4gbXkgaW1hZ2UgcmVjaXBlczoKPiAKPiBFWFRSQV9VU0VSU19QQVJBTVMgPSAiXGdyb3Vw
-YWRkIGRldmVsb3BlcnM7IFx1c2VyYWRkIC1wIGBvcGVuc3NsIHBhc3N3ZAo+ICR7REVWX1BBU1NX
-T1JEfWAgZGV2ZWxvcGVyOyBcdXNlcmFkZCAtZyBkZXZlbG9wZXJzIGRldmVsb3BlcjsgXAo+IHVz
-ZXJtb2QgLXAgYG9wZW5zc2wgcGFzc3dkICR7Uk9PVF9QQVNTV09SRH1gIHJvb3Q7IFwKPiAiCj4g
-Cj4gSWYgdGhpcyBpcyBhbiBhY2N1cmF0ZSBjb3B5IG9mIHdoYXQgeW91IGFyZSB1c2luZwAgKGZy
-b20geW91IGZpcnN0IGVtYWlsKQo+IAo+ID4gRVhUUkFfVVNFUlNfUEFSQU1TID0gInVzZXJtb2Qg
-LVAgPGVuY3J5cHRlZF9wYXNzd29yZD4gcm9vdDsiCj4gCj4gdGhlbiB0aGUgaXNzdWUgcHJvYmFi
-bHkgaXMgdGhlIGNhcGl0YWwgLVAuIEl0IHNob3VsZCBiZSBsb3dlcmNhc2UuCgpGWUkgdGhlIC1Q
-IG9wdGlvbiBpcyBhIGN1c3RvbSBvcHRpb24gdGhhdCB3ZSBoYXZlIHBhdGNoZWQgaW50byB0aGUg
-bmF0aXZlIAp2ZXJzaW9ucyBvZiB0aGUgdXNlcmFkZC91c2VybW9kIGNvbW1hbmRzIHRoYXQgd2Ug
-YnVpbGQuIEl0J3MgdGhlIG9ubHkgd2F5IHlvdSAKY2FuIHNldCBhIHBhc3N3b3JkIGluIHBsYWlu
-IHRleHQgcmF0aGVyIHRoYW4gaGF2aW5nIHRvIGVuY3J5cHQgaXQgZmlyc3QuCgpDaGVlcnMsClBh
-dWwKCi0tIAoKUGF1bCBFZ2dsZXRvbgpJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRy
-ZQ==
+Many thanks for your answers Gary/Daniel,=20
 
+Gary- I've tried:
+=09=09 SRC_URI_append_image-name2 =3D "file://XYZ.patch"
+=09But no luck, when building the image it seems to skip over it with no p=
+atching occurring. I can't use the ${MACHINE} variable as the two images w=
+ill be for the same ${MACHINE}
+
+
+Daniel- with a .bbappend, to my knowledge I wouldn't be able to include it=
+ to just one image.=20
+
+My "perfect" solution would be to find a variable out there that will copy=
+/refer to a current recipe and add the details into the new recipe with it=
+'s own ${S} etc... Of course I could just copy one to another, but then th=
+ere's the problem of updating files later on. Therefore, unless there is a=
+nother option that I haven't considered, I might look at refactoring every=
+thing into a .inc file and have two different  recipe names of which I can=
+ then include seperately in the respective images.
+
+Many Thanks,
+Stuart Weaver
+
+>
+>On 2015-09-28 11:59, Daniel. wrote:
+>> I think you're searching for .bbappend don't?
+>
+>Shouldn't be any need for that - it's his recipe, so he can modify it as =
+he
+>wishes.
+>One uses .bbappend to made changes/additions to a recipe where you don't
+>want (or
+>can't) modify the original.
+>
+>>
+>> http://www.yoctoproject.org/docs/current/dev-manual/dev-
+>manual.html#us
+>> ing-bbappend-files
+>>
+>> Or, maybe, put all the common things in a .inc file, create the recipes=
+,
+>include the files in recipes. There is also a lot of examples of this:
+>> http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-bsp/hosta
+>> p/
+>>
+>> Cheers,
+>> - dhs
+>>
+>> 2015-09-28 12:46 GMT-03:00 Gary Thomas <gary@mlbassoc.com
+><mailto:gary@mlbassoc.com>>:
+>>
+>>     On 2015-09-28 09:30, Stuart Weaver wrote:
+>>
+>>         Hi all,
+>>
+>>         I have a recipe for a package which builds well. I now need to =
+add a
+>patch into certain builds. What is the best way to do this?
+>>
+>>         1.Is there a variable I can append the image name to (similar
+>> to:/SRC_URI_image-name/)?//
+>>
+>>         2.Is there a way of creating a new ?recipe 2? that obtains the =
+details
+>from ?recipe 1? and applies a patch? This way I can then simply add the n=
+ew
+>recipe into any builds I
+>>         want and
+>>         includes any future changes I make to ?recipe 1?. This solution=
+ also
+>means not having to continuously reconfigure/recompile the original recip=
+e!
+>>
+>>         3.Do I have to do it the hard way and copy the whole .bb file i=
+nto a new
+>one and make sure everything is in sync when future updates are applied?
+>>
+>>
+>>     If it's just a patch, the simplest way is to use something like thi=
+s:
+>>        SRC_URI_append_XYZ =3D "file://XYZ.patch"
+>>     where XYZ is something which can identify the override.  One exampl=
+e
+>>     might be where XYZ is the name of a target board (${MACHINE})
+>>
+>>     There are many examples of this usage in the Poky/Yocto tree(s)
+>>
+>>     --
+>>     ------------------------------------------------------------
+>>     Gary Thomas                 |  Consulting for the
+>>     MLB Associates              |    Embedded world
+>>     ------------------------------------------------------------
+>>     --
+>>     _______________________________________________
+>>     yocto mailing list
+>>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>     https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>>
+>> --
+>> /"Do or do not. There is no try"/
+>> ///*Yoda Master*/
+>>
+>>
+>
+>--
+>------------------------------------------------------------
+>Gary Thomas                 |  Consulting for the
+>MLB Associates              |    Embedded world
+>------------------------------------------------------------
+
+
+
+Regards,
+Stuart Weaver
+
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
 
