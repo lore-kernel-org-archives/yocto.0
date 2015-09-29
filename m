@@ -1,33 +1,44 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15727E00C8D; Mon, 28 Sep 2015 11:22:33 -0700 (PDT)
+	id B61EEE00B81; Mon, 28 Sep 2015 17:45:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC408E00A28
-	for <yocto@yoctoproject.org>; Mon, 28 Sep 2015 11:22:29 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3C4F3F811F7; Mon, 28 Sep 2015 12:22:28 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 8104DF81199;
-	Mon, 28 Sep 2015 12:22:27 -0600 (MDT)
-To: yocto@yoctoproject.org
-References: <2DCC166D4F5C8443941662E1E67FD5C17871C6C5@LEICESTER.internal.datapath.co.uk>
-	<560960C1.2070806@mlbassoc.com>
-	<CAF3SDA6ChKcwaJA7hOKYqNZFi0J=5MkfDrCVjp7ib4kNigHQaA@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <5609856D.5050908@mlbassoc.com>
-Date: Mon, 28 Sep 2015 12:22:37 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 736B3E007A5
+	for <yocto@yoctoproject.org>; Mon, 28 Sep 2015 17:45:11 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga103.jf.intel.com with ESMTP; 28 Sep 2015 17:45:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,605,1437462000"; d="scan'208";a="799245896"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+	by fmsmga001.fm.intel.com with ESMTP; 28 Sep 2015 17:45:11 -0700
+Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
+	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Mon, 28 Sep 2015 17:45:10 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.23]) by
+	ORSMSX116.amr.corp.intel.com ([10.22.240.14]) with mapi id
+	14.03.0248.002; Mon, 28 Sep 2015 17:45:10 -0700
+From: "Graydon, Tracy" <tracy.graydon@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [ANNOUNCEMENT] Milestone 3 for Yocto Project 1.9 now available.
+Thread-Index: AQHQ+lAXajOJQuQLSkiSwN6yOlh0Jw==
+Date: Tue, 29 Sep 2015 00:45:09 +0000
+Message-ID: <D22F2D24.3E12%tracy.graydon@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.5.5.150821
+x-originating-ip: [10.254.4.208]
 MIME-Version: 1.0
-In-Reply-To: <CAF3SDA6ChKcwaJA7hOKYqNZFi0J=5MkfDrCVjp7ib4kNigHQaA@mail.gmail.com>
-Subject: Re: Creating a new recipe based on another recipe
+Subject: [ANNOUNCEMENT] Milestone 3 for Yocto Project 1.9 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,73 +50,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Sep 2015 18:22:33 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 29 Sep 2015 00:45:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <05BC5AD1C15A23469EB3239EC4E5A88C@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-09-28 11:59, Daniel. wrote:
-> I think you're searching for .bbappend don't?
+The third milestone release for Yocto Project 1.9 is available for
+download now.
 
-Shouldn't be any need for that - it's his recipe, so he can modify it as he wishes.
-One uses .bbappend to made changes/additions to a recipe where you don't want (or
-can't) modify the original.
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.9_M3/
 
->
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-bbappend-files
->
-> Or, maybe, put all the common things in a .inc file, create the recipes, include the files in recipes. There is also a lot of examples of this:
-> http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-bsp/hostap/
->
-> Cheers,
-> - dhs
->
-> 2015-09-28 12:46 GMT-03:00 Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>>:
->
->     On 2015-09-28 09:30, Stuart Weaver wrote:
->
->         Hi all,
->
->         I have a recipe for a package which builds well. I now need to add a patch into certain builds. What is the best way to do this?
->
->         1.Is there a variable I can append the image name to (similar to:/SRC_URI_image-name/)?//
->
->         2.Is there a way of creating a new ‘recipe 2’ that obtains the details from ‘recipe 1’ and applies a patch? This way I can then simply add the new recipe into any builds I
->         want and
->         includes any future changes I make to ‘recipe 1’. This solution also means not having to continuously reconfigure/recompile the original recipe!
->
->         3.Do I have to do it the hard way and copy the whole .bb file into a new one and make sure everything is in sync when future updates are applied?
->
->
->     If it's just a patch, the simplest way is to use something like this:
->        SRC_URI_append_XYZ = "file://XYZ.patch"
->     where XYZ is something which can identify the override.  One example
->     might be where XYZ is the name of a target board (${MACHINE})
->
->     There are many examples of this usage in the Poky/Yocto tree(s)
->
->     --
->     ------------------------------------------------------------
->     Gary Thomas                 |  Consulting for the
->     MLB Associates              |    Embedded world
->     ------------------------------------------------------------
->     --
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
-> --
-> /"Do or do not. There is no try"/
-> ///*Yoda Master*/
->
->
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Thank you everyone for your contributions.
+
+eclipse-poky/mars-master 05ba7b6791083a70c78366f9737e27d9dd25d08b
+eclipse-poky/kepler-master cf60ac293629fc8ecd6c4eb3709a6f334b499d0c
+eclipse-poky/luna-master 45aa5c77523bdf051d548fff4305382942db2ebb
+meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
+poky ea562de57590c966cd5a75fda8defecd397e6436
+
+
+
+Test report at:
+
+
+https://wiki.yoctoproject.org/wiki/WW38_-_2015-09-15_-_Full_Pass_1.9_M3.rc1
+
+
+
+Tracy Graydon
+Yocto Project
+Build and Release
+
 
