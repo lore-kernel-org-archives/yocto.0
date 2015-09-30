@@ -1,33 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E751CE00CC9; Wed, 30 Sep 2015 06:38:58 -0700 (PDT)
+	id 0240BE00E55; Wed, 30 Sep 2015 06:54:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB324E00992
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 06:38:56 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 19C14F811DC; Wed, 30 Sep 2015 07:38:56 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A6DEBF81188;
-	Wed, 30 Sep 2015 07:38:55 -0600 (MDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2857E00E46
+	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 06:54:24 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 30 Sep 2015 06:54:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,612,1437462000"; d="scan'208";a="780934670"
+Received: from mlopezva-mobl2.zpn.intel.com (HELO localhost.localdomain)
+	([10.219.16.69])
+	by orsmga001.jf.intel.com with ESMTP; 30 Sep 2015 06:54:24 -0700
+From: mariano.lopez@linux.intel.com
 To: yocto@yoctoproject.org
-References: <CALLyC8TWtMz2dnMUF47PjhgGHrjuH8zmv61GGBn4GR26V2uTxg@mail.gmail.com>
-	<CAMKF1sqc8WG3RvwVuw8nxK1HNSJ5MCxVjN4x_Ep42z3sE3FifA@mail.gmail.com>
-	<CALLyC8SVL+Yj1qHQrnPg+8bux5A=xh6qm1DOoFLhK_VvWBgtFw@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <560BE5FC.5030702@mlbassoc.com>
-Date: Wed, 30 Sep 2015 07:39:08 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
-MIME-Version: 1.0
-In-Reply-To: <CALLyC8SVL+Yj1qHQrnPg+8bux5A=xh6qm1DOoFLhK_VvWBgtFw@mail.gmail.com>
-Subject: Re: How can i invoke a "particular recipe(.bb)" while building "image recipe(.bb)" without modifying the "image recipe(.bb)" . i only wanted to change "particular recipe(.bb)"
+Date: Wed, 30 Sep 2015 08:54:22 -0500
+Message-Id: <1443621262-322-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [error-report-web][PATCH] parser: Add Unicode support to the error log
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,54 +38,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Sep 2015 13:38:59 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Sep 2015 13:54:26 -0000
 
-On 2015-09-30 05:08, Vivek Per wrote:
-> Hi , thanks you for replying,
-> but i don't want to make changes to "image" recipe. i only wanted to make changes to "x" recipe that should be invoked when i do bitbake <image recipe>.
-> what variable i can put in "x" recipe so that it invokes when is do <bitbake image recipe>
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
 
-You can't - what you are asking for is "image" to depend on "x" (i.e. include it) and the
-only way to do that is relative to "image", not "x".
+If the server receives a error log with Unicode
+character in it, it will throw and internal server
+error, this is caused because the server doesn't
+try to convert everything to ASCII
 
-You can do this non-invasively, e.g. in local.conf:
-   IMAGE_INSTALL_append_pn-image = " x"
+This patch changes the log encoding to UTF-8 so
+it will allow Unicode characters.
 
-> On Wed, Sep 30, 2015 at 3:43 PM, Khem Raj <raj.khem@gmail.com <mailto:raj.khem@gmail.com>> wrote:
->
->     On Wed, Sep 30, 2015 at 2:05 AM, Vivek Per <pervivek@gmail.com <mailto:pervivek@gmail.com>> wrote:
->     > hi,
->     >    i want to create a "x" recipe that should automatically get invoke when
->     > "image" recipe( that produces image) is built. How can i modify the "x"
->     > recipe that should be invoked while building image recipe.
->     >
->     > I don't want to do any modifications to the image recipe, i only wanted to
->     > do changes in "x" recipe.
->     > Can any one help on this . thanks in advance
->
->     add one of output package its producing ( ipk)  to IMAGE_INSTALL
->     inside the image recipe.
->
->     >
->     > Thanks and regards
->     > vivek
->     >
->     > --
->     > _______________________________________________
->     > yocto mailing list
->     >yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     >https://lists.yoctoproject.org/listinfo/yocto
->     >
->
->
->
->
+[YOCTO #8225]
 
+Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
+---
+ Post/parser.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Post/parser.py b/Post/parser.py
+index d33a968..599afde 100644
+--- a/Post/parser.py
++++ b/Post/parser.py
+@@ -85,7 +85,7 @@ class Parser:
+                 recipe = package
+                 recipe_version = "unknown"
+ 
+-            f = BuildFailure(TASK = str(fail['task']), RECIPE = recipe, RECIPE_VERSION = recipe_version, ERROR_DETAILS = str(fail['log']), BUILD = b)
++            f = BuildFailure(TASK = str(fail['task']), RECIPE = recipe, RECIPE_VERSION = recipe_version, ERROR_DETAILS = fail['log'].encode('utf-8'), BUILD = b)
+ 
+             f.save()
+ 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.9.1
+
 
