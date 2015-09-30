@@ -1,40 +1,49 @@
-Return-Path: <lukas.boehm@iseg-hv.de>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5020DE00E58; Wed, 30 Sep 2015 00:45:46 -0700 (PDT)
+	id 5BCE8E00EE7; Wed, 30 Sep 2015 02:05:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [213.174.32.96 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1027 seconds by postgrey-1.32 at yocto-www;
-	Wed, 30 Sep 2015 00:45:40 PDT
-Received: from mailout01.ims-firmen.de (mailout01.ims-firmen.de
-	[213.174.32.96])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00CBBE0053A
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 00:45:40 -0700 (PDT)
-Received: from mailin02.ims-firmen.de ([192.168.1.142])
-	by mailout01.ims-firmen.de with esmtp
-	(envelope-from <lukas.boehm@iseg-hv.de>) id 1ZhBoV-0001fd-iP
-	for yocto@yoctoproject.org; Wed, 30 Sep 2015 09:28:31 +0200
-Received: from [217.235.32.3] (helo=[192.168.25.172])
-	by mailin02.ims-firmen.de with esmtpa
-	(envelope-from <lukas.boehm@iseg-hv.de>) id 1ZhBoV-0002z9-50
-	for yocto@yoctoproject.org; Wed, 30 Sep 2015 09:28:31 +0200
-From: =?UTF-8?Q?Lukas_B=c3=b6hm?= <lukas.boehm@iseg-hv.de>
-Organization: iseg Spezialelektronik GmbH
-To: yocto@yoctoproject.org
-Message-ID: <560B8F1B.8030701@iseg-hv.de>
-Date: Wed, 30 Sep 2015 09:28:27 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF217E0071C
+	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 02:05:39 -0700 (PDT)
+Received: by vkat63 with SMTP id t63so21301013vka.1
+	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 02:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=jfHahURWuYjsiGraoGplwlQ0k8tj0PX/CgkincVmA2Q=;
+	b=mR2DZo1AqQnjdFN4Fn+cjQBvi7tq9N61XBwsGA2Q4XeOayGsNyZEsHSsB9cq4mu3lE
+	5tHqslgyrNCa1ZMI83hDaHFT+cdOtydhhXOXddWAnnc99U3pSgDrllHcSyR9nfjd6KSR
+	dmKFzvFjKZauZjOCIfAKgJPi/+0M2k6CPVOwVCV6rKaSSoIy4p7zfJ0zbon8Ae9fE1Az
+	ff6ojiRg4IqVVssBHcieP28xtfYFr6puABm9FpIUxRGQ6wBwyFa8pPi5lwHIAzFgSHsI
+	ElHAzZJMOEihsjNqo9k9HNNJUrjESYaGfr5XZLD/N+Mt9+qLKPlAPnu6uRsW2/tJ4zyM
+	IyaA==
 MIME-Version: 1.0
-Subject: busybox udhcpd service file
+X-Received: by 10.31.15.212 with SMTP id 203mr496302vkp.30.1443603938472; Wed,
+	30 Sep 2015 02:05:38 -0700 (PDT)
+Received: by 10.31.179.207 with HTTP; Wed, 30 Sep 2015 02:05:38 -0700 (PDT)
+Date: Wed, 30 Sep 2015 14:35:38 +0530
+Message-ID: <CALLyC8TWtMz2dnMUF47PjhgGHrjuH8zmv61GGBn4GR26V2uTxg@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How can i invoke a "particular recipe(.bb)" while building "image recipe(.bb)" without modifying the "image recipe(.bb)" . i only wanted to change "particular recipe(.bb)"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,44 +55,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Sep 2015 07:45:46 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 30 Sep 2015 09:05:40 -0000
+Content-Type: multipart/alternative; boundary=001a1143b1acf2f9420520f33b7d
 
-Hello,
+--001a1143b1acf2f9420520f33b7d
+Content-Type: text/plain; charset=UTF-8
 
-I want to use the busybox udhcpd server in conjunction with systemd. As there is 
-no service file included in the recipe (v1.22.1) and no udhcpd.conf I made a 
-bbappend to add this. Unfortunatelly the service file is not added to the final 
-image but the conf-file.
-My busybox_%.bbappend looks as follows:
+hi,
+   i want to create a "x" recipe that should automatically get invoke when
+"image" recipe( that produces image) is built. How can i modify the "x"
+recipe that should be invoked while building image recipe.
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI += " \
-		file://udhcpd.conf \
-		file://udhcpd.service \
-	"
-SYSTEMD_PACKAGES += " \
-		${PN}-udhcpd \
-	"
-SYSTEMD_SERVICE_${PN}-udhcpd = "udhcpd.service"
-FILES_${PN}-udhcpd += "${systemd_unitdir}/system/udhcpd.service 
-${sysconfdir}/udhcpd.conf"
+I don't want to do any modifications to the image recipe, i only wanted to
+do changes in "x" recipe.
+Can any one help on this . thanks in advance
 
-do_install_append () {
-   install -d ${D}${systemd_unitdir}/system
-   install -d ${D}${sysconfdir}
-   install -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
-   install -m 0644 ${WORKDIR}/udhcpd.service 
-${D}${systemd_unitdir}/system/udhcpd.service
-}
------------------------------
-The strange thing is, that the service file is installed to 
-${WORKDIR}/image/lib/systemd/system but not to the final image.
+Thanks and regards
+vivek
 
-Any hints how to make it will be highly appreciated.
-Thanks
+--001a1143b1acf2f9420520f33b7d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Lukas Böhm
+<div dir=3D"ltr">hi,<div>=C2=A0 =C2=A0i want to create a &quot;x&quot; reci=
+pe that should automatically get invoke when &quot;image&quot; recipe( that=
+ produces image) is built. How can i modify the &quot;x&quot; recipe that s=
+hould be invoked while building image recipe.=C2=A0</div><div><br></div><di=
+v>I don&#39;t want to do any modifications to the image recipe, i only want=
+ed to do changes in &quot;x&quot; recipe.=C2=A0</div><div>Can any one help =
+on this . thanks in advance</div><div><br></div><div>Thanks and regards</di=
+v><div>vivek</div></div>
 
-
+--001a1143b1acf2f9420520f33b7d--
