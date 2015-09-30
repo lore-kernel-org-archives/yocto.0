@@ -1,52 +1,71 @@
-Return-Path: <pervivek@gmail.com>
+Return-Path: <yukatharsanij@tataelxsi.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EDC1E00F8A; Wed, 30 Sep 2015 04:08:56 -0700 (PDT)
+	id 8FF65E00D43; Wed, 30 Sep 2015 04:16:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pervivek[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.169 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.125.99 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f169.google.com (mail-yk0-f169.google.com
-	[209.85.160.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1E89E00EEB
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 04:08:53 -0700 (PDT)
-Received: by ykdg206 with SMTP id g206so35967149ykd.1
-	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 04:08:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Xc4DUjDaEXKrnOy4i2PobqLXl2pyZw+PaWUC8NNHwEQ=;
-	b=FEVpgfP0bk8Z5Yq/K+b7PfLqCoKwUWRbyRcMc3Zki8lidLJdKIuZZyxyK6dCOChJkf
-	AlwlteShAi5x8AXfeIpTpl5XnFxDlX5chZ7ubz1aAIhgF6wS1lP90svfm2AJiRxlAg7v
-	UDDIiXTD5jJ/G2nlc0DWb+O6WTq7wPhTQW7MsQv3R8a5tkxd2xXVu7qu7ArlZdjwFKfA
-	oK5PEkCHr9JhCtgFzx3+pfQu7pEdPBpBub65rqUQNO8WZc4yEXaVasqALA2I6+uuS0SG
-	dVg5jjpp75nUCuUvQPgxnYRMOlFuL+KjyZ6UAj/GDb3tgnL/SnSHZDqFZjeSfqQSG6Z6
-	zqHw==
-MIME-Version: 1.0
-X-Received: by 10.31.162.197 with SMTP id l188mr2549193vke.20.1443611332726;
-	Wed, 30 Sep 2015 04:08:52 -0700 (PDT)
-Received: by 10.31.179.207 with HTTP; Wed, 30 Sep 2015 04:08:52 -0700 (PDT)
-In-Reply-To: <CAMKF1sqc8WG3RvwVuw8nxK1HNSJ5MCxVjN4x_Ep42z3sE3FifA@mail.gmail.com>
-References: <CALLyC8TWtMz2dnMUF47PjhgGHrjuH8zmv61GGBn4GR26V2uTxg@mail.gmail.com>
+X-Greylist: delayed 850 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Sep 2015 04:16:37 PDT
+Received: from APC01-SG2-obe.outbound.protection.outlook.com
+	(mail-sg2apc01on0099.outbound.protection.outlook.com [104.47.125.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB098E00B4F
+	for <yocto@yoctoproject.org>; Wed, 30 Sep 2015 04:16:37 -0700 (PDT)
+Received: from HK2PR04MB1188.apcprd04.prod.outlook.com (10.165.60.14) by
+	HK2PR04MB1185.apcprd04.prod.outlook.com (10.165.60.11) with Microsoft
+	SMTP Server (TLS) id 15.1.280.20; Wed, 30 Sep 2015 11:02:24 +0000
+Received: from HK2PR04MB1188.apcprd04.prod.outlook.com ([10.165.60.14]) by
+	HK2PR04MB1188.apcprd04.prod.outlook.com ([10.165.60.14]) with mapi id
+	15.01.0280.017; Wed, 30 Sep 2015 11:02:25 +0000
+From: YUKATHARSANI JEYACHANDRA <yukatharsanij@tataelxsi.co.in>
+To: Khem Raj <raj.khem@gmail.com>, Vivek Per <pervivek@gmail.com>
+Thread-Topic: [yocto] How can i invoke a "particular recipe(.bb)" while
+	building "image recipe(.bb)" without modifying the "image recipe(.bb)"
+	. i only wanted to change "particular recipe(.bb)"
+Thread-Index: AQHQ+19ga84IAdFB0EyCS3xtfHElDZ5U2p2AgAAFnv4=
+Date: Wed, 30 Sep 2015 11:02:24 +0000
+Message-ID: <HK2PR04MB118899833CEA422F39D5C9BEEC4D0@HK2PR04MB1188.apcprd04.prod.outlook.com>
+References: <CALLyC8TWtMz2dnMUF47PjhgGHrjuH8zmv61GGBn4GR26V2uTxg@mail.gmail.com>,
 	<CAMKF1sqc8WG3RvwVuw8nxK1HNSJ5MCxVjN4x_Ep42z3sE3FifA@mail.gmail.com>
-Date: Wed, 30 Sep 2015 16:38:52 +0530
-Message-ID: <CALLyC8SVL+Yj1qHQrnPg+8bux5A=xh6qm1DOoFLhK_VvWBgtFw@mail.gmail.com>
-From: Vivek Per <pervivek@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMKF1sqc8WG3RvwVuw8nxK1HNSJ5MCxVjN4x_Ep42z3sE3FifA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=yukatharsanij@tataelxsi.co.in; 
+x-originating-ip: [132.245.69.37]
+x-microsoft-exchange-diagnostics: 1; HK2PR04MB1185;
+	5:fDyk/KbitXHjo/M50ct3LKy1lBWA+vvBLivMeyrWPwr+tcGT07t1kf88bSicDnJdkqzu6BZsxf0cjukJXOYMSvPXb0QLg9djB6kVmlcoBBX+EY1+3WTiAxxhWA26ojorGixgeTdzBqyIp8RBMQJ02Q==;
+	24:yDfvpBiC+Y0UA2icU6FXPBuGL0ynqygKmGCRzGeCsaLA8F90CToIs+5vSybahoBi8KzisirakSWnMhYaoUZWEqYUADswiBB9fbP7kEDeBQo=;
+	20:OQToNfyViU1WXy53CcO/G0gtNUbfZRs5Cb0gioqynWKdBTmvzYY71E6i7ejgd5njggWqBqQ8L5kOSKaTug/UGA==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:HK2PR04MB1185;
+x-microsoft-antispam-prvs: <HK2PR04MB11855DD999082DA5242E4C78EC4D0@HK2PR04MB1185.apcprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(520078)(8121501046)(5005006)(3002001);
+	SRVR:HK2PR04MB1185; BCL:0; PCL:0; RULEID:; SRVR:HK2PR04MB1185; 
+x-forefront-prvs: 071518EF63
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(189002)(377454003)(51874003)(199003)(24454002)(74482002)(5007970100001)(5001960100002)(5003600100002)(54356999)(19580395003)(19580405001)(77096005)(77156002)(50986999)(2900100001)(46102003)(15975445007)(2950100001)(101416001)(5008740100001)(86362001)(68736005)(62966003)(40100003)(66066001)(76176999)(450100001)(33656002)(64706001)(102836002)(92566002)(5001830100001)(106356001)(5001770100001)(74316001)(97736004)(5004730100002)(81156007)(5002640100001)(10400500002)(189998001)(105586002)(76576001)(4001540100001)(5001860100001)(87936001)(4001450100002)(122556002)(106116001)(80872002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HK2PR04MB1185;
+	H:HK2PR04MB1188.apcprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:0; LANG:en; 
+received-spf: None (protection.outlook.com: tataelxsi.co.in does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: tataelxsi.co.in
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2015 11:02:24.5015 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ad6a39dd-96b6-4368-82da-f2ec4d92e26a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR04MB1185
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How can i invoke a "particular recipe(.bb)" while building "image recipe(.bb)" without modifying the "image recipe(.bb)" . i only wanted to change "particular recipe(.bb)"
 X-BeenThere: yocto@yoctoproject.org
@@ -60,97 +79,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Sep 2015 11:08:56 -0000
-Content-Type: multipart/alternative; boundary=001a11433898ae59a40520f4f438
-
---001a11433898ae59a40520f4f438
-Content-Type: text/plain; charset=UTF-8
-
-Hi , thanks you for replying,
-but i don't want to make changes to "image" recipe. i only wanted to make
-changes to "x" recipe that should be invoked when i do bitbake <image
-recipe>.
-what variable i can put in "x" recipe so that it invokes when is do
-<bitbake image recipe>
-
-Thanks and Regards
-    Vivek
-
-On Wed, Sep 30, 2015 at 3:43 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Wed, Sep 30, 2015 at 2:05 AM, Vivek Per <pervivek@gmail.com> wrote:
-> > hi,
-> >    i want to create a "x" recipe that should automatically get invoke
-> when
-> > "image" recipe( that produces image) is built. How can i modify the "x"
-> > recipe that should be invoked while building image recipe.
-> >
-> > I don't want to do any modifications to the image recipe, i only wanted
-> to
-> > do changes in "x" recipe.
-> > Can any one help on this . thanks in advance
->
-> add one of output package its producing ( ipk)  to IMAGE_INSTALL
-> inside the image recipe.
->
-> >
-> > Thanks and regards
-> > vivek
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---001a11433898ae59a40520f4f438
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 30 Sep 2015 11:16:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi , thanks you for replying,<div>but i don&#39;t want to =
-make changes to &quot;image&quot; recipe. i only wanted to make changes to =
-&quot;x&quot; recipe that should be invoked when i do bitbake &lt;image rec=
-ipe&gt;.</div><div>what variable i can put in &quot;x&quot; recipe so that =
-it invokes when is do &lt;bitbake image recipe&gt;</div><div><br></div><div=
->Thanks and Regards</div><div>=C2=A0 =C2=A0 Vivek</div></div><div class=3D"=
-gmail_extra"><br><div class=3D"gmail_quote">On Wed, Sep 30, 2015 at 3:43 PM=
-, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
-et=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><span class=3D"">On Wed, Sep 30, 2015 at 2:05 AM, Vivek Per &=
-lt;<a href=3D"mailto:pervivek@gmail.com">pervivek@gmail.com</a>&gt; wrote:<=
-br>
-&gt; hi,<br>
-&gt;=C2=A0 =C2=A0 i want to create a &quot;x&quot; recipe that should autom=
-atically get invoke when<br>
-&gt; &quot;image&quot; recipe( that produces image) is built. How can i mod=
-ify the &quot;x&quot;<br>
-&gt; recipe that should be invoked while building image recipe.<br>
-&gt;<br>
-&gt; I don&#39;t want to do any modifications to the image recipe, i only w=
-anted to<br>
-&gt; do changes in &quot;x&quot; recipe.<br>
-&gt; Can any one help on this . thanks in advance<br>
-<br>
-</span>add one of output package its producing ( ipk)=C2=A0 to IMAGE_INSTAL=
-L<br>
-inside the image recipe.<br>
-<br>
-&gt;<br>
-&gt; Thanks and regards<br>
-&gt; vivek<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-&gt;<br>
-</font></span></blockquote></div><br></div>
+Hi,
 
---001a11433898ae59a40520f4f438--
+1) Create packagegroup-debug-extra"x recipe name".bb file inside the meta-x=
+/recipes-core/packagegroups layer.
+Inside the recipe, add the x recipe name like below:-
+
+inherit packagegroup
+
+PACKAGES =3D "\
+    packagegroup-debug-extra"x recipename" \
+    "
+
+RDEPENDS_packagegroup-extra"x recipename =3D "x recipe name"
+
+2) Add IMAGE_INSTALL_append =3D "x recipe name" in build/conf/local.conf fi=
+le.
+
+Please try this and let me know if it works.
+
+Thanks and Regards,
+Yukatharsani J.
+
+________________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Khem Raj <raj.khem@gmail.com>
+Sent: Wednesday, September 30, 2015 3:43 PM
+To: Vivek Per
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] How can i invoke a "particular recipe(.bb)" while buil=
+ding "image recipe(.bb)" without modifying the "image recipe(.bb)" . i only=
+ wanted to change "particular recipe(.bb)"
+
+On Wed, Sep 30, 2015 at 2:05 AM, Vivek Per <pervivek@gmail.com> wrote:
+> hi,
+>    i want to create a "x" recipe that should automatically get invoke whe=
+n
+> "image" recipe( that produces image) is built. How can i modify the "x"
+> recipe that should be invoked while building image recipe.
+>
+> I don't want to do any modifications to the image recipe, i only wanted t=
+o
+> do changes in "x" recipe.
+> Can any one help on this . thanks in advance
+
+add one of output package its producing ( ipk)  to IMAGE_INSTALL
+inside the image recipe.
+
+>
+> Thanks and regards
+> vivek
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
