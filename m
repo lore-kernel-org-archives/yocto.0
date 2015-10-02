@@ -1,48 +1,51 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6EC0EE00DA5; Fri,  2 Oct 2015 09:44:40 -0700 (PDT)
+	id 76F59E00E9F; Fri,  2 Oct 2015 10:26:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EC61E00A3C
-	for <yocto@yoctoproject.org>; Fri,  2 Oct 2015 09:44:36 -0700 (PDT)
-Received: by igcrk20 with SMTP id rk20so21373460igc.1
-	for <yocto@yoctoproject.org>; Fri, 02 Oct 2015 09:44:36 -0700 (PDT)
+Received: from mail-yk0-f172.google.com (mail-yk0-f172.google.com
+	[209.85.160.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39090E00A3C
+	for <yocto@yoctoproject.org>; Fri,  2 Oct 2015 10:26:35 -0700 (PDT)
+Received: by ykft14 with SMTP id t14so117198130ykf.0
+	for <yocto@yoctoproject.org>; Fri, 02 Oct 2015 10:26:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=kGuiTNWuN6pU3ViaPJKMYMYkmQI22HNrRSwuzgctSsU=;
-	b=LQJh2Oe8WqaBgM9qPeAsugcRzKsBud17sPav6ymOIdpCksEKeBcuo3Gu3E9ExdWuVN
-	GtTSjP9G6WxkAmtIgynvytTBpQ1oqqHHxjlATssH3UjYGzLBicm+mgOrtdeDIER4fOiE
-	MBsJv6JIyPxO02fPbAHt2iNNa98eE09wYtbgqtnDQr4C1AM6ckEmLcw7Py5GlHVirU8Y
-	YRZhK6zESEoeZKFBNKYxyB43/FuRL1D5ui0lIA14fvH93DchL4HbZPVrgCrg7hb4n6gn
-	VAXThWRI9LxMV+SHGo7Xr3OACqV0VNoZ6Q74RTbCuB1/C1F+oZiDARVh820fDzKQ7JJN
-	cSrw==
-X-Received: by 10.50.50.139 with SMTP id c11mr5706180igo.10.1443804276513;
-	Fri, 02 Oct 2015 09:44:36 -0700 (PDT)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=4vW4WWf5VjRZH4pEg/uOTS+eXfQdQCHsTEqG2m/Wzz0=;
+	b=vCvFtHf4LEuch7CDSyqJM2UC2katr94eUhWylhnU3urb2yYSzj4RTkAylrzzz4h8fg
+	rPfxqDo4ejXJWM5sm6YkjkbByZdwX/D6RhpWytow9k1kXAVdK9n79fgBo7mDRmLBOtk8
+	oR9DNovDURaQ7L6c5IWWZaca0SsbiJUQIYYc+cI044R/+BxwbYUq7Vj/TLIS1xYNqTKF
+	HaGGkWhjHfArC+rVVKtF9mMl2zRgjO806DyQUI3ei8AICozHchJWvCRl+hJDi91z1wZZ
+	5tK3k0MaugtFP8F8VguynD5FZP7M9+nab7855Fo9/6SDltngZGIXqJ3H4RuVzC7+SUQP
+	yfpQ==
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.100.71 with HTTP; Fri, 2 Oct 2015 09:44:17 -0700 (PDT)
-In-Reply-To: <1443801396017.79471@seescan.com>
+X-Received: by 10.170.215.195 with SMTP id h186mr14465834ykf.126.1443806795068;
+	Fri, 02 Oct 2015 10:26:35 -0700 (PDT)
+Received: by 10.129.148.199 with HTTP; Fri, 2 Oct 2015 10:26:35 -0700 (PDT)
+In-Reply-To: <CABcZANkg=UpD8pgB7B8vSj=pfveyE6WaDz1F+VMu76VSERa8Jg@mail.gmail.com>
 References: <1443801396017.79471@seescan.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Fri, 2 Oct 2015 09:44:17 -0700
-X-Google-Sender-Auth: juRPOSQHdYmlT02FJvoCbk-0JQA
-Message-ID: <CABcZANkg=UpD8pgB7B8vSj=pfveyE6WaDz1F+VMu76VSERa8Jg@mail.gmail.com>
-To: Fred Ollinger <Fred.Ollinger@seescan.com>
+	<CABcZANkg=UpD8pgB7B8vSj=pfveyE6WaDz1F+VMu76VSERa8Jg@mail.gmail.com>
+Date: Fri, 2 Oct 2015 14:26:35 -0300
+Message-ID: <CAF3SDA6J4E=1_T2jDS+0-ajtcJYqWFL2aKE_+Ly6LEfdChHdhw@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: Christopher Larson <clarson@kergoth.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: FILESEXTRAPATHS_prepend fails for systemd
 X-BeenThere: yocto@yoctoproject.org
@@ -56,41 +59,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Oct 2015 16:44:40 -0000
-Content-Type: multipart/alternative; boundary=047d7bdca04006e1ae052121e1a7
-
---047d7bdca04006e1ae052121e1a7
+X-List-Received-Date: Fri, 02 Oct 2015 17:26:39 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Oct 2, 2015 at 8:58 AM, Fred Ollinger <Fred.Ollinger@seescan.com>
-wrote:
+You can solve this by editing the original journal.conf, creating a
+patch with modifications and adding it to your .bbappend
 
-> I'm trying to change my /etc/systemd/journald.conf file.
+2015-10-02 13:44 GMT-03:00 Christopher Larson <clarson@kergoth.com>:
+>
+> On Fri, Oct 2, 2015 at 8:58 AM, Fred Ollinger <Fred.Ollinger@seescan.com>
+> wrote:
+>>
+>> I'm trying to change my /etc/systemd/journald.conf file.
+>
+>
+> recipetool appendfile sounds like exactly what you want here.
+> --
+> Christopher Larson
+> clarson at kergoth dot com
+> Founder - BitBake, OpenEmbedded, OpenZaurus
+> Maintainer - Tslib
+> Senior Software Engineer, Mentor Graphics
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-recipetool appendfile sounds like exactly what you want here.
+
+
 -- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+"Do or do not. There is no try"
+  Yoda Master
 
---047d7bdca04006e1ae052121e1a7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Fri, Oct 2, 2015 at 8:58 AM, Fred Ollinger <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:Fred.Ollinger@seescan.com" target=3D"_blank">Fred.Ollinger@seesc=
-an.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":=
-2b0" class=3D"a3s" style=3D"overflow:hidden">I&#39;m trying to change my /e=
-tc/systemd/journald.conf file.<br></div></blockquote></div><br>recipetool a=
-ppendfile sounds like exactly what you want here.<br>-- <br><div class=3D"g=
-mail_signature">Christopher Larson<br>clarson at kergoth dot com<br>Founder=
- - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Softwa=
-re Engineer, Mentor Graphics</div>
-</div></div>
-
---047d7bdca04006e1ae052121e1a7--
