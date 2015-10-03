@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CCD1E00B4F; Sat,  3 Oct 2015 14:59:38 -0700 (PDT)
+	id 9D8A9E00E42; Sat,  3 Oct 2015 16:42:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.52 listed in list.dnswl.org]
+	mail provider *      (net147[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,36 +16,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
-	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64179E00B4F
-	for <yocto@yoctoproject.org>; Sat,  3 Oct 2015 14:59:34 -0700 (PDT)
-Received: by padhy16 with SMTP id hy16so138435116pad.1
-	for <yocto@yoctoproject.org>; Sat, 03 Oct 2015 14:59:34 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.46 listed in list.dnswl.org]
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F2DE00473
+	for <yocto@yoctoproject.org>; Sat,  3 Oct 2015 16:42:31 -0700 (PDT)
+Received: by pacfv12 with SMTP id fv12so142498203pac.2
+	for <yocto@yoctoproject.org>; Sat, 03 Oct 2015 16:42:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=w16sTNygabTZvTOG/6bK+pL7SHlDmwoORiFESDCZdPE=;
-	b=N7bVIKIX/IQt2Nz1PfZNpiROce3uDMwhwZ7pKAJGT0rw7zokvPUr+XK+zPJbD/+Mvx
-	FP8BSB1crJWZUHz/oWjEWJdxLXaiDsox12M3uhdFmdW9+ZGWpcBOBLXaa6VeJ0shjGRs
-	z8fC+URTK0U7hhA+Sp13mZd/4Dt/+M/FnHrRC2/kElSLTba5WIOf6xroQkIl0QDqYyGE
-	+ltd51/OYZ5V5aFZGfVNmDfC6b5mNJB0xQXYwTqD1M+EfEtBCzAbVXlksrIoBxXznTJA
-	uOJh73QVH0a/8veYhoBkk/5GOs0wy+1feucxnjLT8f1HUBvW2SBb4dLnD+bssjgoCbYg
-	T4Aw==
-X-Received: by 10.66.66.167 with SMTP id g7mr28780102pat.152.1443909574449;
-	Sat, 03 Oct 2015 14:59:34 -0700 (PDT)
-Received: from Pahoa2.mvista.com ([216.9.110.13])
-	by smtp.gmail.com with ESMTPSA id
-	zn9sm19300346pac.48.2015.10.03.14.59.32 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 03 Oct 2015 14:59:33 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat,  3 Oct 2015 14:59:28 -0700
-Message-Id: <1443909569-836-2-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.3.5
-In-Reply-To: <1443909569-836-1-git-send-email-akuster808@gmail.com>
-References: <1443909569-836-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/3] libhtp: update to version 0.5.18
+	h=subject:references:cc:to:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-type:content-transfer-encoding;
+	bh=nmyD4Ym9fqwRQlk9FIauUvoGG7VB0qtwvlMLVHjHyiQ=;
+	b=p5rxFeV32NcY/1EPs7CWsLNGUO2YoY2qfMw9yi3mYxa9lRapciLm457JyxTcNcirfN
+	iYzq6zJmb4dC/pzU709WUnZQuWZtKLDgD6uISFUVZYi4kcK/HkbjCDP4JkirhBdcUu9y
+	sF7PpiKdx1UgbAoPk1lss1IlUqt5/xoeqZDTxsaK6Pu6UKFd688t+2+xqvvalwVePXCI
+	0uuxgP32aGEIzIkZkRglCTyRyM6ZEBESOUr3BC3D9sT75dgneYwLuyPmdOKZGc/ih+KG
+	Y5tjSn6mx78YweWyW8WAgVobe8OODuurxrGGEXfRas1AQbqIePoKqWRkz/HouujRFNls
+	CAXQ==
+X-Received: by 10.66.216.1 with SMTP id om1mr29615720pac.51.1443915751590;
+	Sat, 03 Oct 2015 16:42:31 -0700 (PDT)
+Received: from [192.168.0.2] (60-242-179-244.static.tpgi.com.au.
+	[60.242.179.244]) by smtp.gmail.com with ESMTPSA id
+	gv1sm3880848pbd.96.2015.10.03.16.42.29
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 03 Oct 2015 16:42:30 -0700 (PDT)
+References: <1440231935-11042-1-git-send-email-net147@gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+From: Jonathan Liu <net147@gmail.com>
+Message-ID: <561067E2.5020807@gmail.com>
+Date: Sun, 4 Oct 2015 10:42:26 +1100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <1440231935-11042-1-git-send-email-net147@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi.inc: use SRCPV instead of SRCREV for PV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,80 +64,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Oct 2015 21:59:38 -0000
+X-List-Received-Date: Sat, 03 Oct 2015 23:42:35 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Changes
+On 22/08/2015 6:25 PM, Jonathan Liu wrote:
+> SRCPV is intended to be used by PV. Using SRCREV for PV is incorrect.
+>
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> ---
+>   recipes-kernel/linux/linux-raspberrypi.inc | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+> index d60a3e9..ef98421 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+> @@ -12,7 +12,8 @@ SRC_URI += " \
+>   
+>   COMPATIBLE_MACHINE = "raspberrypi"
+>   
+> -PV = "${LINUX_VERSION}+git${SRCREV}"
+> +PV = "${LINUX_VERSION}+git${SRCPV}"
+> +PR = "r1"
+>   
+>   # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+>   KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+Bump.
 
-This is a minor bug-fix release:
-
-- Fixed [#120] Trigger request line parsing on
-incomplete request [Victor Julien]
-
-- Fixed [#119] Fix uninitialized htp_tx_t::is_last value
-in in htp_tx_res_process_body_data_ex() [Fedor Sakharov]
-
-- Fixed [#118] Coverity-identified missing break in switch [Sam Baskinger]
-
-- Fixed [#117] Coverity-identified issue of not checking
-malloc() return value [Sam Baskinger]
-
-- Fixed [#116] Fix coverity-identified leaked file descriptors
-in unit test [Sam Baskinger]
-
-- Fixed [#113] fix pkgconfig include dir [Eric Leblond]
-
-- Fixed [#111] Connect plain http [Victor Julien]
-
-- Fixed [#105] Do not invoke callbacks in htp_req_run_hook_body_data()
-when there is no tx running. [Sam Baskinger]
-
-- Fixed [#104] Modifiying HTTP methods to be rfc3253 compliant [Andreas Moe]
-
-- Fixed [#103] Fixes [Victor Julien]
-
-- Fixed [#101] Make including the autoconf config header safer [Brian Rectanus]
-
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/suricata/{libhtp_0.5.17.bb => libhtp_0.5.18.bb} | 2 +-
- recipes-security/suricata/suricata.inc                           | 9 +++++----
- 2 files changed, 6 insertions(+), 5 deletions(-)
- rename recipes-security/suricata/{libhtp_0.5.17.bb => libhtp_0.5.18.bb} (89%)
-
-diff --git a/recipes-security/suricata/libhtp_0.5.17.bb b/recipes-security/suricata/libhtp_0.5.18.bb
-similarity index 89%
-rename from recipes-security/suricata/libhtp_0.5.17.bb
-rename to recipes-security/suricata/libhtp_0.5.18.bb
-index baa5221..734b341 100644
---- a/recipes-security/suricata/libhtp_0.5.17.bb
-+++ b/recipes-security/suricata/libhtp_0.5.18.bb
-@@ -10,6 +10,6 @@ inherit autotools pkgconfig
- 
- CFLAGS += "-D_DEFAULT_SOURCE"
- 
--S = "${WORKDIR}/suricata-2.0.8/${BPN}"
-+S = "${WORKDIR}/suricata-${VER}/${BPN}"
- 
- RDEPENDS_${PN} += "zlib"
-diff --git a/recipes-security/suricata/suricata.inc b/recipes-security/suricata/suricata.inc
-index b7d0181..6618739 100644
---- a/recipes-security/suricata/suricata.inc
-+++ b/recipes-security/suricata/suricata.inc
-@@ -2,8 +2,9 @@ HOMEPAGE = "http://suricata-ids.org/"
- SECTION = "security Monitor/Admin"
- LICENSE = "GPLv2"
- 
--PV = "2.0.8"
--SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${PV}.tar.gz"
-+VER = "2.0.9"
-+SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
-+
-+SRC_URI[md5sum] = "cc0c32071c6b6733b13380ef276c5af5"
-+SRC_URI[sha256sum] = "4a19214d7673f9c0eba2e4e5ac78152309464186d16df48944b8f5644faa802d"
- 
--SRC_URI[md5sum] = "a9553ccf942c0c4aa1e1a188ec1f7d93"
--SRC_URI[sha256sum] = "7af6394cb81e464f5c1ac88a1444030e30940caab6e53688a6d9eb652226d1be"
--- 
-2.3.5
-
+Regards,
+Jonathan
 
