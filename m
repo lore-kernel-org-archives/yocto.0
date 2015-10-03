@@ -1,6 +1,6 @@
 Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D8A9E00E42; Sat,  3 Oct 2015 16:42:35 -0700 (PDT)
+	id 094D3E00E60; Sat,  3 Oct 2015 16:42:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,41 +18,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.46 listed in list.dnswl.org]
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F2DE00473
-	for <yocto@yoctoproject.org>; Sat,  3 Oct 2015 16:42:31 -0700 (PDT)
-Received: by pacfv12 with SMTP id fv12so142498203pac.2
-	for <yocto@yoctoproject.org>; Sat, 03 Oct 2015 16:42:31 -0700 (PDT)
+	*      [209.85.220.44 listed in list.dnswl.org]
+Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
+	[209.85.220.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C63A5E00BBD
+	for <yocto@yoctoproject.org>; Sat,  3 Oct 2015 16:42:42 -0700 (PDT)
+Received: by pacex6 with SMTP id ex6so139859009pac.0
+	for <yocto@yoctoproject.org>; Sat, 03 Oct 2015 16:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:references:cc:to:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=nmyD4Ym9fqwRQlk9FIauUvoGG7VB0qtwvlMLVHjHyiQ=;
-	b=p5rxFeV32NcY/1EPs7CWsLNGUO2YoY2qfMw9yi3mYxa9lRapciLm457JyxTcNcirfN
-	iYzq6zJmb4dC/pzU709WUnZQuWZtKLDgD6uISFUVZYi4kcK/HkbjCDP4JkirhBdcUu9y
-	sF7PpiKdx1UgbAoPk1lss1IlUqt5/xoeqZDTxsaK6Pu6UKFd688t+2+xqvvalwVePXCI
-	0uuxgP32aGEIzIkZkRglCTyRyM6ZEBESOUr3BC3D9sT75dgneYwLuyPmdOKZGc/ih+KG
-	Y5tjSn6mx78YweWyW8WAgVobe8OODuurxrGGEXfRas1AQbqIePoKqWRkz/HouujRFNls
-	CAXQ==
-X-Received: by 10.66.216.1 with SMTP id om1mr29615720pac.51.1443915751590;
-	Sat, 03 Oct 2015 16:42:31 -0700 (PDT)
+	bh=LnG3Dc8I+ab/VCbykMT5WhLYwwixseWXa/1BNjTiESo=;
+	b=r3dhhBhO3V6yy1ww2K/ZD2Fvv5o8lj94em/TUmsQZlqg9CuAO8ErQfVDCwTiAK6cLF
+	rp68oHApg9jf3kOToaIzFc6FPW7KUFQxscBdZrNYinIX48jQ4EBCkixD68HE61lLB+L0
+	in73PuFe6mwdGgj8vM/8KyMbqtDC1Rl9iOSxr9T/PqMK5nDBdRHTwoJsZJ0flTmVzMzQ
+	9CxPlkcu5s//sQT5p9qo1Y3PsNiDeMDmYIXgEMbWjzM45Jawgk97nPY+H1k60t3Hn52s
+	cUE4P7B3KYkVw/em/NufhYK6yXXeZeudFubb4HHuGL0x1dILbHyl96yDESx1uJ0aXbju
+	wCOg==
+X-Received: by 10.68.247.106 with SMTP id yd10mr23662239pbc.105.1443915762177; 
+	Sat, 03 Oct 2015 16:42:42 -0700 (PDT)
 Received: from [192.168.0.2] (60-242-179-244.static.tpgi.com.au.
 	[60.242.179.244]) by smtp.gmail.com with ESMTPSA id
-	gv1sm3880848pbd.96.2015.10.03.16.42.29
+	bk8sm19504759pad.18.2015.10.03.16.42.39
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 03 Oct 2015 16:42:30 -0700 (PDT)
-References: <1440231935-11042-1-git-send-email-net147@gmail.com>
+	Sat, 03 Oct 2015 16:42:40 -0700 (PDT)
+References: <1440232418-4519-1-git-send-email-net147@gmail.com>
 To: Andrei Gherzan <andrei@gherzan.ro>
 From: Jonathan Liu <net147@gmail.com>
-Message-ID: <561067E2.5020807@gmail.com>
-Date: Sun, 4 Oct 2015 10:42:26 +1100
+Message-ID: <561067EC.2090903@gmail.com>
+Date: Sun, 4 Oct 2015 10:42:36 +1100
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <1440231935-11042-1-git-send-email-net147@gmail.com>
+In-Reply-To: <1440232418-4519-1-git-send-email-net147@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH v2] linux-raspberrypi.inc: use SRCPV instead of SRCREV for PV
+Subject: Re: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: remove unrecognized configure option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,32 +64,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Oct 2015 23:42:35 -0000
+X-List-Received-Date: Sat, 03 Oct 2015 23:42:46 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2015 6:25 PM, Jonathan Liu wrote:
-> SRCPV is intended to be used by PV. Using SRCREV for PV is incorrect.
+On 22/08/2015 6:33 PM, Jonathan Liu wrote:
+> The --with-egl-window-system=rpi configure option is not recognized
+> in the current version.
 >
 > Signed-off-by: Jonathan Liu <net147@gmail.com>
 > ---
->   recipes-kernel/linux/linux-raspberrypi.inc | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
+>   recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
 >
-> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-> index d60a3e9..ef98421 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi.inc
-> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
-> @@ -12,7 +12,8 @@ SRC_URI += " \
->   
->   COMPATIBLE_MACHINE = "raspberrypi"
->   
-> -PV = "${LINUX_VERSION}+git${SRCREV}"
-> +PV = "${LINUX_VERSION}+git${SRCPV}"
-> +PR = "r1"
->   
->   # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
->   KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> index 39ded59..ab0280e 100644
+> --- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+> @@ -1,3 +1,2 @@
+>   EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads \
+> -                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux' \
+> -                                    --with-egl-window-system=rpi"
+> +                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'"
 Bump.
 
 Regards,
