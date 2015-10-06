@@ -1,43 +1,49 @@
-Return-Path: <lukas.boehm@iseg-hv.de>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 584F0E00DAB; Tue,  6 Oct 2015 05:57:27 -0700 (PDT)
+	id 3EE28E00DDE; Tue,  6 Oct 2015 06:24:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [213.174.32.97 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout02.ims-firmen.de (mailout02.ims-firmen.de
-	[213.174.32.97])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8ACE007C9
-	for <yocto@yoctoproject.org>; Tue,  6 Oct 2015 05:57:25 -0700 (PDT)
-Received: from mailin02.ims-firmen.de ([192.168.1.142])
-	by mailout02.ims-firmen.de with esmtp
-	(envelope-from <lukas.boehm@iseg-hv.de>)
-	id 1ZjRo3-0005XP-l2; Tue, 06 Oct 2015 14:57:23 +0200
-Received: from [217.235.26.198] (helo=[192.168.25.172])
-	by mailin02.ims-firmen.de with esmtpa
-	(envelope-from <lukas.boehm@iseg-hv.de>)
-	id 1ZjRo2-0005YL-5W; Tue, 06 Oct 2015 14:57:23 +0200
-To: "Daniel." <danielhilst@gmail.com>, Khem Raj <raj.khem@gmail.com>
-References: <560B8F1B.8030701@iseg-hv.de>
-	<CAMKF1srjUiR3c5jX9KxMhhO+eDz4E23=cGKh5fEr5KYSu+iDxw@mail.gmail.com>
-	<CAF3SDA4Hw=m2xW8grLCwESq1ioWP=2mL9Fqagw0_NiNyH9kOzw@mail.gmail.com>
-From: =?UTF-8?Q?Lukas_B=c3=b6hm?= <lukas.boehm@iseg-hv.de>
-Organization: iseg Spezialelektronik GmbH
-Message-ID: <5613C530.8070007@iseg-hv.de>
-Date: Tue, 6 Oct 2015 14:57:20 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C930BE00A81
+	for <yocto@yoctoproject.org>; Tue,  6 Oct 2015 06:24:04 -0700 (PDT)
+Received: by vkgd64 with SMTP id d64so117227945vkg.0
+	for <yocto@yoctoproject.org>; Tue, 06 Oct 2015 06:24:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ktjbtXBzdlVXwMw883lxuVeUH5HDlH0S3JKRDbPbUhA=;
+	b=hElzU79C9Myb/AaYBysCBAO6yeIvotKidVMWaJ9NwkjdCaHvmMR6rShwAr0etHa24n
+	DCX+WKSa6iu1pO0arxLQ1LUEWc75ITJ2hY9D51H0MMtilMAn0EK9aKLwHRJHbem2tsh2
+	IATxRanIPBgZ7RLRQnR72KAV+XCB5XpU6MhrjD3pThF0Vm1fTUMP5F6YLpJEKGbL40BO
+	ybiGSI+29OpIdGj64WMTXWVbcX1Byj9Gour8D75CcuAZSTeSUmoaBemo4pkHJlVCdVzm
+	/rOB9SnsCSuiLnwdz0zX3R+/0ySZPDhjehl6GsSID6nrT/uqZrv17NluUgvINFJbQULi
+	gJWg==
 MIME-Version: 1.0
-In-Reply-To: <CAF3SDA4Hw=m2xW8grLCwESq1ioWP=2mL9Fqagw0_NiNyH9kOzw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: busybox udhcpd service file
+X-Received: by 10.31.172.70 with SMTP id v67mr24366481vke.47.1444137843834;
+	Tue, 06 Oct 2015 06:24:03 -0700 (PDT)
+Received: by 10.31.179.207 with HTTP; Tue, 6 Oct 2015 06:24:03 -0700 (PDT)
+Date: Tue, 6 Oct 2015 18:54:03 +0530
+Message-ID: <CALLyC8Tuhi2kD7XNUdo8EfTpTYCB8EgYHNLi2N9iaeMRO27q9Q@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Why RDEPENDS wont install packages in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,95 +55,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Oct 2015 12:57:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 06 Oct 2015 13:24:05 -0000
+Content-Type: multipart/alternative; boundary=001a1144061430454605216f8b52
 
-Hello and thanks for the answers!
+--001a1144061430454605216f8b52
+Content-Type: text/plain; charset=UTF-8
 
-Am 05.10.2015 um 19:10 schrieb Daniel.:
-> I would suggest you to setup build history and look files installed by
-> busybox package.
->
-Ok, I did:  buildhistory/.../busybox/busybox-udhcpd/latest lists all the wished 
-files:
-PV = 1.22.1
-PR = r32
-RPROVIDES =
-RDEPENDS =
-RRECOMMENDS =
-PKGSIZE = 325
-FILES = /etc/init.d/busybox-udhcpd /lib/systemd/system/udhcpd.service 
-/etc/udhcpd.conf /lib/systemd/system/udhcpd.service
-FILELIST = /etc/udhcpd.conf /lib/systemd/system/udhcpd.service
-
-> 2015-10-05 13:13 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
->> On Wed, Sep 30, 2015 at 12:28 AM, Lukas Böhm <lukas.boehm@iseg-hv.de> wrote:
->>> Hello,
->>>
->>> I want to use the busybox udhcpd server in conjunction with systemd. As
->>> there is no service file included in the recipe (v1.22.1) and no udhcpd.conf
->>> I made a bbappend to add this. Unfortunatelly the service file is not added
->>> to the final image but the conf-file.
->>> My busybox_%.bbappend looks as follows:
->>>
->>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>> SRC_URI += " \
->>>                  file://udhcpd.conf \
->>>                  file://udhcpd.service \
->>>          "
-> I don't really understand what you said. The udhcpd.conf file was
-> installed on image but not
-> the udhcpd.service file? Is that right? Can you check if busybox
-> already ships udhcpd.conf file?
->
-Yes, you understand that right. But no, busybox does not ship with udhcpd.conf. 
-At least not in my case with systemd distro feature.
-
->>> SYSTEMD_PACKAGES += " \
->>>                  ${PN}-udhcpd \
->>>          "
->>> SYSTEMD_SERVICE_${PN}-udhcpd = "udhcpd.service"
->>> FILES_${PN}-udhcpd += "${systemd_unitdir}/system/udhcpd.service
->>> ${sysconfdir}/udhcpd.conf"
->>>
->>> do_install_append () {
->>>    install -d ${D}${systemd_unitdir}/system
->>>    install -d ${D}${sysconfdir}
->>>    install -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
->>>    install -m 0644 ${WORKDIR}/udhcpd.service
->>> ${D}${systemd_unitdir}/system/udhcpd.service
->>> }
->>> -----------------------------
->>> The strange thing is, that the service file is installed to
->>> ${WORKDIR}/image/lib/systemd/system but not to the final image.
->>>
->>> Any hints how to make it will be highly appreciated.
->>
->> Did you inherit systemd ?
-It is inherited in busybox.inc.
->>
->>
->>> Thanks
->>>
->>> Lukas Böhm
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> Cheers,
->
-
--- 
-Lukas Böhm
+Hi,
+     I am including RDEPENDS += " <package>" variable in rootfs-image.bb .
+why RDEPENDS won't install packages in roofts. I can install packages
+through IMAGE_INSTALL.can any one tell me the  reason why RDEPENDS wont
+install packages in rootfs  .
 
 
+Thanks and regards
+     vivek
+
+--001a1144061430454605216f8b52
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 =C2=A0I am including RDEPENDS +=3D &=
+quot; &lt;package&gt;&quot; variable in <a href=3D"http://rootfs-image.bb">=
+rootfs-image.bb</a> . why RDEPENDS won&#39;t install packages in roofts. I =
+can install packages through IMAGE_INSTALL.can any one tell me the =C2=A0re=
+ason why RDEPENDS wont install packages in rootfs =C2=A0.</div><div><br></d=
+iv><div><br></div><div>Thanks and regards</div><div>=C2=A0 =C2=A0 =C2=A0viv=
+ek</div></div>
+
+--001a1144061430454605216f8b52--
