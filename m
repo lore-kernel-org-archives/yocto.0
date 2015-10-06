@@ -1,59 +1,46 @@
-Return-Path: <falak.desai@yahoo.com>
+Return-Path: <lukas.boehm@iseg-hv.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 981CCE00DA5; Tue,  6 Oct 2015 04:58:21 -0700 (PDT)
+	id 584F0E00DAB; Tue,  6 Oct 2015 05:57:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (falak.desai[at]yahoo.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [98.139.213.55 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [213.174.32.97 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm17-vm1.bullet.mail.bf1.yahoo.com
-	(nm17-vm1.bullet.mail.bf1.yahoo.com [98.139.213.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 407D3E0049B
-	for <yocto@yoctoproject.org>; Tue,  6 Oct 2015 04:58:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1444132696; bh=J3o3TyTmIgg/WbwafrdrTS1b8vH5X6oWXqrY1rRo1Nc=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=n62UD/UKvDct2emdDyGcQs4cwrvuHeHxWHt8gzd1n9tfz9El/PXWLiCRPWpMGzk3aha2+6I9zRf4eryJTB6xZ5rznjZ0zX3jcnp25WiAfjCo0O+O5HZhWAgg6ql0PsbyVrAm4wjWMPIW1osPMqq7WfIiKnxKA798odMee0fLeRuygJ1Sd/WlkhKBGxcy/BWKREOFeLsknGYO/Z0l2FOWXm+egxz8NsR39dCUKe6Q7ifZT+6TpGZyvB5zRHRkj4lpt6KEmPjxqS2W37oo4+ZJe6jGXwxgVW1cTnNd9SjFPvd/WwA5DtWoV2puxvl4u8P77A6H5YDNy5aoCX1yArM1jg==
-Received: from [98.139.170.180] by nm17.bullet.mail.bf1.yahoo.com with NNFMP;
-	06 Oct 2015 11:58:16 -0000
-Received: from [98.139.212.235] by tm23.bullet.mail.bf1.yahoo.com with NNFMP;
-	06 Oct 2015 11:58:16 -0000
-Received: from [127.0.0.1] by omp1044.mail.bf1.yahoo.com with NNFMP;
-	06 Oct 2015 11:58:16 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 580032.53922.bm@omp1044.mail.bf1.yahoo.com
-X-YMail-OSG: rq9RvHYVM1loRbTcunTslO9klXKeWvQuhMkz4AYcv9UxrBYcFlW7MP2w2tK1LPh
-	rDdRgmD0RwYe3_xShKt7SWmvYOGOUf1.mdfjo8wV1b9TY3dQRwMtVnmoi6AWznV7j8R9JKbeOHlo
-	2IccvskOln9JJEgBeT9qdx16zQ1UlkndjBRus71FGqRK0IZbhLtOuVy7S4mrbBMhJt8iKqnk5D_E
-	lno_FN_78d7kNouSS6tWsZlUwPMkH7kfSemYuSEv5ss0jQvxnHGc5V9PTKn.ZVAX5Vgl_4nRNhxS
-	kuqsUrY6wefTZpj4siO70QN2IOHBUFvKAuOTmMl2A_KVPMjV8pfyg0rnfe1FXr4e4lGdb2w_OaKf
-	3DwnDLKYhesNfRlv08THBwZpRuIwh.OOjhhh7YVOXNxDOa_dpnT3Iab2ZBR1lPln1xcAAUYON_Jm
-	vrmmnGloZRH8DCDpX7HXy4jotlPpjHoF6nHSBGXC0oUHKwzlFXdQUO8_CqNSRKwLPigXDiQ--
-Received: by 76.13.26.142; Tue, 06 Oct 2015 11:58:16 +0000 
-Date: Tue, 6 Oct 2015 11:58:06 +0000 (UTC)
-From: Falak Desai <falak.desai@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <905270146.1170569.1444132686383.JavaMail.yahoo@mail.yahoo.com>
+Received: from mailout02.ims-firmen.de (mailout02.ims-firmen.de
+	[213.174.32.97])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8ACE007C9
+	for <yocto@yoctoproject.org>; Tue,  6 Oct 2015 05:57:25 -0700 (PDT)
+Received: from mailin02.ims-firmen.de ([192.168.1.142])
+	by mailout02.ims-firmen.de with esmtp
+	(envelope-from <lukas.boehm@iseg-hv.de>)
+	id 1ZjRo3-0005XP-l2; Tue, 06 Oct 2015 14:57:23 +0200
+Received: from [217.235.26.198] (helo=[192.168.25.172])
+	by mailin02.ims-firmen.de with esmtpa
+	(envelope-from <lukas.boehm@iseg-hv.de>)
+	id 1ZjRo2-0005YL-5W; Tue, 06 Oct 2015 14:57:23 +0200
+To: "Daniel." <danielhilst@gmail.com>, Khem Raj <raj.khem@gmail.com>
+References: <560B8F1B.8030701@iseg-hv.de>
+	<CAMKF1srjUiR3c5jX9KxMhhO+eDz4E23=cGKh5fEr5KYSu+iDxw@mail.gmail.com>
+	<CAF3SDA4Hw=m2xW8grLCwESq1ioWP=2mL9Fqagw0_NiNyH9kOzw@mail.gmail.com>
+From: =?UTF-8?Q?Lukas_B=c3=b6hm?= <lukas.boehm@iseg-hv.de>
+Organization: iseg Spezialelektronik GmbH
+Message-ID: <5613C530.8070007@iseg-hv.de>
+Date: Tue, 6 Oct 2015 14:57:20 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Help in building Custom Yocto Image
+In-Reply-To: <CAF3SDA4Hw=m2xW8grLCwESq1ioWP=2mL9Fqagw0_NiNyH9kOzw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: busybox udhcpd service file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Falak Desai <falak.desai@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,70 +49,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Oct 2015 11:58:21 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1170568_1742004824.1444132686380"
+X-List-Received-Date: Tue, 06 Oct 2015 12:57:27 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-------=_Part_1170568_1742004824.1444132686380
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hello and thanks for the answers!
 
-Hello everyone,=C2=A0
+Am 05.10.2015 um 19:10 schrieb Daniel.:
+> I would suggest you to setup build history and look files installed by
+> busybox package.
+>
+Ok, I did:  buildhistory/.../busybox/busybox-udhcpd/latest lists all the wished 
+files:
+PV = 1.22.1
+PR = r32
+RPROVIDES =
+RDEPENDS =
+RRECOMMENDS =
+PKGSIZE = 325
+FILES = /etc/init.d/busybox-udhcpd /lib/systemd/system/udhcpd.service 
+/etc/udhcpd.conf /lib/systemd/system/udhcpd.service
+FILELIST = /etc/udhcpd.conf /lib/systemd/system/udhcpd.service
 
-I'm newbie in making custom yocto image, and I'm trying to create a custom =
-one for my Intel Edison Mini Breakout Board..I want to make a yocto image i=
-n which as soon as my intel edison boots up, it should start streaming vide=
-o over the network on a specific IP address... =C2=A0and I'll get that vide=
-o by accessing that IP address!
-Typically it has only 2 tasks as soon as it boots:
+> 2015-10-05 13:13 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
+>> On Wed, Sep 30, 2015 at 12:28 AM, Lukas Böhm <lukas.boehm@iseg-hv.de> wrote:
+>>> Hello,
+>>>
+>>> I want to use the busybox udhcpd server in conjunction with systemd. As
+>>> there is no service file included in the recipe (v1.22.1) and no udhcpd.conf
+>>> I made a bbappend to add this. Unfortunatelly the service file is not added
+>>> to the final image but the conf-file.
+>>> My busybox_%.bbappend looks as follows:
+>>>
+>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>> SRC_URI += " \
+>>>                  file://udhcpd.conf \
+>>>                  file://udhcpd.service \
+>>>          "
+> I don't really understand what you said. The udhcpd.conf file was
+> installed on image but not
+> the udhcpd.service file? Is that right? Can you check if busybox
+> already ships udhcpd.conf file?
+>
+Yes, you understand that right. But no, busybox does not ship with udhcpd.conf. 
+At least not in my case with systemd distro feature.
 
-Boot
-1) Connect to WiFi2) Start streaming video using vlc=C2=A0
+>>> SYSTEMD_PACKAGES += " \
+>>>                  ${PN}-udhcpd \
+>>>          "
+>>> SYSTEMD_SERVICE_${PN}-udhcpd = "udhcpd.service"
+>>> FILES_${PN}-udhcpd += "${systemd_unitdir}/system/udhcpd.service
+>>> ${sysconfdir}/udhcpd.conf"
+>>>
+>>> do_install_append () {
+>>>    install -d ${D}${systemd_unitdir}/system
+>>>    install -d ${D}${sysconfdir}
+>>>    install -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
+>>>    install -m 0644 ${WORKDIR}/udhcpd.service
+>>> ${D}${systemd_unitdir}/system/udhcpd.service
+>>> }
+>>> -----------------------------
+>>> The strange thing is, that the service file is installed to
+>>> ${WORKDIR}/image/lib/systemd/system but not to the final image.
+>>>
+>>> Any hints how to make it will be highly appreciated.
+>>
+>> Did you inherit systemd ?
+It is inherited in busybox.inc.
+>>
+>>
+>>> Thanks
+>>>
+>>> Lukas Böhm
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+> Cheers,
+>
 
-Now my main question is,
-* WHAT ARE THE DEPENDENCIES THAT I WILL NEED IN IMAGE TO PERFORM ONLY THESE=
- 2 TASKS ?=C2=A0
-* WHAT OTHER DEPENDENCIES SHOULD I REMOVE FROM IMAGE TO MAKE MY IMAGE LIGHT=
- WEIGHT ?
+-- 
+Lukas Böhm
 
-please help me out with this problem..
-Thank you very much,Falak Desai
 
-------=_Part_1170568_1742004824.1444132686380
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:14px"><div id=3D"yui_3_16_0_1_1444131349813_3444">Hello everyone,&n=
-bsp;<br><br>I'm newbie in making custom yocto image, and I'm trying to crea=
-te a custom one for my Intel Edison Mini Breakout Board..</div><div id=3D"y=
-ui_3_16_0_1_1444131349813_3444" dir=3D"ltr">I want to make a yocto image in=
- which as soon as my intel edison boots up, it should start streaming video=
- over the network on a specific IP address... &nbsp;and I'll get that video=
- by accessing that IP address!</div><div id=3D"yui_3_16_0_1_1444131349813_3=
-444" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_1444131349813_3444" dir=
-=3D"ltr">Typically it has only 2 tasks as soon as it boots:</div><div id=3D=
-"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
-_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_1444=
-131349813_3444" dir=3D"ltr">Boot<br></div><div id=3D"yui_3_16_0_1_144413134=
-9813_3444" dir=3D"ltr">1) Connect to WiFi</div><div id=3D"yui_3_16_0_1_1444=
-131349813_3444" dir=3D"ltr">2) Start streaming video using vlc&nbsp;</div><=
-div id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D=
-"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
-_0_1_1444131349813_3444" dir=3D"ltr">Now my main question is,</div><div id=
-=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D"yui_3=
-_16_0_1_1444131349813_3444" dir=3D"ltr"><b id=3D"yui_3_16_0_1_1444131349813=
-_3799">* WHAT ARE THE DEPENDENCIES THAT I WILL NEED IN IMAGE TO PERFORM ONL=
-Y THESE 2 TASKS ?&nbsp;<br></b></div><div id=3D"yui_3_16_0_1_1444131349813_=
-3444" dir=3D"ltr"><b id=3D"yui_3_16_0_1_1444131349813_3800">* WHAT OTHER DE=
-PENDENCIES SHOULD I REMOVE FROM IMAGE TO MAKE MY IMAGE LIGHT WEIGHT ?</b></=
-div><div id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div =
-id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></div><div id=3D"yui=
-_3_16_0_1_1444131349813_3444" dir=3D"ltr">please help me out with this prob=
-lem..</div><div id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr"><br></di=
-v><div id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr">Thank you very mu=
-ch,</div><div id=3D"yui_3_16_0_1_1444131349813_3444" dir=3D"ltr">Falak Desa=
-i</div></div></body></html>
-
-------=_Part_1170568_1742004824.1444132686380--
