@@ -1,67 +1,42 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <lstarret@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B30A7E00F32; Wed,  7 Oct 2015 05:28:11 -0700 (PDT)
+	id C555EE00DEA; Wed,  7 Oct 2015 05:59:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [95.211.2.226 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 19550 seconds by postgrey-1.32 at yocto-www;
-	Wed, 07 Oct 2015 05:28:08 PDT
-Received: from mx6-14.smtp.antispamcloud.com (mx6-14.smtp.antispamcloud.com
-	[95.211.2.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC9B8E00B6F
-	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 05:28:08 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx6.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1Zjijq-0005dp-HS
-	for yocto@yoctoproject.org; Wed, 07 Oct 2015 09:02:16 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Wed, 7 Oct 2015 09:00:31 +0200
-To: <yocto@yoctoproject.org>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [216.31.210.62 listed in list.dnswl.org]
+Received: from mail-gw1-out.broadcom.com (mail-gw1-out.broadcom.com
+	[216.31.210.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3673AE009B8
+	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 05:59:09 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.17,649,1437462000"; d="scan'208";a="77071292"
+Received: from irvexchcas07.broadcom.com (HELO
+	IRVEXCHCAS07.corp.ad.broadcom.com) ([10.9.208.55])
+	by mail-gw1-out.broadcom.com with ESMTP; 07 Oct 2015 07:48:39 -0700
+Received: from IRVEXCHMB14.corp.ad.broadcom.com ([fe80::6184:5cb6:5350:4823])
+	by IRVEXCHCAS07.corp.ad.broadcom.com ([::1]) with mapi id
+	14.03.0235.001; Wed, 7 Oct 2015 05:59:05 -0700
+From: "Luke (Lucas) Starrett" <lstarret@broadcom.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] tmp on NFS
+Thread-Index: AdEAoI6A3s7vjL/fTxGsJnz4QZJETAAaBZ+AAAJEGXA=
+Date: Wed, 7 Oct 2015 12:59:04 +0000
+Message-ID: <DB59870584238C45879465F0A2E5C3F17E1779@IRVEXCHMB14.corp.ad.broadcom.com>
 References: <DB59870584238C45879465F0A2E5C3F17E16BB@IRVEXCHMB14.corp.ad.broadcom.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <5614C341.2090104@topic.nl>
-Date: Wed, 7 Oct 2015 09:01:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
+	<5614C341.2090104@topic.nl>
+In-Reply-To: <5614C341.2090104@topic.nl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.208.64]
 MIME-Version: 1.0
-In-Reply-To: <DB59870584238C45879465F0A2E5C3F17E16BB@IRVEXCHMB14.corp.ad.broadcom.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t0di
-	2A4r9us+Fq8MBvFDhJgZTSkrk1vENBCFqpj7Mq3eVx+pICt/gViUP6xZbFTtUGbjO41FyBEqIaDu
-	dcVplPEV5fdZbBgAYjRktFsnBOu68dy9p6gE/g99Plm2mIQhBQ00JYCpdDQoJU79BjIi5W2Z3JKV
-	mi72ocgY5kMQSjs70ALn042Wb7mIcbVJi7pqphHamFlRvlxL+MzCKMvMkk78ZQ0AiyqMiTY+IYva
-	kPBr0z6bhalFEM/pjPCQA+BAlkniC5++pOyFfhmFBNq2PYR7Zn6OGQcTLcl+10S2CCSFSbZLiIzq
-	6RHISf0BeR/9lxlAbFwXFyuSr4goiWKeWbtWBb39uS1TjWG2Inx+Ts2Q85bpu8v0MLjfVaUXUvFy
-	TEwEAmRywCEMPg5NNGTMxTzARyhSs4e+Ytun4y6JKMrt8M2oUrr42YKjVVGTpbenSXSOjCd5tjJG
-	tAG9qTyK2srKWI8N0qcImQqSeb6nSlZ9mG5re5knRAISeKQWbUCrROjb5NA413zESMJef949r2h3
-	KLwbXHjHpxz8VOWtxaqRRTlHFazPXt/x3tAgKOX3Wg==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJXhXyDRoOQM5J3kcUr0HrMvJUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
-	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
-	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
-	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
-X-Originating-IP: 88.159.208.100
-X-Spampanel-Domain: topic.nl
-X-Spampanel-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: Combined (0.00)
-X-Recommended-Action: accept
 Subject: Re: tmp on NFS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -74,74 +49,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Oct 2015 12:28:11 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 07 Oct 2015 12:59:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-=EF=BB=BFI can think of various things that would go wrong with tmp on NFS.=
- One of the=20
-most obvious example would be to try and change the network configuration=20
-while running, and needing some temporary file to manage that.\
-
-I think the expectation is that /tmp should be accessible at all times, and=
-=20
-that it's local and (at least somewhat) volatile.
-
-I tend to mount /tmp/ in RAM on all systems. Even my desktop. Not having to=
- do=20
-wait for a device IO queue when performing actions in /tmp/ can greatly=20
-improve the responsiveness of the system.
-
-If your application's /tmp/ storage requirements are such that they don't f=
-it=20
-in RAM, I don't think /tmp/ is the place where they should be stored.
-
-
-
-On 07-10-15 03:37, Luke (Lucas) Starrett wrote:
-> Hi,
->
-> Can anybody give a brief history of time on why using an NFS drive for tm=
-p is
-> necessarily a bad thing, and why we have a sanity check for it?  We=E2=80=
-=99re doing
-> this without any obvious side effects.
->
-> I=E2=80=99m aware of the checks added by changes like this:
->
-> patchwork.openembedded.org/patch/61107/
->
-> However, I don=E2=80=99t see the reasoning/background documented as to ex=
-actly what is
-> actually broken when putting tmp on NFS.  Is it time skew, problems with
-> concurrent file access, something else?
->
-> Thanks,
->
-> Luke
->
->
->
-
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-Telefax: +31 (0) 499 33 69 70
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
-
+SSBzaG91bGQgY2xhcmlmeSwgdGhlIHNhbml0eSBjaGVjayB3YXJuaW5nIEknbSByZWZlcnJpbmcg
+dG8gaXMgYWJvdXQgdGhlIFlvY3RvIGJ1aWxkL3RtcCBkaXJlY3Rvcnkgbm90IC90bXAgYXMgaW4g
+dGhlIHN5c3RlbSBsZXZlbCB0bXAgZGlyLg0KDQpUaGFua3MsIEx1a2UuDQoNCg0KLS0tLS1Pcmln
+aW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBb
+bWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIE1pa2Ug
+TG9vaWptYW5zDQpTZW50OiBXZWRuZXNkYXksIE9jdG9iZXIgMDcsIDIwMTUgMzowMSBBTQ0KVG86
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIHRtcCBvbiBORlMN
+Cg0KSSBjYW4gdGhpbmsgb2YgdmFyaW91cyB0aGluZ3MgdGhhdCB3b3VsZCBnbyB3cm9uZyB3aXRo
+IHRtcCBvbiBORlMuIE9uZSBvZiB0aGUgbW9zdCBvYnZpb3VzIGV4YW1wbGUgd291bGQgYmUgdG8g
+dHJ5IGFuZCBjaGFuZ2UgdGhlIG5ldHdvcmsgY29uZmlndXJhdGlvbiB3aGlsZSBydW5uaW5nLCBh
+bmQgbmVlZGluZyBzb21lIHRlbXBvcmFyeSBmaWxlIHRvIG1hbmFnZSB0aGF0LlwNCg0KSSB0aGlu
+ayB0aGUgZXhwZWN0YXRpb24gaXMgdGhhdCAvdG1wIHNob3VsZCBiZSBhY2Nlc3NpYmxlIGF0IGFs
+bCB0aW1lcywgYW5kIHRoYXQgaXQncyBsb2NhbCBhbmQgKGF0IGxlYXN0IHNvbWV3aGF0KSB2b2xh
+dGlsZS4NCg0KSSB0ZW5kIHRvIG1vdW50IC90bXAvIGluIFJBTSBvbiBhbGwgc3lzdGVtcy4gRXZl
+biBteSBkZXNrdG9wLiBOb3QgaGF2aW5nIHRvIGRvIHdhaXQgZm9yIGEgZGV2aWNlIElPIHF1ZXVl
+IHdoZW4gcGVyZm9ybWluZyBhY3Rpb25zIGluIC90bXAvIGNhbiBncmVhdGx5IGltcHJvdmUgdGhl
+IHJlc3BvbnNpdmVuZXNzIG9mIHRoZSBzeXN0ZW0uDQoNCklmIHlvdXIgYXBwbGljYXRpb24ncyAv
+dG1wLyBzdG9yYWdlIHJlcXVpcmVtZW50cyBhcmUgc3VjaCB0aGF0IHRoZXkgZG9uJ3QgZml0IGlu
+IFJBTSwgSSBkb24ndCB0aGluayAvdG1wLyBpcyB0aGUgcGxhY2Ugd2hlcmUgdGhleSBzaG91bGQg
+YmUgc3RvcmVkLg0KDQoNCg0KT24gMDctMTAtMTUgMDM6MzcsIEx1a2UgKEx1Y2FzKSBTdGFycmV0
+dCB3cm90ZToNCj4gSGksDQo+DQo+IENhbiBhbnlib2R5IGdpdmUgYSBicmllZiBoaXN0b3J5IG9m
+IHRpbWUgb24gd2h5IHVzaW5nIGFuIE5GUyBkcml2ZSBmb3IgdG1wIGlzDQo+IG5lY2Vzc2FyaWx5
+IGEgYmFkIHRoaW5nLCBhbmQgd2h5IHdlIGhhdmUgYSBzYW5pdHkgY2hlY2sgZm9yIGl0PyAgV2Xi
+gJlyZSBkb2luZw0KPiB0aGlzIHdpdGhvdXQgYW55IG9idmlvdXMgc2lkZSBlZmZlY3RzLg0KPg0K
+PiBJ4oCZbSBhd2FyZSBvZiB0aGUgY2hlY2tzIGFkZGVkIGJ5IGNoYW5nZXMgbGlrZSB0aGlzOg0K
+Pg0KPiBwYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZy9wYXRjaC82MTEwNy8NCj4NCj4gSG93ZXZl
+ciwgSSBkb27igJl0IHNlZSB0aGUgcmVhc29uaW5nL2JhY2tncm91bmQgZG9jdW1lbnRlZCBhcyB0
+byBleGFjdGx5IHdoYXQgaXMNCj4gYWN0dWFsbHkgYnJva2VuIHdoZW4gcHV0dGluZyB0bXAgb24g
+TkZTLiAgSXMgaXQgdGltZSBza2V3LCBwcm9ibGVtcyB3aXRoDQo+IGNvbmN1cnJlbnQgZmlsZSBh
+Y2Nlc3MsIHNvbWV0aGluZyBlbHNlPw0KPg0KPiBUaGFua3MsDQo+DQo+IEx1a2UNCj4NCj4NCj4N
+Cg0KDQoNCktpbmQgcmVnYXJkcywNCg0KTWlrZSBMb29pam1hbnMNClN5c3RlbSBFeHBlcnQNCg0K
+VE9QSUMgRW1iZWRkZWQgUHJvZHVjdHMNCkVpbmRob3ZlbnNld2VnIDMyLUMsIE5MLTU2ODMgS0gg
+QmVzdA0KUG9zdGJ1cyA0NDAsIE5MLTU2ODAgQUsgQmVzdA0KVGVsZWZvb246ICszMSAoMCkgNDk5
+IDMzIDY5IDc5DQpUZWxlZmF4OiArMzEgKDApIDQ5OSAzMyA2OSA3MA0KRS1tYWlsOiBtaWtlLmxv
+b2lqbWFuc0B0b3BpY3Byb2R1Y3RzLmNvbQ0KV2Vic2l0ZTogd3d3LnRvcGljcHJvZHVjdHMuY29t
+DQoNClBsZWFzZSBjb25zaWRlciB0aGUgZW52aXJvbm1lbnQgYmVmb3JlIHByaW50aW5nIHRoaXMg
+ZS1tYWlsDQoNCg0KDQoNCg0KLS0gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg==
 
