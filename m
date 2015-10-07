@@ -1,68 +1,59 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <allen.curtis@curtisembedded.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C875E007A5; Wed,  7 Oct 2015 06:39:34 -0700 (PDT)
+	id 3A7C0E00E54; Wed,  7 Oct 2015 10:43:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [46.165.232.184 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [69.89.25.95 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mx12-14.smtp.antispamcloud.com (mx12-14.smtp.antispamcloud.com
-	[46.165.232.184])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 447C4E007A5
-	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 06:39:27 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx12.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1ZjowA-0007JJ-AK
-	for yocto@yoctoproject.org; Wed, 07 Oct 2015 15:39:24 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Wed, 7 Oct 2015 15:38:27 +0200
-To: <yocto@yoctoproject.org>
-References: <DB59870584238C45879465F0A2E5C3F17E16BB@IRVEXCHMB14.corp.ad.broadcom.com>
-	<CAJTo0LYcHSOFt1zOWBwaWvJr_SqqkGaK7QWiQg2J=d+YGhVuqQ@mail.gmail.com>
-	<CAJTo0LYq2JgWo953QYT2nQrdqVtG5yObUuMvmYLYJ0YWzbMsKA@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <56152085.30203@topic.nl>
-Date: Wed, 7 Oct 2015 15:39:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.2.0
-MIME-Version: 1.0
-In-Reply-To: <CAJTo0LYq2JgWo953QYT2nQrdqVtG5yObUuMvmYLYJ0YWzbMsKA@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t0di
-	2A4r9us+Fq8MBvFDhJgZtdZugFCOMdVKbChWa+6FszGU6C3ak3gyMZOJ91WM6mbjO41FyBEqIaDu
-	dcVplPEV5fdZbBgAYjRktFsnBOu68dy9p6gE/g99Plm2mIQhBQ00JYCpdDQoJU79BjIi5W2Z3JKV
-	mi72ocgY5kMQSjs70ALn042Wb7mIcbVJi7pqphHamFlRvlxL+MzCKMvMkk78ZQ0AiyqMiTY+IYva
-	kPBr0z6bhalFEM/pjPCQA+BAlkniC5++pOyFfhmFBNq2PYR7Zn6OGQcTLcl+10S2CCSFSbZLiIzq
-	6RHISf0BeR/9lxlAbFwXFyuSr4goiWKeWbtWBb39uS1TjWG2Inx+Ts2Q85bpu8v0MLjfVaUXUvFy
-	TEwEAmRywCEMPg5NNGTMxTwq5H2HisnUiFGNBznFCJKEejk40iyx8hQPmbkJabHvUAAjMhPl4Vhd
-	NvMNOfYY5VjTiEw2ui8TVPldBCj8jBAT9EIYxHyidUrHJfz9kNKga+jb5NA413zESMJef949r2h3
-	KLwbXHjHpxz8VOWtxaqRRTlHFazPXt/x3tAgKOX3Wg==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJUb3OPwsHaH0Fvg5oXltHd/JUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
-	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
-	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
-	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
-X-Originating-IP: 88.159.208.100
-X-Spampanel-Domain: topic.nl
-X-Spampanel-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-Spampanel-Outgoing-Class: ham
-X-Spampanel-Outgoing-Evidence: Combined (0.00)
-X-Recommended-Action: accept
-Subject: Re: tmp on NFS
+	*      [score: 0.0008]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 397 seconds by postgrey-1.32 at yocto-www;
+	Wed, 07 Oct 2015 10:43:32 PDT
+Received: from gproxy1-pub.mail.unifiedlayer.com
+	(gproxy1-pub.mail.unifiedlayer.com [69.89.25.95])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 82CA9E00843
+	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 10:43:32 -0700 (PDT)
+Received: (qmail 9023 invoked by uid 0); 7 Oct 2015 17:36:51 -0000
+Received: from unknown (HELO cmgw2) (10.0.90.83)
+	by gproxy1.mail.unifiedlayer.com with SMTP; 7 Oct 2015 17:36:51 -0000
+Received: from box410.bluehost.com ([69.89.31.210]) by cmgw2 with 
+	id SHch1r0154Y0hd901Hckcq; Wed, 07 Oct 2015 11:36:49 -0600
+X-Authority-Analysis: v=2.1 cv=Jv9i8qIC c=1 sm=1 tr=0
+	a=ETof7DMrXRHAC+dJixH5gQ==:117 a=ETof7DMrXRHAC+dJixH5gQ==:17
+	a=cNaOj0WVAAAA:8
+	a=f5113yIGAAAA:8 a=3_4UIzzJAAAA:8 a=N659UExz7-8A:10 a=mHfT8ucao3sA:10
+	a=o0XNLtqhUCMA:10 a=5lJygRwiOn0A:10 a=uLO53zp4g26wkX06B7sA:9
+	a=pILNOxqGKmIA:10
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=curtisembedded.com; s=default; 
+	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=6dbPWUizfcjzgTUvxvST0cjfMWXW756+4H2qXYEMxV0=; 
+	b=cZn3ieTXDrEvNISyHGm4ZsyPcXAJaoh3WP4YwjXULmta7WcSU6Vqi55RsZXvwijCKWbQt1lt7mrVU0h0yp7u5OTZkwcx71Zzgd50wFTx4axLCtlRky3q5usLluyKnDPY;
+Received: from [68.225.237.157] (port=52731 helo=[192.168.0.3])
+	by box410.bluehost.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.84) (envelope-from <allen.curtis@curtisembedded.com>)
+	id 1Zjsdv-0002zo-9z
+	for yocto@yoctoproject.org; Wed, 07 Oct 2015 11:36:43 -0600
+From: Allen Curtis <allen.curtis@curtisembedded.com>
+Message-Id: <591A7BB6-5C46-4D67-B8BC-9F6E57442A40@curtisembedded.com>
+Date: Wed, 7 Oct 2015 10:36:40 -0700
+To: yocto <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
+X-Mailer: Apple Mail (2.1510)
+X-Identified-User: {2323:box410.bluehost.com:actwoent:curtisembedded.com}
+	{sentby:smtp auth 68.225.237.157 authed with
+	allen.curtis@curtisembedded.com}
+Subject: packagegroup not appearing in HOB
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,54 +65,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Oct 2015 13:39:34 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Wed, 07 Oct 2015 17:43:37 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 07-10-15 15:04, Burton, Ross wrote:
->
-> On 7 October 2015 at 13:59, Burton, Ross <ross.burton@intel.com
-> <mailto:ross.burton@intel.com>> wrote:
->
->     Follow the link in the patch to the referenced bug, and comment #8 by=
- Mark
->     Hatle explains the problems that Wind River were seeing in testing:
->
->
-> I should also add that many people buy lots of RAM and do builds with
-> build/tmp in a tmpfs as it gives you a noticeable performance increase, s=
-o I
-> dread to think how much it will hurt to do a build with build/tmp on a ne=
-twork
-> mount.
+Hello,
 
-Telling Ubuntu to actually use all that RAM for some serious caching (e.g.=
-=20
-allow 50% dirty pages, and extend the timeout to several minutes), and (if =
-you=20
-have >14) putting cfq back into its rightful place as io scheduler made a h=
-uge=20
-difference for me.
+I created a packagegroup file as per the instructions called =
+packagegroup-foo.bb
 
+Within that file I define 2 package groups as such.
 
+PACKAGES =3D "\
+ packagegroup-foo-apps \
+ packagegroup-foo-tools \
+"
 
-Kind regards,
+RDEPENDS_packagegroup-foo-apps =3D "=85"
 
-Mike Looijmans
-System Expert
+RDEPENDS_packagegroup-foo-tools =3D "=85"
 
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-Telefax: +31 (0) 499 33 69 70
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
+However, when I run HOB and inspect the list of packages it shows =
+packagegroup-foo but it does not list packagegroup-foo-apps or =
+packagegroup-foo-tools.
 
-Please consider the environment before printing this e-mail
+Is this correct?
 
+How do I verify the groups are created correctly so I can complete =
+implementation using the new group definitions?
 
-
-
+TIA
 
 
