@@ -1,6 +1,6 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBECCE00C60; Wed,  7 Oct 2015 22:15:57 -0700 (PDT)
+	id 04723E00ED1; Wed,  7 Oct 2015 22:23:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,27 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1257AE007C9
-	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 22:15:54 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t985FsmH014730
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADB25E0095C
+	for <yocto@yoctoproject.org>; Wed,  7 Oct 2015 22:23:28 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t985NRXC002658
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 7 Oct 2015 22:15:54 -0700 (PDT)
-Received: from [128.224.162.154] (128.224.162.154) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
-	Wed, 7 Oct 2015 22:15:53 -0700
-Message-ID: <5615FC07.4030707@windriver.com>
-Date: Thu, 8 Oct 2015 13:15:51 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	for <yocto@yoctoproject.org>; Wed, 7 Oct 2015 22:23:27 -0700 (PDT)
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
+	Wed, 7 Oct 2015 22:23:27 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 8 Oct 2015 01:23:24 -0400
+Message-ID: <cover.1444281567.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-To: Joe Slater <jslater@windriver.com>, <yocto@yoctoproject.org>,
-	<randy.macleod@windriver.com>
-References: <1444260963-11591-1-git-send-email-jslater@windriver.com>
-In-Reply-To: <1444260963-11591-1-git-send-email-jslater@windriver.com>
-Cc: joe.slater@windriver.com
-Subject: Re: [meta-selinux][PATCH 1/1] refpolicy: SRCREV_FORMAT needed
+Subject: [PATCH 0/2][meta-selinux] remove packages: libcap-ng, swig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +40,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Oct 2015 05:15:57 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 08 Oct 2015 05:23:30 -0000
+Content-Type: text/plain
 
-On 10/08/2015 07:36 AM, Joe Slater wrote:
-> Signed-off-by: Joe Slater <jslater@windriver.com>
-> ---
->   recipes-security/refpolicy/refpolicy_git.inc |    1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/recipes-security/refpolicy/refpolicy_git.inc b/recipes-security/refpolicy/refpolicy_git.inc
-> index 6db4b9e..32b3195 100644
-> --- a/recipes-security/refpolicy/refpolicy_git.inc
-> +++ b/recipes-security/refpolicy/refpolicy_git.inc
-> @@ -3,6 +3,7 @@ SRC_URI += "git://github.com/TresysTechnology/refpolicy-contrib.git;protocol=git
->
->   SRCREV_refpolicy = "c8c2b8b0c80a59414aefc4d32fdd2e8152ea5af2"
->   SRCREV_refpolicy-contrib = "32c25f2d965569e18489913fbda5e0f0c6f90d51"
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Hi Joe,
+They have been added to oe-core.
 
-You may need to update your patch, upstream version has:
+The following changes since commit 463f97bfd1180475540b7d91e3fec6a2b33966bd:
 
-+SRCREV_refpolicy = "${AUTOREV}"
-+SRCREV_refpolicy-contrib = "${AUTOREV}"
-...
+  audit/auvirt: get inline functions work with both gnu89 & gnu11 (2015-09-21 10:42:27 -0400)
 
-Thanks
-Wenzong
+are available in the git repository at:
 
-> +SRCREV_FORMAT = "refpolicy.refpolicy-contrib"
->
->   FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-git:"
->
->
+  git://git.pokylinux.org/poky-contrib wenzong/libcap
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/libcap
+
+Wenzong Fan (2):
+  libcap-ng: remove package
+  swig: remove package
+
+ recipes-devtools/swig/swig.inc                     | 59 ------------------
+ ...lf-exe-for-swig-swiglib-on-non-Win32-plat.patch | 69 ----------------------
+ ...nfigure-use-pkg-config-for-pcre-detection.patch | 65 --------------------
+ recipes-devtools/swig/swig_2.0.10.bb               | 11 ----
+ recipes-security/libcap-ng/libcap-ng/python.patch  | 58 ------------------
+ recipes-security/libcap-ng/libcap-ng_0.7.7.bb      | 40 -------------
+ 6 files changed, 302 deletions(-)
+ delete mode 100644 recipes-devtools/swig/swig.inc
+ delete mode 100644 recipes-devtools/swig/swig/0001-Use-proc-self-exe-for-swig-swiglib-on-non-Win32-plat.patch
+ delete mode 100644 recipes-devtools/swig/swig/0001-configure-use-pkg-config-for-pcre-detection.patch
+ delete mode 100644 recipes-devtools/swig/swig_2.0.10.bb
+ delete mode 100644 recipes-security/libcap-ng/libcap-ng/python.patch
+ delete mode 100644 recipes-security/libcap-ng/libcap-ng_0.7.7.bb
+
+-- 
+1.9.1
+
 
