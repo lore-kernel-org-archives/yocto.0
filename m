@@ -1,48 +1,61 @@
-Return-Path: <petter@technux.se>
+Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E814E00E25; Thu,  8 Oct 2015 05:50:21 -0700 (PDT)
+	id 65FB9E010AE; Thu,  8 Oct 2015 07:52:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00, HTML_IMAGE_ONLY_28, 
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	T_REMOTE_IMAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.229 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.173 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (rehsack[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.4 HTML_IMAGE_ONLY_28 BODY: HTML: images with 2400-2800 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 Oct 2015 05:50:18 PDT
-Received: from bin-vsp-out-05.atm.binero.net (bin-mail-out-06.binero.net
-	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51FC1E0050E
-	for <yocto@yoctoproject.org>; Thu,  8 Oct 2015 05:50:17 -0700 (PDT)
-X-Halon-ID: f7576670-6dba-11e5-b53c-005056916f53
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-05.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Thu,  8 Oct 2015 14:49:08 +0200 (CEST)
-MIME-Version: 1.0
-Date: Thu, 08 Oct 2015 14:49:08 +0200
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: <pervivek@gmail.com>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CALLyC8Sk+k9jJCRByejYnO1WfmOx9849XuRqB3bxG538Gs1pyQ@mail.gmail.com>
-References: <CALLyC8Sk+k9jJCRByejYnO1WfmOx9849XuRqB3bxG538Gs1pyQ@mail.gmail.com>
-Message-ID: <7c6d997df3e4c21753d1bb54c9bd42fe@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Can any one please tell the what is the exact difference between DEPENDS and RDEPENDS
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF587E00B4C
+	for <yocto@yoctoproject.org>; Thu,  8 Oct 2015 07:52:33 -0700 (PDT)
+Received: by wiclk2 with SMTP id lk2so29166440wic.1
+	for <yocto@yoctoproject.org>; Thu, 08 Oct 2015 07:52:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=/toWEC/VVxpzLxmAf1EJa5S0KL5i4ECkmV6gosLkjL8=;
+	b=09zG149cBZ4MG5M++lgikFxKYMJtRaYZb2J/Bec6W84Y9NhVhQa0Y++OJMJZwhOZ9P
+	YpCqnncXEO6m+8s+/vwhPIo8kbhKUEtoknka4fTCG6vGiNpkJURyoPc477tASWOb21b0
+	5V9UJVmFP7BvbNbhVsYQNMW9/iGwkoX5trmE0Zkd+mXpZ6r9hMv5w5WLbKnapeudIhE/
+	FBzmUo/4Xa79RcNR2JhiWVJnU8JtrwACq5+IfdUPuBZkQwYn9LLqopPIi1ua6Q+nU1Sh
+	7WVOVBOltLmE3DVG9Hd8VVYfiCMMMqjyu5Y7HWwSHc8OIdwOnkeVdi6OQTgtIhN7n3RE
+	N9Zg==
+X-Received: by 10.180.87.138 with SMTP id ay10mr3646733wib.12.1444315952445;
+	Thu, 08 Oct 2015 07:52:32 -0700 (PDT)
+Received: from ernie.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
+	[87.139.84.12]) by smtp.gmail.com with ESMTPSA id
+	uq5sm46644821wjc.3.2015.10.08.07.52.31
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 08 Oct 2015 07:52:31 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
+From: Jens Rehsack <rehsack@gmail.com>
+In-Reply-To: <69B07C73-5285-4201-BFEC-0C77E1883E61@gmail.com>
+Date: Thu, 8 Oct 2015 16:52:30 +0200
+Message-Id: <E36BFEC6-6F32-4F29-A200-4CE84A535043@gmail.com>
+References: <1739F874-791D-4371-B60A-B234370430A4@gmail.com>
+	<69B07C73-5285-4201-BFEC-0C77E1883E61@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.2104)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 5/7][meta-openembedded] Update nginx to 1.9.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,139 +64,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Oct 2015 12:50:21 -0000
-Content-Type: multipart/alternative;
-	boundary="=_3126a95c15a15d379555f462a7ae4cb0"
-
---=_3126a95c15a15d379555f462a7ae4cb0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
-
- 
-
-2015-10-08 06:37 skrev Vivek Per: 
-
-> Hi, 
-> Can any one please tell
-the what is the exact difference between DEPENDS and RDEPENDS . I am not
-able to get it . How these variables are exactly parsed. 
-> 
-> -regards
-
-> vivek
-
-Hi, 
-
-I guess you already have read through the manual about
-the variables?
-
-
-http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-RDEPENDS
-
-
-http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-DEPENDS
-
-
-The overall description of the differences are (please someone
-correct me if you find my answer incorrect) that DEPENDS specifics
-build-time dependencies (e.i. other recipe files) so you should be
-guaranteed that all packages listed in the DEPENDS has been built and
-installed in the sysroot before your new package starts its configure
-task. 
-
-RDEPENDS on the other hand, is a run-time dependency so instead
-of other recipe files RDEPENDS lists packages that should have been
-installed in order to correctly run your package on target. 
-
-All this
-is explained more in detail in the manual (see above links). Also keep
-in mind that DEPENDS works with recipes and RDEPENDS with packages
-(which isn't necessary the same). Debug the PACKAGES for a specific
-variable
-(http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-PACKAGES)
-in order to get a clue about what packages a recipe will generate. 
-
-If
-you still have a hard to understanding the differences my suggestion is
-that you starts playing around a bit with them. Create a project and add
-some DEPENDS and RDEPENDS to a recipe(s), build the affected packages
-and investigate if they have been built in the expected order. This can
-for example be verified by tracking the build output or by looking
-through the cooker logs tmp/log/cooker/*. 
-
-BR Petter 
-
-Petter
-Mabäcker
-
-Technux <petter@technux.se>
-www.technux.se
- 
-
---=_3126a95c15a15d379555f462a7ae4cb0
+X-List-Received-Date: Thu, 08 Oct 2015 14:52:37 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2015-10-08 06:37 skrev Vivek Per:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<div dir=3D"ltr"><span style=3D"font-size: 12.8px;">Hi,</span>
-<div style=3D"font-size: 12.8px;">&nbsp; &nbsp; &nbsp;Can any one please te=
-ll the what is the exact difference between DEPENDS and RDEPENDS . I am not=
- able to get it . How these variables are exactly parsed.</div>
-<div style=3D"font-size: 12.8px;">&nbsp;</div>
-<div style=3D"font-size: 12.8px;">&nbsp;</div>
-<div style=3D"font-size: 12.8px;">-regards</div>
-<div style=3D"font-size: 12.8px;"><span style=3D"color: #888888; font-size:=
- 12.8px;">vivek</span></div>
-<div style=3D"font-size: 12.8px;">
-<div id=3D":qh"><img src=3D"./program/blocked.gif" alt=3D"" /></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</div>
-</div>
-</blockquote>
-<div>
-<p>Hi,</p>
-<p>I guess you already have read through the manual about the variables?</p=
->
-<p>http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-RDEP=
-ENDS</p>
-<p>http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-DEPE=
-NDS</p>
-<p>&nbsp;</p>
-<p>The overall description of the differences are (please someone correct m=
-e if you find my answer incorrect) that DEPENDS specifics build-time depend=
-encies (e.i. other recipe files) so you should be guaranteed that all packa=
-ges listed in the DEPENDS has been built and installed in the sysroot befor=
-e your new package starts its configure task.</p>
-<p>RDEPENDS on the other hand, is a run-time dependency so instead of other=
- recipe files RDEPENDS lists packages that should have been installed in or=
-der to correctly run your package on target.</p>
-<p><br />All this is explained more in detail in the manual (see above link=
-s). Also keep in mind that DEPENDS works with recipes and RDEPENDS with pac=
-kages (which isn't necessary the same). Debug the PACKAGES for a specific v=
-ariable (http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#va=
-r-PACKAGES) in order to get a clue about what packages a recipe will genera=
-te.</p>
-<p>If you still have a hard to understanding the differences my suggestion =
-is that you starts playing around a bit with them. Create a project and add=
- some DEPENDS and RDEPENDS to a recipe(s), build the affected packages and =
-investigate if they have been built in the expected order. This can for exa=
-mple be verified by tracking the build output or by looking through the coo=
-ker logs tmp/log/cooker/*.</p>
-<p>BR Petter</p>
-<p>&nbsp;</p>
-<div>
-<pre>Petter Mab&auml;cker
 
-Technux &lt;petter@technux.se&gt;
-www.technux.se</pre>
-</div>
-</div>
-</body></html>
+> Am 02.10.2015 um 03:25 schrieb Khem Raj <raj.khem@gmail.com>:
+>=20
+> Jens
+>=20
+>=20
+>> On Oct 1, 2015, at 11:18 AM, Jens Rehsack <rehsack@gmail.com> wrote:
+>>=20
+>>=20
+>> many bux-fixes, optmizations and features added:
+>>=20
+>> Changes with nginx 1.9.5                                         22 =
+Sep 2015
+>>=20
+>> [...]
+>>   *) Security: a stack-based buffer overflow might occur in a worker
+>>      process while handling a specially crafted request, potentially
+>>      resulting in arbitrary code execution (CVE-2013-2028); the bug =
+had
+>>      appeared in 1.3.9.
+>>      Thanks to Greg MacManus, iSIGHT Partners Labs.
+>>=20
+>=20
+>=20
+> This is good info. Although a link to diff in cgit or web view of =
+whatever SCM nginx uses would have done too.
 
---=_3126a95c15a15d379555f462a7ae4cb0--
+That's simply the Changelog. It's an update, not a fix for a critical =
+issue.
+Do you really ask me to list each fixed bug from nginx' ticket list?
+
+>> Signed-off-by: Jens Rehsack <sno@netbsd.org>
+>> [...]
+>> --- a/meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb
+>> +++ /dev/null
+>=20
+>=20
+> please user git format-patch -M to let git work harder on detecting =
+renames, its way easier to review the changes that way
+> this patch belongs to openembedded-devel list so please resend it =
+there with prefixing the layer in meta-openembedded repo =
+[meta-webserver] where the patch is applied.
+
+Sure, will do when I have feedback regarding above question.
+
+Regarding the other 6 patches - is just the right layer and "-M" =
+missing?
+Do I have to improve them anyhow (beside what Martin Jansa and Khem =
+criticized: missing description here and there)?
+
+>> [...]
+
+Cheers
+--=20
+Jens Rehsack - rehsack@gmail.com
+
+
