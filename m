@@ -1,40 +1,54 @@
-Return-Path: <krystian.gorny@wipotec.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D1C1E00985; Fri,  9 Oct 2015 01:36:25 -0700 (PDT)
+	id A5D65E00D29; Fri,  9 Oct 2015 02:16:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	T_REMOTE_IMAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.45 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mx03.wipotec.com (mx02.wipotec.com [195.243.255.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D678AE00473
-	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 01:36:22 -0700 (PDT)
-Received: from mx03.wipotec.com (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id 282BF381D16
-	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 10:36:21 +0200 (CEST)
-Received: from svr-exc-04.intern.wipotec.de (unknown [10.1.60.47])
-	by mx03.wipotec.com (Postfix) with ESMTP id 23439381045
-	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 10:36:21 +0200 (CEST)
-Received: from SVR-EXC-03.intern.wipotec.de ([10.1.60.46]) by
-	svr-exc-04.intern.wipotec.de ([10.1.60.47]) with mapi id 14.03.0158.001;
-	Fri, 9 Oct 2015 10:36:21 +0200
-From: Gorny Krystian <krystian.gorny@wipotec.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: VFAT patent EP 0 618 540
-Thread-Index: AdECbW49cDS4a3yeTSyBMRx0DnPn1w==
-Date: Fri, 9 Oct 2015 08:36:20 +0000
-Message-ID: <10D57FBA9FD7C14FB49EE17590E1AF94011F907751@svr-exc-03.intern.wipotec.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.18.125.192]
-x-olx-disclaimer: Done
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03429E00343
+	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 02:16:04 -0700 (PDT)
+Received: by vkfp126 with SMTP id p126so47678984vkf.3
+	for <yocto@yoctoproject.org>; Fri, 09 Oct 2015 02:16:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=7ogGRNhYy/gcx3VyS0VmK80TqiyujOFiOEXSgjUovvQ=;
+	b=G+rhBwnsPQwOx+Gh7e2vVoslsH1o4dRVjcOYL/RhyT1NoftLvRATSroRUTXDOIFCRs
+	df6/IOupRijc4Epx3DlO7EnyGwksewz5IEIl8s2gHqG9UC7a0SklC3n/TncRM11d6X9Q
+	C+xpjGtmiF2sssXB/OK/WMdk7fM1Ev8RUbYvSisOzyM5R9FyNPuv8Uc7nbbXSCno6fTc
+	KzL+PCh/gva0JiyC85HOn58kY6OwmJpsXsu+we1H93MEnlTnF7Z2qHvBsSymTC7XdFy9
+	/MSUMXiOQC3+ko7lEAAwbH55njKBBYlqzcd2CBJWzj/0Yk2NiozNltXpY+lZWdOWZEfB
+	p1+Q==
 MIME-Version: 1.0
-Subject: VFAT patent EP 0 618 540
+X-Received: by 10.31.107.26 with SMTP id g26mr8052082vkc.6.1444382163698; Fri,
+	09 Oct 2015 02:16:03 -0700 (PDT)
+Received: by 10.31.179.207 with HTTP; Fri, 9 Oct 2015 02:16:03 -0700 (PDT)
+In-Reply-To: <7c6d997df3e4c21753d1bb54c9bd42fe@technux.se>
+References: <CALLyC8Sk+k9jJCRByejYnO1WfmOx9849XuRqB3bxG538Gs1pyQ@mail.gmail.com>
+	<7c6d997df3e4c21753d1bb54c9bd42fe@technux.se>
+Date: Fri, 9 Oct 2015 14:46:03 +0530
+Message-ID: <CALLyC8Qu-X9LrhXqdUcLiAdT6DmROO_4DVp5ius0e+TcdV1bVw@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: petter@technux.se
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Can any one please tell the what is the exact difference between DEPENDS and RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,151 +60,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 08:36:25 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_10D57FBA9FD7C14FB49EE17590E1AF94011F907751svrexc03inter_"
+X-List-Received-Date: Fri, 09 Oct 2015 09:16:06 -0000
+Content-Type: multipart/alternative; boundary=001a1147830cc988ef0521a86dcf
 
---_000_10D57FBA9FD7C14FB49EE17590E1AF94011F907751svrexc03inter_
-Content-Type: text/plain; charset="us-ascii"
+--001a1147830cc988ef0521a86dcf
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
-I have a question regarding the VFAT patent (EP 0 618 540) owned by Microso=
-ft. It's about common name space for long and short filenames. I have read =
-that this patent was canceled by Germany / EU, but it's still available in =
-the US right? So is there a patch/option where we can activate to avoid thi=
-s patent?
-Thanks
-Krystian
+ Thanks
+ I have one more doubt when RDEPENDS variable depends is packages . Do you
+know why RDEPENDS variable in (rootfs-image.bb recipe) which inherit
+core-image. why RDEPENDS cant able to install packages in final roofs image
+apart from IMAGE_INSTALL .
 
 
-_____________________________________________________________________
 
-Krystian Gorny
-Research & Development
+Thanks and regrads
+     Vivek
 
-Wipotec GmbH
-Adam-Hoffmann-Str. 26
-67657 Kaiserslautern
+On Thu, Oct 8, 2015 at 6:19 PM, Petter Mab=C3=A4cker <petter@technux.se> wr=
+ote:
 
-T +49.631.34146-0
-F +49.631.34146-8640
-http://www.wipotec.com
+> 2015-10-08 06:37 skrev Vivek Per:
+>
+> Hi,
+>      Can any one please tell the what is the exact difference between
+> DEPENDS and RDEPENDS . I am not able to get it . How these variables are
+> exactly parsed.
+>
+>
+> -regards
+> vivek
+>
+>
+>
+> Hi,
+>
+> I guess you already have read through the manual about the variables?
+>
+>
+> http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-RDEPE=
+NDS
+>
+> http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-DEPEN=
+DS
+>
+>
+>
+> The overall description of the differences are (please someone correct me
+> if you find my answer incorrect) that DEPENDS specifics build-time
+> dependencies (e.i. other recipe files) so you should be guaranteed that a=
+ll
+> packages listed in the DEPENDS has been built and installed in the sysroo=
+t
+> before your new package starts its configure task.
+>
+> RDEPENDS on the other hand, is a run-time dependency so instead of other
+> recipe files RDEPENDS lists packages that should have been installed in
+> order to correctly run your package on target.
+>
+>
+> All this is explained more in detail in the manual (see above links). Als=
+o
+> keep in mind that DEPENDS works with recipes and RDEPENDS with packages
+> (which isn't necessary the same). Debug the PACKAGES for a specific
+> variable (
+> http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-PACKA=
+GES)
+> in order to get a clue about what packages a recipe will generate.
+>
+> If you still have a hard to understanding the differences my suggestion i=
+s
+> that you starts playing around a bit with them. Create a project and add
+> some DEPENDS and RDEPENDS to a recipe(s), build the affected packages and
+> investigate if they have been built in the expected order. This can for
+> example be verified by tracking the build output or by looking through th=
+e
+> cooker logs tmp/log/cooker/*.
+>
+> BR Petter
+>
+>
+>
+> Petter Mab=C3=A4cker
+>
+> Technux <petter@technux.se>www.technux.se
+>
+>
 
-
-[http://www.wipotec.com/fileadmin/user_upload/Signatur/W_Standard.jpg]<http=
-://www.wipotec.com>
-
-Legal information:
-Wipotec Wiege- und Positioniersysteme GmbH
-HRB 2317 Kaiserslautern, Management: T. D?ppre, U. Wagner
-
-This e-mail may contain confidential and/or privileged information.
-If you are not the intended recipient (or have received this e-mail in erro=
-r)
-please notify the sender immediately and delete this e-mail. Any unauthoriz=
-ed
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-forbidden.
-
---_000_10D57FBA9FD7C14FB49EE17590E1AF94011F907751svrexc03inter_
-Content-Type: text/html; charset="us-ascii"
+--001a1147830cc988ef0521a86dcf
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:10.0pt;
-	margin-left:0cm;
-	line-height:115%;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have a question regarding the=
- VFAT patent (EP 0 618 540) owned by Microsoft. It&#8217;s about common nam=
-e space for long and short filenames. I have read that this patent was canc=
-eled by Germany / EU, but it&#8217;s still available
- in the US right? So is there a patch/option where we can activate to avoid=
- this patent?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Krystian<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div dir=3D"ltr">Hi,<div>=C2=A0Thanks</div><div>=C2=A0I have one more doubt=
+ when RDEPENDS variable depends is packages . Do you know why RDEPENDS vari=
+able in (<a href=3D"http://rootfs-image.bb">rootfs-image.bb</a> recipe) whi=
+ch inherit core-image. why RDEPENDS cant able to install packages in final =
+roofs image apart from IMAGE_INSTALL .</div><div>=C2=A0</div><div><br></div=
+><div><br></div><div>Thanks and regrads =C2=A0 =C2=A0</div><div>=C2=A0 =C2=
+=A0 =C2=A0Vivek=C2=A0</div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, Oct 8, 2015 at 6:19 PM, Petter Mab=C3=A4cker <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:petter@technux.se" target=3D"_blank">pet=
+ter@technux.se</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><u><=
+/u>
+<div style=3D"font-family:Helvetica,Arial,sans-serif"><div><div class=3D"h5=
+">
+<p>2015-10-08 06:37 skrev Vivek Per:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px;border-left:#1010ff 2px=
+ solid;margin-left:5px;width:100%">
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">Hi,</span>
+<div style=3D"font-size:12.8px">=C2=A0 =C2=A0 =C2=A0Can any one please tell=
+ the what is the exact difference between DEPENDS and RDEPENDS . I am not a=
+ble to get it . How these variables are exactly parsed.</div>
+<div style=3D"font-size:12.8px">=C2=A0</div>
+<div style=3D"font-size:12.8px">=C2=A0</div>
+<div style=3D"font-size:12.8px">-regards</div>
+<div style=3D"font-size:12.8px"><span style=3D"color:#888888;font-size:12.8=
+px">vivek</span></div>
+<div style=3D"font-size:12.8px">
+<div><img src=3D"http://./program/blocked.gif" alt=3D""></div>
+<div>=C2=A0</div>
+<div>=C2=A0</div>
 </div>
-<br>
-_____________________________________________________________________
-<p><font size=3D"2" face=3D"Arial"><b>Krystian Gorny</b> <br>
-Research &amp; Development</p>
-<p>Wipotec GmbH<br>
-Adam-Hoffmann-Str. 26 <br>
-67657 Kaiserslautern </p>
-<p>T &#43;49.631.34146-0 <br>
-F &#43;49.631.34146-8640 <br>
-<a href=3D"http://www.wipotec.com">http://www.wipotec.com</a> </font></p>
-<p><br>
-<br>
-<font size=3D"4" face=3D"Arial"><a href=3D"http://www.wipotec.com"><img src=
-=3D"http://www.wipotec.com/fileadmin/user_upload/Signatur/W_Standard.jpg"><=
-/a></font><br>
-</p>
-<p><font size=3D"1" face=3D"Arial">Legal information:<br>
-Wipotec Wiege- und Positioniersysteme GmbH<br>
-HRB 2317 Kaiserslautern, Management: T. D&uuml;ppre, U. Wagner </p>
-This e-mail may contain confidential and/or privileged information.<br>
-If you are not the intended recipient (or have received this e-mail in erro=
-r)<br>
-please notify the sender immediately and delete this e-mail. Any unauthoriz=
-ed<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly<br>
-forbidden. </font><br>
-</body>
-</html>
+</div>
+</blockquote>
+</div></div><div>
+<p>Hi,</p>
+<p>I guess you already have read through the manual about the variables?</p=
+>
+<p><a href=3D"http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.ht=
+ml#var-RDEPENDS" target=3D"_blank">http://www.yoctoproject.org/docs/1.8/ref=
+-manual/ref-manual.html#var-RDEPENDS</a></p>
+<p><a href=3D"http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.ht=
+ml#var-DEPENDS" target=3D"_blank">http://www.yoctoproject.org/docs/1.8/ref-=
+manual/ref-manual.html#var-DEPENDS</a></p>
+<p>=C2=A0</p>
+<p>The overall description of the differences are (please someone correct m=
+e if you find my answer incorrect) that DEPENDS specifics build-time depend=
+encies (e.i. other recipe files) so you should be guaranteed that all packa=
+ges listed in the DEPENDS has been built and installed in the sysroot befor=
+e your new package starts its configure task.</p>
+<p>RDEPENDS on the other hand, is a run-time dependency so instead of other=
+ recipe files RDEPENDS lists packages that should have been installed in or=
+der to correctly run your package on target.</p>
+<p><br>All this is explained more in detail in the manual (see above links)=
+. Also keep in mind that DEPENDS works with recipes and RDEPENDS with packa=
+ges (which isn&#39;t necessary the same). Debug the PACKAGES for a specific=
+ variable (<a href=3D"http://www.yoctoproject.org/docs/1.8/ref-manual/ref-m=
+anual.html#var-PACKAGES" target=3D"_blank">http://www.yoctoproject.org/docs=
+/1.8/ref-manual/ref-manual.html#var-PACKAGES</a>) in order to get a clue ab=
+out what packages a recipe will generate.</p>
+<p>If you still have a hard to understanding the differences my suggestion =
+is that you starts playing around a bit with them. Create a project and add=
+ some DEPENDS and RDEPENDS to a recipe(s), build the affected packages and =
+investigate if they have been built in the expected order. This can for exa=
+mple be verified by tracking the build output or by looking through the coo=
+ker logs tmp/log/cooker/*.</p>
+<p>BR Petter</p>
+<p>=C2=A0</p>
+<div>
+<pre>Petter Mab=C3=A4cker
 
---_000_10D57FBA9FD7C14FB49EE17590E1AF94011F907751svrexc03inter_--
+Technux &lt;<a href=3D"mailto:petter@technux.se" target=3D"_blank">petter@t=
+echnux.se</a>&gt;
+<a href=3D"http://www.technux.se" target=3D"_blank">www.technux.se</a></pre=
+>
+</div>
+</div>
+</div>
+</blockquote></div><br></div>
+
+--001a1147830cc988ef0521a86dcf--
