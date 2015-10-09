@@ -1,6 +1,6 @@
 Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84155E00BED; Fri,  9 Oct 2015 08:41:48 -0700 (PDT)
+	id E8687E01005; Fri,  9 Oct 2015 09:27:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,40 +8,40 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4AA9E0071C
-	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 08:41:46 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Oct 2015 08:41:45 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC24E0071C
+	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 09:27:34 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 09 Oct 2015 09:27:34 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.17,658,1437462000"; 
-	d="scan'208,217";a="788600794"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by orsmga001.jf.intel.com with ESMTP; 09 Oct 2015 08:41:45 -0700
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 9 Oct 2015 08:41:45 -0700
+	d="scan'208,217";a="807385236"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Oct 2015 09:27:34 -0700
+Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Fri, 9 Oct 2015 09:27:34 -0700
 Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.6]) by
-	fmsmsx116.amr.corp.intel.com ([169.254.2.182]) with mapi id
-	14.03.0248.002; Fri, 9 Oct 2015 08:41:44 -0700
+	FMSMSX155.amr.corp.intel.com ([169.254.5.158]) with mapi id
+	14.03.0248.002; Fri, 9 Oct 2015 09:27:33 -0700
 From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW41
-Thread-Index: AdECqP/CA4a4d43/T0iqSDv44ukxmw==
-Date: Fri, 9 Oct 2015 15:41:44 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E556B2D38@fmsmsx111.amr.corp.intel.com>
+Thread-Topic: Yocto Project Status WW41 - Updated
+Thread-Index: AdECr2YVMyQ9szUdSlWtF3lTGwTrSg==
+Date: Fri, 9 Oct 2015 16:27:33 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E556B4EB3@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Subject: Yocto Project Status WW41
+Subject: Yocto Project Status WW41 - Updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,12 +53,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Oct 2015 15:41:48 -0000
+X-List-Received-Date: Fri, 09 Oct 2015 16:27:39 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B2D38fmsmsx111amrcor_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B4EB3fmsmsx111amrcor_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B2D38fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B4EB3fmsmsx111amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -72,7 +72,7 @@ SWAT team rotation: Cristian -> Randy
 https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
 
 
-Top Bugs to be tackled:
+Top Bugs to be tackled (2.0 release blockers):
 
 *         systemd timeouts in the sanity tests (#7919, #8141, #8142)
 
@@ -86,22 +86,25 @@ Key Status/Updates:
 *         Hopefully everyone at ELC-E is having a good time!
 
 *         Jethro has branched, current master and jethro are identical and =
-master will track jethro until close to release.
+master will track jethro for now.
 
 *         RC1 is out of QA and the results from QA are being reviewed.  RC2=
- should be built and go into QA early next week.
+ will be built and go into QA early next week, assuming fixes become availa=
+ble.
 
 *         Intermittent systemd, and repeatable LSB and wic failures in sani=
-ty tests causing failed build runs.
+ty tests causing failed build runs are high priority issues which will bloc=
+k release.
 
-*         Reminder:
 
-o    We have renamed YP 1.9 to YP 2.0.
+Reminders:
 
-o    The current version that is in development will launch as YP 2.0 in Oc=
-tober, 2015.
+*         We have renamed YP 1.9 to YP 2.0.
 
-o    The release name for YP 2.0 is 'jethro'.
+*         The current version that is in development will launch as YP 2.0 =
+in October, 2015.
+
+*         The release name for YP 2.0 is 'jethro'.
 
 
 Key YP 1.9/2.0 Dates:
@@ -140,7 +143,7 @@ INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
 * Email:                             stephen.k.jolley@intel.com
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B2D38fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B4EB3fmsmsx111amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -248,8 +251,8 @@ div.WordSection1
 	{page:WordSection1;}
 /* List Definitions */
 @list l0
-	{mso-list-id:104424252;
-	mso-list-template-ids:-1771301118;}
+	{mso-list-id:762385942;
+	mso-list-template-ids:345145656;}
 @list l0:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -324,8 +327,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l1
-	{mso-list-id:195775452;
-	mso-list-template-ids:-559230624;}
+	{mso-list-id:1412506145;
+	mso-list-template-ids:609012270;}
 @list l1:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -400,8 +403,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l2
-	{mso-list-id:1458639702;
-	mso-list-template-ids:-8887128;}
+	{mso-list-id:1640262900;
+	mso-list-template-ids:926319552;}
 @list l2:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -476,8 +479,8 @@ div.WordSection1
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
 @list l3
-	{mso-list-id:1769617688;
-	mso-list-template-ids:107245692;}
+	{mso-list-id:1992560630;
+	mso-list-template-ids:86667566;}
 @list l3:level1
 	{mso-level-number-format:bullet;
 	mso-level-text:\F0B7;
@@ -551,6 +554,82 @@ div.WordSection1
 	text-indent:-.25in;
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
+@list l4
+	{mso-list-id:2020692245;
+	mso-list-template-ids:-1781859174;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
 ol
 	{margin-bottom:0in;}
 ul
@@ -583,9 +662,9 @@ project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
 pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Top Bu=
-gs to be tackled:</span><o:p></o:p></p>
+gs to be tackled (2.0 release blockers):</span><o:p></o:p></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
 1;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -595,7 +674,7 @@ sp;
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">systemd timeouts in t=
 he sanity tests (#7919, #8141, #8142)<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
 1;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -605,7 +684,7 @@ sp;
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">All LSB builds fail s=
 anity testing (#8452)<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
 1;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -620,7 +699,7 @@ mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
 pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Key St=
 atus/Updates:</span><o:p></o:p></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l4 level1 lfo=
 2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -630,7 +709,7 @@ sp;
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Hopefully everyone at=
  ELC-E is having a good time!<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
 3;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -638,10 +717,10 @@ or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
 sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Jethro has branched, =
-current master and jethro are identical and master will track jethro until =
-close to release.<o:p></o:p></span></p>
+current master and jethro are identical and master will track jethro for no=
+w.<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
 4;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -649,10 +728,10 @@ or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
 sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">RC1 is out of QA and =
-the results from QA are being reviewed. &nbsp;RC2 should be built and go in=
-to QA early next week.<o:p></o:p></span></p>
+the results from QA are being reviewed. &nbsp;RC2 will be built and go into=
+ QA early next week, assuming fixes become available.<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
 4;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
@@ -661,44 +740,42 @@ sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Intermittent systemd,=
  and repeatable LSB and wic failures in sanity tests causing failed build r=
-uns.
-<o:p></o:p></span></p>
+uns are high priority issues which will block release.<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Remind=
+ers:</span><o:p></o:p></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
-4;vertical-align:baseline">
+5;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
  &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Reminder:
-<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level2 lf=
-o4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">We have renamed YP 1.=
 9 to YP 2.0.
 <o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level2 lf=
-o4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+5;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
+ &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">The current version t=
 hat is in development will launch as YP 2.0 in October, 2015.
 <o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level2 lf=
-o4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+5;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
+ &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;
 </span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
 &quot;Arial&quot;,&quot;sans-serif&quot;;color:black">The release name for =
 YP 2.0 is &#8216;jethro&#8217;.<o:p></o:p></span></p>
@@ -811,4 +888,4 @@ uot;sans-serif&quot;"><o:p></o:p></span></p>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B2D38fmsmsx111amrcor_--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E556B4EB3fmsmsx111amrcor_--
