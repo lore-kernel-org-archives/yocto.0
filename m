@@ -1,34 +1,46 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 184D4E00B6A; Fri,  9 Oct 2015 23:32:54 -0700 (PDT)
+	id 7A607E01096; Sat, 10 Oct 2015 09:51:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72EDBE00343
-	for <yocto@yoctoproject.org>; Fri,  9 Oct 2015 23:32:46 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t9A6WikM010672
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 9 Oct 2015 23:32:45 -0700 (PDT)
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
-	Fri, 9 Oct 2015 23:32:44 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Sat, 10 Oct 2015 02:32:42 -0400
-Message-ID: <1444458762-140180-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH][meta-selinux] refpolicy: fix exit code issue of bzip2
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6869E00B1C
+	for <yocto@yoctoproject.org>; Sat, 10 Oct 2015 09:50:58 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1ZkxMF-0002jT-J0
+	for yocto@yoctoproject.org; Sat, 10 Oct 2015 18:50:55 +0200
+Received: from ppp-2-86-169-83.home.otenet.gr ([2.86.169.83])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 10 Oct 2015 18:50:55 +0200
+Received: from gmane by ppp-2-86-169-83.home.otenet.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 10 Oct 2015 18:50:55 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Sat, 10 Oct 2015 19:50:38 +0300
+Message-ID: <561941DE.8050106@reliableembeddedsystems.com>
+References: <10D57FBA9FD7C14FB49EE17590E1AF94011F907751@svr-exc-03.intern.wipotec.de>	<561807B5.2010206@reliableembeddedsystems.com>
+	<CAALGJZbpi4KuFo6+pooJ7Nt9Q4n99LqQX_R52D0CxT9qz5Myiw@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp-2-86-169-83.home.otenet.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+In-Reply-To: <CAALGJZbpi4KuFo6+pooJ7Nt9Q4n99LqQX_R52D0CxT9qz5Myiw@mail.gmail.com>
+Cc: Yocto list discussion <public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
+Subject: Re: VFAT patent EP 0 618 540
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,57 +52,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Oct 2015 06:32:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 10 Oct 2015 16:51:01 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+Hi,
 
-'bzip2 -qt $moudle_name.pp' has different exit codes on different
-distributions, for example:
+On 10/09/2015 10:58 PM, Christian Ege wrote:
+> A decent U-Boot can load the kernel from ext4. And I do not know any ROM
+> loader which needs vfat, except maybe this TI SOCs...
 
-* On Redhat/CentOS/Fedora, OpenSUSE:
+Yep that's what I mean. The on-chip loader, which loads MLO,...
 
-  $ bzip2 -qt /tmp/tor.pp
-  bzip2: /tmp/tor.pp: bad magic number (file not created by bzip2)
-  $ echo $?
-  0
+Anyhow I tried to come up with a scenario where someone might possibly
+want to use vfat.
 
-This causes install errors:
+> 
+> Regards,
+> Christian
 
-  unzip2: /path/to/*.pp is not a bzip2 file.
-  libsepol.module_package_read_offsets: module package header truncated
-  Failed to read policy package
+Regards,
 
-* Ubuntu has fixed it:
+Robert
 
-  $ bzip2 -qt /tmp/tor.pp
-  bzip2: /tmp/tor.pp: bad magic number (file not created by bzip2)
-  $ echo $?
-  2
+..."Engineering is a science of tradeoffs" -- Yale Patt (computer
+architecture guru)
 
-The difference involved by '-q' options, remove it would get the bzip2
-works consistently. bzip2-native has the same issue, anyway it should
-be fixed separately.
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- recipes-security/refpolicy/refpolicy_common.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index de38dfc..5acbf3e 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -84,7 +84,7 @@ prepare_policy_store () {
- 		MOD_DIR=${POL_ACTIVE_MODS}/${MOD_NAME}
- 		mkdir -p ${MOD_DIR}
- 		echo -n "${HLL_TYPE}" > ${MOD_DIR}/lang_ext
--		if ! bzip2 -qt $i 2>/dev/null; then
-+		if ! bzip2 -t $i >/dev/null 2>&1; then
- 			${HLL_BIN} $i | bzip2 --stdout > ${MOD_DIR}/cil
- 			bzip2 -f $i && mv -f $i.bz2 $i
- 		else
--- 
-1.9.1
 
 
