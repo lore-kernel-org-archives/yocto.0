@@ -1,49 +1,42 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <djnass_18@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE364E00B99; Mon, 12 Oct 2015 11:06:57 -0700 (PDT)
+	id 043E1E00957; Mon, 12 Oct 2015 12:04:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (djnass_18[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.0.225 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3731E00AF6
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 11:06:53 -0700 (PDT)
-Received: by iofl186 with SMTP id l186so76902385iof.2
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 11:06:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=Tr1TWgWRQpkZeSsFVKutfz6wQ3zB2VwgA8Tiw1xy9V0=;
-	b=QQ2o1h+MNX1zY5wnl8PS9vCUd6kyh9cN9rXnQk3myEfd+ffiHtuG87rcfJX8f/1RQv
-	sq/Lv24bjuj+QjxW1TQCP6Fi7Ip6vDwPFnX1PKLu6ilUEymItH76xCB6LrGe+QacElNR
-	bGqsA8MlPxjais+1Mvx1HnoRf8WM1IuiOUY4C+5FN7GdkzzK3O5RpkHzEu5bQ0ZIVaEZ
-	Tpt9perzAIT5aDxNUzm/zrQE8tN8S3W3P9M/qhvuyC4BUl/K82hmySD+tmA3HFcxsqGb
-	Tja0qZlV5+TkgT/F5LqQGHN4s6lFoQFDEu57KGsvbkhpCoLdzUlgbxjsg+wy2x72uwI0
-	U5ig==
-X-Received: by 10.107.40.201 with SMTP id o192mr28765364ioo.83.1444673212330; 
-	Mon, 12 Oct 2015 11:06:52 -0700 (PDT)
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Mon, 12 Oct 2015 12:03:57 PDT
+Received: from DUB004-OMC1S26.hotmail.com (dub004-omc1s26.hotmail.com
+	[157.55.0.225])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3B57E00957
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 12:03:57 -0700 (PDT)
+Received: from DUB128-W75 ([157.55.0.239]) by DUB004-OMC1S26.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Mon, 12 Oct 2015 12:02:55 -0700
+X-TMN: [ndaoD6SYeW3Jg2MUcS1KACLuwzK3n1lr]
+X-Originating-Email: [djnass_18@hotmail.com]
+Message-ID: <DUB128-W75D018E784AB715F2EE5C798310@phx.gbl>
+From: Thanassis Silis <djnass_18@hotmail.com>
+To: Christopher Larson <clarson@kergoth.com>
+Date: Mon, 12 Oct 2015 19:02:55 +0000
+Importance: Normal
+In-Reply-To: <CABcZANmyWji+iYZ8zoBBEbQ9c=t0xBUd0fgGXGE_1kU5i4xXJA@mail.gmail.com>
+References: <DUB128-W3890E99CA3478F4E8A991D98310@phx.gbl>,
+	<DUB128-W14F5A73F31F2C4FA1E3DB798310@phx.gbl>,
+	<CABcZANmyWji+iYZ8zoBBEbQ9c=t0xBUd0fgGXGE_1kU5i4xXJA@mail.gmail.com>
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.65.204 with HTTP; Mon, 12 Oct 2015 11:06:32 -0700 (PDT)
-In-Reply-To: <DUB128-W14F5A73F31F2C4FA1E3DB798310@phx.gbl>
-References: <DUB128-W3890E99CA3478F4E8A991D98310@phx.gbl>
-	<DUB128-W14F5A73F31F2C4FA1E3DB798310@phx.gbl>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Mon, 12 Oct 2015 11:06:32 -0700
-X-Google-Sender-Auth: 7KbqxhEovNUoK1ajCwqSlqnqspo
-Message-ID: <CABcZANmyWji+iYZ8zoBBEbQ9c=t0xBUd0fgGXGE_1kU5i4xXJA@mail.gmail.com>
-To: Thanassis Silis <djnass_18@hotmail.com>
+X-OriginalArrivalTime: 12 Oct 2015 19:02:55.0614 (UTC)
+	FILETIME=[9A4AC9E0:01D10520]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: FW: packages are compiled but not included in the final image
 X-BeenThere: yocto@yoctoproject.org
@@ -57,168 +50,257 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 18:06:57 -0000
-Content-Type: multipart/alternative; boundary=001a1141f410a3933e0521ec3177
+X-List-Received-Date: Mon, 12 Oct 2015 19:04:01 -0000
+Content-Type: multipart/alternative;
+	boundary="_c802d020-e79e-42fb-a081-eb99f6b78158_"
 
---001a1141f410a3933e0521ec3177
-Content-Type: text/plain; charset=UTF-8
-
-On Mon, Oct 12, 2015 at 10:08 AM, Thanassis Silis <djnass_18@hotmail.com>
-wrote:
-
-> From: djnass_18@hotmail.com
-> To: yocto-bounces@yoctoproject.org
-> Subject: [yocto] packages are compiled but not included in the final image
-> Date: Mon, 12 Oct 2015 16:53:51 +0000
->
-> Hi all,
-> I am attempting to add a few executables that are not there by default in
-> a "core-image-base" image.
->
-> so my conf/local.conf looks like
->
-> MACHINE ??= 'imx6qsabrelite'
-> #after version 1.5, use
-> #MACHINE ??= 'nitrogen6x'
->
-> DISTRO ?= 'poky'
-> PACKAGE_CLASSES ?= "package_rpm package_ipk package_deb"
->
-> #dev see http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html
-> EXTRA_IMAGE_FEATURES = " debug-tweaks "
-> EXTRA_IMAGE_FEATURES += " package-management  "
-> EXTRA_IMAGE_FEATURES += " ssh-server-openssh lmsensors "
->
-> USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-> PATCHRESOLVE = "noop"
-> BB_DISKMON_DIRS = "\
->     STOPTASKS,${TMPDIR},1G,100K \
->     STOPTASKS,${DL_DIR},1G,100K \
->     STOPTASKS,${SSTATE_DIR},1G,100K \
->     ABORT,${TMPDIR},100M,1K \
->     ABORT,${DL_DIR},100M,1K \
->     ABORT,${SSTATE_DIR},100M,1K"
-> CONF_VERSION = "1"
->
-> BB_NUMBER_THREADS = '2'
-> PARALLEL_MAKE = '-j 2'
-> ACCEPT_FSL_EULA = ""
->
->
-> #webserver
-> CORE_IMAGE_EXTRA_INSTALL += " apache2 php "
->
-> CORE_IMAGE_EXTRA_INSTALL += " rrdtool bc screen ntp minicom  "
->
-> The image has been created but I have the following problems.
->
-> while ntpd has been installed on the image and works fine, the executable
-> ntpdate is NOT there.
-> bash is also missing from core-image-base . is that to be expected? Should
-> I add it as a CORE_IMAGE_EXTRA_INSTALL or as an EXTRA_IMAGE_FEATURE ?
->
-
-Yes, that's expected, busybox is used by default. Add bash yourself if you
-want it, or use a different image.
-
-For ntpdate, it's split out into its own package, so add 'ntpdate' to
-CORE_IMAGE_EXTRA_INSTALL as well if you want that.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a1141f410a3933e0521ec3177
-Content-Type: text/html; charset=UTF-8
+--_c802d020-e79e-42fb-a081-eb99f6b78158_
+Content-Type: text/plain; charset="iso-8859-7"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Oct 12, 2015 at 10:08 AM, Thanassis Silis <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:djnass_18@hotmail.com" target=3D"_blank">djnass_18@hotmail.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>From: <a hr=
-ef=3D"mailto:djnass_18@hotmail.com" target=3D"_blank">djnass_18@hotmail.com=
-</a><br>To: <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_bl=
-ank">yocto-bounces@yoctoproject.org</a><br>Subject: [yocto] packages are co=
-mpiled but not included in the final image<br>Date: Mon, 12 Oct 2015 16:53:=
-51 +0000<br><br>
+=0A=
+=0A=
+=0A=
+Hi Christopher=2C
+thank you for the quick response. may I ask the following as well:
+
+i am attempting to include "lmsensors"  as well as a CORE_IMAGE_EXTRA_INSTA=
+LL.=20
+I get errors while do_rootfs() runs
+
+Error: lmsensors not found in the base feeds (imx6qsabrelite armv7a-vfp-neo=
+n armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e armv5-vfp armv5 armv4=
+ arm noarch any all).
+| ERROR: Function failed: do_rootfs (see /mnt/hd/nassdata/yocto/fsl-communi=
+ty-bsp/build/tmp/work/imx6qsabrelite-poky-linux-gnueabi/fsl-image-test/1.0-=
+r0/temp/log.do_rootfs.16989 for further information)
+ERROR: Task 7 (/mnt/hd/nassdata/yocto/fsl-community-bsp/sources/meta-fsl-de=
+mos/recipes-fsl/images/fsl-image-test.bb=2C do_rootfs) failed with exit cod=
+e '1'
+NOTE: Tasks Summary: Attempted 5692 tasks of which 5690 didn't need to be r=
+erun and 1 failed.
+No currently running tasks (5691 of 5693)
+
+it doesn't seem to be accepted but the log is not particularly informative.=
+=20
+In other cases that i googled it seemed that setting
+
+ALLOW_EMPTY_${PN}-dbg =3D "1"
+ALLOW_EMPTY_${PN}-dev =3D "1"
+
+in sources/poky/meta/conf/bitbake.conf solved their issues. But these are a=
+lready set in my case.
 
 
-<div dir=3D"ltr">
+
+From: clarson@kergoth.com
+Date: Mon=2C 12 Oct 2015 11:06:32 -0700
+Subject: Re: [yocto] FW: packages are compiled but not included in the fina=
+l image
+To: djnass_18@hotmail.com
+CC: yocto@yoctoproject.org
 
 
-<div dir=3D"ltr">Hi all,<br>I am attempting to add a few executables that a=
-re not there by default in a &quot;core-image-base&quot; image.<br><br>so m=
-y conf/local.conf looks like<br><br><blockquote><font face=3D"Courier New,s=
-ans-serif">MACHINE ??=3D &#39;imx6qsabrelite&#39;</font><font face=3D"Couri=
-er New,sans-serif"><br></font><font face=3D"Courier New,sans-serif">#after =
-version 1.5, use</font><font face=3D"Courier New,sans-serif"><br></font><fo=
-nt face=3D"Courier New,sans-serif">#MACHINE ??=3D &#39;nitrogen6x&#39;</fon=
-t><font face=3D"Courier New,sans-serif"><br></font><font face=3D"Courier Ne=
-w,sans-serif"><br></font><font face=3D"Courier New,sans-serif">DISTRO ?=3D =
-&#39;poky&#39;</font><font face=3D"Courier New,sans-serif"><br></font><font=
- face=3D"Courier New,sans-serif">PACKAGE_CLASSES ?=3D &quot;package_rpm pac=
-kage_ipk package_deb&quot;</font><font face=3D"Courier New,sans-serif"><br>=
-</font><font face=3D"Courier New,sans-serif"><br></font><font face=3D"Couri=
-er New,sans-serif">#dev see <a href=3D"http://www.yoctoproject.org/docs/1.8=
-/mega-manual/mega-manual.html" target=3D"_blank">http://www.yoctoproject.or=
-g/docs/1.8/mega-manual/mega-manual.html</a></font><font face=3D"Courier New=
-,sans-serif"><br></font><font face=3D"Courier New,sans-serif">EXTRA_IMAGE_F=
-EATURES =3D &quot; debug-tweaks &quot;</font><font face=3D"Courier New,sans=
--serif"><br></font><font face=3D"Courier New,sans-serif">EXTRA_IMAGE_FEATUR=
-ES +=3D &quot; package-management=C2=A0 &quot;</font><font face=3D"Courier =
-New,sans-serif"><br></font><font face=3D"Courier New,sans-serif">EXTRA_IMAG=
-E_FEATURES +=3D &quot; ssh-server-openssh </font><font face=3D"Courier New,=
-sans-serif"><font face=3D"Courier New,sans-serif"><font face=3D"Courier New=
-,sans-serif">lmsensors</font></font> &quot;</font><font face=3D"Courier New=
-,sans-serif"><br></font><font face=3D"Courier New,sans-serif"><br></font><f=
-ont face=3D"Courier New,sans-serif">USER_CLASSES ?=3D &quot;buildstats imag=
-e-mklibs image-prelink&quot;</font><font face=3D"Courier New,sans-serif"><b=
-r></font><font face=3D"Courier New,sans-serif">PATCHRESOLVE =3D &quot;noop&=
-quot;</font><font face=3D"Courier New,sans-serif"><br></font><font face=3D"=
-Courier New,sans-serif">BB_DISKMON_DIRS =3D &quot;\</font><font face=3D"Cou=
-rier New,sans-serif"><br></font><font face=3D"Courier New,sans-serif">=C2=
-=A0=C2=A0=C2=A0 STOPTASKS,${TMPDIR},1G,100K \</font><font face=3D"Courier N=
-ew,sans-serif"><br></font><font face=3D"Courier New,sans-serif">=C2=A0=C2=
-=A0=C2=A0 STOPTASKS,${DL_DIR},1G,100K \</font><font face=3D"Courier New,san=
-s-serif"><br></font><font face=3D"Courier New,sans-serif">=C2=A0=C2=A0=C2=
-=A0 STOPTASKS,${SSTATE_DIR},1G,100K \</font><font face=3D"Courier New,sans-=
-serif"><br></font><font face=3D"Courier New,sans-serif">=C2=A0=C2=A0=C2=A0 =
-ABORT,${TMPDIR},100M,1K \</font><font face=3D"Courier New,sans-serif"><br><=
-/font><font face=3D"Courier New,sans-serif">=C2=A0=C2=A0=C2=A0 ABORT,${DL_D=
-IR},100M,1K \</font><font face=3D"Courier New,sans-serif"><br></font><font =
-face=3D"Courier New,sans-serif">=C2=A0=C2=A0=C2=A0 ABORT,${SSTATE_DIR},100M=
-,1K&quot; </font><font face=3D"Courier New,sans-serif"><br></font><font fac=
-e=3D"Courier New,sans-serif">CONF_VERSION =3D &quot;1&quot;</font><font fac=
-e=3D"Courier New,sans-serif"><br></font><font face=3D"Courier New,sans-seri=
-f"><br></font><font face=3D"Courier New,sans-serif">BB_NUMBER_THREADS =3D &=
-#39;2&#39;</font><font face=3D"Courier New,sans-serif"><br></font><font fac=
-e=3D"Courier New,sans-serif">PARALLEL_MAKE =3D &#39;-j 2&#39;</font><font f=
-ace=3D"Courier New,sans-serif"><br></font><font face=3D"Courier New,sans-se=
-rif">ACCEPT_FSL_EULA =3D &quot;&quot;</font><font face=3D"Courier New,sans-=
-serif"><br></font><font face=3D"Courier New,sans-serif"><br></font><font fa=
-ce=3D"Courier New,sans-serif"><br></font><font face=3D"Courier New,sans-ser=
-if">#webserver</font><font face=3D"Courier New,sans-serif"><br></font><font=
- face=3D"Courier New,sans-serif">CORE_IMAGE_EXTRA_INSTALL +=3D &quot; apach=
-e2 php &quot;</font><font face=3D"Courier New,sans-serif"><br></font><font =
-face=3D"Courier New,sans-serif"><br></font><font face=3D"Courier New,sans-s=
-erif">CORE_IMAGE_EXTRA_INSTALL +=3D &quot; rrdtool bc screen ntp minicom=C2=
-=A0</font><font face=3D"Courier New,sans-serif"><font face=3D"Courier New,s=
-ans-serif"> </font>&quot;</font><br><br></blockquote>The image has been cre=
-ated but I have the following problems.<br><br>while ntpd has been installe=
-d on the image and works fine, the executable ntpdate is NOT there.<br>bash=
- is also missing from core-image-base . is that to be expected? Should I ad=
-d it as a CORE_IMAGE_EXTRA_INSTALL or as an EXTRA_IMAGE_FEATURE ?</div></di=
-v></div></blockquote></div><br>Yes, that&#39;s expected, busybox is used by=
- default. Add bash yourself if you want it, or use a different image.</div>=
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">For ntpdate=
-, it&#39;s split out into its own package, so add &#39;ntpdate&#39; to CORE=
-_IMAGE_EXTRA_INSTALL as well if you want that.<br>-- <br><div class=3D"gmai=
-l_signature">Christopher Larson<br>clarson at kergoth dot com<br>Founder - =
-BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software =
-Engineer, Mentor Graphics</div>
-</div></div>
+On Mon=2C Oct 12=2C 2015 at 10:08 AM=2C Thanassis Silis <djnass_18@hotmail.=
+com> wrote:
+From: djnass_18@hotmail.com
+To: yocto-bounces@yoctoproject.org
+Subject: [yocto] packages are compiled but not included in the final image
+Date: Mon=2C 12 Oct 2015 16:53:51 +0000
 
---001a1141f410a3933e0521ec3177--
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+Hi all=2C
+I am attempting to add a few executables that are not there by default in a=
+ "core-image-base" image.
+
+so my conf/local.conf looks like
+
+MACHINE ??=3D 'imx6qsabrelite'
+#after version 1.5=2C use
+#MACHINE ??=3D 'nitrogen6x'
+
+DISTRO ?=3D 'poky'
+PACKAGE_CLASSES ?=3D "package_rpm package_ipk package_deb"
+
+#dev see http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html
+EXTRA_IMAGE_FEATURES =3D " debug-tweaks "
+EXTRA_IMAGE_FEATURES +=3D " package-management  "
+EXTRA_IMAGE_FEATURES +=3D " ssh-server-openssh lmsensors "
+
+USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
+PATCHRESOLVE =3D "noop"
+BB_DISKMON_DIRS =3D "\
+    STOPTASKS=2C${TMPDIR}=2C1G=2C100K \
+    STOPTASKS=2C${DL_DIR}=2C1G=2C100K \
+    STOPTASKS=2C${SSTATE_DIR}=2C1G=2C100K \
+    ABORT=2C${TMPDIR}=2C100M=2C1K \
+    ABORT=2C${DL_DIR}=2C100M=2C1K \
+    ABORT=2C${SSTATE_DIR}=2C100M=2C1K"=20
+CONF_VERSION =3D "1"
+
+BB_NUMBER_THREADS =3D '2'
+PARALLEL_MAKE =3D '-j 2'
+ACCEPT_FSL_EULA =3D ""
+
+
+#webserver
+CORE_IMAGE_EXTRA_INSTALL +=3D " apache2 php "
+
+CORE_IMAGE_EXTRA_INSTALL +=3D " rrdtool bc screen ntp minicom  "
+
+The image has been created but I have the following problems.
+
+while ntpd has been installed on the image and works fine=2C the executable=
+ ntpdate is NOT there.
+bash is also missing from core-image-base . is that to be expected? Should =
+I add it as a CORE_IMAGE_EXTRA_INSTALL or as an EXTRA_IMAGE_FEATURE ?
+Yes=2C that's expected=2C busybox is used by default. Add bash yourself if =
+you want it=2C or use a different image.
+For ntpdate=2C it's split out into its own package=2C so add 'ntpdate' to C=
+ORE_IMAGE_EXTRA_INSTALL as well if you want that.
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake=2C OpenEmbedded=2C OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer=2C Mentor Graphics=0A=
+=0A=
+ 		 	   		  =
+
+--_c802d020-e79e-42fb-a081-eb99f6b78158_
+Content-Type: text/html; charset="iso-8859-7"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+</head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>=0A=
+=0A=
+<style><!--=0A=
+.hmmessage P=0A=
+{=0A=
+margin:0px=3B=0A=
+padding:0px=0A=
+}=0A=
+body.hmmessage=0A=
+{=0A=
+font-size: 12pt=3B=0A=
+font-family:Calibri=0A=
+}=0A=
+--></style>=0A=
+<div dir=3D"ltr">Hi Christopher=2C<br>thank you for the quick response. may=
+ I ask the following as well:<br><br>i am attempting to include "lmsensors"=
+&nbsp=3B as well as a CORE_IMAGE_EXTRA_INSTALL. <br>I get errors while do_r=
+ootfs() runs<br><br>Error: lmsensors not found in the base feeds (imx6qsabr=
+elite armv7a-vfp-neon armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e a=
+rmv5-vfp armv5 armv4 arm noarch any all).<br>| ERROR: Function failed: do_r=
+ootfs (see /mnt/hd/nassdata/yocto/fsl-community-bsp/build/tmp/work/imx6qsab=
+relite-poky-linux-gnueabi/fsl-image-test/1.0-r0/temp/log.do_rootfs.16989 fo=
+r further information)<br>ERROR: Task 7 (/mnt/hd/nassdata/yocto/fsl-communi=
+ty-bsp/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-test.bb=2C do_ro=
+otfs) failed with exit code '1'<br>NOTE: Tasks Summary: Attempted 5692 task=
+s of which 5690 didn't need to be rerun and 1 failed.<br>No currently runni=
+ng tasks (5691 of 5693)<br><br>it doesn't seem to be accepted but the log i=
+s not particularly informative. <br>In other cases that i googled it seemed=
+ that setting<br><br>ALLOW_EMPTY_${PN}-dbg =3D "1"<br>ALLOW_EMPTY_${PN}-dev=
+ =3D "1"<br><br>in sources/poky/meta/conf/bitbake.conf solved their issues.=
+ But these are already set in my case.<br><br><br><br><div><hr id=3D"stopSp=
+elling">From: clarson@kergoth.com<br>Date: Mon=2C 12 Oct 2015 11:06:32 -070=
+0<br>Subject: Re: [yocto] FW: packages are compiled but not included in the=
+ final image<br>To: djnass_18@hotmail.com<br>CC: yocto@yoctoproject.org<br>=
+<br><div dir=3D"ltr"><div class=3D"ecxgmail_extra"><br><div class=3D"ecxgma=
+il_quote">On Mon=2C Oct 12=2C 2015 at 10:08 AM=2C Thanassis Silis <span dir=
+=3D"ltr">&lt=3B<a href=3D"mailto:djnass_18@hotmail.com" target=3D"_blank">d=
+jnass_18@hotmail.com</a>&gt=3B</span> wrote:<br><blockquote class=3D"ecxgma=
+il_quote" style=3D"border-left:1px #ccc solid=3Bpadding-left:1ex=3B"><div>F=
+rom: <a href=3D"mailto:djnass_18@hotmail.com" target=3D"_blank">djnass_18@h=
+otmail.com</a><br>To: <a href=3D"mailto:yocto-bounces@yoctoproject.org" tar=
+get=3D"_blank">yocto-bounces@yoctoproject.org</a><br>Subject: [yocto] packa=
+ges are compiled but not included in the final image<br>Date: Mon=2C 12 Oct=
+ 2015 16:53:51 +0000<br><br>=0A=
+=0A=
+=0A=
+<div dir=3D"ltr">=0A=
+=0A=
+=0A=
+<div dir=3D"ltr">Hi all=2C<br>I am attempting to add a few executables that=
+ are not there by default in a "core-image-base" image.<br><br>so my conf/l=
+ocal.conf looks like<br><br><blockquote><font face=3D"Courier New=2Csans-se=
+rif">MACHINE ??=3D 'imx6qsabrelite'</font><font face=3D"Courier New=2Csans-=
+serif"><br></font><font face=3D"Courier New=2Csans-serif">#after version 1.=
+5=2C use</font><font face=3D"Courier New=2Csans-serif"><br></font><font fac=
+e=3D"Courier New=2Csans-serif">#MACHINE ??=3D 'nitrogen6x'</font><font face=
+=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-s=
+erif"><br></font><font face=3D"Courier New=2Csans-serif">DISTRO ?=3D 'poky'=
+</font><font face=3D"Courier New=2Csans-serif"><br></font><font face=3D"Cou=
+rier New=2Csans-serif">PACKAGE_CLASSES ?=3D "package_rpm package_ipk packag=
+e_deb"</font><font face=3D"Courier New=2Csans-serif"><br></font><font face=
+=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-s=
+erif">#dev see <a href=3D"http://www.yoctoproject.org/docs/1.8/mega-manual/=
+mega-manual.html" target=3D"_blank">http://www.yoctoproject.org/docs/1.8/me=
+ga-manual/mega-manual.html</a></font><font face=3D"Courier New=2Csans-serif=
+"><br></font><font face=3D"Courier New=2Csans-serif">EXTRA_IMAGE_FEATURES =
+=3D " debug-tweaks "</font><font face=3D"Courier New=2Csans-serif"><br></fo=
+nt><font face=3D"Courier New=2Csans-serif">EXTRA_IMAGE_FEATURES +=3D " pack=
+age-management&nbsp=3B "</font><font face=3D"Courier New=2Csans-serif"><br>=
+</font><font face=3D"Courier New=2Csans-serif">EXTRA_IMAGE_FEATURES +=3D " =
+ssh-server-openssh </font><font face=3D"Courier New=2Csans-serif"><font fac=
+e=3D"Courier New=2Csans-serif"><font face=3D"Courier New=2Csans-serif">lmse=
+nsors</font></font> "</font><font face=3D"Courier New=2Csans-serif"><br></f=
+ont><font face=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courie=
+r New=2Csans-serif">USER_CLASSES ?=3D "buildstats image-mklibs image-prelin=
+k"</font><font face=3D"Courier New=2Csans-serif"><br></font><font face=3D"C=
+ourier New=2Csans-serif">PATCHRESOLVE =3D "noop"</font><font face=3D"Courie=
+r New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-serif">BB_D=
+ISKMON_DIRS =3D "\</font><font face=3D"Courier New=2Csans-serif"><br></font=
+><font face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nbsp=3B STOPTASKS=
+=2C${TMPDIR}=2C1G=2C100K \</font><font face=3D"Courier New=2Csans-serif"><b=
+r></font><font face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nbsp=3B S=
+TOPTASKS=2C${DL_DIR}=2C1G=2C100K \</font><font face=3D"Courier New=2Csans-s=
+erif"><br></font><font face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&n=
+bsp=3B STOPTASKS=2C${SSTATE_DIR}=2C1G=2C100K \</font><font face=3D"Courier =
+New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-serif">&nbsp=
+=3B&nbsp=3B&nbsp=3B ABORT=2C${TMPDIR}=2C100M=2C1K \</font><font face=3D"Cou=
+rier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-serif">&=
+nbsp=3B&nbsp=3B&nbsp=3B ABORT=2C${DL_DIR}=2C100M=2C1K \</font><font face=3D=
+"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-seri=
+f">&nbsp=3B&nbsp=3B&nbsp=3B ABORT=2C${SSTATE_DIR}=2C100M=2C1K" </font><font=
+ face=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Cs=
+ans-serif">CONF_VERSION =3D "1"</font><font face=3D"Courier New=2Csans-seri=
+f"><br></font><font face=3D"Courier New=2Csans-serif"><br></font><font face=
+=3D"Courier New=2Csans-serif">BB_NUMBER_THREADS =3D '2'</font><font face=3D=
+"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-seri=
+f">PARALLEL_MAKE =3D '-j 2'</font><font face=3D"Courier New=2Csans-serif"><=
+br></font><font face=3D"Courier New=2Csans-serif">ACCEPT_FSL_EULA =3D ""</f=
+ont><font face=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courie=
+r New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-serif"><br>=
+</font><font face=3D"Courier New=2Csans-serif">#webserver</font><font face=
+=3D"Courier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-s=
+erif">CORE_IMAGE_EXTRA_INSTALL +=3D " apache2 php "</font><font face=3D"Cou=
+rier New=2Csans-serif"><br></font><font face=3D"Courier New=2Csans-serif"><=
+br></font><font face=3D"Courier New=2Csans-serif">CORE_IMAGE_EXTRA_INSTALL =
++=3D " rrdtool bc screen ntp minicom&nbsp=3B</font><font face=3D"Courier Ne=
+w=2Csans-serif"><font face=3D"Courier New=2Csans-serif"> </font>"</font><br=
+><br></blockquote>The image has been created but I have the following probl=
+ems.<br><br>while ntpd has been installed on the image and works fine=2C th=
+e executable ntpdate is NOT there.<br>bash is also missing from core-image-=
+base . is that to be expected? Should I add it as a CORE_IMAGE_EXTRA_INSTAL=
+L or as an EXTRA_IMAGE_FEATURE ?</div></div></div></blockquote></div><br>Ye=
+s=2C that's expected=2C busybox is used by default. Add bash yourself if yo=
+u want it=2C or use a different image.</div><div class=3D"ecxgmail_extra"><=
+br></div><div class=3D"ecxgmail_extra">For ntpdate=2C it's split out into i=
+ts own package=2C so add 'ntpdate' to CORE_IMAGE_EXTRA_INSTALL as well if y=
+ou want that.<br>-- <br><div class=3D"ecxgmail_signature">Christopher Larso=
+n<br>clarson at kergoth dot com<br>Founder - BitBake=2C OpenEmbedded=2C Ope=
+nZaurus<br>Maintainer - Tslib<br>Senior Software Engineer=2C Mentor Graphic=
+s</div>=0A=
+</div></div></div></div>=0A=
+ 		 	   		  </div></body>
+</html>=
+
+--_c802d020-e79e-42fb-a081-eb99f6b78158_--
