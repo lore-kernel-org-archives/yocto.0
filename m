@@ -1,44 +1,53 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <dfldashgkv@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 700EDE00B66; Mon, 12 Oct 2015 07:01:33 -0700 (PDT)
+	id B1361E00B3F; Mon, 12 Oct 2015 09:03:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (shiftee[at]eircom.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 320EFE00814
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 07:01:28 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 12 Oct 2015 07:01:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,673,1437462000"; d="scan'208";a="790490017"
-Received: from irsmsx152.ger.corp.intel.com ([163.33.192.66])
-	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2015 07:01:10 -0700
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.151]) by
-	IRSMSX152.ger.corp.intel.com ([169.254.6.38]) with mapi id
-	14.03.0248.002; Mon, 12 Oct 2015 15:01:09 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Allen Curtis <allen.curtis@curtisembedded.com>, yocto
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] packagegroup not appearing in HOB
-Thread-Index: AQHRBPZxajzRWPP480e3zHNURntE0Q==
-Date: Mon, 12 Oct 2015 14:01:09 +0000
-Message-ID: <D24179D4.677F2%belen.barros.pena@intel.com>
-References: <591A7BB6-5C46-4D67-B8BC-9F6E57442A40@curtisembedded.com>
-In-Reply-To: <591A7BB6-5C46-4D67-B8BC-9F6E57442A40@curtisembedded.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.5.6.150930
-x-originating-ip: [10.237.224.32]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f194.google.com (mail-wi0-f194.google.com
+	[209.85.212.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44484E00AE9
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
+Received: by wicid10 with SMTP id id10so24993130wic.0
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=MmCJL6tvLkgzQLpOXFJuxKoDX0fFbCXaXG/92etQ/vE=;
+	b=pWeRAQizypTzi0Odw0txbSJTV7DO8Ro6n0lBttH63xitn4aS0FQQPx6B4FHP8UrANy
+	YoWMP4IW9d2Tev4TsbxxiUEJ+E+5mGdFP/mEd+AND7gE9FtIl7sx2hQi2ocXu2nnR2Xv
+	nMHoUfDdf/x8KL7a/kkm3pimc/1Z5J0Phoa4Luw/zdZWjbY7iNeYbVuN+It2ZkTUV4gY
+	bpGoiU+p7+6Lw9rJKhO1H9T9ymA4C4WBLjvjRxgxVhe2trXHkUc/NwACMpshd657uGcD
+	VsITrEwIrRFp/xecnEvO5KpyV0/3l/1r3W6SDexR5HFDZAMLa5Lg6w7FJwKF0fuc2mxt
+	s1EA==
 MIME-Version: 1.0
-Subject: Re: packagegroup not appearing in HOB
+X-Received: by 10.180.189.12 with SMTP id ge12mr1596928wic.73.1444665818045;
+	Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
+Sender: dfldashgkv@gmail.com
+Received: by 10.28.55.134 with HTTP; Mon, 12 Oct 2015 09:03:37 -0700 (PDT)
+In-Reply-To: <CAJv4cO3=XKLp4cXSG_o7zvHFP5-NBS7u3zBaee+vz-2rww21ZQ@mail.gmail.com>
+References: <CAJv4cO0rD_wNZDYAMxJdD2wJRUs6omi99j26FSj=+fzgJyWGbw@mail.gmail.com>
+	<5605B618.7010700@gmail.com>
+	<CAJv4cO3=XKLp4cXSG_o7zvHFP5-NBS7u3zBaee+vz-2rww21ZQ@mail.gmail.com>
+Date: Mon, 12 Oct 2015 17:03:37 +0100
+X-Google-Sender-Auth: C7F4GTknMt7z5FZ7fJJBQpmy9vc
+Message-ID: <CAJv4cO3bZC8f87irry39ryRDuBp5sVXWDQqtbUK7OKdSj3wO3Q@mail.gmail.com>
+From: "Mark O'Donovan" <shiftee@eircom.net>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Webkit2gtk opengl issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,98 +59,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 14:01:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <E973A3C0E46CB14C86C9BC84495ABF62@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 12 Oct 2015 16:03:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
-
-
-On 07/10/2015 18:36, "yocto-bounces@yoctoproject.org on behalf of Allen
-Curtis" <yocto-bounces@yoctoproject.org on behalf of
-allen.curtis@curtisembedded.com> wrote:
-
->Hello,
+On Mon, Sep 28, 2015 at 11:51 AM, Mark O'Donovan <shiftee@eircom.net> wrote:
+> On Fri, Sep 25, 2015 at 10:01 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+>> On 09/23/15 07:53, Mark O'Donovan wrote:
+>>> I am working on an am335x based project, with a webkitgtk
+>>> program on the screen, displaying a simple webpage.
+>>>
+>>> I want to use a standard yocto kernel, which I believe
+>>> means I must do without the SGX hardware acceleration
+>>> until an open-source driver is available.
+>>
+>> You need to use whatever kernel the accelerated drivers were written
+>> against. Sometimes that can be fairly recent, other times: not so much.
+>>
+>>> Thus in fido I had added opengl to DISTRO_FEATURES_remove
+>>> This worked with webkitgtk 1.x
+>>>
+>>> The webkitgtk 2.x recipe  also specifies opengl as optional.
+>>> However it depends on gtk+3 which depends on libepoxy
+>>> which requires virtual/egl.
+>>
+>> For ARM SoCs/boards that have mali (which isn't your case, but is mine),
+>> the user-space binary-only mali drivers PROVIDE egl, so it is possible
+>> for me to build libepoxy with DISTRO_FEATURES_remove = "opengl" and the
+>> mali test app and x11 server both build and run correctly.
+>>
+>>> Is this an oversight??
+>>>
+>>> Is it possible to build webkit 2.x without opengl??
+>>
+>> I don't know. But in the mali case it is possible to have mali provide
+>> egl/gles1/gles2 and have mesa-gl provide an opengl-only solution as a
+>> fall-back for any non-egl/gles1/2 apps (or at least theoretically it is).
+>>
+>> Hope this helps.
 >
->I created a packagegroup file as per the instructions called
->packagegroup-foo.bb
 >
->Within that file I define 2 package groups as such.
 >
->PACKAGES =3D "\
-> packagegroup-foo-apps \
-> packagegroup-foo-tools \
->"
+> Thanks Ross, Trevor,
 >
->RDEPENDS_packagegroup-foo-apps =3D "=8A"
+> With webkitgtk 1.8 I was having issues with opengl present.
+> It seems not to be the case here.
+> My screen is completely blank.
+> I have discovered that the page fails to render due to
+> javascript.
+> Disabling JIT solves this issue.
+> The example below fails to render if JIT is enabled.
+> It will however render if I uncomment the 'alert' statement.
 >
->RDEPENDS_packagegroup-foo-tools =3D "=8A"
+> <!DOCTYPE html>
+> <html>
+> <head>
+> <title>Test</title>
+> </head>
+> <body>
+> <p>Page Rendered</p>
+> <script>
+>   //alert("JavaScript works")
+> </script>
+> </body>
+> </html>
 >
->However, when I run HOB and inspect the list of packages it shows
->packagegroup-foo but it does not list packagegroup-foo-apps or
->packagegroup-foo-tools.
->
->Is this correct?
->
->How do I verify the groups are created correctly so I can complete
->implementation using the new group definitions?
+> Is there anything you would like me to test??
 
-Hi Allen,
+So has anyone else come across this??
+If not then I will file a bug for JIT in webkitgtk on arm7.
 
-Hob development has been on hold for quite a while, so I am not sure how
-reliable the list of packages currently is.
-
-If you would like to know if your package group is set up correctly, and
-you want to do it with a graphical tool, you can use Toaster, which is the
-replacement for Hob. There is a manual here
-
-www.yoctoproject.org/docs/1.8/toaster-manual/toaster-manual.html
-
-And a quick video tutorial here
-
-https://www.youtube.com/watch?v=3Df3gDg75FwFo
-
-Assuming you are building with 1.8 fido, you can set up Toaster
-dependencies as explained here
-
-http://www.yoctoproject.org/docs/1.8/toaster-manual/toaster-manual.html#toa
-ster-manual-start
-
-And then run Toaster locally as explained here
-
-http://www.yoctoproject.org/docs/1.8/toaster-manual/toaster-manual.html#set
-ting-up-locally-and-running-in-build-mode
-
-You would then need to import your custom layer (the one providing your
-package group) and build packagegroup-foo
-
-Once the build finishes, you can select it, view the list of packages
-built, search for packagegroup-foo, and look at its dependencies. If the
-package group is working as intended, the dependencies should list
-packagegroup-foo-apps and packagegroup-foo-tools, and in turn the
-dependencies for each of those should list the RDEPENDS you specified.
-
-I know this all sounds quite convoluted, but it's actually not too bad :)
-This is how the RDEPENDS for a package group look like in Toaster
-
-http://imgur.com/E7OCp08
-
-
-If you have any questions, let me know.
-
-Cheers
-
-Bel=E9n
-
-
->
->TIA
->
->--=20
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+Mark
 
