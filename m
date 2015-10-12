@@ -1,6 +1,6 @@
 Return-Path: <thshin@telechips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C079E00ACC; Mon, 12 Oct 2015 02:25:40 -0700 (PDT)
+	id 1322FE00ACC; Mon, 12 Oct 2015 02:37:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,20 +13,20 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
 	*      information
 Received: from telegweb.telechips.com (unknown [219.240.43.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D22F2E00985
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 02:25:34 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D675DE00985
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 02:37:54 -0700 (PDT)
 x-mimeole: Produced By Microsoft Exchange V6.5
 MIME-Version: 1.0
-Date: Mon, 12 Oct 2015 18:24:30 +0900
-Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F379F47@telegweb.telechips.com>
+Date: Mon, 12 Oct 2015 18:36:48 +0900
+Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F379F62@telegweb.telechips.com>
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-Thread-Topic: Re: Why RDEPENDS wont install packages in rootfs (Vivek Per)
-Thread-Index: AdEEz8yw+AyfPNvRTBCmOW57GiyexQ==
+Thread-Topic: Re: Toolchain with debug support (atulkumar singh)
+Thread-Index: AdEE0YR3xsF2Lo9RQ7uia/IanJkG+Q==
 From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
 	<thshin@telechips.com>
 To: <yocto@yoctoproject.org>
-Subject: Re: Why RDEPENDS wont install packages in rootfs (Vivek Per)
+Subject: Re: Toolchain with debug support (atulkumar singh)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,47 +38,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 09:25:40 -0000
+X-List-Received-Date: Mon, 12 Oct 2015 09:37:58 -0000
 Content-class: urn:content-classes:message
 Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01D104D0.4756BFD2"
+	boundary="----_=_NextPart_001_01D104D1.FF20C54E"
 
-------_=_NextPart_001_01D104D0.4756BFD2
+------_=_NextPart_001_01D104D1.FF20C54E
 Content-Type: text/plain;
 	charset="ks_c_5601-1987"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-Results of the image class is different from the result of the package =
-class(rpm, deb, ipk)
+Try the following:
 
-RDEPENDS is used by the package class
+TARGET_CFLAGS_append =3D " -g -O0"
 
-For example, in the case of using the rpm
-
-Add the contents of the RDEPENDS to Requires items in the spec file=20
-
-This information applies when you create the rpm by using a spec file.
-
-=20
-
-When you create a rootfs to install the contents of IMAGE_INSTALL in the =
-image class
-
-also to install using rpm, using --requires option to install an =
-additional package to find those that have dependencies.
-
-=20
-
-IMAGE_INSTALL an item to install the rootfs, RDEPENDS is the option to =
-use when specifying a package with a dependency
+TARGET_CXXFLAGS_append =3D " -g -O0"
 
 =20
 
 =20
 
 Thanks,
+
+=20
 
 Best Regards, Wily Taekhyun Shin
 
@@ -141,7 +125,7 @@ contents and destroy all copies of the original message.
 =20
 
 
-------_=_NextPart_001_01D104D0.4756BFD2
+------_=_NextPart_001_01D104D1.FF20C54E
 Content-Type: text/html;
 	charset="ks_c_5601-1987"
 Content-Transfer-Encoding: quoted-printable
@@ -188,10 +172,24 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"=B1=DB=C0=DA=B8=B8 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:10.0pt;
+	font-family:"Courier New";}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
 	color:windowtext;}
+span.Char
+	{mso-style-name:"=B1=DB=C0=DA=B8=B8 Char";
+	mso-style-priority:99;
+	mso-style-link:=B1=DB=C0=DA=B8=B8;
+	font-family:"Courier New";}
 .MsoChpDefault
 	{mso-style-type:export-only;}
 /* Page Definitions */
@@ -208,38 +206,17 @@ div.WordSection1
 </o:shapelayout></xml><![endif]--></head><body lang=3DKO link=3Dblue =
 vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
 lang=3DEN-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Results of the image class is different from the result of =
-the package class(rpm, deb, ipk)<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>RDEPENDS is used by the package =
-class<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>For =
-example, in the case of using the rpm<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Add the contents of the RDEPENDS to =
-Requires items in the spec file <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>This information applies when you =
-create the rpm by using a spec file.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>When you create a rootfs to install =
-the contents of IMAGE_INSTALL in the image class<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>also to install using rpm, using =
---requires option to install an additional package to find those that =
-have dependencies.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Try the following:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>TARGET_CFLAGS_append =3D &quot; -g =
+-O0&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>TARGET_CXXFLAGS_append =3D &quot; -g =
+-O0&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
 lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>IMAGE_INSTALL an item to install the rootfs, RDEPENDS is =
-the option to use when specifying a package with a =
-dependency<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
-align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Thanks,<o:p></o:p></span></p><p class=3DMsoNormal =
-align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Best Regards, Wily Taekhyun Shin</span><span =
-lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'><o:p></o:p></span>=
-</p><p class=3DMsoNormal align=3Dleft =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
+lang=3DEN-US>Thanks,<o:p></o:p></span></p><p class=3DMsoPlainText><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
+lang=3DEN-US>Best Regards, Wily Taekhyun Shin<o:p></o:p></span></p><p =
+class=3DMsoNormal align=3Dleft =
 style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
 umeric;word-break:keep-all'><span lang=3DEN-US =
 style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
@@ -399,4 +376,4 @@ message.<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D<o:p></o:p></span></p><p class=3DMsoNormal><span =
 lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
 
-------_=_NextPart_001_01D104D0.4756BFD2--
+------_=_NextPart_001_01D104D1.FF20C54E--
