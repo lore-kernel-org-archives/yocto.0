@@ -1,53 +1,32 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <thshin@telechips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DA16E00B5E; Mon, 12 Oct 2015 00:58:02 -0700 (PDT)
+	id 7C079E00ACC; Mon, 12 Oct 2015 02:25:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (atul.singh008[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_NONE,T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1E90E00B45
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 00:57:59 -0700 (PDT)
-Received: by igkz10 with SMTP id z10so41457212igk.1
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 00:57:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=jkv5gnxDKRJyyrCFTaoqeOyjobtWy0DbcAZ02Y/uyew=;
-	b=H5e3C2cxYChsRIQ4AWmnqanOTPjAKX1OEtZmoWj/WKXSMGUXFiH3biYCCpZPrrxOIK
-	8lvYkbsnNilI7hQnSRL4BD9PtuXlGC9+PJ39CMbnd9x4eL5AEoUmbmaGY1ZU46yRwKHr
-	xPTTBwlgV3/RXGE9SqIIRlSwShVypYQ7JvG4bZeBiOI9dqIDxO67kpUynhJs6bz93dtU
-	Qr1kCiwxU4DFY1a+hJzdF3cnJyHVrt12aoZuLP0azSRAraX9lFjOv24iFcUErBMcc1Mg
-	bJT6feHhU7uoiTd3LSuYVwXqU6y7+xiM6xsXJBabVSZKOma48wXSLsY6bYPeG9g/ltPU
-	Yd1Q==
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+Received: from telegweb.telechips.com (unknown [219.240.43.118])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D22F2E00985
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 02:25:34 -0700 (PDT)
+x-mimeole: Produced By Microsoft Exchange V6.5
 MIME-Version: 1.0
-X-Received: by 10.50.50.137 with SMTP id c9mr10053672igo.23.1444636678878;
-	Mon, 12 Oct 2015 00:57:58 -0700 (PDT)
-Received: by 10.107.43.148 with HTTP; Mon, 12 Oct 2015 00:57:58 -0700 (PDT)
-Received: by 10.107.43.148 with HTTP; Mon, 12 Oct 2015 00:57:58 -0700 (PDT)
-In-Reply-To: <CAH21_vFC5NEwgpWOtXsb1dURUnvFGPZiQB=59PNAWL=-0NphFA@mail.gmail.com>
-References: <CAH21_vFPe9XChKr3VaGdwt+6Vscpux-ic3mWcgzB2qLXTdtRpA@mail.gmail.com>
-	<CAH21_vFC5NEwgpWOtXsb1dURUnvFGPZiQB=59PNAWL=-0NphFA@mail.gmail.com>
-Date: Mon, 12 Oct 2015 13:27:58 +0530
-Message-ID: <CAH21_vH74c9-yzXiQjJmxgOPKvBvqta9RQDBcWrr1CfHK_r1ug@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Toolchain with debug support
+Date: Mon, 12 Oct 2015 18:24:30 +0900
+Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F379F47@telegweb.telechips.com>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: Re: Why RDEPENDS wont install packages in rootfs (Vivek Per)
+Thread-Index: AdEEz8yw+AyfPNvRTBCmOW57GiyexQ==
+From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
+	<thshin@telechips.com>
+To: <yocto@yoctoproject.org>
+Subject: Re: Why RDEPENDS wont install packages in rootfs (Vivek Per)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,32 +38,365 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 07:58:02 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc07b212fbc50521e3b0be
+X-List-Received-Date: Mon, 12 Oct 2015 09:25:40 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01D104D0.4756BFD2"
 
---047d7bdc07b212fbc50521e3b0be
-Content-Type: text/plain; charset=UTF-8
+------_=_NextPart_001_01D104D0.4756BFD2
+Content-Type: text/plain;
+	charset="ks_c_5601-1987"
+Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+Hi,
 
-Can anyone please tell me how to build a meta toolchain with debug support
-by setting CFLAGS to "-g -O0".
+Results of the image class is different from the result of the package =
+class(rpm, deb, ipk)
 
-I tried adding this into gcc recipe but that didn't worked out for me as
-another option I even tried adding CFLAGS_gcc = "-g -O0".
-But no success, actually I wish to debug inside a function.
+RDEPENDS is used by the package class
 
-Thanks and regards,
-Atul
+For example, in the case of using the rpm
 
---047d7bdc07b212fbc50521e3b0be
-Content-Type: text/html; charset=UTF-8
+Add the contents of the RDEPENDS to Requires items in the spec file=20
 
-<p dir="ltr">Hi All,</p>
-<p dir="ltr">Can anyone please tell me how to build a meta toolchain with debug support by setting CFLAGS to &quot;-g -O0&quot;.</p>
-<p dir="ltr">I tried adding this into gcc recipe but that didn&#39;t worked out for me as another option I even tried adding CFLAGS_gcc = &quot;-g -O0&quot;.<br>
-But no success, actually I wish to debug inside a function.</p>
-<p dir="ltr">Thanks and regards,<br>
-Atul</p>
+This information applies when you create the rpm by using a spec file.
 
---047d7bdc07b212fbc50521e3b0be--
+=20
+
+When you create a rootfs to install the contents of IMAGE_INSTALL in the =
+image class
+
+also to install using rpm, using --requires option to install an =
+additional package to find those that have dependencies.
+
+=20
+
+IMAGE_INSTALL an item to install the rootfs, RDEPENDS is the option to =
+use when specifying a package with a dependency
+
+=20
+
+=20
+
+Thanks,
+
+Best Regards, Wily Taekhyun Shin
+
+=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+Wily Taekhyun Shin
+
+Research Engineer
+R&D Center
+Telechips Inc.
+Tel : + 82-2-3443-6792(Ext.390)
+
+Fax : + 82-2-6424-7793=20
+
+Mobile : + 82-10-4376-5530
+
+E-mail : thshin@telechips.com =
+<blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked::=
+blocked::blocked::mailto:ksjeon@telechips.com>=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+=BA=BB =B8=DE=C0=CF=B0=FA =C3=B7=BA=CE =B9=AE=BC=AD=B4=C2 =
+=A2=DF=C5=DA=B7=B9=C4=A8=BD=BA=C0=C7 =B0=ED=C0=AF =B1=C7=C7=D1=C0=CE =
+=BA=F1=B9=D0 =C1=A4=BA=B8=B8=A6 =C6=F7=C7=D4=C7=CF=B0=ED =
+=C0=D6=BD=C0=B4=CF=B4=D9.
+=A2=DF=C5=DA=B7=B9=C4=A8=BD=BA=C0=C7 =BB=E7=C0=FC =BC=AD=B8=E9 =
+=BD=C2=C0=CE =BE=F8=C0=CC =BE=EE=B6=B0=C7=D1 =C7=FC=C5=C2=B3=AA =
+=B9=E6=B9=FD=C0=B8=B7=CE=B5=B5 =BA=BB =BA=F1=B9=D0=C1=A4=BA=B8=B8=A6 =
+=C1=A63=C0=DA=BF=A1=B0=D4
+=B4=A9=BC=B3=C7=CF=B0=C5=B3=AA, =C0=FC=B4=DE=C7=CF=B0=C5=B3=AA, =
+=BB=E7=BF=EB=C7=D2 =BC=F6 =BE=F8=BD=C0=B4=CF=B4=D9. =B8=B8=C0=CF =
+=B1=CD=C7=CF=B0=A1 =B8=DE=C0=CF=C0=C7 =BF=C3=B9=D9=B8=A5 =
+=BC=F6=BD=C5=C0=CE=C0=CC =BE=C6=B4=D2 =B0=E6=BF=EC,
+=BA=BB =B8=DE=C0=CF=C0=BB =B9=DD=BC=DB=C7=CF=B0=ED =
+=BB=E8=C1=A6=C7=CF=BF=A9 =C1=D6=BD=C3=B1=E2 =B9=D9=B6=F8=B4=CF=B4=D9.=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+
+This mail and attachments contain confidential information of Telechips =
+Inc. which has its own authority.
+It is not allowed to disclose,transmit or use this confidential =
+information to the third parties without the=20
+prior written consent of Telechips Inc. by any form or means.=20
+If you are not the intended recipient, please notify the sender =
+immediately and do not disclose the=20
+contents and destroy all copies of the original message.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+
+=20
+
+
+------_=_NextPart_001_01D104D0.4756BFD2
+Content-Type: text/html;
+	charset="ks_c_5601-1987"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dks_c_5601-1987"><meta name=3DGenerator content=3D"Microsoft =
+Word 12 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:=B1=BC=B8=B2;
+	panose-1:2 11 6 0 0 1 1 1 1 1;}
+@font-face
+	{font-family:=B1=BC=B8=B2;
+	panose-1:2 11 6 0 0 1 1 1 1 1;}
+@font-face
+	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:"\@=B1=BC=B8=B2";
+	panose-1:2 11 6 0 0 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:10.0pt;
+	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DKO link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+lang=3DEN-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Results of the image class is different from the result of =
+the package class(rpm, deb, ipk)<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>RDEPENDS is used by the package =
+class<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>For =
+example, in the case of using the rpm<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Add the contents of the RDEPENDS to =
+Requires items in the spec file <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>This information applies when you =
+create the rpm by using a spec file.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>When you create a rootfs to install =
+the contents of IMAGE_INSTALL in the image class<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>also to install using rpm, using =
+--requires option to install an additional package to find those that =
+have dependencies.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>IMAGE_INSTALL an item to install the rootfs, RDEPENDS is =
+the option to use when specifying a package with a =
+dependency<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
+align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'color:black'>Thanks,<o:p></o:p></span></p><p class=3DMsoNormal =
+align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'color:black'>Best Regards, Wily Taekhyun Shin</span><span =
+lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:black'><o:p></o:p></span>=
+</p><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
+/span></p><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
+an lang=3DEN-US =
+style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br></span><b><span =
+lang=3DEN-US style=3D'font-family:"Arial","sans-serif";color:blue'>Wily =
+Taekhyun Shin<o:p></o:p></span></b></p><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:#00695A'>Research =
+Engineer<br>R&amp;D Center<br></span><b><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:blue'>Telechips =
+Inc.<br></span></b><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:teal'>Tel : + =
+82-2-3443-6792(Ext.390)</span><b><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:blue'><o:p></o:p></span><=
+/b></p><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:teal'>Fax : + =
+82-2-6424-7793 </span><span lang=3DEN-US =
+style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
+><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:teal'>Mobile : + =
+82-10-4376-5530<o:p></o:p></span></p><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:#00695A'>E-mail : =
+</span><span lang=3DEN-US =
+style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><a =
+href=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::bl=
+ocked::blocked::blocked::mailto:ksjeon@telechips.com" target=3D"_blank" =
+title=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::b=
+locked::blocked::blocked::blocked::mailto:ksjeon@telechips.com&#10;blocke=
+d::blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked=
+::blocked::mailto:ksjeon@telechips.com&#10;blocked::b"><b><span =
+style=3D'font-family:"Arial","sans-serif";color:blue'>thshin@telechips.co=
+m</span></b></a><br></span><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
+an lang=3DEN-US =
+style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br></span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BA=BB</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B8=DE=C0=CF=B0=FA</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C3=B7=BA=CE</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B9=AE=BC=AD=B4=C2</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=A2=DF=C5=DA=B7=B9=C4=A8=BD=BA=C0=C7</=
+span><span style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B0=ED=C0=AF</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B1=C7=C7=D1=C0=CE</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BA=F1=B9=D0</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C1=A4=BA=B8=B8=A6</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C6=F7=C7=D4=C7=CF=B0=ED</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C0=D6=BD=C0=B4=CF=B4=D9</span><span =
+lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif"'>.<br></span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=A2=DF=C5=DA=B7=B9=C4=A8=BD=BA=C0=C7</=
+span><span style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BB=E7=C0=FC</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BC=AD=B8=E9</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BD=C2=C0=CE</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BE=F8=C0=CC</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BE=EE=B6=B0=C7=D1</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C7=FC=C5=C2=B3=AA</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B9=E6=B9=FD=C0=B8=B7=CE=B5=B5</span><=
+span style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BA=BB</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BA=F1=B9=D0=C1=A4=BA=B8=B8=A6</span><=
+span style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C1=A6</span><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif"'>3</span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C0=DA=BF=A1=B0=D4</span><span =
+lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'><br></span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B4=A9=BC=B3=C7=CF=B0=C5=B3=AA</span><=
+span lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>, =
+</span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C0=FC=B4=DE=C7=CF=B0=C5=B3=AA</span><=
+span lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>, =
+</span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BB=E7=BF=EB=C7=D2</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BC=F6</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BE=F8=BD=C0=B4=CF=B4=D9</span><span =
+lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>. </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B8=B8=C0=CF</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B1=CD=C7=CF=B0=A1</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B8=DE=C0=CF=C0=C7</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BF=C3=B9=D9=B8=A5</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BC=F6=BD=C5=C0=CE=C0=CC</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BE=C6=B4=D2</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B0=E6=BF=EC</span><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif"'>,<br></span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BA=BB</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B8=DE=C0=CF=C0=BB</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B9=DD=BC=DB=C7=CF=B0=ED</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=BB=E8=C1=A6=C7=CF=BF=A9</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=C1=D6=BD=C3=B1=E2</span><span =
+style=3D'font-family:"Arial","sans-serif"'> </span><span =
+style=3D'font-family:=B1=BC=B8=B2'>=B9=D9=B6=F8=B4=CF=B4=D9</span><span =
+lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>. =
+<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</span><span lang=3DEN-US =
+style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
+><p class=3DMsoNormal align=3Dleft =
+style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
+umeric;word-break:keep-all'><span lang=3DEN-US =
+style=3D'font-family:"Arial","sans-serif"'>This mail and attachments =
+contain confidential information of Telechips Inc. which has its own =
+authority.<br>It is not allowed to disclose,transmit or use this =
+confidential information to the third parties without the <br>prior =
+written consent of Telechips Inc. by any form or means. <br>If you are =
+not the intended recipient, please notify the sender immediately and do =
+not disclose the <br>contents and destroy all copies of the original =
+message.<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+
+------_=_NextPart_001_01D104D0.4756BFD2--
