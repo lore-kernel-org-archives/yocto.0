@@ -1,53 +1,41 @@
-Return-Path: <dfldashgkv@gmail.com>
+Return-Path: <djnass_18@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1361E00B3F; Mon, 12 Oct 2015 09:03:40 -0700 (PDT)
+	id 89E7FE00B1E; Mon, 12 Oct 2015 10:10:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (shiftee[at]eircom.net)
+	mail provider *      (djnass_18[at]hotmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.212.194 listed in list.dnswl.org]
+	*      [157.55.2.22 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f194.google.com (mail-wi0-f194.google.com
-	[209.85.212.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44484E00AE9
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
-Received: by wicid10 with SMTP id id10so24993130wic.0
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=MmCJL6tvLkgzQLpOXFJuxKoDX0fFbCXaXG/92etQ/vE=;
-	b=pWeRAQizypTzi0Odw0txbSJTV7DO8Ro6n0lBttH63xitn4aS0FQQPx6B4FHP8UrANy
-	YoWMP4IW9d2Tev4TsbxxiUEJ+E+5mGdFP/mEd+AND7gE9FtIl7sx2hQi2ocXu2nnR2Xv
-	nMHoUfDdf/x8KL7a/kkm3pimc/1Z5J0Phoa4Luw/zdZWjbY7iNeYbVuN+It2ZkTUV4gY
-	bpGoiU+p7+6Lw9rJKhO1H9T9ymA4C4WBLjvjRxgxVhe2trXHkUc/NwACMpshd657uGcD
-	VsITrEwIrRFp/xecnEvO5KpyV0/3l/1r3W6SDexR5HFDZAMLa5Lg6w7FJwKF0fuc2mxt
-	s1EA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Mon, 12 Oct 2015 10:10:01 PDT
+Received: from DUB004-OMC3S13.hotmail.com (dub004-omc3s13.hotmail.com
+	[157.55.2.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A08E2E00AF6
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 10:10:01 -0700 (PDT)
+Received: from DUB128-W14 ([157.55.2.9]) by DUB004-OMC3S13.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Mon, 12 Oct 2015 10:08:56 -0700
+X-TMN: [GDVE7nxlpQA209JZtK2KhFIAHtjogtf6MJs2ilnXGzU=]
+X-Originating-Email: [djnass_18@hotmail.com]
+Message-ID: <DUB128-W14F5A73F31F2C4FA1E3DB798310@phx.gbl>
+From: Thanassis Silis <djnass_18@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 12 Oct 2015 17:08:56 +0000
+Importance: Normal
+In-Reply-To: <DUB128-W3890E99CA3478F4E8A991D98310@phx.gbl>
+References: <DUB128-W3890E99CA3478F4E8A991D98310@phx.gbl>
 MIME-Version: 1.0
-X-Received: by 10.180.189.12 with SMTP id ge12mr1596928wic.73.1444665818045;
-	Mon, 12 Oct 2015 09:03:38 -0700 (PDT)
-Sender: dfldashgkv@gmail.com
-Received: by 10.28.55.134 with HTTP; Mon, 12 Oct 2015 09:03:37 -0700 (PDT)
-In-Reply-To: <CAJv4cO3=XKLp4cXSG_o7zvHFP5-NBS7u3zBaee+vz-2rww21ZQ@mail.gmail.com>
-References: <CAJv4cO0rD_wNZDYAMxJdD2wJRUs6omi99j26FSj=+fzgJyWGbw@mail.gmail.com>
-	<5605B618.7010700@gmail.com>
-	<CAJv4cO3=XKLp4cXSG_o7zvHFP5-NBS7u3zBaee+vz-2rww21ZQ@mail.gmail.com>
-Date: Mon, 12 Oct 2015 17:03:37 +0100
-X-Google-Sender-Auth: C7F4GTknMt7z5FZ7fJJBQpmy9vc
-Message-ID: <CAJv4cO3bZC8f87irry39ryRDuBp5sVXWDQqtbUK7OKdSj3wO3Q@mail.gmail.com>
-From: "Mark O'Donovan" <shiftee@eircom.net>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Webkit2gtk opengl issue
+X-OriginalArrivalTime: 12 Oct 2015 17:08:56.0729 (UTC)
+	FILETIME=[ADFFC090:01D10510]
+Subject: FW: packages are compiled but not included in the final image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,74 +47,185 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Oct 2015 16:03:40 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 12 Oct 2015 17:10:04 -0000
+Content-Type: multipart/alternative;
+	boundary="_d9522e0c-db5e-4511-86c8-f5a1d4ea3681_"
 
-On Mon, Sep 28, 2015 at 11:51 AM, Mark O'Donovan <shiftee@eircom.net> wrote:
-> On Fri, Sep 25, 2015 at 10:01 PM, Trevor Woerner <twoerner@gmail.com> wrote:
->> On 09/23/15 07:53, Mark O'Donovan wrote:
->>> I am working on an am335x based project, with a webkitgtk
->>> program on the screen, displaying a simple webpage.
->>>
->>> I want to use a standard yocto kernel, which I believe
->>> means I must do without the SGX hardware acceleration
->>> until an open-source driver is available.
->>
->> You need to use whatever kernel the accelerated drivers were written
->> against. Sometimes that can be fairly recent, other times: not so much.
->>
->>> Thus in fido I had added opengl to DISTRO_FEATURES_remove
->>> This worked with webkitgtk 1.x
->>>
->>> The webkitgtk 2.x recipe  also specifies opengl as optional.
->>> However it depends on gtk+3 which depends on libepoxy
->>> which requires virtual/egl.
->>
->> For ARM SoCs/boards that have mali (which isn't your case, but is mine),
->> the user-space binary-only mali drivers PROVIDE egl, so it is possible
->> for me to build libepoxy with DISTRO_FEATURES_remove = "opengl" and the
->> mali test app and x11 server both build and run correctly.
->>
->>> Is this an oversight??
->>>
->>> Is it possible to build webkit 2.x without opengl??
->>
->> I don't know. But in the mali case it is possible to have mali provide
->> egl/gles1/gles2 and have mesa-gl provide an opengl-only solution as a
->> fall-back for any non-egl/gles1/2 apps (or at least theoretically it is).
->>
->> Hope this helps.
->
->
->
-> Thanks Ross, Trevor,
->
-> With webkitgtk 1.8 I was having issues with opengl present.
-> It seems not to be the case here.
-> My screen is completely blank.
-> I have discovered that the page fails to render due to
-> javascript.
-> Disabling JIT solves this issue.
-> The example below fails to render if JIT is enabled.
-> It will however render if I uncomment the 'alert' statement.
->
-> <!DOCTYPE html>
-> <html>
-> <head>
-> <title>Test</title>
-> </head>
-> <body>
-> <p>Page Rendered</p>
-> <script>
->   //alert("JavaScript works")
-> </script>
-> </body>
-> </html>
->
-> Is there anything you would like me to test??
+--_d9522e0c-db5e-4511-86c8-f5a1d4ea3681_
+Content-Type: text/plain; charset="iso-8859-7"
+Content-Transfer-Encoding: quoted-printable
 
-So has anyone else come across this??
-If not then I will file a bug for JIT in webkitgtk on arm7.
 
-Mark
 
+From: djnass_18@hotmail.com
+To: yocto-bounces@yoctoproject.org
+Subject: [yocto] packages are compiled but not included in the final image
+Date: Mon=2C 12 Oct 2015 16:53:51 +0000
+
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+Hi all=2C
+I am attempting to add a few executables that are not there by default in a=
+ "core-image-base" image.
+
+so my conf/local.conf looks like
+
+MACHINE ??=3D 'imx6qsabrelite'
+#after version 1.5=2C use
+#MACHINE ??=3D 'nitrogen6x'
+
+DISTRO ?=3D 'poky'
+PACKAGE_CLASSES ?=3D "package_rpm package_ipk package_deb"
+
+#dev see http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html
+EXTRA_IMAGE_FEATURES =3D " debug-tweaks "
+EXTRA_IMAGE_FEATURES +=3D " package-management  "
+EXTRA_IMAGE_FEATURES +=3D " ssh-server-openssh lmsensors "
+
+USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
+PATCHRESOLVE =3D "noop"
+BB_DISKMON_DIRS =3D "\
+    STOPTASKS=2C${TMPDIR}=2C1G=2C100K \
+    STOPTASKS=2C${DL_DIR}=2C1G=2C100K \
+    STOPTASKS=2C${SSTATE_DIR}=2C1G=2C100K \
+    ABORT=2C${TMPDIR}=2C100M=2C1K \
+    ABORT=2C${DL_DIR}=2C100M=2C1K \
+    ABORT=2C${SSTATE_DIR}=2C100M=2C1K"=20
+CONF_VERSION =3D "1"
+
+BB_NUMBER_THREADS =3D '2'
+PARALLEL_MAKE =3D '-j 2'
+ACCEPT_FSL_EULA =3D ""
+
+
+#webserver
+CORE_IMAGE_EXTRA_INSTALL +=3D " apache2 php "
+
+CORE_IMAGE_EXTRA_INSTALL +=3D " rrdtool bc screen ntp minicom  "
+
+The image has been created but I have the following problems.
+
+while ntpd has been installed on the image and works fine=2C the executable=
+ ntpdate is NOT there.
+bash is also missing from core-image-base . is that to be expected? Should =
+I add it as a CORE_IMAGE_EXTRA_INSTALL or as an EXTRA_IMAGE_FEATURE ?
+
+=0A=
+ 		 	   		   		 	   		  =
+
+--_d9522e0c-db5e-4511-86c8-f5a1d4ea3681_
+Content-Type: text/html; charset="iso-8859-7"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'><br><br><div><hr id=3D"stopSpell=
+ing">From: djnass_18@hotmail.com<br>To: yocto-bounces@yoctoproject.org<br>S=
+ubject: [yocto] packages are compiled but not included in the final image<b=
+r>Date: Mon=2C 12 Oct 2015 16:53:51 +0000<br><br>=0A=
+=0A=
+=0A=
+<div dir=3D"ltr">=0A=
+=0A=
+<style><!--=0A=
+.ExternalClass .ecxhmmessage P {=0A=
+padding:0px=3B=0A=
+}=0A=
+=0A=
+.ExternalClass body.ecxhmmessage {=0A=
+font-size:12pt=3B=0A=
+font-family:Calibri=3B=0A=
+}=0A=
+=0A=
+--></style>=0A=
+<div dir=3D"ltr">Hi all=2C<br>I am attempting to add a few executables that=
+ are not there by default in a "core-image-base" image.<br><br>so my conf/l=
+ocal.conf looks like<br><br><blockquote><font style=3D"" face=3D"Courier Ne=
+w=2Csans-serif">MACHINE ??=3D 'imx6qsabrelite'</font><font style=3D"" face=
+=3D"Courier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier N=
+ew=2Csans-serif">#after version 1.5=2C use</font><font style=3D"" face=3D"C=
+ourier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2C=
+sans-serif">#MACHINE ??=3D 'nitrogen6x'</font><font style=3D"" face=3D"Cour=
+ier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csan=
+s-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif">DIST=
+RO ?=3D 'poky'</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br=
+></font><font style=3D"" face=3D"Courier New=2Csans-serif">PACKAGE_CLASSES =
+?=3D "package_rpm package_ipk package_deb"</font><font style=3D"" face=3D"C=
+ourier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2C=
+sans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif">#=
+dev see http://www.yoctoproject.org/docs/1.8/mega-manual/mega-manual.html</=
+font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></font><font st=
+yle=3D"" face=3D"Courier New=2Csans-serif">EXTRA_IMAGE_FEATURES =3D " debug=
+-tweaks "</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></fo=
+nt><font style=3D"" face=3D"Courier New=2Csans-serif">EXTRA_IMAGE_FEATURES =
++=3D " package-management&nbsp=3B "</font><font style=3D"" face=3D"Courier =
+New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-se=
+rif">EXTRA_IMAGE_FEATURES +=3D " ssh-server-openssh </font><font style=3D""=
+ face=3D"Courier New=2Csans-serif"><font style=3D"" face=3D"Courier New=2Cs=
+ans-serif"><font style=3D"" face=3D"Courier New=2Csans-serif">lmsensors</fo=
+nt></font> "</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br><=
+/font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></font><font s=
+tyle=3D"" face=3D"Courier New=2Csans-serif">USER_CLASSES ?=3D "buildstats i=
+mage-mklibs image-prelink"</font><font style=3D"" face=3D"Courier New=2Csan=
+s-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif">PATC=
+HRESOLVE =3D "noop"</font><font style=3D"" face=3D"Courier New=2Csans-serif=
+"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif">BB_DISKMON_=
+DIRS =3D "\</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></=
+font><font style=3D"" face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nb=
+sp=3B STOPTASKS=2C${TMPDIR}=2C1G=2C100K \</font><font style=3D"" face=3D"Co=
+urier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Cs=
+ans-serif">&nbsp=3B&nbsp=3B&nbsp=3B STOPTASKS=2C${DL_DIR}=2C1G=2C100K \</fo=
+nt><font style=3D"" face=3D"Courier New=2Csans-serif"><br></font><font styl=
+e=3D"" face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nbsp=3B STOPTASKS=
+=2C${SSTATE_DIR}=2C1G=2C100K \</font><font style=3D"" face=3D"Courier New=
+=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif=
+">&nbsp=3B&nbsp=3B&nbsp=3B ABORT=2C${TMPDIR}=2C100M=2C1K \</font><font styl=
+e=3D"" face=3D"Courier New=2Csans-serif"><br></font><font style=3D"" face=
+=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nbsp=3B ABORT=2C${DL_DIR}=2C=
+100M=2C1K \</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></=
+font><font style=3D"" face=3D"Courier New=2Csans-serif">&nbsp=3B&nbsp=3B&nb=
+sp=3B ABORT=2C${SSTATE_DIR}=2C100M=2C1K" </font><font style=3D"" face=3D"Co=
+urier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Cs=
+ans-serif">CONF_VERSION =3D "1"</font><font style=3D"" face=3D"Courier New=
+=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif=
+"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif">BB_NUMBER_T=
+HREADS =3D '2'</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br=
+></font><font style=3D"" face=3D"Courier New=2Csans-serif">PARALLEL_MAKE =
+=3D '-j 2'</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></f=
+ont><font style=3D"" face=3D"Courier New=2Csans-serif">ACCEPT_FSL_EULA =3D =
+""</font><font style=3D"" face=3D"Courier New=2Csans-serif"><br></font><fon=
+t style=3D"" face=3D"Courier New=2Csans-serif"><br></font><font style=3D"" =
+face=3D"Courier New=2Csans-serif"><br></font><font style=3D"" face=3D"Couri=
+er New=2Csans-serif">#webserver</font><font style=3D"" face=3D"Courier New=
+=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-serif=
+">CORE_IMAGE_EXTRA_INSTALL +=3D " apache2 php "</font><font style=3D"" face=
+=3D"Courier New=2Csans-serif"><br></font><font style=3D"" face=3D"Courier N=
+ew=2Csans-serif"><br></font><font style=3D"" face=3D"Courier New=2Csans-ser=
+if">CORE_IMAGE_EXTRA_INSTALL +=3D " rrdtool bc screen ntp minicom&nbsp=3B</=
+font><font style=3D"" face=3D"Courier New=2Csans-serif"><font style=3D"" fa=
+ce=3D"Courier New=2Csans-serif"> </font>"</font><br><br></blockquote>The im=
+age has been created but I have the following problems.<br><br>while ntpd h=
+as been installed on the image and works fine=2C the executable ntpdate is =
+NOT there.<br>bash is also missing from core-image-base . is that to be exp=
+ected? Should I add it as a CORE_IMAGE_EXTRA_INSTALL or as an EXTRA_IMAGE_F=
+EATURE ?<br><br></div>=0A=
+ 		 	   		  </div></div> 		 	   		  </div></body>
+</html>=
+
+--_d9522e0c-db5e-4511-86c8-f5a1d4ea3681_--
