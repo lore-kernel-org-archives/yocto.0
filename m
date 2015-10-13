@@ -1,53 +1,67 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 259A6E00B2F; Mon, 12 Oct 2015 17:20:15 -0700 (PDT)
+	id 3CCD3E00B2F; Mon, 12 Oct 2015 22:37:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,URIBL_JP_SURBL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
-	*      [URIs: gherzan.ro]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.2.202 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90D95E0095C
-	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 17:20:08 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1ZlnK0-00007a-UL
-	for yocto@yoctoproject.org; Tue, 13 Oct 2015 02:20:04 +0200
-Received: from hsi-kbw-046-005-023-198.hsi8.kabel-badenwuerttemberg.de
-	([46.5.23.198]) by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 02:20:04 +0200
-Received: from js by hsi-kbw-046-005-023-198.hsi8.kabel-badenwuerttemberg.de
-	with local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 02:20:04 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Joachim Schiele <js@lastlog.de>
-Date: Tue, 13 Oct 2015 02:14:28 +0200
-Message-ID: <mvhid5$goi$1@ger.gmane.org>
-References: <CAMKF1so00WoUcYDPN4mY67P1Rp_ognr=9WgKpkt4b=u2Euss_w@mail.gmail.com>
-	<20151003191846.GB24208@resin>
-	<CAMKF1sre0u-rv4trRYYuy1_p1zTcgVg61V715_nXdY+fs7AY8Q@mail.gmail.com>
-	<20151003201156.GC24208@resin>
-	<CAMKF1srrD24mfm0DzBXLkiFM7DhMA1LaGUxnMZGJmy9_Rd2hRQ@mail.gmail.com>
-	<20151003203312.GD24208@resin> <20151003204050.GE24208@resin>
-	<20151003204607.GF24208@resin> <20151003212752.GG24208@resin>
-	<CAMKF1srVj2-uquPvS6hSHxadZh3k9csDb4oBxgrW-29JVOhecA@mail.gmail.com>
-	<20151003215305.GH24208@resin>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: hsi-kbw-046-005-023-198.hsi8.kabel-badenwuerttemberg.de
+Received: from mx6-11.smtp.antispamcloud.com (mx6-11.smtp.antispamcloud.com
+	[95.211.2.202])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F27FE00A8C
+	for <yocto@yoctoproject.org>; Mon, 12 Oct 2015 22:37:30 -0700 (PDT)
+Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
+	helo=TOP-EX01.TOPIC.LOCAL)
+	by mx6.antispamcloud.com with esmtps (TLSv1:AES128-SHA:128)
+	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1ZlsH6-0001P1-6Y; Tue, 13 Oct 2015 07:37:28 +0200
+Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
+	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Tue, 13 Oct 2015 07:36:29 +0200
+To: Thanassis Silis <djnass_18@hotmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <DUB128-W81C154B5996F9AF9A32F8498310@phx.gbl>
+	<DUB128-W2744A5EC049E5C51387EC498310@phx.gbl>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <561C9893.2050406@topic.nl>
+Date: Tue, 13 Oct 2015 07:37:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.1.0
-In-Reply-To: <20151003215305.GH24208@resin>
-Subject: Re: [meta-raspberrypi][PATCH V4 1/5] userland: Fix install prefix and generate pkgconfigs
+	Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <DUB128-W2744A5EC049E5C51387EC498310@phx.gbl>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw7ZJOLYNKU/7HTrooMwGC3GwyqvRrVV5jjgR7xlNehqnHvsJ7Gnisg5xa18bHF8ptKzF
+	T2J9K1pLxtZHbPNr0KDp02lpWkfKkC+F6TL2djUCuTglauhWswnW5SDCJz9p03liE1EAdSScMy6y
+	X/0ZPJv3f3EFRhFMmwMZOJdwdQXDcuyDMVCJCSH3Znmo7sDFnCj/bBJ3NoyepA+YqFFVlnM93SsS
+	4aMXJmiJ2G0eb5ahZz4YfLyjNDqc6Gmc048ocZ7adDunFoxljxfhLJ53ydL1H/aAwarQpYDOYx/6
+	JtUO5Z4KAVQNSTQikQ3O7BD0BdXaR5uyQhp3Vx+u4GPyoW+ikZ+MeeCyCZ9UEVnZFt6SpH1Kbxlm
+	PdbA3irjQn6xf9hgWEdfRUX2EnzWw6h2iKmnsWIMzdmpa9QnaL8PqhUJZRWsGw8ac2InzcAP/gmx
+	wIOY472RPtVj40OYIsSjrWz8mmQBZtlah1P0tMVR8ikI3t6VpRsoU9ZFMtyX0J2oanbP+y89GYQr
+	1dBHtPXPvIaRVYKU9W9tbmVXJBqdHHDmQkUmTDfMv/tVj9RPDK26f8Dvf+m9eL2V1jTXcqs0fx0E
+	50LbZtxr0Kz0SYNHXs1W/OTS2QPhhU+QRUH64IlCeHF7u13W1cL4dcVmmfstmBY=
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJXhXyDRoOQM5J3kcUr0HrMvJUWjZ8+qhjyB23tbDuyLOYL8Ff78gYsez
+	4Rl08xudmXi4esCQ0R1MchVjt7wblGlvhFgW0MjUMRkF5sMCDfftTXNFDzN17hnrWeZYOJvLq0Ic
+	WjZ+XcEjj/7Pkld0zkmvziDInX9WdMov2kn2yXjdwv61T+KDYyYtREgszdyFwv8IxCB3p/oCKvxr
+	eyISh3JGb7OS5oVgiO+kDxZrVPLz3MmEGC2PrUKqLq5WmHK+Nw==
+X-Originating-IP: 88.159.208.100
+X-Spampanel-Domain: topic.nl
+X-Spampanel-Username: 88.159.208.100
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=88.159.208.100@topic.nl
+X-Spampanel-Outgoing-Class: ham
+X-Spampanel-Outgoing-Evidence: Combined (0.00)
+X-Recommended-Action: accept
+Subject: Re: FW: root password in a core-image-base without "debug-tweaks" ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,164 +73,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Oct 2015 00:20:15 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 13 Oct 2015 05:37:35 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On 03.10.2015 23:53, Andrei Gherzan wrote:
-> On Sat, Oct 03, 2015 at 02:47:24PM -0700, Khem Raj wrote:
->> On Sat, Oct 3, 2015 at 2:27 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->>> On Sat, Oct 03, 2015 at 10:46:07PM +0200, Andrei Gherzan wrote:
->>>> On Sat, Oct 03, 2015 at 10:40:50PM +0200, Andrei Gherzan wrote:
->>>>> On Sat, Oct 03, 2015 at 10:33:12PM +0200, Andrei Gherzan wrote:
->>>>>> On Sat, Oct 03, 2015 at 01:31:24PM -0700, Khem Raj wrote:
->>>>>>> On Sat, Oct 3, 2015 at 1:11 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->>>>>>>> On Sat, Oct 03, 2015 at 01:06:55PM -0700, Khem Raj wrote:
->>>>>>>>> On Sat, Oct 3, 2015 at 12:18 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->>>>>>>>>> I tested with and without - same result.
->>>>>>>>>> DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia usbgadget
->>>>>>>>>> usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ipv4 ipv6 libc-backtrace
->>>>>>>>>> libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt
->>>>>>>>>> libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab
->>>>>>>>>> libc-ftraverse                  libc-getlogin libc-idn libc-inet-anl libc-libm
->>>>>>>>>> libc-locales libc-locale-code                   libc-memusage libc-nis
->>>>>>>>>> libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc
->>>>>>>>>> libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp
->>>>>>>>>> libc-posix-regexp-glibc                     libc-posix-wchar-io largefile
->>>>>>>>>> opengl ptest multiarch wayland pulseaudio sysvinit bluez5"
->>>>>>>>>>
->>>>>>>>>> No modification to the default poky distro.
->>>>>>>>>
->>>>>>>>> hmm I am using angstrom and it works there and for verification I now
->>>>>>>>> tried with OE-Core ( alone ) it works there too, can you check some
->>>>>>>>> other parameters that are there in your sandbox ? here is my build
->>>>>>>>>
->>>>>>>>>  MACHINE=raspberrypi2 bitbake userland
->>>>>>>>> Parsing recipes: 100%
->>>>>>>>> |######################################################################################################################################################################################################|
->>>>>>>>> ETA:  00:00:00
->>>>>>>>> Parsing of 918 .bb files complete (0 cached, 918 parsed). 1350
->>>>>>>>> targets, 59 skipped, 0 masked, 0 errors.
->>>>>>>>> NOTE: Resolving any missing task queue dependencies
->>>>>>>>>
->>>>>>>>> Build Configuration:
->>>>>>>>> BB_VERSION        = "1.28.0"
->>>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
->>>>>>>>> TARGET_SYS        = "arm-oe-linux-gnueabi"
->>>>>>>>> MACHINE           = "raspberrypi2"
->>>>>>>>> DISTRO            = "nodistro"
->>>>>>>>> DISTRO_VERSION    = "nodistro.0"
->>>>>>>>> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard
->>>>>>>>> vfpv4 cortexa7"
->>>>>>>>> TARGET_FPU        = "vfp-vfpv4-neon"
->>>>>>>>> meta-raspberrypi  = "kraj/master:a903a9cd18ae556121265da93ed74f857944a0da"
->>>>>>>>> meta              = "kraj/master:602e512b92bcc78403144fedeb4211bbf56ff1c8"
->>>>>>>>>
->>>>>>>>> NOTE: Preparing RunQueue
->>>>>>>>> NOTE: Executing SetScene Tasks
->>>>>>>>> NOTE: Executing RunQueue Tasks
->>>>>>>>> NOTE: Tasks Summary: Attempted 454 tasks of which 315 didn't need to
->>>>>>>>> be rerun and all succeeded.
->>>>>>>>
->>>>>>>> Here is my build configuration.
->>>>>>>>
->>>>>>>> Build Configuration:
->>>>>>>> BB_VERSION        = "1.28.0"
->>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>> NATIVELSBSTRING   = "Arch-rolling"
->>>>>>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
->>>>>>>> MACHINE           = "raspberrypi2"
->>>>>>>> DISTRO            = "poky"
->>>>>>>> DISTRO_VERSION    = "2.0"
->>>>>>>> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard vfpv4
->>>>>>>> cortexa7"
->>>>>>>> TARGET_FPU        = "vfp-vfpv4-neon"
->>>>>>>> meta
->>>>>>>> meta-yocto
->>>>>>>> meta-yocto-bsp    = "master:eac61f37e36099f74485dab398b57f3812826d17"
->>>>>>>> meta-raspberrypi  = "master:48da0cdc5fb147a20b41a77b2dfeef4efd483b32"
->>>>>>>> meta-oe
->>>>>>>> meta-multimedia   = "master:f4533380c8a5c1d229f692222ee0c2ef9d187ef8"
->>>>>>>>
->>>>>>>>
->>>>>>>> But anyway can you please check in your userland install dir for the header I'm
->>>>>>>> missing? Or in sysroot.
->>>>>>>
->>>>>>> its part of userland itself so no other package should be needed and
->>>>>>> not required in sysroot
->>>>>>>
->>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/package/usr/src/debug/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
->>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/packages-split/userland-dbg/usr/src/debug/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
->>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/build/interface/khronos/wayland-dispmanx-server-protocol.h
->>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
->>>>>>
->>>>>> This is odd... what revision of userland are you using? The one on current
->>>>>> meta-rpi master?
->>>>>>
->>>>>> --
->>>>>> Andrei Gherzan
->>>>>
->>>>> This is not even in the current HEAD of master in userland official repository:
->>>>> https://github.com/raspberrypi/userland/tree/master/interface/vmcs_host
->>>>>
->>>>> Are you sure you don't inject the file somehow? I really don't know what's
->>>>> going on.
->>>>>
->>>>> --
->>>>> Andrei Gherzan
->>>>
->>>> I found the mistery. It gets generated in another path:
->>>> ./build/interface/khronos/wayland-dispmanx-server-protocol.h
->>>>
->>>> Figuring out why.
->>>>
->>>> --
->>>> Andrei Gherzan
->>>
->>> I managed to get to the bottom of this. It's a racing issue. Basically, with
->>> MAKE_PARALLEL high enough, the
->>>
->>> add_library(EGL ${SHARED} ${EGL_SOURCE})
->>>
->>> in git/interface/khronos/CMakeLists.txt gets to run before the header is
->>> generated. No dependency configured for that. And in the sources of EGL there
->>> is egl_wayland.c which includes the generated header by the call:
->>>
->>> wayland_add_protocol_server(
->>>        EGL_SOURCE
->>>        ../../interface/wayland/dispmanx.xml
->>>        dispmanx
->>> )
->>>
->>> Any idea how to define this dependency? What is the value of your PARALLEL_MAKE
->>
->> I use -j16, can you add the .h file with path to EGL_SOURCE
-> 
-> Adding the path to EGL_SOURCE won't work because cmake will complain that the
-> header is not in place. We need a dependency definition.
-> 
-> --
-> Andrei Gherzan
-> 
+=EF=BB=BFOn 12-10-15 23:39, Thanassis Silis wrote:
 
-in this file:
-./tmp/work/raspberrypi-poky-linux-gnueabi/userland/git-r5/egl.pc"
+> I bitbaked a core-image-base without "debug-tweaks" , and now i am greete=
+d on
+> ttymxc1 with a login , but it also asks for password.
+> empty password is not accepted.
+> /etc/shadow states "root::..." so the root password is supposedly empty. =
+but I
+> cannot login.
 
-i replaced
+Yep, turning it on makes the box too vulnerable and leaving it out makes th=
+e=20
+box inaccessible.
 
-Cflags: -I${includedir}/vc -I${includedir}/interface
--I${includedir}/interface/vcos -I${includedir}/interface/vcos/pthreads
+Here's a simple solution to allow you to login but without crippling SSH:
 
-with that
+https://github.com/OpenPLi/openpli-oe-core/blob/master-next/meta-openpli/re=
+cipes-openpli/images/openpli-image.bb#L45
 
-Cflags: -I${includedir}/vc -I${includedir}/interface
--I${includedir}/interface/vcos -I${includedir}/interface/vcos/pthreads
--I../build/interface/khronos/
 
-(basically adding -I../build/interface/khronos/)
 
-IIRC that worked for me. you can give that a try at least ;-)
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Embedded Products
+Eindhovenseweg 32-C, NL-5683 KH Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+Telefax: +31 (0) 499 33 69 70
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
 
 
 
