@@ -1,47 +1,42 @@
-Return-Path: <krystian.gorny@wipotec.com>
+Return-Path: <djnass_18@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 353E3E00D2E; Tue, 13 Oct 2015 06:58:28 -0700 (PDT)
+	id 0FE7DE00DB2; Tue, 13 Oct 2015 08:19:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,WEIRD_PORT
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (djnass_18[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.0.207 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx03.wipotec.com (mx02.wipotec.com [195.243.255.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E87F8E006F6
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 06:58:23 -0700 (PDT)
-Received: from mx03.wipotec.com (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id 8B085381D07;
-	Tue, 13 Oct 2015 15:58:21 +0200 (CEST)
-Received: from svr-exc-04.intern.wipotec.de (unknown [10.1.60.47])
-	by mx03.wipotec.com (Postfix) with ESMTP id 83BE7381D04;
-	Tue, 13 Oct 2015 15:58:21 +0200 (CEST)
-Received: from SVR-EXC-03.intern.wipotec.de ([10.1.60.46]) by
-	svr-exc-04.intern.wipotec.de ([10.1.60.47]) with mapi id 14.03.0158.001;
-	Tue, 13 Oct 2015 15:58:21 +0200
-From: Gorny Krystian <krystian.gorny@wipotec.com>
-To: "chris@2net.co.uk" <chris@2net.co.uk>, "yocto@yoctoproject.org"
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from DUB004-OMC1S8.hotmail.com (dub004-omc1s8.hotmail.com
+	[157.55.0.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75522E006F6
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 08:18:55 -0700 (PDT)
+Received: from DUB128-W86 ([157.55.0.237]) by DUB004-OMC1S8.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Tue, 13 Oct 2015 08:18:55 -0700
+X-TMN: [3oFr8y3YzfY0zXWX+vPjTM7ah76QN7lRRPqsLRApw5c=]
+X-Originating-Email: [djnass_18@hotmail.com]
+Message-ID: <DUB128-W86257201E3AE5BBBC9247798300@phx.gbl>
+From: Thanassis Silis <djnass_18@hotmail.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] VFAT patent EP 0 618 540
-Thread-Index: AdECbW49cDS4a3yeTSyBMRx0DnPn1wAQld6AAAMV6QAAAMLCgAArPx0AACqO/IAAahMa8A==
-Date: Tue, 13 Oct 2015 13:58:20 +0000
-Message-ID: <10D57FBA9FD7C14FB49EE17590E1AF94011F907949@svr-exc-03.intern.wipotec.de>
-References: <10D57FBA9FD7C14FB49EE17590E1AF94011F907751@svr-exc-03.intern.wipotec.de>
-	<561807B5.2010206@reliableembeddedsystems.com>
-	<CAALGJZbpi4KuFo6+pooJ7Nt9Q4n99LqQX_R52D0CxT9qz5Myiw@mail.gmail.com>
-	<CA+-BmJZvJq1MeMWJa-KhkW=+p7ge2GZwh=9znuYNQtjrWSxQ=A@mail.gmail.com>
-	<561943BE.40608@reliableembeddedsystems.com>
-	<561A6159.4070402@2net.co.uk>
-In-Reply-To: <561A6159.4070402@2net.co.uk>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.18.125.175]
-x-olx-disclaimer: Done
+Date: Tue, 13 Oct 2015 15:18:54 +0000
+Importance: Normal
+In-Reply-To: <561C9893.2050406@topic.nl>
+References: <DUB128-W81C154B5996F9AF9A32F8498310@phx.gbl>,
+	<DUB128-W2744A5EC049E5C51387EC498310@phx.gbl>,
+	<561C9893.2050406@topic.nl>
 MIME-Version: 1.0
-Subject: Re: VFAT patent EP 0 618 540
+X-OriginalArrivalTime: 13 Oct 2015 15:18:55.0009 (UTC)
+	FILETIME=[797AF910:01D105CA]
+Subject: Re: FW: root password in a core-image-base without "debug-tweaks" ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,125 +48,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Oct 2015 13:58:28 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 13 Oct 2015 15:19:01 -0000
+Content-Type: multipart/alternative;
+	boundary="_213093ff-56ec-4bd7-a9ee-817e6e915458_"
 
-Hi,
+--_213093ff-56ec-4bd7-a9ee-817e6e915458_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-exactly Chris it's for sharing Data on external media like USB. I found a w=
-orkaround in the kernel menuconfig it's working fine. The entry for the wor=
-karound is in the menu:
+dGhhbmsgeW91IA0KdGhpcyB3aWxsIGluZGVlZCBzdWZmaWNlIQ0KDQo+IFN1YmplY3Q6IFJlOiBb
+eW9jdG9dIEZXOiByb290IHBhc3N3b3JkIGluIGEgY29yZS1pbWFnZS1iYXNlIHdpdGhvdXQgImRl
+YnVnLXR3ZWFrcyIgPw0KPiBUbzogZGpuYXNzXzE4QGhvdG1haWwuY29tOyB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQo+IEZyb206IG1pa2UubG9vaWptYW5zQHRvcGljLm5sDQo+IERhdGU6IFR1ZSwg
+MTMgT2N0IDIwMTUgMDc6Mzc6MjMgKzAyMDANCj4gDQo+IO+7v09uIDEyLTEwLTE1IDIzOjM5LCBU
+aGFuYXNzaXMgU2lsaXMgd3JvdGU6DQo+IA0KPiA+IEkgYml0YmFrZWQgYSBjb3JlLWltYWdlLWJh
+c2Ugd2l0aG91dCAiZGVidWctdHdlYWtzIiAsIGFuZCBub3cgaSBhbSBncmVldGVkIG9uDQo+ID4g
+dHR5bXhjMSB3aXRoIGEgbG9naW4gLCBidXQgaXQgYWxzbyBhc2tzIGZvciBwYXNzd29yZC4NCj4g
+PiBlbXB0eSBwYXNzd29yZCBpcyBub3QgYWNjZXB0ZWQuDQo+ID4gL2V0Yy9zaGFkb3cgc3RhdGVz
+ICJyb290OjouLi4iIHNvIHRoZSByb290IHBhc3N3b3JkIGlzIHN1cHBvc2VkbHkgZW1wdHkuIGJ1
+dCBJDQo+ID4gY2Fubm90IGxvZ2luLg0KPiANCj4gWWVwLCB0dXJuaW5nIGl0IG9uIG1ha2VzIHRo
+ZSBib3ggdG9vIHZ1bG5lcmFibGUgYW5kIGxlYXZpbmcgaXQgb3V0IG1ha2VzIHRoZSANCj4gYm94
+IGluYWNjZXNzaWJsZS4NCj4gDQo+IEhlcmUncyBhIHNpbXBsZSBzb2x1dGlvbiB0byBhbGxvdyB5
+b3UgdG8gbG9naW4gYnV0IHdpdGhvdXQgY3JpcHBsaW5nIFNTSDoNCj4gDQo+IGh0dHBzOi8vZ2l0
+aHViLmNvbS9PcGVuUExpL29wZW5wbGktb2UtY29yZS9ibG9iL21hc3Rlci1uZXh0L21ldGEtb3Bl
+bnBsaS9yZWNpcGVzLW9wZW5wbGkvaW1hZ2VzL29wZW5wbGktaW1hZ2UuYmIjTDQ1DQo+IA0KPiAN
+Cj4gDQo+IEtpbmQgcmVnYXJkcywNCj4gDQo+IE1pa2UgTG9vaWptYW5zDQo+IFN5c3RlbSBFeHBl
+cnQNCj4gDQo+IFRPUElDIEVtYmVkZGVkIFByb2R1Y3RzDQo+IEVpbmRob3ZlbnNld2VnIDMyLUMs
+IE5MLTU2ODMgS0ggQmVzdA0KPiBQb3N0YnVzIDQ0MCwgTkwtNTY4MCBBSyBCZXN0DQo+IFRlbGVm
+b29uOiArMzEgKDApIDQ5OSAzMyA2OSA3OQ0KPiBUZWxlZmF4OiArMzEgKDApIDQ5OSAzMyA2OSA3
+MA0KPiBFLW1haWw6IG1pa2UubG9vaWptYW5zQHRvcGljcHJvZHVjdHMuY29tDQo+IFdlYnNpdGU6
+IHd3dy50b3BpY3Byb2R1Y3RzLmNvbQ0KPiANCj4gUGxlYXNlIGNvbnNpZGVyIHRoZSBlbnZpcm9u
+bWVudCBiZWZvcmUgcHJpbnRpbmcgdGhpcyBlLW1haWwNCj4gDQo+IA0KPiANCj4gDQo+IA0KIAkJ
+IAkgICAJCSAg
 
-> File systems
->> DOS/FAT/NT Filesystems
->>> disable VFAT Dual names support (patent workaround)
+--_213093ff-56ec-4bd7-a9ee-817e6e915458_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks.
+PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
+DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
+bnQtZmFtaWx5OkNhbGlicmkNCn0NCi0tPjwvc3R5bGU+PC9oZWFkPg0KPGJvZHkgY2xhc3M9J2ht
+bWVzc2FnZSc+PGRpdiBkaXI9J2x0cic+dGhhbmsgeW91IDxicj50aGlzIHdpbGwgaW5kZWVkIHN1
+ZmZpY2UhPGJyPjxicj48ZGl2PiZndDsgU3ViamVjdDogUmU6IFt5b2N0b10gRlc6IHJvb3QgcGFz
+c3dvcmQgaW4gYSBjb3JlLWltYWdlLWJhc2Ugd2l0aG91dCAiZGVidWctdHdlYWtzIiA/PGJyPiZn
+dDsgVG86IGRqbmFzc18xOEBob3RtYWlsLmNvbTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4m
+Z3Q7IEZyb206IG1pa2UubG9vaWptYW5zQHRvcGljLm5sPGJyPiZndDsgRGF0ZTogVHVlLCAxMyBP
+Y3QgMjAxNSAwNzozNzoyMyArMDIwMDxicj4mZ3Q7IDxicj4mZ3Q7IO+7v09uIDEyLTEwLTE1IDIz
+OjM5LCBUaGFuYXNzaXMgU2lsaXMgd3JvdGU6PGJyPiZndDsgPGJyPiZndDsgJmd0OyBJIGJpdGJh
+a2VkIGEgY29yZS1pbWFnZS1iYXNlIHdpdGhvdXQgImRlYnVnLXR3ZWFrcyIgLCBhbmQgbm93IGkg
+YW0gZ3JlZXRlZCBvbjxicj4mZ3Q7ICZndDsgdHR5bXhjMSB3aXRoIGEgbG9naW4gLCBidXQgaXQg
+YWxzbyBhc2tzIGZvciBwYXNzd29yZC48YnI+Jmd0OyAmZ3Q7IGVtcHR5IHBhc3N3b3JkIGlzIG5v
+dCBhY2NlcHRlZC48YnI+Jmd0OyAmZ3Q7IC9ldGMvc2hhZG93IHN0YXRlcyAicm9vdDo6Li4uIiBz
+byB0aGUgcm9vdCBwYXNzd29yZCBpcyBzdXBwb3NlZGx5IGVtcHR5LiBidXQgSTxicj4mZ3Q7ICZn
+dDsgY2Fubm90IGxvZ2luLjxicj4mZ3Q7IDxicj4mZ3Q7IFllcCwgdHVybmluZyBpdCBvbiBtYWtl
+cyB0aGUgYm94IHRvbyB2dWxuZXJhYmxlIGFuZCBsZWF2aW5nIGl0IG91dCBtYWtlcyB0aGUgPGJy
+PiZndDsgYm94IGluYWNjZXNzaWJsZS48YnI+Jmd0OyA8YnI+Jmd0OyBIZXJlJ3MgYSBzaW1wbGUg
+c29sdXRpb24gdG8gYWxsb3cgeW91IHRvIGxvZ2luIGJ1dCB3aXRob3V0IGNyaXBwbGluZyBTU0g6
+PGJyPiZndDsgPGJyPiZndDsgaHR0cHM6Ly9naXRodWIuY29tL09wZW5QTGkvb3BlbnBsaS1vZS1j
+b3JlL2Jsb2IvbWFzdGVyLW5leHQvbWV0YS1vcGVucGxpL3JlY2lwZXMtb3BlbnBsaS9pbWFnZXMv
+b3BlbnBsaS1pbWFnZS5iYiNMNDU8YnI+Jmd0OyA8YnI+Jmd0OyA8YnI+Jmd0OyA8YnI+Jmd0OyBL
+aW5kIHJlZ2FyZHMsPGJyPiZndDsgPGJyPiZndDsgTWlrZSBMb29pam1hbnM8YnI+Jmd0OyBTeXN0
+ZW0gRXhwZXJ0PGJyPiZndDsgPGJyPiZndDsgVE9QSUMgRW1iZWRkZWQgUHJvZHVjdHM8YnI+Jmd0
+OyBFaW5kaG92ZW5zZXdlZyAzMi1DLCBOTC01NjgzIEtIIEJlc3Q8YnI+Jmd0OyBQb3N0YnVzIDQ0
+MCwgTkwtNTY4MCBBSyBCZXN0PGJyPiZndDsgVGVsZWZvb246ICszMSAoMCkgNDk5IDMzIDY5IDc5
+PGJyPiZndDsgVGVsZWZheDogKzMxICgwKSA0OTkgMzMgNjkgNzA8YnI+Jmd0OyBFLW1haWw6IG1p
+a2UubG9vaWptYW5zQHRvcGljcHJvZHVjdHMuY29tPGJyPiZndDsgV2Vic2l0ZTogd3d3LnRvcGlj
+cHJvZHVjdHMuY29tPGJyPiZndDsgPGJyPiZndDsgUGxlYXNlIGNvbnNpZGVyIHRoZSBlbnZpcm9u
+bWVudCBiZWZvcmUgcHJpbnRpbmcgdGhpcyBlLW1haWw8YnI+Jmd0OyA8YnI+Jmd0OyA8YnI+Jmd0
+OyA8YnI+Jmd0OyA8YnI+Jmd0OyA8YnI+PC9kaXY+IAkJIAkgICAJCSAgPC9kaXY+PC9ib2R5Pg0K
+PC9odG1sPg==
 
-Krystian
-
-_____________________________________________________________________
-
-Krystian Gorny
-Research & Development
-
-Wipotec GmbH
-Adam-Hoffmann-Str. 26
-67657 Kaiserslautern
-
-T +49.631.34146-0
-F +49.631.34146-8640
-http://www.wipotec.com
-
-
-_____________________________________________________________________
-
-Weigh Cells | Weighing systems
-
-See our solutions. Visit us at our events
-http://www.wipotec.com/de/aktuelles/veranstaltungen/
-
-_____________________________________________________________________
-
-Legal information:
-Wipotec Wiege- und Positioniersysteme GmbH
-HRB 2317 Kaiserslautern, Management: T. D?ppre, U. Wagner
-
-This e-mail may contain confidential and/or privileged information.
-If you are not the intended recipient (or have received this e-mail in erro=
-r)
-please notify the sender immediately and delete this e-mail. Any unauthoriz=
-ed
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-forbidden.
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Chris Simmonds
-Sent: Sunday, October 11, 2015 3:17 PM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] VFAT patent EP 0 618 540
-
-Hi
-
-On 10/10/15 17:58, Robert Berger wrote:
-> Hi
->
-> On 10/09/2015 11:20 PM, Ayoub Zaki wrote:
->> TI Socs Boot Rom code can use Vfat but does not necessarly need it as
->> Bootloaders (spl, u-boot) can be loaded directly  from Raw MMC/eMMC.
-> I just discovered this recently. Something like:
->
-> sudo dd if=3D./u-boot/MLO of=3D${DISK} count=3D1 seek=3D1 bs=3D128k sudo =
-dd
-> if=3D./u-boot/u-boot.img of=3D${DISK} count=3D2 seek=3D1 bs=3D384k
->
-> So even my made up scenario where you would need vfat on the first
-> partition does not hold anymore.
-Usually the need to include vfat support driven by the desire to read/write=
- removable media such as SD cards and USB mass storage devices. If you want=
- interoperability with certain legacy operating systems vfat is the only op=
-tion.
-
->
-> ... but ...
->
-> what about the patent and the on-chip ROMs of SoCs from Ti and
-> Freescale (hmm NXP? or whoever bought them lately). Maybe the SoCs are
-> affected since they are able to load stuff from vfat, even if we don't
-> need to use this feature anymore.
-Not a problem for two reasons. First the patent only applies to fat32; you =
-can do anything you like with fat16. The TI romcode only uses fat16, I am p=
-retty sure. Second, even with fat32, the patent is only concerned with upda=
-tes to the namespace, hence so long as the romcode does not have the abilit=
-y to create files it is also OK. Note that you can't get round the patent j=
-ust by mounting vfat partitions read-only because the driver still has the =
-ability to make new files. There was a patch for the vfat driver which remo=
-ved the code to create or modify directory entries, but it seems to have go=
-t lost in the mists of time.
->
-> Regards,
->
-> Robert
->
-> ..."Never express yourself more clearly than you think." - Niels Bohr
->
-> My public pgp key is available,at:
-> http://pgp.mit.edu:11371/pks/lookup?op=3Dget&search=3D0x90320BF1
->
->
---
-Chris Simmonds, Consultant, 2net Ltd
-http://www.2net.co.uk
-+44 (0)1962 869003
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
+--_213093ff-56ec-4bd7-a9ee-817e6e915458_--
