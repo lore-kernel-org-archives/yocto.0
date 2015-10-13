@@ -1,6 +1,6 @@
 Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC293E00D7A; Tue, 13 Oct 2015 13:28:48 -0700 (PDT)
+	id 18493E00E4D; Tue, 13 Oct 2015 13:29:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,34 +21,34 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wi0-f177.google.com (mail-wi0-f177.google.com
 	[209.85.212.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 761DCE00D56
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 13:28:46 -0700 (PDT)
-Received: by wicge5 with SMTP id ge5so209208247wic.0
-	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 13:28:45 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47BABE00CD1
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 13:29:48 -0700 (PDT)
+Received: by wicgb1 with SMTP id gb1so204425081wic.1
+	for <yocto@yoctoproject.org>; Tue, 13 Oct 2015 13:29:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:cc:to:mime-version;
-	bh=rJpXfQBMnvItDmVeF9ISMYT/QS6cko9l+DdU3byr+Ew=;
-	b=Fs92CI5330gg9i4kBGiGg1evrOSNFCAyrBJ03p8e3q3KF71xtHIwbIDaMXFBL/9X9Y
-	RhCPqkhAuoUZcgQl3PAs80yjGM1DQZvTijx0NvyBYpdcDbpDlJD2PAr6yC8he+qqlZi6
-	QjQi0ROORLe+BfWtTc7FlZqJau7Xh4GitIBE2vxrKYstvjm/YVa8VmrF9qOGqmlEkoio
-	NzfifnUi/Gj1pZoh9PKbywwSiDrluL2yya8YUkZgiLZbQVOksyu83ohCJzNTgtGmV5RF
-	MrwyFOGHhx489EVEoqFGBcoScIA7k6BoMUWQ9yetgH8xml11Jd+B8/YWRXg2QDETyomw
-	WI9w==
-X-Received: by 10.180.88.227 with SMTP id bj3mr886961wib.80.1444768125377;
-	Tue, 13 Oct 2015 13:28:45 -0700 (PDT)
+	h=from:content-type:content-transfer-encoding:subject:message-id:date
+	:to:mime-version;
+	bh=bg3gBQsDPvVa5iRhsT+MaKX3Eu226qi1p61jcHENW0o=;
+	b=iCklWH2FFTVpyO192K039gtYtytqcb79sfbwdYh32sPw7CUG3w6cdKIb8DA6qCsgvl
+	lmvmGHros++QVj1XTZBW5HeDU+8etkyu+Qvr5xtPrie2/o4cSQsudtfrrayHDFiGLweL
+	/99rQz3lA8pyuWcpDJWwjn3qbUpAr9Y+ol3mhZqdZ1sqdM0uI/PE2hTmgBU6/buA7S3J
+	aCriHabCUoi7E0jTi0kY0tUrKRJUWcY5juiv0ueAW3y6JcetWVIDyZ6Wd3M/rb5DV4VV
+	wihvwDWeeAifOdhzF4OUuvfwIJbtx3zU/jeEyXWlygYOAXB/qnvKj3WQOZzPsZyj1qG/
+	ovng==
+X-Received: by 10.181.13.233 with SMTP id fb9mr13498996wid.36.1444768187668;
+	Tue, 13 Oct 2015 13:29:47 -0700 (PDT)
 Received: from [172.22.60.125] (ip-109-91-252-249.hsi12.unitymediagroup.de.
 	[109.91.252.249]) by smtp.gmail.com with ESMTPSA id
-	fr10sm16369723wib.14.2015.10.13.13.28.44
+	ry1sm5696836wjb.24.2015.10.13.13.29.46 for <yocto@yoctoproject.org>
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 13 Oct 2015 13:28:44 -0700 (PDT)
+	Tue, 13 Oct 2015 13:29:47 -0700 (PDT)
 From: Jens Rehsack <rehsack@gmail.com>
-Date: Tue, 13 Oct 2015 22:28:44 +0200
-Message-Id: <8902125C-84F5-4E42-9BC3-0CF0F5AD3B7A@gmail.com>
+Message-Id: <A4576A07-A4CD-463E-9330-206823532FB5@gmail.com>
+Date: Tue, 13 Oct 2015 22:29:45 +0200
 To: yocto@yoctoproject.org
 Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
 X-Mailer: Apple Mail (2.2104)
-Subject: [PATCH 2/6] rrdtool: adding the capability of native-builds to get rrdtool-oo in meta-cpan running
+Subject: [PATCH 3/6][meta-webserver] nginx: fix broken proxy_pass feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,37 +60,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Oct 2015 20:28:48 -0000
+X-List-Received-Date: Tue, 13 Oct 2015 20:29:54 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
 
-An additional layer for Perl modules from cpan =
-(https://github.com/rehsack/meta-cpan)
-provides additional modules for dealing with rrd files: RRDTool::OO from =
-Michael Schili.
-This extension requires an executable version of rrdtool.
+[NGINX ticket #748 - https://trac.nginx.org/nginx/ticket/748]
+
+Accoriding to #748 or =
+https://github.com/archlinuxarm/PKGBUILDs/issues/1161,
+respectively, proxy_pass is broken on some architectures without =
+position
+independent code.
+
+The solution is adding -fPIE -pie as build flags.
 
 Signed-off-by: Jens Rehsack <sno@netbsd.org>
 ---
- meta-oe/recipes-extended/rrdtool/rrdtool_1.5.4.bb | 2 ++
- 1 file changed, 2 insertions(+)
+ meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-oe/recipes-extended/rrdtool/rrdtool_1.5.4.bb =
-b/meta-oe/recipes-extended/rrdtool/rrdtool_1.5.4.bb
-index 91a30cf..aba342b 100644
---- a/meta-oe/recipes-extended/rrdtool/rrdtool_1.5.4.bb
-+++ b/meta-oe/recipes-extended/rrdtool/rrdtool_1.5.4.bb
-@@ -17,6 +17,8 @@ S =3D "${WORKDIR}/git"
+diff --git a/meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb =
+b/meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb
+index 0dfdb5b..27e4749 100644
+--- a/meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb
++++ b/meta-webserver/recipes-httpd/nginx/nginx_1.4.4.bb
+@@ -24,6 +24,9 @@ SRC_URI[sha256sum] =3D =
+"7c989a58e5408c9593da0bebcd0e4ffc3d892d1316ba5042ddb0be5b0b
 =20
- inherit autotools-brokensep gettext pythonnative perlnative python-dir =
-cpan-base
+ inherit update-rc.d useradd
 =20
-+BBCLASSEXTEND =3D "native"
++CFLAGS_append =3D " -fPIE -pie"
++CXXFLAGS_append =3D " -fPIE -pie"
 +
- EXTRA_AUTORECONF =3D "-I m4"
-=20
- PACKAGECONFIG ??=3D "python perl"
+ do_configure () {
+ 	if [ "${SITEINFO_BITS}" =3D "64" ]; then
+ 		PTRSIZE=3D8
 --=20
 1.9.1
 
