@@ -1,45 +1,39 @@
-Return-Path: <Fred.Ollinger@seescan.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E4F8E00ACF; Wed, 14 Oct 2015 09:09:52 -0700 (PDT)
+	id 0F455E00AB0; Wed, 14 Oct 2015 09:23:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from FLEMING.seektech.com (unknown [66.192.149.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 089D6E00A9B
-	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 09:09:49 -0700 (PDT)
-Received: from WRIGHT.seescan.com (192.168.11.30) by mail.seektech.com
-	(192.168.3.10) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Wed, 14 Oct 2015 09:09:46 -0700
-Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
-	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Wed, 14 Oct 2015 09:09:44 -0700
-Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
-	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
-	15.00.1044.021; Wed, 14 Oct 2015 09:09:44 -0700
-From: Fred Ollinger <Fred.Ollinger@seescan.com>
-To: Dave Mulder <dmulder@lasx.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Updating NIC drivers in older Yocto
-Thread-Index: AdEF8pCQNAjBJSeaSNaYBXligY+ZggAqB1kj
-Date: Wed, 14 Oct 2015 16:09:43 +0000
-Message-ID: <1444838892200.77547@seescan.com>
-References: <BLUPR10MB073931FBD2D4D84CF807DEA3D0300@BLUPR10MB0739.namprd10.prod.outlook.com>
-In-Reply-To: <BLUPR10MB073931FBD2D4D84CF807DEA3D0300@BLUPR10MB0739.namprd10.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [50.59.178.108]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB6A5E00A9B
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 09:23:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t9EGNMcL001127
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 14 Oct 2015 09:23:23 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Wed, 14 Oct 2015 09:23:22 -0700
+To: <chris@2net.co.uk>, akuster808 <akuster808@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <561E588D.5060609@2net.co.uk> <561E5D99.6020304@gmail.com>
+	<561E70CB.6040509@2net.co.uk>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <561E816B.4040906@windriver.com>
+Date: Wed, 14 Oct 2015 12:23:07 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-X-GFI-SMTP-Submission: 1
-X-GFI-SMTP-HelloDomain: WRIGHT.seescan.com
-X-GFI-SMTP-RemoteIP: 192.168.11.30
-Subject: Re: Updating NIC drivers in older Yocto
+In-Reply-To: <561E70CB.6040509@2net.co.uk>
+Subject: Re: RFC: Yocto LTS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,48 +45,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Oct 2015 16:09:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 14 Oct 2015 16:23:36 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I think #2 is a reasonable solution.?
+On 15-10-14 11:12 AM, Chris Simmonds wrote:
+> Hi,
+>
+> On 14/10/15 14:50, akuster808 wrote:
+>> Chris,
+>>
+>>
+>> On 10/14/2015 06:28 AM, Chris Simmonds wrote:
+>>> Hi,
+>>>
+>>> Is there a statement about the period of support for a Yocto release?
+>>> Looking through the updates, it seems that 12 months is typical, a was
+>>> the case for 1.4, 1.5 and 1.6 for example, but I cannot see a
+>>> declaration anywhere that this is the expected norm.
+>>
+>> There is a release every 6 months.
+>>
+>> https://wiki.yoctoproject.org/wiki/FAQ#What_is_the_release_cycle_of_the_Yocto_Project.3F
+>>
+>>>
+>>> Leading on from that, is 12 months enough? Most projects have a
+>>> lifecycle that is much longer. Is there an argument for an LTS Yocto
+>>> release, maybe once a year? If not, what is the recommended way for a
+>>> project developer to keep a distribution up to date in the light of the
+>>> several well-publicised security flaws that have been discovered over
+>>> the last year or so and the new ones that will no doubt be discovered in
+>>> the future?
+>>
+>> At table of the current supported release can be found at
+>> https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
+>>
+>> - Armin
+>>
+>
+> Thanks, Armin, that is the kind of thing I was looking for. It doesn't
+> mention a timespan for updates, but there does seem to be an implicit
+> maintenance period of 12 months after release. I am still worried that
+> this is a rather short period of time, though, and encourages device
+> manufacturers to avoid ever updating boxes in the field.
 
-________________________________
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of Dave Mulder <dmulder@lasx.com>
-Sent: Tuesday, October 13, 2015 1:30 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] Updating NIC drivers in older Yocto
+For longer term support, or for support of truly critical devices, the
+Yocto project has relied on OSVs to offer commercial support for their
+Yocto compatible distributions.
 
-I have been using a Sandy Bridge Yocto 1.3 build for a couple years now, on=
- off-the-shelf Intel PC motherboards. I also build an application.
+For the project itself, and the projects under the umbrella, the
+developer capacity to maintain and support a release for longer than a
+year simply doesn't exist. And that lack of cycles is only from the
+point of view of duration, much less to offer something that looks
+like a SLA on critical issues.
 
-I am now looking into using more recent motherboards. The OS boots just fin=
-e, but the new NICs (Intel, Realtek) are not supported by the old 3.4.11 ke=
-rnel.
+Cheers,
 
-What's the best way to support new NICs?  I can see three options:
+Bruce
 
 
-1.       New Yocto.  I suspect (but would be happy to be wrong) that my app=
-lication would need to be built against a different sysroot/toolchain, whic=
-h seems like it would cause backward-compatibility problems (can't run new =
-application on old OS), and I would prefer to not have multiple builds of t=
-he application and have to have the host software determine which version i=
-s needed (it's an embedded application, and the OS is headless).
 
-2.       New kernel, old Yocto.  I don't know that this is actually an opti=
-on, or how new of a kernel can be used in Yocto 1.3.  If this is an option,=
- it seems like my application would not need to be rebuilt.
 
-3.       Loadable drivers for new NICs (rather than using the ones built in=
-to the kernel).  I don't know that this is doable either.
+>
+>>>
+>>> Regards,
+>>> Chris Simmonds
+>>>
+>>
+>
 
-Are there other options?  Can a new application be built that will work wit=
-h multiple versions of the OS?  Is that even a problem, or am I just assumi=
-ng the worst?
-
-Thanks!
-Dave
 
