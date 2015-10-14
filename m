@@ -1,54 +1,44 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <mailinglist@teleschirm.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42B75E00AC5; Wed, 14 Oct 2015 01:13:11 -0700 (PDT)
+	id BF9E7E00A38; Wed, 14 Oct 2015 01:47:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW,XPRIO autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.176 listed in list.dnswl.org]
+	*      [80.237.132.209 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CBB1E00A38
-	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 01:13:08 -0700 (PDT)
-Received: by lbwr8 with SMTP id r8so40314855lbw.2
-	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 01:13:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=/4KU8/Y4wdkNq06f7ryF6OhxL/07HMT9xBnv3lxZCuE=;
-	b=jgQGzXCma8NnKmNN5yo+dM2dsgDMlEBNf/Kgf6QDWACVyjhr2lKd85S8NUN/SOZgMu
-	fNvp0rFkQ4FdGQTOJTLDhG1m5QVYph+gLFP+GfaWmji3cS6eOU/S/p3IFRjLBezQ0Cb5
-	C8zmXW5IiPNdLhHvsGY8OacaePnsQywIJt5ybOk8SzXkROOFTEetdRF73gYP/cRnvu4p
-	e6gM+NpNyfQR4vH+ZrZm2LILpsic+nWusVjYFDaR8znJLa1qRrPEjGXRLWE8BTaHHcb7
-	LhBUaKuGU2SHM0VX/xDCpGnxM3T4Ig5waBjvPhmmkNiTp/skBPeT7sMZNkFRsjWiMec5
-	JJVg==
-X-Gm-Message-State: ALoCoQmaT8T4hCNYEN+ak0P4VRxMiXTXUlA1F4exSQL4tXu+WS75P2CcBf3ExOwe+99578dr76TN
-X-Received: by 10.112.17.105 with SMTP id n9mr882475lbd.78.1444810386755; Wed,
-	14 Oct 2015 01:13:06 -0700 (PDT)
+	*  1.0 XPRIO Has X-Priority header
+X-Greylist: delayed 1081 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 Oct 2015 01:47:52 PDT
+Received: from wp202.webpack.hosteurope.de (wp202.webpack.hosteurope.de
+	[80.237.132.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 276A5E00A38
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 01:47:52 -0700 (PDT)
+Received: from app04.ox.hosteurope.de ([92.51.170.11]); authenticated
+	by wp202.webpack.hosteurope.de running ExIM with esmtpsa
+	(TLS1.0:RSA_ARCFOUR_MD5:16)
+	id 1ZmHRV-0004GJ-OE; Wed, 14 Oct 2015 10:29:49 +0200
+Date: Wed, 14 Oct 2015 10:29:49 +0200 (CEST)
+From: wp1174786-mailinglist <mailinglist@teleschirm.org>
+To: yocto@yoctoproject.org
+Message-ID: <718188389.624179.1444811389748.JavaMail.open-xchange@app04.ox.hosteurope.de>
 MIME-Version: 1.0
-Received: by 10.112.157.72 with HTTP; Wed, 14 Oct 2015 01:12:37 -0700 (PDT)
-In-Reply-To: <CAD-yPSd_NrBbQi7mj7KFjEYJmGodMMgvr1BfpOC-V_yudCaeZQ@mail.gmail.com>
-References: <CAD-yPSd=ue4FgBSEU6G_OMoQtBC6ZaypkOCQhmFp1X1emWZVpg@mail.gmail.com>
-	<CAJTo0LbevEF_mY55dfsasBwXDki3J-f76ih31j8k8kLwfFE8iQ@mail.gmail.com>
-	<CAD-yPSeYso2N-KaS3uHVaWKZjTcZ=4yHQxHPust9Qw8nW1Z_8A@mail.gmail.com>
-	<CAJTo0Lb9E2PY5wnj-T7VpEyVHzdn4TQ3Vws1mqQY0R2m4dfq_Q@mail.gmail.com>
-	<CAD-yPSd_NrBbQi7mj7KFjEYJmGodMMgvr1BfpOC-V_yudCaeZQ@mail.gmail.com>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Wed, 14 Oct 2015 11:12:37 +0300
-Message-ID: <CAHiDW_GHSTUn6voJFtj7xPmVZUZFb4M+8s+ZxXAuOS08amvCEg@mail.gmail.com>
-To: Finn Carlsvi <finncarlsvi@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Cap'n Proto Recipe Help
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.6.2-Rev32
+X-Originating-Client: com.openexchange.ox.gui.dhtml
+X-bounce-key: webpack.hosteurope.de; mailinglist@teleschirm.org; 1444812474;
+	acdc5667; 
+Subject: CMake missing header-files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: wp1174786-mailinglist <mailinglist@teleschirm.org>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,280 +47,210 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Oct 2015 08:13:11 -0000
-Content-Type: multipart/alternative; boundary=001a11c3bfeedeef3705220c21d3
+X-List-Received-Date: Wed, 14 Oct 2015 08:47:55 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_624178_1106681931.1444811389677"
 
---001a11c3bfeedeef3705220c21d3
+------=_Part_624178_1106681931.1444811389677
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 14 October 2015 at 03:57, Finn Carlsvi <finncarlsvi@gmail.com> wrote:
+Hi there,
+ 
+I noticed a curious problem when trying to build a cmake based recipe. During
+configuration phase pthead.h is found.
+ 
 
-> Thanks Ross,
->
-> That makes much more sense. I incorporated your edits, however, I used:
->
-> EXTRA_OECONF_append = " --with-external-capnp"
-> instead of EXTRA_OECMAKE, since it was used for the configuration
-> originally. Am I thinking right about this?
->
+> 
 
-configure is typically not used when building with cmake** so giving extra
-options for it probably won't help. The reason there is a configure file at
-all is that the project seems to support both autotools and cmake**. If you
-want to continue with cmake, find out how it does the equivalent of
-"--with-external-capnp": probably with something like "-DEXTERNALCAPNP" in
-EXTRA_OECMAKE. The other alternative is to use autotools instead of cmake
-(and add "--with-external-capnp" in EXTRA_OECONF).
+?space?--cmake
+/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src
+-DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_INSTALL_BINDIR:PATH=/usr/bin
+-DCMAKE_INSTALL_SBINDIR:PATH=/usr/sbin
+-DCMAKE_INSTALL_LIBEXECDIR:PATH=/usr/lib/vs100k
+-DCMAKE_INSTALL_SYSCONFDIR:PATH=/etc -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=/com
+-DCMAKE_INSTALL_LOCALSTATEDIR:PATH=/var -DCMAKE_INSTALL_LIBDIR:PATH=/usr/lib
+-DCMAKE_INSTALL_INCLUDEDIR:PATH=/usr/include
+-DCMAKE_INSTALL_DATAROOTDIR:PATH=/usr/share -DCMAKE_INSTALL_SO_NO_EXE=0
+-DCMAKE_TOOLCHAIN_FILE=/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/toolchain.cmake
+-DCMAKE_VERBOSE_MAKEFILE=1 -Wno-dev
+-- The C compiler identification is GNU 5.2.0
+-- The CXX compiler identification is GNU 5.2.0
+-- Check for working C compiler:
+/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
+-- Check for working C compiler:
+/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
+-- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler:
+/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++
+-- Check for working CXX compiler:
+/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++
+-- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for pthread_create
 
-I would suggest picking the build system the main developers actually use
-or recommend, then figuring out how to build that with the options you need
-_outside of yocto_, and then doing the same with a yocto recipe (keeping an
-eye on $WORKDIR/temp/log.* so you know what the build/configure is actually
-doing).
+ 
+But during build phase some header files can not be found?!
+ 
+
+/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++
+   -lrt
+-I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/build
+-I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/.
+-I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/log
+-I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/fpga
+   -o CMakeFiles/vs100k.dir/log/Log.cpp.o -c
+/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/log/Log.cpp
+In file included from
+/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/VS100K.cpp:8:0:
+/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/VS100K.h:4:21:
+fatal error: pthread.h: No such file or directory
+make[2]: *** [CMakeFiles/vs100k.dir/log/LogToSyslog.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+compilation terminated.
+
+ 
+Also socket.h can not be found.
+My receipe is very rudimentary:
 
 
-**) For reasons some people want multiple build systems in their projects.
-As if one wasn't painful enough.
+#SECTION = "package"
+LICENSE = "CLOSED"
+PR = "r0"
+PV = "0.1"
+DEPENDS = "cmake-native"
+S = "${WORKDIR}/src"
+inherit pkgconfig cmake
+SRC_URI = " file://CMakeLists.txt \
+            file://src/fpga/VS100K.h \
+            file://src/log/LogToConsole.h \
+            file://src/log/LogIf.h \
+            file://src/log/LogToSyslog.h \
+            file://src/fpga/Fpga.h \
+            file://src/main.cpp \
+            file://src/fpga/VS100K.cpp \
+            file://src/log/LogToSyslog.cpp \
+            file://src/log/LogToConsole.cpp \
+            file://src/fpga/Fpga.cpp \
+             "
+do_install() {
+    install -m 0755 -d ${D}${bindir}
+    install -m 0755 vs100k ${D}${bindir}
+}
 
+ 
+Any idea how to resolve this?
+Building the same application using Yocto Eclipse plugins works properly.
+ 
+regards,
+Martin
 
-- Jussi
-
-
-
->
-This edit brings me to the following error:
->
-> | [ 70%] Built target capnp_tool
-> | make -f src/capnp/CMakeFiles/capnp-heavy-tests.dir/build.make
-> src/capnp/CMakeFiles/capnp-heavy-tests.dir/depend
-> | make[2]: Entering directory
-> `/home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build'
-> | /home/finn/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/cmake -E
-> cmake_progress_report
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/CMakeFiles
-> 14
-> | [ 71%] Compiling Cap'n Proto schema test-import2.capnp
-> | cd
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/src/capnp
-> && ./capnp compile -o
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/src/capnp/capnpc-c++:/home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/src/capnp/test_capnp/capnp
-> --src-prefix
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src/capnp
-> -I
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src/capnp
-> -I
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src
-> /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src/capnp/test-import2.capnp
-> | ./capnp: 1: ./capnp: Syntax error: word unexpected (expecting ")")
-> | make[2]: *** [src/capnp/test_capnp/capnp/test-import2.capnp.c++] Error 2
-> | make[2]: Leaving directory
-> `/home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build'
-> | make[1]: *** [src/capnp/CMakeFiles/capnp-heavy-tests.dir/all] Error 2
-> | make[1]: Leaving directory
-> `/home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build'
-> | make: *** [all] Error 2
-> | ERROR: oe_runmake failed
-> | WARNING: exit code 1 from a shell command.
->
-> From what I gather,  Syntax error: word unexpected (expecting ")") means
-> that the ./capnp is compiled for arm, I need to be running the local
-> version right?
->
-> I tried adding
-> CAPNP = "/usr/local/bin/capnp"
-> to the recipe file, but of course that does not make a difference.
->
-> This is my updated recipe file:
-> INSANE_SKIP_${PN} += "install-host-path"
->
-> SRC_URI = "https://capnproto.org/capnproto-c++-${PV}.tar.gz
-> <https://capnproto.org/capnproto-c++-$%7BPV%7D.tar.gz>"
-> SRC_URI[md5sum] = "d6c91a9129457fe5893302cd92e09324"
-> SRC_URI[sha256sum] =
-> "cdb17c792493bdcd4a24bcd196eb09f70ee64c83a3eccb0bc6534ff560536afb"
->
-> PACKAGES = "${PN}"
->
-> S = "${WORKDIR}/capnproto-c++-${PV}"
->
-> inherit cmake
->
-> EXTRA_OECONF_append = " --with-external-capnp"
->
->
-> Thanks again :)
->
-> On Tue, Oct 13, 2015 at 2:56 PM, Burton, Ross <ross.burton@intel.com>
-> wrote:
->
->>
->> On 13 October 2015 at 20:55, Finn Carlsvi <finncarlsvi@gmail.com> wrote:
->>
->>> INSANE_SKIP_${PN} += "installed-vs-shipped"
->>>
->>
->> You're telling the system not to warn you that you have a do_install()
->> that installs files that are not getting packaged anywhere.
->>
->> do_configure() {
->>>     export CAPNP=/usr/local/bin/capnp
->>>     ${S}/configure --with-external-capnp -build=x86_64-linux
->>> --host=arm-poky-linux-gnueabi --target=arm-poky-linux-gnueabi
->>> }
->>
->>
->> Here you are overriding all of the magic in cmake.bbclass that makes
->> cmake actually work.  You probably just want to add --with-external-capnp
->> to EXTRA_OECMAKE and remove your do_configure().
->>
->> Ross
->>
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---001a11c3bfeedeef3705220c21d3
+------=_Part_624178_1106681931.1444811389677
+MIME-Version: 1.0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 1=
-4 October 2015 at 03:57, Finn Carlsvi <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:finncarlsvi@gmail.com" target=3D"_blank">finncarlsvi@gmail.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-le=
-ft-style:solid;padding-left:1ex"><div dir=3D"ltr">Thanks Ross,<div><br></di=
-v><div>That makes much more sense. I incorporated your edits, however, I us=
-ed:</div><div><br></div><div>EXTRA_OECONF_append =3D &quot; --with-external=
--capnp&quot;</div><div>instead of=C2=A0<span style=3D"font-size:12.8px">EXT=
-RA_OECMAKE, since it was used for the configuration originally. Am I thinki=
-ng right about this?</span></div></div></blockquote><div><br></div><div>con=
-figure is typically not used when building with cmake** so giving extra opt=
-ions for it probably won&#39;t help. The reason there is a configure file a=
-t all is that the project seems to support both autotools and cmake**. If y=
-ou want to continue with cmake, find out how it does the equivalent of &quo=
-t;--with-external-capnp&quot;: probably with something like &quot;-DEXTERNA=
-LCAPNP&quot; in EXTRA_OECMAKE. The other alternative is to use autotools in=
-stead of cmake (and add &quot;--with-external-capnp&quot; in EXTRA_OECONF).=
-</div><div><br></div><div>I would suggest picking the build system the main=
- developers actually use or recommend, then figuring out how to build that =
-with the options you need _outside of yocto_, and then doing the same with =
-a yocto recipe (keeping an eye on $WORKDIR/temp/log.* so you know what the =
-build/configure is actually doing).</div><div><br></div><div><br></div><div=
->**) For reasons some people want multiple build systems in their projects.=
- As if one wasn&#39;t painful enough.</div><div><br></div><div><br></div><d=
-iv>- Jussi</div><div><br></div><div><br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-co=
-lor:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div dir=3D"=
-ltr"><div>=C2=A0</div></div></blockquote><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:r=
-gb(204,204,204);border-left-style:solid;padding-left:1ex"><div dir=3D"ltr">=
-<div><span style=3D"font-size:12.8px"></span></div><div><span style=3D"font=
--size:12.8px">This edit brings me to the following error:</span></div><div>=
-<span style=3D"font-size:12.8px"><br></span></div><div><div><span style=3D"=
-font-size:12.8px">| [ 70%] Built target capnp_tool</span></div><div><span s=
-tyle=3D"font-size:12.8px">| make -f src/capnp/CMakeFiles/capnp-heavy-tests.=
-dir/build.make src/capnp/CMakeFiles/capnp-heavy-tests.dir/depend</span></di=
-v><div><span style=3D"font-size:12.8px">| make[2]: Entering directory `/hom=
-e/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/cap=
-nproto/0.5.3-r0/build&#39;</span></div><div><span style=3D"font-size:12.8px=
-">| /home/finn/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/cmake -E =
-cmake_progress_report /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-n=
-eon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/CMakeFiles 14</span></div><=
-div><span style=3D"font-size:12.8px">| [ 71%] Compiling Cap&#39;n Proto sch=
-ema test-import2.capnp</span></div><div><span style=3D"font-size:12.8px">| =
-cd /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnue=
-abi/capnproto/0.5.3-r0/build/src/capnp &amp;&amp; ./capnp compile -o /home/=
-finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnp=
-roto/0.5.3-r0/build/src/capnp/capnpc-c++:/home/finn/yocto/poky/build/tmp/wo=
-rk/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/build/src/capn=
-p/test_capnp/capnp --src-prefix /home/finn/yocto/poky/build/tmp/work/cortex=
-a9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src=
-/capnp -I /home/finn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
-ux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src/capnp -I /home/finn/y=
-octo/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0=
-.5.3-r0/capnproto-c++-0.5.3/src /home/finn/yocto/poky/build/tmp/work/cortex=
-a9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.3-r0/capnproto-c++-0.5.3/src=
-/capnp/test-import2.capnp</span></div><div><span style=3D"font-size:12.8px"=
->| ./capnp: 1: ./capnp: Syntax error: word unexpected (expecting &quot;)&qu=
-ot;)</span></div><div><span style=3D"font-size:12.8px">| make[2]: *** [src/=
-capnp/test_capnp/capnp/test-import2.capnp.c++] Error 2</span></div><div><sp=
-an style=3D"font-size:12.8px">| make[2]: Leaving directory `/home/finn/yoct=
-o/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnproto/0.5.=
-3-r0/build&#39;</span></div><div><span style=3D"font-size:12.8px">| make[1]=
-: *** [src/capnp/CMakeFiles/capnp-heavy-tests.dir/all] Error 2</span></div>=
-<div><span style=3D"font-size:12.8px">| make[1]: Leaving directory `/home/f=
-inn/yocto/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/capnpr=
-oto/0.5.3-r0/build&#39;</span></div><div><span style=3D"font-size:12.8px">|=
- make: *** [all] Error 2</span></div><div><span style=3D"font-size:12.8px">=
-| ERROR: oe_runmake failed</span></div><div><span style=3D"font-size:12.8px=
-">| WARNING: exit code 1 from a shell command.</span></div><div><span style=
-=3D"font-size:12.8px"><br></span></div><div>From what I gather,=C2=A0<span =
-style=3D"font-size:12.8px">=C2=A0</span><span style=3D"font-size:12.8px">Sy=
-ntax error: word unexpected (expecting &quot;)&quot;) means that the ./capn=
-p is compiled for arm, I need to be running the local version right?</span>=
-</div></div><div><span style=3D"font-size:12.8px"><br></span></div><div><sp=
-an style=3D"font-size:12.8px">I tried adding</span></div><div><span style=
-=3D"font-size:12.8px">CAPNP =3D &quot;/usr/local/bin/capnp&quot;</span></di=
-v><div><span style=3D"font-size:12.8px">to the recipe file, but of course t=
-hat does not make a difference.</span></div><div><span style=3D"font-size:1=
-2.8px"><br></span></div><div><span style=3D"font-size:12.8px">This is my up=
-dated recipe file:</span></div><div><div><span style=3D"font-size:12.8px">I=
-NSANE_SKIP_${PN} +=3D &quot;install-host-path&quot;</span></div><span class=
-=3D""><div><span style=3D"font-size:12.8px"><br></span></div><div><span sty=
-le=3D"font-size:12.8px">SRC_URI =3D &quot;<a href=3D"https://capnproto.org/=
-capnproto-c++-$%7BPV%7D.tar.gz" target=3D"_blank">https://capnproto.org/cap=
-nproto-c++-${PV}.tar.gz</a>&quot;</span></div><div><span style=3D"font-size=
-:12.8px">SRC_URI[md5sum] =3D &quot;d6c91a9129457fe5893302cd92e09324&quot;</=
-span></div><div><span style=3D"font-size:12.8px">SRC_URI[sha256sum] =3D &qu=
-ot;cdb17c792493bdcd4a24bcd196eb09f70ee64c83a3eccb0bc6534ff560536afb&quot;</=
-span></div><div><span style=3D"font-size:12.8px"><br></span></div><div><spa=
-n style=3D"font-size:12.8px">PACKAGES =3D &quot;${PN}&quot;</span></div><di=
-v><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"fon=
-t-size:12.8px">S =3D &quot;${WORKDIR}/capnproto-c++-${PV}&quot;</span></div=
-><div><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D=
-"font-size:12.8px">inherit cmake</span></div><div><span style=3D"font-size:=
-12.8px"><br></span></div></span><div><span style=3D"font-size:12.8px">EXTRA=
-_OECONF_append =3D &quot; --with-external-capnp&quot;</span></div><div styl=
-e=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px"><br></div>=
-<div style=3D"font-size:12.8px">Thanks again :)</div></div></div><div class=
-=3D""><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_=
-quote">On Tue, Oct 13, 2015 at 2:56 PM, Burton, Ross <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@inte=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204=
-,204);border-left-style:solid;padding-left:1ex"><div dir=3D"ltr"><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On 13 October 2015 at 20:55=
-, Finn Carlsvi <span dir=3D"ltr">&lt;<a href=3D"mailto:finncarlsvi@gmail.co=
-m" target=3D"_blank">finncarlsvi@gmail.com</a>&gt;</span> wrote:<br><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-wi=
-dth:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-=
-left:1ex"><div>INSANE_SKIP_${PN} +=3D &quot;installed-vs-shipped&quot;</div=
-><div></div></blockquote></div></div><br><div>You&#39;re telling the system=
- not to warn you that you have a do_install() that installs files that are =
-not getting packaged anywhere. =C2=A0</div><div><br></div><div><span><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-w=
-idth:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding=
--left:1ex">do_configure() {<br>=C2=A0 =C2=A0 export CAPNP=3D/usr/local/bin/=
-capnp<br>=C2=A0 =C2=A0 ${S}/configure --with-external-capnp -build=3Dx86_64=
--linux --host=3Darm-poky-linux-gnueabi --target=3Darm-poky-linux-gnueabi<br=
->}</blockquote><div><br></div></span><div>Here you are overriding all of th=
-e magic in cmake.bbclass that makes cmake actually work.=C2=A0 You probably=
- just want to add --with-external-capnp to EXTRA_OECMAKE and remove your do=
-_configure().</div><span><font color=3D"#888888"><div><br></div><div>Ross</=
-div></font></span></div></div>
-</blockquote></div><br></div>
-</div></div><br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
---001a11c3bfeedeef3705220c21d3--
+<html xmlns=3D"http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+"/>
+ <style type=3D"text/css">.mceResizeHandle {position: absolute;border: 1px =
+solid black;background: #FFF;width: 5px;height: 5px;z-index: 10000}.mceResi=
+zeHandle:hover {background: #000}img[data-mce-selected] {outline: 1px solid=
+ black}img.mceClonedResizable, table.mceClonedResizable {position: absolute=
+;outline: 1px dashed black;opacity: .5;z-index: 10000}
+</style></head><body style=3D""><div><span>Hi there,</span></div>
+<div>&#160;</div>
+<div>I noticed a curious problem when trying to build a cmake based recipe.=
+ During configuration phase pthead.h is found.</div>
+<div>&#160;</div>
+<blockquote></blockquote>
+<blockquote>&#160;cmake /opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neo=
+n-poky-linux-gnueabi/vs100k/0.1-r0/src -DCMAKE_INSTALL_PREFIX:PATH=3D/usr -=
+DCMAKE_INSTALL_BINDIR:PATH=3D/usr/bin -DCMAKE_INSTALL_SBINDIR:PATH=3D/usr/s=
+bin -DCMAKE_INSTALL_LIBEXECDIR:PATH=3D/usr/lib/vs100k -DCMAKE_INSTALL_SYSCO=
+NFDIR:PATH=3D/etc -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=3D/com -DCMAKE_INSTAL=
+L_LOCALSTATEDIR:PATH=3D/var -DCMAKE_INSTALL_LIBDIR:PATH=3D/usr/lib -DCMAKE_=
+INSTALL_INCLUDEDIR:PATH=3D/usr/include -DCMAKE_INSTALL_DATAROOTDIR:PATH=3D/=
+usr/share -DCMAKE_INSTALL_SO_NO_EXE=3D0 -DCMAKE_TOOLCHAIN_FILE=3D/opt/ZX3/y=
+octo/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0=
+/toolchain.cmake -DCMAKE_VERBOSE_MAKEFILE=3D1 -Wno-dev<br>-- The C compiler=
+ identification is GNU 5.2.0<br>-- The CXX compiler identification is GNU 5=
+.2.0<br>-- Check for working C compiler: /opt/ZX3/yocto/poky/build/tmp/sysr=
+oots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc=
+<br>-- Check for working C compiler: /opt/ZX3/yocto/poky/build/tmp/sysroots=
+/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc -- =
+works<br>-- Detecting C compiler ABI info<br>-- Detecting C compiler ABI in=
+fo - done<br>-- Detecting C compile features<br>-- Detecting C compile feat=
+ures - done<br>-- Check for working CXX compiler: /opt/ZX3/yocto/poky/build=
+/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gn=
+ueabi-g++<br>-- Check for working CXX compiler: /opt/ZX3/yocto/poky/build/t=
+mp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnue=
+abi-g++ -- works<br>-- Detecting CXX compiler ABI info<br>-- Detecting CXX =
+compiler ABI info - done<br>-- Detecting CXX compile features<br>-- Detecti=
+ng CXX compile features - done<br>-- Looking for include file pthread.h<br>=
+-- Looking for include file pthread.h - found<br>-- Looking for pthread_cre=
+ate</blockquote>
+<div>&#160;</div>
+<div>But during build phase some header files can not be found?!</div>
+<div>&#160;</div>
+<div>
+<blockquote>/opt/ZX3/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/arm=
+-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ &#160; &#160;-lrt -I/opt/ZX3=
+/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-=
+r0/build -I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-=
+gnueabi/vs100k/0.1-r0/src/. -I/opt/ZX3/yocto/poky/build/tmp/work/cortexa9-v=
+fp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/log -I/opt/ZX3/yocto/poky/buil=
+d/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/fpga &#16=
+0; &#160;-o CMakeFiles/vs100k.dir/log/Log.cpp.o -c /opt/ZX3/yocto/poky/buil=
+d/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/log/Log.c=
+pp<br>In file included from /opt/ZX3/yocto/poky/build/tmp/work/cortexa9-vfp=
+-neon-poky-linux-gnueabi/vs100k/0.1-r0/src/VS100K.cpp:8:0:<br>/opt/ZX3/yoct=
+o/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/vs100k/0.1-r0/sr=
+c/VS100K.h:4:21: fatal error: pthread.h: No such file or directory<br>make[=
+2]: *** [CMakeFiles/vs100k.dir/log/LogToSyslog.cpp.o] Error 1<br>make[2]: *=
+** Waiting for unfinished jobs....<br>compilation terminated.</blockquote>
+<div>&#160;</div>
+</div>
+<div><span>Also socket.h can not be found.</span><br><span>My receipe is ve=
+ry rudimentary:</span></div>
+<div>
+<blockquote><br><br>#SECTION =3D &#34;package&#34;<br>LICENSE =3D &#34;CLOS=
+ED&#34;<br>PR =3D &#34;r0&#34;<br>PV =3D &#34;0.1&#34;<br>DEPENDS =3D &#34;=
+cmake-native&#34;<br>S =3D &#34;${WORKDIR}/src&#34;<br>inherit pkgconfig cm=
+ake<br>SRC_URI =3D &#34; file://CMakeLists.txt \<br>&#160; &#160; &#160; &#=
+160; &#160; &#160; file://src/fpga/VS100K.h \<br>&#160; &#160; &#160; &#160=
+; &#160; &#160; file://src/log/LogToConsole.h \<br>&#160; &#160; &#160; &#1=
+60; &#160; &#160; file://src/log/LogIf.h \<br>&#160; &#160; &#160; &#160; &=
+#160; &#160; file://src/log/LogToSyslog.h \<br>&#160; &#160; &#160; &#160; =
+&#160; &#160; file://src/fpga/Fpga.h \<br>&#160; &#160; &#160; &#160; &#160=
+; &#160; file://src/main.cpp \<br>&#160; &#160; &#160; &#160; &#160; &#160;=
+ file://src/fpga/VS100K.cpp \<br>&#160; &#160; &#160; &#160; &#160; &#160; =
+file://src/log/LogToSyslog.cpp \<br>&#160; &#160; &#160; &#160; &#160; &#16=
+0; file://src/log/LogToConsole.cpp \<br>&#160; &#160; &#160; &#160; &#160; =
+&#160; file://src/fpga/Fpga.cpp \<br>&#160; &#160; &#160; &#160; &#160; &#1=
+60; &#160;&#34;<br>do_install() {<br>&#160; &#160; install -m 0755 -d ${D}$=
+{bindir}<br>&#160; &#160; install -m 0755 vs100k ${D}${bindir}<br>}</blockq=
+uote>
+<div>&#160;</div>
+</div>
+<div>Any idea how to resolve this?</div>
+<div>Building the same application using Yocto Eclipse plugins works proper=
+ly.</div>
+<div>&#160;</div>
+<div>regards,</div>
+<div>Martin</div></body></html>
+
+------=_Part_624178_1106681931.1444811389677--
