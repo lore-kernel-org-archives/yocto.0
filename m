@@ -1,57 +1,59 @@
-Return-Path: <allen.curtis@curtisembedded.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B857E00AAA; Wed, 14 Oct 2015 09:32:30 -0700 (PDT)
+	id 21D67E00AB0; Wed, 14 Oct 2015 10:16:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.49 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [69.89.20.122 listed in list.dnswl.org]
-Received: from gproxy9-pub.mail.unifiedlayer.com
-	(gproxy9-pub.mail.unifiedlayer.com [69.89.20.122])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 36418E009B8
-	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 09:32:25 -0700 (PDT)
-Received: (qmail 8737 invoked by uid 0); 14 Oct 2015 16:32:24 -0000
-Received: from unknown (HELO CMOut01) (10.0.90.82)
-	by gproxy9.mail.unifiedlayer.com with SMTP; 14 Oct 2015 16:32:24 -0000
-Received: from box410.bluehost.com ([69.89.31.210]) by CMOut01 with 
-	id V4YJ1r01J4Y0hd9014YMv8; Wed, 14 Oct 2015 10:32:23 -0600
-X-Authority-Analysis: v=2.1 cv=VOBOwb/X c=1 sm=1 tr=0
-	a=ETof7DMrXRHAC+dJixH5gQ==:117 a=ETof7DMrXRHAC+dJixH5gQ==:17
-	a=cNaOj0WVAAAA:8
-	a=f5113yIGAAAA:8 a=3_4UIzzJAAAA:8 a=kj9zAlcOel0A:10 a=mHfT8ucao3sA:10
-	a=o0XNLtqhUCMA:10 a=5lJygRwiOn0A:10 a=kWiFOrczT70UZUEUCXYA:9
-	a=CjuIK1q_8ugA:10 a=u2V3AP73M9cA:10
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=curtisembedded.com; s=default; 
-	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=mfzlzlVfBgt4RMuzv18ds72kGl2MyrCKQhxo7/2shRo=; 
-	b=zKKvKFn8ifu4BFhZKxpX7WwmGLoHbfYIxjcrUJ98upU8mTFIyBySOgCYjBtg3WEE2e6URleXNvwRzM8aKoLi3E5PZ5hB7go4BPk9FBOOIDT3L19zDroWBpRFE48ODWMk;
-Received: from [68.225.237.157] (port=56385 helo=[192.168.0.3])
-	by box410.bluehost.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.84) (envelope-from <allen.curtis@curtisembedded.com>)
-	id 1ZmOyR-0003fI-Pm
-	for yocto@yoctoproject.org; Wed, 14 Oct 2015 10:32:19 -0600
-From: Allen Curtis <allen.curtis@curtisembedded.com>
-Message-Id: <24D62272-F484-4CBA-9113-6D83AD754818@curtisembedded.com>
-Date: Wed, 14 Oct 2015 09:32:15 -0700
-To: yocto <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
-X-Mailer: Apple Mail (2.1510)
-X-Identified-User: {2323:box410.bluehost.com:actwoent:curtisembedded.com}
-	{sentby:smtp auth 68.225.237.157 authed with
-	allen.curtis@curtisembedded.com}
-Subject: mtd-utils floating point exception
+Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
+	[209.85.220.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C434CE00A9B
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 10:16:38 -0700 (PDT)
+Received: by payp3 with SMTP id p3so11773427pay.1
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 10:16:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=kXODvNb//1pGLWbBfQHT8+MIP4fO/qxjYmmvCQzjjwI=;
+	b=0r2wZV5tDS+ECSPc/SIbARAYiBBZb0PaeZ89fH+5juFNNVuBoJoUzmvOwuUgZoJcK8
+	A5zEeYy6yHw84c17xB0mPFeB2yEgMuP/1eL8cZ8Aj1yU3MurcvIISTXYLK9XvltBRf8g
+	DKXbkFkZQDteNJFNoK0HK5sEEz7oRFNixKgtP547fw24BwAf3vkYfYX3DBnmNiB4CC7s
+	jf/C/lNXIpwRNGcymARHDYXpvLTC15HfcEZEZee6JB1IAMaHMC1MYRAOz/xmhzCi8vZF
+	S9FOg0mFnFXs273whh5dcOkgMMdJ9JvKIbZReZlHrK1/YcCFCgUz2PM1gmnre19ErZKM
+	OmMw==
+X-Received: by 10.66.159.66 with SMTP id xa2mr4884940pab.28.1444842998356;
+	Wed, 14 Oct 2015 10:16:38 -0700 (PDT)
+Received: from ?IPv6:2601:646:8601:4580:6454:793b:ce8a:7835?
+	([2601:646:8601:4580:6454:793b:ce8a:7835])
+	by smtp.gmail.com with ESMTPSA id
+	lo9sm10763094pab.19.2015.10.14.10.16.37
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 14 Oct 2015 10:16:37 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.0 \(3096.1\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <24D62272-F484-4CBA-9113-6D83AD754818@curtisembedded.com>
+Date: Wed, 14 Oct 2015 10:16:33 -0700
+Message-Id: <E534C686-C0FF-472D-B769-EAFB2C35D302@gmail.com>
+References: <24D62272-F484-4CBA-9113-6D83AD754818@curtisembedded.com>
+To: Allen Curtis <allen.curtis@curtisembedded.com>
+X-Mailer: Apple Mail (2.3096.1)
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: mtd-utils floating point exception
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,18 +65,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Oct 2015 16:32:30 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 14 Oct 2015 17:16:42 -0000
+X-Groupsio-MsgNum: 26840
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_9801A4D8-F58D-4210-87FA-3FCBEC5366C4";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_9801A4D8-F58D-4210-87FA-3FCBEC5366C4
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hello,
 
-When I execute any of the mtd utilities from a Yocto AM335x build, they =
-terminate with a floating point exception.
+> On Oct 14, 2015, at 9:32 AM, Allen Curtis =
+<allen.curtis@curtisembedded.com> wrote:
+>=20
+> Hello,
+>=20
+> When I execute any of the mtd utilities from a Yocto AM335x build, =
+they terminate with a floating point exception.
+>=20
+> Is this a known bug?
 
-Is this a known bug?
+Can you provide more details
 
-Is there a patch?
+>=20
+> Is there a patch?
+>=20
+> TIA
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-TIA=
 
+--Apple-Mail=_9801A4D8-F58D-4210-87FA-3FCBEC5366C4
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlYejfQACgkQuwUzVZGdMxQnEwCfcXy8afIKfrR8zNdGXMak3PMf
+05oAnj+bU0nEu1vxOstReordQKW5o7mI
+=UbZ0
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_9801A4D8-F58D-4210-87FA-3FCBEC5366C4--
