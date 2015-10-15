@@ -1,15 +1,16 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <csanchezdll@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57EB2E00AEB; Thu, 15 Oct 2015 08:57:45 -0700 (PDT)
+	id 6F946E00AEB; Thu, 15 Oct 2015 09:03:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0002]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (csanchezdll[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -17,43 +18,40 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [98.138.91.105 listed in list.dnswl.org]
-Received: from nm12-vm6.bullet.mail.ne1.yahoo.com
-	(nm12-vm6.bullet.mail.ne1.yahoo.com [98.138.91.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE75FE00A49
-	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 08:57:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1444924661; bh=8aq0Tkdead7kkLYLUog9wcS8kniXsJSmNnxPXJb/pCg=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=cLxLok1lrV8oQmaQ7XouXcjRDAge7nnVAuyDQmWkDqWWkb6FhO0l0N78vElFunZZ1AMJgKbFZesGpvPk/IWT4Sn9nUYyAp3FDgYhPL1d+wDXFVDxY9dIiK5K49BBklkCqCYgXtlDzKxEDbaGze51pGzGHtEDhQWCjz20Htvv+ou5oKuBZDpk3ieZgrl8tOqkFA3MlhmZJQvBCgYrwxkg23ywlOKeJuLnVWzWbMlCs7wHWFEetDN1zcJgEFtQkrmZyjiQFsb/okzEd3teY6wvbM6fmKKbN6oEOjyRsPRo1fswbCiWCod3MrirNZJcmBmPNL4oPGJHCmlEV0ahFoNjZA==
-Received: from [98.138.101.131] by nm12.bullet.mail.ne1.yahoo.com with NNFMP;
-	15 Oct 2015 15:57:41 -0000
-Received: from [98.138.89.197] by tm19.bullet.mail.ne1.yahoo.com with NNFMP;
-	15 Oct 2015 15:57:41 -0000
-Received: from [127.0.0.1] by omp1055.mail.ne1.yahoo.com with NNFMP;
-	15 Oct 2015 15:57:41 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 616769.91525.bm@omp1055.mail.ne1.yahoo.com
-X-YMail-OSG: wlNRyy4VM1no5iTBJ8tCdZ2ultOEcRmYrgoFdhmvyF.QYNDj739YEwL4afdip21
-	a45YdB3FEMDzxD1EGR6j1Cx_DVL4dnGCZhlo9hc_kfDjRAVeP17oZtZJOfHMth1jVw6auzXjk_uf
-	4YmFce8hQ_ZY10R34_VVqosHqHnH1Hw.E1BTG6tLVUl0f8lEd3K970B6Fjse0bMN9zXii3U8YWAZ
-	V4V3B7b2zzmSX.G0Gan.ii6VBoEozSKHzc.06dq0sKBzSsKe9h8FRwlUdEC5bdqAMHVeQagt58NB
-	GWDAsNoRtm0EZy_M2hyj4_ANinsdb8mRpVmGTYXCmazVKSkDrgtK60gp.fhldK0Gmcs.GfmMYGkc
-	7hNQ_PUAfr8P9_Dxd5daakkD7ZcaMfEPyzo4hj_N.2tTAV.5tSblOOFUa2CsA6GRufeV7U.oafsQ
-	JMCgqF90vaw_2_el9UJr4fudkx9uc.eM0EijK4xMa9GB2kEaHAKd9bv.iSux.9uRJaC3QYM9l6KG
-	2wZltFpIvflIO_IOQCbntYzJVguZWLB45kgYbUWe3KB6QURRZiiUsFeZAkhaadw--
-Received: by 98.138.105.202; Thu, 15 Oct 2015 15:57:41 +0000 
-Date: Thu, 15 Oct 2015 15:57:40 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <536330707.919423.1444924660857.JavaMail.yahoo@mail.yahoo.com>
+	*      [209.85.215.45 listed in list.dnswl.org]
+Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE977E00A49
+	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 09:03:14 -0700 (PDT)
+Received: by lfeh64 with SMTP id h64so33358320lfe.3
+	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 09:03:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:user-agent:mime-version
+	:content-type:content-transfer-encoding;
+	bh=ayZxHHYVk0TCO0/Sr6fk4aVd3hQobX9VNyFsF4R5CXI=;
+	b=XZqKtnrJFOlpcOgVJDMk5jwrgrY1Xgds3vjokmwE6gfP5gXjeEBBAO1RZeIhQlTmKR
+	rvN0L5hy2QShcaCan6JPdawXz6opJEMK9zzzolOq7ZTERpSDCHWdEFEd61TotZWisCok
+	oa02BWYr+QFqIJ+shIMzMlAJ9C1l5Fw3LLm2MgWFr//pVTCrQObyKjARbT7EJ7EQkmFV
+	1UozqN0E2indeY565bSruBnvLCsLhHmEsRRg3RNU2BkKK9mOwIP1Q93HQXuEetI667O3
+	8sgkIIgNMpUdw9fPEnNgq/yH4Y0ycGwvH/7p5alU0QS7oO1WkdbzjaDpnd8VGoBLSToc
+	lr6g==
+X-Received: by 10.180.189.12 with SMTP id ge12mr21981017wic.73.1444924992259; 
+	Thu, 15 Oct 2015 09:03:12 -0700 (PDT)
+Received: from boole (galileo.kdpof.com. [80.38.102.19])
+	by smtp.gmail.com with ESMTPSA id
+	x9sm17276412wjf.44.2015.10.15.09.03.10 for <yocto@yoctoproject.org>
+	(version=TLSv1.1 cipher=RC4-SHA bits=128/128);
+	Thu, 15 Oct 2015 09:03:11 -0700 (PDT)
+From: csanchezdll@gmail.com (Carlos =?utf-8?Q?S=C3=A1nchez?= de La Lama)
+To: yocto@yoctoproject.org
+Date: Thu, 15 Oct 2015 18:03:13 +0200
+Message-ID: <7tvba8jf0e.fsf@gmail.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.3 (gnu/linux)
 MIME-Version: 1.0
-References: <536330707.919423.1444924660857.JavaMail.yahoo@mail.yahoo.com>
-Subject: meta-raspberrypi no soud output
+Subject: Package inclusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,51 +60,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Oct 2015 15:57:45 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_919422_1341301393.1444924660853"
-
-------=_Part_919422_1341301393.1444924660853
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Oct 2015 16:03:18 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,Does any have snd working on Raspberry Pi 2B?
-I have tried aplay speech_dft.wavPLAYING WAVE: 'speech_dft.wav' :=C2=A0 Sig=
-ned 16 bit Little Endian, rate 22050 Hz Monowith ear plugs or speaker no sn=
-d.Any and all help appreciated.
-Regards.
-=C2=A0Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+Hi all,
 
-------=_Part_919422_1341301393.1444924660853
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I have some doubts on how package inclusion in images is determined. For
+example, when building core-image-base, I would say that both
 
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
-sans-serif;font-size:16px"><div id=3D"yui_3_16_0_1_1444922488435_10928"><sp=
-an id=3D"yui_3_16_0_1_1444922488435_11106">Hello All,</span></div><div id=
-=3D"yui_3_16_0_1_1444922488435_11016"><span id=3D"yui_3_16_0_1_144492248843=
-5_11015">Does any have snd working on Raspberry Pi 2B?</span></div><div id=
-=3D"yui_3_16_0_1_1444922488435_11056"><br><span id=3D"yui_3_16_0_1_14449224=
-88435_11015"></span></div><div dir=3D"ltr" id=3D"yui_3_16_0_1_1444922488435=
-_11062"><span id=3D"yui_3_16_0_1_1444922488435_11015">I have tried aplay sp=
-eech_dft.wav</span></div><div id=3D"yui_3_16_0_1_1444922488435_11105" dir=
-=3D"ltr"><span class=3D"" id=3D"yui_3_16_0_1_1444922488435_11015">PLAYING W=
-AVE: '</span><span class=3D"" id=3D"yui_3_16_0_1_1444922488435_11015">speec=
-h_dft.wav' :&nbsp; Signed 16 bit Little Endian, rate 22050 Hz Mono</span></=
-div><div id=3D"yui_3_16_0_1_1444922488435_11165" dir=3D"ltr"><span class=3D=
-"" id=3D"yui_3_16_0_1_1444922488435_11015">with ear plugs or speaker no snd=
-.</span></div><div id=3D"yui_3_16_0_1_1444922488435_11166" dir=3D"ltr"><spa=
-n class=3D"" id=3D"yui_3_16_0_1_1444922488435_11015">Any and all help appre=
-ciated.</span></div><div id=3D"yui_3_16_0_1_1444922488435_11187" dir=3D"ltr=
-"><span class=3D"" id=3D"yui_3_16_0_1_1444922488435_11015"><br></span></div=
-><div id=3D"yui_3_16_0_1_1444922488435_11188" dir=3D"ltr"><span class=3D"" =
-id=3D"yui_3_16_0_1_1444922488435_11015">Regards.</span></div><div id=3D"yui=
-_3_16_0_1_1444922488435_11189" dir=3D"ltr"><span class=3D"" id=3D"yui_3_16_=
-0_1_1444922488435_11015"><br></span></div><div id=3D"yui_3_16_0_1_144492248=
-8435_11014"><span></span></div><div id=3D"yui_3_16_0_1_1444922488435_10929"=
->&nbsp;</div><div id=3D"yui_3_16_0_1_1444922488435_10930" class=3D"signatur=
-e">Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613</div></div><=
-/body></html>
+kernel-module-uvesafb
+kernel-module-input
 
-------=_Part_919422_1341301393.1444924660853--
+are recommended (through RRECOMENDS in packagegroup-base).
+
+However, -uvesafb makes it to the final image, whereas -input does not.
+I double-checked on the running system under QEMU *and* reading the
+image manifest at
+tmp/deploy/images/qemux86/core-image-base-qemux86.manifest
+
+I must be missing something. Can someone give me a pointer?
+
+Thanks a lot, BR
+
+Carlos
+
+--=20
+-Debemos anhelar no s=C3=B3lo la verdad, sino tambi=C3=A9n la virtud -sente=
+nci=C3=B3
+Pit=C3=A1goras-. El conocimiento que se obtiene mediante oro, y no a trav=
+=C3=A9s de un
+merecimiento virtuoso, puede apartarnos del camino recto y ser nefasto para
+nosotros y para nuestro entorno.
+
+Marcos Chicot, "El asesinato de Pit=C3=A1goras" (2013)
+
