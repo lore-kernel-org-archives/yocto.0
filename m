@@ -1,42 +1,62 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B115E00AAA; Wed, 14 Oct 2015 22:16:15 -0700 (PDT)
+	id 57138E00A49; Wed, 14 Oct 2015 23:51:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
-	[203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C8ECE007D1
-	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 22:16:13 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Thu, 15 Oct 2015 16:16:13 +1100
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 Oct 2015 16:16:11 +1100
-Thread-Topic: [yocto] Making /etc/os-release loadable by shell script
-Thread-Index: AdC0rhOMVDYeupKXRXO+39s0II5zghSWjRrA
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A40227CB77509E@IR-CENTRAL.corp.innerrange.com>
-References: <5500469A22567C4BAF673A6E86AFA3A40227C1CB9D50@IR-CENTRAL.corp.innerrange.com>
-	<CAJTo0LY_EZhTefsh7UO6aO0NAMwrnktv5sh1dBydaYgOc7XfzQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LY_EZhTefsh7UO6aO0NAMwrnktv5sh1dBydaYgOc7XfzQ@mail.gmail.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1239-8.000.1202-21878.005
-x-tm-as-result: No--48.396300-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Making /etc/os-release loadable by shell script
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52F96E006D5
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 23:50:56 -0700 (PDT)
+Received: by pabws5 with SMTP id ws5so14680145pab.3
+	for <yocto@yoctoproject.org>; Wed, 14 Oct 2015 23:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=eW1UdLiTNL3HW/RSUEoajCd+eAJsgZRQOS9OOszIoA0=;
+	b=OP8rMnqvinR4xd2lP/Mtw5iUEYXGDth1k86+/8GRL3bgf+gZadl8VJcIAHxY61shuD
+	095ixn+9ZnHffHWUtkEjloI+WR3YorrRjkqL1LwffZz0BENNbHL4uTJmnt2VaJHQ2ZzS
+	3M6It9AC1XOGxOjnRiu0dC5ufGZgAn91o7lYIc4E86UxAP5MFg8qX80mvE8cWBj48egI
+	nwTSWBQGFb4ubmfhXflDLb26JGNHjnsWxl1oeWxPPj9qOxnDEC801NqVlRJZy5c/cwse
+	f7dCIAUxnAJY4aUvVb97vNDydKx6PCVq4eWlz2+MF3dNchBDz+9T9eH0OJbHXe9miSwD
+	aMtQ==
+X-Received: by 10.68.201.168 with SMTP id kb8mr8329009pbc.95.1444891856572;
+	Wed, 14 Oct 2015 23:50:56 -0700 (PDT)
+Received: from ?IPv6:2601:646:8601:4580:fd3d:cb0b:3cd1:e450?
+	([2601:646:8601:4580:fd3d:cb0b:3cd1:e450])
+	by smtp.gmail.com with ESMTPSA id
+	qk7sm7644116pbb.80.2015.10.14.23.50.55
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 14 Oct 2015 23:50:55 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.0 \(3096.1\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAH21_vH74c9-yzXiQjJmxgOPKvBvqta9RQDBcWrr1CfHK_r1ug@mail.gmail.com>
+Date: Wed, 14 Oct 2015 23:50:50 -0700
+Message-Id: <35660350-1A02-4081-91AD-0D50DAA3783E@gmail.com>
+References: <CAH21_vFPe9XChKr3VaGdwt+6Vscpux-ic3mWcgzB2qLXTdtRpA@mail.gmail.com>
+	<CAH21_vFC5NEwgpWOtXsb1dURUnvFGPZiQB=59PNAWL=-0NphFA@mail.gmail.com>
+	<CAH21_vH74c9-yzXiQjJmxgOPKvBvqta9RQDBcWrr1CfHK_r1ug@mail.gmail.com>
+To: atulkumar singh <atul.singh008@gmail.com>
+X-Mailer: Apple Mail (2.3096.1)
+Cc: yocto@yoctoproject.org
+Subject: Re: Toolchain with debug support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,23 +68,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Oct 2015 05:16:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 15 Oct 2015 06:51:00 -0000
+X-Groupsio-MsgNum: 26846
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_16434B6C-2865-4F80-A2C5-C962B83C45A3";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-Um9zcyBCdXJ0b24gd3JvdGU6DQoNCj4gT24gMiBKdWx5IDIwMTUgYXQgMDk6MDAsIENyYWlnIE1j
-UXVlZW4gPGNyYWlnLm1jcXVlZW5AaW5uZXJyYW5nZS5jb20+IHdyb3RlOg0KPiA+IEl0IHdvdWxk
-IGJlIGdvb2QgaWYgdGhlIC9ldGMvb3MtcmVsZWFzZSBmaWxlIChjcmVhdGVkIGJ5IHRoZSBjb3Jl
-IG9zLXJlbGVhc2UgcGFja2FnZSkgY291bGQgYmUgbG9hZGFibGUgYnkgYSBzaGVsbCBzY3JpcHQu
-IFRoYXQgaXMsIGEgc2hlbGwgc2NyaXB0IGNhbiBkbzoNCj4gPg0KPiA+wqAgwqAgc291cmNlIC9l
-dGMvb3MtcmVsZWFzZQ0KPiA+IG9yDQo+ID7CoCDCoCAuIC9ldGMvb3MtcmVsZWFzZQ0KPiA+DQo+
-ID4gQnV0IGl0J3MgY3VycmVudGx5IG5vdCBwb3NzaWJsZSwgYmVjYXVzZSB0aGUgZmlsZSBsYWNr
-cyBkb3VibGUtcXVvdGVzIGFyb3VuZCB2YWx1ZXMgdGhhdCB3b3VsZCBtYWtlIGl0IHZhbGlkIHNo
-ZWxsIGFzc2lnbm1lbnQgc3ludGF4Lg0KPg0KPiBDb3VsZCB5b3UgdHJhbnNmb3JtIHlvdSBiYmFw
-cGVuZCB0byBhIHBhdGNoIGFnYWluc3Qgb2UtY29yZSBhbmQgc3VibWl0IGl0Pw0KDQpTdXJlLCBk
-b25lLiAoSXQgdG9vayBtZSBhIGxvbmcgdGltZSB0byBnZXQgYXJvdW5kIHRvIHNldHRpbmcgdXAg
-Z2l0IGZvciBzZW5kLWVtYWlsIGZ1bmN0aW9uYWxpdHkuKQ0KDQpJIGRpZCB0aGUgcGF0Y2ggZm9y
-IG1hc3RlciwgYWx0aG91Z2ggSSdtIHN0aWxsIHVzaW5nIGRpenp5IG15c2VsZi4NCg0KLS0gDQpD
-cmFpZyBNY1F1ZWVuDQoNCg==
+--Apple-Mail=_16434B6C-2865-4F80-A2C5-C962B83C45A3
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_C544B9CD-1BB0-4556-852A-8FE7A618D33D"
 
+--Apple-Mail=_C544B9CD-1BB0-4556-852A-8FE7A618D33D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+> On Oct 12, 2015, at 12:57 AM, atulkumar singh =
+<atul.singh008@gmail.com> wrote:
+>=20
+> Hi All,
+>=20
+> Can anyone please tell me how to build a meta toolchain with debug =
+support by setting CFLAGS to "-g -O0=E2=80=9D.
+>=20
+Read
+=
+http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-DEBUG_=
+BUILD =
+<http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-DEBUG=
+_BUILD>
+> I tried adding this into gcc recipe but that didn't worked out for me =
+as another option I even tried adding CFLAGS_gcc =3D "-g -O0".
+> But no success, actually I wish to debug inside a function.
+>=20
+> Thanks and regards,
+> Atul
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_C544B9CD-1BB0-4556-852A-8FE7A618D33D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Oct 12, 2015, at 12:57 AM, atulkumar singh &lt;<a =
+href=3D"mailto:atul.singh008@gmail.com" =
+class=3D"">atul.singh008@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><p dir=3D"ltr" =
+class=3D"">Hi All,</p><p dir=3D"ltr" class=3D"">Can anyone please tell =
+me how to build a meta toolchain with debug support by setting CFLAGS to =
+"-g -O0=E2=80=9D.</p></div></blockquote>Read</div><div><a =
+href=3D"http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#va=
+r-DEBUG_BUILD" =
+class=3D"">http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html=
+#var-DEBUG_BUILD</a><br class=3D""><blockquote type=3D"cite" =
+class=3D""><div class=3D""><p dir=3D"ltr" class=3D"">I tried adding this =
+into gcc recipe but that didn't worked out for me as another option I =
+even tried adding CFLAGS_gcc =3D "-g -O0".<br class=3D"">
+But no success, actually I wish to debug inside a function.</p><p =
+dir=3D"ltr" class=3D"">Thanks and regards,<br class=3D"">
+Atul</p>
+-- <br class=3D"">_______________________________________________<br =
+class=3D"">yocto mailing list<br class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
+class=3D""></div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_C544B9CD-1BB0-4556-852A-8FE7A618D33D--
+
+--Apple-Mail=_16434B6C-2865-4F80-A2C5-C962B83C45A3
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlYfTM4ACgkQuwUzVZGdMxQrwQCfS6W8AAAumiuXmbXb3vE9qMlc
+8E0AoJRBBRrC/ea7HJijQmZyD1CG4+nn
+=pJb+
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_16434B6C-2865-4F80-A2C5-C962B83C45A3--
