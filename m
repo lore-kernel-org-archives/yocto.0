@@ -1,57 +1,56 @@
-Return-Path: <csanchezdll@gmail.com>
+Return-Path: <chris@2net.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F946E00AEB; Thu, 15 Oct 2015 09:03:18 -0700 (PDT)
+	id BAC65E00BCC; Thu, 15 Oct 2015 12:06:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (csanchezdll[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.227.17.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
-Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE977E00A49
-	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 09:03:14 -0700 (PDT)
-Received: by lfeh64 with SMTP id h64so33358320lfe.3
-	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 09:03:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:user-agent:mime-version
-	:content-type:content-transfer-encoding;
-	bh=ayZxHHYVk0TCO0/Sr6fk4aVd3hQobX9VNyFsF4R5CXI=;
-	b=XZqKtnrJFOlpcOgVJDMk5jwrgrY1Xgds3vjokmwE6gfP5gXjeEBBAO1RZeIhQlTmKR
-	rvN0L5hy2QShcaCan6JPdawXz6opJEMK9zzzolOq7ZTERpSDCHWdEFEd61TotZWisCok
-	oa02BWYr+QFqIJ+shIMzMlAJ9C1l5Fw3LLm2MgWFr//pVTCrQObyKjARbT7EJ7EQkmFV
-	1UozqN0E2indeY565bSruBnvLCsLhHmEsRRg3RNU2BkKK9mOwIP1Q93HQXuEetI667O3
-	8sgkIIgNMpUdw9fPEnNgq/yH4Y0ycGwvH/7p5alU0QS7oO1WkdbzjaDpnd8VGoBLSToc
-	lr6g==
-X-Received: by 10.180.189.12 with SMTP id ge12mr21981017wic.73.1444924992259; 
-	Thu, 15 Oct 2015 09:03:12 -0700 (PDT)
-Received: from boole (galileo.kdpof.com. [80.38.102.19])
-	by smtp.gmail.com with ESMTPSA id
-	x9sm17276412wjf.44.2015.10.15.09.03.10 for <yocto@yoctoproject.org>
-	(version=TLSv1.1 cipher=RC4-SHA bits=128/128);
-	Thu, 15 Oct 2015 09:03:11 -0700 (PDT)
-From: csanchezdll@gmail.com (Carlos =?utf-8?Q?S=C3=A1nchez?= de La Lama)
-To: yocto@yoctoproject.org
-Date: Thu, 15 Oct 2015 18:03:13 +0200
-Message-ID: <7tvba8jf0e.fsf@gmail.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.3 (gnu/linux)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28B64E00BB6
+	for <yocto@yoctoproject.org>; Thu, 15 Oct 2015 12:06:37 -0700 (PDT)
+Received: from [192.168.159.8] ([80.43.50.149]) by mrelayeu.kundenserver.de
+	(mreue103) with ESMTPSA (Nemesis) id 0Lpyfn-1aFWlS3Apj-00fgQt;
+	Thu, 15 Oct 2015 21:06:25 +0200
+References: <561E588D.5060609@2net.co.uk> <561E8278.7080702@windriver.com>
+	<561E9E71.3020105@2net.co.uk> <561FCAFC.5060209@balister.org>
+To: Philip Balister <philip@balister.org>,
+	Mark Hatle <mark.hatle@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Chris Simmonds <chris@2net.co.uk>
+Organization: 2net
+Message-ID: <561FF930.7090902@2net.co.uk>
+Date: Thu, 15 Oct 2015 20:06:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Package inclusion
+In-Reply-To: <561FCAFC.5060209@balister.org>
+X-Provags-ID: V03:K0:T6IQWHR48MnuOJVbEA3La5GSd9VLgBn+qmi/kRbWDYISVl96U3G
+	A8ddyl6+iPDu+lBiV6R+pbMmBd59rZSyiR6A52Tf4uQvSHOW1dSePtxQ6Thtl0uQh3BwCfP
+	VDW4PobdokAZp8pb2mxsjjTB3/U6DSIbewOeggYH2tv62pgPXMq/ROcKo917/uW1228MATZ
+	yIprFtKxPoOQSrWzG6/2A==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:6H35FHzu4+A=:fe1Iuygj4X3JolEbHUNmgI
+	tId31d9Afwni3SHcpUq8vAnFRTDndAjq+kvsHY0loyFAN2OYK9qxlpF9mJwrj7bFNxrJ8y2xf
+	j84KLR3YWFwaARGdw0f4ywKe40DmZwNA7w7BVWWAbNf1tk7X4KuoZuGK5v9PFEQJygUWM68o+
+	o8hFT0M5B+O91V3HpN6V27225QUKP4xHdvCNSBFJ3VNX6bkfX9TOIZjUNr140pYY0a4C7de60
+	4ZrPsu/ZuRRCuJcLfAUh5rWLt2r3Btsf8eNdJO7xq1ekItIfVo8h+If14mGwF70Je41trGc2J
+	vKEs2FSMI28/tvw057tJRZ9eVyCjlCKNvSvxM6BvRGJvQi6zgx/i9jYejxkL7+K1+/y4Qxxa8
+	JIBbe+mDBlCjGLXWn8nlrU1W/fg8uBlWZNRw65FXA4YH1c0UU7LDU59L5UiPgjn2TzjkYk/sl
+	GetqoAqiLTekh/jv32622zrQGthOmw0hrEN42a7aveE9SevrlHM52lDvUa05aTUHElvzozMk2
+	Er+9ozGZRxjHmD2hkgk4TXP+Fv9R7LbOBXsBSrCNWAqcOSqsiBD0mKgXkxON72MtoZrLS+F8w
+	BOJ68elM3P3zi980tT+/GvsWP4ma/h6NEWgDz3fyComxHzWgQ6kFMcs0A5mNgAC46VNjKMVP3
+	Ecih//FsnYxPbBXndsySeKEe19BXneoX50NRcaicolHi0R6jHXjjqkZlt8vMSQd8asDAYza6x
+	u5kQcBvyKaaaKGpF
+Subject: Re: RFC: Yocto LTS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: chris@2net.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -60,38 +59,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Oct 2015 16:03:18 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 15 Oct 2015 19:06:40 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 15/10/15 16:49, Philip Balister wrote:
+> On 10/14/2015 12:26 PM, Chris Simmonds wrote:
+>>
+>> On 14/10/15 17:27, Mark Hatle wrote:
+>>> On 10/14/15 8:28 AM, Chris Simmonds wrote:
+>>>> Hi,
+>>>>
+>>>> Is there a statement about the period of support for a Yocto release?
+>>>> Looking through the updates, it seems that 12 months is typical, a was
+>>>> the case for 1.4, 1.5 and 1.6 for example, but I cannot see a
+>>>> declaration anywhere that this is the expected norm.
+>>>>
+>>>> Leading on from that, is 12 months enough? Most projects have a
+>>>> lifecycle that is much longer. Is there an argument for an LTS Yocto
+>>>> release, maybe once a year? If not, what is the recommended way for a
+>>>> project developer to keep a distribution up to date in the light of the
+>>>> several well-publicised security flaws that have been discovered over
+>>>> the last year or so and the new ones that will no doubt be discovered in
+>>>> the future?
+>>>
+>>> https://wiki.yoctoproject.org/wiki/FAQ#What_is_the_overall_support_plan_for_the_Yocto_Project.3F
+>>>
+>>> =What is the release cycle of the Yocto Project?=
+>>> Each release of the Yocto Project is subject to its own release schedule
+>>> according to the community-maintained Project Planning Guide. It is generally
+>>> expected that a new version of the Yocto Project will be released every six months.
+>>>
+>>> =What is the overall support plan for the Yocto Project?=
+>>> Security patches and critical bug fixes are supplied one release back. No
+>>> toolchain or kernel changes are allowed for these updates. Support for longer
+>>> periods of time can be supplied by commercial OSVs.
+>>>
+>>>
+>>>
+>>> Effectively this means that support is on the last two releases.  Releases are
+>>> typically released every 6 months.  After that point it is usually supported by
+>>> OSVs, or others that offer commercial services.  In the past we have done a few
+>>> very late security fixes past the 'last two releases' point, however that has
+>>> been for unique situations.
+>>>
+>>> You should consider keeping current with the Yocto Project releases or consider
+>>> commercial support if you need more then an approx 12 - 18 month support cycle.
+>>>
+>>> --Mark
+>>>
+>>
+>> Thanks, that is all clear now.
+> 
+> We wouldn't be opposed to a group of people supporting a release for
+> longer. But they would need to provide the people to do the work. LTS
+> work is hard.
+> 
+> Philip
+> 
+>>
+>> Chris
+>>
+> 
 
-I have some doubts on how package inclusion in images is determined. For
-example, when building core-image-base, I would say that both
+Indeed, it is hard work. But there is a community out there with the
+expertise and many very profitable corporations that depend on Yocto
+Project (in addition to Intel, I mean, since they put a lot of resource
+in already). It would be really nice if someone neutral - Linux
+Foundation for example - could bring them together to make LTS work for
+everybody.
 
-kernel-module-uvesafb
-kernel-module-input
+Chris.
 
-are recommended (through RRECOMENDS in packagegroup-base).
 
-However, -uvesafb makes it to the final image, whereas -input does not.
-I double-checked on the running system under QEMU *and* reading the
-image manifest at
-tmp/deploy/images/qemux86/core-image-base-qemux86.manifest
-
-I must be missing something. Can someone give me a pointer?
-
-Thanks a lot, BR
-
-Carlos
-
---=20
--Debemos anhelar no s=C3=B3lo la verdad, sino tambi=C3=A9n la virtud -sente=
-nci=C3=B3
-Pit=C3=A1goras-. El conocimiento que se obtiene mediante oro, y no a trav=
-=C3=A9s de un
-merecimiento virtuoso, puede apartarnos del camino recto y ser nefasto para
-nosotros y para nuestro entorno.
-
-Marcos Chicot, "El asesinato de Pit=C3=A1goras" (2013)
 
