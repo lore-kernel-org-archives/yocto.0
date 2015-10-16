@@ -1,17 +1,16 @@
-Return-Path: <dlohar2009@gmail.com>
+Return-Path: <csanchezdll@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3668E00BC4; Fri, 16 Oct 2015 00:22:49 -0700 (PDT)
+	id CF043E00BC4; Fri, 16 Oct 2015 00:39:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dlohar2009[at]gmail.com)
+	mail provider *      (csanchezdll[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,31 +18,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.176 listed in list.dnswl.org]
-Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 984D1E00B57
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 00:22:45 -0700 (PDT)
-Received: by qkht68 with SMTP id t68so50449757qkh.3
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 00:22:45 -0700 (PDT)
+	*      [209.85.217.176 listed in list.dnswl.org]
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84C0FE00B57
+	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 00:38:59 -0700 (PDT)
+Received: by lbbpp2 with SMTP id pp2so64605223lbb.0
+	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 00:38:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=of6CvgaPmnJuBlyVsGuWHBE3xoKSLQqlnlCrjf7W0xw=;
-	b=img5Tpz7hnFn5bYaBHt83dGrPgvPASExjOlPfzEomnHwXeFIe//S//BKjg+AOfchIe
-	mV8Uwyg9kjY/t8BcyXhBkp1IPcpgk7fNKiO9CjjGyONzCPmwmYwBOu2TW7FEOMhhtenT
-	P4aBcHtY1WBq5CsxRD+q7bcq1/5Y5LIL/OpXBV8VdXfV1DhTZOpG2MVzXKcakKawacuy
-	2BFpisnSTyzx5+GatFq67vz0SjXhhmhg8c9OUBvw4kTM7vOBpLYia4Z664BlPVKVGzX4
-	VhFUOjTvMtZofyKQwWTwBb2fpKJQR2F/HI8v7DUZnRd++A+h9eoVlHjgsdi+Y7VOssG1
-	ASnw==
+	h=from:to:cc:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type:content-transfer-encoding;
+	bh=UyRhpFhiat2Hn+o+HDIg0TjuQXeaTXqnZfvy7I3L4ao=;
+	b=Y4VhSJ0ITPflPjjmsujO/87DFfpH/jarxTRASKEA8MireqsghhmhYl/9DP6X4W6I9e
+	+D8/wgEvGaOLp3qFBCutzRrxluCi5Hxq2nMgju4FSdkvVOaBO+PQCmw4Q4jW9IH+ybkA
+	dwsjuzjZfDRtewMKz14xJCaaX1isJTOFKxMaGIcSu0y75Cot3hCrfn+qhnCV1gi+R+sd
+	vHiqbA/P10ev5MMhKIVNyYSZq+7vDvYrOpbCp7ySIaDogeIItUdSRW2+ZRBmxKE3GNJI
+	EIHz9vl0z0kAtUyI2gUv1/Wcc/lWAWL2AerPC62kl8thIYlQS7KNzTo2xiWtpfLjixjM
+	IZZA==
+X-Received: by 10.194.71.83 with SMTP id s19mr15149250wju.150.1444981138386;
+	Fri, 16 Oct 2015 00:38:58 -0700 (PDT)
+Received: from boole (galileo.kdpof.com. [80.38.102.19])
+	by smtp.gmail.com with ESMTPSA id go5sm2156111wib.3.2015.10.16.00.38.57
+	(version=TLSv1.1 cipher=RC4-SHA bits=128/128);
+	Fri, 16 Oct 2015 00:38:57 -0700 (PDT)
+From: csanchezdll@gmail.com (Carlos =?utf-8?Q?S=C3=A1nchez?= de La Lama)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <7tvba8jf0e.fsf@gmail.com>
+	<3362826.ZZ4Dx4hM6A@peggleto-mobl.ger.corp.intel.com>
+Date: Fri, 16 Oct 2015 09:38:56 +0200
+In-Reply-To: <3362826.ZZ4Dx4hM6A@peggleto-mobl.ger.corp.intel.com> (Paul
+	Eggleton's message of "Fri, 16 Oct 2015 08:10:02 +0100")
+Message-ID: <7t4mhrw9db.fsf@gmail.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.3 (gnu/linux)
 MIME-Version: 1.0
-X-Received: by 10.55.209.93 with SMTP id s90mr17424630qki.55.1444980165266;
-	Fri, 16 Oct 2015 00:22:45 -0700 (PDT)
-Received: by 10.140.39.145 with HTTP; Fri, 16 Oct 2015 00:22:45 -0700 (PDT)
-Date: Fri, 16 Oct 2015 00:22:45 -0700
-Message-ID: <CAAm4naA+NwGmhvX=PJMP+JMK4ahWjNdh2XW70bNgveE_mpwxTw@mail.gmail.com>
-From: Debasmita Lohar <dlohar2009@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Queries regarding yocto dual booting
+Cc: yocto@yoctoproject.org
+Subject: Re: Package inclusion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,34 +64,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Oct 2015 07:22:49 -0000
-Content-Type: multipart/alternative; boundary=001a1147a55e7553fa052233a903
-
---001a1147a55e7553fa052233a903
-Content-Type: text/plain; charset=UTF-8
-
-Hello,
-I am using De2i-150 board which provides a yocto iso. I have installed
-puppy linux before yocto and now I want to install yocto in the unallocated
-portion. Basically I want dual booting. But when I tried to install yocto,
-it just started from the live cd and did not show me any install option.
-Please help me regarding this issue.
-Thank you.
-
-Debasmita Lohar
-
---001a1147a55e7553fa052233a903
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 16 Oct 2015 07:39:03 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<div>I am using De2i-150 board which provides a yoct=
-o iso. I have installed puppy linux before yocto and now I want to install =
-yocto in the unallocated portion. Basically I want dual booting. But when I=
- tried to install yocto, it just started from the live cd and did not show =
-me any install option. Please help me regarding this issue.<br clear=3D"all=
-"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div><div>Thank=
- you.</div><div><br></div><div>Debasmita Lohar<br></div></div></div><div><d=
-iv><div><div><br></div></div></div></div></div></div></div>
-</div></div>
+Hi Paul,
 
---001a1147a55e7553fa052233a903--
+>> I have some doubts on how package inclusion in images is determined. For
+>> example, when building core-image-base, I would say that both
+>>=20
+>> kernel-module-uvesafb
+>> kernel-module-input
+>>=20
+>> are recommended (through RRECOMENDS in packagegroup-base).
+>
+> I don't see a reference to kernel-module-uvesafb in packagegroup-base.
+
+You are right, my bad. I was examining several cases and I used the
+wrong one when writing the mail. I should have said
+
+kernel-module-nls-utf8 (which goes into the image)
+kernel-module-input (which does not make it to the image)
+
+and both appear in RRECOMENDS_packagegroup-base.
+
+> If you would like to analyse the package dependency tree for an image one=
+ way
+> that works is to use buildhistory:
+
+I checked the buildhistory (nice report, BTW), and I see
+
+"packagegroup-base" -> "kernel-module-nls-utf8" [style=3Ddotted];
+
+but not a trace of kernel-module-input. I do not understand why -input
+gets a differnt handling than -nls-utf8. My guess is it gets excluded
+somehow, but I have not found why/where.
+
+Thanks!
+
+Carlos
+
+--=20
+'La vie est une longue chute, Marcus. Le plus important est de savoir tombe=
+r.'
+
+Jo=C3=ABl Dicker, "La V=C3=A9rit=C3=A9 sur l'affaire Harry Quebert" (2012)
+
