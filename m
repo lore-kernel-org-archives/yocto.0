@@ -1,49 +1,36 @@
-Return-Path: <federicobriata@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DAB9E00BDC; Fri, 16 Oct 2015 07:26:34 -0700 (PDT)
+	id C047AE00BDC; Fri, 16 Oct 2015 07:31:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (federicobriata[at]gmail.com)
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00, DATE_IN_PAST_03_06, 
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	*  1.6 DATE_IN_PAST_03_06 Date: is 3 to 6 hours before Received: date
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CDD2E00BC1
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 07:26:32 -0700 (PDT)
-Received: by lbcao8 with SMTP id ao8so101349102lbc.3
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 07:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=HRqk7OJc7n4boE2SiqJ92Kq0pJJN5ozLrRgIlNS+2IQ=;
-	b=j4VcGIh8ad/PR1r+znmVDqX4rqwpSzpK8blvQ0Hu1JysebVS+QEc81hiTmU/m7B+sz
-	niAz1bw3d1EzhAzMsjpqmg0szM4MPpYotQxD5Md0Rfg3JDJaz9IQjdjPTkGVd2UyHv9q
-	1DclnjB43vJIkUMBYFmE8rJMRB7bvSuWtyDD/SpN5Fh0bNDhc9mM1TycYX1eRwVzQQFH
-	ID6C2MRuqTuZKH4KORf29N/0X4Xgi578z7W7c7PG5fIR/Hu5Ej+eRfje2UD0O93Fi1SZ
-	wP/DQEooU/0AGhfOzl1Bsvwi5ojeZ3/lLUHHAZGosj9NEUg0vIpg6IcVENmiuYYTJu4u
-	vjiA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82199E00BC1
+	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 07:31:51 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Oct 2015 07:31:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.17,689,1437462000"; d="scan'208";a="828293214"
+Received: from mbabyjoh-mobl.fi.intel.com ([10.237.72.71])
+	by orsmga002.jf.intel.com with ESMTP; 16 Oct 2015 07:31:50 -0700
+Date: Fri, 16 Oct 2015 12:45:32 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Federico Pietro Briata <federicobriata@gmail.com>
+Message-ID: <20151016094532.GA1659@mbabyjoh-mobl.fi.intel.com>
+References: <CA+KKcbm9JAeutnDhyYfVprxt3AZYX0B9n44Cokt3yMhiS8TPZw@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.112.54.169 with SMTP id k9mr8205187lbp.95.1445005590458;
-	Fri, 16 Oct 2015 07:26:30 -0700 (PDT)
-Received: by 10.112.227.75 with HTTP; Fri, 16 Oct 2015 07:26:30 -0700 (PDT)
-Date: Fri, 16 Oct 2015 16:26:30 +0200
-Message-ID: <CA+KKcbkVBYfsE7fuJ+g1nmS9TdhL2wheObcCgyuf-LCiC7SOew@mail.gmail.com>
-From: Federico Pietro Briata <federicobriata@gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-java] can zero shark be enabled again?
+In-Reply-To: <CA+KKcbm9JAeutnDhyYfVprxt3AZYX0B9n44Cokt3yMhiS8TPZw@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-java] openjdk-7-jre was skipped: missing required distro feature ['x11'] (not in DISTRO_FEATURES)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,37 +42,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Oct 2015 14:26:34 -0000
-Content-Type: multipart/alternative; boundary=001a11c3f5c4eafcb6052239940b
+X-List-Received-Date: Fri, 16 Oct 2015 14:31:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a11c3f5c4eafcb6052239940b
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-Hi again,
+On Fri, Oct 16, 2015 at 03:35:22PM +0200, Federico Pietro Briata wrote:
+>
+>Hi Folks,
+>I'm trying to compile java without x11 and unfortunately also without success..
+>
+>I've added in my local.conf:
+>
+>DISTRO_FEATURES_remove = "x11"
+># Java build settings
+>PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+>PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+>PREFERRED_VERSION_openjdk-7-jre = "85b01-2.6.1"
+>PREFERRED_VERSION_icedtea7-native = "2.1.3"
+>PREFERRED_PROVIDER_openjdk-7-jre = "openjdk-7-jre"
+>
+>but I get this error
+>
+>ERROR: Nothing RPROVIDES 'openjdk-7-jre' (but /home/f34389b/yocto/PCM/R5.0/sources/meta-fede/recipes-images/images/fede-java-test.bb RDEPENDS on or otherwise requires it)
+>ERROR: openjdk-7-jre was skipped: missing required distro feature ['x11'] (not in DISTRO_FEATURES)
+>
+>Patching those files:
+>meta-java/recipes-core/classpath/classpath.inc
+>meta-java/recipes-core/jamvm/jamvm.inc
+>meta-java/recipes-core/jamvm/jamvm_git.bb
+>meta-java/recipes-core/openjdk/openjdk-common.inc
+>poky/meta/recipes-graphics/xorg-lib/xorg-lib-common.inc
 
-I saw that some JIT optimization for arm32 has been announcement in icedtea
+>like this:
+>-REQUIRED_DISTRO_FEATURES = "x11"
+>+#REQUIRED_DISTRO_FEATURES = "x11"
+>seems to be a temporary workaround
 
-the announcement is available at
-http://mail.openjdk.java.net/pipermail/distro-pkg-dev/2015-January/030392.html
+These lines were added by this commit:
 
-So I'm just wondering if anyone know if shark can be enabled again also in
-yocto recipes and can suggest me some tip to use it.
+---
+commit 24b98ac3a6ca7fadfba24709aac8d0b71316e299
+Author: Mario Domenech Goulart <mario@ossystems.com.br>
+Date:   Tue Aug 18 17:14:30 2015 -0300
 
-thanks and regards
-Federico
+   Avoid parse time errors due to dependency on x11, for distros without x11
+        
+   BitBake raises some errors when processing recipes that depend on x11
+   for distros that don't have x11 in DISTRO_FEATURES. To work around
+   that issue, REQUIRED_DISTRO_FEATURES = "x11" (from
+   distro_features_check.bbclass) has been set for the following recipes:
+                            
+    * cacao
+    * classpath
+    * jamvm
+    * openjdk-6-release
+    * openjdk-7-release
+                                                   
+ That makes BitBake skip those recipes during the cache generation
+ (they'd still be parsed, but ignored).
+---
 
---001a11c3f5c4eafcb6052239940b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Even if we revert this commit, the openjdk-7-jre build will fail 
+due to dependency on gtk+, libxt...etc. 
 
-<div dir=3D"ltr"><div>Hi again,<br><br>I saw that some JIT optimization for=
- arm32 has been announcement in icedtea<br><br>the announcement is availabl=
-e at <a title=3D"Follow link" href=3D"http://mail.openjdk.java.net/pipermai=
-l/distro-pkg-dev/2015-January/030392.html" class=3D"" rel=3D"nofollow">http=
-://mail.openjdk.java.net/pipermail/distro-pkg-dev/2015-January/030392.html<=
-/a><br><br>
-So I&#39;m just wondering if anyone know if shark can be enabled again also=
- in yocto recipes and can suggest me some tip to use it.<br><br></div><div>=
-thanks and regards<br></div><div>Federico<br></div></div>
+Recently Jens Rehsack did some work in this direction for icedtea7:
+http://lists.openembedded.org/pipermail/openembedded-devel/2015-October/103849.html
 
---001a11c3f5c4eafcb6052239940b--
+We will have to follow that way to get rid of the x11 dependency in other packages.
+
+>
+>regards
+>federico
+
+Best Regards,
+Maxin
+
