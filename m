@@ -1,45 +1,55 @@
-Return-Path: <Noor_Ahsan@mentor.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5216CE00B21; Fri, 16 Oct 2015 12:38:25 -0700 (PDT)
+	id 6043AE00B21; Fri, 16 Oct 2015 15:23:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+	*      [209.85.220.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26695E006D5
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 12:38:21 -0700 (PDT)
-Received: from nat-ies.mentorg.com ([192.94.31.2]
-	helo=SVR-IES-FEM-04.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1ZnApY-0007Jp-Rk from Noor_Ahsan@mentor.com ;
-	Fri, 16 Oct 2015 12:38:21 -0700
-Received: from EU-MBX-01.mgc.mentorg.com ([169.254.1.18]) by
-	SVR-IES-FEM-04.mgc.mentorg.com ([137.202.0.110]) with mapi id
-	14.03.0224.002; Fri, 16 Oct 2015 20:38:19 +0100
-From: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] opkg 0.3.0 or rootfs task
-Thread-Index: AdEID/YXvvJYRC9ARjGu9IDwO4ksRQAGvNuAAAZJplAAAXfmkA==
-Date: Fri, 16 Oct 2015 19:38:19 +0000
-Message-ID: <365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
-References: <365E1805BC95084CBE82381A0B86999401095F873E@EU-MBX-01.mgc.mentorg.com>
-	<BD314512-DA81-48D9-B50D-4C41BD927127@gmail.com>
-	<365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
-In-Reply-To: <365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.76]
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD24E006D5
+	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 15:23:54 -0700 (PDT)
+Received: by pabrc13 with SMTP id rc13so131784117pab.0
+	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 15:23:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=lmwezoemfjyiUxBUvJLWYAWIIZSEkqVPD9TtPgafZrQ=;
+	b=d9GAB4JvdZeEXW/RyL4eAXpzROWuMphWwf6v3k/k4mNX3ZsEGPIhDjpb0bsCqk5pTM
+	jewuX7RbmXcAYAWUwFo7eS72Uc0SrHVtVfNITNXqsvzRN3HVykOtMRpvWgAcp/YWI1Ws
+	42Rd/+GCQaRJvzniULVfXzUfegjeXqkAYwOHIayyEkBUHHd9IvJZSYm3Cbe/Ai9hmIol
+	pWEKkEaApsuZXn3lJcyrXt1fGeimfLomlBYsvU81+F1D8g4esG2IEpWDbhnjgpSKUcrp
+	j7WKsoKn2UCDxMARTArudJoy5LDdehGx4NwqwQojt248l+1C+AS0OJfanBz2IjO1L/nX
+	wSug==
+X-Gm-Message-State: ALoCoQkbXhflt5Ld2pdly0Spd3dFG5DUGoGZAC1g82P8PYTou/5xFpqCQK3LmT+RQ46J8EoTQ8nD
+X-Received: by 10.68.248.129 with SMTP id ym1mr719083pbc.32.1445034234096;
+	Fri, 16 Oct 2015 15:23:54 -0700 (PDT)
+Received: from Akusters-laptop.local (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
+	tj2sm23172154pab.4.2015.10.16.15.23.52
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 16 Oct 2015 15:23:53 -0700 (PDT)
+To: Philip Balister <philip@balister.org>, chris@2net.co.uk,
+	Mark Hatle <mark.hatle@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <561E588D.5060609@2net.co.uk> <561E8278.7080702@windriver.com>
+	<561E9E71.3020105@2net.co.uk> <561FCAFC.5060209@balister.org>
+From: akuster@mvista <akuster@mvista.com>
+Message-ID: <562178F7.1040206@mvista.com>
+Date: Fri, 16 Oct 2015 15:23:51 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.2.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: opkg 0.3.0 or rootfs task
+In-Reply-To: <561FCAFC.5060209@balister.org>
+Subject: Re: RFC: Yocto LTS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,328 +61,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Oct 2015 19:38:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_365E1805BC95084CBE82381A0B86999401095F8E8AEUMBX01mgcmen_"
+X-List-Received-Date: Fri, 16 Oct 2015 22:23:58 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---_000_365E1805BC95084CBE82381A0B86999401095F8E8AEUMBX01mgcmen_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 10/15/15 8:49 AM, Philip Balister wrote:
+> On 10/14/2015 12:26 PM, Chris Simmonds wrote:
+>>
+>> On 14/10/15 17:27, Mark Hatle wrote:
+>>> On 10/14/15 8:28 AM, Chris Simmonds wrote:
+>>>> Hi,
+>>>>
+>>>> Is there a statement about the period of support for a Yocto release?
+>>>> Looking through the updates, it seems that 12 months is typical, a was
+>>>> the case for 1.4, 1.5 and 1.6 for example, but I cannot see a
+>>>> declaration anywhere that this is the expected norm.
+>>>>
+>>>> Leading on from that, is 12 months enough? Most projects have a
+>>>> lifecycle that is much longer. Is there an argument for an LTS Yocto
+>>>> release, maybe once a year? If not, what is the recommended way for a
+>>>> project developer to keep a distribution up to date in the light of the
+>>>> several well-publicised security flaws that have been discovered over
+>>>> the last year or so and the new ones that will no doubt be discovered in
+>>>> the future?
+>>>
+>>> https://wiki.yoctoproject.org/wiki/FAQ#What_is_the_overall_support_plan_for_the_Yocto_Project.3F
+>>>
+>>> =What is the release cycle of the Yocto Project?=
+>>> Each release of the Yocto Project is subject to its own release schedule
+>>> according to the community-maintained Project Planning Guide. It is generally
+>>> expected that a new version of the Yocto Project will be released every six months.
+>>>
+>>> =What is the overall support plan for the Yocto Project?=
+>>> Security patches and critical bug fixes are supplied one release back. No
+>>> toolchain or kernel changes are allowed for these updates. Support for longer
+>>> periods of time can be supplied by commercial OSVs.
+>>>
+>>>
+>>>
+>>> Effectively this means that support is on the last two releases.  Releases are
+>>> typically released every 6 months.  After that point it is usually supported by
+>>> OSVs, or others that offer commercial services.  In the past we have done a few
+>>> very late security fixes past the 'last two releases' point, however that has
+>>> been for unique situations.
+>>>
+>>> You should consider keeping current with the Yocto Project releases or consider
+>>> commercial support if you need more then an approx 12 - 18 month support cycle.
+>>>
+>>> --Mark
+>>>
+>>
+>> Thanks, that is all clear now.
+> 
+> We wouldn't be opposed to a group of people supporting a release for
+> longer. But they would need to provide the people to do the work. LTS
+> work is hard.
 
+Not to mention keeping build infrastructure setup, copies of supported
+OS working, QA and Target machines working. As an OSV, its not uncommon
+to support a distro for 10 or more years.
 
+- Armin
+> 
+> Philip
+> 
+>>
+>> Chris
+>>
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ahsan, Noor
-Sent: Friday, October 16, 2015 11:55 PM
-To: Khem Raj
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] opkg 0.3.0 or rootfs task
-
-
-
-From: Khem Raj [mailto:raj.khem@gmail.com]
-Sent: Friday, October 16, 2015 9:54 PM
-To: Ahsan, Noor
-Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: Re: [yocto] opkg 0.3.0 or rootfs task
-
-
-On Oct 16, 2015, at 5:47 AM, Ahsan, Noor <Noor_Ahsan@mentor.com<mailto:Noor=
-_Ahsan@mentor.com>> wrote:
-
-Hello,
-
-I noticed that at the time of rootfs creation symbolic links of the ipk fil=
-es present in deploy/ipk. The problem what have it while creation of symbol=
-ic link it take the full path till that ipk and remove slashes and convert =
-them into underscores. Use that as the name of the symbolic link. This make=
- a very long file names. If we have very long path then name of the symlink=
- exceed from max filename limits. And we get following error
-
-Collected errors:
-* file_link: unable to stat `/var/jenkins/workspace/mel_cedar-main/buildhos=
-t/amd-ubuntu14-32b/buildtype/iot/machine/mel-dra7xx-evm/build_mel-dra7xx-ev=
-m/tmp/work/mel_dra7xx_evm-mel-linux-gnueabi/console-image/1.0-r0/rootfs//va=
-r/cache/opkg/volatile/file:_var_jenkins_workspace_mel_cedar-main_buildhost_=
-amd-ubuntu14-32b_buildtype_iot_machine_mel-dra7xx-evm_build_mel-dra7xx-evm_=
-tmp_deploy_ipk_mel_dra7xx_evm_kernel-module-lttng-ring-buffer-client-mmap-o=
-verwrite_2.6.2+git0+7a88f8b506-r0.0_mel_dra7xx_evm.ipk': File name too long=
-.
-
-Can anyone tell me why the addition of full path was added to the symlink n=
-ame and can we remove it cause it is cause issues?
-
-what does
-
-getconf PATH_MAX /
-
-show ?
-
-jenkins@amd-ubu14-32-3:~$ getconf -a | grep  PATH_MAX
-PATH_MAX                           4096
-_POSIX_PATH_MAX                    4096
-
-
-I think the issue is with file name not the path.
-
-Secondly the googling which I did reveals that symlink creation can't be st=
-opped. I just wanna confirm that is my findings correct?
-
-Noor
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---_000_365E1805BC95084CBE82381A0B86999401095F8E8AEUMBX01mgcmen_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:HelveticaNeue;
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.apple-converted-space
-	{mso-style-name:apple-converted-space;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"font-size=
-:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497=
-D"><o:p>&nbsp;</o:p></span></a></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-=
-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"> yocto-=
-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Ahsan, Noor<br>
-<b>Sent:</b> Friday, October 16, 2015 11:55 PM<br>
-<b>To:</b> Khem Raj<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] opkg 0.3.0 or rootfs task<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-=
-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"> Khem R=
-aj [<a href=3D"mailto:raj.khem@gmail.com">mailto:raj.khem@gmail.com</a>]
-<br>
-<b>Sent:</b> Friday, October 16, 2015 9:54 PM<br>
-<b>To:</b> Ahsan, Noor<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org=
-</a><br>
-<b>Subject:</b> Re: [yocto] opkg 0.3.0 or rootfs task<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div>
-<p class=3D"MsoNormal">On Oct 16, 2015, at 5:47 AM, Ahsan, Noor &lt;<a href=
-=3D"mailto:Noor_Ahsan@mentor.com">Noor_Ahsan@mentor.com</a>&gt; wrote:<o:p>=
-</o:p></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Hello,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">I noticed that at the time of rootfs cr=
-eation symbolic links of the ipk files present in deploy/ipk. The problem w=
-hat have it while creation of symbolic link it take the
- full path till that ipk and remove slashes and convert them into underscor=
-es. Use that as the name of the symbolic link. This make a very long file n=
-ames. If we have very long path then name of the symlink exceed from max fi=
-lename limits. And we get following
- error<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Collected errors:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">* file_link: unable to stat `/var/jenki=
-ns/workspace/mel_cedar-main/buildhost/amd-ubuntu14-32b/buildtype/iot/machin=
-e/mel-dra7xx-evm/build_mel-dra7xx-evm/tmp/work/mel_dra7xx_evm-mel-linux-gnu=
-eabi/console-image/1.0-r0/rootfs//var/cache/opkg/volatile/file:_var_jenkins=
-_workspace_mel_cedar-main_buildhost_amd-ubuntu14-32b_buildtype_iot_machine_=
-mel-dra7xx-evm_build_mel-dra7xx-evm_tmp_deploy_ipk_mel_dra7xx_evm_kernel-mo=
-dule-lttng-ring-buffer-client-mmap-overwrite_2.6.2&#43;git0&#43;7a88f8b506-=
-r0.0_mel_dra7xx_evm.ipk':
- File name too long.<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Can anyone tell me why the addition of =
-full path was added to the symlink name and can we remove it cause it is ca=
-use issues?<o:p></o:p></span></p>
-</div>
-</div>
-</blockquote>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">what does<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">getconf PATH_MAX /<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">show ?<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">jenkins@amd-ubu14-32-3:~$=
- getconf -a | grep&nbsp; PATH_MAX<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">PATH_MAX&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4096<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">_POSIX_PATH_MAX&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4096<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I think the issue is with=
- file name not the path.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Secondly the googling whi=
-ch I did reveals that symlink creation can&#8217;t be stopped. I just wanna=
- confirm that is my findings correct?
-<o:p></o:p></span></p>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Noor<o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;He=
-lveticaNeue&quot;,&quot;serif&quot;">--<span class=3D"apple-converted-space=
-">&nbsp;</span><br>
-_______________________________________________<br>
-yocto mailing list<br>
-</span><a href=3D"mailto:yocto@yoctoproject.org"><span style=3D"font-size:1=
-0.0pt;font-family:&quot;HelveticaNeue&quot;,&quot;serif&quot;;color:#954F72=
-">yocto@yoctoproject.org</span></a><span style=3D"font-size:10.0pt;font-fam=
-ily:&quot;HelveticaNeue&quot;,&quot;serif&quot;"><br>
-</span><a href=3D"https://lists.yoctoproject.org/listinfo/yocto"><span styl=
-e=3D"font-size:10.0pt;font-family:&quot;HelveticaNeue&quot;,&quot;serif&quo=
-t;;color:#954F72">https://lists.yoctoproject.org/listinfo/yocto</span></a><=
-o:p></o:p></p>
-</div>
-</blockquote>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_365E1805BC95084CBE82381A0B86999401095F8E8AEUMBX01mgcmen_--
