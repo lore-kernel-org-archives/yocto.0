@@ -1,54 +1,54 @@
-Return-Path: <dlohar2009@gmail.com>
+Return-Path: <pbarker@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 469C0E00AAB; Fri, 16 Oct 2015 20:58:33 -0700 (PDT)
+	id 7F55CE00ACC; Sun, 18 Oct 2015 08:52:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dlohar2009[at]gmail.com)
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [178.32.108.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EB5E006D5
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 20:58:31 -0700 (PDT)
-Received: by qkht68 with SMTP id t68so62691927qkh.3
-	for <yocto@yoctoproject.org>; Fri, 16 Oct 2015 20:58:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ULBjEwdd1WD1BSaVQuU9/xAzyy+h1I/9Lirk+TUtF+U=;
-	b=XKFYjxu3q9ZCUdIXeBXojodHp9/TozyasNFEs+mv8hgp9SBLY1iy9dBl8MsBuXaZqp
-	M4rgtn1UYgANi+wWizXNR1GbykI7Y6DiQxJsPjxPR3TPAEYVd9seRTEKlj6tJY5LJTys
-	X9BUNv4t6nAx6SUEDM6VfF05lfNI8u+zTRU7ejRfZNlscxfJROF0FUJIyqYTAnMqkqFQ
-	LAiMWLyuaylEGj3yWLo3s6omtV6iCQzKyu9Msrm48ruXODThdtos7Ecmu/gapsRQE33J
-	hnSnpJvjhyZZE3fiXJvo1ag2jReOg830BqcB/ZOxCBVBvM8V8KOqXC5d8N0eA0SC/8E8
-	L8oA==
+X-Greylist: delayed 8405 seconds by postgrey-1.32 at yocto-www;
+	Sun, 18 Oct 2015 08:52:06 PDT
+Received: from 9.mo1.mail-out.ovh.net (9.mo1.mail-out.ovh.net [178.32.108.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FDA8E0079D
+	for <yocto@yoctoproject.org>; Sun, 18 Oct 2015 08:52:06 -0700 (PDT)
+Received: from mail644.ha.ovh.net (gw6.ovh.net [213.251.189.206])
+	by mo1.mail-out.ovh.net (Postfix) with SMTP id 863FDFFA6F2
+	for <yocto@yoctoproject.org>; Sun, 18 Oct 2015 11:56:31 +0200 (CEST)
+Received: from localhost (HELO queueout) (127.0.0.1)
+	by localhost with SMTP; 18 Oct 2015 11:56:29 +0200
+Received: from cpc19-shep11-2-0-cust55.8-3.cable.virginm.net (HELO
+	bang.betafive.co.uk) (paul@betafive.co.uk@81.111.243.56)
+	by ns0.ovh.net with AES256-GCM-SHA384 encrypted SMTP;
+	18 Oct 2015 11:56:28 +0200
+Received: by bang.betafive.co.uk (Postfix, from userid 1000)
+	id C1FEB40A4F; Sun, 18 Oct 2015 10:57:59 +0100 (BST)
+Date: Sun, 18 Oct 2015 10:57:59 +0100
+From: Paul Barker <paul@paulbarker.me.uk>
+To: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
+Message-ID: <20151018095759.GA12999@bang.betafive.co.uk>
+References: <365E1805BC95084CBE82381A0B86999401095F873E@EU-MBX-01.mgc.mentorg.com>
+	<BD314512-DA81-48D9-B50D-4C41BD927127@gmail.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
 MIME-Version: 1.0
-X-Received: by 10.55.209.93 with SMTP id s90mr23542174qki.55.1445054310830;
-	Fri, 16 Oct 2015 20:58:30 -0700 (PDT)
-Received: by 10.140.39.145 with HTTP; Fri, 16 Oct 2015 20:58:30 -0700 (PDT)
-In-Reply-To: <46B8A2A4-93A4-4136-A76E-310D2CE71108@gmail.com>
-References: <CAAm4naA+NwGmhvX=PJMP+JMK4ahWjNdh2XW70bNgveE_mpwxTw@mail.gmail.com>
-	<46B8A2A4-93A4-4136-A76E-310D2CE71108@gmail.com>
-Date: Sat, 17 Oct 2015 09:28:30 +0530
-Message-ID: <CAAm4naDV5SSTnd4r=_Yc5HMdUq3J1+e9D6rzzeTUAUW7YCS3Uw@mail.gmail.com>
-From: Debasmita Lohar <dlohar2009@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Queries regarding yocto dual booting
+In-Reply-To: <365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Ovh-Tracer-Id: 7839641052578233321
+X-Ovh-Remote: 81.111.243.56 (cpc19-shep11-2-0-cust55.8-3.cable.virginm.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekgedrleegucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekgedrleegucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: opkg 0.3.0 or rootfs task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,104 +60,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Oct 2015 03:58:33 -0000
-Content-Type: multipart/alternative; boundary=001a1147a55ee0d7a2052244ec02
+X-List-Received-Date: Sun, 18 Oct 2015 15:52:10 -0000
+X-Groupsio-MsgNum: 26893
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
+Content-Disposition: inline
 
---001a1147a55ee0d7a2052244ec02
-Content-Type: text/plain; charset=UTF-8
-
-The messages it is showing are:
-booting from cd...
-iso linux boot: loading /vmlinux
-loading initrd
-trying to unpack rootfs
-switched to clock source.
-mounted file system.
-After that it is showing yocto project and enters into the desktop.
-It may be noted that I am using the iso file downloaded from terasic
-website.
-I need to install yocto in de2i-150 terasic board.
-
-Debasmita Lohar
-MS Student
-Computer Science and Engineering
-IIT Kharagpur
-
-
-On Fri, Oct 16, 2015 at 10:17 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
->
-> > On Oct 16, 2015, at 12:22 AM, Debasmita Lohar <dlohar2009@gmail.com>
-> wrote:
-> >
-> > Hello,
-> > I am using De2i-150 board which provides a yocto iso. I have installed
-> puppy linux before yocto and now I want to install yocto in the unallocated
-> portion. Basically I want dual booting. But when I tried to install yocto,
-> it just started from the live cd and did not show me any install option.
-> Please help me regarding this issue.
->
-> there are few seconds when the syslinux prompt appears. You need to type
-> in "install"
->
-> > Thank you.
-> >
-> > Debasmita Lohar
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---001a1147a55ee0d7a2052244ec02
-Content-Type: text/html; charset=UTF-8
+--OgqxwSJOaUobr8KG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div><div>The messages it is show=
-ing are:<br>booting from cd...<br></div>iso linux boot: loading /vmlinux<br=
-></div><div>loading initrd<br></div>trying to unpack rootfs<br></div>switch=
-ed to clock source.<br></div>mounted file system.<br></div>After that it is=
- showing yocto project and enters into the desktop.<br></div>It may be note=
-d that I am using the iso file downloaded from terasic website.<br></div>I =
-need to install yocto in de2i-150 terasic board.<br></div><div class=3D"gma=
-il_extra"><br clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D=
-"ltr"><div><div><div>Debasmita Lohar<br></div>MS Student<br></div>Computer =
-Science and Engineering<br></div>IIT Kharagpur<br><div><div><div><div><br><=
-/div></div></div></div></div></div></div>
-<br><div class=3D"gmail_quote">On Fri, Oct 16, 2015 at 10:17 PM, Khem Raj <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank=
-">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-"><span class=3D""><br>
-&gt; On Oct 16, 2015, at 12:22 AM, Debasmita Lohar &lt;<a href=3D"mailto:dl=
-ohar2009@gmail.com">dlohar2009@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello,<br>
-&gt; I am using De2i-150 board which provides a yocto iso. I have installed=
- puppy linux before yocto and now I want to install yocto in the unallocate=
-d portion. Basically I want dual booting. But when I tried to install yocto=
-, it just started from the live cd and did not show me any install option. =
-Please help me regarding this issue.<br>
-<br>
-</span>there are few seconds when the syslinux prompt appears. You need to =
-type in &quot;install&quot;<br>
-<br>
-&gt; Thank you.<br>
-&gt;<br>
-&gt; Debasmita Lohar<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-<br>
-</font></span></blockquote></div><br></div>
+On Fri, Oct 16, 2015 at 07:38:19PM +0000, Ahsan, Noor wrote:
+> On Oct 16, 2015, at 5:47 AM, Ahsan, Noor <Noor_Ahsan@mentor.com<mailto:No=
+or_Ahsan@mentor.com>> wrote:
+>=20
+> Hello,
+>=20
+> I noticed that at the time of rootfs creation symbolic links of the ipk f=
+iles present in deploy/ipk. The problem what have it while creation of symb=
+olic link it take the full path till that ipk and remove slashes and conver=
+t them into underscores. Use that as the name of the symbolic link. This ma=
+ke a very long file names. If we have very long path then name of the symli=
+nk exceed from max filename limits. And we get following error
+>=20
+> Collected errors:
+> * file_link: unable to stat `/var/jenkins/workspace/mel_cedar-main/buildh=
+ost/amd-ubuntu14-32b/buildtype/iot/machine/mel-dra7xx-evm/build_mel-dra7xx-=
+evm/tmp/work/mel_dra7xx_evm-mel-linux-gnueabi/console-image/1.0-r0/rootfs//=
+var/cache/opkg/volatile/file:_var_jenkins_workspace_mel_cedar-main_buildhos=
+t_amd-ubuntu14-32b_buildtype_iot_machine_mel-dra7xx-evm_build_mel-dra7xx-ev=
+m_tmp_deploy_ipk_mel_dra7xx_evm_kernel-module-lttng-ring-buffer-client-mmap=
+-overwrite_2.6.2+git0+7a88f8b506-r0.0_mel_dra7xx_evm.ipk': File name too lo=
+ng.
+>=20
+> Can anyone tell me why the addition of full path was added to the symlink=
+ name and can we remove it cause it is cause issues?
+>=20
+> what does
+>=20
+> getconf PATH_MAX /
+>=20
+> show ?
+>=20
+> jenkins@amd-ubu14-32-3:~$ getconf -a | grep  PATH_MAX
+> PATH_MAX                           4096
+> _POSIX_PATH_MAX                    4096
+>=20
+>=20
+> I think the issue is with file name not the path.
+>=20
+> Secondly the googling which I did reveals that symlink creation can't be =
+stopped. I just wanna confirm that is my findings correct?
+>=20
 
---001a1147a55ee0d7a2052244ec02--
+This looks like something we overlooked in opkg. When we added the caching =
+code
+we didn't think about how long the paths and filenames might get during the
+rootfs step. It's not currently possible to reduce the length of the symlink
+filenames, but it is possible to change the directory in which the symlinks=
+ are
+created.
+
+Currently the opkg cache dir can only be set in the opkg.conf file. I think=
+ we
+should add a '--cache-dir' argument to opkg. If this is added you'll be abl=
+e to
+set the following in your local.conf file to change the cache location. Eg.=
+ to
+use '/tmp/opkg' on the host during rootfs creation.
+
+    OPKG_ARGS =3D "--cache-dir=3D/tmp/opkg"
+
+I'll submit a patch to opkg to add this option.
+
+Thanks,
+
+--=20
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--OgqxwSJOaUobr8KG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJWI20nAAoJEBwoJlo7UPQDL6EH/10vZq6VfRQSL8E3a+xb845L
+Zeowah1z9IheKpA4DBLiRb28siyXR8yL23e5kclz8o8VRvfstKa0qVWi6m3BUpSl
+y/QbfpX5k4JDsxW+/3Abxav0+hL5jRs1vI0HXQgk+wi4h/+zneOO+I+oa5JRmsbx
+yjftP6HlAixYfSOMNuN5roxG5+ByZLC406t30HZhtwnHMSl6UpPR52Gwi5sqm4gj
+l6kc1ePZ42aVZNLWNOgEsA+ZQHWYAw3E0sfgV1/ymhcUheOCtJxH4i6sQKr/+13I
+KLe4VgTDBvG3i1tU0bp+xtz89TNCPhgX7luEmOAoex65mn+kAKQCc7aiZMs8XbE=
+=ryjO
+-----END PGP SIGNATURE-----
+
+--OgqxwSJOaUobr8KG--
