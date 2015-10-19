@@ -1,54 +1,26 @@
-Return-Path: <pbarker@betafive.co.uk>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7F55CE00ACC; Sun, 18 Oct 2015 08:52:10 -0700 (PDT)
+	id 0DC33E00C06; Sun, 18 Oct 2015 21:31:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [178.32.108.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 8405 seconds by postgrey-1.32 at yocto-www;
-	Sun, 18 Oct 2015 08:52:06 PDT
-Received: from 9.mo1.mail-out.ovh.net (9.mo1.mail-out.ovh.net [178.32.108.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FDA8E0079D
-	for <yocto@yoctoproject.org>; Sun, 18 Oct 2015 08:52:06 -0700 (PDT)
-Received: from mail644.ha.ovh.net (gw6.ovh.net [213.251.189.206])
-	by mo1.mail-out.ovh.net (Postfix) with SMTP id 863FDFFA6F2
-	for <yocto@yoctoproject.org>; Sun, 18 Oct 2015 11:56:31 +0200 (CEST)
-Received: from localhost (HELO queueout) (127.0.0.1)
-	by localhost with SMTP; 18 Oct 2015 11:56:29 +0200
-Received: from cpc19-shep11-2-0-cust55.8-3.cable.virginm.net (HELO
-	bang.betafive.co.uk) (paul@betafive.co.uk@81.111.243.56)
-	by ns0.ovh.net with AES256-GCM-SHA384 encrypted SMTP;
-	18 Oct 2015 11:56:28 +0200
-Received: by bang.betafive.co.uk (Postfix, from userid 1000)
-	id C1FEB40A4F; Sun, 18 Oct 2015 10:57:59 +0100 (BST)
-Date: Sun, 18 Oct 2015 10:57:59 +0100
-From: Paul Barker <paul@paulbarker.me.uk>
-To: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
-Message-ID: <20151018095759.GA12999@bang.betafive.co.uk>
-References: <365E1805BC95084CBE82381A0B86999401095F873E@EU-MBX-01.mgc.mentorg.com>
-	<BD314512-DA81-48D9-B50D-4C41BD927127@gmail.com>
-	<365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
-	<365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED820E00C03
+	for <yocto@yoctoproject.org>; Sun, 18 Oct 2015 21:31:53 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 2A1ED8481B3D
+	for <yocto@yoctoproject.org>; Mon, 19 Oct 2015 00:31:52 -0400 (EDT)
 MIME-Version: 1.0
-In-Reply-To: <365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Ovh-Tracer-Id: 7839641052578233321
-X-Ovh-Remote: 81.111.243.56 (cpc19-shep11-2-0-cust55.8-3.cable.virginm.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekgedrleegucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekgedrleegucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: opkg 0.3.0 or rootfs task
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 19 Oct 2015 04:31:52 -0000
+Message-ID: <20151019043152.14266.47633@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,102 +32,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Oct 2015 15:52:10 -0000
-X-Groupsio-MsgNum: 26893
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 19 Oct 2015 04:31:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---OgqxwSJOaUobr8KG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-On Fri, Oct 16, 2015 at 07:38:19PM +0000, Ahsan, Noor wrote:
-> On Oct 16, 2015, at 5:47 AM, Ahsan, Noor <Noor_Ahsan@mentor.com<mailto:No=
-or_Ahsan@mentor.com>> wrote:
->=20
-> Hello,
->=20
-> I noticed that at the time of rootfs creation symbolic links of the ipk f=
-iles present in deploy/ipk. The problem what have it while creation of symb=
-olic link it take the full path till that ipk and remove slashes and conver=
-t them into underscores. Use that as the name of the symbolic link. This ma=
-ke a very long file names. If we have very long path then name of the symli=
-nk exceed from max filename limits. And we get following error
->=20
-> Collected errors:
-> * file_link: unable to stat `/var/jenkins/workspace/mel_cedar-main/buildh=
-ost/amd-ubuntu14-32b/buildtype/iot/machine/mel-dra7xx-evm/build_mel-dra7xx-=
-evm/tmp/work/mel_dra7xx_evm-mel-linux-gnueabi/console-image/1.0-r0/rootfs//=
-var/cache/opkg/volatile/file:_var_jenkins_workspace_mel_cedar-main_buildhos=
-t_amd-ubuntu14-32b_buildtype_iot_machine_mel-dra7xx-evm_build_mel-dra7xx-ev=
-m_tmp_deploy_ipk_mel_dra7xx_evm_kernel-module-lttng-ring-buffer-client-mmap=
--overwrite_2.6.2+git0+7a88f8b506-r0.0_mel_dra7xx_evm.ipk': File name too lo=
-ng.
->=20
-> Can anyone tell me why the addition of full path was added to the symlink=
- name and can we remove it cause it is cause issues?
->=20
-> what does
->=20
-> getconf PATH_MAX /
->=20
-> show ?
->=20
-> jenkins@amd-ubu14-32-3:~$ getconf -a | grep  PATH_MAX
-> PATH_MAX                           4096
-> _POSIX_PATH_MAX                    4096
->=20
->=20
-> I think the issue is with file name not the path.
->=20
-> Secondly the googling which I did reveals that symlink creation can't be =
-stopped. I just wanna confirm that is my findings correct?
->=20
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
-This looks like something we overlooked in opkg. When we added the caching =
-code
-we didn't think about how long the paths and filenames might get during the
-rootfs step. It's not currently possible to reduce the length of the symlink
-filenames, but it is possible to change the directory in which the symlinks=
- are
-created.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
-Currently the opkg cache dir can only be set in the opkg.conf file. I think=
- we
-should add a '--cache-dir' argument to opkg. If this is added you'll be abl=
-e to
-set the following in your local.conf file to change the cache location. Eg.=
- to
-use '/tmp/opkg' on the host during rootfs creation.
+You can check the detail information at:
 
-    OPKG_ARGS =3D "--cache-dir=3D/tmp/opkg"
+http://packages.yoctoproject.org/
 
-I'll submit a patch to opkg to add this option.
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1        1.3.3                 Alejandro Hernandez
+python3               3.4.3        3.5.0                 Alejandro Hernandez
+python                2.7.9        2.7.10                Alejandro Hernandez
+libusb1               1.0.19       1.0.20                Alejandro Hernandez
+gsettings-desktop...  3.16.1       3.18.0                Alejandro Hernandez
+gnome-common          3.14.0       3.18.0                Alejandro Hernandez
+gcr                   3.16.0       3.18.0                Alexander Kanavin
+gnome-desktop3        3.16.2       3.18.1                Alexander Kanavin
+libsecret             0.18.2       0.18.3                Alexander Kanavin
+iso-codes             3.58         3.62                  Alexander Kanavin
+acpid                 2.0.23       2.0.25                Aníbal Limón
+apt                   1.0.10.1     1.0.10.2              Aníbal Limón
+dpkg                  1.18.2       1.18.3                Aníbal Limón
+sqlite3               3.8.10.2     3.9.1                 Aníbal Limón
+pkgconfig             0.28+gitX    0.29+gitAUTOINC+5...  Aníbal Limón
+pinentry              0.9.2        0.9.6                 Armin Kuster
+linux-libc-headers    4.1          4.2.3                 Bruce Ashfield
+guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
+pciutils              3.3.1        3.4.0                 Chen Qi
+resolvconf            1.77         1.78                  Chen Qi
+busybox               1.23.2       1.24.0                Chen Qi
+dbus-test             1.8.20       1.10.0                Chen Qi
+dbus                  1.8.20       1.10.0                Chen Qi
+systemd               225+gitX     227+gitAUTOINC+c3...  Chen Qi
+util-linux            2.26.2       2.27                  Chen Qi
+curl                  7.44.0       7.45.0                Chen Qi
+cpio                  2.11         2.12                  Chen Qi
+cups                  2.0.4        2.1.0                 Chen Qi
+sysstat               11.1.5       11.1.7-1              Chen Qi
+xz                    5.2.1        5.2.2                 Chen Qi
+bluez5                5.33         5.35                  Cristian Iorga
+iproute2              4.1.1        4.2.0                 Cristian Iorga
+libpcap               1.6.2        1.7.4                 Cristian Iorga
+ofono                 1.16         1.17                  Cristian Iorga
+build-appliance-i...  12.0.1       13.0.0                Cristian Iorga
+gstreamer1.0-libav    1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0          1.4.5        1.6.0                 Cristian Iorga
+gstreamer1.0-rtsp...  1.4.5        1.6.0                 Cristian Iorga
+qemu                  2.4.0        2.4.0.1               Cristian Iorga
+db                    6.0.30       6.1.26                Cristian Iorga       Updating to 6.1.x requires ...
+wpa-supplicant        2.4          2.5                   Cristian Iorga
+harfbuzz              1.0.2        1.0.6                 Cristian Iorga
+libtirpc              0.2.5        0.3.2                 Cristian Iorga
+libical               1.0.0        1.0.1                 Cristian Iorga
+kernelshark           2.5.3+gitX   2.6+gitAUTOINC+9b...  Darren Hart
+trace-cmd             2.5.3+gitX   2.6+gitAUTOINC+9b...  Darren Hart
+dhcp                  4.3.2        4.3.3                 Hongxu Jia
+ncurses               5.9          6.0-20151017          Hongxu Jia
+elfutils              0.163        0.164                 Hongxu Jia
+qmmp                  0.8.6        1.0.0                 Hongxu Jia
+pax-utils             1.0.5        1.1.3                 Hongxu Jia
+createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.3        1.6.4                 Hongxu Jia
+ghostscript           9.16         9.18                  Hongxu Jia
+help2man-native       1.47.1       1.47.2                Hongxu Jia
+gnupg                 2.1.7        2.1.9                 Hongxu Jia
+pango                 1.36.8       1.38.1                Jussi Kukkonen
+waffle                1.5.1        1.5.2                 Jussi Kukkonen
+libinput              0.21.0       1.0.1                 Jussi Kukkonen
+wayland               1.8.1        1.9.0                 Jussi Kukkonen
+weston                1.8.0        1.9.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.16.6       3.18.2                Jussi Kukkonen
+libsoup-2.4           2.50.0       2.52.1                Jussi Kukkonen
+xf86-video-omap       0.4.3        0.4.4                 Jussi Kukkonen
+libxcb                1.11         1.11.1                Jussi Kukkonen
+glib-2.0              2.44.1       2.46.1                Jussi Kukkonen
+glib-networking       2.44.0       2.46.1                Jussi Kukkonen
+libxi                 1.7.4        1.7.5                 Jussi Kukkonen
+pixman                0.32.6       0.33.2                Jussi Kukkonen
+xkeyboard-config      2.15         2.16                  Jussi Kukkonen
+xserver-xorg          1.17.2       1.17.99.901           Jussi Kukkonen
+at-spi2-atk           2.16.0       2.18.1                Jussi Kukkonen
+clutter-gtk-1.0       1.6.2        1.6.6                 Jussi Kukkonen
+atk                   2.16.0       2.18.0                Jussi Kukkonen
+at-spi2-core          2.16.0       2.18.1                Jussi Kukkonen
+vala                  0.28.0       0.30.0                Jussi Kukkonen
+shared-mime-info      1.4          1.5                   Jussi Kukkonen
+vte                   0.28.2       0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.8        3.0.14                Jussi Kukkonen
+adwaita-icon-theme    3.16.2.1     3.18.0                Jussi Kukkonen
+xdg-utils             1.1.0-rc1    1.1.1                 Jussi Kukkonen
+gdk-pixbuf            2.30.8       2.32.1                Jussi Kukkonen
+gtk+3                 3.16.6       3.18.2                Jussi Kukkonen
+librsvg               2.40.10      2.40.11               Jussi Kukkonen
+clutter-1.0           1.22.4       1.24.2                Jussi Kukkonen
+cogl-1.0              1.20.0       1.22.0                Jussi Kukkonen
+glew                  1.12.0       1.13.0                Jussi Kukkonen
+python-mako           1.0.1        1.0.2                 Khem Raj
+python-nose           1.3.6        1.3.7                 Khem Raj
+python-numpy          1.7.0        1.10.1                Khem Raj
+rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
+iw                    4.1          4.3                   No maintainer
+dmidecode             2.12         3.0                   No maintainer
+docbook-xsl-style...  1.78.1       1.79.0                No maintainer
+gptfdisk              1.0.0        1.0.1                 No maintainer
+orc                   0.4.23       0.4.24                No maintainer
+webkitgtk             2.8.5        2.10.2                No maintainer
+ifupdown              0.7.48.1     0.7.54ubuntu1         No maintainer
+bjam-native           1.58.0       1.59.0                No maintainer
+python-pexpect        3.3          4.0.1                 No maintainer
+swig                  3.0.6        3.0.7                 No maintainer
+python3-pip           6.1.1        7.1.2                 No maintainer
+python3-setuptools    18.2         18.4                  No maintainer
+epiphany              3.16.3       3.18.0                No maintainer
+uclibc-initial        0.9.33+gitX  0.9.33.2+gitAUTOI...  No maintainer
+apt-native            1.0.10.1     1.0.10.2              No maintainer
+gcc-source-4.8.4      4.8.4        4.8.5                 No maintainer
+gdb-cross-canadia...  7.9.1        7.10                  No maintainer
+gdb-cross-i586        7.9.1        7.10                  No maintainer
+sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
+autogen-native        5.18.5       5.18.6                No maintainer
+python-scons-native   2.3.6        2.4.0                 No maintainer
+python3-native        3.4.3        3.5.0                 No maintainer
+python-native         2.7.9        2.7.10                No maintainer
+libav                 9.18         11.4                  Paul Eggleton
+gpgme                 1.5.4        1.6.0                 Paul Eggleton
+libevdev              1.4.2        1.4.4                 Paul Eggleton
+libgpg-error          1.19         1.20                  Paul Eggleton
+cmake                 3.3.1        3.3.2                 Paul Eggleton
+cmake-native          3.3.1        3.3.2                 Paul Eggleton
+libpng                1.6.17       1.6.18                Randy Witt
+libtasn1              4.5          4.7                   Randy Witt
+unfs3                 0.9.22.r490  0.9.22.r495           Randy Witt
+libunistring          0.9.5        0.9.6                 Randy Witt
+ethtool               4.0          4.2                   Randy Witt
+btrfs-tools           4.1.2        4.2.2                 Richard Purdie
+lttng-modules         2.6.2+gitX   2.7.0+gitAUTOINC+...  Richard Purdie
+lttng-tools           2.6.0        2.7.0                 Richard Purdie
+lttng-ust             2.6.2+gitX   2.7.0+gitAUTOINC+...  Richard Purdie
+gdb                   7.9.1        7.10                  Richard Purdie
+python-pygobject      2.28.3       3.18.0                Richard Purdie       Newer versions of python-py...
+python-scons          2.3.6        2.4.0                 Richard Purdie
+libdrm                2.4.62       2.4.65                Richard Purdie
+e2fsprogs             1.42.9       1.42.13               Robert Yang          Updating backported patches...
+file                  5.24         5.25                  Robert Yang
+git                   2.5.0        2.6.2                 Robert Yang
+gmp                   6.0.0        6.0.0a                Robert Yang
+less                  479          481                   Robert Yang
+ltp                   20150420     20150903              Robert Yang
+liberation-fonts      1.04         2.00.1                Ross Burton          2.x depends on fontforge pa...
+base-passwd           3.5.29       3.5.38                Ross Burton          Version 3.5.38 requires cde...
+kbd                   2.0.2        2.0.3                 Ross Burton
+uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Ross Burton
+babeltrace            1.2.4+gitX   1.3.0+gitAUTOINC+...  Ross Burton
+systemtap             2.7+gitX     2.9+gitAUTOINC+70...  Ross Burton
+tiff                  4.0.4        4.0.6                 Ross Burton
+mkelfimage            4.0+gitX     4.1+gitAUTOINC+6c...  Ross Burton          mkelfimage has been removed...
+mtd-utils             1.5.1+gitX   1.5.2+gitAUTOINC+...  Ross Burton
+liburcu               0.8.7        0.9.1                 Ross Burton
+boost                 1.58.0       1.59.0                Ross Burton
+icu                   55.1         56.1-AIX7.1-VA2       Ross Burton
+valgrind              3.10.1       3.11.0                Ross Burton
+nss                   3.19.2       3.20                  Ross Burton
+libidn                1.30         1.32                  Ross Burton
+lighttpd              1.4.36       1.4.37                Ross Burton
+libassuan             2.2.1        2.3.0                 Ross Burton
+procps                3.3.10       3.3.11                Ross Burton
+pulseaudio            6.0          7.0                   Tanu Kaskinen
+systemtap-uprobes     2.7+gitX     2.9+gitAUTOINC+70...  Tom Zanussi
+gettext               0.19.4       0.19.6                Wenzong Fan
+ccache                3.2.3        3.2.4                 Wenzong Fan
+chkconfig             1.3.58       1.6                   Wenzong Fan          Version 1.5 requires selinux
 
-Thanks,
+Upgradable count: 156
+Upgradable total count: 166
 
---=20
-Paul Barker
+The based commit is:
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+commit 10e5df3503632a6e1c54612055b19f7258c3ae2f
+Author: Otavio Salvador <otavio@ossystems.com.br>
+Date:   Tue Oct 13 12:29:37 2015 -0300
 
---OgqxwSJOaUobr8KG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+    lib/oe/image.py: Fix dependency handling for compressed types
+    
+    The dependency code needs to also include the dependency of base
+    types. For example:
+    
+     - sdcard.gz image with ext4
+    
+    The dependency chain needs to include:
+    
+     - sdcard
+     - ext4
+     - gz
+    
+    Until this change, the ext4 dependency were not being taken into
+    account when using the compressed one.
+    
+    Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
-iQEcBAEBAgAGBQJWI20nAAoJEBwoJlo7UPQDL6EH/10vZq6VfRQSL8E3a+xb845L
-Zeowah1z9IheKpA4DBLiRb28siyXR8yL23e5kclz8o8VRvfstKa0qVWi6m3BUpSl
-y/QbfpX5k4JDsxW+/3Abxav0+hL5jRs1vI0HXQgk+wi4h/+zneOO+I+oa5JRmsbx
-yjftP6HlAixYfSOMNuN5roxG5+ByZLC406t30HZhtwnHMSl6UpPR52Gwi5sqm4gj
-l6kc1ePZ42aVZNLWNOgEsA+ZQHWYAw3E0sfgV1/ymhcUheOCtJxH4i6sQKr/+13I
-KLe4VgTDBvG3i1tU0bp+xtz89TNCPhgX7luEmOAoex65mn+kAKQCc7aiZMs8XbE=
-=ryjO
------END PGP SIGNATURE-----
-
---OgqxwSJOaUobr8KG--
