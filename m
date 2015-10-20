@@ -1,6 +1,6 @@
 Return-Path: <alireza_1100@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2704E00843; Tue, 20 Oct 2015 10:30:25 -0700 (PDT)
+	id C6AAAE00843; Tue, 20 Oct 2015 10:59:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,55 +9,55 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (alireza_1100[at]yahoo.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [67.195.87.230 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0026]
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [67.195.87.241 listed in list.dnswl.org]
-Received: from nm50-vm1.bullet.mail.gq1.yahoo.com
-	(nm50-vm1.bullet.mail.gq1.yahoo.com [67.195.87.241])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A485E006D5
-	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 10:30:22 -0700 (PDT)
+Received: from nm48-vm10.bullet.mail.gq1.yahoo.com
+	(nm48-vm10.bullet.mail.gq1.yahoo.com [67.195.87.230])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 481ADE006D5
+	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 10:59:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1445362221; bh=v0RpUEhk3c8LGba7EbwOD3K3aI20so21mJevVhOdGoE=;
+	t=1445363960; bh=v0RpUEhk3c8LGba7EbwOD3K3aI20so21mJevVhOdGoE=;
 	h=Date:From:Subject:To:From:Subject;
-	b=o4OmxkSdW8JMxwnsxb7Hw8vOcOGf/b1MF5d1hXgLA1xy6Xw8H3FwHAQzD749NtrnM6HNNM9wrCnzcEsVqCIwretTx4pzyfsBH42DX/1oW/wWR7v3TIe5hrmEhk8pvr2rdrkmpU4IZum1IVqvpeD904nNzvBUwKFKnuFWz/nVIlcPY2cJ22+48wCJwH3+O9XIGGBtmZskRCiuNsWAPr9LHExiaxpoTve+5tvOLrDnT219pYaMWCoRfoeeOzGfb4Hp2hkuc8fKsnXcoGNltpswnFt4ssul3ppry/CeUbbqX7bktO2ZUluKFz2jHnTCY4XGyga4TzgvjSw+lvCyPbkz7Q==
-Received: from [127.0.0.1] by nm50.bullet.mail.gq1.yahoo.com with NNFMP;
-	20 Oct 2015 17:30:21 -0000
-Received: from [98.137.12.63] by nm50.bullet.mail.gq1.yahoo.com with NNFMP;
-	20 Oct 2015 17:27:20 -0000
-Received: from [66.196.81.172] by tm8.bullet.mail.gq1.yahoo.com with NNFMP;
-	20 Oct 2015 17:27:20 -0000
-Received: from [98.139.212.206] by tm18.bullet.mail.bf1.yahoo.com with NNFMP;
-	20 Oct 2015 17:27:20 -0000
-Received: from [127.0.0.1] by omp1015.mail.bf1.yahoo.com with NNFMP;
-	20 Oct 2015 17:27:20 -0000
+	b=Yp/b2ztvNBs+BogT5FB0otYuUIeYICNiij8cVaDGgBc0J29MXVgGwXav97acTT39ytv4hBXuLSynSoPm03bqRQns+vyhrwRf7ekj1t70YORlwQ/RMSVgkKi+os7k0skxDBzp2foIDciOFBAFvbtohsFM7YOkNPQj5yVzboT7g7/cMhcBPXdSHFtKBTisk8Phj4ziw8BXrfSWA93R4HS3CZs0sCkjG4n5CX0tkx7yb/kAQqNq+sQjC4EYaaWJZ1U2Bbnj3uOMBrcoCjeILgnZ87FVSfNjq4cb8fkeIQ6tjQTi3zw18AowyD+1SWQJem/oDsahjttdEpRBiEYI9lFHsw==
+Received: from [127.0.0.1] by nm48.bullet.mail.gq1.yahoo.com with NNFMP;
+	20 Oct 2015 17:59:20 -0000
+Received: from [98.137.12.63] by nm48.bullet.mail.gq1.yahoo.com with NNFMP;
+	20 Oct 2015 17:56:19 -0000
+Received: from [98.139.170.181] by tm8.bullet.mail.gq1.yahoo.com with NNFMP;
+	20 Oct 2015 17:56:19 -0000
+Received: from [98.139.212.238] by tm24.bullet.mail.bf1.yahoo.com with NNFMP;
+	20 Oct 2015 17:56:19 -0000
+Received: from [127.0.0.1] by omp1047.mail.bf1.yahoo.com with NNFMP;
+	20 Oct 2015 17:56:19 -0000
 X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 557104.56653.bm@omp1015.mail.bf1.yahoo.com
-Received: (qmail 77654 invoked by uid 60001); 20 Oct 2015 17:27:20 -0000
-X-YMail-OSG: .FvvVYcVM1nQjZyvxCiqtXowl4kRzQr5YawnzATxgVrMqWo
-	kARlW4_bBFapF82rs0YRWI_15ULWlAXrY3OLpY2aTAqyR2gkzza_1j.KJ6dj
-	zEnflenimh4FC48WOgNlOMINmSu1fy8vAcaOQkMo2nYk7gBGV8Nf5sFdxRsI
-	GCvAc1ciPr_po3xBwrknWs6ma3Om9BuUC35UF4rfLZwn5u4_vyPifdbbn9BX
-	sX9E4DiKDDeaQh6xZAESqkU4a3EGpiEZOn5o3MDCLGp3JyRT6DB955weEPmb
-	T4IGVqHv_lfeJUBfaA5o4Pv.ED82uDkFHxFLjaW4YpU1VEClGLn03Y3YuVwu
-	ji3ltsRvdgasfX8dgdMXe_2Sucbr2c9rFE_F_D..rD7R57yiFppKzk92z0fw
-	tb4Mn3ZUXfB116VP.AUfYaJ41zVOJvKIymfV7Gfx82bTmwvkcOa9KYc5rqZ_
-	IspZSsiaAgSff_yAOq.pVoPGjhK3ByENqgnkkuF5u3L.Cv4TZ1iFolL5RHel
-	ISVC6RUHZlUEM54ChNF0vMFmLZd8LO2WH33VsYHuuZvFLByhsPnA4sAeEP66
-	FMxPzvG_F4Jx71_dSMpQg7Y0-
-Received: from [188.166.97.233] by web141504.mail.bf1.yahoo.com via HTTP;
-	Tue, 20 Oct 2015 10:27:20 PDT
+X-Yahoo-Newman-Id: 461342.2471.bm@omp1047.mail.bf1.yahoo.com
+Received: (qmail 95079 invoked by uid 60001); 20 Oct 2015 17:56:19 -0000
+X-YMail-OSG: CG5aILQVM1lE_BfTGQxnZgtbBQz3jMyK8Em.kbUvX6mNiL9
+	GYk52MkyjABVutzqV_VCeG4xeIUKNXF3UNdha1XDKbZ5z9sZBwW7xlaPJEnQ
+	Mb5SIFvc0kbd.IuI9mD9s8sM2cO4DOrjXdZes7ahpZKGTKgNKMWy5c6ph72Y
+	BUOW6iwgIzzjHSDEkWUv5yyLDlVS0QUp1adrUooBP_3ecdiKyXxckbzbSF5.
+	qNkRRgSWDnXkEFhrI5BNQlOVHQ.4aGsQF0Hkl.Z5qjbKiDGoy_cef1NQhCpn
+	YkLPDW4.ewiOBnGreyMBrnYX7a2Wd9sD3Mi5qGMbIBCQBeOOlgT4EOl_GPQV
+	mZOLBeI1oRtzrt_8HNomFdB2zlDXRoy.V3DTql5.IL05pXtkl.PMKCUTiZKE
+	SR3BQvUzkryEkljhykSKMstem9XiCwVd9FMp42ZsYCFvinK8FGsvSF8oW.UW
+	IWRd0T_gzwhYrCPYzBrF7nyX.hFiEodQJsCJtBiz3EiC.yfrwYnUHZRktyTE
+	fbMO9oOu0lRBu7hdbjGLyAwlS1Qz694b93pu686v99LjaxUA89GM36j9vm2D
+	qcUOK.pao5POUihgFSIJdpQ--
+Received: from [188.166.97.233] by web141501.mail.bf1.yahoo.com via HTTP;
+	Tue, 20 Oct 2015 10:56:19 PDT
 X-Rocket-MIMEInfo: 002.001,
 	SGVsbG8gdGhlcmUsDQoNCkkgYW0gdXNpbmcgeW9jdG8gY29yZS1pbWFnZS1taW5pbWFsIGltYWdlIGZvciBteSBiZWFnbGUgYm9uZSBibGFjaywgYW5kIGV2ZXJ5dGhpbmcgaXMgT0ssIGJ1dCBteSBVU0IgcG9ydCBkb2Vzbid0IHdvcmsgYXQgYWxsLg0KDQpJcyB0aGVyZSBhbnlvbmUgaGF2aW5nIGV4cGVyaWVuY2UgaW4gdGhpcyBpc3N1ZSB0byBnaXZlIG1lIHNvbWUgZ3VpZGUsIHBsZWFzZT8NCg0KVGhhbmtzLAEwAQEBAQ--
 X-Mailer: YahooMailBasic/799 YahooMailWebService/0.8.203.817
-Message-ID: <1445362040.33608.YahooMailBasic@web141504.mail.bf1.yahoo.com>
-Date: Tue, 20 Oct 2015 10:27:20 -0700
+Message-ID: <1445363779.62779.YahooMailBasic@web141501.mail.bf1.yahoo.com>
+Date: Tue, 20 Oct 2015 10:56:19 -0700
 From: Alireza <alireza_1100@yahoo.com>
 To: yocto@yoctoproject.org
 MIME-Version: 1.0
@@ -73,7 +73,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Oct 2015 17:30:25 -0000
+X-List-Received-Date: Tue, 20 Oct 2015 17:59:22 -0000
 Content-Type: text/plain; charset=us-ascii
 
 Hello there,
