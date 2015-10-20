@@ -1,6 +1,6 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FED6E0071C; Tue, 20 Oct 2015 03:03:40 -0700 (PDT)
+	id 56CE8E0071C; Tue, 20 Oct 2015 03:19:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (atul.singh008[at]gmail.com)
+	mail provider *      (pervivek[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+	*      [209.85.213.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,38 +20,33 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 082FEE006F1
-	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 03:03:36 -0700 (PDT)
-Received: by iodv82 with SMTP id v82so16203434iod.0
-	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 03:03:35 -0700 (PDT)
+Received: from mail-vk0-f50.google.com (mail-vk0-f50.google.com
+	[209.85.213.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BFCBE006F1
+	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 03:19:15 -0700 (PDT)
+Received: by vkex70 with SMTP id x70so6960488vke.3
+	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 03:19:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=15kApt1iOdX6FDLuK/aqC5vPA1iRBUub51nZCFPtY1k=;
-	b=yNT+IQg2XLChoL4QLHjiBPiEAG5eeJW9t2zWT5x9AgNXWuh9srXGiwDS7rMNbTI/b2
-	n2kdRZMy4bEqhvQwN/V1SMdRPV6ZXr/1BEaTOkybkz8ZKy0ppnSzXB6DqMBmo94gOdcs
-	PLVMQSJPTcsQGq9r64LMpX5zfrn8efCCd5T41JRyxMRQwl8uAKoClSDjCiiZwmpUSD4E
-	P/8xvr0HZEYD62BJZRylbhyLO/8SkDvCj/raJR8tfRH8Q1FfmSpOeDcJ6xnXT3htC0/O
-	Qq6TvoPPZBPDAX5WRM8FqaV4kGDAx0vGexi37XyS0QmTo9Wukp0OOqIKoviwwxYkZQ2a
-	KMiw==
+	:content-type; bh=hwqE35Wt10gaBYEtTEwWoF209gKOjcYmL7v4zpsCsFc=;
+	b=RYxu4HPpJ7p31LJcrfpJ0Z7YwRXYs0uRnxj+2tS808tcAjwlERUbaTgnf+aSr6Opjz
+	dZ1DEXdCtGxBzpbfhumd5Xe/TPOK2dE6koSpgj/E0Yd7R4yEdUyge3fVptowph/oPnkQ
+	nXIU303OVkaGB5ETgPekJWd8OO7qRiDuu5I/jrP3TyZmwYx1ATC/RI23uA7Hd/wbJMNh
+	lafa1/Tbvo80GJIWJzy4Cm6+gureLpyainrzJFwqJ0aLAk1q7RkKtOs+l8p3cb9sfgT+
+	/H3pFaOWo9NgIjZSgMYp+DQQjN9IpoNClQTT3ma/hUifM4vN11qpvMzBj2DTcy3WOZWo
+	eomg==
 MIME-Version: 1.0
-X-Received: by 10.107.131.147 with SMTP id n19mr2537843ioi.192.1445335415862; 
-	Tue, 20 Oct 2015 03:03:35 -0700 (PDT)
-Received: by 10.107.170.139 with HTTP; Tue, 20 Oct 2015 03:03:35 -0700 (PDT)
-Received: by 10.107.170.139 with HTTP; Tue, 20 Oct 2015 03:03:35 -0700 (PDT)
-In-Reply-To: <20151020061928.GB7776@ad.chargestorm.se>
-References: <CAH21_vGLfHN=hYHeWNA3Epsf0QPpnOg47NDtE7Do5BsBz+vuFQ@mail.gmail.com>
-	<20151019120812.GA2549@jama>
-	<CAH21_vFrTWYUkjnTTsH6JCOQqk5R00ABQNhLE80-=CLhib_E7Q@mail.gmail.com>
-	<20151020061928.GB7776@ad.chargestorm.se>
-Date: Tue, 20 Oct 2015 15:33:35 +0530
-Message-ID: <CAH21_vG7_hq5ZSEeJ3ExzY90WQ_TP9YuTcgypHN6953yeNrvjQ@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: anders@chargestorm.se
-Cc: yocto@yoctoproject.org
-Subject: Re: Nightly build and world build
+X-Received: by 10.31.178.136 with SMTP id b130mr1304101vkf.109.1445336354866; 
+	Tue, 20 Oct 2015 03:19:14 -0700 (PDT)
+Received: by 10.31.179.207 with HTTP; Tue, 20 Oct 2015 03:19:14 -0700 (PDT)
+In-Reply-To: <20151020043427.GB22526@mbabyjoh-mobl.fi.intel.com>
+References: <CALLyC8QStDgKandfU3yPpkVfxtG5MVd0jTBt0Ceq1gYEOkkwBw@mail.gmail.com>
+	<20151020043427.GB22526@mbabyjoh-mobl.fi.intel.com>
+Date: Tue, 20 Oct 2015 15:49:14 +0530
+Message-ID: <CALLyC8To=Z2YvMAszXbekr2++f4YJFdkXsSPKvdy1-MucQ2mjg@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: Yocto <yocto@yoctoproject.org>, maxin.john@intel.com
+Subject: Re: How can i install shutil.py in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,117 +58,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Oct 2015 10:03:40 -0000
-Content-Type: multipart/alternative; boundary=001a113ecf9c0b3ed2052286602c
+X-List-Received-Date: Tue, 20 Oct 2015 10:19:19 -0000
+Content-Type: multipart/alternative; boundary=001a1143e074034ce705228698fb
 
---001a113ecf9c0b3ed2052286602c
+--001a1143e074034ce705228698fb
 Content-Type: text/plain; charset=UTF-8
 
-On 20-Oct-2015 11:49 am, "Anders Darander" <anders@chargestorm.se> wrote:
->
-> Please don't top-post. I've reformatted the e-mail in my replly.
->
-> * atulkumar singh <atul.singh008@gmail.com> [151020 05:22]:
->
-> > On 19-Oct-2015 5:38 pm, "Martin Jansa" <martin.jansa@gmail.com> wrote:
->
-> > > On Sat, Oct 17, 2015 at 08:01:59AM +0530, atulkumar singh wrote:
-> > > > Hi All,
->
-> > > > I am going through the mailing list and I found some communication
-> > related
-> > > > to world build and nightly build.
-> > > > I even search in the documentation regarding the same but didn't
-found
-> > any
-> > > > useful information regarding the same.
-> > > > Can anyone please tel me what is nightly build and world build and
-what
-> > is
-> > > > the difference between the same.
->
-> > > My world builds are described here:
-> > > http://www.openembedded.org/wiki/Bitbake_World_Status
->
-> > Thanks for your reply.
-> > But the link you mentioned has a status of world build for various
-> > versions, while I am looking for what world build and nightly build
-meant
-> > for and what is the difference between them.
->
-> Did you notice the Martin not only provided you with the link above, but
-> also the line below:
->
-> > > See link on first line.
->
-> If you look at that line, you'll find the following link:
-> http://www.openembedded.org/wiki/Bitbake_World_Status_Setup, which
-> basically tells you what the world status builds are doing.
-Thanks Anders for your help.
-The link mentioned above has another link and I got the answer for world
-build and regarding nightly build then I found the same over web.
+i have put "python-shell" in IMAGE_INSTALL it worked fine.
 
-Regards,
-Atul
->
-> Cheers,
-> Anders
->
-> --
-> Anders Darander
-> ChargeStorm AB / eStorm AB
+Thanks
+vivek
 
---001a113ecf9c0b3ed2052286602c
+On Tue, Oct 20, 2015 at 10:04 AM, Maxin B. John <maxin.john@intel.com>
+wrote:
+
+> Hi Vivek,
+>
+> On Tue, Oct 20, 2015 at 02:38:36PM +0530, Vivek Per wrote:
+> > hi,
+> > How can i install shutil.py in roofs.  I need this file for audit2allow.
+> > In rootfs remaining .py files are including  /usr/share/python-support/
+> > but not shutil.py. i want to include this file in rootfs how can i
+> install this?
+>
+> You need to install "python-shell" in your image for shutil.py
+>
+> ie:
+> IMAGE_INSTALL_append = " python-shell" in local.conf and build again.
+>
+> Best Regards,
+> Maxin
+>
+
+--001a1143e074034ce705228698fb
 Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<p dir="ltr">On 20-Oct-2015 11:49 am, &quot;Anders Darander&quot; &lt;<a href="mailto:anders@chargestorm.se">anders@chargestorm.se</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Please don&#39;t top-post. I&#39;ve reformatted the e-mail in my replly.<br>
-&gt;<br>
-&gt; * atulkumar singh &lt;<a href="mailto:atul.singh008@gmail.com">atul.singh008@gmail.com</a>&gt; [151020 05:22]:<br>
-&gt;<br>
-&gt; &gt; On 19-Oct-2015 5:38 pm, &quot;Martin Jansa&quot; &lt;<a href="mailto:martin.jansa@gmail.com">martin.jansa@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; &gt; On Sat, Oct 17, 2015 at 08:01:59AM +0530, atulkumar singh wrote:<br>
-&gt; &gt; &gt; &gt; Hi All,<br>
-&gt;<br>
-&gt; &gt; &gt; &gt; I am going through the mailing list and I found some communication<br>
-&gt; &gt; related<br>
-&gt; &gt; &gt; &gt; to world build and nightly build.<br>
-&gt; &gt; &gt; &gt; I even search in the documentation regarding the same but didn&#39;t found<br>
-&gt; &gt; any<br>
-&gt; &gt; &gt; &gt; useful information regarding the same.<br>
-&gt; &gt; &gt; &gt; Can anyone please tel me what is nightly build and world build and what<br>
-&gt; &gt; is<br>
-&gt; &gt; &gt; &gt; the difference between the same.<br>
-&gt;<br>
-&gt; &gt; &gt; My world builds are described here:<br>
-&gt; &gt; &gt; <a href="http://www.openembedded.org/wiki/Bitbake_World_Status">http://www.openembedded.org/wiki/Bitbake_World_Status</a><br>
-&gt;<br>
-&gt; &gt; Thanks for your reply.<br>
-&gt; &gt; But the link you mentioned has a status of world build for various<br>
-&gt; &gt; versions, while I am looking for what world build and nightly build meant<br>
-&gt; &gt; for and what is the difference between them.<br>
-&gt;<br>
-&gt; Did you notice the Martin not only provided you with the link above, but<br>
-&gt; also the line below:<br>
-&gt;<br>
-&gt; &gt; &gt; See link on first line.<br>
-&gt;<br>
-&gt; If you look at that line, you&#39;ll find the following link:<br>
-&gt; <a href="http://www.openembedded.org/wiki/Bitbake_World_Status_Setup">http://www.openembedded.org/wiki/Bitbake_World_Status_Setup</a>, which<br>
-&gt; basically tells you what the world status builds are doing.<br>
-Thanks Anders for your help.<br>
-The link mentioned above has another link and I got the answer for world build and regarding nightly build then I found the same over web.</p>
-<p dir="ltr">Regards,<br>
-Atul<br>
-&gt;<br>
-&gt; Cheers,<br>
-&gt; Anders<br>
-&gt;<br>
-&gt; --<br>
-&gt; Anders Darander<br>
-&gt; ChargeStorm AB / eStorm AB<br>
-</p>
+<div dir=3D"ltr">i have put &quot;python-shell&quot; in IMAGE_INSTALL it wo=
+rked fine.<div><br></div><div>Thanks=C2=A0</div><div>vivek</div></div><div =
+class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Oct 20, 2015 a=
+t 10:04 AM, Maxin B. John <span dir=3D"ltr">&lt;<a href=3D"mailto:maxin.joh=
+n@intel.com" target=3D"_blank">maxin.john@intel.com</a>&gt;</span> wrote:<b=
+r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex">Hi Vivek,<br>
+<span class=3D""><br>
+On Tue, Oct 20, 2015 at 02:38:36PM +0530, Vivek Per wrote:<br>
+&gt; hi,<br>
+&gt; How can i install shutil.py in roofs.=C2=A0 I need this file for audit=
+2allow.<br>
+&gt; In rootfs remaining .py files are including=C2=A0 /usr/share/python-su=
+pport/<br>
+&gt; but not shutil.py. i want to include this file in rootfs how can i ins=
+tall this?<br>
+<br>
+</span>You need to install &quot;python-shell&quot; in your image for shuti=
+l.py<br>
+<br>
+ie:<br>
+IMAGE_INSTALL_append =3D &quot; python-shell&quot; in local.conf and build =
+again.<br>
+<br>
+Best Regards,<br>
+Maxin<br>
+</blockquote></div><br></div>
 
---001a113ecf9c0b3ed2052286602c--
+--001a1143e074034ce705228698fb--
