@@ -1,55 +1,56 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FEA6E00708; Wed, 21 Oct 2015 12:43:18 -0700 (PDT)
+	id 8BAD2E00708; Wed, 21 Oct 2015 13:58:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
-	[209.85.217.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E498E006D5
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 12:43:13 -0700 (PDT)
-Received: by lbbes7 with SMTP id es7so46291097lbb.2
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 12:43:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=Wy/cnYKGVUdG6SBDVoxEJMZlQzSTOR4fGCNhubQ0dQg=;
-	b=bPFYuS4g5aiA9jR+o+LbiGXR7wlO8UZTQXbk30l0tsmANq3Z9hRfQavyI5H7r0w/7J
-	dzepn2A8sWBp33MKmSrVNJar6lfgc3YYmld4sMgWizZJCcH2DSlx2qIzl3MEx9hQ508Y
-	lignLMuK22F+ewd4Gtrh9xJY8Sc2ZVs4jDsCmNPExjFjUG9AYFq5qYl4eRu252uKBMdR
-	Tw/VWJ2AwMCoyzHdQP2woytbmetv+SL10bRF5UfzOU/rjTpRqCczOmB3GsYmnRspbQ6J
-	Yi6YiuGyXgwJsa2oY33CAIwJe8XKWl7y6jWWmSN3ExaLKg2U9d0e+zuzCWWhIVRNNx9q
-	n0YA==
-X-Gm-Message-State: ALoCoQnpVyT92wg/0QPoPvq8rBCL77PVFNWhfOLO1ivZjo/KwA+HZ1iFak4ch+B0XO/Qe2xYfyAE
-X-Received: by 10.112.131.70 with SMTP id ok6mr6483129lbb.71.1445456591999;
-	Wed, 21 Oct 2015 12:43:11 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.177 listed in list.dnswl.org]
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-wi0-f177.google.com (mail-wi0-f177.google.com
+	[209.85.212.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B9C8E006D5
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 13:58:53 -0700 (PDT)
+Received: by wicll6 with SMTP id ll6so108606963wic.0
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 13:58:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=BMSefQHyL1O/7AbZTvIMElhI5H3aBYBAAm9FGSnbxJ0=;
+	b=B6P1dK/gQUKcttKHvcXUtbURaJ9vmGElKwLiwEKoiG2Wq9+SW0pGBGb4pKEPttPyKv
+	7WY+R2dxhqOrBJZJIn2deZDHiEIp/ShohYLcvEZ9K6v2+F2BdmiahPPNi180zmdigTwx
+	G9T2coRxGnJaJWEgFCan8zpLZ+Dmt2q0i6IUDdmn0RIdMmP5MofJcoWJZ03FNYrYMwlS
+	zHJNrpztCCLGzi9/DtGYAUJIGhuH1QVAOvfkx6cUUK94PvFUTaeB3vv1vkPTSgn57SgA
+	c4aZqMs2BdwcHnB/CZrMMo4SSdZTIGuE8l+K9GgNwqLHTBrpGkRmOX8+URwiCa3lRbrR
+	eNdw==
 MIME-Version: 1.0
-Received: by 10.112.198.71 with HTTP; Wed, 21 Oct 2015 12:42:32 -0700 (PDT)
-X-Originating-IP: [88.67.185.162]
-In-Reply-To: <5627C2AF.6060809@gmail.com>
-References: <1439312679-24989-1-git-send-email-ajlennon@dynamicdevices.co.uk>
-	<1439312679-24989-2-git-send-email-ajlennon@dynamicdevices.co.uk>
-	<f770f8743b500dde78803cd8b0826854@technux.se>
-	<CAK18fxHq-iSARt0mEBHQoNC+jZuK+0ix50y6838OCpmRc7VyoQ@mail.gmail.com>
-	<8cc28d589389102b4fccf052fe2389c2@technux.se>
-	<55D1A82F.9020506@gmail.com>
-	<02548fc1921b30fcdb6a0791bd7a6361@technux.se>
-	<55DC2086.5020008@gmail.com>
-	<20151021121203.GB5610@resin> <5627C2AF.6060809@gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 21 Oct 2015 21:42:32 +0200
-Message-ID: <CAK18fxGG8yRpP0wXA2ej+PVAm1i+m5ksLQ3eM77REWD5+EKAzA@mail.gmail.com>
-To: Alex J Lennon <ajlennon@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 2/2] linux-raspberrypi: build audio driver into kernel
+X-Received: by 10.194.90.169 with SMTP id bx9mr14570856wjb.1.1445461133083;
+	Wed, 21 Oct 2015 13:58:53 -0700 (PDT)
+Received: by 10.194.140.38 with HTTP; Wed, 21 Oct 2015 13:58:53 -0700 (PDT)
+In-Reply-To: <DUB125-W342E248876E903AA3E9B3F8A380@phx.gbl>
+References: <DUB125-W70B91D5FCA7A2A9CC289A78A3A0@phx.gbl>
+	<1530167.LUOFWmWLxU@peggleto-mobl.ger.corp.intel.com>
+	<DUB125-W342E248876E903AA3E9B3F8A380@phx.gbl>
+Date: Wed, 21 Oct 2015 13:58:53 -0700
+Message-ID: <CAJ86T=Wjmgb+B5HVX+o2Vcamxry0+AfenmUKbQyTCt8pm9H1zg@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: =?UTF-8?B?SsOpcsO0bWUgT0xJVklFUg==?= <jerome.olivier@outlook.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: gcc LIBRARY_PATH sstate-cache issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,97 +62,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Oct 2015 19:43:18 -0000
+X-List-Received-Date: Wed, 21 Oct 2015 20:58:57 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 21, 2015 at 6:51 PM, Alex J Lennon <ajlennon@gmail.com> wrote:
-> On 21/10/2015 13:12, Andrei Gherzan wrote:
->> On Tue, Aug 25, 2015 at 09:00:06AM +0100, Alex J Lennon wrote:
->>> On 25/08/2015 07:57, Petter Mab=C3=A4cker wrote:
->>>>
->>>>
->>>> 2015-08-17 11:23 skrev Alex J Lennon:
->>>>
->>>>> On 17/08/2015 09:11, Petter Mab=C3=A4cker wrote:
->>>>>> 2015-08-17 09:57 skrev Andrei Gherzan:
->>>>>>> Hello, On Tuesday, August 11, 2015, Petter Mab=C3=A4cker
->>>>>>> <petter@technux.se <mailto:petter@technux.se>
->>>>>>> <mailto:petter@technux.se <mailto:petter@technux.se>>> wrote:
->>>>>>> 2015-08-11 19:04 skrev Alex J Lennon: Signed-off-by: Alex J Lennon
->>>>>>> <ajlennon@dynamicdevices.co.uk
->>>>>>> <mailto:ajlennon@dynamicdevices.co.uk>> ---
->>>>>>> recipes-kernel/linux/linux-raspberrypi.inc | 4 ++++ 1 file changed,
->>>>>>> 4 insertions(+) diff --git
->>>>>>> a/recipes-kernel/linux/linux-raspberrypi.inc
->>>>>>> b/recipes-kernel/linux/linux-raspberrypi.inc index e38d905..8024412
->>>>>>> 100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
->>>>>>> b/recipes-kernel/linux/linux-raspberrypi.inc @@ -6,6 +6,10 @@
->>>>>>> SECTION =3D "kernel" LICENSE =3D "GPLv2" LIC_FILES_CHKSUM =3D
->>>>>>> "file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd7" +SRC_URI +=
-=3D "
->>>>>>> \ + file://build-in-audio.cfg \ + " This one didn't make it. --
->>>>>>> Andrei Gherzan -- -- Andrei Gherzan
->>>>>> Think you got the wrong receiver =3D) I notified Alex about this som=
-e
->>>>>> days ago, Alex can you send up a v2 for this?
->>>>> The build-in-audio.cfg patch was just for testing of fragment support=
-.
->>>>> It's understood that we're not going to have this build into the kern=
-el
->>>>> by default, although I do still need to find some words to add to the
->>>>> README on audio routing setup and so forth.
->>>>>
->>>>> I started testing a build with master over the weekend and it built O=
-K.
->>>>> Just need to find some time to run up a couple of kernels and will
->>>>> resubmit the v2 patch with Petter's enhanced commit message.
->>>>>
->>>>> I don't have an RPiv1 around at the moment but I will probably double
->>>>> check the kernel does still actually build for RPiv1 machine
->>>>>
->>>>> Cheers,
->>>>>
->>>>> Alex
->>>>>> BR, Petter
->>>>
->>>> Hi Alex, Any news for the v2 changeset? Would be awesome to get the 4.=
-x
->>>> integrated soon.
->>>>
->>>
->>> Hi, yeah I got a little sidetracked I'm afraid. Turns out
->>> core-image-sato isn't building in master any more due to a new
->>> dependency on libexpoxy which in turn requires EGL.
->>>
->>> Anyway, so I did successfully build 4.x and 3.x kernels for RPiv2 in an
->>> rpi-xxx-image. I just didn't get around to running them up although I
->>> see no reason to think they won't.
->>>
->>> I'll try to take a look at this, as I like you would like this signed o=
-ff :)
->>>
->>> Cheers, Alex
->>>
+On Wed, Oct 21, 2015 at 5:10 AM, J=C3=A9r=C3=B4me OLIVIER
+<jerome.olivier@outlook.com> wrote:
+>
+> My situation is I have two machines:
+> * machineA
+> * machineB: inherits from machine B (only PREFERRED_VERSION for libxml2
+> added)
+>
+> two images:
+> * imageA
+> * imageB: inherits from image A
+>
+> I have one build directory for each machine:
+> * build-machineA
+> * build-machineB (only new packages added), two of the package are shared
+> libraries : libA and libB. libA is linked to libB. libB depends on libA.
+> libA and libB are cmake recipes
+>
+> First I build the imageA in build-machineA for machineA
+>
+> In the build-machineB directory I build imageB for machineB. Moreover I
+> point SSTATE_DIR or SSTATE_MIRRORS of build-machineB/conf/local.conf to
+> build-machineA's sstate-cache directory.
+>
+> libA is built with success but libB's do_compile fails:
+>
+> /.../build-machineB$ bitbake libB
+> [...]
+>
+> /.../build-machineB/tmp-glibc/sysroots/i686-linux/usr/bin/arm-opensdk-lin=
+ux-gnueabi/arm-opensdk-linux-gnueabi-gcc
+> -fPIC -g -O2 -W -Werror -Wall -Wextra -Wuninitialized -Wstrict-prototypes
+> -Wcast-align -Wmissing-prototypes -Wchar-subscripts -Wpointer-arith -Winl=
+ine
+> -Wno-conversion -Wshadow  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed
+> -shared -Wl,-soname,libsys.so.1 -o libsys.so.1
+> CMakeFiles/sys.dir/src/crc.c.o CMakeFiles/sys.dir/src/fast_32k_utils.c.o
+> CMakeFiles/sys.dir/src/filemap.c.o CMakeFiles/sys.dir/src/hash_tables.c.o
+> CMakeFiles/sys.dir/src/hash_tables_2.c.o
+> CMakeFiles/sys.dir/src/ipcs_keys.c.o CMakeFiles/sys.dir/src/log.c.o
+> CMakeFiles/sys.dir/src/MM.c.o CMakeFiles/sys.dir/src/MM_no_mutex.c.o
+> CMakeFiles/sys.dir/src/random.c.o CMakeFiles/sys.dir/src/registry.c.o
+> CMakeFiles/sys.dir/src/time.c.o CMakeFiles/sys.dir/src/watchdog_timer.c.o
+> CMakeFiles/sys.dir/src/watchdog_client.c.o
+> CMakeFiles/sys.dir/src/watchdog_server.c.o
+> CMakeFiles/sys.dir/src/state_machine.c.o
+> CMakeFiles/sys.dir/src/thread_manager.c.o
+> CMakeFiles/sys.dir/src/sg_log_eina.c.o -lpthread -leina -lpthread -leina
+>
+> /.../build-machineB/tmp-glibc/sysroots/i686-linux/usr/bin/arm-opensdk-lin=
+ux-gnueabi/../../libexec/arm-opensdk-linux-gnueabi/gcc/arm-opensdk-linux-gn=
+ueabi/4.9.1/ld:
+> cannot find -llibA
+>
+> collect2: error: ld returned 1 exit status
+>
+> ERROR: Function failed: do_compile (log file is located at
+> /.../build-machineB/tmp-glibc/work/cortexa9t2hf-vfp-neon-opensdk-linux-gn=
+ueabi/libB/1.0.0/temp/log.do_compile.2284)
+>
+>
+> At this moment I had to find why ld cannot find libA.so in sysroots so I
+> launched a devshell on libB. In the devshell I cd-ed to the B dir of libB
+> and run the cross-gcc command with the verbose "-v" option.
+>
+> /.../build-machineB$ bitbake libB -c devshell
+>
+> [devshell]
+> /.../build-machineB/tmp-glibc/work/cortexa9t2hf-vfp-neon-opensdk-linux-gn=
+ueabi/libB/1.0.0/git
+> $ cd ../build
+>
+> [devshell]
+> /.../build-machineB/tmp-glibc/work/cortexa9t2hf-vfp-neon-opensdk-linux-gn=
+ueabi/libB/1.0.0/build$
+> /.../build-machineB/tmp-glibc/sysroots/i686-linux/usr/bin/arm-opensdk-lin=
+ux-gnueabi/arm-opensdk-linux-gnueabi-gcc
+> -fPIC -g -O2 -W -Werror -Wall -Wextra -Wuninitialized -Wstrict-prototypes
+> -Wcast-align -Wmissing-prototypes -Wchar-subscripts -Wpointer-arith -Winl=
+ine
+> -Wno-conversion -Wshadow  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed
+> -shared -Wl,-soname,libsys.so.1 -o libsys.so.1
+> CMakeFiles/sys.dir/src/crc.c.o CMakeFiles/sys.dir/src/fast_32k_utils.c.o
+> CMakeFiles/sys.dir/src/filemap.c.o CMakeFiles/sys.dir/src/hash_tables.c.o
+> CMakeFiles/sys.dir/src/hash_tables_2.c.o
+> CMakeFiles/sys.dir/src/ipcs_keys.c.o CMakeFiles/sys.dir/src/log.c.o
+> CMakeFiles/sys.dir/src/MM.c.o CMakeFiles/sys.dir/src/MM_no_mutex.c.o
+> CMakeFiles/sys.dir/src/random.c.o CMakeFiles/sys.dir/src/registry.c.o
+> CMakeFiles/sys.dir/src/time.c.o CMakeFiles/sys.dir/src/watchdog_timer.c.o
+> CMakeFiles/sys.dir/src/watchdog_client.c.o
+> CMakeFiles/sys.dir/src/watchdog_server.c.o
+> CMakeFiles/sys.dir/src/state_machine.c.o
+> CMakeFiles/sys.dir/src/thread_manager.c.o
+> CMakeFiles/sys.dir/src/sg_log_eina.c.o -lpthread -leina -lpthread -leina
+>
+> /.../build-machineB/tmp-glibc/sysroots/i686-linux/usr/bin/arm-opensdk-lin=
+ux-gnueabi/../../libexec/arm-opensdk-linux-gnueabi/gcc/arm-opensdk-linux-gn=
+ueabi/4.9.1/ld:
+> cannot find =E2=80=93leina =E2=80=93v
+>
+
+Try using ${CC} to call the compiler instead of giving an explicit PATH.
+
+It's normal for the default sysroot compiled into the OE toolchain to
+be wrong or deliberately set to something invalid. You therefore need
+to take great care to always include the correct --sysroot option when
+calling the compiler or linker.
+
+The CC, LD, etc definitions provided by OE should always include the
+correct --sysroot option, but you will see problems if the package
+you're building over-rides or doesn't use these standard variables (
+e.g. calls the compiler via ${CROSS_COMPILE}gcc ).
+
+> I will only show you the interesting part of the result.
+>
+> [...]
+>
+>
+> LIBRARY_PATH=3D/.../build-machineB/tmp-glibc/sysroots/i686-linux/usr/bin/=
+arm-opensdk-linux-gnueabi/../../lib/arm-opensdk-linux-gnueabi/gcc/arm-opens=
+dk-linux-gnueabi/4.9.1/:/.../build-machineB/tmp-glibc/sysroots/i686-linux/u=
+sr/bin/arm-opensdk-linux-gnueabi/../../lib/arm-opensdk-linux-gnueabi/gcc/:/=
+.../build-machineA/tmp-glibc/sysroots/machineA/lib/:/.../build-machineA/tmp=
+-glibc/sysroots/machineA/usr/lib/arm-opensdk-linux-gnueabi/4.9.1//.../build=
+-machineA/tmp-glibc/sysroots/machineA/usr/lib/
+>
+>  [...]
+>
+>
+> The symptom is here. Instead of
+> =E2=80=98/.../build-machineA/tmp-glibc/sysroots/machineA/usr/lib/=E2=80=
+=99 it should be
+> =E2=80=98/.../build-machineB//tmp-glibc/sysroots/machineB/usr/lib/=E2=80=
+=99
+>
+>
+> I couldn=E2=80=99t find in libB=E2=80=99s recipe (and included bbclasses)=
+ where LIBRARY_PATH
+> is set so I guess it comes from elswhere.
+>
+> My guess is that there is a problem in cross-gcc recipe and somewhere the
+> <sysroots-target>/usr/lib path is hardcoded in sstate-cache. When
+> recompilling for a different build bitbake use this cache that is pollute=
+d
+> by this hardcoded path.
+>
+>
+> Note: I have the same problem if I do same build type (machine, builddir
+> name) but different locations.
+>
+> The meta layer of machineB/imageB has a override of gcc 4.9 which consist=
+s
+> only on:
+> EXTRA_OECONF_GCC_FLOAT =3D "${@get_gcc_float_setting(bb, d)}"
+>
+> I had some problem two while changing the version the PREFERRED_VERSION o=
+f a
+> recipe in local.conf. When recompiling bitbake don't redo do_unpack so
+> configure/compile/install, one of them fails to find file in S directory.=
+ I
+> had to run cleanall on this package before doing a full bitbake.
+>
+> I hop I have been clear in my explanation of the situation.
+>
+> Kind Regards,
+> --
+> J=C3=A9r=C3=B4me OLIVIER
+> TEL : +337 52 46 29 25
+> @ : jerome.olivier@outlook.com
+>
+>> From: paul.eggleton@linux.intel.com
+>> To: jerome.olivier@outlook.com
+>> CC: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Disable sstate-cache for one recipe
+>> Date: Mon, 19 Oct 2015 12:21:48 +0100
 >>
->> Any chances this is still coming soon?
+>> Hi J=C3=A9r=C3=B4me,
+>>
+>> On Monday 19 October 2015 10:18:41 J=C3=A9r=C3=B4me OLIVIER wrote:
+>> > I use yocto 1.7.2. I have some problem with sstate-cache.
+>> > I would like to disable totally sstate_cache for only one recipe. Is
+>> > that
+>> > possible?
+>>
+>> Not really I'm afraid - what is the problem you are experiencing?
+>>
+>> Cheers,
+>> Paul
 >>
 >> --
->> Andrei Gherzan
 >>
+>> Paul Eggleton
+>> Intel Open Source Technology Centre
 >
-> Yes I'd like to wrap this up too. Can we take a step back first and
-> revisit the earlier patch-set to update to 3.8.16 and add support for
-> 4.1.3 kernels first? If so I'll try to test with what seems to be the
-> latest long term kernels on kernel.org, 3.8.22 and 4.1.10.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-> With that in place I can then add the kernel fragment support on top.
-> (And then start looking into Dockerification which looks intriguing... ;)
->
-
-Tomorrow everything will be updated. If they still compile and run :)
-
-
---
-Andrei Gherzan
 
