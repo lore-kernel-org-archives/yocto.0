@@ -1,50 +1,59 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79F44E009F3; Wed, 21 Oct 2015 02:02:51 -0700 (PDT)
+	id 1FB20E009D9; Wed, 21 Oct 2015 05:05:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	URIBL_JP_SURBL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.172 listed in list.dnswl.org]
+	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
+	*      [URIs: gherzan.ro]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 21 Oct 2015 02:02:49 PDT
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 101C7E009D9
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 02:02:49 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2ADBQA3Q8ZV/yYyC4dbGQSCMSEsVG/CWoJWAoEmPBABAQEBAQEBfwuEJQEBAxIbXgEVBRBWFw8BBBsaiAwBp2qFC6A6AQoBAQEekCmDUIEUBZULAW2UbpEEFw+DfYF2JRyBBAEBAQ
-X-IPAS-Result: A2ADBQA3Q8ZV/yYyC4dbGQSCMSEsVG/CWoJWAoEmPBABAQEBAQEBfwuEJQEBAxIbXgEVBRBWFw8BBBsaiAwBp2qFC6A6AQoBAQEekCmDUIEUBZULAW2UbpEEFw+DfYF2JRyBBAEBAQ
-X-IronPort-AV: E=Sophos;i="5.15,634,1432612800"; 
-	d="scan'208,217";a="147656828"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	21 Oct 2015 05:01:45 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC03.global.avaya.com) ([135.64.58.13])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	21 Oct 2015 05:01:44 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC03.global.avaya.com ([135.64.58.13]) with mapi id
-	14.03.0174.001; Wed, 21 Oct 2015 05:01:43 -0400
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Meta layer for Cavium CNS3xxx ARM processor
-Thread-Index: AdEL3xYoNN3E5psjSRmFZHbh5y6QcQ==
-Date: Wed, 21 Oct 2015 09:01:43 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A4C9977@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.47]
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9D53E00985
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 05:05:06 -0700 (PDT)
+Received: by wijp11 with SMTP id p11so91489127wij.0
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 05:05:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=f0BPUHF94oxgRaOkbON/2BD3HhkZmoGuBiefE7fgB3U=;
+	b=JvKQCBHq4sJY9A0DHvr6t5roMqcXV9f7yO+NrPivSO676B7ZoIN+GAjsSSCRo3egla
+	iv2O095Xie6VePuPR12J42LJ96TYjkToE9kRjRz5spa0IxLVfJWgz1TPNPSNYLZNU6k/
+	wo6ZywMs2Rdbj8vsz+bBXYTkJK8veItVaDFHxcnKrRuW2GQZVw1MxHQ10ryF/VRykTlM
+	2Mx3xYu0lJmi504XzDLkTxi8sgNh1Zt+8ukTcI2zM/UIqIhGZAoo++zym86YJTJq7gnL
+	Xu5ODkFba52Nkirw7nwcDh00UQRUKnBKOO3CZ2tBlvls0LIUCz+diivef2ARBUi4WFUq
+	+8Yw==
+X-Gm-Message-State: ALoCoQmjsxmakG6l2LjbXMtexUPqTJX4yfjOO1o90KaVnZ3MrqOuVbhdZLlMTLtiR5i5qZNy6dj0
+X-Received: by 10.180.184.232 with SMTP id ex8mr10296562wic.15.1445429105383; 
+	Wed, 21 Oct 2015 05:05:05 -0700 (PDT)
+Received: from resin (220.204.eduroam.dynamic.rbg.tum.de. [131.159.204.220])
+	by smtp.gmail.com with ESMTPSA id
+	mx13sm7027007wic.19.2015.10.21.05.05.02
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 21 Oct 2015 05:05:03 -0700 (PDT)
+Date: Wed, 21 Oct 2015 14:05:00 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Joachim Schiele <js@lastlog.de>
+Message-ID: <20151021120500.GA5610@resin>
+References: <CAMKF1srrD24mfm0DzBXLkiFM7DhMA1LaGUxnMZGJmy9_Rd2hRQ@mail.gmail.com>
+	<20151003203312.GD24208@resin> <20151003204050.GE24208@resin>
+	<20151003204607.GF24208@resin> <20151003212752.GG24208@resin>
+	<CAMKF1srVj2-uquPvS6hSHxadZh3k9csDb4oBxgrW-29JVOhecA@mail.gmail.com>
+	<20151003215305.GH24208@resin> <mvhid5$goi$1@ger.gmane.org>
+	<20151013171357.GA6512@resin> <mvoesa$s1n$1@ger.gmane.org>
 MIME-Version: 1.0
-Subject: Meta layer for Cavium CNS3xxx ARM processor
+In-Reply-To: <mvoesa$s1n$1@ger.gmane.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH V4 1/5] userland: Fix install prefix and generate pkgconfigs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,201 +65,265 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Oct 2015 09:02:51 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A4C9977AZFFEXMB01globa_"
+X-List-Received-Date: Wed, 21 Oct 2015 12:05:09 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---_000_F38A866CD026F746A3BF0928A84397BE3A4C9977AZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi,
-
-I am looking for an meta layer which provide support for Cavium CNS3xxx SOC=
- as need to build some application on that platform. Below is the output fr=
-om the board when I check for the release and CPU information
-
-$ cat /etc/*release
-MontaVista Linux 6, (.dev-snapshot-20130726)
-
-
-
-$ cat /proc/cpuinfo
-
-Processor       : ARMv6-compatible processor rev 4 (v6l)
-
-BogoMIPS        : 279.34
-
-Features        : swp half thumb fastmult vfp edsp java
-
-CPU implementer : 0x41
-
-CPU architecture: 7
-
-CPU variant     : 0x0
-
-CPU part        : 0xb02
-
-CPU revision    : 4
-
-
-
-Hardware        : Cavium Networks CNS3420 Validation Board
-
-Revision        : 0000
-
-Serial          : 0000000000000000
-
-
-So is there any meta layer which supports above SOC.
-
-Thanks,
-Abhinav
-
---_000_F38A866CD026F746A3BF0928A84397BE3A4C9977AZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Oct 15, 2015 at 04:57:13PM +0200, Joachim Schiele wrote:
+> On 13.10.2015 19:13, Andrei Gherzan wrote:
+> > On Tue, Oct 13, 2015 at 02:14:28AM +0200, Joachim Schiele wrote:
+> >> On 03.10.2015 23:53, Andrei Gherzan wrote:
+> >>> On Sat, Oct 03, 2015 at 02:47:24PM -0700, Khem Raj wrote:
+> >>>> On Sat, Oct 3, 2015 at 2:27 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> >>>>> On Sat, Oct 03, 2015 at 10:46:07PM +0200, Andrei Gherzan wrote:
+> >>>>>> On Sat, Oct 03, 2015 at 10:40:50PM +0200, Andrei Gherzan wrote:
+> >>>>>>> On Sat, Oct 03, 2015 at 10:33:12PM +0200, Andrei Gherzan wrote:
+> >>>>>>>> On Sat, Oct 03, 2015 at 01:31:24PM -0700, Khem Raj wrote:
+> >>>>>>>>> On Sat, Oct 3, 2015 at 1:11 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> >>>>>>>>>> On Sat, Oct 03, 2015 at 01:06:55PM -0700, Khem Raj wrote:
+> >>>>>>>>>>> On Sat, Oct 3, 2015 at 12:18 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> >>>>>>>>>>>> I tested with and without - same result.
+> >>>>>>>>>>>> DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia usbgadget
+> >>>>>>>>>>>> usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ipv4 ipv6 libc-backtrace
+> >>>>>>>>>>>> libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt
+> >>>>>>>>>>>> libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab
+> >>>>>>>>>>>> libc-ftraverse                  libc-getlogin libc-idn libc-inet-anl libc-libm
+> >>>>>>>>>>>> libc-locales libc-locale-code                   libc-memusage libc-nis
+> >>>>>>>>>>>> libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc
+> >>>>>>>>>>>> libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp
+> >>>>>>>>>>>> libc-posix-regexp-glibc                     libc-posix-wchar-io largefile
+> >>>>>>>>>>>> opengl ptest multiarch wayland pulseaudio sysvinit bluez5"
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> No modification to the default poky distro.
+> >>>>>>>>>>>
+> >>>>>>>>>>> hmm I am using angstrom and it works there and for verification I now
+> >>>>>>>>>>> tried with OE-Core ( alone ) it works there too, can you check some
+> >>>>>>>>>>> other parameters that are there in your sandbox ? here is my build
+> >>>>>>>>>>>
+> >>>>>>>>>>>  MACHINE=raspberrypi2 bitbake userland
+> >>>>>>>>>>> Parsing recipes: 100%
+> >>>>>>>>>>> |######################################################################################################################################################################################################|
+> >>>>>>>>>>> ETA:  00:00:00
+> >>>>>>>>>>> Parsing of 918 .bb files complete (0 cached, 918 parsed). 1350
+> >>>>>>>>>>> targets, 59 skipped, 0 masked, 0 errors.
+> >>>>>>>>>>> NOTE: Resolving any missing task queue dependencies
+> >>>>>>>>>>>
+> >>>>>>>>>>> Build Configuration:
+> >>>>>>>>>>> BB_VERSION        = "1.28.0"
+> >>>>>>>>>>> BUILD_SYS         = "x86_64-linux"
+> >>>>>>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
+> >>>>>>>>>>> TARGET_SYS        = "arm-oe-linux-gnueabi"
+> >>>>>>>>>>> MACHINE           = "raspberrypi2"
+> >>>>>>>>>>> DISTRO            = "nodistro"
+> >>>>>>>>>>> DISTRO_VERSION    = "nodistro.0"
+> >>>>>>>>>>> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard
+> >>>>>>>>>>> vfpv4 cortexa7"
+> >>>>>>>>>>> TARGET_FPU        = "vfp-vfpv4-neon"
+> >>>>>>>>>>> meta-raspberrypi  = "kraj/master:a903a9cd18ae556121265da93ed74f857944a0da"
+> >>>>>>>>>>> meta              = "kraj/master:602e512b92bcc78403144fedeb4211bbf56ff1c8"
+> >>>>>>>>>>>
+> >>>>>>>>>>> NOTE: Preparing RunQueue
+> >>>>>>>>>>> NOTE: Executing SetScene Tasks
+> >>>>>>>>>>> NOTE: Executing RunQueue Tasks
+> >>>>>>>>>>> NOTE: Tasks Summary: Attempted 454 tasks of which 315 didn't need to
+> >>>>>>>>>>> be rerun and all succeeded.
+> >>>>>>>>>>
+> >>>>>>>>>> Here is my build configuration.
+> >>>>>>>>>>
+> >>>>>>>>>> Build Configuration:
+> >>>>>>>>>> BB_VERSION        = "1.28.0"
+> >>>>>>>>>> BUILD_SYS         = "x86_64-linux"
+> >>>>>>>>>> NATIVELSBSTRING   = "Arch-rolling"
+> >>>>>>>>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> >>>>>>>>>> MACHINE           = "raspberrypi2"
+> >>>>>>>>>> DISTRO            = "poky"
+> >>>>>>>>>> DISTRO_VERSION    = "2.0"
+> >>>>>>>>>> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard vfpv4
+> >>>>>>>>>> cortexa7"
+> >>>>>>>>>> TARGET_FPU        = "vfp-vfpv4-neon"
+> >>>>>>>>>> meta
+> >>>>>>>>>> meta-yocto
+> >>>>>>>>>> meta-yocto-bsp    = "master:eac61f37e36099f74485dab398b57f3812826d17"
+> >>>>>>>>>> meta-raspberrypi  = "master:48da0cdc5fb147a20b41a77b2dfeef4efd483b32"
+> >>>>>>>>>> meta-oe
+> >>>>>>>>>> meta-multimedia   = "master:f4533380c8a5c1d229f692222ee0c2ef9d187ef8"
+> >>>>>>>>>>
+> >>>>>>>>>>
+> >>>>>>>>>> But anyway can you please check in your userland install dir for the header I'm
+> >>>>>>>>>> missing? Or in sysroot.
+> >>>>>>>>>
+> >>>>>>>>> its part of userland itself so no other package should be needed and
+> >>>>>>>>> not required in sysroot
+> >>>>>>>>>
+> >>>>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/package/usr/src/debug/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
+> >>>>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/packages-split/userland-dbg/usr/src/debug/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
+> >>>>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/build/interface/khronos/wayland-dispmanx-server-protocol.h
+> >>>>>>>>> ./work/raspberrypi2-oe-linux-gnueabi/userland/git-r5/build/interface/vmcs_host/wayland-dispmanx-server-protocol.h
+> >>>>>>>>
+> >>>>>>>> This is odd... what revision of userland are you using? The one on current
+> >>>>>>>> meta-rpi master?
+> >>>>>>>>
+> >>>>>>>> --
+> >>>>>>>> Andrei Gherzan
+> >>>>>>>
+> >>>>>>> This is not even in the current HEAD of master in userland official repository:
+> >>>>>>> https://github.com/raspberrypi/userland/tree/master/interface/vmcs_host
+> >>>>>>>
+> >>>>>>> Are you sure you don't inject the file somehow? I really don't know what's
+> >>>>>>> going on.
+> >>>>>>>
+> >>>>>>> --
+> >>>>>>> Andrei Gherzan
+> >>>>>>
+> >>>>>> I found the mistery. It gets generated in another path:
+> >>>>>> ./build/interface/khronos/wayland-dispmanx-server-protocol.h
+> >>>>>>
+> >>>>>> Figuring out why.
+> >>>>>>
+> >>>>>> --
+> >>>>>> Andrei Gherzan
+> >>>>>
+> >>>>> I managed to get to the bottom of this. It's a racing issue. Basically, with
+> >>>>> MAKE_PARALLEL high enough, the
+> >>>>>
+> >>>>> add_library(EGL ${SHARED} ${EGL_SOURCE})
+> >>>>>
+> >>>>> in git/interface/khronos/CMakeLists.txt gets to run before the header is
+> >>>>> generated. No dependency configured for that. And in the sources of EGL there
+> >>>>> is egl_wayland.c which includes the generated header by the call:
+> >>>>>
+> >>>>> wayland_add_protocol_server(
+> >>>>>        EGL_SOURCE
+> >>>>>        ../../interface/wayland/dispmanx.xml
+> >>>>>        dispmanx
+> >>>>> )
+> >>>>>
+> >>>>> Any idea how to define this dependency? What is the value of your PARALLEL_MAKE
+> >>>>
+> >>>> I use -j16, can you add the .h file with path to EGL_SOURCE
+> >>>
+> >>> Adding the path to EGL_SOURCE won't work because cmake will complain that the
+> >>> header is not in place. We need a dependency definition.
+> >>>
+> >>> --
+> >>> Andrei Gherzan
+> >>>
+> >>
+> >> in this file:
+> >> ./tmp/work/raspberrypi-poky-linux-gnueabi/userland/git-r5/egl.pc"
+> >>
+> >> i replaced
+> >>
+> >> Cflags: -I${includedir}/vc -I${includedir}/interface
+> >> -I${includedir}/interface/vcos -I${includedir}/interface/vcos/pthreads
+> >>
+> >> with that
+> >>
+> >> Cflags: -I${includedir}/vc -I${includedir}/interface
+> >> -I${includedir}/interface/vcos -I${includedir}/interface/vcos/pthreads
+> >> -I../build/interface/khronos/
+> >>
+> >> (basically adding -I../build/interface/khronos/)
+> >>
+> >> IIRC that worked for me. you can give that a try at least ;-)
+> >>
+> >>
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > Hi Joachim,
+> >
+> > I'm not sure how would this help as long as the pc file is generated by
+> > userland and the error I'm facing is while compiling userland.
+> >
+> > --
+> > Andrei Gherzan
+> >
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am looking for an meta layer which provide support=
- for Cavium CNS3xxx SOC as need to build some application on that platform.=
- Below is the output from the board when I check for the release and CPU in=
-formation<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"background:#EEEEEE"><span style=3D"font-siz=
-e:10.0pt;font-family:Consolas;color:#222222;border:none windowtext 1.0pt;pa=
-dding:0in;background:#EEEEEE">$ cat /etc/*release<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#EEEEEE"><span style=3D"font-siz=
-e:10.0pt;font-family:Consolas;color:#222222;border:none windowtext 1.0pt;pa=
-dding:0in;background:#EEEEEE">MontaVista Linux 6, (.dev-snapshot-20130726)<=
-/span><span style=3D"font-size:10.0pt;font-family:Consolas;color:#222222"><=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->$ cat /proc/cpuinfo<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->Processor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : ARMv6-compatible processor=
- rev 4 (v6l)<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->BogoMIPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 279.34<o:p></o:p></sp=
-an></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->Features&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : swp half thumb fastmu=
-lt vfp edsp java<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->CPU implementer : 0x41<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->CPU architecture: 7<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->CPU variant&nbsp;&nbsp;&nbsp;&nbsp; : 0x0<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->CPU part&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 0xb02<o:p></o:p></spa=
-n></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->CPU revision&nbsp;&nbsp;&nbsp; : 4<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
-><o:p>&nbsp;</o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->Hardware&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Cavium Networks CNS34=
-20 Validation Board<o:p></o:p></span></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->Revision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 0000<o:p></o:p></span=
-></code></pre>
-<pre style=3D"background:#EEEEEE"><code><span style=3D"font-family:Consolas=
-;color:#222222;border:none windowtext 1.0pt;padding:0in;background:#EEEEEE"=
->Serial&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 00000000000=
-00000</span></code><span style=3D"font-family:Consolas;color:#222222"><o:p>=
-</o:p></span></pre>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So is there any meta layer which supports above SOC.=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
+> hi andrei,
+>
+> you are right, my last answer was actually fror a different problem.
+> after looking into this issue, which is basically finding a way to make
+> -j n (with n > 1) work:
+>
+> --- in short ---
+> so add a custom dependency:
+>
+> ######### interface/vmcs_host/CMakeLists.txt #########
+> if (BUILD_WAYLAND)
+> wayland_add_protocol_server(
+>     VCHOSTIF_SOURCE
+>     ../../interface/wayland/dispmanx.xml
+>     dispmanx
+> )
+> + add_custom_target (myVmcs_hostTarget DEPENDS
+> wayland-dispmanx-server-protocol.h)
+>
+> ######### interface/khronos/CMakeLists.txt #########
+>    add_library(wayland-egl ${SHARED} ${WAYLAND_EGL_SOURCE})
+>    + add_dependencies(wayland-egl myVmcs_hostTarget)
+>    install(TARGETS wayland-egl DESTINATION lib)
+>
+>
+> note: i consider this a rather hacky solution. it works but assumes the
+> filename to be wayland-dispmanx-server-protocol.h even though if someone
+> changes the cmake function called 'wayland_add_protocol_server' (which
+> comes with the patch) to use a different filename, it will break.
+>
+> the cmake background is described here:
+> #
+> http://stackoverflow.com/questions/4010212/cmake-struggling-with-add-custom-command-dependencies
+>
+> tested with: conf/local.conf:
+> BB_NUMBER_THREADS = "4"
+> PARALLEL_MAKE = "-j 4"
+>
 
---_000_F38A866CD026F746A3BF0928A84397BE3A4C9977AZFFEXMB01globa_--
+I tried defining a custom dep too but the error persisted. As well, I recreated
+the patch using exactly your changes (for the sake of being on the same code)
+
+Index: git/interface/khronos/CMakeLists.txt
+===================================================================
+--- git.orig/interface/khronos/CMakeLists.txt
++++ git/interface/khronos/CMakeLists.txt
+@@ -95,6 +95,7 @@ if (BUILD_WAYLAND)
+    )
+.
+    add_library(wayland-egl ${SHARED} ${WAYLAND_EGL_SOURCE})
++   add_dependencies(wayland-egl myVmcs_hostTarget)
+    install(TARGETS wayland-egl DESTINATION lib)
+.
+    configure_file ("wayland-egl/wayland-egl.pc.in" "wayland-egl/wayland-egl.pc" @ONLY)
+Index: git/interface/vmcs_host/CMakeLists.txt
+===================================================================
+--- git.orig/interface/vmcs_host/CMakeLists.txt
++++ git/interface/vmcs_host/CMakeLists.txt
+@@ -23,6 +23,7 @@ wayland_add_protocol_server(
+    ../../interface/wayland/dispmanx.xml
+    dispmanx
+)
++add_custom_target (myVmcs_hostTarget DEPENDS
+wayland-dispmanx-server-protocol.h)
+endif ()
+.
+add_library(vchostif ${VCHOSTIF_SOURCE})
+
+Now. Even with this patch, the compile fails sometimes with:
+tmp/work/raspberrypi2-poky-linux-gnueabi/userland/git-r
+5/git/interface/vmcs_host/vc_vchi_dispmanx.h:72:66: fatal error:
+interface/vmcs_host/wayland-dispm
+anx-server-protocol.h: No such file or directory
+
+I use autodetection of BB_NUMBER_THREADS and PARALLEL_MAKE. They end up:
+BB_NUMBER_THREADS="4"
+PARALLEL_MAKEINST="-j 4"
+
+Regards,
+--
+Andrei Gherzan
+
