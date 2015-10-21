@@ -1,31 +1,50 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <Noor_Ahsan@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E21EE009BA; Tue, 20 Oct 2015 17:57:26 -0700 (PDT)
+	id 7C03AE009BA; Wed, 21 Oct 2015 00:49:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2D62E00957
-	for <yocto@yoctoproject.org>; Tue, 20 Oct 2015 17:57:24 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Oct 2015 17:57:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.17,709,1437462000"; d="scan'208";a="831312833"
-Received: from tmglnx.jf.intel.com ([10.7.200.52])
-	by orsmga002.jf.intel.com with ESMTP; 20 Oct 2015 17:57:24 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 20 Oct 2015 17:53:19 -0700
-Message-Id: <1445388799-26564-1-git-send-email-tracy.graydon@intel.com>
-X-Mailer: git-send-email 2.4.3
-Subject: [PATCH] buildset-config.staging/nightly-no-x11.conf
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F386E008AE
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 00:49:16 -0700 (PDT)
+Received: from nat-ies.mentorg.com ([192.94.31.2]
+	helo=SVR-IES-FEM-01.mgc.mentorg.com)
+	by relay1.mentorg.com with esmtp 
+	id 1Zoo94-0007j6-4I from Noor_Ahsan@mentor.com ;
+	Wed, 21 Oct 2015 00:49:14 -0700
+Received: from EU-MBX-01.mgc.mentorg.com ([169.254.1.18]) by
+	SVR-IES-FEM-01.mgc.mentorg.com ([137.202.0.104]) with mapi id
+	14.03.0224.002; Wed, 21 Oct 2015 08:49:13 +0100
+From: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
+To: Christopher Larson <clarson@kergoth.com>, Paul Barker
+	<paul@paulbarker.me.uk>
+Thread-Topic: [yocto] opkg 0.3.0 or rootfs task
+Thread-Index: AdEID/YXvvJYRC9ARjGu9IDwO4ksRQAGvNuAAAZJplAAAXfmkADEZxgKAB5WqmA=
+Date: Wed, 21 Oct 2015 07:49:12 +0000
+Message-ID: <365E1805BC95084CBE82381A0B86999401095FAD92@EU-MBX-01.mgc.mentorg.com>
+References: <365E1805BC95084CBE82381A0B86999401095F873E@EU-MBX-01.mgc.mentorg.com>
+	<BD314512-DA81-48D9-B50D-4C41BD927127@gmail.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
+	<20151018095759.GA12999@bang.betafive.co.uk>
+	<CABcZAN=TTO_ebMjr_5nsxM42MTewQQb6Nz-uH_9eLdHq002bvA@mail.gmail.com>
+	<CABcZAN=9iN6bbjLLw7OtzuU7uogri+qS83auYnGRz_MT=ifjcQ@mail.gmail.com>
+In-Reply-To: <CABcZAN=9iN6bbjLLw7OtzuU7uogri+qS83auYnGRz_MT=ifjcQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.202.0.76]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: opkg 0.3.0 or rootfs task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,95 +56,242 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Oct 2015 00:57:26 -0000
+X-List-Received-Date: Wed, 21 Oct 2015 07:49:19 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_365E1805BC95084CBE82381A0B86999401095FAD92EUMBX01mgcmen_"
 
-[YOCTO #6854]
+--_000_365E1805BC95084CBE82381A0B86999401095FAD92EUMBX01mgcmen_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This patchset relocates nigtly-no-x11.conf to buildset-config.staging
-while work in in progress. It also removes nightly-no-x11 from the
-yoctoAB.conf file in buildset-config.controller dir. This effecitively
-removed the currently non-functioning no-x11 build from nightly build
-for now.
+V2UgYXJlIGhpdHRpbmcgdGhpcyBpc3N1ZSBvbiBhbm90aGVyIEJTUA0KDQpmaWxlOl92YXJfamVu
+a2luc193b3Jrc3BhY2VfY2UtbWFpbl9idWlsZGhvc3RfU0I2NF9idWlsZHR5cGVfaW5kdXN0cmlh
+bF9tYWNoaW5lX3plZGJvYXJkLXp5bnE3LW1lbF9idWlsZF96ZWRib2FyZC16eW5xNy1tZWxfdG1w
+X2RlcGxveV9pcGtfemVkYm9hcmRfenlucTdfbWVsX2tlcm5lbC1tb2R1bGUtbHR0bmctcmluZy1i
+dWZmZXItY2xpZW50LW1tYXAtb3ZlcndyaXRlXzIuNi4yK2dpdDArN2E4OGY4YjUwNi1yMC4wX3pl
+ZGJvYXJkX3p5bnE3X21lbC5pcGsNCg0KbmVlZCBpdHMgc29sdXRpb24gcXVpY2tseQ0KDQpOb29y
+DQoNCkZyb206IGtlcmdvdGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFpbC5jb21dIE9u
+IEJlaGFsZiBPZiBDaHJpc3RvcGhlciBMYXJzb24NClNlbnQ6IFR1ZXNkYXksIE9jdG9iZXIgMjAs
+IDIwMTUgMTA6MjAgUE0NClRvOiBQYXVsIEJhcmtlcg0KQ2M6IEFoc2FuLCBOb29yOyB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBvcGtnIDAuMy4wIG9yIHJvb3Rm
+cyB0YXNrDQoNCg0KT24gVHVlLCBPY3QgMjAsIDIwMTUgYXQgMTA6MTQgQU0sIENocmlzdG9waGVy
+IExhcnNvbiA8Y2xhcnNvbkBrZXJnb3RoLmNvbTxtYWlsdG86Y2xhcnNvbkBrZXJnb3RoLmNvbT4+
+IHdyb3RlOg0KDQpPbiBTdW4sIE9jdCAxOCwgMjAxNSBhdCAyOjU3IEFNLCBQYXVsIEJhcmtlciA8
+cGF1bEBwYXVsYmFya2VyLm1lLnVrPG1haWx0bzpwYXVsQHBhdWxiYXJrZXIubWUudWs+PiB3cm90
+ZToNCk9uIEZyaSwgT2N0IDE2LCAyMDE1IGF0IDA3OjM4OjE5UE0gKzAwMDAsIEFoc2FuLCBOb29y
+IHdyb3RlOg0KPiBPbiBPY3QgMTYsIDIwMTUsIGF0IDU6NDcgQU0sIEFoc2FuLCBOb29yIDxOb29y
+X0Foc2FuQG1lbnRvci5jb208bWFpbHRvOk5vb3JfQWhzYW5AbWVudG9yLmNvbT48bWFpbHRvOk5v
+b3JfQWhzYW5AbWVudG9yLmNvbTxtYWlsdG86Tm9vcl9BaHNhbkBtZW50b3IuY29tPj4+IHdyb3Rl
+Og0KPg0KPiBIZWxsbywNCj4NCj4gSSBub3RpY2VkIHRoYXQgYXQgdGhlIHRpbWUgb2Ygcm9vdGZz
+IGNyZWF0aW9uIHN5bWJvbGljIGxpbmtzIG9mIHRoZSBpcGsgZmlsZXMgcHJlc2VudCBpbiBkZXBs
+b3kvaXBrLiBUaGUgcHJvYmxlbSB3aGF0IGhhdmUgaXQgd2hpbGUgY3JlYXRpb24gb2Ygc3ltYm9s
+aWMgbGluayBpdCB0YWtlIHRoZSBmdWxsIHBhdGggdGlsbCB0aGF0IGlwayBhbmQgcmVtb3ZlIHNs
+YXNoZXMgYW5kIGNvbnZlcnQgdGhlbSBpbnRvIHVuZGVyc2NvcmVzLiBVc2UgdGhhdCBhcyB0aGUg
+bmFtZSBvZiB0aGUgc3ltYm9saWMgbGluay4gVGhpcyBtYWtlIGEgdmVyeSBsb25nIGZpbGUgbmFt
+ZXMuIElmIHdlIGhhdmUgdmVyeSBsb25nIHBhdGggdGhlbiBuYW1lIG9mIHRoZSBzeW1saW5rIGV4
+Y2VlZCBmcm9tIG1heCBmaWxlbmFtZSBsaW1pdHMuIEFuZCB3ZSBnZXQgZm9sbG93aW5nIGVycm9y
+DQo+DQo+IENvbGxlY3RlZCBlcnJvcnM6DQo+ICogZmlsZV9saW5rOiB1bmFibGUgdG8gc3RhdCBg
+L3Zhci9qZW5raW5zL3dvcmtzcGFjZS9tZWxfY2VkYXItbWFpbi9idWlsZGhvc3QvYW1kLXVidW50
+dTE0LTMyYi9idWlsZHR5cGUvaW90L21hY2hpbmUvbWVsLWRyYTd4eC1ldm0vYnVpbGRfbWVsLWRy
+YTd4eC1ldm0vdG1wL3dvcmsvbWVsX2RyYTd4eF9ldm0tbWVsLWxpbnV4LWdudWVhYmkvY29uc29s
+ZS1pbWFnZS8xLjAtcjAvcm9vdGZzLy92YXIvY2FjaGUvb3BrZy92b2xhdGlsZS9maWxlOl92YXJf
+amVua2luc193b3Jrc3BhY2VfbWVsX2NlZGFyLW1haW5fYnVpbGRob3N0X2FtZC11YnVudHUxNC0z
+MmJfYnVpbGR0eXBlX2lvdF9tYWNoaW5lX21lbC1kcmE3eHgtZXZtX2J1aWxkX21lbC1kcmE3eHgt
+ZXZtX3RtcF9kZXBsb3lfaXBrX21lbF9kcmE3eHhfZXZtX2tlcm5lbC1tb2R1bGUtbHR0bmctcmlu
+Zy1idWZmZXItY2xpZW50LW1tYXAtb3ZlcndyaXRlXzIuNi4yK2dpdDArN2E4OGY4YjUwNi1yMC4w
+X21lbF9kcmE3eHhfZXZtLmlwayc6IEZpbGUgbmFtZSB0b28gbG9uZy4NCj4NCj4gQ2FuIGFueW9u
+ZSB0ZWxsIG1lIHdoeSB0aGUgYWRkaXRpb24gb2YgZnVsbCBwYXRoIHdhcyBhZGRlZCB0byB0aGUg
+c3ltbGluayBuYW1lIGFuZCBjYW4gd2UgcmVtb3ZlIGl0IGNhdXNlIGl0IGlzIGNhdXNlIGlzc3Vl
+cz8NCj4NCj4gd2hhdCBkb2VzDQo+DQo+IGdldGNvbmYgUEFUSF9NQVggLw0KPg0KPiBzaG93ID8N
+Cj4NCj4gamVua2luc0BhbWQtdWJ1MTQtMzItMzp+JCBnZXRjb25mIC1hIHwgZ3JlcCAgUEFUSF9N
+QVgNCj4gUEFUSF9NQVggICAgICAgICAgICAgICAgICAgICAgICAgICA0MDk2DQo+IF9QT1NJWF9Q
+QVRIX01BWCAgICAgICAgICAgICAgICAgICAgNDA5Ng0KPg0KPg0KPiBJIHRoaW5rIHRoZSBpc3N1
+ZSBpcyB3aXRoIGZpbGUgbmFtZSBub3QgdGhlIHBhdGguDQo+DQo+IFNlY29uZGx5IHRoZSBnb29n
+bGluZyB3aGljaCBJIGRpZCByZXZlYWxzIHRoYXQgc3ltbGluayBjcmVhdGlvbiBjYW4ndCBiZSBz
+dG9wcGVkLiBJIGp1c3Qgd2FubmEgY29uZmlybSB0aGF0IGlzIG15IGZpbmRpbmdzIGNvcnJlY3Q/
+DQo+DQoNClRoaXMgbG9va3MgbGlrZSBzb21ldGhpbmcgd2Ugb3Zlcmxvb2tlZCBpbiBvcGtnLiBX
+aGVuIHdlIGFkZGVkIHRoZSBjYWNoaW5nIGNvZGUNCndlIGRpZG4ndCB0aGluayBhYm91dCBob3cg
+bG9uZyB0aGUgcGF0aHMgYW5kIGZpbGVuYW1lcyBtaWdodCBnZXQgZHVyaW5nIHRoZQ0Kcm9vdGZz
+IHN0ZXAuIEl0J3Mgbm90IGN1cnJlbnRseSBwb3NzaWJsZSB0byByZWR1Y2UgdGhlIGxlbmd0aCBv
+ZiB0aGUgc3ltbGluaw0KZmlsZW5hbWVzLCBidXQgaXQgaXMgcG9zc2libGUgdG8gY2hhbmdlIHRo
+ZSBkaXJlY3RvcnkgaW4gd2hpY2ggdGhlIHN5bWxpbmtzIGFyZQ0KY3JlYXRlZC4NCg0KQ3VycmVu
+dGx5IHRoZSBvcGtnIGNhY2hlIGRpciBjYW4gb25seSBiZSBzZXQgaW4gdGhlIG9wa2cuY29uZiBm
+aWxlLiBJIHRoaW5rIHdlDQpzaG91bGQgYWRkIGEgJy0tY2FjaGUtZGlyJyBhcmd1bWVudCB0byBv
+cGtnLiBJZiB0aGlzIGlzIGFkZGVkIHlvdSdsbCBiZSBhYmxlIHRvDQpzZXQgdGhlIGZvbGxvd2lu
+ZyBpbiB5b3VyIGxvY2FsLmNvbmYgZmlsZSB0byBjaGFuZ2UgdGhlIGNhY2hlIGxvY2F0aW9uLiBF
+Zy4gdG8NCnVzZSAnL3RtcC9vcGtnJyBvbiB0aGUgaG9zdCBkdXJpbmcgcm9vdGZzIGNyZWF0aW9u
+Lg0KDQogICAgT1BLR19BUkdTID0gIi0tY2FjaGUtZGlyPS90bXAvb3BrZyINCg0KSSdsbCBzdWJt
+aXQgYSBwYXRjaCB0byBvcGtnIHRvIGFkZCB0aGlzIG9wdGlvbi4NCg0KVGhpcyB3aWxsIG9ubHkg
+c2hvcnRlbiB0aGUgZnVsbCBwYXRoLCBub3QgdGhlIGZpbGVuYW1lIGxlbmd0aCwgc28gSSBkb3Vi
+dCB0aGlzJ2xsIHNvbHZlIGl0LiBUaGF0IHNhaWQsIEkgY2FuJ3QgYWN0dWFsbHkgc3VjY2Vzc2Z1
+bGx5IHRlc3QgdGhpcyB0b2RheSwgYmVjYXVzZSBjYWNoZV9kaXIgaXMgbWFkZSByZWxhdGl2ZSB0
+byBvZmZsaW5lX3Jvb3QsIHNvIHNldHRpbmcgc3VjaCBhIHBhdGggYXMgeW91IHN1Z2dlc3QgZG9l
+c24ndCBzaG9ydGVuIHRoZSBmdWxsIHBhdGggZWl0aGVyLg0KDQpBbHNvLCBkaWQgYSB0b3VjaCBv
+ZiBqdXN0IHRoZSBjYWNoZSBmaWxlbmFtZSBhbmQgaXQgZ2l2ZXMgdGhlIHNhbWUgZmlsZW5hbWUg
+bGVuZ3RoIGVycm9yLCBzbyB3aGVyZSB0aGUgY2FjaGUgZGlyIGlzIHJlYWxseSBpc24ndCBnb2lu
+ZyB0byBtYXR0ZXIsIGl0J3MgdGhlIGZpbGVuYW1lIGluY2x1ZGluZyB0aGUgZnVsbCBwYXRoIHRv
+IGEgZGVlcCBCVUlMRERJUiwgYW5kIHRoZXJlZm9yZSBERVBMT1lfRElSX0lQSywgd2hpY2ggaXMg
+dGhlIHByb2JsZW0uDQotLQ0KQ2hyaXN0b3BoZXIgTGFyc29uDQpjbGFyc29uIGF0IGtlcmdvdGgg
+ZG90IGNvbQ0KRm91bmRlciAtIEJpdEJha2UsIE9wZW5FbWJlZGRlZCwgT3BlblphdXJ1cw0KTWFp
+bnRhaW5lciAtIFRzbGliDQpTZW5pb3IgU29mdHdhcmUgRW5naW5lZXIsIE1lbnRvciBHcmFwaGlj
+cw0K
 
-Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
----
- buildset-config.controller/nightly-no-x11.conf | 19 -------------------
- buildset-config.controller/yoctoAB.conf        | 10 +++++-----
- buildset-config.staging/nightly-no-x11.conf    | 19 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 24 deletions(-)
- delete mode 100644 buildset-config.controller/nightly-no-x11.conf
- create mode 100644 buildset-config.staging/nightly-no-x11.conf
+--_000_365E1805BC95084CBE82381A0B86999401095FAD92EUMBX01mgcmen_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-diff --git a/buildset-config.controller/nightly-no-x11.conf b/buildset-config.controller/nightly-no-x11.conf
-deleted file mode 100644
-index 4881154..0000000
---- a/buildset-config.controller/nightly-no-x11.conf
-+++ /dev/null
-@@ -1,19 +0,0 @@
--[nightly-no-x11]
--builders: 'example-worker'
--repos: [{'poky':
--            {'repourl':'git://git.yoctoproject.org/poky',
--             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
--             'branch':'master'}}]
--steps: [{'SetDest':{}},
--        {'CheckOutLayers': {}},
--        {'RunPreamble': {}},
--        {'GetDistroVersion' : {'distro': 'poky'}},
--        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686',
--                            'distro': 'poky', 'buildhistory' : False,
--                            'atextappend' : '\nDISTRO_FEATURES_remove = "x11"\n'}},
--        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
--        {'SyncPersistDB' : {'distro' : 'poky'}},
--        {'GetBitbakeVersion': {}},
--        {'BuildImages': {'images': 'world'}},
--        {'SendErrorReport': {}},
--        {'UploadToasterEventlog': {}}]
-diff --git a/buildset-config.controller/yoctoAB.conf b/buildset-config.controller/yoctoAB.conf
-index 0f9ba0c..5f39d6f 100644
---- a/buildset-config.controller/yoctoAB.conf
-+++ b/buildset-config.controller/yoctoAB.conf
-@@ -3,9 +3,9 @@ order: ['nightly', 'eclipse-plugin-mars',
-         'eclipse-plugin-kepler', 'eclipse-plugin-luna',
-         'nightly-arm', 'nightly-arm64', 'nightly-arm-lsb', 
-         'nightly-mips', 'nightly-mips64', 'nightly-mips-lsb', 
--        'nightly-ppc', 'nightly-ppc-lsb', 'nightly-no-x11',
--        'nightly-x86-64', 'nightly-x86-64-lsb', 'nightly-x86',
--        'nightly-x86-lsb', 'nightly-x32', 'nightly-multilib',
--        'nightly-world', 'nightly-world-lsb', 'nightly-non-gpl3', 
--        'nightly-oecore', 'nightly-intel-gpl', 'nightly-wic', 'poky-tiny',
-+        'nightly-ppc', 'nightly-ppc-lsb', 'nightly-x86-64', 
-+        'nightly-x86-64-lsb', 'nightly-x86', 'nightly-x86-lsb', 
-+        'nightly-x32', 'nightly-multilib', 'nightly-world', 
-+        'nightly-world-lsb', 'nightly-non-gpl3', 'nightly-oecore', 
-+        'nightly-intel-gpl', 'nightly-wic', 'poky-tiny',
-         'build-appliance', 'nightly-qa-extras', 'nightly-qa-systemd']
-diff --git a/buildset-config.staging/nightly-no-x11.conf b/buildset-config.staging/nightly-no-x11.conf
-new file mode 100644
-index 0000000..4881154
---- /dev/null
-+++ b/buildset-config.staging/nightly-no-x11.conf
-@@ -0,0 +1,19 @@
-+[nightly-no-x11]
-+builders: 'example-worker'
-+repos: [{'poky':
-+            {'repourl':'git://git.yoctoproject.org/poky',
-+             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
-+             'branch':'master'}}]
-+steps: [{'SetDest':{}},
-+        {'CheckOutLayers': {}},
-+        {'RunPreamble': {}},
-+        {'GetDistroVersion' : {'distro': 'poky'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686',
-+                            'distro': 'poky', 'buildhistory' : False,
-+                            'atextappend' : '\nDISTRO_FEATURES_remove = "x11"\n'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-+        {'BuildImages': {'images': 'world'}},
-+        {'SendErrorReport': {}},
-+        {'UploadToasterEventlog': {}}]
--- 
-2.4.3
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
+YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3
+DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+Iiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2Vy
+aWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
+MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
+ZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVk
+ZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0t
+PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0K
+PG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+
+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxp
+bms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPldlIGFyZSBo
+aXR0aW5nIHRoaXMgaXNzdWUgb24gYW5vdGhlciBCU1A8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPmZpbGU6X3Zhcl9qZW5r
+aW5zX3dvcmtzcGFjZV9jZS1tYWluX2J1aWxkaG9zdF9TQjY0X2J1aWxkdHlwZV9pbmR1c3RyaWFs
+X21hY2hpbmVfemVkYm9hcmQtenlucTctbWVsX2J1aWxkX3plZGJvYXJkLXp5bnE3LW1lbF90bXBf
+ZGVwbG95X2lwa196ZWRib2FyZF96eW5xN19tZWxfa2VybmVsLW1vZHVsZS1sdHRuZy1yaW5nLWJ1
+ZmZlci1jbGllbnQtbW1hcC1vdmVyd3JpdGVfMi42LjImIzQzO2dpdDAmIzQzOzdhODhmOGI1MDYt
+cjAuMF96ZWRib2FyZF96eW5xN19tZWwuaXBrPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5uZWVkIGl0cyBzb2x1dGlvbiBx
+dWlja2x5PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj5Ob29yPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9hPjwvcD4NCjxk
+aXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41cHQ7cGFkZGlu
+ZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9y
+ZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9t
+Ojwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4ga2VyZ290aEBnbWFpbC5j
+b20gW21haWx0bzprZXJnb3RoQGdtYWlsLmNvbV0NCjxiPk9uIEJlaGFsZiBPZiA8L2I+Q2hyaXN0
+b3BoZXIgTGFyc29uPGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIE9jdG9iZXIgMjAsIDIwMTUg
+MTA6MjAgUE08YnI+DQo8Yj5Ubzo8L2I+IFBhdWwgQmFya2VyPGJyPg0KPGI+Q2M6PC9iPiBBaHNh
+biwgTm9vcjsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTog
+W3lvY3RvXSBvcGtnIDAuMy4wIG9yIHJvb3RmcyB0YXNrPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUdWUsIE9jdCAyMCwgMjAxNSBhdCAx
+MDoxNCBBTSwgQ2hyaXN0b3BoZXIgTGFyc29uICZsdDs8YSBocmVmPSJtYWlsdG86Y2xhcnNvbkBr
+ZXJnb3RoLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmNsYXJzb25Aa2VyZ290aC5jb208L2E+Jmd0OyB3
+cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
+ZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFy
+Z2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPk9uIFN1biwgT2N0IDE4LCAyMDE1IGF0IDI6NTcgQU0sIFBhdWwgQmFya2VyICZsdDs8
+YSBocmVmPSJtYWlsdG86cGF1bEBwYXVsYmFya2VyLm1lLnVrIiB0YXJnZXQ9Il9ibGFuayI+cGF1
+bEBwYXVsYmFya2VyLm1lLnVrPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtw
+YWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDow
+aW4iPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIEZyaSwgT2N0IDE2LCAyMDE1IGF0
+IDA3OjM4OjE5UE0gJiM0MzswMDAwLCBBaHNhbiwgTm9vciB3cm90ZTo8YnI+DQomZ3Q7IE9uIE9j
+dCAxNiwgMjAxNSwgYXQgNTo0NyBBTSwgQWhzYW4sIE5vb3IgJmx0OzxhIGhyZWY9Im1haWx0bzpO
+b29yX0Foc2FuQG1lbnRvci5jb20iIHRhcmdldD0iX2JsYW5rIj5Ob29yX0Foc2FuQG1lbnRvci5j
+b208L2E+Jmx0O21haWx0bzo8YSBocmVmPSJtYWlsdG86Tm9vcl9BaHNhbkBtZW50b3IuY29tIiB0
+YXJnZXQ9Il9ibGFuayI+Tm9vcl9BaHNhbkBtZW50b3IuY29tPC9hPiZndDsmZ3Q7IHdyb3RlOjxi
+cj4NCiZndDs8YnI+DQomZ3Q7IEhlbGxvLDxicj4NCiZndDs8YnI+DQomZ3Q7IEkgbm90aWNlZCB0
+aGF0IGF0IHRoZSB0aW1lIG9mIHJvb3RmcyBjcmVhdGlvbiBzeW1ib2xpYyBsaW5rcyBvZiB0aGUg
+aXBrIGZpbGVzIHByZXNlbnQgaW4gZGVwbG95L2lway4gVGhlIHByb2JsZW0gd2hhdCBoYXZlIGl0
+IHdoaWxlIGNyZWF0aW9uIG9mIHN5bWJvbGljIGxpbmsgaXQgdGFrZSB0aGUgZnVsbCBwYXRoIHRp
+bGwgdGhhdCBpcGsgYW5kIHJlbW92ZSBzbGFzaGVzIGFuZCBjb252ZXJ0IHRoZW0gaW50byB1bmRl
+cnNjb3Jlcy4gVXNlIHRoYXQNCiBhcyB0aGUgbmFtZSBvZiB0aGUgc3ltYm9saWMgbGluay4gVGhp
+cyBtYWtlIGEgdmVyeSBsb25nIGZpbGUgbmFtZXMuIElmIHdlIGhhdmUgdmVyeSBsb25nIHBhdGgg
+dGhlbiBuYW1lIG9mIHRoZSBzeW1saW5rIGV4Y2VlZCBmcm9tIG1heCBmaWxlbmFtZSBsaW1pdHMu
+IEFuZCB3ZSBnZXQgZm9sbG93aW5nIGVycm9yPGJyPg0KJmd0Ozxicj4NCiZndDsgQ29sbGVjdGVk
+IGVycm9yczo8YnI+DQomZ3Q7ICogZmlsZV9saW5rOiB1bmFibGUgdG8gc3RhdCBgL3Zhci9qZW5r
+aW5zL3dvcmtzcGFjZS9tZWxfY2VkYXItbWFpbi9idWlsZGhvc3QvYW1kLXVidW50dTE0LTMyYi9i
+dWlsZHR5cGUvaW90L21hY2hpbmUvbWVsLWRyYTd4eC1ldm0vYnVpbGRfbWVsLWRyYTd4eC1ldm0v
+dG1wL3dvcmsvbWVsX2RyYTd4eF9ldm0tbWVsLWxpbnV4LWdudWVhYmkvY29uc29sZS1pbWFnZS8x
+LjAtcjAvcm9vdGZzLy92YXIvY2FjaGUvb3BrZy92b2xhdGlsZS9maWxlOl92YXJfamVua2luc193
+b3Jrc3BhY2VfbWVsX2NlZGFyLW1haW5fYnVpbGRob3N0X2FtZC11YnVudHUxNC0zMmJfYnVpbGR0
+eXBlX2lvdF9tYWNoaW5lX21lbC1kcmE3eHgtZXZtX2J1aWxkX21lbC1kcmE3eHgtZXZtX3RtcF9k
+ZXBsb3lfaXBrX21lbF9kcmE3eHhfZXZtX2tlcm5lbC1tb2R1bGUtbHR0bmctcmluZy1idWZmZXIt
+Y2xpZW50LW1tYXAtb3ZlcndyaXRlXzIuNi4yJiM0MztnaXQwJiM0Mzs3YTg4ZjhiNTA2LXIwLjBf
+bWVsX2RyYTd4eF9ldm0uaXBrJzoNCiBGaWxlIG5hbWUgdG9vIGxvbmcuPGJyPg0KJmd0Ozxicj4N
+CiZndDsgQ2FuIGFueW9uZSB0ZWxsIG1lIHdoeSB0aGUgYWRkaXRpb24gb2YgZnVsbCBwYXRoIHdh
+cyBhZGRlZCB0byB0aGUgc3ltbGluayBuYW1lIGFuZCBjYW4gd2UgcmVtb3ZlIGl0IGNhdXNlIGl0
+IGlzIGNhdXNlIGlzc3Vlcz88YnI+DQomZ3Q7PGJyPg0KJmd0OyB3aGF0IGRvZXM8YnI+DQomZ3Q7
+PGJyPg0KJmd0OyBnZXRjb25mIFBBVEhfTUFYIC88YnI+DQomZ3Q7PGJyPg0KJmd0OyBzaG93ID88
+YnI+DQomZ3Q7PGJyPg0KJmd0OyBqZW5raW5zQGFtZC11YnUxNC0zMi0zOn4kIGdldGNvbmYgLWEg
+fCBncmVwJm5ic3A7IFBBVEhfTUFYPGJyPg0KJmd0OyBQQVRIX01BWCZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDs0MDk2PGJyPg0KJmd0OyBfUE9TSVhfUEFUSF9NQVgmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgNDA5Njxicj4NCiZndDs8YnI+DQomZ3Q7PGJyPg0KJmd0OyBJIHRoaW5rIHRoZSBp
+c3N1ZSBpcyB3aXRoIGZpbGUgbmFtZSBub3QgdGhlIHBhdGguPGJyPg0KJmd0Ozxicj4NCiZndDsg
+U2Vjb25kbHkgdGhlIGdvb2dsaW5nIHdoaWNoIEkgZGlkIHJldmVhbHMgdGhhdCBzeW1saW5rIGNy
+ZWF0aW9uIGNhbid0IGJlIHN0b3BwZWQuIEkganVzdCB3YW5uYSBjb25maXJtIHRoYXQgaXMgbXkg
+ZmluZGluZ3MgY29ycmVjdD88YnI+DQomZ3Q7PGJyPg0KPGJyPg0KVGhpcyBsb29rcyBsaWtlIHNv
+bWV0aGluZyB3ZSBvdmVybG9va2VkIGluIG9wa2cuIFdoZW4gd2UgYWRkZWQgdGhlIGNhY2hpbmcg
+Y29kZTxicj4NCndlIGRpZG4ndCB0aGluayBhYm91dCBob3cgbG9uZyB0aGUgcGF0aHMgYW5kIGZp
+bGVuYW1lcyBtaWdodCBnZXQgZHVyaW5nIHRoZTxicj4NCnJvb3RmcyBzdGVwLiBJdCdzIG5vdCBj
+dXJyZW50bHkgcG9zc2libGUgdG8gcmVkdWNlIHRoZSBsZW5ndGggb2YgdGhlIHN5bWxpbms8YnI+
+DQpmaWxlbmFtZXMsIGJ1dCBpdCBpcyBwb3NzaWJsZSB0byBjaGFuZ2UgdGhlIGRpcmVjdG9yeSBp
+biB3aGljaCB0aGUgc3ltbGlua3MgYXJlPGJyPg0KY3JlYXRlZC48YnI+DQo8YnI+DQpDdXJyZW50
+bHkgdGhlIG9wa2cgY2FjaGUgZGlyIGNhbiBvbmx5IGJlIHNldCBpbiB0aGUgb3BrZy5jb25mIGZp
+bGUuIEkgdGhpbmsgd2U8YnI+DQpzaG91bGQgYWRkIGEgJy0tY2FjaGUtZGlyJyBhcmd1bWVudCB0
+byBvcGtnLiBJZiB0aGlzIGlzIGFkZGVkIHlvdSdsbCBiZSBhYmxlIHRvPGJyPg0Kc2V0IHRoZSBm
+b2xsb3dpbmcgaW4geW91ciBsb2NhbC5jb25mIGZpbGUgdG8gY2hhbmdlIHRoZSBjYWNoZSBsb2Nh
+dGlvbi4gRWcuIHRvPGJyPg0KdXNlICcvdG1wL29wa2cnIG9uIHRoZSBob3N0IGR1cmluZyByb290
+ZnMgY3JlYXRpb24uPGJyPg0KPGJyPg0KJm5ic3A7ICZuYnNwOyBPUEtHX0FSR1MgPSAmcXVvdDst
+LWNhY2hlLWRpcj0vdG1wL29wa2cmcXVvdDs8YnI+DQo8YnI+DQpJJ2xsIHN1Ym1pdCBhIHBhdGNo
+IHRvIG9wa2cgdG8gYWRkIHRoaXMgb3B0aW9uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Js
+b2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgd2lsbCBvbmx5
+IHNob3J0ZW4gdGhlIGZ1bGwgcGF0aCwgbm90IHRoZSBmaWxlbmFtZSBsZW5ndGgsIHNvIEkgZG91
+YnQgdGhpcydsbCBzb2x2ZSBpdC4gVGhhdCBzYWlkLCBJIGNhbid0IGFjdHVhbGx5IHN1Y2Nlc3Nm
+dWxseSB0ZXN0IHRoaXMgdG9kYXksIGJlY2F1c2UgY2FjaGVfZGlyIGlzIG1hZGUgcmVsYXRpdmUg
+dG8gb2ZmbGluZV9yb290LCBzbyBzZXR0aW5nIHN1Y2ggYSBwYXRoIGFzIHlvdSBzdWdnZXN0DQog
+ZG9lc24ndCBzaG9ydGVuIHRoZSBmdWxsIHBhdGggZWl0aGVyLjxvOnA+PC9vOnA+PC9wPg0KPC9i
+bG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQpBbHNvLCBkaWQg
+YSB0b3VjaCBvZiBqdXN0IHRoZSBjYWNoZSBmaWxlbmFtZSBhbmQgaXQgZ2l2ZXMgdGhlIHNhbWUg
+ZmlsZW5hbWUgbGVuZ3RoIGVycm9yLCBzbyB3aGVyZSB0aGUgY2FjaGUgZGlyIGlzIHJlYWxseSBp
+c24ndCBnb2luZyB0byBtYXR0ZXIsIGl0J3MgdGhlIGZpbGVuYW1lIGluY2x1ZGluZyB0aGUgZnVs
+bCBwYXRoIHRvIGEgZGVlcCBCVUlMRERJUiwgYW5kIHRoZXJlZm9yZSBERVBMT1lfRElSX0lQSywg
+d2hpY2ggaXMgdGhlIHByb2JsZW0uPGJyPg0KLS0gPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+Q2hyaXN0b3BoZXIgTGFyc29uPGJyPg0KY2xhcnNvbiBhdCBrZXJn
+b3RoIGRvdCBjb208YnI+DQpGb3VuZGVyIC0gQml0QmFrZSwgT3BlbkVtYmVkZGVkLCBPcGVuWmF1
+cnVzPGJyPg0KTWFpbnRhaW5lciAtIFRzbGliPGJyPg0KU2VuaW9yIFNvZnR3YXJlIEVuZ2luZWVy
+LCBNZW50b3IgR3JhcGhpY3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-
+--_000_365E1805BC95084CBE82381A0B86999401095FAD92EUMBX01mgcmen_--
