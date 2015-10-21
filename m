@@ -1,51 +1,44 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 37FAFE009F3; Wed, 21 Oct 2015 05:59:38 -0700 (PDT)
+	id 05273E00A7B; Wed, 21 Oct 2015 06:57:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 21 Oct 2015 05:59:34 PDT
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 838DAE00985
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 05:59:34 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2D9BABBP8ZV/yYyC4dbGQEBglQsVGkGvTOCAIV9AoEmOhIBAQEBAQEBgQqEIwEBAQEDEnMEAgEIDQQBAwEBCx0HMhQDBggCBAESCBqIDAGseKA+AQEBAQEBAQEBAQEBAQEBAQEBAQEBF4tRhFg4BoMSgRQFjQ6HfQGFAYlwhmqRBBcPg31vAYEGJRyBBAEBAQ
-X-IPAS-Result: A2D9BABBP8ZV/yYyC4dbGQEBglQsVGkGvTOCAIV9AoEmOhIBAQEBAQEBgQqEIwEBAQEDEnMEAgEIDQQBAwEBCx0HMhQDBggCBAESCBqIDAGseKA+AQEBAQEBAQEBAQEBAQEBAQEBAQEBF4tRhFg4BoMSgRQFjQ6HfQGFAYlwhmqRBBcPg31vAYEGJRyBBAEBAQ
-X-IronPort-AV: E=Sophos;i="5.15,634,1432612800"; d="scan'208";a="125174338"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	21 Oct 2015 08:58:29 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC04.global.avaya.com) ([135.64.58.14])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	21 Oct 2015 08:58:29 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC04.global.avaya.com ([135.64.58.14]) with mapi id
-	14.03.0174.001; Wed, 21 Oct 2015 14:58:27 +0200
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Meta layer for Cavium CNS3xxx ARM processor
-Thread-Index: AQHRC/33OH0/9QM7uUafEkFSeCA2zZ51589g
-Date: Wed, 21 Oct 2015 12:58:27 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A4C9EE0@AZ-FFEXMB01.global.avaya.com>
-References: <D24D4681.68AC5%belen.barros.pena@intel.com>
-In-Reply-To: <D24D4681.68AC5%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.48]
+X-Greylist: delayed 487 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 Oct 2015 06:57:00 PDT
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECECAE00A70
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 06:57:00 -0700 (PDT)
+Received: from [192.168.1.139] (211.178.21.95.dynamic.jazztel.es
+	[95.21.178.211])
+	by lists.s-osg.org (Postfix) with ESMTPSA id 8F3B846270;
+	Wed, 21 Oct 2015 06:48:51 -0700 (PDT)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <1439485643-31467-1-git-send-email-javier@osg.samsung.com>
+	<1439485643-31467-5-git-send-email-javier@osg.samsung.com>
+	<2A2C0AE8-7998-4E9E-BCD1-C4526449F31D@gmail.com>
+	<CAK18fxE30A1EYFBgk31aYWqwK9mid8j+hSSnwuiPsrqvVzqvtg@mail.gmail.com>
+	<55D1B054.2050403@osg.samsung.com> <55DB7DBA.7030902@osg.samsung.com>
+	<20151021123216.GF5610@resin>
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <562797C0.3000303@osg.samsung.com>
+Date: Wed, 21 Oct 2015 15:48:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Re: Meta layer for Cavium CNS3xxx ARM processor
+In-Reply-To: <20151021123216.GF5610@resin>
+Cc: Derek Foreman <derekf@osg.samsung.com>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v2 4/4] README: Add a section about graphic stacks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,71 +50,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Oct 2015 12:59:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 21 Oct 2015 13:57:02 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hello Andrei,
 
-I didn't find a match for Cavium CNS3412.=20
-Is there an equivalent machine which use below flags for building up binari=
-es.
+On 10/21/2015 02:32 PM, Andrei Gherzan wrote:
+> Hello Javier,
+> 
+> On Mon, Aug 24, 2015 at 10:25:30PM +0200, Javier Martinez Canillas wrote:
+>> Hello,
+>>
+>> On 08/17/2015 11:58 AM, Javier Martinez Canillas wrote:
+>>> On 08/17/2015 09:57 AM, Andrei Gherzan wrote:
+>>>> On Thursday, August 13, 2015, Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>> [snip]
+>>
+>>>>>>
+>>>>>> +2.O. Graphic stacks
+>>>>>> +===================
+>>>>>> +The Raspberry Pi boards can use one of two graphics stacks: The userland
+>>>>>> +user-space driver or the vc4 DRM/KMS kernel driver. By default userland
+>>>>>> +is used since the vc4 is still experimental. But this can be changed by
+>>>>>> +modifying the defaults for the kernel, egl, gles2, libgl and mesa
+>>>>> providers.
+>>>>>> +This is explained in the conf/machine/include/rpi-default-providers.inc
+>>>>> file.
+>>>>>> +
+>>>>>
+>>>>> you may want to add pointer to the commented out code that you have added
+>>>>> to select them
+>>>>> in rpi-default-providers.inc
+>>>>>
+>>>>
+>>>> It would be nice to have some detailed info on what and where to comment
+>>>> out the configuration.
+>>>>
+>>>
+>>> On patch 3/4 I added that documentation to rpi-default-providers but didn't
+>>> add it to the README and instead pointed out to rpi-default-providers to
+>>> have a level of indirection in case the providers change and to not have
+>>> duplicated information but I will add it to the README as well.
+>>>
+>>> Do you have comments on the other patches in the series so I can address
+>>> all of them before re-spinning?
+>>>
+>>
+> 
+> Really sorry on this late reply. So my only recommendation is to move things
 
--march=3Darmv6k -Wl,-z,max-page-size=3D0x10000,-z,common-page-size=3D0x1000=
-0,-Ttext-segment=3D0x10000
+No worries, I've also been very busy with other stuff.
 
-Thanks,
-Abhinav
-
------Original Message-----
-From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]=20
-Sent: Wednesday, October 21, 2015 18:13
-To: Bipnesh, Abhinav (Abhinav); yocto@yoctoproject.org
-Subject: Re: [yocto] Meta layer for Cavium CNS3xxx ARM processor
-
-
-
-On 21/10/2015 10:01, "yocto-bounces@yoctoproject.org on behalf of Bipnesh, =
-Abhinav (Abhinav)" <yocto-bounces@yoctoproject.org on behalf of abhinavbipn=
-esh@avaya.com> wrote:
-
->Hi,
->=20
->I am looking for an meta layer which provide support for Cavium CNS3xxx=20
->SOC as need to build some application on that platform. Below is the=20
->output from the board when I check for the release and CPU information
->=20
->$ cat /etc/*release
->MontaVista Linux 6, (.dev-snapshot-20130726)
->=20
->=20
->$ cat /proc/cpuinfoProcessor       : ARMv6-compatible processor rev 4
->(v6l)BogoMIPS        : 279.34Features        : swp half thumb fastmult
->vfp edsp javaCPU implementer : 0x41CPU architecture: 7CPU variant     :
->0x0CPU part        : 0xb02CPU revision    : 4 Hardware        : Cavium
->Networks CNS3420 Validation BoardRevision        : 0000Serial          :
->0000000000000000
->=20
->So is there any meta layer which supports above SOC.
-
-You can find out about such things in the layer index:
-
-https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__layers.openembedded.o=
-rg_layerindex_branch_master_machines_&d=3DBQIFAw&c=3DBFpWQw8bsuKpl1SgiZH64Q=
-&r=3DgeJ1wB7xRIMmteYB2Fo8esL32BOWvwP1HmY0YuLEB4E&m=3DXxYTvsQRPzXBJWLwdOWeBi=
-HMpE2Nn6iOx6n2oQQJml4&s=3Di0Lhp1I_W_sJiWRro6u6fjpwCUbISC9O5dSlLY08yBM&e=3D=
-=20
-
-Make sure to select the correct branch on the left side of the menu.
-
-Cheers
-
-Bel=E9n
-
->=20
->Thanks,
->Abhinav
+> you wrote in 3/4 in the 4/4 (README). Basically you would describe what a user
+> needs to overwrite as providers in order to use VC4 as graphics stack.
 >
 
+Ok, I'm traveling to Korea next week for KLF and KS so I'll probably resend
+a v3 (addressing your suggestions) later next week when I'm back.
+ 
+> As well, how do you handle the devicetrees for 4.1? Aren't changed in 4+?
+>
+
+For now, I'm defining a KERNEL_DEVICETREE in my conf/local.conf file since
+that is what was agreed with Petter Mabäcker on v1 of this series [0 and
+I also mentioned in the cover letter [1].
+
+But the new device tree overlay dir layout is not only for 4+ but also it
+is used in the latest version of the older branches. So once all recipes'
+SRCREV are bumped, overwriting the variable won't be necessary anymore.
+
+>> Gentle ping about this. Thanks!
+>>
+>> Best regards,
+>> --
+>> Javier Martinez Canillas
+>> Open Source Group
+>> Samsung Research America
+> 
+> --
+> Andrei Gherzan
+> 
+
+[0]: https://lists.yoctoproject.org/pipermail/yocto/2015-August/025961.html
+[1]: https://lists.yoctoproject.org/pipermail/yocto/2015-August/026151.html
+
+Best regards,
+-- 
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
 
