@@ -1,48 +1,34 @@
-Return-Path: <ajlennon@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF3B8E00708; Wed, 21 Oct 2015 09:52:04 -0700 (PDT)
+	id 60E76E00A9B; Wed, 21 Oct 2015 11:01:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.180 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ajlennon[at]gmail.com)
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,MISSING_HEADERS,
+	SPF_HELO_SOFTFAIL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.7 SPF_HELO_SOFTFAIL SPF: HELO does not match SPF record
+	(softfail) *  1.0 MISSING_HEADERS Missing To: header
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D576E006D5
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 09:52:02 -0700 (PDT)
-Received: by wicll6 with SMTP id ll6so99977688wic.0
-	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 09:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=xLq14A4slNDX29JVqGu3kEuDBA76MWL5aYSbkxIC7Zw=;
-	b=Ixsykf+7jVuw+akbb7RcOUSe5Q1574caS5BvzGZra/3YlG0yXZB9BCLanBAX/gVyVS
-	yYfeyjBjZ/7fQvmlLmBtjTDBjGuAcazpn9Om1pdKqjYSv8CYEsBtpwQ0g5bwkAIpOMMA
-	DqW+OgrNGJw3Bwd72RCqfmJqr1jAK3NfCSGXxBc4KHLSzOVqQbYa260f/RAaMGqvJOPU
-	OLl1Mv7EmEzUwCaCyduPC2/FXKh8snZzATZ3aLQdzCQUEkg+qY3rMeHenRox5u1E6ync
-	rQtWFiPrSTTJ5ZucLWrUyQ0f8Ju3rj6JRH7JjiFRqXpbkQvZLfNhkxKFiSgayMxqgNWj
-	yCtw==
-X-Received: by 10.194.118.234 with SMTP id kp10mr12172459wjb.59.1445446321593; 
-	Wed, 21 Oct 2015 09:52:01 -0700 (PDT)
-Received: from [192.168.0.2] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net.
-	[86.17.157.93]) by smtp.googlemail.com with ESMTPSA id
-	wx10sm11458591wjb.40.2015.10.21.09.52.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Oct 2015 09:52:00 -0700 (PDT)
-To: Andrei Gherzan <andrei@gherzan.ro>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC9A9E006F1
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 11:00:55 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 64D0D27E3D0
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 18:00:50 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id Cq3-oxtV0yEj for <yocto@yoctoproject.org>;
+	Wed, 21 Oct 2015 18:00:07 +0000 (UTC)
+Received: from [192.168.0.2] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
+	[86.17.157.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B8A3D27E3BF
+	for <yocto@yoctoproject.org>; Wed, 21 Oct 2015 18:00:06 +0000 (UTC)
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 References: <1439312679-24989-1-git-send-email-ajlennon@dynamicdevices.co.uk>
 	<1439312679-24989-2-git-send-email-ajlennon@dynamicdevices.co.uk>
 	<f770f8743b500dde78803cd8b0826854@technux.se>
@@ -51,15 +37,13 @@ References: <1439312679-24989-1-git-send-email-ajlennon@dynamicdevices.co.uk>
 	<55D1A82F.9020506@gmail.com>
 	<02548fc1921b30fcdb6a0791bd7a6361@technux.se>
 	<55DC2086.5020008@gmail.com> <20151021121203.GB5610@resin>
-From: Alex J Lennon <ajlennon@gmail.com>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <5627C2AF.6060809@gmail.com>
-Date: Wed, 21 Oct 2015 17:51:59 +0100
+Cc: yocto@yoctoproject.org
+Message-ID: <5627D297.6020309@dynamicdevices.co.uk>
+Date: Wed, 21 Oct 2015 18:59:51 +0100
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
 In-Reply-To: <20151021121203.GB5610@resin>
-Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi][PATCH 2/2] linux-raspberrypi: build audio driver into kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -72,20 +56,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Oct 2015 16:52:04 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 21 Oct 2015 18:01:26 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 On 21/10/2015 13:12, Andrei Gherzan wrote:
 > On Tue, Aug 25, 2015 at 09:00:06AM +0100, Alex J Lennon wrote:
->> On 25/08/2015 07:57, Petter Mabäcker wrote:
+>> On 25/08/2015 07:57, Petter MabÃ¤cker wrote:
 >>>
 >>>
 >>> 2015-08-17 11:23 skrev Alex J Lennon:
 >>>
->>>> On 17/08/2015 09:11, Petter Mabäcker wrote:
+>>>> On 17/08/2015 09:11, Petter MabÃ¤cker wrote:
 >>>>> 2015-08-17 09:57 skrev Andrei Gherzan:
->>>>>> Hello, On Tuesday, August 11, 2015, Petter Mabäcker
+>>>>>> Hello, On Tuesday, August 11, 2015, Petter MabÃ¤cker
 >>>>>> <petter@technux.se <mailto:petter@technux.se>
 >>>>>> <mailto:petter@technux.se <mailto:petter@technux.se>>> wrote:
 >>>>>> 2015-08-11 19:04 skrev Alex J Lennon: Signed-off-by: Alex J Lennon
