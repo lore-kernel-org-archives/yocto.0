@@ -1,6 +1,6 @@
 Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D204E00B1A; Thu, 22 Oct 2015 11:53:33 -0700 (PDT)
+	id A660CE00B1A; Thu, 22 Oct 2015 12:05:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,18 +9,18 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56B29E00AF6
-	for <yocto@yoctoproject.org>; Thu, 22 Oct 2015 11:53:28 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 653CFE00AF6
+	for <yocto@yoctoproject.org>; Thu, 22 Oct 2015 12:05:21 -0700 (PDT)
 Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E0CD0F8119A; Thu, 22 Oct 2015 12:53:27 -0600 (MDT)
+	id 22AF2F8119A; Thu, 22 Oct 2015 13:05:20 -0600 (MDT)
 Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 5DDFEF8119A;
-	Thu, 22 Oct 2015 12:53:27 -0600 (MDT)
+	by mail.chez-thomas.org (Postfix) with ESMTP id 94833F8119A;
+	Thu, 22 Oct 2015 13:05:19 -0600 (MDT)
 To: yocto@yoctoproject.org
 References: <167A17EDB344B047B2D335D8E4C5A2FAA4DE5180@EX2010-CO-02.AERO.BALL.com>
 From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <562930DC.8020102@mlbassoc.com>
-Date: Thu, 22 Oct 2015 12:54:20 -0600
+Message-ID: <562933A5.8060505@mlbassoc.com>
+Date: Thu, 22 Oct 2015 13:06:13 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
@@ -37,7 +37,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Oct 2015 18:53:33 -0000
+X-List-Received-Date: Thu, 22 Oct 2015 19:05:25 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
@@ -52,10 +52,6 @@ On 2015-10-22 12:26, Smith, Daniel W wrote:
 > This file contains the following:
 >
 > FILESEXTRAPATHS_prepend_poky := "${THISDIR}/files:"
-
-Have you tried leaving off the _poky qualifier?  e.g.
-   FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-
 >
 > SRC_URI = "file://apps \
 >
@@ -68,6 +64,12 @@ Have you tried leaving off the _poky qualifier?  e.g.
 >             file://overlay \
 >
 >             file://windowmenu "
+
+Shouldn't this be SRC_URI_append ?  Otherwise, your .bbappend will be
+writing over the SRC_URI from the original recipe.
+
+Also, please CC your replies to the list so that everyone benefits.
+
 >
 > #
 >
