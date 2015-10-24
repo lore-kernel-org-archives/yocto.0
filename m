@@ -1,41 +1,46 @@
-Return-Path: <s.mueller-klieser@phytec.de>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53F04E00B53; Sat, 24 Oct 2015 08:28:09 -0700 (PDT)
+	id 58C52E00B58; Sat, 24 Oct 2015 10:26:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.6.246.34 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 584 seconds by postgrey-1.32 at yocto-www;
-	Sat, 24 Oct 2015 08:28:06 PDT
-Received: from root.phytec.de (mail.visioncatalog.com [217.6.246.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1878E00803
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 08:28:06 -0700 (PDT)
-Received: from idefix.phytec.de (idefix.phytec.de [172.16.0.10])
-	by root.phytec.de (Postfix) with ESMTP id 39109A001D1
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 17:18:39 +0200 (CEST)
-Received: from [172.16.10.21] ([172.16.10.21])
-	by idefix.phytec.de (IBM Domino Release 9.0.1FP2 HF590)
-	with ESMTP id 2015102417182074-2288 ;
-	Sat, 24 Oct 2015 17:18:20 +0200 
-To: yocto@yoctoproject.org
-From: =?UTF-8?Q?Stefan_M=c3=bcller-Klieser?= <s.mueller-klieser@phytec.de>
-Message-ID: <562BA139.60302@phytec.de>
-Date: Sat, 24 Oct 2015 17:18:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADFB4E00473
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 10:26:25 -0700 (PDT)
+Received: by lffz202 with SMTP id z202so111874061lff.3
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 10:26:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=1wVfLj/XHIL+PzM0zAoCFFafJLXXjUHdsKD9B1YiOZY=;
+	b=ReOCU0rcd3e8LF5tQ+RRgfxKeFfMTkePnM1TF2+QeL9lteih0VSk0jdx/I00L3QFIe
+	z6OyzYSvO1O1MySTZEw45hoMd9YyJ+tB4NliYdTWRX8OO2nZbsW+sz8Q5LEtp1Xr6Ie6
+	W0x+vUcdrOQg3hH/Hl4By4JelLTaV2fRPcKJ0mOX3nJ6GK6LQ02aKWt6mBVypvxSWCJa
+	uRXCm8gMmRq9NuK7PAZXGyxnvG7LROzXyEy1zeAd2gtvhIHxZen0raErPQMHTMUsecl3
+	4z+Aeji+E6zC845WIS/QfXHDeKRB+P/pYOEaf0y69QFMAOmdYw4RpY+aJYEO821vI1IJ
+	T2xQ==
+X-Gm-Message-State: ALoCoQml5gbSoY1x/Gmv0LObwi8gkba6pmENsjRolCKdHgi6HMO0USKXgyvKnGMzccB8T+BHqeVA
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP2
-	HF590|December 11, 2014) at 24.10.2015 17:18:20,
-	Serialize by Router on Idefix/Phytec(Release 9.0.1FP2 HF590|December 11,
-	2014) at 24.10.2015 17:18:20,
-	Serialize complete at 24.10.2015 17:18:20
-Subject: problem with nativesdk host tools
+X-Received: by 10.112.131.70 with SMTP id ok6mr13961681lbb.71.1445707583752;
+	Sat, 24 Oct 2015 10:26:23 -0700 (PDT)
+Received: by 10.112.198.71 with HTTP; Sat, 24 Oct 2015 10:26:23 -0700 (PDT)
+X-Originating-IP: [93.104.180.249]
+Received: by 10.112.198.71 with HTTP; Sat, 24 Oct 2015 10:26:23 -0700 (PDT)
+Date: Sat, 24 Oct 2015 19:26:23 +0200
+Message-ID: <CAK18fxHMv0LR1y58wzRZHEEmy-mwbMRHKTbqh9KR56NeEB98Cg@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [meta-chip] Yocto on the 9$ computer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,30 +52,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Oct 2015 15:28:09 -0000
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Sat, 24 Oct 2015 17:26:28 -0000
+Content-Type: multipart/alternative; boundary=047d7b343402faa4f40522dd063b
 
-Dear community,
+--047d7b343402faa4f40522dd063b
+Content-Type: text/plain; charset=UTF-8
 
-my problem: I want to provide a populate_sdk based toolchain for e.g. 
-compiling a kernel. When using this sdk on a machine missing the 
-ncurses-dev package, you can run "make menuconfig" through bitbake but 
-not with the sdk. The sdk seems to ignore host dependencies and there 
-are some bug tracker entries related to this. It does not seem to help 
-to create:
-recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
-RDEPENDS_${PN} += "\
-     nativesdk-ncurses \
-     nativesdk-ncurses-dev \
-"
-as the corresponding changes to the include and library search path are 
-not handled correctly. In meta-qt5 there is some larger effort 
-undertaken resolving similar issues.
-Can someone please clarify what the status concerning the host 
-dependencies and the nativesdk is? Am I missing something? Is this a use 
-case for the extensible sdk?
+Hi all,
 
-Thanks in advance!
-Yours, Stefan
+Have a C.H.I.P. 9$ computer? It works with Yocto now.
 
+http://layers.openembedded.org/layerindex/branch/master/layer/meta-chip/
+
+Happy hacking!
+
+Andrei
+
+--047d7b343402faa4f40522dd063b
+Content-Type: text/html; charset=UTF-8
+
+<p dir="ltr">Hi all, </p>
+<p dir="ltr">Have a C.H.I.P. 9$ computer? It works with Yocto now.</p>
+<p dir="ltr"><a href="http://layers.openembedded.org/layerindex/branch/master/layer/meta-chip/">http://layers.openembedded.org/layerindex/branch/master/layer/meta-chip/</a></p>
+<p dir="ltr">Happy hacking! </p>
+<p dir="ltr">Andrei</p>
+
+--047d7b343402faa4f40522dd063b--
