@@ -1,52 +1,54 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <aguirre.nicolas@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5481FE00B58; Sat, 24 Oct 2015 12:56:29 -0700 (PDT)
+	id 45E29E00B58; Sat, 24 Oct 2015 12:59:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	URIBL_JP_SURBL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL
+	blocklist *      [URIs: gherzan.ro]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (aguirre.nicolas[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.212.178 listed in list.dnswl.org]
-Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
-	[209.85.212.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBE8AE00473
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 12:56:28 -0700 (PDT)
-Received: by wicfx6 with SMTP id fx6so68625646wic.1
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 12:56:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=LMHO/CSSVW1hR9r7ol04YnTDrsyFixtj65bIR65qUNs=;
-	b=guXLVg2c9hLMhdDql83SMAN3Cx+WdPeEgljWDp6NTymGdFju9lRmijtp/RWN/kTTjK
-	itwsmFZsUksBmZdey5SzAUffnbIEMnPNPVdrIVQGPmCJ5YGDYDAjj4ASaXMncWxtYT38
-	IFotsS8vGfaLLqao4oWbpoCPefyyGAwTPqzfQisXAcPvTx7YlAaJpanvr7MtORiJ8b+B
-	nLQwhM1V0zrjnDS/eAdvcZXMBmvmaLpVzlu6QMonSLC2Le6N2iI4cmkD2j3/EtiRyUt2
-	j67anlwMjUuCwRWHFlyLXd5OuvkMz0nEW9sdaXxO9PudsEcQHrNj0QQsaEVhqhbjs2oC
-	p9VQ==
-X-Gm-Message-State: ALoCoQlAQCWCl9MccE+nqfgWc6IdPbgrkRL8oPikyfMX/v02enqpOr0yXAoUCUHIVs1Wp5vi5ieG
-X-Received: by 10.194.58.84 with SMTP id o20mr14038641wjq.73.1445716587922;
-	Sat, 24 Oct 2015 12:56:27 -0700 (PDT)
-Received: from resin (dslb-088-067-185-162.088.067.pools.vodafone-ip.de.
-	[88.67.185.162]) by smtp.gmail.com with ESMTPSA id
-	ee5sm29780447wjd.17.2015.10.24.12.56.26
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 24 Oct 2015 12:56:26 -0700 (PDT)
-Date: Sat, 24 Oct 2015 21:56:23 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20151024195623.GC4459@resin>
-References: <1443890258-14442-1-git-send-email-raj.khem@gmail.com>
+	*      [209.85.213.42 listed in list.dnswl.org]
+Received: from mail-vk0-f42.google.com (mail-vk0-f42.google.com
+	[209.85.213.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED668E00473
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 12:59:03 -0700 (PDT)
+Received: by vkfw189 with SMTP id w189so79537475vkf.2
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 12:59:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=wSRWRtjGt2NnGP1HOj17ado8uEKoiVQ+Q5jurY1CW04=;
+	b=0N31PZ7+62/8oyfLcx/K/LDuTO6mFwa2A0yKyWp1QqbxUWr8jridzoosHg7Runr8gH
+	YTh4aX+nCSFB39UXmQ3j8g1JkkSivphNxZ3oOzKXuTDYSME/uXBBEL8Mkbu0K8irIXaT
+	pAVQ0Gbq8CVjEOeAa0LEJvuxKU6J6XaxylDupawo8oM3avWvbjFiTOCycm0oCP3UHaaW
+	aicPD5y6gXCx4LhATHV1ndXByaXeHn4Lv3/KgR0Bku++5beG80ZttND4LmtQ5WXU1GHn
+	BWFJcPRmu+4nPrC5Z2kOorgaFCrWRssK4tihDYugMuQxSs04lQiLx+ioANKRfsUgpKwC
+	DdJg==
+X-Received: by 10.31.180.1 with SMTP id d1mr18279898vkf.131.1445716742343;
+	Sat, 24 Oct 2015 12:59:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1443890258-14442-1-git-send-email-raj.khem@gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH V4 1/5] userland: Fix install prefix and generate pkgconfigs
+Received: by 10.31.5.70 with HTTP; Sat, 24 Oct 2015 12:58:42 -0700 (PDT)
+In-Reply-To: <CAK18fxHMv0LR1y58wzRZHEEmy-mwbMRHKTbqh9KR56NeEB98Cg@mail.gmail.com>
+References: <CAK18fxHMv0LR1y58wzRZHEEmy-mwbMRHKTbqh9KR56NeEB98Cg@mail.gmail.com>
+From: Nicolas Aguirre <aguirre.nicolas@gmail.com>
+Date: Sat, 24 Oct 2015 21:58:42 +0200
+Message-ID: <CAHTvVMc7DBOLGvOU7X5YuO+O6FKSEaXW0aUsBd_VHsKQrEhqcg@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-chip] Yocto on the 9$ computer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,32 +60,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Oct 2015 19:56:29 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sat, 24 Oct 2015 19:59:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Sat, Oct 03, 2015 at 04:37:34PM +0000, Khem Raj wrote:
-> several userspace libraries like libepoxy poke for pkgconfigs ( .pc )
-> files to detect egl support, and comes out to fail in configure stage,
-> one of the patches now adds support to generate .pc files for some known
-> cases. it could be further extended if needed for other libraries too
+2015-10-24 19:26 GMT+02:00 Andrei Gherzan <andrei@gherzan.ro>:
+> Hi all,
 >
-> Secondly, the default CMAKE_INSTALL_PREFIX is /opt/vc but in OE we use
-> proper /usr so lets make this change as well, it simplifies do_install()
->
-> .so are not versioned so we need to grapple with OE's defaults of
-> expecting versioned .so files.
->
-> Adjust packages for -dev package such that it can automatically package
-> pkgconfig files and inherit pkgconfig because in cmake code we are not
-> looking for pkgconfig so we need the dependency also put in place for
-> consistent builds
->
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
 
-I merged this patch to master. The rest are still pending because of my build
-issue.
+Hi Andrei,
 
---
-Andrei Gherzan
+> Have a C.H.I.P. 9$ computer? It works with Yocto now.
+>
+> http://layers.openembedded.org/layerindex/branch/master/layer/meta-chip/
+>
+Good job.
+IMO it make sense to add C.H.I.P support in meta-sunxi, don't you think ?
+
+https://github.com/linux-sunxi/meta-sunxi
+
+Regards,
+Nicolas
+
+
+
+> Happy hacking!
+>
+> Andrei
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
+
+-- 
+Nicolas Aguirre
+Mail: aguirre.nicolas@gmail.com
+Web: http://www.calaos.fr
+Blog: http://dev.enlightenment.fr/~captainigloo/
 
