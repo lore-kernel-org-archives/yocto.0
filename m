@@ -1,61 +1,60 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <pbarker@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF5ADE00B66; Sat, 24 Oct 2015 15:17:06 -0700 (PDT)
+	id 0A7A2E00B58; Sat, 24 Oct 2015 20:34:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [87.98.184.159 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AD36E00473
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 15:17:05 -0700 (PDT)
-Received: by igbkq10 with SMTP id kq10so37090629igb.0
-	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 15:17:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=Ik0STpnxapkf8dNRx1Zl1ekAgqKXgkkVgLoTBJT3eEU=;
-	b=iVXqcuEWNeS9rlkNwZebI9/uxX9FaFuKIf4om5NMM4f9Yu8wgZ+w/PucNo1LdqWx9p
-	rqTZGKVMaw0n9TAaS3Nh/gUHBAab7xvRJcVQa7tiRWjLawVt92UZl8E7fgkBOL5y1Pqg
-	94rR5RF9Vfx2uK7DVyG9FPku5DeC8scnAZLJBdvA3t8keZxl5iZe5LLdHvo7bwIVyON3
-	gsyRdwsKrPNnDWcxLtsQDaaJYBAK2wv5KAZubVYn/yo8wsJdKFqvj0WrwCHEF6iJ9NGC
-	i/2mGX9mDqSJXdj0r25wcFpgAxI0gbT0fzfIi1We3JL9gWgVb4x0LUjNI1QwJGI003NZ
-	W9LA==
-X-Received: by 10.50.97.37 with SMTP id dx5mr9751860igb.14.1445725025346;
-	Sat, 24 Oct 2015 15:17:05 -0700 (PDT)
-Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	o74sm10420963ioo.8.2015.10.24.15.17.04
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 24 Oct 2015 15:17:04 -0700 (PDT)
-To: Nicolas Aguirre <aguirre.nicolas@gmail.com>,
-	Andrei Gherzan <andrei@gherzan.ro>
-References: <CAK18fxHMv0LR1y58wzRZHEEmy-mwbMRHKTbqh9KR56NeEB98Cg@mail.gmail.com>
-	<CAHTvVMc7DBOLGvOU7X5YuO+O6FKSEaXW0aUsBd_VHsKQrEhqcg@mail.gmail.com>
-	<562C02AE.9030609@gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <562C035E.2020705@gmail.com>
-Date: Sat, 24 Oct 2015 18:17:02 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+X-Greylist: delayed 27603 seconds by postgrey-1.32 at yocto-www;
+	Sat, 24 Oct 2015 20:34:02 PDT
+Received: from 4.mo6.mail-out.ovh.net (4.mo6.mail-out.ovh.net [87.98.184.159])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73401E0053A
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 20:34:02 -0700 (PDT)
+Received: from mail172.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo6.mail-out.ovh.net (Postfix) with SMTP id 4C0EEFF98CB
+	for <yocto@yoctoproject.org>; Sat, 24 Oct 2015 21:18:06 +0200 (CEST)
+Received: from localhost (HELO queueout) (127.0.0.1)
+	by localhost with SMTP; 24 Oct 2015 21:18:05 +0200
+Received: from cpc19-shep11-2-0-cust55.8-3.cable.virginm.net (HELO
+	bang.betafive.co.uk) (paul@betafive.co.uk@81.111.243.56)
+	by ns0.ovh.net with AES256-GCM-SHA384 encrypted SMTP;
+	24 Oct 2015 21:18:03 +0200
+Received: by bang.betafive.co.uk (Postfix, from userid 1000)
+	id B7F0240A4F; Sat, 24 Oct 2015 20:19:40 +0100 (BST)
+Date: Sat, 24 Oct 2015 20:19:40 +0100
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Christopher Larson <clarson@kergoth.com>
+Message-ID: <20151024191940.GB15983@bang.betafive.co.uk>
+References: <365E1805BC95084CBE82381A0B86999401095F873E@EU-MBX-01.mgc.mentorg.com>
+	<BD314512-DA81-48D9-B50D-4C41BD927127@gmail.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E08@EU-MBX-01.mgc.mentorg.com>
+	<365E1805BC95084CBE82381A0B86999401095F8E8A@EU-MBX-01.mgc.mentorg.com>
+	<20151018095759.GA12999@bang.betafive.co.uk>
+	<CABcZAN=TTO_ebMjr_5nsxM42MTewQQb6Nz-uH_9eLdHq002bvA@mail.gmail.com>
+	<CABcZAN=9iN6bbjLLw7OtzuU7uogri+qS83auYnGRz_MT=ifjcQ@mail.gmail.com>
+	<365E1805BC95084CBE82381A0B86999401095FAD92@EU-MBX-01.mgc.mentorg.com>
+	<562BC58D.4090600@ni.com>
+	<CABcZAN=8F6m+7Y4pBfumuoiEqsTRS7+Bpiug7yfOiNkBxU4emQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <562C02AE.9030609@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-chip] Yocto on the 9$ computer
+In-Reply-To: <CABcZAN=8F6m+7Y4pBfumuoiEqsTRS7+Bpiug7yfOiNkBxU4emQ@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Ovh-Tracer-Id: 15666615729120852821
+X-Ovh-Remote: 81.111.243.56 (cpc19-shep11-2-0-cust55.8-3.cable.virginm.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekhedrtdekucetufdoteggodftvfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekhedrtdekucetufdoteggodftvfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: opkg 0.3.0 or rootfs task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,15 +66,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Oct 2015 22:17:06 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 25 Oct 2015 03:34:12 -0000
+X-Groupsio-MsgNum: 27006
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="b5gNqxB1S1yM7hjW"
+Content-Disposition: inline
 
-On 10/24/15 18:14, Trevor Woerner wrote:
-> Unfortunately the distinction between SoCs, boards,
-> MACHINEs, DEFAULTTUNEs, and DISTROs isn't as clear and as clean as one
-> would like.
+--b5gNqxB1S1yM7hjW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Oops! The distinction between these ideas is clear, what isn't clear is
-how to divide them up into layers (imho).
+On Sat, Oct 24, 2015 at 06:54:16PM +0000, Christopher Larson wrote:
+> Not likely to help. The problem is the filename length, which will be the
+> same whether it's a file or a symlink.
+> On Sat, Oct 24, 2015 at 10:53 AM Alejandro del Castillo <
+> alejandro.delcastillo@ni.com> wrote:
+>=20
+> >
+> >
+> > On 10/21/2015 02:49 AM, Ahsan, Noor wrote:
+> > > We are hitting this issue on another BSP
+> > >
+> > >
+> > file:_var_jenkins_workspace_ce-main_buildhost_SB64_buildtype_industrial=
+_machine_zedboard-zynq7-mel_build_zedboard-zynq7-mel_tmp_deploy_ipk_zedboar=
+d_zynq7_mel_kernel-module-lttng-ring-buffer-client-mmap-overwrite_2.6.2+git=
+0+7a88f8b506-r0.0_zedboard_zynq7_mel.ipk
+> > >
+> > > need its solution quickly
+> >
+> > If you are in need of a quick workaround, try setting:
+> >
+> > option cache_local_files 0
+> >
+> > on opkg.conf. This will make a copy of your ipk's instead of creating
+> > symlinks (haven't try it myself, but that's my understanding).
+> >
+> > Also, please open a bug report for opkg on
+> > https://bugzilla.yoctoproject.org to track the issue.
+> >
 
+I've just posted patches to the opkg-devel list which should fix this. I had
+intended to give them a bit more testing before I sent them but a quick fix=
+ is
+needed.
+
+Thanks,
+
+--=20
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--b5gNqxB1S1yM7hjW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJWK9nMAAoJEBwoJlo7UPQDA8sH/iriVOVLlt3Gj1MK0mLZ3X9I
+mfPjI3xhU6kTCgav+q0cfipIJq3kwPlIIRldhd8jNtDwKad2xlo67jaVHp190Z0S
+aBpK7mvs88LTOJx7ZMFT+q6N2iMFXrN83w0kglT52cnRaQHrjmYzHrnW9TM9bA0V
+yEeFRCslMAbndxY2gEX7h+WnAYYlziGgOQgoOrT8NozfnQEPOHtyFtp52wcBcw5a
+nnmBIYeFp642Sr1MJNksmGoVrW5uAArrfnHMk5VCZNLMdmTdolF8ZrQGpE9BCk7I
+NA+PpC77oiqSyb5MHSwfD9HBpTwNkDdj95k3wrFE8D/I4d7YKDnH3ttOd1tHdJI=
+=4P2Q
+-----END PGP SIGNATURE-----
+
+--b5gNqxB1S1yM7hjW--
