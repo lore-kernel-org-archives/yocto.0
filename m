@@ -1,62 +1,52 @@
-Return-Path: <erik.boto@pelagicore.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09012E00B94; Sun, 25 Oct 2015 12:05:53 -0700 (PDT)
+	id 468B0E00B8F; Sun, 25 Oct 2015 12:11:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B99D4E00B7F
-	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 12:05:49 -0700 (PDT)
-Received: by wicll6 with SMTP id ll6so87906924wic.0
-	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 12:05:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=pelagicore_com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding;
-	bh=9NzbykMLdKoog5faWsTYYQw1jvJRVRK5mCbTJ7z/X28=;
-	b=E/tPqK3o2stni6V2rXU5GG4Rs/ygkcuJtO/ImMWI01R2Pe5myhRdozqxiCiTBfu5SU
-	a4oE30jFYWug1SEebr5i2TyqyluCYimfSO4jZBAMDbkcOimOLelm0KJex0ysFRQiFYAy
-	HkMerIbGRuU8OJW5uL3D3mkvQTcGLOCEQ7xGotV20hMkVpXtQhw2i1yxY2cr+RILCDfy
-	xbbZJAxVWZOKJBKjtKRBLjkm7Q7p1YuUIJP9DKTvSB3rtpj7CcaiMElqn/4+EzhHZOmO
-	2XScIEmCJLWQP89BzfXIiLw2jnS+hCtwOi7DcAe523lC2lntlDLYoKRt4K3N9U4apDxG
-	do/w==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.181 listed in list.dnswl.org]
+Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
+	[209.85.212.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F0F4E00B7F
+	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 12:11:32 -0700 (PDT)
+Received: by wijp11 with SMTP id p11so138162245wij.0
+	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 12:11:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-type:content-transfer-encoding;
-	bh=9NzbykMLdKoog5faWsTYYQw1jvJRVRK5mCbTJ7z/X28=;
-	b=ajkXz8cdAqQoG+mlggkI8Q926m3pVtFJYkpYCGRXbyQsNItTq6yuuI8UKIyGAtIHj9
-	QQzr9WGrkVocd22jtMfM3cLJwv3FygW3z7HBi/jN9OjiPcDGkXMdHI0QYvl6z/V/hzy3
-	hmrK0oNfn7xWzVExcqV4QvVwGEcjmq2ssCJq+PiqaNJUyOtsWVv9xBqtkfyfh2rMx2QP
-	dJ/WGd66uU7xJWD4LxYDrFTnEa4vzRrBoX1FoyqQQA9xgRiOHZnaer+q+KPpBffJ5vsh
-	rzwIVVmNAThl4vOViAYOC/Q9lg78qshrojPiCjIMs4UYNaThll3Q5o0jrRxhVRJF5QnC
-	q0sQ==
-X-Gm-Message-State: ALoCoQmJGOXvnWqNdcdpODZDM+fhDUOSenRbJYdZRbWlN//I/WvjOu/7ha9MCDkZvwq+gxI0/USg
-X-Received: by 10.180.91.40 with SMTP id cb8mr12835583wib.22.1445799948592;
-	Sun, 25 Oct 2015 12:05:48 -0700 (PDT)
-Received: from erik-ubuntu.lan (h211n14-g-hn-a11.ias.bredband.telia.com.
-	[78.73.133.211]) by smtp.gmail.com with ESMTPSA id
-	ld5sm34872990wjc.18.2015.10.25.12.05.47
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 25 Oct 2015 12:05:47 -0700 (PDT)
-From: =?UTF-8?q?Erik=20Bot=C3=B6?= <erik.boto@pelagicore.com>
-To: yocto@yoctoproject.org
-Date: Sun, 25 Oct 2015 20:05:25 +0100
-Message-Id: <1445799925-3758-1-git-send-email-erik.boto@pelagicore.com>
-X-Mailer: git-send-email 2.1.4
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=BeWj6Co260pY42YPic+Mgjxku7C6/86dLvXFNO/M1Y0=;
+	b=hXvSHwJ/W+U8BW6hue4GpdJGQb4qCsdRWJvIODlQereLNkQe9LUerPHy94rSjZl4wZ
+	9Yx/uoxbbChLbsqzqC97KxuW0xizdyv5kOxFoKaVxtXcMrwb59TAGyHcIAEnUcVT+3Xf
+	Xa19URgsg3rDjD5igws7flePeydY45OZDcUVu0AD/hQxChsmR166JV/cK60DyIYfJXMc
+	Mj7pOosgDkVVj1uMoqRaYEmxuLU5TauTPPW04S/8kR45V5rywuNC9vO6kJYKpaeHsWgs
+	7t9WBnjVSngokaGecf4OFw1vxD+nWO24VYaCQtg1iRMjjf/YF5ezL2C22rbK46+ed4PN
+	Gndw==
+X-Gm-Message-State: ALoCoQmItVSfE1S2ONatKMvfIWeyr25jfKN+FzKoNxChQcr7RNeE6gq/AmXpV5w76eERKOhve+HB
+X-Received: by 10.194.91.143 with SMTP id ce15mr17951461wjb.93.1445800291900; 
+	Sun, 25 Oct 2015 12:11:31 -0700 (PDT)
+Received: from resin (dslb-088-067-185-162.088.067.pools.vodafone-ip.de.
+	[88.67.185.162]) by smtp.gmail.com with ESMTPSA id
+	p2sm34901121wjb.21.2015.10.25.12.11.30
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 25 Oct 2015 12:11:30 -0700 (PDT)
+Date: Sun, 25 Oct 2015 20:11:28 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20151025191128.GA11349@resin>
+References: <1445777072-13955-1-git-send-email-net147@gmail.com>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH] rpi-base.inc: Add rpi-ft5406-overlay to KERNEL_DEVICETREE
+In-Reply-To: <1445777072-13955-1-git-send-email-net147@gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] rpi-base.inc: add i2c-rtc overlay
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,30 +58,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Oct 2015 19:05:53 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 25 Oct 2015 19:11:37 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This is DTB overlay is needed for the official 7" touchscreen.
+On Sun, Oct 25, 2015 at 11:44:32PM +1100, Jonathan Liu wrote:
+> The update of the kernel in 10a5bace87c19e50014f838031e8f3db334b45b7 to
+> 3.18.16 missed the separate rtc overlays being replaced by the i2c-rtc
+> overlay.
+>
 
-Signed-off-by: Erik Botö <erik.boto@pelagicore.com>
----
- conf/machine/include/rpi-base.inc | 1 +
- 1 file changed, 1 insertion(+)
+Merged to master. Thanks.
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index 8caa5ba..97c7465 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -31,6 +31,7 @@ KERNEL_DEVICETREE ?= " \
-     overlays/iqaudio-dacplus-overlay.dtb \
-     overlays/lirc-rpi-overlay.dtb \
-     overlays/pps-gpio-overlay.dtb \
-+    overlays/rpi-ft5406-overlay.dtb \
-     overlays/w1-gpio-overlay.dtb \
-     overlays/w1-gpio-pullup-overlay.dtb \
-     "
--- 
-2.1.4
-
+--
+Andrei Gherzan
 
