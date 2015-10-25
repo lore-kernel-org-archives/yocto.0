@@ -1,6 +1,6 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EAA5E006EA; Sun, 25 Oct 2015 05:44:42 -0700 (PDT)
+	id 3C697E00B1E; Sun, 25 Oct 2015 07:58:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,35 +16,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F04A1E0050E
-	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 05:44:38 -0700 (PDT)
-Received: by pacfv9 with SMTP id fv9so167871433pac.3
-	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 05:44:37 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CBDAE009C5
+	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 07:57:56 -0700 (PDT)
+Received: by igbdj2 with SMTP id dj2so41937735igb.1
+	for <yocto@yoctoproject.org>; Sun, 25 Oct 2015 07:57:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=NRLENXGuGGxTQP6P8BkK42ThUXNAsTEgawJslCajZpg=;
-	b=yavgU+RGHaZfi+/Q4i6SZI/z/XaJeaYxv4FTsmLMCHtuiwo5cZAL8cF+o3Amf72BHJ
-	Os6A3gzh5mmyk7Wm+5eRpBqJlhPXzziA6Chz/mWxd4fpvknK45iopT3Nrt6DlcpS+2J7
-	WH0tCTzxmCIUft3vmadM0KDJxGBJMsooRswz3Hw6pGDyiXLV8rph3WizZzA+2CHmxGZA
-	uAo3nJqpzlP/iJMrGdVlN5H1E4yXdgLnDazTegFwAD8J9b4nxtpLgAD/W8z6p4Nj6/Ug
-	luEQX2mplRtXFlQw81pLbymAdyAmzvMi4OwW5a5bHJ+/YjWFjoD3C8l0o3AWxE+7nLil
-	yN/g==
-X-Received: by 10.66.167.101 with SMTP id zn5mr16652979pab.48.1445777077876;
-	Sun, 25 Oct 2015 05:44:37 -0700 (PDT)
-Received: from 60-242-179-244.static.tpgi.com.au
-	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id
-	ch3sm28555670pbb.18.2015.10.25.05.44.36
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 25 Oct 2015 05:44:36 -0700 (PDT)
-From: Jonathan Liu <net147@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 25 Oct 2015 23:44:32 +1100
-Message-Id: <1445777072-13955-1-git-send-email-net147@gmail.com>
-X-Mailer: git-send-email 2.6.1
-Subject: [meta-raspberrypi][PATCH] rpi-base.inc: add i2c-rtc overlay
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=y3GgWRxQx4R4auKOxmb1JEHQ7Y81Higob4YTPGup/ww=;
+	b=GYrkfxQEDjP2lyU8xf1MQBuwE+NO6mBx/1rr49LYrlxLa9lhjp78aI425sVcaiqy+3
+	0zr2OisqlLL5jpXaoVQZddkRY8NA2LafEebE8D7tUOu8wKX8YrTWz5tCaE3nDnP/FXiX
+	+NXUiHHhA6DLwK6MoyQKGRdZutwefrdKd0aw1Vlmg7gwVVBSNDIPxeRbg96KevttlLfK
+	H8rYs1XvSyuTus3N6ytUdS1qk+Zq1hxIsNt6yVy2h6Suy7HG3Gznc6C2AGsUDn3sRx05
+	qQzKE4mFWWiJiK9BTtc3uuRpQVFBIMKTcNsqMt8xcuEGfYoQFFzegC39FFHciGrt68qj
+	jELQ==
+X-Received: by 10.50.59.131 with SMTP id z3mr6155152igq.77.1445785075873; Sun,
+	25 Oct 2015 07:57:55 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.38.133 with HTTP; Sun, 25 Oct 2015 07:57:26 -0700 (PDT)
+In-Reply-To: <CAGF=AeRkNUv6zV=LyP6WvhSMd7BQgO8xD5jnyFop+RDf+G=v7Q@mail.gmail.com>
+References: <CAGF=AeRkNUv6zV=LyP6WvhSMd7BQgO8xD5jnyFop+RDf+G=v7Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 25 Oct 2015 07:57:26 -0700
+Message-ID: <CAMKF1spu3yuRDjogf7f4WXSjWAG1GX5qkuGXieqjMeg6ceJEbQ@mail.gmail.com>
+To: Robert D Kocisko <rkocisko@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Turn off X screen blanking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,30 +58,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Oct 2015 12:44:42 -0000
+X-List-Received-Date: Sun, 25 Oct 2015 14:58:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
-The update of the kernel in 10a5bace87c19e50014f838031e8f3db334b45b7 to
-3.18.16 missed the separate rtc overlays being replaced by the i2c-rtc
-overlay.
+On Fri, Oct 23, 2015 at 10:43 AM, Robert D Kocisko <rkocisko@gmail.com> wrote:
+> I am trying to disable screen blanking in X by default.  This bug talks
+> about doing the same thing but it is not currently completed:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7278
+>
+> I am using "dizzy" for compatibility with the meta-amd layer.  I found the
+> xserver-common recipe in meta-oe and I suppose I could add another patch
+> like 0015-xserver-common-disable-TCP-connections.patch, but I'd rather do it
+> using a .bbappend file in another layer.  My question is how I might go
+> about doing that using a bbappend file?
 
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
- conf/machine/include/rpi-base.inc | 1 +
- 1 file changed, 1 insertion(+)
+add something like
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index 8caa5ba..e097702 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -27,6 +27,7 @@ KERNEL_DEVICETREE ?= " \
-     overlays/hifiberry-dac-overlay.dtb \
-     overlays/hifiberry-dacplus-overlay.dtb \
-     overlays/hifiberry-digi-overlay.dtb \
-+    overlays/i2c-rtc-overlay.dtb \
-     overlays/iqaudio-dac-overlay.dtb \
-     overlays/iqaudio-dacplus-overlay.dtb \
-     overlays/lirc-rpi-overlay.dtb \
--- 
-2.6.1
+/usr/bin/xset -dpms s off s noblank s 0 0 s noexpose
 
+to rc.local or systemd service file whatever you are using.
+ensure that X server has initialised fully before running this and ofcource
+add xset to your image.
+
+>
+> Thanks,
+> Bob Kocisko
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
