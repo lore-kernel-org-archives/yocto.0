@@ -1,70 +1,59 @@
-Return-Path: <otavio.salvador@ossystems.com.br>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39E79E00B9A; Mon, 26 Oct 2015 04:28:56 -0700 (PDT)
+	id 39CFBE00B9A; Mon, 26 Oct 2015 04:32:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (net147[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F06EAE00B8F
-	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 04:28:52 -0700 (PDT)
-Received: by iodd200 with SMTP id d200so19446628iod.0
-	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 04:28:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ossystems_com_br.20150623.gappssmtp.com; s=20150623;
-	h=from:mime-version:in-reply-to:references:date:message-id:subject:to
-	:cc:content-type;
-	bh=dqHSwU1kU1JR4MeBiEUvo3ohPkDmJPX/WhZeK57fmyc=;
-	b=en85H8v+3dtENiKAGVbb9yXSasCOTuKQCEErrnpB1yTZR4LIXfb6MaMg+XrfC7JRyF
-	mZjGuQTCznlefKnwSZWKWKnQ4YQk9iAQVC/rg4bPlTTlMOfancZ/k8KJfxDDh7eVl+a6
-	DAn/tPW6/4I08CLjEc27qLFmNGMfLKit21XMqR0p57CpQ5QhUteccehivUOwRr6CZTnU
-	o3t2o+BqXKelIIAiwPuV6STazQPHsV1HiWsLk5SI0dC5JtlUjg9e3bkZ7S8W4KIBVo66
-	HL37Qd8dOTmPfeq6MF0Vn0OZiUj0nqQwHaKM7XoDdR6J8uKVciWsQKJ1Q1y64m1svptr
-	BdJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:mime-version:in-reply-to:references:date
-	:message-id:subject:to:cc:content-type;
-	bh=dqHSwU1kU1JR4MeBiEUvo3ohPkDmJPX/WhZeK57fmyc=;
-	b=j6XT0S5H1jQ8jkQGsmLSwKcIlSfXW8lXDqAxh2D1Zj9of59mSkajV6VyIxrEZLdisJ
-	uKs7OjRQ3LTMm8xy4crvBLz3rJ5lDPYKqOrRhLKn5YDQ+NmUfCg7yPioLyvzfo2UQgFV
-	UMeMUgJ047j6MrfjvEXfwoHNzWgWaWwiWP1IKiZtW7IMCNGD4DusyxQBgiax7f6aMFI0
-	XE3ikbsV9r6OENqv/GKWoWwkY3FMEdE4o6UQ06rNcTb6zufbUQL46Hh3cGjhBIo6k73y
-	qCxSTfWTXFA/X7Ko8zvlMoyu7670Eqh6m1JMfFQURHJYFXOPc4+2WVOhkCliMp9iZwji
-	cQTA==
-X-Gm-Message-State: ALoCoQlDZFv235VSUpJ/AUoE/c69q2j71LKXqsYWpZTgsFzkD58CeU5QtU59y47a6ehbk2FqZIGU
-X-Received: by 10.107.41.66 with SMTP id p63mr23534076iop.36.1445858931884;
-	Mon, 26 Oct 2015 04:28:51 -0700 (PDT)
-Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com.
-	[209.85.213.171]) by smtp.gmail.com with ESMTPSA id
-	b26sm9224997iod.40.2015.10.26.04.28.49 for <yocto@yoctoproject.org>
+Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
+	[209.85.220.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9465FE00B8F
+	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 04:31:56 -0700 (PDT)
+Received: by pasz6 with SMTP id z6so186283281pas.2
+	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 04:31:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-type:content-transfer-encoding;
+	bh=TLZno4eEVQhWNvy2IgjlKg7/dHIPrXqg3XVi71iAQ6I=;
+	b=hgkeU7Xo9zcjd9kvITPYE6Qzrhbz1gGWQiftsh2T1ET8lQjNUnZLXrDRCiKd/GQl6c
+	t7vydVLagp3S0JyiDnHcGVblxr2nWy5qXG46lbuNL4MT5HL7pbv8T1iennoFgc6fgtBu
+	J6f3ofm674qHKuoA/l9acgj+YWK6rgnoyvCC23hYky4jLvdpJpjV1Zmyf/YtpcB9qMFB
+	IC7fpy5DgxpfCZglbz//0W5oYNm+DPyng4rO/zl3KlT4nmC6iFsgegaJIq0J5wVrdPqd
+	v3duQurt5syTRUzL9gGTqnXn+MSgFgJ3jysdSWrXLktMfzBW6PipilVRfbtetElxYNZe
+	epQQ==
+X-Received: by 10.66.251.72 with SMTP id zi8mr15176479pac.67.1445859116381;
+	Mon, 26 Oct 2015 04:31:56 -0700 (PDT)
+Received: from [192.168.0.2] (60-242-179-244.static.tpgi.com.au.
+	[60.242.179.244]) by smtp.gmail.com with ESMTPSA id
+	rc5sm33489022pbc.95.2015.10.26.04.31.53
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 26 Oct 2015 04:28:50 -0700 (PDT)
-From: Otavio Salvador <otavio.salvador@ossystems.com.br>
-X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
-Received: by igbkq10 with SMTP id kq10so56028549igb.0
-	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 04:28:49 -0700 (PDT)
-MIME-Version: 1.0
-X-Received: by 10.50.60.37 with SMTP id e5mr18723042igr.46.1445858929418; Mon,
-	26 Oct 2015 04:28:49 -0700 (PDT)
-Received: by 10.36.218.7 with HTTP; Mon, 26 Oct 2015 04:28:49 -0700 (PDT)
-In-Reply-To: <562DE34F.2040905@gmail.com>
+	Mon, 26 Oct 2015 04:31:55 -0700 (PDT)
+To: Otavio Salvador <otavio.salvador@ossystems.com.br>
 References: <1445812988-6456-1-git-send-email-net147@gmail.com>
 	<5542134.NUiWrkt5lN@peggleto-mobl.ger.corp.intel.com>
 	<562DE34F.2040905@gmail.com>
-Date: Mon, 26 Oct 2015 09:28:49 -0200
-Message-ID: <CAP9ODKqqQVBUX9vc3ysrXQMAfZxNFqcws5Tg7qrVJcAA7eHx5w@mail.gmail.com>
-To: Jonathan Liu <net147@gmail.com>
+	<CAP9ODKqqQVBUX9vc3ysrXQMAfZxNFqcws5Tg7qrVJcAA7eHx5w@mail.gmail.com>
+From: Jonathan Liu <net147@gmail.com>
+Message-ID: <562E0F23.1040404@gmail.com>
+Date: Mon, 26 Oct 2015 22:31:47 +1100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAP9ODKqqQVBUX9vc3ysrXQMAfZxNFqcws5Tg7qrVJcAA7eHx5w@mail.gmail.com>
 Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
 	Otavio Salvador <otavio@ossystems.com.br>, yocto <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH v2] qtbase: enable Raspberry Pi support
@@ -79,25 +68,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Oct 2015 11:28:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 26 Oct 2015 11:32:01 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 26, 2015 at 6:24 AM, Jonathan Liu <net147@gmail.com> wrote:
-> On 26/10/2015 7:08 PM, Paul Eggleton wrote:
-> It would rebuild qtbase (and recipes depending on it) without Raspberry Pi
-> support for other machines.
-> I see similar machine-specific do_configure_prepend elsewhere (e.g.
-> https://github.com/Freescale/meta-fsl-arm/blob/master/qt5-layer/recipes-qt/qt5/qtbase_%25.bbappend).
+On 26/10/2015 10:28 PM, Otavio Salvador wrote:
+> On Mon, Oct 26, 2015 at 6:24 AM, Jonathan Liu <net147@gmail.com> wrote:
+>> On 26/10/2015 7:08 PM, Paul Eggleton wrote:
+>> It would rebuild qtbase (and recipes depending on it) without Raspberry Pi
+>> support for other machines.
+>> I see similar machine-specific do_configure_prepend elsewhere (e.g.
+>> https://github.com/Freescale/meta-fsl-arm/blob/master/qt5-layer/recipes-qt/qt5/qtbase_%25.bbappend).
+>>
+>> Otavio, any thoughts on a better way to handle this?
+> We handle this moving it to a SoC subarch and using a dynamic package
+> arch handler to put every package depending on it as a subarch as
+> well. Ideally we could split the QPA module and build it separated. No
+> clue if it is possible or not.
 >
-> Otavio, any thoughts on a better way to handle this?
+So for meta-fsl-arm, would only the qtbase-plugins package be using 
+machine-specific arch and the other qtbase packages be using 
+non-machine-specific arch?
+Or is it done on a per-recipe rather than per-package granularity?
 
-We handle this moving it to a SoC subarch and using a dynamic package
-arch handler to put every package depending on it as a subarch as
-well. Ideally we could split the QPA module and build it separated. No
-clue if it is possible or not.
-
--- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+Regards,
+Jonathan
 
