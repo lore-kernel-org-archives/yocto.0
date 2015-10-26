@@ -1,39 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Andrea.DiChiara@teseo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 270F2E0049B; Mon, 26 Oct 2015 08:00:09 -0700 (PDT)
+	id 55D5CE007C9; Mon, 26 Oct 2015 08:28:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.81.186.23 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 1884 seconds by postgrey-1.32 at yocto-www;
-	Mon, 26 Oct 2015 08:00:07 PDT
-Received: from mail5.wrs.com (unknown [64.129.254.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 818E4E0059B
-	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 08:00:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id t9QESesg019217
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 26 Oct 2015 07:28:40 -0700
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.248.2; Mon, 26 Oct 2015 07:28:39 -0700
-To: Yocto Project <yocto@yoctoproject.org>, Patches and discussions about the
-	oe-core layer <openembedded-core@lists.openembedded.org>,
-	<openembedded-devel@lists.openembedded.org>
-From: Mark Hatle <mark.hatle@windriver.com>
-X-Enigmail-Draft-Status: N1110
-Organization: Wind River Systems
-Message-ID: <562E3896.6080405@windriver.com>
-Date: Mon, 26 Oct 2015 09:28:38 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.3.0
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Mon, 26 Oct 2015 08:27:48 PDT
+Received: from mail.teseo.com (mail.teseo.com [195.81.186.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F855E0048C
+	for <yocto@yoctoproject.org>; Mon, 26 Oct 2015 08:27:48 -0700 (PDT)
+Received: from HAL09.TWPN09.NET (172.27.0.1) by mail.teseo.com (172.27.0.10)
+	with Microsoft SMTP Server (TLS) id 8.3.342.0; Mon, 26 Oct 2015 16:26:43
+	+0100
+Received: from [172.27.0.19] (172.27.0.19) by HAL09.TWPN09.NET (172.27.0.1)
+	with Microsoft SMTP Server id 8.3.342.0; Mon, 26 Oct 2015 16:26:43 +0100
+To: <yocto@yoctoproject.org>
+From: Andrea Di Chiara <andrea.dichiara@teseo.com>
+Message-ID: <562E4634.1090502@teseo.com>
+Date: Mon, 26 Oct 2015 16:26:44 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Prelink problems -- need help!
+Subject: i.mx6 initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,54 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Oct 2015 15:00:09 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 26 Oct 2015 15:28:14 -0000
+Content-Type: text/plain; charset="iso-8859-15"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-I'm cross posting this in an effort to ask for help for the cross-prelink
-project.  (If you are unaware of what the prelinker does, it goes through and
-adjusts the relocation addresses to predefined values in an attempt to speed up
-executable load times.  For embedded systems, this can be fairly critical in
-meeting boot and runtime load performance targets.)
+Hi,
+I need to create ad initramfs image for an i.MX6 board. does it exist a
+suitable recipe?
+core-image-minimal-initramfs doesn't seem to fit ARM boards. am i wrong?
 
-As some people might be aware, the upstream 'prelink' project that was
-maintained by Jakub Jelinek at Red Hat appears to have been abandoned.
+"initramfs-live-install" and "initramfs-live-install-efi" aren't
+compatible and bitbake fails. have I to remove them from PACKAGE_INSTALL?
+without them bitbake succeeds but the init procedure hangs on "Waiting
+for removable media...". Have you any hints?
 
-I've been the maintainer for the Yocto Project's 'prelink-cross' project for a
-few years, but my work has been dealing with compilation issues and other things
-that have to do with using the prelinker in a cross compilation environment.
+thank you for the attention
+Andrea
 
-This means that unfortunately I'm in a situation where I am having problems
-trying to fix the problems in the prelinker itself, but I am not an ELF expert.
- Currently the cross prelinker appears to be broken for pretty much every
-architecture and I need help trying to resolve these problems.
+Software Department
+software@teseo.com
 
-Issues I know of right now:
+---------------------------------------------------------------------------=
+----------------------------------
+TESEO spa            via Agnelli, 49              63023 FERMO (FM) ITALY
+Tel. +39 0734 628818   --    Fax. +39 0734 628816
 
-Introduction of RTYPE_CLASS_EXTERN_PROTECTED_DATA appears to be causing failures
-on ARM32, x86 and x86_64.
-
-Some possibly unrelated issue is causing various items to relocate incorrectly
-(IFUNCs perhaps) on ARMv7 builds.
-
-Power is no longer working properly, most likely due to an optimization in the
-way the PPC GOT table(s) are setup.
-
-Power64 hasn't been working properly for a while, possibly due to the switch to
-ELFv2.
-
-MIPS and MIPS64 also do not appear to be working, and I've not found a possible
-cause.
-
-As you can see, pretty much everything is currently broken and I'm struggling to
-find community people with the right skill sets to help me resolve the issues.
-
-The current state of my work in progress is available at:
-
-git://git.yoctoproject.org/prelink-cross
-
-branch cross_prelink_staging
-
-If you think you can help, please let me know.
---Mark
+Disclaimer: This electronic mail transmission may contain legally privilege=
+d and/or confidential information. Do not read this if you are not the pers=
+on(s) named. Any use, distribution, copying or disclosure by any other pers=
+on is strictly prohibited. If you receive this transmission by mistake dest=
+roy the original transmission and its attachments without reading or saving=
+ in any manner.
 
