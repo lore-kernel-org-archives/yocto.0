@@ -1,37 +1,43 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <kernel@tekno-soft.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7CE4E00B37; Wed, 28 Oct 2015 07:39:06 -0700 (PDT)
+	id 95A6CE0088C; Tue, 27 Oct 2015 01:39:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CD7BE00B2E
-	for <yocto@yoctoproject.org>; Wed, 28 Oct 2015 07:39:05 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 28 Oct 2015 07:38:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,210,1444719600"; d="scan'208";a="821485675"
-Received: from phealy1-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.3.26])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Oct 2015 07:38:43 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Juha Vuorivirta <jvp.vuorivirta@gmail.com>
-Date: Wed, 28 Oct 2015 14:38:41 +0000
-Message-ID: <3495332.tAIL4Rokgy@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
-In-Reply-To: <CAEpurxGQ9YK6x=6MNAvAM3UrhOzXAE1XQA49261tsTDnj_cSVQ@mail.gmail.com>
-References: <CAEpurxGQ9YK6x=6MNAvAM3UrhOzXAE1XQA49261tsTDnj_cSVQ@mail.gmail.com>
+X-Greylist: delayed 363 seconds by postgrey-1.32 at yocto-www;
+	Tue, 27 Oct 2015 01:39:40 PDT
+Received: from mail.tekno-soft.it (li153-180.members.linode.com
+	[109.74.206.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00253E0071C
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 01:39:40 -0700 (PDT)
+Received: from dragon.tekno-soft.it
+	(host142-53-static.94-94-b.business.telecomitalia.it [94.94.53.142])
+	(using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: robyf@tekno-soft.it)
+	by mail.tekno-soft.it (Postfix) with ESMTPSA id 162A617727
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 08:33:40 +0000 (UTC)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
+From: Roberto Fichera <kernel@tekno-soft.it>
+Organization: TeknoSOFT
+Message-ID: <562F36CD.5000307@tekno-soft.it>
+Date: Tue, 27 Oct 2015 09:33:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Set root password with SHA512?
+In-Reply-To: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
+X-Intuitive-System-MailScanner-Information: Please contact the ISP for more
+	information
+X-Intuitive-System-MailScanner-ID: 162A617727.AC100
+X-Intuitive-System-MailScanner: Found to be clean
+X-Intuitive-System-MailScanner-From: kernel@tekno-soft.it
+X-Mailman-Approved-At: Wed, 28 Oct 2015 08:19:42 -0700
+Subject: Re: [oe] OE/Yocto developer survey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +49,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Oct 2015 14:39:07 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 27 Oct 2015 08:39:42 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 28 October 2015 10:07:31 Juha Vuorivirta wrote:
-> I'm able to set the root password in /etc/shadow with adding
-> ROOTFS_POSTPROCESS_COMMAND to .bb file. It seems that only DES works
-> (yocto/oe-core etc. layers are pretty old though). Is it possible to enable
-> SHA512 hashing for root password?
-> Just replacing DES password with SHA512 is not enough, could not log in
-> even password hash is correct in /etc/shadow file. Noticed that DES is
-> default encryption method(in recipes-extended/shadow/...), how can I set it
-> to SHA512, or is it even possible with this older set up?
+On 10/26/2015 08:18 PM, Cliff Brake wrote:
+> Hi,
+>
+> I'd like to get some feedback on the following questions -- feel free
+> to respond to list, or directly to me, and I'll withhold your
+> name/company from any results.
+>
+> I would like to collect feedback until 2015-11-02, and will summarize
+> the results after that.
+>
+> My goal with this survey is to get a sense for best practices and what
+> is most commonly used among Yocto/OE developers so I can better advise
+> clients using Yocto/OE.  Hopefully this will also generate some
+> interesting discussions.
+>
+> How long have you been using OE?  _____
+>
+> How do you use OE/Yocto?
+> [ X ] product development
+> [  ] hobby/research/education/yocto core developer, etc
+>
+> What distro do you use?
+> [ X ] Poky
+> [  ] Angstrom
+> [  ] nodistro or custom
+>
+> How do you organize multiple git repos?
+> [ X ] Git submodules
+> [  ] Repo
+> [  ] Other
+>
+> What packaging system?
+> [  ] OPKG
+> [ X ] RPM
+> [  ] Other
+>
+> What GUI toolkits?
+> [ X ] Qt
+> [ X ] Gtk
+> [  ] EFL
+> [ X ] HTML5/JS
+> [  ] Other
+>
+> What init system?
+> [  ] systemd
+> [  ] sysvinit
+> [ X ] busybox init
+> [  ] Other
+>
+> What libc?
+> [ X ] glibc
+> [  ] uclibc
+> [  ] musl
+> [  ] Other
+>
+> How do you develop custom applications?
+> [  ] application-SDK
+> [  ] devshell
+> [ X ] develop on PC, test on target
+> [  ] Other
+>
+> What language do you primarily use for custom applications?
+> [ X ] C
+> [ X ] C++
+> [ X ] Python
+> [  ] Javascript
+> [  ] Lua
+> [  ] Other
+>
+> What do you use for Continuous Integration?
+> [ X ] Buildbot
+> [  ] Jenkins
+> [  ] Other
+>
+> Do you use any any of the tooling projects
+> (https://www.yoctoproject.org/tools-resources/projects) such as ADT,
+> Hob, Toaster, etc?
 
-Not sure if this is relevant, but since you mention you're on an old release I 
-recall fixing something relating to this a while back:
+bitbake
 
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=68fbbd1008a76d78c7cef141dc06696d27fe2d0c
+>
+> _______________________
+>
+> Reasons or explanations are appreciated, and please feel free to
+> include additional choices/information you think are relevant.
+>
+> Thanks,
+> Cliff
 
-The first release to have this fix in it was 1.6 (daisy).
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
