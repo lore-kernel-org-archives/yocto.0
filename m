@@ -1,32 +1,58 @@
-Return-Path: <thshin@telechips.com>
+Return-Path: <stephanoc@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A238FE009D9; Tue, 27 Oct 2015 07:30:53 -0700 (PDT)
+	id 22AF0E009B8; Tue, 27 Oct 2015 09:36:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE,T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (stephanoc[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from telegweb.telechips.com (unknown [219.240.43.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11B10E00985
-	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 07:30:48 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFFD9E00708
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 09:36:08 -0700 (PDT)
+Received: by pasz6 with SMTP id z6so227030156pas.2
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 09:36:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=qKc7p+M3C+oaamlj3Z6SoTL3zAdfj0TcRFxfHndL0C4=;
+	b=BCF3inp8p4zLMIvZU7DuWNu2pcyICIMZpLUB1fxIxGg8kt8nMB1+FbLVGy/q59wfC6
+	l8wyd2cbCjfxlDdngQaRk9FrzuxXRKxgHwnbYx2y1gFZakBeeQVXhSuYyD2UaWU/8pPf
+	ty5zX8LYNK5PDxGSd/tOOx7tDdVf6yZORoCxAHqeWjVi72OEOMtUKtZbDFHGcd33dMdx
+	XFrgggL4COfkppHFMEXQLPN2NmoISTACMZriIjYIkmlgWMvFCIziYOkuNM6MxxZX9hs5
+	80Asg0vNXAuf7IgD2id2/dRYJlJ9SI23c4QshLvq0RsPEeiCk2C81G8M3s2SxZFleoQL
+	/MOw==
+X-Received: by 10.68.165.194 with SMTP id za2mr29077236pbb.72.1445963767864;
+	Tue, 27 Oct 2015 09:36:07 -0700 (PDT)
+Received: from mail.spox.systems
+	(ec2-52-11-37-43.us-west-2.compute.amazonaws.com. [52.11.37.43])
+	by smtp.gmail.com with ESMTPSA id
+	im9sm40579488pbc.1.2015.10.27.09.36.07
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 27 Oct 2015 09:36:07 -0700 (PDT)
+Date: Tue, 27 Oct 2015 16:35:43 +0000
+From: Stephano Cetola <stephanoc@gmail.com>
+To: openembedded-devel@lists.openembedded.org
+Message-ID: <20151027163542.GA21537@mail.spox.systems>
+References: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
 MIME-Version: 1.0
-X-MimeOLE: Produced By Microsoft Exchange V6.5
-Date: Tue, 27 Oct 2015 23:29:40 +0900
-Message-ID: <F4F751F96C54D346898D4C77E196E3DB0F45FDE3@telegweb.telechips.com>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: Re: OE/Yocto developer survey
-Thread-Index: AdEQw+pMKZnRBVSySaScmrHw6H1OyA==
-From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
-	<thshin@telechips.com>
-To: <yocto@yoctoproject.org>
-Subject: Re: OE/Yocto developer survey
+In-Reply-To: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] OE/Yocto developer survey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,421 +64,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Oct 2015 14:30:53 -0000
-Content-class: urn:content-classes:message
-Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01D110C4.6CCAB174"
+X-List-Received-Date: Tue, 27 Oct 2015 16:36:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On 10/26, Cliff Brake wrote:
+> How long have you been using OE?  
+
+~3 years
+
+> How do you use OE/Yocto?
+ [ X ] product development
+ [ X ] hobby/research/education/yocto core developer, etc
+ 
+> What distro do you use?
+ [   ] Poky
+ [   ] Angstrom
+ [ X ] nodistro or custom (Based on Poky)
+ 
+> How do you organize multiple git repos?
+ [   ] Git submodules
+ [ X ] Repo
+ [ X ] Other (Customer Python scripts)
+ 
+> What packaging system?
+ [   ] OPKG
+ [   ] RPM
+ [ X ] Other (IPK)
+ 
+> What GUI toolkits?
+ [ X ] Qt
+ [ X ] Gtk
+ [   ] EFL
+ [ X ] HTML5/JS
+ [   ] Other
+ 
+ Our clients develop in QML.
+
+> What init system?
+ [   ] systemd
+ [ X ] sysvinit
+ [ X ] busybox init
+ [   ] Other
+ 
+> What libc?
+ [ X ] glibc
+ [   ] uclibc
+ [   ] musl
+ [   ] Other
+ 
+> How do you develop custom applications?
+ [   ] application-SDK
+ [ X ] devshell
+ [ X ] develop on PC, test on target
+ [   ] Other
+ 
+> What language do you primarily use for custom applications?
+ [ X ] C
+ [ X ] C++
+ [   ] Python
+ [   ] Javascript
+ [   ] Lua
+ [   ] Other
+ 
+ Qt for C++
+
+> What do you use for Continuous Integration?
+ [   ] Buildbot
+ [ X ] Jenkins
+ [   ] Other
+
+Tried buildbot but it required too much customization for our small
+team.
+
+> Do you use any any of the tooling projects
+> (https://www.yoctoproject.org/tools-resources/projects) such as ADT,
+> Hob, Toaster, etc?
+ 
+ No
 
-------_=_NextPart_001_01D110C4.6CCAB174
-Content-Type: text/plain;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
-
-How long have you been using OE?  4 years
-
-=20
-
-How do you use OE/Yocto?
-
-[ X ] product development
-
-[ X ] hobby/research/education/yocto core developer, etc
-
-=20
-
-What distro do you use?
-
-[  ] Poky
-
-[  ] Angstrom
-
-[ X ] customize Poky
-
-=20
-
-How do you organize multiple git repos?
-
-[  ] Git submodules
-
-[ X ] Repo
-
-[  ] Other
-
-=20
-
-What packaging system?
-
-[  ] OPKG
-
-[ X ] RPM
-
-[  ] Other
-
-=20
-
-What GUI toolkits?
-
-[ X ] Qt
-
-[  ] Gtk
-
-[  ] EFL
-
-[  ] HTML5/JS
-
-[  ] Other
-
-=20
-
-What init system?
-
-[ X ] systemd
-
-[ X ] sysvinit
-
-[  ] busybox init
-
-[  ] Other
-
-=20
-
-What libc?
-
-[ X ] glibc
-
-[  ] uclibc
-
-[  ] musl
-
-[  ] Other
-
-=20
-
-How do you develop custom applications?
-
-[ X ] application-SDK
-
-[  ] devshell
-
-[ X ] develop on PC, test on target
-
-[  ] Other
-
-=20
-
-What language do you primarily use for custom applications?
-
-[ X ] C
-
-[ X ] C++
-
-[  ] Python
-
-[  ] Javascript
-
-[  ] Lua
-
-[  ] Other
-
-=20
-
-What do you use for Continuous Integration?
-
-[ X ] Buildbot
-
-[  ] Jenkins
-
-[  ] Other
-
-=20
-
-Do you use any any of the tooling projects
-
-(https://www.yoctoproject.org/tools-resources/projects) such as ADT, =
-Hob, Toaster, etc?
-
-=20
-
-ADT
-
-=20
-
-=20
-
-Best, regards
-
-Wily Taekhyun Shin
-
-=20
-
-=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-Wily Taekhyun Shin
-
-Research Engineer
-R&D Center
-Telechips Inc.
-Tel : + 82-2-3443-6792(Ext.390)
-
-Fax : + 82-2-6424-7793=20
-
-Mobile : + 82-10-4376-5530
-
-E-mail : thshin@telechips.com =
-<blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked::=
-blocked::blocked::mailto:ksjeon@telechips.com>=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-
-=20
-
-
-------_=_NextPart_001_01D110C4.6CCAB174
-Content-Type: text/html;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dks_c_5601-1987"><meta name=3DGenerator content=3D"Microsoft =
-Word 12 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B1=BC=B8=B2";
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"=B1=DB=C0=DA=B8=B8 Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"=B1=DB=C0=DA=B8=B8 Char";
-	mso-style-priority:99;
-	mso-style-link:=B1=DB=C0=DA=B8=B8;
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DKO link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoPlainText><span =
-lang=3DEN-US>How long have you been using OE?&nbsp; 4 =
-years<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>How do you use OE/Yocto?<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ X ] product =
-development<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] hobby/research/education/yocto core developer, =
-etc<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>What distro do you use?<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ &nbsp;] =
-Poky<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Angstrom<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ X ] customize =
-Poky<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>How do you organize multiple git =
-repos?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Git submodules<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ X ] =
-Repo<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>What packaging =
-system?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] OPKG<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ X ] =
-RPM<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>What GUI =
-toolkits?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] Qt<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Gtk<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-EFL<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] HTML5/JS<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-Other<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>What init system?<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[ X ] =
-systemd<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] sysvinit<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] busybox =
-init<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>What =
-libc?<o:p></o:p></span></p><p class=3DMsoPlainText><span lang=3DEN-US>[ =
-X ] glibc<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] uclibc<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-musl<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>How do you develop custom =
-applications?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] application-SDK<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-devshell<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] develop on PC, test on target<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-Other<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>What language do you primarily use for custom =
-applications?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] C<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] C++<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-Python<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Javascript<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-Lua<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>What do you use for Continuous =
-Integration?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[ X ] Buildbot<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>[&nbsp; ] =
-Jenkins<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>[&nbsp; ] Other<o:p></o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoPlainText><span lang=3DEN-US>Do you use any any of the =
-tooling projects<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>(<a =
-href=3D"https://www.yoctoproject.org/tools-resources/projects">https://ww=
-w.yoctoproject.org/tools-resources/projects</a>) such as ADT, Hob, =
-Toaster, etc?<o:p></o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoPlainText><span =
-lang=3DEN-US>ADT<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
-align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Best, regards<o:p></o:p></span></p><p =
-class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'color:black'>Wily Taekhyun Shin<o:p></o:p></span></p><p =
-class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
-/span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
-/span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br></span><b><span =
-lang=3DEN-US style=3D'font-family:"Arial","sans-serif";color:blue'>Wily =
-Taekhyun Shin<o:p></o:p></span></b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>Research =
-Engineer<br>R&amp;D Center<br></span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'>Telechips =
-Inc.<br></span></b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Tel : + =
-82-2-3443-6792(Ext.390)</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'><o:p></o:p></span><=
-/b></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Fax : + =
-82-2-6424-7793 </span><span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Mobile : + =
-82-10-4376-5530<o:p></o:p></span></p><p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;text-autospace:ideograph-n=
-umeric;word-break:keep-all'><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>E-mail : =
-</span><span lang=3DEN-US =
-style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><a =
-href=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::bl=
-ocked::blocked::blocked::mailto:ksjeon@telechips.com" target=3D"_blank" =
-title=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::b=
-locked::blocked::blocked::blocked::mailto:ksjeon@telechips.com&#10;blocke=
-d::blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked=
-::blocked::mailto:ksjeon@telechips.com&#10;blocked::b"><b><span =
-style=3D'font-family:"Arial","sans-serif";color:blue'>thshin@telechips.co=
-m</span></b></a><br></span><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-
-------_=_NextPart_001_01D110C4.6CCAB174--
