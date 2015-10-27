@@ -1,33 +1,55 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC47DE008AE; Tue, 27 Oct 2015 04:00:04 -0700 (PDT)
+	id 66632E009C5; Tue, 27 Oct 2015 05:36:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DRUGS_MUSCLE,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.182 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.2 DRUGS_MUSCLE Refers to a muscle relaxant
-Received: from mail5.wrs.com (unknown [64.129.254.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86452E008AE
-	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 04:00:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id t9RAOu5B014262
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 03:24:56 -0700
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 27 Oct 2015 03:24:55 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 27 Oct 2015 06:24:54 -0400
-Message-ID: <1445941494-241638-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.9.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yk0-f182.google.com (mail-yk0-f182.google.com
+	[209.85.160.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 211B7E00927
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 05:36:19 -0700 (PDT)
+Received: by ykft191 with SMTP id t191so33614388ykf.0
+	for <yocto@yoctoproject.org>; Tue, 27 Oct 2015 05:36:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=M+fVrI3EJHtSkEk4mTrW2stOK9bnPR2M27MIPnhLsr4=;
+	b=ONpOa4Ng+1HaMbKSMwA+6/ZNVEzsNUJGN83lxNoVRlHv72uLNi6ZI5Zb2s+9o2fTls
+	GfmlBIYBR7O6k5gU8PjyHCeYEBrZRi91QZ0sUnlOu6YGRu0bkxRLMxhviD2gIDx1P+h5
+	xfIUIxmxzhx3g2bOleHyH5clp0VCANIfDcjoNImM7Wwdn78iAkMA6wwNCD0noMMWwekS
+	WwtYF2rx7w4GNav5lekdQ9dCFaujn2wCJ5K3iIprsnCGSeaPXRw1LACbj6xYAHYHNNPb
+	fKnf4LTra6dRo3GFkbrY1vd6Zr4GCW2/tY2Zc6YMu5QLxjmdSd3mzWwZibynQdmghved
+	Lmog==
 MIME-Version: 1.0
-Subject: [PATCH][meta-selinux] refpolicy-targeted: rebase patches
+X-Received: by 10.129.135.3 with SMTP id x3mr29106590ywf.131.1445949379187;
+	Tue, 27 Oct 2015 05:36:19 -0700 (PDT)
+Received: by 10.129.155.134 with HTTP; Tue, 27 Oct 2015 05:36:19 -0700 (PDT)
+In-Reply-To: <CAGMdoFn5tQ7TO07WpqHi0sR7kOKpNsmi=_MOnsNf=4J47_7mJQ@mail.gmail.com>
+References: <CAGMdoFmGGd6QWhRWWhYQYajjmhVYugZh3zga0WNXbwN+vNWSBQ@mail.gmail.com>
+	<3581319.5ZKXkvWLxe@peggleto-mobl.ger.corp.intel.com>
+	<CAGMdoFn5tQ7TO07WpqHi0sR7kOKpNsmi=_MOnsNf=4J47_7mJQ@mail.gmail.com>
+Date: Tue, 27 Oct 2015 10:36:19 -0200
+Message-ID: <CAF3SDA4v=-43Ege2hxyc-61RJXA8U2yqQKD2VQmy5D016W7USA@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: Edward Wingate <edwingate8@gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: kernel defconfig configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,239 +61,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Oct 2015 11:00:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 27 Oct 2015 12:36:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+I suggest that you do an "bitbake -fc configure YOUR_KERNEL" and
+inspect the .config WORKDIR folder. Is that yours .config?
 
-rebase patches against latest git sources:
+Cheers,
 
-  * refpolicy-fix-optional-issue-on-sysadm-module.patch
-  * refpolicy-unconfined_u-default-user.patch
+2015-10-27 2:46 GMT-02:00 Edward Wingate <edwingate8@gmail.com>:
+> On Mon, Oct 26, 2015 at 1:03 AM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+>> Kernel modules are packaged separately and typically not included in the image
+>> by default; if you wish to include them you have two choices:
+>>
+>> 1) Install the kernel-module-<modulename> package(s) individually for the
+>> module(s) you wish to use
+>>
+>> 2) Install the kernel-modules package to bring in all packages for modules you
+>> enabled in the kernel configuration.
+>
+> Thanks Paul,
+>
+> "kernel-modules" worked to include all the modules. But I also figured
+> out I was using "kernel-module-ftdi_sio" instead of the correct
+> "kernel-module-ftdi-sio" (and because I was using
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS, it didn't complain.)
+>
+> Now to go back to the original problem of why my defconfig is being overridden.
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- ...olicy-fix-optional-issue-on-sysadm-module.patch | 47 ++++++++++----------
- .../refpolicy-unconfined_u-default-user.patch      | 50 ++++++++++++++--------
- 2 files changed, 56 insertions(+), 41 deletions(-)
 
-diff --git a/recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
-index 44dff5e..2dd8291 100644
---- a/recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
-+++ b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
-@@ -10,41 +10,42 @@ So, we could make the minimum policy without sysadm module.
- Upstream-Status: pending
- 
- Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
- ---
-  policy/modules/system/init.te       | 14 ++++++++------
-  policy/modules/system/locallogin.te |  4 +++-
-  2 files changed, 11 insertions(+), 7 deletions(-)
- 
- diff --git a/policy/modules/system/init.te b/policy/modules/system/init.te
--index 4a88fa1..4548a7e 100644
-+index c058f0c..d710fb0 100644
- --- a/policy/modules/system/init.te
- +++ b/policy/modules/system/init.te
--@@ -188,12 +188,14 @@ ifdef(`distro_redhat',`
-- 	fs_tmpfs_filetrans(init_t, initctl_t, fifo_file)
-+@@ -292,12 +292,14 @@ ifdef(`init_systemd',`
-+ 		modutils_domtrans_insmod(init_t)
-+ 	')
-+ ',`
-+-	tunable_policy(`init_upstart',`
-+-		corecmd_shell_domtrans(init_t, initrc_t)
-+-	',`
-+-		# Run the shell in the sysadm role for single-user mode.
-+-		# causes problems with upstart
-+-		sysadm_shell_domtrans(init_t)
-++	optional_policy(`
-++		tunable_policy(`init_upstart',`
-++			corecmd_shell_domtrans(init_t, initrc_t)
-++		',`
-++			# Run the shell in the sysadm role for single-user mode.
-++			# causes problems with upstart
-++			sysadm_shell_domtrans(init_t)
-++		')
-+ 	')
-  ')
-  
---tunable_policy(`init_upstart',`
---	corecmd_shell_domtrans(init_t, initrc_t)
---',`
---	# Run the shell in the sysadm role for single-user mode.
---	# causes problems with upstart
---	sysadm_shell_domtrans(init_t)
--+# Run the shell in the sysadm role for single-user mode.
--+# causes problems with upstart
--+optional_policy(`
--+	tunable_policy(`init_upstart',`
--+		corecmd_shell_domtrans(init_t, initrc_t)
--+	',`
--+		sysadm_shell_domtrans(init_t)
--+	')
-- ')
-- 
-- optional_policy(`
- diff --git a/policy/modules/system/locallogin.te b/policy/modules/system/locallogin.te
--index f5a5de7..d942f05 100644
-+index 0781eae..ea2493a 100644
- --- a/policy/modules/system/locallogin.te
- +++ b/policy/modules/system/locallogin.te
--@@ -239,7 +239,9 @@ userdom_use_unpriv_users_fds(sulogin_t)
-+@@ -246,7 +246,9 @@ userdom_use_unpriv_users_fds(sulogin_t)
-  userdom_search_user_home_dirs(sulogin_t)
-  userdom_use_user_ptys(sulogin_t)
-  
-@@ -56,5 +57,5 @@ index f5a5de7..d942f05 100644
-  # suse and debian do not use pam with sulogin...
-  ifdef(`distro_suse', `define(`sulogin_no_pam')')
- -- 
--1.7.11.7
-+1.9.1
- 
-diff --git a/recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
-index 51edcd2..ba14851 100644
---- a/recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
-+++ b/recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
-@@ -1,4 +1,4 @@
--refpolicy: make unconfined_u the default selinux user
-+Subject: [PATCH] refpolicy: make unconfined_u the default selinux user
- 
- For targeted policy type, we define unconfined_u as the default selinux
- user for root and normal users, so users could login in and run most
-@@ -7,18 +7,21 @@ commands and services on unconfined domains.
- Also add rules for users to run init scripts directly, instead of via
- run_init.
- 
--Upstream-Status: Inappropriate [configuration] 
-+Upstream-Status: Inappropriate [configuration]
- 
- Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
- Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
- ---
-- config/appconfig-mcs/seusers        |    4 +--
-- policy/modules/roles/sysadm.te      |    1 
-- policy/modules/system/init.if       |   47 +++++++++++++++++++++++++++++-------
-- policy/modules/system/unconfined.te |    7 +++++
-- policy/users                        |   16 ++++--------
-+ config/appconfig-mcs/seusers        |  4 ++--
-+ policy/modules/roles/sysadm.te      |  1 +
-+ policy/modules/system/init.if       | 47 ++++++++++++++++++++++++++++++-------
-+ policy/modules/system/unconfined.te |  7 ++++++
-+ policy/users                        | 16 +++++--------
-  5 files changed, 55 insertions(+), 20 deletions(-)
- 
-+diff --git a/config/appconfig-mcs/seusers b/config/appconfig-mcs/seusers
-+index dc5f1e4..4428da8 100644
- --- a/config/appconfig-mcs/seusers
- +++ b/config/appconfig-mcs/seusers
- @@ -1,3 +1,3 @@
-@@ -27,6 +30,8 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
- -__default__:user_u:s0
- +root:unconfined_u:s0-mcs_systemhigh
- +__default__:unconfined_u:s0
-+diff --git a/policy/modules/roles/sysadm.te b/policy/modules/roles/sysadm.te
-+index 005afd8..4699d6a 100644
- --- a/policy/modules/roles/sysadm.te
- +++ b/policy/modules/roles/sysadm.te
- @@ -34,6 +34,7 @@ ubac_file_exempt(sysadm_t)
-@@ -34,12 +39,14 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  
-  init_exec(sysadm_t)
- +init_script_role_transition(sysadm_r)
-- 
-- # Add/remove user home directories
-- userdom_manage_user_home_dirs(sysadm_t)
-+ init_get_system_status(sysadm_t)
-+ init_disable(sysadm_t)
-+ init_enable(sysadm_t)
-+diff --git a/policy/modules/system/init.if b/policy/modules/system/init.if
-+index b68dfc1..35b4141 100644
- --- a/policy/modules/system/init.if
- +++ b/policy/modules/system/init.if
--@@ -825,11 +825,12 @@ interface(`init_script_file_entry_type',
-+@@ -1234,11 +1234,12 @@ interface(`init_script_file_entry_type',`
-  #
-  interface(`init_spec_domtrans_script',`
-  	gen_require(`
-@@ -54,7 +61,7 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  
-  	ifdef(`distro_gentoo',`
-  		gen_require(`
--@@ -840,11 +841,11 @@ interface(`init_spec_domtrans_script',`
-+@@ -1249,11 +1250,11 @@ interface(`init_spec_domtrans_script',`
-  	')
-  
-  	ifdef(`enable_mcs',`
-@@ -68,7 +75,7 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  	')
-  ')
-  
--@@ -860,18 +861,19 @@ interface(`init_spec_domtrans_script',`
-+@@ -1269,18 +1270,19 @@ interface(`init_spec_domtrans_script',`
-  #
-  interface(`init_domtrans_script',`
-  	gen_require(`
-@@ -92,9 +99,9 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  	')
-  ')
-  
--@@ -1837,3 +1839,32 @@ interface(`init_udp_recvfrom_all_daemons
-- 	')
-- 	corenet_udp_recvfrom_labeled($1, daemon)
-+@@ -2504,3 +2506,32 @@ interface(`init_reload_all_units',`
-+ 
-+ 	allow $1 systemdunit:service reload;
-  ')
- +
- +########################################
-@@ -125,6 +132,8 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
- +	role_transition $1 init_script_file_type system_r;
- +')
- +
-+diff --git a/policy/modules/system/unconfined.te b/policy/modules/system/unconfined.te
-+index ad23fce..99cab31 100644
- --- a/policy/modules/system/unconfined.te
- +++ b/policy/modules/system/unconfined.te
- @@ -20,6 +20,11 @@ type unconfined_execmem_t;
-@@ -139,7 +148,7 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  
-  ########################################
-  #
--@@ -50,6 +55,8 @@ userdom_user_home_dir_filetrans_user_hom
-+@@ -50,6 +55,8 @@ userdom_user_home_dir_filetrans_user_home_content(unconfined_t, { dir file lnk_f
-  ifdef(`direct_sysadm_daemon',`
-          optional_policy(`
-                  init_run_daemon(unconfined_t, unconfined_r)
-@@ -148,6 +157,8 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-          ')
-  ',`
-          ifdef(`distro_gentoo',`
-+diff --git a/policy/users b/policy/users
-+index ca20375..ac1ca6c 100644
- --- a/policy/users
- +++ b/policy/users
- @@ -15,7 +15,7 @@
-@@ -159,7 +170,7 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-  
-  #
-  # user_u is a generic user identity for Linux users who have no
--@@ -25,14 +25,14 @@ gen_user(system_u,, system_r, s0, s0 - m
-+@@ -25,14 +25,14 @@ gen_user(system_u,, system_r, s0, s0 - mls_systemhigh, mcs_allcats)
-  # permit any access to such users, then remove this entry.
-  #
-  gen_user(user_u, user, user_r, s0, s0)
-@@ -188,3 +199,6 @@ Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
- -	gen_user(root, sysadm, sysadm_r staff_r ifdef(`enable_mls',`secadm_r auditadm_r'), s0, s0 - mls_systemhigh, mcs_allcats)
- -')
- +gen_user(root, user, sysadm_r staff_r ifdef(`enable_mls',`secadm_r auditadm_r') unconfined_r system_r, s0, s0 - mls_systemhigh, mcs_allcats)
-+-- 
-+1.9.1
-+
+
 -- 
-1.9.1
-
+"Do or do not. There is no try"
+  Yoda Master
 
