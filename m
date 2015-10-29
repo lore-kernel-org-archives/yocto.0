@@ -1,52 +1,32 @@
-Return-Path: <aguirre.nicolas@gmail.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DAF5E007FE; Thu, 29 Oct 2015 10:10:02 -0700 (PDT)
+	id 2B1BFE007FE; Thu, 29 Oct 2015 11:32:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (aguirre.nicolas[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A408E00748
-	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 10:09:57 -0700 (PDT)
-Received: by vkgy127 with SMTP id y127so31229254vkg.0
-	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 10:09:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=cOWpRSqkjz+jCRvkPZzJ6cKvqdzCHkxVD3QzyaeTfwI=;
-	b=nIx7Lhh0x8L5MrFWdr/XZ8ZGll9TKZxXswP5SUjUJtm4AT12Ex4nMkvKGvrA0vJ0j3
-	ujWGfyeVNaJ0UiR5wXYlzYwgEELIBpAK/QjYkkqikNNkIxsKZlPT/DrXFNbiNNIpSNAb
-	Q65MBkiTWG9ypq+4uEV+btFe7skceZFkxjetDKPLa87K/eHWs4ii1YIJupc6HAast/NP
-	uPjm4hWsGlu9e9Y4Rlv1NlKZrljF1jd5KOxOZUOP2Gf/pa0A+YRIfowFzBeY+bi8qrnf
-	FCeDkUr0pzJrH/bqOoiZ9nouaHjr4aeHBt13Y7C2Ks1os57D7duJ8hIsxjI7VwepE+y6
-	s9Lg==
-X-Received: by 10.31.33.75 with SMTP id h72mr2062346vkh.144.1446138596300;
-	Thu, 29 Oct 2015 10:09:56 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.31.5.205 with HTTP; Thu, 29 Oct 2015 10:09:36 -0700 (PDT)
-In-Reply-To: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
-References: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
-From: Nicolas Aguirre <aguirre.nicolas@gmail.com>
-Date: Thu, 29 Oct 2015 18:09:36 +0100
-Message-ID: <CAHTvVMf52FECRo1SPeuSPmK6sUA_ycAysOCTNy+CbZkx1ObXdw@mail.gmail.com>
-To: openembedded-devel@lists.openembedded.org
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [oe] OE/Yocto developer survey
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F181EE00748
+	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 11:32:09 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga102.fm.intel.com with ESMTP; 29 Oct 2015 11:31:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,215,1444719600"; d="scan'208";a="806774193"
+Received: from mlopezva-mobl2.zpn.intel.com (HELO localhost.localdomain)
+	([10.219.16.97])
+	by orsmga001.jf.intel.com with ESMTP; 29 Oct 2015 11:31:01 -0700
+From: mariano.lopez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Thu, 29 Oct 2015 12:30:59 -0600
+Message-Id: <1446143459-28681-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [yocto-autobuilder][PATCH] README: Add information for connection managers and tap interfaces
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,75 +38,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Oct 2015 17:10:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 29 Oct 2015 18:32:16 -0000
 
-2015-10-26 20:18 GMT+01:00 Cliff Brake <cbrake@bec-systems.com>:
-> Hi,
->
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
 
-How long have you been using OE? 5 years
+Lately there are a lot of ping failures in errors.yoctoproject.org,
+these seems to be related with the tap interfaces not being managed
+correctly.
 
-How do you use OE/Yocto?
-[x] product development
-[x] hobby/research/education/yocto core developer, etc
+This just add some information to avoid the connection manager to
+manage the tap interfaces created for the yocto autobuilders.
 
-What distro do you use?
-[  ] Poky
-[  ] Angstrom
-[x] nodistro or custom
+Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
+---
+ README | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-How do you organize multiple git repos?
-[  ] Git submodules
-[  ] Repo
-[x] Other
-
-What packaging system?
-[x] OPKG
-[  ] RPM
-[  ] Other
-
-What GUI toolkits?
-[x] Qt
-[  ] Gtk
-[x] EFL
-[  ] HTML5/JS
-[  ] Other
-
-What init system?
-[x] systemd
-[  ] sysvinit
-[  ] busybox init
-[  ] Other
-
-What libc?
-[x] glibc
-[  ] uclibc
-[  ] musl
-[  ] Other
-
-How do you develop custom applications?
-[x] application-SDK
-[  ] devshell
-[  ] develop on PC, test on target
-[  ] Other
-
-What language do you primarily use for custom applications?
-[x] C
-[x] C++
-[  ] Python
-[  ] Javascript
-[  ] Lua
-[  ] Other
-
-What do you use for Continuous Integration?
-[  ] Buildbot
-[x] Jenkins
-[  ] Other
-
+diff --git a/README b/README
+index 7edb66c..bba3f76 100644
+--- a/README
++++ b/README
+@@ -13,7 +13,9 @@ you will need to:
+ 
+ 1. Install tight-vnc client and server.
+ 
+-2. Set up tap devs by running poky/scripts/runqemu-gen-tapdevs
++2. Set up tap devs by running poky/scripts/runqemu-gen-tapdevs.
++   You MUST disable interface control on these new tap interfaces;
++   some services include NetworkManager, connman, or wicd.
+ 
+ 3. Add "xterm*vt100*geometry: 80x50+10+10" to .Xdefaults
+ 
 -- 
-Nicolas Aguirre
-Mail: aguirre.nicolas@gmail.com
-Web: http://www.calaos.fr
-Blog: http://dev.enlightenment.fr/~captainigloo/
+1.9.1
+
 
