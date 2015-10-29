@@ -1,43 +1,52 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <aguirre.nicolas@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE155E00A8C; Thu, 29 Oct 2015 06:25:26 -0700 (PDT)
+	id 6DAF5E007FE; Thu, 29 Oct 2015 10:10:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (aguirre.nicolas[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 886 seconds by postgrey-1.32 at yocto-www;
-	Thu, 29 Oct 2015 06:25:24 PDT
-Received: from mail5.wrs.com (unknown [64.129.254.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4705E008AE
-	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 06:25:24 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id t9TDAamw031670
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Thu, 29 Oct 2015 06:10:36 -0700
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Thu, 29 Oct 2015 06:10:36 -0700
-To: Edward Wingate <edwingate8@gmail.com>, "Daniel." <danielhilst@gmail.com>
-References: <CAGMdoFmGGd6QWhRWWhYQYajjmhVYugZh3zga0WNXbwN+vNWSBQ@mail.gmail.com>
-	<3581319.5ZKXkvWLxe@peggleto-mobl.ger.corp.intel.com>
-	<CAGMdoFn5tQ7TO07WpqHi0sR7kOKpNsmi=_MOnsNf=4J47_7mJQ@mail.gmail.com>
-	<CAF3SDA4v=-43Ege2hxyc-61RJXA8U2yqQKD2VQmy5D016W7USA@mail.gmail.com>
-	<CAGMdoFnz_0sw1KDvH2Drx-k_qpF87SEmMtq7sNLXTNRJMcT9uw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <56321AB5.1050108@windriver.com>
-Date: Thu, 29 Oct 2015 09:10:13 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A408E00748
+	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 10:09:57 -0700 (PDT)
+Received: by vkgy127 with SMTP id y127so31229254vkg.0
+	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 10:09:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=cOWpRSqkjz+jCRvkPZzJ6cKvqdzCHkxVD3QzyaeTfwI=;
+	b=nIx7Lhh0x8L5MrFWdr/XZ8ZGll9TKZxXswP5SUjUJtm4AT12Ex4nMkvKGvrA0vJ0j3
+	ujWGfyeVNaJ0UiR5wXYlzYwgEELIBpAK/QjYkkqikNNkIxsKZlPT/DrXFNbiNNIpSNAb
+	Q65MBkiTWG9ypq+4uEV+btFe7skceZFkxjetDKPLa87K/eHWs4ii1YIJupc6HAast/NP
+	uPjm4hWsGlu9e9Y4Rlv1NlKZrljF1jd5KOxOZUOP2Gf/pa0A+YRIfowFzBeY+bi8qrnf
+	FCeDkUr0pzJrH/bqOoiZ9nouaHjr4aeHBt13Y7C2Ks1os57D7duJ8hIsxjI7VwepE+y6
+	s9Lg==
+X-Received: by 10.31.33.75 with SMTP id h72mr2062346vkh.144.1446138596300;
+	Thu, 29 Oct 2015 10:09:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGMdoFnz_0sw1KDvH2Drx-k_qpF87SEmMtq7sNLXTNRJMcT9uw@mail.gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: kernel defconfig configuration
+Received: by 10.31.5.205 with HTTP; Thu, 29 Oct 2015 10:09:36 -0700 (PDT)
+In-Reply-To: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
+References: <CAOd_LFwgMqDUBKzxjs50G+=F0TgFg8ZuoCBX6jqs6p8fLFQibg@mail.gmail.com>
+From: Nicolas Aguirre <aguirre.nicolas@gmail.com>
+Date: Thu, 29 Oct 2015 18:09:36 +0100
+Message-ID: <CAHTvVMf52FECRo1SPeuSPmK6sUA_ycAysOCTNy+CbZkx1ObXdw@mail.gmail.com>
+To: openembedded-devel@lists.openembedded.org
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] OE/Yocto developer survey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,37 +58,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Oct 2015 13:25:26 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 29 Oct 2015 17:10:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 15-10-29 03:22 AM, Edward Wingate wrote:
-> On Tue, Oct 27, 2015 at 5:36 AM, Daniel. <danielhilst@gmail.com> wrote:
->> I suggest that you do an "bitbake -fc configure YOUR_KERNEL" and
->> inspect the .config WORKDIR folder. Is that yours .config?
->
-> I'm not sure if this is the WORKDIR I'm suppose to be looking at, but
-> after I ran that bitbake command, I found my defconfig in
-> build/tmp/work/wandboard-dual-poky-linux-gnueabi/linux-wandboard/3.14.28-r0
->
-> It is also in .config.old in
-> build/tmp/work/wandboard-dual-poky-linux-gnueabi/linux-wandboard/3.14.28-r0/build
->
-> The .config in in
-> build/tmp/work/wandboard-dual-poky-linux-gnueabi/linux-wandboard/3.14.28-r0/build
-> is not mine.  My .config seems to have been renamed to .config.old and
-> replaced with this one.
-
-That's the kernel's configuration subsystem at play, it still has to
-process the the defconfig (which was placed as .config before starting
-the kernel build). Invalid options are removed, others are selected
-by Kconfigs, etc. So what you end up with is the processed .config and
-your old one in .config.old.
-
-Cheers,
-
-Bruce
-
+2015-10-26 20:18 GMT+01:00 Cliff Brake <cbrake@bec-systems.com>:
+> Hi,
 >
 
+How long have you been using OE? 5 years
+
+How do you use OE/Yocto?
+[x] product development
+[x] hobby/research/education/yocto core developer, etc
+
+What distro do you use?
+[  ] Poky
+[  ] Angstrom
+[x] nodistro or custom
+
+How do you organize multiple git repos?
+[  ] Git submodules
+[  ] Repo
+[x] Other
+
+What packaging system?
+[x] OPKG
+[  ] RPM
+[  ] Other
+
+What GUI toolkits?
+[x] Qt
+[  ] Gtk
+[x] EFL
+[  ] HTML5/JS
+[  ] Other
+
+What init system?
+[x] systemd
+[  ] sysvinit
+[  ] busybox init
+[  ] Other
+
+What libc?
+[x] glibc
+[  ] uclibc
+[  ] musl
+[  ] Other
+
+How do you develop custom applications?
+[x] application-SDK
+[  ] devshell
+[  ] develop on PC, test on target
+[  ] Other
+
+What language do you primarily use for custom applications?
+[x] C
+[x] C++
+[  ] Python
+[  ] Javascript
+[  ] Lua
+[  ] Other
+
+What do you use for Continuous Integration?
+[  ] Buildbot
+[x] Jenkins
+[  ] Other
+
+-- 
+Nicolas Aguirre
+Mail: aguirre.nicolas@gmail.com
+Web: http://www.calaos.fr
+Blog: http://dev.enlightenment.fr/~captainigloo/
 
