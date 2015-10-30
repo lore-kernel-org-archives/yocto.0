@@ -1,34 +1,41 @@
-Return-Path: <alejandro.franco@linux.intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87EBAE00AD5; Thu, 29 Oct 2015 17:06:29 -0700 (PDT)
+	id AEC99E00AE9; Thu, 29 Oct 2015 20:51:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A010E00A26
-	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 17:06:25 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 Oct 2015 17:05:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,216,1444719600"; d="scan'208";a="838425860"
-Received: from afshjern.zpn.intel.com ([10.219.5.147])
-	by orsmga002.jf.intel.com with ESMTP; 29 Oct 2015 17:05:59 -0700
-From: Alex Franco <alejandro.franco@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 29 Oct 2015 18:06:39 -0600
-Message-Id: <1446163599-25855-3-git-send-email-alejandro.franco@linux.intel.com>
-X-Mailer: git-send-email 2.6.1
-In-Reply-To: <1446163599-25855-1-git-send-email-alejandro.franco@linux.intel.com>
-References: <1446163599-25855-1-git-send-email-alejandro.franco@linux.intel.com>
-Cc: paul.eggleton@intel.com
-Subject: [PATCH 2/2] [layerindex-web] views.py: layer in recipe search
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46F3EE00AD1
+	for <yocto@yoctoproject.org>; Thu, 29 Oct 2015 20:51:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id t9U3owXQ012137
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 29 Oct 2015 20:50:58 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.227) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Thu, 29 Oct 2015 20:50:58 -0700
+To: Yocto Project <yocto@yoctoproject.org>, Patches and discussions about the
+	oe-core layer <openembedded-core@lists.openembedded.org>,
+	<openembedded-devel@lists.openembedded.org>
+References: <562E3896.6080405@windriver.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+X-Enigmail-Draft-Status: N1110
+Organization: Wind River Systems
+Message-ID: <5632E921.1030405@windriver.com>
+Date: Thu, 29 Oct 2015 22:50:57 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <562E3896.6080405@windriver.com>
+Subject: Re: Prelink status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +47,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Oct 2015 00:06:29 -0000
+X-List-Received-Date: Fri, 30 Oct 2015 03:51:04 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Take layer name into account when searching for recipes. This is
-accomplished by adding a layer name to the simplesearch.getquery
-call in the recipe search view.
+I just wanted to update everyone on where we are at.  (I won't bore anyone with
+any followups past this.)
 
-[YOCTO #6618]
+IA32 (32-bit and 64-bit):
 
-Signed-off-by: Alex Franco <alejandro.franco@linux.intel.com>
----
- layerindex/views.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We believe the problems are resolved.  The error was a combination of prior
+patch merge issues and a bug in glibc 2.22.  A patch for the glibc 2.22 has
+already been sent to the GLIBC community and I have a change ready for OE.
 
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 8be3311..c85940b 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -379,7 +379,7 @@ class RecipeSearchView(ListView):
-         query_string = self.request.GET.get('q', '')
-         init_qs = Recipe.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
-         if query_string.strip():
--            entry_query = simplesearch.get_query(query_string, ['pn', 'summary', 'description', 'filename'])
-+            entry_query = simplesearch.get_query(query_string, ['pn', 'summary', 'description', 'filename', 'layerbranch__layer__name'])
-             qs = init_qs.filter(entry_query).order_by('pn', 'layerbranch__layer')
-         else:
-             if 'q' in self.request.GET:
--- 
-2.6.1
+
+ARM:
+
+The same glibc 2.22 bug affected ARM as well as IA32.
+
+Also it appears that a patch that went in last fall to enable IFUNC on arm
+somehow had a hunk dropped from it.  Now that we've identified and restored this
+hunk, it appears to be working again.
+
+
+MIPS32/MIPS64 (o32, n32, n64):
+
+A new section was added, SHT_MIPS_ABIFLAGS, this was confusing the prelinker
+causing it to refused to continue.  A patch has gone in to instruct the
+prelinker how to handle this new section (ignore it).
+
+
+Power (32-bit):
+
+We are still investigating changes that have happened in the past year+ to
+binutils and glibc for Power systems.
+
+Power (64-bit):
+
+It is likely this will not work anytime soon.  The ABI has changed and is no
+longer compatible with the previous methods of prelinking.  This is fairly low
+priority to be fixed, as it's been broken for a while now.
+
+
+If anyone has any expertise on Power 32-bit or 64-bit ELF, I'm still looking for
+help there to get these issues resolved.
+
+--Mark
+
+On 10/26/15 9:28 AM, Mark Hatle wrote:
+> I'm cross posting this in an effort to ask for help for the cross-prelink
+> project.  (If you are unaware of what the prelinker does, it goes through and
+> adjusts the relocation addresses to predefined values in an attempt to speed up
+> executable load times.  For embedded systems, this can be fairly critical in
+> meeting boot and runtime load performance targets.)
+> 
+> As some people might be aware, the upstream 'prelink' project that was
+> maintained by Jakub Jelinek at Red Hat appears to have been abandoned.
+> 
+> I've been the maintainer for the Yocto Project's 'prelink-cross' project for a
+> few years, but my work has been dealing with compilation issues and other things
+> that have to do with using the prelinker in a cross compilation environment.
+> 
+> This means that unfortunately I'm in a situation where I am having problems
+> trying to fix the problems in the prelinker itself, but I am not an ELF expert.
+>  Currently the cross prelinker appears to be broken for pretty much every
+> architecture and I need help trying to resolve these problems.
+> 
+> Issues I know of right now:
+> 
+> Introduction of RTYPE_CLASS_EXTERN_PROTECTED_DATA appears to be causing failures
+> on ARM32, x86 and x86_64.
+> 
+> Some possibly unrelated issue is causing various items to relocate incorrectly
+> (IFUNCs perhaps) on ARMv7 builds.
+> 
+> Power is no longer working properly, most likely due to an optimization in the
+> way the PPC GOT table(s) are setup.
+> 
+> Power64 hasn't been working properly for a while, possibly due to the switch to
+> ELFv2.
+> 
+> MIPS and MIPS64 also do not appear to be working, and I've not found a possible
+> cause.
+> 
+> As you can see, pretty much everything is currently broken and I'm struggling to
+> find community people with the right skill sets to help me resolve the issues.
+> 
+> The current state of my work in progress is available at:
+> 
+> git://git.yoctoproject.org/prelink-cross
+> 
+> branch cross_prelink_staging
+> 
+> If you think you can help, please let me know.
+> --Mark
+> 
 
 
