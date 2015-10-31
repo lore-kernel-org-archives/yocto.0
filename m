@@ -1,17 +1,17 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2535BE00B88; Fri, 30 Oct 2015 17:39:50 -0700 (PDT)
+	id 05AAAE00B88; Fri, 30 Oct 2015 17:53:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	URIBL_JP_SURBL autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.48 listed in list.dnswl.org]
+	*      [209.85.220.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,41 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3B1AE00B5D
-	for <yocto@yoctoproject.org>; Fri, 30 Oct 2015 17:39:45 -0700 (PDT)
-Received: by pasz6 with SMTP id z6so88228484pas.2
-	for <yocto@yoctoproject.org>; Fri, 30 Oct 2015 17:39:44 -0700 (PDT)
+	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
+	*      [URIs: gherzan.ro]
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D93A2E00B5D
+	for <yocto@yoctoproject.org>; Fri, 30 Oct 2015 17:52:56 -0700 (PDT)
+Received: by padhk11 with SMTP id hk11so88611137pad.1
+	for <yocto@yoctoproject.org>; Fri, 30 Oct 2015 17:52:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=a7czA5bMl4kmQmf4OqPB+aHBPxOe7C0q+oMHmXbUE1c=;
-	b=f43q1r+MSdC1Hahki0mps43Io6cR24/5czushR9DErDzQEqFpVSzwfnz5biiPFUZAc
-	cYD0S75b3/FPL0UVMo018QqhyBuzylNi+tl8HSU9hQGnB51Pr2OzV7nFBi127suYPZWC
-	mOPt2AAjnreQgm/efuxk7gTGzX9b3TV1sMjvmaIXLV2WnuvjH53gru20yanfrGYuBHzR
-	uZ7fm53q8nC95vZgcTNcGxjRynAaj/kBE7dMkzKUWKZekQYDMx2f+S5hGNpBDXpCpRwa
-	taY3xjjWR/zi2g9VfGP/fMZgkyYgYEoYo65FTtzPxr9WhnSPRPjs23mVcMY+Db0syU7H
-	Bb4g==
-X-Received: by 10.66.157.36 with SMTP id wj4mr11991666pab.36.1446251984693;
-	Fri, 30 Oct 2015 17:39:44 -0700 (PDT)
+	bh=8V2h9ZJzuGrZ4ocTfC2+S7IdSygju6cJ3LaL46h9O5g=;
+	b=u2fcwKir1fBz+u0ZHziD1Lcgy/MPB6hf0i7WZBHqzVudpVnfxQI18MIVlob7RToMeN
+	iu9jUedm+IAst6nSy62TbLI5oZwbzEORy8aloPhjwYlT6gMA5HU2/yveHnYhW7m/cRqw
+	BP9bQui39JHEeqDMVkMWpR8LDvVp1lmkJt4df/+ia3Ow1y5ZOsGvuV9wfSQJEyGoGX0D
+	hlCZJbEduQngcpi5px71qXXIxcIMQ8ABNljeAfDN8uekPwJ0CpK+AL8mQ2lzKH9Djw4A
+	ZbcHWd61zfn9VnwbBjiVSIeeR4ZlL/KtO0W06QJ3MKH5JjlA+qP/6u0pPiDHoJZ+btVH
+	MoSQ==
+X-Received: by 10.68.65.67 with SMTP id v3mr12112106pbs.69.1446252776126;
+	Fri, 30 Oct 2015 17:52:56 -0700 (PDT)
 Received: from ?IPv6:2601:641:c000:1d0:9139:22be:56a:125d?
 	([2601:641:c000:1d0:9139:22be:56a:125d])
 	by smtp.gmail.com with ESMTPSA id
-	db8sm10375450pad.43.2015.10.30.17.39.43
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 30 Oct 2015 17:39:44 -0700 (PDT)
+	lo9sm10451668pab.19.2015.10.30.17.52.54
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 30 Oct 2015 17:52:55 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.1 \(3096.5\))
 X-Pgp-Agent: GPGMail 2.6b2
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <alpine.LFD.2.20.1510300734560.24819@localhost>
-Date: Fri, 30 Oct 2015 17:39:41 -0700
-Message-Id: <5217F08A-8EC2-442E-8503-C2AAC59C1DA7@gmail.com>
-References: <alpine.LFD.2.20.1510300734560.24819@localhost>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+In-Reply-To: <20151024201300.GG4459@resin>
+Date: Fri, 30 Oct 2015 17:52:52 -0700
+Message-Id: <45191C4C-00D7-484A-AFEF-D7DBFD2908DB@gmail.com>
+References: <CAK18fxHMv0LR1y58wzRZHEEmy-mwbMRHKTbqh9KR56NeEB98Cg@mail.gmail.com>
+	<CAHTvVMc7DBOLGvOU7X5YuO+O6FKSEaXW0aUsBd_VHsKQrEhqcg@mail.gmail.com>
+	<20151024201300.GG4459@resin>
+To: Andrei Gherzan <andrei@gherzan.ro>
 X-Mailer: Apple Mail (2.3096.5)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: "bitbake meta-toolchain", QA Issue, library in wrong location
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-chip] Yocto on the 9$ computer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,106 +69,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Oct 2015 00:39:50 -0000
-X-Groupsio-MsgNum: 27105
+X-List-Received-Date: Sat, 31 Oct 2015 00:53:02 -0000
+X-Groupsio-MsgNum: 27106
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_FAAA1DE2-C42C-4E66-B63E-8EB68FF2D441";
+	boundary="Apple-Mail=_81B427FD-9B7A-4FD5-BB8A-B8364964B994";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_FAAA1DE2-C42C-4E66-B63E-8EB68FF2D441
+--Apple-Mail=_81B427FD-9B7A-4FD5-BB8A-B8364964B994
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
+Andrei
 
-> On Oct 30, 2015, at 4:36 AM, Robert P. J. Day <rpjday@crashcourse.ca> =
-wrote:
->=20
->=20
->  goofing around, did a "bitbake meta-toolchain" for my BBB
-> configuration and, toward the end, got:
->=20
-> WARNING: QA Issue: gcc-cross-canadian-arm-dbg: found library in wrong
-> location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/.debug/libcc1.so.0.0.0
-> gcc-cross-canadian-arm-dbg: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/.debug/libcc1plugin.so.0.0.0
-> gcc-cross-canadian-arm-dbg: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/.debug/liblto_plugin.so.0.0.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1.so.0.0.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1.so
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/liblto_plugin.so.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1plugin.so.0.0.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1plugin.so.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/liblto_plugin.so.0.0.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1.so.0
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/liblto_plugin.so
-> gcc-cross-canadian-arm: found library in wrong location:
-> =
-/opt/poky/2.0/sysroots/x86_64-pokysdk-linux/usr/libexec/arm-poky-linux-gnu=
-eabi/gcc/arm-poky-linux-gnueabi/5.2.0/libcc1plugin.so
-> [libdir]
-> WARNING: QA Issue: nativesdk-qemu rdepends on nativesdk-libbz2, but it
-> isn't a build dependency? [build-deps]
->=20
->  is the above anything i need be concerned about? it's still baking
-> so i haven't had a chance to test it yet.
+good work.
 
-I think it should be ok. For cross canadian may be this check should be =
-disabled.
+> On Oct 24, 2015, at 1:13 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+>=20
+> On Sat, Oct 24, 2015 at 09:58:42PM +0200, Nicolas Aguirre wrote:
+>> 2015-10-24 19:26 GMT+02:00 Andrei Gherzan <andrei@gherzan.ro>:
+>>> Hi all,
+>>>=20
+>>=20
+>> Hi Andrei,
+>>=20
+>>> Have a C.H.I.P. 9$ computer? It works with Yocto now.
+>>>=20
+>>> =
+http://layers.openembedded.org/layerindex/branch/master/layer/meta-chip/
+>>>=20
+>> Good job.
+>> IMO it make sense to add C.H.I.P support in meta-sunxi, don't you =
+think ?
+>>=20
+>> https://github.com/linux-sunxi/meta-sunxi
+>>=20
+>=20
+> Well. Temporary it is a separate layer. And this is mainly because of =
+the
+> overhead you need for flashing the board. So I do see a benefit in =
+keeping it
+> separately. We will see in time.
+
+what does board flashing has to do with layer infrastructure ?
+when creating a new layer all we should think that it should make it =
+easy for end user
+to use the ecosystem and reduce confusion. That also might mean that you =
+may have different layers
+for chips coming from  same SOC vendor but it is contextual, e.g. if you =
+are using same
+u-boot and kernel trees as rest of sunxi then you better align it in =
+sunxi layer e.g.
 
 >=20
-> rday
+> Thanks for feedback.
 >=20
 > --
->=20
-> =
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Robert P. J. Day                                 Ottawa, Ontario, =
-CANADA
->                        http://crashcourse.ca
->=20
-> Twitter:                                       =
-http://twitter.com/rpjday
-> LinkedIn:                               =
-http://ca.linkedin.com/in/rpjday
-> =
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
+> Andrei Gherzan
 > --
 > _______________________________________________
 > yocto mailing list
@@ -172,7 +133,7 @@ http://ca.linkedin.com/in/rpjday
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_FAAA1DE2-C42C-4E66-B63E-8EB68FF2D441
+--Apple-Mail=_81B427FD-9B7A-4FD5-BB8A-B8364964B994
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -183,9 +144,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlY0DdEACgkQuwUzVZGdMxS2SACfUG1lDnTNda9rXDZZAbsAPP8M
-+9UAniINu/JcPLXfze+JWQT1U7zlCfBc
-=NOa7
+iEYEARECAAYFAlY0EOgACgkQuwUzVZGdMxQr9ACfRZMLfdz8kDUCOhzo3zycy1A+
+Kr8AnRUN2/WrLwCPnD4OFtXZyqeiZI6/
+=REcU
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_FAAA1DE2-C42C-4E66-B63E-8EB68FF2D441--
+--Apple-Mail=_81B427FD-9B7A-4FD5-BB8A-B8364964B994--
