@@ -1,49 +1,56 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <k4230r6@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D324E00BA4; Sat, 31 Oct 2015 14:19:27 -0700 (PDT)
+	id E3688E00B8F; Sun,  1 Nov 2015 01:16:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.53 listed in list.dnswl.org]
+	mail provider *      (k4230r6[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f53.google.com (mail-lf0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4475E00B9C
-	for <yocto@yoctoproject.org>; Sat, 31 Oct 2015 14:19:21 -0700 (PDT)
-Received: by lffz202 with SMTP id z202so48290428lff.3
-	for <yocto@yoctoproject.org>; Sat, 31 Oct 2015 14:19:20 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.178 listed in list.dnswl.org]
+Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
+	[209.85.212.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4FAAE00803
+	for <yocto@yoctoproject.org>; Sun,  1 Nov 2015 01:16:48 -0800 (PST)
+Received: by wicll6 with SMTP id ll6so33521157wic.0
+	for <yocto@yoctoproject.org>; Sun, 01 Nov 2015 01:16:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=bofUUX7mQ19kbrN03mu5FPXAeSloT6FOlmSFP1sAfk8=;
-	b=bI/z+XOKJzT49hUfeV1WS4sBYCR4mQsm3f4Otn1wo9CpPUuRXx3faSaolJgoI+if+V
-	KrdPe3x+rg20I4MWD1Fdbb4Yk8/Bba6YTn2noUgH/tsJlt8EPHKZOp4QE379GoDEhU3A
-	xhxMxkA3odKio5i9sGsW5DC4/a8xHQs7ZCUGRvek7uK7S23kBWrBEqs74r05p2F0skgD
-	d2GELGTlrHEUoRq4GNnbYAqt2fc3ln0kQqr+/WkguXouWUsreWvy+7YZ/x/bnO6nVxw3
-	wpCZplPJqojHh/zjN4+T9bYMJBWsBtIlXhZcKlRpr00PU66WJv2biEnrP+xqNuVlYqkk
-	DUbw==
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=ze4AFs5jDTrmfKZ0lFcEz9CZHLiEe73ZfwZOAQ3YjjU=;
+	b=sF/Zgs2dA1OPf/9s3dAJvcjGh0V9iVekxJLDzzY5mzdqlhvl2W/DuCyYp4pMxOSYnb
+	BANYtaD3FF792/qZz1O1gXwaQR0yujTT5Ksq+X1xhuqV5FAP58kYvj569B6XtJImz7I5
+	YURY2i/WC84rl6htbycHbnupkwMR1AIRZDfFsOIF7tukQCmOuZEo4NJxvv7qgavmZTIl
+	i62FxcIzUND+xLV1sMlQSk4PDSZJ539ZgGbH9PnPhmhhLSsfgKNkPbJCyArKmyZqGW6X
+	vM+c70fikouqnTlBdJkdHJyIhm+SzcVF6SWURx4hTLks2Rm0CBkEGa+7HjRgHVOkcb9I
+	JUjg==
+X-Received: by 10.194.71.16 with SMTP id q16mr16720318wju.49.1446369407548;
+	Sun, 01 Nov 2015 01:16:47 -0800 (PST)
+Received: from [192.168.23.113]
+	(HSI-KBW-46-223-219-101.hsi.kabel-badenwuerttemberg.de.
+	[46.223.219.101]) by smtp.googlemail.com with ESMTPSA id
+	c1sm16099873wjf.19.2015.11.01.01.16.46
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 01 Nov 2015 01:16:47 -0800 (PST)
+Message-ID: <5635D87E.3070504@gmail.com>
+Date: Sun, 01 Nov 2015 10:16:46 +0100
+From: Christian Ege <k4230r6@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
 MIME-Version: 1.0
-X-Received: by 10.25.146.12 with SMTP id u12mr4447133lfd.50.1446326360448;
-	Sat, 31 Oct 2015 14:19:20 -0700 (PDT)
-Received: by 10.25.218.5 with HTTP; Sat, 31 Oct 2015 14:19:20 -0700 (PDT)
-Date: Sat, 31 Oct 2015 21:19:20 +0000
-Message-ID: <CABatt_ysDd2bjd_CVpXWvCy6JjAQZR=NgXMTRb1MPFGQn7w1Uw@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
-To: yocto@yoctoproject.org
-Subject: populate_sdk and debian packages problem
+To: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
+Subject: Yocto on the UDOO Neo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,62 +62,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Oct 2015 21:19:27 -0000
-Content-Type: multipart/alternative; boundary=001a114023d6f1a81205236d1836
-
---001a114023d6f1a81205236d1836
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 01 Nov 2015 09:16:53 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 Hi,
 
-I've just moved everything to fido and everything builds fine.  One of the
-reasons for moving to Fido was to use the built toolchain and create an SDK
-using populate_sdk but it is failing with the following message:
-ERROR: Unable to install packages. Command
-'/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/sysroots/x86_64-linux/usr/bin/apt-get
-install --force-yes --allow-unauthenticated nativesdk-packagegroup-sdk-host
-packagegroup-cross-canadian-am43-devboard-aquila' returned 100:
-Reading package lists...
-Building dependency tree...
-Reading state information...
-W: Unable to read
-/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/work/am43_devboard_aquila-oe-linux-gnueabi/bia-image/1.0-r0/apt-sdk/preferences.d/
-- DirectoryExists (2: No such file or directory)
-E: Unable to locate package nativesdk-packagegroup-sdk-host
+if you have participated in the UDOO Neo Kickstarter campaign and
+received your UDOO Neo you can try my meta-fsl-arm-extra fork with
+UDOO Neo support
 
-I checked the nativesdk-packagegroup-sdk-host build and it's empty.
+https://github.com/graugans/meta-fsl-arm-extra
 
-After a bit of searching I found that a similar problem exists in Daisy and
-it was down to debian packages which I am using so I chaged to use the
-default IPK and the error message disappears.
+My changes are in branch fido.
 
-Is this a regression? or are Debian packages not supported for SDK?
+I'll prepare patches to meta-fsl-arm-extra when I have done more
+testing.
 
-Many Thanks,
-Martin.
+In my branch there is also support for udooquad but those are fairly
+untested because I do not have one.
 
---001a114023d6f1a81205236d1836
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+regards,
+Christian
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I&#39;ve just mo=
-ved everything to fido and everything builds fine.=C2=A0 One of the reasons=
- for moving to Fido was to use the built toolchain and create an SDK using =
-populate_sdk but it is failing with the following message:<br>ERROR: Unable=
- to install packages. Command &#39;/home/martin/ws_poweroasis/build/am43-de=
-vboard-aquila/bia-tmp-glibc/sysroots/x86_64-linux/usr/bin/apt-get=C2=A0 ins=
-tall --force-yes --allow-unauthenticated nativesdk-packagegroup-sdk-host pa=
-ckagegroup-cross-canadian-am43-devboard-aquila&#39; returned 100:<br>Readin=
-g package lists...<br>Building dependency tree...<br>Reading state informat=
-ion...<br>W: Unable to read /home/martin/ws_poweroasis/build/am43-devboard-=
-aquila/bia-tmp-glibc/work/am43_devboard_aquila-oe-linux-gnueabi/bia-image/1=
-.0-r0/apt-sdk/preferences.d/ - DirectoryExists (2: No such file or director=
-y)<br>E: Unable to locate package nativesdk-packagegroup-sdk-host<br><br></=
-div>I checked the nativesdk-packagegroup-sdk-host build and it&#39;s empty.=
-<br><br></div>After a bit of searching I found that a similar problem exist=
-s in Daisy and it was down to debian packages which I am using so I chaged =
-to use the default IPK and the error message disappears.<br><br></div><div>=
-Is this a regression? or are Debian packages not supported for SDK?<br><br>=
-</div><div>Many Thanks,<br></div><div>Martin.<br></div><br></div></div>
-
---001a114023d6f1a81205236d1836--
