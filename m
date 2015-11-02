@@ -1,37 +1,52 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <cavallini.koan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F4201E00B0B; Mon,  2 Nov 2015 07:41:11 -0800 (PST)
+	id 1FA64E00B76; Mon,  2 Nov 2015 07:41:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (cavallini.koan[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.180 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C10E4E00AF8
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 07:41:06 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA2Ff5WA016590
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 2 Nov 2015 07:41:05 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.248.2; Mon, 2 Nov 2015 07:41:05 -0800
-To: Yocto Project <yocto@yoctoproject.org>
-From: Mark Hatle <mark.hatle@windriver.com>
-X-Enigmail-Draft-Status: N1110
-Organization: Wind River Systems
-Message-ID: <56378410.5030900@windriver.com>
-Date: Mon, 2 Nov 2015 09:41:04 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA678E00B57
+	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 07:41:29 -0800 (PST)
+Received: by lbbwb3 with SMTP id wb3so90647241lbb.1
+	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 07:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=HecWm0p3Rr1ixjiR63wFXnkmFgY5aREMqZmtsDgXZU8=;
+	b=tluS1EaOoa/tKMe4ASIxd80sUqqJIT+PlebXnuYKa2ah2nVw9lvmYnJM8j8SdzbWi7
+	P83ko0ZRYBd4+ziFxWvAikd5ushCQ9fisrRDHmWkJKcw2Bh94Ou5LwEEcvMlQlYtbBX8
+	BGU+8lk0K5tVQYt28RFTur/4Z0uhodXTCOj7tGzPOSWV0Rkl681VqCOUI0EaJtqDi7eD
+	OBggJGprR5dbzetlMJWcfYtPsK+bh199xd7XfcnlBvFcuDRcykkGYAB/oVERY+pvW8Ty
+	JHMUTWA8CfjWTjpEzbRcN3l5C40LaFnz57cntfhf6RSQZOXF16fqzm9Bq/W59qrx+seY
+	ZQug==
 MIME-Version: 1.0
-Subject: New prelink version
+X-Received: by 10.112.181.164 with SMTP id dx4mr10634294lbc.29.1446478887711; 
+	Mon, 02 Nov 2015 07:41:27 -0800 (PST)
+Received: by 10.25.60.4 with HTTP; Mon, 2 Nov 2015 07:41:27 -0800 (PST)
+In-Reply-To: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
+References: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
+Date: Mon, 2 Nov 2015 16:41:27 +0100
+Message-ID: <CAFQ+Diih3FQDyca_zFY5KjuJ9nd4xT+1B5rU56jEmBfz5OKOyg@mail.gmail.com>
+From: Marco Cavallini <cavallini.koan@gmail.com>
+To: Roberto <ramatekd@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Create uncompressed rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,64 +58,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 15:41:12 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 Nov 2015 15:41:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I just wanted to updated people on the prelinker, and send out news of a new
-release, but first some project announcements.
+You could mount the .ext3 image on a partition using -o loop
+or find/customize a different solution using IMAGE_TYPES
+(i.e. when IMAGE_FSTYPES contains "live")
+http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html
+--
+Marco Cavallini | KOAN sas | Bergamo - Italia
+embedded and real-time software engineering
+http://www.KoanSoftware.com
 
-As some of you may be aware, the previous upstream to the Cross Prelinker has
-effectively been abandoned.  This work was being done by Jakub Jelinek at Red
-Hat.  However, there have not been any updates since October of 2013.  I have
-tried to reach out to him a few times and have not gotten a response.
-
-So effectively immediately, I am planning on supporting both a standalone
-prelink and cross prelinker.  In order to do this, there are now two 'release'
-branches in the git://git.yoctoproject.org/prelink-cross, 'master' and
-'cross_prelink'.
-
-The 'master' branch is intended to replace the former prelink that was created
-and managed by Jakub.  It is a standalone project that does not provide any of
-the cross compilation helper items, such as the prelink-rtld and sysroot
-(--root=) processing.  It will contain all of the latest patches for
-architecture functionality and bug fixes.
-
-The 'cross_prelink' branch, as it has been, is the home for the cross
-compilation version of the prelinker.  It will be functionally identical to the
-'master' branch -- but contain prelink-rtld and the sysroot functions.
-
-In addition, I intend to do regular date-based tags to indicate stable release
-points.  This is similar to how Jakub did releases for the prelinker.
-
-Two tags will be generated, both with the same date, and one ending in '_cross'.
- The _cross indicates it contains the cross compilation functionality.
-
-...and now... the first release
-
-20151030 and 20151030_cross
-
-Common changes:
-
-* Add additional debugging in certain places
-* Take over full maintainership of the project
-* general: Update type_class values to sync w/ glibc-2.22
-* MIPS: Add SHT_MIPS_ABIFLAGS support
-* ARM: Fix ARM IFUNC implementation (bad patch merge)
-
-Cross changes:
-* Rebase the prelink-rtld on glibc-2.22
-* Add NIOS2 support to the prelink-rtld
-
-Notes:
-
-If you are using the standalone prelinker with glibc-2.22 on IA32 or ARM, due to
-a bug in glibc-2.22, you -must- have the following patch applied to glibc:
-
-https://sourceware.org/git/gitweb.cgi?p=glibc.git;h=cadaf1336332ca7bcdfe4a400776e5782a20e26d
-
-for more info see:
-
-https://sourceware.org/bugzilla/show_bug.cgi?id=19178
-
+2015-11-02 6:20 GMT+01:00 Roberto <ramatekd@gmail.com>:
+> Hi,
+>
+>
+>
+> I apologise if this is not the right channel for asking the following
+> question. If so, please advise me on a more appropriate support channel.
+>
+>
+>
+> I am looking for the quickest workflow for debugging a recipe. I basically
+> need to modify a recipe, deploy the entire distribution to the target board
+> and test it.
+>
+>
+>
+> have come to the conclusion that the quickest way is to boot the target
+> board through TFTP for the kernel and then mount the rootfs via NFS.
+>
+>
+>
+> In my view, the only issue of this workflow is that when I bitbake the image
+> it creates a compressed rootfs that then I have to uncompress in order to
+> provide the rootfs to the target board via NFS.
+>
+>
+>
+> Is there any way to avoid bitbake compressing the rootfs but rather having
+> it uncompressed in some folders under tmp/deploy ?
+>
+>
+>
+> Regards,
+>
+>
+>
+> Roberto
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
