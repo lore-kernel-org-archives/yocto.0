@@ -1,13 +1,17 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C15F2E005B3; Mon,  2 Nov 2015 12:32:20 -0800 (PST)
+	id DFFAFE006F6; Mon,  2 Nov 2015 13:38:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -15,39 +19,34 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78B6CE0034B
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 12:32:14 -0800 (PST)
-Received: by wmec75 with SMTP id c75so70514178wme.1
-	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 12:32:14 -0800 (PST)
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 370DEE005B3
+	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 13:38:22 -0800 (PST)
+Received: by iody8 with SMTP id y8so385140iod.1
+	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 13:38:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=tt72Bv0WLidun3L1TRCYORxoQNEXMC/4dtYLQiaMhfA=;
-	b=CzD4Faqe5KBVwVL+mLgwsp6keSbx3LaB9PBDTswJmniIt16z9L97vpZ9p00BVNT8GF
-	rEK+mYJtyKMPfI3iGXPESJE010SkTojsYj08MswP+5xtBXShiumqHV4/nSMuXVyZS2XE
-	ZIQax6JTz9hUGpEJ7nNu7DIXK1cQR4OCt2APzhf9YrLcvznwHLZxBr5iWivsVCll/+jJ
-	kwSOMZgAOlGOWxd9D/iQme0zTXPIADTvYbiogvea5St6gkliz2IhYxMuKEOqzCY03CRn
-	wf/z02WHPeEZ8bZrXlIlEY1hzx6VXXjmmEZzV8yPNOVV9o8221MMz9i6798enZtwpMWK
-	SwMQ==
-X-Received: by 10.28.211.143 with SMTP id k137mr16180098wmg.49.1446496334045; 
-	Mon, 02 Nov 2015 12:32:14 -0800 (PST)
-Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
-	by smtp.gmail.com with ESMTPSA id
-	d81sm19955759wma.16.2015.11.02.12.32.13
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 02 Nov 2015 12:32:13 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Mon, 2 Nov 2015 21:32:20 +0100
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Message-ID: <20151102203219.GB28051@jama>
-References: <BN3PR0501MB1090167F43DDD94ECB562845BB2C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=mv/I6GxYOtf7QE4PoitvG70+kPUvyRnv0ddJnpAWYtE=;
+	b=KjdGwa77CaPLqSmwg/LWXpkxD8dfRIjZQM8SBZgD8ACdaEhW+zObiJ2ELFJarHxU19
+	0NqJ6R7UpUWQkZahC2KD7gLOmnaNVGnalIVfA65oYsTrSuGn2op39pQFl39H9533Y0ka
+	ZBp9yyKWtjqE14NKDJCZIpTOXayX5GKgi0lsASTXSS7Cap+U8jG3nIN7rP8rUtcUIIfA
+	/Mzp8V1gCUCWX4DFPScY+hBt+e1x2rHV/R+sQbzyneWPXuvbXJK9vAdTwxlA5zPjfNmh
+	PvLqORCS8N3cLAhtaYNB8u+rDFVLgCUr7sylZQgvZ+0M0QRRbuwva83V4gANj5KZj430
+	Ypxw==
+X-Received: by 10.107.3.77 with SMTP id 74mr23548582iod.49.1446500301909; Mon,
+	02 Nov 2015 13:38:21 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <BN3PR0501MB1090167F43DDD94ECB562845BB2C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: COPY_LIC_DIRS, COPY_LIC_MANIFEST and firmware upgrades
+Received: by 10.107.38.133 with HTTP; Mon, 2 Nov 2015 13:37:52 -0800 (PST)
+In-Reply-To: <alpine.LFD.2.20.1511021251410.10363@localhost>
+References: <alpine.LFD.2.20.1511021251410.10363@localhost>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 2 Nov 2015 13:37:52 -0800
+Message-ID: <CAMKF1spGWN8dDzQ5wcE7f_U2JJuk=7VE_onpDORN-SMNqHgf-g@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: should layers define BB_DANGLINGAPPENDS_WARNONLY ?= "1"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,69 +58,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 20:32:20 -0000
-X-Groupsio-MsgNum: 27140
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="8P1HSweYDcXXzwPJ"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 02 Nov 2015 21:38:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
---8P1HSweYDcXXzwPJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Nov 2, 2015 at 9:54 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>
+>   perusing the meta-musl layer, and noticed in layer.conf the line:
+>
+> BB_DANGLINGAPPENDS_WARNONLY ?= "1"
 
-On Mon, Nov 02, 2015 at 05:13:48PM +0000, Bryan Evenson wrote:
-> All,
->=20
-> I'm on poky/dizzy-1.7.2 and I've been using COPY_LIC_DIRS and COPY_LIC_MA=
-NIFEST to include the license text on my image.  I noticed something about =
-the way it operates and I'm wondering if it's a problem when it comes to Fr=
-ee and Open Source Software compliance.
->=20
-> If I build an image with COPY_LIC_MANIFEST and COPY_LIC_DIRS both set to =
-1, then the image is generated with the directory /usr/share/common-license=
-s that include all the licenses for all the packages in the image.  There i=
-s also /usr/share/common-licenses/license.manifest which summarizes all the=
- licenses in the directory.  Let's call this starting point image version A.
->=20
-> Later on in development I add package "foo-extra" to the image.  I add "f=
-oo-extra" to the RDEPENDS list for package "foo" which now needs the new pa=
-ckage for proper operation.  The built image now includes in /usr/share/com=
-mon-licenses/foo-extra the license for the new package.  We'll call this im=
-age version B.
->=20
-> If I ship a product that was burned with image verison A then it has all =
-the licenses for all the packages that were installed in the image.  Likewi=
-se, if I ship a product that was burned with image version B then it has al=
-l the licenses for all the packages that were installed in the image.  Howe=
-ver, if a product ships with image version A and then is upgraded to image =
-version B then package "foo-extra" is installed due to dependencies but the=
- license for "foo-extra" is not included in the upgrade.  The /usr/share/co=
-mmon-licenses directory is not tied to any package, so firmware upgrade doe=
-s not add, modify or remove any of the licenses in /usr/share/common-licens=
-es.
->=20
-> Is this a problem when it comes to FOSS compliance?  If so, is there a su=
-ggested way of including the new licenses for firmware upgrades?
+should be avoided although meta-musl is a bit core in nature.
+this is so that it can interface with several different compilers
+coming from different layers and also different oe-core releases can
+work with same branch of meta-musl.
+ one may not have same layers attached to it. Ideally, those patches
+should now become part
+of the original layers as they have been accepted in gcc upstream and
+so on. Hopefully as I will take
+this into oe-core in coming months this should disappear.
 
-You can also enable LICENSE_CREATE_PACKAGE which should create <pkg>-lic
-packages rrecommended from <pkg> so they should get installed together
-with image upgrade, see:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3743
+>
+> i thought this was a bit odd since (at least to me) it seems like the
+> sort of thing a *developer* might set in their local.conf to
+> temporarily deal with a dangling .bbappend file -- it never occurred
+> to me that it would be appropriate for a layer to define that value
+> itself as an inherent part of its own ... layerness.
+>
+>   a quick grep of the couple dozen layers i have checked out revealed
+> two layers that do that:
+>
+> ./meta-musl/conf/layer.conf:BB_DANGLINGAPPENDS_WARNONLY ?= "1"
+> ./meta-yocto-kernel-extras/meta-kernel-dev/conf/layer.conf:BB_DANGLINGAPPENDS_WARNONLY
+> ?= "true"
+>
+>   i'm curious what others think of this approach.
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---8P1HSweYDcXXzwPJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iEYEARECAAYFAlY3yFMACgkQN1Ujt2V2gBwtzwCfZLknm7ujPkWmbgc0iok3IccE
-DP0An04FNe7M4RxDJEVgSCUbaZmWw9bD
-=sIe5
------END PGP SIGNATURE-----
-
---8P1HSweYDcXXzwPJ--
