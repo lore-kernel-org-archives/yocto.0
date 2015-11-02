@@ -1,49 +1,47 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EBB6E005B3; Mon,  2 Nov 2015 10:53:08 -0800 (PST)
+	id CAEE9E005B3; Mon,  2 Nov 2015 11:34:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.173 listed in list.dnswl.org]
+	mail provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
-	[209.85.217.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31A43E0034B
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 10:53:06 -0800 (PST)
-Received: by lbbwb3 with SMTP id wb3so94450954lbb.1
-	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 10:53:05 -0800 (PST)
+Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CB5EE0034B
+	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 11:34:31 -0800 (PST)
+Received: by wmeg8 with SMTP id g8so67872809wme.0
+	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 11:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=2BFOfSm15l2QplhJHTPJT8iXf3XSs8XbGP2Z+3S/Yww=;
-	b=TvAbuSZ7MtbQFss2mPFunrnYG7IGAY2zQOUQIcW+wURbipE9R8BD93Lwaf+u2paPnW
-	dzYG/Qh5zu0vIO5Ikctrbu6jERZfp+F8z2H5+BoVevVDX18J7WmUfY/3mdrQkag+McmU
-	PKoQKEX/REuM1omI7FjVA1vGvaVPnKTJP1S4k6oey4MTSPjmyqxIbYhxU1YcaGzURpRZ
-	eOJEiSXjRmiY+Zyxn/1b7soTcqBg9M5ixCHv1u6ZzH/XUjd6U8X9Mo27uuDR1G9phNdT
-	3/v4bZXa3YqcDfFaX8iDKKYPNipe7mAzka6rMZs1PjS7mjLEkkDIztFFy78MjV+MhmRu
-	D1EA==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=MVIHYT7AatMcawDYxwQjXGdECWj59DsPD4Z1wm1Byo4=;
+	b=n55xep1NVyzsyHlgmv2NSeoijNRoAUuKsNjU+ZMkAhQl+v5dPBTdJZPIFteffEhc7/
+	Q27ytbFvrYCUKr3JmI7BO+rSo6hmqGQ/RtEAi/3i3fR0GD6ar9e8k8l07GylXo5XBmWM
+	CIf7SombWduvRlTo+oHVnAhhsaPEGNUG9fv9R5AZ9mns7yVVUVUWA6Xk5s3fybjMLJva
+	pYIkvNrkY8wwp3n8WDv13pxKH2Yn3siNpeg4dLGPpymIvRg6vzqkXeslR0T0gVAZQbtm
+	ZI6lslQM2DdsT9GTRPep/GPQfehmbiOaRhQ/VTPIsb0qsElTU5wRd/NHHkKQwNeC3vjq
+	ef/w==
 MIME-Version: 1.0
-X-Received: by 10.112.138.138 with SMTP id qq10mr10894873lbb.45.1446490384808; 
-	Mon, 02 Nov 2015 10:53:04 -0800 (PST)
-Received: by 10.25.218.5 with HTTP; Mon, 2 Nov 2015 10:53:04 -0800 (PST)
-Date: Mon, 2 Nov 2015 18:53:04 +0000
-Message-ID: <CABatt_zq+Bt3w=PyTYfSM9X5TUyOYXBuVTpK8a0JH-L2HAApMQ@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
-To: yocto@yoctoproject.org
-Subject: populate_sdk and debian packages problem
+X-Received: by 10.28.87.67 with SMTP id l64mr14389164wmb.72.1446492870212;
+	Mon, 02 Nov 2015 11:34:30 -0800 (PST)
+Received: by 10.194.140.38 with HTTP; Mon, 2 Nov 2015 11:34:30 -0800 (PST)
+In-Reply-To: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
+References: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
+Date: Mon, 2 Nov 2015 11:34:30 -0800
+Message-ID: <CAJ86T=U7mmNmTRi5xHpy7C+XOAPuKiRyy=958YsGeQ3cnYap_g@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: Roberto <ramatekd@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Create uncompressed rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,64 +53,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 18:53:08 -0000
-Content-Type: multipart/alternative; boundary=089e011836b88ec5d50523934948
-
---089e011836b88ec5d50523934948
+X-List-Received-Date: Mon, 02 Nov 2015 19:34:35 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Sun, Nov 1, 2015 at 9:20 PM, Roberto <ramatekd@gmail.com> wrote:
+> Hi,
+>
 
-I've just moved everything to fido and everything builds fine.  One of the
-reasons for moving to Fido was to use the built toolchain and create an SDK
-using populate_sdk but it is failing with the following message:
-ERROR: Unable to install packages. Command
-'/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/sysroots/x86_64-linux/usr/bin/apt-get
-install --force-yes --allow-unauthenticated nativesdk-packagegroup-sdk-host
-packagegroup-cross-canadian-am43-devboard-aquila' returned 100:
-Reading package lists...
-Building dependency tree...
-Reading state information...
-W: Unable to read
-/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/work/am43_devboard_aquila-oe-linux-gnueabi/bia-image/1.0-r0/apt-sdk/preferences.d/
-- DirectoryExists (2: No such file or directory)
-E: Unable to locate package nativesdk-packagegroup-sdk-host
+Hi Roberto,
 
-I checked the nativesdk-packagegroup-sdk-host build and it's empty.
+>
+> I apologise if this is not the right channel for asking the following
+> question. If so, please advise me on a more appropriate support channel.
+>
+>
+>
+> I am looking for the quickest workflow for debugging a recipe. I basically
+> need to modify a recipe, deploy the entire distribution to the target board
+> and test it.
+>
+>
+>
+> have come to the conclusion that the quickest way is to boot the target
+> board through TFTP for the kernel and then mount the rootfs via NFS.
+>
+>
+>
+> In my view, the only issue of this workflow is that when I bitbake the image
+> it creates a compressed rootfs that then I have to uncompress in order to
+> provide the rootfs to the target board via NFS.
+>
+>
+>
+> Is there any way to avoid bitbake compressing the rootfs but rather having
+> it uncompressed in some folders under tmp/deploy ?
 
-After a bit of searching I found that a similar problem exists in Daisy and
-it was down to debian packages which I am using so I chaged to use the
-default IPK and the error message disappears.
+See the "IMAGE_TYPES" variable for a list of rootfs types which are
+supported. There's support for creating an uncompressed .tar file, but
+I don't see any support for creating a rootfs directory under
+tmp/deploy.
 
-Is this a regression? or are Debian packages not supported for SDK?
+Depending on your work flow there are a few different solutions
+though. You could extend
+openembedded-core/meta/classes/image_types.bbclass to do what you want
+(e.g. define a new image type or hack "IMAGE_CMD_tar" so that it also
+untars rootfs.tar right after creating it). Or you could ignore OE's
+image creation and manually copy or rsync your image's rootfs ( under
+tmp/work/<MACHINE>.../<IMAGE>/.../rootfs ) to the directory exported
+by your NFS server. Note that you probably shouldn't export
+tmp/work/.../rootfs directly since when the target boots it will
+create files owned by root, which will cause problems later if you try
+to rebuild or modify the rootfs.
 
-Many Thanks,
-Martin.
+>
+> Regards,
+>
+>
+>
+> Roberto
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---089e011836b88ec5d50523934948
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>Hi,<br><br></div>I&#39;ve just moved e=
-verything to fido=20
-and everything builds fine.=C2=A0 One of the reasons for moving to Fido was=
-=20
-to use the built toolchain and create an SDK using populate_sdk but it=20
-is failing with the following message:<br>ERROR: Unable to install packages=
-. Command &#39;/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tm=
-p-glibc/sysroots/x86_64-linux/usr/bin/apt-get=C2=A0 install --force-yes --a=
-llow-unauthenticated nativesdk-packagegroup-sdk-host packagegroup-cross-can=
-adian-am43-devboard-aquila&#39; returned 100:<br>Reading package lists...<b=
-r>Building dependency tree...<br>Reading state information...<br>W: Unable =
-to read /home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc=
-/work/am43_devboard_aquila-oe-linux-gnueabi/bia-image/1.0-r0/apt-sdk/prefer=
-ences.d/ - DirectoryExists (2: No such file or directory)<br>E: Unable to l=
-ocate package nativesdk-packagegroup-sdk-host<br><br></div>I checked the na=
-tivesdk-packagegroup-sdk-host build and it&#39;s empty.<br><br></div>After
- a bit of searching I found that a similar problem exists in Daisy and=20
-it was down to debian packages which I am using so I chaged to use the=20
-default IPK and the error message disappears.<br><br></div><div>Is this a r=
-egression? or are Debian packages not supported for SDK?<br><br></div><div>=
-Many Thanks,<br></div>Martin.</div>
-
---089e011836b88ec5d50523934948--
