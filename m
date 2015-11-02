@@ -1,39 +1,37 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB487E00B31; Mon,  2 Nov 2015 09:54:54 -0800 (PST)
+	id EB660E005B3; Mon,  2 Nov 2015 10:02:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [208.80.206.84 listed in list.dnswl.org]
-Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9A6BE00B04
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 09:54:52 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
-	via TCP (outbound) with ESMTPS id 20151102175441674_0684
-	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 17:54:41 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=33702 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1ZtJKJ-0004Da-Cj
-	for yocto@yoctoproject.org; Mon, 02 Nov 2015 12:55:27 -0500
-Date: Mon, 2 Nov 2015 12:54:33 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1511021251410.10363@localhost>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C014E0034B
+	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 10:02:02 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga101.jf.intel.com with ESMTP; 02 Nov 2015 10:01:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,234,1444719600"; d="scan'208";a="676804440"
+Received: from jdurndel-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.28.210])
+	by orsmga003.jf.intel.com with ESMTP; 02 Nov 2015 10:01:47 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 02 Nov 2015 18:01:45 +0000
+Message-ID: <5007685.tUom4y9F8O@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
+In-Reply-To: <alpine.LFD.2.20.1511021251410.10363@localhost>
+References: <alpine.LFD.2.20.1511021251410.10363@localhost>
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: should layers define BB_DANGLINGAPPENDS_WARNONLY ?= "1"?
+Cc: yocto@yoctoproject.org
+Subject: Re: should layers define BB_DANGLINGAPPENDS_WARNONLY ?= "1"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +43,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 17:54:54 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Mon, 02 Nov 2015 18:02:06 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Robert,
 
-  perusing the meta-musl layer, and noticed in layer.conf the line:
+On Monday 02 November 2015 12:54:33 Robert P. J. Day wrote:
+>   perusing the meta-musl layer, and noticed in layer.conf the line:
+> 
+> BB_DANGLINGAPPENDS_WARNONLY ?= "1"
+> 
+> i thought this was a bit odd since (at least to me) it seems like the
+> sort of thing a *developer* might set in their local.conf to
+> temporarily deal with a dangling .bbappend file -- it never occurred
+> to me that it would be appropriate for a layer to define that value
+> itself as an inherent part of its own ... layerness.
+> 
+>   a quick grep of the couple dozen layers i have checked out revealed
+> two layers that do that:
+> 
+> ./meta-musl/conf/layer.conf:BB_DANGLINGAPPENDS_WARNONLY ?= "1"
+> ./meta-yocto-kernel-extras/meta-kernel-dev/conf/layer.conf:BB_DANGLINGAPPEND
+> S_WARNONLY ?= "true"
+> 
+>   i'm curious what others think of this approach.
 
-BB_DANGLINGAPPENDS_WARNONLY ?= "1"
+I'd say no, they shouldn't really. As a user of the layer you might not 
+realise that it's making this change to your configuration.
 
-i thought this was a bit odd since (at least to me) it seems like the
-sort of thing a *developer* might set in their local.conf to
-temporarily deal with a dangling .bbappend file -- it never occurred
-to me that it would be appropriate for a layer to define that value
-itself as an inherent part of its own ... layerness.
-
-  a quick grep of the couple dozen layers i have checked out revealed
-two layers that do that:
-
-./meta-musl/conf/layer.conf:BB_DANGLINGAPPENDS_WARNONLY ?= "1"
-./meta-yocto-kernel-extras/meta-kernel-dev/conf/layer.conf:BB_DANGLINGAPPENDS_WARNONLY
-?= "true"
-
-  i'm curious what others think of this approach.
-
-rday
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
