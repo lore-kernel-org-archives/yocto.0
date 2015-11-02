@@ -1,43 +1,56 @@
-Return-Path: <lixin.fnst@cn.fujitsu.com>
+Return-Path: <ramatekd@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A03B8E00BD5; Sun,  1 Nov 2015 17:38:48 -0800 (PST)
+	id DBAD8E00BD5; Sun,  1 Nov 2015 21:20:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ramatekd[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.44 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FB8FE009EF
-	for <yocto@yoctoproject.org>; Sun,  1 Nov 2015 17:38:45 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208";a="102533983"
-Received: from bogon (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 02 Nov 2015 09:40:47 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id tA21c2pP027680;
-	Mon, 2 Nov 2015 09:38:02 +0800
-Received: from G08CNEXMBPEKD02.g08.fujitsu.local ([10.167.33.84]) by
-	G08CNEXCHPEKD03.g08.fujitsu.local ([10.167.33.85]) with mapi id
-	14.03.0181.006; Mon, 2 Nov 2015 09:38:37 +0800
-From: "Li, Xin" <lixin.fnst@cn.fujitsu.com>
-To: akuster808 <akuster808@gmail.com>
-Thread-Topic: [yocto] [meta-security][PATCH] samhain: upgrade to 4.1.0
-Thread-Index: AQHREvahz6kaWxQJ70G5WGRHm5iXq56D2UYAgAQesoA=
-Date: Mon, 2 Nov 2015 01:38:37 +0000
-Message-ID: <A8FC939F80655644A89BB21CCD3741E8011BCD705C@G08CNEXMBPEKD02.g08.fujitsu.local>
-References: <1446197859-1701-1-git-send-email-lixin.fnst@cn.fujitsu.com>
-	<5633B9F6.5070509@gmail.com>
-In-Reply-To: <5633B9F6.5070509@gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.26]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
+	[209.85.220.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35782E00BD0
+	for <yocto@yoctoproject.org>; Sun,  1 Nov 2015 21:20:34 -0800 (PST)
+Received: by pasz6 with SMTP id z6so136820766pas.2
+	for <yocto@yoctoproject.org>; Sun, 01 Nov 2015 21:20:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:mime-version:content-type
+	:thread-index:content-language;
+	bh=yGaZ9Peeuj5vOr2HwYomFlmOmVlLI4hvGjiE4o+/7qk=;
+	b=jacxD1XoO6K2ybNKZqCDTlO/ubSEBVblH08twGk9mfNgrqWKdGm8VyBaqDP8vty2gB
+	B+RyOam2nBylQfhNy338CZ+8vPA2onv7uAtFmvJmwwKlH1abOBifBtI1p26OeuPzdCT9
+	8vbAkRokxKdpneV122uEMbatOTcMYg0Zt7yePVYb5KAyRaRpQQkAXawljiqB/fGWKRRu
+	CrrtoJiqBrtO72bhkkdBl/eCsZp2nI6UMQZibqZCBMcDw6YpOhf8SNchuFpu1hoUq14m
+	ms1j1zHmdHvBGAQ5lm1a0GtpW/SpaEiqWgExnHnSgo8RRkzEG7DipRkmx1aiva6bbDWZ
+	Xk4w==
+X-Received: by 10.66.199.40 with SMTP id jh8mr24952070pac.123.1446441634181;
+	Sun, 01 Nov 2015 21:20:34 -0800 (PST)
+Received: from DEVWS2 (203-206-220-195.perm.iinet.net.au. [203.206.220.195])
+	by smtp.gmail.com with ESMTPSA id
+	bn1sm21414335pad.17.2015.11.01.21.20.32 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 01 Nov 2015 21:20:33 -0800 (PST)
+From: "Roberto" <ramatekd@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 2 Nov 2015 16:20:34 +1100
+Message-ID: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-security][PATCH] samhain: upgrade to 4.1.0
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdEVLjMSNjEcBkSaQBKPEUqSdSCVcg==
+Subject: Create uncompressed rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,105 +62,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Nov 2015 01:38:48 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 02 Nov 2015 05:20:35 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03D3_01D1158A.690EC1E0"
+Content-Language: en-au
 
-Hi, Armin,
+------=_NextPart_000_03D3_01D1158A.690EC1E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-I got it.
-Thanks a lot.
+Hi,
+
+ 
+
+I apologise if this is not the right channel for asking the following
+question. If so, please advise me on a more appropriate support channel.
+
+ 
+
+I am looking for the quickest workflow for debugging a recipe. I basically
+need to modify a recipe, deploy the entire distribution to the target board
+and test it.
+
+ 
+
+have come to the conclusion that the quickest way is to boot the target
+board through TFTP for the kernel and then mount the rootfs via NFS.
+
+ 
+
+In my view, the only issue of this workflow is that when I bitbake the image
+it creates a compressed rootfs that then I have to uncompress in order to
+provide the rootfs to the target board via NFS.
+
+ 
+
+Is there any way to avoid bitbake compressing the rootfs but rather having
+it uncompressed in some folders under tmp/deploy ?
+
+ 
 
 Regards,
-Li
 
->-----Original Message-----
->From: akuster808 [mailto:akuster808@gmail.com]
->Sent: Saturday, October 31, 2015 2:42 AM
->To: Li, Xin/=1B$BM{=1B(B =1B$B6U=1B(B
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] [meta-security][PATCH] samhain: upgrade to 4.1.0
->
->Li Xin,
->
->Master-next already has the 4.1.0 update. I have merged the additional fix=
-es to
->master-next.
->
->thanks,
->Armin
->
->On 10/30/2015 02:37 AM, Li xin wrote:
->> From: Li Xin <lixin.fnst@cn.fujitsu.com>
->>
->> Also fix an error when "samhain -t check" is executed.
->> The error is like this:
->> 'ERROR: msg=3D<Record with bad version number in file signature
->> database>, subroutine=3D<sh_dbIO_getdataent>, path=3D<(null)>'
->>
->> Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->> ---
->>  .../samhain/{samhain-client_4.0.0.bb =3D> samhain-client_4.1.0.bb}    |=
- 3 ++-
->>  .../samhain/{samhain-server_4.0.0.bb =3D> samhain-server_4.1.0.bb}    |=
- 0
->>  recipes-security/samhain/samhain.inc
->| 6 +++---
->>  3 files changed, 5 insertions(+), 4 deletions(-)  rename
->> recipes-security/samhain/{samhain-client_4.0.0.bb =3D>
->> samhain-client_4.1.0.bb} (79%)  rename
->> recipes-security/samhain/{samhain-server_4.0.0.bb =3D>
->> samhain-server_4.1.0.bb} (100%)
->>
->> diff --git a/recipes-security/samhain/samhain-client_4.0.0.bb
->> b/recipes-security/samhain/samhain-client_4.1.0.bb
->> similarity index 79%
->> rename from recipes-security/samhain/samhain-client_4.0.0.bb
->> rename to recipes-security/samhain/samhain-client_4.1.0.bb
->> index c671b48..bb47449 100644
->> --- a/recipes-security/samhain/samhain-client_4.0.0.bb
->> +++ b/recipes-security/samhain/samhain-client_4.1.0.bb
->> @@ -8,7 +8,8 @@ EXTRA_OECONF +=3D " \
->>          --with-logserver=3D${SAMHAIN_SERVER} \
->>          --with-port=3D${SAMHAIN_PORT} \
->>          --with-config-file=3D/etc/samhainrc \
->> -        --with-data-file=3D/var/lib/samhain/samhain_file \
->> +        --with-data-file=3D/var/samhain/samhain.data \
->> +        --with-pid-file=3D/var/samhain/samhain.pid \
->>          "
->>
->>
->> diff --git a/recipes-security/samhain/samhain-server_4.0.0.bb
->> b/recipes-security/samhain/samhain-server_4.1.0.bb
->> similarity index 100%
->> rename from recipes-security/samhain/samhain-server_4.0.0.bb
->> rename to recipes-security/samhain/samhain-server_4.1.0.bb
->> diff --git a/recipes-security/samhain/samhain.inc
->> b/recipes-security/samhain/samhain.inc
->> index e33182f..dedcf76 100644
->> --- a/recipes-security/samhain/samhain.inc
->> +++ b/recipes-security/samhain/samhain.inc
->> @@ -8,9 +8,8 @@ SRC_URI =3D
->"http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
->>  	   file://${INITSCRIPT_NAME}.init \
->>  	   file://${INITSCRIPT_NAME}.default \
->>  	  "
->> -
->> -SRC_URI[md5sum] =3D "2144383cc5452b9b80c7e4e4c991ad4a"
->> -SRC_URI[sha256sum] =3D
->"5a841708f78c6d9b4731970fa39151dff366885de08ecddc382e8c45a2c1b4e2"
->> +SRC_URI[md5sum] =3D "fcb59c6c8a1d30cc6ffc21557a0046d3"
->> +SRC_URI[sha256sum] =3D
->"a8e10454782a7f3bb5f709dd05cee695ffbd052afc709668a3e7c4b629771189"
->>
->>  S =3D "${WORKDIR}/samhain-${PV}"
->>
->> @@ -87,4 +86,5 @@ do_install_append () {
->>  	install -d ${D}${docdir}/${PN}
->>  	cp -r docs/* ${D}${docdir}/${PN}
->>  	cp -r scripts ${D}${docdir}/${PN}
->> +        install -d -m 755 ${D}/var/samhain
->>  }
->>
+ 
 
+Roberto
+
+
+------=_NextPart_000_03D3_01D1158A.690EC1E0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-AU link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I apologise =
+if this is not the right channel for asking the following question. If =
+so, please advise me on a more appropriate support =
+channel.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>I am looking for the quickest workflow for debugging a =
+recipe. I basically need to modify a recipe, deploy the entire =
+distribution to the target board and test it.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>have come to =
+the conclusion that the quickest way is to boot the target board through =
+TFTP for the kernel and then mount the rootfs via NFS.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>In my view, =
+the only issue of this workflow is that when I bitbake the image it =
+creates a compressed rootfs that then I have to uncompress in order to =
+provide the rootfs to the target board via NFS.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Is there any =
+way to avoid bitbake compressing the rootfs but rather having it =
+uncompressed in some folders under tmp/deploy ?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Roberto<o:p></o:p></p></div></body></html>
+
+------=_NextPart_000_03D3_01D1158A.690EC1E0--
