@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABF2FE00B88; Tue,  3 Nov 2015 06:21:11 -0800 (PST)
+	id D60A0E00B9A; Tue,  3 Nov 2015 06:21:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,30 +8,32 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20793E00AB5
-	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 06:21:08 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Nov 2015 06:21:07 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C120E00AB5
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 06:21:55 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga101.fm.intel.com with ESMTP; 03 Nov 2015 06:21:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,239,1444719600"; d="scan'208";a="593207573"
+X-IronPort-AV: E=Sophos;i="5.20,239,1444719600"; d="scan'208";a="810669812"
 Received: from bcrawfor-mobl.amr.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.252.26.120])
-	by FMSMGA003.fm.intel.com with ESMTP; 03 Nov 2015 06:21:01 -0800
+	by orsmga001.jf.intel.com with ESMTP; 03 Nov 2015 06:21:36 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Townsend <mtownsend1973@gmail.com>
-Date: Tue, 03 Nov 2015 14:20:59 +0000
-Message-ID: <46665729.FfZ08QW5SE@peggleto-mobl.ger.corp.intel.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Date: Tue, 03 Nov 2015 14:21:35 +0000
+Message-ID: <2549250.gePibbIndn@peggleto-mobl.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
-In-Reply-To: <CABatt_zq+Bt3w=PyTYfSM9X5TUyOYXBuVTpK8a0JH-L2HAApMQ@mail.gmail.com>
-References: <CABatt_zq+Bt3w=PyTYfSM9X5TUyOYXBuVTpK8a0JH-L2HAApMQ@mail.gmail.com>
+In-Reply-To: <BN3PR0501MB1090B21718BCC23F3350B08EBB2C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+References: <BN3PR0501MB1090167F43DDD94ECB562845BB2C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+	<20151102203219.GB28051@jama>
+	<BN3PR0501MB1090B21718BCC23F3350B08EBB2C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: populate_sdk and debian packages problem
+Subject: Re: COPY_LIC_DIRS, COPY_LIC_MANIFEST and firmware upgrades
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,41 +45,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2015 14:21:11 -0000
+X-List-Received-Date: Tue, 03 Nov 2015 14:21:56 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Martin,
+On Monday 02 November 2015 21:55:01 Bryan Evenson wrote:
+> Martin,
+> 
+> > -----Original Message-----
+> > From: Martin Jansa [mailto:martin.jansa@gmail.com]
+> > Sent: Monday, November 02, 2015 3:32 PM
+> > To: Bryan Evenson <bevenson@melinkcorp.com>
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] COPY_LIC_DIRS, COPY_LIC_MANIFEST and firmware
+> > upgrades
+> > 
+> > On Mon, Nov 02, 2015 at 05:13:48PM +0000, Bryan Evenson wrote:
+> > > All,
+> > > 
+> > > I'm on poky/dizzy-1.7.2 and I've been using COPY_LIC_DIRS and
+> > 
+> > COPY_LIC_MANIFEST to include the license text on my image.  I noticed
+> > something about the way it operates and I'm wondering if it's a problem
+> > when it comes to Free and Open Source Software compliance.
+> > 
+> > > If I build an image with COPY_LIC_MANIFEST and COPY_LIC_DIRS both set
+> > 
+> > to 1, then the image is generated with the directory /usr/share/common-
+> > licenses that include all the licenses for all the packages in the image. 
+> > There is also /usr/share/common-licenses/license.manifest which
+> > summarizes all the licenses in the directory.  Let's call this starting
+> > point image version A.> 
+> > > Later on in development I add package "foo-extra" to the image.  I add
+> > 
+> > "foo-extra" to the RDEPENDS list for package "foo" which now needs the
+> > new package for proper operation.  The built image now includes in
+> > /usr/share/common-licenses/foo-extra the license for the new package.
+> > We'll call this image version B.
+> > 
+> > > If I ship a product that was burned with image verison A then it has all
+> > > the> 
+> > licenses for all the packages that were installed in the image.  Likewise,
+> > if I ship a product that was burned with image version B then it has all
+> > the licenses for all the packages that were installed in the image. 
+> > However, if a product ships with image version A and then is upgraded to
+> > image version B then package "foo-extra" is installed due to dependencies
+> > but the license for "foo-extra" is not included in the upgrade.  The
+> > /usr/share/common-licenses directory is not tied to any package, so
+> > firmware upgrade does not add, modify or remove any of the licenses in
+> > /usr/share/common-licenses.> 
+> > > Is this a problem when it comes to FOSS compliance?  If so, is there a
+> > 
+> > suggested way of including the new licenses for firmware upgrades?
+> > 
+> > You can also enable LICENSE_CREATE_PACKAGE which should create <pkg>-
+> > lic packages rrecommended from <pkg> so they should get installed together
+> > with image upgrade, see:
+> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=3743
+> 
+> Thanks for the information, I'll give this a try.  I noticed I don't see any
+> reference to LICENSE_CREATE_PACKAGE in the Yocto documentation.  Should I
+> add a bug in Bugzilla to add documentation for this variable?
 
-On Monday 02 November 2015 18:53:04 Martin Townsend wrote:
-> I've just moved everything to fido and everything builds fine.  One of the
-> reasons for moving to Fido was to use the built toolchain and create an SDK
-> using populate_sdk but it is failing with the following message:
-> ERROR: Unable to install packages. Command
-> '/home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/sysroot
-> s/x86_64-linux/usr/bin/apt-get install --force-yes --allow-unauthenticated
-> nativesdk-packagegroup-sdk-host
-> packagegroup-cross-canadian-am43-devboard-aquila' returned 100:
-> Reading package lists...
-> Building dependency tree...
-> Reading state information...
-> W: Unable to read
-> /home/martin/ws_poweroasis/build/am43-devboard-aquila/bia-tmp-glibc/work/am4
-> 3_devboard_aquila-oe-linux-gnueabi/bia-image/1.0-r0/apt-sdk/preferences.d/ -
-> DirectoryExists (2: No such file or directory)
-> E: Unable to locate package nativesdk-packagegroup-sdk-host
-> 
-> I checked the nativesdk-packagegroup-sdk-host build and it's empty.
-> 
-> After a bit of searching I found that a similar problem exists in Daisy and
-> it was down to debian packages which I am using so I chaged to use the
-> default IPK and the error message disappears.
-> 
-> Is this a regression? or are Debian packages not supported for SDK?
-
-If it worked before then it's a regression. I'm afraid deb packaging is the 
-least well-tested of the three packaging options, from time to time it does 
-break unfortunately. Could you please file a bug at bugzilla.yoctoproject.org ?
+Yes please.
 
 Cheers,
 Paul
