@@ -1,42 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <benoit.rapidel+yocto@exmachina.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1C75E007DA; Tue,  3 Nov 2015 06:52:21 -0800 (PST)
+	id B8DD0E007DA; Tue,  3 Nov 2015 06:57:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AE32E00343
-	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 06:52:18 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP; 03 Nov 2015 06:52:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,239,1444719600"; d="scan'208";a="677446332"
-Received: from bcrawfor-mobl.amr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.26.120])
-	by orsmga003.jf.intel.com with ESMTP; 03 Nov 2015 06:52:14 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Townsend <mtownsend1973@gmail.com>
-Date: Tue, 03 Nov 2015 14:52:13 +0000
-Message-ID: <23334139.OfoGbnEVIn@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
-In-Reply-To: <CABatt_wJb_j_YOptOeirf03SWO2znr9cXqzCzgFxxT-s_vq29Q@mail.gmail.com>
-References: <CABatt_zq+Bt3w=PyTYfSM9X5TUyOYXBuVTpK8a0JH-L2HAApMQ@mail.gmail.com>
-	<46665729.FfZ08QW5SE@peggleto-mobl.ger.corp.intel.com>
-	<CABatt_wJb_j_YOptOeirf03SWO2znr9cXqzCzgFxxT-s_vq29Q@mail.gmail.com>
+X-Greylist: delayed 495 seconds by postgrey-1.32 at yocto-www;
+	Tue, 03 Nov 2015 06:56:56 PST
+Received: from galat.willykaze.org (galat.willykaze.org [91.121.12.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F330E00343
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 06:56:56 -0800 (PST)
+Received: from [172.17.2.11] (unknown [87.140.194.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by galat.willykaze.org (Postfix) with ESMTPSA id CF9CC707B0
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 15:48:38 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Benoit Rapidel <benoit.rapidel+yocto@exmachina.fr>
+Organization: ExMachina
+Message-ID: <5638C931.2000602@exmachina.fr>
+Date: Tue, 3 Nov 2015 15:48:17 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: populate_sdk and debian packages problem
+Subject: Unable to issue bitbake linux-yocto -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: benoit.rapidel+yocto@exmachina.fr
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,39 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2015 14:52:21 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 03 Nov 2015 14:57:00 -0000
+X-Groupsio-MsgNum: 27160
+Content-Type: multipart/mixed; boundary="------------050907010702030804030009"
 
-On Tuesday 03 November 2015 14:34:33 Martin Townsend wrote:
-> I don't know if it worked before, we were using daisy with an external
-> toolchain and populate_sdk wasn't working.  I've wanted to go to Fido and
-> use the built toolchain so I bit the bullet as all looks good except
-> populate_sdk with dpkg.  Anyway, I'll file a bug as it looks like there is
-> a problem.
+--------------050907010702030804030009
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-OK, thanks.
+Hi,
 
-> In the meantime if someone could point me in the direction of which class
-> files to look at that would be great as I need to get this working asap and
-> I don't mind doing some ground work.
+I ran into an error and I don't know where to report it.
 
-Basically:
+I use poky with fido branch on a Debian 3.2.68 VM
 
-meta/classes/package_deb.bbclass
-meta/classes/rootfs_deb.bbclass
+See attached file for log
 
-Most of the logic is actually in Dpkg* classes in:
+$ tmux list-panes
+0: [84x44] [history 39/2000, 71202 bytes] %2
+0: [231x60] [history 435/2000, 194475 bytes] %3 (active)
+$
 
-meta/lib/oe/sdk.py
-meta/lib/oe/package_manager.py
-meta/lib/oe/rootfs.py
-
-Cheers,
-Paul
-
+Regards,
 -- 
+Benoit Rapidel
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Co-founder & CTO at ExMachina
 
+--------------050907010702030804030009
+Content-Type: text/plain; charset=UTF-8;
+ name="pane_height_bug.log"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="pane_height_bug.log"
+
+TG9hZGluZyBjYWNoZS4uLmRvbmUuCkxvYWRlZCAxMzA0IGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5
+IGNhY2hlLgpOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNp
+ZXMKCkJ1aWxkIENvbmZpZ3VyYXRpb246CkJCX1ZFUlNJT04gICAgICAgID0gIjEuMjYuMCIKQlVJ
+TERfU1lTICAgICAgICAgPSAieDg2XzY0LWxpbnV4IgpOQVRJVkVMU0JTVFJJTkcgICA9ICJEZWJp
+YW4tNy45IgpUQVJHRVRfU1lTICAgICAgICA9ICJhcm0tcG9reS1saW51eC1nbnVlYWJpIgpNQUNI
+SU5FICAgICAgICAgICA9ICJiZWFnbGVib25lIgpESVNUUk8gICAgICAgICAgICA9ICJwb2t5IgpE
+SVNUUk9fVkVSU0lPTiAgICA9ICIxLjguMSIKVFVORV9GRUFUVVJFUyAgICAgPSAiYXJtIGFybXY3
+YSB2ZnAgbmVvbiBjYWxsY29udmVudGlvbi1oYXJkIGNvcnRleGE4IgpUQVJHRVRfRlBVICAgICAg
+ICA9ICJ2ZnAtbmVvbiIKbWV0YSAgICAgICAgICAgICAgCm1ldGEteW9jdG8gICAgICAgIAptZXRh
+LXlvY3RvLWJzcCAgICA9ICI8dW5rbm93bj46PHVua25vd24+IgptZXRhLWV4bS1jb3JlICAgICA9
+ICJtYXN0ZXI6ZjJhZDM4YTc2ZjA0MTNlYmFmMGRmMjdlY2RlZWM0YjgwZjNmZGEwZiIKCk5PVEU6
+IFByZXBhcmluZyBSdW5RdWV1ZQpXQVJOSU5HOiAvaG9tZS93aWxseWthemUveW9jdG8vcG9reS9t
+ZXRhL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMuMTQuYmIuZG9fa2VybmVsX2Nv
+bmZpZ21lIGlzIHRhaW50ZWQgZnJvbSBhIGZvcmNlZCBydW4KTk9URTogRXhlY3V0aW5nIFNldFNj
+ZW5lIFRhc2tzCk5PVEU6IEV4ZWN1dGluZyBSdW5RdWV1ZSBUYXNrcwpOT1RFOiBSdW5uaW5nIHRh
+c2sgMjU1IG9mIDI1NSAoSUQ6IDcsIC9ob21lL3dpbGx5a2F6ZS95b2N0by9wb2t5L21ldGEvcmVj
+aXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4xNC5iYiwgZG9fbWVudWNvbmZpZykKTk9U
+RTogcmVjaXBlIGxpbnV4LXlvY3RvLTMuMTQuMzYrZ2l0QVVUT0lOQysxNjJkZmUzYmIwX2RiZTVi
+NTJlOTMtcjA6IHRhc2sgZG9fbWVudWNvbmZpZzogU3RhcnRlZApFUlJPUjogRXJyb3IgZXhlY3V0
+aW5nIGEgcHl0aG9uIGZ1bmN0aW9uIGluIC9ob21lL3dpbGx5a2F6ZS95b2N0by9wb2t5L21ldGEv
+cmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy4xNC5iYjoKClRoZSBzdGFjayB0cmFj
+ZSBvZiBweXRob24gY2FsbHMgdGhhdCByZXN1bHRlZCBpbiB0aGlzIGV4Y2VwdGlvbi9mYWlsdXJl
+IHdhczoKRmlsZTogJ2RvX21lbnVjb25maWcnLCBsaW5lbm86IDI1LCBmdW5jdGlvbjogPG1vZHVs
+ZT4KICAgICAwMDIxOiAgICAgICAgICAgIGJiLm5vdGUoIkNvbmZpZ3VyYXRpb24gY2hhbmdlZCwg
+cmVjb21waWxlIHdpbGwgYmUgZm9yY2VkIikKICAgICAwMDIyOiAgICAgICAgICAgIGJiLmJ1aWxk
+LndyaXRlX3RhaW50KCdkb19jb21waWxlJywgZCkKICAgICAwMDIzOgogICAgIDAwMjQ6CiAqKiog
+MDAyNTpkb19tZW51Y29uZmlnKGQpCiAgICAgMDAyNjoKRmlsZTogJ2RvX21lbnVjb25maWcnLCBs
+aW5lbm86IDExLCBmdW5jdGlvbjogZG9fbWVudWNvbmZpZwogICAgIDAwMDc6ICAgICAgICBzaHV0
+aWwuY29weSgiLmNvbmZpZyIsICIuY29uZmlnLm9yaWciKQogICAgIDAwMDg6ICAgIGV4Y2VwdCBP
+U0Vycm9yOgogICAgIDAwMDk6ICAgICAgICBtdGltZSA9IDAKICAgICAwMDEwOgogKioqIDAwMTE6
+ICAgIG9lX3Rlcm1pbmFsKCIvdXNyL2Jpbi96c2ggLWMgXCJtYWtlIG1lbnVjb25maWc7IGlmIFsg
+XCQ/IC1uZSAwIF07IHRoZW4gZWNobyAnQ29tbWFuZCBmYWlsZWQuJzsgcHJpbnRmICdQcmVzcyBh
+bnkga2V5IHRvIGNvbnRpbnVlLi4uICc7IHJlYWQgcjsgZmlcIiIsICdsaW51eC15b2N0byBDb25m
+aWd1cmF0aW9uJywgZCkKICAgICAwMDEyOgogICAgIDAwMTM6ICAgICMgRklYTUUgdGhpcyBjaGVj
+ayBjYW4gYmUgcmVtb3ZlZCB3aGVuIHRoZSBtaW5pbXVtIGJpdGJha2UgdmVyc2lvbiBoYXMgYmVl
+biBidW1wZWQKICAgICAwMDE0OiAgICBpZiBoYXNhdHRyKGJiLmJ1aWxkLCAnd3JpdGVfdGFpbnQn
+KToKICAgICAwMDE1OiAgICAgICAgdHJ5OgpGaWxlOiAndGVybWluYWwuYmJjbGFzcycsIGxpbmVu
+bzogNTUsIGZ1bmN0aW9uOiBvZV90ZXJtaW5hbAogICAgIDAwNTE6ICAgICAgICBleGNlcHQgb2Uu
+dGVybWluYWwuRXhlY3V0aW9uRXJyb3IgYXMgZXhjOgogICAgIDAwNTI6ICAgICAgICAgICAgYmIu
+ZmF0YWwoJ1VuYWJsZSB0byBzcGF3biB0ZXJtaW5hbCAlczogJXMnICUgKHRlcm1pbmFsLCBleGMp
+KQogICAgIDAwNTM6CiAgICAgMDA1NDogICAgdHJ5OgogKioqIDAwNTU6ICAgICAgICBvZS50ZXJt
+aW5hbC5zcGF3bl9wcmVmZXJyZWQoY29tbWFuZCwgdGl0bGUsIE5vbmUsIGQpCiAgICAgMDA1Njog
+ICAgZXhjZXB0IG9lLnRlcm1pbmFsLk5vU3VwcG9ydGVkVGVybWluYWxzOgogICAgIDAwNTc6ICAg
+ICAgICBiYi5mYXRhbCgnTm8gdmFsaWQgdGVybWluYWwgZm91bmQsIHVuYWJsZSB0byBvcGVuIGRl
+dnNoZWxsJykKICAgICAwMDU4OiAgICBleGNlcHQgb2UudGVybWluYWwuRXhlY3V0aW9uRXJyb3Ig
+YXMgZXhjOgogICAgIDAwNTk6ICAgICAgICBiYi5mYXRhbCgnVW5hYmxlIHRvIHNwYXduIHRlcm1p
+bmFsICVzOiAlcycgJSAodGVybWluYWwsIGV4YykpCkZpbGU6ICcvaG9tZS93aWxseWthemUveW9j
+dG8vcG9reS9tZXRhL2xpYi9vZS90ZXJtaW5hbC5weScsIGxpbmVubzogMTk5LCBmdW5jdGlvbjog
+c3Bhd25fcHJlZmVycmVkCiAgICAgMDE5NTpkZWYgc3Bhd25fcHJlZmVycmVkKHNoX2NtZCwgdGl0
+bGU9Tm9uZSwgZW52PU5vbmUsIGQ9Tm9uZSk6CiAgICAgMDE5NjogICAgIiIiU3Bhd24gdGhlIGZp
+cnN0IHN1cHBvcnRlZCB0ZXJtaW5hbCwgYnkgcHJpb3JpdHkiIiIKICAgICAwMTk3OiAgICBmb3Ig
+dGVybWluYWwgaW4gcHJpb3JpdGl6ZWQoKToKICAgICAwMTk4OiAgICAgICAgdHJ5OgogKioqIDAx
+OTk6ICAgICAgICAgICAgc3Bhd24odGVybWluYWwubmFtZSwgc2hfY21kLCB0aXRsZSwgZW52LCBk
+KQogICAgIDAyMDA6ICAgICAgICAgICAgYnJlYWsKICAgICAwMjAxOiAgICAgICAgZXhjZXB0IFVu
+c3VwcG9ydGVkVGVybWluYWw6CiAgICAgMDIwMjogICAgICAgICAgICBjb250aW51ZQogICAgIDAy
+MDM6ICAgIGVsc2U6CkZpbGU6ICcvaG9tZS93aWxseWthemUveW9jdG8vcG9reS9tZXRhL2xpYi9v
+ZS90ZXJtaW5hbC5weScsIGxpbmVubzogMjE0LCBmdW5jdGlvbjogc3Bhd24KICAgICAwMjEwOiAg
+ICAgICAgdGVybWluYWwgPSBSZWdpc3RyeS5yZWdpc3RyeVtuYW1lXQogICAgIDAyMTE6ICAgIGV4
+Y2VwdCBLZXlFcnJvcjoKICAgICAwMjEyOiAgICAgICAgcmFpc2UgVW5zdXBwb3J0ZWRUZXJtaW5h
+bChuYW1lKQogICAgIDAyMTM6CiAqKiogMDIxNDogICAgcGlwZSA9IHRlcm1pbmFsKHNoX2NtZCwg
+dGl0bGUsIGVudiwgZCkKICAgICAwMjE1OiAgICBvdXRwdXQgPSBwaXBlLmNvbW11bmljYXRlKClb
+MF0KICAgICAwMjE2OiAgICBpZiBwaXBlLnJldHVybmNvZGUgIT0gMDoKICAgICAwMjE3OiAgICAg
+ICAgcmFpc2UgRXhlY3V0aW9uRXJyb3Ioc2hfY21kLCBwaXBlLnJldHVybmNvZGUsIG91dHB1dCkK
+ICAgICAwMjE4OgpGaWxlOiAnL2hvbWUvd2lsbHlrYXplL3lvY3RvL3Bva3kvbWV0YS9saWIvb2Uv
+dGVybWluYWwucHknLCBsaW5lbm86IDEzMywgZnVuY3Rpb246IF9faW5pdF9fCiAgICAgMDEyOToK
+ICAgICAwMTMwOiAgICAgICAgaWYgbm90IG9zLmdldGVudignVE1VWCcpOgogICAgIDAxMzE6ICAg
+ICAgICAgICAgcmFpc2UgVW5zdXBwb3J0ZWRUZXJtaW5hbCgndG11eCBpcyBub3QgcnVubmluZycp
+CiAgICAgMDEzMjoKICoqKiAwMTMzOiAgICAgICAgaWYgbm90IGNoZWNrX3RtdXhfcGFuZV9zaXpl
+KCd0bXV4Jyk6CiAgICAgMDEzNDogICAgICAgICAgICByYWlzZSBVbnN1cHBvcnRlZFRlcm1pbmFs
+KCd0bXV4IHBhbmUgdG9vIHNtYWxsJykKICAgICAwMTM1OgogICAgIDAxMzY6ICAgICAgICBUZXJt
+aW5hbC5fX2luaXRfXyhzZWxmLCBzaF9jbWQsIHRpdGxlLCBlbnYsIGQpCiAgICAgMDEzNzoKRmls
+ZTogJy9ob21lL3dpbGx5a2F6ZS95b2N0by9wb2t5L21ldGEvbGliL29lL3Rlcm1pbmFsLnB5Jywg
+bGluZW5vOiAyMjUsIGZ1bmN0aW9uOiBjaGVja190bXV4X3BhbmVfc2l6ZQogICAgIDAyMjE6ICAg
+IHRyeToKICAgICAwMjIyOiAgICAgICAgcCA9IHN1Yi5Qb3BlbignJXMgbGlzdC1wYW5lcyAtRiAi
+I3s/cGFuZV9hY3RpdmUsI3twYW5lX2hlaWdodH0sfSInICUgdG11eCwKICAgICAwMjIzOiAgICAg
+ICAgICAgICAgICBzaGVsbD1UcnVlLHN0ZG91dD1zdWIuUElQRSxzdGRlcnI9c3ViLlBJUEUpCiAg
+ICAgMDIyNDogICAgICAgIG91dCwgZXJyID0gcC5jb21tdW5pY2F0ZSgpCiAqKiogMDIyNTogICAg
+ICAgIHNpemUgPSBpbnQob3V0LnN0cmlwKCkpCiAgICAgMDIyNjogICAgZXhjZXB0IE9TRXJyb3Ig
+YXMgZXhjOgogICAgIDAyMjc6ICAgICAgICBpbXBvcnQgZXJybm8KICAgICAwMjI4OiAgICAgICAg
+aWYgZXhjLmVycm5vID09IGVycm5vLkVOT0VOVDoKICAgICAwMjI5OiAgICAgICAgICAgIHJldHVy
+biBOb25lCkV4Y2VwdGlvbjogVmFsdWVFcnJvcjogaW52YWxpZCBsaXRlcmFsIGZvciBpbnQoKSB3
+aXRoIGJhc2UgMTA6ICcnCgpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19tZW51Y29uZmlnCkVS
+Uk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS93aWxseWthemUveW9jdG8v
+cG9reS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15
+b2N0by8zLjE0LjM2K2dpdEFVVE9JTkMrMTYyZGZlM2JiMF9kYmU1YjUyZTkzLXIwL3RlbXAvbG9n
+LmRvX21lbnVjb25maWcuNTUwMgpOT1RFOiByZWNpcGUgbGludXgteW9jdG8tMy4xNC4zNitnaXRB
+VVRPSU5DKzE2MmRmZTNiYjBfZGJlNWI1MmU5My1yMDogdGFzayBkb19tZW51Y29uZmlnOiBGYWls
+ZWQKRVJST1I6IFRhc2sgNyAoL2hvbWUvd2lsbHlrYXplL3lvY3RvL3Bva3kvbWV0YS9yZWNpcGVz
+LWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjE0LmJiLCBkb19tZW51Y29uZmlnKSBmYWlsZWQg
+d2l0aCBleGl0IGNvZGUgJzEnCk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAyNTUgdGFz
+a3Mgb2Ygd2hpY2ggMjU0IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC4KClN1
+bW1hcnk6IDEgdGFzayBmYWlsZWQ6CiAgL2hvbWUvd2lsbHlrYXplL3lvY3RvL3Bva3kvbWV0YS9y
+ZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0b18zLjE0LmJiLCBkb19tZW51Y29uZmlnClN1
+bW1hcnk6IFRoZXJlIHdhcyAxIFdBUk5JTkcgbWVzc2FnZSBzaG93bi4KU3VtbWFyeTogVGhlcmUg
+d2VyZSAyIEVSUk9SIG1lc3NhZ2VzIHNob3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNv
+ZGUuCg==
+
+--------------050907010702030804030009--
