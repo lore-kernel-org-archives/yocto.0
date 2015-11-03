@@ -1,48 +1,41 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36C6AE009C5; Tue,  3 Nov 2015 08:59:10 -0800 (PST)
+	id B4D8FE00A28; Tue,  3 Nov 2015 16:58:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f182.google.com (mail-yk0-f182.google.com
-	[209.85.160.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3539E0034B
-	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 08:59:07 -0800 (PST)
-Received: by ykba4 with SMTP id a4so26040351ykb.3
-	for <yocto@yoctoproject.org>; Tue, 03 Nov 2015 08:59:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=rTAhrrtL5GkOXBYRUQGklSCY527pMKz2csq6w5iqpys=;
-	b=SfA+CuaLhMfUt5lduWyMudyvTfeTubTvmZHvsCvQe8e+/YQAxlAEoWcd1XVBmRXW5Z
-	hYC9538qt+UwZWNHXZy+R/8NwSPFRaspYqUG3GEZdnkA4YRzzlQB0q7T1+fMd43DqpsC
-	94hup0UR9fo6X/6i6enDHn/7XQyDdoypN0OPMA9rkCPxW0Urz2CfvE2i6JpD1nq1P3jo
-	yv+J9F3EPJFFt0rT+FPmLnZP7CHhtADhAiDgf3CLkTVoEoqwD6Tdv1WtlWcWyts0l268
-	7fOZRBUIRxmyPR521U6Zfcfh0CUhPnjMOyA6NXGP9C+rx6OyT7hZ0MsZQfud3omX+1Vg
-	h/QA==
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D3E4E009C5
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 16:58:49 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA3LAVLF007795
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 3 Nov 2015 13:11:16 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.227) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Tue, 3 Nov 2015 13:10:31 -0800
+To: Manjeet Pawar <manjeet.p@samsung.com>, <yocto@yoctoproject.org>
+References: <1446551079-38517-1-git-send-email-manjeet.p@samsung.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <563922C5.5080505@windriver.com>
+Date: Tue, 3 Nov 2015 15:10:29 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
 MIME-Version: 1.0
-X-Received: by 10.129.146.81 with SMTP id j78mr21436758ywg.217.1446569946801; 
-	Tue, 03 Nov 2015 08:59:06 -0800 (PST)
-Received: by 10.129.155.134 with HTTP; Tue, 3 Nov 2015 08:59:06 -0800 (PST)
-Date: Tue, 3 Nov 2015 14:59:06 -0200
-Message-ID: <CAF3SDA6VnRtdSmSCT7+rJkhHPU6tZsiCqUUQhvZPR54GoMrjaQ@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: installation image (customizing .sdcard image)
+In-Reply-To: <1446551079-38517-1-git-send-email-manjeet.p@samsung.com>
+Cc: Vaneet Narang <v.narang@samsung.com>, ajeet.y@samsung.com,
+	doha.hwang@samsung.com, hakbong5.lee@samsung.com,
+	maninder1.s@samsung.com, pankaj.m@samsung.com
+Subject: Re: [PATCH 1/1] Fix AARCH64_TLSDESC relocation conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,38 +47,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2015 16:59:10 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 04 Nov 2015 00:58:52 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 11/3/15 5:44 AM, Manjeet Pawar wrote:
+> This patch needs to be applied to 'cross_prelink_aarch64' branch.
+> It fixes tls1, tls2, tls4, tls5, tls6 test cases of prelink testsuite.
+> tls3 gets failed but this test case fails without prelink as well on AARCH64
+> 
+> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
+> Signed-off-by: Manjeet Pawar <manjeet.p@samsung.com>
+> ---
+>  src/arch-aarch64.c |    2 +-
+>  1 files changed, 1 insertions(+), 1 deletions(-)
+> 
+> diff --git a/src/arch-aarch64.c b/src/arch-aarch64.c
+> index e04dd6e..6499c68 100644
+> --- a/src/arch-aarch64.c
+> +++ b/src/arch-aarch64.c
+> @@ -375,7 +375,7 @@ aarch64_prelink_conflict_rela (DSO *dso, struct prelink_info *info,
+>        break;
+>      case R_AARCH64_TLSDESC:
+>  	  tls = conflict ? conflict->lookup.tls : info->curtls;
+> -	  ret->r_addend =  rela->r_addend + tls->offset;
+> +	  ret->r_addend = value + rela->r_addend + tls->offset;
+>       break;
+>      default:
+>        error (0, 0, "%s: Unknown AARCH64 relocation type %d", dso->filename,
+> 
 
-Suppose that I have a "foo-image" that builds foo-image.ubi and
-foo-image.sdcard. The .ubi has to be burned into NAND. Today I use an
-.sdcard image from my provider, which I boot and copy u-boot, kernel,
-device-tree and rootfs to it, and then run a script that burn these
-files
-into NAND. I was wondering if is possible to turn the foo-image.sdcard
-an installation image for foo-image.ubi!?
+I'm still getting segfaults here.
 
-I think in selecting some recipes based on filesystem type (.sdcard)
-to be installed to the [.sdcard] image. These recipes are to handle
-the packages needed to write to NAND like mtd-utils and alike. Then
-copy the proper u-boot, kernel, device-tree and rootfs.ubi during
-rootfs creation and after boot run some kind of script that
-burns all this stuff to NAND. If all that works I can even put this installation
-script to run at first boot and have a automatic installation image for
-each image that I create,
+The way I am testing is building a Yocto Project (jethro) system
+core-image-base, and adding to it:
+"packagegroup-core-buildessential,libelf,elfutils-dev,binutils-staticdev,glibc-staticdev"
 
-I know that to make this works I'll need make .sdcard image depend on
-.ubi image, this is fine to me. The big question is how to copy the
-right files to rootfs and how to pick up packages base on fstype of
-image.
+The copying a checked out version of the prelink-cross repository with the
+prelink_cross_aarch64 branch checked out.
 
-So, has anybody tried this before?
+On the target:
 
-Best regards,
+autoreconf -if
+./configure
+make
+make -C testsuite check
 
--- 
-"Do or do not. There is no try"
-  Yoda Master
+Most tests still fail, and all of the TLS tests result in a segfault.
+
+(I do have the 'aarch64/dl-machine.h: Fix load-address for prelink support'
+applied to my glibc.  Are there any other patches that may need to be applied?)
+
+--Mark
 
