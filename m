@@ -1,74 +1,37 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ACBBE00B5A; Mon,  2 Nov 2015 23:05:48 -0800 (PST)
+	id 52461E00B56; Tue,  3 Nov 2015 00:29:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f52.google.com (mail-lf0-f52.google.com
-	[209.85.215.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 281EFE00B54
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 23:05:43 -0800 (PST)
-Received: by lfbn126 with SMTP id n126so7190273lfb.2
-	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 23:05:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=chargestorm_se.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:organization:user-agent;
-	bh=CpDz1RxAeXh/o7zrmH0lN2dxT2CqkyJWwGb7Xi2K88A=;
-	b=bHm3qa7vJu2+Iod2a6VroY5g0mqYDwQwsG03q3jZ+OUR9XkLWF7Or7PG2ZXmc5r1sO
-	9buuKhIcf13PVYjM3H82ehWR04xzH22j8xY+Mrk8qTI3gY3CWXbR8r+2hZ4hr9nc0F3r
-	fizoBg4HdYem5qAjYYgC7qdWldNwPvU6K38fKkkjiz5heEcirSgcGoFeeU+ziGfDtjrV
-	fSG5Q3l7t/q/+C5XBOpmUOgrDRZEKTcz9olURFzD0sDUUxKKqJtrp+/Ozu3h2fum0yW1
-	HkAnaCzOetLd4RTQVvkYOuD0Bz0RdE6Eui2V0u4uI14ogAsoR3V/DRllQWHbY7NpqKq3
-	5wpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-type:content-disposition
-	:in-reply-to:organization:user-agent;
-	bh=CpDz1RxAeXh/o7zrmH0lN2dxT2CqkyJWwGb7Xi2K88A=;
-	b=Xv2H66iDjCqoqEVifkkTJrmKZfKkAn+pvlbxQYbd4O/kbHLeMsZnRxus6raP0vb3D2
-	OhqA7Iq5Q/qohvysFgMn0j/bPgOMU5Gww0AGOmyKQESgSj3PI5DziIjAQ+smcTcZeNCD
-	6dyl/qJws/ZVtEp6ZM/S5ogmd7HAKQXYyvA33LfG3ydyvIUJ/KrwJMFQMZTV3U7ncHtR
-	ynXdlPQIJAGehGNiBkVAHtLQlYcPNIYIXYzqKeb+pKf3JJTGA8X8yqnrWTgAREfZamrn
-	z98Uk1t6XvTB4UZYeDF6afKXzph4HUj+emP61khTy//SY2raLNOTfLunSULBoMa9HPdl
-	hM/w==
-X-Gm-Message-State: ALoCoQnweWskWB8sFgRD9XmLVJKBjdhdrwkKVKRsQYYbht2XwU7eP31tUOXr9Mf8C8i6zIaa2oU5
-X-Received: by 10.112.140.4 with SMTP id rc4mr12060384lbb.26.1446534341499;
-	Mon, 02 Nov 2015 23:05:41 -0800 (PST)
-Received: from ad.chargestorm.se (h83-209-191-235.dynamic.se.alltele.net.
-	[83.209.191.235])
-	by smtp.gmail.com with ESMTPSA id ds2sm461738lbc.33.2015.11.02.23.05.40
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 02 Nov 2015 23:05:40 -0800 (PST)
-Date: Tue, 3 Nov 2015 08:05:38 +0100
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20151103070538.GA5867@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
-	<CAJ86T=U7mmNmTRi5xHpy7C+XOAPuKiRyy=958YsGeQ3cnYap_g@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A08A5E00B4A
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 00:29:54 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 03 Nov 2015 00:29:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,238,1444719600"; d="scan'208";a="841321116"
+Received: from bcrawfor-mobl.amr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.26.120])
+	by orsmga002.jf.intel.com with ESMTP; 03 Nov 2015 00:29:53 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Roberto <ramatekd@gmail.com>
+Date: Tue, 03 Nov 2015 08:29:51 +0000
+Message-ID: <1466597.VzdpmWes4K@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
+In-Reply-To: <048a01d115c7$49d6e3b0$dd84ab10$@gmail.com>
+References: <048a01d115c7$49d6e3b0$dd84ab10$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJ86T=U7mmNmTRi5xHpy7C+XOAPuKiRyy=958YsGeQ3cnYap_g@mail.gmail.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: Create uncompressed rootfs
+Cc: yocto@yoctoproject.org
+Subject: Re: How to install only a subset of the packages listed in a packagegroup?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,51 +43,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2015 07:05:48 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Nov 2015 08:29:57 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-* Andre McCurdy <armccurdy@gmail.com> [151102 20:35]:
+Hi Roberto,
 
-> See the "IMAGE_TYPES" variable for a list of rootfs types which are
-> supported. There's support for creating an uncompressed .tar file, but
-> I don't see any support for creating a rootfs directory under
-> tmp/deploy.
+On Tuesday 03 November 2015 10:36:20 Roberto wrote:
+> I have written the following packagegroup called packagegroup-amatek.bb for
+> testing purposes :
+> 
+> # Copyright (C) 2012-2013 Freescale Semiconductor
+> 
+> # Released under the MIT license (see COPYING.MIT for the terms)
+> 
+> DESCRIPTION = "Example package group"
+> 
+> LICENSE = "MIT"
+> 
+> LIC_FILES_CHKSUM =
+> "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
+> 
+> 
+> file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> 
+> PR = "r5"
+> 
+> inherit packagegroup
+> 
+> PROVIDES = "${PACKAGES}"
+> 
+> PACKAGES += " \
+> 
+>    ${PN}-package1 \
+> 
+>     ${PN}-package2 \
+> 
+> "
+> 
+> RDEPENDS_${PN}-package1 = " \
+> 
+>    package1-depend1 \
+> 
+> "
+> 
+> RDEPENDS_${PN}-package2 = " \
+> 
+>    package2-depend2 \
+> 
+> "
+> 
+> PACKAGE_ARCH = "${MACHINE_ARCH}"
+> 
+> 
+> If in my custom image file (amatek-image) I include only
+> packagegroup-amatek-package1:
+> 
+> 
+> 
+> IMAGE_INSTALL = "packagegroup-amatek-package1"
+> 
+> 
+> 
+> I would expect that package2-depend2 is not installed because it is a
+> dependency of the package packagegroup-amatek-package2 which is not
+> installed.
+> 
+> 
+> 
+> However, bitbake amatek-image -g -u depexp shows that package2-depend2 is
+> installed as well:
+> 
+> 
+> 
+>  <http://i.stack.imgur.com/xRj1E.png> enter image description here
+> 
+> 
+> 
+> Is this the expected behaviour?
 
-No, the usual workflow here is to unpack the tar'ed rootfs at a suitable
-location.
+When you say depexp shows that it's installed, how are you determining that?
+For the most part, depexp shows build-time dependencies; in order to *build*
+your packagegroup the dependencies for all of the packages that that
+packagegroup recipe creates need to exist, which means all those dependencies
+need to be built - so that explains why package2-depend2 is being built.
 
-> Depending on your work flow there are a few different solutions
-> though. You could extend
-> openembedded-core/meta/classes/image_types.bbclass to do what you want
-> (e.g. define a new image type or hack "IMAGE_CMD_tar" so that it also
-> untars rootfs.tar right after creating it). 
+Image construction is under the control of the package manager, and whilst we
+know most of the inputs to that process we can't account for all of the
+package manager's behaviour, so the only reliable way of determining the final 
+contents of the image is to actually build the image and then inspect what 
+went into it. You can use buildhistory to get an analysis of the image contents:
 
-Well, there's some issues with this approach. In order to uncompress the
-tarball and be able to set owner, group, and permissions on all files,
-you need to untar the rootfs with root privileges. The same is true when
-it comes to creating device nodes.
+ http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#maintaining-build-output-quality
 
-Thus, I think it really do make a lot more sense to untar the rootfs in
-an external step, which very well could be scripted.
-
-> Or you could ignore OE's
-> image creation and manually copy or rsync your image's rootfs ( under
-> tmp/work/<MACHINE>.../<IMAGE>/.../rootfs ) to the directory exported
-> by your NFS server. Note that you probably shouldn't export
-> tmp/work/.../rootfs directly since when the target boots it will
-> create files owned by root, which will cause problems later if you try
-> to rebuild or modify the rootfs.
-
-No, avoid doing this. The reasons are the same as why you shouldn't
-unpack the tarball using a new image type; you're not allowed to set the
-correct owner, group, and permissions on files, nor are you allowed to
-create device nodes.
+When enabled, buildhistory will not only write a list of the packages that went
+into the image (in several formats) but will also write a .dot graph file showing
+the dependency relationships between packages in the image which you can
+inspect to see why something was added.
 
 Cheers,
-Anders
+Paul
 
 -- 
-Anders Darander
-ChargeStorm AB / eStorm AB
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
