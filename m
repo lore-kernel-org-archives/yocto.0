@@ -1,50 +1,77 @@
-Return-Path: <jarraj400@gmail.com>
+Return-Path: <manjeet.p@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AA16E00B56; Mon,  2 Nov 2015 20:47:52 -0800 (PST)
+	id 52C0EE00B54; Tue,  3 Nov 2015 03:56:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jarraj400[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+	SPF_HELO_PASS,T_HDRS_LCASE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [203.254.224.34 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1A98E00B4F
-	for <yocto@yoctoproject.org>; Mon,  2 Nov 2015 20:47:47 -0800 (PST)
-Received: by lfbn126 with SMTP id n126so4874893lfb.2
-	for <yocto@yoctoproject.org>; Mon, 02 Nov 2015 20:47:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=076ZcurC5OvRrI7NPVoHwEMUG3DdbHJuOWDaO78mNXg=;
-	b=UKyG4d4w1xSINgSO/jAkZCr/sA7Q9gWYL9wPqy21x/PtVQL/SGCsciIWdg6vVMsD3p
-	m9xQaQlgi8JDg4ZGtgr358jKs/19WyaiCsX6Lq7+6zKeMRKJBdUX6S3Qdq1VXQ1mvYnm
-	FOXONnn6AwiTfSQrh6Uv967lBpFT4QREbwymB34qBIx6GkTDKhbG+8nsCm0UPGVm9COO
-	SKEVIAq8vVCq2/LdUjmOE1Hkdnju+hEEXOjQhYNBh+NGLtEGxgvT5WwxAx682qSAFak8
-	ntMqLptBdGzpAGWEVqh2EmKXc5yH4xvmAzWuFZ/jKowZkkrrfrydf720G56s1BbK73Ts
-	p+aQ==
-MIME-Version: 1.0
-X-Received: by 10.112.140.197 with SMTP id ri5mr11743690lbb.65.1446526065395; 
-	Mon, 02 Nov 2015 20:47:45 -0800 (PST)
-Received: by 10.25.25.147 with HTTP; Mon, 2 Nov 2015 20:47:45 -0800 (PST)
-Date: Tue, 3 Nov 2015 10:17:45 +0530
-Message-ID: <CAK3ATuEW_u3JpNxxx7m2wVrJdERX=p3=2k_6YF_9NLue6EYWcw@mail.gmail.com>
-From: Raj Jar <jarraj400@gmail.com>
-To: yocto@yoctoproject.org
+	*  0.0 T_HDRS_LCASE Odd capitalization of message header
+X-Greylist: delayed 605 seconds by postgrey-1.32 at yocto-www;
+	Tue, 03 Nov 2015 03:56:16 PST
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A37E00AA5
+	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 03:56:16 -0800 (PST)
+Received: from epcpsbgr2.samsung.com
+	(u142.gpu120.samsung.co.kr [203.254.230.142])
+	by mailout4.samsung.com (Oracle Communications Messaging Server
+	7.0.5.31.0 64bit (built May  5 2014))
+	with ESMTP id <0NX802DKLM0YHS90@mailout4.samsung.com> for
+	yocto@yoctoproject.org; Tue, 03 Nov 2015 20:46:10 +0900 (KST)
+Received: from epcpsbgm1new.samsung.com ( [172.20.52.123])
+	by epcpsbgr2.samsung.com (EPCPMTA) with SMTP id 4B.DB.05272.28E98365;
+	Tue, 3 Nov 2015 20:46:10 +0900 (KST)
+X-AuditID: cbfee68e-f791c6d000001498-21-56389e827995
+Received: from epmmp2 ( [203.254.227.17])	by epcpsbgm1new.samsung.com (EPCPMTA)
+	with SMTP id 29.B3.23663.28E98365; Tue,  3 Nov 2015 20:46:10 +0900 (KST)
+Received: from localhost.localdomain ([107.108.92.210])
+	by mmp2.samsung.com (Oracle Communications Messaging Server 7.0.5.31.0
+	64bit
+	(built May 5 2014)) with ESMTPA id <0NX800FNFLYNKR30@mmp2.samsung.com>;
+	Tue, 03 Nov 2015 20:46:10 +0900 (KST)
+From: Manjeet Pawar <manjeet.p@samsung.com>
+To: yocto@yoctoproject.org, mark.hatle@windriver.com
+Date: Tue, 03 Nov 2015 17:14:39 +0530
+Message-id: <1446551079-38517-1-git-send-email-manjeet.p@samsung.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMLMWRmVeSWpSXmKPExsWyRsSkWrdpnkWYwa7dghYvXk1gsXhw4SqT
+	Rdvbn2wWh+e3sVjca13LZrHp+UEg681WJotDJ+cyWkx6uYbNgdOjb8sqRo/1W7YyebSf6GML
+	YI7isklJzcksSy3St0vgyjiwcwNTwUX2iraLP1kbGKeydTFyckgImEjsnfaYCcIWk7hwbz1Q
+	nItDSGAFo8TfQ28YYYoatv8DaxASmMUosfWgMETRT0aJxT8OsYAk2AS0Jfb8aGPvYuTgEAFq
+	eNjHCFLDLHCSUeLIL5A4J4ewgI3E3AMdYINYBFQlFrXeBtvMK+AqcWJfMxtIr4SAgsScSTYg
+	vRICzewSja+2skPUC0h8mwyyC6RGVmLTAWaI2yQlDq64wTKBUXABI8MqRtHUguSC4qT0IiO9
+	4sTc4tK8dL3k/NxNjMCwPf3vWd8OxpsHrA8xCnAwKvHwLlhiHibEmlhWXJl7iNEUaMNEZinR
+	5HxgdOSVxBsamxlZmJqYGhuZW5opifMmSP0MFhJITyxJzU5NLUgtii8qzUktPsTIxMEp1cA4
+	+/bGs0sn6Tul/ft18NWhvdU8p25cWeaiFO/xhP1c+mvrM7fe7DkyJeBes4Pd5b4fP6oM9nzq
+	22UgefLh5x3cWntqbNh9bjx5cSlTX8tF1Gpz6X2dPdLOabyLXD5wvL08w+WGxq84rqMzr09X
+	kA3b8WzCvZcHp6tPjXvtV/14luzK2SL6z9T/PVJiKc5INNRiLipOBADKR/eTVgIAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAIsWRmVeSWpSXmKPExsVy+t9jQd2meRZhBo0HuSxevJrAYvHgwlUm
+	i7a3P9ksDs9vY7G417qWzWLT84NA1putTBaHTs5ltJj0cg2bA6dH35ZVjB7rt2xl8mg/0ccW
+	wBzVwGiTkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SI
+	kkJZYk4pUCggsbhYSd8O04TQEDddC5jGCF3fkCC4HiMDNJCwhjHjwM4NTAUX2SvaLv5kbWCc
+	ytbFyMkhIWAi0bD9H5QtJnHh3nowW0hgFqPE1oPCXYxcQPZPRonFPw6xgCTYBLQl9vxoY+9i
+	5OAQAWp+2McIUsMscJJR4sgvkDgnh7CAjcTcAx1gg1gEVCUWtd5mArF5BVwlTuxrZgPplRBQ
+	kJgzyWYCI/cCRoZVjBKpBckFxUnpuYZ5qeV6xYm5xaV56XrJ+bmbGMGx8UxqB+PBXe6HGAU4
+	GJV4eBcsMQ8TYk0sK67MPcQowcGsJMK7e65FmBBvSmJlVWpRfnxRaU5q8SFGU6D9E5mlRJPz
+	gXGbVxJvaGxibmpsamliYWJmqSTOq+9pFCYkkJ5YkpqdmlqQWgTTx8TBKdXA6LA/wlF6ybfN
+	Ass3mOj19n5OyPkonuC7a8rzvQ8uOpWybfzM8o1nupB82af2XxWtJ6N14z2vcpraFncmfGyp
+	nJKZrJXhvOOSUNPE+4WbJ2tVLz5w/OyDj+9/TTO7H3iuca/8p+pV/8ucxFb03O3Su2CjHMoU
+	d/3q0QzvP8VZNsZfMk2Pr5yyTYmlOCPRUIu5qDgRAOZ2H4KjAgAA
+DLP-Filter: Pass
+X-MTR: 20000000000000000@CPGS
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 03 Nov 2015 06:41:51 -0800
-Subject: raspberry pi do rootfs
+Cc: Vaneet Narang <v.narang@samsung.com>, ajeet.y@samsung.com,
+	doha.hwang@samsung.com, hakbong5.lee@samsung.com,
+	maninder1.s@samsung.com, Manjeet Pawar <manjeet.p@samsung.com>,
+	pankaj.m@samsung.com
+Subject: [PATCH 1/1] Fix AARCH64_TLSDESC relocation conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,109 +83,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2015 04:47:52 -0000
-Content-Type: multipart/alternative; boundary=001a11c25b4649534105239b980b
+X-List-Received-Date: Tue, 03 Nov 2015 11:56:18 -0000
 
---001a11c25b4649534105239b980b
-Content-Type: text/plain; charset=UTF-8
+This patch needs to be applied to 'cross_prelink_aarch64' branch.
+It fixes tls1, tls2, tls4, tls5, tls6 test cases of prelink testsuite.
+tls3 gets failed but this test case fails without prelink as well on AARCH64
 
-I got this error when i do bitbake rpi-hwup-image
-I suspect error come from mcopy .....
-how to recover this error
-MACHINE ?="raspberry pi"
+Signed-off-by: Vaneet Narang <v.narang@samsung.com>
+Signed-off-by: Manjeet Pawar <manjeet.p@samsung.com>
+---
+ src/arch-aarch64.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/src/arch-aarch64.c b/src/arch-aarch64.c
+index e04dd6e..6499c68 100644
+--- a/src/arch-aarch64.c
++++ b/src/arch-aarch64.c
+@@ -375,7 +375,7 @@ aarch64_prelink_conflict_rela (DSO *dso, struct prelink_info *info,
+       break;
+     case R_AARCH64_TLSDESC:
+ 	  tls = conflict ? conflict->lookup.tls : info->curtls;
+-	  ret->r_addend =  rela->r_addend + tls->offset;
++	  ret->r_addend = value + rela->r_addend + tls->offset;
+      break;
+     default:
+       error (0, 0, "%s: Unknown AARCH64 relocation type %d", dso->filename,
+-- 
+1.7.1
 
 
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Error: The image creation script
-'/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/temp/create_image.rpi-sdimg'
-returned 1:
-Creating filesystem with Boot partition 20480 KiB and RootFS 77824 KiB
-0+0 records in
-0+0 records out
-0 bytes (0 B) copied, 7.4427e-05 s, 0.0 kB/s
-Model:  (file)
-Disk
-/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/deploy/images/raspberrypi/rpi-hwup-image-raspberrypi-20151102024300.rootfs.rpi-sdimg:
-105MB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-Disk Flags:
-
-Number  Start   End     Size    Type     File system  Flags
- 1      4194kB  25.2MB  21.0MB  primary               boot, lba
- 2      25.2MB  105MB   79.7MB  primary
-
-mkfs.vfat 2.11 (12 Mar 2005)
-Disk full
-WARNING:
-/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/temp/create_image.rpi-sdimg:1
-exit 1 from
-  mcopy -i
-/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/boot.img
--s
-/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/deploy/images/raspberrypi/Image-raspberrypi.bin
-::kernel.img
-
-ERROR: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/temp/log.do_rootfs.13457
-ERROR: Task 7
-(/home/raj/Projects/raspberry_pi/yacto/poky/meta-raspberrypi/recipes-core/images/
-rpi-hwup-image.bb, do_rootfs) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1954 tasks of which 1953 didn't need to be
-rerun and 1 failed.
-No currently running tasks (1953 of 1955)
-
-Summary: 1 task failed:
-
-/home/raj/Projects/raspberry_pi/yacto/poky/meta-raspberrypi/recipes-core/images/
-rpi-hwup-image.bb, do_rootfs
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
---001a11c25b4649534105239b980b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>I got this error when i do bitbake rpi-hwup=
--image<br></div>I suspect error come from mcopy .....<br></div>how to recov=
-er this error<br></div>MACHINE ?=3D&quot;raspberry pi&quot;<br><div><div><d=
-iv><div><br><div><br>NOTE: Preparing RunQueue<br>NOTE: Executing SetScene T=
-asks<br>NOTE: Executing RunQueue Tasks<br>ERROR: Error: The image creation =
-script &#39;/home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tm=
-p/work/raspberrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/temp/create_ima=
-ge.rpi-sdimg&#39; returned 1:<br>Creating filesystem with Boot partition 20=
-480 KiB and RootFS 77824 KiB<br>0+0 records in<br>0+0 records out<br>0 byte=
-s (0 B) copied, 7.4427e-05 s, 0.0 kB/s<br>Model:=C2=A0 (file)<br>Disk /home=
-/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/deploy/images/r=
-aspberrypi/rpi-hwup-image-raspberrypi-20151102024300.rootfs.rpi-sdimg: 105M=
-B<br>Sector size (logical/physical): 512B/512B<br>Partition Table: msdos<br=
->Disk Flags:<br><br>Number=C2=A0 Start=C2=A0=C2=A0 End=C2=A0=C2=A0=C2=A0=C2=
-=A0 Size=C2=A0=C2=A0=C2=A0 Type=C2=A0=C2=A0=C2=A0=C2=A0 File system=C2=A0 F=
-lags<br>=C2=A01=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 4194kB=C2=A0 25.2MB=C2=A0 21.=
-0MB=C2=A0 primary=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 boot, lba<br>=C2=A02=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 25.2MB=C2=A0 105MB=C2=A0=C2=A0 79.7MB=C2=A0 primary<br><br>mkfs.vfat 2.=
-11 (12 Mar 2005)<br>Disk full<br>WARNING: /home/raj/Projects/raspberry_pi/y=
-acto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hwu=
-p-image/1.0-r0/temp/create_image.rpi-sdimg:1 exit 1 from<br>=C2=A0 mcopy -i=
- /home/raj/Projects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/work/rasp=
-berrypi-poky-linux-gnueabi/rpi-hwup-image/1.0-r0/boot.img -s /home/raj/Proj=
-ects/raspberry_pi/yacto/poky/raspberrypi_build/tmp/deploy/images/raspberryp=
-i/Image-raspberrypi.bin ::kernel.img<br><br>ERROR: Function failed: do_root=
-fs<br>ERROR: Logfile of failure stored in: /home/raj/Projects/raspberry_pi/=
-yacto/poky/raspberrypi_build/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-hw=
-up-image/1.0-r0/temp/log.do_rootfs.13457<br>ERROR: Task 7 (/home/raj/Projec=
-ts/raspberry_pi/yacto/poky/meta-raspberrypi/recipes-core/images/<a href=3D"=
-http://rpi-hwup-image.bb">rpi-hwup-image.bb</a>, do_rootfs) failed with exi=
-t code &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 1954 tasks of which 19=
-53 didn&#39;t need to be rerun and 1 failed.<br>No currently running tasks =
-(1953 of 1955)<br><br>Summary: 1 task failed:<br>=C2=A0 /home/raj/Projects/=
-raspberry_pi/yacto/poky/meta-raspberrypi/recipes-core/images/<a href=3D"htt=
-p://rpi-hwup-image.bb">rpi-hwup-image.bb</a>, do_rootfs<br>Summary: There w=
-ere 2 ERROR messages shown, returning a non-zero exit code.<br><br><div cla=
-ss=3D"gmail_signature"><div dir=3D"ltr"><br><div><br></div></div></div>
-</div></div></div></div></div></div>
-
---001a11c25b4649534105239b980b--
