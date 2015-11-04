@@ -1,41 +1,35 @@
-Return-Path: <toby.gomersall@smartacoustics.co.uk>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE63DE00AD8; Wed,  4 Nov 2015 05:42:14 -0800 (PST)
+	id A8CC0E00AE4; Wed,  4 Nov 2015 05:56:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [80.241.60.215 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 394 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 Nov 2015 05:42:13 PST
-Received: from mx2.mailbox.org (mx2.mailbox.org [80.241.60.215])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AD22E00AC1
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 05:42:13 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx2.mailbox.org (Postfix) with ESMTPS id C0B62420E8
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 14:35:37 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-	by gerste.heinlein-support.de (gerste.heinlein-support.de
-	[91.198.250.173]) (amavisd-new, port 10030)
-	with ESMTP id pfQIri1c7tfY for <yocto@yoctoproject.org>;
-	Wed,  4 Nov 2015 14:35:36 +0100 (CET)
-To: yocto@yoctoproject.org
-From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <563A09A3.4050706@smartacoustics.co.uk>
-Date: Wed, 4 Nov 2015 13:35:31 +0000
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8B74FE00ACE
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 05:56:09 -0800 (PST)
+Received: (qmail 16656 invoked by uid 1003); 4 Nov 2015 13:56:09 -0000
+Received: from unknown (HELO ?192.168.11.125?)
+	(philip@opensdr.com@108.44.122.7)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	4 Nov 2015 13:56:09 -0000
+To: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>,
+	yocto@yoctoproject.org
+References: <563A09A3.4050706@smartacoustics.co.uk>
+From: Philip Balister <philip@balister.org>
+Message-ID: <563A0E6E.9010005@balister.org>
+Date: Wed, 4 Nov 2015 08:55:58 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: yocto on zynq, How to configure kernel to include drivers
+In-Reply-To: <563A09A3.4050706@smartacoustics.co.uk>
+Subject: Re: yocto on zynq, How to configure kernel to include drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,38 +41,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 13:42:14 -0000
-X-Groupsio-MsgNum: 27168
+X-List-Received-Date: Wed, 04 Nov 2015 13:56:16 -0000
+X-Groupsio-MsgNum: 27169
 Content-Type: multipart/signed; micalg=pgp-sha256;
 	protocol="application/pgp-signature";
-	boundary="l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet"
+	boundary="hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD"
 
---l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet
-Content-Type: text/plain; charset=utf-8
+--hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-I'm quite new to yocto so still have a lot to learn. I'm trying to
-include the DMA drivers in my yocto build for a Zynq based on the
-meta-xilinx layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/=
-).
+On 11/04/2015 08:35 AM, Toby Gomersall wrote:
+> I'm quite new to yocto so still have a lot to learn. I'm trying to
+> include the DMA drivers in my yocto build for a Zynq based on the
+> meta-xilinx layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilin=
+x/).
 
-I thought I'd be able to add them in the kernel configuration
-(menuconfig) by running (from within the build directory):
+You should try emailing this list for meta-xilinx specific issues.
 
-bitbake linux-xlnx -c kernel_configme -f
-bitbake linux-xlnx -c menuconfig
+https://lists.yoctoproject.org/listinfo/meta-xilinx
 
-I can't see the DMA drivers in menuconfig. However if I run menuconfig
-within the linux-xlnx tree (which is referenced by the SRCURI) I can see
-the DMA drivers. Is there some reason they're hidden in the build
-menuconfig?
+Philip
 
-Thanks,
-Toby
+>=20
+> I thought I'd be able to add them in the kernel configuration
+> (menuconfig) by running (from within the build directory):
+>=20
+> bitbake linux-xlnx -c kernel_configme -f
+> bitbake linux-xlnx -c menuconfig
+>=20
+> I can't see the DMA drivers in menuconfig. However if I run menuconfig
+> within the linux-xlnx tree (which is referenced by the SRCURI) I can se=
+e
+> the DMA drivers. Is there some reason they're hidden in the build
+> menuconfig?
+>=20
+> Thanks,
+> Toby
+>=20
+>=20
+>=20
+>=20
 
 
-
---l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet
+--hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
@@ -86,19 +92,13 @@ Content-Disposition: attachment; filename="signature.asc"
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJWOgmnAAoJEJFfznYik92WLd8P/1pUk89eg2uFYXr8yfiVqoHU
-dIG7KvCYTwFH1v0W/5uY/PwODiLBTQtR+36enOicLm1oE+XzNrUX5U1B/fqDZxiR
-F9PDS9dBvVsldqdRSUdCCp/XbGPoQk91PsxSBtu7iMe3qby3dzGtYjaNKwm6vqXm
-rrkhu4AWEss9Um9ppg5SijYQgY2x6GdrIRoGJE2e2i4RWujq2AYPOxzOWZSIJPWn
-oYAie1gy1ViBCxak8Ow8V1qmtJeHb9Gyh7+5YSb1t/0bV38Czj3fxLDjyHJGCXV+
-c4FmJc/mIdv6CRzyHVLew5c8/VHZsJ63NJTbJJ7qR3q3V6IeuveMGgbRqrINiKL1
-YKBTftQIi2dbk+9QpvPA4irIoFd3sHOqQp7IDtSPReKcNU6Qsy11Xt1PCoq1H+A9
-n4QgcjN16ZURJS77SWPUCBJm0xuCZWm1cO63hRhzYejF3r0r425ouAnKZpiR5ByB
-k7t6uZ5Ff0Lc1QQlXp95xplUruOKRaYd0L8eDZCjTdO727Xrjy/dqgKyk2IBy9gO
-YBHJlYPBu5eqczg7F5v6VlI3B0WidhUc/LxqnWwPqp4GOFRzwp6SftsUQJTw1sYv
-+HgrvbqtSmy5Yy4Wb93Mc826XXr/0a4FhgY+V30WjCWh/cbzHWIM9IIwb9sAr8Jq
-mwKbz/OYJhkNXLEuGobt
-=bl4d
+iQEcBAEBCAAGBQJWOg54AAoJEMDJd4rr0mer2wgH/iRaTbennqPZ/e7MaqZxORnh
+snSm+2+ZJuoLpWkUxOk9vYQ6uTpNMT+vJUW9fc1MKM5P4QJ1VBFcFlbD09XY+THc
+s8OpzcmTPdyfgagmt9C4ynXeDr8Yf+6RrMgJw9FK3s48uJo8wUrX3DfNrMosNKbv
+DGolwBPlriRhXR1LZUUxqRDRbFudgjfPQmglm/svSw+5uazCMK/FF4493bvqGdfL
+05KsYayAQ0iT1sDjt9lfjiaHDliN+pOKU8U6/XDn4oe0I0ivnF9hgGptVkVPPFQT
+ZEf/agdQ+0x8zF7mJCiczjVdj9qbwA47iMudKPP+zJfRHdUxyPu3dhUdfinU/ZM=
+=0iYd
 -----END PGP SIGNATURE-----
 
---l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet--
+--hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD--
