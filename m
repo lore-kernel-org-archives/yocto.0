@@ -1,56 +1,41 @@
-Return-Path: <scerveau@gmail.com>
+Return-Path: <toby.gomersall@smartacoustics.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33EDDE00AB9; Wed,  4 Nov 2015 02:02:57 -0800 (PST)
+	id BE63DE00AD8; Wed,  4 Nov 2015 05:42:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (scerveau[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [80.241.60.215 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2A3BE00AAA
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 02:02:53 -0800 (PST)
-Received: by wicll6 with SMTP id ll6so28508548wic.1
-	for <yocto@yoctoproject.org>; Wed, 04 Nov 2015 02:02:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-type:content-transfer-encoding;
-	bh=2oAPszpLsbq9K/whZR77P3PDbmhcBCAcoeUZdR7d/KI=;
-	b=LxEOCdTi4rbdGIF6fulyUyKTt+3iGaPvYHLEvjALq1mm68AjVhbhc/2anWYkgV9GY8
-	PGZuD9VcRxmFF5Bz3qyaME0oC/hGqt3jbmigXM17lShy4RiRPc+wr/wqvCGbjc1iQJ/W
-	mgfNyo1yAWxID/MqMKrymg+5axV/NmdkZsfH+wghqyvMoiNhmgLlKpSMv0le2fB20NA1
-	R0a4tdnQ2AMM8PH88u2ey2TWxMALaicHCnB6LIRVbZVZ82bPYOh8TYsmdJk122R2d6YF
-	v5J6sr8WKawpytw075tgAraGGdMLlNxdG5b+Lg+QJP/Nkk1hmrzj5FsHERbzR7Cpa/AH
-	xpfg==
-X-Received: by 10.194.205.130 with SMTP id lg2mr814802wjc.9.1446631372454;
-	Wed, 04 Nov 2015 02:02:52 -0800 (PST)
-Received: from [172.24.63.46]
-	(connected-labs-gw1.ter2.neodc.mpl.cust.as8218.eu. [94.103.137.126])
-	by smtp.googlemail.com with ESMTPSA id
-	at4sm744755wjc.9.2015.11.04.02.02.51 for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 04 Nov 2015 02:02:51 -0800 (PST)
+X-Greylist: delayed 394 seconds by postgrey-1.32 at yocto-www;
+	Wed, 04 Nov 2015 05:42:13 PST
+Received: from mx2.mailbox.org (mx2.mailbox.org [80.241.60.215])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AD22E00AC1
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 05:42:13 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx2.mailbox.org (Postfix) with ESMTPS id C0B62420E8
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 14:35:37 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+	by gerste.heinlein-support.de (gerste.heinlein-support.de
+	[91.198.250.173]) (amavisd-new, port 10030)
+	with ESMTP id pfQIri1c7tfY for <yocto@yoctoproject.org>;
+	Wed,  4 Nov 2015 14:35:36 +0100 (CET)
 To: yocto@yoctoproject.org
-From: scerveau <scerveau@gmail.com>
-Message-ID: <5639D7CA.7080404@gmail.com>
-Date: Wed, 4 Nov 2015 11:02:50 +0100
+From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <563A09A3.4050706@smartacoustics.co.uk>
+Date: Wed, 4 Nov 2015 13:35:31 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: [dizzy branch] License list fails with rpm with package shared between two arch
+Subject: yocto on zynq, How to configure kernel to include drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,43 +47,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 10:02:57 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Nov 2015 13:42:14 -0000
+X-Groupsio-MsgNum: 27168
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet"
 
-Dear all,
+--l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-I'm having a machine A and a machine B.
+I'm quite new to yocto so still have a lot to learn. I'm trying to
+include the DMA drivers in my yocto build for a Zynq based on the
+meta-xilinx layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/=
+).
 
-This two machines are built against the same image class and in the same 
-build folder.
+I thought I'd be able to add them in the kernel configuration
+(menuconfig) by running (from within the build directory):
 
-But on machine A there is a recipe LAMBDA which is not include in 
-machine B.
-The package LAMBDA is shared in the same folder 
-cortexa9hf_vfp_neon....(Machine A and B use the same imx arch)
+bitbake linux-xlnx -c kernel_configme -f
+bitbake linux-xlnx -c menuconfig
 
-If i build machine A(everything is ok) and then machine B, during the 
-last recipe execution image rootfs of machine B, a list of package is 
-performed to build the license list with this missing package which 
-finally fails saying that license folder does not exist. I guess the rpm 
-package list  performed in poky/lib/oe/package_manager.py is not correct 
-and should be done according to the image instead of the list of files 
-in the folder cortexa9hf_vfp_neon.
+I can't see the DMA drivers in menuconfig. However if I run menuconfig
+within the linux-xlnx tree (which is referenced by the SRCURI) I can see
+the DMA drivers. Is there some reason they're hidden in the build
+menuconfig?
 
-I found a hack by putting my recipe LAMBDA dependent to my machine so 
-the package is not in cortexa9hf_vfp_neon anymore.
-
-If someone could help me on this issue, it would be very nice because i 
-guess there is something wrong in yocto base tools.
-
-BR.
-
-Stephane
+Thanks,
+Toby
 
 
 
+--l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
+iQIcBAEBCAAGBQJWOgmnAAoJEJFfznYik92WLd8P/1pUk89eg2uFYXr8yfiVqoHU
+dIG7KvCYTwFH1v0W/5uY/PwODiLBTQtR+36enOicLm1oE+XzNrUX5U1B/fqDZxiR
+F9PDS9dBvVsldqdRSUdCCp/XbGPoQk91PsxSBtu7iMe3qby3dzGtYjaNKwm6vqXm
+rrkhu4AWEss9Um9ppg5SijYQgY2x6GdrIRoGJE2e2i4RWujq2AYPOxzOWZSIJPWn
+oYAie1gy1ViBCxak8Ow8V1qmtJeHb9Gyh7+5YSb1t/0bV38Czj3fxLDjyHJGCXV+
+c4FmJc/mIdv6CRzyHVLew5c8/VHZsJ63NJTbJJ7qR3q3V6IeuveMGgbRqrINiKL1
+YKBTftQIi2dbk+9QpvPA4irIoFd3sHOqQp7IDtSPReKcNU6Qsy11Xt1PCoq1H+A9
+n4QgcjN16ZURJS77SWPUCBJm0xuCZWm1cO63hRhzYejF3r0r425ouAnKZpiR5ByB
+k7t6uZ5Ff0Lc1QQlXp95xplUruOKRaYd0L8eDZCjTdO727Xrjy/dqgKyk2IBy9gO
+YBHJlYPBu5eqczg7F5v6VlI3B0WidhUc/LxqnWwPqp4GOFRzwp6SftsUQJTw1sYv
++HgrvbqtSmy5Yy4Wb93Mc826XXr/0a4FhgY+V30WjCWh/cbzHWIM9IIwb9sAr8Jq
+mwKbz/OYJhkNXLEuGobt
+=bl4d
+-----END PGP SIGNATURE-----
 
-
+--l2MorgL8rWhxvpXc3Gd2GEbllD88QNOet--
