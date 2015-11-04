@@ -1,34 +1,41 @@
-Return-Path: <philip@balister.org>
+Return-Path: <toby.gomersall@smartacoustics.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8CC0E00AE4; Wed,  4 Nov 2015 05:56:16 -0800 (PST)
+	id 94F83E00AF6; Wed,  4 Nov 2015 06:20:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [80.241.60.215 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8B74FE00ACE
-	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 05:56:09 -0800 (PST)
-Received: (qmail 16656 invoked by uid 1003); 4 Nov 2015 13:56:09 -0000
-Received: from unknown (HELO ?192.168.11.125?)
-	(philip@opensdr.com@108.44.122.7)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	4 Nov 2015 13:56:09 -0000
-To: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>,
-	yocto@yoctoproject.org
+Received: from mx2.mailbox.org (mx2.mailbox.org [80.241.60.215])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C607E00AE4
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 06:20:47 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx2.mailbox.org (Postfix) with ESMTPS id D6DA440254;
+	Wed,  4 Nov 2015 15:20:45 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+	by gerste.heinlein-support.de (gerste.heinlein-support.de
+	[91.198.250.173]) (amavisd-new, port 10030)
+	with ESMTP id GeT5fpDy2WMp; Wed,  4 Nov 2015 15:20:44 +0100 (CET)
+To: "Hecht, Martin (Silica)" <Martin.Hecht@avnet.eu>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <563A09A3.4050706@smartacoustics.co.uk>
-From: Philip Balister <philip@balister.org>
-Message-ID: <563A0E6E.9010005@balister.org>
-Date: Wed, 4 Nov 2015 08:55:58 -0500
+	<1B92730CF2B23F4DB7A48AAE6E3CAA361461CA0B@DEPOIY0MX08MB03.msg.avnet.eu>
+From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <563A1438.80309@smartacoustics.co.uk>
+Date: Wed, 4 Nov 2015 14:20:40 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <563A09A3.4050706@smartacoustics.co.uk>
+In-Reply-To: <1B92730CF2B23F4DB7A48AAE6E3CAA361461CA0B@DEPOIY0MX08MB03.msg.avnet.eu>
 Subject: Re: yocto on zynq, How to configure kernel to include drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,50 +48,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 13:56:16 -0000
-X-Groupsio-MsgNum: 27169
+X-List-Received-Date: Wed, 04 Nov 2015 14:20:49 -0000
+X-Groupsio-MsgNum: 27170
 Content-Type: multipart/signed; micalg=pgp-sha256;
 	protocol="application/pgp-signature";
-	boundary="hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD"
+	boundary="CIV63q4swf8enKvbTV6QqLL6DnN6cg3Ko"
 
---hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD
-Content-Type: text/plain; charset=windows-1252
+--CIV63q4swf8enKvbTV6QqLL6DnN6cg3Ko
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On 11/04/2015 08:35 AM, Toby Gomersall wrote:
-> I'm quite new to yocto so still have a lot to learn. I'm trying to
-> include the DMA drivers in my yocto build for a Zynq based on the
-> meta-xilinx layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilin=
-x/).
+Hi,
 
-You should try emailing this list for meta-xilinx specific issues.
+We've tried building the linux-xlnx tree standalone and we have the DMA
+drivers available to add in menuconfig but not when I build
+core-image-minimal. I thought the full build would pick up the
+linux-xlnx kernel and make the same options available. Is there
+something I need to do to make them available?
 
-https://lists.yoctoproject.org/listinfo/meta-xilinx
+Regards,
+Toby
 
-Philip
-
+On 04/11/15 13:47, Hecht, Martin (Silica) wrote:
+> Hi Toby,
+>=20
+> Please compare with http://www.wiki.xilinx.com/Linux+Drivers. Most of t=
+he DMA drivers aren't mainlined by now. You need to add them by yourself =
+currently.
+>=20
+> Regards,
+> Martin
+>=20
+>=20
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject=
+=2Eorg] On Behalf Of Toby Gomersall
+> Sent: Mittwoch, 4. November 2015 14:44
+> To: yocto@yoctoproject.org
+> Subject: [yocto] yocto on zynq, How to configure kernel to include driv=
+ers
+>=20
+> I'm quite new to yocto so still have a lot to learn. I'm trying to incl=
+ude the DMA drivers in my yocto build for a Zynq based on the meta-xilinx=
+ layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/).
 >=20
 > I thought I'd be able to add them in the kernel configuration
 > (menuconfig) by running (from within the build directory):
 >=20
-> bitbake linux-xlnx -c kernel_configme -f
-> bitbake linux-xlnx -c menuconfig
+> bitbake linux-xlnx -c kernel_configme -f bitbake linux-xlnx -c menuconf=
+ig
 >=20
-> I can't see the DMA drivers in menuconfig. However if I run menuconfig
-> within the linux-xlnx tree (which is referenced by the SRCURI) I can se=
-e
-> the DMA drivers. Is there some reason they're hidden in the build
-> menuconfig?
+> I can't see the DMA drivers in menuconfig. However if I run menuconfig =
+within the linux-xlnx tree (which is referenced by the SRCURI) I can see =
+the DMA drivers. Is there some reason they're hidden in the build menucon=
+fig?
 >=20
 > Thanks,
 > Toby
 >=20
 >=20
->=20
->=20
 
 
---hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD
+--CIV63q4swf8enKvbTV6QqLL6DnN6cg3Ko
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
@@ -92,13 +117,19 @@ Content-Disposition: attachment; filename="signature.asc"
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQEcBAEBCAAGBQJWOg54AAoJEMDJd4rr0mer2wgH/iRaTbennqPZ/e7MaqZxORnh
-snSm+2+ZJuoLpWkUxOk9vYQ6uTpNMT+vJUW9fc1MKM5P4QJ1VBFcFlbD09XY+THc
-s8OpzcmTPdyfgagmt9C4ynXeDr8Yf+6RrMgJw9FK3s48uJo8wUrX3DfNrMosNKbv
-DGolwBPlriRhXR1LZUUxqRDRbFudgjfPQmglm/svSw+5uazCMK/FF4493bvqGdfL
-05KsYayAQ0iT1sDjt9lfjiaHDliN+pOKU8U6/XDn4oe0I0ivnF9hgGptVkVPPFQT
-ZEf/agdQ+0x8zF7mJCiczjVdj9qbwA47iMudKPP+zJfRHdUxyPu3dhUdfinU/ZM=
-=0iYd
+iQIcBAEBCAAGBQJWOhQ7AAoJEJFfznYik92WvtQQAIQSvKkr0hOwlSHH1bvuNAo1
+9EALTyQeoIdzme4ZhrYRUknjXrWsl1oGHyCWOK76YGRMY4XPGj+2puapMTqwWz9I
+/GmqA/CBZKRF29f0tdfA8VTopDM5xcijE2opGy7ADkn8mP4hQGSWCNOEjZHvzPkA
+qGKyHUHOP4NBfPDjfTERQUE0J1zUq8Mwl5ve37iF+mcV+B3kJZnvgNvo1oWjmyFS
+o/542N+LlJ0mTUCNyjLGpi1Fo7D+OQTooN99ImI09WV8F65ai2mD0RDKVw3CGQnL
+PfQxdxQlZsUs+hiucZ4BlRKHotf9ZfdoWa5vPR2WU++9Hgx9hBSIFBYfV6x7Vu2w
+pS90FaaSoQyR2caUfPUtaW4QbxjaveI96D8zmSkqbEIzNKy/IHtuzbS+NM4mPkRt
+/GedXQn2L4IAqjwb/AOtkXyUHsQF/9vt88pfFTJ9+DjATlXSHKyaD665oIFbzuFY
+IyiY0uoLXLvb0xsqiKpC8SdaPkVmR3/BH1+nJQcBiDR5hGP+eECTML+GHHo/mgRV
+LGnhZq8kPz1FG2AOIuwS5iQU/7/YBT1Z4pelb2M97FPq4Hlcblk8FYmeSEQSFCZX
+u0KgjXxWvJb1P6SsUZxUOYyFzHHZvTPmY5e8IOHxjsyk6nmv0cLC6MPf3L/smOa8
+1JwAgeH2dmA1QUQ2HiN5
+=uwvr
 -----END PGP SIGNATURE-----
 
---hIUCqW5VI8XvaehnATvvr6npgQ97i0CXD--
+--CIV63q4swf8enKvbTV6QqLL6DnN6cg3Ko--
