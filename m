@@ -1,41 +1,54 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4D8FE00A28; Tue,  3 Nov 2015 16:58:52 -0800 (PST)
+	id 887A2E00AB9; Wed,  4 Nov 2015 01:25:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D3E4E009C5
-	for <yocto@yoctoproject.org>; Tue,  3 Nov 2015 16:58:49 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA3LAVLF007795
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 3 Nov 2015 13:11:16 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.248.2; Tue, 3 Nov 2015 13:10:31 -0800
-To: Manjeet Pawar <manjeet.p@samsung.com>, <yocto@yoctoproject.org>
-References: <1446551079-38517-1-git-send-email-manjeet.p@samsung.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <563922C5.5080505@windriver.com>
-Date: Tue, 3 Nov 2015 15:10:29 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.180 listed in list.dnswl.org]
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF67EE00AAA
+	for <yocto@yoctoproject.org>; Wed,  4 Nov 2015 01:25:01 -0800 (PST)
+Received: by wikq8 with SMTP id q8so88107810wik.1
+	for <yocto@yoctoproject.org>; Wed, 04 Nov 2015 01:25:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=0kLfulxjHF2eX/JutTZII7jAKNQG1vyih4o1WaoWeCQ=;
+	b=h8/4lrIXAS2uK4mPTjdqTQ/Vm2OdutL308C3Fo6Yf1A5F5qih1CoRTRyHMiBi6pbRQ
+	vNsuexma7Nn4rUQ/dmvjD8emaClnBIDqdfmAVlj7QFJKN8A/tG7pjByuA/znAzFgfJ/+
+	Mv0wmBctMGNx3Vvb3rmPOu8sWIztP5gYzntJLawIKH9vf9DnzICPXlD778dkmUy/h99j
+	50Q342QYCEYytsLK+8DEVj7NlJSD/5kOcM8wq78LgkHnnt+OgJQRwe2x1DVQ3jOSccqh
+	C0tpLK2o7zjLdxb2zJxfB9V06eYUhkkxWQCEk24nQYuonkBLNVOBRbv7rQJCer1KdgAj
+	ZPnQ==
 MIME-Version: 1.0
-In-Reply-To: <1446551079-38517-1-git-send-email-manjeet.p@samsung.com>
-Cc: Vaneet Narang <v.narang@samsung.com>, ajeet.y@samsung.com,
-	doha.hwang@samsung.com, hakbong5.lee@samsung.com,
-	maninder1.s@samsung.com, pankaj.m@samsung.com
-Subject: Re: [PATCH 1/1] Fix AARCH64_TLSDESC relocation conflict
+X-Received: by 10.194.90.169 with SMTP id bx9mr690149wjb.1.1446629100193; Wed,
+	04 Nov 2015 01:25:00 -0800 (PST)
+Received: by 10.194.140.38 with HTTP; Wed, 4 Nov 2015 01:25:00 -0800 (PST)
+In-Reply-To: <20151103115426.GC5867@ad.chargestorm.se>
+References: <03d201d1152e$359dada0$a0d908e0$@gmail.com>
+	<CAJ86T=U7mmNmTRi5xHpy7C+XOAPuKiRyy=958YsGeQ3cnYap_g@mail.gmail.com>
+	<20151103070538.GA5867@ad.chargestorm.se>
+	<CAJ86T=UrJ8d=BhKrNuxEHn91BHdDOk6ZYZQ00w789b=-yU897A@mail.gmail.com>
+	<20151103115426.GC5867@ad.chargestorm.se>
+Date: Wed, 4 Nov 2015 01:25:00 -0800
+Message-ID: <CAJ86T=VeHa5-bW5kiiv4gc-kX5psCdXnsC=giZ-eOE8n+BtxpA@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Create uncompressed rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,56 +60,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Nov 2015 00:58:52 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Nov 2015 09:25:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 11/3/15 5:44 AM, Manjeet Pawar wrote:
-> This patch needs to be applied to 'cross_prelink_aarch64' branch.
-> It fixes tls1, tls2, tls4, tls5, tls6 test cases of prelink testsuite.
-> tls3 gets failed but this test case fails without prelink as well on AARCH64
-> 
-> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
-> Signed-off-by: Manjeet Pawar <manjeet.p@samsung.com>
-> ---
->  src/arch-aarch64.c |    2 +-
->  1 files changed, 1 insertions(+), 1 deletions(-)
-> 
-> diff --git a/src/arch-aarch64.c b/src/arch-aarch64.c
-> index e04dd6e..6499c68 100644
-> --- a/src/arch-aarch64.c
-> +++ b/src/arch-aarch64.c
-> @@ -375,7 +375,7 @@ aarch64_prelink_conflict_rela (DSO *dso, struct prelink_info *info,
->        break;
->      case R_AARCH64_TLSDESC:
->  	  tls = conflict ? conflict->lookup.tls : info->curtls;
-> -	  ret->r_addend =  rela->r_addend + tls->offset;
-> +	  ret->r_addend = value + rela->r_addend + tls->offset;
->       break;
->      default:
->        error (0, 0, "%s: Unknown AARCH64 relocation type %d", dso->filename,
-> 
+On Tue, Nov 3, 2015 at 3:54 AM, Anders Darander <anders@chargestorm.se> wrote:
+> * Andre McCurdy <armccurdy@gmail.com> [151103 11:34]:
+>
+>> On Mon, Nov 2, 2015 at 11:05 PM, Anders Darander <anders@chargestorm.se> wrote:
+>> > * Andre McCurdy <armccurdy@gmail.com> [151102 20:35]:
+>
+>> >> See the "IMAGE_TYPES" variable for a list of rootfs types which are
+>> >> supported. There's support for creating an uncompressed .tar file, but
+>> >> I don't see any support for creating a rootfs directory under
+>> >> tmp/deploy.
+>
+>> > No, the usual workflow here is to unpack the tar'ed rootfs at a suitable
+>> > location.
+>
+>> Indeed. I don't think it's what Roberto was asking for though...
+>
+> Well, sure, that wasn't what Roberto explicitly was asking for, though
+> that's a safer way to do what he's after...
+>
+> After all, if you never learn about best practises, you'll never know...
+>
+>> >> Depending on your work flow there are a few different solutions
+>> >> though. You could extend
+>> >> openembedded-core/meta/classes/image_types.bbclass to do what you want
+>> >> (e.g. define a new image type or hack "IMAGE_CMD_tar" so that it also
+>> >> untars rootfs.tar right after creating it).
+>
+>> > Well, there's some issues with this approach. In order to uncompress the
+>> > tarball and be able to set owner, group, and permissions on all files,
+>> > you need to untar the rootfs with root privileges. The same is true when
+>> > it comes to creating device nodes.
+>
+>> Enabling CONFIG_DEVTMPFS in the kernel is pretty standard, so for most
+>> people there are no device nodes in the rootfs tarfile and /dev is an
+>> empty directory.
+>
+> Sure, devtmpfs is pretty much standard, though it could nonetheless be
+> good to know about.
+>
+>> Extracting rootfs tarfiles as an unprivileged user has always worked
+>> fine for me. Do you have a specific example where root privileges are
+>> required?
+>
+> Well, everything that requires a specific user and permissions. When it
+> comes to permissions it's likely most if you need to setuid or setgid on
+> binaries / files / directories.
+>
+> When you unpack as an unpriviliged user, every file will belong to you.
+>
+> Thus, the recommended (and safe) way to do this, is to unpack as a
+> priviliged user.
 
-I'm still getting segfaults here.
+Yes, you're right. If you everything on the target runs as root then
+losing setuid flags isn't going to matter much, but it could be a
+problem if the target needs to support non-privileged users.
 
-The way I am testing is building a Yocto Project (jethro) system
-core-image-base, and adding to it:
-"packagegroup-core-buildessential,libelf,elfutils-dev,binutils-staticdev,glibc-staticdev"
-
-The copying a checked out version of the prelink-cross repository with the
-prelink_cross_aarch64 branch checked out.
-
-On the target:
-
-autoreconf -if
-./configure
-make
-make -C testsuite check
-
-Most tests still fail, and all of the TLS tests result in a segfault.
-
-(I do have the 'aarch64/dl-machine.h: Fix load-address for prelink support'
-applied to my glibc.  Are there any other patches that may need to be applied?)
-
---Mark
+> Cheers,
+> Anders
+>
+> --
+> Anders Darander
+> ChargeStorm AB / eStorm AB
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
