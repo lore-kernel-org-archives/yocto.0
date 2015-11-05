@@ -1,52 +1,39 @@
-Return-Path: <george.mccollister@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 597C9E007C9; Thu,  5 Nov 2015 08:57:54 -0800 (PST)
+	id 92E02E007D5; Thu,  5 Nov 2015 09:05:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (george.mccollister[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2088BE0049B
-	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 08:57:50 -0800 (PST)
-Received: by iody8 with SMTP id y8so96034434iod.1
-	for <yocto@yoctoproject.org>; Thu, 05 Nov 2015 08:57:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=j4eXmnl5bSXQQxycJIDqKep9Bu9Who593csWiq0rTyI=;
-	b=J26Upn72WpquL4ZeuyPPOvIHHPIDQtGYDmT/4jmJPT5TixEnqVh4jD46J4Z/jZtiID
-	IPt1sNnYHGlACmj0JzmHl1m+6bl4HdrYP/QGEddowHySFT9LTQdpgwDKyy4Kf3WgVB5E
-	WxEtNO3R61ar/Ez98HKrNOK98caKO1C4lYT1i7gWA5oJNPhDrVjOOfw3TdIZAHc/EPyw
-	VEOXHd6z9ASmxMc2jIXSIQpioA7mP8fvIYusWvXOt633CSFiidSYrU+P4MLTPgeStdAQ
-	bDPXFHD828iDt72p/MZNUR/GcfmUQHA0vhykZ6bsvH3SfWxvDb/5dGAsByxWCfgZfiXV
-	26vQ==
-X-Received: by 10.107.151.195 with SMTP id z186mr12872711iod.8.1446742670200; 
-	Thu, 05 Nov 2015 08:57:50 -0800 (PST)
-Received: from localhost.localdomain (mail.novatech-llc.com. [64.126.95.172])
-	by smtp.gmail.com with ESMTPSA id
-	ro3sm3169929igb.8.2015.11.05.08.57.49
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 05 Nov 2015 08:57:49 -0800 (PST)
-From: George McCollister <george.mccollister@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  5 Nov 2015 10:56:54 -0600
-Message-Id: <1446742614-8298-1-git-send-email-george.mccollister@gmail.com>
-X-Mailer: git-send-email 2.4.5
-Subject: [meta-selinux][PATCH] selinux-image: Fix RE error getting POL_TYPE
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 663DDE0049B
+	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 09:05:31 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 05 Nov 2015 09:05:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,248,1444719600"; d="scan'208";a="594637175"
+Received: from rorourke-mobl4.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.10.56])
+	by FMSMGA003.fm.intel.com with ESMTP; 05 Nov 2015 09:05:14 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Hallinan <challinan@gmail.com>
+Date: Thu, 05 Nov 2015 17:05:12 +0000
+Message-ID: <8413820.GWojYgLLoG@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
+In-Reply-To: <CAME0jBSgL=kcW9OqBWiW8kDaB6tZ+KD7HA89A6w0ttHHmXJUgg@mail.gmail.com>
+References: <CAME0jBSQ2VSnA1RSNTQne2ZGRm+8AbihXiWCq4VR7+pYFsgUKw@mail.gmail.com>
+	<1758245.VzMHveDG3B@peggleto-mobl.ger.corp.intel.com>
+	<CAME0jBSgL=kcW9OqBWiW8kDaB6tZ+KD7HA89A6w0ttHHmXJUgg@mail.gmail.com>
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Unable to modify patch files in u-boot recipe - quilt applies direct from layer files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,33 +45,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Nov 2015 16:57:54 -0000
+X-List-Received-Date: Thu, 05 Nov 2015 17:05:35 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Change [:space:] to [[:space:]]. [:space:] is incorrect and is treated
-as a list of characters. Prior to this change having a policy of
-'standard' resulted in POL_TYPE being set to 'tandard'.
+On Thursday 05 November 2015 11:25:18 Chris Hallinan wrote:
+> On Thu, Nov 5, 2015 at 4:25 AM, Paul Eggleton
+> 
+> <paul.eggleton@linux.intel.com> wrote:
+> > On Wednesday 04 November 2015 17:16:32 Khem Raj wrote:
+> >> > On Nov 4, 2015, at 11:57 AM, Chris Hallinan <challinan@gmail.com>
+> >> > wrote:
+> >> > I was trying to "patch a patch" in a u-boot recipe using standard
+> >> > bbappends technique.  I added a task before do_patch after do_unpack
+> >> > to munge the patch that was broken.  Here is what seems to happen:
+> >> > 
+> >> > do_unpack:
+> >> >    copies all the patch files from the metadata layer into ${WORKDIR}
+> >> > 
+> >> > do_fix_patch (my additional task)
+> >> > 
+> >> >    uses sed or patch to apply a local fix to a broken patch in
+> >> >    ${WORKDIR}
+> >> > 
+> >> > do_patch
+> >> > 
+> >> >    creates a subdirectory in ${S} called "patches", and puts links to
+> >> > 
+> >> > the actual files in the layer and uses those links back to the layer
+> >> > files to apply the patches.
+> >> > 
+> >> > It seems quilt is using the actual layer files instead of the ones in
+> >> > ${WORKDIR}??
+> >> > 
+> >> > This seems odd and somehow wrong.  We copy the layer files into
+> >> > WORKDIR, and the unsuspecting user (me) thinks those are the files
+> >> > that do_patch will use.
+> >> > 
+> >> > This one took me some time (and help) to figure out!
+> >> > 
+> >> > Comments?  Is this a bug?  halfway in the middle of some architectural
+> >> > changes?  Expected behavior?
+> >> 
+> >> while what you are doing is quite questionable. You seem to have a point.
+> >> Most probably copy of the files in workdir should be removed from
+> >> happening.
+> >> 
+> >> > My workaround was to simply replace the entire patch.
+> >> 
+> >> you should use the quilt workflow and edit/refresh the patch once and
+> >> copy
+> >> it back to metadata once for all yes.
+> > 
+> > Or devtool modify, change the patch in the resulting git repository, then
+> > devtool update-recipe -a.
+> 
+> Thanks for comments.  But the point here is that in some workflows
+> (especially with a commercial vendor's implementation) we strongly
+> encourage users _NOT_ to modify the distributed sources, but to make
+> all modifications in users layers.  This provides a more manageable
+> upgrade path.  I guess the strangeness is that files from
+> recipe/metadata are copied to WORKDIR, but are not used, and I found
+> that very confusing at first.  Lesson learned! ;)
 
-Change the regular expression to match from the beginning of the line
-since correcting the [:space:] error causes the '# SELINUXTYPE= can
-take one of these values:' line to match.
+Right, that's what the -a does though - puts your change into a bbappend as 
+opposed to the original recipe.
 
-Signed-off-by: George McCollister <george.mccollister@gmail.com>
----
- classes/selinux-image.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> I guess I find it a bit strange that quilt (I assume it's quilt) links
+> back to the layer/metadata files directly and not back to the files in
+> WORKDIR, which seems more reasonable and easier to modify.  I could
+> label this as a "bug" rather than a "feature".  Matter of perspective,
+> perhaps.
 
-diff --git a/classes/selinux-image.bbclass b/classes/selinux-image.bbclass
-index 362ca5c..9303610 100644
---- a/classes/selinux-image.bbclass
-+++ b/classes/selinux-image.bbclass
-@@ -1,5 +1,5 @@
- selinux_set_labels () {
--    POL_TYPE=$(sed -n -e "s&SELINUXTYPE[:space:]*=[:space:]*\([0-9A-Za-z_]\+\)&\1&p" ${IMAGE_ROOTFS}/${sysconfdir}/selinux/config)
-+    POL_TYPE=$(sed -n -e "s&^SELINUXTYPE[[:space:]]*=[[:space:]]*\([0-9A-Za-z_]\+\)&\1&p" ${IMAGE_ROOTFS}/${sysconfdir}/selinux/config)
-     setfiles -r ${IMAGE_ROOTFS} ${IMAGE_ROOTFS}/${sysconfdir}/selinux/${POL_TYPE}/contexts/files/file_contexts ${IMAGE_ROOTFS} || exit 1;
- }
- 
+Yeah, I think it would be reasonable to fix this as well. I have sometimes 
+wondered myself why the symlinking was done this way.
+
+Going forward though I would like to encourage people to use devtool modify 
+for this kind of thing rather than working with files in the WORKDIR, because 
+among other things there's less chance of losing work when WORKDIR goes away. 
+If that means we need to enhance or fix devtool so it works better for people 
+then by all means let's do that.
+
+Cheers,
+Paul
+
 -- 
-2.4.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
