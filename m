@@ -1,59 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <benoit.rapidel+yocto@exmachina.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C589E0089D; Thu,  5 Nov 2015 10:05:28 -0800 (PST)
+	id 93563E007D5; Thu,  5 Nov 2015 10:07:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B39C1E0071C
-	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 10:05:25 -0800 (PST)
-Received: by iodd200 with SMTP id d200so98420103iod.0
-	for <yocto@yoctoproject.org>; Thu, 05 Nov 2015 10:05:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=RVlIv4T4Gxs5Aew33Pm3rss3rlpBghDRAU41v0EZazg=;
-	b=M9WosB7RKYIrvJrMy7uxHuAfeMt/D7XST0Fp3LQbiPOpx5dHuDDinEgB8bFwL6TAJv
-	z48BgqNCGGlGJk9OwKvaayI5CBcIAmlXM4vTMk/a0F1/MAcMuFdXflTjDQnxiLBrSwcS
-	52cpoTpH7AX9z7zvKpD7HHROn4IFC1cAUNw95lM7aE7k3xL4Ynx/pglYrIgFN8HKS4n7
-	6ycb/+azjY8kAI3kffBReVfakkOc+/j+RZMBN+bB3Dd9TtnQW+/xxWMGAM+2IioUF9rt
-	Fdew4PdU7HdDhP9A5PzIAzwkxvrRNYfViTPUacfKpCcSO2IPLVKlITRVY1/lQTGyj5EE
-	N/Ag==
-X-Received: by 10.107.137.66 with SMTP id l63mr10793964iod.112.1446746724636; 
-	Thu, 05 Nov 2015 10:05:24 -0800 (PST)
+Received: from galat.willykaze.org (galat.willykaze.org [91.121.12.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7BCBE0071C
+	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 10:07:44 -0800 (PST)
+Received: from [192.168.0.21] (vil69-h01-31-38-223-239.dsl.sta.abo.bbox.fr
+	[31.38.223.239])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by galat.willykaze.org (Postfix) with ESMTPSA id D6781707B0
+	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 19:07:43 +0100 (CET)
+References: <1446590054-31188-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
+	<CACS+7ZSrrrmyc3hAUU6RJUSEpPvoBeQOLyFmjadJSqgJjoyVJg@mail.gmail.com>
+	<563B9576.40202@linux.intel.com>
+To: yocto@yoctoproject.org
+From: Benoit Rapidel <benoit.rapidel+yocto@exmachina.fr>
+Organization: ExMachina
+Message-ID: <563B9AEE.1000903@exmachina.fr>
+Date: Thu, 5 Nov 2015 19:07:42 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Received: by 10.107.38.133 with HTTP; Thu, 5 Nov 2015 10:04:55 -0800 (PST)
-In-Reply-To: <CAME0jBSgL=kcW9OqBWiW8kDaB6tZ+KD7HA89A6w0ttHHmXJUgg@mail.gmail.com>
-References: <CAME0jBSQ2VSnA1RSNTQne2ZGRm+8AbihXiWCq4VR7+pYFsgUKw@mail.gmail.com>
-	<6A5CD4C5-25C2-45C0-AF85-0BAC21D9B8A1@gmail.com>
-	<1758245.VzMHveDG3B@peggleto-mobl.ger.corp.intel.com>
-	<CAME0jBSgL=kcW9OqBWiW8kDaB6tZ+KD7HA89A6w0ttHHmXJUgg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 5 Nov 2015 10:04:55 -0800
-Message-ID: <CAMKF1spGKG6HnQCbzvqFXK=bN6FQ9f6faS71Qm-P7PP7mMeRqA@mail.gmail.com>
-To: Chris Hallinan <challinan@gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Unable to modify patch files in u-boot recipe - quilt applies direct from layer files
+In-Reply-To: <563B9576.40202@linux.intel.com>
+Subject: Re: [OE-core] [PATCH] terminal: Support old tmux version (<1.9) when querying height value
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: benoit.rapidel+yocto@exmachina.fr
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,88 +42,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Nov 2015 18:05:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 05 Nov 2015 18:07:50 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 5, 2015 at 8:25 AM, Chris Hallinan <challinan@gmail.com> wrote:
-> On Thu, Nov 5, 2015 at 4:25 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
->> On Wednesday 04 November 2015 17:16:32 Khem Raj wrote:
->>> > On Nov 4, 2015, at 11:57 AM, Chris Hallinan <challinan@gmail.com> wrote:
->>> > I was trying to "patch a patch" in a u-boot recipe using standard
->>> > bbappends technique.  I added a task before do_patch after do_unpack
->>> > to munge the patch that was broken.  Here is what seems to happen:
->>> >
->>> > do_unpack:
->>> >    copies all the patch files from the metadata layer into ${WORKDIR}
->>> >
->>> > do_fix_patch (my additional task)
->>> >
->>> >    uses sed or patch to apply a local fix to a broken patch in ${WORKDIR}
->>> >
->>> > do_patch
->>> >
->>> >    creates a subdirectory in ${S} called "patches", and puts links to
->>> >
->>> > the actual files in the layer and uses those links back to the layer
->>> > files to apply the patches.
->>> >
->>> > It seems quilt is using the actual layer files instead of the ones in
->>> > ${WORKDIR}??
->>> >
->>> > This seems odd and somehow wrong.  We copy the layer files into
->>> > WORKDIR, and the unsuspecting user (me) thinks those are the files
->>> > that do_patch will use.
->>> >
->>> > This one took me some time (and help) to figure out!
->>> >
->>> > Comments?  Is this a bug?  halfway in the middle of some architectural
->>> > changes?  Expected behavior?
+As you said on Wheezy, tmux 1.6 the patch provided only works when the windows has 1 
+pane.
+If a window has multiple panes, then we got:
+$ tmux list-panes -F "#{?pane_active,yes,no}"
+yes
+no
+no
+no
+$ tmux list-panes -F "#{pane_height}"
+43
+48
+49
+43
+
+This leads to:
+
+In [2]: import subprocess as sub
+
+In [3]: p = sub.Popen('tmux list-panes -F "#{?pane_active,yes,no}"', shell=True, 
+stdout=sub.PIPE,stderr=sub.PIPE)
+
+In [4]: out, err = p.communicate()
+
+In [5]: out
+Out[5]: 'yes\nno\nno\nno\nno\n'
+
+In [6]: p = sub.Popen('tmux list-panes -F "#{pane_height}"', shell=True, 
+stdout=sub.PIPE,stderr=sub.PIPE)
+
+In [7]: out, err = p.communicate()
+
+In [8]: out
+Out[8]: '48\n24\n23\n47\n47\n'
+
+In [9]:
+
+Note: this only affect tmux 1.6 as tmux 1.9 support
+	-F "#{?pane_active,#{pane_height},}"
+
+B.
+
+Le 05/11/2015 18:44, Leonardo Sandoval a écrit :
+>
+>
+> On 11/03/2015 05:58 PM, Dan McGregor wrote:
+>> On 3 November 2015 at 16:34,
+>> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
+>>> From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 >>>
->>> while what you are doing is quite questionable. You seem to have a point.
->>> Most probably copy of the files in workdir should be removed from
->>> happening.
+>>> Old tmux version (< 1.9) does not support nested formats on the -F parameter, so
+>>> if nested format does not give any answer, do the query in two steps.
 >>>
->>> > My workaround was to simply replace the entire patch.
->>>
->>> you should use the quilt workflow and edit/refresh the patch once and copy
->>> it back to metadata once for all yes.
+>>> Tested on tmux 1.6.
 >>
->> Or devtool modify, change the patch in the resulting git repository, then
->> devtool update-recipe -a.
+>> Yeah, I noticed this shortly after I submitted the fix for 1.9 but
+>> didn't think much of it. What system are you using that has tmux 1.6?
 >>
 >
-> Thanks for comments.  But the point here is that in some workflows
-> (especially with a commercial vendor's implementation) we strongly
-> encourage users _NOT_ to modify the distributed sources, but to make
-> all modifications in users layers.  This provides a more manageable
-> upgrade path.  I guess the strangeness is that files from
-> recipe/metadata are copied to WORKDIR, but are not used, and I found
-> that very confusing at first.  Lesson learned! ;)
+> debian wheezy.
+>
+> Benoit, can you report the issues you are seeing on tmux1.9 and the tmux output from
+> the -F commands?
+>
+> Seems than when n-panes are open, we get n outputs so clearly calling int() is not
+> enough, so current solution just works when n=1
+>
+>
+>>>
+>>> Signed-off-by: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+>>> ---
+>>>   meta/lib/oe/terminal.py |   15 ++++++++++++++-
+>>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/meta/lib/oe/terminal.py b/meta/lib/oe/terminal.py
+>>> index 52a8913..686b1ce 100644
+>>> --- a/meta/lib/oe/terminal.py
+>>> +++ b/meta/lib/oe/terminal.py
+>>> @@ -218,11 +218,24 @@ def spawn(name, sh_cmd, title=None, env=None, d=None):
+>>>
+>>>   def check_tmux_pane_size(tmux):
+>>>       import subprocess as sub
+>>> +    size = 0
+>>>       try:
+>>>           p = sub.Popen('%s list-panes -F "#{?pane_active,#{pane_height},}"' % tmux,
+>>>                   shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
+>>>           out, err = p.communicate()
+>>> -        size = int(out.strip())
+>>> +        try:
+>>> +            size = int(out.strip())
+>>> +        except ValueError:
+>>> +            # Older tmux versions (< 1.9) does not support nested formats,
+>>> +            # so try it in two steps
+>>> +            p = sub.Popen('%s list-panes -F "#{?pane_active,yes,no}"' % tmux,
+>>> +                shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
+>>> +            out, err = p.communicate()
+>>> +            if "yes" in out.strip():
+>>> +                p = sub.Popen('%s list-panes -F "#{pane_height}"' % tmux,
+>>> +                              shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
+>>> +                out, err = p.communicate()
+>>> +                size = int(out.strip())
+>>>       except OSError as exc:
+>>>           import errno
+>>>           if exc.errno == errno.ENOENT:
+>>> --
+>>> 1.7.10.4
+>>>
+>>> --
+>>> _______________________________________________
+>>> Openembedded-core mailing list
+>>> Openembedded-core@lists.openembedded.org
+>>> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
-Fair enough. you can also create new patches to fix changes from
-patches that you dont
-want to modify.
+-- 
+Benoit Rapidel
 
->
-> I guess I find it a bit strange that quilt (I assume it's quilt) links
-> back to the layer/metadata files directly and not back to the files in
-> WORKDIR, which seems more reasonable and easier to modify.  I could
-> label this as a "bug" rather than a "feature".  Matter of perspective,
-> perhaps.
-
-Well it doesnt use the patches from WORKDIR at all. It applies then
-straight from metadata
-and if you refresh a patch then at that time it will create a local
-copy in patches/ dir
-that you should then manually copy over to metadata once you are happy
-hacking it.
-
->
-> -Chris
->
->
->
-> --
-> Life is like Linux - it never stands still.
+Co-founder & CTO at ExMachina
 
