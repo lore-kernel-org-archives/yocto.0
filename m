@@ -1,38 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <toby.gomersall@smartacoustics.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 648AAE00B28; Thu,  5 Nov 2015 01:25:22 -0800 (PST)
+	id 8FA49E00B37; Thu,  5 Nov 2015 03:17:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8EDE00B19
-	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 01:25:19 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 05 Nov 2015 01:25:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,247,1444719600"; d="scan'208";a="843127887"
-Received: from rorourke-mobl4.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.10.56])
-	by orsmga002.jf.intel.com with ESMTP; 05 Nov 2015 01:25:18 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Khem Raj <raj.khem@gmail.com>, Chris Hallinan <challinan@gmail.com>
-Date: Thu, 05 Nov 2015 09:25:15 +0000
-Message-ID: <1758245.VzMHveDG3B@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.8-100.fc21.x86_64; KDE/4.14.11; x86_64; ; )
-In-Reply-To: <6A5CD4C5-25C2-45C0-AF85-0BAC21D9B8A1@gmail.com>
-References: <CAME0jBSQ2VSnA1RSNTQne2ZGRm+8AbihXiWCq4VR7+pYFsgUKw@mail.gmail.com>
-	<6A5CD4C5-25C2-45C0-AF85-0BAC21D9B8A1@gmail.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [80.241.60.212 listed in list.dnswl.org]
+Received: from mx1.mailbox.org (mx1.mailbox.org [80.241.60.212])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40BD1E00B2E
+	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 03:17:03 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.mailbox.org (Postfix) with ESMTPS id 4569C43A4F;
+	Thu,  5 Nov 2015 12:17:02 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+	by hefe.heinlein-support.de (hefe.heinlein-support.de [91.198.250.172])
+	(amavisd-new, port 10030)
+	with ESMTP id rBLMAeypOA_J; Thu,  5 Nov 2015 12:17:00 +0100 (CET)
+To: Nathan Rossi <nathan@nathanrossi.com>
+References: <563A09A3.4050706@smartacoustics.co.uk>
+	<1B92730CF2B23F4DB7A48AAE6E3CAA361461CA0B@DEPOIY0MX08MB03.msg.avnet.eu>
+	<563A1438.80309@smartacoustics.co.uk>
+	<CA+aJhH3wtc=H2_0gn44fLxrspO5XEFUVxgjGwjDFBzQCtD7amg@mail.gmail.com>
+From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
+Message-ID: <563B3AA5.7070902@smartacoustics.co.uk>
+Date: Thu, 5 Nov 2015 11:16:53 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Unable to modify patch files in u-boot recipe - quilt applies direct from layer files
+In-Reply-To: <CA+aJhH3wtc=H2_0gn44fLxrspO5XEFUVxgjGwjDFBzQCtD7amg@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Hecht,
+	Martin \(Silica\)" <Martin.Hecht@avnet.eu>
+Subject: Re: yocto on zynq, How to configure kernel to include drivers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,59 +50,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Nov 2015 09:25:22 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 Nov 2015 11:17:08 -0000
+X-Groupsio-MsgNum: 27182
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="LgrqKhddiVpMpKDRDMb5WR0VT6uGxgagC"
 
-On Wednesday 04 November 2015 17:16:32 Khem Raj wrote:
-> > On Nov 4, 2015, at 11:57 AM, Chris Hallinan <challinan@gmail.com> wrote:
-> > I was trying to "patch a patch" in a u-boot recipe using standard
-> > bbappends technique.  I added a task before do_patch after do_unpack
-> > to munge the patch that was broken.  Here is what seems to happen:
-> > 
-> > do_unpack:
-> >    copies all the patch files from the metadata layer into ${WORKDIR}
-> > 
-> > do_fix_patch (my additional task)
-> > 
-> >    uses sed or patch to apply a local fix to a broken patch in ${WORKDIR}
-> > 
-> > do_patch
-> > 
-> >    creates a subdirectory in ${S} called "patches", and puts links to
-> > 
-> > the actual files in the layer and uses those links back to the layer
-> > files to apply the patches.
-> > 
-> > It seems quilt is using the actual layer files instead of the ones in
-> > ${WORKDIR}??
-> > 
-> > This seems odd and somehow wrong.  We copy the layer files into
-> > WORKDIR, and the unsuspecting user (me) thinks those are the files
-> > that do_patch will use.
-> > 
-> > This one took me some time (and help) to figure out!
-> > 
-> > Comments?  Is this a bug?  halfway in the middle of some architectural
-> > changes?  Expected behavior?
-> 
-> while what you are doing is quite questionable. You seem to have a point.
-> Most probably copy of the files in workdir should be removed from
-> happening.
-> 
-> > My workaround was to simply replace the entire patch.
-> 
-> you should use the quilt workflow and edit/refresh the patch once and copy
-> it back to metadata once for all yes.
+--LgrqKhddiVpMpKDRDMb5WR0VT6uGxgagC
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Or devtool modify, change the patch in the resulting git repository, then 
-devtool update-recipe -a.
 
-Cheers,
-Paul
 
--- 
+On 04/11/15 15:08, Nathan Rossi wrote:
+> On Thu, Nov 5, 2015 at 12:20 AM, Toby Gomersall
+> <toby.gomersall@smartacoustics.co.uk> wrote:
+>> Hi,
+>>
+>> We've tried building the linux-xlnx tree standalone and we have the DM=
+A
+>> drivers available to add in menuconfig but not when I build
+>> core-image-minimal. I thought the full build would pick up the
+>> linux-xlnx kernel and make the same options available. Is there
+>> something I need to do to make them available?
+>=20
+> By default the linux-xlnx configs within meta-xilinx are close as
+> possible to mainline configuration. In this case the only Xilinx DMA
+> driver enabled by default is the VDMA driver as it is available both
+> in linux-xlnx and in mainline/linux-yocto. It has been done this way
+> to ensure users understanding that they are using a driver that may
+> disappear in future linux-xlnx versions or be changed for upstream
+> submission.
+>=20
+> To configure these linux-xlnx only drivers, you can use the "-c
+> menuconfig" and have your changes made temporarily (The drivers are
+> under 'Device Drivers / DMA Engine support / Xilinx DMA Engines').
+>=20
+> Or you can use the config fragment available in meta-xilinx by setting
+> KERNEL_FEATURES up with the fragment (the fragment enables a few of
+> linux-xlnx only drivers). Adding the following line to your machine's,
+> distro's your local .conf depending on your requirements:
+>=20
+> KERNEL_FEATURES +=3D "bsp/xilinx/xilinx-drivers-linux-xlnx.scc"
+>=20
+> Just on a side note, there was a bug in the .scc file, I have just
+> fixed it in master (and fido). So you will need to pull to use this or
+> it will give you an error.
+>=20
+> Regards,
+> Nathan
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Hi Nathan,
 
+Thank you, your bug fix and the extra line in local.conf solved the
+problem. Is there any documentation on using the DMA drivers?
+
+I can control the egpio in the shell, is it possible to do something
+similar with the AXI bus?
+
+Kind regards,
+Toby
+
+>=20
+>>
+>> Regards,
+>> Toby
+>>
+>> On 04/11/15 13:47, Hecht, Martin (Silica) wrote:
+>>> Hi Toby,
+>>>
+>>> Please compare with http://www.wiki.xilinx.com/Linux+Drivers. Most of=
+ the DMA drivers aren't mainlined by now. You need to add them by yoursel=
+f currently.
+>>>
+>>> Regards,
+>>> Martin
+>>>
+>>>
+>>> -----Original Message-----
+>>> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproje=
+ct.org] On Behalf Of Toby Gomersall
+>>> Sent: Mittwoch, 4. November 2015 14:44
+>>> To: yocto@yoctoproject.org
+>>> Subject: [yocto] yocto on zynq, How to configure kernel to include dr=
+ivers
+>>>
+>>> I'm quite new to yocto so still have a lot to learn. I'm trying to in=
+clude the DMA drivers in my yocto build for a Zynq based on the meta-xili=
+nx layer (http://git.yoctoproject.org/cgit/cgit.cgi/meta-xilinx/).
+>>>
+>>> I thought I'd be able to add them in the kernel configuration
+>>> (menuconfig) by running (from within the build directory):
+>>>
+>>> bitbake linux-xlnx -c kernel_configme -f bitbake linux-xlnx -c menuco=
+nfig
+>>>
+>>> I can't see the DMA drivers in menuconfig. However if I run menuconfi=
+g within the linux-xlnx tree (which is referenced by the SRCURI) I can se=
+e the DMA drivers. Is there some reason they're hidden in the build menuc=
+onfig?
+>>>
+>>> Thanks,
+>>> Toby
+>>>
+>>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+
+
+--LgrqKhddiVpMpKDRDMb5WR0VT6uGxgagC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJWOzqrAAoJEJFfznYik92Wq7kQAKrB04VISnSk2Scte3kj29nL
+8Cb6b2aAwr1sLjcC1UeCgBiqt5GGr8C9jQh/WJS8sJzs75DMzWIHEBeLDqt9FBjn
+dF4RXVX3wwShGxNeKPuz92BBwsZoGrzw8dMEp5/j85H18lLQRKZBR9q9gOyePO6V
+7a4O6KEmDo6xnY4dyqMqEpgA9mjo6JYec9+sSvOzJoX8qM8EF0yPJzEfM6ZST1GT
+IFtnezW4FLpHmp7TKXaubI56udnX+JhoZ9zA8SuoCM4BEv8KQcpsmpuXU4w2xfp3
+PeydQk4GIVB7InxX35yw1U6i+kKRcU4iOOEVCARP/8781QAyBVSpwYrrUlOYMJwc
+6TPlNeLQrFbl+JT4LdxwmUWBRhviSyWBPUrGjX5zJMCSzhJ3PLCUSM3BlLOoQl7K
+BGIO2/q6UYn+YsHxq02HK/YtJ86F3YcDdvcmdNGalUAOLaRhP6/Mmbeyf7+T1XvW
+FPwSc7ZsAxbb/Xd6Mmdq0eM6njF3+7jyw5yHiInR+ayxpnxMfeNHp1bxdlVrWUFR
+9fI83vrMGyLm04jTJr4qPp63OzER6ozKvxHlwYIm++J0KHJfaeQq2mY67y1xfXCG
+UnaFso2n6xzbCsunL1D2CzXfEyuRDN3sEaWc7/yZ3Z8kFcAJ3K0lW42cmSfMn7g6
+SuzlLj6vHIBWVClJP6xM
+=8FTA
+-----END PGP SIGNATURE-----
+
+--LgrqKhddiVpMpKDRDMb5WR0VT6uGxgagC--
