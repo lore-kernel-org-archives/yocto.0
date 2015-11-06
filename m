@@ -1,39 +1,51 @@
-Return-Path: <benoit.rapidel+yocto@exmachina.fr>
+Return-Path: <aws.ismail@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93563E007D5; Thu,  5 Nov 2015 10:07:50 -0800 (PST)
+	id 7C8E8E00ACE; Thu,  5 Nov 2015 22:12:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (aws.ismail[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.173 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from galat.willykaze.org (galat.willykaze.org [91.121.12.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7BCBE0071C
-	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 10:07:44 -0800 (PST)
-Received: from [192.168.0.21] (vil69-h01-31-38-223-239.dsl.sta.abo.bbox.fr
-	[31.38.223.239])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by galat.willykaze.org (Postfix) with ESMTPSA id D6781707B0
-	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 19:07:43 +0100 (CET)
-References: <1446590054-31188-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
-	<CACS+7ZSrrrmyc3hAUU6RJUSEpPvoBeQOLyFmjadJSqgJjoyVJg@mail.gmail.com>
-	<563B9576.40202@linux.intel.com>
-To: yocto@yoctoproject.org
-From: Benoit Rapidel <benoit.rapidel+yocto@exmachina.fr>
-Organization: ExMachina
-Message-ID: <563B9AEE.1000903@exmachina.fr>
-Date: Thu, 5 Nov 2015 19:07:42 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18272E00AAA
+	for <yocto@yoctoproject.org>; Thu,  5 Nov 2015 22:12:40 -0800 (PST)
+Received: by obctp1 with SMTP id tp1so85072251obc.2
+	for <yocto@yoctoproject.org>; Thu, 05 Nov 2015 22:12:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=Irp5MRX/aWgi3zoC4ERnlrVbPXKW1hOojvRjNGnU+gE=;
+	b=YTuWxW0C2Yvc6I7ZNftg2kykF0cdU+EAyfbs6DiATM5LyxL0FfGIT6Rfnkniz8d8G7
+	sGBEiprZt+9sZC/PAVErzrHQNJqbXRlNRpXTgyXKVQ17EkljjaxpQr+VvEsVkgVosVrL
+	mVqO2MDCO42TwO/2S+wkSRcIdwApJ25BhcUcCxzLIwG5mo961bdIIvbLsCX5x2vAHb2C
+	Bcfv+KjCg8f493WhhN9JBXRXcXhKagsvFHnXJb4GU7VVuajcGu+s+0ydzVrbA2iKRdG2
+	OTI02xG4RWZAMx8I4Y7DII6dxJhWoTwGzvOuHR4APtwQ44Q3/EYGTaLbxayhn0dXdThu
+	v02A==
+X-Received: by 10.60.33.202 with SMTP id t10mr7219359oei.66.1446790359669;
+	Thu, 05 Nov 2015 22:12:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <563B9576.40202@linux.intel.com>
-Subject: Re: [OE-core] [PATCH] terminal: Support old tmux version (<1.9) when querying height value
+Received: by 10.182.41.39 with HTTP; Thu, 5 Nov 2015 22:12:20 -0800 (PST)
+From: Aws Ismail <aws.ismail@gmail.com>
+Date: Fri, 6 Nov 2015 01:12:20 -0500
+Message-ID: <CAMHMu0PDTzCNkRR8gjFY7NsUKxC_+mNP1Q-0iaS9SZuabq8VDQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Is it possible to call runqemu with multiple tap devices?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: benoit.rapidel+yocto@exmachina.fr
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -42,124 +54,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Nov 2015 18:07:50 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Nov 2015 06:12:43 -0000
+Content-Type: text/plain; charset=UTF-8
 
-As you said on Wheezy, tmux 1.6 the patch provided only works when the windows has 1 
-pane.
-If a window has multiple panes, then we got:
-$ tmux list-panes -F "#{?pane_active,yes,no}"
-yes
-no
-no
-no
-$ tmux list-panes -F "#{pane_height}"
-43
-48
-49
-43
+Hi,
 
-This leads to:
+I noticed that runqemu starts with one TAP device by default. Inside
+the VM this would be eth1 vNIC device. Is it possible to start the VM
+with multiple tap devices (i.e. eth1, eth2, eth3, etc.)?
 
-In [2]: import subprocess as sub
+I have tried using the "runqemu-gen-tapdevs" script, which creates
+multiple tap devices successfully (on the host), but when I try to add
+the new tap devices as part of the qemuparams it fails.
 
-In [3]: p = sub.Popen('tmux list-panes -F "#{?pane_active,yes,no}"', shell=True, 
-stdout=sub.PIPE,stderr=sub.PIPE)
+The only way I was able to boot the VM with multiple vNICs was to use
+the simple "-net nic ..."  qemuparam option, but then this vNIC won't
+be configured and won't have a proper address like what's done to the
+default one by runqemu.
 
-In [4]: out, err = p.communicate()
+Am I missing something, or does this mean that the runqemu-internal
+script would need to be modified to support multiple vNICs in the
+QEMU_CMD?
 
-In [5]: out
-Out[5]: 'yes\nno\nno\nno\nno\n'
-
-In [6]: p = sub.Popen('tmux list-panes -F "#{pane_height}"', shell=True, 
-stdout=sub.PIPE,stderr=sub.PIPE)
-
-In [7]: out, err = p.communicate()
-
-In [8]: out
-Out[8]: '48\n24\n23\n47\n47\n'
-
-In [9]:
-
-Note: this only affect tmux 1.6 as tmux 1.9 support
-	-F "#{?pane_active,#{pane_height},}"
-
-B.
-
-Le 05/11/2015 18:44, Leonardo Sandoval a écrit :
->
->
-> On 11/03/2015 05:58 PM, Dan McGregor wrote:
->> On 3 November 2015 at 16:34,
->> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
->>> From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
->>>
->>> Old tmux version (< 1.9) does not support nested formats on the -F parameter, so
->>> if nested format does not give any answer, do the query in two steps.
->>>
->>> Tested on tmux 1.6.
->>
->> Yeah, I noticed this shortly after I submitted the fix for 1.9 but
->> didn't think much of it. What system are you using that has tmux 1.6?
->>
->
-> debian wheezy.
->
-> Benoit, can you report the issues you are seeing on tmux1.9 and the tmux output from
-> the -F commands?
->
-> Seems than when n-panes are open, we get n outputs so clearly calling int() is not
-> enough, so current solution just works when n=1
->
->
->>>
->>> Signed-off-by: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
->>> ---
->>>   meta/lib/oe/terminal.py |   15 ++++++++++++++-
->>>   1 file changed, 14 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/meta/lib/oe/terminal.py b/meta/lib/oe/terminal.py
->>> index 52a8913..686b1ce 100644
->>> --- a/meta/lib/oe/terminal.py
->>> +++ b/meta/lib/oe/terminal.py
->>> @@ -218,11 +218,24 @@ def spawn(name, sh_cmd, title=None, env=None, d=None):
->>>
->>>   def check_tmux_pane_size(tmux):
->>>       import subprocess as sub
->>> +    size = 0
->>>       try:
->>>           p = sub.Popen('%s list-panes -F "#{?pane_active,#{pane_height},}"' % tmux,
->>>                   shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
->>>           out, err = p.communicate()
->>> -        size = int(out.strip())
->>> +        try:
->>> +            size = int(out.strip())
->>> +        except ValueError:
->>> +            # Older tmux versions (< 1.9) does not support nested formats,
->>> +            # so try it in two steps
->>> +            p = sub.Popen('%s list-panes -F "#{?pane_active,yes,no}"' % tmux,
->>> +                shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
->>> +            out, err = p.communicate()
->>> +            if "yes" in out.strip():
->>> +                p = sub.Popen('%s list-panes -F "#{pane_height}"' % tmux,
->>> +                              shell=True,stdout=sub.PIPE,stderr=sub.PIPE)
->>> +                out, err = p.communicate()
->>> +                size = int(out.strip())
->>>       except OSError as exc:
->>>           import errno
->>>           if exc.errno == errno.ENOENT:
->>> --
->>> 1.7.10.4
->>>
->>> --
->>> _______________________________________________
->>> Openembedded-core mailing list
->>> Openembedded-core@lists.openembedded.org
->>> http://lists.openembedded.org/mailman/listinfo/openembedded-core
-
--- 
-Benoit Rapidel
-
-Co-founder & CTO at ExMachina
+Thanks.
 
