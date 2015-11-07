@@ -1,61 +1,38 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A330E00B2B; Sat,  7 Nov 2015 10:04:38 -0800 (PST)
+	id 251F8E00B77; Sat,  7 Nov 2015 12:06:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0868E00AFD
-	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 10:04:36 -0800 (PST)
-Received: by iody8 with SMTP id y8so151554894iod.1
-	for <yocto@yoctoproject.org>; Sat, 07 Nov 2015 10:04:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=yfSOd/twzsm3jbw0wq4kM0Al4v3jaur9AxA/Sj8/0A4=;
-	b=bNCBZZ7oHdY17zo2WZV9JwkNMvv1tZfSGlYetC4PPA6vaOV18XXz9tzany96PAs2OI
-	+189BR2BHElz5VMG53F6GTrUd8OBkJH8k/GTT+6m0fe6z/xxjWSFZVTI2wyAufyBD7kF
-	JCA+CpFzoCEi+ZbN03sAmQ/vwxMEzMdpiC9U3Qci4xhGUvjihtKgckdTkpT1qQ58MZ7a
-	zF5UJEmfluyEWviKJT0yGfaHBD052q8noCoAst6X8Z382We1lwvDgHKx2aN7h0aj0qh3
-	cFUYzm6+hX60h4LBQcgqqyjo8KtX+d3To1tUHb8fIurpQ5o5/CDgskdRUd3DLZiA+zPo
-	Ex/Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kergoth_com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=yfSOd/twzsm3jbw0wq4kM0Al4v3jaur9AxA/Sj8/0A4=;
-	b=ZW/yQx6V5DpLck9nndbptZuqszQ4uEg9VdVVa+Al/FTFIkTUDlmAOHlxVKycuHlgYt
-	7FLC7rQMhsEqNHLUmTNv0iwaPE3hArwQFQ8s/5uccGv3+aoFusCGEAxH10qz31m2uXop
-	z/lhLn5G28os9FJqMQYRqw0JXp59fY72+H/vni8PbYTX1DWa2N55EKbhdETRGTo/iMx8
-	5aiDBPbP1XUS8vy2yQ3poT2drrl8sVIWzAHEpl4vRZpG8qDRBu7VF5CEZS5EEh6xCdYi
-	xfQF1HzMLtf9pfbJXKrDNnUraiNjxjUKpDjI1qWxU5vy7Pv6g4/Y4WJc/CO7PKdLgDOv
-	rCfw==
-X-Received: by 10.107.38.70 with SMTP id m67mr23136224iom.98.1446919476038;
-	Sat, 07 Nov 2015 10:04:36 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E68EFE00B23
+	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 12:06:18 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA7K6GPn022053
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 7 Nov 2015 12:06:16 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.227) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Sat, 7 Nov 2015 12:06:15 -0800
+To: Denton Gentry <denton.gentry@gmail.com>, <yocto@yoctoproject.org>
+References: <CABnBrYX3Zenkb5i-3MZ8NEzntnsfDd-iMXLvgr68FFNU9tYU9Q@mail.gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <563E59B7.8060002@windriver.com>
+Date: Sat, 7 Nov 2015 14:06:15 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.93.7 with HTTP; Sat, 7 Nov 2015 10:04:16 -0800 (PST)
-In-Reply-To: <30C2D590D16A5C46ADFE65219103779853A6C63E@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE65219103779853A6C63E@AZ-US1EXMB03.global.avaya.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Sat, 7 Nov 2015 11:04:16 -0700
-X-Google-Sender-Auth: I-v8TGQiehn4xbZ5uHPoVUy5c9c
-Message-ID: <CABcZANmS-a-SXomN_d_Vp26=cioPLJLxfMXNd_W1XL9ZEdfmig@mail.gmail.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Calling python function from shell function
+In-Reply-To: <CABnBrYX3Zenkb5i-3MZ8NEzntnsfDd-iMXLvgr68FFNU9tYU9Q@mail.gmail.com>
+Subject: Re: [prelink-cross] /sbin/init not working after prelink-cross
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,130 +44,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Nov 2015 18:04:38 -0000
-Content-Type: multipart/alternative; boundary=001a1140fe406356ea0523f7312b
+X-List-Received-Date: Sat, 07 Nov 2015 20:06:22 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---001a1140fe406356ea0523f7312b
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 11/7/15 11:08 AM, Denton Gentry wrote:
+> I'm attempting to use prelink-cross on two different platforms, both
+> of which run into the same symptoms. The two platforms are:
+>     + ARM, Linux 3.2, glibc
+>     + MIPS, Linux 4.1, uclibc
 
-On Sat, Nov 7, 2015 at 10:27 AM, Vuille, Martin (Martin) <vmartin@avaya.com=
->
-wrote:
+As far as I am aware, the prelinker does not work with uClibc at all.  So I'm
+not surprised if the MIPS case breaks.
 
-> In my custom .bbclass, I have a python function
->
->
->
-> python whatever () {
->
->     =E2=80=A6
->
-> }
->
->
->
-> and I would like to call it from a shell function
->
->
->
-> do_something () {
->
->     =E2=80=A6
->
->     whatever
->
->     =E2=80=A6
->
-> }
->
->
->
-> but bitbake gives me an error =E2=80=9Cwhatever: not found=E2=80=9D when =
-building
->
-> recipes based on this class
->
->
->
-> Is what I am trying to do possible? Do I have the syntax wrong?
->
+Do you know if it has worked at all in the past with uClibc?
 
-Not doable, no. You could make a python do_something which calls both
-`whatever` and your shell `something_shell`, though. i.e.
+As for ARM, what version of glibc is being used, and which ARM core is the
+system targeting?
 
-python whatever () {
-    pass
-}
+I believe that the ARM & glibc issues were resolved.  So you may have found a
+new unknown issues.
 
-do_something_shell () {
-    :
-}
+If you are able to, I'd suggesting building the prelink-cross branch on the
+target system, (autoreconf -if ; configure ; make) and then run the 'make
+testsuite' and see if you get any errors.  (You should get 3 skips and the rest
+pass.  If not, then something in your configuration may be causing a problem.)
 
-python do_something () {
-    bb.build.exec_func("whatever", d)
-    bb.build.exec_func("something_shell", d)
-}
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+The other thing to look into on ARM, since it appears you are likely using older
+versions of the tools, would be to try an older version of the prelinker and see
+if that works.  If it does, we can attempt to go through the patches and
+identify what triggered the failure mode on your machine.
 
---001a1140fe406356ea0523f7312b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Please open a defect for the glibc case in the yoctoproject bugzilla, make sure
+the component in the prelinker -- and as as much information as you can about
+your configuration.  (If I can find a way to reproduce it, I'm more likely to be
+able to figure out the issue as well.)
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Sat, Nov 7, 2015 at 10:27 AM, Vuille, Martin (Martin) <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.co=
-m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNo=
-rmal"><span lang=3D"EN-US">In my custom .bbclass, I have a python function<=
-u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">python whatever () {<u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=A0 =E2=80=A6<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">}<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">and I would like to call it fro=
-m a shell function<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">do_something () {<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=A0 =E2=80=A6<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=C2=A0 whatever<u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0 =C2=A0=E2=80=A6<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">}<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">but bitbake gives me an error =
-=E2=80=9Cwhatever: not found=E2=80=9D when building<u></u><u></u></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-US">recipes based on this class<u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is what I am trying to do possi=
-ble? Do I have the syntax wrong?</span></p></blockquote></div><br>Not doabl=
-e, no. You could make a python do_something which calls both `whatever` and=
- your shell `something_shell`, though. i.e.</div><div class=3D"gmail_extra"=
-><br></div><div class=3D"gmail_extra">python whatever () {</div><div class=
-=3D"gmail_extra">=C2=A0 =C2=A0 pass</div><div class=3D"gmail_extra">}</div>=
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">do_somethin=
-g_shell () {</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 :</div><div clas=
-s=3D"gmail_extra">}</div><div class=3D"gmail_extra"><br></div><div class=3D=
-"gmail_extra">python do_something () {</div><div class=3D"gmail_extra">=C2=
-=A0 =C2=A0 bb.build.exec_func(&quot;whatever&quot;, d)</div><div class=3D"g=
-mail_extra">=C2=A0 =C2=A0 bb.build.exec_func(&quot;something_shell&quot;, d=
-)</div><div class=3D"gmail_extra">}</div><div class=3D"gmail_extra">-- <br>=
-<div class=3D"gmail_signature">Christopher Larson<br>clarson at kergoth dot=
- com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<b=
-r>Senior Software Engineer, Mentor Graphics</div>
-</div></div>
+--Mark
 
---001a1140fe406356ea0523f7312b--
+
+> I'm using sysvinit 2.88 on both.
+> I'm using prelink-cross-20151030_cross.
+> 
+> 
+> My prelink command is:
+> prelink --verbose --config-file /etc/prelink.conf --cache-file
+> /etc/prelink.cache --root=./target/
+> --ld-library-path=/lib:/usr/lib:/usr/local/lib:/chrome/lib:/chrome
+> --all
+> 
+> The uclibc system adds "--dynamic-linker=/lib/ld-uClibc.so.0" to the
+> prelink command.
+> 
+> 
+> If /sbin/init is statically linked, the kernel is able to run
+> /sbin/init but init cannot run any processes:
+> 
+> [   10.035122] Mounted root='/dev/mtdblock13' (verity)
+> [   10.052350] Looking for init in rootfs.  To bypass this, use init=/bin/sh
+> [   10.059559] Trying '/rootfs/sbin/init'
+> INIT: version 2.88 booting
+> INIT: Entering runlevel: 1
+> INIT: Id "S0" respawning too fast: disabled for 5 minutes
+> INIT: Id "USB0" respawning too fast: disabled for 5 minutes
+> INIT: no more processes left in this runlevel
+> 
+> 
+> If /sbin/init is dynamically linked, the kernel panics when it tries
+> to run init:
+> 
+> [   10.066521] Mounted root='/dev/mtdblock13' (verity)
+> [   10.082536] Looking for init in rootfs.  To bypass this, use init=/bin/sh
+> [   10.089509] Trying '/rootfs/sbin/init'
+> [   10.228603] Kernel panic - not syncing: Attempted to kill init!
+> [   10.234639] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
+> [<842cee3d>] (panic+0x5d/0x134)
+> [   10.242879] [<842cee3d>] (panic+0x5d/0x134) from [<84029dc5>]
+> (do_exit+0x239/0x538)
+> [   10.250570] [<84029dc5>] (do_exit+0x239/0x538) from [<8402a12d>]
+> (do_group_exit+0x4d/0x70)
+> [   10.258889] [<8402a12d>] (do_group_exit+0x4d/0x70) from
+> [<84033c9d>] (get_signal_to_deliver+0x379/0x40c)
+> [   10.268429] [<84033c9d>] (get_signal_to_deliver+0x379/0x40c) from
+> [<8400ee01>] (do_signal+0x38d/0x3c0)
+> [   10.277790] [<8400ee01>] (do_signal+0x38d/0x3c0) from [<8400f027>]
+> (do_notify_resume+0xf/0x28)
+> [   10.286457] [<8400f027>] (do_notify_resume+0xf/0x28) from
+> [<8400caed>] (work_pending+0x23/0x26)
+> [   10.295204] CPU1: stopping
+> [   10.297935] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
+> [<8401088d>] (handle_IPI+0xcd/0x104)
+> [   10.306583] [<8401088d>] (handle_IPI+0xcd/0x104) from [<8400c553>]
+> (__irq_svc+0x33/0xb8)
+> [   10.314708] [<8400c553>] (__irq_svc+0x33/0xb8) from [<8400d5e8>]
+> (default_idle+0x18/0x1c)
+> [   10.322921] [<8400d5e8>] (default_idle+0x18/0x1c) from [<8400d6c5>]
+> (cpu_idle+0x61/0x94)
+> [   10.331045] [<8400d6c5>] (cpu_idle+0x61/0x94) from [<042cb779>] (0x42cb779)
+> [   10.338036] Rebooting in 3 seconds..
+> 
+> 
+> This makes it look like the dynamic linker cannot handle prelinked
+> binaries. However if I only prelink a single binary (plus the
+> libraries it depends on), the prelinked binary is able to run without
+> issue.
+> 
+> I'm hoping these symptoms will look familiar to someone, before I go
+> dig into the kernel's handling of /sbin/init to try to figure out why
+> it fails.
+> 
+
+
