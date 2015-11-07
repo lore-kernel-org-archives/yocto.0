@@ -1,32 +1,58 @@
-Return-Path: <Andrea.DiChiara@teseo.com>
+Return-Path: <dherechaitanya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BF4CE00B1C; Sat,  7 Nov 2015 03:07:27 -0800 (PST)
+	id DADD1E00B1C; Sat,  7 Nov 2015 03:17:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.81.186.23 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	URIBL_JP_SURBL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dherechaitanya[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.173 listed in list.dnswl.org]
+	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
+	*      [URIs: gherzan.ro]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.teseo.com (mail.teseo.com [195.81.186.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCDEDE00A26
-	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 03:07:21 -0800 (PST)
-Received: from HAL09.TWPN09.NET (172.27.0.1) by mail.teseo.com (172.27.0.10)
-	with Microsoft SMTP Server (TLS) id 8.3.342.0;
-	Sat, 7 Nov 2015 12:07:18 +0100
-Received: from [172.27.0.19] (172.27.0.19) by HAL09.TWPN09.NET (172.27.0.1)
-	with Microsoft SMTP Server id 8.3.342.0; Sat, 7 Nov 2015 12:07:18 +0100
-To: <yocto@yoctoproject.org>
-From: Andrea Di Chiara <andrea.dichiara@teseo.com>
-Message-ID: <563DDB65.6090508@teseo.com>
-Date: Sat, 7 Nov 2015 12:07:17 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
+	[209.85.217.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FFBAE00A26
+	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 03:17:40 -0800 (PST)
+Received: by lbbkw15 with SMTP id kw15so67140075lbb.0
+	for <yocto@yoctoproject.org>; Sat, 07 Nov 2015 03:17:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=NJifztiQF9Ytyv6RL+AclvaZPwDCjCfMlO94WTbI5ho=;
+	b=eix4PGY6in8OfK9wt6TjstD1Nqir7LJveaNDnSE7+qyzwNX570y1JZdFTcR464+dbr
+	mfRhXu5zmud9QZjig55ngDWIGVcZKSby0uSLJ9MYL5aIIczPerqy0KD9jz7HSwJuvVB+
+	HZxtdGQyCsVA4k2MHzZoCwaM1kvHGyDC7iXO7xcXZVZw4L9fEsuJVpCRXyALm2r8f2rf
+	rYkaIblusNXvwvn0TCKVaQ8UihqgHvsVkfqsqeadY5O2RvJH+ho0grRl8jZcvhRBl1zO
+	W9uLDD+IWN9hE1nIijj4fkEYX5yAp4YUfbp4e9CR/V6WuaUrsTSyaJdBYalcBvoW2Bst
+	Ovqg==
 MIME-Version: 1.0
-Subject: initramfs from core-image-minimal-initramfs.bb
+X-Received: by 10.112.156.2 with SMTP id wa2mr9308005lbb.39.1446895058989;
+	Sat, 07 Nov 2015 03:17:38 -0800 (PST)
+Received: by 10.25.39.20 with HTTP; Sat, 7 Nov 2015 03:17:38 -0800 (PST)
+In-Reply-To: <CAK18fxExsnDc9rGVcjNNp5uELfy8eWNg3ZfUS=e7kCog33bLCA@mail.gmail.com>
+References: <CAG=op9dOD9-phw9V+ceuvLhDxuPYQJPmNUJrrneC9_ywS+f5aw@mail.gmail.com>
+	<CAMKF1srraL3_z6_AOG9Yo+P_5FY3E9Lv-ZywyQd+CGt7UsK77w@mail.gmail.com>
+	<CAK18fxFTcYS0YLAbPnEycfUBBD3GxdRF_BbGX=332fnYd=eJLQ@mail.gmail.com>
+	<CAG=op9c3ZCzppmDx__AMqTrv09Yf73F3830h-Ji7OqwxTZAOsQ@mail.gmail.com>
+	<CAK18fxExsnDc9rGVcjNNp5uELfy8eWNg3ZfUS=e7kCog33bLCA@mail.gmail.com>
+Date: Sat, 7 Nov 2015 03:17:38 -0800
+Message-ID: <CAG=op9dkEo6fn-dPqNHLgnoO6b=sfYJju6Exm6vXdViLsOk6Rw@mail.gmail.com>
+From: Chaitanya Dhere <dherechaitanya@gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Missing config.txt in rpi-basic-image.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,37 +64,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Nov 2015 11:07:27 -0000
-Content-Type: text/plain; charset="iso-8859-15"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 07 Nov 2015 11:17:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
-I'm trying to create an initramgs cpio.gz filesystem starting from
-core-image-minimal-initramfs.bb recipe, but something fails. When I load
-the kernel image that embedded that ramfs it hangs on loading after
-showing some "mount: you must be root" messages. What could these means?
-It seems that something going wrong mounting /proc and /sys directories
-cause follows other messages as "grep: /proc/filesystem: No such file or
-directory".
+Hello,
+         Thanks for your input. After doing a loopback mount, I was
+able to locate the config.txt in that first partition. I modified that
+config.txt as required and it worked. But the same modification when
+done in the config.txt file which I created under boot directory
+didn't work. Seems that only the config.txt in the first partition is
+being read during boot-up.
 
-Could someone help me? where can I found some hints on how to create a
-initramfs from a custom Yocto image?
-thank you for the attention,
-regards
-Andrea
+Thanks,
+Chaitanya
 
-Software Department
-software@teseo.com
-
----------------------------------------------------------------------------=
-----------------------------------
-TESEO spa            via Agnelli, 49              63023 FERMO (FM) ITALY
-Tel. +39 0734 628818   --    Fax. +39 0734 628816
-
-Disclaimer: This electronic mail transmission may contain legally privilege=
-d and/or confidential information. Do not read this if you are not the pers=
-on(s) named. Any use, distribution, copying or disclosure by any other pers=
-on is strictly prohibited. If you receive this transmission by mistake dest=
-roy the original transmission and its attachments without reading or saving=
- in any manner.
+On Sun, Nov 1, 2015 at 5:13 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Hi,
+>
+>
+> On Mon, Nov 2, 2015 at 2:09 AM, Chaitanya Dhere
+> <dherechaitanya@gmail.com> wrote:
+>> Hello ,
+>>          I tried creating one config.txt. But even after that and
+>> rebooting I'm unable to see a i2c-1 device under /dev.
+>>
+>> Yes I checked, it's not present on the board under /boot . In
+>> tmp/deploy/images/raspberrypi2/bcm2835-bootfiles, I'm able to see
+>> config.txt along with bcm2835-bootfiles-20150206.stamp,
+>> bcm2835-bootfiles-20150206.stamp, cmdline.txt, fixup_cd.dat,
+>> fixup.dat,  fixup_x.dat,  start_cd.elf,  start.elf,  and start_x.elf.
+>>
+>
+> Can you try on master too? As well, could you please mount the sdcard
+> image (loopback mount) and check the content of the first partition?
+>
+> ---
+> Andrei
 
