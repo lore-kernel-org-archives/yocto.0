@@ -1,48 +1,50 @@
-Return-Path: <denton.gentry@gmail.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 290BEE00B5D; Sat,  7 Nov 2015 09:08:05 -0800 (PST)
+	id B21E7E00B2B; Sat,  7 Nov 2015 09:29:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (denton.gentry[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f42.google.com (mail-vk0-f42.google.com
-	[209.85.213.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7106AE005B7
-	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 09:08:03 -0800 (PST)
-Received: by vkgs66 with SMTP id s66so33855130vkg.1
-	for <yocto@yoctoproject.org>; Sat, 07 Nov 2015 09:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=J2t3eYypd9cripEiCkVTG8GDcsWb5HCqDLqzUIT9Kng=;
-	b=g85KtwBxGTcNTfm5Z7x59+ZyONwMF9LVGqOZtl/FjjEFQbmMyw2/8zVhpOrrOvQ3p9
-	28W5WTwyohDFUcG6cbAF5c/Bhv6PWkTRVt1ju8HYSkYb3DKNr54IKrpAvcMQO5Zrin/A
-	5v1VhPeJQCmZ1V0eQwlu62lZ9xodZS7Q0NNWs4nXBFbKwDrSrOU9bbywDT9UcPuGGVqr
-	ewpZtB6q92E4VMsgn1uw6/VZgrgb5/MrMZWqS0laXce7sdUQgmg2ebGZgPrU8Qb53JtB
-	uttpyKtFCTlag5nBUtcCmb3dtr7VvCPjDqKWIHUJ/6lTON5tfWH5NnS61vd6oHWbJqS9
-	jK3w==
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_50,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.11.29.13 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4734]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Sat, 07 Nov 2015 09:29:02 PST
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DAA9E005B7
+	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 09:29:02 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A2D+BAA3Q8ZV/yYyC4dbGQSCMSEsVG+9M4d9AoEmORMBAQEBAQEBfwuEJQEBAxIbXgEVFVYmAQQbGogMAadqhQugOgwgkCmDUIEUBZULAW2UbpEEFw+DfYI3gQQBAQE
+X-IPAS-Result: A2D+BAA3Q8ZV/yYyC4dbGQSCMSEsVG+9M4d9AoEmORMBAQEBAQEBfwuEJQEBAxIbXgEVFVYmAQQbGogMAadqhQugOgwgkCmDUIEUBZULAW2UbpEEFw+DfYI3gQQBAQE
+X-IronPort-AV: E=Sophos;i="5.15,634,1432612800"; 
+	d="scan'208,217";a="150290405"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	07 Nov 2015 12:27:58 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES256-SHA;
+	07 Nov 2015 12:27:58 -0500
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0174.001; Sat, 7 Nov 2015 12:27:57 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Calling python function from shell function
+Thread-Index: AdEZgRcaQGJhw9FHQ2O6IswyXDi0tA==
+Date: Sat, 7 Nov 2015 17:27:57 +0000
+Message-ID: <30C2D590D16A5C46ADFE65219103779853A6C63E@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-X-Received: by 10.31.49.22 with SMTP id x22mr20189746vkx.60.1446916083131;
-	Sat, 07 Nov 2015 09:08:03 -0800 (PST)
-Received: by 10.31.16.32 with HTTP; Sat, 7 Nov 2015 09:08:03 -0800 (PST)
-Date: Sat, 7 Nov 2015 09:08:03 -0800
-Message-ID: <CABnBrYX3Zenkb5i-3MZ8NEzntnsfDd-iMXLvgr68FFNU9tYU9Q@mail.gmail.com>
-From: Denton Gentry <denton.gentry@gmail.com>
-To: yocto@yoctoproject.org
-Subject: [prelink-cross] /sbin/init not working after prelink-cross
+Subject: Calling python function from shell function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,80 +56,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Nov 2015 17:08:05 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 07 Nov 2015 17:29:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE65219103779853A6C63EAZUS1EXMB03glob_"
 
-I'm attempting to use prelink-cross on two different platforms, both
-of which run into the same symptoms. The two platforms are:
-    + ARM, Linux 3.2, glibc
-    + MIPS, Linux 4.1, uclibc
-I'm using sysvinit 2.88 on both.
-I'm using prelink-cross-20151030_cross.
+--_000_30C2D590D16A5C46ADFE65219103779853A6C63EAZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+In my custom .bbclass, I have a python function
 
-My prelink command is:
-prelink --verbose --config-file /etc/prelink.conf --cache-file
-/etc/prelink.cache --root=./target/
---ld-library-path=/lib:/usr/lib:/usr/local/lib:/chrome/lib:/chrome
---all
+python whatever () {
+    ...
+}
 
-The uclibc system adds "--dynamic-linker=/lib/ld-uClibc.so.0" to the
-prelink command.
+and I would like to call it from a shell function
 
+do_something () {
+    ...
+    whatever
+    ...
+}
 
-If /sbin/init is statically linked, the kernel is able to run
-/sbin/init but init cannot run any processes:
+but bitbake gives me an error "whatever: not found" when building
+recipes based on this class
 
-[   10.035122] Mounted root='/dev/mtdblock13' (verity)
-[   10.052350] Looking for init in rootfs.  To bypass this, use init=/bin/sh
-[   10.059559] Trying '/rootfs/sbin/init'
-INIT: version 2.88 booting
-INIT: Entering runlevel: 1
-INIT: Id "S0" respawning too fast: disabled for 5 minutes
-INIT: Id "USB0" respawning too fast: disabled for 5 minutes
-INIT: no more processes left in this runlevel
+Is what I am trying to do possible? Do I have the syntax wrong?
 
+MV
 
-If /sbin/init is dynamically linked, the kernel panics when it tries
-to run init:
+--_000_30C2D590D16A5C46ADFE65219103779853A6C63EAZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[   10.066521] Mounted root='/dev/mtdblock13' (verity)
-[   10.082536] Looking for init in rootfs.  To bypass this, use init=/bin/sh
-[   10.089509] Trying '/rootfs/sbin/init'
-[   10.228603] Kernel panic - not syncing: Attempted to kill init!
-[   10.234639] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
-[<842cee3d>] (panic+0x5d/0x134)
-[   10.242879] [<842cee3d>] (panic+0x5d/0x134) from [<84029dc5>]
-(do_exit+0x239/0x538)
-[   10.250570] [<84029dc5>] (do_exit+0x239/0x538) from [<8402a12d>]
-(do_group_exit+0x4d/0x70)
-[   10.258889] [<8402a12d>] (do_group_exit+0x4d/0x70) from
-[<84033c9d>] (get_signal_to_deliver+0x379/0x40c)
-[   10.268429] [<84033c9d>] (get_signal_to_deliver+0x379/0x40c) from
-[<8400ee01>] (do_signal+0x38d/0x3c0)
-[   10.277790] [<8400ee01>] (do_signal+0x38d/0x3c0) from [<8400f027>]
-(do_notify_resume+0xf/0x28)
-[   10.286457] [<8400f027>] (do_notify_resume+0xf/0x28) from
-[<8400caed>] (work_pending+0x23/0x26)
-[   10.295204] CPU1: stopping
-[   10.297935] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
-[<8401088d>] (handle_IPI+0xcd/0x104)
-[   10.306583] [<8401088d>] (handle_IPI+0xcd/0x104) from [<8400c553>]
-(__irq_svc+0x33/0xb8)
-[   10.314708] [<8400c553>] (__irq_svc+0x33/0xb8) from [<8400d5e8>]
-(default_idle+0x18/0x1c)
-[   10.322921] [<8400d5e8>] (default_idle+0x18/0x1c) from [<8400d6c5>]
-(cpu_idle+0x61/0x94)
-[   10.331045] [<8400d6c5>] (cpu_idle+0x61/0x94) from [<042cb779>] (0x42cb779)
-[   10.338036] Rebooting in 3 seconds..
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
+hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
+html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">In my custom .bbclass, I have a=
+ python function<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">python whatever () {<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; &#8230;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">}<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">and I would like to call it fro=
+m a shell function<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">do_something () {<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; &#8230;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp; whatever<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp; &nbsp;&#8230;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">}<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">but bitbake gives me an error &=
+#8220;whatever: not found&#8221; when building<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">recipes based on this class<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is what I am trying to do possi=
+ble? Do I have the syntax wrong?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">MV<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
-
-This makes it look like the dynamic linker cannot handle prelinked
-binaries. However if I only prelink a single binary (plus the
-libraries it depends on), the prelinked binary is able to run without
-issue.
-
-I'm hoping these symptoms will look familiar to someone, before I go
-dig into the kernel's handling of /sbin/init to try to figure out why
-it fails.
-
+--_000_30C2D590D16A5C46ADFE65219103779853A6C63EAZUS1EXMB03glob_--
