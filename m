@@ -1,38 +1,53 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 251F8E00B77; Sat,  7 Nov 2015 12:06:22 -0800 (PST)
+	id 8C03EE0071C; Sun,  8 Nov 2015 04:02:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E68EFE00B23
-	for <yocto@yoctoproject.org>; Sat,  7 Nov 2015 12:06:18 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA7K6GPn022053
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 7 Nov 2015 12:06:16 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.248.2; Sat, 7 Nov 2015 12:06:15 -0800
-To: Denton Gentry <denton.gentry@gmail.com>, <yocto@yoctoproject.org>
-References: <CABnBrYX3Zenkb5i-3MZ8NEzntnsfDd-iMXLvgr68FFNU9tYU9Q@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <563E59B7.8060002@windriver.com>
-Date: Sat, 7 Nov 2015 14:06:15 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA851E00343
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 04:02:48 -0800 (PST)
+Received: by wmec201 with SMTP id c201so52562554wme.0
+	for <yocto@yoctoproject.org>; Sun, 08 Nov 2015 04:02:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=l03DujSIFjmG2MqkkjQz4JNme7vpfh9y272r6flp7OE=;
+	b=C9CEIDufaZwmaPIcKdj1K9j7TovvDvu0Zydzrt+cUhInVF+vBsQ3+yBKU9UeIFOfOe
+	C64n1iC9MsaZfWtOgwr39S5YIrUQ+kkHijGCba9i/Gs6aUd807hSsFTdYgkbwOxxGAJV
+	jZe2ejVWRnD18IEn1V5qH1ovpb3B9UBqw6+lckMH2Sk5smPkciU9ub8ioDCbGqYE08Lb
+	MQGvgqAO3OTvB8XY7pa9toOK6iykDWpM/3m5b44UkYXTCpDpAJC/N0VcjSyvMSEQN1Ma
+	Ws5kWX6hcPpFk9cFP0yxdxiDL5LmMsfpMn5Kx2duW47goEAGsfKGVi7PXVJu8deGa7rF
+	zpYA==
+X-Received: by 10.28.129.82 with SMTP id c79mr1285624wmd.80.1446984167585;
+	Sun, 08 Nov 2015 04:02:47 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id
+	197sm8554386wmx.23.2015.11.08.04.02.46
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 08 Nov 2015 04:02:46 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Sun, 8 Nov 2015 13:03:01 +0100
+To: allen.curtis@curtisembedded.com
+Message-ID: <20151108120301.GA2546@jama>
+References: <20151107015237.Horde.ATpewpTEwwDHYfMHj0c_6w1@box410.bluehost.com>
 MIME-Version: 1.0
-In-Reply-To: <CABnBrYX3Zenkb5i-3MZ8NEzntnsfDd-iMXLvgr68FFNU9tYU9Q@mail.gmail.com>
-Subject: Re: [prelink-cross] /sbin/init not working after prelink-cross
+In-Reply-To: <20151107015237.Horde.ATpewpTEwwDHYfMHj0c_6w1@box410.bluehost.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: SVN based AUTOREV detection?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,114 +59,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Nov 2015 20:06:22 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 08 Nov 2015 12:02:52 -0000
+X-Groupsio-MsgNum: 27211
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="huq684BweRXVnRxX"
+Content-Disposition: inline
 
-On 11/7/15 11:08 AM, Denton Gentry wrote:
-> I'm attempting to use prelink-cross on two different platforms, both
-> of which run into the same symptoms. The two platforms are:
->     + ARM, Linux 3.2, glibc
->     + MIPS, Linux 4.1, uclibc
+--huq684BweRXVnRxX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-As far as I am aware, the prelinker does not work with uClibc at all.  So I'm
-not surprised if the MIPS case breaks.
+On Sat, Nov 07, 2015 at 01:52:37AM +0000, allen.curtis@curtisembedded.com w=
+rote:
+>=20
+> Hello,
+>=20
+> Is there a way to use the feature during development when you are =20
+> working off trunk/HEAD?
+>=20
+> This doesn't work (obviously). Is it possible to pull the HEAD version =
+=20
+> in the recipe?
+>=20
+> -------------------
+> PR =3D "r0"
+> PV =3D "0.1+svn${SRCPV}"
+>=20
+> SRCREV =3D "${AUTOREV}"
+>=20
+> SRC_URI =3D =20
+> "svn://project/trunk;module=3Dlibproject;protocol=3Dsvn+ssh;rev=3DHEAD;su=
+bdir=3Dsvn"
 
-Do you know if it has worked at all in the past with uClibc?
+try to drop rev=3DHEAD, setting SRCREV should be enough.
 
-As for ARM, what version of glibc is being used, and which ARM core is the
-system targeting?
+>=20
+> -------------------
+>=20
+> TIA
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I believe that the ARM & glibc issues were resolved.  So you may have found a
-new unknown issues.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-If you are able to, I'd suggesting building the prelink-cross branch on the
-target system, (autoreconf -if ; configure ; make) and then run the 'make
-testsuite' and see if you get any errors.  (You should get 3 skips and the rest
-pass.  If not, then something in your configuration may be causing a problem.)
+--huq684BweRXVnRxX
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-The other thing to look into on ARM, since it appears you are likely using older
-versions of the tools, would be to try an older version of the prelinker and see
-if that works.  If it does, we can attempt to go through the patches and
-identify what triggered the failure mode on your machine.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-Please open a defect for the glibc case in the yoctoproject bugzilla, make sure
-the component in the prelinker -- and as as much information as you can about
-your configuration.  (If I can find a way to reproduce it, I'm more likely to be
-able to figure out the issue as well.)
+iEYEARECAAYFAlY/OfIACgkQN1Ujt2V2gBxBEgCffpqGLF+G8MZPqFt40cY6m2vD
+FrEAn2j934oOZnDxvC/4Pu2VvZEp+JQk
+=T7fj
+-----END PGP SIGNATURE-----
 
---Mark
-
-
-> I'm using sysvinit 2.88 on both.
-> I'm using prelink-cross-20151030_cross.
-> 
-> 
-> My prelink command is:
-> prelink --verbose --config-file /etc/prelink.conf --cache-file
-> /etc/prelink.cache --root=./target/
-> --ld-library-path=/lib:/usr/lib:/usr/local/lib:/chrome/lib:/chrome
-> --all
-> 
-> The uclibc system adds "--dynamic-linker=/lib/ld-uClibc.so.0" to the
-> prelink command.
-> 
-> 
-> If /sbin/init is statically linked, the kernel is able to run
-> /sbin/init but init cannot run any processes:
-> 
-> [   10.035122] Mounted root='/dev/mtdblock13' (verity)
-> [   10.052350] Looking for init in rootfs.  To bypass this, use init=/bin/sh
-> [   10.059559] Trying '/rootfs/sbin/init'
-> INIT: version 2.88 booting
-> INIT: Entering runlevel: 1
-> INIT: Id "S0" respawning too fast: disabled for 5 minutes
-> INIT: Id "USB0" respawning too fast: disabled for 5 minutes
-> INIT: no more processes left in this runlevel
-> 
-> 
-> If /sbin/init is dynamically linked, the kernel panics when it tries
-> to run init:
-> 
-> [   10.066521] Mounted root='/dev/mtdblock13' (verity)
-> [   10.082536] Looking for init in rootfs.  To bypass this, use init=/bin/sh
-> [   10.089509] Trying '/rootfs/sbin/init'
-> [   10.228603] Kernel panic - not syncing: Attempted to kill init!
-> [   10.234639] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
-> [<842cee3d>] (panic+0x5d/0x134)
-> [   10.242879] [<842cee3d>] (panic+0x5d/0x134) from [<84029dc5>]
-> (do_exit+0x239/0x538)
-> [   10.250570] [<84029dc5>] (do_exit+0x239/0x538) from [<8402a12d>]
-> (do_group_exit+0x4d/0x70)
-> [   10.258889] [<8402a12d>] (do_group_exit+0x4d/0x70) from
-> [<84033c9d>] (get_signal_to_deliver+0x379/0x40c)
-> [   10.268429] [<84033c9d>] (get_signal_to_deliver+0x379/0x40c) from
-> [<8400ee01>] (do_signal+0x38d/0x3c0)
-> [   10.277790] [<8400ee01>] (do_signal+0x38d/0x3c0) from [<8400f027>]
-> (do_notify_resume+0xf/0x28)
-> [   10.286457] [<8400f027>] (do_notify_resume+0xf/0x28) from
-> [<8400caed>] (work_pending+0x23/0x26)
-> [   10.295204] CPU1: stopping
-> [   10.297935] [<840111e1>] (unwind_backtrace+0x1/0x8c) from
-> [<8401088d>] (handle_IPI+0xcd/0x104)
-> [   10.306583] [<8401088d>] (handle_IPI+0xcd/0x104) from [<8400c553>]
-> (__irq_svc+0x33/0xb8)
-> [   10.314708] [<8400c553>] (__irq_svc+0x33/0xb8) from [<8400d5e8>]
-> (default_idle+0x18/0x1c)
-> [   10.322921] [<8400d5e8>] (default_idle+0x18/0x1c) from [<8400d6c5>]
-> (cpu_idle+0x61/0x94)
-> [   10.331045] [<8400d6c5>] (cpu_idle+0x61/0x94) from [<042cb779>] (0x42cb779)
-> [   10.338036] Rebooting in 3 seconds..
-> 
-> 
-> This makes it look like the dynamic linker cannot handle prelinked
-> binaries. However if I only prelink a single binary (plus the
-> libraries it depends on), the prelinked binary is able to run without
-> issue.
-> 
-> I'm hoping these symptoms will look familiar to someone, before I go
-> dig into the kernel's handling of /sbin/init to try to figure out why
-> it fails.
-> 
-
-
+--huq684BweRXVnRxX--
