@@ -1,53 +1,67 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C03EE0071C; Sun,  8 Nov 2015 04:02:52 -0800 (PST)
+	id 51B57E00AB7; Sun,  8 Nov 2015 08:51:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA851E00343
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 04:02:48 -0800 (PST)
-Received: by wmec201 with SMTP id c201so52562554wme.0
-	for <yocto@yoctoproject.org>; Sun, 08 Nov 2015 04:02:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=l03DujSIFjmG2MqkkjQz4JNme7vpfh9y272r6flp7OE=;
-	b=C9CEIDufaZwmaPIcKdj1K9j7TovvDvu0Zydzrt+cUhInVF+vBsQ3+yBKU9UeIFOfOe
-	C64n1iC9MsaZfWtOgwr39S5YIrUQ+kkHijGCba9i/Gs6aUd807hSsFTdYgkbwOxxGAJV
-	jZe2ejVWRnD18IEn1V5qH1ovpb3B9UBqw6+lckMH2Sk5smPkciU9ub8ioDCbGqYE08Lb
-	MQGvgqAO3OTvB8XY7pa9toOK6iykDWpM/3m5b44UkYXTCpDpAJC/N0VcjSyvMSEQN1Ma
-	Ws5kWX6hcPpFk9cFP0yxdxiDL5LmMsfpMn5Kx2duW47goEAGsfKGVi7PXVJu8deGa7rF
-	zpYA==
-X-Received: by 10.28.129.82 with SMTP id c79mr1285624wmd.80.1446984167585;
-	Sun, 08 Nov 2015 04:02:47 -0800 (PST)
-Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
-	by smtp.gmail.com with ESMTPSA id
-	197sm8554386wmx.23.2015.11.08.04.02.46
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 08 Nov 2015 04:02:46 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Sun, 8 Nov 2015 13:03:01 +0100
-To: allen.curtis@curtisembedded.com
-Message-ID: <20151108120301.GA2546@jama>
-References: <20151107015237.Horde.ATpewpTEwwDHYfMHj0c_6w1@box410.bluehost.com>
+Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4913E006F6
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 08:51:44 -0800 (PST)
+Received: by lbces9 with SMTP id es9so15115017lbc.2
+	for <yocto@yoctoproject.org>; Sun, 08 Nov 2015 08:51:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan_ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=oKaeCztBkbAXXUijmszCEoPQX6udBlRpAYNjbBu/VNE=;
+	b=bluQeHyVQBKw4VHFm78UnBa+e3E68pk5pC+FqG0LaQ51XGQ1srXGngONkOYqMZhfRC
+	sV1k+3LZgCNIsObyIDPd8z077QzqaG8qkpf/tFNbw5wmMGssQYczr652ZsWEtb5dG0su
+	TMxJSA0ToquM8+exzr3yTF8uiMpsQknHFOaC+UBS0yLvEtBucmNKPdbYZJ9JJBXUjc7m
+	ZbEQy0/yPVybFEzlccqGfRQ2zn6MEL8mCk0vA7Mgz27Uqim3bvpkmN3mnM/BiXmEXyc0
+	4JKcFRClaoMFigM9MoSUHSG+krBZ0N06eqPpaPktnXv/Dar4VUNKvf2kcqrrZXPCIxlQ
+	SSfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=oKaeCztBkbAXXUijmszCEoPQX6udBlRpAYNjbBu/VNE=;
+	b=YGr95tfz5Sxbf3o8+RvQSBjNBx9PCTc/33RXbevhqRdyGpNLGn6mCWDPrNnHWWMCAP
+	QkT3+7HOfV7potCqXsfPq36dw0mPXgUaUkFmnJYbitETIFgdrPRO9pXMk054K1SoEJct
+	7qMhHdktWruiEJCrolZGiXMoYxdLsSQpsq9TNcThUzZS+O5d7E2RNRyd6dqFCnpsOlp1
+	l+rncWaGxKkBYoSJWH5ntTxxx5xhfOQFm2STgtf4wXZQBjJcAyFTzGgODefPmtyASzzt
+	QbRNeP2QiQfM0HsEnuMRRpaqBYnXtzmVIpoKTMabAF0fSl4YWdlxD1arsUFhcrxRpm3O
+	FYfQ==
+X-Gm-Message-State: ALoCoQkrmA3dlhO1kEwHudBbLzBt9cJik8TpYWzfQRL5qwu5XUXVilV5tQy1S7QazcbCRFt+s4WW
+X-Received: by 10.112.130.195 with SMTP id og3mr11368825lbb.69.1447001503818; 
+	Sun, 08 Nov 2015 08:51:43 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20151107015237.Horde.ATpewpTEwwDHYfMHj0c_6w1@box410.bluehost.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org
-Subject: Re: SVN based AUTOREV detection?
+Received: by 10.112.61.195 with HTTP; Sun, 8 Nov 2015 08:51:04 -0800 (PST)
+X-Originating-IP: [92.217.115.210]
+In-Reply-To: <CAG=op9dkEo6fn-dPqNHLgnoO6b=sfYJju6Exm6vXdViLsOk6Rw@mail.gmail.com>
+References: <CAG=op9dOD9-phw9V+ceuvLhDxuPYQJPmNUJrrneC9_ywS+f5aw@mail.gmail.com>
+	<CAMKF1srraL3_z6_AOG9Yo+P_5FY3E9Lv-ZywyQd+CGt7UsK77w@mail.gmail.com>
+	<CAK18fxFTcYS0YLAbPnEycfUBBD3GxdRF_BbGX=332fnYd=eJLQ@mail.gmail.com>
+	<CAG=op9c3ZCzppmDx__AMqTrv09Yf73F3830h-Ji7OqwxTZAOsQ@mail.gmail.com>
+	<CAK18fxExsnDc9rGVcjNNp5uELfy8eWNg3ZfUS=e7kCog33bLCA@mail.gmail.com>
+	<CAG=op9dkEo6fn-dPqNHLgnoO6b=sfYJju6Exm6vXdViLsOk6Rw@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Sun, 8 Nov 2015 17:51:04 +0100
+Message-ID: <CAK18fxEbyjkGszgtCr=KzL=uK_K-HrCuNm2RDfnM2z9XUxATSg@mail.gmail.com>
+To: Chaitanya Dhere <dherechaitanya@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Missing config.txt in rpi-basic-image.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,65 +73,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Nov 2015 12:02:52 -0000
-X-Groupsio-MsgNum: 27211
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="huq684BweRXVnRxX"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 08 Nov 2015 16:51:51 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a83aaa0001e05240a4aaa
 
---huq684BweRXVnRxX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--047d7b3a83aaa0001e05240a4aaa
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+On Sat, Nov 7, 2015 at 12:17 PM, Chaitanya Dhere <dherechaitanya@gmail.com>
+wrote:
+
+> Hello,
+>          Thanks for your input. After doing a loopback mount, I was
+> able to locate the config.txt in that first partition. I modified that
+> config.txt as required and it worked. But the same modification when
+> done in the config.txt file which I created under boot directory
+> didn't work. Seems that only the config.txt in the first partition is
+> being read during boot-up.
+>
+
+Indeed. The boot partition is mounted as read-only. Good that you got it
+fixed.
+
+--
+Andrei Gherzan
+
+--047d7b3a83aaa0001e05240a4aaa
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 07, 2015 at 01:52:37AM +0000, allen.curtis@curtisembedded.com w=
-rote:
->=20
-> Hello,
->=20
-> Is there a way to use the feature during development when you are =20
-> working off trunk/HEAD?
->=20
-> This doesn't work (obviously). Is it possible to pull the HEAD version =
-=20
-> in the recipe?
->=20
-> -------------------
-> PR =3D "r0"
-> PV =3D "0.1+svn${SRCPV}"
->=20
-> SRCREV =3D "${AUTOREV}"
->=20
-> SRC_URI =3D =20
-> "svn://project/trunk;module=3Dlibproject;protocol=3Dsvn+ssh;rev=3DHEAD;su=
-bdir=3Dsvn"
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,<br>
+<br><div class=3D"gmail_quote">On Sat, Nov 7, 2015 at 12:17 PM, Chaitanya D=
+here <span dir=3D"ltr">&lt;<a href=3D"mailto:dherechaitanya@gmail.com" targ=
+et=3D"_blank">dherechaitanya@gmail.com</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
+1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left=
+:1ex">Hello,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Thanks for your input. After doing a loop=
+back mount, I was<br>
+able to locate the config.txt in that first partition. I modified that<br>
+config.txt as required and it worked. But the same modification when<br>
+done in the config.txt file which I created under boot directory<br>
+didn&#39;t work. Seems that only the config.txt in the first partition is<b=
+r>
+being read during boot-up.<br></blockquote><div><br></div><div>Indeed. The =
+boot partition is mounted as read-only. Good that you got it fixed.</div><d=
+iv><br></div><div><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div></div></div></div></div=
+></div></div>
 
-try to drop rev=3DHEAD, setting SRCREV should be enough.
-
->=20
-> -------------------
->=20
-> TIA
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---huq684BweRXVnRxX
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iEYEARECAAYFAlY/OfIACgkQN1Ujt2V2gBxBEgCffpqGLF+G8MZPqFt40cY6m2vD
-FrEAn2j934oOZnDxvC/4Pu2VvZEp+JQk
-=T7fj
------END PGP SIGNATURE-----
-
---huq684BweRXVnRxX--
+--047d7b3a83aaa0001e05240a4aaa--
