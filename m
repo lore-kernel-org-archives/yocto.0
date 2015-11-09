@@ -1,41 +1,40 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C013E006F3; Mon,  9 Nov 2015 06:43:13 -0800 (PST)
+	id 8C822E005BB; Mon,  9 Nov 2015 08:11:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93FE1E00473
-	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 06:43:12 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tA9Eh7U1005448
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Nov 2015 06:43:07 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.248.2; Mon, 9 Nov 2015 06:43:07 -0800
-To: <maninder1.s@samsung.com>
-References: <1576099213.193511446895444014.JavaMail.weblogic@ep2mlwas06c>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <5640B0FA.7030703@windriver.com>
-Date: Mon, 9 Nov 2015 08:43:06 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.3.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46F35E0059B
+	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 08:11:15 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 09 Nov 2015 08:11:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,266,1444719600"; d="scan'208";a="815482418"
+Received: from armandoa-mobl.amr.corp.intel.com (HELO [10.252.249.223])
+	([10.252.249.223])
+	by orsmga001.jf.intel.com with ESMTP; 09 Nov 2015 08:11:14 -0800
+Message-ID: <5640C5B2.7010809@linux.intel.com>
+Date: Mon, 09 Nov 2015 10:11:30 -0600
+From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <1576099213.193511446895444014.JavaMail.weblogic@ep2mlwas06c>
-Cc: Vaneet Narang <v.narang@samsung.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	PANKAJ MISHRA <pankaj.m@samsung.com>
-Subject: Re: [prelink-cross][PATCH 1/1] rtld.c: LD_PRELOAD bugfix
+To: Gary Thomas <gary@mlbassoc.com>, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <563B4DF9.5030206@mlbassoc.com>
+	<3016549.FSiAq4gXjU@peggleto-mobl.ger.corp.intel.com>
+	<563B66D9.1050808@mlbassoc.com>
+In-Reply-To: <563B66D9.1050808@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Python pip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,90 +46,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Nov 2015 14:43:13 -0000
-Content-Type: text/plain; charset="windows-1252"
+X-List-Received-Date: Mon, 09 Nov 2015 16:11:18 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/7/15 5:24 AM, Maninder Singh wrote:
-> Hi,
-> Ping....
 
-I'd gotten a msg after this to hold off and wait for an update.  Is this the
-updated version of the fix?
 
---Mark
+On 05/11/15 08:25, Gary Thomas wrote:
+> On 2015-11-05 07:14, Paul Eggleton wrote:
+>> Hi Gary,
+>>
+>> On Thursday 05 November 2015 05:39:21 Gary Thomas wrote:
+>>> Just curious, does anyone know why OE-core has python3-pip
+>>> but python-pip is relegated to meta-oe?
+>>
+>> I think it has to do with pip being supplied as part of the standard 
+>> python 3
+>> distribution from 3.4 onwards. I think for simplicity's sake it might be
+>> argued that python-pip could be in the same place though.
+Yes, in fact, python3-pip was included on oe-core after the upgrade to 
+python3.4 since it's now a requirement, I agree, we probably should 
+include python-pip on oe-core too
+>
+> Thanks, I'll consider sending a patch set for that.
+>
+> Sadly, at this point, both packages can't be installed at the
+> same time as they both call the result "/usr/bin/pip".  Maybe
+> in keeping with the python/python3 naming, the python3 version
+> should be installed as pip3?
 
->> This patch do following things:-
->> 1. 	Fixes bug of adding preloaded libs in search scope of dependent 
->> 	libraries which results in search scope of few symbols becomes 
->> 	same for executable and library, so conflict doesn't occur for 
->> 	those symbols and hence resulted in less number of conflicts.
->> 2. 	Reduce code redundancy.
->> 3. 	Buffer Overflow fix.
->>
->> Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
->> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
->> Reviewed-by: Doha Hwang <doha.hwang@samsung.com>
->> ---
->> trunk/src/rtld/rtld.c |   27 ++++++++++++++++-----------
->> 1 files changed, 16 insertions(+), 11 deletions(-)
->>
->> diff --git a/trunk/src/rtld/rtld.c b/trunk/src/rtld/rtld.c
->> index 50461b6..8af5052 100644
->> --- a/trunk/src/rtld/rtld.c
->> +++ b/trunk/src/rtld/rtld.c
->> @@ -606,7 +606,7 @@ load_dsos (DSO *dso, int host_paths)
->> {
->>   struct dso_list *dso_list, *dso_list_tail, *cur_dso_ent, *new_dso_ent;
->>   struct stat64 st;
->> -  int total_preload = 0;
->> +  int total_preload = 0, temp_total_preload = 0;
->>   char * libname[MAX_PRELOADED_LIBS] = {NULL};
->>
->>   /* Assume it's static unless we find DT_NEEDED entries */
->> @@ -632,19 +632,19 @@ load_dsos (DSO *dso, int host_paths)
->>
->>   if(dso->ehdr.e_type == ET_EXEC && ld_preload) {
->>       char *next_lib =  ld_preload;
->> -      libname[total_preload] = ld_preload;
->> -      total_preload++;
->> -      next_lib=strchr(ld_preload,':');
->> -      while(next_lib!=NULL){
->> -	  *next_lib = '\0';
->> -	  next_lib++;
->> -	  libname[total_preload] = next_lib;
->> -	  total_preload++;
->> -	  next_lib=strchr(next_lib,':');
->> -      }
->> +      while(*next_lib != '\0' && (total_preload < MAX_PRELOADED_LIBS)){
->> +        libname[total_preload++] = next_lib;
->> +        next_lib=strchrnul(next_lib,':');
->> +        if(*next_lib == '\0')
->> +          break;
->> +        *next_lib = '\0';
->> +        next_lib++;
->> +     }
->> +    temp_total_preload = total_preload;
->>   }
->>   else {
->>       total_preload = 0;
->> +      temp_total_preload = 0;
->>   }
->>   while (cur_dso_ent != NULL)
->>     {
->> @@ -666,6 +666,11 @@ load_dsos (DSO *dso, int host_paths)
->> 	{
->> 	  int ndx, maxndx;
->> 	  maxndx = data->d_size / cur_dso->shdr[cur_dso->dynamic].sh_entsize;
->> +      if(!(cur_dso->ehdr.e_type == ET_EXEC))
->> +        total_preload = 0;
->> +      else
->> +        total_preload = temp_total_preload;
->> +
->> 	  for (ndx = 0; ndx < maxndx + total_preload; ++ndx)
->> 	    {
->>
->> -- 
->> 1.7.1
+python3-pip recipe had to be created to avoid an issue with the default 
+pip installation by python3.4, its now handled by distutils3, if its 
+only a matter of changing the binary name afterwards from pip to pip3 I 
+see no problem doing this, I am hoping this solves it, but just 
+mentioning that we already had some issues with this, because of the 
+"defaults" python3 expects
 
 
