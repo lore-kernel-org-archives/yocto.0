@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D7E4E00927; Mon,  9 Nov 2015 14:01:21 -0800 (PST)
+	id 3C85EE008D2; Mon,  9 Nov 2015 14:01:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A89E5E0088C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00C4CE008A2
 	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 14:01:15 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga101.fm.intel.com with ESMTP; 09 Nov 2015 14:01:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,267,1444719600"; d="scan'208";a="832113520"
+X-IronPort-AV: E=Sophos;i="5.20,267,1444719600"; d="scan'208";a="832113557"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by fmsmga001.fm.intel.com with ESMTP; 09 Nov 2015 14:01:11 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 09 Nov 2015 14:01:12 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  9 Nov 2015 16:01:33 -0600
-Message-Id: <1447106501-470-3-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon,  9 Nov 2015 16:01:34 -0600
+Message-Id: <1447106501-470-4-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH 02/10][AUH] upgradehelper.py: Fix bug when buildhistory isn't enabled
+Subject: [PATCH 03/10][AUH] recipe.py: Improvements and refactor of fetch method.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,27 +45,96 @@ X-List-Received-Date: Mon, 09 Nov 2015 22:01:21 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Don't use buildhistory object if buildhistory_enabled is False
-because cause undefined variable error.
+Make more clear fetch method changing recursive manner to
+loop and split logic into try fetch and suffix change.
+
+Now when fails only retry changing recipe suffix when recipe
+isn't git based because does not make sense suffixes in SCM's.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- upgradehelper.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipe.py | 58 +++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 33 insertions(+), 25 deletions(-)
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index bb19b65..9b321f6 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -310,7 +310,7 @@ class Updater(object):
-         for machine in self.machines:
-             I(" %s: compiling for %s ..." % (self.pn, machine))
-             self.recipe.compile(machine)
--            if self.buildhistory is not None:
-+            if self.buildhistory_enabled == True:
-                 self.buildhistory.add()
+diff --git a/recipe.py b/recipe.py
+index 6fd8f24..0e8799f 100644
+--- a/recipe.py
++++ b/recipe.py
+@@ -55,7 +55,6 @@ class Recipe(object):
+             "tar.gz", "tgz", "zip", "tar.bz2", "tar.xz", "tar.lz4", "bz2",
+             "lz4", "orig.tar.gz", "src.tar.gz", "src.rpm", "src.tgz",
+             "svnr\d+.tar.bz2", "stable.tar.gz", "src.rpm"]
+-        self.suffix_index = 0
+         self.old_env = None
  
-     def _buildhistory_diff(self):
+         self.commit_msg = self.env['PN'] + ": upgrade to " + self.new_ver + "\n\n"
+@@ -540,33 +539,42 @@ class Recipe(object):
+         self.bb.unpack(self.env['PN'])
+ 
+     def fetch(self):
+-        try:
+-            self.bb.fetch(self.env['PN'])
+-        except Error as e:
+-            machine, failed_recipes = self._get_failed_recipes(e.stdout)
+-            if not self.env['PN'] in failed_recipes:
+-                raise Error("unknown error occured during fetch")
+-
+-            fetch_log = failed_recipes[self.env['PN']][1]
+-            if self.suffix_index < len(self.suffixes) and self._is_uri_failure(fetch_log):
+-                I(" Trying new SRC_URI suffix: %s ..." % self.suffixes[self.suffix_index])
+-                self._change_source_suffix(self.suffixes[self.suffix_index])
+-                self.suffix_index += 1
+-                self.fetch()
+-            
+-            if not self._is_uri_failure(fetch_log):
+-                if not self.checksums_changed:
++        from gitrecipe import GitRecipe
++
++        def _try_fetch():
++            try:
++                self.bb.fetch(self.env['PN'])
++                return
++            except Error as e:
++                machine, failed_recipes = self._get_failed_recipes(e.stdout)
++                if not self.env['PN'] in failed_recipes:
++                    raise Error("Unknown error occured during fetch",
++                            stdout = e.stdout, stderr = e.stderr)
++
++                fetch_log = failed_recipes[self.env['PN']][1]
++
++                if not self._is_uri_failure(fetch_log) and not \
++                        self.checksums_changed:
+                     self._change_recipe_checksums(fetch_log)
+-                    return
+-                else:
+-                    raise FetchError()
++                    self.checksums_changed = True
++                    return True
+ 
+-                if self.recipes_renamed and not self.checksums_changed:
+-                    raise Error("fetch succeeded without changing checksums")
++                return False
++
++        succeed = _try_fetch()
++        if succeed is False and not isinstance(self, GitRecipe):
++            for sfx in self.suffixes:
++                I(" Trying new SRC_URI suffix: %s ..." % sfx)
++                self._change_source_suffix(sfx)
++
++                succeed = _try_fetch()
++                if succeed is True:
++                    break
+ 
+-            elif self.suffix_index == len(self.suffixes):
+-                # Every suffix tried without success
+-                raise FetchError()                
++        if succeed is False:
++            raise Error("Can't built a valid SRC_URI")
++        elif self.recipes_renamed and not self.checksums_changed:
++            raise Error("Fetch succeeded without changing checksums")
+ 
+     def cleanall(self):
+         self.bb.cleanall(self.env['PN'])
 -- 
 2.1.4
 
