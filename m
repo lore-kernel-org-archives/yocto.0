@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6B15E00978; Mon,  9 Nov 2015 14:01:18 -0800 (PST)
+	id C4A6CE00957; Mon,  9 Nov 2015 14:01:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,22 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F91FE00803
-	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 14:01:15 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E67FE007C9
+	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 14:01:14 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga101.fm.intel.com with ESMTP; 09 Nov 2015 14:01:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,267,1444719600"; d="scan'208";a="832113471"
+X-IronPort-AV: E=Sophos;i="5.20,267,1444719600"; d="scan'208";a="832113508"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
 	by fmsmga001.fm.intel.com with ESMTP; 09 Nov 2015 14:01:10 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  9 Nov 2015 16:01:31 -0600
-Message-Id: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon,  9 Nov 2015 16:01:32 -0600
+Message-Id: <1447106501-470-2-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH 00/10][AUH] Improvements and small fixes.
+Subject: [PATCH 01/10][AUH] upgradehelper.py: Add step for build gcc-runtime at init.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,28 +45,32 @@ X-List-Received-Date: Mon, 09 Nov 2015 22:01:18 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Aníbal Limón (10):
-  upgradehelper.py: Add step for build gcc-runtime at init.
-  upgradehelper.py: Fix bug when buildhistory isn't enabled
-  recipe.py: Improvements and refactor of fetch method.
-  buildhistory.py: Don't modify BB_ENV_EXTRAWHITE before init.
-  upgradehelper.py: Add sanity test for ensure that git is configured.
-  buildhistory.py: Add missing warning import.     git.py: Fix
-    last_commit method.
-  upgradehelper.py: Improve work directory structure
-  upgradehelper.py: Add support for do recipe upgrades based on builddep
-  upgradehelper.py: Add support for preserve statistics into work    
-    directory.
-  requirements.txt: Add file for now only with GitPython
+When try to upgrade a recipe the first recipe in the list
+takes too much time because gcc-runtime build is needed.
 
- buildhistory.py  |   8 +--
- git.py           |   2 +-
- recipe.py        |  58 +++++++++++--------
- requirements.txt |   1 +
- upgradehelper.py | 170 +++++++++++++++++++++++++++++++++++++++++--------------
- 5 files changed, 168 insertions(+), 71 deletions(-)
- create mode 100644 requirements.txt
+So add previous step to build gcc-runtime for every machine.
 
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ upgradehelper.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/upgradehelper.py b/upgradehelper.py
+index b5a8abd..bb19b65 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -467,6 +467,11 @@ class Updater(object):
+             W("No recipes attempted, not sending status mail!")
+ 
+     def run(self, package_list=None):
++        I(" Building gcc runtimes ...")
++        for machine in self.machines:
++            I("  building gcc runtime for %s" % machine)
++            self.bb.complete("gcc-runtime", machine)
++
+         pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
+ 
+         total_pkgs = len(pkgs_to_upgrade)
 -- 
 2.1.4
 
