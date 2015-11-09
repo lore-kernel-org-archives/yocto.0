@@ -1,26 +1,42 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1665E00B6D; Sun,  8 Nov 2015 21:33:43 -0800 (PST)
+	id E38A3E00B05; Mon,  9 Nov 2015 03:56:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 929C2E00B67
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 21:33:39 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 9F6A7838738E
-	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 00:33:38 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 Nov 2015 03:56:30 PST
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDEEE0059B
+	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 03:56:30 -0800 (PST)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Mon, 9 Nov 2015 17:25:22 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Mon, 9 Nov 2015 17:25:20 +0530
+Received: from SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7]) by
+	SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7%14]) with mapi id
+	15.00.0995.028; Mon, 9 Nov 2015 17:25:20 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: LTP tests
+Thread-Index: AQHRGth2dYi2DTSNm0i3f+3hiuOxz56TlTwL
+Date: Mon, 9 Nov 2015 11:55:20 +0000
+Message-ID: <1447070120093.83542@inedasystems.com>
+References: <1447065096992.47595@inedasystems.com>
+In-Reply-To: <1447065096992.47595@inedasystems.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [175.101.7.226]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 09 Nov 2015 05:33:38 -0000
-Message-ID: <20151109053338.19885.85981@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: LTP tests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,226 +48,246 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Nov 2015 05:33:43 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 09 Nov 2015 11:56:32 -0000
+X-Groupsio-MsgNum: 27222
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_144707012009383542inedasystemscom_"
 
-This mail was sent out by Recipe reporting system.
+--_004_144707012009383542inedasystemscom_
+Content-Type: multipart/alternative;
+	boundary="_000_144707012009383542inedasystemscom_"
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+--_000_144707012009383542inedasystemscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+Hi All,
 
-You can check the detail information at:
 
-http://recipes.yoctoproject.org/
+I built the ltp_20150119 in the yocto build system.
 
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-nfs-utils             1.3.1          1.3.3                 Alejandro Hernandez
-python3               3.4.3          3.5.0                 Alejandro Hernandez
-python                2.7.9          2.7.10                Alejandro Hernandez
-libusb1               1.0.19         1.0.20                Alejandro Hernandez
-gsettings-desktop...  3.16.1         3.18.1                Alejandro Hernandez
-gnome-common          3.14.0         3.18.0                Alejandro Hernandez
-ruby                  2.2.2          2.2.3                 Alexander Kanavin
-gcr                   3.16.0         3.18.0                Alexander Kanavin
-gnome-desktop3        3.16.2         3.18.1                Alexander Kanavin
-libsecret             0.18.2         0.18.3                Alexander Kanavin
-libwebp               0.4.3          0.4.4                 Alexander Kanavin
-iso-codes             3.58           3.63                  Alexander Kanavin
-acpid                 2.0.23         2.0.25                Aníbal Limón
-apt                   1.0.10.1       1.0.10.2              Aníbal Limón
-dpkg                  1.18.2         1.18.3                Aníbal Limón
-sqlite3               3.8.10.2       3.9.2                 Aníbal Limón
-mc                    4.8.14         4.8.15                Aníbal Limón
-pkgconfig             0.28+gitX      0.29+gitAUTOINC+5...  Aníbal Limón
-pinentry              0.9.2          0.9.6                 Armin Kuster
-linux-libc-headers    4.1            4.3                   Bruce Ashfield
-guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.3.1          3.4.0                 Chen Qi
-resolvconf            1.77           1.78                  Chen Qi
-busybox               1.23.2         1.24.1                Chen Qi
-dbus-test             1.8.20         1.10.2                Chen Qi
-dbus                  1.8.20         1.10.2                Chen Qi
-systemd               225+gitX       227+gitAUTOINC+c3...  Chen Qi
-util-linux            2.26.2         2.27.1                Chen Qi
-curl                  7.44.0         7.45.0                Chen Qi
-cpio                  2.11           2.12                  Chen Qi
-cups                  2.0.4          2.1.0                 Chen Qi
-grep                  2.21           2.22                  Chen Qi
-sudo                  1.8.14p3       1.8.15                Chen Qi
-sysstat               11.1.5         11.1.8-1              Chen Qi
-xz                    5.2.1          5.2.2                 Chen Qi
-bluez5                5.33           5.36                  Cristian Iorga
-iproute2              4.1.1          4.3.0                 Cristian Iorga
-libpcap               1.6.2          1.7.4                 Cristian Iorga
-ofono                 1.16           1.17                  Cristian Iorga
-build-appliance-i...  12.0.1         13.0.1                Cristian Iorga
-gstreamer1.0-libav    1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0          1.4.5          1.6.1                 Cristian Iorga
-gstreamer1.0-rtsp...  1.4.5          1.6.1                 Cristian Iorga
-qemu                  2.4.0          2.4.1                 Cristian Iorga
-db                    6.0.30         6.1.26                Cristian Iorga       Updating to 6.1.x requires ...
-wpa-supplicant        2.4            2.5                   Cristian Iorga
-harfbuzz              1.0.2          1.0.6                 Cristian Iorga
-libtirpc              0.2.5          1.0.1                 Cristian Iorga
-libical               1.0.0          1.0.1                 Cristian Iorga
-kernelshark           2.5.3+gitX     2.6+gitAUTOINC+9b...  Darren Hart
-trace-cmd             2.5.3+gitX     2.6+gitAUTOINC+9b...  Darren Hart
-u-boot-fw-utils       v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
-dhcp                  4.3.2          4.3.3                 Hongxu Jia
-ncurses               5.9            6.0-20151107          Hongxu Jia
-elfutils              0.163          0.164                 Hongxu Jia
-qmmp                  0.8.6          1.0.1                 Hongxu Jia
-pax-utils             1.0.5          1.1.4                 Hongxu Jia
-perl                  5.22.0         5.22.1                Hongxu Jia
-createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-libgcrypt             1.6.3          1.6.4                 Hongxu Jia
-ghostscript           9.16           9.18                  Hongxu Jia
-help2man-native       1.47.1         1.47.2                Hongxu Jia
-gnupg                 2.1.7          2.1.9                 Hongxu Jia
-pango                 1.36.8         1.38.1                Jussi Kukkonen
-waffle                1.5.1          1.5.2                 Jussi Kukkonen
-libinput              0.21.0         1.1.0                 Jussi Kukkonen
-wayland               1.8.1          1.9.0                 Jussi Kukkonen
-weston                1.8.0          1.9.0                 Jussi Kukkonen
-gtk-icon-utils-na...  3.16.6         3.19.1                Jussi Kukkonen
-xkbcomp               1.3.0          1.3.1                 Jussi Kukkonen
-xf86-input-evdev      2.9.2          2.10.0                Jussi Kukkonen
-xf86-input-synaptics  1.8.2          1.8.3                 Jussi Kukkonen
-xf86-video-omap       0.4.3          0.4.4                 Jussi Kukkonen
-libxcb                1.11           1.11.1                Jussi Kukkonen
-glib-2.0              2.44.1         2.46.2                Jussi Kukkonen
-glib-networking       2.44.0         2.46.1                Jussi Kukkonen
-libxi                 1.7.4          1.7.5                 Jussi Kukkonen
-pixman                0.32.6         0.33.4                Jussi Kukkonen
-xkeyboard-config      2.15           2.16                  Jussi Kukkonen
-xserver-xorg          1.17.2         1.17.99.902           Jussi Kukkonen
-libsoup-2.4           2.50.0         2.52.1                Jussi Kukkonen
-xinput                1.6.1          1.6.2                 Jussi Kukkonen
-at-spi2-atk           2.16.0         2.18.1                Jussi Kukkonen
-atk                   2.16.0         2.18.0                Jussi Kukkonen
-at-spi2-core          2.16.0         2.18.2                Jussi Kukkonen
-vala                  0.28.0         0.30.0                Jussi Kukkonen
-shared-mime-info      1.4            1.5                   Jussi Kukkonen
-vte                   0.28.2         0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.8          3.0.14                Jussi Kukkonen
-adwaita-icon-theme    3.16.2.1       3.18.0                Jussi Kukkonen
-libcroco              0.6.8          0.6.9                 Jussi Kukkonen
-xdg-utils             1.1.0-rc1      1.1.1                 Jussi Kukkonen
-gdk-pixbuf            2.30.8         2.32.1                Jussi Kukkonen
-gtk+3                 3.16.6         3.18.2                Jussi Kukkonen
-librsvg               2.40.10        2.40.11               Jussi Kukkonen
-cairo                 1.14.2         1.14.4                Jussi Kukkonen
-clutter-1.0           1.22.4         1.24.2                Jussi Kukkonen
-clutter-gtk-1.0       1.6.2          1.6.6                 Jussi Kukkonen
-cogl-1.0              1.20.0         1.22.0                Jussi Kukkonen
-glew                  1.12.0         1.13.0                Jussi Kukkonen
-python-mako           1.0.1          1.0.3                 Khem Raj
-python-nose           1.3.6          1.3.7                 Khem Raj
-python-numpy          1.7.0          1.10.1                Khem Raj
-prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.14         5.4.15                Mark Hatle           5.4.15 has a package databa...
-iw                    4.1            4.3                   No maintainer
-dmidecode             2.12           3.0                   No maintainer
-docbook-xsl-style...  1.78.1         1.79.0                No maintainer
-gptfdisk              1.0.0          1.0.1                 No maintainer
-epiphany              3.16.3         3.18.0                No maintainer
-orc                   0.4.23         0.4.24                No maintainer
-webkitgtk             2.8.5          2.10.3                No maintainer
-gdb-cross-i586        7.9.1          7.10                  No maintainer
-sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  No maintainer
-ifupdown              0.7.48.1       0.7.54ubuntu1         No maintainer
-bjam-native           1.58.0         1.59.0                No maintainer
-python-pexpect        3.3            4.0.1                 No maintainer
-swig                  3.0.6          3.0.7                 No maintainer
-python3-pip           6.1.1          7.1.2                 No maintainer
-python3-setuptools    18.2           18.5                  No maintainer
-uclibc-initial        0.9.33+gitX    0.9.33.2+gitAUTOI...  No maintainer
-apt-native            1.0.10.1       1.0.10.2              No maintainer
-gcc-source-4.8.4      4.8.4          4.8.5                 No maintainer
-gdb-cross-canadia...  7.9.1          7.10                  No maintainer
-autogen-native        5.18.5         5.18.6                No maintainer
-cdrtools-native       3.01a31        3.02a01               No maintainer
-perl-native           5.22.0         5.22.1                No maintainer
-python-scons-native   2.3.6          2.4.0                 No maintainer
-python3-native        3.4.3          3.5.0                 No maintainer
-python-native         2.7.9          2.7.10                No maintainer
-linuxdoc-tools-na...  0.9.69         0.9.71                No maintainer
-libav                 9.18           11.4                  Paul Eggleton
-gpgme                 1.5.4          1.6.0                 Paul Eggleton
-libevdev              1.4.2          1.4.4                 Paul Eggleton
-libgpg-error          1.19           1.20                  Paul Eggleton
-cmake-native          3.3.1          3.3.2                 Paul Eggleton
-cmake                 3.3.1          3.3.2                 Paul Eggleton
-libpng                1.6.17         1.6.18                Randy Witt
-libtasn1              4.5            4.7                   Randy Witt
-unfs3                 0.9.22.r490    0.9.22.r495           Randy Witt
-libunistring          0.9.5          0.9.6                 Randy Witt
-ethtool               4.0            4.2                   Randy Witt
-libdrm                2.4.62         2.4.65                Richard Purdie
-kexec-tools           2.0.10         2.0.11                Richard Purdie
-btrfs-tools           4.1.2          4.3                   Richard Purdie
-lttng-modules         2.6.2+gitX     2.7.0+gitAUTOINC+...  Richard Purdie
-lttng-tools           2.6.0          2.7.0                 Richard Purdie
-lttng-ust             2.6.2+gitX     2.7.0+gitAUTOINC+...  Richard Purdie
-powertop              2.7            2.8                   Richard Purdie
-gdb                   7.9.1          7.10                  Richard Purdie
-python-pycurl         7.19.5.1       7.19.5.2              Richard Purdie
-python-pygobject      2.28.3         3.19.2                Richard Purdie       Newer versions of python-py...
-python-scons          2.3.6          2.4.0                 Richard Purdie
-e2fsprogs             1.42.9         1.42.13               Robert Yang          Updating backported patches...
-file                  5.24           5.25                  Robert Yang
-git                   2.5.0          2.6.3                 Robert Yang
-gmp                   6.0.0          6.1.0                 Robert Yang
-less                  479            481                   Robert Yang
-ltp                   20150420       20150903              Robert Yang
-liberation-fonts      1.04           2.00.1                Ross Burton          2.x depends on fontforge pa...
-base-passwd           3.5.29         3.5.38                Ross Burton          Version 3.5.38 requires cde...
-kbd                   2.0.2          2.0.3                 Ross Burton
-nss                   3.19.2         3.20                  Ross Burton
-uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  Ross Burton
-babeltrace            1.2.4+gitX     1.3.0+gitAUTOINC+...  Ross Burton
-systemtap             2.7+gitX       2.9+gitAUTOINC+70...  Ross Burton
-tiff                  4.0.4          4.0.6                 Ross Burton
-mtd-utils             1.5.1+gitX     1.5.2+gitAUTOINC+...  Ross Burton
-liburcu               0.8.7          0.9.1                 Ross Burton
-boost                 1.58.0         1.59.0                Ross Burton
-icu                   55.1           56.1-AIX7.1-VA2       Ross Burton
-valgrind              3.10.1         3.11.0                Ross Burton
-libidn                1.30           1.32                  Ross Burton
-lighttpd              1.4.36         1.4.37                Ross Burton
-libassuan             2.2.1          2.4.0                 Ross Burton
-procps                3.3.10         3.3.11                Ross Burton
-pulseaudio            6.0            7.1                   Tanu Kaskinen
-systemtap-uprobes     2.7+gitX       2.9+gitAUTOINC+70...  Tom Zanussi
-gettext               0.19.4         0.19.6                Wenzong Fan
-ccache                3.2.3          3.2.4                 Wenzong Fan
-chkconfig             1.3.58         1.6                   Wenzong Fan          Version 1.5 requires selinux
 
-Upgradable count: 178
-Upgradable total count: 187
+But  while running the test cases, some tests are failed.
 
-The based commit is:
 
-commit e44ed8c18e395b9c055aefee113b90708e8a8a2f
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Tue Nov 3 14:02:57 2015 +0000
+I am attaching the document for that failed test cases to this mail.
 
-    build-appliance-image: Update to jethro head revision
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+Please confirm me these test cases are failed due to the yocto rfs or kerne=
+l.
 
+
+Thanks in advance.
+
+
+Regards,
+
+Raghavendra K.
+
+--_000_144707012009383542inedasystemscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
+66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
+s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
+isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
+or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
+acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
+ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
+x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
+nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
+0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
+g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
+x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
+iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
+cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
+ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
+esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
+,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
+font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
+rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
+        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
+}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
+ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
+ .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
+:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
+/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
+le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
+z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
+8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
+size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
+iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
+:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
+*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}=0A=
+<!--=0A=
+p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}=0A=
+.ms-cui-menu=0A=
+	{background-color:#ffffff;=0A=
+	border:1px rgb(166,166,166) solid;=0A=
+	font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,sans-serif;=
+=0A=
+	font-size:10pt;=0A=
+	color:rgb(51,51,51)}=0A=
+.ms-cui-ctl=0A=
+	{vertical-align:text-top;=0A=
+	text-decoration:none;=0A=
+	color:rgb(51,51,51)}=0A=
+.ms-cui-ctl-on=0A=
+	{background-color:rgb(205,230,247)}=0A=
+.ms-cui-img-cont-float=0A=
+	{display:inline-block;=0A=
+	margin-top:2px}=0A=
+.ms-cui-smenu-inner=0A=
+	{padding-top:0px}=0A=
+.ms-owa-paste-option-icon=0A=
+	{margin:0px 6px 0px 6px;=0A=
+	vertical-align:middle!important;=0A=
+	padding-bottom:2px;=0A=
+	display:inline-block}=0A=
+.ms-rtePasteFlyout-option=0A=
+	{padding:8px 4px 8px 4px;=0A=
+	outline:none}=0A=
+.ms-cui-menusection=0A=
+	{float:left;=0A=
+	width:85px;=0A=
+	height:24px;=0A=
+	overflow:hidden}=0A=
+.wf=0A=
+	{speak:none;=0A=
+	font-weight:normal;=0A=
+	font-variant:normal;=0A=
+	text-transform:none;=0A=
+	vertical-align:middle;=0A=
+	display:inline-block}=0A=
+.wf-family-owa=0A=
+	{font-family:'o365Icons'}=0A=
+@font-face=0A=
+	{font-family:'o365IconsIE8';=0A=
+	font-weight:normal;=0A=
+	font-style:normal}=0A=
+@font-face=0A=
+	{font-family:'o365IconsMouse';=0A=
+	font-weight:normal;=0A=
+	font-style:normal}=0A=
+.wf-family-owa=0A=
+	{font-family:'o365IconsMouse'}=0A=
+.ie8 .wf-family-owa=0A=
+	{font-family:'o365IconsIE8'}=0A=
+.notIE8 .wf-owa-play-large=0A=
+	{border-color:#FFFFFF;=0A=
+	width:1.4em;=0A=
+	height:1.4em;=0A=
+	border-width:.1em;=0A=
+	border-style:solid;=0A=
+	text-align:center;=0A=
+	padding:0.1em;=0A=
+	color:#FFFFFF}=0A=
+.ie8 .wf-size-play-large=0A=
+	{width:40px;=0A=
+	height:40px;=0A=
+	font-size:30px}=0A=
+.notIE8 .wf-size-play-large=0A=
+	{width:40px;=0A=
+	height:40px;=0A=
+	font-size:30px}=0A=
+.wf-size-x20=0A=
+	{font-size:20px!important}=0A=
+-->=0A=
+--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
+-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"ltr">
+<div>
+<p>Hi All,</p>
+<p><br>
+</p>
+<p>I built the ltp_20150119 in the yocto build system.</p>
+<p><br>
+</p>
+<p>But&nbsp; while running the test cases, some tests are failed.</p>
+<p><br>
+</p>
+<p>I am attaching the document for that failed test cases to this mail.</p>
+<p><br>
+</p>
+<p><br>
+Please confirm me these test cases are failed due to the yocto rfs or&nbsp;=
+kernel.</p>
+<p><br>
+</p>
+<p>Thanks in advance.</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Raghavendra K.<br>
+</p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_144707012009383542inedasystemscom_--
+
+--_004_144707012009383542inedasystemscom_
+Content-Type: application/octet-stream; name="LTP_RUN_LOG"
+Content-Description: LTP_RUN_LOG
+Content-Disposition: attachment; filename="LTP_RUN_LOG"; size=2145;
+	creation-date="Mon, 09 Nov 2015 10:31:33 GMT";
+	modification-date="Mon, 09 Nov 2015 10:31:37 GMT"
+Content-Transfer-Encoding: base64
+
+VGVzdCBTdGFydCBUaW1lOiBXZWQgT2N0IDI4IDA4OjMyOjA1IDIwMTUKLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KVGVzdGNhc2UgICAgICAgICAgICAgICAgICAgICAg
+IFJlc3VsdCAgICAgRXhpdCBWYWx1ZQotLS0tLS0tLSAgICAgICAgICAgICAgICAgICAgICAgLS0t
+LS0tICAgICAtLS0tLS0tLS0tCmJpbmQwMiAgICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAg
+ICAgIDIgICAgCmNoZGlyMDFBICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAg
+ICAgCmdldHJ1c2FnZTAzICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDIgICAgICAKaW5v
+dGlmeTAzICAgICAgICAgICAgICAgICAgICAgIEZBSUwgICAgICAgMTEgICAgICAgCmZhbm90aWZ5
+MDEgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDM2ICAgCmZhbm90aWZ5MDIgICAgICAg
+ICAgICAgICAgICAgICBGQUlMICAgICAgIDM2ICAKZmFub3RpZnkwNCAgICAgICAgICAgICAgICAg
+ICAgIEZBSUwgICAgICAgMzYgICAgCm1xX25vdGlmeTAxICAgICAgICAgICAgICAgICAgICBGQUlM
+ICAgICAgIDEgICAgCm1xX25vdGlmeTAyICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEg
+ICAgCm1xX29wZW4wMSAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCm1xX3Rp
+bWVkcmVjZWl2ZTAxICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCm1xX3RpbWVkc2VuZDAx
+ICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCm1xX3VubGluazAxICAgICAgICAgICAg
+ICAgICAgICBGQUlMICAgICAgIDEgICAgIApyZWFkYWhlYWQwMiAgICAgICAgICAgICAgICAgICAg
+RkFJTCAgICAgICAzMyAgICAgCnJlbWFwX2ZpbGVfcGFnZXMwMSAgICAgICAgICAgICBGQUlMICAg
+ICAgIDcgICAgCnJ0X3NpZ2FjdGlvbjAxICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEwICAg
+CnJ0X3NpZ3Byb2NtYXNrMDEgICAgICAgICAgICAgICBGQUlMICAgICAgIDM1ICAgICAgCnJ0X3Np
+Z3N1c3BlbmQwMSAgICAgICAgICAgICAgICBGQUlMICAgICAgIDE0ICAgICAgCnN5bmNfZmlsZV9y
+YW5nZTAxICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzAxICAgICAgICAgICAg
+ICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzAyICAgICAgICAgICAgICAgICAgICAg
+ICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzAzICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAg
+ICAgIDEgICAgCnN5c2xvZzA0ICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAg
+CnN5c2xvZzA1ICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzA2
+ICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzA3ICAgICAgICAg
+ICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzA4ICAgICAgICAgICAgICAgICAg
+ICAgICBGQUlMICAgICAgIDEgICAgCnN5c2xvZzA5ICAgICAgICAgICAgICAgICAgICAgICBGQUlM
+ICAgICAgIDEgICAgCnN5c2xvZzEwICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEg
+ICAgCnV0aW1lbnNhdDAxICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCmdmMDEg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCmdmMTQgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEgICAgCmdmMTUgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBGQUlMICAgICAgIDEgICAgICAgCmdmMTggICAgICAgICAgICAgICAgICAgICAgICAg
+ICBGQUlMICAgICAgIDEgICAgICAgCnF1b3RhX3JlbW91bnRfdGVzdDAxICAgICAgICAgICBGQUlM
+ICAgICAgIDIgICAgCmlzb2ZzICAgICAgICAgICAgICAgICAgICAgICAgICBGQUlMICAgICAgIDEg
+ICAgIApkaW8xMyAgICAgICAgICAgICAgICAgICAgICAgICAgRkFJTCAgICAgICAxICAgICAgIApt
+dGVzdDA2XzIgICAgICAgICAgICAgICAgICAgICAgRkFJTCAgICAgICAyNTUgICAgIAp0aHAwMiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgRkFJTCAgICAgICAyICAgIAp0aHAwMyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgRkFJTCAgICAgICAyICAgIAogICAK
+
+--_004_144707012009383542inedasystemscom_--
