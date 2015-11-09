@@ -1,64 +1,26 @@
-Return-Path: <allen.curtis@curtisembedded.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71674E00B53; Sun,  8 Nov 2015 15:41:42 -0800 (PST)
+	id A1665E00B6D; Sun,  8 Nov 2015 21:33:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [67.222.38.55 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 397 seconds by postgrey-1.32 at yocto-www;
-	Sun, 08 Nov 2015 15:41:38 PST
-Received: from gproxy5-pub.mail.unifiedlayer.com
-	(gproxy5-pub.mail.unifiedlayer.com [67.222.38.55])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 45754E00B36
-	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 15:41:38 -0800 (PST)
-Received: (qmail 28604 invoked by uid 0); 8 Nov 2015 23:34:57 -0000
-Received: from unknown (HELO cmgw3) (10.0.90.84)
-	by gproxy5.mail.unifiedlayer.com with SMTP; 8 Nov 2015 23:34:57 -0000
-Received: from box410.bluehost.com ([69.89.31.210]) by cmgw3 with 
-	id fJap1r00P4Y0hd901JasFJ; Sun, 08 Nov 2015 23:34:55 -0700
-X-Authority-Analysis: v=2.1 cv=Caqbutbl c=1 sm=1 tr=0
-	a=ETof7DMrXRHAC+dJixH5gQ==:117 a=ETof7DMrXRHAC+dJixH5gQ==:17
-	a=cNaOj0WVAAAA:8
-	a=f5113yIGAAAA:8 a=3_4UIzzJAAAA:8 a=IkcTkHD0fZMA:10 a=mHfT8ucao3sA:10
-	a=JMHYQVG13d8A:10 a=qtqOOiqGOCEA:10 a=G4jqb0MDzV5pMKrH5wAA:9
-	a=QEXdDO2ut3YA:10
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=curtisembedded.com; s=default; 
-	h=MIME-Version:Content-Type:In-Reply-To:References:Subject:Cc:To:From:Message-ID:Date;
-	bh=jxOSZbvwCNPGwtHJv6JA6BQMY1b9j8rcfJ+hfkJ311A=; 
-	b=urcGUOJJHZjcFLJIfv/8y36rdGOJoTyyrBjTmKl84pff9alisjKVOA7KF+pk3PLieE6hFeIW+bApiNvAXH8C02pKEF27IkOlrCqFd/lvRNYYp9gEgm7oEMid/Vns6K5h;
-Received: from localhost ([127.0.0.1]:44982 helo=box410.bluehost.com)
-	by box410.bluehost.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.84) (envelope-from <allen.curtis@curtisembedded.com>)
-	id 1ZvZU3-0005Kn-I3; Sun, 08 Nov 2015 16:34:51 -0700
-Received: from 68.96.71.119 ([68.96.71.119]) by box410.bluehost.com (Horde
-	Framework) with HTTP; Sun, 08 Nov 2015 23:34:49 +0000
-Date: Sun, 08 Nov 2015 23:34:49 +0000
-Message-ID: <20151108233449.Horde.afJsxCWg85rRIxvV7BOTrg1@box410.bluehost.com>
-From: allen.curtis@curtisembedded.com
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <20151107015237.Horde.ATpewpTEwwDHYfMHj0c_6w1@box410.bluehost.com>
-	<20151108120301.GA2546@jama>
-In-Reply-To: <20151108120301.GA2546@jama>
-User-Agent: Internet Messaging Program (IMP) H5 (6.1.4)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 929C2E00B67
+	for <yocto@yoctoproject.org>; Sun,  8 Nov 2015 21:33:39 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 9F6A7838738E
+	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 00:33:38 -0500 (EST)
 MIME-Version: 1.0
-X-Identified-User: {2323:box410.bluehost.com:actwoent:curtisembedded.com}
-	{sentby:smtp auth 127.0.0.1 authed with
-	allen.curtis@curtisembedded.com}
-Cc: yocto@yoctoproject.org
-Subject: Re: SVN based AUTOREV detection?
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 09 Nov 2015 05:33:38 -0000
+Message-ID: <20151109053338.19885.85981@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,33 +32,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Nov 2015 23:41:42 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed; DelSp=Yes
-Content-Disposition: inline
+X-List-Received-Date: Mon, 09 Nov 2015 05:33:43 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
->> Is there a way to use the feature during development when you are
->> working off trunk/HEAD?
->>
->> This doesn't work (obviously). Is it possible to pull the HEAD version
->> in the recipe?
->>
->> -------------------
->> PR = "r0"
->> PV = "0.1+svn${SRCPV}"
->>
->> SRCREV = "${AUTOREV}"
->>
->> SRC_URI =
->> "svn://project/trunk;module=libproject;protocol=svn+ssh;rev=HEAD;subdir=svn"
->
-> try to drop rev=HEAD, setting SRCREV should be enough.
->
+This mail was sent out by Recipe reporting system.
 
-Thanks Martin,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
-That was too easy. I was under the impression that you had to specify  
-the revision in the SRC_URI.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
+You can check the detail information at:
 
+http://recipes.yoctoproject.org/
 
+Package               Version        Upstream version      Maintainer           NoUpgradeReason
+--------------------  -------------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1          1.3.3                 Alejandro Hernandez
+python3               3.4.3          3.5.0                 Alejandro Hernandez
+python                2.7.9          2.7.10                Alejandro Hernandez
+libusb1               1.0.19         1.0.20                Alejandro Hernandez
+gsettings-desktop...  3.16.1         3.18.1                Alejandro Hernandez
+gnome-common          3.14.0         3.18.0                Alejandro Hernandez
+ruby                  2.2.2          2.2.3                 Alexander Kanavin
+gcr                   3.16.0         3.18.0                Alexander Kanavin
+gnome-desktop3        3.16.2         3.18.1                Alexander Kanavin
+libsecret             0.18.2         0.18.3                Alexander Kanavin
+libwebp               0.4.3          0.4.4                 Alexander Kanavin
+iso-codes             3.58           3.63                  Alexander Kanavin
+acpid                 2.0.23         2.0.25                Aníbal Limón
+apt                   1.0.10.1       1.0.10.2              Aníbal Limón
+dpkg                  1.18.2         1.18.3                Aníbal Limón
+sqlite3               3.8.10.2       3.9.2                 Aníbal Limón
+mc                    4.8.14         4.8.15                Aníbal Limón
+pkgconfig             0.28+gitX      0.29+gitAUTOINC+5...  Aníbal Limón
+pinentry              0.9.2          0.9.6                 Armin Kuster
+linux-libc-headers    4.1            4.3                   Bruce Ashfield
+guilt-native          0.35+gitX      0.36+gitAUTOINC+2...  Bruce Ashfield
+pciutils              3.3.1          3.4.0                 Chen Qi
+resolvconf            1.77           1.78                  Chen Qi
+busybox               1.23.2         1.24.1                Chen Qi
+dbus-test             1.8.20         1.10.2                Chen Qi
+dbus                  1.8.20         1.10.2                Chen Qi
+systemd               225+gitX       227+gitAUTOINC+c3...  Chen Qi
+util-linux            2.26.2         2.27.1                Chen Qi
+curl                  7.44.0         7.45.0                Chen Qi
+cpio                  2.11           2.12                  Chen Qi
+cups                  2.0.4          2.1.0                 Chen Qi
+grep                  2.21           2.22                  Chen Qi
+sudo                  1.8.14p3       1.8.15                Chen Qi
+sysstat               11.1.5         11.1.8-1              Chen Qi
+xz                    5.2.1          5.2.2                 Chen Qi
+bluez5                5.33           5.36                  Cristian Iorga
+iproute2              4.1.1          4.3.0                 Cristian Iorga
+libpcap               1.6.2          1.7.4                 Cristian Iorga
+ofono                 1.16           1.17                  Cristian Iorga
+build-appliance-i...  12.0.1         13.0.1                Cristian Iorga
+gstreamer1.0-libav    1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0          1.4.5          1.6.1                 Cristian Iorga
+gstreamer1.0-rtsp...  1.4.5          1.6.1                 Cristian Iorga
+qemu                  2.4.0          2.4.1                 Cristian Iorga
+db                    6.0.30         6.1.26                Cristian Iorga       Updating to 6.1.x requires ...
+wpa-supplicant        2.4            2.5                   Cristian Iorga
+harfbuzz              1.0.2          1.0.6                 Cristian Iorga
+libtirpc              0.2.5          1.0.1                 Cristian Iorga
+libical               1.0.0          1.0.1                 Cristian Iorga
+kernelshark           2.5.3+gitX     2.6+gitAUTOINC+9b...  Darren Hart
+trace-cmd             2.5.3+gitX     2.6+gitAUTOINC+9b...  Darren Hart
+u-boot-fw-utils       v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2015.07+gitX  v2015.10+gitAUTOI...  Denys Dmytriyenko
+dhcp                  4.3.2          4.3.3                 Hongxu Jia
+ncurses               5.9            6.0-20151107          Hongxu Jia
+elfutils              0.163          0.164                 Hongxu Jia
+qmmp                  0.8.6          1.0.1                 Hongxu Jia
+pax-utils             1.0.5          1.1.4                 Hongxu Jia
+perl                  5.22.0         5.22.1                Hongxu Jia
+createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.3          1.6.4                 Hongxu Jia
+ghostscript           9.16           9.18                  Hongxu Jia
+help2man-native       1.47.1         1.47.2                Hongxu Jia
+gnupg                 2.1.7          2.1.9                 Hongxu Jia
+pango                 1.36.8         1.38.1                Jussi Kukkonen
+waffle                1.5.1          1.5.2                 Jussi Kukkonen
+libinput              0.21.0         1.1.0                 Jussi Kukkonen
+wayland               1.8.1          1.9.0                 Jussi Kukkonen
+weston                1.8.0          1.9.0                 Jussi Kukkonen
+gtk-icon-utils-na...  3.16.6         3.19.1                Jussi Kukkonen
+xkbcomp               1.3.0          1.3.1                 Jussi Kukkonen
+xf86-input-evdev      2.9.2          2.10.0                Jussi Kukkonen
+xf86-input-synaptics  1.8.2          1.8.3                 Jussi Kukkonen
+xf86-video-omap       0.4.3          0.4.4                 Jussi Kukkonen
+libxcb                1.11           1.11.1                Jussi Kukkonen
+glib-2.0              2.44.1         2.46.2                Jussi Kukkonen
+glib-networking       2.44.0         2.46.1                Jussi Kukkonen
+libxi                 1.7.4          1.7.5                 Jussi Kukkonen
+pixman                0.32.6         0.33.4                Jussi Kukkonen
+xkeyboard-config      2.15           2.16                  Jussi Kukkonen
+xserver-xorg          1.17.2         1.17.99.902           Jussi Kukkonen
+libsoup-2.4           2.50.0         2.52.1                Jussi Kukkonen
+xinput                1.6.1          1.6.2                 Jussi Kukkonen
+at-spi2-atk           2.16.0         2.18.1                Jussi Kukkonen
+atk                   2.16.0         2.18.0                Jussi Kukkonen
+at-spi2-core          2.16.0         2.18.2                Jussi Kukkonen
+vala                  0.28.0         0.30.0                Jussi Kukkonen
+shared-mime-info      1.4            1.5                   Jussi Kukkonen
+vte                   0.28.2         0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.8          3.0.14                Jussi Kukkonen
+adwaita-icon-theme    3.16.2.1       3.18.0                Jussi Kukkonen
+libcroco              0.6.8          0.6.9                 Jussi Kukkonen
+xdg-utils             1.1.0-rc1      1.1.1                 Jussi Kukkonen
+gdk-pixbuf            2.30.8         2.32.1                Jussi Kukkonen
+gtk+3                 3.16.6         3.18.2                Jussi Kukkonen
+librsvg               2.40.10        2.40.11               Jussi Kukkonen
+cairo                 1.14.2         1.14.4                Jussi Kukkonen
+clutter-1.0           1.22.4         1.24.2                Jussi Kukkonen
+clutter-gtk-1.0       1.6.2          1.6.6                 Jussi Kukkonen
+cogl-1.0              1.20.0         1.22.0                Jussi Kukkonen
+glew                  1.12.0         1.13.0                Jussi Kukkonen
+python-mako           1.0.1          1.0.3                 Khem Raj
+python-nose           1.3.6          1.3.7                 Khem Raj
+python-numpy          1.7.0          1.10.1                Khem Raj
+prelink               1.0+gitX       20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.14         5.4.15                Mark Hatle           5.4.15 has a package databa...
+iw                    4.1            4.3                   No maintainer
+dmidecode             2.12           3.0                   No maintainer
+docbook-xsl-style...  1.78.1         1.79.0                No maintainer
+gptfdisk              1.0.0          1.0.1                 No maintainer
+epiphany              3.16.3         3.18.0                No maintainer
+orc                   0.4.23         0.4.24                No maintainer
+webkitgtk             2.8.5          2.10.3                No maintainer
+gdb-cross-i586        7.9.1          7.10                  No maintainer
+sgmlspl-native        1.1+gitX       1.03+gitAUTOINC+f...  No maintainer
+ifupdown              0.7.48.1       0.7.54ubuntu1         No maintainer
+bjam-native           1.58.0         1.59.0                No maintainer
+python-pexpect        3.3            4.0.1                 No maintainer
+swig                  3.0.6          3.0.7                 No maintainer
+python3-pip           6.1.1          7.1.2                 No maintainer
+python3-setuptools    18.2           18.5                  No maintainer
+uclibc-initial        0.9.33+gitX    0.9.33.2+gitAUTOI...  No maintainer
+apt-native            1.0.10.1       1.0.10.2              No maintainer
+gcc-source-4.8.4      4.8.4          4.8.5                 No maintainer
+gdb-cross-canadia...  7.9.1          7.10                  No maintainer
+autogen-native        5.18.5         5.18.6                No maintainer
+cdrtools-native       3.01a31        3.02a01               No maintainer
+perl-native           5.22.0         5.22.1                No maintainer
+python-scons-native   2.3.6          2.4.0                 No maintainer
+python3-native        3.4.3          3.5.0                 No maintainer
+python-native         2.7.9          2.7.10                No maintainer
+linuxdoc-tools-na...  0.9.69         0.9.71                No maintainer
+libav                 9.18           11.4                  Paul Eggleton
+gpgme                 1.5.4          1.6.0                 Paul Eggleton
+libevdev              1.4.2          1.4.4                 Paul Eggleton
+libgpg-error          1.19           1.20                  Paul Eggleton
+cmake-native          3.3.1          3.3.2                 Paul Eggleton
+cmake                 3.3.1          3.3.2                 Paul Eggleton
+libpng                1.6.17         1.6.18                Randy Witt
+libtasn1              4.5            4.7                   Randy Witt
+unfs3                 0.9.22.r490    0.9.22.r495           Randy Witt
+libunistring          0.9.5          0.9.6                 Randy Witt
+ethtool               4.0            4.2                   Randy Witt
+libdrm                2.4.62         2.4.65                Richard Purdie
+kexec-tools           2.0.10         2.0.11                Richard Purdie
+btrfs-tools           4.1.2          4.3                   Richard Purdie
+lttng-modules         2.6.2+gitX     2.7.0+gitAUTOINC+...  Richard Purdie
+lttng-tools           2.6.0          2.7.0                 Richard Purdie
+lttng-ust             2.6.2+gitX     2.7.0+gitAUTOINC+...  Richard Purdie
+powertop              2.7            2.8                   Richard Purdie
+gdb                   7.9.1          7.10                  Richard Purdie
+python-pycurl         7.19.5.1       7.19.5.2              Richard Purdie
+python-pygobject      2.28.3         3.19.2                Richard Purdie       Newer versions of python-py...
+python-scons          2.3.6          2.4.0                 Richard Purdie
+e2fsprogs             1.42.9         1.42.13               Robert Yang          Updating backported patches...
+file                  5.24           5.25                  Robert Yang
+git                   2.5.0          2.6.3                 Robert Yang
+gmp                   6.0.0          6.1.0                 Robert Yang
+less                  479            481                   Robert Yang
+ltp                   20150420       20150903              Robert Yang
+liberation-fonts      1.04           2.00.1                Ross Burton          2.x depends on fontforge pa...
+base-passwd           3.5.29         3.5.38                Ross Burton          Version 3.5.38 requires cde...
+kbd                   2.0.2          2.0.3                 Ross Burton
+nss                   3.19.2         3.20                  Ross Burton
+uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  Ross Burton
+babeltrace            1.2.4+gitX     1.3.0+gitAUTOINC+...  Ross Burton
+systemtap             2.7+gitX       2.9+gitAUTOINC+70...  Ross Burton
+tiff                  4.0.4          4.0.6                 Ross Burton
+mtd-utils             1.5.1+gitX     1.5.2+gitAUTOINC+...  Ross Burton
+liburcu               0.8.7          0.9.1                 Ross Burton
+boost                 1.58.0         1.59.0                Ross Burton
+icu                   55.1           56.1-AIX7.1-VA2       Ross Burton
+valgrind              3.10.1         3.11.0                Ross Burton
+libidn                1.30           1.32                  Ross Burton
+lighttpd              1.4.36         1.4.37                Ross Burton
+libassuan             2.2.1          2.4.0                 Ross Burton
+procps                3.3.10         3.3.11                Ross Burton
+pulseaudio            6.0            7.1                   Tanu Kaskinen
+systemtap-uprobes     2.7+gitX       2.9+gitAUTOINC+70...  Tom Zanussi
+gettext               0.19.4         0.19.6                Wenzong Fan
+ccache                3.2.3          3.2.4                 Wenzong Fan
+chkconfig             1.3.58         1.6                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 178
+Upgradable total count: 187
+
+The based commit is:
+
+commit e44ed8c18e395b9c055aefee113b90708e8a8a2f
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Tue Nov 3 14:02:57 2015 +0000
+
+    build-appliance-image: Update to jethro head revision
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
