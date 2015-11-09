@@ -1,35 +1,52 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DBD1E006F6; Mon,  9 Nov 2015 08:25:45 -0800 (PST)
+	id CAB16E007E1; Mon,  9 Nov 2015 09:56:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78E0AE005BB
-	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 08:25:39 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3F421F811DD; Mon,  9 Nov 2015 09:25:39 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A64DBF811DB;
-	Mon,  9 Nov 2015 09:25:38 -0700 (MST)
-To: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <563B4DF9.5030206@mlbassoc.com>
-	<3016549.FSiAq4gXjU@peggleto-mobl.ger.corp.intel.com>
-	<563B66D9.1050808@mlbassoc.com> <5640C5B2.7010809@linux.intel.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <5640C95B.2060205@mlbassoc.com>
-Date: Mon, 9 Nov 2015 09:27:07 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.170 listed in list.dnswl.org]
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DFD1E0071C
+	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 09:56:41 -0800 (PST)
+Received: by igcph11 with SMTP id ph11so32634454igc.1
+	for <yocto@yoctoproject.org>; Mon, 09 Nov 2015 09:56:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=xPKYgtaiy/mvxnbKtWmwM3smQ6/pN83R2GPMDh4Y2G0=;
+	b=JOeSRHU+siYI3ZVD0oQJa3VxBD7d4JwtQEpl9ASe5CK3XWuQwkRjswhnwalJa4Dx93
+	SK7rY/ONwIS0pd2g4B3+HFU268Qr0r3ODIwON+zS5OgloOjjbwR8TgRcr2ipO/Lg5YM8
+	wBpNRqT4+I/CyV/Nrgc4cK4ZlS8P6fkV2dO7jrQSNTy1ppnIaZL2KRanvwjaM5aU2fKl
+	AsHzqjZIBRZBYqHcqAa91Ku0QFy/2icnunurQC/FvlQiMeega+xRzGauTO/q7CpiGmYr
+	J5fvak1bXBCl2KyKplEC+fR0LC6Wac6II4iiGcu+G0An04nbhPbYnLsuY2FJU9Jizrux
+	kuvg==
+X-Received: by 10.50.155.106 with SMTP id vv10mr23133153igb.77.1447091800932; 
+	Mon, 09 Nov 2015 09:56:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5640C5B2.7010809@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Python pip
+Received: by 10.107.38.133 with HTTP; Mon, 9 Nov 2015 09:56:11 -0800 (PST)
+In-Reply-To: <CABatt_y6X3uxCcq+0Z7r2Zcz_4McJJSQ0D=SwKo-uPFaxuG3Og@mail.gmail.com>
+References: <CABatt_y6X3uxCcq+0Z7r2Zcz_4McJJSQ0D=SwKo-uPFaxuG3Og@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 9 Nov 2015 09:56:11 -0800
+Message-ID: <CAMKF1squtQKgLmwTQNBykLx5LK=2dwsnWO594yJ+V2b1GjErXg@mail.gmail.com>
+To: Martin Townsend <mtownsend1973@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: binutils failing in FIDO branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,44 +58,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Nov 2015 16:25:45 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Nov 2015 17:56:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2015-11-09 09:11, Alejandro Hernandez wrote:
+On Mon, Nov 9, 2015 at 4:36 AM, Martin Townsend <mtownsend1973@gmail.com> wrote:
+> Hi,
+>
+> binutils is failing to compile.  I'm using tip of fido branch.  Error
+> message is:
+>
+> |
+> /home/martint/yocto/build/am43-devboard-aquila/bia-tmp-glibc/work/cortexa9hf-vfp-neon-oe-linux-gnueabi/binutils/2.24-r0/binutils-2.24/libiberty/fibheap.c:
+> In function 'fibheap_replace_key_data':
+> |
+> /home/martint/yocto/build/am43-devboard-aquila/bia-tmp-glibc/work/cortexa9hf-vfp-neon-oe-linux-gnueabi/binutils/2.24-r0/binutils-2.24/libiberty/fibheap.c:38:24:
+> error: 'LONG_MIN' undeclared (first use in this function)
+> |  #define FIBHEAPKEY_MIN LONG_MIN
+>
+> I've tracked it down to the fact that libiberty is the only component that
+> doesn't define HAVE_LIMITS in config.h, so I assume this part of the
+> configure is failing for some reason.
+>
+> Anyone else seen this, or have an idea on how to fix this?
+
+whats your host distro ?
+
+>
+> Cheers,
+> Martin.
 >
 >
-> On 05/11/15 08:25, Gary Thomas wrote:
->> On 2015-11-05 07:14, Paul Eggleton wrote:
->>> Hi Gary,
->>>
->>> On Thursday 05 November 2015 05:39:21 Gary Thomas wrote:
->>>> Just curious, does anyone know why OE-core has python3-pip
->>>> but python-pip is relegated to meta-oe?
->>>
->>> I think it has to do with pip being supplied as part of the standard python 3
->>> distribution from 3.4 onwards. I think for simplicity's sake it might be
->>> argued that python-pip could be in the same place though.
-> Yes, in fact, python3-pip was included on oe-core after the upgrade to python3.4 since it's now a requirement, I agree, we probably should include python-pip on oe-core too
->>
->> Thanks, I'll consider sending a patch set for that.
->>
->> Sadly, at this point, both packages can't be installed at the
->> same time as they both call the result "/usr/bin/pip".  Maybe
->> in keeping with the python/python3 naming, the python3 version
->> should be installed as pip3?
 >
-> python3-pip recipe had to be created to avoid an issue with the default pip installation by python3.4, its now handled by distutils3, if its only a matter of changing the binary
-> name afterwards from pip to pip3 I see no problem doing this, I am hoping this solves it, but just mentioning that we already had some issues with this, because of the "defaults"
-> python3 expects
-
-In that case, we could rename the Python2 pip as pip2.  I think
-they really need different names as they will be installing
-packages into very different locations Python2 vs Python3.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
