@@ -1,93 +1,41 @@
-Return-Path: <maninder1.s@samsung.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DA76E008D2; Mon,  9 Nov 2015 17:05:58 -0800 (PST)
+	id 949E7E008D2; Mon,  9 Nov 2015 18:11:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00, MIME_BASE64_BLANKS, 
-	RCVD_IN_DNSWL_HI, SPF_HELO_PASS,
-	XPRIO autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [203.254.224.33 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
-	*  1.0 XPRIO Has X-Priority header
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62051E00803
-	for <yocto@yoctoproject.org>; Mon,  9 Nov 2015 17:05:56 -0800 (PST)
-Received: from epcpsbgr4.samsung.com
-	(u144.gpu120.samsung.co.kr [203.254.230.144])
-	by mailout3.samsung.com (Oracle Communications Messaging Server
-	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NXK02ROKR1VPNC0@mailout3.samsung.com> for
-	yocto@yoctoproject.org; Tue, 10 Nov 2015 10:05:55 +0900 (KST)
-Received: from epcpsbgx2.samsung.com ( [172.20.52.125])
-	by epcpsbgr4.samsung.com (EPCPMTA) with SMTP id F1.DA.05342.3F241465;
-	Tue, 10 Nov 2015 10:05:55 +0900 (KST)
-X-AuditID: cbfee690-f794e6d0000014de-51-564142f3aa4f
-Received: from epmailer01 ( [203.254.219.141])
-	by epcpsbgx2.samsung.com (EPCPMTA) with SMTP id 3F.75.04967.3F241465;
-	Tue, 10 Nov 2015 10:05:55 +0900 (KST)
-Date: Tue, 10 Nov 2015 01:05:55 +0000 (GMT)
-From: Maninder Singh <maninder1.s@samsung.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-MIME-version: 1.0
-X-MTR: 20151110005552327@maninder1.s
-Msgkey: 20151110005552327@maninder1.s
-X-EPLocale: en_US.windows-1252
-X-Priority: 3
-X-EPWebmail-Msg-Type: personal
-X-EPWebmail-Reply-Demand: 0
-X-EPApproval-Locale: 
-X-EPHeader: ML
-X-MLAttribute: 
-X-RootMTR: 20151110005552327@maninder1.s
-X-ParentMTR: 
-X-ArchiveUser: 
-X-CPGSPASS: N
-X-ConfirmMail: N,general
-MIME-version: 1.0
-Message-id: <715456391.737811447117554644.JavaMail.weblogic@ep2mlwas05b>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGIsWRmVeSWpSXmKPExsWyRsSkVvezk2OYwY1HQhaTXq5hc2D0aD/R
-	xxbAGMVlk5Kak1mWWqRvl8CVMfXbfMaCNtWKdUe2szQwdqh0MXJyCAmoSSza+5gNxJYQMJHY
-	2jWdFcIWk7hwbz1QnAuoZimjxN39HcwwRS/Ov2OESMxhlFj8+RVYN4uAqsTvbcvZQWw2AX2J
-	s3vXgTUICzhKbDqwngXEFhHQljjw/BgrSDOzQCejxLvDl9kgzlCUWH/jCSOIzSsgKHFy5hOg
-	Bg6gbSoSd+eyQ4RVJR4e7YI6Qk5iydTLTBA2r8SM9qcsMPFpX9dA1UhLnJ+1gRHmm8XfH0PF
-	+SWO3d4B1SsgMfXMQagaTYlXvx9DzeGTWLPwLQtM/a5Ty5lhdt3fMheqV0Jia8sTcGgxA50/
-	pfshO4RtIHFk0RxWdK/wCnhIrOpVBnldQqCXQ6Jj8yX2CYxKs5CUzUIyahaSUchqFjCyrGIU
-	TS1ILihOSi8y0StOzC0uzUvXS87P3cQITA6n/z2bsIPx3gHrQ4wCHIxKPLwTvzmECbEmlhVX
-	5h5iNAVG00RmKdHkfGAKyiuJNzQ2M7IwNTE1NjK3NFMS530t9TNYSCA9sSQ1OzW1ILUovqg0
-	J7X4ECMTB6dUAyMjzypzxzX+1qnPRJ7dVxbc/OHKsiXn9zpcPCe1UOvZ34WXFyp7Bi/4XrLB
-	5Hii0EzhsvqfU56tmvnnQppd15LsydtfcsR9fuSyMjNh1bRtr2P2Cz/8VdGpe09ZpHHrF/bM
-	X9fM4lscyyZPXO0xYelK7bdBPJ8icuum65iFPsqZuvnlv8a1S3fGKLEUZyQaajEXFScCAGYL
-	TN0JAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOKsWRmVeSWpSXmKPExsVy+t/tXt3PTo5hBt9e8FhMermGzYHRo/1E
-	H1sAY1SaTUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7Q
-	VCWFssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVK0obmRnpGBnqmRnqFprJWhgYGRKVBNQlrG
-	1G/zGQvaVCvWHdnO0sDYodLFyMkhJKAmsWjvYzYQW0LAROLF+XeMELaYxIV764HiXEA1cxgl
-	Fn9+BVbEIqAq8XvbcnYQm01AX+Ls3nXMILawgKPEpgPrWUBsEQFtiQPPj7GCNDMLdDJKvDt8
-	mQ1im6LE+htPwDbwCghKnJz5BKiBA2ibisTduewQYVWJh0e7mCGOkJNYMvUyE4TNKzGj/SkL
-	THza1zVQNdIS52dtgDt68ffHUHF+iWO3d0D1CkhMPXMQqkZT4tXvx1Bz+CTWLHzLAlO/69Ry
-	Zphd97fMheqVkNja8oQVxGYGOn9K90N2CNtA4siiOazoXuEV8JBY1as8gVF2FpLMLCTds5B0
-	I6tZwMiyilE0tSC5oDgpvcJIrzgxt7g0L10vOT93EyM4ET1btIPx33nrQ4wCHIxKPLwTvjmE
-	CbEmlhVX5h5ilOBgVhLhtX8BFOJNSaysSi3Kjy8qzUktPsRoCoy0icxSosn5wCSZVxJvaGxi
-	bmpsamFgaG5upiTO+yZdI0xIID2xJDU7NbUgtQimj4mDU6qBsU3x+lzHZaIrv7G1zQ3MTPyy
-	Nuz6E93fqaWxt1eyaeVf9y0wuFcv9rD38UHvif/9GZf/YC/skbo9le213VH5qbyvlSeL+82e
-	NZMjc3vOe50pMeee6Thm7BYqU7hmssWR8bxW5Eev27taDeY3vTmh6f7BYDFvdUmSw8pSWVP1
-	wxVKD50uqDJeUWIpzkg01GIuKk4EADgD5opaAwAA
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-Cc: Vaneet Narang <v.narang@samsung.com>,
+X-Greylist: delayed 1738 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 Nov 2015 18:11:41 PST
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4931DE00803;
+	Mon,  9 Nov 2015 18:11:41 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id tAA1gg9w014152
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Mon, 9 Nov 2015 17:42:42 -0800
+Received: from [128.224.162.186] (128.224.162.186) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
+	Mon, 9 Nov 2015 17:42:41 -0800
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	PANKAJ MISHRA <pankaj.m@samsung.com>
-Subject: Re: [prelink-cross][PATCH 1/1] rtld.c: LD_PRELOAD bugfix
+	<yocto-announce@yoctoproject.org>
+References: <CAPhnLPAi=wb+g8gzstcrbgZMU39Q=uzLtoH2xx2xdkt0J++BeA@mail.gmail.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <56414B8F.6050704@windriver.com>
+Date: Tue, 10 Nov 2015 09:42:39 +0800
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAPhnLPAi=wb+g8gzstcrbgZMU39Q=uzLtoH2xx2xdkt0J++BeA@mail.gmail.com>
+Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 1.7.3 (fido 12.0.3) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maninder1.s@samsung.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -96,71 +44,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Nov 2015 01:05:58 -0000
-Content-transfer-encoding: base64
-Content-type: text/plain; charset=windows-1252
-
-SGVsbG8sDQoNCj5PbiAxMS83LzE1IDU6MjQgQU0sIE1hbmluZGVyIFNpbmdoIHdyb3RlOg0KPj4g
-SGksDQo+PiBQaW5nLi4uLg0KPg0KPkknZCBnb3R0ZW4gYSBtc2cgYWZ0ZXIgdGhpcyB0byBob2xk
-IG9mZiBhbmQgd2FpdCBmb3IgYW4gdXBkYXRlLiAgSXMgdGhpcyB0aGUNCj51cGRhdGVkIHZlcnNp
-b24gb2YgdGhlIGZpeD8NCj4NCj4tLU1hcmsNCg0KWWVzLCB3ZSBzZW5kIG1lc3NhZ2UgZm9yIHVw
-ZGF0ZSBhIGZpeCBmb3IgTERfUFJFTE9BRCBpbXBsZW1udGF0aW9uIGluIHByZWxpbms6LQ0KaHR0
-cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE1LVNlcHRlbWJl
-ci8wMjY0MzEuaHRtbA0KIChMRF9QUkVMT0FEIGltcGxlbW50YXRpb24gcGF0Y2gsIHdoaWNoIGlz
-IG1lcmdlZCB3aXRoIHByZWxpbmtfY3Jvc3MgcHJvamVjdCkNCg0KYW5kIHRoaXMgYmVsb3cgcGF0
-Y2ggZml4ZXMgIGJ1ZyBpbiBMRF9QUkVMT0FEIHBhdGNoICh5ZXMgdGhpcyBpcyB1cGRhdGVkIHZl
-cnNpb24gb2YgZml4KS4NCg0KPj4+IFRoaXMgcGF0Y2ggZG8gZm9sbG93aW5nIHRoaW5nczotDQo+
-Pj4gMS4gCUZpeGVzIGJ1ZyBvZiBhZGRpbmcgcHJlbG9hZGVkIGxpYnMgaW4gc2VhcmNoIHNjb3Bl
-IG9mIGRlcGVuZGVudCANCj4+PiAJbGlicmFyaWVzIHdoaWNoIHJlc3VsdHMgaW4gc2VhcmNoIHNj
-b3BlIG9mIGZldyBzeW1ib2xzIGJlY29tZXMgDQo+Pj4gCXNhbWUgZm9yIGV4ZWN1dGFibGUgYW5k
-IGxpYnJhcnksIHNvIGNvbmZsaWN0IGRvZXNuJ3Qgb2NjdXIgZm9yIA0KPj4+IAl0aG9zZSBzeW1i
-b2xzIGFuZCBoZW5jZSByZXN1bHRlZCBpbiBsZXNzIG51bWJlciBvZiBjb25mbGljdHMuDQo+Pj4g
-Mi4gCVJlZHVjZSBjb2RlIHJlZHVuZGFuY3kuDQo+Pj4gMy4gCUJ1ZmZlciBPdmVyZmxvdyBmaXgu
-DQo+Pj4NCj4+PiBTaWduZWQtb2ZmLWJ5OiBNYW5pbmRlciBTaW5naCA8bWFuaW5kZXIxLnNAc2Ft
-c3VuZy5jb20+DQo+Pj4gU2lnbmVkLW9mZi1ieTogVmFuZWV0IE5hcmFuZyA8di5uYXJhbmdAc2Ft
-c3VuZy5jb20+DQo+Pj4gUmV2aWV3ZWQtYnk6IERvaGEgSHdhbmcgPGRvaGEuaHdhbmdAc2Ftc3Vu
-Zy5jb20+DQo+Pj4gLS0tDQo+Pj4gdHJ1bmsvc3JjL3J0bGQvcnRsZC5jIHwgICAyNyArKysrKysr
-KysrKysrKysrLS0tLS0tLS0tLS0NCj4+PiAxIGZpbGVzIGNoYW5nZWQsIDE2IGluc2VydGlvbnMo
-KyksIDExIGRlbGV0aW9ucygtKQ0KPj4+DQo+Pj4gZGlmZiAtLWdpdCBhL3RydW5rL3NyYy9ydGxk
-L3J0bGQuYyBiL3RydW5rL3NyYy9ydGxkL3J0bGQuYw0KPj4+IGluZGV4IDUwNDYxYjYuLjhhZjUw
-NTIgMTAwNjQ0DQo+Pj4gLS0tIGEvdHJ1bmsvc3JjL3J0bGQvcnRsZC5jDQo+Pj4gKysrIGIvdHJ1
-bmsvc3JjL3J0bGQvcnRsZC5jDQo+Pj4gQEAgLTYwNiw3ICs2MDYsNyBAQCBsb2FkX2Rzb3MgKERT
-TyAqZHNvLCBpbnQgaG9zdF9wYXRocykNCj4+PiB7DQo+Pj4gICBzdHJ1Y3QgZHNvX2xpc3QgKmRz
-b19saXN0LCAqZHNvX2xpc3RfdGFpbCwgKmN1cl9kc29fZW50LCAqbmV3X2Rzb19lbnQ7DQo+Pj4g
-ICBzdHJ1Y3Qgc3RhdDY0IHN0Ow0KPj4+IC0gIGludCB0b3RhbF9wcmVsb2FkID0gMDsNCj4+PiAr
-ICBpbnQgdG90YWxfcHJlbG9hZCA9IDAsIHRlbXBfdG90YWxfcHJlbG9hZCA9IDA7DQo+Pj4gICBj
-aGFyICogbGlibmFtZVtNQVhfUFJFTE9BREVEX0xJQlNdID0ge05VTEx9Ow0KPj4+DQo+Pj4gICAv
-KiBBc3N1bWUgaXQncyBzdGF0aWMgdW5sZXNzIHdlIGZpbmQgRFRfTkVFREVEIGVudHJpZXMgKi8N
-Cj4+PiBAQCAtNjMyLDE5ICs2MzIsMTkgQEAgbG9hZF9kc29zIChEU08gKmRzbywgaW50IGhvc3Rf
-cGF0aHMpDQo+Pj4NCj4+PiAgIGlmKGRzby0+ZWhkci5lX3R5cGUgPT0gRVRfRVhFQyAmJiBsZF9w
-cmVsb2FkKSB7DQo+Pj4gICAgICAgY2hhciAqbmV4dF9saWIgPSAgbGRfcHJlbG9hZDsNCj4+PiAt
-ICAgICAgbGlibmFtZVt0b3RhbF9wcmVsb2FkXSA9IGxkX3ByZWxvYWQ7DQo+Pj4gLSAgICAgIHRv
-dGFsX3ByZWxvYWQrKzsNCj4+PiAtICAgICAgbmV4dF9saWI9c3RyY2hyKGxkX3ByZWxvYWQsJzon
-KTsNCj4+PiAtICAgICAgd2hpbGUobmV4dF9saWIhPU5VTEwpew0KPj4+IC0JICAqbmV4dF9saWIg
-PSAnXDAnOw0KPj4+IC0JICBuZXh0X2xpYisrOw0KPj4+IC0JICBsaWJuYW1lW3RvdGFsX3ByZWxv
-YWRdID0gbmV4dF9saWI7DQo+Pj4gLQkgIHRvdGFsX3ByZWxvYWQrKzsNCj4+PiAtCSAgbmV4dF9s
-aWI9c3RyY2hyKG5leHRfbGliLCc6Jyk7DQo+Pj4gLSAgICAgIH0NCj4+PiArICAgICAgd2hpbGUo
-Km5leHRfbGliICE9ICdcMCcgJiYgKHRvdGFsX3ByZWxvYWQgPCBNQVhfUFJFTE9BREVEX0xJQlMp
-KXsNCj4+PiArICAgICAgICBsaWJuYW1lW3RvdGFsX3ByZWxvYWQrK10gPSBuZXh0X2xpYjsNCj4+
-PiArICAgICAgICBuZXh0X2xpYj1zdHJjaHJudWwobmV4dF9saWIsJzonKTsNCj4+PiArICAgICAg
-ICBpZigqbmV4dF9saWIgPT0gJ1wwJykNCj4+PiArICAgICAgICAgIGJyZWFrOw0KPj4+ICsgICAg
-ICAgICpuZXh0X2xpYiA9ICdcMCc7DQo+Pj4gKyAgICAgICAgbmV4dF9saWIrKzsNCj4+PiArICAg
-ICB9DQo+Pj4gKyAgICB0ZW1wX3RvdGFsX3ByZWxvYWQgPSB0b3RhbF9wcmVsb2FkOw0KPj4+ICAg
-fQ0KPj4+ICAgZWxzZSB7DQo+Pj4gICAgICAgdG90YWxfcHJlbG9hZCA9IDA7DQo+Pj4gKyAgICAg
-IHRlbXBfdG90YWxfcHJlbG9hZCA9IDA7DQo+Pj4gICB9DQo+Pj4gICB3aGlsZSAoY3VyX2Rzb19l
-bnQgIT0gTlVMTCkNCj4+PiAgICAgew0KPj4+IEBAIC02NjYsNiArNjY2LDExIEBAIGxvYWRfZHNv
-cyAoRFNPICpkc28sIGludCBob3N0X3BhdGhzKQ0KPj4+IAl7DQo+Pj4gCSAgaW50IG5keCwgbWF4
-bmR4Ow0KPj4+IAkgIG1heG5keCA9IGRhdGEtPmRfc2l6ZSAvIGN1cl9kc28tPnNoZHJbY3VyX2Rz
-by0+ZHluYW1pY10uc2hfZW50c2l6ZTsNCj4+PiArICAgICAgaWYoIShjdXJfZHNvLT5laGRyLmVf
-dHlwZSA9PSBFVF9FWEVDKSkNCj4+PiArICAgICAgICB0b3RhbF9wcmVsb2FkID0gMDsNCj4+PiAr
-ICAgICAgZWxzZQ0KPj4+ICsgICAgICAgIHRvdGFsX3ByZWxvYWQgPSB0ZW1wX3RvdGFsX3ByZWxv
-YWQ7DQo+Pj4gKw0KPj4+IAkgIGZvciAobmR4ID0gMDsgbmR4IDwgbWF4bmR4ICsgdG90YWxfcHJl
-bG9hZDsgKytuZHgpDQo+Pj4gCSAgICB7DQo+Pj4NCj4+PiAtLSANCj4+PiAxLjcuMQ0KDQpUaGlz
-IHBhdGNoIGlzIGEgZml4IHRvIGEgYnVnIG9mIGJlbG93IGNvbW1pdCAoYWRkaXRpb24gb2YgbmV3
-IC0tbGQtcHJlbG9hZCBvcHRpb24pOi0NCmh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0
-L2NnaXQuY2dpL3ByZWxpbmstY3Jvc3MvY29tbWl0Lz9oPWNyb3NzX3ByZWxpbmsmaWQ9MzE5OWVl
-NGViZmMzNzI4ODM5MWUxNjk4MjViNzVmYTgwYzYxMzZhMw0KYW5kIGFwcGxpY2FibGUgYWZ0ZXIg
-dGhpcyBjb21taXQNCg0KDQpUaGFua3MsDQpNYW5pbmRlciBTaW5naA==
+X-List-Received-Date: Tue, 10 Nov 2015 02:11:45 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
+I think that the codename is not fido for 1.7 ?
+
+// Robert
+
+On 11/10/2015 03:45 AM, Flanagan, Elizabeth wrote:
+> Hello,
+>
+> The latest release of the Yocto Project 1.7.3 (dizzy-12.0.3) is now available
+> for download at:
+>
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>
+> A gpg signed version of these release notes is available at:
+>
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/RELEASENOTES
+>
+> Full pass test report is available at:
+>
+> https://wiki.yoctoproject.org/wiki/Ww41_-_2015-10-08_-_Full_Pass_1.7.3.rc1
+>
+> Thanks go out to everyone for all their hard work during this release!
+>
+> Sincerely,
+>
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
+>
+> ---------------------
+> yocto-1.7.3 Errata
+>
+> Release Name:  eclipse-poky-kepler-12.0.3
+> Branch: kepler/dizzy
+> Tag: luna/dizzy-12.0.3
+> Hash:  cf60ac293629fc8ecd6c4eb3709a6f334b499d0c
+> md5: e7eca889b7a6efffa815581fee50b657  eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+>
+> Release Name:  eclipse-poky-luna-12.0.3
+> Branch: luna/dizzy
+> Tag: luna/dizzy-12.0.3
+> Hash: 45aa5c77523bdf051d548fff4305382942db2ebb
+> md5: ebcf90e66bae33519387f299ca0c908a  eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+>
+> Release Name:  meta-qt3-12.0.3
+> Branch: dizzy
+> Tag: dizzy-12.0.3
+> Hash:  3016129d90b7ac8517a5227d819f10ad417b5b45
+> md5: 77f5c7cb8b3523862086dd9e6271b79d  meta-qt3-dizzy-12.0.3.tar.bz2
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/meta-qt3-dizzy-12.0.3.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/meta-qt3-dizzy-12.0.3.tar.bz2
+>
+> Release Name:  poky-12.0.3
+> Branch: dizzy
+> Tag: dizzy-12.0.3
+> Hash:  b38454c2e3a7a58f5397bb16d59e2b0aa71c4a94
+> md5: 7d3196798cb5e78e6b7f89e03edcf9e7  poky-dizzy-12.0.3.tar.bz2
+> Download Locations:
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>
+> -------
+> Security Fixes
+> -------
+> bind: CVE-2015-1349 CVE-2015-4620 CVE-2015-5722
+> icu: CVE-2014-8146-CVE-2014-8147
+> gnutls: CVE-2015-3308
+> qemu-slirp: CVE-2014-3640
+> qemu-vnc: CVE-2014-7815
+> qemu: CVE-2014-7840
+> bind9.9.5: CVE-2015-5477
+> libxml2: Security Advisory - libxml2 - CVE-2015-1819
+> rpm: Fix CVE-2013-6435
+> rpm: Fix CVE-2014-8118
+> dbus: CVE-2015-0245: prevent forged ActivationFailure
+> unzip: fix four CVE defects
+> unzip: Security Advisory -CVE-2014-9636 and CVE-2015-1315
+> gpgme: fix CVE-2014-3564
+> glibc: CVE-2015-1781: resolv/nss_dns/dns-host.c buffer overflow
+> qemu: fix CVE-2015-3456
+> ppp: Security Advisory - CVE-2015-3310
+> libsndfile: Security Advisory - libsndfile - CVE-2014-9496
+>
+> -------
+> Fixes
+> -------
+> build-appliance-image: Update to dizzy head revision
+> poky.conf: Bump version for 1.7.3 dizzy release
+> sstate: run recipe-provided hooks outside of ${B}
+> oprofileui: Use inherit gettext
+> rootfs.py: show intercept script output in log.do_rootfs
+> postinst_intercept: allow to pass variables with spaces
+> rootfs.py: Allow to override postinst-intercepts location
+> base.bbclass: Note when including pn with INCOMPATIBLE_LICENSES
+> autotools.bbclass: mkdir ${B} -> mkdir -p ${B}
+> perf: mkdir ${B} -> mkdir -p ${B}
+> bitbake: prserv/serv: Improve exit handling
+> bitbake: bitbake: cooker: properly fix bitbake.lock handling
+> bitbake: runqueue: Add message to explain the problem if diffsigs
+> multiple tasks don't exist
+> oeqa/selftest: fix test_incremental_image_generation for changes in log output
+> qemurunner: Improves checking for server and target IPs on qemus parameters
+> oeqa/utils/qemurunner: fix logging
+> oeqa/QemuRunner: don't use bb for logging
+> license.bbclass: fix unexpected operator for LICENSE values with space
+> license_class: fix license.manifest shows LICENSE field differently to recipe
+> connman-conf: fix SRC_URI_append
+> sstate: Use SSTATE_DIR for FILESPATH
+> gnome: move introspection options to gnomebase
+> tzdata, tzcode-native: drop older versions 2014h, 2015b
+> grub-efi: Add backslash lost from previous commit
+> grub-efi: Use the backport patch from grub
+> license_class: Fix choose_lic_set into incompatible license
+> dpkg: Fix tarfix.patch
+> dpkg: Fix for Fedora22 and new versions of tar
+> oeqa/bbtests: Fix to ensure DL_DIR is set
+> oeqa/bbtests: Fix race over DL_DIR and SSTATE_DIR
+> subversion: Fix subversion-native on Fedora22
+> subversion: Add -P to CPPFLAGS
+> cross-localedef-native: Use older C standards for older code
+> grub: Backport const qualifier fix for gcc-5
+> binutils: fix native builds when host has gcc5
+> ncurses: fix native builds when host has gcc5
+> unzip: drop 12-cve-2014-9636-test-compr-eb.patch
+> linux-firmware: Package Marvell pci8897 and usb8897 firmware
+> test-dependencies.sh: strip only .bb suffix
+> mesa: update --with-llvm-shared-libs configure option
+> e2fsprogs: install populate-extfs.sh
+> qt4: add patch for BMP denial-of-service vulnerability
+> license.bbclass: set dirs for do_populate_lic_setscene
+> perf: add LIBNUMA_DEFINES
+> squashfs-tools: build and install unsquashfs as well
+> curl: add a few missing security fixes
+> curl: several security fixes
+> tzdata: update to 2015d
+> tzcode: update to 2015d
+> neard: fix the install path in init scripts
+> openssl: upgrade to 1.0.1p
+> split_and_strip_files: regroup hardlinks to make build deterministic
+> meta/lib/oe/package.py: fix files ownership in packages
+> init-install-efi.sh: fix gummiboot entry installation
+>
 
