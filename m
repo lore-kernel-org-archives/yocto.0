@@ -1,39 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD256E00B67; Tue, 10 Nov 2015 05:51:42 -0800 (PST)
+	id D3B96E00AF2; Tue, 10 Nov 2015 06:45:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8851BE00B4A
-	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 05:51:40 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Nov 2015 05:51:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,270,1444719600"; d="scan'208";a="816279331"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.0.72])
-	by orsmga001.jf.intel.com with ESMTP; 10 Nov 2015 05:51:40 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Townsend <mtownsend1973@gmail.com>
-Date: Tue, 10 Nov 2015 13:51:38 +0000
-Message-ID: <5791074.voBcOMKz8e@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.10-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
-	)
-In-Reply-To: <CABatt_yiCkoCvXejqkFuCJv31WCsTU7eW6SDx_Kc_mvJb9s+wA@mail.gmail.com>
-References: <CABatt_y6X3uxCcq+0Z7r2Zcz_4McJJSQ0D=SwKo-uPFaxuG3Og@mail.gmail.com>
-	<1993006.rvECCExryx@peggleto-mobl.ger.corp.intel.com>
-	<CABatt_yiCkoCvXejqkFuCJv31WCsTU7eW6SDx_Kc_mvJb9s+wA@mail.gmail.com>
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17127E00ACF
+	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 06:45:37 -0800 (PST)
+Received: from minerva.localdomain (unknown [200.3.249.195])
+	by lists.s-osg.org (Postfix) with ESMTPSA id C8AFB462A0;
+	Tue, 10 Nov 2015 06:45:34 -0800 (PST)
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Date: Tue, 10 Nov 2015 11:45:18 -0300
+Message-Id: <1447166720-13316-1-git-send-email-javier@osg.samsung.com>
+X-Mailer: git-send-email 2.4.3
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: binutils failing in FIDO branch
+Cc: Derek Foreman <derekf@osg.samsung.com>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>, yocto@yoctoproject.org,
+	Javier Martinez Canillas <javier@osg.samsung.com>
+Subject: [meta-raspberrypi][PATCH v3 0/2] Add support for 4.2 kernel with vc4 DRM/KMS driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,133 +39,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Nov 2015 13:51:42 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 10 Nov 2015 14:45:39 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Right, there's a link to that layer in the manual section as well.
+Hello Andrei,
 
-Cheers,
-Paul
+This series adds support for Eric Anholt's v4.2 kernel, that has support
+for the vc4 DRM/KMS driver, which is the new open source graphics driver
+stack for the Raspberry Pi to be used instead of the userland driver.
 
-On Tuesday 10 November 2015 13:20:39 Martin Townsend wrote:
-> And I also found this link
-> https://www.yoctoproject.org/blogs/andrei-dinu/2013/meta-security-layer-now-> available which looks promising. :)
-> 
-> On Tue, Nov 10, 2015 at 11:40 AM, Paul Eggleton <
-> 
-> paul.eggleton@linux.intel.com> wrote:
-> > About all I know that we do have (in the manual at least) is contained in
-> > this
-> > section:
-> > 
-> > 
-> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#making
-> > -images-more-secure
-> > 
-> > It's not a lot but it's something. (If anyone has any ideas on how to
-> > extend
-> > this area we'd appreciate the input.)
-> > 
-> > Cheers,
-> > Paul
-> > 
-> > On Tuesday 10 November 2015 11:17:31 Martin Townsend wrote:
-> > > Hi Paul,
-> > > 
-> > > meta/conf/distro/include/security_flags.inc is much better than a
-> > > blanket
-> > > change of compiler flags.  Thanks for the tip.  Are there any other
-> > > tips/web pages on Security or Linux hardening using Yocto?
-> > > 
-> > > Cheers,
-> > > Martin.
-> > > 
-> > > 
-> > > On Mon, Nov 9, 2015 at 11:06 PM, Paul Eggleton <
-> > > 
-> > > paul.eggleton@linux.intel.com> wrote:
-> > > > On Monday 09 November 2015 22:32:59 Martin Townsend wrote:
-> > > > > My issue is particular to my distro, I tried changing to poky and
-> > > > > all
-> > > > > was
-> > > > > well.  The reason for our own distro was to migrate from Arago which
-> > 
-> > we
-> > 
-> > > > > were using.  So I copied Arago into a separate distro and then
-> > 
-> > started
-> > 
-> > > > > morphing it into something more akin to Poky over time.  Alas I left
-> > 
-> > the
-> > 
-> > > > > following line in the distro conf, one which should have removed :(
-> > > > > 
-> > > > > # Enable basic stack and buffer overflow protections
-> > > > > TARGET_CPPFLAGS += "-fstack-protector -D_FORTIFY_SOURCE=1"
-> > > > > 
-> > > > > After commenting this out binutils for the target builds fine.  I'm
-> > > > > guesssing that for libiberty CPPFLAGS propogates into configure or
-> > > > 
-> > > > makefile
-> > > > 
-> > > > > in the binutils recipe which then fails one of it's config checks
-> > > > > and
-> > > > > because of this fails to set HAVE_LIMITS and a few others no doubt.
-> > > > > 
-> > > > > Many apologies for leading you on a wild goose chase, I don't know
-> > > > > if
-> > > > 
-> > > > there
-> > > > 
-> > > > > is anything you can do so others don't fall foul of this.  Is
-> > > > > setting
-> > > > > TARGET_CPPFLAGS or TARGET_CFLAGS for that matter useful in
-> > 
-> > configuration
-> > 
-> > > > > files??  If so, maybe making sure they are reverted for building
-> > > > 
-> > > > binutils??
-> > > > 
-> > > > I'm assuming you could do something like:
-> > > > 
-> > > > TARGET_CPPFLAGS += "${MY_EXTRAFLAGS}"
-> > > > MY_EXTRAFLAGS = "-fstack-protector -D_FORTIFY_SOURCE=1"
-> > > > MY_EXTRAFLAGS_pn-binutils = ""
-> > > > 
-> > > > FYI we do have meta/conf/distro/include/security_flags.inc to apply
-> > 
-> > these
-> > 
-> > > > two
-> > > > flags, but interestingly there's no mention of binutils in there.
-> > > > 
-> > > > > Thanks for all the help and maybe it's time we moved over to Poky :)
-> > > > 
-> > > > Well, there's nothing forcing you to use poky - it's a reference
-> > > > distribution;
-> > > > the assumption is usually that you'll want to change something at the
-> > > > distribution level at which point you've effectively created your own
-> > > > distro.
-> > > > 
-> > > > Cheers,
-> > > > Paul
-> > > > 
-> > > > --
-> > > > 
-> > > > Paul Eggleton
-> > > > Intel Open Source Technology Centre
-> > 
-> > --
-> > 
-> > Paul Eggleton
-> > Intel Open Source Technology Centre
+This is a third version of the series which addresses feedback provided
+by Andreas Müller, Khem Raj and you. The first version and second version
+of the series can be found at [0] and [1]. Some of the v2 patches have
+been dropped since are no longer necessary so the delta is smaller in v3.
+
+The v4.2 kernel is under heavy development so is a work-in-progress and
+should not be used in production. That's why it's not set as the default
+virtual/kernel provider but the user can change the default providers in
+case that wants to use the VC4 DRM/KMS driver.
+
+But even when it's still a development kernel, having the recipe in the
+meta-raspberrypi will allow people to test it. We have been using it in
+the Tizen RPi2 port [2] for some time. The patches in the series are:
+
+Patch 1/2 adds a recipe for the 4.2 and some patches to make it build.
+
+Patch 2/2 Adds a section to the README that explains that two gfx stacks
+are available and that the user can change the default providers.
+
+To test it, besides this series I picked some patches from Andreas' git
+tree that are in his vc4-3 branch [3]:
+
+f5865b4b1bc4 libsdl2: enable glesv2
+c8666982c1bc xserver-xf86-config: setup for VC4 hardware acceleration
+b1082f5aeebe rpi-base.inc: add xf86-video-modesetting and xserver-xorg-extension-glx to XSERVER
+5568cd057d07 xserver-xorg: align to vc4 needs
+d9881d3ccb58 mesa: align to vc4 needs
+
+and also needed to bump the mesa SRCREV to master HEAD (commit sha1
+51694072218b5ae84b5d8f98ee2172d7c5d61b31).
+
+X starts and also I'm able to run the glmark2-es benchmark and the VC4
+EGL rendering is used:
+
+root@raspberrypi2:~# glmark2-es2
+=======================================================
+    glmark2 2014.03
+=======================================================
+    OpenGL Information
+    GL_VENDOR:     Broadcom
+    GL_RENDERER:   Gallium 0.4 on VC4
+    GL_VERSION:    OpenGL ES 2.0 Mesa 11.1.0-devel (git-51694072218b)
+=======================================================
+[build] use-vbo=false: FPS: 36 FrameTime: 27.778 ms
+[build] use-vbo=true: FPS: 38 FrameTime: 26.316 ms
+[texture] texture-filter=nearest: FPS: 39 FrameTime: 25.641 ms
+[texture] texture-filter=linear: FPS: 38 FrameTime: 26.316 ms
+[texture] texture-filter=mipmap: FPS: 38 FrameTime: 26.316 ms
+
+In theory this kernel should have KMS support but setting a different mode
+than the one configured in the firmware config.txt did not work for me.
+Only xrandr --output HDMI-0 --auto works and xrandr --output HDMI-0 --mode
+using a different mode than the config.txt does not work.
+
+But I think that could be solved as a follow up once these patches are
+merged.
+
+[0]: https://www.mail-archive.com/yocto@yoctoproject.org/msg25164.html
+[1]: https://lists.yoctoproject.org/pipermail/yocto/2015-August/026151.html
+[2]: http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
+[3]: git://github.com/schnitzeltony/meta-raspberrypi.git
+
+Best regards,
+Javier
+
+Changes in v3:
+- Update to latest vc4-kms-v3d-rpi2 branch sha1. Suggested by Andreas Müller.
+- Drop patches that were already merged in the vc4-kms-v3d-rpi2 branch.
+- Bump Linux version from 4.1 to 4.2.
+- Add explanation in the README graphics section how to choose the kernel
+  that has vc4 DRM/KMS support. Suggested by Khem Raj and Andrei Gherzan.
+
+Changes in v2:
+- Add a linux-raspberrypi-vc4 recipe insted of a linux-raspberrypi one.
+  Suggested by Petter Mabäcker, Andreas Müller and Andrei Gherzan.
+- Split the readme change in a separate patch. Suggested by Andrei Gherzan.
+- Don't make the vc4 patches inclusion conditional since will always be
+  needed when choosing the recipe. Suggested by Andrei Gherzan.
+
+Derek Foreman (1):
+  linux-raspberrypi: Add a 4.2.3 linux kernel with vc4 support
+
+Javier Martinez Canillas (1):
+  README: Add a section about graphic stacks
+
+ README                                             | 17 +++++++++
+ ..._defconfig-Enable-config-options-for-vc4-.patch | 40 ++++++++++++++++++++++
+ .../0002-bcm2708-Fix-DTC-build-error.patch         | 38 ++++++++++++++++++++
+ .../linux/linux-raspberrypi-vc4/defconfig          |  1 +
+ recipes-kernel/linux/linux-raspberrypi-vc4_4.2.bb  |  9 +++++
+ 5 files changed, 105 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-vc4/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-vc4/0002-bcm2708-Fix-DTC-build-error.patch
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-vc4/defconfig
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-vc4_4.2.bb
 
 -- 
+2.4.3
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
