@@ -1,36 +1,61 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1F81E00B21; Tue, 10 Nov 2015 04:55:34 -0800 (PST)
+	id A557AE00B3F; Tue, 10 Nov 2015 05:14:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20859E00B1E
-	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 04:55:31 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 10 Nov 2015 04:55:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,270,1444719600"; d="scan'208";a="597529588"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.0.72])
-	by FMSMGA003.fm.intel.com with ESMTP; 10 Nov 2015 04:55:31 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 10 Nov 2015 12:55:28 +0000
-Message-ID: <4056090.umPhX8FlA5@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.10-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
-	)
-In-Reply-To: <3979858.E2kEPMDCAm@aragorn>
-References: <1576239.ihu6CIn72A@aragorn> <3979858.E2kEPMDCAm@aragorn>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93FAAE00B2C
+	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 05:14:53 -0800 (PST)
+Received: by ioc74 with SMTP id 74so32626ioc.2
+	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 05:14:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel_com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=YL0x/OVtN4STETlKdDMod5phyvaHpFGHDQ0SREGqALQ=;
+	b=pWVr0hLfJrsmqx89L7vxz6lLHrcwYL63LMBAAP/CRqDvjb+P6sqENJjuKengUcN5qR
+	t38aObs+RBdEzPuy+RRan+gnOuyHAtR+OLXwUpp0RwBqVMGCNhgc062fT3wNtFdszy5l
+	5mCds8l+KtVJrtqoN8UCJsqEBbUIg73s6L3CEdLbEH/S32/lLx+ai/MMFB6uNOFPJS3O
+	MJ/9SCL+/9yeF/dP9j2Jv5lbxbsXbrRMWzYlbq8NML1mYI0PRd7liSWU75OEYBKpXyY4
+	1J5nZrGm8goTOc74OEFjA+PtUphGcUDWuOGyHk7/D8PesFXRrIZeYqyGrt5eLNjHb7ZK
+	4E5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=YL0x/OVtN4STETlKdDMod5phyvaHpFGHDQ0SREGqALQ=;
+	b=AtA3mBVdsjJgM/nWcZHvH7EreeYOQ+XrjAl9rZajOOaqoQbzAJ2eFf/kvtIihjIR7e
+	JNPVXBZTf78Ja9RuuEvxMSXtcvE5+OFlQag0+41TiljFoNE6CUOcUB9nM0EShdDfnvtV
+	LeyLN8bFfRWgp5xM9EcyYUyE+ZJOSslhqnB+K7M1wXcsh8v+A7SXA1jc0eGTdVnwmWyy
+	zsJZs3r7J0NT729fNlcTmz7wa2P0L3OCbMq0EPCB22OJCW9WcQICS7EbdnecEtQHdrYm
+	nQ26ZV41dsex0/o7OcvmzGdI3qUKiuPVY8nXHtakco+CinvEvQJFGJFM3MTrx4x6smNe
+	v+kA==
+X-Gm-Message-State: ALoCoQkuYk5+E+w3gJ5u5v+g+gCV7X0QKfj7y9Jh0jbRmLzgk/0IQvtKEahvit6yIELIQwpbV3VZ
 MIME-Version: 1.0
-Subject: Re: Add SUSE 42.1 "Leap" to SANITY_TESTED_DISTROS
+X-Received: by 10.107.165.131 with SMTP id o125mr3489866ioe.94.1447161292196; 
+	Tue, 10 Nov 2015 05:14:52 -0800 (PST)
+Received: by 10.107.20.204 with HTTP; Tue, 10 Nov 2015 05:14:52 -0800 (PST)
+In-Reply-To: <564161F0.30302@mvista.com>
+References: <CAPhnLPAi=wb+g8gzstcrbgZMU39Q=uzLtoH2xx2xdkt0J++BeA@mail.gmail.com>
+	<56414B8F.6050704@windriver.com> <564161F0.30302@mvista.com>
+Date: Tue, 10 Nov 2015 13:14:52 +0000
+Message-ID: <CAPhnLPAGJkmHWAhb4S+y2d7F5FC4AkQ=J9w=RYyMD7rXNGrZoQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: akuster <akuster@mvista.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 1.7.3 (fido 12.0.3) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,60 +67,201 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Nov 2015 12:55:34 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 10 Nov 2015 13:14:54 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Tuesday 10 November 2015 00:06:11 Jan-Simon Moeller wrote:
-> Am Montag, 9. November 2015, 23:40:07 schrieb Jan-Simon Moeller:
-> > Here is a patch to add "Leap" to the tested distros. I ran a couple=
- of
-> > builds since the update and all is normal. Please consider for
-> > inclusion.
-> >=20
-> > Best,
-> > Jan-Simon M=F6ller
-> > ---
-> > commit f729ca343849d2e0692caf18ba1789da408ceba3
-> > Author: Jan-Simon M=F6ller <dl9pf@gmx.de>
-> > Date:   Mon Nov 9 23:36:41 2015 +0100
-> >=20
-> >     Add SUSE Leap (SUSE-LINUX-42.1) to SANITY_TESTED_DIST
-> >    =20
-> >     Signed-off-by: Jan-Simon M=F6ller <dl9pf@gmx.de>
-> >=20
-> > ---
-> >=20
-> >  meta-yocto/conf/distro/poky.conf | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yoct
-> > index 2c99da8..06209fc 100644
-> > --- a/meta-yocto/conf/distro/poky.conf
-> > +++ b/meta-yocto/conf/distro/poky.conf
-> > @@ -84,6 +84,7 @@ SANITY_TESTED_DISTROS ?=3D " \
-> >=20
-> >              Debian-7.* \n \
-> >              Debian-8.* \n \
-> >              openSUSE-project-13.2 \n \
-> >=20
-> > +            SUSE-LINUX-42.1
-> >=20
-> >              "
-> > =20
-> >  # Default hash policy for distro
+On 10 November 2015 at 03:18, akuster <akuster@mvista.com> wrote:
 >
-> I forgot the "\n" at the end ... please use the attached version.
+>
+> On 11/09/2015 05:42 PM, Robert Yang wrote:
+>>
+>> I think that the codename is not fido for 1.7 ?
+>
+> its Dizzy.
 
-It does appear that we should be testing on this if we aren't already, =
-since=20
-this is effectively the next stable release of OpenSUSE. Lucian?
+Sorry folks. Our automated release note generation blew up a bit. It
+is dizzy. My apologies.
 
-Cheers,
-Paul
+-b
 
---=20
 
-Paul Eggleton
-Intel Open Source Technology Centre
+>
+> - armin
+>>
+>> // Robert
+>>
+>> On 11/10/2015 03:45 AM, Flanagan, Elizabeth wrote:
+>>> Hello,
+>>>
+>>> The latest release of the Yocto Project 1.7.3 (dizzy-12.0.3) is now
+>>> available
+>>> for download at:
+>>>
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>>>
+>>> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>>>
+>>>
+>>> A gpg signed version of these release notes is available at:
+>>>
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/RELEASENOTES
+>>>
+>>> Full pass test report is available at:
+>>>
+>>> https://wiki.yoctoproject.org/wiki/Ww41_-_2015-10-08_-_Full_Pass_1.7.3.rc1
+>>>
+>>>
+>>> Thanks go out to everyone for all their hard work during this release!
+>>>
+>>> Sincerely,
+>>>
+>>> Elizabeth Flanagan
+>>> Yocto Project
+>>> Build and Release
+>>>
+>>> ---------------------
+>>> yocto-1.7.3 Errata
+>>>
+>>> Release Name:  eclipse-poky-kepler-12.0.3
+>>> Branch: kepler/dizzy
+>>> Tag: luna/dizzy-12.0.3
+>>> Hash:  cf60ac293629fc8ecd6c4eb3709a6f334b499d0c
+>>> md5: e7eca889b7a6efffa815581fee50b657
+>>> eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+>>> Download Locations:
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+>>>
+>>> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/eclipse-poky-kepler-dizzy-12.0.3.tar.bz2
+>>>
+>>>
+>>> Release Name:  eclipse-poky-luna-12.0.3
+>>> Branch: luna/dizzy
+>>> Tag: luna/dizzy-12.0.3
+>>> Hash: 45aa5c77523bdf051d548fff4305382942db2ebb
+>>> md5: ebcf90e66bae33519387f299ca0c908a
+>>> eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+>>> Download Locations:
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+>>>
+>>> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/eclipse-poky-luna-dizzy-12.0.3.tar.bz2
+>>>
+>>>
+>>> Release Name:  meta-qt3-12.0.3
+>>> Branch: dizzy
+>>> Tag: dizzy-12.0.3
+>>> Hash:  3016129d90b7ac8517a5227d819f10ad417b5b45
+>>> md5: 77f5c7cb8b3523862086dd9e6271b79d  meta-qt3-dizzy-12.0.3.tar.bz2
+>>> Download Locations:
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/meta-qt3-dizzy-12.0.3.tar.bz2
+>>>
+>>> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/meta-qt3-dizzy-12.0.3.tar.bz2
+>>>
+>>>
+>>> Release Name:  poky-12.0.3
+>>> Branch: dizzy
+>>> Tag: dizzy-12.0.3
+>>> Hash:  b38454c2e3a7a58f5397bb16d59e2b0aa71c4a94
+>>> md5: 7d3196798cb5e78e6b7f89e03edcf9e7  poky-dizzy-12.0.3.tar.bz2
+>>> Download Locations:
+>>> http://downloads.yoctoproject.org/releases/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>>>
+>>> http://mirrors.kernel.org/yocto/yocto/yocto-1.7.3/poky-dizzy-12.0.3.tar.bz2
+>>>
+>>>
+>>> -------
+>>> Security Fixes
+>>> -------
+>>> bind: CVE-2015-1349 CVE-2015-4620 CVE-2015-5722
+>>> icu: CVE-2014-8146-CVE-2014-8147
+>>> gnutls: CVE-2015-3308
+>>> qemu-slirp: CVE-2014-3640
+>>> qemu-vnc: CVE-2014-7815
+>>> qemu: CVE-2014-7840
+>>> bind9.9.5: CVE-2015-5477
+>>> libxml2: Security Advisory - libxml2 - CVE-2015-1819
+>>> rpm: Fix CVE-2013-6435
+>>> rpm: Fix CVE-2014-8118
+>>> dbus: CVE-2015-0245: prevent forged ActivationFailure
+>>> unzip: fix four CVE defects
+>>> unzip: Security Advisory -CVE-2014-9636 and CVE-2015-1315
+>>> gpgme: fix CVE-2014-3564
+>>> glibc: CVE-2015-1781: resolv/nss_dns/dns-host.c buffer overflow
+>>> qemu: fix CVE-2015-3456
+>>> ppp: Security Advisory - CVE-2015-3310
+>>> libsndfile: Security Advisory - libsndfile - CVE-2014-9496
+>>>
+>>> -------
+>>> Fixes
+>>> -------
+>>> build-appliance-image: Update to dizzy head revision
+>>> poky.conf: Bump version for 1.7.3 dizzy release
+>>> sstate: run recipe-provided hooks outside of ${B}
+>>> oprofileui: Use inherit gettext
+>>> rootfs.py: show intercept script output in log.do_rootfs
+>>> postinst_intercept: allow to pass variables with spaces
+>>> rootfs.py: Allow to override postinst-intercepts location
+>>> base.bbclass: Note when including pn with INCOMPATIBLE_LICENSES
+>>> autotools.bbclass: mkdir ${B} -> mkdir -p ${B}
+>>> perf: mkdir ${B} -> mkdir -p ${B}
+>>> bitbake: prserv/serv: Improve exit handling
+>>> bitbake: bitbake: cooker: properly fix bitbake.lock handling
+>>> bitbake: runqueue: Add message to explain the problem if diffsigs
+>>> multiple tasks don't exist
+>>> oeqa/selftest: fix test_incremental_image_generation for changes in
+>>> log output
+>>> qemurunner: Improves checking for server and target IPs on qemus
+>>> parameters
+>>> oeqa/utils/qemurunner: fix logging
+>>> oeqa/QemuRunner: don't use bb for logging
+>>> license.bbclass: fix unexpected operator for LICENSE values with space
+>>> license_class: fix license.manifest shows LICENSE field differently to
+>>> recipe
+>>> connman-conf: fix SRC_URI_append
+>>> sstate: Use SSTATE_DIR for FILESPATH
+>>> gnome: move introspection options to gnomebase
+>>> tzdata, tzcode-native: drop older versions 2014h, 2015b
+>>> grub-efi: Add backslash lost from previous commit
+>>> grub-efi: Use the backport patch from grub
+>>> license_class: Fix choose_lic_set into incompatible license
+>>> dpkg: Fix tarfix.patch
+>>> dpkg: Fix for Fedora22 and new versions of tar
+>>> oeqa/bbtests: Fix to ensure DL_DIR is set
+>>> oeqa/bbtests: Fix race over DL_DIR and SSTATE_DIR
+>>> subversion: Fix subversion-native on Fedora22
+>>> subversion: Add -P to CPPFLAGS
+>>> cross-localedef-native: Use older C standards for older code
+>>> grub: Backport const qualifier fix for gcc-5
+>>> binutils: fix native builds when host has gcc5
+>>> ncurses: fix native builds when host has gcc5
+>>> unzip: drop 12-cve-2014-9636-test-compr-eb.patch
+>>> linux-firmware: Package Marvell pci8897 and usb8897 firmware
+>>> test-dependencies.sh: strip only .bb suffix
+>>> mesa: update --with-llvm-shared-libs configure option
+>>> e2fsprogs: install populate-extfs.sh
+>>> qt4: add patch for BMP denial-of-service vulnerability
+>>> license.bbclass: set dirs for do_populate_lic_setscene
+>>> perf: add LIBNUMA_DEFINES
+>>> squashfs-tools: build and install unsquashfs as well
+>>> curl: add a few missing security fixes
+>>> curl: several security fixes
+>>> tzdata: update to 2015d
+>>> tzcode: update to 2015d
+>>> neard: fix the install path in init scripts
+>>> openssl: upgrade to 1.0.1p
+>>> split_and_strip_files: regroup hardlinks to make build deterministic
+>>> meta/lib/oe/package.py: fix files ownership in packages
+>>> init-install-efi.sh: fix gummiboot entry installation
+>>>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
