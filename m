@@ -1,45 +1,54 @@
-Return-Path: <Virgil.Smith@flir.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9059BE00B89; Wed, 11 Nov 2015 08:52:05 -0800 (PST)
+	id 50255E00BFD; Wed, 11 Nov 2015 10:05:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.0.64.244 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 11 Nov 2015 08:52:03 PST
-Received: from east-edge.flir.com (east-edge.flir.com [208.0.64.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72168E00B3D
-	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 08:52:03 -0800 (PST)
-Received: from BOS-CH1.zone1.flir.net (10.128.150.52) by EAST-EDGE.flir.com
-	(10.128.210.250) with Microsoft SMTP Server (TLS) id 14.3.235.1;
-	Wed, 11 Nov 2015 11:57:18 -0500
-Received: from BOS-DAG1.zone1.flir.net ([169.254.2.198]) by
-	BOS-CH1.zone1.flir.net ([10.128.150.52]) with mapi id 14.03.0235.001;
-	Wed, 11 Nov 2015 11:50:59 -0500
-From: "Smith, Virgil" <Virgil.Smith@flir.com>
-To: =?utf-8?B?RXlzdGVpbiBNw6Vsw7h5IFN0ZW5iZXJn?= <eystein@mender.io>
-Thread-Topic: [yocto] Run-time discovery of machine for image compatibility
-	check
-Thread-Index: AQHRHCjCm0g23zFj/EqJhtlJckFgY56XBBMw
-Date: Wed, 11 Nov 2015 16:50:58 +0000
-Message-ID: <F14AEF751653024287138321000C846AFD6E92B7@BOS-DAG1.zone1.flir.net>
-References: <560C54B1.20307@mender.io>
-	<3CF90DC1-AE76-4429-A645-72BF8D4DDA21@gmail.com>
-	<5642A7DF.6000604@mender.io>
-In-Reply-To: <5642A7DF.6000604@mender.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.145.100.81]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E361E00BE8
+	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 10:05:28 -0800 (PST)
+Received: by ioc74 with SMTP id 74so41128838ioc.2
+	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 10:05:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=lc49AtCaDMipKTTtoPBv64wIgk6bsFG4y26FUkcTUDY=;
+	b=cS9FuOTeqbwWiIt/PukJOMS4tQ3BfU2Ulr71p5F94UeFbuFaMWwDkIIfc73vDyJ+eL
+	jH9C8YzIH9zQxtyKPvMtjYd/RPFmTvZJq9GTerZ80vyRqov7VlIbA6imyLkgIcIOHopx
+	yAhm+bp4ub74+slZ/Vy0SyaaxuwfmzoAZUbbc4DdxqHDaoB5GlBDBgrK0vfpL742WlMZ
+	qFDIm4L9D0JrWhIsNsp5nBwiDVC/bXWNcLlFdAej1h6JFZP6C3cCu+174S2QeuUsqJli
+	ctgPXohxV9aliSP4ShHcgDvAQUwPtdnQV92//xJEajOjO2HBodb9KU3kAKlZFGB2M4mj
+	w5OQ==
+X-Received: by 10.107.9.152 with SMTP id 24mr10121151ioj.112.1447265128167;
+	Wed, 11 Nov 2015 10:05:28 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.107.12.205 with HTTP; Wed, 11 Nov 2015 10:04:58 -0800 (PST)
+In-Reply-To: <CAOsp8o9QVw1n8AreJKq4TJPsyXXoeT6R_aWGC5GxZi4aJmUTjg@mail.gmail.com>
+References: <CAOsp8o8rHuiaWjOKWSbW+a5kVX1kegKpfiVto4VtK3V99ZY=mA@mail.gmail.com>
+	<5642866B.8090501@linux.intel.com>
+	<CAOsp8o9QVw1n8AreJKq4TJPsyXXoeT6R_aWGC5GxZi4aJmUTjg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 11 Nov 2015 10:04:58 -0800
+Message-ID: <CAMKF1sqaiATfPWqOgPHKBv-HRUVwkEiYmgA4U0ymb15gSpqnCA@mail.gmail.com>
+To: Michael Habibi <mikehabibi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Run-time discovery of machine for image compatibility check
+Subject: Re: Transitioning to Yocto, some basic questions about workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,87 +60,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Nov 2015 16:52:05 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 11 Nov 2015 18:05:31 -0000
+Content-Type: text/plain; charset=UTF-8
 
-VGhlIHJlY29tbWVuZGF0aW9ucyBvbiB5b3VyIGJsb2cgc3VnZ2VzdCBtb2RpZnlpbmcgaW1hZ2Ut
-YnVpbGRpbmZvLmJiY2xhc3MgdG8gY2hhbmdlIElNQUdFX0JVSUxESU5GT19WQVJTLg0KWW91IC9z
-aG91bGQvIGJlIGFibGUgdG8gYXZvaWQgdGhpcyBieSBzaW1wbHkgYWRkaW5nIHNvbWV0aGluZyBs
-aWtlDQoNCklNQUdFX0JVSUxESU5GT19WQVJTX2FwcGVuZCA9ICIgTUFDSElORSBERVZJQ0VfTU9E
-RUwgREVWSUNFX1RZUEUiDQpvcg0KSU1BR0VfQlVJTERJTkZPX1ZBUlMgPSAiRElTVFJPIERJU1RS
-T19WRVJTSU9OIE1BQ0hJTkUgREVWSUNFX01PREVMIERFVklDRV9UWVBFIg0KdG8gbG9jYWwuY29u
-Zi4NCg0KVGhlIGZpcnN0IHZlcnNpb24gc2hvdWxkIGV4dGVuZCB0aGUgdmFsdWUgd2hlcmVhcyB0
-aGUgc2Vjb25kIHNob3VsZCBjb21wbGV0ZWx5IHJlcGxhY2UgaXQuDQpUaGlzIHNob3VsZCB3b3Jr
-IGJlY2F1c2UgaW1hZ2UtYnVpbGRpbmZvLmJiY2xhc3MgdXNlZCB0aGUgPz0gb3BlcmF0b3IgdG8g
-c2V0IHRoZSB2YXJpYWJsZS4NCkZvciB0aGUgc2FtZSByZWFzb24geW91IHNob3VsZCBOT1QgdXNl
-ICs9IHRvIGV4dGVuZCB0aGUgdmFyaWFibGUsIGJ1dCBzaG91bGQgdXNlIF9hcHBlbmQgaW5zdGVh
-ZC4NCg0KVGhpcyBzaG91bGQgYmUgZWFzaWVyIHRvIG1haW50YWluIHdoZW4gdXBkYXRpbmcgeW91
-ciAndmVyc2lvbiBvZiB5b2N0bycuDQoNCg0KTk9URTogSW4gL2V4dHJlbWUvIHN1bW1hcnkgdGhp
-cyB3b3VsZCBtZWFuDQoNCkFkZCB0aGUgZm9sbG93aW5nIHRvICBsb2NhbC5jb25mDQogICBJTkhF
-UklUICs9ICJpbWFnZS1idWlsZGluZm8iDQogICBERVZJQ0VfTU9ERUwgPSAic29tZS1leHRyYS1p
-ZGVudGlmeWluZy1kZXRhaWxzIg0KICAgSU1BR0VfQlVJTERJTkZPX1ZBUlNfYXBwZW5kID0gIiBN
-QUNISU5FIERFVklDRV9NT0RFTCINCg0KdG8gZ2V0IGEgL2V0Yy9idWlsZCBmaWxlIGluIHlvdXIg
-cmVzdWx0aW5nIGltYWdlIHdpdGggaW5mb3JtYXRpb24gc2ltaWxhciB0byB0aGUgYnVpbGQgY29u
-ZmlndXJhdGlvbiBzdW1tYXJ5IGJpdGJha2Ugb3V0cHV0cyBkdXJpbmcgYSBidWlsZC4NCg0KDQoN
-Cj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0
-b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tDQo+IGJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10g
-T24gQmVoYWxmIE9mIEV5c3RlaW4gTcOlbMO4eSBTdGVuYmVyZw0KPiBTZW50OiBUdWVzZGF5LCBO
-b3ZlbWJlciAxMCwgMjAxNSA4OjI5IFBNDQo+IFRvOiBLaGVtIFJhag0KPiBDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBSdW4tdGltZSBkaXNjb3Zlcnkg
-b2YgbWFjaGluZSBmb3IgaW1hZ2UgY29tcGF0aWJpbGl0eQ0KPiBjaGVjaw0KPg0KPiBUaGFua3Mg
-dG8gZXZlcnlvbmUgb24gdGhlIGlucHV0IG9uIHRoaXMgaXNzdWUuIEkgZXZlbnR1YWxseSBzb2x2
-ZWQgaXQgYnkgdXNpbmcgYW4NCj4gaW1hZ2UgZmVhdHVyZSBjYWxsZWQgImJ1aWxkaW5mbyIuDQo+
-DQo+IEluIGNhc2Ugc29tZW9uZSBjb21lIGFjcm9zcyBhIHNpbWlsYXIgbmVlZCBpbiB0aGUgZnV0
-dXJlIEkndmUgY3JlYXRlZCB0aGVzZSB0d28NCj4gYmxvZyBwb3N0IHRvIGFkdmVydGlzZSBidWls
-ZGluZm8gaXQgYSBiaXQgbW9yZSBhbmQgc2hvdyBob3cgdG8gdXNlIGl0Og0KPg0KPiAqIGh0dHBz
-Oi8vd3d3Lm1lbmRlci5pby9ibG9nL2J1aWxkLWluZm8teW9jdG8tMQ0KPiAqIGh0dHBzOi8vd3d3
-Lm1lbmRlci5pby9ibG9nL2J1aWxkLWluZm8teW9jdG8tMg0KPg0KPiBPbiAzMC8wOS8xNSAxNzo0
-NSwgS2hlbSBSYWogd3JvdGU6DQo+ID4NCj4gPj4gT24gU2VwIDMwLCAyMDE1LCBhdCAyOjMxIFBN
-LCBFeXN0ZWluIE3DpWzDuHkgU3RlbmJlcmcgPGV5c3RlaW5AbWVuZGVyLmlvPg0KPiB3cm90ZToN
-Cj4gPj4NCj4gPj4gSGksDQo+ID4+DQo+ID4+IEJlZm9yZSBzdGFydGluZyBhIGJpdGJha2UgYnVp
-bGQsIHdlIGlucHV0IHRoZSBNQUNISU5FIHZhcmlhYmxlIGluDQo+ID4+IGxvY2FsLmNvbmYgKGUu
-Zy4gTUFDSElORSA/PSBiZWFnbGVib25lKS4NCj4gPj4NCj4gPj4gSXMgdGhlcmUgYSB3YXkgdG8g
-ZGV0ZWN0IHRoaXMgdmFyaWFibGUgYXQgcnVuLXRpbWU/IEkuZS4gaWYgSSBoYXZlDQo+ID4+IGJ1
-aWx0IHRoZSBpbWFnZSwgd3JpdHRlbiBpdCB0byBhIGRldmljZSwgYW5kIEknbSBub3cgbG9nZ2Vk
-IGluIHRvIGl0Lg0KPiA+DQo+ID4gVGhlcmUgaXMgbm8gc3RhbmRhcmQgYmlsbCBvZiBtYXRlcmlh
-bHMgdGhhdCB5b3Ugd2lsbCBmaW5kIG9uIGltYWdlcy4NCj4gPiBFdmVyeW9uZSBwcm9kdWNlcyBp
-dCBwZXIgb3duIG5lZWRzLiBUaGUgcmVhc29uIGlzIHRoYXQgd2UgZG8gbm90IGhhdmUNCj4gPiBh
-IG9uZSBPVEEgbWVjaGFuaXNtIHJlY29tbWVuZGVkIG9yIHByZWZlcnJlZCBpbiBPcGVuRW1iZWRk
-ZWQgb3INCj4gPiBtYWludGFpbmVkIGJ5IHlvY3RvIHByb2plY3QuIE1heSBiZSB0aGlzIGNvdWxk
-IGJlIGEgdGhpbmcgdG8gY29uc2lkZXINCj4gPiBjb21lIGZ1dHVyZSByaWdodCBub3csIHRoZXJl
-IHdlcmUgb3RoZXIgYmlnIGZpc2ggdG8gZnJ5IGFyb3VuZCB3b3JrZmxvdy4gT1RBDQo+IGZpcm13
-YXJlIHVwZ3JhZGUsIGNvdWxkIGJlIGJpZyB0aGluZyBmb3IgbmV4dCByZWxlYXNlIG9yIHRoZXJl
-IGFmdGVyLg0KPiA+DQo+ID4gSSBkb27igJl0IGhhdmUgYSBiZXR0ZXIgYW5zd2VyIGZvciB5b3Ug
-YXQgdGhlIG1vbWVudC4gWW91IGhhdmUgdG8gd29yaw0KPiA+IHdpdGggZGV2aWNlIGZpcm13YXJl
-IG1hbnVmYWN0dXJlciBhbmQgc2VlIGlmIHRoZXkgaGF2ZSBwdXQgc29tZSBpbWFnZSBpbmZvDQo+
-IGludG8gdGhlIGltYWdlIGluIHNvbWUgZm9ybS4NCj4gPg0KPiA+Pg0KPiA+PiBUaGUgcmVhc29u
-IEkgd2FudCB0aGlzIGlzIHRoYXQgSSdtIHdvcmtpbmcgb24gYSBwcm9qZWN0IHRvIGRlcGxveQ0K
-PiA+PiBpbWFnZSB1cGRhdGVzIChyZW1vdGVseSksIGFuZCBJIG9ubHkgd2FudCB0byB3cml0ZSB0
-aGUgaW1hZ2UgaWYgdGhlDQo+ID4+IGRldmljZSBpcyBjb21wYXRpYmxlIHdpdGggdGhlIGltYWdl
-IGZpbGUuIFNvIEkgbmVlZCB0byBrbm93IGJvdGggdGhlDQo+ID4+IGhhcmR3YXJlL2JvYXJkIHR5
-cGUgYW5kIHdoYXQgdGhlIGltYWdlIHRhcmdldCBpcyAoYXNzdW1pbmcgdGhpcyBpcw0KPiA+PiB0
-aGUgTUFDSElORSB2YXJpYWJsZSBhbG9uZSkuIFRoZW4gSSB3aWxsIG9ubHkgd3JpdGUgdGhlIGlt
-YWdlIGlmIHRoZXkNCj4gPj4gYXJlIHRoZSBzYW1lLg0KPiA+Pg0KPiA+PiBBbHNvLCBkbyB5b3Ug
-dGhpbmsgdXNpbmcgdGhlIE1BQ0hJTkUgdmFyaWFibGUgaXMgdGhlIHJpZ2h0IGFwcHJvYWNoDQo+
-ID4+IGZvciB0aGlzIHByb2JsZW0/IE1heWJlIHNvbWVvbmUgaGFzIGhhZCBhIHNpbWlsYXIgcHJv
-YmxlbT8NCj4gPj4NCj4gPj4gSSdtIG5ldyB0byBZb2N0bywgc29ycnkgaWYgSSdtIGFza2luZyBz
-b21ldGhpbmcgb2J2aW91cyAoYnV0IEkgY291bGQNCj4gPj4gbm90IGZpbmQgYW4gYW5zd2VyIGlu
-IHRoZSBkb2NzKS4NCj4gPj4NCj4gPj4gVGhhbmtzIQ0KPiA+Pg0KPiA+PiAtLQ0KPiA+Pg0KPiA+
-PiBFeXN0ZWluDQo+ID4+IC0tDQo+ID4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fDQo+ID4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiA+PiB5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnDQo+ID4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5m
-by95b2N0bw0KPiA+DQo+DQo+IC0tDQo+DQo+IEV5c3RlaW4NCj4gLS0NCj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0
-DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qu
-b3JnL2xpc3RpbmZvL3lvY3RvDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQoN
-Ck5vdGljZSB0byByZWNpcGllbnQ6IFRoaXMgZW1haWwgaXMgbWVhbnQgZm9yIG9ubHkgdGhlIGlu
-dGVuZGVkIHJlY2lwaWVudCBvZiB0aGUgdHJhbnNtaXNzaW9uLCBhbmQgbWF5IGJlIGEgY29tbXVu
-aWNhdGlvbiBwcml2aWxlZ2VkIGJ5IGxhdywgc3ViamVjdCB0byBleHBvcnQgY29udHJvbCByZXN0
-cmljdGlvbnMgb3IgdGhhdCBvdGhlcndpc2UgY29udGFpbnMgcHJvcHJpZXRhcnkgaW5mb3JtYXRp
-b24uIElmIHlvdSByZWNlaXZlIHRoaXMgZW1haWwgYnkgbWlzdGFrZSwgcGxlYXNlIG5vdGlmeSB1
-cyBpbW1lZGlhdGVseSBieSByZXBseWluZyB0byB0aGlzIG1lc3NhZ2UgYW5kIHRoZW4gZGVzdHJv
-eSBpdCBhbmQgZG8gbm90IHJldmlldywgZGlzY2xvc2UsIGNvcHkgb3IgZGlzdHJpYnV0ZSBpdC4g
-VGhhbmsgeW91IGluIGFkdmFuY2UgZm9yIHlvdXIgY29vcGVyYXRpb24uDQo=
+On Wed, Nov 11, 2015 at 7:36 AM, Michael Habibi <mikehabibi@gmail.com> wrote:
+> Randy, I've had some time to think about your post and I had a follow up
+> question. Let's say we had internal applications, you suggest that the
+> fetcher can be used to pull down the git/svn repos that contains the
+> internal application code. In this environment, where is the Yocto framework
+> hosted? Is it also on a repo? Would then we have a Yocto repo for image
+> building, and an application repo for application development? Is there a
+> clean way of combining both Yocto and internal applications into a single
+> repo, so our engineers simply have to do a 'git clone' and they'll have what
+> they need to get started?
+
+you will be better served if you prepare to deal with several git
+repositories and use a sandboxing tool
+like android repo or git submodules or may be shell scripts or
+combo-layer tool. This can give you an easy way to clone your
+project/workspace
+
+There are a few ways you can go about your workflows it really depends
+upon your internal team setup and nature of software you do
+
+Lets say you have large teams of application software developers then
+you might like to have a small platform/System-integration team
+which is responsible for providing ADT to these teams and they can
+work on applications independently. Meanwhile you can have this SI
+team
+to them help write and maintain recipes for these applications and
+also maintain the platform builds which will include these
+applications too
+this way you can decouple the application development from platform
+development and creation. ADT can hook into IDEs like eclipse and QT
+Creator
+if your dev community use these tools. You also dont have to train
+large number of folks with OE/Yocto which for app developers could be
+a time saver
+
+Secondly, if you have large middleware and kernels and other parts of
+platform that your developers touch then should be using the yocto
+build env for full platform build, now there are addition productivity
+tools like devtool which will help you develop a particular package
+using internal SDKs under bitbake's control. Then you can use
+recipetool to generate recipes for applications or bbappends and so
+on. But its a new way of doing things so it will require training too.
+
+see http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#dev-modifying-source-code
+for more on devtool.
+
+
+>
+> Thanks, still trying to wrap my head around this a bit.
+>
+> On Tue, Nov 10, 2015 at 6:06 PM, Randy Witt <randy.e.witt@linux.intel.com>
+> wrote:
+>>
+>> Hi Michael,
+>>
+>> See my replies below.
+>>
+>> On 11/10/2015 02:27 PM, Michael Habibi wrote:
+>>
+>>>
+>>>
+>>> This is fundamentally why I have been looking into Yocto/BB/OE as a
+>>> potential replacement distribution. However, I have a couple questions
+>>> stemming from my research. We can leverage the existing Yocto build for
+>>> various open source utilities where it pulls from the web, patches,
+>>> builds,
+>>> and installs into the deployable image. We would probably want to
+>>> colocate
+>>> the tarballs locally, because we would like to prevent people from having
+>>> to fetch from the web during build cycles.
+>>>
+>>
+>> This is pretty common. You can set up SOURCE_MIRROR_URL, to specify local
+>> mirrors to try before using the upstream url in the recipe. So each person
+>> building would at least have to fetch from the local mirror for a build, but
+>> subsequent builds wouldn't require fetching again as long as the DL_DIR was
+>> preserved.
+>>
+>> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SOURCE_MIRROR_URL
+>>
+>> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-DL_DIR
+>>
+>>>
+>>> I see that Yocto thinks of the deployable image and applications as
+>>> separate entities: first you'd build the distribution, then you would use
+>>> ADT/cross-toolchain/etc to build the applications and install them
+>>> separately. However, in our environment, we would need all of our custom
+>>> IP
+>>> applications to be built as part of the deployable image, and not as a
+>>> separate procdure. For example, if I were to call "bitbake our-image", I
+>>> would like the deployable image to contain 1) the kernel, 2) various core
+>>> utilities and libraries for booting, and 3) our custom applications for
+>>> our
+>>> device.
+>>>
+>>>
+>>> This means that somewhere in the yocto framework, we'd ideally have some
+>>> source code somewhere that would also be compiled via recipes/classes
+>>> that
+>>> we'd have to custom write. Is there a best practice for this kind of
+>>> workflow? I don't mind not having source checked in to our VCS for things
+>>> like the kernel, OpenSSL, etc (those can be tarballs obtained from a
+>>> local
+>>> server), but we likely wouldn't want to host tarballs for the
+>>> applications
+>>> we are writing and modifying day-to-day by dozens of engineers. Is there
+>>> a
+>>> place where this source would best fit? Would it be under build/tmp/etc,
+>>> or
+>>> perhaps we can locate the source under a layer directory, like
+>>> meta/source/our-ip-applications?
+>>>
+>>
+>> For all the internal applications at my previous employer we had a layer
+>> for all internal items, it's quite common.
+>>
+>> And if you're not aware, source code is not restricted to tarballs. You
+>> can use git repos, svn and any mechanism the fetcher supports.(even local
+>> directories) The following URL lists the types the fetcher supports.
+>>
+>> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SRC_URI
+>>
+>> The workflow now encouraged, is to use recipetool to assist in creating
+>> recipes. And then once the recipes are created, you can use devtool to
+>> actually do the iterative development on the application represented by the
+>> recipe.
+>>
+>> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-devtool-in-your-workflow
+>>
+>>>
+>>> Or perhaps this workflow is just not recommended or supported by the
+>>> Yocto
+>>> Project? If that's the case, does Yocto only recommend building the
+>>> distribution then building the applications as completely separate
+>>> workflows? Or is there another workflow that I haven't stumbled across
+>>> yet?
+>>>
+>>
+>> There is nothing "wrong" with building the image each time as a developer.
+>> However, it is time consuming to construct the full image and deploy it.
+>>
+>> A much more appealing mechanism would be to use devtool to build the
+>> recipe you are working on, and then use "devtool deploy-target" to then
+>> deploy the output to a live machine. This would require a writeable
+>> filesystem on the target device, but if that is available, the workflow and
+>> turnaround time is much faster.
+>>
+>>
+>>>
+>>> Thanks again for all your help, and let me know if I can help clarify
+>>> anything,
+>>>
+>>>
+>>> Michael
+>>>
+>>>
+>>>
+>>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
