@@ -1,68 +1,37 @@
-Return-Path: <eystein@mender.io>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E101FE009C3; Tue, 10 Nov 2015 18:28:51 -0800 (PST)
+	id CD16DE00A81; Tue, 10 Nov 2015 18:55:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
+	*      [74.55.86.74 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84349E008D2
-	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 18:28:49 -0800 (PST)
-Received: by pacdm15 with SMTP id dm15so15969631pac.3
-	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 18:28:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mender_io.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=I0xE/PPBcEUfsR7vtL2Wux/AKfs7skV5rUoXIKWzukA=;
-	b=PV78vrpomu5rDB3QWu48Ic2LyZ4NU20OdCFg45J7ijn0yV2MclmrIsY8bVwLTGPOfu
-	ofgQIfvuccfWX+M8hKUzAMVPOIlSWAu1Ejwm8qFlwkaZLh4icqS89h41y18DaQdvdog6
-	EbfF4l/wJgQKkXfxpc7rZTnVA/ZPgX5RI6Bbej1A6Zopayr8Lf2Wsk/vSvtgwwGZC2Wb
-	856kiWNw2J3r0As5beJV2Kp710O5HRepRawvB5THEoTzXPWRsg7QiLqoR4LzivQrXPCZ
-	DcnRlM3bUeZ7WWjACs63YWXCR3FQWJ5LRD67cSd5PebmqZmrYAhYCQdIWmlWEE3JHcjS
-	2ITQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=I0xE/PPBcEUfsR7vtL2Wux/AKfs7skV5rUoXIKWzukA=;
-	b=Dfv7NunpkFuKRK6lbOYzX7kttwmEPDN76rjLoNkZdWXxLBMHUGHNbdqi8zPgdEcbRC
-	bdk3hfjZy0WRPA5kHylLmUTzH0negUoR+spDRQMrpT1gBP0mzq5UxqkOa74enfSEHQxX
-	a3vm13DgffIiPfkVa70RDio6VmC53FzrLE1lD0VKTBcn5eEQ2y2FPpi0RUmI12jKT0y/
-	5wk2PY3Ap6xHbKY0nLsThzvGq9dOGQBsu6MOQxYp79JydSefacCVgeUzysSs1E1Fdm2M
-	OVHcWy2JDwLh8+IzzKTwzSNn2IksXy3wmRO5+xYvJBZDjffKDF6MEFh4lVH16n9kLJhW
-	z6GA==
-X-Gm-Message-State: ALoCoQlZtMI8NSKWDFxjHTvYZxhlrIvc4o9ENo+JsygOqZmH27v3vmmUzdrN5NmnziRqxa/2EaL3
-X-Received: by 10.68.201.73 with SMTP id jy9mr10619867pbc.102.1447208929320;
-	Tue, 10 Nov 2015 18:28:49 -0800 (PST)
-Received: from [10.10.13.206] ([184.23.178.130])
-	by smtp.gmail.com with ESMTPSA id
-	fn4sm6624709pab.46.2015.11.10.18.28.48
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 10 Nov 2015 18:28:48 -0800 (PST)
-To: Khem Raj <raj.khem@gmail.com>
-References: <560C54B1.20307@mender.io>
-	<3CF90DC1-AE76-4429-A645-72BF8D4DDA21@gmail.com>
-From: =?UTF-8?Q?Eystein_M=c3=a5l=c3=b8y_Stenberg?= <eystein@mender.io>
-Message-ID: <5642A7DF.6000604@mender.io>
-Date: Tue, 10 Nov 2015 18:28:47 -0800
+X-Greylist: delayed 1339 seconds by postgrey-1.32 at yocto-www;
+	Tue, 10 Nov 2015 18:55:35 PST
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D94B9E009EF
+	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 18:55:35 -0800 (PST)
+Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
+	[73.194.208.34])
+	by smtp.webfaction.com (Postfix) with ESMTP id EC6CD209BF1A;
+	Wed, 11 Nov 2015 02:33:15 +0000 (UTC)
+To: Randy Witt <randy.e.witt@linux.intel.com>,
+	Michael Habibi <mikehabibi@gmail.com>, yocto@yoctoproject.org
+References: <CAOsp8o8rHuiaWjOKWSbW+a5kVX1kegKpfiVto4VtK3V99ZY=mA@mail.gmail.com>
+	<5642866B.8090501@linux.intel.com>
+From: Bob Cochran <yocto@mindchasers.com>
+Message-ID: <5642A8E9.9020305@mindchasers.com>
+Date: Tue, 10 Nov 2015 21:33:13 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <3CF90DC1-AE76-4429-A645-72BF8D4DDA21@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Run-time discovery of machine for image compatibility check
+In-Reply-To: <5642866B.8090501@linux.intel.com>
+Subject: Re: Transitioning to Yocto, some basic questions about workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,68 +43,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Nov 2015 02:28:52 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Nov 2015 02:55:49 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks to everyone on the input on this issue. I eventually solved it by
-using an image feature called "buildinfo".
+On 11/10/2015 07:06 PM, Randy Witt wrote:
+> Hi Michael,
+>
+> See my replies below.
+>
+> On 11/10/2015 02:27 PM, Michael Habibi wrote:
+>
+>>
+>>
+>> This is fundamentally why I have been looking into Yocto/BB/OE as a
+>> potential replacement distribution. However, I have a couple questions
+>> stemming from my research. We can leverage the existing Yocto build for
+>> various open source utilities where it pulls from the web, patches,
+>> builds,
+>> and installs into the deployable image. We would probably want to
+>> colocate
+>> the tarballs locally, because we would like to prevent people from having
+>> to fetch from the web during build cycles.
+>>
+>
+> This is pretty common. You can set up SOURCE_MIRROR_URL, to specify
+> local mirrors to try before using the upstream url in the recipe. So
+> each person building would at least have to fetch from the local mirror
+> for a build, but subsequent builds wouldn't require fetching again as
+> long as the DL_DIR was preserved.
+> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SOURCE_MIRROR_URL
+>
+> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-DL_DIR
+>
+>
+>>
+>> I see that Yocto thinks of the deployable image and applications as
+>> separate entities: first you'd build the distribution, then you would use
+>> ADT/cross-toolchain/etc to build the applications and install them
+>> separately. However, in our environment, we would need all of our
+>> custom IP
+>> applications to be built as part of the deployable image, and not as a
+>> separate procdure. For example, if I were to call "bitbake our-image", I
+>> would like the deployable image to contain 1) the kernel, 2) various core
+>> utilities and libraries for booting, and 3) our custom applications
+>> for our
+>> device.
+>>
+>>
+>> This means that somewhere in the yocto framework, we'd ideally have some
+>> source code somewhere that would also be compiled via recipes/classes
+>> that
+>> we'd have to custom write. Is there a best practice for this kind of
+>> workflow? I don't mind not having source checked in to our VCS for things
+>> like the kernel, OpenSSL, etc (those can be tarballs obtained from a
+>> local
+>> server), but we likely wouldn't want to host tarballs for the
+>> applications
+>> we are writing and modifying day-to-day by dozens of engineers. Is
+>> there a
+>> place where this source would best fit? Would it be under
+>> build/tmp/etc, or
+>> perhaps we can locate the source under a layer directory, like
+>> meta/source/our-ip-applications?
+>>
+>
+> For all the internal applications at my previous employer we had a layer
+> for all internal items, it's quite common.
+>
+> And if you're not aware, source code is not restricted to tarballs. You
+> can use git repos, svn and any mechanism the fetcher supports.(even
+> local directories) The following URL lists the types the fetcher supports.
+> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SRC_URI
 
-In case someone come across a similar need in the future I've created
-these two blog post to advertise buildinfo it a bit more and show how to
-use it:
 
-* https://www.mender.io/blog/build-info-yocto-1
-* https://www.mender.io/blog/build-info-yocto-2
+I just wanted to add that it's also useful during prototyping to create 
+and install a toolchain built by poky onto the target's disk ( for us, 
+we'll have a small SSD attached to the target when doing this).  This 
+can be great for quickly building up applications / daemons ( using C, 
+python, etc) that don't yet have recipes.
 
-On 30/09/15 17:45, Khem Raj wrote:
-> 
->> On Sep 30, 2015, at 2:31 PM, Eystein Måløy Stenberg <eystein@mender.io> wrote:
->>
->> Hi,
->>
->> Before starting a bitbake build, we input the MACHINE variable in
->> local.conf (e.g. MACHINE ?= beaglebone).
->>
->> Is there a way to detect this variable at run-time? I.e. if I have built
->> the image, written it to a device, and I'm now logged in to it.
-> 
-> There is no standard bill of materials that you will find on images. Everyone produces it
-> per own needs. The reason is that we do not have a one OTA mechanism recommended or preferred
-> in OpenEmbedded or maintained by yocto project. May be this could be a thing to consider come future
-> right now, there were other big fish to fry around workflow. OTA firmware upgrade, could be big thing for next release
-> or there after.
-> 
-> I don’t have a better answer for you at the moment. You have to work with device firmware manufacturer
-> and see if they have put some image info into the image in some form.
-> 
->>
->> The reason I want this is that I'm working on a project to deploy image
->> updates (remotely), and I only want to write the image if the device is
->> compatible with the image file. So I need to know both the
->> hardware/board type and what the image target is (assuming this is the
->> MACHINE variable alone). Then I will only write the image if they are
->> the same.
->>
->> Also, do you think using the MACHINE variable is the right approach for
->> this problem? Maybe someone has had a similar problem?
->>
->> I'm new to Yocto, sorry if I'm asking something obvious (but I could not
->> find an answer in the docs).
->>
->> Thanks!
->>
->> --
->>
->> Eystein
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
+The tools are in the rootfs and the applications that we're prototyping 
+are on a separate partition.  Even though it's prototype code, we run 
+git on the target and keep the code under SCM from the beginning. 
+Ultimately, our recipe will pull from the same git repo once the code 
+has matured and a recipe exists.
 
--- 
+We add packages like "make binutils gcc gdb git" to our IMAGE_INSTALL 
+when building an image for our development disk / rootfs.
 
-Eystein
+
+
+>
+>
+> The workflow now encouraged, is to use recipetool to assist in creating
+> recipes. And then once the recipes are created, you can use devtool to
+> actually do the iterative development on the application represented by
+> the recipe.
+> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-devtool-in-your-workflow
+>
+>
+>>
+>> Or perhaps this workflow is just not recommended or supported by the
+>> Yocto
+>> Project? If that's the case, does Yocto only recommend building the
+>> distribution then building the applications as completely separate
+>> workflows? Or is there another workflow that I haven't stumbled across
+>> yet?
+>>
+>
+> There is nothing "wrong" with building the image each time as a
+> developer. However, it is time consuming to construct the full image and
+> deploy it.
+>
+> A much more appealing mechanism would be to use devtool to build the
+> recipe you are working on, and then use "devtool deploy-target" to then
+> deploy the output to a live machine. This would require a writeable
+> filesystem on the target device, but if that is available, the workflow
+> and turnaround time is much faster.
+>
+>>
+>> Thanks again for all your help, and let me know if I can help clarify
+>> anything,
+>>
+>>
+>> Michael
+>>
+>>
+>>
+>
+
 
