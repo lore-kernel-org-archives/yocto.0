@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73273E00B88; Wed, 11 Nov 2015 12:15:23 -0800 (PST)
+	id 8B0DCE008D2; Wed, 11 Nov 2015 14:33:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69A49E00473
-	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 12:15:15 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 12:15:15 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F13AE0049B
+	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 14:33:54 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 14:33:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,277,1444719600"; d="scan'208";a="848747392"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.171])
-	([10.219.5.171])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Nov 2015 12:15:14 -0800
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1447106501-470-1-git-send-email-anibal.limon@linux.intel.com>
-	<1447106501-470-9-git-send-email-anibal.limon@linux.intel.com>
-	<4941487.vH1IYnbBaV@peggleto-mobl.ger.corp.intel.com>
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Message-ID: <5643A1F8.40703@linux.intel.com>
-Date: Wed, 11 Nov 2015 14:15:52 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+X-IronPort-AV: E=Sophos;i="5.20,278,1444719600"; d="scan'208";a="598559580"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
+	by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2015 14:33:54 -0800
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 11 Nov 2015 16:34:17 -0600
+Message-Id: <1447281269-18444-2-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <4941487.vH1IYnbBaV@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 08/10][AUH] upgradehelper.py: Add support for do recipe upgrades based on builddep
+Cc: paul.eggleton@linux.intel.com
+Subject: [[AUH] PATCHv2 01/13] upgradehelper.py: Add step for build gcc-runtime at init.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,20 +41,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Nov 2015 20:15:23 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 11 Nov 2015 22:33:58 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Sure. I forget it :).
+When try to upgrade a recipe the first recipe in the list
+takes too much time because gcc-runtime build is needed.
 
-On 11/10/2015 03:09 AM, Paul Eggleton wrote:
-> On Monday 09 November 2015 16:01:39 Aníbal Limón wrote:
->> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
->> ---
-> 
-> Please provide a proper commit message for this one.
-> 
-> Cheers,
-> Paul
-> 
+So add previous step to build gcc-runtime for every machine.
+
+Signed-off-by: AnÃ­bal LimÃ³n <anibal.limon@linux.intel.com>
+---
+ upgradehelper.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/upgradehelper.py b/upgradehelper.py
+index b5a8abd..bb19b65 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -467,6 +467,11 @@ class Updater(object):
+             W("No recipes attempted, not sending status mail!")
+ 
+     def run(self, package_list=None):
++        I(" Building gcc runtimes ...")
++        for machine in self.machines:
++            I("  building gcc runtime for %s" % machine)
++            self.bb.complete("gcc-runtime", machine)
++
+         pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
+ 
+         total_pkgs = len(pkgs_to_upgrade)
+-- 
+2.1.4
+
 
