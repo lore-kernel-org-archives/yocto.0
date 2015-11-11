@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB903E00A81; Wed, 11 Nov 2015 14:34:01 -0800 (PST)
+	id C7F31E0071C; Wed, 11 Nov 2015 14:34:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC08E006F3
-	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 14:33:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4D55E007C3
+	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 14:33:57 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 14:33:57 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 14:33:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,278,1444719600"; d="scan'208";a="598559595"
+X-IronPort-AV: E=Sophos;i="5.20,278,1444719600"; d="scan'208";a="598559621"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2015 14:33:56 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2015 14:33:58 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 11 Nov 2015 16:34:20 -0600
-Message-Id: <1447281269-18444-5-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 11 Nov 2015 16:34:23 -0600
+Message-Id: <1447281269-18444-8-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH] PATCHv2 04/13] buildhistory.py: Don't modify BB_ENV_EXTRAWHITE before init.
+Subject: [[AUH] PATCHv2 07/13] upgradehelper.py: Improve work directory structure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,37 +45,78 @@ X-List-Received-Date: Wed, 11 Nov 2015 22:34:01 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Move code for add BUILDHISTORY_DIR to __init__ method because
-it fails when import in early step.
+Add work directory with datetime suffix to preserve recipe upgrades.
+
+Create tree folders all, succeed and failed,
+	all	- Contains all the recipes work
+	succeed	- Contains a symlinks to the recipes that successful
+		  upgrade
+	failed	- Contains a symlinks to the recipes that fail
+		  upgrade
+
+This helps to navigate over patches that have a successful upgrade.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- buildhistory.py | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ upgradehelper.py | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
 
-diff --git a/buildhistory.py b/buildhistory.py
-index 1732f23..59566c8 100644
---- a/buildhistory.py
-+++ b/buildhistory.py
-@@ -30,9 +30,6 @@ from errors import *
- from bitbake import *
- from git import Git
+diff --git a/upgradehelper.py b/upgradehelper.py
+index 195d8c9..ae8fc48 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -132,9 +132,16 @@ class Updater(object):
+         if not os.path.exists(self.uh_dir):
+             os.mkdir(self.uh_dir)
  
--os.environ['BB_ENV_EXTRAWHITE'] = os.environ['BB_ENV_EXTRAWHITE'] + \
--                                    " BUILDHISTORY_DIR"
+-        self.uh_work_dir = os.path.join(self.uh_dir, "work")
+-        if not os.path.exists(self.uh_work_dir):
+-            os.mkdir(self.uh_work_dir)
++        self.uh_work_dir = os.path.join(self.uh_dir, "work-%s" % \
++                datetime.now().strftime("%Y%m%d%H%M"))
++        os.mkdir(self.uh_work_dir)
++
++        self.uh_recipes_all_dir = os.path.join(self.uh_work_dir, "all")
++        os.mkdir(self.uh_recipes_all_dir)
++        self.uh_recipes_succeed_dir = os.path.join(self.uh_work_dir, "succeed")
++        os.mkdir(self.uh_recipes_succeed_dir)
++        self.uh_recipes_failed_dir = os.path.join(self.uh_work_dir, "failed")
++        os.mkdir(self.uh_recipes_failed_dir)
+ 
+         self.bb = Bitbake(get_build_dir())
+         self.git = None
+@@ -223,10 +230,7 @@ class Updater(object):
+         self.env = self._get_env(self.pn)
+ 
+     def _create_workdir(self):
+-        self.workdir = os.path.join(self.uh_work_dir, self.pn)
 -
- class BuildHistory(object):
-     def __init__(self, bb, pn, workdir):
-         self.bb = bb
-@@ -46,6 +43,8 @@ class BuildHistory(object):
+-        if os.path.exists(self.workdir):
+-            shutil.rmtree(self.workdir)
++        self.workdir = os.path.join(self.uh_recipes_all_dir, self.pn)
+         os.mkdir(self.workdir)
  
-         self.git = Git(self.buildhistory_dir)
+     def _detect_repo(self):
+@@ -490,6 +494,9 @@ class Updater(object):
+                         I(" %s: %s" % (self.pn, msg))
+                     step()
  
-+        os.environ['BB_ENV_EXTRAWHITE'] = os.environ['BB_ENV_EXTRAWHITE'] + \
-+                                    " BUILDHISTORY_DIR"
-         os.environ["BUILDHISTORY_DIR"] = self.buildhistory_dir
++                os.symlink(self.workdir, os.path.join( \
++                    self.uh_recipes_succeed_dir, self.pn))
++
+                 I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)
+             except Exception as e:
+                 if isinstance(e, UpgradeNotNeededError):
+@@ -511,6 +518,9 @@ class Updater(object):
  
-     def init(self, machines):
+                 error = e
+ 
++                os.symlink(self.workdir, os.path.join( \
++                    self.uh_recipes_failed_dir, self.pn))
++
+             self._commit_changes()
+ 
+             self.pkg_upgrade_handler(error)
 -- 
 2.1.4
 
