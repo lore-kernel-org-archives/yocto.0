@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7F31E0071C; Wed, 11 Nov 2015 14:34:01 -0800 (PST)
+	id 93D97E00B21; Wed, 11 Nov 2015 14:34:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4D55E007C3
-	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 14:33:57 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B331E009C3
+	for <yocto@yoctoproject.org>; Wed, 11 Nov 2015 14:34:06 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 14:33:59 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 11 Nov 2015 14:34:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,278,1444719600"; d="scan'208";a="598559621"
+X-IronPort-AV: E=Sophos;i="5.20,278,1444719600"; d="scan'208";a="598559627"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2015 14:33:58 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 11 Nov 2015 14:33:59 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 11 Nov 2015 16:34:23 -0600
-Message-Id: <1447281269-18444-8-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 11 Nov 2015 16:34:24 -0600
+Message-Id: <1447281269-18444-9-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1447281269-18444-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH] PATCHv2 07/13] upgradehelper.py: Improve work directory structure
+Subject: [[AUH] PATCHv2 08/13] upgradehelper.py: Add support for do recipe upgrades based on builddep
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,82 +41,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Nov 2015 22:34:01 -0000
+X-List-Received-Date: Wed, 11 Nov 2015 22:34:08 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add work directory with datetime suffix to preserve recipe upgrades.
+Now upgradehelper runs recipe upgrades based on build dependencies, the
+dependency information is taken of bitbake dependency graph.
 
-Create tree folders all, succeed and failed,
-	all	- Contains all the recipes work
-	succeed	- Contains a symlinks to the recipes that successful
-		  upgrade
-	failed	- Contains a symlinks to the recipes that fail
-		  upgrade
-
-This helps to navigate over patches that have a successful upgrade.
+So if recipe a depends in build time on recipe b and c these recipes
+b and c are first tried to upgrade then a.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- upgradehelper.py | 24 +++++++++++++++++-------
- 1 file changed, 17 insertions(+), 7 deletions(-)
+ upgradehelper.py | 114 +++++++++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 86 insertions(+), 28 deletions(-)
 
 diff --git a/upgradehelper.py b/upgradehelper.py
-index 195d8c9..ae8fc48 100755
+index ae8fc48..5bb066a 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -132,9 +132,16 @@ class Updater(object):
-         if not os.path.exists(self.uh_dir):
-             os.mkdir(self.uh_dir)
+@@ -91,7 +91,6 @@ def parse_cmdline():
+ def get_build_dir():
+     return os.getenv('BUILDDIR')
  
--        self.uh_work_dir = os.path.join(self.uh_dir, "work")
--        if not os.path.exists(self.uh_work_dir):
--            os.mkdir(self.uh_work_dir)
-+        self.uh_work_dir = os.path.join(self.uh_dir, "work-%s" % \
-+                datetime.now().strftime("%Y%m%d%H%M"))
-+        os.mkdir(self.uh_work_dir)
-+
-+        self.uh_recipes_all_dir = os.path.join(self.uh_work_dir, "all")
-+        os.mkdir(self.uh_recipes_all_dir)
-+        self.uh_recipes_succeed_dir = os.path.join(self.uh_work_dir, "succeed")
-+        os.mkdir(self.uh_recipes_succeed_dir)
-+        self.uh_recipes_failed_dir = os.path.join(self.uh_work_dir, "failed")
-+        os.mkdir(self.uh_recipes_failed_dir)
- 
-         self.bb = Bitbake(get_build_dir())
-         self.git = None
-@@ -223,10 +230,7 @@ class Updater(object):
-         self.env = self._get_env(self.pn)
- 
-     def _create_workdir(self):
--        self.workdir = os.path.join(self.uh_work_dir, self.pn)
 -
--        if os.path.exists(self.workdir):
--            shutil.rmtree(self.workdir)
-+        self.workdir = os.path.join(self.uh_recipes_all_dir, self.pn)
-         os.mkdir(self.workdir)
+ def parse_config_file(config_file):
+     settings = dict()
+     maintainer_override = dict()
+@@ -435,26 +434,6 @@ class Updater(object):
+             I(" %s: %s" % (self.pn, e.stdout))
+             raise e
  
-     def _detect_repo(self):
-@@ -490,6 +494,9 @@ class Updater(object):
-                         I(" %s: %s" % (self.pn, msg))
-                     step()
+-    def _order_list(self, package_list):
+-        try:
+-            self.bb.dependency_graph(' '.join(p[0] for p in package_list))
+-        except Error as e:
+-            multiple_providers = False
+-            for l in e.stdout.split('\n'):
+-                if l.find("ERROR: Multiple .bb files are due to be built which each provide") == 0:
+-                    multiple_providers = True
+-
+-            if not multiple_providers:
+-                raise e
+-
+-        dep_file = os.path.join(get_build_dir(), "pn-buildlist")
+-        ordered_list = []
+-        with open(dep_file) as deps:
+-            for d in deps:
+-                ordered_list.extend(p for p in package_list if p[0] == d.strip())
+-
+-        return ordered_list
+-
+     def send_status_mail(self):
+         if "status_recipients" not in settings:
+             E("Could not send status email, no recipients set!")
+@@ -471,16 +450,100 @@ class Updater(object):
+         else:
+             W("No recipes attempted, not sending status mail!")
  
-+                os.symlink(self.workdir, os.path.join( \
-+                    self.uh_recipes_succeed_dir, self.pn))
 +
-                 I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)
-             except Exception as e:
-                 if isinstance(e, UpgradeNotNeededError):
-@@ -511,6 +518,9 @@ class Updater(object):
- 
-                 error = e
- 
-+                os.symlink(self.workdir, os.path.join( \
-+                    self.uh_recipes_failed_dir, self.pn))
++    def _order_pkgs_to_upgrade(self, pkgs_to_upgrade):
++        def _get_pn_dep_dic(pn_list, dependency_file): 
++            import re
 +
-             self._commit_changes()
++            pn_dep_dic = {}
++
++            with open(dependency_file) as dep:
++                data = dep.read()
++                dep.close()
++
++                for line in data.split('\n'):
++                    m = re.search('^"(.*)" -> "(.*)"$', line)
++                    if not m:
++                        continue
++
++                    pn = m.group(1)
++                    pn_dep = m.group(2)
++                    if pn == pn_dep:
++                        continue
++
++                    if pn in pn_list:
++                        if pn_dep in pn_list:
++                            if pn in pn_dep_dic.keys():
++                                pn_dep_dic[pn].append(pn_dep)
++                            else:
++                                pn_dep_dic[pn] = [pn_dep]
++                        elif not pn in pn_dep_dic.keys():
++                            pn_dep_dic[pn] = []
++
++            return pn_dep_dic
++
++        def _dep_resolve(graph, node, resolved, seen):
++            seen.append(node)
++
++            for edge in graph[node]:
++                if edge not in resolved:
++                    if edge in seen:
++                        raise RuntimeError("Packages %s and %s have " \
++                                "a circular dependency." \
++                                % (node, edge))
++                    _dep_resolve(graph, edge, resolved, seen)
++
++            resolved.append(node)
++
++
++        pn_list = []
++        for pn, new_ver, maintainer in pkgs_to_upgrade:
++            pn_list.append(pn)
++
++        try:
++           self.bb.dependency_graph(' '.join(pn_list))
++        except Error as e:
++            multiple_providers = False
++            for l in e.stdout.split('\n'):
++                if l.find("ERROR: Multiple .bb files are due to be built which each provide") == 0:
++                    multiple_providers = True
++            if not multiple_providers:
++                raise e
++
++        dependency_file = os.path.join(get_build_dir(), "pn-depends.dot")
++
++        pkgs_to_upgrade_ordered = []
++        pn_list_ordered = []
++
++        pn_dep_dic = _get_pn_dep_dic(pn_list, dependency_file)
++        if pn_dep_dic:
++            root = "__root_node__"
++            pn_dep_dic[root] = pn_dep_dic.keys()
++            _dep_resolve(pn_dep_dic, root, pn_list_ordered, [])
++            pn_list_ordered.remove(root)
++
++        for pn_ordered in pn_list_ordered:
++            for pn, new_ver, maintainer in pkgs_to_upgrade:
++                if pn == pn_ordered: 
++                    pkgs_to_upgrade_ordered.append([pn, new_ver, maintainer])
++
++        return pkgs_to_upgrade_ordered
++
+     def run(self, package_list=None):
+         I(" Building gcc runtimes ...")
+         for machine in self.machines:
+             I("  building gcc runtime for %s" % machine)
+             self.bb.complete("gcc-runtime", machine)
  
-             self.pkg_upgrade_handler(error)
+-        pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
+-
++        pkgs_to_upgrade = self._order_pkgs_to_upgrade(
++                self._get_packages_to_upgrade(package_list))
+         total_pkgs = len(pkgs_to_upgrade)
+ 
++        I(" ########### The list of recipes to be upgraded #############")
++        for p, v, m in pkgs_to_upgrade:
++            I(" %s, %s, %s" % (p, v, m))
++        I(" ############################################################")
++
+         attempted_pkgs = 0
+         for self.pn, self.new_ver, self.maintainer in pkgs_to_upgrade:
+             error = None
+@@ -708,11 +771,6 @@ class UniverseUpdater(Updater):
+             last_check.write(current_date + "," + cur_master_commit + "," +
+                              last_checkpkg_file)
+ 
+-        I(" ########### The list of recipes to be upgraded ############")
+-        for p, v, m in pkgs_list:
+-            I(" %s, %s, %s" % (p, v, m))
+-        I(" ############################################################")
+-
+         return pkgs_list
+ 
+     def _update_history(self, pn, new_ver, maintainer, upgrade_status):
 -- 
 2.1.4
 
