@@ -1,37 +1,41 @@
-Return-Path: <yocto@mindchasers.com>
+Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD16DE00A81; Tue, 10 Nov 2015 18:55:49 -0800 (PST)
+	id F4046E00B05; Tue, 10 Nov 2015 22:35:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.55.86.74 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1339 seconds by postgrey-1.32 at yocto-www;
-	Tue, 10 Nov 2015 18:55:35 PST
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D94B9E009EF
-	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 18:55:35 -0800 (PST)
-Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
-	[73.194.208.34])
-	by smtp.webfaction.com (Postfix) with ESMTP id EC6CD209BF1A;
-	Wed, 11 Nov 2015 02:33:15 +0000 (UTC)
-To: Randy Witt <randy.e.witt@linux.intel.com>,
-	Michael Habibi <mikehabibi@gmail.com>, yocto@yoctoproject.org
-References: <CAOsp8o8rHuiaWjOKWSbW+a5kVX1kegKpfiVto4VtK3V99ZY=mA@mail.gmail.com>
-	<5642866B.8090501@linux.intel.com>
-From: Bob Cochran <yocto@mindchasers.com>
-Message-ID: <5642A8E9.9020305@mindchasers.com>
-Date: Tue, 10 Nov 2015 21:33:13 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88F7AE00AEB
+	for <yocto@yoctoproject.org>; Tue, 10 Nov 2015 22:35:10 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Nov 2015 22:35:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,274,1444719600"; d="scan'208";a="847663518"
+Received: from wquesada-mobl.amr.corp.intel.com (HELO [10.252.249.39])
+	([10.252.249.39])
+	by orsmga002.jf.intel.com with ESMTP; 10 Nov 2015 22:34:46 -0800
+Message-ID: <5642E197.5000704@linux.intel.com>
+Date: Wed, 11 Nov 2015 00:35:03 -0600
+From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <5642866B.8090501@linux.intel.com>
-Subject: Re: Transitioning to Yocto, some basic questions about workflow
+To: Gary Thomas <gary@mlbassoc.com>, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <563B4DF9.5030206@mlbassoc.com>
+	<3016549.FSiAq4gXjU@peggleto-mobl.ger.corp.intel.com>
+	<563B66D9.1050808@mlbassoc.com> <5640C5B2.7010809@linux.intel.com>
+	<5640C95B.2060205@mlbassoc.com>
+In-Reply-To: <5640C95B.2060205@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Python pip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,134 +47,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Nov 2015 02:55:49 -0000
+X-List-Received-Date: Wed, 11 Nov 2015 06:35:14 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/10/2015 07:06 PM, Randy Witt wrote:
-> Hi Michael,
->
-> See my replies below.
->
-> On 11/10/2015 02:27 PM, Michael Habibi wrote:
->
->>
->>
->> This is fundamentally why I have been looking into Yocto/BB/OE as a
->> potential replacement distribution. However, I have a couple questions
->> stemming from my research. We can leverage the existing Yocto build for
->> various open source utilities where it pulls from the web, patches,
->> builds,
->> and installs into the deployable image. We would probably want to
->> colocate
->> the tarballs locally, because we would like to prevent people from having
->> to fetch from the web during build cycles.
->>
->
-> This is pretty common. You can set up SOURCE_MIRROR_URL, to specify
-> local mirrors to try before using the upstream url in the recipe. So
-> each person building would at least have to fetch from the local mirror
-> for a build, but subsequent builds wouldn't require fetching again as
-> long as the DL_DIR was preserved.
-> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SOURCE_MIRROR_URL
->
-> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-DL_DIR
->
->
->>
->> I see that Yocto thinks of the deployable image and applications as
->> separate entities: first you'd build the distribution, then you would use
->> ADT/cross-toolchain/etc to build the applications and install them
->> separately. However, in our environment, we would need all of our
->> custom IP
->> applications to be built as part of the deployable image, and not as a
->> separate procdure. For example, if I were to call "bitbake our-image", I
->> would like the deployable image to contain 1) the kernel, 2) various core
->> utilities and libraries for booting, and 3) our custom applications
->> for our
->> device.
->>
->>
->> This means that somewhere in the yocto framework, we'd ideally have some
->> source code somewhere that would also be compiled via recipes/classes
->> that
->> we'd have to custom write. Is there a best practice for this kind of
->> workflow? I don't mind not having source checked in to our VCS for things
->> like the kernel, OpenSSL, etc (those can be tarballs obtained from a
->> local
->> server), but we likely wouldn't want to host tarballs for the
->> applications
->> we are writing and modifying day-to-day by dozens of engineers. Is
->> there a
->> place where this source would best fit? Would it be under
->> build/tmp/etc, or
->> perhaps we can locate the source under a layer directory, like
->> meta/source/our-ip-applications?
->>
->
-> For all the internal applications at my previous employer we had a layer
-> for all internal items, it's quite common.
->
-> And if you're not aware, source code is not restricted to tarballs. You
-> can use git repos, svn and any mechanism the fetcher supports.(even
-> local directories) The following URL lists the types the fetcher supports.
-> https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SRC_URI
+I am sending a patch to upgrade Python3 to 3.5, and I will include the 
+pip3 change in it, currently pip3 is installed as pip, pip3 and pip3.5, 
+so its just a matter of removing 'pip', to leave it available for pip2 
+and make it default when python2-pip is installed, it seems to be 
+working correctly that way, just thought I'd let you know.
 
+Cheers,
 
-I just wanted to add that it's also useful during prototyping to create 
-and install a toolchain built by poky onto the target's disk ( for us, 
-we'll have a small SSD attached to the target when doing this).  This 
-can be great for quickly building up applications / daemons ( using C, 
-python, etc) that don't yet have recipes.
+Alejandro
 
-The tools are in the rootfs and the applications that we're prototyping 
-are on a separate partition.  Even though it's prototype code, we run 
-git on the target and keep the code under SCM from the beginning. 
-Ultimately, our recipe will pull from the same git repo once the code 
-has matured and a recipe exists.
-
-We add packages like "make binutils gcc gdb git" to our IMAGE_INSTALL 
-when building an image for our development disk / rootfs.
-
-
-
+On 09/11/15 10:27, Gary Thomas wrote:
+> On 2015-11-09 09:11, Alejandro Hernandez wrote:
+>>
+>>
+>> On 05/11/15 08:25, Gary Thomas wrote:
+>>> On 2015-11-05 07:14, Paul Eggleton wrote:
+>>>> Hi Gary,
+>>>>
+>>>> On Thursday 05 November 2015 05:39:21 Gary Thomas wrote:
+>>>>> Just curious, does anyone know why OE-core has python3-pip
+>>>>> but python-pip is relegated to meta-oe?
+>>>>
+>>>> I think it has to do with pip being supplied as part of the 
+>>>> standard python 3
+>>>> distribution from 3.4 onwards. I think for simplicity's sake it 
+>>>> might be
+>>>> argued that python-pip could be in the same place though.
+>> Yes, in fact, python3-pip was included on oe-core after the upgrade 
+>> to python3.4 since it's now a requirement, I agree, we probably 
+>> should include python-pip on oe-core too
+>>>
+>>> Thanks, I'll consider sending a patch set for that.
+>>>
+>>> Sadly, at this point, both packages can't be installed at the
+>>> same time as they both call the result "/usr/bin/pip".  Maybe
+>>> in keeping with the python/python3 naming, the python3 version
+>>> should be installed as pip3?
+>>
+>> python3-pip recipe had to be created to avoid an issue with the 
+>> default pip installation by python3.4, its now handled by distutils3, 
+>> if its only a matter of changing the binary
+>> name afterwards from pip to pip3 I see no problem doing this, I am 
+>> hoping this solves it, but just mentioning that we already had some 
+>> issues with this, because of the "defaults"
+>> python3 expects
 >
->
-> The workflow now encouraged, is to use recipetool to assist in creating
-> recipes. And then once the recipes are created, you can use devtool to
-> actually do the iterative development on the application represented by
-> the recipe.
-> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-devtool-in-your-workflow
->
->
->>
->> Or perhaps this workflow is just not recommended or supported by the
->> Yocto
->> Project? If that's the case, does Yocto only recommend building the
->> distribution then building the applications as completely separate
->> workflows? Or is there another workflow that I haven't stumbled across
->> yet?
->>
->
-> There is nothing "wrong" with building the image each time as a
-> developer. However, it is time consuming to construct the full image and
-> deploy it.
->
-> A much more appealing mechanism would be to use devtool to build the
-> recipe you are working on, and then use "devtool deploy-target" to then
-> deploy the output to a live machine. This would require a writeable
-> filesystem on the target device, but if that is available, the workflow
-> and turnaround time is much faster.
->
->>
->> Thanks again for all your help, and let me know if I can help clarify
->> anything,
->>
->>
->> Michael
->>
->>
->>
+> In that case, we could rename the Python2 pip as pip2.  I think
+> they really need different names as they will be installing
+> packages into very different locations Python2 vs Python3.
 >
 
 
