@@ -1,39 +1,38 @@
-Return-Path: <toby.gomersall@smartacoustics.co.uk>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76E72E00B3D; Thu, 12 Nov 2015 01:17:37 -0800 (PST)
+	id 8527FE00B3D; Thu, 12 Nov 2015 01:55:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [80.241.60.212 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx1.mailbox.org (mx1.mailbox.org [80.241.60.212])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34CC2E00AB5
-	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 01:17:33 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.mailbox.org (Postfix) with ESMTPS id 2B7D24007D
-	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 10:17:32 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-	by gerste.heinlein-support.de (gerste.heinlein-support.de
-	[91.198.250.173]) (amavisd-new, port 10030)
-	with ESMTP id 49j_5rbCIjKf for <yocto@yoctoproject.org>;
-	Thu, 12 Nov 2015 10:17:28 +0100 (CET)
-To: yocto@yoctoproject.org
-From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <5644591F.1090703@smartacoustics.co.uk>
-Date: Thu, 12 Nov 2015 09:17:19 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13435E00A9C
+	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 01:55:00 -0800 (PST)
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
+	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Thu, 12 Nov 2015 15:24:54 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Thu, 12 Nov 2015 15:24:51 +0530
+Received: from SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7]) by
+	SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7%14]) with mapi id
+	15.00.0995.028; Thu, 12 Nov 2015 15:24:51 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Rsh is not working
+Thread-Index: AQHRHTAsY0I9ZjkQ90Gdew1N21mLAQ==
+Date: Thu, 12 Nov 2015 09:54:50 +0000
+Message-ID: <ebbca9374e8f444dbf4f0e4dac112f78@SOC-EXCH-02.invecas.local>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [175.101.7.226]
 MIME-Version: 1.0
-Subject: Building yocto with hard float support
+Subject: Rsh is not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,52 +44,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Nov 2015 09:17:37 -0000
-X-Groupsio-MsgNum: 27302
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="UU60anM7eKF0MDBof1QxAxPD7jRU2udtD"
+X-List-Received-Date: Thu, 12 Nov 2015 09:55:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_"
 
---UU60anM7eKF0MDBof1QxAxPD7jRU2udtD
-Content-Type: text/plain; charset=utf-8
+--_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I want to build yocto with hard float support. I understand that I can
-point the EXTERNAL_TOOLCHAIN variable at the appropriate external hard
-float compiler (gcc-5-arm-linux-gnueabihf). However, I was wondering if
-there was anything within the yocto project to do this?
-
-I'm concerned that future updates to an external compiler might affect
-my build and I would prefer to use a method from within the yocto project=
-=2E
-
-Thank you,
-Toby
+Hi All,
 
 
---UU60anM7eKF0MDBof1QxAxPD7jRU2udtD
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+I built RFS for yocto with the enabling of all  the inetutils.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
 
-iQIcBAEBCAAGBQJWRFknAAoJEJFfznYik92Ws9YP/Au5qrbf2XfqkhrprM453fQy
-ptM1ybVCu/C397Ys8+7NAa3yzPLm18T452pYGNSQ3op6mtfe8iL9lhxL8By2IfoR
-WQEqFSY/n7Xc34ASBhoUIBKFnUuYFqdbwaRaZsuLY/ioc1KJ9E9lzo6FHpiFgqQu
-SaNkGhD8qFHzxERsB7QE/ujNsvozK3kHIALsFOP0t7IhrDFhLrfQ+yLhSW1Ms0eu
-LR6P62WXcKoFYYUDtqLudSgECdUNPpTc2uh1ld4T1HpKDmOPQW/hThO0JN5fEson
-parBuFyEIGqezNbrt8Zds1pi8h2eAVemvrSUiPxhegegSrqPTyzCsP16B+GqDi+j
-ljdeyTXWG9xMmvNxFxRVLWUKhu4U8OqS0vzAV3SOtDXdSoPneQrb5/7kEtMjM7Qe
-C/ZZb45kkyRyjfDQfSTD0ZplfPcnYihtGIUXM/vlwH+lrCmuPMYQXJ0sNzvpO28t
-TfQjxAZaDuvhd67Q+SRtlLnRIkch+TPOfGNU5Sk4FoiDWDSk+G1Nct8xKO6NrRJ+
-uQnmKYqWaXNHFy1MQlduYXZFlONOKZfeLyz7crY7fiabDuguHvQch/HhiQ5zsUhk
-e6uHtpaWqtiRxTlqPXmAcNOqlaPsG68v6Gb0gcC7rWoY4LiIEpzUQ9PRF+/ZGcxD
-VNFGtRkKj2hzy8xUdBca
-=XRpU
------END PGP SIGNATURE-----
+When I boot up the kernel on my board and while running the "rsh <server_ip=
+> ls" command i got the "permission denied" error.
 
---UU60anM7eKF0MDBof1QxAxPD7jRU2udtD--
+
+But when i run the command "rsh <server_ip>" it successfully login into the=
+ remote machine.
+
+
+Could you please help the resolving this issue.
+
+
+Thanks and Regards,
+
+Raghavendra K.
+
+
+--_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
+66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
+s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
+isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
+or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
+acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
+ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
+x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
+nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
+0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
+g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
+x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
+iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
+cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
+ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
+esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
+,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
+font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
+rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
+        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
+}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
+ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
+ .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
+:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
+/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
+le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
+z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
+8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
+size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
+iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
+:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
+*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+Hi All,
+<p><br>
+</p>
+<p>I built RFS for yocto with the enabling of all&nbsp; the inetutils.</p>
+<p><br>
+</p>
+<p>When I boot up the kernel on my board and while running the &quot;rsh &l=
+t;server_ip&gt; ls&quot; command i got the &quot;permission denied&quot; er=
+ror.</p>
+<p><br>
+</p>
+<p>But when i run the command &quot;rsh &lt;server_ip&gt;&quot; it successf=
+ully login into the remote machine.</p>
+<p><br>
+</p>
+<p>Could you please help the resolving this issue.</p>
+<p><br>
+</p>
+<p>Thanks and Regards,</p>
+<p>Raghavendra K.<br>
+</p>
+<p><br>
+</p>
+</body>
+</html>
+
+--_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_--
