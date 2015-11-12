@@ -1,38 +1,40 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8527FE00B3D; Thu, 12 Nov 2015 01:55:02 -0800 (PST)
+	id B13AFE00C4A; Thu, 12 Nov 2015 09:04:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13435E00A9C
-	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 01:55:00 -0800 (PST)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
-	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Thu, 12 Nov 2015 15:24:54 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Thu, 12 Nov 2015 15:24:51 +0530
-Received: from SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7]) by
-	SOC-EXCH-02.invecas.local ([fe80::d5e5:b58b:6ae1:d0c7%14]) with mapi id
-	15.00.0995.028; Thu, 12 Nov 2015 15:24:51 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Rsh is not working
-Thread-Index: AQHRHTAsY0I9ZjkQ90Gdew1N21mLAQ==
-Date: Thu, 12 Nov 2015 09:54:50 +0000
-Message-ID: <ebbca9374e8f444dbf4f0e4dac112f78@SOC-EXCH-02.invecas.local>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [175.101.7.226]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81089E00C3B
+	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 09:03:57 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tACH3gPA018942
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 12 Nov 2015 09:03:43 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.226) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Thu, 12 Nov 2015 09:03:42 -0800
+To: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>,
+	<yocto@yoctoproject.org>
+References: <5644591F.1090703@smartacoustics.co.uk>
+From: Mark Hatle <mark.hatle@windriver.com>
+X-Enigmail-Draft-Status: N1110
+Organization: Wind River Systems
+Message-ID: <5644C66D.4030408@windriver.com>
+Date: Thu, 12 Nov 2015 11:03:41 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Rsh is not working
+In-Reply-To: <5644591F.1090703@smartacoustics.co.uk>
+Subject: Re: Building yocto with hard float support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,109 +46,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Nov 2015 09:55:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_"
+X-List-Received-Date: Thu, 12 Nov 2015 17:04:00 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
---_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 11/12/15 3:17 AM, Toby Gomersall wrote:
+> Hi,
+> 
+> I want to build yocto with hard float support. I understand that I can
+> point the EXTERNAL_TOOLCHAIN variable at the appropriate external hard
+> float compiler (gcc-5-arm-linux-gnueabihf). However, I was wondering if
+> there was anything within the yocto project to do this?
 
-Hi All,
+I'm going to be pedantic for a second.. bear with me.
+
+ARM has two ABIs, the standard EABI which passes floating point values via
+integer registers and EABIHF that passes floating point values via floating
+point registers.
+
+EABI allows hardware floating point along with neon or any other core specific
+optimizations.
+
+EABIHF requires a specific set and size of VFP registers.
+
+The Yocto Project is capable of building for both ABIs with whatever
+combinations of optimizations you need.
+
+The ABI and default processor optimization is configured by the 'DEFAULTTUNE'
+parameter.  This is typically defined in your machine configuration file, either
+explicitly or implicitly via the including of the tune files.
 
 
-I built RFS for yocto with the enabling of all  the inetutils.
+So for example, if you have an ARMv5 CPU you would likely use:
+
+DEFAULTTUNE="armv5e"
+
+This would select ARM EABI, no VFP.
+
+alternatively you could do:
+
+DEFAULTTUNE="armv5e-vfp"
+
+This would select ARM EABI w/ VFP floating point.
+
+OR
+
+(what I think you are actually trying to ask)
+
+DEFAULTTUNE="armv5ehf-vfp"
+
+This would select ARM EABIHF w/ VFP floating point.
 
 
-When I boot up the kernel on my board and while running the "rsh <server_ip=
-> ls" command i got the "permission denied" error.
+So start with your machine and determine which defaulttune (bitbake -e) you have
+selected.  Adjust it to a compatible setting for the ABI and processor
+optimizations that you wish to use.
+
+> I'm concerned that future updates to an external compiler might affect
+> my build and I would prefer to use a method from within the yocto project.
+
+Unless you have a specific need, I don't recommend external compilers.  The
+Yocto Project compilers and configurations are well tested and high quality.
+While using an external compiler is support by some vendors, it adds complexity
+that may not be beneficial.  (Sometimes support and other aspects of commercial
+offerings outweigh the complexity..)
+
+> Thank you,
+> Toby
+> 
+> 
+> 
 
 
-But when i run the command "rsh <server_ip>" it successfully login into the=
- remote machine.
-
-
-Could you please help the resolving this issue.
-
-
-Thanks and Regards,
-
-Raghavendra K.
-
-
---_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
-66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
-s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
-isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
-or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
-acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
-ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
-x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
-nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
-0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
-g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
-x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
-iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
-cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
-ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
-esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
-,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
-font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
-rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
-        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
-}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
-ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
- .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
-:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
-/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
-le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
-z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
-8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
-iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
-:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
-*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}--></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-Hi All,
-<p><br>
-</p>
-<p>I built RFS for yocto with the enabling of all&nbsp; the inetutils.</p>
-<p><br>
-</p>
-<p>When I boot up the kernel on my board and while running the &quot;rsh &l=
-t;server_ip&gt; ls&quot; command i got the &quot;permission denied&quot; er=
-ror.</p>
-<p><br>
-</p>
-<p>But when i run the command &quot;rsh &lt;server_ip&gt;&quot; it successf=
-ully login into the remote machine.</p>
-<p><br>
-</p>
-<p>Could you please help the resolving this issue.</p>
-<p><br>
-</p>
-<p>Thanks and Regards,</p>
-<p>Raghavendra K.<br>
-</p>
-<p><br>
-</p>
-</body>
-</html>
-
---_000_ebbca9374e8f444dbf4f0e4dac112f78SOCEXCH02invecaslocal_--
