@@ -1,40 +1,55 @@
-Return-Path: <toby.gomersall@smartacoustics.co.uk>
+Return-Path: <bkylerussell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33487E00C86; Fri, 13 Nov 2015 02:55:39 -0800 (PST)
+	id 7242EE00C7C; Thu, 12 Nov 2015 20:55:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bkylerussell[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [80.241.60.215 listed in list.dnswl.org]
-Received: from mx2.mailbox.org (mx2.mailbox.org [80.241.60.215])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9F9DE00C80
-	for <yocto@yoctoproject.org>; Fri, 13 Nov 2015 02:55:36 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx2.mailbox.org (Postfix) with ESMTPS id E2D344209C;
-	Fri, 13 Nov 2015 11:55:34 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-	by gerste.heinlein-support.de (gerste.heinlein-support.de
-	[91.198.250.173]) (amavisd-new, port 10030)
-	with ESMTP id uHANv_LfJT1A; Fri, 13 Nov 2015 11:55:33 +0100 (CET)
-To: Mark Hatle <mark.hatle@windriver.com>, yocto@yoctoproject.org
-References: <5644591F.1090703@smartacoustics.co.uk>
-	<5644C66D.4030408@windriver.com>
-From: Toby Gomersall <toby.gomersall@smartacoustics.co.uk>
-Message-ID: <5645C19E.1010508@smartacoustics.co.uk>
-Date: Fri, 13 Nov 2015 10:55:26 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
-MIME-Version: 1.0
-In-Reply-To: <5644C66D.4030408@windriver.com>
-Subject: Re: Building yocto with hard float support
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.182 listed in list.dnswl.org]
+Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
+	[209.85.213.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 492DCE00C75
+	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 20:55:44 -0800 (PST)
+Received: by igl9 with SMTP id 9so8809958igl.0
+	for <yocto@yoctoproject.org>; Thu, 12 Nov 2015 20:55:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=SdYflVhgaZz7j70UsJfbnf6L3wGtwyjkyd23qqrqevQ=;
+	b=XXSBjKIF9NQB71Xm9LsMelE6EGQ3SMeubXp6wwVkIgPTvzfEtg0M4p9CBWE/A1cla4
+	IPa8m7JTte3FX8jvtYemt/oMYijbmkl4/Yiigx7KurqXo3YAeH/xqoZOg+hoYacCLkge
+	tbUjuPTSGvuGGf6by/TLQwe3u7oMP8WqkeEHe7RjDfrHpvWU4qvFVrtXNgHAmBA+9QT6
+	R878m1vZfYxsJKe+I546I94sx3hPHQZGtDoU/BtI2LJsmh7IpJNW0DXCP1vsMzeNZ+VS
+	/fyQr23FW5kmRcjdreL5/6sQpbCXD++64wT0gI1nwpK23gnkZus6kVSD1Wbo5VY/D0e4
+	1Ebg==
+X-Received: by 10.50.122.68 with SMTP id lq4mr1351120igb.87.1447390543714;
+	Thu, 12 Nov 2015 20:55:43 -0800 (PST)
+Received: from brrussell-Latitude-E6530.natcky.rr.com
+	(cpe-69-23-226-235.natcky.res.rr.com. [69.23.226.235])
+	by smtp.gmail.com with ESMTPSA id
+	z197sm6290998iod.39.2015.11.12.20.55.43
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 12 Nov 2015 20:55:43 -0800 (PST)
+From: Kyle Russell <bkylerussell@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 12 Nov 2015 23:55:31 -0500
+Message-Id: <1447390531-2550-1-git-send-email-bkylerussell@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Mailman-Approved-At: Fri, 13 Nov 2015 08:25:40 -0800
+Cc: Kyle Russell <bkylerussell@gmail.com>
+Subject: [meta-oracle-java][PATCH] oracle-jse-jdk: Don't use ${D} installing symlink target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,127 +61,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Nov 2015 10:55:39 -0000
-X-Groupsio-MsgNum: 27311
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="3xN7hbVhlgqLuJ3eUjHkXWiTvxT29uViH"
+X-List-Received-Date: Fri, 13 Nov 2015 04:55:46 -0000
 
---3xN7hbVhlgqLuJ3eUjHkXWiTvxT29uViH
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+When installed to the sysroot, this makes the symlink point to the
+workdir, which is invalid in the sstate package.  Since we cd to
+${D} before creating the symlink, this ensures the link is created
+in the correct install location, so just point the link to the final
+target so that the patch is correctly fixed up during populate_sysroot.
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk.inc |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-
-On 12/11/15 17:03, Mark Hatle wrote:
-> On 11/12/15 3:17 AM, Toby Gomersall wrote:
->> Hi,
->>
->> I want to build yocto with hard float support. I understand that I can=
-
->> point the EXTERNAL_TOOLCHAIN variable at the appropriate external hard=
-
->> float compiler (gcc-5-arm-linux-gnueabihf). However, I was wondering i=
-f
->> there was anything within the yocto project to do this?
->=20
-> I'm going to be pedantic for a second.. bear with me.
->=20
-> ARM has two ABIs, the standard EABI which passes floating point values =
-via
-> integer registers and EABIHF that passes floating point values via floa=
-ting
-> point registers.
->=20
-> EABI allows hardware floating point along with neon or any other core s=
-pecific
-> optimizations.
->=20
-> EABIHF requires a specific set and size of VFP registers.
->=20
-> The Yocto Project is capable of building for both ABIs with whatever
-> combinations of optimizations you need.
->=20
-> The ABI and default processor optimization is configured by the 'DEFAUL=
-TTUNE'
-> parameter.  This is typically defined in your machine configuration fil=
-e, either
-> explicitly or implicitly via the including of the tune files.
->=20
->=20
-> So for example, if you have an ARMv5 CPU you would likely use:
->=20
-> DEFAULTTUNE=3D"armv5e"
->=20
-> This would select ARM EABI, no VFP.
->=20
-> alternatively you could do:
->=20
-> DEFAULTTUNE=3D"armv5e-vfp"
->=20
-> This would select ARM EABI w/ VFP floating point.
->=20
-> OR
->=20
-> (what I think you are actually trying to ask)
->=20
-> DEFAULTTUNE=3D"armv5ehf-vfp"
->=20
-> This would select ARM EABIHF w/ VFP floating point.
->=20
->=20
-> So start with your machine and determine which defaulttune (bitbake -e)=
- you have
-> selected.  Adjust it to a compatible setting for the ABI and processor
-> optimizations that you wish to use.
->=20
->> I'm concerned that future updates to an external compiler might affect=
-
->> my build and I would prefer to use a method from within the yocto proj=
-ect.
->=20
-> Unless you have a specific need, I don't recommend external compilers. =
- The
-> Yocto Project compilers and configurations are well tested and high qua=
-lity.
-> While using an external compiler is support by some vendors, it adds co=
-mplexity
-> that may not be beneficial.  (Sometimes support and other aspects of co=
-mmercial
-> offerings outweigh the complexity..)
->=20
->> Thank you,
->> Toby
->>
->>
->>
->=20
-
-Thank you very much for your help, that was exactly what I was looking fo=
-r.
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+index 54e83b8..6f13125 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -16,7 +16,7 @@ do_install_class-native() {
+     install -d -m 0755 ${D}${bindir}
+     cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${libdir}/
+     for prog in java javac; do
+-	( cd ${D}${bindir} && ln -sf ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
++	( cd ${D}${bindir} && ln -sf ${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
+     done
+ 
+     ( cd ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin ; \
+-- 
+1.7.9.5
 
 
---3xN7hbVhlgqLuJ3eUjHkXWiTvxT29uViH
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJWRcGkAAoJEJFfznYik92WApgP/3Nx4HfGbUKZorSLOECQVH2W
-pORAUM22Eg3eVOau/2zIMIYH2Sy5IY7RCKhZe62Ya5GkaB4ytn1+aP7Q4Ahlvhr5
-2ztd70D2JoEBESxu95h4BjVzo299S5PDyTBFkLuxg8DmYGAPDq9QGl3GQ2LPVeyV
-vV3LB13f9oUh2mCXEzo5s0AbuS9VNj346MJZIIXodWQfnakahsx/Lq1jTbWJbHkZ
-r2eGDq2f7qlYiSFNNPM6nOdz31aA8E76zKbPYwCBbZp1EQD41PrlYJFn+rI5TxL+
-neRqRgV1wbo9srclT1rNHoAoPY7zDgNuC/93ipKlGpKOJjPsVhUPSfM4YHyOp1sF
-Xw7KjRLwDJId+oZn2i9jRtW1D0aiKNnuJ1cYySdQ/8AZmAZPcQEbLrG/ejdI13Xl
-2uvLj9Fq/3shNiDi0K3invj5g8Vi/dhTpD6yy4aH0TCAoOoJ+HIKpFnHkyJITbGe
-Y2LtAcco8SJL4GTpZf91hUD6sPHjps3fERy88WQJXDAdY+rcWs3knFT1xN+O3VKT
-kZOmHzc3s8r9WGpRxy/RZR5fqoboSSIgKqescUWJanDXKVjQTtD+0QxBIBui1swx
-hcKPbV5h6DoKyOEGvO5rFldSEduid4GzhRQ1KBusB6JHSv2yX1uy8sD5HgowlGcQ
-uAjT1l+kMwYF3B4rqxOF
-=ddmN
------END PGP SIGNATURE-----
-
---3xN7hbVhlgqLuJ3eUjHkXWiTvxT29uViH--
