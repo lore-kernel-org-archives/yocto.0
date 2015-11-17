@@ -1,48 +1,61 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6AB3E00A4F; Tue, 17 Nov 2015 05:26:33 -0800 (PST)
+	id 94E11E00AE6; Tue, 17 Nov 2015 05:52:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1553]
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2E0DE009C3
-	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 05:26:30 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2D+BABBP8ZV/xUHmMZbGQSCMSEsVG+9M4d9AoEmORMBAQEBAQEBfwuEJQEBAxIbXgEMCRVWJgEEGxqIDAGnbYULoEogkCmDUIEUBZULAZVbkQQXD4N9gjeBBAEBAQ
-X-IPAS-Result: A2D+BABBP8ZV/xUHmMZbGQSCMSEsVG+9M4d9AoEmORMBAQEBAQEBfwuEJQEBAxIbXgEMCRVWJgEEGxqIDAGnbYULoEogkCmDUIEUBZULAZVbkQQXD4N9gjeBBAEBAQ
-X-IronPort-AV: E=Sophos;i="5.15,634,1432612800"; 
-	d="scan'208,217";a="129024567"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	17 Nov 2015 08:26:28 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES256-SHA;
-	17 Nov 2015 08:26:27 -0500
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
-	14.03.0174.001; Tue, 17 Nov 2015 08:26:26 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Sharing .inc recipe across layers
-Thread-Index: AdEhO1xhQF2IvrOzQsmYgvyXIA45NQ==
-Date: Tue, 17 Nov 2015 13:26:26 +0000
-Message-ID: <30C2D590D16A5C46ADFE65219103779853A7778E@AZ-US1EXMB03.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96CB2E009C3
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 05:52:17 -0800 (PST)
+Received: by ioir85 with SMTP id r85so18770007ioi.1
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 05:52:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=BKoHy35yZqrfOoe2663cS6FccseOIAlYwUNisui2gQY=;
+	b=EIS3+CEduPWNAJtQEQopL9MwD92rYswB4TjmDuZRd4esvicyKsmvQKpgvgHLzYjZu5
+	cdF5sLYixTcGa07y0fauvODGVgD/rIV+nI70qEHMF7qMBpbSHZO8UQIeYlObzmMqJEFI
+	67oLWfRfZhOIBMGC4+t2mOMbg+ZZExMu8/O0mBDI9Sa5Y0/VhY/BXPCvBDFswvIddUhi
+	TJJT+tv01pVhUukP99rMvoNuIjgdYpxz0Ka1FSv6/F13W8l73IhkGCMYhEfZMb98aWVl
+	YZb4ajXSpn77o9Clr5Qi9wVeQRsMLyUQ760sZrbRSY+vqYq91n/gNuTwx5wNqJXPf3Jo
+	/wXg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kergoth_com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=BKoHy35yZqrfOoe2663cS6FccseOIAlYwUNisui2gQY=;
+	b=z8O9+Q0cLQtWRmMJgH64qARMhCDOmP5Akfp2I7BWD0ETiiQVxIsZhciYklxCpH3MgO
+	zmPy8QWlAj15zA6KEf4QrOxYg/VoRSo8v67eAnCMSKNm77KJwMQHuQ0MzSb40s9WGYyv
+	ixqHSLFLRflzPHlEPjoDZv2MJp6MzI9Rq7LZmD/j6komlkDc61GxxACae/NMoqezSdYD
+	KD2e5vg1mIhr40FKdmRnLccMflrppUjdBnx7DjYdf1AOs4vFWKWPea7dx/hCECFL2NSt
+	XLLbDBQLSVfDtORxXnvTN0cg7ucT4gAtgHoQ68FFXSMWofl7b3eLY1Q++VRyKEQNtNCK
+	8JcA==
+X-Received: by 10.107.38.83 with SMTP id m80mr11949071iom.98.1447768336649;
+	Tue, 17 Nov 2015 05:52:16 -0800 (PST)
 MIME-Version: 1.0
-Subject: Sharing .inc recipe across layers
+Sender: kergoth@gmail.com
+Received: by 10.79.93.7 with HTTP; Tue, 17 Nov 2015 05:51:57 -0800 (PST)
+In-Reply-To: <30C2D590D16A5C46ADFE65219103779853A7778E@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE65219103779853A7778E@AZ-US1EXMB03.global.avaya.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Tue, 17 Nov 2015 06:51:57 -0700
+X-Google-Sender-Auth: JFiIs8LIDwbvHsOW0L6STg_vr58
+Message-ID: <CABcZANmpZ3EFS2xQAnympbFuZWm5w--CpVK0GquEtf=wPwdbjA@mail.gmail.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Sharing .inc recipe across layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,82 +67,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Nov 2015 13:26:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_30C2D590D16A5C46ADFE65219103779853A7778EAZUS1EXMB03glob_"
+X-List-Received-Date: Tue, 17 Nov 2015 13:52:19 -0000
+Content-Type: multipart/alternative; boundary=001a1140ca026c74c60524bcd5a3
 
---_000_30C2D590D16A5C46ADFE65219103779853A7778EAZUS1EXMB03glob_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a1140ca026c74c60524bcd5a3
+Content-Type: text/plain; charset=UTF-8
 
-What is the best way to refer to (require) a .inc recipe
-in one layer from another layer?
+On Tue, Nov 17, 2015 at 6:26 AM, Vuille, Martin (Martin) <vmartin@avaya.com>
+wrote:
 
-MV
-
---_000_30C2D590D16A5C46ADFE65219103779853A7778EAZUS1EXMB03glob_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> What is the best way to refer to (require) a .inc recipe
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">What is the best way to refer t=
-o (require) a .inc recipe<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">in one layer from another layer=
-?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">MV<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+> in one layer from another layer?
+>
 
---_000_30C2D590D16A5C46ADFE65219103779853A7778EAZUS1EXMB03glob_--
+Use the relative path from the top of the layer. I.e. require
+recipes-foo/bar/baz.inc, and bitbake will search BBPATH (the layer paths)
+to find it.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a1140ca026c74c60524bcd5a3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Nov 17, 2015 at 6:26 AM, Vuille, Martin (Martin) <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNo=
+rmal"><span lang=3D"EN-US">What is the best way to refer to (require) a .in=
+c recipe<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">in one layer from another layer=
+?</span></p></blockquote></div><br>Use the relative path from the top of th=
+e layer. I.e. require recipes-foo/bar/baz.inc, and bitbake will search BBPA=
+TH (the layer paths) to find it.<br>-- <br><div class=3D"gmail_signature">C=
+hristopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, OpenE=
+mbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer, Ment=
+or Graphics</div>
+</div></div>
+
+--001a1140ca026c74c60524bcd5a3--
