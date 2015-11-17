@@ -1,55 +1,61 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 726D0E00B5C; Tue, 17 Nov 2015 07:34:12 -0800 (PST)
+	id 7A0EEE00B36; Tue, 17 Nov 2015 07:40:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F34BE00B23
-	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 07:34:07 -0800 (PST)
-Received: by iofh3 with SMTP id h3so22027663iof.3
-	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 07:34:07 -0800 (PST)
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471E1E00B0B
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 07:40:15 -0800 (PST)
+Received: by ioir85 with SMTP id r85so22301897ioi.1
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 07:40:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=FmW2YPMBh1g1ghWAJMMSOkU4s5J+3VGTaAhRWhoE3VE=;
-	b=eajYcO0VQvSBIT4OJsLq/i/etySRtN51cac8WIwMiWDfhUGLI/UuPlPxvuviS1rN6A
-	ascikBclsUuJFK4bSHY9domEZ2ERgpg3vjUFxpdA6C0QyzDsPQjYqSRBYcUSRp1lM+aO
-	qxu+9XiiMXzxGgDKLrIxoAIbADwe7O63EdwHff/i2ioxyFhrNdl7hiHWR2qTMDZexjmI
-	myDOiY96BDru28IWANEavuTuiIB4sctwbfYuL3eEzH+nq1KTIlrnCxjVjARG0utaV6AS
-	iuFDH/ZPRnwOAv8g+yWkApOAVQEHeAIq6N2JawtnE1K8b9dWbSyDbW2RjfuFoYDasMdK
-	bjVA==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=A370igIKIvRp0PmtVukcnT2HzvdzG5qPDNzets80wK8=;
+	b=Y3YwdL/bOPIpDbtdVQK7Tj4Z25io+7T90zh3AY2NsHAnheCkibXYG3oPcuE/gVzC/f
+	xOn1kzfjpttO5Fb4RS/1NYtHGLPUg26lLGbTJsMx8pNyMPACkdSL3czJBE9y4IZeQZPc
+	FFb115ihCpRhfgtp5BD3xSx6700zn0y3JL2OUI8s2u+YTzW1JsreDA7H2gMtjgerqoMC
+	7uHJ6mtoQMepF5Yd+5ArFlfUOpcIqJMEtx1cAY/TgtGbbiTPZigLOs2krT82/fcD5m+D
+	rPGN9q8xi1+AwtRIdKyIhYiEUXa2ubhS7+XlJ6Zid+luzhzKOw7BeQFSp7AlNcDidJaQ
+	dwZQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kergoth_com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=A370igIKIvRp0PmtVukcnT2HzvdzG5qPDNzets80wK8=;
+	b=KxqnKUWsThRmOk8OM0pP3O/QN7Mw0opSoD6x4ZxgKjPE+nBdXsY9mhdyPSTSwYuM0o
+	5hMNdnCXlz0jen99grrIyNv8FsBmMZ+Hd7Cjb4N8r9DXJlbdI1phEIKpaef/IsmiUkAJ
+	r42tt3X1fXhZetyrq8h8eNuUPqTOpQLM5ShwPxWHb9xlwlV9N9k9DJqOaR7G/DQSqvRu
+	X23naFoKKaSwbyitMQzRmJH9BQG8cfg8xV/VEPCtCkAa1cyIfw/mSoZBZMEblOzh27c8
+	OtJZCJm0JxWvSmB/OyKkPRonQO+Qes2VSqMJ1fXTYMM6ouI7nBla9RyBlit3ccEAbatN
+	uaQg==
+X-Received: by 10.107.134.28 with SMTP id i28mr38009574iod.74.1447774815050;
+	Tue, 17 Nov 2015 07:40:15 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.107.162.137 with SMTP id l131mr34348244ioe.49.1447774447060; 
-	Tue, 17 Nov 2015 07:34:07 -0800 (PST)
-Received: by 10.107.12.205 with HTTP; Tue, 17 Nov 2015 07:34:06 -0800 (PST)
-In-Reply-To: <564B183E.3000204@gmail.com>
-References: <1447590685-8145-1-git-send-email-net147@gmail.com>
-	<CAMKF1sqq0xS6qHSCHVZsn6wmTQEGUuegT31tVN6ppfNem+kXGA@mail.gmail.com>
-	<564B183E.3000204@gmail.com>
-Date: Tue, 17 Nov 2015 07:34:06 -0800
-Message-ID: <CAMKF1sr3S=xfADSh+jcSg9F__whKnOStuqK_sinNtvY+j_-XZg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Jonathan Liu <net147@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v5] qtbase: enable Raspberry Pi support
+Sender: kergoth@gmail.com
+Received: by 10.79.93.7 with HTTP; Tue, 17 Nov 2015 07:39:55 -0800 (PST)
+In-Reply-To: <564B48D3.7050304@mlbassoc.com>
+References: <564B48D3.7050304@mlbassoc.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Tue, 17 Nov 2015 08:39:55 -0700
+X-Google-Sender-Auth: ght3dq5Qj4rexz_C3bGzkH4Jgb0
+Message-ID: <CABcZANnBeR7BN8M1_GaFDQKbQjbfJtg7_4fy=wH76hMV0vdDuQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: New warning(s)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,159 +67,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Nov 2015 15:34:12 -0000
-Content-Type: multipart/alternative; boundary=001a1141bbc6a1d3e70524be4150
+X-List-Received-Date: Tue, 17 Nov 2015 15:40:19 -0000
+Content-Type: multipart/alternative; boundary=001a113ecc0a90e2f30524be57b6
 
---001a1141bbc6a1d3e70524be4150
+--001a113ecc0a90e2f30524be57b6
 Content-Type: text/plain; charset=UTF-8
 
-On Tuesday, November 17, 2015, Jonathan Liu <net147@gmail.com> wrote:
+On Tue, Nov 17, 2015 at 8:33 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-> On 16/11/2015 4:31 AM, Khem Raj wrote:
+> When I run bitbake using layers that are not GIT repos, I'm
+> now getting a lot of messages like this:
+>   fatal: Not a git repository (or any parent up to mount point /raid)
+>   Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not
+> set).
 >
->> On Sun, Nov 15, 2015 at 4:31 AM, Jonathan Liu <net147@gmail.com> wrote:
->>
->>> [Support #16]
->>>
->>> Signed-off-by: Jonathan Liu <net147@gmail.com>
->>> ---
->>>   conf/machine/include/rpi-base.inc | 3 +++
->>>   recipes-qt/qt5/qtbase_%.bbappend  | 8 ++++++++
->>>   2 files changed, 11 insertions(+)
->>>   create mode 100644 recipes-qt/qt5/qtbase_%.bbappend
->>>
->>> diff --git a/conf/machine/include/rpi-base.inc
->>> b/conf/machine/include/rpi-base.inc
->>> index e097702..b390705 100644
->>> --- a/conf/machine/include/rpi-base.inc
->>> +++ b/conf/machine/include/rpi-base.inc
->>> @@ -48,3 +48,6 @@ MACHINE_EXTRA_RRECOMMENDS += " kernel-modules"
->>>   SPLASH = "psplash-raspberrypi"
->>>
->>>   IMAGE_BOOT_FILES ?= "bcm2835-bootfiles/*
->>> ${KERNEL_IMAGETYPE};${SDIMG_KERNELIMAGE}"
->>> +
->>> +# Qt packages are machine specific due to RPi integration
->>> +QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
->>> diff --git a/recipes-qt/qt5/qtbase_%.bbappend
->>> b/recipes-qt/qt5/qtbase_%.bbappend
->>> new file mode 100644
->>> index 0000000..7775e70
->>> --- /dev/null
->>> +++ b/recipes-qt/qt5/qtbase_%.bbappend
->>> @@ -0,0 +1,8 @@
->>> +do_configure_prepend_rpi() {
->>> +    cat > ${S}/mkspecs/oe-device-extra.pri << 'EOF'
->>> +EGLFS_DEVICE_INTEGRATION = eglfs_brcm
->>>
->> should this should be controlled based on a knob for userspace binary
->> driver or open source kernel driver is used.
->>
-> I am not sure whether the open source kernel driver is complete enough.
-> Have you tested it? Do you have any patch to get it running with Qt?
-
-
-It works or not is not the point. The fact it exists we need to make
-adjustment for it
-
+> This seems to be new (I've built from such trees many times
+> before with no such messages) and it hardly seems "fatal".
+> The messages apparently are coming from 'git' (I tested with
+> git version 1.9.1 and 1.7.11)
 >
->> +QMAKE_INCDIR_EGL = $$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
->>> +QMAKE_INCDIR_OPENGL_ES2 = $${QMAKE_INCDIR_EGL}
->>> +QMAKE_LIBS_EGL = -lEGL -lGLESv2
->>> +EOF
->>> +}
->>> --
->>> 2.6.2
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
+> Why the change?
 >
 
---001a1141bbc6a1d3e70524be4150
+I believe we need https://github.com/kergoth/meta-mentor/commit/2125799
+applied to oe-core, haven't had a chance to submit it yet, but it looked to
+me like an accidental loss of the stderr capture/suppression when the
+metadata_scm functions were reworked recently.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a113ecc0a90e2f30524be57b6
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<br><br>On Tuesday, November 17, 2015, Jonathan Liu &lt;<a href=3D"mailto:n=
-et147@gmail.com">net147@gmail.com</a>&gt; wrote:<br><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
-ft:1ex">On 16/11/2015 4:31 AM, Khem Raj wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-On Sun, Nov 15, 2015 at 4:31 AM, Jonathan Liu &lt;<a>net147@gmail.com</a>&g=
-t; wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-[Support #16]<br>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Nov 17, 2015 at 8:33 AM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-le=
+ft-style:solid;padding-left:1ex"><div id=3D":fw" class=3D"" style=3D"overfl=
+ow:hidden">When I run bitbake using layers that are not GIT repos, I&#39;m<=
+br>
+now getting a lot of messages like this:<br>
+=C2=A0 fatal: Not a git repository (or any parent up to mount point /raid)<=
+br>
+=C2=A0 Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not=
+ set).<br>
 <br>
-Signed-off-by: Jonathan Liu &lt;<a>net147@gmail.com</a>&gt;<br>
----<br>
-=C2=A0 conf/machine/include/rpi-base.inc | 3 +++<br>
-=C2=A0 recipes-qt/qt5/qtbase_%.bbappend=C2=A0 | 8 ++++++++<br>
-=C2=A0 2 files changed, 11 insertions(+)<br>
-=C2=A0 create mode 100644 recipes-qt/qt5/qtbase_%.bbappend<br>
+This seems to be new (I&#39;ve built from such trees many times<br>
+before with no such messages) and it hardly seems &quot;fatal&quot;.<br>
+The messages apparently are coming from &#39;git&#39; (I tested with<br>
+git version 1.9.1 and 1.7.11)<br>
 <br>
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-b=
-ase.inc<br>
-index e097702..b390705 100644<br>
---- a/conf/machine/include/rpi-base.inc<br>
-+++ b/conf/machine/include/rpi-base.inc<br>
-@@ -48,3 +48,6 @@ MACHINE_EXTRA_RRECOMMENDS +=3D &quot; kernel-modules&quot=
-;<br>
-=C2=A0 SPLASH =3D &quot;psplash-raspberrypi&quot;<br>
-<br>
-=C2=A0 IMAGE_BOOT_FILES ?=3D &quot;bcm2835-bootfiles/* ${KERNEL_IMAGETYPE};=
-${SDIMG_KERNELIMAGE}&quot;<br>
-+<br>
-+# Qt packages are machine specific due to RPi integration<br>
-+QT_PACKAGES_ARCH =3D &quot;${MACHINE_ARCH}&quot;<br>
-diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bba=
-ppend<br>
-new file mode 100644<br>
-index 0000000..7775e70<br>
---- /dev/null<br>
-+++ b/recipes-qt/qt5/qtbase_%.bbappend<br>
-@@ -0,0 +1,8 @@<br>
-+do_configure_prepend_rpi() {<br>
-+=C2=A0 =C2=A0 cat &gt; ${S}/mkspecs/oe-device-extra.pri &lt;&lt; &#39;EOF&=
-#39;<br>
-+EGLFS_DEVICE_INTEGRATION =3D eglfs_brcm<br>
-</blockquote>
-should this should be controlled based on a knob for userspace binary<br>
-driver or open source kernel driver is used.<br>
-</blockquote>
-I am not sure whether the open source kernel driver is complete enough. Hav=
-e you tested it? Do you have any patch to get it running with Qt?</blockquo=
-te><div><br></div><div>It works or not is not the point. The fact it exists=
- we need to make adjustment for it=C2=A0</div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-">
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-+QMAKE_INCDIR_EGL =3D $$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux=
-<br>
-+QMAKE_INCDIR_OPENGL_ES2 =3D $${QMAKE_INCDIR_EGL}<br>
-+QMAKE_LIBS_EGL =3D -lEGL -lGLESv2<br>
-+EOF<br>
-+}<br>
---<br>
-2.6.2<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a>yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></blockquote>
-<br>
-</blockquote>
+Why the change?</div></blockquote></div><br>I believe we need=C2=A0<a href=
+=3D"https://github.com/kergoth/meta-mentor/commit/2125799">https://github.c=
+om/kergoth/meta-mentor/commit/2125799</a> applied to oe-core, haven&#39;t h=
+ad a chance to submit it yet, but it looked to me like an accidental loss o=
+f the stderr capture/suppression when the metadata_scm functions were rewor=
+ked recently.<br>-- <br><div class=3D"gmail_signature">Christopher Larson<b=
+r>clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus=
+<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics</div>
+</div></div>
 
---001a1141bbc6a1d3e70524be4150--
+--001a113ecc0a90e2f30524be57b6--
