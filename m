@@ -1,49 +1,49 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <Virgi200@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0EC8E00C10; Wed, 18 Nov 2015 01:23:53 -0800 (PST)
+	id 0E3C9E00C09; Wed, 18 Nov 2015 01:26:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE, MIME_HTML_ONLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
+	mail provider *      (virgi200[at]gmx.de)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
+	*      [212.227.17.22 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9E48E00C08
-	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 01:23:52 -0800 (PST)
-Received: by lfdo63 with SMTP id o63so22285069lfd.2
-	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 01:23:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Ktv2Yo6J6IgoJlh9CY7hZHuXP9uJH8dBcjNAMOTFSY4=;
-	b=fGphTEWdg/DRMw8ZxE7hfmQAcWO8hakOhi8YHjpLo5MM/VX9J+r9wK6SsijcfItht6
-	VXr9KOd/devDYZNN2oFlcMkv0LBG6vkFlSOxcgsb+H1pVZq7Bs967hX+9g2tasHAogrp
-	Ng3qu6pekgtUArN32ARSsIso6BydsP/YTqh91LLZGqyGRuQQsxslPiP39AE1qr0DLeTL
-	ENNGMOTn/XJuVGXmG8NHRQVdAv3bXHqdfXBV09z48gcUPhskkarxIfLwuF0hBFqfIUTL
-	BAsj8uS6Rrg4lf1nVyxziGmRICTFc1RexjYAPyekkQnly/5YXqO5tPWp/5o/yZvaGhKw
-	kyqg==
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C92DE00B9E
+	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 01:26:12 -0800 (PST)
+Received: from [217.5.143.100] by 3capp-gmx-bs65.server.lan (via HTTP); Wed,
+	18 Nov 2015 10:26:10 +0100
 MIME-Version: 1.0
-X-Received: by 10.25.143.146 with SMTP id r140mr200260lfd.163.1447838631274;
-	Wed, 18 Nov 2015 01:23:51 -0800 (PST)
-Received: by 10.25.82.139 with HTTP; Wed, 18 Nov 2015 01:23:51 -0800 (PST)
-Date: Wed, 18 Nov 2015 09:23:51 +0000
-Message-ID: <CABatt_y2weW-YiHJP_Si9_Qk-xP0DxOuLfLZXsAjFy2q_Ph6Yw@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
+Message-ID: <trinity-5dab3937-8bd4-42ae-98e1-bdbeb72bb2d4-1447838770675@3capp-gmx-bs65>
+From: "Virgilia  Eigner" <Virgi200@gmx.de>
 To: yocto@yoctoproject.org
-Subject: aclocal warnings
+Date: Wed, 18 Nov 2015 10:26:10 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K0:7tKMzxzZSBK9LDKnFZZcWjJS/XC7RRnjLTBZMsXX0zq
+	SRm1flPrK5hq9Xrv9OAMxAjqFdZ/5I1tvvuVWOVDH+A2+BDVqk
+	CPoEDORYMkiUEeTPkAHzwLdKY6iLhD7E6+07wEPEQQGShJl1Oi
+	K0+MUq3MLVh3CSb0Fx4ll+9zS2pHnPPUiWPmM3Nn0RhnBEHWHM
+	pB5aVpfTATM0tNdpRtCZmKGL6hQTov7C8apf+ohYY5tLLXG+0o
+	zHSixwEgkHJt99NAJRUUKdXL3qOm24kk9hk4EVAiYaxBJ9WYFq 54G62Y=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:FZFdLFtgzoI=:fa9NGD1947ygUgtrDQyUnk
+	H3lRONGvXrfo6xdqi1TM2rlZ61xfXqQFGJwxym9zaikbxWcrI6YYRR9cDKJIovqw58oprJz0g
+	HPjETl0Y9rfnHZdSCrdI7DoI9BMtBPYNOd5t2BEieFITkvZJiLg+a+AmjsiGzBwAWzELtfe5U
+	qlw4monv7nd2Z5FsU7Y4IJDma2Bl8TMuokFCiSeICY7xGpSg4yz1yBwg+5EMiju6t7OdiDH4U
+	A5wEfyYznNPJvzDPg+Ptk9UDWSkgX8A9bn+h+UqsTZxZdb43i/mfyZzVY6y6GkYxn26QeOBrA
+	zEe+yLTgwS0u4A5AnD1LoPy4rHqJtrb6xvvdsrUFOTNxvHnvm3bSVgztWqlCP8lYFUFvwCtL3
+	nTrkNNU3l4DONvUpZOuxUkvKPxRBsRgoYmyfkPWNvf9WEpGTQNCaS8PMMi+R5QgdPWT38jpdz
+	yuWiimUMBw==
+Subject: external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,63 +55,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Nov 2015 09:23:53 -0000
-Content-Type: multipart/alternative; boundary=001a114014844f33e30524cd33a3
-
---001a114014844f33e30524cd33a3
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-I've created an autotools project to test out my SDK I've generated.  The
-SDK was generated from a Yocto build system based the Fido branch.
-After souring the environment setup file in the SDK, running aclocal I get
-the following warnings
-perl: warning: Setting locale failed.
-perl: warning: Please check that your locale settings:
-    LANGUAGE = "en_GB:en",
-    LC_ALL = (unset),
-    LANG = "en_GB.UTF-8"
-    are supported and installed on your system.
-perl: warning: Falling back to the standard locale ("C").
-perl: warning: Setting locale failed.
-perl: warning: Please check that your locale settings:
-    LANGUAGE = "en_GB:en",
-    LC_ALL = (unset),
-    LANG = "en_GB.UTF-8"
-    are supported and installed on your system.
-perl: warning: Falling back to the standard locale ("C").
-
-If I take the same project and build for the host aclocal works fine.
-
-Does anyone know what I can do to fix this in the SDK? even a hint as to
-where to look would be appreciated.
-
-Many Thanks,
-Martin.
-
---001a114014844f33e30524cd33a3
+X-List-Received-Date: Wed, 18 Nov 2015 09:26:14 -0000
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I&#39;ve created=
- an autotools project to test out my SDK I&#39;ve generated.=C2=A0 The SDK =
-was generated from a Yocto build system based the Fido branch.=C2=A0 <br>Af=
-ter souring the environment setup file in the SDK, running aclocal I get th=
-e following warnings<br>perl: warning: Setting locale failed.<br>perl: warn=
-ing: Please check that your locale settings:<br>=C2=A0=C2=A0=C2=A0 LANGUAGE=
- =3D &quot;en_GB:en&quot;,<br>=C2=A0=C2=A0=C2=A0 LC_ALL =3D (unset),<br>=C2=
-=A0=C2=A0=C2=A0 LANG =3D &quot;en_GB.UTF-8&quot;<br>=C2=A0=C2=A0=C2=A0 are =
-supported and installed on your system.<br>perl: warning: Falling back to t=
-he standard locale (&quot;C&quot;).<br>perl: warning: Setting locale failed=
-.<br>perl: warning: Please check that your locale settings:<br>=C2=A0=C2=A0=
-=C2=A0 LANGUAGE =3D &quot;en_GB:en&quot;,<br>=C2=A0=C2=A0=C2=A0 LC_ALL =3D =
-(unset),<br>=C2=A0=C2=A0=C2=A0 LANG =3D &quot;en_GB.UTF-8&quot;<br>=C2=A0=
-=C2=A0=C2=A0 are supported and installed on your system.<br>perl: warning: =
-Falling back to the standard locale (&quot;C&quot;).<br><br></div>If I take=
- the same project and build for the host aclocal works fine.<br><br></div>D=
-oes anyone know what I can do to fix this in the SDK? even a hint as to whe=
-re to look would be appreciated.<br><br></div>Many Thanks,<br></div>Martin.=
-<br></div>
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>
+<div>hi,</div>
 
---001a114014844f33e30524cd33a3--
+<div><br/>
+I am still working at my external toolchain, i would be very thankful, if you could have a look at further error messages.<br/>
+In this case I can&#39;t find any help, has anyone an idea? &nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>-layer meta-sourcery-master<br/>
+-external toolchain the Crosstool NG<br/>
+-YP Core - Fido 1.8.1<br/>
+Build Configuration:<br/>
+BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;1.27.1&quot;<br/>
+BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;i686-linux&quot;<br/>
+NATIVELSBSTRING&nbsp;&nbsp; = &quot;LinuxMint-1&quot;<br/>
+TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;powerpc-e500v2-linux-gnuspe&quot;<br/>
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;powerpc&quot;<br/>
+DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;poky&quot;<br/>
+DISTRO_VERSION&nbsp;&nbsp;&nbsp; = &quot;1.8+snapshot-20151113&quot;<br/>
+TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; = &quot;m32 spe ppce500v2&quot;<br/>
+TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;ppc-efd&quot;<br/>
+EXTERNAL_TOOLCHAIN = &quot;/home/s/x-tools/powerpc-e500v2-linux-gnuspe&quot;<br/>
+SOURCERY_VERSION&nbsp; = &quot;s-1.0&quot;<br/>
+GCC_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = &quot;4.7.2&quot;<br/>
+meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br/>
+meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br/>
+meta-yocto-bsp&nbsp;&nbsp; &nbsp;<br/>
+meta-powerpc&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br/>
+meta-sourcery-master = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;<br/>
+s@vmint ~/Yocto/poky/build &#36; bitbake core-image-minimal<br/>
+WARNING: Host distribution &quot;LinuxMint-1&quot; has not been validated with this version of the build system; you may possibly experience unexpected failures. It is recommended that you use a tested distribution.<br/>
+Loading cache: 100% &#124;################################################################################################&#124; ETA:&nbsp; 00:00:00<br/>
+Loaded 1298 entries from dependency cache.<br/>
+Parsing recipes: 100% &#124;##############################################################################################&#124; Time: 00:00:01<br/>
+Parsing of 896 .bb files complete (872 cached, 24 parsed). 1297 targets, 81 skipped, 0 masked, 0 errors.<br/>
+NOTE: Resolving any missing task queue dependencies<br/>
+ERROR: Nothing PROVIDES &#39;gcc-source&#39;<br/>
+ERROR: gcc-source was skipped: Recipe is blacklisted: not building with an external toolchain<br/>
+ERROR: gcc-source was skipped: Recipe is blacklisted: not building with an external toolchain<br/>
+NOTE: Runtime target &#39;dpkg-dev&#39; is unbuildable, removing...<br/>
+Missing or unbuildable dependency chain was: [&#39;dpkg-dev&#39;, &#39;ncurses&#39;, &#39;virtual/powerpc-e500v2-linux-gnuspe-compilerlibs&#39;, &#39;gcc-source&#39;]<br/>
+NOTE: Runtime target &#39;dpkg&#39; is unbuildable, removing...<br/>
+Missing or unbuildable dependency chain was: [&#39;dpkg&#39;, &#39;ncurses&#39;, &#39;virtual/powerpc-e500v2-linux-gnuspe-compilerlibs&#39;, &#39;gcc-source&#39;]<br/>
+ERROR: Required build target &#39;core-image-minimal&#39; has no buildable providers.<br/>
+Missing or unbuildable dependency chain was: [&#39;core-image-minimal&#39;, &#39;ncurses&#39;, &#39;virtual/powerpc-e500v2-linux-gnuspe-compilerlibs&#39;, &#39;gcc-source&#39;]</div>
+
+<div>Summary: There was 1 WARNING message shown.<br/>
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.</div>
+
+<div><br/>
+thanks,</div>
+
+<div>virgilia</div>
+</div></div></body></html>
+
