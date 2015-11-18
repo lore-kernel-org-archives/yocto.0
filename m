@@ -1,47 +1,72 @@
-Return-Path: <clay@montgomery1.com>
+Return-Path: <maninder1.s@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F27CE00BEE; Tue, 17 Nov 2015 16:37:49 -0800 (PST)
+	id 7CCCEE00B9C; Tue, 17 Nov 2015 20:32:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [69.89.25.95 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [203.254.224.34 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from gproxy1-pub.mail.unifiedlayer.com
-	(gproxy1-pub.mail.unifiedlayer.com [69.89.25.95])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 05E8EE00B2C
-	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 16:37:45 -0800 (PST)
-Received: (qmail 29464 invoked by uid 0); 18 Nov 2015 00:37:42 -0000
-Received: from unknown (HELO cmgw2) (10.0.90.83)
-	by gproxy1.mail.unifiedlayer.com with SMTP; 18 Nov 2015 00:37:42 -0000
-Received: from box858.bluehost.com ([69.195.124.58]) by cmgw2 with 
-	id ioda1r00r1Fiqph01oddDN; Tue, 17 Nov 2015 17:37:40 -0700
-X-Authority-Analysis: v=2.1 cv=Jv9i8qIC c=1 sm=1 tr=0
-	a=6215HlyIVfFolxfkGyTlSg==:117 a=6215HlyIVfFolxfkGyTlSg==:17
-	a=cNaOj0WVAAAA:8
-	a=f5113yIGAAAA:8 a=cwQF-0P1AAAA:8 a=IkcTkHD0fZMA:10 a=DpUQn3bY8hUA:10
-	a=F7vrFIpsXqIA:10 a=qtqOOiqGOCEA:10 a=Rkb-RL9mpAZRC975ICUA:9
-	a=QEXdDO2ut3YA:10
-Received: from [70.119.214.20] (port=49760 helo=[192.168.0.18])
-	by box858.bluehost.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.84) (envelope-from <clay@montgomery1.com>)
-	id 1Zyqki-0005QU-GW
-	for yocto@yoctoproject.org; Tue, 17 Nov 2015 17:37:36 -0700
-To: yocto@yoctoproject.org
-From: "Clay D. Montgomery" <clay@montgomery1.com>
-Message-ID: <564BC862.2080308@montgomery1.com>
-Date: Tue, 17 Nov 2015 18:37:54 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.0.1
-MIME-Version: 1.0
-X-Identified-User: {1231:box858.bluehost.com:montgor0:montgomery1.com}
-	{sentby:smtp auth 70.119.214.20 authed with
-	clay@montgomery1.com}
-Subject: Problem Booting Yocto 1.7.3
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F5B9E00B6D
+	for <yocto@yoctoproject.org>; Tue, 17 Nov 2015 20:32:01 -0800 (PST)
+Received: from epcpsbgr2.samsung.com
+	(u142.gpu120.samsung.co.kr [203.254.230.142])
+	by mailout4.samsung.com (Oracle Communications Messaging Server
+	7.0.5.31.0 64bit (built May  5 2014))
+	with ESMTP id <0NXZ018GWTXCQW90@mailout4.samsung.com> for
+	yocto@yoctoproject.org; Wed, 18 Nov 2015 13:32:00 +0900 (KST)
+Received: from epcpsbgm2new.samsung.com ( [172.20.52.124])
+	by epcpsbgr2.samsung.com (EPCPMTA) with SMTP id 53.18.05272.04FFB465;
+	Wed, 18 Nov 2015 13:32:00 +0900 (KST)
+X-AuditID: cbfee68e-f791c6d000001498-3b-564bff406062
+Received: from epmmp2 ( [203.254.227.17])	by epcpsbgm2new.samsung.com (EPCPMTA)
+	with SMTP id 95.74.18629.F3FFB465; Wed, 18 Nov 2015 13:32:00 +0900 (KST)
+Received: from localhost.localdomain ([107.108.92.210])
+	by mmp2.samsung.com (Oracle Communications Messaging Server 7.0.5.31.0
+	64bit
+	(built May 5 2014)) with ESMTPA id <0NXZ00L5LTVYIO90@mmp2.samsung.com>;
+	Wed, 18 Nov 2015 13:31:59 +0900 (KST)
+From: Maninder Singh <maninder1.s@samsung.com>
+To: mark.hatle@windriver.com
+Date: Wed, 18 Nov 2015 10:01:08 +0530
+Message-id: <1447821068-39066-1-git-send-email-maninder1.s@samsung.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWyRsSkRtfhv3eYwbyFPBYvXk1gsXhw4SqT
+	xeH5bSwWm54fZLG492Yrk8Whk3MZLSa9XMPmwO7Rt2UVo8f6LVuZPNpP9LEFMEdx2aSk5mSW
+	pRbp2yVwZTReP89e8JezYud/1wbGnRxdjBwcEgImEm96ObsYOYFMMYkL99azdTFycQgJrGCU
+	+Dp1LxtEwkRi0f9NTBCJWYwS/67uZoVwfjJKNE69wg5SxSagJ7Fq1x4WkKkiAjISr79xgdQw
+	C2xklLg2pZEVpEZYIFJiw4MlzCA2i4CqxKdlTYwgNq+Au8SbxT3MEBcpSMyZZAPSKyHwm01i
+	+swjrBD1AhLfJh9igaiRldh0gBniOEmJgytusExgFFzAyLCKUTS1ILmgOCm9yEivODG3uDQv
+	XS85P3cTIzBAT/971reD8eYB60OMAhyMSjy8CYu9w4RYE8uKK3MPMZoCbZjILCWanA+Mg7yS
+	eENjMyMLUxNTYyNzSzMlcd4EqZ/BQgLpiSWp2ampBalF8UWlOanFhxiZODilGhiDlyseNqs8
+	cWsy1591MdfSOQ2zTX88upkZmRjRNm3be1fDOmYjbmv/iN3pSRqSnIHK5jd/Ce3VOvvnf7nb
+	6fu3pnPGMn7Kti4+m1e1R8Q77PwX3peztO473lRaO0FeZO2DleWOa5fWf4n+mTlX9vRrgyuP
+	tr5SUNfsPpr1RXLGPLXHLx95/K5UYinOSDTUYi4qTgQAqNSd/EsCAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjkeLIzCtJLcpLzFFi42I5/e+xoK7Df+8wg86XjBYvXk1gsXhw4SqT
+	xeH5bSwWm54fZLG492Yrk8Whk3MZLSa9XMPmwO7Rt2UVo8f6LVuZPNpP9LEFMEc1MNpkpCam
+	pBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAK1XUihLzCkFCgUk
+	Fhcr6dthmhAa4qZrAdMYoesbEgTXY2SABhLWMGY0Xj/PXvCXs2Lnf9cGxp0cXYycHBICJhKL
+	/m9igrDFJC7cW8/WxcjFISQwi1Hi39XdrBDOT0aJxqlX2EGq2AT0JFbt2sPSxcjBISIgI/H6
+	GxdIDbPARkaJa1MaWUFqhAUiJTY8WMIMYrMIqEp8WtbECGLzCrhLvFncwwzSKyGgIDFnks0E
+	Ru4FjAyrGCVSC5ILipPSc43yUsv1ihNzi0vz0vWS83M3MYLj4Jn0DsbDu9wPMQpwMCrx8HIs
+	9A4TYk0sK67MPcQowcGsJMKr+QooxJuSWFmVWpQfX1Sak1p8iNEUaP9EZinR5HxgjOaVxBsa
+	m5ibGptamliYmFkqifPqexqFCQmkJ5akZqemFqQWwfQxcXBKNTAyKhga64vuiv/979t3bitf
+	1U8pp5yfVT14x/LzE+vpwmINh8WVcp1VbOrntF+FT2e47dVhqJp4lvPm2RUfv2U1mN5uPO5p
+	e2rdrhl5S1X+MF8VYSgs8P8Tudk1+hq7tNnXjgvrgxman813+3/mxYI5Asrtd469PDJzf1tU
+	6d0YfrNghdNqe8qUWIozEg21mIuKEwGMcEUdmQIAAA==
+DLP-Filter: Pass
+X-MTR: 20000000000000000@CPGS
+X-CFilter-Loop: Reflected
+Cc: Vaneet Narang <v.narang@samsung.com>, yocto@yoctoproject.org,
+	doha.hwang@samsung.com, ajeet.y@samsung.com,
+	Maninder Singh <maninder1.s@samsung.com>, pankaj.m@samsung.com
+Subject: [prelink-cross][PATCH 1/1] configure.ac: with new automake make is not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,55 +78,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Nov 2015 00:37:49 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Nov 2015 04:32:07 -0000
 
-Hello,
+with automake verisoin(GNU automake) 1.15 (checked on aarch64),
+make is not working and looping at below info:-
 
-    I'm trying to update from Yocto (Dizzy) 1.7.2 to 1.7.3 for a 
-Wandboard Quad, but it hangs at the point where u-boot is trying to 
-start the kernel. I'm guessing maybe this is because my image has u-boot 
-2014 and I need u-boot 2015?  I have read that u-boot 2015 is required 
-for Yocto 1.8 (Fido), because it has a newer kernel (3.14). But, my 
-Yocto 1.7.3 build is still the 3.10.17 kernel.  Is it possible Bitbake 
-built this image with u-boot and kernel versions that are not 
-compatible, or am I missing the real issue?
+configure.ac:8: warning: AM_INIT_AUTOMAKE: two- and three-arguments
+forms are deprecated.  For more info, see:
+configure.ac:8:
+http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_005fINIT_005fAUTOMAKE-invocation
+ cd . && /bin/sh ./config.status Makefile
+config.status: creating Makefile
+make: Warning: File 'Makefile.am' has modification time 539 s in the
+future
 
-   I am pasting my boot log below, up to the point where it hangs. I 
-would really appreciate any help.
+Thus changing configure.ac as given in above link.
 
-Thanks, Clay Montgomery
+Signed-off-by: Vaneet Narang <v.narang@samsung.com>
+Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
+---
+ configure.ac |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/configure.ac b/configure.ac
+index 4943932..791b8bd 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1,11 +1,12 @@
+ dnl Process this file with autoconf to produce a configure script. -*-m4-*-
+-AC_INIT(src/prelink.c)
++AC_INIT([prelink], [0.0])
++AC_CONFIG_SRCDIR(src/prelink.c)
+ AC_CONFIG_HEADERS(config.h)
+ AC_PREREQ(2.50)			dnl Minimum Autoconf version required.
+ AC_CANONICAL_SYSTEM
+ AC_ARG_PROGRAM
+ 
+-AM_INIT_AUTOMAKE([prelink], [0.0])
++AM_INIT_AUTOMAKE
+ 
+ ALL_LINGUAS=
+ 
+-- 
+1.7.1
 
-U-Boot 2014.10+fslc+g5fd0b60 (Nov 14 2015 - 17:25:56)
-
-CPU:   Freescale i.MX6Q rev1.2 at 792 MHz
-Reset cause: POR
-Board: Wandboard
-I2C:   ready
-DRAM:  2 GiB
-MMC:   FSL_SDHC: 0, FSL_SDHC: 1
-auto-detected panel HDMI
-Display: HDMI (1024x768)
-In:    serial
-Out:   serial
-Err:   serial
-Net:   FEC [PRIME]
-Hit any key to stop autoboot:  0
-switch to partitions #0, OK
-mmc0 is current device
-reading boot.scr
-** Unable to read file boot.scr **
-reading zImage
-5442368 bytes read in 359 ms (14.5 MiB/s)
-Booting from mmc ...
-reading imx6q-wandboard.dtb
-43370 bytes read in 21 ms (2 MiB/s)
-Kernel image @ 0x12000000 [ 0x000000 - 0x530b40 ]
-## Flattened Device Tree blob at 18000000
-    Booting using the fdt blob at 0x18000000
-    Using Device Tree in place at 18000000, end 1800d969
-
-Starting kernel ...
 
