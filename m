@@ -1,70 +1,58 @@
-Return-Path: <aelmadho@cisco.com>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9D13E007C9; Wed, 18 Nov 2015 16:18:45 -0800 (PST)
+	id EAE0BE008B3; Wed, 18 Nov 2015 19:23:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [173.37.86.75 listed in list.dnswl.org]
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (xerofoify[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from rcdn-iport-4.cisco.com (rcdn-iport-4.cisco.com [173.37.86.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EF7BE005BB
-	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 16:18:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=5186; q=dns/txt; s=iport;
-	t=1447892324; x=1449101924;
-	h=from:to:subject:date:message-id:mime-version;
-	bh=NWPSxx/RqQxBwIxCFMSaILPr4+zt4oFMcqyZvw8QQqU=;
-	b=geggNMhp22oaNrdcP83yr83xmONnUHUb+YgFl9qtcI0wt3E6Mj08P2Z/
-	NZr56JIpnJS4EwdT3Mx5s/Gz6xsvjMgx6o7cy4K2nuCi1ij1fOwBJlWHt
-	5l4Tr+wo2VTIb+UkyHVD59beTuEIrQq/rkqzuuDue1utIT2pqbY6eK+lW c=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AOAgAJFU1W/5pdJa1egm5NgTQOBr5iA?=
-	=?us-ascii?q?Q2BZYYPgU04FAEBAQEBAQGBCoQ0AQIEgQsBCAQNAwECKDkUCQoEARKILr83AQE?=
-	=?us-ascii?q?BBwEBAQEBAR2GVYR9hHuEPgWNVYh1AY0qnEQBHwEBQoQEcoQZgQcBAQE?=
-X-IronPort-AV: E=Sophos;i="5.20,315,1444694400"; d="scan'208,217";a="48063755"
-Received: from rcdn-core-3.cisco.com ([173.37.93.154])
-	by rcdn-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Nov 2015 00:18:41 +0000
-Received: from XCH-RCD-020.cisco.com (xch-rcd-020.cisco.com [173.37.102.30])
-	by rcdn-core-3.cisco.com (8.14.5/8.14.5) with ESMTP id tAJ0If9q030349
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 00:18:41 GMT
-Received: from xch-rcd-020.cisco.com (173.37.102.30) by XCH-RCD-020.cisco.com
-	(173.37.102.30) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
-	Wed, 18 Nov 2015 18:18:40 -0600
-Received: from xch-rcd-020.cisco.com ([173.37.102.30]) by
-	XCH-RCD-020.cisco.com ([173.37.102.30]) with mapi id 15.00.1104.000;
-	Wed, 18 Nov 2015 18:18:40 -0600
-From: "Ahmed El-Madhoun (aelmadho)" <aelmadho@cisco.com>
-To: "Ahmed El-Madhoun (aelmadho)" <aelmadho@cisco.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Include additional python modules...
-Thread-Index: AQHRIl/Xj91NicQ5aEqReBmgbSMtZg==
-Date: Thu, 19 Nov 2015 00:18:40 +0000
-Message-ID: <D2727F4D.198B6%aelmadho@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.5.8.151023
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.82.240.186]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.44 listed in list.dnswl.org]
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9CD5E007E1
+	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 19:23:26 -0800 (PST)
+Received: by qgcc31 with SMTP id c31so383081qgc.3
+	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 19:23:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=TRfaE7nmzEJCNecTOWywRuYYDXcMR65niXtLf9sHAlI=;
+	b=rHQdfjGiRDJO/2JJwvqs78rFM5sOCNM3dWxQaqHxy9KAcXNLIEmlR4kP/6hNLaBN9k
+	jKJncQF8r1gYaM+tOslAfTqLD2/eXqTlLeNpIsCCOVLE1SJsSHabGRfQ0acIF3Q8/HJn
+	U2m6vyLw5SPKIZ3buLNq4xp7iFaFwMqHTm2BNlBJ4L/qpRck38YICHyN8BG77IbNees1
+	ercyoxTArw+rXvCvGVC0fQ8c3v1aTPFuvWz2a3WFCXCzL4s8l64um6LMcnQRtXr+7R4x
+	iMjftF1JJwSuq3aakP+fPi4LAtkYn2aciCVMty3F4QhoQi2CqfGz5xErl/i1tggw97fs
+	stDg==
+X-Received: by 10.140.33.139 with SMTP id j11mr5035975qgj.49.1447903405639;
+	Wed, 18 Nov 2015 19:23:25 -0800 (PST)
+Received: from [192.168.0.10]
+	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
+	[99.231.110.121]) by smtp.googlemail.com with ESMTPSA id
+	q185sm1815972qha.28.2015.11.18.19.23.23
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 18 Nov 2015 19:23:24 -0800 (PST)
+To: "Clay D. Montgomery" <clay@montgomery1.com>, yocto@yoctoproject.org
+References: <564BC862.2080308@montgomery1.com>
+From: nick <xerofoify@gmail.com>
+Message-ID: <564D40AB.9060602@gmail.com>
+Date: Wed, 18 Nov 2015 22:23:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: Re: Include additional python modules...
+In-Reply-To: <564BC862.2080308@montgomery1.com>
+Subject: Re: Problem Booting Yocto 1.7.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,158 +64,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Nov 2015 00:18:45 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_D2727F4D198B6aelmadhociscocom_"
-
---_000_D2727F4D198B6aelmadhociscocom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Despite inheriting python native in my bbclass, I still could not see the p=
-ython-pyyaml-native libraries/package, so I had to do this:
-
-
-   import os
-
-    os.sys.path.append(os.path.join(d.getVar('STAGING_DIR_NATIVE', True),
-        d.getVar('PYTHON_SITEPACKAGES_DIR', True)[1::]))
-
-   import yaml
+X-List-Received-Date: Thu, 19 Nov 2015 03:23:31 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
 
 
-From: <yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org=
->> on behalf of aelmadho <aelmadho@cisco.com<mailto:aelmadho@cisco.com>>
-Date: Wednesday, November 18, 2015 at 11:37 AM
-To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] Include additional python modules...
+On 2015-11-17 07:37 PM, Clay D. Montgomery wrote:
+> Hello,
+> 
+>    I'm trying to update from Yocto (Dizzy) 1.7.2 to 1.7.3 for a Wandboard Quad, but it hangs at the point where u-boot is trying to start the kernel. I'm guessing maybe this is because my image has u-boot 2014 and I need u-boot 2015?  I have read that u-boot 2015 is required for Yocto 1.8 (Fido), because it has a newer kernel (3.14). But, my Yocto 1.7.3 build is still the 3.10.17 kernel.  Is it possible Bitbake built this image with u-boot and kernel versions that are not compatible, or am I missing the real issue?
+> 
+>   I am pasting my boot log below, up to the point where it hangs. I would really appreciate any help.
+> 
+> Thanks, Clay Montgomery
+> 
+> 
+> U-Boot 2014.10+fslc+g5fd0b60 (Nov 14 2015 - 17:25:56)
+> 
+> CPU:   Freescale i.MX6Q rev1.2 at 792 MHz
+> Reset cause: POR
+> Board: Wandboard
+> I2C:   ready
+> DRAM:  2 GiB
+> MMC:   FSL_SDHC: 0, FSL_SDHC: 1
+> auto-detected panel HDMI
+> Display: HDMI (1024x768)
+> In:    serial
+> Out:   serial
+> Err:   serial
+> Net:   FEC [PRIME]
+> Hit any key to stop autoboot:  0
+> switch to partitions #0, OK
+> mmc0 is current device
+> reading boot.scr
+> ** Unable to read file boot.scr **
+This looks highly suspect to me. 
+> reading zImage
+> 5442368 bytes read in 359 ms (14.5 MiB/s)
+> Booting from mmc ...
+> reading imx6q-wandboard.dtb
+> 43370 bytes read in 21 ms (2 MiB/s)
+> Kernel image @ 0x12000000 [ 0x000000 - 0x530b40 ]
+> ## Flattened Device Tree blob at 18000000
+>    Booting using the fdt blob at 0x18000000
+>    Using Device Tree in place at 18000000, end 1800d969
+> 
+> Starting kernel ...
+Also try using early printk in kernel and see if you actually reach the kernel initialization 
+routines I am not sure if ARM supported early printk but it should for printing before serial
+console is completely initialized. This would allow me/you to see if the kernel actually starts
+and whether u-boot or the kernel itself is the issue.
+Cheers,
+Nick 
 
-Hi All,
-
-I am wondering if anything special needs to be done to provide additional p=
-ython packages in python functions within recipes, for instance, in an imag=
-e.bbclass extension, I have the following python function:
-
-python do_write_yaml() {
-
-    Import yaml
-
-}
-
-This fails indicating no such module, but when I use devshell, the os.sys.p=
-ath seems to include the right path for native sysroot, and I have my "DEPE=
-NDS +=3D python-pyyaml-native", however, within the python functions in the=
- recipes, it is not able to see the pyyaml package, do I need to add the pa=
-th manually to os.sys.path? For instance, how is "bb" and "oe" are always i=
-ncluded in the PATH, and how do we make other python packages available in =
-the path for extending existing functionality through python modules?
-
-Any help is greatly appreciated.
-
-Thanks,
-Ahmed
-
---_000_D2727F4D198B6aelmadhociscocom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-ID: <F0FBF7B7A50D184886CB512177EB508B@emea.cisco.com>
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-</head>
-<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
-e-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-fami=
-ly: Calibri, sans-serif;">
-<div>Despite inheriting python native in my bbclass, I still could not see =
-the python-pyyaml-native libraries/package, so I had to do this:</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp;import os</div>
-<div><br>
-</div>
-<div>
-<div>&nbsp; &nbsp; os.sys.path.append(os.path.join(d.getVar('STAGING_DIR_NA=
-TIVE', True),</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; d.getVar('PYTHON_SITEPACKAGES_DIR', True)[=
-1::]))</div>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp;import yaml</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<span id=3D"OLK_SRC_BODY_SECTION">
-<div style=3D"font-family:Calibri; font-size:11pt; text-align:left; color:b=
-lack; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; PADDING-BOTTOM:=
- 0in; PADDING-LEFT: 0in; PADDING-RIGHT: 0in; BORDER-TOP: #b5c4df 1pt solid;=
- BORDER-RIGHT: medium none; PADDING-TOP: 3pt">
-<span style=3D"font-weight:bold">From: </span>&lt;<a href=3D"mailto:yocto-b=
-ounces@yoctoproject.org">yocto-bounces@yoctoproject.org</a>&gt; on behalf o=
-f aelmadho &lt;<a href=3D"mailto:aelmadho@cisco.com">aelmadho@cisco.com</a>=
-&gt;<br>
-<span style=3D"font-weight:bold">Date: </span>Wednesday, November 18, 2015 =
-at 11:37 AM<br>
-<span style=3D"font-weight:bold">To: </span>&quot;<a href=3D"mailto:yocto@y=
-octoproject.org">yocto@yoctoproject.org</a>&quot; &lt;<a href=3D"mailto:yoc=
-to@yoctoproject.org">yocto@yoctoproject.org</a>&gt;<br>
-<span style=3D"font-weight:bold">Subject: </span>[yocto] Include additional=
- python modules...<br>
-</div>
-<div><br>
-</div>
-<div>
-<div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line=
--break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-famil=
-y: Calibri, sans-serif;">
-<div>Hi All,</div>
-<div><br>
-</div>
-<div>I am wondering if anything special needs to be done to provide additio=
-nal python packages in python functions within recipes, for instance, in an=
- image.bbclass extension, I have the following python function:</div>
-<div><br>
-</div>
-<div>
-<div>python do_write_yaml() {</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; Import yaml</div>
-<div><br>
-</div>
-<div>}</div>
-</div>
-<div><br>
-</div>
-<div>This fails indicating no such module, but when I use devshell, the os.=
-sys.path seems to include the right path for native sysroot, and I have my =
-&#8220;DEPENDS &#43;=3D python-pyyaml-native&#8221;, however, within the py=
-thon functions in the recipes, it is not able to see
- the pyyaml package, do I need to add the path manually to os.sys.path? For=
- instance, how is &#8220;bb&#8221; and &#8220;oe&#8221; are always included=
- in the PATH, and how do we make other python packages available in the pat=
-h for extending existing functionality through python modules?</div>
-<div><br>
-</div>
-<div>Any help is greatly appreciated.</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Ahmed</div>
-</div>
-</div>
-</span>
-</body>
-</html>
-
---_000_D2727F4D198B6aelmadhociscocom_--
