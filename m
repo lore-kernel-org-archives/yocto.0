@@ -1,59 +1,59 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <marcin.krzeminski@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE8A5E00985; Thu, 19 Nov 2015 03:21:16 -0800 (PST)
+	id 743C6E009EF; Thu, 19 Nov 2015 04:23:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [93.183.12.32 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
-	[209.85.213.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE315E007DA
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:21:15 -0800 (PST)
-Received: by igcph11 with SMTP id ph11so122165476igc.1
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:21:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=BHew5nXgCIwtLgCctUsSXOKG57lJBIX65wVvjadXceI=;
-	b=Xjapanlcz3BV6pWnhO7ptd/RQn3whoL8bzl2h6weRNC39YBCSo1hENZWVZfaIMOvAU
-	e7bCgulqIxjfkWlNJHUu5f98DX5PpaqiQRdEpydBgMDPt1WRytNaYm2Fb5HIcJRX4eRG
-	a/mx6eH+3WvTvHmACHkIvR80WzhVgLXWERueQrkcqOGWiH65bLDDypyGrWWa7beMdnZ5
-	7v1wAWsti9bY/47uxifC7kFfxMUy7/9ezuG0yLJnUOiffKKG6H9VV4yy+lWv9U9q2oG8
-	A2RImp8MBxLralPGy+ncUkgTuY2205x0eV1BpyRL5EFmfKDLNp7eDEkXSlK33ADfpja2
-	V7XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=BHew5nXgCIwtLgCctUsSXOKG57lJBIX65wVvjadXceI=;
-	b=jZsFvAR1/qaSij/yU9cva/ZPPP+0D/iAUJOJ/hNcXP07ZOM6stMy0eDAXAw00awdru
-	9DPHEQ1ucKXCXe7ftj0yKgbjmg6XjlG9cVy+dPkeVoIgH605AcH4pT6qu404OmBDVKpI
-	SH1nZRWgaazdKwkHvJVcsfb/tPgknJPGHJvftu5EwAyIZjBpkpxXLUEpZeqoQfOuKnOf
-	sgT3ems+3nUpZY+7OjMUt+JaC7alx1mYQQ2Jlr4zuu9yuivGrqU1GOceR6f/Jz+jZTqA
-	PWW3AfL1zDcqRFpQKCKNDjQ7av4HG+SO5/mPmR18mAw3OZSXioaInW4hcqiUK+RvqTC7
-	DuZA==
-X-Gm-Message-State: ALoCoQmc0RojHkZsXHIt+voKuR143ixH0G4S+1kxah2Puu3YV0Eh5jsMkjEXkqTNA1Bs8MuRvAss
-X-Received: by 10.50.79.129 with SMTP id j1mr7721233igx.52.1447932075084; Thu,
-	19 Nov 2015 03:21:15 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.136.141 with HTTP; Thu, 19 Nov 2015 03:20:55 -0800 (PST)
-In-Reply-To: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
+Received: from demumfd001.nsn-inter.net (demumfd001.nsn-inter.net
+	[93.183.12.32])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 248F0E00985
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 04:23:50 -0800 (PST)
+Received: from demuprx016.emea.nsn-intra.net ([10.150.129.55])
+	by demumfd001.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
+	tAJCNkik019300
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK);
+	Thu, 19 Nov 2015 12:23:46 GMT
+Received: from DEMUHTC004.nsn-intra.net ([10.159.42.35])
+	by demuprx016.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
+	id tAJCNjOj031418
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Thu, 19 Nov 2015 13:23:45 +0100
+Received: from DEMUHTC012.nsn-intra.net (10.159.42.43) by
+	DEMUHTC004.nsn-intra.net (10.159.42.35) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Thu, 19 Nov 2015 13:23:45 +0100
+Received: from DEMUMBX005.nsn-intra.net ([169.254.5.30]) by
+	DEMUHTC012.nsn-intra.net ([10.159.42.43]) with mapi id 14.03.0248.002;
+	Thu, 19 Nov 2015 13:23:44 +0100
+From: "Krzeminski, Marcin (Nokia - PL/Wroclaw)" <marcin.krzeminski@nokia.com>
+To: "EXT Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] After update to yocto 2.0 from 1.8 can not install app
+	to /usr/sbin in SDK
+Thread-Index: AdEiuUoGfH/C7i9YRR+H5+t0g2ZH8///9V6A///d4PA=
+Date: Thu, 19 Nov 2015 12:23:45 +0000
+Message-ID: <CA0E6F9BA6AED7458C23277BD87075E510107840@DEMUMBX005.nsn-intra.net>
 References: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 19 Nov 2015 11:20:55 +0000
-Message-ID: <CAJTo0LYjN2_7v38sCMkeZXGQ+cK0K-nVKdc1xpXyu8ON5Yqv7w@mail.gmail.com>
-To: "Krzeminski, Marcin (Nokia - PL/Wroclaw)" <marcin.krzeminski@nokia.com>
+	<CAJTo0LYjN2_7v38sCMkeZXGQ+cK0K-nVKdc1xpXyu8ON5Yqv7w@mail.gmail.com>
+In-Reply-To: <CAJTo0LYjN2_7v38sCMkeZXGQ+cK0K-nVKdc1xpXyu8ON5Yqv7w@mail.gmail.com>
+Accept-Language: pl-PL, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.159.42.116]
+MIME-Version: 1.0
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+	further information)
+X-purgate-size: 6960
+X-purgate-ID: 151667::1447935826-000027D6-E233E7C7/0/0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: After update to yocto 2.0 from 1.8 can not install app to /usr/sbin in SDK
 X-BeenThere: yocto@yoctoproject.org
@@ -67,40 +67,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Nov 2015 11:21:16 -0000
-Content-Type: multipart/alternative; boundary=089e011609fcfeaa0c0524e2f4cd
+X-List-Received-Date: Thu, 19 Nov 2015 12:23:57 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CA0E6F9BA6AED7458C23277BD87075E510107840DEMUMBX005nsnin_"
 
---089e011609fcfeaa0c0524e2f4cd
-Content-Type: text/plain; charset=UTF-8
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107840DEMUMBX005nsnin_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 19 November 2015 at 10:59, Krzeminski, Marcin (Nokia - PL/Wroclaw) <
-marcin.krzeminski@nokia.com> wrote:
+SXQgZG9lcyBtYWtlIHNlbnNlIG5vdy4gQ21ha2UgdXBkYXRlZC4NCg0KVGhhbmtzLA0KTWFyY2lu
+IEtyemVtaW5za2kNCg0KRnJvbTogRVhUIEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9u
+QGludGVsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBOb3ZlbWJlciAxOSwgMjAxNSAxMjoyMSBQTQ0K
+VG86IEtyemVtaW5za2ksIE1hcmNpbiAoTm9raWEgLSBQTC9Xcm9jbGF3KSA8bWFyY2luLmtyemVt
+aW5za2lAbm9raWEuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJl
+OiBbeW9jdG9dIEFmdGVyIHVwZGF0ZSB0byB5b2N0byAyLjAgZnJvbSAxLjggY2FuIG5vdCBpbnN0
+YWxsIGFwcCB0byAvdXNyL3NiaW4gaW4gU0RLDQoNCg0KT24gMTkgTm92ZW1iZXIgMjAxNSBhdCAx
+MDo1OSwgS3J6ZW1pbnNraSwgTWFyY2luIChOb2tpYSAtIFBML1dyb2NsYXcpIDxtYXJjaW4ua3J6
+ZW1pbnNraUBub2tpYS5jb208bWFpbHRvOm1hcmNpbi5rcnplbWluc2tpQG5va2lhLmNvbT4+IHdy
+b3RlOg0KRG9lcyB0aGlzIGJlaGF2aW9yIGlzIHNvbWVob3cgZXhwZWN0ZWQ/DQoNClllcy4gIHNi
+aW5kaXIgaXMgc2V0IHRvIGJpbmRpciBmb3IgdGhlIFNESywgc28gdGhhdCBhbGwgYmluYXJpZXMg
+aW5zdGFsbGVkIGFyZSB0cml2aWFsbHkgYXZhaWxhYmxlIHRvIHRoZSB1c2VyLiAgIEluc3RlYWQg
+b2YgaGFyZC1jb2RpbmcgJHtwcmVmaXh9L3NiaW4gdXNlICR7c2JpbmRpcn0gZXZlcnl3aGVyZSBh
+bmQgeW91ciBiaW5hcnkgd2lsbCBlbmQgdXAgaW4gdGhlIFNESydzIHVzci9iaW4vLg0KDQpSb3Nz
+DQo=
 
-> Does this behavior is somehow expected?
->
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107840DEMUMBX005nsnin_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Yes.  sbindir is set to bindir for the SDK, so that all binaries installed
-are trivially available to the user.   Instead of hard-coding
-${prefix}/sbin use ${sbindir} everywhere and your binary will end up in the
-SDK's usr/bin/.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIu
+MHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3Jk
+U2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
+ZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0t
+LT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4N
+CjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1s
+PjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZs
+aW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JdCBkb2VzIG1ha2Ugc2Vuc2Ug
+bm93LiBDbWFrZSB1cGRhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
+NDk3RCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5NYXJjaW4gS3J6ZW1pbnNraTxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtw
+YWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9u
+ZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBj
+bSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFu
+PjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBFWFQgQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0
+b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBOb3ZlbWJlciAxOSwg
+MjAxNSAxMjoyMSBQTTxicj4NCjxiPlRvOjwvYj4gS3J6ZW1pbnNraSwgTWFyY2luIChOb2tpYSAt
+IFBML1dyb2NsYXcpICZsdDttYXJjaW4ua3J6ZW1pbnNraUBub2tpYS5jb20mZ3Q7PGJyPg0KPGI+
+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBb
+eW9jdG9dIEFmdGVyIHVwZGF0ZSB0byB5b2N0byAyLjAgZnJvbSAxLjggY2FuIG5vdCBpbnN0YWxs
+IGFwcCB0byAvdXNyL3NiaW4gaW4gU0RLPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAxOSBOb3ZlbWJlciAyMDE1IGF0IDEwOjU5LCBLcnpl
+bWluc2tpLCBNYXJjaW4gKE5va2lhIC0gUEwvV3JvY2xhdykgJmx0OzxhIGhyZWY9Im1haWx0bzpt
+YXJjaW4ua3J6ZW1pbnNraUBub2tpYS5jb20iIHRhcmdldD0iX2JsYW5rIj5tYXJjaW4ua3J6ZW1p
+bnNraUBub2tpYS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3Rl
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRp
+bmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMyMjIyMjIi
+PkRvZXMgdGhpcyBiZWhhdmlvciBpcyBzb21laG93IGV4cGVjdGVkPzwvc3Bhbj48bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48YnI+DQpZZXMuICZuYnNwO3NiaW5kaXIgaXMgc2V0IHRvIGJpbmRpciBmb3IgdGhlIFNESywg
+c28gdGhhdCBhbGwgYmluYXJpZXMgaW5zdGFsbGVkIGFyZSB0cml2aWFsbHkgYXZhaWxhYmxlIHRv
+IHRoZSB1c2VyLiAmbmJzcDsgSW5zdGVhZCBvZiBoYXJkLWNvZGluZyAke3ByZWZpeH0vc2JpbiB1
+c2UgJHtzYmluZGlyfSBldmVyeXdoZXJlIGFuZCB5b3VyIGJpbmFyeSB3aWxsIGVuZCB1cCBpbiB0
+aGUgU0RLJ3MgdXNyL2Jpbi8uPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPlJvc3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Ross
-
---089e011609fcfeaa0c0524e2f4cd
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 19 November 2015 at 10:59, Krzeminski, Marcin (Nokia - PL/Wroclaw) <span=
- dir=3D"ltr">&lt;<a href=3D"mailto:marcin.krzeminski@nokia.com" target=3D"_=
-blank">marcin.krzeminski@nokia.com</a>&gt;</span> wrote:<br><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex"><div><font color=3D"#222222">Does this behavior is somehow =
-expected?</font></div>
-<div></div></blockquote></div><br>Yes. =C2=A0sbindir is set to bindir for t=
-he SDK, so that all binaries installed are trivially available to the user.=
- =C2=A0 Instead of hard-coding ${prefix}/sbin use ${sbindir} everywhere and=
- your binary will end up in the SDK&#39;s usr/bin/.</div><div class=3D"gmai=
-l_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---089e011609fcfeaa0c0524e2f4cd--
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107840DEMUMBX005nsnin_--
