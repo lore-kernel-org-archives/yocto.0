@@ -1,59 +1,61 @@
-Return-Path: <marcin.krzeminski@nokia.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE17FE00985; Thu, 19 Nov 2015 03:05:50 -0800 (PST)
+	id AE8A5E00985; Thu, 19 Nov 2015 03:21:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [93.183.12.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 392 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Nov 2015 03:05:43 PST
-Received: from demumfd002.nsn-inter.net (demumfd002.nsn-inter.net
-	[93.183.12.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BFA1E007DA
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:05:43 -0800 (PST)
-Received: from demuprx016.emea.nsn-intra.net ([10.150.129.55])
-	by demumfd002.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
-	tAJAxAAE007445
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 10:59:10 GMT
-Received: from DEMUHTC003.nsn-intra.net ([10.159.42.34])
-	by demuprx016.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
-	id tAJAx90V019135
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 11:59:09 +0100
-Received: from DEMUHTC012.nsn-intra.net (10.159.42.43) by
-	DEMUHTC003.nsn-intra.net (10.159.42.34) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 19 Nov 2015 11:59:09 +0100
-Received: from DEMUMBX005.nsn-intra.net ([169.254.5.30]) by
-	DEMUHTC012.nsn-intra.net ([10.159.42.43]) with mapi id 14.03.0248.002;
-	Thu, 19 Nov 2015 11:59:08 +0100
-From: "Krzeminski, Marcin (Nokia - PL/Wroclaw)" <marcin.krzeminski@nokia.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: After update to yocto 2.0 from 1.8 can not install app to
-	/usr/sbin in SDK
-Thread-Index: AdEiuUoGfH/C7i9YRR+H5+t0g2ZH8w==
-Date: Thu, 19 Nov 2015 10:59:07 +0000
-Message-ID: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
-Accept-Language: pl-PL, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.159.42.116]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE315E007DA
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:21:15 -0800 (PST)
+Received: by igcph11 with SMTP id ph11so122165476igc.1
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:21:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=BHew5nXgCIwtLgCctUsSXOKG57lJBIX65wVvjadXceI=;
+	b=Xjapanlcz3BV6pWnhO7ptd/RQn3whoL8bzl2h6weRNC39YBCSo1hENZWVZfaIMOvAU
+	e7bCgulqIxjfkWlNJHUu5f98DX5PpaqiQRdEpydBgMDPt1WRytNaYm2Fb5HIcJRX4eRG
+	a/mx6eH+3WvTvHmACHkIvR80WzhVgLXWERueQrkcqOGWiH65bLDDypyGrWWa7beMdnZ5
+	7v1wAWsti9bY/47uxifC7kFfxMUy7/9ezuG0yLJnUOiffKKG6H9VV4yy+lWv9U9q2oG8
+	A2RImp8MBxLralPGy+ncUkgTuY2205x0eV1BpyRL5EFmfKDLNp7eDEkXSlK33ADfpja2
+	V7XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=BHew5nXgCIwtLgCctUsSXOKG57lJBIX65wVvjadXceI=;
+	b=jZsFvAR1/qaSij/yU9cva/ZPPP+0D/iAUJOJ/hNcXP07ZOM6stMy0eDAXAw00awdru
+	9DPHEQ1ucKXCXe7ftj0yKgbjmg6XjlG9cVy+dPkeVoIgH605AcH4pT6qu404OmBDVKpI
+	SH1nZRWgaazdKwkHvJVcsfb/tPgknJPGHJvftu5EwAyIZjBpkpxXLUEpZeqoQfOuKnOf
+	sgT3ems+3nUpZY+7OjMUt+JaC7alx1mYQQ2Jlr4zuu9yuivGrqU1GOceR6f/Jz+jZTqA
+	PWW3AfL1zDcqRFpQKCKNDjQ7av4HG+SO5/mPmR18mAw3OZSXioaInW4hcqiUK+RvqTC7
+	DuZA==
+X-Gm-Message-State: ALoCoQmc0RojHkZsXHIt+voKuR143ixH0G4S+1kxah2Puu3YV0Eh5jsMkjEXkqTNA1Bs8MuRvAss
+X-Received: by 10.50.79.129 with SMTP id j1mr7721233igx.52.1447932075084; Thu,
+	19 Nov 2015 03:21:15 -0800 (PST)
 MIME-Version: 1.0
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
-	further information)
-X-purgate-size: 6868
-X-purgate-ID: 151667::1447930750-000015C7-74ABBF67/0/0
-Subject: After update to yocto 2.0 from 1.8 can not install app to /usr/sbin in SDK
+Received: by 10.107.136.141 with HTTP; Thu, 19 Nov 2015 03:20:55 -0800 (PST)
+In-Reply-To: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
+References: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 19 Nov 2015 11:20:55 +0000
+Message-ID: <CAJTo0LYjN2_7v38sCMkeZXGQ+cK0K-nVKdc1xpXyu8ON5Yqv7w@mail.gmail.com>
+To: "Krzeminski, Marcin (Nokia - PL/Wroclaw)" <marcin.krzeminski@nokia.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: After update to yocto 2.0 from 1.8 can not install app to /usr/sbin in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,166 +67,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Nov 2015 11:05:50 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_"
+X-List-Received-Date: Thu, 19 Nov 2015 11:21:16 -0000
+Content-Type: multipart/alternative; boundary=089e011609fcfeaa0c0524e2f4cd
 
---_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--089e011609fcfeaa0c0524e2f4cd
+Content-Type: text/plain; charset=UTF-8
 
-Hello,
+On 19 November 2015 at 10:59, Krzeminski, Marcin (Nokia - PL/Wroclaw) <
+marcin.krzeminski@nokia.com> wrote:
 
-After migration to poky 2.0 there is a problem with SDK creation for custom=
- cmake app.
-Cmake install line is:
-
-install(TARGETS flashcreator DESTINATION sbin)
-
-Here is a recipe (without SRC URI):
-
-SECTION =3D "libs"
-LICENSE =3D "CLOSED"
-PR =3D "r1"
-
-S =3D "${WORKDIR}/git"
-
-DEPENDS =3D "libxml2"
-RDEPENDS_${PN} =3D "libxml2"
-
-inherit cmake
-BBCLASSEXTEND =3D "native nativesdk"
-
-In yocto 2.0 it is not possible to create SDK with this app:
-
-ERROR: QA Issue: nativesdk-net-bootcreator: Files/directories were installe=
-d but not shipped in any package:
-  /opt
-  /opt/poky
-  /opt/poky/2.0
-  /opt/poky/2.0/sysroots
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/netbootcreator
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/.debug
-  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/.debug/netbootcreator
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.
-nativesdk-net-bootcreator: 10 installed and not shipped files. [installed-v=
-s-shipped]
-
-From bitbake conf file it seem that /usr/sbin directory is under FILES filt=
-er.
-Adding FILES_${PN} +=3D "${sbin}/*} did not helped.
-If I change cmake to install in /usr/bin all is working fine.
-Does this behavior is somehow expected?
-
-Regards,
-Marcin Krzeminski
-
-
-
---_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Does this behavior is somehow expected?
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Arial" size=3D"3"><span style=3D"font-size:12pt;">
-<div><font color=3D"#222222">Hello,</font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222">After migration to poky 2.0 there is a problem=
- with SDK creation for custom cmake app.</font></div>
-<div><font color=3D"#222222">Cmake install line is:</font></div>
-<div><font color=3D"#222222">&nbsp;</font></div>
-<div><font color=3D"#222222"><i>install(TARGETS flashcreator DESTINATION sb=
-in)</i></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222">Here is a recipe (without SRC URI):</font></di=
-v>
-<div><font color=3D"#222222">&nbsp;</font></div>
-<div><font color=3D"#222222"><i>SECTION =3D &quot;libs&quot;</i></font></di=
-v>
-<div><font color=3D"#222222"><i>LICENSE =3D &quot;CLOSED&quot;</i></font></=
-div>
-<div><font color=3D"#222222"><i>PR =3D &quot;r1&quot;</i></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222"><i>S =3D &quot;${WORKDIR}/git&quot;</i></font>=
-</div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222"><i>DEPENDS =3D &quot;libxml2&quot;</i></font><=
-/div>
-<div><font color=3D"#222222"><i>RDEPENDS_${PN} =3D &quot;libxml2&quot;</i><=
-/font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222"><i>inherit cmake</i></font></div>
-<div><font color=3D"#222222"><i>BBCLASSEXTEND =3D &quot;native nativesdk&qu=
-ot;</i></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222">In yocto 2.0 it is not possible to create SDK =
-with this app:</font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222"><i>ERROR: QA Issue: nativesdk-net-bootcreator:=
- Files/directories were installed but not shipped in any package:</i></font=
-></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots</i></font></d=
-iv>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux/usr</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux/usr/sbin</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux/usr/sbin/netbootcreator</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux/usr/sbin/.debug</i></font></div>
-<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
-linux/usr/sbin/.debug/netbootcreator</i></font></div>
-<div><font color=3D"#222222"><i>Please set FILES such that these items are =
-packaged. Alternatively if they are unneeded, avoid installing them or dele=
-te them within do_install.</i></font></div>
-<div><font color=3D"#222222"><i>nativesdk-net-bootcreator: 10 installed and=
- not shipped files. [installed-vs-shipped]</i></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font color=3D"#222222">From bitbake conf file it seem that /usr/sbin =
-directory is under FILES filter.</font></div>
-<div><font color=3D"#222222">Adding FILES_${PN} &#43;=3D &#8220;${sbin}/*} =
-did not helped.</font></div>
-<div><font color=3D"#222222">If I change cmake to install in /usr/bin all i=
-s working fine.</font></div>
-<div><font color=3D"#222222">Does this behavior is somehow expected?</font>=
-</div>
-<div><font color=3D"#222222">&nbsp;</font></div>
-<div><font color=3D"#222222">Regards,</font></div>
-<div><font color=3D"#222222">Marcin Krzeminski</font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
 
---_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_--
+Yes.  sbindir is set to bindir for the SDK, so that all binaries installed
+are trivially available to the user.   Instead of hard-coding
+${prefix}/sbin use ${sbindir} everywhere and your binary will end up in the
+SDK's usr/bin/.
+
+Ross
+
+--089e011609fcfeaa0c0524e2f4cd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 19 November 2015 at 10:59, Krzeminski, Marcin (Nokia - PL/Wroclaw) <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:marcin.krzeminski@nokia.com" target=3D"_=
+blank">marcin.krzeminski@nokia.com</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div><font color=3D"#222222">Does this behavior is somehow =
+expected?</font></div>
+<div></div></blockquote></div><br>Yes. =C2=A0sbindir is set to bindir for t=
+he SDK, so that all binaries installed are trivially available to the user.=
+ =C2=A0 Instead of hard-coding ${prefix}/sbin use ${sbindir} everywhere and=
+ your binary will end up in the SDK&#39;s usr/bin/.</div><div class=3D"gmai=
+l_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--089e011609fcfeaa0c0524e2f4cd--
