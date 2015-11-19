@@ -1,33 +1,59 @@
-Return-Path: <nbelfin@radiodata.biz>
+Return-Path: <marcin.krzeminski@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83BA7E00985; Thu, 19 Nov 2015 01:48:32 -0800 (PST)
+	id AE17FE00985; Thu, 19 Nov 2015 03:05:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [93.183.12.31 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 553 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Nov 2015 01:48:26 PST
-Received: from smtp.radiodata.biz (smtp.radiodata.biz [78.47.114.250])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACA9BE007DA
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 01:48:26 -0800 (PST)
-Received: from mail (p578044f8.dip0.t-ipconnect.de [87.128.68.248])
-	by smtp.radiodata.biz (Postfix) with ESMTPSA id C3D9F6024A
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 10:39:10 +0100 (CET)
-Received: from [192.168.3.173] (WS72.radiodata.xx [192.168.3.173])
-	by mail (Postfix) with ESMTPSA id E2D8C3FD4C
-	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 10:46:32 +0100 (CET)
-To: yocto@yoctoproject.org
-From: Norbert Belfin <nbelfin@radiodata.biz>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <564D98BE.8060809@radiodata.biz>
-Date: Thu, 19 Nov 2015 10:39:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 392 seconds by postgrey-1.32 at yocto-www;
+	Thu, 19 Nov 2015 03:05:43 PST
+Received: from demumfd002.nsn-inter.net (demumfd002.nsn-inter.net
+	[93.183.12.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BFA1E007DA
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 03:05:43 -0800 (PST)
+Received: from demuprx016.emea.nsn-intra.net ([10.150.129.55])
+	by demumfd002.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
+	tAJAxAAE007445
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 10:59:10 GMT
+Received: from DEMUHTC003.nsn-intra.net ([10.159.42.34])
+	by demuprx016.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
+	id tAJAx90V019135
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 19 Nov 2015 11:59:09 +0100
+Received: from DEMUHTC012.nsn-intra.net (10.159.42.43) by
+	DEMUHTC003.nsn-intra.net (10.159.42.34) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Thu, 19 Nov 2015 11:59:09 +0100
+Received: from DEMUMBX005.nsn-intra.net ([169.254.5.30]) by
+	DEMUHTC012.nsn-intra.net ([10.159.42.43]) with mapi id 14.03.0248.002;
+	Thu, 19 Nov 2015 11:59:08 +0100
+From: "Krzeminski, Marcin (Nokia - PL/Wroclaw)" <marcin.krzeminski@nokia.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: After update to yocto 2.0 from 1.8 can not install app to
+	/usr/sbin in SDK
+Thread-Index: AdEiuUoGfH/C7i9YRR+H5+t0g2ZH8w==
+Date: Thu, 19 Nov 2015 10:59:07 +0000
+Message-ID: <CA0E6F9BA6AED7458C23277BD87075E510107688@DEMUMBX005.nsn-intra.net>
+Accept-Language: pl-PL, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.159.42.116]
 MIME-Version: 1.0
-Subject: lighttpd + mod_cgi
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+	further information)
+X-purgate-size: 6868
+X-purgate-ID: 151667::1447930750-000015C7-74ABBF67/0/0
+Subject: After update to yocto 2.0 from 1.8 can not install app to /usr/sbin in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,55 +65,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Nov 2015 09:48:32 -0000
-X-Groupsio-MsgNum: 27358
-Content-Type: multipart/mixed; boundary="------------020305090608010209080403"
+X-List-Received-Date: Thu, 19 Nov 2015 11:05:50 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_"
 
---------------020305090608010209080403
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 Hello,
 
-we wanted to use lighttpd with mod-cgi (for php). First thing what
-happens was, that the module crashed. After a look in log.do_compile we 
-found the reason.
-grep output:
+After migration to poky 2.0 there is a problem with SDK creation for custom=
+ cmake app.
+Cmake install line is:
 
-lighttpd-1.4.36/src/mod_cgi.c:230:50: warning: implicit declaration of function 'chunkqueue_written' [-Wimplicit-function-declaration]
+install(TARGETS flashcreator DESTINATION sbin)
 
-The function chunkqueue_written() was removed in lighttpd version
-1.4.36. The call is added by the patch
-0001-mod_cgi-buffers-data-without-bound.patch which orinally was written
-for version 1.4.35, in which chunkqueue_written() existed.
+Here is a recipe (without SRC URI):
 
-So our first try was to build lighttpd without this patch. mod_cgi
-didn't crash, but the php-webpage is not working (with module fast-cgi
-ist works perfect). It seems that no correct is sent.
-Hm, okay, maybe the patch fixed more than memory problems while streaming?
-Now we built an package from the lighttpd version 1.3.35, for what the
-patch was written. The problems with the webpage still exists.
-Has anyone used lighttpd with mod-cgi and php on yocto poky (jethro or
-fido) succesfully? A workaround could be to use fast-cgi, but we want to
-save RAM and boot time.
+SECTION =3D "libs"
+LICENSE =3D "CLOSED"
+PR =3D "r1"
 
-Greetings an thanks for your help
+S =3D "${WORKDIR}/git"
+
+DEPENDS =3D "libxml2"
+RDEPENDS_${PN} =3D "libxml2"
+
+inherit cmake
+BBCLASSEXTEND =3D "native nativesdk"
+
+In yocto 2.0 it is not possible to create SDK with this app:
+
+ERROR: QA Issue: nativesdk-net-bootcreator: Files/directories were installe=
+d but not shipped in any package:
+  /opt
+  /opt/poky
+  /opt/poky/2.0
+  /opt/poky/2.0/sysroots
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/netbootcreator
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/.debug
+  /opt/poky/2.0/sysroots/i686-pokysdk-linux/usr/sbin/.debug/netbootcreator
+Please set FILES such that these items are packaged. Alternatively if they =
+are unneeded, avoid installing them or delete them within do_install.
+nativesdk-net-bootcreator: 10 installed and not shipped files. [installed-v=
+s-shipped]
+
+From bitbake conf file it seem that /usr/sbin directory is under FILES filt=
+er.
+Adding FILES_${PN} +=3D "${sbin}/*} did not helped.
+If I change cmake to install in /usr/bin all is working fine.
+Does this behavior is somehow expected?
+
+Regards,
+Marcin Krzeminski
 
 
---------------020305090608010209080403
-Content-Type: text/x-vcard; charset=utf-8;
- name="nbelfin.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="nbelfin.vcf"
 
-begin:vcard
-fn:Norbert Belfin
-n:Belfin;Norbert
-org:RadioData GmbH;Entwicklung
-email;internet:nbelfin@radiodata.biz
-version:2.1
-end:vcard
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Arial" size=3D"3"><span style=3D"font-size:12pt;">
+<div><font color=3D"#222222">Hello,</font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222">After migration to poky 2.0 there is a problem=
+ with SDK creation for custom cmake app.</font></div>
+<div><font color=3D"#222222">Cmake install line is:</font></div>
+<div><font color=3D"#222222">&nbsp;</font></div>
+<div><font color=3D"#222222"><i>install(TARGETS flashcreator DESTINATION sb=
+in)</i></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222">Here is a recipe (without SRC URI):</font></di=
+v>
+<div><font color=3D"#222222">&nbsp;</font></div>
+<div><font color=3D"#222222"><i>SECTION =3D &quot;libs&quot;</i></font></di=
+v>
+<div><font color=3D"#222222"><i>LICENSE =3D &quot;CLOSED&quot;</i></font></=
+div>
+<div><font color=3D"#222222"><i>PR =3D &quot;r1&quot;</i></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222"><i>S =3D &quot;${WORKDIR}/git&quot;</i></font>=
+</div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222"><i>DEPENDS =3D &quot;libxml2&quot;</i></font><=
+/div>
+<div><font color=3D"#222222"><i>RDEPENDS_${PN} =3D &quot;libxml2&quot;</i><=
+/font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222"><i>inherit cmake</i></font></div>
+<div><font color=3D"#222222"><i>BBCLASSEXTEND =3D &quot;native nativesdk&qu=
+ot;</i></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222">In yocto 2.0 it is not possible to create SDK =
+with this app:</font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222"><i>ERROR: QA Issue: nativesdk-net-bootcreator:=
+ Files/directories were installed but not shipped in any package:</i></font=
+></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots</i></font></d=
+iv>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux/usr</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux/usr/sbin</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux/usr/sbin/netbootcreator</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux/usr/sbin/.debug</i></font></div>
+<div><font color=3D"#222222"><i>&nbsp; /opt/poky/2.0/sysroots/i686-pokysdk-=
+linux/usr/sbin/.debug/netbootcreator</i></font></div>
+<div><font color=3D"#222222"><i>Please set FILES such that these items are =
+packaged. Alternatively if they are unneeded, avoid installing them or dele=
+te them within do_install.</i></font></div>
+<div><font color=3D"#222222"><i>nativesdk-net-bootcreator: 10 installed and=
+ not shipped files. [installed-vs-shipped]</i></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#222222"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font color=3D"#222222">From bitbake conf file it seem that /usr/sbin =
+directory is under FILES filter.</font></div>
+<div><font color=3D"#222222">Adding FILES_${PN} &#43;=3D &#8220;${sbin}/*} =
+did not helped.</font></div>
+<div><font color=3D"#222222">If I change cmake to install in /usr/bin all i=
+s working fine.</font></div>
+<div><font color=3D"#222222">Does this behavior is somehow expected?</font>=
+</div>
+<div><font color=3D"#222222">&nbsp;</font></div>
+<div><font color=3D"#222222">Regards,</font></div>
+<div><font color=3D"#222222">Marcin Krzeminski</font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+</span></font>
+</body>
+</html>
 
---------------020305090608010209080403--
+--_000_CA0E6F9BA6AED7458C23277BD87075E510107688DEMUMBX005nsnin_--
