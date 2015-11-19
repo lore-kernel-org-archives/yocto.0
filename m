@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9331E00985; Wed, 18 Nov 2015 23:01:31 -0800 (PST)
+	id 9758BE00985; Wed, 18 Nov 2015 23:03:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,35 +18,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3C79E008B8
-	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 23:01:29 -0800 (PST)
-Received: by igl9 with SMTP id 9so118823209igl.0
-	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 23:01:29 -0800 (PST)
+	*      [209.85.213.173 listed in list.dnswl.org]
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 479B6E008B8
+	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 23:03:55 -0800 (PST)
+Received: by igcto18 with SMTP id to18so56730715igc.0
+	for <yocto@yoctoproject.org>; Wed, 18 Nov 2015 23:03:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=ETizWeSA31ffyQJWmqpmBt8MpUCmA0NykCsCTw8U900=;
-	b=AcOEIRnPclSRkArQXb8Jq75a1D/gYudqJbLsLY68IdBbLTM+pNgcxN7Nha76fGhQXs
-	wn1DgFq84sAKHmiX0c4MrPPbkxqo6+k7ihhDgJCIA7FSfmHdvgF/sbzzAeXGN34WwJlU
-	QF/96eVR4XXoQs1DR26HJGP9sXL8BpzgvUkX803JVTR7VxLme8D68b1QfpoQ4j2I9IMc
-	F7wvjHobnDhXwsUpxxAi8GYeNChRdcYIRJLV2CieaWUtOwuxYYL8q8FKuFrlX03hD5OL
-	/xIFw5FSq24A1wA4FpFY8n4MbzEwuy2BbQ1dHIphqINAv9GGVchh4q4QQndIKXVjaYKL
-	r6FA==
-X-Received: by 10.50.221.36 with SMTP id qb4mr12443934igc.77.1447916489412;
-	Wed, 18 Nov 2015 23:01:29 -0800 (PST)
+	bh=FnwprhbsQcUR3BBQVHwAcb0YH6qZygMTFGV+zqCCM34=;
+	b=yjIOnkjzLkoUrsCoCnqnLNJW23r2agXxqz0LSpZr++1YJafyc8DMIk9X+VIqAcwZtR
+	YOAPJRqxRGcxvBzGStsdL5tcx/sCFnIHpQGySdeMIng86Nr/c0+vVlSlPbZUbNAR9Egm
+	G9j9M1Rkacvbv5JZVdISZBdS3EqgrQIbQR+/pCTyMvRFh1zFgyWmX/FijNlS35UDCJzm
+	bbLRiZRtqxgrpipGrGsbLJYmwVw8oZphoOGD9um+/v+iOvfxCoCBY6aWcWxEuQYO3rC0
+	OysltryJOtZIBdAroUqOHIxCG9tgWFFqftafoiCWauYfzY0SwuP+m0OuM/0duafsIZT+
+	DTeg==
+X-Received: by 10.50.138.3 with SMTP id qm3mr12285444igb.11.1447916635129;
+	Wed, 18 Nov 2015 23:03:55 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.12.205 with HTTP; Wed, 18 Nov 2015 23:01:00 -0800 (PST)
-In-Reply-To: <trinity-5dab3937-8bd4-42ae-98e1-bdbeb72bb2d4-1447838770675@3capp-gmx-bs65>
-References: <trinity-5dab3937-8bd4-42ae-98e1-bdbeb72bb2d4-1447838770675@3capp-gmx-bs65>
+Received: by 10.107.12.205 with HTTP; Wed, 18 Nov 2015 23:03:25 -0800 (PST)
+In-Reply-To: <CABatt_y2weW-YiHJP_Si9_Qk-xP0DxOuLfLZXsAjFy2q_Ph6Yw@mail.gmail.com>
+References: <CABatt_y2weW-YiHJP_Si9_Qk-xP0DxOuLfLZXsAjFy2q_Ph6Yw@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 18 Nov 2015 23:01:00 -0800
-Message-ID: <CAMKF1soWAUpRz90qetDpsLC5Zb9yRrc+ikUaxdzpQuXX0O6G-w@mail.gmail.com>
-To: Virgilia Eigner <Virgi200@gmx.de>
+Date: Wed, 18 Nov 2015 23:03:25 -0800
+Message-ID: <CAMKF1sqPTa8B6BbV2k3RAx0SJ3k4zZBRLQCvFwOW25Q+MJjGaQ@mail.gmail.com>
+To: Martin Townsend <mtownsend1973@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: external toolchain
+Subject: Re: aclocal warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,11 +58,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Nov 2015 07:01:31 -0000
+X-List-Received-Date: Thu, 19 Nov 2015 07:03:58 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Nov 18, 2015 at 1:26 AM, Virgilia  Eigner <Virgi200@gmx.de> wrote:
-> In this case I can't find any help, has anyone an idea?
+On Wed, Nov 18, 2015 at 1:23 AM, Martin Townsend
+<mtownsend1973@gmail.com> wrote:
+> Hi,
+>
+> I've created an autotools project to test out my SDK I've generated.  The
+> SDK was generated from a Yocto build system based the Fido branch.
+> After souring the environment setup file in the SDK, running aclocal I get
+> the following warnings
+> perl: warning: Setting locale failed.
+> perl: warning: Please check that your locale settings:
+>     LANGUAGE = "en_GB:en",
+>     LC_ALL = (unset),
+>     LANG = "en_GB.UTF-8"
+>     are supported and installed on your system.
+> perl: warning: Falling back to the standard locale ("C").
+> perl: warning: Setting locale failed.
+> perl: warning: Please check that your locale settings:
+>     LANGUAGE = "en_GB:en",
+>     LC_ALL = (unset),
+>     LANG = "en_GB.UTF-8"
+>     are supported and installed on your system.
+> perl: warning: Falling back to the standard locale ("C").
+>
+> If I take the same project and build for the host aclocal works fine.
+>
+> Does anyone know what I can do to fix this in the SDK? even a hint as to
+> where to look would be appreciated.
 
-add a provider for gcc-source in your external toolchain recipe.
+its using perl from SDK it seems and we dont have all locales
+installed in SDK. Do you see any problems due to this ?
+or is it just a warning
+
+>
+> Many Thanks,
+> Martin.
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
