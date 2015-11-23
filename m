@@ -1,49 +1,37 @@
-Return-Path: <emrahislek@gmail.com>
+Return-Path: <r.meier@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2ABDE00AD9; Mon, 23 Nov 2015 00:22:15 -0800 (PST)
+	id 80E16E00AD9; Mon, 23 Nov 2015 00:31:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (emrahislek[at]gmail.com)
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.35.17.28 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93859E00AB7
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 00:22:12 -0800 (PST)
-Received: by vkha189 with SMTP id a189so32323920vkh.2
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 00:22:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=i6Sqgf9DiwjXcAtNQ0LOYKRb9drD0K5Fh0vBlijz99g=;
-	b=yBPUZeWSZwhVi5ilboWmqdrWAQxf4G6/MC3boNqSAAcswHLW0WOFKc/ebZWSSXte8n
-	22monR+q9baGIeEuwl2iMEi/b7LpT+NVU/Lc80J/jbV7zomsbPTYJkaEQT12B6h1Jw8H
-	xMgH+Q2wFr4GM8BUbzEviy6Iqb/4pkOM5XCQXO5A1ot5heW5i1Lk0DB3crVddi0r1l1S
-	AUzk77N6YUAGTRk8KvgynIM0OkOrit55KHjNkIiYCz4Kl0VqlUhp45Ow5VT/DJV5wid/
-	zfuyMUI3wt8qaWBCshQ+a/nJjIHW9LuIpygsE7FZeIHhsqG3z2xDGJ3Lp+mmUDqU/pW4
-	epkQ==
-X-Received: by 10.31.8.147 with SMTP id 141mr17074879vki.33.1448266931738;
-	Mon, 23 Nov 2015 00:22:11 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.103.25.3 with HTTP; Mon, 23 Nov 2015 00:21:52 -0800 (PST)
-From: =?UTF-8?B?RW1yYWggxLDFn2xlaw==?= <emrahislek@gmail.com>
-Date: Mon, 23 Nov 2015 10:21:52 +0200
-Message-ID: <CAJxhh45U7k=3b+4qNx5VbQu5KP+hqVyvnsQNwg9f_FpR1FVCAQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: I2C driver problem
+X-Greylist: delayed 323 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 Nov 2015 00:31:12 PST
+Received: from goliath.siemens.de (goliath.siemens.de [192.35.17.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FAA9E00AB7
+	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 00:31:12 -0800 (PST)
+Received: from mail2.siemens.de (mail2.siemens.de [139.25.208.11])
+	by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id tAN8Pi8k004182
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
+	Mon, 23 Nov 2015 09:25:44 +0100
+Received: from dev.sbt.siemens.com (MD15B1GC.ww002.siemens.net [139.16.79.77])
+	by mail2.siemens.de (8.15.1/8.15.1) with ESMTP id tAN8Pig7010886;
+	Mon, 23 Nov 2015 09:25:44 +0100
+Received: from dev.sbt.siemens.com (localhost [127.0.0.1])
+	by dev.sbt.siemens.com (Postfix) with ESMTP id 056B62FBF0A3;
+	Mon, 23 Nov 2015 09:25:30 +0100 (CET)
+From: Roger Meier <r.meier@siemens.com>
+To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
+Date: Mon, 23 Nov 2015 09:25:19 +0100
+Message-Id: <1448267119-24035-1-git-send-email-r.meier@siemens.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [meta-mono][PATCH] README.md: fix mailto links
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,37 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Nov 2015 08:22:15 -0000
-Content-Type: multipart/alternative; boundary=001a1144f130019e44052530ecf3
+X-List-Received-Date: Mon, 23 Nov 2015 08:31:16 -0000
 
---001a1144f130019e44052530ecf3
-Content-Type: text/plain; charset=UTF-8
+Signed-off-by: Roger Meier <r.meier@siemens.com>
+---
+ README.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Hi,
-I generated yocto core-image-minimal for microzed board. My problem is that
-there is no i2c bus under /dev or other places. I installed i2c-tools but
-this is not working without port. Could you help me? How can I add i2c
-under /dev?
-Thanks.
+diff --git a/README.md b/README.md
+index 223a6f0..e362469 100644
+--- a/README.md
++++ b/README.md
+@@ -89,7 +89,7 @@ For a walkthrough on building Mono for Raspberry Pi see:
+ 
+ ## Maintainer(s) & Patch policy
+ 
+-* [Alex J Lennon](mailto://ajlennon@dynamicdevices.co.uk)
++* [Alex J Lennon](mailto:ajlennon@dynamicdevices.co.uk)
+ 
+ Follow Yocto change submission policy, detailed here:
+ 
+@@ -97,7 +97,7 @@ Follow Yocto change submission policy, detailed here:
+ 
+ Use the create-pull-request and send-pull-request scripts details in 3.9.1. 
+ 
+-Send to the maintainer and to [Yocto mailing list](mailto://yocto@yoctoproject.org)
++Send to the maintainer and to [Yocto mailing list](mailto:yocto@yoctoproject.org)
+ 
+ ## Copyright
+ 
+-- 
+2.1.4
 
----------------------------------------------------------------
-Emrah Islek
 
-E-mail : emrahislek@gmail.com
-
---001a1144f130019e44052530ecf3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div>I generated yocto core-image-minimal for microzed =
-board. My problem is that there is no i2c bus under /dev or other places. I=
- installed i2c-tools but this is not working without port. Could you help m=
-e? How can I add i2c under /dev?</div><div>Thanks.</div><div><div><br></div=
-><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">----=
------------------------------------------------------------<br>Emrah Islek<=
-/div><div dir=3D"ltr"><br></div><div dir=3D"ltr">E-mail : <a href=3D"mailto=
-:emrahislek@gmail.com" target=3D"_blank">emrahislek@gmail.com</a></div></di=
-v></div></div>
-</div></div>
-
---001a1144f130019e44052530ecf3--
