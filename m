@@ -1,35 +1,42 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <charles.chau@habeyusa.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 503D3E00985; Mon, 23 Nov 2015 13:41:14 -0800 (PST)
+	id 07819E009F3; Mon, 23 Nov 2015 14:28:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA187E0076A
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 13:41:11 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga103.jf.intel.com with ESMTP; 23 Nov 2015 13:41:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,338,1444719600"; d="scan'208";a="858215563"
-Received: from mlopezva-mobl2.zpn.intel.com (HELO [10.219.16.157])
-	([10.219.16.157])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Nov 2015 13:41:11 -0800
-Message-ID: <56538808.5050606@linux.intel.com>
-Date: Mon, 23 Nov 2015 15:41:28 -0600
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+Received: from server.habeyonline.com (server.habeyonline.com [142.4.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4A6AE00957
+	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 14:28:16 -0800 (PST)
+Received: from [96.31.254.242] (port=37825 helo=[192.168.0.227])
+	by server.habeyonline.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <charles.chau@habeyusa.com>)
+	id 1a0zam-0005ko-Bf; Mon, 23 Nov 2015 22:28:12 +0000
+To: Tanu Kaskinen <tanuk@iki.fi>, yocto@yoctoproject.org
+References: <564FC280.7040205@habeyusa.com> <1448295644.6918.11.camel@iki.fi>
+From: Charles Chau <charles.chau@habeyusa.com>
+Message-ID: <565392FA.2070608@habeyusa.com>
+Date: Mon, 23 Nov 2015 14:28:10 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-To: openembedded-devel@lists.openembedded.org, 
-	OE-core <openembedded-core@lists.openembedded.org>, yocto@yoctoproject.org
-Subject: RFC: Reference updater filesystem
+In-Reply-To: <1448295644.6918.11.camel@iki.fi>
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.habeyonline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - habeyusa.com
+X-Get-Message-Sender-Via: server.habeyonline.com: authenticated_id:
+	charles.chau@habeyusa.com
+X-Authenticated-Sender: server.habeyonline.com: charles.chau@habeyusa.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: i.MX6DL Qt5.5 Image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +48,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Nov 2015 21:41:14 -0000
+X-List-Received-Date: Mon, 23 Nov 2015 22:28:31 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-There has been interest in an image based software updater in Yocto 
-Project. The proposed solution for a image based updater is to use 
-Stefano Babic's software updater (http://sbabic.github.io/swupdate). 
-This software do a binary copy, so it is needed to have at least two 
-partitions, these partitions would be the rootfs and the maintenance 
-partition. The rootfs it's the main partition used to boot during the 
-normal device operation, on the other hand, the maintenance will be used 
-to update the main partition.
+I have meta-fsl-arm, meta-fsl-arm-extra, and meta-fsl-demos.  I checked 
+and it has fsl-alsa-plugin as well as alsa-plugin.
 
-To update the system, the user has to connect to device and boot in the 
-maintenance partition; once in the maintenance partition the software 
-updater will copy the new image in the rootfs partition. A final reboot 
-into the rootfs it is necessary to complete the upgrade.
+I tried to delete the recipes-multimedia in meta-fsl-arm, and it fails 
+during compile.
+What should I do?
+--------
+I have narrow down to only bitbake qtbase  (Jethro branch) and still get 
+the libgl-mesa-dev dependencies error.  How do I add the library Package 
+into Yocto? Is it already there? I just don't know how to use it.
 
-As mentioned before the the software will copy an image to the 
-partition, so everything in that partition will be wiped out, including 
-custom configurations. To avoid the loss of configuration I explore 
-three different solutions:
-1. Use a separate partition for the configuration.
-   a. The pro of this method is the partition is not touched during the 
-update.
-   b. The con of this method is the configuration is not directly in 
-rootfs (example: /etc).
+Seems like I am missing a bunch:  libgles3-mx6-dev, imx-gpu-viv-dev, 
+libclc-mx6, libgl-mesa-dev...
 
-2. Do the backup during the update.
-   a. The pro is the configuration is directly in rootfs.
-   b. The con is If the update fail most likely the configuration would 
-be lost.
+     ERROR: Nothing RPROVIDES 'libgl-mesa-dev' (but 
+/mountdata/hio-yocto-bsp/sources/meta-fsl-arm/recipes- 
+graphics/imx-gpu-viv/imx-gpu-viv_5.0.11.p7.1-hfp.bb RDEPENDS on or 
+otherwise requires it)
 
-3. Have an OverlayFS for the rootfs or the partition that have the 
-configuration.
-   a. The pro is the configuration is  "directly" in rootfs.
-   b. The con is there is need to provide a custom init to guarantee the 
-Overlay is mounted before the boot process.
+Thank you very much,
 
-With the above information I'm proposing to use a separate partition for 
-the configuration; this is because is more reliable and doesn't require 
-big changes in the current architecture.
+On 11/23/2015 08:20 AM, Tanu Kaskinen wrote:
+> On Fri, 2015-11-20 at 17:01 -0800, Charles Chau wrote:
+>> Hello,
+>>
+>> I am trying to upgrade my image from Daisy to Jethro.
+>>
+>> I followed this tutorial from Wandboard
+>> http://wiki.wandboard.org/index.php/Building_Qt5_using_yocto_on_Wandboard
+>> The Core Board I am using is Freescale i.MX6DL board
+>>
+>> I am getting a lot of error of dependencies from the previous tutorial
+>> IMAGE_INSTALL_append and could not find the recipes for them.
+>>
+>>> ERROR: Nothing RPROVIDES 'alsa-plugins-pulseaudio-conf' (but
+>>> /mountdata/hio-yocto-bsp/sources/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_6.0.bb
+>>> RDEPENDS on or otherwise requires it)
+> The alsa-plugins recipe from Jethro should provide alsa-plugins-
+> pulseaudio-conf, unless you have explicitly disabled pulseaudio
+> support. Do you perhaps have a different alsa-plugins recipe provided
+> by some other layer that overrides Poky? alsa-plugins was not included
+> in Poky before Jethro, so it might appear in other layers.
+>
+>
 
-So, the idea is to have 4 partitions in the media:
-1. boot. This is the usual boot partition
-2. data. This will hold the configuration files. Not modified by updates.
-3. maintenance. This partition will be used to update rootfs.
-4. rootfs. Partition used for normal operation.
+-- 
+Charles Chau
 
-Mariano
 
