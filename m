@@ -1,37 +1,40 @@
-Return-Path: <r.meier@siemens.com>
+Return-Path: <alexandre.osorio@eldorado.org.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80E16E00AD9; Mon, 23 Nov 2015 00:31:16 -0800 (PST)
+	id 578FFE00ADD; Mon, 23 Nov 2015 04:40:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.35.17.28 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-X-Greylist: delayed 323 seconds by postgrey-1.32 at yocto-www;
-	Mon, 23 Nov 2015 00:31:12 PST
-Received: from goliath.siemens.de (goliath.siemens.de [192.35.17.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FAA9E00AB7
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 00:31:12 -0800 (PST)
-Received: from mail2.siemens.de (mail2.siemens.de [139.25.208.11])
-	by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id tAN8Pi8k004182
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
-	Mon, 23 Nov 2015 09:25:44 +0100
-Received: from dev.sbt.siemens.com (MD15B1GC.ww002.siemens.net [139.16.79.77])
-	by mail2.siemens.de (8.15.1/8.15.1) with ESMTP id tAN8Pig7010886;
-	Mon, 23 Nov 2015 09:25:44 +0100
-Received: from dev.sbt.siemens.com (localhost [127.0.0.1])
-	by dev.sbt.siemens.com (Postfix) with ESMTP id 056B62FBF0A3;
-	Mon, 23 Nov 2015 09:25:30 +0100 (CET)
-From: Roger Meier <r.meier@siemens.com>
-To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
-Date: Mon, 23 Nov 2015 09:25:19 +0100
-Message-Id: <1448267119-24035-1-git-send-email-r.meier@siemens.com>
-X-Mailer: git-send-email 2.1.4
-Subject: [meta-mono][PATCH] README.md: fix mailto links
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0036]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 Nov 2015 04:40:51 PST
+Received: from smtp1.eldorado.org.br (smtp1.eldorado.org.br [200.148.226.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A18DCE0059B
+	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 04:40:51 -0800 (PST)
+Received: from serv030.corp.eldorado.org.br (200.148.226.2) by
+	smtp1.eldorado.org.br (200.148.226.10) with Microsoft SMTP Server (TLS)
+	id 14.3.123.3; Mon, 23 Nov 2015 10:39:40 -0200
+Received: from serv030.corp.eldorado.org.br (192.168.4.30) by
+	serv030.corp.eldorado.org.br (192.168.4.30) with Microsoft SMTP Server
+	(TLS) id 15.0.775.38; Mon, 23 Nov 2015 10:39:42 -0200
+Received: from serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7]) by
+	serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7%14]) with mapi
+	id 15.00.0775.031; Mon, 23 Nov 2015 10:39:42 -0200
+From: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: %pre scriptlet failed in Guestfish
+Thread-Index: AdEl6yCnu3gHwL2VSFiuO77wRy9xmQ==
+Date: Mon, 23 Nov 2015 12:39:41 +0000
+Message-ID: <eb78389061c241f79b2c9e2807bc8be9@serv030.corp.eldorado.org.br>
+Accept-Language: pt-BR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [177.220.10.3]
+MIME-Version: 1.0
+X-Brightmail-Tracker: AAAAAQAAAUA=
+Subject: %pre scriptlet failed in Guestfish
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,36 +46,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Nov 2015 08:31:16 -0000
+X-List-Received-Date: Mon, 23 Nov 2015 12:40:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Roger Meier <r.meier@siemens.com>
----
- README.md | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hello,
 
-diff --git a/README.md b/README.md
-index 223a6f0..e362469 100644
---- a/README.md
-+++ b/README.md
-@@ -89,7 +89,7 @@ For a walkthrough on building Mono for Raspberry Pi see:
- 
- ## Maintainer(s) & Patch policy
- 
--* [Alex J Lennon](mailto://ajlennon@dynamicdevices.co.uk)
-+* [Alex J Lennon](mailto:ajlennon@dynamicdevices.co.uk)
- 
- Follow Yocto change submission policy, detailed here:
- 
-@@ -97,7 +97,7 @@ Follow Yocto change submission policy, detailed here:
- 
- Use the create-pull-request and send-pull-request scripts details in 3.9.1. 
- 
--Send to the maintainer and to [Yocto mailing list](mailto://yocto@yoctoproject.org)
-+Send to the maintainer and to [Yocto mailing list](mailto:yocto@yoctoproject.org)
- 
- ## Copyright
- 
--- 
-2.1.4
+Running an image built with Yocto 1.8 in Guestfish I get the following erro=
+r when trying to install a RPM package:
 
+sh "cd /home/root; rpm -ivh --nodeps package.rpm"
+libguestfs: trace: sh "cd /home/root; rpm -ivh --nodeps package.rpm"
+guestfsd: error: error:   install: %pre scriptlet failed (2), skipping pack=
+age.x86_64
+libguestfs: trace: sh =3D NULL (error)
+libguestfs: error: sh: error:   install: %pre scriptlet failed (2), skippin=
+g package.x86_64
+
+This error doesn't occur ehqne running the same image in QEMU. Please could=
+ anyone give me a help?
+
+Thanks in advance.
+
+Regards,
+Alexandre
 
