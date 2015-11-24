@@ -1,38 +1,64 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24AD4E00B5A; Tue, 24 Nov 2015 10:40:01 -0800 (PST)
+	id B7D97E00B46; Tue, 24 Nov 2015 12:46:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6690E00B46
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 10:39:59 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Nov 2015 10:39:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,339,1444719600"; d="scan'208";a="858909550"
-Received: from jwbarz-mobl2.amr.corp.intel.com (HELO [10.254.191.22])
-	([10.254.191.22])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Nov 2015 10:39:59 -0800
-To: openembedded-core@lists.openembedded.org,
-	openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
-References: <56538808.5050606@linux.intel.com>
-	<20151124060620.GA10937@ad.chargestorm.se>
-From: "Lopez, Mariano" <mariano.lopez@linux.intel.com>
-Message-ID: <5654AEFD.4090802@linux.intel.com>
-Date: Tue, 24 Nov 2015 12:39:57 -0600
-User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43285E00B44
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 12:46:24 -0800 (PST)
+Received: by ioc74 with SMTP id 74so33188870ioc.2
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 12:46:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=PQXfW+pQkW+vZlga+iXjnvNnJxUmhpzede5cvROQsN0=;
+	b=oQKk3H0gLeIlIaYVtkXbJC0991mGbtUPcltu2+mfi0tDFbqxJ/Pno7YnClTxDgZHNx
+	W4HJHSseukBelURmqnlzRphGdjdEBzYGQtNCGl1P5r6Y5eb2rWydJw0HDtAUntpaFt/z
+	xA/V4PJdHV32jhpM2IlEhV1ynAfaCOuedWgbwpbxDUt9rClzXBENx6ybPmulREiBRJYi
+	g1+inj2qmCPOSLXFvsMcFQ4I1mfdyBjcBa+jNzTpijMCsdgDQOihKq7WS63USFk53phc
+	ARvLyDN0v01GnSEI5Nu/rkwKjhNa1Lpz3C1EI8h2Jg995z8FUUAVD1QZmcaD4dh7F2o0
+	qilA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=PQXfW+pQkW+vZlga+iXjnvNnJxUmhpzede5cvROQsN0=;
+	b=BxJfcwVD566IdoRjpYTXvxX6glZd+crt9gA/4hOJpz1U6OXr9bp37pw/b1DZ40iZCQ
+	b2czUSxhtNFdGGX37qbPdc3aGhgjTGuv0OQU4JswRPDNbeN1gqY3xomDZIaioujE2hdX
+	Hc2uwj2sauxexTIuV3tCUgu68JtFTdb8Jh5wjPd3DBvrFYidTJqP9M/mgUg62SQuyU0C
+	LP8QdCw9yNxXRqyck0mqgo+P0OGSA06Yq8ENhnk1mxDWFUaRIDleUViN+EEEI8z6n20o
+	D74ggusgjGt3Xg8hVDxIyATSj4M9lqOVVo2TD76nC7vRjOSl0V92EWq9BZ0FFF7jiOsZ
+	ibpA==
+X-Gm-Message-State: ALoCoQlPwZazZqBfPnIKAEL5NK9/MvoEzh6rEDeUfJQ3pqBepUaCerpiF3y2/7K3fyCM7qWk+h7o
+X-Received: by 10.107.3.144 with SMTP id e16mr30020793ioi.99.1448397984436;
+	Tue, 24 Nov 2015 12:46:24 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20151124060620.GA10937@ad.chargestorm.se>
-Subject: Re: [OE-core] RFC: Reference updater filesystem
+Received: by 10.107.136.141 with HTTP; Tue, 24 Nov 2015 12:46:05 -0800 (PST)
+In-Reply-To: <6E51916E4A1F32428260031F4C7CD2B6116FD76C@ORSMSX112.amr.corp.intel.com>
+References: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
+	<CAJTo0LaEo4YHRbc5fdc5aJuOP55zgZUw_Hi1nrvxLapxn-9dSw@mail.gmail.com>
+	<6E51916E4A1F32428260031F4C7CD2B6116FD76C@ORSMSX112.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 24 Nov 2015 20:46:05 +0000
+Message-ID: <CAJTo0LbtuTkHgRT8f62gfYOpk6S97+exjO6inYwYS1v1t5Y5+A@mail.gmail.com>
+To: "Bystricky, Juro" <juro.bystricky@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Juro Bystricky <jurobystricky@hotmail.com>
+Subject: Re: [PSPLASH 0/2] Few fixes for psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,86 +70,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 18:40:01 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 24 Nov 2015 20:46:26 -0000
+Content-Type: multipart/alternative; boundary=001a113ecf405b264b05254f6fc4
 
+--001a113ecf405b264b05254f6fc4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On 24 November 2015 at 18:39, Bystricky, Juro <juro.bystricky@intel.com>
+wrote:
 
-On 11/24/2015 12:06 AM, Anders Darander wrote:
-> * Mariano Lopez <mariano.lopez@linux.intel.com> [151123 22:41]:
+> Thanks. I=E2=80=99ll mark the bug 7236 as resolved/fixed.
 >
->> There has been interest in an image based software updater in Yocto Project.
-> Ok. Sure, it might be nice with something that can be shared, instead
-> off everyone's building our own solutions.
-
-The idea is to integrate one, not build one from the scratch.
-
 >
->> The proposed solution for a image based updater is to use Stefano Babic's
->> software updater (http://sbabic.github.io/swupdate). This software do a
->> binary copy, so it is needed to have at least two partitions, these
->> partitions would be the rootfs and the maintenance partition. The rootfs
->> it's the main partition used to boot during the normal device operation, on
->> the other hand, the maintenance will be used to update the main partition.
-> I haven't checked the swupdate tool, though I'd suspect that it also
-> supports the alternating rootfs use case? (I.e. run system1 update
-> system2; reboot to system2. Next update is system1). This is a rather
-> common setup, not least when you need a remote upgrade facility.
->
-> Would your proposed inclusion to the Yocto Project support that case
-> too?
+The recipe needs updating first, just bumping the srcrev will do nicely.
 
-Yeah, it would be possible to have two "rootfs" and do the update and 
-the just reboot one time.
+Ross
 
->
->> To update the system, the user has to connect to device and boot in the
->> maintenance partition; once in the maintenance partition the software
->> updater will copy the new image in the rootfs partition. A final reboot into
->> the rootfs it is necessary to complete the upgrade.
-> Like said above, not all system can be reached manually (at least not in
-> cost efficient way). Sure, the mainenance partition scheme can be made
-> to work anyway...
+--001a113ecf405b264b05254f6fc4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I plan to release this in phases, in the first one it will be manually 
-do the update. The idea is implement tools to automate the process of 
-the update (where it can be automated).
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 24 November 2015 at 18:39, Bystricky, Juro <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:juro.bystricky@intel.com" target=3D"_blank">juro.bystricky@intel=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"Ms=
+oNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sa=
+ns-serif;color:#1f497d">Thanks. I=E2=80=99ll mark the bug 7236 as resolved/=
+fixed.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>The recipe needs updating=
+ first, just bumping the srcrev will do nicely.</div><div class=3D"gmail_ex=
+tra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
->
->> As mentioned before the the software will copy an image to the partition, so
->> everything in that partition will be wiped out, including custom
->> configurations. To avoid the loss of configuration I explore three different
->> solutions:
->> 1. Use a separate partition for the configuration.
->>    a. The pro of this method is the partition is not touched during the
->> update.
->>    b. The con of this method is the configuration is not directly in rootfs
->> (example: /etc).
-> I'd vote for that as well. Though, I only keep the re-writable
-> configurations here. The one that are constant between all systems are
-> shipped in /etc in the read-only-rootfs.
->
->> With the above information I'm proposing to use a separate partition for the
->> configuration; this is because is more reliable and doesn't require big
->> changes in the current architecture.
->> So, the idea is to have 4 partitions in the media:
->> 1. boot. This is the usual boot partition
->> 2. data. This will hold the configuration files. Not modified by updates.
->> 3. maintenance. This partition will be used to update rootfs.
->> 4. rootfs. Partition used for normal operation.
-> How flexible to you intend to make this system? Allow everything that
-> swupdate supports? Or a specific subset?
-
-If you are referring to the filesystem creation I would say very 
-flexible. It will be implemented using wic instead of a class, so just 
-needs to change a file to suit your needs. If you refer to the swupdate 
-features, I plan to have a generic use case; as an example I won't use 
-the MTD capabilities of the software.
-
->
-> Cheers,
-> Anders
->
-
-
+--001a113ecf405b264b05254f6fc4--
