@@ -1,48 +1,46 @@
-Return-Path: <tanuk@iki.fi>
+Return-Path: <charles.chau@habeyusa.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF07AE00AE6; Mon, 23 Nov 2015 19:33:29 -0800 (PST)
+	id ECED1E00B19; Mon, 23 Nov 2015 20:41:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [66.111.4.26 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
-	[66.111.4.26])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D48E0E00AC5
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 19:33:28 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.nyi.internal (Postfix) with ESMTP id EC7002042A
-	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 22:33:27 -0500 (EST)
-Received: from frontend2 ([10.202.2.161])
-	by compute3.internal (MEProxy); Mon, 23 Nov 2015 22:33:27 -0500
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-transfer-encoding:content-type
-	:date:from:in-reply-to:message-id:mime-version:references
-	:subject:to:x-sasl-enc:x-sasl-enc; s=smtpout; bh=42VNVLLH45t3wO3
-	0Fzd2Nok+Eqk=; b=f2mc8H1ARJ5E9MH2fJ+oORLLeo5KxEzD6nKmyMfo5X999VQ
-	V/CXu3J+CdAOVa8dZX7poVxb/lWZgahcnoB4PRaASYQpD44OzGIkUF2JWX6Np2C6
-	aY6XoGpuQnijIOCDjXStsJC5uO7jk4AubyKA8GPu75gMp36vneVsiNCTW/pU=
-X-Sasl-enc: zZbdR8aMlbht2N/cw4KOyo3n/fJQhOkocFxEhBna0Lan 1448336007
-Received: from laptop (a88-114-110-232.elisa-laajakaista.fi [88.114.110.232])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 479896801BA;
-	Mon, 23 Nov 2015 22:33:27 -0500 (EST)
-Message-ID: <1448336006.6918.83.camel@iki.fi>
-From: Tanu Kaskinen <tanuk@iki.fi>
-To: Charles Chau <charles.chau@habeyusa.com>, yocto@yoctoproject.org
-Date: Tue, 24 Nov 2015 05:33:26 +0200
-In-Reply-To: <565392FA.2070608@habeyusa.com>
-References: <564FC280.7040205@habeyusa.com>
-	<1448295644.6918.11.camel@iki.fi> <565392FA.2070608@habeyusa.com>
-X-Mailer: Evolution 3.18.2-1 
-Mime-Version: 1.0
+Received: from server.habeyonline.com (server.habeyonline.com [142.4.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4BD6E00AE6
+	for <yocto@yoctoproject.org>; Mon, 23 Nov 2015 20:41:52 -0800 (PST)
+Received: from 71-84-254-69.dhcp.gldl.ca.charter.com ([71.84.254.69]:18993
+	helo=[127.0.0.1])
+	by server.habeyonline.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <charles.chau@habeyusa.com>)
+	id 1a15QJ-0003P8-Rp; Tue, 24 Nov 2015 04:41:48 +0000
+To: Tanu Kaskinen <tanuk@iki.fi>
+References: <564FC280.7040205@habeyusa.com> <1448295644.6918.11.camel@iki.fi>
+	<565392FA.2070608@habeyusa.com> <1448336006.6918.83.camel@iki.fi>
+From: Charles Chau <charles.chau@habeyusa.com>
+Message-ID: <5653EA90.80708@habeyusa.com>
+Date: Mon, 23 Nov 2015 20:41:52 -0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <1448336006.6918.83.camel@iki.fi>
+X-Antivirus: avast! (VPS 151123-1, 11/23/2015), Outbound message
+X-Antivirus-Status: Clean
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.habeyonline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - habeyusa.com
+X-Get-Message-Sender-Via: server.habeyonline.com: authenticated_id:
+	charles.chau@habeyusa.com
+X-Authenticated-Sender: server.habeyonline.com: charles.chau@habeyusa.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
 Subject: Re: i.MX6DL Qt5.5 Image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,82 +53,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 03:33:30 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 24 Nov 2015 04:41:56 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2015-11-23 at 14:28 -0800, Charles Chau wrote:
-> I have meta-fsl-arm, meta-fsl-arm-extra, and meta-fsl-demos.  I checked 
-> and it has fsl-alsa-plugin as well as alsa-plugin.
-> 
-> I tried to delete the recipes-multimedia in meta-fsl-arm, and it fails 
-> during compile.
-> What should I do?
+Thank you very much for replying,
 
-Deleting everything in recipes-multimedia seems overkill if the only
-problem was that the meta-fsl-* layers had an alsa-plugins recipe that
-overrode the Poky version.
+Most of the problem I encounter is Package Dependencies which I cannot 
+find anywhere (with Google).  I am still learning the components to 
+build an image so Yocto is confusing.
 
-Regarding the compilation failure, it's hard to say anything without
-knowing the exact error.
+I wanted to build qt5 for free i.MX6 board.
+In the beginning, I was trying to build core-image-minimal and all the 
+dependencies error popped up.
+So I change to only bitbake qtbase, to start from small.
 
-By the way, the layer search engine didn't find alsa-plugins in the
-meta-fsl-* repos:
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=alsa-plugins
+Right now, I have deleted libgl-mesa-dev from
+/meta-fsl-arm/recipes-graphics/imx-gpu-viv/imx-gpu-viv.inc
 
-Only fsl-alsa-plugins was found, which is a different thing. This makes
-me doubt a bit your statement that the meta-fsl-* layers would contain
-an alsa-plugins recipe, but maybe you have your recipes from some
-repository that isn't known to the search engine... I'm not personally
-familiar with any of the fsl repos.
+Although I still encounter Kernel issue, at least it get passed the 
+configuring stage.
 
-> --------
-> I have narrow down to only bitbake qtbase  (Jethro branch)
+The thing I want to learn is that, How can I add libgl-mesa-dev to my 
+Yocto build without delete stuff. I tried to add "mesa" to 
+"IMAGE_INSTALL_append" and it did not work though.
 
-I don't understand what you mean by this.
+For example, if I miss gnome, I would go to the web to find it and git 
+clone, then go to bblayers and add gnome path. But package definition or 
+libraries are different, I just do not know how they work.
 
-> and still get 
-> the libgl-mesa-dev dependencies error.  How do I add the library Package 
-> into Yocto? Is it already there? I just don't know how to use it.
-> 
-> Seems like I am missing a bunch:  libgles3-mx6-dev, imx-gpu-viv-dev, 
-> libclc-mx6, libgl-mesa-dev...
-> 
->      ERROR: Nothing RPROVIDES 'libgl-mesa-dev' (but 
-> /mountdata/hio-yocto-bsp/sources/meta-fsl-arm/recipes- 
-> graphics/imx-gpu-viv/imx-gpu-viv_5.0.11.p7.1-hfp.bb RDEPENDS on or 
-> otherwise requires it)
+Again, thank you!!!
 
-meta/recipes-graphics/mesa/mesa.inc from Poky contains the libgl-mesa-
-dev package definition. I don't know what the problem might be.
+On 11/23/2015 7:33 PM, Tanu Kaskinen wrote:
+> On Mon, 2015-11-23 at 14:28 -0800, Charles Chau wrote:
+>> I have meta-fsl-arm, meta-fsl-arm-extra, and meta-fsl-demos.  I checked
+>> and it has fsl-alsa-plugin as well as alsa-plugin.
+>>
+>> I tried to delete the recipes-multimedia in meta-fsl-arm, and it fails
+>> during compile.
+>> What should I do?
+> Deleting everything in recipes-multimedia seems overkill if the only
+> problem was that the meta-fsl-* layers had an alsa-plugins recipe that
+> overrode the Poky version.
+>
+> Regarding the compilation failure, it's hard to say anything without
+> knowing the exact error.
+>
+> By the way, the layer search engine didn't find alsa-plugins in the
+> meta-fsl-* repos:
+> http://layers.openembedded.org/layerindex/branch/master/recipes/?q=alsa-plugins
+>
+> Only fsl-alsa-plugins was found, which is a different thing. This makes
+> me doubt a bit your statement that the meta-fsl-* layers would contain
+> an alsa-plugins recipe, but maybe you have your recipes from some
+> repository that isn't known to the search engine... I'm not personally
+> familiar with any of the fsl repos.
+>
+>> --------
+>> I have narrow down to only bitbake qtbase  (Jethro branch)
+> I don't understand what you mean by this.
+>
+>> and still get
+>> the libgl-mesa-dev dependencies error.  How do I add the library Package
+>> into Yocto? Is it already there? I just don't know how to use it.
+>>
+>> Seems like I am missing a bunch:  libgles3-mx6-dev, imx-gpu-viv-dev,
+>> libclc-mx6, libgl-mesa-dev...
+>>
+>>       ERROR: Nothing RPROVIDES 'libgl-mesa-dev' (but
+>> /mountdata/hio-yocto-bsp/sources/meta-fsl-arm/recipes-
+>> graphics/imx-gpu-viv/imx-gpu-viv_5.0.11.p7.1-hfp.bb RDEPENDS on or
+>> otherwise requires it)
+> meta/recipes-graphics/mesa/mesa.inc from Poky contains the libgl-mesa-
+> dev package definition. I don't know what the problem might be.
+>
+> -- Tanu
+>
+>
+>> Thank you very much,
+>>
+>> On 11/23/2015 08:20 AM, Tanu Kaskinen wrote:
+>>> On Fri, 2015-11-20 at 17:01 -0800, Charles Chau wrote:
+>>>> Hello,
+>>>>
+>>>> I am trying to upgrade my image from Daisy to Jethro.
+>>>>
+>>>> I followed this tutorial from Wandboard
+>>>> http://wiki.wandboard.org/index.php/Building_Qt5_using_yocto_on_Wandboard
+>>>> The Core Board I am using is Freescale i.MX6DL board
+>>>>
+>>>> I am getting a lot of error of dependencies from the previous tutorial
+>>>> IMAGE_INSTALL_append and could not find the recipes for them.
+>>>>
+>>>>> ERROR: Nothing RPROVIDES 'alsa-plugins-pulseaudio-conf' (but
+>>>>> /mountdata/hio-yocto-bsp/sources/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_6.0.bb
+>>>>> RDEPENDS on or otherwise requires it)
+>>> The alsa-plugins recipe from Jethro should provide alsa-plugins-
+>>> pulseaudio-conf, unless you have explicitly disabled pulseaudio
+>>> support. Do you perhaps have a different alsa-plugins recipe provided
+>>> by some other layer that overrides Poky? alsa-plugins was not included
+>>> in Poky before Jethro, so it might appear in other layers.
+>>>
+>>>
 
--- Tanu
+-- 
+Charles Chau
 
+HABEY USA
+21015 Commerce Point Drive
+Walnut, CA 91789
+Tel: 909-594-7600 x 101
+Email: charles.chau@habeyusa.com
+Web: www.habeyusa.com
 
-> Thank you very much,
-> 
-> On 11/23/2015 08:20 AM, Tanu Kaskinen wrote:
-> > On Fri, 2015-11-20 at 17:01 -0800, Charles Chau wrote:
-> > > Hello,
-> > > 
-> > > I am trying to upgrade my image from Daisy to Jethro.
-> > > 
-> > > I followed this tutorial from Wandboard
-> > > http://wiki.wandboard.org/index.php/Building_Qt5_using_yocto_on_Wandboard
-> > > The Core Board I am using is Freescale i.MX6DL board
-> > > 
-> > > I am getting a lot of error of dependencies from the previous tutorial
-> > > IMAGE_INSTALL_append and could not find the recipes for them.
-> > > 
-> > > > ERROR: Nothing RPROVIDES 'alsa-plugins-pulseaudio-conf' (but
-> > > > /mountdata/hio-yocto-bsp/sources/poky/meta/recipes-multimedia/pulseaudio/pulseaudio_6.0.bb
-> > > > RDEPENDS on or otherwise requires it)
-> > The alsa-plugins recipe from Jethro should provide alsa-plugins-
-> > pulseaudio-conf, unless you have explicitly disabled pulseaudio
-> > support. Do you perhaps have a different alsa-plugins recipe provided
-> > by some other layer that overrides Poky? alsa-plugins was not included
-> > in Poky before Jethro, so it might appear in other layers.
-> > 
-> > 
-> 
 
