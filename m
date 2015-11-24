@@ -1,34 +1,62 @@
-Return-Path: <juro.bystricky@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2F14E00B5A; Tue, 24 Nov 2015 08:47:11 -0800 (PST)
+	id 10FEBE00B45; Tue, 24 Nov 2015 08:58:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C2EFE00B58
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:47:11 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 24 Nov 2015 08:47:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,338,1444719600"; d="scan'208";a="828103721"
-Received: from juro-precision-t5610.jf.intel.com ([10.7.198.145])
-	by orsmga001.jf.intel.com with ESMTP; 24 Nov 2015 08:47:11 -0800
-From: Juro Bystricky <juro.bystricky@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 24 Nov 2015 08:39:08 -0800
-Message-Id: <1448383148-2344-3-git-send-email-juro.bystricky@intel.com>
-X-Mailer: git-send-email 1.9.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.172 listed in list.dnswl.org]
+Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
+	[209.85.213.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9F00E00B1C
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:58:06 -0800 (PST)
+Received: by igcmv3 with SMTP id mv3so54913937igc.0
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:58:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=7TY2v09kYf7oAgz8FIsOD0NoIgBFZwA3mEbjF4dlLuI=;
+	b=XhnxkFG4LhMEXF3S3FUFEPXH4QKlGuMXQuGHg2M4HFwNKLJg2rn6RoWhzJIlcGULBJ
+	p7ogb/eNUs13siZU1GGz6GuWxKLXJ0SYOO6xvT4gjVmNihPm0ET4jyD6mdEzmliyHhEP
+	ixdaKuDub/M7lIOMfHOWTSoQKYoh/S9CHaDeld1tPIQhle7e+iYuGmH0fiI7qnAXYGpp
+	+zGTZrm1Wi08dgm5BoA83wfpuNCMciI7NSKEoUUISj4H1hPKpdQ+WA+hv8YkrF2Pb8zn
+	S4oR63ooWZM6Nd2mOnFw+GNrbXOviMUA7iwI7keev2qAr+DeWCOu8DfQDv9wCVQgOcZe
+	9A5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=7TY2v09kYf7oAgz8FIsOD0NoIgBFZwA3mEbjF4dlLuI=;
+	b=JDn4R90+x3Yok4VI+dLvS+QDFGu6CdbjYAmNNbGgqHwHtgMUfuZWb18NR+Q8VzqkXO
+	eyXdoAoe4J2h/l0P4dfZes0ieElGnI9jnI9lgZFyl5H3z2zDgGSAP1xM8XtTgEBXy+nA
+	nV2bmQ9jDTpUmoyMiK2k/bTDylAHMKn53dYJl4P0iYJwuyMqXLlD17DoKE/Gow71AANO
+	ffCR5U+svaZ3oubiwi9uuppZvu4msBPbLCjhuTeNkW3MeTkI/HL4trHJ7Pdi1Croxt7o
+	RScnArxojbrG4CTjsnYLO55MxTY30Cjnq4kQCeFTqWobwCP4tdjS1EToOpjpWrt0/y8t
+	FtkA==
+X-Gm-Message-State: ALoCoQnX5Kn83+/DEcmN3dkDc3eHZbSLtyneZ2+8LBniiWOSgXvL/tDmK0axRtS7M4HcZqnSlPSJ
+X-Received: by 10.50.2.99 with SMTP id 3mr10786984igt.78.1448384286081; Tue,
+	24 Nov 2015 08:58:06 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.136.141 with HTTP; Tue, 24 Nov 2015 08:57:46 -0800 (PST)
 In-Reply-To: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
 References: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
-Cc: jurobystricky@hotmail.com
-Subject: [PSPLASH 2/2] psplash-fb.c: Fix some endian issues
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 24 Nov 2015 16:57:46 +0000
+Message-ID: <CAJTo0LaEo4YHRbc5fdc5aJuOP55zgZUw_Hi1nrvxLapxn-9dSw@mail.gmail.com>
+To: Juro Bystricky <juro.bystricky@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Juro Bystricky <jurobystricky@hotmail.com>
+Subject: Re: [PSPLASH 0/2] Few fixes for psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,76 +68,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 16:47:11 -0000
+X-List-Received-Date: Tue, 24 Nov 2015 16:58:10 -0000
+Content-Type: multipart/alternative; boundary=089e0122e6e8defc7b05254c3e8a
 
-The routine psplash_fb_plot_pixel implicitly assumed little endian
-format when plotting pixels in RGB888 or BGR888 modes.
+--089e0122e6e8defc7b05254c3e8a
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
----
- psplash-fb.c | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+On 24 November 2015 at 16:39, Juro Bystricky <juro.bystricky@intel.com>
+wrote:
 
-diff --git a/psplash-fb.c b/psplash-fb.c
-index e71af8f..7b352e0 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -14,6 +14,8 @@
-  *  GNU General Public License for more details.
-  *
-  */
-+
-+#include <endian.h>
- #include "psplash.h"
- 
- void
-@@ -294,11 +296,21 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
-     switch (fb->bpp)
-       {
-       case 24:
--      case 32:
--        *(fb->data + off)     = blue;
-+#if __BYTE_ORDER == __BIG_ENDIAN
-+        *(fb->data + off + 0) = red;
-+        *(fb->data + off + 1) = green;
-+        *(fb->data + off + 2) = blue;
-+#else
-+        *(fb->data + off + 0) = blue;
-         *(fb->data + off + 1) = green;
-         *(fb->data + off + 2) = red;
-+#endif
-+        break;
-+      case 32:
-+        *(volatile uint32_t *) (fb->data + off)
-+          = (red << 16) | (green << 8) | (blue);
-         break;
-+
-       case 16:
-         *(volatile uint16_t *) (fb->data + off)
- 	  = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3);
-@@ -311,10 +323,19 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
-     switch (fb->bpp)
-       {
-       case 24:
--      case 32:
--        *(fb->data + off)     = red;
-+#if __BYTE_ORDER == __BIG_ENDIAN
-+        *(fb->data + off + 0) = blue;
-+        *(fb->data + off + 1) = green;
-+        *(fb->data + off + 2) = red;
-+#else
-+        *(fb->data + off + 0) = red;
-         *(fb->data + off + 1) = green;
-         *(fb->data + off + 2) = blue;
-+#endif
-+        break;
-+      case 32:
-+        *(volatile uint32_t *) (fb->data + off)
-+          = (blue << 16) | (green << 8) | (red);
-         break;
-       case 16:
-         *(volatile uint16_t *) (fb->data + off)
--- 
-1.9.1
+> These patches fix https://bugzilla.yoctoproject.org/show_bug.cgi?id=7236
+> Considering there was a bug in the BGR888 detection, it is probaly safe to
+> assume it was never used. I modified handling of 24BPP modes somewhat as
+> well,
+> but did not test it. 24BPP changes only affect big endian mode, little
+> endian
+> should be the same as before. (If you are aware of anybody actually using
+> 24BPP
+> modes, please let me know)
+> Tested with jethro/core-image-sato (qemuppc, qemumips, qemuarm).
+>
 
+Thanks Juro.  Merged to psplash master.
 
+Ross
+
+--089e0122e6e8defc7b05254c3e8a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 24 November 2015 at 16:39, Juro Bystricky <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:juro.bystricky@intel.com" target=3D"_blank">juro.bystricky@intel=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":52=
+m" class=3D"a3s" style=3D"overflow:hidden">These patches fix <a href=3D"htt=
+ps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7236" rel=3D"noreferrer" t=
+arget=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7236</=
+a><br>
+Considering there was a bug in the BGR888 detection, it is probaly safe to<=
+br>
+assume it was never used. I modified handling of 24BPP modes somewhat as we=
+ll,<br>
+but did not test it. 24BPP changes only affect big endian mode, little endi=
+an<br>
+should be the same as before. (If you are aware of anybody actually using 2=
+4BPP<br>
+modes, please let me know)<br>
+Tested with jethro/core-image-sato (qemuppc, qemumips, qemuarm).</div></blo=
+ckquote></div><br>Thanks Juro.=C2=A0 Merged to psplash master.</div><div cl=
+ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--089e0122e6e8defc7b05254c3e8a--
