@@ -1,51 +1,40 @@
-Return-Path: <cleitonblaster@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E65FEE00B81; Tue, 24 Nov 2015 05:25:41 -0800 (PST)
+	id E2AD6E00B30; Tue, 24 Nov 2015 05:47:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cleitonrbueno[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAEEEE00B6F
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 05:25:40 -0800 (PST)
-Received: by qkas77 with SMTP id s77so5009971qka.0
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 05:25:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=p2lu5Z9ch+Gd06xRXO1nSJzZqWuakX9Xt0X2pAI2G/U=;
-	b=cehkrcwnXDY9YSHUIisI0zYNDUDfi0+Fjh+IKYbwylwqUoqX+5VZCa0gs4AuKddwPC
-	6uPsw0jRBpjNQpdINc5a5RZ5GvmDoJyyRBrXPkN8O3JApm0hIKIoBcq1tBdiUbYJO5Lk
-	f2+sdiAhz61iSzy/SHDPsqaF71O4raNe2Ev/4KvrpyPuNOtTj4JYoNRuV37OXm2mmYs2
-	SZ7eMqFCbWLovTfr4NReUu8CT+aDxpzG6bNA24mMpyh4v9GG8RD4iIXbrqlrrHbHjTaV
-	2SGWU+icYr5cYXOrZ1xFVA/4YBK7wyycqrdDdxnUM6FuN0UoR0xpITaqn9HuUlx8x97b
-	e9Nw==
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B551BE00457
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 05:47:47 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tAODle6Q021808
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 24 Nov 2015 05:47:40 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.232) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Tue, 24 Nov 2015 05:47:39 -0800
+To: Roman Khimov <roman@khimov.ru>, <openembedded-devel@lists.openembedded.org>
+References: <56538808.5050606@linux.intel.com> <14934048.INuFbpGn5J@bancha.hex>
+From: Mark Hatle <mark.hatle@windriver.com>
+X-Enigmail-Draft-Status: N1110
+Organization: Wind River Systems
+Message-ID: <56546A7A.6010207@windriver.com>
+Date: Tue, 24 Nov 2015 07:47:38 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
 MIME-Version: 1.0
-X-Received: by 10.55.81.198 with SMTP id f189mr32714703qkb.41.1448371539914;
-	Tue, 24 Nov 2015 05:25:39 -0800 (PST)
-Sender: cleitonblaster@gmail.com
-Received: by 10.55.173.206 with HTTP; Tue, 24 Nov 2015 05:25:39 -0800 (PST)
-Date: Tue, 24 Nov 2015 11:25:39 -0200
-X-Google-Sender-Auth: QyaDc-sI-AY_q9H2U8d7P-C0RYc
-Message-ID: <CABKVDBC-pxrhG-ypAR99WEfysTj0Qx4Am3UismqK4TGU86ZhWw@mail.gmail.com>
-From: Cleiton Bueno <cleitonrbueno@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: i.MX6DL Qt5.5 Image
+In-Reply-To: <14934048.INuFbpGn5J@bancha.hex>
+Cc: yocto@yoctoproject.org, OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [oe] RFC: Reference updater filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,42 +46,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 13:25:42 -0000
-Content-Type: multipart/alternative; boundary=001a114a8a2a23b788052549471c
+X-List-Received-Date: Tue, 24 Nov 2015 13:47:51 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a114a8a2a23b788052549471c
-Content-Type: text/plain; charset=UTF-8
+On 11/24/15 4:39 AM, Roman Khimov wrote:
+> В письме от 23 ноября 2015 15:41:28 пользователь Mariano Lopez написал:
+>> 1. Use a separate partition for the configuration.
+>>    a. The pro of this method is the partition is not touched during the
+>> update.
+>>    b. The con of this method is the configuration is not directly in
+>> rootfs (example: /etc).
+> 
+> That's the right solution, although to do it really right (at least IMO) you 
+> need to implement the /usr merge [1] (and that's orthogonal to using or not 
+> using systemd), which can also help you make your /usr read-only (because 
+> that's just code and static data) with read-write / for user data of various 
+> sorts.
 
-Recipe alsa-utils-alsaconf only create config alsa, can be migrate the
-recipe fido to jethro:
+Why does merging /usr have anything to do with this?  I've read the case for
+merging /usr and / and still don't understand why it "helps".  The key is that
+if you have separate partitions for /usr and /, then you need to update both of
+them in sequence.  Merging these two just seems like a lazy solution to people
+not wanting to deal with early boot being self-contained.
 
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-multimedia/alsa/alsa-utils-alsaconf_1.0.28.bb?h=fido
+Also having a separate / from /usr can help with '/' be your maintenance
+partition in some cases.
 
--- 
+>> 3. Have an OverlayFS for the rootfs or the partition that have the
+>> configuration.
+>>    a. The pro is the configuration is  "directly" in rootfs.
+>>    b. The con is there is need to provide a custom init to guarantee the
+>> Overlay is mounted before the boot process.
+> 
+> And this is the approach I would recommend not doing. I've used UnionFS for 
+> thing like that (overlaying whole root file system) some 6 years ago, it 
+> sounded nice and it kinda worked, but it wasn't difficult to make it fail 
+> (just a little playing with power), we've even seen failures on production 
+> devices, like when you have whiteout file for directory already written, but 
+> don't have new files in it yet and that can completely ruin the system.
+> 
+> Also, it usually works better when you don't have any changes in the lower 
+> layer, but we're talking about updating it here, you can easily end up in a 
+> situation where you have updated something in the rootfs but that was 
+> overriden by upper layer and thus your user doesn't see any change.
 
-*Att,Cleiton Bueno*
+When using overlayfs, I'd strongly recommend not doing it over the entire
+rootfs.  This is generally a bad idea for the reasons stated above.
 
-Blog <http://www.cleitonbueno.com> | Linkedin
-<http://br.linkedin.com/in/cleitonbueno> | Portal Embarcados
-<http://www.embarcados.com.br/author/cleitonrbuenogmail-com/>
+However, overlaying a part of the rootfs often makes sense.  /etc is a good
+example.  This way applications that want their configurations in /etc can still
+have it that way -- and there is always a (hopefully) reasonable default
+configuration, should the configuration 'partition' get corrupted.  So worst
+case the user can start over on configurations only.
 
---001a114a8a2a23b788052549471c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+For applications and user data, these can and should be stored outside of the
+main rootfs.  The FHS/LSB recomment '/opt', but while it doesn't matter if it's
+-actually- /opt, the concept itself is good.
 
-<div dir=3D"ltr">Recipe alsa-utils-alsaconf only create config alsa, can be=
- migrate the recipe fido to jethro:<br><br><a href=3D"http://cgit.openembed=
-ded.org/openembedded-core/tree/meta/recipes-multimedia/alsa/alsa-utils-alsa=
-conf_1.0.28.bb?h=3Dfido">http://cgit.openembedded.org/openembedded-core/tre=
-e/meta/recipes-multimedia/alsa/alsa-utils-alsaconf_1.0.28.bb?h=3Dfido</a><b=
-r clear=3D"all"><br>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr">=
-<div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
-r"><div dir=3D"ltr"><div dir=3D"ltr"><i><b>Att,<br>Cleiton Bueno</b></i><br=
-><br><font color=3D"#000000"><a href=3D"http://www.cleitonbueno.com" target=
-=3D"_blank">Blog</a> | <a href=3D"http://br.linkedin.com/in/cleitonbueno" t=
-arget=3D"_blank">Linkedin</a> | <a href=3D"http://www.embarcados.com.br/aut=
-hor/cleitonrbuenogmail-com/" target=3D"_blank">Portal Embarcados</a> <br></=
-font><br></div></div></div></div></div></div></div></div></div></div>
-</div>
 
---001a114a8a2a23b788052549471c--
+So going back to image upgrade.  The key here is that you need a way to update
+arbitrary images with arbitrary contents and a mechanisms that is smart enough
+to generate the update (vs a full image flash) to conserve bandwidth.
+
+I still contend it's up to the device to be able to configure the system on how
+to get the update and where to apply the update.  The tooling (host and target)
+should simply assist with this.
+
+Delta updates need version information in order to know they're doing the right
+sequence of updating.
+
+Full updates don't, but should be sent in a format that limits "empty space",
+effectively send them as sparse files.
+
+On many devices you will need to flash as part of the download due to space
+limitations.
+
+And you need the ability to flash multiple partitions.
+
+maintenance
+/
+/usr
+data
+
+etc..  whatever it takes to either upgrade or restore the device.
+
+--Mark
+
+>> With the above information I'm proposing to use a separate partition for
+>> the configuration; this is because is more reliable and doesn't require
+>> big changes in the current architecture.
+>>
+>> So, the idea is to have 4 partitions in the media:
+>> 1. boot. This is the usual boot partition
+>> 2. data. This will hold the configuration files. Not modified by updates.
+>> 3. maintenance. This partition will be used to update rootfs.
+>> 4. rootfs. Partition used for normal operation.
+> 
+> You probably don't need to separate 1 and 3, all the code for system update 
+> should easily fit into initramfs and just making /boot a bit larger would 
+> allow you to store some backup rootfs.
+> 
+> Also, you can swap 4 and 2 which will be useful if you're installing on 
+> different sized storage devices, usually you know good enough the size of your 
+> rootfs, but you probably want to leave more space for user data if there is an 
+> opportunity to do so, that's just easier to do with data partition at the end.
+> 
+> [1] http://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/
+> 
+
+
