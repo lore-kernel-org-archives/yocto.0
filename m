@@ -1,49 +1,37 @@
-Return-Path: <gerardmccabe@gmail.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90737E00B3D; Tue, 24 Nov 2015 08:16:06 -0800 (PST)
+	id 37321E00B3D; Tue, 24 Nov 2015 08:30:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gerardmccabe[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.47 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f47.google.com (mail-lf0-f47.google.com
-	[209.85.215.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87F62E00AF2
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:16:02 -0800 (PST)
-Received: by lfdl133 with SMTP id l133so27185930lfd.2
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:16:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ZdwV5dJs4OCBUWRq/s4yNphYpvRXGaGrg4tFEfmjXJI=;
-	b=GIdBK9eeLvHdMCqGT0z+8G78mz+w0+6zuCSBlVGmSrvg3xl1Y6SDX0RmglZRDAv6DC
-	qTAYFKrkaKUJ9j2uzzMw9avm6E45hPjUgW/Wrgha2LLKjhCbWbAqB0AYuyrIHn0p/pEk
-	zZWUwG4nIdJOTy7HuXAKuK4V/9tKQLUK3gP03WC36FGhbzM2mpUrqLDSbTXufJqfz0L0
-	Gzeo7Cr0mTobsid1C1ASSVYZPE+XsV0gm3OYHiZVmM9CTHmbIcpOCtT959UfWTf3l7K+
-	fzV6VA7rBRqE57bOhP4oKi61tW+DML5a5Q2wUrliIJ7EoUZry7nbUU5o+6EFNK2hPVH8
-	4qNQ==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE44E00AF2
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:30:35 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 24 Nov 2015 08:30:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,338,1444719600"; d="scan'208";a="828092191"
+Received: from jwbarz-mobl2.amr.corp.intel.com (HELO [10.254.191.22])
+	([10.254.191.22])
+	by orsmga001.jf.intel.com with ESMTP; 24 Nov 2015 08:30:18 -0800
+To: Roman Khimov <khimov@pkcc-tb.ru>, openembedded-devel@lists.openembedded.org
+References: <56538808.5050606@linux.intel.com> <60350861.Ng52JMGuMb@bancha.hex>
+From: "Lopez, Mariano" <mariano.lopez@linux.intel.com>
+Message-ID: <56549099.6070301@linux.intel.com>
+Date: Tue, 24 Nov 2015 10:30:17 -0600
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-X-Received: by 10.112.17.65 with SMTP id m1mr2460770lbd.132.1448381761113;
-	Tue, 24 Nov 2015 08:16:01 -0800 (PST)
-Received: by 10.25.162.17 with HTTP; Tue, 24 Nov 2015 08:16:01 -0800 (PST)
-Date: Tue, 24 Nov 2015 16:16:01 +0000
-Message-ID: <CAD-66OGhuQ09Ai5FMMJyrTrXrpnAEY93cwPD43BEtCrHAA4Z2g@mail.gmail.com>
-From: Gerard Mc Cabe <gerardmccabe@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Weston Compositor on Yocto core-image-weston-beaglebone
+In-Reply-To: <60350861.Ng52JMGuMb@bancha.hex>
+Cc: yocto@yoctoproject.org, OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [oe] RFC: Reference updater filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,90 +43,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 16:16:06 -0000
-Content-Type: multipart/alternative; boundary=001a11c3cd9e5edb4d05254ba891
-
---001a11c3cd9e5edb4d05254ba891
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Im trying to run the weston compositor on a beaglebone black with yocto
-core-image-weston. Its failing when trying to load the gl-renderer.so
-module. Please see below the terminal output.
-
-I've searched online but there=E2=80=99s not much available on this subject=
-. Any
-advice would be appreciated.
-
-Thanks,
-
-Gerard.
+X-List-Received-Date: Tue, 24 Nov 2015 16:30:37 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
 
-Poky (Yocto Project Reference Distro) 1.6.3 beaglebone /dev/ttyO0
+On 11/24/2015 4:30 AM, Roman Khimov wrote:
+> В письме от 23 ноября 2015 15:41:28 пользователь Mariano Lopez написал:
+>> 1. Use a separate partition for the configuration.
+>>     a. The pro of this method is the partition is not touched during the
+>> update.
+>>     b. The con of this method is the configuration is not directly in
+>> rootfs (example: /etc).
+> That's the right solution, although to do it really right (at least IMO) you
+> need to implement the /usr merge [1] (and that's orthogonal to using or not
+> using systemd), which can also help you make your /usr read-only (because
+> that's just code and static data) with read-write / for user data of various
+> sorts.
 
-beaglebone login: root
-root@beaglebone:~# mkdir -p /tmp/$USER-weston
-root@beaglebone:~# chmod 0700 /tmp/$USER-weston
-root@beaglebone:~# export XDG_RUNTIME_DIR=3D/tmp/$USER-weston
-root@beaglebone:~# weston --tty=3D1
-Date: 2015-11-24 UTC
-[15:37:47.672] weston 1.4.0
-               http://wayland.freedesktop.org/
-               Bug reports to:
-https://bugs.freedesktop.org/enter_bug.cgi?product=3DWayland&component=3Dwe=
-ston&version=3D1.4.0
-               Build: 1.4.0-dirty configure.ac: Bump version to 1.4.0
-(2014-01-23 20:51:40 -0800)
-[15:37:47.673] OS: Linux, 3.14.19-yocto-standard, #1 PREEMPT Thu Nov 19
-13:48:10 GMT 2015, armv7l
-[15:37:47.674] Starting with no config file.
-[15:37:47.674] Loading module '/usr/lib/weston/drm-backend.so'
-[15:37:47.683] initializing drm backend
-[15:37:47.687] using /dev/dri/card0
-[15:37:47.687] Loading module '/usr/lib/weston/gl-renderer.so'
-gbm: malformed or no PCI IDfailed to load module:
-/usr/lib/gbm/gbm_gallium_drm.so: cannot open shared object file: No such
-file or directory
-[15:37:47.690] failed to initialize egl
-[15:37:47.696] fatal: failed to create compositor
-root@beaglebone:~#
+To be honest I'm not familiar with /usr merge, I need to check on that 
+to see if it is a good option with the current OE-core infrastructure.
 
---001a11c3cd9e5edb4d05254ba891
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+>
+>> 3. Have an OverlayFS for the rootfs or the partition that have the
+>> configuration.
+>>     a. The pro is the configuration is  "directly" in rootfs.
+>>     b. The con is there is need to provide a custom init to guarantee the
+>> Overlay is mounted before the boot process.
+> And this is the approach I would recommend not doing. I've used UnionFS for
+> thing like that (overlaying whole root file system) some 6 years ago, it
+> sounded nice and it kinda worked, but it wasn't difficult to make it fail
+> (just a little playing with power), we've even seen failures on production
+> devices, like when you have whiteout file for directory already written, but
+> don't have new files in it yet and that can completely ruin the system.
+>
+> Also, it usually works better when you don't have any changes in the lower
+> layer, but we're talking about updating it here, you can easily end up in a
+> situation where you have updated something in the rootfs but that was
+> overriden by upper layer and thus your user doesn't see any change.
 
-<div dir=3D"ltr">Hi,<br><div><br>Im trying to run the weston compositor on =
-a beaglebone black with yocto core-image-weston. Its failing when trying to=
- load the gl-renderer.so module. Please see below the terminal output. <br>=
-<br></div><div>I&#39;ve searched online but there=E2=80=99s not much availa=
-ble on this subject. Any advice would be appreciated.<br><br></div><div>Tha=
-nks,<br><br></div><div>Gerard.<br><br><br></div><div><br></div><div>Poky (Y=
-octo Project Reference Distro) 1.6.3 beaglebone /dev/ttyO0<br><br>beaglebon=
-e login: root<br>root@beaglebone:~# mkdir -p /tmp/$USER-weston<br>root@beag=
-lebone:~# chmod 0700 /tmp/$USER-weston<br>root@beaglebone:~# export XDG_RUN=
-TIME_DIR=3D/tmp/$USER-weston<br>root@beaglebone:~# weston --tty=3D1<br>Date=
-: 2015-11-24 UTC<br>[15:37:47.672] weston 1.4.0<br>=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a href=3D"htt=
-p://wayland.freedesktop.org/">http://wayland.freedesktop.org/</a><br>=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 Bug reports to: <a href=3D"https://bugs.freedesktop.org/enter_bug.cgi?p=
-roduct=3DWayland&amp;component=3Dweston&amp;version=3D1.4.0">https://bugs.f=
-reedesktop.org/enter_bug.cgi?product=3DWayland&amp;component=3Dweston&amp;v=
-ersion=3D1.4.0</a><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Build: 1.4.0-dirty <a href=3D"http://conf=
-igure.ac">configure.ac</a>: Bump version to 1.4.0 (2014-01-23 20:51:40 -080=
-0)<br>[15:37:47.673] OS: Linux, 3.14.19-yocto-standard, #1 PREEMPT Thu Nov =
-19 13:48:10 GMT 2015, armv7l<br>[15:37:47.674] Starting with no config file=
-.<br>[15:37:47.674] Loading module &#39;/usr/lib/weston/drm-backend.so&#39;=
-<br>[15:37:47.683] initializing drm backend<br>[15:37:47.687] using /dev/dr=
-i/card0<br>[15:37:47.687] Loading module &#39;/usr/lib/weston/gl-renderer.s=
-o&#39;<br>gbm: malformed or no PCI IDfailed to load module: /usr/lib/gbm/gb=
-m_gallium_drm.so: cannot open shared object file: No such file or directory=
-<br>[15:37:47.690] failed to initialize egl<br>[15:37:47.696] fatal: failed=
- to create compositor<br>root@beaglebone:~#<br><br><br></div></div>
+Thanks for sharing your experience, this is another big con for the 
+Overlay option.
 
---001a11c3cd9e5edb4d05254ba891--
+>
+>> With the above information I'm proposing to use a separate partition for
+>> the configuration; this is because is more reliable and doesn't require
+>> big changes in the current architecture.
+>>
+>> So, the idea is to have 4 partitions in the media:
+>> 1. boot. This is the usual boot partition
+>> 2. data. This will hold the configuration files. Not modified by updates.
+>> 3. maintenance. This partition will be used to update rootfs.
+>> 4. rootfs. Partition used for normal operation.
+> You probably don't need to separate 1 and 3, all the code for system update
+> should easily fit into initramfs and just making /boot a bit larger would
+> allow you to store some backup rootfs.
+
+I left the /boot partition separate just in case there is need to 
+replace the kernel or the bootloader. This way it would be easier to 
+change using the same method as the upgrading the rootfs.
+
+>
+> Also, you can swap 4 and 2 which will be useful if you're installing on
+> different sized storage devices, usually you know good enough the size of your
+> rootfs, but you probably want to leave more space for user data if there is an
+> opportunity to do so, that's just easier to do with data partition at the end.
+
+I was thinking in the same thinking just backwards, usually 
+configuration files are just small text files that don't require too 
+much space. If you require a new feature in the target that will make 
+rootfs to grow depending on the feature. I plan to use wic to accomplish 
+the filesystem structure. A good thing about wic is that it will be very 
+easy to do the swap, just need to modify two options in the .wks file.
+
+>
+>
+> [1] http://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/
+
+
