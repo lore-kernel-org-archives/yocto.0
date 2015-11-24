@@ -1,62 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10FEBE00B45; Tue, 24 Nov 2015 08:58:10 -0800 (PST)
+	id 8B497E00B5D; Tue, 24 Nov 2015 09:03:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9F00E00B1C
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:58:06 -0800 (PST)
-Received: by igcmv3 with SMTP id mv3so54913937igc.0
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 08:58:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=7TY2v09kYf7oAgz8FIsOD0NoIgBFZwA3mEbjF4dlLuI=;
-	b=XhnxkFG4LhMEXF3S3FUFEPXH4QKlGuMXQuGHg2M4HFwNKLJg2rn6RoWhzJIlcGULBJ
-	p7ogb/eNUs13siZU1GGz6GuWxKLXJ0SYOO6xvT4gjVmNihPm0ET4jyD6mdEzmliyHhEP
-	ixdaKuDub/M7lIOMfHOWTSoQKYoh/S9CHaDeld1tPIQhle7e+iYuGmH0fiI7qnAXYGpp
-	+zGTZrm1Wi08dgm5BoA83wfpuNCMciI7NSKEoUUISj4H1hPKpdQ+WA+hv8YkrF2Pb8zn
-	S4oR63ooWZM6Nd2mOnFw+GNrbXOviMUA7iwI7keev2qAr+DeWCOu8DfQDv9wCVQgOcZe
-	9A5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=7TY2v09kYf7oAgz8FIsOD0NoIgBFZwA3mEbjF4dlLuI=;
-	b=JDn4R90+x3Yok4VI+dLvS+QDFGu6CdbjYAmNNbGgqHwHtgMUfuZWb18NR+Q8VzqkXO
-	eyXdoAoe4J2h/l0P4dfZes0ieElGnI9jnI9lgZFyl5H3z2zDgGSAP1xM8XtTgEBXy+nA
-	nV2bmQ9jDTpUmoyMiK2k/bTDylAHMKn53dYJl4P0iYJwuyMqXLlD17DoKE/Gow71AANO
-	ffCR5U+svaZ3oubiwi9uuppZvu4msBPbLCjhuTeNkW3MeTkI/HL4trHJ7Pdi1Croxt7o
-	RScnArxojbrG4CTjsnYLO55MxTY30Cjnq4kQCeFTqWobwCP4tdjS1EToOpjpWrt0/y8t
-	FtkA==
-X-Gm-Message-State: ALoCoQnX5Kn83+/DEcmN3dkDc3eHZbSLtyneZ2+8LBniiWOSgXvL/tDmK0axRtS7M4HcZqnSlPSJ
-X-Received: by 10.50.2.99 with SMTP id 3mr10786984igt.78.1448384286081; Tue,
-	24 Nov 2015 08:58:06 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ED8BE00B94
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 09:03:42 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP; 24 Nov 2015 09:02:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,338,1444719600"; d="scan'208";a="606418899"
+Received: from jwbarz-mobl2.amr.corp.intel.com (HELO [10.254.191.22])
+	([10.254.191.22])
+	by FMSMGA003.fm.intel.com with ESMTP; 24 Nov 2015 09:02:42 -0800
+To: Mark Hatle <mark.hatle@windriver.com>, Roman Khimov <roman@khimov.ru>,
+	openembedded-devel@lists.openembedded.org
+References: <56538808.5050606@linux.intel.com>
+	<14934048.INuFbpGn5J@bancha.hex> <56546A7A.6010207@windriver.com>
+From: "Lopez, Mariano" <mariano.lopez@linux.intel.com>
+Message-ID: <56549832.8080205@linux.intel.com>
+Date: Tue, 24 Nov 2015 11:02:42 -0600
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Received: by 10.107.136.141 with HTTP; Tue, 24 Nov 2015 08:57:46 -0800 (PST)
-In-Reply-To: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
-References: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 24 Nov 2015 16:57:46 +0000
-Message-ID: <CAJTo0LaEo4YHRbc5fdc5aJuOP55zgZUw_Hi1nrvxLapxn-9dSw@mail.gmail.com>
-To: Juro Bystricky <juro.bystricky@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Juro Bystricky <jurobystricky@hotmail.com>
-Subject: Re: [PSPLASH 0/2] Few fixes for psplash
+In-Reply-To: <56546A7A.6010207@windriver.com>
+Cc: yocto@yoctoproject.org, OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [oe] RFC: Reference updater filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,55 +45,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 16:58:10 -0000
-Content-Type: multipart/alternative; boundary=089e0122e6e8defc7b05254c3e8a
+X-List-Received-Date: Tue, 24 Nov 2015 17:03:43 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---089e0122e6e8defc7b05254c3e8a
-Content-Type: text/plain; charset=UTF-8
 
-On 24 November 2015 at 16:39, Juro Bystricky <juro.bystricky@intel.com>
-wrote:
 
-> These patches fix https://bugzilla.yoctoproject.org/show_bug.cgi?id=7236
-> Considering there was a bug in the BGR888 detection, it is probaly safe to
-> assume it was never used. I modified handling of 24BPP modes somewhat as
-> well,
-> but did not test it. 24BPP changes only affect big endian mode, little
-> endian
-> should be the same as before. (If you are aware of anybody actually using
-> 24BPP
-> modes, please let me know)
-> Tested with jethro/core-image-sato (qemuppc, qemumips, qemuarm).
+On 11/24/2015 7:47 AM, Mark Hatle wrote:
+> On 11/24/15 4:39 AM, Roman Khimov wrote:
+>> В письме от 23 ноября 2015 15:41:28 пользователь Mariano Lopez написал:
+>>> 1. Use a separate partition for the configuration.
+>>>     a. The pro of this method is the partition is not touched during the
+>>> update.
+>>>     b. The con of this method is the configuration is not directly in
+>>> rootfs (example: /etc).
+>> That's the right solution, although to do it really right (at least IMO) you
+>> need to implement the /usr merge [1] (and that's orthogonal to using or not
+>> using systemd), which can also help you make your /usr read-only (because
+>> that's just code and static data) with read-write / for user data of various
+>> sorts.
+> Why does merging /usr have anything to do with this?  I've read the case for
+> merging /usr and / and still don't understand why it "helps".  The key is that
+> if you have separate partitions for /usr and /, then you need to update both of
+> them in sequence.  Merging these two just seems like a lazy solution to people
+> not wanting to deal with early boot being self-contained.
 >
+> Also having a separate / from /usr can help with '/' be your maintenance
+> partition in some cases.
+>
+>>> 3. Have an OverlayFS for the rootfs or the partition that have the
+>>> configuration.
+>>>     a. The pro is the configuration is  "directly" in rootfs.
+>>>     b. The con is there is need to provide a custom init to guarantee the
+>>> Overlay is mounted before the boot process.
+>> And this is the approach I would recommend not doing. I've used UnionFS for
+>> thing like that (overlaying whole root file system) some 6 years ago, it
+>> sounded nice and it kinda worked, but it wasn't difficult to make it fail
+>> (just a little playing with power), we've even seen failures on production
+>> devices, like when you have whiteout file for directory already written, but
+>> don't have new files in it yet and that can completely ruin the system.
+>>
+>> Also, it usually works better when you don't have any changes in the lower
+>> layer, but we're talking about updating it here, you can easily end up in a
+>> situation where you have updated something in the rootfs but that was
+>> overriden by upper layer and thus your user doesn't see any change.
+> When using overlayfs, I'd strongly recommend not doing it over the entire
+> rootfs.  This is generally a bad idea for the reasons stated above.
+>
+> However, overlaying a part of the rootfs often makes sense.  /etc is a good
+> example.  This way applications that want their configurations in /etc can still
+> have it that way -- and there is always a (hopefully) reasonable default
+> configuration, should the configuration 'partition' get corrupted.  So worst
+> case the user can start over on configurations only.
 
-Thanks Juro.  Merged to psplash master.
+Do you know a way to mount the overlay before all the services start? I 
+tried to do this, but the only reliable way to do it was using a custom 
+init, I couldn't accomplish this using systemd or sysvnit.
 
-Ross
+>
+> For applications and user data, these can and should be stored outside of the
+> main rootfs.  The FHS/LSB recomment '/opt', but while it doesn't matter if it's
+> -actually- /opt, the concept itself is good.
+>
+>
+> So going back to image upgrade.  The key here is that you need a way to update
+> arbitrary images with arbitrary contents and a mechanisms that is smart enough
+> to generate the update (vs a full image flash) to conserve bandwidth.
 
---089e0122e6e8defc7b05254c3e8a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I was concerned about this too, not just bandwidth but resources in the 
+target. Unfortunately I couldn't find an option that is generic enough 
+to just provide the update. The idea is to integrate the tool into YP, 
+not to develop a new one. Some of the tools that I checked needed to use 
+btrfs partitions, need python in the target, or other constrains that 
+make the update system impossible for a lot of targets.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 24 November 2015 at 16:39, Juro Bystricky <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:juro.bystricky@intel.com" target=3D"_blank">juro.bystricky@intel=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":52=
-m" class=3D"a3s" style=3D"overflow:hidden">These patches fix <a href=3D"htt=
-ps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7236" rel=3D"noreferrer" t=
-arget=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7236</=
-a><br>
-Considering there was a bug in the BGR888 detection, it is probaly safe to<=
-br>
-assume it was never used. I modified handling of 24BPP modes somewhat as we=
-ll,<br>
-but did not test it. 24BPP changes only affect big endian mode, little endi=
-an<br>
-should be the same as before. (If you are aware of anybody actually using 2=
-4BPP<br>
-modes, please let me know)<br>
-Tested with jethro/core-image-sato (qemuppc, qemumips, qemuarm).</div></blo=
-ckquote></div><br>Thanks Juro.=C2=A0 Merged to psplash master.</div><div cl=
-ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+>
+> I still contend it's up to the device to be able to configure the system on how
+> to get the update and where to apply the update.  The tooling (host and target)
+> should simply assist with this.
+>
+> Delta updates need version information in order to know they're doing the right
+> sequence of updating.
+>
+> Full updates don't, but should be sent in a format that limits "empty space",
+> effectively send them as sparse files.
+>
+> On many devices you will need to flash as part of the download due to space
+> limitations.
 
---089e0122e6e8defc7b05254c3e8a--
+The tool mentioned has this capability.
+
+>
+> And you need the ability to flash multiple partitions.
+>
+> maintenance
+> /
+> /usr
+> data
+>
+> etc..  whatever it takes to either upgrade or restore the device.
+
+Yes, that would be possible, the only limitation is that is not possible 
+to flash the partition that is being used.
+
+>
+> --Mark
+>
+>>> With the above information I'm proposing to use a separate partition for
+>>> the configuration; this is because is more reliable and doesn't require
+>>> big changes in the current architecture.
+>>>
+>>> So, the idea is to have 4 partitions in the media:
+>>> 1. boot. This is the usual boot partition
+>>> 2. data. This will hold the configuration files. Not modified by updates.
+>>> 3. maintenance. This partition will be used to update rootfs.
+>>> 4. rootfs. Partition used for normal operation.
+>> You probably don't need to separate 1 and 3, all the code for system update
+>> should easily fit into initramfs and just making /boot a bit larger would
+>> allow you to store some backup rootfs.
+>>
+>> Also, you can swap 4 and 2 which will be useful if you're installing on
+>> different sized storage devices, usually you know good enough the size of your
+>> rootfs, but you probably want to leave more space for user data if there is an
+>> opportunity to do so, that's just easier to do with data partition at the end.
+>>
+>> [1] http://www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/
+>>
+
+
