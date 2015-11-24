@@ -1,50 +1,72 @@
-Return-Path: <Virgi200@gmx.de>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4287E00B2E; Tue, 24 Nov 2015 02:51:01 -0800 (PST)
+	id 174D9E00B6F; Tue, 24 Nov 2015 05:25:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE, MIME_HTML_ONLY, RCVD_IN_DNSWL_LOW,
-	XPRIO autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (virgi200[at]gmx.de)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.227.17.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	*  2.0 XPRIO Has X-Priority header
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F82EE00457
-	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 02:50:59 -0800 (PST)
-Received: from [217.5.143.100] by 3capp-gmx-bs33.server.lan (via HTTP); Tue,
-	24 Nov 2015 11:50:57 +0100
-MIME-Version: 1.0
-Message-ID: <trinity-84c92155-f9b0-4ee6-9002-c16ed6594bdf-1448362257606@3capp-gmx-bs33>
-From: "Virgilia  Eigner" <Virgi200@gmx.de>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5833E00B30
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 05:25:17 -0800 (PST)
+Received: by lfaz4 with SMTP id z4so20313120lfa.0
+	for <yocto@yoctoproject.org>; Tue, 24 Nov 2015 05:25:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:organization:user-agent;
+	bh=cS1GmsEMwihgeQtyXX0Cb001rVXly+ci0/9aDUBrM94=;
+	b=NIYcfGXx1wzqCkLTglTvvqp148fAg544ngRyxd01hoLpSak87UH7OVdU3XkjLNzYQD
+	Tb5mUrHP0+vh+NqyAiTVHnaIK2o1UKaaTmYepRSTdeSsS44+pxc0uyo1YYktfAbFLj8o
+	ITgGCZWDeunLZ4wL9q7qMhEf0RAAyrDQ1OHFuP5vq+OboA31DR0/oXC7LE6C62D3Ejvo
+	0mHFuBtsjnp1C2Kp+jzje2bgapnfrsyZeiQwsH2oyDFvTlRcbT61Uwr/1C+XyWlqpYia
+	B0eymdT9Hf88gpDLVgcHHyBzfZTcW7Kn9qEplBSiTDCH/6FFz3Jqv33GXNAJRdRyf1K5
+	EmTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:references:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:organization:user-agent;
+	bh=cS1GmsEMwihgeQtyXX0Cb001rVXly+ci0/9aDUBrM94=;
+	b=P4u1wnhvebxZwfDZt+PIMuhn20nk9DDKLOejgcsElf6j5MYaw/0tBdDdzETF478NdS
+	YOI7THaqePzuw/NfT/mneOCHLMS3vwmpXEqcb/5iMFJCy/DpahXuJvUvuR96/hVd90k/
+	qVdK+TEhGwDu2gymLa/HKz9/G96v9wDaQTe8CyeE9W7jnB//v6js6zuqq23ZhfgwvWE0
+	VvOcTB6+AeZeUxdln5Gew7OYhtP6nYyPgIOopQpbymcPJ+19FlQaFyHBwr2vOEbeW39Q
+	nqkN/yzPnPWES5sW/MZxQfrxyvZ5GQw1htO7onG//9WOE6sFcTWRZv1Mw7uNSILc6UXs
+	LiSQ==
+X-Gm-Message-State: ALoCoQm32z1RnM7v1s7KSqdKWtmM9NVsE9iCYw/SWg6H6m1zyU/TejN7wC1wh2PMk0de7JV6to0U
+X-Received: by 10.112.132.73 with SMTP id os9mr13057768lbb.128.1448371516652; 
+	Tue, 24 Nov 2015 05:25:16 -0800 (PST)
+Received: from ad.chargestorm.se (h83-209-191-235.dynamic.se.alltele.net.
+	[83.209.191.235]) by smtp.gmail.com with ESMTPSA id
+	f71sm2625469lfe.36.2015.11.24.05.25.15 for <yocto@yoctoproject.org>
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 24 Nov 2015 05:25:15 -0800 (PST)
+Date: Tue, 24 Nov 2015 14:25:14 +0100
+From: Anders Darander <anders@chargestorm.se>
 To: yocto@yoctoproject.org
-Date: Tue, 24 Nov 2015 11:50:57 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K0:PedyIJvOsnwsujuEZbZ7vUbKVVr07vHCSJN6D9aRvAl
-	yKkr9XtWoYqMGez8bACKqppoV8PEXydaWSqfQM6Q1omkAbJQhg
-	VzUXiECM+RIj7XF+VnDeGlMByaLOtLJdJ+WZTy0PWMV9OZE0CJ
-	+G/UrJFjkB5j3ZF0wsXP1JkRSnGugvo5erobeRVcjyALYbmmya
-	7tq2S/7SUcbugOFslPmBxpONYytNWA0Os9mF6tAqlHT/AlkKEh
-	FWKEA9rqFMzHKyAVhwpPkbcybA7LANQvHoOm8zPSIWSxjmem0s 4M6jH8=
-X-UI-Out-Filterresults: notjunk:1;V01:K0:gGL1c+HP0CM=:Hzbd9DYDjY8ki+J+5DIbyN
-	HoHh9SAmv/wvTHUOUfLemm2+srm3oZKTaFvOH0q3rc8hz46lEOjsKSB96wisPzX557TpX8+tl
-	UqWP99+pLnAnA+qgZhOlkIf9fLLah1bzQTNHeRGVtU2X46ZPrpQs+FCKmSMfhnrbQtwDDHbAA
-	ZSh2nLWoSDogFnb87mIHwWdEtSpKaDeUj0hokJ88v/2rd3Gk4xRJyKpLstWXCqcpaeAWuRtFE
-	Ztos/EX2DHgRQPO1tw2kBYLVO1NN8+yIy6Gip+Siux8/fcVSCIMcSypUWpCbXi/fnSp75+iUM
-	Jcuou3SC1JZVGEDSVroTo+YhsRKNV4oNZ9gj1Y1iV3eZL47t2rz47s8IZ5mVYYsnvBMdE5OMW
-	0U3JW68Ath1f5bPqwjAtzwMLB1aBulv8yuMCLek39uiEZk0a2iEz4lR/Toe4DEA7dBUYrHy9s
-	xsFjcxBWZQ==
-Subject: Toolchain
+Message-ID: <20151124132514.GB2165@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <6AC2D51E0855E34EBDB192F9BA81BFB3A743E793@PTW-EX-37.PEGA.CORP.PEGATRON>
+MIME-Version: 1.0
+In-Reply-To: <6AC2D51E0855E34EBDB192F9BA81BFB3A743E793@PTW-EX-37.PEGA.CORP.PEGATRON>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: Header files in /usr/include of rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,33 +78,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 10:51:01 -0000
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 24 Nov 2015 13:25:20 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>
-<div>hi,<br/>
-in my YOCTO project I seeking inspiration.<br/>
-Now I&#39;m at a point where I am jumping from one to another error.<br/>
-So before I will proceed, could you please check my listing.<br/>
-Is it the right way, respectively correct direction?</div>
+* Andy Hung(=E6=B4=AA=E7=BF=8A=E6=A1=93_Pegatron) <Andy_Hung@pegatroncorp.c=
+om> [151124 11:35]:
+> I was trying to add some pre-built binaries and files by using a recipe.
+> The recipe has something like this:
 
-<div>&nbsp;</div>
+> SRC_URI =3D file://files<file:///\\files>
+> =E2=80=A6
+> do_install() {
+>     install =E2=80=93d ${D}
+> }
 
-<div>My approach<br/>
-- working with poky/fido<br/>
-- downloaded and integrated meta-sourcery-master (add External toolchain path and&nbsp;&nbsp;&nbsp;&nbsp; bblayers.conf)<br/>
-- build my external toolchain crosstool-ng<br/>
-- build up my own machineconfiguration layer(powerpc)</div>
+What files are you installing? How does those look like?
 
-<div>could you please let me know if this is the right way?<br/>
-Do i have to add another recipe especially for the external toolchain?<br/>
-If i have to, where should i place this recipe and which tasks should it perform?<br/>
-Any examples?</div>
+> FILES_${PN} =3D =E2=80=9C/*=E2=80=9D
 
-<div>&nbsp;</div>
+Here you add say that anything that has been installed, but not put into
+any other package, should be added to ${PN}. Is that what you want?
 
-<div>&nbsp;</div>
+> ALLOW_EMPTY_${PN} =3D =E2=80=9C1=E2=80=9D
 
-<div>best regards Virgilia</div>
-</div></div></body></html>
+Remove this one unless ${PN} is going to be empty.
+
+> INSANE_SKIP_${PN} =3D =E2=80=9Cdebug-files dev-so=E2=80=9D
+
+These might be needed if you get certain QA-warnings/error without them.
+
+> The result was all the binaries and files installed and packages are crea=
+ted,
+> But I also found kernel header files are also built in under /usr/include=
+ in rootfs image.
+> For my understanding those header files should be used if I want to devel=
+op/debug applications on the target device but it is not the case.
+
+> Also I noticed the use of INSANE_SKIP_${PN} so I check the usage of debug=
+-files and dev-so,
+> And it turned out there are .debug folders in the WORKDIR/package folder =
+so I thought that is why debug-files was used.
+
+See answer below.
+
+> The questions are,
+> Why are those kernel header files installed in rootfs? How do I prevent t=
+hisa?
+
+I assume that they aren't in the package you just created? Do you have
+anything in your package that might have a dependency on the kernel
+headers? Do you have anything in your IMAGE_FEATURES?
+
+> Why are there .debug in the package folder, it should only be in package =
+=E2=80=93dbg folder, right?
+
+Where are the .debug directories located? You should add them to:
+FILES_${PN}-dbg +=3D "<location>/.debug"
+
+Cheers,
+Anders
+
+--=20
+Anders Darander, Senior System Architect
+ChargeStorm AB / eStorm AB
 
