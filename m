@@ -1,69 +1,39 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <Andy_Hung@pegatroncorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3878E00BF4; Wed, 25 Nov 2015 00:41:02 -0800 (PST)
+	id 3F12BE00BFE; Wed, 25 Nov 2015 02:52:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	RDNS_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [124.9.5.30 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27123E00B5C;
-	Wed, 25 Nov 2015 00:40:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default;
-	h=To:References:Message-Id:Cc:Date:In-Reply-To:
-	From:Content-Type:Mime-Version:Subject;
-	bh=UQ264LQ7oT+JwQGrmfHkPpiUuK3ugNmAKtmRcMPw/OM=;
-	b=qZGk416JBcpe6teX4t4fvm/Prg
-	SAA3ohJVoL28LPGX7h5YbvoabmYBu2KUDlwkK0Bqur0E+i6zaHA0nD1bY3uClcYkBaiBli2uGWUNn
-	NZLthUt1k6OO0nR0CTwq7qCZZLnHz/pARI0+4fpUij7KZm7LhflsdxDmIPQYJToOk+Tg=; 
-Received: from durham.keylevel.com ([88.97.63.243]:32881
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.86) (envelope-from <opensource@keylevel.com>)
-	id 1a1VdC-004Low-Jb; Wed, 25 Nov 2015 08:40:50 +0000
-Mime-Version: 1.0 (Mac OS X Mail 9.1 \(3096.5\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <D4B999590D2ACC499FE6A1F7CF2D454A05B04DF1@PGSMSX103.gar.corp.intel.com>
-Date: Wed, 25 Nov 2015 08:41:35 +0000
-Message-Id: <2E62C04E-8CDE-4DFE-B331-E1CE72778E54@keylevel.com>
-References: <107F2908-2817-46D5-96CC-0B71CD6ADBEB@keylevel.com>
-	<2174669.LymzPMzo3U@peggleto-mobl.ger.corp.intel.com>
-	<50B33AC5ED75F74F991980326F1C438D1905581B@PGSMSX103.gar.corp.intel.com>
-	<D4B999590D2ACC499FE6A1F7CF2D454A05A77060@PGSMSX103.gar.corp.intel.com>
-	<7C8818DC-0089-471F-9438-D3D574551102@keylevel.com>
-	<70B2271A-0C73-40A5-B355-BF7E54C7886C@keylevel.com>
-	<D4B999590D2ACC499FE6A1F7CF2D454A05B04DF1@PGSMSX103.gar.corp.intel.com>
-To: "Cheah, Vincent Beng Keat" <vincent.beng.keat.cheah@intel.com>
-X-Mailer: Apple Mail (2.3096.5)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	Yocto Project <yocto@yoctoproject.org>, "Chang,
-	Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading from Daisy to Fido
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from ms.pegatroncorp.com (unknown [124.9.5.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64910E00BF4
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 02:51:58 -0800 (PST)
+Received: from unknown (HELO PTW-EX-CASHUB07.PEGA.CORP.PEGATRON)
+	([172.18.6.20])
+	by ms.pegatroncorp.com with ESMTP; 25 Nov 2015 18:51:56 +0800
+Received: from PTW-EX-37.PEGA.CORP.PEGATRON ([fe80::5466:11cb:50e:8c0e]) by
+	PTW-EX-CASHUB07.PEGA.CORP.PEGATRON ([::1]) with mapi id 14.02.0342.003;
+	Wed, 25 Nov 2015 18:51:51 +0800
+From: =?big5?B?QW5keSBIdW5nKKx41vau2V9QZWdhdHJvbik=?=
+	<Andy_Hung@pegatroncorp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Header files in /usr/include of rootfs
+Thread-Index: AdEnaFqhflxlEyA9TqSi+UXJ5PVYbA==
+Date: Wed, 25 Nov 2015 10:51:51 +0000
+Message-ID: <6AC2D51E0855E34EBDB192F9BA81BFB3A743E819@PTW-EX-37.PEGA.CORP.PEGATRON>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.194.41.169]
+MIME-Version: 1.0
+Subject: Re: Header files in /usr/include of rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,335 +45,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Nov 2015 08:41:02 -0000
-X-Groupsio-MsgNum: 27424
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_54C7F780-8828-4966-A8CD-B51400F05D01";
-	protocol="application/pgp-signature"; micalg=pgp-sha512
+X-List-Received-Date: Wed, 25 Nov 2015 10:52:01 -0000
+Content-Language: zh-TW
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 
---Apple-Mail=_54C7F780-8828-4966-A8CD-B51400F05D01
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+TWVzc2FnZTogMg0KRGF0ZTogVHVlLCAyNCBOb3YgMjAxNSAxNDoyNToxNCArMDEwMA0KRnJvbTog
+QW5kZXJzIERhcmFuZGVyIDxhbmRlcnNAY2hhcmdlc3Rvcm0uc2U+DQpUbzogeW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gSGVhZGVyIGZpbGVzIGluIC91c3IvaW5j
+bHVkZSBvZiByb290ZnMNCk1lc3NhZ2UtSUQ6IDwyMDE1MTEyNDEzMjUxNC5HQjIxNjVAYWQuY2hh
+cmdlc3Rvcm0uc2U+DQpDb250ZW50LVR5cGU6IHRleHQvcGxhaW47IGNoYXJzZXQ9dXRmLTgNCg0K
+KiBBbmR5IEh1bmcoPz8/X1BlZ2F0cm9uKSA8QW5keV9IdW5nQHBlZ2F0cm9uY29ycC5jb20+IFsx
+NTExMjQgMTE6MzVdOg0KPiBJIHdhcyB0cnlpbmcgdG8gYWRkIHNvbWUgcHJlLWJ1aWx0IGJpbmFy
+aWVzIGFuZCBmaWxlcyBieSB1c2luZyBhIHJlY2lwZS4NCj4gVGhlIHJlY2lwZSBoYXMgc29tZXRo
+aW5nIGxpa2UgdGhpczoNCg0KPiBTUkNfVVJJID0gZmlsZTovL2ZpbGVzPGZpbGU6Ly8vXFxmaWxl
+cz4gPw0KPiBkb19pbnN0YWxsKCkgew0KPiAgICAgaW5zdGFsbCA/ZCAke0R9DQo+IH0NCg0KCT4g
+V2hhdCBmaWxlcyBhcmUgeW91IGluc3RhbGxpbmc/IEhvdyBkb2VzIHRob3NlIGxvb2sgbGlrZT8N
+CglUaGUgY29udGVudCBvZiB0aGUgZm9sZGVyIGhhcyB0aG9zZSBzdWItZm9sZGVycywgc2Jpbiwg
+cm9vdCwgbGliLCBldGMuDQoJVGhvc2Ugc3ViLWZvbGRlcnMgY29udGFpbnMgZmlsZXMgc3VjaCBh
+cyBleGVjdXRhYmxlIGJpbmFyaWVzLCBjb25maWcgZmlsZXMsIGtlcm5lbCBtb2R1bGVzLCAuc28g
+ZmlsZXMgLi4uDQoJQWxsIHRoZXNlIGZpbGVzIGFyZSBhY3R1YWxseSBidWlsdCBmcm9tIHRoZSBz
+b3VyY2UgY29kZSBvZiBhIHNwZWNpZmljIFdpRmkgZHJpdmVyLA0KCXdoYXQgSSB3YW50IHRvIGRv
+IGlzIGluc3RhbGxpbmcgYWxsIHByZS1idWlsdCBiaW5hcmllcy9maWxlcyBpbnRvIGNvcnJlc3Bv
+bmRpbmcgbG9jYXRpb25zIGluIHJvb3Rmcy4NCgkgDQo+IEZJTEVTXyR7UE59ID0gPy8qPw0KDQoJ
+PiBIZXJlIHlvdSBhZGQgc2F5IHRoYXQgYW55dGhpbmcgdGhhdCBoYXMgYmVlbiBpbnN0YWxsZWQs
+IGJ1dCBub3QgcHV0IGludG8gYW55IG90aGVyIHBhY2thZ2UsIHNob3VsZCBiZSBhZGRlZCB0byAk
+e1BOfS4gSXMgdGhhdCB3aGF0IHlvdSB3YW50Pw0KCVllcywgYWxsIGZpbGVzIGFyZSBpbnN0YWxs
+ZWQgaW4gYSBwYWNrYWdlLg0KDQo+IEFMTE9XX0VNUFRZXyR7UE59ID0gPzE/DQoNCgk+IFJlbW92
+ZSB0aGlzIG9uZSB1bmxlc3MgJHtQTn0gaXMgZ29pbmcgdG8gYmUgZW1wdHkuDQoJVGhpcyBsaW5l
+IGlzIHJlbW92ZWQuDQoNCj4gSU5TQU5FX1NLSVBfJHtQTn0gPSA/ZGVidWctZmlsZXMgZGV2LXNv
+Pw0KDQoJPiBUaGVzZSBtaWdodCBiZSBuZWVkZWQgaWYgeW91IGdldCBjZXJ0YWluIFFBLXdhcm5p
+bmdzL2Vycm9yIHdpdGhvdXQgdGhlbS4NCglZZXMsIGdvdCBzb21lIFFBLXdhcm5pbmdzIHdoZW4g
+YnVpbGRpbmcgc28gSSBrZWVwIHRoaXMuDQogDQo+IFRoZSByZXN1bHQgd2FzIGFsbCB0aGUgYmlu
+YXJpZXMgYW5kIGZpbGVzIGluc3RhbGxlZCBhbmQgcGFja2FnZXMgYXJlIA0KPiBjcmVhdGVkLCBC
+dXQgSSBhbHNvIGZvdW5kIGtlcm5lbCBoZWFkZXIgZmlsZXMgYXJlIGFsc28gYnVpbHQgaW4gdW5k
+ZXIgL3Vzci9pbmNsdWRlIGluIHJvb3RmcyBpbWFnZS4NCj4gRm9yIG15IHVuZGVyc3RhbmRpbmcg
+dGhvc2UgaGVhZGVyIGZpbGVzIHNob3VsZCBiZSB1c2VkIGlmIEkgd2FudCB0byBkZXZlbG9wL2Rl
+YnVnIGFwcGxpY2F0aW9ucyBvbiB0aGUgdGFyZ2V0IGRldmljZSBidXQgaXQgaXMgbm90IHRoZSBj
+YXNlLg0KDQo+IEFsc28gSSBub3RpY2VkIHRoZSB1c2Ugb2YgSU5TQU5FX1NLSVBfJHtQTn0gc28g
+SSBjaGVjayB0aGUgdXNhZ2Ugb2YgDQo+IGRlYnVnLWZpbGVzIGFuZCBkZXYtc28sIEFuZCBpdCB0
+dXJuZWQgb3V0IHRoZXJlIGFyZSAuZGVidWcgZm9sZGVycyBpbiB0aGUgV09SS0RJUi9wYWNrYWdl
+IGZvbGRlciBzbyBJIHRob3VnaHQgdGhhdCBpcyB3aHkgZGVidWctZmlsZXMgd2FzIHVzZWQuDQoN
+Cgk+IFNlZSBhbnN3ZXIgYmVsb3cuDQoNCj4gVGhlIHF1ZXN0aW9ucyBhcmUsDQo+IFdoeSBhcmUg
+dGhvc2Uga2VybmVsIGhlYWRlciBmaWxlcyBpbnN0YWxsZWQgaW4gcm9vdGZzPyBIb3cgZG8gSSBw
+cmV2ZW50IHRoaXNhPw0KDQoJPiBJIGFzc3VtZSB0aGF0IHRoZXkgYXJlbid0IGluIHRoZSBwYWNr
+YWdlIHlvdSBqdXN0IGNyZWF0ZWQ/IERvIHlvdSBoYXZlIGFueXRoaW5nIGluIHlvdXIgcGFja2Fn
+ZSB0aGF0IG1pZ2h0IGhhdmUgYSBkZXBlbmRlbmN5IG9uIHRoZSBrZXJuZWwgaGVhZGVycz8gRG8g
+eW91IGhhdmUgYW55dGhpbmcgaW4geW91ciBJTUFHRV9GRUFUVVJFUz8NCglObywgaGVhZGVyIGZp
+bGVzIGFyZW4ndCBpbiB0aGUgcGFja2FnZS4NCglJIGNoZWNrZWQgdGhlIGRyaXZlciBzb3VyY2Ug
+Y29kZSBhbmQgbWFueSBmaWxlcyBpbmNsdWRlIGtlcm5lbCBoZWFkZXJzIGxpa2UgdGhpcyAgIiNp
+bmNsdWRlIDxsaW51eC94eHguaD4iICwgaXMgdGhpcyB3aGF0IHlvdSBtZWFudCBieSBkZXBlbmRl
+bmN5IG9uIGtlcm5lbCBoZWFkZXJzPw0KCUlNQUdFX0ZFQVRVUkVTIHdhcyBub3QgdXNlZCBpbiB0
+aGUgcmVjaXBlIGZpbGUuDQoNCj4gV2h5IGFyZSB0aGVyZSAuZGVidWcgaW4gdGhlIHBhY2thZ2Ug
+Zm9sZGVyLCBpdCBzaG91bGQgb25seSBiZSBpbiBwYWNrYWdlID9kYmcgZm9sZGVyLCByaWdodD8N
+Cg0KCT4gV2hlcmUgYXJlIHRoZSAuZGVidWcgZGlyZWN0b3JpZXMgbG9jYXRlZD8gWW91IHNob3Vs
+ZCBhZGQgdGhlbSB0bzoNCgk+IEZJTEVTXyR7UE59LWRiZyArPSAiPGxvY2F0aW9uPi8uZGVidWci
+DQoJSSBhZGQgdGhpcyBsaW5lIGFuZCByZWJ1aWxkIGJ1dCB0aGUgcmVzdWx0IHNlZW1zIHVuY2hh
+bmdlZC4NCiAJdGhlIC5kZWJ1ZyBmb2xkZXJzIGFyZSBsb2NhdGVkIGluIA0KCSR7V09SS0RJUn0v
+cGFja2FnZQ0KCSR7V09SS0RJUn0vcGFja2FnZS1zcGxpdC88cGFja2FnZSBuYW1lPiAtIGRiZw0K
+DQoJVGhhbmtzLA0KCUFuZHkNCg0KCT4gQ2hlZXJzLA0KCT4gQW5kZXJzDQoNCgk+IC0tDQoJPiBB
+bmRlcnMgRGFyYW5kZXIsIFNlbmlvciBTeXN0ZW0gQXJjaGl0ZWN0IENoYXJnZVN0b3JtIEFCIC8g
+ZVN0b3JtIEFCDQoNCg0K
 
-Hi Vincent,
-
-> On 25 Nov 2015, at 00:20, Cheah, Vincent Beng Keat =
-<vincent.beng.keat.cheah@intel.com> wrote:
->=20
-> Hi Chris,
->=20
-> Sorry for the lateness in reply, was too busy with other things. Good =
-to hear that.
->=20
-> Xorg.conf is basically to force load particular intended driver (in =
-this case X11 SNA Driver). This is something that that we do not get =
-when we bit-bake for a yocto image; mainly because users from different =
-companies/purpose may want to use customized their own xorg.conf based =
-on their needs.  You can check for which X11 driver that got loaded into =
-your Yocto system simply by checking that on the /var/log/Xorg.0.log
-
-The intel driver is being loaded when I don=E2=80=99t have an xorg.conf =
-file, so I=E2=80=99ve not needed one in the past. The fbdev driver is =
-also available, but it is (correctly) not selected.
-
-What I don=E2=80=99t understand is:
-
-  Option =E2=80=9CTearFree=E2=80=9D =E2=80=9Ctrue=E2=80=9D  --- this =
-gives normal behaviour (the same as when running under =E2=80=98daisy=E2=80=
-=99)
-  Option =E2=80=9CTearFree=E2=80=9D =E2=80=9Cfalse=E2=80=9D --- XOrg =
-uses all the system memory causing my app to be killed
-
-I tried building the 2.99.910 version of the driver, but it fails to =
-compile. I=E2=80=99m guessing this is down to changes in X.
-
-> In our lab, in order to make sure that our drivers are loaded =
-correctly, we normally, build i915 as a module and add a xorg.conf files =
-(containing some of the stuff below).
-> Generally, in most of the case, we will get this loaded correctly =
-(without Xorg.conf) but there do are times when we do not get the =
-desired driver loaded.
->=20
-> Section "Device"
->        Identifier      "Card0"
->        Driver          "intel"
->        BusID           "0:2:0"
->        Screen          0
-> EndSection
->=20
-> ... Vincent
->=20
->=20
-> -----Original Message-----
-> From: Chris Tapp [mailto:opensource@keylevel.com]
-> Sent: Wednesday, November 25, 2015 7:44 AM
-> To: Cheah, Vincent Beng Keat <vincent.beng.keat.cheah@intel.com>
-> Cc: Yocto Project <yocto@yoctoproject.org>; Chang, Rebecca Swee Fun =
-<rebecca.swee.fun.chang@intel.com>; Paul Eggleton =
-<paul.eggleton@linux.intel.com>; meta-intel@yoctoproject.org
-> Subject: Re: [yocto] [meta-intel] "Crazy" Xorg memory usage after =
-upgrading from Daisy to Fido
->=20
-> Hi Vincent,
->=20
-> I may have made some progress. The undesirable memory usage within =
-Xorg isn=E2=80=99t there if I create an xorg.conf file containing:
->=20
-> Section =E2=80=9CDevice=E2=80=9D
->  Identifier =E2=80=9CIntel Video=E2=80=9D
->  Driver =E2=80=9Cintel=E2=80=9D
->  Option =E2=80=9CTearFree=E2=80=9D =E2=80=9Ctrue"
-> EndSection
->=20
-> So it looks as if I need to enable =E2=80=9CTearFree=E2=80=9D. I =
-didn=E2=80=99t need to add this for the 2.99.910 version of =
-xf86-video-intel included with =E2=80=98daisy=E2=80=99.
->=20
-> Chris
->=20
->> On 23 Nov 2015, at 23:48, Chris Tapp <opensource@keylevel.com> wrote:
->>=20
->> Hi Vincent,
->>=20
->> I=E2=80=99ve finally got back to being able to investigate this =
-further.
->>=20
->> I=E2=80=99ve now moved on to =E2=80=9Cjethro=E2=80=9D and I=E2=80=99m =
-seeing exactly the same behaviour. I=E2=80=99ve tried with kernel =
-versions 3.14.39, 3.19.5 and 4.1.8.
->>=20
->>> On 10 Jun 2015, at 03:50, Cheah, Vincent Beng Keat =
-<vincent.beng.keat.cheah@intel.com> wrote:
->>>=20
->>> Hi Chris,
->>>=20
->>> I don=E2=80=99t have any idea with regard to the issue that you are =
-getting below. All the work that we are doing here so far is on CHV =
-(yocto-kernel-3.19.5 standard/base branch).
->>>=20
->>> =46rom your statement below, it looks to me that you are upgrading =
-meta-intel from Daisy to Fido branch which are using yocto-kernel-3.14 =
-(meta-intel/isg/valleyisland BSP). I'm not sure if you are able to =
-reproduce this with yocto-kernel-3.19.5 (standard/base branch) from the =
-meta-intel common directory. Also, comparing Daisy branch against Fido, =
-it seems like there are lot of changes in the user-space stacks, which =
-I'm not sure could cause the issue below.
->>>=20
->>>=20
->>> Daisy 1.6.2
->>> 	Kernel 3.4, 3.10, 3.14 (Supportable common base)
->>> 	Xorg-server 1.15
->>> 	Wayland/Weston 1.4.0
->>> 	Xf86-video-intel 2.99.910
->>> 	Libdrm 2.4.52
->>> 	MESA 9.2.5
->>> 	Cairo 1.12.16
->>> 	libVA 1.3.1 (from meta-intel)
->>> 	Intel-VA-driver 1.3.2 (from meta-intel)
->>> 	GStreamer 1.2.3
->>> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
->>>=20
->>>=20
->>> Dizzy 1.7.1
->>> 	Kernel 3.10, 3.14, 3.17 (Supportable common base)
->>> 	Xorg-server 1.15.1
->>> 	Wayland/Weston 1.5.0
->>> 	Xf86-video-intel 2.99.912
->>> 	Libdrm 2.4.54
->>> 	MESA 10.1.3
->>> 	Cairo 1.12.16
->>> 	libVA 1.3.1 (from meta-intel)
->>> 	Intel-VA-driver 1.3.2 (from meta-intel)
->>> 	GStreamer 1.4.1
->>> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
->>>=20
->>>=20
->>> Fido 1.8
->>> 	Kernel 3.14, 3.19 (supportable comon base)
->>> 	Xorg-server 1.16.3
->>> 	Wayland/weston 1.6.0
->>> 	Xf86-video-intel 2.99.917
->>> 	Libdrm 2.4.59
->>> 	Mesa 10.4.4
->>> 	Cairo 1.12.18
->>> 	LibVA 1.5.0 (from meta-intel)
->>> 	Intel-VA-driver 1.5.0 (from meta-intel)
->>> 	Gstreamer 1.4.5
->>> 	Gstreamer-vaapi 0.5.10 (from meta-intel)
->>>=20
->>>=20
->>> ... Vincent
->>>=20
->>> -----Original Message-----
->>> From: Chang, Rebecca Swee Fun
->>> Sent: Wednesday, June 10, 2015 9:08 AM
->>> To: Cheah, Vincent Beng Keat
->>> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold, =
-Saul; 'Paul Eggleton'
->>> Subject: RE: [meta-intel] "Crazy" Xorg memory usage after upgrading
->>> from Daisy to Fido
->>>=20
->>> Hi Vincent,
->>>=20
->>> Can you help to comment on this issue mentioned by Chris?
->>> Thanks.
->>>=20
->>> Regards,
->>> Rebecca
->>>=20
->>>> -----Original Message-----
->>>> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
->>>> Sent: 09 June, 2015 12:15 AM
->>>> To: Chang, Rebecca Swee Fun
->>>> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold,
->>>> Saul
->>>> Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading
->>>> from Daisy to Fido
->>>>=20
->>>> Rebecca, is this something you or one of your colleagues would be
->>>> able to help with?
->>>>=20
->>>> Thanks,
->>>> Paul
->>>>=20
->>>> On Friday 05 June 2015 08:29:00 Chris Tapp wrote:
->>>>> I=E2=80=99ve got an application that I=E2=80=99ve had running =
-nicely under Daisy
->>>>> for some time. As Daisy is now a bit old, I decided to move the
->>>>> application to
->>>> Fido.
->>>>> I=E2=80=99m using the meta-intel/isg/valleyisland BSP and also =
-switched to
->>>>> using its Fido branch.
->>>>>=20
->>>>> The move only required a few minor changes and allowed me to drop =
-a
->>>>> Daisy =E2=80=9Cupdates=E2=80=9D layer that I had been using for =
-things like gstreamer-1.0.
->>>>>=20
->>>>> However, there is one behaviour which is killing me - I keep
->>>>> getting oom-killer events!
->>>>>=20
->>>>> The application is basically an OpenGL-ES 2.0 application that
->>>>> renders various bits of text, images and streams captured from a
->>>>> gstreamer pipeline at 60 Hz to a 1080 screen.
->>>>>=20
->>>>> Under Daisy this generally took just under 50% CPU and used a
->>>>> modest percentage of the 4 GB system memory - i.e. no where near
->>>>> running out and usage was just about static.
->>>>>=20
->>>>> Under Fido the CPU usage is about the same and the memory used by
->>>>> the application itself looks reasonable when compared to Daisy =
-(and
->>>>> usage is static). However, the memory used by XOrg is far from
->>>>> constant or stable - it basically has a VSZ value cycling from
->>>>> about 630m to 2989m with the cycle period being in the order of 5
->>>>> to 10 seconds. Peaks in XOrg memory usage coincide with stutters =
-in
->>>>> video playback within my app (audio is unaffected).
->>>>>=20
->>>>> Monitoring /proc/meminfo when this is going on shows that =
-=E2=80=9CShmem=E2=80=9D
->>>>> usage is following the same pattern as the memory used by XOrg =
-(i.e.
->>>>> Shmem usage is high at the same time). If the values are plotted =
-on
->>>>> a graph they appear to show that Shmem usage grows linearly and
->>>>> then falls rapidly when nearly all the free memory has been
->>>>> exhausted, perhaps in response to a delayed garbage collection =
-run.
->>>>>=20
->>>>> Does anyone have any ideas as to what I should be looking at to
->>>>> work out what=E2=80=99s going on?
->>>>>=20
->>>>> Are there any significant changes between XOrg under Daisy and =
-Fido
->>>>> that could be causing this?
->>>>>=20
->>>>> Could this be related to the meta-intel video drivers?
->>>>>=20
->>>>> Any feedback / comments would be really appreciated.
->>>>>=20
->>>>> Thanks :-)
->>>>>=20
->>>>> --
->>>>>=20
->>>>> Chris Tapp
->>>>> opensource@keylevel.com
->>>>> www.keylevel.com
->>>>>=20
->>>>> ----
->>>>> You can tell you're getting older when your car insurance gets =
-real cheap!
->>>>=20
->>>> --
->>>>=20
->>>> Paul Eggleton
->>>> Intel Open Source Technology Centre
->>=20
->> --
->>=20
->> Chris Tapp
->> opensource@keylevel.com
->> www.keylevel.com
->>=20
->> ----
->> You can tell you're getting older when your car insurance gets real =
-cheap!
->>=20
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
-> --
->=20
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
->=20
-> ----
-> You can tell you're getting older when your car insurance gets real =
-cheap!
->=20
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
-
---Apple-Mail=_54C7F780-8828-4966-A8CD-B51400F05D01
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iQIcBAEBCgAGBQJWVXQ/AAoJEAM2GeiJDBSG+18QAKM+52DEOT1Onbx1jg74wek7
-0uHNbq0r3cu0anMVpqValH33Z9vXgc1ZPF+y28kZc7iK34L8CI/S4L/S3HWjM/Uv
-LBWSJdyyZ85ciQ7Bt1YmAq47k1xWZCqCxyYWPgi8t6VKdFXoeQ7f6B20ubVP/Fks
-RHtnYPoDICmI0ygdCImCOP8PsfTVnPzOcbkO/WqhNntgx7pqtKcnOUzkHBDev8Sp
-T1x4wT0dEhR4A3o7dKCrYiSZI8zTk+e76CehYO0TNyZxhGWR05y0K0DnpKsOGwkS
-nmgvHViyvlhrdtuXBBiARa2e+PX6YUWndTjLQ672Zto4TXnwNNHR1S2y/+uwoYUw
-BlVRduUfJ4/CDqeYvcu7SLJGrOwyxiV9UQmq0POI4ow7V8FEcd0rngdwHay5gu8P
-aMP64R6oslilOwF+k+iCvqQdfmZJvOGdLyBeov0Jr4dEgxw+etoCcHkwxZ75qH/F
-+c/kr/gKEFgca0flWQdQLJ3NpZw+RopIFvm25eGsG6fWxSBWNTnqp0crspz0hlCS
-VWpYT0vJrwRiIxUMEr2QLER+IL9/vqO9Ll0YUhP0H3/0SHniwRiqgbO+xsem5OUo
-Sfq3gr6S2f4uBYIUFOxoyiBgZQzZ8DTsb3KnFxmLprpGhC03yokoCa/Th5bEEXa3
-PUFCiT856reRQMz531sB
-=6yu6
------END PGP SIGNATURE-----
-
---Apple-Mail=_54C7F780-8828-4966-A8CD-B51400F05D01--
