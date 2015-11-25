@@ -1,6 +1,6 @@
-Return-Path: <mar.krzeminski@gmail.com>
+Return-Path: <aws.ismail@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2022E00985; Wed, 25 Nov 2015 11:11:49 -0800 (PST)
+	id 3F752E00985; Wed, 25 Nov 2015 12:12:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mar.krzeminski[at]gmail.com)
+	mail provider *      (aws.ismail[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,41 +18,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D830E007C9
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 11:11:45 -0800 (PST)
-Received: by wmww144 with SMTP id w144so192778101wmw.1
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 11:11:45 -0800 (PST)
+	*      [209.85.214.173 listed in list.dnswl.org]
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFF0FE007C9
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 12:12:49 -0800 (PST)
+Received: by obdgf3 with SMTP id gf3so47940632obd.3
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 12:12:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=Stq321y4s2VBX5H+MRGSI7EaLfF+W0qyr9bXlbgaTL8=;
-	b=ZcNj8rxaR+D7MzNvL1A/O+SIaefY72XX0pJZm3FCFkHnTdBYbz6+H2O4AbgJ3fCXov
-	VxY0cMak8CiEBMtvD6usivKApy1bTO9o+LjRjmn+H7NCeynRjhZzRxu9dG15iqIVSJ4s
-	l7k3qKnQFgHm59XJ3+XyQKzLWYCVFpgbI20C0zS2UL8j1NQlg1J5hmCz4PEK214yhskL
-	uak1UT08VoHtIHekMxrmwpvHw1rrlrnSGcWpK5EFElhwFSMPAcg8NnZ74MCZaZWd8xca
-	+KUUBl/KyM5XFJ/t2L6yjEG3pNedGhMKIcyE2fDs/O0gxJGH8Fd0eruutn/6btl4dvu5
-	3Z5w==
-X-Received: by 10.194.173.5 with SMTP id bg5mr45468413wjc.142.1448478705264;
-	Wed, 25 Nov 2015 11:11:45 -0800 (PST)
-Received: from [192.168.50.14] (31-178-131-249.dynamic.chello.pl.
-	[31.178.131.249]) by smtp.gmail.com with ESMTPSA id
-	w67sm4835442wmw.17.2015.11.25.11.11.44
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 25 Nov 2015 11:11:44 -0800 (PST)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <5655E68F.9030203@gmail.com>
-	<3257623.P8Mc2kgp4c@peggleto-mobl.ger.corp.intel.com>
-From: "mar.krzeminski" <mar.krzeminski@gmail.com>
-Message-ID: <565607EF.8020008@gmail.com>
-Date: Wed, 25 Nov 2015 20:11:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=AQ9hGIHEQ0Dsn6MoKiO9XNOEwFb8t6mi2AvhpEuWr8Q=;
+	b=Ip/qsY98idA9uokKe2ErZed+fhaUlTalt3GrBsemjHcepEiXPi1MTnEKKHfBWwaOey
+	KqVhAnCzCGj2b4mnrART9MWycsLstW18ZIBE5pealimOGudysN4dFan48X0B74dzZnYK
+	tPAZwf5PiCdQZHy01lbK9c136pcZCcrmYPj5o4UWNLfeiPPnjwa0WqHSCus80MuH1sUH
+	77R7kjmTzYOWeJXhsT/V3tNPucM5Udwd/FYWKizlbJU+5E94h4ZH9M8D+vlHSqW6RzRL
+	pHRfWr1AWw+bjtVH7D4DuEb3ImyKCUq82yeuzpo81I3l+OwfwwBltLIALyOfWji1iNkS
+	0U0w==
+X-Received: by 10.182.91.6 with SMTP id ca6mr25761697obb.24.1448482369385;
+	Wed, 25 Nov 2015 12:12:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <3257623.P8Mc2kgp4c@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Migration 1.8 -> 2.0 opkg-cl missing in SDK
+Received: by 10.182.41.39 with HTTP; Wed, 25 Nov 2015 12:12:29 -0800 (PST)
+In-Reply-To: <1448383148-2344-2-git-send-email-juro.bystricky@intel.com>
+References: <1448383148-2344-1-git-send-email-juro.bystricky@intel.com>
+	<1448383148-2344-2-git-send-email-juro.bystricky@intel.com>
+From: Aws Ismail <aws.ismail@gmail.com>
+Date: Wed, 25 Nov 2015 15:12:29 -0500
+Message-ID: <CAMHMu0NkHpxu9i7KaHpnD6BPhrKmtm1Ox9fkR6-F-76+BWknrg@mail.gmail.com>
+To: Juro Bystricky <juro.bystricky@intel.com>
+Cc: yocto@yoctoproject.org, jurobystricky@hotmail.com
+Subject: Re: [PSPLASH 1/2] psplash-fb.c: Fix BGR888 detection
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,36 +59,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Nov 2015 19:11:49 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 25 Nov 2015 20:12:54 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Paul,
+:) I have sent the same patch three years ago but no one picked it up...
 
-Thanks for clarification.
+https://lists.yoctoproject.org/pipermail/yocto/2012-October/009846.html
 
-Regards,
-Marcin
-
-W dniu 25.11.2015 o 20:04, Paul Eggleton pisze:
-> Hi Marcin,
+On Tue, Nov 24, 2015 at 11:39 AM, Juro Bystricky
+<juro.bystricky@intel.com> wrote:
+> Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
+> ---
+>  psplash-fb.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:
->> After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is
->> generated by bitbake meta-toolchain command).
->> Manual clearly states that opkg-cl is still avaliable:
->> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#configuri
->> ng-the-pms I can not find any instruction how to migrate PMS based on opkg
->> in sdk in 2.0 release, so my question is what should I change to
->> make opk running in SDK?
->> I am suspecting I need to replace opkg-cl with opkg, something more is
->> needed?
-> opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in our 2.0
-> release). Probably something we ought to have noted in the 2.0 migration
-> guide.
+> diff --git a/psplash-fb.c b/psplash-fb.c
+> index bd9cd9d..e71af8f 100644
+> --- a/psplash-fb.c
+> +++ b/psplash-fb.c
+> @@ -185,7 +185,7 @@ psplash_fb_new (int angle)
+>           fb->rgbmode = RGB888;
+>    } else if (fb->red_offset == 0 && fb->red_length == 8 &&
+>        fb->green_offset == 8 && fb->green_length == 8 &&
+> -      fb->blue_offset == 8 && fb->blue_length == 8) {
+> +      fb->blue_offset == 16 && fb->blue_length == 8) {
+>           fb->rgbmode = BGR888;
+>    } else {
+>           fb->rgbmode = GENERIC;
+> --
+> 1.9.1
 >
-> Cheers,
-> Paul
->
-
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
