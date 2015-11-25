@@ -1,62 +1,47 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <vincent.beng.keat.cheah@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BE8DE00B58; Tue, 24 Nov 2015 15:43:58 -0800 (PST)
+	id 64449E00B5A; Tue, 24 Nov 2015 16:21:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D02DE00B45;
-	Tue, 24 Nov 2015 15:43:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default;
-	h=To:References:Message-Id:Cc:Date:In-Reply-To:
-	From:Content-Type:Mime-Version:Subject;
-	bh=9Pd/px/MKQS/nRCF5+W4oalzX0jmr1arBF++boLbd4A=;
-	b=TVi5K7aMkv3YmCyVOEmGZ4IEtZ
-	dRCl0SN4fx+1hcF8p9PPJsV9+hEiGN6q4B0xuiG/i+qFjx1kpQgLcPIH//C33NedhPdurLT8DNYJX
-	eaEfI/K3LGHvV+YxUR3kGB9xPdeqHd6D6ryZvrkIeg6b5m/0tFuE6imRjxblyIb2eItA=; 
-Received: from durham.keylevel.com ([88.97.63.243]:50833
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.86) (envelope-from <opensource@keylevel.com>)
-	id 1a1NFY-002e0k-UB; Tue, 24 Nov 2015 23:43:53 +0000
-Mime-Version: 1.0 (Mac OS X Mail 9.1 \(3096.5\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <7C8818DC-0089-471F-9438-D3D574551102@keylevel.com>
-Date: Tue, 24 Nov 2015 23:44:19 +0000
-Message-Id: <70B2271A-0C73-40A5-B355-BF7E54C7886C@keylevel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 148E1E00B45;
+	Tue, 24 Nov 2015 16:21:00 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 24 Nov 2015 16:21:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,340,1444719600"; d="scan'208";a="693790543"
+Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
+	by orsmga003.jf.intel.com with ESMTP; 24 Nov 2015 16:20:57 -0800
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.26]) by
+	PGSMSX102.gar.corp.intel.com ([169.254.6.249]) with mapi id
+	14.03.0248.002; Wed, 25 Nov 2015 08:20:56 +0800
+From: "Cheah, Vincent Beng Keat" <vincent.beng.keat.cheah@intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Thread-Topic: [yocto] [meta-intel] "Crazy" Xorg memory usage after upgrading
+	from Daisy to Fido
+Thread-Index: AQHRJkl2VyQKo4Yj5EquhA8po6+mYJ6rUWOAgACGMWA=
+Date: Wed, 25 Nov 2015 00:20:56 +0000
+Message-ID: <D4B999590D2ACC499FE6A1F7CF2D454A05B04DF1@PGSMSX103.gar.corp.intel.com>
 References: <107F2908-2817-46D5-96CC-0B71CD6ADBEB@keylevel.com>
 	<2174669.LymzPMzo3U@peggleto-mobl.ger.corp.intel.com>
 	<50B33AC5ED75F74F991980326F1C438D1905581B@PGSMSX103.gar.corp.intel.com>
 	<D4B999590D2ACC499FE6A1F7CF2D454A05A77060@PGSMSX103.gar.corp.intel.com>
 	<7C8818DC-0089-471F-9438-D3D574551102@keylevel.com>
-To: "Cheah, Vincent Beng Keat" <vincent.beng.keat.cheah@intel.com>
-X-Mailer: Apple Mail (2.3096.5)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<70B2271A-0C73-40A5-B355-BF7E54C7886C@keylevel.com>
+In-Reply-To: <70B2271A-0C73-40A5-B355-BF7E54C7886C@keylevel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
+MIME-Version: 1.0
 Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
 	Yocto Project <yocto@yoctoproject.org>, "Chang,
 	Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>,
@@ -73,265 +58,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Nov 2015 23:43:58 -0000
-X-Groupsio-MsgNum: 27422
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_2CBBB0F6-1C7B-45F2-8D83-6EC0A26824AC";
-	protocol="application/pgp-signature"; micalg=pgp-sha512
+X-List-Received-Date: Wed, 25 Nov 2015 00:21:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---Apple-Mail=_2CBBB0F6-1C7B-45F2-8D83-6EC0A26824AC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+SGkgQ2hyaXMsIA0KDQpTb3JyeSBmb3IgdGhlIGxhdGVuZXNzIGluIHJlcGx5LCB3YXMgdG9vIGJ1
+c3kgd2l0aCBvdGhlciB0aGluZ3MuIEdvb2QgdG8gaGVhciB0aGF0Lg0KDQpYb3JnLmNvbmYgaXMg
+YmFzaWNhbGx5IHRvIGZvcmNlIGxvYWQgcGFydGljdWxhciBpbnRlbmRlZCBkcml2ZXIgKGluIHRo
+aXMgY2FzZSBYMTEgU05BIERyaXZlcikuIFRoaXMgaXMgc29tZXRoaW5nIHRoYXQgdGhhdCB3ZSBk
+byBub3QgZ2V0IHdoZW4gd2UgYml0LWJha2UgZm9yIGEgeW9jdG8gaW1hZ2U7IG1haW5seSBiZWNh
+dXNlIHVzZXJzIGZyb20gZGlmZmVyZW50IGNvbXBhbmllcy9wdXJwb3NlIG1heSB3YW50IHRvIHVz
+ZSBjdXN0b21pemVkIHRoZWlyIG93biB4b3JnLmNvbmYgYmFzZWQgb24gdGhlaXIgbmVlZHMuICBZ
+b3UgY2FuIGNoZWNrIGZvciB3aGljaCBYMTEgZHJpdmVyIHRoYXQgZ290IGxvYWRlZCBpbnRvIHlv
+dXIgWW9jdG8gc3lzdGVtIHNpbXBseSBieSBjaGVja2luZyB0aGF0IG9uIHRoZSAvdmFyL2xvZy9Y
+b3JnLjAubG9nDQoNCkluIG91ciBsYWIsIGluIG9yZGVyIHRvIG1ha2Ugc3VyZSB0aGF0IG91ciBk
+cml2ZXJzIGFyZSBsb2FkZWQgY29ycmVjdGx5LCB3ZSBub3JtYWxseSwgYnVpbGQgaTkxNSBhcyBh
+IG1vZHVsZSBhbmQgYWRkIGEgeG9yZy5jb25mIGZpbGVzIChjb250YWluaW5nIHNvbWUgb2YgdGhl
+IHN0dWZmIGJlbG93KS4gDQpHZW5lcmFsbHksIGluIG1vc3Qgb2YgdGhlIGNhc2UsIHdlIHdpbGwg
+Z2V0IHRoaXMgbG9hZGVkIGNvcnJlY3RseSAod2l0aG91dCBYb3JnLmNvbmYpIGJ1dCB0aGVyZSBk
+byBhcmUgdGltZXMgd2hlbiB3ZSBkbyBub3QgZ2V0IHRoZSBkZXNpcmVkIGRyaXZlciBsb2FkZWQu
+IA0KDQpTZWN0aW9uICJEZXZpY2UiDQogICAgICAgIElkZW50aWZpZXIgICAgICAiQ2FyZDAiDQog
+ICAgICAgIERyaXZlciAgICAgICAgICAiaW50ZWwiDQogICAgICAgIEJ1c0lEICAgICAgICAgICAi
+MDoyOjAiDQogICAgICAgIFNjcmVlbiAgICAgICAgICAwDQpFbmRTZWN0aW9uDQoNCi4uLiBWaW5j
+ZW50IA0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBDaHJpcyBUYXBwIFtt
+YWlsdG86b3BlbnNvdXJjZUBrZXlsZXZlbC5jb21dIA0KU2VudDogV2VkbmVzZGF5LCBOb3ZlbWJl
+ciAyNSwgMjAxNSA3OjQ0IEFNDQpUbzogQ2hlYWgsIFZpbmNlbnQgQmVuZyBLZWF0IDx2aW5jZW50
+LmJlbmcua2VhdC5jaGVhaEBpbnRlbC5jb20+DQpDYzogWW9jdG8gUHJvamVjdCA8eW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZz47IENoYW5nLCBSZWJlY2NhIFN3ZWUgRnVuIDxyZWJlY2NhLnN3ZWUuZnVu
+LmNoYW5nQGludGVsLmNvbT47IFBhdWwgRWdnbGV0b24gPHBhdWwuZWdnbGV0b25AbGludXguaW50
+ZWwuY29tPjsgbWV0YS1pbnRlbEB5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3Rv
+XSBbbWV0YS1pbnRlbF0gIkNyYXp5IiBYb3JnIG1lbW9yeSB1c2FnZSBhZnRlciB1cGdyYWRpbmcg
+ZnJvbSBEYWlzeSB0byBGaWRvDQoNCkhpIFZpbmNlbnQsDQoNCkkgbWF5IGhhdmUgbWFkZSBzb21l
+IHByb2dyZXNzLiBUaGUgdW5kZXNpcmFibGUgbWVtb3J5IHVzYWdlIHdpdGhpbiBYb3JnIGlzbuKA
+mXQgdGhlcmUgaWYgSSBjcmVhdGUgYW4geG9yZy5jb25mIGZpbGUgY29udGFpbmluZzoNCg0KU2Vj
+dGlvbiDigJxEZXZpY2XigJ0NCiAgSWRlbnRpZmllciDigJxJbnRlbCBWaWRlb+KAnQ0KICBEcml2
+ZXIg4oCcaW50ZWzigJ0NCiAgT3B0aW9uIOKAnFRlYXJGcmVl4oCdIOKAnHRydWUiDQpFbmRTZWN0
+aW9uDQoNClNvIGl0IGxvb2tzIGFzIGlmIEkgbmVlZCB0byBlbmFibGUg4oCcVGVhckZyZWXigJ0u
+IEkgZGlkbuKAmXQgbmVlZCB0byBhZGQgdGhpcyBmb3IgdGhlIDIuOTkuOTEwIHZlcnNpb24gb2Yg
+eGY4Ni12aWRlby1pbnRlbCBpbmNsdWRlZCB3aXRoIOKAmGRhaXN54oCZLg0KDQpDaHJpcw0KDQo+
+IE9uIDIzIE5vdiAyMDE1LCBhdCAyMzo0OCwgQ2hyaXMgVGFwcCA8b3BlbnNvdXJjZUBrZXlsZXZl
+bC5jb20+IHdyb3RlOg0KPiANCj4gSGkgVmluY2VudCwNCj4gDQo+IEnigJl2ZSBmaW5hbGx5IGdv
+dCBiYWNrIHRvIGJlaW5nIGFibGUgdG8gaW52ZXN0aWdhdGUgdGhpcyBmdXJ0aGVyLg0KPiANCj4g
+SeKAmXZlIG5vdyBtb3ZlZCBvbiB0byDigJxqZXRocm/igJ0gYW5kIEnigJltIHNlZWluZyBleGFj
+dGx5IHRoZSBzYW1lIGJlaGF2aW91ci4gSeKAmXZlIHRyaWVkIHdpdGgga2VybmVsIHZlcnNpb25z
+IDMuMTQuMzksIDMuMTkuNSBhbmQgNC4xLjguDQo+IA0KPj4gT24gMTAgSnVuIDIwMTUsIGF0IDAz
+OjUwLCBDaGVhaCwgVmluY2VudCBCZW5nIEtlYXQgPHZpbmNlbnQuYmVuZy5rZWF0LmNoZWFoQGlu
+dGVsLmNvbT4gd3JvdGU6DQo+PiANCj4+IEhpIENocmlzLA0KPj4gDQo+PiBJIGRvbuKAmXQgaGF2
+ZSBhbnkgaWRlYSB3aXRoIHJlZ2FyZCB0byB0aGUgaXNzdWUgdGhhdCB5b3UgYXJlIGdldHRpbmcg
+YmVsb3cuIEFsbCB0aGUgd29yayB0aGF0IHdlIGFyZSBkb2luZyBoZXJlIHNvIGZhciBpcyBvbiBD
+SFYgKHlvY3RvLWtlcm5lbC0zLjE5LjUgc3RhbmRhcmQvYmFzZSBicmFuY2gpLg0KPj4gDQo+PiBG
+cm9tIHlvdXIgc3RhdGVtZW50IGJlbG93LCBpdCBsb29rcyB0byBtZSB0aGF0IHlvdSBhcmUgdXBn
+cmFkaW5nIG1ldGEtaW50ZWwgZnJvbSBEYWlzeSB0byBGaWRvIGJyYW5jaCB3aGljaCBhcmUgdXNp
+bmcgeW9jdG8ta2VybmVsLTMuMTQgKG1ldGEtaW50ZWwvaXNnL3ZhbGxleWlzbGFuZCBCU1ApLiBJ
+J20gbm90IHN1cmUgaWYgeW91IGFyZSBhYmxlIHRvIHJlcHJvZHVjZSB0aGlzIHdpdGggeW9jdG8t
+a2VybmVsLTMuMTkuNSAoc3RhbmRhcmQvYmFzZSBicmFuY2gpIGZyb20gdGhlIG1ldGEtaW50ZWwg
+Y29tbW9uIGRpcmVjdG9yeS4gQWxzbywgY29tcGFyaW5nIERhaXN5IGJyYW5jaCBhZ2FpbnN0IEZp
+ZG8sIGl0IHNlZW1zIGxpa2UgdGhlcmUgYXJlIGxvdCBvZiBjaGFuZ2VzIGluIHRoZSB1c2VyLXNw
+YWNlIHN0YWNrcywgd2hpY2ggSSdtIG5vdCBzdXJlIGNvdWxkIGNhdXNlIHRoZSBpc3N1ZSBiZWxv
+dy4NCj4+IA0KPj4gDQo+PiBEYWlzeSAxLjYuMg0KPj4gCUtlcm5lbCAzLjQsIDMuMTAsIDMuMTQg
+KFN1cHBvcnRhYmxlIGNvbW1vbiBiYXNlKQ0KPj4gCVhvcmctc2VydmVyIDEuMTUNCj4+IAlXYXls
+YW5kL1dlc3RvbiAxLjQuMA0KPj4gCVhmODYtdmlkZW8taW50ZWwgMi45OS45MTANCj4+IAlMaWJk
+cm0gMi40LjUyDQo+PiAJTUVTQSA5LjIuNQ0KPj4gCUNhaXJvIDEuMTIuMTYNCj4+IAlsaWJWQSAx
+LjMuMSAoZnJvbSBtZXRhLWludGVsKQ0KPj4gCUludGVsLVZBLWRyaXZlciAxLjMuMiAoZnJvbSBt
+ZXRhLWludGVsKQ0KPj4gCUdTdHJlYW1lciAxLjIuMw0KPj4gCUdTdHJlYW1lci1WQUFQSSAwLjUu
+OCAoZnJvbSBtZXRhLWludGVsKQ0KPj4gDQo+PiANCj4+IERpenp5IDEuNy4xDQo+PiAJS2VybmVs
+IDMuMTAsIDMuMTQsIDMuMTcgKFN1cHBvcnRhYmxlIGNvbW1vbiBiYXNlKQ0KPj4gCVhvcmctc2Vy
+dmVyIDEuMTUuMQ0KPj4gCVdheWxhbmQvV2VzdG9uIDEuNS4wDQo+PiAJWGY4Ni12aWRlby1pbnRl
+bCAyLjk5LjkxMg0KPj4gCUxpYmRybSAyLjQuNTQNCj4+IAlNRVNBIDEwLjEuMw0KPj4gCUNhaXJv
+IDEuMTIuMTYNCj4+IAlsaWJWQSAxLjMuMSAoZnJvbSBtZXRhLWludGVsKQ0KPj4gCUludGVsLVZB
+LWRyaXZlciAxLjMuMiAoZnJvbSBtZXRhLWludGVsKQ0KPj4gCUdTdHJlYW1lciAxLjQuMQ0KPj4g
+CUdTdHJlYW1lci1WQUFQSSAwLjUuOCAoZnJvbSBtZXRhLWludGVsKQ0KPj4gDQo+PiANCj4+IEZp
+ZG8gMS44DQo+PiAJS2VybmVsIDMuMTQsIDMuMTkgKHN1cHBvcnRhYmxlIGNvbW9uIGJhc2UpDQo+
+PiAJWG9yZy1zZXJ2ZXIgMS4xNi4zDQo+PiAJV2F5bGFuZC93ZXN0b24gMS42LjANCj4+IAlYZjg2
+LXZpZGVvLWludGVsIDIuOTkuOTE3DQo+PiAJTGliZHJtIDIuNC41OQ0KPj4gCU1lc2EgMTAuNC40
+DQo+PiAJQ2Fpcm8gMS4xMi4xOA0KPj4gCUxpYlZBIDEuNS4wIChmcm9tIG1ldGEtaW50ZWwpDQo+
+PiAJSW50ZWwtVkEtZHJpdmVyIDEuNS4wIChmcm9tIG1ldGEtaW50ZWwpDQo+PiAJR3N0cmVhbWVy
+IDEuNC41DQo+PiAJR3N0cmVhbWVyLXZhYXBpIDAuNS4xMCAoZnJvbSBtZXRhLWludGVsKQ0KPj4g
+DQo+PiANCj4+IC4uLiBWaW5jZW50DQo+PiANCj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+DQo+PiBGcm9tOiBDaGFuZywgUmViZWNjYSBTd2VlIEZ1bg0KPj4gU2VudDogV2VkbmVzZGF5LCBK
+dW5lIDEwLCAyMDE1IDk6MDggQU0NCj4+IFRvOiBDaGVhaCwgVmluY2VudCBCZW5nIEtlYXQNCj4+
+IENjOiBtZXRhLWludGVsQHlvY3RvcHJvamVjdC5vcmc7IENocmlzIFRhcHA7IFlvY3RvIFByb2pl
+Y3Q7IFdvbGQsIFNhdWw7ICdQYXVsIEVnZ2xldG9uJw0KPj4gU3ViamVjdDogUkU6IFttZXRhLWlu
+dGVsXSAiQ3JhenkiIFhvcmcgbWVtb3J5IHVzYWdlIGFmdGVyIHVwZ3JhZGluZyANCj4+IGZyb20g
+RGFpc3kgdG8gRmlkbw0KPj4gDQo+PiBIaSBWaW5jZW50LA0KPj4gDQo+PiBDYW4geW91IGhlbHAg
+dG8gY29tbWVudCBvbiB0aGlzIGlzc3VlIG1lbnRpb25lZCBieSBDaHJpcz8NCj4+IFRoYW5rcy4N
+Cj4+IA0KPj4gUmVnYXJkcywNCj4+IFJlYmVjY2ENCj4+IA0KPj4+IC0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQo+Pj4gRnJvbTogUGF1bCBFZ2dsZXRvbiBbbWFpbHRvOnBhdWwuZWdnbGV0b25A
+bGludXguaW50ZWwuY29tXQ0KPj4+IFNlbnQ6IDA5IEp1bmUsIDIwMTUgMTI6MTUgQU0NCj4+PiBU
+bzogQ2hhbmcsIFJlYmVjY2EgU3dlZSBGdW4NCj4+PiBDYzogbWV0YS1pbnRlbEB5b2N0b3Byb2pl
+Y3Qub3JnOyBDaHJpcyBUYXBwOyBZb2N0byBQcm9qZWN0OyBXb2xkLCANCj4+PiBTYXVsDQo+Pj4g
+U3ViamVjdDogUmU6IFttZXRhLWludGVsXSAiQ3JhenkiIFhvcmcgbWVtb3J5IHVzYWdlIGFmdGVy
+IHVwZ3JhZGluZyANCj4+PiBmcm9tIERhaXN5IHRvIEZpZG8NCj4+PiANCj4+PiBSZWJlY2NhLCBp
+cyB0aGlzIHNvbWV0aGluZyB5b3Ugb3Igb25lIG9mIHlvdXIgY29sbGVhZ3VlcyB3b3VsZCBiZSAN
+Cj4+PiBhYmxlIHRvIGhlbHAgd2l0aD8NCj4+PiANCj4+PiBUaGFua3MsDQo+Pj4gUGF1bA0KPj4+
+IA0KPj4+IE9uIEZyaWRheSAwNSBKdW5lIDIwMTUgMDg6Mjk6MDAgQ2hyaXMgVGFwcCB3cm90ZToN
+Cj4+Pj4gSeKAmXZlIGdvdCBhbiBhcHBsaWNhdGlvbiB0aGF0IEnigJl2ZSBoYWQgcnVubmluZyBu
+aWNlbHkgdW5kZXIgRGFpc3kgDQo+Pj4+IGZvciBzb21lIHRpbWUuIEFzIERhaXN5IGlzIG5vdyBh
+IGJpdCBvbGQsIEkgZGVjaWRlZCB0byBtb3ZlIHRoZSANCj4+Pj4gYXBwbGljYXRpb24gdG8NCj4+
+PiBGaWRvLg0KPj4+PiBJ4oCZbSB1c2luZyB0aGUgbWV0YS1pbnRlbC9pc2cvdmFsbGV5aXNsYW5k
+IEJTUCBhbmQgYWxzbyBzd2l0Y2hlZCB0byANCj4+Pj4gdXNpbmcgaXRzIEZpZG8gYnJhbmNoLg0K
+Pj4+PiANCj4+Pj4gVGhlIG1vdmUgb25seSByZXF1aXJlZCBhIGZldyBtaW5vciBjaGFuZ2VzIGFu
+ZCBhbGxvd2VkIG1lIHRvIGRyb3AgYSANCj4+Pj4gRGFpc3kg4oCcdXBkYXRlc+KAnSBsYXllciB0
+aGF0IEkgaGFkIGJlZW4gdXNpbmcgZm9yIHRoaW5ncyBsaWtlIGdzdHJlYW1lci0xLjAuDQo+Pj4+
+IA0KPj4+PiBIb3dldmVyLCB0aGVyZSBpcyBvbmUgYmVoYXZpb3VyIHdoaWNoIGlzIGtpbGxpbmcg
+bWUgLSBJIGtlZXAgDQo+Pj4+IGdldHRpbmcgb29tLWtpbGxlciBldmVudHMhDQo+Pj4+IA0KPj4+
+PiBUaGUgYXBwbGljYXRpb24gaXMgYmFzaWNhbGx5IGFuIE9wZW5HTC1FUyAyLjAgYXBwbGljYXRp
+b24gdGhhdCANCj4+Pj4gcmVuZGVycyB2YXJpb3VzIGJpdHMgb2YgdGV4dCwgaW1hZ2VzIGFuZCBz
+dHJlYW1zIGNhcHR1cmVkIGZyb20gYSANCj4+Pj4gZ3N0cmVhbWVyIHBpcGVsaW5lIGF0IDYwIEh6
+IHRvIGEgMTA4MCBzY3JlZW4uDQo+Pj4+IA0KPj4+PiBVbmRlciBEYWlzeSB0aGlzIGdlbmVyYWxs
+eSB0b29rIGp1c3QgdW5kZXIgNTAlIENQVSBhbmQgdXNlZCBhIA0KPj4+PiBtb2Rlc3QgcGVyY2Vu
+dGFnZSBvZiB0aGUgNCBHQiBzeXN0ZW0gbWVtb3J5IC0gaS5lLiBubyB3aGVyZSBuZWFyIA0KPj4+
+PiBydW5uaW5nIG91dCBhbmQgdXNhZ2Ugd2FzIGp1c3QgYWJvdXQgc3RhdGljLg0KPj4+PiANCj4+
+Pj4gVW5kZXIgRmlkbyB0aGUgQ1BVIHVzYWdlIGlzIGFib3V0IHRoZSBzYW1lIGFuZCB0aGUgbWVt
+b3J5IHVzZWQgYnkgDQo+Pj4+IHRoZSBhcHBsaWNhdGlvbiBpdHNlbGYgbG9va3MgcmVhc29uYWJs
+ZSB3aGVuIGNvbXBhcmVkIHRvIERhaXN5IChhbmQgDQo+Pj4+IHVzYWdlIGlzIHN0YXRpYykuIEhv
+d2V2ZXIsIHRoZSBtZW1vcnkgdXNlZCBieSBYT3JnIGlzIGZhciBmcm9tIA0KPj4+PiBjb25zdGFu
+dCBvciBzdGFibGUgLSBpdCBiYXNpY2FsbHkgaGFzIGEgVlNaIHZhbHVlIGN5Y2xpbmcgZnJvbSAN
+Cj4+Pj4gYWJvdXQgNjMwbSB0byAyOTg5bSB3aXRoIHRoZSBjeWNsZSBwZXJpb2QgYmVpbmcgaW4g
+dGhlIG9yZGVyIG9mIDUgDQo+Pj4+IHRvIDEwIHNlY29uZHMuIFBlYWtzIGluIFhPcmcgbWVtb3J5
+IHVzYWdlIGNvaW5jaWRlIHdpdGggc3R1dHRlcnMgaW4gDQo+Pj4+IHZpZGVvIHBsYXliYWNrIHdp
+dGhpbiBteSBhcHAgKGF1ZGlvIGlzIHVuYWZmZWN0ZWQpLg0KPj4+PiANCj4+Pj4gTW9uaXRvcmlu
+ZyAvcHJvYy9tZW1pbmZvIHdoZW4gdGhpcyBpcyBnb2luZyBvbiBzaG93cyB0aGF0IOKAnFNobWVt
+4oCdDQo+Pj4+IHVzYWdlIGlzIGZvbGxvd2luZyB0aGUgc2FtZSBwYXR0ZXJuIGFzIHRoZSBtZW1v
+cnkgdXNlZCBieSBYT3JnIChpLmUuDQo+Pj4+IFNobWVtIHVzYWdlIGlzIGhpZ2ggYXQgdGhlIHNh
+bWUgdGltZSkuIElmIHRoZSB2YWx1ZXMgYXJlIHBsb3R0ZWQgb24gDQo+Pj4+IGEgZ3JhcGggdGhl
+eSBhcHBlYXIgdG8gc2hvdyB0aGF0IFNobWVtIHVzYWdlIGdyb3dzIGxpbmVhcmx5IGFuZCANCj4+
+Pj4gdGhlbiBmYWxscyByYXBpZGx5IHdoZW4gbmVhcmx5IGFsbCB0aGUgZnJlZSBtZW1vcnkgaGFz
+IGJlZW4gDQo+Pj4+IGV4aGF1c3RlZCwgcGVyaGFwcyBpbiByZXNwb25zZSB0byBhIGRlbGF5ZWQg
+Z2FyYmFnZSBjb2xsZWN0aW9uIHJ1bi4NCj4+Pj4gDQo+Pj4+IERvZXMgYW55b25lIGhhdmUgYW55
+IGlkZWFzIGFzIHRvIHdoYXQgSSBzaG91bGQgYmUgbG9va2luZyBhdCB0byANCj4+Pj4gd29yayBv
+dXQgd2hhdOKAmXMgZ29pbmcgb24/DQo+Pj4+IA0KPj4+PiBBcmUgdGhlcmUgYW55IHNpZ25pZmlj
+YW50IGNoYW5nZXMgYmV0d2VlbiBYT3JnIHVuZGVyIERhaXN5IGFuZCBGaWRvIA0KPj4+PiB0aGF0
+IGNvdWxkIGJlIGNhdXNpbmcgdGhpcz8NCj4+Pj4gDQo+Pj4+IENvdWxkIHRoaXMgYmUgcmVsYXRl
+ZCB0byB0aGUgbWV0YS1pbnRlbCB2aWRlbyBkcml2ZXJzPw0KPj4+PiANCj4+Pj4gQW55IGZlZWRi
+YWNrIC8gY29tbWVudHMgd291bGQgYmUgcmVhbGx5IGFwcHJlY2lhdGVkLg0KPj4+PiANCj4+Pj4g
+VGhhbmtzIDotKQ0KPj4+PiANCj4+Pj4gLS0NCj4+Pj4gDQo+Pj4+IENocmlzIFRhcHANCj4+Pj4g
+b3BlbnNvdXJjZUBrZXlsZXZlbC5jb20NCj4+Pj4gd3d3LmtleWxldmVsLmNvbQ0KPj4+PiANCj4+
+Pj4gLS0tLQ0KPj4+PiBZb3UgY2FuIHRlbGwgeW91J3JlIGdldHRpbmcgb2xkZXIgd2hlbiB5b3Vy
+IGNhciBpbnN1cmFuY2UgZ2V0cyByZWFsIGNoZWFwIQ0KPj4+IA0KPj4+IC0tDQo+Pj4gDQo+Pj4g
+UGF1bCBFZ2dsZXRvbg0KPj4+IEludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlDQo+
+IA0KPiAtLQ0KPiANCj4gQ2hyaXMgVGFwcA0KPiBvcGVuc291cmNlQGtleWxldmVsLmNvbQ0KPiB3
+d3cua2V5bGV2ZWwuY29tDQo+IA0KPiAtLS0tDQo+IFlvdSBjYW4gdGVsbCB5b3UncmUgZ2V0dGlu
+ZyBvbGRlciB3aGVuIHlvdXIgY2FyIGluc3VyYW5jZSBnZXRzIHJlYWwgY2hlYXAhDQo+IA0KPiAt
+LQ0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5
+b2N0byBtYWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0KLS0NCg0KQ2hyaXMgVGFwcA0K
+b3BlbnNvdXJjZUBrZXlsZXZlbC5jb20NCnd3dy5rZXlsZXZlbC5jb20NCg0KLS0tLQ0KWW91IGNh
+biB0ZWxsIHlvdSdyZSBnZXR0aW5nIG9sZGVyIHdoZW4geW91ciBjYXIgaW5zdXJhbmNlIGdldHMg
+cmVhbCBjaGVhcCENCg0K
 
-Hi Vincent,
-
-I may have made some progress. The undesirable memory usage within Xorg =
-isn=E2=80=99t there if I create an xorg.conf file containing:
-
-Section =E2=80=9CDevice=E2=80=9D
-  Identifier =E2=80=9CIntel Video=E2=80=9D
-  Driver =E2=80=9Cintel=E2=80=9D
-  Option =E2=80=9CTearFree=E2=80=9D =E2=80=9Ctrue"
-EndSection
-
-So it looks as if I need to enable =E2=80=9CTearFree=E2=80=9D. I =
-didn=E2=80=99t need to add this for the 2.99.910 version of =
-xf86-video-intel included with =E2=80=98daisy=E2=80=99.
-
-Chris
-
-> On 23 Nov 2015, at 23:48, Chris Tapp <opensource@keylevel.com> wrote:
->=20
-> Hi Vincent,
->=20
-> I=E2=80=99ve finally got back to being able to investigate this =
-further.
->=20
-> I=E2=80=99ve now moved on to =E2=80=9Cjethro=E2=80=9D and I=E2=80=99m =
-seeing exactly the same behaviour. I=E2=80=99ve tried with kernel =
-versions 3.14.39, 3.19.5 and 4.1.8.
->=20
->> On 10 Jun 2015, at 03:50, Cheah, Vincent Beng Keat =
-<vincent.beng.keat.cheah@intel.com> wrote:
->>=20
->> Hi Chris,
->>=20
->> I don=E2=80=99t have any idea with regard to the issue that you are =
-getting below. All the work that we are doing here so far is on CHV =
-(yocto-kernel-3.19.5 standard/base branch).
->>=20
->> =46rom your statement below, it looks to me that you are upgrading =
-meta-intel from Daisy to Fido branch which are using yocto-kernel-3.14 =
-(meta-intel/isg/valleyisland BSP). I'm not sure if you are able to =
-reproduce this with yocto-kernel-3.19.5 (standard/base branch) from the =
-meta-intel common directory. Also, comparing Daisy branch against Fido, =
-it seems like there are lot of changes in the user-space stacks, which =
-I'm not sure could cause the issue below.
->>=20
->>=20
->> Daisy 1.6.2
->> 	Kernel 3.4, 3.10, 3.14 (Supportable common base)
->> 	Xorg-server 1.15
->> 	Wayland/Weston 1.4.0
->> 	Xf86-video-intel 2.99.910
->> 	Libdrm 2.4.52
->> 	MESA 9.2.5
->> 	Cairo 1.12.16
->> 	libVA 1.3.1 (from meta-intel)
->> 	Intel-VA-driver 1.3.2 (from meta-intel)
->> 	GStreamer 1.2.3
->> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
->>=20
->>=20
->> Dizzy 1.7.1
->> 	Kernel 3.10, 3.14, 3.17 (Supportable common base)
->> 	Xorg-server 1.15.1
->> 	Wayland/Weston 1.5.0
->> 	Xf86-video-intel 2.99.912
->> 	Libdrm 2.4.54
->> 	MESA 10.1.3
->> 	Cairo 1.12.16
->> 	libVA 1.3.1 (from meta-intel)
->> 	Intel-VA-driver 1.3.2 (from meta-intel)
->> 	GStreamer 1.4.1
->> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
->>=20
->>=20
->> Fido 1.8
->> 	Kernel 3.14, 3.19 (supportable comon base)
->> 	Xorg-server 1.16.3
->> 	Wayland/weston 1.6.0
->> 	Xf86-video-intel 2.99.917
->> 	Libdrm 2.4.59
->> 	Mesa 10.4.4
->> 	Cairo 1.12.18
->> 	LibVA 1.5.0 (from meta-intel)
->> 	Intel-VA-driver 1.5.0 (from meta-intel)
->> 	Gstreamer 1.4.5
->> 	Gstreamer-vaapi 0.5.10 (from meta-intel)
->>=20
->>=20
->> ... Vincent
->>=20
->> -----Original Message-----
->> From: Chang, Rebecca Swee Fun
->> Sent: Wednesday, June 10, 2015 9:08 AM
->> To: Cheah, Vincent Beng Keat
->> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold, =
-Saul; 'Paul Eggleton'
->> Subject: RE: [meta-intel] "Crazy" Xorg memory usage after upgrading =
-from Daisy to Fido
->>=20
->> Hi Vincent,
->>=20
->> Can you help to comment on this issue mentioned by Chris?
->> Thanks.
->>=20
->> Regards,
->> Rebecca
->>=20
->>> -----Original Message-----
->>> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
->>> Sent: 09 June, 2015 12:15 AM
->>> To: Chang, Rebecca Swee Fun
->>> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold, =
-Saul
->>> Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading
->>> from Daisy to Fido
->>>=20
->>> Rebecca, is this something you or one of your colleagues would be =
-able
->>> to help with?
->>>=20
->>> Thanks,
->>> Paul
->>>=20
->>> On Friday 05 June 2015 08:29:00 Chris Tapp wrote:
->>>> I=E2=80=99ve got an application that I=E2=80=99ve had running =
-nicely under Daisy for
->>>> some time. As Daisy is now a bit old, I decided to move the
->>>> application to
->>> Fido.
->>>> I=E2=80=99m using the meta-intel/isg/valleyisland BSP and also =
-switched to
->>>> using its Fido branch.
->>>>=20
->>>> The move only required a few minor changes and allowed me to drop a
->>>> Daisy =E2=80=9Cupdates=E2=80=9D layer that I had been using for =
-things like gstreamer-1.0.
->>>>=20
->>>> However, there is one behaviour which is killing me - I keep =
-getting
->>>> oom-killer events!
->>>>=20
->>>> The application is basically an OpenGL-ES 2.0 application that
->>>> renders various bits of text, images and streams captured from a
->>>> gstreamer pipeline at 60 Hz to a 1080 screen.
->>>>=20
->>>> Under Daisy this generally took just under 50% CPU and used a =
-modest
->>>> percentage of the 4 GB system memory - i.e. no where near running
->>>> out and usage was just about static.
->>>>=20
->>>> Under Fido the CPU usage is about the same and the memory used by
->>>> the application itself looks reasonable when compared to Daisy (and
->>>> usage is static). However, the memory used by XOrg is far from
->>>> constant or stable - it basically has a VSZ value cycling from =
-about
->>>> 630m to 2989m with the cycle period being in the order of 5 to 10
->>>> seconds. Peaks in XOrg memory usage coincide with stutters in video
->>>> playback within my app (audio is unaffected).
->>>>=20
->>>> Monitoring /proc/meminfo when this is going on shows that =
-=E2=80=9CShmem=E2=80=9D
->>>> usage is following the same pattern as the memory used by XOrg =
-(i.e.
->>>> Shmem usage is high at the same time). If the values are plotted on
->>>> a graph they appear to show that Shmem usage grows linearly and =
-then
->>>> falls rapidly when nearly all the free memory has been exhausted,
->>>> perhaps in response to a delayed garbage collection run.
->>>>=20
->>>> Does anyone have any ideas as to what I should be looking at to =
-work
->>>> out what=E2=80=99s going on?
->>>>=20
->>>> Are there any significant changes between XOrg under Daisy and Fido
->>>> that could be causing this?
->>>>=20
->>>> Could this be related to the meta-intel video drivers?
->>>>=20
->>>> Any feedback / comments would be really appreciated.
->>>>=20
->>>> Thanks :-)
->>>>=20
->>>> --
->>>>=20
->>>> Chris Tapp
->>>> opensource@keylevel.com
->>>> www.keylevel.com
->>>>=20
->>>> ----
->>>> You can tell you're getting older when your car insurance gets real =
-cheap!
->>>=20
->>> --
->>>=20
->>> Paul Eggleton
->>> Intel Open Source Technology Centre
->=20
-> --
->=20
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
->=20
-> ----
-> You can tell you're getting older when your car insurance gets real =
-cheap!
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
-
---Apple-Mail=_2CBBB0F6-1C7B-45F2-8D83-6EC0A26824AC
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iQIcBAEBCgAGBQJWVPZlAAoJEAM2GeiJDBSG5tQP/3v/9Y0Y0ZgocFeLDCF11pcn
-8MwwoY7RlDr8p+/obZdq95DLAHYT/9UrGSbEAKq9trsD5q4D3KS3z+FVEsCAFKim
-/sPr6qo5NYYyKGoaOFnzqS4mqTR7s3tRG2Yub46Xz06fetxmhTKvddVq/Im5LGeA
-/3Gzn5RaYhidcUJE0vxinF5qCDPM/aY3Y8Goc9pqhNa3fm6KizezGEUZfm20NRVP
-i49h1Jlw/bNDGDhxYu46jho4hwBWbonx+xC91kn4PnUOIqa6zB70UwEat92V/0dH
-C4NSYWtbtNgv0FW2IVMmONl+dUq/fhRgHfaixM6AOnDT0kOESPdauGf/Oz+jK82f
-qn50N8j/5tgbR8yKMfk2gEJ2WRvddu6owdrzTSPeHmhs6MvIBYPchO5zyzyNO9Jn
-DXMGkdp+/AWeUMdOG1Dz7Eo9F8cji6J8S0yvfq4go8U5FDU6KJJfs1+uvh1ezA1A
-iXZwDPNreuuvicoT95gcQkWsFVMhcnoR8BtFncHbxki8q+XwTOAX9fveQVFWe+pO
-xr/b9XBz4DrnvkaCxdsTp7GlI0cDAA5fx6amqh7fnEnFUOEkQpMzX11mpSaybiGa
-urhPc1MbA0ZC650+gak+ejQalzICdJjMioNnefgJjAYxNT96hiElGdp+bBmlze0p
-WuSOGNXGsCj4iuUORn+m
-=OBFf
------END PGP SIGNATURE-----
-
---Apple-Mail=_2CBBB0F6-1C7B-45F2-8D83-6EC0A26824AC--
