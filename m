@@ -1,56 +1,38 @@
-Return-Path: <mar.krzeminski@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58510E0088C; Wed, 25 Nov 2015 08:49:26 -0800 (PST)
+	id 863F7E00985; Wed, 25 Nov 2015 11:04:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mar.krzeminski[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.53 listed in list.dnswl.org]
-Received: from mail-lf0-f53.google.com (mail-lf0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCC93E005B3
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 08:49:22 -0800 (PST)
-Received: by lfdl133 with SMTP id l133so67423283lfd.2
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 08:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-type:content-transfer-encoding;
-	bh=+TM52aujQvVQYjDnzgC/0gB+RNt0HenpiAOK+gsJJf0=;
-	b=Cop3BHay0WAAztVABNvHXcrNu1I38rB8pRmjzgrM5o4PCBYg2n13T37ajFtRe0jRGT
-	KfRalPFGkH1v7IwyJtlfBgSY4hxZEkBkdS7xmLEtHqG+ZPZ33Uh+QLciHjcR6MR6C46h
-	GR03t6ECCxqkvQsUkUI6Qx10vDK6euPgsCjeVlfR0EUXcaPrwdaXwcFibf6Gf8i1MleZ
-	nCjma0sV8hbke41LqTw0Kd8EH8vGc0ZSuGEGGoY1PySS/3ArKZblz77L5MXbzIC08BDD
-	s7BAtwkA6r7V5IDg+9GT8ULcmpHGdsKoKJ79HkSgG23VxiKevil4ixuy8+/PnPF21RVa
-	Nd4A==
-X-Received: by 10.25.17.66 with SMTP id g63mr13056472lfi.110.1448470160732;
-	Wed, 25 Nov 2015 08:49:20 -0800 (PST)
-Received: from [192.168.50.14] (31-178-131-249.dynamic.chello.pl.
-	[31.178.131.249])
-	by smtp.gmail.com with ESMTPSA id k1sm3426432lfe.23.2015.11.25.08.49.19
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 25 Nov 2015 08:49:20 -0800 (PST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: "mar.krzeminski" <mar.krzeminski@gmail.com>
-Message-ID: <5655E68F.9030203@gmail.com>
-Date: Wed, 25 Nov 2015 17:49:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EA51E007C9
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 11:04:23 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Nov 2015 11:04:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,343,1444719600"; d="scan'208";a="859362072"
+Received: from boonguan-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.169.188])
+	by orsmga002.jf.intel.com with ESMTP; 25 Nov 2015 11:04:21 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "mar.krzeminski" <mar.krzeminski@gmail.com>
+Date: Thu, 26 Nov 2015 08:04:19 +1300
+Message-ID: <3257623.P8Mc2kgp4c@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.13-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
+	)
+In-Reply-To: <5655E68F.9030203@gmail.com>
+References: <5655E68F.9030203@gmail.com>
 MIME-Version: 1.0
-Subject: Migration 1.8 -> 2.0 opkg-cl missing in SDK
+Cc: yocto@yoctoproject.org
+Subject: Re: Migration 1.8 -> 2.0 opkg-cl missing in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,22 +44,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Nov 2015 16:49:26 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 25 Nov 2015 19:04:27 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello,
+Hi Marcin,
 
-After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is 
-generated by bitbake meta-toolchain command).
-Manual clearly states that opkg-cl is still avaliable:
-http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#configuring-the-pms
-I can not find any instruction how to migrate PMS based on opkg in sdk 
-in 2.0 release, so my question is what should I change to
-make opk running in SDK?
-I am suspecting I need to replace opkg-cl with opkg, something more is 
-needed?
+On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:
+> After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is
+> generated by bitbake meta-toolchain command).
+> Manual clearly states that opkg-cl is still avaliable:
+> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#configuri
+> ng-the-pms I can not find any instruction how to migrate PMS based on opkg
+> in sdk in 2.0 release, so my question is what should I change to
+> make opk running in SDK?
+> I am suspecting I need to replace opkg-cl with opkg, something more is
+> needed?
 
-Regards,
-Marcin
+opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in our 2.0 
+release). Probably something we ought to have noted in the 2.0 migration 
+guide.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
