@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 880E5E0088C; Wed, 25 Nov 2015 16:00:06 -0800 (PST)
+	id A0183E0088C; Wed, 25 Nov 2015 16:00:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E5D0E00985
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:03 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4760E009F3
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:05 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:02 -0800
+	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847188773"
+X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847188934"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:01 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:05 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 25 Nov 2015 18:00:30 -0600
-Message-Id: <1448496046-13186-2-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 25 Nov 2015 18:00:34 -0600
+Message-Id: <1448496046-13186-6-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH] 01/17] {upgradehelper, bitbake}.py: Move _get_env function to bitbake
+Subject: [[AUH] 05/17] buildhistory: Add option for enable in upgrade-helper.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,116 +45,131 @@ X-List-Received-Date: Thu, 26 Nov 2015 00:00:06 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Remove unnecesary access function (_get_env) to environment move
-logic to build dictionary to bitbake env method.
+Make consistent the enablement for this feature it need to be
+explicit enable into upgrade-helper.conf and also needs configuration
+in local.conf.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- bitbake.py       | 19 ++++++++++++++++++-
- upgradehelper.py | 26 ++++----------------------
- 2 files changed, 22 insertions(+), 23 deletions(-)
+ README           |  9 +++++++--
+ modules/steps.py |  6 +++---
+ upgradehelper.py | 40 ++++++++++++++++++++++++++--------------
+ 3 files changed, 36 insertions(+), 19 deletions(-)
 
-diff --git a/bitbake.py b/bitbake.py
-index a1587ce..cdbce2b 100644
---- a/bitbake.py
-+++ b/bitbake.py
-@@ -29,6 +29,8 @@ from logging import debug as D
- from logging import error as E
- from logging import critical as C
- import sys
-+import re
-+
- from errors import *
+diff --git a/README b/README
+index 44c3bf1..ee1bd1f 100644
+--- a/README
++++ b/README
+@@ -58,6 +58,10 @@ drop_previous_commits=yes
  
- for path in os.environ["PATH"].split(':'):
-@@ -80,7 +82,22 @@ class Bitbake(object):
-         return os.path.join(self.log_dir, BITBAKE_ERROR_LOG)
+ # machines to test build with
+ machines=qemux86 qemux86-64 qemuarm qemumips qemuppc
++
++# optional features
++buildhistory=no
++
+ --------------- snip ---------------
  
-     def env(self, recipe=None):
--        return self._cmd(recipe, "-e", output_filter="-v \"^#\"")
-+        stdout = self._cmd(recipe, "-e", output_filter="-v \"^#\"")
-+
-+        assignment = re.compile("^([^ \t=]*)=(.*)")
-+        bb_env = dict()
-+        for line in stdout.split('\n'):
-+            m = assignment.match(line)
-+            if m:
-+                if m.group(1) in bb_env:
-+                    continue
-+
-+                bb_env[m.group(1)] = m.group(2).strip("\"")
-+
-+        if not bb_env:
-+            raise EmptyEnvError(stdout)
-+
-+        return bb_env
+ 3. Enable distrodata and supply appropriate additional metadata. For
+@@ -75,8 +79,9 @@ WARNING: if you are using the default maintainers.inc file supplied
+          emails to the default maintainers. Please be careful not to
+          do this :)
  
-     def fetch(self, recipe):
-         return self._cmd(recipe, "-c fetch")
+-4. Enable buildhistory by adding the following lines to your
+-conf/local.conf file:
++4. If you want to enable buildhistory (optional) you need to enable in
++upgrade-helper.conf also add the following lines to your conf/local.conf
++file:
+ 
+ --------------- snip ---------------
+ INHERIT =+ "buildhistory"
+diff --git a/modules/steps.py b/modules/steps.py
+index b85a0dc..4a2eee3 100644
+--- a/modules/steps.py
++++ b/modules/steps.py
+@@ -85,7 +85,7 @@ def detect_recipe_type(bb, git, opts, pkg_ctx):
+             pkg_ctx['recipe_dir'], bb, git)
+ 
+ def buildhistory_init(bb, git, opts, pkg_ctx):
+-    if not opts['buildhistory_enabled']:
++    if not opts['buildhistory']:
+         return
+ 
+     pkg_ctx['buildhistory'] = BuildHistory(bb, pkg_ctx['PN'],
+@@ -118,11 +118,11 @@ def compile(bb, git, opts, pkg_ctx):
+     for machine in opts['machines']:
+         I(" %s: compiling for %s ..." % (pkg_ctx['PN'], machine))
+         pkg_ctx['recipe'].compile(machine)
+-        if opts['buildhistory_enabled']:
++        if opts['buildhistory']:
+             pkg_ctx['buildhistory'].add()
+ 
+ def buildhistory_diff(bb, git, opts, pkg_ctx):
+-    if not opts['buildhistory_enabled']:
++    if not opts['buildhistory']:
+         return
+ 
+     I(" %s: Checking buildhistory ..." % pkg_ctx['PN'])
 diff --git a/upgradehelper.py b/upgradehelper.py
-index 0223ac0..128bc07 100755
+index e526597..c841c2a 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -168,7 +168,7 @@ class Updater(object):
-         ]
+@@ -156,7 +156,7 @@ class Updater(object):
+         self.opts['machines'] = settings.get('machines',
+                 'qemux86 qemux86-64 qemuarm qemumips qemuppc').split()
+         self.opts['skip_compilation'] = skip_compilation
+-        self.opts['buildhistory_enabled'] = self._buildhistory_is_enabled()
++        self.opts['buildhistory'] = self._buildhistory_is_enabled()
  
-         try:
--            self.base_env = self._get_env()
-+            self.base_env = self.bb.env()
-         except EmptyEnvError as e:
-             import traceback
-             E( " %s\n%s" % (e.message, traceback.format_exc()))
-@@ -185,24 +185,6 @@ class Updater(object):
-         else:
-             return "Succeeded"
- 
--    def _get_env(self, pn=None):
--        stdout = self.bb.env(pn)
--
--        assignment = re.compile("^([^ \t=]*)=(.*)")
--        bb_env = dict()
--        for line in stdout.split('\n'):
--            m = assignment.match(line)
--            if m:
--                if m.group(1) in bb_env:
--                    continue
--
--                bb_env[m.group(1)] = m.group(2).strip("\"")
--
--        if not bb_env:
--            raise EmptyEnvError(stdout)
--
--        return bb_env
--
+         self.uh_dir = os.path.join(build_dir, "upgrade-helper")
+         if not os.path.exists(self.uh_dir):
+@@ -180,22 +180,34 @@ class Updater(object):
      def _buildhistory_is_enabled(self):
          enabled = False
  
-@@ -226,7 +208,7 @@ class Updater(object):
+-        if 'buildhistory' in self.base_env['INHERIT']:
+-            if not 'BUILDHISTORY_COMMIT' in self.base_env:
+-                E(" Buildhistory was enabled but need"\
+-                        " BUILDHISTORY_COMMIT=1 please set.")
+-                exit(1)
++        if settings.get("buildhistory", "no") == "yes":
++            if 'buildhistory' in self.base_env['INHERIT']:
++                if not 'BUILDHISTORY_COMMIT' in self.base_env:
++                    E(" Buildhistory was INHERIT in conf/local.conf"\
++                      " but need BUILDHISTORY_COMMIT=1 please set.")
++                    exit(1)
+ 
+-            if not self.base_env['BUILDHISTORY_COMMIT'] == '1':
+-                E(" Buildhistory was enabled but need"\
+-                        " BUILDHISTORY_COMMIT=1 please set.")
+-                exit(1)
++                if not self.base_env['BUILDHISTORY_COMMIT'] == '1':
++                    E(" Buildhistory was INHERIT in conf/local.conf"\
++                      " but need BUILDHISTORY_COMMIT=1 please set.")
++                    exit(1)
+ 
+-            if self.opts['skip_compilation']:
+-                W(" Buildhistory disabled because user" \
+-                        " skip compilation!")
++                if self.opts['skip_compilation']:
++                    W(" Buildhistory disabled because user" \
++                            " skip compilation!")
++                else:
++                    enabled = True
+             else:
+-                enabled = True
++                E(" Buildhistory was enabled in upgrade-helper.conf"\
++                  " but isn't INHERIT in conf/local.conf, if you want"\
++                  " to enable please set.")
++                exit(1)
++        else:
++            if 'buildhistory' in self.base_env['INHERIT']:
++                E(" Buildhistory was INHERIT in conf/local.conf"\
++                  " but buildhistory=yes isn't in upgrade-helper.conf,"\
++                  " if you want to enable please set.")
++                exit(1)
+ 
          return enabled
- 
-     def _load_env(self):
--        self.env = self._get_env(self.pn)
-+        self.env = self.bb.env(self.pn)
- 
-     def _create_workdir(self):
-         self.workdir = os.path.join(self.uh_recipes_all_dir, self.pn)
-@@ -257,7 +239,7 @@ class Updater(object):
-             self.git.reset_hard()
-             self.git.clean_untracked()
- 
--            self.env = self._get_env(self.pn)
-+            self.env = self.bb.env(self.pn)
- 
-     def _clean_repo(self):
-         try:
-@@ -296,7 +278,7 @@ class Updater(object):
-     def _rename(self):
-         self.recipe.rename()
- 
--        self.env = self._get_env(self.pn)
-+        self.env = self.bb.env(self.pn)
- 
-         self.recipe.update_env(self.env)
  
 -- 
 2.1.4
