@@ -1,56 +1,38 @@
-Return-Path: <mar.krzeminski@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D47F3E00BC6; Thu, 26 Nov 2015 02:36:55 -0800 (PST)
+	id 475EEE00BC6; Thu, 26 Nov 2015 03:04:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mar.krzeminski[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.41 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
-	[209.85.213.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 262B8E00343
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 02:36:54 -0800 (PST)
-Received: by vkbs1 with SMTP id s1so51110127vkb.1
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 02:36:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=1MnKNmspbTrdiQjKmtGz+j6NwmeHUrza/4g7LmLBH38=;
-	b=OibLorb8MWT+ySo0BVQi1pfUsVvXZ4hDp5W1NmKTUqGka2bWY+HOoc5vbRgRTaiadA
-	ckpj7rxb4W1ny1ZKzLwSvBKwcmsbdanKulL7UaorZzQj3odL4HV2pFnkxJrdaFrGJ5CV
-	eJ7cLBRERUwmpjzPTojKLpwRCw0Tsn7RYOFh4jHoAFhwDwCHdMlxpT1JHcwZ6tDeij/a
-	wBZ+23OmFcmzpQ4MZDNcao4zD5CC9TtjEe4G6DQs/f6qp1R/ns7Sw2GEq8CZ2wReE62Y
-	unx+frOVEpjDmml+51GFKTPIN6nhlz77i9PGEwSG2QulV1n2uWfKKxz211FqEwijgMWz
-	sybw==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36EC5E00343
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 03:04:06 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Nov 2015 03:03:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,346,1444719600"; d="scan'208";a="860165350"
+Received: from boonguan-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.169.188])
+	by fmsmga002.fm.intel.com with ESMTP; 26 Nov 2015 03:03:46 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Belisko Marek <marek.belisko@gmail.com>
+Date: Fri, 27 Nov 2015 00:03:44 +1300
+Message-ID: <1906079.hoisBn1qUN@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.13-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
+	)
+In-Reply-To: <CAAfyv37MZCr1cRNedU9xsbNwXQLejQSaibmd+z6cwYBANzAt=g@mail.gmail.com>
+References: <CAAfyv37MZCr1cRNedU9xsbNwXQLejQSaibmd+z6cwYBANzAt=g@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.31.34.67 with SMTP id i64mr36913306vki.113.1448534214180;
-	Thu, 26 Nov 2015 02:36:54 -0800 (PST)
-Received: by 10.31.153.1 with HTTP; Thu, 26 Nov 2015 02:36:54 -0800 (PST)
-In-Reply-To: <CABc_YGB4vECbkyJjb8X7CE_ZM=GGAyEDQFtpfec6C0VDXwwT0g@mail.gmail.com>
-References: <5655E68F.9030203@gmail.com>
-	<3257623.P8Mc2kgp4c@peggleto-mobl.ger.corp.intel.com>
-	<565607EF.8020008@gmail.com>
-	<CABc_YGB4vECbkyJjb8X7CE_ZM=GGAyEDQFtpfec6C0VDXwwT0g@mail.gmail.com>
-Date: Thu, 26 Nov 2015 11:36:54 +0100
-Message-ID: <CABc_YGBacxZQtMiJV3nT+8+pp2V1OHwnLoHqWWTAkhqteAuY0Q@mail.gmail.com>
-From: =?UTF-8?Q?Marcin_Krzemi=C5=84ski?= <mar.krzeminski@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Migration 1.8 -> 2.0 opkg-cl missing in SDK
+Subject: Re: PRINC functionality workaround
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,146 +44,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Nov 2015 10:36:55 -0000
-Content-Type: multipart/alternative; boundary=001a113dc46c4804f405256f27cf
+X-List-Received-Date: Thu, 26 Nov 2015 11:04:08 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a113dc46c4804f405256f27cf
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hi Marek,
 
-Ok, there is a patch for opk that adds option to ignore UIDs.
-http://git.yoctoproject.org/cgit/cgit.cgi/opkg/patch/libopkg/opkg_conf.c?id=
-=3Dfff984ba1e9070b8e6a5d40a61e5f4f018b1aeb2
-I will add this to my layer.
+On Thursday 26 November 2015 08:16:51 Belisko Marek wrote:
+> after upgrading to jethro release PRINC functionality was removed by
+> commit : a4d530bcf55f03258078c10a123e2717444e1060 on oe-core. PRINC
+> functionality was used in some of our recipes so I took part from
+> PRINC funtionality and put is to separate method (in bbclass) [0]
 
-Thanks,
-Marcin
+You'll have to forgive me for asking the obvious question - why aren't you 
+using the PR server?
+ 
+> I'm trying to use it in bbappend like:
+> inherit veryspecial_helpers
+> PR := ${increase_pr(5)} but this seems to be then evaluated as :
+> u-boot/2015.07-${increase_pr(5)} which is wrong and fails.
+> 
+> Any ideas what is wrong with this approach? Maybe some brackets? Many
+> thanks.
 
-2015-11-26 10:47 GMT+01:00 Marcin Krzemi=C5=84ski <mar.krzeminski@gmail.com=
->:
+missing @ ?
 
-> Hello again,
->
-> Changed opkg-cl to opkg in my scripts, all started to work but warning is
-> showing for every file in package:
-> Warning when extracting archive entry: Can't set UID=3D0
-> Messages cames from archiver, so two things could be wrong: unpcaking
-> options or generating ipk options.
-> Do you know haw can I fix this warning?
->
-> Regards,
-> Marcin
->
->
->
->
-> 2015-11-25 20:11 GMT+01:00 mar.krzeminski <mar.krzeminski@gmail.com>:
->
->> Hi Paul,
->>
->> Thanks for clarification.
->>
->> Regards,
->> Marcin
->>
->> W dniu 25.11.2015 o 20:04, Paul Eggleton pisze:
->>
->>> Hi Marcin,
->>>
->>> On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:
->>>
->>>> After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is
->>>> generated by bitbake meta-toolchain command).
->>>> Manual clearly states that opkg-cl is still avaliable:
->>>>
->>>> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#con=
-figuri
->>>> ng-the-pms I can not find any instruction how to migrate PMS based on
->>>> opkg
->>>> in sdk in 2.0 release, so my question is what should I change to
->>>> make opk running in SDK?
->>>> I am suspecting I need to replace opkg-cl with opkg, something more is
->>>> needed?
->>>>
->>> opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in
->>> our 2.0
->>> release). Probably something we ought to have noted in the 2.0 migratio=
-n
->>> guide.
->>>
->>> Cheers,
->>> Paul
->>>
->>>
->>
->
+Cheers,
+Paul
 
---001a113dc46c4804f405256f27cf
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+-- 
 
-<div dir=3D"ltr">Ok, there is a patch for opk that adds option to ignore UI=
-Ds.<div><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/opkg/patch/lib=
-opkg/opkg_conf.c?id=3Dfff984ba1e9070b8e6a5d40a61e5f4f018b1aeb2">http://git.=
-yoctoproject.org/cgit/cgit.cgi/opkg/patch/libopkg/opkg_conf.c?id=3Dfff984ba=
-1e9070b8e6a5d40a61e5f4f018b1aeb2</a><br><div>I will add this to my layer.</=
-div><div><br></div><div>Thanks,</div><div>Marcin</div></div></div><div clas=
-s=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-11-26 10:47 GMT+01:00=
- Marcin Krzemi=C5=84ski <span dir=3D"ltr">&lt;<a href=3D"mailto:mar.krzemin=
-ski@gmail.com" target=3D"_blank">mar.krzeminski@gmail.com</a>&gt;</span>:<b=
-r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hello again,<div><br></di=
-v><div>Changed opkg-cl to opkg in my scripts, all started to work but warni=
-ng is showing for every file in package:</div><div>Warning when extracting =
-archive entry: Can&#39;t set UID=3D0<br></div><div>Messages cames from arch=
-iver, so two things could be wrong: unpcaking options or generating ipk opt=
-ions.</div><div>Do you know haw can I fix this warning?</div><div><br></div=
-><div>Regards,</div><div>Marcin</div><div><br></div><div><br></div><div><br=
-></div></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_ex=
-tra"><br><div class=3D"gmail_quote">2015-11-25 20:11 GMT+01:00 mar.krzemins=
-ki <span dir=3D"ltr">&lt;<a href=3D"mailto:mar.krzeminski@gmail.com" target=
-=3D"_blank">mar.krzeminski@gmail.com</a>&gt;</span>:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">Hi Paul,<br>
-<br>
-Thanks for clarification.<br>
-<br>
-Regards,<br>
-Marcin<br>
-<br>
-W dniu 25.11.2015 o 20:04, Paul Eggleton pisze:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Hi Marcin,<span><br>
-<br>
-On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:<br>
-</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><span>
-After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is<br>
-generated by bitbake meta-toolchain command).<br>
-Manual clearly states that opkg-cl is still avaliable:<br>
-<a href=3D"http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.ht=
-ml#configuri" rel=3D"noreferrer" target=3D"_blank">http://www.yoctoproject.=
-org/docs/latest/adt-manual/adt-manual.html#configuri</a><br></span>
-ng-the-pms I can not find any instruction how to migrate PMS based on opkg<=
-span><br>
-in sdk in 2.0 release, so my question is what should I change to<br>
-make opk running in SDK?<br>
-I am suspecting I need to replace opkg-cl with opkg, something more is<br>
-needed?<br>
-</span></blockquote>
-opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in our 2=
-.0<br>
-release). Probably something we ought to have noted in the 2.0 migration<br=
->
-guide.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<br>
-</blockquote>
-<br>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
+Paul Eggleton
+Intel Open Source Technology Centre
 
---001a113dc46c4804f405256f27cf--
