@@ -1,78 +1,55 @@
-Return-Path: <maninder1.s@samsung.com>
+Return-Path: <mar.krzeminski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74BBEE00C0F; Thu, 26 Nov 2015 00:03:30 -0800 (PST)
+	id 82AE3E00BC6; Thu, 26 Nov 2015 01:47:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [203.254.224.25 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mar.krzeminski[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12ECEE00BE2
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 00:03:04 -0800 (PST)
-Received: from epcpsbgr4.samsung.com
-	(u144.gpu120.samsung.co.kr [203.254.230.144])
-	by mailout2.samsung.com (Oracle Communications Messaging Server
-	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NYE00EMCX13N880@mailout2.samsung.com> for
-	yocto@yoctoproject.org; Thu, 26 Nov 2015 17:03:03 +0900 (KST)
-Received: from epcpsbgm1new.samsung.com ( [172.20.52.122])
-	by epcpsbgr4.samsung.com (EPCPMTA) with SMTP id 33.64.29659.7BCB6565;
-	Thu, 26 Nov 2015 17:03:03 +0900 (KST)
-X-AuditID: cbfee690-f79e96d0000073db-68-5656bcb7dcf9
-Received: from epmmp1.local.host ( [203.254.227.16])
-	by epcpsbgm1new.samsung.com (EPCPMTA) with SMTP id 13.25.24993.6BCB6565;
-	Thu, 26 Nov 2015 17:03:03 +0900 (KST)
-Received: from localhost.localdomain ([107.108.92.210])
-	by mmp1.samsung.com (Oracle Communications Messaging Server 7.0.5.31.0
-	64bit
-	(built May 5 2014)) with ESMTPA id <0NYE00KH3WYK2MK0@mmp1.samsung.com>;
-	Thu, 26 Nov 2015 17:03:02 +0900 (KST)
-From: Maninder Singh <maninder1.s@samsung.com>
-To: mark.hatle@windriver.com
-Date: Thu, 26 Nov 2015 13:31:20 +0530
-Message-id: <1448524880-31492-3-git-send-email-maninder1.s@samsung.com>
-X-Mailer: git-send-email 1.7.9.5
-In-reply-to: <1448524880-31492-1-git-send-email-maninder1.s@samsung.com>
-References: <1448524880-31492-1-git-send-email-maninder1.s@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrDLMWRmVeSWpSXmKPExsWyRsSkSnf7nrAwg+ZlPBYvXk1gsdi87iSz
-	xYMLV5ks2t7+ZLM4PL+NxWLT84MsFvfebGWyOHRyLqPFpJdr2Bw4Pfq2rGL0WL9lK5NH+4k+
-	tgDmKC6blNSczLLUIn27BK6Md5sOMRd08FT0T2tna2DczdnFyMkhIWAi8fPOHhYIW0ziwr31
-	bF2MXBxCAisYJS7972KHKfq/cBMjRGIpo8SJ33+gqn4ySiw408EIUsUmoCexahfIKA4OEQEZ
-	idffuEBqmAUeM0rM6TzLClIjLBAt8XVrI1g9i4CqxKEb08BsXgF3iRMbJzOD9EoIKEjMmWQD
-	EuYU8JBY3jQXrEQIpGTiXWaQmRICi9gl1t2exAoxR0Di2+RDLBC9shKbDjBDHC0pcXDFDZYJ
-	jMILGBlWMYqmFiQXFCelF5noFSfmFpfmpesl5+duYgQG+ul/zybsYLx3wPoQowAHoxIPb4Ft
-	WJgQa2JZcWXuIUZToA0TmaVEk/OB8ZRXEm9obGZkYWpiamxkbmmmJM77WupnsJBAemJJanZq
-	akFqUXxRaU5q8SFGJg5OqQZGv0nffn1Un13Pf+/g8hms0stqEluKl089k91kws3vu+LY43Nm
-	Jo8TNnSWVty7sDl/gZHvnSBFpehSsbYCq0uPohwvelu4H5l+0Zy5bMpBIaE5nQ+5PHqDl+/f
-	1borVWbyd5N0jnWV8/qXBa/Tneinu63bVm1R86fzl1tzZ8x4VXUy/k61EyenEktxRqKhFnNR
-	cSIAtTihvm8CAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJIsWRmVeSWpSXmKPExsVy+t9jAd3te8LCDN4+ZrR48WoCi8XmdSeZ
-	LR5cuMpk0fb2J5vF4fltLBabnh9ksbj3ZiuTxaGTcxktJr1cw+bA6dG3ZRWjx/otW5k82k/0
-	sQUwRzUw2mSkJqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA
-	HaKkUJaYUwoUCkgsLlbSt8M0ITTETdcCpjFC1zckCK7HyAANJKxhzHi36RBzQQdPRf+0drYG
-	xt2cXYycHBICJhL/F25ihLDFJC7cW8/WxcjFISSwlFHixO8/UM5PRokFZzrAqtgE9CRW7drD
-	0sXIwSEiICPx+hsXSA2zwGNGiTmdZ1lBaoQFoiW+bm0Eq2cRUJU4dGMamM0r4C5xYuNkZpBe
-	CQEFiTmTbEDCnAIeEsub5oKVCIGUTLzLPIGRdwEjwypGidSC5ILipPRcw7zUcr3ixNzi0rx0
-	veT83E2M4Gh6JrWD8eAu90OMAhyMSjy8BbZhYUKsiWXFlbmHGCU4mJVEeGOygUK8KYmVValF
-	+fFFpTmpxYcYTYHumsgsJZqcD4z0vJJ4Q2MTc1NjU0sTCxMzSyVx3gv7/cKEBNITS1KzU1ML
-	Uotg+pg4OKUaGGtO/RRm3/lt/4JdHXwxvJumLDYXf2D0pllPzk72osVuP9abPPJstx6XqC4J
-	3lR2vW5lifWRreu2FO25FS0RaGjTIpme2Nkjv+SZ62fGzPUc2ec3Knff+Bm1ymFDxaaNWy9N
-	tpm+iGt5ohrX+8aMV3lewjd3iFxx2N7122+2CN+pObvrpGxvPlViKc5INNRiLipOBAA5+boC
-	vAIAAA==
-DLP-Filter: Pass
-X-MTR: 20000000000000000@CPGS
-X-CFilter-Loop: Reflected
-Cc: Vaneet Narang <v.narang@samsung.com>, hakbong5.lee@samsung.com,
-	yocto@yoctoproject.org, doha.hwang@samsung.com,
-	ajeet.y@samsung.com, akhilesh.k@samsung.com,
-	Maninder Singh <maninder1.s@samsung.com>, pankaj.m@samsung.com
-Subject: [prelink-cross][PATCH 2/2] src/arch-aarch64.c:testsuite failure fixes in aarch64
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50B78E00B5D
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 01:47:29 -0800 (PST)
+Received: by vkha189 with SMTP id a189so50369476vkh.2
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 01:47:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=qcNflAx5NhQ3YdK3kxSsk7InpJMRr03eKkuv3KioB7c=;
+	b=MidHpCWLojiEjHOCQMnEmaCrosaGowzPyjS0BKtAnOM+GnMGB1w5l32wTxp0tYTEmh
+	pDueow8cVXphRa1dr5aNBnsbb8uzcia3M9NUexmo2REZ4Zw8BL2MNF6QtnRTr5wXzyCu
+	ru0hzVN/57xUHXJXwJOXC2AguTf6wAF7AYE/Y4HgkEoA4lZwFAP5PNA6U8wwx2yxivwB
+	SSvbhyrw2njHcebLNs+pOkyxnlXXva2g4eAEWTQtzRc7wWkKazo4w8oH2d4mXxBZRNs1
+	Ul62MPs70+K5a4Y29zZULd1FLz+MVIsm+Esyza/7pelDkdVHQj8Hw4zK9+F2pGiHgeeO
+	WD8A==
+MIME-Version: 1.0
+X-Received: by 10.31.13.205 with SMTP id 196mr38010135vkn.37.1448531248416;
+	Thu, 26 Nov 2015 01:47:28 -0800 (PST)
+Received: by 10.31.153.1 with HTTP; Thu, 26 Nov 2015 01:47:28 -0800 (PST)
+In-Reply-To: <565607EF.8020008@gmail.com>
+References: <5655E68F.9030203@gmail.com>
+	<3257623.P8Mc2kgp4c@peggleto-mobl.ger.corp.intel.com>
+	<565607EF.8020008@gmail.com>
+Date: Thu, 26 Nov 2015 10:47:28 +0100
+Message-ID: <CABc_YGB4vECbkyJjb8X7CE_ZM=GGAyEDQFtpfec6C0VDXwwT0g@mail.gmail.com>
+From: =?UTF-8?Q?Marcin_Krzemi=C5=84ski?= <mar.krzeminski@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Migration 1.8 -> 2.0 opkg-cl missing in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,50 +61,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Nov 2015 08:03:30 -0000
+X-List-Received-Date: Thu, 26 Nov 2015 09:47:35 -0000
+Content-Type: multipart/alternative; boundary=001a11458aea820e2b05256e7674
 
-This patch fixes testsuite failure in aarch64 prelink undo section.
+--001a11458aea820e2b05256e7674
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Vaneet Narang <v.narang@samsung.com>
-Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
----
- src/arch-aarch64.c |    7 ++++---
- 1 files changed, 4 insertions(+), 3 deletions(-)
+Hello again,
 
-diff --git a/src/arch-aarch64.c b/src/arch-aarch64.c
-index e04dd6e..3e5ddd1 100644
---- a/src/arch-aarch64.c
-+++ b/src/arch-aarch64.c
-@@ -470,7 +470,9 @@ aarch64_undo_prelink_rela (DSO *dso, GElf_Rela *rela, GElf_Addr relaaddr)
-   switch (GELF_R_TYPE (rela->r_info))
-     {
-     case R_AARCH64_NONE:
-+ 	break;	
-     case R_AARCH64_RELATIVE:
-+	write_ne64 (dso, rela->r_offset, 0);
-       break;
-     case R_AARCH64_JUMP_SLOT:
-       sec = addr_to_sec (dso, rela->r_offset);
-@@ -487,9 +489,7 @@ aarch64_undo_prelink_rela (DSO *dso, GElf_Rela *rela, GElf_Addr relaaddr)
- 
- 	  assert (rela->r_offset >= dso->shdr[sec].sh_addr + 24);
- 	  assert (((rela->r_offset - dso->shdr[sec].sh_addr) & 7) == 0);
--	  write_neclass (dso, rela->r_offset,
--		      2 * (rela->r_offset - dso->shdr[sec].sh_addr - 24)
--		      + data);
-+	  write_neclass (dso, rela->r_offset, data);
- 	}
-       break;
-     case R_AARCH64_GLOB_DAT:
-@@ -501,6 +501,7 @@ aarch64_undo_prelink_rela (DSO *dso, GElf_Rela *rela, GElf_Addr relaaddr)
-       write_ne64 (dso, rela->r_offset, 0);
-       break;
-     case R_AARCH64_TLS_TPREL:
-+      write_ne64 (dso, rela->r_offset, 0);
-       break;
-     case R_AARCH64_TLSDESC:
-       write_ne64 (dso, rela->r_offset, 0);
--- 
-1.7.1
+Changed opkg-cl to opkg in my scripts, all started to work but warning is
+showing for every file in package:
+Warning when extracting archive entry: Can't set UID=0
+Messages cames from archiver, so two things could be wrong: unpcaking
+options or generating ipk options.
+Do you know haw can I fix this warning?
+
+Regards,
+Marcin
 
 
+
+
+2015-11-25 20:11 GMT+01:00 mar.krzeminski <mar.krzeminski@gmail.com>:
+
+> Hi Paul,
+>
+> Thanks for clarification.
+>
+> Regards,
+> Marcin
+>
+> W dniu 25.11.2015 o 20:04, Paul Eggleton pisze:
+>
+>> Hi Marcin,
+>>
+>> On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:
+>>
+>>> After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is
+>>> generated by bitbake meta-toolchain command).
+>>> Manual clearly states that opkg-cl is still avaliable:
+>>>
+>>> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#configuri
+>>> ng-the-pms I can not find any instruction how to migrate PMS based on
+>>> opkg
+>>> in sdk in 2.0 release, so my question is what should I change to
+>>> make opk running in SDK?
+>>> I am suspecting I need to replace opkg-cl with opkg, something more is
+>>> needed?
+>>>
+>> opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in our
+>> 2.0
+>> release). Probably something we ought to have noted in the 2.0 migration
+>> guide.
+>>
+>> Cheers,
+>> Paul
+>>
+>>
+>
+
+--001a11458aea820e2b05256e7674
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello again,<div><br></div><div>Changed opkg-cl to opkg in=
+ my scripts, all started to work but warning is showing for every file in p=
+ackage:</div><div>Warning when extracting archive entry: Can&#39;t set UID=
+=3D0<br></div><div>Messages cames from archiver, so two things could be wro=
+ng: unpcaking options or generating ipk options.</div><div>Do you know haw =
+can I fix this warning?</div><div><br></div><div>Regards,</div><div>Marcin<=
+/div><div><br></div><div><br></div><div><br></div></div><div class=3D"gmail=
+_extra"><br><div class=3D"gmail_quote">2015-11-25 20:11 GMT+01:00 mar.krzem=
+inski <span dir=3D"ltr">&lt;<a href=3D"mailto:mar.krzeminski@gmail.com" tar=
+get=3D"_blank">mar.krzeminski@gmail.com</a>&gt;</span>:<br><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex">Hi Paul,<br>
+<br>
+Thanks for clarification.<br>
+<br>
+Regards,<br>
+Marcin<br>
+<br>
+W dniu 25.11.2015 o 20:04, Paul Eggleton pisze:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi Marcin,<span class=3D""><br>
+<br>
+On Wednesday 25 November 2015 17:49:19 mar.krzeminski wrote:<br>
+</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><span class=3D"">
+After migrating from 1.8 to 2.0 opkg-cl is missing in SDK (sdk - is<br>
+generated by bitbake meta-toolchain command).<br>
+Manual clearly states that opkg-cl is still avaliable:<br>
+<a href=3D"http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.ht=
+ml#configuri" rel=3D"noreferrer" target=3D"_blank">http://www.yoctoproject.=
+org/docs/latest/adt-manual/adt-manual.html#configuri</a><br></span>
+ng-the-pms I can not find any instruction how to migrate PMS based on opkg<=
+span class=3D""><br>
+in sdk in 2.0 release, so my question is what should I change to<br>
+make opk running in SDK?<br>
+I am suspecting I need to replace opkg-cl with opkg, something more is<br>
+needed?<br>
+</span></blockquote>
+opkg-cl has been renamed to opkg in opkg 0.3.0 (which was included in our 2=
+.0<br>
+release). Probably something we ought to have noted in the 2.0 migration<br=
+>
+guide.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<br>
+</blockquote>
+<br>
+</blockquote></div><br></div>
+
+--001a11458aea820e2b05256e7674--
