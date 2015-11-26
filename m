@@ -1,40 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 338A2E00BD5; Thu, 26 Nov 2015 03:45:10 -0800 (PST)
+	id 4FEE0E00BD5; Thu, 26 Nov 2015 05:41:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A86A3E00B7D
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 03:45:08 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP; 26 Nov 2015 03:45:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,346,1444719600"; d="scan'208";a="694820523"
-Received: from boonguan-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.169.188])
-	by orsmga003.jf.intel.com with ESMTP; 26 Nov 2015 03:45:06 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Date: Fri, 27 Nov 2015 00:45:03 +1300
-Message-ID: <2437134.gsLdlJIhM6@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.1.13-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
-	)
-In-Reply-To: <CAAfyv369ysSiYXX+nVCQ+1F-r3nWJw9Zq70S8b8bqRWZk+efKA@mail.gmail.com>
-References: <CAAfyv37MZCr1cRNedU9xsbNwXQLejQSaibmd+z6cwYBANzAt=g@mail.gmail.com>
-	<1906079.hoisBn1qUN@peggleto-mobl.ger.corp.intel.com>
-	<CAAfyv369ysSiYXX+nVCQ+1F-r3nWJw9Zq70S8b8bqRWZk+efKA@mail.gmail.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5FBE00B7D
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 05:41:27 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tAQDfQjO021159
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 26 Nov 2015 05:41:26 -0800 (PST)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Thu, 26 Nov 2015 05:41:25 -0800
+To: Deepika Teriar <deepteriar@gmail.com>, <yocto@yoctoproject.org>
+References: <CAM_pFj_cwoDAC30cBcPB1besMJwZuO=mh6E4-n8Q5=5=2j_VWg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <56570C02.4050709@windriver.com>
+Date: Thu, 26 Nov 2015 08:41:22 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: PRINC functionality workaround
+In-Reply-To: <CAM_pFj_cwoDAC30cBcPB1besMJwZuO=mh6E4-n8Q5=5=2j_VWg@mail.gmail.com>
+Subject: Re: Copying the kernel in the poky directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,57 +43,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Nov 2015 11:45:10 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 26 Nov 2015 13:41:31 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thursday 26 November 2015 12:16:04 Belisko Marek wrote:
-> On Thu, Nov 26, 2015 at 12:03 PM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > On Thursday 26 November 2015 08:16:51 Belisko Marek wrote:
-> >> after upgrading to jethro release PRINC functionality was removed by
-> >> commit : a4d530bcf55f03258078c10a123e2717444e1060 on oe-core. PRINC
-> >> functionality was used in some of our recipes so I took part from
-> >> PRINC funtionality and put is to separate method (in bbclass) [0]
-> > 
-> > You'll have to forgive me for asking the obvious question - why aren't you
-> > using the PR server?
-> 
-> basically we have some base layer which has e.g. PR="rev123" in bb
-> recipe. Then we have other layer where we extend functionality
-> to base recipe (add custom patches) and we was using PRINC so every
-> change in bbappend has increased PR.
-> PR is then finally used in our FW update scripts where we update only
-> when PR is changed.
-> So I would like to introduce kind of PRINC functionality with my change
-> back.
+On 15-11-26 02:39 AM, Deepika Teriar wrote:
+> Hi
+>
+> I am customizing yocto for beaglebone black
+> I do not want my kernel to get downloaded from the git after I clean the
+> build directory. So i have kept the linux-kernel directory with the name
+> kernel-3.14.29 in the poky directory.
+> And in the linux-yocto_3.14.bb <http://linux-yocto_3.14.bb> file i have
+> changed SRC_URI *from:*
+>
+> SRC_URI =
+> "git://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta
+> <http://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta>"
+>
+> *to :*
+>
+> SRC_URI = "file://${COREBASE}/kernel-3.14.29"
+>
+> On compiling core-image-minimal I am getting the following error
+> *
+> ERROR: ExpansionError during parsing
+> /home/deepika/bbb/poky/meta/recipes-kernel/linux/linux-yocto_3.14.bb
+> <http://linux-yocto_3.14.bb>: Failure expanding variable do_patch:
+> ExpansionError: Failure expanding variable SRCPV, expression was
+> ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
+> Fetcher failure: SRCREV was used yet no valid SCM was found in SRC_URI
+>
+> *
+> Can any one tell me the error?
 
-Other than that you'd get rev123.1 -> rev123.2 rather than rev124, I'm not 
-hearing anything that you can't do with the PR service; what's more you never 
-have to remember to bump PR again.
+You still need the git protocol, the fetcher can't determine what to
+do with the SRCREV.
 
-> >> I'm trying to use it in bbappend like:
-> >> inherit veryspecial_helpers
-> >> PR := ${increase_pr(5)} but this seems to be then evaluated as :
-> >> u-boot/2015.07-${increase_pr(5)} which is wrong and fails.
-> >> 
-> >> Any ideas what is wrong with this approach? Maybe some brackets? Many
-> >> thanks.
-> > 
-> > missing @ ?
-> 
-> Afters adding @ it complains:
->  Failure expanding variable PR[:=], expression was ${@increase_pr(2)}
-> which triggered exception NameError: global name 'd' is not defined
+Try:
 
-If you're referring to d in the function then you need to pass it in as a 
-parameter.
+SRC_URI = 
+"git://${COREBASE}/kernel-3.14.29;protocol=file;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
 
-Cheers,
-Paul
+Bruce
 
--- 
+>
+> Thanks
+> Deepika
+>
+>
+>
+>
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
