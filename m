@@ -1,37 +1,40 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FEE0E00BD5; Thu, 26 Nov 2015 05:41:31 -0800 (PST)
+	id 6AE9BE00B20; Thu, 26 Nov 2015 06:48:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B5FBE00B7D
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 05:41:27 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBA70E00ADF
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 06:48:51 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id tAQDfQjO021159
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id tAQEmk9p010302
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 26 Nov 2015 05:41:26 -0800 (PST)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Thu, 26 Nov 2015 05:41:25 -0800
-To: Deepika Teriar <deepteriar@gmail.com>, <yocto@yoctoproject.org>
-References: <CAM_pFj_cwoDAC30cBcPB1besMJwZuO=mh6E4-n8Q5=5=2j_VWg@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <56570C02.4050709@windriver.com>
-Date: Thu, 26 Nov 2015 08:41:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	Thu, 26 Nov 2015 06:48:46 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.232) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.248.2; Thu, 26 Nov 2015 06:48:46 -0800
+To: Maninder Singh <maninder1.s@samsung.com>
+References: <1448524880-31492-1-git-send-email-maninder1.s@samsung.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <56571BCC.7090706@windriver.com>
+Date: Thu, 26 Nov 2015 08:48:44 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <CAM_pFj_cwoDAC30cBcPB1besMJwZuO=mh6E4-n8Q5=5=2j_VWg@mail.gmail.com>
-Subject: Re: Copying the kernel in the poky directory
+In-Reply-To: <1448524880-31492-1-git-send-email-maninder1.s@samsung.com>
+Cc: hakbong5.lee@samsung.com, yocto@yoctoproject.org, doha.hwang@samsung.com,
+	ajeet.y@samsung.com, akhilesh.k@samsung.com, pankaj.m@samsung.com
+Subject: Re: [prelink-cross][PATCH 0/2] aarch64 fixes reported by testsuite failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,56 +46,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Nov 2015 13:41:31 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Thu, 26 Nov 2015 14:48:54 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
-On 15-11-26 02:39 AM, Deepika Teriar wrote:
-> Hi
->
-> I am customizing yocto for beaglebone black
-> I do not want my kernel to get downloaded from the git after I clean the
-> build directory. So i have kept the linux-kernel directory with the name
-> kernel-3.14.29 in the poky directory.
-> And in the linux-yocto_3.14.bb <http://linux-yocto_3.14.bb> file i have
-> changed SRC_URI *from:*
->
-> SRC_URI =
-> "git://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta
-> <http://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta>"
->
-> *to :*
->
-> SRC_URI = "file://${COREBASE}/kernel-3.14.29"
->
-> On compiling core-image-minimal I am getting the following error
-> *
-> ERROR: ExpansionError during parsing
-> /home/deepika/bbb/poky/meta/recipes-kernel/linux/linux-yocto_3.14.bb
-> <http://linux-yocto_3.14.bb>: Failure expanding variable do_patch:
-> ExpansionError: Failure expanding variable SRCPV, expression was
-> ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
-> Fetcher failure: SRCREV was used yet no valid SCM was found in SRC_URI
->
-> *
-> Can any one tell me the error?
+Thank you.  I'm going to try to get this and the previous set of pending patches
+merged in the next day or so.
 
-You still need the git protocol, the fetcher can't determine what to
-do with the SRCREV.
+I'll let everyone know when the next test version is ready.
 
-Try:
+--Mark
 
-SRC_URI = 
-"git://${COREBASE}/kernel-3.14.29;protocol=file;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
-
-Bruce
-
->
-> Thanks
-> Deepika
->
->
->
->
+On 11/26/15 2:01 AM, Maninder Singh wrote:
+> aarch64 fixes reported by testsuite failures
+> 
+> To work this we need to copy all required system libs
+> in testsuite directory, and at our set-up we copied
+> below libs:-
+> 1. ld-linux-aarch64.so.1
+> 2. libc.so.6
+> 3. libgcc_s.so.1
+> 4. libm.so.6
+> 5. libstdc++.so.6
+> 
+> root# make check
+> make  check-TESTS
+> make[1]: Entering directory 'prelink-cross/testsuite'
+> make[2]: Entering directory 'prelink-cross/testsuite'
+> SKIP: movelibs.sh
+> PASS: reloc1.sh
+> PASS: reloc2.sh
+> PASS: reloc3.sh
+> SKIP: reloc4.sh
+> SKIP: reloc5.sh
+> PASS: reloc6.sh
+> PASS: reloc7.sh
+> PASS: reloc8.sh
+> PASS: reloc9.sh
+> PASS: reloc10.sh
+> PASS: reloc11.sh
+> PASS: shuffle1.sh
+> PASS: shuffle2.sh
+> PASS: shuffle3.sh
+> PASS: shuffle4.sh
+> PASS: shuffle5.sh
+> PASS: shuffle6.sh
+> PASS: shuffle7.sh
+> PASS: shuffle8.sh
+> PASS: shuffle9.sh
+> PASS: undo1.sh
+> PASS: layout1.sh
+> PASS: layout2.sh
+> FAIL: unprel1.sh
+> PASS: tls1.sh
+> PASS: tls2.sh
+> PASS: tls3.sh
+> PASS: tls4.sh
+> PASS: tls5.sh
+> PASS: tls6.sh
+> PASS: tls7.sh
+> PASS: cxx1.sh
+> PASS: cxx2.sh
+> PASS: cxx3.sh
+> FAIL: quick1.sh
+> FAIL: quick2.sh
+> FAIL: quick3.sh
+> PASS: cycle1.sh
+> PASS: cycle2.sh
+> FAIL: deps1.sh
+> FAIL: deps2.sh
+> SKIP: ifunc1.sh
+> SKIP: ifunc2.sh
+> SKIP: ifunc3.sh
+> PASS: undosyslibs.sh
+> FAIL: preload1.sh
+> ============================================================================
+> Testsuite summary for
+> ============================================================================
+> # TOTAL: 47
+> # PASS:  34
+> # SKIP:  6
+> # XFAIL: 0
+> # FAIL:  7
+> # XPASS: 0
+> # ERROR: 0
+> 
+> Maninder Singh (2):
+>   testsuite: fixes in testsuite according to aarch64
+>   src/arch-aarch64.c:testsuite failure fixes in aarch64
+> 
+>  src/arch-aarch64.c  |    7 ++++---
+>  testsuite/reloc2.sh |    2 +-
+>  testsuite/reloc8.sh |    2 +-
+>  testsuite/reloc9.sh |    2 +-
+>  testsuite/tls3.sh   |    2 +-
+>  5 files changed, 8 insertions(+), 7 deletions(-)
+> 
 
 
