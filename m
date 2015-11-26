@@ -1,60 +1,39 @@
-Return-Path: <dariusz.pelowski@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9942CE00C18; Thu, 26 Nov 2015 12:01:47 -0800 (PST)
+	id 3C63FE00AF6; Thu, 26 Nov 2015 12:25:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dariusz.pelowski[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17AD2E00BFF
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 12:01:18 -0800 (PST)
-Received: by lfaz4 with SMTP id z4so107937438lfa.0
-	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 12:01:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=pGvogGik9/49xiwDhkfVOU3MJVnBO454gaLhs8MynQY=;
-	b=YF5m9KJOXeEzKOG80uqSABG5bzPlnI5/YUf+SifZ1xWc31i4BOP2BaFKmkpJDWAHVS
-	Ek8QuTQgS90Ej5i5k/Jv23yx30m2VJapgQsbnvznzZkucxjv9lvH5ojZ143ITiofFWFr
-	XQ+INTGfhg5MOIOfqR+TU+9qUw+DtlKcgHGanOB7NCD8L3YFZL56Le8yeKl7/AFAZtmZ
-	6GFe8jBXl5kZKS+Udej+kzbZ4pW9oi2r/3bVs72YlzpCF+82bSqc6N0Zqeq/CHDArkYW
-	WpnlRrH1YijbW6qg2TFkdMM7ff1WpnoYAaw/kiyXtk3SJNXs/kYzUYgGSKAf8LHULU4D
-	BFfA==
-X-Received: by 10.25.151.133 with SMTP id z127mr17698609lfd.105.1448568077400; 
-	Thu, 26 Nov 2015 12:01:17 -0800 (PST)
-Received: from [192.168.1.195] (user-5-173-122-149.play-internet.pl.
-	[5.173.122.149]) by smtp.googlemail.com with ESMTPSA id
-	re5sm4315538lbb.22.2015.11.26.12.01.16
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 26 Nov 2015 12:01:17 -0800 (PST)
-To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>,
-	yocto@yoctoproject.org
-References: <CAJ73Ay5nUUdU7BO2dQQF0ToEiuzX1cxd6nMWHvtZmoHfu32X_Q@mail.gmail.com>
-	<56574564.7030909@linux.intel.com> <56575922.904@gmail.com>
-	<56575E79.3050904@linux.intel.com>
-From: Dariusz Pelowski <dariusz.pelowski@gmail.com>
-Message-ID: <5657650B.9010804@gmail.com>
-Date: Thu, 26 Nov 2015 21:01:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B4D8E005B3
+	for <yocto@yoctoproject.org>; Thu, 26 Nov 2015 12:25:49 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 26 Nov 2015 12:25:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,348,1444719600"; d="scan'208";a="695087495"
+Received: from rsiu-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.135.187])
+	by orsmga003.jf.intel.com with ESMTP; 26 Nov 2015 12:25:32 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
+Date: Fri, 27 Nov 2015 09:25:30 +1300
+Message-ID: <1888682.UUv9aA8xNY@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.1.13-100.fc21.x86_64; KDE/4.14.11; x86_64; ;
+	)
+In-Reply-To: <1448496046-13186-9-git-send-email-anibal.limon@linux.intel.com>
+References: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
+	<1448496046-13186-9-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <56575E79.3050904@linux.intel.com>
-Subject: Re: Failing devshell
+Cc: yocto@yoctoproject.org
+Subject: Re: [[AUH] 08/17] recipe/base.py: Add support for get recipe inherits.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,15 +45,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Nov 2015 20:01:47 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 Nov 2015 20:25:53 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-> You are right. have you done some testing in non-gnome terminals using 
-> your patch?
->
+On Wednesday 25 November 2015 18:00:37 An=EDbal Lim=F3n wrote:
+> Recipe inherits are needed to detect what recipes support
+> certain feature.
+>=20
+> For example: For detect ptest enable recipes and then do
+> ptest runtime test after succesful upgrade.
+>=20
+> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
+> ---
+>  modules/recipe/base.py | 25 +++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>=20
+> diff --git a/modules/recipe/base.py b/modules/recipe/base.py
+> index 5c70c61..dabad2f 100644
+> --- a/modules/recipe/base.py
+> +++ b/modules/recipe/base.py
+> @@ -57,6 +57,16 @@ def modify_recipe_files(func):
+>                  os.rename(full_path_f + ".tmp", full_path_f)
+>      return modify
+>=20
+> +def read_recipe_files(func):
+> +    def read(env, recipe_dir):
+> +        for f in os.listdir(recipe_dir):
+> +            full_path_f =3D os.path.join(recipe_dir, f)
+> +            if is_recipe_or_include_file(env, full_path_f, f):
+> +                with open(full_path_f) as recipe:
+> +                    for line in recipe:
+> +                        func(line)
+> +    return read
+> +
+>  class Recipe(object):
+>      def __init__(self, env, new_ver, interactive, workdir, recipe_di=
+r,
+> bitbake, git): self.env =3D env
+> @@ -85,8 +95,23 @@ class Recipe(object):
+>          self.commit_msg =3D self.env['PN'] + ": upgrade to " + self.=
+new_ver +
+> "\n\n" self.rm_patches_msg =3D "\n\nRemoved the following patch(es):\=
+n"
+>=20
+> +        self._inherits =3D None
+> +
+>          super(Recipe, self).__init__()
+>=20
+> +    def get_inherits(self):
+> +        @read_recipe_files
+> +        def _get_inherits(line):
+> +            m =3D re.search("^inherit (.*)$", line)
+> +            if m:
+> +                tmp =3D m.group(1).split()
+> +                self._inherits.extend(tmp)
+> +
+> +        if not self._inherits:
+> +            self._inherits =3D []
+> +            _get_inherits(self.env, self.recipe_dir)
+> +
+> +        return self._inherits
+>=20
+>      def update_env(self, env):
+>          self.env =3D env
 
-Yes, all terminals using check_terminal_version() function works 
-correctly on my system (Konsole: 15.08.0; tmux 2.1)
+I'm not sure I like this - you're not parsing the recipe so you'll miss=
+ things=20
+such as inc files inheriting the recipe. Would it be possible to parse =
+the=20
+recipe properly instead e.g. with tinfoil?
 
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
