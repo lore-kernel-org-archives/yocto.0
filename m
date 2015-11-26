@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F19F1E00BA1; Wed, 25 Nov 2015 16:00:25 -0800 (PST)
+	id 25335E00BA1; Wed, 25 Nov 2015 16:00:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86F78E00BAB
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:18 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB6D1E00AC5
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:16 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:18 -0800
+	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847189099"
+X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847189076"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:17 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:15 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 25 Nov 2015 18:00:46 -0600
-Message-Id: <1448496046-13186-18-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 25 Nov 2015 18:00:44 -0600
+Message-Id: <1448496046-13186-16-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH] 17/17] statistics: Add support for publish_work_url setting.
+Subject: [[AUH] 15/17] upgradehelper: Add workdir setting.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,96 +45,46 @@ X-List-Received-Date: Thu, 26 Nov 2015 00:00:26 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Publish setting helps to point the url where the AUH patches and
-logs are saved, this url is included into AUH upgrade status email.
+The workdir setting is useful for store the AUH generated patches
+into another directory than $BULDDIR/upgrade-helper/work this will
+be used to publish AUH work.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- README                |  3 +++
- modules/statistics.py | 10 ++++++++--
- upgradehelper.py      | 12 ++++++------
- 3 files changed, 17 insertions(+), 8 deletions(-)
+ README           | 3 +++
+ upgradehelper.py | 5 ++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/README b/README
-index d0cc4ae..0756fdc 100644
+index 6432f97..d0cc4ae 100644
 --- a/README
 +++ b/README
-@@ -50,6 +50,9 @@ status_recipients=john.doe@doe.com
- # specify the directory where work (patches) will be saved (optional)
- #workdir=
+@@ -47,6 +47,9 @@ from=upgrade.helper@my-server.com
+ # who should get the status mail with statistics, at the end
+ status_recipients=john.doe@doe.com
  
-+# publish url to use in statistics summary (optional)
-+#publish_work_url=http://auh.somehost.com/work
++# specify the directory where work (patches) will be saved (optional)
++#workdir=
 +
  # clean sstate directory before upgrading
  clean_sstate=yes
  
-diff --git a/modules/statistics.py b/modules/statistics.py
-index 905a4cc..db83c5b 100644
---- a/modules/statistics.py
-+++ b/modules/statistics.py
-@@ -99,8 +99,14 @@ class Statistics(object):
- 
-         return stat_msg
- 
--    def get_summary(self):
--        msg = self._pkg_stats()
-+    def get_summary(self, publish_work_url, workdir):
-+        msg = ''
-+
-+        if publish_work_url:
-+            msg += "AUH finished upgrade batch the result patches/logs can be found at:\n" \
-+                   "%s/%s, next are the statistics:\n\n" % (publish_work_url, workdir)
-+
-+        msg += self._pkg_stats()
-         msg += self._maintainer_stats()
- 
-         return msg
 diff --git a/upgradehelper.py b/upgradehelper.py
-index d0e1439..0d3f8b2 100755
+index 6cf8dd0..f9d915a 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -393,7 +393,7 @@ class Updater(object):
-             I(" %s: %s" % (pkg_ctx['PN'], e.stdout))
-             raise e
- 
--    def send_status_mail(self):
-+    def send_status_mail(self, statistics_summary):
-         if "status_recipients" not in settings:
-             E(" Could not send status email, no recipients set!")
-             return -1
-@@ -402,10 +402,8 @@ class Updater(object):
- 
-         subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
- 
--        msg = self.statistics.get_summary()
--
-         if self.statistics.total_attempted:
--            self.email_handler.send_email(to_list, subject, msg)
-+            self.email_handler.send_email(to_list, subject, statistics_summary)
-         else:
-             W("No recipes attempted, not sending status mail!")
- 
-@@ -611,7 +609,9 @@ class Updater(object):
-             self.pkg_upgrade_handler(pkg_ctx)
- 
-         if attempted_pkgs > 0:
--            statistics_summary = self.statistics.get_summary()
-+            statistics_summary = self.statistics.get_summary(
-+                    settings.get('publish_work_url', 'no'),
-+                    os.path.basename(self.uh_work_dir))
- 
-             statistics_file = os.path.join(self.uh_work_dir,
-                     "statistics_summary")
-@@ -621,7 +621,7 @@ class Updater(object):
-             I(" %s" % statistics_summary)
- 
-             if self.opts['send_email']:
--                self.send_status_mail()
-+                self.send_status_mail(statistics_summary)
- 
- class UniverseUpdater(Updater):
-     def __init__(self):
+@@ -163,7 +163,10 @@ class Updater(object):
+         self.uh_dir = os.path.join(build_dir, "upgrade-helper")
+         if not os.path.exists(self.uh_dir):
+             os.mkdir(self.uh_dir)
+-        self.uh_work_dir = os.path.join(self.uh_dir, "work-%s" % \
++        uh_base_work_dir = settings.get('workdir', '')
++        if not uh_base_work_dir:
++            uh_base_work_dir = self.uh_dir
++        self.uh_work_dir = os.path.join(uh_base_work_dir, "%s" % \
+                 datetime.now().strftime("%Y%m%d%H%M%S"))
+         os.mkdir(self.uh_work_dir)
+         self.uh_recipes_all_dir = os.path.join(self.uh_work_dir, "all")
 -- 
 2.1.4
 
