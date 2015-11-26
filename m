@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D69DE00B46; Wed, 25 Nov 2015 16:00:11 -0800 (PST)
+	id 8426BE00AF2; Wed, 25 Nov 2015 16:00:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7844BE009C3
-	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:09 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32525E00AC5
+	for <yocto@yoctoproject.org>; Wed, 25 Nov 2015 16:00:08 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:09 -0800
+	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2015 16:00:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847188996"
+X-IronPort-AV: E=Sophos;i="5.20,344,1444719600"; d="scan'208";a="847188979"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:08 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2015 16:00:07 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 25 Nov 2015 18:00:38 -0600
-Message-Id: <1448496046-13186-10-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 25 Nov 2015 18:00:37 -0600
+Message-Id: <1448496046-13186-9-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1448496046-13186-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH] 09/17] steps.py: Merge load_dirs step into load_env.
+Subject: [[AUH] 08/17] recipe/base.py: Add support for get recipe inherits.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,42 +45,62 @@ X-List-Received-Date: Thu, 26 Nov 2015 00:00:11 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+Recipe inherits are needed to detect what recipes support
+certain feature.
+
+For example: For detect ptest enable recipes and then do
+ptest runtime test after succesful upgrade.
+
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- modules/steps.py | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ modules/recipe/base.py | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/modules/steps.py b/modules/steps.py
-index 4a2eee3..19549cc 100644
---- a/modules/steps.py
-+++ b/modules/steps.py
-@@ -50,15 +50,13 @@ def load_env(bb, git, opts, pkg_ctx):
-         git.clean_untracked()
+diff --git a/modules/recipe/base.py b/modules/recipe/base.py
+index 5c70c61..dabad2f 100644
+--- a/modules/recipe/base.py
++++ b/modules/recipe/base.py
+@@ -57,6 +57,16 @@ def modify_recipe_files(func):
+                 os.rename(full_path_f + ".tmp", full_path_f)
+     return modify
  
-     pkg_ctx['env'] = bb.env(pkg_ctx['PN'])
--    if pkg_ctx['env']['PV'] == pkg_ctx['NPV']:
--        raise UpgradeNotNeededError
--
--def load_dirs(bb, git, opts, pkg_ctx):
-     pkg_ctx['workdir'] = os.path.join(pkg_ctx['base_dir'], pkg_ctx['PN'])
-     os.mkdir(pkg_ctx['workdir'])
--
-     pkg_ctx['recipe_dir'] = os.path.dirname(pkg_ctx['env']['FILE'])
- 
-+    if pkg_ctx['env']['PV'] == pkg_ctx['NPV']:
-+        raise UpgradeNotNeededError
++def read_recipe_files(func):
++    def read(env, recipe_dir):
++        for f in os.listdir(recipe_dir):
++            full_path_f = os.path.join(recipe_dir, f)
++            if is_recipe_or_include_file(env, full_path_f, f):
++                with open(full_path_f) as recipe:
++                    for line in recipe:
++                        func(line)
++    return read
 +
- def clean_repo(bb, git, opts, pkg_ctx):
-     try:
-         git.checkout_branch("upgrades")
-@@ -130,7 +128,6 @@ def buildhistory_diff(bb, git, opts, pkg_ctx):
+ class Recipe(object):
+     def __init__(self, env, new_ver, interactive, workdir, recipe_dir, bitbake, git):
+         self.env = env
+@@ -85,8 +95,23 @@ class Recipe(object):
+         self.commit_msg = self.env['PN'] + ": upgrade to " + self.new_ver + "\n\n"
+         self.rm_patches_msg = "\n\nRemoved the following patch(es):\n"
  
- upgrade_steps = [
-     (load_env, "Loading environment ..."),
--    (load_dirs, None),
-     (clean_repo, "Cleaning git repository of temporary branch ..."),
-     (detect_recipe_type, None),
-     (buildhistory_init, None),
++        self._inherits = None
++
+         super(Recipe, self).__init__()
+ 
++    def get_inherits(self):
++        @read_recipe_files
++        def _get_inherits(line):
++            m = re.search("^inherit (.*)$", line)
++            if m:
++                tmp = m.group(1).split()
++                self._inherits.extend(tmp)
++
++        if not self._inherits:
++            self._inherits = []
++            _get_inherits(self.env, self.recipe_dir)
++
++        return self._inherits
+ 
+     def update_env(self, env):
+         self.env = env
 -- 
 2.1.4
 
