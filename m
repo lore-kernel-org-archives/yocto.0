@@ -1,48 +1,53 @@
-Return-Path: <hao.h.li@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08577E00C0E; Fri, 27 Nov 2015 17:32:24 -0800 (PST)
+	id 2ADCFE00C0E; Fri, 27 Nov 2015 20:06:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43DDCE00ACF
-	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 17:32:18 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga103.fm.intel.com with ESMTP; 27 Nov 2015 17:32:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,353,1444719600"; 
-	d="scan'208,217";a="861468967"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Nov 2015 17:32:09 -0800
-Received: from fmsmsx111.amr.corp.intel.com (10.18.116.5) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 27 Nov 2015 17:32:08 -0800
-Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
-	fmsmsx111.amr.corp.intel.com (10.18.116.5) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 27 Nov 2015 17:32:08 -0800
-Received: from shsmsx103.ccr.corp.intel.com ([169.254.4.138]) by
-	SHSMSX101.ccr.corp.intel.com ([169.254.1.83]) with mapi id
-	14.03.0248.002; Sat, 28 Nov 2015 09:32:06 +0800
-From: "Li, Hao H" <hao.h.li@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Question about configure.ac:46: error: possibly undefined macro
-Thread-Index: AdEpfIBVq92wIexVS+yoRUwULtHrKQ==
-Date: Sat, 28 Nov 2015 01:32:06 +0000
-Message-ID: <D1A08A646ADA264CBF20EA48083E88EE01DA3568@SHSMSX103.ccr.corp.intel.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Subject: Question about configure.ac:46: error: possibly undefined macro
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6476E00BFF
+	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 20:06:33 -0800 (PST)
+Received: by obdgf3 with SMTP id gf3so94592042obd.3
+	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 20:06:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=r4VnYHaX247eJvENpePQBQoUWyB24+dZjxvr2TpkZl8=;
+	b=rlzWF5jUpZqab9DH5nOUE5ctURGaWoGP+Q4uBhs6EoEGvc2wwjstLTdXJDzThj4U0g
+	RhSf8OYldg4t4hRcJF3Q0XeIOhSttp5fCC2sh6rtEYII+mHQSekvRl83/1RZLZ2KPD8+
+	KoLA2WiKDY0AUM9Ch5/LCAxCp1Ao4dcPm9b4FuOIZ2TAJ25HOad/0WfjDVjpe8cIUKnO
+	hZhIOUQ/e34HPaYCjzxLBiXZlm7Pcx6lnx94c5IPyH/oCjoeA03GJj1FKSdP0Jan89Yi
+	893DJA9yFWta7Ik5JH+FUH6WtIcEB5VzrH1KOJ/23BjlXyNgS8GiPAUXKZsE1vAljlYt
+	m45A==
+X-Received: by 10.60.61.5 with SMTP id l5mr12330352oer.35.1448683592896;
+	Fri, 27 Nov 2015 20:06:32 -0800 (PST)
+Received: from localhost.localdomain (75-163-220-91.clsp.qwest.net.
+	[75.163.220.91])
+	by smtp.gmail.com with ESMTPSA id u8sm16941139obf.5.2015.11.27.20.06.31
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 27 Nov 2015 20:06:31 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 27 Nov 2015 20:06:27 -0800
+Message-Id: <1448683587-26563-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][PATCH] nmap: package update to 7.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,197 +59,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Nov 2015 01:32:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_"
+X-List-Received-Date: Sat, 28 Nov 2015 04:06:38 -0000
 
---_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+removed integrated patch
+Changed LIC_FILES_CHKSUM from generic OE to a file within the package
+sources.
 
-Hi,
-When I follow the instructions from https://github.com/solettaproject/solet=
-ta/wiki/MinnowBoard-MAX-Instructions to bitbake image
-It will generate below error. I have already installed libtool etc.
-My environment is Ubuntu 15.04 64bits, does anyone know how the problem is =
-? Thanks!
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../nmap/files/add_aarch64_to_configure.patch      | 28 ----------------------
+ .../nmap/{nmap_6.47.bb => nmap_7.00.bb}            | 11 ++++-----
+ 2 files changed, 5 insertions(+), 34 deletions(-)
+ delete mode 100644 recipes-security/nmap/files/add_aarch64_to_configure.patch
+ rename recipes-security/nmap/{nmap_6.47.bb => nmap_7.00.bb} (85%)
 
-autoreconf: running: /home/ssg/yocto/poky/build/tmp/sysroots/x86_64-linux/u=
-sr/bin/autoconf --include=3D/home/ssg/yocto/poky/build/tmp/work/corei7-64-s=
-mallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0.9.43/m4/ --force
-| configure.ac:46: error: possibly undefined macro: AC_MSG_CHECKING
-|       If this token and others are legitimate, please use m4_pattern_allo=
-w.
-|       See the Autoconf documentation.
-| configure.ac:63: error: possibly undefined macro: AC_MSG_RESULT
-| configure.ac:77: error: possibly undefined macro: AS_IF
-| configure.ac:110: error: possibly undefined macro: AC_LINK_IFELSE
-| configure.ac:111: error: possibly undefined macro: AC_LANG_PROGRAM
-| configure.ac:183: error: possibly undefined macro: AC_CHECK_HEADERS
-| configure.ac:207: error: possibly undefined macro: AC_MSG_WARN
-| configure.ac:592: error: possibly undefined macro: AC_CHECK_LIB
-| autoreconf: /home/ssg/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/=
-autoconf failed with exit status: 1
-| ERROR: autoreconf execution failed.
-| ERROR: Function failed: do_configure (log file is located at /home/ssg/yo=
-cto/poky/build/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/tem=
-p/log.do_configure.11963)
-ERROR: Task 5 (/home/ssg/yocto/meta-soletta/recipes-modules/libmicrohttpd/l=
-ibmicrohttpd_0.9.43.bb, do_configure) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 777 tasks of which 776 didn't need to be rer=
-un and 1 failed.
-No currently running tasks (634 of 785)
+diff --git a/recipes-security/nmap/files/add_aarch64_to_configure.patch b/recipes-security/nmap/files/add_aarch64_to_configure.patch
+deleted file mode 100644
+index 27b3d76..0000000
+--- a/recipes-security/nmap/files/add_aarch64_to_configure.patch
++++ /dev/null
+@@ -1,28 +0,0 @@
+-nmap: Add support for aarch64* builds
+-
+-Upstream-Status: Submitted to nmap-dev
+-
+-Signed-off-by: Armin Kuster <akuster@mvista.com>
+-
+-Index: config.sub
+-===================================================================
+---- a/config.sub
+-+++ b/config.sub
+-@@ -249,7 +249,7 @@ case $basic_machine in
+- 	| a29k \
+- 	| alpha | alphaev[4-8] | alphaev56 | alphaev6[78] | alphapca5[67] \
+- 	| alpha64 | alpha64ev[4-8] | alpha64ev56 | alpha64ev6[78] | alpha64pca5[67] \
+--	| am33_2.0 \
+-+	| am33_2.0 | aarch64 | aarch64be \
+- 	| arc | arm | arm[bl]e | arme[lb] | armv[2345] | armv[345][lb] | avr | avr32 \
+- 	| bfin \
+- 	| c4x | clipper \
+-@@ -343,7 +343,7 @@ case $basic_machine in
+- 	| alpha64-* | alpha64ev[4-8]-* | alpha64ev56-* | alpha64ev6[78]-* \
+- 	| alphapca5[67]-* | alpha64pca5[67]-* | arc-* \
+- 	| arm-*  | armbe-* | armle-* | armeb-* | armv*-* \
+--	| avr-* | avr32-* \
+-+	| avr-* | avr32-* | aarch64-* | aarch64be-*\
+- 	| bfin-* | bs2000-* \
+- 	| c[123]* | c30-* | [cjt]90-* | c4x-* \
+- 	| clipper-* | craynv-* | cydra-* \
+diff --git a/recipes-security/nmap/nmap_6.47.bb b/recipes-security/nmap/nmap_7.00.bb
+similarity index 85%
+rename from recipes-security/nmap/nmap_6.47.bb
+rename to recipes-security/nmap/nmap_7.00.bb
+index e9ce1c9..0a4e310 100644
+--- a/recipes-security/nmap/nmap_6.47.bb
++++ b/recipes-security/nmap/nmap_7.00.bb
+@@ -3,13 +3,12 @@ DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utili
+ SECTION = "security"
+ LICENSE = "GPL-2.0"
+ 
+-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
++LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=51f7052ac85aaf1a2127f7803de1261e"
+ 
+-SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2 \
+-            file://add_aarch64_to_configure.patch"
++SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
+ 
+-SRC_URI[md5sum] = "edfe81f6763223c0a29bfa15a8526e2a"
+-SRC_URI[sha256sum] = "8fa11e9e203ce2d81a207db5ca4f110a525f6c01c1dd0018325a7112a51aa591"
++SRC_URI[md5sum] = "6cdf5d03cc3294b99d69dfca83f2f2ee"
++SRC_URI[sha256sum] = "9f442301c615c608a385831c3505cdfed9b0795cd100f1a258b04509802802ae"
+ 
+ inherit autotools-brokensep pkgconfig distro_features_check
+ 
+@@ -38,7 +37,7 @@ do_configure() {
+ 
+ PACKAGES = "${PN} ${PN}-dbg ${PN}-doc"
+ 
+-FILES_${PN} = "${bindir}/nmap ${datadir}/nmap/*"
++FILES_${PN} = "${bindir}/nmap ${datadir}/nmap/* ${bindir}/uninstall_ndiff"
+ 
+ # append packages if enabled
+ FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ncat", "${bindir}/ncat ${target_datadir}/ncat", "", d)}"
+-- 
+2.3.5
 
 
-Li Hao
-Best Regards
-Email:hao.h.li@intel.com<mailto:hao.h.li@intel.com>
-
-Software and Service Group
-Intel Asia-Pacific Research & Development Ltd.
-Tel: 86-21-61167039
-
-
---_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:\5B8B\4F53;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@\5B8B\4F53";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
-<p class=3D"MsoNormal">When I follow the instructions from <a href=3D"https=
-://github.com/solettaproject/soletta/wiki/MinnowBoard-MAX-Instructions">
-https://github.com/solettaproject/soletta/wiki/MinnowBoard-MAX-Instructions=
-</a> to bitbake image<o:p></o:p></p>
-<p class=3D"MsoNormal">It will generate below error. I have already install=
-ed libtool etc.<o:p></o:p></p>
-<p class=3D"MsoNormal">My environment is Ubuntu 15.04 64bits, does anyone k=
-now how the problem is ? Thanks!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">autoreconf: running: /home/ssg/yocto/poky/build/tmp/=
-sysroots/x86_64-linux/usr/bin/autoconf --include=3D/home/ssg/yocto/poky/bui=
-ld/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0=
-.9.43/m4/ --force<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:46: error: possibly undefined macro: =
-AC_MSG_CHECKING<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If this token =
-and others are legitimate, please use m4_pattern_allow.<o:p></o:p></p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; See the Autoco=
-nf documentation.<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:63: error: possibly undefined macro: =
-AC_MSG_RESULT<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:77: error: possibly undefined macro: =
-AS_IF<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:110: error: possibly undefined macro:=
- AC_LINK_IFELSE<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:111: error: possibly undefined macro:=
- AC_LANG_PROGRAM<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:183: error: possibly undefined macro:=
- AC_CHECK_HEADERS<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:207: error: possibly undefined macro:=
- AC_MSG_WARN<o:p></o:p></p>
-<p class=3D"MsoNormal">| configure.ac:592: error: possibly undefined macro:=
- AC_CHECK_LIB<o:p></o:p></p>
-<p class=3D"MsoNormal">| autoreconf: /home/ssg/yocto/poky/build/tmp/sysroot=
-s/x86_64-linux/usr/bin/autoconf failed with exit status: 1<o:p></o:p></p>
-<p class=3D"MsoNormal">| ERROR: autoreconf execution failed.<o:p></o:p></p>
-<p class=3D"MsoNormal">| ERROR: Function failed: do_configure (log file is =
-located at /home/ssg/yocto/poky/build/tmp/work/corei7-64-smallos-linux/libm=
-icrohttpd/0.9.43-r0/temp/log.do_configure.11963)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Task 5 (/home/ssg/yocto/meta-soletta/recipes-=
-modules/libmicrohttpd/libmicrohttpd_0.9.43.bb, do_configure) failed with ex=
-it code '1'<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 777 tasks of which 77=
-6 didn't need to be rerun and 1 failed.<o:p></o:p></p>
-<p class=3D"MsoNormal">No currently running tasks (634 of 785)<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Li Hao<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Best Regards<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Email:<a href=3D"mailto:hao.h.li@intel.com=
-" title=3D"mailto:hao.h.li@intel.comblocked::mailto:hao.h.li@intel.commailt=
-o:hao.h.li@intel.com"><span style=3D"font-family:&quot;Times New Roman&quot=
-;,serif;color:blue">hao.h.li@intel.com</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Software and Service Group<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Intel Asia-Pacific Research &amp; Developm=
-ent Ltd.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
-raph;layout-grid-mode:char">
-<span style=3D"font-size:12.0pt">Tel: 86-21-61167039<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_--
