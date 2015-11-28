@@ -1,54 +1,48 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <hao.h.li@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10078E009C5; Fri, 27 Nov 2015 11:55:01 -0800 (PST)
+	id 08577E00C0E; Fri, 27 Nov 2015 17:32:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f171.google.com (mail-yk0-f171.google.com
-	[209.85.160.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBFE2E007C3
-	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 11:54:59 -0800 (PST)
-Received: by ykdv3 with SMTP id v3so127149893ykd.0
-	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 11:54:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=t5Zf9hnTZODYxiWb4SInR2Nn2j+SRFatnKSGt2b9IWY=;
-	b=gEFZ9/SA7wBgLYfwjdpFB+0dRLKsDvlX0f9TrK28Nyml+S+3yVPGwTWfVG3VEucFPE
-	ep1qEHPNCkGF9FVRaJdomFU2UUVH4sbgw6nAl7CcbJbxvyCbncl/WUWkcglOsIj9X0OK
-	CwmdS/2dloNEg77SfxJlPEguL1hDOu/bR98JKZlE3vl4peH2WQCX3oq38vj/N2EIldwF
-	ej6fklie9Aiywu6Xa3rZcwS57NUUih0nDSE7r213p2gx3OZLGa7GpPsUnDd/F1UJ2ATF
-	c7G9evuuMl2vqqFjuVtTA9N8yNVRB+ck0todUqOteBK9OCtHAj0TKvbEHF3p6+QzaSr+
-	Eaaw==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43DDCE00ACF
+	for <yocto@yoctoproject.org>; Fri, 27 Nov 2015 17:32:18 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP; 27 Nov 2015 17:32:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,353,1444719600"; 
+	d="scan'208,217";a="861468967"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga002.fm.intel.com with ESMTP; 27 Nov 2015 17:32:09 -0800
+Received: from fmsmsx111.amr.corp.intel.com (10.18.116.5) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Fri, 27 Nov 2015 17:32:08 -0800
+Received: from shsmsx101.ccr.corp.intel.com (10.239.4.153) by
+	fmsmsx111.amr.corp.intel.com (10.18.116.5) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Fri, 27 Nov 2015 17:32:08 -0800
+Received: from shsmsx103.ccr.corp.intel.com ([169.254.4.138]) by
+	SHSMSX101.ccr.corp.intel.com ([169.254.1.83]) with mapi id
+	14.03.0248.002; Sat, 28 Nov 2015 09:32:06 +0800
+From: "Li, Hao H" <hao.h.li@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Question about configure.ac:46: error: possibly undefined macro
+Thread-Index: AdEpfIBVq92wIexVS+yoRUwULtHrKQ==
+Date: Sat, 28 Nov 2015 01:32:06 +0000
+Message-ID: <D1A08A646ADA264CBF20EA48083E88EE01DA3568@SHSMSX103.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-X-Received: by 10.13.236.10 with SMTP id v10mr48961876ywe.231.1448654098637;
-	Fri, 27 Nov 2015 11:54:58 -0800 (PST)
-Received: by 10.129.155.208 with HTTP; Fri, 27 Nov 2015 11:54:58 -0800 (PST)
-In-Reply-To: <CAM_pFj8cycNEx3vwds=d2nXo39Kmfqpn-XxwEjKS0v6yUfda_w@mail.gmail.com>
-References: <CAM_pFj_cwoDAC30cBcPB1besMJwZuO=mh6E4-n8Q5=5=2j_VWg@mail.gmail.com>
-	<56570C02.4050709@windriver.com>
-	<CAM_pFj8cycNEx3vwds=d2nXo39Kmfqpn-XxwEjKS0v6yUfda_w@mail.gmail.com>
-Date: Fri, 27 Nov 2015 17:54:58 -0200
-Message-ID: <CAF3SDA4Wx1mrSqcXBskQZ_PNM-X-EZPNHOUsgnfE-P1XhwShUw@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Deepika Teriar <deepteriar@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Copying the kernel in the poky directory
+Subject: Question about configure.ac:46: error: possibly undefined macro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,122 +54,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Nov 2015 19:55:01 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 28 Nov 2015 01:32:24 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_"
 
-A suggestion,
+--_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Fork the wanted kernel tree and add a .bbappend at a custom layer.
-This way you can follow forked kernel updates and keep poky recipes
-clean.
+Hi,
+When I follow the instructions from https://github.com/solettaproject/solet=
+ta/wiki/MinnowBoard-MAX-Instructions to bitbake image
+It will generate below error. I have already installed libtool etc.
+My environment is Ubuntu 15.04 64bits, does anyone know how the problem is =
+? Thanks!
 
-If you insist to keep things local, maybe this helps:
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#local-projects
-
-Regards,
-- dhs
-
-2015-11-27 4:55 GMT-02:00 Deepika Teriar <deepteriar@gmail.com>:
-> Hi Bruce
->
-> It was not successful. Its giving me a fetcher failure.
->
-> WARNING: Failed to fetch URL
-> ftp://ftp.debian.org/debian/pool/main/b/base-passwd/base-passwd_3.5.29.tar.gz,
-> attempting MIRRORS if available
-> WARNING: Failed to fetch URL
-> git:///home/deepika/bbb/poky/kernel-3.14.29;protocol=file;bareclone=1;branch=standard/common-pc/base,meta;name=machine,meta,
-> attempting MIRRORS if available
-> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
-> Cloning into bare repository
-> '/home/deepika/bbb/poky/build/downloads/git2/.home.deepika.bbb.poky.kernel-3.14.29'...
->
-> error: object directory
-> /home/deepika/bbb/poky/build/downloads/git2/git.yoctoproject.org.linux-yocto-3.14.git/objects
-> does not exist; check .git/objects/info/alternates.
-> fatal: git upload-pack: cannot find object
-> dbe5b52e93ff114b2c0f5da6f6af91f52c18f2b8:
-> fatal: The remote end hung up unexpectedly
->
-> ERROR: Function failed: Fetcher failure for URL:
-> 'git:///home/deepika/bbb/poky/kernel-3.14.29;protocol=file;bareclone=1;branch=standard/common-pc/base,meta;name=machine,meta'.
-> Unable to fetch URL from any source.
-> ERROR: Logfile of failure stored in:
-> /home/deepika/bbb/poky/build/tmp/work/qemux86-poky-linux/linux-yocto/3.14.29+gitAUTOINC+6eddbf4787_f6aa7aaca8-r0/temp/log.do_fetch.26206
-> ERROR: Task 75
-> (/home/deepika/bbb/poky/meta/recipes-kernel/linux/linux-yocto_3.14.bb,
-> do_fetch) failed with exit code '1'
->
-> Can anyone help
->
->
-> On Thu, Nov 26, 2015 at 7:11 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->>
->> On 15-11-26 02:39 AM, Deepika Teriar wrote:
->>>
->>> Hi
->>>
->>> I am customizing yocto for beaglebone black
->>> I do not want my kernel to get downloaded from the git after I clean the
->>> build directory. So i have kept the linux-kernel directory with the name
->>> kernel-3.14.29 in the poky directory.
->>> And in the linux-yocto_3.14.bb <http://linux-yocto_3.14.bb> file i have
->>> changed SRC_URI *from:*
->>>
->>> SRC_URI =
->>>
->>> "git://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta
->>>
->>> <http://git.yoctoproject.org/linux-yocto-3.14.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta>"
->>>
->>> *to :*
->>>
->>> SRC_URI = "file://${COREBASE}/kernel-3.14.29"
->>>
->>> On compiling core-image-minimal I am getting the following error
->>> *
->>> ERROR: ExpansionError during parsing
->>> /home/deepika/bbb/poky/meta/recipes-kernel/linux/linux-yocto_3.14.bb
->>> <http://linux-yocto_3.14.bb>: Failure expanding variable do_patch:
->>> ExpansionError: Failure expanding variable SRCPV, expression was
->>> ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
->>> Fetcher failure: SRCREV was used yet no valid SCM was found in SRC_URI
->>>
->>> *
->>> Can any one tell me the error?
->>
->>
->> You still need the git protocol, the fetcher can't determine what to
->> do with the SRCREV.
->>
->> Try:
->>
->> SRC_URI =
->> "git://${COREBASE}/kernel-3.14.29;protocol=file;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
->>
->> Bruce
->>
->>>
->>> Thanks
->>> Deepika
->>>
->>>
->>>
->>>
->>
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+autoreconf: running: /home/ssg/yocto/poky/build/tmp/sysroots/x86_64-linux/u=
+sr/bin/autoconf --include=3D/home/ssg/yocto/poky/build/tmp/work/corei7-64-s=
+mallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0.9.43/m4/ --force
+| configure.ac:46: error: possibly undefined macro: AC_MSG_CHECKING
+|       If this token and others are legitimate, please use m4_pattern_allo=
+w.
+|       See the Autoconf documentation.
+| configure.ac:63: error: possibly undefined macro: AC_MSG_RESULT
+| configure.ac:77: error: possibly undefined macro: AS_IF
+| configure.ac:110: error: possibly undefined macro: AC_LINK_IFELSE
+| configure.ac:111: error: possibly undefined macro: AC_LANG_PROGRAM
+| configure.ac:183: error: possibly undefined macro: AC_CHECK_HEADERS
+| configure.ac:207: error: possibly undefined macro: AC_MSG_WARN
+| configure.ac:592: error: possibly undefined macro: AC_CHECK_LIB
+| autoreconf: /home/ssg/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/=
+autoconf failed with exit status: 1
+| ERROR: autoreconf execution failed.
+| ERROR: Function failed: do_configure (log file is located at /home/ssg/yo=
+cto/poky/build/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/tem=
+p/log.do_configure.11963)
+ERROR: Task 5 (/home/ssg/yocto/meta-soletta/recipes-modules/libmicrohttpd/l=
+ibmicrohttpd_0.9.43.bb, do_configure) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 777 tasks of which 776 didn't need to be rer=
+un and 1 failed.
+No currently running tasks (634 of 785)
 
 
+Li Hao
+Best Regards
+Email:hao.h.li@intel.com<mailto:hao.h.li@intel.com>
 
--- 
-"Do or do not. There is no try"
-  Yoda Master
+Software and Service Group
+Intel Asia-Pacific Research & Development Ltd.
+Tel: 86-21-61167039
 
+
+--_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:\5B8B\4F53;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@\5B8B\4F53";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
+<p class=3D"MsoNormal">When I follow the instructions from <a href=3D"https=
+://github.com/solettaproject/soletta/wiki/MinnowBoard-MAX-Instructions">
+https://github.com/solettaproject/soletta/wiki/MinnowBoard-MAX-Instructions=
+</a> to bitbake image<o:p></o:p></p>
+<p class=3D"MsoNormal">It will generate below error. I have already install=
+ed libtool etc.<o:p></o:p></p>
+<p class=3D"MsoNormal">My environment is Ubuntu 15.04 64bits, does anyone k=
+now how the problem is ? Thanks!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">autoreconf: running: /home/ssg/yocto/poky/build/tmp/=
+sysroots/x86_64-linux/usr/bin/autoconf --include=3D/home/ssg/yocto/poky/bui=
+ld/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0=
+.9.43/m4/ --force<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:46: error: possibly undefined macro: =
+AC_MSG_CHECKING<o:p></o:p></p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If this token =
+and others are legitimate, please use m4_pattern_allow.<o:p></o:p></p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; See the Autoco=
+nf documentation.<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:63: error: possibly undefined macro: =
+AC_MSG_RESULT<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:77: error: possibly undefined macro: =
+AS_IF<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:110: error: possibly undefined macro:=
+ AC_LINK_IFELSE<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:111: error: possibly undefined macro:=
+ AC_LANG_PROGRAM<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:183: error: possibly undefined macro:=
+ AC_CHECK_HEADERS<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:207: error: possibly undefined macro:=
+ AC_MSG_WARN<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure.ac:592: error: possibly undefined macro:=
+ AC_CHECK_LIB<o:p></o:p></p>
+<p class=3D"MsoNormal">| autoreconf: /home/ssg/yocto/poky/build/tmp/sysroot=
+s/x86_64-linux/usr/bin/autoconf failed with exit status: 1<o:p></o:p></p>
+<p class=3D"MsoNormal">| ERROR: autoreconf execution failed.<o:p></o:p></p>
+<p class=3D"MsoNormal">| ERROR: Function failed: do_configure (log file is =
+located at /home/ssg/yocto/poky/build/tmp/work/corei7-64-smallos-linux/libm=
+icrohttpd/0.9.43-r0/temp/log.do_configure.11963)<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task 5 (/home/ssg/yocto/meta-soletta/recipes-=
+modules/libmicrohttpd/libmicrohttpd_0.9.43.bb, do_configure) failed with ex=
+it code '1'<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 777 tasks of which 77=
+6 didn't need to be rerun and 1 failed.<o:p></o:p></p>
+<p class=3D"MsoNormal">No currently running tasks (634 of 785)<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Li Hao<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Best Regards<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Email:<a href=3D"mailto:hao.h.li@intel.com=
+" title=3D"mailto:hao.h.li@intel.comblocked::mailto:hao.h.li@intel.commailt=
+o:hao.h.li@intel.com"><span style=3D"font-family:&quot;Times New Roman&quot=
+;,serif;color:blue">hao.h.li@intel.com</span></a><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Software and Service Group<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Intel Asia-Pacific Research &amp; Developm=
+ent Ltd.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify;text-justify:inter-ideog=
+raph;layout-grid-mode:char">
+<span style=3D"font-size:12.0pt">Tel: 86-21-61167039<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_D1A08A646ADA264CBF20EA48083E88EE01DA3568SHSMSX103ccrcor_--
