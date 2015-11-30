@@ -1,26 +1,63 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 745CCE00B89; Sun, 29 Nov 2015 21:32:14 -0800 (PST)
+	id D5474E00B88; Mon, 30 Nov 2015 02:58:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,WEIRD_PORT autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 607FCE00B77
-	for <yocto@yoctoproject.org>; Sun, 29 Nov 2015 21:32:09 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id B0201849DCFA
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 00:32:08 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA05AE00B3D
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 02:58:33 -0800 (PST)
+Received: by iouu10 with SMTP id u10so171546235iou.0
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 02:58:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=785C2MqNd62c06p/Z7xAe/3EwquCWPFceXJATHvsN8k=;
+	b=ezY004pRNbrtKoCS4/soOEewk6qfQSpVHhLK5iGxJSiWvlcmC7jZtt9BrQsaL/Ufrh
+	eEdT7bGUzMBHYBgLv0KPBoJAbSLk+VvSf3n7txJticFtQPN++B3pY4zgYjZCQY2cUB/3
+	Dsfve+HTN7wYmxHiCfT9ARvP6CgNZ+THEY76uX8JrSMDXmjIpxOmujGf0yNq6HNa7ii7
+	/xxPrswg43SZ9FtfaowUmD+y3YqdkSO3KY8WRjO8jdFRWKHfKAPnTYfmTf0d/AykZFsP
+	i0yM6lG0gCUK9jCxnk+zCQ82IgxtcyVqVGV4o8MjLOumTKYvEFoIefwzFPuc5nQrRiHc
+	ja8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=785C2MqNd62c06p/Z7xAe/3EwquCWPFceXJATHvsN8k=;
+	b=X4DLMEIbVRDRui+ByN1MJj2sYfHKN7374ttbUWqVB5ZN4nZvylJyI5cyFzxmBOmZLh
+	brlyrdcvY2tMh6mbkIMDJH5ldaqG4czjXFtjZikxzVtTurJ2U//CbST1KCZuCCUUic1z
+	N28MAtLu9DkZzjVca7qI/zrIubYmBCm7RiTwjzJABbSjNtuYnO97OdyaIGf67qXyDTiN
+	KW1upNAqGZxc06S00tzWZyJ5hFKfhkAEqLpI9iZNwYhr0OQHPx1GLaHddmPw4UGkACPA
+	QA0SAcGn82e31yvsLnRorfB7AYM91qXHIHemARKRm1lt5ydAi+hSJX/lD2ktqLaX7D2k
+	d1DA==
+X-Gm-Message-State: ALoCoQmpN2MqqpG4yQZ4W6yQdRwThpf5uBEY1+uQyDLAE7AXJ+f8tucPk0uqNxFvlhqAT8pPDXlp
+X-Received: by 10.107.130.155 with SMTP id m27mr64290600ioi.133.1448881112978; 
+	Mon, 30 Nov 2015 02:58:32 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 30 Nov 2015 05:32:08 -0000
-Message-ID: <20151130053208.22707.44038@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 10.107.136.141 with HTTP; Mon, 30 Nov 2015 02:58:13 -0800 (PST)
+In-Reply-To: <D1A08A646ADA264CBF20EA48083E88EE01DA3568@SHSMSX103.ccr.corp.intel.com>
+References: <D1A08A646ADA264CBF20EA48083E88EE01DA3568@SHSMSX103.ccr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 30 Nov 2015 10:58:13 +0000
+Message-ID: <CAJTo0LYD8J7=z1qPaz4y9ZpBQfz7VdTmkmx3QCeU3SPXuFKOhA@mail.gmail.com>
+To: "Li, Hao H" <hao.h.li@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Question about configure.ac:46: error: possibly undefined macro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,227 +69,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Nov 2015 05:32:14 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 30 Nov 2015 10:58:37 -0000
+Content-Type: multipart/alternative; boundary=001a113ecd940fa9610525bfec54
 
-This mail was sent out by Recipe reporting system.
+--001a113ecd940fa9610525bfec54
+Content-Type: text/plain; charset=UTF-8
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+On 28 November 2015 at 01:32, Li, Hao H <hao.h.li@intel.com> wrote:
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+> autoreconf: running:
+> /home/ssg/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf
+> --include=/home/ssg/yocto/poky/build/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0.9.43/m4/
+> --force
+>
+> | configure.ac:46: error: possibly undefined macro: AC_MSG_CHECKING
+>
+> |       If this token and others are legitimate, please use
+> m4_pattern_allow.
+>
+> |       See the Autoconf documentation.
+>
+> | configure.ac:63: error: possibly undefined macro: AC_MSG_RESULT
+>
+> | configure.ac:77: error: possibly undefined macro: AS_IF
+>
+> | configure.ac:110: error: possibly undefined macro: AC_LINK_IFELSE
+>
+> | configure.ac:111: error: possibly undefined macro: AC_LANG_PROGRAM
+>
+> | configure.ac:183: error: possibly undefined macro: AC_CHECK_HEADERS
+>
+> | configure.ac:207: error: possibly undefined macro: AC_MSG_WARN
+>
+> | configure.ac:592: error: possibly undefined macro: AC_CHECK_LIB
+>
 
-You can check the detail information at:
+That happens when some required dependencies are not listed.  If I use the
+current recipe in meta-soletta it works fine, but if I revert the last
+commit (that adds inherit pkgconfig) then it fails just like that.  So, my
+expectation is that you're using an old clone of meta-soletta and need to
+pull the latest version (or if you can't do that, add pkgconfig to the
+inherit list in that recipe).
 
-http://recipes.yoctoproject.org/
+Ross
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-ruby                  2.2.2        2.2.3                 Alejandro Hernandez
-nfs-utils             1.3.1        1.3.3                 Alejandro Hernandez
-perl                  5.22.0       5.22.1                Alejandro Hernandez
-python-mako           1.0.1        1.0.3                 Alejandro Hernandez
-python-nose           1.3.6        1.3.7                 Alejandro Hernandez
-python-numpy          1.7.0        1.10.1                Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez  Newer versions of python-py...
-python-scons          2.3.6        2.4.1                 Alejandro Hernandez
-python3               3.4.3        3.5.0                 Alejandro Hernandez
-python                2.7.9        2.7.10                Alejandro Hernandez
-swig                  3.0.6        3.0.7                 Alejandro Hernandez
-python3-setuptools    18.2         18.7                  Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-kernelshark           2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
-gcr                   3.16.0       3.18.0                Alexander Kanavin
-gnome-desktop3        3.16.2       3.18.2                Alexander Kanavin
-libsecret             0.18.2       0.18.3                Alexander Kanavin
-iso-codes             3.58         3.63                  Alexander Kanavin
-libwebp               0.4.3        0.4.4                 Alexander Kanavin
-kbd                   2.0.2        2.0.3                 Alexander Kanavin
-nss                   3.19.2       3.20                  Alexander Kanavin
-kexec-tools           2.0.10       2.0.11                Alexander Kanavin
-btrfs-tools           4.1.2        4.3.1                 Alexander Kanavin
-babeltrace            1.2.4+gitX   1.3.1+gitAUTOINC+...  Alexander Kanavin
-powertop              2.7          2.8                   Alexander Kanavin
-systemtap-uprobes     2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
-systemtap             2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
-trace-cmd             2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
-tiff                  4.0.4        4.0.6                 Alexander Kanavin
-mkelfimage            4.0+gitX     4.2+gitAUTOINC+43...  Alexander Kanavin    mkelfimage has been removed...
-mtd-utils             1.5.1+gitX   1.5.2+gitAUTOINC+...  Alexander Kanavin
-liburcu               0.8.7        0.9.1                 Alexander Kanavin
-webkitgtk             2.8.5        2.10.4                Alexander Kanavin
-boost                 1.58.0       1.59.0                Alexander Kanavin
-icu                   55.1         56.1-AIX7.1-VA2       Alexander Kanavin
-valgrind              3.10.1       3.11.0                Alexander Kanavin
-bjam-native           1.58.0       1.59.0                Alexander Kanavin
-lighttpd              1.4.36       1.4.37                Alexander Kanavin
-msmtp                 1.6.2        1.6.3                 Alexander Kanavin
-libassuan             2.2.1        2.4.1                 Alexander Kanavin
-procps                3.3.10       3.3.11                Alexander Kanavin
-epiphany              3.16.3       3.18.1                Alexander Kanavin
-apt                   1.0.10.1     1.1.2                 Aníbal Limón
-dpkg                  1.18.2       1.18.3                Aníbal Limón
-pinentry              0.9.2        0.9.6                 Armin Kuster
-linux-yocto-tiny      4.1.8+gitX   4.1.13+gitAUTOINC...  Bruce Ashfield
-linux-yocto-rt        4.1.8+gitX   4.1.13+gitAUTOINC...  Bruce Ashfield
-linux-yocto           4.1.8+gitX   4.1.13+gitAUTOINC...  Bruce Ashfield
-linux-libc-headers    4.1          4.3                   Bruce Ashfield
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.3.1        3.4.0                 Chen Qi
-resolvconf            1.77         1.78                  Chen Qi
-busybox               1.23.2       1.24.1                Chen Qi
-dbus-test             1.8.20       1.10.4                Chen Qi
-dbus                  1.8.20       1.10.4                Chen Qi
-systemd               225+gitX     228+gitAUTOINC+dd...  Chen Qi
-util-linux            2.26.2       2.27.1                Chen Qi
-kmod                  21+gitX      22+gitAUTOINC+42f...  Chen Qi
-flex                  2.5.39       2.6.0rc1              Chen Qi
-curl                  7.44.0       7.45.0                Chen Qi
-cpio                  2.11         2.12                  Chen Qi
-cups                  2.0.4        2.1.0                 Chen Qi
-grep                  2.21         2.22                  Chen Qi
-sudo                  1.8.14p3     1.8.15                Chen Qi
-sysstat               11.1.5       11.1.8-1              Chen Qi
-xz                    5.2.1        5.2.2                 Chen Qi
-build-appliance-i...  12.0.1       14.0.0                Cristian Iorga
-qemu                  2.4.0.1      2.4.1                 Cristian Iorga
-dhcp                  4.3.2        4.3.3                 Hongxu Jia
-libxml2               2.9.2        2.9.3                 Hongxu Jia
-ncurses               5.9          6.0-20151128          Hongxu Jia
-elfutils              0.163        0.164                 Hongxu Jia
-qmmp                  0.8.6        1.0.2                 Hongxu Jia
-pax-utils             1.0.5        1.1.4                 Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-xmlto                 0.0.26       0.0.28                Hongxu Jia
-libgcrypt             1.6.3        1.6.4                 Hongxu Jia
-ghostscript           9.16         9.18                  Hongxu Jia
-help2man-native       1.47.1       1.47.3                Hongxu Jia
-gnupg                 2.1.7        2.1.9                 Hongxu Jia
-waffle                1.5.1        1.5.2                 Jussi Kukkonen
-libinput              0.21.0       1.1.1                 Jussi Kukkonen
-wayland               1.8.1        1.9.0                 Jussi Kukkonen
-weston                1.8.0        1.9.0                 Jussi Kukkonen
-libdrm                2.4.62       2.4.65                Jussi Kukkonen
-dropbear              2015.68      2015.70               Jussi Kukkonen
-glib-2.0              2.46.1       2.46.2                Jussi Kukkonen
-pixman                0.32.8       0.33.4                Jussi Kukkonen
-libsoup-2.4           2.52.1       2.52.2                Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.0                Jussi Kukkonen
-libav                 9.18         11.4                  Jussi Kukkonen
-at-spi2-core          2.18.1       2.18.3                Jussi Kukkonen
-clutter-gtk-1.0       1.6.2        1.6.6                 Jussi Kukkonen
-gpgme                 1.5.4        1.6.0                 Jussi Kukkonen
-vala                  0.28.0       0.30.0                Jussi Kukkonen
-libevdev              1.4.2        1.4.5                 Jussi Kukkonen
-libgpg-error          1.19         1.20                  Jussi Kukkonen
-shared-mime-info      1.4          1.5                   Jussi Kukkonen
-vte                   0.28.2       0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
-gsettings-desktop...  3.16.1       3.19.2                Jussi Kukkonen
-clutter-gst-3.0       3.0.8        3.0.14                Jussi Kukkonen
-libcroco              0.6.8        0.6.9                 Jussi Kukkonen
-xdg-utils             1.1.0-rc1    1.1.1                 Jussi Kukkonen
-gdk-pixbuf            2.32.1       2.32.2                Jussi Kukkonen
-gnome-common          3.14.0       3.18.0                Jussi Kukkonen
-gtk+3                 3.18.2       3.18.5                Jussi Kukkonen
-clutter-1.0           1.22.4       1.24.2                Jussi Kukkonen
-cogl-1.0              1.20.0       1.22.0                Jussi Kukkonen
-cmake                 3.3.2        3.4.0                 Jussi Kukkonen
-freetype              2.6          2.6.2                 Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-cdrtools-native       3.01a31      3.02a02               Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69       0.9.71                Jussi Kukkonen
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
-bluez5                5.33         5.36                  Maxin B. John
-iproute2              4.1.1        4.3.0                 Maxin B. John
-libpcap               1.6.2        1.7.4                 Maxin B. John
-ofono                 1.16         1.17                  Maxin B. John
-wpa-supplicant        2.4          2.5                   Maxin B. John
-libpng                1.6.17       1.6.19                Maxin B. John
-orc                   0.4.23       0.4.24                Maxin B. John
-libpng12              1.2.53       1.2.54                Maxin B. John
-db                    6.0.30       6.1.26                Maxin B. John        Updating to 6.1.x requires ...
-libtasn1              4.5          4.7                   Maxin B. John
-libunistring          0.9.5        0.9.6                 Maxin B. John
-iw                    4.1          4.3                   Maxin B. John
-harfbuzz              1.0.6        1.1.2                 Maxin B. John
-sqlite3               3.9.0        3.9.2                 Maxin B. John
-libtirpc              0.2.5        1.0.1                 Maxin B. John
-libical               1.0.0        1.0.1                 Maxin B. John
-pkgconfig             0.28+gitX    0.29+gitAUTOINC+5...  Maxin B. John
-kmod-native           21+gitX      22+gitAUTOINC+42f...  No maintainer
-cryptodev-module      1.7          1.8                   No maintainer
-cryptodev-tests       1.7          1.8                   No maintainer
-dmidecode             2.12         3.0                   No maintainer
-gptfdisk              1.0.0        1.0.1                 No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-ifupdown              0.7.48.1     0.7.54ubuntu2         No maintainer
-cryptodev-linux       1.7          1.8                   No maintainer
-python-pexpect        3.3          4.0.1                 No maintainer
-python3-pip           6.1.1        7.1.2                 No maintainer
-uclibc-initial        0.9.33+gitX  0.9.33.2+gitAUTOI...  No maintainer
-apt-native            1.0.10.1     1.1.2                 No maintainer
-cmake-native          3.3.2        3.4.0                 No maintainer
-gdb-cross-canadia...  7.9.1        7.10                  No maintainer
-gdb-cross-i586        7.9.1        7.10                  No maintainer
-perl-native           5.22.0       5.22.1                No maintainer
-python-scons-native   2.3.6        2.4.1                 No maintainer
-python3-native        3.4.3        3.5.0                 No maintainer
-python-native         2.7.9        2.7.10                No maintainer
-unfs3                 0.9.22.r490  0.9.22.r495           Randy Witt
-lttng-modules         2.6.2+gitX   2.7.0+gitAUTOINC+...  Richard Purdie
-lttng-tools           2.6.0        2.7.0                 Richard Purdie
-lttng-ust             2.6.2+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-gdb                   7.9.1        7.10                  Richard Purdie
-e2fsprogs             1.42.9       1.42.13               Robert Yang          Updating backported patches...
-file                  5.24         5.25                  Robert Yang
-git                   2.5.0        2.6.3                 Robert Yang
-gmp                   6.0.0        6.1.0                 Robert Yang
-less                  479          481                   Robert Yang
-ltp                   20150420     20150903              Robert Yang
-wget                  1.16.3       1.17                  Robert Yang
-autogen-native        5.18.5       5.18.6                Robert Yang
-base-passwd           3.5.29       3.5.38                Ross Burton          Version 3.5.38 requires cde...
-uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Ross Burton
-alsa-lib              1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-libsndfile1           1.0.25       1.0.26                Tanu Kaskinen
-pulseaudio            6.0          7.1                   Tanu Kaskinen
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
-gettext               0.19.4       0.19.6                Wenzong Fan
-ccache                3.2.3        3.2.4                 Wenzong Fan
-chkconfig             1.3.58       1.7                   Wenzong Fan          Version 1.5 requires selinux
+--001a113ecd940fa9610525bfec54
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Upgradable count: 166
-Upgradable total count: 176
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 28 November 2015 at 01:32, Li, Hao H <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:hao.h.li@intel.com" target=3D"_blank">hao.h.li@intel.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><u></u></=
+p>
+<p class=3D"MsoNormal">autoreconf: running: /home/ssg/yocto/poky/build/tmp/=
+sysroots/x86_64-linux/usr/bin/autoconf --include=3D/home/ssg/yocto/poky/bui=
+ld/tmp/work/corei7-64-smallos-linux/libmicrohttpd/0.9.43-r0/libmicrohttpd-0=
+.9.43/m4/ --force<u></u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:46" target=3D"_blan=
+k">configure.ac:46</a>: error: possibly undefined macro: AC_MSG_CHECKING<u>=
+</u><u></u></p>
+<p class=3D"MsoNormal">|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 If this token =
+and others are legitimate, please use m4_pattern_allow.<u></u><u></u></p>
+<p class=3D"MsoNormal">|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 See the Autoco=
+nf documentation.<u></u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:63" target=3D"_blan=
+k">configure.ac:63</a>: error: possibly undefined macro: AC_MSG_RESULT<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:77" target=3D"_blan=
+k">configure.ac:77</a>: error: possibly undefined macro: AS_IF<u></u><u></u=
+></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:110" target=3D"_bla=
+nk">configure.ac:110</a>: error: possibly undefined macro: AC_LINK_IFELSE<u=
+></u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:111" target=3D"_bla=
+nk">configure.ac:111</a>: error: possibly undefined macro: AC_LANG_PROGRAM<=
+u></u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:183" target=3D"_bla=
+nk">configure.ac:183</a>: error: possibly undefined macro: AC_CHECK_HEADERS=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:207" target=3D"_bla=
+nk">configure.ac:207</a>: error: possibly undefined macro: AC_MSG_WARN<u></=
+u><u></u></p>
+<p class=3D"MsoNormal">| <a href=3D"http://configure.ac:592" target=3D"_bla=
+nk">configure.ac:592</a>: error: possibly undefined macro: AC_CHECK_LIB</p>=
+</blockquote></div><br>That happens when some required dependencies are not=
+ listed.=C2=A0 If I use the current recipe in meta-soletta it works fine, b=
+ut if I revert the last commit (that adds inherit pkgconfig) then it fails =
+just like that.=C2=A0 So, my expectation is that you&#39;re using an old cl=
+one of meta-soletta and need to pull the latest version (or if you can&#39;=
+t do that, add pkgconfig to the inherit list in that recipe).</div><div cla=
+ss=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-The based commit is:
-
-commit 80b3974081c4a8c604e23982a6db8fb32c616058
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Wed Nov 18 11:52:06 2015 +0000
-
-    sstate: Ensure siginfo and sig files are also touched
-    
-    Maintaining an sstate mirror is complicated at the moment as only the main
-    sstate tgz files have their timestamp updated when they're used.
-    
-    This causes problems as the siginfo files can be removed from the server
-    due to inactivity but the sstate fetch code tries to fetch them leading
-    to confusing warnings and reduced debug capability.
-    
-    This change ensures we touch any sig/siginfo files present and should
-    help ageing of the objects on sstate mirrors. It doesn't handle the intermediate
-    task siginfo files but those are never fetched by the current sstate code
-    so are an order of magnitude less problematic.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+--001a113ecd940fa9610525bfec54--
