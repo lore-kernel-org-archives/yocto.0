@@ -1,35 +1,41 @@
-Return-Path: <saul.wold@intel.com>
+Return-Path: <dvorkin@tibbo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F246E008C8; Mon, 30 Nov 2015 15:29:21 -0800 (PST)
+	id A7F14E008C8; Mon, 30 Nov 2015 15:32:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SBL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [93.174.104.90 listed in list.dnswl.org]
+	*  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+	*      [95.31.249.87 listed in zen.spamhaus.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36BC1E00855
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 15:29:12 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 30 Nov 2015 15:29:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,366,1444719600"; d="scan'208";a="610257904"
-Received: from krogan-mobl.amr.corp.intel.com ([10.254.66.205])
-	by FMSMGA003.fm.intel.com with ESMTP; 30 Nov 2015 15:29:12 -0800
-Message-ID: <1448926152.12905.55.camel@intel.com>
-From: Saul Wold <saul.wold@intel.com>
-To: "Daniel." <danielhilst@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 30 Nov 2015 15:29:12 -0800
-In-Reply-To: <CAF3SDA531vpWpfiSuKSr8FhbdMdt=1ma8LMhG55_uTia=E7q2A@mail.gmail.com>
-References: <CAF3SDA531vpWpfiSuKSr8FhbdMdt=1ma8LMhG55_uTia=E7q2A@mail.gmail.com>
-X-Mailer: Evolution 3.18.1 (3.18.1-1.fc23) 
-Mime-Version: 1.0
-Subject: Re: One kernel tree, two BSP layers, two defconfigs. How to pickup the right one based on MACHINE value?
+Received: from smtp.tibbo.com (smtp.tibbo.com [93.174.104.90])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08BF5E00855
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 15:32:17 -0800 (PST)
+Received: (qmail 21524 invoked by uid 508); 1 Dec 2015 02:32:16 +0300
+Received: from 95-31-249-87.broadband.corbina.ru (HELO dvh.tibbo.net)
+	(dvorkin@tibbo.com@95.31.249.87)
+	by smtp.tibbo.com with SMTP; 1 Dec 2015 02:32:16 +0300
+To: Khem Raj <raj.khem@gmail.com>
+References: <1448920985-995-1-git-send-email-alejandro.franco@linux.intel.com>
+	<2603447.ByLEse0mF5@peggleto-mobl.ger.corp.intel.com>
+	<565CD0DB.6010900@tibbo.com>
+	<1EA640BB-A2C0-4B9C-93B0-0FC36DB98525@gmail.com>
+	<565CD888.1090501@tibbo.com>
+	<50087579-C0CA-4263-AA43-BBB28642E158@gmail.com>
+From: Dvorkin Dmitry <dvorkin@tibbo.com>
+Message-ID: <565CDC7F.1020806@tibbo.com>
+Date: Tue, 1 Dec 2015 02:32:15 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <50087579-C0CA-4263-AA43-BBB28642E158@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: strange QA issue - how to ignore automatic so dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,65 +47,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Nov 2015 23:29:21 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 30 Nov 2015 23:32:24 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On Mon, 2015-11-30 at 17:25 -0200, Daniel. wrote:
-> Hi,
-> 
-> I have one kernel tree where I keep all my modules in-tree. Inside
-> kernel I have two FOO_defconfig and BAR_defconfig which are
-> configurations for FOO-board and BAR-board. On Yocto I have
-> core-layer, FOO-bsp layer and BAR-bsp layer. At core-layer I have
-> linux-custom.bb file which has the URI for kernel tree with a dummy
-> defconfig. At FOO-bsp and BAR-bsp a have a .bbappend that adds a
-> folder with the right defconfig for each board.
-> 
-> My doubt is: I have two .bbappends, on two distinct layers being
-> applied at same time? Both layers are pointed at
-> build/conf/bblayers.conf.
-> 
-So you are including both your BSP Layers in the bblayers, that will
-probably cause problems based on your description above.
 
-Another option is to look at using overrides and have 1 layer that
-supports both boards if they are similar and share other items.
 
-> How can I have sure to pick up the right defconfig at build time?
-> 
-> I've tried to delete core-layer and have two kernel recipes with
-> distinct names, but Yocto complains about two recipes being selected
-> at same time for build (because of virtual/kernel feature or
-> something
-> alike). So I want to keep one kernel recipe and select the right
-> defconfig based on MACHINE value.
-> 
-You can use PREFERRED_PROVIDER_virtual/kernel to have multiple
-alternate kernel present and set it in your <machine>.conf to select
-the kernel you want.
+On 01.12.2015 02:22, Khem Raj wrote:
+>> On Nov 30, 2015, at 3:15 PM, Dvorkin Dmitry <dvorkin@tibbo.com> wrote:
+>>
+>> I know. But
+>> it really does not require to have libX* in the system to successfully run JDK+our software
+>> We're using simple tar xvzf jdk-...tar.gz in all of our embedded systems, so I know what I'm talking about, sorry.
+> you are walking muddy water, I will caution you before I hand a chainsaw to you as I suggest something as below.
+I see. Thank you!
 
-If your kernel recipe does not inherit kernel.bbclass you will need to
-set PROVIDES
+> you can use patchelf or something like that on these binaries and remove the dependencies after unpacking them
+> run the .so in question via patchelf --remove-needed <deplib-to-remove>
+> and that will make shlibs code in OE not flag them
+>
+>> This feature blocks my efforts to have a well-designed system with Poky/Yocto... :(
+> Well designed would mean to adhere to prerequisites as needed by prebuilt software you are using
+>
+>>
+>> On 01.12.2015 02:06, Khem Raj wrote:
+>>>> On Nov 30, 2015, at 2:42 PM, Dvorkin Dmitry <dvorkin@tibbo.com> wrote:
+>>>>
+>>>>
+>>>> I'm trying to include binary JDK into my linux image.
+>>>> just unpacking jdk-...tar.gz into recipe image and packing it into RPM (I'm using RPM as base of my distribution).
+>>>>
+>>>> after adding
+>>>> INSANE_SKIP_${PN} = "file-rdeps ldflags dev-so build-deps"
+>>>> into recipe I've got no errors or warning while building recipe itself,
+>>>> RPM is created and it contains some dynamic libraries dependencies....
+>>>>
+>>>> but I've got error building rootfs with this recipe:
+>>>>
+>>>> ....(skipped)...
+>>>> Updating cache... ######################################## [100%]
+>>>>
+>>>> Computing transaction...error: Can't install tps-jdk-7u60+linux+arm+vfp+hflt-r0@cortexa8hf_vfp_neon: no package provides libXrender.so.1
+>>>>
+>>>> I can't include libXrender.so.1 into my image, I can't remove libraries from JDK.
+>>>>
+>>>> Is there any way to ignore this dependency?
+>>> No, and if you ignored it then this binary won’t function as expected on the system. So you should find out providers of missing
+>>> rdeps and add them to your image via depends
+>>>
+>>>> something like RPM_LDD_IGNORE_CHECK="libX*"
+>>>>
+>>>> --
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
 
-You should also be sure to set COMPATIBLE_MACHINE for each machine
-
-> Both defconfig are present on arch/arm/configs. Can I overwrite
-> do_config()? Is that safe? About the .bbappends: Should be two
-> .bbappends on same .bb file be avoided?
-> 
-You can use a do_config_prepend() to deal with moving the correct
-defconfig.
-
-Honestly there are many ways you can make this work and even more to
-make is fail!
-
-Sau!
-
-> 
-> Regards,
-> - dhs
-> -- 
-> "Do or do not. There is no try"
->   Yoda Master
 
