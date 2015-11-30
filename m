@@ -1,59 +1,36 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A13B6E00B88; Mon, 30 Nov 2015 05:09:41 -0800 (PST)
+	id 20883E00AAA; Mon, 30 Nov 2015 07:31:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A68DE00B67
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 05:09:35 -0800 (PST)
-Received: by ioc74 with SMTP id 74so170935698ioc.2
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 05:09:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=Qzqxwt/a6qMn8Kd87b2MyXL3I+Z7TIYT5nWY4Nd5tKE=;
-	b=USjO3j3yJOJG5RHPnKa8PV51P2fQLezwH6+LEcZ2Cs54qbLtyEUbsj2qjXx5zJndBc
-	W0yya2J8zbiCDDEyHMEKs3TJ2D89b+R4XVee8w4xNcIU9j0g9nyz4vgM4xiyJTeoF5I0
-	mf1h5vV7aW5w554bHx8ygSIvxwM4HbPfvpfCqyvG2dcMaAfs6zxvDIWyz7Ac5uS66+si
-	yAexDfoOw1fAQFHRPVrbQ65e6pUUb3Yqd0EDMtdOyt8Qi/xcBERBBZr4UBEJqugLQJ2W
-	DnLuC0zipzSOSb8PgHU51tF3onXnw+ADWfxjsX0UlEQVawqPbcFEnLr0pn99QHVpREWa
-	l5aA==
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDA1CE00457
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 07:31:33 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id tAUFVWcx006345
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 07:31:33 -0800 (PST)
+Received: from msp-dhcp23.wrs.com (172.25.34.23) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
+	Mon, 30 Nov 2015 07:31:31 -0800
+From: Mark Hatle <mark.hatle@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 30 Nov 2015 09:31:28 -0600
+Message-ID: <1448897488-118603-3-git-send-email-mark.hatle@windriver.com>
+X-Mailer: git-send-email 1.9.3
+In-Reply-To: <1448897488-118603-1-git-send-email-mark.hatle@windriver.com>
+References: <1448897488-118603-1-git-send-email-mark.hatle@windriver.com>
 MIME-Version: 1.0
-X-Received: by 10.107.130.155 with SMTP id m27mr64899905ioi.133.1448888975310; 
-	Mon, 30 Nov 2015 05:09:35 -0800 (PST)
-Received: by 10.36.25.81 with HTTP; Mon, 30 Nov 2015 05:09:35 -0800 (PST)
-In-Reply-To: <565C3C31.8070804@osg.samsung.com>
-References: <1447166720-13316-1-git-send-email-javier@osg.samsung.com>
-	<564F3D6F.7020601@osg.samsung.com>
-	<CAMKF1sq=yxLKqTUj2BcQ8Sz-_bC1w=ntAAWKO7_YVRCGpFOQFg@mail.gmail.com>
-	<CALbNGRSnDmHvkiHNM_Z+ERMwtvYzjj5N=bR2fA27vkgdF+f-CQ@mail.gmail.com>
-	<565C3C31.8070804@osg.samsung.com>
-Date: Mon, 30 Nov 2015 14:09:35 +0100
-Message-ID: <CALbNGRQBzn2KjtqH9TohV9qJt5qN2uALYOcZqw5rLTAmVRB-TQ@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: Javier Martinez Canillas <javier@osg.samsung.com>
-Cc: Derek Foreman <derekf@osg.samsung.com>,
-	Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v3 0/2] Add support for 4.2 kernel with vc4 DRM/KMS driver
+Subject: [PATCH 8/8] [meta-mingw] [jethro/master] gcc-cross-canadian: Workaround LTO failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,56 +42,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Nov 2015 13:09:41 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 30 Nov 2015 15:31:37 -0000
+Content-Type: text/plain
 
-On Mon, Nov 30, 2015 at 1:08 PM, Javier Martinez Canillas
-<javier@osg.samsung.com> wrote:
-> On 11/20/2015 02:30 PM, Andreas M=C3=BCller wrote:
->> On Fri, Nov 20, 2015 at 5:09 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>> On Fri, Nov 20, 2015 at 7:34 AM, Javier Martinez Canillas
->>> <javier@osg.samsung.com> wrote:
->>>> On 11/10/2015 11:45 AM, Javier Martinez Canillas wrote:
->>>>> Hello Andrei,
->>>>>
->>>>> This series adds support for Eric Anholt's v4.2 kernel, that has supp=
-ort
->>>>> for the vc4 DRM/KMS driver, which is the new open source graphics dri=
-ver
->>>>> stack for the Raspberry Pi to be used instead of the userland driver.
->>>>>
->>>>> This is a third version of the series which addresses feedback provid=
-ed
->>>>> by Andreas M=C3=BCller, Khem Raj and you. The first version and secon=
-d version
->>>>> of the series can be found at [0] and [1]. Some of the v2 patches hav=
-e
->>>>> been dropped since are no longer necessary so the delta is smaller in=
- v3.
->>>>>
->>>>
->>>> Any comments about this series?
->>>
->>> Whole series looks good to me.
->>>
->
-> Thanks Khem.
->
->> Hop to find some time to test this weekend.
->>
->
-> Andreas, did you find time to test?
-Am very sorry: No chance currently
->
->> Andreas
->>
->
-> Andrei, gentle ping about this series again.
->
-> Best regards,
-> --
-> Javier Martinez Canillas
-> Open Source Group
-> Samsung Research America
+Workaround for the failure:
+
+e:/windri~1/lx8.sdk/qemux8~1.800/sysroots/i686-w~1/usr/bin/i586-w~3/../../libexec/i586-wrs-linux/gcc/i586-wrs-linux/5.2.0/real-ld.exe: unrecognized option '-plugin'
+
+This disables the LTO support in the compiler, but does allow things to
+compile and link properly.
+
+Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+---
+ recipes-devtools/gcc/gcc-cross-canadian_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+index 030a9b9..888d610 100644
+--- a/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
++++ b/recipes-devtools/gcc/gcc-cross-canadian_%.bbappend
+@@ -1,5 +1,5 @@
+ INSANE_SKIP_${PN}_append_sdkmingw32 = " staticdev"
+-EXTRA_OECONF_append_sdkmingw32 = " --disable-nls"
++EXTRA_OECONF_append_sdkmingw32 = " --disable-nls --disable-lto"
+ LDFLAGS_append_sdkmingw32 = " -Wl,-static"
+ EXEEXT_sdkmingw32 = ".exe"
+ ELFUTILS_sdkmingw32 = ""
+-- 
+1.9.3
+
 
