@@ -1,57 +1,59 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9082E00748; Mon, 30 Nov 2015 08:54:55 -0800 (PST)
+	id 87DBEE005B7; Mon, 30 Nov 2015 09:37:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (mikehabibi[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.160.180 listed in list.dnswl.org]
+	*      [209.85.215.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-yk0-f180.google.com (mail-yk0-f180.google.com
-	[209.85.160.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7019DE00457
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 08:54:50 -0800 (PST)
-Received: by ykba77 with SMTP id a77so190588763ykb.2
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 08:54:50 -0800 (PST)
+Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E300E00457
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 09:37:36 -0800 (PST)
+Received: by lfs39 with SMTP id 39so201990686lfs.3
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 09:37:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=ZjMfucVIMQaAX2c+owPslYTHYyq5QDQ86U7cnnr0PKs=;
-	b=wudl8vCa3knvbH6LaGLRMDOA5IBNk2NIW7SnzBhNo38176FINUVBpf8I36n6WxjNxc
-	FPKlJcl0tFH0Gwux6EdN/yfYpSecdhgGYwy0fd3O5KwNwHVSA8kpDG2EfUw5pR4fnvvo
-	Od0XOoegPCJS77SbSuMkwUpKxJtnwOl6j42GZ+9bpI7vEk/BDZ1ScR7ZhKukLlY+hNTt
-	LAHkZMFbSg+PC9duyF98lIW/DKcxsqmRJB4eKJarbEwikTCn8E+gpMMbookQkUvFwMOV
-	J60SP1+tY+9NaKyTcBb+nWsbNum17mbzGiUp6NVrY/wNoMH4qC5x/aXW69EWPG8o4Pob
-	/Jcg==
+	:cc:content-type;
+	bh=YD+SPLX0uUVCqh9+a2ntoZMLmWDfwQxcdBZiaI3SVAc=;
+	b=DdMRFEk6F3BnigMtjR/b192SrqwWZyydZ5GIrsmn5QTsGGXHL+QGh41s9BSqydoqCz
+	kTkJvM3D+XiD222kB557IPwYVunx1jDwIaWxhQdzZwNC4vySdqZ+pUjhyK1dTpuIDicv
+	O8DkPJJhkR5OY9ZR1ljE3bbmIG1Gr2VFp9PFPIOAs2aKn0ZVpMUl8n6PqO9M01ogh3a9
+	McCzqMvyA2Zv06jp3Nm5fys56gx/gTHfNuh2ikgD+XcHteGPb8aNw6EBMoRne18zgN2a
+	pfS09QpkNwOeUoB5xHOjKRkAhuxwD+ODL/RgZrVdxUJKaMt/k0HGgO4V9IdtrR9bVSw+
+	5nYw==
 MIME-Version: 1.0
-X-Received: by 10.129.73.198 with SMTP id w189mr23594887ywa.223.1448902490386; 
-	Mon, 30 Nov 2015 08:54:50 -0800 (PST)
-Received: by 10.129.155.208 with HTTP; Mon, 30 Nov 2015 08:54:50 -0800 (PST)
-In-Reply-To: <48CC80AE-4DC5-4631-81E3-8E6D781B7B3A@gmail.com>
-References: <56538201.1020802@intel.com>
-	<48CC80AE-4DC5-4631-81E3-8E6D781B7B3A@gmail.com>
-Date: Mon, 30 Nov 2015 14:54:50 -0200
-Message-ID: <CAF3SDA6DUQQm1Uq-T-qnWyVjcAzE+EQMwA_iKkKR+zwSgcyp4g@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Jens Rehsack <rehsack@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-core <openembedded-core@lists.openembedded.org>,
-	openembedded-devel@lists.openembedded.org,
-	Mariano Lopez <mariano.lopez@intel.com>
-Subject: Re: RFC: Reference updater filesystem
+X-Received: by 10.25.137.7 with SMTP id l7mr17260061lfd.63.1448905055038; Mon,
+	30 Nov 2015 09:37:35 -0800 (PST)
+Received: by 10.114.11.226 with HTTP; Mon, 30 Nov 2015 09:37:34 -0800 (PST)
+In-Reply-To: <CAOsp8o_Lq84VaGiMvrvBA3SmtTro5PteV4x5xLBz_GgBXdRp=A@mail.gmail.com>
+References: <CAOsp8o9t2fnf1Vu3_DbDQLYLM6vxd3_-y0d12k_MexAefbDrTQ@mail.gmail.com>
+	<5654D545.1090408@windriver.com> <5655CD70.9010109@windriver.com>
+	<CAOsp8o95H4gnBN9oCn=AYdX91gecJ-Sqw9yQDW3nouoKu7uNMQ@mail.gmail.com>
+	<CAOsp8o-9MdG3sFpT-fpfs9imi4UFRJrPRDPMOvAcafoJS94cxw@mail.gmail.com>
+	<CAOsp8o_3mbD=ns1pWZdHPAtn0Z7VRyHdbTn00xg69v6rLpJ5FQ@mail.gmail.com>
+	<56563853.8090304@windriver.com>
+	<CAOsp8o_Lq84VaGiMvrvBA3SmtTro5PteV4x5xLBz_GgBXdRp=A@mail.gmail.com>
+Date: Mon, 30 Nov 2015 11:37:34 -0600
+Message-ID: <CAOsp8o8Ji4o+9fHn__CdUz-vLJ854-waeskU5YrWM4_f1baD3g@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Cross-compiling python fails with new custom tuning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,122 +65,830 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Nov 2015 16:54:55 -0000
+X-List-Received-Date: Mon, 30 Nov 2015 17:37:41 -0000
+Content-Type: multipart/alternative; boundary=001a113fc2601e74b40525c57f56
+
+--001a113fc2601e74b40525c57f56
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Mark, I am continuing to look at this. I hope you don't mind if I keep
+updating this thread with my investigation.
 
-Hey Jen, I was looking for an image upgrade solution and factory reset
-solution using overlayfs. The idea have two partitions one read-only
-with the factory image, other to hold the changes that were made by
-time. The factory reset feature should be triggered by a hided button
-that can be pressed with help of a clips. I was thinking in using an
-init ram disk to wipe out the rw partition, making the rootfs clean as
-after an image installation. The upgrader tool shold re-flash a new
-image to rootfs. Old rootfs is lost. The configuration changes that
-have been holded by overlayfs should be wiped-out too, I didn't think
-about that, is something to take in account.
+First, I figured out my confusion. I was associating the wrong Makefile
+command with the illegal instruction. It was actually the command under the
+recipe for 'sharedmods', but it was silenced in the Makefile so I assumed
+it was another line. You're right that the path with the *.so's is the
+offending path. I've scoured online patches and can't understand how this
+mechanism works outside of Yocto. I figure people trying to compile for ARM
+would have similar issues. There seems to be a fundamental problem with how
+Python sets up PYTHONPATH using the pybuilddir file and $abs_builddir.
+However, other people seem to have successfully built python for other
+architectures, so I'm still confused.
 
-Are you using overlayfs? How is it going? What difficulties you have found?
+I hardcoded a fix for PYTHONPATH to use the host lib-dynload directory, and
+the python recipe successfully passed. Can you elaborate on the issues you
+were having with your patch? The only difference is that I maintained the
+other two directories in $PYTHONPATH,
+e.g. $(srcdir)/Lib:$(srcdir)/Lib/plat-$(MACHDEP), and only replaced the
+offending one.
 
-Other solution whould be using Smart package manager to upgrade the
-rootfs, but this doesn't attend my need for factory-reset.
+On Wed, Nov 25, 2015 at 4:58 PM, Michael Habibi <mikehabibi@gmail.com>
+wrote:
 
-Please tell me more about your experience with overlayfs :)
-
-Best regards,
-- dhs
-
-2015-11-30 14:10 GMT-02:00 Jens Rehsack <rehsack@gmail.com>:
+> Mark,
 >
->> Am 23.11.2015 um 22:15 schrieb Mariano Lopez <mariano.lopez@intel.com>:
+> I ran the same command, including the offending PYTHONPATH, from the shel=
+l
+> without error. Any reason why that would work, despite it not working fro=
+m
+> within the Makefile? I was thinking it was another environment variable
+> that was causing the issue (one that's not set in my bash environment by
+> default). My $PATH didn't have python-native so I called it using an
+> absolute path, but otherwise it's the same command run from the Makefile
+> (parsed, of course):
+>
+> bash$
+> _PYTHON_PROJECT_BASE=3D/projects/yocto-git/build/tmp/work/haswell-diags-l=
+inux/python/2.7.9-r1/build
+> _PYTHON_HOST_PLATFORM=3Dlinux2-x86_64
+> PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/pytho=
+n/2.7.9-r1/build/build/lib.linux2-x86_64-2.7:/projects/yocto-git/build/tmp/=
+work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib:/projects/yocto-g=
+it/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib/plat=
+-linux2
+> /projects/yocto-git/build/tmp/sysroots/x86_64-linux/usr/bin/python-native=
+/python2.7
+> -S -m sysconfig --generate-posix-vars
+> bash$ ls pybuilddir.txt
+> pybuilddir.txt
+>
+> Maybe I'm missing something.
+>
+>
+> On Wed, Nov 25, 2015 at 4:38 PM, Mark Hatle <mark.hatle@windriver.com>
+> wrote:
+>
+>> On 11/25/15 10:11 AM, Michael Habibi wrote:
+>> > Well, I'm wrong yet again. A 'which python2.7' shows that it's pointin=
+g
+>> to a
+>> > native version of Python:
+>> >
+>> > *| which python2.7*
+>> > *|
+>> >
+>> /projects/yocto-git/build/tmp/sysroots/x86_64-linux/usr/bin/python-nativ=
+e/python2.7*
+>> > |
+>> >
+>> _PYTHON_PROJECT_BASE=3D/projects/yocto-git/build/tmp/work/haswell-diags-=
+linux/python/2.7.9-r1/build
+>> > _PYTHON_HOST_PLATFORM=3Dlinux2-x86_64
+>> >
+>> PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/pyth=
+on/2.7.9-r1/build/build/lib.linux2-x86_64-2.7:/projects/yocto-git/build/tmp=
+/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib:/projects/yocto-=
+git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib/pla=
+t-linux2
+>> > python2.7 -S -m sysconfig --generate-posix-vars ;\
+>> > |       if test $? -ne 0 ; then \
+>> > |               echo "generate-posix-vars failed" ; \
+>> > |               rm -f ./pybuilddir.txt ; \
+>> > |               exit 1 ; \
+>> > |       fi
+>> > | Illegal instruction (core dumped)
+>> > | make: *** [sharedmods] Error 132
+>> >
+>> > I guess one of the environmental variables being passed in is screwing
+>> up what
+>> > it's doing. Unfortunately I don't know enough about the inner workings
+>> of Python
+>> > to be of much help moving forward. I gave it my best shot!
 >>
->> There has been interest in an image based software updater in Yocto Proj=
-ect. The proposed solution for a image based updater is to use Stefano Babi=
-c's software updater (http://sbabic.github.io/swupdate). This software do a=
- binary copy, so it is needed to have at least two partitions, these partit=
-ions would be the rootfs and the maintenance partition. The rootfs it's the=
- main partition used to boot during the normal device operation, on the oth=
-er hand, the maintenance will be used to update the main partition.
+>> The problem I tracked down was:
 >>
->> To update the system, the user has to connect to device and boot in the =
-maintenance partition; once in the maintenance partition the software updat=
-er will copy the new image in the rootfs partition. A final reboot into the=
- rootfs it is necessary to complete the upgrade.
 >>
->> As mentioned before the the software will copy an image to the partition=
-, so everything in that partition will be wiped out, including custom confi=
-gurations. To avoid the loss of configuration I explore three different sol=
-utions:
->> 1. Use a separate partition for the configuration.
->>  a. The pro of this method is the partition is not touched during the up=
-date.
->>  b. The con of this method is the configuration is not directly in rootf=
-s (example: /etc).
+>> PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/pyth=
+on/2.7.9-r1/build/build/lib.linux2-x86_64-2.7
 >>
->> 2. Do the backup during the update.
->>  a. The pro is the configuration is directly in rootfs.
->>  b. The con is If the update fail most likely the configuration would be=
- lost.
+>> This is full of .so objects when loaded cause the illegal instruction.
 >>
->> 3. Have an OverlayFS for the rootfs or the partition that have the confi=
-guration.
->>  a. The pro is the configuration is  "directly" in rootfs.
->>  b. The con is there is need to provide a custom init to guarantee the O=
-verlay is mounted before the boot process.
+>> I came up with a patch that I thought was going to fix it, but it's
+>> triggered
+>> other failures.
 >>
->> With the above information I'm proposing to use a separate partition for=
- the configuration; this is because is more reliable and doesn't require bi=
-g changes in the current architecture.
 >>
->> So, the idea is to have 4 partitions in the media:
->> 1. boot. This is the usual boot partition
->> 2. data. This will hold the configuration files. Not modified by updates=
-.
->> 3. maintenance. This partition will be used to update rootfs.
->> 4. rootfs. Partition used for normal operation.
+>> http://lists.openembedded.org/pipermail/openembedded-core/2015-November/=
+113341.html
+>>
+>> Just to be clear.. this does NOT work properly in many cases.  But might
+>> give
+>> you or someone else a clue as to how to possibly fix it.
+>>
+>> --Mark
+>>
+>> >
+>> > On Wed, Nov 25, 2015 at 10:01 AM, Michael Habibi <mikehabibi@gmail.com
+>> > <mailto:mikehabibi@gmail.com>> wrote:
+>> >
+>> >     Ah sorry, I misspoke. I walked through the Makefile and configure
+>> scripts a
+>> >     bit more, and $(PYTHON_FOR_BUILD) should in fact be a host version
+>> of
+>> >     Python. It seems it's not being configured correctly. Either the
+>> path is
+>> >     setup wrong and python2.7 is not pointing to the right version, or
+>> python2.7
+>> >     needs to be pointing to the absolute path instead of relying on
+>> $PATH.
+>> >
+>> >
+>> >
+>> >
+>> >     On Wed, Nov 25, 2015 at 9:45 AM, Michael Habibi <
+>> mikehabibi@gmail.com
+>> >     <mailto:mikehabibi@gmail.com>> wrote:
+>> >
+>> >         For what it's worth, this is the offending portion of
+>> Makefile.pre:452:
+>> >
+>> >         # Create build directory and generate the sysconfig build-time
+>> data there.
+>> >         # pybuilddir.txt contains the name of the build dir and is use=
+d
+>> for
+>> >         # sys.path fixup -- see Modules/getpath.c.
+>> >         # Since this step runs before shared modules are built, try to
+>> avoid
+>> >         bootstrap
+>> >         # problems by creating a dummy pybuilddir.txt just to allow
+>> interpreter
+>> >         # initialization to succeed.  It will be overwritten by
+>> generate-posix-vars
+>> >         # or removed in case of failure.
+>> >         pybuilddir.txt: $(BUILDPYTHON)
+>> >         =E2=86=92 @echo "none" > ./pybuilddir.txt
+>> >         =E2=86=92 $(RUNSHARED) $(PYTHON_FOR_BUILD) -S -m sysconfig
+>> --generate-posix-vars ;\
+>> >         =E2=86=92 if test $$? -ne 0 ; then \
+>> >         =E2=86=92 =E2=86=92 echo "generate-posix-vars failed" ; \
+>> >         =E2=86=92 =E2=86=92 rm -f ./pybuilddir.txt ; \
+>> >         =E2=86=92 =E2=86=92 exit 1 ; \
+>> >         =E2=86=92 fi
+>> >
+>> >         I don't know enough about the Python build to understand what
+>> it's
+>> >         trying to do, but perhaps replacing PYTHON_FOR_BUILD with
+>> HOSTPYTHON may
+>> >         be acceptable?
+>> >
+>> >         I'm surprised this seems to work for other people, since this
+>> should be
+>> >         failing for anyone using Python on a target platform different
+>> from
+>> >         their host.
+>> >
+>> >         On Wed, Nov 25, 2015 at 9:02 AM, Mark Hatle <
+>> mark.hatle@windriver.com
+>> >         <mailto:mark.hatle@windriver.com>> wrote:
+>> >
+>> >             On 11/24/15 3:23 PM, Mark Hatle wrote:
+>> >             > My guess is that there is a bug in the python integratio=
+n
+>> where
+>> >             it's not
+>> >             > realizing the host and target are different systems, so
+>> it's
+>> >             trying to run a
+>> >             > target program on your host.  Your host isn't haswell,
+>> so...
+>> >             Illegal Instruction
+>> >             > -- and the system stops.
+>> >
+>> >             Just an FYI, I hit the same problem today.  I suspect it i=
+s
+>> the host
+>> >             trying to
+>> >             run target software and I'm looking into it.
+>> >
+>> >             --Mark
+>> >
+>> >             > The alternative would be something is running QEMU to
+>> execute a
+>> >             target binary
+>> >             > and QEMU doesn't have instruction support -- but that
+>> doesn't look
+>> >             like the case
+>> >             > here.
+>> >             >
+>> >             > --Mark
+>> >             >
+>> >             > On 11/24/15 3:06 PM, Michael Habibi wrote:
+>> >             >> All,
+>> >             >>
+>> >             >> I added a new machine definition with tuning parameters
+>> for haswell
+>> >             >> microarchitectures (basically just duplicated corei7 bu=
+t
+>> tuned it
+>> >             for haswell).
+>> >             >> This seems to work correctly, but failed when running
+>> do_install
+>> >             for python
+>> >             >> toward the end of the build process. I am running with
+>> the Yocto
+>> >             2.0 framework,
+>> >             >> with very minimal changes to create a new distribution
+>> and
+>> >             machine for our
+>> >             >> custom embedded device. Note I had this distro
+>> configuration
+>> >             working before, and
+>> >             >> the only difference is I added a new machine with this
+>> tuning.
+>> >             >>
+>> >             >> I believe the issue is because, as part of the
+>> do_install step
+>> >             for Python, it
+>> >             >> attempts to run python on the local host, despite being
+>> >             cross-compiled. However,
+>> >             >> it is tuned for a processor that my host machine doesn'=
+t
+>> run, so
+>> >             I get an
+>> >             >> instruction exception.
+>> >             >>
+>> >             >> Did I do something weird? I figure python would be
+>> configured for
+>> >             >> cross-compiling and therefore wouldn't try to run the
+>> target
+>> >             version on the
+>> >             >> host, even for sanity tests. Here is the output of the
+>> failure:
+>> >             >>
+>> >             >> $ tail -20
+>> >             >>
+>> >
+>>  /projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/=
+temp/log.do_install.17258
+>> >             >>
+>> >             >> x86_64-diags-linux-ar rc libpython2.7.a
+>> Modules/threadmodule.o
+>> >             >>  Modules/signalmodule.o  Modules/posixmodule.o
+>> Modules/errnomodule.o
+>> >             >>  Modules/pwdmodule.o  Modules/_sre.o
+>> Modules/_codecsmodule.o
+>> >             >>  Modules/_weakref.o  Modules/zipimport.o
+>> Modules/symtablemodule.o
+>> >             >>  Modules/md5module.o Modules/md5.o  Modules/xxsubtype.o
+>> >             >> x86_64-diags-linux-ranlib libpython2.7.a
+>> >             >> Modules/posixmodule.o: In function `posix_tmpnam':
+>> >             >>
+>> >
+>>  /projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/=
+Python-2.7.9/Modules/posixmodule.c:7575:
+>> >             >> warning: the use of `tmpnam_r' is dangerous, better use
+>> `mkstemp'
+>> >             >> Modules/posixmodule.o: In function `posix_tempnam':
+>> >             >>
+>> >
+>>  /projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/=
+Python-2.7.9/Modules/posixmodule.c:7522:
+>> >             >> warning: the use of `tempnam' is dangerous, better use
+>> `mkstemp'
+>> >             >> x86_64-diags-linux-gcc  -m64 -march=3Dhaswell
+>> -mtune=3Dhaswell
+>> >             -mfpmath=3Dsse -mavx2
+>> >             >>
+>> --sysroot=3D/projects/yocto-git/build/tmp/sysroots/continental -Wl,-O1
+>> >             >> -Wl,--hash-style=3Dgnu -Wl,--as-needed -Xlinker
+>> -export-dynamic -o
+>> >             python \
+>> >             >>                         Modules/python.o \
+>> >             >>                         -L. -lpython2.7 -lpthread -ldl
+>> -lpthread
+>> >             -lutil   -lm
+>> >             >>
+>> >
+>>  _PYTHON_PROJECT_BASE=3D/projects/yocto-git/build/tmp/work/haswell-diags=
+-linux/python/2.7.9-r1/build
+>> >             >> _PYTHON_HOST_PLATFORM=3Dlinux2-x86_64
+>> >             >>
+>> >
+>>  PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/pyt=
+hon/2.7.9-r1/build/build/lib.linux2-x86_64-2.7:/projects/yocto-git/build/tm=
+p/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib:/projects/yocto=
+-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib/pl=
+at-linux2
+>> >             >> python2.7 -S -m sysconfig --generate-posix-vars ;\
+>> >             >>         if test $? -ne 0 ; then \
+>> >             >>                 echo "generate-posix-vars failed" ; \
+>> >             >>                 rm -f ./pybuilddir.txt ; \
+>> >             >>                 exit 1 ; \
+>> >             >>         fi
+>> >             >> Illegal instruction (core dumped)
+>> >             >> make: *** [sharedmods] Error 132
+>> >             >> WARNING: exit code 1 from a shell command.
+>> >             >> ERROR: oe_runmake failed
+>> >             >> ERROR: Function failed: do_install (log file is located
+>> at
+>> >             >>
+>> >
+>>  /projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/=
+temp/log.do_install.17258)
+>> >             >>
+>> >             >> Here is my tune-haswell.inc (ignore some copy/paste
+>> comment
+>> >             issues right now =3D):
+>> >             >>
+>> >             >> # Settings for the GCC(1) cpu-type "haswell":
+>> >             >> #
+>> >             >> #     Intel Core i7 CPU with 64-bit extensions, MOVBE,
+>> MMX, SSE,
+>> >             SSE2, SSE3,=C2=B7
+>> >             >> #     SSSE3, SSE4.1, SSE4.2, POPCNT, AVX, AVX2, AES,
+>> PCLMUL,
+>> >             FSGSBASE,
+>> >             >> #     RDRND, FMA, BMI, BMI2 and F16C instruction set
+>> support.
+>> >             >> #
+>> >             >> # This tune is recommended for Intel Nehalem and
+>> Silvermont (e.g.
+>> >             Bay Trail) CPUs
+>> >             >> # (and beyond).
+>> >             >> #
+>> >             >> DEFAULTTUNE ?=3D "haswell"
+>> >             >>
+>> >             >> # Pull in the previous tune in to pull in
+>> PACKAGE_EXTRA_ARCHS
+>> >             >> require conf/machine/include/tune-corei7.inc
+>> >             >>
+>> >             >> # Extra tune features
+>> >             >> TUNEVALID[haswell] =3D "Enable haswell specific process=
+or
+>> >             optimizations"
+>> >             >> TUNE_CCARGS .=3D "${@bb.utils.contains("TUNE_FEATURES",
+>> "haswell", "
+>> >             >> -march=3Dhaswell -mtune=3Dhaswell -mfpmath=3Dsse -mavx2=
+", "",
+>> d)}"
+>> >             >>
+>> >             >> # Extra tune selections
+>> >             >> AVAILTUNES +=3D "haswell"
+>> >             >> TUNE_FEATURES_tune-haswell =3D
+>> "${TUNE_FEATURES_tune-x86-64} haswell"
+>> >             >> BASE_LIB_tune-haswell =3D "lib"
+>> >             >> TUNE_PKGARCH_tune-haswell =3D "haswell"
+>> >             >> PACKAGE_EXTRA_ARCHS_tune-haswell =3D
+>> >             "${PACKAGE_EXTRA_ARCHS_tune-corei7} haswell"
+>> >             >>
+>> >             >>
+>> >             >>
+>> >             >
+>> >
+>> >             --
+>> >             _______________________________________________
+>> >             yocto mailing list
+>> >             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>> >             https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>> >
+>> >
+>> >
+>>
+>>
 >
-> That's what we currently have implemented and running in field for a whil=
-e with a small difference:
->
-> 1) We don't use Stefano Babic's software updater, but an own script which=
- deals with initial software flash and later update similar - https://githu=
-b.com/rdm-dev/meta-jens/tree/jethro/recipes-rdm/prd
-> 2) We have integrated the updater with an update-service which can downlo=
-ad the new image and install based on a manifest (signature support comes w=
-ith next update) - https://github.com/rdm-dev/meta-jens/tree/jethro/recipes=
--rdm/system-image // http://www.netbsd.org/~sno/talks/nrpm/Moo-at-System-Im=
-age-Update.pdf
-> 3) We use
->
-> boot
-> rootfs
-> maintfs
-> data
->
-> This layout allows us to extend data to fit the entire storage with know =
-sizes for boot, rootfs and maintfs
->
-> 4) Overlayfs with all serices is implemented (Update-wise, when coming fr=
-om 3.10 to 3.18 or coming from 3.0 with unionfs to overlay ...) - https://g=
-ithub.com/rdm-dev/meta-jens/tree/jethro/recipes-core/initoverlay
->
-> Feel free to use that solution if you want.
->
-> Cheers
-> --
-> Jens Rehsack - rehsack@gmail.com
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
+--001a113fc2601e74b40525c57f56
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Mark, I am continuing to look at this. I hope you don&#39;=
+t mind if I keep updating this thread with my investigation.<div><br></div>=
+<div>First, I figured out my confusion. I was associating the wrong Makefil=
+e command with the illegal instruction. It was actually the command under t=
+he recipe for &#39;sharedmods&#39;, but it was silenced in the Makefile so =
+I assumed it was another line. You&#39;re right that the path with the *.so=
+&#39;s is the offending path. I&#39;ve scoured online patches and can&#39;t=
+ understand how this mechanism works outside of Yocto. I figure people tryi=
+ng to compile for ARM would have similar issues. There seems to be a fundam=
+ental problem with how Python sets up PYTHONPATH using the pybuilddir file =
+and $abs_builddir. However, other people seem to have successfully built py=
+thon for other architectures, so I&#39;m still confused.</div><div><br></di=
+v><div>I hardcoded a fix for PYTHONPATH to use the host lib-dynload directo=
+ry, and the python recipe successfully passed. Can you elaborate on the iss=
+ues you were having with your patch? The only difference is that I maintain=
+ed the other two directories in $PYTHONPATH, e.g.=C2=A0$(srcdir)/Lib:$(srcd=
+ir)/Lib/plat-$(MACHDEP), and only replaced the offending one.</div></div><d=
+iv class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Nov 25, 201=
+5 at 4:58 PM, Michael Habibi <span dir=3D"ltr">&lt;<a href=3D"mailto:mikeha=
+bibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;</span> wrote=
+:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Mark,<div><br></div><d=
+iv>I ran the same command, including the offending PYTHONPATH, from the she=
+ll without error. Any reason why that would work, despite it not working fr=
+om within the Makefile? I was thinking it was another environment variable =
+that was causing the issue (one that&#39;s not set in my bash environment b=
+y default). My $PATH didn&#39;t have python-native so I called it using an =
+absolute path, but otherwise it&#39;s the same command run from the Makefil=
+e (parsed, of course):</div><div><br></div><div><div>bash$ _PYTHON_PROJECT_=
+BASE=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-=
+r1/build _PYTHON_HOST_PLATFORM=3Dlinux2-x86_64 PYTHONPATH=3D/projects/yocto=
+-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/build/build/lib.lin=
+ux2-x86_64-2.7:/projects/yocto-git/build/tmp/work/haswell-diags-linux/pytho=
+n/2.7.9-r1/Python-2.7.9/Lib:/projects/yocto-git/build/tmp/work/haswell-diag=
+s-linux/python/2.7.9-r1/Python-2.7.9/Lib/plat-linux2 /projects/yocto-git/bu=
+ild/tmp/sysroots/x86_64-linux/usr/bin/python-native/python2.7 -S -m sysconf=
+ig --generate-posix-vars</div><div>bash$ ls pybuilddir.txt</div><div>pybuil=
+ddir.txt</div></div><div><br></div><div>Maybe I&#39;m missing something.</d=
+iv><div><br></div></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Nov 25, 2015 at 4:3=
+8 PM, Mark Hatle <span dir=3D"ltr">&lt;<a href=3D"mailto:mark.hatle@windriv=
+er.com" target=3D"_blank">mark.hatle@windriver.com</a>&gt;</span> wrote:<br=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex"><span>On 11/25/15 10:11 AM, Michael Habibi =
+wrote:<br>
+&gt; Well, I&#39;m wrong yet again. A &#39;which python2.7&#39; shows that =
+it&#39;s pointing to a<br>
+&gt; native version of Python:<br>
+&gt;<br>
+</span>&gt; *| which python2.7*<br>
+&gt; *|<br>
+&gt; /projects/yocto-git/build/tmp/sysroots/x86_64-linux/usr/bin/python-nat=
+ive/python2.7*<br>
+<span>&gt; |<br>
+&gt; _PYTHON_PROJECT_BASE=3D/projects/yocto-git/build/tmp/work/haswell-diag=
+s-linux/python/2.7.9-r1/build<br>
+&gt; _PYTHON_HOST_PLATFORM=3Dlinux2-x86_64<br>
+&gt; PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/py=
+thon/2.7.9-r1/build/build/lib.linux2-x86_64-2.7:/projects/yocto-git/build/t=
+mp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib:/projects/yoct=
+o-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib/p=
+lat-linux2<br>
+&gt; python2.7 -S -m sysconfig --generate-posix-vars ;\<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0if test $? -ne 0 ; then \<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0echo &quot;gen=
+erate-posix-vars failed&quot; ; \<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rm -f ./pybuil=
+ddir.txt ; \<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0exit 1 ; \<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0fi<br>
+&gt; | Illegal instruction (core dumped)<br>
+&gt; | make: *** [sharedmods] Error 132<br>
+&gt;<br>
+&gt; I guess one of the environmental variables being passed in is screwing=
+ up what<br>
+&gt; it&#39;s doing. Unfortunately I don&#39;t know enough about the inner =
+workings of Python<br>
+&gt; to be of much help moving forward. I gave it my best shot!<br>
+<br>
+</span>The problem I tracked down was:<br>
+<br>
+PYTHONPATH=3D/projects/yocto-git/build/tmp/work/haswell-diags-linux/python/=
+2.7.9-r1/build/build/lib.linux2-x86_64-2.7<br>
+<br>
+This is full of .so objects when loaded cause the illegal instruction.<br>
+<br>
+I came up with a patch that I thought was going to fix it, but it&#39;s tri=
+ggered<br>
+other failures.<br>
+<br>
+<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2015-N=
+ovember/113341.html" rel=3D"noreferrer" target=3D"_blank">http://lists.open=
+embedded.org/pipermail/openembedded-core/2015-November/113341.html</a><br>
+<br>
+Just to be clear.. this does NOT work properly in many cases.=C2=A0 But mig=
+ht give<br>
+you or someone else a clue as to how to possibly fix it.<br>
+<br>
+--Mark<br>
+<span><br>
+&gt;<br>
+&gt; On Wed, Nov 25, 2015 at 10:01 AM, Michael Habibi &lt;<a href=3D"mailto=
+:mikehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a><br>
+</span><span>&gt; &lt;mailto:<a href=3D"mailto:mikehabibi@gmail.com" target=
+=3D"_blank">mikehabibi@gmail.com</a>&gt;&gt; wrote:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Ah sorry, I misspoke. I walked through the Makefile=
+ and configure scripts a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0bit more, and $(PYTHON_FOR_BUILD) should in fact be=
+ a host version of<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Python. It seems it&#39;s not being configured corr=
+ectly. Either the path is<br>
+&gt;=C2=A0 =C2=A0 =C2=A0setup wrong and python2.7 is not pointing to the ri=
+ght version, or python2.7<br>
+&gt;=C2=A0 =C2=A0 =C2=A0needs to be pointing to the absolute path instead o=
+f relying on $PATH.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0On Wed, Nov 25, 2015 at 9:45 AM, Michael Habibi &lt=
+;<a href=3D"mailto:mikehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail=
+.com</a><br>
+</span><div><div>&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:mikeh=
+abibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;&gt; wrote:<=
+br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0For what it&#39;s worth, this is the =
+offending portion of Makefile.pre:452:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Create build directory and generate=
+ the sysconfig build-time data there.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# pybuilddir.txt contains the name of=
+ the build dir and is used for<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# sys.path fixup -- see Modules/getpa=
+th.c.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Since this step runs before shared =
+modules are built, try to avoid<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bootstrap<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# problems by creating a dummy pybuil=
+ddir.txt just to allow interpreter<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# initialization to succeed.=C2=A0 It=
+ will be overwritten by generate-posix-vars<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# or removed in case of failure.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pybuilddir.txt: $(BUILDPYTHON)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 @echo &quot;none&quot; &gt;=
+ ./pybuilddir.txt<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 $(RUNSHARED) $(PYTHON_FOR_B=
+UILD) -S -m sysconfig --generate-posix-vars ;\<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 if test $$? -ne 0 ; then \<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 =E2=86=92 echo &quot;genera=
+te-posix-vars failed&quot; ; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 =E2=86=92 rm -f ./pybuilddi=
+r.txt ; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 =E2=86=92 exit 1 ; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=86=92 fi<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I don&#39;t know enough about the Pyt=
+hon build to understand what it&#39;s<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0trying to do, but perhaps replacing P=
+YTHON_FOR_BUILD with HOSTPYTHON may<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0be acceptable?<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I&#39;m surprised this seems to work =
+for other people, since this should be<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0failing for anyone using Python on a =
+target platform different from<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0their host.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On Wed, Nov 25, 2015 at 9:02 AM, Mark=
+ Hatle &lt;<a href=3D"mailto:mark.hatle@windriver.com" target=3D"_blank">ma=
+rk.hatle@windriver.com</a><br>
+</div></div><div><div>&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a h=
+ref=3D"mailto:mark.hatle@windriver.com" target=3D"_blank">mark.hatle@windri=
+ver.com</a>&gt;&gt; wrote:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On 11/24/15 3:23 PM, Ma=
+rk Hatle wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; My guess is that t=
+here is a bug in the python integration where<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0it&#39;s not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; realizing the host=
+ and target are different systems, so it&#39;s<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0trying to run a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; target program on =
+your host.=C2=A0 Your host isn&#39;t haswell, so...<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Illegal Instruction<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; -- and the system =
+stops.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Just an FYI, I hit the =
+same problem today.=C2=A0 I suspect it is the host<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0trying to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0run target software and=
+ I&#39;m looking into it.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--Mark<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; The alternative wo=
+uld be something is running QEMU to execute a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0target binary<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; and QEMU doesn&#39=
+;t have instruction support -- but that doesn&#39;t look<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0like the case<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; here.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; --Mark<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; On 11/24/15 3:06 P=
+M, Michael Habibi wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; All,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; I added a new =
+machine definition with tuning parameters for haswell<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; microarchitect=
+ures (basically just duplicated corei7 but tuned it<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for haswell).<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; This seems to =
+work correctly, but failed when running do_install<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for python<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; toward the end=
+ of the build process. I am running with the Yocto<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A02.0 framework,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; with very mini=
+mal changes to create a new distribution and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0machine for our<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; custom embedde=
+d device. Note I had this distro configuration<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0working before, and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; the only diffe=
+rence is I added a new machine with this tuning.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; I believe the =
+issue is because, as part of the do_install step<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for Python, it<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; attempts to ru=
+n python on the local host, despite being<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cross-compiled. However=
+,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; it is tuned fo=
+r a processor that my host machine doesn&#39;t run, so<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I get an<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; instruction ex=
+ception.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; Did I do somet=
+hing weird? I figure python would be configured for<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; cross-compilin=
+g and therefore wouldn&#39;t try to run the target<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0version on the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; host, even for=
+ sanity tests. Here is the output of the failure:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; $ tail -20<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/projects/yocto-git/bui=
+ld/tmp/work/haswell-diags-linux/python/2.7.9-r1/temp/log.do_install.17258<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; x86_64-diags-l=
+inux-ar rc libpython2.7.a Modules/threadmodule.o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 Modules/=
+signalmodule.o=C2=A0 Modules/posixmodule.o=C2=A0 Modules/errnomodule.o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 Modules/=
+pwdmodule.o=C2=A0 Modules/_sre.o=C2=A0 Modules/_codecsmodule.o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 Modules/=
+_weakref.o=C2=A0 Modules/zipimport.o=C2=A0 Modules/symtablemodule.o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 Modules/=
+md5module.o Modules/md5.o=C2=A0 Modules/xxsubtype.o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; x86_64-diags-l=
+inux-ranlib libpython2.7.a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; Modules/posixm=
+odule.o: In function `posix_tmpnam&#39;:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/projects/yocto-git/bui=
+ld/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Modules/posixm=
+odule.c:7575:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; warning: the u=
+se of `tmpnam_r&#39; is dangerous, better use `mkstemp&#39;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; Modules/posixm=
+odule.o: In function `posix_tempnam&#39;:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/projects/yocto-git/bui=
+ld/tmp/work/haswell-diags-linux/python/2.7.9-r1/Python-2.7.9/Modules/posixm=
+odule.c:7522:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; warning: the u=
+se of `tempnam&#39; is dangerous, better use `mkstemp&#39;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; x86_64-diags-l=
+inux-gcc=C2=A0 -m64 -march=3Dhaswell -mtune=3Dhaswell<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-mfpmath=3Dsse -mavx2<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; --sysroot=3D/p=
+rojects/yocto-git/build/tmp/sysroots/continental -Wl,-O1<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; -Wl,--hash-sty=
+le=3Dgnu -Wl,--as-needed -Xlinker -export-dynamic -o<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0python \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0Modules/python.o \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0-L. -lpython2.7 -lpthread -ldl=C2=A0 -lpthread<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-lutil=C2=A0 =C2=A0-lm<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_PYTHON_PROJECT_BASE=3D=
+/projects/yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/buil=
+d<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; _PYTHON_HOST_P=
+LATFORM=3Dlinux2-x86_64<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PYTHONPATH=3D/projects/=
+yocto-git/build/tmp/work/haswell-diags-linux/python/2.7.9-r1/build/build/li=
+b.linux2-x86_64-2.7:/projects/yocto-git/build/tmp/work/haswell-diags-linux/=
+python/2.7.9-r1/Python-2.7.9/Lib:/projects/yocto-git/build/tmp/work/haswell=
+-diags-linux/python/2.7.9-r1/Python-2.7.9/Lib/plat-linux2<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; python2.7 -S -=
+m sysconfig --generate-posix-vars ;\<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0if test $? -ne 0 ; then \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0echo &quot;generate-posix-v=
+ars failed&quot; ; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rm -f ./pybuilddir.txt ; \<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0exit 1 ; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0fi<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; Illegal instru=
+ction (core dumped)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; make: *** [sha=
+redmods] Error 132<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; WARNING: exit =
+code 1 from a shell command.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; ERROR: oe_runm=
+ake failed<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; ERROR: Functio=
+n failed: do_install (log file is located at<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/projects/yocto-git/bui=
+ld/tmp/work/haswell-diags-linux/python/2.7.9-r1/temp/log.do_install.17258)<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; Here is my tun=
+e-haswell.inc (ignore some copy/paste comment<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0issues right now =3D):<=
+br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # Settings for=
+ the GCC(1) cpu-type &quot;haswell&quot;:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #=C2=A0 =C2=A0=
+ =C2=A0Intel Core i7 CPU with 64-bit extensions, MOVBE, MMX, SSE,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0SSE2, SSE3,=C2=B7<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #=C2=A0 =C2=A0=
+ =C2=A0SSSE3, SSE4.1, SSE4.2, POPCNT, AVX, AVX2, AES, PCLMUL,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0FSGSBASE,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #=C2=A0 =C2=A0=
+ =C2=A0RDRND, FMA, BMI, BMI2 and F16C instruction set support.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # This tune is=
+ recommended for Intel Nehalem and Silvermont (e.g.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Bay Trail) CPUs<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # (and beyond)=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; #<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; DEFAULTTUNE ?=
+=3D &quot;haswell&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # Pull in the =
+previous tune in to pull in PACKAGE_EXTRA_ARCHS<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; require conf/m=
+achine/include/tune-corei7.inc<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # Extra tune f=
+eatures<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; TUNEVALID[hasw=
+ell] =3D &quot;Enable haswell specific processor<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0optimizations&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; TUNE_CCARGS .=
+=3D &quot;${@bb.utils.contains(&quot;TUNE_FEATURES&quot;, &quot;haswell&quo=
+t;, &quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; -march=3Dhaswe=
+ll -mtune=3Dhaswell -mfpmath=3Dsse -mavx2&quot;, &quot;&quot;, d)}&quot;<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; # Extra tune s=
+elections<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; AVAILTUNES +=
+=3D &quot;haswell&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; TUNE_FEATURES_=
+tune-haswell =3D &quot;${TUNE_FEATURES_tune-x86-64} haswell&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; BASE_LIB_tune-=
+haswell =3D &quot;lib&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; TUNE_PKGARCH_t=
+une-haswell =3D &quot;haswell&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt; PACKAGE_EXTRA_=
+ARCHS_tune-haswell =3D<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;${PACKAGE_EXTRA_A=
+RCHS_tune-corei7} haswell&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_______________________=
+________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0yocto mailing list<br>
+</div></div>&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"=
+mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a>=
+ &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoc=
+to@yoctoproject.org</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://list=
+s.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer" target=3D"_blank">htt=
+ps://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
---=20
-"Do or do not. There is no try"
-  Yoda Master
-
+--001a113fc2601e74b40525c57f56--
