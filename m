@@ -1,57 +1,40 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED811E00ADF; Tue,  1 Dec 2015 08:22:20 -0800 (PST)
+	id 13AEDE00AE4; Tue,  1 Dec 2015 08:56:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825B1E00A4F
-	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 08:22:15 -0800 (PST)
-Received: by wmec201 with SMTP id c201so213480267wme.0
-	for <yocto@yoctoproject.org>; Tue, 01 Dec 2015 08:22:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=Pu7j5451qgALWHVYUG6/KdV5PvBn9hxAwK4qxL8r2ao=;
-	b=i/QUaAWRofrbidI7GNaovJFhrYvhlk2x4NesLbjSFJIdan9iaFbP325Z+Kp75HeeEe
-	Zehpx1BgtIFySLOmxUAhR95wcV3M99zR2gC7fQ2B27wsXMWY0OyUv590Ya2Grd1M6ItY
-	y9+3YDN3jJQnSII5IfhTNEaPXQLK819jHlb/RluqmmjdURfUt6xvyqKB3wETezziRH8c
-	FO+I/oYxncHGYpYtVWTRTb4E3E4EWN4n40aTgGJMfduzeW8WBYPDvgeF7auQzEg++aS7
-	Vtr/5riQ3UObhb2Z03mr1bGxXQw6r572BsMfduTyfiMW8JF9ADDp7NHmIUaSHVEXuPbl
-	iuAg==
-X-Received: by 10.194.24.70 with SMTP id s6mr32616153wjf.74.1448986934674;
-	Tue, 01 Dec 2015 08:22:14 -0800 (PST)
-Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
-	by smtp.gmail.com with ESMTPSA id
-	m191sm26647944wma.3.2015.12.01.08.22.13
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 01 Dec 2015 08:22:14 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Tue, 1 Dec 2015 17:23:13 +0100
-To: "Luke (Lucas) Starrett" <lstarret@broadcom.com>
-Message-ID: <20151201162313.GB9354@jama>
-References: <DB59870584238C45879465F0A2E5C3F1807544@IRVEXCHMB14.corp.ad.broadcom.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFE94E00ADD
+	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 08:56:41 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 01 Dec 2015 08:56:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,369,1444719600"; d="scan'208";a="851558303"
+Received: from hlim3-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.139.190])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Dec 2015 08:56:24 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Caio <caiortp@gmail.com>
+Date: Wed, 02 Dec 2015 05:56:22 +1300
+Message-ID: <7211338.biJDk4bQH6@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.2.6-301.fc23.x86_64; KDE/4.14.14; x86_64; ;
+	)
+In-Reply-To: <CAJqtCyZWnGCqp4x8JSbVbj-ZhkCi_UXJ5OpmUdvn6cP-wRjnEA@mail.gmail.com>
+References: <CAJqtCybKFSzf2uhe3ox7LTExCOF+KGNGRHL_hecz6LipTKNmug@mail.gmail.com>
+	<2180797.fvhLvehB0f@peggleto-mobl.ger.corp.intel.com>
+	<CAJqtCyZWnGCqp4x8JSbVbj-ZhkCi_UXJ5OpmUdvn6cP-wRjnEA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <DB59870584238C45879465F0A2E5C3F1807544@IRVEXCHMB14.corp.ad.broadcom.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: generating shared-state statistics from build
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Help with Opensips Recipe - QA run found fatal errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,46 +46,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Dec 2015 16:22:21 -0000
-X-Groupsio-MsgNum: 27551
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jq0ap7NbKX2Kqbes"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 01 Dec 2015 16:56:43 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---jq0ap7NbKX2Kqbes
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Caio,
 
-On Tue, Dec 01, 2015 at 03:23:01PM +0000, Luke (Lucas) Starrett wrote:
-> Hi,
->=20
-> Is there any existing way to track usage of shared state by a build?  In =
-a multi-user environment I'm interesting in knowing how often a build is hi=
-tting in the shared state cache vs. rebuilding.  Typically would have a glo=
-bally visible shared state cache mirror updated by a nightly/periodic build=
-, and a user-level shared state pointed to by one or more local workspaces.=
-  We would want to understand if we have excessive cases for which the cach=
-e is not used.
->=20
-> I'm sure there's some way I can post-process numerous logs for a given im=
-age to get this info, but thought maybe this has been solved already.
+compile-host-path isn't about the path being different - it's about the path 
+being something possibly bad i.e. on the host system. You really ought to fix 
+that one rather than disable it.
 
-Inherit buildstats-summary
+Cheers,
+Paul
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+On Tue, 01 Dec 2015 10:21:03 Caio wrote:
+> Hi Paul,
+> 
+> Thank you very much for your help.
+> I added INSANE_SKIP_${PN} += " libdir compile-host-path" because the
+> instalation is different from /usr/lib.
+> 
+> Thank you very much!
+> 
+> Regards,
+> 
+> Caio Pereira
+> 
+> 2015-11-25 20:26 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
+> > Hi Caio,
+> > 
+> > On Tuesday 24 November 2015 11:48:13 Caio wrote:
+> > > I'm writing a recipe to a Sip proxy Opensips, but I'm having problems
+> > 
+> > with
+> > 
+> > > QA Issues.
+> > > In the First time I tried to use make install from Opensips Makefile I
+> > 
+> > had
+> > 
+> > > problem with QA Issues,  so I added all the folders to FILES_${PN} and
+> > > FILES_${PN} but I still having problem.
+> > > 
+> > > So I decided to start small, creating the folder structure and copy only
+> > > the binary files and after I will copy all the files using the
+> > 
+> > do_install
+> > 
+> > > function.
+> > > 
+> > > But when I added the folders and I started to have problems with QA
+> > 
+> > again.
+> > 
+> > > FILES_${PN} = " \
+> > > 
+> > >         ${sbindir}/* \
+> > >         ${sysconfdir}/* \
+> > >         ${sysconfdir}/opensips/* \
+> > >         ${libdir}/* \
+> > >         ${libdir}/opensips/* \
+> > >         ${libdir}/opensips/modules/* \
+> > >         "
+> > > 
+> > > Someone could help me with this problem?
+> > > 
+> > > 
+> > > Thank you very much
+> > > 
+> > > Best Regards,
+> > > 
+> > > Caio Pereira
+> > > 
+> > > 
+> > > ERROR: QA Issue: opensips: The compile log indicates that host include
+> > > and/or library paths were used.
+> > > 
+> > >          Please check the log
+> > 
+> > '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
+> > ky> 
+> > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
+> > 
+> > information.
+> > 
+> > > [compile-host-path]
+> > > 
+> > > 
+> > > ERROR: QA run found fatal errors. Please consider fixing them.
+> > > ERROR: Function failed: do_package_qa
+> > 
+> > > ERROR: Logfile of failure stored in:
+> > /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
+> > y-> 
+> > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973 ERROR: Task
+> > 
+> > 9
+> > 
+> > (/home/icchw/fsl-community-bsp/sources/icchw/meta-caio/recipes-telephony/o
+> > pe> 
+> > > nsips/ opensips_2.2.0.bb, do_package_qa) failed with exit code '1'
+> > > 
+> > > 
+> > > cat
+> > 
+> > /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
+> > y-> 
+> > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973
+> > > 
+> > > DEBUG: Python function read_subpackage_metadata finished
+> > > ERROR: QA Issue: opensips: The compile log indicates that host include
+> > > and/or library paths were used.
+> > > 
+> > >          Please check the log
+> > 
+> > '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
+> > ky> 
+> > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
+> > 
+> > information.
+> > 
+> > > [compile-host-path]
+> > 
+> > Did you check the mentioned compile log?
+> > 
+> > FYI a good reference for these QA checks is:
+> > 
+> > 
+> > http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#qa-err
+> > ors-and-warnings
+> > 
+> > As mentioned there you should find somewhere in that log "is unsafe for
+> > cross-compilation" or "CROSS COMPILE Badness".
+> > 
+> > Cheers,
+> > Paul
+> > 
+> > --
+> > 
+> > Paul Eggleton
+> > Intel Open Source Technology Centre
 
---jq0ap7NbKX2Kqbes
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+-- 
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+Paul Eggleton
+Intel Open Source Technology Centre
 
-iEYEARECAAYFAlZdyXAACgkQN1Ujt2V2gBxvqgCgiHRaSXyM9CYO6Slsw3CfaUSm
-YmEAnRd6hSmX6dNX5hkZxTw2mrzNmoec
-=YvRY
------END PGP SIGNATURE-----
-
---jq0ap7NbKX2Kqbes--
