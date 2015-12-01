@@ -1,64 +1,52 @@
-Return-Path: <sarayu@tanmic.co.in>
+Return-Path: <Teemu.Keskinarkaus@Maximatecc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99076E009D7; Mon, 30 Nov 2015 21:39:37 -0800 (PST)
+	id 1473FE009D7; Mon, 30 Nov 2015 23:48:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.82.251.5 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA3C8E00978
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 21:39:31 -0800 (PST)
-Received: by igcto18 with SMTP id to18so88578723igc.0
-	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 21:39:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=tanmic-co-in.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=9ogwYrieyvisE0oo/c4pjMms6mXyrX9zJuYQZ6l9SOY=;
-	b=Mogpen3AzJeb3lSRtdNRs9dJgJa9MCE4vzzQwgRPnzdH9AvhW5fCXSOUbXwf5lxB97
-	WOV7fdkxO8Yloelepx2r3AiqEMuLVWdudOhiSYPt3K4SjNNIM7fbLGzHqGS4EprIN1B8
-	x2Uh5JlTuRxjNImyBrfeOtNf8vE+zBAURxD8TDM39kQgscbJOd38gA72eUQBD/w515iF
-	M3duNnHGCENak1A5E6yT5+xZtpvcbuel5NsqvJhmkPSmsMRF5zzapdt4UjKqpBTKlcz1
-	TsTR1Urm/CJY63urmra8pggSokJxbIDMKBZahJbRHUOCocld535XuiWOo6rDcQPwslPQ
-	Ll7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=9ogwYrieyvisE0oo/c4pjMms6mXyrX9zJuYQZ6l9SOY=;
-	b=Jf5zzB7Vu21aI/sAc5KcaLfJwNGN9X+WQJi/hCpXxxG8T5qlLJ3Nd1z93YsEgewVlB
-	Vn9uA1t08/Ww8nqCzACmFOD8xufCIoJ1PykrDbyWLIrQFxq9Ie/GXC3dVavp5mtDhxTb
-	y7qjlUOaywv9x9//U4kIl9cj4OrUmnmfcVE3jevo3AkmQDNICjgQJANOhOOvpw9cXkzI
-	Vzfs3yA74TEJFOoi+xePRSF23dugFSIi68HtWUMt5RDnYB2oentj5u6AHUQl/G+7mXiw
-	IdNxNcNTTIEhhmc45Ja75bs94c580C5VNW7e9OqUckb8j0j3gPUrxEyn/+BMuXC9vVIv
-	UnyA==
-X-Gm-Message-State: ALoCoQl8MpdqrmyQLbHpqfcLqjV0+jyCURJuxN0zrxcNgZuK7JmZMQ6LSG90E9f1uYyIq4D1yZ/y
+X-Greylist: delayed 410 seconds by postgrey-1.32 at yocto-www;
+	Mon, 30 Nov 2015 23:48:11 PST
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B88EFE0088C
+	for <yocto@yoctoproject.org>; Mon, 30 Nov 2015 23:48:11 -0800 (PST)
+Received: from [216.82.251.39] by server-5.bemta-12.messagelabs.com id
+	FB/86-02526-12F4D565; Tue, 01 Dec 2015 07:41:21 +0000
+X-Env-Sender: Teemu.Keskinarkaus@Maximatecc.com
+X-Msg-Ref: server-7.tower-164.messagelabs.com!1448955680!2414708!1
+X-Originating-IP: [207.250.73.121]
+X-StarScan-Received: 
+X-StarScan-Version: 7.19.2; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 33544 invoked from network); 1 Dec 2015 07:41:21 -0000
+Received: from unknown (HELO ammail.actuant.com) (207.250.73.121)
+	by server-7.tower-164.messagelabs.com with AES256-SHA encrypted SMTP;
+	1 Dec 2015 07:41:21 -0000
+Received: from AMDTCEX11.actuant.pri ([fe80::f86b:7a40:d71b:bb92]) by
+	AMDTCEX10.actuant.pri ([fe80::40f6:8682:1d1f:3805%17]) with mapi id
+	14.03.0174.001; Tue, 1 Dec 2015 01:41:19 -0600
+From: "Keskinarkaus, Teemu" <Teemu.Keskinarkaus@Maximatecc.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [prelink-cross] Prelinking to wrong library ld-linux.so.3
+	instead ld-linux-armhf.so.3
+Thread-Index: AdEsA66Z0K5aj1c1QQSl+x22G41JXQ==
+Date: Tue, 1 Dec 2015 07:41:18 +0000
+Message-ID: <83DB4EC8FADD45428E3CC4E3664761FD3FFC3194@AMDTCEX11.actuant.pri>
+Accept-Language: fi-FI, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.10.116]
 MIME-Version: 1.0
-X-Received: by 10.50.111.114 with SMTP id ih18mr480906igb.9.1448948370933;
-	Mon, 30 Nov 2015 21:39:30 -0800 (PST)
-Sender: sarayu@tanmic.co.in
-Received: by 10.107.19.142 with HTTP; Mon, 30 Nov 2015 21:39:30 -0800 (PST)
-In-Reply-To: <CAMKF1spKsEq+FUCS5wk9Xs5oJo5CrW+PxbkL3wLLoO1OZ9AE1Q@mail.gmail.com>
-References: <CAF5S8SN2wHM39fbLuj+jT5d8mM-e83sey_aJ7vYHa-9=ifzS_A@mail.gmail.com>
-	<CAMKF1spKsEq+FUCS5wk9Xs5oJo5CrW+PxbkL3wLLoO1OZ9AE1Q@mail.gmail.com>
-Date: Tue, 1 Dec 2015 11:09:30 +0530
-X-Google-Sender-Auth: hsaY8Pt9QdTvsLPQweKKJNvawec
-Message-ID: <CAF5S8SNk3ijxCwo4FGyG_05ASYVsV_9TDcN21hJEC_KnBQKWcQ@mail.gmail.com>
-From: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Kernel header generation
+Subject: [prelink-cross] Prelinking to wrong library ld-linux.so.3 instead ld-linux-armhf.so.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,213 +58,260 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Dec 2015 05:39:37 -0000
-Content-Type: multipart/alternative; boundary=089e0149be0cf2a4db0525cf949c
+X-List-Received-Date: Tue, 01 Dec 2015 07:48:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_83DB4EC8FADD45428E3CC4E3664761FD3FFC3194AMDTCEX11actuan_"
 
---089e0149be0cf2a4db0525cf949c
-Content-Type: text/plain; charset=UTF-8
-
-Hi Khem .
-
-Thanks for your response. But i am not sure if i understand clearly. My
-intention here is to generate kernel headers and i wanted to understand how
-to do the same .
-
-Based on some online reference , I tried to add the lines (
-IMAGE_INSTALL_append
-= " kernel-devsrc"
-TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc") in my image file but got
-some errors as shown below.
-ERROR: Nothing RPROVIDES 'kernel-devsrc' (but
-/home/sarayu/freescale/v2.0/Freescale-Linux-SDK-for-LS1021A-Rev2-v0.4-20150803-yocto/meta-fsl-networking/images/
-fsl-image-core.bb RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'kernel-devsrc' is unbuildable, removing...
-ERROR: Required build target 'fsl-image-core' has no buildable providers.
-
-
-I understood that the kernel-devsrc.bb is not present in my SDK and i tried
-to manually add it in the kernel-recipies by using the online link (
-https://github.com/01org/luv-yocto/blob/master/meta/recipes-kernel/linux/kernel-devsrc.bb)
-but looks like it has some additional dependencies as my build failed again
-with the below error.
-
-ERROR: ExpansionError during parsing /home/sarayu/freescale/v2.0/
-Freescale-Linux-SDK-for-LS1021A-Rev2-v0.4-20150803-
-yocto/meta-fsl-networking/images/fsl-image-core.bb: Failure expanding
-variable KERNEL_VERSION: ExpansionError: Failure expanding variable
-KERNEL_VERSION, expression was ${@get_kernelversion_headers('
-/home/sarayu/freescale/v2.0/Freescale-Linux-SDK-for-
-LS1021A-Rev2-v0.4-20150803-yocto/build_ls1021atwr_release/tmp/sysroots/ls1021atwr/usr/src/kernel')}
-which triggered exception NameError: name 'get_kernelversion_headers' is
-not defined
-
-My question is how can we generate kernel headers from yocto source . If
-you have any reference or sample for the same please do share it with me .
-
-Thanks in advance for your help.
-
-
-Thanks and Regards,
-Sarayu K S
-Tech Lead
-Zaikenn Technologies
-
-On Tue, Dec 1, 2015 at 1:29 AM, Khem Raj <raj.khem@gmail.com> wrote:
-
->
-> On Nov 27, 2015 5:48 AM, "Sarayu Krishna Sivanandam" <sarayu@zaikenn.com>
-> wrote:
-> >
-> > Hi ,
-> >
-> > I have written a kernel module which i am currently building along with
-> the yocto kernel but i want to be able to move my code to a different
-> repository and be able to build it as a stand alone module.
-> >
-> > To do so , i will need the kernel headers to be generated from the linux
-> kernel on yocto . Can you please provide me the steps to build the kernel
-> headers and be able to install it outside the yocto setup.
->
-> You need to look into building it as external module first. Thats totally
-> between kbuild and your module build system. Once that is in place then you
-> just write a new recipe for your module and inherit module class in it
-> mainly doing the build and packaging from OE point. There already are many
-> such recipes already in meta data
-> >
-> > I am using the QorIQ-SDK-V1.8 SDK .
-> >
-> > Thanks in advance for your help.
-> > Thanks and Regards,
-> > Sarayu K S
-> > Tech Lead
-> > Zaikenn Technologies
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---089e0149be0cf2a4db0525cf949c
-Content-Type: text/html; charset=UTF-8
+--_000_83DB4EC8FADD45428E3CC4E3664761FD3FFC3194AMDTCEX11actuan_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;com=
-ic sans ms&#39;,sans-serif">Hi Khem .=C2=A0</div><div class=3D"gmail_defaul=
-t" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif"><br></div><div =
-class=3D"gmail_default" style=3D"font-family:&#39;comic sans ms&#39;,sans-s=
-erif">Thanks for your response. But i am not sure if i understand clearly. =
-My intention here is to generate kernel headers and i wanted to understand =
-how to do the same .=C2=A0</div><div class=3D"gmail_default" style=3D"font-=
-family:&#39;comic sans ms&#39;,sans-serif"><br></div><div class=3D"gmail_de=
-fault" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif">Based on so=
-me online reference , I tried to add the lines (=C2=A0<span style=3D"color:=
-rgb(7,55,99);font-family:&#39;trebuchet ms&#39;,sans-serif;font-size:12.8px=
-">IMAGE_INSTALL_append =3D &quot; kernel-devsrc&quot;</span></div><div clas=
-s=3D"gmail_default" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif=
-"><span style=3D"color:rgb(7,55,99);font-family:&#39;trebuchet ms&#39;,sans=
--serif;font-size:12.8px">TOOLCHAIN_TARGET_TASK_append =3D &quot; kernel-dev=
-src&quot;)=C2=A0</span>in my image file but got some errors as shown below.=
-=C2=A0</div><div class=3D"gmail_default" style=3D"font-family:&#39;comic sa=
-ns ms&#39;,sans-serif"><div class=3D"gmail_default" style=3D"font-family:ar=
-ial,sans-serif;font-size:12.8px"><font face=3D"comic sans ms, sans-serif" c=
-olor=3D"#ff0000">ERROR: Nothing RPROVIDES &#39;kernel-devsrc&#39; (but /hom=
-e/sarayu/freescale/v2.0/Freescale-Linux-SDK-for-LS1021A-Rev2-v0.4-20150803-=
-yocto/meta-fsl-networking/images/<a href=3D"http://fsl-image-core.bb/" targ=
-et=3D"_blank">fsl-image-core.bb</a>=C2=A0RDEPENDS on or otherwise requires =
-it)</font></div><div class=3D"gmail_default" style=3D"font-family:arial,san=
-s-serif;font-size:12.8px"><font face=3D"comic sans ms, sans-serif" color=3D=
-"#ff0000">NOTE: Runtime target &#39;kernel-devsrc&#39; is unbuildable, remo=
-ving...</font></div><div class=3D"gmail_default" style=3D"font-family:arial=
-,sans-serif;font-size:12.8px"><font face=3D"comic sans ms, sans-serif" colo=
-r=3D"#ff0000">ERROR: Required build target &#39;fsl-image-core&#39; has no =
-buildable providers.</font></div><div class=3D"gmail_default" style=3D"font=
--family:arial,sans-serif;font-size:12.8px"><br></div></div><div class=3D"gm=
-ail_default" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif"><br><=
-/div><div class=3D"gmail_default" style=3D"font-family:&#39;comic sans ms&#=
-39;,sans-serif">I understood that the <a href=3D"http://kernel-devsrc.bb">k=
-ernel-devsrc.bb</a> is not present in my SDK and i tried to manually add it=
- in the kernel-recipies by using the online link (<a href=3D"https://github=
-.com/01org/luv-yocto/blob/master/meta/recipes-kernel/linux/kernel-devsrc.bb=
-">https://github.com/01org/luv-yocto/blob/master/meta/recipes-kernel/linux/=
-kernel-devsrc.bb</a>) but looks like it has some additional dependencies as=
- my build failed again with the below error.</div><div class=3D"gmail_defau=
-lt" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif"><br></div><div=
- class=3D"gmail_default" style=3D"font-family:&#39;comic sans ms&#39;,sans-=
-serif"><font color=3D"#ff0000"><span style=3D"font-size:12.8px">ERROR: Expa=
-nsionError during parsing /home/sarayu/freescale/v2.0/</span><span style=3D=
-"font-size:12.8px">Freescale-Linux-SDK-for-</span><span style=3D"font-size:=
-12.8px">LS1021A-Rev2-v0.4-20150803-</span><span style=3D"font-size:12.8px">=
-yocto/meta-fsl-networking/</span><span style=3D"font-size:12.8px">images/</=
-span><a href=3D"http://fsl-image-core.bb/" target=3D"_blank" style=3D"font-=
-size:12.8px">fsl-image-core.bb</a><span style=3D"font-size:12.8px">: Failur=
-e expanding variable KERNEL_VERSION: ExpansionError: Failure expanding vari=
-able KERNEL_VERSION, expression was ${@get_kernelversion_headers(&#39;</spa=
-n><span style=3D"font-size:12.8px">/home/sarayu/freescale/v2.0/</span><span=
- style=3D"font-size:12.8px">Freescale-Linux-SDK-for-</span><span style=3D"f=
-ont-size:12.8px">LS1021A-Rev2-v0.4-20150803-</span><span style=3D"font-size=
-:12.8px">yocto/build_ls1021atwr_</span><span style=3D"font-size:12.8px">rel=
-ease/tmp/sysroots/</span><span style=3D"font-size:12.8px">ls1021atwr/usr/sr=
-c/kernel&#39;)} which triggered exception NameError: name &#39;get_kernelve=
-rsion_headers&#39; is not defined</span></font><br></div><div class=3D"gmai=
-l_default" style=3D"font-family:&#39;comic sans ms&#39;,sans-serif"><br></d=
-iv><div class=3D"gmail_default" style=3D"font-family:&#39;comic sans ms&#39=
-;,sans-serif">My question is how can we generate kernel headers from yocto =
-source . If you have any reference or sample for the same please do share i=
-t with me .=C2=A0</div><div class=3D"gmail_default" style=3D"font-family:&#=
-39;comic sans ms&#39;,sans-serif"><br></div><div class=3D"gmail_default" st=
-yle=3D"font-family:&#39;comic sans ms&#39;,sans-serif">Thanks in advance fo=
-r your help.=C2=A0</div><div class=3D"gmail_default" style=3D"font-family:&=
-#39;comic sans ms&#39;,sans-serif"><br></div></div><div class=3D"gmail_extr=
-a"><br clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><=
-div><div dir=3D"ltr"><font face=3D"comic sans ms, sans-serif">Thanks and Re=
-gards,</font><div><font face=3D"comic sans ms, sans-serif">Sarayu K S=C2=A0=
-</font></div><div><font face=3D"comic sans ms, sans-serif">Tech Lead=C2=A0<=
-/font></div><div><font face=3D"comic sans ms, sans-serif">Zaikenn Technolog=
-ies</font></div></div></div></div></div></div>
-<br><div class=3D"gmail_quote">On Tue, Dec 1, 2015 at 1:29 AM, Khem Raj <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">=
-raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<span class=3D""><p dir=3D"ltr"><br>
-On Nov 27, 2015 5:48 AM, &quot;Sarayu Krishna Sivanandam&quot; &lt;<a href=
-=3D"mailto:sarayu@zaikenn.com" target=3D"_blank">sarayu@zaikenn.com</a>&gt;=
- wrote:<br>
-&gt;<br>
-&gt; Hi ,=C2=A0<br>
-&gt;<br>
-&gt; I have written a kernel module which i am currently building along wit=
-h the yocto kernel but i want to be able to move my code to a different rep=
-ository and be able to build it as a stand alone module.<br>
-&gt;<br>
-&gt; To do so , i will need the kernel headers to be generated from the lin=
-ux kernel on yocto . Can you please provide me the steps to build the kerne=
-l headers and be able to install it outside the yocto setup.</p>
-</span><p dir=3D"ltr">You need to look into building it as external module =
-first. Thats totally between kbuild and your module build system. Once that=
- is in place then you just write a new recipe for your module and inherit m=
-odule class in it mainly doing the build and packaging from OE point. There=
- already are many such recipes already in meta data<span class=3D""><br>
-&gt;<br>
-&gt; I am using the=C2=A0QorIQ-SDK-V1.8 SDK=C2=A0.=C2=A0<br>
-&gt;<br>
-&gt; Thanks in advance for your help.<br>
-&gt; Thanks and Regards,<br>
-&gt; Sarayu K S=C2=A0<br>
-&gt; Tech Lead=C2=A0<br>
-&gt; Zaikenn Technologies<br>
-&gt;<br></span><span class=3D"">
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</span></p>
-</blockquote></div><br></div>
+Hi,
 
---089e0149be0cf2a4db0525cf949c--
+As the subject states, I'm having that problem with Yocto. I'm using Yocto =
+1.7 and already updated the prelink-cross to latest version.  This happens =
+only on the applications I've added myself. The actual Yocto applications c=
+ompiles just fine. I don't have any autoconf in use with my applications so=
+ I'm not sure if that has anything to do with the prelink issue.
+
+As a workaround I've made symbolic link from /lib/ld-linux-armhf.so.3 to /l=
+ib/ld-linux.so.3, but I would like to solve the actual problem.
+
+With Yocto 1.7 default prelink I get following errors to log.do_rootfs:
+
+build/tmp/sysroots/i686-linux/usr/sbin/prelink: /usr/bin/weston-terminal: U=
+sing /lib/ld-linux-armhf.so.3, not /lib/ld-linux.so.3 as dynamic linker
+
+With latest prelink I get following errors in that log:
+
+/build/tmp/sysroots/i686-linux/usr/sbin/prelink: /usr/bin/testapplication: =
+Could not parse ` /build/tmp/sysroots/i686-linux/usr/sbin//prelink-rtld: er=
+ror while loading shared libraries: ld-linux-armhf.so.3'
+
+So with old version the prelink is using the proper library for existing Yo=
+cto applications, but my application is missing from that list. And with la=
+test application only my application is listed with not founding the librar=
+y it should.  Why it's only on those recipes I've created? I've looked some=
+ existing recipes and they don't have any prelink references. In local.conf=
+ I have "image-prelink" defined in USER_CLASSES.
+
+I found someone else having issues with prelink as well, but didn't find an=
+y solution that would work for me since it seems to happen only on applicat=
+ions/recipes that I've made.
+
+Here is the recipe for testapplication:
+
+--
+LICENSE =3D "LGPLv2"
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D59530bdf33659b29e73d4adb9f9f6552=
+"
+PR =3D "r15"
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+
+inherit localapp
+
+EXTRA_OEMAKE =3D " \
+CC_PREFIX=3Darm-poky-linux-gnueabi- \
+"
+
+--
+
+
+Localapp changes the source directory so sources can be locally.
+
+--
+inherit base externalsrc
+
+EXTERNALSRC =3D "${COREBASE}/../apps/${PN}"
+EXTERNALSRC_BUILD =3D "${EXTERNALSRC}"
+--
+
+Teemu Keskinarkaus
+Software system engineer
+
+
+
+________________________________
+
+Actuant Corporation Email Notice
+
+This message is intended only for the use of the Addressee and may contain =
+information that is PRIVILEGED and/or CONFIDENTIAL.
+This email is intended only for the personal and confidential use of the re=
+cipient(s) named above. If the reader of this email is not an intended reci=
+pient, you have received this email in error and any review, dissemination,=
+ distribution or copying is strictly prohibited.
+If you have received this email in error, please notify the sender immediat=
+ely by return mail and permanently delete the copy you received.
+
+Thank you.
+
+--_000_83DB4EC8FADD45428E3CC4E3664761FD3FFC3194AMDTCEX11actuan_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Century Gothic";
+	panose-1:2 11 5 2 2 2 2 2 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 70.85pt 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As the subject states, I&#8217;m having that problem=
+ with Yocto. I&#8217;m using Yocto 1.7 and already updated the prelink-cros=
+s to latest version. &nbsp;This happens only on the applications I&#8217;ve=
+ added myself. The actual Yocto applications compiles just
+ fine. I don&#8217;t have any autoconf in use with my applications so I&#82=
+17;m not sure if that has anything to do with the prelink issue.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As a workaround I&#8217;ve made symbolic link from /=
+lib/ld-linux-armhf.so.3 to /lib/ld-linux.so.3, but I would like to solve th=
+e actual problem.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With Yocto 1.7 default prelink I get following error=
+s to log.do_rootfs:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">build/tmp/sysroots/i686-linux/usr/sbin/prelink: /usr=
+/bin/weston-terminal: Using /lib/ld-linux-armhf.so.3, not /lib/ld-linux.so.=
+3 as dynamic linker<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With latest prelink I get following errors in that l=
+og:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">/build/tmp/sysroots/i686-linux/usr/sbin/prelink: /us=
+r/bin/testapplication: Could not parse ` /build/tmp/sysroots/i686-linux/usr=
+/sbin//prelink-rtld: error while loading shared libraries: ld-linux-armhf.s=
+o.3'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So with old version the prelink is using the proper =
+library for existing Yocto applications, but my application is missing from=
+ that list. And with latest application only my application is listed with =
+not founding the library it should.
+ &nbsp;Why it&#8217;s only on those recipes I&#8217;ve created? I&#8217;ve =
+looked some existing recipes and they don&#8217;t have any prelink referenc=
+es. In local.conf I have &#8220;image-prelink&#8221; defined in USER_CLASSE=
+S.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I found someone else having issues with prelink as w=
+ell, but didn&#8217;t find any solution that would work for me since it see=
+ms to happen only on applications/recipes that I&#8217;ve made.<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here is the recipe for testapplication:<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">--<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE =3D &quot;LGPLv2&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3D5953=
+0bdf33659b29e73d4adb9f9f6552&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PR =3D &quot;r15&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:=
+&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">inherit localapp<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">EXTRA_OEMAKE =3D &quot; \<o:p></o:p></p>
+<p class=3D"MsoNormal">CC_PREFIX=3Darm-poky-linux-gnueabi- \<o:p></o:p></p>
+<p class=3D"MsoNormal">&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">--<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Localapp changes the source directory so sources can=
+ be locally.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">--<o:p></o:p></p>
+<p class=3D"MsoNormal">inherit base externalsrc<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">EXTERNALSRC =3D &quot;${COREBASE}/../apps/${PN}&quot=
+;<o:p></o:p></p>
+<p class=3D"MsoNormal">EXTERNALSRC_BUILD =3D &quot;${EXTERNALSRC}&quot;<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">--<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"line-height:9.0pt;mso-line-height-rule:exac=
+tly"><b><span style=3D"font-size:10.0pt;font-family:&quot;Century Gothic&qu=
+ot;,&quot;sans-serif&quot;">Teemu Keskinarkaus<br>
+</span></b><span style=3D"font-size:7.5pt;font-family:&quot;Century Gothic&=
+quot;,&quot;sans-serif&quot;">Software system engineer</span><b><span style=
+=3D"font-size:10.0pt;font-family:&quot;Century Gothic&quot;,&quot;sans-seri=
+f&quot;"><br>
+<br>
+</span></b><span style=3D"font-size:7.5pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"1"><br>
+Actuant Corporation Email Notice<br>
+<br>
+This message is intended only for the use of the Addressee and may contain =
+information that is PRIVILEGED and/or CONFIDENTIAL.<br>
+This email is intended only for the personal and confidential use of the re=
+cipient(s) named above. If the reader of this email is not an intended reci=
+pient, you have received this email in error and any review, dissemination,=
+ distribution or copying is strictly
+ prohibited.<br>
+If you have received this email in error, please notify the sender immediat=
+ely by return mail and permanently delete the copy you received.<br>
+<br>
+Thank you.<br>
+</font>
+</body>
+</html>
+
+--_000_83DB4EC8FADD45428E3CC4E3664761FD3FFC3194AMDTCEX11actuan_--
