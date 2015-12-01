@@ -1,6 +1,6 @@
-Return-Path: <paul.eggleton@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A777CE00AE4; Tue,  1 Dec 2015 11:12:00 -0800 (PST)
+	id 81023E00AE4; Tue,  1 Dec 2015 11:30:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,34 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C3B3E00ADD
-	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 11:11:57 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Dec 2015 11:11:56 -0800
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 574B8E00ADD
+	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 11:30:12 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga103.jf.intel.com with ESMTP; 01 Dec 2015 11:30:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,370,1444719600"; d="scan'208";a="864407646"
+X-IronPort-AV: E=Sophos;i="5.20,370,1444719600"; 
+   d="scan'208";a="5684951"
 Received: from hlim3-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.139.190])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Dec 2015 11:11:53 -0800
-From: Paul Eggleton <paul.eggleton@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 02 Dec 2015 08:11:51 +1300
-Message-ID: <2124896.i64Oee0N8V@peggleto-mobl.ger.corp.intel.com>
+	by fmsmga004.fm.intel.com with ESMTP; 01 Dec 2015 11:30:05 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Daniel." <danielhilst@gmail.com>
+Date: Wed, 02 Dec 2015 08:30:03 +1300
+Message-ID: <5388513.PZBop6V2aC@peggleto-mobl.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.14.10 (Linux/4.2.6-301.fc23.x86_64; KDE/4.14.14; x86_64; ;
 	)
-In-Reply-To: <565DE64A.60805@linux.intel.com>
-References: <1448920985-995-1-git-send-email-alejandro.franco@linux.intel.com>
-	<565DDB89.1030005@intel.com> <565DE64A.60805@linux.intel.com>
+In-Reply-To: <CAF3SDA4y9cq+NtKQRgzP7bRAAEXyxSc4tMH+N8aSgEhXhyLc3Q@mail.gmail.com>
+References: <CAF3SDA531vpWpfiSuKSr8FhbdMdt=1ma8LMhG55_uTia=E7q2A@mail.gmail.com>
+	<1448926152.12905.55.camel@intel.com>
+	<CAF3SDA4y9cq+NtKQRgzP7bRAAEXyxSc4tMH+N8aSgEhXhyLc3Q@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [PATCHv2] [layerindex-web] recipe blacklisted information
+Cc: yocto@yoctoproject.org, Saul Wold <saul.wold@intel.com>
+Subject: Re: One kernel tree, two BSP layers, two defconfigs. How to pickup the right one based on MACHINE value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,31 +47,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Dec 2015 19:12:00 -0000
+X-List-Received-Date: Tue, 01 Dec 2015 19:30:17 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 01 Dec 2015 12:26:18 Alex Franco wrote:
-> @Martin, I think this information about blacklisting would indeed be
-> very useful, thanks for your input as always.
+On Tue, 01 Dec 2015 11:27:19 Daniel. wrote:
+> Hi Saul, thanks for your reply
 > 
-> @Belen, yes indeed I noticed the label also hovers even when no tooltip
-> is present, this bugged me a little too to be honest! No worries though,
-> I can fix the hover situation and also add in the link to the
-> documentation.
-> @All: I suppose the link should go to:
+> 2015-11-30 21:29 GMT-02:00 Saul Wold <saul.wold@intel.com>:
+> > On Mon, 2015-11-30 at 17:25 -0200, Daniel. wrote:
+> >> Hi,
+> >> 
+> >> I have one kernel tree where I keep all my modules in-tree. Inside
+> >> kernel I have two FOO_defconfig and BAR_defconfig which are
+> >> configurations for FOO-board and BAR-board. On Yocto I have
+> >> core-layer, FOO-bsp layer and BAR-bsp layer. At core-layer I have
+> >> linux-custom.bb file which has the URI for kernel tree with a dummy
+> >> defconfig. At FOO-bsp and BAR-bsp a have a .bbappend that adds a
+> >> folder with the right defconfig for each board.
+> >> 
+> >> My doubt is: I have two .bbappends, on two distinct layers being
+> >> applied at same time? Both layers are pointed at
+> >> build/conf/bblayers.conf.
+> > 
+> > So you are including both your BSP Layers in the bblayers, that will
+> > probably cause problems based on your description above.
+> > 
+> > Another option is to look at using overrides and have 1 layer that
+> > supports both boards if they are similar and share other items.
+> > 
+> >> How can I have sure to pick up the right defconfig at build time?
+> >> 
+> >> I've tried to delete core-layer and have two kernel recipes with
+> >> distinct names, but Yocto complains about two recipes being selected
+> >> at same time for build (because of virtual/kernel feature or
+> >> something
+> >> alike). So I want to keep one kernel recipe and select the right
+> >> defconfig based on MACHINE value.
+> > 
+> > You can use PREFERRED_PROVIDER_virtual/kernel to have multiple
+> > alternate kernel present and set it in your <machine>.conf to select
+> > the kernel you want.
+> > 
+> > If your kernel recipe does not inherit kernel.bbclass you will need to
+> > set PROVIDES
+> > 
+> > You should also be sure to set COMPATIBLE_MACHINE for each machine
+> > 
+> >> Both defconfig are present on arch/arm/configs. Can I overwrite
+> >> do_config()? Is that safe? About the .bbappends: Should be two
+> >> .bbappends on same .bb file be avoided?
+> > 
+> > You can use a do_config_prepend() to deal with moving the correct
+> > defconfig.
 > 
-> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-> PNBLACKLIST
+> Yeah I'm doing that. As you suggested I removed the .bbappend files and
+> have one recipe that support both machines, the config prepend looks
+> like this:
+> 
+> do_configure_prepend() {
+>     case "${MACHINE}" in
+>         enlace-imx6)
+>         bbnote "Using csi_enlace_imx6_defconfig"
+>         cp -v ${S}/arch/arm/configs/csi_enlace_imx6_defconfig ${S}/defconfig
+> ;;
+>     pharosserver-imx6)
+>             bbnote "Using csi_pharosserver_imx6_defconfig"
+>         cp -v ${S}/arch/arm/configs/csi_pharosserver_imx6_defconfig
+> ${S}/defconfig
+>         ;;
+>     esac
+> }
 
-Yes, that's really the only place we could link to; unfortunately though I 
-just noticed there is an obvious mistake in there about inheriting the class 
-globally within the recipe (a contradiction); it also doesn't mention the 
-class is inherited globally by default.
+We do already have functionality that avoids the need for custom scripting 
+like this.
+
+Unless you really need the defconfigs in-tree, the typical way to achieve this 
+is to add "file://defconfig" to SRC_URI, then have defconfig files for each of the 
+machines under subdirectories named the same as the machine. So your directory 
+structure would look like this:
+
+.../recipes-linux/linux-something/linux-something_versionnumber.bb
+.../recipes-linux/linux-something/linux-something/enlace-imx6/defconfig
+.../recipes-linux/linux-something/linux-something/pharosserver-imx6/defconfig
 
 Cheers,
 Paul
 
 -- 
+
 Paul Eggleton
 Intel Open Source Technology Centre
 
