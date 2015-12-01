@@ -1,41 +1,54 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7496FE00AE4; Tue,  1 Dec 2015 11:59:30 -0800 (PST)
+	id 58157E00AE4; Tue,  1 Dec 2015 12:03:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.50 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (mikehabibi[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34CC5E00ADD
-	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 11:59:27 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Dec 2015 11:59:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,370,1444719600"; d="scan'208";a="864439878"
-Received: from hlim3-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.139.190])
-	by fmsmga002.fm.intel.com with ESMTP; 01 Dec 2015 11:59:25 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Daniel." <danielhilst@gmail.com>
-Date: Wed, 02 Dec 2015 08:59:23 +1300
-Message-ID: <3028076.Z7uCxAujOy@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.2.6-301.fc23.x86_64; KDE/4.14.14; x86_64; ;
-	)
-In-Reply-To: <CAF3SDA4uLxYPJHxkYkAG3NGULuLfDiyHHEwh1480bAfQuATsOg@mail.gmail.com>
-References: <CAF3SDA531vpWpfiSuKSr8FhbdMdt=1ma8LMhG55_uTia=E7q2A@mail.gmail.com>
-	<5388513.PZBop6V2aC@peggleto-mobl.ger.corp.intel.com>
-	<CAF3SDA4uLxYPJHxkYkAG3NGULuLfDiyHHEwh1480bAfQuATsOg@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f50.google.com (mail-lf0-f50.google.com
+	[209.85.215.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2086E00ADD
+	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 12:03:57 -0800 (PST)
+Received: by lfdl133 with SMTP id l133so23533224lfd.2
+	for <yocto@yoctoproject.org>; Tue, 01 Dec 2015 12:03:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=0XfsmplPbHu7ejCazh0rLhbXmyr4z+OCKq89fPsODKg=;
+	b=0Hqys06G6DrYml+B/llmV4cHSC3bkCftXiQ5Be6tiQN5xKYHrFI2vDhIc6CIUdoxJp
+	Y1JSTDGkpQaJ0adLKYvzZlSCeER8jzLjUQDuHAqLQszoul2pXAK2WGtkzzPohBgrrZhJ
+	6jYloPRTK0djlZ3pBddEkYge4EPF5ooqVaZMDnqMImYhpZyJ39qqLMRvcKZWM00KVaPA
+	bxu9OAkQPj6FPf2US/8l3GqyKShR9HH3foUyMwcjmDQePm8JG0VHIIQlpIctAt99+tgQ
+	pSr/1h6DKQ7lWZBhsoi4bd1/wHyvLmZtAFxf2P4UjGrUSSiO19tlHUhdCUt8L/zw4cs/
+	+GNA==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Saul Wold <saul.wold@intel.com>
-Subject: Re: One kernel tree, two BSP layers, two defconfigs. How to pickup the right one based on MACHINE value?
+X-Received: by 10.112.129.233 with SMTP id nz9mr12112115lbb.112.1449000235997; 
+	Tue, 01 Dec 2015 12:03:55 -0800 (PST)
+Received: by 10.114.11.226 with HTTP; Tue, 1 Dec 2015 12:03:55 -0800 (PST)
+In-Reply-To: <BN3PR0501MB1090CB712DB3C7DE23120AA3BB0F0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+References: <CAOsp8o_WfYUB2nBXmGdVTF27RmkjzbvYJrHrW+R-Lv-P8WzS3A@mail.gmail.com>
+	<BN3PR0501MB1090CB712DB3C7DE23120AA3BB0F0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Date: Tue, 1 Dec 2015 14:03:55 -0600
+Message-ID: <CAOsp8o9N0K0+ZgUcS7vdQE55NDaRW1F7a+cZsN3TTvA4LUW8hw@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Best practice for files copied directly into sysroot?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,125 +60,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Dec 2015 19:59:30 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 01 Dec 2015 20:03:59 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a839e58a0c80525dba831
 
-Yes that's been possible for quite a long time now (possibly going back to OE-
-classic).
+--047d7b3a839e58a0c80525dba831
+Content-Type: text/plain; charset=UTF-8
 
-Cheers,
-Paul
+Thanks Bryan!
 
-On Tue, 01 Dec 2015 17:48:26 Daniel. wrote:
-> Hmmm that seems to fit as a glove to me, is that possible on Daisy?
-> 
+On Tue, Dec 1, 2015 at 1:50 PM, Bryan Evenson <bevenson@melinkcorp.com>
+wrote:
+
+> Michael,
+>
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Michael Habibi
+> > Sent: Tuesday, December 01, 2015 10:26 AM
+> > To: yocto@yoctoproject.org
+> > Subject: [yocto] Best practice for files copied directly into sysroot?
+> >
+> > I am working on potentially migrating our distribution to Yocto (will be
+> a long,
+> > long process). We have an area of our filesystem where any file placed
+> will go
+> > directly into the rootfs of the target. This works well with our
+> product, as we
+> > have certain binaries and scripts that need to be copied directly, and
+> there's
+> > no other real step involved (no compilation, etc). Is there a best
+> practice or
+> > existing class that handles this? I saw mention of a binary/ directory
+> but I
+> > wasn't sure if that was for this or something else.
+> >
+> > Thanks,
+> > Michael
+>
+> I'm glad I decided to answer your question because I think I found an
+> easier way to do it than I have been doing this in the past.  If you want
+> to be able to update the files on your system at a later date, you will
+> want to make your own recipe which installs the binaries and scripts onto
+> the rootfs.  In general you create a recipe which does not have
+> do_configure or do_compile tasks.  There is a class that does this already
+> called "bin_package" that does this for you.  See the "Packaging Externally
+> Produced Binaries" section of the manual here:
+> http://www.yoctoproject.org/docs/2.0/mega-manual/mega-manual.html#new-recipe-testing-examples.
+>  So if you include the line "inherit bin_package" and follow the
+> instructions in that section of the manual, it should install all the files
+> to the rootfs that are included in the recipe.
+>
 > Regards,
-> - dhs
-> 
-> 2015-12-01 17:30 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
-> > On Tue, 01 Dec 2015 11:27:19 Daniel. wrote:
-> >> Hi Saul, thanks for your reply
-> >> 
-> >> 2015-11-30 21:29 GMT-02:00 Saul Wold <saul.wold@intel.com>:
-> >> > On Mon, 2015-11-30 at 17:25 -0200, Daniel. wrote:
-> >> >> Hi,
-> >> >> 
-> >> >> I have one kernel tree where I keep all my modules in-tree. Inside
-> >> >> kernel I have two FOO_defconfig and BAR_defconfig which are
-> >> >> configurations for FOO-board and BAR-board. On Yocto I have
-> >> >> core-layer, FOO-bsp layer and BAR-bsp layer. At core-layer I have
-> >> >> linux-custom.bb file which has the URI for kernel tree with a dummy
-> >> >> defconfig. At FOO-bsp and BAR-bsp a have a .bbappend that adds a
-> >> >> folder with the right defconfig for each board.
-> >> >> 
-> >> >> My doubt is: I have two .bbappends, on two distinct layers being
-> >> >> applied at same time? Both layers are pointed at
-> >> >> build/conf/bblayers.conf.
-> >> > 
-> >> > So you are including both your BSP Layers in the bblayers, that will
-> >> > probably cause problems based on your description above.
-> >> > 
-> >> > Another option is to look at using overrides and have 1 layer that
-> >> > supports both boards if they are similar and share other items.
-> >> > 
-> >> >> How can I have sure to pick up the right defconfig at build time?
-> >> >> 
-> >> >> I've tried to delete core-layer and have two kernel recipes with
-> >> >> distinct names, but Yocto complains about two recipes being selected
-> >> >> at same time for build (because of virtual/kernel feature or
-> >> >> something
-> >> >> alike). So I want to keep one kernel recipe and select the right
-> >> >> defconfig based on MACHINE value.
-> >> > 
-> >> > You can use PREFERRED_PROVIDER_virtual/kernel to have multiple
-> >> > alternate kernel present and set it in your <machine>.conf to select
-> >> > the kernel you want.
-> >> > 
-> >> > If your kernel recipe does not inherit kernel.bbclass you will need to
-> >> > set PROVIDES
-> >> > 
-> >> > You should also be sure to set COMPATIBLE_MACHINE for each machine
-> >> > 
-> >> >> Both defconfig are present on arch/arm/configs. Can I overwrite
-> >> >> do_config()? Is that safe? About the .bbappends: Should be two
-> >> >> .bbappends on same .bb file be avoided?
-> >> > 
-> >> > You can use a do_config_prepend() to deal with moving the correct
-> >> > defconfig.
-> >> 
-> >> Yeah I'm doing that. As you suggested I removed the .bbappend files and
-> >> have one recipe that support both machines, the config prepend looks
-> >> like this:
-> >> 
-> >> do_configure_prepend() {
-> >> 
-> >>     case "${MACHINE}" in
-> >>     
-> >>         enlace-imx6)
-> >>         bbnote "Using csi_enlace_imx6_defconfig"
-> >>         cp -v ${S}/arch/arm/configs/csi_enlace_imx6_defconfig
-> >>         ${S}/defconfig
-> >> 
-> >> ;;
-> >> 
-> >>     pharosserver-imx6)
-> >>     
-> >>             bbnote "Using csi_pharosserver_imx6_defconfig"
-> >>         
-> >>         cp -v ${S}/arch/arm/configs/csi_pharosserver_imx6_defconfig
-> >> 
-> >> ${S}/defconfig
-> >> 
-> >>         ;;
-> >>     
-> >>     esac
-> >> 
-> >> }
-> > 
-> > We do already have functionality that avoids the need for custom scripting
-> > like this.
-> > 
-> > Unless you really need the defconfigs in-tree, the typical way to achieve
-> > this is to add "file://defconfig" to SRC_URI, then have defconfig files
-> > for each of the machines under subdirectories named the same as the
-> > machine. So your directory structure would look like this:
-> > 
-> > .../recipes-linux/linux-something/linux-something_versionnumber.bb
-> > .../recipes-linux/linux-something/linux-something/enlace-imx6/defconfig
-> > .../recipes-linux/linux-something/linux-something/pharosserver-imx6/defcon
-> > fig
-> > 
-> > Cheers,
-> > Paul
-> > 
-> > --
-> > 
-> > Paul Eggleton
-> > Intel Open Source Technology Centre
+> Bryan
+>
+>
 
--- 
+--047d7b3a839e58a0c80525dba831
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Paul Eggleton
-Intel Open Source Technology Centre
+<div dir=3D"ltr">Thanks Bryan!</div><div class=3D"gmail_extra"><br><div cla=
+ss=3D"gmail_quote">On Tue, Dec 1, 2015 at 1:50 PM, Bryan Evenson <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:bevenson@melinkcorp.com" target=3D"_blank">b=
+evenson@melinkcorp.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">Michael,<br>
+<div><div class=3D"h5"><br>
+&gt; -----Original Message-----<br>
+&gt; From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-">yocto-</a><br>
+&gt; <a href=3D"mailto:bounces@yoctoproject.org">bounces@yoctoproject.org</=
+a>] On Behalf Of Michael Habibi<br>
+&gt; Sent: Tuesday, December 01, 2015 10:26 AM<br>
+&gt; To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt; Subject: [yocto] Best practice for files copied directly into sysroot?=
+<br>
+&gt;<br>
+&gt; I am working on potentially migrating our distribution to Yocto (will =
+be a long,<br>
+&gt; long process). We have an area of our filesystem where any file placed=
+ will go<br>
+&gt; directly into the rootfs of the target. This works well with our produ=
+ct, as we<br>
+&gt; have certain binaries and scripts that need to be copied directly, and=
+ there&#39;s<br>
+&gt; no other real step involved (no compilation, etc). Is there a best pra=
+ctice or<br>
+&gt; existing class that handles this? I saw mention of a binary/ directory=
+ but I<br>
+&gt; wasn&#39;t sure if that was for this or something else.<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Michael<br>
+<br>
+</div></div>I&#39;m glad I decided to answer your question because I think =
+I found an easier way to do it than I have been doing this in the past.=C2=
+=A0 If you want to be able to update the files on your system at a later da=
+te, you will want to make your own recipe which installs the binaries and s=
+cripts onto the rootfs.=C2=A0 In general you create a recipe which does not=
+ have do_configure or do_compile tasks.=C2=A0 There is a class that does th=
+is already called &quot;bin_package&quot; that does this for you.=C2=A0 See=
+ the &quot;Packaging Externally Produced Binaries&quot; section of the manu=
+al here: <a href=3D"http://www.yoctoproject.org/docs/2.0/mega-manual/mega-m=
+anual.html#new-recipe-testing-examples" rel=3D"noreferrer" target=3D"_blank=
+">http://www.yoctoproject.org/docs/2.0/mega-manual/mega-manual.html#new-rec=
+ipe-testing-examples</a>.=C2=A0 =C2=A0So if you include the line &quot;inhe=
+rit bin_package&quot; and follow the instructions in that section of the ma=
+nual, it should install all the files to the rootfs that are included in th=
+e recipe.<br>
+<br>
+Regards,<br>
+Bryan<br>
+<br>
+</blockquote></div><br></div>
 
+--047d7b3a839e58a0c80525dba831--
