@@ -1,37 +1,45 @@
-Return-Path: <Andy_Hung@pegatroncorp.com>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81A07E00546; Wed,  2 Dec 2015 01:48:09 -0800 (PST)
+	id 174FCE005A2; Wed,  2 Dec 2015 03:29:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [124.9.5.30 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ms.pegatroncorp.com (ms.pegatroncorp.com [124.9.5.30])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 560F8E00406
-	for <yocto@yoctoproject.org>; Wed,  2 Dec 2015 01:48:06 -0800 (PST)
-Received: from unknown (HELO PTW-EX-HUB04.PEGA.CORP.PEGATRON) ([172.18.6.20])
-	by ms.pegatroncorp.com with ESMTP; 02 Dec 2015 17:48:02 +0800
-Received: from PTW-EX-37.PEGA.CORP.PEGATRON ([fe80::5466:11cb:50e:8c0e]) by
-	PTW-EX-HUB04.PEGA.CORP.PEGATRON ([::1]) with mapi id 14.02.0247.003;
-	Wed, 2 Dec 2015 17:48:00 +0800
-From: =?big5?B?QW5keSBIdW5nKKx41vau2V9QZWdhdHJvbik=?=
-	<Andy_Hung@pegatroncorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Header files in /usr/include of rootfs
-Thread-Index: AdEs3gMs0WuWVCN/TciaPbQs1FxDKA==
-Date: Wed, 2 Dec 2015 09:47:59 +0000
-Message-ID: <6AC2D51E0855E34EBDB192F9BA81BFB3A743EBA2@PTW-EX-37.PEGA.CORP.PEGATRON>
-Accept-Language: zh-TW, en-US
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1D85E00406
+	for <yocto@yoctoproject.org>; Wed,  2 Dec 2015 03:28:56 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Dec 2015 03:28:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,372,1444719600"; d="scan'208";a="852190652"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Dec 2015 03:28:54 -0800
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.163]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.13]) with mapi id
+	14.03.0248.002; Wed, 2 Dec 2015 11:28:53 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "Luke  Starrett  (Lucas)" <lstarret@broadcom.com>
+Thread-Topic: [yocto] generating shared-state statistics from build
+Thread-Index: AQHRLPSfpEmb3wwLIUW2VCme+yBZfA==
+Date: Wed, 2 Dec 2015 11:28:52 +0000
+Message-ID: <D2848265.6BFCF%belen.barros.pena@intel.com>
+References: <DB59870584238C45879465F0A2E5C3F1807544@IRVEXCHMB14.corp.ad.broadcom.com>
+	<20151201162313.GB9354@jama>
+In-Reply-To: <20151201162313.GB9354@jama>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [220.135.73.14]
+user-agent: Microsoft-MacOutlook/14.5.8.151023
+x-originating-ip: [10.237.224.34]
 MIME-Version: 1.0
-Subject: Re: Header files in /usr/include of rootfs
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: generating shared-state statistics from build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,95 +51,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Dec 2015 09:48:09 -0000
-Content-Language: zh-TW
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 02 Dec 2015 11:29:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <C0288431D1C45343BF756A3B26D06C7C@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQW5kZXJzLA0KVGhhbmtzIGZvciB5b3VyIGhlbHAsIHBscyBzZWUgdXBkYXRlcyBiZWxvdywN
-Cg0KPiBNZXNzYWdlOiAyDQo+IERhdGU6IFR1ZSwgMjQgTm92IDIwMTUgMTQ6MjU6MTQgKzAxMDAN
-Cj4gRnJvbTogQW5kZXJzIERhcmFuZGVyIDxhbmRlcnNAY2hhcmdlc3Rvcm0uc2U+DQo+IFRvOiB5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIEhlYWRlciBmaWxl
-cyBpbiAvdXNyL2luY2x1ZGUgb2Ygcm9vdGZzDQo+IE1lc3NhZ2UtSUQ6IDwyMDE1MTEyNDEzMjUx
-NC5HQjIxNjVAYWQuY2hhcmdlc3Rvcm0uc2U+DQo+IENvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsg
-Y2hhcnNldD11dGYtOA0KDQo+ICogQW5keSBIdW5nKD8/P19QZWdhdHJvbikgPEFuZHlfSHVuZ0Bw
-ZWdhdHJvbmNvcnAuY29tPiBbMTUxMTI0IDExOjM1XToNCj4gPiBJIHdhcyB0cnlpbmcgdG8gYWRk
-IHNvbWUgcHJlLWJ1aWx0IGJpbmFyaWVzIGFuZCBmaWxlcyBieSB1c2luZyBhIHJlY2lwZS4NCj4g
-PiBUaGUgcmVjaXBlIGhhcyBzb21ldGhpbmcgbGlrZSB0aGlzOg0KDQo+ID4gU1JDX1VSSSA9IGZp
-bGU6Ly9maWxlczxmaWxlOi8vL1xcZmlsZXM+ID8NCj4gPiBkb19pbnN0YWxsKCkgew0KPiA+ICAg
-ICBpbnN0YWxsID9kICR7RH0NCj4gPiB9DQoNCj4JPiBXaGF0IGZpbGVzIGFyZSB5b3UgaW5zdGFs
-bGluZz8gSG93IGRvZXMgdGhvc2UgbG9vayBsaWtlPw0KPglUaGUgY29udGVudCBvZiB0aGUgZm9s
-ZGVyIGhhcyB0aG9zZSBzdWItZm9sZGVycywgc2Jpbiwgcm9vdCwgbGliLCBldGMuDQo+CVRob3Nl
-IHN1Yi1mb2xkZXJzIGNvbnRhaW5zIGZpbGVzIHN1Y2ggYXMgZXhlY3V0YWJsZSBiaW5hcmllcywg
-Y29uZmlnIGZpbGVzLCBrZXJuZWwgbW9kdWxlcywgLnNvIGZpbGVzIC4uLg0KPglBbGwgdGhlc2Ug
-ZmlsZXMgYXJlIGFjdHVhbGx5IGJ1aWx0IGZyb20gdGhlIHNvdXJjZSBjb2RlIG9mIGEgc3BlY2lm
-aWMgV2lGaSBkcml2ZXIsDQo+CXdoYXQgSSB3YW50IHRvIGRvIGlzIGluc3RhbGxpbmcgYWxsIHBy
-ZS1idWlsdCBiaW5hcmllcy9maWxlcyBpbnRvIGNvcnJlc3BvbmRpbmcgbG9jYXRpb25zIGluIHJv
-b3Rmcy4NCg0KPlRoZXJlJ3Mgbm8gd2F5IHRvIGJ1aWxkIHRoaXMgdXNpbmcgT0U/Li4uDQoNCj5U
-aG91Z2gsIHN1cmUsIGl0J3Mgc2hvdWxkIHdvcmsgYXMgbG9uZyBhcyB0aGUgYmluYXJpZXMgYW5k
-IGtlcm5lbCBtb2R1bGVzIGFjdHVhbGx5IGxvYWRzIGFuZCBydW5zLg0KDQo+ID4gRklMRVNfJHtQ
-Tn0gPSA/Lyo/DQoNCj4JPiBIZXJlIHlvdSBhZGQgc2F5IHRoYXQgYW55dGhpbmcgdGhhdCBoYXMg
-YmVlbiBpbnN0YWxsZWQsIGJ1dCBub3QgcHV0IGludG8gYW55IG90aGVyIHBhY2thZ2UsIHNob3Vs
-ZCBiZSBhZGRlZCB0byAke1BOfS4gSXMgdGhhdCB3aGF0IHlvdSB3YW50Pw0KPglZZXMsIGFsbCBm
-aWxlcyBhcmUgaW5zdGFsbGVkIGluIGEgcGFja2FnZS4NCg0KPiA+IEFMTE9XX0VNUFRZXyR7UE59
-ID0gPzE/DQoNCj4JPiBSZW1vdmUgdGhpcyBvbmUgdW5sZXNzICR7UE59IGlzIGdvaW5nIHRvIGJl
-IGVtcHR5Lg0KPglUaGlzIGxpbmUgaXMgcmVtb3ZlZC4NCg0KPiA+IElOU0FORV9TS0lQXyR7UE59
-ID0gP2RlYnVnLWZpbGVzIGRldi1zbz8NCg0KPgk+IFRoZXNlIG1pZ2h0IGJlIG5lZWRlZCBpZiB5
-b3UgZ2V0IGNlcnRhaW4gUUEtd2FybmluZ3MvZXJyb3Igd2l0aG91dCB0aGVtLg0KPglZZXMsIGdv
-dCBzb21lIFFBLXdhcm5pbmdzIHdoZW4gYnVpbGRpbmcgc28gSSBrZWVwIHRoaXMuDQoNCj4gPiBU
-aGUgcmVzdWx0IHdhcyBhbGwgdGhlIGJpbmFyaWVzIGFuZCBmaWxlcyBpbnN0YWxsZWQgYW5kIHBh
-Y2thZ2VzIGFyZSANCj4gPiBjcmVhdGVkLCBCdXQgSSBhbHNvIGZvdW5kIGtlcm5lbCBoZWFkZXIg
-ZmlsZXMgYXJlIGFsc28gYnVpbHQgaW4gdW5kZXIgL3Vzci9pbmNsdWRlIGluIHJvb3RmcyBpbWFn
-ZS4NCj4gPiBGb3IgbXkgdW5kZXJzdGFuZGluZyB0aG9zZSBoZWFkZXIgZmlsZXMgc2hvdWxkIGJl
-IHVzZWQgaWYgSSB3YW50IHRvIGRldmVsb3AvZGVidWcgYXBwbGljYXRpb25zIG9uIHRoZSB0YXJn
-ZXQgZGV2aWNlIGJ1dCBpdCBpcyBub3QgdGhlIGNhc2UuDQoNCj5Db3VsZCB5b3UgY2hlY2sgaWYg
-YW55IC1kZXYgcGFja2FnZXMgZ2V0cyBpbnN0YWxsZWQgaW50byB0aGUgaW1hZ2U/IElmIHNvIHdo
-aWNoIG9uZT8gRG8gYW55dGhpbmcgbGlrZSBrZXJuZWwtc3JjIG9yIHNvbWV0aGluZyBzaW1pbGFy
-IGdldHMgaW5zdGFsbGVkPw0KDQo+ID4gQWxzbyBJIG5vdGljZWQgdGhlIHVzZSBvZiBJTlNBTkVf
-U0tJUF8ke1BOfSBzbyBJIGNoZWNrIHRoZSB1c2FnZSBvZiANCj4gPiBkZWJ1Zy1maWxlcyBhbmQg
-ZGV2LXNvLCBBbmQgaXQgdHVybmVkIG91dCB0aGVyZSBhcmUgLmRlYnVnIGZvbGRlcnMgaW4gdGhl
-IFdPUktESVIvcGFja2FnZSBmb2xkZXIgc28gSSB0aG91Z2h0IHRoYXQgaXMgd2h5IGRlYnVnLWZp
-bGVzIHdhcyB1c2VkLg0KDQo+CT4gU2VlIGFuc3dlciBiZWxvdy4NCg0KPiA+IFRoZSBxdWVzdGlv
-bnMgYXJlLA0KPiA+IFdoeSBhcmUgdGhvc2Uga2VybmVsIGhlYWRlciBmaWxlcyBpbnN0YWxsZWQg
-aW4gcm9vdGZzPyBIb3cgZG8gSSBwcmV2ZW50IHRoaXNhPw0KDQo+CT4gSSBhc3N1bWUgdGhhdCB0
-aGV5IGFyZW4ndCBpbiB0aGUgcGFja2FnZSB5b3UganVzdCBjcmVhdGVkPyBEbyB5b3UgaGF2ZSBh
-bnl0aGluZyBpbiB5b3VyIHBhY2thZ2UgdGhhdCBtaWdodCBoYXZlIGEgZGVwZW5kZW5jeSBvbiB0
-aGUga2VybmVsIGhlYWRlcnM/IERvIHlvdSBoYXZlIGFueXRoaW5nIGluIHlvdXIgSU1BR0VfRkVB
-VFVSRVM/DQo+CU5vLCBoZWFkZXIgZmlsZXMgYXJlbid0IGluIHRoZSBwYWNrYWdlLg0KPglJIGNo
-ZWNrZWQgdGhlIGRyaXZlciBzb3VyY2UgY29kZSBhbmQgbWFueSBmaWxlcyBpbmNsdWRlIGtlcm5l
-bCBoZWFkZXJzIGxpa2UgdGhpcyAgIiNpbmNsdWRlIDxsaW51eC94eHguaD4iICwgaXMgdGhpcyB3
-aGF0IHlvdSBtZWFudCBieSBkZXBlbmRlbmN5IG9uIGtlcm5lbCBoZWFkZXJzPw0KDQpBcmUgdGhl
-IHNvdXJjZSBjb2RlIHBhY2thZ2VkIGluc3RhbGxlZCBhbmQgcGFja2FnZWQ/DQoNCkNhbiB5b3Ug
-aW5zcGVjdCB0aGUgZ2VuZXJhdGVkIHBhY2thZ2UgJHtQTn0sIGFuZCBzZWUgd2hhdCBpdCdzIGRl
-cGVuY2llcyBhcmU/DQoNCj4JSU1BR0VfRkVBVFVSRVMgd2FzIG5vdCB1c2VkIGluIHRoZSByZWNp
-cGUgZmlsZS4NCg0KVGhhdCB3b3VsZCByYXRoZXIgYmUgaW4gZWl0aGVyIGxvY2FsLmNvbmYsIGRp
-c3Rybywgb3IgaW4geW91ciBpbWFnZS4NCg0KPiA+IFdoeSBhcmUgdGhlcmUgLmRlYnVnIGluIHRo
-ZSBwYWNrYWdlIGZvbGRlciwgaXQgc2hvdWxkIG9ubHkgYmUgaW4gcGFja2FnZSA/ZGJnIGZvbGRl
-ciwgcmlnaHQ/DQoNCj4JPiBXaGVyZSBhcmUgdGhlIC5kZWJ1ZyBkaXJlY3RvcmllcyBsb2NhdGVk
-PyBZb3Ugc2hvdWxkIGFkZCB0aGVtIHRvOg0KPgk+IEZJTEVTXyR7UE59LWRiZyArPSAiPGxvY2F0
-aW9uPi8uZGVidWciDQo+CUkgYWRkIHRoaXMgbGluZSBhbmQgcmVidWlsZCBidXQgdGhlIHJlc3Vs
-dCBzZWVtcyB1bmNoYW5nZWQuDQo+CXRoZSAuZGVidWcgZm9sZGVycyBhcmUgbG9jYXRlZCBpbiAN
-Cj4JJHtXT1JLRElSfS9wYWNrYWdlDQo+CSR7V09SS0RJUn0vcGFja2FnZS1zcGxpdC88cGFja2Fn
-ZSBuYW1lPiAtIGRiZw0KDQo+SSBkb24ndCB1bmRlcnN0YW5kLiBXZXJlIHRoZSAuZGVidWcgZGly
-ZWN0b3JpZXMgbG9jYXRlZCBpbiBwYWNrYWdlcy1zcGxpdC88cGFja2FnZS1uYW1lPi1kYmc/IElm
-IHNvLCB0aGF0J3Mgd2hlcmUgd2Ugd2FudCB0aGVtLg0KDQo+V2hpY2ggcGFja2FnZSBkbyB5b3Ug
-YWRkIHRvIHlvdXIgaW1hZ2U/IA0KPklmIHlvdSByZW1vdmUgdGhhdCBwYWNrYWdlLCBkbyB5b3Ug
-c3RpbGwgZ2V0IHRoZSBrZXJuZWwgaGVhZGVycyBpbnN0YWxsZWQ/DQoNCj5DaGVlcnMsDQo+QW5k
-ZXJzDQoNClRoZSBrZXJuZWwgaGVhZGVycyB3b3VsZG4ndCBnZXQgaW5zdGFsbGVkIGlmIEkgcmVt
-b3ZlZCBteSBwYWNrYWdlLg0KSSBsb29rZWQgYXQgdGhlIHBhY2thZ2VzLXNwbGl0IGZvbGRlciBh
-Z2FpbiBhbmQgSSBmb3VuZCBiZXNpZGVzIHRoZSAtZGJnIGZvbGRlciwgLnNvIGxpYnJhcmllcyBh
-cmUgaW4gPHBhY2thZ2UtbmFtZT4tZGV2IGZvbGRlciwNCkkgc2VhcmNoZWQgb24gdGhlIFlvY3Rv
-IHNpdGUgYW5kIGxlYXJuZWQgdGhhdCBwYWNrYWdlcyBhcmUgc3BsaXQgYnkgdGhlIHZhcmlhYmxl
-IFBBQ0tBR0VTIGRlZmluZWQgaW4gYml0YmFrZS5jb25mDQphbmQgaXQgdHVybnMgb3V0ICR7UE59
-LWRiZyAsICR7UE59LWRldiBhcmUgcHJvY2Vzc2VkIGJlZm9yZSAke1BOfSwgc28gSSBtb2RpZmll
-ZCBteSBiYiBmaWxlIGJ5IGFkZGluZyBGSUxFXyR7UE59LWRldiA9ICIiDQpJIHJlYnVpbGQgdGhl
-IHJvb3RmcyBhbmQgSSBmb3VuZCB0aGUga2VybmVsIGhlYWRlcnMgYXJlIG5vdCBpbnN0YWxsZWQg
-dGhlbi4NCg0KSGVyZSBhcmUgdGhlIGV4dHJhIHBhY2thZ2VzIGdldCBpbnN0YWxsZWQgYmVmb3Jl
-IEkgYWRkIEZJTEVfJHtQTn0tZGV2ID0gIiIgdG8gdGhlIHJlY2lwZSwNCmVnbGliYy1leHRyYS1u
-c3MNCmxpYmM2LWRldg0KbGlidGhyZWFkLWRiMQ0KbGludXgtbGliYy1oZWFkZXJzLWRldg0KbWVy
-Z2UtZmlsZXMtZGV2DQoNCihtZXJnZS1maWxlcyBpcyB0aGUgbmFtZSBvZiBteSBwYWNrYWdlKQ0K
-DQpJIHRoaW5rIG1heWJlIEkgZG9uJ3QgdW5kZXJzdGFuZCBZb2N0byBxdWl0ZSB3ZWxsLA0KV2hh
-dCBpcyB0aGUgcnVsZSBmb3IgT0UgdG8gaW5zdGFsbCB0aG9zZSBkZXYgcGFja2FnZXM/DQpIb3cg
-ZG8gSSBkZWNpZGUgd2hpY2ggcGFja2FnZXMgKCBkYmcsIGRldiwgZG9jLCBsb2NhbGUuLi4pIHRv
-IGdldCBpbnN0YWxsZWQ/DQoNCk1hbnkgdGhhbmtzLA0KQW5keQ0K
+
+On 01/12/2015 16:23, "yocto-bounces@yoctoproject.org on behalf of Martin
+Jansa" <yocto-bounces@yoctoproject.org on behalf of
+martin.jansa@gmail.com> wrote:
+
+>On Tue, Dec 01, 2015 at 03:23:01PM +0000, Luke (Lucas) Starrett wrote:
+>> Hi,
+>>=20
+>> Is there any existing way to track usage of shared state by a build?
+>>In a multi-user environment I'm interesting in knowing how often a build
+>>is hitting in the shared state cache vs. rebuilding.  Typically would
+>>have a globally visible shared state cache mirror updated by a
+>>nightly/periodic build, and a user-level shared state pointed to by one
+>>or more local workspaces.  We would want to understand if we have
+>>excessive cases for which the cache is not used.
+>>=20
+>> I'm sure there's some way I can post-process numerous logs for a given
+>>image to get this info, but thought maybe this has been solved already.
+>
+>Inherit buildstats-summary
+
+Toaster would be another way: the tasks information shows which tasks used
+shared state objects, and which ones tried by didn't. It's explained here:
+
+
+
+
+>
+>--=20
+>Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
 
