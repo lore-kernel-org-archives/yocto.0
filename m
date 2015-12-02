@@ -1,32 +1,39 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <alejandro.franco@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A9E9E00AE6; Tue,  1 Dec 2015 16:03:41 -0800 (PST)
+	id 515A7E00AF2; Tue,  1 Dec 2015 16:46:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+	WEIRD_PORT autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D497E00ADF
-	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 16:03:33 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Dec 2015 16:03:33 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25169E00ADF
+	for <yocto@yoctoproject.org>; Tue,  1 Dec 2015 16:46:24 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 01 Dec 2015 16:46:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,370,1444719600"; d="scan'208";a="862589185"
-Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.171])
-	by orsmga002.jf.intel.com with ESMTP; 01 Dec 2015 16:03:29 -0800
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue,  1 Dec 2015 18:04:20 -0600
-Message-Id: <1449014660-27116-1-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
+X-IronPort-AV: E=Sophos;i="5.20,371,1444719600"; d="scan'208";a="832263193"
+Received: from afshjern.zpn.intel.com (HELO [10.219.5.144]) ([10.219.5.144])
+	by orsmga001.jf.intel.com with ESMTP; 01 Dec 2015 16:46:23 -0800
+To: Paul Eggleton <paul.eggleton@intel.com>, yocto@yoctoproject.org
+References: <1448920985-995-1-git-send-email-alejandro.franco@linux.intel.com>
+	<565DDB89.1030005@intel.com> <565DE64A.60805@linux.intel.com>
+	<2124896.i64Oee0N8V@peggleto-mobl.ger.corp.intel.com>
+From: Alex Franco <alejandro.franco@linux.intel.com>
+X-Enigmail-Draft-Status: N1210
+Message-ID: <565E3F9F.7070609@linux.intel.com>
+Date: Tue, 1 Dec 2015 18:47:27 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Subject: [[RRS]] rrs/recipes: Add support for persist search and filters.
+In-Reply-To: <2124896.i64Oee0N8V@peggleto-mobl.ger.corp.intel.com>
+Subject: Re: [PATCHv2] [layerindex-web] recipe blacklisted information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,124 +45,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Dec 2015 00:03:41 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 02 Dec 2015 00:46:29 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Now when search something the URL is modified and you can
-share the URL for access to the data.
 
-[YOCTO #7809]
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- rrs/views.py               | 11 +++++++++++
- templates/rrs/recipes.html | 35 +++++++++++++++++++++++++++++++++--
- 2 files changed, 44 insertions(+), 2 deletions(-)
+Hmm I swear reading that, the message I get is that one should inherit
+the blacklist class in local.conf (if not on there already) and also set
+the (varflag) value of that variable for your recipe there.
 
-diff --git a/rrs/views.py b/rrs/views.py
-index 8cbbe49..957529c 100644
---- a/rrs/views.py
-+++ b/rrs/views.py
-@@ -253,6 +253,15 @@ class RecipeListView(ListView):
-         else:
-             self.maintainer_name = 'All'
- 
-+        if 'search' in self.request.GET.keys():
-+            self.search = self.request.GET['search']
-+
-+            # only allow one type of filter search or upstream_status/maintainer
-+            self.upstream_status = 'All'
-+            self.maintainer_name = 'All'
-+        else:
-+            self.search = ''
-+
-         _check_url_params(self.upstream_status, self.maintainer_name)
- 
-         self.milestone_statistics = _get_milestone_statistics(milestone)
-@@ -309,6 +318,8 @@ class RecipeListView(ListView):
-             all_maintainers.append(rm['maintainer__name'])
-         context['all_maintainers'] = all_maintainers
- 
-+        context['search'] = self.search
-+
-         return context
- 
- def recipes_report(request, release_name, milestone_name):
-diff --git a/templates/rrs/recipes.html b/templates/rrs/recipes.html
-index 3ec980b..be2a3a5 100644
---- a/templates/rrs/recipes.html
-+++ b/templates/rrs/recipes.html
-@@ -167,6 +167,16 @@ $(document).ready(function() {
-     recipesTable = $('#recipestable')
-     upstreamStatus = $("<div/>").html('{{ upstream_status }}').text()
-     maintainer = $("<div/>").html('{{ maintainer_name }}').text()
-+    search = '{{ search }}'
-+
-+    function updateQueryString(queryString) {
-+        if (window.history.pushState) {
-+            var newurl = window.location.protocol + "//" +
-+                window.location.host + window.location.pathname +
-+                queryString
-+            window.history.pushState({path:newurl}, '', newurl);
-+        }
-+    }
- 
-     function updateRecipeCount() {
-         $('#recipestable').show()
-@@ -243,21 +253,38 @@ $(document).ready(function() {
- 
-         updateStatusSelected()
-         updateMaintainerSelected()
-+
-+        queryString = ''
-+        if (search != '') {
-+            $.uiTableFilter(recipesTable, search);
-+            queryString = '?search=' + search
-+        } else {
-+            if (upstreamStatus != 'All' && maintainer != 'All') {
-+                queryString = '?upstream_status=' + upstreamStatus +
-+                    '&maintainer_name=' + maintainer
-+            } else if (upstreamStatus != 'All') {
-+                queryString = '?upstream_status=' + upstreamStatus
-+            } else if (maintainer != 'All') {
-+                queryString = '?maintainer_name=' + maintainer
-+            }
-+        }
-+        updateQueryString(queryString)
-     }
- 
-     $("#form-search").submit(function( event ) {
-         upstreamStatus = 'All' 
-         maintainer = 'All'
--        search_text = $("#filter").val()
-+        search = $("#filter").val()
-         $("#clear-search-btn").show()
-         applyFilters()
--        $.uiTableFilter(recipesTable, search_text);
-         updateRecipeCount()
-+
-         event.preventDefault();
-     });
- 
-     function clearSearch() {
-         $("#filter").val('')
-+        search = $("#filter").val()
-         $("#clear-search-btn").hide()
-         applyFilters()
-         updateRecipeCount()
-@@ -299,6 +326,10 @@ $(document).ready(function() {
-     }); 
- {% endif %}
- 
-+    if (search != '') {
-+        $("#filter").val(search)
-+        $("#clear-search-btn").show()
-+    }
-     applyFilters()
-     updateRecipeCount()
- });
--- 
-2.1.4
+Perhaps the part that reads "the blacklist class, which the recipe must
+inherit globally" suffers from a wording issue, saying "must inherit"
+rather than "by default inherits".
+
+I guess next step here's creating a documentation bug report/ticket.
+
+Meanwhile, the changes are ready and showcased here [1]
+
+I'll let you review this before I sent v3 of the patch ;)
+
+@Belen, I did something possibly hacky with the css in order to
+accomplish this, the warn blockquote is set to take 100% of the
+horizontal space available within the alert div. If that runs counter to
+some design philosophy (perhaps specifically since we're using
+bootstrap) let me know please :b
+
+The hovering now only works within a TD...
+
+Alex Franco
+
+[1] http://yctb03.ostc.intel.com:9999/
+
+On 12/01/2015 01:11 PM, Paul Eggleton wrote:
+> On Tue, 01 Dec 2015 12:26:18 Alex Franco wrote:
+>> @Martin, I think this information about blacklisting would indeed be
+>> very useful, thanks for your input as always.
+>>
+>> @Belen, yes indeed I noticed the label also hovers even when no toolti=
+p
+>> is present, this bugged me a little too to be honest! No worries thoug=
+h,
+>> I can fix the hover situation and also add in the link to the
+>> documentation.
+>> @All: I suppose the link should go to:
+>>
+>>
+http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var->=
+ PNBLACKLIST
+>
+> Yes, that's really the only place we could link to; unfortunately
+though I
+> just noticed there is an obvious mistake in there about inheriting the
+class
+> globally within the recipe (a contradiction); it also doesn't mention t=
+he
+> class is inherited globally by default.
+>
+> Cheers,
+> Paul
+>
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBAgAGBQJWXj+bAAoJEPR9uwMY2lTLYT4H/1CUZHoE9nSCRhB9zRmbe/gq
+fYxLRCHt34DZvTjA5N+KNJd80z9NOo1q6jWKu0Rh6XHQgExTuruzi1nkyJ4BIoRD
+ziexugIXyYFJIymT6m38sZfwBV+KA+FSoTKplj+ZjLdC3HzSpKoVmFHO/wx/coC+
+s90uyagoFYtAb/cmaLJmZW+q9J9v/UtAop4CD7nuLVhJvVxYIe2/Cub2MGrZy5P/
+EcciqfI8Cn/cWoGfptoRmBOA2yjAR1SqZtwWCOLze68eiRkV/P/3uMgMOy9i2feM
+l13puV0OVnoxsfTFDuZHzXt/5LHmCdI/URzPK3OAL83QlJtwKck1cLU6Ufywlhc=3D
+=3DLBgn
+-----END PGP SIGNATURE-----
+
 
 
