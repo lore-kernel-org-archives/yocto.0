@@ -1,34 +1,43 @@
-Return-Path: <alejandro.franco@linux.intel.com>
+Return-Path: <king.lijin@huawei.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E61AE007C9; Wed,  2 Dec 2015 16:33:30 -0800 (PST)
+	id 4B094E007C3; Wed,  2 Dec 2015 21:54:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [119.145.14.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D186FE005B7
-	for <yocto@yoctoproject.org>; Wed,  2 Dec 2015 16:33:26 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 02 Dec 2015 16:33:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,375,1444719600"; d="scan'208";a="863458359"
-Received: from afshjern.zpn.intel.com ([10.219.5.144])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2015 16:33:20 -0800
-From: Alex Franco <alejandro.franco@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  2 Dec 2015 18:34:03 -0600
-Message-Id: <1449102843-27936-2-git-send-email-alejandro.franco@linux.intel.com>
-X-Mailer: git-send-email 2.6.3
-In-Reply-To: <1449102843-27936-1-git-send-email-alejandro.franco@linux.intel.com>
-References: <1449102843-27936-1-git-send-email-alejandro.franco@linux.intel.com>
-Cc: paul.eggleton@intel.com
-Subject: [PATCHv3 1/1] [layerindex-web] Recipe blacklisted information
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Wed, 02 Dec 2015 21:54:37 PST
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [119.145.14.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 917EAE00748
+	for <yocto@yoctoproject.org>; Wed,  2 Dec 2015 21:54:37 -0800 (PST)
+Received: from 172.24.1.48 (EHLO szxeml427-hub.china.huawei.com)
+	([172.24.1.48])
+	by szxrg02-dlp.huawei.com (MOS 4.3.7-GA FastPath queued)
+	with ESMTP id CXG83607; Thu, 03 Dec 2015 13:53:29 +0800 (CST)
+Received: from [127.0.0.1] (10.177.34.120) by szxeml427-hub.china.huawei.com
+	(10.82.67.182) with Microsoft SMTP Server id 14.3.235.1; Thu, 3 Dec 2015
+	13:53:25 +0800
+Message-ID: <565FD8D4.5070803@huawei.com>
+Date: Thu, 3 Dec 2015 13:53:24 +0800
+From: Jin Li <lijin14@huawei.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+X-Originating-IP: [10.177.34.120]
+X-CFilter-Loop: Reflected
+X-Mirapoint-Virus-RAPID-Raw: score=unknown(0),
+	refid=str=0001.0A090201.565FD8D9.0083, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0, ip=0.0.0.0,
+	so=2013-06-18 04:22:30, dmn=2013-03-21 17:37:32
+X-Mirapoint-Loop-Id: 72abec884b19f0ad5c15ae3befa00846
+Subject: Big Endian set for qemuarm64 build based on poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,366 +49,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Dec 2015 00:33:30 -0000
+X-List-Received-Date: Thu, 03 Dec 2015 05:54:40 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-Display blacklisted information for recipes in the recipe details,
-as well as in the recipe search page, and layer detail page table.
-This information is pulled from the PNBLACKLIST variable. Includes
-UI fixes necessary to display and better explain this metadata.
+Hi,
 
-Changes to Django and Layerindex files:
-- models.py, update.py
-- migration file
-- templates and static content (stylesheet)
+There is build error when I'm trying to build qemuarm64 project based on default poky git repo with the big endian set as follows:
 
-[YOCTO #7855]
+l00356543@hulk-test1:~/poky$ git diff meta/conf/machine/include/arm/arch-arm64.inc
+diff --git a/meta/conf/machine/include/arm/arch-arm64.inc b/meta/conf/machine/include/arm/arch-arm64.inc
+index 866b71f..8fe6660 100644
+--- a/meta/conf/machine/include/arm/arch-arm64.inc
++++ b/meta/conf/machine/include/arm/arch-arm64.inc
+@@ -1,4 +1,4 @@
+-DEFAULTTUNE ?= "aarch64"
++DEFAULTTUNE ?= "aarch64_be"
 
-Signed-off-by: Alex Franco <alejandro.franco@linux.intel.com>
----
- .../0010_auto__add_field_recipe_blacklisted.py     | 197 +++++++++++++++++++++
- layerindex/models.py                               |   1 +
- layerindex/static/css/additional.css               |  19 +-
- layerindex/update.py                               |   1 +
- templates/layerindex/detail.html                   |   3 +-
- templates/layerindex/recipedetail.html             |  14 +-
- templates/layerindex/recipes.html                  |   3 +-
- 7 files changed, 233 insertions(+), 5 deletions(-)
- create mode 100644 layerindex/migrations/0010_auto__add_field_recipe_blacklisted.py
+ require conf/machine/include/arm/arch-armv7a.inc
 
-diff --git a/layerindex/migrations/0010_auto__add_field_recipe_blacklisted.py b/layerindex/migrations/0010_auto__add_field_recipe_blacklisted.py
-new file mode 100644
-index 0000000..e1bb12c
---- /dev/null
-+++ b/layerindex/migrations/0010_auto__add_field_recipe_blacklisted.py
-@@ -0,0 +1,197 @@
-+# -*- coding: utf-8 -*-
-+from south.utils import datetime_utils as datetime
-+from south.db import db
-+from south.v2 import SchemaMigration
-+from django.db import models
-+
-+
-+class Migration(SchemaMigration):
-+
-+    def forwards(self, orm):
-+        # Adding field 'Recipe.blacklisted'
-+        db.add_column('layerindex_recipe', 'blacklisted',
-+                      self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True),
-+                      keep_default=False)
-+
-+
-+    def backwards(self, orm):
-+        # Deleting field 'Recipe.blacklisted'
-+        db.delete_column('layerindex_recipe', 'blacklisted')
-+
-+
-+    models = {
-+        'auth.group': {
-+            'Meta': {'object_name': 'Group'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-+            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
-+        },
-+        'auth.permission': {
-+            'Meta': {'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'unique_together': "(('content_type', 'codename'),)", 'object_name': 'Permission'},
-+            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-+        },
-+        'auth.user': {
-+            'Meta': {'object_name': 'User'},
-+            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-+            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-+            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-+            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
-+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-+        },
-+        'contenttypes.contenttype': {
-+            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
-+            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-+        },
-+        'layerindex.bbappend': {
-+            'Meta': {'object_name': 'BBAppend'},
-+            'filename': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'filepath': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"})
-+        },
-+        'layerindex.bbclass': {
-+            'Meta': {'object_name': 'BBClass'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-+        },
-+        'layerindex.branch': {
-+            'Meta': {'object_name': 'Branch'},
-+            'bitbake_branch': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-+            'short_description': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
-+            'sort_priority': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'})
-+        },
-+        'layerindex.classicrecipe': {
-+            'Meta': {'object_name': 'ClassicRecipe', '_ormbases': ['layerindex.Recipe']},
-+            'classic_category': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'cover_comment': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'cover_layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'}),
-+            'cover_pn': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'cover_status': ('django.db.models.fields.CharField', [], {'default': "'U'", 'max_length': '1'}),
-+            'cover_verified': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'recipe_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['layerindex.Recipe']", 'unique': 'True', 'primary_key': 'True'})
-+        },
-+        'layerindex.layerbranch': {
-+            'Meta': {'object_name': 'LayerBranch'},
-+            'actual_branch': ('django.db.models.fields.CharField', [], {'max_length': '80', 'blank': 'True'}),
-+            'branch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.Branch']"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerItem']"}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-+            'vcs_last_commit': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-+            'vcs_last_fetch': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-+            'vcs_last_rev': ('django.db.models.fields.CharField', [], {'max_length': '80', 'blank': 'True'}),
-+            'vcs_subdir': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'})
-+        },
-+        'layerindex.layerdependency': {
-+            'Meta': {'object_name': 'LayerDependency'},
-+            'dependency': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'dependents_set'", 'to': "orm['layerindex.LayerItem']"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'dependencies_set'", 'to': "orm['layerindex.LayerBranch']"})
-+        },
-+        'layerindex.layeritem': {
-+            'Meta': {'object_name': 'LayerItem'},
-+            'classic': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'description': ('django.db.models.fields.TextField', [], {}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'index_preference': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-+            'layer_type': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
-+            'mailing_list_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '40'}),
-+            'status': ('django.db.models.fields.CharField', [], {'default': "'N'", 'max_length': '1'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-+            'usage_url': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'vcs_url': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'vcs_web_file_base_url': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'vcs_web_tree_base_url': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'vcs_web_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
-+        },
-+        'layerindex.layermaintainer': {
-+            'Meta': {'object_name': 'LayerMaintainer'},
-+            'email': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'responsibility': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-+            'status': ('django.db.models.fields.CharField', [], {'default': "'A'", 'max_length': '1'})
-+        },
-+        'layerindex.layernote': {
-+            'Meta': {'object_name': 'LayerNote'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerItem']"}),
-+            'text': ('django.db.models.fields.TextField', [], {})
-+        },
-+        'layerindex.machine': {
-+            'Meta': {'object_name': 'Machine'},
-+            'description': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
-+        },
-+        'layerindex.recipe': {
-+            'Meta': {'object_name': 'Recipe'},
-+            'bbclassextend': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'blacklisted': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'bugtracker': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'filename': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'filepath': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'homepage': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'inherits': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'license': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'pn': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'provides': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-+            'pv': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'section': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
-+        },
-+        'layerindex.recipechange': {
-+            'Meta': {'object_name': 'RecipeChange'},
-+            'bugtracker': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-+            'changeset': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.RecipeChangeset']"}),
-+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'homepage': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'license': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'recipe': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'+'", 'to': "orm['layerindex.Recipe']"}),
-+            'section': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'})
-+        },
-+        'layerindex.recipechangeset': {
-+            'Meta': {'object_name': 'RecipeChangeset'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
-+        },
-+        'layerindex.recipefiledependency': {
-+            'Meta': {'object_name': 'RecipeFileDependency'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'+'", 'to': "orm['layerindex.LayerBranch']"}),
-+            'path': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'}),
-+            'recipe': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.Recipe']"})
-+        }
-+    }
-+
-+    complete_apps = ['layerindex']
-\ No newline at end of file
-diff --git a/layerindex/models.py b/layerindex/models.py
-index c9e9620..cde8fe3 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -244,6 +244,7 @@ class Recipe(models.Model):
-     bbclassextend = models.CharField(max_length=100, blank=True)
-     inherits = models.CharField(max_length=255, blank=True)
-     updated = models.DateTimeField(auto_now = True)
-+    blacklisted = models.CharField(max_length=255, blank=True)
- 
-     def vcs_web_url(self):
-         url = self.layerbranch.file_url(os.path.join(self.filepath, self.filename))
-diff --git a/layerindex/static/css/additional.css b/layerindex/static/css/additional.css
-index f76582c..55cea9e 100644
---- a/layerindex/static/css/additional.css
-+++ b/layerindex/static/css/additional.css
-@@ -200,14 +200,29 @@ padding: 8px;
-     margin-left: 8px;
- }
- 
--.icon-hdd {
-+.label-inverse, .icon-hdd {
-     margin-left: 6px;
- }
- 
--.icon-hdd:hover {
-+td .label-inverse:hover, td .icon-hdd:hover {
-     cursor: pointer;
- }
- 
-+td .label-inverse:hover {
-+    background-color: #999;
-+}
-+
- ul.unstyled {
-     margin-bottom: 0;
- }
-+
-+blockquote.span7.warn {
-+    border-color: #c09853;
-+    margin-left: 0;
-+    min-height: 0;
-+    width: 100%;
-+}
-+
-+.valign-middle {
-+    vertical-align: middle;
-+}
-diff --git a/layerindex/update.py b/layerindex/update.py
-index 1e96da6..3680498 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -69,6 +69,7 @@ def update_recipe_file(data, path, recipe, layerdir_start, repodir):
-         gr = set(data.getVar("__inherit_cache", True) or [])
-         lr = set(envdata.getVar("__inherit_cache", True) or [])
-         recipe.inherits = ' '.join(sorted({split_recipe_fn(r)[0] for r in lr if r not in gr}))
-+        recipe.blacklisted = envdata.getVarFlag('PNBLACKLIST', recipe.pn, True) or ""
-         recipe.save()
- 
-         # Get file dependencies within this layer
-diff --git a/templates/layerindex/detail.html b/templates/layerindex/detail.html
-index 8a734ff..feb2c6c 100644
---- a/templates/layerindex/detail.html
-+++ b/templates/layerindex/detail.html
-@@ -198,7 +198,7 @@
-                         <tbody>
-                             {% for recipe in layerbranch.sorted_recipes %}
-                                 <tr>
--                                    <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits.split %}<i class="icon-hdd"></i>{% endif %}</td>
-+                                    <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits.split %}<i class="icon-hdd"></i>{% endif %}{% if recipe.blacklisted %}<span class="label label-inverse" title="{{ recipe.blacklisted }}">blacklisted</span>{% endif %}</td>
-                                     <td>{{ recipe.pv }}</td>
-                                     <td class="span8">{{ recipe.short_desc }}</td>
-                                 </tr>
-@@ -323,6 +323,7 @@
-                 })
- 
-                 $('.icon-hdd').tooltip({title:"Inherits image"});
-+                $('.label-inverse').tooltip();
-             });
-         });
-     </script>
-diff --git a/templates/layerindex/recipedetail.html b/templates/layerindex/recipedetail.html
-index 3b8c79b..48c90be 100644
---- a/templates/layerindex/recipedetail.html
-+++ b/templates/layerindex/recipedetail.html
-@@ -30,9 +30,21 @@
-         <div class="row-fluid">
- 
-             <div class="page-header">
--                <h1>{{ recipe.name }} {{ recipe.pv }}</h1>
-+                <h1>{{ recipe.name }} {{ recipe.pv }} {% if recipe.blacklisted %} <span class="label label-inverse valign-middle">blacklisted</span> {% endif %}</h1>
-             </div>
- 
-+            {% if recipe.blacklisted %}
-+                <div class="alert">
-+                    <div class="row-fluid">
-+                        <p>This recipe is <strong>blacklisted</strong> by the <a href="{% url layer_item recipe.layerbranch.branch.name recipe.layerbranch.layer.name %}">{{ recipe.layerbranch.layer.name }}</a> layer. The reason provided is:</p>
-+                        <blockquote class="span7 warn">
-+                            <p>{{ recipe.blacklisted }}</p>
-+                        </blockquote>
-+                        <p><a href="http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-PNBLACKLIST">Read about blacklisting and how to remove it</a></p>
-+                    </div>
-+                </div>
-+            {% endif %}
-+
-                 <table class="table table-striped table-bordered">
-                     <tbody>
-                         <tr>
-diff --git a/templates/layerindex/recipes.html b/templates/layerindex/recipes.html
-index 322d7c6..c2141a4 100644
---- a/templates/layerindex/recipes.html
-+++ b/templates/layerindex/recipes.html
-@@ -52,7 +52,7 @@
-                     <tbody>
-                         {% for recipe in recipe_list %}
-                             <tr {% if recipe.preferred_count > 0 %}class="muted"{% endif %}>
--                                <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits.split %}<i class="icon-hdd"></i>{% endif %}</td>
-+                                <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits.split %}<i class="icon-hdd"></i>{% endif %}{% if recipe.blacklisted %}<span class="label label-inverse" title="{{ recipe.blacklisted }}">blacklisted</span>{% endif %}</td>
-                                 <td>{{ recipe.pv }}</td>
-                                 <td>{{ recipe.short_desc }}</td>
-                                 <td><a href="{% url layer_item url_branch recipe.layerbranch.layer.name %}">{{ recipe.layerbranch.layer.name }}</a></td>
-@@ -84,6 +84,7 @@
-             firstfield.focus()
- 
-         $('.icon-hdd').tooltip({title:"Inherits image"});
-+        $('.label-inverse').tooltip();
-     });
- </script>
- {% endblock %}
--- 
-2.6.3
+l00356543@hulk-test1:~/poky$
+
+--------------------------------------------------------------------
+
+Attach the build log:
+
+l00356543@hulk-test1:~/qemuarm64_be$ bitbake core-image-sato
+Parsing recipes: 100% |###############################################################################################################| ETA:  00:00:00
+Parsing of 888 .bb files complete (0 cached, 888 parsed). 1310 targets, 61 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        = "1.28.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-14.04"
+TARGET_SYS        = "aarch64_be-poky-linux"
+MACHINE           = "qemuarm64"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.0"
+TUNE_FEATURES     = "aarch64 bigendian"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-yocto-bsp    = "master:698c74c373110ed081a7586e21d4a27b8b44c89b"
+
+NOTE: Preparing RunQueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+WARNING: Failed to fetch URL http://downloads.sourceforge.net/libusb/libusb-1.0.20.tar.bz2, attempting MIRRORS if available
+WARNING: Failed to fetch URL http://bitmath.org/code/mtdev/mtdev-1.1.5.tar.bz2, attempting MIRRORS if available
+WARNING: Failed to fetch URL http://wiki.qemu-project.org/download/qemu-2.4.0.1.tar.bz2, attempting MIRRORS if available
+ERROR: oe_runmake failed
+ERROR: Function failed: do_compile (log file is located at /home/l00356543/qemuarm64_be/tmp/work/qemuarm64-poky-linux/linux-yocto/4.1.13+gitAUTOINC+30c4b4bd79_c22dc676d6-r0/temp/log.do_compile.43788)
+ERROR: Logfile of failure stored in: /home/l00356543/qemuarm64_be/tmp/work/qemuarm64-poky-linux/linux-yocto/4.1.13+gitAUTOINC+30c4b4bd79_c22dc676d6-r0/temp/log.do_compile.43788
+
+...
+
+|   LD      arch/arm64/kernel/vdso/built-in.o
+| aarch64_be-poky-linux-ld.bfd: usr/initramfs_data.o: compiled for a little endian system and target is big endian
+| aarch64_be-poky-linux-ld.bfd: failed to merge target specific data of file usr/initramfs_data.o
+| make[3]: *** [usr/built-in.o] Error 1
+
 
 
