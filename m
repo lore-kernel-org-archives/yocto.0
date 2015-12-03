@@ -1,43 +1,31 @@
-Return-Path: <king.lijin@huawei.com>
+Return-Path: <belen.barros.pena@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B094E007C3; Wed,  2 Dec 2015 21:54:40 -0800 (PST)
+	id E599AE00457; Thu,  3 Dec 2015 06:26:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [119.145.14.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Wed, 02 Dec 2015 21:54:37 PST
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [119.145.14.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 917EAE00748
-	for <yocto@yoctoproject.org>; Wed,  2 Dec 2015 21:54:37 -0800 (PST)
-Received: from 172.24.1.48 (EHLO szxeml427-hub.china.huawei.com)
-	([172.24.1.48])
-	by szxrg02-dlp.huawei.com (MOS 4.3.7-GA FastPath queued)
-	with ESMTP id CXG83607; Thu, 03 Dec 2015 13:53:29 +0800 (CST)
-Received: from [127.0.0.1] (10.177.34.120) by szxeml427-hub.china.huawei.com
-	(10.82.67.182) with Microsoft SMTP Server id 14.3.235.1; Thu, 3 Dec 2015
-	13:53:25 +0800
-Message-ID: <565FD8D4.5070803@huawei.com>
-Date: Thu, 3 Dec 2015 13:53:24 +0800
-From: Jin Li <lijin14@huawei.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [10.177.34.120]
-X-CFilter-Loop: Reflected
-X-Mirapoint-Virus-RAPID-Raw: score=unknown(0),
-	refid=str=0001.0A090201.565FD8D9.0083, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0, ip=0.0.0.0,
-	so=2013-06-18 04:22:30, dmn=2013-03-21 17:37:32
-X-Mirapoint-Loop-Id: 72abec884b19f0ad5c15ae3befa00846
-Subject: Big Endian set for qemuarm64 build based on poky
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ABD3E0033E
+	for <yocto@yoctoproject.org>; Thu,  3 Dec 2015 06:26:28 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 03 Dec 2015 06:26:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,378,1444719600"; d="scan'208";a="833509154"
+Received: from bbarrosp-mac03.isw.intel.com ([10.237.224.81])
+	by orsmga001.jf.intel.com with ESMTP; 03 Dec 2015 06:26:26 -0800
+From: Belen Barros Pena <belen.barros.pena@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  3 Dec 2015 14:26:15 +0000
+Message-Id: <1449152775-7761-1-git-send-email-belen.barros.pena@linux.intel.com>
+X-Mailer: git-send-email 2.4.9 (Apple Git-60)
+Subject: [PATCH] [rrs] Show the 'Upstream version' column only when relevant
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,66 +37,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Dec 2015 05:54:40 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 03 Dec 2015 14:26:32 -0000
 
-Hi,
+From: Belen Barros Pena <belen.barros.pena@intel.com>
 
-There is build error when I'm trying to build qemuarm64 project based on default poky git repo with the big endian set as follows:
+Currently the recipes table always shows the 'Upstream version' column.
+However, for recipes up-to-date, this column is irrelevant, since for such
+recipes 'version' always equals 'upstream version'.
 
-l00356543@hulk-test1:~/poky$ git diff meta/conf/machine/include/arm/arch-arm64.inc
-diff --git a/meta/conf/machine/include/arm/arch-arm64.inc b/meta/conf/machine/include/arm/arch-arm64.inc
-index 866b71f..8fe6660 100644
---- a/meta/conf/machine/include/arm/arch-arm64.inc
-+++ b/meta/conf/machine/include/arm/arch-arm64.inc
-@@ -1,4 +1,4 @@
--DEFAULTTUNE ?= "aarch64"
-+DEFAULTTUNE ?= "aarch64_be"
+Since the vast majority of the recipes are up-to-date, when you are
+showing all the recipes the 'upstream version' column is also pretty
+useless.
 
- require conf/machine/include/arm/arch-armv7a.inc
+The column is only really relevant when you are looking at recipes
+with status 'not updated' or 'can't be updated'. I would have thought
+there would be nothing to show in the 'Upstream version' column for
+recipes with status 'Unknown', but it turns out some of those do have
+an upstream version value, that I thought might be useful to the
+maintainer somehow.
 
-l00356543@hulk-test1:~/poky$
+So, this patch hides the 'Upstream version' column whenever you are
+looking at all the recipes or up-to-date recipes; and shows it when
+you select any of the other recipe statuses
 
---------------------------------------------------------------------
+Signed-off-by: Belen Barros Pena <belen.barros.pena@intel.com>
+---
+ templates/rrs/recipes.html | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Attach the build log:
-
-l00356543@hulk-test1:~/qemuarm64_be$ bitbake core-image-sato
-Parsing recipes: 100% |###############################################################################################################| ETA:  00:00:00
-Parsing of 888 .bb files complete (0 cached, 888 parsed). 1310 targets, 61 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-
-Build Configuration:
-BB_VERSION        = "1.28.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
-TARGET_SYS        = "aarch64_be-poky-linux"
-MACHINE           = "qemuarm64"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.0"
-TUNE_FEATURES     = "aarch64 bigendian"
-TARGET_FPU        = ""
-meta
-meta-yocto
-meta-yocto-bsp    = "master:698c74c373110ed081a7586e21d4a27b8b44c89b"
-
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-WARNING: Failed to fetch URL http://downloads.sourceforge.net/libusb/libusb-1.0.20.tar.bz2, attempting MIRRORS if available
-WARNING: Failed to fetch URL http://bitmath.org/code/mtdev/mtdev-1.1.5.tar.bz2, attempting MIRRORS if available
-WARNING: Failed to fetch URL http://wiki.qemu-project.org/download/qemu-2.4.0.1.tar.bz2, attempting MIRRORS if available
-ERROR: oe_runmake failed
-ERROR: Function failed: do_compile (log file is located at /home/l00356543/qemuarm64_be/tmp/work/qemuarm64-poky-linux/linux-yocto/4.1.13+gitAUTOINC+30c4b4bd79_c22dc676d6-r0/temp/log.do_compile.43788)
-ERROR: Logfile of failure stored in: /home/l00356543/qemuarm64_be/tmp/work/qemuarm64-poky-linux/linux-yocto/4.1.13+gitAUTOINC+30c4b4bd79_c22dc676d6-r0/temp/log.do_compile.43788
-
-...
-
-|   LD      arch/arm64/kernel/vdso/built-in.o
-| aarch64_be-poky-linux-ld.bfd: usr/initramfs_data.o: compiled for a little endian system and target is big endian
-| aarch64_be-poky-linux-ld.bfd: failed to merge target specific data of file usr/initramfs_data.o
-| make[3]: *** [usr/built-in.o] Error 1
-
+diff --git a/templates/rrs/recipes.html b/templates/rrs/recipes.html
+index be2a3a5..96a3bbc 100644
+--- a/templates/rrs/recipes.html
++++ b/templates/rrs/recipes.html
+@@ -234,6 +234,12 @@ $(document).ready(function() {
+             $('.summary_column').show()            
+         }
+ 
++        if (upstreamStatus == 'Up-to-date' || upstreamStatus == 'All') {
++            $('.upstream_version_column').hide();
++        } else {
++            $('.upstream_version_column').show();
++        }
++
+         if (upstreamStatus == 'All') {
+             upstreamStatusFilter = ''
+         } else {
+-- 
+2.4.9 (Apple Git-60)
 
 
