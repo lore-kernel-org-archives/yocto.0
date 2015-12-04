@@ -1,71 +1,55 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D472E008C8; Fri,  4 Dec 2015 06:18:31 -0800 (PST)
+	id E9C8CE009B6; Fri,  4 Dec 2015 07:12:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.56.111.103 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mikehabibi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bbn0103.outbound.protection.outlook.com [157.56.111.103])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8462DE0086A
-	for <yocto@yoctoproject.org>; Fri,  4 Dec 2015 06:18:28 -0800 (PST)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) by
-	BN3PR0501MB1091.namprd05.prod.outlook.com (10.160.113.13) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.337.19; Fri, 4 Dec 2015 14:03:03 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) with
-	mapi id 15.01.0337.015; Fri, 4 Dec 2015 14:03:03 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Michael Habibi <mikehabibi@gmail.com>
-Thread-Topic: [yocto] Best practice for files copied directly into sysroot?
-Thread-Index: AQHRLEysoQoJ6J+2nk2wyet0ibQyrJ62bU7wgAAg6ICAA1QhAIAA6nUA
-Date: Fri, 4 Dec 2015 14:03:03 +0000
-Message-ID: <BN3PR0501MB109081CFF721741E6E0189EDBB0C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f182.google.com (mail-lb0-f182.google.com
+	[209.85.217.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E514E00978
+	for <yocto@yoctoproject.org>; Fri,  4 Dec 2015 07:12:00 -0800 (PST)
+Received: by lbbcs9 with SMTP id cs9so22138514lbb.1
+	for <yocto@yoctoproject.org>; Fri, 04 Dec 2015 07:11:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=twR1+XV+CrxIvh89n9q2dIR+Uq47RI51t7iApejl2Wk=;
+	b=ZBG0L0cokuGsi0LhamO79YdhLbFcehfkwnC2ls2GWI8N/5BDuXm01xyrHBNFR9xoRh
+	R7q0DUY3YVFy1gCZ6MSFaXgxRp6+T3j1TeLpUfD2cL9S43WxAUCoXR6dQsd0TRSqrWZ5
+	VhblGr65eX9SfcNNMOhLDcJwY1pmzsxyysvlK/8yp7WvtvZK2lk/W2tGLMzHXFBWmQj5
+	tr5H+/KT8Jtdkbb4xL+Z/qjiDcPh7QUfh09eeGyU4kGQajMDnuH5CqEI8kkHdILtcXjg
+	/9rio+HhjaCHC2SM1l4P4MBUEX7F3LBksOiRjjZLIFlbAV4fbq4Z6bWZRxgR7NJ4u5PZ
+	ycxg==
+MIME-Version: 1.0
+X-Received: by 10.112.184.45 with SMTP id er13mr7928296lbc.133.1449241919284; 
+	Fri, 04 Dec 2015 07:11:59 -0800 (PST)
+Received: by 10.114.11.226 with HTTP; Fri, 4 Dec 2015 07:11:59 -0800 (PST)
+In-Reply-To: <BN3PR0501MB109081CFF721741E6E0189EDBB0C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
 References: <CAOsp8o_WfYUB2nBXmGdVTF27RmkjzbvYJrHrW+R-Lv-P8WzS3A@mail.gmail.com>
 	<BN3PR0501MB1090CB712DB3C7DE23120AA3BB0F0@BN3PR0501MB1090.namprd05.prod.outlook.com>
 	<CAOsp8o9N0K0+ZgUcS7vdQE55NDaRW1F7a+cZsN3TTvA4LUW8hw@mail.gmail.com>
 	<CAOsp8o9EtJmV97pQRrB1Wt9hr4S1b0vbNKgL6bPTuuO-L25GWQ@mail.gmail.com>
-In-Reply-To: <CAOsp8o9EtJmV97pQRrB1Wt9hr4S1b0vbNKgL6bPTuuO-L25GWQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-originating-ip: [98.100.91.242]
-x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1091;
-	5:X3XDTYzrJGunSp/ZB4MSoccvGU8uwLcmSMYV5RobvFqg0zEij5rwjpFQSI8VtecKis1YPTq+Nk3eR4bI1BmIM8ySoUNyNmPhiR6v3OeLcaHUh5+hAQiThH6W1wjSQm2/1VKW7HI456ZmPEWhVEWVZw==;
-	24:ePH4FTY5z8IUK6TvUdIDL2JpEXsbbmXzr5lAZYTcNceZ0l+TQyO65ikoO8dEn31ip7TsEMcEj6pf5TCEL7y/NQqyR4LX4sM7qEfb3jZ7Weo=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
-x-microsoft-antispam-prvs: <BN3PR0501MB10914BEBD6C7B016A1D908D1BB0C0@BN3PR0501MB1091.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(57590538094435);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(8121501046)(520078)(5005006)(10201501046)(3002001);
-	SRVR:BN3PR0501MB1091; BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1091; 
-x-forefront-prvs: 07807C55DC
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(174864002)(164054003)(24454002)(199003)(13464003)(377454003)(189002)(54356999)(66066001)(8558605004)(189998001)(97736004)(5008740100001)(110136002)(92566002)(102836003)(5001960100002)(81156007)(50986999)(40100003)(586003)(122556002)(3846002)(33656002)(86362001)(19580395003)(105586002)(76176999)(74316001)(11100500001)(19580405001)(5002640100001)(15975445007)(87936001)(106356001)(99286002)(106116001)(101416001)(5004730100002)(76576001)(6116002)(2950100001)(2900100001)(1411001)(1220700001)(5003600100002)(1096002)(93886004)(10400500002)(77096005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2015 14:03:03.3098 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
+	<BN3PR0501MB109081CFF721741E6E0189EDBB0C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Date: Fri, 4 Dec 2015 09:11:59 -0600
+Message-ID: <CAOsp8o_G7rscackTzW_pwQ2bYAH_cx=9PyzC4Gvv1B3K3thd1A@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Best practice for files copied directly into sysroot?
 X-BeenThere: yocto@yoctoproject.org
@@ -79,109 +63,367 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Dec 2015 14:18:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 04 Dec 2015 15:12:07 -0000
+Content-Type: multipart/alternative; boundary=001a1133f450caf013052613ed48
 
-TWljaGFlbCwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNaWNoYWVs
-IEhhYmliaSBbbWFpbHRvOm1pa2VoYWJpYmlAZ21haWwuY29tXQ0KPiBTZW50OiBUaHVyc2RheSwg
-RGVjZW1iZXIgMDMsIDIwMTUgNTo1NCBQTQ0KPiBUbzogQnJ5YW4gRXZlbnNvbiA8YmV2ZW5zb25A
-bWVsaW5rY29ycC5jb20+DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6
-IFJlOiBbeW9jdG9dIEJlc3QgcHJhY3RpY2UgZm9yIGZpbGVzIGNvcGllZCBkaXJlY3RseSBpbnRv
-IHN5c3Jvb3Q/DQo+IA0KPiBCcnlhbiwNCj4gDQo+IEkgbG9va2VkIHRocm91Z2ggdGhlIGRvY3Vt
-ZW50YXRpb24gYW5kIEknbSBhIGJpdCB1bmNsZWFyIG9uIGhvdyB0byB1c2UNCj4gYmluX3BhY2th
-Z2UsIGFuZCBoYXZlbid0IGJlZW4gYWJsZSB0byBmaW5kIGEgZ29vZCBleGFtcGxlLiBXaGVyZSBk
-byBJDQo+IGFjdHVhbGx5IHBsYWNlIG15IHJvb3RmcyBmaWxlcy9iaW5hcmllcyB0byBnZXQgY29w
-aWVkIHRvIG15IGltYWdlIHJvb3Rmcz8NCj4gVW5kZXIgJHtUSElTRElSfS8ke1BOfSBsaWtlIG90
-aGVyIHJlY2lwZSBhcnRpZmFjdHM/IEhvdyBkb2VzIGl0IGNvcHkgdGhlbSB0bw0KPiAke1N9PyBP
-ciBpcyB0aGlzIHNvbWV0aGluZyBJIG5lZWQgdG8gZG8/DQo+IA0KDQpJIGp1c3QgbW9kaWZpZWQg
-b25lIG9mIG15IHJlY2lwZXMgeWVzdGVyZGF5IHRvIHVzZSBiaW5fcGFja2FnZSB5ZXN0ZXJkYXkg
-YW5kIGZvdW5kIG91dCBhIGZldyBudWFuY2VzIHRoYXQgbWFrZSBpdCBlYXNpZXIgdG8gdXNlLiAg
-UHJvcGVyIHNldHVwIG9mIHRoZSBmaWxlcyB0byBjb3B5IGlzIGtleS4gIFRoZSBtYW51YWwgc3Rh
-dGVzICIgVGhlIGJpbl9wYWNrYWdlIGNsYXNzIHdvcmtzIHdlbGwgd2hlbiB0aGUgZmlsZXMgZXh0
-cmFjdGVkIGludG8gJHtTfSBhcmUgYWxyZWFkeSBsYWlkIG91dCBpbiB0aGUgd2F5IHRoZXkgc2hv
-dWxkIGJlIGxhaWQgb3V0IG9uIHRoZSB0YXJnZXQuIiAgQnkgZGVmYXVsdCwgYW55IGZpbGVzIGxp
-c3RlZCBhcyAiZmlsZTovLyIgaW4gU1JDX1VSSSBhcmUgY29waWVkIHRvICR7V09SS0RJUn0sIGFu
-ZCBpZiB0aGV5IGFyZSBhIGNvbXByZXNzZWQgYXJjaGl2ZSAoLnRhci5neiwgLnppcCkgdGhleSBh
-cmUgdW5jb21wcmVzc2VkIHVuZGVyICR7V09SS0RJUn0uICBJZiB5b3UgY3JlYXRlIGEgdGFyYmFs
-bCB3aXRoIHRoZSBmaWxlcyBpbiB0aGUgbG9jYXRpb25zIChhbmQgcGVybWlzc2lvbnMhKSB0aGF0
-IHlvdSB3YW50IG9uIHRoZSBmaW5hbCBpbWFnZSwgdGhlbiB0aGUgYmluX3BhY2thZ2UgY2xhc3Mg
-d2lsbCBkbyB0aGUgcmVzdCBvZiB0aGUgd29yay4gIEhvd2V2ZXIsIHlvdSBuZWVkIHRoZSBmaWxl
-cyBpbiB0aGUgdGFyYmFsbCB0byBiZSBvbmUgZGlyZWN0b3J5IGxldmVsIGRvd24gc28gdGhhdCB0
-aGV5IGFyZSBpbnN0YWxsZWQgb24gdGhlIGltYWdlIHByb3Blcmx5LiANCg0KTGV0J3MgYXNzdW1l
-IHlvdSBoYXZlIGEgcmVjaXBlIHVuZGVyIG1ldGEtbXlsYXllci9yZWNpcGVzLW1pbmUvbXktYXBw
-LyBjYWxsZWQgbXktYXBwXzEuMC4wLmJiLiAgWW91IGhhdmUgYW4gZXhlY3V0YWJsZSBjYWxsZWQg
-bXktYXBwIHRoYXQgeW91IHdhbnQgdG8gaW5zdGFsbCBpbiAvdXNyL2Jpbi8sIGEgY29uZmlndXJh
-dGlvbiBmaWxlIGNhbGxlZCBteS1hcHAuY29uZiB0aGF0IHlvdSB3YW50IHRvIGluc3RhbGwgYXQg
-L3Vzci9zaGFyZS9teS1hcHAvIGFuZCBkb2N1bWVudGF0aW9uIGNhbGxlZCBteS1hcHAucGRmIHlv
-dSB3YW50IHRvIGluc3RhbGwgYXQgL3Vzci9zaGFyZS9pbmZvLy4gIFlvdSB3YW50IGFsbCB0aGlz
-IHRvIGJlIHVuZGVyIGEgZGlyZWN0b3J5IHNvIHRoYXQgd2hlbiB0aGUgdGFyYmFsbCBnZXRzIHVu
-cGFja2VkIHVuZGVyICR7V09SS0RJUn0gdGhlIGZpbGVzIGFuZCBkaXJlY3RvcmllcyB5b3Ugd2Fu
-dCBvbiB0aGUgZmluYWwgaW1hZ2UgYXJlIHVuZGVyICR7U30uICAke1N9IGRlZmF1bHRzIHRvICR7
-V09SS0RJUn0vJHtCUH0sIHdoaWNoIGluIHRoaXMgY2FzZSB3b3VsZCBiZSAke1dPUktESVJ9L215
-LWFwcC0xLjAuMC4gIFNvIGlmIHlvdSBjcmVhdGVkIHRoZSBmb2xsb3dpbmcgZGlyZWN0b3J5IHN0
-cnVjdHVyZToNCg0KbXktYXBwLTEuMC4wLw0KICAgIHVzci8NCiAgICAgICAgYmluLw0KICAgICAg
-ICAgICAgbXktYXBwDQogICAgICAgIGluZm8vDQogICAgICAgICAgICBteS1hcHAucGRmDQogICAg
-ICAgIG15LWFwcC8NCiAgICAgICAgICAgIG15LWFwcC5jb25mDQoNCkFnYWluLCByZW1lbWJlciB0
-byBzZXQgdGhlIGRpcmVjdG9yeSBhbmQgZmlsZSBwZXJtaXNzaW9ucyBhcyB5b3Ugd2FudCBvbiB0
-aGUgZmluYWwgaW1hZ2UuICBUaGVuIGNyZWF0ZSBhIHRhcmJhbGwgZnJvbSB0aGUgZGlyZWN0b3J5
-IHlvdSBsYWlkIG91dCBjYWxsZWQgbXktYXBwLTEuMC4wLnRhci5neiBhbmQgcGxhY2UgaXQgdW5k
-ZXIgbWV0YS1teWxheWVyL3JlY2lwZXMtbWluZS9teS1hcHAvZmlsZXMvLiAgVGhlbiBjcmVhdGUg
-eW91ciByZWNpcGUgYXM6IA0KDQpTVU1NQVJZID0gInN1bW1hcnkgaGVyZSINClNFQ1RJT04gPSAi
-cHJvcGVyIHNlY3Rpb24gbmFtZSBoZXJlIg0KTElDRU5TRSA9ICJsaWNlbnNlIG5hbWUgaGVyZSIN
-CkxJQ19GSUxFU19DSEtTVU0gPSAibGljZW5zZSBwYXRoIGFuZCBNRDVzdW0gaGVyZSINCg0KU1JD
-X1VSSSA9ICJmaWxlOi8vJHtCUH0udGFyLmd6Ig0KaW5oZXJpdCBiaW5fcGFja2FnZQ0KDQpUaGUg
-c3lzdGVtIHdpbGwgdGhlbiBwYWNrYWdlIHlvdXIgZmlsZXMgYW5kIGluc3RhbGwgdGhlbSBvbnRv
-IHRoZSBpbWFnZSB3aGVyZSB0aGV5IGJlbG9uZy4gIFRoZXNlIGFyZSB0aGUgb25seSBsaW5lcyB5
-b3UgbmVlZCBpbiB5b3VyIHJlY2lwZSBvdGhlciB0aGFuIHRoZSBzdGFuZGFyZCBoZWFkZXIgdmFy
-aWFibGVzLiAgSW4gdGhlIGZ1dHVyZSwgaWYgeW91IGhhdmUgYSBuZXcgdmVyc2lvbiB0aGVuIGp1
-c3QgcmVjcmVhdGUgdGhlIHRhcmJhbGwgd2l0aCB0aGUgdXBkYXRlZCBmaWxlcyBhbmQgcmVuYW1l
-IHRoZSB0YXJiYWxsIHRvIG1hdGNoIHRoZSBuZXcgdmVyc2lvbi4gIEFsdGhvdWdoIEkgYW0gaGF2
-aW5nIGlzc3VlcyB3aXRoIHRoZSBsaWNlbnNlOyBJIGhhdmVuJ3QgZmlndXJlZCBvdXQgd2hlcmUg
-dG8gcHV0IGl0IGFuZCB3aGF0IHRvIHNldCBMSUNfRklMRVNfQ0hLU1VNIHRvIGluIHRoZSByZWNp
-cGUgc28gdGhhdCBiaXRiYWtlIGNhbiBmaW5kIHRoZSBsaWNlbnNlLiAgSWYgYW55b25lIGhhcyBh
-IGdvb2QgYW5zd2VyIGZvciB0aGF0LCBsZXQgbWUga25vdy4NCg0KUmVnYXJkcywNCkJyeWFuDQoN
-Cj4gVGhhbmtzLA0KPiBNaWNoYWVsDQo+IA0KPiBPbiBUdWUsIERlYyAxLCAyMDE1IGF0IDI6MDMg
-UE0sIE1pY2hhZWwgSGFiaWJpIDxtaWtlaGFiaWJpQGdtYWlsLmNvbQ0KPiA8bWFpbHRvOm1pa2Vo
-YWJpYmlAZ21haWwuY29tPiA+IHdyb3RlOg0KPiANCj4gDQo+IAlUaGFua3MgQnJ5YW4hDQo+IA0K
-PiAJT24gVHVlLCBEZWMgMSwgMjAxNSBhdCAxOjUwIFBNLCBCcnlhbiBFdmVuc29uDQo+IDxiZXZl
-bnNvbkBtZWxpbmtjb3JwLmNvbSA8bWFpbHRvOmJldmVuc29uQG1lbGlua2NvcnAuY29tPiA+IHdy
-b3RlOg0KPiANCj4gDQo+IAkJTWljaGFlbCwNCj4gDQo+IA0KPiAJCT4gLS0tLS1PcmlnaW5hbCBN
-ZXNzYWdlLS0tLS0NCj4gCQk+IEZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyA8
-bWFpbHRvOnlvY3RvLQ0KPiBib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+ICBbbWFpbHRvOnlvY3Rv
-LSA8bWFpbHRvOnlvY3RvLT4NCj4gCQk+IGJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZw0KPiA8bWFp
-bHRvOmJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZz4gXSBPbiBCZWhhbGYgT2YgTWljaGFlbCBIYWJp
-YmkNCj4gCQk+IFNlbnQ6IFR1ZXNkYXksIERlY2VtYmVyIDAxLCAyMDE1IDEwOjI2IEFNDQo+IAkJ
-PiBUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiA8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVj
-dC5vcmc+DQo+IAkJPiBTdWJqZWN0OiBbeW9jdG9dIEJlc3QgcHJhY3RpY2UgZm9yIGZpbGVzIGNv
-cGllZCBkaXJlY3RseSBpbnRvDQo+IHN5c3Jvb3Q/DQo+IAkJPg0KPiAJCT4gSSBhbSB3b3JraW5n
-IG9uIHBvdGVudGlhbGx5IG1pZ3JhdGluZyBvdXIgZGlzdHJpYnV0aW9uIHRvDQo+IFlvY3RvICh3
-aWxsIGJlIGEgbG9uZywNCj4gCQk+IGxvbmcgcHJvY2VzcykuIFdlIGhhdmUgYW4gYXJlYSBvZiBv
-dXIgZmlsZXN5c3RlbSB3aGVyZQ0KPiBhbnkgZmlsZSBwbGFjZWQgd2lsbCBnbw0KPiAJCT4gZGly
-ZWN0bHkgaW50byB0aGUgcm9vdGZzIG9mIHRoZSB0YXJnZXQuIFRoaXMgd29ya3Mgd2VsbCB3aXRo
-DQo+IG91ciBwcm9kdWN0LCBhcyB3ZQ0KPiAJCT4gaGF2ZSBjZXJ0YWluIGJpbmFyaWVzIGFuZCBz
-Y3JpcHRzIHRoYXQgbmVlZCB0byBiZSBjb3BpZWQNCj4gZGlyZWN0bHksIGFuZCB0aGVyZSdzDQo+
-IAkJPiBubyBvdGhlciByZWFsIHN0ZXAgaW52b2x2ZWQgKG5vIGNvbXBpbGF0aW9uLCBldGMpLiBJ
-cyB0aGVyZSBhDQo+IGJlc3QgcHJhY3RpY2Ugb3INCj4gCQk+IGV4aXN0aW5nIGNsYXNzIHRoYXQg
-aGFuZGxlcyB0aGlzPyBJIHNhdyBtZW50aW9uIG9mIGEgYmluYXJ5Lw0KPiBkaXJlY3RvcnkgYnV0
-IEkNCj4gCQk+IHdhc24ndCBzdXJlIGlmIHRoYXQgd2FzIGZvciB0aGlzIG9yIHNvbWV0aGluZyBl
-bHNlLg0KPiAJCT4NCj4gCQk+IFRoYW5rcywNCj4gCQk+IE1pY2hhZWwNCj4gDQo+IA0KPiAJCUkn
-bSBnbGFkIEkgZGVjaWRlZCB0byBhbnN3ZXIgeW91ciBxdWVzdGlvbiBiZWNhdXNlIEkgdGhpbmsg
-SQ0KPiBmb3VuZCBhbiBlYXNpZXIgd2F5IHRvIGRvIGl0IHRoYW4gSSBoYXZlIGJlZW4gZG9pbmcg
-dGhpcyBpbiB0aGUgcGFzdC4gIElmIHlvdQ0KPiB3YW50IHRvIGJlIGFibGUgdG8gdXBkYXRlIHRo
-ZSBmaWxlcyBvbiB5b3VyIHN5c3RlbSBhdCBhIGxhdGVyIGRhdGUsIHlvdSB3aWxsDQo+IHdhbnQg
-dG8gbWFrZSB5b3VyIG93biByZWNpcGUgd2hpY2ggaW5zdGFsbHMgdGhlIGJpbmFyaWVzIGFuZCBz
-Y3JpcHRzIG9udG8gdGhlDQo+IHJvb3Rmcy4gIEluIGdlbmVyYWwgeW91IGNyZWF0ZSBhIHJlY2lw
-ZSB3aGljaCBkb2VzIG5vdCBoYXZlIGRvX2NvbmZpZ3VyZSBvcg0KPiBkb19jb21waWxlIHRhc2tz
-LiAgVGhlcmUgaXMgYSBjbGFzcyB0aGF0IGRvZXMgdGhpcyBhbHJlYWR5IGNhbGxlZCAiYmluX3Bh
-Y2thZ2UiDQo+IHRoYXQgZG9lcyB0aGlzIGZvciB5b3UuICBTZWUgdGhlICJQYWNrYWdpbmcgRXh0
-ZXJuYWxseSBQcm9kdWNlZCBCaW5hcmllcyINCj4gc2VjdGlvbiBvZiB0aGUgbWFudWFsIGhlcmU6
-IGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuMC9tZWdhLQ0KPiBtYW51YWwvbWVn
-YS1tYW51YWwuaHRtbCNuZXctcmVjaXBlLXRlc3RpbmctZXhhbXBsZXMuICAgU28gaWYgeW91IGlu
-Y2x1ZGUNCj4gdGhlIGxpbmUgImluaGVyaXQgYmluX3BhY2thZ2UiIGFuZCBmb2xsb3cgdGhlIGlu
-c3RydWN0aW9ucyBpbiB0aGF0IHNlY3Rpb24gb2YNCj4gdGhlIG1hbnVhbCwgaXQgc2hvdWxkIGlu
-c3RhbGwgYWxsIHRoZSBmaWxlcyB0byB0aGUgcm9vdGZzIHRoYXQgYXJlIGluY2x1ZGVkIGluIHRo
-ZQ0KPiByZWNpcGUuDQo+IA0KPiAJCVJlZ2FyZHMsDQo+IAkJQnJ5YW4NCj4gDQo+IA0KPiANCj4g
-DQoNCg==
+--001a1133f450caf013052613ed48
+Content-Type: text/plain; charset=UTF-8
 
+This is perfect, thanks Bryan.
+
+On Fri, Dec 4, 2015 at 8:03 AM, Bryan Evenson <bevenson@melinkcorp.com>
+wrote:
+
+> Michael,
+>
+> > -----Original Message-----
+> > From: Michael Habibi [mailto:mikehabibi@gmail.com]
+> > Sent: Thursday, December 03, 2015 5:54 PM
+> > To: Bryan Evenson <bevenson@melinkcorp.com>
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] Best practice for files copied directly into
+> sysroot?
+> >
+> > Bryan,
+> >
+> > I looked through the documentation and I'm a bit unclear on how to use
+> > bin_package, and haven't been able to find a good example. Where do I
+> > actually place my rootfs files/binaries to get copied to my image rootfs?
+> > Under ${THISDIR}/${PN} like other recipe artifacts? How does it copy
+> them to
+> > ${S}? Or is this something I need to do?
+> >
+>
+> I just modified one of my recipes yesterday to use bin_package yesterday
+> and found out a few nuances that make it easier to use.  Proper setup of
+> the files to copy is key.  The manual states " The bin_package class works
+> well when the files extracted into ${S} are already laid out in the way
+> they should be laid out on the target."  By default, any files listed as
+> "file://" in SRC_URI are copied to ${WORKDIR}, and if they are a compressed
+> archive (.tar.gz, .zip) they are uncompressed under ${WORKDIR}.  If you
+> create a tarball with the files in the locations (and permissions!) that
+> you want on the final image, then the bin_package class will do the rest of
+> the work.  However, you need the files in the tarball to be one directory
+> level down so that they are installed on the image properly.
+>
+> Let's assume you have a recipe under meta-mylayer/recipes-mine/my-app/
+> called my-app_1.0.0.bb.  You have an executable called my-app that you
+> want to install in /usr/bin/, a configuration file called my-app.conf that
+> you want to install at /usr/share/my-app/ and documentation called
+> my-app.pdf you want to install at /usr/share/info/.  You want all this to
+> be under a directory so that when the tarball gets unpacked under
+> ${WORKDIR} the files and directories you want on the final image are under
+> ${S}.  ${S} defaults to ${WORKDIR}/${BP}, which in this case would be
+> ${WORKDIR}/my-app-1.0.0.  So if you created the following directory
+> structure:
+>
+> my-app-1.0.0/
+>     usr/
+>         bin/
+>             my-app
+>         info/
+>             my-app.pdf
+>         my-app/
+>             my-app.conf
+>
+> Again, remember to set the directory and file permissions as you want on
+> the final image.  Then create a tarball from the directory you laid out
+> called my-app-1.0.0.tar.gz and place it under
+> meta-mylayer/recipes-mine/my-app/files/.  Then create your recipe as:
+>
+> SUMMARY = "summary here"
+> SECTION = "proper section name here"
+> LICENSE = "license name here"
+> LIC_FILES_CHKSUM = "license path and MD5sum here"
+>
+> SRC_URI = "file://${BP}.tar.gz"
+> inherit bin_package
+>
+> The system will then package your files and install them onto the image
+> where they belong.  These are the only lines you need in your recipe other
+> than the standard header variables.  In the future, if you have a new
+> version then just recreate the tarball with the updated files and rename
+> the tarball to match the new version.  Although I am having issues with the
+> license; I haven't figured out where to put it and what to set
+> LIC_FILES_CHKSUM to in the recipe so that bitbake can find the license.  If
+> anyone has a good answer for that, let me know.
+>
+> Regards,
+> Bryan
+>
+> > Thanks,
+> > Michael
+> >
+> > On Tue, Dec 1, 2015 at 2:03 PM, Michael Habibi <mikehabibi@gmail.com
+> > <mailto:mikehabibi@gmail.com> > wrote:
+> >
+> >
+> >       Thanks Bryan!
+> >
+> >       On Tue, Dec 1, 2015 at 1:50 PM, Bryan Evenson
+> > <bevenson@melinkcorp.com <mailto:bevenson@melinkcorp.com> > wrote:
+> >
+> >
+> >               Michael,
+> >
+> >
+> >               > -----Original Message-----
+> >               > From: yocto-bounces@yoctoproject.org <mailto:yocto-
+> > bounces@yoctoproject.org>  [mailto:yocto- <mailto:yocto->
+> >               > bounces@yoctoproject.org
+> > <mailto:bounces@yoctoproject.org> ] On Behalf Of Michael Habibi
+> >               > Sent: Tuesday, December 01, 2015 10:26 AM
+> >               > To: yocto@yoctoproject.org
+> > <mailto:yocto@yoctoproject.org>
+> >               > Subject: [yocto] Best practice for files copied directly
+> into
+> > sysroot?
+> >               >
+> >               > I am working on potentially migrating our distribution to
+> > Yocto (will be a long,
+> >               > long process). We have an area of our filesystem where
+> > any file placed will go
+> >               > directly into the rootfs of the target. This works well
+> with
+> > our product, as we
+> >               > have certain binaries and scripts that need to be copied
+> > directly, and there's
+> >               > no other real step involved (no compilation, etc). Is
+> there a
+> > best practice or
+> >               > existing class that handles this? I saw mention of a
+> binary/
+> > directory but I
+> >               > wasn't sure if that was for this or something else.
+> >               >
+> >               > Thanks,
+> >               > Michael
+> >
+> >
+> >               I'm glad I decided to answer your question because I think
+> I
+> > found an easier way to do it than I have been doing this in the past.
+> If you
+> > want to be able to update the files on your system at a later date, you
+> will
+> > want to make your own recipe which installs the binaries and scripts
+> onto the
+> > rootfs.  In general you create a recipe which does not have do_configure
+> or
+> > do_compile tasks.  There is a class that does this already called
+> "bin_package"
+> > that does this for you.  See the "Packaging Externally Produced Binaries"
+> > section of the manual here: http://www.yoctoproject.org/docs/2.0/mega-
+> > manual/mega-manual.html#new-recipe-testing-examples.   So if you include
+> > the line "inherit bin_package" and follow the instructions in that
+> section of
+> > the manual, it should install all the files to the rootfs that are
+> included in the
+> > recipe.
+> >
+> >               Regards,
+> >               Bryan
+> >
+> >
+> >
+> >
+>
+>
+
+--001a1133f450caf013052613ed48
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">This is perfect, thanks Bryan.</div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On Fri, Dec 4, 2015 at 8:03 AM, Bryan E=
+venson <span dir=3D"ltr">&lt;<a href=3D"mailto:bevenson@melinkcorp.com" tar=
+get=3D"_blank">bevenson@melinkcorp.com</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex">Michael,<br>
+<span class=3D""><br>
+&gt; -----Original Message-----<br>
+&gt; From: Michael Habibi [mailto:<a href=3D"mailto:mikehabibi@gmail.com">m=
+ikehabibi@gmail.com</a>]<br>
+&gt; Sent: Thursday, December 03, 2015 5:54 PM<br>
+&gt; To: Bryan Evenson &lt;<a href=3D"mailto:bevenson@melinkcorp.com">beven=
+son@melinkcorp.com</a>&gt;<br>
+&gt; Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt; Subject: Re: [yocto] Best practice for files copied directly into sysr=
+oot?<br>
+&gt;<br>
+&gt; Bryan,<br>
+&gt;<br>
+&gt; I looked through the documentation and I&#39;m a bit unclear on how to=
+ use<br>
+&gt; bin_package, and haven&#39;t been able to find a good example. Where d=
+o I<br>
+&gt; actually place my rootfs files/binaries to get copied to my image root=
+fs?<br>
+&gt; Under ${THISDIR}/${PN} like other recipe artifacts? How does it copy t=
+hem to<br>
+&gt; ${S}? Or is this something I need to do?<br>
+&gt;<br>
+<br>
+</span>I just modified one of my recipes yesterday to use bin_package yeste=
+rday and found out a few nuances that make it easier to use.=C2=A0 Proper s=
+etup of the files to copy is key.=C2=A0 The manual states &quot; The bin_pa=
+ckage class works well when the files extracted into ${S} are already laid =
+out in the way they should be laid out on the target.&quot;=C2=A0 By defaul=
+t, any files listed as &quot;file://&quot; in SRC_URI are copied to ${WORKD=
+IR}, and if they are a compressed archive (.tar.gz, .zip) they are uncompre=
+ssed under ${WORKDIR}.=C2=A0 If you create a tarball with the files in the =
+locations (and permissions!) that you want on the final image, then the bin=
+_package class will do the rest of the work.=C2=A0 However, you need the fi=
+les in the tarball to be one directory level down so that they are installe=
+d on the image properly.<br>
+<br>
+Let&#39;s assume you have a recipe under meta-mylayer/recipes-mine/my-app/ =
+called <a href=3D"http://my-app_1.0.0.bb" rel=3D"noreferrer" target=3D"_bla=
+nk">my-app_1.0.0.bb</a>.=C2=A0 You have an executable called my-app that yo=
+u want to install in /usr/bin/, a configuration file called my-app.conf tha=
+t you want to install at /usr/share/my-app/ and documentation called my-app=
+.pdf you want to install at /usr/share/info/.=C2=A0 You want all this to be=
+ under a directory so that when the tarball gets unpacked under ${WORKDIR} =
+the files and directories you want on the final image are under ${S}.=C2=A0=
+ ${S} defaults to ${WORKDIR}/${BP}, which in this case would be ${WORKDIR}/=
+my-app-1.0.0.=C2=A0 So if you created the following directory structure:<br=
+>
+<br>
+my-app-1.0.0/<br>
+=C2=A0 =C2=A0 usr/<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 bin/<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 my-app<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 info/<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 my-app.pdf<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 my-app/<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 my-app.conf<br>
+<br>
+Again, remember to set the directory and file permissions as you want on th=
+e final image.=C2=A0 Then create a tarball from the directory you laid out =
+called my-app-1.0.0.tar.gz and place it under meta-mylayer/recipes-mine/my-=
+app/files/.=C2=A0 Then create your recipe as:<br>
+<br>
+SUMMARY =3D &quot;summary here&quot;<br>
+SECTION =3D &quot;proper section name here&quot;<br>
+LICENSE =3D &quot;license name here&quot;<br>
+LIC_FILES_CHKSUM =3D &quot;license path and MD5sum here&quot;<br>
+<br>
+SRC_URI =3D &quot;file://${BP}.tar.gz&quot;<br>
+inherit bin_package<br>
+<br>
+The system will then package your files and install them onto the image whe=
+re they belong.=C2=A0 These are the only lines you need in your recipe othe=
+r than the standard header variables.=C2=A0 In the future, if you have a ne=
+w version then just recreate the tarball with the updated files and rename =
+the tarball to match the new version.=C2=A0 Although I am having issues wit=
+h the license; I haven&#39;t figured out where to put it and what to set LI=
+C_FILES_CHKSUM to in the recipe so that bitbake can find the license.=C2=A0=
+ If anyone has a good answer for that, let me know.<br>
+<br>
+Regards,<br>
+Bryan<br>
+<span class=3D""><br>
+&gt; Thanks,<br>
+&gt; Michael<br>
+&gt;<br>
+&gt; On Tue, Dec 1, 2015 at 2:03 PM, Michael Habibi &lt;<a href=3D"mailto:m=
+ikehabibi@gmail.com">mikehabibi@gmail.com</a><br>
+</span><span class=3D"">&gt; &lt;mailto:<a href=3D"mailto:mikehabibi@gmail.=
+com">mikehabibi@gmail.com</a>&gt; &gt; wrote:<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Thanks Bryan!<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0On Tue, Dec 1, 2015 at 1:50 PM, Bryan Evenso=
+n<br>
+</span><span class=3D"">&gt; &lt;<a href=3D"mailto:bevenson@melinkcorp.com"=
+>bevenson@melinkcorp.com</a> &lt;mailto:<a href=3D"mailto:bevenson@melinkco=
+rp.com">bevenson@melinkcorp.com</a>&gt; &gt; wrote:<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Michael,<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; -----Origin=
+al Message-----<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; From: <a hr=
+ef=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.org=
+</a> &lt;mailto:<a href=3D"mailto:yocto-">yocto-</a><br>
+</span><span class=3D"">&gt; <a href=3D"mailto:bounces@yoctoproject.org">bo=
+unces@yoctoproject.org</a>&gt;=C2=A0 [mailto:<a href=3D"mailto:yocto-">yoct=
+o-</a> &lt;mailto:<a href=3D"mailto:yocto-">yocto-</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; <a href=3D"=
+mailto:bounces@yoctoproject.org">bounces@yoctoproject.org</a><br>
+&gt; &lt;mailto:<a href=3D"mailto:bounces@yoctoproject.org">bounces@yoctopr=
+oject.org</a>&gt; ] On Behalf Of Michael Habibi<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Sent: Tuesd=
+ay, December 01, 2015 10:26 AM<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; To: <a href=
+=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+</span><div><div class=3D"h5">&gt; &lt;mailto:<a href=3D"mailto:yocto@yocto=
+project.org">yocto@yoctoproject.org</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Subject: [y=
+octo] Best practice for files copied directly into<br>
+&gt; sysroot?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; I am workin=
+g on potentially migrating our distribution to<br>
+&gt; Yocto (will be a long,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; long proces=
+s). We have an area of our filesystem where<br>
+&gt; any file placed will go<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; directly in=
+to the rootfs of the target. This works well with<br>
+&gt; our product, as we<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; have certai=
+n binaries and scripts that need to be copied<br>
+&gt; directly, and there&#39;s<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; no other re=
+al step involved (no compilation, etc). Is there a<br>
+&gt; best practice or<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; existing cl=
+ass that handles this? I saw mention of a binary/<br>
+&gt; directory but I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; wasn&#39;t =
+sure if that was for this or something else.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Thanks,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Michael<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I&#39;m glad I d=
+ecided to answer your question because I think I<br>
+&gt; found an easier way to do it than I have been doing this in the past.=
+=C2=A0 If you<br>
+&gt; want to be able to update the files on your system at a later date, yo=
+u will<br>
+&gt; want to make your own recipe which installs the binaries and scripts o=
+nto the<br>
+&gt; rootfs.=C2=A0 In general you create a recipe which does not have do_co=
+nfigure or<br>
+&gt; do_compile tasks.=C2=A0 There is a class that does this already called=
+ &quot;bin_package&quot;<br>
+&gt; that does this for you.=C2=A0 See the &quot;Packaging Externally Produ=
+ced Binaries&quot;<br>
+&gt; section of the manual here: <a href=3D"http://www.yoctoproject.org/doc=
+s/2.0/mega-" rel=3D"noreferrer" target=3D"_blank">http://www.yoctoproject.o=
+rg/docs/2.0/mega-</a><br>
+</div></div>&gt; manual/mega-manual.html#new-recipe-testing-examples.=C2=A0=
+ =C2=A0So if you include<br>
+<div class=3D"HOEnZb"><div class=3D"h5">&gt; the line &quot;inherit bin_pac=
+kage&quot; and follow the instructions in that section of<br>
+&gt; the manual, it should install all the files to the rootfs that are inc=
+luded in the<br>
+&gt; recipe.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Bryan<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</div></div></blockquote></div><br></div>
+
+--001a1133f450caf013052613ed48--
