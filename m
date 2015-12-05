@@ -1,49 +1,36 @@
-Return-Path: <mikehabibi@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3258E00956; Fri,  4 Dec 2015 12:57:46 -0800 (PST)
+	id ECF64E0097F; Fri,  4 Dec 2015 16:15:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mikehabibi[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.48 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0B7E0090E
-	for <yocto@yoctoproject.org>; Fri,  4 Dec 2015 12:57:42 -0800 (PST)
-Received: by lfs39 with SMTP id 39so116701511lfs.3
-	for <yocto@yoctoproject.org>; Fri, 04 Dec 2015 12:57:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=pdHcuQvlHJUmAyUF9zHSfYy67XH4CB+oHWHpfZ5Y5hY=;
-	b=GyL3WQNWaSbTO0r5Ml3c4SpKVzcAe+Tz/UDhLxq0MZFrIqpo4TzkbURRaa3IC0OA5m
-	nmNEx2kPciBptZgEpqr3KTNfmk2bQoYiLKsYb14P+i0bmJSHFCaWEyKI4CD7BHiLmVv7
-	mw3orCY78ckxPMqiGJfnwoScYWkWKxodx+cJIen/nMcNiORzDgy9EfW99i9NNKpIkGSn
-	Odxuwg9MtSs6hlJUaZBtyOE6nRZ8Awvnu0mEMquTk971IsfrEudpWoBxX/8EL/4IJLl5
-	z6VfVG/3/pt5lqH9sKMM6So7qDKswREOML/blFnJCJ4LagktxqEFOYGRGZfSKdHg7HZ0
-	65UA==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BBDEE00948;
+	Fri,  4 Dec 2015 16:15:20 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 04 Dec 2015 16:15:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,382,1444719600"; d="scan'208";a="854290963"
+Received: from changjus-mobl.amr.corp.intel.com ([10.252.202.171])
+	by fmsmga001.fm.intel.com with ESMTP; 04 Dec 2015 16:15:19 -0800
+References: <56622A8B.4020903@intel.com>
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+X-Forwarded-Message-Id: <56622A8B.4020903@intel.com>
+Message-ID: <56622C97.1060009@intel.com>
+Date: Fri, 4 Dec 2015 16:15:19 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.4.0
 MIME-Version: 1.0
-X-Received: by 10.25.7.8 with SMTP id 8mr8854348lfh.111.1449262661568; Fri, 04
-	Dec 2015 12:57:41 -0800 (PST)
-Received: by 10.114.11.226 with HTTP; Fri, 4 Dec 2015 12:57:41 -0800 (PST)
-Date: Fri, 4 Dec 2015 14:57:41 -0600
-Message-ID: <CAOsp8o-xWdxp5_izm7QGt3aTErAmZcWwZZkaAgb42kient26VA@mail.gmail.com>
-From: Michael Habibi <mikehabibi@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Wilcard/recursing for SRC_URI file fetcher?
+In-Reply-To: <56622A8B.4020903@intel.com>
+Subject: [ANNOUNCEMENT] meta-intel 4.0 for Yocto Project "jethro" 2.0 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,53 +42,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Dec 2015 20:57:47 -0000
-Content-Type: multipart/alternative; boundary=001a113ea93a210fbf052618c216
+X-List-Received-Date: Sat, 05 Dec 2015 00:15:23 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---001a113ea93a210fbf052618c216
-Content-Type: text/plain; charset=UTF-8
 
-As far as I can tell, there is no way to point to a directory or match
-based on file type, for example:
+All,
 
-SRC_URI = "file://*.c \
-                   file://*.h"
-or
+The meta-intel 4.0 layer for the Yocto Projects 2.0 "jethro" release and
+board support packages are now available for download.
 
-SRC_URI = "file://directory/;recurse=true" # include all files under
-'directory'
+Tracy Graydon
+Intel Corp.
 
-Instead, files must be individually selected with the SRC_URI command. I
-kind of assume this is intentional, to explicitly name files to prevent
-error-prone operations. However, in my environment it may actually be
-beneficial for something like the above.
+meta-intel
+-----------------------
 
-Has it been considered already? Is it "taboo" or "off-limits", or will the
-project welcome the enhancement if it were done?
+repo: git://git.yoctoproject.org/meta-intel
+branch: jethro
+tag: 4.0-fido-2.0
+hash: 1ce13b3d39b2da79916e3a175cee6baa507290f1
+download:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.0/meta-intel-4.0-jethro-2.0.tar.bz2
+md5sum: 9399950f95f4cbc17fdcefb235bddf22
 
-Michael
+BSP downloads
+-----------------------
 
-P.S. This is of course assuming the feature isn't already there, but I
-couldn't find this behavior in the reference docs. I could be mistaken!
+Intel® Common Core BSP (intel-core2-32 and intel-corei7-64) 
+https://www.yoctoproject.org/downloads/bsps/jethro20/intel-core2-32 
+https://www.yoctoproject.org/downloads/bsps/jethro20/intel-corei7-64 
+https://www.yoctoproject.org/downloads/bsps/jethro20/intel-quark
 
---001a113ea93a210fbf052618c216
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Downloads:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.0/machines/intel-core2-32/intel-core2-32-4.0-jethro-2.0.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.0/machines/intel-corei7-64/intel-corei7-64-4.0-jethro-2.0.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.0/machines/intel-quark/intel-quark-4.0-jethro-2.0.tar.bz2
 
-<div dir=3D"ltr">As far as I can tell, there is no way to point to a direct=
-ory or match based on file type, for example:<div><br></div><div>SRC_URI =
-=3D &quot;file://*.c \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0file://*.h&quot;</div><div>or</div><div><br></di=
-v><div>SRC_URI =3D &quot;file://directory/;recurse=3Dtrue&quot; # include a=
-ll files under &#39;directory&#39;</div><div><br></div><div>Instead, files =
-must be individually selected with the SRC_URI command. I kind of assume th=
-is is intentional, to explicitly name files to prevent error-prone operatio=
-ns. However, in my environment it may actually be beneficial for something =
-like the above.</div><div><br></div><div>Has it been considered already? Is=
- it &quot;taboo&quot; or &quot;off-limits&quot;, or will the project welcom=
-e the enhancement if it were done?</div><div><br></div><div>Michael</div><d=
-iv><br></div><div>P.S. This is of course assuming the feature isn&#39;t alr=
-eady there, but I couldn&#39;t find this behavior in the reference docs. I =
-could be mistaken!</div></div>
+md5sums:
+afcf9d4d919cc787a4bf991964441bd3  intel-core2-32-4.0-jethro-2.0.tar.bz2
+a877c100ee01e4c78c6738149599b374 intel-corei7-64-4.0-jethro-2.0.tar.bz2
+e664d8b2973b177d430853a951ffa500  intel-quark-4.0-jethro-2.0.tar.bz2
 
---001a113ea93a210fbf052618c216--
+Features:
+-----------------------
+- Removed BSPs: Crownbay, eMenlow, FRI2, older 32-bit NUC, sugarbay,
+jasperforest, romley
+- Updated the Linux Kernel to 4.1.8
+- Added Intel-quark BSP
+- iucode-tool: bump version to 1.3
+- intel-microcode: bump version to 20150121
+- xf86-video-ast: upgrade to 1.0.1
+- intel-gpu-tools: upgrade to version 1.11
+
+
+
