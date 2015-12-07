@@ -1,34 +1,37 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <kaffeesurrogat@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C310E00869; Mon,  7 Dec 2015 11:53:50 -0800 (PST)
+	id D7F29E00956; Mon,  7 Dec 2015 12:17:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.67.36.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2517E00805
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 11:53:48 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id tB7JrjPY032065
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 7 Dec 2015 11:53:45 -0800
-Received: from [128.224.14.22] (128.224.14.22) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 7 Dec 2015 11:53:44 -0800
-Message-ID: <5665E3C6.6090207@windriver.com>
-Date: Mon, 7 Dec 2015 14:53:42 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 690D6E006F3
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 12:17:05 -0800 (PST)
+Received: from dovecot03.posteo.de (dovecot03.posteo.de [172.16.0.13])
+	by mout01.posteo.de (Postfix) with ESMTPS id 02F7820A82
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 21:16:57 +0100 (CET)
+Received: from mail.posteo.de (localhost [127.0.0.1])
+	by dovecot03.posteo.de (Postfix) with ESMTPSA id 3pDwsK0DcJz5vMw
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 21:16:52 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <56640B0C.2000107@posteo.de>
+	<CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
+	<5664714B.1040909@posteo.de>
+From: kaffeesurrogat@posteo.de
+Message-ID: <5665E926.70305@posteo.de>
+Date: Mon, 7 Dec 2015 21:16:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-To: mike9874 channel <mike987418@gmail.com>, <yocto@yoctoproject.org>
-References: <CADkGNzhWGEV8+fW2nuKEvWUvftqB8is7WOK0A3EGpFhe5mTYAA@mail.gmail.com>
-In-Reply-To: <CADkGNzhWGEV8+fW2nuKEvWUvftqB8is7WOK0A3EGpFhe5mTYAA@mail.gmail.com>
-Subject: Re: PREEMPT-RT patch: wrong header
+In-Reply-To: <5664714B.1040909@posteo.de>
+Subject: Re: BeagleBone...bitbake -v core-image-sato stops
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,38 +43,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Dec 2015 19:53:50 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Mon, 07 Dec 2015 20:17:11 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/07/2015 08:03 AM, mike9874 channel wrote:
-> Hello,
-> i am building an image for qeumux86 with the PREEMT-RT patch. Therefore
-> I use the following in my image.conf file:
-> PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-> PREFERRED_VERSION_linux-yocto-rt ?= "4%"
+Hello again,
+
+i've had a closer look to my gentoo system. Since it is an old but 
+regularly updated system i am stuck with a non-multilib enabled profile. 
+Luckily I have a newer installation on a different machine available and 
+until now things compile fine. The new installation is using a 
+multilib-enabled profile.
+For everything else I've followed the steps mentioned in the yocto wiki 
+found on wiki.gentoo.org:
+
+https://wiki.gentoo.org/wiki/Yocto
+
+Have fun,
+
+kaffeesurrogat
+
+
+Am 06.12.2015 um 18:32 schrieb kaffeesurrogat@posteo.de:
+> Thanks so far. I wasn't aware of the log files in temp/log.do_compile 
+> directory ;-) Well I've found an error, perhaps not related to 
+> attr-native but to gcc:
 >
-> I get an image with the 4.1.8-rt8-yocto-preempt-rt kernel. I have an
-> Application which is also build into the image where I try to use
-> SCHED_DEADLINE with sched_setattr() and struct sched_attr from
-> <sched.h>. My bitbake compiler throws following error: storage size of
-> 'scheduling_attribut' isn't known.
-> Where do I get the correct Headers to compile my application?
-
-You need to look at the kernel sources themselves:
-
-STAGING_KERNEL_DIR = "${TMPDIR}/work-shared/${MACHINE}/kernel-source"
-
-The preempt-rt kernel isn't messing with the libc-headers, so if you
-are missing a struct that it is modifying, it'll be in the kernel
-source itself.
-
-Bruce
-
+> the log-file says:
 >
-> Regards,
-> Mike
+> + cd 
+> /home/nico/yocto_bb/poky/build_bbb/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/gcc-cross-initial/4.8.2-r0/gcc-4.8.2/build.i686-linux.arm-poky-linux-gnueabi
+> + do_compile
+> + oe_runmake all-gcc all-target-libgcc
+> + oe_runmake_call all-gcc all-target-libgcc
+> + bbnote make -j 8 'ARCH_FLAGS_FOR_TARGET= -march=armv7-a 
+> -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
+> -isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include' 
+> all-gcc all-target-libgcc
+> + echo 'NOTE: make -j 8 ARCH_FLAGS_FOR_TARGET= -march=armv7-a 
+> -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
+> -isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include 
+> all-gcc all-target-libgcc'
+> NOTE: make -j 8 ARCH_FLAGS_FOR_TARGET= -march=armv7-a 
+> -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
+> -isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include 
+> all-gcc all-target-libgcc
+> + make -j 8 'ARCH_FLAGS_FOR_TARGET= -march=armv7-a -mthumb-interwork 
+> -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
+> -isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include' 
+> all-gcc all-target-libgcc
+> make: *** No rule to make target 'all-gcc'.  Stop.
+> + die 'oe_runmake failed'
+> + bbfatal 'oe_runmake failed'
+> + echo 'ERROR: oe_runmake failed'
+> ERROR: oe_runmake failed
 >
+>
+> It might happen to be the problem, but I don't know ..... I will poke 
+> around, to find some information about setting up the gcc-toolchain. 
+> Could this be the problem ?
+>
+>
+> Thanks,
+>
+> kaffeesurrogat
+>
+> Am 06.12.2015 um 15:57 schrieb Michael Habibi:
+>> You may be able to look under ${WORKDIR}/temp/log.do_compile to see 
+>> what the logs are saying it got stuck doing.
+>>
+>> On Sun, Dec 6, 2015 at 4:16 AM, <kaffeesurrogat@posteo.de 
+>> <mailto:kaffeesurrogat@posteo.de>> wrote:
+>>
+>>     Hello to all,
+>>
+>>     this is my first question ;-) I'm doing my first steps with a
+>>     beaglebone black and yocto. I've bought the beaglebone book "Using
+>>     Yocto Project with Beaglebone Black" and started the bitbake with
+>>     "bitbake -v core-image-sato". After a while the bitbake-process
+>>     reached a package called attr-native-2.4.47-r0 and it was not able
+>>     to move on. Bitmaker did not complain about anything, but I've
+>>     started the process yesterday in the morning and until now there
+>>     was no progress.
+>>
+>>     I've downloaded the source with:
+>>
+>>     git clone -b daisy git://git.yoctoproject.org/poky.git
+>>     <http://git.yoctoproject.org/poky.git>
+>>
+>>     My Distro is:
+>>
+>>     gentoo
+>>
+>>     I've started the bitbake with:
+>>
+>>     bitbake -v core-image-sato
+>>
+>>
+>>     Now I'm wondering, if I did something wrong .....
+>>
+>>     Greetings,
+>>
+>>     kaffeesurrogat
+>>
+>>
+>>     --
+>>     _______________________________________________
+>>     yocto mailing list
+>>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>     https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
 >
 
 
