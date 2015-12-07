@@ -1,36 +1,26 @@
-Return-Path: <kaffeesurrogat@posteo.de>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7951E00A7D; Sun,  6 Dec 2015 09:33:08 -0800 (PST)
+	id E73ADE00AA6; Sun,  6 Dec 2015 21:26:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.67.36.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85FF3E009BF
-	for <yocto@yoctoproject.org>; Sun,  6 Dec 2015 09:33:07 -0800 (PST)
-Received: from dovecot03.posteo.de (dovecot03.posteo.de [172.16.0.13])
-	by mout01.posteo.de (Postfix) with ESMTPS id 40C3E20954
-	for <yocto@yoctoproject.org>; Sun,  6 Dec 2015 18:33:00 +0100 (CET)
-Received: from mail.posteo.de (localhost [127.0.0.1])
-	by dovecot03.posteo.de (Postfix) with ESMTPSA id 3pDFGh5sTkz5vNH
-	for <yocto@yoctoproject.org>; Sun,  6 Dec 2015 18:33:00 +0100 (CET)
-References: <56640B0C.2000107@posteo.de>
-	<CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
-From: kaffeesurrogat@posteo.de
-To: yocto@yoctoproject.org
-Message-ID: <5664714B.1040909@posteo.de>
-Date: Sun, 6 Dec 2015 18:32:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6870E00A26
+	for <yocto@yoctoproject.org>; Sun,  6 Dec 2015 21:26:42 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 7D602849E191
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 00:26:41 -0500 (EST)
 MIME-Version: 1.0
-In-Reply-To: <CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
-Subject: Re: BeagleBone...bitbake -v core-image-sato stops
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 07 Dec 2015 05:26:41 -0000
+Message-ID: <20151207052641.6767.49593@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,98 +32,205 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Dec 2015 17:33:08 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Dec 2015 05:26:46 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Thanks so far. I wasn't aware of the log files in temp/log.do_compile 
-directory ;-) Well I've found an error, perhaps not related to 
-attr-native but to gcc:
+This mail was sent out by Recipe reporting system.
 
-the log-file says:
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
-+ cd 
-/home/nico/yocto_bb/poky/build_bbb/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/gcc-cross-initial/4.8.2-r0/gcc-4.8.2/build.i686-linux.arm-poky-linux-gnueabi
-+ do_compile
-+ oe_runmake all-gcc all-target-libgcc
-+ oe_runmake_call all-gcc all-target-libgcc
-+ bbnote make -j 8 'ARCH_FLAGS_FOR_TARGET= -march=armv7-a 
--mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
--isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include' 
-all-gcc all-target-libgcc
-+ echo 'NOTE: make -j 8 ARCH_FLAGS_FOR_TARGET= -march=armv7-a 
--mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
--isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include 
-all-gcc all-target-libgcc'
-NOTE: make -j 8 ARCH_FLAGS_FOR_TARGET= -march=armv7-a -mthumb-interwork 
--mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
--isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include 
-all-gcc all-target-libgcc
-+ make -j 8 'ARCH_FLAGS_FOR_TARGET= -march=armv7-a -mthumb-interwork 
--mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 
--isystem/home/nico/yocto_bb/poky/build_bbb/tmp/sysroots/beaglebone/usr/include' 
-all-gcc all-target-libgcc
-make: *** No rule to make target 'all-gcc'.  Stop.
-+ die 'oe_runmake failed'
-+ bbfatal 'oe_runmake failed'
-+ echo 'ERROR: oe_runmake failed'
-ERROR: oe_runmake failed
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
+You can check the detail information at:
 
-It might happen to be the problem, but I don't know ..... I will poke 
-around, to find some information about setting up the gcc-toolchain. 
-Could this be the problem ?
+http://recipes.yoctoproject.org/
 
+Package               Version      Upstream version      Maintainer            NoUpgradeReason
+--------------------  -----------  --------------------  --------------------  ------------------------------
+opkg                  0.3.0        0.3.1                 Alejandro del Cas...
+nfs-utils             1.3.1        1.3.3                 Alejandro Hernandez
+libxml-simple-perl    2.20         2.22                  Alejandro Hernandez
+perl                  5.22.0       5.22.1                Alejandro Hernandez
+python-mako           1.0.1        1.0.3                 Alejandro Hernandez
+python-nose           1.3.6        1.3.7                 Alejandro Hernandez
+python-numpy          1.7.0        1.10.1                Alejandro Hernandez
+python-pygobject      2.28.3       3.19.2                Alejandro Hernandez   Newer versions of python-py...
+python-scons          2.3.6        2.4.1                 Alejandro Hernandez
+python                2.7.9        2.7.10                Alejandro Hernandez
+swig                  3.0.6        3.0.7                 Alejandro Hernandez
+python3-setuptools    18.2         18.7.1                Alejandro Hernandez
+liberation-fonts      1.04         2.00.1                Alexander Kanavin     2.x depends on fontforge pa...
+kernelshark           2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
+webkitgtk             2.8.5        2.10.4                Alexander Kanavin
+openssl               1.0.2d       1.0.2e                Alexander Kanavin
+gcr                   3.16.0       3.18.0                Alexander Kanavin
+gnome-desktop3        3.16.2       3.18.2                Alexander Kanavin
+libsecret             0.18.2       0.18.3                Alexander Kanavin
+libwebp               0.4.3        0.4.4                 Alexander Kanavin
+kbd                   2.0.2        2.0.3                 Alexander Kanavin
+nss                   3.19.2       3.20                  Alexander Kanavin
+kexec-tools           2.0.10       2.0.11                Alexander Kanavin
+btrfs-tools           4.1.2        4.3.1                 Alexander Kanavin
+babeltrace            1.2.4+gitX   1.3.1+gitAUTOINC+...  Alexander Kanavin
+powertop              2.7          2.8                   Alexander Kanavin
+systemtap-uprobes     2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
+systemtap             2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
+trace-cmd             2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
+tiff                  4.0.4        4.0.6                 Alexander Kanavin
+mkelfimage            4.0+gitX     4.2+gitAUTOINC+43...  Alexander Kanavin     mkelfimage has been removed...
+mtd-utils             1.5.1+gitX   1.5.2+gitAUTOINC+...  Alexander Kanavin
+iso-codes             3.58         3.63                  Alexander Kanavin
+boost                 1.58.0       1.59.0                Alexander Kanavin
+icu                   55.1         56.1-AIX7.1-VA2       Alexander Kanavin
+valgrind              3.10.1       3.11.0                Alexander Kanavin
+bjam-native           1.58.0       1.59.0                Alexander Kanavin
+liburcu               0.8.7        0.9.1                 Alexander Kanavin
+lighttpd              1.4.36       1.4.38                Alexander Kanavin
+msmtp                 1.6.2        1.6.3                 Alexander Kanavin
+libassuan             2.2.1        2.4.2                 Alexander Kanavin
+procps                3.3.10       3.3.11                Alexander Kanavin
+epiphany              3.16.3       3.18.1                Alexander Kanavin
+apt                   1.0.10.1     1.1.3                 Aníbal Limón
+pinentry              0.9.2        0.9.6                 Armin Kuster
+linux-libc-headers    4.1          4.3                   Bruce Ashfield
+guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
+pciutils              3.3.1        3.4.0                 Chen Qi
+resolvconf            1.77         1.78                  Chen Qi
+dbus-test             1.8.20       1.10.6                Chen Qi
+dbus                  1.8.20       1.10.6                Chen Qi
+systemd               225+gitX     228+gitAUTOINC+dd...  Chen Qi
+util-linux            2.26.2       2.27.1                Chen Qi
+kmod                  21+gitX      22+gitAUTOINC+42f...  Chen Qi
+flex                  2.5.39       2.6.0rc1              Chen Qi
+curl                  7.44.0       7.46.0                Chen Qi
+cpio                  2.11         2.12                  Chen Qi
+cups                  2.0.4        2.1.2                 Chen Qi
+grep                  2.21         2.22                  Chen Qi
+sudo                  1.8.14p3     1.8.15                Chen Qi
+sysstat               11.1.5       11.1.8-1              Chen Qi
+xz                    5.2.1        5.2.2                 Chen Qi
+build-appliance-i...  12.0.1       14.0.0                Cristian Iorga
+qemu                  2.4.0.1      2.4.1                 Cristian Iorga
+dhcp                  4.3.2        4.3.3                 Hongxu Jia
+ncurses               5.9          6.0.20150627          Hongxu Jia
+elfutils              0.163        0.164                 Hongxu Jia
+pax-utils             1.0.5        1.1.4                 Hongxu Jia
+createrepo            0.4.11       0.10.4                Hongxu Jia            Versions after 0.9.* use YU...
+xmlto                 0.0.26       0.0.28                Hongxu Jia
+libgcrypt             1.6.3        1.6.4                 Hongxu Jia
+ghostscript           9.16         9.18                  Hongxu Jia
+qmmp                  0.8.6        1.0.2                 Hongxu Jia
+man-pages             4.02         4.03                  Hongxu Jia
+help2man-native       1.47.1       1.47.3                Hongxu Jia
+gnupg                 2.1.7        2.1.10                Hongxu Jia
+waffle                1.5.1        1.5.2                 Jussi Kukkonen
+libinput              0.21.0       1.1.1                 Jussi Kukkonen
+wayland               1.8.1        1.9.0                 Jussi Kukkonen
+weston                1.8.0        1.9.0                 Jussi Kukkonen
+libsoup-2.4           2.52.1       2.52.2                Jussi Kukkonen
+gsettings-desktop...  3.16.1       3.19.2                Jussi Kukkonen
+dropbear              2015.68      2015.71               Jussi Kukkonen
+glib-2.0              2.46.1       2.46.2                Jussi Kukkonen
+pixman                0.32.8       0.33.4                Jussi Kukkonen
+docbook-xsl-style...  1.78.1       1.79.0                Jussi Kukkonen
+libav                 9.18         11.4                  Jussi Kukkonen
+at-spi2-core          2.18.1       2.18.3                Jussi Kukkonen
+clutter-gtk-1.0       1.6.2        1.6.6                 Jussi Kukkonen
+libdrm                2.4.62       2.4.65                Jussi Kukkonen
+gpgme                 1.5.4        1.6.0                 Jussi Kukkonen
+vala                  0.28.0       0.30.0                Jussi Kukkonen
+libevdev              1.4.2        1.4.5                 Jussi Kukkonen
+libgpg-error          1.19         1.20                  Jussi Kukkonen
+cmake                 3.3.2        3.4.1                 Jussi Kukkonen
+shared-mime-info      1.4          1.5                   Jussi Kukkonen
+vte                   0.28.2       0.42.1                Jussi Kukkonen        matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.8        3.0.14                Jussi Kukkonen
+libcroco              0.6.8        0.6.9                 Jussi Kukkonen
+xdg-utils             1.1.0-rc1    1.1.1                 Jussi Kukkonen
+gdk-pixbuf            2.32.1       2.32.2                Jussi Kukkonen
+gnome-common          3.14.0       3.18.0                Jussi Kukkonen
+gtk+3                 3.18.2       3.18.6                Jussi Kukkonen
+librsvg               2.40.11      2.40.12               Jussi Kukkonen
+clutter-1.0           1.22.4       1.24.2                Jussi Kukkonen
+cogl-1.0              1.20.0       1.22.0                Jussi Kukkonen
+freetype              2.6          2.6.2                 Jussi Kukkonen
+glew                  1.12.0       1.13.0                Jussi Kukkonen
+cdrtools-native       3.01a31      3.02a03               Jussi Kukkonen
+prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.14       5.4.15                Mark Hatle            5.4.15 has a package databa...
+bluez5                5.33         5.36                  Maxin B. John
+libpng12              1.2.54       1.2.55                Maxin B. John
+db                    6.0.30       6.1.26                Maxin B. John         Updating to 6.1.x requires ...
+harfbuzz              1.1.0        1.1.2                 Maxin B. John
+libtirpc              0.2.5        1.0.1                 Maxin B. John
+libical               1.0.0        1.0.1                 Maxin B. John
+kmod-native           21+gitX      22+gitAUTOINC+42f...  No maintainer
+cryptodev-module      1.7          1.8                   No maintainer
+cryptodev-tests       1.7          1.8                   No maintainer
+gcc-source-5.2.0      5.2.0        5.3.0                 No maintainer
+dmidecode             2.12         3.0                   No maintainer
+gptfdisk              1.0.0        1.0.1                 No maintainer
+cryptodev-linux       1.7          1.8                   No maintainer
+ifupdown              0.7.48.1     0.7.54ubuntu2         No maintainer
+python-pexpect        3.3          4.0.1                 No maintainer
+python3-pip           6.1.1        7.1.2                 No maintainer
+uclibc-initial        0.9.33+gitX  0.9.33.2+gitAUTOI...  No maintainer
+apt-native            1.0.10.1     1.1.3                 No maintainer
+cmake-native          3.3.2        3.4.1                 No maintainer
+gdb-cross-canadia...  7.9.1        7.10.1                No maintainer
+gdb-cross-i586        7.9.1        7.10.1                No maintainer
+sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
+perl-native           5.22.0       5.22.1                No maintainer
+python-scons-native   2.3.6        2.4.1                 No maintainer
+python-native         2.7.9        2.7.11                No maintainer
+adt-installer         0.3.0        0.3.1                 Randy Witt
+unfs3                 0.9.22.r490  0.9.22.r495           Randy Witt
+lttng-ust             2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
+gdb                   7.9.1        7.10.1                Richard Purdie
+e2fsprogs             1.42.9       1.42.13               Robert Yang           Updating backported patches...
+file                  5.24         5.25                  Robert Yang
+git                   2.5.0        2.6.3                 Robert Yang
+gmp                   6.0.0        6.1.0                 Robert Yang
+less                  479          481                   Robert Yang
+ltp                   20150420     20150903              Robert Yang
+libbsd                0.7.0        0.8.0                 Robert Yang
+wget                  1.16.3       1.17                  Robert Yang
+autogen-native        5.18.5       5.18.6                Robert Yang
+base-passwd           3.5.29       3.5.38                Ross Burton           Version 3.5.38 requires cde...
+uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Ross Burton
+unifdef               2.10         2.11                  Ross Burton
+alsa-lib              1.0.29       1.1.0                 Tanu Kaskinen
+alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
+alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
+libsndfile1           1.0.25       1.0.26                Tanu Kaskinen
+pulseaudio            6.0          7.1                   Tanu Kaskinen
+alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
+alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
+gettext               0.19.4       0.19.6                Wenzong Fan
+ccache                3.2.3        3.2.4                 Wenzong Fan
+chkconfig             1.3.58       1.7                   Wenzong Fan           Version 1.5 requires selinux
 
-Thanks,
+Upgradable count: 152
+Upgradable total count: 162
 
-kaffeesurrogat
+The based commit is:
 
-Am 06.12.2015 um 15:57 schrieb Michael Habibi:
-> You may be able to look under ${WORKDIR}/temp/log.do_compile to see 
-> what the logs are saying it got stuck doing.
->
-> On Sun, Dec 6, 2015 at 4:16 AM, <kaffeesurrogat@posteo.de 
-> <mailto:kaffeesurrogat@posteo.de>> wrote:
->
->     Hello to all,
->
->     this is my first question ;-) I'm doing my first steps with a
->     beaglebone black and yocto. I've bought the beaglebone book "Using
->     Yocto Project with Beaglebone Black" and started the bitbake with
->     "bitbake -v core-image-sato". After a while the bitbake-process
->     reached a package called attr-native-2.4.47-r0 and it was not able
->     to move on. Bitmaker did not complain about anything, but I've
->     started the process yesterday in the morning and until now there
->     was no progress.
->
->     I've downloaded the source with:
->
->     git clone -b daisy git://git.yoctoproject.org/poky.git
->     <http://git.yoctoproject.org/poky.git>
->
->     My Distro is:
->
->     gentoo
->
->     I've started the bitbake with:
->
->     bitbake -v core-image-sato
->
->
->     Now I'm wondering, if I did something wrong .....
->
->     Greetings,
->
->     kaffeesurrogat
->
->
->     --
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
->
+commit 687e5ef86361a16d6c411386939d4ba96a5909ea
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Mon Nov 30 12:56:41 2015 +0000
 
+    libsdl: remove redundant configure_tweak patch
+    
+    configure_tweak.patch was simply adding arguments to AC_DEFINE which are only
+    needed by autoheader.  We we now disable autoheader and use upstream's
+    config.h.in this patch isn't needed anymore.
+    
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
