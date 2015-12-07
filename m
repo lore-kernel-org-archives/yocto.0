@@ -1,26 +1,67 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E73ADE00AA6; Sun,  6 Dec 2015 21:26:45 -0800 (PST)
+	id EAA83E00AA8; Mon,  7 Dec 2015 06:51:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.111.145 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6870E00A26
-	for <yocto@yoctoproject.org>; Sun,  6 Dec 2015 21:26:42 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 7D602849E191
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 00:26:41 -0500 (EST)
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bon0145.outbound.protection.outlook.com [157.56.111.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91BB6E0079A
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 06:50:59 -0800 (PST)
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) with
+	Microsoft SMTP
+	Server (TLS) id 15.1.337.19; Mon, 7 Dec 2015 14:50:56 +0000
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) with
+	mapi id 15.01.0337.015; Mon, 7 Dec 2015 14:50:56 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Image specific package feed sources
+Thread-Index: AdEw/Cz3SRFmUdVMS7mALZ9O4I74Tw==
+Date: Mon, 7 Dec 2015 14:50:55 +0000
+Message-ID: <BN3PR0501MB1090A03EB742A7CFCC098079BB090@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=bevenson@melinkcorp.com; 
+x-originating-ip: [98.100.91.242]
+x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1090;
+	5:L7aK8nh2ZSCGDm4o85rmPrYcEUQbXmmSvswrX5rDq9x/KmKRL7KHJ5hw/3JxAwaLYUvrBSvW/wNZEFUXQ7WAsl0JscMlgRPpPDaYdbpRUiIcVcn06wtGbDcN1rDcP2saVKvIAfKh49G6Ugn04JlGMg==;
+	24:woKkRJvnzuhp0KvMA9wqkxmZdLJy7UkhfAe809A50KzWIrRIAOcFu6YpMBxiTlTKI7hezXmeqmx95rmjQtx8YbjNKXNGottcZ2n9JwJ8/s4=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1090;
+x-microsoft-antispam-prvs: <BN3PR0501MB1090538CD68589E96AB4D261BB090@BN3PR0501MB1090.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(520078)(8121501046)(3002001)(10201501046);
+	SRVR:BN3PR0501MB1090; BCL:0; PCL:0; RULEID:;
+	SRVR:BN3PR0501MB1090; 
+x-forefront-prvs: 078310077C
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(199003)(164054003)(189002)(97736004)(66066001)(74316001)(106356001)(189998001)(5004730100002)(110136002)(87936001)(76576001)(450100001)(101416001)(77096005)(92566002)(86362001)(107886002)(81156007)(5001960100002)(105586002)(5008740100001)(229853001)(99286002)(5003600100002)(1220700001)(10400500002)(102836003)(3846002)(6116002)(11100500001)(2351001)(5002640100001)(33656002)(1096002)(2501003)(586003)(40100003)(122556002)(50986999)(54356999)(2900100001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1090;
+	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: melinkcorp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 07 Dec 2015 05:26:41 -0000
-Message-ID: <20151207052641.6767.49593@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2015 14:50:55.9308 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1090
+Subject: Image specific package feed sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,205 +73,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Dec 2015 05:26:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 07 Dec 2015 14:51:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+All,
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+I'm on poky/dizzy-1.7.3 and I'm having some conflict when creating image sp=
+ecific packages.  I have two separate images that I build.  One image is th=
+e production-ready image and the other is a development image.  The develop=
+ment image includes the -dbg versions of packages and all the tools for rem=
+ote debugging.  I am using opkg for a package manager and I have my own fee=
+d-config package (called "custom-feed-config") which contains the opkg conf=
+iguraiton files describing the package source locations.  I am trying to cr=
+eate a custom-feed-config-dev package which contains a different path to th=
+e package sources for the development image.  However, I'm getting conflict=
+s during the build because custom-feed-config and custom-feed-config-dev bo=
+th provide the same files (the configuration file names are the same, they =
+just have different content to point to the different package source locati=
+ons).  In an effort to resolve these conflicts I set "PROVIDES =3D "custom-=
+feed-config"" in custom-feed-config-dev.  But now I'm getting warnings to s=
+pecify a PREFERRED_PROVIDER for custom-feed-config because there are two pr=
+oviders for custom-feed-config.  I've tried setting the PREFERRED_PROVIDER =
+in the image recipe but that didn't help.
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+So I want to be able to build both my production-ready and development imag=
+es on the same build machine but let each image have its own separate opkg =
+feed sources included in the image.  If any of you have done this for your =
+build systems, can you share how you did this?
 
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version      Upstream version      Maintainer            NoUpgradeReason
---------------------  -----------  --------------------  --------------------  ------------------------------
-opkg                  0.3.0        0.3.1                 Alejandro del Cas...
-nfs-utils             1.3.1        1.3.3                 Alejandro Hernandez
-libxml-simple-perl    2.20         2.22                  Alejandro Hernandez
-perl                  5.22.0       5.22.1                Alejandro Hernandez
-python-mako           1.0.1        1.0.3                 Alejandro Hernandez
-python-nose           1.3.6        1.3.7                 Alejandro Hernandez
-python-numpy          1.7.0        1.10.1                Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez   Newer versions of python-py...
-python-scons          2.3.6        2.4.1                 Alejandro Hernandez
-python                2.7.9        2.7.10                Alejandro Hernandez
-swig                  3.0.6        3.0.7                 Alejandro Hernandez
-python3-setuptools    18.2         18.7.1                Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin     2.x depends on fontforge pa...
-kernelshark           2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
-webkitgtk             2.8.5        2.10.4                Alexander Kanavin
-openssl               1.0.2d       1.0.2e                Alexander Kanavin
-gcr                   3.16.0       3.18.0                Alexander Kanavin
-gnome-desktop3        3.16.2       3.18.2                Alexander Kanavin
-libsecret             0.18.2       0.18.3                Alexander Kanavin
-libwebp               0.4.3        0.4.4                 Alexander Kanavin
-kbd                   2.0.2        2.0.3                 Alexander Kanavin
-nss                   3.19.2       3.20                  Alexander Kanavin
-kexec-tools           2.0.10       2.0.11                Alexander Kanavin
-btrfs-tools           4.1.2        4.3.1                 Alexander Kanavin
-babeltrace            1.2.4+gitX   1.3.1+gitAUTOINC+...  Alexander Kanavin
-powertop              2.7          2.8                   Alexander Kanavin
-systemtap-uprobes     2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
-systemtap             2.7+gitX     2.9+gitAUTOINC+70...  Alexander Kanavin
-trace-cmd             2.5.3+gitX   2.6+gitAUTOINC+9b...  Alexander Kanavin
-tiff                  4.0.4        4.0.6                 Alexander Kanavin
-mkelfimage            4.0+gitX     4.2+gitAUTOINC+43...  Alexander Kanavin     mkelfimage has been removed...
-mtd-utils             1.5.1+gitX   1.5.2+gitAUTOINC+...  Alexander Kanavin
-iso-codes             3.58         3.63                  Alexander Kanavin
-boost                 1.58.0       1.59.0                Alexander Kanavin
-icu                   55.1         56.1-AIX7.1-VA2       Alexander Kanavin
-valgrind              3.10.1       3.11.0                Alexander Kanavin
-bjam-native           1.58.0       1.59.0                Alexander Kanavin
-liburcu               0.8.7        0.9.1                 Alexander Kanavin
-lighttpd              1.4.36       1.4.38                Alexander Kanavin
-msmtp                 1.6.2        1.6.3                 Alexander Kanavin
-libassuan             2.2.1        2.4.2                 Alexander Kanavin
-procps                3.3.10       3.3.11                Alexander Kanavin
-epiphany              3.16.3       3.18.1                Alexander Kanavin
-apt                   1.0.10.1     1.1.3                 Aníbal Limón
-pinentry              0.9.2        0.9.6                 Armin Kuster
-linux-libc-headers    4.1          4.3                   Bruce Ashfield
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.3.1        3.4.0                 Chen Qi
-resolvconf            1.77         1.78                  Chen Qi
-dbus-test             1.8.20       1.10.6                Chen Qi
-dbus                  1.8.20       1.10.6                Chen Qi
-systemd               225+gitX     228+gitAUTOINC+dd...  Chen Qi
-util-linux            2.26.2       2.27.1                Chen Qi
-kmod                  21+gitX      22+gitAUTOINC+42f...  Chen Qi
-flex                  2.5.39       2.6.0rc1              Chen Qi
-curl                  7.44.0       7.46.0                Chen Qi
-cpio                  2.11         2.12                  Chen Qi
-cups                  2.0.4        2.1.2                 Chen Qi
-grep                  2.21         2.22                  Chen Qi
-sudo                  1.8.14p3     1.8.15                Chen Qi
-sysstat               11.1.5       11.1.8-1              Chen Qi
-xz                    5.2.1        5.2.2                 Chen Qi
-build-appliance-i...  12.0.1       14.0.0                Cristian Iorga
-qemu                  2.4.0.1      2.4.1                 Cristian Iorga
-dhcp                  4.3.2        4.3.3                 Hongxu Jia
-ncurses               5.9          6.0.20150627          Hongxu Jia
-elfutils              0.163        0.164                 Hongxu Jia
-pax-utils             1.0.5        1.1.4                 Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia            Versions after 0.9.* use YU...
-xmlto                 0.0.26       0.0.28                Hongxu Jia
-libgcrypt             1.6.3        1.6.4                 Hongxu Jia
-ghostscript           9.16         9.18                  Hongxu Jia
-qmmp                  0.8.6        1.0.2                 Hongxu Jia
-man-pages             4.02         4.03                  Hongxu Jia
-help2man-native       1.47.1       1.47.3                Hongxu Jia
-gnupg                 2.1.7        2.1.10                Hongxu Jia
-waffle                1.5.1        1.5.2                 Jussi Kukkonen
-libinput              0.21.0       1.1.1                 Jussi Kukkonen
-wayland               1.8.1        1.9.0                 Jussi Kukkonen
-weston                1.8.0        1.9.0                 Jussi Kukkonen
-libsoup-2.4           2.52.1       2.52.2                Jussi Kukkonen
-gsettings-desktop...  3.16.1       3.19.2                Jussi Kukkonen
-dropbear              2015.68      2015.71               Jussi Kukkonen
-glib-2.0              2.46.1       2.46.2                Jussi Kukkonen
-pixman                0.32.8       0.33.4                Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.0                Jussi Kukkonen
-libav                 9.18         11.4                  Jussi Kukkonen
-at-spi2-core          2.18.1       2.18.3                Jussi Kukkonen
-clutter-gtk-1.0       1.6.2        1.6.6                 Jussi Kukkonen
-libdrm                2.4.62       2.4.65                Jussi Kukkonen
-gpgme                 1.5.4        1.6.0                 Jussi Kukkonen
-vala                  0.28.0       0.30.0                Jussi Kukkonen
-libevdev              1.4.2        1.4.5                 Jussi Kukkonen
-libgpg-error          1.19         1.20                  Jussi Kukkonen
-cmake                 3.3.2        3.4.1                 Jussi Kukkonen
-shared-mime-info      1.4          1.5                   Jussi Kukkonen
-vte                   0.28.2       0.42.1                Jussi Kukkonen        matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.8        3.0.14                Jussi Kukkonen
-libcroco              0.6.8        0.6.9                 Jussi Kukkonen
-xdg-utils             1.1.0-rc1    1.1.1                 Jussi Kukkonen
-gdk-pixbuf            2.32.1       2.32.2                Jussi Kukkonen
-gnome-common          3.14.0       3.18.0                Jussi Kukkonen
-gtk+3                 3.18.2       3.18.6                Jussi Kukkonen
-librsvg               2.40.11      2.40.12               Jussi Kukkonen
-clutter-1.0           1.22.4       1.24.2                Jussi Kukkonen
-cogl-1.0              1.20.0       1.22.0                Jussi Kukkonen
-freetype              2.6          2.6.2                 Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-cdrtools-native       3.01a31      3.02a03               Jussi Kukkonen
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.14       5.4.15                Mark Hatle            5.4.15 has a package databa...
-bluez5                5.33         5.36                  Maxin B. John
-libpng12              1.2.54       1.2.55                Maxin B. John
-db                    6.0.30       6.1.26                Maxin B. John         Updating to 6.1.x requires ...
-harfbuzz              1.1.0        1.1.2                 Maxin B. John
-libtirpc              0.2.5        1.0.1                 Maxin B. John
-libical               1.0.0        1.0.1                 Maxin B. John
-kmod-native           21+gitX      22+gitAUTOINC+42f...  No maintainer
-cryptodev-module      1.7          1.8                   No maintainer
-cryptodev-tests       1.7          1.8                   No maintainer
-gcc-source-5.2.0      5.2.0        5.3.0                 No maintainer
-dmidecode             2.12         3.0                   No maintainer
-gptfdisk              1.0.0        1.0.1                 No maintainer
-cryptodev-linux       1.7          1.8                   No maintainer
-ifupdown              0.7.48.1     0.7.54ubuntu2         No maintainer
-python-pexpect        3.3          4.0.1                 No maintainer
-python3-pip           6.1.1        7.1.2                 No maintainer
-uclibc-initial        0.9.33+gitX  0.9.33.2+gitAUTOI...  No maintainer
-apt-native            1.0.10.1     1.1.3                 No maintainer
-cmake-native          3.3.2        3.4.1                 No maintainer
-gdb-cross-canadia...  7.9.1        7.10.1                No maintainer
-gdb-cross-i586        7.9.1        7.10.1                No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-perl-native           5.22.0       5.22.1                No maintainer
-python-scons-native   2.3.6        2.4.1                 No maintainer
-python-native         2.7.9        2.7.11                No maintainer
-adt-installer         0.3.0        0.3.1                 Randy Witt
-unfs3                 0.9.22.r490  0.9.22.r495           Randy Witt
-lttng-ust             2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-gdb                   7.9.1        7.10.1                Richard Purdie
-e2fsprogs             1.42.9       1.42.13               Robert Yang           Updating backported patches...
-file                  5.24         5.25                  Robert Yang
-git                   2.5.0        2.6.3                 Robert Yang
-gmp                   6.0.0        6.1.0                 Robert Yang
-less                  479          481                   Robert Yang
-ltp                   20150420     20150903              Robert Yang
-libbsd                0.7.0        0.8.0                 Robert Yang
-wget                  1.16.3       1.17                  Robert Yang
-autogen-native        5.18.5       5.18.6                Robert Yang
-base-passwd           3.5.29       3.5.38                Ross Burton           Version 3.5.38 requires cde...
-uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Ross Burton
-unifdef               2.10         2.11                  Ross Burton
-alsa-lib              1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-libsndfile1           1.0.25       1.0.26                Tanu Kaskinen
-pulseaudio            6.0          7.1                   Tanu Kaskinen
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
-gettext               0.19.4       0.19.6                Wenzong Fan
-ccache                3.2.3        3.2.4                 Wenzong Fan
-chkconfig             1.3.58       1.7                   Wenzong Fan           Version 1.5 requires selinux
-
-Upgradable count: 152
-Upgradable total count: 162
-
-The based commit is:
-
-commit 687e5ef86361a16d6c411386939d4ba96a5909ea
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Mon Nov 30 12:56:41 2015 +0000
-
-    libsdl: remove redundant configure_tweak patch
-    
-    configure_tweak.patch was simply adding arguments to AC_DEFINE which are only
-    needed by autoheader.  We we now disable autoheader and use upstream's
-    config.h.in this patch isn't needed anymore.
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+Thanks,
+Bryan
 
