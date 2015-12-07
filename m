@@ -1,73 +1,54 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA43EE0049B; Mon,  7 Dec 2015 13:32:21 -0800 (PST)
+	id 548FFE00956; Mon,  7 Dec 2015 14:17:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.111.141 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0141.outbound.protection.outlook.com [157.56.111.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5902AE0049B
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 13:32:18 -0800 (PST)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) by
-	BN3PR0501MB1091.namprd05.prod.outlook.com (10.160.113.13) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.337.19; Mon, 7 Dec 2015 21:32:14 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) with
-	mapi id 15.01.0337.015; Mon, 7 Dec 2015 21:32:14 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Best practice for files copied directly into sysroot?
-Thread-Index: AQHRLEysoQoJ6J+2nk2wyet0ibQyrJ62bU7wgAAg6ICAA1QhAIAA6nUAgAUJkICAACIPgIAAGiXQ
-Date: Mon, 7 Dec 2015 21:32:14 +0000
-Message-ID: <BN3PR0501MB1090361F542BEB748C1D199ABB090@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <CAOsp8o_WfYUB2nBXmGdVTF27RmkjzbvYJrHrW+R-Lv-P8WzS3A@mail.gmail.com>
-	<BN3PR0501MB109081CFF721741E6E0189EDBB0C0@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<5665C66D.7060305@gmail.com>
-	<2501407.zVkQ18lSQ3@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <2501407.zVkQ18lSQ3@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-originating-ip: [98.100.91.242]
-x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1091;
-	5:5MdU4bi94hvoB0qQK7piPROOa7OQWnczHkM8dkRkDqgafgL+kuwgLHTuYWnwILnHzMk/GaUKjyZXi2STjOXqt2VRKu/90zp0iCv2tCwIOrmP8hbJ1B2vHiemH10h8SCYcbOySAl78dcOk5oYk4RrXg==;
-	24:8zVXzrxpSQiaj22MQAbdeU3vLqFpYcTh9C1j85ahmZSC3ay+BTWvHWTNcQ9KO7iqLrnUl8//TCTWjEh9cRUZ5TouD3Rz+l/hIep8lzbpC+0=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
-x-microsoft-antispam-prvs: <BN3PR0501MB10918C3FD7B7A25041D75B7ABB090@BN3PR0501MB1091.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(228905959029699)(57590538094435);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(5005006)(520078)(8121501046)(3002001)(10201501046);
-	SRVR:BN3PR0501MB1091; BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1091; 
-x-forefront-prvs: 078310077C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(24454002)(199003)(479174004)(13464003)(189002)(377454003)(3846002)(97736004)(92566002)(586003)(5002640100001)(5001960100002)(50986999)(5004730100002)(105586002)(86362001)(40100003)(76176999)(6116002)(106356001)(1096002)(76576001)(99286002)(5008740100001)(122556002)(102836003)(66066001)(1220700001)(110136002)(81156007)(189998001)(2950100001)(54356999)(5003600100002)(11100500001)(93886004)(106116001)(2900100001)(101416001)(10400500002)(87936001)(19580395003)(77096005)(74316001)(19580405001)(33656002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB44E006F3
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 14:17:29 -0800 (PST)
+Received: by vkha189 with SMTP id a189so884774vkh.2
+	for <yocto@yoctoproject.org>; Mon, 07 Dec 2015 14:17:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=oaPiHDtpox7bzQnEzRRYwHDanreXy7a8YYz4axTVKsQ=;
+	b=i9rWvK2+7mzWzjzMSrluf05pP3Xpbyz9v9OyMo7ClIw69Tv0IikRvBvNY2+MQCwdpG
+	J7TalhtMX4V4y6V+H2lPc8ie9ePl1o2zDLcv4xkZ9LGMdMISOcLPCtcOK5mTfPLyVyRw
+	XHjuXAkl4cvk2hpdc3PlE2KmTwHKKgKNGqK+a4BU1iMvVQSSBSZNHL6PUemuV/J/3p1t
+	ql+Amy6QuOcufjOFvbyQ2V+46kCrFPMMLJ2nkRIrvbefZCuAm4QGD8UZrFRGv0GYxd6h
+	7DUVO95OCWWI2c302tDRxa09V1tE9OayLJgUAkBEwJqma+CJhHR2iOmaibArhltz4D9n
+	6Zaw==
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2015 21:32:14.5518 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Best practice for files copied directly into sysroot?
+X-Received: by 10.31.48.11 with SMTP id w11mr119747vkw.114.1449526648429; Mon,
+	07 Dec 2015 14:17:28 -0800 (PST)
+Received: by 10.31.202.196 with HTTP; Mon, 7 Dec 2015 14:17:28 -0800 (PST)
+In-Reply-To: <565D2EFE.4040508@windriver.com>
+References: <1448515549-24417-1-git-send-email-rongqing.li@windriver.com>
+	<565BDCFD.5060103@windriver.com> <565CF306.3050300@windriver.com>
+	<565D2EFE.4040508@windriver.com>
+Date: Mon, 7 Dec 2015 17:17:28 -0500
+Message-ID: <CADkTA4PXky0cH+QGP=nDAHcDvSRJ5qE5-ReHo98=_2vYRWyV9Q@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Rongqing Li <rongqing.li@windriver.com>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: [PATCH][yocto-kernel-cache] netfilter: enable several netfilter options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,78 +60,287 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Dec 2015 21:32:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 07 Dec 2015 22:17:33 -0000
+Content-Type: multipart/alternative; boundary=001a1143e728f8e2a505265638e5
+
+--001a1143e728f8e2a505265638e5
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Paul,
+On Tue, Dec 1, 2015 at 12:24 AM, Bruce Ashfield <
+bruce.ashfield@windriver.com> wrote:
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Monday, December 07, 2015 2:50 PM
-> To: Bryan Evenson <bevenson@melinkcorp.com>
-> Cc: yocto@yoctoproject.org; Trevor Woerner <twoerner@gmail.com>;
-> Michael Habibi <mikehabibi@gmail.com>
-> Subject: Re: [yocto] Best practice for files copied directly into sysroot=
-?
->=20
-> On Mon, 07 Dec 2015 12:48:29 Trevor Woerner wrote:
-> > On 12/04/15 09:03, Bryan Evenson wrote:
-> > > Although I am having issues with the license; I haven't figured out w=
-here
-> > > to put it and what to set LIC_FILES_CHKSUM to in the recipe so that
-> > > bitbake can find the license.  If anyone has a good answer for that, =
-let
-> > > me know.
-> > You could try:
-> >     LICENSE =3D "CLOSED"
-> >
-> > then you don't need a checksum line.
->=20
-> This is legitimate of course only when the source is in fact closed (and =
-even
-> then, there may be redistribution conditions that you might want to track=
-).
->=20
-> There are several more appropriate ways to solve this issue:
->=20
-> 1) The proper way is to point to a file in the fetched/unpacked sources. =
-To do
-> this, LIC_FILES_CHKSUM should specify one or more paths relative to ${S}
-> (i.e.
-> where the sources are unpacked to) each prefixed by file:// .
->=20
+> On 2015-11-30 8:08 PM, Rongqing Li wrote:
+>
+>>
+>>
+>> On 2015=E5=B9=B411=E6=9C=8830=E6=97=A5 13:22, Bruce Ashfield wrote:
+>>
+>>> On 2015-11-26 12:25 AM, rongqing.li@windriver.com wrote:
+>>>
+>>>> From: Roy Li <rongqing.li@windriver.com>
+>>>>
+>>>> the below kernel options are enabled:
+>>>>      LOG target support
+>>>>      IPv6 connection tracking support,
+>>>>      "addrtype" address type match support
+>>>>      "recent" match support
+>>>>
+>>>> the default configuration of ufw(Uncomplicated Firewall) asked them.
+>>>>
+>>>
+>>> Like the other patch you submitted, this should go to the linux-yocto
+>>> list, but I'll reply here, since this one needs a bit more tweaking.
+>>>
+>>>
+>>>> Signed-off-by: Roy Li <rongqing.li@windriver.com>
+>>>> ---
+>>>>   features/netfilter/netfilter.cfg | 4 ++++
+>>>>   1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/features/netfilter/netfilter.cfg
+>>>> b/features/netfilter/netfilter.cfg
+>>>> index 8ecef4a..7bb8490 100644
+>>>> --- a/features/netfilter/netfilter.cfg
+>>>> +++ b/features/netfilter/netfilter.cfg
+>>>> @@ -62,12 +62,16 @@ CONFIG_NETFILTER_XT_MATCH_STATISTIC=3Dm
+>>>>   CONFIG_NETFILTER_XT_MATCH_STRING=3Dm
+>>>>   CONFIG_NETFILTER_XT_MATCH_TCPMSS=3Dm
+>>>>   CONFIG_NETFILTER_XT_MATCH_U32=3Dm
+>>>> +CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=3Dm
+>>>> +CONFIG_NETFILTER_XT_MATCH_RECENT=3Dm
+>>>> +CONFIG_NETFILTER_XT_TARGET_LOG=3Dm
+>>>>
+>>>
+>>> Adding these are fine, but if ufw needs these extra options, we should
+>>> also have a ufw.scc/.cfg fragment that can be triggered when ufw is
+>>> being built.
+>>>
+>>> So either create that fragment and inside it, document the NF options
+>>> it needs, and have ufw include netfilter.scc to get the options you
+>>> are adding above.
+>>>
+>>> or .. at the very least, put comments in the .cfg file above the
+>>> options indicating that they are required for ufw.
+>>>
+>>
+>> I think the below two configurations are more basic, not special to
+>> ufw, and netfiler.cfg lost them.
+>> CONFIG_NETFILTER_XT_TARGET_LOG=3Dm
+>> CONFIG_NF_CONNTRACK_IPV6=3Dm
+>>
+>
+> Sure, but we still don't have anything within the fragments or
+> their descriptions that document what ufw is looking for, which
+> means we could remove them in the feature and unknowingly break
+> that functionality.
+>
+> You can still add those options to the netfilter config, but we'd
+> be wise to add those comments, or create a ufw.scc file that (for
+> now), simply includes netfilter.scc and indicates that ufw requires
+> the options as they are in that config.
+>
 
-Ah, now I see the example in the manual: "Specifying the LIC_FILES_CHKSUM V=
-ariable".  In my case I have the license as a separate file in my files/ di=
-rectory for the recipe. So in my case I now set:
+ping.
 
-LIC_FILES_CHECKSUM =3D "file://${WORKDIR}/license.txt;md5=3Dblahblah"
-SRC_URI =3D "file://${BP}.tar.gz \
-    file://license.txt \
-    "
+And just so we are clear, I didn't merge this yet, and it should be
+re-submitted
+to the linux-yocto mailing list with the comments addressed.
 
-Now the do_license step is finding the license in the WORKDIR and I no long=
-er have any warnings about the license.
+Cheers,
 
-Thanks!
-Bryan
+Bruce
 
-> 2) If there is no file in the sources describing the license, then add on=
-e in
-> SRC_URI, or point to a common one in ${COMMON_LICENSE_DIR} if
-> appropriate.
-> These are then copied into ${WORKDIR} automatically and can be referred t=
-o
-> in
-> LIC_FILES_CHKSUM from there.
->=20
-> Cheers,
-> Paul
->=20
+
+>
+> Bruce
+>
+>
+>>
+>> since this change has entered wrlinux kernel cache, I hope we do not
+>> add the comment on .cfg
+>>
+>>
+>> -Roy
+>>
+>>
+>>
+>>
+>>> Bruce
+>>>
+>>>
+>>>>   #
+>>>>   # IP: Netfilter Configuration
+>>>>   #
+>>>>   CONFIG_NF_DEFRAG_IPV4=3Dm
+>>>>   CONFIG_NF_CONNTRACK_IPV4=3Dm
+>>>> +CONFIG_NF_CONNTRACK_IPV6=3Dm
+>>>>   CONFIG_NF_CONNTRACK_PROC_COMPAT=3Dy
+>>>>   CONFIG_IP_NF_IPTABLES=3Dm
+>>>>   CONFIG_IP_NF_MATCH_AH=3Dm
+>>>>
+>>>>
+>>>
+>>>
+>>
 > --
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
+
+
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
+
+--001a1143e728f8e2a505265638e5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Tue, Dec 1, 2015 at 12:24 AM, Bruce Ashfield <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce.ashf=
+ield@windriver.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div class=3D"HOEnZb"><div class=3D"h5">On 2015-11-30 8:08 PM, Rongqing Li =
+wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+<br>
+On 2015=E5=B9=B411=E6=9C=8830=E6=97=A5 13:22, Bruce Ashfield wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On 2015-11-26 12:25 AM, <a href=3D"mailto:rongqing.li@windriver.com" target=
+=3D"_blank">rongqing.li@windriver.com</a> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+From: Roy Li &lt;<a href=3D"mailto:rongqing.li@windriver.com" target=3D"_bl=
+ank">rongqing.li@windriver.com</a>&gt;<br>
+<br>
+the below kernel options are enabled:<br>
+=C2=A0 =C2=A0 =C2=A0LOG target support<br>
+=C2=A0 =C2=A0 =C2=A0IPv6 connection tracking support,<br>
+=C2=A0 =C2=A0 =C2=A0&quot;addrtype&quot; address type match support<br>
+=C2=A0 =C2=A0 =C2=A0&quot;recent&quot; match support<br>
+<br>
+the default configuration of ufw(Uncomplicated Firewall) asked them.<br>
+</blockquote>
+<br>
+Like the other patch you submitted, this should go to the linux-yocto<br>
+list, but I&#39;ll reply here, since this one needs a bit more tweaking.<br=
+>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+Signed-off-by: Roy Li &lt;<a href=3D"mailto:rongqing.li@windriver.com" targ=
+et=3D"_blank">rongqing.li@windriver.com</a>&gt;<br>
+---<br>
+=C2=A0 features/netfilter/netfilter.cfg | 4 ++++<br>
+=C2=A0 1 file changed, 4 insertions(+)<br>
+<br>
+diff --git a/features/netfilter/netfilter.cfg<br>
+b/features/netfilter/netfilter.cfg<br>
+index 8ecef4a..7bb8490 100644<br>
+--- a/features/netfilter/netfilter.cfg<br>
++++ b/features/netfilter/netfilter.cfg<br>
+@@ -62,12 +62,16 @@ CONFIG_NETFILTER_XT_MATCH_STATISTIC=3Dm<br>
+=C2=A0 CONFIG_NETFILTER_XT_MATCH_STRING=3Dm<br>
+=C2=A0 CONFIG_NETFILTER_XT_MATCH_TCPMSS=3Dm<br>
+=C2=A0 CONFIG_NETFILTER_XT_MATCH_U32=3Dm<br>
++CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=3Dm<br>
++CONFIG_NETFILTER_XT_MATCH_RECENT=3Dm<br>
++CONFIG_NETFILTER_XT_TARGET_LOG=3Dm<br>
+</blockquote>
+<br>
+Adding these are fine, but if ufw needs these extra options, we should<br>
+also have a ufw.scc/.cfg fragment that can be triggered when ufw is<br>
+being built.<br>
+<br>
+So either create that fragment and inside it, document the NF options<br>
+it needs, and have ufw include netfilter.scc to get the options you<br>
+are adding above.<br>
+<br>
+or .. at the very least, put comments in the .cfg file above the<br>
+options indicating that they are required for ufw.<br>
+</blockquote>
+<br>
+I think the below two configurations are more basic, not special to<br>
+ufw, and netfiler.cfg lost them.<br>
+CONFIG_NETFILTER_XT_TARGET_LOG=3Dm<br>
+CONFIG_NF_CONNTRACK_IPV6=3Dm<br>
+</blockquote>
+<br></div></div>
+Sure, but we still don&#39;t have anything within the fragments or<br>
+their descriptions that document what ufw is looking for, which<br>
+means we could remove them in the feature and unknowingly break<br>
+that functionality.<br>
+<br>
+You can still add those options to the netfilter config, but we&#39;d<br>
+be wise to add those comments, or create a ufw.scc file that (for<br>
+now), simply includes netfilter.scc and indicates that ufw requires<br>
+the options as they are in that config.<span class=3D"HOEnZb"><font color=
+=3D"#888888"><br></font></span></blockquote><div><br></div><div>ping.<br><b=
+r></div><div>And just so we are clear, I didn&#39;t merge this yet, and it =
+should be re-submitted<br></div><div>to the linux-yocto mailing list with t=
+he comments addressed.<br></div><div><br></div><div>Cheers,<br><br></div><d=
+iv>Bruce<br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span cl=
+ass=3D"HOEnZb"><font color=3D"#888888">
+<br>
+Bruce</font></span><span class=3D"im HOEnZb"><br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+<br>
+since this change has entered wrlinux kernel cache, I hope we do not<br>
+add the comment on .cfg<br>
+<br>
+<br>
+-Roy<br>
+<br>
+<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+Bruce<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+=C2=A0 #<br>
+=C2=A0 # IP: Netfilter Configuration<br>
+=C2=A0 #<br>
+=C2=A0 CONFIG_NF_DEFRAG_IPV4=3Dm<br>
+=C2=A0 CONFIG_NF_CONNTRACK_IPV4=3Dm<br>
++CONFIG_NF_CONNTRACK_IPV6=3Dm<br>
+=C2=A0 CONFIG_NF_CONNTRACK_PROC_COMPAT=3Dy<br>
+=C2=A0 CONFIG_IP_NF_IPTABLES=3Dm<br>
+=C2=A0 CONFIG_IP_NF_MATCH_AH=3Dm<br>
+<br>
+</blockquote>
+<br>
+<br>
+</blockquote>
+<br>
+</blockquote>
+<br>
+-- <br></span><div class=3D"HOEnZb"><div class=3D"h5">
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=
+=3D"gmail_signature">&quot;Thou shalt not follow the NULL pointer, for chao=
+s and madness await thee at its end&quot;</div>
+</div></div>
+
+--001a1143e728f8e2a505265638e5--
