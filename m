@@ -1,53 +1,50 @@
-Return-Path: <Michael.Baumann@vector.com>
+Return-Path: <mike987418@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99AD4E00AB9; Mon,  7 Dec 2015 07:03:51 -0800 (PST)
+	id 9C434E00AA6; Mon,  7 Dec 2015 05:03:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [217.89.139.142 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mike987418[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 355 seconds by postgrey-1.32 at yocto-www;
-	Mon, 07 Dec 2015 07:03:46 PST
-Received: from smtp2.vector.com (smtp2.vector.com [217.89.139.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ECE7E0079A
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 07:03:46 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp2.vector.com (Postfix) with ESMTP id 6A6F9852AF
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 15:57:50 +0100 (CET)
-X-Virus-Scanned: amavisd-new at vector.com
-Received: from smtp2.vector.com ([127.0.0.1])
-	by localhost (smtp2.vector.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id c_-vyeN_kdXZ for <yocto@yoctoproject.org>;
-	Mon,  7 Dec 2015 15:57:49 +0100 (CET)
-Received: from vistrex5.vi.vector.int (unknown [10.49.3.65])
-	by smtp2.vector.com (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 15:57:49 +0100 (CET)
-Received: from VISTREX3.vi.vector.int ([169.254.1.58]) by
-	vistrex5.vi.vector.int ([10.49.3.65]) with mapi id 14.03.0235.001;
-	Mon, 7 Dec 2015 15:57:49 +0100
-From: "Baumann, Michael" <Michael.Baumann@vector.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to use PREEMPT-RT Header in Yocto
-Thread-Index: AdEw/l7WcTufbcFFQc6cjXljkAoi2Q==
-Date: Mon, 7 Dec 2015 14:57:48 +0000
-Message-ID: <D3B58608AFC8B244BA0ACD53B2AE6125859B5268@vistrex3.vi.vector.int>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.49.73.159]
-x-g-data-mailsecurity-for-exchange-spamlevel: 0
-x-g-data-mailsecurity-for-exchange-state: 0
-x-g-data-mailsecurity-for-exchange-error: 0
-x-g-data-mailsecurity-for-exchange-sender: 32
-x-g-data-mailsecurity-for-exchange-server: 8959ae4b-c457-4990-be14-918c767bdf10
-x-g-data-mailsecurity-for-exchange-guid: 3E51BCDE-1FEC-41DC-B51D-7BE464BF236E
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 079C9E0049B
+	for <yocto@yoctoproject.org>; Mon,  7 Dec 2015 05:03:02 -0800 (PST)
+Received: by iofh3 with SMTP id h3so180236326iof.3
+	for <yocto@yoctoproject.org>; Mon, 07 Dec 2015 05:03:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=1D2XSItf4wY8hz+nwW4StM/Fb9sQ8iygYkqR3U+ZgNY=;
+	b=gJeJvAxR5qLC2uHCtTvswCnN+aeJLmYvsBIVdXzqM834r1m4B+Dh5JdX0rOAChTktb
+	pOsElNh3WjDJ3QjQNeMqyvvdSMRj2KVj3m7Qk4L++mCnIm7/lZDHgM+qJGjfOSJdI3qR
+	8X7xoJeuGrRm2uBEdL53VEvXkw5aOma7LJqTeYqPIXHNHL7COVWaurM7BJGQk9OObd0C
+	9BUNG+EdzXezLCf3dCr5VP2LJh+qiLdljNvHgQlBE2Co07BG1h3EAwI8zxfGAtz2UQEy
+	9FI7ThobxeV8rbK391d0J3ftlGVuf2mI8FUEuq9ttuV8sIyvPPbHDKFUS1MukQ9vl4RQ
+	ZTrQ==
 MIME-Version: 1.0
-Subject: How to use PREEMPT-RT Header in Yocto
+X-Received: by 10.107.19.197 with SMTP id 66mr30280214iot.41.1449493382331;
+	Mon, 07 Dec 2015 05:03:02 -0800 (PST)
+Received: by 10.36.29.139 with HTTP; Mon, 7 Dec 2015 05:03:02 -0800 (PST)
+Date: Mon, 7 Dec 2015 14:03:02 +0100
+Message-ID: <CADkGNzhWGEV8+fW2nuKEvWUvftqB8is7WOK0A3EGpFhe5mTYAA@mail.gmail.com>
+From: mike9874 channel <mike987418@gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 07 Dec 2015 07:38:15 -0800
+Subject: PREEMPT-RT patch: wrong header
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,34 +56,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Dec 2015 15:03:51 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 07 Dec 2015 13:03:04 -0000
+Content-Type: multipart/alternative; boundary=001a113f9474288d9d05264e7aad
 
-Hello everbody,
+--001a113f9474288d9d05264e7aad
+Content-Type: text/plain; charset=UTF-8
 
-I am trying to use the PREEMPT-RT patch, therefore I bitbake an image with =
-the linux-yocto-rt 4.1.8 kernel.=20
-The linux-yocto-rt kernel is built and runs in qemux86.=20
-Now I try to build an application which uses the sched_setattr to set sched=
-uling policy SCHED_DEADLINE from <sched.h>.=20
-My Bitbake fails to build this application because of wrong header files e.=
-g.=20
+Hello,
+i am building an image for qeumux86 with the PREEMT-RT patch. Therefore I
+use the following in my image.conf file:
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+PREFERRED_VERSION_linux-yocto-rt ?= "4%"
 
-error: storage size of 'scheduling_attribut' isn't known
-    struct sched_attr scheduling_attribut;
-and
-warning: implicit declaration of function 'sched_setattr'
-
-in my created SDK (bitbake <image> -c populate_sdk) I have this /usr/includ=
-e/sched.h file:  http://pastebin.com/gaXejv6j
-I would have expect to find this file http://git.yoctoproject.org/cgit/cgit=
-.cgi/linux-yocto-4.1/tree/include/linux/sched.h
-
-How do I use the correct header files from PREEMPT-RT patch in my yocto bui=
-ld environment?
+I get an image with the 4.1.8-rt8-yocto-preempt-rt kernel. I have an
+Application which is also build into the image where I try to use
+SCHED_DEADLINE with sched_setattr() and struct sched_attr from <sched.h>.
+My bitbake compiler throws following error: storage size of
+'scheduling_attribut' isn't known.
+Where do I get the correct Headers to compile my application?
 
 Regards,
-Michael
+Mike
 
+--001a113f9474288d9d05264e7aad
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hello,<br></div>i am building an =
+image for qeumux86 with the PREEMT-RT patch. Therefore I use the following =
+in my image.conf file:<br>PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux=
+-yocto-rt&quot;<br>PREFERRED_VERSION_linux-yocto-rt ?=3D &quot;4%&quot;<br>=
+<br></div>I get an image with the 4.1.8-rt8-yocto-preempt-rt kernel. I have=
+ an Application which is also build into the image where I try to use SCHED=
+_DEADLINE with sched_setattr() and struct sched_attr from &lt;sched.h&gt;. =
+My bitbake compiler throws following error: storage size of &#39;scheduling=
+_attribut&#39; isn&#39;t known.<br></div>Where do I get the correct Headers=
+ to compile my application?<br><br></div>Regards,<br></div>Mike<br></div>
+
+--001a113f9474288d9d05264e7aad--
