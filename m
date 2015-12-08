@@ -1,47 +1,56 @@
-Return-Path: <stanciux.mihail@intel.com>
+Return-Path: <caiortp@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A6B6E00956; Tue,  8 Dec 2015 05:46:52 -0800 (PST)
+	id 6BA54E007B2; Tue,  8 Dec 2015 08:01:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
-	HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (caiortp[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5487E0079A;
-	Tue,  8 Dec 2015 05:46:43 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Dec 2015 05:46:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,400,1444719600"; 
-	d="scan'208,217";a="702570797"
-Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
-	by orsmga003.jf.intel.com with ESMTP; 08 Dec 2015 05:46:41 -0800
-Received: from irsmsx108.ger.corp.intel.com ([169.254.11.23]) by
-	IRSMSX106.ger.corp.intel.com ([169.254.8.228]) with mapi id
-	14.03.0248.002; Tue, 8 Dec 2015 13:46:40 +0000
-From: "Mihail, StanciuX" <stanciux.mihail@intel.com>
-To: Martin Townsend <mtownsend1973@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Toaster Problem
-Thread-Index: AQHRMaVOWxZvncs7tEWmo9JN6oDP5Z7BEITQ
-Date: Tue, 8 Dec 2015 13:46:40 +0000
-Message-ID: <802B8E31E3519842A6CEE1B497E861B119E4EA96@IRSMSX108.ger.corp.intel.com>
-References: <CABatt_wREkBPLV=Q92yP3XVEfAPQfFd-rvRCaOL8ZAcNmgNziA@mail.gmail.com>
-In-Reply-To: <CABatt_wREkBPLV=Q92yP3XVEfAPQfFd-rvRCaOL8ZAcNmgNziA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC63AE005A2
+	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 08:01:05 -0800 (PST)
+Received: by vkca188 with SMTP id a188so17442500vkc.0
+	for <yocto@yoctoproject.org>; Tue, 08 Dec 2015 08:01:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=3zZSJKDMlHNgblNLFPkP4/1Gv24Bhoo4gtYrfyutBpI=;
+	b=pbrCefzZ3YKolJEvgvLtnX2vzMrEztubMtEN/ApN1udEDh8CgjqGyemF8nK2RB/oYD
+	YUVUgYLZDAA0KZb3aBogS4vobonyDMtwYdAAZfKvW4+YslYJI9yRmSQwEGOYFlwc3982
+	uE6JEd00WMLR7Z1xk+8DnTrI0ihrLcsJ1Q6bixAoFe3pin6tcwdmCPmKjzf27riQ3A1J
+	RTpOQ86qMw16wW+nV1r3g6ObM+hGSshU7jiBKtrVE8EqdxVVdP/+WXq8BaPkaN8k0IGQ
+	IQFp9GveG9m9kVHBhc7/pwbcX7jZQl1Kh9pZvVSU27OS9xTCjUinIvZan4rgY1wolXZo
+	Qi8g==
 MIME-Version: 1.0
-Cc: "toaster@yoctoproject.org" <toaster@yoctoproject.org>
-Subject: Re: Toaster Problem
+X-Received: by 10.31.174.131 with SMTP id x125mr211663vke.136.1449590464722;
+	Tue, 08 Dec 2015 08:01:04 -0800 (PST)
+Received: by 10.31.82.193 with HTTP; Tue, 8 Dec 2015 08:01:04 -0800 (PST)
+In-Reply-To: <7211338.biJDk4bQH6@peggleto-mobl.ger.corp.intel.com>
+References: <CAJqtCybKFSzf2uhe3ox7LTExCOF+KGNGRHL_hecz6LipTKNmug@mail.gmail.com>
+	<2180797.fvhLvehB0f@peggleto-mobl.ger.corp.intel.com>
+	<CAJqtCyZWnGCqp4x8JSbVbj-ZhkCi_UXJ5OpmUdvn6cP-wRjnEA@mail.gmail.com>
+	<7211338.biJDk4bQH6@peggleto-mobl.ger.corp.intel.com>
+Date: Tue, 8 Dec 2015 14:01:04 -0200
+Message-ID: <CAJqtCyYYgZ70VnjvzX3o=nbACrXr13LkZTQwm4nKqZdhPiKpbw@mail.gmail.com>
+From: Caio <caiortp@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Help with Opensips Recipe - QA run found fatal errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,323 +62,379 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Dec 2015 13:46:52 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_"
+X-List-Received-Date: Tue, 08 Dec 2015 16:01:07 -0000
+Content-Type: multipart/alternative; boundary=001a1143fbe8b846f8052665149d
 
---_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a1143fbe8b846f8052665149d
+Content-Type: text/plain; charset=UTF-8
 
-SGkgTWFydGluLA0KDQpGaXJzdCBvZmYsIG1heSBJIHN1Z2dlc3QgdGhlIHRvYXN0ZXIgbWFpbGlu
-ZyBsaXN0IGluIHRoZSBmdXR1cmUgaWYgeW91IGhhdmUgcXVlc3Rpb25zICh0b2FzdGVyQHlvY3Rv
-cHJvamVjdC5vcmc8bWFpbHRvOnRvYXN0ZXJAeW9jdG9wcm9qZWN0Lm9yZz4pDQoNCkFzIGZvciB5
-b3VyIHByb2JsZW06DQpTb21ldGhpbmcgaXMgb2ZmIGFib3V0IHRoZSB3YXkgeW91ciB0b2FzdGVy
-IHdhcyBzdGFydGVkLg0KSGVyZeKAmXMgaG93IHRoZSBmaXJzdCBsaW5lIGFib3ZlIHlvdXIgdHJh
-Y2ViYWNrIGxvb2tzIG9uIG15IG1hY2hpbmU6DQpsYmNfc2hlbGxjbW1kOiAoL2hvbWUvZGF2ZS9w
-b2t5KSBnaXQgcmVtb3RlIOKAk3YNCg0KVGhhdCBsb2NhdGlvbiDigJwvaG9tZS9kYXZlL3Bva3ni
-gJ0gaXMgd2hlcmUgSSBpc3N1ZWQgdGhlIHRvYXN0ZXIgc3RhcnQgY29tbWFuZCAoYml0YmFrZS9i
-aW4vdG9hc3RlcikuDQoNCknigJl2ZSB0cmllZCB0byByZXByb2R1Y2UgdGhpcyBvbiBteSBtYWNo
-aW5lIGJ1dCBoYXZlbuKAmXQgYmVlbiBhYmxlIHRvIGRvIGl0Lg0KDQpDb3VsZCB5b3UgcGxlYXNl
-IGxldCB1cyBrbm93IGhvdyB5b3Ugc3RhcnRlZCB0b2FzdGVyIGFuZCBmcm9tIHdoYXQgbG9jYXRp
-b24/IEFsc28sIHdhcyBpdCBhcyByb290IG9yIGEgZGlmZmVyZW50IHVzZXI/DQpPZmYgdGhlIHRv
-cCBvZiBteSBoZWFkICwgb25lIHRoaW5nIHRoYXQgbWlnaHQgY2F1c2UgdGhpcyB3b3VsZCBiZSBp
-ZiB5b3UgY2xvbmVkIHBva3kgYXMgcm9vdCB0aGVuIHNvbWVob3cgc3RhcnRlZCB0b2FzdGVyIGFz
-IGEgZGlmZmVyZW50IHVzZXIuDQoNCkFsc28sIHdoaWNoIHlvY3RvIHByb2plY3QgKHBva3kpIHJl
-bGVhc2UgYXJlIHlvdSB1c2luZz8gV2FzIGl0IG1hc3RlciBvciBtYXliZSBKZXRocm8/DQpPaCwg
-YW5kIHdoYXQgZmxhdm9yIGxpbnV4IGlzIHRoaXMgb24/DQoNClJlZ2FyZHMsDQpNaWhhaWwNCg0K
-RnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNl
-c0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTWFydGluIFRvd25zZW5kDQpTZW50OiBU
-dWVzZGF5LCBEZWNlbWJlciAwOCwgMjAxNSAxMjo0MCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmcNClN1YmplY3Q6IFt5b2N0b10gVG9hc3RlciBQcm9ibGVtDQoNCkhpLA0KSSdtIHRyeWlu
-ZyBvdXQgYSBwcm9kdWN0aW9uIGluc3RhbmNlIG9mIHRvYXN0ZXIsIEknbSBmb2xsb3dpbmcgdGhl
-IGluc3RydWN0aW9ucyBmcm9tIGhlcmUNCg0KaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2Rv
-Y3MvbGF0ZXN0L3RvYXN0ZXItbWFudWFsL3RvYXN0ZXItbWFudWFsLmh0bWwjdG9hc3Rlci1zZXR0
-aW5nLXVwLWEtcHJvZHVjdGlvbi1pbnN0YW5jZS1vZi10b2FzdGVyDQoNCkkgbWFuYWdlZCB0byBn
-ZXQgdG9hc3RlciB1cCBhbmQgcnVubmluZyBidXQgaGFkIHRvIGFkanVzdCBhIGZldyB0aGluZ3Mg
-d2hpY2ggeW91IG1pZ2h0IHdhbnQgdG8gY29ycmVjdCBpbiB0aGUgZG9jdW1lbnRhdGlvbjoNCjEp
-IHZpcnR1YWxlbnYgcGFja2FnZSBkb2Vzbid0IGV4aXN0IGluIFVidW50dSAxNC4wNCBoYWQgdG8g
-dXNlIHB5dGhvbi12aXJ0dWFsZW52DQoyKSBZb3UgbmVlZCBweXRob24gaGVhZGVycyBsYXRlciBz
-byBhZGQgcHl0aG9uLWRldiB0byBsaXN0IG9mIHBhY2thZ2VzIHRvIGluc3RhbGwNCjMpIEFmdGVy
-IGNsb25pbmcgcG9reSB0aGVyZSBzaG91bGQgYmUgYSBjZCBwb2t5IGJlZm9yZSBjaGVja2luZyBv
-dXQgYSBicmFuY2guDQo0KSBTRUNSRVRfS0VZLCBpdCB3b3VsZCBiZSBuaWNlIHRvIGtub3cgd2hh
-dCB0aGlzIGlzIHVzZWQgZm9yLCB3aGF0IGNoYXJhY3RlcnMgaXMgY2FuIGNvbnRhaW4sIGllIGNh
-biBpdCBjb250YWluIHNwYWNlcy4NCjUpIEluIHRoZSBteXNxbCBwYXJ0IGlzIHN0YXRlcyB3ZSBh
-cmUgY3JlYXRpbmcgYSBkYXRhYmFzZSBjYWxsZWQgdG9hc3RlciBidXQgaW4gdGhlIHNldHRpbmdz
-LnB5IHdlIHNwZWNpZnkgdG9hc3Rlcl9tYWluIG9uZSBvZiB0aGVtIG5lZWRzIGNvcnJlY3Rpbmcu
-DQo2KSBCZWZvcmUgY2FsbGluZyAuL2JpdGJha2UvbGliL3RvYXN0ZXIvbWFuYWdlLnB5IHN5bmNk
-YiAtLW1pZ3JhdGUgbWF5YmUgaXQgc2hvdWxkIGxpbmsgdG8gMy41IGFuZCBzdGF0ZSB0aGF0IHlv
-dSBzaG91bGQgY3JlYXRlIGEgRGphbmdvIHN1cGVyIHVzZXIgZmlyc3QuDQo3KVRoZXJlJ3MgYSB0
-eXBvIGluIHRoZSBBcGFjaGUgdG9hc3Rlci5jb25mIHMvdG9hc3Rlcm5fd3NnaS90b2FzdGVyX3dz
-Z2kvDQo4KSBCdWlsZCBydW5uZXIgc2VydmljZSBpcyB3cm9uZywgdGhlcmUgbmVlZHMgdG8gYmUg
-dGhlIHBva3kgZGlyZWN0b3J5IGludm9sdmVkIHNvbWV3aGVyZSwgZWl0aGVyIGNkIC92YXIvd3d3
-L3RvYXN0ZXIvcG9reSBvciB3ZSBjYWxsIC4vcG9reS9iaXRiYWtlL3RvYXN0ZXIvbWFuYWdlLnB5
-DQpFdmVuIHdpdGggYWxsIHRoaXMgSSBjYW4ndCBnZXQgaXQgdG8gYnVpbGQsIGNyZWF0aW5nIGEg
-cHJvamVjdCBiYXNlZCBvbiBmaWRvIDEuOCBhbmQgdHJ5aW5nIHRvIGJ1aWxkIGNvcmUtaW1hZ2Ut
-bHNiIEkgZ2V0DQoNCjIwMTUtMTItMDggMTA6Mjc6NTcsNzA1IERFQlVHIGxvY2FsaG9zdGJlY29u
-dHJvbGxlciwgb3VyIGdpdCByZXBvcyBhcmUgeyh1J2dpdDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
-L21ldGEteW9jdG88aHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEteW9jdG8+JywgdSdm
-aWRvJyk6IFsodSdtZXRhLXlvY3RvJywNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgdSdtZXRhLXlvY3RvJyksDQogICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKHUnbWV0YS15b2N0by1ic3An
-LA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB1J21ldGEteW9jdG8tYnNwJyldLA0KICh1J2dpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bv
-a3k8aHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3k+JywgdSdmaWRvJyk6IFsoJ2JpdGJh
-a2UnLCB1J2JpdGJha2UnKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAodSdvcGVuZW1iZWRkZWQtY29yZScsDQogICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHUnbWV0YScpXX0NCjIwMTUtMTItMDggMTA6Mjc6
-NTcsNzA1IERFQlVHIGxiY19zaGVsbGNtbWQ6ICgpIGdpdCByZW1vdGUgLXYNClRyYWNlYmFjayAo
-bW9zdCByZWNlbnQgY2FsbCBsYXN0KToNCiAgRmlsZSAiL3Zhci93d3cvdG9hc3Rlci9wb2t5L2Jp
-dGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9tYW5hZ2VtZW50L2NvbW1hbmRzL3J1bmJ1aWxk
-cy5weSIsIGxpbmUgNjAsIGluIHNjaGVkdWxlDQogICAgYmVjLnRyaWdnZXJCdWlsZChici5icmJp
-dGJha2Vfc2V0LmFsbCgpLCBici5icmxheWVyX3NldC5hbGwoKSwgYnIuYnJ2YXJpYWJsZV9zZXQu
-YWxsKCksIGJyLmJydGFyZ2V0X3NldC5hbGwoKSkNCiAgRmlsZSAiL3Zhci93d3cvdG9hc3Rlci9w
-b2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9sb2NhbGhvc3RiZWNvbnRyb2xsZXIu
-cHkiLCBsaW5lIDI4MiwgaW4gdHJpZ2dlckJ1aWxkDQogICAgc2VsZi5zZXRMYXllcnMoYml0YmFr
-ZSwgbGF5ZXJzLCB0YXJnZXRzKQ0KICBGaWxlICIvdmFyL3d3dy90b2FzdGVyL3Bva3kvYml0YmFr
-ZS9saWIvdG9hc3Rlci9ibGRjb250cm9sL2xvY2FsaG9zdGJlY29udHJvbGxlci5weSIsIGxpbmUg
-MTUwLCBpbiBzZXRMYXllcnMNCiAgICBmb3IgcmVtb3RlcyBpbiBzZWxmLl9zaGVsbGNtZCgiZ2l0
-IHJlbW90ZSAtdiIsIHNlbGYuYmUuc291cmNlZGlyKS5zcGxpdCgiXG4iKToNCiAgRmlsZSAiL3Zh
-ci93d3cvdG9hc3Rlci9wb2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9sb2NhbGhv
-c3RiZWNvbnRyb2xsZXIucHkiLCBsaW5lIDU5LCBpbiBfc2hlbGxjbWQNCiAgICBwID0gc3VicHJv
-Y2Vzcy5Qb3Blbihjb21tYW5kLCBjd2QgPSBjd2QsIHNoZWxsPVRydWUsIHN0ZG91dD1zdWJwcm9j
-ZXNzLlBJUEUsIHN0ZGVycj1zdWJwcm9jZXNzLlBJUEUpDQogIEZpbGUgIi91c3IvbGliL3B5dGhv
-bjIuNy9zdWJwcm9jZXNzLnB5IiwgbGluZSA3MTAsIGluIF9faW5pdF9fDQogICAgZXJycmVhZCwg
-ZXJyd3JpdGUpDQogIEZpbGUgIi91c3IvbGliL3B5dGhvbjIuNy9zdWJwcm9jZXNzLnB5IiwgbGlu
-ZSAxMzI3LCBpbiBfZXhlY3V0ZV9jaGlsZA0KICAgIHJhaXNlIGNoaWxkX2V4Y2VwdGlvbg0KT1NF
-cnJvcjogW0Vycm5vIDJdIE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk6ICcnDQoNCiBpbiB0aGUg
-Y29uc29sZS4NCg0KQW55IGlkZWEgd2hhdHMgZ29pbmcgd3Jvbmc/DQoNCkNoZWVycywNCg0KTWFy
-dGluLg0K
+Paul,
+ Ok, thank you for your elucidation.
+This could be a prefix problem, because I'm using a make install from
+Makefile.
 
---_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I will find this problem and fix it.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpA
-Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIg
-MiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNv
-Tm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAw
-MXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
-InNlcmlmIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
-eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNp
-dGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
-Cgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
-aHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsN
-Cglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJp
-ZiI7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
-TCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAx
-cHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnNw
-YW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0
-dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
-TCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzO30NCnNwYW4uRW1haWxTdHls
-ZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxp
-YnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXtt
-c28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
-OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29y
-ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
-IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
-ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
-CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
-IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
-aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RCI+SGkgTWFydGluLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Rmlyc3Qgb2ZmLCBtYXkgSSBzdWdn
-ZXN0IHRoZSB0b2FzdGVyIG1haWxpbmcgbGlzdCBpbiB0aGUgZnV0dXJlIGlmIHlvdSBoYXZlIHF1
-ZXN0aW9ucyAoPGEgaHJlZj0ibWFpbHRvOnRvYXN0ZXJAeW9jdG9wcm9qZWN0Lm9yZyI+dG9hc3Rl
-ckB5b2N0b3Byb2plY3Qub3JnPC9hPik8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFzIGZvciB5b3VyIHByb2JsZW06PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlNvbWV0aGluZyBpcyBvZmYgYWJvdXQgdGhlIHdh
-eSB5b3VyIHRvYXN0ZXIgd2FzIHN0YXJ0ZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
-PkhlcmXigJlzIGhvdyB0aGUgZmlyc3QgbGluZSBhYm92ZSB5b3VyIHRyYWNlYmFjayBsb29rcyBv
-biBteSBtYWNoaW5lOjxicj4NCmxiY19zaGVsbGNtbWQ6ICgvaG9tZS9kYXZlL3Bva3kpIGdpdCBy
-ZW1vdGUg4oCTdjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhhdCBsb2NhdGlvbiDigJwvaG9tZS9kYXZlL3Bva3nigJ0g
-aXMgd2hlcmUgSSBpc3N1ZWQgdGhlIHRvYXN0ZXIgc3RhcnQgY29tbWFuZCAoYml0YmFrZS9iaW4v
-dG9hc3RlcikuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj5J4oCZdmUgdHJpZWQgdG8gcmVwcm9kdWNlIHRoaXMgb24gbXkg
-bWFjaGluZSBidXQgaGF2ZW7igJl0IGJlZW4gYWJsZSB0byBkbyBpdC48bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkNvdWxk
-IHlvdSBwbGVhc2UgbGV0IHVzIGtub3cgaG93IHlvdSBzdGFydGVkIHRvYXN0ZXIgYW5kIGZyb20g
-d2hhdCBsb2NhdGlvbj8gQWxzbywgd2FzIGl0IGFzIHJvb3Qgb3IgYSBkaWZmZXJlbnQgdXNlcj88
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+T2ZmIHRoZSB0b3Agb2YgbXkgaGVhZCAsIG9u
-ZSB0aGluZyB0aGF0IG1pZ2h0IGNhdXNlIHRoaXMgd291bGQgYmUgaWYgeW91IGNsb25lZCBwb2t5
-IGFzIHJvb3QgdGhlbiBzb21laG93IHN0YXJ0ZWQgdG9hc3RlciBhcyBhIGRpZmZlcmVudCB1c2Vy
-LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6IzFGNDk3RCI+QWxzbywgd2hpY2ggeW9jdG8gcHJvamVjdCAocG9reSkgcmVsZWFzZSBhcmUg
-eW91IHVzaW5nPyBXYXMgaXQgbWFzdGVyIG9yIG1heWJlIEpldGhybz88bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RCI+T2gsIGFuZCB3aGF0IGZsYXZvciBsaW51eCBpcyB0aGlzIG9uPzxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
-NDk3RCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+TWloYWlsPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
-cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwv
-c3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3Rv
-cHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5P
-biBCZWhhbGYgT2YgPC9iPk1hcnRpbiBUb3duc2VuZDxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5
-LCBEZWNlbWJlciAwOCwgMjAxNSAxMjo0MCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIFRvYXN0ZXIgUHJvYmxlbTxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4N
-CjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
-c3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5IaSw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+SSdtIHRyeWluZyBvdXQgYSBwcm9kdWN0aW9uIGluc3RhbmNl
-IG9mIHRvYXN0ZXIsIEknbSBmb2xsb3dpbmcgdGhlIGluc3RydWN0aW9ucyBmcm9tIGhlcmU8bzpw
-PjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tYm90dG9tOjBpbjttYXJnaW4tYm90dG9tOi4w
-MDAxcHQiPjxhIGhyZWY9Imh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC90
-b2FzdGVyLW1hbnVhbC90b2FzdGVyLW1hbnVhbC5odG1sI3RvYXN0ZXItc2V0dGluZy11cC1hLXBy
-b2R1Y3Rpb24taW5zdGFuY2Utb2YtdG9hc3RlciI+aHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3Jn
-L2RvY3MvbGF0ZXN0L3RvYXN0ZXItbWFudWFsL3RvYXN0ZXItbWFudWFsLmh0bWwjdG9hc3Rlci1z
-ZXR0aW5nLXVwLWEtcHJvZHVjdGlvbi1pbnN0YW5jZS1vZi10b2FzdGVyPC9hPjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SSBtYW5h
-Z2VkIHRvIGdldCB0b2FzdGVyIHVwIGFuZCBydW5uaW5nIGJ1dCBoYWQgdG8gYWRqdXN0IGEgZmV3
-IHRoaW5ncyB3aGljaCB5b3UgbWlnaHQgd2FudCB0byBjb3JyZWN0IGluIHRoZSBkb2N1bWVudGF0
-aW9uOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4xKSB2aXJ0
-dWFsZW52IHBhY2thZ2UgZG9lc24ndCBleGlzdCBpbiBVYnVudHUgMTQuMDQgaGFkIHRvIHVzZSBw
-eXRob24tdmlydHVhbGVudjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj4yKSBZb3UgbmVlZCBweXRob24gaGVhZGVycyBsYXRlciBzbyBhZGQgcHl0aG9uLWRldiB0
-byBsaXN0IG9mIHBhY2thZ2VzIHRvIGluc3RhbGw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+MykgQWZ0ZXIgY2xvbmluZyBwb2t5IHRoZXJlIHNob3VsZCBiZSBh
-IGNkIHBva3kgYmVmb3JlIGNoZWNraW5nIG91dCBhIGJyYW5jaC48bzpwPjwvbzpwPjwvcD4NCjwv
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+NCkgU0VDUkVUX0tFWSwgaXQgd291bGQgYmUgbmlj
-ZSB0byBrbm93IHdoYXQgdGhpcyBpcyB1c2VkIGZvciwgd2hhdCBjaGFyYWN0ZXJzIGlzIGNhbiBj
-b250YWluLCBpZSBjYW4gaXQgY29udGFpbiBzcGFjZXMuPG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjUpIEluIHRoZSBteXNxbCBwYXJ0IGlzIHN0YXRlcyB3ZSBh
-cmUgY3JlYXRpbmcgYSBkYXRhYmFzZSBjYWxsZWQgdG9hc3RlciBidXQgaW4gdGhlIHNldHRpbmdz
-LnB5IHdlIHNwZWNpZnkgdG9hc3Rlcl9tYWluIG9uZSBvZiB0aGVtIG5lZWRzIGNvcnJlY3Rpbmcu
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjYpIEJlZm9yZSBj
-YWxsaW5nIC4vYml0YmFrZS9saWIvdG9hc3Rlci9tYW5hZ2UucHkgc3luY2RiIC0tbWlncmF0ZSBt
-YXliZSBpdCBzaG91bGQgbGluayB0byAzLjUgYW5kIHN0YXRlIHRoYXQgeW91IHNob3VsZCBjcmVh
-dGUgYSBEamFuZ28gc3VwZXIgdXNlciBmaXJzdC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+NylUaGVyZSdzIGEgdHlwbyBpbiB0aGUgQXBhY2hlIHRvYXN0ZXIu
-Y29uZiBzL3RvYXN0ZXJuX3dzZ2kvdG9hc3Rlcl93c2dpLzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjgpIEJ1
-aWxkIHJ1bm5lciBzZXJ2aWNlIGlzIHdyb25nLCB0aGVyZSBuZWVkcyB0byBiZSB0aGUgcG9reSBk
-aXJlY3RvcnkgaW52b2x2ZWQgc29tZXdoZXJlLCBlaXRoZXIgY2QgL3Zhci93d3cvdG9hc3Rlci9w
-b2t5IG9yIHdlIGNhbGwgLi9wb2t5L2JpdGJha2UvdG9hc3Rlci9tYW5hZ2UucHk8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206
-MTIuMHB0Ij5FdmVuIHdpdGggYWxsIHRoaXMgSSBjYW4ndCBnZXQgaXQgdG8gYnVpbGQsIGNyZWF0
-aW5nIGEgcHJvamVjdCBiYXNlZCBvbiBmaWRvIDEuOCBhbmQgdHJ5aW5nIHRvIGJ1aWxkIGNvcmUt
-aW1hZ2UtbHNiIEkgZ2V0PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cHJl
-PjIwMTUtMTItMDggMTA6Mjc6NTcsNzA1IERFQlVHIGxvY2FsaG9zdGJlY29udHJvbGxlciwgb3Vy
-IGdpdCByZXBvcyBhcmUgeyh1J2dpdDovLzxhIGhyZWY9Imh0dHA6Ly9naXQueW9jdG9wcm9qZWN0
-Lm9yZy9tZXRhLXlvY3RvIj5naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXlvY3RvPC9hPicsIHUn
-ZmlkbycpOiBbKHUnbWV0YS15b2N0bycsPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyB1J21ldGEteW9jdG8nKSw8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyh1J21ldGEteW9jdG8tYnNwJyw8YnI+Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHUnbWV0YS15b2N0by1ic3AnKV0sPGJyPiAo
-dSdnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reSI+Z2l0Lnlv
-Y3RvcHJvamVjdC5vcmcvcG9reTwvYT4nLCB1J2ZpZG8nKTogWygnYml0YmFrZScsIHUnYml0YmFr
-ZScpLDxicj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7KHUnb3BlbmVtYmVkZGVkLWNvcmUnLDxicj4mbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgdSdtZXRhJyld
-fTxicj4yMDE1LTEyLTA4IDEwOjI3OjU3LDcwNSBERUJVRyBsYmNfc2hlbGxjbW1kOiAoKSBnaXQg
-cmVtb3RlIC12PGJyPlRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KTo8YnI+Jm5ic3A7
-IEZpbGUgJnF1b3Q7L3Zhci93d3cvdG9hc3Rlci9wb2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxk
-Y29udHJvbC9tYW5hZ2VtZW50L2NvbW1hbmRzL3J1bmJ1aWxkcy5weSZxdW90OywgbGluZSA2MCwg
-aW4gc2NoZWR1bGU8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGJlYy50cmlnZ2VyQnVpbGQoYnIuYnJi
-aXRiYWtlX3NldC5hbGwoKSwgYnIuYnJsYXllcl9zZXQuYWxsKCksIGJyLmJydmFyaWFibGVfc2V0
-LmFsbCgpLCBici5icnRhcmdldF9zZXQuYWxsKCkpPGJyPiZuYnNwOyBGaWxlICZxdW90Oy92YXIv
-d3d3L3RvYXN0ZXIvcG9reS9iaXRiYWtlL2xpYi90b2FzdGVyL2JsZGNvbnRyb2wvbG9jYWxob3N0
-YmVjb250cm9sbGVyLnB5JnF1b3Q7LCBsaW5lIDI4MiwgaW4gdHJpZ2dlckJ1aWxkPGJyPiZuYnNw
-OyZuYnNwOyZuYnNwOyBzZWxmLnNldExheWVycyhiaXRiYWtlLCBsYXllcnMsIHRhcmdldHMpPGJy
-PiZuYnNwOyBGaWxlICZxdW90Oy92YXIvd3d3L3RvYXN0ZXIvcG9reS9iaXRiYWtlL2xpYi90b2Fz
-dGVyL2JsZGNvbnRyb2wvbG9jYWxob3N0YmVjb250cm9sbGVyLnB5JnF1b3Q7LCBsaW5lIDE1MCwg
-aW4gc2V0TGF5ZXJzPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyBmb3IgcmVtb3RlcyBpbiBzZWxmLl9z
-aGVsbGNtZCgmcXVvdDtnaXQgcmVtb3RlIC12JnF1b3Q7LCBzZWxmLmJlLnNvdXJjZWRpcikuc3Bs
-aXQoJnF1b3Q7XG4mcXVvdDspOjxicj4mbmJzcDsgRmlsZSAmcXVvdDsvdmFyL3d3dy90b2FzdGVy
-L3Bva3kvYml0YmFrZS9saWIvdG9hc3Rlci9ibGRjb250cm9sL2xvY2FsaG9zdGJlY29udHJvbGxl
-ci5weSZxdW90OywgbGluZSA1OSwgaW4gX3NoZWxsY21kPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyBw
-ID0gc3VicHJvY2Vzcy5Qb3Blbihjb21tYW5kLCBjd2QgPSBjd2QsIHNoZWxsPVRydWUsIHN0ZG91
-dD1zdWJwcm9jZXNzLlBJUEUsIHN0ZGVycj1zdWJwcm9jZXNzLlBJUEUpPGJyPiZuYnNwOyBGaWxl
-ICZxdW90Oy91c3IvbGliL3B5dGhvbjIuNy9zdWJwcm9jZXNzLnB5JnF1b3Q7LCBsaW5lIDcxMCwg
-aW4gX19pbml0X188YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGVycnJlYWQsIGVycndyaXRlKTxicj4m
-bmJzcDsgRmlsZSAmcXVvdDsvdXNyL2xpYi9weXRob24yLjcvc3VicHJvY2Vzcy5weSZxdW90Oywg
-bGluZSAxMzI3LCBpbiBfZXhlY3V0ZV9jaGlsZDxicj4mbmJzcDsmbmJzcDsmbmJzcDsgcmFpc2Ug
-Y2hpbGRfZXhjZXB0aW9uPGJyPk9TRXJyb3I6IFtFcnJubyAyXSBObyBzdWNoIGZpbGUgb3IgZGly
-ZWN0b3J5OiAnJzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEy
-LjBwdCI+IGluIHRoZSBjb25zb2xlLjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+QW55IGlkZWEgd2hhdHMgZ29pbmcgd3Jvbmc/PG86cD48L286cD48
-L3ByZT4NCjxwcmU+Q2hlZXJzLDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPk1hcnRpbi48bzpwPjwv
-bzpwPjwvcHJlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9k
-eT4NCjwvaHRtbD4NCg==
+Thank you very much.
 
---_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_--
+Regards,
+
+Caio Pereira
+
+
+
+2015-12-01 14:56 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
+
+> Hi Caio,
+>
+> compile-host-path isn't about the path being different - it's about the
+> path
+> being something possibly bad i.e. on the host system. You really ought to
+> fix
+> that one rather than disable it.
+>
+> Cheers,
+> Paul
+>
+> On Tue, 01 Dec 2015 10:21:03 Caio wrote:
+> > Hi Paul,
+> >
+> > Thank you very much for your help.
+> > I added INSANE_SKIP_${PN} += " libdir compile-host-path" because the
+> > instalation is different from /usr/lib.
+> >
+> > Thank you very much!
+> >
+> > Regards,
+> >
+> > Caio Pereira
+> >
+> > 2015-11-25 20:26 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com
+> >:
+> > > Hi Caio,
+> > >
+> > > On Tuesday 24 November 2015 11:48:13 Caio wrote:
+> > > > I'm writing a recipe to a Sip proxy Opensips, but I'm having problems
+> > >
+> > > with
+> > >
+> > > > QA Issues.
+> > > > In the First time I tried to use make install from Opensips Makefile
+> I
+> > >
+> > > had
+> > >
+> > > > problem with QA Issues,  so I added all the folders to FILES_${PN}
+> and
+> > > > FILES_${PN} but I still having problem.
+> > > >
+> > > > So I decided to start small, creating the folder structure and copy
+> only
+> > > > the binary files and after I will copy all the files using the
+> > >
+> > > do_install
+> > >
+> > > > function.
+> > > >
+> > > > But when I added the folders and I started to have problems with QA
+> > >
+> > > again.
+> > >
+> > > > FILES_${PN} = " \
+> > > >
+> > > >         ${sbindir}/* \
+> > > >         ${sysconfdir}/* \
+> > > >         ${sysconfdir}/opensips/* \
+> > > >         ${libdir}/* \
+> > > >         ${libdir}/opensips/* \
+> > > >         ${libdir}/opensips/modules/* \
+> > > >         "
+> > > >
+> > > > Someone could help me with this problem?
+> > > >
+> > > >
+> > > > Thank you very much
+> > > >
+> > > > Best Regards,
+> > > >
+> > > > Caio Pereira
+> > > >
+> > > >
+> > > > ERROR: QA Issue: opensips: The compile log indicates that host
+> include
+> > > > and/or library paths were used.
+> > > >
+> > > >          Please check the log
+> > >
+> > >
+> '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
+> > > ky>
+> > > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
+> > >
+> > > information.
+> > >
+> > > > [compile-host-path]
+> > > >
+> > > >
+> > > > ERROR: QA run found fatal errors. Please consider fixing them.
+> > > > ERROR: Function failed: do_package_qa
+> > >
+> > > > ERROR: Logfile of failure stored in:
+> > >
+> /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
+> > > y->
+> > > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973 ERROR:
+> Task
+> > >
+> > > 9
+> > >
+> > >
+> (/home/icchw/fsl-community-bsp/sources/icchw/meta-caio/recipes-telephony/o
+> > > pe>
+> > > > nsips/ opensips_2.2.0.bb, do_package_qa) failed with exit code '1'
+> > > >
+> > > >
+> > > > cat
+> > >
+> > >
+> /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
+> > > y->
+> > > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973
+> > > >
+> > > > DEBUG: Python function read_subpackage_metadata finished
+> > > > ERROR: QA Issue: opensips: The compile log indicates that host
+> include
+> > > > and/or library paths were used.
+> > > >
+> > > >          Please check the log
+> > >
+> > >
+> '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
+> > > ky>
+> > > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
+> > >
+> > > information.
+> > >
+> > > > [compile-host-path]
+> > >
+> > > Did you check the mentioned compile log?
+> > >
+> > > FYI a good reference for these QA checks is:
+> > >
+> > >
+> > >
+> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#qa-err
+> > > ors-and-warnings
+> > >
+> > > As mentioned there you should find somewhere in that log "is unsafe for
+> > > cross-compilation" or "CROSS COMPILE Badness".
+> > >
+> > > Cheers,
+> > > Paul
+> > >
+> > > --
+> > >
+> > > Paul Eggleton
+> > > Intel Open Source Technology Centre
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
+
+
+
+-- 
+----------------------------------------------
+Caio Pereira
+
+--001a1143fbe8b846f8052665149d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Paul,<br></div><div>=C2=A0Ok, thank you for your=
+ elucidation.<br></div><div>This could be a prefix problem, because I&#39;m=
+ using a make install from Makefile.<br><br></div><div>I will find this pro=
+blem and fix it.<br><br></div><div>Thank you very much.<br></div><div><br><=
+/div>Regards,<br><br></div>Caio Pereira<br><div><br><br></div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-12-01 14:56 GMT-02:=
+00 Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linu=
+x.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span>=
+:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex">Hi Caio,<br>
+<br>
+compile-host-path isn&#39;t about the path being different - it&#39;s about=
+ the path<br>
+being something possibly bad i.e. on the host system. You really ought to f=
+ix<br>
+that one rather than disable it.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On Tue, 01 Dec 2015 10:21:03 Caio wrote:<br>
+&gt; Hi Paul,<br>
+&gt;<br>
+&gt; Thank you very much for your help.<br>
+&gt; I added INSANE_SKIP_${PN} +=3D &quot; libdir compile-host-path&quot; b=
+ecause the<br>
+&gt; instalation is different from /usr/lib.<br>
+&gt;<br>
+&gt; Thank you very much!<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt;<br>
+&gt; Caio Pereira<br>
+&gt;<br>
+&gt; 2015-11-25 20:26 GMT-02:00 Paul Eggleton &lt;<a href=3D"mailto:paul.eg=
+gleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt;:<br>
+&gt; &gt; Hi Caio,<br>
+&gt; &gt;<br>
+&gt; &gt; On Tuesday 24 November 2015 11:48:13 Caio wrote:<br>
+&gt; &gt; &gt; I&#39;m writing a recipe to a Sip proxy Opensips, but I&#39;=
+m having problems<br>
+&gt; &gt;<br>
+&gt; &gt; with<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; QA Issues.<br>
+&gt; &gt; &gt; In the First time I tried to use make install from Opensips =
+Makefile I<br>
+&gt; &gt;<br>
+&gt; &gt; had<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; problem with QA Issues,=C2=A0 so I added all the folders to =
+FILES_${PN} and<br>
+&gt; &gt; &gt; FILES_${PN} but I still having problem.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; So I decided to start small, creating the folder structure a=
+nd copy only<br>
+&gt; &gt; &gt; the binary files and after I will copy all the files using t=
+he<br>
+&gt; &gt;<br>
+&gt; &gt; do_install<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; function.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; But when I added the folders and I started to have problems =
+with QA<br>
+&gt; &gt;<br>
+&gt; &gt; again.<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; FILES_${PN} =3D &quot; \<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sbindir}/* \<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sysconfdir}/* \<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sysconfdir}/opensips/* \<=
+br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/* \<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/opensips/* \<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/opensips/modules/=
+* \<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Someone could help me with this problem?<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Thank you very much<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Best Regards,<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; Caio Pereira<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; ERROR: QA Issue: opensips: The compile log indicates that ho=
+st include<br>
+&gt; &gt; &gt; and/or library paths were used.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Please check the log<br>
+&gt; &gt;<br>
+&gt; &gt; &#39;/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2h=
+f-vfp-neon-po<br>
+&gt; &gt; ky&gt;<br>
+&gt; &gt; &gt; -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile&#39; fo=
+r more<br>
+&gt; &gt;<br>
+&gt; &gt; information.<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; [compile-host-path]<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; ERROR: QA run found fatal errors. Please consider fixing the=
+m.<br>
+&gt; &gt; &gt; ERROR: Function failed: do_package_qa<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; ERROR: Logfile of failure stored in:<br>
+&gt; &gt; /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp=
+-neon-pok<br>
+&gt; &gt; y-&gt;<br>
+&gt; &gt; &gt; linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973=
+ ERROR: Task<br>
+&gt; &gt;<br>
+&gt; &gt; 9<br>
+&gt; &gt;<br>
+&gt; &gt; (/home/icchw/fsl-community-bsp/sources/icchw/meta-caio/recipes-te=
+lephony/o<br>
+&gt; &gt; pe&gt;<br>
+&gt; &gt; &gt; nsips/ <a href=3D"http://opensips_2.2.0.bb" rel=3D"noreferre=
+r" target=3D"_blank">opensips_2.2.0.bb</a>, do_package_qa) failed with exit=
+ code &#39;1&#39;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; cat<br>
+&gt; &gt;<br>
+&gt; &gt; /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp=
+-neon-pok<br>
+&gt; &gt; y-&gt;<br>
+&gt; &gt; &gt; linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973=
+<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; DEBUG: Python function read_subpackage_metadata finished<br>
+&gt; &gt; &gt; ERROR: QA Issue: opensips: The compile log indicates that ho=
+st include<br>
+&gt; &gt; &gt; and/or library paths were used.<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Please check the log<br>
+&gt; &gt;<br>
+&gt; &gt; &#39;/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2h=
+f-vfp-neon-po<br>
+&gt; &gt; ky&gt;<br>
+&gt; &gt; &gt; -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile&#39; fo=
+r more<br>
+&gt; &gt;<br>
+&gt; &gt; information.<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; [compile-host-path]<br>
+&gt; &gt;<br>
+&gt; &gt; Did you check the mentioned compile log?<br>
+&gt; &gt;<br>
+&gt; &gt; FYI a good reference for these QA checks is:<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; <a href=3D"http://www.yoctoproject.org/docs/current/ref-manual/re=
+f-manual.html#qa-err" rel=3D"noreferrer" target=3D"_blank">http://www.yocto=
+project.org/docs/current/ref-manual/ref-manual.html#qa-err</a><br>
+&gt; &gt; ors-and-warnings<br>
+&gt; &gt;<br>
+&gt; &gt; As mentioned there you should find somewhere in that log &quot;is=
+ unsafe for<br>
+&gt; &gt; cross-compilation&quot; or &quot;CROSS COMPILE Badness&quot;.<br>
+&gt; &gt;<br>
+&gt; &gt; Cheers,<br>
+&gt; &gt; Paul<br>
+&gt; &gt;<br>
+&gt; &gt; --<br>
+&gt; &gt;<br>
+&gt; &gt; Paul Eggleton<br>
+&gt; &gt; Intel Open Source Technology Centre<br>
+<br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=
+=3D"gmail_signature">----------------------------------------------<br>Caio=
+ Pereira</div>
+</div>
+
+--001a1143fbe8b846f8052665149d--
