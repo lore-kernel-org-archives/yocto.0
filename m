@@ -1,45 +1,47 @@
-Return-Path: <bogdanx.a.voiculescu@intel.com>
+Return-Path: <stanciux.mihail@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5FEB3E00AD7; Tue,  8 Dec 2015 04:59:29 -0800 (PST)
+	id 9A6B6E00956; Tue,  8 Dec 2015 05:46:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
+	HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E63E0079A
-	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 04:59:25 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga103.jf.intel.com with ESMTP; 08 Dec 2015 04:59:25 -0800
+	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5487E0079A;
+	Tue,  8 Dec 2015 05:46:43 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Dec 2015 05:46:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,399,1444719600"; 
-	d="scan'208,217";a="614502088"
-Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
-	by FMSMGA003.fm.intel.com with ESMTP; 08 Dec 2015 04:59:24 -0800
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.13]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.208]) with mapi id
-	14.03.0248.002; Tue, 8 Dec 2015 12:59:23 +0000
-From: "Voiculescu, BogdanX A" <bogdanx.a.voiculescu@intel.com>
-To: Suram Suram <suram@freescale.com>, "yocto@yoctoproject.org"
+X-IronPort-AV: E=Sophos;i="5.20,400,1444719600"; 
+	d="scan'208,217";a="702570797"
+Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
+	by orsmga003.jf.intel.com with ESMTP; 08 Dec 2015 05:46:41 -0800
+Received: from irsmsx108.ger.corp.intel.com ([169.254.11.23]) by
+	IRSMSX106.ger.corp.intel.com ([169.254.8.228]) with mapi id
+	14.03.0248.002; Tue, 8 Dec 2015 13:46:40 +0000
+From: "Mihail, StanciuX" <stanciux.mihail@intel.com>
+To: Martin Townsend <mtownsend1973@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: testsuite for meta-selinux
-Thread-Index: AdEv6Opm7le2LfCqSIadlCOx6ExcEgBzwUMg
-Date: Tue, 8 Dec 2015 12:59:22 +0000
-Message-ID: <D0E9455D42555F408A7166316B4F2AD61AFB51DD@IRSMSX103.ger.corp.intel.com>
-References: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
-In-Reply-To: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
+Thread-Topic: [yocto] Toaster Problem
+Thread-Index: AQHRMaVOWxZvncs7tEWmo9JN6oDP5Z7BEITQ
+Date: Tue, 8 Dec 2015 13:46:40 +0000
+Message-ID: <802B8E31E3519842A6CEE1B497E861B119E4EA96@IRSMSX108.ger.corp.intel.com>
+References: <CABatt_wREkBPLV=Q92yP3XVEfAPQfFd-rvRCaOL8ZAcNmgNziA@mail.gmail.com>
+In-Reply-To: <CABatt_wREkBPLV=Q92yP3XVEfAPQfFd-rvRCaOL8ZAcNmgNziA@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-Subject: Re: testsuite for meta-selinux
+Cc: "toaster@yoctoproject.org" <toaster@yoctoproject.org>
+Subject: Re: Toaster Problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,204 +53,323 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Dec 2015 12:59:29 -0000
+X-List-Received-Date: Tue, 08 Dec 2015 13:46:52 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_"
+	boundary="_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_"
 
---_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Suram,
-Package 'selinux-policy-devel' is needed to be installed on your host.
+SGkgTWFydGluLA0KDQpGaXJzdCBvZmYsIG1heSBJIHN1Z2dlc3QgdGhlIHRvYXN0ZXIgbWFpbGlu
+ZyBsaXN0IGluIHRoZSBmdXR1cmUgaWYgeW91IGhhdmUgcXVlc3Rpb25zICh0b2FzdGVyQHlvY3Rv
+cHJvamVjdC5vcmc8bWFpbHRvOnRvYXN0ZXJAeW9jdG9wcm9qZWN0Lm9yZz4pDQoNCkFzIGZvciB5
+b3VyIHByb2JsZW06DQpTb21ldGhpbmcgaXMgb2ZmIGFib3V0IHRoZSB3YXkgeW91ciB0b2FzdGVy
+IHdhcyBzdGFydGVkLg0KSGVyZeKAmXMgaG93IHRoZSBmaXJzdCBsaW5lIGFib3ZlIHlvdXIgdHJh
+Y2ViYWNrIGxvb2tzIG9uIG15IG1hY2hpbmU6DQpsYmNfc2hlbGxjbW1kOiAoL2hvbWUvZGF2ZS9w
+b2t5KSBnaXQgcmVtb3RlIOKAk3YNCg0KVGhhdCBsb2NhdGlvbiDigJwvaG9tZS9kYXZlL3Bva3ni
+gJ0gaXMgd2hlcmUgSSBpc3N1ZWQgdGhlIHRvYXN0ZXIgc3RhcnQgY29tbWFuZCAoYml0YmFrZS9i
+aW4vdG9hc3RlcikuDQoNCknigJl2ZSB0cmllZCB0byByZXByb2R1Y2UgdGhpcyBvbiBteSBtYWNo
+aW5lIGJ1dCBoYXZlbuKAmXQgYmVlbiBhYmxlIHRvIGRvIGl0Lg0KDQpDb3VsZCB5b3UgcGxlYXNl
+IGxldCB1cyBrbm93IGhvdyB5b3Ugc3RhcnRlZCB0b2FzdGVyIGFuZCBmcm9tIHdoYXQgbG9jYXRp
+b24/IEFsc28sIHdhcyBpdCBhcyByb290IG9yIGEgZGlmZmVyZW50IHVzZXI/DQpPZmYgdGhlIHRv
+cCBvZiBteSBoZWFkICwgb25lIHRoaW5nIHRoYXQgbWlnaHQgY2F1c2UgdGhpcyB3b3VsZCBiZSBp
+ZiB5b3UgY2xvbmVkIHBva3kgYXMgcm9vdCB0aGVuIHNvbWVob3cgc3RhcnRlZCB0b2FzdGVyIGFz
+IGEgZGlmZmVyZW50IHVzZXIuDQoNCkFsc28sIHdoaWNoIHlvY3RvIHByb2plY3QgKHBva3kpIHJl
+bGVhc2UgYXJlIHlvdSB1c2luZz8gV2FzIGl0IG1hc3RlciBvciBtYXliZSBKZXRocm8/DQpPaCwg
+YW5kIHdoYXQgZmxhdm9yIGxpbnV4IGlzIHRoaXMgb24/DQoNClJlZ2FyZHMsDQpNaWhhaWwNCg0K
+RnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNl
+c0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTWFydGluIFRvd25zZW5kDQpTZW50OiBU
+dWVzZGF5LCBEZWNlbWJlciAwOCwgMjAxNSAxMjo0MCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmcNClN1YmplY3Q6IFt5b2N0b10gVG9hc3RlciBQcm9ibGVtDQoNCkhpLA0KSSdtIHRyeWlu
+ZyBvdXQgYSBwcm9kdWN0aW9uIGluc3RhbmNlIG9mIHRvYXN0ZXIsIEknbSBmb2xsb3dpbmcgdGhl
+IGluc3RydWN0aW9ucyBmcm9tIGhlcmUNCg0KaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2Rv
+Y3MvbGF0ZXN0L3RvYXN0ZXItbWFudWFsL3RvYXN0ZXItbWFudWFsLmh0bWwjdG9hc3Rlci1zZXR0
+aW5nLXVwLWEtcHJvZHVjdGlvbi1pbnN0YW5jZS1vZi10b2FzdGVyDQoNCkkgbWFuYWdlZCB0byBn
+ZXQgdG9hc3RlciB1cCBhbmQgcnVubmluZyBidXQgaGFkIHRvIGFkanVzdCBhIGZldyB0aGluZ3Mg
+d2hpY2ggeW91IG1pZ2h0IHdhbnQgdG8gY29ycmVjdCBpbiB0aGUgZG9jdW1lbnRhdGlvbjoNCjEp
+IHZpcnR1YWxlbnYgcGFja2FnZSBkb2Vzbid0IGV4aXN0IGluIFVidW50dSAxNC4wNCBoYWQgdG8g
+dXNlIHB5dGhvbi12aXJ0dWFsZW52DQoyKSBZb3UgbmVlZCBweXRob24gaGVhZGVycyBsYXRlciBz
+byBhZGQgcHl0aG9uLWRldiB0byBsaXN0IG9mIHBhY2thZ2VzIHRvIGluc3RhbGwNCjMpIEFmdGVy
+IGNsb25pbmcgcG9reSB0aGVyZSBzaG91bGQgYmUgYSBjZCBwb2t5IGJlZm9yZSBjaGVja2luZyBv
+dXQgYSBicmFuY2guDQo0KSBTRUNSRVRfS0VZLCBpdCB3b3VsZCBiZSBuaWNlIHRvIGtub3cgd2hh
+dCB0aGlzIGlzIHVzZWQgZm9yLCB3aGF0IGNoYXJhY3RlcnMgaXMgY2FuIGNvbnRhaW4sIGllIGNh
+biBpdCBjb250YWluIHNwYWNlcy4NCjUpIEluIHRoZSBteXNxbCBwYXJ0IGlzIHN0YXRlcyB3ZSBh
+cmUgY3JlYXRpbmcgYSBkYXRhYmFzZSBjYWxsZWQgdG9hc3RlciBidXQgaW4gdGhlIHNldHRpbmdz
+LnB5IHdlIHNwZWNpZnkgdG9hc3Rlcl9tYWluIG9uZSBvZiB0aGVtIG5lZWRzIGNvcnJlY3Rpbmcu
+DQo2KSBCZWZvcmUgY2FsbGluZyAuL2JpdGJha2UvbGliL3RvYXN0ZXIvbWFuYWdlLnB5IHN5bmNk
+YiAtLW1pZ3JhdGUgbWF5YmUgaXQgc2hvdWxkIGxpbmsgdG8gMy41IGFuZCBzdGF0ZSB0aGF0IHlv
+dSBzaG91bGQgY3JlYXRlIGEgRGphbmdvIHN1cGVyIHVzZXIgZmlyc3QuDQo3KVRoZXJlJ3MgYSB0
+eXBvIGluIHRoZSBBcGFjaGUgdG9hc3Rlci5jb25mIHMvdG9hc3Rlcm5fd3NnaS90b2FzdGVyX3dz
+Z2kvDQo4KSBCdWlsZCBydW5uZXIgc2VydmljZSBpcyB3cm9uZywgdGhlcmUgbmVlZHMgdG8gYmUg
+dGhlIHBva3kgZGlyZWN0b3J5IGludm9sdmVkIHNvbWV3aGVyZSwgZWl0aGVyIGNkIC92YXIvd3d3
+L3RvYXN0ZXIvcG9reSBvciB3ZSBjYWxsIC4vcG9reS9iaXRiYWtlL3RvYXN0ZXIvbWFuYWdlLnB5
+DQpFdmVuIHdpdGggYWxsIHRoaXMgSSBjYW4ndCBnZXQgaXQgdG8gYnVpbGQsIGNyZWF0aW5nIGEg
+cHJvamVjdCBiYXNlZCBvbiBmaWRvIDEuOCBhbmQgdHJ5aW5nIHRvIGJ1aWxkIGNvcmUtaW1hZ2Ut
+bHNiIEkgZ2V0DQoNCjIwMTUtMTItMDggMTA6Mjc6NTcsNzA1IERFQlVHIGxvY2FsaG9zdGJlY29u
+dHJvbGxlciwgb3VyIGdpdCByZXBvcyBhcmUgeyh1J2dpdDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
+L21ldGEteW9jdG88aHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEteW9jdG8+JywgdSdm
+aWRvJyk6IFsodSdtZXRhLXlvY3RvJywNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdSdtZXRhLXlvY3RvJyksDQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKHUnbWV0YS15b2N0by1ic3An
+LA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB1J21ldGEteW9jdG8tYnNwJyldLA0KICh1J2dpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bv
+a3k8aHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3k+JywgdSdmaWRvJyk6IFsoJ2JpdGJh
+a2UnLCB1J2JpdGJha2UnKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAodSdvcGVuZW1iZWRkZWQtY29yZScsDQogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHUnbWV0YScpXX0NCjIwMTUtMTItMDggMTA6Mjc6
+NTcsNzA1IERFQlVHIGxiY19zaGVsbGNtbWQ6ICgpIGdpdCByZW1vdGUgLXYNClRyYWNlYmFjayAo
+bW9zdCByZWNlbnQgY2FsbCBsYXN0KToNCiAgRmlsZSAiL3Zhci93d3cvdG9hc3Rlci9wb2t5L2Jp
+dGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9tYW5hZ2VtZW50L2NvbW1hbmRzL3J1bmJ1aWxk
+cy5weSIsIGxpbmUgNjAsIGluIHNjaGVkdWxlDQogICAgYmVjLnRyaWdnZXJCdWlsZChici5icmJp
+dGJha2Vfc2V0LmFsbCgpLCBici5icmxheWVyX3NldC5hbGwoKSwgYnIuYnJ2YXJpYWJsZV9zZXQu
+YWxsKCksIGJyLmJydGFyZ2V0X3NldC5hbGwoKSkNCiAgRmlsZSAiL3Zhci93d3cvdG9hc3Rlci9w
+b2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9sb2NhbGhvc3RiZWNvbnRyb2xsZXIu
+cHkiLCBsaW5lIDI4MiwgaW4gdHJpZ2dlckJ1aWxkDQogICAgc2VsZi5zZXRMYXllcnMoYml0YmFr
+ZSwgbGF5ZXJzLCB0YXJnZXRzKQ0KICBGaWxlICIvdmFyL3d3dy90b2FzdGVyL3Bva3kvYml0YmFr
+ZS9saWIvdG9hc3Rlci9ibGRjb250cm9sL2xvY2FsaG9zdGJlY29udHJvbGxlci5weSIsIGxpbmUg
+MTUwLCBpbiBzZXRMYXllcnMNCiAgICBmb3IgcmVtb3RlcyBpbiBzZWxmLl9zaGVsbGNtZCgiZ2l0
+IHJlbW90ZSAtdiIsIHNlbGYuYmUuc291cmNlZGlyKS5zcGxpdCgiXG4iKToNCiAgRmlsZSAiL3Zh
+ci93d3cvdG9hc3Rlci9wb2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxkY29udHJvbC9sb2NhbGhv
+c3RiZWNvbnRyb2xsZXIucHkiLCBsaW5lIDU5LCBpbiBfc2hlbGxjbWQNCiAgICBwID0gc3VicHJv
+Y2Vzcy5Qb3Blbihjb21tYW5kLCBjd2QgPSBjd2QsIHNoZWxsPVRydWUsIHN0ZG91dD1zdWJwcm9j
+ZXNzLlBJUEUsIHN0ZGVycj1zdWJwcm9jZXNzLlBJUEUpDQogIEZpbGUgIi91c3IvbGliL3B5dGhv
+bjIuNy9zdWJwcm9jZXNzLnB5IiwgbGluZSA3MTAsIGluIF9faW5pdF9fDQogICAgZXJycmVhZCwg
+ZXJyd3JpdGUpDQogIEZpbGUgIi91c3IvbGliL3B5dGhvbjIuNy9zdWJwcm9jZXNzLnB5IiwgbGlu
+ZSAxMzI3LCBpbiBfZXhlY3V0ZV9jaGlsZA0KICAgIHJhaXNlIGNoaWxkX2V4Y2VwdGlvbg0KT1NF
+cnJvcjogW0Vycm5vIDJdIE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk6ICcnDQoNCiBpbiB0aGUg
+Y29uc29sZS4NCg0KQW55IGlkZWEgd2hhdHMgZ29pbmcgd3Jvbmc/DQoNCkNoZWVycywNCg0KTWFy
+dGluLg0K
 
-In https://github.com/SELinuxProject/selinux-testsuite is specified what yo=
-u need to install (example is for Fedora or RHEL):
+--_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-yum install perl-Test perl-Test-Harness selinux-policy-devel gcc libselinux=
--devel net-tools netlabel_tools iptables
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpA
+Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIg
+MiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNv
+Tm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAw
+MXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
+InNlcmlmIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNp
+dGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
+Cgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
+aHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsN
+Cglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJp
+ZiI7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
+TCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAx
+cHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnNw
+YW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0
+dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
+TCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzO30NCnNwYW4uRW1haWxTdHls
+ZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxp
+YnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXtt
+c28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29y
+ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
+IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
+CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
+aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+SGkgTWFydGluLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Rmlyc3Qgb2ZmLCBtYXkgSSBzdWdn
+ZXN0IHRoZSB0b2FzdGVyIG1haWxpbmcgbGlzdCBpbiB0aGUgZnV0dXJlIGlmIHlvdSBoYXZlIHF1
+ZXN0aW9ucyAoPGEgaHJlZj0ibWFpbHRvOnRvYXN0ZXJAeW9jdG9wcm9qZWN0Lm9yZyI+dG9hc3Rl
+ckB5b2N0b3Byb2plY3Qub3JnPC9hPik8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFzIGZvciB5b3VyIHByb2JsZW06PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlNvbWV0aGluZyBpcyBvZmYgYWJvdXQgdGhlIHdh
+eSB5b3VyIHRvYXN0ZXIgd2FzIHN0YXJ0ZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
+PkhlcmXigJlzIGhvdyB0aGUgZmlyc3QgbGluZSBhYm92ZSB5b3VyIHRyYWNlYmFjayBsb29rcyBv
+biBteSBtYWNoaW5lOjxicj4NCmxiY19zaGVsbGNtbWQ6ICgvaG9tZS9kYXZlL3Bva3kpIGdpdCBy
+ZW1vdGUg4oCTdjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhhdCBsb2NhdGlvbiDigJwvaG9tZS9kYXZlL3Bva3nigJ0g
+aXMgd2hlcmUgSSBpc3N1ZWQgdGhlIHRvYXN0ZXIgc3RhcnQgY29tbWFuZCAoYml0YmFrZS9iaW4v
+dG9hc3RlcikuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj5J4oCZdmUgdHJpZWQgdG8gcmVwcm9kdWNlIHRoaXMgb24gbXkg
+bWFjaGluZSBidXQgaGF2ZW7igJl0IGJlZW4gYWJsZSB0byBkbyBpdC48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkNvdWxk
+IHlvdSBwbGVhc2UgbGV0IHVzIGtub3cgaG93IHlvdSBzdGFydGVkIHRvYXN0ZXIgYW5kIGZyb20g
+d2hhdCBsb2NhdGlvbj8gQWxzbywgd2FzIGl0IGFzIHJvb3Qgb3IgYSBkaWZmZXJlbnQgdXNlcj88
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+T2ZmIHRoZSB0b3Agb2YgbXkgaGVhZCAsIG9u
+ZSB0aGluZyB0aGF0IG1pZ2h0IGNhdXNlIHRoaXMgd291bGQgYmUgaWYgeW91IGNsb25lZCBwb2t5
+IGFzIHJvb3QgdGhlbiBzb21laG93IHN0YXJ0ZWQgdG9hc3RlciBhcyBhIGRpZmZlcmVudCB1c2Vy
+LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
+b3I6IzFGNDk3RCI+QWxzbywgd2hpY2ggeW9jdG8gcHJvamVjdCAocG9reSkgcmVsZWFzZSBhcmUg
+eW91IHVzaW5nPyBXYXMgaXQgbWFzdGVyIG9yIG1heWJlIEpldGhybz88bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+T2gsIGFuZCB3aGF0IGZsYXZvciBsaW51eCBpcyB0aGlzIG9uPzxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
+NDk3RCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+TWloYWlsPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwv
+c3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3Rv
+cHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5P
+biBCZWhhbGYgT2YgPC9iPk1hcnRpbiBUb3duc2VuZDxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5
+LCBEZWNlbWJlciAwOCwgMjAxNSAxMjo0MCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIFRvYXN0ZXIgUHJvYmxlbTxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4N
+CjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5IaSw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SSdtIHRyeWluZyBvdXQgYSBwcm9kdWN0aW9uIGluc3RhbmNl
+IG9mIHRvYXN0ZXIsIEknbSBmb2xsb3dpbmcgdGhlIGluc3RydWN0aW9ucyBmcm9tIGhlcmU8bzpw
+PjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tYm90dG9tOjBpbjttYXJnaW4tYm90dG9tOi4w
+MDAxcHQiPjxhIGhyZWY9Imh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC90
+b2FzdGVyLW1hbnVhbC90b2FzdGVyLW1hbnVhbC5odG1sI3RvYXN0ZXItc2V0dGluZy11cC1hLXBy
+b2R1Y3Rpb24taW5zdGFuY2Utb2YtdG9hc3RlciI+aHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3Jn
+L2RvY3MvbGF0ZXN0L3RvYXN0ZXItbWFudWFsL3RvYXN0ZXItbWFudWFsLmh0bWwjdG9hc3Rlci1z
+ZXR0aW5nLXVwLWEtcHJvZHVjdGlvbi1pbnN0YW5jZS1vZi10b2FzdGVyPC9hPjxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SSBtYW5h
+Z2VkIHRvIGdldCB0b2FzdGVyIHVwIGFuZCBydW5uaW5nIGJ1dCBoYWQgdG8gYWRqdXN0IGEgZmV3
+IHRoaW5ncyB3aGljaCB5b3UgbWlnaHQgd2FudCB0byBjb3JyZWN0IGluIHRoZSBkb2N1bWVudGF0
+aW9uOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4xKSB2aXJ0
+dWFsZW52IHBhY2thZ2UgZG9lc24ndCBleGlzdCBpbiBVYnVudHUgMTQuMDQgaGFkIHRvIHVzZSBw
+eXRob24tdmlydHVhbGVudjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4yKSBZb3UgbmVlZCBweXRob24gaGVhZGVycyBsYXRlciBzbyBhZGQgcHl0aG9uLWRldiB0
+byBsaXN0IG9mIHBhY2thZ2VzIHRvIGluc3RhbGw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+MykgQWZ0ZXIgY2xvbmluZyBwb2t5IHRoZXJlIHNob3VsZCBiZSBh
+IGNkIHBva3kgYmVmb3JlIGNoZWNraW5nIG91dCBhIGJyYW5jaC48bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+NCkgU0VDUkVUX0tFWSwgaXQgd291bGQgYmUgbmlj
+ZSB0byBrbm93IHdoYXQgdGhpcyBpcyB1c2VkIGZvciwgd2hhdCBjaGFyYWN0ZXJzIGlzIGNhbiBj
+b250YWluLCBpZSBjYW4gaXQgY29udGFpbiBzcGFjZXMuPG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjUpIEluIHRoZSBteXNxbCBwYXJ0IGlzIHN0YXRlcyB3ZSBh
+cmUgY3JlYXRpbmcgYSBkYXRhYmFzZSBjYWxsZWQgdG9hc3RlciBidXQgaW4gdGhlIHNldHRpbmdz
+LnB5IHdlIHNwZWNpZnkgdG9hc3Rlcl9tYWluIG9uZSBvZiB0aGVtIG5lZWRzIGNvcnJlY3Rpbmcu
+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjYpIEJlZm9yZSBj
+YWxsaW5nIC4vYml0YmFrZS9saWIvdG9hc3Rlci9tYW5hZ2UucHkgc3luY2RiIC0tbWlncmF0ZSBt
+YXliZSBpdCBzaG91bGQgbGluayB0byAzLjUgYW5kIHN0YXRlIHRoYXQgeW91IHNob3VsZCBjcmVh
+dGUgYSBEamFuZ28gc3VwZXIgdXNlciBmaXJzdC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+NylUaGVyZSdzIGEgdHlwbyBpbiB0aGUgQXBhY2hlIHRvYXN0ZXIu
+Y29uZiBzL3RvYXN0ZXJuX3dzZ2kvdG9hc3Rlcl93c2dpLzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjgpIEJ1
+aWxkIHJ1bm5lciBzZXJ2aWNlIGlzIHdyb25nLCB0aGVyZSBuZWVkcyB0byBiZSB0aGUgcG9reSBk
+aXJlY3RvcnkgaW52b2x2ZWQgc29tZXdoZXJlLCBlaXRoZXIgY2QgL3Zhci93d3cvdG9hc3Rlci9w
+b2t5IG9yIHdlIGNhbGwgLi9wb2t5L2JpdGJha2UvdG9hc3Rlci9tYW5hZ2UucHk8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206
+MTIuMHB0Ij5FdmVuIHdpdGggYWxsIHRoaXMgSSBjYW4ndCBnZXQgaXQgdG8gYnVpbGQsIGNyZWF0
+aW5nIGEgcHJvamVjdCBiYXNlZCBvbiBmaWRvIDEuOCBhbmQgdHJ5aW5nIHRvIGJ1aWxkIGNvcmUt
+aW1hZ2UtbHNiIEkgZ2V0PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cHJl
+PjIwMTUtMTItMDggMTA6Mjc6NTcsNzA1IERFQlVHIGxvY2FsaG9zdGJlY29udHJvbGxlciwgb3Vy
+IGdpdCByZXBvcyBhcmUgeyh1J2dpdDovLzxhIGhyZWY9Imh0dHA6Ly9naXQueW9jdG9wcm9qZWN0
+Lm9yZy9tZXRhLXlvY3RvIj5naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXlvY3RvPC9hPicsIHUn
+ZmlkbycpOiBbKHUnbWV0YS15b2N0bycsPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyB1J21ldGEteW9jdG8nKSw8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyh1J21ldGEteW9jdG8tYnNwJyw8YnI+Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHUnbWV0YS15b2N0by1ic3AnKV0sPGJyPiAo
+dSdnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reSI+Z2l0Lnlv
+Y3RvcHJvamVjdC5vcmcvcG9reTwvYT4nLCB1J2ZpZG8nKTogWygnYml0YmFrZScsIHUnYml0YmFr
+ZScpLDxicj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7KHUnb3BlbmVtYmVkZGVkLWNvcmUnLDxicj4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgdSdtZXRhJyld
+fTxicj4yMDE1LTEyLTA4IDEwOjI3OjU3LDcwNSBERUJVRyBsYmNfc2hlbGxjbW1kOiAoKSBnaXQg
+cmVtb3RlIC12PGJyPlRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KTo8YnI+Jm5ic3A7
+IEZpbGUgJnF1b3Q7L3Zhci93d3cvdG9hc3Rlci9wb2t5L2JpdGJha2UvbGliL3RvYXN0ZXIvYmxk
+Y29udHJvbC9tYW5hZ2VtZW50L2NvbW1hbmRzL3J1bmJ1aWxkcy5weSZxdW90OywgbGluZSA2MCwg
+aW4gc2NoZWR1bGU8YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGJlYy50cmlnZ2VyQnVpbGQoYnIuYnJi
+aXRiYWtlX3NldC5hbGwoKSwgYnIuYnJsYXllcl9zZXQuYWxsKCksIGJyLmJydmFyaWFibGVfc2V0
+LmFsbCgpLCBici5icnRhcmdldF9zZXQuYWxsKCkpPGJyPiZuYnNwOyBGaWxlICZxdW90Oy92YXIv
+d3d3L3RvYXN0ZXIvcG9reS9iaXRiYWtlL2xpYi90b2FzdGVyL2JsZGNvbnRyb2wvbG9jYWxob3N0
+YmVjb250cm9sbGVyLnB5JnF1b3Q7LCBsaW5lIDI4MiwgaW4gdHJpZ2dlckJ1aWxkPGJyPiZuYnNw
+OyZuYnNwOyZuYnNwOyBzZWxmLnNldExheWVycyhiaXRiYWtlLCBsYXllcnMsIHRhcmdldHMpPGJy
+PiZuYnNwOyBGaWxlICZxdW90Oy92YXIvd3d3L3RvYXN0ZXIvcG9reS9iaXRiYWtlL2xpYi90b2Fz
+dGVyL2JsZGNvbnRyb2wvbG9jYWxob3N0YmVjb250cm9sbGVyLnB5JnF1b3Q7LCBsaW5lIDE1MCwg
+aW4gc2V0TGF5ZXJzPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyBmb3IgcmVtb3RlcyBpbiBzZWxmLl9z
+aGVsbGNtZCgmcXVvdDtnaXQgcmVtb3RlIC12JnF1b3Q7LCBzZWxmLmJlLnNvdXJjZWRpcikuc3Bs
+aXQoJnF1b3Q7XG4mcXVvdDspOjxicj4mbmJzcDsgRmlsZSAmcXVvdDsvdmFyL3d3dy90b2FzdGVy
+L3Bva3kvYml0YmFrZS9saWIvdG9hc3Rlci9ibGRjb250cm9sL2xvY2FsaG9zdGJlY29udHJvbGxl
+ci5weSZxdW90OywgbGluZSA1OSwgaW4gX3NoZWxsY21kPGJyPiZuYnNwOyZuYnNwOyZuYnNwOyBw
+ID0gc3VicHJvY2Vzcy5Qb3Blbihjb21tYW5kLCBjd2QgPSBjd2QsIHNoZWxsPVRydWUsIHN0ZG91
+dD1zdWJwcm9jZXNzLlBJUEUsIHN0ZGVycj1zdWJwcm9jZXNzLlBJUEUpPGJyPiZuYnNwOyBGaWxl
+ICZxdW90Oy91c3IvbGliL3B5dGhvbjIuNy9zdWJwcm9jZXNzLnB5JnF1b3Q7LCBsaW5lIDcxMCwg
+aW4gX19pbml0X188YnI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGVycnJlYWQsIGVycndyaXRlKTxicj4m
+bmJzcDsgRmlsZSAmcXVvdDsvdXNyL2xpYi9weXRob24yLjcvc3VicHJvY2Vzcy5weSZxdW90Oywg
+bGluZSAxMzI3LCBpbiBfZXhlY3V0ZV9jaGlsZDxicj4mbmJzcDsmbmJzcDsmbmJzcDsgcmFpc2Ug
+Y2hpbGRfZXhjZXB0aW9uPGJyPk9TRXJyb3I6IFtFcnJubyAyXSBObyBzdWNoIGZpbGUgb3IgZGly
+ZWN0b3J5OiAnJzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEy
+LjBwdCI+IGluIHRoZSBjb25zb2xlLjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+QW55IGlkZWEgd2hhdHMgZ29pbmcgd3Jvbmc/PG86cD48L286cD48
+L3ByZT4NCjxwcmU+Q2hlZXJzLDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPk1hcnRpbi48bzpwPjwv
+bzpwPjwvcHJlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9k
+eT4NCjwvaHRtbD4NCg==
 
-One of them is "selinux-policy-devel"
-
-BR,
-Bogdan
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Suram Suram
-Sent: Sunday, December 06, 2015 7:48 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] testsuite for meta-selinux
-
-Hi,
-Iam trying to use the selinux testsuite taken from
-SELinuxProject<https://github.com/SELinuxProject>/selinux-testsuite<https:/=
-/github.com/SELinuxProject/selinux-testsuite>
-When trying to compile, it is complaining with the following error
-ERROR: You must have selinux-policy-devel installed.
-
-I would like to know how to enable selinux-policy-devel in the meta-selinux=
- layer.
-
-Regards
-Suram
-
---_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-h1
-	{mso-style-priority:9;
-	mso-style-link:"Heading 1 Char";
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:24.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-priority:9;
-	mso-style-link:"Heading 1";
-	font-family:"Times New Roman","serif";
-	font-weight:bold;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.author
-	{mso-style-name:author;}
-span.path-divider
-	{mso-style-name:path-divider;}
-span.EmailStyle22
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Suram,<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Package &#8216;selinux=
--policy-devel&#8217; is needed to be installed on your host.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">In <a href=3D"https://=
-github.com/SELinuxProject/selinux-testsuite">
-https://github.com/SELinuxProject/selinux-testsuite</a> is specified what y=
-ou need to install (example is for Fedora or RHEL):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">yum install perl-Test perl-Test-Harness selinux-policy-dev=
-el gcc libselinux-devel net-tools netlabel_tools iptables<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">One of them is &#8220;=
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->selinux-policy-devel&#8221;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BR,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Bogdan<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Suram Suram<br>
-<b>Sent:</b> Sunday, December 06, 2015 7:48 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] testsuite for meta-selinux<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">Iam trying to use the selinux testsuite taken from <=
-o:p></o:p></p>
-<h1><span class=3D"author"><a href=3D"https://github.com/SELinuxProject">SE=
-LinuxProject</a></span><span class=3D"path-divider">/</span><strong><a href=
-=3D"https://github.com/SELinuxProject/selinux-testsuite">selinux-testsuite<=
-/a></strong>
-<o:p></o:p></h1>
-<p class=3D"MsoNormal">When trying to compile, it is complaining with the f=
-ollowing error<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: You must have selinux-policy-devel installed.=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I would like to know how to enable selinux-policy-de=
-vel in the meta-selinux layer.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Suram<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_--
+--_000_802B8E31E3519842A6CEE1B497E861B119E4EA96IRSMSX108gercor_--
