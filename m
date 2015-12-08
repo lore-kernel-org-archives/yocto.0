@@ -1,56 +1,45 @@
-Return-Path: <caiortp@gmail.com>
+Return-Path: <prvs=0784ab7766=valentin.longchamp@keymile.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BA54E007B2; Tue,  8 Dec 2015 08:01:07 -0800 (PST)
+	id DBCE9E00AB9; Tue,  8 Dec 2015 13:06:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (caiortp[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [195.8.104.250 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC63AE005A2
-	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 08:01:05 -0800 (PST)
-Received: by vkca188 with SMTP id a188so17442500vkc.0
-	for <yocto@yoctoproject.org>; Tue, 08 Dec 2015 08:01:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=3zZSJKDMlHNgblNLFPkP4/1Gv24Bhoo4gtYrfyutBpI=;
-	b=pbrCefzZ3YKolJEvgvLtnX2vzMrEztubMtEN/ApN1udEDh8CgjqGyemF8nK2RB/oYD
-	YUVUgYLZDAA0KZb3aBogS4vobonyDMtwYdAAZfKvW4+YslYJI9yRmSQwEGOYFlwc3982
-	uE6JEd00WMLR7Z1xk+8DnTrI0ihrLcsJ1Q6bixAoFe3pin6tcwdmCPmKjzf27riQ3A1J
-	RTpOQ86qMw16wW+nV1r3g6ObM+hGSshU7jiBKtrVE8EqdxVVdP/+WXq8BaPkaN8k0IGQ
-	IQFp9GveG9m9kVHBhc7/pwbcX7jZQl1Kh9pZvVSU27OS9xTCjUinIvZan4rgY1wolXZo
-	Qi8g==
+Received: from mail-de.keymile.com (mail-de.keymile.com [195.8.104.250])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EA64E002F9
+	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 13:06:30 -0800 (PST)
+Received: from frodo.de.keymile.net ([10.9.1.54]:62888
+	helo=mailrelay.de.keymile.net)
+	by mail-de.keymile.com with esmtp (Exim 4.82_1-5b7a7c0-XX)
+	(envelope-from <Valentin.Longchamp@keymile.com>) id 1a6PSt-0006Je-1q
+	for yocto@yoctoproject.org; Tue, 08 Dec 2015 22:06:27 +0100
+Received: from SRVDEHAN1MX1.keymile.net (srvdehan1mx1.keymile.net [10.9.1.150])
+	by mailrelay.de.keymile.net (8.12.2/8.12.2) with ESMTP id
+	tB8L6Rfn024136
+	for <yocto@yoctoproject.org>; Tue, 8 Dec 2015 22:06:27 +0100 (MET)
+Received: from SRVDEHAN1MX1.keymile.net ([10.9.1.150]) by
+	SRVDEHAN1MX1.keymile.net ([10.9.1.150]) with mapi;
+	Tue, 8 Dec 2015 22:06:27 +0100
+From: "Longchamp, Valentin" <Valentin.Longchamp@keymile.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 8 Dec 2015 22:06:29 +0100
+Thread-Topic: Custom kernel headers and SDK
+Thread-Index: AdEx/EzwJo9Sd0CySEW/KyYepjwXbQ==
+Message-ID: <688824bb-bfed-4888-8e46-a64338f1db97@keymile.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, de-DE
 MIME-Version: 1.0
-X-Received: by 10.31.174.131 with SMTP id x125mr211663vke.136.1449590464722;
-	Tue, 08 Dec 2015 08:01:04 -0800 (PST)
-Received: by 10.31.82.193 with HTTP; Tue, 8 Dec 2015 08:01:04 -0800 (PST)
-In-Reply-To: <7211338.biJDk4bQH6@peggleto-mobl.ger.corp.intel.com>
-References: <CAJqtCybKFSzf2uhe3ox7LTExCOF+KGNGRHL_hecz6LipTKNmug@mail.gmail.com>
-	<2180797.fvhLvehB0f@peggleto-mobl.ger.corp.intel.com>
-	<CAJqtCyZWnGCqp4x8JSbVbj-ZhkCi_UXJ5OpmUdvn6cP-wRjnEA@mail.gmail.com>
-	<7211338.biJDk4bQH6@peggleto-mobl.ger.corp.intel.com>
-Date: Tue, 8 Dec 2015 14:01:04 -0200
-Message-ID: <CAJqtCyYYgZ70VnjvzX3o=nbACrXr13LkZTQwm4nKqZdhPiKpbw@mail.gmail.com>
-From: Caio <caiortp@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Help with Opensips Recipe - QA run found fatal errors
+Cc: "Brunck, Holger" <Holger.Brunck@keymile.com>
+Subject: Custom kernel headers and SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,379 +51,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Dec 2015 16:01:07 -0000
-Content-Type: multipart/alternative; boundary=001a1143fbe8b846f8052665149d
+X-List-Received-Date: Tue, 08 Dec 2015 21:06:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_688824bbbfed48888e46a64338f1db97keymilecom_"
 
---001a1143fbe8b846f8052665149d
-Content-Type: text/plain; charset=UTF-8
+--_000_688824bbbfed48888e46a64338f1db97keymilecom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Paul,
- Ok, thank you for your elucidation.
-This could be a prefix problem, because I'm using a make install from
-Makefile.
+SGVsbG8sDQoNCldlIGFyZSBjdXJyZW50bHkgbWlncmF0aW5nIG91ciBFbWJlZGRlZCBMaW51eCBz
+b2Z0d2FyZSBhbmQgdGhlIGNvcnJlc3BvbmRpbmcNCnNtYWxsIGluIGhvdXNlIGRpc3RyaWJ1dGlv
+biB0byBZb2N0by4gV2UgYXJlIHNtYWxsIExpbnV4IHRlYW0gYW5kIHdlIHByb3ZpZGUgYW5kDQpt
+YWludGFpbiB0aGUgdG9vbGNoYWluLCBrZXJuZWwgYW5kIGJhc2UgZGlzdHJpYnV0aW9uIGZvciBh
+IGJyb2FkZXIgdGVhbSBvZg0Kc29mdHdhcmUgZGV2ZWxvcGVycyB0aGF0IGJ1aWxkIHRoZSBhcHBs
+aWNhdGlvbnMgZm9yIG91ciBoYXJkd2FyZS4NCg0KU28gZmFyLCB3ZSBoYXZlIGJlZW4gYWJsZSB0
+byB1c2UgWW9jdG8gdG8gYnVpbGQgb3VyIHdob2xlIHNvZnR3YXJlIChrZXJuZWwsDQptaW5pbWFs
+IGRpc3RyaWJ1dGlvbiBhbmQgYXBwbGljYXRpb24gc29mdHdhcmUpIGJ5IGFkZGluZyBvdXIgbWlu
+aW1hbCBtZXRhLWxheWVyDQphbmQgZGVmaW5pbmcgc3R1ZmYgdGhlcmUgYW5kIGl0IHdvcmtzIGdy
+ZWF0Lg0KDQpTaW5jZSB0aGUgYXBwbGljYXRpb24gZGV2cyBhcmUgIm5vdCBpbnRlcmVzdGVkIiBp
+biBvdXIgZGlzdHJvIG5vciBpbiB0aGUNCmNvbXBpbGVyLCB3ZSB3YW50IHRvIG1ha2UgdGhlbSBh
+dmFpbGFibGUgZm9yIHRoZW0gdGhhbmtzIHRvIHRoZSBTREsgd2hpY2ggaXMgYQ0KZ3JlYXQgZml0
+IGZvciB0aGlzIHVzZSBjYXNlLiBTbyBmYXIgaXQgd29ya3MgdmVyeSB3ZWxsIGFuZCB3ZSBhcmUg
+Y3VycmVudGx5DQp3b3JraW5nIG9uIGFkYXB0aW5nIHRoZSBidWlsZCBzeXN0ZW0gdG8gdGhlIFNE
+Sy4NCg0KQW5kIGhlcmUgY29tZXMgbXkgcXVlc3Rpb24uIFdlIGhhdmUgaG93ZXZlciBvdXIgb3du
+IGtlcm5lbCBzb3VyY2VzIHRoYXQgZXh0ZW5kDQp0aGUgaGVhZGVycyBmb3IgYSBmZXcgImluLWhv
+dXNlIiBkcml2ZXJzLiBGcm9tIHRoZSB3YXJuaW5nIGluIGxpbnV4LWxpYmMtaGVhZGVycw0KKGh0
+dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL3Bva3kvdHJlZS9tZXRhL3Jl
+Y2lwZXMta2VybmVsL2xpbnV4LWxpYmMtaGVhZGVycy9saW51eC1saWJjLWhlYWRlcnMuaW5jKSwN
+CkkgdW5kZXJzdGFuZCB0aGF0IGl0IHNob3VsZCBiZSBhdm9pZGVkIHRvIHJlY3JlYXRlIGEgcmVj
+aXBlIGZvciB0aGUga2VybmVsDQpoZWFkZXJzIHRvIGF2b2lkIGhhdmluZyB0aGUgbGliYyAibWFj
+aGluaWZpZWQiLiBGcm9tIHlvY3RvLCBJIGNvdWxkIGdldCB0aGUNCmN1c3RvbSBoZWFkZXJzIHRo
+YW5rcyB0byBTVEFHSU5HX0tFUk5FTF9ESVIuIEhvd2V2ZXIsIHdlIG5lZWQgdGhlc2UgY3VzdG9t
+DQpoZWFkZXJzIGZyb20gIm91dHNpZGUiIG9mIHlvY3RvLCB3aGVuIHVzaW5nIHRoZSBTREsuDQoN
+CkkgaGF2ZSBmb3VuZCAyIHdheXMgdG8gaW5zdGFsbCB0aGVtIGludG8gdGhlIHN5c3Jvb3QgYW5k
+IHRodXMgU0RLOg0KLSBlaXRoZXIgYnkgYWRkaW5nIHRoZSBrZXJuZWwtZGV2c3JjIHRvIHRoZSBT
+REsgdGhhdCBpbnN0YWxscyB0aGVtIGludG8NCi91c3Ivc3JjL2tlcm5lbCBieSBkZWZhdWx0Lg0K
+LSBvciBieSBhZGRpbmcgc29tZXRoaW5nIHNpbWlsYXIgdG8gd2hhdCBpcyBwcm9wb3NlZCBpbiB0
+aGlzIG1haWxpbmctbGlzdA0KZGlzY3Vzc2lvbiB0byBvdXIga2VybmVsIHJlY2lwZToNCmh0dHBz
+Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBlcm1haWwvbGludXgteW9jdG8vMjAxNC1BcHJp
+bC8wMDIxNzguaHRtbA0KDQpUaGUgcHJvYmxlbSB3aXRoIHRoZXNlIDIgc29sdXRpb25zIGlzIHRo
+YXQgc3lzcm9vdCBjb250YWluczoNCjEpIHRoZSBzYW5pdGl6ZWQga2VybmVsIGhlYWRlcnMgYXQg
+aW4gc3lzcm9vdC91c3IvaW5jbHVkZS9saW51eA0KMikgb3VyIGN1c3RvbSBoZWFkZXJzIGF0IHN5
+c3Jvb3QvdXNyL3NyYy9rZXJuZWwvaW5jbHVkZS9saW51eA0KDQphbmQgd2hlbiBJIGFkZCBhIC1J
+IG9wdGlvbiBpbiB0aGUgQ0ZMQUdTIGZvciAyKSwgSSBnZXQgY29uZmxpY3RzIHNpbmNlIHRoZSBT
+REsNCmF1dG9tYXRpY2FsbHkgbG9va3MgZmlyc3QgaW4gc3lzcm9vdC91c3IvaW5jbHVkZS4NCg0K
+SGVyZSBpcyBhbiBleGFtcGxlIG9mIHRoZSBjdXJyZW50IGVycm9ycyBJIGdldCB3aXRoIDEpIGFu
+ZCAyKSBpbiBib3RoIHRoZSAtSSBwYXRoOg0KDQo+ICAgICAgICAgICAgICAgICAgZnJvbSBwbGF0
+L2ljbmRydi9oZGxjL21wYzh4eHhfc2NjL3NyYy9saWJoZGxjLWttLmM6MjoNCj4gL29wdC93b3Jr
+L3BwYy10b29sY2hhaW4vc3lzcm9vdHMvcG93ZXJwYy1vZS1saW51eC91c3Ivc3JjL2tlcm5lbC9p
+bmNsdWRlL2xpbnV4L3R5cGVzLmg6MTQ6MjY6IGVycm9yOiBjb25mbGljdGluZyB0eXBlcyBmb3Ig
+J2ZkX3NldCcNCj4gIHR5cGVkZWYgX19rZXJuZWxfZmRfc2V0ICBmZF9zZXQ7DQo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgXg0KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gL29wdC93b3JrL3Bw
+Yy10b29sY2hhaW4vc3lzcm9vdHMvcG93ZXJwYy1vZS1saW51eC91c3IvaW5jbHVkZS9zeXMvdHlw
+ZXMuaDoyMTk6MCwNCj4gICAgICAgICAgICAgICAgICBmcm9tIC9vcHQvd29yay9wcGMtdG9vbGNo
+YWluL3N5c3Jvb3RzL3Bvd2VycGMtb2UtbGludXgvdXNyL2luY2x1ZGUvc3lzL3Vpby5oOjIzLA0K
+PiAgICAgICAgICAgICAgICAgIGZyb20gL29wdC93b3JrL3BwYy10b29sY2hhaW4vc3lzcm9vdHMv
+cG93ZXJwYy1vZS1saW51eC91c3IvaW5jbHVkZS9zeXMvc29ja2V0Lmg6MjYsDQo+ICAgICAgICAg
+ICAgICAgICAgZnJvbSBwbGF0L2ljbmRydi9oZGxjL21wYzh4eHhfc2NjL3NyYy9saWJoZGxjLWtt
+LmM6MToNCj4gL29wdC93b3JrL3BwYy10b29sY2hhaW4vc3lzcm9vdHMvcG93ZXJwYy1vZS1saW51
+eC91c3IvaW5jbHVkZS9zeXMvc2VsZWN0Lmg6NzU6NTogbm90ZTogcHJldmlvdXMgZGVjbGFyYXRp
+b24gb2YgJ2ZkX3NldCcgd2FzIGhlcmUNCj4gICAgfSBmZF9zZXQ7DQoNCldoYXQgd291bGQgYmUg
+dGhlIGNvcnJlY3QgInlvY3RvIiB3YXkgb2Ygc29sdmluZyBvdXIgY3VycmVudCBwcm9ibGVtIHdp
+dGggb3VyDQpjdXN0b20gaGVhZGVycyB0byBiZSBhZGRlZCB0byB0aGUgU0RLID8NCg0KVGhhbmtz
+DQoNClZhbGVudGluDQo=
 
-I will find this problem and fix it.
+--_000_688824bbbfed48888e46a64338f1db97keymilecom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thank you very much.
+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KPCEtLQovKiBOaW5lIC0gRm9udCBzdHlsZXMgZm9yIG91
+dGdvaW5nIG1lc3NhZ2UgKHRleHQpICovCnAge2ZvbnQtZmFtaWx5OkNhbGlicmksIEFyaWFsLCBI
+ZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMi4wcHQ7IGNvbG9yOiMwMDAwMDB9Ci0t
+Pgo8L3N0eWxlPjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksIEFyaWFsLCBIZWx2ZXRp
+Y2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMi4wcHQ7IGNvbG9yOiMwMDAwMDAiPjxwIGRpcj0i
+bHRyIj5IZWxsbywgPC9wPgo8cCBkaXI9Imx0ciI+V2UgYXJlIGN1cnJlbnRseSBtaWdyYXRpbmcg
+b3VyIEVtYmVkZGVkIExpbnV4IHNvZnR3YXJlIGFuZCB0aGUgY29ycmVzcG9uZGluZyA8YnI+CnNt
+YWxsIGluIGhvdXNlIGRpc3RyaWJ1dGlvbiB0byBZb2N0by4gV2UgYXJlIHNtYWxsIExpbnV4IHRl
+YW0gYW5kIHdlIHByb3ZpZGUgYW5kIDxicj4KbWFpbnRhaW4gdGhlIHRvb2xjaGFpbiwga2VybmVs
+IGFuZCBiYXNlIGRpc3RyaWJ1dGlvbiBmb3IgYSBicm9hZGVyIHRlYW0gb2YgPGJyPgpzb2Z0d2Fy
+ZSBkZXZlbG9wZXJzIHRoYXQgYnVpbGQgdGhlIGFwcGxpY2F0aW9ucyBmb3Igb3VyIGhhcmR3YXJl
+LiA8L3A+CjxwIGRpcj0ibHRyIj5TbyBmYXIsIHdlIGhhdmUgYmVlbiBhYmxlIHRvIHVzZSBZb2N0
+byB0byBidWlsZCBvdXIgd2hvbGUgc29mdHdhcmUgKGtlcm5lbCwgPGJyPgptaW5pbWFsIGRpc3Ry
+aWJ1dGlvbiBhbmQgYXBwbGljYXRpb24gc29mdHdhcmUpIGJ5IGFkZGluZyBvdXIgbWluaW1hbCBt
+ZXRhLWxheWVyIDxicj4KYW5kIGRlZmluaW5nIHN0dWZmIHRoZXJlIGFuZCBpdCB3b3JrcyBncmVh
+dC4gPC9wPgo8cCBkaXI9Imx0ciI+U2luY2UgdGhlIGFwcGxpY2F0aW9uIGRldnMgYXJlICJub3Qg
+aW50ZXJlc3RlZCIgaW4gb3VyIGRpc3RybyBub3IgaW4gdGhlIDxicj4KY29tcGlsZXIsIHdlIHdh
+bnQgdG8gbWFrZSB0aGVtIGF2YWlsYWJsZSBmb3IgdGhlbSB0aGFua3MgdG8gdGhlIFNESyB3aGlj
+aCBpcyBhIDxicj4KZ3JlYXQgZml0IGZvciB0aGlzIHVzZSBjYXNlLiBTbyBmYXIgaXQgd29ya3Mg
+dmVyeSB3ZWxsIGFuZCB3ZSBhcmUgY3VycmVudGx5IDxicj4Kd29ya2luZyBvbiBhZGFwdGluZyB0
+aGUgYnVpbGQgc3lzdGVtIHRvIHRoZSBTREsuIDwvcD4KPHAgZGlyPSJsdHIiPkFuZCBoZXJlIGNv
+bWVzIG15IHF1ZXN0aW9uLiBXZSBoYXZlIGhvd2V2ZXIgb3VyIG93biBrZXJuZWwgc291cmNlcyB0
+aGF0IGV4dGVuZCA8YnI+CnRoZSBoZWFkZXJzIGZvciBhIGZldyAiaW4taG91c2UiIGRyaXZlcnMu
+IEZyb20gdGhlIHdhcm5pbmcgaW4gbGludXgtbGliYy1oZWFkZXJzIDxicj4KKGh0dHA6Ly9naXQu
+eW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL3Bva3kvdHJlZS9tZXRhL3JlY2lwZXMta2Vy
+bmVsL2xpbnV4LWxpYmMtaGVhZGVycy9saW51eC1saWJjLWhlYWRlcnMuaW5jKSwgPGJyPgpJIHVu
+ZGVyc3RhbmQgdGhhdCBpdCBzaG91bGQgYmUgYXZvaWRlZCB0byByZWNyZWF0ZSBhIHJlY2lwZSBm
+b3IgdGhlIGtlcm5lbCA8YnI+CmhlYWRlcnMgdG8gYXZvaWQgaGF2aW5nIHRoZSBsaWJjICJtYWNo
+aW5pZmllZCIuIEZyb20geW9jdG8sIEkgY291bGQgZ2V0IHRoZSA8YnI+CmN1c3RvbSBoZWFkZXJz
+IHRoYW5rcyB0byBTVEFHSU5HX0tFUk5FTF9ESVIuIEhvd2V2ZXIsIHdlIG5lZWQgdGhlc2UgY3Vz
+dG9tIDxicj4KaGVhZGVycyBmcm9tICJvdXRzaWRlIiBvZiB5b2N0bywgd2hlbiB1c2luZyB0aGUg
+U0RLLiA8L3A+CjxwIGRpcj0ibHRyIj5JIGhhdmUgZm91bmQgMiB3YXlzIHRvIGluc3RhbGwgdGhl
+bSBpbnRvIHRoZSBzeXNyb290IGFuZCB0aHVzIFNESzogPGJyPgotIGVpdGhlciBieSBhZGRpbmcg
+dGhlIGtlcm5lbC1kZXZzcmMgdG8gdGhlIFNESyB0aGF0IGluc3RhbGxzIHRoZW0gaW50byA8YnI+
+Ci91c3Ivc3JjL2tlcm5lbCBieSBkZWZhdWx0LiA8YnI+Ci0gb3IgYnkgYWRkaW5nIHNvbWV0aGlu
+ZyBzaW1pbGFyIHRvIHdoYXQgaXMgcHJvcG9zZWQgaW4gdGhpcyBtYWlsaW5nLWxpc3QgPGJyPgpk
+aXNjdXNzaW9uIHRvIG91ciBrZXJuZWwgcmVjaXBlOiA8YnI+Cmh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9waXBlcm1haWwvbGludXgteW9jdG8vMjAxNC1BcHJpbC8wMDIxNzguaHRtbCA8
+L3A+CjxwIGRpcj0ibHRyIj5UaGUgcHJvYmxlbSB3aXRoIHRoZXNlIDIgc29sdXRpb25zIGlzIHRo
+YXQgc3lzcm9vdCBjb250YWluczogPGJyPgoxKSB0aGUgc2FuaXRpemVkIGtlcm5lbCBoZWFkZXJz
+IGF0IGluIHN5c3Jvb3QvdXNyL2luY2x1ZGUvbGludXggPGJyPgoyKSBvdXIgY3VzdG9tIGhlYWRl
+cnMgYXQgc3lzcm9vdC91c3Ivc3JjL2tlcm5lbC9pbmNsdWRlL2xpbnV4IDwvcD4KPHAgZGlyPSJs
+dHIiPmFuZCB3aGVuIEkgYWRkIGEgLUkgb3B0aW9uIGluIHRoZSBDRkxBR1MgZm9yIDIpLCBJIGdl
+dCBjb25mbGljdHMgc2luY2UgdGhlIFNESyA8YnI+CmF1dG9tYXRpY2FsbHkgbG9va3MgZmlyc3Qg
+aW4gc3lzcm9vdC91c3IvaW5jbHVkZS4gPC9wPgo8cCBkaXI9Imx0ciI+SGVyZSBpcyBhbiBleGFt
+cGxlIG9mIHRoZSBjdXJyZW50IGVycm9ycyBJIGdldCB3aXRoIDEpIGFuZCAyKSBpbiBib3RoIHRo
+ZSAtSSBwYXRoOiA8L3A+CjxwIGRpcj0ibHRyIj4mZ3Q7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7
+JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMx
+NjA7JiMxNjA7JiMxNjA7JiMxNjA7IGZyb20gcGxhdC9pY25kcnYvaGRsYy9tcGM4eHh4X3NjYy9z
+cmMvbGliaGRsYy1rbS5jOjI6IDxicj4KJmd0OyAvb3B0L3dvcmsvcHBjLXRvb2xjaGFpbi9zeXNy
+b290cy9wb3dlcnBjLW9lLWxpbnV4L3Vzci9zcmMva2VybmVsL2luY2x1ZGUvbGludXgvdHlwZXMu
+aDoxNDoyNjogZXJyb3I6IGNvbmZsaWN0aW5nIHR5cGVzIGZvciAnZmRfc2V0JyA8YnI+CiZndDsm
+IzE2MDsgdHlwZWRlZiBfX2tlcm5lbF9mZF9zZXQmIzE2MDsgZmRfc2V0OyA8YnI+CiZndDsmIzE2
+MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsm
+IzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2
+MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsgXiA8YnI+CiZndDsgSW4gZmls
+ZSBpbmNsdWRlZCBmcm9tIC9vcHQvd29yay9wcGMtdG9vbGNoYWluL3N5c3Jvb3RzL3Bvd2VycGMt
+b2UtbGludXgvdXNyL2luY2x1ZGUvc3lzL3R5cGVzLmg6MjE5OjAsIDxicj4KJmd0OyYjMTYwOyYj
+MTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYw
+OyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyYjMTYwOyBmcm9tIC9vcHQvd29yay9wcGMt
+dG9vbGNoYWluL3N5c3Jvb3RzL3Bvd2VycGMtb2UtbGludXgvdXNyL2luY2x1ZGUvc3lzL3Vpby5o
+OjIzLCA8YnI+CiZndDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsm
+IzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2MDsmIzE2
+MDsgZnJvbSAvb3B0L3dvcmsvcHBjLXRvb2xjaGFpbi9zeXNyb290cy9wb3dlcnBjLW9lLWxpbnV4
+L3Vzci9pbmNsdWRlL3N5cy9zb2NrZXQuaDoyNiwgPGJyPgomZ3Q7JiMxNjA7JiMxNjA7JiMxNjA7
+JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMx
+NjA7JiMxNjA7JiMxNjA7JiMxNjA7JiMxNjA7IGZyb20gcGxhdC9pY25kcnYvaGRsYy9tcGM4eHh4
+X3NjYy9zcmMvbGliaGRsYy1rbS5jOjE6IDxicj4KJmd0OyAvb3B0L3dvcmsvcHBjLXRvb2xjaGFp
+bi9zeXNyb290cy9wb3dlcnBjLW9lLWxpbnV4L3Vzci9pbmNsdWRlL3N5cy9zZWxlY3QuaDo3NTo1
+OiBub3RlOiBwcmV2aW91cyBkZWNsYXJhdGlvbiBvZiAnZmRfc2V0JyB3YXMgaGVyZSA8YnI+CiZn
+dDsmIzE2MDsmIzE2MDsmIzE2MDsgfSBmZF9zZXQ7IDwvcD4KPHAgZGlyPSJsdHIiPldoYXQgd291
+bGQgYmUgdGhlIGNvcnJlY3QgInlvY3RvIiB3YXkgb2Ygc29sdmluZyBvdXIgY3VycmVudCBwcm9i
+bGVtIHdpdGggb3VyIDxicj4KY3VzdG9tIGhlYWRlcnMgdG8gYmUgYWRkZWQgdG8gdGhlIFNESyA/
+IDwvcD4KPHAgZGlyPSJsdHIiPlRoYW5rcyA8L3A+CjxwIGRpcj0ibHRyIj5WYWxlbnRpbiA8L3A+
+CjwvZGl2Pg==
 
-Regards,
-
-Caio Pereira
-
-
-
-2015-12-01 14:56 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
-
-> Hi Caio,
->
-> compile-host-path isn't about the path being different - it's about the
-> path
-> being something possibly bad i.e. on the host system. You really ought to
-> fix
-> that one rather than disable it.
->
-> Cheers,
-> Paul
->
-> On Tue, 01 Dec 2015 10:21:03 Caio wrote:
-> > Hi Paul,
-> >
-> > Thank you very much for your help.
-> > I added INSANE_SKIP_${PN} += " libdir compile-host-path" because the
-> > instalation is different from /usr/lib.
-> >
-> > Thank you very much!
-> >
-> > Regards,
-> >
-> > Caio Pereira
-> >
-> > 2015-11-25 20:26 GMT-02:00 Paul Eggleton <paul.eggleton@linux.intel.com
-> >:
-> > > Hi Caio,
-> > >
-> > > On Tuesday 24 November 2015 11:48:13 Caio wrote:
-> > > > I'm writing a recipe to a Sip proxy Opensips, but I'm having problems
-> > >
-> > > with
-> > >
-> > > > QA Issues.
-> > > > In the First time I tried to use make install from Opensips Makefile
-> I
-> > >
-> > > had
-> > >
-> > > > problem with QA Issues,  so I added all the folders to FILES_${PN}
-> and
-> > > > FILES_${PN} but I still having problem.
-> > > >
-> > > > So I decided to start small, creating the folder structure and copy
-> only
-> > > > the binary files and after I will copy all the files using the
-> > >
-> > > do_install
-> > >
-> > > > function.
-> > > >
-> > > > But when I added the folders and I started to have problems with QA
-> > >
-> > > again.
-> > >
-> > > > FILES_${PN} = " \
-> > > >
-> > > >         ${sbindir}/* \
-> > > >         ${sysconfdir}/* \
-> > > >         ${sysconfdir}/opensips/* \
-> > > >         ${libdir}/* \
-> > > >         ${libdir}/opensips/* \
-> > > >         ${libdir}/opensips/modules/* \
-> > > >         "
-> > > >
-> > > > Someone could help me with this problem?
-> > > >
-> > > >
-> > > > Thank you very much
-> > > >
-> > > > Best Regards,
-> > > >
-> > > > Caio Pereira
-> > > >
-> > > >
-> > > > ERROR: QA Issue: opensips: The compile log indicates that host
-> include
-> > > > and/or library paths were used.
-> > > >
-> > > >          Please check the log
-> > >
-> > >
-> '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
-> > > ky>
-> > > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
-> > >
-> > > information.
-> > >
-> > > > [compile-host-path]
-> > > >
-> > > >
-> > > > ERROR: QA run found fatal errors. Please consider fixing them.
-> > > > ERROR: Function failed: do_package_qa
-> > >
-> > > > ERROR: Logfile of failure stored in:
-> > >
-> /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
-> > > y->
-> > > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973 ERROR:
-> Task
-> > >
-> > > 9
-> > >
-> > >
-> (/home/icchw/fsl-community-bsp/sources/icchw/meta-caio/recipes-telephony/o
-> > > pe>
-> > > > nsips/ opensips_2.2.0.bb, do_package_qa) failed with exit code '1'
-> > > >
-> > > >
-> > > > cat
-> > >
-> > >
-> /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-pok
-> > > y->
-> > > > linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973
-> > > >
-> > > > DEBUG: Python function read_subpackage_metadata finished
-> > > > ERROR: QA Issue: opensips: The compile log indicates that host
-> include
-> > > > and/or library paths were used.
-> > > >
-> > > >          Please check the log
-> > >
-> > >
-> '/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp-neon-po
-> > > ky>
-> > > > -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile' for more
-> > >
-> > > information.
-> > >
-> > > > [compile-host-path]
-> > >
-> > > Did you check the mentioned compile log?
-> > >
-> > > FYI a good reference for these QA checks is:
-> > >
-> > >
-> > >
-> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#qa-err
-> > > ors-and-warnings
-> > >
-> > > As mentioned there you should find somewhere in that log "is unsafe for
-> > > cross-compilation" or "CROSS COMPILE Badness".
-> > >
-> > > Cheers,
-> > > Paul
-> > >
-> > > --
-> > >
-> > > Paul Eggleton
-> > > Intel Open Source Technology Centre
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
-
-
--- 
-----------------------------------------------
-Caio Pereira
-
---001a1143fbe8b846f8052665149d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Paul,<br></div><div>=C2=A0Ok, thank you for your=
- elucidation.<br></div><div>This could be a prefix problem, because I&#39;m=
- using a make install from Makefile.<br><br></div><div>I will find this pro=
-blem and fix it.<br><br></div><div>Thank you very much.<br></div><div><br><=
-/div>Regards,<br><br></div>Caio Pereira<br><div><br><br></div></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-12-01 14:56 GMT-02:=
-00 Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linu=
-x.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span>=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">Hi Caio,<br>
-<br>
-compile-host-path isn&#39;t about the path being different - it&#39;s about=
- the path<br>
-being something possibly bad i.e. on the host system. You really ought to f=
-ix<br>
-that one rather than disable it.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Tue, 01 Dec 2015 10:21:03 Caio wrote:<br>
-&gt; Hi Paul,<br>
-&gt;<br>
-&gt; Thank you very much for your help.<br>
-&gt; I added INSANE_SKIP_${PN} +=3D &quot; libdir compile-host-path&quot; b=
-ecause the<br>
-&gt; instalation is different from /usr/lib.<br>
-&gt;<br>
-&gt; Thank you very much!<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt; Caio Pereira<br>
-&gt;<br>
-&gt; 2015-11-25 20:26 GMT-02:00 Paul Eggleton &lt;<a href=3D"mailto:paul.eg=
-gleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt;:<br>
-&gt; &gt; Hi Caio,<br>
-&gt; &gt;<br>
-&gt; &gt; On Tuesday 24 November 2015 11:48:13 Caio wrote:<br>
-&gt; &gt; &gt; I&#39;m writing a recipe to a Sip proxy Opensips, but I&#39;=
-m having problems<br>
-&gt; &gt;<br>
-&gt; &gt; with<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; QA Issues.<br>
-&gt; &gt; &gt; In the First time I tried to use make install from Opensips =
-Makefile I<br>
-&gt; &gt;<br>
-&gt; &gt; had<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; problem with QA Issues,=C2=A0 so I added all the folders to =
-FILES_${PN} and<br>
-&gt; &gt; &gt; FILES_${PN} but I still having problem.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; So I decided to start small, creating the folder structure a=
-nd copy only<br>
-&gt; &gt; &gt; the binary files and after I will copy all the files using t=
-he<br>
-&gt; &gt;<br>
-&gt; &gt; do_install<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; function.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; But when I added the folders and I started to have problems =
-with QA<br>
-&gt; &gt;<br>
-&gt; &gt; again.<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; FILES_${PN} =3D &quot; \<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sbindir}/* \<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sysconfdir}/* \<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${sysconfdir}/opensips/* \<=
-br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/* \<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/opensips/* \<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${libdir}/opensips/modules/=
-* \<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Someone could help me with this problem?<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Thank you very much<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Best Regards,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Caio Pereira<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; ERROR: QA Issue: opensips: The compile log indicates that ho=
-st include<br>
-&gt; &gt; &gt; and/or library paths were used.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Please check the log<br>
-&gt; &gt;<br>
-&gt; &gt; &#39;/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2h=
-f-vfp-neon-po<br>
-&gt; &gt; ky&gt;<br>
-&gt; &gt; &gt; -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile&#39; fo=
-r more<br>
-&gt; &gt;<br>
-&gt; &gt; information.<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; [compile-host-path]<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; ERROR: QA run found fatal errors. Please consider fixing the=
-m.<br>
-&gt; &gt; &gt; ERROR: Function failed: do_package_qa<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; ERROR: Logfile of failure stored in:<br>
-&gt; &gt; /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp=
--neon-pok<br>
-&gt; &gt; y-&gt;<br>
-&gt; &gt; &gt; linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973=
- ERROR: Task<br>
-&gt; &gt;<br>
-&gt; &gt; 9<br>
-&gt; &gt;<br>
-&gt; &gt; (/home/icchw/fsl-community-bsp/sources/icchw/meta-caio/recipes-te=
-lephony/o<br>
-&gt; &gt; pe&gt;<br>
-&gt; &gt; &gt; nsips/ <a href=3D"http://opensips_2.2.0.bb" rel=3D"noreferre=
-r" target=3D"_blank">opensips_2.2.0.bb</a>, do_package_qa) failed with exit=
- code &#39;1&#39;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; cat<br>
-&gt; &gt;<br>
-&gt; &gt; /home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2hf-vfp=
--neon-pok<br>
-&gt; &gt; y-&gt;<br>
-&gt; &gt; &gt; linux-gnueabi/opensips/2.2.0-r0/temp/log.do_package_qa.30973=
-<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; DEBUG: Python function read_subpackage_metadata finished<br>
-&gt; &gt; &gt; ERROR: QA Issue: opensips: The compile log indicates that ho=
-st include<br>
-&gt; &gt; &gt; and/or library paths were used.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Please check the log<br>
-&gt; &gt;<br>
-&gt; &gt; &#39;/home/icchw/fsl-community-bsp/small_steps/tmp/work/armv7at2h=
-f-vfp-neon-po<br>
-&gt; &gt; ky&gt;<br>
-&gt; &gt; &gt; -linux-gnueabi/opensips/2.2.0-r0/temp/log.do_compile&#39; fo=
-r more<br>
-&gt; &gt;<br>
-&gt; &gt; information.<br>
-&gt; &gt;<br>
-&gt; &gt; &gt; [compile-host-path]<br>
-&gt; &gt;<br>
-&gt; &gt; Did you check the mentioned compile log?<br>
-&gt; &gt;<br>
-&gt; &gt; FYI a good reference for these QA checks is:<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; <a href=3D"http://www.yoctoproject.org/docs/current/ref-manual/re=
-f-manual.html#qa-err" rel=3D"noreferrer" target=3D"_blank">http://www.yocto=
-project.org/docs/current/ref-manual/ref-manual.html#qa-err</a><br>
-&gt; &gt; ors-and-warnings<br>
-&gt; &gt;<br>
-&gt; &gt; As mentioned there you should find somewhere in that log &quot;is=
- unsafe for<br>
-&gt; &gt; cross-compilation&quot; or &quot;CROSS COMPILE Badness&quot;.<br>
-&gt; &gt;<br>
-&gt; &gt; Cheers,<br>
-&gt; &gt; Paul<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt;<br>
-&gt; &gt; Paul Eggleton<br>
-&gt; &gt; Intel Open Source Technology Centre<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=
-=3D"gmail_signature">----------------------------------------------<br>Caio=
- Pereira</div>
-</div>
-
---001a1143fbe8b846f8052665149d--
+--_000_688824bbbfed48888e46a64338f1db97keymilecom_--
