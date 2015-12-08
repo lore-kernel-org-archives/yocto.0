@@ -1,50 +1,45 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <bogdanx.a.voiculescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19776E00ACF; Tue,  8 Dec 2015 02:40:01 -0800 (PST)
+	id 5FEB3E00AD7; Tue,  8 Dec 2015 04:59:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C508E007B4
-	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 02:39:58 -0800 (PST)
-Received: by lfaz4 with SMTP id z4so9920135lfa.0
-	for <yocto@yoctoproject.org>; Tue, 08 Dec 2015 02:39:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=vB6J8fzotVGryw+9PRZER3tEezN3wxZSI6EfKJ6aXWs=;
-	b=qKRHE92bHfOQQXF1hK55QzMDGGvkdrb4azRhyJspI2Q/ZhzXYPLwXURCc7HHBw/oVp
-	WnZmWfhTFkFk65AHIL9DUCkiGPpz3GKWT2+N28nX2nB4A9nLXvgrmNlFHkive0neHGXZ
-	U61EfpGx0EZOdBxlGykP/2Wla2clhKO7XcCJ6H05SX/8v8sIw0m9brFFnl32hKfRoQC0
-	de6K89SzT6Pnje2OOGYaLkb7xMZb0gdQ9Rv05cWXGn//X/efZ6JSo9OxzEWeNpYNWUT2
-	1KxLcs7wv314keSJYo8Fdi8654pzZVHpTUwYYwlNA49jto7QVWogoipiwSh7wBuxc+xl
-	o4kQ==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E63E0079A
+	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 04:59:25 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga103.jf.intel.com with ESMTP; 08 Dec 2015 04:59:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,399,1444719600"; 
+	d="scan'208,217";a="614502088"
+Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
+	by FMSMGA003.fm.intel.com with ESMTP; 08 Dec 2015 04:59:24 -0800
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.13]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.208]) with mapi id
+	14.03.0248.002; Tue, 8 Dec 2015 12:59:23 +0000
+From: "Voiculescu, BogdanX A" <bogdanx.a.voiculescu@intel.com>
+To: Suram Suram <suram@freescale.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: testsuite for meta-selinux
+Thread-Index: AdEv6Opm7le2LfCqSIadlCOx6ExcEgBzwUMg
+Date: Tue, 8 Dec 2015 12:59:22 +0000
+Message-ID: <D0E9455D42555F408A7166316B4F2AD61AFB51DD@IRSMSX103.ger.corp.intel.com>
+References: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
+In-Reply-To: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-X-Received: by 10.25.17.232 with SMTP id 101mr1277163lfr.38.1449571197081;
-	Tue, 08 Dec 2015 02:39:57 -0800 (PST)
-Received: by 10.25.82.139 with HTTP; Tue, 8 Dec 2015 02:39:57 -0800 (PST)
-Date: Tue, 8 Dec 2015 10:39:57 +0000
-Message-ID: <CABatt_wREkBPLV=Q92yP3XVEfAPQfFd-rvRCaOL8ZAcNmgNziA@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Toaster Problem
+Subject: Re: testsuite for meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,150 +51,204 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Dec 2015 10:40:01 -0000
-Content-Type: multipart/alternative; boundary=001a113f993a47683405266098fa
+X-List-Received-Date: Tue, 08 Dec 2015 12:59:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_"
 
---001a113f993a47683405266098fa
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-I'm trying out a production instance of toaster, I'm following the
-instructions from here
-
-http://www.yoctoproject.org/docs/latest/toaster-manual/toaster-manual.html#toaster-setting-up-a-production-instance-of-toaster
-
-I managed to get toaster up and running but had to adjust a few things
-which you might want to correct in the documentation:
-
-1) virtualenv package doesn't exist in Ubuntu 14.04 had to use
-python-virtualenv
-2) You need python headers later so add python-dev to list of packages to
-install
-3) After cloning poky there should be a cd poky before checking out a
-branch.
-4) SECRET_KEY, it would be nice to know what this is used for, what
-characters is can contain, ie can it contain spaces.
-5) In the mysql part is states we are creating a database called toaster
-but in the settings.py we specify toaster_main one of them needs correcting.
-6) Before calling ./bitbake/lib/toaster/manage.py syncdb --migrate maybe it
-should link to 3.5 and state that you should create a Django super user
-first.
-7)There's a typo in the Apache toaster.conf s/toastern_wsgi/toaster_wsgi/
-8) Build runner service is wrong, there needs to be the poky directory
-involved somewhere, either cd /var/www/toaster/poky or we call
-./poky/bitbake/toaster/manage.py
-
-Even with all this I can't get it to build, creating a project based on
-fido 1.8 and trying to build core-image-lsb I get
-
-2015-12-08 10:27:57,705 DEBUG localhostbecontroller, our git repos are
-{(u'git://git.yoctoproject.org/meta-yocto', u'fido'): [(u'meta-yocto',
-                                                        u'meta-yocto'),
-                                                       (u'meta-yocto-bsp',
-                                                        u'meta-yocto-bsp')],
- (u'git://git.yoctoproject.org/poky', u'fido'): [('bitbake', u'bitbake'),
-                                                 (u'openembedded-core',
-                                                  u'meta')]}
-2015-12-08 10:27:57,705 DEBUG lbc_shellcmmd: () git remote -v
-Traceback (most recent call last):
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py",
-line 60, in schedule
-    bec.triggerBuild(br.brbitbake_set.all(), br.brlayer_set.all(),
-br.brvariable_set.all(), br.brtarget_set.all())
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py",
-line 282, in triggerBuild
-    self.setLayers(bitbake, layers, targets)
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py",
-line 150, in setLayers
-    for remotes in self._shellcmd("git remote -v",
-self.be.sourcedir).split("\n"):
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py",
-line 59, in _shellcmd
-    p = subprocess.Popen(command, cwd = cwd, shell=True,
-stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  File "/usr/lib/python2.7/subprocess.py", line 710, in __init__
-    errread, errwrite)
-  File "/usr/lib/python2.7/subprocess.py", line 1327, in _execute_child
-    raise child_exception
-OSError: [Errno 2] No such file or directory: ''
-
- in the console.
-
-Any idea whats going wrong?
-
-Cheers,
-
-Martin.
-
---001a113f993a47683405266098fa
-Content-Type: text/html; charset=UTF-8
+--_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div><div>Hi,=
-<br><br></div>I&#39;m trying out a production instance of toaster, I&#39;m =
-following the instructions from here<br>
+Hi Suram,
+Package 'selinux-policy-devel' is needed to be installed on your host.
 
+In https://github.com/SELinuxProject/selinux-testsuite is specified what yo=
+u need to install (example is for Fedora or RHEL):
 
-=09
-=09
-=09
-=09
+yum install perl-Test perl-Test-Harness selinux-policy-devel gcc libselinux=
+-devel net-tools netlabel_tools iptables
 
+One of them is "selinux-policy-devel"
 
-<p style=3D"margin-bottom:0cm;line-height:100%"><a href=3D"http://www.yocto=
-project.org/docs/latest/toaster-manual/toaster-manual.html#toaster-setting-=
-up-a-production-instance-of-toaster">http://www.yoctoproject.org/docs/lates=
-t/toaster-manual/toaster-manual.html#toaster-setting-up-a-production-instan=
-ce-of-toaster</a></p>
+BR,
+Bogdan
 
-<br></div>I managed to get toaster up and running but had to adjust a few t=
-hings which you might want to correct in the documentation:<br><br></div>1)=
- virtualenv package doesn&#39;t exist in Ubuntu 14.04 had to use python-vir=
-tualenv<br></div>2) You need python headers later so add python-dev to list=
- of packages to install<br></div>3) After cloning poky there should be a cd=
- poky before checking out a branch.<br></div>4) SECRET_KEY, it would be nic=
-e to know what this is used for, what characters is can contain, ie can it =
-contain spaces.<br></div>5) In the mysql part is states we are creating a d=
-atabase called toaster but in the settings.py we specify toaster_main one o=
-f them needs correcting.<br></div>6) Before calling ./bitbake/lib/toaster/m=
-anage.py syncdb --migrate maybe it should link to 3.5 and state that you sh=
-ould create a Django super user first.<br></div>7)There&#39;s a typo in the=
- Apache toaster.conf s/toastern_wsgi/toaster_wsgi/<br></div>8) Build runner=
- service is wrong, there needs to be the poky directory involved somewhere,=
- either cd /var/www/toaster/poky or we call ./poky/bitbake/toaster/manage.p=
-y<br><br></div>Even with all this I can&#39;t get it to build, creating a p=
-roject based on fido 1.8 and trying to build core-image-lsb I get<br><br><d=
-iv><div><div><pre class=3D"">2015-12-08 10:27:57,705 DEBUG localhostbecontr=
-oller, our git repos are {(u&#39;git://<a href=3D"http://git.yoctoproject.o=
-rg/meta-yocto">git.yoctoproject.org/meta-yocto</a>&#39;, u&#39;fido&#39;): =
-[(u&#39;meta-yocto&#39;,<br>                                               =
-         u&#39;meta-yocto&#39;),<br>                                       =
-                (u&#39;meta-yocto-bsp&#39;,<br>                            =
-                            u&#39;meta-yocto-bsp&#39;)],<br> (u&#39;git://<=
-a href=3D"http://git.yoctoproject.org/poky">git.yoctoproject.org/poky</a>&#=
-39;, u&#39;fido&#39;): [(&#39;bitbake&#39;, u&#39;bitbake&#39;),<br>       =
-                                          (u&#39;openembedded-core&#39;,<br=
->                                                  u&#39;meta&#39;)]}<br>20=
-15-12-08 10:27:57,705 DEBUG lbc_shellcmmd: () git remote -v<br>Traceback (m=
-ost recent call last):<br>  File &quot;/var/www/toaster/poky/bitbake/lib/to=
-aster/bldcontrol/management/commands/runbuilds.py&quot;, line 60, in schedu=
-le<br>    bec.triggerBuild(br.brbitbake_set.all(), br.brlayer_set.all(), br=
-.brvariable_set.all(), br.brtarget_set.all())<br>  File &quot;/var/www/toas=
-ter/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py&quot;, lin=
-e 282, in triggerBuild<br>    self.setLayers(bitbake, layers, targets)<br> =
- File &quot;/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostb=
-econtroller.py&quot;, line 150, in setLayers<br>    for remotes in self._sh=
-ellcmd(&quot;git remote -v&quot;, self.be.sourcedir).split(&quot;\n&quot;):=
-<br>  File &quot;/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/local=
-hostbecontroller.py&quot;, line 59, in _shellcmd<br>    p =3D subprocess.Po=
-pen(command, cwd =3D cwd, shell=3DTrue, stdout=3Dsubprocess.PIPE, stderr=3D=
-subprocess.PIPE)<br>  File &quot;/usr/lib/python2.7/subprocess.py&quot;, li=
-ne 710, in __init__<br>    errread, errwrite)<br>  File &quot;/usr/lib/pyth=
-on2.7/subprocess.py&quot;, line 1327, in _execute_child<br>    raise child_=
-exception<br>OSError: [Errno 2] No such file or directory: &#39;&#39;<br></=
-pre><pre class=3D""> in the console.<br><br></pre><pre class=3D"">Any idea =
-whats going wrong?<br><br></pre><pre class=3D"">Cheers,<br></pre><pre class=
-=3D"">Martin.<br></pre></div></div></div></div>
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Suram Suram
+Sent: Sunday, December 06, 2015 7:48 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] testsuite for meta-selinux
 
---001a113f993a47683405266098fa--
+Hi,
+Iam trying to use the selinux testsuite taken from
+SELinuxProject<https://github.com/SELinuxProject>/selinux-testsuite<https:/=
+/github.com/SELinuxProject/selinux-testsuite>
+When trying to compile, it is complaining with the following error
+ERROR: You must have selinux-policy-devel installed.
+
+I would like to know how to enable selinux-policy-devel in the meta-selinux=
+ layer.
+
+Regards
+Suram
+
+--_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-priority:9;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-link:"Heading 1";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.author
+	{mso-style-name:author;}
+span.path-divider
+	{mso-style-name:path-divider;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Suram,<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Package &#8216;selinux=
+-policy-devel&#8217; is needed to be installed on your host.<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">In <a href=3D"https://=
+github.com/SELinuxProject/selinux-testsuite">
+https://github.com/SELinuxProject/selinux-testsuite</a> is specified what y=
+ou need to install (example is for Fedora or RHEL):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">yum install perl-Test perl-Test-Harness selinux-policy-dev=
+el gcc libselinux-devel net-tools netlabel_tools iptables<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">One of them is &#8220;=
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>selinux-policy-devel&#8221;
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BR,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Bogdan<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Suram Suram<br>
+<b>Sent:</b> Sunday, December 06, 2015 7:48 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] testsuite for meta-selinux<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">Iam trying to use the selinux testsuite taken from <=
+o:p></o:p></p>
+<h1><span class=3D"author"><a href=3D"https://github.com/SELinuxProject">SE=
+LinuxProject</a></span><span class=3D"path-divider">/</span><strong><a href=
+=3D"https://github.com/SELinuxProject/selinux-testsuite">selinux-testsuite<=
+/a></strong>
+<o:p></o:p></h1>
+<p class=3D"MsoNormal">When trying to compile, it is complaining with the f=
+ollowing error<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: You must have selinux-policy-devel installed.=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would like to know how to enable selinux-policy-de=
+vel in the meta-selinux layer.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Suram<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_D0E9455D42555F408A7166316B4F2AD61AFB51DDIRSMSX103gercor_--
