@@ -1,51 +1,39 @@
-Return-Path: <ed@disignconsultants.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B92E4E00B37; Wed,  9 Dec 2015 01:12:34 -0800 (PST)
+	id 7D098E00B97; Wed,  9 Dec 2015 02:36:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_40,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [213.198.55.118 listed in list.dnswl.org]
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2249]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
-	Wed, 09 Dec 2015 01:12:30 PST
-Received: from mail08c.verio.de (mail08c.verio.de [213.198.55.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 239DBE00B01
-	for <yocto@yoctoproject.org>; Wed,  9 Dec 2015 01:12:30 -0800 (PST)
-Received: from mxmtaout07.va1.mxservers.net (208.55.215.114)
-	by mail08c.verio.de (RS ver 1.0.95vs) with SMTP id 4-089281759
-	for <yocto@yoctoproject.org>; Wed,  9 Dec 2015 10:02:43 +0100 (CET)
-Received: from unknown [213.198.107.12] (EHLO mmm820.verio.de)
-	by mxmtaout07.va1.mxservers.net(mxl_mta-6.15.0-3) with ESMTP id
-	5eee7665.0.3473728.00-472.5055101.mxmtaout07.va1.mxservers.net
-	(envelope-from <ed@disignconsultants.com>); 
-	Wed, 09 Dec 2015 04:05:45 -0500 (EST)
-X-MXL-Hash: 5667eee918d5f861-23ca536b200756037ae741be6ba4dd1ac8a1881a
-Received: (qmail 66444 invoked from network); 9 Dec 2015 09:05:40 -0000
-Received: from unknown (HELO ?192.168.1.111?) (edty@81.157.241.250)
-	by  with ESMTPA; 9 Dec 2015 09:05:40 -0000
-To: yocto@yoctoproject.org
-From: ed <ed@disignconsultants.com>
-Message-ID: <5667EEE6.1080106@disignconsultants.com>
-Date: Wed, 9 Dec 2015 09:05:42 +0000
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.4.0
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C618E0088C
+	for <yocto@yoctoproject.org>; Wed,  9 Dec 2015 02:36:29 -0800 (PST)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20151209103627474_0486
+	for <yocto@yoctoproject.org>; Wed, 09 Dec 2015 10:36:27 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=48876 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1a6c7b-0003Hj-CU
+	for yocto@yoctoproject.org; Wed, 09 Dec 2015 05:37:19 -0500
+Date: Wed, 9 Dec 2015 05:36:19 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1512090532270.21086@localhost>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-X-Spam: [F=0.2561409802; CM=0.500; MH=0.579(2015120902); S=0.200(2015072901)]
-X-MAIL-FROM: <ed@disignconsultants.com>
-X-SOURCE-IP: [213.198.107.12]
-X-AnalysisOut: [v=2.0 cv=aIJHX8Bm c=1 sm=1 a=M6pr4jZXt1XklwqMdz9bsg==:17 a]
-X-AnalysisOut: [=6Zr2yk_ZAAAA:8 a=wUQvQvOEmiQA:10 a=O3uQTmpq0TIexSd6phoA:9]
-X-AnalysisOut: [ a=QEXdDO2ut3YA:10 a=cDd-3GKUq0gA:10 a=WPd0RAQTsZKHIi7X:21]
-X-AnalysisOut: [ a=4MeJbo6P6OUbL-6i:21 a=0jMoPiqX_zs4CSppuC8A:9 a=_W_S_7Ve]
-X-AnalysisOut: [coQA:10]
-X-SF-Loop: 1
-Subject: DHCP kernel 2.6.35
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: how can i figure out where a particular kernel config option came from?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,84 +45,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Dec 2015 09:12:34 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070505000002010303070602"
+X-List-Received-Date: Wed, 09 Dec 2015 10:36:32 -0000
+Content-Type: text/plain; charset=US-ASCII
 
---------------070505000002010303070602
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi,
+  short version: with a short BSP layer i've been handed, the eventual
+kernel .config file ends up with the setting:
 
-Regards the Yocto 2.6.35 kernel I have two questions; this is for an imx28;
+  CONFIG_WIRELESS=y
 
-1) What if anything is responsible for getting a new DHCP lease (and IP 
-address) after it expires or misses the initial lease? If the Ethernet 
-cable is plugged in post booting up, the device never gets an address. I 
-have to manually use udhcpc. How does embedded Linux cater for this?
+which makes no sense as the target board has no wireless and the BSP
+itself doesn't set that, so how can i start tracking back to figure
+out where that particular setting came from?
 
-2) Based on the imx28_evk which has eth0, eth1 and Wan0, our board only 
-uses eth0. Which file do I need to edit to remove eth1 and wan0?
+  long version: i'm actually using Wind River Linux 7, but the
+question remains the same. it turns out that CONFIG_WIRELESS is
+selected by CONFIG_WLAN, so i'm really after what sets CONFIG_WLAN. i
+don't see it in the BSP layer, so i'm tracing back to the WR kernel
+recipe, and possibly features templates and any other kernel .cfg
+snippets i can find, so far with no luck.
 
-Thanks,
+  in either case, is there a log file that lists *precisely* which
+kernel config snippets contributed to the final .config file? thanks.
 
-Edward.
+rday
 
 -- 
-Disign Consultants
-*t*: +44 (0) 207 544 8486
-*w*: www.disignconsultants.com
 
-This message and any attachment are confidential and may be privileged 
-or otherwise protected from disclosure. If you are not the intended 
-recipient, please telephone or email the sender and delete this message 
-and any attachment from your system. If you are not the intended 
-recipient you must not copy this message or attachment or disclose the 
-contents to any other person.
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
---------------070505000002010303070602
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
-<html>
-  <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hi,<br>
-    <br>
-    Regards the Yocto 2.6.35 kernel I have two questions; this is for an
-    imx28;<br>
-    <br>
-    1) What if anything is responsible for getting a new DHCP lease (and
-    IP address) after it expires or misses the initial lease? If the
-    Ethernet cable is plugged in post booting up, the device never gets
-    an address. I have to manually use udhcpc. How does embedded Linux
-    cater for this?<br>
-     <br>
-    2) Based on the imx28_evk which has eth0, eth1 and Wan0, our board
-    only uses eth0. Which file do I need to edit to remove eth1 and
-    wan0?<br>
-    <br>
-    Thanks,<br>
-    <br>
-    Edward.<br>
-     <br>
-    <div class="moz-signature">-- <br>
-      <font color="red">Disign Consultants</font><br>
-      <b>t</b>: +44 (0) 207 544 8486<br>
-      <b>w</b>: <a class="moz-txt-link-abbreviated" href="http://www.disignconsultants.com">www.disignconsultants.com</a><br>
-      <br>
-      This message and any attachment are confidential and may be
-      privileged or otherwise protected from disclosure. If you are not
-      the intended recipient, please telephone or email the sender and
-      delete this message and any attachment from your system. If you
-      are not the intended recipient you must not copy this message or
-      attachment or disclose the contents to any other person.
-    </div>
-  </body>
-</html>
-
---------------070505000002010303070602--
