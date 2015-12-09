@@ -1,48 +1,59 @@
-Return-Path: <nishanth.v@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DB91E00AAF; Tue,  8 Dec 2015 01:28:17 -0800 (PST)
+	id 1714AE00748; Wed,  9 Dec 2015 10:34:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DCA6E006F3
-	for <yocto@yoctoproject.org>; Tue,  8 Dec 2015 01:28:13 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2015 01:28:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,398,1444719600"; d="scan'208,217";a="9454819"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by fmsmga004.fm.intel.com with ESMTP; 08 Dec 2015 01:28:13 -0800
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 8 Dec 2015 01:28:12 -0800
-Received: from bgsmsx106.gar.corp.intel.com (10.223.43.196) by
-	FMSMSX102.amr.corp.intel.com (10.18.124.200) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Tue, 8 Dec 2015 01:28:12 -0800
-Received: from bgsmsx101.gar.corp.intel.com ([169.254.1.192]) by
-	BGSMSX106.gar.corp.intel.com ([169.254.1.177]) with mapi id
-	14.03.0248.002; Tue, 8 Dec 2015 14:58:09 +0530
-From: "V, Nishanth" <nishanth.v@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Fetching source from multiple git repositories
-Thread-Index: AdExmk0Kqwa+6qs5QVGlAm9NxtjbHg==
-Date: Tue, 8 Dec 2015 09:28:08 +0000
-Message-ID: <1E2754CBC7626848AAA0C716210D11490A5FCB02@BGSMSX101.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.223.10.10]
-MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 09 Dec 2015 10:24:50 -0800
-Subject: Fetching source from multiple git repositories
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E1DBE002F9
+	for <yocto@yoctoproject.org>; Wed,  9 Dec 2015 10:33:58 -0800 (PST)
+Received: by pfdd184 with SMTP id d184so33907307pfd.3
+	for <yocto@yoctoproject.org>; Wed, 09 Dec 2015 10:33:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=S9GZFj5Pp3ZyhO5Pj55LxjRANKtpyEX+qv51/kKlSa0=;
+	b=B6AmUMYd+UY7Mg3jGTiNnvSt1pyHAgwgpyTPkK4O0096DzV+UZLE4zphoTkE/vwJ4a
+	BSE7lkE1MWvJeFRURQVZkqoGMFw7QeRykwuTiAovxZh2D+MgmTCsKsEHi4X3xQal96xG
+	BJ9XAEiFQKe1J2DhMAJXF43snm02zyRZlOkgTRc4hSuyXtiajDcNN2brR2AQGEvuiPyz
+	oSnswTYV0+rQQFxZzv7GcrNcBhlvDaLTf938K5BRcC7F94Zm7evfVJky86tiGuNptl9H
+	zgKl1QvOJdUl26E3o7b4P3B+vOHqXafkhbeqGtTA3KnjkgBcPmdtEr0mkWQX3t/t3JW3
+	w+XQ==
+X-Received: by 10.98.13.156 with SMTP id 28mr344092pfn.106.1449686037037;
+	Wed, 09 Dec 2015 10:33:57 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:392e:3d55:4224:9715?
+	([2601:646:8802:5d5c:392e:3d55:4224:9715])
+	by smtp.gmail.com with ESMTPSA id 2sm13200602pfh.22.2015.12.09.10.33.55
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 09 Dec 2015 10:33:56 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1E2754CBC7626848AAA0C716210D11490A5FCB02@BGSMSX101.gar.corp.intel.com>
+Date: Wed, 9 Dec 2015 10:33:51 -0800
+Message-Id: <493612B6-0351-4B03-B00A-15A4F792BB6D@gmail.com>
+References: <1E2754CBC7626848AAA0C716210D11490A5FCB02@BGSMSX101.gar.corp.intel.com>
+To: "V, Nishanth" <nishanth.v@intel.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fetching source from multiple git repositories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,92 +65,163 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Dec 2015 09:28:17 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 09 Dec 2015 18:34:02 -0000
+X-Groupsio-MsgNum: 27655
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_FF403233-7BFB-4647-9C27-FBF01C8814F1";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_FF403233-7BFB-4647-9C27-FBF01C8814F1
 Content-Type: multipart/alternative;
-	boundary="_000_1E2754CBC7626848AAA0C716210D11490A5FCB02BGSMSX101garcor_"
+	boundary="Apple-Mail=_1F687B3E-143D-4808-B474-A2B79779E4D1"
 
---_000_1E2754CBC7626848AAA0C716210D11490A5FCB02BGSMSX101garcor_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail=_1F687B3E-143D-4808-B474-A2B79779E4D1
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi,
 
-I am trying to write a recipe which has to fetch source from 2 different gi=
-t URI. Basically, I have to place code from 2 different git projects in fol=
-ders side by side and apply patch to add a makefile which will build both o=
-f them together. Can I have multiple git:// SRC_URI in a single recipe?
+> On Dec 8, 2015, at 1:28 AM, V, Nishanth <nishanth.v@intel.com> wrote:
+>=20
+> Hi,
+>=20
+> I am trying to write a recipe which has to fetch source from 2 =
+different git URI. Basically, I have to place code from 2 different git =
+projects in folders side by side and apply patch to add a makefile which =
+will build both of them together. Can I have multiple git:// SRC_URI in =
+a single recipe?
 
-Thanks,
-Nishanth
+yes, you use destsuffix for a sample see
 
---_000_1E2754CBC7626848AAA0C716210D11490A5FCB02BGSMSX101garcor_
-Content-Type: text/html; charset="us-ascii"
+meta/recipes-core/glibc/cross-localedef-native_2.22.bb
+
+
+
+>=20
+> Thanks,
+> Nishanth
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+
+--Apple-Mail=_1F687B3E-143D-4808-B474-A2B79779E4D1
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to write a recipe which has to fetch sou=
-rce from 2 different git URI. Basically, I have to place code from 2 differ=
-ent git projects in folders side by side and apply patch to add a makefile =
-which will build both of them together.
- Can I have multiple git:// SRC_URI in a single recipe?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Nishanth<o:p></o:p></p>
-</div>
-</body>
-</html>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Dec 8, 2015, at 1:28 AM, V, Nishanth &lt;<a =
+href=3D"mailto:nishanth.v@intel.com" =
+class=3D"">nishanth.v@intel.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
+ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Hi,<o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">I am trying to write a recipe which has =
+to fetch source from 2 different git URI. Basically, I have to place =
+code from 2 different git projects in folders side by side and apply =
+patch to add a makefile which will build both of them together. Can I =
+have multiple git:// SRC_URI in a single =
+recipe?</div></div></div></blockquote><div><br class=3D""></div><div>yes, =
+you use destsuffix for a sample see</div><div><br =
+class=3D""></div><div>meta/recipes-core/glibc/cross-localedef-native_2.22.=
+bb</div><div><br class=3D""></div><div><br class=3D""></div><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
+class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
+ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Thanks,<o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Nishanth<o:p =
+class=3D""></o:p></div></div><span style=3D"font-family: ArialMT; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; =
+display: inline !important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: ArialMT; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: ArialMT; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" class=3D"">yocto mailing =
+list</span><br style=3D"font-family: ArialMT; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: rgb(149, 79, =
+114); text-decoration: underline; font-family: ArialMT; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: ArialMT; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+rgb(149, 79, 114); text-decoration: underline; font-family: ArialMT; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></body></html>=
 
---_000_1E2754CBC7626848AAA0C716210D11490A5FCB02BGSMSX101garcor_--
+--Apple-Mail=_1F687B3E-143D-4808-B474-A2B79779E4D1--
+
+--Apple-Mail=_FF403233-7BFB-4647-9C27-FBF01C8814F1
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlZodBMACgkQuwUzVZGdMxRnEQCfRs7Eu9RaNQu5+Rwf/H9ER09J
+YAAAoIca9rlxvUBIodABMzsqJ4I3kEls
+=0GJu
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_FF403233-7BFB-4647-9C27-FBF01C8814F1--
