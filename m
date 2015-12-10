@@ -1,52 +1,61 @@
-Return-Path: <mikehabibi@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE7C0E00BE1; Thu, 10 Dec 2015 14:07:06 -0800 (PST)
+	id 9C29AE00BFE; Thu, 10 Dec 2015 14:11:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mikehabibi[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
 	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
 	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03925E00718
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 14:07:03 -0800 (PST)
-Received: by iofh3 with SMTP id h3so108141465iof.3
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 14:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 722D3E00ADF
+	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 14:11:37 -0800 (PST)
+Received: by iofh3 with SMTP id h3so108255457iof.3
+	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 14:11:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=Ocvc3qOp3eMHlo33OTtA6f8e4QlnG8xXKencGp4QJtg=;
-	b=t9GLXsisPN1jo53Wq9X/dYUnFNCIN7/uWpj75fHoCUIEmtcCckH125gRZ8KUWs3bFt
-	tIVrMMJ0EVaSaCaSqI5pu9oKlAb2kEw0wixgibzKYV6OO0WHmAkrM1SxdPZgIbcHuedq
-	LvvNzOrM44c6v6zcJPtcDO9BGpI+OEj2dcmpaFM1GFppDEg7LZBDdjCe9i36fejSQHJJ
-	FWkNORM4yirxe+VLZYLFGRPGwrLSgtM84CU3I8/EJwj8s2yOMlDIAt4fYwL1phpsbmMw
-	rRV95Jb21WeBYnjSMpKgQJnFhyl1AGRZoP0atV+is7Wyp/XWdOWD2HxWtFDJt9FEj1bf
-	evog==
+	bh=tdR8cHtUDA4K/nD+uffT4EunMKcssRv7LWpz8VgHSCU=;
+	b=VjJ3F7GlQlLVW0b7rUuzlPn/kdolybnYJw4I5ySahsnv60SrRJzh2q7a2LjMUTYI2z
+	xlD4RclSSqu/eoakcJEJEsfI0eTHd4YxmxfcdbsFVxQAJQfTr7kX77Njy7IHC8LCpMRD
+	IrPHINgmnBiYU/UMoDNOy20Zq3wZm41hwRe1Z/MTcC1ZE7a1lyky1uHLYrClTuep/Q2E
+	kBD7+xqRdFUFQU/JAcqGihkIrmxjmlkZGGdUYOYEYAqfshrjXWwV9GI5UAf8MrKOdjF1
+	rAVKak9JhE1KPKsyThQ3tn966PN9mcis468Fsa8OBud18oNm4DD5hOu2LaKx9IzR6U5k
+	96pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=tdR8cHtUDA4K/nD+uffT4EunMKcssRv7LWpz8VgHSCU=;
+	b=VwSsZZAF0K9R74uSe2az7DB3xAyK0Lspkl0tKg51jihA/83Cp/2XpXEvUF/TfJ8MQ2
+	r+RS/k7BGnrRq/sMiYAsRpIcaLiq5UleSq3k8gBgXAa5CXlc4Vn5Yy5U2ETGON9R+5ul
+	9Gq6LnpG/HOhkG8x5QwkMUKhu4vGNX1b9Y20u4QvZKvQBWpPhDRABbt6fPo/wYzaw739
+	oHuNqNzhLf7q+0P32JubgEOf1KoX4m0riXq56cFflWC22550triPGryU7IjPREXYfH9r
+	Pi/OLgTa2yP2LKvwiqXv1SFYNV539Rh0E14C21nWcvlvd69EV7W1QCDyJDaD1gmhlUU8
+	TrJg==
+X-Gm-Message-State: ALoCoQl2wfRMPLwPhzcZ6NEoYvRY3QzKAnL53phJMsYNdnOON4wg80yFWmrs+1ZSSo/KeLFBFW8ow9E0BzLSHT074bFcM6NUVef25k0qDiBjxs0Fe8E0yEM=
+X-Received: by 10.107.3.144 with SMTP id e16mr12945281ioi.99.1449785497399;
+	Thu, 10 Dec 2015 14:11:37 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.107.149.9 with SMTP id x9mr16139953iod.170.1449785223332;
-	Thu, 10 Dec 2015 14:07:03 -0800 (PST)
-Received: by 10.79.91.134 with HTTP; Thu, 10 Dec 2015 14:07:03 -0800 (PST)
-In-Reply-To: <CAJTo0LYeq6+bW4Db5UsLMtRF1M6gijfeSiSyS2frvyHSXzjrRg@mail.gmail.com>
+Received: by 10.107.136.141 with HTTP; Thu, 10 Dec 2015 14:11:18 -0800 (PST)
+In-Reply-To: <CAOsp8o9=GXehbV42_yS1Mu9aBkHMMg_K92oQU9uREb3XP=BHdA@mail.gmail.com>
 References: <CAOsp8o9_bzZg5nYsPrqiCNOm+SBphZpwmY1eGqav2g2ULYCCSw@mail.gmail.com>
 	<CAJTo0LYeq6+bW4Db5UsLMtRF1M6gijfeSiSyS2frvyHSXzjrRg@mail.gmail.com>
-Date: Thu, 10 Dec 2015 16:07:03 -0600
-Message-ID: <CAOsp8o9=GXehbV42_yS1Mu9aBkHMMg_K92oQU9uREb3XP=BHdA@mail.gmail.com>
-From: Michael Habibi <mikehabibi@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CAOsp8o9=GXehbV42_yS1Mu9aBkHMMg_K92oQU9uREb3XP=BHdA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 10 Dec 2015 22:11:18 +0000
+Message-ID: <CAJTo0LabtkMD2VtvmaXNc0DeZ3JQdeiAfsMq=o48CUqPJPxxHQ@mail.gmail.com>
+To: Michael Habibi <mikehabibi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Best practice for building a large amount of source files
 X-BeenThere: yocto@yoctoproject.org
@@ -60,65 +69,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Dec 2015 22:07:06 -0000
-Content-Type: multipart/alternative; boundary=001a1140fa063cca780526926d8c
+X-List-Received-Date: Thu, 10 Dec 2015 22:11:42 -0000
+Content-Type: multipart/alternative; boundary=001a113ecf409314f90526927d98
 
---001a1140fa063cca780526926d8c
+--001a113ecf409314f90526927d98
 Content-Type: text/plain; charset=UTF-8
 
-Ross, I will likely try a different workflow if we enter production
-environment with yocto. Right now I am just doing yocto integration testing
-myself, and want to simplify things as much as possible for myself :)
+On 10 December 2015 at 22:07, Michael Habibi <mikehabibi@gmail.com> wrote:
 
-On Thu, Dec 10, 2015 at 3:54 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
->
-> On 10 December 2015 at 21:16, Michael Habibi <mikehabibi@gmail.com> wrote:
->
->> What is the best option for adding all of these and compiling? As far as
->> I know, you have to do one of the following:
->>
->> 1) Use a fetch that fetches a tarball with all your source, or a repo
->> with all of your source
->> 2) Use a million-line long SRC_URI assignment to include every file that
->> your application uses.
->>
->> Is there a third (or fourth) option that I may have missed?
->>
->
-> (1) is definitely my recommendation, separate the application development
-> from the recipe to build the application.
->
-> Ross
+> Ross, I will likely try a different workflow if we enter production
+> environment with yocto. Right now I am just doing yocto integration testing
+> myself, and want to simplify things as much as possible for myself :)
 >
 
---001a1140fa063cca780526926d8c
+A simply workflow would be a local git repo with all the sources in,  and
+then a recipe with a git SRC_URI pointing at the local directory.
+
+Ross
+
+--001a113ecf409314f90526927d98
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Ross, I will likely try a different workflow if we enter p=
-roduction environment with yocto. Right now I am just doing yocto integrati=
-on testing myself, and want to simplify things as much as possible for myse=
-lf :)</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu=
-, Dec 10, 2015 at 3:54 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;=
-</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div clas=
-s=3D"gmail_extra"><span class=3D""><br><div class=3D"gmail_quote">On 10 Dec=
-ember 2015 at 21:16, Michael Habibi <span dir=3D"ltr">&lt;<a href=3D"mailto=
-:mikehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;</span=
-> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><div>What is the best option for=
- adding all of these and compiling? As far as I know, you have to do one of=
- the following:</div><div><br></div><div>1) Use a fetch that fetches a tarb=
-all with all your source, or a repo with all of your source</div><div>2) Us=
-e a million-line long SRC_URI assignment to include every file that your ap=
-plication uses.</div><div><br></div><div>Is there a third (or fourth) optio=
-n that I may have missed?</div></blockquote></div><br></span>(1) is definit=
-ely my recommendation, separate the application development from the recipe=
- to build the application.</div><span class=3D"HOEnZb"><font color=3D"#8888=
-88"><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</d=
-iv></font></span></div>
-</blockquote></div><br></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 10 December 2015 at 22:07, Michael Habibi <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:mikehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Ross,=
+ I will likely try a different workflow if we enter production environment =
+with yocto. Right now I am just doing yocto integration testing myself, and=
+ want to simplify things as much as possible for myself :)</div></blockquot=
+e><div><br></div><div>A simply workflow would be a local git repo with all =
+the sources in, =C2=A0and then a recipe with a git SRC_URI pointing at the =
+local directory.</div><div><br></div><div>Ross</div></div></div></div>
 
---001a1140fa063cca780526926d8c--
+--001a113ecf409314f90526927d98--
