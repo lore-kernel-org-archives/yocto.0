@@ -1,57 +1,47 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <prvs=078641fa47=valentin.longchamp@keymile.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DACDEE00BC2; Thu, 10 Dec 2015 01:18:05 -0800 (PST)
+	id 2ED84E00B8B; Thu, 10 Dec 2015 01:46:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [195.8.104.250 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7538DE00349
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 01:18:01 -0800 (PST)
-Received: by mail-wm0-f53.google.com with SMTP id u63so14919619wmu.0
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 01:18:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=BKBWnT6G8nUvku0eTqQdcmqn1lN1OENX7aThO+bK6D0=;
-	b=jurzSpZ++4beQpiNkvi99EwWC8Q32yw5z10cjfxaNIqSjJcKhHpf37t2w24pxtIpiq
-	CBmzYbNnE+RFDai4d5E4L1vqNUdnH8N/pqnqF5gPIu6JzYGeMf9S17webTREbwq8QDEN
-	U7g8GQxPpwrAe3UJVBClqBvr7oF8qdWlhm93uHAwngxTZprTldWmEiqmPDQdSDfFDrDN
-	bcCTQ+8dxzCz5ryTOqjPIrYv03uXWhBwLEmiabsl6y2d4CquXsGvVPZdf56NxW9phiCX
-	PQiGPrRp1Bs13qHfS7l7/KALzQdYrOYcsHc4NNUCcBqKbSuiz28y/nCPZWpWLA7wPJcJ
-	KOsQ==
-X-Received: by 10.194.209.235 with SMTP id mp11mr13158443wjc.53.1449739080606; 
-	Thu, 10 Dec 2015 01:18:00 -0800 (PST)
-Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
-	by smtp.gmail.com with ESMTPSA id
-	vr10sm11536088wjc.38.2015.12.10.01.17.59
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 10 Dec 2015 01:17:59 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Thu, 10 Dec 2015 10:19:43 +0100
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Message-ID: <20151210091943.GF2246@jama>
-References: <BN3PR0501MB10908B9B84564BC25761049BBBE80@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Received: from mail-de.keymile.com (mail-de.keymile.com [195.8.104.250])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A73E8E0033E
+	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 01:46:51 -0800 (PST)
+Received: from frodo.de.keymile.net ([10.9.1.54]:49087
+	helo=mailrelay.de.keymile.net)
+	by mail-de.keymile.com with esmtp (Exim 4.82_1-5b7a7c0-XX)
+	(envelope-from <Valentin.Longchamp@keymile.com>)
+	id 1a6xoF-0000up-2Z; Thu, 10 Dec 2015 10:46:47 +0100
+Received: from SRVDEHAN1MX1.keymile.net (srvdehan1mx1.keymile.net [10.9.1.150])
+	by mailrelay.de.keymile.net (8.12.2/8.12.2) with ESMTP id
+	tBA9kkfn020614; Thu, 10 Dec 2015 10:46:46 +0100 (MET)
+Received: from SRVDEHAN1MX1.keymile.net ([10.9.1.150]) by
+	SRVDEHAN1MX1.keymile.net ([10.9.1.150]) with mapi;
+	Thu, 10 Dec 2015 10:46:46 +0100
+From: "Longchamp, Valentin" <Valentin.Longchamp@keymile.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Thu, 10 Dec 2015 10:46:46 +0100
+Thread-Topic: Custom kernel headers and SDK
+Thread-Index: AdEx/EzwJo9Sd0CySEW/KyYepjwXbQAovKkQACNuQSQ=
+Message-ID: <B7AC17D946CFB9489B0C4EEDFEE0C8EC1355B4D2A7@SRVDEHAN1MX1.keymile.net>
+References: <688824bb-bfed-4888-8e46-a64338f1db97@keymile.com>,
+	<30C2D590D16A5C46ADFE65219103779853A94D6C@AZ-US1EXMB03.global.avaya.com>
+In-Reply-To: <30C2D590D16A5C46ADFE65219103779853A94D6C@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, de-DE
 MIME-Version: 1.0
-In-Reply-To: <BN3PR0501MB10908B9B84564BC25761049BBBE80@BN3PR0501MB1090.namprd05.prod.outlook.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Cleanly moving files from one package to another
+Cc: "Brunck, Holger" <Holger.Brunck@keymile.com>
+Subject: Re: Custom kernel headers and SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,62 +53,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Dec 2015 09:18:05 -0000
-X-Groupsio-MsgNum: 27663
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="JbKQpFqZXJ2T76Sg"
-Content-Disposition: inline
-
---JbKQpFqZXJ2T76Sg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 10 Dec 2015 09:46:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 09, 2015 at 08:19:40PM +0000, Bryan Evenson wrote:
-> All,
->=20
-> I'm on poky/dizzy-1.7.3 and I'm using opkg for a package manager.  I have=
- a few script files that are part of one package that really belong with an=
-other.  So I updated both recipes, removed the file from one recipe and add=
-ed it to the other recipe.  I built everything, made the opkg feed repo and=
- tried to upgrade with "opkg update; opkg upgrade" to see how clean the upg=
-rade was.  For each script file I moved from one package to the other I get=
- an error message of the form:
->=20
-> * check_data_file_clashes: Package A wants to install file /path/to/scrip=
-t/file
->         But that file is already provided by package  * B
->=20
-> I know I can do "opkg upgrade --force-overwrite", but I'd like to make re=
-cipe changes so that it upgrades cleanly.  All I've done in the recipes is =
-remove the script files from the FILES variable and the do_install step of =
-one recipe and added the script to the FILES variable and do_install step o=
-f the other recipe.  I know update-alternatives can be used if more than on=
-e package provides the same binary, but is that necessary in this case when=
- transferring ownership to another package?  Is there anything else I can d=
-o in the recipes to prevent the opkg install errors?
+Hi Martin,
 
-Have you tried to set
-RREPLACES_<pkg-new> =3D "<pkg-old>"
-?
+Thanks a lot for the suggestion. I had in the meantime come to a simliar so=
+lution: define a linux-XXX-headers recipe in our own meta layer where I ins=
+tall the missing kernel headers and then I add this linux-XXX-headers-dev p=
+ackage to our SDK's sysroot thanks to TARGET_TOOLCHAIN_TASK.
+Your implementation looks fine and I am going to pick some ideas from it.
 
-If the old package should be removed completely during opkg upgrade,
-then you'll need to set whole combo, that is
-RREPLACES,RCONFLICTS,RPROVIDES.
+However, I have stumbled upon another problem with this approach: it works =
+well if you add new files to the kernel headers. We unforntunately have at =
+least one uapi file (i2c.h to name it) that is present in the standard kern=
+el headers where we have our own version with some additions/extensions. If=
+ I install our version from ou linux-XXX-headers recipe, bitbake (correctly=
+) complains that this file is provided by 2 packages (linux-libc-headers an=
+d linux-XXX-headers). And here I really don't know how to solve this issue.=
+ Any ideas/suggestions ?
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+Thanks
 
---JbKQpFqZXJ2T76Sg
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Valentin
+________________________________________
+From: Vuille, Martin (Martin) [vmartin@avaya.com]
+Sent: Wednesday, December 09, 2015 5:40 PM
+To: Longchamp, Valentin; yocto@yoctoproject.org
+Cc: Brunck, Holger
+Subject: RE: Custom kernel headers and SDK
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+Hi Valentin,
 
-iEYEARECAAYFAlZpQ64ACgkQN1Ujt2V2gBwL3ACfRgXgs7oxW2IGR9hCz8Q34XnT
-MsYAni2qe7JKkYEZ0035B8cRKIVCpEtX
-=SAqS
------END PGP SIGNATURE-----
+Not sure whether this the =93canonical=94 Yocto way, but here=92s how we so=
+lved
+the same issue.
 
---JbKQpFqZXJ2T76Sg--
+First, let me say that we use a BSP from our technology partner, and have
+our own meta-XXX layer for customization.
+
+
+-          Created a .bbappend in our layer for the kernel recipe
+
+-          In the .bbappend
+
+o   add a do_install_append task that creates directory ${D}${includedir}/X=
+XX
+and installs the required headers from kernel source into that
+directory
+
+o   add a new package: PACKAGES +=3D =93 XXX-kernel-headers=94
+
+o   specify the files for that package: FILES_XXX-kernel-headers =3D =93${i=
+ncludedir}/XXX/*=94
+
+-          In the recipe for the SDK, include the package XXX-kernel-header=
+s
+
+MV
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Longchamp, Valentin
+Sent: December 08, 2015 4:06 PM
+To: yocto@yoctoproject.org
+Cc: Brunck, Holger
+Subject: [yocto] Custom kernel headers and SDK
+
+
+Hello,
+
+We are currently migrating our Embedded Linux software and the correspondin=
+g
+small in house distribution to Yocto. We are small Linux team and we provid=
+e and
+maintain the toolchain, kernel and base distribution for a broader team of
+software developers that build the applications for our hardware.
+
+So far, we have been able to use Yocto to build our whole software (kernel,
+minimal distribution and application software) by adding our minimal meta-l=
+ayer
+and defining stuff there and it works great.
+
+Since the application devs are "not interested" in our distro nor in the
+compiler, we want to make them available for them thanks to the SDK which i=
+s a
+great fit for this use case. So far it works very well and we are currently
+working on adapting the build system to the SDK.
+
+And here comes my question. We have however our own kernel sources that ext=
+end
+the headers for a few "in-house" drivers. From the warning in linux-libc-he=
+aders
+(http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/li=
+nux-libc-headers/linux-libc-headers.inc<https://urldefense.proofpoint.com/v=
+2/url?u=3Dhttp-3A__git.yoctoproject.org_cgit_cgit.cgi_poky_tree_meta_recipe=
+s-2Dkernel_linux-2Dlibc-2Dheaders_linux-2Dlibc-2Dheaders.inc&d=3DBQQGaQ&c=
+=3DBFpWQw8bsuKpl1SgiZH64Q&r=3DSbT_XjBLTrjzWy1iRhblzG3bKRhcodBp7tD_mnp1dpg&m=
+=3DaecjOhK90BxgIsO0Z0SxTTAYA24E0E2rNHYdLiaPdEM&s=3DNsNJ4rNpfxO5fD-mwfYiZL8m=
+1FwdIcozCxbta8sS7lA&e=3D>),
+I understand that it should be avoided to recreate a recipe for the kernel
+headers to avoid having the libc "machinified". From yocto, I could get the
+custom headers thanks to STAGING_KERNEL_DIR. However, we need these custom
+headers from "outside" of yocto, when using the SDK.
+
+I have found 2 ways to install them into the sysroot and thus SDK:
+- either by adding the kernel-devsrc to the SDK that installs them into
+/usr/src/kernel by default.
+- or by adding something similar to what is proposed in this mailing-list
+discussion to our kernel recipe:
+https://lists.yoctoproject.org/pipermail/linux-yocto/2014-April/002178.html=
+<https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject.=
+org_pipermail_linux-2Dyocto_2014-2DApril_002178.html&d=3DBQQGaQ&c=3DBFpWQw8=
+bsuKpl1SgiZH64Q&r=3DSbT_XjBLTrjzWy1iRhblzG3bKRhcodBp7tD_mnp1dpg&m=3DaecjOhK=
+90BxgIsO0Z0SxTTAYA24E0E2rNHYdLiaPdEM&s=3DutjVbEgHLBYm4zWbGYyBQ0jFBfRz43KePu=
+rEZ1meevs&e=3D>
+
+The problem with these 2 solutions is that sysroot contains:
+1) the sanitized kernel headers at in sysroot/usr/include/linux
+2) our custom headers at sysroot/usr/src/kernel/include/linux
+
+and when I add a -I option in the CFLAGS for 2), I get conflicts since the =
+SDK
+automatically looks first in sysroot/usr/include.
+
+Here is an example of the current errors I get with 1) and 2) in both the -=
+I path:
+
+>                  from plat/icndrv/hdlc/mpc8xxx_scc/src/libhdlc-km.c:2:
+> /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/usr/src/kernel/include/=
+linux/types.h:14:26: error: conflicting types for 'fd_set'
+>  typedef __kernel_fd_set  fd_set;
+>                           ^
+> In file included from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
+sr/include/sys/types.h:219:0,
+>                  from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
+sr/include/sys/uio.h:23,
+>                  from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
+sr/include/sys/socket.h:26,
+>                  from plat/icndrv/hdlc/mpc8xxx_scc/src/libhdlc-km.c:1:
+> /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/usr/include/sys/select.=
+h:75:5: note: previous declaration of 'fd_set' was here
+>    } fd_set;
+
+What would be the correct "yocto" way of solving our current problem with o=
+ur
+custom headers to be added to the SDK ?
+
+Thanks
+
+Valentin
+
+
