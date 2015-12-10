@@ -1,47 +1,35 @@
-Return-Path: <prvs=078641fa47=valentin.longchamp@keymile.com>
+Return-Path: <andreas.enbacka@gasera.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2ED84E00B8B; Thu, 10 Dec 2015 01:46:56 -0800 (PST)
+	id 5ACE5E00AB7; Thu, 10 Dec 2015 02:12:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [195.8.104.250 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail-de.keymile.com (mail-de.keymile.com [195.8.104.250])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A73E8E0033E
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 01:46:51 -0800 (PST)
-Received: from frodo.de.keymile.net ([10.9.1.54]:49087
-	helo=mailrelay.de.keymile.net)
-	by mail-de.keymile.com with esmtp (Exim 4.82_1-5b7a7c0-XX)
-	(envelope-from <Valentin.Longchamp@keymile.com>)
-	id 1a6xoF-0000up-2Z; Thu, 10 Dec 2015 10:46:47 +0100
-Received: from SRVDEHAN1MX1.keymile.net (srvdehan1mx1.keymile.net [10.9.1.150])
-	by mailrelay.de.keymile.net (8.12.2/8.12.2) with ESMTP id
-	tBA9kkfn020614; Thu, 10 Dec 2015 10:46:46 +0100 (MET)
-Received: from SRVDEHAN1MX1.keymile.net ([10.9.1.150]) by
-	SRVDEHAN1MX1.keymile.net ([10.9.1.150]) with mapi;
-	Thu, 10 Dec 2015 10:46:46 +0100
-From: "Longchamp, Valentin" <Valentin.Longchamp@keymile.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Thu, 10 Dec 2015 10:46:46 +0100
-Thread-Topic: Custom kernel headers and SDK
-Thread-Index: AdEx/EzwJo9Sd0CySEW/KyYepjwXbQAovKkQACNuQSQ=
-Message-ID: <B7AC17D946CFB9489B0C4EEDFEE0C8EC1355B4D2A7@SRVDEHAN1MX1.keymile.net>
-References: <688824bb-bfed-4888-8e46-a64338f1db97@keymile.com>,
-	<30C2D590D16A5C46ADFE65219103779853A94D6C@AZ-US1EXMB03.global.avaya.com>
-In-Reply-To: <30C2D590D16A5C46ADFE65219103779853A94D6C@AZ-US1EXMB03.global.avaya.com>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, de-DE
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_40,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.211.207.200 listed in list.dnswl.org]
+	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.3288]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 1187 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Dec 2015 02:12:06 PST
+Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2B49E00349
+	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 02:12:06 -0800 (PST)
+Received: from [194.100.86.92] (helo=LenovoPC)
+	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
+	id 1a6xtX-00042g-T2
+	for yocto@yoctoproject.org; Thu, 10 Dec 2015 11:52:15 +0200
+From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
+To: <yocto@yoctoproject.org>
+Date: Thu, 10 Dec 2015 11:52:16 +0200
+Message-ID: <006a01d13330$73be8e90$5b3babb0$@gasera.fi>
 MIME-Version: 1.0
-Cc: "Brunck, Holger" <Holger.Brunck@keymile.com>
-Subject: Re: Custom kernel headers and SDK
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdEzL83lTY9uMhcfSmegfIt832NAnA==
+Subject: DNS nameserver on Yocto Daisy (resolvconf issue)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,156 +41,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Dec 2015 09:46:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 10 Dec 2015 10:12:12 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_006B_01D13341.3747D3C0"
+Content-Language: fi
 
-Hi Martin,
-
-Thanks a lot for the suggestion. I had in the meantime come to a simliar so=
-lution: define a linux-XXX-headers recipe in our own meta layer where I ins=
-tall the missing kernel headers and then I add this linux-XXX-headers-dev p=
-ackage to our SDK's sysroot thanks to TARGET_TOOLCHAIN_TASK.
-Your implementation looks fine and I am going to pick some ideas from it.
-
-However, I have stumbled upon another problem with this approach: it works =
-well if you add new files to the kernel headers. We unforntunately have at =
-least one uapi file (i2c.h to name it) that is present in the standard kern=
-el headers where we have our own version with some additions/extensions. If=
- I install our version from ou linux-XXX-headers recipe, bitbake (correctly=
-) complains that this file is provided by 2 packages (linux-libc-headers an=
-d linux-XXX-headers). And here I really don't know how to solve this issue.=
- Any ideas/suggestions ?
-
-Thanks
-
-Valentin
-________________________________________
-From: Vuille, Martin (Martin) [vmartin@avaya.com]
-Sent: Wednesday, December 09, 2015 5:40 PM
-To: Longchamp, Valentin; yocto@yoctoproject.org
-Cc: Brunck, Holger
-Subject: RE: Custom kernel headers and SDK
-
-Hi Valentin,
-
-Not sure whether this the =93canonical=94 Yocto way, but here=92s how we so=
-lved
-the same issue.
-
-First, let me say that we use a BSP from our technology partner, and have
-our own meta-XXX layer for customization.
-
-
--          Created a .bbappend in our layer for the kernel recipe
-
--          In the .bbappend
-
-o   add a do_install_append task that creates directory ${D}${includedir}/X=
-XX
-and installs the required headers from kernel source into that
-directory
-
-o   add a new package: PACKAGES +=3D =93 XXX-kernel-headers=94
-
-o   specify the files for that package: FILES_XXX-kernel-headers =3D =93${i=
-ncludedir}/XXX/*=94
-
--          In the recipe for the SDK, include the package XXX-kernel-header=
-s
-
-MV
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Longchamp, Valentin
-Sent: December 08, 2015 4:06 PM
-To: yocto@yoctoproject.org
-Cc: Brunck, Holger
-Subject: [yocto] Custom kernel headers and SDK
-
+------=_NextPart_000_006B_01D13341.3747D3C0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
 Hello,
 
-We are currently migrating our Embedded Linux software and the correspondin=
-g
-small in house distribution to Yocto. We are small Linux team and we provid=
-e and
-maintain the toolchain, kernel and base distribution for a broader team of
-software developers that build the applications for our hardware.
+ 
 
-So far, we have been able to use Yocto to build our whole software (kernel,
-minimal distribution and application software) by adding our minimal meta-l=
-ayer
-and defining stuff there and it works great.
+I have problems getting dns nameservers to work on my custom image built on
+top of Yocto Daisy. I have tried added e.g., dns-nameservers entry to
+/etc/network/interfaces, however running e.g., /etc/init.d/networking
+restart outputs the following error message:
 
-Since the application devs are "not interested" in our distro nor in the
-compiler, we want to make them available for them thanks to the SDK which i=
-s a
-great fit for this use case. So far it works very well and we are currently
-working on adapting the build system to the SDK.
+ 
 
-And here comes my question. We have however our own kernel sources that ext=
-end
-the headers for a few "in-house" drivers. From the warning in linux-libc-he=
-aders
-(http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-kernel/li=
-nux-libc-headers/linux-libc-headers.inc<https://urldefense.proofpoint.com/v=
-2/url?u=3Dhttp-3A__git.yoctoproject.org_cgit_cgit.cgi_poky_tree_meta_recipe=
-s-2Dkernel_linux-2Dlibc-2Dheaders_linux-2Dlibc-2Dheaders.inc&d=3DBQQGaQ&c=
-=3DBFpWQw8bsuKpl1SgiZH64Q&r=3DSbT_XjBLTrjzWy1iRhblzG3bKRhcodBp7tD_mnp1dpg&m=
-=3DaecjOhK90BxgIsO0Z0SxTTAYA24E0E2rNHYdLiaPdEM&s=3DNsNJ4rNpfxO5fD-mwfYiZL8m=
-1FwdIcozCxbta8sS7lA&e=3D>),
-I understand that it should be avoided to recreate a recipe for the kernel
-headers to avoid having the libc "machinified". From yocto, I could get the
-custom headers thanks to STAGING_KERNEL_DIR. However, we need these custom
-headers from "outside" of yocto, when using the SDK.
+resolvconf: Error: /etc/resolvconf/run/interface either does not exist or is
+not a directory.
 
-I have found 2 ways to install them into the sysroot and thus SDK:
-- either by adding the kernel-devsrc to the SDK that installs them into
-/usr/src/kernel by default.
-- or by adding something similar to what is proposed in this mailing-list
-discussion to our kernel recipe:
-https://lists.yoctoproject.org/pipermail/linux-yocto/2014-April/002178.html=
-<https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject.=
-org_pipermail_linux-2Dyocto_2014-2DApril_002178.html&d=3DBQQGaQ&c=3DBFpWQw8=
-bsuKpl1SgiZH64Q&r=3DSbT_XjBLTrjzWy1iRhblzG3bKRhcodBp7tD_mnp1dpg&m=3DaecjOhK=
-90BxgIsO0Z0SxTTAYA24E0E2rNHYdLiaPdEM&s=3DutjVbEgHLBYm4zWbGYyBQ0jFBfRz43KePu=
-rEZ1meevs&e=3D>
+ 
 
-The problem with these 2 solutions is that sysroot contains:
-1) the sanitized kernel headers at in sysroot/usr/include/linux
-2) our custom headers at sysroot/usr/src/kernel/include/linux
+Checking using ls show that /etc/resolvconf/run is a symlink to
+/var/run/resolvconf which does not exist. 
 
-and when I add a -I option in the CFLAGS for 2), I get conflicts since the =
-SDK
-automatically looks first in sysroot/usr/include.
+ 
 
-Here is an example of the current errors I get with 1) and 2) in both the -=
-I path:
+Anyone have some suggestion how to get resolvconf / dns resolving to work on
+Yocto Daisy? 
 
->                  from plat/icndrv/hdlc/mpc8xxx_scc/src/libhdlc-km.c:2:
-> /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/usr/src/kernel/include/=
-linux/types.h:14:26: error: conflicting types for 'fd_set'
->  typedef __kernel_fd_set  fd_set;
->                           ^
-> In file included from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
-sr/include/sys/types.h:219:0,
->                  from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
-sr/include/sys/uio.h:23,
->                  from /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/u=
-sr/include/sys/socket.h:26,
->                  from plat/icndrv/hdlc/mpc8xxx_scc/src/libhdlc-km.c:1:
-> /opt/work/ppc-toolchain/sysroots/powerpc-oe-linux/usr/include/sys/select.=
-h:75:5: note: previous declaration of 'fd_set' was here
->    } fd_set;
+ 
 
-What would be the correct "yocto" way of solving our current problem with o=
-ur
-custom headers to be added to the SDK ?
+Sincerely,
 
-Thanks
+Andreas
 
-Valentin
+ 
 
 
+------=_NextPart_000_006B_01D13341.3747D3C0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I have problems getting dns nameservers to work on my =
+custom image built on top of Yocto Daisy. I have tried added e.g., =
+dns-nameservers entry to /etc/network/interfaces, however running e.g., =
+/etc/init.d/networking restart outputs the following error =
+message:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>resolvconf: Error: /etc/resolvconf/run/interface either =
+does not exist or is not a directory.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Checking using ls show that =
+/etc/resolvconf/run is a symlink to /var/run/resolvconf which does not =
+exist. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Anyone have some suggestion how to get resolvconf / dns =
+resolving to work on Yocto Daisy? <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Sincerely,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Andreas<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+
+------=_NextPart_000_006B_01D13341.3747D3C0--
