@@ -1,59 +1,55 @@
-Return-Path: <yocto@generictech.co.uk>
+Return-Path: <federicobriata@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB3BDE00AB7; Fri, 11 Dec 2015 08:32:20 -0800 (PST)
+	id 43D07E00B37; Fri, 11 Dec 2015 08:41:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,SPF_HELO_PASS
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4219]
-X-Greylist: delayed 4199 seconds by postgrey-1.32 at yocto-www;
-	Fri, 11 Dec 2015 08:32:17 PST
-Received: from extendnet.co.uk (extendnet.co.uk [91.109.6.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18ACE008C4
-	for <yocto@yoctoproject.org>; Fri, 11 Dec 2015 08:32:17 -0800 (PST)
-Received: from host86-139-167-188.range86-139.btcentralplus.com
-	([86.139.167.188]:64136 helo=yellow)
-	by ultra10.extendnet.co.uk with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.86) (envelope-from <yocto@generictech.co.uk>)
-	id 1a7PWI-0000cV-IC
-	for yocto@yoctoproject.org; Fri, 11 Dec 2015 15:22:06 +0000
-From: "Christopher Hossack" <yocto@generictech.co.uk>
-To: <yocto@yoctoproject.org>
-References: 
-In-Reply-To: 
-Date: Fri, 11 Dec 2015 15:22:04 -0000
-Message-ID: <FB3B762F85D14CE5824796EC544B34A2@yellow>
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (federicobriata[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9DCEE007C9
+	for <yocto@yoctoproject.org>; Fri, 11 Dec 2015 08:41:09 -0800 (PST)
+Received: by lfed137 with SMTP id d137so31635454lfe.3
+	for <yocto@yoctoproject.org>; Fri, 11 Dec 2015 08:41:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ACffhwvgXQCfuJHM32Tkp116vk9d8Sv9GFhiaIzxDas=;
+	b=AAkwIJczi7Edj/8fb26kzKk8i0tAJlqiMm2nhRfjXcXnxvw/w5I6lP5j/hp5zSclA5
+	PV0JloI/xiiKxvgSLN1CMYiSDwNFHIdQDTJtDpd9jEtdEy1iIQPDWNxSytu439X9QvOY
+	M/xl3Lc10ug1PUFmf6t/DZelZS/4KI/pumxklKEgOzIHDMb/PFD9cNCBAYyY+EluTSXV
+	vV+AeTSSmEEr6+Fp2+wSKiIv9HTfUCifgOKJLkNFoR8T9HYB3+MnE/B3sHI/6ExfmHwt
+	h+qOkXGqtCh3J7XZ29kIo179i0/PmaCkbg0QuqAe+TiAeRiNRPLnET7nsEsEhtzYt+8M
+	8xzg==
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdEsM1ZBxMwE10gXTrWq+dkV48iUkAH9B/bQ
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-Antivirus: avast! (VPS 151211-0, 11/12/2015), Outbound message
-X-Antivirus-Status: Clean
-X-eXtendnet-MailScanner-Information: Please contact the ISP for more
-	information
-X-eXtendnet-MailScanner-ID: 1a7PWI-0000cV-IC
-X-eXtendnet-MailScanner: Found to be clean
-X-eXtendnet-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
-	score=0.901, required 5, ALL_TRUSTED -1.00, BAYES_50 0.80,
-	KAM_COUK 1.10, URIBL_BLOCKED 0.00)
-X-eXtendnet-MailScanner-From: yocto@generictech.co.uk
-X-eXtendnet-MailScanner-Watermark: 1450452127.43931@mx5XLV9EbIDZZuGfu6V3Yw
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - ultra10.extendnet.co.uk
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - generictech.co.uk
-X-Get-Message-Sender-Via: ultra10.extendnet.co.uk: authenticated_id:
-	hossa1c@generictech.co.uk
-X-Authenticated-Sender: ultra10.extendnet.co.uk: hossa1c@generictech.co.uk
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: creating a ubuntu rootfs
+X-Received: by 10.25.212.209 with SMTP id l200mr8270327lfg.41.1449852068674;
+	Fri, 11 Dec 2015 08:41:08 -0800 (PST)
+Received: by 10.112.151.42 with HTTP; Fri, 11 Dec 2015 08:41:08 -0800 (PST)
+In-Reply-To: <20151211132309.GA15763@mbabyjoh-mobl.fi.intel.com>
+References: <CA+KKcbkvhpqXB0vOf=hn-7BTq8maqF6OQwGAH4ph_=H5L=kySg@mail.gmail.com>
+	<20151211132309.GA15763@mbabyjoh-mobl.fi.intel.com>
+Date: Fri, 11 Dec 2015 17:41:08 +0100
+Message-ID: <CA+KKcbmH_ACAMVjf7ETd6DqH5krPPVSkKNRpS_Y66KqFF7rv+A@mail.gmail.com>
+From: Federico Pietro Briata <federicobriata@gmail.com>
+To: "Maxin B. John" <maxin.john@intel.com>
+Cc: yocto@yoctoproject.org,
+	=?UTF-8?B?RXJra2EgS8Okw6RyacOk?= <erkka.kaaria@intel.com>
+Subject: Re: [meta-java] [PATCH] gnumail: Fix race condition in makefile fail to apply
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,53 +61,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Dec 2015 16:32:20 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 Dec 2015 16:41:14 -0000
+Content-Type: multipart/alternative; boundary=001a11405ba287c62a0526a1fd17
 
-Hi,
-I'm trying to create a Yocto kernel with a ubuntu-core rootfs. At the moment
-I'm creating a core-image-base and then splatting an
-ubuntu-core-12.04.5-core-armhf.tar.gz over the rootfs on the image. eg
+--001a11405ba287c62a0526a1fd17
+Content-Type: text/plain; charset=UTF-8
 
-Create a core-image-base image
-$ bitbake core-image-base
+Hi Maxin,
 
-Insert a sdcard and copy the core image on to it and then mount the rootfs
-$ sudo dd if=~/core-image-base-imx6qsabresd.sdcard of=/dev/sdb bs=1M && sync
-sudo mount /dev/sdb2 /mnt/sdcard/
-
-Remove all files on the sdcard rootfs (eg sdb2) and then untar the unbuntu
-core over the old rootfs, eg
-$ cd /mnt/sdcard
-$ sudo tar -xf ~/ubuntu-precise-12.04.3-armhf.com-20131129.tar.xz
-
-Then copy the original fsl-image-base lib/modules/* & boot/* over the ubuntu
-core rootfs
-$ cd ~
-$ sudo  mount -o loop -t ext3 core-image-base-imx6qsabresd.ext3 rootfs 
-$ sudo rsync -artv rootfs/lib/modules/ /mnt/sdcard/lib/modules/
-$ sudo rsync -artv rootfs/boot/ /mnt/sdcard/boot/
-
-This all works, but I would really like to create a recipe that does all of
-this work for me. But I believe my new recipe can't delete anything already
-installed on the rootfs.
-
-So I need to create a recipe that only installs /lib/modules/* /boot/* and
-kernel source files (I also want to build kernel drivers on the target so I
-guess I will also need recipe kernel-devsrc) on the rootfs.
-
-I've looked at core-image-base (and others) and this seems to inherit
-image.bbclass, but this adds a basic rootfs which will stop me from
-splatting my ubuntu-core over it.
-
-Can Yocto be configured to achieve this or should I stick to my current
-hack?
-
-Cheers
-
-Chris
+thanks a lot, after a pull it's working but now I got a different issue.. :/
+I'll send a separate email about the current trouble..
+Thanks again
+Federico
 
 
+2015-12-11 14:23 GMT+01:00 Maxin B. John <maxin.john@intel.com>:
 
+> Hi Federico,
+>
+> On Fri, Dec 11, 2015 at 12:45:18PM +0100, Federico Pietro Briata wrote:
+> >Hi
+> >
+> >I just pull to build openjdk-8 and I get this error:
+> >
+> >ERROR: Command Error: exit status: 1  Output:
+> >Applying patch fix_makefile_race_condition.patch
+> >patching file Makefile.am
+> >Hunk #1 FAILED at 295.
+> >1 out of 3 hunks FAILED -- rejects in file Makefile.am
+> >Patch fix_makefile_race_condition.patch does not apply (enforce with -f)
+> >ERROR: Function failed: patch_do_patch
+> >ERROR: Logfile of failure stored in:
+> /home/federico/yocto/imx6/R5.0/build-pcm-mx6quad/tmp-eglibc/work/x86_64-linux/gnumail-native/1.1.2-r1/temp/log.do_patch.7775
+> >ERROR: Task 613
+> (virtual:native:/home/federico/yocto/imx6/R5.0/sources/meta-java/recipes-core/classpathx/
+> gnumail_1.1.2.bb, do_patch) failed with exit code '1'
+> >
+>
+> This was due to a nasty encoding related corruption in the patch (most
+> likely mangled by
+> mail agent). It is fixed in master by a force push (apologies for doing
+> that).
+>
+> Please clone the repo and try again.
+>
+> >best regards
+> >federico
+>
+> Best Regards,
+> Maxin
+>
+
+--001a11405ba287c62a0526a1fd17
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div>Hi Maxin,<br><br></div>thanks a lot, a=
+fter a pull it&#39;s working but now I got a different issue.. :/<br></div>=
+I&#39;ll send a separate email about the current trouble..<br></div>Thanks =
+again<br></div>Federico<br><div><div><br></div></div></div><div class=3D"gm=
+ail_extra"><br><div class=3D"gmail_quote">2015-12-11 14:23 GMT+01:00 Maxin =
+B. John <span dir=3D"ltr">&lt;<a href=3D"mailto:maxin.john@intel.com" targe=
+t=3D"_blank">maxin.john@intel.com</a>&gt;</span>:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">Hi Federico,<br>
+<span class=3D""><br>
+On Fri, Dec 11, 2015 at 12:45:18PM +0100, Federico Pietro Briata wrote:<br>
+&gt;Hi<br>
+&gt;<br>
+&gt;I just pull to build openjdk-8 and I get this error:<br>
+&gt;<br>
+&gt;ERROR: Command Error: exit status: 1=C2=A0 Output:<br>
+&gt;Applying patch fix_makefile_race_condition.patch<br>
+&gt;patching file Makefile.am<br>
+&gt;Hunk #1 FAILED at 295.<br>
+&gt;1 out of 3 hunks FAILED -- rejects in file Makefile.am<br>
+&gt;Patch fix_makefile_race_condition.patch does not apply (enforce with -f=
+)<br>
+&gt;ERROR: Function failed: patch_do_patch<br>
+&gt;ERROR: Logfile of failure stored in: /home/federico/yocto/imx6/R5.0/bui=
+ld-pcm-mx6quad/tmp-eglibc/work/x86_64-linux/gnumail-native/1.1.2-r1/temp/lo=
+g.do_patch.7775<br>
+&gt;ERROR: Task 613 (virtual:native:/home/federico/yocto/imx6/R5.0/sources/=
+meta-java/recipes-core/classpathx/<a href=3D"http://gnumail_1.1.2.bb" rel=
+=3D"noreferrer" target=3D"_blank">gnumail_1.1.2.bb</a>, do_patch) failed wi=
+th exit code &#39;1&#39;<br>
+&gt;<br>
+<br>
+</span>This was due to a nasty encoding related corruption in the patch (mo=
+st likely mangled by<br>
+mail agent). It is fixed in master by a force push (apologies for doing tha=
+t).<br>
+<br>
+Please clone the repo and try again.<br>
+<br>
+&gt;best regards<br>
+&gt;federico<br>
+<br>
+Best Regards,<br>
+Maxin<br>
+</blockquote></div><br></div>
+
+--001a11405ba287c62a0526a1fd17--
