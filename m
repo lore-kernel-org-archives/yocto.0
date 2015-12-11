@@ -1,39 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <dvorkin@tibbo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7391AE00B81; Thu, 10 Dec 2015 17:31:54 -0800 (PST)
+	id A1E3CE00B30; Thu, 10 Dec 2015 22:47:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SBL autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+	*      [95.31.249.87 listed in zen.spamhaus.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [93.174.104.90 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EC87E0085A
-	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 17:31:52 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 10 Dec 2015 17:31:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,410,1444719600"; d="scan'208";a="11282216"
-Received: from exxie-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.172.26])
-	by fmsmga004.fm.intel.com with ESMTP; 10 Dec 2015 17:31:48 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Fri, 11 Dec 2015 14:31:46 +1300
-Message-ID: <2828300.Ks4bFI5QLI@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.2.6-301.fc23.x86_64; KDE/4.14.14; x86_64; ;
-	)
-In-Reply-To: <1449007421-26206-5-git-send-email-anibal.limon@linux.intel.com>
-References: <1449007421-26206-1-git-send-email-anibal.limon@linux.intel.com>
-	<1449007421-26206-5-git-send-email-anibal.limon@linux.intel.com>
+Received: from smtp.tibbo.com (smtp.tibbo.com [93.174.104.90])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2BF9E0088C
+	for <yocto@yoctoproject.org>; Thu, 10 Dec 2015 22:47:10 -0800 (PST)
+Received: (qmail 26407 invoked by uid 508); 11 Dec 2015 09:47:09 +0300
+Received: from 95-31-249-87.broadband.corbina.ru (HELO dvh.tibbo.net)
+	(dvorkin@tibbo.com@95.31.249.87)
+	by smtp.tibbo.com with SMTP; 11 Dec 2015 09:47:09 +0300
+To: yocto@yoctoproject.org
+References: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
+From: Dvorkin Dmitry <dvorkin@tibbo.com>
+Message-ID: <566A716C.1060904@tibbo.com>
+Date: Fri, 11 Dec 2015 09:47:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [[AUH] 4/6] testimage/ptest: Add require of ptest-pkgs in EXTRA_IMAGE_FEATURES.
+In-Reply-To: <BY1PR03MB13398A9786969B9BF6D630BFA10A0@BY1PR03MB1339.namprd03.prod.outlook.com>
+Subject: systemd postinstall start service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,93 +41,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Dec 2015 01:31:54 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 11 Dec 2015 06:47:18 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, 01 Dec 2015 16:03:39 An=EDbal Lim=F3n wrote:
-> Instead of add manually the ptest packages use IMAGE_FEATURE to
-> install ptest packages this save time validating if ptest pkg
-> exist.
->=20
-> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  README               | 3 ++-
->  modules/testimage.py | 5 ++---
->  upgradehelper.py     | 5 +++++
->  3 files changed, 9 insertions(+), 4 deletions(-)
->=20
-> diff --git a/README b/README
-> index 1c8eba1..63c3b39 100644
-> --- a/README
-> +++ b/README
-> @@ -108,7 +108,8 @@ file:
->  --------------- snip ---------------
->  INHERIT +=3D "testimage"
->=20
-> -EXTRA_IMAGE_FEATURES =3D "debug-tweaks package-management"
-> +DISTRO_FEATURES_append =3D " ptest"
-> +EXTRA_IMAGE_FEATURES =3D "debug-tweaks package-management ptest-pkgs=
-"
->  # testimage/ptest only work with rpm
->  PACKAGE_CLASSES =3D "package_rpm"
->  --------------- snip ---------------
-> diff --git a/modules/testimage.py b/modules/testimage.py
-> index e410111..52e2592 100644
-> --- a/modules/testimage.py
-> +++ b/modules/testimage.py
-> @@ -60,11 +60,10 @@ class TestImage():
->          # for provide access to the target
->          if ptest:
->              pkgs_out.append("dropbear")
-> +            pkgs_out.append("ptest-runner")
->=20
->          for c in pkgs:
->              pkgs_out.append(c['PN'])
-> -            if ptest:
-> -                pkgs_out.append("%s-ptest" % c['PN'])
->=20
->          return ' '.join(pkgs_out)
->=20
-> @@ -122,7 +121,7 @@ class TestImage():
->          ptest_pkgs =3D self._get_ptest_pkgs()
->=20
->          os.environ['CORE_IMAGE_EXTRA_INSTALL'] =3D \
-> -            self._get_pkgs_to_install(ptest_pkgs, True)
-> +            self._get_pkgs_to_install(ptest_pkgs, ptest=3DTrue)
->          I( "   building core-image-minimal for %s ..." % machine)
->          self.bb.complete("core-image-minimal", machine)
->=20
-> diff --git a/upgradehelper.py b/upgradehelper.py
-> index db39601..5a2b844 100755
-> --- a/upgradehelper.py
-> +++ b/upgradehelper.py
-> @@ -242,6 +242,11 @@ class Updater(object):
->                        " please add to conf/local.conf.")
->                      exit(1)
->=20
-> +                if not "ptest-pkgs" in
-> self.base_env['EXTRA_IMAGE_FEATURES']:=20
-> +                    E("
-> testimage/ptest requires ptest-pkgs in EXTRA_IMAGE_FEATURES"\=20
-> +           =20
->          " please add to conf/local.conf.")
-> +                    exit(1)
-> +
+Hello!
 
-Strictly speaking this isn't really the proper test - the proper test i=
-s that=20
-ptest-pkgs is in IMAGE_FEATURES *for the image being built and tested* =
-(not=20
-necessarily the global configuration). We can deal with this at some po=
-int in=20
-the future though.
+I have a recipe that can be installed into image using postinstall RPM 
+scriptlet only.
+It's an archive wrapped with a shell script.
+During the do_rootfs step this RPM is installed such a way: executional 
+archive placed into /opt/.
+Then during the first system load systemd runs it's postinstall scriptlet
 
-Cheers,
-Paul
+scriptlet is simple:
 
---=20
+/opt/my_server.bin.sh
+systemctl enable my_server.service
+systemctl daemon-reload
+systemctl start my_server.service
 
-Paul Eggleton
-Intel Open Source Technology Centre
+In my system when systemd runs this postinstall scriptlet it's executed, 
+system is loaded, service is enabled, but not started.
+service state is "enabled, but inactive (died)"
+During the postinstall scriptlet execution at systemd first load I see 
+message that my service is stopping instead of starting.
+After reboot my_server.service is enabled and started.
+
+Looks like systemd doesn't want to start service or it stopping it 
+immediately after postinstall.
+What can I do to start it on first load after postinstall ?
+
+my_service.service have such a settings:
+
+[Unit]
+Description=my_server
+After=syslog.target
+
+[Service]
+Type=simple
+Restart=on-failure
+
+Thanks!
 
