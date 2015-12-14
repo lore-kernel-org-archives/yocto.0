@@ -1,43 +1,39 @@
-Return-Path: <prvs=079055f57f=valentin.longchamp@keymile.com>
+Return-Path: <lixin.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA26BE00C15; Sun, 13 Dec 2015 23:37:26 -0800 (PST)
+	id CF562E00C1E; Mon, 14 Dec 2015 01:05:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [195.8.104.250 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-de.keymile.com (mail-de.keymile.com [195.8.104.250])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1130E0083E
-	for <yocto@yoctoproject.org>; Sun, 13 Dec 2015 23:37:22 -0800 (PST)
-Received: from frodo.de.keymile.net ([10.9.1.54]:47537
-	helo=mailrelay.de.keymile.net)
-	by mail-de.keymile.com with esmtp (Exim 4.82_1-5b7a7c0-XX)
-	(envelope-from <valentin.longchamp@keymile.com>)
-	id 1a8Nh8-000438-2O; Mon, 14 Dec 2015 08:37:18 +0100
-Received: from ch10650.keymile.net (ch10650.keymile.net [172.31.40.247])
-	by mailrelay.de.keymile.net (8.12.2/8.12.2) with ESMTP id
-	tBE7bFfn002913; Mon, 14 Dec 2015 08:37:15 +0100 (MET)
-To: William Mills <wmills@ti.com>, "Vuille, Martin (Martin)"
-	<vmartin@avaya.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <688824bb-bfed-4888-8e46-a64338f1db97@keymile.com>
-	<30C2D590D16A5C46ADFE65219103779853A94D6C@AZ-US1EXMB03.global.avaya.com>
-	<B7AC17D946CFB9489B0C4EEDFEE0C8EC1355B4D2A7@SRVDEHAN1MX1.keymile.net>
-	<30C2D590D16A5C46ADFE65219103779853A954ED@AZ-US1EXMB03.global.avaya.com>
-	<566991EB.6000907@ti.com>
-From: Valentin Longchamp <valentin.longchamp@keymile.com>
-Message-ID: <566E71AD.9070708@keymile.com>
-Date: Mon, 14 Dec 2015 08:37:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C3BBE0096C
+	for <yocto@yoctoproject.org>; Mon, 14 Dec 2015 01:05:57 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.20,346,1444665600"; 
+   d="scan'208";a="1549269"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 14 Dec 2015 17:05:45 +0800
+Received: from G08CNEXCHPEKD03.g08.fujitsu.local (unknown [10.167.33.85])
+	by cn.fujitsu.com (Postfix) with ESMTP id E1181409256C
+	for <yocto@yoctoproject.org>; Mon, 14 Dec 2015 17:05:27 +0800 (CST)
+Received: from localhost.localdomain (10.167.226.98) by
+	G08CNEXCHPEKD03.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.181.6; Mon, 14 Dec 2015 17:08:38 +0800
+From: Li Xin <lixin.fnst@cn.fujitsu.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 14 Dec 2015 12:05:22 +0300
+Message-ID: <1450083924-1727-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <566991EB.6000907@ti.com>
-Cc: "Brunck, Holger" <Holger.Brunck@keymile.com>
-Subject: Re: Custom kernel headers and SDK
+X-Originating-IP: [10.167.226.98]
+X-yoursite-MailScanner-Information: Please contact the ISP for more information
+X-yoursite-MailScanner-ID: E1181409256C.AD851
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: lixin.fnst@cn.fujitsu.com
+Subject: [meta-cgl][PATCH 1/3] cluster-glue: WARNING Fix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,87 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Dec 2015 07:37:27 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Dec 2015 09:05:59 -0000
+Content-Type: text/plain
 
-Hello William and Martin,
+WARNING: QA Issue: cluster-glue: Files/directories were installed but not shipped in any package:
+  /lib
+  /lib/systemd
+  /lib/systemd/system
+  /lib/systemd/system/logd.service
+Please set FILES such that these items are packaged.
 
-On 10/12/2015 15:53, William Mills wrote:
-> 
-> On 12/10/2015 09:40 AM, Vuille, Martin (Martin) wrote:
->> Hi Valentin,
->>
->> When we first encountered the need for custom kernel headers, I asked
->> a similar question to yours on this list. And what I learned from some of the
->> responses was that modifying the standard headers was fraught with
->> problems, including the issue that you raise.
->>
->> Fortunately, we got away without having to modify and export any standard
->> headers, so I dodged that bullet.
->>
->> Some ideas that come to mind:
->>
->> - Can you install your customized version in ${includedir}/XXX and use the
->>   include path search order to make sure the compiler sees it first?
-> 
-> This was the approach we used in a Debian based system.  Applications
-> that needed to be dependent on the custom capabilities of our kernel
-> depended on our XXX-kernel-header package and adjusted their include
-> path to use it first.  All other apps continue to use the standard
-> kernel headers.  (busybox or tar does not really care about our new
-> wizbang feature and the Debian distro sure was not going to rebuild them
-> just for us.)
-> 
-> I see no reason this could not work as well in an OE based distro.
-> 
->>
->> - Can you include the standard header in a "wrapper" header and make your
->>   customizations in the wrapper instead?
->>
->> Regards,
->> MV
+Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+---
+ meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-I just wanted to thank you for your answers and suggestion.
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+index be04469..9604bca 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
++++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+@@ -83,6 +83,7 @@ FILES_${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/clus
+ 	${libdir}/heartbeat/ipctransientclient \
+ 	${libdir}/heartbeat/ha_logd \
+ 	${libdir}/heartbeat/lrmd \
++	${systemd_unitdir} \
+ 	"
+ 
+ FILES_${PN}-dbg += "${libdir}/heartbeat/.debug/ \
+-- 
+1.8.4.2
 
-I have now used this approach and it works fine:
-- make a new package that installs our changed linux-headers into another
-directory than the linux-libc-headers
-- added this package to TOOLCHAIN_TARGET_TASK so that it gets installed to the
-SDK's sysroot
-- changed the include path of the userspace applications that require these
-changed headers and use the SDK so that they find them ($SDKTARGETSYSROOT helps
-a lot here).
 
-Valentin
-
->>
->>> -----Original Message-----
->>> From: Longchamp, Valentin [mailto:Valentin.Longchamp@keymile.com]
->>> Sent: December 10, 2015 4:47 AM
->>> To: Vuille, Martin (Martin); yocto@yoctoproject.org
->>> Cc: Brunck, Holger
->>> Subject: RE: Custom kernel headers and SDK
->>>
->>> Hi Martin,
->>>
->>> Thanks a lot for the suggestion. I had in the meantime come to a simliar
->>> solution: define a linux-XXX-headers recipe in our own meta layer where I
->>> install the missing kernel headers and then I add this linux-XXX-headers-dev
->>> package to our SDK's sysroot thanks to TARGET_TOOLCHAIN_TASK.
->>> Your implementation looks fine and I am going to pick some ideas from it.
->>>
->>> However, I have stumbled upon another problem with this approach: it
->>> works well if you add new files to the kernel headers. We unforntunately
->>> have at least one uapi file (i2c.h to name it) that is present in the standard
->>> kernel headers where we have our own version with some
->>> additions/extensions. If I install our version from ou linux-XXX-headers
->>> recipe, bitbake (correctly) complains that this file is provided by 2 packages
->>> (linux-libc-headers and linux-XXX-headers). And here I really don't know how
->>> to solve this issue. Any ideas/suggestions ?
->>>
->>> Thanks
->>>
->>> Valentin
 
 
