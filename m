@@ -1,59 +1,53 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Damian.Philipp@vector.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C350E00B68; Mon, 14 Dec 2015 16:55:29 -0800 (PST)
+	id 9C8DEE00BDA; Mon, 14 Dec 2015 23:42:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [217.89.139.142 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
-	[209.85.220.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FD1BE00404
-	for <yocto@yoctoproject.org>; Mon, 14 Dec 2015 16:55:27 -0800 (PST)
-Received: by pacwq6 with SMTP id wq6so112526852pac.1
-	for <yocto@yoctoproject.org>; Mon, 14 Dec 2015 16:55:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=ddhS8mlpewCTBcl0lJG7H+kpGGLarrxX2+lFjyqanwc=;
-	b=KUYG9r8b84X6KIWzrBY00PwCNVRYmf76LqkXIVJwUtd8GAPpIPYKPY9iTd29CcN5qe
-	vjEaerxEI2ZeAx3iUeHYmK5icFU0OLgCmllHNI7Xex+udpSQJZUmJxsW9/LREMP577au
-	PInC+OB8n4L7oCsmDENONJD6+lH7g0tL9AbPOboKNvxoEsvRD3No7Z8T1it+aWsBoOsu
-	9aDmXE+G5N8PN9OTPpmroITptcgklDrSB1R2kY1Z7jx4eJvZ4HRH6KWD98ueDDPOSl/Z
-	JNn5Dn6btMW1aITb2YQq1YExVuXjBO7mv2zSFu3rXeOjQ+6x6SWuytKhNOCv26jqmSpV
-	XBbQ==
-X-Received: by 10.66.144.65 with SMTP id sk1mr49420465pab.126.1450140926757;
-	Mon, 14 Dec 2015 16:55:26 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:5c4d:b840:1a41:b442?
-	([2601:646:8802:5d5c:5c4d:b840:1a41:b442])
-	by smtp.gmail.com with ESMTPSA id
-	fc6sm42376645pac.44.2015.12.14.16.55.25
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 14 Dec 2015 16:55:26 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <566E94C3.5040206@easyarm.com>
-Date: Mon, 14 Dec 2015 16:55:25 -0800
-Message-Id: <F749BEFC-511E-4A1E-A446-0175355CAF7F@gmail.com>
-References: <566E94C3.5040206@easyarm.com>
-To: Surya <surya.n@easyarm.com>
-X-Mailer: Apple Mail (2.3112)
-Cc: yocto@yoctoproject.org
-Subject: Re: Qtmultimedia issue
+Received: from smtp2.vector.com (smtp2.vector.com [217.89.139.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A06E00AAA
+	for <yocto@yoctoproject.org>; Mon, 14 Dec 2015 23:42:29 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp2.vector.com (Postfix) with ESMTP id 68FEE8529C
+	for <yocto@yoctoproject.org>; Tue, 15 Dec 2015 08:42:28 +0100 (CET)
+X-Virus-Scanned: amavisd-new at vector.com
+Received: from smtp2.vector.com ([127.0.0.1])
+	by localhost (smtp2.vector.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LV6MRpX958Pj for <yocto@yoctoproject.org>;
+	Tue, 15 Dec 2015 08:42:27 +0100 (CET)
+Received: from vistrex5.vi.vector.int (unknown [10.49.3.65])
+	by smtp2.vector.com (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Tue, 15 Dec 2015 08:42:27 +0100 (CET)
+Received: from VISTREX4.vi.vector.int ([169.254.2.123]) by
+	vistrex5.vi.vector.int ([10.49.3.65]) with mapi id 14.03.0235.001;
+	Tue, 15 Dec 2015 08:42:27 +0100
+From: "Philipp, Damian" <Damian.Philipp@vector.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Select make target for cmake
+Thread-Index: AdEzbhgk5KhVZHryRXiSWgzLWWyV9AAHzSEAAN+P1HA=
+Date: Tue, 15 Dec 2015 07:42:26 +0000
+Message-ID: <094B1FB387EB1E4FBF933EEB0EFA3A0B623B6A1D@vistrex4.vi.vector.int>
+References: <094B1FB387EB1E4FBF933EEB0EFA3A0B5BE0F2CA@vistrex3.vi.vector.int>
+	<CAJTo0LY1=5wUJp+K=V6iV5w==jrHvfrUsDwE5-h=NdJDVfDAKA@mail.gmail.com>
+In-Reply-To: <CAJTo0LY1=5wUJp+K=V6iV5w==jrHvfrUsDwE5-h=NdJDVfDAKA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.49.73.104]
+x-g-data-mailsecurity-for-exchange-state: 0
+x-g-data-mailsecurity-for-exchange-error: 0
+x-g-data-mailsecurity-for-exchange-sender: 23
+x-g-data-mailsecurity-for-exchange-server: 8959ae4b-c457-4990-be14-918c767bdf10
+x-g-data-mailsecurity-for-exchange-guid: 9FDEA4FF-6AD2-41F5-8972-BA1D4F754944
+MIME-Version: 1.0
+Subject: Re: Select make target for cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,59 +59,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Dec 2015 00:55:29 -0000
-X-Groupsio-MsgNum: 27713
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_01B7DEA6-DB07-47CD-AD2A-BB765591DD37";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Tue, 15 Dec 2015 07:42:32 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---Apple-Mail=_01B7DEA6-DB07-47CD-AD2A-BB765591DD37
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+SGVsbG8sDQoNCj4gRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwu
+Y29tXSANCj4gU2VudDogVGh1cnNkYXksIERlY2VtYmVyIDEwLCAyMDE1IDEwOjU3IFBNDQo+IEEg
+Y2xlYXJlciB3YXkgd291bGQgYmUgdG8gZG86DQo+IA0KPiBkb19jb21waWxlKCkgew0KPsKgIMKg
+IG9lX3J1bm1ha2Ugc2VydmVyDQo+IH0NCj4NCj4gSXQncyBwb3NzaWJsZSB0aGF0IHRoZSBjb21w
+aWxlIHBoYXNlIGlzIGJ1aWxkaW5nIGp1c3QgdGhlIHNlcnZlciwgYnV0IHRoZW4gaW5zdGFsbCBp
+cyBidWlsZGluZyBhbmQgaW5zdGFsbGluZyBldmVyeXRoaW5nLg0KDQpJIHRyaWVkIHlvdXIgc3Vn
+Z2VzdGlvbiAtIGluZGVlZCwgY21ha2UgaXMgdGhlbiBidWlsZGluZyB0aGUgcmVtYWluaW5nIGJp
+bmFyaWVzIGluIHRoZSBpbnN0YWxsIHBoYXNlLiBGdXJ0aGVybW9yZSwgaXQgYXBwZWFycyB0aGF0
+IGNtYWtlIGl0c2VsZiBpcyBsYWNraW5nIHN1cHBvcnQgZm9yIG11bHRpcGxlIGluc3RhbGwgdGFy
+Z2V0cy4NCg0KSG93ZXZlciwgSSBkaWQgZXZlbnR1YWxseSBmaW5kIGEgc29sdXRpb24uIEEgeW9j
+dG8gcmVjaXBlIGNhbiBoYXZlIG11bHRpcGxlIHBhY2thZ2VzIGFzIG91dHB1dC4gSW4gZmFjdCwg
+dGhlIGRlZmF1bHQgc2VlbXMgdG8gYmUgdG8gY3JlYXRlICR7UE59LCAke1BOfS1kZXYgYW5kICR7
+UE59LWRiZyBwYWNrYWdlcy4gSSBzaW1wbHkgYWRkZWQgJHtQTn0tY2xpZW50IGFuZCAke1BOfS1j
+bGllbnQtZGJnIGFuZCBtYW51YWxseSBzb3J0ZWQgYWxsIHRoZSBjbGllbnQgZmlsZXMgaW50byB0
+aG9zZSBwYWNrYWdlcyB1c2luZyB0aGUgRklMRVNfKiB2YXJpYWJsZXMuIFlvdSB0aGVuIGdldCBh
+IGNsZWFuIHNlcGFyYXRpb24gb2YgY2xpZW50LSBhbmQgc2VydmVyIHBhY2thZ2VzIGFuZCBjYW4g
+aW5zdGFsbCBlaXRoZXIgb3IgYm90aCB1c2luZywgZS5nLiwgSU5TVEFMTF9JTUFHRS4NCg0KUmVn
+YXJkcw0KRGFtaWFuDQo=
 
-
-> On Dec 14, 2015, at 2:06 AM, Surya <surya.n@easyarm.com> wrote:
->=20
-> Hello all,
->=20
-> I need some help regarding qtmultimedia .Currently i am trying to =
-build qt5.3.2 with qtwebengine .It builded properly without any error =
-but when i am trying to using the "qmake" of this and build any graphic =
-related applications ,it is showing some error as below:
->=20
-> Project ERROR: Unknown module(s) in QT: script multimedia
->=20
-> I have enabled both qtmultimedia  & qtscript by hob ,,but still no =
-idea why its not taking that.
->=20
-
-these need to be enabled and then qtbase needs to be rebuilt.
-
->=20
-> Thanks & Regards
-> Surya
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_01B7DEA6-DB07-47CD-AD2A-BB765591DD37
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlZvZP0ACgkQuwUzVZGdMxSvYACfRLzOfUhqnXpMEZs14nIjBhBp
-oVQAnA7UijeiQXX6I5ONViNDZMOnYhI1
-=C56/
------END PGP SIGNATURE-----
-
---Apple-Mail=_01B7DEA6-DB07-47CD-AD2A-BB765591DD37--
