@@ -1,61 +1,48 @@
-Return-Path: <presslertj@scientiallc.com>
+Return-Path: <otavio.salvador@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3A8EE00BF5; Wed, 16 Dec 2015 07:21:17 -0800 (PST)
+	id C6C4DE00B46; Wed, 16 Dec 2015 08:18:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RDNS_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0004]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 494 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Dec 2015 07:21:13 PST
-Received: from mail.scientiallc.com (unknown [66.244.93.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5212E005B7
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 07:21:13 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.scientiallc.com (Postfix) with ESMTP id 62E132682F
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 10:12:58 -0500 (EST)
-Received: from mail.scientiallc.com ([127.0.0.1])
-	by localhost (mail.scientiallc.com [127.0.0.1]) (amavisd-new,
-	port 10032) with ESMTP id Q-wd46mkuEt1 for <yocto@yoctoproject.org>;
-	Wed, 16 Dec 2015 10:12:57 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.scientiallc.com (Postfix) with ESMTP id 7408F2B3FF
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 10:12:57 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.9.2 mail.scientiallc.com 7408F2B3FF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=scientiallc.com;
-	s=FC0616DE-2718-11E5-8CEB-908690B650C7; t=1450278777;
-	bh=b9PvJ5IsEplE9kH87NTZhsZ0uwwYhtiRRJm0XzsHvC8=;
-	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:
-	Content-Transfer-Encoding;
-	b=auleC7mB38EHO4bC6Y3kbcB5DWcNdvgQ5KJGUVV5qnlhspQ/7ed0MLtJQNwQ1Ki+M
-	j/gVhP1+Vx5W1dI+PLdGUzZJxSo/FIThf0nxSJf2VKZUhGGYgfMu1ZYUIcQpcqUQEb
-	xKEhhpQMmvWPRgV2FtEELnJeANZ7LBsv+vBXF1Z0=
-X-Virus-Scanned: amavisd-new at scientiallc.com
-Received: from mail.scientiallc.com ([127.0.0.1])
-	by localhost (mail.scientiallc.com [127.0.0.1]) (amavisd-new,
-	port 10026) with ESMTP id qfgwYHgpHidu for <yocto@yoctoproject.org>;
-	Wed, 16 Dec 2015 10:12:57 -0500 (EST)
-Received: from mail.scientiallc.com (mail.scientiallc.com [192.168.3.5])
-	by mail.scientiallc.com (Postfix) with ESMTP id 53BBA2682F
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 10:12:57 -0500 (EST)
-Date: Wed, 16 Dec 2015 10:12:57 -0500 (EST)
-From: Travis Pressler <travis.pressler@scientiallc.com>
-To: yocto@yoctoproject.org
-Message-ID: <567899667.25901.1450278777091.JavaMail.zimbra@scientiallc.com>
-MIME-Version: 1.0
-X-Originating-IP: [192.168.3.151]
-X-Mailer: Zimbra 8.6.0_GA_1182 (ZimbraWebClient - GC46 (Mac)/8.6.0_GA_1182)
-Thread-Topic: How to move the initramfs manifest into the rootfs?
-Thread-Index: gkjS01EfLgX6FTkOOj6ufYZWZygbXw==
-Subject: How to move the initramfs manifest into the rootfs?
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.53 listed in list.dnswl.org]
+Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
+	[209.85.192.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4D75E00546
+	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 08:18:42 -0800 (PST)
+Received: by mail-qg0-f53.google.com with SMTP id 103so37832075qgi.3
+	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 08:18:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=from:to:cc:subject:date:message-id:organization;
+	bh=4g1/QGtvp6fhGlkn4gCIZy8/9VvgxYETN/RmXEXLfcw=;
+	b=Css3JDmUqQQxFsmwJ5Zwv3Z7dhMw/O0rNLXkzPPEl7De5KbGrd5enFyCsWwrnduy5N
+	FojMszW7WYccGPRqVM3OI0cEnJJrAnJoqhnIHE3I1hpHftYP7EwT6JwVjjrHMWrguVyV
+	FOelYXrumQ0t82fCalo50t5FCDoISRmOLcKWKlAa9TIsqUnbfVlTjKtKdeIil7evBI6y
+	eI3LW8tL2aahTGtzAGEbqVzSR2ah6/CkonCZ9Sz9ExyFTefvsOX4wKwiaqcMD4jAp9z0
+	JAjab3FujvYYTghlOWOGjE27WbmggrrlxHxP+kf72Jv0NtRZETPafC0T2QR7pzY29NwC
+	HpGQ==
+X-Received: by 10.140.169.139 with SMTP id p133mr45345458qhp.50.1450282721402; 
+	Wed, 16 Dec 2015 08:18:41 -0800 (PST)
+Received: from localhost ([177.194.217.47])
+	by smtp.gmail.com with ESMTPSA id f7sm2856938qkb.7.2015.12.16.08.18.37
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 16 Dec 2015 08:18:40 -0800 (PST)
+Received: by localhost (sSMTP sendmail emulation);
+	Wed, 16 Dec 2015 14:18:33 -0200
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: ajlennon@dynamicdevices.co.uk
+Date: Wed, 16 Dec 2015 14:18:32 -0200
+Message-Id: <1450282712-12396-1-git-send-email-otavio@ossystems.com.br>
+X-Mailer: git-send-email 2.6.4
+Organization: O.S. Systems Software LTDA.
+Cc: yocto@yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>
+Subject: [meta-mono PATCH] mono-4.xx.inc: Inherit gettext class
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,20 +54,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Dec 2015 15:21:17 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Dec 2015 16:18:43 -0000
 
-I am using bitbake to build a recipe which requires meta/recipes-core/images/core-image-minimal-dev.bb. I would like to include the references of the symbolic links core-image-minimal-initramfs-<machine>.manifest and <recipe>-<machine>.manifest within the build/tmp/deploy/<machine>/images directory to the rootfs of the resulting operating system.
+The mono uses gettext for build, by default, so we ought to ensure it
+is available during the build.
 
-It was pretty straightforward to add <recipe>-<machine>.manifest to the image by adding an IMAGE_PREPROCESS_COMMAND like this:
+This fixes follow error:
 
-move_manifests() {
-   mkdir -p ${IMAGE_ROOTFS}/home/root
-   ls -lah ${DEPLOY_DIR_IMAGE} > ${IMAGE_ROOTFS}/home/root/lslog
-   install -m 0644 ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.manifest ${IMAGE_ROOTFS}/home/root
-}
-The lslog helped me understand what exactly the deploy/images directory looks like during the image preprocess step, and the initramfs manifest isn't in there at that point; the initramfs manifest must be created shortly thereafter (during , because after bitbake's build tasks have been completed, the deploy/images does include the initramfs manifest.
+,----[ Build error ]
+| configure: error: msgfmt not found. You need to install the 'gettext' package, or pass --enable-nls=no to configure.
+| Configure failed. The contents of all config.log files follows to aid debugging
+| .../build-default/tmp/work/x86_64-linux/mono-native/4.0.1.34-r0/mono-4.0.1/config.log
+`----
 
-Is it possible to move the core-image-minimal-initramfs-<machine>.manifest into the rootfs of my recipe-generated operating system?
+Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+---
+
+ recipes-mono/mono/mono-4.xx.inc | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/recipes-mono/mono/mono-4.xx.inc b/recipes-mono/mono/mono-4.xx.inc
+index f5ba14f..ed27c8d 100644
+--- a/recipes-mono/mono/mono-4.xx.inc
++++ b/recipes-mono/mono/mono-4.xx.inc
+@@ -30,6 +30,7 @@ FILESPATH =. "${FILE_DIRNAME}/mono-${PV}:"
+ 
+ inherit autotools-brokensep
+ inherit pkgconfig
++inherit gettext
+ 
+ EXTRA_OECONF += " mono_cv_uscore=no --with-sigaltstack=no --with-mcs-docs=no "
+ 
+-- 
+2.6.4
+
 
