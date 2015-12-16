@@ -1,59 +1,54 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <clay@montgomery1.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E5A1E00C13; Wed, 16 Dec 2015 15:43:14 -0800 (PST)
+	id BBC0DE00736; Wed, 16 Dec 2015 15:49:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [69.89.18.3 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
-Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E927E00321
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 15:43:12 -0800 (PST)
-Received: by mail-lb0-f174.google.com with SMTP id yq9so16438980lbb.3
-	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 15:43:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=0MUOvwjDtN7uIHqPio06PuRbwM65CnzxKYZvYyr63h4=;
-	b=OBRSJ3flhBvR3JjqFsriQthrDZDOW7r5pfGXds1LsvcnAC+4HHYxu3TpYJZFaGgfsH
-	IumLZU2gznfi1ScF3aOpM9PKf83VeprGLEX5ZgT1Vz/63geucPMVFeUrgWcncJc/j1We
-	Xry6tXb+aCBY5XfCWyFq9k/chN5mIXAVMeHah9jwtwrfr1yr7acUan3JyTRHSkg0EUmN
-	Xq/RcXPAnV/8impcvQK/4UldDGXkNjdtfbWY8QBQN3mK96HShAF7BJbVMyRdLyLX4+WC
-	UxYK/h3ZcgkQBhExKail0X33TlAt91EII3OFojnXGgqpSd5Bg64TNLFul6v40eFodEgB
-	MyLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=0MUOvwjDtN7uIHqPio06PuRbwM65CnzxKYZvYyr63h4=;
-	b=I4AdzF4UQOuZZyt3MIilPpDSloiCG3tC7t6cd0z6gs0W64gkQ0Ek47RDJqCTFYuoNh
-	VCDPeP+vhAzA2Mlt6xLb2Zs2gG90Wz8BYno10Ok/eUx+DN2rvDgdm6r2ZyZ0aFBap2GL
-	2fuwrsx3tgrs59mUCpr61dAv06ZuKE2AP9zltAZEd50/1AQRdIsGXNSLm/Et2ra1roq9
-	Hb3AdkP1QZMzSxkIJQbtA9KF6GePT3lYESyVKfbaNWZ0v7UKFP1BPJkjD04CCJaWRpu3
-	aMwWa5AEHfx53YoaXCDskOEJeQurpNXQ0t29SeO6rqGDOeHKSufJFY1SjOhJ+eBSLAVH
-	BF2w==
-X-Gm-Message-State: ALoCoQkUB3NUdlJTEeFtXEf6fFrcuQ4gKicGn0xU9SZoJ1cW0x6if3fnaoWyqUhoCv+lvV4deKvanRaV89IZK5Xg6QR24o4oOw==
-X-Received: by 10.112.141.201 with SMTP id rq9mr19463170lbb.4.1450309391981;
-	Wed, 16 Dec 2015 15:43:11 -0800 (PST)
-Received: from resin.localdomain
-	(dslb-178-007-064-118.178.007.pools.vodafone-ip.de. [178.7.64.118])
-	by smtp.gmail.com with ESMTPSA id ak1sm1480415lbc.2.2015.12.16.15.43.09
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 16 Dec 2015 15:43:10 -0800 (PST)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Thu, 17 Dec 2015 00:42:54 +0100
-Message-Id: <1450309374-1270-1-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.6.3
-Subject: [PATCH 1/1] raspberrypi0.conf: Add machine configuration for Raspberry Pi Zero
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 397 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Dec 2015 15:49:46 PST
+Received: from gproxy2-pub.mail.unifiedlayer.com
+	(gproxy2-pub.mail.unifiedlayer.com [69.89.18.3])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id CE528E00321
+	for <yocto@yoctoproject.org>; Wed, 16 Dec 2015 15:49:46 -0800 (PST)
+Received: (qmail 25496 invoked by uid 0); 16 Dec 2015 23:43:06 -0000
+Received: from unknown (HELO CMOut01) (10.0.90.82)
+	by gproxy2.mail.unifiedlayer.com with SMTP; 16 Dec 2015 23:43:06 -0000
+Received: from box858.bluehost.com ([69.195.124.58]) by CMOut01 with 
+	id uPiy1r00B1Fiqph01Pj1Q4; Wed, 16 Dec 2015 16:43:05 -0700
+X-Authority-Analysis: v=2.1 cv=Zc6OaKlA c=1 sm=1 tr=0
+	a=6215HlyIVfFolxfkGyTlSg==:117 a=6215HlyIVfFolxfkGyTlSg==:17
+	a=cNaOj0WVAAAA:8
+	a=f5113yIGAAAA:8 a=cwQF-0P1AAAA:8 a=DpUQn3bY8hUA:10 a=F7vrFIpsXqIA:10
+	a=wUQvQvOEmiQA:10 a=r77TgQKjGQsHNAKrUKIA:9 a=iGHA9ds3AAAA:8
+	a=eOfYFywM0scAnwVjL0sA:9 a=QEXdDO2ut3YA:10 a=pGLkceISAAAA:8
+	a=oJM4AeZ8LBYvSwTzHyYA:9 a=a_-c3dPkAMzXE00-:21 a=_W_S_7VecoQA:10
+Received: from [70.119.214.20] (port=50107 helo=[192.168.0.18])
+	by box858.bluehost.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.84) (envelope-from <clay@montgomery1.com>)
+	id 1a9Lil-0000FF-1p; Wed, 16 Dec 2015 16:42:59 -0700
+To: Khem Raj <raj.khem@gmail.com>
+References: <566DBA83.8010506@montgomery1.com>
+	<30C0DEC6-AB2D-406C-ACC3-CEAAE0DE796C@gmail.com>
+From: "Clay D. Montgomery" <clay@montgomery1.com>
+Message-ID: <5671F707.8060603@montgomery1.com>
+Date: Wed, 16 Dec 2015 17:43:03 -0600
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
+MIME-Version: 1.0
+In-Reply-To: <30C0DEC6-AB2D-406C-ACC3-CEAAE0DE796C@gmail.com>
+X-Identified-User: {1231:box858.bluehost.com:montgor0:montgomery1.com}
+	{sentby:smtp auth 70.119.214.20 authed with
+	clay@montgomery1.com}
+Cc: yocto@yoctoproject.org
+Subject: Re: Which OpenSSH packages to use?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,27 +60,189 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Dec 2015 23:43:14 -0000
+X-List-Received-Date: Wed, 16 Dec 2015 23:49:49 -0000
+Content-Type: multipart/alternative;
+	boundary="------------090209000609050906020602"
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- conf/machine/raspberrypi0.conf | 6 ++++++
- 1 file changed, 6 insertions(+)
- create mode 100644 conf/machine/raspberrypi0.conf
+--------------090209000609050906020602
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-diff --git a/conf/machine/raspberrypi0.conf b/conf/machine/raspberrypi0.conf
-new file mode 100644
-index 0000000..58468ed
---- /dev/null
-+++ b/conf/machine/raspberrypi0.conf
-@@ -0,0 +1,6 @@
-+#@TYPE: Machine
-+#@NAME: RaspberryPi Zero Development Board
-+#@DESCRIPTION: Machine configuration for the RaspberryPi Zero board (https://www.raspberrypi.org/blog/raspberry-pi-zero)
-+
-+MACHINEOVERRIDES = "raspberrypi:${MACHINE}"
-+include conf/machine/raspberrypi.conf
--- 
-2.6.3
+On 12/13/2015 12:57 PM, Khem Raj wrote:
+>
+>> On Dec 13, 2015, at 10:35 AM, Clay D. Montgomery 
+>> <clay@montgomery1.com <mailto:clay@montgomery1.com>> wrote:
+>>
+>> I'm trying to understand which of these OpenSSH package options I 
+>> should use with the CORE_IMAGE_EXTRA_INSTALL option:
+>>
+>>     openssh
+>>     openssh-sshd
+>>     openssh-sftp
+>>     openssh-sftp-server
+>>
+>> I want OpenSSH server functionality that supports both the scp and 
+>> sftp protocols. I first tried just 'openssh' and found that it 
+>> provides scp but not sftp.
+>> So then I tried the latter 3 options and I got sftp, but not scp. Do 
+>> I really need all 4 of these to get scp and sftp?
+>>
+>> I checked this recipe guide and found it lists yet another package 
+>> named 'packagegroup-core-ssh-openssh 
+>> <http://recipes.yoctoproject.org/rrs/recipedetail/122/>' but it says 
+>> nothing about sftp.
+>> http://recipes.yoctoproject.org/rrs/recipes/2.1/M2/
+>>
+>> I would appreciate some advise.
+>
+> you can just do
+>
+> EXTRA_IMAGE_FEATURES += “ssh-server-openssl” in local.conf
+>
+> or
+>
+> IMAGE_FEATURES += "ssh-server-openssl"
+>
+> via a bbappend in your layer if you hinging on to same image recipe 
+> otherwise if you have your own image recipe
+> then add it to that.
+>
+>>
+>> Thanks, Clay Montgomery
+>>
+>>
+>> -- 
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+Raj,
+
+   Thanks for the help, but that does not seem to provide the required 
+sftp server that is supposed to be here:
+     /usr/lib/openssh/sftp-server
+
+I found that I have to add all 3 of these in the 
+CORE_IMAGE_EXTRA_INSTALL list to get both scp and sftp clients and servers:
+     openssh
+     openssh-sftp
+     openssh-sftp-server
+
+Thanks, Clay
 
 
+--------------090209000609050906020602
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 12/13/2015 12:57 PM, Khem Raj wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:30C0DEC6-AB2D-406C-ACC3-CEAAE0DE796C@gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <br class="">
+      <div>
+        <blockquote type="cite" class="">
+          <div class="">On Dec 13, 2015, at 10:35 AM, Clay D. Montgomery
+            &lt;<a moz-do-not-send="true"
+              href="mailto:clay@montgomery1.com" class="">clay@montgomery1.com</a>&gt;
+            wrote:</div>
+          <br class="Apple-interchange-newline">
+          <div class="">
+            <meta http-equiv="content-type" content="text/html;
+              charset=utf-8" class="">
+            <div bgcolor="#FFFFFF" text="#000000" class=""> I'm trying
+              to understand which of these OpenSSH package options I
+              should use with the CORE_IMAGE_EXTRA_INSTALL option:<br
+                class="">
+              <br class="">
+                  openssh<br class="">
+                  openssh-sshd<br class="">
+                  openssh-sftp<br class="">
+                  openssh-sftp-server<br class="">
+              <br class="">
+              I want OpenSSH server functionality that supports both the
+              scp and sftp protocols. I first tried just 'openssh' and
+              found that it provides scp but not sftp.<br class="">
+              So then I tried the latter 3 options and I got sftp, but
+              not scp. Do I really need all 4 of these to get scp and
+              sftp?<br class="">
+              <br class="">
+              I checked this recipe guide and found it lists yet another
+              package named '<a moz-do-not-send="true"
+                href="http://recipes.yoctoproject.org/rrs/recipedetail/122/"
+                class="">packagegroup-core-ssh-openssh</a>' but it says
+              nothing about sftp.<br class="">
+                  <a moz-do-not-send="true"
+                class="moz-txt-link-freetext"
+                href="http://recipes.yoctoproject.org/rrs/recipes/2.1/M2/">http://recipes.yoctoproject.org/rrs/recipes/2.1/M2/</a><br
+                class="">
+              <br class="">
+              I would appreciate some advise.<br class="">
+            </div>
+          </div>
+        </blockquote>
+        <div><br class="">
+        </div>
+        <div>you can just do </div>
+        <div><br class="">
+        </div>
+        <div>EXTRA_IMAGE_FEATURES += “ssh-server-openssl” in local.conf </div>
+        <div><br class="">
+        </div>
+        <div>or</div>
+        <div><br class="">
+        </div>
+        <div>IMAGE_FEATURES += "ssh-server-openssl"</div>
+        <div><br class="">
+        </div>
+        <div>via a bbappend in your layer if you hinging on to same
+          image recipe otherwise if you have your own image recipe</div>
+        <div>then add it to that.</div>
+        <br class="">
+        <blockquote type="cite" class="">
+          <div class="">
+            <div bgcolor="#FFFFFF" text="#000000" class=""> <br
+                class="">
+              Thanks, Clay Montgomery<br class="">
+              <br class="">
+              <br class="">
+            </div>
+            -- <br class="">
+            _______________________________________________<br class="">
+            yocto mailing list<br class="">
+            <a moz-do-not-send="true"
+              href="mailto:yocto@yoctoproject.org" class="">yocto@yoctoproject.org</a><br
+              class="">
+            <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br class="">
+          </div>
+        </blockquote>
+      </div>
+      <br class="">
+    </blockquote>
+    Raj,<br>
+    <br>
+      Thanks for the help, but that does not seem to provide the
+    required sftp server that is supposed to be here:<br>
+        /usr/lib/openssh/sftp-server<br>
+    <br>
+    I found that I have to add all 3 of these in the
+    CORE_IMAGE_EXTRA_INSTALL list to get both scp and sftp clients and
+    servers:<br>
+        openssh<br>
+        openssh-sftp<br>
+        openssh-sftp-server<br>
+    <br>
+    Thanks, Clay<br>
+    <br>
+  </body>
+</html>
+
+--------------090209000609050906020602--
