@@ -1,54 +1,63 @@
-Return-Path: <leon@anavi.org>
+Return-Path: <groovy@mail.ru>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1943AE00ACF; Fri, 18 Dec 2015 03:00:25 -0800 (PST)
+	id 89655E00B45; Fri, 18 Dec 2015 03:24:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	RDNS_NONE,T_DKIM_INVALID autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, 
+	SPF_HELO_PASS,XPRIO autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (groovy[at]mail.ru)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [94.100.181.110 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from anavi.org (unknown [91.215.217.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDF3E00349
-	for <yocto@yoctoproject.org>; Fri, 18 Dec 2015 03:00:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=anavi.org;
-	s=default; 
-	h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version;
-	bh=rfdGs2X4w582JuJuCThgUJkl2YYf01Xsjwj4BF3yf2U=; 
-	b=qc9JYabzuvYgtTDbXb/rtOjH+vmyyBqe9ChqY6DwzDrnlch8Y7M/OFDz4zZMcsgR4M67rzjmp3kX0bAHJE9BvBvXLPmx6bpPOEMDjCBGI3WOnBkvvmc4fuLL2jABnFC42bseM3mWgZNS4rfuRwlCxZP2DDDoXE161kfSi9cY+QQ=;
-Received: from localhost ([::1]:45127 helo=voyager.icnhost.net)
-	by voyager.icnhost.net with esmtpa (Exim 4.85)
-	(envelope-from <leon@anavi.org>)
-	id 1a9sll-0002LB-BM; Fri, 18 Dec 2015 13:00:17 +0200
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.6 XPRIO Has X-Priority header
+X-Greylist: delayed 2174 seconds by postgrey-1.32 at yocto-www;
+	Fri, 18 Dec 2015 03:24:35 PST
+Received: from fallback8.mail.ru (fallback8.mail.ru [94.100.181.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3E1DE0033E
+	for <yocto@yoctoproject.org>; Fri, 18 Dec 2015 03:24:35 -0800 (PST)
+Received: from f354.i.mail.ru (f354.i.mail.ru [217.69.140.250])
+	by fallback8.mail.ru (mPOP.Fallback_MX) with ESMTP id 2C8FA9122A4D
+	for <yocto@yoctoproject.org>; Fri, 18 Dec 2015 13:35:27 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
+	s=mail2; 
+	h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:Subject:To:From;
+	bh=EtzeNIRrod1fViE6hsvifoQLGXzA42DLhazWmaat5Ow=; 
+	b=m7YVXknMk7RM/v3XS3/Xzy2uTEf/mvihUIPkwVogVFKCehY7g0N1+o3o/afL3B9KHsSzjQRYbpzYm449+mGXe8pLywMfqVZmkixMqwHv8Q8rzBUVon/ygYVOp1mIznk4lwkKsI6s6w9QREsl/MudzhXxrXRcknHp4YTvNDA0Sk0=;
+Received: from [93.120.193.123] (ident=mail)
+	by f354.i.mail.ru with local (envelope-from <groovy@mail.ru>)
+	id 1a9sNg-00018x-9w
+	for yocto@yoctoproject.org; Fri, 18 Dec 2015 13:35:24 +0300
+Received: from [93.120.193.123] by e.mail.ru with HTTP;
+	Fri, 18 Dec 2015 13:35:24 +0300
+From: =?UTF-8?B?0JXQstCz0LXQvdC40Lkg0JDRgdGC0LDRhNGM0LXQsg==?= <groovy@mail.ru>
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Date: Fri, 18 Dec 2015 13:00:17 +0200
-From: Leon Anavi <leon@anavi.org>
-To: Andrei Gherzan <andrei@gherzan.ro>
-In-Reply-To: <CAK18fxEpvZK5izHF1WCjgSr1OHHKJxLHsiz0uC0S=4fuNwDhdw@mail.gmail.com>
-References: <1450395478-4272-1-git-send-email-leon@anavi.org>
-	<CAK18fxEpvZK5izHF1WCjgSr1OHHKJxLHsiz0uC0S=4fuNwDhdw@mail.gmail.com>
-Message-ID: <e1392f0b42f54e8f917fa64a8b1d9aad@anavi.org>
-X-Sender: leon@anavi.org
-User-Agent: Roundcube Webmail/1.0.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - voyager.icnhost.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - anavi.org
-X-Get-Message-Sender-Via: voyager.icnhost.net: authenticated_id: leon@anavi.org
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Add Python modules to support Raspberry Pi Sense Hat
+X-Mailer: Mail.Ru Mailer 1.0
+X-Originating-IP: [93.120.193.123]
+Date: Fri, 18 Dec 2015 13:35:24 +0300
+X-Priority: 3 (Normal)
+Message-ID: <1450434924.569396788@f354.i.mail.ru>
+X-Mras: Ok
+X-Spam: undefined
+Subject: Different *.so content in recipe and rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: =?UTF-8?B?0JXQstCz0LXQvdC40Lkg0JDRgdGC0LDRhNGM0LXQsg==?=
+	<groovy@mail.ru>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,154 +66,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Dec 2015 11:00:25 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 18 Dec 2015 11:24:38 -0000
+Content-Type: multipart/alternative;
+	boundary="--ALT--AZKoEn18m9QoykI7GrnVjFR9nQmEfQJD1450434924"
 
-Hi Andrei,
+----ALT--AZKoEn18m9QoykI7GrnVjFR9nQmEfQJD1450434924
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-On 2015-12-18 12:38, Andrei Gherzan wrote:
-> On Fri, Dec 18, 2015 at 12:37 AM, Leon Anavi <leon@anavi.org> wrote:
-> 
->> Python modules python-sense-hat and python-rtimu have been
->> added to support the add-on board Sense Hat for Raspberry Pi.
->> 
->> Python module python-rtimu uses the source code from the
->> GitHub repository of RPi-Distro.
->> 
->> Signed-off-by: Leon Anavi <leon@anavi.org>
->> ---
->> recipes-devtools/python/python-rtimu_git.bb [1] | 12
->> +++++++++
->> recipes-devtools/python/python-sense-hat_2.1.0.bb [2] | 31
->> +++++++++++++++++++++++
->> 2 files changed, 43 insertions(+)
->> create mode 100644 recipes-devtools/python/python-rtimu_git.bb [1]
->> create mode 100644
->> recipes-devtools/python/python-sense-hat_2.1.0.bb [2]
-> 
-> First of all thank you for your contribution and involvement. As this
-> is your first patch I will try to give you some hints:
-> 1. I would lik eto have this patch split in 2 patches (for each bb
-> file)
-> 2. Then use the commit log following the guidelines here:
-> http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines [8]
-> (Ex: "python-sense-hat: Add recipe to support..."
+IEhpLAoKWW9jdG8gMi4wCgpJIGhhdmUgYSByZWNpcGUgcXRiYXNlLgoKUkVDSVBFIFNJREU6CkZp
+bGUgL3BhY2thZ2VzLXNwbGl0L3F0YmFzZS91c3IvbGliL2xpYlF0NUNvcmUuc28uNS41LjEKU2l6
+ZTogNTE4Njc2MApUaW1lOiAwMToyMQrCoApST09URlMgU0lERToKRmlsZSAvdXNyL2xpYi9saWJR
+dDVDb3JlLnNvLjUuNS4xClNpemU6IDUyMDYwODAKVGltZTogMDE6MjEKClRoZSBTREsgY29uc3Ry
+dWN0ZWQgYnkgLWMgcG9wdWxhdGVfc2RrIGhhcyBzYW1lIHZlcnNpb24gb2YgZmlsZSBhcyBhIHJl
+Y2lwZSBzaWRlIGhhcy4KQWN0dWFsbHkgSSBoYXZlIG5vIGZpbGUgd2l0aCBzaXplIDUyMDA2ODAg
+YW55d2hlcmUgaW4gbXkgL3RtcCBkaXIuIFRoZSBvbmx5IHBsYWNlIGl0IGV4aXN0cyAtIHJvb3Rm
+cyBpbWFnZS7CoArCoApJIGhhdmUgbWFueSBzdWNoIGRpZmZlcmVuY2llcywgaW5jbHVkaW5nIGxp
+YmMuCgpUaGUgaW1hZ2Ugd29ya3MuIFF0IHdvcmtzLiBMb2NhbCBkZWJ1Z2dpbmcgaW4gYSBkZXZp
+Y2UgY29uc29sZSB3b3Jrcy4KUmVtb3RlIGRlYnVnZ2luZyBmYWlscy4gVGhlIGRlYnVnZ2VyIHNh
+eXMgSSBoYXZlIGRpZmZlcmVudCB2ZXJzaW9ucyBvZiBsaWJzIGluIG15IFNESydzIHN5c3Jvb3Qg
+YW5kIHRoZSBkZXZpY2UuCgpJZiBJIHZpZXcgdGhlIGZpbGVzIGluIE1DJ3Mgdmlld2VyIC0gaXQg
+c2hvd3MgdGhlIHNhbWUgZnVuY3Rpb24gbmFtZXMsIGJ1dCBkaWZmZXJlbnQgYWRkcmVzc2VzLgoK
+SWYgSSBwdXQgdGhlIGZpbGUgbGliUXQ1Q29yZS5zby41LjUuMcKgZnJvbSB0aGUgcmVjaXBlIHRv
+IHJvb3RmcyBtYW51YWxseSAtIGltYWdlIHN0aWxsIHdvcmtzLiBSZW1vdGUgZGVidWdnZXIgcmVw
+b3J0cyBubyBlcnJvcnMuCgpCdXQgSSBzdGlsbCB3YW50IHRvIGNsZWFyIG91dCB3aGF0J3MgZ29p
+bmcgb24gYW5kIGhvdyB0byBtYWtlIGRlYnVnZ2FibGUgaW1hZ2Ugdy5vLiBoYW5kIG1hbmlwdWxh
+dGlvbnMuCgpCVFcgSSBkaWQgYSBmdWxsIHJlYnVpbGQgb2YgdGhlIGltYWdlLiBObyBzdWNjZXNz
+LCBsaWJzIGFyZSBzdGlsbCBkaWZmZXJlbnQKCkFueSBoZWxwIGlzIGFwcHJlY2lhdGVkLgoKRXVn
+ZW5l
 
-Thank you for the provided hints. I am working with Sense Hat for a 
-hobby project so I will be able to fix my commits and send them again 
-during the weekend. Fortunately today is Friday so I will do it tomorrow 
-:)
+----ALT--AZKoEn18m9QoykI7GrnVjFR9nQmEfQJD1450434924
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-> 
->> diff --git a/recipes-devtools/python/python-rtimu_git.bb [1]
->> b/recipes-devtools/python/python-rtimu_git.bb [1]
->> new file mode 100644
->> index 0000000..9d2f249
->> --- /dev/null
->> +++ b/recipes-devtools/python/python-rtimu_git.bb [1]
->> @@ -0,0 +1,12 @@
->> +DESCRIPTION = "RTIMULib is a C++ and Python library that makes it
->> easy to use 9-dof and 10-dof IMUs with embedded Linux systems"
-> 
-> I'm not familiar with this library but as I see it, I don't think is
-> specific to Raspberrypi. So I'm wondering if it wouldn't be better to
-> have this in meta-oe for example and the other one, which is
-> definitely rpi specific, here.
+CjxIVE1MPjxCT0RZPkhpLDxicj48YnI+WW9jdG8gMi4wPGJyPjxicj5JIGhhdmUgYSByZWNpcGUg
+cXRiYXNlLjxicj48YnI+UkVDSVBFIFNJREU6PGJyPkZpbGUgL3BhY2thZ2VzLXNwbGl0L3F0YmFz
+ZS91c3IvbGliL2xpYlF0NUNvcmUuc28uNS41LjE8YnI+U2l6ZTogNTE4Njc2MDxicj5UaW1lOiAw
+MToyMTxicj4mbmJzcDs8YnI+Uk9PVEZTIFNJREU6PGJyPkZpbGUgL3Vzci9saWIvbGliUXQ1Q29y
+ZS5zby41LjUuMTxicj5TaXplOiA1MjA2MDgwPGJyPlRpbWU6IDAxOjIxPGJyPjxicj5UaGUgU0RL
+IGNvbnN0cnVjdGVkIGJ5IC1jIHBvcHVsYXRlX3NkayBoYXMgc2FtZSB2ZXJzaW9uIG9mIGZpbGUg
+YXMgYSByZWNpcGUgc2lkZSBoYXMuPGJyPkFjdHVhbGx5IEkgaGF2ZSBubyBmaWxlIHdpdGggc2l6
+ZSA1MjAwNjgwIGFueXdoZXJlIGluIG15IC90bXAgZGlyLiBUaGUgb25seSBwbGFjZSBpdCBleGlz
+dHMgLSByb290ZnMgaW1hZ2UuJm5ic3A7PGJyPiZuYnNwOzxicj5JIGhhdmUgbWFueSBzdWNoIGRp
+ZmZlcmVuY2llcywgaW5jbHVkaW5nIGxpYmMuPGJyPjxicj5UaGUgaW1hZ2Ugd29ya3MuIFF0IHdv
+cmtzLiBMb2NhbCBkZWJ1Z2dpbmcgaW4gYSBkZXZpY2UgY29uc29sZSB3b3Jrcy48YnI+UmVtb3Rl
+IGRlYnVnZ2luZyBmYWlscy4gVGhlIGRlYnVnZ2VyIHNheXMgSSBoYXZlIGRpZmZlcmVudCB2ZXJz
+aW9ucyBvZiBsaWJzIGluIG15IFNESydzIHN5c3Jvb3QgYW5kIHRoZSBkZXZpY2UuPGJyPjxicj5J
+ZiBJIHZpZXcgdGhlIGZpbGVzIGluIE1DJ3Mgdmlld2VyIC0gaXQgc2hvd3MgdGhlIHNhbWUgZnVu
+Y3Rpb24gbmFtZXMsIGJ1dCBkaWZmZXJlbnQgYWRkcmVzc2VzLjxicj48YnI+SWYgSSBwdXQgdGhl
+IGZpbGUgbGliUXQ1Q29yZS5zby41LjUuMSZuYnNwO2Zyb20gdGhlIHJlY2lwZSB0byByb290ZnMg
+bWFudWFsbHkgLSBpbWFnZSBzdGlsbCB3b3Jrcy4gUmVtb3RlIGRlYnVnZ2VyIHJlcG9ydHMgbm8g
+ZXJyb3JzLjxicj48YnI+QnV0IEkgc3RpbGwgd2FudCB0byBjbGVhciBvdXQgd2hhdCdzIGdvaW5n
+IG9uIGFuZCBob3cgdG8gbWFrZSBkZWJ1Z2dhYmxlIGltYWdlIHcuby4gaGFuZCBtYW5pcHVsYXRp
+b25zLjxicj48YnI+QlRXIEkgZGlkIGEgZnVsbCByZWJ1aWxkIG9mIHRoZSBpbWFnZS4gTm8gc3Vj
+Y2VzcywgbGlicyBhcmUgc3RpbGwgZGlmZmVyZW50PGJyPjxicj5BbnkgaGVscCBpcyBhcHByZWNp
+YXRlZC48YnI+PGJyPkV1Z2VuZTwvQk9EWT48L0hUTUw+Cg==
 
-Honestly I am also not that familiar with the details. As far as I 
-understood this library is especially for Raspberry PI and Intel Edison. 
-The recipe is using source code from the GitHub repository of 
-organization RPi-Distro. Therefore I believe that meta-raspberrypi is 
-the right place for python-rtimu.
-
-Best regards, Leon
-
-> 
->> +HOMEPAGE = "https://github.com/RPi-Distro/RTIMULib/ [3]"
->> +SECTION = "devel/python"
->> +LICENSE = "MIT"
->> +LIC_FILES_CHKSUM =
->> "file://../../LICENSE;md5=96cdecb41125f498958e09b72faf318e"
->> +
->> +SRC_URI =
->> 
-> "git://github.com/RPi-Distro/RTIMULib.git;protocol=http;branch=master
->> [4] "
->> +SRCREV = "b949681af69b45f0f7f4bb53b6770037b5b02178"
->> +
->> +S = "${WORKDIR}/git/Linux/python/"
->> +
->> +inherit setuptools
->> diff --git a/recipes-devtools/python/python-sense-hat_2.1.0.bb [2]
->> b/recipes-devtools/python/python-sense-hat_2.1.0.bb [2]
->> new file mode 100644
->> index 0000000..0665536
->> --- /dev/null
->> +++ b/recipes-devtools/python/python-sense-hat_2.1.0.bb [2]
->> @@ -0,0 +1,31 @@
->> +SUMMARY = "Python module to control the Raspberry Pi Sense HAT
->> used in the Astro Pi mission"
->> +HOMEPAGE = "https://github.com/RPi-Distro/python-sense-hat [5]"
->> +SECTION = "devel/python"
->> +LICENSE = "BSD"
->> +LIC_FILES_CHKSUM =
->> "file://LICENCE.txt;md5=d80fe312e1ff5fbd97369b093bf21cda"
->> +
->> +SRCNAME = "sense-hat"
->> +
->> +SRC_URI =
->> 
-> "https://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz
->> [6]"
->> +
->> +SRC_URI[md5sum] = "71217f15ea963040f06e2f50722186ca"
->> +SRC_URI[sha256sum] =
->> "c6c76707c0ea514e4b0f1f96f1b5b79755875891aae037df7434b6aad7b9dbca"
->> +
->> +S = "${WORKDIR}/${SRCNAME}-${PV}"
->> +
->> +inherit setuptools
->> +
->> +DEPENDS_${PN} += "
->> + jpeg
->> + jpeg-dev
->> + zlib
->> + zlib-dev
->> + freetype
->> + freetype-dev
->> + "
->> +
->> +RDEPENDS_${PN} += "
->> + python-numpy
->> + python-rtimu
->> + python-imaging
->> + "
->> --
->> 2.5.0
->> 
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto [7]
-> 
-> 
-> 
-> Links:
-> ------
-> [1] http://python-rtimu_git.bb
-> [2] http://python-sense-hat_2.1.0.bb
-> [3] https://github.com/RPi-Distro/RTIMULib/
-> [4] 
-> http://github.com/RPi-Distro/RTIMULib.git;protocol=http;branch=master
-> [5] https://github.com/RPi-Distro/python-sense-hat
-> [6] 
-> https://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz
-> [7] https://lists.yoctoproject.org/listinfo/yocto
-> [8] http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
-
--- 
-http://anavi.org/
-
+----ALT--AZKoEn18m9QoykI7GrnVjFR9nQmEfQJD1450434924--
