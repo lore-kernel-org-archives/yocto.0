@@ -1,52 +1,53 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE042E00B9D; Sat, 19 Dec 2015 01:35:07 -0800 (PST)
+	id B31D4E00B67; Sat, 19 Dec 2015 01:40:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BASE64_LENGTH_79_INF, BAYES_00,
+	DKIM_ADSP_CUSTOM_MED, FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	mail provider *      (stefboerrigter[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E81BE007B4
-	for <yocto@yoctoproject.org>; Sat, 19 Dec 2015 01:35:05 -0800 (PST)
-Received: by mail-ig0-f181.google.com with SMTP id jw2so7797410igc.1
-	for <yocto@yoctoproject.org>; Sat, 19 Dec 2015 01:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=0MhFU7XG1vzZgChMurUyyajzyp+k5PJ8EJDnSTl2PUA=;
-	b=KHhmWzjqSc1V10HRHxl8IhJ/aP4agNecHMYAfylZOX/sMjJMy0nMKnzawpbCmXjkJl
-	axkKDCo5eCyx7yKCtD2GZTrB4o6EOPmrlWPwlVAIu2q3lDVdF3XQgax1WtBQGwxMmK2B
-	dck5zHwWtWdo+gTbqW/QIteC7gyKz9Sb82mVwsYmaMgSJ3g+1kAMmfC6nt/kkqrLlZFH
-	ZPx0TzpWnW9JprdNvH6qpi5F+keF+5QwW36aB9xBl0LCdElOcaOyqAqrtztjPRFuzNE5
-	Tnap3i6lfo5OgWUDNb6AjedWNoIv9MEWXlhO6lgRwI8QT9KJ3WRC6gNK0Y47nKMHydY8
-	xTag==
-X-Received: by 10.50.20.138 with SMTP id n10mr8256112ige.11.1450517704718;
-	Sat, 19 Dec 2015 01:35:04 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.12.205 with HTTP; Sat, 19 Dec 2015 01:34:35 -0800 (PST)
-In-Reply-To: <0E803250-E909-436A-88B9-BB90C2C6FBAF@t-online.de>
-References: <0E803250-E909-436A-88B9-BB90C2C6FBAF@t-online.de>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 19 Dec 2015 01:34:35 -0800
-Message-ID: <CAMKF1sqtiJqUEY-rKArJS3fwQiPErw5C_nxaX-zwXgbPUanzWQ@mail.gmail.com>
-To: Markus Volk <f_l_k@t-online.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: uclibc
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  1.5 BASE64_LENGTH_79_INF BODY: base64 encoded email part uses line
+	*      length greater than 79 characters
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34585E007B4
+	for <yocto@yoctoproject.org>; Sat, 19 Dec 2015 01:40:06 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1aADzf-0000Bi-Nq
+	for yocto@yoctoproject.org; Sat, 19 Dec 2015 10:40:03 +0100
+Received: from 037-210-158-163.dynamic.caiway.nl ([163.158.210.37])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 19 Dec 2015 10:40:03 +0100
+Received: from Stefboerrigter by 037-210-158-163.dynamic.caiway.nl with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 19 Dec 2015 10:40:03 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Stef <Stefboerrigter@gmail.com>
+Date: Sat, 19 Dec 2015 09:38:27 +0000 (UTC)
+Message-ID: <loom.20151219T103721-415@post.gmane.org>
+References: <CA+KKcbkzeEsDO63iNESUbDCAQD7R41mTzPAN65RkbFNMuq3+zA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 163.158.210.37 (Mozilla/5.0 (Windows NT 6.1;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106
+	Safari/537.36)
+Subject: Re: [meta-java] openjdk-8 fail to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,50 +59,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 Dec 2015 09:35:08 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 19 Dec 2015 09:40:09 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Please try this patch here
+RmVkZXJpY28gUGlldHJvIEJyaWF0YSA8ZmVkZXJpY29icmlhdGFALi4uPiB3cml0ZXM6Cgo+IAo+IAo+IAo+IEhpIEFsbCwKPiBJJ20gdHJ5aW5nIHRvIGJ1aWxkIG9wZW5qZGstOCBidXQgSSdtIHN0dWNrLm15IGN1cnJlbnQgc2V0dXAgZG9lcyBub3QgCmRlZmluZSBhbnl0aGluZyBmb3I6I1BSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2phdmEtCm5hdGl2ZSNQUkVGRVJSRURfUFJPVklERVJfdmlydHVhbC9qYXZhYy1uYXRpdmUKPiAKPiBmb2xsb3cgdGhlIGxvZyBlcnJvcgo+IAo+IAo+IAo+IEVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRvX2NvbmZpZ3VyZSAobG9nIGZpbGUgaXMgbG9jYXRlZCBhdCAKL2hvbWUvZmVkZXJpY28veW9jdG8vaW14Ni9SNi4wL2J1aWxkLWlteDYtbXg2cXVhZC90bXAvd29yay94ODZfNjQtCmxpbnV4L29wZW5qZGstOC1uYXRpdmUvNzJiMDUtcjAvdGVtcC9sb2cuZG9fY29uZmlndXJlLjI3MDI0KUVSUk9SOiAKTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvZmVkZXJpY28veW9jdG8vaW14Ni9SNi4wL2J1aWxkLWlteDYtCm14NnF1YWQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L29wZW5qZGstOC1uYXRpdmUvNzJiMDUtCnIwL3RlbXAvbG9nLmRvX2NvbmZpZ3VyZS4yNzAyNExvZyBkYXRhIGZvbGxvd3M6fCBERUJVRzogRXhlY3V0aW5nIHB5dGhvbiAKZnVuY3Rpb24gc3lzcm9vdF9jbGVhbnNzdGF0ZXwgREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBzeXNyb290X2NsZWFuc3N0YXRlIApmaW5pc2hlZHwgREVCVUc6IFNJVEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2NvbW1vbi1saW51eCcsICdjb21tb24tCmdsaWJjJywgJ2JpdC02NCcsICd4ODZfNjQtbGludXgnLCAnY29tbW9uJ118IERFQlVHOiBFeGVjdXRpbmcgc2hlbGwgCmZ1bmN0aW9uIGF1dG90b29sc19wcmVjb25maWd1cmV8IERFQlVHOiBTaGVsbCBmdW5jdGlvbiAKYXV0b3Rvb2xzX3ByZWNvbmZpZ3VyZSBmaW5pc2hlZHwgREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gCmF1dG90b29sc19jb3B5X2FjbG9jYWxzfCBERUJVRzogUHl0aG9uIGZ1bmN0aW9uIGF1dG90b29sc19jb3B5X2FjbG9jYWxzIApmaW5pc2hlZHwgREVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19jb25maWd1cmV8IEVSUk9SOiBubyAKY29uZmlndXJlIHNjcmlwdCBmb3VuZCBhdCAvaG9tZS9mZWRlcmljby95b2N0by9pbXg2L1I2LjAvYnVpbGQtaW14Ni0KbXg2cXVhZC90bXAvd29yay94ODZfNjQtbGludXgvb3Blbmpkay04LW5hdGl2ZS83MmIwNS1yMC9qZGs4dS0KZThiZWQxNDk2ZmYyL2NvbmZpZ3VyZXwgV0FSTklORzogZXhpdCBjb2RlIDEgZnJvbSBhIHNoZWxsIGNvbW1hbmQufCAKRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogZG9fY29uZmlndXJlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IAovaG9tZS9mZWRlcmljby95b2N0by9pbXg2L1I2LjAvYnVpbGQtaW14Ni1teDZxdWFkL3RtcC93b3JrL3g4Nl82NC0KbGludXgvb3Blbmpkay04LW5hdGl2ZS83MmIwNS1yMC90ZW1wL2xvZy5kb19jb25maWd1cmUuMjcwMjQpRVJST1I6IFRhc2sgCjE0NiAoL2hvbWUvZmVkZXJpY28veW9jdG8vaW14Ni9SNi4wL3NvdXJjZXMvbWV0YS1qYXZhL3JlY2lwZXMtCmNvcmUvb3Blbmpkay9vcGVuamRrLTgtbmF0aXZlXzcyYjA1LmJiLCBkb19jb25maWd1cmUpIGZhaWxlZCB3aXRoIGV4aXQgCmNvZGUgJzEnTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDExMzkgdGFza3Mgb2Ygd2hpY2ggMTUgZGlkbid0IApuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC5ObyBjdXJyZW50bHkgcnVubmluZyB0YXNrcyAoMTEzOSBvZiAKMTE1MClTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOsKgIAovaG9tZS9mZWRlcmljby95b2N0by9pbXg2L1I2LjAvc291cmNlcy9tZXRhLWphdmEvcmVjaXBlcy0KY29yZS9vcGVuamRrL29wZW5qZGstOC1uYXRpdmVfNzJiMDUuYmIsIGRvX2NvbmZpZ3VyZQo+IAo+IHRoYW5rcyBhbmQgcmVnYXJkcwo+IAo+IEZlZGVyaWNvCj4gCj4gCj4gCj4gCj4gCgpUcnkgdG8gYXBwbHkgdGhpcyBwYXRjaCB0byBtZXRhIGxheWVyOgpodHRwczovL2dpdGh1Yi5jb20vcmVoc2Fjay9wb2t5L2NvbW1pdC82NWNkYWQ0MGYyNzE3Yjg1ODkyZTEyYzgwNzQ5Y2Q0M2MKMWUxOWE0MAoKSXQgd29ya2VkIGZvciBtZQo=
 
-https://github.com/kraj/openembedded-core/commit/3345a12ed0dbf71b517d2560be=
-73d5da52491b8f
-
-This is in my pending queues that will be submitted soon.
-
-On Sat, Dec 19, 2015 at 1:18 AM, Markus Volk <f_l_k@t-online.de> wrote:
-> Hello,
->
-> i=C2=B4m trying to build an image using the poky master branch and i=C2=
-=B4m stuck right at the beginning with this error message:
->
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'nativesdk-glibc' (but /home/flk/yocto/poky/meta=
-/recipes-core/meta/uninative-tarball.bb RDEPENDS on or otherwise requires i=
-t)
-> ERROR: nativesdk-glibc was skipped: PREFERRED_PROVIDER_virtual/nativesdk-=
-x86_64-oesdk-linux-libc-for-gcc set to nativesdk-uclibc, not nativesdk-glib=
-c
-> NOTE: Runtime target 'nativesdk-glibc' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['nativesdk-glibc']
-> ERROR: Required build target 'neutrino-image' has no buildable providers.
-> Missing or unbuildable dependency chain was: ['neutrino-image', 'uninativ=
-e-tarball', 'nativesdk-glibc']
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
-e.
->
-> Building the image with TCLIBC =3D =E2=80=9Eglibc=E2=80=9C just works fin=
-e. i=C2=B4m also capable to build an uclibc image with poky using the jethr=
-o branch without errors
->
-> any ideas,
->
-> Markus Volk
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
