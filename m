@@ -1,46 +1,54 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1796EE00C33; Mon, 21 Dec 2015 03:25:40 -0800 (PST)
+	id CE09FE00C5C; Mon, 21 Dec 2015 03:43:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marek.belisko[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27B23E00CAF;
-	Mon, 21 Dec 2015 03:25:38 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Dec 2015 03:25:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,459,1444719600"; d="scan'208";a="845702623"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 21 Dec 2015 03:25:38 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.163]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.13]) with mapi id
-	14.03.0248.002; Mon, 21 Dec 2015 11:25:36 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Mirela Rabulea <Mirela.Rabulea@freescale.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
-Thread-Topic: [yocto] using Hob to run images on a custom simulator, other
-	than qemu
-Thread-Index: AQHRO+JQkjs3VfaAnke6FvA1yts7QA==
-Date: Mon, 21 Dec 2015 11:25:36 +0000
-Message-ID: <D29D8ACF.6DB8E%belen.barros.pena@intel.com>
-References: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
-In-Reply-To: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.5.9.151119
-x-originating-ip: [10.237.224.30]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F9C6E00903
+	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:43:13 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id l126so66175491wml.1
+	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:43:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=UZPHrU1VVQZKOz1ZAjBMJAnUgDRWZANzzP5miF6tA0g=;
+	b=ew+3FedwWoz7oWS8Zkt2L6rHVD7My3/jNAjedTflDZd7Mv9Yh5Yv3VVMc/t1JGXc3S
+	KKQQpQa22Iziak3cUxseajwABZl8LWn4lW4P1nSW0jZu05zdVd3QrOBwRf5l2W1P+l92
+	iDNitxqzkxpsoO84n0iENwtAdY0Skd10ovNT57GsQCCPNfDpPLGnGdH8HGbTMiKP0TUw
+	w+dFYQRBcE3TmpWb2tyeY02ukI+LfEnSbm1T6269PpHzwOSd3NHs+gGwG7cutzYJe/KP
+	ccGfgYnrEnjdz1Agi3K1RFMsR87COzP+hU6qwc5AAphHK3tT7Fsk4NQeq6a9EscETeOT
+	H9ow==
 MIME-Version: 1.0
-Cc: "nicolae.manescu@nxp.com" <nicolae.manescu@nxp.com>
-Subject: Re: using Hob to run images on a custom simulator, other than qemu
+X-Received: by 10.194.111.232 with SMTP id il8mr23441379wjb.150.1450698192987; 
+	Mon, 21 Dec 2015 03:43:12 -0800 (PST)
+Received: by 10.28.109.210 with HTTP; Mon, 21 Dec 2015 03:43:12 -0800 (PST)
+In-Reply-To: <CAJTo0Lb9PkqWxb6rDGv=TvJsi4b0F3UPzH-qmTPQ8-KtqFOMKA@mail.gmail.com>
+References: <CAAfyv378CR0-RFgLUp7V7HjuzdgEAjXVT2_nFTUvGCbRa2i76A@mail.gmail.com>
+	<CAJTo0Lbx7BWsWQiYqsRgbjStZh9sN7-WOFacJTfvG9GeEfhxnA@mail.gmail.com>
+	<3848CC51-54FB-4AA9-A548-95229C186560@binarylemon.com>
+	<CAJTo0Lb9PkqWxb6rDGv=TvJsi4b0F3UPzH-qmTPQ8-KtqFOMKA@mail.gmail.com>
+Date: Mon, 21 Dec 2015 12:43:12 +0100
+Message-ID: <CAAfyv3547B8cC1Cw0Wi6LBAcEdcP+cSHkmkg1tqCGBG9vnXHVw@mail.gmail.com>
+From: Belisko Marek <marek.belisko@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: building on os x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,95 +60,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Dec 2015 11:25:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <B4B141968E944744A5E5CE07E495153C@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 21 Dec 2015 11:43:15 -0000
+Content-Type: text/plain; charset=UTF-8
+
+On Mon, Dec 21, 2015 at 12:24 PM, Burton, Ross <ross.burton@intel.com> wrote:
+>
+> On 21 December 2015 at 11:09, Jozef Maslik <maslo@binarylemon.com> wrote:
+>>
+>> Anyway, are there any activities or plans to fix and support osx?
+>
+>
+> Well with El Capitan's improved security apparently crippling LD_PRELOAD (so
+> I hear, unverified currently), Pseudo won't work, which means an alternative
+> will need to be researched and implemented.  We really recommend using a VM.
+> For what it's worth OSX supports hypervisors so something like
+> https://github.com/mist64/xhyve is free and should be very efficient.
+Ah great. Thanks for all valuable infos.
+>
+> Ross
+
+BR,
+
+marek
 
 
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
-On 18/12/2015 16:05, "yocto-bounces@yoctoproject.org on behalf of Mirela
-Rabulea" <yocto-bounces@yoctoproject.org on behalf of
-Mirela.Rabulea@freescale.com> wrote:
-
->
->
->Hello yocto world=20
->J
->
->=20
->
->This is my first message on any yocto list, I=B9m not sure which list to
->address, so I choose the ones which seemed the most generic and suited to
->my purpose. Please redirect me if a more specific list is better
-> suited to ask this question.
->
->=20
->
->The problem I see at present is: there is one single button in Hob, =B3Run
->Image=B2, which is active only for qemu images, and it is triggering the
->execution of the =B3poky\scripts\runqemu=B2 script. Please scroll down
-> to the picture at end of this email to see what I=B9m talking about.
->
->=20
->
->The question I want to ask is if it would be acceptable to add more
->buttons to the =B3Image details=B2 dialog (or a new dialog to pop-up when
->=B3Run Image=B2 is clicked), in order to allow the customization of the
-> simulator to be launched, basically to specify the location & command
->line of such custom simulator. Who may advise in this matter? I am
->willing to contribute with changes.
-
-Hi Mirela,
-
-I have asked a few people about this, because Hob is pretty much
-deprecated at this point (it's being replaced by a web interface called
-Toaster). They replied they would be willing to merge changes to Hob, as
-long as they can be sure they won't cause any regressions.
-
-I hope this helps.
-
-Cheers
-
-Bel=E9n
-
->
->=20
->
->The changes I anticipate would be necessary are:
->
->1.     =20
->Changes in the GUI, somewhere in the python scripts from
->=B3poky\bitbake\lib\bb\ui\crumbs\=B2, especially in imagedetailspage.py,
->maybe in builder.py
->
->2.     =20
->Be more permissive with the types of images that are allowed to run.
->Currently, there are these restrictions related to the name and extension
->of the image in =B3poky\meta\classes\ image_types.bbclass=B2, these need t=
-o
->be extended/customized:
->
->RUNNABLE_IMAGE_TYPES ?=3D "ext2 ext3"
->
->RUNNABLE_MACHINE_PATTERNS ?=3D "qemu"
->
->
->=20
->
->BTW, here is how Hob =B3Image details=B2 dialog currently looks like, see
->attached picture, note that the highlighted =B3Run Image=B2 button shows u=
-p
->only for qemu images.
->=20
->
->Regards,
->
->Mirela
->
->=20
->
->
-
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
