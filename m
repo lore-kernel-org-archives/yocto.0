@@ -1,61 +1,72 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44098E00AFD; Mon, 21 Dec 2015 02:52:09 -0800 (PST)
+	id A4047E00825; Mon, 21 Dec 2015 03:09:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BD05E00825
-	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 02:52:07 -0800 (PST)
-Received: by mail-io0-f181.google.com with SMTP id q126so150339422iof.2
-	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 02:52:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=46PUiVUvTwOKacGaGFlt5SYvM1lQ2fV+19gIx+M+xWI=;
-	b=trbub8DVo+HqmQiQrJJkOZZgKIKmUdBDg7sDPfozf45kPsGdpMMy0tY1LgYPdwpuYe
-	ugee4Fl6tc/LEQ7RVedrQUn4wFb5NxcQaez7FZhy69j0fYS0VzD4AEubuqSI51NXwWTB
-	66QqCCjAf9kMa1CX9LOPr2+Su7hGcWvhq9AtusVOojXUIqYshuAhd88O0U05X1XdTV+X
-	Qt8UriM8Vvi+puwCyAAkobbSi8scGm3E/GEnpO4smobCS0fZUOLSC8ikmZdGoI10Vx9x
-	XKy0GnroNa1RxlgKFrj+pJ0wFV5gwMgNsMW07V8h4Z6NO4xx/M98/zsw8vokXQtdiMxX
-	UGDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=46PUiVUvTwOKacGaGFlt5SYvM1lQ2fV+19gIx+M+xWI=;
-	b=kcwIgH1NEIiofAsExvcO/DlpD5KpmYfeOifQOg9GkLB9KzgUJ3OjlUC36/bINfJ1Nu
-	ZKxFU1Rl5KpvWPFo7XZuDpMldVw7iVntcKKVQXEgY5HIfiYRiwqKTbiNzP/eIWUuvUar
-	EAsxfURk0/84dlWh6UQAIzV8oHrPaV8TRWhpfp7ZOs06HRROYQybNyc+ruXO/MoN5X5L
-	oy+qLELAp44FKmsYH9/sAfx8JKGMUQKygCh7Ff7ElRsXZojdigy9nW8EX1WTE856As/c
-	pARt2hkSmh0+yhlUy28sdeW24vc5l5JeXpu3T4kU0FUMQX7OPrikNMYEWhkdJxLm0hVY
-	YuUQ==
-X-Gm-Message-State: ALoCoQlgbq1LSa2iPqKUtVcOx5ZrqFx6yLDgsAQ9+m/ntiJmC+qdZrejVsetmOWu/rZe3CAojChJGAuQi/Korsr5QoTtZBcLePcLorQ91mWbkOfBSTKxt9U=
-X-Received: by 10.107.164.161 with SMTP id d33mr16916482ioj.148.1450695126616; 
-	Mon, 21 Dec 2015 02:52:06 -0800 (PST)
+Received: from IND01-BO1-obe.outbound.protection.outlook.com
+	(mail-bo1ind01on0057.outbound.protection.outlook.com [104.47.101.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F23E0E00825
+	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:09:52 -0800 (PST)
+Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) by
+	MA1PR01MB0104.INDPRD01.PROD.OUTLOOK.COM (10.164.119.13) with Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Mon, 21 Dec 2015 11:09:50 +0000
+Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) by
+	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) with Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Mon, 21 Dec 2015 11:09:49 +0000
+Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) by
+	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) with mapi id
+	15.01.0361.006; Mon, 21 Dec 2015 11:09:49 +0000
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [dev] Restful application examples
+Thread-Index: AQHROJ0ecwTFMFpMskawwyqJrRRTn57VLA3LgAAip6w=
+Date: Mon, 21 Dec 2015 11:09:46 +0000
+Message-ID: <MA1PR01MB005617F809B4425BFA6258F282E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+References: <D298314E.2C24A%sakari.poussa@intel.com>,
+	<MA1PR01MB0056889875DB68F421CF63EA82E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA1PR01MB0056889875DB68F421CF63EA82E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Raghavendra.Kakarla@inedasystems.com; 
+x-originating-ip: [25.164.117.4]
+x-microsoft-exchange-diagnostics: 1; MA1PR01MB0056;
+	5:5NfQRxnA5CAkSovCEldl+FGGsiypFHGysFds/uisA59zLhFXC/Ek/LlwdXy2MZPDIdWYJhYIONXvbRgC/O1z/iqA6anzIbjU9tRyLvNHU9Dqcy9uoBqJ/lB1xw+OPj+kNr+Fe3JroZZDigmqO5b7AA==;
+	24:yeUcFx754uCbcxR/yZKkl7mt0unnddBFmOSw2qf9n74L054ZEQS3ZcjUafT4rViyEn4GvPCYLZW3iQqcuDGshH74kdSjYu8dA5Q8q/njj+g=;
+	20:XDqHKlHM1mrI1CxtYcG6h7zwfiA8Q48qbu7PvyqKTZ8JOwqDFlIpx/3ao6P6J/sSDJS41Q8uhPYFhAV7toaBjI0IX2UfK/Hof4EyCqBdkKlA1tvpMqTrA6GMYompXbRe1DrRGAAjHWp+KaXtMDslYs51W/4nCW2XEvEpGZ2U8/0=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:MA1PR01MB0056;
+x-microsoft-antispam-prvs: <MA1PR01MB00564A06FFE58176D6B55AC882E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(2401047)(520078)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:MA1PR01MB0056; BCL:0; PCL:0; RULEID:; SRVR:MA1PR01MB0056; 
+x-forefront-prvs: 079756C6B9
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(199003)(189002)(53474002)(51874003)(377454003)(53754006)(106356001)(450100001)(105586002)(5002640100001)(101416001)(586003)(5004730100002)(66066001)(6116002)(102836003)(3846002)(1220700001)(189998001)(1730700002)(5008740100001)(10400500002)(81156007)(110136002)(19580395003)(1096002)(19580405001)(16601075003)(107886002)(40100003)(87936001)(2351001)(5001960100002)(11100500001)(2501003)(15975445007)(50986999)(97736004)(77096005)(2900100001)(86362001)(5003600100002)(122556002)(33656002)(92566002)(54356999)(2950100001)(76176999)(106116001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:MA1PR01MB0056;
+	H:MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: inedasystems.com does not
+	designate permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Mon, 21 Dec 2015 02:51:47 -0800 (PST)
-In-Reply-To: <CAAfyv378CR0-RFgLUp7V7HjuzdgEAjXVT2_nFTUvGCbRa2i76A@mail.gmail.com>
-References: <CAAfyv378CR0-RFgLUp7V7HjuzdgEAjXVT2_nFTUvGCbRa2i76A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 21 Dec 2015 10:51:47 +0000
-Message-ID: <CAJTo0Lbx7BWsWQiYqsRgbjStZh9sN7-WOFacJTfvG9GeEfhxnA@mail.gmail.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: building on os x
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Dec 2015 11:09:46.8753 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 854eba29-8407-45bb-9043-7b8b086143dd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB0056
+X-Microsoft-Exchange-Diagnostics: 1; MA1PR01MB0104;
+	2:P8PcGC6548QIvj/hZ5+8kun5+edXIcbamMOLCW/8R6Wybl88Taqe+Z+fZ7lPuCsf3wrU35wGhuRhb6G6PYh43/yqPt478Kf53Sta7F2diA8OCmzCRPw3x5DlJORUol4WvWZW0/bNhAeEcTUQHoHoCg==;
+	23:5YRsHQn5ASmlMIy3kURUCsz6FLOFXxT/xqv4RTuXoWK0OEg/v3GrBrTXJ0fA2vnE6M7aQ7FyBDpqtP9SIJ8xnLi8XeiF5OH+jpFVqtaRwwIi6X6+YvdjYrEPjH0GfVGuEOXxNakaGaf/it4C/IULp0tMWxvKnc+/ESLx7GYFi+9AgvRZrLPxuG/ry97XGMrq
+X-OriginatorOrg: inedasystems.com
+Subject: Fw: [dev] Restful application examples
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,49 +78,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Dec 2015 10:52:09 -0000
-Content-Type: multipart/alternative; boundary=001a1141c976b31fba0527664799
-
---001a1141c976b31fba0527664799
-Content-Type: text/plain; charset=UTF-8
-
-On 21 December 2015 at 09:43, Belisko Marek <marek.belisko@gmail.com> wrote:
-
-> I did check internet before asking but there is not much reference. So
-> sorry for stupid question but it is possible to build e.g.
-> core-image-minimal on os x natively? I read something about
-> meta-darwin but I'm not sure if it's what I'm looking for ( IIRC it's
-> for creating SDK for osx). Anybody tried that? Many thanks.
->
-
-I've patches to make bitbake work (there's a few linuxisms here and there)
-but the biggest problem is that OSX doesn't use GCC and various recipes
-fail to build properly.  It's a whole lot easier to use a Linux VM, you can
-even do a minimal (non-graphical) install and SSH into it.
-
-Ross
-
---001a1141c976b31fba0527664799
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Mon, 21 Dec 2015 11:09:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 21 December 2015 at 09:43, Belisko Marek <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:marek.belisko@gmail.com" target=3D"_blank">marek.belisko@gmail.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":5xx"=
- class=3D"a3s" style=3D"overflow:hidden">I did check internet before asking=
- but there is not much reference. So<br>
-sorry for stupid question but it is possible to build e.g.<br>
-core-image-minimal on os x natively? I read something about<br>
-meta-darwin but I&#39;m not sure if it&#39;s what I&#39;m looking for ( IIR=
-C it&#39;s<br>
-for creating SDK for osx). Anybody tried that? Many thanks.</div></blockquo=
-te></div><br>I&#39;ve patches to make bitbake work (there&#39;s a few linux=
-isms here and there) but the biggest problem is that OSX doesn&#39;t use GC=
-C and various recipes fail to build properly.=C2=A0 It&#39;s a whole lot ea=
-sier to use a Linux VM, you can even do a minimal (non-graphical) install a=
-nd SSH into it.</div><div class=3D"gmail_extra"><br></div><div class=3D"gma=
-il_extra">Ross</div></div>
+Could you please respond.
 
---001a1141c976b31fba0527664799--
+
+
+________________________________________
+From: Raghavendra Kakarla
+Sent: Monday, December 21, 2015 2:39 PM
+To: Poussa, Sakari; iotivity-dev@lists.iotivity.org
+Subject: Re: [dev] Restful application examples
+
+Hi Sakari,
+
+I downloaded iot-rest-api from the link provided by you.
+
+When I run npm install from my device all are working fine except iotivity-=
+1.0.0-1.
+
+While installing the iotivity-1.0.0-1 I got the following error:
+
+npm ERR! Linux 3.19.2-yocto-standard
+npm ERR! argv "node" "/usr/lib/node_modules/npm/bin/npm-cli.js" "install"
+npm ERR! node v0.12.7
+npm ERR! npm  v2.11.3
+
+npm ERR! shasum check failed for /tmp/npm-1110-fe27e2ba/registry.npmjs.org/=
+jscs/-/jscs-2.7.0.tgz
+npm ERR! Expected: 322906e6777eca1ca52b3f040ba758a98be09c5a
+npm ERR! Actual:   9cfa3ba38b4cba7d17639fe6d305d1858539f2b1
+npm ERR! From:     https://registry.npmjs.org/jscs/-/jscs-2.7.0.tgz
+npm ERR!
+npm ERR! If you need help, you may report this error at:
+npm ERR!     <https://github.com/npm/npm/issues>
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /home/root/iotivity-node/npm-debug.log
+
+
+Could please help me in resolving this issue.
+
+
+Thankyou in advance.
+
+Ragards,
+Raghavendra K.
+
+________________________________________
+From: Poussa, Sakari <sakari.poussa@intel.com>
+Sent: Thursday, December 17, 2015 1:02 PM
+To: Raghavendra Kakarla; iotivity-dev@lists.iotivity.org
+Subject: Re: [dev] Restful application examples
+
+Raghavendra,
+
+Not in the C code, but we have done a Node.JS REST API server for OIC (usin=
+g the iotivity-node bindings which is using the iotivity):
+
+https://github.com/01org/iot-rest-api-server
+
+The repo also contains few test apps for the rest client.
+
+Sakari
+
+From: <iotivity-dev-bounces@lists.iotivity.org<mailto:iotivity-dev-bounces@=
+lists.iotivity.org>> on behalf of Raghavendra Kakarla <Raghavendra.Kakarla@=
+inedasystems.com<mailto:Raghavendra.Kakarla@inedasystems.com>>
+Date: Thursday, December 17, 2015 at 08:40
+To: "iotivity-dev@lists.iotivity.org<mailto:iotivity-dev@lists.iotivity.org=
+>" <iotivity-dev@lists.iotivity.org<mailto:iotivity-dev@lists.iotivity.org>=
+>
+Subject: [dev] Restful application examples
+
+
+Hi All,
+
+
+I want to send the data from the iotivity sensor node to cloup through ioti=
+vity gateway using restful apis.
+
+
+Could you please give me the information that is there any restful client a=
+nd server application in c in iotivity.
+
+
+
+Thanks in advance.
+
+
+Regards,
+
+Raghavendra K.
+
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
+
