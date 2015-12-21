@@ -1,72 +1,57 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4047E00825; Mon, 21 Dec 2015 03:09:57 -0800 (PST)
+	id 41D29E00C23; Mon, 21 Dec 2015 03:17:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from IND01-BO1-obe.outbound.protection.outlook.com
-	(mail-bo1ind01on0057.outbound.protection.outlook.com [104.47.101.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F23E0E00825
-	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:09:52 -0800 (PST)
-Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) by
-	MA1PR01MB0104.INDPRD01.PROD.OUTLOOK.COM (10.164.119.13) with Microsoft
-	SMTP Server (TLS) id 15.1.361.13; Mon, 21 Dec 2015 11:09:50 +0000
-Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) by
-	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) with Microsoft
-	SMTP Server (TLS) id 15.1.361.13; Mon, 21 Dec 2015 11:09:49 +0000
-Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) by
-	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) with mapi id
-	15.01.0361.006; Mon, 21 Dec 2015 11:09:49 +0000
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [dev] Restful application examples
-Thread-Index: AQHROJ0ecwTFMFpMskawwyqJrRRTn57VLA3LgAAip6w=
-Date: Mon, 21 Dec 2015 11:09:46 +0000
-Message-ID: <MA1PR01MB005617F809B4425BFA6258F282E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-References: <D298314E.2C24A%sakari.poussa@intel.com>,
-	<MA1PR01MB0056889875DB68F421CF63EA82E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-In-Reply-To: <MA1PR01MB0056889875DB68F421CF63EA82E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Raghavendra.Kakarla@inedasystems.com; 
-x-originating-ip: [25.164.117.4]
-x-microsoft-exchange-diagnostics: 1; MA1PR01MB0056;
-	5:5NfQRxnA5CAkSovCEldl+FGGsiypFHGysFds/uisA59zLhFXC/Ek/LlwdXy2MZPDIdWYJhYIONXvbRgC/O1z/iqA6anzIbjU9tRyLvNHU9Dqcy9uoBqJ/lB1xw+OPj+kNr+Fe3JroZZDigmqO5b7AA==;
-	24:yeUcFx754uCbcxR/yZKkl7mt0unnddBFmOSw2qf9n74L054ZEQS3ZcjUafT4rViyEn4GvPCYLZW3iQqcuDGshH74kdSjYu8dA5Q8q/njj+g=;
-	20:XDqHKlHM1mrI1CxtYcG6h7zwfiA8Q48qbu7PvyqKTZ8JOwqDFlIpx/3ao6P6J/sSDJS41Q8uhPYFhAV7toaBjI0IX2UfK/Hof4EyCqBdkKlA1tvpMqTrA6GMYompXbRe1DrRGAAjHWp+KaXtMDslYs51W/4nCW2XEvEpGZ2U8/0=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:MA1PR01MB0056;
-x-microsoft-antispam-prvs: <MA1PR01MB00564A06FFE58176D6B55AC882E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(2401047)(520078)(5005006)(8121501046)(3002001)(10201501046);
-	SRVR:MA1PR01MB0056; BCL:0; PCL:0; RULEID:; SRVR:MA1PR01MB0056; 
-x-forefront-prvs: 079756C6B9
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(199003)(189002)(53474002)(51874003)(377454003)(53754006)(106356001)(450100001)(105586002)(5002640100001)(101416001)(586003)(5004730100002)(66066001)(6116002)(102836003)(3846002)(1220700001)(189998001)(1730700002)(5008740100001)(10400500002)(81156007)(110136002)(19580395003)(1096002)(19580405001)(16601075003)(107886002)(40100003)(87936001)(2351001)(5001960100002)(11100500001)(2501003)(15975445007)(50986999)(97736004)(77096005)(2900100001)(86362001)(5003600100002)(122556002)(33656002)(92566002)(54356999)(2950100001)(76176999)(106116001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MA1PR01MB0056;
-	H:MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: inedasystems.com does not
-	designate permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 019BFE0083E
+	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:17:38 -0800 (PST)
+Received: by mail-wm0-f41.google.com with SMTP id p187so64004955wmp.1
+	for <yocto@yoctoproject.org>; Mon, 21 Dec 2015 03:17:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=MGlLquo0IMAlWyU44NPnvDhHzclDoxYM0ya3DTvqms8=;
+	b=NeQsl/mu/bq6cCSd0aYl34ZOb6OqqX2D4mvSZMs3HIIC3ydNJ7Y8+kqOHfe3sO3hsM
+	KEJZyVAOPmOfDXA9cZF0Dj+8Gz7JqZwIDhMgca69ywnpdMaY3VX0OAiwzCWwi/yz943W
+	ftwfKwS/rP++uVK3m4dGovPiz2L5QCQ3VBaKsl3Br1fNHUIiE4e4WmHbfXqC2OrIubYL
+	1dozNHQfTHKg3wqiVN3pz12huuAXcAciaofPt3zsADMPYcHq3/+fV524tv+L+QoMWlzI
+	qM/tQN+zVpxAXj3F4+ykwyLI4gdeuaOQifGThDaeDIsvcnZSz/tFfCqfhUbHttmlWxDd
+	LUHg==
+X-Received: by 10.194.87.170 with SMTP id az10mr20086424wjb.144.1450696657898; 
+	Mon, 21 Dec 2015 03:17:37 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id
+	200sm19633013wmn.11.2015.12.21.03.17.36
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 21 Dec 2015 03:17:36 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Mon, 21 Dec 2015 12:20:29 +0100
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+Message-ID: <20151221112029.GA2771@jama>
+References: <MA1PR01MB0056024224A9B50B4F6D381082E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Dec 2015 11:09:46.8753 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 854eba29-8407-45bb-9043-7b8b086143dd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB0056
-X-Microsoft-Exchange-Diagnostics: 1; MA1PR01MB0104;
-	2:P8PcGC6548QIvj/hZ5+8kun5+edXIcbamMOLCW/8R6Wybl88Taqe+Z+fZ7lPuCsf3wrU35wGhuRhb6G6PYh43/yqPt478Kf53Sta7F2diA8OCmzCRPw3x5DlJORUol4WvWZW0/bNhAeEcTUQHoHoCg==;
-	23:5YRsHQn5ASmlMIy3kURUCsz6FLOFXxT/xqv4RTuXoWK0OEg/v3GrBrTXJ0fA2vnE6M7aQ7FyBDpqtP9SIJ8xnLi8XeiF5OH+jpFVqtaRwwIi6X6+YvdjYrEPjH0GfVGuEOXxNakaGaf/it4C/IULp0tMWxvKnc+/ESLx7GYFi+9AgvRZrLPxuG/ry97XGMrq
-X-OriginatorOrg: inedasystems.com
-Subject: Fw: [dev] Restful application examples
+In-Reply-To: <MA1PR01MB0056024224A9B50B4F6D381082E40@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Nodejs building issue in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,104 +63,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Dec 2015 11:09:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 21 Dec 2015 11:17:42 -0000
+X-Groupsio-MsgNum: 27779
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="+QahgC5+KEYLbs62"
+Content-Disposition: inline
+
+--+QahgC5+KEYLbs62
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Could you please respond.
+On Mon, Dec 21, 2015 at 08:31:49AM +0000, Raghavendra Kakarla wrote:
+> Hi All,
+>=20
+> I am try to build the nodejs-5.3 in yocto but I got the following errors.
+>=20
+> That errors also not consistent. They are changes for compile to compile.
+
+search openembedded-devel ML, it was discussed there (long time ago) and
+there was even a fix in meta-oe nodejs recipe.
+
+>=20
+> Could you please help in solving this issue.
+>=20
+> The errors are as follows:
+>=20
+> mips32r22r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.3.0/out/Release/obj.targ=
+et/http_parser/deps/http_parser/http_parser.o
+> | make[1]: execvp: printf: Argument list too long
+> | make[1]: *** [/media/testuser/b156d50b-387f-4037-b97b-e0de6259af11/home=
+/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.=
+3.0/out/Release/obj.target/deps/openssl/libopenssl.a] Error 127
+> | make[1]: *** Waiting for unfinished jobs.
+>=20
+>=20
+>=20
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | make -C out BUILDTYPE=3DRelease V=3D1
+> | make[1]: Entering directory `/media/testuser/b156d50b-387f-4037-b97b-e0=
+de6259af11/home/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.=
+0-r1.0/node-v5.3.0/out'
+> |   LD_LIBRARY_PATH=3D/media/testuser/b156d50b-387f-4037-b97b-e0de6259af1=
+1/home/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/no=
+de-v5.3.0/out/Release/lib.host:/media/testuser/b156d50b-387f-4037-b97b-e0de=
+6259af11/home/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-=
+r1.0/node-v5.3.0/out/Release/lib.target:$LD_LIBRARY_PATH; export LD_LIBRARY=
+_PATH; cd ../deps/v8/tools/gyp; mkdir -p /media/testuser/b156d50b-387f-4037=
+-b97b-e0de6259af11/home/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nod=
+ejs/5.3.0-r1.0/node-v5.3.0/out/Release/obj.target/v8_snapshot/geni; "/media=
+/testuser/b156d50b-387f-4037-b97b-e0de6259af11/home/testpc2/poky/build/tmp/=
+work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.3.0/out/Release/mksnapsh=
+ot" --log-snapshot-positions --logfile "/media/testuser/b156d50b-387f-4037-=
+b97b-e0de6259af11/home/testpc2/poky/build/tmp/work/mips32r2-poky-linux/node=
+js/5.3.0-r1.0/node-v5.3.0/out/Release/obj.target/v8_snapshot/geni/snapshot.=
+log" "/media/testuser/b156d50b-387f-4037-b97b-e0de6259af11/home/testpc2/pok=
+y/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.3.0/out/Rele=
+ase/obj.target/v8_snapshot/geni/snapshot.cc" ""
+> | /bin/sh: /media/testuser/b156d50b-387f-4037-b97b-e0de6259af11/home/test=
+pc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.3.0/o=
+ut/Release/mksnapshot: cannot execute binary file: Exec format error
+> | make[1]: *** [/media/testuser/b156d50b-387f-4037-b97b-e0de6259af11/home=
+/testpc2/poky/build/tmp/work/mips32r2-poky-linux/nodejs/5.3.0-r1.0/node-v5.=
+3.0/out/Release/obj.target/v8_snapshot/geni/snapshot.cc] Error 126
+>=20
+> Thanks in advance.
+>=20
+> Regards,
+> Raghavendra K.
+
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-________________________________________
-From: Raghavendra Kakarla
-Sent: Monday, December 21, 2015 2:39 PM
-To: Poussa, Sakari; iotivity-dev@lists.iotivity.org
-Subject: Re: [dev] Restful application examples
+--+QahgC5+KEYLbs62
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Hi Sakari,
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-I downloaded iot-rest-api from the link provided by you.
+iEYEARECAAYFAlZ34HwACgkQN1Ujt2V2gBydTgCfSRtDuzxgxyGOqV5apSxF0seY
+ekgAn2VGCeCCMNGxFWb8CKSPhgeNox6k
+=gpKF
+-----END PGP SIGNATURE-----
 
-When I run npm install from my device all are working fine except iotivity-=
-1.0.0-1.
-
-While installing the iotivity-1.0.0-1 I got the following error:
-
-npm ERR! Linux 3.19.2-yocto-standard
-npm ERR! argv "node" "/usr/lib/node_modules/npm/bin/npm-cli.js" "install"
-npm ERR! node v0.12.7
-npm ERR! npm  v2.11.3
-
-npm ERR! shasum check failed for /tmp/npm-1110-fe27e2ba/registry.npmjs.org/=
-jscs/-/jscs-2.7.0.tgz
-npm ERR! Expected: 322906e6777eca1ca52b3f040ba758a98be09c5a
-npm ERR! Actual:   9cfa3ba38b4cba7d17639fe6d305d1858539f2b1
-npm ERR! From:     https://registry.npmjs.org/jscs/-/jscs-2.7.0.tgz
-npm ERR!
-npm ERR! If you need help, you may report this error at:
-npm ERR!     <https://github.com/npm/npm/issues>
-
-npm ERR! Please include the following file with any support request:
-npm ERR!     /home/root/iotivity-node/npm-debug.log
-
-
-Could please help me in resolving this issue.
-
-
-Thankyou in advance.
-
-Ragards,
-Raghavendra K.
-
-________________________________________
-From: Poussa, Sakari <sakari.poussa@intel.com>
-Sent: Thursday, December 17, 2015 1:02 PM
-To: Raghavendra Kakarla; iotivity-dev@lists.iotivity.org
-Subject: Re: [dev] Restful application examples
-
-Raghavendra,
-
-Not in the C code, but we have done a Node.JS REST API server for OIC (usin=
-g the iotivity-node bindings which is using the iotivity):
-
-https://github.com/01org/iot-rest-api-server
-
-The repo also contains few test apps for the rest client.
-
-Sakari
-
-From: <iotivity-dev-bounces@lists.iotivity.org<mailto:iotivity-dev-bounces@=
-lists.iotivity.org>> on behalf of Raghavendra Kakarla <Raghavendra.Kakarla@=
-inedasystems.com<mailto:Raghavendra.Kakarla@inedasystems.com>>
-Date: Thursday, December 17, 2015 at 08:40
-To: "iotivity-dev@lists.iotivity.org<mailto:iotivity-dev@lists.iotivity.org=
->" <iotivity-dev@lists.iotivity.org<mailto:iotivity-dev@lists.iotivity.org>=
->
-Subject: [dev] Restful application examples
-
-
-Hi All,
-
-
-I want to send the data from the iotivity sensor node to cloup through ioti=
-vity gateway using restful apis.
-
-
-Could you please give me the information that is there any restful client a=
-nd server application in c in iotivity.
-
-
-
-Thanks in advance.
-
-
-Regards,
-
-Raghavendra K.
-
-______________________________________________________________________
-This email has been scanned by the Symantec Email Security.cloud service.
-For more information please visit http://www.symanteccloud.com
-______________________________________________________________________
-
+--+QahgC5+KEYLbs62--
