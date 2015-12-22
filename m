@@ -1,6 +1,6 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <neuberfran@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C7A7E00C7F; Tue, 22 Dec 2015 06:22:43 -0800 (PST)
+	id 278A1E00C7F; Tue, 22 Dec 2015 06:29:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
+	mail provider *      (neuberfran[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,34 +20,32 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CBE4E00457
-	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 06:22:39 -0800 (PST)
-Received: by mail-ig0-f175.google.com with SMTP id mv3so50485431igc.0
-	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 06:22:39 -0800 (PST)
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8148BE008C8
+	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 06:28:59 -0800 (PST)
+Received: by mail-vk0-f49.google.com with SMTP id j66so118519075vkg.1
+	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 06:28:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-type; bh=qnabP6wDcJwPfYju3AaiQAKlEHrw6r0krQdZlxEONyU=;
-	b=nB4BECBG1MaQEOUXMBQGPYZcM0rBMMXkpgUKqzTb/9SltRjy8BotcEoi5iqxG+XMm/
-	l9hFttygWKU1A3ud4LgQdX/CuQSiF1b4kgowPSJULyYkj5lAUXbfJ06oNTP8poofL0Ne
-	926zlefpzVPyMP/VlTdmF6gKAkq7L8Te8kcqZBzUK0o9WlLTMqR9VveuP+VDg1/dy84l
-	ndVxxtBCPNO9kdWYll1FeJN3iI57S9Ds7NA+lyuN0BcZkl2Hxl+yQmMqPhyqgc1hIN8T
-	0LvBYOqyZzp3ppGE7ED2/jph+4RC1+1ZTuL3nYGo7qeJ3wcvm8F0rrNGtYzvprPi94Tw
-	IaKQ==
-X-Received: by 10.50.61.98 with SMTP id o2mr24411141igr.79.1450794159120; Tue,
-	22 Dec 2015 06:22:39 -0800 (PST)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=eyjAzpTUkV2f3MiOI2t5qmFwVasW3+P4FQa7+sw24QU=;
+	b=DOMDQjIy1jeGxlkIafwkFIlO7q4z/ppVzU3gmlLvZTa3ylC80sb+z9KqJ78N6m7ZOg
+	rRYlreZc5OYmui5EnT9rp3jk39xGl2uBq4T/9yM4/C9oHb6FjcQWjOuCnNk6Dq2xugCF
+	Y/2DJYVZIX5kRVccI2bY/p3nuSJqcn9hEIOikSYgrmipqxhJPPlKnx26/y/As3O7VTLL
+	yw78n0HCyiRHreOKGitKGabAPF79DeU4fupR/N8cbskrYLUzZQ7i9AO9MWGdw1dsvClH
+	/clb+TCsLxiFcHmfvjjW6EXJJLAzOd1MgGnVO1wWYJG2gK547qCxxI1deKhmMPnFjTZF
+	ji6g==
 MIME-Version: 1.0
-References: <CAFzUWG=iGCKx=crQv_TvMFBXDUytgv2Aq0FTH+0ug5veV1PGKg@mail.gmail.com>
-In-Reply-To: <CAFzUWG=iGCKx=crQv_TvMFBXDUytgv2Aq0FTH+0ug5veV1PGKg@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Tue, 22 Dec 2015 14:22:28 +0000
-Message-ID: <CAFzUWGnYAXdw7GtBzYwckZ1ykZy9K95UD-F7AV384WTg8nbD4A@mail.gmail.com>
+X-Received: by 10.31.149.75 with SMTP id x72mr15865175vkd.81.1450794539221;
+	Tue, 22 Dec 2015 06:28:59 -0800 (PST)
+Received: by 10.31.47.71 with HTTP; Tue, 22 Dec 2015 06:28:59 -0800 (PST)
+In-Reply-To: <CABWL1PmEgX2_xjXr5L1gWxkqrQwgtHxGU-w5G_oq8EzdLc+gog@mail.gmail.com>
+References: <CABWL1PmEgX2_xjXr5L1gWxkqrQwgtHxGU-w5G_oq8EzdLc+gog@mail.gmail.com>
+Date: Tue, 22 Dec 2015 11:28:59 -0300
+Message-ID: <CABWL1Pnu8=BX5ZAGTXgx6hLjAiZgMYTO6wueNk1qy5fdmg4JcQ@mail.gmail.com>
+From: neuber sousa <neuberfran@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Re: Trying to add a recipe for ROOT
+Subject: Re: I'm trying install DDCLIENT in intel edison with yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,64 +57,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Dec 2015 14:22:43 -0000
-Content-Type: multipart/alternative; boundary=001a1134958a7f2d0b05277d565b
+X-List-Received-Date: Tue, 22 Dec 2015 14:29:01 -0000
+Content-Type: multipart/alternative; boundary=001a114261602709c205277d6d7c
 
---001a1134958a7f2d0b05277d565b
+--001a114261602709c205277d6d7c
 Content-Type: text/plain; charset=UTF-8
 
 Hi,
 
-I've not heard a response yet on this?
+Anyone know the answer ?
 
-Giordon
+2015-12-21 14:02 GMT-03:00 neuber sousa <neuberfran@gmail.com>:
 
-On Wed, Dec 9, 2015 at 3:00 PM Giordon Stark <kratsg@gmail.com> wrote:
-
-> Hi all,
+> I have errors: root@neuberfran:~# ddclient -v
+> Can't locate Sys/Hostname.pm in @INC (you may need to install the
+> Sys::Hostname module) (@INC contains: /etc/perl
+> /usr/lib/perl/site_perl/5.20.0/ /usr/lib/perl/site_perl/5.20.0
+> /usr/lib/perl/vendor_perl/5.20.0/ /usr/lib/perl/vendor_perl/5.20.0
+> /usr/lib/perl/5.20.0/ /usr/lib/perl/5.20.0 /usr/local/lib/site_perl
+> /usr/lib/perl/5.20.0 .) at /usr/sbin/ddclient line 25.
+> BEGIN failed--compilation aborted at /usr/sbin/ddclient line 25.
 >
-> I'm trying to add a recipe for ROOT (from CERN) but I'm running into
-> various issues with just trying to get compilers working.
+> I this is* because libjson-perl *package
 >
-> Current recipe:
-> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
+> How to install* libjson-perl *package in yocto image ?
 >
-> Current log: https://gist.github.com/kratsg/cd3184a167676eb69067
->
-> Note that the goal is to have the bare-minimum with PyROOT (enable python
-> support). So I'm following:
-> - https://root.cern.ch/building-root
-> - https://root.cern.ch/build-prerequisites
->
-> Thanks,
->
-> Giordon
 >
 
---001a1134958a7f2d0b05277d565b
+--001a114261602709c205277d6d7c
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;ve not heard a response yet o=
-n this?</div><div><br></div><div>Giordon</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr">On Wed, Dec 9, 2015 at 3:00 PM Giordon Stark &lt;<=
-a href=3D"mailto:kratsg@gmail.com">kratsg@gmail.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi all,<div><br></div><div=
->I&#39;m trying to add a recipe for ROOT (from CERN) but I&#39;m running in=
-to various issues with just trying to get compilers working.</div><div><br>=
-</div><div>Current recipe:=C2=A0<a href=3D"https://github.com/kratsg/meta-l=
-1calo/blob/master/recipes-core/root/root_6.04.12.bb" target=3D"_blank">http=
-s://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.1=
-2.bb</a></div><div><br></div><div>Current log:=C2=A0<a href=3D"https://gist=
-.github.com/kratsg/cd3184a167676eb69067" target=3D"_blank">https://gist.git=
-hub.com/kratsg/cd3184a167676eb69067</a></div><div><br></div><div>Note that =
-the goal is to have the bare-minimum with PyROOT (enable python support). S=
-o I&#39;m following:</div><div>-=C2=A0<a href=3D"https://root.cern.ch/build=
-ing-root" target=3D"_blank">https://root.cern.ch/building-root</a></div><di=
-v>-=C2=A0<a href=3D"https://root.cern.ch/build-prerequisites" target=3D"_bl=
-ank">https://root.cern.ch/build-prerequisites</a>=C2=A0</div><div><br></div=
-><div>Thanks,</div><div><br></div><div>Giordon</div></div></blockquote></di=
-v>
+<div dir=3D"ltr">Hi,<div><br></div><div>Anyone know the answer ?</div></div=
+><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-12-21 14:02=
+ GMT-03:00 neuber sousa <span dir=3D"ltr">&lt;<a href=3D"mailto:neuberfran@=
+gmail.com" target=3D"_blank">neuberfran@gmail.com</a>&gt;</span>:<br><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><div dir=3D"ltr">I have errors: root@neuberfran:~#=
+ ddclient -v<div>Can&#39;t locate Sys/Hostname.pm in @INC (you may need to =
+install the Sys::Hostname module) (@INC contains: /etc/perl /usr/lib/perl/s=
+ite_perl/5.20.0/ /usr/lib/perl/site_perl/5.20.0 /usr/lib/perl/vendor_perl/5=
+.20.0/ /usr/lib/perl/vendor_perl/5.20.0 /usr/lib/perl/5.20.0/ /usr/lib/perl=
+/5.20.0 /usr/local/lib/site_perl /usr/lib/perl/5.20.0 .) at /usr/sbin/ddcli=
+ent line 25.</div><div>BEGIN failed--compilation aborted at /usr/sbin/ddcli=
+ent line 25.</div><div><br></div><div>I this is<b><i><u> because libjson-pe=
+rl </u></i></b>package</div><div><br></div><div>How to install<b><i> libjso=
+n-perl </i></b>package in yocto image ?</div><div><br></div></div>
+</blockquote></div><br></div>
 
---001a1134958a7f2d0b05277d565b--
+--001a114261602709c205277d6d7c--
