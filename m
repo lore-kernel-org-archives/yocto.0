@@ -1,61 +1,75 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mirela.rabulea@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFD99E00C31; Tue, 22 Dec 2015 03:12:31 -0800 (PST)
+	id 1CF3DE00CC3; Tue, 22 Dec 2015 03:50:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.55.234.76 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B792E0085A
-	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 03:12:29 -0800 (PST)
-Received: by mail-io0-f181.google.com with SMTP id e126so183412666ioa.1
-	for <yocto@yoctoproject.org>; Tue, 22 Dec 2015 03:12:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=64+6j8Pc08m3P737VhYWWYBowBtpcq6GOFS17WZzmBE=;
-	b=12b1aE5jBpcI2DCgnZCcj8rY8XoYCIqj8jndcMf2C2PsjeXbPYK7Ghc0/kHMjtiH2Z
-	ERrnVIYUxZsP+WIiVl7YT7fS3aIOh2x4jmkHC2AQWIYR3cB7e3y+lzmTDPX6IC2eLl4e
-	x4XhEgQo6enZgZJj9frkmqOxHxfTzB8Sl0AyDb5Gu+dbRnGpsy58cwU+5e8r9fAkUpEy
-	WC9K8yiDxJ3t9Xhz/QJItoSJbn8zfCaDBTBu9fW+qMsHHU3byFnsBMk0ObX23CJsxAng
-	1cRobjAgBrUswzXjXA/TuhRjbtTwYtw0Knogp3Xo+qlOmvisExcclYcEcKANnOPYLwTB
-	Susw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=64+6j8Pc08m3P737VhYWWYBowBtpcq6GOFS17WZzmBE=;
-	b=CwN5HmiBo7Cgvi/lEmfQJxIKW6YgHbweXRk4watLi5rzSbZYwKEq7uGcNQNHztSypK
-	VrYDndhcVndYTG0HiiEKLFPIn/d0MOpJzrFyN2PFojaMZhaiEL3vZn1+VC+xFBfYYtWc
-	C0GNCl7marDCmEEpW4/WZqg05v5qxr5X2oO25JGuQXqTOjoIEX8Z3qnGMV5ymJruypD8
-	IBsPTLiEauKok/S42dWrgsmZbpG68FCz6UQaHqIwODezG5Y47qr3iWPaJrwk5apJYp42
-	uoy/h6SOKf67zQMyBMpOvGvBwX868XhxlvmNKl8DpGN1kXyPexa6NVz4XcYZD5gq7nWK
-	Y+Hw==
-X-Gm-Message-State: ALoCoQnFOb8jExCbNSWUclHAiZp79Ue465gpvVsN+N4Zqr7Cffs5G6EYEy4EQJzLKkouuU91CCZwC1RXjD96i9M/+ngh+tNwh5tkNx20/Eo9hS+IlyPVpmI=
-X-Received: by 10.107.155.209 with SMTP id d200mr27308747ioe.133.1450782749453;
-	Tue, 22 Dec 2015 03:12:29 -0800 (PST)
+X-Greylist: delayed 924 seconds by postgrey-1.32 at yocto-www;
+	Tue, 22 Dec 2015 03:50:32 PST
+Received: from emea01-db3-obe.outbound.protection.outlook.com
+	(mail-db3on0076.outbound.protection.outlook.com [157.55.234.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4860DE009B6;
+	Tue, 22 Dec 2015 03:50:32 -0800 (PST)
+Received: from DBXPR04MB416.eurprd04.prod.outlook.com (10.141.15.152) by
+	HE1PR04MB0908.eurprd04.prod.outlook.com (10.162.23.21) with Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Tue, 22 Dec 2015 11:35:04 +0000
+Received: from DBXPR04MB416.eurprd04.prod.outlook.com ([10.141.15.152]) by
+	DBXPR04MB416.eurprd04.prod.outlook.com ([10.141.15.152]) with mapi id
+	15.01.0361.006; Tue, 22 Dec 2015 11:35:04 +0000
+From: Mirela Rabulea <mirela.rabulea@nxp.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, Mirela Rabulea
+	<Mirela.Rabulea@freescale.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
+Thread-Topic: [yocto] using Hob to run images on a custom simulator, other
+	than qemu
+Thread-Index: AQHRO+JQkjs3VfaAnke6FvA1yts7QJ7W4STQ
+Date: Tue, 22 Dec 2015 11:35:03 +0000
+Message-ID: <DBXPR04MB41628675A843378D20C88978FE50@DBXPR04MB416.eurprd04.prod.outlook.com>
+References: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
+	<D29D8ACF.6DB8E%belen.barros.pena@intel.com>
+In-Reply-To: <D29D8ACF.6DB8E%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=mirela.rabulea@nxp.com; 
+x-originating-ip: [192.88.146.1]
+x-microsoft-exchange-diagnostics: 1; HE1PR04MB0908;
+	5:tHt7/O4GfIJu+asfg/B+oJzB3266GYj0rDdCPCgXzU+St1v7BeG1K8EN1dekVgfQgNA55GsSOnHRJ6AoVRPw6Jkvlzh6Mr/enUzu0PtgaFWP2Q50hyFKpMNSXY1TEye38HA9pAnVRb+nLDQF71qpfQ==;
+	24:2cOlR7K2yEomdmkqOoW9eIB8XRd9C0Rjf5YMo4AKCvOVfc62rWDtTyqSAaDJUxbDdKsyzajjU5A6lJx0e60aqS+VEqcapoHe8KYjoZqyNec=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:HE1PR04MB0908;
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-microsoft-antispam-prvs: <HE1PR04MB0908756F1B95CE0BD31EFE498FE50@HE1PR04MB0908.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(185117386973197)(101931422205132);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(8121501046)(520078)(5005006)(3002001)(10201501046);
+	SRVR:HE1PR04MB0908; BCL:0; PCL:0; RULEID:; SRVR:HE1PR04MB0908; 
+x-forefront-prvs: 0798146F16
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(51914003)(377454003)(479174004)(24454002)(469094003)(164054003)(53484002)(13464003)(199003)(189002)(19580405001)(1096002)(33656002)(40100003)(50986999)(586003)(105586002)(102836003)(76176999)(66066001)(106116001)(6116002)(97736004)(106356001)(86362001)(87936001)(122556002)(1220700001)(74316001)(77096005)(3846002)(81156007)(2900100001)(5001770100001)(2950100001)(76576001)(5002640100001)(92566002)(19580395003)(2201001)(2501003)(5890100001)(11100500001)(189998001)(5004730100002)(10400500002)(5008740100001)(5001960100002)(54356999)(101416001)(5003600100002)(7059030);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:HE1PR04MB0908;
+	H:DBXPR04MB416.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: nxp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Tue, 22 Dec 2015 03:12:10 -0800 (PST)
-In-Reply-To: <56791A82.7050809@arigo-software.de>
-References: <56791A82.7050809@arigo-software.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 22 Dec 2015 11:12:10 +0000
-Message-ID: <CAJTo0LYb8MokHk+gW4X1eq4orG28Uie8b8ss-YaSMZzXdyGQ6A@mail.gmail.com>
-To: Simon Ruetzler <sruetzler@arigo-software.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto package naming
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Dec 2015 11:35:03.8675 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR04MB0908
+Cc: Nicolae Manescu <nicu.manescu@nxp.com>
+Subject: Re: using Hob to run images on a custom simulator, other than qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,44 +81,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Dec 2015 11:12:31 -0000
-Content-Type: multipart/alternative; boundary=001a114034026d842805277aae16
-
---001a114034026d842805277aae16
-Content-Type: text/plain; charset=UTF-8
-
-On 22 December 2015 at 09:40, Simon Ruetzler <sruetzler@arigo-software.de>
-wrote:
-
-> Why is the demo package created with the libscom name? How can I disable
-> this?
->
-
-Because the default configuration enables debian.bbclass, which renames
-packages if they contain just a library to be the soname of the library.
-
-If you don't want this to happen in your distro, INHERIT_remove = "debian"
-in your local.conf or distro configuration will stop it.
-
-Ross
-
---001a114034026d842805277aae16
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 22 Dec 2015 11:50:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 22 December 2015 at 09:40, Simon Ruetzler <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:sruetzler@arigo-software.de" target=3D"_blank">sruetzler@arigo-s=
-oftware.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=
-=3D":7wj" class=3D"a3s" style=3D"overflow:hidden">Why is the demo package c=
-reated with the libscom name? How can I disable this?<br></div></blockquote=
-></div><br>Because the default configuration enables debian.bbclass, which =
-renames packages if they contain just a library to be the soname of the lib=
-rary.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">=
-If you don&#39;t want this to happen in your distro, INHERIT_remove =3D &qu=
-ot;debian&quot; in your local.conf or distro configuration will stop it.</d=
-iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</di=
-v></div>
+Hi Bel=E9n,
+Thanks for the answer. Is there a set of tests that would ensure there are =
+no regressions? Where can it be found?
 
---001a114034026d842805277aae16--
+Thanks,
+Mirela
+
+-----Original Message-----
+From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]=20
+Sent: Monday, December 21, 2015 1:26 PM
+To: Mirela Rabulea <Mirela.Rabulea@freescale.com>; yocto@yoctoproject.org; =
+poky@yoctoproject.org
+Cc: nicolae.manescu@nxp.com
+Subject: Re: [yocto] using Hob to run images on a custom simulator, other t=
+han qemu
+
+
+
+On 18/12/2015 16:05, "yocto-bounces@yoctoproject.org on behalf of Mirela Ra=
+bulea" <yocto-bounces@yoctoproject.org on behalf of Mirela.Rabulea@freescal=
+e.com> wrote:
+
+>
+>
+>Hello yocto world
+>J
+>
+>=20
+>
+>This is my first message on any yocto list, I=B9m not sure which list to=20
+>address, so I choose the ones which seemed the most generic and suited=20
+>to my purpose. Please redirect me if a more specific list is better =20
+>suited to ask this question.
+>
+>=20
+>
+>The problem I see at present is: there is one single button in Hob,=20
+>=B3Run Image=B2, which is active only for qemu images, and it is triggerin=
+g=20
+>the execution of the =B3poky\scripts\runqemu=B2 script. Please scroll down=
+ =20
+>to the picture at end of this email to see what I=B9m talking about.
+>
+>=20
+>
+>The question I want to ask is if it would be acceptable to add more=20
+>buttons to the =B3Image details=B2 dialog (or a new dialog to pop-up when=
+=20
+>=B3Run Image=B2 is clicked), in order to allow the customization of the =20
+>simulator to be launched, basically to specify the location & command=20
+>line of such custom simulator. Who may advise in this matter? I am=20
+>willing to contribute with changes.
+
+Hi Mirela,
+
+I have asked a few people about this, because Hob is pretty much deprecated=
+ at this point (it's being replaced by a web interface called Toaster). The=
+y replied they would be willing to merge changes to Hob, as long as they ca=
+n be sure they won't cause any regressions.
+
+I hope this helps.
+
+Cheers
+
+Bel=E9n
+
+>
+>=20
+>
+>The changes I anticipate would be necessary are:
+>
+>1.     =20
+>Changes in the GUI, somewhere in the python scripts from=20
+>=B3poky\bitbake\lib\bb\ui\crumbs\=B2, especially in imagedetailspage.py,=20
+>maybe in builder.py
+>
+>2.     =20
+>Be more permissive with the types of images that are allowed to run.
+>Currently, there are these restrictions related to the name and=20
+>extension of the image in =B3poky\meta\classes\ image_types.bbclass=B2,=20
+>these need to be extended/customized:
+>
+>RUNNABLE_IMAGE_TYPES ?=3D "ext2 ext3"
+>
+>RUNNABLE_MACHINE_PATTERNS ?=3D "qemu"
+>
+>
+>=20
+>
+>BTW, here is how Hob =B3Image details=B2 dialog currently looks like, see=
+=20
+>attached picture, note that the highlighted =B3Run Image=B2 button shows u=
+p=20
+>only for qemu images.
+>=20
+>
+>Regards,
+>
+>Mirela
+>
+>=20
+>
+>
+
+
