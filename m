@@ -1,55 +1,52 @@
-Return-Path: <chunguangx.chen@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DADFE00B68; Thu, 24 Dec 2015 21:31:37 -0800 (PST)
+	id 17F38E00D0C; Thu, 24 Dec 2015 21:56:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.180 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C30E2E008EE
-	for <yocto@yoctoproject.org>; Thu, 24 Dec 2015 21:31:33 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga103.fm.intel.com with ESMTP; 24 Dec 2015 21:31:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,477,1444719600"; 
-	d="scan'208,217";a="880721271"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Dec 2015 21:31:32 -0800
-Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 24 Dec 2015 21:31:32 -0800
-Received: from shsmsx103.ccr.corp.intel.com (10.239.4.69) by
-	fmsmsx158.amr.corp.intel.com (10.18.116.75) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 24 Dec 2015 21:31:32 -0800
-Received: from shsmsx102.ccr.corp.intel.com ([169.254.2.158]) by
-	SHSMSX103.ccr.corp.intel.com ([169.254.4.28]) with mapi id
-	14.03.0248.002; Fri, 25 Dec 2015 13:31:29 +0800
-From: "Chen, ChunguangX" <chunguangx.chen@intel.com>
-To: neuber sousa <neuberfran@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] I'm trying install DDCLIENT in intel edison with yocto
-	project
-Thread-Index: AQHRPMU+MpwvNrnPIkOO9w0/w+hZM57bMBaw
-Date: Fri, 25 Dec 2015 05:31:29 +0000
-Message-ID: <FF528608A41EAD4DAE7E154A9EDB1B2401B5BA1B@shsmsx102.ccr.corp.intel.com>
-References: <CABWL1PmEgX2_xjXr5L1gWxkqrQwgtHxGU-w5G_oq8EzdLc+gog@mail.gmail.com>
-	<CABWL1Pnu8=BX5ZAGTXgx6hLjAiZgMYTO6wueNk1qy5fdmg4JcQ@mail.gmail.com>
-In-Reply-To: <CABWL1Pnu8=BX5ZAGTXgx6hLjAiZgMYTO6wueNk1qy5fdmg4JcQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
+	[209.85.213.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5407DE00546
+	for <yocto@yoctoproject.org>; Thu, 24 Dec 2015 21:56:22 -0800 (PST)
+Received: by mail-ig0-f180.google.com with SMTP id m11so90483023igk.1
+	for <yocto@yoctoproject.org>; Thu, 24 Dec 2015 21:56:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=g/HTHt60BW1NoSoQbQ6aGcFodwF1pawS/hyERUFvixs=;
+	b=eul3iGfK7bRlT+z5Wq0TCDFO9Yz5gHMh2WDasyXwcjdWq3ySlm0ZK9jxG7zqU0l9C/
+	r6mBEJ9KIJll5wfzz+HOe3HZY+eNIBqLoyAAuNYdxv6j/xQunlI/nLaBZmEAvQQXW5Y8
+	Sfe4SfrT6Jrn+EqOe0q6+J4JOKIzmN7MX5H+pSI6mBBkHOUEQe1Yg8fXZXgF5LXqT5UL
+	EK3a7mahFg54BH/ydwUe6PFit339ByR0SD6wH7s8gCyi0DCWm19JspvfxxIa9XMnCbDp
+	RcsmnptqzBKOgZBaXbdlu8OxNif3dS7YF0x1Sa9HHniVduRvcPBV1kepgffdKomrnuvy
+	nfPg==
+X-Received: by 10.50.20.138 with SMTP id n10mr40128550ige.11.1451022982362;
+	Thu, 24 Dec 2015 21:56:22 -0800 (PST)
 MIME-Version: 1.0
-Cc: "Zhao, ZhenmingX" <zhenmingx.zhao@intel.com>, "Zhou,
-	ShimingX" <shimingx.zhou@intel.com>
-Subject: Re: I'm trying install DDCLIENT in intel edison with yocto	project
+Received: by 10.107.16.74 with HTTP; Thu, 24 Dec 2015 21:55:53 -0800 (PST)
+In-Reply-To: <567CA2F0.5000201@huawei.com>
+References: <567CA2F0.5000201@huawei.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 24 Dec 2015 21:55:53 -0800
+Message-ID: <CAMKF1sr6o=oNsA9gKP9g3jWQqqDcqr8oXsZE5eqg2Dj=gX+J1A@mail.gmail.com>
+To: Jin Li <lijin14@huawei.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: how to use systemd as system init manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,133 +58,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Dec 2015 05:31:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_FF528608A41EAD4DAE7E154A9EDB1B2401B5BA1Bshsmsx102ccrcor_"
+X-List-Received-Date: Fri, 25 Dec 2015 05:56:26 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_FF528608A41EAD4DAE7E154A9EDB1B2401B5BA1Bshsmsx102ccrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, Dec 24, 2015 at 5:59 PM, Jin Li <lijin14@huawei.com> wrote:
+> Hi,
+>
+> I am trying to build yocto project which use systemd as system init manager.
+> But the qemu boot up and still use INIT as usual. The rootfs even fail to install systemd.
+>
+> I refers to yocto docs http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#ref-features-distro
+> I use meta/recipes-extended/images/core-image-full-cmdline.bb and add the following part
+> to support systemd:
+>
+> DISTRO_FEATURES_append = "systemd"
 
-SGkgbmV1YmVyOg0KDQpZb3Ugc2hvdWxkIGZpbmQgJiBkb3dubG9hZCBzb3VyY2UgY29kZSBvZiBs
-aWJqc29uLXBlcmwgcGFja2FnZSwgY29weSB0byBFZGlzb24gYm9hcmQsIHRoZW4gY29tcGlsZSAm
-IG1ha2UgaW5zdGFsbCBtYW51YWxseS4NCg0KDQpCZXN0IFJlZ2FyZHMNCkNodW5ndWFuZw0KDQpG
-cm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2Vz
-QHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBuZXViZXIgc291c2ENClNlbnQ6IFR1ZXNk
-YXksIERlY2VtYmVyIDIyLCAyMDE1IDEwOjI5IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9y
-Zw0KU3ViamVjdDogUmU6IFt5b2N0b10gSSdtIHRyeWluZyBpbnN0YWxsIEREQ0xJRU5UIGluIGlu
-dGVsIGVkaXNvbiB3aXRoIHlvY3RvIHByb2plY3QNCg0KSGksDQoNCkFueW9uZSBrbm93IHRoZSBh
-bnN3ZXIgPw0KDQoyMDE1LTEyLTIxIDE0OjAyIEdNVC0wMzowMCBuZXViZXIgc291c2EgPG5ldWJl
-cmZyYW5AZ21haWwuY29tPG1haWx0bzpuZXViZXJmcmFuQGdtYWlsLmNvbT4+Og0KSSBoYXZlIGVy
-cm9yczogcm9vdEBuZXViZXJmcmFuOn4jIGRkY2xpZW50IC12DQpDYW4ndCBsb2NhdGUgU3lzL0hv
-c3RuYW1lLnBtIGluIEBJTkMgKHlvdSBtYXkgbmVlZCB0byBpbnN0YWxsIHRoZSBTeXM6Okhvc3Ru
-YW1lIG1vZHVsZSkgKEBJTkMgY29udGFpbnM6IC9ldGMvcGVybCAvdXNyL2xpYi9wZXJsL3NpdGVf
-cGVybC81LjIwLjAvIC91c3IvbGliL3Blcmwvc2l0ZV9wZXJsLzUuMjAuMCAvdXNyL2xpYi9wZXJs
-L3ZlbmRvcl9wZXJsLzUuMjAuMC8gL3Vzci9saWIvcGVybC92ZW5kb3JfcGVybC81LjIwLjAgL3Vz
-ci9saWIvcGVybC81LjIwLjAvIC91c3IvbGliL3BlcmwvNS4yMC4wIC91c3IvbG9jYWwvbGliL3Np
-dGVfcGVybCAvdXNyL2xpYi9wZXJsLzUuMjAuMCAuKSBhdCAvdXNyL3NiaW4vZGRjbGllbnQgbGlu
-ZSAyNS4NCkJFR0lOIGZhaWxlZC0tY29tcGlsYXRpb24gYWJvcnRlZCBhdCAvdXNyL3NiaW4vZGRj
-bGllbnQgbGluZSAyNS4NCg0KSSB0aGlzIGlzIGJlY2F1c2UgbGlianNvbi1wZXJsIHBhY2thZ2UN
-Cg0KSG93IHRvIGluc3RhbGwgbGlianNvbi1wZXJsIHBhY2thZ2UgaW4geW9jdG8gaW1hZ2UgPw0K
-DQoNCg==
+space after first "
 
---_000_FF528608A41EAD4DAE7E154A9EDB1B2401B5BA1Bshsmsx102ccrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+>
+> Did I miss somethings ?
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9u
-dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAx
-MSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMi
-Ow0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBp
-bjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
-bWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxp
-bmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0
-aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
-LXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFG
-NDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
-b250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4yNWluIDEuMGluIDEuMjVpbjt9
-DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
-LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
-bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
-DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
-YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
-b2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgbmV1YmVyOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
-MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+WW91IHNob3VsZCBm
-aW5kICZhbXA7IGRvd25sb2FkIHNvdXJjZSBjb2RlIG9mIGxpYmpzb24tcGVybCBwYWNrYWdlLCBj
-b3B5IHRvIEVkaXNvbiBib2FyZCwgdGhlbiBjb21waWxlICZhbXA7IG1ha2UgaW5zdGFsbCBtYW51
-YWxseS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5CZXN0
-IFJlZ2FyZHM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Q2h1bmd1YW5nPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bh
-bj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFo
-b21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJv
-amVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBC
-ZWhhbGYgT2YgPC9iPm5ldWJlciBzb3VzYTxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBEZWNl
-bWJlciAyMiwgMjAxNSAxMDoyOSBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBJJ20gdHJ5aW5nIGluc3RhbGwg
-RERDTElFTlQgaW4gaW50ZWwgZWRpc29uIHdpdGggeW9jdG8gcHJvamVjdDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+QW55b25lIGtub3cgdGhlIGFuc3dlciA/PG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjIwMTUtMTItMjEgMTQ6MDIg
-R01ULTAzOjAwIG5ldWJlciBzb3VzYSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5ldWJlcmZyYW5AZ21h
-aWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+bmV1YmVyZnJhbkBnbWFpbC5jb208L2E+Jmd0Ozo8bzpw
-PjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGhhdmUgZXJyb3JzOiBy
-b290QG5ldWJlcmZyYW46fiMgZGRjbGllbnQgLXY8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5DYW4ndCBsb2NhdGUgU3lzL0hvc3RuYW1lLnBtIGluIEBJTkMgKHlv
-dSBtYXkgbmVlZCB0byBpbnN0YWxsIHRoZSBTeXM6Okhvc3RuYW1lIG1vZHVsZSkgKEBJTkMgY29u
-dGFpbnM6IC9ldGMvcGVybCAvdXNyL2xpYi9wZXJsL3NpdGVfcGVybC81LjIwLjAvIC91c3IvbGli
-L3Blcmwvc2l0ZV9wZXJsLzUuMjAuMCAvdXNyL2xpYi9wZXJsL3ZlbmRvcl9wZXJsLzUuMjAuMC8g
-L3Vzci9saWIvcGVybC92ZW5kb3JfcGVybC81LjIwLjANCiAvdXNyL2xpYi9wZXJsLzUuMjAuMC8g
-L3Vzci9saWIvcGVybC81LjIwLjAgL3Vzci9sb2NhbC9saWIvc2l0ZV9wZXJsIC91c3IvbGliL3Bl
-cmwvNS4yMC4wIC4pIGF0IC91c3Ivc2Jpbi9kZGNsaWVudCBsaW5lIDI1LjxvOnA+PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QkVHSU4gZmFpbGVkLS1jb21w
-aWxhdGlvbiBhYm9ydGVkIGF0IC91c3Ivc2Jpbi9kZGNsaWVudCBsaW5lIDI1LjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHRoaXMgaXM8Yj48
-aT48dT4gYmVjYXVzZSBsaWJqc29uLXBlcmwgPC91PjwvaT48L2I+cGFja2FnZTxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Ib3cgdG8gaW5zdGFs
-bDxiPjxpPiBsaWJqc29uLXBlcmwgPC9pPjwvYj5wYWNrYWdlIGluIHlvY3RvIGltYWdlID88bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
-Pg0K
+DISTRO_FEATURES_append = " systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 
---_000_FF528608A41EAD4DAE7E154A9EDB1B2401B5BA1Bshsmsx102ccrcor_--
+
+> Any help would be appreciated.
+>
+> Jin
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
