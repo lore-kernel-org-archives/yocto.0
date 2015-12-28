@@ -1,55 +1,42 @@
-Return-Path: <zavier.luo@gmail.com>
+Return-Path: <kaffeesurrogat@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C525E00CC2; Mon, 28 Dec 2015 01:59:54 -0800 (PST)
+	id B4ED7E00C31; Mon, 28 Dec 2015 08:56:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zavier.luo[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.67.36.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
-	[209.85.220.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5561DE00CF5
-	for <yocto@yoctoproject.org>; Mon, 28 Dec 2015 01:59:44 -0800 (PST)
-Received: by mail-pa0-f65.google.com with SMTP id yy13so6213873pab.1
-	for <yocto@yoctoproject.org>; Mon, 28 Dec 2015 01:59:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=LJysZ6e2btflWEEPwfeHut5yp4NAkAwNdnp5pqrwPF8=;
-	b=XPqraFcsGWGOKsxJOId45u0G4LlxcCxuYB81mTdUa9UkIQEJYndBSWtyXnZVwocgXJ
-	0QxkTiYCSd5wOERv4/tP4TWKpV3qTtRgS/YBfm2kg4ZJjQxa1f7g4wnsWV879CebCQPE
-	7yzgzqNENoRjHs018Z1boJlD+T8Vy2BEJaS1KeQvZm7ozDeZ6bK1oTs8HK/YlW7ho5KK
-	rXyAMoMrhZjEH3jp9dPyTnqgAs72f3lskkbJevWqxLqtTcLHwYbo+SzdSVQv8VIEaVTV
-	Bqb0r9XxJcBkm5VLyMN5bplUg/bd/Wc85MPjXARWrphxSe+AFcyIq+Z32r9RN3rP/YOl
-	YIfw==
-X-Received: by 10.66.162.231 with SMTP id yd7mr76379223pab.98.1451296784376;
-	Mon, 28 Dec 2015 01:59:44 -0800 (PST)
-Received: from sweet.ap.freescale.net (gate-zmy3.freescale.com. [192.88.167.1])
-	by smtp.gmail.com with ESMTPSA id
-	f24sm75334120pff.68.2015.12.28.01.59.42
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 28 Dec 2015 01:59:43 -0800 (PST)
-From: Zavier Luo <zavier.luo@gmail.com>
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84E30E008F5
+	for <yocto@yoctoproject.org>; Mon, 28 Dec 2015 08:56:14 -0800 (PST)
+Received: from dovecot03.posteo.de (dovecot03.posteo.de [172.16.0.13])
+	by mout01.posteo.de (Postfix) with ESMTPS id 9616C20845
+	for <yocto@yoctoproject.org>; Mon, 28 Dec 2015 17:56:12 +0100 (CET)
+Received: from mail.posteo.de (localhost [127.0.0.1])
+	by dovecot03.posteo.de (Postfix) with ESMTPSA id 3pTlQ373V6z5vN5
+	for <yocto@yoctoproject.org>; Mon, 28 Dec 2015 17:56:11 +0100 (CET)
 To: yocto@yoctoproject.org
-Date: Mon, 28 Dec 2015 18:06:21 +0800
-Message-Id: <1451297181-342-1-git-send-email-zavier.luo@gmail.com>
-X-Mailer: git-send-email 2.4.3
-Subject: [meta-cgl][PATCH] packagegroup-cgl-applications: unify the package name to fix the parse warnings
+References: <56640B0C.2000107@posteo.de>
+	<CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
+	<5664714B.1040909@posteo.de> <5665E926.70305@posteo.de>
+	<5680F9A5.7040602@posteo.de> <568107D6.5080406@posteo.de>
+From: kaffeesurrogat <kaffeesurrogat@posteo.de>
+Message-ID: <568169A6.9050204@posteo.de>
+Date: Mon, 28 Dec 2015 17:56:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.0
+MIME-Version: 1.0
+In-Reply-To: <568107D6.5080406@posteo.de>
+Subject: Re: BeagleBone...bitbake -v core-image-sato stops
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaffeesurrogat@posteo.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,45 +45,178 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Dec 2015 09:59:54 -0000
+X-List-Received-Date: Mon, 28 Dec 2015 16:56:17 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Fix the following parse warning:
-    WARNING: Variable key RDEPENDS_${PN} ( ${LTTNGUST}) replaces original key RDEPENDS_packagegroup-cgl-applications (     lvm2     ${LM_SENSORS}     bc     gettext     gettext-runtime     babeltrace     gdb     gdbserver     rsync     strace     libevent     mdadm     quota     smartmontools     monit     syslog-ng     ocfs2-tools     logcheck     samhain-client     samhain-server     audit     crash     pam-passwdqc     libpam     rsyslog     makedumpfile     ).
+Hello again,
 
-Signed-off-by: Zavier Luo <zavier.luo@gmail.com>
----
- meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+well I'm really a noob and guessing what to do. Well I've interrupted 
+bitbake cause
+nothing was happing and the log.do_compile of attr-native didn't show 
+any error message. I've started it all over again an now I do get an 
+error message: yes ;-)
 
-diff --git a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-index f823ece..3ebb7ed 100644
---- a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-+++ b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-@@ -8,7 +8,7 @@ inherit packagegroup
- inherit pkgconfig
- 
- 
--PACKAGES = "packagegroup-cgl-applications"
-+PACKAGES = "${PN}"
- 
- LM_SENSORS = " \
-     lmsensors-fancontrol \
-@@ -24,7 +24,7 @@ LM_SENSORS = " \
-     lmsensors-config-fancontrol \
-     "
- 
--RDEPENDS_packagegroup-cgl-applications = " \
-+RDEPENDS_${PN} = " \
-     lvm2 \
-     ${LM_SENSORS} \
-     bc \
-@@ -64,4 +64,4 @@ RDEPENDS_${PN}_append_qemuppc = " ${LTTNGUST}"
- RDEPENDS_${PN}_append_qemuarm = " ${LTTNGUST}"
- RDEPENDS_${PN}_append_powerpc = " ${LTTNGUST}"
- 
--RRECOMMENDS_packagegroup-cgl-applications = ""
-+RRECOMMENDS_${PN} = ""
--- 
-2.4.3
+it says:
+
+gmake[2]: ../-libtool: Command not found
+
+This looks a little bit weird to me, especially the "minus" in front of 
+the "libtool" .....
+
+Where does it come from? A missing or empty variable? Something like 
+${MYNAMEIS}-libtool an ${MYNAMEIS} not known?
+
+Greetings,
+
+Kaffeesurrogat
+
+
+On 28.12.2015 10:58, kaffeesurrogat wrote:
+> Sorry for sending the same mail twice. I've mixed up my identities.
+>
+>
+> On 28.12.2015 09:58, kaffeesurrogat@posteo.de wrote:
+>> Sorry guys .....
+>>
+>> I thought I was done. Actually I'm not a bit smarter then before ;-)
+>>
+>> I'm still trying to build a yocto-image for a beaglebone. I believed, 
+>> that the reason why yocto stopped compiling at attr-native-2.4.47-r0 
+>> was the missing gcc-multilib support. I've tried the same build on a 
+>> gentoo machine at work, which had a multilib environment, and it 
+>> finished.
+>>
+>> I've setup a new gentoo with multilib environment on my laptop but 
+>> ...... bitbake stops again at attr-native. So this was not the trick. 
+>> The  log.do_compile in
+>>
+>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/temp 
+>>
+>>
+>> says nothing special, at least for me.  Here is the quote:
+>>
+>> ----------------------------------------------------------------------------------------------------- 
+>>
+>>
+>> x86_64-linux-libtool: link: gcc -o .libs/setfattr -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>> -Wl,-O1 -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>> -Wl,-O1 -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath-link 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>> -Wl,-rpath 
+>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysrootgmake[2]: 
+>> Leaving directory 
+>> '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/attr-2.4.47/setfattr'
+>>
+>> o fr.mo fr.po
+>>
+>> ------------------------------------------------------------------------------------------------------- 
+>>
+>
+>
+> ADD-ON:
+>
+> I've had a look in the log.do-compile-file on my machine at work. It
+> says .....
+>
+> ----------------------------------------------------------------------------------------------------------- 
+>
+>
+> o fr.mo fr.po
+> gmake[3]: Nothing to be done for 'default'.
+> gmake[3]: Leaving directory
+> '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/attr-2.4.47/man/man1' 
+>
+> /usr/bin/gmake -C man2
+> gmake[2]: o: Command not found
+> ../include/buildrules:66: recipe for target 'fr.mo' failed
+> gmake[2]: [fr.mo] Error 127 (ignored)
+>
+> ----------------------------------------------------------------------------------------------------------- 
+>
+>
+> Well ..... ????????????????
+>
+>>
+>> It will stay at this point forever.
+>>
+>>
+>> The last output messages of bitbake:
+>>
+>>
+>> -------------------------------------------------------------------------------------------------------- 
+>>
+>>
+>> + rm -rf 
+>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/sstate-build-populate_lic/
+>>
+>> + ret=0
+>> + trap '' 0
+>> + exit 0
+>>
+>> [INFO] Pre-processed cfg file beaglebone-standard-config-3.14.4 created.
+>> [INFO] processing of raw cfg data completed.
+>>
+>>
+>> ******************************************************************************** 
+>>
+>>   Configuration stored in 
+>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/linux-beaglebone-standard-build/.config
+>> ******************************************************************************** 
+>>
+>>
+>>   To build with this kernel configuration, ensure a suitable toolchain
+>>   is in your path for arm, note its common command prefix, and do:
+>>
+>>    make 
+>> O=/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/linux-beaglebone-standard-build 
+>> ARCH=arm \
+>>         CROSS_COMPILE=<cross-compile-prefix>
+>>
+>>
+>> + '[' 0 -ne 0 ']'
+>>
+>> + echo '# Global settings from linux recipe'
+>> + echo 'CONFIG_LOCALVERSION="-yocto-standard"'
+>> + ret=0
+>> + trap '' 0
+>> + exit 0
+>>
+>> Currently 1 running tasks (1040 of 1770):
+>> 0: attr-native-2.4.47-r0 do_compile (pid 1778)
+>>
+>> ------------------------------------------------------------------------------------------------- 
+>>
+>>
+>> To be honest, I'm lost ....
+>>
+>> Would be happy about some help,
+>>
+>> kaffeesurrogat
+>>
+>>
+>> On 07.12.2015 21:16, kaffeesurrogat@posteo.de wrote:
+>>> cd 
+>>> /home/nico/yocto_bb/poky/build_bbb/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/gcc-cross-initial/4.8.2-r0/gcc-4.8.2/build.i686-linux.arm-poky-linux-gnueabi
+>>
+>
 
 
