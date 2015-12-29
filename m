@@ -1,51 +1,45 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <kaffeesurrogat@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43F83E00CE2; Tue, 29 Dec 2015 01:49:45 -0800 (PST)
+	id D84D0E00B5A; Tue, 29 Dec 2015 02:21:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.67.36.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2B76E008B5
-	for <yocto@yoctoproject.org>; Tue, 29 Dec 2015 01:49:41 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga104.fm.intel.com with ESMTP; 29 Dec 2015 01:49:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,494,1444719600"; d="scan'208";a="880326989"
-Received: from irsmsx105.ger.corp.intel.com ([163.33.3.28])
-	by orsmga002.jf.intel.com with ESMTP; 29 Dec 2015 01:49:39 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.22]) by
-	irsmsx105.ger.corp.intel.com ([169.254.7.104]) with mapi id
-	14.03.0248.002; Tue, 29 Dec 2015 09:49:38 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Mirela Rabulea <mirela.rabulea@nxp.com>, Mirela Rabulea
-	<Mirela.Rabulea@freescale.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] using Hob to run images on a custom simulator, other
-	than qemu
-Thread-Index: AQHRQh47qLsqKzajhEaPl+/oBweBcQ==
-Date: Tue, 29 Dec 2015 09:49:38 +0000
-Message-ID: <D2A806BE.6E038%belen.barros.pena@intel.com>
-References: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
-	<D29D8ACF.6DB8E%belen.barros.pena@intel.com>
-	<DBXPR04MB41628675A843378D20C88978FE50@DBXPR04MB416.eurprd04.prod.outlook.com>
-	<D2A024CD.6DE42%belen.barros.pena@intel.com>
-	<DBXPR04MB416EDBBD82717E2894043018FE70@DBXPR04MB416.eurprd04.prod.outlook.com>
-In-Reply-To: <DBXPR04MB416EDBBD82717E2894043018FE70@DBXPR04MB416.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.5.9.151119
-x-originating-ip: [10.252.27.131]
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5656CE008B5
+	for <yocto@yoctoproject.org>; Tue, 29 Dec 2015 02:21:37 -0800 (PST)
+Received: from dovecot03.posteo.de (dovecot03.posteo.de [172.16.0.13])
+	by mout01.posteo.de (Postfix) with ESMTPS id 9B1C2208A1
+	for <yocto@yoctoproject.org>; Tue, 29 Dec 2015 11:21:32 +0100 (CET)
+Received: from mail.posteo.de (localhost [127.0.0.1])
+	by dovecot03.posteo.de (Postfix) with ESMTPSA id 3pVBcC6VyHz5vN8;
+	Tue, 29 Dec 2015 11:21:31 +0100 (CET)
+References: <56640B0C.2000107@posteo.de>
+	<CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
+	<5664714B.1040909@posteo.de> <5665E926.70305@posteo.de>
+	<5680F9A5.7040602@posteo.de> <568107D6.5080406@posteo.de>
+	<568169A6.9050204@posteo.de>
+	<330A2687-E1E7-4E30-BAB0-AE9395A4A526@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+From: kaffeesurrogat <kaffeesurrogat@posteo.de>
+Message-ID: <56825EA3.3020603@posteo.de>
+Date: Tue, 29 Dec 2015 11:21:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.0
 MIME-Version: 1.0
-Cc: Nicolae Manescu <nicu.manescu@nxp.com>
-Subject: Re: using Hob to run images on a custom simulator, other than qemu
+In-Reply-To: <330A2687-E1E7-4E30-BAB0-AE9395A4A526@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: BeagleBone...bitbake -v core-image-sato stops
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaffeesurrogat@posteo.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,193 +48,216 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Dec 2015 09:49:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="windows-1254"
-Content-ID: <686666ABAFCA3A4CBBBD87E4FD18A0C7@intel.com>
+X-List-Received-Date: Tue, 29 Dec 2015 10:21:42 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 
+On 28.12.2015 23:00, Khem Raj wrote:
+>> On Dec 28, 2015, at 8:56 AM, kaffeesurrogat <kaffeesurrogat@posteo.de>=
+ wrote:
+>>
+>> Hello again,
+>>
+>> well I'm really a noob and guessing what to do. Well I've interrupted =
+bitbake cause
+>> nothing was happing and the log.do_compile of attr-native didn't show =
+any error message. I've started it all over again an now I do get an erro=
+r message: yes ;-)
+>>
+>> it says:
+>>
+>> gmake[2]: ../-libtool: Command not found
+>>
+>> This looks a little bit weird to me, especially the "minus" in front o=
+f the "libtool" .....
+>>
+>> Where does it come from? A missing or empty variable? Something like $=
+{MYNAMEIS}-libtool an ${MYNAMEIS} not known?
+>>
+> what is your build host ?.
+> I would suggest to setup a clean build system ( may be a VM ) and try i=
+t out on that
 
-On 24/12/2015 18:19, "Mirela Rabulea" <mirela.rabulea@nxp.com> wrote:
+Thanks Khem Raj,
 
->Hi Bel=E9n,
->Thanks for the info on the tests, I'll check on that.
->In the meantime, please find attached my proposal for the new GUI
->options. Basically, if an image is qemu-compatible, already there was a
->"Run image" button displayed. I let the button be named "Run qemu image",
->while if a non qemu-compatible image is selected, the same button shows
->up with the name "Run custom image"
+my build host is a gentoo system. I know it is not officially supported, =
 
-Hi Mirela,
+but I'm using it for ages. Thus I know my way around. At least a little=20
+bit. Would be nice not to switch.
+I've removed my yocto-dir several times and made a fresh git-clone. I've =
 
-This looks ok to me.
+tried with the daisy  and the jethro branch. I've tried to build=20
+core-image-minimal and core-image-sato for qemu and the beaglebone=20
+black.  I did that on two different gentoo-machines, on one of them=20
+things compiled fine. In the beginning I've had the impression, the=20
+faults on the failing-gentoo system could be due to the missing multilib =
 
-> and besides that, an option shows-up to allow the selection of the
->custom script=20
+support. Thus I replaced it with a fresh and clean install supporting=20
+gcc-multilib stuff.
 
-I guess the only thing I am missing is how do I select the custom script.
-Will you present the option in a dialog?
+The error stays  - with small variation - more or less the same:
 
->(by default it points out to runqemu script) to be used for launching
->this custom image.
->I also attached my original versus changed python scripts, for more
->clarity.
+attr-native does not finish its build-process.
 
-Can't comment on those, I'm afraid. I only take care of the pretty
-pictures ;)
+1) It stops with the message similiar to "o pl.mo pl.poto" after gmake=20
+left the directory getfattr or setfattr
 
-Cheers
+or
 
-Bel=E9n
+2) It fails with "gmake[2]: o: Command not found"
 
->Looking forward for your feedback.
->
->And...Merry Christmas :)
->
->Regards,
->Mirela
->
->
->-----Original Message-----
->From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]
->Sent: Wednesday, December 23, 2015 12:21 PM
->To: Mirela Rabulea <mirela.rabulea@nxp.com>; Mirela Rabulea
-><Mirela.Rabulea@freescale.com>; yocto@yoctoproject.org;
->poky@yoctoproject.org
->Cc: Nicolae Manescu <nicu.manescu@nxp.com>; Georgescu, Alexandru C
-><alexandru.c.georgescu@intel.com>
->Subject: Re: [yocto] using Hob to run images on a custom simulator, other
->than qemu
->
->
->
->On 22/12/2015 11:35, "Mirela Rabulea" <mirela.rabulea@nxp.com> wrote:
->
->>Hi Bel=E9n,
->>Thanks for the answer. Is there a set of tests that would ensure there
->>are no regressions? Where can it be found?
->
->These are the test cases I can find in Testopia:
->
->https://bugzilla.yoctoproject.org/tr_list_cases.cgi?searchstr=3Dhob&curren=
-t_
->t
->ab=3Dcase&summary_type=3Danywordssubstr&summary=3Dhob&field-1-0-0=3Dsummar=
-y&type-1
->-
->0-0=3Danywordssubstr&value-1-0-0=3Dhob
->
->Hopefully someone from QA can provide more details on how to run them.
->
->If you want any input on how to present the new options in the UI, let me
->know. I'll be happy to help.
->
->Cheers
->
->Bel=E9n
->
->>
->>Thanks,
->>Mirela
->>
->>-----Original Message-----
->>From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]
->>Sent: Monday, December 21, 2015 1:26 PM
->>To: Mirela Rabulea <Mirela.Rabulea@freescale.com>;
->>yocto@yoctoproject.org; poky@yoctoproject.org
->>Cc: nicolae.manescu@nxp.com
->>Subject: Re: [yocto] using Hob to run images on a custom simulator,
->>other than qemu
->>
->>
->>
->>On 18/12/2015 16:05, "yocto-bounces@yoctoproject.org on behalf of
->>Mirela Rabulea" <yocto-bounces@yoctoproject.org on behalf of
->>Mirela.Rabulea@freescale.com> wrote:
->>
+or
+
+3) It fails with "gmake[2]: ../-libtool: Command not found "
+
+
+This is really weird. I'm not able to figure the small but important=20
+differences on my two different gentoo machines.
+
+Any help is really appreciated,
+
+Kaffesurrogat
+
+>>>> Sorry guys .....
+>>>>
+>>>> I thought I was done. Actually I'm not a bit smarter then before ;-)=
+
+>>>>
+>>>> I'm still trying to build a yocto-image for a beaglebone. I believed=
+, that the reason why yocto stopped compiling at attr-native-2.4.47-r0 wa=
+s the missing gcc-multilib support. I've tried the same build on a gentoo=
+ machine at work, which had a multilib environment, and it finished.
+>>>>
+>>>> I've setup a new gentoo with multilib environment on my laptop but .=
+=2E.... bitbake stops again at attr-native. So this was not the trick. Th=
+e  log.do_compile in
+>>>>
+>>>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr=
+-native/2.4.47-r0/temp
+>>>>
+>>>> says nothing special, at least for me.  Here is the quote:
+>>>>
+>>>> --------------------------------------------------------------------=
+---------------------------------
+>>>>
+>>>> x86_64-linux-libtool: link: gcc -o .libs/setfattr -Wl,-rpath-link -W=
+l,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr=
+/lib -Wl,-rpath-link -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sy=
+sroots/x86_64-linux/lib -Wl,-rpath -Wl,/home/nico/yocto_bbb_daisy/poky/bu=
+ild_bbb/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpath -Wl,/home/nico/yocto=
+_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib -Wl,-O1 -Wl,-rpat=
+h-link -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-=
+linux/usr/lib -Wl,-rpath-link -Wl,/home/nico/yocto_bbb_daisy/poky/build_b=
+bb/tmp/sysroots/x86_64-linux/lib -Wl,-rpath -Wl,/home/nico/yocto_bbb_dais=
+y/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpath -Wl,/home/n=
+ico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib -Wl,-O1 =
+-Wl,-rpath-link -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroot=
+s/x86_64-linux/usr/lib -Wl,-rpath-link -Wl,/home/nico/yocto_bbb_daisy/pok=
+y/build_bbb/tmp/sysroots/x86_64-linux/lib -Wl,-rpath -Wl,/home/nico/yocto=
+_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpath -W=
+l,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysrootgmake[2]: Leaving =
+directory '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linu=
+x/attr-native/2.4.47-r0/attr-2.4.47/setfattr'
+>>>>
+>>>> o fr.mo fr.po
+>>>>
+>>>> --------------------------------------------------------------------=
+-----------------------------------
 >>>
+>>> ADD-ON:
 >>>
->>>Hello yocto world
->>>J
+>>> I've had a look in the log.do-compile-file on my machine at work. It
+>>> says .....
 >>>
->>>=20
+>>> ---------------------------------------------------------------------=
+--------------------------------------
 >>>
->>>This is my first message on any yocto list, I=B9m not sure which list to
->>>address, so I choose the ones which seemed the most generic and suited
->>>to my purpose. Please redirect me if a more specific list is better
->>>suited to ask this question.
+>>> o fr.mo fr.po
+>>> gmake[3]: Nothing to be done for 'default'.
+>>> gmake[3]: Leaving directory
+>>> '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr=
+-native/2.4.47-r0/attr-2.4.47/man/man1'
+>>> /usr/bin/gmake -C man2
+>>> gmake[2]: o: Command not found
+>>> ../include/buildrules:66: recipe for target 'fr.mo' failed
+>>> gmake[2]: [fr.mo] Error 127 (ignored)
 >>>
->>>=20
+>>> ---------------------------------------------------------------------=
+--------------------------------------
 >>>
->>>The problem I see at present is: there is one single button in Hob,
->>>=B3Run Image=B2, which is active only for qemu images, and it is
->>>triggering the execution of the =B3poky\scripts\runqemu=B2 script. Pleas=
-e
->>>scroll down to the picture at end of this email to see what I=B9m talkin=
-g
->>>about.
+>>> Well ..... ????????????????
 >>>
->>>=20
->>>
->>>The question I want to ask is if it would be acceptable to add more
->>>buttons to the =B3Image details=B2 dialog (or a new dialog to pop-up whe=
-n
->>>=B3Run Image=B2 is clicked), in order to allow the customization of the
->>>simulator to be launched, basically to specify the location & command
->>>line of such custom simulator. Who may advise in this matter? I am
->>>willing to contribute with changes.
->>
->>Hi Mirela,
->>
->>I have asked a few people about this, because Hob is pretty much
->>deprecated at this point (it's being replaced by a web interface called
->>Toaster). They replied they would be willing to merge changes to Hob,
->>as long as they can be sure they won't cause any regressions.
->>
->>I hope this helps.
->>
->>Cheers
->>
->>Bel=E9n
->>
->>>
->>>=20
->>>
->>>The changes I anticipate would be necessary are:
->>>
->>>1.     =20
->>>Changes in the GUI, somewhere in the python scripts from
->>>=B3poky\bitbake\lib\bb\ui\crumbs\=B2, especially in imagedetailspage.py,
->>>maybe in builder.py
->>>
->>>2.     =20
->>>Be more permissive with the types of images that are allowed to run.
->>>Currently, there are these restrictions related to the name and
->>>extension of the image in =B3poky\meta\classes\ image_types.bbclass=B2,
->>>these need to be extended/customized:
->>>
->>>RUNNABLE_IMAGE_TYPES ?=3D "ext2 ext3"
->>>
->>>RUNNABLE_MACHINE_PATTERNS ?=3D "qemu"
->>>
->>>
->>>=20
->>>
->>>BTW, here is how Hob =B3Image details=B2 dialog currently looks like, se=
-e
->>>attached picture, note that the highlighted =B3Run Image=B2 button shows
->>>up only for qemu images.
->>>=20
->>>
->>>Regards,
->>>
->>>Mirela
->>>
->>>=20
->>>
->>>
->>
->
+>>>> It will stay at this point forever.
+>>>>
+>>>>
+>>>> The last output messages of bitbake:
+>>>>
+>>>>
+>>>> --------------------------------------------------------------------=
+------------------------------------
+>>>>
+>>>> + rm -rf /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebo=
+ne-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4=
+-r0/sstate-build-populate_lic/
+>>>>
+>>>> + ret=3D0
+>>>> + trap '' 0
+>>>> + exit 0
+>>>>
+>>>> [INFO] Pre-processed cfg file beaglebone-standard-config-3.14.4 crea=
+ted.
+>>>> [INFO] processing of raw cfg data completed.
+>>>>
+>>>>
+>>>> ********************************************************************=
+************
+>>>>   Configuration stored in /home/nico/yocto_bbb_daisy/poky/build_bbb/=
+tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+1836=
+22e809_0143c6ebb4-r0/linux-beaglebone-standard-build/.config
+>>>> ********************************************************************=
+************
+>>>>
+>>>>   To build with this kernel configuration, ensure a suitable toolcha=
+in
+>>>>   is in your path for arm, note its common command prefix, and do:
+>>>>
+>>>>    make O=3D/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beagl=
+ebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6e=
+bb4-r0/linux-beaglebone-standard-build ARCH=3Darm \
+>>>>         CROSS_COMPILE=3D<cross-compile-prefix>
+>>>>
+>>>>
+>>>> + '[' 0 -ne 0 ']'
+>>>>
+>>>> + echo '# Global settings from linux recipe'
+>>>> + echo 'CONFIG_LOCALVERSION=3D"-yocto-standard"'
+>>>> + ret=3D0
+>>>> + trap '' 0
+>>>> + exit 0
+>>>>
+>>>> Currently 1 running tasks (1040 of 1770):
+>>>> 0: attr-native-2.4.47-r0 do_compile (pid 1778)
+>>>>
+>>>> --------------------------------------------------------------------=
+-----------------------------
+>>>>
+>>>> To be honest, I'm lost ....
+>>>>
+>>>> Would be happy about some help,
+>>>>
+>>>> kaffeesurrogat
+>>>>
+>>>>
+>>>> On 07.12.2015 21:16, kaffeesurrogat@posteo.de wrote:
+>>>>> cd /home/nico/yocto_bb/poky/build_bbb/tmp/work/cortexa8hf-vfp-neon-=
+poky-linux-gnueabi/gcc-cross-initial/4.8.2-r0/gcc-4.8.2/build.i686-linux.=
+arm-poky-linux-gnueabi
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
 
