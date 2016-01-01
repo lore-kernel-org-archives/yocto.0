@@ -1,59 +1,77 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <mirela.rabulea@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80840E00C71; Wed, 30 Dec 2015 12:28:36 -0800 (PST)
+	id 4B52BE00D15; Fri,  1 Jan 2016 08:53:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.55.234.62 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C6C8E00321
-	for <yocto@yoctoproject.org>; Wed, 30 Dec 2015 12:28:32 -0800 (PST)
-Received: by mail-ig0-f180.google.com with SMTP id mv3so151675828igc.0
-	for <yocto@yoctoproject.org>; Wed, 30 Dec 2015 12:28:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=1u+khfnd1TpsyqTDAtQGvWoJzrZy4PCGXun3hcN8C5Y=;
-	b=lMsB5JTLscZhYgdR4/F9j0UhGHZm/6wr7o8AiKA4QQb8I4d0skH5309ri9Nnvh2+By
-	jkObnzds/HO8VDDzRN1ZRdUzgyLzCT9kRNUo0bmtQ5bIhvTeuEbBKPVdePtG7+xG2gJb
-	gn9PT+lOTWxLqgcaxWZjwbplvRb8AMOos7Nlh8whEpRCDTf2VSJImytN60VYF/pyCJ8m
-	mhg7eZTIGLs526Cvrkifb7JhgsixYquGkYAZ8yOMCe7byVrBQWUJ45g9QPcKS1WnxqCA
-	QG8bMLu+A4QlWCT09WfGDZIUfrPH6MhUt47cuxFudMhs7w07PCnzGXOFBrimhIpXpqSy
-	D5dA==
-X-Received: by 10.50.61.98 with SMTP id o2mr63115544igr.79.1451507311783; Wed,
-	30 Dec 2015 12:28:31 -0800 (PST)
+Received: from emea01-db3-obe.outbound.protection.outlook.com
+	(mail-db3on0062.outbound.protection.outlook.com [157.55.234.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68A97E0033E
+	for <yocto@yoctoproject.org>; Fri,  1 Jan 2016 08:53:35 -0800 (PST)
+Received: from VI1PR0401MB1789.eurprd04.prod.outlook.com (10.165.234.151) by
+	AM2PR04MB0897.eurprd04.prod.outlook.com (10.161.70.148) with Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Fri, 1 Jan 2016 16:19:33 +0000
+Received: from VI1PR0401MB1789.eurprd04.prod.outlook.com ([10.165.234.151]) by
+	VI1PR0401MB1789.eurprd04.prod.outlook.com ([10.165.234.151]) with
+	mapi id 15.01.0361.006; Fri, 1 Jan 2016 16:19:32 +0000
+From: Mirela Rabulea <mirela.rabulea@nxp.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, Mirela Rabulea
+	<Mirela.Rabulea@freescale.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] using Hob to run images on a custom simulator, other
+	than qemu
+Thread-Index: AQHRO+JQkjs3VfaAnke6FvA1yts7QJ7W4STQgAF+aQCAAgTukIAHYDYAgAUifIY=
+Date: Fri, 1 Jan 2016 16:19:32 +0000
+Message-ID: <VI1PR0401MB178995FB0D126B354C49120D8FFF0@VI1PR0401MB1789.eurprd04.prod.outlook.com>
+References: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
+	<D29D8ACF.6DB8E%belen.barros.pena@intel.com>
+	<DBXPR04MB41628675A843378D20C88978FE50@DBXPR04MB416.eurprd04.prod.outlook.com>
+	<D2A024CD.6DE42%belen.barros.pena@intel.com>
+	<DBXPR04MB416EDBBD82717E2894043018FE70@DBXPR04MB416.eurprd04.prod.outlook.com>,
+	<D2A806BE.6E038%belen.barros.pena@intel.com>
+In-Reply-To: <D2A806BE.6E038%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=mirela.rabulea@nxp.com; 
+x-originating-ip: [213.233.84.200]
+x-microsoft-exchange-diagnostics: 1; AM2PR04MB0897;
+	5:Uy/o8dUYq5lUTHbqsJ7ro9UMEsx/ULEIJ7yB8beqK4uRkgMt0z9iiTwp2sSICrPkq6kZ+YIAihO1nv+NbkuCqaUlRp/5XhQly7QMX+PXB1cGxEeDjIx0kLmlvpTWMN+WlpjsYmVGKWIhY0A8WQoLig==;
+	24:dmD3yeXYC5LbfdjHGMeCuH6p0iG/ISXfnSYO56+qwNVPF+LTeg+tYWLXwxDFTQ68K95NRiRBbdZdBZPTpSqijTzWNjhuHjZTOsul2vh0JGQ=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:AM2PR04MB0897;
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-microsoft-antispam-prvs: <AM2PR04MB0897A620D7D5DD8A7E9FF6A98FFF0@AM2PR04MB0897.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(185117386973197)(101931422205132);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(520078)(5005006)(8121501046)(10201501046)(3002001);
+	SRVR:AM2PR04MB0897; BCL:0; PCL:0; RULEID:; SRVR:AM2PR04MB0897; 
+x-forefront-prvs: 0808323E97
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(189002)(51914003)(43544003)(24454002)(164054003)(53484002)(13464003)(199003)(479174004)(377454003)(469094003)(55674003)(5004730100002)(40100003)(54356999)(76176999)(66066001)(77096005)(93886004)(50986999)(2900100001)(106116001)(15975445007)(2501003)(105586002)(101416001)(33656002)(86362001)(561944003)(3846002)(92566002)(5890100001)(106356001)(5001960100002)(189998001)(2950100001)(5003600100002)(19580405001)(122556002)(5002640100001)(76576001)(87936001)(97736004)(10400500002)(5001770100001)(6116002)(5008740100001)(4326007)(19580395003)(102836003)(1096002)(74316001)(1220700001)(81156007)(586003)(7059030);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:AM2PR04MB0897;
+	H:VI1PR0401MB1789.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: nxp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CAFzUWG=iGCKx=crQv_TvMFBXDUytgv2Aq0FTH+0ug5veV1PGKg@mail.gmail.com>
-	<CAMKF1srrsm9YVJvaZi1Z38X0LQYvuwVFoHeJNrYwDs0mJN1PcA@mail.gmail.com>
-	<CAFzUWGm2Np9EWeAMgyt+bR4bEkU0A8+3BiXHAosxOnAvPXpf6A@mail.gmail.com>
-	<CAMKF1so4qVAcmcMThx7n7vxdVkY4pEZ5mJXwcWhVwKV-eTQPLA@mail.gmail.com>
-	<CAFzUWGn5zpLzH3QrUMxHD49G0RG+0Mor=demKXfNSyEc-ktOBw@mail.gmail.com>
-	<CAMKF1sq1JkXLAYkbu+y_ZNPWrtJp4SQFH5bPW8uH+BNUBGKbsw@mail.gmail.com>
-	<CAFzUWGm6qK6-hGJVdZ3e_ZkDWg81YODuh9g4J4GmhCJCO9Y8MQ@mail.gmail.com>
-	<CAFzUWG=F-U-4hJBG=D-tbP4YOLkZVCbv0iyVY6-MiRt6+jkumQ@mail.gmail.com>
-In-Reply-To: <CAFzUWG=F-U-4hJBG=D-tbP4YOLkZVCbv0iyVY6-MiRt6+jkumQ@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Wed, 30 Dec 2015 20:28:21 +0000
-Message-ID: <CAFzUWGkJ72WZ5mQ_HZmRQp_Brr5zR-Dp=DRhv6OmSZEYcp_Edg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to add a recipe for ROOT
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jan 2016 16:19:32.1423 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM2PR04MB0897
+Cc: Nicolae Manescu <nicu.manescu@nxp.com>
+Subject: Re: using Hob to run images on a custom simulator, other than qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,263 +83,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Dec 2015 20:28:36 -0000
-Content-Type: multipart/alternative; boundary=001a1134958ab5381505282361e4
-
---001a1134958ab5381505282361e4
-Content-Type: text/plain; charset=UTF-8
-
-Here's an update set of logs:
-
-(output) https://gist.github.com/anonymous/56f904b65feeb3346db6
-(CMakeError.log) https://gist.github.com/anonymous/d5d766badcee1df5efc1
-
-for the current recipe here:
-https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
-
-On Wed, Dec 30, 2015 at 2:10 PM Giordon Stark <kratsg@gmail.com> wrote:
-
-> Actually -- if you look here -- I'm already using pkg-config?
->
->
-> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb#L9
->
-> Is there something wrong with the configuration then?
->
-> On Wed, Dec 30, 2015 at 2:07 PM Giordon Stark <kratsg@gmail.com> wrote:
->
->> I'm unable to disable the internal build. I'm working on the pkg-config
->> however.
->>
->> On Wed, Dec 30, 2015 at 1:34 PM Khem Raj <raj.khem@gmail.com> wrote:
->>
->>> On Wed, Dec 30, 2015 at 10:27 AM, Giordon Stark <kratsg@gmail.com>
->>> wrote:
->>> > I'll look at pkg-config examples. How do I fix the llvm issue though? I
->>> > don't know enough about bitbake to fix that.
->>>
->>> disable, internal build _somehow_
->>> then add DEPENDS += "llvm3" to recipe
->>> >
->>> > Giordon
->>> >
->>> > On Wed, Dec 30, 2015 at 1:26 PM Khem Raj <raj.khem@gmail.com> wrote:
->>> >>
->>> >> you mostly have one of these issues
->>> >>
->>> >> | ERROR:
->>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>> >> should not be used, use an alternative such as pkg-config
->>> >> | ERROR:
->>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>> >> should not be used, use an alternative such as pkg-config
->>> >> | ERROR:
->>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>> >> should not be used, use an alternative such as pkg-config
->>> >> | ERROR:
->>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>> >> should not be used, use an alternative such as pkg-config
->>> >>
->>> >> so you need to replace the use of pcre-config with pkg-config, there
->>> >> are example how it has been done for some other recipes in OE
->>> >>
->>> >> second problem seems to be that its trying to compile its own version
->>> >> of llvm and thats failing because the native compiler its finding does
->>> >> not support c++11 or atleast the config tests think that way. Again
->>> >> this components build system needs to fix that. You might be better
->>> >> off using llvm provided bt meta-oe instead of internal version.
->>> >>
->>> >> On Wed, Dec 30, 2015 at 9:35 AM, Giordon Stark <kratsg@gmail.com>
->>> wrote:
->>> >> > https://gist.github.com/anonymous/adec2839deecce33702a
->>> >> >
->>> >> > Giordon
->>> >> >
->>> >> > On Wed, Dec 23, 2015 at 9:25 PM Khem Raj <raj.khem@gmail.com>
->>> wrote:
->>> >> >>
->>> >> >> can you post output of
->>> root/6.04.12-r0/build/CMakeFiles/CMakeError.log
->>> >> >>
->>> >> >> On Wed, Dec 9, 2015 at 12:00 PM, Giordon Stark <kratsg@gmail.com>
->>> >> >> wrote:
->>> >> >> > Hi all,
->>> >> >> >
->>> >> >> > I'm trying to add a recipe for ROOT (from CERN) but I'm running
->>> into
->>> >> >> > various
->>> >> >> > issues with just trying to get compilers working.
->>> >> >> >
->>> >> >> > Current recipe:
->>> >> >> >
->>> >> >> >
->>> >> >> >
->>> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
->>> >> >> >
->>> >> >> > Current log: https://gist.github.com/kratsg/cd3184a167676eb69067
->>> >> >> >
->>> >> >> > Note that the goal is to have the bare-minimum with PyROOT
->>> (enable
->>> >> >> > python
->>> >> >> > support). So I'm following:
->>> >> >> > - https://root.cern.ch/building-root
->>> >> >> > - https://root.cern.ch/build-prerequisites
->>> >> >> >
->>> >> >> > Thanks,
->>> >> >> >
->>> >> >> > Giordon
->>> >> >> >
->>> >> >> > --
->>> >> >> > _______________________________________________
->>> >> >> > yocto mailing list
->>> >> >> > yocto@yoctoproject.org
->>> >> >> > https://lists.yoctoproject.org/listinfo/yocto
->>> >> >> >
->>>
->>
-
---001a1134958ab5381505282361e4
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 01 Jan 2016 16:53:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="windows-1254"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Here&#39;s an update set of logs:<br><br>(output) <a href=
-=3D"https://gist.github.com/anonymous/56f904b65feeb3346db6">https://gist.gi=
-thub.com/anonymous/56f904b65feeb3346db6</a><br><div>(CMakeError.log) <a hre=
-f=3D"https://gist.github.com/anonymous/d5d766badcee1df5efc1">https://gist.g=
-ithub.com/anonymous/d5d766badcee1df5efc1</a><br><br>for the current recipe =
-here:=C2=A0<a href=3D"https://github.com/kratsg/meta-l1calo/blob/master/rec=
-ipes-core/root/root_6.04.12.bb">https://github.com/kratsg/meta-l1calo/blob/=
-master/recipes-core/root/root_6.04.12.bb</a></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr">On Wed, Dec 30, 2015 at 2:10 PM Giordon Stark =
-&lt;<a href=3D"mailto:kratsg@gmail.com">kratsg@gmail.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Actually -- if you lo=
-ok here -- I&#39;m already using pkg-config?=C2=A0<div><br></div><div><a hr=
-ef=3D"https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/r=
-oot_6.04.12.bb#L9" target=3D"_blank">https://github.com/kratsg/meta-l1calo/=
-blob/master/recipes-core/root/root_6.04.12.bb#L9</a><br></div><div><br></di=
-v><div>Is there something wrong with the configuration then?</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Dec 30, 2015 at 2:07 P=
-M Giordon Stark &lt;<a href=3D"mailto:kratsg@gmail.com" target=3D"_blank">k=
-ratsg@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
- dir=3D"ltr">I&#39;m unable to disable the internal build. I&#39;m working =
-on the pkg-config however.</div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr">On Wed, Dec 30, 2015 at 1:34 PM Khem Raj &lt;<a href=3D"mailto:raj.khe=
-m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex">On Wed, Dec 30, 2015 at 10:27 AM, Giordon Sta=
-rk &lt;<a href=3D"mailto:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.c=
-om</a>&gt; wrote:<br>
-&gt; I&#39;ll look at pkg-config examples. How do I fix the llvm issue thou=
-gh? I<br>
-&gt; don&#39;t know enough about bitbake to fix that.<br>
-<br>
-disable, internal build _somehow_<br>
-then add DEPENDS +=3D &quot;llvm3&quot; to recipe<br>
-&gt;<br>
-&gt; Giordon<br>
-&gt;<br>
-&gt; On Wed, Dec 30, 2015 at 1:26 PM Khem Raj &lt;<a href=3D"mailto:raj.khe=
-m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; you mostly have one of these issues<br>
-&gt;&gt;<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt;<br>
-&gt;&gt; so you need to replace the use of pcre-config with pkg-config, the=
-re<br>
-&gt;&gt; are example how it has been done for some other recipes in OE<br>
-&gt;&gt;<br>
-&gt;&gt; second problem seems to be that its trying to compile its own vers=
-ion<br>
-&gt;&gt; of llvm and thats failing because the native compiler its finding =
-does<br>
-&gt;&gt; not support c++11 or atleast the config tests think that way. Agai=
-n<br>
-&gt;&gt; this components build system needs to fix that. You might be bette=
-r<br>
-&gt;&gt; off using llvm provided bt meta-oe instead of internal version.<br=
->
-&gt;&gt;<br>
-&gt;&gt; On Wed, Dec 30, 2015 at 9:35 AM, Giordon Stark &lt;<a href=3D"mail=
-to:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; <a href=3D"https://gist.github.com/anonymous/adec2839deecce33=
-702a" rel=3D"noreferrer" target=3D"_blank">https://gist.github.com/anonymou=
-s/adec2839deecce33702a</a><br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Giordon<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On Wed, Dec 23, 2015 at 9:25 PM Khem Raj &lt;<a href=3D"mailt=
-o:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<b=
-r>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; can you post output of root/6.04.12-r0/build/CMakeFiles/C=
-MakeError.log<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; On Wed, Dec 9, 2015 at 12:00 PM, Giordon Stark &lt;<a hre=
-f=3D"mailto:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt;<br=
->
-&gt;&gt; &gt;&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt; Hi all,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; I&#39;m trying to add a recipe for ROOT (from CERN) =
-but I&#39;m running into<br>
-&gt;&gt; &gt;&gt; &gt; various<br>
-&gt;&gt; &gt;&gt; &gt; issues with just trying to get compilers working.<br=
->
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Current recipe:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://github.com/kratsg/meta-l1calo/blo=
-b/master/recipes-core/root/root_6.04.12.bb" rel=3D"noreferrer" target=3D"_b=
-lank">https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/r=
-oot_6.04.12.bb</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Current log: <a href=3D"https://gist.github.com/krat=
-sg/cd3184a167676eb69067" rel=3D"noreferrer" target=3D"_blank">https://gist.=
-github.com/kratsg/cd3184a167676eb69067</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Note that the goal is to have the bare-minimum with =
-PyROOT (enable<br>
-&gt;&gt; &gt;&gt; &gt; python<br>
-&gt;&gt; &gt;&gt; &gt; support). So I&#39;m following:<br>
-&gt;&gt; &gt;&gt; &gt; - <a href=3D"https://root.cern.ch/building-root" rel=
-=3D"noreferrer" target=3D"_blank">https://root.cern.ch/building-root</a><br=
->
-&gt;&gt; &gt;&gt; &gt; - <a href=3D"https://root.cern.ch/build-prerequisite=
-s" rel=3D"noreferrer" target=3D"_blank">https://root.cern.ch/build-prerequi=
-sites</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Thanks,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Giordon<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt; &gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"=
-_blank">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/l=
-istinfo/yocto</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-</blockquote></div></blockquote></div></blockquote></div>
+Hi Belen,
+Regarding the selection of the custom script, there is a "change" button, w=
+hen pressed it shows up a file chooser dialog. I just reused it from the ex=
+isting scripts. There was an option to add filters for the filename and ext=
+ension, but I did not use any filter.
 
---001a1134958ab5381505282361e4--
+Thanks,
+Mirela
+
+Sent using OWA for iPhone
+________________________________________
+From: Barros Pena, Belen <belen.barros.pena@intel.com>
+Sent: Tuesday, December 29, 2015 11:49:38 AM
+To: Mirela Rabulea; Mirela Rabulea; yocto@yoctoproject.org
+Cc: Nicolae Manescu
+Subject: Re: [yocto] using Hob to run images on a custom simulator, other t=
+han qemu
+
+On 24/12/2015 18:19, "Mirela Rabulea" <mirela.rabulea@nxp.com> wrote:
+
+>Hi Bel=E9n,
+>Thanks for the info on the tests, I'll check on that.
+>In the meantime, please find attached my proposal for the new GUI
+>options. Basically, if an image is qemu-compatible, already there was a
+>"Run image" button displayed. I let the button be named "Run qemu image",
+>while if a non qemu-compatible image is selected, the same button shows
+>up with the name "Run custom image"
+
+Hi Mirela,
+
+This looks ok to me.
+
+> and besides that, an option shows-up to allow the selection of the
+>custom script
+
+I guess the only thing I am missing is how do I select the custom script.
+Will you present the option in a dialog?
+
+>(by default it points out to runqemu script) to be used for launching
+>this custom image.
+>I also attached my original versus changed python scripts, for more
+>clarity.
+
+Can't comment on those, I'm afraid. I only take care of the pretty
+pictures ;)
+
+Cheers
+
+Bel=E9n
+
+>Looking forward for your feedback.
+>
+>And...Merry Christmas :)
+>
+>Regards,
+>Mirela
+>
+>
+>-----Original Message-----
+>From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]
+>Sent: Wednesday, December 23, 2015 12:21 PM
+>To: Mirela Rabulea <mirela.rabulea@nxp.com>; Mirela Rabulea
+><Mirela.Rabulea@freescale.com>; yocto@yoctoproject.org;
+>poky@yoctoproject.org
+>Cc: Nicolae Manescu <nicu.manescu@nxp.com>; Georgescu, Alexandru C
+><alexandru.c.georgescu@intel.com>
+>Subject: Re: [yocto] using Hob to run images on a custom simulator, other
+>than qemu
+>
+>
+>
+>On 22/12/2015 11:35, "Mirela Rabulea" <mirela.rabulea@nxp.com> wrote:
+>
+>>Hi Bel=E9n,
+>>Thanks for the answer. Is there a set of tests that would ensure there
+>>are no regressions? Where can it be found?
+>
+>These are the test cases I can find in Testopia:
+>
+>https://bugzilla.yoctoproject.org/tr_list_cases.cgi?searchstr=3Dhob&curren=
+t_
+>t
+>ab=3Dcase&summary_type=3Danywordssubstr&summary=3Dhob&field-1-0-0=3Dsummar=
+y&type-1
+>-
+>0-0=3Danywordssubstr&value-1-0-0=3Dhob
+>
+>Hopefully someone from QA can provide more details on how to run them.
+>
+>If you want any input on how to present the new options in the UI, let me
+>know. I'll be happy to help.
+>
+>Cheers
+>
+>Bel=E9n
+>
+>>
+>>Thanks,
+>>Mirela
+>>
+>>-----Original Message-----
+>>From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]
+>>Sent: Monday, December 21, 2015 1:26 PM
+>>To: Mirela Rabulea <Mirela.Rabulea@freescale.com>;
+>>yocto@yoctoproject.org; poky@yoctoproject.org
+>>Cc: nicolae.manescu@nxp.com
+>>Subject: Re: [yocto] using Hob to run images on a custom simulator,
+>>other than qemu
+>>
+>>
+>>
+>>On 18/12/2015 16:05, "yocto-bounces@yoctoproject.org on behalf of
+>>Mirela Rabulea" <yocto-bounces@yoctoproject.org on behalf of
+>>Mirela.Rabulea@freescale.com> wrote:
+>>
+>>>
+>>>
+>>>Hello yocto world
+>>>J
+>>>
+>>>
+>>>
+>>>This is my first message on any yocto list, I=B9m not sure which list to
+>>>address, so I choose the ones which seemed the most generic and suited
+>>>to my purpose. Please redirect me if a more specific list is better
+>>>suited to ask this question.
+>>>
+>>>
+>>>
+>>>The problem I see at present is: there is one single button in Hob,
+>>>=B3Run Image=B2, which is active only for qemu images, and it is
+>>>triggering the execution of the =B3poky\scripts\runqemu=B2 script. Pleas=
+e
+>>>scroll down to the picture at end of this email to see what I=B9m talkin=
+g
+>>>about.
+>>>
+>>>
+>>>
+>>>The question I want to ask is if it would be acceptable to add more
+>>>buttons to the =B3Image details=B2 dialog (or a new dialog to pop-up whe=
+n
+>>>=B3Run Image=B2 is clicked), in order to allow the customization of the
+>>>simulator to be launched, basically to specify the location & command
+>>>line of such custom simulator. Who may advise in this matter? I am
+>>>willing to contribute with changes.
+>>
+>>Hi Mirela,
+>>
+>>I have asked a few people about this, because Hob is pretty much
+>>deprecated at this point (it's being replaced by a web interface called
+>>Toaster). They replied they would be willing to merge changes to Hob,
+>>as long as they can be sure they won't cause any regressions.
+>>
+>>I hope this helps.
+>>
+>>Cheers
+>>
+>>Bel=E9n
+>>
+>>>
+>>>
+>>>
+>>>The changes I anticipate would be necessary are:
+>>>
+>>>1.
+>>>Changes in the GUI, somewhere in the python scripts from
+>>>=B3poky\bitbake\lib\bb\ui\crumbs\=B2, especially in imagedetailspage.py,
+>>>maybe in builder.py
+>>>
+>>>2.
+>>>Be more permissive with the types of images that are allowed to run.
+>>>Currently, there are these restrictions related to the name and
+>>>extension of the image in =B3poky\meta\classes\ image_types.bbclass=B2,
+>>>these need to be extended/customized:
+>>>
+>>>RUNNABLE_IMAGE_TYPES ?=3D "ext2 ext3"
+>>>
+>>>RUNNABLE_MACHINE_PATTERNS ?=3D "qemu"
+>>>
+>>>
+>>>
+>>>
+>>>BTW, here is how Hob =B3Image details=B2 dialog currently looks like, se=
+e
+>>>attached picture, note that the highlighted =B3Run Image=B2 button shows
+>>>up only for qemu images.
+>>>
+>>>
+>>>Regards,
+>>>
+>>>Mirela
+>>>
+>>>
+>>>
+>>>
+>>
+>
+
+
