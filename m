@@ -1,6 +1,6 @@
 Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65795E00BFD; Fri,  1 Jan 2016 10:15:24 -0800 (PST)
+	id BC891E00BFF; Sat,  2 Jan 2016 10:38:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,36 +10,37 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
 	*      [89.248.60.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0026]
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 969 seconds by postgrey-1.32 at yocto-www;
-	Fri, 01 Jan 2016 10:15:19 PST
 Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16D5CE0033E
-	for <yocto@yoctoproject.org>; Fri,  1 Jan 2016 10:15:19 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A21AE00956
+	for <yocto@yoctoproject.org>; Sat,  2 Jan 2016 10:38:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=Mime-Version:To:Message-Id:Date:Subject:
-	Content-Type:From; bh=XuaM2GJjQUyXjNHUIWRFj7ZCleEScIeYlOtYFqwwXHs=;
-	b=Qd22kiA
-	93tninegXWz2r3je3WcZoqKeWW3Gbmu5BT+NTqcr78BMl1/Q4QaNUhpRbOeOmcbfuP+SD9FJ4ICAJ
-	3BIOq1BPKB10bq02QEOiWjEEgGSvKC/m8CO/WYwutzrmfZYkEBrA2TGlnzF0x0/wrHDPLA/RdfihX
-	P/xhdAtP7E=;
-Received: from durham.keylevel.com ([88.97.63.243]:29191
+	d=keylevel.com; s=default;
+	h=To:References:Message-Id:Date:In-Reply-To:From:
+	Subject:Mime-Version:Content-Type;
+	bh=JmBna7XNsd9OAEiTPhLDvWxr/OJ4lE/OeE0e90BnPRo=;
+	b=oZNskhdRmpSor+Mn+oQQcrZNVf
+	l6L85pKIhnhbNjPlXDSnTFhnhEtw5VQQM74gmnGr0BEt6OtEHoFL+MpWb4zx/93TOTliwJYrah9PM
+	gX+oXpp1xr6f3ehKLoq2rX415hX8IUkLrgAAt4XOjnQ0JJIiTWZn8VYtgkJBbbOC6VHo=; 
+Received: from durham.keylevel.com ([88.97.63.243]:37500
 	helo=macbook-pro.durham.keylevel.com)
 	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.86) (envelope-from <opensource@keylevel.com>)
-	id 1aF3yk-0009gG-8z
-	for yocto@yoctoproject.org; Fri, 01 Jan 2016 17:59:06 +0000
-From: Chris Tapp <opensource@keylevel.com>
-X-Pgp-Agent: GPGMail 2.6b2
-Date: Fri, 1 Jan 2016 17:58:59 +0000
-Message-Id: <C68BAE9A-0899-4588-844C-4FC9AF68F0D4@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
+	id 1aFR49-002nYG-Le
+	for yocto@yoctoproject.org; Sat, 02 Jan 2016 18:38:13 +0000
 Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <C68BAE9A-0899-4588-844C-4FC9AF68F0D4@keylevel.com>
+Date: Sat, 2 Jan 2016 18:38:07 +0000
+Message-Id: <22C09440-73C7-4F7B-88D4-FDC0BF68E57F@keylevel.com>
+References: <C68BAE9A-0899-4588-844C-4FC9AF68F0D4@keylevel.com>
+To: Yocto Project <yocto@yoctoproject.org>
 X-Mailer: Apple Mail (2.3112)
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
@@ -53,7 +54,7 @@ X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: GCC segmentation error when compiling boost under Jethro
+Subject: Re: GCC segmentation error when compiling boost under Jethro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,45 +66,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jan 2016 18:15:24 -0000
-X-Groupsio-MsgNum: 27840
+X-List-Received-Date: Sat, 02 Jan 2016 18:38:21 -0000
+X-Groupsio-MsgNum: 27841
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_8F783460-B6E1-4149-8F21-103B182FE09A";
+	boundary="Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12";
 	protocol="application/pgp-signature"; micalg=pgp-sha512
 
---Apple-Mail=_8F783460-B6E1-4149-8F21-103B182FE09A
+--Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=utf-8
 
-I=E2=80=99m getting the following when I try to =E2=80=9Cbitbake boost" =
-under Jethro:
 
-gcc.compile.c++ =
+> On 1 Jan 2016, at 17:58, Chris Tapp <opensource@keylevel.com> wrote:
+>=20
+> I=E2=80=99m getting the following when I try to =E2=80=9Cbitbake =
+boost" under Jethro:
+>=20
+> gcc.compile.c++ =
 bin.v2/libs/log/build/bad679ea642ec2fca3b5d11f9f0014c5/formatter_parser.o
-In file included from libs/log/src/spirit_encoding.hpp:23:0,
-                 from libs/log/src/formatter_parser.cpp:42:
-./boost/spirit/home/support/common_terminals.hpp:200:65: internal =
+> In file included from libs/log/src/spirit_encoding.hpp:23:0,
+>                 from libs/log/src/formatter_parser.cpp:42:
+> ./boost/spirit/home/support/common_terminals.hpp:200:65: internal =
 compiler error: Segmentation fault
-     inline void silence_unused_warnings_##name() { (void) name; }       =
-        \
-                                                                 ^
-./boost/spirit/home/support/common_terminals.hpp:229:9: note: in =
+>     inline void silence_unused_warnings_##name() { (void) name; }      =
+         \
+>                                                                 ^
+> ./boost/spirit/home/support/common_terminals.hpp:229:9: note: in =
 expansion of macro 'BOOST_SPIRIT_CHAR_CODE'
-         BOOST_SPIRIT_CHAR_CODE(lowernum, =
+>         BOOST_SPIRIT_CHAR_CODE(lowernum, =
 spirit::char_encoding::charset)        \
-         ^
-./boost/spirit/home/support/common_terminals.hpp:235:1: note: in =
+>         ^
+> ./boost/spirit/home/support/common_terminals.hpp:235:1: note: in =
 expansion of macro 'BOOST_SPIRIT_DEFINE_CHAR_CODES'
- BOOST_SPIRIT_DEFINE_CHAR_CODES(iso8859_1)
- ^
-
-However, it compiles if I then immediately run =E2=80=9Cbitbake boost=E2=80=
-=9D again (change nothing, do nothing).
-
-The do_compile log shows that other parts of boost are built before the =
-first (failed) compilation task terminates reporting the error. Does =
+> BOOST_SPIRIT_DEFINE_CHAR_CODES(iso8859_1)
+> ^
+>=20
+> However, it compiles if I then immediately run =E2=80=9Cbitbake =
+boost=E2=80=9D again (change nothing, do nothing).
+>=20
+> The do_compile log shows that other parts of boost are built before =
+the first (failed) compilation task terminates reporting the error. Does =
 this sound like a parallel compilation race?
+
+Tried this again today and it builds without any problem...
 
 --
 
@@ -116,7 +122,7 @@ You can tell you're getting older when your car insurance gets real =
 cheap!
 
 
---Apple-Mail=_8F783460-B6E1-4149-8F21-103B182FE09A
+--Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -127,19 +133,19 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iQIcBAEBCgAGBQJWhr5sAAoJEAM2GeiJDBSGxtAQAJpxRSECBMlTRMR0ivKQFFsz
-o10PdKrZgc8ks6TQlNNW5nkFhEGtdo7mBbVZg/ZsWzuX+qAh4vin2+Mbr7Cooldc
-uEc4eZBpyO9RtM1SV5yf0Zzt0FqkXRGrKd4ntK5Tq6RPKBFX0hdmuVjdb3nlpvHf
-EQHDv9vzQYVPHWerRpR4h9XTi945gwajqRKxM6xJd+7QXmy3HjWrt4X54+rQBa3F
-DZcu7ji2tlhPBNQpKH+rYHLLR/Ph4WUsg5V+Z05IA4CFt2fij6uNGPo8Cpm2gXCT
-+14OpIHZco6pi4mwI4Xx8W9tnxMW4iNA0buJD5543twqlEzMvh655MqGbtDvBlqv
-RVP4SHAWYXNUW3n3gEyL5wZ8OTI8lD1Ae2xorUwsoM9XXsW/Rhg3CkESy3p3R8mw
-G+CcZ5Toswz4fyxTgGAUMfI0O8+e1xIDfBlIpYkqQsYg0Ww+2EuRfHUY1hN6ei40
-2e7coBu6x39Fv5OGiC7c0pr/U6QO+XHb2vUdl/SYFmKPGrFDkuZglSYk5xKic53I
-EmlEfZg5KgSGjxCunqDG/YaF8ybzn9klHskMziNl1jH/btVvC8E1crnXD3bEfClA
-yyVx8/mSljpW+1+8KVCtcosr3hX3W+coZ4CWF1mj1qPf6fEhJCcQPHSk75q5Us66
-YZdUrp++9g9GxAX7ssK9
-=Ks9A
+iQIcBAEBCgAGBQJWiBkXAAoJEAM2GeiJDBSGrCMQAI+8NFenjq6tSsuSpnCZ1Ef4
+Lgm0W02881beFvMuD2OaEsJjwndTVUtqLs5GsxvHUehuGWa45LEalTI9zrPR/0mT
+6D/8x7UWPUe5N92T8v/I/inBQT5PkV7+RYeCtaqX02ZpWbqminf3HAmSeKbar8hi
+equGkkLITBWcLkl0Sy5RdNLuc2GirIMCdaApFSMMQyEPsPB/BkjOimSMb6s+RyT5
+k/7WE9UjVkNjKJuo1+Y5w7IUxfIm8uYSPNQovzqr8pHlchUSw3thSOp5ARNaIVSl
+oJg90EXgjwo7e360k64lLeJTXHxVjZEZCbuQ4rA5Z+VoRrvvGs1Gd7Ibsw8Huvan
+HjUPFyAySdGPyXsLdwtHDVMzHGKhJSuUnl4wPMKG7nR0EstOo0UjN6lkAPwsV8xd
+E5L5y9ROIcGu7Z/r+cU8+QJ3HUzTkOgXLWKYg8WgLE8u2c99N9fdozssvfCmWK/C
+XBt/K8r/G6h1USNB53hSZgWIRbJn10zfeUlW5ajJjMo8ajY/j844tUW4y1QFcblZ
+iq7upogZ/Q5qvHzBrGAfMluyw4GUVcvnffmHLxeOUK1R94nPBQpQH4o8863cXMqG
+U7wMZWGFwihNBUPEy4Lb8O74WE2C6VqwTZWAUFFfSLQUd4hWhGezRVkxSVRepmEY
++/42wkYKhbRY8RvDZgjC
+=/qLU
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_8F783460-B6E1-4149-8F21-103B182FE09A--
+--Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12--
