@@ -1,63 +1,45 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <kaffeesurrogat@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC891E00BFF; Sat,  2 Jan 2016 10:38:21 -0800 (PST)
+	id 54725E00C08; Sun,  3 Jan 2016 03:24:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
+	*      [185.67.36.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A21AE00956
-	for <yocto@yoctoproject.org>; Sat,  2 Jan 2016 10:38:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default;
-	h=To:References:Message-Id:Date:In-Reply-To:From:
-	Subject:Mime-Version:Content-Type;
-	bh=JmBna7XNsd9OAEiTPhLDvWxr/OJ4lE/OeE0e90BnPRo=;
-	b=oZNskhdRmpSor+Mn+oQQcrZNVf
-	l6L85pKIhnhbNjPlXDSnTFhnhEtw5VQQM74gmnGr0BEt6OtEHoFL+MpWb4zx/93TOTliwJYrah9PM
-	gX+oXpp1xr6f3ehKLoq2rX415hX8IUkLrgAAt4XOjnQ0JJIiTWZn8VYtgkJBbbOC6VHo=; 
-Received: from durham.keylevel.com ([88.97.63.243]:37500
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.86) (envelope-from <opensource@keylevel.com>)
-	id 1aFR49-002nYG-Le
-	for yocto@yoctoproject.org; Sat, 02 Jan 2016 18:38:13 +0000
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <C68BAE9A-0899-4588-844C-4FC9AF68F0D4@keylevel.com>
-Date: Sat, 2 Jan 2016 18:38:07 +0000
-Message-Id: <22C09440-73C7-4F7B-88D4-FDC0BF68E57F@keylevel.com>
-References: <C68BAE9A-0899-4588-844C-4FC9AF68F0D4@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.3112)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: GCC segmentation error when compiling boost under Jethro
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE547E0059A
+	for <yocto@yoctoproject.org>; Sun,  3 Jan 2016 03:24:47 -0800 (PST)
+Received: from dovecot03.posteo.de (dovecot03.posteo.de [172.16.0.13])
+	by mout01.posteo.de (Postfix) with ESMTPS id C23B220963
+	for <yocto@yoctoproject.org>; Sun,  3 Jan 2016 12:24:41 +0100 (CET)
+Received: from mail.posteo.de (localhost [127.0.0.1])
+	by dovecot03.posteo.de (Postfix) with ESMTPSA id 3pYHmn0cnJz5vN9
+	for <yocto@yoctoproject.org>; Sun,  3 Jan 2016 12:24:40 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <56640B0C.2000107@posteo.de>
+	<CAOsp8o_+Tf4n2a7_TzScRK1=b56F6=ikknXgrrwt4T8CEJYUrg@mail.gmail.com>
+	<5664714B.1040909@posteo.de> <5665E926.70305@posteo.de>
+	<5680F9A5.7040602@posteo.de> <568107D6.5080406@posteo.de>
+	<568169A6.9050204@posteo.de>
+	<330A2687-E1E7-4E30-BAB0-AE9395A4A526@gmail.com>
+	<56825EA3.3020603@posteo.de>
+From: kaffeesurrogat <kaffeesurrogat@posteo.de>
+Message-ID: <568904F2.2060507@posteo.de>
+Date: Sun, 3 Jan 2016 12:24:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.0
+MIME-Version: 1.0
+In-Reply-To: <56825EA3.3020603@posteo.de>
+Subject: [SOLVED] Re: BeagleBone...bitbake -v core-image-sato stops
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaffeesurrogat@posteo.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -66,86 +48,247 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Jan 2016 18:38:21 -0000
-X-Groupsio-MsgNum: 27841
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12";
-	protocol="application/pgp-signature"; micalg=pgp-sha512
-
---Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-
-> On 1 Jan 2016, at 17:58, Chris Tapp <opensource@keylevel.com> wrote:
->=20
-> I=E2=80=99m getting the following when I try to =E2=80=9Cbitbake =
-boost" under Jethro:
->=20
-> gcc.compile.c++ =
-bin.v2/libs/log/build/bad679ea642ec2fca3b5d11f9f0014c5/formatter_parser.o
-> In file included from libs/log/src/spirit_encoding.hpp:23:0,
->                 from libs/log/src/formatter_parser.cpp:42:
-> ./boost/spirit/home/support/common_terminals.hpp:200:65: internal =
-compiler error: Segmentation fault
->     inline void silence_unused_warnings_##name() { (void) name; }      =
-         \
->                                                                 ^
-> ./boost/spirit/home/support/common_terminals.hpp:229:9: note: in =
-expansion of macro 'BOOST_SPIRIT_CHAR_CODE'
->         BOOST_SPIRIT_CHAR_CODE(lowernum, =
-spirit::char_encoding::charset)        \
->         ^
-> ./boost/spirit/home/support/common_terminals.hpp:235:1: note: in =
-expansion of macro 'BOOST_SPIRIT_DEFINE_CHAR_CODES'
-> BOOST_SPIRIT_DEFINE_CHAR_CODES(iso8859_1)
-> ^
->=20
-> However, it compiles if I then immediately run =E2=80=9Cbitbake =
-boost=E2=80=9D again (change nothing, do nothing).
->=20
-> The do_compile log shows that other parts of boost are built before =
-the first (failed) compilation task terminates reporting the error. Does =
-this sound like a parallel compilation race?
-
-Tried this again today and it builds without any problem...
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
-
---Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12
+X-List-Received-Date: Sun, 03 Jan 2016 11:24:51 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Hello to all and a happy new year,
 
-iQIcBAEBCgAGBQJWiBkXAAoJEAM2GeiJDBSGrCMQAI+8NFenjq6tSsuSpnCZ1Ef4
-Lgm0W02881beFvMuD2OaEsJjwndTVUtqLs5GsxvHUehuGWa45LEalTI9zrPR/0mT
-6D/8x7UWPUe5N92T8v/I/inBQT5PkV7+RYeCtaqX02ZpWbqminf3HAmSeKbar8hi
-equGkkLITBWcLkl0Sy5RdNLuc2GirIMCdaApFSMMQyEPsPB/BkjOimSMb6s+RyT5
-k/7WE9UjVkNjKJuo1+Y5w7IUxfIm8uYSPNQovzqr8pHlchUSw3thSOp5ARNaIVSl
-oJg90EXgjwo7e360k64lLeJTXHxVjZEZCbuQ4rA5Z+VoRrvvGs1Gd7Ibsw8Huvan
-HjUPFyAySdGPyXsLdwtHDVMzHGKhJSuUnl4wPMKG7nR0EstOo0UjN6lkAPwsV8xd
-E5L5y9ROIcGu7Z/r+cU8+QJ3HUzTkOgXLWKYg8WgLE8u2c99N9fdozssvfCmWK/C
-XBt/K8r/G6h1USNB53hSZgWIRbJn10zfeUlW5ajJjMo8ajY/j844tUW4y1QFcblZ
-iq7upogZ/Q5qvHzBrGAfMluyw4GUVcvnffmHLxeOUK1R94nPBQpQH4o8863cXMqG
-U7wMZWGFwihNBUPEy4Lb8O74WE2C6VqwTZWAUFFfSLQUd4hWhGezRVkxSVRepmEY
-+/42wkYKhbRY8RvDZgjC
-=/qLU
------END PGP SIGNATURE-----
+the do_compile of attr-native is finishing now on a gentoo host.
 
---Apple-Mail=_4C16639E-AC25-42B8-8C21-F135D4056E12--
+I've copied the source of attr-native over to my gentoo host and run the 
+./configure, make .... process.
+
+I've compared the config.log - files of yocto and gentoo. The difference 
+was " enable_gettext='yes' " on the gentoo host
+and " enable_gettext='no' " in the yocto-build-environment. Disabling 
+gettext on the gentoo host led to the same behaviour. The compilation or 
+linking stopped wiht the message "o fr.mo fr.po".
+
+I've changed the variable EXTRA_OECONF.... to: 
+EXTRA_OECONF_append_class-native = " --enable-gettext=yes" in the file
+"ea-acl.inc" of the yocto-project, which resides in 
+"meta/recipes-support/attr/". The build finished.
+
+As Khem Raj told me, I've used a virtualmachine with ubuntu to build the 
+yocto-project. On ubuntu there was no need to enable gettext via 
+ea-acl.inc. The build finished without any extra measures.
+
+Have fun,
+
+kaffessurrogat
+
+
+On 29.12.2015 11:21, kaffeesurrogat wrote:
+>
+> On 28.12.2015 23:00, Khem Raj wrote:
+>>> On Dec 28, 2015, at 8:56 AM, kaffeesurrogat 
+>>> <kaffeesurrogat@posteo.de> wrote:
+>>>
+>>> Hello again,
+>>>
+>>> well I'm really a noob and guessing what to do. Well I've 
+>>> interrupted bitbake cause
+>>> nothing was happing and the log.do_compile of attr-native didn't 
+>>> show any error message. I've started it all over again an now I do 
+>>> get an error message: yes ;-)
+>>>
+>>> it says:
+>>>
+>>> gmake[2]: ../-libtool: Command not found
+>>>
+>>> This looks a little bit weird to me, especially the "minus" in front 
+>>> of the "libtool" .....
+>>>
+>>> Where does it come from? A missing or empty variable? Something like 
+>>> ${MYNAMEIS}-libtool an ${MYNAMEIS} not known?
+>>>
+>> what is your build host ?.
+>> I would suggest to setup a clean build system ( may be a VM ) and try 
+>> it out on that
+>
+> Thanks Khem Raj,
+>
+> my build host is a gentoo system. I know it is not officially 
+> supported, but I'm using it for ages. Thus I know my way around. At 
+> least a little bit. Would be nice not to switch.
+> I've removed my yocto-dir several times and made a fresh git-clone. 
+> I've tried with the daisy  and the jethro branch. I've tried to build 
+> core-image-minimal and core-image-sato for qemu and the beaglebone 
+> black.  I did that on two different gentoo-machines, on one of them 
+> things compiled fine. In the beginning I've had the impression, the 
+> faults on the failing-gentoo system could be due to the missing 
+> multilib support. Thus I replaced it with a fresh and clean install 
+> supporting gcc-multilib stuff.
+>
+> The error stays  - with small variation - more or less the same:
+>
+> attr-native does not finish its build-process.
+>
+> 1) It stops with the message similiar to "o pl.mo pl.poto" after gmake 
+> left the directory getfattr or setfattr
+>
+> or
+>
+> 2) It fails with "gmake[2]: o: Command not found"
+>
+> or
+>
+> 3) It fails with "gmake[2]: ../-libtool: Command not found "
+>
+>
+> This is really weird. I'm not able to figure the small but important 
+> differences on my two different gentoo machines.
+>
+> Any help is really appreciated,
+>
+> Kaffesurrogat
+>
+>>>>> Sorry guys .....
+>>>>>
+>>>>> I thought I was done. Actually I'm not a bit smarter then before ;-)
+>>>>>
+>>>>> I'm still trying to build a yocto-image for a beaglebone. I 
+>>>>> believed, that the reason why yocto stopped compiling at 
+>>>>> attr-native-2.4.47-r0 was the missing gcc-multilib support. I've 
+>>>>> tried the same build on a gentoo machine at work, which had a 
+>>>>> multilib environment, and it finished.
+>>>>>
+>>>>> I've setup a new gentoo with multilib environment on my laptop but 
+>>>>> ...... bitbake stops again at attr-native. So this was not the 
+>>>>> trick. The  log.do_compile in
+>>>>>
+>>>>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/temp 
+>>>>>
+>>>>>
+>>>>> says nothing special, at least for me.  Here is the quote:
+>>>>>
+>>>>> ----------------------------------------------------------------------------------------------------- 
+>>>>>
+>>>>>
+>>>>> x86_64-linux-libtool: link: gcc -o .libs/setfattr -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>>>>> -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>>>>> -Wl,-rpath 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>>>>> -Wl,-rpath 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>>>>> -Wl,-O1 -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>>>>> -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>>>>> -Wl,-rpath 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>>>>> -Wl,-rpath 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib 
+>>>>> -Wl,-O1 -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+>>>>> -Wl,-rpath-link 
+>>>>> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/lib
+>  -Wl,-rpath 
+> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysroots/x86_64-linux/usr/lib 
+> -Wl,-rpath 
+> -Wl,/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/sysrootgmake[2]: 
+> Leaving directory 
+> '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/attr-2.4.47/setfattr'
+>>>>>
+>>>>> o fr.mo fr.po
+>>>>>
+>>>>> ------------------------------------------------------------------------------------------------------- 
+>>>>>
+>>>>
+>>>> ADD-ON:
+>>>>
+>>>> I've had a look in the log.do-compile-file on my machine at work. It
+>>>> says .....
+>>>>
+>>>> ----------------------------------------------------------------------------------------------------------- 
+>>>>
+>>>>
+>>>> o fr.mo fr.po
+>>>> gmake[3]: Nothing to be done for 'default'.
+>>>> gmake[3]: Leaving directory
+>>>> '/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/x86_64-linux/attr-native/2.4.47-r0/attr-2.4.47/man/man1' 
+>>>>
+>>>> /usr/bin/gmake -C man2
+>>>> gmake[2]: o: Command not found
+>>>> ../include/buildrules:66: recipe for target 'fr.mo' failed
+>>>> gmake[2]: [fr.mo] Error 127 (ignored)
+>>>>
+>>>> ----------------------------------------------------------------------------------------------------------- 
+>>>>
+>>>>
+>>>> Well ..... ????????????????
+>>>>
+>>>>> It will stay at this point forever.
+>>>>>
+>>>>>
+>>>>> The last output messages of bitbake:
+>>>>>
+>>>>>
+>>>>> -------------------------------------------------------------------------------------------------------- 
+>>>>>
+>>>>>
+>>>>> + rm -rf 
+>>>>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/sstate-build-populate_lic/
+>>>>>
+>>>>> + ret=0
+>>>>> + trap '' 0
+>>>>> + exit 0
+>>>>>
+>>>>> [INFO] Pre-processed cfg file beaglebone-standard-config-3.14.4 
+>>>>> created.
+>>>>> [INFO] processing of raw cfg data completed.
+>>>>>
+>>>>>
+>>>>> ******************************************************************************** 
+>>>>>
+>>>>>   Configuration stored in 
+>>>>> /home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/linux-beaglebone-standard-build/.config
+>>>>> ******************************************************************************** 
+>>>>>
+>>>>>
+>>>>>   To build with this kernel configuration, ensure a suitable 
+>>>>> toolchain
+>>>>>   is in your path for arm, note its common command prefix, and do:
+>>>>>
+>>>>>    make 
+>>>>> O=/home/nico/yocto_bbb_daisy/poky/build_bbb/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14.4+gitAUTOINC+183622e809_0143c6ebb4-r0/linux-beaglebone-standard-build 
+>>>>> ARCH=arm \
+>>>>>         CROSS_COMPILE=<cross-compile-prefix>
+>>>>>
+>>>>>
+>>>>> + '[' 0 -ne 0 ']'
+>>>>>
+>>>>> + echo '# Global settings from linux recipe'
+>>>>> + echo 'CONFIG_LOCALVERSION="-yocto-standard"'
+>>>>> + ret=0
+>>>>> + trap '' 0
+>>>>> + exit 0
+>>>>>
+>>>>> Currently 1 running tasks (1040 of 1770):
+>>>>> 0: attr-native-2.4.47-r0 do_compile (pid 1778)
+>>>>>
+>>>>> ------------------------------------------------------------------------------------------------- 
+>>>>>
+>>>>>
+>>>>> To be honest, I'm lost ....
+>>>>>
+>>>>> Would be happy about some help,
+>>>>>
+>>>>> kaffeesurrogat
+>>>>>
+>>>>>
+>>>>> On 07.12.2015 21:16, kaffeesurrogat@posteo.de wrote:
+>>>>>> cd 
+>>>>>> /home/nico/yocto_bb/poky/build_bbb/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/gcc-cross-initial/4.8.2-r0/gcc-4.8.2/build.i686-linux.arm-poky-linux-gnueabi
+>>> -- 
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
