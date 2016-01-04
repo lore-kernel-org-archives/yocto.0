@@ -1,38 +1,45 @@
-Return-Path: <ed.bartosh@linux.intel.com>
+Return-Path: <haris.okanovic@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F50EE00D72; Tue,  5 Jan 2016 05:09:41 -0800 (PST)
+	id 7CE3AE00D6C; Mon,  4 Jan 2016 16:31:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6C71E00C74
-	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 05:09:40 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga102.jf.intel.com with ESMTP; 05 Jan 2016 05:09:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,525,1444719600"; d="scan'208";a="720551051"
-Received: from linux.intel.com ([10.23.219.25])
-	by orsmga003.jf.intel.com with ESMTP; 05 Jan 2016 05:09:41 -0800
-Received: from vmed.fi.intel.com (vmed.fi.intel.com [10.237.72.51])
-	by linux.intel.com (Postfix) with ESMTP id 5702A6A4004;
-	Tue,  5 Jan 2016 05:57:37 -0800 (PST)
-From: Ed Bartosh <ed.bartosh@linux.intel.com>
+X-Greylist: delayed 2728 seconds by postgrey-1.32 at yocto-www;
+	Mon, 04 Jan 2016 16:31:33 PST
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26E62E0086B
+	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 16:31:33 -0800 (PST)
+Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	u04NjwnF008573; Mon, 4 Jan 2016 17:45:58 -0600
+Received: from harisdt.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2016010417455848-1680555 ;
+	Mon, 4 Jan 2016 17:45:58 -0600 
+From: Haris Okanovic <haris.okanovic@ni.com>
 To: yocto@yoctoproject.org
-Date: Tue,  5 Jan 2016 13:10:56 +0200
-Message-Id: <8daedb61ae029dd1cf5cc77101e266dc67ff5d32.1451991988.git.ed.bartosh@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <cover.1451991988.git.ed.bartosh@linux.intel.com>
-References: <cover.1451991988.git.ed.bartosh@linux.intel.com>
-In-Reply-To: <cover.1451991988.git.ed.bartosh@linux.intel.com>
-References: <cover.1451991988.git.ed.bartosh@linux.intel.com>
-Subject: [PATCH 7/7] ref-variables: update list of image types
+Date: Mon, 4 Jan 2016 17:45:45 -0600
+Message-Id: <1451951145-10297-1-git-send-email-haris.okanovic@ni.com>
+X-Mailer: git-send-email 2.6.2
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 01/04/2016 05:45:58 PM,
+	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 01/04/2016 05:45:58 PM,
+	Serialize complete at 01/04/2016 05:45:58 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2016-01-04_11:, , signatures=0
+X-Mailman-Approved-At: Tue, 05 Jan 2016 07:26:57 -0800
+Cc: Haris Okanovic <haris.okanovic@ni.com>, Ken Sharp <ken.sharp@ni.com>
+Subject: [PATCH] opkg-utils: Add opkg-graph-deps
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,81 +51,312 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jan 2016 13:09:41 -0000
+X-List-Received-Date: Tue, 05 Jan 2016 00:31:35 -0000
 
-Updated list of supported image types. Ordered them
-alphabetically to make the list more readable.
+Usage: opkg-graph-deps [-h] [-o feed.dot] [-u <base feed URL>] <paths to
+Packages>
 
-Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
+Generates a dot formatted dependency graph of an IPK feed.
+
+The feed is specified by a list of IPK index (Packages) files, which
+are sourced in the order specified to build a dependency graph. Last
+index to declare a package wins, but also generates a warning to stderr.
+
+Possible warnings:
+ Duplicate package: package appears in more than one index.
+ Broken dependency: no package satisfies a declared dependency.
+ Replacing alias: package is replacing another package.
+ Self alias: package declares an alias on it's own name.
+
+If a base feed URL is specified, each package node includes an 'href'
+to the associated IPK file. It's assumes that the specified base
+feed URL hosts the current working directory, so the resulting
+hrefs are generated by joining the base and a relative IPK path.
+
+The resulting feed graph is written to './feed.dot' or an alternate
+path specified by the caller. Nodes represent real packages (not
+aliases)
+and edges represent dependencies.
+
+Node attributes:
+ (node name): Package name from feed index (without version or arch)
+ label: [Package name] [ipkArchitecture] [ipkVersion]
+ ipkArchitecture: Architecture name from feed index
+ ipkVersion: The full version number from feed index
+ ipkMissing: Set to "1" when the ipk is not actually in feed, but has
+  one or inbound dependencies.
+ href: URL to the IPK file. Only if optional base URL is specified.
+
+Edge attributes:
+ (from) The package name declaring a dependency
+ (to) The (de-aliased) package name (from) depends on
+ ipkAlias: The alias of (to) which (from) depends on. Only set when
+  the alias != (to).
+ ipkBrokenDep: Set to "1" if (to) is missing from the feed.
+
+Signed-off-by: Haris Okanovic <haris.okanovic@ni.com>
+Cc: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+Cc: Paul Barker <paul@paulbarker.me.uk>
+Cc: Ken Sharp <ken.sharp@ni.com>
+Cc: Richard Tollerton <rich.tollerton@ni.com>
 ---
- documentation/ref-manual/ref-variables.xml | 41 ++++++++++++++++++++----------
- 1 file changed, 27 insertions(+), 14 deletions(-)
+ opkg-graph-deps | 246 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 246 insertions(+)
+ create mode 100755 opkg-graph-deps
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 93118c4..0b2c426 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -5768,32 +5768,45 @@
-                     Specifies the complete list of supported image types
-                     by default:
-                     <literallayout class='monospaced'>
--     jffs2
--     jffs2.sum
-+     btrfs
-+     cpio
-+     cpio.gz
-+     cpio.lz4
-+     cpio.lzma
-+     cpio.xz
-      cramfs
-+     elf
-      ext2
--     ext2.gz
-      ext2.bz2
-+     ext2.gz
-+     ext2.lzma
-      ext3
-      ext3.gz
--     ext2.lzma
--     btrfs
--     live
-+     ext4
-+     ext4.gz
-+     hdddirect
-+     hddimg
-+     iso
-+     jffs2
-+     jffs2.sum
-+     multiubi
-+     qcow2
-      squashfs
-+     squashfs-lzo
-      squashfs-xz
--     ubi
--     ubifs
-      tar
--     tar.gz
-      tar.bz2
-+     tar.gz
-+     tar.lz4
-      tar.xz
--     cpio
--     cpio.gz
--     cpio.xz
--     cpio.lzma
-+     ubi
-+     ubifs
-      vdi
-      vmdk
--     elf
-+     wic
-+     wic.bz2
-+     wic.gz
-+     wic.lzma
-                     </literallayout>
-                 </para>
- 
+diff --git a/opkg-graph-deps b/opkg-graph-deps
+new file mode 100755
+index 0000000..c42e7ce
+--- /dev/null
++++ b/opkg-graph-deps
+@@ -0,0 +1,246 @@
++#!/usr/bin/env python
++
++import sys
++import os
++import getopt
++import pydot
++import opkg
++
++def usage(more=False):
++    print >>sys.stderr, ( 'Usage: opkg-graph-deps '
++        '[-h] [-o feed.dot] '
++        '[-u <base feed URL>] '
++        '<paths to Packages>' )
++    if more:
++        print >>sys.stderr, '\n'.join( [
++'',
++'Generates a dot formatted dependency graph of an IPK feed.',
++'',
++'The feed is specified by a list of IPK index (Packages) files, which',
++'are sourced in the order specified to build a dependency graph. Last',
++'index to declare a package wins, but also generates a warning to stderr.',
++'',
++'Possible warnings:',
++' Duplicate package: package appears in more than one index.',
++' Broken dependency: no package satisfies a declared dependency.',
++' Replacing alias: package is replacing another package.',
++' Self alias: package declares an alias on it\'s own name.',
++'',
++'If a base feed URL is specified, each package node includes an \'href\'',
++'to the associated IPK file. It\'s assumes that the specified base',
++'feed URL hosts the current working directory, so the resulting',
++'hrefs are generated by joining the base and a relative IPK path.',
++'',
++'The resulting feed graph is written to \'./feed.dot\' or an alternate',
++'path specified by the caller. Nodes represent real packages (not aliases)',
++'and edges represent dependencies.',
++'',
++'Node attributes:',
++' (node name): Package name from feed index (without version or arch)',
++' label: [Package name] [ipkArchitecture] [ipkVersion]',
++' ipkArchitecture: Architecture name from feed index',
++' ipkVersion: The full version number from feed index',
++' ipkMissing: Set to "1" when the ipk is not actually in feed, but has',
++'  one or inbound dependencies.',
++' href: URL to the IPK file. Only if optional base URL is specified.',
++'',
++'Edge attributes:',
++' (from) The package name declaring a dependency',
++' (to) The (de-aliased) package name (from) depends on',
++' ipkAlias: The alias of (to) which (from) depends on. Only set when',
++'  the alias != (to).',
++' ipkBrokenDep: Set to "1" if (to) is missing from the feed.',
++'',
++        ] )
++    exit(1)
++
++# optional args
++dot_filename = "feed.dot"
++feed_url = None
++
++(opts, index_files) = getopt.getopt(sys.argv[1:], "ho:u:")
++for (optkey, optval) in opts:
++    if optkey == '-h': 
++        usage(more=True)
++    elif optkey == '-o': 
++        dot_filename = optval
++    elif optkey == '-u':
++        feed_url = optval
++
++if not index_files:
++    print >>sys.stderr, 'Must specify a path to at least one Packages file'
++    usage()
++
++def split_dep_list(lst):
++    '''
++    Splits a comma-space delimited list, retuning only the first item.
++    E.g. 'foo (>= 1.2), bar, lab (x)' yields ['foo', 'bar', 'lab']
++    '''
++    if not lst:
++        lst = ''
++
++    res = []
++
++    splitLst = lst.split(',')
++    for itm in splitLst:
++        itm = itm.strip()
++        if not itm:
++            continue
++        itmSplit = itm.split()
++        res.append(itmSplit[0])
++
++    return res
++
++# define the graph
++graph = pydot.Dot(graph_name='ipkFeed', graph_type='digraph')
++graph.set_node_defaults(shape='rectangle', style='solid', color='black')
++graph.set_edge_defaults(style='solid', color='black')
++
++def pkg_architectcture(pkg):
++    return str(pkg.architecture or '?')
++
++def pkg_label(pkg, includeArch=True, includeVersion=False, includePath=False, multiLine=False):
++    label = str(pkg.package or '?')
++    if multiLine:
++        label += '\\n'
++    if includeArch:
++        label += '[%s]' % pkg_architectcture(pkg)
++    if includeVersion:
++        label += '[%s]' % (pkg.version or '?')
++    if includePath:
++        label += '[%s]' % (pkg.fn or '?')
++    return label
++
++def add_package_to_graph(pkg, missing=False):
++    if not pkg.package:
++        raise Exception('Invalid package name')
++
++    node = pydot.Node(pkg.package)
++
++    node.set('label', pkg_label(pkg,
++        includeVersion=(not missing),
++        includeArch=(not missing),
++        multiLine=True) )
++
++    if missing:
++        node.set('ipkMissing', '1')
++        node.set('style', 'dotted')
++        node.set('color', 'red')
++
++    node.set('ipkVersion', pkg.version or 'none')
++    node.set('ipkArchitecture', pkg_architectcture(pkg))
++
++    if feed_url and pkg.filename:
++        node.set('href', '%s/%s' % (feed_url, pkg.fn) )
++
++    graph.add_node(node)
++
++def add_dependency_to_graph(fromPkg, toPkg, alias=None, broken=False):
++        edge = pydot.Edge(fromPkg.package, toPkg.package)
++
++        if alias:
++            edge.set('ipkAlias', alias)
++            edge.set('style', 'dashed')
++
++        if broken:
++            edge.set('ipkBrokenDep', '1')
++            edge.set('style', 'dotted')
++            edge.set('color', 'red')
++
++        graph.add_edge(edge)
++
++# the feed
++pkg_map = {}
++alias_pkg_map = {}
++missing_pkg_map = {}
++real_pkg_replace_count = 0
++broken_dep_count = 0
++
++# populate pkg_map with all real packages defined in the indexes
++#  do this first for all indexes before updating alias_pkg_map and
++#  adding nodes to apply any replacements
++for indexFilePath in index_files:
++    feedDir = os.path.dirname(indexFilePath)
++    feedDir = os.path.relpath(feedDir, start=os.getcwd())
++
++    packages = opkg.Packages()
++    packages.read_packages_file(indexFilePath)
++
++    # add each package
++    for pkgKey in packages.keys():
++        pkg = packages[pkgKey]
++
++        # save package filename relative to sub-feed dir
++        pkg.fn = os.path.join(feedDir, pkg.filename)
++
++        if pkg.package in pkg_map:
++            # pkg is being replaced
++            replacedPkg = pkg_map[pkg.package]
++
++            real_pkg_replace_count = real_pkg_replace_count + 1
++            print >>sys.stderr, "Duplicate package: Replacing %s with %s" % (
++                pkg_label(replacedPkg, includePath=True),
++                pkg_label(pkg, includePath=True) )
++
++        pkg_map[pkg.package] = pkg
++
++# populate alias_pkg_map with all real+alias packages defined in the indexes
++# add nodes to graph
++for pkgKey, pkg in pkg_map.iteritems():
++    # Add the real package
++    alias_pkg_map[pkg.package] = pkg
++
++    # Add any aliases
++    for alias in split_dep_list(pkg.provides):
++        if alias in alias_pkg_map:
++            oldAliasPkg = alias_pkg_map[alias]
++
++            if pkg == oldAliasPkg:
++                # weird, not an error, but worth documenting
++                print >>sys.stderr, "Self alias: %s" % pkg_label(pkg)
++            else:
++                print >>sys.stderr, "Replacing alias: %s (%s) with %s" % (
++                    alias, pkg_label(oldAliasPkg), pkg_label(pkg) )
++
++        alias_pkg_map[alias] = pkg
++
++    add_package_to_graph(pkg)
++
++# create stub packages in alias_pkg_map for broken deps
++# add them to missing_pkg_map
++# add nodes to graph
++for pkgKey, pkg in pkg_map.iteritems():
++    for depName in split_dep_list(pkg.depends):
++        if not depName in alias_pkg_map:
++            broken_dep_count = broken_dep_count + 1
++            print >>sys.stderr, "Broken dependency: %s --> %s (missing)" % (
++                pkg_label(pkg), depName )
++
++            stub = opkg.Package()
++            stub.package = depName
++
++            # don't update pkg_map, stub is not a real package
++            alias_pkg_map[stub.package] = stub
++            missing_pkg_map[stub.package] = stub
++
++            add_package_to_graph(stub, missing=True)
++
++# process dependencies
++# add edges to graph
++for pkgKey, pkg in pkg_map.iteritems():
++    for depName in split_dep_list(pkg.depends):
++        depPkg = alias_pkg_map[depName]
++
++        add_dependency_to_graph(pkg, depPkg,
++            alias=(depName if (depName != depPkg.package) else None),
++            broken=(depPkg.package in missing_pkg_map) )
++
++# Results
++print "%s packages" % len(pkg_map.keys())
++print "%s aliases" % len(alias_pkg_map)
++print "%s replaced packages" % real_pkg_replace_count
++print "%s broken dependencies" % broken_dep_count
++
++# Write the graph
++graph.write(path=dot_filename)
++print "Graphed at %s" % dot_filename
 -- 
-2.1.4
+2.6.2
 
 
