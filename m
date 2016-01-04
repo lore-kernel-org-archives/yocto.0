@@ -1,49 +1,29 @@
-Return-Path: <vomegaz@gmail.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6997E00BEF; Mon,  4 Jan 2016 10:31:52 -0800 (PST)
+	id 2B7E5E00C6B; Mon,  4 Jan 2016 12:19:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW,
-	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02C9CE00A7D
-	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 10:31:47 -0800 (PST)
-Received: by mail-wm0-f47.google.com with SMTP id l65so173006233wmf.1
-	for <yocto@yoctoproject.org>; Mon, 04 Jan 2016 10:31:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=mWLTqVozjM65ZKbSK+QHats4ilsbUieCYbufYZMhVLY=;
-	b=YoN1+jSykB6GVolqyLEziEikIEDXmrO3h/mSAJTS+MZ5zeYaESX/ousBVOLCEhveg1
-	jjTwamICJKRliUY5JzxtPfOSn2FhAQxL+r1GwAGe1+LvqzcgLor9mAUkfdbFlEY4Lk5t
-	iK6bc39/lHkqQuR0n7tI4DAN73LOH5TwVj29TC6OZdWUhKSEDz2XwSPBzottpL9FBSej
-	f2qjBreR8Wn1/VmazT3mVbkl91b6mU53WDWjGaGscAxnz2+I94H18HiBKNTRjXzMH40R
-	e9BjD7q4xYHwpOI6qJFRcGOT4AjLN8MpK2E7thC2IEcdlI3DIA3smA1xqpMP/h95EmWq
-	PANA==
-X-Received: by 10.28.52.213 with SMTP id b204mr104556046wma.32.1451932306989; 
-	Mon, 04 Jan 2016 10:31:46 -0800 (PST)
-Received: from sgxcmp131.intra.sigfox.io ([217.114.201.133])
-	by smtp.gmail.com with ESMTPSA id
-	z3sm76241534wjx.38.2016.01.04.10.31.46
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 04 Jan 2016 10:31:46 -0800 (PST)
-Sender: Thomas PERROT <vomegaz@gmail.com>
-From: Thomas Perrot <thomas.perrot@tupi.fr>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58A24E0090A
+	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 12:19:14 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga104.fm.intel.com with ESMTP; 04 Jan 2016 12:19:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,522,1444719600"; d="scan'208";a="720109141"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.151])
+	by orsmga003.jf.intel.com with ESMTP; 04 Jan 2016 12:19:14 -0800
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  4 Jan 2016 19:31:44 +0100
-Message-Id: <1451932304-25824-1-git-send-email-thomas.perrot@tupi.fr>
+Date: Mon,  4 Jan 2016 14:20:49 -0600
+Message-Id: <1451938849-26368-1-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
-Subject: [meta-selinux][PATCH] Remove recipes for kernel 3.14 and 3.19 from master branch, to fix a build error. ERROR: No recipes available for: meta-selinux/recipes-kernel/linux/linux-yocto_3.19.bbappend meta-selinux/recipes-kernel/linux/linux-yocto_3.14.bbappend
+MIME-Version: 1.0
+Subject: [[PATCH][RRS]] rrs/tools/rrs_upstream_email.py: Update message to point recipe file instead of deprecated upstream tracking file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,44 +35,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jan 2016 18:31:52 -0000
+X-List-Received-Date: Mon, 04 Jan 2016 20:19:16 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
+Since upstream_tracking.inc file is deprecated because now every recipe
+has it's own upstream information then update email message according it.
+
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- recipes-kernel/linux/linux-yocto_3.14.bbappend | 8 --------
- recipes-kernel/linux/linux-yocto_3.19.bbappend | 8 --------
- 2 files changed, 16 deletions(-)
- delete mode 100644 recipes-kernel/linux/linux-yocto_3.14.bbappend
- delete mode 100644 recipes-kernel/linux/linux-yocto_3.19.bbappend
+ rrs/tools/rrs_upstream_email.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-kernel/linux/linux-yocto_3.14.bbappend b/recipes-kernel/linux/linux-yocto_3.14.bbappend
-deleted file mode 100644
-index 65c79ef..0000000
---- a/recipes-kernel/linux/linux-yocto_3.14.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--# Enable selinux support in the kernel if the feature is enabled
--SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'file://selinux.cfg', '', d)}"
--
--# For inconsistent kallsyms data bug on ARM
--# http://lists.infradead.org/pipermail/linux-arm-kernel/2012-March/thread.html#89718 
--EXTRA_OEMAKE += "${@bb.utils.contains('TARGET_ARCH', 'arm', ' KALLSYMS_EXTRA_PASS=1', '', d)}"
-diff --git a/recipes-kernel/linux/linux-yocto_3.19.bbappend b/recipes-kernel/linux/linux-yocto_3.19.bbappend
-deleted file mode 100644
-index a8c0647..0000000
---- a/recipes-kernel/linux/linux-yocto_3.19.bbappend
-+++ /dev/null
-@@ -1,8 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--# Enable selinux support in the kernel if the feature is enabled
--SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'file://selinux.cfg', '', d)}"
--
--# For inconsistent kallsyms data bug on ARM
--# http://lists.infradead.org/pipermail/linux-arm-kernel/2012-March/thread.html#89718
--EXTRA_OEMAKE += "${@bb.utils.contains('TARGET_ARCH', 'arm', ' KALLSYMS_EXTRA_PASS=1', '', d)}"
+diff --git a/rrs/tools/rrs_upstream_email.py b/rrs/tools/rrs_upstream_email.py
+index 3cde73b..a70ba13 100755
+--- a/rrs/tools/rrs_upstream_email.py
++++ b/rrs/tools/rrs_upstream_email.py
+@@ -38,12 +38,12 @@ def send_email(recipes, repodir, options):
+     header = """This mail was sent out by Recipe reporting system.
+ 
+ This message list those recipes which need to be upgraded. If maintainers
+-believe some of them needn't to upgrade this time, they can fill in
+-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
++believe some of them needn't to upgrade at this time, they can fill
++RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this recipe
+ recipe remainder until newer upstream version was detected.
+ 
+ Example:
+-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
++RECIPE_NO_UPDATE_REASON = "Not upgrade to 2.0 is unstable"
+ 
+ You can check the detail information at:
+ 
 -- 
 2.1.4
 
