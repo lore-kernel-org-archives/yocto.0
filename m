@@ -1,26 +1,45 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF00AE00B81; Sun,  3 Jan 2016 21:25:11 -0800 (PST)
+	id 23047E00CF8; Mon,  4 Jan 2016 01:01:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.245.222.98 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F423E00908
-	for <yocto@yoctoproject.org>; Sun,  3 Jan 2016 21:25:09 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 3BAF5849DC32
-	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 00:25:08 -0500 (EST)
+X-Greylist: delayed 155 seconds by postgrey-1.32 at yocto-www;
+	Mon, 04 Jan 2016 01:01:00 PST
+Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F338CE0088C
+	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 01:01:00 -0800 (PST)
+Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:45776
+	helo=mail.bmw-carit.de)
+	by mail.bmw-carit.de with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1aG0y6-0006YE-1e; Mon, 04 Jan 2016 09:58:22 +0100
+Received: from localhost (172.20.20.163) by Exchange2010.bmw-carit.intra
+	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Mon, 4 Jan 2016 09:58:21 +0100
+X-CTCH-RefID: str=0001.0A0C0202.568A342E.017A, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+Date: Mon, 4 Jan 2016 09:58:21 +0100
+From: Clemens Lang <clemens.lang@bmw-carit.de>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20160104085821.GB4807@ulm-bmuc496424.bmw-carit.de>
+References: <CAAfyv378CR0-RFgLUp7V7HjuzdgEAjXVT2_nFTUvGCbRa2i76A@mail.gmail.com>
+	<CAJTo0Lbx7BWsWQiYqsRgbjStZh9sN7-WOFacJTfvG9GeEfhxnA@mail.gmail.com>
+	<3848CC51-54FB-4AA9-A548-95229C186560@binarylemon.com>
+	<CAJTo0Lb9PkqWxb6rDGv=TvJsi4b0F3UPzH-qmTPQ8-KtqFOMKA@mail.gmail.com>
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 04 Jan 2016 05:25:08 -0000
-Message-ID: <20160104052508.9177.12623@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <CAJTo0Lb9PkqWxb6rDGv=TvJsi4b0F3UPzH-qmTPQ8-KtqFOMKA@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Originating-IP: [172.20.20.163]
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: building on os x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,169 +51,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jan 2016 05:25:11 -0000
+X-List-Received-Date: Mon, 04 Jan 2016 09:01:03 -0000
 Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-This mail was sent out by Recipe reporting system.
+On Mon, Dec 21, 2015 at 11:24:52AM +0000, Burton, Ross wrote:
+> Well with El Capitan's improved security apparently crippling
+> LD_PRELOAD (so I hear, unverified currently), Pseudo won't work, which
+> means an alternative will need to be researched and implemented.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+El Capitan has "System Integrity Protection", which is a flag on certain
+files that now no longer can be changed, even with root privileges.
+Pretty much all binaries in /usr/bin and /bin have this flag set, so it
+does affect common things like the shell and compilers. The kernel
+strips any variables affecting the loader (including
+DYLD_INSERT_LIBRARIES, OS X' equivalent to LD_PRELOAD) when executables
+with the SIP flag are started. So yes, this effectively kills library
+preloading on OS X for anything but your own binaries.
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+I implemented a workaround in MacPorts, where we also use library
+preloading for sanity checks that works by copying affected executables
+(thus stripping the flag) and then running the copy instead. Of course,
+this requires hooking execve(2) and posix_spawn(2), which I don't think
+pseudo does at the moment.
 
-You can check the detail information at:
+The commit doing most of the grunt work is at
+  http://trac.macports.org/changeset/141420
+if somebody wants to give this a shot.
 
-http://recipes.yoctoproject.org/
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-perl                  5.22.0       5.22.1                Alejandro Hernandez
-python-mako           1.0.1        1.0.3                 Alejandro Hernandez
-python-nose           1.3.6        1.3.7                 Alejandro Hernandez
-python-numpy          1.10.1       1.10.2                Alejandro Hernandez
-python-pycurl         7.19.5.2     7.19.5.3              Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez  Newer versions of python-py...
-python-scons          2.3.6        2.4.1                 Alejandro Hernandez
-python3               3.5.0        3.5.1                 Alejandro Hernandez
-python                2.7.9        2.7.11                Alejandro Hernandez
-swig                  3.0.6        3.0.8                 Alejandro Hernandez
-python3-setuptools    18.7.1       19.2                  Alejandro Hernandez
-python-setuptools     18.7.1       19.2                  Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-bjam-native           1.58.0       1.60.0                Alexander Kanavin
-libwebp               0.4.4        0.5.0                 Alexander Kanavin
-mkelfimage            4.0+gitX     4.2+gitAUTOINC+43...  Alexander Kanavin    mkelfimage has been removed...
-boost                 1.58.0       1.60.0                Alexander Kanavin
-ca-certificates       20150426     20151214              Alexander Kanavin
-valgrind              3.10.1       3.11.0                Alexander Kanavin
-nss                   3.19.2       3.21                  Alexander Kanavin
-lighttpd              1.4.38       1.4.39                Alexander Kanavin
-iso-codes             3.63         3.64                  Alexander Kanavin
-apt                   1.0.10.1     1.1.10                Aníbal Limón
-linux-libc-headers    4.1          4.3.3                 Bruce Ashfield
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.3.1        3.4.1                 Chen Qi
-resolvconf            1.77         1.78                  Chen Qi
-dbus-test             1.8.20       1.10.6                Chen Qi
-dbus                  1.8.20       1.10.6                Chen Qi
-kmod                  21+gitX      22+gitAUTOINC+42f...  Chen Qi
-curl                  7.45.0       7.46.0                Chen Qi
-at                    3.1.16       3.1.18                Chen Qi
-cups                  2.0.4        2.1.2                 Chen Qi
-sysstat               11.1.5       11.2.0-1              Chen Qi
-xz                    5.2.1        5.2.2                 Chen Qi
-build-appliance-i...  12.0.1       14.0.0                Cristian Iorga
-dhcp                  4.3.2        4.3.3                 Hongxu Jia
-ncurses               5.9          6.0.20150627          Hongxu Jia
-elfutils              0.163        0.164                 Hongxu Jia
-qmmp                  0.8.6        1.0.5                 Hongxu Jia
-pax-utils             1.0.5        1.1.4                 Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-xmlto                 0.0.26       0.0.28                Hongxu Jia
-libgcrypt             1.6.3        1.6.4                 Hongxu Jia
-ghostscript           9.16         9.18                  Hongxu Jia
-man-pages             4.02         4.04                  Hongxu Jia
-help2man-native       1.47.1       1.47.3                Hongxu Jia
-gnupg                 2.1.7        2.1.10                Hongxu Jia
-waffle                1.5.1        1.5.2                 Jussi Kukkonen
-libinput              0.21.0       1.1.4                 Jussi Kukkonen
-wayland               1.8.1        1.9.0                 Jussi Kukkonen
-weston                1.8.0        1.9.0                 Jussi Kukkonen
-gtk-icon-utils-na...  3.18.2       3.18.6                Jussi Kukkonen
-libsoup-2.4           2.52.1       2.52.2                Jussi Kukkonen
-gsettings-desktop...  3.18.1       3.19.3                Jussi Kukkonen
-glib-2.0              2.46.1       2.46.2                Jussi Kukkonen
-libxi                 1.7.5        1.7.6                 Jussi Kukkonen
-pixman                0.32.8       0.33.6                Jussi Kukkonen
-libcroco              0.6.9        0.6.11                Jussi Kukkonen
-cmake                 3.3.2        3.4.1                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.1                Jussi Kukkonen
-libav                 9.18         11.4                  Jussi Kukkonen
-at-spi2-core          2.18.1       2.18.3                Jussi Kukkonen
-libdrm                2.4.65       2.4.66                Jussi Kukkonen
-gpgme                 1.5.4        1.6.0                 Jussi Kukkonen
-vala                  0.28.0       0.30.0                Jussi Kukkonen
-libevdev              1.4.2        1.4.5                 Jussi Kukkonen
-libgpg-error          1.19         1.21                  Jussi Kukkonen
-vte                   0.28.2       0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
-gdk-pixbuf            2.32.1       2.32.3                Jussi Kukkonen
-gtk+3                 3.18.2       3.18.6                Jussi Kukkonen
-gtk+                  2.24.28      2.24.29               Jussi Kukkonen
-librsvg               2.40.11      2.40.12               Jussi Kukkonen
-freetype              2.6          2.6.2                 Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-menu-cache            1.0.0        1.0.1                 Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69       0.9.71                Jussi Kukkonen
-slang                 2.2.4        2.3.0                 Kai Kang
-libsdl2               2.0.3        2.0.4                 Kai Kang
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
-bluez5                5.36         5.37                  Maxin B. John
-connman               1.30         1.31                  Maxin B. John
-libpng12              1.2.55       1.2.56                Maxin B. John
-db                    6.0.30       6.1.26                Maxin B. John        Updating to 6.1.x requires ...
-iptables              1.4.21       1.6.0                 Maxin B. John
-quota                 4.02         4.03                  Maxin B. John
-bootchart2            0.14.7       0.14.8                No maintainer
-kmod-native           21+gitX      22+gitAUTOINC+42f...  No maintainer
-gettext               0.19.6       0.19.7                No maintainer
-ifupdown              0.8.2        0.8.4                 No maintainer
-libsolv               0.6.14+gitX  13.1+gitAUTOINC+d...  No maintainer
-uclibc-initial        1.0.9+gitX   1.0.10+gitAUTOINC...  No maintainer
-apt-native            1.0.10.1     1.1.10                No maintainer
-cmake-native          3.3.2        3.4.1                 No maintainer
-gdb-cross-canadia...  7.9.1        7.10.1                No maintainer
-gdb-cross-i586        7.9.1        7.10.1                No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-perl-native           5.22.0       5.22.1                No maintainer
-python-scons-native   2.3.6        2.4.1                 No maintainer
-python3-native        3.5.0        3.5.1                 No maintainer
-python-native         2.7.9        2.7.11                No maintainer
-adt-installer         0.3.0        0.3.1                 Randy Witt
-lttng-ust             2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-gdb                   7.9.1        7.10.1                Richard Purdie
-subversion            1.9.2        1.9.3                 Richard Purdie
-e2fsprogs             1.42.9       1.42.13               Robert Yang          Updating backported patches...
-file                  5.24         5.25                  Robert Yang
-git                   2.5.0        2.6.4                 Robert Yang
-rsync                 3.1.1        3.1.2                 Robert Yang
-strace                4.10         4.11                  Robert Yang
-libbsd                0.8.0        0.8.1                 Robert Yang
-iputils               s20121221    s20151218             Robert Yang
-less                  479          481                   Robert Yang
-wget                  1.17         1.17.1                Robert Yang
-autogen-native        5.18.5       5.18.6                Robert Yang
-base-passwd           3.5.29       3.5.39                Ross Burton          Version 3.5.38 requires cde...
-uclibc                1.0.9+gitX   1.0.10+gitAUTOINC...  Ross Burton
-lsbinitscripts        9.64         9.65                  Ross Burton
-alsa-lib              1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-pulseaudio            6.0          7.99.1                Tanu Kaskinen
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-ccache                3.2.3        3.2.4                 Wenzong Fan
-chkconfig             1.3.58       1.7                   Wenzong Fan          Version 1.5 requires selinux
-
-Upgradable count: 116
-Upgradable total count: 126
-
-The based commit is:
-
-commit 1568f4fa1c8f8abd9b365ecd264841cd4f6b66b1
-Author: Martin Jansa <martin.jansa@gmail.com>
-Date:   Mon Dec 28 13:55:52 2015 +0100
-
-    bluez5: include the patch only for 5.36
-    
-    * it's backport so it probably won't be needed for newer version and it doesn't
-      apply for older versions, so it just prevents to easily use bluez5.inc
-    
-    Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+HTH,
+Clemens
+-- 
+Clemens Lang • Development Specialist
+BMW Car IT GmbH • Lise-Meitner-Str. 14 • 89081 Ulm • http://bmw-carit.com
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Geschäftsführer: Michael Würtenberger und Reinhard Stolle
+Sitz und Registergericht: München HRB 134810
+-------------------------------------------------------------------------
 
