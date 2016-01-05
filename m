@@ -1,68 +1,48 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <dl9pf@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB437E00956; Tue,  5 Jan 2016 10:14:00 -0800 (PST)
+	id 5B8DEE00B70; Tue,  5 Jan 2016 12:16:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_50,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dl9pf[at]gmx.de)
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4808]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.178 listed in list.dnswl.org]
-Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
-	[209.85.192.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCBA3E0070F
-	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 10:13:57 -0800 (PST)
-Received: by mail-pf0-f178.google.com with SMTP id q63so188030481pfb.0
-	for <yocto@yoctoproject.org>; Tue, 05 Jan 2016 10:13:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=TNQMmdSSjyUWCf4UFpfnCzusmAPxPhPv+cVCOHz7374=;
-	b=XTG3Ga55hG50w0l2AKbLX5yUdTdLoBDWOyVFKJR1riA3UA2ehheqF9oZsHw8AiU1mk
-	mAdmOdPDgRB1fIYJeIASfrEWCNN3hHCh+jipLrAHAi9lVXcofOjP3iYSdiPqtOSN4xHA
-	K+MaYxiDkjCzqTlSLGN+Gkd4WJOc4zFgh254lK2kiaqcdS//bNhIJg7uUJLPSajDTRXk
-	p2d1Lx+gOmu/+onjJ9kgeJvE6IJDPlmQmD9cY9Dxbl9/sSwYkiutbK2bCDVr/Ndtsd4T
-	qZT3kIb3vd7owtn9gF19te8Wm9yXvTarQkFsLeCAK2UPUCrksatyH5k9+zawIdxzj3tf
-	JS5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=TNQMmdSSjyUWCf4UFpfnCzusmAPxPhPv+cVCOHz7374=;
-	b=XOzNbqG2PQtizd+RXkfjXozsGP8iIxUJXDHKsRyB+dpxNN2mOrf7ueiac0824/sjvF
-	R9EWoF6tLjj5saIMFuHWuRUBQJCtHz6PhdTkP4JjpE1ciiD6W6NyMJJN9Q33C7PrPBNJ
-	pp+vKVTyWeXUShW6Gdn5r8AmUwoP+gugh7sgN9Ap6AeQFNSZ5/fQUR9COatZRxEp2JzV
-	VKJ0LVYmbDo/P37dhRciQSp+toopTfiMIN0al312a1sPW2iqk4OfzL5DejJRyGHUduKF
-	6nzZbqvNuOPQxrX9o5BzZC/2YAnllvYTu3u/FE4/Jr8OQ9owOEq4nvhhonjOnU75uwmg
-	SP0g==
-X-Gm-Message-State: ALoCoQnacruwDYoF79OqwcoH1hBMqVz7zYolLxt0+5L0TAME04AZkEZBkP1tuuek8+YUTsLKnXHKpLdtPAqTcQeu2cceriAXWg==
-X-Received: by 10.98.75.155 with SMTP id d27mr87675093pfj.137.1452017636985;
-	Tue, 05 Jan 2016 10:13:56 -0800 (PST)
-Received: from ?IPv6:2601:202:4000:1239:6183:49a5:2f8e:29ef?
-	([2601:202:4000:1239:6183:49a5:2f8e:29ef])
-	by smtp.googlemail.com with ESMTPSA id
-	g68sm129692514pfg.9.2016.01.05.10.13.54
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 05 Jan 2016 10:13:56 -0800 (PST)
-To: Thomas Perrot <thomas.perrot@tupi.fr>, yocto@yoctoproject.org
-References: <1451932268-25264-1-git-send-email-thomas.perrot@tupi.fr>
-From: akuster <akuster@mvista.com>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <568C07DF.50100@mvista.com>
-Date: Tue, 5 Jan 2016 10:13:51 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
-MIME-Version: 1.0
-In-Reply-To: <1451932268-25264-1-git-send-email-thomas.perrot@tupi.fr>
-Subject: Re: [meta-security][PATCH] Remove recipe for the kernel 3.14 from master branch, to fix a build error. ERROR: No recipes available for: meta-security/recipes-kernel/linux/linux-yocto_3.14.bbappend
+	*      [212.227.17.21 listed in list.dnswl.org]
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Tue, 05 Jan 2016 12:16:53 PST
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F01A7E0078A
+	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 12:16:53 -0800 (PST)
+Received: from elrond.auenland.lan ([95.90.4.156]) by mail.gmx.com (mrgmx102)
+	with ESMTPSA (Nemesis) id 0MBZ9u-1aOlQx2x5K-00AVKa;
+	Tue, 05 Jan 2016 21:11:49 +0100
+From: dl9pf@gmx.de
+To: yocto@yoctoproject.org
+Date: Tue,  5 Jan 2016 21:11:29 +0100
+Message-Id: <1452024690-31461-1-git-send-email-dl9pf@gmx.de>
+X-Mailer: git-send-email 2.6.2
+X-Provags-ID: V03:K0:Cdhr35dSM5x5Bliw9IogpoXIRcpWMi5Tnvp1uTcxrYaCFNHZ+IL
+	PT3nqHTVbf+tMQbdepEqZti32wypvF3Cu2fS118ZTraX4VLWQk4sC1tj0+WRfsBA4PF1vJZ
+	6zD62dmdJQjCgkH2zDVsiy77Y4rZMhfl0LiOb0tLbKfv7ei/ziHiITPwO5IQIZ0Y02Ne6JJ
+	YjreVuw5omrhtTRzGX3vw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:m4b9ySnUejU=:et0dJp0HGbUX2s13rirHOb
+	BGuylKPYyAGjdrs/pRx2Hch8gI1NWj2iDguwI/2qXjVP4xlGJhcAq0mJ1gU2h0aADlHfgy+Lb
+	CUxYAYfAzY2NNq7YRdgePnKrep/s/ng++ILPwt+rnIVDSqqSUfIp+3v+UajaT5/8L4nTdamsX
+	nf7m76aktQGGX2f2LeL2c92tATagnFc2MO9xYW3T5G6TEB2/CgWeiySzIxKkZIX8ncSJt/2OG
+	GqGaoJH5irVcW1NSYAZAadASqWO2xbRZhFr6Tb4fr+xekkSWLxTlYp+vG2KwJVfuhmMG9DAhn
+	MrxDf7C2kh1OOUJH5CyAp0e01hWCrYU1uAoWOEKC3eELVVADn4oevPJb8TkD/NYFkMNiJqvR4
+	RlEGTQpvaKUuqAo5oq1g5Zx7HLrFnpAeB1PJnr7wsHPR7Z4gHArfGDSIRv6Sg9PpltD3e3sVi
+	rlaobK8xQ9WeWmba/85Qvhab8LHFwRu6DfX/6UPzMgvdCY/DTblHHFIhhPTgx7wu2eFjvb8Dd
+	jaZ99zu4nmcv09VghIhqdI8TC74uQmxa/tgRx+ebirwMne0hft6sk9tq4gVHvH93NDubBthJO
+	P3pZ7Frm8EerkWIHTmMw1Xl9nm/yW0U6AawAlxDYLzxsxIqSlyHQrI9lLEl6VCgKqbjt09ADc
+	/acgu+CltvteMtEoX3oEw/mwCbq0Qrmey7287AQU0ZqqFLiquBbe7wSJNXgm9YTFSzc5z6ZVc
+	Wubam+fdxIseBoIbXvww8e0KJRI9gaMUtUgU6bNRhOko6Ztl6Jj5PhTIRvs=
+Subject: [PATCH] Fix connectivity check for BB_FETCH_PREMIRRORONLY case
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,34 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jan 2016 18:14:01 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 Jan 2016 20:16:57 -0000
 
-Thomas,
+Hi!
 
-thanks.
+This patch fixes a bug in the sanity checker that is visible if
+you set up a PREMIRROR and start a project from scratch using
+BB_FETCH_PREMIRRORONLY set. In this case the sanity check would fail
+as BB_NO_NETWORK is not set directly
+(just indirectly in the fetcher by BB_FETCH_PREMIRRORONLY).
 
-On 01/04/2016 10:31 AM, Thomas Perrot wrote:
-> Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
-> ---
->  recipes-kernel/linux/linux-yocto_3.14.bbappend | 4 ----
->  1 file changed, 4 deletions(-)
->  delete mode 100644 recipes-kernel/linux/linux-yocto_3.14.bbappend
-> 
-> diff --git a/recipes-kernel/linux/linux-yocto_3.14.bbappend b/recipes-kernel/linux/linux-yocto_3.14.bbappend
-> deleted file mode 100644
-> index b46419c..0000000
-> --- a/recipes-kernel/linux/linux-yocto_3.14.bbappend
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> -
-> -# Tomoyo kernel support
-> -SRC_URI += "${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.cfg', '', d)}"
-> 
+Reproduce: Set up a PREMIRROR in the local network. Disconnect from
+$INTERNET and build a new project using the PREMIRROR on the local net only.
 
-merged to master next
+Expected result: Build works using the PREMIRROR
 
-- armin
+Actual result: Build fails due to CONNECTIVITY_CHECK
+
+Best,
+Jan-Simon
 
