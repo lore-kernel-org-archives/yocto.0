@@ -1,45 +1,49 @@
-Return-Path: <haris.okanovic@ni.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CE3AE00D6C; Mon,  4 Jan 2016 16:31:35 -0800 (PST)
+	id 8DB16E00CD0; Tue,  5 Jan 2016 08:11:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [130.164.80.23 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2728 seconds by postgrey-1.32 at yocto-www;
-	Mon, 04 Jan 2016 16:31:33 PST
-Received: from ni.com (skprod2.natinst.com [130.164.80.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26E62E0086B
-	for <yocto@yoctoproject.org>; Mon,  4 Jan 2016 16:31:33 -0800 (PST)
-Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
-	[130.164.19.135])
-	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	u04NjwnF008573; Mon, 4 Jan 2016 17:45:58 -0600
-Received: from harisdt.amer.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2016010417455848-1680555 ;
-	Mon, 4 Jan 2016 17:45:58 -0600 
-From: Haris Okanovic <haris.okanovic@ni.com>
-To: yocto@yoctoproject.org
-Date: Mon, 4 Jan 2016 17:45:45 -0600
-Message-Id: <1451951145-10297-1-git-send-email-haris.okanovic@ni.com>
-X-Mailer: git-send-email 2.6.2
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 01/04/2016 05:45:58 PM,
-	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 01/04/2016 05:45:58 PM,
-	Serialize complete at 01/04/2016 05:45:58 PM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2016-01-04_11:, , signatures=0
-X-Mailman-Approved-At: Tue, 05 Jan 2016 07:26:57 -0800
-Cc: Haris Okanovic <haris.okanovic@ni.com>, Ken Sharp <ken.sharp@ni.com>
-Subject: [PATCH] opkg-utils: Add opkg-graph-deps
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9682EE0033E
+	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 08:11:02 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Jan 2016 08:11:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,525,1444719600"; 
+	d="scan'208,217";a="720642229"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by orsmga003.jf.intel.com with ESMTP; 05 Jan 2016 08:11:02 -0800
+Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Tue, 5 Jan 2016 08:11:01 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.7]) by
+	fmsmsx124.amr.corp.intel.com ([169.254.1.40]) with mapi id
+	14.03.0248.002; Tue, 5 Jan 2016 08:11:01 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Jan.
+	5, 2016 8:00 AM US Pacific Time
+Thread-Index: AdFH06eeajBAo6z2R2WNRxNFU2KBAw==
+Date: Tue, 5 Jan 2016 16:11:00 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E56F8D2CE@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiN2M1ZDE5MDUtODBkZi00MTYzLThmN2QtYjEzYjU5ZTBhNTkzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjQuMTAuMTkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiY3pnd2hFYTI0dDc2czNnZjB1UHJ4cU9maW9XSUxaU1lZUnpDRHhUY2J5cz0ifQ==
+MIME-Version: 1.0
+Cc: "Chen, Terence" <terence.chen@intel.com>
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Jan. 5, 2016 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,312 +55,297 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jan 2016 00:31:35 -0000
+X-List-Received-Date: Tue, 05 Jan 2016 16:11:04 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F8D2CEfmsmsx111amrcor_"
 
-Usage: opkg-graph-deps [-h] [-o feed.dot] [-u <base feed URL>] <paths to
-Packages>
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F8D2CEfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Generates a dot formatted dependency graph of an IPK feed.
-
-The feed is specified by a list of IPK index (Packages) files, which
-are sourced in the order specified to build a dependency graph. Last
-index to declare a package wins, but also generates a warning to stderr.
-
-Possible warnings:
- Duplicate package: package appears in more than one index.
- Broken dependency: no package satisfies a declared dependency.
- Replacing alias: package is replacing another package.
- Self alias: package declares an alias on it's own name.
-
-If a base feed URL is specified, each package node includes an 'href'
-to the associated IPK file. It's assumes that the specified base
-feed URL hosts the current working directory, so the resulting
-hrefs are generated by joining the base and a relative IPK path.
-
-The resulting feed graph is written to './feed.dot' or an alternate
-path specified by the caller. Nodes represent real packages (not
-aliases)
-and edges represent dependencies.
-
-Node attributes:
- (node name): Package name from feed index (without version or arch)
- label: [Package name] [ipkArchitecture] [ipkVersion]
- ipkArchitecture: Architecture name from feed index
- ipkVersion: The full version number from feed index
- ipkMissing: Set to "1" when the ipk is not actually in feed, but has
-  one or inbound dependencies.
- href: URL to the IPK file. Only if optional base URL is specified.
-
-Edge attributes:
- (from) The package name declaring a dependency
- (to) The (de-aliased) package name (from) depends on
- ipkAlias: The alias of (to) which (from) depends on. Only set when
-  the alias != (to).
- ipkBrokenDep: Set to "1" if (to) is missing from the feed.
-
-Signed-off-by: Haris Okanovic <haris.okanovic@ni.com>
-Cc: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-Cc: Paul Barker <paul@paulbarker.me.uk>
-Cc: Ken Sharp <ken.sharp@ni.com>
-Cc: Richard Tollerton <rich.tollerton@ni.com>
----
- opkg-graph-deps | 246 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 246 insertions(+)
- create mode 100755 opkg-graph-deps
-
-diff --git a/opkg-graph-deps b/opkg-graph-deps
-new file mode 100755
-index 0000000..c42e7ce
---- /dev/null
-+++ b/opkg-graph-deps
-@@ -0,0 +1,246 @@
-+#!/usr/bin/env python
-+
-+import sys
-+import os
-+import getopt
-+import pydot
-+import opkg
-+
-+def usage(more=False):
-+    print >>sys.stderr, ( 'Usage: opkg-graph-deps '
-+        '[-h] [-o feed.dot] '
-+        '[-u <base feed URL>] '
-+        '<paths to Packages>' )
-+    if more:
-+        print >>sys.stderr, '\n'.join( [
-+'',
-+'Generates a dot formatted dependency graph of an IPK feed.',
-+'',
-+'The feed is specified by a list of IPK index (Packages) files, which',
-+'are sourced in the order specified to build a dependency graph. Last',
-+'index to declare a package wins, but also generates a warning to stderr.',
-+'',
-+'Possible warnings:',
-+' Duplicate package: package appears in more than one index.',
-+' Broken dependency: no package satisfies a declared dependency.',
-+' Replacing alias: package is replacing another package.',
-+' Self alias: package declares an alias on it\'s own name.',
-+'',
-+'If a base feed URL is specified, each package node includes an \'href\'',
-+'to the associated IPK file. It\'s assumes that the specified base',
-+'feed URL hosts the current working directory, so the resulting',
-+'hrefs are generated by joining the base and a relative IPK path.',
-+'',
-+'The resulting feed graph is written to \'./feed.dot\' or an alternate',
-+'path specified by the caller. Nodes represent real packages (not aliases)',
-+'and edges represent dependencies.',
-+'',
-+'Node attributes:',
-+' (node name): Package name from feed index (without version or arch)',
-+' label: [Package name] [ipkArchitecture] [ipkVersion]',
-+' ipkArchitecture: Architecture name from feed index',
-+' ipkVersion: The full version number from feed index',
-+' ipkMissing: Set to "1" when the ipk is not actually in feed, but has',
-+'  one or inbound dependencies.',
-+' href: URL to the IPK file. Only if optional base URL is specified.',
-+'',
-+'Edge attributes:',
-+' (from) The package name declaring a dependency',
-+' (to) The (de-aliased) package name (from) depends on',
-+' ipkAlias: The alias of (to) which (from) depends on. Only set when',
-+'  the alias != (to).',
-+' ipkBrokenDep: Set to "1" if (to) is missing from the feed.',
-+'',
-+        ] )
-+    exit(1)
-+
-+# optional args
-+dot_filename = "feed.dot"
-+feed_url = None
-+
-+(opts, index_files) = getopt.getopt(sys.argv[1:], "ho:u:")
-+for (optkey, optval) in opts:
-+    if optkey == '-h': 
-+        usage(more=True)
-+    elif optkey == '-o': 
-+        dot_filename = optval
-+    elif optkey == '-u':
-+        feed_url = optval
-+
-+if not index_files:
-+    print >>sys.stderr, 'Must specify a path to at least one Packages file'
-+    usage()
-+
-+def split_dep_list(lst):
-+    '''
-+    Splits a comma-space delimited list, retuning only the first item.
-+    E.g. 'foo (>= 1.2), bar, lab (x)' yields ['foo', 'bar', 'lab']
-+    '''
-+    if not lst:
-+        lst = ''
-+
-+    res = []
-+
-+    splitLst = lst.split(',')
-+    for itm in splitLst:
-+        itm = itm.strip()
-+        if not itm:
-+            continue
-+        itmSplit = itm.split()
-+        res.append(itmSplit[0])
-+
-+    return res
-+
-+# define the graph
-+graph = pydot.Dot(graph_name='ipkFeed', graph_type='digraph')
-+graph.set_node_defaults(shape='rectangle', style='solid', color='black')
-+graph.set_edge_defaults(style='solid', color='black')
-+
-+def pkg_architectcture(pkg):
-+    return str(pkg.architecture or '?')
-+
-+def pkg_label(pkg, includeArch=True, includeVersion=False, includePath=False, multiLine=False):
-+    label = str(pkg.package or '?')
-+    if multiLine:
-+        label += '\\n'
-+    if includeArch:
-+        label += '[%s]' % pkg_architectcture(pkg)
-+    if includeVersion:
-+        label += '[%s]' % (pkg.version or '?')
-+    if includePath:
-+        label += '[%s]' % (pkg.fn or '?')
-+    return label
-+
-+def add_package_to_graph(pkg, missing=False):
-+    if not pkg.package:
-+        raise Exception('Invalid package name')
-+
-+    node = pydot.Node(pkg.package)
-+
-+    node.set('label', pkg_label(pkg,
-+        includeVersion=(not missing),
-+        includeArch=(not missing),
-+        multiLine=True) )
-+
-+    if missing:
-+        node.set('ipkMissing', '1')
-+        node.set('style', 'dotted')
-+        node.set('color', 'red')
-+
-+    node.set('ipkVersion', pkg.version or 'none')
-+    node.set('ipkArchitecture', pkg_architectcture(pkg))
-+
-+    if feed_url and pkg.filename:
-+        node.set('href', '%s/%s' % (feed_url, pkg.fn) )
-+
-+    graph.add_node(node)
-+
-+def add_dependency_to_graph(fromPkg, toPkg, alias=None, broken=False):
-+        edge = pydot.Edge(fromPkg.package, toPkg.package)
-+
-+        if alias:
-+            edge.set('ipkAlias', alias)
-+            edge.set('style', 'dashed')
-+
-+        if broken:
-+            edge.set('ipkBrokenDep', '1')
-+            edge.set('style', 'dotted')
-+            edge.set('color', 'red')
-+
-+        graph.add_edge(edge)
-+
-+# the feed
-+pkg_map = {}
-+alias_pkg_map = {}
-+missing_pkg_map = {}
-+real_pkg_replace_count = 0
-+broken_dep_count = 0
-+
-+# populate pkg_map with all real packages defined in the indexes
-+#  do this first for all indexes before updating alias_pkg_map and
-+#  adding nodes to apply any replacements
-+for indexFilePath in index_files:
-+    feedDir = os.path.dirname(indexFilePath)
-+    feedDir = os.path.relpath(feedDir, start=os.getcwd())
-+
-+    packages = opkg.Packages()
-+    packages.read_packages_file(indexFilePath)
-+
-+    # add each package
-+    for pkgKey in packages.keys():
-+        pkg = packages[pkgKey]
-+
-+        # save package filename relative to sub-feed dir
-+        pkg.fn = os.path.join(feedDir, pkg.filename)
-+
-+        if pkg.package in pkg_map:
-+            # pkg is being replaced
-+            replacedPkg = pkg_map[pkg.package]
-+
-+            real_pkg_replace_count = real_pkg_replace_count + 1
-+            print >>sys.stderr, "Duplicate package: Replacing %s with %s" % (
-+                pkg_label(replacedPkg, includePath=True),
-+                pkg_label(pkg, includePath=True) )
-+
-+        pkg_map[pkg.package] = pkg
-+
-+# populate alias_pkg_map with all real+alias packages defined in the indexes
-+# add nodes to graph
-+for pkgKey, pkg in pkg_map.iteritems():
-+    # Add the real package
-+    alias_pkg_map[pkg.package] = pkg
-+
-+    # Add any aliases
-+    for alias in split_dep_list(pkg.provides):
-+        if alias in alias_pkg_map:
-+            oldAliasPkg = alias_pkg_map[alias]
-+
-+            if pkg == oldAliasPkg:
-+                # weird, not an error, but worth documenting
-+                print >>sys.stderr, "Self alias: %s" % pkg_label(pkg)
-+            else:
-+                print >>sys.stderr, "Replacing alias: %s (%s) with %s" % (
-+                    alias, pkg_label(oldAliasPkg), pkg_label(pkg) )
-+
-+        alias_pkg_map[alias] = pkg
-+
-+    add_package_to_graph(pkg)
-+
-+# create stub packages in alias_pkg_map for broken deps
-+# add them to missing_pkg_map
-+# add nodes to graph
-+for pkgKey, pkg in pkg_map.iteritems():
-+    for depName in split_dep_list(pkg.depends):
-+        if not depName in alias_pkg_map:
-+            broken_dep_count = broken_dep_count + 1
-+            print >>sys.stderr, "Broken dependency: %s --> %s (missing)" % (
-+                pkg_label(pkg), depName )
-+
-+            stub = opkg.Package()
-+            stub.package = depName
-+
-+            # don't update pkg_map, stub is not a real package
-+            alias_pkg_map[stub.package] = stub
-+            missing_pkg_map[stub.package] = stub
-+
-+            add_package_to_graph(stub, missing=True)
-+
-+# process dependencies
-+# add edges to graph
-+for pkgKey, pkg in pkg_map.iteritems():
-+    for depName in split_dep_list(pkg.depends):
-+        depPkg = alias_pkg_map[depName]
-+
-+        add_dependency_to_graph(pkg, depPkg,
-+            alias=(depName if (depName != depPkg.package) else None),
-+            broken=(depPkg.package in missing_pkg_map) )
-+
-+# Results
-+print "%s packages" % len(pkg_map.keys())
-+print "%s aliases" % len(alias_pkg_map)
-+print "%s replaced packages" % real_pkg_replace_count
-+print "%s broken dependencies" % broken_dep_count
-+
-+# Write the graph
-+graph.write(path=dot_filename)
-+print "Graphed at %s" % dot_filename
--- 
-2.6.2
+Attendees: Armin, Stephen, Ross, Belen, JosePPC, Joshua, Leo, Michael,
 
 
+
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
+
+YP 2.1 M1 was released just before Christmas.
+
+YP 2.0.1 is targeted to be built on 1/11.
+
+YP 2.1 M2 is targeted to be built on 1/25.
+
+* Opens - 10 min
+
+Ross - Support for older releases.   We support Debian 7 and 8 but Debian 7=
+ support is now limited by the Debian team.  We will plan to drop support f=
+or Debian 7 before YP 2.1 releases.
+
+
+
+* Team Sharing - 10 min
+
+
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F8D2CEfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Armin, Stephen, Ross, Belen, JosePPC, J=
+oshua, Leo, Michael,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v2.1_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
+1_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.1_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.1_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt">
+<span style=3D"font-size:11.0pt;font-family:Consolas">YP 2.1 M1 was release=
+d just before Christmas.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt">
+<span style=3D"font-size:11.0pt;font-family:Consolas">YP 2.0.1 is targeted =
+to be built on 1/11.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt">
+<span style=3D"font-size:11.0pt;font-family:Consolas">YP 2.1 M2 is targeted=
+ to be built on 1/25.&nbsp;
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Ross &#8211; Support for older releases.&nbsp;&nbs=
+p; We support Debian 7 and 8 but Debian 7 support is now limited by the Deb=
+ian team.&nbsp; We will plan to drop support for Debian 7
+ before YP 2.1 releases.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F8D2CEfmsmsx111amrcor_--
