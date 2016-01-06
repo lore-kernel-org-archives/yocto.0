@@ -1,49 +1,61 @@
-Return-Path: <renjithvjn@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C26A5E00C1A; Tue,  5 Jan 2016 20:07:18 -0800 (PST)
+	id 43DF4E00C7D; Wed,  6 Jan 2016 01:17:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (renjithvjn[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f172.google.com (mail-yk0-f172.google.com
-	[209.85.160.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 828C7E00803
-	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 20:07:15 -0800 (PST)
-Received: by mail-yk0-f172.google.com with SMTP id v14so210937016ykd.3
-	for <yocto@yoctoproject.org>; Tue, 05 Jan 2016 20:07:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=nebVkJM21V3LFN9tk/b8SJSbFRjESeOAroaIkr8HIa4=;
-	b=b5Hb+BOGtdjPrDLJLuUIj7PmjoDb9/xd9mDflJZCkwetcWb//7SNuoearncl/QpJiK
-	UyuaaqTBMzAlZX23pcVUiwzFZFeTx+asLy7/YSrkob4wtu+BmfhXHA/bogx+9Shuf4cc
-	nETSkLhUW2vwcHCGTVuFvakbPfsGu3lWtSJWOZEvXb4MuCeAMiGhVhM6IWi/OzOKqisU
-	MqbYGz3PDj39raMcOPLA344EeRO8TJBKGZGTZRRubl2Y0OqA0zKB/Kdl32PqC83I6Bej
-	4uhMs97yOO7AANc7YFuCLT/TdW9bl+orh9BZw2VS/Et1G2rrXju81vZVZ9iDxXOROAoR
-	x/4w==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.169 listed in list.dnswl.org]
+Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
+	[209.85.213.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08A25E00803
+	for <yocto@yoctoproject.org>; Wed,  6 Jan 2016 01:17:42 -0800 (PST)
+Received: by mail-ig0-f169.google.com with SMTP id t15so1708212igr.0
+	for <yocto@yoctoproject.org>; Wed, 06 Jan 2016 01:17:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=HdyhpehqUJr7yMKrB2wfvoayCxV6Xl6byKfdvzLLhVE=;
+	b=WdmG0hmnGCZrelOBdOvByo6qMctRrue9cInKMIgFg+Q6Fdjdht4dA9xyIGLuUAv4C3
+	XXmhOKMOY7EseijtHG0WBzAPYkQFVuBgqbHrSNdLt5RDtx0Lu51VMJg9cJzwMOO2yuOZ
+	5mkdf3nprSl9xLpjnjZil3o4yFtCA0tkt0FmaR3dWALa2sYs7JwtTkQnHcqkFtFJsu7m
+	5pe4LPNQ/8flYVSpFWpF/imdWWdWRnbvehxwZmihPtbDdQYi+5vtpLYGBpNc4DTWeg4d
+	RZsiLxyo/AraOsDF5QFDY7NrA/yhAfkWDRHVQyZgsD+e8Hhcm48Oz4p+jPpstf/6k6Yx
+	CpAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=HdyhpehqUJr7yMKrB2wfvoayCxV6Xl6byKfdvzLLhVE=;
+	b=RmSnNhBQeOukBjL3f4U5MJly0PEC+pIWi1RRHSxkwKOYiZZjzPZLpP7UTt4kZLxVyW
+	8/Dars7o1z3KZ95v2AqwlTS1TpEttCeJfxtPmApc41UytmeAweAThd+Njv4OtqN3xhIu
+	z8YcGYUV7QyuNdI0mLL4HzcHv9uDx9TWgDbgn4Q22NHXA+o1ExCzIdEH/V4AtqhbnQjC
+	v3v1qHXTtR9QU8N4Ol7KKA3NupULUs72iG0Swu8THjJFzXWXDGjw4k7bo3AjQJS9KpNj
+	/9M/SR6Fh48iOWlX9nFrirIoYfAxOBc6IsJrJJiruj2q46N0lI/WM4vOCJDBfZyHxZwV
+	FYSg==
+X-Gm-Message-State: ALoCoQmoJCH7v2GMH/54HOoG58W1/Z1jbVDBzGV6yYqWDKWNKXRpJsF3KhjqKAFxR8aJ8HMsrGIl7V9Xc5GwcbLsXzaXYde0VnzvJh3Y6uwyRU3wVV9wSTc=
+X-Received: by 10.50.111.111 with SMTP id ih15mr6228101igb.78.1452071862293;
+	Wed, 06 Jan 2016 01:17:42 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.13.194.134 with SMTP id e128mr70239094ywd.57.1452053234630; 
-	Tue, 05 Jan 2016 20:07:14 -0800 (PST)
-Received: by 10.37.105.7 with HTTP; Tue, 5 Jan 2016 20:07:14 -0800 (PST)
-Date: Wed, 6 Jan 2016 09:37:14 +0530
-Message-ID: <CAO-QM6MtD1Un5BZc3mVh3Mx+KNX-fc344qYVzXRe+NuUx=9kiQ@mail.gmail.com>
-From: Renjith Vijayan <renjithvjn@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Rsyslog-ImJournal dependencies in Yocto
+Received: by 10.107.162.70 with HTTP; Wed, 6 Jan 2016 01:17:22 -0800 (PST)
+In-Reply-To: <CAO-QM6MtD1Un5BZc3mVh3Mx+KNX-fc344qYVzXRe+NuUx=9kiQ@mail.gmail.com>
+References: <CAO-QM6MtD1Un5BZc3mVh3Mx+KNX-fc344qYVzXRe+NuUx=9kiQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Jan 2016 09:17:22 +0000
+Message-ID: <CAJTo0La=tGVHF90FfrR08N01fsNzocOucWd9VzMVEQmUVfQ=nA@mail.gmail.com>
+To: Renjith Vijayan <renjithvjn@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Rsyslog-ImJournal dependencies in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,78 +67,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jan 2016 04:07:18 -0000
-Content-Type: multipart/alternative; boundary=001a114edd3a3ecb890528a27d22
+X-List-Received-Date: Wed, 06 Jan 2016 09:17:47 -0000
+Content-Type: multipart/alternative; boundary=089e0149be348a75410528a6d311
 
---001a114edd3a3ecb890528a27d22
+--089e0149be348a75410528a6d311
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 6 January 2016 at 04:07, Renjith Vijayan <renjithvjn@gmail.com> wrote:
 
-I am trying to integrate rsyslog's IMjournal package to my platform running
-Yocto.
-IMJournal is used by rsyslog to read logs from systemd-journal.
+> checking for LIBSYSTEMD_JOURNAL... no
+> | configure: error: Package requirements (libsystemd-journal >= 197) were
+> not met:
+> |
+> | No package 'libsystemd-journal' found
+> |
+> | Consider adjusting the PKG_CONFIG_PATH environment variable if you
+> | installed software in a non-standard prefix.
+>
 
-So i have rsyslog bitbake file modified as follows for imjournal package
-config:
+The configure script is looking for the old systemd library names, you'll
+either need to patch the configure script to look for the new names (just
+libsystemd) or enable the "compat" PACKAGECONFIG in systemd.
 
-# first line is default yes in configure
-PACKAGECONFIG ??= " \
-    zlib rsyslogd rsyslogrt klog inet regexp uuid imjournal libgcrypt \
-    imdiag gnutls imfile \
-    ${@base_contains('DISTRO_FEATURES', 'snmp', 'snmp', '', d)} \
-    ${@base_contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)} \
-    ${@base_contains('DISTRO_FEATURES', 'ptest', 'testbench ${VALGRIND}',
-'', d)} \
+To be honest I think we should probably enable compat by default.
 
-But after adding imjournal as above to config, during build i am getting
-the following dependency error:
+Ross
 
-checking for LIBSYSTEMD_JOURNAL... no
-| configure: error: Package requirements (libsystemd-journal >= 197) were
-not met:
-|
-| No package 'libsystemd-journal' found
-|
-| Consider adjusting the PKG_CONFIG_PATH environment variable if you
-| installed software in a non-standard prefix.
-
-
-Could someone help me with this configuration?
-
-Thanks,
-Renjith
-
---001a114edd3a3ecb890528a27d22
+--089e0149be348a75410528a6d311
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am trying to integrate rsyslog&#3=
-9;s IMjournal package to my platform running Yocto.</div><div>IMJournal is =
-used by rsyslog to read logs from systemd-journal.</div><div><br></div><div=
->So i have rsyslog bitbake file modified as follows for imjournal package c=
-onfig:</div><div><br></div><div><div style=3D"font-size:12.8px"><div># firs=
-t line is default yes in configure</div><div>PACKAGECONFIG ??=3D &quot; \</=
-div><div>=C2=A0 =C2=A0 zlib rsyslogd rsyslogrt klog inet regexp uuid imjour=
-nal libgcrypt \</div><div>=C2=A0 =C2=A0 imdiag gnutls imfile \</div><div>=
-=C2=A0 =C2=A0 ${@base_contains(&#39;DISTRO_FEATURES&#39;, &#39;snmp&#39;, &=
-#39;snmp&#39;, &#39;&#39;, d)} \</div><div>=C2=A0 =C2=A0 ${@base_contains(&=
-#39;DISTRO_FEATURES&#39;, &#39;systemd&#39;, &#39;systemd&#39;, &#39;&#39;,=
- d)} \</div><div>=C2=A0 =C2=A0 ${@base_contains(&#39;DISTRO_FEATURES&#39;, =
-&#39;ptest&#39;, &#39;testbench ${VALGRIND}&#39;, &#39;&#39;, d)} \</div><d=
-iv><br></div><div>But after adding imjournal as above to config, during bui=
-ld i am getting the following dependency error:</div><div><br></div><div><d=
-iv style=3D"font-size:12.8px">checking for LIBSYSTEMD_JOURNAL... no</div><d=
-iv style=3D"font-size:12.8px">| configure: error: Package requirements (lib=
-systemd-journal &gt;=3D 197) were not met:</div><div style=3D"font-size:12.=
-8px">|</div><div style=3D"font-size:12.8px">| No package &#39;libsystemd-jo=
-urnal&#39; found</div><div style=3D"font-size:12.8px">|</div><div style=3D"=
-font-size:12.8px">| Consider adjusting the PKG_CONFIG_PATH environment vari=
-able if you</div><div style=3D"font-size:12.8px">| installed software in a =
-non-standard prefix.</div></div><div style=3D"font-size:12.8px"><br></div><=
-div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">Co=
-uld someone help me with this configuration?</div><div style=3D"font-size:1=
-2.8px"><br></div><div style=3D"font-size:12.8px">Thanks,</div><div style=3D=
-"font-size:12.8px">Renjith</div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 6 January 2016 at 04:07, Renjith Vijayan <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:renjithvjn@gmail.com" target=3D"_blank">renjithvjn@gmail.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"font-siz=
+e:12.8px">checking for LIBSYSTEMD_JOURNAL... no</div><div style=3D"font-siz=
+e:12.8px">| configure: error: Package requirements (libsystemd-journal &gt;=
+=3D 197) were not met:</div><div style=3D"font-size:12.8px">|</div><div sty=
+le=3D"font-size:12.8px">| No package &#39;libsystemd-journal&#39; found</di=
+v><div style=3D"font-size:12.8px">|</div><div style=3D"font-size:12.8px">| =
+Consider adjusting the PKG_CONFIG_PATH environment variable if you</div><di=
+v style=3D"font-size:12.8px">| installed software in a non-standard prefix.=
+</div></blockquote></div><br>The configure script is looking for the old sy=
+stemd library names, you&#39;ll either need to patch the configure script t=
+o look for the new names (just libsystemd) or enable the &quot;compat&quot;=
+ PACKAGECONFIG in systemd.</div><div class=3D"gmail_extra"><br></div><div c=
+lass=3D"gmail_extra">To be honest I think we should probably enable compat =
+by default.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
+xtra">Ross</div></div>
 
---001a114edd3a3ecb890528a27d22--
+--089e0149be348a75410528a6d311--
