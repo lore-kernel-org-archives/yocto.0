@@ -1,50 +1,64 @@
-Return-Path: <renjithvjn@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF219E00BB7; Tue,  5 Jan 2016 08:15:31 -0800 (PST)
+	id 316A6E00C51; Wed,  6 Jan 2016 12:41:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (renjithvjn[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0001]
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.176 listed in list.dnswl.org]
-Received: from mail-yk0-f176.google.com (mail-yk0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF10EE00AE4
-	for <yocto@yoctoproject.org>; Tue,  5 Jan 2016 08:15:28 -0800 (PST)
-Received: by mail-yk0-f176.google.com with SMTP id v14so193027273ykd.3
-	for <yocto@yoctoproject.org>; Tue, 05 Jan 2016 08:15:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=YvRQy2+lzhlseyz54Y7801860QC7m/MI6TP4k8FBEwo=;
-	b=un+APqvC/Evo5jUvA2eDQFGkloMDjWZ4E+QWdcguAnT9EMTTiz+KB7bsVJ7NxaTLrM
-	hKrglh1YchwiPn/Rfz5klPsid91dBKepkKV0QEJhdGn1I3RfpiwbE+Yefe0Wo+zD+NAG
-	d0Vs+sf42l/w22qG3MCmnCQBTaeqst81yarw2FlzdakHWH3W0SJSMPVygT93TOI/QHpC
-	ItwO5WK5pyD3QQJsLXr4nhzzs9/CzU4yF14PrCFuTW3xdXAFt2rkEnTrsl/XMAEBMG6g
-	McQJTwYkpt2pZE53o9gbPfMI9ECvYWdiA31o1y6KP1ctxnSvGKCWWFGUxSy9XUul/82G
-	ShpA==
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7DEBE007C3
+	for <yocto@yoctoproject.org>; Wed,  6 Jan 2016 12:41:34 -0800 (PST)
+Received: by mail-wm0-f49.google.com with SMTP id f206so73454627wmf.0
+	for <yocto@yoctoproject.org>; Wed, 06 Jan 2016 12:41:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=EtQizNl57TyEnysC5IXgIT0+vFyGq2XHA2djzvKxXks=;
+	b=ZrBDWIpseRA8F04qx/Qrq8s6mtJppytxJKuAiiii1H4Hb1t+S01NE3TBwmESypR2Df
+	LPu5LOiNnXMbRfkAvPflNArGUv1oe2f5JNayP+Ic6M7pH0PxSvPHr1T/ZfD/beJxQk3r
+	nQlVd/ZwB2Tj+LQpp23sZD0sIEv++W43J08THMVGO72YbcnpAXmGhqhC1U79LAiTZMKA
+	W88om6bx4mJ9DWpZDewvN2wm/N5pqmFYqR6p+vhUYuVrZHrIc5E7Lsl6K8iFwU2HxkQO
+	fhhmBzgNh/tKNx0eMBztHOqyo42fjDW3R9ftjCtOVrKLxRRRAQfwhwLY1kSSCuOWJmkO
+	6gow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=EtQizNl57TyEnysC5IXgIT0+vFyGq2XHA2djzvKxXks=;
+	b=mEod3xkH/Y8IyXVwRBxXRcf8wi68auF3cUxogqYoUhq/4wKkKCEyfdV39qIwywmMDY
+	m4uAWFiJiIq3z3nqw1ZVrtkbxdfb8UEqUreaWkG+lTXlxXtsgw9jMJwDrh0oM1jrGq/l
+	0I4e6+Is3jJQ10O+OMtfcAzWvz6LrAsD2GdNbwVqC9NnIHpsBQxu7ACYsGCt30PnFtRT
+	/BF1pvXoFzS5McFxm/dH5FJUakhTgGazvI/B6l1nViuMpmUjI/BBVdBZ3ozm5f1Gixey
+	okdxWTPy+gUcESmoJLFAebpX0mhgBI2vWMm9WHcCBGqVPJ0xbnIKUcueHuBLoe+Wjx1c
+	Zc+g==
+X-Gm-Message-State: ALoCoQmrvUlM3HBP448UiRvxfniqELy9FfJKJ7YbYKG4BMy8e1Wc37bZ87JhtXjPjs0gkWPuElm3WlriED7r7/B9rJxyixITRQ==
 MIME-Version: 1.0
-X-Received: by 10.129.101.198 with SMTP id z189mr34007041ywb.275.1452010527537;
-	Tue, 05 Jan 2016 08:15:27 -0800 (PST)
-Received: by 10.37.105.7 with HTTP; Tue, 5 Jan 2016 08:15:27 -0800 (PST)
-Date: Tue, 5 Jan 2016 21:45:27 +0530
-Message-ID: <CAO-QM6PW0Y7d4PQEzs4S9b8NDMRBDuFH5Hc4uR_iQY3NnUhLCQ@mail.gmail.com>
-From: Renjith Vijayan <renjithvjn@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Wed, 06 Jan 2016 08:58:11 -0800
-Subject: Rsyslog-IMJournal Package in Yocto
+X-Received: by 10.28.158.74 with SMTP id h71mr12123774wme.74.1452112894139;
+	Wed, 06 Jan 2016 12:41:34 -0800 (PST)
+Received: by 10.28.129.200 with HTTP; Wed, 6 Jan 2016 12:41:33 -0800 (PST)
+X-Originating-IP: [178.7.64.118]
+Received: by 10.28.129.200 with HTTP; Wed, 6 Jan 2016 12:41:33 -0800 (PST)
+In-Reply-To: <CAK18fxF5d+7JecsEHM=wGWGfzeyZPTVKbLbfygNqNoEcjnce0A@mail.gmail.com>
+References: <CAK18fxF5d+7JecsEHM=wGWGfzeyZPTVKbLbfygNqNoEcjnce0A@mail.gmail.com>
+Date: Wed, 6 Jan 2016 21:41:33 +0100
+Message-ID: <CAK18fxGSYtduY0xv8aF8hYWJORmZwdMxw2TAgf3XS5_u+sKBWQ@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: Florin Ionut <florin@resin.io>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Alexandros Marinos <alexandros@resin.io>
+Subject: Layer manifest (topic touched at ELCE)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,55 +70,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jan 2016 16:15:31 -0000
-Content-Type: multipart/alternative; boundary=001a114c6d90b445100528988b33
+X-List-Received-Date: Wed, 06 Jan 2016 20:41:39 -0000
+Content-Type: multipart/alternative; boundary=001a114b39863abb8c0528b061d1
 
---001a114c6d90b445100528988b33
+--001a114b39863abb8c0528b061d1
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+Hello all,
 
-I am working on integrating rsyslog's IMJournal module to my yocto based
-platform.
-I have package_config in my bitbake file for rsyslog as follows,
+We started a discussion at the last ELCE: layer manifest in a machine
+parsable format. I'll make a short summary on what is this about.
 
-# first line is default yes in configure
-PACKAGECONFIG ??= " \
-    zlib rsyslogd rsyslogrt klog inet regexp uuid libgcrypt \
-    imdiag gnutls imfile \
-    ${@base_contains('DISTRO_FEATURES', 'snmp', 'snmp', '', d)} \
-    ${@base_contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)} \
-    ${@base_contains('DISTRO_FEATURES', 'ptest', 'testbench ${VALGRIND}',
-'',
+In the current yocto layers structures, the only way to describe a layer is
+through README. Which provides useful information like layer dependencies,
+available targets, maybe available machines etc. First of all this
+information is not standardized in any way and not machine parsable. So is
+not an uncommon situation to get a BSP yocto layer and have no idea what to
+do without actually looking into it. As well, there is no way of
+automating, for example, cloning of dependencies or any other kind of
+automations.
 
-But with this configuration, imjournal module is not getting generated
-after compilation.
+Now the questions is, would it make sense to define a layer manifest where
+a layer would be fully described in a machine parsable way? Does yocto
+community feel the need of such a file and maybe additionally have a script
+which would be able to parse such a manifest and setup a build environment?
 
-Could someone with prior experience on this point out the package which
-needs to be included for imjournal?
 
-Thanks,
-Renjith
+--
+Andrei Gherzan
 
---001a114c6d90b445100528988b33
+--001a114b39863abb8c0528b061d1
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am working on integrating rsyslog=
-&#39;s IMJournal module to my yocto based platform.</div><div>I have packag=
-e_config in my bitbake file for rsyslog as follows,</div><div><br></div><di=
-v><div># first line is default yes in configure</div><div>PACKAGECONFIG ??=
-=3D &quot; \</div><div>=C2=A0 =C2=A0 zlib rsyslogd rsyslogrt klog inet rege=
-xp uuid libgcrypt \</div><div>=C2=A0 =C2=A0 imdiag gnutls imfile \</div><di=
-v>=C2=A0 =C2=A0 ${@base_contains(&#39;DISTRO_FEATURES&#39;, &#39;snmp&#39;,=
- &#39;snmp&#39;, &#39;&#39;, d)} \</div><div>=C2=A0 =C2=A0 ${@base_contains=
-(&#39;DISTRO_FEATURES&#39;, &#39;systemd&#39;, &#39;systemd&#39;, &#39;&#39=
-;, d)} \</div><div>=C2=A0 =C2=A0 ${@base_contains(&#39;DISTRO_FEATURES&#39;=
-, &#39;ptest&#39;, &#39;testbench ${VALGRIND}&#39;, &#39;&#39;,</div></div>=
-<div><br></div><div>But with this configuration, imjournal module is not ge=
-tting generated after compilation.</div><div><br></div><div>Could someone w=
-ith prior experience on this point out the package which needs to be includ=
-ed for imjournal?</div><div><br></div><div>Thanks,</div><div>Renjith</div><=
-/div>
+<p dir=3D"ltr">Hello all,</p>
+<p dir=3D"ltr">We started a discussion at the last ELCE: layer manifest in =
+a machine parsable format. I&#39;ll make a short summary on what is this ab=
+out.</p>
+<p dir=3D"ltr">In the current yocto layers structures, the only way to desc=
+ribe a layer is through README. Which provides useful information like laye=
+r dependencies, available targets, maybe available machines etc. First of a=
+ll this information is not standardized in any way and not machine parsable=
+. So is not an uncommon situation to get a BSP yocto layer and have no idea=
+ what to do without actually looking into it. As well, there is no way of a=
+utomating, for example, cloning of dependencies or any other kind of automa=
+tions.=C2=A0</p>
+<p dir=3D"ltr">Now the questions is, would it make sense to define a layer =
+manifest where a layer would be fully described in a machine parsable way? =
+Does yocto community feel the need of such a file and maybe additionally ha=
+ve a script which would be able to parse such a manifest and setup a build =
+environment? =C2=A0</p>
+<p dir=3D"ltr">--<br>
+Andrei Gherzan</p>
 
---001a114c6d90b445100528988b33--
+--001a114b39863abb8c0528b061d1--
