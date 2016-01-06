@@ -1,60 +1,97 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3E91E00C8C; Wed,  6 Jan 2016 13:27:46 -0800 (PST)
+	id E0AFDE00C77; Wed,  6 Jan 2016 13:54:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.169.138 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0402E00BDA
-	for <yocto@yoctoproject.org>; Wed,  6 Jan 2016 13:27:43 -0800 (PST)
-Received: by mail-ig0-f176.google.com with SMTP id h5so2517254igh.0
-	for <yocto@yoctoproject.org>; Wed, 06 Jan 2016 13:27:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=GSDRFGnfBVEvtcfeC4H3/l6e21zD1EMnixd3Tu9+ss0=;
-	b=brHVdHy0o6YpuqwPHBRM5ngvaO7IWqP0QQ0RvmJwwLJ6Rg388lLonQAx2An1gBlZ2J
-	vHTc3TrHvlvY3vZhFJNIMqcTum5TYkpJIppqPB5f2JPR8xOSFU3lppOBgete6xK9+2yF
-	6i5/hUxXFA9DWk5L7d2M/dVf3AD0XTKTTFJ05+Wy9NCwAWg/l8oJCv2/2jrZoPLsQ5Vb
-	AmsFwsjXMGwubMeu0t9tcKxrp9onfba6Pgzww6RcRxy8PjukQmY4lDtBIzmMRpntcDnD
-	Ld4oZV5W6SqeBAQlViqMLeeZjivZm832dhR6DIQU3AOB2oMZ7KkvGG/J+39Z5tw0BWki
-	he1g==
-X-Received: by 10.50.143.39 with SMTP id sb7mr2955429igb.37.1452115663033;
-	Wed, 06 Jan 2016 13:27:43 -0800 (PST)
+X-Greylist: delayed 1960 seconds by postgrey-1.32 at yocto-www;
+	Wed, 06 Jan 2016 13:54:21 PST
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2on0138.outbound.protection.outlook.com [65.55.169.138])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53472E008EE
+	for <yocto@yoctoproject.org>; Wed,  6 Jan 2016 13:54:21 -0800 (PST)
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=alejandro.delcastillo@ni.com; 
+Received: from [10.2.33.36] (130.164.62.82) by
+	BY2PR04MB845.namprd04.prod.outlook.com (10.242.38.140) with Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Wed, 6 Jan 2016 21:21:39 +0000
+Message-ID: <568D8548.9010006@ni.com>
+Date: Wed, 6 Jan 2016 15:21:12 -0600
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-References: <CAFzUWG=iGCKx=crQv_TvMFBXDUytgv2Aq0FTH+0ug5veV1PGKg@mail.gmail.com>
-	<CAMKF1srrsm9YVJvaZi1Z38X0LQYvuwVFoHeJNrYwDs0mJN1PcA@mail.gmail.com>
-	<CAFzUWGm2Np9EWeAMgyt+bR4bEkU0A8+3BiXHAosxOnAvPXpf6A@mail.gmail.com>
-	<CAMKF1so4qVAcmcMThx7n7vxdVkY4pEZ5mJXwcWhVwKV-eTQPLA@mail.gmail.com>
-	<CAFzUWGn5zpLzH3QrUMxHD49G0RG+0Mor=demKXfNSyEc-ktOBw@mail.gmail.com>
-	<CAMKF1sq1JkXLAYkbu+y_ZNPWrtJp4SQFH5bPW8uH+BNUBGKbsw@mail.gmail.com>
-	<CAFzUWGm6qK6-hGJVdZ3e_ZkDWg81YODuh9g4J4GmhCJCO9Y8MQ@mail.gmail.com>
-	<CAFzUWG=F-U-4hJBG=D-tbP4YOLkZVCbv0iyVY6-MiRt6+jkumQ@mail.gmail.com>
-	<CAFzUWGkJ72WZ5mQ_HZmRQp_Brr5zR-Dp=DRhv6OmSZEYcp_Edg@mail.gmail.com>
-In-Reply-To: <CAFzUWGkJ72WZ5mQ_HZmRQp_Brr5zR-Dp=DRhv6OmSZEYcp_Edg@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Wed, 06 Jan 2016 21:27:32 +0000
-Message-ID: <CAFzUWGmOnxUsmx4XooSttzaXHXAvzVQbVUpD9r_wM=kCPUqEPA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to add a recipe for ROOT
+To: <yocto@yoctoproject.org>
+References: <56791A82.7050809@arigo-software.de>
+In-Reply-To: <56791A82.7050809@arigo-software.de>
+X-Originating-IP: [130.164.62.82]
+X-ClientProxiedBy: CY1PR08CA0024.namprd08.prod.outlook.com (25.163.94.162) To
+	BY2PR04MB845.namprd04.prod.outlook.com (10.242.38.140)
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB845;
+	2:KM2XCUcH8SbNFh40GIkJ6i0fGDtQuYXTOboAVWaKAWt15ckJWOZ59g1ZsygW20rKUavemWs9aKgAxwnzjuFXPNvLvJxcD2BLW71gdeVAeWlWBOx2dxK9ElKx4sdjCn8t4pLiN8yl2korP184xgVA0w==;
+	3:xqKCmSiqUQyTkP5XW0uCXE+O5QIlRyboK7nOT2Q5nnpcmX1HsoEZYc7xt/0+4bfiS7/PFunURSYNpt8vs7ao2XzcoNGYE80SYIoYk/4NpNoLljV+jq/PTA5BdPppSutz;
+	25:qEsJwKQoE121AdRTgrW9IjOCuuI+bY1z+mp8AnS4wRSDjwj/Ifhwn2kRMly2NMzpkTmn9cw/7MEvMeAmvqnuxdxpG1rATtrfesSL28anuxcWlomEx0jCDG8Y2gGLgw3GSPjwoCpkte/vO+ZG9U23BhEGZHpmA0BpVowi0Vwt/O2p9FYJmehuCLkAWmOALN1QJtvy9emnd0CocMsULhVAv4koC4QJ58+jxR0VCM1Ln6N5tFrcA4jOr/ExO2b1Y+pVq2iqch3cuzIvuLwcrWOIoQ==
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR04MB845;
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB845;
+	20:uT0daJBxEgsKWVCLyk2d7egsCb32HZzwux1l6y+Ca+spMIVw5C/pIC0mc4g5Jt2yIU9xtEclGMDrCVtWDYZRkLFp3GUyi6dKGmLUS0vEFN368xqoVpMTOWc2Aw0VbC0I9m+vkOMflI7O7IyQyAxswNy9vBxk8aDKdYxL461Vbxfk4P0l4+fb8kL96OCkYat6tS3zOW+IvoWU6+qSDRZvTa511pZ4HoCJsMxSJtTtvnvqhnUqPDJu8r0wZ//AcuVHbOoTmbFQiTduvJMn+xYVJvox+7EzBxgKSYB73Be/JxD85bfBnFCrUtXiNBDHD4VX1LX0U4whrW5IYCQhl9NDpaydUDKa0W/gfwc3TEwblUkGpIgO/F9OthvebOdKWZ/lgj5JRMdkP5vKPggkOcoM54eGUrpIiUwPYyCXPkrq5S+P4S/WWr7K8ZiXlRmx+wOzlNRUVXY77ekVdoxsWmm+0o6QuA3H6Fv2bzKFOLRPYHuCf0t5iNQtB+/YmLkCwRQ/ePfqLK+7oYVbamFUVRuVgtfUHfIdapndkJ1lK4TD9+CUNLdT50Fkvhfs5GjEa4CBlm1WNvAIMjkAsozg/1QSl3TUtyPDh0pTh1r3fTbLKUs=
+X-Microsoft-Antispam-PRVS: <BY2PR04MB8458B9534E85B8F7E19605F86F40@BY2PR04MB845.namprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(520078)(10201501046)(3002001);
+	SRVR:BY2PR04MB845; BCL:0; PCL:0; RULEID:; SRVR:BY2PR04MB845; 
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB845;
+	4:tyxxgyM/4JN+fDewWdXtv9k8Evo4JXA7qhpQdtN1sSFkeFAwSF7RXKCmMDdGYUg0cBMIHgBWMLGvXdce58lp7LRi9CF5crnKUV3ttCgD0pgDZtEK8WHnWb4HJjV+xZK3BHZfYF30BeDbGM3u7UjmPRozhHQBTbb2Qrn28flM7YsBcnjkbriuH9qCQ2qOCLnscZi4+n63rSTIZ0y/QjIenVl2A1zxnZNh0/FbYab2W9suy/AwY67JDxeXGEE/bmDC6MrvuADdEYukrhpZOoQ4vMPbF+z7NGgXufTW202a5qtOjUc4jhZv2QLChL6a2gzdRZmvmlJbEMUXsJsIvwg8fLyj4fXbedmRcAZQjdkU+dc/BR0S+H0qANzqK4x54+Ym
+X-Forefront-PRVS: 0813C68E65
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(6009001)(6049001)(377454003)(189002)(24454002)(199003)(479174004)(65806001)(65956001)(1096002)(33656002)(36756003)(59896002)(40100003)(97736004)(2950100001)(50466002)(87266999)(3846002)(230700001)(105586002)(64126003)(4001350100001)(5004730100002)(54356999)(189998001)(5001960100002)(65816999)(76176999)(92566002)(42186005)(2906002)(110136002)(6116002)(107886002)(586003)(83506001)(19580395003)(81156007)(66066001)(86362001)(5008740100001)(47776003)(77096005)(50986999)(450100001)(106356001)(101416001)(122386002)(87976001)(23746002)(80316001)(2351001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BY2PR04MB845; H:[10.2.33.36];
+	FPR:; SPF:None; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: ni.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?Windows-1252?Q?1; BY2PR04MB845;
+	23:/44CMCk5Dtm521YHj27DiT7TNS3YoRBFkWQykX?=
+	=?Windows-1252?Q?rDgY657+roOE7s0Zf5WAuHQo9cMDde8AAeIDhMJsS9zEQclxjIkKucZr?=
+	=?Windows-1252?Q?9Zfic+K7HqLPwU1YG/S0RGsAwCeN+rVAhDw8DgkADM05cyMes3A+29vF?=
+	=?Windows-1252?Q?cYVHiJ4BXFuF/I3SOTJ6CnMvZfjNT5BiNgOQ7UcT7OsVSWOWlh4Z5PQQ?=
+	=?Windows-1252?Q?R0vNPfWyYVFqLteu/BqYLgBksWYXPaSwNo8QJJcI98STFpoaat3JSM9r?=
+	=?Windows-1252?Q?UFTQBwdrrTaNXF3hcOlcNEQUbtKdOzyi01E5miMApNawK4PvCTPEzwvr?=
+	=?Windows-1252?Q?9RI5TyZ/1lrYD5/Z0ARZwlS7P/6dOPDIn06rs0qT3fWKRJjuhjLdYmir?=
+	=?Windows-1252?Q?QrXtee4paKXtzfwiF9GyF7SL2nwznFBOgcVv4alu0t6kPuNEPMu1bwrF?=
+	=?Windows-1252?Q?FIq++l+rXhQch2rvXn51BWQZY0BoDlMECB3F55uxXjAaj53ApwmYNgUQ?=
+	=?Windows-1252?Q?Air4/CRxDUH64uteYeG8fADTuSvLA8sN6scIm+pM5lYV8sn78hR1vm+z?=
+	=?Windows-1252?Q?EX1Nq1QZ60UGNOnDEB+wmzf5u4bmSbRIPIsPJoxfYySqpt7g9XpdxGDn?=
+	=?Windows-1252?Q?Rddpkk5cNdSip4eHIPORfDkWjaQfha1K5rOQugkFrTHJfxQH5POC/qGY?=
+	=?Windows-1252?Q?Ucl+ah5t2ufKAzFzNhruVdv71GyiWbUGvxKtXziBMBWUnYb480JLB6L4?=
+	=?Windows-1252?Q?mMBekNvJlafSbhwp6UKP4KInbobY9Hn2DwbTfNaM69HYafXj4cj9Xdlv?=
+	=?Windows-1252?Q?fH3yXjrHOZJKBk0qtg9aq7+wXmp0KKcrMj+6PaGbVDOTpCldMeADZVQx?=
+	=?Windows-1252?Q?8pfNILC6m4xJiXUNZfaHO7x8vnV6UkUMcLIMd+TZkilhbFCmRNZUnMzz?=
+	=?Windows-1252?Q?coB3L9hdLJk6PlhUboV4DdJDnHE3sF/U6sKTMtGdCT17EpKHlrXKJlMN?=
+	=?Windows-1252?Q?ks7AlJpmJvFAYwaAgwRGXjYnzR3pK0y1yv2/tvQnRFFLzPH5puib5m2S?=
+	=?Windows-1252?Q?bzoT9v8dtUTIRy4ZqQhvOfCpEeVmrvsmMP52gBTwPC/CfcNa1e7BZXP2?=
+	=?Windows-1252?Q?LmdlPMlM5fmtdkE1r9lBzIg/YOiksWs1dq4jtT+DDly7/D5yeXCuWI67?=
+	=?Windows-1252?Q?EU2r5lFXLFGYsh9JKafEK6s9zBo5Uoq2/SvI66PcnAP2eCGS/j+qWHoB?=
+	=?Windows-1252?Q?CsnrscbSX91Uncp9DdSkulUWCDQttNIo963ubQHpSOCE5VLVoYZIxS85?=
+	=?Windows-1252?Q?wL4q6/mROyyWllyVI69J+Mbgo+w+iA9be5+YgcbJS6020l2zIdd7i4Og?=
+	=?Windows-1252?Q?R7CO5DAXQTA6koGXfOnDQXORNL38GHza6Yi8fD9F6Irntw5KBdLT4+i2?=
+	=?Windows-1252?Q?VZwEiTEX+Va5QQN66d?=
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB845;
+	5:d9aLn1aUZARjWlhIyVvqzUHU8B29OhPi+Io9BZdA2pCb/0c16aGwfZHF4tcBizDwbl34G4tVJXBBhxMdDmaHJRloTRt5P3brHhmTdb+oKVxr6CoID7tHgehe2sOQVJ0/ABqeE3TtrXwzc+7tVM/R3g==;
+	24:dwi9hvzx8TGfXL7PizB3hlmqbo1spbPdHOQNLy+CHFIUW7glytHbRcAWcxPrcGvMiJOpsq9uDveoRVYth+vjNUwgbXJi0aF15R++ksdat7k=
+SpamDiagnosticOutput: 1:23
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2016 21:21:39.1768 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR04MB845
+Subject: Re: yocto package naming
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,278 +103,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jan 2016 21:27:47 -0000
-Content-Type: multipart/alternative; boundary=001a1134b42c449dfd0528b1061f
+X-List-Received-Date: Wed, 06 Jan 2016 21:54:24 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---001a1134b42c449dfd0528b1061f
-Content-Type: text/plain; charset=UTF-8
 
-Ping - any updates on this? I've tried a lot of ways to fix it, but I can't
-seem to get it to compile at all...
 
-On Wed, Dec 30, 2015 at 3:28 PM Giordon Stark <kratsg@gmail.com> wrote:
+On 12/22/2015 03:40 AM, Simon Ruetzler wrote:
+> Hello,
+> I want to create different packages from one recipe.
+> 
+> This is working except for one package.
+> I addes this package with
+> PACKAGES += " ${PN}-demo"
+> and I expected that it is named with the recipe name and demo. In this case
+> rumo-cpp-demo-1.0-rc...
+> But the name is libscom1-1.0-rc..
+> 
+> The demo package contains the files for a dynamic library: libscom.so,
+> libscom.so.1 and libscom.so.1.5.0
+> and this library name is automatically used for the package name.
+> 
+> For the other packages the name are as expected. All package are defined in the
+> same way except that FILES_.. definition is different.
+> This packages also have dynamic libs but only the libname.so.1 files and the
+> libname.so as a link.
+> 
+> Why is the demo package created with the libscom name? How can I disable this?
+> 
+> Regards Simon
 
-> Here's an update set of logs:
->
-> (output) https://gist.github.com/anonymous/56f904b65feeb3346db6
-> (CMakeError.log) https://gist.github.com/anonymous/d5d766badcee1df5efc1
->
-> for the current recipe here:
-> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
->
-> On Wed, Dec 30, 2015 at 2:10 PM Giordon Stark <kratsg@gmail.com> wrote:
->
->> Actually -- if you look here -- I'm already using pkg-config?
->>
->>
->> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb#L9
->>
->> Is there something wrong with the configuration then?
->>
->> On Wed, Dec 30, 2015 at 2:07 PM Giordon Stark <kratsg@gmail.com> wrote:
->>
->>> I'm unable to disable the internal build. I'm working on the pkg-config
->>> however.
->>>
->>> On Wed, Dec 30, 2015 at 1:34 PM Khem Raj <raj.khem@gmail.com> wrote:
->>>
->>>> On Wed, Dec 30, 2015 at 10:27 AM, Giordon Stark <kratsg@gmail.com>
->>>> wrote:
->>>> > I'll look at pkg-config examples. How do I fix the llvm issue though?
->>>> I
->>>> > don't know enough about bitbake to fix that.
->>>>
->>>> disable, internal build _somehow_
->>>> then add DEPENDS += "llvm3" to recipe
->>>> >
->>>> > Giordon
->>>> >
->>>> > On Wed, Dec 30, 2015 at 1:26 PM Khem Raj <raj.khem@gmail.com> wrote:
->>>> >>
->>>> >> you mostly have one of these issues
->>>> >>
->>>> >> | ERROR:
->>>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>>> >> should not be used, use an alternative such as pkg-config
->>>> >> | ERROR:
->>>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>>> >> should not be used, use an alternative such as pkg-config
->>>> >> | ERROR:
->>>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>>> >> should not be used, use an alternative such as pkg-config
->>>> >> | ERROR:
->>>> >> /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-config
->>>> >> should not be used, use an alternative such as pkg-config
->>>> >>
->>>> >> so you need to replace the use of pcre-config with pkg-config, there
->>>> >> are example how it has been done for some other recipes in OE
->>>> >>
->>>> >> second problem seems to be that its trying to compile its own version
->>>> >> of llvm and thats failing because the native compiler its finding
->>>> does
->>>> >> not support c++11 or atleast the config tests think that way. Again
->>>> >> this components build system needs to fix that. You might be better
->>>> >> off using llvm provided bt meta-oe instead of internal version.
->>>> >>
->>>> >> On Wed, Dec 30, 2015 at 9:35 AM, Giordon Stark <kratsg@gmail.com>
->>>> wrote:
->>>> >> > https://gist.github.com/anonymous/adec2839deecce33702a
->>>> >> >
->>>> >> > Giordon
->>>> >> >
->>>> >> > On Wed, Dec 23, 2015 at 9:25 PM Khem Raj <raj.khem@gmail.com>
->>>> wrote:
->>>> >> >>
->>>> >> >> can you post output of
->>>> root/6.04.12-r0/build/CMakeFiles/CMakeError.log
->>>> >> >>
->>>> >> >> On Wed, Dec 9, 2015 at 12:00 PM, Giordon Stark <kratsg@gmail.com>
->>>> >> >> wrote:
->>>> >> >> > Hi all,
->>>> >> >> >
->>>> >> >> > I'm trying to add a recipe for ROOT (from CERN) but I'm running
->>>> into
->>>> >> >> > various
->>>> >> >> > issues with just trying to get compilers working.
->>>> >> >> >
->>>> >> >> > Current recipe:
->>>> >> >> >
->>>> >> >> >
->>>> >> >> >
->>>> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
->>>> >> >> >
->>>> >> >> > Current log:
->>>> https://gist.github.com/kratsg/cd3184a167676eb69067
->>>> >> >> >
->>>> >> >> > Note that the goal is to have the bare-minimum with PyROOT
->>>> (enable
->>>> >> >> > python
->>>> >> >> > support). So I'm following:
->>>> >> >> > - https://root.cern.ch/building-root
->>>> >> >> > - https://root.cern.ch/build-prerequisites
->>>> >> >> >
->>>> >> >> > Thanks,
->>>> >> >> >
->>>> >> >> > Giordon
->>>> >> >> >
->>>> >> >> > --
->>>> >> >> > _______________________________________________
->>>> >> >> > yocto mailing list
->>>> >> >> > yocto@yoctoproject.org
->>>> >> >> > https://lists.yoctoproject.org/listinfo/yocto
->>>> >> >> >
->>>>
->>>
+I believe setting DEBIAN_NOAUTONAME_${PN}-demo = "1" should do it.
 
---001a1134b42c449dfd0528b1061f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+-- 
+Cheers,
 
-<div dir=3D"ltr">Ping - any updates on this? I&#39;ve tried a lot of ways t=
-o fix it, but I can&#39;t seem to get it to compile at all...</div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Dec 30, 2015 at 3:28 PM Gio=
-rdon Stark &lt;<a href=3D"mailto:kratsg@gmail.com">kratsg@gmail.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Here&#39;s=
- an update set of logs:<br><br>(output) <a href=3D"https://gist.github.com/=
-anonymous/56f904b65feeb3346db6" target=3D"_blank">https://gist.github.com/a=
-nonymous/56f904b65feeb3346db6</a><br><div>(CMakeError.log) <a href=3D"https=
-://gist.github.com/anonymous/d5d766badcee1df5efc1" target=3D"_blank">https:=
-//gist.github.com/anonymous/d5d766badcee1df5efc1</a><br><br>for the current=
- recipe here:=C2=A0<a href=3D"https://github.com/kratsg/meta-l1calo/blob/ma=
-ster/recipes-core/root/root_6.04.12.bb" target=3D"_blank">https://github.co=
-m/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb</a></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Dec 30, 2015=
- at 2:10 PM Giordon Stark &lt;<a href=3D"mailto:kratsg@gmail.com" target=3D=
-"_blank">kratsg@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex"><div dir=3D"ltr">Actually -- if you look here -- I&#39;m already usin=
-g pkg-config?=C2=A0<div><br></div><div><a href=3D"https://github.com/kratsg=
-/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb#L9" target=3D"_b=
-lank">https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/r=
-oot_6.04.12.bb#L9</a><br></div><div><br></div><div>Is there something wrong=
- with the configuration then?</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr">On Wed, Dec 30, 2015 at 2:07 PM Giordon Stark &lt;<a href=3D"=
-mailto:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">I&#39;m unable to =
-disable the internal build. I&#39;m working on the pkg-config however.</div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Dec 30, 2015 at 1:=
-34 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">=
-raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">O=
-n Wed, Dec 30, 2015 at 10:27 AM, Giordon Stark &lt;<a href=3D"mailto:kratsg=
-@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<br>
-&gt; I&#39;ll look at pkg-config examples. How do I fix the llvm issue thou=
-gh? I<br>
-&gt; don&#39;t know enough about bitbake to fix that.<br>
-<br>
-disable, internal build _somehow_<br>
-then add DEPENDS +=3D &quot;llvm3&quot; to recipe<br>
-&gt;<br>
-&gt; Giordon<br>
-&gt;<br>
-&gt; On Wed, Dec 30, 2015 at 1:26 PM Khem Raj &lt;<a href=3D"mailto:raj.khe=
-m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; you mostly have one of these issues<br>
-&gt;&gt;<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt; | ERROR:<br>
-&gt;&gt; /home/osboxes/poky/build/tmp/sysroots/i686-linux/usr/bin/pcre-conf=
-ig<br>
-&gt;&gt; should not be used, use an alternative such as pkg-config<br>
-&gt;&gt;<br>
-&gt;&gt; so you need to replace the use of pcre-config with pkg-config, the=
-re<br>
-&gt;&gt; are example how it has been done for some other recipes in OE<br>
-&gt;&gt;<br>
-&gt;&gt; second problem seems to be that its trying to compile its own vers=
-ion<br>
-&gt;&gt; of llvm and thats failing because the native compiler its finding =
-does<br>
-&gt;&gt; not support c++11 or atleast the config tests think that way. Agai=
-n<br>
-&gt;&gt; this components build system needs to fix that. You might be bette=
-r<br>
-&gt;&gt; off using llvm provided bt meta-oe instead of internal version.<br=
->
-&gt;&gt;<br>
-&gt;&gt; On Wed, Dec 30, 2015 at 9:35 AM, Giordon Stark &lt;<a href=3D"mail=
-to:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; <a href=3D"https://gist.github.com/anonymous/adec2839deecce33=
-702a" rel=3D"noreferrer" target=3D"_blank">https://gist.github.com/anonymou=
-s/adec2839deecce33702a</a><br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Giordon<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On Wed, Dec 23, 2015 at 9:25 PM Khem Raj &lt;<a href=3D"mailt=
-o:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<b=
-r>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; can you post output of root/6.04.12-r0/build/CMakeFiles/C=
-MakeError.log<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; On Wed, Dec 9, 2015 at 12:00 PM, Giordon Stark &lt;<a hre=
-f=3D"mailto:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a>&gt;<br=
->
-&gt;&gt; &gt;&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt; Hi all,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; I&#39;m trying to add a recipe for ROOT (from CERN) =
-but I&#39;m running into<br>
-&gt;&gt; &gt;&gt; &gt; various<br>
-&gt;&gt; &gt;&gt; &gt; issues with just trying to get compilers working.<br=
->
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Current recipe:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://github.com/kratsg/meta-l1calo/blo=
-b/master/recipes-core/root/root_6.04.12.bb" rel=3D"noreferrer" target=3D"_b=
-lank">https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/r=
-oot_6.04.12.bb</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Current log: <a href=3D"https://gist.github.com/krat=
-sg/cd3184a167676eb69067" rel=3D"noreferrer" target=3D"_blank">https://gist.=
-github.com/kratsg/cd3184a167676eb69067</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Note that the goal is to have the bare-minimum with =
-PyROOT (enable<br>
-&gt;&gt; &gt;&gt; &gt; python<br>
-&gt;&gt; &gt;&gt; &gt; support). So I&#39;m following:<br>
-&gt;&gt; &gt;&gt; &gt; - <a href=3D"https://root.cern.ch/building-root" rel=
-=3D"noreferrer" target=3D"_blank">https://root.cern.ch/building-root</a><br=
->
-&gt;&gt; &gt;&gt; &gt; - <a href=3D"https://root.cern.ch/build-prerequisite=
-s" rel=3D"noreferrer" target=3D"_blank">https://root.cern.ch/build-prerequi=
-sites</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Thanks,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Giordon<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt; &gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"=
-_blank">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/l=
-istinfo/yocto</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-</blockquote></div></blockquote></div></blockquote></div></blockquote></div=
->
+Alejandro
 
---001a1134b42c449dfd0528b1061f--
