@@ -1,39 +1,38 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF78FE00BBC; Wed,  6 Jan 2016 21:56:39 -0800 (PST)
+	id E7472E00CA0; Thu,  7 Jan 2016 01:50:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D87E5E00ACF;
-	Wed,  6 Jan 2016 21:56:37 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga104.fm.intel.com with ESMTP; 06 Jan 2016 21:56:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,532,1444719600"; d="scan'208";a="855135718"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2016 21:56:38 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.186]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.11.31]) with mapi id
-	14.03.0248.002; Wed, 6 Jan 2016 21:56:37 -0800
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>
-Thread-Topic: [ANNOUNCEMENT] Milestone 1 for Yocto Project 2.1 now available.
-Thread-Index: AQHRSRArdZ8qkBLTS0uw32KlPevKqA==
-Date: Thu, 7 Jan 2016 05:56:36 +0000
-Message-ID: <D2B33E14.6E89%tracy.graydon@intel.com>
-Accept-Language: en-US
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 98475E006F3
+	for <yocto@yoctoproject.org>; Thu,  7 Jan 2016 01:50:09 -0800 (PST)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Thu, 7 Jan 2016 10:50:08 +0100
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: "zavier.luo@gmail.com" <zavier.luo@gmail.com>
+Thread-Topic: [yocto] [meta-cgl][PATCH] packagegroup-cgl-applications: unify
+	the package name to fix the parse warnings
+Thread-Index: AQHRSTDKl3PabpIWLUyi+RReAC+x3w==
+Date: Thu, 7 Jan 2016 09:50:08 +0000
+Message-ID: <1452160250.2993.28.camel@sestows129.enea.se>
+References: <1451297181-342-1-git-send-email-zavier.luo@gmail.com>
+In-Reply-To: <1451297181-342-1-git-send-email-zavier.luo@gmail.com>
+Accept-Language: en-US, sv-SE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.5.9.151119
-x-originating-ip: [10.254.20.126]
+x-originating-ip: [172.16.141.157]
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Milestone 1 for Yocto Project 2.1 now available.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-cgl][PATCH] packagegroup-cgl-applications: unify the package name to fix the parse warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,23 +44,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jan 2016 05:56:39 -0000
+X-List-Received-Date: Thu, 07 Jan 2016 09:50:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <B41C5D2E13C7294293C0B42C75852990@intel.com>
+Content-ID: <B0E44BD6206CFA43AD0C7FAA59F0CA89@local>
 Content-Transfer-Encoding: base64
 
-VGhlIGZpcnN0IG1pbGVzdG9uZSByZWxlYXNlIGZvciBZb2N0byBQcm9qZWN0IDIuMSBpcyBhdmFp
-bGFibGUgZm9yDQpkb3dubG9hZCBub3cuDQoNCmh0dHA6Ly9kb3dubG9hZHMueW9jdG9wcm9qZWN0
-Lm9yZy9yZWxlYXNlcy95b2N0by9taWxlc3RvbmVzL3lvY3RvLTIuMV9NMS8NCg0KVGhhbmsgeW91
-IHRvIGV2ZXJ5b25lIGZvciB5b3VyIGNvbnRyaWJ1dGlvbnMuDQoNCmVjbGlwc2UtcG9reS9rZXBs
-ZXItbWFzdGVyIGNmNjBhYzI5MzYyOWZjOGVjZDZjNGViMzcwOWE2ZjMzNGI0OTlkMGMNCmVjbGlw
-c2UtcG9reS9sdW5hLW1hc3RlciA0NWFhNWM3NzUyM2JkZjA1MWQ1NDhmZmY0MzA1MzgyOTQyZGIy
-ZWJiDQplY2xpcHNlLXBva3kvbWFycy1tYXN0ZXIgMWQxNzlkZGNiZDE5ODNiZjdiY2ZlOThlZmRj
-YmIxODZiZGNjY2E0Zg0KbWV0YS1xdDMgNTIzMzU2NWM4MGRiODY5ZjZmNTM5ZjM3ZjI2ZWE2NjYy
-ZDlkYzVmNg0KbWV0YS1xdDQgZmE4ODIzMDEyMTM3OTA3NWQ3NTI4NzYwMDdmYjg0ZGZjYjZlOWRl
-NA0KcG9reSA1ZTNlMmUwY2JiMGE0OTk4NmY0NjUzZTY0YzRjOGQyYjU0NjE2NDVlDQoNCg0KVGVz
-dCByZXBvcnQgYXQ6DQoNCmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvV1c1MF8t
-XzIwMTUtMTItMTBfLV9GdWxsX1Bhc3NfMi4xX00xLnJjMQ0KDQoNClRyYWN5IEdyYXlkb24NCllv
-Y3RvIFByb2plY3QNCkJ1aWxkIGFuZCBSZWxlYXNlDQoNCg0KDQo=
+aGkgWmF2aWVyLA0KDQpPbiBtw6VuLCAyMDE1LTEyLTI4IGF0IDE4OjA2ICswODAwLCBaYXZpZXIg
+THVvIHdyb3RlOg0KPiBGaXggdGhlIGZvbGxvd2luZyBwYXJzZSB3YXJuaW5nOg0KPiAgICAgV0FS
+TklORzogVmFyaWFibGUga2V5IFJERVBFTkRTXyR7UE59ICggJHtMVFROR1VTVH0pIHJlcGxhY2Vz
+IG9yaWdpbmFsIGtleSBSREVQRU5EU19wYWNrYWdlZ3JvdXAtY2dsLWFwcGxpY2F0aW9ucyAoICAg
+ICBsdm0yICAgICAke0xNX1NFTlNPUlN9ICAgICBiYyAgICAgZ2V0dGV4dCAgICAgZ2V0dGV4dC1y
+dW50aW1lICAgICBiYWJlbHRyYWNlICAgICBnZGIgICAgIGdkYnNlcnZlciAgICAgcnN5bmMgICAg
+IHN0cmFjZSAgICAgbGliZXZlbnQgICAgIG1kYWRtICAgICBxdW90YSAgICAgc21hcnRtb250b29s
+cyAgICAgbW9uaXQgICAgIHN5c2xvZy1uZyAgICAgb2NmczItdG9vbHMgICAgIGxvZ2NoZWNrICAg
+ICBzYW1oYWluLWNsaWVudCAgICAgc2FtaGFpbi1zZXJ2ZXIgICAgIGF1ZGl0ICAgICBjcmFzaCAg
+ICAgcGFtLXBhc3N3ZHFjICAgICBsaWJwYW0gICAgIHJzeXNsb2cgICAgIG1ha2VkdW1wZmlsZSAg
+ICAgKS4NCg0KSSBtZXJnZWQgdGhlIHBhdGNoIGFmdGVyIHJlLWZvcm1hdHRpbmcgdGhlIGRlc2Ny
+aXB0aW9uLiBOZXh0IHRpbWUgcGxlYXNlDQp0cnkgdG8ga2VlcCBhIG1heCBsaW5lIGxlbmd0aCBv
+ZiA4MCBjaGFyYWN0ZXJzIGluIHRoZSBjb21taXQgZm9yIGJldHRlcg0KZ2l0IGxvZyByZWFkYWJp
+bGl0eS4NCg0KLS1BZHJpYW4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogWmF2aWVyIEx1byA8emF2
+aWVyLmx1b0BnbWFpbC5jb20+DQo+IC0tLQ0KPiAgbWV0YS1jZ2wtY29tbW9uL3BhY2thZ2Vncm91
+cHMvcGFja2FnZWdyb3VwLWNnbC1hcHBsaWNhdGlvbnMuYmIgfCA2ICsrKy0tLQ0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1n
+aXQgYS9tZXRhLWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2dsLWFwcGxp
+Y2F0aW9ucy5iYiBiL21ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1j
+Z2wtYXBwbGljYXRpb25zLmJiDQo+IGluZGV4IGY4MjNlY2UuLjNlYmI3ZWQgMTAwNjQ0DQo+IC0t
+LSBhL21ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jZ2wtYXBwbGlj
+YXRpb25zLmJiDQo+ICsrKyBiL21ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vn
+cm91cC1jZ2wtYXBwbGljYXRpb25zLmJiDQo+IEBAIC04LDcgKzgsNyBAQCBpbmhlcml0IHBhY2th
+Z2Vncm91cA0KPiAgaW5oZXJpdCBwa2djb25maWcNCj4gIA0KPiANCj4gLVBBQ0tBR0VTID0gInBh
+Y2thZ2Vncm91cC1jZ2wtYXBwbGljYXRpb25zIg0KPiArUEFDS0FHRVMgPSAiJHtQTn0iDQo+ICAN
+Cj4gIExNX1NFTlNPUlMgPSAiIFwNCj4gICAgICBsbXNlbnNvcnMtZmFuY29udHJvbCBcDQo+IEBA
+IC0yNCw3ICsyNCw3IEBAIExNX1NFTlNPUlMgPSAiIFwNCj4gICAgICBsbXNlbnNvcnMtY29uZmln
+LWZhbmNvbnRyb2wgXA0KPiAgICAgICINCj4gIA0KPiAtUkRFUEVORFNfcGFja2FnZWdyb3VwLWNn
+bC1hcHBsaWNhdGlvbnMgPSAiIFwNCj4gK1JERVBFTkRTXyR7UE59ID0gIiBcDQo+ICAgICAgbHZt
+MiBcDQo+ICAgICAgJHtMTV9TRU5TT1JTfSBcDQo+ICAgICAgYmMgXA0KPiBAQCAtNjQsNCArNjQs
+NCBAQCBSREVQRU5EU18ke1BOfV9hcHBlbmRfcWVtdXBwYyA9ICIgJHtMVFROR1VTVH0iDQo+ICBS
+REVQRU5EU18ke1BOfV9hcHBlbmRfcWVtdWFybSA9ICIgJHtMVFROR1VTVH0iDQo+ICBSREVQRU5E
+U18ke1BOfV9hcHBlbmRfcG93ZXJwYyA9ICIgJHtMVFROR1VTVH0iDQo+ICANCj4gLVJSRUNPTU1F
+TkRTX3BhY2thZ2Vncm91cC1jZ2wtYXBwbGljYXRpb25zID0gIiINCj4gK1JSRUNPTU1FTkRTXyR7
+UE59ID0gIiINCj4gLS0gDQo+IDIuNC4zDQo+IA0KDQoNCg==
 
