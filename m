@@ -1,62 +1,54 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <zavier.luo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71190E0086B; Thu,  7 Jan 2016 15:42:45 -0800 (PST)
+	id CD176E00A7D; Thu,  7 Jan 2016 19:00:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zavier.luo[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32BDCE006F3
-	for <yocto@yoctoproject.org>; Thu,  7 Jan 2016 15:42:41 -0800 (PST)
-Received: by mail-io0-f170.google.com with SMTP id 77so239069400ioc.2
-	for <yocto@yoctoproject.org>; Thu, 07 Jan 2016 15:42:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6511CE008A5
+	for <yocto@yoctoproject.org>; Thu,  7 Jan 2016 19:00:22 -0800 (PST)
+Received: by mail-qk0-f179.google.com with SMTP id q19so140829345qke.3
+	for <yocto@yoctoproject.org>; Thu, 07 Jan 2016 19:00:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=ue/e1MmuKQx17CKX1y8WZSWAf3yfqETaZdPeq/RVcoI=;
-	b=IrYXQO3x2S3PBfF10Y1HbqJlkP3BkXxZ4DjoSiJ+1hnCIAO1IQXih2kFFvB0qdDICy
-	oofVH+eAMnEom5mbcgHdaOCUeQvqf0kPGntExvDhQtAgL4hqXj/15iLfcBWWmVXFZePc
-	WlN+l6MDB75XJgadqXdpao4IAR5ikFYfwKAs2u4vDSLnrTJMgP8EhyhpDqXZKEQjmJBe
-	dB3R5zW9aRj36+e4kmbBCaz5qCQYMgR7+S/++34S1a606KvRXYZwF/5efWr6dT+X1WJI
-	0VzERZFAoD8uFsO1tqzEq4+3HOYbxp0Ay4RGozv33vlX8/D49fA2SCuj0VkbspnUswMe
-	DavA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ue/e1MmuKQx17CKX1y8WZSWAf3yfqETaZdPeq/RVcoI=;
-	b=gdiyBLGVqQopmJKMwxjGQ8NDhxdnSzx9ghVwi2sApvMy5U5CQADAD4oYy91IxtCgdx
-	7tNZ5Je2CmWXqbDYsi2HGHaYdPPSmagHfg5Ir+aWkfnognQhjtTPf1VXEY3E7+DehqHX
-	FxFio1zfcpUve3jQwIa0UpeKba4yZ44VnTa5eMhQtspEuYDRXnsNzoI5MzD8jURRotI8
-	OedDn/uMOEm26JIsW3rt3LztsS80fuccO7I0H0viKzqbTODBa2Y+GSRHhmHDzdyq6iuS
-	GwkgVqAm9UBZ5ys5i6JrJrvVcDJ8sUb66jUES7vNFIqfrvN5vdn8hM7KRD9InMEeCeIY
-	BLUg==
-X-Gm-Message-State: ALoCoQkQUDmJVtRVgJahV/8XlkHdN/4PsiFTiHEHdXNkttGpXrw/eRUwarFGKpNwgSVb8ZbGdVpghf4xXnHifHmiNqpELoOwH1+2mJ043LONfARczPjVAkI=
-X-Received: by 10.107.3.154 with SMTP id e26mr92562682ioi.99.1452210161464;
-	Thu, 07 Jan 2016 15:42:41 -0800 (PST)
+	bh=KmVJDERq74LUibn7fbdvs4rYvAf4rI0hU21xk2Vi0O4=;
+	b=b6QzwZ5AAOPcDHUOqu3ivI6V5a/RyLyJ+54WxXLsMOD9IWu/syyPOW7Q6QZ+3VrY3+
+	eYjYdizJj8cEAED0BDpVBCKBIVCIg5JXndzdgEnsBrEnew4O+pjasBcWoUJ5DVWyaxR5
+	j6NdAayCq+VIsBCK3DOo51TryoUjWM6xfc+FLyO5aawCgMT9ckaBqE9QzoWpcSG9G6Kf
+	SAOU92huM6EarzmCUISeQ/4ghsoVcqxLspnmAwvLIfv3RZzMd7GTOa2LGmkAolmPMVuk
+	0TKZm1q6cifBZrXX6QLzzk4noz++JXuQhwC6xn5MQ34SZFS1Ot9fFUUBL/h6xnj/oPwc
+	9TYA==
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Thu, 7 Jan 2016 15:42:22 -0800 (PST)
-In-Reply-To: <1452024690-31461-2-git-send-email-dl9pf@gmx.de>
-References: <1452024690-31461-1-git-send-email-dl9pf@gmx.de>
-	<1452024690-31461-2-git-send-email-dl9pf@gmx.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 7 Jan 2016 23:42:22 +0000
-Message-ID: <CAJTo0LaYcd+X2mJqiMGyP=dt6iL7hMv3vEDaQ3u62-e+xwdyTw@mail.gmail.com>
-To: dl9pf@gmx.de
+X-Received: by 10.55.52.211 with SMTP id b202mr86272527qka.27.1452222021057;
+	Thu, 07 Jan 2016 19:00:21 -0800 (PST)
+Received: by 10.55.161.23 with HTTP; Thu, 7 Jan 2016 19:00:20 -0800 (PST)
+In-Reply-To: <1452160250.2993.28.camel@sestows129.enea.se>
+References: <1451297181-342-1-git-send-email-zavier.luo@gmail.com>
+	<1452160250.2993.28.camel@sestows129.enea.se>
+Date: Fri, 8 Jan 2016 11:00:21 +0800
+Message-ID: <CAJ2zpq6x8yFpY7t9=ci8KTfioxbBWKeLA6OMVLANvZo3e0nAGw@mail.gmail.com>
+From: Zavier Luo <zavier.luo@gmail.com>
+To: Adrian Dudau <Adrian.Dudau@enea.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Fix connectivity check for BB_FETCH_PREMIRRORONLY case
+Subject: Re: [meta-cgl][PATCH] packagegroup-cgl-applications: unify the package name to fix the parse warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,104 +60,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jan 2016 23:42:45 -0000
-Content-Type: multipart/alternative; boundary=001a113ec10ad03bb70528c70618
+X-List-Received-Date: Fri, 08 Jan 2016 03:00:25 -0000
+Content-Type: multipart/alternative; boundary=001a11470d08b342680528c9c95f
 
---001a113ec10ad03bb70528c70618
+--001a11470d08b342680528c9c95f
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 5 January 2016 at 20:11, <dl9pf@gmx.de> wrote:
+Thanks, Adrian.
 
-> +    # Check for BB_FETCH_PREMIRRORONLY and adapt BB_NO_NETWORK
-> +    if bb.data.getVar("BB_FETCH_PREMIRRORONLY", self.d, True) is not None:
-> +        bb.data.setVar("BB_NO_NETWORK", "1", self.d)
+On Thu, Jan 7, 2016 at 5:50 PM, Adrian Dudau <Adrian.Dudau@enea.com> wrote:
+
+> hi Zavier,
+>
+> On m=C3=A5n, 2015-12-28 at 18:06 +0800, Zavier Luo wrote:
+> > Fix the following parse warning:
+> >     WARNING: Variable key RDEPENDS_${PN} ( ${LTTNGUST}) replaces
+> original key RDEPENDS_packagegroup-cgl-applications (     lvm2
+>  ${LM_SENSORS}     bc     gettext     gettext-runtime     babeltrace
+>  gdb     gdbserver     rsync     strace     libevent     mdadm     quota
+>  smartmontools     monit     syslog-ng     ocfs2-tools     logcheck
+>  samhain-client     samhain-server     audit     crash     pam-passwdqc
+>  libpam     rsyslog     makedumpfile     ).
+>
+> I merged the patch after re-formatting the description. Next time please
+> try to keep a max line length of 80 characters in the commit for better
+> git log readability.
+>
+> --Adrian
+>
+> >
+> > Signed-off-by: Zavier Luo <zavier.luo@gmail.com>
+> > ---
+> >  meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb | 6
+> +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/meta-cgl-common/packagegroups/
+> packagegroup-cgl-applications.bb b/meta-cgl-common/packagegroups/
+> packagegroup-cgl-applications.bb
+> > index f823ece..3ebb7ed 100644
+> > --- a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
+> > +++ b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
+> > @@ -8,7 +8,7 @@ inherit packagegroup
+> >  inherit pkgconfig
+> >
+> >
+> > -PACKAGES =3D "packagegroup-cgl-applications"
+> > +PACKAGES =3D "${PN}"
+> >
+> >  LM_SENSORS =3D " \
+> >      lmsensors-fancontrol \
+> > @@ -24,7 +24,7 @@ LM_SENSORS =3D " \
+> >      lmsensors-config-fancontrol \
+> >      "
+> >
+> > -RDEPENDS_packagegroup-cgl-applications =3D " \
+> > +RDEPENDS_${PN} =3D " \
+> >      lvm2 \
+> >      ${LM_SENSORS} \
+> >      bc \
+> > @@ -64,4 +64,4 @@ RDEPENDS_${PN}_append_qemuppc =3D " ${LTTNGUST}"
+> >  RDEPENDS_${PN}_append_qemuarm =3D " ${LTTNGUST}"
+> >  RDEPENDS_${PN}_append_powerpc =3D " ${LTTNGUST}"
+> >
+> > -RRECOMMENDS_packagegroup-cgl-applications =3D ""
+> > +RRECOMMENDS_${PN} =3D ""
+> > --
+> > 2.4.3
+> >
+>
+>
 >
 
-Traceback (most recent call last):
-  File
-"/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass",
-line 934, in check_sanity_eventhandler(e=<bb.event.SanityCheck object at
-0x346f350>):
-                 sanity_data.setVar("SANITY_USE_EVENTS", "1")
-    >        reparse = check_sanity(sanity_data)
-             e.data.setVar("BB_INVALIDCONF", reparse)
-  File
-"/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass",
-line 902, in check_sanity(sanity_data=<bb.data_smart.DataSmart object at
-0x3447dd0>):
-         if last_sanity_version < sanity_version:
-    >        check_sanity_version_change(status, sanity_data)
-             status.addresult(check_sanity_sstate_dir_change(sstate_dir,
-sanity_data))
-  File
-"/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass",
-line 658, in check_sanity_version_change(status=<SanityStatus object at
-0x3447510>, d=<bb.data_smart.DataSmart object at 0x3447dd0>):
-         # Check that we can fetch from various network transports
-    >    netcheck = check_connectivity(d)
-         status.addresult(netcheck)
-  File
-"/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass",
-line 275, in check_connectivity(d=<bb.data_smart.DataSmart object at
-0x3447dd0>):
-         # Check for BB_FETCH_PREMIRRORONLY and adapt BB_NO_NETWORK
-    >    if bb.data.getVar("BB_FETCH_PREMIRRORONLY", self.d, True) is not
-None:
-             bb.data.setVar("BB_NO_NETWORK", "1", self.d)
-NameError: global name 'self' is not defined
 
-Just use d, you don't need to use bb.data.getVar("foo", d, True) when
-d.getVar("foo", True) is clearer.
+--=20
+Cheers,
 
-Ross
+Zavier
 
---001a113ec10ad03bb70528c70618
+--001a11470d08b342680528c9c95f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 January 2016 at 20:11,  <span dir=3D"ltr">&lt;<a href=3D"mailto:dl9pf@=
-gmx.de" target=3D"_blank">dl9pf@gmx.de</a>&gt;</span> wrote:<br><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
-1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left=
-:1ex"><div id=3D":3vr" class=3D"" style=3D"overflow:hidden">+=C2=A0 =C2=A0 =
-# Check for BB_FETCH_PREMIRRORONLY and adapt BB_NO_NETWORK<br>
-+=C2=A0 =C2=A0 if bb.data.getVar(&quot;BB_FETCH_PREMIRRORONLY&quot;, self.d=
-, True) is not None:<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.data.setVar(&quot;BB_NO_NETWORK&quot;, &quo=
-t;1&quot;, self.d)</div></blockquote></div><br>Traceback (most recent call =
-last):<br>=C2=A0 File &quot;/home/pokybuild/yocto-autobuilder/yocto-worker/=
-nightly-intel-gpl/build/meta/classes/sanity.bbclass&quot;, line 934, in che=
-ck_sanity_eventhandler(e=3D&lt;bb.event.SanityCheck object at 0x346f350&gt;=
-):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sanity_=
-data.setVar(&quot;SANITY_USE_EVENTS&quot;, &quot;1&quot;)<br>=C2=A0 =C2=A0 =
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0reparse =3D check_sanity(sanity_data)<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0e.data.setVar(&quot;BB_INVA=
-LIDCONF&quot;, reparse)<br>=C2=A0 File &quot;/home/pokybuild/yocto-autobuil=
-der/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass&quot;,=
- line 902, in check_sanity(sanity_data=3D&lt;bb.data_smart.DataSmart object=
- at 0x3447dd0&gt;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if last_sanity_ver=
-sion &lt; sanity_version: <br>=C2=A0 =C2=A0 &gt; =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0check_sanity_version_change(status, sanity_data)<br>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0status.addresult(check_sanity_sstate_dir_change=
-(sstate_dir, sanity_data))<br>=C2=A0 File &quot;/home/pokybuild/yocto-autob=
-uilder/yocto-worker/nightly-intel-gpl/build/meta/classes/sanity.bbclass&quo=
-t;, line 658, in check_sanity_version_change(status=3D&lt;SanityStatus obje=
-ct at 0x3447510&gt;, d=3D&lt;bb.data_smart.DataSmart object at 0x3447dd0&gt=
-;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Check that we can fetch from var=
-ious network transports<br>=C2=A0 =C2=A0 &gt; =C2=A0 =C2=A0netcheck =3D che=
-ck_connectivity(d)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0status.addresult(ne=
-tcheck)<br>=C2=A0 File &quot;/home/pokybuild/yocto-autobuilder/yocto-worker=
-/nightly-intel-gpl/build/meta/classes/sanity.bbclass&quot;, line 275, in ch=
-eck_connectivity(d=3D&lt;bb.data_smart.DataSmart object at 0x3447dd0&gt;):<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Check for BB_FETCH_PREMIRRORONLY and=
- adapt BB_NO_NETWORK<br>=C2=A0 =C2=A0 &gt; =C2=A0 =C2=A0if bb.data.getVar(&=
-quot;BB_FETCH_PREMIRRORONLY&quot;, self.d, True) is not None:<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bb.data.setVar(&quot;BB_NO_NETWORK&qu=
-ot;, &quot;1&quot;, self.d)<br>NameError: global name &#39;self&#39; is not=
- defined<br></div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_=
-extra">Just use d, you don&#39;t need to use bb.data.getVar(&quot;foo&quot;=
-, d, True) when d.getVar(&quot;foo&quot;, True) is clearer.</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+<div dir=3D"ltr">Thanks, Adrian.=C2=A0</div><div class=3D"gmail_extra"><br>=
+<div class=3D"gmail_quote">On Thu, Jan 7, 2016 at 5:50 PM, Adrian Dudau <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:Adrian.Dudau@enea.com" target=3D"_blan=
+k">Adrian.Dudau@enea.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex">hi Zavier,<br>
+<span class=3D""><br>
+On m=C3=A5n, 2015-12-28 at 18:06 +0800, Zavier Luo wrote:<br>
+&gt; Fix the following parse warning:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0WARNING: Variable key RDEPENDS_${PN} ( ${LTTNGUST})=
+ replaces original key RDEPENDS_packagegroup-cgl-applications (=C2=A0 =C2=
+=A0 =C2=A0lvm2=C2=A0 =C2=A0 =C2=A0${LM_SENSORS}=C2=A0 =C2=A0 =C2=A0bc=C2=A0=
+ =C2=A0 =C2=A0gettext=C2=A0 =C2=A0 =C2=A0gettext-runtime=C2=A0 =C2=A0 =C2=
+=A0babeltrace=C2=A0 =C2=A0 =C2=A0gdb=C2=A0 =C2=A0 =C2=A0gdbserver=C2=A0 =C2=
+=A0 =C2=A0rsync=C2=A0 =C2=A0 =C2=A0strace=C2=A0 =C2=A0 =C2=A0libevent=C2=A0=
+ =C2=A0 =C2=A0mdadm=C2=A0 =C2=A0 =C2=A0quota=C2=A0 =C2=A0 =C2=A0smartmontoo=
+ls=C2=A0 =C2=A0 =C2=A0monit=C2=A0 =C2=A0 =C2=A0syslog-ng=C2=A0 =C2=A0 =C2=
+=A0ocfs2-tools=C2=A0 =C2=A0 =C2=A0logcheck=C2=A0 =C2=A0 =C2=A0samhain-clien=
+t=C2=A0 =C2=A0 =C2=A0samhain-server=C2=A0 =C2=A0 =C2=A0audit=C2=A0 =C2=A0 =
+=C2=A0crash=C2=A0 =C2=A0 =C2=A0pam-passwdqc=C2=A0 =C2=A0 =C2=A0libpam=C2=A0=
+ =C2=A0 =C2=A0rsyslog=C2=A0 =C2=A0 =C2=A0makedumpfile=C2=A0 =C2=A0 =C2=A0).=
+<br>
+<br>
+</span>I merged the patch after re-formatting the description. Next time pl=
+ease<br>
+try to keep a max line length of 80 characters in the commit for better<br>
+git log readability.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--Adrian<br>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt;<br>
+&gt; Signed-off-by: Zavier Luo &lt;<a href=3D"mailto:zavier.luo@gmail.com">=
+zavier.luo@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 meta-cgl-common/packagegroups/<a href=3D"http://packagegroup-cgl=
+-applications.bb" rel=3D"noreferrer" target=3D"_blank">packagegroup-cgl-app=
+lications.bb</a> | 6 +++---<br>
+&gt;=C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/meta-cgl-common/packagegroups/<a href=3D"http://packagegr=
+oup-cgl-applications.bb" rel=3D"noreferrer" target=3D"_blank">packagegroup-=
+cgl-applications.bb</a> b/meta-cgl-common/packagegroups/<a href=3D"http://p=
+ackagegroup-cgl-applications.bb" rel=3D"noreferrer" target=3D"_blank">packa=
+gegroup-cgl-applications.bb</a><br>
+&gt; index f823ece..3ebb7ed 100644<br>
+&gt; --- a/meta-cgl-common/packagegroups/<a href=3D"http://packagegroup-cgl=
+-applications.bb" rel=3D"noreferrer" target=3D"_blank">packagegroup-cgl-app=
+lications.bb</a><br>
+&gt; +++ b/meta-cgl-common/packagegroups/<a href=3D"http://packagegroup-cgl=
+-applications.bb" rel=3D"noreferrer" target=3D"_blank">packagegroup-cgl-app=
+lications.bb</a><br>
+&gt; @@ -8,7 +8,7 @@ inherit packagegroup<br>
+&gt;=C2=A0 inherit pkgconfig<br>
+&gt;<br>
+&gt;<br>
+&gt; -PACKAGES =3D &quot;packagegroup-cgl-applications&quot;<br>
+&gt; +PACKAGES =3D &quot;${PN}&quot;<br>
+&gt;<br>
+&gt;=C2=A0 LM_SENSORS =3D &quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 lmsensors-fancontrol \<br>
+&gt; @@ -24,7 +24,7 @@ LM_SENSORS =3D &quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 lmsensors-config-fancontrol \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &quot;<br>
+&gt;<br>
+&gt; -RDEPENDS_packagegroup-cgl-applications =3D &quot; \<br>
+&gt; +RDEPENDS_${PN} =3D &quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 lvm2 \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 ${LM_SENSORS} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 bc \<br>
+&gt; @@ -64,4 +64,4 @@ RDEPENDS_${PN}_append_qemuppc =3D &quot; ${LTTNGUST}=
+&quot;<br>
+&gt;=C2=A0 RDEPENDS_${PN}_append_qemuarm =3D &quot; ${LTTNGUST}&quot;<br>
+&gt;=C2=A0 RDEPENDS_${PN}_append_powerpc =3D &quot; ${LTTNGUST}&quot;<br>
+&gt;<br>
+&gt; -RRECOMMENDS_packagegroup-cgl-applications =3D &quot;&quot;<br>
+&gt; +RRECOMMENDS_${PN} =3D &quot;&quot;<br>
+&gt; --<br>
+&gt; 2.4.3<br>
+&gt;<br>
+<br>
+<br>
+</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
+<div class=3D"gmail_signature"><div dir=3D"ltr"><div>Cheers, <br><br></div>=
+Zavier<br></div></div>
+</div>
 
---001a113ec10ad03bb70528c70618--
+--001a11470d08b342680528c9c95f--
