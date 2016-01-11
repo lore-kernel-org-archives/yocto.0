@@ -1,26 +1,61 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68BD4E00B6D; Sun, 10 Jan 2016 21:23:59 -0800 (PST)
+	id 5DDB1E00B6F; Mon, 11 Jan 2016 02:07:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7100E00B63
-	for <yocto@yoctoproject.org>; Sun, 10 Jan 2016 21:23:56 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 74B128481E23
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 00:23:55 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E32AEE00B66
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 02:07:01 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id b14so25550566wmb.1
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 02:07:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Fv6MGaGBUTlv8EBIzrY7oI50r57/2p8wV+6QdUGeTKA=;
+	b=bLu7ME6JvffncK1/XkOYAuaoUMV5UjZr3ADx18jMMAwakXOHhiEh6J+K4gtaljD6Z+
+	wF6HYVjGRji/VB2LXJbnSSfMjAltVbozhY9Jbi9t/WAkwWzGxmYECI4wMytyC3r+2MZp
+	hSKLLPw029XFc4CUWNADX7iUkBTxJyG3cFYG+QNXbGwvmkz6RUwnWeUiIH38tamKRI/C
+	DUvNdBPAm+/BFjuGqQ831aCovomh1Hm357a5Xu+GYgCBz/8BVsV1FLNT4eLcqbur1CAA
+	dLU7bgVSXNEJjZ5mQfmDboI1AwXif0t4t6rbfAb89Wla/KZOVSTHrY2d1i/rgGv8Zk0j
+	Qwxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Fv6MGaGBUTlv8EBIzrY7oI50r57/2p8wV+6QdUGeTKA=;
+	b=GCehXoaXEgl/a7jE3hElYfVrjtFmcYvpC6nRoCjZPqQ/GX5H27LTmxPOWMZUWg0Gqy
+	kI7jctN6RBHHfqygjQ7/1cmQok19e3acXGNR5M4uIqubneXzQOHfTswm/8gbI1OcH147
+	mKZ3AGY8rK/w5Ebl/Nx18/ZJiIXq08I24W8gGAZcsBAKqTHMOkI+GejS3n0mJKkkXvYy
+	/m2OwIQZ/4z79b4qaCqiN7tx+9aI4c3aVuYdcbPjdbZ8NOC7M6Xzb4H76ixR/pXCcxJz
+	CqG/wsWqvt0+dn3sKLeSCAz0GDekl0fAzroq/ZZxi6Haeeww/MRkSzAHJnlAdULHTjnb
+	qllg==
+X-Gm-Message-State: ALoCoQnVEWsNw4CWBYgqpKklP7rXgG7FZoLAtFfHkXM8CtHDsOMYoenWTropYgQ9H4L7IClfLuqIiMK1OzPlDbBa/XF4mf+Q+A==
+X-Received: by 10.194.222.135 with SMTP id qm7mr133708342wjc.106.1452506820886;
+	Mon, 11 Jan 2016 02:07:00 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 11 Jan 2016 05:23:55 -0000
-Message-ID: <20160111052355.20804.85231@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 10.28.129.200 with HTTP; Mon, 11 Jan 2016 02:06:21 -0800 (PST)
+X-Originating-IP: [178.7.64.118]
+In-Reply-To: <1450648710-24526-1-git-send-email-leon@anavi.org>
+References: <1450648710-24526-1-git-send-email-leon@anavi.org>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Mon, 11 Jan 2016 11:06:21 +0100
+Message-ID: <CAK18fxGX0j6rnXDT+Ep_R0zpV1RnUp0zVyofWw_ffY1TYRtXqw@mail.gmail.com>
+To: Leon Anavi <leon@anavi.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 2/2] python-sense-hat: Add recipe to support Raspberry Pi Sense HAT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,178 +67,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jan 2016 05:23:59 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Jan 2016 10:07:03 -0000
+Content-Type: multipart/alternative; boundary=001a11c3aed617e5c605290c194f
 
-This mail was sent out by Recipe reporting system.
+--001a11c3aed617e5c605290c194f
+Content-Type: text/plain; charset=UTF-8
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+On Sun, Dec 20, 2015 at 10:58 PM, Leon Anavi <leon@anavi.org> wrote:
 
-You can check the detail information at:
+> Python module to control the Raspberry Pi Sense HAT used in
+> the Astro Pi mission. This recipe provides the officially
+> supported library for the Sense HAT with access to all of the
+> on-board sensors and the LED matrix.
+>
+> Signed-off-by: Leon Anavi <leon@anavi.org>
+> ---
+>  recipes-devtools/python/python-sense-hat_2.1.0.bb | 28
+> +++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>  create mode 100644 recipes-devtools/python/python-sense-hat_2.1.0.bb
 
-http://recipes.yoctoproject.org/
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-perl                  5.22.0       5.22.1                Alejandro Hernandez
-python-mako           1.0.1        1.0.3                 Alejandro Hernandez
-python-nose           1.3.6        1.3.7                 Alejandro Hernandez
-python-numpy          1.10.1       1.10.4                Alejandro Hernandez
-python-pycurl         7.19.5.2     7.21.5                Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez  Newer versions of python-py...
-python-scons          2.3.6        2.4.1                 Alejandro Hernandez
-python3               3.5.0        3.5.1                 Alejandro Hernandez
-python                2.7.9        2.7.11                Alejandro Hernandez
-swig                  3.0.6        3.0.8                 Alejandro Hernandez
-python3-setuptools    18.7.1       19.2                  Alejandro Hernandez
-python-setuptools     18.7.1       19.2                  Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-bjam-native           1.58.0       1.60.0                Alexander Kanavin
-libwebp               0.4.4        0.5.0                 Alexander Kanavin
-mkelfimage            4.0+gitX     4.2+gitAUTOINC+43...  Alexander Kanavin    mkelfimage has been removed...
-boost                 1.58.0       1.60.0                Alexander Kanavin
-ca-certificates       20150426     20160104              Alexander Kanavin
-valgrind              3.10.1       3.11.0                Alexander Kanavin
-nss                   3.19.2       3.21                  Alexander Kanavin
-lighttpd              1.4.38       1.4.39                Alexander Kanavin
-epiphany              3.18.2       3.18.3                Alexander Kanavin
-iso-codes             3.63         3.64                  Alexander Kanavin
-apt                   1.0.10.1     1.1.10                Aníbal Limón
-dpkg                  1.18.2       1.18.4                Aníbal Limón
-linux-yocto-tiny      4.1.15+gitX  4.3+gitAUTOINC+6a...  Bruce Ashfield
-linux-yocto-rt        4.1.15+gitX  4.3+gitAUTOINC+6a...  Bruce Ashfield
-linux-yocto           4.1.15+gitX  4.3+gitAUTOINC+6a...  Bruce Ashfield
-linux-libc-headers    4.1          4.4                   Bruce Ashfield
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.3.1        3.4.1                 Chen Qi
-resolvconf            1.77         1.78                  Chen Qi
-dbus-test             1.8.20       1.10.6                Chen Qi
-dbus                  1.8.20       1.10.6                Chen Qi
-kmod                  21+gitX      22+gitAUTOINC+42f...  Chen Qi
-curl                  7.45.0       7.46.0                Chen Qi
-at                    3.1.16       3.1.18                Chen Qi
-cups                  2.0.4        2.1.2                 Chen Qi
-findutils             4.5.14       4.5.19                Chen Qi
-sysstat               11.1.5       11.2.0-1              Chen Qi
-xz                    5.2.1        5.2.2                 Chen Qi
-build-appliance-i...  12.0.1       14.0.0                Cristian Iorga
-dhcp                  4.3.2        4.3.3                 Hongxu Jia
-ncurses               5.9          6.0.20150627          Hongxu Jia
-elfutils              0.163        0.164                 Hongxu Jia
-pax-utils             1.0.5        1.1.4                 Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-xmlto                 0.0.26       0.0.28                Hongxu Jia
-libgcrypt             1.6.3        1.6.4                 Hongxu Jia
-ghostscript           9.16         9.18                  Hongxu Jia
-man-pages             4.02         4.04                  Hongxu Jia
-help2man-native       1.47.1       1.47.3                Hongxu Jia
-gnupg                 2.1.7        2.1.10                Hongxu Jia
-waffle                1.5.1        1.5.2                 Jussi Kukkonen
-libinput              0.21.0       1.1.4                 Jussi Kukkonen
-wayland               1.8.1        1.9.0                 Jussi Kukkonen
-weston                1.8.0        1.9.0                 Jussi Kukkonen
-gtk-icon-utils-na...  3.18.2       3.18.6                Jussi Kukkonen
-libsoup-2.4           2.52.1       2.52.2                Jussi Kukkonen
-xf86-input-evdev      2.10.0       2.10.1                Jussi Kukkonen
-gsettings-desktop...  3.18.1       3.19.3                Jussi Kukkonen
-glib-2.0              2.46.1       2.46.2                Jussi Kukkonen
-libxi                 1.7.5        1.7.6                 Jussi Kukkonen
-pixman                0.32.8       0.33.6                Jussi Kukkonen
-libcroco              0.6.9        0.6.11                Jussi Kukkonen
-cmake                 3.3.2        3.4.1                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.1                Jussi Kukkonen
-libav                 9.18         11.4                  Jussi Kukkonen
-at-spi2-core          2.18.1       2.18.3                Jussi Kukkonen
-libdrm                2.4.65       2.4.66                Jussi Kukkonen
-gpgme                 1.5.4        1.6.0                 Jussi Kukkonen
-vala                  0.28.0       0.30.0                Jussi Kukkonen
-libevdev              1.4.2        1.4.6                 Jussi Kukkonen
-libgpg-error          1.19         1.21                  Jussi Kukkonen
-vte                   0.28.2       0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
-gdk-pixbuf            2.32.1       2.32.3                Jussi Kukkonen
-gtk+3                 3.18.2       3.18.6                Jussi Kukkonen
-gtk+                  2.24.28      2.24.29               Jussi Kukkonen
-librsvg               2.40.11      2.40.13               Jussi Kukkonen
-freetype              2.6          2.6.2                 Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-menu-cache            1.0.0        1.0.1                 Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69       0.9.71                Jussi Kukkonen
-slang                 2.2.4        2.3.0                 Kai Kang
-libsdl2               2.0.3        2.0.4                 Kai Kang
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
-bluez5                5.36         5.37                  Maxin B. John
-connman               1.30         1.31                  Maxin B. John
-libpng12              1.2.55       1.2.56                Maxin B. John
-db                    6.0.30       6.1.26                Maxin B. John        Updating to 6.1.x requires ...
-sqlite3               3.9.2        3.10.0                Maxin B. John
-quota                 4.02         4.03                  Maxin B. John
-bootchart2            0.14.7       0.14.8                No maintainer
-kmod-native           21+gitX      22+gitAUTOINC+42f...  No maintainer
-ifupdown              0.8.2        0.8.6                 No maintainer
-libsolv               0.6.14+gitX  13.1+gitAUTOINC+d...  No maintainer
-pbzip2                1.1.12       1.1.13                No maintainer
-uclibc-initial        1.0.9+gitX   1.0.11+gitAUTOINC...  No maintainer
-apt-native            1.0.10.1     1.1.10                No maintainer
-cmake-native          3.3.2        3.4.1                 No maintainer
-gdb-cross-canadia...  7.9.1        7.10.1                No maintainer
-gdb-cross-i586        7.9.1        7.10.1                No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-perl-native           5.22.0       5.22.1                No maintainer
-python-scons-native   2.3.6        2.4.1                 No maintainer
-python3-native        3.5.0        3.5.1                 No maintainer
-python-native         2.7.9        2.7.11                No maintainer
-adt-installer         0.3.0        0.3.1                 Randy Witt
-lttng-modules         2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-lttng-tools           2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.0+gitX   2.7.1+gitAUTOINC+...  Richard Purdie
-gdb                   7.9.1        7.10.1                Richard Purdie
-subversion            1.9.2        1.9.3                 Richard Purdie
-e2fsprogs             1.42.9       1.42.13               Robert Yang          Updating backported patches...
-file                  5.24         5.25                  Robert Yang
-git                   2.5.0        2.7.0                 Robert Yang
-rsync                 3.1.1        3.1.2                 Robert Yang
-strace                4.10         4.11                  Robert Yang
-libbsd                0.8.0        0.8.1                 Robert Yang
-iputils               s20121221    s20151218             Robert Yang
-less                  479          481                   Robert Yang
-wget                  1.17         1.17.1                Robert Yang
-autogen-native        5.18.5       5.18.6                Robert Yang
-base-passwd           3.5.29       3.5.39                Ross Burton          Version 3.5.38 requires cde...
-uclibc                1.0.9+gitX   1.0.11+gitAUTOINC...  Ross Burton
-lsbinitscripts        9.64         9.65                  Ross Burton
-alsa-lib              1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-pulseaudio            6.0          7.99.1                Tanu Kaskinen
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
-ccache                3.2.3        3.2.4                 Wenzong Fan
-gettext               0.19.6       0.19.7                Wenzong Fan
-chkconfig             1.3.58       1.7                   Wenzong Fan          Version 1.5 requires selinux
+Patch merged to master with a minor tweak (convert tabs to four spaces).
+Thank you,
+--
+Andrei Gherzan
 
-Upgradable count: 126
-Upgradable total count: 136
+--001a11c3aed617e5c605290c194f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The based commit is:
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div><div class=3D"gmail_signat=
+ure"><div dir=3D"ltr"><div>Hi,</div></div></div></div>
+<br><div class=3D"gmail_quote">On Sun, Dec 20, 2015 at 10:58 PM, Leon Anavi=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:leon@anavi.org" target=3D"_blank">=
+leon@anavi.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rg=
+b(204,204,204);border-left-style:solid;padding-left:1ex">Python module to c=
+ontrol the Raspberry Pi Sense HAT used in<br>
+the Astro Pi mission. This recipe provides the officially<br>
+supported library for the Sense HAT with access to all of the<br>
+on-board sensors and the LED matrix.<br>
+<br>
+Signed-off-by: Leon Anavi &lt;<a href=3D"mailto:leon@anavi.org">leon@anavi.=
+org</a>&gt;<br>
+---<br>
+=C2=A0recipes-devtools/python/<a href=3D"http://python-sense-hat_2.1.0.bb" =
+rel=3D"noreferrer" target=3D"_blank">python-sense-hat_2.1.0.bb</a> | 28 +++=
+++++++++++++++++++++<br>
+=C2=A01 file changed, 28 insertions(+)<br>
+=C2=A0create mode 100644 recipes-devtools/python/<a href=3D"http://python-s=
+ense-hat_2.1.0.bb" rel=3D"noreferrer" target=3D"_blank">python-sense-hat_2.=
+1.0.bb</a></blockquote><div><br></div><div>Patch merged to master with a mi=
+nor tweak (convert tabs to four spaces). Thank you,</div><div><div>--</div>=
+Andrei Gherzan<br></div></div><br></div></div>
 
-commit 5661d8cb7849df62358368743134c0aaf523965e
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Wed Jan 6 18:04:23 2016 +0000
-
-    image: Really remove lockfiles flag
-    
-    This was supposed to be removed by a previous patch but was readded.
-    Really remove it.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+--001a11c3aed617e5c605290c194f--
