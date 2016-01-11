@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 192B1E007EA; Mon, 11 Jan 2016 12:32:41 -0800 (PST)
+	id 5A8CCE0070F; Mon, 11 Jan 2016 12:34:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,54 +15,52 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF1C7E0070F
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 12:32:36 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id f206so27945988wmf.2
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 12:32:36 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F93FE0070F
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 12:34:18 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id f206so27951411wmf.2
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 12:34:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=iE+zJsMuOtO3PR39nkxu8VFsz8blUpkGsyatjVfnl7E=;
-	b=MMRf+RBj1m9RGmY6S1gLwdmYO4CaY5RBBUcaFhqH8iO4pWl27oEvDG2y9hkNoy9JKw
-	fEBdaSmlsvN/QaNrOMzumfABdb5O28uB9GJEG3INMUpLtTxZnVIf5Z/PyU1Br74RpV/2
-	R1lULo0ykE9Z/vJ8H5e+Cb5p4yCWtRBjJJ2L2kEQKxm9kawzEKW0hh1SDnHzBIu9+7fH
-	lBrbSZqGYJ1zAaxYPVcqRvksLC/lDTpSjP/dZxdTeVoTZT6zDCqRgAdMANNcSif2xKif
-	hI9/SGzQiBcoLPW0DC57X9u3k/9Y0+GbGXhDABOSoAjokIyGTCNT+mLKzp4jpChgiF/1
-	ij4A==
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=tEcA5Roq7xDxurEaj1KHFrl5ay1sks7RtwZ1h5rKb/o=;
+	b=JCQGzg93p1RlQR1YKbGxmKFEVfh6KcajLEX6cG+4HrebyM7MJv9XqJLKIvQcNbM/gr
+	ZTVype9O2a4Xt9OlghDp+cjKRtENShex/rEWJ1pvK5SMHmKJSYHj2gCbNim27N3XJusm
+	4fhVYJloXb41xA2+iRmW4gA6jr1aorFBKZ8bGHzEXViAjOPhBRNQvUQk6SPfGnQ2atBQ
+	x0A+TPLyRLHWj78xQHPPRytD6oFWFOuLWA5jYXK/ZLcfPbjJU7Sn4sC8NYwEw8ZZiiW3
+	CrdnQAhN9oDYaci+CIQtgMPq6Kne4mxyg5q253UlGzYV1SHohvaJa/D65j+bN/YN/rgv
+	f1fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=iE+zJsMuOtO3PR39nkxu8VFsz8blUpkGsyatjVfnl7E=;
-	b=d/Ujmif18fCTMq0QuA678U7Kgcb6/KRhmP6bZHHNL1PFcxdbfhgNA5gWEW9spl/Rmu
-	SRhOjMrmTJFjRd0VpoqDa4AinkgHw8jUJSg0T6x+dCpFTiLjxqBalBOYe7fDRm0FxU5k
-	JA4sl3+WrOMeQIop/ouolJ8oMWiSFNckdiF85Ca+NtZ8Meak3zLU3g6UgFjDDNhLI7aF
-	olHhjC7ZtnXyJVtxPwTY/F7xtvXyQusqeyfV4fLNhglsPXaYhw3r6Jf7XudWgLWlAk2g
-	8th8ULb3BZ2KTfpeXM7gSADZkPhW/Oi/zSH/+tue1JhYhCxJWnK/WrBYuSuzgQS3Y/QO
-	h/WA==
-X-Gm-Message-State: ALoCoQkCCqZ9mC73s+2BMvVP7hdIS7Ts7uhD299WyyRbMG/2/SG+QGzSvdatsSoeMGOzmvdQBiwpec8IUU8yCFH3e/qZ8X5cuA==
-X-Received: by 10.194.175.104 with SMTP id bz8mr3219646wjc.8.1452544355780;
-	Mon, 11 Jan 2016 12:32:35 -0800 (PST)
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=tEcA5Roq7xDxurEaj1KHFrl5ay1sks7RtwZ1h5rKb/o=;
+	b=TMwptJSs08nqc0MLgjIfG4qfgHl1rxSpqk3HWX5VOVPluuLQcKY7e2JaoNJds93BEs
+	QZ9BUDvW/XSHsa+67FIN8jDAZk0nTvGLCdNF7doTol+xdrD400/2aPf7s54+Tp1Nammb
+	CtKzbiDfsnhMkKJp9GVKEuudpUf2XkafTqXEkaIo3E7af1WykhkFFMgQDnAjjV5mLGEf
+	YhGmgWcQAb9M4DABvYDas/s7/xzzjhxWESJrqWS21tfnRan4SRL3UB79160InSmu6Ey8
+	SOJ6nVz1myYevhsStin4IehGDrFXyZn1y61/R3+wXHd70FwBDyGDUZnQc8ExSA+gxJwV
+	wnlw==
+X-Gm-Message-State: ALoCoQnOh08njm/bAJ1OPmV7g4lCxD9pwK9m//vTANirspn6gF42qojKLa46nm46svadxZAnWWAxF4O6NbLe+FT5mgWEjLzmvg==
+X-Received: by 10.194.200.106 with SMTP id jr10mr89484617wjc.100.1452544457954;
+	Mon, 11 Jan 2016 12:34:17 -0800 (PST)
 Received: from resin (dslb-178-007-064-118.178.007.pools.vodafone-ip.de.
 	[178.7.64.118]) by smtp.gmail.com with ESMTPSA id
-	df10sm106413231wjb.44.2016.01.11.12.32.34
+	w23sm14383416wmd.1.2016.01.11.12.34.16
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 11 Jan 2016 12:32:34 -0800 (PST)
-Date: Mon, 11 Jan 2016 21:32:27 +0100
+	Mon, 11 Jan 2016 12:34:16 -0800 (PST)
+Date: Mon, 11 Jan 2016 21:34:14 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20160111203227.GA10203@resin>
-References: <1452530987-994-1-git-send-email-petter@technux.se>
-	<1452530987-994-5-git-send-email-petter@technux.se>
-	<7564A308-E4D5-4B05-B03A-95A2B37A5F59@gmail.com>
+To: John Madieu <j.madieu@expemb.com>
+Message-ID: <20160111203414.GB10203@resin>
+References: <CAK18fxGB5uiXe7LigW3V9TEA2EJFQtsZTt-9yJ=rNwLzdzKY0w@mail.gmail.com>
+	<1452527171-26371-1-git-send-email-j.madieu@expemb.com>
 MIME-Version: 1.0
-In-Reply-To: <7564A308-E4D5-4B05-B03A-95A2B37A5F59@gmail.com>
+In-Reply-To: <1452527171-26371-1-git-send-email-j.madieu@expemb.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 4/5] pitft: Add basic support for PiTFT
+Subject: Re: [meta-raspberrypi][PATCH v2 1/2] qt5: fixed raspberrypi support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,26 +72,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jan 2016 20:32:41 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Mon, 11 Jan 2016 20:34:19 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 11, 2016 at 09:55:43AM -0800, Khem Raj wrote:
+On Mon, Jan 11, 2016 at 04:46:10PM +0100, John Madieu wrote:
+> Because EGL properties were not defined properly, we always had the following error
+>     make: *** [egl] Error 1
+>     | EGL disabled.
+>     |  The EGL functionality test failed; EGL is required by some QPA plugins to manage cont
+>     |  You might need to modify the include and library search paths by editing QMAKE_INCDIR
 >
-> > On Jan 11, 2016, at 8:49 AM, Petter Mabäcker <petter@technux.se> wrote:
-> >
-> > Add basic support for PiTFT display by using device-trees.
-> >
-> > In order get it working below configurations must be active in
-> > local.conf:
-> >
-> > MACHINEOVERRIDES .= ":pitft”
+> This bbappend definitively fix the bug
 >
-> Using MACHINE_FEATURES will be more appropriate term. Effects are same.
+> Signed-off-by: John Madieu <j.madieu@expemb.com>
+> ---
+>  qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
 >
+> diff --git a/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+> new file mode 100644
+> index 0000000..8b77bfa
+> --- /dev/null
+> +++ b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+> @@ -0,0 +1,29 @@
+> +
+> +do_configure_prepend_rpi() {
+> +
+> +	sed -i 's!load(qt_config)!!' ${S}/mkspecs/linux-oe-g++/qmake.conf
+> +    if ! grep -q '^EGLFS_' ${S}/mkspecs/linux-oe-g++/qmake.conf; then
+> +        cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+> +QMAKE_INCDIR_EGL = \$\$[QT_SYSROOT]${includedir}/interface/vcos/pthreads \$\$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
+> +QMAKE_INCDIR_OPENGL_ES2 = \$\${QMAKE_INCDIR_EGL}
+> +QMAKE_LIBS_EGL = -lEGL -lGLESv2
+> +EOF
+> +
+> +        if [ -d ${S}/src/plugins/platforms/eglfs/deviceintegration/eglfs_brcm ]; then
+> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+> +EGLFS_DEVICE_INTEGRATION = eglfs_brcm
+> +EOF
+> +        else
+> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+> +EGLFS_PLATFORM_HOOKS_LIBS = -lbcm_host
+> +EGLFS_PLATFORM_HOOKS_SOURCES = \$\$PWD/../devices/linux-rasp-pi-g++/qeglfshooks_pi.cpp
+> +EOF
+> +        fi
+> +    fi
+> +    cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+> +
+> +
+> +load(qt_config)
+> +
+> +EOF
+> +}
 
-Indeed. I support MACHINE_FEATURE usage here.
+qtbase fails at compile time:
+
+| compiling .moc/moc_qeglplatformcursor_p.cpp
+|
+/home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:
+In member function 'virtual QRect
+QGtkStyle::subControlRect(QStyle::ComplexControl, const QStyleOptionComplex*,
+QStyle::SubControl, const QWidget*) const':
+|
+/home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:24:
+error: 'isInstanceOf' is not a member of 'QStyleHelper'
+|              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
+QAccessible::Grouping)) {
+|                         ^
+|
+/home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:74:
+error: 'QAccessible' has not been declared
+|              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
+QAccessible::Grouping)) {
+|                                                                           ^
+| Makefile:53048: recipe for target '.obj/qgtkstyle.o' failed
+| make[2]: *** [.obj/qgtkstyle.o] Error 1
+| make[2]: *** Waiting for unfinished jobs....
+
+
+How is this supposed to be tested?
 
 --
 Andrei Gherzan
