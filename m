@@ -1,6 +1,6 @@
 Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A563DE00A7D; Tue, 12 Jan 2016 05:04:35 -0800 (PST)
+	id 2788EE00A7D; Tue, 12 Jan 2016 05:07:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,25 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [157.55.2.24 listed in list.dnswl.org]
-Received: from DUB004-OMC3S15.hotmail.com (dub004-omc3s15.hotmail.com
-	[157.55.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3F09E008A5
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 05:04:32 -0800 (PST)
-Received: from DUB130-W76 ([157.55.2.7]) by DUB004-OMC3S15.hotmail.com over
+	*      [157.55.2.20 listed in list.dnswl.org]
+Received: from DUB004-OMC3S11.hotmail.com (dub004-omc3s11.hotmail.com
+	[157.55.2.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E62CE008A5
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 05:07:27 -0800 (PST)
+Received: from DUB130-W85 ([157.55.2.8]) by DUB004-OMC3S11.hotmail.com over
 	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 12 Jan 2016 05:04:31 -0800
-X-TMN: [iJknsZKdntDFGP1HuIvMouSO9qL/t2HV]
+	Tue, 12 Jan 2016 05:07:26 -0800
+X-TMN: [SekyZZr5FdcmuSZ6js07t4Wlet+RS2DB]
 X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W765F778453A937201CE623DACA0@phx.gbl>
+Message-ID: <DUB130-W85538824CF7E877027527ADACA0@phx.gbl>
 From: Chris Trobridge <christrobridge@hotmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 12 Jan 2016 13:04:30 +0000
+Date: Tue, 12 Jan 2016 13:07:25 +0000
 Importance: Normal
-In-Reply-To: <1452598069.28375.10.camel@linuxfoundation.org>
-References: <DUB130-W826C28E67F7AA9DF278329DACA0@phx.gbl>,
-	<1452598069.28375.10.camel@linuxfoundation.org>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 12 Jan 2016 13:04:31.0185 (UTC)
-	FILETIME=[C6A85410:01D14D39]
-Subject: Re: Sharing a source repository
+X-OriginalArrivalTime: 12 Jan 2016 13:07:26.0741 (UTC)
+	FILETIME=[2F4C0C50:01D14D3A]
+Subject: Handling Duplicate Files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,33 +42,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 13:04:35 -0000
+X-List-Received-Date: Tue, 12 Jan 2016 13:07:29 -0000
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-----------------------------------------=0A=
-> Subject: Re: [yocto] Sharing a source repository=0A=
->> Or is there an idiomatic way to pull in a repository in one recipe=0A=
->> and then reference that from other recipes? I can think of something=0A=
->> that would work but would probably be breaking the spirit (eg sym=0A=
->> -linking the git directory somewhere commonly accessible to the other=0A=
->> recipes). This would also have the disadvantage of pulling the whole=0A=
->> repository in even only small part was actually required.=0A=
->=0A=
-> You could look at what we do with gcc and the gcc-source recipe. Its=0A=
-> works there but its not common place and requires workarounds in some=0A=
-> corner cases like the sstate checksum debugging code.=0A=
->=0A=
-> Cheers=2C=0A=
->=0A=
-> Richard=0A=
+(I posted this to openembedded-core but it appears to have got lost in the =
+noise!)=0A=
 =0A=
-Thanks Richard. =A0I think in this case I will investigate git subpaths as =
-we have a collection of associated projects more than one project rebuilt i=
-n different configurations. =A0 =A0It is better to stick to the better used=
- paths!=0A=
+Hi=2C=0A=
 =0A=
-Cheers=2C=0A=
+I have been looking into producing a 'python3-dbus' recipe=2C based on the=
+=A0python-dbus recipe.=0A=
+=0A=
+This recipe outputs a couple of files that are version independent but end =
+up overlapping and causing the build to fail:=0A=
+/usr/lib/pkgconfig/dbus-python.pc=0A=
+/usr/include/dbus-1.0/dbus/dbus-python.h=0A=
+=0A=
+These files are currently marked as python-version independent - the header=
+ file has #ifdefs for python3.=0A=
+=0A=
+The immediate 'fix' was to follow the advice in the error text to add the f=
+ile paths to=A0SSTATE_DUPWHITELIST.=0A=
+=0A=
+SSTATE_DUPWHITELIST is not mentioned much elsewhere and does not seem like =
+a scalable solution. =A0Is there a preferred method to resolve the situatio=
+n where two recipes install the same files?=0A=
+=0A=
+Thanks=2C=0A=
 Chris=0A=
 =0A=
  		 	   		  =
