@@ -1,37 +1,57 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8701AE00AD7; Tue, 12 Jan 2016 10:26:07 -0800 (PST)
+	id 0DB5DE00ACE; Tue, 12 Jan 2016 12:59:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.25 listed in list.dnswl.org]
-Received: from DUB004-OMC3S16.hotmail.com (dub004-omc3s16.hotmail.com
-	[157.55.2.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8168E00AAF
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 10:26:00 -0800 (PST)
-Received: from DUB130-W9 ([157.55.2.8]) by DUB004-OMC3S16.hotmail.com over TLS
-	secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 12 Jan 2016 10:25:59 -0800
-X-TMN: [W8e3JFleNDPAdv65IcHYYeT8GBPeTLjW]
-X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W9F5A8A3283B5751875E74DACA0@phx.gbl>
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 12 Jan 2016 18:25:59 +0000
-Importance: Normal
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84CBAE00A9C
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 12:59:19 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id oh2so280177834lbb.3
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 12:59:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to:content-type;
+	bh=/MHOyUdpc+9HlPWBcj7rgtaoJ8bIezk3Njorfus6Ack=;
+	b=m/FuornSPFIvgLxerSMVhDvNzrxuUG37kzdeEZ1F8xtazozBm1+xq2KteAlaW2Wjga
+	A0cFg5CHhU1M6QwdFW4+8/sdSkckTp6lyBGGxSQvES8okzrB1/IaIq6PIdLRJD6XIQKi
+	YCRlvpXzzEXAlAH3ErsdlzeFuszNBKSHx79qxbVWbEEI+Xx96K6TWYfa4rmkTwOmMsEY
+	3sZhl/Y/gRID1rLf4cdlyIY2Qf1aZf+tfo46CubHA/5xHJOPo2zJBM6WVSbrojdOArJe
+	YWXHUitB8wxKW1W5A0pvcXmx+AQW4rWE2dZLcIeACiHrLS0GSIpqpdKWzAcw//zqvd0+
+	SRWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+	:to:content-type;
+	bh=/MHOyUdpc+9HlPWBcj7rgtaoJ8bIezk3Njorfus6Ack=;
+	b=ZAqn8DWzXRA0RNPhLq738/sM4C7KAER0cxLXWT59p0s5NqF+cUoxvbVPlVYzZEUIWG
+	exakNmM8uX+zY/RE3xsisLvtixDAnpn1cTUuXBIBdwp4Vv7NnNnaDuDA5YkB1HTo/Un5
+	oSxnFEhI7A7tuReiGpTltrNadHgOZ8nWZ+0aV9ctPV5T0Fgp/lJlWI3avB8nhK0z4A5C
+	JaOEz7eCIkhPvZEuSryZakb2VDJlv9pxYeFurTWnmCX5AGkRsSQsqSt0Q5STYzx4GCE+
+	kLen6D0PSkbnRa66tRC0eK9peKRxWxvQNbkRm5IwrErGBJ69VwVnskQhX2UMCib83N+a
+	cDNw==
+X-Gm-Message-State: ALoCoQkWfsUjuD1DZt+DB4+djqmHSlsfLvBKwPe/DcqZcW0NSmNbORp2aqHbmQnbzet13Etw8y4rq3/IE2edGIDeXoBzYIAoWQ==
+X-Received: by 10.112.50.134 with SMTP id c6mr50144288lbo.14.1452632357862;
+	Tue, 12 Jan 2016 12:59:17 -0800 (PST)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 12 Jan 2016 18:25:59.0751 (UTC)
-	FILETIME=[AF89ED70:01D14D66]
-Subject: Live Image Behaviour
+Sender: jefro.net@gmail.com
+Received: by 10.112.55.101 with HTTP; Tue, 12 Jan 2016 12:58:57 -0800 (PST)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Tue, 12 Jan 2016 12:58:57 -0800
+X-Google-Sender-Auth: LGsnGnEj6GswIXVabcb0qeRPtBg
+Message-ID: <CA+YB3rYrx5+5+DcXH693BL_vmdn2n=K4+kSgtQErLoxRs66WJw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: SCaLE 14x pass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,78 +63,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 18:26:07 -0000
-Content-Type: multipart/alternative;
-	boundary="_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_"
+X-List-Received-Date: Tue, 12 Jan 2016 20:59:24 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Psst ..  does anyone need a pass to SCaLE 14x next week? If so, we
+have one to give away. If you need a pass, send me email and we'll do
+a drawing or something.
 
-I was testing out a new image this afternoon and all was well until I fdisk=
-'d the partitions away on /dev/sda (with the live image booting from a usb =
-stick on /dev/sdc).
-After this the image stopped booting and started complaining about all sort=
-s of FAT errors on /dev/sda and did not mount the root file system.
-Nothing I could do to sort out this issue until I dd'd the live image onto =
-/dev/sda=2C which then booted from /dev/sda1.
-After this I could now also boot from /dev/sdc too but /media/realroot was =
-mounted on /dev/sda1.
-I renamed the root file system file on /dev/sda1=2C rebooted and now /media=
-/realroot was mounted on /dev/sdc1.
-All the time I was also able to boot the image fine in qemu.
-Regarding the install option on the EFI boot=2C initially it was offering t=
-o install on /dev/sdb but this changed to /dev/sda once I'd renamed the roo=
-t file system on /dev/sda.
-Anyway this suggests to me that the live image will preferentially mount a =
-root file system from /dev/sda in preference to the file on the boot device=
-.  This wasn't an issue after I followed through the 'install' option as it=
- lays out the installation over two partitions without using a loop-back de=
-vice but the issue it had dealing with the 'corrupt' file system on /dev/sd=
-a may be significant.
-Regards=2CChris
- 		 	   		  =
+-- 
+Jeff Osier-Mixon
+Open Source Community Architect, Intel Corporation
 
---_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>I was testing out a new image th=
-is afternoon and all was well until I fdisk'd the partitions away on /dev/s=
-da (with the live image booting from a usb stick on /dev/sdc).<div><br></di=
-v><div>After this the image stopped booting and started complaining about a=
-ll sorts of FAT errors on /dev/sda and did not mount the root file system.<=
-/div><div><br></div><div>Nothing I could do to sort out this issue until I =
-dd'd the live image onto /dev/sda=2C which then booted from /dev/sda1.</div=
-><div><br></div><div>After this I could now also boot from /dev/sdc too but=
- /media/realroot was mounted on /dev/sda1.</div><div><br></div><div>I renam=
-ed the root file system file on /dev/sda1=2C rebooted and now&nbsp=3B<span =
-style=3D"font-size: 12pt=3B">/media/realroot was mounted on /dev/sdc1.</spa=
-n></div><div><br></div><div>All the time I was also able to boot the image =
-fine in qemu.</div><div><br></div><div>Regarding the install option on the =
-EFI boot=2C initially it was offering to install on /dev/sdb but this chang=
-ed to /dev/sda once I'd renamed the root file system on /dev/sda.</div><div=
-><br></div><div>Anyway this suggests to me that the live image will prefere=
-ntially mount a root file system from /dev/sda in preference to the file on=
- the boot device. &nbsp=3BThis wasn't an issue after I followed through the=
- 'install' option as it lays out the installation over two partitions witho=
-ut using a loop-back device but the issue it had dealing with the 'corrupt'=
- file system on /dev/sda may be significant.</div><div><br></div><div>Regar=
-ds=2C</div><div>Chris</div><div><br></div> 		 	   		  </div></body>
-</html>=
-
---_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_--
