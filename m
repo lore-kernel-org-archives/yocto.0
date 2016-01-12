@@ -1,74 +1,37 @@
-Return-Path: <federicobriata@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78B63E00ACE; Tue, 12 Jan 2016 08:41:25 -0800 (PST)
+	id 06AAFE00AD7; Tue, 12 Jan 2016 09:00:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B7B4E00A9C
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 08:41:20 -0800 (PST)
-Received: by mail-lf0-f46.google.com with SMTP id h129so42861267lfh.3
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 08:41:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=yel+7rbUTzeFiK70Xn9PR5z4g4kUxgOc7TOYO/9d6Po=;
-	b=I6HhOQrTdqM9827ApKYI/rNcXsPjDr7GE89JwZzheaGDN7Mx5tXhZ4my4MdIKt4KGt
-	4cEgMVjEJKIc84qKqpQnvfC6RDdIo+cPihXuaGjDGsT5ODc7QJZT8640JqXFDz4uUiOh
-	QBLrjIVVTB3EdkYymnI9d4qdr6GnJ9/sOnm4IrLoam7zelFkjQdlgqHSt3TvPTVmAkZn
-	HhByiJomIW/YwfM0v3jhzN6W+cn6Dlmxq860TD77FHaluoI3Xl6Y14OfJ6Ewi5V69wsZ
-	iVZN4fmWlokNw75YEvihv9kQv25do0aXWGAOhgtyaosKi9CkedUrqbYijzGcM0xpLNfC
-	TpgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=briata-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=yel+7rbUTzeFiK70Xn9PR5z4g4kUxgOc7TOYO/9d6Po=;
-	b=zkY7E3Nn9PgE9nhEsaZElaW9IiBnhOj8lBsRdsc4Zfsv4837NRrfpzeXfchwygTUlW
-	vH0kGi59Et8DQICvwYbkxPMcVKTo7NxZMDRKoiAoR9+ZCxuFq2avmUBYxSamNG8PcPqA
-	yUlTz6YAaMOXBDKJECKWhGY9k4AYwmTlugnkpswqcHC/A2bWAz5oug64mzDr+/Yu8kpk
-	vnQZWeUwlBTisThnxx+fyBHWRxC/5R2ld4qwPRpdWI3xlYHVq1S9WNpf7ymINkNfPHFp
-	2ff5FldvEe+oc5NsCIHbB6mGV7Ll297QE4LI5+0A/lvlEsTLw7Dy3Hp5JHE2s2Pt4jUX
-	0A6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=yel+7rbUTzeFiK70Xn9PR5z4g4kUxgOc7TOYO/9d6Po=;
-	b=C+9Al2j8IQDxGf8wxZWUAQ+MSAwGMTWe4uBLW8Z4GxGGoSwPBUOMMDOZewx/T2cM5x
-	rq2taHM/VQucQIdOxNsdSewMBsfscY/MisMNdWA7lZCstZYFZOnHFn1riXHtfMJUuMUt
-	6olxs1JfHfDaREEWvPhFxOaJEJPM6RphbFLmY0WhKI4MnMuyIESMaSg1QZi2b+mqWtlO
-	qcrF6cu7s+WGxO1Ibs3YNqGMv331u/Zs0neCMJZbk7qtOordMjstfK+sBr5zupJrXGQ5
-	wwhr+qIsFlkvv7OWLzvyZKN1qX3Bhq40fMJOngYikH6CmIi9HfvIw+zi+rlBcRbl5zQ0
-	TEcg==
-X-Gm-Message-State: ALoCoQkDh9iomjol8fAug25rWlYqbnT9enYOu4m5rDv83DJc28kYTkmAZq5AXCWa0ouO5epfGa5WIRACp/6ArlKrLTuCZFewuQ==
-MIME-Version: 1.0
-X-Received: by 10.25.137.194 with SMTP id l185mr31710368lfd.41.1452616878996; 
-	Tue, 12 Jan 2016 08:41:18 -0800 (PST)
-Sender: federicobriata@gmail.com
-Received: by 10.112.9.200 with HTTP; Tue, 12 Jan 2016 08:41:18 -0800 (PST)
-In-Reply-To: <loom.20151219T103721-415@post.gmane.org>
-References: <CA+KKcbkzeEsDO63iNESUbDCAQD7R41mTzPAN65RkbFNMuq3+zA@mail.gmail.com>
-	<loom.20151219T103721-415@post.gmane.org>
-Date: Tue, 12 Jan 2016 17:41:18 +0100
-X-Google-Sender-Auth: hqwugIfoyQwP_CuniTZ2h4GOAVU
-Message-ID: <CA+KKcbk22dX6RaBZ2FRh7BNcNeo4aKm5Z13EFuJowGwMEwjJUg@mail.gmail.com>
-From: Federico Pietro Briata <federico@briata.org>
-To: Stef <Stefboerrigter@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-java] openjdk-8 fail to build
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D71CE00AAF
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 09:00:20 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Jan 2016 08:59:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.20,558,1444719600"; d="scan'208";a="859040307"
+Received: from linux.intel.com ([10.23.219.25])
+	by orsmga001.jf.intel.com with ESMTP; 12 Jan 2016 08:59:54 -0800
+Received: from mbabyjoh-mobl.fi.intel.com (mbabyjoh-mobl.fi.intel.com
+	[10.237.72.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id A95D16A4002
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 09:47:50 -0800 (PST)
+From: "Maxin B. John" <maxin.john@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 12 Jan 2016 19:02:01 +0200
+Message-Id: <1452618121-6032-1-git-send-email-maxin.john@intel.com>
+X-Mailer: git-send-email 2.4.0
+Subject: [PATCH] alsa-state: remove beagleboard configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,260 +43,688 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 16:41:25 -0000
-Content-Type: multipart/alternative; boundary=001a113fb45c114afe052925b9ba
+X-List-Received-Date: Tue, 12 Jan 2016 17:00:22 -0000
 
---001a113fb45c114afe052925b9ba
-Content-Type: text/plain; charset=UTF-8
+Purging beagleboard related configuration.
 
-Hi Stef,
-Thanks, I've tried to apply that patch and also
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=527b28c10955daf0387597020d69593ce24bcaa4
+Signed-off-by: Maxin B. John <maxin.john@intel.com>
+---
+ .../recipes-bsp/alsa-state/alsa-state.bbappend     |   1 -
+ .../alsa-state/alsa-state/beagleboard/asound.state | 656 ---------------------
+ 2 files changed, 657 deletions(-)
+ delete mode 100644 meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
+ delete mode 100644 meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
 
-and now I'm getting this:
+diff --git a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend b/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
+deleted file mode 100644
+index 72d991c..0000000
+--- a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state b/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
+deleted file mode 100644
+index f924491..0000000
+--- a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
++++ /dev/null
+@@ -1,656 +0,0 @@
+-state.omap3beagle {
+-	control.1 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 'Option 2 (voice/audio)'
+-		comment.item.1 'Option 1 (audio)'
+-		iface MIXER
+-		name 'Codec Operation Mode'
+-		value 'Option 1 (audio)'
+-	}
+-	control.2 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 63'
+-		comment.dbmin -6300
+-		comment.dbmax 0
+-		iface MIXER
+-		name 'DAC1 Digital Fine Playback Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.3 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 63'
+-		comment.dbmin -6300
+-		comment.dbmax 0
+-		iface MIXER
+-		name 'DAC2 Digital Fine Playback Volume'
+-		value.0 50
+-		value.1 50
+-	}
+-	control.4 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 2'
+-		comment.dbmin 0
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC1 Digital Coarse Playback Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.5 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 2'
+-		comment.dbmin 0
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC2 Digital Coarse Playback Volume'
+-		value.0 2
+-		value.1 2
+-	}
+-	control.6 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 18'
+-		comment.dbmin -2400
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC1 Analog Playback Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.7 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 18'
+-		comment.dbmin -2400
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC2 Analog Playback Volume'
+-		value.0 15
+-		value.1 15
+-	}
+-	control.8 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 2
+-		iface MIXER
+-		name 'DAC1 Analog Playback Switch'
+-		value.0 false
+-		value.1 false
+-	}
+-	control.9 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 2
+-		iface MIXER
+-		name 'DAC2 Analog Playback Switch'
+-		value.0 true
+-		value.1 true
+-	}
+-	control.10 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 49'
+-		comment.dbmin -3700
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC Voice Digital Downlink Volume'
+-		value 0
+-	}
+-	control.11 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 18'
+-		comment.dbmin -2400
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'DAC Voice Analog Downlink Volume'
+-		value 18
+-	}
+-	control.12 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'DAC Voice Analog Downlink Switch'
+-		value false
+-	}
+-	control.13 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 3'
+-		comment.dbmin -1200
+-		comment.dbmax 600
+-		iface MIXER
+-		name 'PreDriv Playback Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.14 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 3'
+-		comment.dbmin -1200
+-		comment.dbmax 600
+-		iface MIXER
+-		name 'Headset Playback Volume'
+-		value.0 3
+-		value.1 3
+-	}
+-	control.15 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 3'
+-		comment.dbmin -1200
+-		comment.dbmax 600
+-		iface MIXER
+-		name 'Carkit Playback Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.16 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 3'
+-		comment.dbmin -600
+-		comment.dbmax 1200
+-		iface MIXER
+-		name 'Earpiece Playback Volume'
+-		value 0
+-	}
+-	control.17 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 31'
+-		comment.dbmin 0
+-		comment.dbmax 3100
+-		iface MIXER
+-		name 'TX1 Digital Capture Volume'
+-		value.0 12
+-		value.1 12
+-	}
+-	control.18 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 31'
+-		comment.dbmin 0
+-		comment.dbmax 3100
+-		iface MIXER
+-		name 'TX2 Digital Capture Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.19 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 2
+-		comment.range '0 - 5'
+-		comment.dbmin 0
+-		comment.dbmax 3000
+-		iface MIXER
+-		name 'Analog Capture Volume'
+-		value.0 0
+-		value.1 0
+-	}
+-	control.20 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 'Voice high priority'
+-		comment.item.1 'HiFi high priority'
+-		iface MIXER
+-		name 'AVADC Clock Priority'
+-		value 'Voice high priority'
+-	}
+-	control.21 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 '27/20/14 ms'
+-		comment.item.1 '55/40/27 ms'
+-		comment.item.2 '109/81/55 ms'
+-		comment.item.3 '218/161/109 ms'
+-		comment.item.4 '437/323/218 ms'
+-		comment.item.5 '874/645/437 ms'
+-		comment.item.6 '1748/1291/874 ms'
+-		comment.item.7 '3495/2581/1748 ms'
+-		iface MIXER
+-		name 'HS ramp delay'
+-		value '27/20/14 ms'
+-	}
+-	control.22 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 'Vibra H-bridge direction'
+-		comment.item.1 'Audio data MSB'
+-		iface MIXER
+-		name 'Vibra H-bridge mode'
+-		value 'Vibra H-bridge direction'
+-	}
+-	control.23 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 'Positive polarity'
+-		comment.item.1 'Negative polarity'
+-		iface MIXER
+-		name 'Vibra H-bridge direction'
+-		value 'Positive polarity'
+-	}
+-	control.24 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Right Sub Mic Capture Switch'
+-		value false
+-	}
+-	control.25 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Right AUXR Capture Switch'
+-		value true
+-	}
+-	control.26 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Left Main Mic Capture Switch'
+-		value false
+-	}
+-	control.27 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Left Headset Mic Capture Switch'
+-		value false
+-	}
+-	control.28 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Left AUXL Capture Switch'
+-		value true
+-	}
+-	control.29 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Analog Left Carkit Mic Capture Switch'
+-		value false
+-	}
+-	control.30 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 Analog
+-		comment.item.1 Digimic1
+-		iface MIXER
+-		name 'TX2 Capture Route'
+-		value Analog
+-	}
+-	control.31 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 Analog
+-		comment.item.1 Digimic0
+-		iface MIXER
+-		name 'TX1 Capture Route'
+-		value Analog
+-	}
+-	control.32 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 'Local vibrator'
+-		comment.item.1 Audio
+-		iface MIXER
+-		name 'Vibra Route'
+-		value 'Local vibrator'
+-	}
+-	control.33 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 AudioL1
+-		comment.item.1 AudioR1
+-		comment.item.2 AudioL2
+-		comment.item.3 AudioR2
+-		iface MIXER
+-		name 'Vibra Mux'
+-		value AudioL1
+-	}
+-	control.34 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HandsfreeR Switch'
+-		value false
+-	}
+-	control.35 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 Voice
+-		comment.item.1 AudioR1
+-		comment.item.2 AudioR2
+-		comment.item.3 AudioL2
+-		iface MIXER
+-		name 'HandsfreeR Mux'
+-		value Voice
+-	}
+-	control.36 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HandsfreeL Switch'
+-		value false
+-	}
+-	control.37 {
+-		comment.access 'read write'
+-		comment.type ENUMERATED
+-		comment.count 1
+-		comment.item.0 Voice
+-		comment.item.1 AudioL1
+-		comment.item.2 AudioL2
+-		comment.item.3 AudioR2
+-		iface MIXER
+-		name 'HandsfreeL Mux'
+-		value Voice
+-	}
+-	control.38 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitR Mixer Voice'
+-		value false
+-	}
+-	control.39 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitR Mixer AudioR1'
+-		value false
+-	}
+-	control.40 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitR Mixer AudioR2'
+-		value false
+-	}
+-	control.41 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitL Mixer Voice'
+-		value false
+-	}
+-	control.42 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitL Mixer AudioL1'
+-		value false
+-	}
+-	control.43 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'CarkitL Mixer AudioL2'
+-		value false
+-	}
+-	control.44 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetR Mixer Voice'
+-		value false
+-	}
+-	control.45 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetR Mixer AudioR1'
+-		value false
+-	}
+-	control.46 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetR Mixer AudioR2'
+-		value true
+-	}
+-	control.47 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetL Mixer Voice'
+-		value false
+-	}
+-	control.48 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetL Mixer AudioL1'
+-		value false
+-	}
+-	control.49 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'HeadsetL Mixer AudioL2'
+-		value true
+-	}
+-	control.50 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveR Mixer Voice'
+-		value false
+-	}
+-	control.51 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveR Mixer AudioR1'
+-		value false
+-	}
+-	control.52 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveR Mixer AudioR2'
+-		value false
+-	}
+-	control.53 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveR Mixer AudioL2'
+-		value false
+-	}
+-	control.54 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveL Mixer Voice'
+-		value false
+-	}
+-	control.55 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveL Mixer AudioL1'
+-		value false
+-	}
+-	control.56 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveL Mixer AudioL2'
+-		value false
+-	}
+-	control.57 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'PredriveL Mixer AudioR2'
+-		value false
+-	}
+-	control.58 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Earpiece Mixer Voice'
+-		value false
+-	}
+-	control.59 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Earpiece Mixer AudioL1'
+-		value false
+-	}
+-	control.60 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Earpiece Mixer AudioL2'
+-		value false
+-	}
+-	control.61 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Earpiece Mixer AudioR1'
+-		value false
+-	}
+-	control.62 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 41'
+-		comment.dbmin -5100
+-		comment.dbmax -1000
+-		iface MIXER
+-		name 'Voice Digital Loopback Volume'
+-		value 0
+-	}
+-	control.63 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 7'
+-		comment.dbmin -2400
+-		comment.dbmax 0
+-		iface MIXER
+-		name 'Right Digital Loopback Volume'
+-		value 0
+-	}
+-	control.64 {
+-		comment.access 'read write'
+-		comment.type INTEGER
+-		comment.count 1
+-		comment.range '0 - 7'
+-		comment.dbmin -2400
+-		comment.dbmax 0
+-		iface MIXER
+-		name 'Left Digital Loopback Volume'
+-		value 0
+-	}
+-	control.65 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Voice Analog Loopback Switch'
+-		value false
+-	}
+-	control.66 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Left2 Analog Loopback Switch'
+-		value false
+-	}
+-	control.67 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Right2 Analog Loopback Switch'
+-		value false
+-	}
+-	control.68 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Left1 Analog Loopback Switch'
+-		value false
+-	}
+-	control.69 {
+-		comment.access 'read write'
+-		comment.type BOOLEAN
+-		comment.count 1
+-		iface MIXER
+-		name 'Right1 Analog Loopback Switch'
+-		value false
+-	}
+-}
+-- 
+2.4.0
 
-ERROR: Function failed: do_compile (log file is located at
-/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
-ERROR: Logfile of failure stored in:
-/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889
-Log data follows:
-| DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc',
-'bit-64', 'x86_64-linux', 'common']
-| DEBUG: Executing shell function do_compile
-| NOTE: make
-OE_CFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
--O2 -pipe -DHEADLESS=true
-OE_CPPFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
--DHEADLESS=true
-OE_CXXFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
--O2 -pipe -DHEADLESS=true
-OE_LDFLAGS=-L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
--L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
--Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
--Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
--Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
--Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
--Wl,-O1 BUILD_HEADLESS_ONLY=1 BUILD_HEADLESS=true BUILD_SOUNDLESS_ONLY=1
-X11_NOT_NEEDED=1 CUPS_NOT_NEEDED=1 ALSA_NOT_NEEDED=1 PULSE_NOT_NEEDED=1
-MAKE_VERBOSE=y VERBOSE=-s LOG_LEVEL=trace QUIETLY= images
-|
-/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile:27:
-*** Too many open files.  Stop.
-| ERROR: oe_runmake failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
-ERROR: Task 207
-(/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
-openjdk-8-native_72b05.bb, do_compile) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1469 tasks of which 1237 didn't need to be
-rerun and 1 failed.
-No currently running tasks (1469 of 1483)
 
-Summary: 1 task failed:
-  /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
-openjdk-8-native_72b05.bb, do_compile
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
-thanks and regards
-federico
-
-2015-12-19 10:38 GMT+01:00 Stef <Stefboerrigter@gmail.com>:
-
-> Federico Pietro Briata <federicobriata@...> writes:
->
-> >
-> >
-> >
-> > Hi All,
-> > I'm trying to build openjdk-8 but I'm stuck.my current setup does not
-> define anything for:#PREFERRED_PROVIDER_virtual/java-
-> native#PREFERRED_PROVIDER_virtual/javac-native
-> >
-> > follow the log error
-> >
-> >
-> >
-> > ERROR: Function failed: do_configure (log file is located at
-> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
-> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:
-> Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-
-> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-
-> r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing python
-> function sysroot_cleansstate| DEBUG: Python function sysroot_cleansstate
-> finished| DEBUG: SITE files ['endian-little', 'common-linux', 'common-
-> glibc', 'bit-64', 'x86_64-linux', 'common']| DEBUG: Executing shell
-> function autotools_preconfigure| DEBUG: Shell function
-> autotools_preconfigure finished| DEBUG: Executing python function
-> autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals
-> finished| DEBUG: Executing shell function do_configure| ERROR: no
-> configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-
-> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-
-> e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|
-> ERROR: Function failed: do_configure (log file is located at
-> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
-> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task
-> 146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
-> core/openjdk/openjdk-8-native_72b05.bb, do_configure) failed with exit
-> code '1'NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn't
-> need to be rerun and 1 failed.No currently running tasks (1139 of
-> 1150)Summary: 1 task failed:
-> /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
-> core/openjdk/openjdk-8-native_72b05.bb, do_configure
-> >
-> > thanks and regards
-> >
-> > Federico
-> >
-> >
-> >
-> >
-> >
->
-> Try to apply this patch to meta layer:
-> https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80749cd43c
-> 1e19a40
->
-> It worked for me
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---001a113fb45c114afe052925b9ba
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>Hi Stef,<br></div>Thanks, I&#39;ve tri=
-ed to apply that patch and also<br><a href=3D"http://git.yoctoproject.org/c=
-git.cgi/poky/commit/?id=3D527b28c10955daf0387597020d69593ce24bcaa4">http://=
-git.yoctoproject.org/cgit.cgi/poky/commit/?id=3D527b28c10955daf0387597020d6=
-9593ce24bcaa4</a><br><br></div>and now I&#39;m getting this:<br><br>ERROR: =
-Function failed: do_compile (log file is located at /home/federico/yocto/im=
-x6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-=
-native/72b05-r0/temp/log.do_compile.15889)<br>ERROR: Logfile of failure sto=
-red in: /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-egli=
-bc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889<br=
->Log data follows:<br>| DEBUG: SITE files [&#39;endian-little&#39;, &#39;co=
-mmon-linux&#39;, &#39;common-glibc&#39;, &#39;bit-64&#39;, &#39;x86_64-linu=
-x&#39;, &#39;common&#39;]<br>| DEBUG: Executing shell function do_compile<b=
-r>| NOTE: make OE_CFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/build-Ope=
-nJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -O2 -pipe -=
-DHEADLESS=3Dtrue OE_CPPFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/build=
--OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -DHEADL=
-ESS=3Dtrue OE_CXXFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/build-OpenJ=
-DK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -O2 -pipe -DH=
-EADLESS=3Dtrue OE_LDFLAGS=3D-L/home/federico/yocto/imx6/R6.0/build-OpenJDK8=
--imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib -L/home/federico/yoc=
-to/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/l=
-ib -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6qu=
-ad/tmp-eglibc/sysroots/x86_64-linux/usr/lib -Wl,-rpath-link,/home/federico/=
-yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linu=
-x/lib -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad=
-/tmp-eglibc/sysroots/x86_64-linux/usr/lib -Wl,-rpath,/home/federico/yocto/i=
-mx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib -=
-Wl,-O1 BUILD_HEADLESS_ONLY=3D1 BUILD_HEADLESS=3Dtrue BUILD_SOUNDLESS_ONLY=
-=3D1 X11_NOT_NEEDED=3D1 CUPS_NOT_NEEDED=3D1 ALSA_NOT_NEEDED=3D1 PULSE_NOT_N=
-EEDED=3D1 MAKE_VERBOSE=3Dy VERBOSE=3D-s LOG_LEVEL=3Dtrace QUIETLY=3D images=
-<br>| /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc=
-/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile:27=
-: *** Too many open files.=C2=A0 Stop.<br>| ERROR: oe_runmake failed<br>| W=
-ARNING: exit code 1 from a shell command.<br>| ERROR: Function failed: do_c=
-ompile (log file is located at /home/federico/yocto/imx6/R6.0/build-OpenJDK=
-8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/=
-log.do_compile.15889)<br>ERROR: Task 207 (/home/federico/yocto/imx6/R6.0/so=
-urces/meta-java/recipes-core/openjdk/<a href=3D"http://openjdk-8-native_72b=
-05.bb">openjdk-8-native_72b05.bb</a>, do_compile) failed with exit code &#3=
-9;1&#39;<br>NOTE: Tasks Summary: Attempted 1469 tasks of which 1237 didn&#3=
-9;t need to be rerun and 1 failed.<br>No currently running tasks (1469 of 1=
-483)<br><br>Summary: 1 task failed:<br>=C2=A0 /home/federico/yocto/imx6/R6.=
-0/sources/meta-java/recipes-core/openjdk/<a href=3D"http://openjdk-8-native=
-_72b05.bb">openjdk-8-native_72b05.bb</a>, do_compile<br>Summary: There was =
-1 ERROR message shown, returning a non-zero exit code.<br><br></div>thanks =
-and regards<br></div>federico<br></div><div class=3D"gmail_extra"><br><div =
-class=3D"gmail_quote">2015-12-19 10:38 GMT+01:00 Stef <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:Stefboerrigter@gmail.com" target=3D"_blank">Stefboerrigt=
-er@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=
-=3D"">Federico Pietro Briata &lt;federicobriata@...&gt; writes:<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Hi All,<br>
-</span>&gt; I&#39;m trying to build openjdk-8 but I&#39;m stuck.my current =
-setup does not<br>
-define anything for:#PREFERRED_PROVIDER_virtual/java-<br>
-<span class=3D"">native#PREFERRED_PROVIDER_virtual/javac-native<br>
-&gt;<br>
-&gt; follow the log error<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; ERROR: Function failed: do_configure (log file is located at<br>
-/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
-linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:<br>
-Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-<br=
->
-mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-<br>
-</span>r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing py=
-thon<br>
-<span class=3D"">function sysroot_cleansstate| DEBUG: Python function sysro=
-ot_cleansstate<br>
-finished| DEBUG: SITE files [&#39;endian-little&#39;, &#39;common-linux&#39=
-;, &#39;common-<br>
-glibc&#39;, &#39;bit-64&#39;, &#39;x86_64-linux&#39;, &#39;common&#39;]| DE=
-BUG: Executing shell<br>
-function autotools_preconfigure| DEBUG: Shell function<br>
-autotools_preconfigure finished| DEBUG: Executing python function<br>
-autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals<br>
-finished| DEBUG: Executing shell function do_configure| ERROR: no<br>
-configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-<br>
-mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-<br>
-</span>e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|<=
-br>
-<span class=3D"">ERROR: Function failed: do_configure (log file is located =
-at<br>
-/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
-linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task<br>
-146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
-core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
-" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure) failed wit=
-h exit<br>
-code &#39;1&#39;NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn&=
-#39;t<br>
-</span>need to be rerun and 1 failed.No currently running tasks (1139 of<br=
->
-<span class=3D"">1150)Summary: 1 task failed:=C2=A0<br>
-/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
-core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
-" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure<br>
-&gt;<br>
-&gt; thanks and regards<br>
-&gt;<br>
-&gt; Federico<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-<br>
-</span>Try to apply this patch to meta layer:<br>
-<a href=3D"https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80=
-749cd43c
-1e19a40" rel=3D"noreferrer" target=3D"_blank">https://github.com/rehsack/po=
-ky/commit/65cdad40f2717b85892e12c80749cd43c<br>
-1e19a40</a><br>
-<br>
-It worked for me<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div>
-
---001a113fb45c114afe052925b9ba--
