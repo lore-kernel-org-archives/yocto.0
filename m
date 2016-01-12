@@ -1,65 +1,48 @@
-Return-Path: <j.madieu@expemb.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39DADE00903; Mon, 11 Jan 2016 17:55:19 -0800 (PST)
+	id A05ECE00A27; Mon, 11 Jan 2016 22:51:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.198 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,UC_GIBBERISH_OBFU autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.227 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f198.google.com (mail-ig0-f198.google.com
-	[209.85.213.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A6EE0086B
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 17:55:15 -0800 (PST)
-Received: by mail-ig0-f198.google.com with SMTP id mw1so380038108igb.0
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 17:55:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=expemb-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=mIqsaqV8PKcaVX4rzHPKQJoKnl8ij310FtSzLIt6GVg=;
-	b=waKqtAbNhXCM8fPEQw6y6W0qzeEhNj4wVmPlONhVfR2oqRmHmsAyWSS4UpwRVLuHFg
-	o17ZvhOQYWbk+Hirg1W+IESakX6OiLxba7w5NWik3rt3+cxuANEmuENvdNDHACNkTisF
-	+Oa/gZS0/Slq14iPcBy5ujLjst5Ad4zD517uiYQfvLLIWfALOjknGtIQDBCBaup+Jhlx
-	S/4Ru2+0lzMck0adS+q0jsEQnanD8/nlHUXbYVMoA06rvtdZmxBoGaSRUflSMLE8mqka
-	tJdsU8Y0e26x4jBuT2HtwCElBGRVuRhQL08Nnq2WlenN/gqIVEsR8RmKlZ2vw0LhFHH3
-	ftSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=mIqsaqV8PKcaVX4rzHPKQJoKnl8ij310FtSzLIt6GVg=;
-	b=DuAfXcqpvytUq4Y3cSZfBdEMO2nHNVQRxc2U54C/BCBYkS6D2B1XQh3LPnzPWG0qzA
-	T3Oz0bU4KOSnQ3FfStE4BKNFSM5j+SQ4aR6HWW3WiHmEuLo6SmtQalmvPU81m8AexlOI
-	uyNKChI7mYooWGBNB6u3WG1t7qfY+cnCOAColLS1vYwqpXA6TmbdxwwikO2/7PmDPqOk
-	gaH8jIsQiLjBCOT7T7eeXqBHVQx4cqaDy7k1iFInGBql6LgLhMg3nlovhsEEoW8yk61j
-	glLNBeYyI+NDaABGuMJI26BH5etMkcJ02ulZj/RLz/Aysy1er0l1jcUkQ2kFDK57WCT7
-	SFqw==
-X-Gm-Message-State: ALoCoQkGYzzwtkEsiHf+JFEGc+Y+LrFZAvLsPAj6XLyCCUrjXldTErtWNn3RW7mLjse7x6pUw6RsP0EAugy2yXKRo7UPO4olIg==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
+	*      word"
+Received: from bin-vsp-out-01.atm.binero.net (vsp-unauthed02.binero.net
+	[195.74.38.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00F7EE009D7
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 22:51:29 -0800 (PST)
+X-Halon-ID: fd8f3bb0-b8f8-11e5-aee3-005056917a89
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Tue, 12 Jan 2016 07:52:05 +0100 (CET)
 MIME-Version: 1.0
-X-Received: by 10.182.148.39 with SMTP id tp7mr55565764obb.87.1452563714768;
-	Mon, 11 Jan 2016 17:55:14 -0800 (PST)
-Received: by 10.202.46.19 with HTTP; Mon, 11 Jan 2016 17:55:14 -0800 (PST)
-In-Reply-To: <20160111203414.GB10203@resin>
-References: <CAK18fxGB5uiXe7LigW3V9TEA2EJFQtsZTt-9yJ=rNwLzdzKY0w@mail.gmail.com>
-	<1452527171-26371-1-git-send-email-j.madieu@expemb.com>
-	<20160111203414.GB10203@resin>
-Date: Tue, 12 Jan 2016 02:55:14 +0100
-Message-ID: <CAJzgOf+jeDLnwB7Jg4UkA6+KX0JaUU0qRGB7m4zK2ppg2y_Lgg@mail.gmail.com>
-From: john madieu <j.madieu@expemb.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v2 1/2] qt5: fixed raspberrypi support
+Date: Tue, 12 Jan 2016 07:51:25 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Andrei Gherzan <andrei@gherzan.ro>, Khem Raj <raj.khem@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <20160111203227.GA10203@resin>
+References: <1452530987-994-1-git-send-email-petter@technux.se>
+	<1452530987-994-5-git-send-email-petter@technux.se>
+	<7564A308-E4D5-4B05-B03A-95A2B37A5F59@gmail.com>
+	<20160111203227.GA10203@resin>
+Message-ID: <6e08071c20fb36e6744479e96267006c@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 4/5] pitft: Add basic support for PiTFT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,108 +51,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 01:55:19 -0000
+X-List-Received-Date: Tue, 12 Jan 2016 06:51:33 -0000
+Content-Type: multipart/alternative;
+	boundary="=_008ecd1a326f743ae838ce1d5f7aa478"
+
+--=_008ecd1a326f743ae838ce1d5f7aa478
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Jan 11, 2016 at 9:34 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Mon, Jan 11, 2016 at 04:46:10PM +0100, John Madieu wrote:
->> Because EGL properties were not defined properly, we always had the following error
->>     make: *** [egl] Error 1
->>     | EGL disabled.
->>     |  The EGL functionality test failed; EGL is required by some QPA plugins to manage cont
->>     |  You might need to modify the include and library search paths by editing QMAKE_INCDIR
->>
->> This bbappend definitively fix the bug
->>
->> Signed-off-by: John Madieu <j.madieu@expemb.com>
->> ---
->>  qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 29 +++++++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>  create mode 100644 qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
->>
->> diff --git a/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
->> new file mode 100644
->> index 0000000..8b77bfa
->> --- /dev/null
->> +++ b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
->> @@ -0,0 +1,29 @@
->> +
->> +do_configure_prepend_rpi() {
->> +
->> +     sed -i 's!load(qt_config)!!' ${S}/mkspecs/linux-oe-g++/qmake.conf
->> +    if ! grep -q '^EGLFS_' ${S}/mkspecs/linux-oe-g++/qmake.conf; then
->> +        cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
->> +QMAKE_INCDIR_EGL = \$\$[QT_SYSROOT]${includedir}/interface/vcos/pthreads \$\$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
->> +QMAKE_INCDIR_OPENGL_ES2 = \$\${QMAKE_INCDIR_EGL}
->> +QMAKE_LIBS_EGL = -lEGL -lGLESv2
->> +EOF
->> +
->> +        if [ -d ${S}/src/plugins/platforms/eglfs/deviceintegration/eglfs_brcm ]; then
->> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
->> +EGLFS_DEVICE_INTEGRATION = eglfs_brcm
->> +EOF
->> +        else
->> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
->> +EGLFS_PLATFORM_HOOKS_LIBS = -lbcm_host
->> +EGLFS_PLATFORM_HOOKS_SOURCES = \$\$PWD/../devices/linux-rasp-pi-g++/qeglfshooks_pi.cpp
->> +EOF
->> +        fi
->> +    fi
->> +    cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
->> +
->> +
->> +load(qt_config)
->> +
->> +EOF
->> +}
->
+ 
 
-> qtbase fails at compile time:
-Sorry for that
+2016-01-11 21:32 skrev Andrei Gherzan: 
 
-> | compiling .moc/moc_qeglplatformcursor_p.cpp
-> |
-> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:
-> In member function 'virtual QRect
-> QGtkStyle::subControlRect(QStyle::ComplexControl, const QStyleOptionComplex*,
-> QStyle::SubControl, const QWidget*) const':
-> |
-> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:24:
-> error: 'isInstanceOf' is not a member of 'QStyleHelper'
-> |              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
-> QAccessible::Grouping)) {
-> |                         ^
-> |
-> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:74:
-> error: 'QAccessible' has not been declared
-> |              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
-> QAccessible::Grouping)) {
-> |                                                                           ^
-> | Makefile:53048: recipe for target '.obj/qgtkstyle.o' failed
-> | make[2]: *** [.obj/qgtkstyle.o] Error 1
-> | make[2]: *** Waiting for unfinished jobs....
->
->
-> How is this supposed to be tested?
+> On Mon, Jan 11, 2016 at
+09:55:43AM -0800, Khem Raj wrote:
+> 
+>>> On Jan 11, 2016, at 8:49 AM,
+Petter Mabäcker <petter@technux.se> wrote: Add basic support for PiTFT
+display by using device-trees. In order get it working below
+configurations must be active in local.conf: MACHINEOVERRIDES .=
+":pitft"
+>> Using MACHINE_FEATURES will be more appropriate term.
+Effects are same.
+> 
+> Indeed. I support MACHINE_FEATURE usage here.
 
-I finaly reproduced the same error.
+I
+agree that the term MACHINE_FEATURES is better. However since
+MACHINE_FEATURES isn't included in the OVERRIDES variable I will not be
+able to use the task pre/appends that was the reason I used
+MACHINEOVERRIDES in the first place. The reason I want to use overrides
+in this case is since I think it makes the code easier to read and
+understand for the user (in this particular case at least). I can of
+course change to just using variables (like in many other optional
+features in meta-raspberrypi) or change to MACHINE_FEATURES. But I'm not
+sure how I can solve for example the below part in a effective and nice
+way: 
 
-I did not have it because during my compilation, I removed "x11"
-from DISTRO_FEATURES. If you look at qtbase_git.bb, you can see that
-some of PACKAGECONFIG_X11 features (gtkstyle) depend on "-accessibility" flag.
+xserver-xf86-config_0.1.bbappend 
 
-so I added that flags according to the presence or not of x11 in DISTRO_FEATURES
-I thus made several test with or without x11, in DISTRO_FEATURES .
-All succeeded.
+FILESEXTRAPATHS_prepend :=
+"${THISDIR}/${PN}:"
 
-The last patch will be plug and play. I'll tag it v3 and everything
-should works fine now.
-But before, I still have some test to do (with mixed distro_features).
-I will pay more attention this time.
+SRC_URI_append_rpi = "
+file://xorg.conf.d/10-evdev.conf "
+SRC_URI_append_pitft = "
+file://xorg.conf.d/99-pitft.conf " <---------------- My
+change....
+
+do_install_append_rpi () {
+ install -d
+${D}/${sysconfdir}/X11/xorg.conf.d/
+ install -m 0644
+${WORKDIR}/xorg.conf.d/*
+${D}/${sysconfdir}/X11/xorg.conf.d/
+}
+
+FILES_${PN}_rpi +=
+"${sysconfdir}/X11/xorg.conf
+${sysconfdir}/X11/xorg.conf.d/*"
+------------------- end
+----------------------- 
+
+But if you have any good suggestions about how
+to solve this, please enlighten me =) 
+
+BR Petter 
+
+> -- Andrei Gherzan
 
 
-> --
-> Andrei Gherzan
--- 
-John MADIEU | j.madieu@expemb.com |
+--=_008ecd1a326f743ae838ce1d5f7aa478
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2016-01-11 21:32 skrev Andrei Gherzan:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On Mon, Jan 11, 2016 at 09:55:43AM -0800, Khem Raj wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">On Jan 11, 2016, at 8:49 AM, Petter M=
+ab&auml;cker &lt;<a href=3D"mailto:petter@technux.se">petter@technux.se</a>=
+&gt; wrote: Add basic support for PiTFT display by using device-trees. In o=
+rder get it working below configurations must be active in local.conf: MACH=
+INEOVERRIDES .=3D ":pitft&rdquo;</blockquote>
+Using MACHINE_FEATURES will be more appropriate term. Effects are same.</bl=
+ockquote>
+<pre>Indeed. I support MACHINE_FEATURE usage here.
+</pre>
+</blockquote>
+<p>I agree that the term MACHINE_FEATURES is better. However since MACHINE_=
+FEATURES isn't included in the OVERRIDES variable I will not be able to use=
+ the task pre/appends that was the reason I used MACHINEOVERRIDES in the fi=
+rst place. The reason I want to use overrides in this case is since I think=
+ it makes the code easier to read and understand for the user (in this part=
+icular case at least). I can of course change to just using variables (like=
+ in many other optional features in meta-raspberrypi) or change to MACHINE_=
+FEATURES. But I'm not sure how I can solve for example the below part in a =
+effective and nice way:</p>
+<p>xserver-xf86-config_0.1.bbappend</p>
+<p>FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"<br /><br />SRC_URI_appe=
+nd_rpi =3D " file://xorg.conf.d/10-evdev.conf "<br />SRC_URI_append_pitft =
+=3D " file://xorg.conf.d/99-pitft.conf "&nbsp;&nbsp; &lt;---------------- M=
+y change....<br /><br />do_install_append_rpi () {<br />&nbsp;&nbsp;&nbsp; =
+install -d ${D}/${sysconfdir}/X11/xorg.conf.d/<br />&nbsp;&nbsp;&nbsp; inst=
+all -m 0644 ${WORKDIR}/xorg.conf.d/* ${D}/${sysconfdir}/X11/xorg.conf.d/<br=
+ />}<br /><br />FILES_${PN}_rpi +=3D "${sysconfdir}/X11/xorg.conf ${sysconf=
+dir}/X11/xorg.conf.d/*"<br />------------------- end ----------------------=
+-</p>
+<p>&nbsp;</p>
+<p>But if you have any good suggestions about how to solve this, please enl=
+ighten me =3D) </p>
+<p>BR Petter</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">-- Andrei Gherzan</blockquote>
+</body></html>
+
+--=_008ecd1a326f743ae838ce1d5f7aa478--
