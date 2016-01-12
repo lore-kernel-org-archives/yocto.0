@@ -1,37 +1,37 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06AAFE00AD7; Tue, 12 Jan 2016 09:00:22 -0800 (PST)
+	id 8701AE00AD7; Tue, 12 Jan 2016 10:26:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D71CE00AAF
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 09:00:20 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Jan 2016 08:59:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.20,558,1444719600"; d="scan'208";a="859040307"
-Received: from linux.intel.com ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 12 Jan 2016 08:59:54 -0800
-Received: from mbabyjoh-mobl.fi.intel.com (mbabyjoh-mobl.fi.intel.com
-	[10.237.72.71])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id A95D16A4002
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 09:47:50 -0800 (PST)
-From: "Maxin B. John" <maxin.john@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 12 Jan 2016 19:02:01 +0200
-Message-Id: <1452618121-6032-1-git-send-email-maxin.john@intel.com>
-X-Mailer: git-send-email 2.4.0
-Subject: [PATCH] alsa-state: remove beagleboard configuration
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.25 listed in list.dnswl.org]
+Received: from DUB004-OMC3S16.hotmail.com (dub004-omc3s16.hotmail.com
+	[157.55.2.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8168E00AAF
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 10:26:00 -0800 (PST)
+Received: from DUB130-W9 ([157.55.2.8]) by DUB004-OMC3S16.hotmail.com over TLS
+	secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Tue, 12 Jan 2016 10:25:59 -0800
+X-TMN: [W8e3JFleNDPAdv65IcHYYeT8GBPeTLjW]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W9F5A8A3283B5751875E74DACA0@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 12 Jan 2016 18:25:59 +0000
+Importance: Normal
+MIME-Version: 1.0
+X-OriginalArrivalTime: 12 Jan 2016 18:25:59.0751 (UTC)
+	FILETIME=[AF89ED70:01D14D66]
+Subject: Live Image Behaviour
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,688 +43,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 17:00:22 -0000
+X-List-Received-Date: Tue, 12 Jan 2016 18:26:07 -0000
+Content-Type: multipart/alternative;
+	boundary="_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_"
 
-Purging beagleboard related configuration.
+--_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Maxin B. John <maxin.john@intel.com>
----
- .../recipes-bsp/alsa-state/alsa-state.bbappend     |   1 -
- .../alsa-state/alsa-state/beagleboard/asound.state | 656 ---------------------
- 2 files changed, 657 deletions(-)
- delete mode 100644 meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
- delete mode 100644 meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
+I was testing out a new image this afternoon and all was well until I fdisk=
+'d the partitions away on /dev/sda (with the live image booting from a usb =
+stick on /dev/sdc).
+After this the image stopped booting and started complaining about all sort=
+s of FAT errors on /dev/sda and did not mount the root file system.
+Nothing I could do to sort out this issue until I dd'd the live image onto =
+/dev/sda=2C which then booted from /dev/sda1.
+After this I could now also boot from /dev/sdc too but /media/realroot was =
+mounted on /dev/sda1.
+I renamed the root file system file on /dev/sda1=2C rebooted and now /media=
+/realroot was mounted on /dev/sdc1.
+All the time I was also able to boot the image fine in qemu.
+Regarding the install option on the EFI boot=2C initially it was offering t=
+o install on /dev/sdb but this changed to /dev/sda once I'd renamed the roo=
+t file system on /dev/sda.
+Anyway this suggests to me that the live image will preferentially mount a =
+root file system from /dev/sda in preference to the file on the boot device=
+.  This wasn't an issue after I followed through the 'install' option as it=
+ lays out the installation over two partitions without using a loop-back de=
+vice but the issue it had dealing with the 'corrupt' file system on /dev/sd=
+a may be significant.
+Regards=2CChris
+ 		 	   		  =
 
-diff --git a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend b/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
-deleted file mode 100644
-index 72d991c..0000000
---- a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-diff --git a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state b/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
-deleted file mode 100644
-index f924491..0000000
---- a/meta-yocto-bsp/recipes-bsp/alsa-state/alsa-state/beagleboard/asound.state
-+++ /dev/null
-@@ -1,656 +0,0 @@
--state.omap3beagle {
--	control.1 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 'Option 2 (voice/audio)'
--		comment.item.1 'Option 1 (audio)'
--		iface MIXER
--		name 'Codec Operation Mode'
--		value 'Option 1 (audio)'
--	}
--	control.2 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 63'
--		comment.dbmin -6300
--		comment.dbmax 0
--		iface MIXER
--		name 'DAC1 Digital Fine Playback Volume'
--		value.0 0
--		value.1 0
--	}
--	control.3 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 63'
--		comment.dbmin -6300
--		comment.dbmax 0
--		iface MIXER
--		name 'DAC2 Digital Fine Playback Volume'
--		value.0 50
--		value.1 50
--	}
--	control.4 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 2'
--		comment.dbmin 0
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC1 Digital Coarse Playback Volume'
--		value.0 0
--		value.1 0
--	}
--	control.5 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 2'
--		comment.dbmin 0
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC2 Digital Coarse Playback Volume'
--		value.0 2
--		value.1 2
--	}
--	control.6 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 18'
--		comment.dbmin -2400
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC1 Analog Playback Volume'
--		value.0 0
--		value.1 0
--	}
--	control.7 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 18'
--		comment.dbmin -2400
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC2 Analog Playback Volume'
--		value.0 15
--		value.1 15
--	}
--	control.8 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 2
--		iface MIXER
--		name 'DAC1 Analog Playback Switch'
--		value.0 false
--		value.1 false
--	}
--	control.9 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 2
--		iface MIXER
--		name 'DAC2 Analog Playback Switch'
--		value.0 true
--		value.1 true
--	}
--	control.10 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 49'
--		comment.dbmin -3700
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC Voice Digital Downlink Volume'
--		value 0
--	}
--	control.11 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 18'
--		comment.dbmin -2400
--		comment.dbmax 1200
--		iface MIXER
--		name 'DAC Voice Analog Downlink Volume'
--		value 18
--	}
--	control.12 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'DAC Voice Analog Downlink Switch'
--		value false
--	}
--	control.13 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 3'
--		comment.dbmin -1200
--		comment.dbmax 600
--		iface MIXER
--		name 'PreDriv Playback Volume'
--		value.0 0
--		value.1 0
--	}
--	control.14 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 3'
--		comment.dbmin -1200
--		comment.dbmax 600
--		iface MIXER
--		name 'Headset Playback Volume'
--		value.0 3
--		value.1 3
--	}
--	control.15 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 3'
--		comment.dbmin -1200
--		comment.dbmax 600
--		iface MIXER
--		name 'Carkit Playback Volume'
--		value.0 0
--		value.1 0
--	}
--	control.16 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 3'
--		comment.dbmin -600
--		comment.dbmax 1200
--		iface MIXER
--		name 'Earpiece Playback Volume'
--		value 0
--	}
--	control.17 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 31'
--		comment.dbmin 0
--		comment.dbmax 3100
--		iface MIXER
--		name 'TX1 Digital Capture Volume'
--		value.0 12
--		value.1 12
--	}
--	control.18 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 31'
--		comment.dbmin 0
--		comment.dbmax 3100
--		iface MIXER
--		name 'TX2 Digital Capture Volume'
--		value.0 0
--		value.1 0
--	}
--	control.19 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 2
--		comment.range '0 - 5'
--		comment.dbmin 0
--		comment.dbmax 3000
--		iface MIXER
--		name 'Analog Capture Volume'
--		value.0 0
--		value.1 0
--	}
--	control.20 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 'Voice high priority'
--		comment.item.1 'HiFi high priority'
--		iface MIXER
--		name 'AVADC Clock Priority'
--		value 'Voice high priority'
--	}
--	control.21 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 '27/20/14 ms'
--		comment.item.1 '55/40/27 ms'
--		comment.item.2 '109/81/55 ms'
--		comment.item.3 '218/161/109 ms'
--		comment.item.4 '437/323/218 ms'
--		comment.item.5 '874/645/437 ms'
--		comment.item.6 '1748/1291/874 ms'
--		comment.item.7 '3495/2581/1748 ms'
--		iface MIXER
--		name 'HS ramp delay'
--		value '27/20/14 ms'
--	}
--	control.22 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 'Vibra H-bridge direction'
--		comment.item.1 'Audio data MSB'
--		iface MIXER
--		name 'Vibra H-bridge mode'
--		value 'Vibra H-bridge direction'
--	}
--	control.23 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 'Positive polarity'
--		comment.item.1 'Negative polarity'
--		iface MIXER
--		name 'Vibra H-bridge direction'
--		value 'Positive polarity'
--	}
--	control.24 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Right Sub Mic Capture Switch'
--		value false
--	}
--	control.25 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Right AUXR Capture Switch'
--		value true
--	}
--	control.26 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Left Main Mic Capture Switch'
--		value false
--	}
--	control.27 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Left Headset Mic Capture Switch'
--		value false
--	}
--	control.28 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Left AUXL Capture Switch'
--		value true
--	}
--	control.29 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Analog Left Carkit Mic Capture Switch'
--		value false
--	}
--	control.30 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 Analog
--		comment.item.1 Digimic1
--		iface MIXER
--		name 'TX2 Capture Route'
--		value Analog
--	}
--	control.31 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 Analog
--		comment.item.1 Digimic0
--		iface MIXER
--		name 'TX1 Capture Route'
--		value Analog
--	}
--	control.32 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 'Local vibrator'
--		comment.item.1 Audio
--		iface MIXER
--		name 'Vibra Route'
--		value 'Local vibrator'
--	}
--	control.33 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 AudioL1
--		comment.item.1 AudioR1
--		comment.item.2 AudioL2
--		comment.item.3 AudioR2
--		iface MIXER
--		name 'Vibra Mux'
--		value AudioL1
--	}
--	control.34 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HandsfreeR Switch'
--		value false
--	}
--	control.35 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 Voice
--		comment.item.1 AudioR1
--		comment.item.2 AudioR2
--		comment.item.3 AudioL2
--		iface MIXER
--		name 'HandsfreeR Mux'
--		value Voice
--	}
--	control.36 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HandsfreeL Switch'
--		value false
--	}
--	control.37 {
--		comment.access 'read write'
--		comment.type ENUMERATED
--		comment.count 1
--		comment.item.0 Voice
--		comment.item.1 AudioL1
--		comment.item.2 AudioL2
--		comment.item.3 AudioR2
--		iface MIXER
--		name 'HandsfreeL Mux'
--		value Voice
--	}
--	control.38 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitR Mixer Voice'
--		value false
--	}
--	control.39 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitR Mixer AudioR1'
--		value false
--	}
--	control.40 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitR Mixer AudioR2'
--		value false
--	}
--	control.41 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitL Mixer Voice'
--		value false
--	}
--	control.42 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitL Mixer AudioL1'
--		value false
--	}
--	control.43 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'CarkitL Mixer AudioL2'
--		value false
--	}
--	control.44 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetR Mixer Voice'
--		value false
--	}
--	control.45 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetR Mixer AudioR1'
--		value false
--	}
--	control.46 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetR Mixer AudioR2'
--		value true
--	}
--	control.47 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetL Mixer Voice'
--		value false
--	}
--	control.48 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetL Mixer AudioL1'
--		value false
--	}
--	control.49 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'HeadsetL Mixer AudioL2'
--		value true
--	}
--	control.50 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveR Mixer Voice'
--		value false
--	}
--	control.51 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveR Mixer AudioR1'
--		value false
--	}
--	control.52 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveR Mixer AudioR2'
--		value false
--	}
--	control.53 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveR Mixer AudioL2'
--		value false
--	}
--	control.54 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveL Mixer Voice'
--		value false
--	}
--	control.55 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveL Mixer AudioL1'
--		value false
--	}
--	control.56 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveL Mixer AudioL2'
--		value false
--	}
--	control.57 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'PredriveL Mixer AudioR2'
--		value false
--	}
--	control.58 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Earpiece Mixer Voice'
--		value false
--	}
--	control.59 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Earpiece Mixer AudioL1'
--		value false
--	}
--	control.60 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Earpiece Mixer AudioL2'
--		value false
--	}
--	control.61 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Earpiece Mixer AudioR1'
--		value false
--	}
--	control.62 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 41'
--		comment.dbmin -5100
--		comment.dbmax -1000
--		iface MIXER
--		name 'Voice Digital Loopback Volume'
--		value 0
--	}
--	control.63 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 7'
--		comment.dbmin -2400
--		comment.dbmax 0
--		iface MIXER
--		name 'Right Digital Loopback Volume'
--		value 0
--	}
--	control.64 {
--		comment.access 'read write'
--		comment.type INTEGER
--		comment.count 1
--		comment.range '0 - 7'
--		comment.dbmin -2400
--		comment.dbmax 0
--		iface MIXER
--		name 'Left Digital Loopback Volume'
--		value 0
--	}
--	control.65 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Voice Analog Loopback Switch'
--		value false
--	}
--	control.66 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Left2 Analog Loopback Switch'
--		value false
--	}
--	control.67 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Right2 Analog Loopback Switch'
--		value false
--	}
--	control.68 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Left1 Analog Loopback Switch'
--		value false
--	}
--	control.69 {
--		comment.access 'read write'
--		comment.type BOOLEAN
--		comment.count 1
--		iface MIXER
--		name 'Right1 Analog Loopback Switch'
--		value false
--	}
--}
--- 
-2.4.0
+--_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>I was testing out a new image th=
+is afternoon and all was well until I fdisk'd the partitions away on /dev/s=
+da (with the live image booting from a usb stick on /dev/sdc).<div><br></di=
+v><div>After this the image stopped booting and started complaining about a=
+ll sorts of FAT errors on /dev/sda and did not mount the root file system.<=
+/div><div><br></div><div>Nothing I could do to sort out this issue until I =
+dd'd the live image onto /dev/sda=2C which then booted from /dev/sda1.</div=
+><div><br></div><div>After this I could now also boot from /dev/sdc too but=
+ /media/realroot was mounted on /dev/sda1.</div><div><br></div><div>I renam=
+ed the root file system file on /dev/sda1=2C rebooted and now&nbsp=3B<span =
+style=3D"font-size: 12pt=3B">/media/realroot was mounted on /dev/sdc1.</spa=
+n></div><div><br></div><div>All the time I was also able to boot the image =
+fine in qemu.</div><div><br></div><div>Regarding the install option on the =
+EFI boot=2C initially it was offering to install on /dev/sdb but this chang=
+ed to /dev/sda once I'd renamed the root file system on /dev/sda.</div><div=
+><br></div><div>Anyway this suggests to me that the live image will prefere=
+ntially mount a root file system from /dev/sda in preference to the file on=
+ the boot device. &nbsp=3BThis wasn't an issue after I followed through the=
+ 'install' option as it lays out the installation over two partitions witho=
+ut using a loop-back device but the issue it had dealing with the 'corrupt'=
+ file system on /dev/sda may be significant.</div><div><br></div><div>Regar=
+ds=2C</div><div>Chris</div><div><br></div> 		 	   		  </div></body>
+</html>=
 
+--_f7d9d96d-f80f-416b-a671-9ee08d3ac6b8_--
