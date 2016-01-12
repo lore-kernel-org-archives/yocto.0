@@ -1,61 +1,53 @@
-Return-Path: <j.madieu@expemb.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06EBCE00A92; Tue, 12 Jan 2016 06:22:24 -0800 (PST)
+	id D410BE00AB9; Tue, 12 Jan 2016 07:44:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mikehabibi[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F155E00A27
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 06:22:18 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id b14so322693524wmb.1
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 06:22:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=expemb-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=JNFkbL5Ahu3Ipcv1g07rygANZQiwbu1uYxAB6QN82tY=;
-	b=dAgkK38evtbthfrjXglbW+RctAx9i9E9Tr59KrZEa8rJiDNHa4diOh+EglDXqGO2UE
-	ekHhZo3BW0VEUNFWJVKLhz9WOmWgkYSgoL16ezgHEdNWFbK3PQiH/9FZNLlr/3AAujbR
-	77QqT6xCwJGz5yyXXR+7OdIed7OjJBydzxJv/8+ocZOf0koQX9OPM9XM2ptBXxrm2SYz
-	i0Vt2bY/2rYJblauvmt1rthvjCoBrx7sUqW0OaU32h+toQfzQGn7LJvaehcPsZ7PdEjS
-	BO756/nXWva795gWKihcOIkZeTN8FSri/n1I5SbLsQytvwMOBAw+yAJYYvKYcMxaB+cF
-	um6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=JNFkbL5Ahu3Ipcv1g07rygANZQiwbu1uYxAB6QN82tY=;
-	b=NYfDkeMBwpDDQ6IRYgznjkg6f7qwzxJRuUnAwGboNXYy8v3ih3LUXBZw7Ntp6zsG/9
-	v+Rb78YFgTxEt8lIv3pkjH3tCz5Lo1BiEj9TcdI6wRlKoO0UYZnB0YARdapu6XFGjKSz
-	TbDY9oGEgihf6dkTsLT1e7fq9sFzf5zX16D90tWX8DsRUrgjf31gwx3nkqwFLe9NB2ua
-	l8ajTZQIOY1/9b+AGTgC6XHxgldj5sGjM2OmtT73ej4+TBgX7p+b9Jib0F3GX0xZAyni
-	KLy/lqzDi7v4PmWJTKqNrcjwRq7sTFl1Z+J27xzJRdwn1jiCC/w0IgQep5tPqJ/MBW4s
-	vKww==
-X-Gm-Message-State: ALoCoQkTzvHg/cAvbKQA7QTGJdBDABJ4mdkeZxFpzYnpI4aByql6LYqEmeOkaH4lW8xI9th1VL1jY1Fvbs5Ms6zOwKlaHaK36g==
-X-Received: by 10.194.116.97 with SMTP id jv1mr140152477wjb.38.1452608537828; 
-	Tue, 12 Jan 2016 06:22:17 -0800 (PST)
-Received: from localhost.localdomain (23-227-190-109.dsl.ovh.fr.
-	[109.190.227.23]) by smtp.gmail.com with ESMTPSA id
-	g3sm124363897wjw.31.2016.01.12.06.22.16
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 12 Jan 2016 06:22:16 -0800 (PST)
-From: John Madieu <j.madieu@expemb.com>
-To: yocto@yoctoproject.org
-Date: Tue, 12 Jan 2016 15:22:09 +0100
-Message-Id: <1452608530-20009-1-git-send-email-j.madieu@expemb.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <CAJzgOf+jeDLnwB7Jg4UkA6+KX0JaUU0qRGB7m4zK2ppg2y_Lgg@mail.gmail.com>
-References: <CAJzgOf+jeDLnwB7Jg4UkA6+KX0JaUU0qRGB7m4zK2ppg2y_Lgg@mail.gmail.com>
-Subject: [meta-raspberrypi][PATCH v3 1/2] qt5: fixed raspberrypi support
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A85E2E00A9C
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 07:43:56 -0800 (PST)
+Received: by mail-io0-f178.google.com with SMTP id 1so340404317ion.1
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 07:43:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=pbNOEm+LiF6dIKfs2pFGpLtAh1eqByHrkyHbROgEz28=;
+	b=a9KKBfEJDuKJNHK/fGs5fFTi2SdYptQKwL5jAvoDqagrYzIuShYiGeA7BBHXxHFLS4
+	FXEGz73cH9qMUCZxgDyOvrtdI+NefqZ3a+mlB1yyDgRGvKl2ya3EVlL3skJLWLpiK2Dv
+	ICNI3rEHgXifPVMF79wjcdkqZR9YG7FzgGO3c59Lj79gy76T1pkpVMzoypqGSt/lw3kv
+	mlpgmRy5AUGd/3+3Bb+Vw6h/6sOM7F238V2FJJ7op3DLL0uQyKsWbD9qah+jOqxyll90
+	DowlWIn5FJdlqmEzInVSrKWJmcQtRINzuYd152YPWSnENw/0p+eQb+LyTVkalB98+alR
+	j4Uw==
+MIME-Version: 1.0
+X-Received: by 10.107.9.197 with SMTP id 66mr119380764ioj.121.1452613435754;
+	Tue, 12 Jan 2016 07:43:55 -0800 (PST)
+Received: by 10.79.114.66 with HTTP; Tue, 12 Jan 2016 07:43:55 -0800 (PST)
+In-Reply-To: <CALLyC8SxkUjzRKBO1qAxpqS4mys_jCT212RrL1A8V5PP6JsDgg@mail.gmail.com>
+References: <CALLyC8SxkUjzRKBO1qAxpqS4mys_jCT212RrL1A8V5PP6JsDgg@mail.gmail.com>
+Date: Tue, 12 Jan 2016 09:43:55 -0600
+Message-ID: <CAOsp8o_ESB9_qdOomLDN2a77SCGvnFEwSYHwPWv2uVca327DrQ@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+To: Vivek Per <pervivek@gmail.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Where root password is defined by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,69 +59,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 14:22:24 -0000
+X-List-Received-Date: Tue, 12 Jan 2016 15:44:01 -0000
+Content-Type: multipart/alternative; boundary=001a113ebb5cd58fa9052924ebb6
 
-    Because EGL properties were not defined properly, we always had the following error
-        make: *** [egl] Error 1
-        | EGL disabled.
-        |  The EGL functionality test failed; EGL is required by some QPA plugins to manage cont
-        |  You might need to modify the include and library search paths by editing QMAKE_INCDIR
+--001a113ebb5cd58fa9052924ebb6
+Content-Type: text/plain; charset=UTF-8
 
-    x11 in DISTRO_FEATURES also produced the following error
-        error: 'QAccessible' has not been declared
-        |              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
-        QAccessible::Grouping)) {
-        |                                                       ^
-        |Makefile:53048: recipe for target '.obj/qgtkstyle.o' failed
+I see an example of setting the root password in the extrausers class
+documentation -
 
-    This bbappend definitively fix these bug
+http://www.yoctoproject.org/docs/2.0/ref-manual/ref-manual.html#ref-classes-extrausers
 
-Signed-off-by: John Madieu <j.madieu@expemb.com>
----
- qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 33 ++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+This sets the password to 1876*18:
 
-diff --git a/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-new file mode 100644
-index 0000000..f61cd1d
---- /dev/null
-+++ b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-@@ -0,0 +1,33 @@
-+
-+# Raspberrypi only need gles2
-+PACKAGECONFIG_GL = "gles2"
-+
-+QT_CONFIG_FLAGS_append = "${@base_contains('DISTRO_FEATURES', 'x11', ' -accessibility ', '', d)}"
-+do_configure_prepend_rpi() {
-+
-+	sed -i 's!load(qt_config)!!' ${S}/mkspecs/linux-oe-g++/qmake.conf
-+    if ! grep -q '^EGLFS_' ${S}/mkspecs/linux-oe-g++/qmake.conf; then
-+        cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
-+QMAKE_INCDIR_EGL = \$\$[QT_SYSROOT]${includedir}/interface/vcos/pthreads \$\$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
-+QMAKE_INCDIR_OPENGL_ES2 = \$\${QMAKE_INCDIR_EGL}
-+QMAKE_LIBS_EGL = -lEGL -lGLESv2
-+EOF
-+
-+        if [ -d ${S}/src/plugins/platforms/eglfs/deviceintegration/eglfs_brcm ]; then
-+            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
-+EGLFS_DEVICE_INTEGRATION = eglfs_brcm
-+EOF
-+        else
-+            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
-+EGLFS_PLATFORM_HOOKS_LIBS = -lbcm_host
-+EGLFS_PLATFORM_HOOKS_SOURCES = \$\$PWD/../devices/linux-rasp-pi-g++/qeglfshooks_pi.cpp
-+EOF
-+        fi
-+    fi
-+    cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
-+
-+
-+load(qt_config)
-+
-+EOF
-+}
--- 
-1.9.1
+     inherit extrausers
+     EXTRA_USERS_PARAMS = "\
+         usermod -P 1876*18 root; \
+         "
 
 
+On Tue, Jan 12, 2016 at 5:58 AM, Vivek Per <pervivek@gmail.com> wrote:
+
+> Hi,
+>      Where root password is defined by default. How can we change it
+>
+> Thanks and regards
+>       Vivek
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a113ebb5cd58fa9052924ebb6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I see an example of setting the root password in the extra=
+users class documentation -<div><br></div><div><a href=3D"http://www.yoctop=
+roject.org/docs/2.0/ref-manual/ref-manual.html#ref-classes-extrausers">http=
+://www.yoctoproject.org/docs/2.0/ref-manual/ref-manual.html#ref-classes-ext=
+rausers</a><br></div><div><br></div><div>This sets the password to 1876*18:=
+</div><div><pre class=3D"" style=3D"overflow:auto;color:rgb(51,51,51)">    =
+ inherit extrausers
+     EXTRA_USERS_PARAMS =3D &quot;\
+         usermod -P 1876*18 root; \
+         &quot;</pre></div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Tue, Jan 12, 2016 at 5:58 AM, Vivek Per <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:pervivek@gmail.com" target=3D"_blank">pervivek@gma=
+il.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+ltr">Hi,<div>=C2=A0 =C2=A0 =C2=A0Where root password is defined by default.=
+ How can we change it</div><div><br></div><div>Thanks and regards</div><spa=
+n class=3D"HOEnZb"><font color=3D"#888888"><div>=C2=A0 =C2=A0 =C2=A0 Vivek<=
+/div></font></span></div>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--001a113ebb5cd58fa9052924ebb6--
