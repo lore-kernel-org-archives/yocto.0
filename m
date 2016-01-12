@@ -1,60 +1,62 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <j.madieu@expemb.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2442FE0085A; Mon, 11 Jan 2016 16:28:15 -0800 (PST)
+	id 39DADE00903; Mon, 11 Jan 2016 17:55:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.198 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f177.google.com (mail-pf0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7BBAE0070F
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 16:28:09 -0800 (PST)
-Received: by mail-pf0-f177.google.com with SMTP id n128so52713529pfn.3
-	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 16:28:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=uKMGNKlUq8MPAX/RsLbKvkD/xEuxzaNapJ9vc7qrN0k=;
-	b=mGi2AYL9N684Qg9CYsXoMd4URf1B5q2gyS/u8lI6rVg2NVXTyvtkVYeZI013Y+MdKB
-	mXmAY2FNQr5rwbyDDX57JQbh9vyrLT6OrPTp26PYMKJL7id2hWsm2H7perTzoRzS4w8Q
-	j1pNJ8Hb/zlTyzafNkbdfwwltcOhbgwudQ4QXjnTLRIsdJaltwtut5yAaHwv/Rd0VxLU
-	/6qNJI9W5HK8IldxsbyWl9SvfJfotJ2uQPb/9dNSU8bIsPx31F0GnBT8kWjBCsk+/KJ2
-	+O5OLSDZ8W2LUeNKTYTthIZS3DAYzG5EuLA/EGhMwjcRwLyOywBS2/IoquLjCrfMf9Qv
-	Z+0Q==
-X-Received: by 10.98.7.156 with SMTP id 28mr30387656pfh.49.1452558489145;
-	Mon, 11 Jan 2016 16:28:09 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:409b:83af:918e:bae1?
-	([2601:646:8802:5d5c:409b:83af:918e:bae1])
-	by smtp.gmail.com with ESMTPSA id 78sm4094543pfl.36.2016.01.11.16.28.08
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 11 Jan 2016 16:28:08 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <28FBBE02F609FB4B8B4F047102C7B7360144C5A322@Corp-EX10.forceamerica.com>
-Date: Mon, 11 Jan 2016 16:28:02 -0800
-Message-Id: <E6CF59BA-F237-4FFE-A51B-61A1FCB8417E@gmail.com>
-References: <28FBBE02F609FB4B8B4F047102C7B7360144C5A27D@Corp-EX10.forceamerica.com>
-	<28FBBE02F609FB4B8B4F047102C7B7360144C5A322@Corp-EX10.forceamerica.com>
-To: John Schluechtermann <JSchluechtermann@FORCEAmerica.com>
-X-Mailer: Apple Mail (2.3112)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: do_rootfs error due to package installation
+Received: from mail-ig0-f198.google.com (mail-ig0-f198.google.com
+	[209.85.213.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A6EE0086B
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 17:55:15 -0800 (PST)
+Received: by mail-ig0-f198.google.com with SMTP id mw1so380038108igb.0
+	for <yocto@yoctoproject.org>; Mon, 11 Jan 2016 17:55:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=expemb-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=mIqsaqV8PKcaVX4rzHPKQJoKnl8ij310FtSzLIt6GVg=;
+	b=waKqtAbNhXCM8fPEQw6y6W0qzeEhNj4wVmPlONhVfR2oqRmHmsAyWSS4UpwRVLuHFg
+	o17ZvhOQYWbk+Hirg1W+IESakX6OiLxba7w5NWik3rt3+cxuANEmuENvdNDHACNkTisF
+	+Oa/gZS0/Slq14iPcBy5ujLjst5Ad4zD517uiYQfvLLIWfALOjknGtIQDBCBaup+Jhlx
+	S/4Ru2+0lzMck0adS+q0jsEQnanD8/nlHUXbYVMoA06rvtdZmxBoGaSRUflSMLE8mqka
+	tJdsU8Y0e26x4jBuT2HtwCElBGRVuRhQL08Nnq2WlenN/gqIVEsR8RmKlZ2vw0LhFHH3
+	ftSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=mIqsaqV8PKcaVX4rzHPKQJoKnl8ij310FtSzLIt6GVg=;
+	b=DuAfXcqpvytUq4Y3cSZfBdEMO2nHNVQRxc2U54C/BCBYkS6D2B1XQh3LPnzPWG0qzA
+	T3Oz0bU4KOSnQ3FfStE4BKNFSM5j+SQ4aR6HWW3WiHmEuLo6SmtQalmvPU81m8AexlOI
+	uyNKChI7mYooWGBNB6u3WG1t7qfY+cnCOAColLS1vYwqpXA6TmbdxwwikO2/7PmDPqOk
+	gaH8jIsQiLjBCOT7T7eeXqBHVQx4cqaDy7k1iFInGBql6LgLhMg3nlovhsEEoW8yk61j
+	glLNBeYyI+NDaABGuMJI26BH5etMkcJ02ulZj/RLz/Aysy1er0l1jcUkQ2kFDK57WCT7
+	SFqw==
+X-Gm-Message-State: ALoCoQkGYzzwtkEsiHf+JFEGc+Y+LrFZAvLsPAj6XLyCCUrjXldTErtWNn3RW7mLjse7x6pUw6RsP0EAugy2yXKRo7UPO4olIg==
+MIME-Version: 1.0
+X-Received: by 10.182.148.39 with SMTP id tp7mr55565764obb.87.1452563714768;
+	Mon, 11 Jan 2016 17:55:14 -0800 (PST)
+Received: by 10.202.46.19 with HTTP; Mon, 11 Jan 2016 17:55:14 -0800 (PST)
+In-Reply-To: <20160111203414.GB10203@resin>
+References: <CAK18fxGB5uiXe7LigW3V9TEA2EJFQtsZTt-9yJ=rNwLzdzKY0w@mail.gmail.com>
+	<1452527171-26371-1-git-send-email-j.madieu@expemb.com>
+	<20160111203414.GB10203@resin>
+Date: Tue, 12 Jan 2016 02:55:14 +0100
+Message-ID: <CAJzgOf+jeDLnwB7Jg4UkA6+KX0JaUU0qRGB7m4zK2ppg2y_Lgg@mail.gmail.com>
+From: john madieu <j.madieu@expemb.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH v2 1/2] qt5: fixed raspberrypi support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,275 +68,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 00:28:15 -0000
-X-Groupsio-MsgNum: 27928
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_878F3EDF-5DB5-4695-BAE1-4F5EE19F03DA";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Tue, 12 Jan 2016 01:55:19 -0000
+Content-Type: text/plain; charset=UTF-8
 
---Apple-Mail=_878F3EDF-5DB5-4695-BAE1-4F5EE19F03DA
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_EBEE5D68-9D09-436B-A722-8103A8B8020D"
+On Mon, Jan 11, 2016 at 9:34 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Mon, Jan 11, 2016 at 04:46:10PM +0100, John Madieu wrote:
+>> Because EGL properties were not defined properly, we always had the following error
+>>     make: *** [egl] Error 1
+>>     | EGL disabled.
+>>     |  The EGL functionality test failed; EGL is required by some QPA plugins to manage cont
+>>     |  You might need to modify the include and library search paths by editing QMAKE_INCDIR
+>>
+>> This bbappend definitively fix the bug
+>>
+>> Signed-off-by: John Madieu <j.madieu@expemb.com>
+>> ---
+>>  qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 29 +++++++++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>  create mode 100644 qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>>
+>> diff --git a/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>> new file mode 100644
+>> index 0000000..8b77bfa
+>> --- /dev/null
+>> +++ b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>> @@ -0,0 +1,29 @@
+>> +
+>> +do_configure_prepend_rpi() {
+>> +
+>> +     sed -i 's!load(qt_config)!!' ${S}/mkspecs/linux-oe-g++/qmake.conf
+>> +    if ! grep -q '^EGLFS_' ${S}/mkspecs/linux-oe-g++/qmake.conf; then
+>> +        cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+>> +QMAKE_INCDIR_EGL = \$\$[QT_SYSROOT]${includedir}/interface/vcos/pthreads \$\$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
+>> +QMAKE_INCDIR_OPENGL_ES2 = \$\${QMAKE_INCDIR_EGL}
+>> +QMAKE_LIBS_EGL = -lEGL -lGLESv2
+>> +EOF
+>> +
+>> +        if [ -d ${S}/src/plugins/platforms/eglfs/deviceintegration/eglfs_brcm ]; then
+>> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+>> +EGLFS_DEVICE_INTEGRATION = eglfs_brcm
+>> +EOF
+>> +        else
+>> +            cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+>> +EGLFS_PLATFORM_HOOKS_LIBS = -lbcm_host
+>> +EGLFS_PLATFORM_HOOKS_SOURCES = \$\$PWD/../devices/linux-rasp-pi-g++/qeglfshooks_pi.cpp
+>> +EOF
+>> +        fi
+>> +    fi
+>> +    cat >> ${S}/mkspecs/linux-oe-g++/qmake.conf <<EOF
+>> +
+>> +
+>> +load(qt_config)
+>> +
+>> +EOF
+>> +}
+>
 
---Apple-Mail=_EBEE5D68-9D09-436B-A722-8103A8B8020D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+> qtbase fails at compile time:
+Sorry for that
 
-These two seems unrelated. look under deploy/ipk folder and see if you =
-have an ipk sounding with same name as missing package
-it might be that its empty and deleted but the dependency remains
+> | compiling .moc/moc_qeglplatformcursor_p.cpp
+> |
+> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:
+> In member function 'virtual QRect
+> QGtkStyle::subControlRect(QStyle::ComplexControl, const QStyleOptionComplex*,
+> QStyle::SubControl, const QWidget*) const':
+> |
+> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:24:
+> error: 'isInstanceOf' is not a member of 'QStyleHelper'
+> |              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
+> QAccessible::Grouping)) {
+> |                         ^
+> |
+> /home/andrei/work/yocto/build-rpi-master/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/qtbase/5.5.1+gitAUTOINC+5afc431323-r0/git/src/widgets/styles/qgtkstyle.cpp:3636:74:
+> error: 'QAccessible' has not been declared
+> |              } else if (QStyleHelper::isInstanceOf(groupBox->styleObject,
+> QAccessible::Grouping)) {
+> |                                                                           ^
+> | Makefile:53048: recipe for target '.obj/qgtkstyle.o' failed
+> | make[2]: *** [.obj/qgtkstyle.o] Error 1
+> | make[2]: *** Waiting for unfinished jobs....
+>
+>
+> How is this supposed to be tested?
 
-> On Jan 7, 2016, at 1:29 PM, John Schluechtermann =
-<JSchluechtermann@FORCEAmerica.com> wrote:
->=20
-> Some additional information in regards to this.  In the =
-troubleshooting of it I turned on the build history by adding the =
-following to my local.conf,
->           INHERIT +=3D =E2=80=9Cbuildhistory=E2=80=9D
->           BUILDHISTORY_COMMIT =3D =E2=80=9C1=E2=80=9D
->=20
-> With that added to the local.conf the image creation would complete =
-successfully, it was also repeatable if I removed it I would then get =
-the error message about the unmet dependencies, replacing it allowed the =
-build to complete.  What do I not have setup correctly?
->=20
-> -          John
->=20
->=20
-> I have a custom image that I am trying to pick up and get working that =
-was setup and used by an individual no longer with the company.
->=20
-> The image creation is failing in the do_rootfs portion and appears to =
-be due to a package not being installed in the image.  I have verified =
-that the package is being created which it is.  I am not sure if I need =
-to modify an IMAGE_INSTALL commend in a recipe or not since I do not =
-understand how the first package (packagegroup-base-extended) is being =
-included.
->=20
-> The error message that occurs is:
->=20
-> The following packages have unmet dependencies:
-> packagegroup-base-extended : Depends: packagegroup-base-nfc but it is =
-not going to be installed
-> E: Unable to correct problems, you have held broken packages.
->=20
-> So if I understanding this correctly it is placing the =
-packagegroup-base-extended package in the image but it for some reason =
-cannot do that with the packagegroup-base-nfc.  Is this an order issue =
-or something else.  I do not know where to look at the moment so any =
-guidance on that would be greatly appreciated.
->=20
-> Thanks,
-> -          John
-> The information contained in this message and any attachment may be =
-proprietary, confidential, and privileged or subject to the work product =
-doctrine and thus protected from disclosure. If the reader of this =
-message is not the intended recipient, or an employee or agent =
-responsible for delivering this message to the intended recipient, you =
-are hereby notified that any dissemination, distribution or copying of =
-this communication is strictly prohibited. If you have received this =
-communication in error, please notify me immediately by replying to this =
-message and deleting it and all copies and backups thereof. Thank you.
+I finaly reproduced the same error.
+
+I did not have it because during my compilation, I removed "x11"
+from DISTRO_FEATURES. If you look at qtbase_git.bb, you can see that
+some of PACKAGECONFIG_X11 features (gtkstyle) depend on "-accessibility" flag.
+
+so I added that flags according to the presence or not of x11 in DISTRO_FEATURES
+I thus made several test with or without x11, in DISTRO_FEATURES .
+All succeeded.
+
+The last patch will be plug and play. I'll tag it v3 and everything
+should works fine now.
+But before, I still have some test to do (with mixed distro_features).
+I will pay more attention this time.
+
+
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+> Andrei Gherzan
+-- 
+John MADIEU | j.madieu@expemb.com |
 
---Apple-Mail=_EBEE5D68-9D09-436B-A722-8103A8B8020D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">These two seems unrelated. look under deploy/ipk folder and =
-see if you have an ipk sounding with same name as missing package<div =
-class=3D"">it might be that its empty and deleted but the dependency =
-remains</div><div class=3D""><br class=3D""><div =
-class=3D""><div><blockquote type=3D"cite" class=3D""><div class=3D"">On =
-Jan 7, 2016, at 1:29 PM, John Schluechtermann &lt;<a =
-href=3D"mailto:JSchluechtermann@forceamerica.com" =
-class=3D"">JSchluechtermann@FORCEAmerica.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"font-family: ArialMT; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div style=3D"margin: =
-0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D"">Some =
-additional information in regards to this.&nbsp; In the troubleshooting =
-of it I turned on the build history by adding the following to my =
-local.conf,</span></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-style=3D"color: rgb(31, 73, 125);" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INH=
-ERIT +=3D =E2=80=9Cbuildhistory=E2=80=9D</span></div><div style=3D"margin:=
- 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span style=3D"color: rgb(31, 73, 125);" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-&nbsp;BUILDHISTORY_COMMIT =3D =E2=80=9C1=E2=80=9D</span></div><p =
-class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;"><span style=3D"color: rgb(31, 73, =
-125);" class=3D"">&nbsp;</span></p><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D"">With that =
-added to the local.conf the image creation would complete successfully, =
-it was also repeatable if I removed it I would then get the error =
-message about the unmet dependencies, replacing it allowed the build to =
-complete.&nbsp; What do I not have setup correctly?</span></div><p =
-class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;"><span style=3D"color: rgb(31, 73, =
-125);" class=3D"">&nbsp;</span></p><div style=3D"margin: 0in 0in =
-0.0001pt 0.5in; font-size: 11pt; font-family: Calibri, sans-serif; =
-text-indent: -0.25in;" class=3D""><span style=3D"color: rgb(31, 73, =
-125);" class=3D""><span class=3D"">-<span style=3D"font-style: normal; =
-font-variant: normal; font-weight: normal; font-size: 7pt; line-height: =
-normal; font-family: 'Times New Roman';" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span =
-class=3D"Apple-converted-space">&nbsp;</span></span></span></span><span =
-style=3D"color: rgb(31, 73, 125);" class=3D"">John</span></div><p =
-class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;"><span style=3D"color: rgb(31, 73, =
-125);" class=3D"">&nbsp;</span></p><div class=3D""><div =
-style=3D"border-style: solid none none; border-top-color: rgb(181, 196, =
-223); border-top-width: 1pt; padding: 3pt 0in 0in;" class=3D""><p =
-class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;"><span style=3D"font-size: 10pt; =
-font-family: Tahoma, sans-serif;" =
-class=3D"">&nbsp;</span></p></div></div><div class=3D""><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">I have a custom image that I am trying =
-to pick up and get working that was setup and used by an individual no =
-longer with the company.</div><p class=3D"MsoNormal" style=3D"margin: =
-0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, =
-sans-serif;">&nbsp;</p><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">The image =
-creation is failing in the do_rootfs portion and appears to be due to a =
-package not being installed in the image.&nbsp; I have verified that the =
-package is being created which it is.&nbsp; I am not sure if I need to =
-modify an IMAGE_INSTALL commend in a recipe or not since I do not =
-understand how the first package (packagegroup-base-extended) is being =
-included.</div><p class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">The error message that occurs =
-is:</div><p class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">The following packages have unmet =
-dependencies:</div><div style=3D"margin: 0in 0in 0.0001pt; font-size: =
-11pt; font-family: Calibri, sans-serif;" =
-class=3D"">packagegroup-base-extended : Depends: packagegroup-base-nfc =
-but it is not going to be installed</div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">E: Unable to correct problems, you have held broken =
-packages.</div><p class=3D"MsoNormal" style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">So if I understanding this correctly it =
-is placing the packagegroup-base-extended package in the image but it =
-for some reason cannot do that with the packagegroup-base-nfc.&nbsp; Is =
-this an order issue or something else.&nbsp; I do not know where to look =
-at the moment so any guidance on that would be greatly =
-appreciated.</div><p class=3D"MsoNormal" style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, =
-sans-serif;">&nbsp;</p><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Thanks,</div><div style=3D"margin: 0in 0in 0.0001pt 0.5in; =
-font-size: 11pt; font-family: Calibri, sans-serif; text-indent: =
--0.25in;" class=3D"">-<span style=3D"font-size: 7pt; font-family: 'Times =
-New Roman', serif;" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span =
-class=3D"Apple-converted-space">&nbsp;</span></span>John</div></div></div>=
-<div style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; color: =
-rgb(0, 0, 255);" class=3D""><span class=3D"auto-style1"><em class=3D"">The=
- information contained in this message and any attachment may be =
-proprietary, confidential, and privileged or subject to the work product =
-doctrine and thus protected from disclosure. If the reader of this =
-message is not the intended recipient, or an employee or agent =
-responsible for delivering this message to the intended recipient, you =
-are hereby notified that any dissemination, distribution or copying of =
-this communication is strictly prohibited. If you have received this =
-communication in error, please notify me immediately by replying to this =
-message and deleting it and all copies and backups thereof. Thank =
-you.</em></span></div><span style=3D"font-family: ArialMT; font-size: =
-14px; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; display: =
-inline !important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: ArialMT; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: ArialMT; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-ArialMT; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: ArialMT; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
-text-decoration: underline; font-family: ArialMT; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: ArialMT; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-purple; text-decoration: underline; font-family: ArialMT; font-size: =
-14px; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></div></div></body></html>=
-
---Apple-Mail=_EBEE5D68-9D09-436B-A722-8103A8B8020D--
-
---Apple-Mail=_878F3EDF-5DB5-4695-BAE1-4F5EE19F03DA
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlaUSJcACgkQuwUzVZGdMxRsnwCgg7++/phAdUqt2O/HWke7z277
-ltsAn3BCPG8aRE/ydxO4C9LQV3VPcESg
-=ERTs
------END PGP SIGNATURE-----
-
---Apple-Mail=_878F3EDF-5DB5-4695-BAE1-4F5EE19F03DA--
