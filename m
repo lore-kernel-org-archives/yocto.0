@@ -1,6 +1,6 @@
-Return-Path: <sarayu@tanmic.co.in>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2C06E00AF4; Wed, 13 Jan 2016 04:03:59 -0800 (PST)
+	id 91CCFE00B3A; Wed, 13 Jan 2016 05:42:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,58 +8,54 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
+	*      [209.85.218.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 015B9E00AAF
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 04:03:53 -0800 (PST)
-Received: by mail-io0-f170.google.com with SMTP id g73so220698709ioe.3
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 04:03:53 -0800 (PST)
+Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
+	[209.85.218.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53022E00AAF
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 05:42:50 -0800 (PST)
+Received: by mail-oi0-f53.google.com with SMTP id k206so94105841oia.1
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 05:42:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=tanmic-co-in.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=uDAXIGuUs8XWhX0th75Zyqcq+fwC/aZ3pBcMFsm6Pbg=;
-	b=uczAlaonOnBSVkLvYT26I37Kf0TydENv4eUspQe7rVQKCVfRwArxJ1GhIL/6mETiOg
-	DAskQv628SLAFNaTbJL/DegV+IeyI3Lmp3RyuNGeqb3hlRnZStgeEOM/XA5x3nZF16k/
-	HQykSfbQ0gS5VPQ4vtFKg30xews7d1YP/dVuD/eU+I1Zpxv7sPK2ktqjDg1RfO/3h91L
-	7RI+yP5vVNCiSf7SoXBpprJTTajuyMl6ypbzNFaYtAxBDEq6yB/ZySYtpn+G7B1fd1Wt
-	OdgEEbA+98e0N8nWYb/WGlE7l1C2ro67oJbLuUbOhCsKW0wn6PobMC0U551m8Q6wjmFb
-	rzSw==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=LR1U0KYgMFY0stbHQw1Z9IBrGw9w9posbHZ67PylAOc=;
+	b=re2fdeq9WKHut2K/FJ3gfTt+QqIAMOwjQp6sdURZW5nTwpdttor9boGSSSHdFnsev7
+	T/sbBz3O+2LmpND9D1tQWj5YcjKNBDKq3pnnAoX2xZSBomLMSQGyTukDm7YYLgYaJpMW
+	sXg6EDmB3VQ6M8y86iEuQRv3FNpt8iabmRcyvezqbOo1fhokw9S6TW8GJGSGU5ubRwP3
+	a1mmiQ+vmRtmgtf2VrQEliIDe5IYxi/pOXJL7SGVwpa0g8UxUNEpmc20zHZAOTKEQ5zM
+	uyiApfbAy21+fhztmTqNitfOfrbMqIJOZYen6aX+ND8aLzv4WL1+gRokaqQRbWqmUe5q
+	zWRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=uDAXIGuUs8XWhX0th75Zyqcq+fwC/aZ3pBcMFsm6Pbg=;
-	b=Z3r+yAgvBLOiQPAQ+cQ7ejrGdvdKIGvU+nzXqAy9zAxyrYc7V4aQ2CKJ+VJw1CeLYu
-	JELeUFEhVhNLcvNpWb0TtGKRBLbHc/cYbOoMvEAPHVfPTfraQ/7Lv+QHIkPRkwuaeSHU
-	2n5u5/Qr3mqU1yh7Hr94a9NLCgfHps7LM80bPmyv1nqdfXN7NfstWYGVDyJ17DnuLoVJ
-	qmCB6YLqrYD77UUSiqGOKa5X9WxhwYEqKR4fCkSKqtu2dyuNpw1X5WkXDseurzb+Sd/C
-	eMoBSqusyomaogCu+gGGrRRHOs8HsI6Jse+0o8XELuRzXzEvWqKYwnOY3GnsqqamlPMF
-	ll3Q==
-X-Gm-Message-State: ALoCoQnbrm2Zb6vQRl1edDAsIef9FxwJBCC8LZKR+comxt2u8xBFuZ+XQld3UxYVNp/eMv6Fed8d/YQVC/Xc/KF96+glbkSx0Q==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=LR1U0KYgMFY0stbHQw1Z9IBrGw9w9posbHZ67PylAOc=;
+	b=AbWXuRmiZB9jymaxw6ZZ4UR3xq0IQynbk18yy16L5YeYBDvVpwF9GKUC7MJ2D2iJyY
+	Lhgv8mboYOJOVv6UAK/Bz+551vv/4k68oXjx+i1eUj2wWuKevodZUPO958VFSNoPvWk8
+	2fIxlb2JR/nJDlLVbQnfRh31rR06XaQGb2FJdntggx1JSv05cGvlOH+3D0KYnUk0yK23
+	kgpKFirLaYd8xm4YflDpjP7yi3jQ0VCjXGMtm39GkCfmD86cA1HYGBRqw0J3zannMHrl
+	zZBqKjdmJBJT/Q2FKUacN1cLUy5DKnEQulymRzq/vFPcGOc6ldo+AdIu66+RVIntEfX9
+	pYOw==
+X-Gm-Message-State: ALoCoQlQwSs9I2vNzwFnCp1TeaSYzduWNcGUFLvP6hoTBaMuzqiz7HQuR6wyjC3O5mA3oTnE1ivgL3JhRCdOgcWvc6vM5dI5HTeRrCO+rBJ3ywoMusBdNJ4=
+X-Received: by 10.202.172.80 with SMTP id v77mr98079578oie.18.1452692570371;
+	Wed, 13 Jan 2016 05:42:50 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.107.164.141 with SMTP id d13mr135864423ioj.88.1452686632948; 
-	Wed, 13 Jan 2016 04:03:52 -0800 (PST)
-Sender: sarayu@tanmic.co.in
-Received: by 10.107.184.196 with HTTP; Wed, 13 Jan 2016 04:03:52 -0800 (PST)
-In-Reply-To: <CAF5S8SOXpLnALCyr-k53HDgfRSnVWtPXKy32sfK9p66Vx+uJeQ@mail.gmail.com>
-References: <CAF5S8SOmOLVR9gU_=WgxW1fPZNxUyyEqO5j_mH5xsFnr=Ex-Cg@mail.gmail.com>
-	<CAMKF1srH4wXuEohCrj3_hxK6=uO-UX0ETjtpnGsMdrc0fUrREg@mail.gmail.com>
-	<CAF5S8SOXpLnALCyr-k53HDgfRSnVWtPXKy32sfK9p66Vx+uJeQ@mail.gmail.com>
-Date: Wed, 13 Jan 2016 17:33:52 +0530
-X-Google-Sender-Auth: YPZ8t-z_k62qDRfISUYCg9vwVok
-Message-ID: <CAF5S8SOX78=nAGHhQzxnNFoPP8GgMdrEQDvUrnQH97+CPzkqrw@mail.gmail.com>
-From: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to build jffs2 rootfs image in freescale community build
+Received: by 10.202.51.67 with HTTP; Wed, 13 Jan 2016 05:42:21 -0800 (PST)
+In-Reply-To: <37b747fd-ad90-45e9-b3cc-4595c4d83661@fmsmsx108.amr.corp.intel.com>
+References: <37b747fd-ad90-45e9-b3cc-4595c4d83661@fmsmsx108.amr.corp.intel.com>
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Date: Wed, 13 Jan 2016 15:42:21 +0200
+Message-ID: <CAHiDW_GGH6X3vyFXe5+JCZz3pn8L0HPDfxN3BsjT3nbYC_oj_w@mail.gmail.com>
+To: Anibal Limon <anibal.limon@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [AUH] gpgme: upgrading to 1.6.0 SUCCEEDED
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,188 +67,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jan 2016 12:03:59 -0000
-Content-Type: multipart/alternative; boundary=001a1141c1e0ba379d052935f6db
+X-List-Received-Date: Wed, 13 Jan 2016 13:42:53 -0000
+Content-Type: multipart/alternative; boundary=001a113ce6e2a0106d05293758c9
 
---001a1141c1e0ba379d052935f6db
+--001a113ce6e2a0106d05293758c9
 Content-Type: text/plain; charset=UTF-8
 
-hi ,
+Hi,
 
-On similar lines i want to rebuild my linux dtb file as i have made some
-changes in my dts file . How can i force it to regenerate the same ?
+On 11 January 2016 at 06:21, <auh@auh.yoctoproject.org> wrote:
 
-For example , I use the command bitbake -c compile -f linux-ls1 to
-regenerate the uImage .
-
-Is there is similar command for the linux-dtb generation ?
-
-Thanks in advance for your help.
-
-Thanks and Regards,
-Sarayu K S
-Tech Lead
-Zaikenn Technologies
-
-On Tue, Jan 12, 2016 at 3:17 PM, Sarayu Krishna Sivanandam <
-sarayu@zaikenn.com> wrote:
-
-> That worked . Thanks !!
+> Hello,
 >
-> Thanks and Regards,
-> Sarayu K S
-> Tech Lead
-> Zaikenn Technologies
->
-> On Tue, Jan 12, 2016 at 2:12 PM, Khem Raj <raj.khem@gmail.com> wrote:
->
->> On Tue, Jan 12, 2016 at 12:32 AM, Sarayu Krishna Sivanandam
->> <sarayu@zaikenn.com> wrote:
->> > Hi all ,
->> >
->> > I was initially using the QorIQ-SDK-V1.8 SDK and was using the command
->> > "bitbake corre-image-full " to generate the full images including the
->> uboot
->> > , the jffs2 filesystem etc as shown below ,
->> >
->> > -rw-r--r--. 1 sarayu sarayu 30670848 Oct 14 13:46
->> > fsl-image-core-ls1021atwr-20151014203509.rootfs.jffs2
->> >
->> >
->> > Hoe ever now i have moved to the fsl-community-bsp and want to generate
->> the
->> > full images . I am uisng the command "bitbake core-image-full-cmdline"
->> as
->> > the "core-image-full " command was not available . But it still did not
->> > generate the individual filesystem types . It generated a filesystem
->> file
->> > like the below .
->> >
->> > -rw-r--r--. 1 sarayu sarayu 24353214 Jan 11 23:12
->> > core-image-full-cmdline-ls1021atwr-20160112065953.rootfs.tar.gz
->> >
->> >
->> >  Can you please let me know how to generate the jffs2 image in my
->> community
->> > bsp ? Please let me know what i am missing here .
->>
->> Add IMAGE_FSTYPES += "jffs2" in your local.conf
->>
->> >
->> >
->> > Thanks in advance for your help.
->> >
->> > Thanks and Regards,
->> > Sarayu K S
->> > Tech Lead
->> > Zaikenn Technologies
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> >
->>
->
+> You are receiving this email because you are the maintainer
+> of *gpgme* recipe and this is to let you know that the automatic attempt
+> to upgrade the recipe to *1.6.0* has Succeeded.
 >
 
---001a1141c1e0ba379d052935f6db
+
+First, thanks for the effort Anibal, the upgrade helper is looking very
+useful: I'm certainly going to use it.
+
+Couple of small issues:
+* The license diffs do not seem correct: they look like like diffs between
+an empty file and the new license file version (see the parent gpgme post
+for example)
+* Is the decision to use "buildhistory-diff -a" intentional? I'm not 100%
+sure what exactly "-a" option brings with it but I've usually avoided it on
+upgrades because the path changes in  -dbg package are so verbose as to
+hide everything else...
+
+Thanks,
+  Jussi
+
+
+> *LICENSE CHANGED* please review the gpgme.h.in.diff file and update the
+> LICENSE
+> variable in the recipe if is needed.
+>
+> The recipe has been successfully compiled for machines qemux86,
+> qemux86-64, qemuarm, qemumips, qemuppc.
+>
+> Next steps:
+>     - apply the patch: git am 0001-gpgme-upgrade-to-1.6.0.patch
+>     - check that required upstream patches have not been commented from
+> the recipe,
+>       if upstream patches were commented the reason is specified in the
+> commit message.
+>     - compile an image that contains the package
+>     - perform some basic sanity tests
+>     - amend the patch and sign it off: git commit -s --reset-author --amend
+>     - send it to the list
+>
+> Attached are the patch, license diff (if change) and bitbake log.
+> Any problem please contact Anibal Limon <anibal.limon@intel.com>.
+>
+> Regards,
+> The Upgrade Helper
+
+--001a113ce6e2a0106d05293758c9
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
-ns ms,sans-serif">hi ,=C2=A0</div><div class=3D"gmail_default" style=3D"fon=
-t-family:comic sans ms,sans-serif"><br></div><div class=3D"gmail_default" s=
-tyle=3D"font-family:comic sans ms,sans-serif">On similar lines i want to re=
-build my linux dtb file as i have made some changes in my dts file . How ca=
-n i force it to regenerate the same ?</div><div class=3D"gmail_default" sty=
-le=3D"font-family:comic sans ms,sans-serif"><br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:comic sans ms,sans-serif">For example , I use =
-the command bitbake -c compile -f linux-ls1 to regenerate the uImage .=C2=
-=A0</div><div class=3D"gmail_default" style=3D"font-family:comic sans ms,sa=
-ns-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:comic=
- sans ms,sans-serif">Is there is similar command for the linux-dtb generati=
-on ?</div><div class=3D"gmail_default" style=3D"font-family:comic sans ms,s=
-ans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:comi=
-c sans ms,sans-serif">Thanks in advance for your help.</div></div><div clas=
-s=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gmail_signature"><di=
-v dir=3D"ltr"><div><div dir=3D"ltr"><font face=3D"comic sans ms, sans-serif=
-">Thanks and Regards,</font><div><font face=3D"comic sans ms, sans-serif">S=
-arayu K S=C2=A0</font></div><div><font face=3D"comic sans ms, sans-serif">T=
-ech Lead=C2=A0</font></div><div><font face=3D"comic sans ms, sans-serif">Za=
-ikenn Technologies</font></div></div></div></div></div></div>
-<br><div class=3D"gmail_quote">On Tue, Jan 12, 2016 at 3:17 PM, Sarayu Kris=
-hna Sivanandam <span dir=3D"ltr">&lt;<a href=3D"mailto:sarayu@zaikenn.com" =
-target=3D"_blank">sarayu@zaikenn.com</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fo=
-nt-family:comic sans ms,sans-serif">That worked . Thanks !!=C2=A0</div></di=
-v><div class=3D"gmail_extra"><span class=3D""><br clear=3D"all"><div><div><=
-div dir=3D"ltr"><div><div dir=3D"ltr"><font face=3D"comic sans ms, sans-ser=
-if">Thanks and Regards,</font><div><font face=3D"comic sans ms, sans-serif"=
->Sarayu K S=C2=A0</font></div><div><font face=3D"comic sans ms, sans-serif"=
->Tech Lead=C2=A0</font></div><div><font face=3D"comic sans ms, sans-serif">=
-Zaikenn Technologies</font></div></div></div></div></div></div>
-<br></span><div><div class=3D"h5"><div class=3D"gmail_quote">On Tue, Jan 12=
-, 2016 at 2:12 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khe=
-m@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><span>On Tue, Jan 12, 2016 at 12:32 AM, Sara=
-yu Krishna Sivanandam<br>
-&lt;<a href=3D"mailto:sarayu@zaikenn.com" target=3D"_blank">sarayu@zaikenn.=
-com</a>&gt; wrote:<br>
-&gt; Hi all ,<br>
-&gt;<br>
-&gt; I was initially using the QorIQ-SDK-V1.8 SDK and was using the command=
+<div dir=3D"ltr"><div>Hi,=C2=A0</div><div><br></div><div><div class=3D"gmai=
+l_extra">On 11 January 2016 at 06:21,=C2=A0<span dir=3D"ltr">&lt;<a href=3D=
+"mailto:auh@auh.yoctoproject.org" target=3D"_blank">auh@auh.yoctoproject.or=
+g</a>&gt;</span>=C2=A0wrote:<br></div><div class=3D"gmail_extra"><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-l=
+eft-style:solid;padding-left:1ex">Hello,<br><br>You are receiving this emai=
+l because you are the maintainer<br>of *gpgme* recipe and this is to let yo=
+u know that the automatic attempt<br>to upgrade the recipe to *1.6.0* has S=
+ucceeded.<br></blockquote><div><br></div><div><br></div></div></div></div>F=
+irst, thanks for the effort Anibal, the upgrade helper is looking very usef=
+ul: I&#39;m certainly going to use it.<br><div class=3D"gmail_extra"><br></=
+div><div class=3D"gmail_extra">Couple of small issues:</div><div class=3D"g=
+mail_extra">* The license diffs do not seem correct: they look like like di=
+ffs between an empty file and the new license file version (see the parent =
+gpgme post for example)</div><div class=3D"gmail_extra">* Is the decision t=
+o use &quot;buildhistory-diff -a&quot; intentional? I&#39;m not 100% sure w=
+hat exactly &quot;-a&quot; option brings with it but I&#39;ve usually avoid=
+ed it on upgrades because the path changes in =C2=A0-dbg package are so ver=
+bose as to hide everything else...</div><div class=3D"gmail_extra"><br></di=
+v><div class=3D"gmail_extra">Thanks,</div><div class=3D"gmail_extra">=C2=A0=
+ Jussi</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"=
+><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,20=
+4);border-left-style:solid;padding-left:1ex"><br>
+*LICENSE CHANGED* please review the gpgme.h.in.diff file and update the LIC=
+ENSE<br>
+variable in the recipe if is needed.<br>
 <br>
-&gt; &quot;bitbake corre-image-full &quot; to generate the full images incl=
-uding the uboot<br>
-&gt; , the jffs2 filesystem etc as shown below ,<br>
-&gt;<br>
-&gt; -rw-r--r--. 1 sarayu sarayu 30670848 Oct 14 13:46<br>
-&gt; fsl-image-core-ls1021atwr-20151014203509.rootfs.jffs2<br>
-&gt;<br>
-&gt;<br>
-&gt; Hoe ever now i have moved to the fsl-community-bsp and want to generat=
-e the<br>
-&gt; full images . I am uisng the command &quot;bitbake core-image-full-cmd=
-line&quot;=C2=A0 as<br>
-&gt; the &quot;core-image-full &quot; command was not available . But it st=
-ill did not<br>
-&gt; generate the individual filesystem types . It generated a filesystem f=
-ile<br>
-&gt; like the below .<br>
-&gt;<br>
-&gt; -rw-r--r--. 1 sarayu sarayu 24353214 Jan 11 23:12<br>
-&gt; core-image-full-cmdline-ls1021atwr-20160112065953.rootfs.tar.gz<br>
-&gt;<br>
-&gt;<br>
-&gt;=C2=A0 Can you please let me know how to generate the jffs2 image in my=
- community<br>
-&gt; bsp ? Please let me know what i am missing here .<br>
+The recipe has been successfully compiled for machines qemux86, qemux86-64,=
+ qemuarm, qemumips, qemuppc.<br>
 <br>
-</span>Add IMAGE_FSTYPES +=3D &quot;jffs2&quot; in your local.conf<br>
-<div><div><br>
-&gt;<br>
-&gt;<br>
-&gt; Thanks in advance for your help.<br>
-&gt;<br>
-&gt; Thanks and Regards,<br>
-&gt; Sarayu K S<br>
-&gt; Tech Lead<br>
-&gt; Zaikenn Technologies<br>
-&gt;<br>
-</div></div><span><font color=3D"#888888">&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-&gt;<br>
-</font></span></blockquote></div><br></div></div></div>
-</blockquote></div><br></div>
+Next steps:<br>
+=C2=A0 =C2=A0 - apply the patch: git am 0001-gpgme-upgrade-to-1.6.0.patch<b=
+r>
+=C2=A0 =C2=A0 - check that required upstream patches have not been commente=
+d from the recipe,<br>
+=C2=A0 =C2=A0 =C2=A0 if upstream patches were commented the reason is speci=
+fied in the commit message.<br>
+=C2=A0 =C2=A0 - compile an image that contains the package<br>
+=C2=A0 =C2=A0 - perform some basic sanity tests<br>
+=C2=A0 =C2=A0 - amend the patch and sign it off: git commit -s --reset-auth=
+or --amend<br>
+=C2=A0 =C2=A0 - send it to the list<br>
+<br>
+Attached are the patch, license diff (if change) and bitbake log.<br>
+Any problem please contact Anibal Limon &lt;<a href=3D"mailto:anibal.limon@=
+intel.com" target=3D"_blank">anibal.limon@intel.com</a>&gt;.<br>
+<br>
+Regards,<br>
+The Upgrade Helper</blockquote></div><br></div></div>
 
---001a1141c1e0ba379d052935f6db--
+--001a113ce6e2a0106d05293758c9--
