@@ -1,54 +1,49 @@
-Return-Path: <neuberfran@gmail.com>
+Return-Path: <chunguangx.chen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 127D7E00ACE; Tue, 12 Jan 2016 13:02:54 -0800 (PST)
+	id DF5F9E00ACF; Tue, 12 Jan 2016 18:53:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	NORMAL_HTTP_TO_IP, 
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (neuberfran[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.54 listed in list.dnswl.org]
-	* 0.0 NORMAL_HTTP_TO_IP URI: URI host has a public dotted-decimal IPv4
-	*      address
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	NORMAL_HTTP_TO_IP autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 NORMAL_HTTP_TO_IP URI: URI host has a public
+	dotted-decimal IPv4 *      address
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
-	[209.85.213.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65CF3E00A9C
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 13:02:50 -0800 (PST)
-Received: by mail-vk0-f54.google.com with SMTP id a123so219967646vkh.1
-	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 13:02:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=Pi5+lLRTOwgareN0CH6xCyV0MRnDSBKPk1Ier3hYktc=;
-	b=OI8JbHyC42JavVziqIxZbEIJh3agJ63MMLq3FR2yrCnyUcy1+S3uysQz3X0GMzw/Dz
-	ZfuD0m81s8Bk1Vy/0wd15uiTgDvEBjVyl4ceZ9rb65JkcQDaNpAl0lp9NNHcdH8oibz+
-	3LwP96140oZFbNRL/RFsRdYOTR+P1otQjYVogxDC8lcnN49ysHs8qN6CHJY3sYlQn8nj
-	ZbrKk1xT9gcK/5v7zVfFaSdY+Fo5bSBg7/EveYWlAuQS/P0vccwOD2gmVly1Tzxc7zSL
-	VOB+vfxOMQXMkUHI8RfFDxxQ1J6vDNEtYEF6A+zhYRqZ7qhVAoCldZyxo/1LsR+EIn10
-	YR5Q==
-MIME-Version: 1.0
-X-Received: by 10.31.49.210 with SMTP id x201mr27911278vkx.81.1452632570261;
-	Tue, 12 Jan 2016 13:02:50 -0800 (PST)
-Received: by 10.31.47.71 with HTTP; Tue, 12 Jan 2016 13:02:49 -0800 (PST)
-Received: by 10.31.47.71 with HTTP; Tue, 12 Jan 2016 13:02:49 -0800 (PST)
-In-Reply-To: <CABWL1PkzESEV1Xmb=R85UfrSTicCJX-NZ-5vPQ3s8tUBQ9SFUA@mail.gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B5A8E00A9C
+	for <yocto@yoctoproject.org>; Tue, 12 Jan 2016 18:53:24 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga104.fm.intel.com with ESMTP; 12 Jan 2016 18:53:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,286,1449561600"; 
+	d="scan'208,217";a="880209915"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Jan 2016 18:53:17 -0800
+Received: from fmsmsx151.amr.corp.intel.com (10.18.125.4) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Tue, 12 Jan 2016 18:53:12 -0800
+Received: from shsmsx152.ccr.corp.intel.com (10.239.6.52) by
+	FMSMSX151.amr.corp.intel.com (10.18.125.4) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Tue, 12 Jan 2016 18:53:12 -0800
+Received: from shsmsx103.ccr.corp.intel.com ([169.254.4.220]) by
+	SHSMSX152.ccr.corp.intel.com ([169.254.6.201]) with mapi id
+	14.03.0248.002; Wed, 13 Jan 2016 10:53:11 +0800
+From: "Chen, ChunguangX" <chunguangx.chen@intel.com>
+To: neuber sousa <neuberfran@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] NSUPDATE Package in intel edison with yocto version 159
+Thread-Index: AQHRTTZLSgTlVEOAqU+Ae0SviEfDaZ74vfXg
+Date: Wed, 13 Jan 2016 02:53:10 +0000
+Message-ID: <FF528608A41EAD4DAE7E154A9EDB1B24024F824C@SHSMSX103.ccr.corp.intel.com>
 References: <CABWL1PkzESEV1Xmb=R85UfrSTicCJX-NZ-5vPQ3s8tUBQ9SFUA@mail.gmail.com>
-Date: Tue, 12 Jan 2016 18:02:49 -0300
-Message-ID: <CABWL1PndDpdT1oV7EPcTTZ4gs=M0kqKez1NsgDNyHdUcveJULw@mail.gmail.com>
-From: neuber sousa <neuberfran@gmail.com>
-To: yocto@yoctoproject.org, zhenmingx.zhao@intel.com
+In-Reply-To: <CABWL1PkzESEV1Xmb=R85UfrSTicCJX-NZ-5vPQ3s8tUBQ9SFUA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
 Subject: Re: NSUPDATE Package in intel edison with yocto version 159
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -61,238 +56,249 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jan 2016 21:02:54 -0000
-Content-Type: multipart/alternative; boundary=001a1143873e56f7c00529296098
+X-List-Received-Date: Wed, 13 Jan 2016 02:53:28 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_FF528608A41EAD4DAE7E154A9EDB1B24024F824CSHSMSX103ccrcor_"
 
---001a1143873e56f7c00529296098
-Content-Type: text/plain; charset=UTF-8
+--_000_FF528608A41EAD4DAE7E154A9EDB1B24024F824CSHSMSX103ccrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-ask for personal help me please
-Em 12/01/2016 10:38, "neuber sousa" <neuberfran@gmail.com> escreveu:
+RGVhciBTb3VzYToNCg0Kb3BrZyBpcyBhIHRvb2wgd2hpY2ggaGVscCB1c2VyIHRvIGRvd25sb2Fk
+ICYgaW5zdGFsbCBjb21tb24gc29mdHdhcmUgZnJvbSByZW1vdGUgc2VydmVyLg0KVGhlIGVycm9y
+IHdoaWNoIHlvdSBtZXQgaXMgYmVjYXVzZSBvZiBubyBzdWNoIHNvZnR3YXJlIHdoaWNoIHlvdSB3
+YW50IGluIHJlbW90ZSBzZXJ2ZXIuDQpTbyBhbm90aGVyIGNob2ljZSBpcyB0aGF0IHlvdSBzaG91
+bGQgZG93bmxvYWQgc291cmNlICBjb2RlIGFuZCBjb21waWxlIGl0IG9uIHlvdXIgb3duLg0KDQpI
+ZXJlIGlzIHRoZSBzb3VyY2UgY29kZSBvZiBuc3VwZGF0ZSwgeW91IGNhbiBjbGljayBhbmQgZmV0
+Y2ggaXQuICBXaXNoIGl0IGNhbiBoZWxwIHlvdX4NCg0KaHR0cHM6Ly9naXRodWIuY29tL25zdXBk
+YXRlLWluZm8vbnN1cGRhdGUuaW5mbw0KDQoNCkJlc3QgUmVnYXJkcw0KQ2h1bmd1YW5nDQoNCkZy
+b206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNA
+eW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIG5ldWJlciBzb3VzYQ0KU2VudDogVHVlc2Rh
+eSwgSmFudWFyeSAxMiwgMjAxNiA4OjM5IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0K
+U3ViamVjdDogW3lvY3RvXSBOU1VQREFURSBQYWNrYWdlIGluIGludGVsIGVkaXNvbiB3aXRoIHlv
+Y3RvIHZlcnNpb24gMTU5DQoNCkknbSB0cnlpbmcgdG8gdG8gdGhpczogaHR0cDovL21rYWN6YW5v
+d3NraS5jb20vZ29sYW5nLWJ1aWxkLWR5bmFtaWMtZG5zLXNlcnZpY2UtZ28vDQoNCkJ1dCBJIGhh
+dmUgZXJyb3Igd2l0aCBOU1VQREFURSBwYWNrYWdlDQoNCnJvb3RAbmV1YmVyZnJhbjp+IyBvcGtn
+IGluc3RhbGwgbnN1cGRhdGUNClVua25vd24gcGFja2FnZSAnbnN1cGRhdGUnLg0KQ29sbGVjdGVk
+IGVycm9yczoNCm9wa2dfaW5zdGFsbF9jbWQ6IENhbm5vdCBpbnN0YWxsIHBhY2thZ2UgbnN1cGRh
+dGUNCg0KDQpyZXR1cm5pbmcgdGhlIGxpbms6IGh0dHA6Ly9ta2FjemFub3dza2kuY29tL2dvbGFu
+Zy1idWlsZC1keW5hbWljLWRucy1zZXJ2aWNlLWdvLw0KDQpJIHNlZTogIm5zdXBkYXRlIHRvIHB1
+c2ggdXBkYXRlcyBvbiByZWNvcmRzLiBJdCBpcyBhIHBhcnQgb2YgdGhlIGJpbmQgcHJvamVjdCwg
+c28gaXQgY2FuIGJlIGZvdW5kIGluIGJpbmQtdG9vbHMgb3IgYmluZC1jbGllbnRwYWNrYWdlcy4i
+DQoNCnJvb3RAbmV1YmVyZnJhbjp+IyBwaW5nIDguOC44LjgNClBJTkcgOC44LjguOCAoOC44Ljgu
+OCk6IDU2IGRhdGEgYnl0ZXMNCjY0IGJ5dGVzIGZyb20gOC44LjguODxodHRwOi8vOC44LjguOC8+
+OiBzZXE9MCB0dGw9NTMgdGltZT01NS4xMDEgbXMNCjY0IGJ5dGVzIGZyb20gOC44LjguODxodHRw
+Oi8vOC44LjguOC8+OiBzZXE9MSB0dGw9NTMgdGltZT0zMi42NDkgbXMNCjY0IGJ5dGVzIGZyb20g
+OC44LjguODxodHRwOi8vOC44LjguOC8+OiBzZXE9MiB0dGw9NTMgdGltZT0zMi45ODMgbXMNCl5D
+DQotLS0gOC44LjguOCBwaW5nIHN0YXRpc3RpY3MgLS0tDQozIHBhY2tldHMgdHJhbnNtaXR0ZWQs
+IDMgcGFja2V0cyByZWNlaXZlZCwgMCUgcGFja2V0IGxvc3MNCnJvdW5kLXRyaXAgbWluL2F2Zy9t
+YXggPSAzMi42NDkvNDAuMjQ0LzU1LjEwMSBtcw0Kcm9vdEBuZXViZXJmcmFuOn4jIG9wa2cgaW5z
+dGFsbCBiaW5kLWNsaWVudA0KVW5rbm93biBwYWNrYWdlICdiaW5kLWNsaWVudCcuDQpDb2xsZWN0
+ZWQgZXJyb3JzOg0KICogb3BrZ19pbnN0YWxsX2NtZDogQ2Fubm90IGluc3RhbGwgcGFja2FnZSBi
+aW5kLWNsaWVudC4NCnJvb3RAbmV1YmVyZnJhbjp+IyBvcGtnIGluc3RhbGwgYmluZC10b29scw0K
+VW5rbm93biBwYWNrYWdlICdiaW5kLXRvb2xzJy4NCkNvbGxlY3RlZCBlcnJvcnM6DQogKiBvcGtn
+X2luc3RhbGxfY21kOiBDYW5ub3QgaW5zdGFsbCBwYWNrYWdlIGJpbmQtdG9vbHMuDQo=
 
-> I'm trying to to this:
-> http://mkaczanowski.com/golang-build-dynamic-dns-service-go/
->
->
->
-> But I have error with NSUPDATE package
->
->
->
-> *root@neuberfran:~# opkg install nsupdate*
-> Unknown package 'nsupdate'.
-> Collected errors:
->
-> opkg_install_cmd: Cannot install package nsupdate
->
->
->
->
->
-> returning the link:
-> http://mkaczanowski.com/golang-build-dynamic-dns-service-go/
->
->
->
-> I see:* "**nsupdate to push updates on records. It is a part of the bind
-> project, so it can be found in bind-tools or bind-clientpackages."*
->
->
->
-> *root@neuberfran:~# ping 8.8.8.8*
->
-> PING 8.8.8.8 (8.8.8.8): 56 data bytes
->
-> 64 bytes from 8.8.8.8: seq=0 ttl=53 time=55.101 ms
->
-> 64 bytes from 8.8.8.8: seq=1 ttl=53 time=32.649 ms
->
-> 64 bytes from 8.8.8.8: seq=2 ttl=53 time=32.983 ms
->
-> ^C
->
-> --- 8.8.8.8 ping statistics ---
->
-> 3 packets transmitted, 3 packets received, 0% packet loss
->
-> round-trip min/avg/max = 32.649/40.244/55.101 ms
->
-> *root@neuberfran:~# opkg install bind-client*
->
-> Unknown package 'bind-client'.
->
-> Collected errors:
->
->  * opkg_install_cmd: Cannot install package bind-client.
->
-> *root@neuberfran:~# opkg install bind-tools*
->
-> Unknown package 'bind-tools'.
->
-> Collected errors:
->
->  * opkg_install_cmd: Cannot install package bind-tools.
->
+--_000_FF528608A41EAD4DAE7E154A9EDB1B24024F824CSHSMSX103ccrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a1143873e56f7c00529296098
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9u
+dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQg
+MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAx
+MSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMi
+Ow0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
+Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBp
+bjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
+bWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxp
+bmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0
+aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246
+dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
+LXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFG
+NDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
+b250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4yNWluIDEuMGluIDEuMjVpbjt9
+DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
+bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
+YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
+b2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9
+IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+RGVhciBTb3VzYTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPm9wa2cgaXMgYSB0
+b29sIHdoaWNoIGhlbHAgdXNlciB0byBkb3dubG9hZCAmYW1wOyBpbnN0YWxsIGNvbW1vbiBzb2Z0
+d2FyZSBmcm9tIHJlbW90ZSBzZXJ2ZXIuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+
+VGhlIGVycm9yIHdoaWNoIHlvdSBtZXQgaXMgYmVjYXVzZSBvZiBubyBzdWNoIHNvZnR3YXJlIHdo
+aWNoIHlvdSB3YW50IGluIHJlbW90ZSBzZXJ2ZXIuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
+N0QiPlNvIGFub3RoZXIgY2hvaWNlIGlzIHRoYXQgeW91IHNob3VsZCBkb3dubG9hZCBzb3VyY2Um
+bmJzcDsgY29kZSBhbmQgY29tcGlsZSBpdCBvbiB5b3VyIG93bi4gJm5ic3A7PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5I
+ZXJlIGlzIHRoZSBzb3VyY2UgY29kZSBvZiBuc3VwZGF0ZSwgeW91IGNhbiBjbGljayBhbmQgZmV0
+Y2ggaXQuICZuYnNwO1dpc2ggaXQgY2FuIGhlbHAgeW91fjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PGEgaHJlZj0iaHR0
+cHM6Ly9naXRodWIuY29tL25zdXBkYXRlLWluZm8vbnN1cGRhdGUuaW5mbyI+aHR0cHM6Ly9naXRo
+dWIuY29tL25zdXBkYXRlLWluZm8vbnN1cGRhdGUuaW5mbzwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
+b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5CZXN0IFJlZ2FyZHM8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+Q2h1bmd1YW5nPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPm5ldWJlciBzb3Vz
+YTxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBKYW51YXJ5IDEyLCAyMDE2IDg6MzkgUE08YnI+
+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4g
+W3lvY3RvXSBOU1VQREFURSBQYWNrYWdlIGluIGludGVsIGVkaXNvbiB3aXRoIHlvY3RvIHZlcnNp
+b24gMTU5PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkknbSB0cnlpbmcg
+dG8gdG8gdGhpczombmJzcDs8YSBocmVmPSJodHRwOi8vbWthY3phbm93c2tpLmNvbS9nb2xhbmct
+YnVpbGQtZHluYW1pYy1kbnMtc2VydmljZS1nby8iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vbWth
+Y3phbm93c2tpLmNvbS9nb2xhbmctYnVpbGQtZHluYW1pYy1kbnMtc2VydmljZS1nby88L2E+PC9z
+cGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVh
+dDppbml0aWFsIj4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+Jm5ic3A7PC9zcGFuPjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFs
+dDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVhdDppbml0aWFs
+Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+QnV0IEkgaGF2ZSBlcnJvciB3aXRoJm5ic3A7
+TlNVUERBVEUmbmJzcDtwYWNrYWdlPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6
+aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NCjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDti
+YWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NCjxiPjxpPjx1PjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OyI+cm9vdEBuZXViZXJmcmFuOn4jIG9wa2cgaW5zdGFsbCZuYnNwO25zdXBkYXRlPC9zcGFu
+PjwvdT48L2k+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PGJyPg0KVW5rbm93biBwYWNr
+YWdlICduc3VwZGF0ZScuPGJyPg0KQ29sbGVjdGVkIGVycm9yczo8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+YmFja2dyb3VuZC1pbWFnZTppbml0aWFsO2JhY2tncm91bmQtcmVwZWF0OmluaXRpYWwiPg0KPHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5vcGtnX2luc3RhbGxfY21kOiBDYW5ub3QgaW5zdGFsbCBw
+YWNrYWdlJm5ic3A7bnN1cGRhdGU8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdDtmb250LWZhbWls
+eTomcXVvdDtBcmlhbCZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5yZXR1cm5pbmcgdGhl
+IGxpbms6Jm5ic3A7PC9zcGFuPjxhIGhyZWY9Imh0dHA6Ly9ta2FjemFub3dza2kuY29tL2dvbGFu
+Zy1idWlsZC1keW5hbWljLWRucy1zZXJ2aWNlLWdvLyIgdGFyZ2V0PSJfYmxhbmsiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90OyI+aHR0cDovL21rYWN6YW5vd3NraS5jb20vZ29sYW5nLWJ1aWxkLWR5
+bmFtaWMtZG5zLXNlcnZpY2UtZ28vPC9zcGFuPjwvYT48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWlt
+YWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQo8c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjkuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDsiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRp
+YWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjku
+NXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsi
+Pkkgc2VlOjxpPiZuYnNwOyZxdW90OzwvaT48L3NwYW4+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS41cHQ7Y29sb3I6IzY2NjY2NiI+bnN1cGRhdGUmbmJzcDt0byBwdXNoIHVwZGF0ZXMgb24g
+cmVjb3Jkcy4gSXQgaXMgYSBwYXJ0IG9mIHRoZSBiaW5kIHByb2plY3QsIHNvIGl0IGNhbiBiZSBm
+b3VuZCBpbiZuYnNwOzxiPmJpbmQtdG9vbHM8L2I+Jm5ic3A7b3ImbmJzcDs8Yj5iaW5kLWNsaWVu
+dDwvYj5wYWNrYWdlcy4mcXVvdDs8L3NwYW4+PC9pPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1h
+Z2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NCjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90OyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlh
+bDtiYWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NCjxiPjx1PnJvb3RAbmV1YmVyZnJhbjp+IyBw
+aW5nIDguOC44Ljg8L3U+PC9iPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDti
+YWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NClBJTkcgOC44LjguOCAoOC44LjguOCk6IDU2IGRh
+dGEgYnl0ZXM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1y
+ZXBlYXQ6aW5pdGlhbCI+DQo2NCBieXRlcyBmcm9tJm5ic3A7PGEgaHJlZj0iaHR0cDovLzguOC44
+LjgvIiB0YXJnZXQ9Il9ibGFuayI+OC44LjguODwvYT46IHNlcT0wIHR0bD01MyB0aW1lPTU1LjEw
+MSBtczxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVh
+dDppbml0aWFsIj4NCjY0IGJ5dGVzIGZyb20mbmJzcDs8YSBocmVmPSJodHRwOi8vOC44LjguOC8i
+IHRhcmdldD0iX2JsYW5rIj44LjguOC44PC9hPjogc2VxPTEgdHRsPTUzIHRpbWU9MzIuNjQ5IG1z
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87YmFja2dyb3VuZC1pbWFnZTppbml0aWFsO2JhY2tncm91bmQtcmVwZWF0Omlu
+aXRpYWwiPg0KNjQgYnl0ZXMgZnJvbSZuYnNwOzxhIGhyZWY9Imh0dHA6Ly84LjguOC44LyIgdGFy
+Z2V0PSJfYmxhbmsiPjguOC44Ljg8L2E+OiBzZXE9MiB0dGw9NTMgdGltZT0zMi45ODMgbXM8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlh
+bCI+DQpeQzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJl
+cGVhdDppbml0aWFsIj4NCi0tLSA4LjguOC44IHBpbmcgc3RhdGlzdGljcyAtLS08bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQoz
+IHBhY2tldHMgdHJhbnNtaXR0ZWQsIDMgcGFja2V0cyByZWNlaXZlZCwgMCUgcGFja2V0IGxvc3M8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5p
+dGlhbCI+DQpyb3VuZC10cmlwIG1pbi9hdmcvbWF4ID0gMzIuNjQ5LzQwLjI0NC81NS4xMDEgbXM8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5p
+dGlhbCI+DQo8Yj48dT5yb290QG5ldWJlcmZyYW46fiMgb3BrZyBpbnN0YWxsIGJpbmQtY2xpZW50
+PC91PjwvYj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1y
+ZXBlYXQ6aW5pdGlhbCI+DQpVbmtub3duIHBhY2thZ2UgJ2JpbmQtY2xpZW50Jy48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bztiYWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQpD
+b2xsZWN0ZWQgZXJyb3JzOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91bmQtaW1hZ2U6aW5pdGlhbDtiYWNr
+Z3JvdW5kLXJlcGVhdDppbml0aWFsIj4NCiZuYnNwOyogb3BrZ19pbnN0YWxsX2NtZDogQ2Fubm90
+IGluc3RhbGwgcGFja2FnZSBiaW5kLWNsaWVudC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztiYWNrZ3JvdW5kLWltYWdl
+OmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQo8Yj48dT5yb290QG5ldWJlcmZy
+YW46fiMgb3BrZyBpbnN0YWxsIGJpbmQtdG9vbHM8L3U+PC9iPjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO2JhY2tncm91
+bmQtaW1hZ2U6aW5pdGlhbDtiYWNrZ3JvdW5kLXJlcGVhdDppbml0aWFsIj4NClVua25vd24gcGFj
+a2FnZSAnYmluZC10b29scycuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87YmFja2dyb3VuZC1pbWFnZTppbml0aWFsO2Jh
+Y2tncm91bmQtcmVwZWF0OmluaXRpYWwiPg0KQ29sbGVjdGVkIGVycm9yczo8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzti
+YWNrZ3JvdW5kLWltYWdlOmluaXRpYWw7YmFja2dyb3VuZC1yZXBlYXQ6aW5pdGlhbCI+DQombmJz
+cDsqIG9wa2dfaW5zdGFsbF9jbWQ6IENhbm5vdCBpbnN0YWxsIHBhY2thZ2UgYmluZC10b29scy48
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-<p dir=3D"ltr">ask for personal help me please</p>
-<div class=3D"gmail_quote">Em 12/01/2016 10:38, &quot;neuber sousa&quot; &l=
-t;<a href=3D"mailto:neuberfran@gmail.com">neuberfran@gmail.com</a>&gt; escr=
-eveu:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"lt=
-r"><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:=
-initial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-fami=
-ly:Arial,sans-serif">I&#39;m trying to to
-this:=C2=A0<a href=3D"http://mkaczanowski.com/golang-build-dynamic-dns-serv=
-ice-go/" target=3D"_blank">http://mkaczanowski.com/golang-build-dynamic-dns=
--service-go/</a></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">=C2=A0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">But I have error with=C2=A0NSUPDATE=C2=A0package</span></=
-p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">=C2=A0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><b><i><u><span style=3D"font-size:9.5pt;fon=
-t-family:Arial,sans-serif">root@neuberfran:~#
-opkg install=C2=A0nsupdate</span></u></i></b><span style=3D"font-size:9.5pt=
-;font-family:Arial,sans-serif"><br>
-Unknown package &#39;nsupdate&#39;.<br>
-Collected errors:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">opkg_install_cmd:
-Cannot install package=C2=A0nsupdate</span></p>
-
-<p class=3D"MsoNormal">=C2=A0</p>
-
-<p class=3D"MsoNormal">=C2=A0</p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=3D"font=
--size:9.5pt;font-family:Arial,sans-serif;background-image:initial;backgroun=
-d-repeat:initial">returning the link:=C2=A0</span><span style=3D"font-size:=
-12pt;font-family:&#39;Times New Roman&#39;,serif"><a href=3D"http://mkaczan=
-owski.com/golang-build-dynamic-dns-service-go/" target=3D"_blank"><span sty=
-le=3D"font-size:9.5pt;font-family:Arial,sans-serif;background-image:initial=
-;background-repeat:initial">http://mkaczanowski.com/golang-build-dynamic-dn=
-s-service-go/</span></a></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">=C2=A0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">I see:<i>=C2=A0&quot;</i></span><i><span style=3D"font-si=
-ze:11.5pt;font-family:&#39;Times New Roman&#39;,serif;color:rgb(102,102,102=
-)">nsupdate=C2=A0to push updates on records. It
-is a part of the bind project, so it can be found in=C2=A0<b>bind-tools</b>=
-=C2=A0or=C2=A0<b>bind-client</b>packages.&quot;</span></i><span style=3D"fo=
-nt-size:9.5pt;font-family:Arial,sans-serif"></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-family:=
-Arial,sans-serif">=C2=A0</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><b><u><span style=3D"font-size:12pt;font-fa=
-mily:&#39;Times New Roman&#39;,serif">root@neuberfran:~#
-ping 8.8.8.8</span></u></b><span style=3D"font-size:12pt;font-family:&#39;T=
-imes New Roman&#39;,serif"></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">PING 8.8.8.8
-(8.8.8.8): 56 data bytes</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">64 bytes from=C2=A0<a href=3D"http://8.8.8.=
-8/" target=3D"_blank">8.8.8.8</a>:
-seq=3D0 ttl=3D53 time=3D55.101 ms</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">64 bytes from=C2=A0<a href=3D"http://8.8.8.=
-8/" target=3D"_blank">8.8.8.8</a>:
-seq=3D1 ttl=3D53 time=3D32.649 ms</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">64 bytes from=C2=A0<a href=3D"http://8.8.8.=
-8/" target=3D"_blank">8.8.8.8</a>:
-seq=3D2 ttl=3D53 time=3D32.983 ms</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">^C</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">--- 8.8.8.8 ping
-statistics ---</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">3 packets transmitted,
-3 packets received, 0% packet loss</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">round-trip min/avg/max
-=3D 32.649/40.244/55.101 ms</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><b><u><span style=3D"font-size:12pt;font-fa=
-mily:&#39;Times New Roman&#39;,serif">root@neuberfran:~#
-opkg install bind-client</span></u></b><span style=3D"font-size:12pt;font-f=
-amily:&#39;Times New Roman&#39;,serif"></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">Unknown package
-&#39;bind-client&#39;.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">Collected errors:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">=C2=A0*
-opkg_install_cmd: Cannot install package bind-client.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><b><u><span style=3D"font-size:12pt;font-fa=
-mily:&#39;Times New Roman&#39;,serif">root@neuberfran:~#
-opkg install bind-tools</span></u></b><span style=3D"font-size:12pt;font-fa=
-mily:&#39;Times New Roman&#39;,serif"></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">Unknown package
-&#39;bind-tools&#39;.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">Collected errors:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;background-image:ini=
-tial;background-repeat:initial"><span style=3D"font-size:12pt;font-family:&=
-#39;Times New Roman&#39;,serif">=C2=A0*
-opkg_install_cmd: Cannot install package bind-tools.</span></p></div>
-</blockquote></div>
-
---001a1143873e56f7c00529296098--
+--_000_FF528608A41EAD4DAE7E154A9EDB1B24024F824CSHSMSX103ccrcor_--
