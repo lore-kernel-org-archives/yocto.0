@@ -1,41 +1,73 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D69B9E00B66; Wed, 13 Jan 2016 12:03:20 -0800 (PST)
+	id 5E6F3E00B66; Wed, 13 Jan 2016 12:17:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13450E00B46
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:03:17 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 13 Jan 2016 12:03:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,290,1449561600"; d="scan'208";a="632956347"
-Received: from ykung-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.151.13])
-	by FMSMGA003.fm.intel.com with ESMTP; 13 Jan 2016 12:03:11 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org,
-	=?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Thu, 14 Jan 2016 09:03:08 +1300
-Message-ID: <1597083.J1Q8K4j3y3@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.2.8-300.fc23.x86_64; KDE/4.14.14; x86_64; ;
-	)
-In-Reply-To: <56968498.5070207@linux.intel.com>
-References: <37b747fd-ad90-45e9-b3cc-4595c4d83661@fmsmsx108.amr.corp.intel.com>
-	<CAHiDW_GGH6X3vyFXe5+JCZz3pn8L0HPDfxN3BsjT3nbYC_oj_w@mail.gmail.com>
-	<56968498.5070207@linux.intel.com>
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_20,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (karim_atiki[at]hotmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.1110]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.0.227 listed in list.dnswl.org]
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Wed, 13 Jan 2016 12:17:44 PST
+Received: from DUB004-OMC1S28.hotmail.com (dub004-omc1s28.hotmail.com
+	[157.55.0.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2B37E00B46
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:17:44 -0800 (PST)
+Received: from emea01-am1-obe.outbound.protection.outlook.com ([157.55.0.237])
+	by DUB004-OMC1S28.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Wed, 13 Jan 2016 12:16:41 -0800
+Received: from AMXPR01MB086.eurprd01.prod.exchangelabs.com (10.255.255.158) by
+	AMXPR01MB088.eurprd01.prod.exchangelabs.com (10.255.255.160) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.361.13; Wed, 13 Jan 2016 20:16:41 +0000
+Received: from AMXPR01MB086.eurprd01.prod.exchangelabs.com ([169.254.5.63]) by
+	AMXPR01MB086.eurprd01.prod.exchangelabs.com ([169.254.5.63]) with
+	mapi id 15.01.0361.006; Wed, 13 Jan 2016 20:16:40 +0000
+From: Karim ATIKI <karim_atiki@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Yocto][Generic] Add a local binary file into a target Distro
+Thread-Index: AQHRTj8K7PBiAZw6B06+Xcn9MWA0Ug==
+Date: Wed, 13 Jan 2016 20:16:40 +0000
+Message-ID: <AMXPR01MB0866EFB3F8CA8249F251C8A92CB0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [rXkm0YuoxoWjkaeySDLQM67x7qHXgn6e]
+x-microsoft-exchange-diagnostics: 1; AMXPR01MB088;
+	23:Te+WWuREdyUS0s0uzUkfoU1tgT0o4Sm8HL8sKnoEOX8tPrj1iiS1jdjWYTUM7cb+LoEUkmCs72WBNYpq+Juag9o9WyGSTJoDRBQ8Nz3GfE/d51PFDdYEHB8Bpr3TAZYcgWWdcXv1Fr5eCZ70vLR1G0PhwznfbfeiRaonXedAAlsf/OzH+BBuN9niFWXX2jSBZJ+1kyR0jUv18djlGqBymw==;
+	5:Q8a04qbZ9cqBhz1OLKRViAWzQBccA0QEj4o4bvs58+TeOHzKljABLFWuTLi7Zm4Tn7WXfA2OaWj983Be0y/F4jqfHIZehS9azZ8oC59jhVo7Dug3TLP+D588R84RWeLof14tCBEndLGtiOxPbjrhJQ==;
+	24:+7pdu8OjxnBYAaxnBg31sqd/KRl6muFKBxRLYXt1VYpZ9dHIBWt0oavBim5NIzM1M1+lH5NlPROCISYOFovXEKbBYpVCA7AnHjlCUHOlfIo=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:AMXPR01MB088;
+x-ms-office365-filtering-correlation-id: 72c0e70b-a91e-4e13-e349-08d31c5672c1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
+	SRVR:AMXPR01MB088; BCL:0; PCL:0; RULEID:; SRVR:AMXPR01MB088; 
+x-forefront-prvs: 08200063E9
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070004)(98900002); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:AMXPR01MB088;
+	H:AMXPR01MB086.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Cc: Anibal Limon <anibal.limon@intel.com>
-Subject: Re: [AUH] gpgme: upgrading to 1.6.0 SUCCEEDED
+X-OriginatorOrg: sct-15-1-318-9-msonline-outlook-fa212.templateTenant
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jan 2016 20:16:40.6510 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMXPR01MB088
+X-OriginalArrivalTime: 13 Jan 2016 20:16:41.0944 (UTC)
+	FILETIME=[5101E580:01D14E3F]
+Subject: [Generic] Add a local binary file into a target Distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,62 +79,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jan 2016 20:03:20 -0000
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 13 Jan 2016 20:17:47 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_AMXPR01MB0866EFB3F8CA8249F251C8A92CB0AMXPR01MB086eurprd_"
+
+--_000_AMXPR01MB0866EFB3F8CA8249F251C8A92CB0AMXPR01MB086eurprd_
 Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 13 Jan 2016 11:08:40 An=EDbal Lim=F3n wrote:
-> On 01/13/2016 07:42 AM, Jussi Kukkonen wrote:
-> > On 11 January 2016 at 06:21, <auh@auh.yoctoproject.org> wrote:
-> >> You are receiving this email because you are the maintainer
-> >> of *gpgme* recipe and this is to let you know that the automatic a=
-ttempt
-> >> to upgrade the recipe to *1.6.0* has Succeeded.
-> >=20
-> > First, thanks for the effort Anibal, the upgrade helper is looking =
-very
-> > useful: I'm certainly going to use it.
-> >=20
-> > Couple of small issues:
-> > * The license diffs do not seem correct: they look like like diffs =
-between
-> > an empty file and the new license file version (see the parent gpgm=
-e post
-> > for example)
->=20
-> Yes i see, i'll review/fix the problem.
->=20
-> > * Is the decision to use "buildhistory-diff -a" intentional? I'm no=
-t 100%
-> > sure what exactly "-a" option brings with it but I've usually avoid=
-ed it
-> > on
-> > upgrades because the path changes in  -dbg package are so verbose a=
-s to
-> > hide everything else...
->=20
-> It was mine decision for provide more output for the maintainers but =
-if
-> you think that's enough without -a that's ok.
->=20
-> May be a good idea will be to sent two files one,
->=20
-> =09- buildhistory-diff.txt: Without -a.
-> =09- buildhistory-diff-all.txt: With -a/
->=20
-> Comments?
+Hi all,
 
-I'd question the value of -a as well; the tool is supposed to be smart =
-enough=20
-to show you the things that matter and hide everything else by default.=
- If=20
-it's not doing that effectively then we should fix it.
 
-Cheers,
-Paul
+Please be indulgent with my noob question.
 
---=20
+I spent a lot of time with setting up Yocto on different target boards.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+It's just amazing.
 
+
+But, although I've been able to add my own layer to include a project from =
+github, I was just wondering how we could simply and easily add a local fil=
+e / binary to a target distro ? (FYI: raspberrypi2) without creating tons o=
+f layers , bb. etc.
+
+
+Thanks for your feedback.
+
+
+K.
+
+
+--_000_AMXPR01MB0866EFB3F8CA8249F251C8A92CB0AMXPR01MB086eurprd_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi all,</p>
+<p><br>
+</p>
+<p>Please be indulgent with my noob question.</p>
+<p>I spent a lot of time with setting up Yocto on different target boards.<=
+/p>
+<p>It's just amazing.</p>
+<p><br>
+</p>
+<p>But, although I've been able to add my own layer to include a project fr=
+om github, I was just wondering how we could simply and easily&nbsp;add a l=
+ocal file / binary to a target distro ? (FYI: raspberrypi2) without creatin=
+g tons of layers , bb. etc.</p>
+<p><br>
+</p>
+<p>Thanks for your feedback.</p>
+<p><br>
+</p>
+<p>K.</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_AMXPR01MB0866EFB3F8CA8249F251C8A92CB0AMXPR01MB086eurprd_--
