@@ -1,61 +1,67 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DF47E00B66; Wed, 13 Jan 2016 12:22:46 -0800 (PST)
+	id 4DD4AE00B6D; Wed, 13 Jan 2016 12:28:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A17F6E00B46
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:22:42 -0800 (PST)
-Received: by mail-ig0-f176.google.com with SMTP id z14so160025229igp.1
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:22:42 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 263BBE00B66
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:28:39 -0800 (PST)
+Received: by mail-io0-f180.google.com with SMTP id 77so399694833ioc.2
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:28:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=poXP2ajCbYwlgfdg6nOlCJVphoLaufV9ZQhjsYGaxOY=;
-	b=I1myUUmyfT7bJ1nz31HOGQ0t/R4JXmLX/T4PTm5tZSP1KSWXy9rjiRGLD+vWyHE6FI
-	PkG1Dxrs9XqMRCbUV2Y2oXzu0c53DE1m+T5RJRqiBH+KQm91rWfvsVAIZWt7xjR535Yt
-	Sy/+YsIQ7JpjwURVmlRaFx1f2u9XraarCs0GwUUF8nLa/PxX1XvzSBlbNHloqKziglsX
-	rJGKX9h6kL1I+3EQ8pTd2xTIspE7En5dQ4zSYcLc2OmWDC3cUayXOt1u1aBx7aImDTGa
-	U6+HGBkJ62WlL0fQt0cIRw+SJerSzbfiSlWOEyMbLgrq15A8B1Q3cBrWwD/9/A1L9iDL
-	FUIw==
+	bh=1HfOX+efm5cyrPvaIuLXsMR7iDQlzyLEXBOiYWSZDxI=;
+	b=KeVLkTA5kD84M6XrTNscLLHxa8XajIebTX/tZeEuiEHukvYlHn+fJ5v2KipYpGA3PR
+	dg1cj5x9Or7TTapbccU2cnOEiGg2FIrUgFV+VrESiVvO9IAEYc+EwqaHFuca5R3pj+lt
+	TY7M2VkspuKY5wFUlC6IGrPq+RGi3HIHeZ8BwIV2dD8wIg1qfAI6zC4F1TBhfa8kC2zU
+	sw+clXd6nE+RXe/oKj0frcXeJ44pHPrIdxoIKxfpgb0BfsLUaopV644rsCEMUZZlIQcB
+	Mncmn6N5I0c1ft6K36rg2d7Hg3s7MyGdOcfYjyxmKvU005XIjYw+ob4Uo9EJjk5SYQMf
+	d/Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=poXP2ajCbYwlgfdg6nOlCJVphoLaufV9ZQhjsYGaxOY=;
-	b=d8ltNhSH8oSmio367eBay7Gb/kiFyYTnUp4R0Ma3Vwq1tq7QG6f+q8NdXEWM48IaER
-	RLJF/abVseS2/DsYyHQLS45AzLZzeElfcLnc8tV7+Ua76hJBML//ArFWiTxX7RqvkgXk
-	wr7IsKmSsf/9eJyTxPvDeEanIeeQCX+RrKXDRGVbV3nuBEM9OiZ9lqNH+KJrnvyBsUgz
-	mTAIG7pYyvtPBcFABl4TVP4IusE2xP5mFVUcLDZsCmjpj9WC3WpLIyugLTg1inDPVTcS
-	JKkJ8FHJVmKln7N1XRJPbROCqJGZxskFM0Agd4Zfynilxv/79EagyZJ5atecwRXD+CIt
-	/q8A==
-X-Gm-Message-State: ALoCoQkih/+tLyjONOSt0wR6iJ3JW5KYP7dtk12OMRb5XMmZOPP/mKho3K18WTFUtSBilXB5Fh9Xb8nZVSPguVGXZ+CDvXd5+YU2WxYbxH2rHEiJDxnjQ5w=
-X-Received: by 10.50.126.8 with SMTP id mu8mr866858igb.52.1452716561688; Wed,
-	13 Jan 2016 12:22:41 -0800 (PST)
+	bh=1HfOX+efm5cyrPvaIuLXsMR7iDQlzyLEXBOiYWSZDxI=;
+	b=Tgn7acUuCXmdz+2pzP2TwjkWX0BeGIc1Xuyg25HmMScaCvcCpEX7t62au3RMhcdBm4
+	CLcuQRlIrXLKMIVndC1pOvFhr39rN5urmDwc2HN1BkI5UDfT3Af8BebPvMDEaMTBQpH9
+	WgBuCqAz9YcMwy6gIwVCvHy1U/GuuZql53izK6zWZ4lANelFT/Z4K/mD1aXGPlMuo+8H
+	0roNowr+q+g9JtYAd3imGGNZdWLw9oL6mjSNVQ4sadnymKK7iM1/eGQpBYfRKaT0uP0T
+	vR7PJOkHxgCrPgLnD7GdVES5x3a1QPlb/OPxeQx69LloQuHeRL31l20pG5kgX1UDmKad
+	3bOw==
+X-Gm-Message-State: ALoCoQnbdWZEXaZlBo+rm91POLQVp0zYxVicKIEKEq4QULln7VU4doqzTDZo6G+JZvMfotqbO9LSgCcmobCIY5CkSKoc6MImSNCb5pkZ1aGCR7bmeHuYCdU=
+X-Received: by 10.107.164.161 with SMTP id d33mr799658ioj.148.1452716919340;
+	Wed, 13 Jan 2016 12:28:39 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Wed, 13 Jan 2016 12:22:22 -0800 (PST)
-In-Reply-To: <AMXPR01MB0866EFB3F8CA8249F251C8A92CB0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
-References: <AMXPR01MB0866EFB3F8CA8249F251C8A92CB0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
+Received: by 10.107.162.70 with HTTP; Wed, 13 Jan 2016 12:28:19 -0800 (PST)
+In-Reply-To: <5696B318.50709@intel.com>
+References: <37b747fd-ad90-45e9-b3cc-4595c4d83661@fmsmsx108.amr.corp.intel.com>
+	<CAHiDW_GGH6X3vyFXe5+JCZz3pn8L0HPDfxN3BsjT3nbYC_oj_w@mail.gmail.com>
+	<56968498.5070207@linux.intel.com>
+	<1597083.J1Q8K4j3y3@peggleto-mobl.ger.corp.intel.com>
+	<CAJTo0LZA8dDFJJ-+RLay9brMubTcBbxPa1gEPst5e1XFxf-0YA@mail.gmail.com>
+	<5696B318.50709@intel.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 13 Jan 2016 20:22:22 +0000
-Message-ID: <CAJTo0LZ_P=yKoqZaNuXKESyV+YQKZtS8VJLhG-6ycX5U6Evngw@mail.gmail.com>
-To: Karim ATIKI <karim_atiki@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [Generic] Add a local binary file into a target Distro
+Date: Wed, 13 Jan 2016 20:28:19 +0000
+Message-ID: <CAJTo0Lag6P2bmUF-D32p0q3tn=JearNuhS+55i7v=d5w_4LLEA@mail.gmail.com>
+To: Anibal Limon <anibal.limon@intel.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [AUH] gpgme: upgrading to 1.6.0 SUCCEEDED
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,44 +73,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jan 2016 20:22:46 -0000
-Content-Type: multipart/alternative; boundary=047d7b1635bf9e888505293cee9e
+X-List-Received-Date: Wed, 13 Jan 2016 20:28:44 -0000
+Content-Type: multipart/alternative; boundary=001a1141c976efd8d505293d039f
 
---047d7b1635bf9e888505293cee9e
+--001a1141c976efd8d505293d039f
 Content-Type: text/plain; charset=UTF-8
 
-On 13 January 2016 at 20:16, Karim ATIKI <karim_atiki@hotmail.com> wrote:
+On 13 January 2016 at 20:27, Anibal Limon <anibal.limon@intel.com> wrote:
 
-> But, although I've been able to add my own layer to include a project from
-> github, I was just wondering how we could simply and easily add a local
-> file / binary to a target distro ? (FYI: raspberrypi2) without creating
-> tons of layers , bb. etc.
+> If we don't use -a option the PKGR changes are not shown. I don't know
+> if buildhistory-diff needs another improvements :D.
 >
-> The yocto-layer tool can create an empty layer for you, and then it's just
-a single file for the bb.  That's pretty much the proper way of doing it,
-and then you've somewhere to put all the settings and changes that you
-previously had in local.conf too.
+
+Yeah, my request was general, not specific to AUH.
+
+That's probably because the AUH doesn't enable a PR server, but I have one
+locally and always need to buildhistory-diff |grep -v PKGR.
 
 Ross
 
---047d7b1635bf9e888505293cee9e
+--001a1141c976efd8d505293d039f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 13 January 2016 at 20:16, Karim ATIKI <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:karim_atiki@hotmail.com" target=3D"_blank">karim_atiki@hotmail.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p>But, although I&#3=
-9;ve been able to add my own layer to include a project from github, I was =
-just wondering how we could simply and easily=C2=A0add a local file / binar=
-y to a target distro ? (FYI: raspberrypi2) without creating tons of layers =
-, bb. etc.</p>
-<p></p></blockquote></div>The yocto-layer tool can create an empty layer fo=
-r you, and then it&#39;s just a single file for the bb.=C2=A0 That&#39;s pr=
-etty much the proper way of doing it, and then you&#39;ve somewhere to put =
-all the settings and changes that you previously had in local.conf too.</di=
-v><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div=
-></div>
+On 13 January 2016 at 20:27, Anibal Limon <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:anibal.limon@intel.com" target=3D"_blank">anibal.limon@intel.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1vx" class=
+=3D"a3s" style=3D"overflow:hidden">If we don&#39;t use -a option the PKGR c=
+hanges are not shown. I don&#39;t know<br>
+if buildhistory-diff needs another improvements :D.<br></div></blockquote><=
+/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Yeah, =
+my request was general, not specific to AUH.</div><div class=3D"gmail_extra=
+"><br></div>That&#39;s probably because the AUH doesn&#39;t enable a PR ser=
+ver, but I have one locally and always need to buildhistory-diff |grep -v P=
+KGR.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
+oss</div></div>
 
---047d7b1635bf9e888505293cee9e--
+--001a1141c976efd8d505293d039f--
