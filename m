@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7834FE00B70; Wed, 13 Jan 2016 13:50:36 -0800 (PST)
+	id 89C17E00B6F; Wed, 13 Jan 2016 13:50:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,22 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4491EE00B66
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 13:50:31 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EB51E00B67
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 13:50:33 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 13 Jan 2016 13:50:31 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 13 Jan 2016 13:50:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,291,1449561600"; d="scan'208";a="633000561"
+X-IronPort-AV: E=Sophos;i="5.22,291,1449561600"; d="scan'208";a="633000565"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.151])
-	by FMSMGA003.fm.intel.com with ESMTP; 13 Jan 2016 13:50:30 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 13 Jan 2016 13:50:31 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 13 Jan 2016 15:52:10 -0600
-Message-Id: <1452721931-18829-1-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 13 Jan 2016 15:52:11 -0600
+Message-Id: <1452721931-18829-2-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1452721931-18829-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1452721931-18829-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [[PATCH][AUH] 1/2] buildhistory.py: Add the ability for generate full and simple output.
+Subject: [[PATCH][AUH] 2/2] steps.py: Adds {pack, unpack}_original_workdir.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,48 +45,79 @@ X-List-Received-Date: Wed, 13 Jan 2016 21:50:36 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Now buildhistroy generate two diff files,
+The original workdir directory is needed for make diff's for example
+when license change [1], in order to avoid deletion of original workdir
+when recipe is upgraded.
 
-	- buildhistory-diff.txt: Simple diff generated without -a
-	  option.
-	- buildhistory-diff-full.txt: Full diff generated contains
-	  all the packages including -dbg and -dev.
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+
+[1] https://lists.yoctoproject.org/pipermail/yocto/2016-January/028025.html
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- modules/buildhistory.py | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ modules/steps.py | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/modules/buildhistory.py b/modules/buildhistory.py
-index d8ca46d..9085233 100644
---- a/modules/buildhistory.py
-+++ b/modules/buildhistory.py
-@@ -61,15 +61,21 @@ class BuildHistory(object):
-         rev_initial = self.revs[0]
-         rev_final = self.revs[-1]
+diff --git a/modules/steps.py b/modules/steps.py
+index 2685b80..0c527a4 100644
+--- a/modules/steps.py
++++ b/modules/steps.py
+@@ -20,6 +20,7 @@
  
--        cmd = "buildhistory-diff -a -p %s %s %s"  % (self.buildhistory_dir, 
--                rev_initial, rev_final)
--
-         try:
-+            cmd = "buildhistory-diff -p %s %s %s"  % (self.buildhistory_dir, 
-+                rev_initial, rev_final)
-             stdout, stderr = bb.process.run(cmd)
--
-             if stdout and os.path.exists(self.workdir):
-                 with open(os.path.join(self.workdir, "buildhistory-diff.txt"),
-                         "w+") as log:
-                     log.write(stdout)
+ import os
+ import sys
++import subprocess
+ 
+ from logging import debug as D
+ from logging import info as I
+@@ -99,6 +100,19 @@ def buildhistory_init(bb, git, opts, pkg_ctx):
+ def unpack_original(bb, git, opts, pkg_ctx):
+     pkg_ctx['recipe'].unpack()
+ 
++def pack_original_workdir(bb, git, opts, pkg_ctx):
++    recipe_workdir = os.path.dirname(pkg_ctx['env']['S'])
++    pkg_ctx['recipe_workdir_tarball'] = os.path.join(pkg_ctx['workdir'],
++            'original_workdir.tar.gz')
 +
-+            cmd_full = "buildhistory-diff -a -p %s %s %s"  % (self.buildhistory_dir, 
-+                        rev_initial, rev_final)
-+            stdout, stderr = bb.process.run(cmd_full)
-+            if stdout and os.path.exists(self.workdir):
-+                with open(os.path.join(self.workdir, "buildhistory-diff-full.txt"),
-+                        "w+") as log:
-+                    log.write(stdout)
-         except bb.process.ExecutionError as e:
-             W( "%s: Buildhistory checking fails\n%s" % (self.pn, e.stdout))
++    try:
++        subprocess.call(["tar", "-chzf", pkg_ctx['recipe_workdir_tarball'],
++                         recipe_workdir], stdout=subprocess.PIPE,
++                         stderr=subprocess.PIPE)
++    except:
++        W(" %s, Can't compress original workdir, if license diff" \
++          " is needed will show full file." % pkg_ctx['PN'])
++
+ def rename(bb, git, opts, pkg_ctx):
+     pkg_ctx['recipe'].rename()
+ 
+@@ -112,6 +126,15 @@ def cleanall(bb, git, opts, pkg_ctx):
+ def fetch(bb, git, opts, pkg_ctx):
+     pkg_ctx['recipe'].fetch()
+ 
++def unpack_original_workdir(bb, git, opts, pkg_ctx):
++    try:
++        subprocess.call(["tar", "-xhzf", pkg_ctx['recipe_workdir_tarball'],
++                         "-C", "/"], stdout=subprocess.PIPE,
++                         stderr=subprocess.PIPE)
++        os.unlink(pkg_ctx['recipe_workdir_tarball'])
++    except:
++        pass
++
+ def compile(bb, git, opts, pkg_ctx):
+     if opts['skip_compilation']:
+         W(" %s: Compilation was skipped by user choice!")
+@@ -136,9 +159,11 @@ upgrade_steps = [
+     (detect_recipe_type, None),
+     (buildhistory_init, None),
+     (unpack_original, "Fetch & unpack original version ..."),
++    (pack_original_workdir, None),
+     (rename, "Renaming recipes, reset PR (if exists) ..."),
+     (cleanall, "Clean all ..."),
+     (fetch, "Fetch new version (old checksums) ..."),
++    (unpack_original_workdir, None),
+     (compile, None),
+     (buildhistory_diff, None)
+ ]
 -- 
 2.1.4
 
