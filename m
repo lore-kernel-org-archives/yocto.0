@@ -1,75 +1,75 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <federicobriata@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BEBDE00B5A; Wed, 13 Jan 2016 09:41:49 -0800 (PST)
+	id 42198E00B5A; Wed, 13 Jan 2016 09:46:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f177.google.com (mail-pf0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50241E008EE
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 09:41:45 -0800 (PST)
-Received: by mail-pf0-f177.google.com with SMTP id n128so84589085pfn.3
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 09:41:45 -0800 (PST)
+Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
+	[209.85.217.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8A1E008EE
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 09:46:13 -0800 (PST)
+Received: by mail-lb0-f169.google.com with SMTP id oh2so295576841lbb.3
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 09:46:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=tCd0TtqcP9dJiHSuvrXT0iacjDXKvfKdw9kJ7ARgznM=;
-	b=HNz+8nef/6ZF3qf/+BmF34e/dTWi73pok7AiFAOOJk1NYv7XxhIC6PntHbzOavuQL2
-	IJ71dXMz0yytvcRw9//sBnwi0fNEUW3oq4CHXTNUzKe9EJlwng+S4vYsLEFLTX5t1rks
-	4yfqP7Ta7U/V5eAv7vrKMZ0khNi8kkg47Gz1MwpUNlxtp4JifgsQZO/B1q8Brz4LuKmx
-	WI6CSRzR3jYhxTy202x4pU3K8h51VkXxDeuTGL8Y22IoKQqZVeDe3aS+Q4l0T+GeYkOj
-	+Kc2DLEEFBY7mo41mYA98MOTqa/v0dKzkdcQk/CJjEwYyDJIMEAoY8Aj8XBjHVCo7ZTU
-	Nrzg==
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=TxBo50rvwIn17hp4HFIX6LElC1O2E5Ij3u/tPmHwVBU=;
+	b=D0FcGfai+HBRH1xKeFEZBA4r2XAQobxEFumpKdFguSGKBGhK4nhUdutEgviHcTqPJ3
+	OSE+nY5oVwtwo0SMQU8aj02zsRxFAI9xZcnGKhlzmSoPky9B3ra+IEIeVBKOAIQXI4t6
+	I8WIhLWAbh7xphHbkasLwJNlnzmUyk7jWyret7u2bBGKRgZgx9MAP4VNhZnW46jiZtjS
+	ECy7EX7O8mLK96pUGwH12jVJjUEZ1JRTYCYeSO1r90QYgeldq0b4lSsb+KHt0LjH5pUC
+	+dC8ogYvMSGxogkNIe5QazZyyF9JE8PLkSV+sjEFEVHPnYHkurLvIGxuj+uX1mL4ssxs
+	C1gA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=briata-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=TxBo50rvwIn17hp4HFIX6LElC1O2E5Ij3u/tPmHwVBU=;
+	b=ANCudyDMu7e0jgI7qWtvOPhbatLH51ipMXFkbKvytkDgGOmq7eoJ2JcTI2BWiH89XQ
+	eJF+ieLcPv6MMy76fEhvk3TyZg85gr7viOsbINl2JG6vIsTX+bAxRZs1/Icb6r4Popxj
+	WklJIZKIS4TUxdU0eyDWWs2oi6sYwOyouFGZweYo2KeSyv6L/VAbczmIFCADwEAmSk9Z
+	TrPTi7aLwLCp+zXM5nGYeioI9n1G7mc2cfSQFEVUT6AdqjfJ8zwSrVyNpBPZwzdHOvRO
+	g2vpVwt8z8rZ666HuaF0axMgoe4n1pXhEvmDUoKK4ms+FWKkVRy2M0eULvzb+s/lGUBy
+	OtaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:content-type:from
-	:in-reply-to:date:cc:message-id:references:to;
-	bh=tCd0TtqcP9dJiHSuvrXT0iacjDXKvfKdw9kJ7ARgznM=;
-	b=MS3um/R3ZYuF3ZzCF3QDNhhZlPywF80DYCehz7H/7IK94fSwkFMNp4oaVJGEVjNFLr
-	CdEWFR38+htAehnpDNqfsDYn+DgkCciHEiQ+6hekwXFiQw0BDbrUp55NhwCBuYZB2tP+
-	xqxRyzoCYFH/r7On8jzETL6a8QU2nGhWltjs+ZSmzmPKP+e8n6699hEvBTsOtr/QSZX+
-	LWmRqZAk6GEU+R83kPbTuDLsYUD0GwbXvacBgUAO7pBG2UvalAqCZM+lJmq9xwPAve4i
-	UAM5XV5hmLRdg0CnHx3MuziVGf0dTBpizh/ftxxYqseV8vbMZtCpKnA3CBKvp1iGVlfo
-	M8ug==
-X-Gm-Message-State: ALoCoQne09KQYB7P6RGbxss3L1/tS4D8lnHwC0asQMgW6cE3Xds8n4jCs8v+30q86vzMGuK6yy5mxLJSfRdHiDMvdzHTcK1dnQ==
-X-Received: by 10.98.80.79 with SMTP id e76mr44178070pfb.126.1452706905605;
-	Wed, 13 Jan 2016 09:41:45 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:e406:58c9:b337:c1d9?
-	([2601:646:8802:5d5c:e406:58c9:b337:c1d9])
-	by smtp.gmail.com with ESMTPSA id
-	m70sm3927622pfi.90.2016.01.13.09.41.44
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 13 Jan 2016 09:41:44 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAF5S8SOX78=nAGHhQzxnNFoPP8GgMdrEQDvUrnQH97+CPzkqrw@mail.gmail.com>
-Date: Wed, 13 Jan 2016 09:41:44 -0800
-Message-Id: <1F18FD34-E817-49BD-8AF0-3F8656BB33D5@gmail.com>
-References: <CAF5S8SOmOLVR9gU_=WgxW1fPZNxUyyEqO5j_mH5xsFnr=Ex-Cg@mail.gmail.com>
-	<CAMKF1srH4wXuEohCrj3_hxK6=uO-UX0ETjtpnGsMdrc0fUrREg@mail.gmail.com>
-	<CAF5S8SOXpLnALCyr-k53HDgfRSnVWtPXKy32sfK9p66Vx+uJeQ@mail.gmail.com>
-	<CAF5S8SOX78=nAGHhQzxnNFoPP8GgMdrEQDvUrnQH97+CPzkqrw@mail.gmail.com>
-To: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
-X-Mailer: Apple Mail (2.3112)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to build jffs2 rootfs image in freescale community build
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=TxBo50rvwIn17hp4HFIX6LElC1O2E5Ij3u/tPmHwVBU=;
+	b=ODfXJnAbJ8xtERQ7ApHAHZXfXI5nb4rKElzcUI1NhPv/GLtUTHTfr/dmgY8HLrxbFf
+	G/CRFusEOfwUkm5V2wgzZaXS7sOrk5HytiMbJNpvWA/SVuP5Y4mRv1ZuB26CJi6yx+KJ
+	We0KAvl+UgoROgxX6Ni5jVdtZkRYeBAL+UIcLp6SyCJWIBsKFMAO7UprCPtwIBk8ttbW
+	A37HJP0EmkxSTVY3OSwiah1fLUda9GhVmDEUWBSfQ9h0TlnxvCAot8yIHOXeFgTM+8kl
+	858eUw8qYmaaUEIivBKHh/wbkpbKGpheIheRXR3akPnXAI8F9a5sx1oN74qP8P7/SZdA
+	pjGQ==
+X-Gm-Message-State: ALoCoQlSuD3xpecCsqIguTiWkGXELMGzzUciIoIGsT94C5OKTS9fqsqIKHLSemcjemvOxSwoCSgSKcmqXWTf5juaB3H+TYax0g==
+MIME-Version: 1.0
+X-Received: by 10.112.149.202 with SMTP id uc10mr7746111lbb.57.1452707172040; 
+	Wed, 13 Jan 2016 09:46:12 -0800 (PST)
+Sender: federicobriata@gmail.com
+Received: by 10.112.9.200 with HTTP; Wed, 13 Jan 2016 09:46:11 -0800 (PST)
+In-Reply-To: <CA+KKcbk22dX6RaBZ2FRh7BNcNeo4aKm5Z13EFuJowGwMEwjJUg@mail.gmail.com>
+References: <CA+KKcbkzeEsDO63iNESUbDCAQD7R41mTzPAN65RkbFNMuq3+zA@mail.gmail.com>
+	<loom.20151219T103721-415@post.gmane.org>
+	<CA+KKcbk22dX6RaBZ2FRh7BNcNeo4aKm5Z13EFuJowGwMEwjJUg@mail.gmail.com>
+Date: Wed, 13 Jan 2016 18:46:11 +0100
+X-Google-Sender-Auth: 52sGMNA6Jso6lweeJoN-fA61Lpc
+Message-ID: <CA+KKcbnmiB4FUT3e+TaYG2jWvGUs_yAmJ-dYOFSfDqHd0Hztow@mail.gmail.com>
+From: Federico Pietro Briata <federico@briata.org>
+To: Stef <Stefboerrigter@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-java] openjdk-8 fail to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,255 +81,305 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jan 2016 17:41:49 -0000
-X-Groupsio-MsgNum: 27959
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_7EB2B604-EA74-4FC6-9D47-B8CDB6213419";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 13 Jan 2016 17:46:18 -0000
+Content-Type: multipart/alternative; boundary=047d7b343a26f3c99d05293abea2
 
---Apple-Mail=_7EB2B604-EA74-4FC6-9D47-B8CDB6213419
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_1BDF9D20-C180-48A6-BD5A-58331262F7DF"
+--047d7b343a26f3c99d05293abea2
+Content-Type: text/plain; charset=UTF-8
 
---Apple-Mail=_1BDF9D20-C180-48A6-BD5A-58331262F7DF
+Hi again,
+looking to the above error on Makefile, seems there is still something
+wrong with autotools
+
+
+cat
+/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile
+# This Makefile was generated by configure Tue Jan 12 22:44:00 CET 2016
+# GENERATED FILE, DO NOT EDIT
+SPEC:=/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/build/linux-x86_64-normal-server-release/spec.gmk
+include
+/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile
+
+so the build stuck here in this loop I think.
+
+regards
+Federico
+
+2016-01-12 17:41 GMT+01:00 Federico Pietro Briata <federico@briata.org>:
+
+> Hi Stef,
+> Thanks, I've tried to apply that patch and also
+>
+> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=527b28c10955daf0387597020d69593ce24bcaa4
+>
+> and now I'm getting this:
+>
+> ERROR: Function failed: do_compile (log file is located at
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
+> ERROR: Logfile of failure stored in:
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889
+> Log data follows:
+> | DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc',
+> 'bit-64', 'x86_64-linux', 'common']
+> | DEBUG: Executing shell function do_compile
+> | NOTE: make
+> OE_CFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+> -O2 -pipe -DHEADLESS=true
+> OE_CPPFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+> -DHEADLESS=true
+> OE_CXXFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+> -O2 -pipe -DHEADLESS=true
+> OE_LDFLAGS=-L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+> -L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+> -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+> -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+> -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+> -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+> -Wl,-O1 BUILD_HEADLESS_ONLY=1 BUILD_HEADLESS=true BUILD_SOUNDLESS_ONLY=1
+> X11_NOT_NEEDED=1 CUPS_NOT_NEEDED=1 ALSA_NOT_NEEDED=1 PULSE_NOT_NEEDED=1
+> MAKE_VERBOSE=y VERBOSE=-s LOG_LEVEL=trace QUIETLY= images
+> |
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile:27:
+> *** Too many open files.  Stop.
+> | ERROR: oe_runmake failed
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_compile (log file is located at
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
+> ERROR: Task 207
+> (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
+> openjdk-8-native_72b05.bb, do_compile) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 1469 tasks of which 1237 didn't need to be
+> rerun and 1 failed.
+> No currently running tasks (1469 of 1483)
+>
+> Summary: 1 task failed:
+>   /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
+> openjdk-8-native_72b05.bb, do_compile
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+> thanks and regards
+> federico
+>
+> 2015-12-19 10:38 GMT+01:00 Stef <Stefboerrigter@gmail.com>:
+>
+>> Federico Pietro Briata <federicobriata@...> writes:
+>>
+>> >
+>> >
+>> >
+>> > Hi All,
+>> > I'm trying to build openjdk-8 but I'm stuck.my current setup does not
+>> define anything for:#PREFERRED_PROVIDER_virtual/java-
+>> native#PREFERRED_PROVIDER_virtual/javac-native
+>> >
+>> > follow the log error
+>> >
+>> >
+>> >
+>> > ERROR: Function failed: do_configure (log file is located at
+>> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
+>> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:
+>> Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-
+>> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-
+>> r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing python
+>> function sysroot_cleansstate| DEBUG: Python function sysroot_cleansstate
+>> finished| DEBUG: SITE files ['endian-little', 'common-linux', 'common-
+>> glibc', 'bit-64', 'x86_64-linux', 'common']| DEBUG: Executing shell
+>> function autotools_preconfigure| DEBUG: Shell function
+>> autotools_preconfigure finished| DEBUG: Executing python function
+>> autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals
+>> finished| DEBUG: Executing shell function do_configure| ERROR: no
+>> configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-
+>> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-
+>> e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|
+>> ERROR: Function failed: do_configure (log file is located at
+>> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
+>> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task
+>> 146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
+>> core/openjdk/openjdk-8-native_72b05.bb, do_configure) failed with exit
+>> code '1'NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn't
+>> need to be rerun and 1 failed.No currently running tasks (1139 of
+>> 1150)Summary: 1 task failed:
+>> /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
+>> core/openjdk/openjdk-8-native_72b05.bb, do_configure
+>> >
+>> > thanks and regards
+>> >
+>> > Federico
+>> >
+>> >
+>> >
+>> >
+>> >
+>>
+>> Try to apply this patch to meta layer:
+>> https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80749cd43c
+>> 1e19a40
+>> <https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80749cd43c1e19a40>
+>>
+>> It worked for me
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+
+--047d7b343a26f3c99d05293abea2
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+<div dir=3D"ltr"><div>Hi again,</div><div>looking to the above error on=C2=
+=A0Makefile, seems there is still something wrong with autotools</div><div>=
+=C2=A0</div><div>=C2=A0</div><div>cat /home/federico/yocto/imx6/R6.0/build-=
+OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r=
+0/jdk8u-e8bed1496ff2/Makefile</div><div># This Makefile was generated by co=
+nfigure Tue Jan 12 22:44:00 CET 2016<br># GENERATED FILE, DO NOT EDIT<br>SP=
+EC:=3D/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc=
+/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/build/linux=
+-x86_64-normal-server-release/spec.gmk<br>include /home/federico/yocto/imx6=
+/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-na=
+tive/72b05-r0/jdk8u-e8bed1496ff2/Makefile</div><div>=C2=A0</div><div>so the=
+ build stuck here in this loop I think.</div><div>=C2=A0</div><div>regards<=
+/div><div>Federico</div></div><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">2016-01-12 17:41 GMT+01:00 Federico Pietro Briata <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:federico@briata.org" target=3D"_blank">federico=
+@briata.org</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"l=
+tr"><div><div><div><div>Hi Stef,<br></div>Thanks, I&#39;ve tried to apply t=
+hat patch and also<br><a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/=
+commit/?id=3D527b28c10955daf0387597020d69593ce24bcaa4" target=3D"_blank">ht=
+tp://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3D527b28c10955daf0387597=
+020d69593ce24bcaa4</a><br><br></div>and now I&#39;m getting this:<br><br>ER=
+ROR: Function failed: do_compile (log file is located at /home/federico/yoc=
+to/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openj=
+dk-8-native/72b05-r0/temp/log.do_compile.15889)<br>ERROR: Logfile of failur=
+e stored in: /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp=
+-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.158=
+89<br>Log data follows:<br>| DEBUG: SITE files [&#39;endian-little&#39;, &#=
+39;common-linux&#39;, &#39;common-glibc&#39;, &#39;bit-64&#39;, &#39;x86_64=
+-linux&#39;, &#39;common&#39;]<br>| DEBUG: Executing shell function do_comp=
+ile<br>| NOTE: make OE_CFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/buil=
+d-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -O2 -p=
+ipe -DHEADLESS=3Dtrue OE_CPPFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/=
+build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -D=
+HEADLESS=3Dtrue OE_CXXFLAGS=3D-isystem/home/federico/yocto/imx6/R6.0/build-=
+OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include -O2 -pip=
+e -DHEADLESS=3Dtrue OE_LDFLAGS=3D-L/home/federico/yocto/imx6/R6.0/build-Ope=
+nJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib -L/home/federic=
+o/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-li=
+nux/lib -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-=
+mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib -Wl,-rpath-link,/home/fede=
+rico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64=
+-linux/lib -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx=
+6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib -Wl,-rpath,/home/federico/yo=
+cto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/=
+lib -Wl,-O1 BUILD_HEADLESS_ONLY=3D1 BUILD_HEADLESS=3Dtrue BUILD_SOUNDLESS_O=
+NLY=3D1 X11_NOT_NEEDED=3D1 CUPS_NOT_NEEDED=3D1 ALSA_NOT_NEEDED=3D1 PULSE_NO=
+T_NEEDED=3D1 MAKE_VERBOSE=3Dy VERBOSE=3D-s LOG_LEVEL=3Dtrace QUIETLY=3D ima=
+ges<br>| /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-egl=
+ibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile=
+:27: *** Too many open files.=C2=A0 Stop.<br>| ERROR: oe_runmake failed<spa=
+n><br>| WARNING: exit code 1 from a shell command.<br></span>| ERROR: Funct=
+ion failed: do_compile (log file is located at /home/federico/yocto/imx6/R6=
+.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-nativ=
+e/72b05-r0/temp/log.do_compile.15889)<br>ERROR: Task 207 (/home/federico/yo=
+cto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/<a href=3D"http://open=
+jdk-8-native_72b05.bb" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_=
+compile) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Attempte=
+d 1469 tasks of which 1237 didn&#39;t need to be rerun and 1 failed.<br>No =
+currently running tasks (1469 of 1483)<br><br>Summary: 1 task failed:<br>=
+=C2=A0 /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjd=
+k/<a href=3D"http://openjdk-8-native_72b05.bb" target=3D"_blank">openjdk-8-=
+native_72b05.bb</a>, do_compile<br>Summary: There was 1 ERROR message shown=
+, returning a non-zero exit code.<br><br></div>thanks and regards<span clas=
+s=3D"HOEnZb"><font color=3D"#888888"><br></font></span></div><span class=3D=
+"HOEnZb"><font color=3D"#888888">federico<br></font></span></div><div class=
+=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">2015-12-19 10:38 GMT+01:00 Stef <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Stefboerrigter@gmail.com" target=3D"_blank">Stefboerrigter@gmail=
+.com</a>&gt;</span>:<br><blockquote style=3D"margin:0px 0px 0px 0.8ex;paddi=
+ng-left:1ex;border-left-color:rgb(204,204,204);border-left-width:1px;border=
+-left-style:solid" class=3D"gmail_quote"><span>Federico Pietro Briata &lt;f=
+edericobriata@...&gt; writes:<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; Hi All,<br>
+</span>&gt; I&#39;m trying to build openjdk-8 but I&#39;m stuck.my current =
+setup does not<br>
+define anything for:#PREFERRED_PROVIDER_virtual/java-<br>
+<span>native#PREFERRED_PROVIDER_virtual/javac-native<br>
+&gt;<br>
+&gt; follow the log error<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; ERROR: Function failed: do_configure (log file is located at<br>
+/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
+linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:<br>
+Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-<br=
+>
+mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-<br>
+</span>r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing py=
+thon<br>
+<span>function sysroot_cleansstate| DEBUG: Python function sysroot_cleansst=
+ate<br>
+finished| DEBUG: SITE files [&#39;endian-little&#39;, &#39;common-linux&#39=
+;, &#39;common-<br>
+glibc&#39;, &#39;bit-64&#39;, &#39;x86_64-linux&#39;, &#39;common&#39;]| DE=
+BUG: Executing shell<br>
+function autotools_preconfigure| DEBUG: Shell function<br>
+autotools_preconfigure finished| DEBUG: Executing python function<br>
+autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals<br>
+finished| DEBUG: Executing shell function do_configure| ERROR: no<br>
+configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-<br>
+mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-<br>
+</span>e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|<=
+br>
+<span>ERROR: Function failed: do_configure (log file is located at<br>
+/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
+linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task<br>
+146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
+core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
+" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure) failed wit=
+h exit<br>
+code &#39;1&#39;NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn&=
+#39;t<br>
+</span>need to be rerun and 1 failed.No currently running tasks (1139 of<br=
+>
+<span>1150)Summary: 1 task failed:=C2=A0<br>
+/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
+core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
+" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure<br>
+&gt;<br>
+&gt; thanks and regards<br>
+&gt;<br>
+&gt; Federico<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</span>Try to apply this patch to meta layer:<br>
+<a href=3D"https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80=
+749cd43c1e19a40" rel=3D"noreferrer" target=3D"_blank">https://github.com/re=
+hsack/poky/commit/65cdad40f2717b85892e12c80749cd43c<br>
+1e19a40</a><br>
+<br>
+It worked for me<br>
+<span><font color=3D"#888888">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
-> On Jan 13, 2016, at 4:03 AM, Sarayu Krishna Sivanandam =
-<sarayu@zaikenn.com> wrote:
->=20
-> hi ,
->=20
-> On similar lines i want to rebuild my linux dtb file as i have made =
-some changes in my dts file . How can i force it to regenerate the same =
-?
->=20
-> For example , I use the command bitbake -c compile -f linux-ls1 to =
-regenerate the uImage .
->=20
-> Is there is similar command for the linux-dtb generation ?
-
-if your kernel recipe is including linux-dtb.inc then it should =
-automatically append device tree related activities into standard tasks.
-
->=20
-> Thanks in advance for your help.
->=20
-> Thanks and Regards,
-> Sarayu K S
-> Tech Lead
-> Zaikenn Technologies
->=20
-> On Tue, Jan 12, 2016 at 3:17 PM, Sarayu Krishna Sivanandam =
-<sarayu@zaikenn.com <mailto:sarayu@zaikenn.com>> wrote:
-> That worked . Thanks !!
->=20
-> Thanks and Regards,
-> Sarayu K S
-> Tech Lead
-> Zaikenn Technologies
->=20
-> On Tue, Jan 12, 2016 at 2:12 PM, Khem Raj <raj.khem@gmail.com =
-<mailto:raj.khem@gmail.com>> wrote:
-> On Tue, Jan 12, 2016 at 12:32 AM, Sarayu Krishna Sivanandam
-> <sarayu@zaikenn.com <mailto:sarayu@zaikenn.com>> wrote:
-> > Hi all ,
-> >
-> > I was initially using the QorIQ-SDK-V1.8 SDK and was using the =
-command
-> > "bitbake corre-image-full " to generate the full images including =
-the uboot
-> > , the jffs2 filesystem etc as shown below ,
-> >
-> > -rw-r--r--. 1 sarayu sarayu 30670848 Oct 14 13:46
-> > fsl-image-core-ls1021atwr-20151014203509.rootfs.jffs2
-> >
-> >
-> > Hoe ever now i have moved to the fsl-community-bsp and want to =
-generate the
-> > full images . I am uisng the command "bitbake =
-core-image-full-cmdline"  as
-> > the "core-image-full " command was not available . But it still did =
-not
-> > generate the individual filesystem types . It generated a filesystem =
-file
-> > like the below .
-> >
-> > -rw-r--r--. 1 sarayu sarayu 24353214 Jan 11 23:12
-> > core-image-full-cmdline-ls1021atwr-20160112065953.rootfs.tar.gz
-> >
-> >
-> >  Can you please let me know how to generate the jffs2 image in my =
-community
-> > bsp ? Please let me know what i am missing here .
->=20
-> Add IMAGE_FSTYPES +=3D "jffs2" in your local.conf
->=20
-> >
-> >
-> > Thanks in advance for your help.
-> >
-> > Thanks and Regards,
-> > Sarayu K S
-> > Tech Lead
-> > Zaikenn Technologies
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> > https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-> >
->=20
->=20
-
-
---Apple-Mail=_1BDF9D20-C180-48A6-BD5A-58331262F7DF
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jan 13, 2016, at 4:03 AM, Sarayu Krishna Sivanandam &lt;<a =
-href=3D"mailto:sarayu@zaikenn.com" class=3D"">sarayu@zaikenn.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
-dir=3D"ltr" class=3D""><div class=3D"gmail_default" =
-style=3D"font-family:comic sans ms,sans-serif">hi ,&nbsp;</div><div =
-class=3D"gmail_default" style=3D"font-family:comic sans =
-ms,sans-serif"><br class=3D""></div><div class=3D"gmail_default" =
-style=3D"font-family:comic sans ms,sans-serif">On similar lines i want =
-to rebuild my linux dtb file as i have made some changes in my dts file =
-. How can i force it to regenerate the same ?</div><div =
-class=3D"gmail_default" style=3D"font-family:comic sans =
-ms,sans-serif"><br class=3D""></div><div class=3D"gmail_default" =
-style=3D"font-family:comic sans ms,sans-serif">For example , I use the =
-command bitbake -c compile -f linux-ls1 to regenerate the uImage =
-.&nbsp;</div><div class=3D"gmail_default" style=3D"font-family:comic =
-sans ms,sans-serif"><br class=3D""></div><div class=3D"gmail_default" =
-style=3D"font-family:comic sans ms,sans-serif">Is there is similar =
-command for the linux-dtb generation =
-?</div></div></div></blockquote><div><br class=3D""></div><div>if your =
-kernel recipe is including linux-dtb.inc then it should automatically =
-append device tree related activities into standard tasks.</div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
-dir=3D"ltr" class=3D""><div class=3D"gmail_default" =
-style=3D"font-family:comic sans ms,sans-serif"><br class=3D""></div><div =
-class=3D"gmail_default" style=3D"font-family:comic sans =
-ms,sans-serif">Thanks in advance for your help.</div></div><div =
-class=3D"gmail_extra"><br clear=3D"all" class=3D""><div class=3D""><div =
-class=3D"gmail_signature"><div dir=3D"ltr" class=3D""><div class=3D""><div=
- dir=3D"ltr" class=3D""><font face=3D"comic sans ms, sans-serif" =
-class=3D"">Thanks and Regards,</font><div class=3D""><font face=3D"comic =
-sans ms, sans-serif" class=3D"">Sarayu K S&nbsp;</font></div><div =
-class=3D""><font face=3D"comic sans ms, sans-serif" class=3D"">Tech =
-Lead&nbsp;</font></div><div class=3D""><font face=3D"comic sans ms, =
-sans-serif" class=3D"">Zaikenn =
-Technologies</font></div></div></div></div></div></div>
-<br class=3D""><div class=3D"gmail_quote">On Tue, Jan 12, 2016 at 3:17 =
-PM, Sarayu Krishna Sivanandam <span dir=3D"ltr" class=3D"">&lt;<a =
-href=3D"mailto:sarayu@zaikenn.com" target=3D"_blank" =
-class=3D"">sarayu@zaikenn.com</a>&gt;</span> wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr" =
-class=3D""><div class=3D"gmail_default" style=3D"font-family:comic sans =
-ms,sans-serif">That worked . Thanks !!&nbsp;</div></div><div =
-class=3D"gmail_extra"><span class=3D""><br clear=3D"all" class=3D""><div =
-class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div =
-class=3D""><div dir=3D"ltr" class=3D""><font face=3D"comic sans ms, =
-sans-serif" class=3D"">Thanks and Regards,</font><div class=3D""><font =
-face=3D"comic sans ms, sans-serif" class=3D"">Sarayu K =
-S&nbsp;</font></div><div class=3D""><font face=3D"comic sans ms, =
-sans-serif" class=3D"">Tech Lead&nbsp;</font></div><div class=3D""><font =
-face=3D"comic sans ms, sans-serif" class=3D"">Zaikenn =
-Technologies</font></div></div></div></div></div></div>
-<br class=3D""></span><div class=3D""><div class=3D"h5"><div =
-class=3D"gmail_quote">On Tue, Jan 12, 2016 at 2:12 PM, Khem Raj <span =
-dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:raj.khem@gmail.com" =
-target=3D"_blank" class=3D"">raj.khem@gmail.com</a>&gt;</span> wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On =
-Tue, Jan 12, 2016 at 12:32 AM, Sarayu Krishna Sivanandam<br class=3D"">
-&lt;<a href=3D"mailto:sarayu@zaikenn.com" target=3D"_blank" =
-class=3D"">sarayu@zaikenn.com</a>&gt; wrote:<br class=3D"">
-&gt; Hi all ,<br class=3D"">
-&gt;<br class=3D"">
-&gt; I was initially using the QorIQ-SDK-V1.8 SDK and was using the =
-command<br class=3D"">
-&gt; "bitbake corre-image-full " to generate the full images including =
-the uboot<br class=3D"">
-&gt; , the jffs2 filesystem etc as shown below ,<br class=3D"">
-&gt;<br class=3D"">
-&gt; -rw-r--r--. 1 sarayu sarayu 30670848 Oct 14 13:46<br class=3D"">
-&gt; fsl-image-core-ls1021atwr-20151014203509.rootfs.jffs2<br class=3D"">
-&gt;<br class=3D"">
-&gt;<br class=3D"">
-&gt; Hoe ever now i have moved to the fsl-community-bsp and want to =
-generate the<br class=3D"">
-&gt; full images . I am uisng the command "bitbake =
-core-image-full-cmdline"&nbsp; as<br class=3D"">
-&gt; the "core-image-full " command was not available . But it still did =
-not<br class=3D"">
-&gt; generate the individual filesystem types . It generated a =
-filesystem file<br class=3D"">
-&gt; like the below .<br class=3D"">
-&gt;<br class=3D"">
-&gt; -rw-r--r--. 1 sarayu sarayu 24353214 Jan 11 23:12<br class=3D"">
-&gt; core-image-full-cmdline-ls1021atwr-20160112065953.rootfs.tar.gz<br =
-class=3D"">
-&gt;<br class=3D"">
-&gt;<br class=3D"">
-&gt;&nbsp; Can you please let me know how to generate the jffs2 image in =
-my community<br class=3D"">
-&gt; bsp ? Please let me know what i am missing here .<br class=3D"">
-<br class=3D"">
-</span>Add IMAGE_FSTYPES +=3D "jffs2" in your local.conf<br class=3D"">
-<div class=3D""><div class=3D""><br class=3D"">
-&gt;<br class=3D"">
-&gt;<br class=3D"">
-&gt; Thanks in advance for your help.<br class=3D"">
-&gt;<br class=3D"">
-&gt; Thanks and Regards,<br class=3D"">
-&gt; Sarayu K S<br class=3D"">
-&gt; Tech Lead<br class=3D"">
-&gt; Zaikenn Technologies<br class=3D"">
-&gt;<br class=3D"">
-</div></div><span class=3D""><font color=3D"#888888" class=3D"">&gt; =
---<br class=3D"">
-&gt; _______________________________________________<br class=3D"">
-&gt; yocto mailing list<br class=3D"">
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" =
-class=3D"">yocto@yoctoproject.org</a><br class=3D"">
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-rel=3D"noreferrer" target=3D"_blank" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a><br =
-class=3D"">
-&gt;<br class=3D"">
-</font></span></blockquote></div><br class=3D""></div></div></div>
-</blockquote></div><br class=3D""></div>
-</div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_1BDF9D20-C180-48A6-BD5A-58331262F7DF--
-
---Apple-Mail=_7EB2B604-EA74-4FC6-9D47-B8CDB6213419
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlaWjFgACgkQuwUzVZGdMxRAcQCfX3G24xawu3fZ0t02vqgzZEqX
-aAcAnAgaopy6VeIHPZ6GkRnmXC+GZ1yn
-=8oaR
------END PGP SIGNATURE-----
-
---Apple-Mail=_7EB2B604-EA74-4FC6-9D47-B8CDB6213419--
+--047d7b343a26f3c99d05293abea2--
