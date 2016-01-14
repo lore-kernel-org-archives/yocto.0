@@ -1,44 +1,69 @@
-Return-Path: <anibal.limon@intel.com>
+Return-Path: <stefboerrigter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C185E00B67; Wed, 13 Jan 2016 12:25:27 -0800 (PST)
+	id AF4BEE00BB9; Wed, 13 Jan 2016 23:45:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (stefboerrigter[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55901E00B5A
-	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 12:25:24 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 13 Jan 2016 12:25:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,291,1449561600"; 
-	d="txt'?scan'208";a="880777291"
-Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.151])
-	([10.219.5.151])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2016 12:25:23 -0800
-To: "Burton, Ross" <ross.burton@intel.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>, jussi.kukkonen@intel.com
-References: <37b747fd-ad90-45e9-b3cc-4595c4d83661@fmsmsx108.amr.corp.intel.com>
-	<CAHiDW_GGH6X3vyFXe5+JCZz3pn8L0HPDfxN3BsjT3nbYC_oj_w@mail.gmail.com>
-	<56968498.5070207@linux.intel.com>
-	<1597083.J1Q8K4j3y3@peggleto-mobl.ger.corp.intel.com>
-	<CAJTo0LZA8dDFJJ-+RLay9brMubTcBbxPa1gEPst5e1XFxf-0YA@mail.gmail.com>
-From: Anibal Limon <anibal.limon@intel.com>
-Message-ID: <5696B318.50709@intel.com>
-Date: Wed, 13 Jan 2016 14:27:04 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A2EEE00B9E
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 23:45:08 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id g73so250238147ioe.3
+	for <yocto@yoctoproject.org>; Wed, 13 Jan 2016 23:45:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=5zmstlpDWXX+LMfk8i7lBSPL+pe0399xmsvFfuonkRo=;
+	b=bjuWYKyxzypEFHDE20qnecR/PGx/Huqujs+9X2LQn1ppwnWtJ7ORr4C6jnS5HJ9cvr
+	wBGM7oEFwZZI+dXZJKGUByTOIvw8isA8y6ieobI2ArY2V+YzKq4z+1+huffFpAEKUaKF
+	W01mkGwENw5gwZnPk2nyDCl2YHxNX2+pHNWS3FUiOb1ES4btBGbioR0A2jm7nA/OBnje
+	drZhwfScTR+uTih6cr8Q1agAC9zfxafV+2GIupveA1PQSkyYas7ZJOFik5mX/k7WXXaZ
+	Xl3xTQwHEnT9W9C7CKjTcCWqrJ5JD1k7ocuSSVnemLFBfY6NGgnI3Ht/qZ8LxWdja0UL
+	3vkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=5zmstlpDWXX+LMfk8i7lBSPL+pe0399xmsvFfuonkRo=;
+	b=iHjK/ff+kE/ioPU1Vtq7QOU95VeSF+jofb1EzTh6umDoLzY+6EpiOmub0ufHdCOvCt
+	jM4KPsmIviIEmt4kqL7phRhPOd/hy0PUmzMYbzBzxjv2teImNANtTySVBylvLwC0lLnT
+	Us0hNVsDPWgkNDz2mUm7vaHTxIZhoe8fxtES811Xbnmo6D7/1qjJ6AZ19xd5HkOdcF0k
+	BYg69mVWF7dM/Ke1nh0vjP1dhmZXSHkht/kp7t0K54kCdJp9HVLEYIHGO9NK2OGlQDit
+	Zvs15tGS/krN4ftG45gzJeID1AeVSGzhYgxbTCc1tju7zoEEGwtAJOKR9tf0BIQnt1jt
+	omIw==
+X-Gm-Message-State: ALoCoQm9oMZg0WCByLHHZizuZfvbhGu2uyw+ndH4fKOBCViNlCtcmKfcEZ5LLJLJXF8XVUiC3BH3AeKPJyvs69KFQMeOv4Of7Q==
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZA8dDFJJ-+RLay9brMubTcBbxPa1gEPst5e1XFxf-0YA@mail.gmail.com>
+X-Received: by 10.107.169.225 with SMTP id f94mr3324772ioj.154.1452757507685; 
+	Wed, 13 Jan 2016 23:45:07 -0800 (PST)
+Received: by 10.36.80.79 with HTTP; Wed, 13 Jan 2016 23:45:07 -0800 (PST)
+In-Reply-To: <CA+KKcbnmiB4FUT3e+TaYG2jWvGUs_yAmJ-dYOFSfDqHd0Hztow@mail.gmail.com>
+References: <CA+KKcbkzeEsDO63iNESUbDCAQD7R41mTzPAN65RkbFNMuq3+zA@mail.gmail.com>
+	<loom.20151219T103721-415@post.gmane.org>
+	<CA+KKcbk22dX6RaBZ2FRh7BNcNeo4aKm5Z13EFuJowGwMEwjJUg@mail.gmail.com>
+	<CA+KKcbnmiB4FUT3e+TaYG2jWvGUs_yAmJ-dYOFSfDqHd0Hztow@mail.gmail.com>
+Date: Thu, 14 Jan 2016 08:45:07 +0100
+Message-ID: <CAO0FEwWdVrJO2znEQwm3NvvQN1JONiWy4nv38soKijfynANk9A@mail.gmail.com>
+From: Stef Boerrigter <stefboerrigter@gmail.com>
+To: Federico Pietro Briata <federico@briata.org>
 X-Mailman-Approved-At: Thu, 14 Jan 2016 09:27:53 -0800
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [AUH] gpgme: upgrading to 1.6.0 SUCCEEDED
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-java] openjdk-8 fail to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,436 +75,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jan 2016 20:25:27 -0000
-X-Groupsio-MsgNum: 27992
-Content-Type: multipart/mixed; boundary="------------000404050509010500070001"
+X-List-Received-Date: Thu, 14 Jan 2016 07:45:10 -0000
+Content-Type: multipart/alternative; boundary=001a11427b8430c1ab052946779c
 
---------------000404050509010500070001
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--001a11427b8430c1ab052946779c
+Content-Type: text/plain; charset=UTF-8
 
-On 01/13/2016 02:19 PM, Burton, Ross wrote:
-> On 13 January 2016 at 20:03, Paul Eggleton <paul.eggleton@linux.intel.com>
-> wrote:
-> 
->> I'd question the value of -a as well; the tool is supposed to be smart
->> enough
->> to show you the things that matter and hide everything else by default. If
->> it's not doing that effectively then we should fix it.
+Hi,
 
-Now i made the changes for generate the two buildhistories simple and
-full see gpgme examples attached. I'm fixing the license diff issue
-before send the patchset.
+What version of Yocto are you using?
+I'm using 1.7.1 version with only the patch i described in my previous
+answer.
+When using it on the master of meta-java i got it working without any
+issues.. You mentioned you use another patch as well?
 
-	
+Regards
+
+2016-01-13 18:46 GMT+01:00 Federico Pietro Briata <federico@briata.org>:
+
+> Hi again,
+> looking to the above error on Makefile, seems there is still something
+> wrong with autotools
+>
+>
+> cat
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile
+> # This Makefile was generated by configure Tue Jan 12 22:44:00 CET 2016
+> # GENERATED FILE, DO NOT EDIT
+>
+> SPEC:=/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/build/linux-x86_64-normal-server-release/spec.gmk
+> include
+> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile
+>
+> so the build stuck here in this loop I think.
+>
+> regards
+> Federico
+>
+> 2016-01-12 17:41 GMT+01:00 Federico Pietro Briata <federico@briata.org>:
+>
+>> Hi Stef,
+>> Thanks, I've tried to apply that patch and also
 >>
-> 
-> If this is turning into a "how can we make buildhistory-diff better" thread
-> then I'd love it if there were a way to hide PKGR changes.  I've a PR
-> service running locally but don't really care if a PR changed in the
-> context of diffs
+>> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=527b28c10955daf0387597020d69593ce24bcaa4
+>>
+>> and now I'm getting this:
+>>
+>> ERROR: Function failed: do_compile (log file is located at
+>> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
+>> ERROR: Logfile of failure stored in:
+>> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889
+>> Log data follows:
+>> | DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc',
+>> 'bit-64', 'x86_64-linux', 'common']
+>> | DEBUG: Executing shell function do_compile
+>> | NOTE: make
+>> OE_CFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+>> -O2 -pipe -DHEADLESS=true
+>> OE_CPPFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+>> -DHEADLESS=true
+>> OE_CXXFLAGS=-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/include
+>> -O2 -pipe -DHEADLESS=true
+>> OE_LDFLAGS=-L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+>> -L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+>> -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+>> -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+>> -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/usr/lib
+>> -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib
+>> -Wl,-O1 BUILD_HEADLESS_ONLY=1 BUILD_HEADLESS=true BUILD_SOUNDLESS_ONLY=1
+>> X11_NOT_NEEDED=1 CUPS_NOT_NEEDED=1 ALSA_NOT_NEEDED=1 PULSE_NOT_NEEDED=1
+>> MAKE_VERBOSE=y VERBOSE=-s LOG_LEVEL=trace QUIETLY= images
+>> |
+>> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile:27:
+>> *** Too many open files.  Stop.
+>> | ERROR: oe_runmake failed
+>> | WARNING: exit code 1 from a shell command.
+>> | ERROR: Function failed: do_compile (log file is located at
+>> /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compile.15889)
+>> ERROR: Task 207
+>> (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
+>> openjdk-8-native_72b05.bb, do_compile) failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 1469 tasks of which 1237 didn't need to be
+>> rerun and 1 failed.
+>> No currently running tasks (1469 of 1483)
+>>
+>> Summary: 1 task failed:
+>>   /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-core/openjdk/
+>> openjdk-8-native_72b05.bb, do_compile
+>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>>
+>> thanks and regards
+>> federico
+>>
+>> 2015-12-19 10:38 GMT+01:00 Stef <Stefboerrigter@gmail.com>:
+>>
+>>> Federico Pietro Briata <federicobriata@...> writes:
+>>>
+>>> >
+>>> >
+>>> >
+>>> > Hi All,
+>>> > I'm trying to build openjdk-8 but I'm stuck.my current setup does not
+>>> define anything for:#PREFERRED_PROVIDER_virtual/java-
+>>> native#PREFERRED_PROVIDER_virtual/javac-native
+>>> >
+>>> > follow the log error
+>>> >
+>>> >
+>>> >
+>>> > ERROR: Function failed: do_configure (log file is located at
+>>> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
+>>> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:
+>>> Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-
+>>> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-
+>>> r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing python
+>>> function sysroot_cleansstate| DEBUG: Python function sysroot_cleansstate
+>>> finished| DEBUG: SITE files ['endian-little', 'common-linux', 'common-
+>>> glibc', 'bit-64', 'x86_64-linux', 'common']| DEBUG: Executing shell
+>>> function autotools_preconfigure| DEBUG: Shell function
+>>> autotools_preconfigure finished| DEBUG: Executing python function
+>>> autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals
+>>> finished| DEBUG: Executing shell function do_configure| ERROR: no
+>>> configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-
+>>> mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-
+>>> e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|
+>>> ERROR: Function failed: do_configure (log file is located at
+>>> /home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-
+>>> linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task
+>>> 146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
+>>> core/openjdk/openjdk-8-native_72b05.bb, do_configure) failed with exit
+>>> code '1'NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn't
+>>> need to be rerun and 1 failed.No currently running tasks (1139 of
+>>> 1150)Summary: 1 task failed:
+>>> /home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-
+>>> core/openjdk/openjdk-8-native_72b05.bb, do_configure
+>>> >
+>>> > thanks and regards
+>>> >
+>>> > Federico
+>>> >
+>>> >
+>>> >
+>>> >
+>>> >
+>>>
+>>> Try to apply this patch to meta layer:
+>>> https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80749cd43c
+>>> 1e19a40
+>>> <https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80749cd43c1e19a40>
+>>>
+>>> It worked for me
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>>
+>
 
-If we don't use -a option the PKGR changes are not shown. I don't know
-if buildhistory-diff needs another improvements :D.
+--001a11427b8430c1ab052946779c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>What version of Yocto are you=
+ using?=C2=A0</div><div>I&#39;m using 1.7.1 version with only the patch i d=
+escribed in my previous answer.</div><div>When using it on the master of me=
+ta-java i got it working without any issues.. You mentioned you use another=
+ patch as well?</div><div><br></div><div>Regards</div></div><div class=3D"g=
+mail_extra"><br><div class=3D"gmail_quote">2016-01-13 18:46 GMT+01:00 Feder=
+ico Pietro Briata <span dir=3D"ltr">&lt;<a href=3D"mailto:federico@briata.o=
+rg" target=3D"_blank">federico@briata.org</a>&gt;</span>:<br><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr"><div>Hi again,</div><div>looking to the a=
+bove error on=C2=A0Makefile, seems there is still something wrong with auto=
+tools</div><div>=C2=A0</div><div>=C2=A0</div><div>cat /home/federico/yocto/=
+imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-=
+8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile</div><div># This Makefile was=
+ generated by configure Tue Jan 12 22:44:00 CET 2016<br># GENERATED FILE, D=
+O NOT EDIT<br>SPEC:=3D/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx=
+6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-e8bed149=
+6ff2/build/linux-x86_64-normal-server-release/spec.gmk<br>include /home/fed=
+erico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-li=
+nux/openjdk-8-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile</div><div>=C2=A0<=
+/div><div>so the build stuck here in this loop I think.</div><div>=C2=A0</d=
+iv><div>regards</div><span class=3D"HOEnZb"><font color=3D"#888888"><div>Fe=
+derico</div></font></span></div><div class=3D"HOEnZb"><div class=3D"h5"><di=
+v class=3D"gmail_extra"><br><div class=3D"gmail_quote">2016-01-12 17:41 GMT=
++01:00 Federico Pietro Briata <span dir=3D"ltr">&lt;<a href=3D"mailto:feder=
+ico@briata.org" target=3D"_blank">federico@briata.org</a>&gt;</span>:<br><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div><div>Hi Stef,<=
+br></div>Thanks, I&#39;ve tried to apply that patch and also<br><a href=3D"=
+http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3D527b28c10955daf03875=
+97020d69593ce24bcaa4" target=3D"_blank">http://git.yoctoproject.org/cgit.cg=
+i/poky/commit/?id=3D527b28c10955daf0387597020d69593ce24bcaa4</a><br><br></d=
+iv>and now I&#39;m getting this:<br><br>ERROR: Function failed: do_compile =
+(log file is located at /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-=
+mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_=
+compile.15889)<br>ERROR: Logfile of failure stored in: /home/federico/yocto=
+/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk=
+-8-native/72b05-r0/temp/log.do_compile.15889<br>Log data follows:<br>| DEBU=
+G: SITE files [&#39;endian-little&#39;, &#39;common-linux&#39;, &#39;common=
+-glibc&#39;, &#39;bit-64&#39;, &#39;x86_64-linux&#39;, &#39;common&#39;]<br=
+>| DEBUG: Executing shell function do_compile<br>| NOTE: make OE_CFLAGS=3D-=
+isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglib=
+c/sysroots/x86_64-linux/usr/include -O2 -pipe -DHEADLESS=3Dtrue OE_CPPFLAGS=
+=3D-isystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-e=
+glibc/sysroots/x86_64-linux/usr/include -DHEADLESS=3Dtrue OE_CXXFLAGS=3D-is=
+ystem/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/=
+sysroots/x86_64-linux/usr/include -O2 -pipe -DHEADLESS=3Dtrue OE_LDFLAGS=3D=
+-L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sys=
+roots/x86_64-linux/usr/lib -L/home/federico/yocto/imx6/R6.0/build-OpenJDK8-=
+imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib -Wl,-rpath-link,/home/fed=
+erico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_6=
+4-linux/usr/lib -Wl,-rpath-link,/home/federico/yocto/imx6/R6.0/build-OpenJD=
+K8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib -Wl,-rpath,/home/feder=
+ico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/sysroots/x86_64-=
+linux/usr/lib -Wl,-rpath,/home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6=
+-mx6quad/tmp-eglibc/sysroots/x86_64-linux/lib -Wl,-O1 BUILD_HEADLESS_ONLY=
+=3D1 BUILD_HEADLESS=3Dtrue BUILD_SOUNDLESS_ONLY=3D1 X11_NOT_NEEDED=3D1 CUPS=
+_NOT_NEEDED=3D1 ALSA_NOT_NEEDED=3D1 PULSE_NOT_NEEDED=3D1 MAKE_VERBOSE=3Dy V=
+ERBOSE=3D-s LOG_LEVEL=3Dtrace QUIETLY=3D images<br>| /home/federico/yocto/i=
+mx6/R6.0/build-OpenJDK8-imx6-mx6quad/tmp-eglibc/work/x86_64-linux/openjdk-8=
+-native/72b05-r0/jdk8u-e8bed1496ff2/Makefile:27: *** Too many open files.=
+=C2=A0 Stop.<br>| ERROR: oe_runmake failed<span><br>| WARNING: exit code 1 =
+from a shell command.<br></span>| ERROR: Function failed: do_compile (log f=
+ile is located at /home/federico/yocto/imx6/R6.0/build-OpenJDK8-imx6-mx6qua=
+d/tmp-eglibc/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_compil=
+e.15889)<br>ERROR: Task 207 (/home/federico/yocto/imx6/R6.0/sources/meta-ja=
+va/recipes-core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" target=
+=3D"_blank">openjdk-8-native_72b05.bb</a>, do_compile) failed with exit cod=
+e &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 1469 tasks of which 1237 di=
+dn&#39;t need to be rerun and 1 failed.<br>No currently running tasks (1469=
+ of 1483)<br><br>Summary: 1 task failed:<br>=C2=A0 /home/federico/yocto/imx=
+6/R6.0/sources/meta-java/recipes-core/openjdk/<a href=3D"http://openjdk-8-n=
+ative_72b05.bb" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_compile=
+<br>Summary: There was 1 ERROR message shown, returning a non-zero exit cod=
+e.<br><br></div>thanks and regards<span><font color=3D"#888888"><br></font>=
+</span></div><span><font color=3D"#888888">federico<br></font></span></div>=
+<div><div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-12=
+-19 10:38 GMT+01:00 Stef <span dir=3D"ltr">&lt;<a href=3D"mailto:Stefboerri=
+gter@gmail.com" target=3D"_blank">Stefboerrigter@gmail.com</a>&gt;</span>:<=
+br><blockquote style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-le=
+ft-color:rgb(204,204,204);border-left-width:1px;border-left-style:solid" cl=
+ass=3D"gmail_quote"><span>Federico Pietro Briata &lt;federicobriata@...&gt;=
+ writes:<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; Hi All,<br>
+</span>&gt; I&#39;m trying to build openjdk-8 but I&#39;m stuck.my current =
+setup does not<br>
+define anything for:#PREFERRED_PROVIDER_virtual/java-<br>
+<span>native#PREFERRED_PROVIDER_virtual/javac-native<br>
+&gt;<br>
+&gt; follow the log error<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; ERROR: Function failed: do_configure (log file is located at<br>
+/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
+linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR:<br>
+Logfile of failure stored in: /home/federico/yocto/imx6/R6.0/build-imx6-<br=
+>
+mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-<br>
+</span>r0/temp/log.do_configure.27024Log data follows:| DEBUG: Executing py=
+thon<br>
+<span>function sysroot_cleansstate| DEBUG: Python function sysroot_cleansst=
+ate<br>
+finished| DEBUG: SITE files [&#39;endian-little&#39;, &#39;common-linux&#39=
+;, &#39;common-<br>
+glibc&#39;, &#39;bit-64&#39;, &#39;x86_64-linux&#39;, &#39;common&#39;]| DE=
+BUG: Executing shell<br>
+function autotools_preconfigure| DEBUG: Shell function<br>
+autotools_preconfigure finished| DEBUG: Executing python function<br>
+autotools_copy_aclocals| DEBUG: Python function autotools_copy_aclocals<br>
+finished| DEBUG: Executing shell function do_configure| ERROR: no<br>
+configure script found at /home/federico/yocto/imx6/R6.0/build-imx6-<br>
+mx6quad/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/jdk8u-<br>
+</span>e8bed1496ff2/configure| WARNING: exit code 1 from a shell command.|<=
+br>
+<span>ERROR: Function failed: do_configure (log file is located at<br>
+/home/federico/yocto/imx6/R6.0/build-imx6-mx6quad/tmp/work/x86_64-<br>
+linux/openjdk-8-native/72b05-r0/temp/log.do_configure.27024)ERROR: Task<br>
+146 (/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
+core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
+" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure) failed wit=
+h exit<br>
+code &#39;1&#39;NOTE: Tasks Summary: Attempted 1139 tasks of which 15 didn&=
+#39;t<br>
+</span>need to be rerun and 1 failed.No currently running tasks (1139 of<br=
+>
+<span>1150)Summary: 1 task failed:=C2=A0<br>
+/home/federico/yocto/imx6/R6.0/sources/meta-java/recipes-<br>
+core/openjdk/<a href=3D"http://openjdk-8-native_72b05.bb" rel=3D"noreferrer=
+" target=3D"_blank">openjdk-8-native_72b05.bb</a>, do_configure<br>
+&gt;<br>
+&gt; thanks and regards<br>
+&gt;<br>
+&gt; Federico<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</span>Try to apply this patch to meta layer:<br>
+<a href=3D"https://github.com/rehsack/poky/commit/65cdad40f2717b85892e12c80=
+749cd43c1e19a40" rel=3D"noreferrer" target=3D"_blank">https://github.com/re=
+hsack/poky/commit/65cdad40f2717b85892e12c80749cd43c<br>
+1e19a40</a><br>
+<br>
+It worked for me<br>
+<span><font color=3D"#888888">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
-> 
-> Ross
-> 
-
-
-alimon
-
---------------000404050509010500070001
-Content-Type: text/plain; charset=UTF-8;
- name="buildhistory-diff.txt"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="buildhistory-diff.txt"
-
-cGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4L2dwZ21lL2dwZ21lLXB0aHJlYWQ6IEZJTEVMSVNUOiBy
-ZW1vdmVkICIvdXNyL2xpYi9saWJncGdtZS1wdGhyZWFkLnNvLjExLjEzLjMiIGFkZGVkICIvdXNy
-L2xpYi9saWJncGdtZS1wdGhyZWFkLnNvLjExLjE0LjAiCiAgKiBQViBjaGFuZ2VkIGZyb20gIjEu
-NS40IiB0byAiMS42LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZS1wdGhy
-ZWFkOiBSUFJPVklERVM6IHJlbW92ZWQgIjEuNS40IiBhZGRlZCAiMS42LjAiCiAgKiBQViBjaGFu
-Z2VkIGZyb20gIjEuNS40IiB0byAiMS42LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdt
-ZS9ncGdtZTogRklMRUxJU1Q6IHJlbW92ZWQgIi91c3IvbGliL2xpYmdwZ21lLnNvLjExLjEzLjMi
-IGFkZGVkICIvdXNyL2xpYi9saWJncGdtZS5zby4xMS4xNC4wIgogICogUFYgY2hhbmdlZCBmcm9t
-ICIxLjUuNCIgdG8gIjEuNi4wIgo=
-
---------------000404050509010500070001
-Content-Type: text/plain; charset=UTF-8;
- name="buildhistory-diff-full.txt"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="buildhistory-diff-full.txt"
-
-cGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4L2dwZ21lL2dwZ21lLWRiZzogUFYgY2hhbmdlZCBmcm9t
-ICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUt
-ZGJnOiBGSUxFTElTVDogcmVtb3ZlZCAiL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3Bn
-bWUtMS41LjQvc3JjL2Fzc3Vhbi1zdXBwb3J0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQt
-cjAvZ3BnbWUtMS41LjQvc3JjL2VuY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1y
-MC9ncGdtZS0xLjUuNC9zcmMvZW5naW5lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAv
-Z3BnbWUtMS41LjQvc3JjL2RpcmluZm8uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9n
-cGdtZS0xLjUuNC9zcmMvZXJyb3IuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdt
-ZS0xLjUuNC9zcmMvYXRoLXB0aHJlYWQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9n
-cGdtZS0xLjUuNC9zcmMvZW5naW5lLWdwZy5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIw
-L2dwZ21lLTEuNS40L3NyYy9vcHMuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdt
-ZS0xLjUuNC9zcmMvcG9zaXgtaW8uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdt
-ZS0xLjUuNC9zcmMvZGF0YS1pZGVudGlmeS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIw
-L2dwZ21lLTEuNS40L3NyYy9wYXJzZXRsdi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIw
-L2dwZ21lLTEuNS40L3NyYy9vcGFzc3Vhbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIw
-L2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtYXNzdWFuLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41
-LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3dhaXQtZ2xvYmFsLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3NpZy1ub3RhdGlvbi5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kYXRhLWNvbXBhdC5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kYXRhLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Bvc2l4LXV0aWwuYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1mZC5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9hdGguaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvdmZzLW1vdW50LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuZ2luZS1zcGF3bi5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZXQtZW52LmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2F0aC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-NS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtZ3BnY29uZi5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9jb252ZXJzaW9uLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2RlbGV0ZS5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtZzEzLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Bhc3NwaHJhc2UuYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjUuNC1yMC9idWlsZC9zcmMvZ3BnbWUuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1tZW0uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvc3RhdHVzLXRhYmxlLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2RhdGEtdXNlci5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZXRhdWRpdGxvZy5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZW5rZXkuYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvdHJ1c3QtaXRlbS5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtYmFja2VuZC5oIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9wcml2LWlvLmggL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuY3J5cHQtc2lnbi5jIC91c3Iv
-c3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kZWNyeXB0LXZlcmlmeS5j
-IC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy91dGlsLmggL3Vz
-ci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2ltcG9ydC5jIC91c3Iv
-c3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtdWlzZXJ2ZXIu
-YyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvd2FpdC11c2Vy
-LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3dhaXQuaCAv
-dXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGVidWcuaCAvdXNy
-L2xpYi8uZGVidWcvbGliZ3BnbWUtcHRocmVhZC5zby4xMS4xMy4zIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9ncGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2dwZ21lLmMgL3Vzci9saWIvLmRlYnVnL2xpYmdw
-Z21lLnNvLjExLjEzLjMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQv
-c3JjL2VkaXQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMv
-ZGVidWcuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvd2Fp
-dC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9rZXkuYyAv
-dXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvc2VtYS5oIC91c3Iv
-c3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9zcGF3bi5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9ncGdtZS10b29sLmMgL3Vzci9z
-cmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2V4cG9ydC5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9jb250ZXh0LmggL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3ZlcmlmeS5jIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9mdW5vcGVuLmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuZ2luZS1ncGdzbS5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9rZXlsaXN0LmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3NpZ24uYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZW5naW5lLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3ZlcnNpb24uYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvcG9zaXgtc2VtYS5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9zeXMtdXRpbC5oIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kZWNyeXB0LmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Byb2dyZXNzLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Zmcy1jcmVhdGUuYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS5oIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9wYXNzd2QuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1zdHJlYW0uYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvc2lnbmVycy5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy93YWl0LXByaXZhdGUuYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvdHJ1c3RsaXN0LmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL29wLXN1cHBvcnQuYyAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvcGFyc2V0bHYuaCIgYWRkZWQgIi91
-c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy92ZnMtbW91bnQuYyAv
-dXNyL2xpYi8uZGVidWcvbGliZ3BnbWUuc28uMTEuMTQuMCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvdmZzLWNyZWF0ZS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kZWxldGUuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS1zdHJlYW0uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWJhY2tlbmQuaCAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMva2V5LmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2RlY3J5cHQtdmVyaWZ5LmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3Bvc2l4LWlvLmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtZ2xvYmFsLmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3RydXN0LWl0ZW0uYyAvdXNyL3Ny
-Yy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvcHJvZ3Jlc3MuYyAvdXNyL3Ny
-Yy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvd2FpdC5oIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9wYXNzcGhyYXNlLmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2NvbnRleHQuaCAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLXNwYXduLmMgL3Vzci9z
-cmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQuYyAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZ2V0YXVkaXRsb2cuYyAvdXNyL3Ny
-Yy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS11c2VyLmMgL3Vzci9z
-cmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2dlbmtleS5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9lZGl0LmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3ZlcmlmeS5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kZWJ1Zy5oIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9wYXJzZXRsdi5oIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9hdGguaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvc3RhdHVzLXRhYmxlLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL29wcy5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kaXJpbmZvLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2VuY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvc3lzLXV0aWwuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvYXRoLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAv
-Z3BnbWUtMS42LjAvc3JjL2ltcG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dw
-Z21lLTEuNi4wL3NyYy9lbmdpbmUtdWlzZXJ2ZXIuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWdwZ3NtLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2RlY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvcGFzc3dkLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtcHJpdmF0ZS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9zcGF3bi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9lbmNyeXB0LXNpZ24uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2Vycm9yLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2dldC1lbnYuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWcxMy5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9rZXlsaXN0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2dwZ21lLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2Z1bm9wZW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvb3Bhc3N1YW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvcHJpdi1pby5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIw
-L2dwZ21lLTEuNi4wL3NyYy9lbmdpbmUtZ3BnLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2RhdGEtY29tcGF0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtdXNlci5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kYXRhLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL3BhcnNldGx2LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2VuZ2luZS1hc3N1YW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy90cnVzdGxpc3QuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvY29udmVyc2lvbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9ncGdtZS10b29sLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3NlbWEuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvcG9zaXgtdXRpbC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy92ZXJzaW9uLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2RhdGEtZmQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvc2lnbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIw
-L2dwZ21lLTEuNi4wL3NyYy9hdGgtcHRocmVhZC5jIC91c3IvbGliLy5kZWJ1Zy9saWJncGdtZS1w
-dGhyZWFkLnNvLjExLjE0LjAgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42
-LjAvc3JjL29wLXN1cHBvcnQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0x
-LjYuMC9zcmMvZGF0YS1pZGVudGlmeS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dw
-Z21lLTEuNi4wL3NyYy91dGlsLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvYnVpbGQv
-c3JjL2dwZ21lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3Jj
-L2RhdGEtbWVtLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3Jj
-L2RlYnVnLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3Np
-Zy1ub3RhdGlvbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3Ny
-Yy9ncGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3Jj
-L2V4cG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9h
-c3N1YW4tc3VwcG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4w
-L3NyYy9wb3NpeC1zZW1hLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42
-LjAvc3JjL2VuZ2luZS1ncGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3Bn
-bWUtMS42LjAvc3JjL3NpZ25lcnMuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdt
-ZS0xLjYuMC9zcmMvZW5naW5lLmMiCiAgKiBQViBjaGFuZ2VkIGZyb20gIjEuNS40IiB0byAiMS42
-LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZS1kYmc6IFBLR1YgY2hhbmdl
-ZCBmcm9tIDEuNS40IFtkZWZhdWx0XSB0byAxLjYuMCBbZGVmYXVsdF0KcGFja2FnZXMvaTU4Ni1w
-b2t5LWxpbnV4L2dwZ21lL2dwZ21lLWRiZzogUEtHU0laRSBjaGFuZ2VkIGZyb20gMjgxODcxNCB0
-byAyODQwNzY5ICgrMCUpCiAgKiBQViBjaGFuZ2VkIGZyb20gIjEuNS40IiB0byAiMS42LjAiCiAg
-KiBGSUxFTElTVDogcmVtb3ZlZCAiL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUt
-MS41LjQvc3JjL2Fzc3Vhbi1zdXBwb3J0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAv
-Z3BnbWUtMS41LjQvc3JjL2VuY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9n
-cGdtZS0xLjUuNC9zcmMvZW5naW5lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3Bn
-bWUtMS41LjQvc3JjL2RpcmluZm8uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdt
-ZS0xLjUuNC9zcmMvZXJyb3IuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0x
-LjUuNC9zcmMvYXRoLXB0aHJlYWQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdt
-ZS0xLjUuNC9zcmMvZW5naW5lLWdwZy5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dw
-Z21lLTEuNS40L3NyYy9vcHMuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0x
-LjUuNC9zcmMvcG9zaXgtaW8uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0x
-LjUuNC9zcmMvZGF0YS1pZGVudGlmeS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dw
-Z21lLTEuNS40L3NyYy9wYXJzZXRsdi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dw
-Z21lLTEuNS40L3NyYy9vcGFzc3Vhbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dw
-Z21lLTEuNS40L3NyYy9lbmdpbmUtYXNzdWFuLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQt
-cjAvZ3BnbWUtMS41LjQvc3JjL3dhaXQtZ2xvYmFsLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41
-LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3NpZy1ub3RhdGlvbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kYXRhLWNvbXBhdC5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kYXRhLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Bvc2l4LXV0aWwuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1mZC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9hdGguaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUu
-NC1yMC9ncGdtZS0xLjUuNC9zcmMvdmZzLW1vdW50LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41
-LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuZ2luZS1zcGF3bi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZXQtZW52LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2F0aC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40
-LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtZ3BnY29uZi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9jb252ZXJzaW9uLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2RlbGV0ZS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtZzEzLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Bhc3NwaHJhc2UuYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9idWlsZC9zcmMvZ3BnbWUuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUu
-NC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1tZW0uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUu
-NC1yMC9ncGdtZS0xLjUuNC9zcmMvc3RhdHVzLXRhYmxlLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2RhdGEtdXNlci5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZXRhdWRpdGxvZy5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9nZW5rZXkuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvdHJ1c3QtaXRlbS5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtYmFja2VuZC5oIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9wcml2LWlvLmggL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuY3J5cHQtc2lnbi5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kZWNyeXB0LXZlcmlmeS5jIC91
-c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy91dGlsLmggL3Vzci9z
-cmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2ltcG9ydC5jIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9lbmdpbmUtdWlzZXJ2ZXIuYyAv
-dXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvd2FpdC11c2VyLmMg
-L3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3dhaXQuaCAvdXNy
-L3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGVidWcuaCAvdXNyL2xp
-Yi8uZGVidWcvbGliZ3BnbWUtcHRocmVhZC5zby4xMS4xMy4zIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9ncGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2dwZ21lLmMgL3Vzci9saWIvLmRlYnVnL2xpYmdwZ21l
-LnNvLjExLjEzLjMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3Jj
-L2VkaXQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGVi
-dWcuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvd2FpdC5j
-IC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9rZXkuYyAvdXNy
-L3NyYy9kZWJ1Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvc2VtYS5oIC91c3Ivc3Jj
-L2RlYnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9zcGF3bi5jIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9ncGdtZS10b29sLmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2V4cG9ydC5jIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9jb250ZXh0LmggL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3ZlcmlmeS5jIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9mdW5vcGVuLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL2VuZ2luZS1ncGdzbS5jIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9rZXlsaXN0LmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3NpZ24uYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZW5naW5lLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3ZlcnNpb24uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvcG9zaXgtc2VtYS5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9zeXMtdXRpbC5oIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9kZWNyeXB0LmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Byb2dyZXNzLmMgL3Vzci9zcmMvZGVidWcvZ3Bn
-bWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL3Zmcy1jcmVhdGUuYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS5oIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy9wYXNzd2QuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvZGF0YS1zdHJlYW0uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdt
-ZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvc2lnbmVycy5jIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNS40LXIwL2dwZ21lLTEuNS40L3NyYy93YWl0LXByaXZhdGUuYyAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvdHJ1c3RsaXN0LmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS41LjQtcjAvZ3BnbWUtMS41LjQvc3JjL29wLXN1cHBvcnQuYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjUuNC1yMC9ncGdtZS0xLjUuNC9zcmMvcGFyc2V0bHYuaCIgYWRkZWQgIi91c3Iv
-c3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy92ZnMtbW91bnQuYyAvdXNy
-L2xpYi8uZGVidWcvbGliZ3BnbWUuc28uMTEuMTQuMCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvdmZzLWNyZWF0ZS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kZWxldGUuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS1zdHJlYW0uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWJhY2tlbmQuaCAvdXNyL3NyYy9kZWJ1Zy9n
-cGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMva2V5LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2RlY3J5cHQtdmVyaWZ5LmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3Bvc2l4LWlvLmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtZ2xvYmFsLmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3RydXN0LWl0ZW0uYyAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvcHJvZ3Jlc3MuYyAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvd2FpdC5oIC91c3Ivc3JjL2RlYnVn
-L2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9wYXNzcGhyYXNlLmMgL3Vzci9zcmMvZGVi
-dWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2NvbnRleHQuaCAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLXNwYXduLmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQuYyAvdXNyL3NyYy9kZWJ1
-Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZ2V0YXVkaXRsb2cuYyAvdXNyL3NyYy9k
-ZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS11c2VyLmMgL3Vzci9zcmMv
-ZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2dlbmtleS5jIC91c3Ivc3JjL2Rl
-YnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9lZGl0LmMgL3Vzci9zcmMvZGVidWcv
-Z3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3ZlcmlmeS5jIC91c3Ivc3JjL2RlYnVnL2dw
-Z21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9kZWJ1Zy5oIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9wYXJzZXRsdi5oIC91c3Ivc3JjL2RlYnVnL2dwZ21l
-LzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9hdGguaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvc3RhdHVzLXRhYmxlLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUv
-MS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL29wcy5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy9kaXJpbmZvLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2VuY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvc3lzLXV0aWwuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvYXRoLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3Bn
-bWUtMS42LjAvc3JjL2ltcG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21l
-LTEuNi4wL3NyYy9lbmdpbmUtdWlzZXJ2ZXIuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWdwZ3NtLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2RlY3J5cHQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvcGFzc3dkLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtcHJpdmF0ZS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEu
-Ni4wLXIwL2dwZ21lLTEuNi4wL3NyYy9zcGF3bi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy9lbmNyeXB0LXNpZ24uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8x
-LjYuMC1yMC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2Vycm9yLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2dldC1lbnYuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvZW5naW5lLWcxMy5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy9rZXlsaXN0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2dwZ21lLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAv
-Z3BnbWUtMS42LjAvc3JjL2Z1bm9wZW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9n
-cGdtZS0xLjYuMC9zcmMvb3Bhc3N1YW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9n
-cGdtZS0xLjYuMC9zcmMvcHJpdi1pby5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dw
-Z21lLTEuNi4wL3NyYy9lbmdpbmUtZ3BnLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAv
-Z3BnbWUtMS42LjAvc3JjL2RhdGEtY29tcGF0LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL3dhaXQtdXNlci5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy9kYXRhLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAv
-Z3BnbWUtMS42LjAvc3JjL3BhcnNldGx2LmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAv
-Z3BnbWUtMS42LjAvc3JjL2VuZ2luZS1hc3N1YW4uYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYu
-MC1yMC9ncGdtZS0xLjYuMC9zcmMvZGF0YS5oIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIw
-L2dwZ21lLTEuNi4wL3NyYy90cnVzdGxpc3QuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvY29udmVyc2lvbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy9ncGdtZS10b29sLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42
-LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3NlbWEuaCAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvcG9zaXgtdXRpbC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4w
-LXIwL2dwZ21lLTEuNi4wL3NyYy92ZXJzaW9uLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAt
-cjAvZ3BnbWUtMS42LjAvc3JjL2RhdGEtZmQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1y
-MC9ncGdtZS0xLjYuMC9zcmMvc2lnbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dw
-Z21lLTEuNi4wL3NyYy9hdGgtcHRocmVhZC5jIC91c3IvbGliLy5kZWJ1Zy9saWJncGdtZS1wdGhy
-ZWFkLnNvLjExLjE0LjAgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAv
-c3JjL29wLXN1cHBvcnQuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0xLjYu
-MC9zcmMvZGF0YS1pZGVudGlmeS5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21l
-LTEuNi4wL3NyYy91dGlsLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvYnVpbGQvc3Jj
-L2dwZ21lLmggL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2Rh
-dGEtbWVtLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2Rl
-YnVnLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL3NpZy1u
-b3RhdGlvbi5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9n
-cGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAvc3JjL2V4
-cG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3NyYy9hc3N1
-YW4tc3VwcG9ydC5jIC91c3Ivc3JjL2RlYnVnL2dwZ21lLzEuNi4wLXIwL2dwZ21lLTEuNi4wL3Ny
-Yy9wb3NpeC1zZW1hLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUtMS42LjAv
-c3JjL2VuZ2luZS1ncGdjb25mLmMgL3Vzci9zcmMvZGVidWcvZ3BnbWUvMS42LjAtcjAvZ3BnbWUt
-MS42LjAvc3JjL3NpZ25lcnMuYyAvdXNyL3NyYy9kZWJ1Zy9ncGdtZS8xLjYuMC1yMC9ncGdtZS0x
-LjYuMC9zcmMvZW5naW5lLmMiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZS1k
-ZXY6IFBWIGNoYW5nZWQgZnJvbSAiMS41LjQiIHRvICIxLjYuMCIKcGFja2FnZXMvaTU4Ni1wb2t5
-LWxpbnV4L2dwZ21lL2dwZ21lLWRldjogUEtHViBjaGFuZ2VkIGZyb20gMS41LjQgW2RlZmF1bHRd
-IHRvIDEuNi4wIFtkZWZhdWx0XQpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUt
-ZGV2OiBSREVQRU5EUyBjaGFuZ2VkIG9yZGVyCiAgKiBQViBjaGFuZ2VkIGZyb20gIjEuNS40IiB0
-byAiMS42LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZS1kZXY6IFBLR1NJ
-WkUgY2hhbmdlZCBmcm9tIDE0MDY2MiB0byAxNDIwNzMgKCsxJSkKICAqIFBWIGNoYW5nZWQgZnJv
-bSAiMS41LjQiIHRvICIxLjYuMCIKcGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4L2dwZ21lL2dwZ21l
-LWRvYzogUFYgY2hhbmdlZCBmcm9tICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2LXBv
-a3ktbGludXgvZ3BnbWUvZ3BnbWUtZG9jOiBQS0dWIGNoYW5nZWQgZnJvbSAxLjUuNCBbZGVmYXVs
-dF0gdG8gMS42LjAgW2RlZmF1bHRdCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdt
-ZS1kb2M6IFBLR1NJWkUgY2hhbmdlZCBmcm9tIDM4MTk1NyB0byAzODY4NzQgKCsxJSkKICAqIFBW
-IGNoYW5nZWQgZnJvbSAiMS41LjQiIHRvICIxLjYuMCIKcGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4
-L2dwZ21lL2dwZ21lLWxvY2FsZTogUFYgY2hhbmdlZCBmcm9tICIxLjUuNCIgdG8gIjEuNi4wIgpw
-YWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUtbG9jYWxlOiBQS0dWIGNoYW5nZWQg
-ZnJvbSAxLjUuNCBbZGVmYXVsdF0gdG8gMS42LjAgW2RlZmF1bHRdCnBhY2thZ2VzL2k1ODYtcG9r
-eS1saW51eC9ncGdtZS9ncGdtZS1wdGhyZWFkOiBQViBjaGFuZ2VkIGZyb20gIjEuNS40IiB0byAi
-MS42LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZS1wdGhyZWFkOiBGSUxF
-TElTVDogcmVtb3ZlZCAiL3Vzci9saWIvbGliZ3BnbWUtcHRocmVhZC5zby4xMS4xMy4zIiBhZGRl
-ZCAiL3Vzci9saWIvbGliZ3BnbWUtcHRocmVhZC5zby4xMS4xNC4wIgogICogUFYgY2hhbmdlZCBm
-cm9tICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3Bn
-bWUtcHRocmVhZDogUEtHViBjaGFuZ2VkIGZyb20gMS41LjQgW2RlZmF1bHRdIHRvIDEuNi4wIFtk
-ZWZhdWx0XQpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUtcHRocmVhZDogUlBS
-T1ZJREVTOiByZW1vdmVkICIxLjUuNCIgYWRkZWQgIjEuNi4wIgogICogUFYgY2hhbmdlZCBmcm9t
-ICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUt
-cHRocmVhZDogUEtHU0laRSBjaGFuZ2VkIGZyb20gMjc0OTE5IHRvIDI3OTA0NyAoKzElKQogICog
-UFYgY2hhbmdlZCBmcm9tICIxLjUuNCIgdG8gIjEuNi4wIgogICogRklMRUxJU1Q6IHJlbW92ZWQg
-Ii91c3IvbGliL2xpYmdwZ21lLXB0aHJlYWQuc28uMTEuMTMuMyIgYWRkZWQgIi91c3IvbGliL2xp
-YmdwZ21lLXB0aHJlYWQuc28uMTEuMTQuMCIKcGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4L2dwZ21l
-L2dwZ21lLXN0YXRpY2RldjogUFYgY2hhbmdlZCBmcm9tICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNr
-YWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWUvZ3BnbWUtc3RhdGljZGV2OiBQS0dWIGNoYW5nZWQg
-ZnJvbSAxLjUuNCBbZGVmYXVsdF0gdG8gMS42LjAgW2RlZmF1bHRdCnBhY2thZ2VzL2k1ODYtcG9r
-eS1saW51eC9ncGdtZS9ncGdtZS1zdGF0aWNkZXY6IFJERVBFTkRTIGNoYW5nZWQgb3JkZXIKICAq
-IFBWIGNoYW5nZWQgZnJvbSAiMS41LjQiIHRvICIxLjYuMCIKcGFja2FnZXMvaTU4Ni1wb2t5LWxp
-bnV4L2dwZ21lL2dwZ21lOiBQViBjaGFuZ2VkIGZyb20gIjEuNS40IiB0byAiMS42LjAiCnBhY2th
-Z2VzL2k1ODYtcG9reS1saW51eC9ncGdtZS9ncGdtZTogRklMRUxJU1Q6IHJlbW92ZWQgIi91c3Iv
-bGliL2xpYmdwZ21lLnNvLjExLjEzLjMiIGFkZGVkICIvdXNyL2xpYi9saWJncGdtZS5zby4xMS4x
-NC4wIgogICogUFYgY2hhbmdlZCBmcm9tICIxLjUuNCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2
-LXBva3ktbGludXgvZ3BnbWUvZ3BnbWU6IFBLR1YgY2hhbmdlZCBmcm9tIDEuNS40IFtkZWZhdWx0
-XSB0byAxLjYuMCBbZGVmYXVsdF0KcGFja2FnZXMvaTU4Ni1wb2t5LWxpbnV4L2dwZ21lL2dwZ21l
-OiBQS0dTSVpFIGNoYW5nZWQgZnJvbSAzMjUwNTEgdG8gMzMwNjgzICgrMSUpCiAgKiBQViBjaGFu
-Z2VkIGZyb20gIjEuNS40IiB0byAiMS42LjAiCiAgKiBGSUxFTElTVDogcmVtb3ZlZCAiL3Vzci9s
-aWIvbGliZ3BnbWUuc28uMTEuMTMuMyIgYWRkZWQgIi91c3IvbGliL2xpYmdwZ21lLnNvLjExLjE0
-LjAiCnBhY2thZ2VzL2k1ODYtcG9reS1saW51eC9ncGdtZTogUFYgY2hhbmdlZCBmcm9tICIxLjUu
-NCIgdG8gIjEuNi4wIgpwYWNrYWdlcy9pNTg2LXBva3ktbGludXgvZ3BnbWU6IFBLR1YgY2hhbmdl
-ZCBmcm9tIDEuNS40IFtkZWZhdWx0XSB0byAxLjYuMCBbZGVmYXVsdF0K
-
---------------000404050509010500070001--
+--001a11427b8430c1ab052946779c--
