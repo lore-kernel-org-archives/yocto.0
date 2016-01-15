@@ -1,68 +1,41 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <k870818319@outlook.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90964E007EA; Thu, 14 Jan 2016 15:03:25 -0800 (PST)
+	id 4BD88E00803; Thu, 14 Jan 2016 16:47:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
+	mail provider *      (k870818319[at]outlook.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6496BE0070F
-	for <yocto@yoctoproject.org>; Thu, 14 Jan 2016 15:03:21 -0800 (PST)
-Received: by mail-pf0-f173.google.com with SMTP id q63so110175488pfb.1
-	for <yocto@yoctoproject.org>; Thu, 14 Jan 2016 15:03:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:user-agent:mime-version
-	:content-transfer-encoding:content-type;
-	bh=S+HCZSYyq3mh3QBfNcRQYybrdOHjLLhjGec/VFM+e8g=;
-	b=hJJyKFUZfyyjU7N8Ke6Y3G1OUQykAHB7dZAA+cBo0e73y61weECwvIZ3wfZDHFloAU
-	V8aRD+Nyafg9cAaWkGOMd1rKiWCrH3xtwdVp2lTu/4t02hwYSKTnpEtTQqVRKJstdjEg
-	l5cb75RzB4WCNO28B2AlwDKnMOO08JhVMn8Vr5UKASAFsz/gvRunpVC0nWYlvy6/Q+eO
-	J6fDAef8fqFpRh78HyX1yN2lYljHeWRgb2b6zmKpNYYFum8D+y798nQNVsco7DvkIFrA
-	nUf54oCmRfKyyylUE9i3sqI3VWYql7vqILYtC7jtcvV+O7pKNzvoMXqmG73MAb37atDm
-	FT9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id:user-agent
-	:mime-version:content-transfer-encoding:content-type;
-	bh=S+HCZSYyq3mh3QBfNcRQYybrdOHjLLhjGec/VFM+e8g=;
-	b=hiR26zIUuaisNgDETleLCYeaKKIRhVWvXGODW/ccVP06ktaTiZu36Kk30xmmwefSNl
-	YX/C/dTayvU9A5Xyj/rFKyiG2QgI1FPiok4gg7CsTpNP4+92AI/y18/zk0G5VDJyWngd
-	KAnWonnSQGn4yK0vzuyTlB26cOq5lXdLknBsqiZUfPHyDC2g45Z7Z6XLusIMqV2ce39a
-	Jj6CERW4HACTXJQFNgPqRzwemyUL27/3PneXkal7aFb6GvL3MQMPzrDvoW7ImOk3IM/G
-	drFEIxOqUlY8xCMcCCUniAl6X7nfsnEvWl//LQmHsInwPsS4QDzWzDjKWOG5v3N0QdUf
-	l8Xw==
-X-Gm-Message-State: ALoCoQnpLq/FREMJDAoCbhcrYzl0FWzrwDkh8Ui27pUQorVcP885RJ77OUSrJb9aqUe03Ht30kiFctJXiZMuOPsCcXPovBZuIw==
-X-Received: by 10.98.19.214 with SMTP id 83mr10107446pft.22.1452812601549;
-	Thu, 14 Jan 2016 15:03:21 -0800 (PST)
-Received: from rjs-zotac.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
-	by smtp.gmail.com with ESMTPSA id
-	b28sm11580710pfd.24.2016.01.14.15.03.20 for <yocto@yoctoproject.org>
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 14 Jan 2016 15:03:20 -0800 (PST)
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: Yocto Project =?utf-8?B?4oCOW3lvY3RvQHlvY3RvcHJvamVjdC5vcmdd4oCO?=
-	<yocto@yoctoproject.org>
-Date: Thu, 14 Jan 2016 15:03:19 -0800
-Message-ID: <1530744.VQ6Lh0k6b2@rjs-zotac.streifs.net>
-User-Agent: KMail/4.14.10 (Linux/4.2.8-200.fc22.x86_64+debug; KDE/4.14.14;
-	x86_64; ; )
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.55.90.44 listed in list.dnswl.org]
+Received: from SNT004-OMC1S33.hotmail.com (snt004-omc1s33.hotmail.com
+	[65.55.90.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9298E0070F
+	for <yocto@yoctoproject.org>; Thu, 14 Jan 2016 16:47:00 -0800 (PST)
+Received: from SNT150-W75 ([65.55.90.8]) by SNT004-OMC1S33.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Thu, 14 Jan 2016 16:46:59 -0800
+X-TMN: [ILSqmCfYYW9pVl68PvyJqVhrQMcAYWmD]
+X-Originating-Email: [k870818319@outlook.com]
+Message-ID: <SNT150-W75DC0F178711B23639154982CD0@phx.gbl>
+From: RayBloodworth <k870818319@outlook.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 15 Jan 2016 00:46:59 +0000
+Importance: Normal
+In-Reply-To: <8479DDD6-CFD8-433E-8BF6-86ECD1AAF82D@gmail.com>
+References: <SNT150-W43B1B9FC32074EB6CC85B582CC0@phx.gbl>,
+	<8479DDD6-CFD8-433E-8BF6-86ECD1AAF82D@gmail.com>
 MIME-Version: 1.0
-Subject: [Toaster] Production Instance Setup
+X-OriginalArrivalTime: 15 Jan 2016 00:46:59.0921 (UTC)
+	FILETIME=[3E168C10:01D14F2E]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to change the order of package installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,116 +47,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jan 2016 23:03:25 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 15 Jan 2016 00:47:04 -0000
+Content-Type: multipart/alternative;
+	boundary="_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_"
 
-Hi Everyone:
+--_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-I am trying to set up Toaster in a production environment with Apache etc. The web server setup is ok. It is running builds where I am currently stuck.
+SGksIFJhag0KICAgVGhhbmtzIGZvciB5b3VyIHJlcGx5ISAgIEkgd2lsbCB0cnkgYW5vdGhlciB3
+YXk6ICAgTWVyZ2luZyAvYmluIGFuZCAvdXNyL2JpbiBhdCB0aGUgbGFzdCBzdGVwIG9mIGRvX3Jv
+b3Rmcy4NCiAgIFRoYW5rcyENClN1YmplY3Q6IFJlOiBbeW9jdG9dIEhvdyB0byBjaGFuZ2UgdGhl
+IG9yZGVyIG9mIHBhY2thZ2UgaW5zdGFsbGF0aW9uDQpGcm9tOiByYWoua2hlbUBnbWFpbC5jb20N
+CkRhdGU6IFRodSwgMTQgSmFuIDIwMTYgMDk6NDc6MDkgLTA4MDANCkNDOiB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQpUbzogazg3MDgxODMxOUBvdXRsb29rLmNvbQ0KDQoNCk9uIEphbiAxNCwgMjAx
+NiwgYXQgMTo1OCBBTSwgUmF5Qmxvb2R3b3J0aCA8azg3MDgxODMxOUBvdXRsb29rLmNvbT4gd3Jv
+dGU6SGksIGV2ZXJ5b25lDQogICBJJ20gdXNpbmcgdGhlIGRpenp5IGJyYW5jaCBvZiBmcmVlc2Nh
+bGUgeW9jdG8gcHJvamVjdCB0byBidWlsZCBpbWFnZS4gV2hlbiBkb19yb290ZnMgaXMgZG9uZSwg
+SSBmb3VuZCB0aGF0IHBhY2thZ2UgImJhc2UtZmlsZXMiIHdhc24ndCB0aGUgZmlyc3Qgb3JkZXIg
+b2YgaW5zdGFsbGF0aW9uLiAgICBTaW5jZSBJIHdhbnQgZG8gc29tZSBtb2RpZnkgbGlrZSAiL2Jp
+biAtPiAvdXNyL2JpbiIgaW4gImJhc2UtZmlsZXMiLCBwYWNrYWdlICJiYXNlLWZpbGVzIiBtdXN0
+IGJlIHRoZSBmaXJzdCBvcmRlciBvZiBpbnN0YWxsYXRpb24uICAgQ291bGQgYW55b25lIGhlbHAg
+bWUgd2l0aCB0aGlzIGlzc3VlPw0KVGhlcmUgaXMgYSBzZXBhcmF0ZSB0aHJlYWQgZ29pbmcgb24g
+YWJvdXQgbWVyZ2luZyAvdXNyIGFuZCAvSSBhbSBub3Qgc3VyZSB3aGF0IHlvdSB3YW50IHRvIGRv
+IGJ1dCBzeW1saW5raW5nIC9iaW4gYW5kIC91c3IvYmluIG1pZ2h0IGludm9sdmUgbW9yZSB0aGF0
+anVzdCBwb3N0IHByb2Nlc3NpbmcuDQoNCkJlc3QgcmVnYXJkcyxSYXktLSBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX3lvY3RvIG1haWxpbmcgbGlzdHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmdodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8v
+eW9jdG8NCiAJCSAJICAgCQkgIA==
 
-I am using the Jethro branch from the git repo.
+--_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-According to step 7 in [1] one needs to start
+PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
+DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
+bnQtZmFtaWx5Os6iyO3RxbraDQp9DQotLT48L3N0eWxlPjwvaGVhZD4NCjxib2R5IGNsYXNzPSdo
+bW1lc3NhZ2UnPjxkaXYgZGlyPSdsdHInPjxkaXY+SGksIFJhajwvZGl2PjxkaXY+PGJyPjwvZGl2
+PjxkaXY+Jm5ic3A7ICZuYnNwO1RoYW5rcyBmb3IgeW91ciByZXBseSE8L2Rpdj48ZGl2PiZuYnNw
+OyAmbmJzcDtJIHdpbGwgdHJ5IGFub3RoZXIgd2F5OjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwOzxz
+cGFuIHN0eWxlPSJmb250LXNpemU6IDEycHQ7Ij5NZXJnaW5nPC9zcGFuPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6IDEycHQ7Ij4mbmJzcDsvYmluIGFuZCAvdXNyL2JpbiBhdCB0aGUgbGFzdCBzdGVw
+IG9mIGRvX3Jvb3Rmcy48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAx
+MnB0OyI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEycHQ7
+Ij4mbmJzcDsgJm5ic3A7VGhhbmtzITwvc3Bhbj48L2Rpdj48YnI+PGRpdj48aHIgaWQ9InN0b3BT
+cGVsbGluZyI+U3ViamVjdDogUmU6IFt5b2N0b10gSG93IHRvIGNoYW5nZSB0aGUgb3JkZXIgb2Yg
+cGFja2FnZSBpbnN0YWxsYXRpb248YnI+RnJvbTogcmFqLmtoZW1AZ21haWwuY29tPGJyPkRhdGU6
+IFRodSwgMTQgSmFuIDIwMTYgMDk6NDc6MDkgLTA4MDA8YnI+Q0M6IHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmc8YnI+VG86IGs4NzA4MTgzMTlAb3V0bG9vay5jb208YnI+PGJyPjxicj48ZGl2PjxibG9j
+a3F1b3RlPjxkaXY+T24gSmFuIDE0LCAyMDE2LCBhdCAxOjU4IEFNLCBSYXlCbG9vZHdvcnRoICZs
+dDs8YSBocmVmPSJtYWlsdG86azg3MDgxODMxOUBvdXRsb29rLmNvbSI+azg3MDgxODMxOUBvdXRs
+b29rLmNvbTwvYT4mZ3Q7IHdyb3RlOjwvZGl2PjxiciBjbGFzcz0iZWN4QXBwbGUtaW50ZXJjaGFu
+Z2UtbmV3bGluZSI+PGRpdj48ZGl2IGRpcj0ibHRyIiBzdHlsZT0iZm9udC1mYW1pbHk6zqLI7dHF
+uto7Zm9udC1zaXplOjE2cHg7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtm
+b250LXdlaWdodDpub3JtYWw7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7
+dGV4dC1pbmRlbnQ6MHB4O3RleHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9ybWFsO3dv
+cmQtc3BhY2luZzowcHg7Ij5IaSwgZXZlcnlvbmU8ZGl2Pjxicj48L2Rpdj48ZGl2PiZuYnNwOyAm
+bmJzcDtJJ20gdXNpbmcgdGhlIGRpenp5IGJyYW5jaCBvZiBmcmVlc2NhbGUgeW9jdG8gcHJvamVj
+dCB0byBidWlsZCBpbWFnZS4gV2hlbiBkb19yb290ZnMgaXMgZG9uZSwgSSBmb3VuZCB0aGF0IHBh
+Y2thZ2UgImJhc2UtZmlsZXMiIHdhc24ndCB0aGUgZmlyc3Qgb3JkZXIgb2YgaW5zdGFsbGF0aW9u
+LiZuYnNwOzwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwO1NpbmNlIEkgd2FudCBkbyBzb21lIG1vZGlm
+eSBsaWtlICIvYmluIC0mZ3Q7IC91c3IvYmluIiBpbiAiYmFzZS1maWxlcyIsJm5ic3A7PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+cGFja2FnZSAiYmFzZS1maWxlcyI8L3NwYW4+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7bXVzdCBiZSB0aGUgZmlyc3Qgb3JkZXIgb2Yg
+aW5zdGFsbGF0aW9uLjwvc3Bhbj48L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDtDb3VsZCBhbnlvbmUg
+aGVscCBtZSB3aXRoIHRoaXMgaXNzdWU/PC9kaXY+PC9kaXY+PC9kaXY+PC9ibG9ja3F1b3RlPjxk
+aXY+PGJyPjwvZGl2PjxkaXY+VGhlcmUgaXMgYSBzZXBhcmF0ZSB0aHJlYWQgZ29pbmcgb24gYWJv
+dXQgbWVyZ2luZyAvdXNyIGFuZCAvPC9kaXY+PGRpdj5JIGFtIG5vdCBzdXJlIHdoYXQgeW91IHdh
+bnQgdG8gZG8gYnV0IHN5bWxpbmtpbmcgL2JpbiBhbmQgL3Vzci9iaW4gbWlnaHQgaW52b2x2ZSBt
+b3JlIHRoYXQ8L2Rpdj48ZGl2Pmp1c3QgcG9zdCBwcm9jZXNzaW5nLjwvZGl2Pjxicj48YmxvY2tx
+dW90ZT48ZGl2PjxkaXYgZGlyPSJsdHIiIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW62jtmb250
+LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2Vp
+Z2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWlu
+ZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29yZC1zcGFj
+aW5nOjBweDsiPjxkaXY+PGJyPjwvZGl2PjxkaXY+QmVzdCByZWdhcmRzLDwvZGl2PjxkaXY+UmF5
+PC9kaXY+PC9kaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5Os6iyO3RxbraO2ZvbnQtc2l6ZTox
+NnB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9y
+bWFsO2xldHRlci1zcGFjaW5nOm5vcm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtaW5kZW50OjBw
+eDt0ZXh0LXRyYW5zZm9ybTpub25lO3doaXRlLXNwYWNlOm5vcm1hbDt3b3JkLXNwYWNpbmc6MHB4
+O2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQ7Ij4tLTxzcGFuIGNsYXNzPSJlY3hBcHBsZS1jb252
+ZXJ0ZWQtc3BhY2UiPiZuYnNwOzwvc3Bhbj48L3NwYW4+PGJyIHN0eWxlPSJmb250LWZhbWlseTrO
+osjt0cW62jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9y
+bWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpz
+dGFydDt0ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3Jt
+YWw7d29yZC1zcGFjaW5nOjBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW62jtm
+b250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQt
+d2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0ZXh0
+LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29yZC1z
+cGFjaW5nOjBweDtkaXNwbGF5OmlubGluZSAhaW1wb3J0YW50OyI+X19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyIHN0eWxlPSJmb250LWZhbWls
+eTrOosjt0cW62jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6
+bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGln
+bjpzdGFydDt0ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpu
+b3JtYWw7d29yZC1zcGFjaW5nOjBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW6
+2jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2Zv
+bnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0
+ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29y
+ZC1zcGFjaW5nOjBweDtkaXNwbGF5OmlubGluZSAhaW1wb3J0YW50OyI+eW9jdG8gbWFpbGluZyBs
+aXN0PC9zcGFuPjxiciBzdHlsZT0iZm9udC1mYW1pbHk6zqLI7dHFuto7Zm9udC1zaXplOjE2cHg7
+Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7
+bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7dGV4dC1pbmRlbnQ6MHB4O3Rl
+eHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9ybWFsO3dvcmQtc3BhY2luZzowcHg7Ij48
+YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgc3R5bGU9ImZvbnQtZmFtaWx5
+Os6iyO3RxbraO2ZvbnQtc2l6ZToxNnB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpu
+b3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2xldHRlci1zcGFjaW5nOm5vcm1hbDt0ZXh0LWFsaWdu
+OnN0YXJ0O3RleHQtaW5kZW50OjBweDt0ZXh0LXRyYW5zZm9ybTpub25lO3doaXRlLXNwYWNlOm5v
+cm1hbDt3b3JkLXNwYWNpbmc6MHB4OyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnIgc3R5
+bGU9ImZvbnQtZmFtaWx5Os6iyO3RxbraO2ZvbnQtc2l6ZToxNnB4O2ZvbnQtc3R5bGU6bm9ybWFs
+O2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2xldHRlci1zcGFjaW5nOm5v
+cm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtaW5kZW50OjBweDt0ZXh0LXRyYW5zZm9ybTpub25l
+O3doaXRlLXNwYWNlOm5vcm1hbDt3b3JkLXNwYWNpbmc6MHB4OyI+PGEgaHJlZj0iaHR0cHM6Ly9s
+aXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiBzdHlsZT0iZm9udC1mYW1pbHk6
+zqLI7dHFuto7Zm9udC1zaXplOjE2cHg7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5v
+cm1hbDtmb250LXdlaWdodDpub3JtYWw7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246
+c3RhcnQ7dGV4dC1pbmRlbnQ6MHB4O3RleHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9y
+bWFsO3dvcmQtc3BhY2luZzowcHg7IiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjwvZGl2PjwvYmxvY2txdW90ZT48L2Rpdj48
+YnI+PC9kaXY+IAkJIAkgICAJCSAgPC9kaXY+PC9ib2R5Pg0KPC9odG1sPg==
 
-/var/www/toaster/poky/bitbake/lib/toaster/manage.py runbuilds
-
-to start the runner service to dispatch builds. If there are currently no pending builds (non yet created using the web UI) then running this command immediately returns. The command gets dispatched to
-
-poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py
-
-In its command help it states:
-
-14: help    = "Schedules and executes build requests as possible. Does not return (interrupt with Ctrl-C)"
-
-However, that is apparently not the case because if there is not build request pending then
-
-35:            try:
-36:                # select the build environment and the request to build
-37:               br = self._selectBuildRequest()
-38:            except IndexError as e:
-39:                logger.debug("runbuilds: No build request")
-40:                return
-
-If you use the web UI and schedule (start) a build first and then execute runbuilds, then the command eventually fails with:
-
-2016-01-14 21:37:54,086 DEBUG lbc_shellcmmd: () git remote -v
-Traceback (most recent call last):
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py", line 59, in schedule
-    bec.triggerBuild(br.brbitbake_set.all(), br.brlayer_set.all(), br.brvariable_set.all(), br.brtarget_set.all())
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 365, in triggerBuild
-    self.setLayers(bitbake, layers, targets)
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 229, in setLayers
-    for remotes in self._shellcmd("git remote -v", self.be.sourcedir).split("\n"):
-  File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 61, in _shellcmd
-    p = subprocess.Popen(command, cwd = cwd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-  File "/usr/lib64/python2.7/subprocess.py", line 710, in __init__
-    errread, errwrite)
-  File "/usr/lib64/python2.7/subprocess.py", line 1335, in _execute_child
-    raise child_exception
-OSError: [Errno 2] No such file or directory: ''
-
-This is because the BuildEnvironment object in the database has empty fields for Sourcedir and Builddir. One can fix that by going into the Django admin interface and enter paths into these fields of the one BuildEnvironment object that is in the database.
-
-Once the paths are entered and the build is started again then it breaks where runbuilds apparently waits for the Bitbake server to be available:
-
-2016-01-14 22:14:54,565 DEBUG lbc_shellcmmd: (/home/fedora/source) bash -c "source /home/fedora/source/_toaster_clones/_git___git.yoctoproject.org_poky_master/oe-init-build-env /home/fedora/build 2>&1 >toaster_server.log && bitbake --read /home/fedora/build/conf/toaster-pre.conf --postread /home/fedora/build/conf/toaster.conf --server-only -t xmlrpc -B 0.0.0.0:0 2>&1 >>toaster_server.log "
-2016-01-14 22:14:55,540 DEBUG localhostbecontroller: shellcmd success
-2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
-
-2016-01-14 22:14:55,543 DEBUG localhostbecontroller: Waiting bitbake server to start
-
-... repeated 50 times ...
-
-2016-01-14 22:15:20,595 ERROR runbuilds: Error launching build localhostbecontroller: Bitbake server did not start in 25 seconds, aborting (Error: '
-
-That is in the file /var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py at lines:
-
-    146         while not started and retries < 50:
-    147             started = _toaster_ui_started(toaster_ui_log_filepath, toaster_ui_log_filelength)
-    148             import time
-    149             logger.debug("localhostbecontroller: Waiting bitbake server to start")
-    150             time.sleep(0.5)
-    151             retries += 1
-
-The function _toaster_ui_started() that checks if Bitbake is running is defined as:
-
-    133         def _toaster_ui_started(filepath, filepos = 0):
-    134             if not os.path.exists(filepath):
-    135                 return False
-    136             with open(filepath, "r") as f:
-    137                 f.seek(filepos)
-    138                 for line in f:
-    139                     if line.startswith("NOTE: ToasterUI waiting for events"):
-    140                         return True
-    141             return False
- 
-Apparently, it is looking for a line to start with the string "NOTE: ToasterUI waiting for events" in the file toaster_ui.log which is located inside the build environment that is initialized with oe-init-build-env. I grepped the Poky code base for that string and could not find any code module that ever writes that string into any file. What the file does contain though is a line that starts with "Bitbake server started", which looks rather reasonable for the purpose of checking whether the Bitbake server has been started. I am not sure why one would need to read a file to look for a specific string to check if the Bitbake server has been started, if just before localhostbecontroller states
-
-2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
-
-from reading the file toaster_server.log. Why not connect to the port and see if the Bitbake server is running?
-
-Just for test purposes, I changed line 139 above to:
-
-    139                     if line.startswith("Bitbake server started"):
-
-in which case localhostbecontroller now continues with these messages:
-
-2016-01-14 22:21:16,008 DEBUG localhostbecontroller: Waiting bitbake server to start
-2016-01-14 22:21:16,509 DEBUG localhostbecontroller: Started bitbake server
-2016-01-14 22:21:16,528 DEBUG localhostbecontroller: Build launched, exiting. Follow build logs at /home/fedora/build/toaster_ui.log
-
-where it exits. However, there is no build running. Bitbake server just sits and waits.
-
-I wonder if anyone has succeeded in making this work and can explain to me what I am missing?
-
-Thank you,
-Rudi
-
-
-
-
-[1] http://www.yoctoproject.org/docs/2.0/mega-manual/mega-manual.html#toaster-installation-steps
-
-
+--_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_--
