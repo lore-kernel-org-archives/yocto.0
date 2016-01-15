@@ -1,46 +1,77 @@
-Return-Path: <ed.bartosh@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C5ADE00978; Fri, 15 Jan 2016 10:15:20 -0800 (PST)
+	id 6C5DFE00978; Fri, 15 Jan 2016 10:23:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 744C4E00928
-	for <yocto@yoctoproject.org>; Fri, 15 Jan 2016 10:15:17 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Jan 2016 10:15:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,300,1449561600"; d="scan'208";a="727833945"
-Received: from linux.intel.com ([10.23.219.25])
-	by orsmga003.jf.intel.com with ESMTP; 15 Jan 2016 10:15:16 -0800
-Received: from linux.intel.com (vmed.fi.intel.com [10.237.72.51])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id 4012F2C8001;
-	Fri, 15 Jan 2016 11:03:12 -0800 (PST)
-Date: Fri, 15 Jan 2016 18:18:46 +0200
-From: Ed Bartosh <ed.bartosh@linux.intel.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Message-ID: <20160115161846.GA21755@linux.intel.com>
-References: <1530744.VQ6Lh0k6b2@rjs-zotac.streifs.net>
-MIME-Version: 1.0
-In-Reply-To: <1530744.VQ6Lh0k6b2@rjs-zotac.streifs.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto Project =?utf-8?B?4oCOW3lvY3RvQHlvY3RvcHJvamVjdC5vcmdd4oCO?=
-	<yocto@yoctoproject.org>
-Subject: Re: [Toaster] Production Instance Setup
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.53 listed in list.dnswl.org]
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 065DCE00928
+	for <yocto@yoctoproject.org>; Fri, 15 Jan 2016 10:23:37 -0800 (PST)
+Received: by mail-pa0-f53.google.com with SMTP id uo6so383241404pac.1
+	for <yocto@yoctoproject.org>; Fri, 15 Jan 2016 10:23:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=BRRFZs+FFiqq0o5uztIP0xGCWx07MM/3cJeyOLCAXg8=;
+	b=z/OTsDdDPA5R3xL/w+L9qze1d2/lW6H1CNmRvV2JPr/uJCCWLqCGgAe1SxIVEGwZUf
+	nfwXU1okRJZY4kAcLYSeBPKzRPyiCdETnXRm/neU/jo72mbQ/c20g6QgO4Av2iQ8yutE
+	gB1T3DRiwqwZXyzBZxdsl9+nt+EBYh8ZTyo0Sifr1Xyj4V59e07fHnuLeUYDqYYnujsR
+	lKO0cZ5ud7s1PvnpuPk72aAC9ZrnGr/2QH41dlVv+ZaBLhWH+z43qe0kg+NqRLiB64ha
+	yC25hqOsinS71KAfTa9XVDDu35rXiYGBw8pygNh9/bw2Yk8nr6fc+e6vQNmk1Hchp+TG
+	T2ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=BRRFZs+FFiqq0o5uztIP0xGCWx07MM/3cJeyOLCAXg8=;
+	b=lbmEW3ep7+cnC/tF8E8Ws2h4woWpBV1CcIAjMIOOHIgdz59Pc4fv8zAykqVFqMpZlo
+	7MacTmTlhWkCV7a33VFoxHJnuP8DyywF1qPKoj0pI+yN0PGV+Vo1fyjcqlcYlAoHT2Gp
+	cl++Z8jbuOli8egz8AuYUJ+e1zX+2WxfP2xMkcILyadp8VWh8S0fgqf97JGf3QoeaZ7M
+	hWvqGt+8CMYYTW6UjUVhv1Vkpcxg0SffMkW/HGxV6yUkxlgOHj6AJNLZye9dwVcyzgH1
+	9iLK0aQIBIeoJmIIqfq3bA8qF4Y65LQukZDNMvZ5E0qnVNtMGejXfvGw/WylQAIinHSm
+	IwBg==
+X-Gm-Message-State: ALoCoQlkRYAVFGmJU/4c0xRw8aLlZsRMK9RE7mJctyNsDKqziAzklb1BwQ6Ym2L+DGiiJFgY9cC9sWwu5FQXwgj4psXJorj+tw==
+X-Received: by 10.67.3.170 with SMTP id bx10mr17096071pad.34.1452882216548;
+	Fri, 15 Jan 2016 10:23:36 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:84eb:56dc:942:f0f5?
+	([2601:646:8802:5d5c:84eb:56dc:942:f0f5])
+	by smtp.gmail.com with ESMTPSA id
+	t70sm17011793pfi.8.2016.01.15.10.23.34
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Fri, 15 Jan 2016 10:23:35 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+X-Priority: 3 (Normal)
+In-Reply-To: <1452870935.80157155@apps.rackspace.com>
+Date: Fri, 15 Jan 2016 10:23:30 -0800
+Message-Id: <0BD254ED-B494-4975-B6AB-58FA2E6BDBDA@gmail.com>
+References: <1452783285.1696717@apps.rackspace.com>
+	<E7570BB5-2C0C-4F99-BFF8-AC2924D5BB18@gmail.com>
+	<1452870935.80157155@apps.rackspace.com>
+To: Scott Ellis <scott@jumpnowtek.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][coreutils] Add attr build dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ed.bartosh@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,142 +80,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jan 2016 18:15:20 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 15 Jan 2016 18:23:39 -0000
+X-Groupsio-MsgNum: 28009
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_66C39485-0A6D-45CB-9A6D-2FB23337D3B2";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-Hi Rudolf,
+--Apple-Mail=_66C39485-0A6D-45CB-9A6D-2FB23337D3B2
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-I'm sorry for unpleasant experience you had with this setup.
 
-I confirm that most of the issues you've pointed out exist and I was
-able to reproduce them.
+> On Jan 15, 2016, at 7:15 AM, Scott Ellis <scott@jumpnowtek.com> wrote:
+>=20
+> The 'something' would be 'xattr'
+>=20
+>  PACKAGECONFIG[attr] =3D "--enable-xattr,--disable-xattr,attr,"
+>=20
+> What should the default be?
+>=20
+> The acl option for coreutils looks in DISTRO_FEATURES.
+>=20
+> Should I do the same for this?
 
-Eventually I managed to run Toaster in this configuration. Please, read
-my comments below.
+if it depends on some DISTRO_FEATURE then definitely yes. Otherwise =
+define the packageconfig
+and then weakly assign a default with ??=3D
 
-On Thu, Jan 14, 2016 at 03:03:19PM -0800, Rudolf J Streif wrote:
-> Hi Everyone:
-> 
-> I am trying to set up Toaster in a production environment with Apache etc. The web server setup is ok. It is running builds where I am currently stuck.
-> 
-> I am using the Jethro branch from the git repo.
-> 
-> According to step 7 in [1] one needs to start
-> 
-> /var/www/toaster/poky/bitbake/lib/toaster/manage.py runbuilds
-> 
-> to start the runner service to dispatch builds. If there are currently no pending builds (non yet created using the web UI) then running this command immediately returns. The command gets dispatched to
-> 
-> poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py
-> 
-> In its command help it states:
-> 
-> 14: help    = "Schedules and executes build requests as possible. Does not return (interrupt with Ctrl-C)"
-> 
-> However, that is apparently not the case because if there is not build request pending then
-> 
-> 35:            try:
-> 36:                # select the build environment and the request to build
-> 37:               br = self._selectBuildRequest()
-> 38:            except IndexError as e:
-> 39:                logger.debug("runbuilds: No build request")
-> 40:                return
-> 
+>=20
+> "Khem Raj" <raj.khem@gmail.com> said:
+>=20
+>> Scott
+>>=20
+>> Thanks for patch. You might want to send into to oe-core mailing =
+list.
+>>=20
+>>> On Jan 14, 2016, at 6:54 AM, Scott Ellis <scott@jumpnowtek.com> =
+wrote:
+>>>=20
+>>> Fixes this warning:
+>>>=20
+>>> WARNING: QA Issue: coreutils rdepends on libattr, but it isn't a =
+build
+>>> dependency? [build-deps]
+>>>=20
+>>> Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+>>> ---
+>>> meta/recipes-core/coreutils/coreutils_8.24.bb | 2 +-
+>>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>>=20
+>>> diff --git a/meta/recipes-core/coreutils/coreutils_8.24.bb
+>>> b/meta/recipes-core/coreutils/coreutils_8.24.bb
+>>> index f042346..47a25f3 100644
+>>> --- a/meta/recipes-core/coreutils/coreutils_8.24.bb
+>>> +++ b/meta/recipes-core/coreutils/coreutils_8.24.bb
+>>> @@ -7,7 +7,7 @@ BUGTRACKER =3D "http://debbugs.gnu.org/coreutils"
+>>> LICENSE =3D "GPLv3+"
+>>> LIC_FILES_CHKSUM =3D =
+"file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504\
+>>>                    =
+file://src/ls.c;beginline=3D5;endline=3D16;md5=3D38b79785ca88537b75871782a=
+2a3c6b8"
+>>> -DEPENDS =3D "gmp libcap"
+>>> +DEPENDS =3D "attr gmp lib cap=E2=80=9D
+>>=20
+>> while this fix is good. We can make this into a packageconfig knob
+>>=20
+>> PACKAGECONFIG[attr] =3D =
+"--enable-something,--disable-something,attr,"
+>>=20
+>>> DEPENDS_class-native =3D ""
+>>>=20
+>>> inherit autotools gettext texinfo
+>>> --
+>>> 2.5.0
+>>>=20
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
+>>=20
+>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-This should be fixed by this patch:
-https://lists.yoctoproject.org/pipermail/toaster/2015-November/003319.html
 
-> If you use the web UI and schedule (start) a build first and then execute runbuilds, then the command eventually fails with:
-> 
-> 2016-01-14 21:37:54,086 DEBUG lbc_shellcmmd: () git remote -v
-> Traceback (most recent call last):
->   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py", line 59, in schedule
->     bec.triggerBuild(br.brbitbake_set.all(), br.brlayer_set.all(), br.brvariable_set.all(), br.brtarget_set.all())
->   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 365, in triggerBuild
->     self.setLayers(bitbake, layers, targets)
->   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 229, in setLayers
->     for remotes in self._shellcmd("git remote -v", self.be.sourcedir).split("\n"):
->   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 61, in _shellcmd
->     p = subprocess.Popen(command, cwd = cwd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
->   File "/usr/lib64/python2.7/subprocess.py", line 710, in __init__
->     errread, errwrite)
->   File "/usr/lib64/python2.7/subprocess.py", line 1335, in _execute_child
->     raise child_exception
-> OSError: [Errno 2] No such file or directory: ''
-> 
-> This is because the BuildEnvironment object in the database has empty fields for Sourcedir and Builddir. One can fix that by going into the Django admin interface and enter paths into these fields of the one BuildEnvironment object that is in the database.
->
-I also had to add BuildEnvironment object manually using Django admin interface.
-This should be either done automatically or at least mentioned in documentation.
+--Apple-Mail=_66C39485-0A6D-45CB-9A6D-2FB23337D3B2
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
- 
-> Once the paths are entered and the build is started again then it breaks where runbuilds apparently waits for the Bitbake server to be available:
-> 
-> 2016-01-14 22:14:54,565 DEBUG lbc_shellcmmd: (/home/fedora/source) bash -c "source /home/fedora/source/_toaster_clones/_git___git.yoctoproject.org_poky_master/oe-init-build-env /home/fedora/build 2>&1 >toaster_server.log && bitbake --read /home/fedora/build/conf/toaster-pre.conf --postread /home/fedora/build/conf/toaster.conf --server-only -t xmlrpc -B 0.0.0.0:0 2>&1 >>toaster_server.log "
-> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: shellcmd success
-> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
-> 
-> 2016-01-14 22:14:55,543 DEBUG localhostbecontroller: Waiting bitbake server to start
-> 
-> ... repeated 50 times ...
-> 
-> 2016-01-14 22:15:20,595 ERROR runbuilds: Error launching build localhostbecontroller: Bitbake server did not start in 25 seconds, aborting (Error: '
-> 
-> That is in the file /var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py at lines:
-> 
->     146         while not started and retries < 50:
->     147             started = _toaster_ui_started(toaster_ui_log_filepath, toaster_ui_log_filelength)
->     148             import time
->     149             logger.debug("localhostbecontroller: Waiting bitbake server to start")
->     150             time.sleep(0.5)
->     151             retries += 1
-> 
-> The function _toaster_ui_started() that checks if Bitbake is running is defined as:
-> 
->     133         def _toaster_ui_started(filepath, filepos = 0):
->     134             if not os.path.exists(filepath):
->     135                 return False
->     136             with open(filepath, "r") as f:
->     137                 f.seek(filepos)
->     138                 for line in f:
->     139                     if line.startswith("NOTE: ToasterUI waiting for events"):
->     140                         return True
->     141             return False
->  
-> Apparently, it is looking for a line to start with the string "NOTE: ToasterUI waiting for events" in the file toaster_ui.log which is located inside the build environment that is initialized with oe-init-build-env. I grepped the Poky code base for that string and could not find any code module that ever writes that string into any file. What the file does contain though is a line that starts with "Bitbake server started", which looks rather reasonable for the purpose of checking whether the Bitbake server has been started. I am not sure why one would need to read a file to look for a specific string to check if the Bitbake server has been started, if just before localhostbecontroller states
-> 
-> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
-> 
-> from reading the file toaster_server.log. Why not connect to the port and see if the Bitbake server is running?
-> 
-> Just for test purposes, I changed line 139 above to:
-> 
->     139                     if line.startswith("Bitbake server started"):
-> 
-> in which case localhostbecontroller now continues with these messages:
-> 
-> 2016-01-14 22:21:16,008 DEBUG localhostbecontroller: Waiting bitbake server to start
-> 2016-01-14 22:21:16,509 DEBUG localhostbecontroller: Started bitbake server
-> 2016-01-14 22:21:16,528 DEBUG localhostbecontroller: Build launched, exiting. Follow build logs at /home/fedora/build/toaster_ui.log
-> 
-> where it exits. However, there is no build running. Bitbake server just sits and waits.
-> 
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-This one I couldn't reproduce. I was able to run the build.
+iEYEARECAAYFAlaZOSYACgkQuwUzVZGdMxQrWwCfaKrqdAvnC3kEv+4Bf8ei3U4j
+EpAAn1yx2fICKx+ExT0f9OQ6Ow+5T+2U
+=2M9k
+-----END PGP SIGNATURE-----
 
-Can you run /var/www/toaster/poky/bitbake/lib/toaster/manage.py
-runbuilds in console(not as a service) and show me the output?
-
-> I wonder if anyone has succeeded in making this work and can explain to me what I am missing?
-Yes, me :)
-
-I already fixed this in master and I can probably backport it to
-jethro, but it's not that easy due to big amount of changes we did since
-jethro was released. Let's try to find the reason of this issue first as
-it works for me so it's not totally broken.
-
---
-Regards,
-Ed
-
+--Apple-Mail=_66C39485-0A6D-45CB-9A6D-2FB23337D3B2--
