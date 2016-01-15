@@ -1,41 +1,44 @@
-Return-Path: <k870818319@outlook.com>
+Return-Path: <charles.chau@habeyusa.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BD88E00803; Thu, 14 Jan 2016 16:47:04 -0800 (PST)
+	id 17CE3E00803; Thu, 14 Jan 2016 17:37:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k870818319[at]outlook.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0005]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [65.55.90.44 listed in list.dnswl.org]
-Received: from SNT004-OMC1S33.hotmail.com (snt004-omc1s33.hotmail.com
-	[65.55.90.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9298E0070F
-	for <yocto@yoctoproject.org>; Thu, 14 Jan 2016 16:47:00 -0800 (PST)
-Received: from SNT150-W75 ([65.55.90.8]) by SNT004-OMC1S33.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Thu, 14 Jan 2016 16:46:59 -0800
-X-TMN: [ILSqmCfYYW9pVl68PvyJqVhrQMcAYWmD]
-X-Originating-Email: [k870818319@outlook.com]
-Message-ID: <SNT150-W75DC0F178711B23639154982CD0@phx.gbl>
-From: RayBloodworth <k870818319@outlook.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 15 Jan 2016 00:46:59 +0000
-Importance: Normal
-In-Reply-To: <8479DDD6-CFD8-433E-8BF6-86ECD1AAF82D@gmail.com>
-References: <SNT150-W43B1B9FC32074EB6CC85B582CC0@phx.gbl>,
-	<8479DDD6-CFD8-433E-8BF6-86ECD1AAF82D@gmail.com>
+X-Greylist: delayed 1040 seconds by postgrey-1.32 at yocto-www;
+	Thu, 14 Jan 2016 17:36:57 PST
+Received: from server.habeyonline.com (server.habeyonline.com [142.4.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E70D3E0070F
+	for <yocto@yoctoproject.org>; Thu, 14 Jan 2016 17:36:57 -0800 (PST)
+Received: from [96.31.254.242] (port=58497 helo=[192.168.0.140])
+	by server.habeyonline.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.86) (envelope-from <charles.chau@habeyusa.com>)
+	id 1aJt3A-0004x4-11
+	for yocto@yoctoproject.org; Fri, 15 Jan 2016 01:19:36 +0000
+From: Charles Chau <charles.chau@habeyusa.com>
+To: yocto@yoctoproject.org
+Message-ID: <56984927.4050306@habeyusa.com>
+Date: Thu, 14 Jan 2016 17:19:35 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.4.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 15 Jan 2016 00:46:59.0921 (UTC)
-	FILETIME=[3E168C10:01D14F2E]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to change the order of package installation
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.habeyonline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - habeyusa.com
+X-Get-Message-Sender-Via: server.habeyonline.com: authenticated_id:
+	charles.chau@habeyusa.com
+X-Authenticated-Sender: server.habeyonline.com: charles.chau@habeyusa.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: qmlvideo: no service found for - "org.qt-project.qt.mediaplayer"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,122 +50,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jan 2016 00:47:04 -0000
+X-List-Received-Date: Fri, 15 Jan 2016 01:37:01 -0000
 Content-Type: multipart/alternative;
-	boundary="_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_"
+	boundary="------------080302010403040802050606"
 
---_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+--------------080302010403040802050606
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-SGksIFJhag0KICAgVGhhbmtzIGZvciB5b3VyIHJlcGx5ISAgIEkgd2lsbCB0cnkgYW5vdGhlciB3
-YXk6ICAgTWVyZ2luZyAvYmluIGFuZCAvdXNyL2JpbiBhdCB0aGUgbGFzdCBzdGVwIG9mIGRvX3Jv
-b3Rmcy4NCiAgIFRoYW5rcyENClN1YmplY3Q6IFJlOiBbeW9jdG9dIEhvdyB0byBjaGFuZ2UgdGhl
-IG9yZGVyIG9mIHBhY2thZ2UgaW5zdGFsbGF0aW9uDQpGcm9tOiByYWoua2hlbUBnbWFpbC5jb20N
-CkRhdGU6IFRodSwgMTQgSmFuIDIwMTYgMDk6NDc6MDkgLTA4MDANCkNDOiB5b2N0b0B5b2N0b3By
-b2plY3Qub3JnDQpUbzogazg3MDgxODMxOUBvdXRsb29rLmNvbQ0KDQoNCk9uIEphbiAxNCwgMjAx
-NiwgYXQgMTo1OCBBTSwgUmF5Qmxvb2R3b3J0aCA8azg3MDgxODMxOUBvdXRsb29rLmNvbT4gd3Jv
-dGU6SGksIGV2ZXJ5b25lDQogICBJJ20gdXNpbmcgdGhlIGRpenp5IGJyYW5jaCBvZiBmcmVlc2Nh
-bGUgeW9jdG8gcHJvamVjdCB0byBidWlsZCBpbWFnZS4gV2hlbiBkb19yb290ZnMgaXMgZG9uZSwg
-SSBmb3VuZCB0aGF0IHBhY2thZ2UgImJhc2UtZmlsZXMiIHdhc24ndCB0aGUgZmlyc3Qgb3JkZXIg
-b2YgaW5zdGFsbGF0aW9uLiAgICBTaW5jZSBJIHdhbnQgZG8gc29tZSBtb2RpZnkgbGlrZSAiL2Jp
-biAtPiAvdXNyL2JpbiIgaW4gImJhc2UtZmlsZXMiLCBwYWNrYWdlICJiYXNlLWZpbGVzIiBtdXN0
-IGJlIHRoZSBmaXJzdCBvcmRlciBvZiBpbnN0YWxsYXRpb24uICAgQ291bGQgYW55b25lIGhlbHAg
-bWUgd2l0aCB0aGlzIGlzc3VlPw0KVGhlcmUgaXMgYSBzZXBhcmF0ZSB0aHJlYWQgZ29pbmcgb24g
-YWJvdXQgbWVyZ2luZyAvdXNyIGFuZCAvSSBhbSBub3Qgc3VyZSB3aGF0IHlvdSB3YW50IHRvIGRv
-IGJ1dCBzeW1saW5raW5nIC9iaW4gYW5kIC91c3IvYmluIG1pZ2h0IGludm9sdmUgbW9yZSB0aGF0
-anVzdCBwb3N0IHByb2Nlc3NpbmcuDQoNCkJlc3QgcmVnYXJkcyxSYXktLSBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX3lvY3RvIG1haWxpbmcgbGlzdHlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmdodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8v
-eW9jdG8NCiAJCSAJICAgCQkgIA==
+Hello,
 
---_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_
-Content-Type: text/html; charset="gb2312"
-Content-Transfer-Encoding: base64
+I am using the i.MX6 Dual Core. I have followed this recipe 
+<https://github.com/HIO-Project/meta-hio-demos/blob/master/recipes-hio/images/hio-image-fb.bb>and 
+have a working image with GStreamer.
 
-PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
-DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
-bnQtZmFtaWx5Os6iyO3RxbraDQp9DQotLT48L3N0eWxlPjwvaGVhZD4NCjxib2R5IGNsYXNzPSdo
-bW1lc3NhZ2UnPjxkaXYgZGlyPSdsdHInPjxkaXY+SGksIFJhajwvZGl2PjxkaXY+PGJyPjwvZGl2
-PjxkaXY+Jm5ic3A7ICZuYnNwO1RoYW5rcyBmb3IgeW91ciByZXBseSE8L2Rpdj48ZGl2PiZuYnNw
-OyAmbmJzcDtJIHdpbGwgdHJ5IGFub3RoZXIgd2F5OjwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwOzxz
-cGFuIHN0eWxlPSJmb250LXNpemU6IDEycHQ7Ij5NZXJnaW5nPC9zcGFuPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6IDEycHQ7Ij4mbmJzcDsvYmluIGFuZCAvdXNyL2JpbiBhdCB0aGUgbGFzdCBzdGVw
-IG9mIGRvX3Jvb3Rmcy48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAx
-MnB0OyI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEycHQ7
-Ij4mbmJzcDsgJm5ic3A7VGhhbmtzITwvc3Bhbj48L2Rpdj48YnI+PGRpdj48aHIgaWQ9InN0b3BT
-cGVsbGluZyI+U3ViamVjdDogUmU6IFt5b2N0b10gSG93IHRvIGNoYW5nZSB0aGUgb3JkZXIgb2Yg
-cGFja2FnZSBpbnN0YWxsYXRpb248YnI+RnJvbTogcmFqLmtoZW1AZ21haWwuY29tPGJyPkRhdGU6
-IFRodSwgMTQgSmFuIDIwMTYgMDk6NDc6MDkgLTA4MDA8YnI+Q0M6IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmc8YnI+VG86IGs4NzA4MTgzMTlAb3V0bG9vay5jb208YnI+PGJyPjxicj48ZGl2PjxibG9j
-a3F1b3RlPjxkaXY+T24gSmFuIDE0LCAyMDE2LCBhdCAxOjU4IEFNLCBSYXlCbG9vZHdvcnRoICZs
-dDs8YSBocmVmPSJtYWlsdG86azg3MDgxODMxOUBvdXRsb29rLmNvbSI+azg3MDgxODMxOUBvdXRs
-b29rLmNvbTwvYT4mZ3Q7IHdyb3RlOjwvZGl2PjxiciBjbGFzcz0iZWN4QXBwbGUtaW50ZXJjaGFu
-Z2UtbmV3bGluZSI+PGRpdj48ZGl2IGRpcj0ibHRyIiBzdHlsZT0iZm9udC1mYW1pbHk6zqLI7dHF
-uto7Zm9udC1zaXplOjE2cHg7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtm
-b250LXdlaWdodDpub3JtYWw7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7
-dGV4dC1pbmRlbnQ6MHB4O3RleHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9ybWFsO3dv
-cmQtc3BhY2luZzowcHg7Ij5IaSwgZXZlcnlvbmU8ZGl2Pjxicj48L2Rpdj48ZGl2PiZuYnNwOyAm
-bmJzcDtJJ20gdXNpbmcgdGhlIGRpenp5IGJyYW5jaCBvZiBmcmVlc2NhbGUgeW9jdG8gcHJvamVj
-dCB0byBidWlsZCBpbWFnZS4gV2hlbiBkb19yb290ZnMgaXMgZG9uZSwgSSBmb3VuZCB0aGF0IHBh
-Y2thZ2UgImJhc2UtZmlsZXMiIHdhc24ndCB0aGUgZmlyc3Qgb3JkZXIgb2YgaW5zdGFsbGF0aW9u
-LiZuYnNwOzwvZGl2PjxkaXY+Jm5ic3A7ICZuYnNwO1NpbmNlIEkgd2FudCBkbyBzb21lIG1vZGlm
-eSBsaWtlICIvYmluIC0mZ3Q7IC91c3IvYmluIiBpbiAiYmFzZS1maWxlcyIsJm5ic3A7PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+cGFja2FnZSAiYmFzZS1maWxlcyI8L3NwYW4+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7bXVzdCBiZSB0aGUgZmlyc3Qgb3JkZXIgb2Yg
-aW5zdGFsbGF0aW9uLjwvc3Bhbj48L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDtDb3VsZCBhbnlvbmUg
-aGVscCBtZSB3aXRoIHRoaXMgaXNzdWU/PC9kaXY+PC9kaXY+PC9kaXY+PC9ibG9ja3F1b3RlPjxk
-aXY+PGJyPjwvZGl2PjxkaXY+VGhlcmUgaXMgYSBzZXBhcmF0ZSB0aHJlYWQgZ29pbmcgb24gYWJv
-dXQgbWVyZ2luZyAvdXNyIGFuZCAvPC9kaXY+PGRpdj5JIGFtIG5vdCBzdXJlIHdoYXQgeW91IHdh
-bnQgdG8gZG8gYnV0IHN5bWxpbmtpbmcgL2JpbiBhbmQgL3Vzci9iaW4gbWlnaHQgaW52b2x2ZSBt
-b3JlIHRoYXQ8L2Rpdj48ZGl2Pmp1c3QgcG9zdCBwcm9jZXNzaW5nLjwvZGl2Pjxicj48YmxvY2tx
-dW90ZT48ZGl2PjxkaXYgZGlyPSJsdHIiIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW62jtmb250
-LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2Vp
-Z2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWlu
-ZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29yZC1zcGFj
-aW5nOjBweDsiPjxkaXY+PGJyPjwvZGl2PjxkaXY+QmVzdCByZWdhcmRzLDwvZGl2PjxkaXY+UmF5
-PC9kaXY+PC9kaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5Os6iyO3RxbraO2ZvbnQtc2l6ZTox
-NnB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9y
-bWFsO2xldHRlci1zcGFjaW5nOm5vcm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtaW5kZW50OjBw
-eDt0ZXh0LXRyYW5zZm9ybTpub25lO3doaXRlLXNwYWNlOm5vcm1hbDt3b3JkLXNwYWNpbmc6MHB4
-O2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQ7Ij4tLTxzcGFuIGNsYXNzPSJlY3hBcHBsZS1jb252
-ZXJ0ZWQtc3BhY2UiPiZuYnNwOzwvc3Bhbj48L3NwYW4+PGJyIHN0eWxlPSJmb250LWZhbWlseTrO
-osjt0cW62jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9y
-bWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpz
-dGFydDt0ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3Jt
-YWw7d29yZC1zcGFjaW5nOjBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW62jtm
-b250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQt
-d2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0ZXh0
-LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29yZC1z
-cGFjaW5nOjBweDtkaXNwbGF5OmlubGluZSAhaW1wb3J0YW50OyI+X19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyIHN0eWxlPSJmb250LWZhbWls
-eTrOosjt0cW62jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6
-bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGln
-bjpzdGFydDt0ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpu
-b3JtYWw7d29yZC1zcGFjaW5nOjBweDsiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTrOosjt0cW6
-2jtmb250LXNpemU6MTZweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2Zv
-bnQtd2VpZ2h0Om5vcm1hbDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0
-ZXh0LWluZGVudDowcHg7dGV4dC10cmFuc2Zvcm06bm9uZTt3aGl0ZS1zcGFjZTpub3JtYWw7d29y
-ZC1zcGFjaW5nOjBweDtkaXNwbGF5OmlubGluZSAhaW1wb3J0YW50OyI+eW9jdG8gbWFpbGluZyBs
-aXN0PC9zcGFuPjxiciBzdHlsZT0iZm9udC1mYW1pbHk6zqLI7dHFuto7Zm9udC1zaXplOjE2cHg7
-Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7
-bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7dGV4dC1pbmRlbnQ6MHB4O3Rl
-eHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9ybWFsO3dvcmQtc3BhY2luZzowcHg7Ij48
-YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgc3R5bGU9ImZvbnQtZmFtaWx5
-Os6iyO3RxbraO2ZvbnQtc2l6ZToxNnB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpu
-b3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2xldHRlci1zcGFjaW5nOm5vcm1hbDt0ZXh0LWFsaWdu
-OnN0YXJ0O3RleHQtaW5kZW50OjBweDt0ZXh0LXRyYW5zZm9ybTpub25lO3doaXRlLXNwYWNlOm5v
-cm1hbDt3b3JkLXNwYWNpbmc6MHB4OyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnIgc3R5
-bGU9ImZvbnQtZmFtaWx5Os6iyO3RxbraO2ZvbnQtc2l6ZToxNnB4O2ZvbnQtc3R5bGU6bm9ybWFs
-O2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2xldHRlci1zcGFjaW5nOm5v
-cm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtaW5kZW50OjBweDt0ZXh0LXRyYW5zZm9ybTpub25l
-O3doaXRlLXNwYWNlOm5vcm1hbDt3b3JkLXNwYWNpbmc6MHB4OyI+PGEgaHJlZj0iaHR0cHM6Ly9s
-aXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiBzdHlsZT0iZm9udC1mYW1pbHk6
-zqLI7dHFuto7Zm9udC1zaXplOjE2cHg7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5v
-cm1hbDtmb250LXdlaWdodDpub3JtYWw7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246
-c3RhcnQ7dGV4dC1pbmRlbnQ6MHB4O3RleHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9y
-bWFsO3dvcmQtc3BhY2luZzowcHg7IiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0
-b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjwvZGl2PjwvYmxvY2txdW90ZT48L2Rpdj48
-YnI+PC9kaXY+IAkJIAkgICAJCSAgPC9kaXY+PC9ib2R5Pg0KPC9odG1sPg==
+However, I am having trouble to get the Qt qmlvideo player to play video.
+GStreamer can play video with sound fine.  But it seems to be missing 
+some library to link to the Qt.
 
---_4ed39a00-4fe1-48e7-88e4-a0bd9d96fb83_--
+Please advise; what component am I missing?
+
+Thank you,
+
+/qrc:///qml/qmlvideo/DisableScreenSaver.qml:47:9: Cannot assign to 
+non-existent property "screenSaverInhibited"//
+//[qmlvideo] performanceLoader.init logging false visible true//
+//[frequencymonitor] FrequencyMonitor::FrequencyMonitor //
+//[frequencymonitor] FrequencyMonitor::FrequencyMonitor //
+//[qmlvideo] main.onSceneSourceChanged source VideoFullScreen.qml//
+//[qmlvideo] Content.initialize: contentType video//
+//[qmlvideo] Content.initialize: loading VideoItem.qml//
+//defaultServiceProvider::requestService(): no service found for - 
+"org.qt-project.qt.mediaplayer" //
+//[qmlvideo] Content.start//
+//[qmlvideo] Content.initialize: complete//
+//[qmlvideo] VideoItem.onError error 5 errorString The QMediaPlayer 
+object does not have a valid service//
+//[qmlvideo] Content.onFatalError//
+//[qmlvideo] Content.stop/
+
+-- 
+Charles Chau
+
+
+--------------080302010403040802050606
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello,<br>
+    <br>
+    I am using the i.MX6 Dual Core. I have followed this <a
+href="https://github.com/HIO-Project/meta-hio-demos/blob/master/recipes-hio/images/hio-image-fb.bb">recipe
+    </a>and have a working image with GStreamer.  <br>
+    <br>
+    However, I am having trouble to get the Qt qmlvideo player to play
+    video.<br>
+    GStreamer can play video with sound fine.  But it seems to be
+    missing some library to link to the Qt.<br>
+    <br>
+    Please advise; what component am I missing?<br>
+    <br>
+    Thank you,<br>
+    <br>
+    <i>qrc:///qml/qmlvideo/DisableScreenSaver.qml:47:9: Cannot assign to
+      non-existent property "screenSaverInhibited"</i><i><br>
+    </i><i>[qmlvideo] performanceLoader.init logging false visible true</i><i><br>
+    </i><i>[frequencymonitor] FrequencyMonitor::FrequencyMonitor </i><i><br>
+    </i><i>[frequencymonitor] FrequencyMonitor::FrequencyMonitor </i><i><br>
+    </i><i>[qmlvideo] main.onSceneSourceChanged source
+      VideoFullScreen.qml</i><i><br>
+    </i><i>[qmlvideo] Content.initialize: contentType video</i><i><br>
+    </i><i>[qmlvideo] Content.initialize: loading VideoItem.qml</i><i><br>
+    </i><i>defaultServiceProvider::requestService(): no service found
+      for - "org.qt-project.qt.mediaplayer" </i><i><br>
+    </i><i>[qmlvideo] Content.start</i><i><br>
+    </i><i>[qmlvideo] Content.initialize: complete</i><i><br>
+    </i><i>[qmlvideo] VideoItem.onError error 5 errorString The
+      QMediaPlayer object does not have a valid service</i><i><br>
+    </i><i>[qmlvideo] Content.onFatalError</i><i><br>
+    </i><i>[qmlvideo] Content.stop</i><br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Charles Chau
+</pre>
+  </body>
+</html>
+
+--------------080302010403040802050606--
