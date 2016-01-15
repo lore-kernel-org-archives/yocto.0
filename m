@@ -1,49 +1,46 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ed.bartosh@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E9E9E009C3; Fri, 15 Jan 2016 08:16:26 -0800 (PST)
+	id 1C5ADE00978; Fri, 15 Jan 2016 10:15:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D9AAE0096C
-	for <yocto@yoctoproject.org>; Fri, 15 Jan 2016 08:16:22 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 15 Jan 2016 08:16:21 -0800
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 744C4E00928
+	for <yocto@yoctoproject.org>; Fri, 15 Jan 2016 10:15:17 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Jan 2016 10:15:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,300,1449561600"; 
-	d="scan'208,217";a="861249061"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by orsmga001.jf.intel.com with ESMTP; 15 Jan 2016 08:16:21 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.7]) by
-	fmsmsx107.amr.corp.intel.com ([169.254.6.217]) with mapi id
-	14.03.0248.002; Fri, 15 Jan 2016 08:16:19 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW03
-Thread-Index: AdFPsA3bShHW47maTWW94JM778Icuw==
-Date: Fri, 15 Jan 2016 16:16:18 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E56F9ACF9@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-x-ctpclassification: CTP_PUBLIC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTEzNjMzMDUtNzExYS00MTdlLWJlN2MtZjgwN2ZiNTE0ZDYxIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX1BVQkxJQyJ9XX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxNS40LjEwLjE5IiwiVHJ1c3RlZExhYmVsSGFzaCI6IjE5VXNcL2RCRm91ZGw5WVpONktFa0RrREE2dHZON25QaTFUbkc3STgzbFwvUT0ifQ==
+X-IronPort-AV: E=Sophos;i="5.22,300,1449561600"; d="scan'208";a="727833945"
+Received: from linux.intel.com ([10.23.219.25])
+	by orsmga003.jf.intel.com with ESMTP; 15 Jan 2016 10:15:16 -0800
+Received: from linux.intel.com (vmed.fi.intel.com [10.237.72.51])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id 4012F2C8001;
+	Fri, 15 Jan 2016 11:03:12 -0800 (PST)
+Date: Fri, 15 Jan 2016 18:18:46 +0200
+From: Ed Bartosh <ed.bartosh@linux.intel.com>
+To: Rudolf J Streif <rudolf.streif@gmail.com>
+Message-ID: <20160115161846.GA21755@linux.intel.com>
+References: <1530744.VQ6Lh0k6b2@rjs-zotac.streifs.net>
 MIME-Version: 1.0
-Subject: Yocto Project Status WW03
+In-Reply-To: <1530744.VQ6Lh0k6b2@rjs-zotac.streifs.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Project =?utf-8?B?4oCOW3lvY3RvQHlvY3RvcHJvamVjdC5vcmdd4oCO?=
+	<yocto@yoctoproject.org>
+Subject: Re: [Toaster] Production Instance Setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: ed.bartosh@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,599 +49,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jan 2016 16:16:26 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F9ACF9fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 15 Jan 2016 18:15:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F9ACF9fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Rudolf,
 
-Current Dev Position: YP 2.1 M2
-Next Deadline: YP 2.1 M2 Cutoff (Feature Freeze) date is January 25, 2016 n=
-oon GMT
+I'm sorry for unpleasant experience you had with this setup.
 
-SWAT team rotation: Cristian -> Randy
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+I confirm that most of the issues you've pointed out exist and I was
+able to reproduce them.
 
-Key Status/Updates:
+Eventually I managed to run Toaster in this configuration. Please, read
+my comments below.
 
-  *   Due to some people being sick, we're operating at reduced capacity, d=
-oing our best to keep things moving
-  *   Automatic Upgrade Helper (AUH) triggered many good package upgrades o=
-ver the past week (thanks Anibal!)
-  *   Many good fixes/improvements to the Extensible SDK and devtool have m=
-erged. We root caused and fixed several issues being commonly run into.
-  *   CVE patch tagging proposal now being implemented which should allow b=
-etter automated CVE tooling.
-  *   WDD and bug trend continue to rise to new heights.
-  *   Split of do_image from do_rootfs merged. Has triggered a couple of bu=
-gs but have been promptly fixed.
+On Thu, Jan 14, 2016 at 03:03:19PM -0800, Rudolf J Streif wrote:
+> Hi Everyone:
+> 
+> I am trying to set up Toaster in a production environment with Apache etc. The web server setup is ok. It is running builds where I am currently stuck.
+> 
+> I am using the Jethro branch from the git repo.
+> 
+> According to step 7 in [1] one needs to start
+> 
+> /var/www/toaster/poky/bitbake/lib/toaster/manage.py runbuilds
+> 
+> to start the runner service to dispatch builds. If there are currently no pending builds (non yet created using the web UI) then running this command immediately returns. The command gets dispatched to
+> 
+> poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py
+> 
+> In its command help it states:
+> 
+> 14: help    = "Schedules and executes build requests as possible. Does not return (interrupt with Ctrl-C)"
+> 
+> However, that is apparently not the case because if there is not build request pending then
+> 
+> 35:            try:
+> 36:                # select the build environment and the request to build
+> 37:               br = self._selectBuildRequest()
+> 38:            except IndexError as e:
+> 39:                logger.debug("runbuilds: No build request")
+> 40:                return
+> 
 
-Key YP 2.1 Dates:
-YP 2.1 M2 Cutoff (Feature Freeze) date is January 25, 2016 noon GMT
-YP 2.1 M2 Target release date is February 12, 2016
-YP 2.1 M3 Cutoff (Feature Freeze) date is February 29, 2016 noon GMT
-YP 2.1 M3 Target release date is March 18, 2016
-YP 2.1 M4 / Final Cutoff: March 28, 2016 noon GMT - Stabilization only mile=
-stone.
-YP 2.1 Final Release Target: April 29, 2016
+This should be fixed by this patch:
+https://lists.yoctoproject.org/pipermail/toaster/2015-November/003319.html
 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
-
-Tracking Metrics:
-            WDD 2524 (last week 2460 )
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F9ACF9fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> If you use the web UI and schedule (start) a build first and then execute runbuilds, then the command eventually fails with:
+> 
+> 2016-01-14 21:37:54,086 DEBUG lbc_shellcmmd: () git remote -v
+> Traceback (most recent call last):
+>   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/management/commands/runbuilds.py", line 59, in schedule
+>     bec.triggerBuild(br.brbitbake_set.all(), br.brlayer_set.all(), br.brvariable_set.all(), br.brtarget_set.all())
+>   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 365, in triggerBuild
+>     self.setLayers(bitbake, layers, targets)
+>   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 229, in setLayers
+>     for remotes in self._shellcmd("git remote -v", self.be.sourcedir).split("\n"):
+>   File "/var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py", line 61, in _shellcmd
+>     p = subprocess.Popen(command, cwd = cwd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+>   File "/usr/lib64/python2.7/subprocess.py", line 710, in __init__
+>     errread, errwrite)
+>   File "/usr/lib64/python2.7/subprocess.py", line 1335, in _execute_child
+>     raise child_exception
+> OSError: [Errno 2] No such file or directory: ''
+> 
+> This is because the BuildEnvironment object in the database has empty fields for Sourcedir and Builddir. One can fix that by going into the Django admin interface and enter paths into these fields of the one BuildEnvironment object that is in the database.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:872613745;
-	mso-list-template-ids:1551126870;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:1582058079;
-	mso-list-template-ids:-1142495532;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:1983849830;
-	mso-list-template-ids:-232224368;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Current Dev Position: YP 2.1 M2</span><span st=
-yle=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif=
-&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Next Deadline: YP 2.1 M2 Cutoff (Feature Freez=
-e) date is January 25, 2016 noon GMT</span><span style=3D"font-size:12.0pt;=
-font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">SWAT team rotation: Cristian -&gt; Randy</span=
-><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&q=
-uot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11.0pt;fo=
-nt-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_=
-Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status/Updates:</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"MsoNormal" style=3D"color:black;mso-list:l1 level1 lfo4;vertic=
-al-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Due to=
- some people being sick, we&#8217;re operating at reduced capacity, doing o=
-ur best to keep things moving<o:p></o:p></span></li><li class=3D"MsoNormal"=
- style=3D"color:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Automa=
-tic Upgrade Helper (AUH) triggered many good package upgrades over the past=
- week (thanks Anibal!)<o:p></o:p></span></li><li class=3D"MsoNormal" style=
-=3D"color:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Many g=
-ood fixes/improvements to the Extensible SDK and devtool have merged. We ro=
-ot caused and fixed several issues being commonly run into.<o:p></o:p></spa=
-n></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l1 level1 lfo4=
-;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">CVE pa=
-tch tagging proposal now being implemented which should allow better automa=
-ted CVE tooling.<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"col=
-or:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">WDD an=
-d bug trend continue to rise to new heights.<o:p></o:p></span></li><li clas=
-s=3D"MsoNormal" style=3D"color:black;mso-list:l1 level1 lfo4;vertical-align=
-:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Split =
-of do_image from do_rootfs merged. Has triggered a couple of bugs but have =
-been promptly fixed.<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key YP 2.1 Dates:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 M2 Cutoff (F=
-eature Freeze) date is January 25, 2016 noon GMT</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 M2 Target re=
-lease date is February 12, 2016</span><span style=3D"font-size:12.0pt;font-=
-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p=
->
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 M3 Cutoff (F=
-eature Freeze) date is February 29, 2016 noon GMT</span><span style=3D"font=
--size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 M3 Target re=
-lease date is March 18, 2016</span><span style=3D"font-size:12.0pt;font-fam=
-ily:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 M4 / Final C=
-utoff: March 28, 2016 noon GMT - Stabilization only milestone.</span><span =
-style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;ser=
-if&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 2.1 Final Releas=
-e Target: April 29, 2016</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status Links for YP:</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_v2.1_Status"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v2.1_Status</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_2.1_Schedule"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedul=
-e</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_2.1_Features"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_Feature=
-s</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Tracking Metrics:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; WDD 2524 (last week 2460 )</span><span style=3D"font-s=
-ize:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-famil=
-y:Consolas;color:black">(</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoc=
-toproject.org/charts/combo.html"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a></span><span style=3D"font-family:=
-Consolas;color:black">)</span><span style=3D"font-size:12.0pt;font-family:&=
-quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">[If anyone has suggestions for other informati=
-on you&#8217;d like to see on this weekly status update, let us know!]</spa=
-n><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&=
-quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Thanks,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+I also had to add BuildEnvironment object manually using Django admin interface.
+This should be either done automatically or at least mentioned in documentation.
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E56F9ACF9fmsmsx111amrcor_--
+ 
+> Once the paths are entered and the build is started again then it breaks where runbuilds apparently waits for the Bitbake server to be available:
+> 
+> 2016-01-14 22:14:54,565 DEBUG lbc_shellcmmd: (/home/fedora/source) bash -c "source /home/fedora/source/_toaster_clones/_git___git.yoctoproject.org_poky_master/oe-init-build-env /home/fedora/build 2>&1 >toaster_server.log && bitbake --read /home/fedora/build/conf/toaster-pre.conf --postread /home/fedora/build/conf/toaster.conf --server-only -t xmlrpc -B 0.0.0.0:0 2>&1 >>toaster_server.log "
+> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: shellcmd success
+> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
+> 
+> 2016-01-14 22:14:55,543 DEBUG localhostbecontroller: Waiting bitbake server to start
+> 
+> ... repeated 50 times ...
+> 
+> 2016-01-14 22:15:20,595 ERROR runbuilds: Error launching build localhostbecontroller: Bitbake server did not start in 25 seconds, aborting (Error: '
+> 
+> That is in the file /var/www/toaster/poky/bitbake/lib/toaster/bldcontrol/localhostbecontroller.py at lines:
+> 
+>     146         while not started and retries < 50:
+>     147             started = _toaster_ui_started(toaster_ui_log_filepath, toaster_ui_log_filelength)
+>     148             import time
+>     149             logger.debug("localhostbecontroller: Waiting bitbake server to start")
+>     150             time.sleep(0.5)
+>     151             retries += 1
+> 
+> The function _toaster_ui_started() that checks if Bitbake is running is defined as:
+> 
+>     133         def _toaster_ui_started(filepath, filepos = 0):
+>     134             if not os.path.exists(filepath):
+>     135                 return False
+>     136             with open(filepath, "r") as f:
+>     137                 f.seek(filepos)
+>     138                 for line in f:
+>     139                     if line.startswith("NOTE: ToasterUI waiting for events"):
+>     140                         return True
+>     141             return False
+>  
+> Apparently, it is looking for a line to start with the string "NOTE: ToasterUI waiting for events" in the file toaster_ui.log which is located inside the build environment that is initialized with oe-init-build-env. I grepped the Poky code base for that string and could not find any code module that ever writes that string into any file. What the file does contain though is a line that starts with "Bitbake server started", which looks rather reasonable for the purpose of checking whether the Bitbake server has been started. I am not sure why one would need to read a file to look for a specific string to check if the Bitbake server has been started, if just before localhostbecontroller states
+> 
+> 2016-01-14 22:14:55,540 DEBUG localhostbecontroller: Found bitbake server port 33438
+> 
+> from reading the file toaster_server.log. Why not connect to the port and see if the Bitbake server is running?
+> 
+> Just for test purposes, I changed line 139 above to:
+> 
+>     139                     if line.startswith("Bitbake server started"):
+> 
+> in which case localhostbecontroller now continues with these messages:
+> 
+> 2016-01-14 22:21:16,008 DEBUG localhostbecontroller: Waiting bitbake server to start
+> 2016-01-14 22:21:16,509 DEBUG localhostbecontroller: Started bitbake server
+> 2016-01-14 22:21:16,528 DEBUG localhostbecontroller: Build launched, exiting. Follow build logs at /home/fedora/build/toaster_ui.log
+> 
+> where it exits. However, there is no build running. Bitbake server just sits and waits.
+> 
+
+This one I couldn't reproduce. I was able to run the build.
+
+Can you run /var/www/toaster/poky/bitbake/lib/toaster/manage.py
+runbuilds in console(not as a service) and show me the output?
+
+> I wonder if anyone has succeeded in making this work and can explain to me what I am missing?
+Yes, me :)
+
+I already fixed this in master and I can probably backport it to
+jethro, but it's not that easy due to big amount of changes we did since
+jethro was released. Let's try to find the reason of this issue first as
+it works for me so it's not totally broken.
+
+--
+Regards,
+Ed
+
