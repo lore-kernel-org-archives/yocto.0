@@ -1,6 +1,6 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
+Return-Path: <alexandru.costinx.roman@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACBF2E009C5; Fri, 15 Jan 2016 06:21:01 -0800 (PST)
+	id 79496E00978; Fri, 15 Jan 2016 07:10:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,43 +8,42 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52C5BE0085A;
-	Fri, 15 Jan 2016 06:20:56 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 15 Jan 2016 06:20:35 -0800
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D1FE0033E;
+	Fri, 15 Jan 2016 07:10:11 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 15 Jan 2016 07:10:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,299,1449561600"; 
-	d="scan'208,217";a="882026706"
-Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Jan 2016 06:20:33 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.22]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.170]) with mapi id
-	14.03.0248.002; Fri, 15 Jan 2016 14:20:32 +0000
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Roman, Alexandru CostinX" <alexandru.costinx.roman@intel.com>
+X-IronPort-AV: E=Sophos;i="5.22,300,1449561600"; 
+	d="scan'208,217";a="891176908"
+Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
+	by orsmga002.jf.intel.com with ESMTP; 15 Jan 2016 07:10:09 -0800
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.131]) by
+	irsmsx110.ger.corp.intel.com ([163.33.3.25]) with mapi id
+	14.03.0248.002; Fri, 15 Jan 2016 15:10:07 +0000
+From: "Roman, Alexandru CostinX" <alexandru.costinx.roman@intel.com>
+To: Mirela Rabulea <mirela.rabulea@nxp.com>
 Thread-Topic: [yocto] using Hob to run images on a custom simulator, other
 	than qemu
-Thread-Index: AQHRPK8c8A+3PzWXPEmqwxnnt8MfOJ7YXfQAgAAOE+CAJD1IAIAAHOkQ
-Date: Fri, 15 Jan 2016 14:20:32 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E962619259C@irsmsx110.ger.corp.intel.com>
+Thread-Index: AQHRPK8c8A+3PzWXPEmqwxnnt8MfOJ7YXfQAgAAOE+CAJD1IAIAAHOkQgAAJZTA=
+Date: Fri, 15 Jan 2016 15:10:07 +0000
+Message-ID: <79669515DB8C93459C09BAF6437AD49137D94C@IRSMSX102.ger.corp.intel.com>
 References: <CY1PR0301MB11809C718902C817370BAE6E85E10@CY1PR0301MB1180.namprd03.prod.outlook.com>
 	<D29D8ACF.6DB8E%belen.barros.pena@intel.com>
 	<DBXPR04MB41628675A843378D20C88978FE50@DBXPR04MB416.eurprd04.prod.outlook.com>
 	<D2A024CD.6DE42%belen.barros.pena@intel.com>
 	<1FFB62CE8AEB0D4298B51122D8903E9626165832@irsmsx110.ger.corp.intel.com>
 	<VI1PR0401MB1789B58E523714CFE9EB1C4B8FCD0@VI1PR0401MB1789.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR0401MB1789B58E523714CFE9EB1C4B8FCD0@VI1PR0401MB1789.eurprd04.prod.outlook.com>
+	<1FFB62CE8AEB0D4298B51122D8903E962619259C@irsmsx110.ger.corp.intel.com>
+In-Reply-To: <1FFB62CE8AEB0D4298B51122D8903E962619259C@irsmsx110.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDdjZmQxMDAtOWYwNS00NzkzLTlkMTgtODViNzQ5NWJhYmIwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX1BVQkxJQyJ9XX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxNS40LjEwLjE5IiwiVHJ1c3RlZExhYmVsSGFzaCI6Im1USDJBS1VYMGV5UDI0SWZFT0loK29nRjRoSGRCQytIOUpNcGthVDVRQ1E9In0=
-x-ctpclassification: CTP_PUBLIC
-x-originating-ip: [163.33.239.180]
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
 Cc: Nicolae Manescu <nicu.manescu@nxp.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
@@ -62,14 +61,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jan 2016 14:21:01 -0000
+X-List-Received-Date: Fri, 15 Jan 2016 15:10:18 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E962619259Cirsmsx110gercor_"
+	boundary="_000_79669515DB8C93459C09BAF6437AD49137D94CIRSMSX102gercorpi_"
 
---_000_1FFB62CE8AEB0D4298B51122D8903E962619259Cirsmsx110gercor_
+--_000_79669515DB8C93459C09BAF6437AD49137D94CIRSMSX102gercorpi_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Mirela,
+
+As Belen mentioned, HOB is being deprecated, but you can log a bug in Bugzi=
+lla. For that you need an account on https://bugzilla.yoctoproject.org/.
+If you want to submit a patch, this link will help you: https://wiki.yoctop=
+roject.org/wiki/Poky_Contributions .
+Unfortunately we don't test HOB weekly.
+
+Thanks,
+Alexandru
+
+
+From: Georgescu, Alexandru C
+Sent: Friday, January 15, 2016 4:21 PM
+To: Roman, Alexandru CostinX <alexandru.costinx.roman@intel.com>
+Cc: Nicolae Manescu <nicu.manescu@nxp.com>; Mirela Rabulea <mirela.rabulea@=
+nxp.com>; Barros Pena, Belen <belen.barros.pena@intel.com>; Mirela Rabulea =
+<Mirela.Rabulea@freescale.com>; yocto@yoctoproject.org; poky@yoctoproject.o=
+rg
+Subject: RE: [yocto] using Hob to run images on a custom simulator, other t=
+han qemu
 
 Alex,
 Can you help Mirela?
@@ -79,10 +100,13 @@ AlexG
 
 From: Mirela Rabulea [mailto:mirela.rabulea@nxp.com]
 Sent: Friday, January 15, 2016 2:36 PM
-To: Georgescu, Alexandru C <alexandru.c.georgescu@intel.com>; Barros Pena, =
-Belen <belen.barros.pena@intel.com>; Mirela Rabulea <Mirela.Rabulea@freesca=
-le.com>; yocto@yoctoproject.org; poky@yoctoproject.org
-Cc: Nicolae Manescu <nicu.manescu@nxp.com>
+To: Georgescu, Alexandru C <alexandru.c.georgescu@intel.com<mailto:alexandr=
+u.c.georgescu@intel.com>>; Barros Pena, Belen <belen.barros.pena@intel.com<=
+mailto:belen.barros.pena@intel.com>>; Mirela Rabulea <Mirela.Rabulea@freesc=
+ale.com<mailto:Mirela.Rabulea@freescale.com>>; yocto@yoctoproject.org<mailt=
+o:yocto@yoctoproject.org>; poky@yoctoproject.org<mailto:poky@yoctoproject.o=
+rg>
+Cc: Nicolae Manescu <nicu.manescu@nxp.com<mailto:nicu.manescu@nxp.com>>
 Subject: RE: [yocto] using Hob to run images on a custom simulator, other t=
 han qemu
 
@@ -94,27 +118,27 @@ ed?
 
 I did the following:
 
--        Cloned poky repository, from master: git://git.yoctoproject.org/po=
-ky
+-          Cloned poky repository, from master: git://git.yoctoproject.org/=
+poky
 
--        Tried to run a test-case which seems the most related to my change=
-s,  "Case 66 - Run image in Hob." from https://bugzilla.yoctoproject.org/tr=
-_show_run.cgi?run_id=3D3478
+-          Tried to run a test-case which seems the most related to my chan=
+ges,  "Case 66 - Run image in Hob." from https://bugzilla.yoctoproject.org/=
+tr_show_run.cgi?run_id=3D3478
 
--        With case 66, at first I was not able to build an image, due to th=
-e fact my homedir is on NFS, so I hacked meta/classes/sanity.bbclass, comme=
-nted out "status.addresult(check_not_nfs(tmpdir, "TMPDIR"))". After that, I=
- was able to build qemu ppc, core-image-minimal, but it took a lot of time,=
- cannot say exactly how much, but for sure it did exceed 8 hours (it was tr=
-ial and error for me, with disk quota exceeded, deleting to free space and =
-try again). After the image was build, when running the image I get permiss=
-ion errors when running runqemu-ifup (see attached picture), I think it is =
-caused by my homedir being on NFS.
+-          With case 66, at first I was not able to build an image, due to =
+the fact my homedir is on NFS, so I hacked meta/classes/sanity.bbclass, com=
+mented out "status.addresult(check_not_nfs(tmpdir, "TMPDIR"))". After that,=
+ I was able to build qemu ppc, core-image-minimal, but it took a lot of tim=
+e, cannot say exactly how much, but for sure it did exceed 8 hours (it was =
+trial and error for me, with disk quota exceeded, deleting to free space an=
+d try again). After the image was build, when running the image I get permi=
+ssion errors when running runqemu-ifup (see attached picture), I think it i=
+s caused by my homedir being on NFS.
 
--        With my changes applied on the poky repository, I run again case 6=
-6, I found 1 issue which I fixed, and now the behavior is the same. With qe=
-mu image I get up to the point with permission errors when running runqemu-=
-ifup, while with my custom image and run script, I can run successfully.
+-          With my changes applied on the poky repository, I run again case=
+ 66, I found 1 issue which I fixed, and now the behavior is the same. With =
+qemu image I get up to the point with permission errors when running runqem=
+u-ifup, while with my custom image and run script, I can run successfully.
 
 Unfortunately, at this moment I don't have enough quota on a non-NFS locati=
 on. I can try to work around that, or expect until someone else performs a =
@@ -458,7 +482,7 @@ rg<mailto:poky@yoctoproject.org>
 
 
 
---_000_1FFB62CE8AEB0D4298B51122D8903E962619259Cirsmsx110gercor_
+--_000_79669515DB8C93459C09BAF6437AD49137D94CIRSMSX102gercorpi_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -512,9 +536,13 @@ span.EmailStyle19
 	font-family:"Calibri",sans-serif;
 	color:#1F497D;}
 span.EmailStyle20
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-size:10.0pt;}
@@ -617,6 +645,42 @@ ul
 </head>
 <body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Mirela,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As Belen mentioned, HOB is being deprecated, but you=
+ can log a bug in Bugzilla. For that you need an account on
+<a href=3D"https://bugzilla.yoctoproject.org/">https://bugzilla.yoctoprojec=
+t.org/</a>.
+<o:p></o:p></p>
+<p class=3D"MsoNormal">If you want to submit a patch, this link will help y=
+ou: <a href=3D"https://wiki.yoctoproject.org/wiki/Poky_Contributions">
+https://wiki.yoctoproject.org/wiki/Poky_Contributions</a> .<o:p></o:p></p>
+<p class=3D"MsoNormal">Unfortunately we don&#8217;t test HOB weekly. <o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Alexandru<span style=3D"color:#1F497D"><o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Georgescu, Alexandru C <br>
+<b>Sent:</b> Friday, January 15, 2016 4:21 PM<br>
+<b>To:</b> Roman, Alexandru CostinX &lt;alexandru.costinx.roman@intel.com&g=
+t;<br>
+<b>Cc:</b> Nicolae Manescu &lt;nicu.manescu@nxp.com&gt;; Mirela Rabulea &lt=
+;mirela.rabulea@nxp.com&gt;; Barros Pena, Belen &lt;belen.barros.pena@intel=
+.com&gt;; Mirela Rabulea &lt;Mirela.Rabulea@freescale.com&gt;; yocto@yoctop=
+roject.org; poky@yoctoproject.org<br>
+<b>Subject:</b> RE: [yocto] using Hob to run images on a custom simulator, =
+other than qemu<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Alex,<o:p></o:p></span=
 ></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Can you help Mirela?<o=
@@ -627,20 +691,26 @@ n></p>
 an></p>
 <p class=3D"MsoNormal"><span style=3D"color:#1F497D">AlexG<o:p></o:p></span=
 ></p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"color:#1F=
-497D"><o:p>&nbsp;</o:p></span></a></p>
+<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"></a><span style=3D"color=
+:#1F497D"><o:p>&nbsp;</o:p></span></p>
 <div>
 <div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
 0in 0in">
 <p class=3D"MsoNormal"><a name=3D"_____replyseparator"></a><b>From:</b> Mir=
-ela Rabulea [mailto:mirela.rabulea@nxp.com]
+ela Rabulea [<a href=3D"mailto:mirela.rabulea@nxp.com">mailto:mirela.rabule=
+a@nxp.com</a>]
 <br>
 <b>Sent:</b> Friday, January 15, 2016 2:36 PM<br>
-<b>To:</b> Georgescu, Alexandru C &lt;alexandru.c.georgescu@intel.com&gt;; =
-Barros Pena, Belen &lt;belen.barros.pena@intel.com&gt;; Mirela Rabulea &lt;=
-Mirela.Rabulea@freescale.com&gt;; yocto@yoctoproject.org; poky@yoctoproject=
-.org<br>
-<b>Cc:</b> Nicolae Manescu &lt;nicu.manescu@nxp.com&gt;<br>
+<b>To:</b> Georgescu, Alexandru C &lt;<a href=3D"mailto:alexandru.c.georges=
+cu@intel.com">alexandru.c.georgescu@intel.com</a>&gt;; Barros Pena, Belen &=
+lt;<a href=3D"mailto:belen.barros.pena@intel.com">belen.barros.pena@intel.c=
+om</a>&gt;; Mirela Rabulea &lt;<a href=3D"mailto:Mirela.Rabulea@freescale.c=
+om">Mirela.Rabulea@freescale.com</a>&gt;;
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>; <a hr=
+ef=3D"mailto:poky@yoctoproject.org">
+poky@yoctoproject.org</a><br>
+<b>Cc:</b> Nicolae Manescu &lt;<a href=3D"mailto:nicu.manescu@nxp.com">nicu=
+.manescu@nxp.com</a>&gt;<br>
 <b>Subject:</b> RE: [yocto] using Hob to run images on a custom simulator, =
 other than qemu<o:p></o:p></p>
 </div>
@@ -654,7 +724,7 @@ other than qemu<o:p></o:p></p>
 -list:l0 level1 lfo2">
 <![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
 .0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
+;&nbsp;&nbsp;
 </span></span><![endif]>Cloned poky repository, from master: <span style=3D=
 "font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:white">
 <a href=3D"git://git.yoctoproject.org/poky">git://git.yoctoproject.org/poky=
@@ -663,7 +733,7 @@ other than qemu<o:p></o:p></p>
 -list:l0 level1 lfo2">
 <![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
 .0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
+;&nbsp;&nbsp;
 </span></span><![endif]>Tried to run a test-case which seems the most relat=
 ed to my changes, &nbsp;&quot;Case 66 - Run image in Hob.&quot; from
 <a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D3478"=
@@ -673,7 +743,7 @@ o:p></p>
 -list:l0 level1 lfo2">
 <![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
 .0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
+;&nbsp;&nbsp;
 </span></span><![endif]>With case 66, at first I was not able to build an i=
 mage, due to the fact my homedir is on NFS, so I hacked meta/classes/sanity=
 .bbclass, commented out &#8220;status.addresult(check_not_nfs(tmpdir, &quot=
@@ -688,7 +758,7 @@ picture), I think it is caused by my homedir being on NFS.<o:p></o:p></p>
 -list:l0 level1 lfo2">
 <![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
 .0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
+;&nbsp;&nbsp;
 </span></span><![endif]>With my changes applied on the poky repository, I r=
 un again case 66, I found 1 issue which I fixed, and now the behavior is th=
 e same. With qemu image I get up to the point with permission errors when r=
@@ -1000,4 +1070,4 @@ ed =B3Run Image=B2 button shows
 </body>
 </html>
 
---_000_1FFB62CE8AEB0D4298B51122D8903E962619259Cirsmsx110gercor_--
+--_000_79669515DB8C93459C09BAF6437AD49137D94CIRSMSX102gercorpi_--
