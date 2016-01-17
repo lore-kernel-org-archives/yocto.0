@@ -1,40 +1,66 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <truthset@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF89FE00B36; Sat, 16 Jan 2016 12:12:21 -0800 (PST)
+	id 1ABAAE00AA5; Sat, 16 Jan 2016 19:04:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [194.25.134.81 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (truthset[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout03.t-online.de (mailout03.t-online.de [194.25.134.81])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E31BE0088B
-	for <yocto@yoctoproject.org>; Sat, 16 Jan 2016 12:12:19 -0800 (PST)
-Received: from fwd29.aul.t-online.de (fwd29.aul.t-online.de [172.20.26.134])
-	by mailout03.t-online.de (Postfix) with SMTP id C1B772BC92A;
-	Sat, 16 Jan 2016 21:12:17 +0100 (CET)
-Received: from [192.168.2.113]
-	(rAfz7TZvohmPDewKgP-kUXbdhFmlPC9VI9cR8VF8jqX5AHHk-CMNBSm+KZObB2ewhk@[87.150.76.38])
-	by fwd29.t-online.de with (TLSv1:ECDHE-RSA-AES256-SHA encrypted)
-	esmtp id 1aKXCk-1feKxs0; Sat, 16 Jan 2016 21:12:10 +0100
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yk0-f177.google.com (mail-yk0-f177.google.com
+	[209.85.160.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 225F8E00908
+	for <yocto@yoctoproject.org>; Sat, 16 Jan 2016 19:04:24 -0800 (PST)
+Received: by mail-yk0-f177.google.com with SMTP id k129so559446255yke.0
+	for <yocto@yoctoproject.org>; Sat, 16 Jan 2016 19:04:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:message-id:date:to:mime-version;
+	bh=f+fnYyIrWyNn88d6fwJbUrHa3rGSvS26+IyKGEAz8T0=;
+	b=Iv4aWDM41YS50Ac33W2mZfm8pUogarf2ME/8HJVW5hQAgkEE+/BKE7lNvvecrHdlOq
+	a6KFIuyeXfDwTNN8UNpUCgEyEwVdp4+jy2BUByzWfDN7zVumPgCj8G6P5pvGJ1Wx5dpd
+	ig/s3eAMyJruEkxISxjoCUgGcaanQLqKWtr5rMUeaVwm03+aTDDlErXwEf3d6zPjBFn5
+	7yAGCfpDMr30oHVZT+R02aXCtk9QvtUFiqohWsZcHb1g7rPIXURSaubr2RP1PJNXZV6x
+	SlnWcYdn7wj0421FTk1HXA2iHOhCLmK2PjKWwks3lAQGNlhriFc8qGL/Jpf30lByAnWW
+	Lc+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:content-type:subject:message-id:date:to
+	:mime-version;
+	bh=f+fnYyIrWyNn88d6fwJbUrHa3rGSvS26+IyKGEAz8T0=;
+	b=RdJADVnVykHjO6aq6D7K6IbAWadcjPLiBSywOfDqyDAAzZ9xpYoHLJATxwlRySnlRE
+	AeOMSu0TEqnGbWgXuTxcDjOWjTlqow6Jq2kxmCgQhyvmKA26tw3jh3/anX3ZJkKDsf6u
+	7UU9vWn7ATj19ainZaHt3fsft8WGno9Jew33j8vebCC3k69EEssqUJO6yzqYcMRchDSP
+	AgxFT0c/9YkSfwgPKMcPql7eAWKrR1PPfOA0ZqUlTZr/rkY+5dbnf83pniE/SLR7aqnK
+	XxTlfqHtsDttVbiXFXVv44Kawf6l6etZBA7dQXLKHyDTjNxw39skzzss1lCfINGGX6oF
+	7wZQ==
+X-Gm-Message-State: ALoCoQmCUjXOZhhXOX0W7H/QGB5OiWtDIra024btpcDg3AJhwOSeLu53/Gh0QmLyaMkMWm8b7mTfhdzcZcVRhnVruywBCv897w==
+X-Received: by 10.129.116.213 with SMTP id p204mr12781650ywc.322.1452999863808;
+	Sat, 16 Jan 2016 19:04:23 -0800 (PST)
+Received: from [192.168.211.116] (cpe-65-190-63-66.nc.res.rr.com.
+	[65.190.63.66]) by smtp.gmail.com with ESMTPSA id
+	h129sm13757587ywf.56.2016.01.16.19.04.23 for <yocto@yoctoproject.org>
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sat, 16 Jan 2016 19:04:23 -0800 (PST)
+From: Jeff Waller <truthset@gmail.com>
+Message-Id: <22CE57EA-BDDA-4500-B81C-B627E038BF75@gmail.com>
+Date: Sat, 16 Jan 2016 22:04:21 -0500
+To: yocto@yoctoproject.org
 Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-From: Markus Volk <f_l_k@t-online.de>
-In-Reply-To: <7236895B-362F-4CBE-8772-089601BCD3B8@t-online.de>
-Date: Sat, 16 Jan 2016 21:12:10 +0100
-Message-Id: <0DAF51D5-DE03-4DB8-9D12-F5567ABC5661@t-online.de>
-References: <4A4C9B28-462E-44CF-9B78-37CF913B25CA@t-online.de>
-	<CAJ86T=XgFetivXJwegTEGWUpDHcaxC9KOFQf=7kj2kUqHEimLw@mail.gmail.com>
-	<7236895B-362F-4CBE-8772-089601BCD3B8@t-online.de>
-To: Andre McCurdy <armccurdy@gmail.com>
 X-Mailer: Apple Mail (2.3112)
-X-ID: rAfz7TZvohmPDewKgP-kUXbdhFmlPC9VI9cR8VF8jqX5AHHk-CMNBSm+KZObB2ewhk
-X-TOI-MSGID: add77739-2234-461c-9dfd-b3778aa67984
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Separate out image generation into a new task
+Subject: Is python distutils set to used the cross compiler by default somehow?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,260 +72,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jan 2016 20:12:22 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Sun, 17 Jan 2016 03:04:26 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_AA9CD903-5BF7-4310-87E5-769C275DC97E"
+
+--Apple-Mail=_AA9CD903-5BF7-4310-87E5-769C275DC97E
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-I found the mistake. The Problem seems to be the hyphen in the IMAGE_CMD =
-name
+I=E2=80=99m attempting to do the following
 
-IMAGE_CMD_hd1-usbimg 	didn=C2=B4t work
-IMAGE_CMD_usbimg 		does
+pip install dronekit=20
 
-I=C2=B4m curious if it still works with IMAGE_CMD_rpi-sdimg on the =
-raspberrypi. Has someone already tried ?
+which is failing with=20
 
->=20
-> Thank you,
->=20
-> unfortunately this has=C2=B4t solved the problem for me
->=20
->> Am 15.01.2016 um 02:56 schrieb Andre McCurdy <armccurdy@gmail.com>:
->>=20
->> On Wed, Jan 13, 2016 at 12:36 PM, Markus Volk <f_l_k@t-online.de> =
-wrote:
->>> With the recent improvements in the master branch regarding image =
-creation i=C2=B4m not able to build usb images anymore.
->>=20
->> This patch might help:
->>=20
->> =
-http://lists.openembedded.org/pipermail/openembedded-core/2016-January/115=
-474.html
->>=20
->>> do_image_ext3 and do_image_jffs2 works well, then i=C2=B4m getting =
-this error message:
->>>=20
->>> Log data follows:
->>> | DEBUG: Executing python function set_image_size
->>> | DEBUG: Python function set_image_size finished
->>> | DEBUG: Executing shell function do_image_hd1-usbimg
->>> | =
-/home/flk/yocto/poky/build-zee/tmp-glibc/work/coolstream_hd1-oe-linux-gnue=
-abi/neutrino-image/1.0-r0/temp/run.do_image_hd1-usbimg.126432: 108: =
-/home/flk/yocto/poky/build-zee/tmp-glibc/work/coolstream_hd1-oe-linux-gnue=
-abi/neutrino-image/1.0-r0/temp/run.do_image_hd1-usbimg.126432: =
-do_image_hd1-usbimg: not found
->>> | WARNING: exit code 127 from a shell command.
->>> | ERROR: Function failed: do_image_hd1-usbimg (log file is located =
-at =
-/home/flk/yocto/poky/build-zee/tmp-glibc/work/coolstream_hd1-oe-linux-gnue=
-abi/neutrino-image/1.0-r0/temp/log.do_image_hd1-usbimg.126432)
->>> ERROR: Task 18 =
-(/home/flk/yocto/poky/meta-neutrino/recipes-images/images/neutrino-image.b=
-b, do_image_hd1-usbimg) failed with exit code '1'
->>> NOTE: Tasks Summary: Attempted 2349 tasks of which 742 didn't need =
-to be rerun and 1 failed.
->>> Waiting for 0 running tasks to finish:
->>>=20
->>> Summary: 1 task failed:
->>> =
-/home/flk/yocto/poky/meta-neutrino/recipes-images/images/neutrino-image.bb=
-, do_image_hd1-usbimg
->>> Summary: There were 3 WARNING messages shown.
->>> Summary: There was 1 ERROR message shown, returning a non-zero exit =
-code.
->>>=20
->>>=20
->>> Until now i used this file for building an usb image (very similar =
-to the way the sd image for raspberrypi is created):
->>>=20
->>> usb_image-hd1.bbclass:
->>>=20
->>> inherit image_types
->>>=20
->>> #
->>> ## this is heavily inspired by the raspberry pi sdimage class.
->>> #
->>> # Create an image that can by written onto an USB stick.
->>> #
->>> # The disk layout used is:
->>> #
->>> #    0                      -> IMAGE_ROOTFS_ALIGNMENT - reserved for =
-other data
->>> #    IMAGE_ROOTFS_ALIGNMENT -> BOOT_SPACE             - u-boot =
-script and kernel
->>> #    BOOT_SPACE             -> USBIMG_SIZE             - rootfs
->>> #
->>> #                                                     Default Free =
-space =3D 1.3x
->>> #                                                     Use =
-IMAGE_OVERHEAD_FACTOR to add more space
->>> #                                                     <--------->
->>> #            1MiB              20MiB           USBIMG_ROOTFS
->>> # <-----------------------> <----------> <---------------------->
->>> #  ------------------------ ------------ ------------------------
->>> # | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |
->>> #  ------------------------ ------------ ------------------------
->>> # ^                        ^            ^                        ^
->>> # |                        |            |                        |
->>> # 0                      1MiB     1MiB + 20MiB       1MiB + 20Mib + =
-USBIMG_ROOTFS
->>>=20
->>> # This image depends on the rootfs image
->>> IMAGE_TYPEDEP_hd1-usbimg =3D "${USBIMG_ROOTFS_TYPE}"
->>>=20
->>> # Boot partition volume id
->>> BOOTDD_VOLUME_ID ?=3D "KERNEL"
->>>=20
->>> # Boot partition size [in KiB] (will be rounded up to =
-IMAGE_ROOTFS_ALIGNMENT)
->>> BOOT_SPACE ?=3D "20480"
->>>=20
->>> # Set alignment to 4MB [in KiB]
->>> IMAGE_ROOTFS_ALIGNMENT =3D "1024"
->>>=20
->>> # Use an uncompressed ext3 by default as rootfs
->>> USBIMG_ROOTFS_TYPE ?=3D "ext3"
->>> USBIMG_ROOTFS =3D "${IMAGE_NAME}.rootfs.${USBIMG_ROOTFS_TYPE}"
->>>=20
->>> IMAGE_DEPENDS_hd1-usbimg =3D " \
->>>       parted-native \
->>>       mtools-native \
->>>       dosfstools-native \
->>>       virtual/kernel \
->>> "
->>>=20
->>> # USB image name
->>> USBIMG =3D "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.hd1-usbimg"
->>>=20
->>> # Compression method to apply to USBIMG after it has been created. =
-Supported
->>> # compression formats are "gzip", "bzip2" or "xz". The original =
-.hd1-usbimg file
->>> # is kept and a new compressed file is created if one of these =
-compression
->>> # formats is chosen. If USBIMG_COMPRESSION is set to any other value =
-it is
->>> # silently ignored.
->>> #USBIMG_COMPRESSION ?=3D ""
->>>=20
->>> # Additional files and/or directories to be copied into the vfat =
-partition from the IMAGE_ROOTFS.
->>> FATPAYLOAD ?=3D ""
->>>=20
->>> IMAGEDATESTAMP =3D "${@time.strftime('%Y.%m.%d',time.gmtime())}"
->>>=20
->>> IMAGE_CMD_hd1-usbimg () {
->>>=20
->>>       # Align partitions
->>>       BOOT_SPACE_ALIGNED=3D$(expr ${BOOT_SPACE} + =
-${IMAGE_ROOTFS_ALIGNMENT} - 1)
->>>       BOOT_SPACE_ALIGNED=3D$(expr ${BOOT_SPACE_ALIGNED} - =
-${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
->>>       ROOTFS_SIZE=3D`du -bks ${USBIMG_ROOTFS} | awk '{print $1}'`
->>>       # Round up RootFS size to the alignment size as well
->>>       ROOTFS_SIZE_ALIGNED=3D$(expr ${ROOTFS_SIZE} + =
-${IMAGE_ROOTFS_ALIGNMENT} - 1)
->>>       ROOTFS_SIZE_ALIGNED=3D$(expr ${ROOTFS_SIZE_ALIGNED} - =
-${ROOTFS_SIZE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
->>>       USBIMG_SIZE=3D$(expr ${IMAGE_ROOTFS_ALIGNMENT} + =
-${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE_ALIGNED})
->>>=20
->>>       echo "Creating filesystem with Boot partition =
-${BOOT_SPACE_ALIGNED} KiB and RootFS ${ROOTFS_SIZE_ALIGNED} KiB"
->>>=20
->>>       # Initialize usbstick image file
->>>       dd if=3D/dev/zero of=3D${USBIMG} bs=3D1024 count=3D0 =
-seek=3D${USBIMG_SIZE}
->>>=20
->>>       # Create partition table
->>>       parted -s ${USBIMG} mklabel msdos
->>>       # Create boot partition and mark it as bootable (not =
-necessary, but does not hurt)
->>>       parted -s ${USBIMG} unit KiB mkpart primary fat32 =
-${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ =
-${IMAGE_ROOTFS_ALIGNMENT})
->>>       parted -s ${USBIMG} set 1 boot on
->>>       # Create rootfs partition to the end of disk
->>>       parted -s ${USBIMG} -- unit KiB mkpart primary ext2 $(expr =
-${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) -1s
->>>       parted ${USBIMG} print
->>>=20
->>>       # Create a vfat image with boot files
->>>       BOOT_BLOCKS=3D$(LC_ALL=3DC parted -s ${USBIMG} unit b print | =
-awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
->>>       rm -f ${WORKDIR}/boot.img
->>>       mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C =
-${WORKDIR}/boot.img $BOOT_BLOCKS
->>>       mcopy -i ${WORKDIR}/boot.img -s =
-${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::zImage.img
->>>=20
->>>       if [ -n ${FATPAYLOAD} ] ; then
->>>               echo "Copying payload into VFAT"
->>>               for entry in ${FATPAYLOAD} ; do
->>>                               # add the || true to stop aborting on =
-vfat issues like not supporting .~lock files
->>>                               mcopy -i ${WORKDIR}/boot.img -s -v =
-${IMAGE_ROOTFS}$entry :: || true
->>>               done
->>>       fi
->>>=20
->>>       # Add stamp file
->>>       echo "${IMAGE_NAME}-${IMAGEDATESTAMP}" > =
-${WORKDIR}/image-version-info
->>>       mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}//image-version-info =
-::
->>>=20
->>>       # Burn Partitions
->>>       dd if=3D${WORKDIR}/boot.img of=3D${USBIMG} conv=3Dnotrunc =
-seek=3D1 bs=3D$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
->>>       # If USBIMG_ROOTFS_TYPE is a .xz file use xzcat
->>>       if echo "${USBIMG_ROOTFS_TYPE}" | egrep -q "*\.xz"
->>>       then
->>>               xzcat ${USBIMG_ROOTFS} | dd of=3D${USBIMG} =
-conv=3Dnotrunc seek=3D1 bs=3D$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + =
-${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
->>>       else
->>>               dd if=3D${USBIMG_ROOTFS} of=3D${USBIMG} conv=3Dnotrunc =
-seek=3D1 bs=3D$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + =
-${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
->>>       fi
->>>=20
->>>       # Optionally apply compression
->>>       case "${USBIMG_COMPRESSION}" in
->>>       "gzip")
->>>               gzip -k9 "${USBIMG}"
->>>               ;;
->>>       "bzip2")
->>>               bzip2 -k9 "${USBIMG}"
->>>               ;;
->>>       "xz")
->>>               xz -k "${USBIMG}"
->>>               ;;
->>>       esac
->>> }
->>>=20
->>>=20
->>> When reverting those changes, the problem is gone:
->>>=20
->>> git revert 3341f3fbee818a0bd62620b8bc34230b03c0689c
->>> git revert 0a4e1f968ada5099e3270ed06404d2827e9729aa
->>> git revert fdced52387613a09368716d1f3bb7a13a6edd46d
->>> git revert cdc0aeed9b17387ea37dcbfef7d474cce372e8db
->>>=20
->>>=20
->>> What am i missing here ?
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+unable to execute arm-oe-linux-gnueabi-gcc: No such file or directory
 
+I just want it to use gcc, and in fact this helps
 
+CC=3Dgcc pip install dronekit
+
+but it fails later on during the link step which is helped by setting =
+LDSHARED, but
+that again doesn=E2=80=99t help completely because the linker options =
+are different for=20
+gcc executing on the drone (needs -lpthread perhaps=E2=80=A6)
+
+But I=E2=80=99m trying to understate where arm-oe-linux-gnueabi-gcc  is =
+coming form in the first
+place.  Is there some config file to set to have it not do this?
+
+This is my first stop, it seems strange that such a specific (Open =
+Embedded) compiler would
+be used by default on a target system.
+
+-Jeff=
+
+--Apple-Mail=_AA9CD903-5BF7-4310-87E5-769C275DC97E
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">I=E2=80=99m attempting to do the following<div class=3D""><br =
+class=3D""><div class=3D"">pip install dronekit&nbsp;</div></div><div =
+class=3D""><br class=3D""></div><div class=3D"">which is failing =
+with&nbsp;</div><div class=3D""><br class=3D""></div><div class=3D""><div =
+style=3D"margin: 0px; font-size: 11px; line-height: normal; font-family: =
+Menlo;" class=3D"">unable to execute arm-oe-linux-gnueabi-gcc: No such =
+file or directory</div></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: Menlo;" class=3D""><br =
+class=3D""></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: Menlo;" class=3D"">I just want it to =
+use gcc, and in fact this helps</div><div style=3D"margin: 0px; =
+font-size: 11px; line-height: normal; font-family: Menlo;" class=3D""><br =
+class=3D""></div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: Menlo;" class=3D"">CC=3Dgcc pip =
+install dronekit</div><div style=3D"margin: 0px; font-size: 11px; =
+line-height: normal; font-family: Menlo;" class=3D""><br =
+class=3D""></div><div class=3D"">but it fails later on during the link =
+step which is helped by setting LDSHARED, but</div><div class=3D"">that =
+again doesn=E2=80=99t help completely because the linker options are =
+different for&nbsp;</div><div class=3D"">gcc executing on the drone =
+(needs -lpthread perhaps=E2=80=A6)</div><div class=3D""><br =
+class=3D""></div><div class=3D"">But I=E2=80=99m trying to understate =
+where&nbsp;<span style=3D"font-family: Menlo; font-size: 11px;" =
+class=3D"">arm-oe-linux-gnueabi-gcc&nbsp;</span>&nbsp;is coming form in =
+the first</div><div class=3D"">place. &nbsp;Is there some config file to =
+set to have it not do this?</div><div class=3D""><br class=3D""></div><div=
+ class=3D"">This is my first stop, it seems strange that such a specific =
+(Open Embedded) compiler would</div><div class=3D"">be used by default =
+on a target system.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">-Jeff</div></body></html>=
+
+--Apple-Mail=_AA9CD903-5BF7-4310-87E5-769C275DC97E--
