@@ -1,40 +1,61 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE67EE00B8B; Mon, 18 Jan 2016 03:26:44 -0800 (PST)
+	id 306E9E00B8B; Mon, 18 Jan 2016 04:08:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48DA9E00AB9
-	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 03:26:39 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Jan 2016 03:26:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,312,1449561600"; d="scan'208";a="31487985"
-Received: from stan94-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.180.176])
-	by fmsmga004.fm.intel.com with ESMTP; 18 Jan 2016 03:26:38 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Reshetova, Elena" <elena.reshetova@intel.com>
-Date: Tue, 19 Jan 2016 00:26:36 +1300
-Message-ID: <1576691.CfaMhytqa9@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.3.3-300.fc23.x86_64; KDE/4.14.14; x86_64; ;
-	)
-In-Reply-To: <2236FBA76BA1254E88B949DDB74E612B41A51178@IRSMSX102.ger.corp.intel.com>
-References: <2236FBA76BA1254E88B949DDB74E612B41A4F981@IRSMSX102.ger.corp.intel.com>
-	<3835688.JcI4W2YYKz@peggleto-mobl.ger.corp.intel.com>
-	<2236FBA76BA1254E88B949DDB74E612B41A51178@IRSMSX102.ger.corp.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4AA0E00AB9
+	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 04:08:15 -0800 (PST)
+Received: by mail-ig0-f171.google.com with SMTP id z14so54351681igp.0
+	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 04:08:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=NUjg/xYqZgOsMThC9WoMCYWzQmnVSpKw6cELuG+BMbc=;
+	b=c35gH2IWInV+KiYlOjCP2F1ThPx2sWAadj8ngWNinlWQ5CFBrZ8XxFVvrnn69zoWwu
+	iirz58kY+sYtA1yjUy/1baXBjQLdFqhZzwriUhsSqsSjRJ6SpWsWj+pWpMSw+3b58Zqg
+	Am1knSoN2em2GiZmHUx7Iupv+w6QuPlI/oAWJTYMXa5QTq0gbKIfCrCKMOyYVVNAkWl3
+	Ag7Y8MEQvvGAfxwel2AxtVnf3cU1swxc8LEZSscJlaezzcreuztHkWvxA4VwcpF52ege
+	ff5c/RMZvKfjATydERsUuiHooGux4IGZYvOiZITqKnIsMIPyO01VDL3FTUv9S9krNydn
+	shzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=NUjg/xYqZgOsMThC9WoMCYWzQmnVSpKw6cELuG+BMbc=;
+	b=OrkXTDb+U9KUYF+sjaJcBj7LzFgztx8TSXFtVdlCwdJR9/9EvbazVgRjk5b6c9rdSo
+	618WLs4b6JeB09UmmaJv6h1vQWoFzLNtfIfDTy97ftd+l+UocLUIxxj8+e3Pe83Yq5vB
+	TJ/KqFI/t7CIMRwPBeRq7avV1K4ac3zXCqif4rAn17tUpSdPXpq5y7OoWd28ecQb4Euz
+	PQkUaMi8LnqjRmpcM0J9PS42FWTMZlCP8un5e6V8TU9Ot9PhLNnbDvm234X/yHTiW/af
+	sVjnOA5/bRgU88O71n652tRVYijVnaO19nrz8Elh9ZqWn5uFs2maXx1yi5HgDPqDqyJS
+	lAug==
+X-Gm-Message-State: AG10YORUrEAnAdBVIvjqxehbkUmTlkaD64mNA+IPpTcP1hfHKSUbb61pzN9+Qsk21uqMIuIVGes6pyKtIdTb4i6D
+X-Received: by 10.50.30.69 with SMTP id q5mr10725968igh.78.1453118895000; Mon,
+	18 Jan 2016 04:08:15 -0800 (PST)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Package naming "exceptions" in Yocto
+Received: by 10.107.162.70 with HTTP; Mon, 18 Jan 2016 04:07:55 -0800 (PST)
+In-Reply-To: <1452726684-30945-1-git-send-email-raj.khem@gmail.com>
+References: <1452726684-30945-1-git-send-email-raj.khem@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 18 Jan 2016 12:07:55 +0000
+Message-ID: <CAJTo0LaStnx+rg_Z1NXV+yNRV0Y5BxQRceZK-sYqXo0YXoTG4A@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: rburton@intel.com, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [matchbox-keyboard][PATCH] config-parser: Use matching printf format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,40 +67,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jan 2016 11:26:44 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 18 Jan 2016 12:08:21 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc1c0c8dac2705299a9bcc
 
-On Mon, 18 Jan 2016 11:14:31 Reshetova, Elena wrote:
-> > FYI we do have meta/conf/distro/include/distro_alias.inc which sets
-> 
-> DISTRO_PN_ALIAS for each recipe, which is intended to help map to the names
-> used in other distros. Will that work?
-> 
-> Yes, I think this is exactly what I was hoping to find! Great that you
-> already have smth line this in place :)
->  Just one question: how is this value supposed to be fetched in a class? I
-> could not find any usage example through the code. Is it set for each
-> package automatically or do I need to enable smth?
+--047d7bdc1c0c8dac2705299a9bcc
+Content-Type: text/plain; charset=UTF-8
 
-create_distro_packages_list() in meta/lib/oe/distro_check.py is the only 
-existing code that reads those values that I'm aware of, but that may not be 
-in the form that you need it.
+On 13 January 2016 at 23:11, Khem Raj <raj.khem@gmail.com> wrote:
 
-One thing you'll definitely need to do is to actually include the file in your 
-configuration i.e.:
+> XML_GetCurrentLineNumber() returns unsigned long as clang is telling us
+> here
+>
+> src/config-parser.c:603:6: warning: format specifies type 'int' but the
+> argument has type 'XML_Size' (aka 'unsigned long') [-Wformat]
+>             XML_GetCurrentLineNumber(p),
+>             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>
 
-require conf/distro/include/distro_alias.inc
+Merged to matchbox-keyboard 0.1 branch, thanks.
 
-After that you should just be able to access DISTRO_PN_ALIAS like any other 
-recipe-specific variable provided you're doing so in the context of a recipe 
-(e.g. within a task for the recipe you wish to query the value for).
+Ross
 
-Cheers,
-Paul
+--047d7bdc1c0c8dac2705299a9bcc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 13 January 2016 at 23:11, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div id=3D":8l" class=3D"a3s" styl=
+e=3D"overflow:hidden">XML_GetCurrentLineNumber() returns unsigned long as c=
+lang is telling us<br>
+here<br>
+<br>
+src/config-parser.c:603:6: warning: format specifies type &#39;int&#39; but=
+ the<br>
+argument has type &#39;XML_Size&#39; (aka &#39;unsigned long&#39;) [-Wforma=
+t]<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 XML_GetCurrentLineNumber(p),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~~~~~~~~~~~~~~~~~~~~~~~~<br>
+<br>
+Signed-off-by: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@=
+gmail.com</a>&gt;</div></blockquote></div><br>Merged to matchbox-keyboard 0=
+.1 branch, thanks.</div><div class=3D"gmail_extra"><br></div><div class=3D"=
+gmail_extra">Ross</div></div>
 
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--047d7bdc1c0c8dac2705299a9bcc--
