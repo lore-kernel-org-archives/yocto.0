@@ -1,69 +1,65 @@
-Return-Path: <dsonone@gmail.com>
+Return-Path: <ulfalizer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88C58E008BB; Mon, 18 Jan 2016 23:05:13 -0800 (PST)
+	id D2526E008BB; Mon, 18 Jan 2016 23:31:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.46 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dsonone[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ulfalizer[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C0C4E0045F
-	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 23:05:07 -0800 (PST)
-Received: by mail-pa0-f46.google.com with SMTP id yy13so353884768pab.3
-	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 23:05:07 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.41 listed in list.dnswl.org]
+Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
+	[209.85.213.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 972CCE0045F
+	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 23:31:10 -0800 (PST)
+Received: by mail-vk0-f41.google.com with SMTP id e185so4343305vkb.1
+	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 23:31:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:references:from:content-type:in-reply-to:message-id:date:to
-	:content-transfer-encoding:mime-version;
-	bh=MY5j26AlhFKvJukKdl1ZfanrMP5mn54NoV2Z9y+rxjU=;
-	b=HYLJF+cbvDn4RIs0d3IiJdfesIjhzilqq/bycQ3mU+LsJMoGwMyfPBb6iZBmVGVBHg
-	vcQkzeYyvW1O976VaCMcI8Mru7wnkMDw+UXULjXVJEo9xwZRSVM2CvTvZaC4QnXdYe3V
-	tn7+Qg1qqrH2z45gTdVooz9dSCr3pUuxYqM+i59FclLbMaMVKI8ko94xxEKdjyYp49aH
-	aY8HV4uQwCapJICcZkbMeip9D0ts3u9LsPhMi7Lw4fpOIdQA93ABAIwQwzRx9OY04PI0
-	BLmKiXfL7eGW4QOBs9n849MESj8dAyEGiIFM2IOIBh8om3SutEvzqJ1+nbTiJW1kqV90
-	9EUw==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=3j1ZqCbKi/1gt+Ff/C/VS8IA4OdvwJFfaA//NEnFwWo=;
+	b=AnmPeVCV+2vAKN0qQd9Mcpzie3/0tiJDo3+b/w05J1mqt3qh7GODzZ8ObciCfaik2B
+	/sjNCFJ4mnZKst7D1PvKviZn1MyjejGSMmt18r72e9UbHnK565j6T66g/3ZPDpjUii8Q
+	DJN3Vm/dldaQfj/oVAAtXuGm9sW1uAODmYib/eOv1zOxderCxE4JRxQoBTNwPxv0vVaG
+	CAUCTQdRNNyHqj77t4eQ4OLW0tOtWf8N20I8hPnYTFdSMT0onY4ovTCOSXBrFG0Dun4q
+	ey8Ayoc00ce/f6Ql2hDwrlOoRz4pDsaFR/+QGBLje2X4DD+qYL0q9hiaApasCHyUUQie
+	lx7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:references:from:content-type:in-reply-to
-	:message-id:date:to:content-transfer-encoding:mime-version;
-	bh=MY5j26AlhFKvJukKdl1ZfanrMP5mn54NoV2Z9y+rxjU=;
-	b=Sx4vEW/RlY7jxUXfa/RMzd01SsyOJiyYvmZqk4ZY/d/1g/IcdQWngvbfJnNuDTSLRu
-	1KD+O+2DDAXwrqUir1huwHGqi0U4V1HUDAGbfDjA7xJFpOwVeTb2JRhe7Uqq5nflwbbt
-	A48AxDWLOzuulTFwn3MtzYFODGkBv00oo0XBSHj3VlGlUlpehNx3YitD9nX5FAs1+Asg
-	oUDtgIO8fAVeVgMvZka7oZrJBSPYDi/+evbrl2XTBtKjSHuX3jJIRcdiIOr3/C81swpe
-	DZ0+mXy/GWVl1xtVkuGd0z9ujVhNAh64EKFq8bQXe47XTq/PtgYcOs4pCbeBFIAb4kIj
-	SuqQ==
-X-Gm-Message-State: ALoCoQl/KD0hMW0BzoHOKdbdv5zlzDN1B/U1VMzapGHdHLLvTZDSzvDx3P620/gTfHlyDg5cdFU20sj1LxBU2x12apFHfdsxXw==
-X-Received: by 10.66.190.7 with SMTP id gm7mr42208935pac.79.1453187107570;
-	Mon, 18 Jan 2016 23:05:07 -0800 (PST)
-Received: from [10.23.156.134] ([1.39.15.156])
-	by smtp.gmail.com with ESMTPSA id
-	w82sm38556859pfi.95.2016.01.18.23.04.58 for <yocto@yoctoproject.org>
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 18 Jan 2016 23:05:07 -0800 (PST)
-References: <mailman.13.1453147202.19669.yocto@yoctoproject.org>
-From: Damodar <dsonone@gmail.com>
-X-Mailer: iPhone Mail (11D257)
-In-Reply-To: <mailman.13.1453147202.19669.yocto@yoctoproject.org>
-Message-Id: <94D3E726-2926-4579-96A4-3F0BDBDEE47C@gmail.com>
-Date: Tue, 19 Jan 2016 12:34:51 +0530
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Mime-Version: 1.0 (1.0)
-Subject: Re: yocto Digest, Vol 64, Issue 52
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=3j1ZqCbKi/1gt+Ff/C/VS8IA4OdvwJFfaA//NEnFwWo=;
+	b=Av1Hm0xGlBP2xzhGMcqFjeRKmD+nf3pAAVdFTk5huWVEruiTmri+neHQwophaoat+k
+	MNn/1cccv1Hp/5apBFA2QcnfMIyZLOzQMsiAK10nxQUSZKCBo1cQoqP9bi0s4kpeuywb
+	SfinmYRm1bL2SmENnOGW7BsP56zXiHG+6ndFV5vdZc+MywP+6c+dOFPY6tiYg0lIfA/P
+	0Vld1tPX6ObkcSBr7TZWJL/tAcncidMvNtWRTfzJppKaGOcd8ki1IACaT3kMq7U+GKcB
+	BaP8hdeFCcXgtt3br0SNjhfQCXkNdG/ivMIijLAErc25qIcKhgqI02+ja8osOKTiX/8z
+	Z77A==
+X-Gm-Message-State: ALoCoQmJJ0LlguMTBuLKM8QYSBdCWMolI6wYYLBJE4flxBQeWX5HbxmR7oMsQc9yF6F1VuO5raXXUU/e5nIZhO5ZYhz0V95HVw==
+MIME-Version: 1.0
+X-Received: by 10.31.137.11 with SMTP id l11mr17615260vkd.98.1453188669668;
+	Mon, 18 Jan 2016 23:31:09 -0800 (PST)
+Received: by 10.103.64.132 with HTTP; Mon, 18 Jan 2016 23:31:09 -0800 (PST)
+In-Reply-To: <1491845.TOkdZ1pxEy@peggleto-mobl.ger.corp.intel.com>
+References: <CAFkk2KRuH8g49LBzceZSnFcetQc6ANedd7iMFD8uUqMHZDbKCg@mail.gmail.com>
+	<1491845.TOkdZ1pxEy@peggleto-mobl.ger.corp.intel.com>
+Date: Tue, 19 Jan 2016 08:31:09 +0100
+Message-ID: <CAFkk2KSM9SP=M4dBmQ53PHyTYKueA7EZOTOHsrBmcBo6Xy3sBA@mail.gmail.com>
+From: Ulf Magnusson <ulfalizer@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Mapping root filesystem files back into packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,94 +71,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jan 2016 07:05:13 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Jan 2016 07:31:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I used the default one.
-build_dir/tmp
+On Mon, Jan 18, 2016 at 9:15 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> Hi Ulf,
+>
+> On Mon, 18 Jan 2016 10:56:41 Ulf Magnusson wrote:
+>> To support an in-house packaging format, we need to partition the root
+>> filesystem into a number of packages (called "internal packages" from
+>> here on to avoid confusion), where each internal package corresponds
+>> to a number of (e.g. IPK) packages.
+>>
+>> The way this is currently done is by manually maintaining a database
+>> (implemented as a PACKAGE_CLASSES class) that maps files in the root
+>> filesystem back to packages, along with a list of what packages should
+>> go into each internal package. I suspect it is done this way so that
+>> post-processing steps on the root filesystem will be included in the
+>> internal packages.
+>>
+>> To me this feels pretty roundabout, and I suspect that there are much
+>> nicer solutions (suggestions welcome!). What I'm mostly curious about
+>> at the moment though is whether there's some nicer way to map files
+>> from the root filesystem back to packages, without having to maintain
+>> a separate database. Having the method be independent of the package
+>> format (e.g., IPK) would be a bonus, though I'm not sure if it's a
+>> strict requirement.
+>
+> So, aside from the "internal package" concept, there are two ways to do this:
+>
+> 1) oe-pkgdata-util find-path - this will tell you the build-time package name
+> that provided the specified path within the image (expects a full path,
+> wildcards allowed). It also provides some other lookup tools. Note that this
+> relies on pkgdata so it'll only work for a particular recipe after that recipe
+> has been packaged.
+>
+> 2) Use the Toaster web UI - it allows you to browse through the image and
+> click through from any file back to the package that contained it.
+>
+> Cheers,
+> Paul
 
-Thanks
-> On 19-Jan-2016, at 1:30 am, yocto-request@yoctoproject.org wrote:
->=20
-> Send yocto mailing list submissions to
->    yocto@yoctoproject.org
->=20
-> To subscribe or unsubscribe via the World Wide Web, visit
->    https://lists.yoctoproject.org/listinfo/yocto
-> or, via email, send a message with subject or body 'help' to
->    yocto-request@yoctoproject.org
->=20
-> You can reach the person managing the list at
->    yocto-owner@yoctoproject.org
->=20
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of yocto digest..."
->=20
->=20
-> Today's Topics:
->=20
->   1. Re: ipv6 testing (akuster)
->=20
->=20
-> ----------------------------------------------------------------------
->=20
-> Message: 1
-> Date: Mon, 18 Jan 2016 09:11:11 -0800
-> From: akuster <akuster@mvista.com>
-> To: Larry Goss <Larry.Goss@enea.com>,    "yocto@yoctoproject.org"
->    <yocto@yoctoproject.org>
-> Subject: Re: [yocto] ipv6 testing
-> Message-ID: <569D1CAF.5000809@mvista.com>
-> Content-Type: text/plain; charset=3Dwindows-1252
->=20
-> Larry,
->=20
->> On 01/15/2016 10:52 AM, Larry Goss wrote:
->> Hi,
->>=20
->> Does Yocto do any IPv6 conformance testing?
->=20
-> AFAIK, the project does not preform conformance testing.
->=20
-> regards,
-> Armin
->>=20
->> Thanks,
->>=20
->> Larry Goss
->> Sr. Field Applications Engineer
->> Enea North America
->> Email: larry.goss@enea.com
->> Phone: (603) 475-1087
->>=20
->> http://www.enea.com/
->>=20
->> _______________________________________________________________________=
-_________________________________________________________
->> This message, including attachments, is CONFIDENTIAL. It may also be pr=
-ivileged or otherwise protected by law. If you received this email by mista=
-ke please let us know by reply and then delete it from your system; you sho=
-uld not copy it or disclose its contents to anyone. All messages sent to an=
-d from Enea may be monitored to ensure compliance with internal policies an=
-d to protect our business. Emails are not secure and cannot be guaranteed t=
-o be error free as they can be intercepted, amended, lost or destroyed, or =
-contain viruses. The sender therefore does not accept liability for any err=
-ors or omissions in the contents of this message, which arise as a result o=
-f e-mail transmission. Anyone who communicates with us by email accepts the=
-se risks.
->=20
->=20
-> ------------------------------
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
-> End of yocto Digest, Vol 64, Issue 52
-> *************************************
+Thanks for the hint!
+
+Do you have any suggestions for the other direction as well, i.e.,
+mapping packages to files, preferably in a way that's independent of
+the packaging format?
+
+I suspect this won't be a problem, but it shouldn't matter whether the
+package contents are fetched from the sstate cache or not.
+
+Cheers,
+Ulf
 
