@@ -1,63 +1,44 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <rebecca.swee.fun.chang@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17E86E0088B; Mon, 18 Jan 2016 14:05:38 -0800 (PST)
+	id 8079AE0045F; Mon, 18 Jan 2016 22:09:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81D4AE00803
-	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 14:05:32 -0800 (PST)
-Received: by mail-qk0-f179.google.com with SMTP id o6so16869085qkc.2
-	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 14:05:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=bNU68BHpGosuVzjZvpAH7M9CYbtl0jfTSJLpKo1q7yY=;
-	b=zw/RrLplGC7re2Jo086GokWjVnNvLdh1M0kH7/Vrj1xb5Hi87d08pyLpoFpXS3vqj8
-	HYNfh4EnN3ACBRMIoy57x9DSatfhhsZb05AuPiXC8W35CqHbIUACZ/7ps0Da/m9+GMzd
-	rlYCVI9v6h1lsVlHJ7BQrtf7Irt0Ffr9TQJpGxO4Ltfz/TLkLXOGeG5CgjMhel9eBGXM
-	R1+PMszo6JxibglR7xnZ2ZgiD22w7cpsNvrR8apKtA1yoKRQYQvhr0o8ZCPyhFBGsimb
-	bc8wi2spFhYJ8HLUEglii18lcHSOxFxyh/anmmFGGjStQMnllHfrl3YodemFN8PZqNW1
-	lIlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=bNU68BHpGosuVzjZvpAH7M9CYbtl0jfTSJLpKo1q7yY=;
-	b=LKUAkbquYdMP6X/XSMQkOudbopFJlARghJFQodrg/OPTRug2zRMSB0PmXvoMiOJKG2
-	8VAbUnY2YT7D2squXRI2BycE9z28u7KeLTmfocatTJI9TpZdqWJwe//2qwweA7yjDAyZ
-	6qlgMjk9s7IQf6eGsZgtcs+y5P55BdWspePbcCxCYEVIoGlmtjHRWQYUtzZSqGvQo3jx
-	zS96QpNScd4McGB32hZB06CbTovZpD/MFlJgIvT6dIrsGUOoIh4eqV9h6IuO56n5zg3B
-	wnhGzm4C8aFGP2kUoSq7UG1KmPr6n/lSKtak4vWkaMjNW/IOK5+XhHrDw+VUV/tPeTVU
-	btjw==
-X-Gm-Message-State: ALoCoQk/NttbKThs0/QMdhn+I6ZWg7thLIhaqyPCkFgu5ieA06qdndOHOkwvYTl8RMwnY+nJ62KxSf4lhuM9ll6f2SaVU0JoXA==
-X-Received: by 10.55.215.91 with SMTP id m88mr34358997qki.8.1453154732457;
-	Mon, 18 Jan 2016 14:05:32 -0800 (PST)
-Received: from ip-96-114-220-84.ae.ccp.cable.comcast.com ([96.114.220.84])
-	by smtp.gmail.com with ESMTPSA id
-	l139sm10865975qhc.24.2016.01.18.14.05.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 18 Jan 2016 14:05:31 -0800 (PST)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 18 Jan 2016 22:05:25 +0000
-Message-Id: <1453154725-47452-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.7.0
-Subject: [poky][PATCH] poky.conf: Delete BB_SIGNATURE_HANDLER settings
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 205D8E0045F
+	for <yocto@yoctoproject.org>; Mon, 18 Jan 2016 22:09:27 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 18 Jan 2016 22:09:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,316,1449561600"; d="scan'208";a="729934086"
+Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
+	by orsmga003.jf.intel.com with ESMTP; 18 Jan 2016 22:09:26 -0800
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.187]) by
+	KMSMSX152.gar.corp.intel.com ([169.254.11.170]) with mapi id
+	14.03.0248.002; Tue, 19 Jan 2016 14:09:17 +0800
+From: "Chang, Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-java] failed to bitbake openjdk-8
+Thread-Index: AdFSf4F2XmNh9GpSTx6vzToS5OZjQQAABUJg
+Date: Tue, 19 Jan 2016 06:09:16 +0000
+Message-ID: <50B33AC5ED75F74F991980326F1C438D191449FD@PGSMSX103.gar.corp.intel.com>
+References: <50B33AC5ED75F74F991980326F1C438D191449E8@PGSMSX103.gar.corp.intel.com>
+In-Reply-To: <50B33AC5ED75F74F991980326F1C438D191449E8@PGSMSX103.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
+MIME-Version: 1.0
+Cc: "Chang, Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>, "Ng, Mei
+	Yeen" <mei.yeen.ng@intel.com>
+Subject: [meta-java] failed to bitbake openjdk-8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,31 +50,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jan 2016 22:05:38 -0000
+X-List-Received-Date: Tue, 19 Jan 2016 06:09:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-'OEBasicHash' is default in OE-Core, this setting can be leverages from
-core defaults
+Hi all,
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- meta-yocto/conf/distro/poky.conf | 3 ---
- 1 file changed, 3 deletions(-)
+I am trying to integrate meta-java into Common BSP. My intention is to inte=
+grate mraa from meta-intel-iot-devkit and meta-intel-iot-middleware.
+MRAA is having dependency on openjdk-8 provided by meta-java.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index e62ad4d..39419d5 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -85,9 +85,6 @@ SANITY_TESTED_DISTROS ?= " \
-             Debian-8.* \n \
-             openSUSE-project-13.2 \n \
-             "
--
--# Default hash policy for distro
--BB_SIGNATURE_HANDLER ?= 'OEBasicHash'
- #
- # OELAYOUT_ABI allows us to notify users when the format of TMPDIR changes in 
- # an incompatible way. Such changes should usually be detailed in the commit
--- 
-2.7.0
+The poky version that I'm using is Poky on branch Jethro.
+meta-java on master branch.
 
+I have this source fetching error when bitbake openjdk-8.
+From the logs, it mentioned the source checksum are mismatched. However, th=
+e checksum are the same by manual download using wget.
+
+I have also done modifying the SRC_URI checksum in openjdk-8-release-72b05.=
+inc file in meta-java/recipes-core/openjdk.
+Cleaned the build directory and rebuild.
+But bitbake just doesn't get pass do_fetch stage.
+
+Thanks in advance.
+
+I hereby paste the error logs:
+
+WARNING: Checksum failure encountered with download of http://hg.openjdk.ja=
+va.net/jdk8u/jdk8u/jdk/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfal=
+se - will attempt other sources if available
+WARNING: Renaming /home/ilab/development/yocto_build/build/downloads/39baa4=
+72e20c.tar.bz2 to /home/ilab/development/yocto_build/build/downloads/39baa4=
+72e20c.tar.bz2_bad-checksum_746e4d38fa3d31a22239d160688ed447
+ERROR: Fetcher failure for URL: 'http://hg.openjdk.java.net/jdk8u/jdk8u/jdk=
+/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfalse'. Checksum mismatch=
+!
+File: '/home/ilab/development/yocto_build/build/downloads/39baa472e20c.tar.=
+bz2' has sha256 checksum e3587fa57eec72c561f0695723649a745966bb2a74803ff8a4=
+51b80fd2079f99 when "e3587fa57eec72c561f0695723649a745966bb2a74803ff8a451b8=
+0fd2079f99" was expected If this change is expected (e.g. you have upgraded=
+ to a new version without updating the checksums) then you can use these li=
+nes within the recipe:
+SRC_URI[jdk.md5sum] =3D "746e4d38fa3d31a22239d160688ed447"
+SRC_URI[jdk.sha256sum] =3D "e3587fa57eec72c561f0695723649a745966bb2a74803ff=
+8a451b80fd2079f99"
+Otherwise you should retry the download and/or check with upstream to deter=
+mine if the file has become corrupted or otherwise unexpectedly modified.
+
+ERROR: Function failed: Fetcher failure for URL: 'http://hg.openjdk.java.ne=
+t/jdk8u/jdk8u/jdk/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfalse'. =
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in: /home/ilab/development/yocto_build/bui=
+ld/tmp/work/corei7-64-poky-linux/openjdk-8/72b05-r0/temp/log.do_fetch.30297
+ERROR: Task 4 (/home/ilab/development/yocto_build/meta-java/recipes-core/op=
+enjdk/openjdk-8_72b05.bb, do_fetch) failed with exit code '1'
+WARNING: Checksum failure encountered with download of http://hg.openjdk.ja=
+va.net/jdk8u/jdk8u/jdk/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfal=
+se - will attempt other sources if available
+WARNING: Renaming /home/ilab/development/yocto_build/build/downloads/39baa4=
+72e20c.tar.bz2 to /home/ilab/development/yocto_build/build/downloads/39baa4=
+72e20c.tar.bz2_bad-checksum_746e4d38fa3d31a22239d160688ed447
+ERROR: Fetcher failure for URL: 'http://hg.openjdk.java.net/jdk8u/jdk8u/jdk=
+/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfalse'. Checksum mismatch=
+!
+File: '/home/ilab/development/yocto_build/build/downloads/39baa472e20c.tar.=
+bz2' has sha256 checksum e3587fa57eec72c561f0695723649a745966bb2a74803ff8a4=
+51b80fd2079f99 when "e3587fa57eec72c561f0695723649a745966bb2a74803ff8a451b8=
+0fd2079f99" was expected If this change is expected (e.g. you have upgraded=
+ to a new version without updating the checksums) then you can use these li=
+nes within the recipe:
+SRC_URI[jdk.md5sum] =3D "746e4d38fa3d31a22239d160688ed447"
+SRC_URI[jdk.sha256sum] =3D "e3587fa57eec72c561f0695723649a745966bb2a74803ff=
+8a451b80fd2079f99"
+Otherwise you should retry the download and/or check with upstream to deter=
+mine if the file has become corrupted or otherwise unexpectedly modified.
+
+ERROR: Function failed: Fetcher failure for URL: 'http://hg.openjdk.java.ne=
+t/jdk8u/jdk8u/jdk/archive/39baa472e20c.tar.bz2;name=3Djdk;unpack=3Dfalse'. =
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in: /home/ilab/development/yocto_build/bui=
+ld/tmp/work/x86_64-linux/openjdk-8-native/72b05-r0/temp/log.do_fetch.30299
+ERROR: Task 130 (/home/ilab/development/yocto_build/meta-java/recipes-core/=
+openjdk/openjdk-8-native_72b05.bb, do_fetch) failed with exit code '1'
+
+Regards,
+Rebecca
 
