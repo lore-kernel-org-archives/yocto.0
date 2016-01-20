@@ -1,35 +1,58 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA5F7E00BA0; Wed, 20 Jan 2016 00:41:03 -0800 (PST)
+	id 36497E00BAA; Wed, 20 Jan 2016 05:42:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 523 seconds by postgrey-1.32 at yocto-www;
-	Wed, 20 Jan 2016 00:41:01 PST
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C12DE0073D
-	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 00:41:01 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id E0C4068A01C; Wed, 20 Jan 2016 08:32:16 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 28A9968A019;
-	Wed, 20 Jan 2016 08:32:16 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id CE3AF6740E11;
-	Wed, 20 Jan 2016 09:32:15 +0100 (CET)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9387E00B9C
+	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 05:42:36 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id r129so131632244wmr.0
+	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 05:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:subject:date:message-id;
+	bh=vII051Gi4Y0EB5vwhdArxm5aFQHRZc5mocbK0CT57wg=;
+	b=b0v9LeLdCxDSwb7bgdh7SAwD7nCb8NYsOU+8VzAvVbNk2PUbkJkeLVh7gkUI6+lCE+
+	Kr+MtcYU9vv5oIIPcB+uy87WrLKPn2URbs58lE6qKdjN7CPKoWOw0OKrTrCTb5ZwKnZx
+	HmlPPZVRlskdUhH6io02Yl70Y+j8DuQCFV4Qw22wGkTnV6eeATHJW5ci/Wu/F8yrA3Ba
+	TtTgMqwRXz7vPDbWgKUk9btwIigkaulW/PrvRZN0uPdTrP4HQ8ygcQVP6XNuhyiZ3ePK
+	3kph6MB5zIvnflzAW5jAmVe7V6FiIuyGoJ3yApXblF8K6ItWQhQuuYAwfmN3AqCTnAd+
+	yICg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=vII051Gi4Y0EB5vwhdArxm5aFQHRZc5mocbK0CT57wg=;
+	b=kuyRKH9NKUvwzh6empqoxm4+sDWcfPHirFC5E4fzWIM7sR+Qwozyd9ngix6le/XowS
+	2G2bPg8jrgwGkabPgTa7To0qDNt9kPV2u0PPW+3/2rzVy3ELnagQowVCvZ+1KNEPGb88
+	VRItVzviBoxq6VTIXREM8LG0AnnfE56n/Gf1UAGrwRBwdAzFfdVC2OOCOdcFUsZQm1C6
+	cJUOzQ1T5sm3a1xXbqT2z+BoO5ykz2SFIEHKaNwCvpR4V3wQ513MEBgyoOX9WJoPTt1R
+	Ppao7autE6tFwasFIQIT7Ejrpkrtxxy5KOxoUbiVWdz/Btlxc9uegqwsVebtDbXdUWZu
+	VIvA==
+X-Gm-Message-State: ALoCoQlKfUfhVvEXeceEb8ulyYnYJmu2zZYu1ONtXpjw3Q6dSknQdWYGeTlXK70hgJho+UPR8ohWwTPrCJFDWtsyt751+V1XLw==
+X-Received: by 10.194.24.226 with SMTP id x2mr35566885wjf.43.1453297355111;
+	Wed, 20 Jan 2016 05:42:35 -0800 (PST)
+Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
+	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
+	c203sm25196259wmd.5.2016.01.20.05.42.34 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 20 Jan 2016 05:42:34 -0800 (PST)
+From: Ross Burton <ross.burton@intel.com>
 To: yocto@yoctoproject.org
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <569F460F.2050500@mlbassoc.com>
-Date: Wed, 20 Jan 2016 09:32:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-Subject: Building with ltdl
+Date: Wed, 20 Jan 2016 13:42:31 +0000
+Message-Id: <1453297351-6620-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 2.6.4
+Subject: [PATCH][meta-qt3] qt-x11-free: update SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,110 +64,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jan 2016 08:41:03 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Jan 2016 13:42:45 -0000
 
-I'm trying to build a project (graphviz) which wants to use ltdl
-which is part of libtool.  However when I try to build, I get
-these errors (during configure):
+ftp.trolltech.com doesn't exist anymore, so update SRC_URI to use qt.io.
 
-| NOTE: Executing ACLOCAL="aclocal 
---system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/" 
-autoreconf --verbose --install --force --exclude=autopoint -I 
-/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
-/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
-| autoreconf: Entering directory `.'
-| autoreconf: configure.ac: not using Gettext
-| autoreconf: running: aclocal 
---system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/ 
--I /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
-/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ -I 
-/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
-/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force 
--I m4
-| autoreconf: configure.ac: tracing
-| autoreconf: configure.ac: adding subdirectory libltdl to autoreconf
-| autoreconf: Entering directory `libltdl'
-| autoreconf: running: libtoolize --copy --force --ltdl
-| libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'config'.
-| libtoolize: copying file 'config/compile'
-| libtoolize: copying file 'config/config.guess'
-| libtoolize: copying file 'config/config.sub'
-| libtoolize: copying file 'config/depcomp'
-| libtoolize: copying file 'config/install-sh'
-| libtoolize: copying file 'config/missing'
-| libtoolize: copying file 'config/ltmain.sh'
-| libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-| libtoolize: copying file 'm4/libtool.m4'
-| libtoolize: You should add the contents of 'm4/libtool.m4' to 'aclocal.m4'.
-| libtoolize: copying file 'm4/ltargz.m4'
-| libtoolize: You should add the contents of 'm4/ltargz.m4' to 'aclocal.m4'.
-| libtoolize: copying file 'm4/ltdl.m4'
-| libtoolize: You should add the contents of 'm4/ltdl.m4' to 'aclocal.m4'.
-| libtoolize: copying file 'm4/ltoptions.m4'
-| libtoolize: You should add the contents of 'm4/ltoptions.m4' to 'aclocal.m4'.
-| libtoolize: copying file 'm4/ltsugar.m4'
-| libtoolize: You should add the contents of 'm4/ltsugar.m4' to 'aclocal.m4'.
-| libtoolize: copying file 'm4/ltversion.m4'
-| libtoolize: copying file 'm4/lt~obsolete.m4'
-| libtoolize: You should add the contents of 'm4/lt~obsolete.m4' to 'aclocal.m4'.
-| libtoolize: putting libltdl files in LT_CONFIG_LTDL_DIR, '.'.
-| libtoolize: copying file './COPYING.LIB'
-| libtoolize: creating file './Makefile.am'
-| libtoolize: copying file './README'
-| libtoolize: creating file './configure.ac'
-| libtoolize: creating file './aclocal.m4'
-| libtoolize: creating file './Makefile.in'
-| libtoolize: copying file './config-h.in'
-| libtoolize: creating file './configure'
-| libtoolize: copying file './libltdl/lt__alloc.h'
-| libtoolize: copying file './libltdl/lt__argz_.h'
-| libtoolize: copying file './libltdl/lt__dirent.h'
-| libtoolize: copying file './libltdl/lt__glibc.h'
-| libtoolize: copying file './libltdl/lt__private.h'
-| libtoolize: copying file './libltdl/lt__strl.h'
-| libtoolize: copying file './libltdl/lt_dlloader.h'
-| libtoolize: copying file './libltdl/lt_error.h'
-| libtoolize: copying file './libltdl/lt_system.h'
-| libtoolize: copying file './libltdl/slist.h'
-| libtoolize: copying file './loaders/dld_link.c'
-| libtoolize: copying file './loaders/dlopen.c'
-| libtoolize: copying file './loaders/dyld.c'
-| libtoolize: copying file './loaders/load_add_on.c'
-| libtoolize: copying file './loaders/loadlibrary.c'
-| libtoolize: copying file './loaders/preopen.c'
-| libtoolize: copying file './loaders/shl_load.c'
-| libtoolize: copying file './lt__alloc.c'
-| libtoolize: copying file './lt__argz.c'
-| libtoolize: copying file './lt__dirent.c'
-| libtoolize: copying file './lt__strl.c'
-| libtoolize: copying file './lt_dlloader.c'
-| libtoolize: copying file './lt_error.c'
-| libtoolize: copying file './ltdl.c'
-| libtoolize: copying file './ltdl.h'
-| libtoolize: copying file './slist.c'
-| libtoolize: Remember to add 'LTDL_INIT' to configure.ac.
-| autoreconf: running: /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoconf 
---include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ 
---include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force
-| autoreconf: running: /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoheader 
---include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ 
---include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force
-| autoreconf: running: automake --add-missing --copy --force-missing
-| configure.ac:76: error: required file './argz.c' not found
-| autoreconf: automake failed with exit status: 1
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ recipes-qt3/qt3/qt-x11-free_3.3.7.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The original sources has a libltdl directory with argz.c but this
-is being overwritten during the autoreconf process.
-
-Any suggestions on how I get this to work?
-
-Thanks
-
+diff --git a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
+index 89f976d..f90f9b9 100644
+--- a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
++++ b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
+@@ -5,7 +5,7 @@ PR = "${INC_PR}.1"
+ LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=b07b0d5ac6b1822effe47173a1744433 \
+                     file://LICENSE.QPL;md5=b81b6b6fc04ed873adde5aa901c0613b"
+ 
+-SRC_URI = "ftp://ftp.trolltech.com/qt/source/qt-x11-free-${PV}.tar.bz2 \
++SRC_URI = "http://download.qt.io/archive/qt/3/${BP}.tar.bz2 \
+ 	   file://configure.patch \
+ 	   file://no-examples.patch \
+            file://gcc4_1-HACK.patch \
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.6.4
+
 
