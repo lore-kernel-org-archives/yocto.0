@@ -1,67 +1,35 @@
-Return-Path: <ulfalizer@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C94ABE00B9C; Wed, 20 Jan 2016 00:30:45 -0800 (PST)
+	id CA5F7E00BA0; Wed, 20 Jan 2016 00:41:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ulfalizer[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.50 listed in list.dnswl.org]
-Received: from mail-vk0-f50.google.com (mail-vk0-f50.google.com
-	[209.85.213.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6019BE0073D
-	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 00:30:42 -0800 (PST)
-Received: by mail-vk0-f50.google.com with SMTP id e185so891764vkb.1
-	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 00:30:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=B8Y0Fo6a+Pm8jHTnXiRGce/aeOBbjahrnDZ0FODopl0=;
-	b=OhSYh1RMhEOiKsExHRtEPCT+NfX7tgK06xnDPYbbNAjM19v9vzvcWZOg4N7eFlhhWk
-	on4O8gZXBwYb97r8LkF7llSEQM/pO7sO3NNHjEl6mwXbBDTolsTk2B+2xplE+gZk7Es0
-	jOD/Hu1bnDz1DBaf65Vq3uWZjLkSAJVCp1CqVBafTBmHODwSj3N3dJuVctIvhzZbeB1p
-	xeXK+USSIfEGBZJD1i98xSuHQW9kL6kqwq4lmHmvPmzPx6ScWkfcf0/2ESGWXXewOD1u
-	GK6FL+QdNDF7YUWgbj8aMtFKNaubqwjGHc7RYB0qKLGN5UqMIdv/FA51oUrus7b39bht
-	kvbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=B8Y0Fo6a+Pm8jHTnXiRGce/aeOBbjahrnDZ0FODopl0=;
-	b=MhfXZKmWgsLk27Bxc02klBO60cZCSjMYbyMBnK9i83h+TwnwkUta6bPTjopRDL+CSL
-	hAk/8cN+9sLrzhpLbn653dhDGypb4k4JOS9X7Gn/PK3w9bnv4N0S2vVxLAtNi7Eg4Nbk
-	N4VGYpRR1RqZHFv1Fn7m596ZGUsmxsn5l9w1VoOS09A75Cv6NS74qfmnRbrBFhPTepEn
-	KLJV9y2nE/J2v9UT5fRx+icn906SDDVZXQUENMmq2+gabRCk4CD/ORvhgjYaT16+VhUR
-	4oeJAjxQMEg8gppnPQTEndMW5n7a80doFkfFAZGa0Mex98n9G515gaorYFUbojv3O3pM
-	nXWg==
-X-Gm-Message-State: ALoCoQmt3CuzhkI0nrkbmK1EpYU/j+V7jpl8kFp7aB5QgixZLL5ctSf4UauELpeU9RUiY0JknvZK2xojMxIm2Kcl780vXksalw==
+X-Greylist: delayed 523 seconds by postgrey-1.32 at yocto-www;
+	Wed, 20 Jan 2016 00:41:01 PST
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C12DE0073D
+	for <yocto@yoctoproject.org>; Wed, 20 Jan 2016 00:41:01 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id E0C4068A01C; Wed, 20 Jan 2016 08:32:16 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 28A9968A019;
+	Wed, 20 Jan 2016 08:32:16 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id CE3AF6740E11;
+	Wed, 20 Jan 2016 09:32:15 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <569F460F.2050500@mlbassoc.com>
+Date: Wed, 20 Jan 2016 09:32:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-X-Received: by 10.31.58.139 with SMTP id h133mr23459785vka.158.1453278641981; 
-	Wed, 20 Jan 2016 00:30:41 -0800 (PST)
-Received: by 10.103.64.132 with HTTP; Wed, 20 Jan 2016 00:30:41 -0800 (PST)
-In-Reply-To: <7943507.QKW1M6tPCz@peggleto-mobl.ger.corp.intel.com>
-References: <CAFkk2KRuH8g49LBzceZSnFcetQc6ANedd7iMFD8uUqMHZDbKCg@mail.gmail.com>
-	<6298415.jCEuhodfvm@peggleto-mobl.ger.corp.intel.com>
-	<CAFkk2KQ0THLaw1NGB3Zzj9bJzT8EZyuuurvNCsbNL2HSBsO2aw@mail.gmail.com>
-	<7943507.QKW1M6tPCz@peggleto-mobl.ger.corp.intel.com>
-Date: Wed, 20 Jan 2016 09:30:41 +0100
-Message-ID: <CAFkk2KSUVOB5DJZ82+o_uDi44OiTTUGt0kvONGee+g1BeOrvdA@mail.gmail.com>
-From: Ulf Magnusson <ulfalizer@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Mapping root filesystem files back into packages
+Subject: Building with ltdl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,86 +41,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jan 2016 08:30:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 20 Jan 2016 08:41:03 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 19, 2016 at 6:03 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Tue, 19 Jan 2016 13:01:20 Ulf Magnusson wrote:
->> On Tue, Jan 19, 2016 at 10:20 AM, Paul Eggleton
->>
->> <paul.eggleton@linux.intel.com> wrote:
->> > On Tue, 19 Jan 2016 08:31:09 Ulf Magnusson wrote:
->> >> On Mon, Jan 18, 2016 at 9:15 PM, Paul Eggleton
->> >>
->> >> <paul.eggleton@linux.intel.com> wrote:
->> >> > On Mon, 18 Jan 2016 10:56:41 Ulf Magnusson wrote:
->> >> >> To support an in-house packaging format, we need to partition the root
->> >> >> filesystem into a number of packages (called "internal packages" from
->> >> >> here on to avoid confusion), where each internal package corresponds
->> >> >> to a number of (e.g. IPK) packages.
->> >> >>
->> >> >> The way this is currently done is by manually maintaining a database
->> >> >> (implemented as a PACKAGE_CLASSES class) that maps files in the root
->> >> >> filesystem back to packages, along with a list of what packages should
->> >> >> go into each internal package. I suspect it is done this way so that
->> >> >> post-processing steps on the root filesystem will be included in the
->> >> >> internal packages.
->> >> >>
->> >> >> To me this feels pretty roundabout, and I suspect that there are much
->> >> >> nicer solutions (suggestions welcome!). What I'm mostly curious about
->> >> >> at the moment though is whether there's some nicer way to map files
->> >> >> from the root filesystem back to packages, without having to maintain
->> >> >> a separate database. Having the method be independent of the package
->> >> >> format (e.g., IPK) would be a bonus, though I'm not sure if it's a
->> >> >> strict requirement.
->> >> >
->> >> > So, aside from the "internal package" concept, there are two ways to do
->> >> > this:
->> >> >
->> >> > 1) oe-pkgdata-util find-path - this will tell you the build-time
->> >> > package
->> >> > name that provided the specified path within the image (expects a full
->> >> > path, wildcards allowed). It also provides some other lookup tools.
->> >> > Note
->> >> > that this relies on pkgdata so it'll only work for a particular recipe
->> >> > after that recipe has been packaged.
->> >> >
->> >> > 2) Use the Toaster web UI - it allows you to browse through the image
->> >> > and
->> >> > click through from any file back to the package that contained it.
->> >>
->> >> Thanks for the hint!
->> >>
->> >> Do you have any suggestions for the other direction as well, i.e.,
->> >> mapping packages to files, preferably in a way that's independent of
->> >> the packaging format?
->> >
->> > You'd use the same mechanisms - both of the above options will let you
->> > look up a package and then its contents.
->>
->> Could you provide an example for getting package contests via
->> oe-pkgdata-util? I tried
->>
->> $ oe-pkgdata-util read-value
->> tmp/sysroots/i686-xs-baytrail-hmgua1/pkgdata/ FILES_INFO busybox
->> {"/bin/busybox.nosuid"
->>
->> , but as seen from the output, that only gives part of the string after the
->> FILES_INFO key in pkgdata/runtime/busybox before the first space. I'm not
->> sure if that's the right key to use either.
->
-> Ah, you must be using the version before we fixed that bug. In later versions
-> we have a "list-pkg-files" command - you can supply it with a package name or
-> -p recipename; additionally you no longer have to supply the pkgdata path.
->
-> Cheers,
-> Paul
+I'm trying to build a project (graphviz) which wants to use ltdl
+which is part of libtool.  However when I try to build, I get
+these errors (during configure):
 
-That must be it. We're currently using 1.8, but are in the process of
-upgrading to
-2.1. Thanks for the hint!
+| NOTE: Executing ACLOCAL="aclocal 
+--system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/" 
+autoreconf --verbose --install --force --exclude=autopoint -I 
+/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
+/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
+| autoreconf: Entering directory `.'
+| autoreconf: configure.ac: not using Gettext
+| autoreconf: running: aclocal 
+--system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/ 
+-I /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
+/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ -I 
+/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ -I 
+/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force 
+-I m4
+| autoreconf: configure.ac: tracing
+| autoreconf: configure.ac: adding subdirectory libltdl to autoreconf
+| autoreconf: Entering directory `libltdl'
+| autoreconf: running: libtoolize --copy --force --ltdl
+| libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'config'.
+| libtoolize: copying file 'config/compile'
+| libtoolize: copying file 'config/config.guess'
+| libtoolize: copying file 'config/config.sub'
+| libtoolize: copying file 'config/depcomp'
+| libtoolize: copying file 'config/install-sh'
+| libtoolize: copying file 'config/missing'
+| libtoolize: copying file 'config/ltmain.sh'
+| libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+| libtoolize: copying file 'm4/libtool.m4'
+| libtoolize: You should add the contents of 'm4/libtool.m4' to 'aclocal.m4'.
+| libtoolize: copying file 'm4/ltargz.m4'
+| libtoolize: You should add the contents of 'm4/ltargz.m4' to 'aclocal.m4'.
+| libtoolize: copying file 'm4/ltdl.m4'
+| libtoolize: You should add the contents of 'm4/ltdl.m4' to 'aclocal.m4'.
+| libtoolize: copying file 'm4/ltoptions.m4'
+| libtoolize: You should add the contents of 'm4/ltoptions.m4' to 'aclocal.m4'.
+| libtoolize: copying file 'm4/ltsugar.m4'
+| libtoolize: You should add the contents of 'm4/ltsugar.m4' to 'aclocal.m4'.
+| libtoolize: copying file 'm4/ltversion.m4'
+| libtoolize: copying file 'm4/lt~obsolete.m4'
+| libtoolize: You should add the contents of 'm4/lt~obsolete.m4' to 'aclocal.m4'.
+| libtoolize: putting libltdl files in LT_CONFIG_LTDL_DIR, '.'.
+| libtoolize: copying file './COPYING.LIB'
+| libtoolize: creating file './Makefile.am'
+| libtoolize: copying file './README'
+| libtoolize: creating file './configure.ac'
+| libtoolize: creating file './aclocal.m4'
+| libtoolize: creating file './Makefile.in'
+| libtoolize: copying file './config-h.in'
+| libtoolize: creating file './configure'
+| libtoolize: copying file './libltdl/lt__alloc.h'
+| libtoolize: copying file './libltdl/lt__argz_.h'
+| libtoolize: copying file './libltdl/lt__dirent.h'
+| libtoolize: copying file './libltdl/lt__glibc.h'
+| libtoolize: copying file './libltdl/lt__private.h'
+| libtoolize: copying file './libltdl/lt__strl.h'
+| libtoolize: copying file './libltdl/lt_dlloader.h'
+| libtoolize: copying file './libltdl/lt_error.h'
+| libtoolize: copying file './libltdl/lt_system.h'
+| libtoolize: copying file './libltdl/slist.h'
+| libtoolize: copying file './loaders/dld_link.c'
+| libtoolize: copying file './loaders/dlopen.c'
+| libtoolize: copying file './loaders/dyld.c'
+| libtoolize: copying file './loaders/load_add_on.c'
+| libtoolize: copying file './loaders/loadlibrary.c'
+| libtoolize: copying file './loaders/preopen.c'
+| libtoolize: copying file './loaders/shl_load.c'
+| libtoolize: copying file './lt__alloc.c'
+| libtoolize: copying file './lt__argz.c'
+| libtoolize: copying file './lt__dirent.c'
+| libtoolize: copying file './lt__strl.c'
+| libtoolize: copying file './lt_dlloader.c'
+| libtoolize: copying file './lt_error.c'
+| libtoolize: copying file './ltdl.c'
+| libtoolize: copying file './ltdl.h'
+| libtoolize: copying file './slist.c'
+| libtoolize: Remember to add 'LTDL_INIT' to configure.ac.
+| autoreconf: running: /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoconf 
+--include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ 
+--include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force
+| autoreconf: running: /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoheader 
+--include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/ 
+--include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/ --force
+| autoreconf: running: automake --add-missing --copy --force-missing
+| configure.ac:76: error: required file './argz.c' not found
+| autoreconf: automake failed with exit status: 1
 
-Cheers,
-Ulf
+The original sources has a libltdl directory with argz.c but this
+is being overwritten during the autoreconf process.
+
+Any suggestions on how I get this to work?
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
