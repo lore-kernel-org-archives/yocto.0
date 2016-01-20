@@ -1,51 +1,42 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <josiasinacio@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E88DDE00B37; Tue, 19 Jan 2016 13:11:36 -0800 (PST)
+	id 798D5E009D7; Tue, 19 Jan 2016 21:25:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B80E7E00AAF
-	for <yocto@yoctoproject.org>; Tue, 19 Jan 2016 13:11:32 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2AnBQAjpp5W/xUHmMZeGQEBAQEPAQEBAYJfK4E/BohQsn2BY4YPAhyBKTkTAQEBAQEBAYEKhDQBAQEBAgESERFFBQsCAQgNCAEEAgYdAwICAh8RFAEQAQEEDgUIFwOHZAMKCAGlY4pJjAkNg0wBAQEBAQEBAQIBAQEBAQEBAQEBARV7hT+EdIJOggODFy6BGwWXGgGIPAWDJAGLOYVARIY7h10kAT+ECXKFZgGBBwEBAQ
-X-IPAS-Result: A2AnBQAjpp5W/xUHmMZeGQEBAQEPAQEBAYJfK4E/BohQsn2BY4YPAhyBKTkTAQEBAQEBAYEKhDQBAQEBAgESERFFBQsCAQgNCAEEAgYdAwICAh8RFAEQAQEEDgUIFwOHZAMKCAGlY4pJjAkNg0wBAQEBAQEBAQIBAQEBAQEBAQEBARV7hT+EdIJOggODFy6BGwWXGgGIPAWDJAGLOYVARIY7h10kAT+ECXKFZgGBBwEBAQ
-X-IronPort-AV: E=Sophos;i="5.22,319,1449550800"; d="scan'208";a="156695479"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	19 Jan 2016 16:11:32 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES256-SHA;
-	19 Jan 2016 16:11:26 -0500
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
-	14.03.0174.001; Tue, 19 Jan 2016 16:11:25 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] PREFERRED_VERSION for native package
-Thread-Index: AdFSuvAjF8AY1tHSR/WPd8DxJrhhfQAGL/NwABBhRwAABeCeQA==
-Date: Tue, 19 Jan 2016 21:11:24 +0000
-Message-ID: <30C2D590D16A5C46ADFE65219103779853AC8868@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE65219103779853AC8364@AZ-US1EXMB03.global.avaya.com>
-	<30C2D590D16A5C46ADFE65219103779853AC84D6@AZ-US1EXMB03.global.avaya.com>
-	<3F03BD7D-5DD6-413D-A8F7-7ED84E7A491A@gmail.com>
-In-Reply-To: <3F03BD7D-5DD6-413D-A8F7-7ED84E7A491A@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
+X-Spam-Level: **
+X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW,XPRIO autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (josiasinacio[at]hotmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4955]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.54.190.145 listed in list.dnswl.org]
+	*  2.0 XPRIO Has X-Priority header
+Received: from BAY004-OMC3S7.hotmail.com (bay004-omc3s7.hotmail.com
+	[65.54.190.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDA52E008C8
+	for <yocto@yoctoproject.org>; Tue, 19 Jan 2016 21:25:21 -0800 (PST)
+Received: from BAY173-DS8 ([65.54.190.189]) by BAY004-OMC3S7.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Tue, 19 Jan 2016 21:25:20 -0800
+X-TMN: [GqqQ+NHNov9eP3+1r1F5xntG46sWLINf]
+X-Originating-Email: [josiasinacio@hotmail.com]
+Message-ID: <BAY173-DS88E76BBDB2957BD352190C1C20@phx.gbl>
+From: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 20 Jan 2016 00:25:19 -0500
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: PREFERRED_VERSION for native package
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-OriginalArrivalTime: 20 Jan 2016 05:25:20.0495 (UTC)
+	FILETIME=[F478A7F0:01D15342]
+Subject: Modify U-Boot without forking source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,14 +48,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jan 2016 21:11:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 20 Jan 2016 05:25:23 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_00B9_01D15319.0ADDC950"
 
-PiBGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQo+IFNlbnQ6IEph
-bnVhcnkgMTksIDIwMTYgMTo1OCBQTQ0KPg0KPiBpdHMgYSBkaXN0cm8gcG9saWN5IGJhc2VkIHVw
-b24gbGljZW5zaW5nIGlmIHdlYWsgYXNzaWdubWVudCBpcyB1c2VkIHRoZW4gdGhlIGxpY2Vuc2lu
-ZyDCoHdvbuKAmXQgYmUgYWJsZSB0byBlbmZvcmNlIHRoZSBkZWNpc2lvbg0KPiBpZiBzb21lb25l
-IG92ZXJyaWRlcyBpdC7CoA0KDQpUaGFua3MsIHRoYXQgbWFrZXMgc2Vuc2UuwqANCk1WDQrCoA0K
+------=_NextPart_000_00B9_01D15319.0ADDC950
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
+
+Is there a way of modifying U-Boot config without actually =
+forking/branching its source? E.g. through a .bbapend or something, =
+similar to how I change the kernel configuration. An example:
+
+In my custom machine .conf file, I have:
+
+UBOOT_MACHINE =3D =E2=80=9Cxilinx_zynqmp_ep_defconfig=E2=80=9D
+
+That xilinx_zynqmp_ep_defconfig is here:
+http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zynqmp_ep_=
+defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD
+
+However, I want to create my own config file for U-Boot rather than =
+using xilinx_zynqmp_ep_defconfig. And inside that file, I could then =
+change this:
+
+CONFIG_DEFAULT_DEVICE_TREE=3D"zynqmp-ep108"
+
+to
+
+CONFIG_DEFAULT_DEVICE_TREE=3D"my_own_device_tree"
+
+Or something similar. Is this possible? Also, if it is, where should =
+=E2=80=9Cmy_own_device_tree=E2=80=9D file used in the example reside? It =
+looks like U-Boot only looks inside its source (e.g. /arch/arm/dts) for =
+those files.
+
+Thanks,
+Josias
+
+------=_NextPart_000_00B9_01D15319.0ADDC950
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD>
+<STYLE><!--
+.hmmessage P
+{
+margin:0px;
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt;
+font-family:Calibri
+}
+--></STYLE>
+</HEAD>
+<BODY dir=3Dltr class=3Dhmmessage>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-FAMILY: 'Arial'; COLOR: #000000; FONT-SIZE: 10pt">
+<DIV=20
+style=3D"FONT-STYLE: normal; DISPLAY: inline; FONT-FAMILY: 'Calibri'; =
+COLOR: #000000; FONT-SIZE: small; FONT-WEIGHT: normal; TEXT-DECORATION: =
+none">
+<DIV dir=3Dltr><SPAN>Hi all,</SPAN></DIV>
+<DIV dir=3Dltr><SPAN></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN>Is there a way of modifying U-Boot config without =
+actually=20
+forking/branching its source? E.g. through a .bbapend or something, =
+similar to=20
+how I change the kernel configuration. </SPAN><SPAN><FONT size=3D2 =
+face=3DArial>An=20
+example:</FONT></SPAN></DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 =
+face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>In my custom machine =
+.conf file, I=20
+have:</FONT></SPAN></DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 =
+face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>UBOOT_MACHINE =3D=20
+=E2=80=9Cxilinx_zynqmp_ep_defconfig=E2=80=9D</FONT></SPAN></DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 =
+face=3DArial></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>That =
+xilinx_zynqmp_ep_defconfig is=20
+here:</FONT></SPAN></DIV>
+<DIV dir=3Dltr><A=20
+title=3Dhttp://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zy=
+nqmp_ep_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD =
+
+href=3D"http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zy=
+nqmp_ep_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD"=
+>http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zynqmp_ep=
+_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD</A></DI=
+V>
+<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
+<DIV dir=3Dltr><FONT size=3D2 face=3DArial>However, I want to create my =
+own config=20
+file for U-Boot rather than using xilinx_zynqmp_ep_defconfig. And inside =
+that=20
+file, I could then change this:</FONT></DIV>
+<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New"><FONT=20
+style=3D"FONT-SIZE: =
+9pt">CONFIG_DEFAULT_DEVICE_TREE=3D"zynqmp-ep108"</FONT></FONT></SPAN></DI=
+V>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New">to</FONT></SPAN></DIV>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New"><FONT=20
+style=3D"FONT-SIZE: =
+9pt">CONFIG_DEFAULT_DEVICE_TREE=3D"my_own_device_tree"</FONT></FONT></SPA=
+N></DIV>
+<DIV dir=3Dltr><SPAN=20
+style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
+TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
+WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
+0px; -webkit-text-stroke-width: 0px"><FONT=20
+face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
+<DIV dir=3Dltr><FONT face=3DArial><FONT style=3D"FONT-SIZE: 10pt">Or =
+something=20
+similar. Is this possible? Also, if it is, where should =
+=E2=80=9Cmy_own_device_tree=E2=80=9D=20
+file used in the example reside? It looks like U-Boot only looks inside =
+its=20
+source (e.g. /arch/arm/dts) for those files.</FONT></FONT></DIV>
+<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
+<DIV dir=3Dltr><FONT size=3D2 face=3DArial>Thanks,</FONT></DIV>
+<DIV dir=3Dltr><FONT size=3D2=20
+face=3DArial>Josias</FONT></DIV></DIV></DIV></DIV></BODY></HTML>
+
+------=_NextPart_000_00B9_01D15319.0ADDC950--
