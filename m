@@ -1,42 +1,61 @@
-Return-Path: <josiasinacio@hotmail.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 798D5E009D7; Tue, 19 Jan 2016 21:25:23 -0800 (PST)
+	id D4422E00B9C; Tue, 19 Jan 2016 23:33:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW,XPRIO autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (josiasinacio[at]hotmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4955]
+	mail provider *      (pervivek[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [65.54.190.145 listed in list.dnswl.org]
-	*  2.0 XPRIO Has X-Priority header
-Received: from BAY004-OMC3S7.hotmail.com (bay004-omc3s7.hotmail.com
-	[65.54.190.145])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDA52E008C8
-	for <yocto@yoctoproject.org>; Tue, 19 Jan 2016 21:25:21 -0800 (PST)
-Received: from BAY173-DS8 ([65.54.190.189]) by BAY004-OMC3S7.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 19 Jan 2016 21:25:20 -0800
-X-TMN: [GqqQ+NHNov9eP3+1r1F5xntG46sWLINf]
-X-Originating-Email: [josiasinacio@hotmail.com]
-Message-ID: <BAY173-DS88E76BBDB2957BD352190C1C20@phx.gbl>
-From: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 20 Jan 2016 00:25:19 -0500
+	*      [209.85.213.47 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0071]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 619B0E0073D
+	for <yocto@yoctoproject.org>; Tue, 19 Jan 2016 23:33:33 -0800 (PST)
+Received: by mail-vk0-f47.google.com with SMTP id e185so269507vkb.1
+	for <yocto@yoctoproject.org>; Tue, 19 Jan 2016 23:33:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=FS8Yj2+Rgh+q4m74ZtydrsP343S6WLeLsgjlNT7/Eps=;
+	b=KK2F0ScUto57Yxu2QH+vzn8czMAOeVw034wtyWbo9LjMUn3DTwnE++VhEv2xQW7qW5
+	AuEGwhJOxcquU2xWGXgpMzRkSn77uBuNnzUR1QO/t6k2lIkG85cGEL82Zwa1zk0JSf69
+	ygngiC7jgQJgRexd4SUf4bt5NHH0ISyswh+udFCdxerPOvhfq0m4ojS9ZwXf1rbpuXda
+	xmdrwm04uZWqJurtBKyjFM+zIPi2qyQoLdMcoPy1XYfZOGXw9lybxZii7lynvFEdrQM1
+	e5CTCeVk8x1JzX2eZ8GANEBYKnPRrhw/BBmNuRfy6h1RDbpwSnuNq3ZbP6FFH82pYMJO
+	mG5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=FS8Yj2+Rgh+q4m74ZtydrsP343S6WLeLsgjlNT7/Eps=;
+	b=WIdf6bcx5Hj/ndRQHUlc+V4ZEykz9kikMYgcQZT51OuVu2OhtrQIYdZPVRFDokFX4s
+	CnbtYQBtmPA2w5Eb0UClGW9MT8NUl1EKYzf6AOhvGFXM/Pe3NeicVGeDyL5iSP9FXeq+
+	1RbHoLW0StKUGVqW3vrjzzE5D2JUgoqAmWd4T6fv3w+68XQm73zl875IYSsudm6Y9kZq
+	EJIcbwId2h2SCrA5faaRiR+F4ZrmmrdHO9l+PvCYnuxioctvBViGpNxFXUCAg4ywMmMS
+	WVpGptAYLn5XUd5savdvQLE3vwT7Mgs+TDB5SetNBiUahCf3FbWExmd2POJfZV7U5LW0
+	WQNA==
+X-Gm-Message-State: ALoCoQlBiC3IoDDt2wSmmZDyFwUIZND6VLmKQNIpCQs1/96SeQa2BkxOwxC8SsAzAwYLyi7nsTjlcGczTV1tssKqD44D+RgQrQ==
 MIME-Version: 1.0
-X-Priority: 3
-X-MSMail-Priority: Normal
-Importance: Normal
-X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
-X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
-X-OriginalArrivalTime: 20 Jan 2016 05:25:20.0495 (UTC)
-	FILETIME=[F478A7F0:01D15342]
-Subject: Modify U-Boot without forking source
+X-Received: by 10.31.49.210 with SMTP id x201mr23314113vkx.81.1453275213195;
+	Tue, 19 Jan 2016 23:33:33 -0800 (PST)
+Received: by 10.31.229.71 with HTTP; Tue, 19 Jan 2016 23:33:33 -0800 (PST)
+Date: Wed, 20 Jan 2016 13:03:33 +0530
+Message-ID: <CALLyC8Sr5oGiUvTB4X0uWJmDii4rZmcxqmM9pKQTVAAxOYfp9Q@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: when two append/inc files are there which one it will prefer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,162 +67,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jan 2016 05:25:23 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00B9_01D15319.0ADDC950"
+X-List-Received-Date: Wed, 20 Jan 2016 07:33:35 -0000
+Content-Type: multipart/alternative; boundary=001a1143873ed7eff60529bf000f
 
-------=_NextPart_000_00B9_01D15319.0ADDC950
-Content-Type: text/plain; charset="UTF-8"
+--001a1143873ed7eff60529bf000f
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+     This must very basic question but i want to know if i have two
+.bbappend / .inc files are present in different layer. yocto prefer which
+.bbappend/.inc file? from layer  priority comes in to picture.
+
+
+thanks and regards
+vivek
+
+--001a1143873ed7eff60529bf000f
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 =C2=A0This must very basic question =
+but i want to know if i have two .bbappend / .inc files are present in diff=
+erent layer. yocto prefer which .bbappend/.inc file? from layer =C2=A0prior=
+ity comes in to picture.</div><div><br></div><div><br></div><div>thanks and=
+ regards</div><div>vivek =C2=A0</div></div>
 
-Is there a way of modifying U-Boot config without actually =
-forking/branching its source? E.g. through a .bbapend or something, =
-similar to how I change the kernel configuration. An example:
-
-In my custom machine .conf file, I have:
-
-UBOOT_MACHINE =3D =E2=80=9Cxilinx_zynqmp_ep_defconfig=E2=80=9D
-
-That xilinx_zynqmp_ep_defconfig is here:
-http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zynqmp_ep_=
-defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD
-
-However, I want to create my own config file for U-Boot rather than =
-using xilinx_zynqmp_ep_defconfig. And inside that file, I could then =
-change this:
-
-CONFIG_DEFAULT_DEVICE_TREE=3D"zynqmp-ep108"
-
-to
-
-CONFIG_DEFAULT_DEVICE_TREE=3D"my_own_device_tree"
-
-Or something similar. Is this possible? Also, if it is, where should =
-=E2=80=9Cmy_own_device_tree=E2=80=9D file used in the example reside? It =
-looks like U-Boot only looks inside its source (e.g. /arch/arm/dts) for =
-those files.
-
-Thanks,
-Josias
-
-------=_NextPart_000_00B9_01D15319.0ADDC950
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<HTML><HEAD>
-<STYLE><!--
-.hmmessage P
-{
-margin:0px;
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt;
-font-family:Calibri
-}
---></STYLE>
-</HEAD>
-<BODY dir=3Dltr class=3Dhmmessage>
-<DIV dir=3Dltr>
-<DIV style=3D"FONT-FAMILY: 'Arial'; COLOR: #000000; FONT-SIZE: 10pt">
-<DIV=20
-style=3D"FONT-STYLE: normal; DISPLAY: inline; FONT-FAMILY: 'Calibri'; =
-COLOR: #000000; FONT-SIZE: small; FONT-WEIGHT: normal; TEXT-DECORATION: =
-none">
-<DIV dir=3Dltr><SPAN>Hi all,</SPAN></DIV>
-<DIV dir=3Dltr><SPAN></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN>Is there a way of modifying U-Boot config without =
-actually=20
-forking/branching its source? E.g. through a .bbapend or something, =
-similar to=20
-how I change the kernel configuration. </SPAN><SPAN><FONT size=3D2 =
-face=3DArial>An=20
-example:</FONT></SPAN></DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 =
-face=3DArial></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>In my custom machine =
-.conf file, I=20
-have:</FONT></SPAN></DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 =
-face=3DArial></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>UBOOT_MACHINE =3D=20
-=E2=80=9Cxilinx_zynqmp_ep_defconfig=E2=80=9D</FONT></SPAN></DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 =
-face=3DArial></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN><FONT size=3D2 face=3DArial>That =
-xilinx_zynqmp_ep_defconfig is=20
-here:</FONT></SPAN></DIV>
-<DIV dir=3Dltr><A=20
-title=3Dhttp://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zy=
-nqmp_ep_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD =
-
-href=3D"http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zy=
-nqmp_ep_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD"=
->http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3Dconfigs/xilinx_zynqmp_ep=
-_defconfig;h=3Ddd2a9edffb8154f5722ca441ed97902ae557c279;hb=3DHEAD</A></DI=
-V>
-<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
-<DIV dir=3Dltr><FONT size=3D2 face=3DArial>However, I want to create my =
-own config=20
-file for U-Boot rather than using xilinx_zynqmp_ep_defconfig. And inside =
-that=20
-file, I could then change this:</FONT></DIV>
-<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New"><FONT=20
-style=3D"FONT-SIZE: =
-9pt">CONFIG_DEFAULT_DEVICE_TREE=3D"zynqmp-ep108"</FONT></FONT></SPAN></DI=
-V>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New">to</FONT></SPAN></DIV>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New"><FONT=20
-style=3D"FONT-SIZE: =
-9pt">CONFIG_DEFAULT_DEVICE_TREE=3D"my_own_device_tree"</FONT></FONT></SPA=
-N></DIV>
-<DIV dir=3Dltr><SPAN=20
-style=3D"LINE-HEIGHT: normal; WIDOWS: 1; TEXT-TRANSFORM: none; =
-TEXT-INDENT: 0px; DISPLAY: inline !important; FONT-FAMILY: ; =
-WHITE-SPACE: pre; FLOAT: none; LETTER-SPACING: normal; WORD-SPACING: =
-0px; -webkit-text-stroke-width: 0px"><FONT=20
-face=3D"Courier New"></FONT></SPAN>&nbsp;</DIV>
-<DIV dir=3Dltr><FONT face=3DArial><FONT style=3D"FONT-SIZE: 10pt">Or =
-something=20
-similar. Is this possible? Also, if it is, where should =
-=E2=80=9Cmy_own_device_tree=E2=80=9D=20
-file used in the example reside? It looks like U-Boot only looks inside =
-its=20
-source (e.g. /arch/arm/dts) for those files.</FONT></FONT></DIV>
-<DIV dir=3Dltr><FONT size=3D2 face=3DArial></FONT>&nbsp;</DIV>
-<DIV dir=3Dltr><FONT size=3D2 face=3DArial>Thanks,</FONT></DIV>
-<DIV dir=3Dltr><FONT size=3D2=20
-face=3DArial>Josias</FONT></DIV></DIV></DIV></DIV></BODY></HTML>
-
-------=_NextPart_000_00B9_01D15319.0ADDC950--
+--001a1143873ed7eff60529bf000f--
