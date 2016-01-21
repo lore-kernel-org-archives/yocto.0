@@ -1,35 +1,69 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E911E00973; Thu, 21 Jan 2016 07:19:25 -0800 (PST)
+	id 329BAE007B5; Thu, 21 Jan 2016 12:39:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 955AEE00833
-	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 07:19:21 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 7A46868A01C; Thu, 21 Jan 2016 15:19:19 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 2E1D868A01A;
-	Thu, 21 Jan 2016 15:19:18 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id AB3756742404;
-	Thu, 21 Jan 2016 16:19:17 +0100 (CET)
-To: akuster808 <akuster808@gmail.com>, yocto@yoctoproject.org
-References: <569F460F.2050500@mlbassoc.com> <56A0F160.2070406@gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56A0F6F5.6030208@mlbassoc.com>
-Date: Thu, 21 Jan 2016 16:19:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-In-Reply-To: <56A0F160.2070406@gmail.com>
-Subject: Re: Building with ltdl
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.50 listed in list.dnswl.org]
+Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
+	[209.85.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03BA8E0045F
+	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 12:39:00 -0800 (PST)
+Received: by mail-pa0-f50.google.com with SMTP id uo6so29382794pac.1
+	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 12:39:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version;
+	bh=dU3HMJPHKQWqZEpFv2Ee7yEFIaKrU+nbwnOCDwdFoBI=;
+	b=XmhP6Zkn9mIjRUlcymyieuMU61TZIzTokrJaqbolgtHNy3sWvm6gid0bOtHLveS0ny
+	QKf7KVftWTstiPqYLP6ESNl0lcYqx0v+G/NEQS+u+vJdst8S5OIV2hW0hr58ZdbfMVGm
+	A7j5gEolWSjoKLzhpa4pQI6Om6CH4rbjhvuYpISmoy5aGqKHASZ2p4u1s9D3a5Nr4QMX
+	/jtkHmUJ+EsKnW/WqzuAVGFTHH16+p0pIKrYS730u889Dfkmal40RmkQp8It5e1ZuCX3
+	nQ1IEgcreh9MnOC3Gh6QCPGCdiI0rR822GsHTAbHTooMD12+/OAId5Xb2+G532jfvQk1
+	ZG7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:content-type:subject:date:message-id:to
+	:mime-version;
+	bh=dU3HMJPHKQWqZEpFv2Ee7yEFIaKrU+nbwnOCDwdFoBI=;
+	b=RDWYT+6wFRjJWTToRyg7nT+mVGKIfgIZw6rRRnyJrhU35FloWFvEyCRW7at/gvo3K4
+	fY/V1N3YTUsPhe4+0EMbxnb+ViSr/piRB/xaYANCm/iwlUIft5Nas59SB5rJhzC/Eim+
+	/GaCJJa7dsyMDJIaJmtV5q182HAtprKUnjuXZ8u5m6Up6EExIity//56sniojOsykoE2
+	Mj0ptGYfgfBerCDKUQFCm2Hgo45bw/l0k39V9pqjoNZfBp/uzl0p+qWuystKlvC4Aqzr
+	QWN+i8x1eYPtrCHvxDmPDnArjfLcElyjpDYC0D3DUrWAK9g+4pQYRFplQENkMlPx65dH
+	glrQ==
+X-Gm-Message-State: ALoCoQmJ0j3IUTAMOcJCIgyrvZcvyJrr0TI59K/0mtNMkI6K8ujmXoPaMFzyI99inM+AhsdJH1irprEhDQtuxJYR0+9wva7qQA==
+X-Received: by 10.66.65.203 with SMTP id z11mr63713905pas.152.1453408740134;
+	Thu, 21 Jan 2016 12:39:00 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:153d:39b8:c78:68fa?
+	([2601:646:8802:5d5c:153d:39b8:c78:68fa])
+	by smtp.gmail.com with ESMTPSA id
+	r15sm4546296pfr.59.2016.01.21.12.38.58
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 21 Jan 2016 12:38:59 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+X-Pgp-Agent: GPGMail 2.6b2
+Date: Thu, 21 Jan 2016 12:38:53 -0800
+Message-Id: <27913D31-C426-4F79-B305-92401B7860E0@gmail.com>
+To: OE Core mailing list <openembedded-core@lists.openembedded.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Mailer: Apple Mail (2.3112)
+Subject: meta-openwrt layer is available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,144 +75,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jan 2016 15:19:25 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Thu, 21 Jan 2016 20:39:04 -0000
+X-Groupsio-MsgNum: 28065
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=us-ascii
 
-On 01/21/2016 03:55 PM, akuster808 wrote:
->
->
-> On 01/20/2016 12:32 AM, Gary Thomas wrote:
->> I'm trying to build a project (graphviz) which wants to use ltdl
->> which is part of libtool.  However when I try to build, I get
->> these errors (during configure):
->
-> This did build for me a while back. I have a meta-layer that created a
-> long time ago.  Current master fails for me too. I will try fido and
-> jethro to help narrow what are the issue may be in.
+Hi all
 
-That would be great, thanks.
+A new layer for openwrt packages is available
 
-BTW, I did make some progress here by removing the 'm4' and 'libltdl' directories
-from the source tarball before running configure.  I then ran into a cross-compile
-problem in lib/gvpr where it runs a [host] program to generate some include files
-but the program is being built with the wrong [target] tools.  Any ideas on how
-to fix that would also be great.
+https://github.com/kraj/meta-openwrt
 
->>
->> | NOTE: Executing ACLOCAL="aclocal
->> --system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/"
->> autoreconf --verbose --install --force --exclude=autopoint -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/
->> -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
->>
->> | autoreconf: Entering directory `.'
->> | autoreconf: configure.ac: not using Gettext
->> | autoreconf: running: aclocal
->> --system-acdir=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/aclocal-copy/
->> -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/
->> -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
->> -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/
->> -I
->> /local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
->> --force -I m4
->> | autoreconf: configure.ac: tracing
->> | autoreconf: configure.ac: adding subdirectory libltdl to autoreconf
->> | autoreconf: Entering directory `libltdl'
->> | autoreconf: running: libtoolize --copy --force --ltdl
->> | libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'config'.
->> | libtoolize: copying file 'config/compile'
->> | libtoolize: copying file 'config/config.guess'
->> | libtoolize: copying file 'config/config.sub'
->> | libtoolize: copying file 'config/depcomp'
->> | libtoolize: copying file 'config/install-sh'
->> | libtoolize: copying file 'config/missing'
->> | libtoolize: copying file 'config/ltmain.sh'
->> | libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
->> | libtoolize: copying file 'm4/libtool.m4'
->> | libtoolize: You should add the contents of 'm4/libtool.m4' to
->> 'aclocal.m4'.
->> | libtoolize: copying file 'm4/ltargz.m4'
->> | libtoolize: You should add the contents of 'm4/ltargz.m4' to
->> 'aclocal.m4'.
->> | libtoolize: copying file 'm4/ltdl.m4'
->> | libtoolize: You should add the contents of 'm4/ltdl.m4' to 'aclocal.m4'.
->> | libtoolize: copying file 'm4/ltoptions.m4'
->> | libtoolize: You should add the contents of 'm4/ltoptions.m4' to
->> 'aclocal.m4'.
->> | libtoolize: copying file 'm4/ltsugar.m4'
->> | libtoolize: You should add the contents of 'm4/ltsugar.m4' to
->> 'aclocal.m4'.
->> | libtoolize: copying file 'm4/ltversion.m4'
->> | libtoolize: copying file 'm4/lt~obsolete.m4'
->> | libtoolize: You should add the contents of 'm4/lt~obsolete.m4' to
->> 'aclocal.m4'.
->> | libtoolize: putting libltdl files in LT_CONFIG_LTDL_DIR, '.'.
->> | libtoolize: copying file './COPYING.LIB'
->> | libtoolize: creating file './Makefile.am'
->> | libtoolize: copying file './README'
->> | libtoolize: creating file './configure.ac'
->> | libtoolize: creating file './aclocal.m4'
->> | libtoolize: creating file './Makefile.in'
->> | libtoolize: copying file './config-h.in'
->> | libtoolize: creating file './configure'
->> | libtoolize: copying file './libltdl/lt__alloc.h'
->> | libtoolize: copying file './libltdl/lt__argz_.h'
->> | libtoolize: copying file './libltdl/lt__dirent.h'
->> | libtoolize: copying file './libltdl/lt__glibc.h'
->> | libtoolize: copying file './libltdl/lt__private.h'
->> | libtoolize: copying file './libltdl/lt__strl.h'
->> | libtoolize: copying file './libltdl/lt_dlloader.h'
->> | libtoolize: copying file './libltdl/lt_error.h'
->> | libtoolize: copying file './libltdl/lt_system.h'
->> | libtoolize: copying file './libltdl/slist.h'
->> | libtoolize: copying file './loaders/dld_link.c'
->> | libtoolize: copying file './loaders/dlopen.c'
->> | libtoolize: copying file './loaders/dyld.c'
->> | libtoolize: copying file './loaders/load_add_on.c'
->> | libtoolize: copying file './loaders/loadlibrary.c'
->> | libtoolize: copying file './loaders/preopen.c'
->> | libtoolize: copying file './loaders/shl_load.c'
->> | libtoolize: copying file './lt__alloc.c'
->> | libtoolize: copying file './lt__argz.c'
->> | libtoolize: copying file './lt__dirent.c'
->> | libtoolize: copying file './lt__strl.c'
->> | libtoolize: copying file './lt_dlloader.c'
->> | libtoolize: copying file './lt_error.c'
->> | libtoolize: copying file './ltdl.c'
->> | libtoolize: copying file './ltdl.h'
->> | libtoolize: copying file './slist.c'
->> | libtoolize: Remember to add 'LTDL_INIT' to configure.ac.
->> | autoreconf: running:
->> /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoconf
->> --include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/
->> --include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
->> --force
->> | autoreconf: running:
->> /local/p0382_2016-01-13/tmp/sysroots/x86_64-linux/usr/bin/autoheader
->> --include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/
->> --include=/local/p0382_2016-01-13/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/graphviz-2.38.0/m4/
->> --force
->> | autoreconf: running: automake --add-missing --copy --force-missing
->> | configure.ac:76: error: required file './argz.c' not found
->> | autoreconf: automake failed with exit status: 1
->>
->> The original sources has a libltdl directory with argz.c but this
->> is being overwritten during the autoreconf process.
->>
->> Any suggestions on how I get this to work?
->>
->> Thanks
->>
+This is aimed at providing OE metadata for packages which are unique to
+openwrt. Currently it does not contain recipes for all possible packages
+but if you have one or are housing them in different layers please feel free
+to move them to this layer
+
+The layer index URI is
+
+http://layers.openembedded.org/layerindex/branch/master/layer/meta-openwrt/
+
+Thanks
+-Khem
 
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlahQeEACgkQuwUzVZGdMxRleQCcDhfw+GyEROtC+hK6UZi5Gx3Z
+KaQAnjiQv2heI9oOoiBLiRn4H1rYfSBk
+=0Gq+
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3--
