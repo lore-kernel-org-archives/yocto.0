@@ -1,69 +1,44 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <srae@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 329BAE007B5; Thu, 21 Jan 2016 12:39:04 -0800 (PST)
+	id 6D65DE007F2; Thu, 21 Jan 2016 14:16:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URI_HEX autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [216.31.210.63 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.50 listed in list.dnswl.org]
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03BA8E0045F
-	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 12:39:00 -0800 (PST)
-Received: by mail-pa0-f50.google.com with SMTP id uo6so29382794pac.1
-	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 12:39:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:to:mime-version;
-	bh=dU3HMJPHKQWqZEpFv2Ee7yEFIaKrU+nbwnOCDwdFoBI=;
-	b=XmhP6Zkn9mIjRUlcymyieuMU61TZIzTokrJaqbolgtHNy3sWvm6gid0bOtHLveS0ny
-	QKf7KVftWTstiPqYLP6ESNl0lcYqx0v+G/NEQS+u+vJdst8S5OIV2hW0hr58ZdbfMVGm
-	A7j5gEolWSjoKLzhpa4pQI6Om6CH4rbjhvuYpISmoy5aGqKHASZ2p4u1s9D3a5Nr4QMX
-	/jtkHmUJ+EsKnW/WqzuAVGFTHH16+p0pIKrYS730u889Dfkmal40RmkQp8It5e1ZuCX3
-	nQ1IEgcreh9MnOC3Gh6QCPGCdiI0rR822GsHTAbHTooMD12+/OAId5Xb2+G532jfvQk1
-	ZG7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:content-type:subject:date:message-id:to
-	:mime-version;
-	bh=dU3HMJPHKQWqZEpFv2Ee7yEFIaKrU+nbwnOCDwdFoBI=;
-	b=RDWYT+6wFRjJWTToRyg7nT+mVGKIfgIZw6rRRnyJrhU35FloWFvEyCRW7at/gvo3K4
-	fY/V1N3YTUsPhe4+0EMbxnb+ViSr/piRB/xaYANCm/iwlUIft5Nas59SB5rJhzC/Eim+
-	/GaCJJa7dsyMDJIaJmtV5q182HAtprKUnjuXZ8u5m6Up6EExIity//56sniojOsykoE2
-	Mj0ptGYfgfBerCDKUQFCm2Hgo45bw/l0k39V9pqjoNZfBp/uzl0p+qWuystKlvC4Aqzr
-	QWN+i8x1eYPtrCHvxDmPDnArjfLcElyjpDYC0D3DUrWAK9g+4pQYRFplQENkMlPx65dH
-	glrQ==
-X-Gm-Message-State: ALoCoQmJ0j3IUTAMOcJCIgyrvZcvyJrr0TI59K/0mtNMkI6K8ujmXoPaMFzyI99inM+AhsdJH1irprEhDQtuxJYR0+9wva7qQA==
-X-Received: by 10.66.65.203 with SMTP id z11mr63713905pas.152.1453408740134;
-	Thu, 21 Jan 2016 12:39:00 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:153d:39b8:c78:68fa?
-	([2601:646:8802:5d5c:153d:39b8:c78:68fa])
-	by smtp.gmail.com with ESMTPSA id
-	r15sm4546296pfr.59.2016.01.21.12.38.58
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 21 Jan 2016 12:38:59 -0800 (PST)
-From: Khem Raj <raj.khem@gmail.com>
-X-Pgp-Agent: GPGMail 2.6b2
-Date: Thu, 21 Jan 2016 12:38:53 -0800
-Message-Id: <27913D31-C426-4F79-B305-92401B7860E0@gmail.com>
-To: OE Core mailing list <openembedded-core@lists.openembedded.org>,
-	openembeded-devel <openembedded-devel@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Mailer: Apple Mail (2.3112)
-Subject: meta-openwrt layer is available
+	*      [score: 0.0083]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Jan 2016 14:16:55 PST
+Received: from mail-gw2-out.broadcom.com (mail-gw2-out.broadcom.com
+	[216.31.210.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6B53E007B5
+	for <yocto@yoctoproject.org>; Thu, 21 Jan 2016 14:16:55 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.22,327,1449561600"; d="scan'208";a="86136812"
+Received: from irvexchcas08.broadcom.com (HELO
+	IRVEXCHCAS08.corp.ad.broadcom.com) ([10.9.208.57])
+	by mail-gw2-out.broadcom.com with ESMTP; 21 Jan 2016 14:57:37 -0800
+Received: from IRVEXCHSMTP1.corp.ad.broadcom.com (10.9.207.51) by
+	IRVEXCHCAS08.corp.ad.broadcom.com (10.9.208.57) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Thu, 21 Jan 2016 14:15:51 -0800
+Received: from mail-irva-13.broadcom.com (10.10.10.20) by
+	IRVEXCHSMTP1.corp.ad.broadcom.com (10.9.207.51) with Microsoft SMTP
+	Server id 14.3.235.1; Thu, 21 Jan 2016 14:15:51 -0800
+Received: from [10.136.4.105] (unknown [10.136.4.105])	by
+	mail-irva-13.broadcom.com (Postfix) with ESMTP id AC64540FE9;
+	Thu, 21 Jan 2016 14:12:00 -0800 (PST)
+Message-ID: <56A15895.3050508@broadcom.com>
+Date: Thu, 21 Jan 2016 14:15:49 -0800
+From: Steve Rae <srae@broadcom.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+Subject: [Hob] failed to add "packagegroup-core-full-cmdline" properly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,50 +50,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jan 2016 20:39:04 -0000
-X-Groupsio-MsgNum: 28065
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3
+X-List-Received-Date: Thu, 21 Jan 2016 22:16:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hi all
+- using jethro
+Running Hob:
+- machine = raspberrypi2
+- image = core-image-sato
+- edit image recipe - include: packagegroup-core-full-cmdline
+Build packages: is successful (1997 packages)
+Build image: fails (right at the start) with:
+       Nothing RPROVIDES 'liborc-test-0.4' (but 
+/home/srae/work/poky/hob/recipes/images/core-image-sato-edited-20160121-140708.bb 
+RDEPENDS on or otherwise requires it)
 
-A new layer for openwrt packages is available
+Any ideas?
+Thanks in advance, Steve
 
-https://github.com/kraj/meta-openwrt
-
-This is aimed at providing OE metadata for packages which are unique to
-openwrt. Currently it does not contain recipes for all possible packages
-but if you have one or are housing them in different layers please feel free
-to move them to this layer
-
-The layer index URI is
-
-http://layers.openembedded.org/layerindex/branch/master/layer/meta-openwrt/
-
-Thanks
--Khem
-
-
---Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlahQeEACgkQuwUzVZGdMxRleQCcDhfw+GyEROtC+hK6UZi5Gx3Z
-KaQAnjiQv2heI9oOoiBLiRn4H1rYfSBk
-=0Gq+
------END PGP SIGNATURE-----
-
---Apple-Mail=_5BD983AD-0EF1-478D-87E4-49C631F35CB3--
