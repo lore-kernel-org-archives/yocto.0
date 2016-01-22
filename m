@@ -1,73 +1,49 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29A73E009C3; Fri, 22 Jan 2016 07:52:47 -0800 (PST)
+	id 3E5FDE009C3; Fri, 22 Jan 2016 07:59:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1AD8E00928
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 07:52:43 -0800 (PST)
-Received: by mail-io0-f169.google.com with SMTP id 77so91871345ioc.2
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 07:52:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=9xyVoWQTrET0uyJmUsJG4oy4cqqD3ppmXkXBw11SYSQ=;
-	b=Km02gIfHJnlUBHLbNcLdJEMEVH436xvThT5sfobQN7UM+G8487HaXcU7FKGsctcWF4
-	lxNB7a5L83GtNL091dDQq8pGtaIST2vZOqsTcGlJt0JzxRtjdhVPqoIQK3MVux6iyITE
-	OFSRXn2Vm5lr8bE8/A2eTSOj7Jvd7uuC2Te4gav4x1lYbD2811Rgr/Onc+xmEfHvpR3n
-	y4LIjSDRcC6uwpnNz9HCqQqxWjnl5jcJm1F5P3Hb8U9lAI1HQbgCZZVb4F7Ow8d2lzuI
-	wHPxUtOmgxiiiuZ45bHEA1IiXFTcyCeQtL1d+B7NsfTHtlp/Nmfkjr2Oahq3f9VkMG7W
-	UK1A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kergoth-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=9xyVoWQTrET0uyJmUsJG4oy4cqqD3ppmXkXBw11SYSQ=;
-	b=Lo7lLo8m2dnAlh6JiKl2CmHI1g7DRy+00Sd/X4dalpOEAItMYOl3gDK58WYkqUbnYZ
-	WMY9iBQt/2Jqa9bfPS5A6t9d4ivZRzOxr95sSwQE9z6BH/QKn0Pi4aFxjqzMf/TZ8uX2
-	mF0g+7pICcvHFD0LTue9UEgYsup0KHUrqzjLBkZm8BGv4/TVWNJwIlnoNmXBzddXu9Z4
-	JTrommhtaCi/bKL367C0UadSFwSS7584LAMgWxggdxJrA14Crf5YDDvt3Ak+lnFRuiWI
-	qsfQM5Ky/+3UD4phGXOtG/2Zc9t/Y2KClPcMLna52+6j9trzHFpU4HYzqXAz8mj1ueyV
-	G8pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc:content-type;
-	bh=9xyVoWQTrET0uyJmUsJG4oy4cqqD3ppmXkXBw11SYSQ=;
-	b=mO+KzsDTnw1HfNOTqRTA+fXDJLduNjHiSne4dSlXJukpZ/CY9jSEh+6CuhSGjnc7aE
-	iYE12F+pKxTZdBmkxsjaTGDfNH6iPvFlXzYCvfLWaYTp6vffEYx6MNu77VNW1hLtFxql
-	IC2rhRvBFa4/5aC8my6Xt24jPIhHz3uU4Vn3bLneP7188cdtqAxA0UZMAT1i5umRLWsi
-	/UTd5bSRzEXfazUQqb4ndaK2Sa5CxA9/+i+pkXx/cCUBhskbbk48yKU4mx/kE2qcwNYk
-	DGhgKwG9zzTh6zI5MHgi/sG1qVpi+k/n+rT7dADdRj+rcXnM8GvnmwbU+PFDg6yZrwyE
-	JKxg==
-X-Gm-Message-State: AG10YOR1ppATCfNrAI625r3R0IJrzo7McsIHSUu0+eENV1sZNShYFufPL91oM1YtvQvPD5rTGeIVaUNTPVck6w==
-X-Received: by 10.107.28.80 with SMTP id c77mr4828475ioc.98.1453477962706;
-	Fri, 22 Jan 2016 07:52:42 -0800 (PST)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E437E00928
+	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 07:59:40 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga103.jf.intel.com with ESMTP; 22 Jan 2016 07:59:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,331,1449561600"; 
+	d="scan'208,217";a="898949112"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga002.fm.intel.com with ESMTP; 22 Jan 2016 07:59:38 -0800
+Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Fri, 22 Jan 2016 07:59:38 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.2.138]) by
+	ORSMSX112.amr.corp.intel.com ([169.254.3.249]) with mapi id
+	14.03.0248.002; Fri, 22 Jan 2016 07:59:38 -0800
+From: "Randle, William C" <william.c.randle@intel.com>
+To: "Usman, Fahad" <Fahad_Usman@mentor.com>, "yvanderv@opensource.altera.com"
+	<yvanderv@opensource.altera.com>, Khem Raj <raj.khem@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Altera Cyclone V u-boot-spl with meta-altera
+Thread-Index: AQHRVSnENvKlEaMXSUKFyDX4bkCbEZ8Hr2ug
+Date: Fri, 22 Jan 2016 15:59:37 +0000
+Message-ID: <D96972A3E240BC4EACF7427F056A1F40AA7727@ORSMSX105.amr.corp.intel.com>
+References: <56A24847.9030807@mentor.com>
+In-Reply-To: <56A24847.9030807@mentor.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.104.194 with HTTP; Fri, 22 Jan 2016 07:52:22 -0800 (PST)
-In-Reply-To: <56A1D2D1.1060305@mlbassoc.com>
-References: <56A1D2D1.1060305@mlbassoc.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Fri, 22 Jan 2016 08:52:22 -0700
-X-Google-Sender-Auth: L7J-km1NPvvuQCC_QA3MOTLNXxY
-Message-ID: <CABcZANn0aCBu2PsMHGmSmOny6WZ5djeFEYA87YzyK0Ahp4eNLQ@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Fixing packaging errors
+Subject: Re: Altera Cyclone V u-boot-spl with meta-altera
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,177 +55,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jan 2016 15:52:47 -0000
-Content-Type: multipart/alternative; boundary=001a11409b18a7f49c0529ee3557
+X-List-Received-Date: Fri, 22 Jan 2016 15:59:44 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D96972A3E240BC4EACF7427F056A1F40AA7727ORSMSX105amrcorpi_"
 
---001a11409b18a7f49c0529ee3557
-Content-Type: text/plain; charset=UTF-8
+--_000_D96972A3E240BC4EACF7427F056A1F40AA7727ORSMSX105amrcorpi_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Jan 21, 2016 at 11:57 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+SeKAmW0gbm90IGF3YXJlIG9mIGEgdG9vbCBvdXRzaWRlIG9mIEFsdGVyYeKAmXMgRURTIG1rcGlt
+YWdlLiBXaGF0IEkgZW5kZWQgdXAgZG9pbmcgd2FzIGluc3RhbGxpbmcgYSBzdWJzZXQgb2YgdGhl
+IEVEUyB0b29scyAobWtwaW1hZ2UgYW5kIHRoZSBqcmUgZGlyZWN0b3J5KSwgdGhlbiB0d2Vha2Vk
+IHRoZSB1LWJvb3Qgc3BsL01ha2VmaWxlIHRvIGF1dG9tYXRpY2FsbHkgaW52b2tlIG1rcGltYWdl
+IHRvIGNyZWF0ZSB0aGUgcHJlbG9hZGVyLiBJIGFsc28gdHdlYWtlZCB0aGUgbWV0YS1hbHRlcmEg
+dS1ib290LXNvY2ZwZ2EuaW5jIGRvX2RlcGxveSgpIHJ1bGVzIHRvIGNvcHkgdGhlIG5ld2x5IGJ1
+aWx0IHByZWxvYWRlci1ta3BpbWFnZS0qIGZpbGVzIHRvIHRoZSBkZXBsb3kgZGlyZWN0b3J5Lg0K
+DQpJ4oCZZCBiZSBoYXBweSB0byBzZW5kIHRob3NlIHRvIHlvdSwgaWYgeW914oCZcmUgaW50ZXJl
+c3RlZC4gTGlrZXdpc2UsIGlmIHlvdSBmaW5kIGEgdGhpcmQgcGFydHkgdG9vbCB0byBhZGQgdGhl
+IHByZWxvYWRlciBpbWFnZSBoZWFkZXIsIGxldCBtZSBrbm93Lg0KDQogICAgLUJpbGwNCg0KRnJv
+bTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5
+b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgVXNtYW4sIEZhaGFkDQpTZW50OiBGcmlkYXks
+IEphbnVhcnkgMjIsIDIwMTYgNzoxOSBBTQ0KVG86IHl2YW5kZXJ2QG9wZW5zb3VyY2UuYWx0ZXJh
+LmNvbTsgS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5v
+cmcNClN1YmplY3Q6IFt5b2N0b10gQWx0ZXJhIEN5Y2xvbmUgViB1LWJvb3Qtc3BsIHdpdGggbWV0
+YS1hbHRlcmENCg0KSGksIEkgYW0gdXNpbmcgbWV0YS1hbHRlcmEgbGF5ZXIgKGh0dHBzOi8vZ2l0
+aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhKSB0byBidWlsZCB1LWJvb3QgZm9yIEFsdGVyYSBDeWNs
+b25lIFYgc29jZnBnYSBib2FyZC4gQnVpbGRpbmcgdGhlIHUtYm9vdC1zb2NmcGdhXzIwMTMuMDEu
+MDEgcmVjaXBlIGRvZXMgZ2VuZXJhdGUgdGhlIHUtYm9vdC1zcGwgYmluYXJ5LCBidXQgaXQgY2Fu
+bm90IGJlIGRpcmVjdGx5IHVzZWQgb24gdGhlIGJvYXJkIGFzIGl0IGhhcyB0byBiZSBzaWduZWQg
+dXNpbmcgQWx0ZXJhJ3MgdG9vbCAibWtwaW1hZ2UiIHRoYXQgY29tZXMgd2l0aCBBbHRlcmEncyB0
+b29sc2V0IChTb0MgRURTPGh0dHA6Ly9yb2NrZXRib2FyZHMub3JnL2Zvc3dpa2kvdmlldy9Eb2N1
+bWVudGF0aW9uL0FsdGVyYVNvQ0RldmVsb3BtZW50Qm9hcmRZb2N0b0dldHRpbmdTdGFydGVkI1Nv
+Q19FRFM+KS4NCg0KSXMgdGhlcmUgYSB3YXkgdG8gcHJvZHVjZSBhIHNpZ25lZCB1LWJvb3Qtc3Bs
+IGltYWdlIGR1cmluZyB0aGUgYnVpbGQsIHRoYXQgY2FuIGJlIHVzZWQgZGlyZWN0bHkgb24gdGhl
+IHRhcmdldCB3aXRob3V0IHVzaW5nIHRoZSBFRFM/DQoNClRoYW5rcywNCkZhaGFkLg0K
 
-> ERROR: QA Issue: non -dev/-dbg/nativesdk- package contains symlink .so:
-> graphviz path
-> 'work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/packages-split/graphviz/usr/lib/graphviz/libgvplugin_gd.so'
-> [dev-so]
->
-> Looking at the installed image, I see:
->
-> $ ls -l
-> tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0/image/usr/lib/graphviz/
-> total 3016
-> -rwxr-xr-x 3 gthomas gthomas    1107 Jan 22 07:48 libgvplugin_core.la
-> lrwxrwxrwx 1 gthomas gthomas      25 Jan 22 07:48 libgvplugin_core.so ->
-> libgvplugin_core.so.6.0.0
-> lrwxrwxrwx 1 gthomas gthomas      25 Jan 22 07:48 libgvplugin_core.so.6 ->
-> libgvplugin_core.so.6.0.0
-> -rwxr-xr-x 1 gthomas gthomas  341780 Jan 22 07:48
-> libgvplugin_core.so.6.0.0
-> -rwxr-xr-x 3 gthomas gthomas    1143 Jan 22 07:48
-> libgvplugin_dot_layout.la
-> lrwxrwxrwx 1 gthomas gthomas      31 Jan 22 07:48
-> libgvplugin_dot_layout.so -> libgvplugin_dot_layout.so.6.0.0
-> lrwxrwxrwx 1 gthomas gthomas      31 Jan 22 07:48
-> libgvplugin_dot_layout.so.6 -> libgvplugin_dot_layout.so.6.0.0
-> -rwxr-xr-x 1 gthomas gthomas  616340 Jan 22 07:48
-> libgvplugin_dot_layout.so.6.0.0
-> -rwxr-xr-x 3 gthomas gthomas    1451 Jan 22 07:48 libgvplugin_gd.la
-> lrwxrwxrwx 1 gthomas gthomas      23 Jan 22 07:48 libgvplugin_gd.so ->
-> libgvplugin_gd.so.6.0.0
-> lrwxrwxrwx 1 gthomas gthomas      23 Jan 22 07:48 libgvplugin_gd.so.6 ->
-> libgvplugin_gd.so.6.0.0
-> -rwxr-xr-x 1 gthomas gthomas  141248 Jan 22 07:48 libgvplugin_gd.so.6.0.0
-> -rwxr-xr-x 3 gthomas gthomas    1155 Jan 22 07:48
-> libgvplugin_neato_layout.la
-> lrwxrwxrwx 1 gthomas gthomas      33 Jan 22 07:48
-> libgvplugin_neato_layout.so -> libgvplugin_neato_layout.so.6.0.0
-> lrwxrwxrwx 1 gthomas gthomas      33 Jan 22 07:48
-> libgvplugin_neato_layout.so.6 -> libgvplugin_neato_layout.so.6.0.0
-> -rwxr-xr-x 1 gthomas gthomas 1949008 Jan 22 07:48
-> libgvplugin_neato_layout.so.6.0.0
-> -rwxr-xr-x 3 gthomas gthomas    2504 Jan 22 07:48 libgvplugin_rsvg.la
-> lrwxrwxrwx 1 gthomas gthomas      25 Jan 22 07:48 libgvplugin_rsvg.so ->
-> libgvplugin_rsvg.so.6.0.0
-> lrwxrwxrwx 1 gthomas gthomas      25 Jan 22 07:48 libgvplugin_rsvg.so.6 ->
-> libgvplugin_rsvg.so.6.0.0
-> -rwxr-xr-x 1 gthomas gthomas   10764 Jan 22 07:48
-> libgvplugin_rsvg.so.6.0.0
->
-> I have two questions about this.
-> * What is wrong with the setup of the libgvplugin_gd library
->   and how can I fix it?
->
+--_000_D96972A3E240BC4EACF7427F056A1F40AA7727ORSMSX105amrcorpi_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Generally the .so for a normal library, non-plugin, is only required for
-development. In this case, it's a plugin, so it'll be dlopen'd, so I expect
-you could just opt-out of the QA check in this case.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjsN
+Cgljb2xvcjpibGFjazt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
+YTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFu
+LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
+bWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZh
+dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
+LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
+IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
+cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
+Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IndoaXRlIiBsYW5nPSJFTi1VUyIgbGluaz0i
+Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPknigJltIG5vdCBh
+d2FyZSBvZiBhIHRvb2wgb3V0c2lkZSBvZiBBbHRlcmHigJlzIEVEUyBta3BpbWFnZS4gV2hhdCBJ
+IGVuZGVkIHVwIGRvaW5nIHdhcyBpbnN0YWxsaW5nIGEgc3Vic2V0IG9mIHRoZSBFRFMgdG9vbHMg
+KG1rcGltYWdlIGFuZCB0aGUganJlIGRpcmVjdG9yeSksIHRoZW4NCiB0d2Vha2VkIHRoZSB1LWJv
+b3Qgc3BsL01ha2VmaWxlIHRvIGF1dG9tYXRpY2FsbHkgaW52b2tlIG1rcGltYWdlIHRvIGNyZWF0
+ZSB0aGUgcHJlbG9hZGVyLiBJIGFsc28gdHdlYWtlZCB0aGUgbWV0YS1hbHRlcmEgdS1ib290LXNv
+Y2ZwZ2EuaW5jIGRvX2RlcGxveSgpIHJ1bGVzIHRvIGNvcHkgdGhlIG5ld2x5IGJ1aWx0IHByZWxv
+YWRlci1ta3BpbWFnZS0qIGZpbGVzIHRvIHRoZSBkZXBsb3kgZGlyZWN0b3J5LjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SeKAmWQgYmUgaGFwcHkgdG8gc2VuZCB0
+aG9zZSB0byB5b3UsIGlmIHlvdeKAmXJlIGludGVyZXN0ZWQuIExpa2V3aXNlLCBpZiB5b3UgZmlu
+ZCBhIHRoaXJkIHBhcnR5IHRvb2wgdG8gYWRkIHRoZSBwcmVsb2FkZXIgaW1hZ2UgaGVhZGVyLCBs
+ZXQgbWUga25vdy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPiZu
+YnNwOyZuYnNwOyZuYnNwOyAtQmlsbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8ZGl2Pg0KPGRpdiBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6
+My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOndpbmRvd3RleHQiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6d2luZG93dGV4dCI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlv
+Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+VXNtYW4s
+IEZhaGFkPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgSmFudWFyeSAyMiwgMjAxNiA3OjE5IEFN
+PGJyPg0KPGI+VG86PC9iPiB5dmFuZGVydkBvcGVuc291cmNlLmFsdGVyYS5jb207IEtoZW0gUmFq
+ICZsdDtyYWoua2hlbUBnbWFpbC5jb20mZ3Q7OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFt5b2N0b10gQWx0ZXJhIEN5Y2xvbmUgViB1LWJvb3Qtc3BsIHdpdGgg
+bWV0YS1hbHRlcmE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5IaSwgSSBhbSB1c2luZyBtZXRhLWFsdGVyYSBsYXllciAoPGEgaHJlZj0iaHR0cHM6Ly9naXRo
+dWIuY29tL2tyYWovbWV0YS1hbHRlcmEiPmh0dHBzOi8vZ2l0aHViLmNvbS9rcmFqL21ldGEtYWx0
+ZXJhPC9hPikgdG8gYnVpbGQgdS1ib290IGZvciBBbHRlcmEgQ3ljbG9uZSBWIHNvY2ZwZ2EgYm9h
+cmQuIEJ1aWxkaW5nIHRoZSB1LWJvb3Qtc29jZnBnYV8yMDEzLjAxLjAxIHJlY2lwZSBkb2VzIGdl
+bmVyYXRlIHRoZQ0KIHUtYm9vdC1zcGwgYmluYXJ5LCBidXQgaXQgY2Fubm90IGJlIGRpcmVjdGx5
+IHVzZWQgb24gdGhlIGJvYXJkIGFzIGl0IGhhcyB0byBiZSBzaWduZWQgdXNpbmcgQWx0ZXJhJ3Mg
+dG9vbCAmcXVvdDtta3BpbWFnZSZxdW90OyB0aGF0IGNvbWVzIHdpdGggQWx0ZXJhJ3MgdG9vbHNl
+dCAoPGEgaHJlZj0iaHR0cDovL3JvY2tldGJvYXJkcy5vcmcvZm9zd2lraS92aWV3L0RvY3VtZW50
+YXRpb24vQWx0ZXJhU29DRGV2ZWxvcG1lbnRCb2FyZFlvY3RvR2V0dGluZ1N0YXJ0ZWQjU29DX0VE
+UyI+U29DDQogRURTPC9hPikuIDxicj4NCjxicj4NCklzIHRoZXJlIGEgd2F5IHRvIHByb2R1Y2Ug
+YSBzaWduZWQgdS1ib290LXNwbCBpbWFnZSBkdXJpbmcgdGhlIGJ1aWxkLCB0aGF0IGNhbiBiZSB1
+c2VkIGRpcmVjdGx5IG9uIHRoZSB0YXJnZXQgd2l0aG91dCB1c2luZyB0aGUgRURTPzxicj4NCjxi
+cj4NClRoYW5rcyw8YnI+DQpGYWhhZC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0K
+PC9odG1sPg0K
 
-
-> * All the rest of the libraries are set up the same.  Why don't
->   they get the same error?
->
-
-IIRC there was a bug in the package qa bits which caused later messages to
-suppress earlier due to teh use of a dictionary for the messages (the wrong
-structure for this, no idea why it was done that way). There have been one
-or more patches on teh list for this recently.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a11409b18a7f49c0529ee3557
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Jan 21, 2016 at 11:57 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":er" class=3D"a3s=
-" style=3D"overflow:hidden">ERROR: QA Issue: non -dev/-dbg/nativesdk- packa=
-ge contains symlink .so: graphviz path &#39;work/cortexa9hf-vfp-neon-amltd-=
-linux-gnueabi/graphviz/2.38.0-r0/packages-split/graphviz/usr/lib/graphviz/l=
-ibgvplugin_gd.so&#39; [dev-so]<br>
-<br>
-Looking at the installed image, I see:<br>
-<br>
-$ ls -l tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/graphviz/2.38.0-r0=
-/image/usr/lib/graphviz/<br>
-total 3016<br>
--rwxr-xr-x 3 gthomas gthomas=C2=A0 =C2=A0 1107 Jan 22 07:48 <a href=3D"http=
-://libgvplugin_core.la" rel=3D"noreferrer" target=3D"_blank">libgvplugin_co=
-re.la</a><br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 25 Jan 22 07:48 libgvplugi=
-n_core.so -&gt; libgvplugin_core.so.6.0.0<br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 25 Jan 22 07:48 libgvplugi=
-n_core.so.6 -&gt; libgvplugin_core.so.6.0.0<br>
--rwxr-xr-x 1 gthomas gthomas=C2=A0 341780 <span tabindex=3D"0" class=3D"aBn=
-"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_core.so.6.0.0<=
-br>
--rwxr-xr-x 3 gthomas gthomas=C2=A0 =C2=A0 1143 Jan 22 07:48 <a href=3D"http=
-://libgvplugin_dot_layout.la" rel=3D"noreferrer" target=3D"_blank">libgvplu=
-gin_dot_layout.la</a><br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 31 Jan 22 07:48 libgvplugi=
-n_dot_layout.so -&gt; libgvplugin_dot_layout.so.6.0.0<br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 31 Jan 22 07:48 libgvplugi=
-n_dot_layout.so.6 -&gt; libgvplugin_dot_layout.so.6.0.0<br>
--rwxr-xr-x 1 gthomas gthomas=C2=A0 616340 <span tabindex=3D"0" class=3D"aBn=
-"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_dot_layout.so.=
-6.0.0<br>
--rwxr-xr-x 3 gthomas gthomas=C2=A0 =C2=A0 1451 Jan 22 07:48 <a href=3D"http=
-://libgvplugin_gd.la" rel=3D"noreferrer" target=3D"_blank">libgvplugin_gd.l=
-a</a><br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 23 Jan 22 07:48 libgvplugi=
-n_gd.so -&gt; libgvplugin_gd.so.6.0.0<br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 23 Jan 22 07:48 libgvplugi=
-n_gd.so.6 -&gt; libgvplugin_gd.so.6.0.0<br>
--rwxr-xr-x 1 gthomas gthomas=C2=A0 141248 <span tabindex=3D"0" class=3D"aBn=
-"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_gd.so.6.0.0<br=
->
--rwxr-xr-x 3 gthomas gthomas=C2=A0 =C2=A0 1155 Jan 22 07:48 <a href=3D"http=
-://libgvplugin_neato_layout.la" rel=3D"noreferrer" target=3D"_blank">libgvp=
-lugin_neato_layout.la</a><br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 33 <span tabindex=3D"0" cl=
-ass=3D"aBn"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_neat=
-o_layout.so -&gt; libgvplugin_neato_layout.so.6.0.0<br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 33 <span tabindex=3D"0" cl=
-ass=3D"aBn"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_neat=
-o_layout.so.6 -&gt; libgvplugin_neato_layout.so.6.0.0<br>
--rwxr-xr-x 1 gthomas gthomas 1949008 <span tabindex=3D"0" class=3D"aBn"><sp=
-an class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_neato_layout.so.6.0=
-.0<br>
--rwxr-xr-x 3 gthomas gthomas=C2=A0 =C2=A0 2504 Jan 22 07:48 <a href=3D"http=
-://libgvplugin_rsvg.la" rel=3D"noreferrer" target=3D"_blank">libgvplugin_rs=
-vg.la</a><br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 25 Jan 22 07:48 libgvplugi=
-n_rsvg.so -&gt; libgvplugin_rsvg.so.6.0.0<br>
-lrwxrwxrwx 1 gthomas gthomas=C2=A0 =C2=A0 =C2=A0 25 Jan 22 07:48 libgvplugi=
-n_rsvg.so.6 -&gt; libgvplugin_rsvg.so.6.0.0<br>
--rwxr-xr-x 1 gthomas gthomas=C2=A0 =C2=A010764 <span tabindex=3D"0" class=
-=3D"aBn"><span class=3D"aQJ">Jan 22 07:48</span></span> libgvplugin_rsvg.so=
-.6.0.0<br>
-<br>
-I have two questions about this.<br>
-* What is wrong with the setup of the libgvplugin_gd library<br>
-=C2=A0 and how can I fix it?<br></div></blockquote><div><br></div><div>Gene=
-rally the .so for a normal library, non-plugin, is only required for develo=
-pment. In this case, it&#39;s a plugin, so it&#39;ll be dlopen&#39;d, so I =
-expect you could just opt-out of the QA check in this case.<br></div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><div id=3D":er" class=3D"a3s" st=
-yle=3D"overflow:hidden">
-* All the rest of the libraries are set up the same.=C2=A0 Why don&#39;t<br=
->
-=C2=A0 they get the same error?</div></blockquote></div><br></div><div clas=
-s=3D"gmail_extra">IIRC there was a bug in the package qa bits which caused =
-later messages to suppress earlier due to teh use of a dictionary for the m=
-essages (the wrong structure for this, no idea why it was done that way). T=
-here have been one or more patches on teh list for this recently.<br>-- <br=
-><div class=3D"gmail_signature">Christopher Larson<br>clarson at kergoth do=
-t com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<=
-br>Senior Software Engineer, Mentor Graphics</div>
-</div></div>
-
---001a11409b18a7f49c0529ee3557--
+--_000_D96972A3E240BC4EACF7427F056A1F40AA7727ORSMSX105amrcorpi_--
