@@ -1,46 +1,40 @@
-Return-Path: <machida.yuki@jp.fujitsu.com>
+Return-Path: <Fahad_Usman@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5416E00903; Fri, 22 Jan 2016 01:10:11 -0800 (PST)
+	id 926B5E009C3; Fri, 22 Jan 2016 07:28:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [211.128.242.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 X-Greylist: delayed 604 seconds by postgrey-1.32 at yocto-www;
-	Fri, 22 Jan 2016 01:10:04 PST
-Received: from mgwym04.jp.fujitsu.com (mgwym04.jp.fujitsu.com [211.128.242.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C14CE00803
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 01:10:04 -0800 (PST)
-Received: from yt-mxoi2.gw.nic.fujitsu.com (unknown [192.168.229.69]) by
-	mgwym04.jp.fujitsu.com with smtp
-	id 16b5_3189_2fe4c9e8_b9b6_4002_b2f9_9863816f79a5;
-	Fri, 22 Jan 2016 17:59:49 +0900
-Received: from m3050.s.css.fujitsu.com (msm.b.css.fujitsu.com [10.134.21.208])
-	by yt-mxoi2.gw.nic.fujitsu.com (Postfix) with ESMTP id 24454AC00B0
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 17:59:49 +0900 (JST)
-Received: from omame (omame.fct.css.fujitsu.com [10.24.14.171])
-	by m3050.s.css.fujitsu.com (Postfix) with ESMTP id 1BA6E164;
-	Fri, 22 Jan 2016 17:59:49 +0900 (JST)
-Received: from [10.24.19.86] (ubi86.utsfd.cs.fujitsu.co.jp [10.24.19.86])
-	by omame (Postfix) with ESMTPSA id F37F91E0089;
-	Fri, 22 Jan 2016 17:59:48 +0900 (JST)
-To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <MA1PR01MB0056C008588A2F442A072B6182C30@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-From: Yuki Machida <machida.yuki@jp.fujitsu.com>
-Message-ID: <56A1EF84.80101@jp.fujitsu.com>
-Date: Fri, 22 Jan 2016 17:59:48 +0900
+	Fri, 22 Jan 2016 07:28:48 PST
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09C35E00928
+	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 07:28:48 -0800 (PST)
+Received: from nat-ies.mentorg.com ([192.94.31.2]
+	helo=SVR-IES-FEM-01.mgc.mentorg.com)
+	by relay1.mentorg.com with esmtp 
+	id 1aMdU1-0007fD-SC from Fahad_Usman@mentor.com ;
+	Fri, 22 Jan 2016 07:18:42 -0800
+Received: from [137.202.156.162] (137.202.0.76) by
+	SVR-IES-FEM-01.mgc.mentorg.com (137.202.0.104) with Microsoft SMTP
+	Server (TLS) id 14.3.224.2; Fri, 22 Jan 2016 15:18:40 +0000
+To: <yvanderv@opensource.altera.com>, Khem Raj <raj.khem@gmail.com>,
+	<yocto@yoctoproject.org>
+From: "Usman, Fahad" <Fahad_Usman@mentor.com>
+Message-ID: <56A24847.9030807@mentor.com>
+Date: Fri, 22 Jan 2016 20:18:31 +0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <MA1PR01MB0056C008588A2F442A072B6182C30@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-X-TM-AS-MML: disable
-Subject: Re: Syslog Related testcases are failed in yocto LTP
+X-Originating-IP: [137.202.0.76]
+Subject: Altera Cyclone V u-boot-spl with meta-altera
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,36 +46,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jan 2016 09:10:11 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 22 Jan 2016 15:28:50 -0000
+Content-Type: multipart/alternative;
+	boundary="------------040600070103000300000709"
 
-Hi
+--------------040600070103000300000709
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
- > I build the LTP-2015-01-19 with yocto and I ran the runltp script on my board I got error with the syslog related test cases.
-What it has happen error?
-If it is possible to send a test log,
-I may be able to give any advice for you.
+Hi, I am using meta-altera layer (https://github.com/kraj/meta-altera) 
+to build u-boot for Altera Cyclone V socfpga board. Building the 
+u-boot-socfpga_2013.01.01 recipe does generate the u-boot-spl binary, 
+but it cannot be directly used on the board as it has to be signed using 
+Altera's tool "mkpimage" that comes with Altera's toolset (SoC EDS 
+<http://rocketboards.org/foswiki/view/Documentation/AlteraSoCDevelopmentBoardYoctoGettingStarted#SoC_EDS>). 
 
-Best regard,
-Yuki Machida
-On 2016年01月21日 21:10, Raghavendra Kakarla wrote:
-> Hi All,
->
->
-> I build the LTP-2015-01-19 with yocto and I ran the runltp script on my board I got error with the syslog related test cases.
->
->
-> Could please give me the some info such that I will resolve the issue.
->
->
-> Thanks in advance.
->
->
-> Regards,
->
-> Raghavendra K.
->
->
->
 
+Is there a way to produce a signed u-boot-spl image during the build, 
+that can be used directly on the target without using the EDS?
+
+Thanks,
+Fahad.
+
+--------------040600070103000300000709
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hi, I am using meta-altera layer
+    (<a class="moz-txt-link-freetext" href="https://github.com/kraj/meta-altera">https://github.com/kraj/meta-altera</a>) to build u-boot for Altera
+    Cyclone V socfpga board. Building the u-boot-socfpga_2013.01.01
+    recipe
+    does generate the u-boot-spl binary, but it cannot be directly used
+    on the board as it has to be signed using Altera's tool "mkpimage"
+    that comes with Altera's toolset (<a
+href="http://rocketboards.org/foswiki/view/Documentation/AlteraSoCDevelopmentBoardYoctoGettingStarted#SoC_EDS">SoC
+
+      EDS</a>). <br>
+    <br>
+    Is there a way to produce a signed u-boot-spl image during the
+    build, that can be used directly on the target without using the
+    EDS?<br>
+    <br>
+    Thanks,<br>
+    Fahad.<br>
+  </body>
+</html>
+
+--------------040600070103000300000709--
