@@ -1,6 +1,6 @@
 Return-Path: <jon.szymaniak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 449F8E0079A; Fri, 22 Jan 2016 12:31:32 -0800 (PST)
+	id 2AFFFE007B5; Fri, 22 Jan 2016 12:33:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (jon.szymaniak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +17,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A8FE00444
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 12:31:28 -0800 (PST)
-Received: by mail-wm0-f53.google.com with SMTP id 123so28258862wmz.0
-	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 12:31:28 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B601E00444
+	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 12:33:36 -0800 (PST)
+Received: by mail-wm0-f54.google.com with SMTP id u188so32425677wmu.1
+	for <yocto@yoctoproject.org>; Fri, 22 Jan 2016 12:33:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=B13MTm38cGt3ukIXz+29a6CPjApDUCRBif0A9496Elg=;
-	b=YAX2uQDrG/ZsEwdJz4IcCfT8CZRT29UbsgxHCQHk3H1zCj+i5EBysAfUv4IBTvF3/S
-	jQ/6IaMq8fzEm34iBsGartR8aGSy4i0LRa09zFdulaDKyYo2KlObUEWQsW5kaRMW85GD
-	PLuYQIxxKsCYVYIV1+jxvwEel5ZBeLUNmLW/qh2BZEvxR9YtzA77BB+Vw5APssa51//j
-	jig50rO6KYtpiLCAvRWj1k644RgwLPsTcS8IFJt5Mr954FYzz2ULLFZkbu+NihWUFcAF
-	kG94qNpQqz86QbLaMAKRRX8zd/+CYC3REbuWgPV25GZM7Nil3DXGh+D69U6IWZGEUXqe
-	hzcg==
+	bh=n2bZ41XfdXqepNmVN+Hi9K3b/cKO/KsdZRjgTu4f9Tw=;
+	b=jfEDIvu2JeY9PEEWu4jkNOG23ZE/su2uW5+TbSRAUKfLGDz3UGe1SzHl5zbHZdYfUV
+	A+Hbb97i7sNP2P43dhog9cb++LYKPAgXnLpzPCDXgTljtIvkWsLB7RN/Yv6M4idAJX63
+	BxceL9cJO1hJkvytOiao4dSv1Wj4SkIYxhNFBkSX/qHfKhCbp7Tb05ph7tLNOYToYGVH
+	19mh7w3Am4G985IXZ+rMt2MNde1UQETwISY34F5bVs3SRUO89NGW3z1aBe68977wwHF5
+	ZUcg/fd2PYbRO/t5XsUuW/p/W3HfBh379QBKfWA1r5Oxv6boVyZN0IzdziLkpsxuEC+R
+	XC9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=B13MTm38cGt3ukIXz+29a6CPjApDUCRBif0A9496Elg=;
-	b=cnFbleXvKrM+nQI41KFu/qI4UYsUsGK/UYZXzY59+h7v7odSpxf9ec1C4Pb7HlkQFO
-	cf9ErxPLVOjo7US4+BpjdDgN+O9Q+6pLMtNeGW8p2z+XuAK2VMpmKoB+NsOEG3jNsqWy
-	dRQl08HASxG6pLekvJkRLA9NpZBNBI/kgAyzJ1tEEqnQkWR+Ct0UySgkIr8RNuYiwQk7
-	IqGY4US0SdxZ8je/6BENCUqk8RprOaJyjI9i1p6HSJial1fYEoPPx27MM8/qn3JjvE0J
-	GIg16lCN0rhSHKMixNR2uMRGo+HemlW0q29t55xEEiEYQvmWOFqa0R/1II7eOgehbWnt
-	bbwQ==
-X-Gm-Message-State: AG10YOQ1WRZ42SLhunLVa1L6fpQ13Drj3k7b0JsiL/dsgDmsJxqLbu1xmLEJ7kyMOwC670N1JI9q33KLwNEUmg==
-X-Received: by 10.28.19.204 with SMTP id 195mr5890746wmt.1.1453494687177; Fri,
-	22 Jan 2016 12:31:27 -0800 (PST)
+	bh=n2bZ41XfdXqepNmVN+Hi9K3b/cKO/KsdZRjgTu4f9Tw=;
+	b=JWb05KwFsF0K5puz0WnCq6n5mGCy+KJtyfEWsVyNLWW51Xf3ycU28CDpP0iZ/To3j9
+	bWs5Wp8SE/BpDRyH9uX+F6nD73Zn6QhfWe8hniJUA0gJun41KHE+OIhM3PKdf7RC9qov
+	UOJhaJKuEtK9Xf4hFdbM18dHfLt9Qygoa6H/JRU2mvnUJUa76m7eRSrgrY7MDf+qvJ96
+	Nzp+20ri+3Trfya+GgZqwf3kWVLYomxXZKtKXbRbhalhGGLrbNjO2GHqEuOlrDC1yA+L
+	7LnTQZkvqy9ZGCyTMOh2PNS5qMD8KZvKYlA3viynFE8qzY6wxOl0wy6H54SPVwTSEPwS
+	+U+Q==
+X-Gm-Message-State: AG10YOR5vOUKZTgxFjm1QkXwPLIaRK5ED3csWsbiENJIkIytK9eZX+uGp49uFAYB4SYxgI4mBJYjh+FDRVkUHA==
+X-Received: by 10.28.19.204 with SMTP id 195mr5898373wmt.1.1453494815507; Fri,
+	22 Jan 2016 12:33:35 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.27.53.2 with HTTP; Fri, 22 Jan 2016 12:31:07 -0800 (PST)
-In-Reply-To: <D96972A3E240BC4EACF7427F056A1F40AA7727@ORSMSX105.amr.corp.intel.com>
+Received: by 10.27.53.2 with HTTP; Fri, 22 Jan 2016 12:33:15 -0800 (PST)
+In-Reply-To: <CANge7vUTDqqVObLvfrp=ePM0HHJuv2uJZG7KbrQg7Zt2BpxfCw@mail.gmail.com>
 References: <56A24847.9030807@mentor.com>
 	<D96972A3E240BC4EACF7427F056A1F40AA7727@ORSMSX105.amr.corp.intel.com>
+	<CANge7vUTDqqVObLvfrp=ePM0HHJuv2uJZG7KbrQg7Zt2BpxfCw@mail.gmail.com>
 From: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Fri, 22 Jan 2016 15:31:07 -0500
-Message-ID: <CANge7vUTDqqVObLvfrp=ePM0HHJuv2uJZG7KbrQg7Zt2BpxfCw@mail.gmail.com>
+Date: Fri, 22 Jan 2016 15:33:15 -0500
+Message-ID: <CANge7vU1AFhZL5eXF2Lp3nmSrCVJYFXCv-8pqjuHduoWH=F-0A@mail.gmail.com>
 To: "Randle, William C" <william.c.randle@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"yvanderv@opensource.altera.com" <yvanderv@opensource.altera.com>
@@ -72,56 +73,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jan 2016 20:31:32 -0000
-Content-Type: multipart/alternative; boundary=001a1146e6488322360529f21a72
+X-List-Received-Date: Fri, 22 Jan 2016 20:33:39 -0000
+Content-Type: multipart/alternative; boundary=001a1146e648294b7f0529f22237
 
---001a1146e6488322360529f21a72
+--001a1146e648294b7f0529f22237
 Content-Type: text/plain; charset=UTF-8
 
-> Is there a way to produce a signed u-boot-spl image during the build, that
-> can be used directly on the target without using the EDS?
 >
 >
-If you upgrade to the U-Boot 2016.01 (or maybe even earlier?), mkimage
-actually supports adding the Bootrom signature to the SPL for you.  The
-current makefile is kind enough to concatenate the U-Boot SPL and its DTS
-for you, and then run mkpimage to create an 'spl/u-boot-spl-dts.sfp' file
-[1].
+> If you upgrade to the U-Boot 2016.01 (or maybe even earlier?), mkimage
+> actually supports adding the Bootrom signature to the SPL for you.  The
+> current makefile is kind enough to concatenate the U-Boot SPL and its DTS
+> for you, and then run mkpimage to create an 'spl/u-boot-spl-dts.sfp' file
+> [1].
+>
+> If that doesn't work for you, you might find [2] to be useful.  The
+> bootrom "signature" is simple enough to implement in a do_compile_append()
+> or custom task.
+>
+> [1]
+> http://git.denx.de/?p=u-boot.git;a=blob;f=Makefile;h=c9c2cbedc641853c7886ffb023e5798362152899;hb=6905f4d3c7be46fed4859f51f0a8f9a1107c22e7#l1012
+>
+> [2] https://github.com/maximeh/mkpimage
+>
+>
+>
+Typo correction: u-boot-with-spl-dtb.sfp
 
-If that doesn't work for you, you might find [2] to be useful.  The bootrom
-"signature" is simple enough to implement in a do_compile_append() or
-custom task.
-
-[1]
-http://git.denx.de/?p=u-boot.git;a=blob;f=Makefile;h=c9c2cbedc641853c7886ffb023e5798362152899;hb=6905f4d3c7be46fed4859f51f0a8f9a1107c22e7#l1012
-
-[2] https://github.com/maximeh/mkpimage
-
---001a1146e6488322360529f21a72
+--001a1146e648294b7f0529f22237
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><div class=3D"gmail_quote">=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div bgcolor=3D"white" li=
-nk=3D"blue" vlink=3D"purple" lang=3D"EN-US"><div><div><div><p class=3D"MsoN=
-ormal">
-Is there a way to produce a signed u-boot-spl image during the build, that =
-can be used directly on the target without using the EDS?<br>
-<br></p></div></div></div></div></blockquote><div><br></div><div>If you upg=
-rade to the U-Boot 2016.01 (or maybe even earlier?), mkimage actually suppo=
-rts adding the Bootrom signature to the SPL for you.=C2=A0 The current make=
-file is kind enough to concatenate the U-Boot SPL and its DTS for you, and =
-then run mkpimage to create an &#39;spl/u-boot-spl-dts.sfp&#39; file [1].<b=
-r><br></div><div>If that doesn&#39;t work for you, you might find [2] to be=
- useful.=C2=A0 The bootrom &quot;signature&quot; is simple enough to implem=
-ent in a do_compile_append() or custom task.<br></div><div><br>[1] <a href=
-=3D"http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3DMakefile;h=3Dc9c2cbedc6=
-41853c7886ffb023e5798362152899;hb=3D6905f4d3c7be46fed4859f51f0a8f9a1107c22e=
-7#l1012">http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3DMakefile;h=3Dc9c2c=
-bedc641853c7886ffb023e5798362152899;hb=3D6905f4d3c7be46fed4859f51f0a8f9a110=
-7c22e7#l1012</a><br><br>[2] <a href=3D"https://github.com/maximeh/mkpimage"=
->https://github.com/maximeh/mkpimage</a><br><br><br> </div></div></div></di=
-v>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_extra"><div class=3D"gmail_quote"><span class=3D""><div><br></div=
+></span><div>If you upgrade to the U-Boot 2016.01 (or maybe even earlier?),=
+ mkimage actually supports adding the Bootrom signature to the SPL for you.=
+=C2=A0 The current makefile is kind enough to concatenate the U-Boot SPL an=
+d its DTS for you, and then run mkpimage to create an &#39;spl/u-boot-spl-d=
+ts.sfp&#39; file [1].<br><br></div><div>If that doesn&#39;t work for you, y=
+ou might find [2] to be useful.=C2=A0 The bootrom &quot;signature&quot; is =
+simple enough to implement in a do_compile_append() or custom task.<br></di=
+v><div><br>[1] <a href=3D"http://git.denx.de/?p=3Du-boot.git;a=3Dblob;f=3DM=
+akefile;h=3Dc9c2cbedc641853c7886ffb023e5798362152899;hb=3D6905f4d3c7be46fed=
+4859f51f0a8f9a1107c22e7#l1012" target=3D"_blank">http://git.denx.de/?p=3Du-=
+boot.git;a=3Dblob;f=3DMakefile;h=3Dc9c2cbedc641853c7886ffb023e5798362152899=
+;hb=3D6905f4d3c7be46fed4859f51f0a8f9a1107c22e7#l1012</a><br><br>[2] <a href=
+=3D"https://github.com/maximeh/mkpimage" target=3D"_blank">https://github.c=
+om/maximeh/mkpimage</a><br><br><br></div></div></div></div></blockquote><di=
+v><br>Typo correction: u-boot-with-spl-dtb.sfp <br></div></div><br></div></=
+div>
 
---001a1146e6488322360529f21a72--
+--001a1146e648294b7f0529f22237--
