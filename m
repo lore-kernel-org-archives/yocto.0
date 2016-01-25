@@ -1,74 +1,26 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9315DE00BD2; Sun, 24 Jan 2016 15:11:48 -0800 (PST)
+	id 3D50DE00BE6; Sun, 24 Jan 2016 21:30:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.46 listed in list.dnswl.org]
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53AB3E00B46
-	for <yocto@yoctoproject.org>; Sun, 24 Jan 2016 15:11:44 -0800 (PST)
-Received: by mail-pa0-f46.google.com with SMTP id ho8so70519228pac.2
-	for <yocto@yoctoproject.org>; Sun, 24 Jan 2016 15:11:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=+2maHQKi4DLPIlCJ8bovqCvw/sgg3FMnHPUrg7lzSnE=;
-	b=LvHrj0xlDjcc/D0rJJiRghmwyoJC12uwy4yepZoRsJ2W8zL2yN45kzGjkX7y3pZtop
-	p+VrBh9uSeIw/gJXrkuB6TdjHq2EGLjvBjMbifhMtvqV8G0XDpE89OPHIhrNW5EZC0ie
-	IN4QJQdRf/+1bfzAzyCowI6h8HWDs5PjLadcRMQLkCkr6CASZvoOa87e0GPQnh2eHhTF
-	4j3na1s0ezcnL+g3PqnCSYUUjzTzFrtTtMQXipj9mbUvrGMcWZi09wj3TunqKu5orL7i
-	rikUcOUdtxmPIb/Vq9SspprwYHNtDLpPiLynl1oaoWimzaeUQqFPlCcvnQ1cgpusU4GM
-	7Ncg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=+2maHQKi4DLPIlCJ8bovqCvw/sgg3FMnHPUrg7lzSnE=;
-	b=PIK5vfNThwi8sU6Ncc7qkVMtEJco1NX/uAoo/AyDZkWkaSHsg+g3AhCpSd64ZBNwNW
-	HaYoTHYx+vBQhWVLpg1+jgVgiDtqaNqV7nWqLuDA1mgwQ195nN7GmQJq9gM5+zCTA0SE
-	GOkEoYEsObPmwyJC0YlHNmh1elmelWNflKg44ErY1I9I54YYXELGY4uIOEV8Pb8N1t4m
-	+EBtNQoMEvL55GLubmvF2q193m68F4RAxm2B2wKCZqYlTenrHkW9UpLKIF0DHVr3ptM/
-	jG94MLz1yA7ZGEOdZwWEV590IzVRkL2m4xTKp5RPBhKm7nCVfR89htnbFzpoQAGpGsk0
-	BDLw==
-X-Gm-Message-State: AG10YOS3EleGMpKWw3hLdVftQ+B7ALeblsndof7F3HItvbDK+Tl4o0uDPAfXJe5H/M/WLw==
-X-Received: by 10.66.149.7 with SMTP id tw7mr21745982pab.72.1453677103725;
-	Sun, 24 Jan 2016 15:11:43 -0800 (PST)
-Received: from ?IPv6:2601:202:4000:1239:b584:3e69:b68e:9dba?
-	([2601:202:4000:1239:b584:3e69:b68e:9dba])
-	by smtp.googlemail.com with ESMTPSA id
-	m87sm23743431pfi.47.2016.01.24.15.11.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sun, 24 Jan 2016 15:11:42 -0800 (PST)
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155E56FAE346@fmsmsx111.amr.corp.intel.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <56A55A21.50504@gmail.com>
-Date: Sun, 24 Jan 2016 15:11:29 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.3.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 899C9E00BE1
+	for <yocto@yoctoproject.org>; Sun, 24 Jan 2016 21:30:27 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 525FB84A294A
+	for <yocto@yoctoproject.org>; Mon, 25 Jan 2016 00:30:26 -0500 (EST)
 MIME-Version: 1.0
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E56FAE346@fmsmsx111.amr.corp.intel.com>
-Subject: Re: [OE-core] Yocto Project Status WW04
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 25 Jan 2016 05:30:26 -0000
+Message-ID: <20160125053026.7870.69436@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,63 +32,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Jan 2016 23:11:48 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 25 Jan 2016 05:30:29 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+This mail was sent out by Recipe reporting system.
 
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-On 01/22/2016 08:29 AM, Jolley, Stephen K wrote:
-> Current Dev Position: YP 2.1 M2
-> Next Deadline: YP 2.1 M2 Cutoff (Feature Freeze) date is January 25, 2016 noon GMT
-> 
-> SWAT team rotation: Randy -> Benjamin
-> https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-> 
-> Key Status/Updates:
-> 
->   *   Yocto Project 2.0.1 was successfully built and is due out of QA soon, likely to release next week.
->   *   Yocto Project 2.1 M2 cutoff is on Monday, please ensure any patches expected to be in M2 are sent to the mailing list for review before then.
->   *   We are looking pretty up to date with patch review/processing although there is a large queue in -next pending final checks but which should merge soon.
->   *   We are keeping an eye on CVEs and ensuring they get merged to various branches as we can find the bandwidth but we're low on manpower for this.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-What CVEs need merging? New ones or ones submitted for stable branches?
+You can check the detail information at:
 
-- armin
+http://recipes.yoctoproject.org/
 
+Package               Version     Upstream version      Maintainer           NoUpgradeReason
+--------------------  ----------  --------------------  -------------------  ------------------------------
+python3-pip           7.1.2       8.0.2                 Alejandro Hernandez
+python3-setuptools    19.4        19.6                  Alejandro Hernandez
+ruby                  2.2.2       2.3.0                 Alejandro Hernandez
+python-pygobject      2.28.3      3.19.2                Alejandro Hernandez  Newer versions of python-py...
+python-setuptools     19.4        19.6                  Alejandro Hernandez
+liberation-fonts      1.04        2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+rxvt-unicode          9.21        9.22                  Alexander Kanavin
+webkitgtk             2.10.4      2.10.5                Alexander Kanavin
+libsecret             0.18.3      0.18.4                Alexander Kanavin
+gcr                   3.18.0      3.19.4                Alexander Kanavin
+mkelfimage            4.0+gitX    4.2+gitAUTOINC+43...  Alexander Kanavin    mkelfimage has been removed...
+apt                   1.0.10.1    1.2                   Aníbal Limón
+dpkg                  1.18.2      1.18.4                Aníbal Limón
+pinentry              0.9.2       0.9.7                 Armin Kuster
+guilt-native          0.35+gitX   0.36+gitAUTOINC+2...  Bruce Ashfield
+dbus-glib             0.104       0.106                 Chen Qi
+dbus-test             1.8.20      1.10.6                Chen Qi
+diffstat              1.60        1.61                  Chen Qi
+coreutils             8.24        8.25                  Chen Qi
+dbus                  1.8.20      1.10.6                Chen Qi
+cups                  2.0.4       2.1.2                 Chen Qi
+findutils             4.5.14      4.5.19                Chen Qi
+ncurses               6.0         6.0+20151024          Hongxu Jia
+ghostscript           9.16        9.18                  Hongxu Jia
+elfutils              0.164       0.165                 Hongxu Jia
+libav                 9.18        11.4                  Jussi Kukkonen
+waffle                1.5.1       1.5.2                 Jussi Kukkonen
+libinput              1.1.4       1.1.5                 Jussi Kukkonen
+wayland               1.9.0       1.9.91                Jussi Kukkonen
+weston                1.9.0       1.9.91                Jussi Kukkonen
+cmake                 3.3.2       3.4.2                 Jussi Kukkonen
+libsoup-2.4           2.52.1      2.52.2                Jussi Kukkonen
+docbook-xsl-style...  1.78.1      1.79.1                Jussi Kukkonen
+gdk-pixbuf            2.32.1      2.32.3                Jussi Kukkonen
+vala                  0.28.0      0.30.0                Jussi Kukkonen
+gtk+3                 3.18.2      3.18.6                Jussi Kukkonen
+glib-2.0              2.46.1      2.46.2                Jussi Kukkonen
+gtk+                  2.24.28     2.24.29               Jussi Kukkonen
+pixman                0.32.8      0.33.6                Jussi Kukkonen
+freetype              2.6         2.6.2                 Jussi Kukkonen
+glew                  1.12.0      1.13.0                Jussi Kukkonen
+vte                   0.28.2      0.42.1                Jussi Kukkonen       matchbox-terminal needs to ...
+linuxdoc-tools-na...  0.9.69      0.9.71                Jussi Kukkonen
+gtk-icon-utils-na...  3.18.2      3.18.6                Jussi Kukkonen
+at-spi2-core          2.18.1      2.18.3                Jussi Kukkonen
+slang                 2.2.4       2.3.0                 Kai Kang
+libsdl2               2.0.3       2.0.4                 Kai Kang
+rpm                   5.4.14      5.4.15                Mark Hatle           5.4.15 has a package databa...
+prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
+acpid                 2.0.25      2.0.26                Maxin B. John
+libical               1.0.1       2.0.0                 Maxin B. John
+quota                 4.02        4.03                  Maxin B. John
+iproute2              4.3.0       4.4.0                 Maxin B. John
+db                    6.0.30      6.1.26                Maxin B. John        Updating to 6.1.x requires ...
+gstreamer1.0-libav    1.7.1+gitX  3+gitAUTOINC+3dc2...  Maxin B. John
+gstreamer1.0-plug...  1.7.1+gitX  3+gitAUTOINC+6662...  Maxin B. John
+sqlite3               3.10.0      3.10.2                Maxin B. John
+gstreamer1.0-plug...  1.7.1+gitX  3+gitAUTOINC+3bb5...  Maxin B. John
+apt-native            1.0.10.1    1.2                   No maintainer
+cmake-native          3.3.2       3.4.2                 No maintainer
+gstreamer1.0          1.7.1+gitX  20010312+gitAUTOI...  No maintainer
+ifupdown              0.8.2       0.8.10                No maintainer
+gstreamer1.0-plug...  1.7.1+gitX  3+gitAUTOINC+2158...  No maintainer
+gstreamer1.0-plug...  1.7.1+gitX  3+gitAUTOINC+84bb...  No maintainer
+sgmlspl-native        1.1+gitX    1.03+gitAUTOINC+f...  No maintainer
+debianutils           4.5.1       4.6                   No maintainer
+adt-installer         0.3.0       0.3.1                 Randy Witt
+lsbinitscripts        9.64        9.65                  Ross Burton
+base-passwd           3.5.29      3.5.39                Ross Burton          Version 3.5.38 requires cde...
+pulseaudio            6.0         8.0                   Tanu Kaskinen
+alsa-plugins          1.0.29      1.1.0                 Tanu Kaskinen
+alsa-utils-scripts    1.0.29      1.1.0                 Tanu Kaskinen
+alsa-utils            1.0.29      1.1.0                 Tanu Kaskinen
+alsa-tools            1.0.29      1.1.0                 Tanu Kaskinen
+chkconfig             1.3.58      1.7                   Wenzong Fan          Version 1.5 requires selinux
+ccache                3.2.3       3.2.4                 Wenzong Fan
+gettext               0.19.6      0.19.7                Wenzong Fan
 
->   *   I'd like to highlight that there are increasing numbers of stack overflow questions about the project and help in providing good answers on there would be appreciated.
->   *   WDD and bug trend continue to rise to new heights. We are simply receiving more bugs than we have resources to fix/close.
-> 
-> Key YP 2.1 Dates:
-> YP 2.1 M2 Cutoff (Feature Freeze) date is January 25, 2016 noon GMT
-> YP 2.1 M2 Target release date is February 12, 2016
-> YP 2.1 M3 Cutoff (Feature Freeze) date is February 29, 2016 noon GMT
-> YP 2.1 M3 Target release date is March 18, 2016
-> YP 2.1 M4 / Final Cutoff: March 28, 2016 noon GMT - Stabilization only milestone.
-> YP 2.1 Final Release Target: April 29, 2016
-> 
-> Key Status Links for YP:
-> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
-> https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
-> https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
-> 
-> Tracking Metrics:
->             WDD 2581 (last week 2524 )
-> (https://wiki.yoctoproject.org/charts/combo.html)
-> 
-> [If anyone has suggestions for other information you'd like to see on this weekly status update, let us know!]
-> 
-> Thanks,
-> 
-> Stephen K. Jolley
-> Yocto Project Program Manager
-> INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-> *   Work Telephone:          (503) 712-0534
-> *    Cell:                                (208) 244-4460
-> * Email:                             stephen.k.jolley@intel.com
-> 
-> 
-> 
-> 
+Upgradable count: 69
+Upgradable total count: 77
+
+The based commit is:
+
+commit bf6372fc361e7588e95f682103332d7a7159c851
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Sun Jan 24 10:49:14 2016 +0000
+
+    weston: Add missing DEPENDS on wayland-native
+    
+    Weston needs wayland-scanner which comes from wayland-native. Add the missing
+    dependency to avoid build failures from:
+    
+    bitbake wayland; bitbake wayland-native:do_clean weston:do_cleansstate; bitbake weston
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
