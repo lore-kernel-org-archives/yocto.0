@@ -1,46 +1,42 @@
-Return-Path: <machida.yuki@jp.fujitsu.com>
+Return-Path: <lstarret@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34DD9E00BEC; Tue, 26 Jan 2016 02:04:18 -0800 (PST)
+	id A05D9E00BFD; Tue, 26 Jan 2016 11:04:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_05,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [211.128.242.41 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mgwym02.jp.fujitsu.com (mgwym02.jp.fujitsu.com [211.128.242.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1D7EE00BB6
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 02:04:11 -0800 (PST)
-Received: from yt-mxq.gw.nic.fujitsu.com (unknown [192.168.229.66]) by
-	mgwym02.jp.fujitsu.com with smtp
-	id 1776_91a1_78bea119_ebd6_4906_838e_c9a078b3e4e3;
-	Tue, 26 Jan 2016 19:04:00 +0900
-Received: from m3050.s.css.fujitsu.com (msm.b.css.fujitsu.com [10.134.21.208])
-	by yt-mxq.gw.nic.fujitsu.com (Postfix) with ESMTP id DABF8AC0346
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 19:03:59 +0900 (JST)
-Received: from omame (omame.fct.css.fujitsu.com [10.24.14.171])
-	by m3050.s.css.fujitsu.com (Postfix) with ESMTP id D17AFDA;
-	Tue, 26 Jan 2016 19:03:59 +0900 (JST)
-Received: from [10.24.19.86] (ubi86.utsfd.cs.fujitsu.co.jp [10.24.19.86])
-	by omame (Postfix) with ESMTPSA id B89481E0089;
-	Tue, 26 Jan 2016 19:03:59 +0900 (JST)
-To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <MA1PR01MB0056C008588A2F442A072B6182C30@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-	<56A1EF84.80101@jp.fujitsu.com>
-	<MA1PR01MB0056D0CB0813ADC08D0D809A82C70@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-From: Yuki Machida <machida.yuki@jp.fujitsu.com>
-Message-ID: <56A7448F.5030307@jp.fujitsu.com>
-Date: Tue, 26 Jan 2016 19:03:59 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	*      [216.31.210.64 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0350]
+X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
+	Tue, 26 Jan 2016 11:04:43 PST
+Received: from mail-gw3-out.broadcom.com (mail-gw3-out.broadcom.com
+	[216.31.210.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B53EE00973
+	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 11:04:43 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.22,351,1449561600"; d="scan'208,217";a="86230543"
+Received: from irvexchcas08.broadcom.com (HELO
+	IRVEXCHCAS08.corp.ad.broadcom.com) ([10.9.208.57])
+	by mail-gw3-out.broadcom.com with ESMTP; 26 Jan 2016 11:43:52 -0800
+Received: from IRVEXCHMB15.corp.ad.broadcom.com ([fe80::3c14:d213:d2c9:b75a])
+	by IRVEXCHCAS08.corp.ad.broadcom.com ([::1]) with mapi id
+	14.03.0235.001; Tue, 26 Jan 2016 11:03:30 -0800
+From: "Luke (Lucas) Starrett" <lstarret@broadcom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] autorev and shared-state issues
+Thread-Index: AdFYaJxsYpNemJl5QSCg8S3k04VbpA==
+Date: Tue, 26 Jan 2016 19:03:30 +0000
+Message-ID: <DB59870584238C45879465F0A2E5C3F12E7006BC@IRVEXCHMB15.corp.ad.broadcom.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.208.64]
 MIME-Version: 1.0
-In-Reply-To: <MA1PR01MB0056D0CB0813ADC08D0D809A82C70@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
-X-TM-AS-MML: disable
-Subject: Re: Syslog Related testcases are failed in yocto LTP
+Subject: autorev and shared-state issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,79 +48,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jan 2016 10:04:18 -0000
-Content-Type: text/plain; charset=iso-2022-jp
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Jan 2016 19:04:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DB59870584238C45879465F0A2E5C3F12E7006BCIRVEXCHMB15corp_"
 
-Hi Raghavendra Kakarla
+--_000_DB59870584238C45879465F0A2E5C3F12E7006BCIRVEXCHMB15corp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> Thank you for your response.
+Hi,
+
+I'm struggling with a behavior where even though we have a SRC_URI set to $=
+{AUTOREV}, changes to the underlying git repository are not being seen on s=
+ubsequent builds.  I have reproduced this behavior across both a kernel and=
+ u-boot recipe, so it seems like a generic problem.
+
+In general, how does autorev behave when used in conjunction with shared st=
+ate?  If the underlying git HEAD moves, shouldn't this be seen and prevent =
+re-use of prebuilt content in shared state?
+
+We are currently based on the Fido/1.8.1 tag for this exercise.
+
+Thanks,
+
+Luke
+
+
+--_000_DB59870584238C45879465F0A2E5C3F12E7006BCIRVEXCHMB15corp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> I am attaching the log file with this mail.
->
-> Please find the attachment.
-Thank you for your test log.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m struggling with a behavior where even thou=
+gh we have a SRC_URI set to ${AUTOREV}, changes to the underlying git repos=
+itory are not being seen on subsequent builds.&nbsp; I have reproduced this=
+ behavior across both a kernel and u-boot recipe,
+ so it seems like a generic problem.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In general, how does autorev behave when used in con=
+junction with shared state?&nbsp; If the underlying git HEAD moves, shouldn=
+&#8217;t this be seen and prevent re-use of prebuilt content in shared stat=
+e?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We are currently based on the Fido/1.8.1 tag for thi=
+s exercise.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Luke<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-It need setting syslogd for testing syslog(2).
-We know that it can test using syslog-ng.
-
-Do you use any syslogd in your system?
-What kind of syslogd do you have in your system?
-(e.g. syslog-ng, sysklogd, rsyslogd,busybox-syslogd, ...)
-
-Best Regards,
-Yuki Machida
-
-On 2016年01月25日 14:46, Raghavendra Kakarla wrote:
-> Hi Yuki Machida,
-> 
-> Thank you for your response.
-> 
-> I am attaching the log file with this mail.
-> 
-> Please find the attachment.
-> 
-> Regards,
-> Raghavendra K.
-> 
-> ________________________________________
-> From: Yuki Machida <machida.yuki@jp.fujitsu.com>
-> Sent: Friday, January 22, 2016 2:29 PM
-> To: Raghavendra Kakarla; yocto@yoctoproject.org
-> Subject: Re: [yocto] Syslog Related testcases are failed in yocto LTP
-> 
-> Hi
-> 
->   > I build the LTP-2015-01-19 with yocto and I ran the runltp script on my board I got error with the syslog related test cases.
-> What it has happen error?
-> If it is possible to send a test log,
-> I may be able to give any advice for you.
-> 
-> Best regard,
-> Yuki Machida
-> On 2016年01月21日 21:10, Raghavendra Kakarla wrote:
->> Hi All,
->>
->>
->> I build the LTP-2015-01-19 with yocto and I ran the runltp script on my board I got error with the syslog related test cases.
->>
->>
->> Could please give me the some info such that I will resolve the issue.
->>
->>
->> Thanks in advance.
->>
->>
->> Regards,
->>
->> Raghavendra K.
->>
->>
->>
-> 
-> ______________________________________________________________________
-> This email has been scanned by the Symantec Email Security.cloud service.
-> For more information please visit http://www.symanteccloud.com
-> ______________________________________________________________________
-> 
-
+--_000_DB59870584238C45879465F0A2E5C3F12E7006BCIRVEXCHMB15corp_--
