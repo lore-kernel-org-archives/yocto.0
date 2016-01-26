@@ -1,71 +1,42 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <lstarret@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D432E00C1C; Tue, 26 Jan 2016 11:07:24 -0800 (PST)
+	id 6ADFEE00BFE; Tue, 26 Jan 2016 11:48:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [216.31.210.64 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BE62E00B9C
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 11:07:10 -0800 (PST)
-Received: by mail-io0-f180.google.com with SMTP id 77so196061879ioc.2
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 11:07:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=20G1Zf17HGiO0UBIJ7h9cjRA7rHPcf7PiYusoNGPGzU=;
-	b=ozev3baMSlb1/z0N+BeWPVCw6vbI+NOSMWBAVoGcOYzdlUI/th6r/SPOQtL/vOtoot
-	Xe5uBbhqCwkdHUaIO1QjejLTTaqoG/wd4Scljj3gZZOvLBPsZKb7Eu/Q7vyw5m7ioj8J
-	7OtOaUFDffU+e4JwKwPMdt/qRKy35JELYJT0Et81kqvfT/xcCHdr9AtPPwalBg4V9nNM
-	GmmpS+VLBgNf7pZVl7HSIFJ0bq+oyQnhpxLf5+gAtWGD21X4kdNg6belT5B/rIbcuQWX
-	khbiGzPqNTE/TXoBApeQGEv5U6THkHYrba2zc+iSnrWmJTG7K0y1ar8+K80Zwl2MZrFq
-	MgIw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kergoth-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=20G1Zf17HGiO0UBIJ7h9cjRA7rHPcf7PiYusoNGPGzU=;
-	b=LUs7KBWz4s36gdzBp+1QfT3tDyKc0wT8T4Chixa/nE2UftKx6KlYim2b9Jlii1N4dx
-	RcHLUdjLtMtJWXnkueZu/dYNUnFXBEmTRTx/Ppvtn+eUrWGwSLkePIfMjBmHDsTufIwr
-	cIXa8R2YY7zDKEysuI4ZNA9+hNfSs+0h3phMkDC3XyZrCNbJTdioi0+fuWBqA3zndyZ8
-	w2f9GXSnrK+y/1hYi6ni1ClRcco24REzHK9AgUMP8270GKvQr8lwE2y7UwZUxtCZfqJ3
-	luzEUy5rCoPDwHC8Jp7qDUwUk+JT7NH9IfNvHIxigov/9EQ+JJJ8DgrlONkkMvxT0qBE
-	7Hhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc:content-type;
-	bh=20G1Zf17HGiO0UBIJ7h9cjRA7rHPcf7PiYusoNGPGzU=;
-	b=cxuv0tUTBjdI3Uu3AgI80pjVaXP+rRCVeTXUU/cFHeSYvGIj2Ypl+CvgANMqJh9oNa
-	CDwEUUgQOGniK3vwBzaTtjCdGRHjn/5/hyGVdU+TPSewx+CwrJedWZ+eJg4v6uXt3AVv
-	jgGVay1HuOZXTer+BsQ+gJVa6RgGw60y/uiztv5Fg719zNYRV2IynRYATx4DdjxtVW2S
-	kxTvIQS+D27sLX9b6b1UAgqL2POsRDJ96GJMdMKjtnDHR0NwZm97DaZoaHMhwFZD/ZDq
-	udw7KiMqMx+JrWItRxdkzNUJBbrq594l5Qfd5NYkvU1mipDzWvqIFKt8+tV1ehng5McL
-	Rwkg==
-X-Gm-Message-State: AG10YORMo/Tq26V6WLgX2SP5bUIu0z7PYFoBLBM+l6FkJ3aDa7QS5qBTT0RNcLYRFO/WhKGIQPRwFtUVDYfO/w==
-X-Received: by 10.107.34.133 with SMTP id i127mr25208113ioi.150.1453835230166; 
-	Tue, 26 Jan 2016 11:07:10 -0800 (PST)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.91.133 with HTTP; Tue, 26 Jan 2016 11:06:50 -0800 (PST)
-In-Reply-To: <DB59870584238C45879465F0A2E5C3F12E7006BC@IRVEXCHMB15.corp.ad.broadcom.com>
+Received: from mail-gw3-out.broadcom.com (mail-gw3-out.broadcom.com
+	[216.31.210.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13AA8E00B9C
+	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 11:47:56 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.22,351,1449561600"; d="scan'208,217";a="86235052"
+Received: from irvexchcas07.broadcom.com (HELO
+	IRVEXCHCAS07.corp.ad.broadcom.com) ([10.9.208.55])
+	by mail-gw3-out.broadcom.com with ESMTP; 26 Jan 2016 12:28:18 -0800
+Received: from IRVEXCHMB15.corp.ad.broadcom.com ([fe80::3c14:d213:d2c9:b75a])
+	by IRVEXCHCAS07.corp.ad.broadcom.com ([::1]) with mapi id
+	14.03.0235.001; Tue, 26 Jan 2016 11:47:55 -0800
+From: "Luke (Lucas) Starrett" <lstarret@broadcom.com>
+To: Christopher Larson <clarson@kergoth.com>
+Thread-Topic: [yocto] autorev and shared-state issues
+Thread-Index: AdFYaJxsYpNemJl5QSCg8S3k04VbpAARyeAAABCi/OA=
+Date: Tue, 26 Jan 2016 19:47:55 +0000
+Message-ID: <DB59870584238C45879465F0A2E5C3F12E70071B@IRVEXCHMB15.corp.ad.broadcom.com>
 References: <DB59870584238C45879465F0A2E5C3F12E7006BC@IRVEXCHMB15.corp.ad.broadcom.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Tue, 26 Jan 2016 12:06:50 -0700
-X-Google-Sender-Auth: oKedaVtehxyRqh0mXq92WlNqv0g
-Message-ID: <CABcZAN=A=VT+7mu8hs+HECScE2LuSb265uSsLsePYpypBFk7Hg@mail.gmail.com>
-To: "Luke (Lucas) Starrett" <lstarret@broadcom.com>
+	<CABcZAN=A=VT+7mu8hs+HECScE2LuSb265uSsLsePYpypBFk7Hg@mail.gmail.com>
+In-Reply-To: <CABcZAN=A=VT+7mu8hs+HECScE2LuSb265uSsLsePYpypBFk7Hg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.208.64]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: autorev and shared-state issues
 X-BeenThere: yocto@yoctoproject.org
@@ -79,71 +50,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jan 2016 19:07:24 -0000
-Content-Type: multipart/alternative; boundary=001a1140ef8474c5cc052a41644c
+X-List-Received-Date: Tue, 26 Jan 2016 19:48:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DB59870584238C45879465F0A2E5C3F12E70071BIRVEXCHMB15corp_"
 
---001a1140ef8474c5cc052a41644c
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_DB59870584238C45879465F0A2E5C3F12E70071BIRVEXCHMB15corp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Jan 26, 2016 at 12:03 PM, Luke (Lucas) Starrett <
-lstarret@broadcom.com> wrote:
+SGkgQ2hyaXMsDQoNCkkgaGFkIGJlZW4gcmVhZGluZyBvdmVyIFBWIGFuZCBTUkNQViBlYXJsaWVy
+IHRvZGF5IGFuZCBkaWRu4oCZdCBxdWl0ZSBkaWdlc3QgdGhhdCB0aGlzIHdhcyBuZWNlc3Nhcnku
+ICBJIGRvbuKAmXQga25vdyBmb3Igc3VyZSB0aGF0IHRoaXMgaXMgdGhlIOKAnHJpZ2h04oCdIHNv
+bHV0aW9uLCBidXQgaXQgZG9lcyBhdCBsZWFzdCBjYXVzZSBzdWJzZXF1ZW50IGNoYW5nZXMgdG8g
+YmUgc2VlbiBhbmQgYnVpbHQ6DQoNClBWID0gImdpdCR7U1JDUFZ9Ig0KDQpTZWVtcyBsaWtlIHRo
+aXMgc2hvdWxkIGJlIGRvY3VtZW50ZWQgaW4gYSBsaXR0bGUgYmV0dGVyIGRldGFpbC4NCg0KVGhh
+bmtzLCBMdWtlLg0KDQpGcm9tOiBrZXJnb3RoQGdtYWlsLmNvbSBbbWFpbHRvOmtlcmdvdGhAZ21h
+aWwuY29tXSBPbiBCZWhhbGYgT2YgQ2hyaXN0b3BoZXIgTGFyc29uDQpTZW50OiBUdWVzZGF5LCBK
+YW51YXJ5IDI2LCAyMDE2IDI6MDcgUE0NClRvOiBMdWtlIChMdWNhcykgU3RhcnJldHQNCkNjOiB5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhdXRvcmV2IGFuZCBz
+aGFyZWQtc3RhdGUgaXNzdWVzDQoNCg0KT24gVHVlLCBKYW4gMjYsIDIwMTYgYXQgMTI6MDMgUE0s
+IEx1a2UgKEx1Y2FzKSBTdGFycmV0dCA8bHN0YXJyZXRAYnJvYWRjb20uY29tPG1haWx0bzpsc3Rh
+cnJldEBicm9hZGNvbS5jb20+PiB3cm90ZToNCknigJltIHN0cnVnZ2xpbmcgd2l0aCBhIGJlaGF2
+aW9yIHdoZXJlIGV2ZW4gdGhvdWdoIHdlIGhhdmUgYSBTUkNfVVJJIHNldCB0byAke0FVVE9SRVZ9
+LCBjaGFuZ2VzIHRvIHRoZSB1bmRlcmx5aW5nIGdpdCByZXBvc2l0b3J5IGFyZSBub3QgYmVpbmcg
+c2VlbiBvbiBzdWJzZXF1ZW50IGJ1aWxkcy4gIEkgaGF2ZSByZXByb2R1Y2VkIHRoaXMgYmVoYXZp
+b3IgYWNyb3NzIGJvdGggYSBrZXJuZWwgYW5kIHUtYm9vdCByZWNpcGUsIHNvIGl0IHNlZW1zIGxp
+a2UgYSBnZW5lcmljIHByb2JsZW0uDQoNCkluIGdlbmVyYWwsIGhvdyBkb2VzIGF1dG9yZXYgYmVo
+YXZlIHdoZW4gdXNlZCBpbiBjb25qdW5jdGlvbiB3aXRoIHNoYXJlZCBzdGF0ZT8gIElmIHRoZSB1
+bmRlcmx5aW5nIGdpdCBIRUFEIG1vdmVzLCBzaG91bGRu4oCZdCB0aGlzIGJlIHNlZW4gYW5kIHBy
+ZXZlbnQgcmUtdXNlIG9mIHByZWJ1aWx0IGNvbnRlbnQgaW4gc2hhcmVkIHN0YXRlPw0KDQpXZSBh
+cmUgY3VycmVudGx5IGJhc2VkIG9uIHRoZSBGaWRvLzEuOC4xIHRhZyBmb3IgdGhpcyBleGVyY2lz
+ZS4NCg0KTXkgZ3Vlc3MgaXMgeW91IGRpZG4ndCBhZGQgU1JDUFYgdG8geW91ciBQViwgc28gY2hh
+bmdlcyB0byBTUkNSRVYgYXJlbid0IGNoYW5naW5nIFBWLCBhbmQgZG9fZmV0Y2gncyBjaGVja3N1
+bSBpc24ndCBjaGFuZ2luZy4NCi0tDQpDaHJpc3RvcGhlciBMYXJzb24NCmNsYXJzb24gYXQga2Vy
+Z290aCBkb3QgY29tDQpGb3VuZGVyIC0gQml0QmFrZSwgT3BlbkVtYmVkZGVkLCBPcGVuWmF1cnVz
+DQpNYWludGFpbmVyIC0gVHNsaWINClNlbmlvciBTb2Z0d2FyZSBFbmdpbmVlciwgTWVudG9yIEdy
+YXBoaWNzDQo=
 
-> I=E2=80=99m struggling with a behavior where even though we have a SRC_UR=
-I set to
-> ${AUTOREV}, changes to the underlying git repository are not being seen o=
-n
-> subsequent builds.  I have reproduced this behavior across both a kernel
-> and u-boot recipe, so it seems like a generic problem.
->
->
->
-> In general, how does autorev behave when used in conjunction with shared
-> state?  If the underlying git HEAD moves, shouldn=E2=80=99t this be seen =
-and
-> prevent re-use of prebuilt content in shared state?
->
->
->
-> We are currently based on the Fido/1.8.1 tag for this exercise.
->
+--_000_DB59870584238C45879465F0A2E5C3F12E70071BIRVEXCHMB15corp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-My guess is you didn't add SRCPV to your PV, so changes to SRCREV aren't
-changing PV, and do_fetch's checksum isn't changing.
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
+LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
+IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
+cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
+Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
+cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgQ2hyaXMsPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0
+OTdEIj5JIGhhZCBiZWVuIHJlYWRpbmcgb3ZlciBQViBhbmQgU1JDUFYgZWFybGllciB0b2RheSBh
+bmQgZGlkbuKAmXQgcXVpdGUgZGlnZXN0IHRoYXQgdGhpcyB3YXMgbmVjZXNzYXJ5LiZuYnNwOyBJ
+IGRvbuKAmXQga25vdyBmb3Igc3VyZSB0aGF0IHRoaXMgaXMgdGhlIOKAnHJpZ2h04oCdIHNvbHV0
+aW9uLA0KIGJ1dCBpdCBkb2VzIGF0IGxlYXN0IGNhdXNlIHN1YnNlcXVlbnQgY2hhbmdlcyB0byBi
+ZSBzZWVuIGFuZCBidWlsdDo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtaW5k
+ZW50Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5QViA9
+ICZxdW90O2dpdCR7U1JDUFZ9JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5TZWVtcyBsaWtlIHRoaXMgc2hvdWxk
+IGJlIGRvY3VtZW50ZWQgaW4gYSBsaXR0bGUgYmV0dGVyIGRldGFpbC48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5r
+cywgTHVrZS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
+LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IGtlcmdv
+dGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFpbC5jb21dDQo8Yj5PbiBCZWhhbGYgT2Yg
+PC9iPkNocmlzdG9waGVyIExhcnNvbjxicj4NCjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBKYW51YXJ5
+IDI2LCAyMDE2IDI6MDcgUE08YnI+DQo8Yj5Ubzo8L2I+IEx1a2UgKEx1Y2FzKSBTdGFycmV0dDxi
+cj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9i
+PiBSZTogW3lvY3RvXSBhdXRvcmV2IGFuZCBzaGFyZWQtc3RhdGUgaXNzdWVzPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFR1ZSwgSmFuIDI2LCAyMDE2IGF0IDEyOjAz
+IFBNLCBMdWtlIChMdWNhcykgU3RhcnJldHQgJmx0OzxhIGhyZWY9Im1haWx0bzpsc3RhcnJldEBi
+cm9hZGNvbS5jb20iIHRhcmdldD0iX2JsYW5rIj5sc3RhcnJldEBicm9hZGNvbS5jb208L2E+Jmd0
+OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SeKAmW0gc3Ry
+dWdnbGluZyB3aXRoIGEgYmVoYXZpb3Igd2hlcmUgZXZlbiB0aG91Z2ggd2UgaGF2ZSBhIFNSQ19V
+Ukkgc2V0IHRvICR7QVVUT1JFVn0sIGNoYW5nZXMgdG8gdGhlIHVuZGVybHlpbmcgZ2l0IHJlcG9z
+aXRvcnkgYXJlIG5vdCBiZWluZyBzZWVuIG9uIHN1YnNlcXVlbnQgYnVpbGRzLiZuYnNwOyBJIGhh
+dmUgcmVwcm9kdWNlZA0KIHRoaXMgYmVoYXZpb3IgYWNyb3NzIGJvdGggYSBrZXJuZWwgYW5kIHUt
+Ym9vdCByZWNpcGUsIHNvIGl0IHNlZW1zIGxpa2UgYSBnZW5lcmljIHByb2JsZW0uPG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj5JbiBnZW5lcmFsLCBob3cgZG9lcyBhdXRvcmV2IGJlaGF2ZSB3
+aGVuIHVzZWQgaW4gY29uanVuY3Rpb24gd2l0aCBzaGFyZWQgc3RhdGU/Jm5ic3A7IElmIHRoZSB1
+bmRlcmx5aW5nIGdpdCBIRUFEIG1vdmVzLCBzaG91bGRu4oCZdCB0aGlzIGJlIHNlZW4gYW5kIHBy
+ZXZlbnQgcmUtdXNlIG9mIHByZWJ1aWx0IGNvbnRlbnQNCiBpbiBzaGFyZWQgc3RhdGU/PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj5XZSBhcmUgY3VycmVudGx5IGJhc2VkIG9uIHRoZSBGaWRv
+LzEuOC4xIHRhZyBmb3IgdGhpcyBleGVyY2lzZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5NeSBndWVzcyBpcyB5b3UgZGlkbid0IGFkZCBTUkNQViB0byB5
+b3VyIFBWLCBzbyBjaGFuZ2VzIHRvIFNSQ1JFViBhcmVuJ3QgY2hhbmdpbmcgUFYsIGFuZCBkb19m
+ZXRjaCdzIGNoZWNrc3VtIGlzbid0IGNoYW5naW5nLjxicj4NCi0tIDxvOnA+PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkNocmlzdG9waGVyIExhcnNvbjxicj4NCmNsYXJz
+b24gYXQga2VyZ290aCBkb3QgY29tPGJyPg0KRm91bmRlciAtIEJpdEJha2UsIE9wZW5FbWJlZGRl
+ZCwgT3BlblphdXJ1czxicj4NCk1haW50YWluZXIgLSBUc2xpYjxicj4NClNlbmlvciBTb2Z0d2Fy
+ZSBFbmdpbmVlciwgTWVudG9yIEdyYXBoaWNzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---001a1140ef8474c5cc052a41644c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Jan 26, 2016 at 12:03 PM, Luke (Lucas) Starrett <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:lstarret@broadcom.com" target=3D"_blank">lstarret@broa=
-dcom.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=
-=3D"MsoNormal">I=E2=80=99m struggling with a behavior where even though we =
-have a SRC_URI set to ${AUTOREV}, changes to the underlying git repository =
-are not being seen on subsequent builds.=C2=A0 I have reproduced this behav=
-ior across both a kernel and u-boot recipe,
- so it seems like a generic problem.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">In general, how does autorev behave when used in con=
-junction with shared state?=C2=A0 If the underlying git HEAD moves, shouldn=
-=E2=80=99t this be seen and prevent re-use of prebuilt content in shared st=
-ate?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">We are currently based on the Fido/1.8.1 tag for thi=
-s exercise.</p></blockquote></div><br></div><div class=3D"gmail_extra">My g=
-uess is you didn&#39;t add SRCPV to your PV, so changes to SRCREV aren&#39;=
-t changing PV, and do_fetch&#39;s checksum isn&#39;t changing.<br>-- <br><d=
-iv class=3D"gmail_signature">Christopher Larson<br>clarson at kergoth dot c=
-om<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>=
-Senior Software Engineer, Mentor Graphics</div>
-</div></div>
-
---001a1140ef8474c5cc052a41644c--
+--_000_DB59870584238C45879465F0A2E5C3F12E70071BIRVEXCHMB15corp_--
