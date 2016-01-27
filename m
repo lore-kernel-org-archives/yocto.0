@@ -1,57 +1,60 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B5CCE0079A; Wed, 27 Jan 2016 10:16:01 -0800 (PST)
+	id B4FE2E0088B; Wed, 27 Jan 2016 10:46:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f182.google.com (mail-lb0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08C55E006E7;
-	Wed, 27 Jan 2016 10:15:59 -0800 (PST)
-Received: by mail-lb0-f182.google.com with SMTP id dx2so10114841lbd.3;
-	Wed, 27 Jan 2016 10:15:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=orsqvqjJG7GcUs9Zwj/2BpP6NI8ZRX7pvf34AU6WQtI=;
-	b=0wxX4pgGLCWQiW7IU1Yym5RtwyIeeUl8hXn+2i//wxGdKyu2jDKOkKAEFQOsoj9zDq
-	KUp4Jgz0T9KCRXxy7l6pVBx9i+Gf8Op/mCBHww6HfnZkI3PPF+Snu5ORV7vEVeCb2b6z
-	llmm5aFy5O0qpe5szvl0/zGVTuFZS0BmfZUU2htbr3FSNrwFR6W/n/0rhl9ozwCTEMgG
-	SQFQi5mxB4rCy+CaDwVY9BIDI0J1WLjAffjdBvh0LBmWQNVKNCM/0TfXrUf++Po3y/yx
-	t/yxbXrgY/G9CZFlZ5FlJY3dlfm02uoTLaO2KkAOpK7AzpDTSIfStnS4ZAFQe706K0km
-	vPZw==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE39E0079A
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 10:46:03 -0800 (PST)
+Received: by mail-io0-f170.google.com with SMTP id 1so28993837ion.1
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 10:46:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=8ZiDeAYqTOKfMGQeN9+9lpwalkrIk6Dkf93ItoP7Qxo=;
+	b=zEQf24AmEo6BOkcpX5PHW/E7peEzk9YXw9KOtsZ0UTJ1gU2kaEpcyMik4y7dqeD3m3
+	k79kmvL+HXT87OruyXbKlKZ5MiDw+gcUiAg+azlZO+m6Nuj49nRxwvIZ7GOoQ5tun5qP
+	PbuJI1VVw9KzBWnDIlo1av/7XS9kRYgK/GK4dKGo1H14wbyrU7lL/Y+d0p+QVe86Qvw+
+	p2xfhf/yvj+00nB1e+1bxOqj9AC2C1kpb5GYWhKblS9bYQj5rDVthxta+ZdpZf1Y4/cs
+	VQxkD037VRNiRtoLUl52JFtfvS5DPoLGazcNkivWS98MV0uhC3HX0VbYcG+dzqE0+f7o
+	XAnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-	:to:content-type;
-	bh=orsqvqjJG7GcUs9Zwj/2BpP6NI8ZRX7pvf34AU6WQtI=;
-	b=IxtTe/schkrt/VrGt5SPoRv3P3QH33paI++bnNY1QsYXZdllno+GQNzCG9LjtwxsNI
-	p3jXQclMc/KWbMKxEmMKaCI3V5JECtVtfNN80KD/vkv7tqUrw5DsXCYVjZjl9Vg0oqPq
-	zATsWc3mtuGb9QAqPGKEPzkVQ1sNILvI/FNl1afMirksIdfkLqd2leSG3dhakCecU6dO
-	y0XkSgvhva02h4mYxGdDO4X2v1BWU+LVRBsOR/wkR0yTp+YpMgEVWhXKgd05fJ1zsvwI
-	US+TjmXVK74jjpdbOWNQwjr3lakAXfaNjnN68aoJcYV4a5S5ONn7N7kVKX3BgpOR/9PA
-	8LNQ==
-X-Gm-Message-State: AG10YOQFegEHkV/d+WTt0p86NSOb9hhGhQjV1wV2pHhmtnYnRuva6j5XU2wsexE2xUYpF78s5UAdGIcj7A/Qdw==
-X-Received: by 10.112.61.226 with SMTP id t2mr2599684lbr.33.1453918557872;
-	Wed, 27 Jan 2016 10:15:57 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=8ZiDeAYqTOKfMGQeN9+9lpwalkrIk6Dkf93ItoP7Qxo=;
+	b=UPSx28FGV1UM9bd8TDNWrTMsrvhgKWruNKEuxVAkZ29zIi5Cpg6HYlnIqt5Pn4DNgn
+	/foEbl8ucvoD+LXI6tjmqfXhDTZtzHdoFr4ZC0bGTglo+utmEz+sCLE2J+cHGgXwGY1P
+	rIqaqvR2+gW6Dd9dBU21ilIdBuO/A7c9vlGIeNxqsIwjgFiF9hiskJQr37+Wj8RxpYu8
+	LsGlcMEbl+2FMI8p6HeeX2g3BGUpYts4e+0LfCIG55PwvJzem/B3rpoUcQ7hhWrZF3I2
+	J6iF3zRsLvC5vQrEIzj8Zgsf2HluFzy+kb9rssCiqN7dNBk4g0C8sUJ5PaP38Xy+WI9G
+	0mCw==
+X-Gm-Message-State: AG10YOQvMeM79dV2z/p9d86yaS+LWJjKzlwuRHuglKz6jf9Q85J3DT0JkZmuk6nzhN6yHtmSQoVNFqKmczbj2PlL
+X-Received: by 10.107.165.71 with SMTP id o68mr3751950ioe.94.1453920362670;
+	Wed, 27 Jan 2016 10:46:02 -0800 (PST)
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.55.101 with HTTP; Wed, 27 Jan 2016 10:15:38 -0800 (PST)
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Wed, 27 Jan 2016 10:15:38 -0800
-X-Google-Sender-Auth: d9_5szbXqLVntYma8-gePBkxQ-U
-Message-ID: <CA+YB3rYvuwFo1WDCQzO4vzhXGT05Nd7dThwdFRv3xhZ3yxAUOQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>, yocto-announce@yoctoproject.org
-Subject: Embedded Linux Conference, YP DevDay, and OEDAM
+Received: by 10.107.140.10 with HTTP; Wed, 27 Jan 2016 10:45:23 -0800 (PST)
+In-Reply-To: <1453910071-17477-1-git-send-email-ross.burton@intel.com>
+References: <1453910071-17477-1-git-send-email-ross.burton@intel.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Wed, 27 Jan 2016 18:45:23 +0000
+Message-ID: <CAPhnLPAyboonGofBUqL+S+O2G+L2yicQXq6Ef7Qb0HQdnufoBw@mail.gmail.com>
+To: Ross Burton <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH][yocto-autobuilder] nightly-checkuri.conf: exclude lsof, run against universe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,31 +66,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 18:16:01 -0000
+X-List-Received-Date: Wed, 27 Jan 2016 18:46:06 -0000
 Content-Type: text/plain; charset=UTF-8
 
-If you are planning to attend the Embedded Linux Conference in San
-Diego this April, I wanted to let you know about the Yocto Project
-Developer Day that the team is planning. This will be similar to
-previous DevDays, with hands-on training in both introductory and
-advanced tracks. The day will happen just after ELC, on April 7 at the
-Marriott in downtown San Diego, just across from the ELC venue. We'll
-have more details posted later this week.
+On 27 January 2016 at 15:54, Ross Burton <ross.burton@intel.com> wrote:
+> The lsof recipe needs to be excluded from our checkuri tests because the
+> upstream FTP server refuses to let the autobuilder machines connect to it.
+>
+> Also run checkuri against universe instead of world to catch more variations on
+> recipe permuatations.
+>
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
+> ---
+>  buildset-config.controller/nightly-checkuri.conf | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/buildset-config.controller/nightly-checkuri.conf b/buildset-config.controller/nightly-checkuri.conf
+> index 232f62c..b571429 100644
+> --- a/buildset-config.controller/nightly-checkuri.conf
+> +++ b/buildset-config.controller/nightly-checkuri.conf
+> @@ -16,6 +16,7 @@ steps: [{'SetDest':{}},
+>          {'GetDistroVersion' : {'distro': 'poky'}},
+>          {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64',
+>                              'distro': 'poky',
+> -                            'atextprepend': 'SOURCE_MIRROR_FETCH = "1"\n'}},
+> +                            'atextprepend': 'SOURCE_MIRROR_FETCH = "1"\n',
+> +                            'atextappend': 'do_checkuri_pn-lsof = ""\n'}},
+>          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+> -        {'BuildImages': {'images': 'world -c checkuri'}}]
+> +        {'BuildImages': {'images': 'universe -c checkuri'}}]
+> --
+> 2.6.4
+>
 
-The project is also a sponsor for the event and we will have a booth.
-If you have something cool that you have been working on and would
-like to show it off in the booth during the conference, let me know
-and we'll see what we can do to make some space for your project.
+Pulled. Expect production later this evening.
 
-For those also in the OpenEmbedded community, there will be an OE
-developer's meeting and working session on Friday, April 8. This is a
-working session for OE members (not an educational session, sorry!)
-and space is limited, so if you plan to attend, please let me know so
-I can plan space accordingly.
-
-thanks!
 
 -- 
-Jeff Osier-Mixon
-Open Source Community Architect, Intel Corporation
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
