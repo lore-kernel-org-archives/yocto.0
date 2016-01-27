@@ -1,59 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alexandre.osorio@eldorado.org.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E87CBE00AD8; Wed, 27 Jan 2016 07:54:39 -0800 (PST)
+	id 150B6E00AD7; Wed, 27 Jan 2016 08:13:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4379E00AB5
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:54:35 -0800 (PST)
-Received: by mail-wm0-f41.google.com with SMTP id n5so33149441wmn.0
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:54:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:subject:date:message-id;
-	bh=wEAoQVQwQomGRHfZ69IzYYZSWtAAJz64SckTOZTYtiE=;
-	b=XmnOOZZTJ/gp0sA8lyp3BxdF/jzy0GSv4gVn5Ef9zcq2I7frobKm+cnEqCoyAudWQJ
-	f6udtPN+Uv+CSUVjrsuRqa1p32tMpJVuxAomRJnL5/aIhPf0z/ZaQNHtvv6CP0T/JQ0C
-	vCSk/HlF8Stn0NGqRjrzXC3lOy2qy/5eQFiS7JzDWFyVji4BAH8N2QqjBuMrUk/+KkRf
-	9mpxlvOFT/rcNQ5U4XQLoXZSjCPLAgHyWzvgciVj8GuLKOEsVzCx6XyLqr33bPFwKeMN
-	HdFvcvS0ZT8M8wh/be6p/1IH0FIMSUBy/fynJNWUSyvfA2AnGcvZft77WNHkWGLXrVxy
-	5sgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=wEAoQVQwQomGRHfZ69IzYYZSWtAAJz64SckTOZTYtiE=;
-	b=fP+n05fRgThJIvCdPODo3n8whqRTZQ/t7Rsu9hsI0ZP3MQIbe9IWjBKyyw82rzm4XS
-	nVa9m/L8QLZMIQw6Bn1eUmi3gCRW0PcZ1sxGjCnerWiulJRB+k1v1Zpl7pdW5cThrWm8
-	v2DmGj+vggwGo+smNKCBmqCNH8ufgiaIy5JHEnSyfS495+pd/vim9ec8/O5aAgIc3iwl
-	gfjm/ePMfosuCwHIZSZrVNrdw7TcUbTlPDyv4101pBv86y3sst6wFkYY72E5wgicL35Q
-	GFzg5mcHQk7XrxG4dpNJ0OE3gqU8SUBbGsnqTb4vvTyFZouJT400lRmlB0vYNo/d0Bn6
-	qkPg==
-X-Gm-Message-State: AG10YOSz6MHz/tnWN/TZxYGK5YxQiOlQlkpxN6FcAaPKYFe37P64S5+bHEr/191SOmjZAiPD
-X-Received: by 10.28.57.214 with SMTP id g205mr29965992wma.20.1453910074816;
-	Wed, 27 Jan 2016 07:54:34 -0800 (PST)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35])
-	by smtp.gmail.com with ESMTPSA id w1sm8264394wmd.2.2016.01.27.07.54.34
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 27 Jan 2016 07:54:34 -0800 (PST)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 27 Jan 2016 15:54:31 +0000
-Message-Id: <1453910071-17477-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 2.6.4
-Subject: [PATCH][yocto-autobuilder] nightly-checkuri.conf: exclude lsof, run against universe
+X-Greylist: delayed 69 seconds by postgrey-1.32 at yocto-www;
+	Wed, 27 Jan 2016 08:13:13 PST
+Received: from smtp1.eldorado.org.br (smtp1.eldorado.org.br [200.148.226.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51C90E00AB5
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 08:13:13 -0800 (PST)
+Received: from serv031.corp.eldorado.org.br (200.148.226.2) by
+	smtp1.eldorado.org.br (200.148.226.10) with Microsoft SMTP Server (TLS)
+	id 14.3.123.3; Wed, 27 Jan 2016 14:12:00 -0200
+Received: from serv031.corp.eldorado.org.br (192.168.4.31) by
+	serv031.corp.eldorado.org.br (192.168.4.31) with Microsoft SMTP Server
+	(TLS) id 15.0.775.38; Wed, 27 Jan 2016 14:11:59 -0200
+Received: from serv031.corp.eldorado.org.br ([fe80::c032:7018:83d3:b1e3]) by
+	serv031.corp.eldorado.org.br ([fe80::c032:7018:83d3:b1e3%14]) with mapi
+	id 15.00.0775.031; Wed, 27 Jan 2016 14:11:59 -0200
+From: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: do_compile fails in Jethro
+Thread-Index: AdFZHE6PhGmOY0MWROSiCB021ANIZA==
+Date: Wed, 27 Jan 2016 16:11:59 +0000
+Message-ID: <14d020d8b9fa445d8094c9a4a7825750@serv031.corp.eldorado.org.br>
+Accept-Language: pt-BR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [177.220.10.3]
+MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAC+NgFjrJIsWRWlGSWpSXmKPExsVyYsojJt2ANyvCDBre7vrLaTHp5Ro2B0aP9hN9bAGMUayZeUn5FQmsGS17bjMW7OGqOHjCt4GxnbOLkYtDSGAno8TCy5sZIZx9jBJLH+9gg3BOM0rs2reYvYuRk4NNwFPi+ts2ZhBbRMBU4sWxL2wgtrCAssTHeXdYIOIaEvP61gDZHEC2nsTZd84gYRYBVYnD5y+DlfMKeEv82/qcFcRmFJCVmPtnL9h4ZgFxiVtP5jOB2BIC2hLbX+1jhbB1JDZdW8UCYTtL/Hz/lhnCFpBYsuc8lK0k0Xv7HVSvqMTLx/+genUlun+eYISwAyWab++AqjeVeLPkEtRMW4kTa/8yw8z/sfUGVK+8xP9796FqHCRuHHoPVaMgceDZV6hdARI/FvyCqg+W+P94ERuEXS6xpfkxM0y87fovRlCQgMx/0sgOEY6UaNu3iHUCo8EsJN9D2DoSC3Z/YoOwtSWWLXzNPAsccoISJ2c+YVnAyLKKUao4t6TAUC85v6hALzUnJb8oMSVfL78oXS+paBMjMDns9lh9dQfjhdXuhxiZODhvMUpzHGAS4khLLC4pSCwuFmLJy89LlYImG6kGRpN42YjsCzO3W4fnycWV25udi6zVWjrjh2f5tMXmJ9Y9FJi85vnjiOUJoj9DeWIOvNi++Bnvl6gdamevPjG9/Xq/xoydS5J9I/eV3dx1Mfd2wnOn483PW0S9Jeco5GbFaAdetAmc4lOoun9duQDvet2mEuWbBoVfmF3XqC7bd3SOlHO5tdTcVCWW4oxEQy3mouJEACbQnoDcAgAA
+Subject: do_compile fails in Jethro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,34 +46,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 15:54:40 -0000
+X-List-Received-Date: Wed, 27 Jan 2016 16:13:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The lsof recipe needs to be excluded from our checkuri tests because the
-upstream FTP server refuses to let the autobuilder machines connect to it.
+Hi!
 
-Also run checkuri against universe instead of world to catch more variations on
-recipe permuatations.
+The first time I tried to upgrade my build to Jethro I received the followi=
+ng error message while do_compiling krb5:
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- buildset-config.controller/nightly-checkuri.conf | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+(...)
+| .build/tmp/sysroots/x86_64-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64=
+-poky-linux/5.2.0/ld: plugins.so: relocation R_X86_64_PC32 against symbol `=
+krb5int_open_plugin' can not be used when making a shared object; recompile=
+ with -fPIC
+| .build/tmp/sysroots/x86_64-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64=
+-poky-linux/5.2.0/ld: final link failed: Bad value
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [libkrb5support.so.0.1] Error 1
+| make[2]: Leaving directory `.build/tmp/work/core2-64-poky-linux/krb5/1.13=
+.2-r0/krb5-1.13.2/src/util/support'
+| make[1]: *** [all-recurse] Error 1
+| make[1]: Leaving directory `.build/tmp/work/core2-64-poky-linux/krb5/1.13=
+.2-r0/krb5-1.13.2/src/util'
+| make: *** [all-recurse] Error 1
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at .build/tmp/wor=
+k/core2-64-poky-linux/krb5/1.13.2-r0/temp/log.do_compile.9043)
+ERROR: Task 1764 (.meta-openembedded/meta-oe/recipes-connectivity/krb5/krb5=
+_1.13.2.bb, do_compile) failed with exit code '1'
 
-diff --git a/buildset-config.controller/nightly-checkuri.conf b/buildset-config.controller/nightly-checkuri.conf
-index 232f62c..b571429 100644
---- a/buildset-config.controller/nightly-checkuri.conf
-+++ b/buildset-config.controller/nightly-checkuri.conf
-@@ -16,6 +16,7 @@ steps: [{'SetDest':{}},
-         {'GetDistroVersion' : {'distro': 'poky'}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky',
--                            'atextprepend': 'SOURCE_MIRROR_FETCH = "1"\n'}},
-+                            'atextprepend': 'SOURCE_MIRROR_FETCH = "1"\n',
-+                            'atextappend': 'do_checkuri_pn-lsof = ""\n'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
--        {'BuildImages': {'images': 'world -c checkuri'}}]
-+        {'BuildImages': {'images': 'universe -c checkuri'}}]
--- 
-2.6.4
 
+This error doesn't occur when I was using Fido. Please, could anyone give m=
+e a help?
+
+Thanks in advance.
+
+Regards,
+Alexandre
 
