@@ -1,6 +1,6 @@
-Return-Path: <ulfalizer@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E5E5E00AD7; Wed, 27 Jan 2016 06:45:34 -0800 (PST)
+	id 30C22E00AD7; Wed, 27 Jan 2016 06:57:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ulfalizer[at]gmail.com)
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,45 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F49AE00AB5
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 06:45:30 -0800 (PST)
-Received: by mail-vk0-f53.google.com with SMTP id n1so5978374vkb.3
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 06:45:30 -0800 (PST)
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56CE2E00AB5
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 06:57:36 -0800 (PST)
+Received: by mail-wm0-f54.google.com with SMTP id l65so148252282wmf.1
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 06:57:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Vj2I+3rrO5zxFlLq6VUpnij//GFcgOE7sJptn14VTpQ=;
-	b=A6FeOO5ofVS2xuKgJHqximq+HuCPIChEofESU+TCeVTgKLxX+8It5/Y9BbtVGpCsMB
-	UeIpYC6aijp3Zma3RnRjlRaeEGjpEaTexx46GOfrmUv2awHltaAH7acOuBdmBy0y4aMo
-	R9SLwkYZXKP5236yTAZCNOyhW0zSczfYCeQSTI387wEfwll+Sawfvc3y8WoABmvmYYHb
-	GtTQzAjheNFfWPUN8n0guuRlT/2F/77V7mk5A+GrmM4rMeBb/VAx+GXxT1aY0sXVXAZ5
-	BrP6awZFyyXVHpxB2LL5D2MVbZUMjpuRJOWPSJF6hQWjjkirN4egMA2IPSOroTlbZpK1
-	HW1w==
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=Xx8QwkhXoByZd9eKzuCITwCr7QqIVcsCwcJqvf2YToM=;
+	b=iODYbgaznOq6UK0RxpXn3RThHAL2pgWFtZVGGvST0kbnrgNVTIc+tlLeNuo/pIBDd4
+	8jDtoHkPRiay+RCvNPk9GDECqGC4ee0sviTvnnqo8+nh8OCmXrAhye3VG16Oe6bOxksL
+	KFSKs9BJkh9ZNWAuAhdnJmVm0QM3WHIGtJYfIbw2B22CT1s82Y0H3f1W6Q00srm10FWQ
+	KALJYvrE6GIaVSWgncl0bSd8akl2t44wBCpiu6oyT3VXK9WB30TPFHkBiVvsvI6ksY4V
+	9mPlFGhm+hpo15ocEPWM/qGcFhM+GWyuChSPAbv+QvsJHh7i0IqG964RvQUhzHW2Rccg
+	DpHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=Vj2I+3rrO5zxFlLq6VUpnij//GFcgOE7sJptn14VTpQ=;
-	b=g06CTpShi4YqVMBlc6eNGHTRNVl87JQKlhQk9RoEpn5FvMI7svRIVgSYt/CBWiCSn6
-	n+3umtc5LKRcC6lICbYLuacP2Dq/cBSsbuk4uHHrODTIHjbxNpLjMUBfubc/uRyw/bAQ
-	2mZHKzae9ig+DMTts8OPrgkRTqF1Ptx08I3U4ilhkpuzeNgsv41rCylyxtCw786WD+tg
-	UCt0XcspqVECDeCEF31gh0nZRIQ/Wev7g3sfUX7WjFIo4Cc19T6fRLnhbPuy9ov1Q02O
-	67M6BEp6hn8Vy4Bujls+iDc2VqAVyRZxJPm7ivVtiYxyC/TWlWtDWAUteX4+w2Fzei54
-	q+Iw==
-X-Gm-Message-State: AG10YOQnGQMmrIRIVMMdA8irBht0YQa4YG1+3LvXfJ8/5tO9yuKt5XqkUTbd7oKVmyghrDaHeBwpskIagj4QZw==
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=Xx8QwkhXoByZd9eKzuCITwCr7QqIVcsCwcJqvf2YToM=;
+	b=hQNUYhGaZNDEhw7OzqzXKrIbfz+OFziEi1UhSkWhK9T+hemtTFOuQNnNqvJllV6TrX
+	GhSy743rZidaBoDqqlDHApWpudUIZzYvR5aIAVpNOVEIkuY4Z7jJfCmvDIgNTgZH9CSh
+	gA2D75ps+rvU8IGhfG2NhUoPU5UoXoXzAhFnpy0Uejqk2RnysnTME2eLG+ShojW09lUA
+	Lvn7xvl3xL6t9s4Pl+gozSZiXnGvuPJ7QqdEi53DdCLnh3N2mzok/jaSuaPJyiiCDBPv
+	VSoh6FndRDkErapsGXabKqTAEwS9raf/keubG17PC7Q0jMdAnPu3Smka84v3vIgirpa9
+	zqsw==
+X-Gm-Message-State: AG10YOR0L65fFIWiei640zUcvwTytnuMEqNZkCdVlrNvuD7KYwhVSu75Dt9iQrXSCoYk+g==
+X-Received: by 10.195.18.5 with SMTP id gi5mr29785739wjd.167.1453906655811;
+	Wed, 27 Jan 2016 06:57:35 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id
+	e14sm2180513wmi.21.2016.01.27.06.57.34
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 27 Jan 2016 06:57:34 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Wed, 27 Jan 2016 15:59:46 +0100
+To: Ulf Magnusson <ulfalizer@gmail.com>
+Message-ID: <20160127145946.GI2574@jama>
+References: <CAFkk2KRbEnfcia1sq0keuFedUhMCNng3YWdbfCr=Osxw_qkeOQ@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.31.137.11 with SMTP id l11mr16448130vkd.98.1453905930054;
-	Wed, 27 Jan 2016 06:45:30 -0800 (PST)
-Received: by 10.103.64.132 with HTTP; Wed, 27 Jan 2016 06:45:30 -0800 (PST)
-Date: Wed, 27 Jan 2016 15:45:30 +0100
-Message-ID: <CAFkk2KRbEnfcia1sq0keuFedUhMCNng3YWdbfCr=Osxw_qkeOQ@mail.gmail.com>
-From: Ulf Magnusson <ulfalizer@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Detecting missing build dependencies
+In-Reply-To: <CAFkk2KRbEnfcia1sq0keuFedUhMCNng3YWdbfCr=Osxw_qkeOQ@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: Detecting missing build dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +76,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 14:45:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 27 Jan 2016 14:57:40 -0000
+X-Groupsio-MsgNum: 28107
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="/8E7gjuj425jZz9t"
+Content-Disposition: inline
 
-Hello,
+--/8E7gjuj425jZz9t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If a recipe has a missing build dependency that the sysroot just
-happens to contain anyway from an earlier build, then the build will
-succeed only to fail later when the sysroot no longer has the build
-dependency. We want to avoid that, so we're looking for ways to
-automatically check for unspecified build dependencies.
+On Wed, Jan 27, 2016 at 03:45:30PM +0100, Ulf Magnusson wrote:
+> Hello,
+>=20
+> If a recipe has a missing build dependency that the sysroot just
+> happens to contain anyway from an earlier build, then the build will
+> succeed only to fail later when the sysroot no longer has the build
+> dependency. We want to avoid that, so we're looking for ways to
+> automatically check for unspecified build dependencies.
+>=20
+> The only method I know of at the moment is to remove or rename tmp/ so
+> that the build uses a fresh sysroot and then trying to rebuild the
+> recipe. Is there something nicer? I think I remember reading about a
+> script for testing for missing build dependencies, but I might be
+> misremembering.
 
-The only method I know of at the moment is to remove or rename tmp/ so
-that the build uses a fresh sysroot and then trying to rebuild the
-recipe. Is there something nicer? I think I remember reading about a
-script for testing for missing build dependencies, but I might be
-misremembering.
+See openembedded-core/scripts/test-dependencies.sh but it basically
+automates rebuilding recipes after removing TMPDIR, but also it detects
+autodetected dependencies.
 
-Cheers,
-Ulf
+Regards,
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--/8E7gjuj425jZz9t
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlao22EACgkQN1Ujt2V2gByBngCgnBMkF9eE/k1AthDRkNwIXTCN
+MqcAn3YbZOhgpZXeE9oaOc5vbbryQQ3R
+=HR8E
+-----END PGP SIGNATURE-----
+
+--/8E7gjuj425jZz9t--
