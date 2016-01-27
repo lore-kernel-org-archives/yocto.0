@@ -1,65 +1,61 @@
-Return-Path: <ulfalizer@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81675E00AD7; Wed, 27 Jan 2016 07:29:48 -0800 (PST)
+	id F0FA4E00AD7; Wed, 27 Jan 2016 07:49:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ulfalizer[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.52 listed in list.dnswl.org]
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
-	[209.85.213.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F799E00AB5
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:29:43 -0800 (PST)
-Received: by mail-vk0-f52.google.com with SMTP id e64so6908113vkg.0
-	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:29:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
+	[209.85.213.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77EBEE00AB5
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:49:06 -0800 (PST)
+Received: by mail-ig0-f174.google.com with SMTP id ik10so83587954igb.1
+	for <yocto@yoctoproject.org>; Wed, 27 Jan 2016 07:49:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=QejJ0/f5Ldicw8vOv4Ht0Sj2XvhfR0pxRaXVOTSJzeQ=;
-	b=uB5v0w92D4mYqhRekac4CkGxfzeNGvTHk/ElKVRKCSXTRUkLQw5f8j28T0uWLFA4t/
-	VEG7d6CVW4Vk2vge3XRUnSFKhFFOMz4h0eB87yVcK+zJeKcCKCoMrVL+vD6lda38ewUK
-	8wfRJ9wF4KBuH1HTbGDE9E0+Gby63/zLcnLGeNJ0nQoCMepQ35DjgTIYAuXN1419H8Je
-	vyXk94p6s+yochL7lcimkMrI1Le/+P7O4DJ7JjGeMllRQIOso3Y3Ln/aPu220z6Nf8lF
-	OmmnhZasJWA/zpDzpF1X+HCUEfabewbV8aB07Ova/Y7iShpV3RytdhfKdEHlv5a0zNcN
-	dIYg==
+	bh=c/BxFTUa0AkDRZZocULAxSyl/YOrWsirydLuKDWvwFE=;
+	b=G6t7uNY5KOPu0rzpdRv+MshKVD+9s4r5Bxv7RwEzQZVuXS2xABGr2YTc3SuJBpq7pn
+	wbghd8MepzQSoAAffaiGADLq1qCtrEbIDGoCzL6Qmy1/lwaIKD1st+i+uGYdf01r4f3B
+	7kW3qxZjpyJwxf56IAK6MbbBGkLe41NpDedGDmZuzHhuX9HUD1nthE5TXvkV8CkdBr8G
+	vOcg4z2vrNlCFU6gopBNkXyza8I3iIElgwtDVVB2LMYoncBmijD6ronqyxYHnhA4CPeN
+	hsiWBBP9kTFagepyxW0IBZeBvO25Hbtna1u9Prjqhn3QzlDsVvovzmlWmZde7h6gc2xE
+	S82g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=QejJ0/f5Ldicw8vOv4Ht0Sj2XvhfR0pxRaXVOTSJzeQ=;
-	b=nE9xQZfLQgx4acv0zKZhciM7ye7Ff/5dAT1Yp2R5AAZrcvsI9TdgzgOEY6nlEZKtwU
-	vk/uFgT7/db06BlL/LODgIxdqRZEP74hgPxWdfWPEglxr9e8TC8JJ8/iYkgFBBM44Xb8
-	+mxi17yU+qLK/VC/wRknZIw/XJqkJFc0gwE9fdzZHURbVrrl5eVKXhJ/yBCPXZvtsZ9t
-	5373AjLhigJRAjhTZmUArgYeyhZpccK5T2aYxfK9i3Ih5dssG5USpxXN0VE6jO6P2EFx
-	3V8vfQU83mWBEFJCqzl94w+FN0pYRAGim0UhXcZPG2ePB/XQYBak5Vz3irYVjfBQNJNp
-	g2kg==
-X-Gm-Message-State: AG10YOQOnhpP6buIBPWnoL2E77/ILTTz50+3c0IhLQ3SecchVzD77gIFdaWFpZY+mCzoLpvGiC9/R3BqsPAQzg==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=c/BxFTUa0AkDRZZocULAxSyl/YOrWsirydLuKDWvwFE=;
+	b=ZbAXJsg50znoOIR7Z8N8ohrC4VkBQU2xVpYQUVsetsMaRYpKfQFOsnszkZgaBxzaFH
+	T1g0N4zbqUswILXTRxxLGV6rf1l2wr6LAOyjhqUQXHNMr6OBZX5mkpW6+48raL00/ZcR
+	Cv61eHRvn/GTKauxxjGxYChhgRmZyNYcOidi0ugNBBRbTSzqi+KQDMxs3ejO0nT6lf+1
+	0bk8w2pnl9uW3snfLDoEARwyERJ3Rr2deUdhLQQB/6nIUXQKL21KIVlCsrYykdjZE/Pb
+	J36Wa+Nz/PIzIzcjENq8bgq7tI8iI1EcrxO2mfVSvPT/9t0Tl6fnHxlYo6cdEMX+84Z6
+	FUZA==
+X-Gm-Message-State: AG10YORegXnOJkWTRpK9hqPdhXXC4/czFRx7bqFmBgVZ7PB3FerMTxAF1b9BCwyEyNZYP8aIfTWxDKryi1BA5PkA
+X-Received: by 10.50.43.133 with SMTP id w5mr28452349igl.52.1453909746153;
+	Wed, 27 Jan 2016 07:49:06 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.31.52.195 with SMTP id b186mr17630133vka.39.1453908582461;
-	Wed, 27 Jan 2016 07:29:42 -0800 (PST)
-Received: by 10.103.64.132 with HTTP; Wed, 27 Jan 2016 07:29:42 -0800 (PST)
-In-Reply-To: <CAJTo0LZFpfFzYAUf2En8r-amde0q23eNbzhHapTPUyeSREVYjA@mail.gmail.com>
+Received: by 10.107.162.70 with HTTP; Wed, 27 Jan 2016 07:48:46 -0800 (PST)
+In-Reply-To: <CAFkk2KSu-yDHMxd-iSc0-cnLyh5wyYyfY7hG57jJGW7so8QB4A@mail.gmail.com>
 References: <CAFkk2KRbEnfcia1sq0keuFedUhMCNng3YWdbfCr=Osxw_qkeOQ@mail.gmail.com>
 	<CAJTo0LZFpfFzYAUf2En8r-amde0q23eNbzhHapTPUyeSREVYjA@mail.gmail.com>
-Date: Wed, 27 Jan 2016 16:29:42 +0100
-Message-ID: <CAFkk2KSu-yDHMxd-iSc0-cnLyh5wyYyfY7hG57jJGW7so8QB4A@mail.gmail.com>
-From: Ulf Magnusson <ulfalizer@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>,
-	Martin Jansa <Martin.Jansa@gmail.com>
+	<CAFkk2KSu-yDHMxd-iSc0-cnLyh5wyYyfY7hG57jJGW7so8QB4A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 27 Jan 2016 15:48:46 +0000
+Message-ID: <CAJTo0Lay6T0VnV3CND=p9pB1o=_Jx3WQN_D8Ti7MqTCJttSXnA@mail.gmail.com>
+To: Ulf Magnusson <ulfalizer@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Detecting missing build dependencies
 X-BeenThere: yocto@yoctoproject.org
@@ -73,41 +69,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 15:29:48 -0000
+X-List-Received-Date: Wed, 27 Jan 2016 15:49:10 -0000
+Content-Type: multipart/alternative; boundary=089e01175f2bf496c1052a52bdb3
+
+--089e01175f2bf496c1052a52bdb3
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Jan 27, 2016 at 3:59 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> On 27 January 2016 at 14:45, Ulf Magnusson <ulfalizer@gmail.com> wrote:
->> ...
-> See openembedded-core/scripts/test-dependencies.sh but it basically
-> automates rebuilding recipes after removing TMPDIR, but also it detects
-> autodetected dependencies.
->
-> Regards,
->
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+On 27 January 2016 at 15:29, Ulf Magnusson <ulfalizer@gmail.com> wrote:
 
-On Wed, Jan 27, 2016 at 4:02 PM, Burton, Ross <ross.burton@intel.com> wrote:
+>  1) Why does test-dependencies.sh remove TMPDIR instead of just wiping the
+>     sysroots?
 >
-> On 27 January 2016 at 14:45, Ulf Magnusson <ulfalizer@gmail.com> wrote:
->> ...
->
-> You're thinking of scripts/test-dependencies.sh.
->
-> Personally I just use wipe-sysroot (faster than deleting tmp) and
-> buildhistory-diff to verify build dependencies.
->
-> Ross
 
-Thanks for the tips! I have two questions:
-
- 1) Why does test-dependencies.sh remove TMPDIR instead of just wiping the
-    sysroots?
+For the thorough testing that test-dependencies does you could argue that
+entirely wiping tmpdir ensures that the builds are done from clean.
 
  2) Is there any overhead for subsequent builds from wiping the sysroots?
-    Guessing there shouldn't be, but better check.
+>     Guessing there shouldn't be, but better check.
+>
 
-Thanks,
-Ulf
+Only the overhead of extracting from sstate to repopulate the sysroot.
 
+Ross
+
+--089e01175f2bf496c1052a52bdb3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 27 January 2016 at 15:29, Ulf Magnusson <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:ulfalizer@gmail.com" target=3D"_blank">ulfalizer@gmail.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2dv" class=3D"a=
+3s" style=3D"overflow:hidden">=C2=A01) Why does test-dependencies.sh remove=
+ TMPDIR instead of just wiping the<br>
+=C2=A0 =C2=A0 sysroots?<br></div></blockquote><div><br></div><div>For the t=
+horough testing that test-dependencies does you could argue that entirely w=
+iping tmpdir ensures that the builds are done from clean.</div><div><br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
+:1px #ccc solid;padding-left:1ex"><div id=3D":2dv" class=3D"a3s" style=3D"o=
+verflow:hidden">
+=C2=A02) Is there any overhead for subsequent builds from wiping the sysroo=
+ts?<br>
+=C2=A0 =C2=A0 Guessing there shouldn&#39;t be, but better check.</div></blo=
+ckquote></div><br>Only the overhead of extracting from sstate to repopulate=
+ the sysroot.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail=
+_extra">Ross</div></div>
+
+--089e01175f2bf496c1052a52bdb3--
