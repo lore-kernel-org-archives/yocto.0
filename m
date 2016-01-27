@@ -1,74 +1,81 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9D14E00C13; Tue, 26 Jan 2016 21:30:35 -0800 (PST)
+	id A221EE00C13; Tue, 26 Jan 2016 22:09:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.182 listed in list.dnswl.org]
-Received: from mail-yk0-f182.google.com (mail-yk0-f182.google.com
-	[209.85.160.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 719BCE00C10
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 21:30:31 -0800 (PST)
-Received: by mail-yk0-f182.google.com with SMTP id k129so229540854yke.0
-	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 21:30:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=KlQfl/DX36c1UeHbI2fNAEZ32+2FeJj6mq389dqZ8gs=;
-	b=UKlTe6A0yiBpK1VZalDnBY0MU+JK43tLctgsrvWjYfH1kHbF1XJJIPT+U7I7au4t7e
-	PR+OAPMYuc3ToBX0sqxf90HhGD916mIJljCNyLq9nw8PEIv1sLvs+W5A+lY/8REN/H87
-	F+DJqPahhg0uEWZuJtnfSLUAapw921J1bnWhEyqN2QabIwDLAmhiX7B8qx0FjYFoIxCq
-	WcSlouPbWYVooHy8YWq7/uTfWmIC0lRDgf5mmP1ac3RqXqvDqh/TsxdorBuadxGCG8cW
-	dylKvDHFCiquGbnCHy2hoUgxvP/aMY9n4XoMo3RQT1mIwicv7rOv9+ZdGuDcrL6OehyB
-	MMig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:content-type:from
-	:in-reply-to:date:cc:message-id:references:to;
-	bh=KlQfl/DX36c1UeHbI2fNAEZ32+2FeJj6mq389dqZ8gs=;
-	b=RNrz6qg09qTbcma0W2wdyIN8Qepn0w3YECfjww3e30vbi33R3ogXm1EsrriDKmtbW0
-	dDnwTcZmJTJ5okFZBU8xfhnYDp54TrNJwUKulMIccmEdMNTcrHEz7LdlJ29TJMarS63n
-	oSk+BQRQKCkAuUykCQJwkAdbwwRWYTwWqqnbV+uQoUoL3D7viVNcEhMngcRCJNMPXiwM
-	4Cr54atFETM9uIa01K6HRBAgQdZK9T6YoEadYU/KZy+oLmRMqWr4dWlOuNgCpxNKLhWi
-	2bWXNJok6uhBZvMTSbBGnKO6hWMEJ4y0bJRtswCPkZpInwieXL/ln3vpmZHEQJNnMr0j
-	LBYA==
-X-Gm-Message-State: AG10YOTPgg8t7uZsFMNyGD/vLdxxksDV+4sflHXKN1yonm+JFR2y1NPY4lER0ZqXfxc1zw==
-X-Received: by 10.37.4.146 with SMTP id 140mr14268902ybe.18.1453872631074;
-	Tue, 26 Jan 2016 21:30:31 -0800 (PST)
-Received: from ?IPv6:2600:1002:b014:c92e:ed2f:4d62:56d8:d791?
-	([2600:1002:b014:c92e:ed2f:4d62:56d8:d791])
-	by smtp.gmail.com with ESMTPSA id
-	m188sm3718858ywe.46.2016.01.26.21.30.29
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 26 Jan 2016 21:30:30 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <56A82765.30403@windriver.com>
-Date: Wed, 27 Jan 2016 00:30:26 -0500
-Message-Id: <C89DF346-CD9F-4CC5-A41A-8FCD4B87DD06@gmail.com>
-References: <2747032A-1F56-4CA6-860C-484B9292A0B5@gmail.com>
-	<56A82765.30403@windriver.com>
-To: openembeded-devel <openembedded-devel@lists.openembedded.org>
-X-Mailer: Apple Mail (2.3112)
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [oe] [RFT] Glibc 2.23 and binutils 2.26
+X-Greylist: delayed 942 seconds by postgrey-1.32 at yocto-www;
+	Tue, 26 Jan 2016 22:08:55 PST
+Received: from IND01-MA1-obe.outbound.protection.outlook.com
+	(mail-ma1ind01on0044.outbound.protection.outlook.com [104.47.100.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBD74E00C10
+	for <yocto@yoctoproject.org>; Tue, 26 Jan 2016 22:08:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=inedasystems.onmicrosoft.com; s=selector1-inedasystems-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=sXb79y46QJPOqUHWInHKJF8J4YYSC4xklzA/S4wLLaI=;
+	b=cE1aWWVnvLd3mzEaX/JMrD6NMjhtkNKdRjnBZqPNo1UbLYF1QRsqf7AQNvjt59aGMSJ8eBvXAeNr0b+jn4lfD/r7CJUeJWap46qk6zFxKpUqV/+iroC/3WrK02KyuU8pJRYV1Szh9gGMB3JGjB5bhNfAR5tZ58ROEefk+cThPlU=
+Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) by
+	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM (10.164.118.148) with Microsoft
+	SMTP Server (TLS) id 15.1.390.13; Wed, 27 Jan 2016 05:53:10 +0000
+Received: from MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) by
+	MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM ([10.164.118.148]) with mapi id
+	15.01.0390.013; Wed, 27 Jan 2016 05:53:10 +0000
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: Yuki Machida <machida.yuki@jp.fujitsu.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Syslog Related testcases are failed in yocto LTP
+Thread-Index: AQHRVERz+LYGTV5uuE+leHAv1rjFFp8HPfQAgASARQ6AAdr+gIABS75H
+Date: Wed, 27 Jan 2016 05:53:09 +0000
+Message-ID: <MA1PR01MB0056B21EF1C3D003B713BA2482D90@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+References: <MA1PR01MB0056C008588A2F442A072B6182C30@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+	<56A1EF84.80101@jp.fujitsu.com>
+	<MA1PR01MB0056D0CB0813ADC08D0D809A82C70@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>,
+	<56A7448F.5030307@jp.fujitsu.com>
+In-Reply-To: <56A7448F.5030307@jp.fujitsu.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Raghavendra.Kakarla@inedasystems.com; 
+x-originating-ip: [175.101.7.226]
+x-microsoft-exchange-diagnostics: 1; MA1PR01MB0056;
+	5:wcrpqmg1cB1UJyyzlQH01DiL2bV3DudGUqMaIlXRVWBTvkHs4WTvhPiqv6GgXrvLdYB1RaKOmXXBN3Q+nhxRD+Ew8W4KpBFYUku2KiAR3Qjhux6voZFbCJVrngc+q17APFfSUhQfUhnEym2h5iBtDQ==;
+	24:18XeBcPfav8t6eZPOhAluAWas0lNmPj1KENDDaT3HQkQGiDr+w5IU0Wz0OlDQcU/eyv9MQa7Oy4BpjJaoNUb4uElW1lDpr2NncsEJ166Qg4=;
+	20:0kWTBIf+AHK+yS5lde2KZL+n2ZcaO+ztT3cCDPd8Og1tyiudkEz2PExHgCgI2WPIzm5LxpfUT/QmO2jtTQiJ/CvI63nygb8omCiOY9v33wNHSWSqqabCFikqHnmcE20pmphqYgrdQUwqo2d1Kj6Ja6vlbGoJ7HyOieVxNvWu+aQ=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:MA1PR01MB0056;
+x-ms-office365-filtering-correlation-id: 34433128-5845-4fc7-64fd-08d326de2306
+x-microsoft-antispam-prvs: <MA1PR01MB0056D556D2CA7D8261FA5FDB82D90@MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(2401047)(8121501046)(5005006)(3002001)(10201501046);
+	SRVR:MA1PR01MB0056; BCL:0; PCL:0; RULEID:; SRVR:MA1PR01MB0056; 
+x-forefront-prvs: 0834BAF534
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(51874003)(24454002)(377454003)(53754006)(189002)(199003)(5001960100002)(19625215002)(15975445007)(54356999)(3846002)(2950100001)(16601075003)(101416001)(1220700001)(107886002)(77096005)(1096002)(50986999)(11100500001)(105586002)(5003600100002)(586003)(102836003)(76176999)(2900100001)(106356001)(5002640100001)(5008740100001)(106116001)(189998001)(19580395003)(16236675004)(6116002)(33656002)(87936001)(122556002)(2906002)(19580405001)(10400500002)(66066001)(5004730100002)(19627405001)(3280700002)(97736004)(81156007)(5001770100001)(92566002)(5890100001)(86362001)(40100003)(93886004)(2501003)(3470700001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:MA1PR01MB0056;
+	H:MA1PR01MB0056.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: inedasystems.com does not
+	designate permitted sender hosts)
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: inedasystems.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jan 2016 05:53:09.9557 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 854eba29-8407-45bb-9043-7b8b086143dd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB0056
+Subject: Re: Syslog Related testcases are failed in yocto LTP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,85 +87,230 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jan 2016 05:30:35 -0000
-X-Groupsio-MsgNum: 28103
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A3BFF862-90CE-4BB9-BF9E-65F482525B46";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 27 Jan 2016 06:09:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR01MB0056B21EF1C3D003B713BA2482D90MA1PR01MB0056INDP_"
 
---Apple-Mail=_A3BFF862-90CE-4BB9-BF9E-65F482525B46
+--_000_MA1PR01MB0056B21EF1C3D003B713BA2482D90MA1PR01MB0056INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+
+Hi Yuki Machida,
 
 
-> On Jan 26, 2016, at 9:11 PM, ChenQi <Qi.Chen@windriver.com> wrote:
->=20
-> On 01/17/2016 07:54 PM, Khem Raj wrote:
->> Hi all
->>=20
->> upstream glibc and binutils release branches have been cut out and =
-are being made ready for next release
->> I have put together update patchset for both of them
->>=20
->> here are the branches
->>=20
->> https://github.com/kraj/openembedded-core/tree/kraj/binutils-2.26
->> https://github.com/kraj/openembedded-core/tree/kraj/glibc-2.23
->>=20
->> FYI These are still using autorev to ensure that we test tip of =
-release branches
->>=20
->> Please give them a shot in your environments and report any issues =
-you encounter.
->>=20
->> Thanks for help
->>=20
->> -Khem
->>=20
->>=20
->>=20
->>=20
->>=20
->=20
-> 0001-Generate-relocatable-SDKs.patch is included in SRC_URI twice, =
-which causes the following error when building binutils-crosssdk-XXX.
->=20
-> ERROR: Command Error: exit status: 1  Output:
-> Patch 0001-Generate-relocatable-SDKs.patch is already applied; check =
-your series file
-> ERROR: Function failed: patch_do_patch
->=20
-> binutils-2.26.inc and binutils-crosssdk_2.26.bb both has this patch in =
-its SRC_RUI.
->=20
+I have the syslog-ng  flavour of syslogd.
 
-Thanks for report. fixed and squashed into original commit in same =
-branch as above.
 
+Regards,
+
+Raghavendra K.
+
+________________________________________
+From: Yuki Machida <machida.yuki@jp.fujitsu.com>
+Sent: Tuesday, January 26, 2016 3:33 PM
+To: Raghavendra Kakarla; yocto@yoctoproject.org
+Subject: Re: [yocto] Syslog Related testcases are failed in yocto LTP
+
+Hi Raghavendra Kakarla
+
+> Thank you for your response.
+>
+> I am attaching the log file with this mail.
+>
+> Please find the attachment.
+Thank you for your test log.
+
+It need setting syslogd for testing syslog(2).
+We know that it can test using syslog-ng.
+
+Do you use any syslogd in your system?
+What kind of syslogd do you have in your system?
+(e.g. syslog-ng, sysklogd, rsyslogd,busybox-syslogd, ...)
+
+Best Regards,
+Yuki Machida
+
+On 2016?01?25? 14:46, Raghavendra Kakarla wrote:
+> Hi Yuki Machida,
+>
+> Thank you for your response.
+>
+> I am attaching the log file with this mail.
+>
+> Please find the attachment.
+>
 > Regards,
-> Chen Qi
-> --
-> _______________________________________________
-> Openembedded-devel mailing list
-> Openembedded-devel@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+> Raghavendra K.
+>
+> ________________________________________
+> From: Yuki Machida <machida.yuki@jp.fujitsu.com>
+> Sent: Friday, January 22, 2016 2:29 PM
+> To: Raghavendra Kakarla; yocto@yoctoproject.org
+> Subject: Re: [yocto] Syslog Related testcases are failed in yocto LTP
+>
+> Hi
+>
+>   > I build the LTP-2015-01-19 with yocto and I ran the runltp script on =
+my board I got error with the syslog related test cases.
+> What it has happen error?
+> If it is possible to send a test log,
+> I may be able to give any advice for you.
+>
+> Best regard,
+> Yuki Machida
+> On 2016?01?21? 21:10, Raghavendra Kakarla wrote:
+>> Hi All,
+>>
+>>
+>> I build the LTP-2015-01-19 with yocto and I ran the runltp script on my =
+board I got error with the syslog related test cases.
+>>
+>>
+>> Could please give me the some info such that I will resolve the issue.
+>>
+>>
+>> Thanks in advance.
+>>
+>>
+>> Regards,
+>>
+>> Raghavendra K.
+>>
+>>
+>>
+>
+> ______________________________________________________________________
+> This email has been scanned by the Symantec Email Security.cloud service.
+> For more information please visit http://www.symanteccloud.com
+> ______________________________________________________________________
+>
 
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
 
---Apple-Mail=_A3BFF862-90CE-4BB9-BF9E-65F482525B46
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
+--_000_MA1PR01MB0056B21EF1C3D003B713BA2482D90MA1PR01MB0056INDP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+Hi Yuki Machida,<br>
+<br>
+<p>I have the <font color=3D"#4ba524">syslog-ng&nbsp; <font color=3D"#00000=
+0">flavour of syslogd.</font></font></p>
+<p><font color=3D"#4ba524"><font color=3D"#000000"><br>
+</font></font></p>
+<p><font color=3D"#4ba524"><font color=3D"#000000">Regards,</font></font></=
+p>
+<p><font color=3D"#4ba524"><font color=3D"#000000">Raghavendra K.</font></f=
+ont><br>
+</p>
+<br>
+________________________________________<br>
+From: Yuki Machida &lt;machida.yuki@jp.fujitsu.com&gt;<br>
+Sent: Tuesday, January 26, 2016 3:33 PM<br>
+To: Raghavendra Kakarla; yocto@yoctoproject.org<br>
+Subject: Re: [yocto] Syslog Related testcases are failed in yocto LTP<br>
+<br>
+Hi Raghavendra Kakarla<br>
+<br>
+&gt; Thank you for your response.<br>
+&gt;<br>
+&gt; I am attaching the log file with this mail.<br>
+&gt;<br>
+&gt; Please find the attachment.<br>
+Thank you for your test log.<br>
+<br>
+It need setting syslogd for testing syslog(2).<br>
+We know that it can test using syslog-ng.<br>
+<br>
+Do you use any syslogd in your system?<br>
+What kind of syslogd do you have in your system?<br>
+(e.g. syslog-ng, sysklogd, rsyslogd,busybox-syslogd, ...)<br>
+<br>
+Best Regards,<br>
+Yuki Machida<br>
+<br>
+On 2016&#24180;01&#26376;25&#26085; 14:46, Raghavendra Kakarla wrote:<br>
+&gt; Hi Yuki Machida,<br>
+&gt;<br>
+&gt; Thank you for your response.<br>
+&gt;<br>
+&gt; I am attaching the log file with this mail.<br>
+&gt;<br>
+&gt; Please find the attachment.<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt; Raghavendra K.<br>
+&gt;<br>
+&gt; ________________________________________<br>
+&gt; From: Yuki Machida &lt;machida.yuki@jp.fujitsu.com&gt;<br>
+&gt; Sent: Friday, January 22, 2016 2:29 PM<br>
+&gt; To: Raghavendra Kakarla; yocto@yoctoproject.org<br>
+&gt; Subject: Re: [yocto] Syslog Related testcases are failed in yocto LTP<=
+br>
+&gt;<br>
+&gt; Hi<br>
+&gt;<br>
+&gt;&nbsp;&nbsp; &gt; I build the LTP-2015-01-19 with yocto and I ran the r=
+unltp script on my board I got error with the syslog related test cases.<br=
+>
+&gt; What it has happen error?<br>
+&gt; If it is possible to send a test log,<br>
+&gt; I may be able to give any advice for you.<br>
+&gt;<br>
+&gt; Best regard,<br>
+&gt; Yuki Machida<br>
+&gt; On 2016&#24180;01&#26376;21&#26085; 21:10, Raghavendra Kakarla wrote:<=
+br>
+&gt;&gt; Hi All,<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; I build the LTP-2015-01-19 with yocto and I ran the runltp script =
+on my board I got error with the syslog related test cases.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Could please give me the some info such that I will resolve the is=
+sue.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Thanks in advance.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Regards,<br>
+&gt;&gt;<br>
+&gt;&gt; Raghavendra K.<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt; ______________________________________________________________________=
+<br>
+&gt; This email has been scanned by the Symantec Email Security.cloud servi=
+ce.<br>
+&gt; For more information please visit http://www.symanteccloud.com<br>
+&gt; ______________________________________________________________________=
+<br>
+&gt;<br>
+<br>
+______________________________________________________________________<br>
+This email has been scanned by the Symantec Email Security.cloud service.<b=
+r>
+For more information please visit http://www.symanteccloud.com<br>
+______________________________________________________________________<br>
+</div>
+</body>
+</html>
 
-iEYEARECAAYFAlaoVfYACgkQuwUzVZGdMxTquACfXlFjaTreb/TCI2OIIE974AjE
-khgAn1rgEUf/chKvp5ja0/BLV671sIyI
-=+8j8
------END PGP SIGNATURE-----
-
---Apple-Mail=_A3BFF862-90CE-4BB9-BF9E-65F482525B46--
+--_000_MA1PR01MB0056B21EF1C3D003B713BA2482D90MA1PR01MB0056INDP_--
