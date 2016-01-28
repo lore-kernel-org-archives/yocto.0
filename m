@@ -1,83 +1,50 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <nathan@nathan.to>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE560E008F1; Thu, 28 Jan 2016 07:23:20 -0800 (PST)
+	id A5320E008F1; Thu, 28 Jan 2016 07:58:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.122 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.72.237.35 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 4753 seconds by postgrey-1.32 at yocto-www;
-	Thu, 28 Jan 2016 07:23:14 PST
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0122.outbound.protection.outlook.com [207.46.100.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 674FBE00803
-	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 07:23:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=Melink.onmicrosoft.com; s=selector1-melinkcorp-com;
-	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=8P6OCCinZ8wFAbQ62216D6kAg8jA+pMdLXnV7zBpbXo=;
-	b=kqTHXatNyJGdky9UZE2pZXSevs3PRpzDJpXmEl43rvlvJ79H0mq4quAk558NDDjye0kulDp7smnQ9XEmAKae9JXeuEvRnRJwuwFlEM66sEZTxnVWdhLnOT7ZOAC/bFY5d0ySSMMLqLc3lcIJNWZ967EzRyTubKXI+VIQpcJpW+0=
-Received: from BLUPR0501MB1843.namprd05.prod.outlook.com (10.163.121.153) by
-	BLUPR0501MB1841.namprd05.prod.outlook.com (10.163.121.151) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.390.13; Thu, 28 Jan 2016 13:49:38 +0000
-Received: from BLUPR0501MB1843.namprd05.prod.outlook.com ([10.163.121.153]) by
-	BLUPR0501MB1843.namprd05.prod.outlook.com ([10.163.121.153]) with
-	mapi id 15.01.0390.016; Thu, 28 Jan 2016 13:49:38 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Diego Sueiro <diego.sueiro@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Migrate, or not Migrate, that's the question!!!
-Thread-Index: AQHRV1SwOOtzXjrlKkmydTbUVq24/p8Q8NtQ
-Date: Thu, 28 Jan 2016 13:49:37 +0000
-Message-ID: <BLUPR0501MB18434F9CCFB9D423227C9F53BBDA0@BLUPR0501MB1843.namprd05.prod.outlook.com>
-References: <CAMCfZKF6asR9ubz7+oKJQ6FCO8mM0ryUzq-WDBGf6AAp2+WeMw@mail.gmail.com>
-In-Reply-To: <CAMCfZKF6asR9ubz7+oKJQ6FCO8mM0ryUzq-WDBGf6AAp2+WeMw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-originating-ip: [98.100.91.242]
-x-microsoft-exchange-diagnostics: 1; BLUPR0501MB1841;
-	5:bTnEUwOAooYONX7JkC1U4lv7ImHNw4uJ79Xou0Gf0cGGoBDN7XXAk50vNWMr51op1WMRDYE05CrUEnRzFY7x6yo3QjylcLoej46BorugRIbaJFAJqu+s0woU3ybA5zMrU7xdHLewdKCyBXxtNdStDA==;
-	24:OqeHppRqJn7aUd2G8KXs7J5QWIOkh6rRp9DVsBC+9sNzgowVF+78XxZbgh7Rrj84s+Dx1qqUDoidRLIsh435Zh1WyfTzFcHt0ghfvOmu7Pc=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0501MB1841;
-x-ms-office365-filtering-correlation-id: 676226f9-5192-4941-c43e-08d327e9dd37
-x-microsoft-antispam-prvs: <BLUPR0501MB18410A0A60284245A8C2AFACBBDA0@BLUPR0501MB1841.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:BLUPR0501MB1841; BCL:0; PCL:0; RULEID:;
-	SRVR:BLUPR0501MB1841; 
-x-forefront-prvs: 083526BF8A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(189002)(51444003)(377454003)(199003)(501624003)(223973002)(11100500001)(33656002)(2501003)(101416001)(5008740100001)(5003600100002)(1220700001)(3660700001)(3470700001)(1096002)(790700001)(3846002)(102836003)(19300405004)(76576001)(40100003)(6116002)(3280700002)(586003)(74316001)(92566002)(122556002)(2906002)(54356999)(19580405001)(76176999)(19609705001)(50986999)(107886002)(19580395003)(5001770100001)(226693001)(97736004)(16236675004)(81156007)(87936001)(5002640100001)(19625215002)(15975445007)(99286002)(2900100001)(5001960100002)(106116001)(2950100001)(86362001)(189998001)(10400500002)(105586002)(66066001)(19617315012)(5004730100002)(77096005)(106356001)(225543005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR0501MB1841;
-	H:BLUPR0501MB1843.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2016 13:49:37.8685 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0501MB1841
-Subject: Re: Migrate, or not Migrate, that's the question!!!
+Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A4F5E00803
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 07:58:11 -0800 (PST)
+Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 9AC363CDCF
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 10:58:10 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=content-type
+	:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to; s=sasl; bh=
+	hOHWTL1bKm9m80gkSW7X/yM63mQ=; b=i5nqT7FaG0orc3Bd0GrVXKL5keFAiZVB
+	B8kkFqP2Fc18uuUN3UtJvCTHxrmEje9HBfdePo7tI2eFyE6HWwV5NWB9UxOoFLuZ
+	r3n0+UmLGmBBM3YEJTCko42RO7Ta5MQPkLU1qgzOwyBxtVkYZQ3z1hLT+39bOMgY
+	if+paYojNTM=
+Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 91EEC3CDCE
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 10:58:10 -0500 (EST)
+Received: from [10.41.136.109] (unknown [79.154.252.102])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id 0D8643CDCD
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 10:58:09 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
+From: Nathan Sowatskey <nathan@nathan.to>
+In-Reply-To: <B7C221D2-D4CE-4FB0-8505-67FC63CCD2DA@nathan.to>
+Date: Thu, 28 Jan 2016 16:58:00 +0100
+Message-Id: <474E25F1-2158-4A0A-8A11-68F326C1ACC3@nathan.to>
+References: <B7C221D2-D4CE-4FB0-8505-67FC63CCD2DA@nathan.to>
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.3119)
+X-Pobox-Relay-ID: EDBB5E8C-C5D7-11E5-AD81-80A36AB36C07-96844961!pb-smtp0.pobox.com
+Subject: Re: Build appliance, qemux86-64, core-image-full-cmdline and ssh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,234 +56,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jan 2016 15:23:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BLUPR0501MB18434F9CCFB9D423227C9F53BBDA0BLUPR0501MB1843_"
+X-List-Received-Date: Thu, 28 Jan 2016 15:58:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_BLUPR0501MB18434F9CCFB9D423227C9F53BBDA0BLUPR0501MB1843_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi
 
-RGllZ28sDQoNCkluIG15IG9waW5pb24sIEkgdGhpbmsgaW4gdGhlIGxvbmcgdGVybSBpdCB3b3Vs
-ZCBiZSBlYXNpZXIgdG8gbWFrZSBhIGNsZWFuIGJyZWFrLiAgU3RhcnQgd2l0aCBhIHJlY2VudCBi
-cmFuY2gsIGxpa2UgSmV0aHJvLCBnZXQgYSBtaW5pbWFsIGltYWdlIHRvIGJ1aWxkIGZvciB5b3Vy
-IGhhcmR3YXJlIGFuZCB0aGVuIGFkZCB5b3VyIG93biBsYXllciB3aXRoIHlvdXIgcHJvcHJpZXRh
-cnkgcmVjaXBlcy4gIEkgdGhpbmsgdGhhdCB3aWxsIGJlIGEgbG90IGVhc2llciB0aGFuIHRyeWlu
-ZyB0byBnZXQgb2UtY29yZSB3b3JraW5nIHdpdGggNSsgeWVhciBvbGQgdmVyc2lvbnMgb2YgZ2Nj
-IGFuZCBlZ2xpYmMuICBZZXMsIHRoYXQgd291bGQgbWVhbiBhZGRpdGlvbmFsIHRlc3RpbmcsIGJ1
-dCBpdCBtYXkgYmUgbGVzcyB0ZXN0aW5nL2ludGVncmF0aW9uIHRoYW4geW91IGFyZSBjdXJyZW50
-bHkgZG9pbmcganVzdCB0cnlpbmcgdG8ga2VlcCB5b3VyIGN1cnJlbnQgaW1hZ2UgbWFpbnRhaW5l
-ZC4NCg0KUmVnYXJkcywNCkJyeWFuDQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0
-Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9m
-IERpZWdvIFN1ZWlybw0KU2VudDogTW9uZGF5LCBKYW51YXJ5IDI1LCAyMDE2IDQ6NDEgQU0NClRv
-OiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIE1pZ3JhdGUsIG9yIG5v
-dCBNaWdyYXRlLCB0aGF0J3MgdGhlIHF1ZXN0aW9uISEhDQoNCkhlbGxvIGZvbGtzLA0KDQoNCkkn
-bSBpbiBhIHByb2plY3QgdGhhdCB1c2VzIG9wZW5lbWJlZGRlZC1jbGFzc2ljIGFuZCBBcmFnbyBz
-dHVmZiB0byBidWlsZCB0aGUgcHJvZHVjdCdzIGltYWdlLg0KQSBsb3Qgb2YgcHJvYmxlbXMgaGF2
-ZSBiZWVuIHJhaXNlZCBpbiByZWxhdGlvbiB0byBidWlsZCB0aW1lLCBkZXBlbmRlbmNpZXMgaGFu
-ZGxpbmcsIGludGVncmF0aW5nIG5ldyByZWNpcGVzLCByZWNpcGVzIHR3ZWFrcyBldGMuDQoNCldl
-IGFyZSBldmFsdWF0aW5nIHRoZSBwb3NzaWJpbGl0eSB0byBtaWdyYXRlIHRvIFlvY3RvIFByb2pl
-Y3QgKE9wZW5lbWJlZGRlZCBDb3JlKS4gQnV0IHNvbWUgcmVxdWlyZW1lbnRzIE1VU1QgYmUgbWV0
-Og0KDQogICogICBlZ2xpYmMgKDIuMTIpLCBnY2MgKDQuNS4zKSwgdS1ib290LCBrZXJuZWwgYW5k
-IG90aGVyIHBhY2thZ2VzIHZlcnNpb25zIG11c3QgaGF2ZSBiZSBtYWludGFpbmVkLiBXZSBjYW5u
-b3QgdXBkYXRlIGl0IHZlcnNpb25zIHNpbmNlIHRoaXMgcHJvZHVjdCBpcyBpbiB0aGUgZmllbGQg
-Zm9yIGEgY291cGxlIG9mIHllYXJzIGFuZCBpdCB3YXMgaGVhdmlseSB0ZXN0ZWQgYW5kIGNlcnRp
-ZmllZC4NCg0KSSByZWFkIHNvbWUgZ3VpZGVsaW5lc1sxXVsyXSwgYnV0IG15IG1haW4gY29uY2Vy
-biBpcyBpZiBJJ20gZ29pbmcgaW50byBhICJjYW4gb2Ygd29ybXMiLCBhcyBtb3N0IHBhY2thZ2Vz
-IGRhdGluZyBmcm9tIDIwMTEgYW5kIEkgZG8gbm90IGtub3cgaG93IG11Y2ggdGhlIE9wZW5FbWJl
-ZGRlZC1jb3JlIGlzICJjb3VwbGVkIiB0byBnbGliYyBhbmQgZ2NjIHZlcnNpb25zLCBmb3IgZXhh
-bXBsZS4NCg0KDQpJIHRoaW5rIHRoZSBpZGVhbCBzY2VuYXJpbyBpcyB0byB1c2UgdGhlIG1vc3Qg
-cmVjZW50IFlvY3RvIHZlcnNpb24gYW5kIGhhdmUgYWxsIG5pY2UgZmVhdHVyZXMgYXZhaWxhYmxl
-LiBQZXJoYXBzIHRvIGFjaGlldmUgdGhpcyBJIGhhdmUgdG8gbWlncmF0ZSBmaXJzdCB0byAiMjAx
-MS0xIiBicmFuY2ggb2Ygb3BlbmVtYmVkZGVkLWNvcmUgYW5kIGhhdmUgYWxsIHBhY2thZ2VzIHZl
-cnNpb25zIGFuZCBjdXN0b20gbW9kaWZpY2F0aW9ucyBwb3J0ZWQgdG8gdGhlIG5ldyBvcGVuZW1i
-ZWRkZWQgcGxhdGZvcm0gYW5kIHRoZW4gbWlncmF0ZSB0byB0aGUgYSBuZXdlciB2ZXJzaW9uLg0K
-DQoNCg0KSSByZWFsbHkgYXBwcmVjaWF0ZSBpZiB5b3UgZ3V5cyBoYXZlIHNvbWUgdGhvdWdodHMs
-IHRpcHMgb3Igc29tZSBraW5kIG9mIGluZm9ybWF0aW9uIHRoYXQgY2FuIGhlbHAgbWUgdG8gdGFr
-ZSB0aGlzIGRlY2lzaW9uIGFuZCBtb3ZlIGZvcndhcmQuDQoNCg0KDQpbMV0gaHR0cDovL3d3dy55
-b2N0b3Byb2plY3Qub3JnL2RvY3MvMi4wL21lZ2EtbWFudWFsL21lZ2EtbWFudWFsLmh0bWwjbWln
-cmF0aW9uDQpbMl0gaHR0cDovL3d3dy5vcGVuZW1iZWRkZWQub3JnL3dpa2kvTWlncmF0aW5nX21l
-dGFkYXRhX3RvX09FLUNvcmUNCg0KDQoNClJlZ2FyZHMsDQoNCi0tDQoqZFMNCkRpZWdvIFN1ZWly
-bw0KDQpBZG1pbmlzdHJhdG9yIG9mIEVtYmFyY2Fkb3MNCnd3dy5lbWJhcmNhZG9zLmNvbS5icjxo
-dHRwOi8vd3d3LmVtYmFyY2Fkb3MuY29tLmJyLz91dG1fc291cmNlPWFzc2luYXR1cmFfZGllZ28m
-dXRtX21lZGl1bT1lLW1haWwmdXRtX2NhbXBhaWduPUFzc2luYXR1cmElMjBFbWFpbCUyMERpZWdv
-Pg0K
+The trick was to go back to the beginning and start with a clean build =
+appliance. Though I had selected the options below, I had tried other =
+options first, and those seemed to be sticking, even after I changed the =
+recipe.
 
---_000_BLUPR0501MB18434F9CCFB9D423227C9F53BBDA0BLUPR0501MB1843_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Now on to how to get DHCP to work =E2=80=A6
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
-b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
-Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
-OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
-RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJD
-YWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgN
-Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWlseToiQ2FsaWJy
-aSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
-by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46
-MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
-ZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlzdCBsMA0KCXttc28tbGlzdC1p
-ZDoxOTAyNTkyMTk1Ow0KCW1zby1saXN0LXRlbXBsYXRlLWlkczotMTcwNjAwMzIxMDt9DQpAbGlz
-dCBsMDpsZXZlbDENCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6LjVpbjsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZvbnQtc2l6
-ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsMg0KCXttc28t
-bGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2
-ZWwtdGFiLXN0b3A6MS4waW47DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRl
-eHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFt
-aWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNvLWJpZGktZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21h
-biI7fQ0KQGxpc3QgbDA6bGV2ZWwzDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsN
-Cgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjEuNWluOw0KCW1zby1s
-ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFu
-c2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6
-bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4
-dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjIuMGluOw0KCW1zby1sZXZlbC1udW1iZXItcG9z
-aXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEw
-LjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw1DQoJe21zby1s
-ZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxl
-dmVsLXRhYi1zdG9wOjIuNWluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0
-ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZh
-bWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9y
-bWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjMu
-MGluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1
-aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7
-fQ0KQGxpc3QgbDA6bGV2ZWw3DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCglt
-c28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjMuNWluOw0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2kt
-Zm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2
-ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrv
-gqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjQuMGluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRp
-b246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBw
-dDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZl
-bC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVs
-LXRhYi1zdG9wOjQuNWluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWls
-eTpXaW5nZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KdWwNCgl7bWFyZ2luLWJv
-dHRvbTowaW47fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-ZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0t
-LT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4N
-CjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1s
-PjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZs
-aW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5EaWVnbyw8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkluIG15IG9waW5pb24sIEkgdGhpbmsgaW4g
-dGhlIGxvbmcgdGVybSBpdCB3b3VsZCBiZSBlYXNpZXIgdG8gbWFrZSBhIGNsZWFuIGJyZWFrLiZu
-YnNwOyBTdGFydCB3aXRoIGEgcmVjZW50IGJyYW5jaCwgbGlrZSBKZXRocm8sIGdldCBhIG1pbmlt
-YWwgaW1hZ2UgdG8gYnVpbGQgZm9yIHlvdXINCiBoYXJkd2FyZSBhbmQgdGhlbiBhZGQgeW91ciBv
-d24gbGF5ZXIgd2l0aCB5b3VyIHByb3ByaWV0YXJ5IHJlY2lwZXMuJm5ic3A7IEkgdGhpbmsgdGhh
-dCB3aWxsIGJlIGEgbG90IGVhc2llciB0aGFuIHRyeWluZyB0byBnZXQgb2UtY29yZSB3b3JraW5n
-IHdpdGggNSYjNDM7IHllYXIgb2xkIHZlcnNpb25zIG9mIGdjYyBhbmQgZWdsaWJjLiZuYnNwOyBZ
-ZXMsIHRoYXQgd291bGQgbWVhbiBhZGRpdGlvbmFsIHRlc3RpbmcsIGJ1dCBpdCBtYXkgYmUgbGVz
-cyB0ZXN0aW5nL2ludGVncmF0aW9uDQogdGhhbiB5b3UgYXJlIGN1cnJlbnRseSBkb2luZyBqdXN0
-IHRyeWluZyB0byBrZWVwIHlvdXIgY3VycmVudCBpbWFnZSBtYWludGFpbmVkLjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+QnJ5YW48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRk
-aW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTti
-b3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwv
-Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWYiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0
-bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkRp
-ZWdvIFN1ZWlybzxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIEphbnVhcnkgMjUsIDIwMTYgNDo0
-MSBBTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1Ympl
-Y3Q6PC9iPiBbeW9jdG9dIE1pZ3JhdGUsIG9yIG5vdCBNaWdyYXRlLCB0aGF0J3MgdGhlIHF1ZXN0
-aW9uISEhPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5IZWxsbyBmb2xrcyw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JJ20gaW4gYSBwcm9qZWN0IHRoYXQgdXNlcyBvcGVuZW1i
-ZWRkZWQtY2xhc3NpYyBhbmQgQXJhZ28gc3R1ZmYgdG8gYnVpbGQgdGhlIHByb2R1Y3QncyBpbWFn
-ZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkEg
-bG90IG9mIHByb2JsZW1zIGhhdmUgYmVlbiByYWlzZWQgaW4gcmVsYXRpb24gdG8gYnVpbGQgdGlt
-ZSwgZGVwZW5kZW5jaWVzIGhhbmRsaW5nLCBpbnRlZ3JhdGluZyBuZXcgcmVjaXBlcywgcmVjaXBl
-cyB0d2Vha3MgZXRjLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5XZSBhcmUgZXZhbHVhdGluZyB0aGUgcG9zc2liaWxpdHkgdG8gbWlncmF0ZSB0
-byBZb2N0byBQcm9qZWN0IChPcGVuZW1iZWRkZWQgQ29yZSkuIEJ1dCBzb21lIHJlcXVpcmVtZW50
-cyBNVVNUIGJlIG1ldDo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjx1bCB0eXBlPSJk
-aXNjIj4NCjxsaSBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPg0K
-ZWdsaWJjICgyLjEyKSwgZ2NjICg0LjUuMyksIHUtYm9vdCwga2VybmVsIGFuZCBvdGhlciBwYWNr
-YWdlcyB2ZXJzaW9ucyBtdXN0IGhhdmUgYmUgbWFpbnRhaW5lZC4gV2UgY2Fubm90IHVwZGF0ZSBp
-dCB2ZXJzaW9ucyBzaW5jZSB0aGlzIHByb2R1Y3QgaXMgaW4gdGhlIGZpZWxkIGZvciBhIGNvdXBs
-ZSBvZiB5ZWFycyBhbmQgaXQgd2FzIGhlYXZpbHkgdGVzdGVkIGFuZCBjZXJ0aWZpZWQuPG86cD48
-L286cD48L2xpPjwvdWw+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkg
-cmVhZCBzb21lIGd1aWRlbGluZXNbMV1bMl0sIGJ1dCBteSBtYWluIGNvbmNlcm4gaXMgaWYgSSdt
-IGdvaW5nIGludG8gYSAmcXVvdDtjYW4gb2Ygd29ybXMmcXVvdDssIGFzIG1vc3QgcGFja2FnZXMg
-ZGF0aW5nIGZyb20gMjAxMSBhbmQgSSBkbyBub3Qga25vdyBob3cgbXVjaCB0aGUgT3BlbkVtYmVk
-ZGVkLWNvcmUgaXMgJnF1b3Q7Y291cGxlZCZxdW90OyB0byBnbGliYyBhbmQgZ2NjIHZlcnNpb25z
-LCBmb3IgZXhhbXBsZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5JIHRoaW5rIHRoZSBpZGVhbCBzY2VuYXJpbyBpcyB0byB1c2UgdGhlIG1v
-c3QgcmVjZW50IFlvY3RvIHZlcnNpb24gYW5kIGhhdmUgYWxsIG5pY2UgZmVhdHVyZXMgYXZhaWxh
-YmxlLiBQZXJoYXBzIHRvIGFjaGlldmUgdGhpcyBJIGhhdmUgdG8gbWlncmF0ZSBmaXJzdCB0byAm
-cXVvdDsyMDExLTEmcXVvdDsgYnJhbmNoIG9mIG9wZW5lbWJlZGRlZC1jb3JlIGFuZCBoYXZlIGFs
-bCBwYWNrYWdlcyB2ZXJzaW9ucyBhbmQgY3VzdG9tIG1vZGlmaWNhdGlvbnMNCiBwb3J0ZWQgdG8g
-dGhlIG5ldyBvcGVuZW1iZWRkZWQgcGxhdGZvcm0gYW5kIHRoZW4gbWlncmF0ZSB0byB0aGUgYSBu
-ZXdlciB2ZXJzaW9uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+SSByZWFsbHkgYXBwcmVjaWF0ZSBpZiB5b3UgZ3V5cyBoYXZlIHNvbWUg
-dGhvdWdodHMsIHRpcHMgb3Igc29tZSBraW5kIG9mIGluZm9ybWF0aW9uIHRoYXQgY2FuIGhlbHAg
-bWUgdG8gdGFrZSB0aGlzIGRlY2lzaW9uIGFuZCBtb3ZlIGZvcndhcmQuPG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5bMV0mbmJzcDs8YSBo
-cmVmPSJodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjAvbWVnYS1tYW51YWwvbWVn
-YS1tYW51YWwuaHRtbCNtaWdyYXRpb24iPmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2Nz
-LzIuMC9tZWdhLW1hbnVhbC9tZWdhLW1hbnVhbC5odG1sI21pZ3JhdGlvbjwvYT48bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlsyXSZuYnNwOzxhIGhy
-ZWY9Imh0dHA6Ly93d3cub3BlbmVtYmVkZGVkLm9yZy93aWtpL01pZ3JhdGluZ19tZXRhZGF0YV90
-b19PRS1Db3JlIj5odHRwOi8vd3d3Lm9wZW5lbWJlZGRlZC5vcmcvd2lraS9NaWdyYXRpbmdfbWV0
-YWRhdGFfdG9fT0UtQ29yZTwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxiciBjbGVhcj0iYWxsIj4NCjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxk
-aXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJlZ2FyZHMsPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LS08YnI+DQoqZFM8YnI+DQpE
-aWVnbyBTdWVpcm88YnI+DQo8YnI+DQpBZG1pbmlzdHJhdG9yIG9mIEVtYmFyY2Fkb3M8YnI+DQo8
-YSBocmVmPSJodHRwOi8vd3d3LmVtYmFyY2Fkb3MuY29tLmJyLz91dG1fc291cmNlPWFzc2luYXR1
-cmFfZGllZ28mYW1wO3V0bV9tZWRpdW09ZS1tYWlsJmFtcDt1dG1fY2FtcGFpZ249QXNzaW5hdHVy
-YSUyMEVtYWlsJTIwRGllZ28iIHRhcmdldD0iX2JsYW5rIj53d3cuZW1iYXJjYWRvcy5jb20uYnI8
-L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Apologies
 
---_000_BLUPR0501MB18434F9CCFB9D423227C9F53BBDA0BLUPR0501MB1843_--
+Nathan
+
+> On 28 Jan 2016, at 15:31, Nathan Sowatskey <nathan@nathan.to> wrote:
+>=20
+> Hi
+>=20
+> I am using the Yocto Build Appliance to build a image using a profile =
+of qemux86-64, and recipe of core-image-full-cmdline.
+>=20
+> I then sftp the image to my OSX environment and run it as shown below. =
+That works fine, and I can log in as root.
+>=20
+> I want to use ssh to connect to the image, but ssh does not seem to =
+either running or even installed, as I don=E2=80=99t see /etc/init.d/ssh =
+scripts.
+>=20
+> I am clearly missing a trick here.=20
+>=20
+> Any ideas please?
+>=20
+> Many thanks
+>=20
+> Nathan
+>=20
+> How I run the image is shown below. This is copied from the build =
+appliance, and I confess that I don=E2=80=99t understand all of the =
+options yet.
+>=20
+> /usr/local/bin/qemu-system-x86_64 -kernel =
+images/bzImage-qemux86-64.bin -net nic,model=3Dvirtio -drive =
+file=3Dimages/core-image-base-qemux86-64.ext4,if=3Dvirtio,format=3Draw =
+-show-cursor -usb -vga vmware -no-reboot -m 256 -serial mon:vc -serial =
+null --append "vga=3D0 uvesafb.mode_option=3D640x480-32 root=3D/dev/vda =
+rw mem=3D256M ip=3D10.41.136.130::10.41.136.1:255.255.255.0 =
+oprofile.timer=3D1 rootfstype=3Dext4 "
+>=20
+>=20
+> =E2=80=94
+> Nathan John Sowatskey
+> Consulting Engineer - Programmable Infrastructure, DevOps, IoT and SDN
+> nathan@nathan.to
+> www.linkedin.com/in/nathandevops
+> XMPP: nathandotto@im.koderoot.net
+> Google: nathanjohnsowatskey@gmail.com
+> Skype: nathan_sowatskey
+> Twitter: NathanDotTo
+> GitHub: https://github.com/DevOps4Networks
+> http://www.kipling.org.uk/poems_if.htm
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
