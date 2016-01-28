@@ -1,58 +1,70 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01542E0073D; Thu, 28 Jan 2016 09:07:42 -0800 (PST)
+	id 38380E0073D; Thu, 28 Jan 2016 09:23:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+	*      [74.125.82.54 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2CBAE00444
-	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 09:07:39 -0800 (PST)
-Received: by mail-wm0-f43.google.com with SMTP id r129so34232521wmr.0
-	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 09:07:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:subject:date:message-id;
-	bh=f5b5vuzRuPXLvG3gRe+3K4/pYhYeyPO0ujTXV/aLi2s=;
-	b=x/yzEnhpCvo+t7lyCpayfwScejmIfLRvEawKB7CnFB2XxE+BqDCis3aCrUGMF/yE0I
-	6/XdoeCdlYRLPn4ECg2zu3FC6UwWvGoDUovcPHSujlwGUUGFuXkZk9opJcFQuNaMHcXf
-	tBQRYITPsoGK9fEyRqQyqXF7eH2AWrFnTsGhZtoyUm8GQK3vD/yy+v6gz/YO2MFYvnuP
-	MnQ1Q9UV/pjDCvbg+RVh7gyMTt+W6iUZkzoXJVNvJOKGbBUk1Zo+79R7moM5onSfiME4
-	U8bpUsG6BvPmNm08vfoDPZXUgVYy6nbG58UgXoLGxPPGT2b5bfJYH/5Mv6yxOAtnO83J
-	2Sqw==
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EB12E00444
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 09:23:22 -0800 (PST)
+Received: by mail-wm0-f54.google.com with SMTP id r129so34872975wmr.0
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 09:23:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=2WHLEh3z0HLvsS7OqF2uQocqyH43Q0TfgMyBZe3jGS4=;
+	b=OWKkB+ZUZecsoe7Kn77EXKN+DTLSqDP3uZpf7otNJHYmHkwYao7AIvx0kvCJeUpXzX
+	Uk0Cqy5DksQjicrUjz0i53jgpzIUYNS3XLUTvf0NOrlzmLzzynAYMWDEpweKTUwelk6S
+	mM5Ef2dCQLzOt4q77khzKQ4iIOxOKs3SYyKc3IMLRB6HuFgl4p/qP61XZ2cHu5wzaim6
+	hTNJTO5pC4E7wSRKzJ0sasyqUjbDipw0olRZkJgYex8EzdNnLwQuFMDQosNruhYD1zke
+	TUFZIAYjqQVM1LVY48CdYRwlPDgkaGxwrKMI0K2ZFUhp4bV7DH0XnO86p6hYc9prPui8
+	IQKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=f5b5vuzRuPXLvG3gRe+3K4/pYhYeyPO0ujTXV/aLi2s=;
-	b=WypWXWajj+BJsJ35TY9s3wiBC9rWznjVY15dqIDaOpQFkRkt13a1ZKLzd0qhk6gTD/
-	JbW+zOyYJHz0LJvBj4mAYRQV2h1/Xs0xn/+l2o2OPI/wpxEjbWypjbQl15jo09PAZnYi
-	v1LUXCDJppoK9vvV5fTmIc/ha5lcDZ546iU1YMItSLGHEfrD8HqUrgUyUV1g56Ebl80y
-	GUTMzAxbJip73mLIgy5/3sLGYL9s4S++FpzFVDe9Jlvk0jbZyYACCIQbBW4tXFg6qVSh
-	yr63b9wzICjOcro+DlIeOHGD0pfYsUS9IZI3wE6OlM+D7UIeEMadR2jKwN0mK0DYC7fC
-	htQQ==
-X-Gm-Message-State: AG10YOSITVz+3ndHLSsTlB86T/MOSdHkV1qLeal+MqkX4XuLjYepKtjXqiQtwnx1I4LGbvQv
-X-Received: by 10.28.176.133 with SMTP id z127mr4472766wme.22.1454000858707;
-	Thu, 28 Jan 2016 09:07:38 -0800 (PST)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	av3sm11915798wjc.44.2016.01.28.09.07.37 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 28 Jan 2016 09:07:38 -0800 (PST)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 28 Jan 2016 17:07:35 +0000
-Message-Id: <1454000855-26774-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 2.6.4
-Subject: [PATCH][yocto-autobuilder] nightly-world-lsb: blacklist qwt
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=2WHLEh3z0HLvsS7OqF2uQocqyH43Q0TfgMyBZe3jGS4=;
+	b=G1S8ib3NDKZ5XJXvTjV01JgE6ahN1E9Tl1Y45svl6rg6Byn1num9Slvn9VTFLkrk2N
+	BaMB4Zxm8qjiClOTDAqZtkeoNS6tJNJIuDJkN1YeeJh5DWpGAQHFowyymzKVJFfIqI/f
+	2zlxm1uWmwMTi1yCcmYZ98e2pyj4C7CLzu2Ucjgau2EEvtv6FkJakRwBm7dBbyTCTgYe
+	u91czQQpXowIMIsZ1GuUXEyV5AOaInHb0GuBAYAn6GA+9ToqG+I2RL/5SIuKkG0XgQw+
+	iTQ9jKW016ZFVrMvP3uUkdJwz+/QL3bP2AtPHE9LVNVMVETCe5QiK9/97gyQs1UcbWzD
+	yhCA==
+X-Gm-Message-State: AG10YOSx/ruWmI4IWzrUapKfwgfvbmrOFiey8kDmKnF5ut3f+bWYqZm6LG75vOPv14p6lA==
+X-Received: by 10.28.99.69 with SMTP id x66mr4457949wmb.10.1454001801651;
+	Thu, 28 Jan 2016 09:23:21 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id
+	193sm3792215wmg.16.2016.01.28.09.23.20
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 28 Jan 2016 09:23:20 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Thu, 28 Jan 2016 18:25:39 +0100
+To: Ross Burton <ross.burton@intel.com>
+Message-ID: <20160128172539.GB2574@jama>
+References: <1454000855-26774-1-git-send-email-ross.burton@intel.com>
+MIME-Version: 1.0
+In-Reply-To: <1454000855-26774-1-git-send-email-ross.burton@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][yocto-autobuilder] nightly-world-lsb: blacklist qwt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,30 +76,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jan 2016 17:07:43 -0000
+X-List-Received-Date: Thu, 28 Jan 2016 17:23:24 -0000
+X-Groupsio-MsgNum: 28135
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
+Content-Disposition: inline
 
-qwt (from meta-qt4) doesn't build without errors but gets pulled into world
-poky-lsb builds.  Until this is fixed, blacklist it.
+--WYTEVAkct0FjGQmd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- buildset-config.controller/nightly-world-lsb.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Jan 28, 2016 at 05:07:35PM +0000, Ross Burton wrote:
+> qwt (from meta-qt4) doesn't build without errors but gets pulled into wor=
+ld
+> poky-lsb builds.  Until this is fixed, blacklist it.
 
-diff --git a/buildset-config.controller/nightly-world-lsb.conf b/buildset-config.controller/nightly-world-lsb.conf
-index 7341f6c..df08e8d 100644
---- a/buildset-config.controller/nightly-world-lsb.conf
-+++ b/buildset-config.controller/nightly-world-lsb.conf
-@@ -17,7 +17,7 @@ steps: [{'SetDest':{}},
-         {'CheckForWorldLsb':{}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64',
-                             'buildhistory' : False, 'multilib': True,
--                            'atextprepend': 'QTDEMOS_remove = "qmmp"\n',
-+                            'atextprepend': 'QTDEMOS_remove = "qmmp"\nPNBLACKLIST[qwt] = "already stripped errors"\n',
-                             'distro': 'poky-lsb'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'world'}},
--- 
-2.6.4
+Why not set INSANE_SKIP to make it more specific?
 
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
+> ---
+>  buildset-config.controller/nightly-world-lsb.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/buildset-config.controller/nightly-world-lsb.conf b/buildset=
+-config.controller/nightly-world-lsb.conf
+> index 7341f6c..df08e8d 100644
+> --- a/buildset-config.controller/nightly-world-lsb.conf
+> +++ b/buildset-config.controller/nightly-world-lsb.conf
+> @@ -17,7 +17,7 @@ steps: [{'SetDest':{}},
+>          {'CheckForWorldLsb':{}},
+>          {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64=
+',
+>                              'buildhistory' : False, 'multilib': True,
+> -                            'atextprepend': 'QTDEMOS_remove =3D "qmmp"\n=
+',
+> +                            'atextprepend': 'QTDEMOS_remove =3D "qmmp"\n=
+PNBLACKLIST[qwt] =3D "already stripped errors"\n',
+>                              'distro': 'poky-lsb'}},
+>          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+>          {'BuildImages': {'images': 'world'}},
+> --=20
+> 2.6.4
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--WYTEVAkct0FjGQmd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlaqTxIACgkQN1Ujt2V2gBxZcQCdEEBd5b7qHpqv2zuu+6rELP0g
+xbEAmwSiQ+HTViHSvTJnea2GmQ+1OJuK
+=h14J
+-----END PGP SIGNATURE-----
+
+--WYTEVAkct0FjGQmd--
