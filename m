@@ -1,60 +1,69 @@
-Return-Path: <btv1==8351350773b==Zielinski_Dave@shure.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D964BE00A7D; Thu, 28 Jan 2016 10:54:01 -0800 (PST)
+	id 23B16E008F5; Thu, 28 Jan 2016 12:27:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [204.124.150.79 listed in list.dnswl.org]
-X-Greylist: delayed 1083 seconds by postgrey-1.32 at yocto-www;
-	Thu, 28 Jan 2016 10:53:57 PST
-Received: from smtp1.shure.com (smtp1.shure.com [204.124.150.79])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F531E008F5
-	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 10:53:57 -0800 (PST)
-X-ASG-Debug-ID: 1454006152-0905652fce21f290001-yzSStA
-Received: from ms-vm40.shure.com ([172.17.52.140]) by smtp1.shure.com with
-	ESMTP id ZwQl0EIAVaw5GXS6 for <yocto@yoctoproject.org>;
-	Thu, 28 Jan 2016 12:35:52 -0600 (CST)
-X-Barracuda-Envelope-From: Zielinski_Dave@shure.com
-Received: from MS-NI30.shure.com ([fe80::8db5:344a:77eb:f81e]) by
-	ms-vm40.shure.com ([::1]) with mapi id 14.03.0181.006; Thu, 28 Jan 2016
-	12:35:52 -0600
-From: "Zielinski, Dave" <Zielinski_Dave@shure.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Image size
-X-ASG-Orig-Subj: RE: [yocto] Image size
-Thread-Index: AQHRWSq1sl2RgK8yHE+Z2RDD4ZdUMZ8QH7sAgAEg6KA=
-Date: Thu, 28 Jan 2016 18:35:51 +0000
-Message-ID: <20A1F22A2EC04B408E9C40A51ACD07A1F93C63@MS-NI30.shure.com>
-References: <CAHpaHKnL3wa6nX+2HdjVNVkSUinQzd2wg0EE+Xk3Y1mCXF9+9w@mail.gmail.com>
-	<CAMKF1srY+WT4nCqQaPXWsWUoOhx49XzAg=-VtD9mOENLfb31pw@mail.gmail.com>
-In-Reply-To: <CAMKF1srY+WT4nCqQaPXWsWUoOhx49XzAg=-VtD9mOENLfb31pw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.17.3.66]
-MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[172.17.52.140]
-X-Barracuda-Start-Time: 1454006152
-X-Barracuda-URL: https://smtp1.shure.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at shure.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0
-	tests=MAILTO_TO_SPAM_ADDR
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.26540
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 MAILTO_TO_SPAM_ADDR URI: Includes a link to a likely spammer email
-Subject: Re: Image size
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.172 listed in list.dnswl.org]
+Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
+	[209.85.213.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED348E00803
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 12:27:06 -0800 (PST)
+Received: by mail-ig0-f172.google.com with SMTP id t15so21994733igr.0
+	for <yocto@yoctoproject.org>; Thu, 28 Jan 2016 12:27:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=XFHZbIPolqOfINX6TJ95Oi1Zjj3vopef+eS7GTZiQd4=;
+	b=tSrGdi2bnZt40Kl0JAsCzVGnoc6Y3oeN8UXZty2sHpviv/2mO24gE4yZuWkH6KGek8
+	Uo5DE8g/F+aBLeCJvuM4coa2gKASFMnynVpXpKSGoaDfIgVCeqaBC0vrJ64Ga9VeUNRE
+	weh8BAJjMzijZ4Ge5Q2j4TsyngrwSt++KfkVprR+ZtP5JGTw4kd4KXjdb64LcL5eKY6F
+	Fyk4sOgaC7nIv2z00S+4fekjODQ28z8uiTeYOtMHx349iWy9RNhYO0NcRlrlZSeAZZMW
+	kxmPj3LvKA2ZVuxdFPJJxF17apGZWoaBI8JtZLFihyxoZZkxxMIMZ4wBHOmuDW6nALYj
+	/trg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=XFHZbIPolqOfINX6TJ95Oi1Zjj3vopef+eS7GTZiQd4=;
+	b=SPEGi72JJNsA7wwV4bkQKRsnURj1hSO0YU6Dg4N1OHW1641WgAMIkp0S/s5TaYjZcN
+	FvwcqhnWnqRqRjJ6/OhbZBDYmAeej+j+msn+EU2u0LcLsfJQQ/lf5e5mFAzQU1Mk1toF
+	cpvXjHGkkltn4tR7JISYqWgWgou863lDSxX+46mwcVaP4fp0LP5T+7kf4mG+dIRB/Z7l
+	dc8Dmlyc+dnB/1JIlOQbTD0JWoGqzWpF68pTeAh/cuOz4muRE6ktwyJPnD9EI1NzsXMV
+	HRfiXHPCCc9Z3lEe/rYeHe8dweYT6Q+UwyYu0ckpMh3lbaEjGd2VLPQ9Hu+jlcWPQ++l
+	KUgQ==
+X-Gm-Message-State: AG10YOTKYhtbmwQ6ZUASijZM8f+JXiFAXdeTKUN8uCVT5WMVEabrCLBxP7Wk30jElg0cAg==
+X-Received: by 10.50.28.20 with SMTP id x20mr5774458igg.87.1454012826020;
+	Thu, 28 Jan 2016 12:27:06 -0800 (PST)
+Received: from [172.19.131.151] ([12.130.117.59])
+	by smtp.gmail.com with ESMTPSA id z84sm46544ioi.39.2016.01.28.12.27.04
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 28 Jan 2016 12:27:05 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <56AA16FD.1040406@mlbassoc.com>
+Date: Thu, 28 Jan 2016 15:26:54 -0500
+Message-Id: <A4152445-62F1-40F9-8D2E-CE934C58B059@gmail.com>
+References: <56AA16FD.1040406@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: yocto@yoctoproject.org
+Subject: Re: Diagnosing mishandled dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,66 +75,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jan 2016 18:54:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 28 Jan 2016 20:27:10 -0000
+X-Groupsio-MsgNum: 28145
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_55156E98-120D-414C-8D38-CAAA838FBA4D";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-> On Sat, Jan 23, 2016 at 6:12 AM, Max Sht <maxx1109@gmail.com> wrote:
-> > Hi.
-> >
-> > Thank you in advance for your support.
-> > I'm using Yocto project Linux for the iMX6 CPU and imx6ulevk board.
-> >
-> > I think that I have a problem with image size. I've seen the basic
-> > image for that board and it's size was about 6Mb, but it didn't
-> > contain any graphical library.
-> > I need a basic graphical library, so I added FB library. My image size
-> > is now larger than 350Mb.
-> > Is it normal? Is there a possibility to make the image much smaller
-> > with some other graphic library?
-> >
-> > I'm very to new to Linux, and hope that you can help me.
->=20
-> you can look into buildhistory to help you find the dependency chain in
-> local.conf you need to enable buildhistory generation
->=20
-> then do a build before adding FB lib and after adding libs then go into
-> buildhistory repo and do git show
->=20
-> it will show you top commit showing all the changes in packages and image
-> after you added FB lib
->=20
+--Apple-Mail=_55156E98-120D-414C-8D38-CAAA838FBA4D
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=us-ascii
+
+
+> On Jan 28, 2016, at 8:26 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> 
+> I have an image recipe which depends on another package/recipe.
+> When I change one of the files included by that recipe (a script
+> that gets packaged and is mentioned in SRC_URI), I expect it to
+> be rebuilt and in turn the image be rebuilt (I invoke 'bitbake IMAGE')
+> Most of the time, this works fine, but today it seems to not cooperate.
+> 
+> What's the best way to understand (diagnose) what's going on and
+> why things don't behave the way I expect?
+
+git bisect
+
+> 
+> Thanks
+> 
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
-I haven't used the Freescale/NXP imx6ulevk board specifically, but I have u=
-sed just about all the other dev boards so I think what you're talking abou=
-t is the general SD card images built in Yocto.=20=20
+--Apple-Mail=_55156E98-120D-414C-8D38-CAAA838FBA4D
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
-The architecture of the Freescale/NXP SD card images are not optimized for =
-size.  If you build core-image-minimal it's going to be about 30 MB I think=
-.  To go down to 6MB with the current SD card architecture I don't believe =
-is possible.  That image was probably something else, like a baremetal SDK =
-binary or something other than the standard SD card image.  Or maybe just a=
- kernel binary or something.
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-There are other image architectures that are a lot more space efficient suc=
-h as having the root fs as an initramfs...=20
+iEYEARECAAYFAlaqeZYACgkQuwUzVZGdMxRq5wCfSEf2L3rHoDCJ3MPjS7xpplPq
+i4EAn3QJiax00XmfuIDG3TnTyCT8bHYS
+=ONk0
+-----END PGP SIGNATURE-----
 
-
-
-------------------------------------------------------------=0D
-=0D
-This e-mail message (including any attachments) contains confidential, non-=
-public information. It also may be protected by the attorney/client or othe=
-r applicable privileges. It is intended to be communicated only to the desi=
-gnated recipient(s). Unauthorized use, reproduction, dissemination, or comm=
-unication of this message or any information contained in this message is s=
-trictly prohibited and may be unlawful. If you are not an intended recipien=
-t of this message, please notify the sender promptly by e-mail or telephone=
- at the sender's location indicated above or contact Shure Incorporated at =
-info@shure.com or 800-25-SHURE (800-257-4873).=0D
-=0D
-------------------------------------------------------------
-
+--Apple-Mail=_55156E98-120D-414C-8D38-CAAA838FBA4D--
