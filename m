@@ -1,39 +1,61 @@
-Return-Path: <alexandre.osorio@eldorado.org.br>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63EEFE00903; Fri, 29 Jan 2016 10:41:33 -0800 (PST)
+	id 2EDB6E00903; Fri, 29 Jan 2016 12:52:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1.eldorado.org.br (smtp1.eldorado.org.br [200.148.226.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825E8E0073D
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 10:41:30 -0800 (PST)
-Received: from serv030.corp.eldorado.org.br (200.148.226.2) by
-	smtp1.eldorado.org.br (200.148.226.10) with Microsoft SMTP Server (TLS)
-	id 14.3.123.3; Fri, 29 Jan 2016 16:41:19 -0200
-Received: from serv030.corp.eldorado.org.br (192.168.4.30) by
-	serv030.corp.eldorado.org.br (192.168.4.30) with Microsoft SMTP Server
-	(TLS) id 15.0.775.38; Fri, 29 Jan 2016 16:41:22 -0200
-Received: from serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7]) by
-	serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7%14]) with mapi
-	id 15.00.0775.031; Fri, 29 Jan 2016 16:41:22 -0200
-From: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: network drivers are not installed when MACHINE qemux86-64
-Thread-Index: AdFaw/+YN5qH+7JEQ0ibcfihtOrzHA==
-Date: Fri, 29 Jan 2016 18:41:21 +0000
-Message-ID: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
-Accept-Language: pt-BR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [177.220.10.3]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2780E0073D
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 12:51:54 -0800 (PST)
+Received: by mail-ig0-f175.google.com with SMTP id z14so44885374igp.0
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 12:51:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=QCpb5Scq9XPsd4C0WEsf1YxvhluWa/ecTZbLSbsGBoU=;
+	b=ciJ/+7guy13yY/n5t4yDQBcB7SpEzGS5ZqmzUPPvNHQWzzImyMvmoBZt2Pq3dJefFG
+	ckol1338vnVZG+2kR3wunT2FpnI7mIaL/zSbmfmJoY4MLekkepPykHwk6XQg/qdkDcdF
+	2SLxwWsSCEN8nP8R45AWBgCdtZzWnGTcHUDniFbfrgbP1iWMkWMGnokXJ37C66EgPCmb
+	lTt1Ms5uJ+tDH804cSGMcZ5LITu2j3GkZNgEczYm08yi/vubSPTy1dGcAwZEm70tZxPK
+	xSxyiYwnnQXwjCLMStp+Da0DqdVZ3XwV7MHRGGltPshAGI+8uxsb/Y/ezEOkOoEctGbS
+	6kcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=QCpb5Scq9XPsd4C0WEsf1YxvhluWa/ecTZbLSbsGBoU=;
+	b=IhJpoZSkCDtrxjcf+/NmGgT+pckHgMcXcHH+GAvJRRw81jXga9lP4X3NyOxgOTdI43
+	gU/9Y303XDesgmA6ShMArOwOEZWk0DrHCgGQCSRVLQmwaaYidh4FQxt9Gcw49qXZkjq9
+	PVNIN9NUkTODT2Ert3tDNiSGpSUoGL48AXH3O/KbwmUQv3+DqeaO9Wci5Fb/OGZHRQpF
+	YN2kEdtrZxwNFWz4RSYlHnKinJPhcgIvgVdyb+3p7me+EwUxIZHx+sL0LCtvTohzs/kC
+	Gf0RqbQ22hhWIHvNGKx+qKSr+oZJzQtFAVgPDAdOccj0XoRBn7kTBY1pSpzl20meusoo
+	MAsg==
+X-Gm-Message-State: AG10YOSSi6U3rI9znl6iqAyLlxktGlib6YjbMCgOcMWfFVMAlwp1H5zvLwHAWIq1mrcnu+Q4eX5mre29wsv/s5SA
+X-Received: by 10.50.41.38 with SMTP id c6mr4504276igl.64.1454100713391; Fri,
+	29 Jan 2016 12:51:53 -0800 (PST)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAC+NgFtrHIsWRWlGSWpSXmKPExsVyYsojJl3/TavDDBYvmnCFy2LSyzVsDowe7Sf62AIYo1gz85LyKxJYM74c+spYMEGqovFOWANjv3gXIxeHkMBORonjXd/Zuxg5gZx9jBLnf7JCJE4zSjzY1MsKkmAT8JS4/raNGcQWETCVeHHsCxuILSzgJHGw9xwLRNxdonHGWyhbT6L/xWwmEJtFQFXi6YbVYHFeAW+Jo233wGxGAVmJuX/2gi1mFhCXuPVkPli9hIC2xPZX+1ghbB2JTddWsUDYzhIz93+BqhGQWLLnPDOErSTRe/sdVFxU4uXjf1C9uhL/Vh5hh7ADJabefAQ1x1TizZJLULatxIm1f5lh5v/YegOqV17i/737UDUOEjcOvYeqUZA48Owr1K4AiR8LfkHVB0scvLAXKl4usWjRTDaY+OPVd+Dun7hyEVRNpETH9BMsExgNZiF5H8LOl9h88AvLLHBwCUqcnPmEZQEj8ypGqeLckgJDveT8ogK91JyU/KLElHy9/KJ0vaSiTYzANLDbY/XVHYwXVrsfYmTi4LzFKM1xgEmIIy2xuKQgsbhYiCUvPy9VCppWpBoY5e/KcBQJ9i3hXHSCe03gbSalE8dZCn8u2Hq59wsbk7emdoFw7tl/jgV3T7NoXfafPuPZ6immXT7JKad2z362tcaqnL/MrnuZ7qvgJam3zbb7BSyrCJ5gzti/UesaV2RWCHuLrfyGiV4lOTcuVpnq7Vhdy39274RC/gzRiUsO2J/e+c1ZYvEyJZbijERDLeai4kQA9N8xzdECAAA=
-Subject: network drivers are not installed when MACHINE qemux86-64
+Received: by 10.107.162.70 with HTTP; Fri, 29 Jan 2016 12:51:33 -0800 (PST)
+In-Reply-To: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
+References: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 29 Jan 2016 20:51:33 +0000
+Message-ID: <CAJTo0LbJj2MG8-mhyUYqdJVdtUAvrm_JmHm=-_oO-XN+X-NVxA@mail.gmail.com>
+To: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: network drivers are not installed when MACHINE qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,101 +67,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jan 2016 18:41:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_f0bdfb388a6d44448446852d1ef2a8f2serv030corpeldoradoorgb_"
+X-List-Received-Date: Fri, 29 Jan 2016 20:52:00 -0000
+Content-Type: multipart/alternative; boundary=089e0117689f7d62a7052a7f34cd
 
---_000_f0bdfb388a6d44448446852d1ef2a8f2serv030corpeldoradoorgb_
-Content-Type: text/plain; charset="us-ascii"
+--089e0117689f7d62a7052a7f34cd
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
+On 29 January 2016 at 18:41, Alexandre Freire da Silva Osorio <
+alexandre.osorio@eldorado.org.br> wrote:
 
-When I build a core-image-lsb image for MACHINE qemux86-64, the network dri=
-vers are not enabled. When building the same image for genericx86-64, this =
-problem doesn't occur and all the drivers are enabled.
-
-I appreciate any help to solve why in qemux86-64 the drivers are not enable=
-d.
-
-Thanks.
-
-Alexandre
-
---_000_f0bdfb388a6d44448446852d1ef2a8f2serv030corpeldoradoorgb_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> When I build a core-image-lsb image for MACHINE qemux86-64, the network
+> drivers are not enabled. When building the same image for genericx86-64,
+> this problem doesn=E2=80=99t occur and all the drivers are enabled.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"PT-BR" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When I build a core-image-lsb i=
-mage for MACHINE qemux86-64, the network drivers are not enabled. When buil=
-ding the same image for genericx86-64, this problem doesn&#8217;t occur and=
- all the drivers are enabled.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I appreciate any help to solve =
-why in qemux86-64 the drivers are not enabled.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Alexandre<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+>
+qemux86-64 certainly ships with network drivers for the qemu machine.  What
+drivers are you expecting to be present?
 
---_000_f0bdfb388a6d44448446852d1ef2a8f2serv030corpeldoradoorgb_--
+Ross
+
+--089e0117689f7d62a7052a7f34cd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 29 January 2016 at 18:41, Alexandre Freire da Silva Osorio <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:alexandre.osorio@eldorado.org.br" target=3D"_bla=
+nk">alexandre.osorio@eldorado.org.br</a>&gt;</span> wrote:<br><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><p class=3D"MsoNormal"><span lang=3D"EN-US">When I build =
+a core-image-lsb image for MACHINE qemux86-64, the network drivers are not =
+enabled. When building the same image for genericx86-64, this problem doesn=
+=E2=80=99t occur and all the drivers are enabled.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>qemux86-64 certainly ship=
+s with network drivers for the qemu machine.=C2=A0 What drivers are you exp=
+ecting to be present?</div><div class=3D"gmail_extra"><br></div><div class=
+=3D"gmail_extra">Ross</div></div>
+
+--089e0117689f7d62a7052a7f34cd--
