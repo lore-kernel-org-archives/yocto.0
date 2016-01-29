@@ -1,59 +1,41 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alexandre.osorio@eldorado.org.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2EDB6E00903; Fri, 29 Jan 2016 12:52:00 -0800 (PST)
+	id 2A498E00A27; Fri, 29 Jan 2016 12:59:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2780E0073D
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 12:51:54 -0800 (PST)
-Received: by mail-ig0-f175.google.com with SMTP id z14so44885374igp.0
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 12:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=QCpb5Scq9XPsd4C0WEsf1YxvhluWa/ecTZbLSbsGBoU=;
-	b=ciJ/+7guy13yY/n5t4yDQBcB7SpEzGS5ZqmzUPPvNHQWzzImyMvmoBZt2Pq3dJefFG
-	ckol1338vnVZG+2kR3wunT2FpnI7mIaL/zSbmfmJoY4MLekkepPykHwk6XQg/qdkDcdF
-	2SLxwWsSCEN8nP8R45AWBgCdtZzWnGTcHUDniFbfrgbP1iWMkWMGnokXJ37C66EgPCmb
-	lTt1Ms5uJ+tDH804cSGMcZ5LITu2j3GkZNgEczYm08yi/vubSPTy1dGcAwZEm70tZxPK
-	xSxyiYwnnQXwjCLMStp+Da0DqdVZ3XwV7MHRGGltPshAGI+8uxsb/Y/ezEOkOoEctGbS
-	6kcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=QCpb5Scq9XPsd4C0WEsf1YxvhluWa/ecTZbLSbsGBoU=;
-	b=IhJpoZSkCDtrxjcf+/NmGgT+pckHgMcXcHH+GAvJRRw81jXga9lP4X3NyOxgOTdI43
-	gU/9Y303XDesgmA6ShMArOwOEZWk0DrHCgGQCSRVLQmwaaYidh4FQxt9Gcw49qXZkjq9
-	PVNIN9NUkTODT2Ert3tDNiSGpSUoGL48AXH3O/KbwmUQv3+DqeaO9Wci5Fb/OGZHRQpF
-	YN2kEdtrZxwNFWz4RSYlHnKinJPhcgIvgVdyb+3p7me+EwUxIZHx+sL0LCtvTohzs/kC
-	Gf0RqbQ22hhWIHvNGKx+qKSr+oZJzQtFAVgPDAdOccj0XoRBn7kTBY1pSpzl20meusoo
-	MAsg==
-X-Gm-Message-State: AG10YOSSi6U3rI9znl6iqAyLlxktGlib6YjbMCgOcMWfFVMAlwp1H5zvLwHAWIq1mrcnu+Q4eX5mre29wsv/s5SA
-X-Received: by 10.50.41.38 with SMTP id c6mr4504276igl.64.1454100713391; Fri,
-	29 Jan 2016 12:51:53 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 29 Jan 2016 12:51:33 -0800 (PST)
-In-Reply-To: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
+Received: from smtp1.eldorado.org.br (smtp1.eldorado.org.br [200.148.226.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42204E0088B
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 12:59:38 -0800 (PST)
+Received: from serv030.corp.eldorado.org.br (200.148.226.2) by
+	smtp1.eldorado.org.br (200.148.226.10) with Microsoft SMTP Server (TLS)
+	id 14.3.123.3; Fri, 29 Jan 2016 18:59:30 -0200
+Received: from serv030.corp.eldorado.org.br (192.168.4.30) by
+	serv030.corp.eldorado.org.br (192.168.4.30) with Microsoft SMTP Server
+	(TLS) id 15.0.775.38; Fri, 29 Jan 2016 18:59:33 -0200
+Received: from serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7]) by
+	serv030.corp.eldorado.org.br ([fe80::493e:4247:53f3:53b7%14]) with mapi
+	id 15.00.0775.031; Fri, 29 Jan 2016 18:59:33 -0200
+From: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] network drivers are not installed when MACHINE qemux86-64
+Thread-Index: AdFaw/+YN5qH+7JEQ0ibcfihtOrzHAAI5nuAAAQZuoA=
+Date: Fri, 29 Jan 2016 20:59:33 +0000
+Message-ID: <2ef4d1534eec41629c074c0ae55db0c9@serv030.corp.eldorado.org.br>
 References: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 29 Jan 2016 20:51:33 +0000
-Message-ID: <CAJTo0LbJj2MG8-mhyUYqdJVdtUAvrm_JmHm=-_oO-XN+X-NVxA@mail.gmail.com>
-To: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+	<CAJTo0LbJj2MG8-mhyUYqdJVdtUAvrm_JmHm=-_oO-XN+X-NVxA@mail.gmail.com>
+In-Reply-To: <CAJTo0LbJj2MG8-mhyUYqdJVdtUAvrm_JmHm=-_oO-XN+X-NVxA@mail.gmail.com>
+Accept-Language: pt-BR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [177.220.10.3]
+MIME-Version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAC+NgFjrJIsWRWlGSWpSXmKPExsVyYsojJt1Nl1aHGcxf1nWDy2LeDnuLSS/XsDkweSze85LJo/1EH1sAUxRrZl5SfkUCa8aaxXdYCqb4V9x+NYmtgfGPTxcjJ4eQwE5GiYcH6roYuYDsfYwSf0/sYIRwTjNKXHl6iBWkik3AU+L62zZmEFtEQEvi7OvHYDazgKnE5BktYLawQIDEkn+L2SBqAiVuPm5ih7CtJJacXgE2h0VAVeJd0wImEJtXwFvi4OFFbBDLJjFKbDi4FqyZE6j59vyzjCA2o4CsxNw/e9khlolL3HoyH6xZQkBbYvurfawQto7EpmurWCBsZ4mZ+79A1QhILNlznhnCVpLovf0OKi4q8fLxP6hePYmmQyuhegMl/qx8wQZhm0q8WXIJKm4rcWLtX2aY+T+23oDqlZf4f+8+VI2DxI1D76FqFCQOPPsKtStA4seCX1D1wRIHL+yFipdLnPyzl3kCo9EsJK9B2PkSB1Z1MM4Ch5GgxMmZT1gWMDKvYpQqzi0pMNRLzi8q0EvNSckvSkzJ18svStdLKtrECEwOuz1WX93BeGG1+yFGJg7OW4zSHAeYhDjSEotLChKLi4VY8vLzUqWgyUaqgVF2byy/xJkVMspMhVuzf3etzv0RPzX9gBlLw/q7MV/6V3lNWdSpEP5z7pR7161v9WqwbajUa+/59NKy659QUbyT3meTH7yL5Y9XGYcx+Ex9eO/5syvZE+3ajO4lML2NUFIy0Gz9++aCcpGJxhtpYdE5Kq+nBp8R2vxOg/do98L3vsuCLPSC+ZVYijMSDbWYi4oTAYxq5gXcAgAA
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: network drivers are not installed when MACHINE qemux86-64
 X-BeenThere: yocto@yoctoproject.org
@@ -67,43 +49,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Jan 2016 20:52:00 -0000
-Content-Type: multipart/alternative; boundary=089e0117689f7d62a7052a7f34cd
+X-List-Received-Date: Fri, 29 Jan 2016 20:59:41 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_2ef4d1534eec41629c074c0ae55db0c9serv030corpeldoradoorgb_"
 
---089e0117689f7d62a7052a7f34cd
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_2ef4d1534eec41629c074c0ae55db0c9serv030corpeldoradoorgb_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 29 January 2016 at 18:41, Alexandre Freire da Silva Osorio <
-alexandre.osorio@eldorado.org.br> wrote:
+WW914oCZcmUgcmlnaHQsIFJvc3MuIFRoZXnigJlyZSBwcmVzZW50IGluIG1vZHVsZXMtcWVtdXg4
+Ni02NC50Z3ouIFRoZSBwcm9ibGVtIGlzIHRoYXQgZm9yIHNvbWUgcmVhc29uIHRoZSBkcml2ZXJz
+IGFyZSBub3QgYmVpbmcgY29waWVkIHRvIHRoZSByb290IGZpbGVzeXN0ZW0uDQoNCkZvciBleGFt
+cGxlLCB0aGUgZXhwZWN0ZWQgbGliL21vZHVsZXMvMy4xNC4zNmx0c2kteW9jdG8tc3RhbmRhcmQv
+a2VybmVsL2RyaXZlcnMvbmV0LyBkaXJlY3RvcnkgaXMgbm90IGNyZWF0ZWQgaW4gdGhlIHJvb3Rm
+cy4NCg0KVGhhbmtzLg0KDQpBbGV4YW5kcmUNCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86
+cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogc2V4dGEtZmVpcmEsIDI5IGRlIGphbmVpcm8g
+ZGUgMjAxNiAxODo1Mg0KVG86IEFsZXhhbmRyZSBGcmVpcmUgZGEgU2lsdmEgT3NvcmlvIDxhbGV4
+YW5kcmUub3NvcmlvQGVsZG9yYWRvLm9yZy5icj4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBuZXR3b3JrIGRyaXZlcnMgYXJlIG5vdCBpbnN0YWxsZWQg
+d2hlbiBNQUNISU5FIHFlbXV4ODYtNjQNCg0KDQpPbiAyOSBKYW51YXJ5IDIwMTYgYXQgMTg6NDEs
+IEFsZXhhbmRyZSBGcmVpcmUgZGEgU2lsdmEgT3NvcmlvIDxhbGV4YW5kcmUub3NvcmlvQGVsZG9y
+YWRvLm9yZy5icjxtYWlsdG86YWxleGFuZHJlLm9zb3Jpb0BlbGRvcmFkby5vcmcuYnI+PiB3cm90
+ZToNCldoZW4gSSBidWlsZCBhIGNvcmUtaW1hZ2UtbHNiIGltYWdlIGZvciBNQUNISU5FIHFlbXV4
+ODYtNjQsIHRoZSBuZXR3b3JrIGRyaXZlcnMgYXJlIG5vdCBlbmFibGVkLiBXaGVuIGJ1aWxkaW5n
+IHRoZSBzYW1lIGltYWdlIGZvciBnZW5lcmljeDg2LTY0LCB0aGlzIHByb2JsZW0gZG9lc27igJl0
+IG9jY3VyIGFuZCBhbGwgdGhlIGRyaXZlcnMgYXJlIGVuYWJsZWQuDQoNCnFlbXV4ODYtNjQgY2Vy
+dGFpbmx5IHNoaXBzIHdpdGggbmV0d29yayBkcml2ZXJzIGZvciB0aGUgcWVtdSBtYWNoaW5lLiAg
+V2hhdCBkcml2ZXJzIGFyZSB5b3UgZXhwZWN0aW5nIHRvIGJlIHByZXNlbnQ/DQoNClJvc3MNCg==
 
-> When I build a core-image-lsb image for MACHINE qemux86-64, the network
-> drivers are not enabled. When building the same image for genericx86-64,
-> this problem doesn=E2=80=99t occur and all the drivers are enabled.
->
->
-qemux86-64 certainly ships with network drivers for the qemu machine.  What
-drivers are you expecting to be present?
+--_000_2ef4d1534eec41629c074c0ae55db0c9serv030corpeldoradoorgb_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Ross
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiU2Vnb2UgVUkiOw0KCXBhbm9zZS0xOjIg
+MTEgNSAyIDQgMiA0IDIgMiAzO30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNvdXJyaWVy
+IE5ldyI7DQoJcGFub3NlLTE6MCAwIDAgMCAwIDAgMCAwIDAgMDt9DQovKiBTdHlsZSBEZWZpbml0
+aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJn
+aW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZv
+bnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBl
+cmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNv
+cmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRp
+b246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMx
+RjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJ
+Zm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2
+MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcwLjg1cHQgMy4wY20gNzAuODVwdCAzLjBjbTt9DQpk
+aXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4
+PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8
+bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0i
+MSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5
+IGxhbmc9IlBULUJSIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9Ildv
+cmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPllvdeKAmXJl
+IHJpZ2h0LCBSb3NzLiBUaGV54oCZcmUgcHJlc2VudCBpbg0KPC9zcGFuPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJyaWVyIE5l
+dyZxdW90Oztjb2xvcjojNDA3RjdGO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5tb2R1bGVz
+LXFlbXV4ODYtNjQudGd6PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Lg0KIFRoZSBwcm9ibGVtIGlzIHRo
+YXQgZm9yIHNvbWUgcmVhc29uIHRoZSBkcml2ZXJzIGFyZSBub3QgYmVpbmcgY29waWVkIHRvIHRo
+ZSByb290IGZpbGVzeXN0ZW0uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJl
+YXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5G
+b3IgZXhhbXBsZSwgdGhlIGV4cGVjdGVkDQo8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
+PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1NlZ29lIFVJJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6YmxhY2siPmxpYi9tb2R1bGVzLzMuMTQuMzZsdHNpLXlvY3RvLXN0YW5kYXJk
+L2tlcm5lbC9kcml2ZXJzL25ldC88L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPg0KPC9zcGFuPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUyI+ZGlyZWN0b3J5IGlzIG5vdCBjcmVhdGVkIGluIHRoZSByb290ZnMuDQo8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRv
+c3BhY2U6bm9uZSI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21z
+by1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PHNwYW4gbGFu
+Zz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj5UaGFua3MuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9InRleHQtYXV0b3NwYWNlOm5vbmUiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtYXV0b3NwYWNl
+Om5vbmUiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFy
+ZWFzdC1sYW5ndWFnZTpFTi1VUyI+QWxleGFuZHJlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IEJ1cnRvbiwg
+Um9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBz
+ZXh0YS1mZWlyYSwgMjkgZGUgamFuZWlybyBkZSAyMDE2IDE4OjUyPGJyPg0KPGI+VG86PC9iPiBB
+bGV4YW5kcmUgRnJlaXJlIGRhIFNpbHZhIE9zb3JpbyAmbHQ7YWxleGFuZHJlLm9zb3Jpb0BlbGRv
+cmFkby5vcmcuYnImZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJy
+Pg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIG5ldHdvcmsgZHJpdmVycyBhcmUgbm90IGlu
+c3RhbGxlZCB3aGVuIE1BQ0hJTkUgcWVtdXg4Ni02NDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPk9uIDI5IEphbnVhcnkgMjAxNiBhdCAxODo0MSwg
+QWxleGFuZHJlIEZyZWlyZSBkYSBTaWx2YSBPc29yaW8gJmx0Ozwvc3Bhbj48YSBocmVmPSJtYWls
+dG86YWxleGFuZHJlLm9zb3Jpb0BlbGRvcmFkby5vcmcuYnIiIHRhcmdldD0iX2JsYW5rIj48c3Bh
+biBsYW5nPSJFTi1VUyI+YWxleGFuZHJlLm9zb3Jpb0BlbGRvcmFkby5vcmcuYnI8L3NwYW4+PC9h
+PjxzcGFuIGxhbmc9IkVOLVVTIj4mZ3Q7DQogd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0Mg
+MS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4t
+dG9wOjUuMHB0O21hcmdpbi1yaWdodDowY207bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5XaGVuIEkgYnVpbGQgYSBjb3JlLWlt
+YWdlLWxzYiBpbWFnZSBmb3IgTUFDSElORSBxZW11eDg2LTY0LCB0aGUgbmV0d29yayBkcml2ZXJz
+IGFyZSBub3QgZW5hYmxlZC4gV2hlbiBidWlsZGluZyB0aGUgc2FtZSBpbWFnZSBmb3IgZ2VuZXJp
+Y3g4Ni02NCwgdGhpcyBwcm9ibGVtDQogZG9lc27igJl0IG9jY3VyIGFuZCBhbGwgdGhlIGRyaXZl
+cnMgYXJlIGVuYWJsZWQuIDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwv
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxicj4NCnFlbXV4
+ODYtNjQgY2VydGFpbmx5IHNoaXBzIHdpdGggbmV0d29yayBkcml2ZXJzIGZvciB0aGUgcWVtdSBt
+YWNoaW5lLiZuYnNwOyA8L3NwYW4+V2hhdCBkcml2ZXJzIGFyZSB5b3UgZXhwZWN0aW5nIHRvIGJl
+IHByZXNlbnQ/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPlJvc3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9k
+eT4NCjwvaHRtbD4NCg==
 
---089e0117689f7d62a7052a7f34cd
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 29 January 2016 at 18:41, Alexandre Freire da Silva Osorio <span dir=3D"=
-ltr">&lt;<a href=3D"mailto:alexandre.osorio@eldorado.org.br" target=3D"_bla=
-nk">alexandre.osorio@eldorado.org.br</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex"><p class=3D"MsoNormal"><span lang=3D"EN-US">When I build =
-a core-image-lsb image for MACHINE qemux86-64, the network drivers are not =
-enabled. When building the same image for genericx86-64, this problem doesn=
-=E2=80=99t occur and all the drivers are enabled.
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>qemux86-64 certainly ship=
-s with network drivers for the qemu machine.=C2=A0 What drivers are you exp=
-ecting to be present?</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Ross</div></div>
-
---089e0117689f7d62a7052a7f34cd--
+--_000_2ef4d1534eec41629c074c0ae55db0c9serv030corpeldoradoorgb_--
