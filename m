@@ -1,41 +1,28 @@
-Return-Path: <Jonathan.Haws@sdl.usu.edu>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BD9BE00AF2; Fri, 29 Jan 2016 16:47:37 -0800 (PST)
+	id 2DF37E00AF2; Fri, 29 Jan 2016 19:08:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00,MISSING_DATE,
+	MISSING_MID,RDNS_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.5 MISSING_MID Missing Message-Id: header
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 68 seconds by postgrey-1.32 at yocto-www;
-	Fri, 29 Jan 2016 16:47:33 PST
-Received: from Perses.usurf.usu.edu (unknown [129.123.197.145])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40E88E0073D
-	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 16:47:33 -0800 (PST)
-Received: from EK.usurf.usu.edu (172.31.35.73) by Perses.usurf.usu.edu
-	(172.31.35.68) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
-	Fri, 29 Jan 2016 17:46:23 -0700
-Received: from EK.usurf.usu.edu (172.31.35.73) by Ek.usurf.usu.edu
-	(172.31.35.73) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
-	Fri, 29 Jan 2016 17:46:21 -0700
-Received: from EK.usurf.usu.edu ([172.31.191.13]) by Ek.usurf.usu.edu
-	([172.31.191.13]) with mapi id 15.00.1104.000; Fri, 29 Jan 2016 17:46:21
-	-0700
-From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Compiling different version of IGB as a kernel module
-Thread-Index: AQHRWveiELk3DI3eMkKIJji46LcBtw==
-Date: Sat, 30 Jan 2016 00:46:20 +0000
-Message-ID: <9e122189105049f0aa35aade046ef260@Ek.usurf.usu.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.31.22.119]
+	*  1.4 MISSING_DATE Missing Date: header
+Received: from pdx-yp-fw1.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6956E00ADD
+	for <yocto@yoctoproject.org>; Fri, 29 Jan 2016 19:08:10 -0800 (PST)
+Received: from auh.yoctoproject.org (yct42 [192.168.10.66])
+	by pdx-yp-fw1.yoctoproject.org (Postfix) with ESMTP id 9F12D2CF40
+	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 03:08:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Compiling different version of IGB as a kernel module
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20160130030813.2DF37E00AF2@yocto-www.yoctoproject.org>
+Date: Fri, 29 Jan 2016 19:08:13 -0800 (PST)
+Subject: [AUH] Upgrade status: 2016-01-30
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,255 +34,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Jan 2016 00:47:37 -0000
-X-Groupsio-MsgNum: 28157
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_"
+X-List-Received-Date: Sat, 30 Jan 2016 03:08:13 -0000
+Content-Type: multipart/mixed; boundary="===============1619709168275910926=="
 
---_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_
+--===============1619709168275910926==
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hello all!=0A=
-=0A=
-I am trying to get the Intel IGB driver compiling as a kernel module =0A=
-using source downloaded from SF.  I'm doing this because I was given a =0A=
-patch to enable an external PPS to provide a time source to the PTP =0A=
-mechanisms in the device.=0A=
-=0A=
-I've got the recipe setup and it makes it to the do_compile step, =0A=
-however it fails here with some interesting output.  First, I get a =0A=
-message from the shell stating that -- is an invalid option.  Second, =0A=
-cc1 fails with a bad option.  I'm not even sure where to start debugging =
-=0A=
-this!=0A=
-=0A=
-I did have to patch the Makefile to get it to find the kernel sources =0A=
-and build files correctly.  I've attached my recipe and that patch file.=0A=
-=0A=
-I've also attached the output of do_compile - hopefully someone can look =
-=0A=
-at this and see what I am doing wrong!=0A=
-=0A=
-One thing I have tried is I went down into the tmp/work directory where =0A=
-the IGB driver was being built and tried running the same make command =0A=
-(without the CC=3D, AR=3D, LD=3D settings, since those are not on my path..=
-.) =0A=
-and it seemed to build just fine, so it seems like it is something to do =
-=0A=
-with the toolchain, but that's all I can tell.=0A=
-=0A=
-Thoughts?=0A=
-=0A=
-Thanks!=0A=
-Jon=0A=
-=0A=
-=0A=
--- =0A=
-Jonathan R. Haws=0A=
-Embedded Engineer=0A=
-Space Dynamics Laboratory=0A=
-(435) 713-3489=0A=
-jhaws@sdl.usu.edu=0A=
+AUH finished upgrade batch the result patches/logs can be found at:
+https://logs.yoctoproject.org/auh//20160128000003.tar.gz, next are the statistics:
 
---_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_
-Content-Type: text/plain; name="compile_error.txt"
-Content-Description: compile_error.txt
-Content-Disposition: attachment; filename="compile_error.txt"; size=8321;
-	creation-date="Sat, 30 Jan 2016 00:46:20 GMT";
-	modification-date="Sat, 30 Jan 2016 00:46:20 GMT"
-Content-Transfer-Encoding: base64
+Recipe upgrade statistics:
 
-REVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19jb21waWxlCisgY2QgL29wdC95b2N0
-by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1NzAtc2lnbWEtbGludXgvaWdi
-LzUuMy4zLjUtcjAvaWdiLTUuMy4zLjUKKyBkb19jb21waWxlCisgY2QgL29wdC95b2N0by9zaWdt
-YS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1NzAtc2lnbWEtbGludXgvaWdiLzUuMy4z
-LjUtcjAvaWdiLTUuMy4zLjUvc3JjCisgbW9kdWxlX2RvX2NvbXBpbGUKKyB1bnNldCBDRkxBR1Mg
-Q1BQRkxBR1MgQ1hYRkxBR1MgTERGTEFHUworIG9lX3J1bm1ha2UgS0VSTkVMX1BBVEg9L29wdC95
-b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5l
-bC1zb3VyY2UgS0VSTkVMX1ZFUlNJT049NC4xLjgtcnQ4LXlvY3RvLXByZWVtcHQtcnQgQ0M9eDg2
-XzY0LXNpZ21hLWxpbnV4LWdjYyAgLWZ1c2UtbGQ9YmZkIExEPXg4Nl82NC1zaWdtYS1saW51eC1s
-ZC5iZmQgIEFSPXg4Nl82NC1zaWdtYS1saW51eC1hciAgTz0vb3B0L3lvY3RvL3NpZ21hL2J1aWxk
-LXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLWJ1aWxkLWFydGlmYWN0
-cworIG9lX3J1bm1ha2VfY2FsbCBLRVJORUxfUEFUSD0vb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRl
-aXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLXNvdXJjZSBLRVJORUxfVkVS
-U0lPTj00LjEuOC1ydDgteW9jdG8tcHJlZW1wdC1ydCBDQz14ODZfNjQtc2lnbWEtbGludXgtZ2Nj
-ICAtZnVzZS1sZD1iZmQgTEQ9eDg2XzY0LXNpZ21hLWxpbnV4LWxkLmJmZCAgQVI9eDg2XzY0LXNp
-Z21hLWxpbnV4LWFyICBPPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNo
-YXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtYnVpbGQtYXJ0aWZhY3RzCisgYmJub3RlIG1ha2UgLWog
-MzIgLWUgTUFLRUZMQUdTPSBLRVJORUxfU1JDPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0
-L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9QQVRIPS9v
-cHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9r
-ZXJuZWwtc291cmNlIEtFUk5FTF9WRVJTSU9OPTQuMS44LXJ0OC15b2N0by1wcmVlbXB0LXJ0IEND
-PXg4Nl82NC1zaWdtYS1saW51eC1nY2MgIC1mdXNlLWxkPWJmZCBMRD14ODZfNjQtc2lnbWEtbGlu
-dXgtbGQuYmZkICBBUj14ODZfNjQtc2lnbWEtbGludXgtYXIgIE89L29wdC95b2N0by9zaWdtYS9i
-dWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1idWlsZC1hcnRp
-ZmFjdHMKKyBbIC1wIC9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrL3hwZWRp
-dGU3NTcwLXNpZ21hLWxpbnV4L2lnYi81LjMuMy41LXIwL3RlbXAvZmlmby44MDk2IF0KCisgY2Qg
-L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1NzAtc2lnbWEt
-bGludXgvaWdiLzUuMy4zLjUtcjAvaWdiLTUuMy4zLjUKKyBkb19jb21waWxlCisgY2QgL29wdC95
-b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1NzAtc2lnbWEtbGludXgv
-aWdiLzUuMy4zLjUtcjAvaWdiLTUuMy4zLjUvc3JjCisgbW9kdWxlX2RvX2NvbXBpbGUKKyB1bnNl
-dCBDRkxBR1MgQ1BQRkxBR1MgQ1hYRkxBR1MgTERGTEFHUworIG9lX3J1bm1ha2UgS0VSTkVMX1BB
-VEg9L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3
-NTcwL2tlcm5lbC1zb3VyY2UgS0VSTkVMX1ZFUlNJT049NC4xLjgtcnQ4LXlvY3RvLXByZWVtcHQt
-cnQgQ0M9eDg2XzY0LXNpZ21hLWxpbnV4LWdjYyAgLWZ1c2UtbGQ9YmZkIExEPXg4Nl82NC1zaWdt
-YS1saW51eC1sZC5iZmQgIEFSPXg4Nl82NC1zaWdtYS1saW51eC1hciAgTz0vb3B0L3lvY3RvL3Np
-Z21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLWJ1aWxk
-LWFydGlmYWN0cworIG9lX3J1bm1ha2VfY2FsbCBLRVJORUxfUEFUSD0vb3B0L3lvY3RvL3NpZ21h
-L2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLXNvdXJjZSBL
-RVJORUxfVkVSU0lPTj00LjEuOC1ydDgteW9jdG8tcHJlZW1wdC1ydCBDQz14ODZfNjQtc2lnbWEt
-bGludXgtZ2NjICAtZnVzZS1sZD1iZmQgTEQ9eDg2XzY0LXNpZ21hLWxpbnV4LWxkLmJmZCAgQVI9
-eDg2XzY0LXNpZ21hLWxpbnV4LWFyICBPPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3Rt
-cC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtYnVpbGQtYXJ0aWZhY3RzCisgYmJub3Rl
-IG1ha2UgLWogMzIgLWUgTUFLRUZMQUdTPSBLRVJORUxfU1JDPS9vcHQveW9jdG8vc2lnbWEvYnVp
-bGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5F
-TF9QQVRIPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVk
-aXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9WRVJTSU9OPTQuMS44LXJ0OC15b2N0by1wcmVl
-bXB0LXJ0IENDPXg4Nl82NC1zaWdtYS1saW51eC1nY2MgIC1mdXNlLWxkPWJmZCBMRD14ODZfNjQt
-c2lnbWEtbGludXgtbGQuYmZkICBBUj14ODZfNjQtc2lnbWEtbGludXgtYXIgIE89L29wdC95b2N0
-by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1i
-dWlsZC1hcnRpZmFjdHMKKyBbIC1wIC9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93
-b3JrL3hwZWRpdGU3NTcwLXNpZ21hLWxpbnV4L2lnYi81LjMuMy41LXIwL3RlbXAvZmlmby44MDk2
-IF0KKyBwcmludGYgJWJcMCBiYm5vdGUgbWFrZSAtaiAzMiAtZSBNQUtFRkxBR1M9IEtFUk5FTF9T
-UkM9L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3
-NTcwL2tlcm5lbC1zb3VyY2UgS0VSTkVMX1BBVEg9L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlz
-aXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1zb3VyY2UgS0VSTkVMX1ZFUlNJ
-T049NC4xLjgtcnQ4LXlvY3RvLXByZWVtcHQtcnQgQ0M9eDg2XzY0LXNpZ21hLWxpbnV4LWdjYyAg
-LWZ1c2UtbGQ9YmZkIExEPXg4Nl82NC1zaWdtYS1saW51eC1sZC5iZmQgIEFSPXg4Nl82NC1zaWdt
-YS1saW51eC1hciAgTz0vb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFy
-ZWQveHBlZGl0ZTc1NzAva2VybmVsLWJ1aWxkLWFydGlmYWN0cworIG1ha2UgLWogMzIgLWUgTUFL
-RUZMQUdTPSBLRVJORUxfU1JDPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3Jr
-LXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9QQVRIPS9vcHQveW9jdG8v
-c2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291
-cmNlIEtFUk5FTF9WRVJTSU9OPTQuMS44LXJ0OC15b2N0by1wcmVlbXB0LXJ0IENDPXg4Nl82NC1z
-aWdtYS1saW51eC1nY2MgIC1mdXNlLWxkPWJmZCBMRD14ODZfNjQtc2lnbWEtbGludXgtbGQuYmZk
-ICBBUj14ODZfNjQtc2lnbWEtbGludXgtYXIgIE89L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlz
-aXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1idWlsZC1hcnRpZmFjdHMKCisg
-cHJpbnRmICViXDAgYmJub3RlIG1ha2UgLWogMzIgLWUgTUFLRUZMQUdTPSBLRVJORUxfU1JDPS9v
-cHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9r
-ZXJuZWwtc291cmNlIEtFUk5FTF9QQVRIPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3Rt
-cC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9WRVJTSU9OPTQu
-MS44LXJ0OC15b2N0by1wcmVlbXB0LXJ0IENDPXg4Nl82NC1zaWdtYS1saW51eC1nY2MgIC1mdXNl
-LWxkPWJmZCBMRD14ODZfNjQtc2lnbWEtbGludXgtbGQuYmZkICBBUj14ODZfNjQtc2lnbWEtbGlu
-dXgtYXIgIE89L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hw
-ZWRpdGU3NTcwL2tlcm5lbC1idWlsZC1hcnRpZmFjdHMKKyBtYWtlIC1qIDMyIC1lIE1BS0VGTEFH
-Uz0gS0VSTkVMX1NSQz0vb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFy
-ZWQveHBlZGl0ZTc1NzAva2VybmVsLXNvdXJjZSBLRVJORUxfUEFUSD0vb3B0L3lvY3RvL3NpZ21h
-L2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLXNvdXJjZSBL
-RVJORUxfVkVSU0lPTj00LjEuOC1ydDgteW9jdG8tcHJlZW1wdC1ydCBDQz14ODZfNjQtc2lnbWEt
-bGludXgtZ2NjICAtZnVzZS1sZD1iZmQgTEQ9eDg2XzY0LXNpZ21hLWxpbnV4LWxkLmJmZCAgQVI9
-eDg2XzY0LXNpZ21hLWxpbnV4LWFyICBPPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3Rt
-cC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtYnVpbGQtYXJ0aWZhY3RzCk5PVEU6IG1h
-a2UgLWogMzIgLWUgTUFLRUZMQUdTPSBLRVJORUxfU1JDPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQt
-dGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9Q
-QVRIPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRl
-NzU3MC9rZXJuZWwtc291cmNlIEtFUk5FTF9WRVJTSU9OPTQuMS44LXJ0OC15b2N0by1wcmVlbXB0
-LXJ0IENDPXg4Nl82NC1zaWdtYS1saW51eC1nY2MgIC1mdXNlLWxkPWJmZCBMRD14ODZfNjQtc2ln
-bWEtbGludXgtbGQuYmZkICBBUj14ODZfNjQtc2lnbWEtbGludXgtYXIgIE89L29wdC95b2N0by9z
-aWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1idWls
-ZC1hcnRpZmFjdHMKL2Jpbi9zaDogMDogSWxsZWdhbCBvcHRpb24gLS0KCi9iaW4vc2g6IDA6IEls
-bGVnYWwgb3B0aW9uIC0tCm1ha2UgLUMgL29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1w
-L3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1zb3VyY2UgTz0vb3B0L3lvY3RvL3NpZ21h
-L2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLWJ1aWxkLWFy
-dGlmYWN0cyBTVUJESVJTPS9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrL3hw
-ZWRpdGU3NTcwLXNpZ21hLWxpbnV4L2lnYi81LjMuMy41LXIwL2lnYi01LjMuMy41L3NyYyBtb2R1
-bGVzCgptYWtlIC1DIC9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93b3JrLXNoYXJl
-ZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlIE89L29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlz
-aXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tlcm5lbC1idWlsZC1hcnRpZmFjdHMgU1VC
-RElSUz0vb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay94cGVkaXRlNzU3MC1z
-aWdtYS1saW51eC9pZ2IvNS4zLjMuNS1yMC9pZ2ItNS4zLjMuNS9zcmMgbW9kdWxlcwptYWtlWzFd
-OiBFbnRlcmluZyBkaXJlY3RvcnkgYC9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0L3RtcC93
-b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlJwoKbWFrZVsxXTogRW50ZXJpbmcg
-ZGlyZWN0b3J5IGAvb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQv
-eHBlZGl0ZTc1NzAva2VybmVsLXNvdXJjZScKbWFrZVsyXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAv
-b3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAv
-a2VybmVsLWJ1aWxkLWFydGlmYWN0cycKCm1ha2VbMl06IEVudGVyaW5nIGRpcmVjdG9yeSBgL29w
-dC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmstc2hhcmVkL3hwZWRpdGU3NTcwL2tl
-cm5lbC1idWlsZC1hcnRpZmFjdHMnCiAgQ0MgW01dICAvb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRl
-aXNpdC90bXAvd29yay94cGVkaXRlNzU3MC1zaWdtYS1saW51eC9pZ2IvNS4zLjMuNS1yMC9pZ2It
-NS4zLjMuNS9zcmMvaWdiX21haW4ubwoKICBDQyBbTV0gIC9vcHQveW9jdG8vc2lnbWEvYnVpbGQt
-dGVpc2l0L3RtcC93b3JrL3hwZWRpdGU3NTcwLXNpZ21hLWxpbnV4L2lnYi81LjMuMy41LXIwL2ln
-Yi01LjMuMy41L3NyYy9pZ2JfbWFpbi5vCmNjMTogZXJyb3I6IC1XZXJyb3I9ZGF0ZS10aW1lOiBu
-byBvcHRpb24gLVdkYXRlLXRpbWUKCmNjMTogZXJyb3I6IC1XZXJyb3I9ZGF0ZS10aW1lOiBubyBv
-cHRpb24gLVdkYXRlLXRpbWUKbWFrZVszXTogKioqIFsvb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRl
-aXNpdC90bXAvd29yay94cGVkaXRlNzU3MC1zaWdtYS1saW51eC9pZ2IvNS4zLjMuNS1yMC9pZ2It
-NS4zLjMuNS9zcmMvaWdiX21haW4ub10gRXJyb3IgMQoKbWFrZVszXTogKioqIFsvb3B0L3lvY3Rv
-L3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay94cGVkaXRlNzU3MC1zaWdtYS1saW51eC9pZ2Iv
-NS4zLjMuNS1yMC9pZ2ItNS4zLjMuNS9zcmMvaWdiX21haW4ub10gRXJyb3IgMQptYWtlWzJdOiAq
-KiogW19tb2R1bGVfL29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0
-ZTc1NzAtc2lnbWEtbGludXgvaWdiLzUuMy4zLjUtcjAvaWdiLTUuMy4zLjUvc3JjXSBFcnJvciAy
-Cm1ha2VbMl06IExlYXZpbmcgZGlyZWN0b3J5IGAvb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNp
-dC90bXAvd29yay1zaGFyZWQveHBlZGl0ZTc1NzAva2VybmVsLWJ1aWxkLWFydGlmYWN0cycKCm1h
-a2VbMl06ICoqKiBbX21vZHVsZV8vb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29y
-ay94cGVkaXRlNzU3MC1zaWdtYS1saW51eC9pZ2IvNS4zLjMuNS1yMC9pZ2ItNS4zLjMuNS9zcmNd
-IEVycm9yIDIKbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgYC9vcHQveW9jdG8vc2lnbWEvYnVp
-bGQtdGVpc2l0L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtYnVpbGQtYXJ0aWZh
-Y3RzJwptYWtlWzFdOiAqKiogW3N1Yi1tYWtlXSBFcnJvciAyCm1ha2VbMV06IExlYXZpbmcgZGly
-ZWN0b3J5IGAvb3B0L3lvY3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay1zaGFyZWQveHBl
-ZGl0ZTc1NzAva2VybmVsLXNvdXJjZScKCm1ha2VbMV06ICoqKiBbc3ViLW1ha2VdIEVycm9yIDIK
-bWFrZVsxXTogTGVhdmluZyBkaXJlY3RvcnkgYC9vcHQveW9jdG8vc2lnbWEvYnVpbGQtdGVpc2l0
-L3RtcC93b3JrLXNoYXJlZC94cGVkaXRlNzU3MC9rZXJuZWwtc291cmNlJwptYWtlOiAqKiogW2Rl
-ZmF1bHRdIEVycm9yIDIKCm1ha2U6ICoqKiBbZGVmYXVsdF0gRXJyb3IgMgorIGRpZSBvZV9ydW5t
-YWtlIGZhaWxlZAorIGJiZmF0YWxfbG9nIG9lX3J1bm1ha2UgZmFpbGVkCisgWyAtcCAvb3B0L3lv
-Y3RvL3NpZ21hL2J1aWxkLXRlaXNpdC90bXAvd29yay94cGVkaXRlNzU3MC1zaWdtYS1saW51eC9p
-Z2IvNS4zLjMuNS1yMC90ZW1wL2ZpZm8uODA5NiBdCisgcHJpbnRmICViXDAgYmJmYXRhbF9sb2cg
-b2VfcnVubWFrZSBmYWlsZWQKKyBleGl0IDEKKyBiYl9leGl0X2hhbmRsZXIKKyByZXQ9MQorIGVj
-aG8gV0FSTklORzogZXhpdCBjb2RlIDEgZnJvbSBhIHNoZWxsIGNvbW1hbmQuCldBUk5JTkc6IGV4
-aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLgorIGV4aXQgMQoKKyBkaWUgb2VfcnVubWFr
-ZSBmYWlsZWQKKyBiYmZhdGFsX2xvZyBvZV9ydW5tYWtlIGZhaWxlZAorIFsgLXAgL29wdC95b2N0
-by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1NzAtc2lnbWEtbGludXgvaWdi
-LzUuMy4zLjUtcjAvdGVtcC9maWZvLjgwOTYgXQorIHByaW50ZiAlYlwwIGJiZmF0YWxfbG9nIG9l
-X3J1bm1ha2UgZmFpbGVkCisgZXhpdCAxCisgYmJfZXhpdF9oYW5kbGVyCisgcmV0PTEKKyBlY2hv
-IFdBUk5JTkc6IGV4aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLgpXQVJOSU5HOiBleGl0
-IGNvZGUgMSBmcm9tIGEgc2hlbGwgY29tbWFuZC4KKyBleGl0IDEKRVJST1I6IG9lX3J1bm1ha2Ug
-ZmFpbGVkCkVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRvX2NvbXBpbGUgKGxvZyBmaWxlIGlzIGxv
-Y2F0ZWQgYXQgL29wdC95b2N0by9zaWdtYS9idWlsZC10ZWlzaXQvdG1wL3dvcmsveHBlZGl0ZTc1
-NzAtc2lnbWEtbGludXgvaWdiLzUuMy4zLjUtcjAvdGVtcC9sb2cuZG9fY29tcGlsZS44MDk2KQo=
+    * Succeeded: 12
+        diffstat, 1.61, Chen Qi <Qi.Chen@windriver.com>
+        xkeyboard-config, 2.17, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        libinput, 1.1.5, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        curl, 7.47.0, Chen Qi <Qi.Chen@windriver.com>
+        libbsd, 0.8.2, Robert Yang <liezhi.yang@windriver.com>
+        cmake, 3.4.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        wayland, 1.9.91, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        dbus-glib, 0.106, Chen Qi <Qi.Chen@windriver.com>
+        python3-pip, 8.0.2, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        webkitgtk, 2.10.6, Alexander Kanavin <alexander.kanavin@intel.com>
+        gnupg, 2.1.11, Hongxu Jia <hongxu.jia@windriver.com>
+        iproute2, 4.4.0, Maxin B. John <maxin.john@intel.com>
+    * Failed(do_compile): 1
+        elfutils, 0.165, Hongxu Jia <hongxu.jia@windriver.com>
+    * Failed(do_fetch): 2
+        coreutils, 8.25, Chen Qi <Qi.Chen@windriver.com>
+        python3-setuptools, 19.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+    * Failed(do_configure): 3
+        weston, 1.9.91, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        tzdata, 2016a, Robert Yang <liezhi.yang@windriver.com>
+        python-setuptools, 19.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+    * Failed(other errors): 3
+        apt, 1.2.1, Aníbal Limón <anibal.limon@linux.intel.com>
+        pulseaudio, 8.0, Tanu Kaskinen <tanuk@iki.fi>
+        binutils, 2.26, Robert Yang <liezhi.yang@windriver.com>
+    * Failed(get_env): 1
+        alsa-utils-scripts, 1.1.0, Tanu Kaskinen <tanuk@iki.fi>
 
---_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_
-Content-Type: text/plain; name="igb_5.3.3.5.bb"
-Content-Description: igb_5.3.3.5.bb
-Content-Disposition: attachment; filename="igb_5.3.3.5.bb"; size=768;
-	creation-date="Sat, 30 Jan 2016 00:46:20 GMT";
-	modification-date="Sat, 30 Jan 2016 00:46:20 GMT"
-Content-Transfer-Encoding: base64
+    TOTAL: attempted=22 succeeded=12(54.55%) failed=10(45.45%)
 
-U1VNTUFSWSA9ICJpZ2IgTGludXgqIEJhc2UgRHJpdmVyIGZvciBJbnRlbChSKSBFdGhlcm5ldCBO
-ZXR3b3JrIENvbm5lY3Rpb24iCkxJQ0VOU0UgPSAiR1BMdjIiCkxJQ19GSUxFU19DSEtTVU0gPSAi
-ZmlsZTovL0NPUFlJTkc7bWQ1PWVmMWUwZDFiYzFiMDRhZDUwNjJkODM0YzFkZTcwMzk0IgoKaW5o
-ZXJpdCBtb2R1bGUKClNSQ19VUkkgPSAiaHR0cDovL2Rvd25sb2Fkcy5zb3VyY2Vmb3JnZS5uZXQv
-cHJvamVjdC9lMTAwMC9pZ2IlMjBzdGFibGUvNS4zLjMuNS9pZ2ItNS4zLjMuNS50YXIuZ3ogXAog
-ICAgICAgICAgIGZpbGU6Ly8wMDAwLVNETC1NYWtlZmlsZS1TZXQtS1NSQy10by1LRVJORUxfU1JD
-LnBhdGNoIFwKICAgICAgICAgICBmaWxlOi8vMDAwMS1YLUVTLUluaXRpYWwtY29tbWl0LW9mLXdv
-cmstdG8tYWRkLWV4dHRzLXN1cHBvcnQtdG8tLnBhdGNoIgoKU1JDX1VSSVttZDVzdW1dID0gIjQ2
-ZjVhZTUwOGJkODUxMzFlNTg2ZWUwN2ZmODhmYjNmIgpTUkNfVVJJW3NoYTI1NnN1bV0gPSAiMTdk
-ZDA0ZDA5OTg3ZTVjOTRiYTA5NDQ3NjhkZjhmYjU1MzVmYmMyYTk0NTgwYmI0NGRjMTA1MjI5NzYz
-MmIzMSIKCiMgVGhlIGluaGVyaXQgb2YgbW9kdWxlLmJiY2xhc3Mgd2lsbCBhdXRvbWF0aWNhbGx5
-IG5hbWUgbW9kdWxlIHBhY2thZ2VzIHdpdGgKIyAia2VybmVsLW1vZHVsZS0iIHByZWZpeCBhcyBy
-ZXF1aXJlZCBieSB0aGUgb2UtY29yZSBidWlsZCBlbnZpcm9ubWVudC4KCmRvX2NvbXBpbGVfcHJl
-cGVuZCgpIHsKICAgIGNkICR7U30vc3JjCn0K
+Recipe upgrade statistics per Maintainer:
 
---_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_
-Content-Type: text/x-patch;
-	name="0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch"
-Content-Description: 0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch
-Content-Disposition: attachment;
-	filename="0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch"; size=519;
-	creation-date="Sat, 30 Jan 2016 00:46:20 GMT";
-	modification-date="Sat, 30 Jan 2016 00:46:20 GMT"
-Content-Transfer-Encoding: base64
+    Alejandro Hernandez <alejandro.hernandez: attempted=3 succeeded=1(33.33%) failed=2(66.67%)
+    Alexander Kanavin <alexander.kanavin: attempted=1 succeeded=1(100.00%) failed=0(0.00%)
+    Aníbal Limón <anibal.limon: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Hongxu Jia <hongxu.jia: attempted=2 succeeded=1(50.00%) failed=1(50.00%)
+    Jussi Kukkonen <jussi.kukkonen: attempted=5 succeeded=4(80.00%) failed=1(20.00%)
+    Tanu Kaskinen <tanuk: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
+    Robert Yang <liezhi.yang: attempted=3 succeeded=1(33.33%) failed=2(66.67%)
+    Chen Qi <Qi.Chen: attempted=4 succeeded=3(75.00%) failed=1(25.00%)
+    Maxin B. John <maxin.john: attempted=1 succeeded=1(100.00%) failed=0(0.00%)
 
-LS0tIGEvc3JjL01ha2VmaWxlLm9yaWcKKysrIGIvc3JjL01ha2VmaWxlCkBAIC0yMSw2ICsyMSw3
-IEBACiAjIEludGVsIENvcnBvcmF0aW9uLCA1MjAwIE4uRS4gRWxhbSBZb3VuZyBQYXJrd2F5LCBI
-aWxsc2Jvcm8sIE9SIDk3MTI0LTY0OTcKICMKICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCitLU1JD
-IDo9ICQoS0VSTkVMX1NSQykKIAogIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAjIERyaXZlciBmaWxlcwpA
-QCAtNzMsNyArNzQsNyBAQAogaWZlcSAoL2xpYi9tb2R1bGVzLyQoQlVJTERfS0VSTkVMKS9zb3Vy
-Y2UsICQoS1NSQykpCiAgIEtPQkogOj0gIC9saWIvbW9kdWxlcy8kKEJVSUxEX0tFUk5FTCkvYnVp
-bGQKIGVsc2UKLSAgS09CSiA6PSAgJChLU1JDKQorICBLT0JKIDo9ICAkKE8pCiBlbmRpZgogZW5k
-aWYKIAoK
-
---_004_9e122189105049f0aa35aade046ef260Ekusurfusuedu_--
+--===============1619709168275910926==--
