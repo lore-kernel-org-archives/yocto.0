@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C0D0E00B45; Sat, 30 Jan 2016 16:26:41 -0800 (PST)
+	id 69EEAE00B5C; Sat, 30 Jan 2016 17:03:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,48 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DEB5E00B3A
-	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 16:26:36 -0800 (PST)
-Received: by mail-pa0-f42.google.com with SMTP id yy13so61110215pab.3
-	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 16:26:36 -0800 (PST)
+Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
+	[209.85.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BF04E00B45
+	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:03:45 -0800 (PST)
+Received: by mail-pa0-f50.google.com with SMTP id yy13so61384037pab.3
+	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:03:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=3sbyZkwnhESPIm+zxsYiS4AZJQi34gEEcCg5GUUYvfk=;
-	b=UZ1S8s2n+AnmX0271i3FeqWkrslWVNABjeQgTXT8tWmgiihe0FkFrsSZj4rLiLCqN4
-	F1pkhtdx8/sEze6JQWD9A09wEYSqvANE8C5rOZn2i3mk8vtoIsy8OrAslM4/1y+w0Hdh
-	FnOCin2mvBGTTdHF6Ci2WKfGLEQgT4U1DqcgLgkSFf30ZTysodGZUK6RkHriN+P5xlYe
-	Mp6UPbu0MOG0CnTQeGbGSo7w6BasjrI+/IyWemUBki9A9OykXiChOEzRj8AvY4xpo4rO
-	OoCWjxyodyH1LcfjtxCcIBTeEznWI9VB7otVjyGcA1swuqBMvjlvUPQizG4pqdxT/pGc
-	mH6w==
+	bh=9S5qW5XgnVtaPpYsExqTC4soijz54PyisL/UW/i/Z7w=;
+	b=IrAENanBO1oBTMjw0bN+HHNd5l4OROsdEWKC/OP4NL6vklnkv+Uyv2k5beWaItbcJI
+	02SJrkR9CMWnign5eISvIEdGD8At9nYl5xMGOLBJCIV42aezjL6nNZa3Lfp4ogSM2GO9
+	iNgrd4hoCjhyC8d5J4U8KZ3w4jIw9R8sUmsTorEtZO1ZKDL89abMS0i8s2z26k+lXIvX
+	ZcS7Udd2m4KsxGs9y0iE4SFS0l37Un4yhZ/4mT/z8uvGf9jMf/VVaqtLT99DzChtWJQI
+	7LFNnF8aK64CNV9kI91530hKroSfgBJIJz6cVKDegD3JHyBc1kYRwlymUMVfC/tKtjS1
+	InfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=3sbyZkwnhESPIm+zxsYiS4AZJQi34gEEcCg5GUUYvfk=;
-	b=Mx4+I7/fvTEzH6KlEUROiztGLItEoTwNCmoFgrll+lhiqu4BP94rEZ+3stRJidU4oE
-	eDCXJ0gvGsUrMx1Bmumu6g1iMNJLnS3t2cWa91jKKOqohjHD3XzDelST9FPW1dK9T4wH
-	DzyDGdGGkSqS8DwupXBXzFqfeGmOimkyk0WH3vlhUfDhpg8nYDJK3roWaujZ1tWIsga+
-	uSzAS+0JF5QSYanp88v/BlJd8oXnWOQgU5qlIBg9aKprDr6X8hcudigyse9tXWzftxB0
-	WN2AKoUqgrz03JdE+JkdCaefkV53hK/r83VV6dDs8TJVql768O9aEVi0VZ17zevFBdku
-	KIgQ==
-X-Gm-Message-State: AG10YOR3w4rmWnLUs49OBxfks6tC9Hypjvea2yvM7hLFHMH0r1psBLFBo0Nczb6y8BaGDg==
-X-Received: by 10.67.14.234 with SMTP id fj10mr25980960pad.149.1454199996212; 
-	Sat, 30 Jan 2016 16:26:36 -0800 (PST)
+	bh=9S5qW5XgnVtaPpYsExqTC4soijz54PyisL/UW/i/Z7w=;
+	b=Ebu9eXDOooeUTH+9s649+VhNOHe5RNriiBfm9LUM/p21U8kWZMhWlCcdYa5EmY44/G
+	PKOfxK7UcgzCD9g43Ih9Bydc1+7Z/XLs3zoHzg4o09KIWV+JUthB4i7lh3SJF+5yX3mc
+	TuDfTMdzjPs/0HqinpX8K9XFeJfpPAAtWzldVXid1YcjKVon59dKO/RxKq8EWrA4BUwb
+	0b7Zx8ngSTuRx7A2twM2fqnHRjHVcSBGp/2DENZZTuXnJEskfzVpstuMcloACfhBNjCf
+	JtMiy6zOXcoOO30RuD1hvATopGUjXYTylzzfk6NFVbG6Q5vxAhEjE7dQypzU+KRv+Q4Z
+	GCfw==
+X-Gm-Message-State: AG10YORy8Z8lNsVLh1lVHXxFGtbWxgxbmSiHYAmX1iD8OiEJzObjxBUAVljN/WSVroPDBw==
+X-Received: by 10.66.163.196 with SMTP id yk4mr26635951pab.115.1454202225647; 
+	Sat, 30 Jan 2016 17:03:45 -0800 (PST)
 Received: from haswell.localdomain (c-73-252-206-77.hsd1.ca.comcast.net.
 	[73.252.206.77]) by smtp.gmail.com with ESMTPSA id
-	b28sm32891275pfd.24.2016.01.30.16.26.34
+	tk1sm33014887pac.5.2016.01.30.17.03.44
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 30 Jan 2016 16:26:35 -0800 (PST)
+	Sat, 30 Jan 2016 17:03:44 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 30 Jan 2016 16:26:28 -0800
-Message-Id: <1454199988-15502-1-git-send-email-raj.khem@gmail.com>
+Date: Sat, 30 Jan 2016 17:03:38 -0800
+Message-Id: <1454202218-27563-1-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.7.0
-Subject: [meta-raspberrypi][PATCH] python-rtimu: Fix build with musl
+Subject: [meta-raspberrypi][PATCH] wiringPi: Fix build with musl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,71 +69,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jan 2016 00:26:41 -0000
+X-List-Received-Date: Sun, 31 Jan 2016 01:03:47 -0000
 
-ioctl(3) needs to include asm/ioctl.h for its signature
+Include asm/ioctl.h for _IOC_SIZEBITS
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- ...0001-include-asm-ioctl.h-for-ioctl-define.patch | 33 ++++++++++++++++++++++
- recipes-devtools/python/python-rtimu_git.bb        |  4 ++-
- 2 files changed, 36 insertions(+), 1 deletion(-)
- create mode 100644 recipes-devtools/python/python-rtimu/0001-include-asm-ioctl.h-for-ioctl-define.patch
+ ...de-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch | 58 ++++++++++++++++++++++
+ recipes-devtools/wiringPi/wiringpi_git.bb          |  8 +--
+ 2 files changed, 62 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
 
-diff --git a/recipes-devtools/python/python-rtimu/0001-include-asm-ioctl.h-for-ioctl-define.patch b/recipes-devtools/python/python-rtimu/0001-include-asm-ioctl.h-for-ioctl-define.patch
+diff --git a/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch b/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
 new file mode 100644
-index 0000000..4a93a1c
+index 0000000..5de5853
 --- /dev/null
-+++ b/recipes-devtools/python/python-rtimu/0001-include-asm-ioctl.h-for-ioctl-define.patch
-@@ -0,0 +1,33 @@
-+From c3aa4af56652b403e304ea5f321acfe289e42922 Mon Sep 17 00:00:00 2001
++++ b/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
+@@ -0,0 +1,58 @@
++From 7f65eb37a82a6d9b095d9c8f262ad9dd205acd03 Mon Sep 17 00:00:00 2001
 +From: Khem Raj <raj.khem@gmail.com>
-+Date: Sat, 30 Jan 2016 16:07:14 -0800
-+Subject: [PATCH] include asm/ioctl.h for ioctl() define
++Date: Sat, 30 Jan 2016 16:57:38 -0800
++Subject: [PATCH] include <asm/ioctl.h> directly for _IOC_SIZEBITS
 +
-+also fixes errors e.g.
-+
-+../../RTIMULib/RTIMUHal.cpp:208:29: error: '_IOC_SIZEBITS' was not
-+declared in this scope
-+         return ioctl(m_SPI, SPI_IOC_MESSAGE(1), &wrIOC);
++Fixes errors like
++| wiringPiSPI.c: In function 'wiringPiSPIDataRW':
++| wiringPiSPI.c:89:35: error: '_IOC_SIZEBITS' undeclared (first use in
++this function)
 +
 +Signed-off-by: Khem Raj <raj.khem@gmail.com>
 +---
 +Upstream-Status: Submitted
 +
-+ RTIMULib/RTIMUHal.cpp | 1 +
-+ 1 file changed, 1 insertion(+)
++ wiringPi/wiringPi.c    | 1 +
++ wiringPi/wiringPiI2C.c | 1 +
++ wiringPi/wiringPiSPI.c | 1 +
++ 3 files changed, 3 insertions(+)
 +
-+diff --git a/RTIMULib/RTIMUHal.cpp b/RTIMULib/RTIMUHal.cpp
-+index f9c3d15..d968326 100644
-+--- a/RTIMULib/RTIMUHal.cpp
-++++ b/RTIMULib/RTIMUHal.cpp
-+@@ -29,6 +29,7 @@
-+ #if !defined(WIN32) && !defined(__APPLE__)
-+ 
-+ #include <linux/spi/spidev.h>
++diff --git a/wiringPi/wiringPi.c b/wiringPi/wiringPi.c
++index 32e5100..cb5db9d 100644
++--- a/wiringPi/wiringPi.c
+++++ b/wiringPi/wiringPi.c
++@@ -64,6 +64,7 @@
++ #include <time.h>
++ #include <fcntl.h>
++ #include <pthread.h>
+++#include <asm/ioctl.h>
++ #include <sys/time.h>
++ #include <sys/mman.h>
++ #include <sys/stat.h>
++diff --git a/wiringPi/wiringPiI2C.c b/wiringPi/wiringPiI2C.c
++index c787bce..efdf53c 100644
++--- a/wiringPi/wiringPiI2C.c
+++++ b/wiringPi/wiringPiI2C.c
++@@ -52,6 +52,7 @@
++ #include <string.h>
++ #include <fcntl.h>
++ #include <sys/ioctl.h>
 ++#include <asm/ioctl.h>
 + 
-+ RTIMUHal::RTIMUHal()
-+ {
++ #include "wiringPi.h"
++ #include "wiringPiI2C.h"
++diff --git a/wiringPi/wiringPiSPI.c b/wiringPi/wiringPiSPI.c
++index 453df31..ae3c7d9 100644
++--- a/wiringPi/wiringPiSPI.c
+++++ b/wiringPi/wiringPiSPI.c
++@@ -27,6 +27,7 @@
++ #include <fcntl.h>
++ #include <errno.h>
++ #include <string.h>
+++#include <asm/ioctl.h>
++ #include <sys/ioctl.h>
++ #include <linux/spi/spidev.h>
++ 
 +-- 
 +2.7.0
 +
-diff --git a/recipes-devtools/python/python-rtimu_git.bb b/recipes-devtools/python/python-rtimu_git.bb
-index f51a234..63c92b3 100644
---- a/recipes-devtools/python/python-rtimu_git.bb
-+++ b/recipes-devtools/python/python-rtimu_git.bb
-@@ -5,7 +5,9 @@ SECTION = "devel/python"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://../../LICENSE;md5=96cdecb41125f498958e09b72faf318e"
+diff --git a/recipes-devtools/wiringPi/wiringpi_git.bb b/recipes-devtools/wiringPi/wiringpi_git.bb
+index 4254a0a..9d2206b 100644
+--- a/recipes-devtools/wiringPi/wiringpi_git.bb
++++ b/recipes-devtools/wiringPi/wiringpi_git.bb
+@@ -9,10 +9,10 @@ SRCREV = "d79506694d7ba1c3da865d095238289d6175057d"
  
--SRC_URI = "git://github.com/RPi-Distro/RTIMULib.git;protocol=http;branch=master"
-+SRC_URI = "git://github.com/RPi-Distro/RTIMULib.git;protocol=http;branch=master \
-+           file://0001-include-asm-ioctl.h-for-ioctl-define.patch;patchdir=../.. \
-+          "
- SRCREV = "b949681af69b45f0f7f4bb53b6770037b5b02178"
+ S = "${WORKDIR}/git"
  
- S = "${WORKDIR}/git/Linux/python/"
+-SRC_URI = "\
+-          git://git.drogon.net/wiringPi \
+-          file://0001-Add-initial-cross-compile-support.patch \
+-          "
++SRC_URI = "git://git.drogon.net/wiringPi \
++           file://0001-Add-initial-cross-compile-support.patch \
++           file://0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch \
++           "
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
 -- 
 2.7.0
 
