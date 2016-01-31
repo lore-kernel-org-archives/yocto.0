@@ -1,44 +1,65 @@
-Return-Path: <jackzhang1992@t.shu.edu.cn>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDDA8E00B6F; Sun, 31 Jan 2016 08:33:21 -0800 (PST)
+	id A4A8FE00B9D; Sun, 31 Jan 2016 09:41:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtpproxy21.qq.com (smtpproxy21.qq.com [184.105.206.83])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C16E00B66
-	for <yocto@yoctoproject.org>; Sun, 31 Jan 2016 08:33:17 -0800 (PST)
-X-QQ-GoodBg: 2
-X-QQ-SSF: 00400000000000F0
-X-QQ-FEAT: gXZG3PbKWBun4I4mfnqD4k8J0CYY8vwFvsbaux3/rNVg6E1BTMK8WxJpfRbo9
-	8aqBjS16xq3t4Ya24A9/6ANXDeCt3Dk4ioK2p7Lb9Fg+wKzpWeJwonLBZ8R0/4ARFoV/Mp+
-	G3J5vX0QO14siYTNoBTqlDoro0DmVX66sW7OGuiEgA8kxmvW56suP5sB/WW0aaIQumQZ6Yd
-	+7TBOCOgvmgww3BlqZwemyaZLhPrAZ2UxhrYIYKj0hevyOKU9ELWxha0uj20SGh0=
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 180.156.182.136
-X-QQ-STYLE: 
-X-QQ-mid: bizmailfree67t1454257983t2495
-From: "=?utf-8?B?5byg5YGl?=" <jackzhang1992@t.shu.edu.cn>
-To: "=?utf-8?B?S2hlbSBSYWo=?=" <raj.khem@gmail.com>
-Mime-Version: 1.0
-Date: Mon, 1 Feb 2016 00:33:03 +0800
-X-Priority: 3
-Message-ID: <tencent_1425FF47558CF07A589CEEB8@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <tencent_569636730269A1CE59E0E877@qq.com>
-	<CAMKF1srrrJoyvJw8sfwk3MUPHPO4OAM8fiEVZS=ci+jtBkcaPQ@mail.gmail.com>
-In-Reply-To: <CAMKF1srrrJoyvJw8sfwk3MUPHPO4OAM8fiEVZS=ci+jtBkcaPQ@mail.gmail.com>
-X-QQ-ReplyHash: 2021326321
-X-QQ-SENDSIZE: 520
-X-QQ-Bgrelay: 1
-Cc: =?utf-8?B?eW9jdG8=?= <yocto@yoctoproject.org>
-Subject: Re: About how port yocto to a customized MIPS cpu
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 761ADE00B66
+	for <yocto@yoctoproject.org>; Sun, 31 Jan 2016 09:41:47 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id f81so134426877iof.0
+	for <yocto@yoctoproject.org>; Sun, 31 Jan 2016 09:41:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=7tkp6wzH5HjvUW9/EDxKTLtlKFSF5VIcDZZoTEPlvOg=;
+	b=aIHjuJOUEsPJTwBJ5Ik5Bdxcp1PC+K7c9uxw4c0P4uy9uNpzGuuJbhH4VdUhQX5M1s
+	H02wQp8Y7N+Ml3C5XsqiMumsB6/eQARUWUGzOmJHtL/5fRn5OpU7BlwdBigxhyZ8+Wuo
+	Gw533w+MN/BxCZQwfIcz9IdPuNylCusk46x5ch9NVhWXimSh6vpoSKE+bFSR8HadE119
+	f1GRzn9vDvhz2l1BFfpQbZPQ5s9be72dGZY1d4uset7k0nj0bQ5dxxbdtGkStiQAgAFs
+	aAZco7m48Q/m+GgyBHU4ROz8kg2KIM+qiqdXVWq6tBk+8oIzu4F+9lukgeb783Q/XeIc
+	x18w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-type;
+	bh=7tkp6wzH5HjvUW9/EDxKTLtlKFSF5VIcDZZoTEPlvOg=;
+	b=NYQj44jq3AXfntN20zDX9AjtN6QAeiCu4VWsfQpJ69PQ+gZ4xsI4oGCKGMC58caFul
+	CqPaGcj+5eWGppqSmPSf+23ftgcnUPfjEQf6d8ulRvEiG3pOrhJZvL9s+plooPfAEnJY
+	rlPjOdrQ9bDdQR+e8apQ5pfvLovv+JKSBg43GicOT4m90622AwqNeT1Tls0VX5WLqfyS
+	jegHQ5jlpOLXiwVgCqw2NKZm/hU9aDtKk2lUbyQcg4nj34L0QrDwyT0Jzbbr7perWzuA
+	6ftiTQuNI14HILQkvb/sQKhqIlXZKYCHxQ/PbvibJ63qI7hNsrUH/xdmTpYWprv6XsB+
+	CCMA==
+X-Gm-Message-State: AG10YOSavfih70oiF0fiBypchdFjqlLHOpQwgnyW5VxLay4hPGxuF/gj9mMh9dIOZHxcgm6L9WhvzIIZZARukA==
+X-Received: by 10.107.9.211 with SMTP id 80mr12824375ioj.112.1454262107172;
+	Sun, 31 Jan 2016 09:41:47 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.46.219 with HTTP; Sun, 31 Jan 2016 09:41:17 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 31 Jan 2016 09:41:17 -0800
+Message-ID: <CAMKF1sriCy0VxkkJHKsHaLy0K1N4Ns2E7o-rE_Lq8wSGXoy8hw@mail.gmail.com>
+To: openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>
+Subject: Glibc 2.24 _might_ require minimum kernel version 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,129 +71,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jan 2016 16:33:21 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_56AE373F_0994FED0_1FB107B8"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Sun, 31 Jan 2016 17:41:52 -0000
+Content-Type: text/plain; charset=UTF-8
 
-------=_NextPart_56AE373F_0994FED0_1FB107B8
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi
 
-QWJvdXQgaW1hZ2UgZmlsZXMsIGkgZ3Vlc3MgdGhlcmUgYXJlIHZhcmlvdXMgdHlwZXMgb2Yg
-aXQsIGxpa2UgLmltZywgLnZkaSwuLmV0YyAoaHR0cHM6Ly9lbi53aWtpYm9va3Mub3JnL3dp
-a2kvUUVNVS9JbWFnZXMpLGJ1dCBJIHdpc2ggdG8gZmluZCBhIHR5cGUgdGhhdCBpcyBtYWNo
-aW5lIGNvZGUgb2YgdGhlIHRhcmdldCBtYWNoaW5lIHNvIHRoYXQgaXQgY291bGQgYmUgYm9v
-dGVkIGRpcmVjdGx5Lg0KDQoNCkFib3V0IGJvb3Rsb2FkZXIsIGRvIHlvdSB5b3UgbWVhbiB5
-b2N0byBwcm9qZWN0IGRvZXNuJ3QgaW5jbHVkZSBib290bG9hZGVyIHRvb2xzIGxpa2UgdWJv
-b3Q/IEZvciBub3csIEkgcmVhbGl6ZSB0aGUgWVAgaXMgYSB0b29sIGNoYWluIGZvciBnZW5l
-cmF0aW5nIGxpbnV4IGRpc3RyaWJ1dGlvbnMuIFNvIGl0IGJ1aWxkcyB0aGUgc291cmNlIGNv
-ZGUsYW5kICBjb252ZXJ0cyBpdCB0byBsaW51eCBpbWFnZSBmaWxlcywgZG9lc24ndCBpdD8g
-U28gaW4gdGhlIGZ1dHVyZSwgSSBzaG91bGQgZm9jdXMgb24gaG93IHRvIHVzZSB1Ym9vdCB0
-byBib290IHRoZSBsaW51eCBpbWFnZXMgKGdlbmVyYXRlZCBieSBZUCkgdG8gbXkgbXkgb3du
-ICJ0aW55IiBjcHUsIHJpZ2h0Pw0KDQoNClRoYW5rIHlvdSBhbmQgQmVzdCB3aXNoZXMuICAN
-CiANCi0tLS0tLS0tLS0tLS0tLS0tLSBPcmlnaW5hbCAtLS0tLS0tLS0tLS0tLS0tLS0NCkZy
-b206ICAiS2hlbSBSYWoiPHJhai5raGVtQGdtYWlsLmNvbT47DQpEYXRlOiAgVGh1LCBKYW4g
-MjgsIDIwMTYgMDM6MTAgQU0NClRvOiAgIkphY2taaGFuZyI8amFja3poYW5nMTk5MkB0LnNo
-dS5lZHUuY24+OyANCkNjOiAgInlvY3RvIjx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPjsgDQpT
-dWJqZWN0OiAgUmU6IFt5b2N0b10gQWJvdXQgaG93IHBvcnQgeW9jdG8gdG8gYSBjdXN0b21p
-emVkIE1JUFMgY3B1DQoNCiANCg0KT24gVHVlLCBKYW4gMjYsIDIwMTYgYXQgNzowOSBQTSwg
-5byg5YGlIDxqYWNremhhbmcxOTkyQHQuc2h1LmVkdS5jbj4gd3JvdGU6DQpCdXQgSSBoYXZl
-IG5vIGlkZWEgd2hhdCdzIGluc2lkZSB0aGUgLmltZyBmaWxlcywgYW5kIGhvdyB0byBsZXQg
-bXkgZnBnYSBib2FyZCB0byB1bmRlcnN0YW5kIHRoZSAuaW1nIGZpbGVzLiANCg0KDQpTbyB0
-aGlzICBpcyByZWFzb24gd2h5IEknbSBoZXJlIHRvIGFzayB5b3UgZ3V5cyBmb3Igc29tZSBo
-ZWxwLg0KDQoNCkFuZCB3aXNoIHRvIGtub3cgaWYgaXQgaXMgcG9zc2libGUgdG8gcG9ydCB0
-aGUgInlvY3RvIiB0byBteSBvd24gcHJvamVjdC4NCg0KDQoNCg0KDQrigItpbWFnZSBmaWxl
-cyBhcmUgZ2VuZXJhdGVkIGluIHNldmVyYWwgZm9ybWF0cy4gVGhlcmUgaXMgb3B0aW9uIHRv
-IGdlbmVyYXRlIHRhcmJhbGxzLiBZb3UgY2FuIGFsd2F5cyB0YWtlIHRoZSB0YXJiYWxsIGFu
-ZCB1bnRhciBpdCBhbmQgbG9vayB3aGF0IGluc2lkZQ0Kc2Vjb25kbHksIGZvciB5b3VyIEZQ
-R0EgdG8gdW5kZXJzdGFuZCB0aGlzLCB5b3UgcHJvYmFibHkgd2lsbCBuZWVkIHRvb2xzIHRv
-IGRvd25sb2FkIHRoZSBiaW5hcnkgdG8gbWVtb3J5IHdoaWNoIGlzIHZpc2l0aWJsZSB0byBG
-UEdBIGlmIEkgYXNzdW1lIEZQR0ENCmlzIHNpdHRpbmcgYWxvbmcgd2l0aCBhIGFwcGxpY2F0
-aW9uIHByb2Nlc3NvciB3aGljaCBjYW4gdGhlbiBoZWxwIHlvdSB0byBmbGFzaCBpdCB0byBy
-ZWxldmFudCBtZW1vcnkgcGFydHMuIA0KDQoNCmlmIHlvdXIgYXBwbGljYXRpb24gcHJvY2Vz
-c29yIGhhcyBhIGJvb3Rsb2FkZXIgZS5nLiB1Ym9vdCB3aGljaCBjYW4gdXNlIFNEIGNhcmRz
-IGFzIGJvb3QgbWVkaWEgdGhlbiB5b3UgY2FuIHVzZSB3aWMgdG9vbCB0byBnZW5lcmF0ZSBT
-RCBjYXJkDQppbWFnZXMgZGlyZWN0bHkgZnJvbSB5b2N0by4gd2ljIGlzIGRvY3VtZW50ZWQg
-aW4gZGV2IG1hbnVhbCBzbyBwbGVhc2UgbG9vayB0aGVyZSBvbiBob3cgdG8gc2V0IGl0IHVw
-LiBPciB5b3UgY2FuIGxvb2sgYXQgc29tZSBvdGhlciBCU1BzIGxpa2UNCmJlYWdsZWJvbmUg
-KCBhbmdzdHJvbSApIG9yIHJhc3BiZXJyeXBpIG9yIGZyZWVzY2FsZSBsYXllciBmb3Igc2Ny
-aXB0cyB0byBnZW5lcmF0ZSB0aGUgU0QgY2FyZCBpbWFnZXMgYW5kIG1vZGVsIHlvdXIgdXNp
-bmcgdGhvc2Uu4oCL
+This is FYI, as I have sent a RFT for glibc 2.24, there might be another change
+coming which is under discussion on glibc mailing lists which is on
+supported minimum
+kernel version bump to 3.2 since 2.6.32 will be EOLed this summer [1]
 
-------=_NextPart_56AE373F_0994FED0_1FB107B8
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+If anyone is planning on using upcoming yocto/OE release and sticking
+to kernels older than  3.2 then please plan for upgrading your kernel.
 
-PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPkFib3V0IGltYWdlIGZpbGVz
-LCBpIGd1ZXNzIHRoZXJlIGFyZSB2YXJpb3VzIHR5cGVzIG9mIGl0LCBsaWtlIC5pbWcsIC52
-ZGksLi5ldGMgKGh0dHBzOi8vZW4ud2lraWJvb2tzLm9yZy93aWtpL1FFTVUvSW1hZ2VzKSxi
-dXQgSSB3aXNoIHRvIGZpbmQgYSB0eXBlIHRoYXQgaXMgbWFjaGluZSBjb2RlIG9mIHRoZSB0
-YXJnZXQgbWFjaGluZSBzbyB0aGF0IGl0IGNvdWxkIGJlIGJvb3RlZCBkaXJlY3RseS48L3Nw
-YW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BYm91dCBib290bG9hZGVyLCZuYnNwOzxz
-cGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+ZG8geW91IHlvdSBtZWFuIHlvY3RvIHBy
-b2plY3QgZG9lc24ndCBpbmNsdWRlIGJvb3Rsb2FkZXIgdG9vbHMgbGlrZSB1Ym9vdD8gRm9y
-IG5vdywgSSByZWFsaXplIHRoZSBZUCBpcyBhIHRvb2wgY2hhaW4gZm9yIGdlbmVyYXRpbmcg
-bGludXggZGlzdHJpYnV0aW9ucy4gU28gaXQgYnVpbGRzIHRoZSBzb3VyY2UgY29kZSxhbmQg
-Jm5ic3A7Y29udmVydHMgaXQgdG8gbGludXggaW1hZ2UgZmlsZXMsIGRvZXNuJ3QgaXQ/IFNv
-IGluIHRoZSBmdXR1cmUsIEkgc2hvdWxkIGZvY3VzIG9uIGhvdyB0byB1c2UgdWJvb3QgdG8g
-Ym9vdCB0aGUgbGludXggaW1hZ2VzIChnZW5lcmF0ZWQgYnkgWVApIHRvIG15IG15IG93biAi
-dGlueSIgY3B1LCByaWdodD88L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1o
-ZWlnaHQ6IDEuNTsiPjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1o
-ZWlnaHQ6IDEuNTsiPlRoYW5rIHlvdSBhbmQgQmVzdCB3aXNoZXMuICZuYnNwOzwvc3Bhbj48
-L2Rpdj48ZGl2PjxpbmNsdWRldGFpbD48ZGl2PiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZv
-bnQ6VmVyZGFuYSBub3JtYWwgMTRweDtjb2xvcjojMDAwOyI+PGRpdiBzdHlsZT0iRk9OVC1T
-SVpFOiAxMnB4O0ZPTlQtRkFNSUxZOiBBcmlhbCBOYXJyb3c7cGFkZGluZzoycHggMCAycHgg
-MDsiPi0tLS0tLS0tLS0tLS0tLS0tLSZuYnNwO09yaWdpbmFsJm5ic3A7LS0tLS0tLS0tLS0t
-LS0tLS0tPC9kaXY+PGRpdiBzdHlsZT0iRk9OVC1TSVpFOiAxMnB4O2JhY2tncm91bmQ6I2Vm
-ZWZlZjtwYWRkaW5nOjhweDsiPjxkaXYgaWQ9Im1lbnVfc2VuZGVyIj48Yj5Gcm9tOiA8L2I+
-Jm5ic3A7IktoZW0gUmFqIiZsdDtyYWoua2hlbUBnbWFpbC5jb20mZ3Q7OzwvZGl2PjxkaXY+
-PGI+RGF0ZTogPC9iPiZuYnNwO1RodSwgSmFuIDI4LCAyMDE2IDAzOjEwIEFNPC9kaXY+PGRp
-dj48Yj5UbzogPC9iPiZuYnNwOyJKYWNrWmhhbmciJmx0O2phY2t6aGFuZzE5OTJAdC5zaHUu
-ZWR1LmNuJmd0OzsgPHdicj48L2Rpdj48ZGl2PjxiPkNjOiA8L2I+Jm5ic3A7InlvY3RvIiZs
-dDt5b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0OzsgPHdicj48L2Rpdj48ZGl2PjxiPlN1Ympl
-Y3Q6IDwvYj4mbmJzcDtSZTogW3lvY3RvXSBBYm91dCBob3cgcG9ydCB5b2N0byB0byBhIGN1
-c3RvbWl6ZWQgTUlQUyBjcHU8L2Rpdj48L2Rpdj48ZGl2PiZuYnNwOzwvZGl2PjxkaXYgZGly
-PSJsdHIiPjxkaXYgY2xhc3M9ImdtYWlsX2V4dHJhIj48YnI+PGRpdiBjbGFzcz0iZ21haWxf
-cXVvdGUiPk9uIFR1ZSwgSmFuIDI2LCAyMDE2IGF0IDc6MDkgUE0sIOW8oOWBpSA8c3BhbiBk
-aXI9Imx0ciI+Jmx0OzxhIGhyZWY9Im1haWx0bzpqYWNremhhbmcxOTkyQHQuc2h1LmVkdS5j
-biIgdGFyZ2V0PSJfYmxhbmsiPmphY2t6aGFuZzE5OTJAdC5zaHUuZWR1LmNuPC9hPiZndDs8
-L3NwYW4+IHdyb3RlOjxicj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxl
-PSJtYXJnaW46MCAwIDAgLjhleDtib3JkZXItbGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5n
-LWxlZnQ6MWV4Ij48ZGl2PkJ1dCBJIGhhdmUgbm8gaWRlYSB3aGF0J3MgaW5zaWRlIHRoZSAu
-aW1nIGZpbGVzLCBhbmQgaG93IHRvIGxldCBteSBmcGdhIGJvYXJkIHRvIHVuZGVyc3RhbmQg
-dGhlIC5pbWcgZmlsZXMuJm5ic3A7PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5TbyB0aGlz
-ICZuYnNwO2lzIHJlYXNvbiB3aHkgSSdtIGhlcmUgdG8gYXNrIHlvdSBndXlzIGZvciBzb21l
-IGhlbHAuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BbmQgd2lzaCB0byBrbm93IGlmIGl0
-IGlzIHBvc3NpYmxlIHRvIHBvcnQgdGhlICJ5b2N0byIgdG8gbXkgb3duIHByb2plY3QuPC9k
-aXY+PGRpdj48YnI+PC9kaXY+PGRpdj48L2Rpdj48L2Jsb2NrcXVvdGU+PC9kaXY+PGJyPjxk
-aXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lhLHNl
-cmlmIj7igItpbWFnZSBmaWxlcyBhcmUgZ2VuZXJhdGVkIGluIHNldmVyYWwgZm9ybWF0cy4g
-VGhlcmUgaXMgb3B0aW9uIHRvIGdlbmVyYXRlIHRhcmJhbGxzLiBZb3UgY2FuIGFsd2F5cyB0
-YWtlIHRoZSB0YXJiYWxsIGFuZCB1bnRhciBpdCBhbmQgbG9vayB3aGF0IGluc2lkZTwvZGl2
-PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lh
-LHNlcmlmIj5zZWNvbmRseSwgZm9yIHlvdXIgRlBHQSB0byB1bmRlcnN0YW5kIHRoaXMsIHlv
-dSBwcm9iYWJseSB3aWxsIG5lZWQgdG9vbHMgdG8gZG93bmxvYWQgdGhlIGJpbmFyeSB0byBt
-ZW1vcnkgd2hpY2ggaXMgdmlzaXRpYmxlIHRvIEZQR0EgaWYgSSBhc3N1bWUgRlBHQTwvZGl2
-PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lh
-LHNlcmlmIj5pcyBzaXR0aW5nIGFsb25nIHdpdGggYSBhcHBsaWNhdGlvbiBwcm9jZXNzb3Ig
-d2hpY2ggY2FuIHRoZW4gaGVscCB5b3UgdG8gZmxhc2ggaXQgdG8gcmVsZXZhbnQgbWVtb3J5
-IHBhcnRzLiZuYnNwOzwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJm
-b250LWZhbWlseTpnZW9yZ2lhLHNlcmlmIj48YnI+PC9kaXY+PGRpdiBjbGFzcz0iZ21haWxf
-ZGVmYXVsdCIgc3R5bGU9ImZvbnQtZmFtaWx5Omdlb3JnaWEsc2VyaWYiPmlmIHlvdXIgYXBw
-bGljYXRpb24gcHJvY2Vzc29yIGhhcyBhIGJvb3Rsb2FkZXIgZS5nLiB1Ym9vdCB3aGljaCBj
-YW4gdXNlIFNEIGNhcmRzIGFzIGJvb3QgbWVkaWEgdGhlbiB5b3UgY2FuIHVzZSB3aWMgdG9v
-bCB0byBnZW5lcmF0ZSBTRCBjYXJkPC9kaXY+PGRpdiBjbGFzcz0iZ21haWxfZGVmYXVsdCIg
-c3R5bGU9ImZvbnQtZmFtaWx5Omdlb3JnaWEsc2VyaWYiPmltYWdlcyBkaXJlY3RseSBmcm9t
-IHlvY3RvLiB3aWMgaXMgZG9jdW1lbnRlZCBpbiBkZXYgbWFudWFsIHNvIHBsZWFzZSBsb29r
-IHRoZXJlIG9uIGhvdyB0byBzZXQgaXQgdXAuIE9yIHlvdSBjYW4gbG9vayBhdCBzb21lIG90
-aGVyIEJTUHMgbGlrZTwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJm
-b250LWZhbWlseTpnZW9yZ2lhLHNlcmlmIj5iZWFnbGVib25lICggYW5nc3Ryb20gKSBvciBy
-YXNwYmVycnlwaSBvciBmcmVlc2NhbGUgbGF5ZXIgZm9yIHNjcmlwdHMgdG8gZ2VuZXJhdGUg
-dGhlIFNEIGNhcmQgaW1hZ2VzIGFuZCBtb2RlbCB5b3VyIHVzaW5nIHRob3NlLuKAizwvZGl2
-Pjxicj48L2Rpdj48L2Rpdj4NCg0KPC9kaXY+PCEtLTwhW2VuZGlmXS0tPjwvaW5jbHVkZXRh
-aWw+PC9kaXY+
+Thanks
+-Khem
 
-------=_NextPart_56AE373F_0994FED0_1FB107B8--
+[1] - https://sourceware.org/ml/libc-alpha/2016-01/msg00885.html
+
