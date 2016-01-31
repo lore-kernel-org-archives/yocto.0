@@ -1,17 +1,17 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69EEAE00B5C; Sat, 30 Jan 2016 17:03:47 -0800 (PST)
+	id D4974E00B5C; Sat, 30 Jan 2016 17:19:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
 	*      [209.85.220.50 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,43 +21,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
 	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BF04E00B45
-	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:03:45 -0800 (PST)
-Received: by mail-pa0-f50.google.com with SMTP id yy13so61384037pab.3
-	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:03:45 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C32EE00B45
+	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:19:49 -0800 (PST)
+Received: by mail-pa0-f50.google.com with SMTP id yy13so61503748pab.3
+	for <yocto@yoctoproject.org>; Sat, 30 Jan 2016 17:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=9S5qW5XgnVtaPpYsExqTC4soijz54PyisL/UW/i/Z7w=;
-	b=IrAENanBO1oBTMjw0bN+HHNd5l4OROsdEWKC/OP4NL6vklnkv+Uyv2k5beWaItbcJI
-	02SJrkR9CMWnign5eISvIEdGD8At9nYl5xMGOLBJCIV42aezjL6nNZa3Lfp4ogSM2GO9
-	iNgrd4hoCjhyC8d5J4U8KZ3w4jIw9R8sUmsTorEtZO1ZKDL89abMS0i8s2z26k+lXIvX
-	ZcS7Udd2m4KsxGs9y0iE4SFS0l37Un4yhZ/4mT/z8uvGf9jMf/VVaqtLT99DzChtWJQI
-	7LFNnF8aK64CNV9kI91530hKroSfgBJIJz6cVKDegD3JHyBc1kYRwlymUMVfC/tKtjS1
-	InfA==
+	bh=HveP8FdHKvXjBoX/hAE+TBDb+0fMs91r79E5GwlY33Y=;
+	b=nwKLnMhK6pL9q1GdTJ9gTGI75nHKhLavOR3f7pv4r1yI1MSCY+9NY+S/6i3pEOJtuH
+	fht4WS9RG17PK0dsZBNsYZYpTcLIU6bsEiqytMoRE+474SpNHu/8NH6qANBy8cXGoTHt
+	S5vok4Vvh9i2j/onLfiD9E4zS+sZzkhjBx6BRXqD1BvvorrIqSSNUi4LN9PO8LOfhod5
+	HKrS4FfoGeyQXfwuWBq+l58/Y8jyXqYjNWiOb8TK+5wulAk5whfJdHqyE1IIMYL8xjYX
+	MAQzUui/5Nq/QbmgvQ0tD7Mc5ZEyGmAOQwNk6kdMj8/vruPHs0VbPErR0de+4WE7EsFw
+	NqbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=9S5qW5XgnVtaPpYsExqTC4soijz54PyisL/UW/i/Z7w=;
-	b=Ebu9eXDOooeUTH+9s649+VhNOHe5RNriiBfm9LUM/p21U8kWZMhWlCcdYa5EmY44/G
-	PKOfxK7UcgzCD9g43Ih9Bydc1+7Z/XLs3zoHzg4o09KIWV+JUthB4i7lh3SJF+5yX3mc
-	TuDfTMdzjPs/0HqinpX8K9XFeJfpPAAtWzldVXid1YcjKVon59dKO/RxKq8EWrA4BUwb
-	0b7Zx8ngSTuRx7A2twM2fqnHRjHVcSBGp/2DENZZTuXnJEskfzVpstuMcloACfhBNjCf
-	JtMiy6zOXcoOO30RuD1hvATopGUjXYTylzzfk6NFVbG6Q5vxAhEjE7dQypzU+KRv+Q4Z
-	GCfw==
-X-Gm-Message-State: AG10YORy8Z8lNsVLh1lVHXxFGtbWxgxbmSiHYAmX1iD8OiEJzObjxBUAVljN/WSVroPDBw==
-X-Received: by 10.66.163.196 with SMTP id yk4mr26635951pab.115.1454202225647; 
-	Sat, 30 Jan 2016 17:03:45 -0800 (PST)
+	bh=HveP8FdHKvXjBoX/hAE+TBDb+0fMs91r79E5GwlY33Y=;
+	b=eavDiAGZvhOXFC3Xm0WKvgismIFNghshX4wCFg8IV4D6DLmZqr+/YXuivGTSLiF7Fi
+	L/kDiPGap8AQ9Dke9cQNa8IGdzF69L6DFQc51aXMYL0ZDixo9+gakb8UeVqjGdnj2bEe
+	vj+MsPK+G9XpXLD8N0g/BUeXMFeT6nT+GyE5hsYfqiMo6h3qRwZmRmWZBaYp71ke9qU7
+	M68MlQv6DnU8RPRkedhheXW0OrjxILjqKiiON8qrnTnRrxJulok/wC1VXv2uxe4UV10/
+	+VzQ7tNtMH8Tzj1gTm/KkOifNVs+bnxfJjSYo5g0bDnuDB+gKc+S+efxjzawIm7bMtvp
+	FR0g==
+X-Gm-Message-State: AG10YOSMVlXttdaIUEmakqjAXbgY7b1px9NrFY1YeTxlh65ac+5Cp6sgcCKt8yZ+H/ihXQ==
+X-Received: by 10.66.232.202 with SMTP id tq10mr26723061pac.14.1454203189731; 
+	Sat, 30 Jan 2016 17:19:49 -0800 (PST)
 Received: from haswell.localdomain (c-73-252-206-77.hsd1.ca.comcast.net.
 	[73.252.206.77]) by smtp.gmail.com with ESMTPSA id
-	tk1sm33014887pac.5.2016.01.30.17.03.44
+	n84sm33014543pfa.45.2016.01.30.17.19.48
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 30 Jan 2016 17:03:44 -0800 (PST)
+	Sat, 30 Jan 2016 17:19:48 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 30 Jan 2016 17:03:38 -0800
-Message-Id: <1454202218-27563-1-git-send-email-raj.khem@gmail.com>
+Date: Sat, 30 Jan 2016 17:19:42 -0800
+Message-Id: <1454203182-30343-1-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.7.0
-Subject: [meta-raspberrypi][PATCH] wiringPi: Fix build with musl
+Subject: [meta-raspberrypi][PATCH] rpio: Include sys/types.h for caddr_t
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,100 +69,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Jan 2016 01:03:47 -0000
+X-List-Received-Date: Sun, 31 Jan 2016 01:19:53 -0000
 
-Include asm/ioctl.h for _IOC_SIZEBITS
+Fixes build with musl
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- ...de-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch | 58 ++++++++++++++++++++++
- recipes-devtools/wiringPi/wiringpi_git.bb          |  8 +--
- 2 files changed, 62 insertions(+), 4 deletions(-)
- create mode 100644 recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
+ ...-types.h-explicitly-for-getting-caddr_t-d.patch | 30 ++++++++++++++++++++++
+ recipes-devtools/python/rpio_0.10.0.bb             |  6 ++---
+ 2 files changed, 33 insertions(+), 3 deletions(-)
+ create mode 100644 recipes-devtools/python/rpio/0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch
 
-diff --git a/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch b/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
+diff --git a/recipes-devtools/python/rpio/0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch b/recipes-devtools/python/rpio/0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch
 new file mode 100644
-index 0000000..5de5853
+index 0000000..bed9749
 --- /dev/null
-+++ b/recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
-@@ -0,0 +1,58 @@
-+From 7f65eb37a82a6d9b095d9c8f262ad9dd205acd03 Mon Sep 17 00:00:00 2001
++++ b/recipes-devtools/python/rpio/0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch
+@@ -0,0 +1,30 @@
++From c86bfacc98d58244f532626954ed00d84ecfa82d Mon Sep 17 00:00:00 2001
 +From: Khem Raj <raj.khem@gmail.com>
-+Date: Sat, 30 Jan 2016 16:57:38 -0800
-+Subject: [PATCH] include <asm/ioctl.h> directly for _IOC_SIZEBITS
++Date: Sat, 30 Jan 2016 17:12:37 -0800
++Subject: [PATCH] include sys/types.h explicitly for getting caddr_t definition
 +
-+Fixes errors like
-+| wiringPiSPI.c: In function 'wiringPiSPIDataRW':
-+| wiringPiSPI.c:89:35: error: '_IOC_SIZEBITS' undeclared (first use in
-+this function)
++Helps fixing build on musl where sys/types.h is not included indirectly
++as happening on glibc
 +
 +Signed-off-by: Khem Raj <raj.khem@gmail.com>
 +---
 +Upstream-Status: Submitted
 +
-+ wiringPi/wiringPi.c    | 1 +
-+ wiringPi/wiringPiI2C.c | 1 +
-+ wiringPi/wiringPiSPI.c | 1 +
-+ 3 files changed, 3 insertions(+)
++ source/c_gpio/c_gpio.c | 1 +
++ 1 file changed, 1 insertion(+)
 +
-+diff --git a/wiringPi/wiringPi.c b/wiringPi/wiringPi.c
-+index 32e5100..cb5db9d 100644
-+--- a/wiringPi/wiringPi.c
-++++ b/wiringPi/wiringPi.c
-+@@ -64,6 +64,7 @@
-+ #include <time.h>
++diff --git a/source/c_gpio/c_gpio.c b/source/c_gpio/c_gpio.c
++index 25a04ca..70df632 100644
++--- a/source/c_gpio/c_gpio.c
+++++ b/source/c_gpio/c_gpio.c
++@@ -29,6 +29,7 @@
++ #include <stdint.h>
++ #include <stdlib.h>
 + #include <fcntl.h>
-+ #include <pthread.h>
-++#include <asm/ioctl.h>
-+ #include <sys/time.h>
+++#include <sys/types.h>
 + #include <sys/mman.h>
-+ #include <sys/stat.h>
-+diff --git a/wiringPi/wiringPiI2C.c b/wiringPi/wiringPiI2C.c
-+index c787bce..efdf53c 100644
-+--- a/wiringPi/wiringPiI2C.c
-++++ b/wiringPi/wiringPiI2C.c
-+@@ -52,6 +52,7 @@
-+ #include <string.h>
-+ #include <fcntl.h>
-+ #include <sys/ioctl.h>
-++#include <asm/ioctl.h>
-+ 
-+ #include "wiringPi.h"
-+ #include "wiringPiI2C.h"
-+diff --git a/wiringPi/wiringPiSPI.c b/wiringPi/wiringPiSPI.c
-+index 453df31..ae3c7d9 100644
-+--- a/wiringPi/wiringPiSPI.c
-++++ b/wiringPi/wiringPiSPI.c
-+@@ -27,6 +27,7 @@
-+ #include <fcntl.h>
-+ #include <errno.h>
-+ #include <string.h>
-++#include <asm/ioctl.h>
-+ #include <sys/ioctl.h>
-+ #include <linux/spi/spidev.h>
++ #include "c_gpio.h"
 + 
 +-- 
 +2.7.0
 +
-diff --git a/recipes-devtools/wiringPi/wiringpi_git.bb b/recipes-devtools/wiringPi/wiringpi_git.bb
-index 4254a0a..9d2206b 100644
---- a/recipes-devtools/wiringPi/wiringpi_git.bb
-+++ b/recipes-devtools/wiringPi/wiringpi_git.bb
-@@ -9,10 +9,10 @@ SRCREV = "d79506694d7ba1c3da865d095238289d6175057d"
+diff --git a/recipes-devtools/python/rpio_0.10.0.bb b/recipes-devtools/python/rpio_0.10.0.bb
+index 1cc1661..69ecb6f 100644
+--- a/recipes-devtools/python/rpio_0.10.0.bb
++++ b/recipes-devtools/python/rpio_0.10.0.bb
+@@ -7,9 +7,9 @@ LIC_FILES_CHKSUM = "file://README.rst;beginline=41;endline=53;md5=d5d95d7486a4d9
  
- S = "${WORKDIR}/git"
+ SRCNAME = "RPIO"
  
 -SRC_URI = "\
--          git://git.drogon.net/wiringPi \
--          file://0001-Add-initial-cross-compile-support.patch \
+-          http://pypi.python.org/packages/source/R/RPIO/${SRCNAME}-${PV}.tar.gz \
 -          "
-+SRC_URI = "git://git.drogon.net/wiringPi \
-+           file://0001-Add-initial-cross-compile-support.patch \
-+           file://0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch \
++SRC_URI = "http://pypi.python.org/packages/source/R/RPIO/${SRCNAME}-${PV}.tar.gz \
++           file://0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch \
 +           "
+ S = "${WORKDIR}/${SRCNAME}-${PV}"
  
- COMPATIBLE_MACHINE = "raspberrypi"
- 
+ inherit setuptools
 -- 
 2.7.0
 
