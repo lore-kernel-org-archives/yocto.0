@@ -1,60 +1,53 @@
-Return-Path: <dbilsby@tekmicro.co.uk>
+Return-Path: <nathan@nathan.to>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73090E00C1B; Mon,  1 Feb 2016 04:02:31 -0800 (PST)
+	id 86946E00C1E; Mon,  1 Feb 2016 04:32:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [8.19.118.64 listed in list.dnswl.org]
+	*      [208.72.237.35 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 901 seconds by postgrey-1.32 at yocto-www;
-	Mon, 01 Feb 2016 04:02:29 PST
-Received: from server559.appriver.com (server559c.appriver.com [8.19.118.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9E9CE00C10
-	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 04:02:29 -0800 (PST)
-X-Note-AR-ScanTimeLocal: 2/1/2016 5:47:27 AM
-X-Policy: tekmicro.com - tekmicro.com
-X-Primary: dbilsby@tekmicro.co.uk
-X-Note: This Email was scanned by AppRiver SecureTide
-X-Note: SecureTide Build: 1/29/2016 5:08:24 PM UTC
-X-Virus-Scan: V-
-X-Note-SnifferID: 0
-X-Note: TCH-CT/SI:0-24/SG:2 2/1/2016 5:46:31 AM
-X-GBUdb-Analysis: 0, 66.80.112.195, Ugly c=0.327499 p=-0.916667 Source Normal
-X-Signature-Violations: 0-0-0-3444-c
-X-Note-419: 15.6326 ms. Fail:0 Chk:1325 of 1325 total
-X-Note: SCH-CT/SI:0-1325/SG:1 2/1/2016 5:47:14 AM
-X-Note: Spam Tests Failed: 
-X-Country-Path: LOCAL->United States->
-X-Note-Sending-IP: 66.80.112.195
-X-Note-Reverse-DNS: 
-X-Note-Return-Path: dbilsby@tekmicro.co.uk
-X-Note: User Rule Hits: 
-X-Note: Global Rule Hits: G275 G276 G277 G278 G282 G283 G406 G423 
-X-Note: Encrypt Rule Hits: 
-X-Note: Mail Class: VALID
-X-Note: Headers Injected
-Received: from [66.80.112.195] (HELO MAIL01.tek.local)
-	by server559.appriver.com (CommuniGate Pro SMTP 6.1.2)
-	with ESMTP id 141664099 for yocto@yoctoproject.org;
-	Mon, 01 Feb 2016 05:47:27 -0600
-Received: from [127.0.0.1] ([10.70.0.53]) by MAIL01.tek.local with Microsoft
-	SMTPSVC(6.0.3790.4675); Mon, 1 Feb 2016 06:47:25 -0500
-Message-ID: <56AF45CB.8070305@tekmicro.co.uk>
-Date: Mon, 01 Feb 2016 11:47:23 +0000
-From: David Bilsby <dbilsby@tekmicro.co.uk>
-Organization: TEK Microsystems Ltd
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-OriginalArrivalTime: 01 Feb 2016 11:47:25.0489 (UTC)
-	FILETIME=[51CA2210:01D15CE6]
-Subject: Password updates to compressed root image in flash
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEBFE00C13
+	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 04:32:44 -0800 (PST)
+Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 10ACE3D6A9;
+	Mon,  1 Feb 2016 07:32:43 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=content-type
+	:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to; s=sasl; bh=
+	YynBDmJpgqDhWINBriZvh4Cmvao=; b=vNXzV09oe1iaSC/ynevSQkn0D7iOUE/P
+	Tm2Z+yOEgJGNtACEWDefY2mARaJJ8BSUSV4i0Yz4Xj/zobsZBvALa+Qrf1MJ0xSa
+	UMUv4UYxN8d88NvlDM+kgXlpTSZD/8pb3+0useA3bYJy45jtuoCQO6m8/cItn3Wo
+	uom5oVDlLew=
+Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 070573D6A8;
+	Mon,  1 Feb 2016 07:32:43 -0500 (EST)
+Received: from [10.41.136.109] (unknown [79.154.252.102])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id 398403D6A6;
+	Mon,  1 Feb 2016 07:32:42 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
+From: Nathan Sowatskey <nathan@nathan.to>
+In-Reply-To: <2ef4d1534eec41629c074c0ae55db0c9@serv030.corp.eldorado.org.br>
+Date: Mon, 1 Feb 2016 13:31:57 +0100
+Message-Id: <ED68D339-EFF1-4A96-B037-56F04ACBD020@nathan.to>
+References: <f0bdfb388a6d44448446852d1ef2a8f2@serv030.corp.eldorado.org.br>
+	<CAJTo0LbJj2MG8-mhyUYqdJVdtUAvrm_JmHm=-_oO-XN+X-NVxA@mail.gmail.com>
+	<2ef4d1534eec41629c074c0ae55db0c9@serv030.corp.eldorado.org.br>
+To: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+X-Mailer: Apple Mail (2.3119)
+X-Pobox-Relay-ID: E3934D4C-C8DF-11E5-A068-04C16BB36C07-96844961!pb-smtp0.pobox.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: network drivers are not installed when MACHINE qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,32 +59,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 12:02:31 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Feb 2016 12:32:48 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-We have a project which will use a Xilinx Zynq running embedded Linux 
-built by Yocto (probably kernel 4.0). The system will boot from QSPI, 
-this will contain the FSBL, u-boot, compressed kernel and compressed 
-rootfs. The rootfs will be expanded into an initramfs which will then be 
-used as the running systems rootfs (rw).
+Hi
 
-How given this arrangement do you make passwd updates persistent across 
-reboots as currently the update will only affect the RAM copy of 
-/etc/passwd and not get written back to the password file stored in the 
-compressed rootfs image in flash?
-Similarly how can things like the public key which DropBear generates at 
-boot time be stored permanently so it does not get regenerated every time?
+I think I am seeing something similar. I only have video in my =
+kernel/drivers directory, which is to say that there is no net directory =
+either.
 
-This seems like such an obvious question, however I have not found an 
-answer when searching. I thought it may be possible to split the rootfs 
-into effectively a read-only part (read-write but non-persistent) and a 
-read-write part (persistent) and the splice the two together, but I'm 
-not sure how best to do this. Flash space is very tight on this system 
-so keeping the rootfs in flash uncompressed is not an option.
+I have been using the Build Appliance to create a qemux86-64 =
+core-image-full-cmdline machine. When I ran that without any -netdev =
+arguments at all, on OSX, I was able to use -redir tcp:5555::22 to =
+enable SSH from the host.
 
-Any suggestions as to how this is best handled very much appreciated.
+At least, that did work a few times at least last week.
 
-Thanks
+Now, I have to manually edit the /etc/network/interfaces file to add =
+iface eth0 init dhcp, and then manually ifup eth0.
+
+I am sure I did not have to do that with builds last week.
+
+Regards
+
+Nathan
+
+> On 29 Jan 2016, at 21:59, Alexandre Freire da Silva Osorio =
+<alexandre.osorio@eldorado.org.br> wrote:
+>=20
+> You=E2=80=99re right, Ross. They=E2=80=99re present in =
+modules-qemux86-64.tgz. The problem is that for some reason the drivers =
+are not being copied to the root filesystem.
+> =20
+> For example, the expected =
+lib/modules/3.14.36ltsi-yocto-standard/kernel/drivers/net/ directory is =
+not created in the rootfs.
+> =20
+> Thanks.
+> =20
+> Alexandre
+> =20
+> From: Burton, Ross [mailto:ross.burton@intel.com]=20
+> Sent: sexta-feira, 29 de janeiro de 2016 18:52
+> To: Alexandre Freire da Silva Osorio =
+<alexandre.osorio@eldorado.org.br>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] network drivers are not installed when MACHINE =
+qemux86-64
+> =20
+> =20
+> On 29 January 2016 at 18:41, Alexandre Freire da Silva Osorio =
+<alexandre.osorio@eldorado.org.br> wrote:
+> When I build a core-image-lsb image for MACHINE qemux86-64, the =
+network drivers are not enabled. When building the same image for =
+genericx86-64, this problem doesn=E2=80=99t occur and all the drivers =
+are enabled.=20
+>=20
+> qemux86-64 certainly ships with network drivers for the qemu machine.  =
+What drivers are you expecting to be present?
+> =20
+> Ross
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
