@@ -1,64 +1,42 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0209DE0079A; Mon,  1 Feb 2016 12:14:08 -0800 (PST)
+	id 39AF7E0079A; Mon,  1 Feb 2016 13:49:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DA84E00444
-	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 12:14:05 -0800 (PST)
-Received: by mail-wm0-f52.google.com with SMTP id p63so88494049wmp.1
-	for <yocto@yoctoproject.org>; Mon, 01 Feb 2016 12:14:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=GOxq4X+slpVd8zHnZZy16p37out8uxCd7wkmGLeezPk=;
-	b=ZlBgeEVe2Lwbg82IEEH5MpUVRfRIj2tRwmnTp8jI30HBtT4FMjObXSMNuexx0q0Xy5
-	owdcVEL43XuPYvcnEKMqgvNELIjgYWgbwEZZtveVee/VyYL7VO+zaYV78TUVdM4OnEAU
-	foJ1UTfhjL4gVe7F7hRclmdJlvP/tJd+dFMvCIqCI0NWuvRrBHYoZazO9wXdJP3Saufa
-	s2Gt3lzJsz6Vo6mVMQLf+qpqPYMcbBv1ATfa7j8PE1F0EBKnyYT/plCU2g1WiX6Bol92
-	utbskEMoK4pjG54Cal4V06zDycptkdKD666IL/GwKoJNl3wOhT5RkhxnUEv3jPK7lA7A
-	+nVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=GOxq4X+slpVd8zHnZZy16p37out8uxCd7wkmGLeezPk=;
-	b=C0qfh8PvGRcFqDP2zfUkht76jIMuRUuxId/KYS/VhCnO7IkzIT3p0Eocp39159dfER
-	UcupOKl9lDQh9+atTqHki1g3qu26U/w2KdbnfnDr/5wriJp9F7zGevS+XIvzvTFhb/iz
-	DCSlrdM9U7VqMK6LcFzdwvEbshUgKztbbt01zdA1gigCjDAGV+Tie+0Gzdcu4imk45oL
-	qH4Bb1GtR6+m7k+0yhch3UoNbFfIXN8EouhLN/sDtVva2OEdEyhS0h41cgnIZ0LsIEBP
-	Ae+9unQYHlFwpXB0iVzKWUHUM+coIyHB8l8Vk+WwrkJuK+PzRzFPIy71jM5KbAZpJOLA
-	tbgg==
-X-Gm-Message-State: AG10YOTBqfo8DgRDceIKhMeC/huAyYf89RFhl3cwqMU5USePefpYtuImNhVRxAUkRXWcvhP0k8akfFQjzmzpVA==
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from Perses.usurf.usu.edu (unknown [129.123.197.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC88E00444
+	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 13:49:46 -0800 (PST)
+Received: from EK.usurf.usu.edu (172.31.35.73) by Perses.usurf.usu.edu
+	(172.31.35.68) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Mon, 1 Feb 2016 14:49:44 -0700
+Received: from EK.usurf.usu.edu (172.31.35.73) by Ek.usurf.usu.edu
+	(172.31.35.73) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Mon, 1 Feb 2016 14:49:44 -0700
+Received: from EK.usurf.usu.edu ([172.31.191.13]) by Ek.usurf.usu.edu
+	([172.31.191.13]) with mapi id 15.00.1104.000;
+	Mon, 1 Feb 2016 14:49:44 -0700
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: Chris Trobridge <christrobridge@hotmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Compiling different version of IGB as a kernel module
+Thread-Index: AQHRWveiELk3DI3eMkKIJji46LcBtw==
+Date: Mon, 1 Feb 2016 21:49:43 +0000
+Message-ID: <f55bb2ed1133426ca8d94ad091caaf3c@Ek.usurf.usu.edu>
+References: <9e122189105049f0aa35aade046ef260@Ek.usurf.usu.edu>
+	<DUB130-W1777C927DF7657274834B1DADC0@phx.gbl>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.31.17.41]
 MIME-Version: 1.0
-X-Received: by 10.195.12.45 with SMTP id en13mr22988240wjd.99.1454357644334;
-	Mon, 01 Feb 2016 12:14:04 -0800 (PST)
-Received: by 10.194.67.168 with HTTP; Mon, 1 Feb 2016 12:14:04 -0800 (PST)
-In-Reply-To: <AMXPR01MB086771D7471FE3A7C7176DF92DE0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
-References: <AMXPR01MB086771D7471FE3A7C7176DF92DE0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
-Date: Mon, 1 Feb 2016 21:14:04 +0100
-Message-ID: <CA+chaQdJmTyE7YVFJ-s9Shptuk1uUzHwPfGPszvHbN=eAF3=dQ@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Karim ATIKI <karim_atiki@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Missing task queue dependencie while building qt5-image-demo: SAMBA
+Subject: Re: Compiling different version of IGB as a kernel module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,103 +48,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 20:14:08 -0000
-Content-Type: multipart/alternative; boundary=047d7bd9170ac480b2052abb0638
+X-List-Received-Date: Mon, 01 Feb 2016 21:49:52 -0000
+X-Groupsio-MsgNum: 28191
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_f55bb2ed1133426ca8d94ad091caaf3cEkusurfusuedu_"
 
---047d7bd9170ac480b2052abb0638
-Content-Type: text/plain; charset=UTF-8
-
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=samba
-
-you need to add meta-oe layer to your setup.
-
-On Mon, Feb 1, 2016 at 8:53 PM, Karim ATIKI <karim_atiki@hotmail.com> wrote:
-
-> Hi,
->
->
-> I recently upgrade all my yocto tree to jethro.
->
->
-> Attempting to build qt5-image-demo recipe from meta-qt5, I get the
-> following error:
->
->
-> *Parsing of 1617 .bb files complete (0 cached, 1617 parsed). 2139 targets,
-> 362 skipped, 1 masked, 0 errors.*
-> *NOTE: Resolving any missing task queue dependencies*
-> *ERROR: Nothing PROVIDES 'samba' (but
-> /home/kai/yocto/build-rsp2-qt5/../poky-jethro/meta-raspberrypi/recipes-multimedia/omxplayer/omxplayer_git.bb
-> <http://omxplayer_git.bb> DEPENDS on or otherwise requires it)*
->
-> Should I add something to get samba built as well ?
->
->
-> K.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---047d7bd9170ac480b2052abb0638
-Content-Type: text/html; charset=UTF-8
+--_002_f55bb2ed1133426ca8d94ad091caaf3cEkusurfusuedu_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><a href=3D"http://layers.openembedded.org/layerindex/branc=
-h/master/recipes/?q=3Dsamba">http://layers.openembedded.org/layerindex/bran=
-ch/master/recipes/?q=3Dsamba</a><br><div><br></div><div>you need to add met=
-a-oe layer to your setup.</div></div><div class=3D"gmail_extra"><br><div cl=
-ass=3D"gmail_quote">On Mon, Feb 1, 2016 at 8:53 PM, Karim ATIKI <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:karim_atiki@hotmail.com" target=3D"_blank">k=
-arim_atiki@hotmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex">
+Got it figured out.  Turns out I needed some more changes to the =0A=
+Makefile.  New patch attached in case anyone is interested.=0A=
+=0A=
+Bottom line is that the CC command was getting forcibly set at some =0A=
+point to check compilers, thus overriding the shell setting.  Plus it =0A=
+needed a modules_install as well.=0A=
+=0A=
+Thanks!=0A=
+=0A=
+On 01/30/2016 05:13 AM, Chris Trobridge wrote:=0A=
+> Hi Jon,=0A=
+>=0A=
+> As an alternative, have you considered patching the igb source that=0A=
+> already exists within yocto?=0A=
+>=0A=
+> Regards,=0A=
+> Chris=0A=
+>=0A=
+> From: Jonathan.Haws@sdl.usu.edu=0A=
+> To: yocto@yoctoproject.org=0A=
+> Date: Sat, 30 Jan 2016 00:46:20 +0000=0A=
+> Subject: [yocto] Compiling different version of IGB as a kernel module=0A=
+>=0A=
+> Hello all!=0A=
+>=0A=
+> I am trying to get the Intel IGB driver compiling as a kernel module=0A=
+> using source downloaded from SF.  I'm doing this because I was given a=0A=
+> patch to enable an external PPS to provide a time source to the PTP=0A=
+> mechanisms in the device.=0A=
+>=0A=
+> I've got the recipe setup and it makes it to the do_compile step,=0A=
+> however it fails here with some interesting output.  First, I get a=0A=
+> message from the shell stating that -- is an invalid option.  Second,=0A=
+> cc1 fails with a bad option.  I'm not even sure where to start debugging=
+=0A=
+> this!=0A=
+>=0A=
+> I did have to patch the Makefile to get it to find the kernel sources=0A=
+> and build files correctly.  I've attached my recipe and that patch file.=
+=0A=
+>=0A=
+> I've also attached the output of do_compile - hopefully someone can look=
+=0A=
+> at this and see what I am doing wrong!=0A=
+>=0A=
+> One thing I have tried is I went down into the tmp/work directory where=
+=0A=
+> the IGB driver was being built and tried running the same make command=0A=
+> (without the CC=3D, AR=3D, LD=3D settings, since those are not on my path=
+...)=0A=
+> and it seemed to build just fine, so it seems like it is something to do=
+=0A=
+> with the toolchain, but that's all I can tell.=0A=
+>=0A=
+> Thoughts?=0A=
+>=0A=
+> Thanks!=0A=
+> Jon=0A=
+>=0A=
+>=0A=
+> --=0A=
+> Jonathan R. Haws=0A=
+> Embedded Engineer=0A=
+> Space Dynamics Laboratory=0A=
+> (435) 713-3489=0A=
+> jhaws@sdl.usu.edu=0A=
+>=0A=
+>=0A=
+> -- _______________________________________________ yocto mailing list=0A=
+> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto=0A=
+=0A=
 
+--_002_f55bb2ed1133426ca8d94ad091caaf3cEkusurfusuedu_
+Content-Type: text/x-patch;
+	name="0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch"
+Content-Description: 0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch
+Content-Disposition: attachment;
+	filename="0000-SDL-Makefile-Set-KSRC-to-KERNEL_SRC.patch"; size=519;
+	creation-date="Mon, 01 Feb 2016 21:49:43 GMT";
+	modification-date="Mon, 01 Feb 2016 21:49:43 GMT"
+Content-Transfer-Encoding: base64
 
+LS0tIGEvc3JjL01ha2VmaWxlLm9yaWcKKysrIGIvc3JjL01ha2VmaWxlCkBAIC0yMSw2ICsyMSw3
+IEBACiAjIEludGVsIENvcnBvcmF0aW9uLCA1MjAwIE4uRS4gRWxhbSBZb3VuZyBQYXJrd2F5LCBI
+aWxsc2Jvcm8sIE9SIDk3MTI0LTY0OTcKICMKICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCitLU1JD
+IDo9ICQoS0VSTkVMX1NSQykKIAogIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAjIERyaXZlciBmaWxlcwpA
+QCAtNzMsNyArNzQsNyBAQAogaWZlcSAoL2xpYi9tb2R1bGVzLyQoQlVJTERfS0VSTkVMKS9zb3Vy
+Y2UsICQoS1NSQykpCiAgIEtPQkogOj0gIC9saWIvbW9kdWxlcy8kKEJVSUxEX0tFUk5FTCkvYnVp
+bGQKIGVsc2UKLSAgS09CSiA6PSAgJChLU1JDKQorICBLT0JKIDo9ICAkKE8pCiBlbmRpZgogZW5k
+aWYKIAoK
 
-
-<div dir=3D"ltr">
-<div style=3D"font-size:12pt;color:#000000;background-color:#ffffff;font-fa=
-mily:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>I recently upgrade all my yocto tree to jethro.</p>
-<p><br>
-</p>
-<p>Attempting to build qt5-image-demo recipe from meta-qt5, I get the follo=
-wing error:</p>
-<p><br>
-</p>
-<p></p>
-<div><b><i>Parsing of 1617 .bb files complete (0 cached, 1617 parsed). 2139=
- targets, 362 skipped, 1 masked, 0 errors.</i></b></div>
-<div><b><i>NOTE: Resolving any missing task queue dependencies</i></b></div=
->
-<div><b><i>ERROR: Nothing PROVIDES &#39;samba&#39; (but /home/kai/yocto/bui=
-ld-rsp2-qt5/../poky-jethro/meta-raspberrypi/recipes-multimedia/omxplayer/<a=
- href=3D"http://omxplayer_git.bb" target=3D"_blank">omxplayer_git.bb</a> DE=
-PENDS on or otherwise requires it)</i></b></div>
-<div><br>
-</div>
-Should I add something to get samba built as well ?
-<span class=3D"HOEnZb"><font color=3D"#888888"><p></p>
-<p><br>
-</p>
-<p>K.</p>
-</font></span></div>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---047d7bd9170ac480b2052abb0638--
+--_002_f55bb2ed1133426ca8d94ad091caaf3cEkusurfusuedu_--
