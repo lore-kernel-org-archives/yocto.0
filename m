@@ -1,53 +1,72 @@
-Return-Path: <ben.gardiner@irdeto.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EC6FE0079A; Mon,  1 Feb 2016 08:47:56 -0800 (PST)
+	id 48D36E0079A; Mon,  1 Feb 2016 10:10:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.189.35.150 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0037]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Mon, 01 Feb 2016 08:47:54 PST
-Received: from relay1.mih.com (relay1.mih.com [212.189.35.150])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 442A8E00444
-	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 08:47:54 -0800 (PST)
-Received: from NLHFD-MSG001.domain1.intra ([10.131.12.30]) by relay1.mih.com
-	over TLS secured channel with Microsoft SMTPSVC(7.5.7601.17514);
-	Mon, 1 Feb 2016 17:47:57 +0100
-Received: from NLHFD-P-MBX01.Corp.irdeto.com (10.131.12.132) by
-	Webmail.irdeto.com (10.131.12.30) with Microsoft SMTP Server (TLS) id
-	8.3.327.1; Mon, 1 Feb 2016 17:46:47 +0100
-Received: from CAOTT-P-MBX01.Corp.irdeto.com (10.2.11.21) by
-	NLHFD-P-MBX01.Corp.irdeto.com (10.131.12.132) with Microsoft SMTP
-	Server (TLS) id 15.0.1076.9; Mon, 1 Feb 2016 17:46:45 +0100
-Received: from CAOTT-P-MBX02.Corp.irdeto.com (10.2.11.22) by
-	CAOTT-P-MBX01.Corp.irdeto.com (10.2.11.21) with Microsoft SMTP Server
-	(TLS) id 15.0.1076.9; Mon, 1 Feb 2016 11:46:40 -0500
-Received: from CAOTT-P-MBX02.Corp.irdeto.com ([10.2.12.22]) by
-	CAOTT-P-MBX02.Corp.irdeto.com ([10.2.12.22]) with mapi id
-	15.00.1076.000; Mon, 1 Feb 2016 11:46:40 -0500
-From: Ben Gardiner <ben.gardiner@irdeto.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-security-rockwell] Introduction of a new OE layer: help in
-	hardening your Yocto daisy built systems
-Thread-Index: AQHRXRAftXoDkgJvkU2B9bPDDXQasA==
-Date: Mon, 1 Feb 2016 16:46:39 +0000
-Message-ID: <23AB3A7A-72F1-4614-9E60-5277575EF085@irdeto.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.20.240.89]
+	*      [score: 0.0000]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C746E00444
+	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 10:10:50 -0800 (PST)
+Received: by mail-pa0-f52.google.com with SMTP id yy13so85776821pab.3
+	for <yocto@yoctoproject.org>; Mon, 01 Feb 2016 10:10:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=Mn8XUGk9W/zKqFAqwjkTAa6MjQsEH/Drf3oXc80bsRQ=;
+	b=DxpwAgCIcSR9WviVzaUi0cbxvB9zTP4okJZ+qo0UCUJjwgzc3fDo2T7nqIPYkS3oUr
+	aqry+aN+UD0c3tAKnrkoSzAeLJTyqDG40EaV3w82SswXZXgaxt3oNHu5PIkcnq7MQ4uS
+	X95XWkxQF8/kQpWRR2UsXrbTVm92N2uPN19M+V8RYTY6X3A/VGck4Zw1kunFyivFodxo
+	4X+hiztwlbGjEcc5pW1pnB+3LgFfUz9Sq5oO3iEI6CK2MP9h2WL2ysrpTw+vUyn7K6KX
+	soZj/iFdbkKZ0Er1ghQWNVGMxyBBuZL+2E/qre0GhObXvOWHc2wYigHxpVdI6KnGVl1O
+	t0Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=Mn8XUGk9W/zKqFAqwjkTAa6MjQsEH/Drf3oXc80bsRQ=;
+	b=mKLOTqzu2fCZhXaw+QN/8o/1IBclmptJW/I8V+C2r6l/evlayFeJMOfpiHaxCsx8id
+	XEMwdMUkCOBY8ARGog9PqR2QZaDbrMZ0EzfXsKA/EC6/fSFT/2YowKSW/5L36c3wmu+l
+	sqGMHnoRcXEmoMwCSMXkT1e5ccdB2jGcBItUkwNkBy+s5ebrffdAYnGRoqPwBZsNuOUh
+	wWCTE8QPeJ6bEH2KSqqR/dgDx19wa4w7ozz9JNBIdEBaQL7HCAW8jPUqnrgr/4wp4SDw
+	vJPfdSUrjBBfR//VRhvdvEkNMXQ8b6is8FS0cZuXZ3rc9l4NPyC77SmQZ66HlIIjSU2Z
+	mykA==
+X-Gm-Message-State: AG10YOSsTt8X6LUnRrIsgZVGST7TYEze+bP/YXgrDX3EFjnUOq5xxaGUgGitvGC/158E5B0F
+X-Received: by 10.66.150.37 with SMTP id uf5mr40528635pab.30.1454350249849;
+	Mon, 01 Feb 2016 10:10:49 -0800 (PST)
+Received: from ?IPv6:2601:202:4000:1239:20d2:e542:abc0:b8a2?
+	([2601:202:4000:1239:20d2:e542:abc0:b8a2])
+	by smtp.googlemail.com with ESMTPSA id
+	m86sm44784652pfi.27.2016.02.01.10.10.48
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 01 Feb 2016 10:10:49 -0800 (PST)
+To: Khem Raj <raj.khem@gmail.com>, openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>
+References: <CAMKF1sriCy0VxkkJHKsHaLy0K1N4Ns2E7o-rE_Lq8wSGXoy8hw@mail.gmail.com>
+From: akuster <akuster@mvista.com>
+Message-ID: <56AF9FA4.8050603@mvista.com>
+Date: Mon, 1 Feb 2016 10:10:44 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 01 Feb 2016 16:47:57.0910 (UTC)
-	FILETIME=[4DF33760:01D15D10]
-Subject: [meta-security-rockwell] Introduction of a new OE layer: help in hardening your Yocto daisy built systems
+In-Reply-To: <CAMKF1sriCy0VxkkJHKsHaLy0K1N4Ns2E7o-rE_Lq8wSGXoy8hw@mail.gmail.com>
+Subject: Re: Glibc 2.24 _might_ require minimum kernel version 3.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,62 +78,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 16:47:56 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_23AB3A7A72F146149E605277575EF085irdetocom_"
+X-List-Received-Date: Mon, 01 Feb 2016 18:10:51 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---_000_23AB3A7A72F146149E605277575EF085irdetocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-V2Ugd291bGQgbGlrZSB0byBpbnRyb2R1Y2UgYSBuZXcgbGF5ZXI6IG1ldGEtc2VjdXJpdHktcm9j
-a3dlbGwNCg0KV2XigJl2ZSBidWlsdCBvbiBvdGhlciBleGNlbGxlbnQgcHJvamVjdHMgdG8gcmVh
-bGl6ZSB0aGlzIGxheWVyIChzbyBmYXIpIGFuZCBoYXZlIHJlbGllZCBvbiBoZWxwIGZyb20gbWFu
-eSBvZiB5b3Ugb24gSVJDLiBUaGFuayB5b3UuDQoNCk91ciBnb2FsIGlzIHRvIHN1cHBvcnQgdGhl
-IGRhaXN5IHJlbGVhc2Ugb2YgWW9jdG8gYW5kIHRvIChldmVudHVhbGx5KSByZXF1aXJlIGV4cGxp
-Y2l0IHNraXBwaW5nIG9mIHdhcm5pbmdzIHRvIGdldCBhdXRvbWF0ZWQgYnVpbGQgc3lzdGVtcyBm
-YWlsaW5nIG9uIG5ldyBzZWN1cml0eSB3YXJuaW5ncy4gSXTigJlzIGEgd29yayBpbiBwcm9ncmVz
-cyBhbmQgd2XigJlyZSBub3QgdGhlcmUgeWV0LiBXZSB3b3VsZCB3ZWxjb21lIHRoZSBpbnB1dCBv
-ZiB0aGlzIGNvbW11bml0eSBvZiBleHBlcnRzLg0KDQpGb3IgbW9yZSBkZXRhaWxzIG9uIHRoZSBs
-YXllcuKAmXMgY29udGVudHMgcGxlYXNlIHNlZSB0aGUgcmVwbyBSRUFETUUuDQoNCk9FIGxheWVy
-OiBodHRwOi8vbGF5ZXJzLm9wZW5lbWJlZGRlZC5vcmcvbGF5ZXJpbmRleC9icmFuY2gvbWFzdGVy
-L2xheWVyL21ldGEtc2VjdXJpdHktcm9ja3dlbGwvDQpSZXBvOiBodHRwczovL2dpdGh1Yi5jb20v
-SXJkZXRvU2VydmljZXMvbWV0YS1zZWN1cml0eS1yb2Nrd2VsbA0KDQpCZXN0IFJlZ2FyZHMsDQpC
-ZW4gR2FyZGluZXINCg0KSXJkZXRvDQo=
 
---_000_23AB3A7A72F146149E605277575EF085irdetocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <60F56EBC6D5A4F4CB479C00337985429@irdeto.com>
-Content-Transfer-Encoding: base64
+On 01/31/2016 09:41 AM, Khem Raj wrote:
+> Hi
+> 
+> This is FYI, as I have sent a RFT for glibc 2.24, there might be another change
+> coming which is under discussion on glibc mailing lists which is on
+> supported minimum
+> kernel version bump to 3.2 since 2.6.32 will be EOLed this summer [1]
+> 
+> If anyone is planning on using upcoming yocto/OE release and sticking
+> to kernels older than  3.2 then please plan for upgrading your kernel.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsiIGNsYXNzPSIiPg0KV2Ugd291bGQgbGlrZSB0byBpbnRy
-b2R1Y2UgYSBuZXcgbGF5ZXI6IG1ldGEtc2VjdXJpdHktcm9ja3dlbGwNCjxkaXYgY2xhc3M9IiI+
-PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPldl4oCZdmUgYnVpbHQgb24gb3Ro
-ZXIgZXhjZWxsZW50IHByb2plY3RzIHRvIHJlYWxpemUgdGhpcyBsYXllciAoc28gZmFyKSBhbmQg
-aGF2ZSByZWxpZWQgb24gaGVscCBmcm9tIG1hbnkgb2YgeW91IG9uIElSQy4gVGhhbmsgeW91Ljwv
-ZGl2Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+
-T3VyIGdvYWwgaXMgdG8gc3VwcG9ydCB0aGUgZGFpc3kgcmVsZWFzZSBvZiBZb2N0byBhbmQgdG8g
-KGV2ZW50dWFsbHkpIHJlcXVpcmUgZXhwbGljaXQgc2tpcHBpbmcgb2Ygd2FybmluZ3MgdG8gZ2V0
-IGF1dG9tYXRlZCBidWlsZCBzeXN0ZW1zIGZhaWxpbmcgb24gbmV3IHNlY3VyaXR5IHdhcm5pbmdz
-LiBJdOKAmXMgYSB3b3JrIGluIHByb2dyZXNzIGFuZCB3ZeKAmXJlIG5vdCB0aGVyZSB5ZXQuIFdl
-IHdvdWxkIHdlbGNvbWUgdGhlDQogaW5wdXQgb2YgdGhpcyBjb21tdW5pdHkgb2YgZXhwZXJ0cy48
-L2Rpdj4NCjxkaXYgY2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIi
-PkZvciBtb3JlIGRldGFpbHMgb24gdGhlIGxheWVy4oCZcyBjb250ZW50cyBwbGVhc2Ugc2VlIHRo
-ZSByZXBvIFJFQURNRS48L2Rpdj4NCjxkaXYgY2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+
-DQo8ZGl2IGNsYXNzPSIiPk9FIGxheWVyOiZuYnNwOzxhIGhyZWY9Imh0dHA6Ly9sYXllcnMub3Bl
-bmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXIvbWV0YS1zZWN1cml0
-eS1yb2Nrd2VsbC8iIGNsYXNzPSIiPmh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXll
-cmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXIvbWV0YS1zZWN1cml0eS1yb2Nrd2VsbC88L2E+PC9k
-aXY+DQo8ZGl2IGNsYXNzPSIiPlJlcG86Jm5ic3A7PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29t
-L0lyZGV0b1NlcnZpY2VzL21ldGEtc2VjdXJpdHktcm9ja3dlbGwiIGNsYXNzPSIiPmh0dHBzOi8v
-Z2l0aHViLmNvbS9JcmRldG9TZXJ2aWNlcy9tZXRhLXNlY3VyaXR5LXJvY2t3ZWxsPC9hPjwvZGl2
-Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+QmVz
-dCBSZWdhcmRzLDwvZGl2Pg0KPGRpdiBjbGFzcz0iIj5CZW4gR2FyZGluZXI8L2Rpdj4NCjxkaXYg
-Y2xhc3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPklyZGV0bzwvZGl2
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Nope.
 
---_000_23AB3A7A72F146149E605277575EF085irdetocom_--
+- armin
+> 
+> Thanks
+> -Khem
+> 
+> [1] - https://sourceware.org/ml/libc-alpha/2016-01/msg00885.html
+> 
+
