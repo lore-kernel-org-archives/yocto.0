@@ -1,26 +1,73 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32DD5E00C05; Sun, 31 Jan 2016 21:26:03 -0800 (PST)
+	id 7AF5FE00C0B; Mon,  1 Feb 2016 00:40:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC86DE00BFF
-	for <yocto@yoctoproject.org>; Sun, 31 Jan 2016 21:26:01 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 0A64384A1180
-	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 00:26:01 -0500 (EST)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (karim_atiki[at]hotmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0008]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.34 listed in list.dnswl.org]
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Mon, 01 Feb 2016 00:40:11 PST
+Received: from DUB004-OMC3S25.hotmail.com (dub004-omc3s25.hotmail.com
+	[157.55.2.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC80DE00BE1
+	for <yocto@yoctoproject.org>; Mon,  1 Feb 2016 00:40:11 -0800 (PST)
+Received: from emea01-db3-obe.outbound.protection.outlook.com ([157.55.2.8])
+	by DUB004-OMC3S25.hotmail.com over TLS secured channel with
+	Microsoft SMTPSVC(7.5.7601.23008); Mon, 1 Feb 2016 00:39:09 -0800
+Received: from AMXPR01MB086.eurprd01.prod.exchangelabs.com (10.255.255.158) by
+	AMXPR01MB086.eurprd01.prod.exchangelabs.com (10.255.255.158) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.390.13; Mon, 1 Feb 2016 08:39:08 +0000
+Received: from AMXPR01MB086.eurprd01.prod.exchangelabs.com ([169.254.5.223])
+	by AMXPR01MB086.eurprd01.prod.exchangelabs.com ([169.254.5.223]) with
+	mapi id 15.01.0390.019; Mon, 1 Feb 2016 08:39:08 +0000
+From: Karim ATIKI <karim_atiki@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to get the latest version of Qt5 with meta-qt5
+Thread-Index: AQHRXMvbnvY39ZGG4U2dif3/NFfMcQ==
+Date: Mon, 1 Feb 2016 08:39:08 +0000
+Message-ID: <AMXPR01MB0865B0A5B853FA4FD557C8092DE0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [FZ6gWMEuVMOGni5d8urhe79EWEOhHKBS]
+x-microsoft-exchange-diagnostics: 1; AMXPR01MB086;
+	23:vr6aRH/dQKk3/2AdPZiuGrD+lvbV7Oe18SE/BThpjhcWLxK33XB91R7tusI7GI+FA633USxOWNPkATIAXQjj9okQM32fyqAk1TkSFvdzVWWJDVQJV2X7smBLdrVSbFM9U3T8G1eiOFATwptZU1U9ISW0uBQNRxbT6tF9akJDbSADwJqtJejxcjbeMwn7ajGTlvJW9XrJZp4Uesg1HqQm0g==;
+	5:OkN2XqTJO4zj5lY6YbuaElpI7VQjvzLNw97qn73bedS9YFpGEd5ByOtYwkfyq4WbH639i36xAScfs0dn64VwfKyvQzHjXOWAbv6nnGWDQbauwOjVtaTYXz0dMKlDHs+FfYNDU1+H+kIrPl6BDS1WqA==;
+	24:QdgSeOUzQiB6gbM/B+y31ZzsTB5U3yJ7JkqlVGvdTnunB7Kd/KJCCgjTYOYyOVK1Qdter1ysQxkVe7qPBBKlGqtHeULioBONMITZUBPj0pU=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:AMXPR01MB086;
+x-ms-office365-filtering-correlation-id: 7e1023dc-954f-4a59-3afd-08d32ae326bc
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(432015012)(82015046);
+	SRVR:AMXPR01MB086; BCL:0; PCL:0; RULEID:; SRVR:AMXPR01MB086; 
+x-forefront-prvs: 0839D067E7
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070004)(98900002); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:AMXPR01MB086;
+	H:AMXPR01MB086.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	MLV:nov; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 01 Feb 2016 05:26:01 -0000
-Message-ID: <20160201052601.2715.38007@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: sct-15-1-318-9-msonline-outlook-fa212.templateTenant
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2016 08:39:08.2376 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMXPR01MB086
+X-OriginalArrivalTime: 01 Feb 2016 08:39:09.0261 (UTC)
+	FILETIME=[04B687D0:01D15CCC]
+Subject: How to get the latest version of Qt5 with meta-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,120 +79,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Feb 2016 05:26:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 01 Feb 2016 08:40:16 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_AMXPR01MB0865B0A5B853FA4FD557C8092DE0AMXPR01MB086eurprd_"
 
-This mail was sent out by Recipe reporting system.
+--_000_AMXPR01MB0865B0A5B853FA4FD557C8092DE0AMXPR01MB086eurprd_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi all,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-You can check the detail information at:
+I've been using yocto to create distros on rspi2 and develop Qt5 based appl=
+ications.
 
-http://recipes.yoctoproject.org/
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-python3-pip           8.0.0        8.0.2                 Alejandro Hernandez
-python3-setuptools    19.4         19.6.2                Alejandro Hernandez
-ruby                  2.2.2        2.3.0                 Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez  Newer versions of python-py...
-python-setuptools     19.4         19.6.2                Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-webkitgtk             2.10.5       2.10.7                Alexander Kanavin
-mkelfimage            4.0+gitX     4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
-apt                   1.0.10.1     1.2.1                 Aníbal Limón
-dpkg                  1.18.2       1.18.4                Aníbal Limón
-nettle                3.1.1        3.2                   Armin Kuster
-pinentry              0.9.2        0.9.7                 Armin Kuster
-linux-libc-headers    4.4          4.4.1                 Bruce Ashfield
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-diffstat              1.60         1.61                  Chen Qi
-coreutils             8.24         8.25                  Chen Qi
-dbus-glib             0.104        0.106                 Chen Qi
-cups                  2.0.4        2.1.2                 Chen Qi
-findutils             4.5.14       4.5.19                Chen Qi
-gnupg                 2.1.10       2.1.11                Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-ghostscript           9.16         9.18                  Hongxu Jia
-ncurses               6.0          6.0+20151024          Hongxu Jia
-elfutils              0.164        0.165                 Hongxu Jia
-libinput              1.1.4        1.1.901               Jussi Kukkonen
-wayland               1.9.0        1.9.91                Jussi Kukkonen
-weston                1.9.0        1.9.91                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.6       3.18.7                Jussi Kukkonen
-cmake                 3.4.2        3.4.3                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.1                Jussi Kukkonen
-vala                  0.30.0       0.30.1                Jussi Kukkonen
-pixman                0.32.8       0.34.0                Jussi Kukkonen
-xkeyboard-config      2.16         2.17                  Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-vte                   0.28.2       0.42.3                Jussi Kukkonen       matchbox-terminal needs to ...
-linuxdoc-tools-na...  0.9.69       0.9.71                Jussi Kukkonen
-libsdl2               2.0.3        2.0.4                 Kai Kang
-slang                 2.2.4        2.3.0                 Kai Kang
-rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-mdadm                 3.3.4        3.4                   Maxin B. John
-db                    6.0.30       6.1.26                Maxin B. John        Updating to 6.1.x requires ...
-quota                 4.02         4.03                  Maxin B. John
-iproute2              4.3.0        4.4.0                 Maxin B. John
-gstreamer1.0-plug...  1.7.1+gitX   3+gitAUTOINC+6662...  Maxin B. John
-gstreamer1.0-libav    1.7.1+gitX   3+gitAUTOINC+3dc2...  Maxin B. John
-gstreamer1.0-plug...  1.7.1+gitX   3+gitAUTOINC+3bb5...  Maxin B. John
-ffmpeg                2.8.5        2.8.6                 No maintainer
-bash-completion       2.1          20080705              No maintainer
-apt-native            1.0.10.1     1.2.1                 No maintainer
-cmake-native          3.4.2        3.4.3                 No maintainer
-binutils-cross-ca...  2.25.1       2.26                  No maintainer
-binutils-cross-i586   2.25.1       2.26                  No maintainer
-binutils-crosssdk...  2.25.1       2.26                  No maintainer
-ifupdown              0.8.2        0.8.10                No maintainer
-libsolv               0.6.17+gitX  0.6.18+gitAUTOINC...  No maintainer
-gstreamer1.0          1.7.1+gitX   20010312+gitAUTOI...  No maintainer
-gstreamer1.0-plug...  1.7.1+gitX   3+gitAUTOINC+84bb...  No maintainer
-gstreamer1.0-plug...  1.7.1+gitX   3+gitAUTOINC+2158...  No maintainer
-debianutils           4.5.1        4.7                   No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-adt-installer         0.3.0        0.3.1                 Randy Witt
-ltp                   20150903     20160126              Robert Yang
-binutils              2.25.1       2.26                  Robert Yang
-libbsd                0.8.1        0.8.2                 Robert Yang
-libcap                2.24         2.25                  Robert Yang
-lsbinitscripts        9.64         9.65                  Ross Burton
-base-passwd           3.5.29       3.5.39                Ross Burton          Version 3.5.38 requires cde...
-pulseaudio            6.0          8.0                   Tanu Kaskinen
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-chkconfig             1.3.58       1.7                   Wenzong Fan          Version 1.5 requires selinux
-ccache                3.2.3        3.2.4                 Wenzong Fan
-gettext               0.19.6       0.19.7                Wenzong Fan
+I noticed that through the meta-qt5 layer, it is Qt 5.4.1 that is compiled =
+and deployed.
 
-Upgradable count: 67
-Upgradable total count: 76
 
-The based commit is:
+How should I tune the metadata so that the latest version of Qt 5 is used i=
+nstead ?
 
-commit fd75637d97cc3d669229e59c1d21ce7038fc92d7
-Author: Phil Blundell <pb@pbcl.net>
-Date:   Sat Jan 30 12:21:59 2016 +0000
 
-    native.bbclass: Set CXXFLAGS from BUILD_CXXFLAGS not BUILD_CFLAGS
-    
-    Although BUILD_CXXFLAGS, by default, expands to the same thing as
-    BUILD_CFLAGS there is no guarantee that this will be true in all
-    cases.  When setting CXXFLAGS we should use the former.
-    
-    Signed-off-by: Phil Blundell <pb@pbcl.net>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+Z.
 
+--_000_AMXPR01MB0865B0A5B853FA4FD557C8092DE0AMXPR01MB086eurprd_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi all,</p>
+<p><br>
+</p>
+<p>I've been using yocto to create distros on rspi2 and develop Qt5 based a=
+pplications.</p>
+<p><br>
+</p>
+<p>I noticed that through the meta-qt5 layer, it is Qt 5.4.1 that is compil=
+ed and deployed.</p>
+<p><br>
+</p>
+<p>How should I tune the metadata so that the latest version of Qt 5 is use=
+d instead ?</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p>Z.</p>
+</div>
+</body>
+</html>
+
+--_000_AMXPR01MB0865B0A5B853FA4FD557C8092DE0AMXPR01MB086eurprd_--
