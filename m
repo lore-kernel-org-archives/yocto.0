@@ -1,52 +1,61 @@
-Return-Path: <bartosz.woronicz@nokia.com>
+Return-Path: <kumarshubham365@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A69AEE00CE5; Wed, 10 Feb 2016 06:01:04 -0800 (PST)
+	id 7A114E00B66; Tue,  2 Feb 2016 05:14:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [93.183.12.32 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (kumarshubham365[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from demumfd001.nsn-inter.net (demumfd001.nsn-inter.net
-	[93.183.12.32])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AF87E00CD8
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 06:01:00 -0800 (PST)
-Received: from demuprx017.emea.nsn-intra.net ([10.150.129.56])
-	by demumfd001.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
-	u1AE0pFH028498
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK);
-	Wed, 10 Feb 2016 14:00:52 GMT
-Received: from [10.154.187.104] ([10.154.187.104])
-	by demuprx017.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
-	id u1AE0oWP027085; Wed, 10 Feb 2016 15:00:50 +0100
-To: "EXT Burton, Ross" <ross.burton@intel.com>
-References: <56B1D2D1.5010508@nokia.com> <1454497513.3990.6.camel@open-rnd.pl>
-	<56B33100.9020903@nokia.com> <56B89638.9060905@nokia.com>
-	<1454939078.3938.18.camel@open-rnd.pl> <56B9A55A.9040607@nokia.com>
-	<CAJTo0LYj05btWH+pnLkp-gwd+S1qefys+_ZhdEMBGShqm08nrQ@mail.gmail.com>
-	<56B9EEC7.8010303@nokia.com>
-	<CAJTo0LZj0YE1SyYLr_cUtEQPU9Gm_JHg7996fYM+Pq4jMMX-1A@mail.gmail.com>
-From: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
-Message-ID: <56BB4292.5080708@nokia.com>
-Date: Wed, 10 Feb 2016 15:00:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3C49E00AD8
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 05:14:09 -0800 (PST)
+Received: by mail-qg0-f47.google.com with SMTP id o11so146649676qge.2
+	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 05:14:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=nL8GVWOghiR55kgJR22XeUgDcLn2Du83Pp/EM5GE12I=;
+	b=y5d4JhZNvQnNsLnsI6zMkAlReiQGIrqvOTQNX6sBYlD/9tZ1fW5CaV5EYxJK99ILSj
+	KjHiDp7EVVf+DcVwNlwn/snfiIKkJCc8PdF7vKrXl9MNyWWe8kH/4Qj2H5xME99U7d47
+	QzIB//AFoje9kaW/SB5VQsKZgPemPAoeL7/WScdbec5MZvQrjzQOYYxMVK+pBqkVHhmR
+	H/2KwwS6qr8M66QqFSk7pZjrDRs9fs3HFBme7EhkB1u6GP9LibOCzLNY13vsEQXkvMFE
+	BFXZjaptK3i64FeXWq2OIR+a+RpVPOWHRrmW9r+7g3qscacO4vJm37kGTvgsud5Pjfsh
+	AlMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=nL8GVWOghiR55kgJR22XeUgDcLn2Du83Pp/EM5GE12I=;
+	b=WAkTd4qJk0i3y/AA3WuDkSsSXny0nPse/fNL5eAx0tWqM2fYH4eiTrdMbE7dyTlPEd
+	H1MNeDWcSs4j+MQJNYCo8z6jkBCHtBN7IIdY2N45J9LvX8TBoIhyKjr6DgnzOhWYSKr7
+	eeOAoCoTmNuuBaIXfdnC+pTtTi3wa+3FnQ2evTuWFRYx1k8AD3s4Tvl5OK5lQa+9McjV
+	qe8nUJEZsycI5Gmp7T1mccDOefDXLIVc1QEJf56iZU+TxrHhllZXWS2spaaJUBoYeuX9
+	ZKMkURh4/X8DuMgGiZN2TKZRj5IWFdRlKUUp3qd+P/UIdgt61jfsEGI6f3fbP25/X9Ze
+	EATA==
+X-Gm-Message-State: AG10YOQeMgJAJMpBZiarTOUYhvuZUL+HwtEsFHuj1CYuMzPcMYFIMCK9B08+yeK9pKy5V5NVu7DSR2BzP9mMTw==
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZj0YE1SyYLr_cUtEQPU9Gm_JHg7996fYM+Pq4jMMX-1A@mail.gmail.com>
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
-	further information)
-X-purgate-size: 5460
-X-purgate-ID: 151667::1455112852-000006B0-CAF37A44/0/0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Where should I append Yocto bitbake task to create work folder symlink ?
+X-Received: by 10.141.1.2 with SMTP id c2mr10239302qhd.32.1454418849093; Tue,
+	02 Feb 2016 05:14:09 -0800 (PST)
+Received: by 10.140.16.65 with HTTP; Tue, 2 Feb 2016 05:14:09 -0800 (PST)
+Date: Tue, 2 Feb 2016 18:44:09 +0530
+Message-ID: <CAG3Vg4h3S+ANL3dx522vT0RLuvSxty75huamSZx3MSaeFrkK2g@mail.gmail.com>
+From: Shubham Kumar <kumarshubham365@gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Wed, 10 Feb 2016 07:08:11 -0800
+Subject: [meta-intel]: Grub file not created after building the image with bitbake -k linux-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,140 +67,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Feb 2016 14:01:04 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070708050506070409080607"
+X-List-Received-Date: Tue, 02 Feb 2016 13:14:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
---------------070708050506070409080607
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi all,
 
+I'm new to Yocto build environment . I have been following the
+documentations to start building my own image with various
+customizations. So, my below question may seem very basic to you, for
+which I apologize in advance :).
 
-On 09.02.2016 14:56, EXT Burton, Ross wrote:
->
-> On 9 February 2016 at 13:51, Woronicz, Bartosz ( NSN - PL/Wroclaw) 
-> <bartosz.woronicz@nokia.com <mailto:bartosz.woronicz@nokia.com>> wrote:
->
->     Here is the whole bbclass/:
->     /
->
->         DESCRIPTION = "Creates symlink to the latest version workdir
->         of the package"
->
->         do_latest_link() {
->             if [ -n "${WORKDIR}" ]; then
->                 linkname="$(dirname ${WORKDIR})/latest"
->                 rm -f $linkname
->                 ln -s $(basename ${WORKDIR}) $linkname
->             fi
->         }
->         addtask latest_link after do_unpack
->
->         do_unpack[postfuncs] += "do_latest_link"
->
->
->     But for better understanding I made the more throughout look into
->     the documentations. I found the information about "postfuncs" you
->     talk about [1]. However, the tasks description [2] doesn't say
->     anything about including the task in the process, it just
->     describes the demanded order that the task is put ( addtask
->     something after|before othertask ).
->
->     That is so, until I read "3.6. Variable Flags"  [3]. Where is
->     quite clearly stated those variables control functionality and
->     *dependencies*.
->     The documentation is quite unclear in that case.
->
->
-> If you're using a postfunc you don't need to addtask at all: using 
-> postfuncs means you don't need to have a separate task at all.
->
-> Ross
-Ok, I understand now that 'addtask' is only necessary when I need 
-seperate task to run. I think you solved my issue. Thanks again!
+I am working on Intel Galileo Gen2
+I cloned the Jethro layer in my local repository, and I also cloned
+"meta-intel" layer. First I gave a try on core-image-minimal using wic
+tool. The generated image contained the required grub file and The
+hardware was successfully able to boot with this image.
 
-Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw
+After all this, I tried to generate the full Linux image using
+"bitbake -k linux-yocto". I added a custom layer just for the purpose
+of learning, and also included a few packages to be built like
+strace,,tools-sdk,tools-debug,etc. I followed the Yocto documentation
+for all this.
 
+It took very less time since the no. of tasks that needed to be run
+were comparatively very less as those during core-image-minimal.I did
+all this in a different build directory from the one I used for
+core-image-minimal. The images were then created in
+tmp/deploy/images/intel-quark.
 
---------------070708050506070409080607
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+But this folder didn't contain any Grub file. Why was this grub file
+not created during this image creation? Did I miss anything in the
+steps followed??
+Waiting for your responses .
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 09.02.2016 14:56, EXT Burton, Ross
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJTo0LZj0YE1SyYLr_cUtEQPU9Gm_JHg7996fYM+Pq4jMMX-1A@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On 9 February 2016 at 13:51,
-            Woronicz, Bartosz ( NSN - PL/Wroclaw) <span dir="ltr">&lt;<a
-                moz-do-not-send="true"
-                href="mailto:bartosz.woronicz@nokia.com" target="_blank"><a class="moz-txt-link-abbreviated" href="mailto:bartosz.woronicz@nokia.com">bartosz.woronicz@nokia.com</a></a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div text="#000000" bgcolor="#FFFFFF">Here is the whole
-                bbclass<i>:<br>
-                </i>
-                <blockquote>DESCRIPTION = "Creates symlink to the latest
-                  version workdir of the package"<span class=""><br>
-                    <br>
-                    do_latest_link() {<br>
-                        if [ -n "${WORKDIR}" ]; then<br>
-                            linkname="$(dirname ${WORKDIR})/latest"<br>
-                            rm -f $linkname<br>
-                  </span>         ln -s $(basename ${WORKDIR}) $linkname<span
-                    class=""><br>
-                        fi<br>
-                    }<br>
-                    addtask latest_link after do_unpack<br>
-                    <br>
-                  </span> do_unpack[postfuncs] += "do_latest_link"<br>
-                </blockquote>
-                <br>
-                But for better understanding I made the more throughout
-                look into the documentations. I found the information
-                about "postfuncs" you talk about [1]. However, the tasks
-                description [2] doesn't say anything about including the
-                task in the process, it just describes the demanded
-                order that the task is put ( addtask something
-                after|before othertask ).<br>
-                <br>
-                That is so, until I read "3.6. Variable Flags"  [3].
-                Where is quite clearly stated those variables control
-                functionality and *dependencies*. <br>
-                The documentation is quite unclear in that case.</div>
-            </blockquote>
-          </div>
-          <br>
-          If you're using a postfunc you don't need to addtask at all:
-          using postfuncs means you don't need to have a separate task
-          at all.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Ross</div>
-      </div>
-    </blockquote>
-    Ok, I understand now that 'addtask' is only necessary when I need
-    seperate task to run. I think you solved my issue. Thanks again!<br>
-    <br>
-    <pre class="moz-signature" cols="72">Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw</pre>
-  </body>
-</html>
+Thanks,
+Shubham_K
 
---------------070708050506070409080607--
