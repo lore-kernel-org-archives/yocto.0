@@ -1,75 +1,74 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1E5FE00C4A; Wed,  3 Feb 2016 11:58:21 -0800 (PST)
+	id 066AAE00C4B; Wed,  3 Feb 2016 12:06:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.181 listed in list.dnswl.org]
+	*      [209.85.220.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62373E00C44
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 11:58:19 -0800 (PST)
-Received: by mail-pf0-f181.google.com with SMTP id n128so18928198pfn.3
-	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 11:58:19 -0800 (PST)
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23999E00C44
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 12:06:24 -0800 (PST)
+Received: by mail-pa0-f48.google.com with SMTP id uo6so19023911pac.1
+	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 12:06:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=EQivp4UUQF+QJ/p85Tllv+gGWB9xvVHCQh5yp0hBfo0=;
-	b=xiYINzLj/2Sfs2G14dv/y7LFJcn9RN1gA6O9NpfF77SffypCFM+EhrupY9zGEuAOAe
-	8dWut0hjtoIso5K1ZmT6tCTYPZA/KV0oSQPi6lJQW2w5x17Uze7oKXV0uaHiqRbRuQFO
-	axxjytKNwQruseu3oPSfPJMF/MlDBINHSyLtFCpKkhQ9Iae8mESrfuMnO4fh/w9ghJFc
-	aEj+emCpDmEc/1RLjOzadpLLwvZ7cPslfJXsP5nui8jCf9+8UDsff09B1TQnlxzSL2l2
-	hv6QVpunejdLSf6ajvBBEcscT6XNZbGj5MZiG4iM1wF039Y919rg4w6VdZfPormk1UaJ
-	Kd0A==
+	bh=BObuluAdaR9XYwh8fwzWsQ4KgIaeNGasOAa2CX/zEY4=;
+	b=rDF7KiiUeYMIQV3+ROFYGfS4He0XV5MGZ+wbvPcZVqb4i0Dnw+4OqzK+70rm8K/52v
+	fFzK/bBrJQye5VL7AAWiJjM0uRCssAOy05I0xOC0mIVMGJHkmZFKegw1Rd2QXJBf4/25
+	OjTa3MTYP0Mnvlu/9H1r0JvWYSYp245ZV0V1o0KrfkfNficOP0W2GsH7z/sBdSvXbEcc
+	+6l3otjU4BulO59DSnX1Gl7q5MD2gYt94uez6VmKPm90qZ//+63AL7YzbGvGBmqE5o5Q
+	iMoZ+0uU/39IUAVNeb/4iQnMbtheM0R+xAZFmg9QAm2dGGpwO8XMWtoHC4C6JQE9WNPZ
+	Jjfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:content-type:from
 	:in-reply-to:date:cc:message-id:references:to;
-	bh=EQivp4UUQF+QJ/p85Tllv+gGWB9xvVHCQh5yp0hBfo0=;
-	b=bz+luEjwj88PPOk26E5FAvP3QumlgYY9KW4jhpPCNaXvHnEjuHxLVJ4v6nYo7tKJD/
-	p5tIsIBijEWx3utEBcUNMgHfHhzNm0IVGsqiPNaQYRXIl+jI6l153FrnPQW5dRI9q2TC
-	cnPyFeRdkDb889uSFgZwfVxS8OAffKUxL+s9bq88upR58qSHm3aY2B/d/RwynZ5ObuHt
-	CqjKvQ58ybL+5COP28Oja4TZxzHK6JpXsWwjL03wBDvwq8EMtNXAOXBWGq95USIfWrhn
-	D2tDjhmirOO7+5bjrL7a7k+EGthc2xNQLQ2yc8dYkm1q1DOp8XfO9ytLoAJdNaNRWhzP
-	BHQw==
-X-Gm-Message-State: AG10YOQE9WNfu2ARV2Fz7fUke0oWUYVXdil/BllcXMJFBboT0JkhSIId6sCT+pcFmLB8wg==
-X-Received: by 10.98.18.8 with SMTP id a8mr5145816pfj.41.1454529499429;
-	Wed, 03 Feb 2016 11:58:19 -0800 (PST)
+	bh=BObuluAdaR9XYwh8fwzWsQ4KgIaeNGasOAa2CX/zEY4=;
+	b=Btq0S0yYkNNYV3n8RKTX2aJiRGKEEGVJ4SBzbJ+s8BJdpGFkXl+yxI6C4kYjT8msVc
+	PT5F7kdqf3EMBuWlgjp2dTYwkaDvoYYkRELOIt5pUzz2f/IfjG7HK2B4f3nnpcvlXMAr
+	U05LL9Lvxk46K16cX/ik6LqrsG0p5gM5iY4SyfB53ib4ac8CvRBtqGsDL8ZgU2+MhSWZ
+	FIJCG86bEmS+0444YHB99V8D/LX3yJmAucUjmYweb8eeuMMQFiAoZPwh0YWwYtpRsdda
+	n1KV4P4+JCurd1LpeVC7PcAXOFhP/iNJYP1NiDhGkq1sFdtZu/YxCdI4qY7TAv92Lk+g
+	xEwg==
+X-Gm-Message-State: AG10YOS+gIO2xoFYrilpE04YFybp/cSCDDv3U3jwSoN6q1mgjUyem5tG90MBzLp2hRKGCg==
+X-Received: by 10.66.187.145 with SMTP id fs17mr5158689pac.81.1454529984039;
+	Wed, 03 Feb 2016 12:06:24 -0800 (PST)
 Received: from ?IPv6:2601:647:4c01:b37d:95b4:fa84:8c74:446f?
 	([2601:647:4c01:b37d:95b4:fa84:8c74:446f])
 	by smtp.gmail.com with ESMTPSA id
-	qj8sm11621667pac.40.2016.02.03.11.58.18
+	191sm11777563pfa.23.2016.02.03.12.06.22
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 03 Feb 2016 11:58:18 -0800 (PST)
+	Wed, 03 Feb 2016 12:06:23 -0800 (PST)
 Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
 X-Pgp-Agent: GPGMail 2.6b2
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CALf_N3bW91zwfebcdvfseHFKQrnykSdAsvodjchVKGr2eym-2w@mail.gmail.com>
-Date: Wed, 3 Feb 2016 11:58:22 -0800
-Message-Id: <EA9A28A7-7142-4441-B07D-FDE55FC5D2F1@gmail.com>
-References: <CALf_N3a0K0mODhMwBLJgDV5MEDd14CkxJAnWEX=+kLG=Q8NRxA@mail.gmail.com>
-	<CAJTo0LbiKF0w=NeNFRYmh_fc73HYH-1Zg6p1-8r46-oexFt6-A@mail.gmail.com>
-	<CALf_N3bW91zwfebcdvfseHFKQrnykSdAsvodjchVKGr2eym-2w@mail.gmail.com>
-To: Mark T <mtl1nuxd3v@gmail.com>
+In-Reply-To: <CAHWMYyAt4Mdn250Ku_uMtrHr1Awau-MPtwCaYDvi0YK8mDYE9g@mail.gmail.com>
+Date: Wed, 3 Feb 2016 12:06:23 -0800
+Message-Id: <4FEDECDB-AEFD-4F3B-B2BD-175D1A121862@gmail.com>
+References: <CAHWMYyCftLwJ2OsiAHNtgK94gy+9FAG_71mgi6A=+F_nuUJrGw@mail.gmail.com>
+	<1454430798277.69358@seescan.com>
+	<CAHWMYyCW7zbZftqu4auw7OBKEnxaoykCF-_hWtaYY5qJhaiebg@mail.gmail.com>
+	<CAHWMYyAt4Mdn250Ku_uMtrHr1Awau-MPtwCaYDvi0YK8mDYE9g@mail.gmail.com>
+To: Todd Efflam <todd.efflam@gmail.com>
 X-Mailer: Apple Mail (2.3112)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Which Toolchain is being used to build Yocto ?
+Subject: Re: Problem installing ath10k firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,51 +80,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 19:58:22 -0000
-X-Groupsio-MsgNum: 28250
+X-List-Received-Date: Wed, 03 Feb 2016 20:06:28 -0000
+X-Groupsio-MsgNum: 28251
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_D23F280C-0B4A-4554-9910-4B033789638B";
+	boundary="Apple-Mail=_899D5D8D-E0E8-4A70-B643-9E8CE5797766";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_D23F280C-0B4A-4554-9910-4B033789638B
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_0B5ED6CA-8306-46C1-89AE-8A2E74F8744D"
-
---Apple-Mail=_0B5ED6CA-8306-46C1-89AE-8A2E74F8744D
+--Apple-Mail=_899D5D8D-E0E8-4A70-B643-9E8CE5797766
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 
-> On Feb 3, 2016, at 10:15 AM, Mark T <mtl1nuxd3v@gmail.com> wrote:
+> On Feb 3, 2016, at 10:22 AM, Todd Efflam <todd.efflam@gmail.com> =
+wrote:
 >=20
-> Thanks. That makes sense; all the cross compile tools are built using =
-the Host machines native toolchain on the host then the cross-toolchain =
-used to cross compile yocto for the target.
+> Finally was able to get it work - the error seemed to be a combination
+> of things.
 >=20
+> We went with the modular build and ended up building the following as =
+modules:
+> CONFIG_ATH10K=3Dm
+> CONFIG_ATH10K_PCI=3Dm
+> CONFIG_ATH_CARDS=3Dm
+> CONFIG_ATH_COMMON=3Dm
 >=20
->=20
-> On 3 February 2016 at 17:13, Burton, Ross <ross.burton@intel.com =
-<mailto:ross.burton@intel.com>> wrote:
->=20
-> On 3 February 2016 at 15:07, Mark T <mtl1nuxd3v@gmail.com =
-<mailto:mtl1nuxd3v@gmail.com>> wrote:
-> I notice there is a meta/recipes-devtools  -  I assume this pulls in =
-from build/downloads - so gcc-5.2.0.tar.bz2 for example. Does the =
-tool-chain comprised of these recipes get built by /usr/bin/gcc before =
-being used to compile Yocto ?
->=20
-> The host's gcc (typically /usr/bin/gcc) is used to build gcc-cross, =
-which is then used to compile everything that needs to be =
-cross-compiled.  We don't build our own native compiler to replace the =
-host compiler.
->=20
+> Then we added only "kernel-module-ath10k-pci" to IMAGE_INSTALL.   With
+> those two steps, we were then able to push the firmware to the
+> /lib/firmware/ directory as Fred had mentioned and ath10k was then
+> working with our card.  Thanks for the help!
 
-you can always use build-appliance if you want to insulate from host =
-dependencies.
 
-> Ross
+can you translate some of it into patches that you can submit upstream
+
 >=20
+> Best,
+> Todd
 > --
 > _______________________________________________
 > yocto mailing list
@@ -133,65 +123,7 @@ dependencies.
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_0B5ED6CA-8306-46C1-89AE-8A2E74F8744D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Feb 3, 2016, at 10:15 AM, Mark T &lt;<a =
-href=3D"mailto:mtl1nuxd3v@gmail.com" =
-class=3D"">mtl1nuxd3v@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D"">Thanks. That makes sense; all the cross compile tools are =
-built using the Host machines native toolchain on the host then the =
-cross-toolchain used to cross compile yocto for the target.<br =
-class=3D""><br class=3D""><br class=3D""></div><div =
-class=3D"gmail_extra"><br class=3D""><div class=3D"gmail_quote">On 3 =
-February 2016 at 17:13, Burton, Ross <span dir=3D"ltr" class=3D"">&lt;<a =
-href=3D"mailto:ross.burton@intel.com" target=3D"_blank" =
-class=3D"">ross.burton@intel.com</a>&gt;</span> wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr" =
-class=3D""><div class=3D"gmail_extra"><span class=3D""><br class=3D""><div=
- class=3D"gmail_quote">On 3 February 2016 at 15:07, Mark T <span =
-dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:mtl1nuxd3v@gmail.com" =
-target=3D"_blank" class=3D"">mtl1nuxd3v@gmail.com</a>&gt;</span> =
-wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"">I =
-notice there is a meta/recipes-devtools&nbsp; -&nbsp; I assume this =
-pulls in from build/downloads - so gcc-5.2.0.tar.bz2 for example. Does =
-the tool-chain comprised of these recipes get built by /usr/bin/gcc =
-before being used to compile Yocto ?&nbsp; <br =
-class=3D""></div></blockquote></div><br class=3D""></span>The host's gcc =
-(typically /usr/bin/gcc) is used to build gcc-cross, which is then used =
-to compile everything that needs to be cross-compiled.&nbsp; We don't =
-build our own native compiler to replace the host compiler.</div><span =
-class=3D"HOEnZb"><font color=3D"#888888" class=3D""><div =
-class=3D"gmail_extra"><br =
-class=3D""></div></font></span></div></blockquote></div></div></div></bloc=
-kquote><div><br class=3D""></div><div>you can always use build-appliance =
-if you want to insulate from host dependencies.</div><br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
-class=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex"><div dir=3D"ltr" class=3D""><span =
-class=3D"HOEnZb"><font color=3D"#888888" class=3D""><div =
-class=3D"gmail_extra">Ross</div></font></span></div>
-</blockquote></div><br class=3D""></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_0B5ED6CA-8306-46C1-89AE-8A2E74F8744D--
-
---Apple-Mail=_D23F280C-0B4A-4554-9910-4B033789638B
+--Apple-Mail=_899D5D8D-E0E8-4A70-B643-9E8CE5797766
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -202,9 +134,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlayW94ACgkQuwUzVZGdMxTtdgCfX0HhUAhPKc00jmHRGn+lMd/l
-kuQAn0SABWDvko3lSFhK6jpoEd/MCTsD
-=GqLo
+iEYEARECAAYFAlayXcIACgkQuwUzVZGdMxT+3wCcCLwmgDhTf9HFgpJL6RLWgrgz
+31EAn2hmgHsAUn+GlvZ2FqYJEwbkDuNU
+=0jR1
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_D23F280C-0B4A-4554-9910-4B033789638B--
+--Apple-Mail=_899D5D8D-E0E8-4A70-B643-9E8CE5797766--
