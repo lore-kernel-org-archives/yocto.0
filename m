@@ -1,71 +1,50 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jackzhang1992@t.shu.edu.cn>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 445F3E00C2B; Tue,  2 Feb 2016 22:08:52 -0800 (PST)
+	id DC67CE00C2B; Tue,  2 Feb 2016 22:33:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [184.105.67.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE106E00C29
-	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 22:08:50 -0800 (PST)
-Received: by mail-pa0-f51.google.com with SMTP id yy13so7756026pab.3
-	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 22:08:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=2HNnF6YKAM5H+iELmnDpf1DfJ9+3IV58t+Y8GYHszHY=;
-	b=KtriPRMSQxYeBh7/RaX2modpj3EnI+YRN6PGzx/gkEofw51h/5HpIlQJuXGlsxedun
-	E8QFr4G/lTF4bK0c4LNYil/5beOkq6HazSARJ9QB/rEFtJQVZmJGeH+kSXALTd+t0Jim
-	LtfMDKCaQ4nzttfJVllk2G9o2MaRIJ+FGpKZZkygTa3HaAY6hV2g9ldteO1QUG3yeIXQ
-	U5DkRxKAcC0cKWRLjEmx+CbAFF8QFoTd4HWKEAMHSKV8Bs83wkqzl+24HXt2dhFSoMoc
-	hXdsz4VLTnLgmFz9kjA3n4G77yp8IuDObbsVb6m2MZjbNp2Jb5fH7rfBXF6Ihy5Ie1GY
-	vv1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:content-type:from
-	:in-reply-to:date:cc:message-id:references:to;
-	bh=2HNnF6YKAM5H+iELmnDpf1DfJ9+3IV58t+Y8GYHszHY=;
-	b=Vaa3ToEVivwWR2JlBsqyPVdwmxXVaIlbIn8hr/DcfZadoW8b08fKarUy19gyQWwu2k
-	MuQgO8jrnDJt4KOizSl6gjBTs/MTuu4GP9Nf4X8j/aBLl1APq5qoLOefnpWrLNoIi3to
-	/Fv3lCUAZdZatNlRq/fLBcn6Xg1rj2awZP0Ag+GoAXxzAlMgw5Vk0BnOELWn62Av9xZ8
-	QqJnif4leT+yiZj97GZ2ENlb9DcYULumwe+1J1Il8pf+gve0cXAjbb4AwmRVctqX2koE
-	bK2brX+G+MXpppnNOWdOVdDKbuJcw+7aAgal1LSERFy6e31c8RO4iJSAbyjG71AIsa3p
-	93sw==
-X-Gm-Message-State: AG10YOThw7FPOYuVDvjIKuEJeWYg08l/N7M0RVF5EpUD8olIOxmhuqvOR9bScEaO1Eu4kQ==
-X-Received: by 10.66.252.42 with SMTP id zp10mr53480380pac.29.1454479729884;
-	Tue, 02 Feb 2016 22:08:49 -0800 (PST)
-Received: from [192.168.0.4] (c-73-252-206-77.hsd1.ca.comcast.net.
-	[73.252.206.77]) by smtp.gmail.com with ESMTPSA id
-	s90sm1199332pfa.49.2016.02.02.22.08.48
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 02 Feb 2016 22:08:49 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
-Date: Tue, 2 Feb 2016 22:08:48 -0800
-Message-Id: <AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
-References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
-To: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
-X-Mailer: Apple Mail (2.3112)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
+X-Greylist: delayed 13895 seconds by postgrey-1.32 at yocto-www;
+	Tue, 02 Feb 2016 22:33:31 PST
+Received: from smtpproxy21.qq.com (smtpbg297.qq.com [184.105.67.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A09CFE00C29
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 22:33:31 -0800 (PST)
+X-QQ-GoodBg: 2
+X-QQ-SSF: 00400000000000F0
+X-QQ-FEAT: 3W2Sy/pEDFKGy5xY4vx1BLKVAo+PmmQGVIZ0LgMHFDneJ7Kp0ugqyZ3xvuSMw
+	uK6rNVpkhegbrMnTBCbsgzP3REJkI9nmBsSl++5BDrslDLnl+c2wTFrGi25JSI5t05ELrt9
+	+Zy+KwTf3nCT2pEEqISkuuLGVPPXZXIkxlY+DsJCd3XJRy6gCL5DPiBoWQ/6Q62W7OmUelD
+	VKVBe+Cv1WY5swv6ztxfDa8FOU6tbTVRw7N1MBvhYbvkiEbq3ByD17mSJmm043lZG0bIwh6
+	LF3g==
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 180.152.116.238
+X-QQ-STYLE: 
+X-QQ-mid: bizmailfree67t1454481195t3487
+From: "=?utf-8?B?5byg5YGl?=" <jackzhang1992@t.shu.edu.cn>
+To: "=?utf-8?B?U0lWQSBTVUJSQU1BTklBTi5Q?=" <psiva87@gmail.com>
+Mime-Version: 1.0
+Date: Wed, 3 Feb 2016 14:33:15 +0800
+X-Priority: 3
+Message-ID: <tencent_567719D52AF68B4C3DC7AA04@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
+	<CAOorjZRWEv7-UuHY_2cj_Ka0m+w1DkihH+agJFA--pW==zsbOQ@mail.gmail.com>
+In-Reply-To: <CAOorjZRWEv7-UuHY_2cj_Ka0m+w1DkihH+agJFA--pW==zsbOQ@mail.gmail.com>
+X-QQ-ReplyHash: 2989379681
+X-QQ-SENDSIZE: 520
+X-QQ-Bgrelay: 1
+Cc: =?utf-8?B?eW9jdG8=?= <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] errors when I "bitbake" an image formy rpi2 B+ board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,270 +56,249 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 06:08:52 -0000
-X-Groupsio-MsgNum: 28217
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168
+X-List-Received-Date: Wed, 03 Feb 2016 06:33:40 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B"
+	boundary="----=_NextPart_56B19F2B_0A4738D0_63CF038D"
+Content-Transfer-Encoding: 8Bit
 
---Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_56B19F2B_0A4738D0_63CF038D
 Content-Type: text/plain;
-	charset=utf-8
+	charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGksIFNpdmFzdWJyYW1hbmlhbjoNClllcywgSSBhbSBhYmxlIHRvIHJlYWNoIGl0IGJ5IHVz
+aW5nIG15IGZpcmVmb3ggYnJvd3NlciB0byByZWFjaCBpdCwgSXQgd29ya3MuIEFuZCB0aGF0
+J3MgdGhlIG1vc3Qgd2VyaWQgdGhpbmcuDQpJJ3YgYXNrZWQgdGhpcyBxdWVzdGlvbiBvbiB0
+aGUgJyN5b2N0bycgSVJDIGNoYW5uZWwgYWZ0ZXIgSSBzZW50IHRoZSBmaXJzdCBtYWlsLg0K
+ICBTb21lb25lIGluIHRoZSBjaGFubmVsIHRvbGQgbWUgdG8gdXNlIHRoZSBjb21tYW5kOiAi
+IGJpdGJha2Uga2NvbmZpZy1mcm9udGVuZHMtbmF0aXZlIC1jIGZldGNoIiB0byBmZXRjaCAg
+LiB0aGVuIHVzZSAiYml0YmFrZSBycGktaHd1cC1pbWFnZSIuIE15IGNvbXB1dGVyIGlzIGJ1
+aWxkaW5nIG5vdywgYW5kIEknbSB3YWl0aW5nIHRvIHNlZSB0aGUgcmVzdWx0cy4NCiAgQW5v
+dGhlciBwb3NzaWJsZSByZWFzb24gaXMgbWF5YmUgdGhlIHNwZWVkIG9mIHRoZSBpbnRlcm5l
+dC4gIEkgdXNlZCAid2lmaSIgYW5kIHRoZSBsaW51eCBpcyBydW4gdW5kZXIgdGhlIFZNd2Fy
+ZTsgTm93IEkgIGNvbm5lY3QgdGhlIGNhYmxlICB0byBteSBjb21wdXRlcihub3Qgd2lyZWxl
+c3MgYW55bW9yZSksIHN0aWxsIGxpbnV4IGluIHRoZSBWTXdhcmUsIHRob3VnaC4gQW5kIHRy
+eSAiYml0YmFrZSIsIGFuZCB3YWl0IGZvciB0aGUgcmVzdWx0Lg0KDQoNClRoYW5rcywNCg0K
+DQpKYWNrDQpTaGFuZ2hhaQ0KIA0KLS0tLS0tLS0tLS0tLS0tLS0tIE9yaWdpbmFsIC0tLS0t
+LS0tLS0tLS0tLS0tLQ0KRnJvbTogICJTSVZBIFNVQlJBTUFOSUFOLlAiPHBzaXZhODdAZ21h
+aWwuY29tPjsNCkRhdGU6ICBXZWQsIEZlYiAzLCAyMDE2IDAyOjE5IFBNDQpUbzogICJKYWNr
+WmhhbmciPGphY2t6aGFuZzE5OTJAdC5zaHUuZWR1LmNuPjsgDQpDYzogICJ5b2N0byI8eW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZz47IA0KU3ViamVjdDogIFJlOiBbeW9jdG9dIFttZXRhLXJh
+c3BiZXJyeXBpXSBlcnJvcnMgd2hlbiBJICJiaXRiYWtlIiBhbiBpbWFnZSBmb3JteSBycGky
+IEIrIGJvYXJkDQoNCiANCkhpIEphY2ssDQoNCkhvdyBhYm91dCB3Z2V0IG9yIGN1cmwgb2Yg
+dGhvc2UgdXJscywgYXJlIHlvdSBhYmxlIHRvIHJlYWNoIGl0PyBBbHNvLCBzZWUgaWYgZXhw
+bG9yZXIgcmVkaXJlY3RzIHRoaXMgdG8gaHR0cHMgb3Igb3RoZXIgcHJvdG9jb2w/DQoNCg0K
+UmVnYXJkcywNCg0KU2l2YXN1YnJhbWFuaWFuDQoNCg0KT24gV2VkLCBGZWIgMywgMjAxNiBh
+dCA4OjExIEFNLCDlvKDlgaUgPGphY2t6aGFuZzE5OTJAdC5zaHUuZWR1LmNuPiB3cm90ZToN
+ClttZXRhLXJhc3BiZXJyeXBpXQ0KSGksZXZlcnkgb25lLiANCkknbSB0cnlpbmcgdG8gdXNl
+IG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgdG8gYnVpbGQgYW4gaW1hZ2UgZm9yIG15IHJhc3Bi
+ZXJyeXBpMiBCKyBib2FyZC4gDQoNCg0KQWZ0ZXIgSSBkb3dubG9hZCBwb2t5LEkgZ2l0IGNs
+b25lIG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgYXMgZm9sbG93czogImdpdCBjbG9uZSBnaXQ6
+Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9tZXRhLXJhc3BiZXJyeXBpIg0KDQpUaGVuIEkgdG90
+YWxseSBmb2xsb3cgdGhlIFJFQURNRSBpbiB0aGUgbWV0YS1yYXNwYmVycnlwaSBkaXJlY3Rv
+cnkgYXMgZm9sbG93czoNCiINCi4uLi4uLi4uLg0KSG93IHRvIHVzZSBpdDoNCg0KDQoxLiBz
+b3VyY2UgcG9reS9vZS1pbml0LWJ1aWxkLWVudiBycGktYnVpbGQNCjIuIEFkZCBuZWVkZWQg
+bGF5ZXIgdG8gYmJsYXllcnMuY29uZjoNCiAgICAtIG1ldGEtcmFzcGJlcnJ5cGkNCjMgIFNl
+dCBNQUNISU5FIHRvICJyYXNwYmVycnlwaSIvInJhc3BiZXJyeXBpMiIgaW4gbG9jYWwuY29u
+ZiAgKEkgc2V0IG1hY2hpbmUgdG8gYmUgInJhc3BiZXJyeXBpMiIgaGVyZSkNCjQuIGJpdGJh
+a2UgcnBpLWh3dXAtaW1hZ2UNCjUuIGRkIHRvIGEgU0QgY2FyZCB0aGUgZ2VuZXJhdGVkIHNk
+aW1nIGZpbGUgKHVzZSB4emNhdCBpZiBycGktc2RpbWcueHogaXMgdXNlZCkNCjYuIEJvb3Qg
+eW91ciBSUEkuDQoNCiINCg0KDQpidXQgaXQgY29tZXMgb3V0IHdpdGggc2V2ZXJhbCBlcnJv
+cnMgYWZ0ZXIgImJpdGJha2UiLCBJIGRvbid0IGtub3cgd2h5LCB3YXJuaW5ncyBhbmQgZXJy
+b3JzIGFyZSBhcyBmb2xsb3dzOg0KIg0KV0FSTklORzogRmFpbGVkIHRvIGZldGNoIFVSTCBm
+dHA6Ly9pbnZpc2libGUtaXNsYW5kLm5ldC9uY3Vyc2VzL2N1cnJlbnQvbmN1cnNlcy01Ljkt
+MjAxNTAzMjkudGd6LCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZhaWxhYmxlDQpXQVJOSU5H
+OiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJu
+ZWwvdjQueC9saW51eC00LjEudGFyLnh6LCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZhaWxh
+YmxlDQpFUlJPUjogRmV0Y2hlciBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIGZhaWxlZCB3aXRo
+IGV4aXQgY29kZSA0LCBvdXRwdXQ6DQp3Z2V0OiB1bmFibGUgdG8gcmVzb2x2ZSBob3N0IGFk
+ZHJlc3MgJ2tlcm5lbC5vcmcnDQoNCg0KRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogRmV0Y2hl
+ciBmYWlsdXJlIGZvciBVUkw6ICdodHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVs
+L3Y0LngvbGludXgtNC4xLnRhci54eicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkg
+c291cmNlLg0KRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2ph
+Y2t6aGFuZzE5OTIvcG9reS9idWlsZC90bXAvd29yay9jb3J0ZXhhN2hmLXZmcC12ZnB2NC1u
+ZW9uLXBva3ktbGludXgtZ251ZWFiaS9saW51eC1saWJjLWhlYWRlcnMvNC4xLXIwL3RlbXAv
+bG9nLmRvX2ZldGNoLjgwMzENCkVSUk9SOiBUYXNrIDk2MSAoL2hvbWUvamFja3poYW5nMTk5
+Mi9wb2t5L21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy1oZWFkZXJzL2xpbnV4LWxp
+YmMtaGVhZGVyc180LjEuYmIsIGRvX2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEn
+DQpXQVJOSU5HOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly95bW9yaW4uaXMtYS1nZWVr
+Lm9yZy9kb3dubG9hZC9rY29uZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5kcy0zLjEy
+LjAuMC50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCkVSUk9SOiBG
+ZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdpdGggZXhpdCBjb2RlIDQs
+IG91dHB1dDoNCndnZXQ6IHVuYWJsZSB0byByZXNvbHZlIGhvc3QgYWRkcmVzcyAneW1vcmlu
+LmlzLWEtZ2Vlay5vcmcnDQoNCg0KRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogRmV0Y2hlciBm
+YWlsdXJlIGZvciBVUkw6ICdodHRwOi8veW1vcmluLmlzLWEtZ2Vlay5vcmcvZG93bmxvYWQv
+a2NvbmZpZy1mcm9udGVuZHMva2NvbmZpZy1mcm9udGVuZHMtMy4xMi4wLjAudGFyLnh6Jy4g
+VW5hYmxlIHRvIGZldGNoIFVSTCBmcm9tIGFueSBzb3VyY2UuDQpFUlJPUjogTG9nZmlsZSBv
+ZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvamFja3poYW5nMTk5Mi9wb2t5L2J1aWxkL3Rt
+cC93b3JrL2k2ODYtbGludXgva2NvbmZpZy1mcm9udGVuZHMtbmF0aXZlLzMuMTIuMC4wLXIw
+L3RlbXAvbG9nLmRvX2ZldGNoLjgwNjcNCkVSUk9SOiBUYXNrIDcyOCAodmlydHVhbDpuYXRp
+dmU6L2hvbWUvamFja3poYW5nMTk5Mi9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9rY29u
+ZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5kc18zLjEyLjAuMC5iYiwgZG9fZmV0Y2gp
+IGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBV
+UkwgaHR0cDovL2RvdGF0LmF0L3Byb2cvdW5pZmRlZi91bmlmZGVmLTIuMTAudGFyLnh6LCBh
+dHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZhaWxhYmxlDQpOT1RFOiBUYXNrcyBTdW1tYXJ5OiBB
+dHRlbXB0ZWQgMTUyIHRhc2tzIG9mIHdoaWNoIDAgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4g
+YW5kIDIgZmFpbGVkLg0KDQoiDQoNCg0KQWNjb3JkaW5nIHRvIHRoZSBlcnJvcnMsIEl0IHNl
+YW1zIHRoZXJlIGFyZSBtYW55IGZldGNoZXIgZmFpbHVyZXMsYnV0IHdoZW4gSSBjb3B5IHRo
+ZSBsaW5rIHN1Y2ggYXMiaHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5lbC92NC54
+L2xpbnV4LTQuMS50YXIueHoiICB0byBteSBmaXJlZm94IGV4cGxvcmVyLCBJdCBjb3VsZCBm
+aW5kIHRoZSBmaWxlcy4gSXQgaXMgdmVyeSB3ZWlyZC4NCg0KDQoNCg0KSWYgeW91IGhhdmUg
+YW55IGlkZWEgYWJvdXQgaXQsIHBscyBjb250YWN0IHdpdGggbWUuDQpUaGFua3MNCg0KDQoN
+Cg0KSmFjaw0KU2hhbmdoYWkNCg0KDQoNCg0KLS0NCiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0KIHlvY3RvIG1haWxpbmcgbGlzdA0KIHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmcNCiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlz
+dGluZm8veW9jdG8=
 
-> On Feb 2, 2016, at 8:50 AM, GUEYTAT Julien =
-<j.gueytat@cdssoft.studiel.fr> wrote:
->=20
-> Hi,
->=20
-> It seems that there are some stiff missing between meta-qt5 or =
-meta-raspberrypi.
-> When we set the option gles=E2=80=A6 to qtbase we don=E2=80=99t get =
-the QMAKE_LIBS_EGL set properly.
-> We can compare a working set of variables in the qt mkspecs directory =
-of qt.
-> There is one dedicated file for the RaspberryPi2. May be one also for =
-RaspberryPi.
-> Anyway!
-> How could we set those *_EGL variables properly? And=E2=80=A6 If they =
-are properly set, will qtbase will take them into account?
->=20
-> I will be happy to propose a patch but I need to get more precision =
-first.
-
-Firstly show the DISTRO_FEATURES may be you are missing some important =
-knobs for EGL
-like openGL and gles2 etc.
-
-> Thanks in advance,
->=20
->=20
->=20
-> Julien GUEYTAT
-> Ing=C3=A9nieur Informatique
-> <image001.png>
-> 1027, avenue du Docteur Julien Lefebre BP27
-> 06271 Villeneuve-Loubet Cedex
-> Fixe :  +33 (0) 492 024 545
-> Mob :  +33(0) 617 980 383
-> Fax :    +33(0) 492 024 546
-> Email : j.gueytat@cdssoft.studiel.fr =
-<mailto:j.gueytat@cdssoft.studiel.fr>
-> www : www.studiel.fr <http://www.studiel.fr/>
-> P Pensez Environnement, imprimez seulement si n=C3=A9cessaire
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_56B19F2B_0A4738D0_63CF038D
 Content-Type: text/html;
-	charset=utf-8
+	charset="utf-8"
+Content-Transfer-Encoding: base64
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Feb 2, 2016, at 8:50 AM, GUEYTAT Julien &lt;<a =
-href=3D"mailto:j.gueytat@cdssoft.studiel.fr" =
-class=3D"">j.gueytat@cdssoft.studiel.fr</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"page: WordSection1; font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">Hi,<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">It =
-seems that there are some stiff missing between meta-qt5 or =
-meta-raspberrypi.<o:p class=3D""></o:p></span></div><div style=3D"margin: =
-0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span lang=3D"EN-US" class=3D"">When we set the option =
-gles=E2=80=A6 to qtbase we don=E2=80=99t get the QMAKE_LIBS_EGL set =
-properly.<o:p class=3D""></o:p></span></div><div style=3D"margin: 0cm =
-0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span lang=3D"EN-US" class=3D"">We can compare a working set =
-of variables in the qt mkspecs directory of qt.<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D"">There is one dedicated file for the =
-RaspberryPi2. May be one also for RaspberryPi.<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D"">Anyway!<o:p class=3D""></o:p></span></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">How =
-could we set those *_EGL variables properly? And=E2=80=A6 If they are =
-properly set, will qtbase will take them into account?<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">I will =
-be happy to propose a patch but I need to get more precision =
-first.</span></div></div></div></blockquote><div><br =
-class=3D""></div><div>Firstly show the DISTRO_FEATURES may be you are =
-missing some important knobs for EGL</div><div>like openGL and gles2 =
-etc.</div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1; =
-font-family: Ubuntu; font-size: 14px; font-style: normal; font-variant: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;"><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" =
-class=3D""><o:p class=3D""></o:p></span></div><div style=3D"margin: 0cm =
-0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span lang=3D"EN-US" class=3D"">Thanks in advance,<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><b =
-class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D"">Julien =
-GUEYTAT<o:p class=3D""></o:p></span></b></div><div style=3D"margin: 0cm =
-0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><b class=3D""><span style=3D"color: rgb(31, 73, 125);" =
-class=3D"">Ing=C3=A9nieur Informatique<o:p =
-class=3D""></o:p></span></b></div><div style=3D"margin: 0cm 0cm =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D""><span =
-id=3D"cid:image001.png@01D15DE2.555941C0">&lt;image001.png&gt;</span><o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-style=3D"font-size: 10pt; color: rgb(31, 73, 125);" class=3D"">1027, =
-avenue du Docteur Julien Lefebre BP27</span><b class=3D""><span =
-style=3D"color: rgb(31, 73, 125);" class=3D""><o:p =
-class=3D""></o:p></span></b></div><div style=3D"margin: 0cm 0cm =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span style=3D"font-size: 10pt; color: rgb(31, 73, 125);" =
-class=3D"">06271 Villeneuve-Loubet Cedex<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><u =
-class=3D""><span style=3D"font-size: 10pt; color: rgb(31, 73, 125);" =
-class=3D"">Fixe</span></u><span style=3D"font-size: 10pt; color: rgb(31, =
-73, 125);" class=3D""><span =
-class=3D"Apple-converted-space">&nbsp;</span>:&nbsp; +33 (0) =
-492&nbsp;024 545<br class=3D""><u class=3D"">Mob</u><span =
-class=3D"Apple-converted-space">&nbsp;</span>:&nbsp; +33(0) 617 980 =
-383<br class=3D""><u class=3D"">Fax</u><span =
-class=3D"Apple-converted-space">&nbsp;</span>:&nbsp;&nbsp;&nbsp; +33(0) =
-492&nbsp;024 546<br class=3D""><u class=3D"">Email</u><span =
-class=3D"Apple-converted-space">&nbsp;</span>:<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><span class=3D""><a =
-href=3D"mailto:j.gueytat@cdssoft.studiel.fr" style=3D"color: rgb(149, =
-79, 114); text-decoration: underline;" class=3D""><span style=3D"color: =
-rgb(5, 99, 193);" class=3D"">j.gueytat@cdssoft.studiel.fr</span></a><span =
-style=3D"color: rgb(31, 73, 125);" class=3D""><o:p =
-class=3D""></o:p></span></span></div><div style=3D"margin: 0cm 0cm =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><u class=3D""><span style=3D"font-size: 10pt; color: rgb(31, =
-73, 125);" class=3D"">www</span></u><span style=3D"font-size: 10pt; =
-color: rgb(31, 73, 125);" class=3D""><span =
-class=3D"Apple-converted-space">&nbsp;</span>:<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><span class=3D""><a =
-href=3D"http://www.studiel.fr/" style=3D"color: rgb(149, 79, 114); =
-text-decoration: underline;" class=3D""><span style=3D"color: rgb(5, 99, =
-193);" class=3D"">www.studiel.fr</span></a><span style=3D"color: rgb(31, =
-73, 125);" class=3D""><o:p class=3D""></o:p></span></span></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><b class=3D""><span style=3D"font-size: =
-24pt; font-family: Webdings; color: green;" class=3D"">P</span></b><b =
-class=3D""><span style=3D"font-size: 12pt; font-family: 'Times New =
-Roman', serif;" class=3D""><span =
-class=3D"Apple-converted-space">&nbsp;</span></span></b><b =
-class=3D""><span style=3D"font-size: 10pt; font-family: Arial, =
-sans-serif; color: green;" class=3D"">Pensez Environnement, imprimez =
-seulement si n=C3=A9cessaire</span></b><span style=3D"color: rgb(31, 73, =
-125);" class=3D""><o:p class=3D""></o:p></span></div><div style=3D"margin:=
- 0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><o:p class=3D"">&nbsp;</o:p></div></div><span =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: Ubuntu; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: rgb(149, 79, =
-114); text-decoration: underline; font-family: Ubuntu; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-rgb(149, 79, 114); text-decoration: underline; font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
+PGRpdj5IaSwgU2l2YXN1YnJhbWFuaWFuOjwvZGl2PjxkaXY+WWVzLCBJIGFtIGFibGUgdG8g
+cmVhY2ggaXQgYnkgdXNpbmcgbXkgZmlyZWZveCBicm93c2VyIHRvIHJlYWNoIGl0LCBJdCB3
+b3Jrcy4gQW5kIHRoYXQncyB0aGUgbW9zdCB3ZXJpZCB0aGluZy48L2Rpdj48ZGl2PjxzcGFu
+IHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+SSd2IGFza2VkIHRoaXMgcXVlc3Rpb24gb24g
+dGhlICcjeW9jdG8nIElSQyBjaGFubmVsIGFmdGVyIEkgc2VudCB0aGUgZmlyc3QgbWFpbC48
+L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiZuYnNw
+OyBTb21lb25lIGluIHRoZSBjaGFubmVsIHRvbGQgbWUgdG8gdXNlIHRoZSBjb21tYW5kOiZu
+YnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiImbmJzcDtiaXRi
+YWtlIGtjb25maWctZnJvbnRlbmRzLW5hdGl2ZSAtYyBmZXRjaDwvc3Bhbj48c3BhbiBzdHls
+ZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiIgdG8gZmV0Y2ggJm5ic3A7LiB0aGVuIHVzZSAiYml0
+YmFrZSBycGktaHd1cC1pbWFnZSIuIE15IGNvbXB1dGVyIGlzIGJ1aWxkaW5nIG5vdywgYW5k
+IEknbSB3YWl0aW5nIHRvIHNlZSB0aGUgcmVzdWx0cy48L3NwYW4+PC9kaXY+PGRpdj48aW5j
+bHVkZXRhaWw+PGRpdj4mbmJzcDsgQW5vdGhlciBwb3NzaWJsZSByZWFzb24gaXMgbWF5YmUg
+dGhlIHNwZWVkIG9mIHRoZSBpbnRlcm5ldC4gJm5ic3A7SSB1c2VkICJ3aWZpIiBhbmQgdGhl
+IGxpbnV4IGlzIHJ1biB1bmRlciB0aGUgVk13YXJlOyBOb3cgSSAmbmJzcDtjb25uZWN0IHRo
+ZSBjYWJsZSAmbmJzcDt0byBteSBjb21wdXRlcihub3Qgd2lyZWxlc3MgYW55bW9yZSksIHN0
+aWxsIGxpbnV4IGluIHRoZSBWTXdhcmUsIHRob3VnaC4gQW5kIHRyeSAiYml0YmFrZSIsIGFu
+ZCB3YWl0IGZvciB0aGUgcmVzdWx0LjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+VGhhbmtz
+LDwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SmFjazwvZGl2PjxkaXY+U2hhbmdoYWk8L2Rp
+dj48ZGl2PiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQ6VmVyZGFuYSBub3JtYWwgMTRw
+eDtjb2xvcjojMDAwOyI+PGRpdiBzdHlsZT0iRk9OVC1TSVpFOiAxMnB4O0ZPTlQtRkFNSUxZ
+OiBBcmlhbCBOYXJyb3c7cGFkZGluZzoycHggMCAycHggMDsiPi0tLS0tLS0tLS0tLS0tLS0t
+LSZuYnNwO09yaWdpbmFsJm5ic3A7LS0tLS0tLS0tLS0tLS0tLS0tPC9kaXY+PGRpdiBzdHls
+ZT0iRk9OVC1TSVpFOiAxMnB4O2JhY2tncm91bmQ6I2VmZWZlZjtwYWRkaW5nOjhweDsiPjxk
+aXYgaWQ9Im1lbnVfc2VuZGVyIj48Yj5Gcm9tOiA8L2I+Jm5ic3A7IlNJVkEgU1VCUkFNQU5J
+QU4uUCImbHQ7cHNpdmE4N0BnbWFpbC5jb20mZ3Q7OzwvZGl2PjxkaXY+PGI+RGF0ZTogPC9i
+PiZuYnNwO1dlZCwgRmViIDMsIDIwMTYgMDI6MTkgUE08L2Rpdj48ZGl2PjxiPlRvOiA8L2I+
+Jm5ic3A7IkphY2taaGFuZyImbHQ7amFja3poYW5nMTk5MkB0LnNodS5lZHUuY24mZ3Q7OyA8
+d2JyPjwvZGl2PjxkaXY+PGI+Q2M6IDwvYj4mbmJzcDsieW9jdG8iJmx0O3lvY3RvQHlvY3Rv
+cHJvamVjdC5vcmcmZ3Q7OyA8d2JyPjwvZGl2PjxkaXY+PGI+U3ViamVjdDogPC9iPiZuYnNw
+O1JlOiBbeW9jdG9dIFttZXRhLXJhc3BiZXJyeXBpXSBlcnJvcnMgd2hlbiBJICJiaXRiYWtl
+IiBhbiBpbWFnZSBmb3JteSBycGkyIEIrIGJvYXJkPC9kaXY+PC9kaXY+PGRpdj4mbmJzcDs8
+L2Rpdj48ZGl2IGRpcj0ibHRyIj48ZGl2PjxkaXY+PGRpdj5IaSBKYWNrLDxicj48L2Rpdj5I
+b3cgYWJvdXQgd2dldCBvciBjdXJsIG9mIHRob3NlIHVybHMsIGFyZSB5b3UgYWJsZSB0byBy
+ZWFjaCBpdD8gQWxzbywgc2VlIGlmIGV4cGxvcmVyIHJlZGlyZWN0cyB0aGlzIHRvIGh0dHBz
+IG9yIG90aGVyIHByb3RvY29sPzxicj48YnI+PC9kaXY+UmVnYXJkcyw8YnI+PC9kaXY+U2l2
+YXN1YnJhbWFuaWFuPGJyPjwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2V4dHJhIj48YnI+PGRp
+diBjbGFzcz0iZ21haWxfcXVvdGUiPk9uIFdlZCwgRmViIDMsIDIwMTYgYXQgODoxMSBBTSwg
+5byg5YGlIDxzcGFuIGRpcj0ibHRyIj4mbHQ7PGEgaHJlZj0ibWFpbHRvOmphY2t6aGFuZzE5
+OTJAdC5zaHUuZWR1LmNuIiB0YXJnZXQ9Il9ibGFuayI+amFja3poYW5nMTk5MkB0LnNodS5l
+ZHUuY248L2E+Jmd0Ozwvc3Bhbj4gd3JvdGU6PGJyPjxibG9ja3F1b3RlIGNsYXNzPSJnbWFp
+bF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2Nj
+IHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPjxkaXY+W21ldGEtcmFzcGJlcnJ5cGldPC9kaXY+
+PGRpdj5IaSxldmVyeSBvbmUuJm5ic3A7PC9kaXY+PGRpdj5JJ20gdHJ5aW5nIHRvIHVzZSBt
+ZXRhLXJhc3BiZXJyeXBpIGxheWVyIHRvIGJ1aWxkIGFuIGltYWdlIGZvciBteSByYXNwYmVy
+cnlwaTIgQisgYm9hcmQuJm5ic3A7PC9kaXY+PGRpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkFm
+dGVyIEkgZG93bmxvYWQgcG9reSxJIGdpdCBjbG9uZSBtZXRhLXJhc3BiZXJyeXBpIGxheWVy
+IGFzIGZvbGxvd3M6Jm5ic3A7PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjEuNSI+ImdpdCBj
+bG9uZSBnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1y
+YXNwYmVycnlwaSIgdGFyZ2V0PSJfYmxhbmsiPmdpdC55b2N0b3Byb2plY3Qub3JnL21ldGEt
+cmFzcGJlcnJ5cGk8L2E+Ijwvc3Bhbj48L2Rpdj48L2Rpdj48ZGl2PlRoZW4gSSB0b3RhbGx5
+IGZvbGxvdyB0aGUgUkVBRE1FIGluIHRoZSBtZXRhLXJhc3BiZXJyeXBpIGRpcmVjdG9yeSBh
+cyBmb2xsb3dzOjwvZGl2PjxkaXY+IjwvZGl2PjxkaXY+PGRpdj4uLi4uLi4uLi48L2Rpdj48
+ZGl2PkhvdyB0byB1c2UgaXQ6PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj4xLiBzb3VyY2Ug
+cG9reS9vZS1pbml0LWJ1aWxkLWVudiBycGktYnVpbGQ8L2Rpdj48ZGl2PjIuIEFkZCBuZWVk
+ZWQgbGF5ZXIgdG8gYmJsYXllcnMuY29uZjo8L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDsgLSBt
+ZXRhLXJhc3BiZXJyeXBpPC9kaXY+PGRpdj4zICZuYnNwO1NldCBNQUNISU5FIHRvICJyYXNw
+YmVycnlwaSIvInJhc3BiZXJyeXBpMiIgaW4gbG9jYWwuY29uZiAmbmJzcDsoSSBzZXQgbWFj
+aGluZSB0byBiZSAicmFzcGJlcnJ5cGkyIiBoZXJlKTwvZGl2PjxkaXY+NC4gYml0YmFrZSBy
+cGktaHd1cC1pbWFnZTwvZGl2PjxkaXY+NS4gZGQgdG8gYSBTRCBjYXJkIHRoZSBnZW5lcmF0
+ZWQgc2RpbWcgZmlsZSAodXNlIHh6Y2F0IGlmIHJwaS1zZGltZy54eiBpcyB1c2VkKTwvZGl2
+PjxkaXY+Ni4gQm9vdCB5b3VyIFJQSS48L2Rpdj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJs
+aW5lLWhlaWdodDoxLjUiPiI8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1o
+ZWlnaHQ6MS41Ij48YnI+PC9zcGFuPjwvZGl2PjxkaXY+YnV0IGl0IGNvbWVzIG91dCB3aXRo
+IHNldmVyYWwgZXJyb3JzIGFmdGVyICJiaXRiYWtlIiwgSSBkb24ndCBrbm93IHdoeSwmbmJz
+cDs8c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6MS41Ij53YXJuaW5ncyBhbmQgZXJyb3JzIGFy
+ZSBhcyBmb2xsb3dzOjwvc3Bhbj48L2Rpdj48ZGl2PjxkaXY+IjwvZGl2PjxkaXY+V0FSTklO
+RzogRmFpbGVkIHRvIGZldGNoIFVSTCA8YSBocmVmPSJmdHA6Ly9pbnZpc2libGUtaXNsYW5k
+Lm5ldC9uY3Vyc2VzL2N1cnJlbnQvbmN1cnNlcy01LjktMjAxNTAzMjkudGd6IiB0YXJnZXQ9
+Il9ibGFuayI+ZnRwOi8vaW52aXNpYmxlLWlzbGFuZC5uZXQvbmN1cnNlcy9jdXJyZW50L25j
+dXJzZXMtNS45LTIwMTUwMzI5LnRnejwvYT4sIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFp
+bGFibGU8L2Rpdj48ZGl2PldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgPGEgaHJlZj0i
+aHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5lbC92NC54L2xpbnV4LTQuMS50YXIu
+eHoiIHRhcmdldD0iX2JsYW5rIj5odHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVs
+L3Y0LngvbGludXgtNC4xLnRhci54ejwvYT4sIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFp
+bGFibGU8L2Rpdj48ZGl2PkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQg
+ZmFpbGVkIHdpdGggZXhpdCBjb2RlIDQsIG91dHB1dDo8L2Rpdj48ZGl2PndnZXQ6IHVuYWJs
+ZSB0byByZXNvbHZlIGhvc3QgYWRkcmVzcyAnPGEgaHJlZj0iaHR0cDovL2tlcm5lbC5vcmci
+IHRhcmdldD0iX2JsYW5rIj5rZXJuZWwub3JnPC9hPic8L2Rpdj48ZGl2Pjxicj48L2Rpdj48
+ZGl2PkVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAn
+PGEgaHJlZj0iaHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5lbC92NC54L2xpbnV4
+LTQuMS50YXIueHoiIHRhcmdldD0iX2JsYW5rIj5odHRwOi8va2VybmVsLm9yZy9wdWIvbGlu
+dXgva2VybmVsL3Y0LngvbGludXgtNC4xLnRhci54ejwvYT4nLiBVbmFibGUgdG8gZmV0Y2gg
+VVJMIGZyb20gYW55IHNvdXJjZS48L2Rpdj48ZGl2PkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1
+cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvYnVpbGQvdG1wL3dvcmsv
+Y29ydGV4YTdoZi12ZnAtdmZwdjQtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgtbGli
+Yy1oZWFkZXJzLzQuMS1yMC90ZW1wL2xvZy5kb19mZXRjaC44MDMxPC9kaXY+PGRpdj5FUlJP
+UjogVGFzayA5NjEgKC9ob21lL2phY2t6aGFuZzE5OTIvcG9reS9tZXRhL3JlY2lwZXMta2Vy
+bmVsL2xpbnV4LWxpYmMtaGVhZGVycy88YSBocmVmPSJodHRwOi8vbGludXgtbGliYy1oZWFk
+ZXJzXzQuMS5iYiIgdGFyZ2V0PSJfYmxhbmsiPmxpbnV4LWxpYmMtaGVhZGVyc180LjEuYmI8
+L2E+LCBkb19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzwvZGl2PjxkaXY+V0FS
+TklORzogRmFpbGVkIHRvIGZldGNoIFVSTCA8YSBocmVmPSJodHRwOi8veW1vcmluLmlzLWEt
+Z2Vlay5vcmcvZG93bmxvYWQva2NvbmZpZy1mcm9udGVuZHMva2NvbmZpZy1mcm9udGVuZHMt
+My4xMi4wLjAudGFyLnh6IiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL3ltb3Jpbi5pcy1hLWdl
+ZWsub3JnL2Rvd25sb2FkL2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzLTMu
+MTIuMC4wLnRhci54ejwvYT4sIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGU8L2Rp
+dj48ZGl2PkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdp
+dGggZXhpdCBjb2RlIDQsIG91dHB1dDo8L2Rpdj48ZGl2PndnZXQ6IHVuYWJsZSB0byByZXNv
+bHZlIGhvc3QgYWRkcmVzcyAnPGEgaHJlZj0iaHR0cDovL3ltb3Jpbi5pcy1hLWdlZWsub3Jn
+IiB0YXJnZXQ9Il9ibGFuayI+eW1vcmluLmlzLWEtZ2Vlay5vcmc8L2E+JzwvZGl2PjxkaXY+
+PGJyPjwvZGl2PjxkaXY+RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogRmV0Y2hlciBmYWlsdXJl
+IGZvciBVUkw6ICc8YSBocmVmPSJodHRwOi8veW1vcmluLmlzLWEtZ2Vlay5vcmcvZG93bmxv
+YWQva2NvbmZpZy1mcm9udGVuZHMva2NvbmZpZy1mcm9udGVuZHMtMy4xMi4wLjAudGFyLnh6
+IiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL3ltb3Jpbi5pcy1hLWdlZWsub3JnL2Rvd25sb2Fk
+L2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzLTMuMTIuMC4wLnRhci54ejwv
+YT4nLiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS48L2Rpdj48ZGl2PkVS
+Uk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTky
+L3Bva3kvYnVpbGQvdG1wL3dvcmsvaTY4Ni1saW51eC9rY29uZmlnLWZyb250ZW5kcy1uYXRp
+dmUvMy4xMi4wLjAtcjAvdGVtcC9sb2cuZG9fZmV0Y2guODA2NzwvZGl2PjxkaXY+RVJST1I6
+IFRhc2sgNzI4ICh2aXJ0dWFsOm5hdGl2ZTovaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvbWV0
+YS9yZWNpcGVzLWRldnRvb2xzL2tjb25maWctZnJvbnRlbmRzLzxhIGhyZWY9Imh0dHA6Ly9r
+Y29uZmlnLWZyb250ZW5kc18zLjEyLjAuMC5iYiIgdGFyZ2V0PSJfYmxhbmsiPmtjb25maWct
+ZnJvbnRlbmRzXzMuMTIuMC4wLmJiPC9hPiwgZG9fZmV0Y2gpIGZhaWxlZCB3aXRoIGV4aXQg
+Y29kZSAnMSc8L2Rpdj48ZGl2PldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgPGEgaHJl
+Zj0iaHR0cDovL2RvdGF0LmF0L3Byb2cvdW5pZmRlZi91bmlmZGVmLTIuMTAudGFyLnh6IiB0
+YXJnZXQ9Il9ibGFuayI+aHR0cDovL2RvdGF0LmF0L3Byb2cvdW5pZmRlZi91bmlmZGVmLTIu
+MTAudGFyLnh6PC9hPiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZTwvZGl2Pjxk
+aXY+Tk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDE1MiB0YXNrcyBvZiB3aGljaCAw
+IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAyIGZhaWxlZC48L2Rpdj48L2Rpdj48ZGl2
+PiI8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkFjY29yZGluZyB0byB0aGUgZXJyb3JzLCBJ
+dCBzZWFtcyB0aGVyZSBhcmUgbWFueSBmZXRjaGVyIGZhaWx1cmVzLGJ1dCB3aGVuIEkgY29w
+eSB0aGUgbGluayBzdWNoIGFzIjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDoxLjUiPjxhIGhy
+ZWY9Imh0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjQueC9saW51eC00LjEu
+dGFyLnh6IiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tl
+cm5lbC92NC54L2xpbnV4LTQuMS50YXIueHo8L2E+PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5l
+LWhlaWdodDoxLjUiPiIgJm5ic3A7dG8gbXkgZmlyZWZveCBleHBsb3JlciwgSXQgY291bGQg
+ZmluZCB0aGUgZmlsZXMuIEl0IGlzIHZlcnkgd2VpcmQuPC9zcGFuPjwvZGl2PjxkaXY+PHNw
+YW4gc3R5bGU9ImxpbmUtaGVpZ2h0OjEuNSI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFu
+IHN0eWxlPSJsaW5lLWhlaWdodDoxLjUiPjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
+dHlsZT0ibGluZS1oZWlnaHQ6MS41Ij5JZiB5b3UgaGF2ZSBhbnkgaWRlYSBhYm91dCBpdCwg
+cGxzIGNvbnRhY3Qgd2l0aCBtZS48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGlu
+ZS1oZWlnaHQ6MS41Ij5UaGFua3M8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGlu
+ZS1oZWlnaHQ6MS41Ij48YnI+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUt
+aGVpZ2h0OjEuNSI+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhl
+aWdodDoxLjUiPkphY2s8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWln
+aHQ6MS41Ij5TaGFuZ2hhaTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhl
+aWdodDoxLjUiPjxicj48L3NwYW4+PC9kaXY+PGRpdj48dT48L3U+PHU+PC91PjwvZGl2Pjxi
+cj4tLTxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEg
+aHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiBy
+ZWw9Im5vcmVmZXJyZXIiIHRhcmdldD0iX2JsYW5rIj5odHRwczovL2xpc3RzLnlvY3RvcHJv
+amVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PGJyPg0KPGJyPjwvYmxvY2txdW90ZT48L2Rp
+dj48YnI+PC9kaXY+DQoNCjwvZGl2PjwhLS08IVtlbmRpZl0tLT48L2luY2x1ZGV0YWlsPjwv
+ZGl2Pg==
 
---Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B--
-
---Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlaxmXAACgkQuwUzVZGdMxRHJQCgjRVxOwogJHJZLqBit01p6u/W
-fMgAniaWYg7tuCJUK0tKnY4M7xLvChy9
-=8IO9
------END PGP SIGNATURE-----
-
---Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168--
+------=_NextPart_56B19F2B_0A4738D0_63CF038D--
