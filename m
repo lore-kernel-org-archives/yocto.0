@@ -1,44 +1,63 @@
-Return-Path: <j.gueytat@cdssoft.studiel.fr>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8402AE00AB6; Wed,  3 Feb 2016 07:23:12 -0800 (PST)
+	id 2D08BE00AB6; Wed,  3 Feb 2016 07:40:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [5.135.56.197 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.studiel.fr (mail.studiel.fr [5.135.56.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B945E00948
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 07:23:07 -0800 (PST)
-Received: from server.exchange.local ([10.151.0.118]) by server.exchange.local
-	([5.135.56.197]) with mapi id 14.02.0247.003;
-	Wed, 3 Feb 2016 16:23:07 +0100
-From: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
-To: 'Khem Raj' <raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not
-	properly set
-Thread-Index: AdFd2fOG/fKCBVTvTAm3KRpMOdIaWQAZwMoAAAM3cAAACoKG8AAESrGAAAI8NaD///LbgP//63hQ
-Date: Wed, 3 Feb 2016 15:23:06 +0000
-Message-ID: <EC7BC1CD2E085743BB2AE634252C39C1717ADC@server.exchange.local>
-References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
-	<AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
-	<CAEyFGJGx-Cns4Sj3bru4L-e2cCmO+w0dPOy5TkYad9+n+0BuSQ@mail.gmail.com>
-	<EC7BC1CD2E085743BB2AE634252C39C1717A39@server.exchange.local>
-	<CAMKF1sr-qwCsThsB3PH1v1_7u_jNpZAg-Pg=vp0ZOTHvbevbDg@mail.gmail.com>
-	<EC7BC1CD2E085743BB2AE634252C39C1717AAD@server.exchange.local>
-	<CAMKF1sr0tGHWNzm-h=TiMkHk7muUoFxyEULmZnimWxTTw0y+HA@mail.gmail.com>
-In-Reply-To: <CAMKF1sr0tGHWNzm-h=TiMkHk7muUoFxyEULmZnimWxTTw0y+HA@mail.gmail.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [46.218.87.184]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.180 listed in list.dnswl.org]
+Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
+	[209.85.213.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32A6DE00948
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 07:40:45 -0800 (PST)
+Received: by mail-ig0-f180.google.com with SMTP id hb3so13646848igb.0
+	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 07:40:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=lqh0hEQpxi/JXJwqSjNNlmEu4xFV5gJea6e80rzyxSU=;
+	b=d4qipRlZVnuzPIDCujAO5mqKTRKxnxOFyogRApCpaVO9ZVB1PFiKIbjbf8pS9i6FZ9
+	pV1KpVO2OUoj9AosfVs29HQ4KSRQOkUCBdAgehJYYl20LQLnGMoMH9AwxkmX4gyZ+WUn
+	caDFL4K6341fZGxdj3wdwUuyUDmt1rdIZHcLpgQSl4xu/ng2gJ+VmojOEf1VoThj0in6
+	8LKuA/BuGY//RDHoXzuN2JdW1l5pxteP8WY114LqPITCJcD5tszuusQWRBKKrwFCiGic
+	ipj3K9rw6XtjLl1+czbqMrm7FSu8Z+u3chd0s8TdVXPgLkYgBGMxrItwIMwXJBkhXC85
+	geaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=lqh0hEQpxi/JXJwqSjNNlmEu4xFV5gJea6e80rzyxSU=;
+	b=eiU2MVR/lqhVAEKO75Eu9rF+USTP/c9ndxlHUBDIacQRpObKH45Zbbj+b0F9+iB8O2
+	gfy9QbSmGfUNIDl4h45kwnXu4a6jeswKQkX9vHtjrJGtz3sIo1hkRxv2trL+xXlr8YxJ
+	WJYWATIvyizFaqJ+XUmWSzVBCjfLTY8x+UUgDWLC1a2y3QFqsncW+bxKR8RO91babcA0
+	ZOxXWZNkHBr54nbOpTxDi+Ell7FgcPo4GTDoJs+DZYtfOUEqa3tNQ/2DR7Dos7bmuvTf
+	FlFYCugTR7sTrAFD4pbsDTIiUtWGxjImDGRhk2Znxoj8kJ4GwonAgRXL8jH2Ptxbdg0J
+	U4tw==
+X-Gm-Message-State: AG10YORSZucxRFiUlQNB3O4UapYDu93mNLA3NxU2rjKwvRIBL1W4ZAODgvZuVel0OPzz5IVXOrEPYQuWrZ47NUMq
+X-Received: by 10.50.126.8 with SMTP id mu8mr4074838igb.52.1454514044435; Wed,
+	03 Feb 2016 07:40:44 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.107.162.70 with HTTP; Wed, 3 Feb 2016 07:40:25 -0800 (PST)
+In-Reply-To: <56B20BA1.2060004@nokia.com>
+References: <56B1D2D1.5010508@nokia.com>
+	<CAJTo0LayhHP7wbcbLf7TOu8e=6-ERg90VdJu_Av9EfmBBFEmAg@mail.gmail.com>
+	<56B20BA1.2060004@nokia.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 3 Feb 2016 15:40:25 +0000
+Message-ID: <CAJTo0LZFBBoAzRd5wGzg2h+yxR=vPNKBavwe=hhziNYvMXpDsA@mail.gmail.com>
+To: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
+Subject: Re: Where should I append Yocto bitbake task to create work folder symlink ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,96 +69,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 15:23:12 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 03 Feb 2016 15:40:54 -0000
+Content-Type: multipart/alternative; boundary=047d7b1635bff0c2eb052adf70d1
 
-SSdtIHNheWluZyB0aGF0IG1ldGEtcXQ1IHNob3VsZCBkaXJlY3RseSBHUkFCIHRoZSBwcm9wZXIg
-RUdMRlMgc2V0dGluZ3MgZnJvbSB0aGUgdmlydHVhbC9saWJnbGVzMiBwcm92aWRlci4NCklmIHF0
-IGFuZCBnbGVzMiB0aGVuIGdyYWIgbmVjZXNzYXJ5IGluZm9ybWF0aW9uLiBJZiBpbmZvcm1hdGlv
-biBub3QgcHJlc2VudCB0aGVuIHVzZSBkZWZhdWx0cyBsaWtlIC1sRUdMIGluIHRoaXMgY2FzZS4N
-Cg0KSSBndWVzcyBpdCBzaG91bGQgYmUgcG9zc2libGUgdG8gZ2V0IHRoZSBpbmZvcm1hdGlvbiBm
-cm9tIGEgcGFja2FnZSBjb25maWcuDQoNClRoZSBCU1AgbGF5ZXIgc2hvdWxkIG5vdCBjYXJlIGFi
-b3V0IFF0Lg0KDQotLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCkRlwqA6IEtoZW0gUmFqIFtt
-YWlsdG86cmFqLmtoZW1AZ21haWwuY29tXSANCkVudm95w6nCoDogbWVyY3JlZGkgMyBmw6l2cmll
-ciAyMDE2IDE2OjAyDQrDgMKgOiBHVUVZVEFUIEp1bGllbg0KQ2PCoDogWWFubmljayBLaWVrZW5z
-OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpPYmpldMKgOiBSZTogW3lvY3RvXSBbbWV0YS1xdDVd
-W21ldGEtcmFzcGJlcnJ5cGldOiBRTUFLRV9MSUJTX0VHTCBub3QgcHJvcGVybHkgc2V0DQoNCk9u
-IFdlZCwgRmViIDMsIDIwMTYgYXQgNjo1NCBBTSwgR1VFWVRBVCBKdWxpZW4gPGouZ3VleXRhdEBj
-ZHNzb2Z0LnN0dWRpZWwuZnI+IHdyb3RlOg0KPiBTZXR0aW5nIHByb3Blcmx5IHRoZSB2YXJpYWJs
-ZSBQQUNLQUdFQ09ORklHX0dMIHRvIGdsZXMyIGRvZXMgTk9UIHVwZGF0ZSBwcm9wZXJseSB0aGUg
-dmFyaWFibGUgUU1BS0VfTElCU19FR0wuDQo+IEJ5IGRlZmF1bHQgUU1BS0VfTElCU19FR0wgPSAt
-bEVHTA0KPiBBbmQgZGVwZW5kaW5nIG9uIGhhcmR3YXJlLi4uIGl0IG1pZ2h0IGJlIHNvbWV0aGlu
-ZyBsaWtlIFFNQUtFX0xJQlNfRUdMID0gLWxFR0wgLWxHTEVTdjIgZm9yIGluc3RhbmNlLg0KPiBB
-bmQgdGhpcyBzcGVjaWZpYyBsaW5lLi4uICItbEVHTCAtbEdMRVN2MiIgaXMgb25seSBrbm93IGlu
-IHRoZSBwcm92aWRlciBvZiB2aXJ0dWFsL2xpYmdsZXN2MiAuLi4gaW4gdGhpcyBjYXNlIG1ldGEt
-cmFzcGJlcnJ5Lg0KPiBUaGUgQlNQIGxheWVyIGNvdWxkIHByb3ZpZGUgYSBwYWNrYWdlIGNvbmZp
-ZyBmaWxlIHdoaWNoIHdpbGwgYmUgcmVhZCB0byBzZXQgUU1BS0VfTElCU19FR0wgcHJvcGVybHku
-DQo+DQo+ID0+IFdoaWNoIG1lYW5zIHdlIHdvdWxkIG5lZWQgZWFjaCBwYWNrYWdlIHByb3ZpZGlu
-ZyB2aXJ0dWFsL2xpYmdsZXN2MiAuLi4gdG8gcHJvdmlkZSBhbHNvIGEgcGFja2FnZSBjb25maWcg
-ZmlsZS4NCj4NCg0KcGFja2FnZWNvbmZpZyBjb3VsZCBiZSB1c2VkIGlmIGxpYm5hbWVzIGFyZSBj
-b25zaXN0ZW50LiBzb21ldGhpbmcgcXRiYXNlIGNhbiBiZSBsb29rZWQgaW50by4NCg0KZm9yIG9l
-IHlvdSBjYW4gcGFzcyBxbWFrZSB2YXJpYWJsZXMgbGlrZSBRTUFLRV9MSUJTX0VHTCA9IC1sRUdM
-IC1sR0xFU3YyDQoNCnVzaW5nIEVYVFJBX1FNQUtFVkFSU19QUkUgdmFyaWFibGUuDQoNCj4gSSBo
-b3BlIGl0J3MgY2xlYXIgbm93LiBUZWxsIG1lIGlmIEkgbWlzc2VkIHNvbWV0aGluZy4NCj4NCj4g
-LS0tLS1NZXNzYWdlIGQnb3JpZ2luZS0tLS0tDQo+IERlIDogS2hlbSBSYWogW21haWx0bzpyYWou
-a2hlbUBnbWFpbC5jb21dIEVudm95w6kgOiBtZXJjcmVkaSAzIGbDqXZyaWVyIA0KPiAyMDE2IDE1
-OjQ1IMOAIDogR1VFWVRBVCBKdWxpZW4gQ2MgOiBZYW5uaWNrIEtpZWtlbnM7IA0KPiB5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnIE9iamV0IDogUmU6IFt5b2N0b10gDQo+IFttZXRhLXF0NV1bbWV0YS1y
-YXNwYmVycnlwaV06IFFNQUtFX0xJQlNfRUdMIG5vdCBwcm9wZXJseSBzZXQNCj4NCj4gT24gV2Vk
-LCBGZWIgMywgMjAxNiBhdCAzOjQ2IEFNLCBHVUVZVEFUIEp1bGllbiA8ai5ndWV5dGF0QGNkc3Nv
-ZnQuc3R1ZGllbC5mcj4gd3JvdGU6DQo+PiBIaSBldmVyeW9uZSwNCj4+DQo+Pg0KPj4NCj4+IEkg
-dW5kZXJzdGFuZCB0aGF0IHlvdSBhcmUgYWxsIHJld3JpdGluZyB0aGUgcXRiYXNlIHJ1bGUgdG8g
-aW5jbHVkZSBhdCANCj4+IGxlYXN0IHRoZSBtb2RpZmljYXRpb24gdG8gdGhlIFFNQUtFX0xJQlNf
-RUdMIHZhcmlhYmxlLg0KPj4NCj4+IFRoZSBxdWVzdGlvbiBpczoNCj4+DQo+PiBDb3VsZCB3ZSBt
-YWtlIHNvbWVob3cgc29tZSB3b3JrIGluIG1ldGEtcXQ1IG9yIG1ldGEtcmFzcGJlcnJ5cGkgdG8g
-DQo+PiBub3QgaGF2ZSB0byBvdmVyd3JpdGUgdGhlIHF0YmFzZSBydWxlLg0KPg0KPg0KPiBJIGRv
-bnQgdW5kZXJzdGFuZC4gUEFLQ0FHRUNPTkZJR1MgYXJlIHNwZWNpZmljYWxseSBkZXNpbmVkIGZv
-ciB0aGlzIGtpbmQgb2Ygc2NlbmFyaW8gd2hhdCBwcm9ibGVtcyBhcmUgeW91IHNlZWluZy4NCj4N
-Cj4+DQo+PiBGb3IgaW5zdGFuY2XigKYgbWV0YS1yYXNwYmVycnlwaSBpcyBwcm92aWRpbmcgYSBw
-YWNrYWdlIGNvbmZpZyBmaWxlIGZvciBFR0wuDQo+PiBNYXkgYmUgeW91IGNvdWxkIGhhdmUgbWV0
-YS1xdDUgcmVhZCB0aGlzIHBhY2thZ2UgY29uZmlnLg0KPj4NCj4+DQo+Pg0KPj4gVGhhdOKAmXMg
-dGhlIHF1ZXN0aW9uLiBJ4oCZZCBsaWtlIHRvIGtub3cgd2hhdCB0aGUgbWFpbnRhaW5lcnMgb2Yg
-dGhvc2UgDQo+PiB0d28gbGF5ZXJzIHRoaW5rIGFib3V0IHRoYXQuDQo+Pg0KPj4NCj4+DQo+PiBC
-ZXN0IFJlZ2FyZHMsDQo+Pg0KPj4NCj4+DQo+PiBEZSA6IFlhbm5pY2sgS2lla2VucyBbbWFpbHRv
-Onlhbm5pY2traWVrZW5zQGdtYWlsLmNvbV0gRW52b3nDqSA6DQo+PiBtZXJjcmVkaSAzIGbDqXZy
-aWVyIDIwMTYgMDg6NDEgw4AgOiBLaGVtIFJhaiBDYyA6IEdVRVlUQVQgSnVsaWVuOyANCj4+IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcgT2JqZXQgOiBSZTogW3lvY3RvXQ0KPj4gW21ldGEtcXQ1XVtt
-ZXRhLXJhc3BiZXJyeXBpXTogUU1BS0VfTElCU19FR0wgbm90IHByb3Blcmx5IHNldA0KPj4NCj4+
-DQo+Pg0KPj4gSGF2ZSBhIGxvb2sgYXQgdGhpcyBnaXQgcmVwbzoNCj4+IGh0dHBzOi8vZ2l0aHVi
-LmNvbS9ZYW5uaWNrS2lla2Vucy9tZXRhLXF0NS1waQ0KPj4NCj4+IEkgaGF2ZSBidWlsZCBhIHF0
-NSBlZ2xmcyB3aXRoIHJhc3BiZXJyeSBwaTIgYmFja2VuZCBvbiBtYXN0ZXIgYnJhbmNoIA0KPj4g
-eWVzdGVyZGF5IGV2ZW5pbmcNCj4+DQo+Pg0KPj4NCj4+IE9uIFdlZCwgRmViIDMsIDIwMTYgYXQg
-NzowOCBBTSwgS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4gd3JvdGU6DQo+Pg0KPj4NCj4+
-DQo+PiBPbiBGZWIgMiwgMjAxNiwgYXQgODo1MCBBTSwgR1VFWVRBVCBKdWxpZW4gDQo+PiA8ai5n
-dWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5mcj4NCj4+IHdyb3RlOg0KPj4NCj4+DQo+Pg0KPj4gSGks
-DQo+Pg0KPj4NCj4+DQo+PiBJdCBzZWVtcyB0aGF0IHRoZXJlIGFyZSBzb21lIHN0aWZmIG1pc3Np
-bmcgYmV0d2VlbiBtZXRhLXF0NSBvciANCj4+IG1ldGEtcmFzcGJlcnJ5cGkuDQo+Pg0KPj4gV2hl
-biB3ZSBzZXQgdGhlIG9wdGlvbiBnbGVz4oCmIHRvIHF0YmFzZSB3ZSBkb27igJl0IGdldCB0aGUg
-DQo+PiBRTUFLRV9MSUJTX0VHTCBzZXQgcHJvcGVybHkuDQo+Pg0KPj4gV2UgY2FuIGNvbXBhcmUg
-YSB3b3JraW5nIHNldCBvZiB2YXJpYWJsZXMgaW4gdGhlIHF0IG1rc3BlY3MgZGlyZWN0b3J5IG9m
-IHF0Lg0KPj4NCj4+IFRoZXJlIGlzIG9uZSBkZWRpY2F0ZWQgZmlsZSBmb3IgdGhlIFJhc3BiZXJy
-eVBpMi4gTWF5IGJlIG9uZSBhbHNvIGZvciANCj4+IFJhc3BiZXJyeVBpLg0KPj4NCj4+IEFueXdh
-eSENCj4+DQo+PiBIb3cgY291bGQgd2Ugc2V0IHRob3NlICpfRUdMIHZhcmlhYmxlcyBwcm9wZXJs
-eT8gQW5k4oCmIElmIHRoZXkgYXJlIA0KPj4gcHJvcGVybHkgc2V0LCB3aWxsIHF0YmFzZSB3aWxs
-IHRha2UgdGhlbSBpbnRvIGFjY291bnQ/DQo+Pg0KPj4NCj4+DQo+PiBJIHdpbGwgYmUgaGFwcHkg
-dG8gcHJvcG9zZSBhIHBhdGNoIGJ1dCBJIG5lZWQgdG8gZ2V0IG1vcmUgcHJlY2lzaW9uIGZpcnN0
-Lg0KPj4NCj4+DQo+Pg0KPj4gRmlyc3RseSBzaG93IHRoZSBESVNUUk9fRkVBVFVSRVMgbWF5IGJl
-IHlvdSBhcmUgbWlzc2luZyBzb21lIA0KPj4gaW1wb3J0YW50IGtub2JzIGZvciBFR0wNCj4+DQo+
-PiBsaWtlIG9wZW5HTCBhbmQgZ2xlczIgZXRjLg0KPj4NCj4+DQo+Pg0KPj4gVGhhbmtzIGluIGFk
-dmFuY2UsDQo+Pg0KPj4NCj4+DQo+Pg0KPj4NCj4+DQo+Pg0KPj4gSnVsaWVuIEdVRVlUQVQNCj4+
-DQo+PiBJbmfDqW5pZXVyIEluZm9ybWF0aXF1ZQ0KPj4NCj4+IDxpbWFnZTAwMS5wbmc+DQo+Pg0K
-Pj4gMTAyNywgYXZlbnVlIGR1IERvY3RldXIgSnVsaWVuIExlZmVicmUgQlAyNw0KPj4NCj4+IDA2
-MjcxIFZpbGxlbmV1dmUtTG91YmV0IENlZGV4DQo+Pg0KPj4gRml4ZSA6ICArMzMgKDApIDQ5MiAw
-MjQgNTQ1DQo+PiBNb2IgOiAgKzMzKDApIDYxNyA5ODAgMzgzDQo+PiBGYXggOiAgICArMzMoMCkg
-NDkyIDAyNCA1NDYNCj4+IEVtYWlsIDogai5ndWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5mcg0KPj4N
-Cj4+IHd3dyA6IHd3dy5zdHVkaWVsLmZyDQo+Pg0KPj4gUCBQZW5zZXogRW52aXJvbm5lbWVudCwg
-aW1wcmltZXogc2V1bGVtZW50IHNpIG7DqWNlc3NhaXJlDQo+Pg0KPj4NCj4+DQo+PiAtLQ0KPj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IHlvY3Rv
-IG1haWxpbmcgbGlzdA0KPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gaHR0cHM6Ly9saXN0
-cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+Pg0KPj4NCj4+DQo+Pg0KPj4gLS0N
-Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiB5
-b2N0byBtYWlsaW5nIGxpc3QNCj4+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+IGh0dHBzOi8v
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPj4NCj4+DQo=
+--047d7b1635bff0c2eb052adf70d1
+Content-Type: text/plain; charset=UTF-8
 
+On 3 February 2016 at 14:16, Woronicz, Bartosz ( NSN - PL/Wroclaw) <
+bartosz.woronicz@nokia.com> wrote:
+
+> But I need to the sysroot cleanup deliberately, right ?
+>
+
+No, that happens on startup (in master and the jethro release).
+
+Ross
+
+--047d7b1635bff0c2eb052adf70d1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 3 February 2016 at 14:16, Woronicz, Bartosz ( NSN - PL/Wroclaw) <span di=
+r=3D"ltr">&lt;<a href=3D"mailto:bartosz.woronicz@nokia.com" target=3D"_blan=
+k">bartosz.woronicz@nokia.com</a>&gt;</span> wrote:<br><blockquote class=3D=
+"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
+-left:1ex"><div text=3D"#000000" bgcolor=3D"#FFFFFF">But I need to the sysr=
+oot cleanup deliberately, right ?<br></div></blockquote></div><br>No, that =
+happens on startup (in master and the jethro release).</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--047d7b1635bff0c2eb052adf70d1--
