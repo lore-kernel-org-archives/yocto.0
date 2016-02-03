@@ -1,42 +1,65 @@
-Return-Path: <jackzhang1992@t.shu.edu.cn>
+Return-Path: <psiva87@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2C86E00C27; Tue,  2 Feb 2016 18:42:04 -0800 (PST)
+	id 3BEA7E00C2B; Tue,  2 Feb 2016 21:49:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [54.179.177.220 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (psiva87[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtpbgsg3.qq.com (smtpbgsg3.qq.com [54.179.177.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEDD1E00C1A
-	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 18:42:00 -0800 (PST)
-X-QQ-GoodBg: 2
-X-QQ-SSF: 00400000000000F0
-X-QQ-FEAT: Q4mUGnBphwMOxxVXFf8kEIM+Kk11dBtv4sRuiCjA0dZ6lKdPMS4Xeoe1DimC8
-	3sWaJdFiufYJ/N8RQq3t89jxw3+KopASoH50JPhlU+cFiNRULgk9hFnPg9qIvcXO6JAq41s
-	6/Gngal9bAQbSEzCFX8MjbS0uYTwbGiOYRZT4AmLw4FH1tQNR1OmzOadkvcnSRlvZldoAgN
-	Ggw5LrIdsB/Tnxf7RNzUNbxx/ZmEDx4mBmoLIUQnLc0cV1STkfDtQ
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 180.152.116.238
-X-QQ-STYLE: 
-X-QQ-mid: bizmailfree67t1454467305t7974
-From: "=?utf-8?B?5byg5YGl?=" <jackzhang1992@t.shu.edu.cn>
-To: "=?utf-8?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Wed, 3 Feb 2016 10:41:44 +0800
-X-Priority: 3
-Message-ID: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-X-QQ-SENDSIZE: 520
-X-QQ-Bgrelay: 1
-Subject: [meta-raspberrypi] errors when I "bitbake" an image for my rpi2 B+ board
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41C1DE00C29
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 21:49:23 -0800 (PST)
+Received: by mail-lb0-f179.google.com with SMTP id x4so5909811lbm.0
+	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 21:49:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=2QYiAzZy8AhJKW2dldAbLjRE8j3/5YSu+aJ7umKMO1k=;
+	b=lMlg5Hf8wNZUs8y79K25ewX+BFKKsRQKKDilx8e4tEjoxor//ekYhbNTaVrQ5Wwb3n
+	PdM1e1PsLvghYNqYsMP8czkLlgjxtDUQdUsuL3Ehe932oUREdu6/lEtPXlFSlcXl0vn9
+	p1p22Mn0LYOfgaoCkxBoIF9TNYfI1FYX9MYmCoGh3ivOz3yo0uxaIHAwiujlEb3kMx1W
+	bCbP7cmp/YHG8Z9o/o8VG2x0F4sAEtiYKvHr5IEMZIovJ4WheOZLvJoOFgSw9ck63yGI
+	tYzMmu529YOIC+URPRxrMNOmGtf2uLsdUoCwaPFB20MyZEd3YOU6GHhrP3OBdMj+J+RH
+	GRTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=2QYiAzZy8AhJKW2dldAbLjRE8j3/5YSu+aJ7umKMO1k=;
+	b=RADXt7gcdvoMvXbYE/l2OJAdYWIiX+ECkPQ4LujRqjSQScAkcRjWng5/ybtW1XH4Q9
+	I8c0u0WCdxezE2dsIrV+ErqZ8y2o9iteR5L3Tzw4N6AIXebXTkrUexXy36eEBR5toiw6
+	HzEF1YEK6c+4EsQqGaPjVA8hbZ5UzYl+2pWUeQObsmfHO6SpwwhyTfH1eTQuvv0BAdzF
+	8ZcT30whGuykqAPGZR5I5BdUpHwlXt6VPE40cSmRuQ4gbbo0r4enSi33Z9MrB10iGKit
+	96eK6b8nrZxx6nKygztJzI6zBzv9Z7xSKBUE+ZxfX4jcjk/9xBvcd/qPiv0IVKf2GobE
+	aOpA==
+X-Gm-Message-State: AG10YOTBH2wzqfIwGeeFmSIpExxLFVLtzakSD5dT9pgtB2tdtqYCgqKQCOcA20HtyF0x0/3q2Rpb7CLn7/uMyg==
+MIME-Version: 1.0
+X-Received: by 10.112.198.102 with SMTP id jb6mr12909861lbc.44.1454478561340; 
+	Tue, 02 Feb 2016 21:49:21 -0800 (PST)
+Received: by 10.112.143.6 with HTTP; Tue, 2 Feb 2016 21:49:21 -0800 (PST)
+In-Reply-To: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
+References: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
+Date: Wed, 3 Feb 2016 11:19:21 +0530
+Message-ID: <CAOorjZRWEv7-UuHY_2cj_Ka0m+w1DkihH+agJFA--pW==zsbOQ@mail.gmail.com>
+From: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
+To: =?UTF-8?B?5byg5YGl?= <jackzhang1992@t.shu.edu.cn>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] errors when I "bitbake" an image for my rpi2 B+ board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,155 +71,205 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 02:42:04 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_56B168E9_0A0431F8_3BDDBD39"
-Content-Transfer-Encoding: 8Bit
+X-List-Received-Date: Wed, 03 Feb 2016 05:49:29 -0000
+Content-Type: multipart/alternative; boundary=001a11c34aa8fb82ca052ad72d88
 
-------=_NextPart_56B168E9_0A0431F8_3BDDBD39
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11c34aa8fb82ca052ad72d88
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-W21ldGEtcmFzcGJlcnJ5cGldDQpIaSxldmVyeSBvbmUuIA0KSSdtIHRyeWluZyB0byB1c2Ug
-bWV0YS1yYXNwYmVycnlwaSBsYXllciB0byBidWlsZCBhbiBpbWFnZSBmb3IgbXkgcmFzcGJl
-cnJ5cGkyIEIrIGJvYXJkLiANCg0KDQpBZnRlciBJIGRvd25sb2FkIHBva3ksSSBnaXQgY2xv
-bmUgbWV0YS1yYXNwYmVycnlwaSBsYXllciBhcyBmb2xsb3dzOiAiZ2l0IGNsb25lIGdpdDov
-L2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtcmFzcGJlcnJ5cGkiDQoNClRoZW4gSSB0b3Rh
-bGx5IGZvbGxvdyB0aGUgUkVBRE1FIGluIHRoZSBtZXRhLXJhc3BiZXJyeXBpIGRpcmVjdG9y
-eSBhcyBmb2xsb3dzOg0KIg0KLi4uLi4uLi4uDQpIb3cgdG8gdXNlIGl0Og0KDQoNCjEuIHNv
-dXJjZSBwb2t5L29lLWluaXQtYnVpbGQtZW52IHJwaS1idWlsZA0KMi4gQWRkIG5lZWRlZCBs
-YXllciB0byBiYmxheWVycy5jb25mOg0KICAgIC0gbWV0YS1yYXNwYmVycnlwaQ0KMyAgU2V0
-IE1BQ0hJTkUgdG8gInJhc3BiZXJyeXBpIi8icmFzcGJlcnJ5cGkyIiBpbiBsb2NhbC5jb25m
-ICAoSSBzZXQgbWFjaGluZSB0byBiZSAicmFzcGJlcnJ5cGkyIiBoZXJlKQ0KNC4gYml0YmFr
-ZSBycGktaHd1cC1pbWFnZQ0KNS4gZGQgdG8gYSBTRCBjYXJkIHRoZSBnZW5lcmF0ZWQgc2Rp
-bWcgZmlsZSAodXNlIHh6Y2F0IGlmIHJwaS1zZGltZy54eiBpcyB1c2VkKQ0KNi4gQm9vdCB5
-b3VyIFJQSS4NCg0KIg0KDQoNCmJ1dCBpdCBjb21lcyBvdXQgd2l0aCBzZXZlcmFsIGVycm9y
-cyBhZnRlciAiYml0YmFrZSIsIEkgZG9uJ3Qga25vdyB3aHksIHdhcm5pbmdzIGFuZCBlcnJv
-cnMgYXJlIGFzIGZvbGxvd3M6DQoiDQpXQVJOSU5HOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGZ0
-cDovL2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvY3VycmVudC9uY3Vyc2VzLTUuOS0y
-MDE1MDMyOS50Z3osIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCldBUk5JTkc6
-IEZhaWxlZCB0byBmZXRjaCBVUkwgaHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5l
-bC92NC54L2xpbnV4LTQuMS50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFi
-bGUNCkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdpdGgg
-ZXhpdCBjb2RlIDQsIG91dHB1dDoNCndnZXQ6IHVuYWJsZSB0byByZXNvbHZlIGhvc3QgYWRk
-cmVzcyAna2VybmVsLm9yZycNCg0KDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVy
-IGZhaWx1cmUgZm9yIFVSTDogJ2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwv
-djQueC9saW51eC00LjEudGFyLnh6Jy4gVW5hYmxlIHRvIGZldGNoIFVSTCBmcm9tIGFueSBz
-b3VyY2UuDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvamFj
-a3poYW5nMTk5Mi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZmcHY0LW5l
-b24tcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LWxpYmMtaGVhZGVycy80LjEtcjAvdGVtcC9s
-b2cuZG9fZmV0Y2guODAzMQ0KRVJST1I6IFRhc2sgOTYxICgvaG9tZS9qYWNremhhbmcxOTky
-L3Bva3kvbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51eC1saWJjLWhlYWRlcnMvbGludXgtbGli
-Yy1oZWFkZXJzXzQuMS5iYiwgZG9fZmV0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScN
-CldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgaHR0cDovL3ltb3Jpbi5pcy1hLWdlZWsu
-b3JnL2Rvd25sb2FkL2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzLTMuMTIu
-MC4wLnRhci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQ0KRVJST1I6IEZl
-dGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBmYWlsZWQgd2l0aCBleGl0IGNvZGUgNCwg
-b3V0cHV0Og0Kd2dldDogdW5hYmxlIHRvIHJlc29sdmUgaG9zdCBhZGRyZXNzICd5bW9yaW4u
-aXMtYS1nZWVrLm9yZycNCg0KDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVyIGZh
-aWx1cmUgZm9yIFVSTDogJ2h0dHA6Ly95bW9yaW4uaXMtYS1nZWVrLm9yZy9kb3dubG9hZC9r
-Y29uZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5kcy0zLjEyLjAuMC50YXIueHonLiBV
-bmFibGUgdG8gZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS4NCkVSUk9SOiBMb2dmaWxlIG9m
-IGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvYnVpbGQvdG1w
-L3dvcmsvaTY4Ni1saW51eC9rY29uZmlnLWZyb250ZW5kcy1uYXRpdmUvMy4xMi4wLjAtcjAv
-dGVtcC9sb2cuZG9fZmV0Y2guODA2Nw0KRVJST1I6IFRhc2sgNzI4ICh2aXJ0dWFsOm5hdGl2
-ZTovaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvbWV0YS9yZWNpcGVzLWRldnRvb2xzL2tjb25m
-aWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzXzMuMTIuMC4wLmJiLCBkb19mZXRjaCkg
-ZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KV0FSTklORzogRmFpbGVkIHRvIGZldGNoIFVS
-TCBodHRwOi8vZG90YXQuYXQvcHJvZy91bmlmZGVmL3VuaWZkZWYtMi4xMC50YXIueHosIGF0
-dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0
-dGVtcHRlZCAxNTIgdGFza3Mgb2Ygd2hpY2ggMCBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBh
-bmQgMiBmYWlsZWQuDQoNCiINCg0KDQpBY2NvcmRpbmcgdG8gdGhlIGVycm9ycywgSXQgc2Vh
-bXMgdGhlcmUgYXJlIG1hbnkgZmV0Y2hlciBmYWlsdXJlcyxidXQgd2hlbiBJIGNvcHkgdGhl
-IGxpbmsgc3VjaCBhcyJodHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0Lngv
-bGludXgtNC4xLnRhci54eiIgIHRvIG15IGZpcmVmb3ggZXhwbG9yZXIsIEl0IGNvdWxkIGZp
-bmQgdGhlIGZpbGVzLiBJdCBpcyB2ZXJ5IHdlaXJkLg0KDQoNCg0KDQpJZiB5b3UgaGF2ZSBh
-bnkgaWRlYSBhYm91dCBpdCwgcGxzIGNvbnRhY3Qgd2l0aCBtZS4NClRoYW5rcw0KDQoNCg0K
-DQpKYWNrDQpTaGFuZ2hhaQ==
+Hi Jack,
+How about wget or curl of those urls, are you able to reach it? Also, see
+if explorer redirects this to https or other protocol?
 
-------=_NextPart_56B168E9_0A0431F8_3BDDBD39
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+Regards,
+Sivasubramanian
 
-PGRpdj5bbWV0YS1yYXNwYmVycnlwaV08L2Rpdj48ZGl2PkhpLGV2ZXJ5IG9uZS4mbmJzcDs8
-L2Rpdj48ZGl2PkknbSB0cnlpbmcgdG8gdXNlIG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgdG8g
-YnVpbGQgYW4gaW1hZ2UgZm9yIG15IHJhc3BiZXJyeXBpMiBCKyBib2FyZC4mbmJzcDs8L2Rp
-dj48ZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+QWZ0ZXIgSSBkb3dubG9hZCBwb2t5LEkgZ2l0
-IGNsb25lIG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgYXMgZm9sbG93czombmJzcDs8c3BhbiBz
-dHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiJnaXQgY2xvbmUgZ2l0Oi8vZ2l0LnlvY3RvcHJv
-amVjdC5vcmcvbWV0YS1yYXNwYmVycnlwaSI8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdj5UaGVu
-IEkgdG90YWxseSBmb2xsb3cgdGhlIFJFQURNRSBpbiB0aGUgbWV0YS1yYXNwYmVycnlwaSBk
-aXJlY3RvcnkgYXMgZm9sbG93czo8L2Rpdj48ZGl2PiI8L2Rpdj48ZGl2PjxkaXY+Li4uLi4u
-Li4uPC9kaXY+PGRpdj5Ib3cgdG8gdXNlIGl0OjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+
-MS4gc291cmNlIHBva3kvb2UtaW5pdC1idWlsZC1lbnYgcnBpLWJ1aWxkPC9kaXY+PGRpdj4y
-LiBBZGQgbmVlZGVkIGxheWVyIHRvIGJibGF5ZXJzLmNvbmY6PC9kaXY+PGRpdj4mbmJzcDsg
-Jm5ic3A7IC0gbWV0YS1yYXNwYmVycnlwaTwvZGl2PjxkaXY+MyAmbmJzcDtTZXQgTUFDSElO
-RSB0byAicmFzcGJlcnJ5cGkiLyJyYXNwYmVycnlwaTIiIGluIGxvY2FsLmNvbmYgJm5ic3A7
-KEkgc2V0IG1hY2hpbmUgdG8gYmUgInJhc3BiZXJyeXBpMiIgaGVyZSk8L2Rpdj48ZGl2PjQu
-IGJpdGJha2UgcnBpLWh3dXAtaW1hZ2U8L2Rpdj48ZGl2PjUuIGRkIHRvIGEgU0QgY2FyZCB0
-aGUgZ2VuZXJhdGVkIHNkaW1nIGZpbGUgKHVzZSB4emNhdCBpZiBycGktc2RpbWcueHogaXMg
-dXNlZCk8L2Rpdj48ZGl2PjYuIEJvb3QgeW91ciBSUEkuPC9kaXY+PC9kaXY+PGRpdj48c3Bh
-biBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiI8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
-dHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPjxicj48L3NwYW4+PC9kaXY+PGRpdj5idXQgaXQg
-Y29tZXMgb3V0IHdpdGggc2V2ZXJhbCBlcnJvcnMgYWZ0ZXIgImJpdGJha2UiLCBJIGRvbid0
-IGtub3cgd2h5LCZuYnNwOzxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+d2Fybmlu
-Z3MgYW5kIGVycm9ycyBhcmUgYXMgZm9sbG93czo8L3NwYW4+PC9kaXY+PGRpdj48ZGl2PiI8
-L2Rpdj48ZGl2PldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgZnRwOi8vaW52aXNpYmxl
-LWlzbGFuZC5uZXQvbmN1cnNlcy9jdXJyZW50L25jdXJzZXMtNS45LTIwMTUwMzI5LnRneiwg
-YXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZTwvZGl2PjxkaXY+V0FSTklORzogRmFp
-bGVkIHRvIGZldGNoIFVSTCBodHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0
-LngvbGludXgtNC4xLnRhci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZTwv
-ZGl2PjxkaXY+RVJST1I6IEZldGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBmYWlsZWQg
-d2l0aCBleGl0IGNvZGUgNCwgb3V0cHV0OjwvZGl2PjxkaXY+d2dldDogdW5hYmxlIHRvIHJl
-c29sdmUgaG9zdCBhZGRyZXNzICdrZXJuZWwub3JnJzwvZGl2PjxkaXY+PGJyPjwvZGl2Pjxk
-aXY+RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdo
-dHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0LngvbGludXgtNC4xLnRhci54
-eicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkgc291cmNlLjwvZGl2PjxkaXY+RVJS
-T1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2phY2t6aGFuZzE5OTIv
-cG9reS9idWlsZC90bXAvd29yay9jb3J0ZXhhN2hmLXZmcC12ZnB2NC1uZW9uLXBva3ktbGlu
-dXgtZ251ZWFiaS9saW51eC1saWJjLWhlYWRlcnMvNC4xLXIwL3RlbXAvbG9nLmRvX2ZldGNo
-LjgwMzE8L2Rpdj48ZGl2PkVSUk9SOiBUYXNrIDk2MSAoL2hvbWUvamFja3poYW5nMTk5Mi9w
-b2t5L21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy1oZWFkZXJzL2xpbnV4LWxpYmMt
-aGVhZGVyc180LjEuYmIsIGRvX2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPC9k
-aXY+PGRpdj5XQVJOSU5HOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly95bW9yaW4uaXMt
-YS1nZWVrLm9yZy9kb3dubG9hZC9rY29uZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5k
-cy0zLjEyLjAuMC50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGU8L2Rp
-dj48ZGl2PkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdp
-dGggZXhpdCBjb2RlIDQsIG91dHB1dDo8L2Rpdj48ZGl2PndnZXQ6IHVuYWJsZSB0byByZXNv
-bHZlIGhvc3QgYWRkcmVzcyAneW1vcmluLmlzLWEtZ2Vlay5vcmcnPC9kaXY+PGRpdj48YnI+
-PC9kaXY+PGRpdj5FUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVyIGZhaWx1cmUgZm9y
-IFVSTDogJ2h0dHA6Ly95bW9yaW4uaXMtYS1nZWVrLm9yZy9kb3dubG9hZC9rY29uZmlnLWZy
-b250ZW5kcy9rY29uZmlnLWZyb250ZW5kcy0zLjEyLjAuMC50YXIueHonLiBVbmFibGUgdG8g
-ZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS48L2Rpdj48ZGl2PkVSUk9SOiBMb2dmaWxlIG9m
-IGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvYnVpbGQvdG1w
-L3dvcmsvaTY4Ni1saW51eC9rY29uZmlnLWZyb250ZW5kcy1uYXRpdmUvMy4xMi4wLjAtcjAv
-dGVtcC9sb2cuZG9fZmV0Y2guODA2NzwvZGl2PjxkaXY+RVJST1I6IFRhc2sgNzI4ICh2aXJ0
-dWFsOm5hdGl2ZTovaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvbWV0YS9yZWNpcGVzLWRldnRv
-b2xzL2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzXzMuMTIuMC4wLmJiLCBk
-b19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzwvZGl2PjxkaXY+V0FSTklORzog
-RmFpbGVkIHRvIGZldGNoIFVSTCBodHRwOi8vZG90YXQuYXQvcHJvZy91bmlmZGVmL3VuaWZk
-ZWYtMi4xMC50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGU8L2Rpdj48
-ZGl2Pk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAxNTIgdGFza3Mgb2Ygd2hpY2gg
-MCBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMiBmYWlsZWQuPC9kaXY+PC9kaXY+PGRp
-dj4iPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BY2NvcmRpbmcgdG8gdGhlIGVycm9ycywg
-SXQgc2VhbXMgdGhlcmUgYXJlIG1hbnkgZmV0Y2hlciBmYWlsdXJlcyxidXQgd2hlbiBJIGNv
-cHkgdGhlIGxpbmsgc3VjaCBhcyI8c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPmh0
-dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjQueC9saW51eC00LjEudGFyLnh6
-PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+IiAmbmJzcDt0byBteSBm
-aXJlZm94IGV4cGxvcmVyLCBJdCBjb3VsZCBmaW5kIHRoZSBmaWxlcy4gSXQgaXMgdmVyeSB3
-ZWlyZC48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
-Pjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
-Pjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
-PklmIHlvdSBoYXZlIGFueSBpZGVhIGFib3V0IGl0LCBwbHMgY29udGFjdCB3aXRoIG1lLjwv
-c3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+VGhhbmtz
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij48YnI+
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij48YnI+
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij5KYWNr
-PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij5TaGFu
-Z2hhaTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+
-PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxpbmNsdWRldGFpbD48IS0tPCFbZW5kaWZdLS0+PC9p
-bmNsdWRldGFpbD48L2Rpdj4=
+On Wed, Feb 3, 2016 at 8:11 AM, =E5=BC=A0=E5=81=A5 <jackzhang1992@t.shu.edu=
+.cn> wrote:
 
-------=_NextPart_56B168E9_0A0431F8_3BDDBD39--
+> [meta-raspberrypi]
+> Hi,every one.
+> I'm trying to use meta-raspberrypi layer to build an image for my
+> raspberrypi2 B+ board.
+>
+> After I download poky,I git clone meta-raspberrypi layer as follows: "git
+> clone git://git.yoctoproject.org/meta-raspberrypi"
+> Then I totally follow the README in the meta-raspberrypi directory as
+> follows:
+> "
+> .........
+> How to use it:
+>
+> 1. source poky/oe-init-build-env rpi-build
+> 2. Add needed layer to bblayers.conf:
+>     - meta-raspberrypi
+> 3  Set MACHINE to "raspberrypi"/"raspberrypi2" in local.conf  (I set
+> machine to be "raspberrypi2" here)
+> 4. bitbake rpi-hwup-image
+> 5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is
+> used)
+> 6. Boot your RPI.
+> "
+>
+> but it comes out with several errors after "bitbake", I don't know why, w=
+arnings
+> and errors are as follows:
+> "
+> WARNING: Failed to fetch URL
+> ftp://invisible-island.net/ncurses/current/ncurses-5.9-20150329.tgz,
+> attempting MIRRORS if available
+> WARNING: Failed to fetch URL
+> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz, attempting
+> MIRRORS if available
+> ERROR: Fetcher failure: Fetch command failed with exit code 4, output:
+> wget: unable to resolve host address 'kernel.org'
+>
+> ERROR: Function failed: Fetcher failure for URL: '
+> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz'. Unable to
+> fetch URL from any source.
+> ERROR: Logfile of failure stored in:
+> /home/jackzhang1992/poky/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-li=
+nux-gnueabi/linux-libc-headers/4.1-r0/temp/log.do_fetch.8031
+> ERROR: Task 961
+> (/home/jackzhang1992/poky/meta/recipes-kernel/linux-libc-headers/
+> linux-libc-headers_4.1.bb, do_fetch) failed with exit code '1'
+> WARNING: Failed to fetch URL
+> http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-frontends-=
+3.12.0.0.tar.xz,
+> attempting MIRRORS if available
+> ERROR: Fetcher failure: Fetch command failed with exit code 4, output:
+> wget: unable to resolve host address 'ymorin.is-a-geek.org'
+>
+> ERROR: Function failed: Fetcher failure for URL: '
+> http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-frontends-=
+3.12.0.0.tar.xz'.
+> Unable to fetch URL from any source.
+> ERROR: Logfile of failure stored in:
+> /home/jackzhang1992/poky/build/tmp/work/i686-linux/kconfig-frontends-nati=
+ve/3.12.0.0-r0/temp/log.do_fetch.8067
+> ERROR: Task 728
+> (virtual:native:/home/jackzhang1992/poky/meta/recipes-devtools/kconfig-fr=
+ontends/
+> kconfig-frontends_3.12.0.0.bb, do_fetch) failed with exit code '1'
+> WARNING: Failed to fetch URL
+> http://dotat.at/prog/unifdef/unifdef-2.10.tar.xz, attempting MIRRORS if
+> available
+> NOTE: Tasks Summary: Attempted 152 tasks of which 0 didn't need to be
+> rerun and 2 failed.
+> "
+>
+> According to the errors, It seams there are many fetcher failures,but whe=
+n
+> I copy the link such as"
+> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz"  to my firefox
+> explorer, It could find the files. It is very weird.
+>
+>
+> If you have any idea about it, pls contact with me.
+> Thanks
+>
+>
+> Jack
+> Shanghai
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a11c34aa8fb82ca052ad72d88
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hi Jack,<br></div>How about wget or curl of=
+ those urls, are you able to reach it? Also, see if explorer redirects this=
+ to https or other protocol?<br><br></div>Regards,<br></div>Sivasubramanian=
+<br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed,=
+ Feb 3, 2016 at 8:11 AM, =E5=BC=A0=E5=81=A5 <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:jackzhang1992@t.shu.edu.cn" target=3D"_blank">jackzhang1992@t.sh=
+u.edu.cn</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>[me=
+ta-raspberrypi]</div><div>Hi,every one.=C2=A0</div><div>I&#39;m trying to u=
+se meta-raspberrypi layer to build an image for my raspberrypi2 B+ board.=
+=C2=A0</div><div><div><br></div><div>After I download poky,I git clone meta=
+-raspberrypi layer as follows:=C2=A0<span style=3D"line-height:1.5">&quot;g=
+it clone git://<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" tar=
+get=3D"_blank">git.yoctoproject.org/meta-raspberrypi</a>&quot;</span></div>=
+</div><div>Then I totally follow the README in the meta-raspberrypi directo=
+ry as follows:</div><div>&quot;</div><div><div>.........</div><div>How to u=
+se it:</div><div><br></div><div>1. source poky/oe-init-build-env rpi-build<=
+/div><div>2. Add needed layer to bblayers.conf:</div><div>=C2=A0 =C2=A0 - m=
+eta-raspberrypi</div><div>3 =C2=A0Set MACHINE to &quot;raspberrypi&quot;/&q=
+uot;raspberrypi2&quot; in local.conf =C2=A0(I set machine to be &quot;raspb=
+errypi2&quot; here)</div><div>4. bitbake rpi-hwup-image</div><div>5. dd to =
+a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is used)</div=
+><div>6. Boot your RPI.</div></div><div><span style=3D"line-height:1.5">&qu=
+ot;</span></div><div><span style=3D"line-height:1.5"><br></span></div><div>=
+but it comes out with several errors after &quot;bitbake&quot;, I don&#39;t=
+ know why,=C2=A0<span style=3D"line-height:1.5">warnings and errors are as =
+follows:</span></div><div><div>&quot;</div><div>WARNING: Failed to fetch UR=
+L <a href=3D"ftp://invisible-island.net/ncurses/current/ncurses-5.9-2015032=
+9.tgz" target=3D"_blank">ftp://invisible-island.net/ncurses/current/ncurses=
+-5.9-20150329.tgz</a>, attempting MIRRORS if available</div><div>WARNING: F=
+ailed to fetch URL <a href=3D"http://kernel.org/pub/linux/kernel/v4.x/linux=
+-4.1.tar.xz" target=3D"_blank">http://kernel.org/pub/linux/kernel/v4.x/linu=
+x-4.1.tar.xz</a>, attempting MIRRORS if available</div><div>ERROR: Fetcher =
+failure: Fetch command failed with exit code 4, output:</div><div>wget: una=
+ble to resolve host address &#39;<a href=3D"http://kernel.org" target=3D"_b=
+lank">kernel.org</a>&#39;</div><div><br></div><div>ERROR: Function failed: =
+Fetcher failure for URL: &#39;<a href=3D"http://kernel.org/pub/linux/kernel=
+/v4.x/linux-4.1.tar.xz" target=3D"_blank">http://kernel.org/pub/linux/kerne=
+l/v4.x/linux-4.1.tar.xz</a>&#39;. Unable to fetch URL from any source.</div=
+><div>ERROR: Logfile of failure stored in: /home/jackzhang1992/poky/build/t=
+mp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/linux-libc-headers/4.1=
+-r0/temp/log.do_fetch.8031</div><div>ERROR: Task 961 (/home/jackzhang1992/p=
+oky/meta/recipes-kernel/linux-libc-headers/<a href=3D"http://linux-libc-hea=
+ders_4.1.bb" target=3D"_blank">linux-libc-headers_4.1.bb</a>, do_fetch) fai=
+led with exit code &#39;1&#39;</div><div>WARNING: Failed to fetch URL <a hr=
+ef=3D"http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-fronte=
+nds-3.12.0.0.tar.xz" target=3D"_blank">http://ymorin.is-a-geek.org/download=
+/kconfig-frontends/kconfig-frontends-3.12.0.0.tar.xz</a>, attempting MIRROR=
+S if available</div><div>ERROR: Fetcher failure: Fetch command failed with =
+exit code 4, output:</div><div>wget: unable to resolve host address &#39;<a=
+ href=3D"http://ymorin.is-a-geek.org" target=3D"_blank">ymorin.is-a-geek.or=
+g</a>&#39;</div><div><br></div><div>ERROR: Function failed: Fetcher failure=
+ for URL: &#39;<a href=3D"http://ymorin.is-a-geek.org/download/kconfig-fron=
+tends/kconfig-frontends-3.12.0.0.tar.xz" target=3D"_blank">http://ymorin.is=
+-a-geek.org/download/kconfig-frontends/kconfig-frontends-3.12.0.0.tar.xz</a=
+>&#39;. Unable to fetch URL from any source.</div><div>ERROR: Logfile of fa=
+ilure stored in: /home/jackzhang1992/poky/build/tmp/work/i686-linux/kconfig=
+-frontends-native/3.12.0.0-r0/temp/log.do_fetch.8067</div><div>ERROR: Task =
+728 (virtual:native:/home/jackzhang1992/poky/meta/recipes-devtools/kconfig-=
+frontends/<a href=3D"http://kconfig-frontends_3.12.0.0.bb" target=3D"_blank=
+">kconfig-frontends_3.12.0.0.bb</a>, do_fetch) failed with exit code &#39;1=
+&#39;</div><div>WARNING: Failed to fetch URL <a href=3D"http://dotat.at/pro=
+g/unifdef/unifdef-2.10.tar.xz" target=3D"_blank">http://dotat.at/prog/unifd=
+ef/unifdef-2.10.tar.xz</a>, attempting MIRRORS if available</div><div>NOTE:=
+ Tasks Summary: Attempted 152 tasks of which 0 didn&#39;t need to be rerun =
+and 2 failed.</div></div><div>&quot;</div><div><br></div><div>According to =
+the errors, It seams there are many fetcher failures,but when I copy the li=
+nk such as&quot;<span style=3D"line-height:1.5"><a href=3D"http://kernel.or=
+g/pub/linux/kernel/v4.x/linux-4.1.tar.xz" target=3D"_blank">http://kernel.o=
+rg/pub/linux/kernel/v4.x/linux-4.1.tar.xz</a></span><span style=3D"line-hei=
+ght:1.5">&quot; =C2=A0to my firefox explorer, It could find the files. It i=
+s very weird.</span></div><div><span style=3D"line-height:1.5"><br></span><=
+/div><div><span style=3D"line-height:1.5"><br></span></div><div><span style=
+=3D"line-height:1.5">If you have any idea about it, pls contact with me.</s=
+pan></div><div><span style=3D"line-height:1.5">Thanks</span></div><div><spa=
+n style=3D"line-height:1.5"><br></span></div><div><span style=3D"line-heigh=
+t:1.5"><br></span></div><div><span style=3D"line-height:1.5">Jack</span></d=
+iv><div><span style=3D"line-height:1.5">Shanghai</span></div><div><span sty=
+le=3D"line-height:1.5"><br></span></div><div><u></u><u></u></div><br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--001a11c34aa8fb82ca052ad72d88--
