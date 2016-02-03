@@ -1,42 +1,86 @@
-Return-Path: <j.gueytat@cdssoft.studiel.fr>
+Return-Path: <shubham.kumar4@wipro.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9CE6BE00AB6; Wed,  3 Feb 2016 06:54:38 -0800 (PST)
+	id 20614E00C33; Wed,  3 Feb 2016 06:59:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [5.135.56.197 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [203.91.208.14 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.studiel.fr (mail.studiel.fr [5.135.56.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 091A8E00948
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 06:54:31 -0800 (PST)
-Received: from server.exchange.local ([10.151.0.118]) by server.exchange.local
-	([5.135.56.197]) with mapi id 14.02.0247.003;
-	Wed, 3 Feb 2016 15:54:30 +0100
-From: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
-To: 'Khem Raj' <raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not
-	properly set
-Thread-Index: AdFd2fOG/fKCBVTvTAm3KRpMOdIaWQAZwMoAAAM3cAAACoKG8AAESrGAAAI8NaA=
-Date: Wed, 3 Feb 2016 14:54:29 +0000
-Message-ID: <EC7BC1CD2E085743BB2AE634252C39C1717AAD@server.exchange.local>
-References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
-	<AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
-	<CAEyFGJGx-Cns4Sj3bru4L-e2cCmO+w0dPOy5TkYad9+n+0BuSQ@mail.gmail.com>
-	<EC7BC1CD2E085743BB2AE634252C39C1717A39@server.exchange.local>
-	<CAMKF1sr-qwCsThsB3PH1v1_7u_jNpZAg-Pg=vp0ZOTHvbevbDg@mail.gmail.com>
-In-Reply-To: <CAMKF1sr-qwCsThsB3PH1v1_7u_jNpZAg-Pg=vp0ZOTHvbevbDg@mail.gmail.com>
-Accept-Language: fr-FR, en-US
+Received: from wipro-chn-out01.wipro.com (wipro-chn-out01.wipro.com
+	[203.91.208.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E04DE00948
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 06:59:41 -0800 (PST)
+X-AuditID: cb5bdd88-f79ee6d000001534-d2-56b215db8695
+X-Invalid-Recipients: 
+Received: from CHN-OUT-EDG02.wipro.com ( [203.91.201.88])
+	by wipro-chn-out01.wipro.com (Symantec Mail Security) with SMTP id
+	B4.95.05428.BD512B65; Wed,  3 Feb 2016 20:29:40 +0530 (IST)
+Received: from CHN-SNR-MBX-21.wipro.com (10.142.51.122) by
+	CHN-OUT-EDG02.wipro.com (203.91.201.39) with Microsoft SMTP Server
+	(TLS) id 14.3.266.1; Wed, 3 Feb 2016 20:28:12 +0530
+Received: from wipro-blr-tls01.wipro.com (203.91.201.116) by
+	CHN-SNR-MBX-21.wipro.com (10.142.51.122) with Microsoft SMTP Server
+	(TLS) id 14.3.266.1; Wed, 3 Feb 2016 20:25:27 +0530
+Received: from APC01-HK2-obe.outbound.protection.outlook.com (65.55.88.211) by
+	wipro-blr-tls01.wipro.com (203.91.201.116) with Microsoft SMTP
+	Server (TLS) id 15.0.1104.5; Wed, 3 Feb 2016 20:25:23 +0530
+Received: from SIXPR03MB0672.apcprd03.prod.outlook.com (10.160.238.142) by
+	SIXPR03MB0670.apcprd03.prod.outlook.com (10.160.238.140) with Microsoft
+	SMTP Server (TLS) id 15.1.396.15; Wed, 3 Feb 2016 14:55:23 +0000
+Received: from SIXPR03MB0672.apcprd03.prod.outlook.com ([10.160.238.142]) by
+	SIXPR03MB0672.apcprd03.prod.outlook.com ([10.160.238.142]) with mapi id
+	15.01.0396.020; Wed, 3 Feb 2016 14:55:23 +0000
+From: <shubham.kumar4@wipro.com>
+To: <yocto@yoctoproject.org>, <maciej.borzecki@open-rnd.pl>
+Thread-Topic: [yocto] [meta-intel]:Quark not accepting "root" username at
+	login prompt
+Thread-Index: AQHRXne6BvZjGpKKWUqs+vIN6ugpkp8aVidlgAARJ4CAAAEaDw==
+Date: Wed, 3 Feb 2016 14:55:23 +0000
+Message-ID: <SIXPR03MB067233AA7F87CE945DD71D63D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
+References: <SIXPR03MB0672F01139FBB3CB521AAB45D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
+	<SIXPR03MB06727E3A2C2ACCB4528A26A9D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>,
+	<1454510985.3990.8.camel@open-rnd.pl>
+In-Reply-To: <1454510985.3990.8.camel@open-rnd.pl>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [46.218.87.184]
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none; yoctoproject.org;
+	dmarc=none action=none header.from=wipro.com; 
+x-originating-ip: [198.175.68.39]
+x-microsoft-exchange-diagnostics: 1; SIXPR03MB0670;
+	5:wHu9tzIk3/WGIsxW860MSTP47ACc6M/IPj0XhHNuPz++DaUCFQ5Jj1v9wzRyNDgazgZbnRu2DER03OPQmMpii7hLhhc0rUQzWTXN8k3ZNy3GBJPmngH64P7pDW1Ccg2lkiCEl4PA+fhlgwY6IJpVgw==;
+	24:eQPNZlD1fbzOHQlNtk3Eg2ECXqI0c6q+TzhSPmZ3Iv7FG/O0lbUsOnCXhU5ka3RMfIRONelPikyZn3OiX8dGeFpP+MKCTVmlkP3xzuCkoKU=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:SIXPR03MB0670;
+x-ms-office365-filtering-correlation-id: 007e93af-803c-42ad-3668-08d32caa0b8a
+x-microsoft-antispam-prvs: <SIXPR03MB067055AB5C08598CC3B7A646D4D00@SIXPR03MB0670.apcprd03.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(62627912741753);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(61425038)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(61426038)(61427038);
+	SRVR:SIXPR03MB0670; BCL:0; PCL:0; RULEID:; SRVR:SIXPR03MB0670; 
+x-forefront-prvs: 08417837C5
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(377424004)(24454002)(164054003)(377454003)(53754006)(6116002)(102836003)(77096005)(76176999)(1096002)(1220700001)(5004730100002)(50986999)(10400500002)(54356999)(5008740100001)(5003600100002)(11100500001)(586003)(40100003)(66066001)(106116001)(86362001)(5002640100001)(33656002)(551544002)(87936001)(2900100001)(2501003)(19580405001)(19580395003)(122556002)(5890100001)(2950100001)(2906002)(5001960100002)(107886002)(74316001)(15974865002)(5001770100001)(92566002)(189998001)(3900700001)(76576001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SIXPR03MB0670;
+	H:SIXPR03MB0672.apcprd03.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2016 14:55:23.7947 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 258ac4e4-146a-411e-9dc8-79a9e12fd6da
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SIXPR03MB0670
+X-OrganizationHeadersPreserved: SIXPR03MB0670.apcprd03.prod.outlook.com
+X-CrossPremisesHeadersPromoted: CHN-HES-EDG03.wipro.com
+X-CrossPremisesHeadersFiltered: CHN-HES-EDG03.wipro.com
+X-CFilter-Loop: Reflected
+Subject: Re: [meta-intel]:Quark not accepting "root" username at login prompt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,77 +92,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 14:54:38 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 03 Feb 2016 14:59:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 
-U2V0dGluZyBwcm9wZXJseSB0aGUgdmFyaWFibGUgUEFDS0FHRUNPTkZJR19HTCB0byBnbGVzMiBk
-b2VzIE5PVCB1cGRhdGUgcHJvcGVybHkgdGhlIHZhcmlhYmxlIFFNQUtFX0xJQlNfRUdMLg0KQnkg
-ZGVmYXVsdCBRTUFLRV9MSUJTX0VHTCA9IC1sRUdMDQpBbmQgZGVwZW5kaW5nIG9uIGhhcmR3YXJl
-Li4uIGl0IG1pZ2h0IGJlIHNvbWV0aGluZyBsaWtlIFFNQUtFX0xJQlNfRUdMID0gLWxFR0wgLWxH
-TEVTdjIgZm9yIGluc3RhbmNlLg0KQW5kIHRoaXMgc3BlY2lmaWMgbGluZS4uLiAiLWxFR0wgLWxH
-TEVTdjIiIGlzIG9ubHkga25vdyBpbiB0aGUgcHJvdmlkZXIgb2YgdmlydHVhbC9saWJnbGVzdjIg
-Li4uIGluIHRoaXMgY2FzZSBtZXRhLXJhc3BiZXJyeS4NClRoZSBCU1AgbGF5ZXIgY291bGQgcHJv
-dmlkZSBhIHBhY2thZ2UgY29uZmlnIGZpbGUgd2hpY2ggd2lsbCBiZSByZWFkIHRvIHNldCBRTUFL
-RV9MSUJTX0VHTCBwcm9wZXJseS4NCg0KPT4gV2hpY2ggbWVhbnMgd2Ugd291bGQgbmVlZCBlYWNo
-IHBhY2thZ2UgcHJvdmlkaW5nIHZpcnR1YWwvbGliZ2xlc3YyIC4uLiB0byBwcm92aWRlIGFsc28g
-YSBwYWNrYWdlIGNvbmZpZyBmaWxlLg0KDQpJIGhvcGUgaXQncyBjbGVhciBub3cuIFRlbGwgbWUg
-aWYgSSBtaXNzZWQgc29tZXRoaW5nLg0KDQotLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCkRl
-wqA6IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXSANCkVudm95w6nCoDogbWVy
-Y3JlZGkgMyBmw6l2cmllciAyMDE2IDE1OjQ1DQrDgMKgOiBHVUVZVEFUIEp1bGllbg0KQ2PCoDog
-WWFubmljayBLaWVrZW5zOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpPYmpldMKgOiBSZTogW3lv
-Y3RvXSBbbWV0YS1xdDVdW21ldGEtcmFzcGJlcnJ5cGldOiBRTUFLRV9MSUJTX0VHTCBub3QgcHJv
-cGVybHkgc2V0DQoNCk9uIFdlZCwgRmViIDMsIDIwMTYgYXQgMzo0NiBBTSwgR1VFWVRBVCBKdWxp
-ZW4gPGouZ3VleXRhdEBjZHNzb2Z0LnN0dWRpZWwuZnI+IHdyb3RlOg0KPiBIaSBldmVyeW9uZSwN
-Cj4NCj4NCj4NCj4gSSB1bmRlcnN0YW5kIHRoYXQgeW91IGFyZSBhbGwgcmV3cml0aW5nIHRoZSBx
-dGJhc2UgcnVsZSB0byBpbmNsdWRlIGF0IA0KPiBsZWFzdCB0aGUgbW9kaWZpY2F0aW9uIHRvIHRo
-ZSBRTUFLRV9MSUJTX0VHTCB2YXJpYWJsZS4NCj4NCj4gVGhlIHF1ZXN0aW9uIGlzOg0KPg0KPiBD
-b3VsZCB3ZSBtYWtlIHNvbWVob3cgc29tZSB3b3JrIGluIG1ldGEtcXQ1IG9yIG1ldGEtcmFzcGJl
-cnJ5cGkgdG8gbm90IA0KPiBoYXZlIHRvIG92ZXJ3cml0ZSB0aGUgcXRiYXNlIHJ1bGUuDQoNCg0K
-SSBkb250IHVuZGVyc3RhbmQuIFBBS0NBR0VDT05GSUdTIGFyZSBzcGVjaWZpY2FsbHkgZGVzaW5l
-ZCBmb3IgdGhpcyBraW5kIG9mIHNjZW5hcmlvIHdoYXQgcHJvYmxlbXMgYXJlIHlvdSBzZWVpbmcu
-DQoNCj4NCj4gRm9yIGluc3RhbmNl4oCmIG1ldGEtcmFzcGJlcnJ5cGkgaXMgcHJvdmlkaW5nIGEg
-cGFja2FnZSBjb25maWcgZmlsZSBmb3IgRUdMLg0KPiBNYXkgYmUgeW91IGNvdWxkIGhhdmUgbWV0
-YS1xdDUgcmVhZCB0aGlzIHBhY2thZ2UgY29uZmlnLg0KPg0KPg0KPg0KPiBUaGF04oCZcyB0aGUg
-cXVlc3Rpb24uIEnigJlkIGxpa2UgdG8ga25vdyB3aGF0IHRoZSBtYWludGFpbmVycyBvZiB0aG9z
-ZSANCj4gdHdvIGxheWVycyB0aGluayBhYm91dCB0aGF0Lg0KPg0KPg0KPg0KPiBCZXN0IFJlZ2Fy
-ZHMsDQo+DQo+DQo+DQo+IERlIDogWWFubmljayBLaWVrZW5zIFttYWlsdG86eWFubmlja2tpZWtl
-bnNAZ21haWwuY29tXSBFbnZvecOpIDogDQo+IG1lcmNyZWRpIDMgZsOpdnJpZXIgMjAxNiAwODo0
-MSDDgCA6IEtoZW0gUmFqIENjIDogR1VFWVRBVCBKdWxpZW47IA0KPiB5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnIE9iamV0IDogUmU6IFt5b2N0b10gDQo+IFttZXRhLXF0NV1bbWV0YS1yYXNwYmVycnlw
-aV06IFFNQUtFX0xJQlNfRUdMIG5vdCBwcm9wZXJseSBzZXQNCj4NCj4NCj4NCj4gSGF2ZSBhIGxv
-b2sgYXQgdGhpcyBnaXQgcmVwbzogDQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9ZYW5uaWNrS2lla2Vu
-cy9tZXRhLXF0NS1waQ0KPg0KPiBJIGhhdmUgYnVpbGQgYSBxdDUgZWdsZnMgd2l0aCByYXNwYmVy
-cnkgcGkyIGJhY2tlbmQgb24gbWFzdGVyIGJyYW5jaCANCj4geWVzdGVyZGF5IGV2ZW5pbmcNCj4N
-Cj4NCj4NCj4gT24gV2VkLCBGZWIgMywgMjAxNiBhdCA3OjA4IEFNLCBLaGVtIFJhaiA8cmFqLmto
-ZW1AZ21haWwuY29tPiB3cm90ZToNCj4NCj4NCj4NCj4gT24gRmViIDIsIDIwMTYsIGF0IDg6NTAg
-QU0sIEdVRVlUQVQgSnVsaWVuIA0KPiA8ai5ndWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5mcj4NCj4g
-d3JvdGU6DQo+DQo+DQo+DQo+IEhpLA0KPg0KPg0KPg0KPiBJdCBzZWVtcyB0aGF0IHRoZXJlIGFy
-ZSBzb21lIHN0aWZmIG1pc3NpbmcgYmV0d2VlbiBtZXRhLXF0NSBvciANCj4gbWV0YS1yYXNwYmVy
-cnlwaS4NCj4NCj4gV2hlbiB3ZSBzZXQgdGhlIG9wdGlvbiBnbGVz4oCmIHRvIHF0YmFzZSB3ZSBk
-b27igJl0IGdldCB0aGUgUU1BS0VfTElCU19FR0wgDQo+IHNldCBwcm9wZXJseS4NCj4NCj4gV2Ug
-Y2FuIGNvbXBhcmUgYSB3b3JraW5nIHNldCBvZiB2YXJpYWJsZXMgaW4gdGhlIHF0IG1rc3BlY3Mg
-ZGlyZWN0b3J5IG9mIHF0Lg0KPg0KPiBUaGVyZSBpcyBvbmUgZGVkaWNhdGVkIGZpbGUgZm9yIHRo
-ZSBSYXNwYmVycnlQaTIuIE1heSBiZSBvbmUgYWxzbyBmb3IgDQo+IFJhc3BiZXJyeVBpLg0KPg0K
-PiBBbnl3YXkhDQo+DQo+IEhvdyBjb3VsZCB3ZSBzZXQgdGhvc2UgKl9FR0wgdmFyaWFibGVzIHBy
-b3Blcmx5PyBBbmTigKYgSWYgdGhleSBhcmUgDQo+IHByb3Blcmx5IHNldCwgd2lsbCBxdGJhc2Ug
-d2lsbCB0YWtlIHRoZW0gaW50byBhY2NvdW50Pw0KPg0KPg0KPg0KPiBJIHdpbGwgYmUgaGFwcHkg
-dG8gcHJvcG9zZSBhIHBhdGNoIGJ1dCBJIG5lZWQgdG8gZ2V0IG1vcmUgcHJlY2lzaW9uIGZpcnN0
-Lg0KPg0KPg0KPg0KPiBGaXJzdGx5IHNob3cgdGhlIERJU1RST19GRUFUVVJFUyBtYXkgYmUgeW91
-IGFyZSBtaXNzaW5nIHNvbWUgaW1wb3J0YW50IA0KPiBrbm9icyBmb3IgRUdMDQo+DQo+IGxpa2Ug
-b3BlbkdMIGFuZCBnbGVzMiBldGMuDQo+DQo+DQo+DQo+IFRoYW5rcyBpbiBhZHZhbmNlLA0KPg0K
-Pg0KPg0KPg0KPg0KPg0KPg0KPiBKdWxpZW4gR1VFWVRBVA0KPg0KPiBJbmfDqW5pZXVyIEluZm9y
-bWF0aXF1ZQ0KPg0KPiA8aW1hZ2UwMDEucG5nPg0KPg0KPiAxMDI3LCBhdmVudWUgZHUgRG9jdGV1
-ciBKdWxpZW4gTGVmZWJyZSBCUDI3DQo+DQo+IDA2MjcxIFZpbGxlbmV1dmUtTG91YmV0IENlZGV4
-DQo+DQo+IEZpeGUgOiAgKzMzICgwKSA0OTIgMDI0IDU0NQ0KPiBNb2IgOiAgKzMzKDApIDYxNyA5
-ODAgMzgzDQo+IEZheCA6ICAgICszMygwKSA0OTIgMDI0IDU0Ng0KPiBFbWFpbCA6IGouZ3VleXRh
-dEBjZHNzb2Z0LnN0dWRpZWwuZnINCj4NCj4gd3d3IDogd3d3LnN0dWRpZWwuZnINCj4NCj4gUCBQ
-ZW5zZXogRW52aXJvbm5lbWVudCwgaW1wcmltZXogc2V1bGVtZW50IHNpIG7DqWNlc3NhaXJlDQo+
-DQo+DQo+DQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
-IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPg0KPg0KPg0K
-Pg0KPiAtLQ0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRw
-czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCj4NCj4NCg==
+Hi Maciek,
+
+In "final_build/conf/local.conf" , EXTRA_IMAGE_FEATURES =3D "debug-tweaks".
+
+So, yes "debug-tweaks" is present.
+
+Thanks,
+Shubham_K
+
+________________________________________
+From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
+Sent: Wednesday, February 3, 2016 8:19 PM
+To: Shubham Kumar (Product Engineering Service); yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-intel]:Quark not accepting "root" username at lo=
+gin prompt
+
+On =B6ro, 2016-02-03 at 14:00 +0000, shubham.kumar4@wipro.com wrote:
+>
+> Hi all,
+>
+> I would additionally like to mention that the same problem persists when =
+trying to boot
+> the Galileo with core-image-sato.
+> The steps which I followed are as follows:-
+> Inside the poky directory,
+>
+> 1.  source oe-init-build-env final_build/
+> Now ,Inside the final_build/ directory
+>
+> 2. bitbake core-image-sato
+>
+> 3. wic create mkgalileodisk -e core-image-sato -o /<directory_path>/
+>
+> Now, in <directory_path>/build ,
+>
+> 4. sudo dd if=3Dmkgalileodisk-201602031847-mmcblk0.direct of=3D/dev/sdb
+>
+> Now when I tried to boot the Galileo with this SD card , it booted but at=
+ the login
+> prompt doesn't accept the "root". It says  "Login incorrect ".
+>
+> The observation is similar wit core-image-minimal as well.
+>
+> I'm definitely missing something. I would appreciate any help in this dir=
+ection.
+>
+>
+> Thanks,
+> Shubham_K
+>
+> From: Shubham Kumar (Product Engineering Service)
+> Sent: Wednesday, February 3, 2016 5:11 PM
+> To: yocto@yoctoproject.org
+> Subject: [meta-intel]:Quark not accepting "root" username at login prompt
+>
+> Hi all,
+>
+> I built a core-image-minimal with additions of a few packages like tools-=
+sdk and tools-
+> debug. With WIK tool and the kickstart file "mkgalileodisk", I created th=
+e image. Then I
+> dd'd the image to the SD card. The Galileo booted with the image, but it'=
+s not accepting
+> "root" as the username at the login terminal. It shows the message "Inval=
+id username". I
+> don't have any idea of why this happened. I even looked at the etc/passwd=
+ file, but
+> didn't get any idea.
+> Please note that I have cloned the latest jethro meta-intel layer from th=
+e Yocto git
+> repository.
+>
+> Did I miss anything in the build process? Any help in this direction will=
+ be
+> appreciated.
+
+Can you verify if debug-tweaks is present in IMAGE_FEATURES?
+
+--
+Maciej Borz=EAcki
+Senior Software Developer at Open-RnD Sp. z o.o., Poland
+www.open-rnd.pl
+mobile: +48 889 117 365, fax: +48 42 657 9079
+
+Niniejsza wiadomo=B6=E6 wraz z za=B3=B1cznikami mo=BFe zawiera=E6 chronione=
+ prawem
+lub poufne informacje i zosta=B3a wys=B3ana wy=B3=B1cznie do wiadomo=B6ci i
+u=BFytku os=F3b, do kt=F3rych zosta=B3a zaadresowana. Je=B6li wiadomo=B6=E6=
+ zosta=B3a
+otrzymana przypadkowo zabrania si=EA jej kopiowania lub rozsy=B3ania do
+os=F3b trzecich. W takim przypadku uprasza si=EA o natychmiastowe
+zniszczenie wiadomo=B6ci oraz poinformowanie nadawcy o zaistnia=B3ej
+sytuacji za pomoc=B1 wiadomo=B6ci zwrotnej. Dzi=EAkujemy.
+
+This message, including any attachments hereto, may contain privileged
+or confidential information and is sent solely for the attention and
+use of the intended addressee(s). If you are not an intended addressee,
+you may neither use this message nor copy or deliver it to anyone. In
+such case, you should immediately destroy this message and kindly notify
+the sender by reply email. Thank you.
+
+
+
+The information contained in this electronic message and any attachments to=
+ this message are intended for the exclusive use of the addressee(s) and ma=
+y contain proprietary, confidential or privileged information. If you are n=
+ot the intended recipient, you should not disseminate, distribute or copy t=
+his e-mail. Please notify the sender immediately and destroy all copies of =
+this message and any attachments. WARNING: Computer viruses can be transmit=
+ted via email. The recipient should check this email and any attachments fo=
+r the presence of viruses. The company accepts no liability for any damage =
+caused by any virus transmitted by this email. www.wipro.com
 
