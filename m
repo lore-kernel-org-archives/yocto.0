@@ -1,72 +1,42 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jackzhang1992@t.shu.edu.cn>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DD38E00C18; Tue,  2 Feb 2016 11:52:04 -0800 (PST)
+	id D2C86E00C27; Tue,  2 Feb 2016 18:42:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [54.179.177.220 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.174 listed in list.dnswl.org]
-Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
-	[209.85.192.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CEC0E00838
-	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 11:52:03 -0800 (PST)
-Received: by mail-pf0-f174.google.com with SMTP id n128so109703404pfn.3
-	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 11:52:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=zypewbjwiBER4NruMqzKKOXCH4WJlZZUbV01x4wdO9U=;
-	b=J+G/YJ3WB1CGWjgIL3x4KkFioKr5VY06ImMjmAK9AFpFPY87wQwTV5ZegyIFHR0sj/
-	t0H7H5XVeMWuJ7wVxXGzeLt8EEqr6yPE0kP6xUySRVfXSU+1ULGtXcgoUzAyd63VKofx
-	8Xoe9DwdhytiHw3KIysQCyZKb1C5DqnI9elsmudxiKfAGQF6YR+QTH9fFUMY3Sr59VWh
-	29fxRtP/G44zV6i+Q9M2/vDpXDlGjWVMcz9suPN7MlJIuEYokHbN26Dm/sXWZ22E8ffH
-	HAxvsuUkA7MD/HzxpnuzF5hhJh5wRpzZ4aCdo3YII3Jrpf8oCG74OGNP4YWrvagFeb4I
-	KXRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:content-type:from
-	:in-reply-to:date:cc:message-id:references:to;
-	bh=zypewbjwiBER4NruMqzKKOXCH4WJlZZUbV01x4wdO9U=;
-	b=JhsodTQAk2xvj+Ya6XkmHK1r3qCqdfiDNzSnqFAli8WPT7ckRvD0vjCVD2/kSx95iL
-	7/R3fnyMXfn9BzM1s4PwP9KWhi2NkSgCUVUmhK5eXl0CE4WrD4jEJ2DWHt0ZPSVBJ3lH
-	fAwp/ksA6siGLTeXl07hBj6P7Mf7OrcKAiDLYe1ZLnKDjZLumzxu6sP76addvzhtInM5
-	wgLxC2762vdNyW7cNIUG+8pvFzdUewgEyqJms20tclW/WrTeACCy1fXYQF16O4zM/iaQ
-	W41t71Y8sMExXiD+akua1ST0peHTaDS2b6HWhi9CduktWB3ORA/J34G1j9ACrl4HaKdG
-	2wqw==
-X-Gm-Message-State: AG10YOTVbjUGf/FfUZGMabFgqQWKblidWGmHc691ePFpKPv0t8FZ/1L4X/BCkWUQevnP5g==
-X-Received: by 10.98.0.66 with SMTP id 63mr49978666pfa.61.1454442722820;
-	Tue, 02 Feb 2016 11:52:02 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:6867:8d24:d4b6:fecd?
-	([2601:646:8802:5d5c:6867:8d24:d4b6:fecd])
-	by smtp.gmail.com with ESMTPSA id
-	f12sm4452393pfd.87.2016.02.02.11.52.01
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 02 Feb 2016 11:52:02 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <AMXPR01MB086D31E538EF035E1F7BCC592DF0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
-Date: Tue, 2 Feb 2016 11:51:57 -0800
-Message-Id: <1F8A541A-4322-4515-8B01-C9ADE0E96AF9@gmail.com>
-References: <AMXPR01MB086D31E538EF035E1F7BCC592DF0@AMXPR01MB086.eurprd01.prod.exchangelabs.com>
-To: Karim ATIKI <karim_atiki@hotmail.com>
-X-Mailer: Apple Mail (2.3112)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [raspberrypi2] do_rootfs() failure at the end of qt5-image-demo recipe
+Received: from smtpbgsg3.qq.com (smtpbgsg3.qq.com [54.179.177.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEDD1E00C1A
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 18:42:00 -0800 (PST)
+X-QQ-GoodBg: 2
+X-QQ-SSF: 00400000000000F0
+X-QQ-FEAT: Q4mUGnBphwMOxxVXFf8kEIM+Kk11dBtv4sRuiCjA0dZ6lKdPMS4Xeoe1DimC8
+	3sWaJdFiufYJ/N8RQq3t89jxw3+KopASoH50JPhlU+cFiNRULgk9hFnPg9qIvcXO6JAq41s
+	6/Gngal9bAQbSEzCFX8MjbS0uYTwbGiOYRZT4AmLw4FH1tQNR1OmzOadkvcnSRlvZldoAgN
+	Ggw5LrIdsB/Tnxf7RNzUNbxx/ZmEDx4mBmoLIUQnLc0cV1STkfDtQ
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 180.152.116.238
+X-QQ-STYLE: 
+X-QQ-mid: bizmailfree67t1454467305t7974
+From: "=?utf-8?B?5byg5YGl?=" <jackzhang1992@t.shu.edu.cn>
+To: "=?utf-8?B?eW9jdG8=?=" <yocto@yoctoproject.org>
+Mime-Version: 1.0
+Date: Wed, 3 Feb 2016 10:41:44 +0800
+X-Priority: 3
+Message-ID: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-SENDSIZE: 520
+X-QQ-Bgrelay: 1
+Subject: [meta-raspberrypi] errors when I "bitbake" an image for my rpi2 B+ board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,176 +48,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Feb 2016 19:52:04 -0000
-X-Groupsio-MsgNum: 28214
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_D84E8BA2-B190-48E1-8A56-3152888145F9";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_D84E8BA2-B190-48E1-8A56-3152888145F9
+X-List-Received-Date: Wed, 03 Feb 2016 02:42:04 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_D6422690-1B30-447E-A1E1-95E58F5F00DE"
+	boundary="----=_NextPart_56B168E9_0A0431F8_3BDDBD39"
+Content-Transfer-Encoding: 8Bit
 
---Apple-Mail=_D6422690-1B30-447E-A1E1-95E58F5F00DE
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_56B168E9_0A0431F8_3BDDBD39
 Content-Type: text/plain;
-	charset=iso-8859-1
+	charset="utf-8"
+Content-Transfer-Encoding: base64
 
+W21ldGEtcmFzcGJlcnJ5cGldDQpIaSxldmVyeSBvbmUuIA0KSSdtIHRyeWluZyB0byB1c2Ug
+bWV0YS1yYXNwYmVycnlwaSBsYXllciB0byBidWlsZCBhbiBpbWFnZSBmb3IgbXkgcmFzcGJl
+cnJ5cGkyIEIrIGJvYXJkLiANCg0KDQpBZnRlciBJIGRvd25sb2FkIHBva3ksSSBnaXQgY2xv
+bmUgbWV0YS1yYXNwYmVycnlwaSBsYXllciBhcyBmb2xsb3dzOiAiZ2l0IGNsb25lIGdpdDov
+L2dpdC55b2N0b3Byb2plY3Qub3JnL21ldGEtcmFzcGJlcnJ5cGkiDQoNClRoZW4gSSB0b3Rh
+bGx5IGZvbGxvdyB0aGUgUkVBRE1FIGluIHRoZSBtZXRhLXJhc3BiZXJyeXBpIGRpcmVjdG9y
+eSBhcyBmb2xsb3dzOg0KIg0KLi4uLi4uLi4uDQpIb3cgdG8gdXNlIGl0Og0KDQoNCjEuIHNv
+dXJjZSBwb2t5L29lLWluaXQtYnVpbGQtZW52IHJwaS1idWlsZA0KMi4gQWRkIG5lZWRlZCBs
+YXllciB0byBiYmxheWVycy5jb25mOg0KICAgIC0gbWV0YS1yYXNwYmVycnlwaQ0KMyAgU2V0
+IE1BQ0hJTkUgdG8gInJhc3BiZXJyeXBpIi8icmFzcGJlcnJ5cGkyIiBpbiBsb2NhbC5jb25m
+ICAoSSBzZXQgbWFjaGluZSB0byBiZSAicmFzcGJlcnJ5cGkyIiBoZXJlKQ0KNC4gYml0YmFr
+ZSBycGktaHd1cC1pbWFnZQ0KNS4gZGQgdG8gYSBTRCBjYXJkIHRoZSBnZW5lcmF0ZWQgc2Rp
+bWcgZmlsZSAodXNlIHh6Y2F0IGlmIHJwaS1zZGltZy54eiBpcyB1c2VkKQ0KNi4gQm9vdCB5
+b3VyIFJQSS4NCg0KIg0KDQoNCmJ1dCBpdCBjb21lcyBvdXQgd2l0aCBzZXZlcmFsIGVycm9y
+cyBhZnRlciAiYml0YmFrZSIsIEkgZG9uJ3Qga25vdyB3aHksIHdhcm5pbmdzIGFuZCBlcnJv
+cnMgYXJlIGFzIGZvbGxvd3M6DQoiDQpXQVJOSU5HOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGZ0
+cDovL2ludmlzaWJsZS1pc2xhbmQubmV0L25jdXJzZXMvY3VycmVudC9uY3Vyc2VzLTUuOS0y
+MDE1MDMyOS50Z3osIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCldBUk5JTkc6
+IEZhaWxlZCB0byBmZXRjaCBVUkwgaHR0cDovL2tlcm5lbC5vcmcvcHViL2xpbnV4L2tlcm5l
+bC92NC54L2xpbnV4LTQuMS50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFi
+bGUNCkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdpdGgg
+ZXhpdCBjb2RlIDQsIG91dHB1dDoNCndnZXQ6IHVuYWJsZSB0byByZXNvbHZlIGhvc3QgYWRk
+cmVzcyAna2VybmVsLm9yZycNCg0KDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVy
+IGZhaWx1cmUgZm9yIFVSTDogJ2h0dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwv
+djQueC9saW51eC00LjEudGFyLnh6Jy4gVW5hYmxlIHRvIGZldGNoIFVSTCBmcm9tIGFueSBz
+b3VyY2UuDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvamFj
+a3poYW5nMTk5Mi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZmcHY0LW5l
+b24tcG9reS1saW51eC1nbnVlYWJpL2xpbnV4LWxpYmMtaGVhZGVycy80LjEtcjAvdGVtcC9s
+b2cuZG9fZmV0Y2guODAzMQ0KRVJST1I6IFRhc2sgOTYxICgvaG9tZS9qYWNremhhbmcxOTky
+L3Bva3kvbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51eC1saWJjLWhlYWRlcnMvbGludXgtbGli
+Yy1oZWFkZXJzXzQuMS5iYiwgZG9fZmV0Y2gpIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScN
+CldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgaHR0cDovL3ltb3Jpbi5pcy1hLWdlZWsu
+b3JnL2Rvd25sb2FkL2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzLTMuMTIu
+MC4wLnRhci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQ0KRVJST1I6IEZl
+dGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBmYWlsZWQgd2l0aCBleGl0IGNvZGUgNCwg
+b3V0cHV0Og0Kd2dldDogdW5hYmxlIHRvIHJlc29sdmUgaG9zdCBhZGRyZXNzICd5bW9yaW4u
+aXMtYS1nZWVrLm9yZycNCg0KDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVyIGZh
+aWx1cmUgZm9yIFVSTDogJ2h0dHA6Ly95bW9yaW4uaXMtYS1nZWVrLm9yZy9kb3dubG9hZC9r
+Y29uZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5kcy0zLjEyLjAuMC50YXIueHonLiBV
+bmFibGUgdG8gZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS4NCkVSUk9SOiBMb2dmaWxlIG9m
+IGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvYnVpbGQvdG1w
+L3dvcmsvaTY4Ni1saW51eC9rY29uZmlnLWZyb250ZW5kcy1uYXRpdmUvMy4xMi4wLjAtcjAv
+dGVtcC9sb2cuZG9fZmV0Y2guODA2Nw0KRVJST1I6IFRhc2sgNzI4ICh2aXJ0dWFsOm5hdGl2
+ZTovaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvbWV0YS9yZWNpcGVzLWRldnRvb2xzL2tjb25m
+aWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzXzMuMTIuMC4wLmJiLCBkb19mZXRjaCkg
+ZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KV0FSTklORzogRmFpbGVkIHRvIGZldGNoIFVS
+TCBodHRwOi8vZG90YXQuYXQvcHJvZy91bmlmZGVmL3VuaWZkZWYtMi4xMC50YXIueHosIGF0
+dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUNCk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0
+dGVtcHRlZCAxNTIgdGFza3Mgb2Ygd2hpY2ggMCBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBh
+bmQgMiBmYWlsZWQuDQoNCiINCg0KDQpBY2NvcmRpbmcgdG8gdGhlIGVycm9ycywgSXQgc2Vh
+bXMgdGhlcmUgYXJlIG1hbnkgZmV0Y2hlciBmYWlsdXJlcyxidXQgd2hlbiBJIGNvcHkgdGhl
+IGxpbmsgc3VjaCBhcyJodHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0Lngv
+bGludXgtNC4xLnRhci54eiIgIHRvIG15IGZpcmVmb3ggZXhwbG9yZXIsIEl0IGNvdWxkIGZp
+bmQgdGhlIGZpbGVzLiBJdCBpcyB2ZXJ5IHdlaXJkLg0KDQoNCg0KDQpJZiB5b3UgaGF2ZSBh
+bnkgaWRlYSBhYm91dCBpdCwgcGxzIGNvbnRhY3Qgd2l0aCBtZS4NClRoYW5rcw0KDQoNCg0K
+DQpKYWNrDQpTaGFuZ2hhaQ==
 
-> On Feb 1, 2016, at 10:53 PM, Karim ATIKI <karim_atiki@hotmail.com> =
-wrote:
->=20
-> Hello,
->=20
-> I'm experiencing issue while building qt-image-demo (jethro) for =
-raspberrypi2.
-> At the very end of the build: do_rootfs failure.
->=20
-> Collected errors:
->  * satisfy_dependencies_for: Cannot satisfy the following dependencies =
-for packagegroup-qt5-graphics:
->  *      qt3d-tools *
->  * opkg_install_cmd: Cannot install package packagegroup-qt5-graphics.
->=20
-> However, I haven't added or modified the layers and recipes.
->=20
-> Any idea ?
-
-check if right knobs are enabled in meta-qt5 to enable qt3d-tools. There =
-are cases sometimes where DISTRO_FEATURES control
-the knobs and that differs from distro to distro
-
->=20
->=20
-> K.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_D6422690-1B30-447E-A1E1-95E58F5F00DE
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_56B168E9_0A0431F8_3BDDBD39
 Content-Type: text/html;
-	charset=iso-8859-1
+	charset="utf-8"
+Content-Transfer-Encoding: base64
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Feb 1, 2016, at 10:53 PM, Karim ATIKI &lt;<a =
-href=3D"mailto:karim_atiki@hotmail.com" =
-class=3D"">karim_atiki@hotmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-id=3D"divtagdefaultwrapper" style=3D"font-style: normal; font-variant: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-font-size: 12pt; background-color: rgb(255, 255, 255); font-family: =
-Calibri, Arial, Helvetica, sans-serif;" class=3D""><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D"">Hello,</div><div=
- style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">I'm experiencing issue while building qt-image-demo (jethro) =
-for raspberrypi2.</div><div style=3D"margin-top: 0px; margin-bottom: =
-0px;" class=3D"">At the very end of the build: do_rootfs =
-failure.</div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""><br class=3D""></div><p style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""></p><div class=3D""><b =
-class=3D"">Collected errors:</b></div><div class=3D""><b =
-class=3D"">&nbsp;* satisfy_dependencies_for: Cannot satisfy the =
-following dependencies for packagegroup-qt5-graphics:</b></div><div =
-class=3D""><b class=3D"">&nbsp;* &nbsp; &nbsp; &nbsp;qt3d-tools =
-*</b></div><div class=3D""><b class=3D"">&nbsp;* opkg_install_cmd: =
-Cannot install package packagegroup-qt5-graphics.</b></div><div =
-class=3D""><br class=3D""></div>However, I haven't added or modified the =
-layers and recipes.<p style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""></p><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""><br class=3D""></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D"">Any idea =
-?</div></div></div></blockquote><div><br class=3D""></div><div>check if =
-right knobs are enabled in meta-qt5 to enable qt3d-tools. There are =
-cases sometimes where DISTRO_FEATURES control</div><div>the knobs and =
-that differs from distro to distro</div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div id=3D"divtagdefaultwrapper" =
-style=3D"font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; font-size: 12pt; =
-background-color: rgb(255, 255, 255); font-family: Calibri, Arial, =
-Helvetica, sans-serif;" class=3D""><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">K.</div></div><span style=3D"font-family: Ubuntu; font-size: =
-14px; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; display: =
-inline !important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: Ubuntu; font-size: 14px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
+PGRpdj5bbWV0YS1yYXNwYmVycnlwaV08L2Rpdj48ZGl2PkhpLGV2ZXJ5IG9uZS4mbmJzcDs8
+L2Rpdj48ZGl2PkknbSB0cnlpbmcgdG8gdXNlIG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgdG8g
+YnVpbGQgYW4gaW1hZ2UgZm9yIG15IHJhc3BiZXJyeXBpMiBCKyBib2FyZC4mbmJzcDs8L2Rp
+dj48ZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+QWZ0ZXIgSSBkb3dubG9hZCBwb2t5LEkgZ2l0
+IGNsb25lIG1ldGEtcmFzcGJlcnJ5cGkgbGF5ZXIgYXMgZm9sbG93czombmJzcDs8c3BhbiBz
+dHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiJnaXQgY2xvbmUgZ2l0Oi8vZ2l0LnlvY3RvcHJv
+amVjdC5vcmcvbWV0YS1yYXNwYmVycnlwaSI8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdj5UaGVu
+IEkgdG90YWxseSBmb2xsb3cgdGhlIFJFQURNRSBpbiB0aGUgbWV0YS1yYXNwYmVycnlwaSBk
+aXJlY3RvcnkgYXMgZm9sbG93czo8L2Rpdj48ZGl2PiI8L2Rpdj48ZGl2PjxkaXY+Li4uLi4u
+Li4uPC9kaXY+PGRpdj5Ib3cgdG8gdXNlIGl0OjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+
+MS4gc291cmNlIHBva3kvb2UtaW5pdC1idWlsZC1lbnYgcnBpLWJ1aWxkPC9kaXY+PGRpdj4y
+LiBBZGQgbmVlZGVkIGxheWVyIHRvIGJibGF5ZXJzLmNvbmY6PC9kaXY+PGRpdj4mbmJzcDsg
+Jm5ic3A7IC0gbWV0YS1yYXNwYmVycnlwaTwvZGl2PjxkaXY+MyAmbmJzcDtTZXQgTUFDSElO
+RSB0byAicmFzcGJlcnJ5cGkiLyJyYXNwYmVycnlwaTIiIGluIGxvY2FsLmNvbmYgJm5ic3A7
+KEkgc2V0IG1hY2hpbmUgdG8gYmUgInJhc3BiZXJyeXBpMiIgaGVyZSk8L2Rpdj48ZGl2PjQu
+IGJpdGJha2UgcnBpLWh3dXAtaW1hZ2U8L2Rpdj48ZGl2PjUuIGRkIHRvIGEgU0QgY2FyZCB0
+aGUgZ2VuZXJhdGVkIHNkaW1nIGZpbGUgKHVzZSB4emNhdCBpZiBycGktc2RpbWcueHogaXMg
+dXNlZCk8L2Rpdj48ZGl2PjYuIEJvb3QgeW91ciBSUEkuPC9kaXY+PC9kaXY+PGRpdj48c3Bh
+biBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPiI8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
+dHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPjxicj48L3NwYW4+PC9kaXY+PGRpdj5idXQgaXQg
+Y29tZXMgb3V0IHdpdGggc2V2ZXJhbCBlcnJvcnMgYWZ0ZXIgImJpdGJha2UiLCBJIGRvbid0
+IGtub3cgd2h5LCZuYnNwOzxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+d2Fybmlu
+Z3MgYW5kIGVycm9ycyBhcmUgYXMgZm9sbG93czo8L3NwYW4+PC9kaXY+PGRpdj48ZGl2PiI8
+L2Rpdj48ZGl2PldBUk5JTkc6IEZhaWxlZCB0byBmZXRjaCBVUkwgZnRwOi8vaW52aXNpYmxl
+LWlzbGFuZC5uZXQvbmN1cnNlcy9jdXJyZW50L25jdXJzZXMtNS45LTIwMTUwMzI5LnRneiwg
+YXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZTwvZGl2PjxkaXY+V0FSTklORzogRmFp
+bGVkIHRvIGZldGNoIFVSTCBodHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0
+LngvbGludXgtNC4xLnRhci54eiwgYXR0ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZTwv
+ZGl2PjxkaXY+RVJST1I6IEZldGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBmYWlsZWQg
+d2l0aCBleGl0IGNvZGUgNCwgb3V0cHV0OjwvZGl2PjxkaXY+d2dldDogdW5hYmxlIHRvIHJl
+c29sdmUgaG9zdCBhZGRyZXNzICdrZXJuZWwub3JnJzwvZGl2PjxkaXY+PGJyPjwvZGl2Pjxk
+aXY+RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdo
+dHRwOi8va2VybmVsLm9yZy9wdWIvbGludXgva2VybmVsL3Y0LngvbGludXgtNC4xLnRhci54
+eicuIFVuYWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkgc291cmNlLjwvZGl2PjxkaXY+RVJS
+T1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2phY2t6aGFuZzE5OTIv
+cG9reS9idWlsZC90bXAvd29yay9jb3J0ZXhhN2hmLXZmcC12ZnB2NC1uZW9uLXBva3ktbGlu
+dXgtZ251ZWFiaS9saW51eC1saWJjLWhlYWRlcnMvNC4xLXIwL3RlbXAvbG9nLmRvX2ZldGNo
+LjgwMzE8L2Rpdj48ZGl2PkVSUk9SOiBUYXNrIDk2MSAoL2hvbWUvamFja3poYW5nMTk5Mi9w
+b2t5L21ldGEvcmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy1oZWFkZXJzL2xpbnV4LWxpYmMt
+aGVhZGVyc180LjEuYmIsIGRvX2ZldGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPC9k
+aXY+PGRpdj5XQVJOSU5HOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly95bW9yaW4uaXMt
+YS1nZWVrLm9yZy9kb3dubG9hZC9rY29uZmlnLWZyb250ZW5kcy9rY29uZmlnLWZyb250ZW5k
+cy0zLjEyLjAuMC50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGU8L2Rp
+dj48ZGl2PkVSUk9SOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgZmFpbGVkIHdp
+dGggZXhpdCBjb2RlIDQsIG91dHB1dDo8L2Rpdj48ZGl2PndnZXQ6IHVuYWJsZSB0byByZXNv
+bHZlIGhvc3QgYWRkcmVzcyAneW1vcmluLmlzLWEtZ2Vlay5vcmcnPC9kaXY+PGRpdj48YnI+
+PC9kaXY+PGRpdj5FUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBGZXRjaGVyIGZhaWx1cmUgZm9y
+IFVSTDogJ2h0dHA6Ly95bW9yaW4uaXMtYS1nZWVrLm9yZy9kb3dubG9hZC9rY29uZmlnLWZy
+b250ZW5kcy9rY29uZmlnLWZyb250ZW5kcy0zLjEyLjAuMC50YXIueHonLiBVbmFibGUgdG8g
+ZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS48L2Rpdj48ZGl2PkVSUk9SOiBMb2dmaWxlIG9m
+IGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvYnVpbGQvdG1w
+L3dvcmsvaTY4Ni1saW51eC9rY29uZmlnLWZyb250ZW5kcy1uYXRpdmUvMy4xMi4wLjAtcjAv
+dGVtcC9sb2cuZG9fZmV0Y2guODA2NzwvZGl2PjxkaXY+RVJST1I6IFRhc2sgNzI4ICh2aXJ0
+dWFsOm5hdGl2ZTovaG9tZS9qYWNremhhbmcxOTkyL3Bva3kvbWV0YS9yZWNpcGVzLWRldnRv
+b2xzL2tjb25maWctZnJvbnRlbmRzL2tjb25maWctZnJvbnRlbmRzXzMuMTIuMC4wLmJiLCBk
+b19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzwvZGl2PjxkaXY+V0FSTklORzog
+RmFpbGVkIHRvIGZldGNoIFVSTCBodHRwOi8vZG90YXQuYXQvcHJvZy91bmlmZGVmL3VuaWZk
+ZWYtMi4xMC50YXIueHosIGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGU8L2Rpdj48
+ZGl2Pk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCAxNTIgdGFza3Mgb2Ygd2hpY2gg
+MCBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMiBmYWlsZWQuPC9kaXY+PC9kaXY+PGRp
+dj4iPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BY2NvcmRpbmcgdG8gdGhlIGVycm9ycywg
+SXQgc2VhbXMgdGhlcmUgYXJlIG1hbnkgZmV0Y2hlciBmYWlsdXJlcyxidXQgd2hlbiBJIGNv
+cHkgdGhlIGxpbmsgc3VjaCBhcyI8c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsiPmh0
+dHA6Ly9rZXJuZWwub3JnL3B1Yi9saW51eC9rZXJuZWwvdjQueC9saW51eC00LjEudGFyLnh6
+PC9zcGFuPjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+IiAmbmJzcDt0byBteSBm
+aXJlZm94IGV4cGxvcmVyLCBJdCBjb3VsZCBmaW5kIHRoZSBmaWxlcy4gSXQgaXMgdmVyeSB3
+ZWlyZC48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
+Pjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
+Pjxicj48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
+PklmIHlvdSBoYXZlIGFueSBpZGVhIGFib3V0IGl0LCBwbHMgY29udGFjdCB3aXRoIG1lLjwv
+c3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+VGhhbmtz
+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij48YnI+
+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij48YnI+
+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij5KYWNr
+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjU7Ij5TaGFu
+Z2hhaTwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+
+PGJyPjwvc3Bhbj48L2Rpdj48ZGl2PjxpbmNsdWRldGFpbD48IS0tPCFbZW5kaWZdLS0+PC9p
+bmNsdWRldGFpbD48L2Rpdj4=
 
---Apple-Mail=_D6422690-1B30-447E-A1E1-95E58F5F00DE--
-
---Apple-Mail=_D84E8BA2-B190-48E1-8A56-3152888145F9
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlaxCOEACgkQuwUzVZGdMxSSJgCeLngAoBnSvDWEbxCwFZFVt8YX
-RaIAoIHG/Q90KQgPCN/I/I9lXoLqPrhx
-=6XwJ
------END PGP SIGNATURE-----
-
---Apple-Mail=_D84E8BA2-B190-48E1-8A56-3152888145F9--
+------=_NextPart_56B168E9_0A0431F8_3BDDBD39--
