@@ -1,68 +1,54 @@
-Return-Path: <scerveau@connected-labs.com>
+Return-Path: <marius@mastercut.co.za>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C3ADE00CDF; Wed, 10 Feb 2016 01:45:18 -0800 (PST)
+	id 23A47E00C2D; Wed,  3 Feb 2016 03:02:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3E97E00CD0
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 01:45:15 -0800 (PST)
-Received: by mail-wm0-f46.google.com with SMTP id p63so19751439wmp.1
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 01:45:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=connected-labs-com.20150623.gappssmtp.com; s=20150623;
-	h=sender:from:to:cc:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding;
-	bh=VE2S90I1kR/VPWvOVeROru/KpOyjlmCpk0CF1Si0OYM=;
-	b=nPEjlDeoH3KueoOY1dMOofJNULtrMhRZr2XE/o0DtLAVHdmO8fd1l3/zOwyiQDgMDq
-	AuFtGOeFIaONlChMiyXas3qnwMm4y8ly0LXr1YEZwF5itOozyU5z6Zuh1X1Beo1t2r7e
-	ZVAYv6H4jJNIrw4Ld1CWm8iMNBrrmPEwzlFYC3J2lJXZ8Qr0wKoB8qhQUDsNX51jFBHE
-	1zsUcvCJzLu364Es+XA0B1lVkQpWFdZXFjoGb5uxcBoTbK/E90V1MrnsqzXAnAFq04Oo
-	TU2YVNR/moNnGl+lt2LFGc96aMi4ar4KN3bIWzU6zvkfTp25rMSbGptN0n1mkmau5KnH
-	g66g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-	:mime-version:content-type:content-transfer-encoding;
-	bh=VE2S90I1kR/VPWvOVeROru/KpOyjlmCpk0CF1Si0OYM=;
-	b=ZoatTZOibgW/NKlyPXXUXUdB76u8zAR+SXL4JxSxTY759JJWhukpnJMbUIJ2keTvyj
-	ZwW2dWBg2WNw+HD7k9+rwTlEtF6iSdrOPa6bhVunoGLJLdl6BZCvvFLuAiJC4ycUVZ94
-	MpN9iZU821pabucr/8wrAPAa+t5Sto2mWLG7VsCgj99tan26DKtwbqrFqVE4Me7ScDDz
-	lmDELoXaXlfekq3xK8nWxkuXvJYkd5uziTk59D18RgCj8rRtUGvcv6vhC//aqgo5Z4Eq
-	ypyQixgToWIhWIAAf4/CCGZ6KlbtQQdh+KAYsKqJyo3hrVE36YFgnw/UWJXOgx3O58uM
-	sxcg==
-X-Gm-Message-State: AG10YOQQhKX9InxJs9upOyOWVkOof4/cJx5uVkMEH+ObCbBsbVYL4ayXAGrjGZzoGsVzRg==
-X-Received: by 10.194.78.230 with SMTP id e6mr8182393wjx.179.1455097514927;
-	Wed, 10 Feb 2016 01:45:14 -0800 (PST)
-Received: from maupiti.lan (connected-labs-gw1.ter2.neodc.mpl.cust.as8218.eu.
-	[94.103.137.126])
-	by smtp.gmail.com with ESMTPSA id ka7sm2127718wjb.8.2016.02.10.01.45.13
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 10 Feb 2016 01:45:13 -0800 (PST)
-Sender: Stephane Cerveau <scerveau@connected-labs.com>
-From: "=?UTF-8?q?St=C3=A9phane=20Cerveau?=" <scerveau@voxtok.com>
-X-Google-Original-From: =?UTF-8?q?St=C3=A9phane=20Cerveau?= <voxtok@voxtok.com>
-To: yocto@yoctoproject.org
-Date: Wed, 10 Feb 2016 10:43:35 +0100
-Message-Id: <1455097415-22996-1-git-send-email-voxtok@voxtok.com>
-X-Mailer: git-send-email 2.1.4
-MIME-Version: 1.0
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_20,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.0504]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 1302 seconds by postgrey-1.32 at yocto-www;
+	Wed, 03 Feb 2016 03:02:48 PST
+Received: from lin01.hkdns.co.za (unknown [197.242.68.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C898E00B3D
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 03:02:48 -0800 (PST)
+Received: from [80.95.0.196] (port=58881 helo=[127.0.0.1])
+	by lin01.hkdns.co.za with esmtpsa (TLSv1:AES256-SHA:256) (Exim 4.86)
+	(envelope-from <marius@mastercut.co.za>) id 1aQurt-001WvB-D9
+	for yocto@yoctoproject.org; Wed, 03 Feb 2016 12:41:01 +0200
+From: "Marius Liebenberg" <marius@mastercut.co.za>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 03 Feb 2016 10:41:00 +0000
+Message-Id: <em598a6a98-6926-4a79-a8ab-da18fc2e8671@marius-pc>
+User-Agent: eM_Client/6.0.24316.0
+Mime-Version: 1.0
+X-cPanel-MailScanner-Information: Please contact the ISP for more information
+X-cPanel-MailScanner-ID: 1aQurt-001WvB-D9
+X-cPanel-MailScanner: Not scanned: please contact your Internet E-Mail Service
+	Provider for details
+X-cPanel-MailScanner-SpamCheck: 
+X-cPanel-MailScanner-From: marius@mastercut.co.za
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - lin01.hkdns.co.za
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - mastercut.co.za
+X-Get-Message-Sender-Via: lin01.hkdns.co.za: authenticated_id:
+	marius@mastercut.co.za
+X-Authenticated-Sender: lin01.hkdns.co.za: marius@mastercut.co.za
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Mailman-Approved-At: Wed, 10 Feb 2016 07:08:11 -0800
-Cc: =?UTF-8?q?St=C3=A9phane=20Cerveau?= <voxtok@voxtok.com>
-Subject: [meta-raspberrypi][PATCH] linux-raspberry.inc: add initramfs support
+Subject: DTB without USB host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Marius Liebenberg <marius@mastercut.co.za>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,33 +57,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Feb 2016 09:45:18 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 03 Feb 2016 11:02:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------=_MB02BD62A5-E626-4F71-A7DB-F3998CD2924D"
 
-in do_rpiboot_mkimage add rpi bootload trailer
-for initramfs image.
+--------=_MB02BD62A5-E626-4F71-A7DB-F3998CD2924D
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Stéphane Cerveau <voxtok@voxtok.com>
----
- recipes-kernel/linux/linux-raspberrypi.inc | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index 70e8bfe..634bd5e 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -61,6 +61,9 @@ do_rpiboot_mkimage() {
-         if test -n "${KERNEL_DEVICETREE}"; then
-             # Add RPi bootloader trailer to kernel image to enable DeviceTree support
-             ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
-+            if [ ! -z "${INITRAMFS_IMAGE}" ]; then
-+				 ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
-+            fi
-         fi
-     fi
- }
--- 
-2.1.4
+Hi does anyone know if there is a standard DTB for BBB that does not=20
+have USB host, network interface and HDMI?
 
 
+
+-----------------------------
+Regards / Groete
+
+Marius D. Liebenberg
++27 82 698 3251
++27 12 743 6064
+
+--------=_MB02BD62A5-E626-4F71-A7DB-F3998CD2924D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD>
+<STYLE id=3DeMClientCss>BLOCKQUOTE.cite {
+	PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccccc 1px solid; PADD=
+ING-RIGHT: 0px; MARGIN-RIGHT: 0px
+}
+BLOCKQUOTE.cite2 {
+	PADDING-TOP: 0px; PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccc=
+cc 1px solid; MARGIN-TOP: 3px; PADDING-RIGHT: 0px; MARGIN-RIGHT: 0px
+}
+.plain PRE {
+	FONT-SIZE: 100%; FONT-FAMILY: monospace; FONT-WEIGHT: normal; FONT-STYLE:=
+ normal
+}
+.plain TT {
+	FONT-SIZE: 100%; FONT-FAMILY: monospace; FONT-WEIGHT: normal; FONT-STYLE:=
+ normal
+}
+A IMG {
+	BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px
+}
+BODY {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma
+}
+.plain PRE {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma
+}
+.plain TT {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma
+}
+</STYLE>
+</HEAD>
+<BODY>
+<DIV>Hi does anyone know if there is a standard DTB for BBB that does not=
+ have USB host, network interface and HDMI?</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>
+<DIV>&nbsp;</DIV>
+<DIV id=3Dsignature_old>
+<DIV style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Tahoma">
+<DIV>&nbsp;</DIV>
+<DIV>-----------------------------</DIV>
+<DIV>Regards / Groete</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Marius D. Liebenberg</DIV>
+<DIV>+27 82 698 3251</DIV>
+<DIV>+27 12 743 6064</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV></BODY></HTML>
+
+--------=_MB02BD62A5-E626-4F71-A7DB-F3998CD2924D--
