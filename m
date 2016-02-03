@@ -1,66 +1,63 @@
-Return-Path: <todd.efflam@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC29DE00C39; Wed,  3 Feb 2016 10:22:12 -0800 (PST)
+	id 482FAE00C43; Wed,  3 Feb 2016 10:44:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (todd.efflam[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.51 listed in list.dnswl.org]
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 084EFE00C39
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 10:22:11 -0800 (PST)
-Received: by mail-vk0-f51.google.com with SMTP id e185so20463064vkb.1
-	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 10:22:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	*      [209.85.223.172 listed in list.dnswl.org]
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F079E00C39
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 10:44:05 -0800 (PST)
+Received: by mail-io0-f172.google.com with SMTP id g73so66225416ioe.3
+	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 10:44:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=/CimrzZj0QMGR3Ai3iBS6uAW088fKEF0CoRvJxp6iyM=;
-	b=ZbYUEp7+Y+MAf/H1G9whCt/8izUZWOW2jNBBnhBUmPVnY22sftlaZTtnR/lKp72ON4
-	3S/OT8n39SwcMGPqu0ugrHVPHSmfAdfv6QSvm1ovIecBQeqUJZ2XPqlr0TG50twNACd0
-	JikPj1CzqWYm+zrjnRrhW7rcyiuXiD6hjFd6juU1xu7JfJQ6bgeMnesMoxHnVQ/lg4EN
-	WmuZl4MOT/NJj5Q2BBNBSXl66JjDdzdfpyJ57bk1G9/D2e5xRKDoMHyOvUVJs6XCzX8g
-	YwcmrRNm2Mw74pJWzdaVpBOT7KVnfLX6ThnOeK4n2QAlxjcXaVSyzrgTbDy1CX1w9vmz
-	Vd7Q==
+	bh=g30jPtoAZQyhhCaTI+SW6rBA8IpGfumAavaERGEPZRE=;
+	b=rS0m9CcT+wqK0MaBmR2MsKv+KLVVJ1N0/31KAravjnblE4nQi5UswSrYADfcdJlujH
+	tRqcGRs+gCBREuwSjzYqctDVf8xoCmW9LfWyzuU6hgTOZC/CdtlkKsDG0BlRjqFKb3F0
+	ma4xnoFBHO45vyJbo4uYNVDTTFmtC31XInhilg8ZiEwh/BDbUJzTg0zkKmg9YXdH6NY+
+	NC3kwbXBTaqAn4zrwe/FZwH8giHn9Br236Zj0PQM6sOvZzXOiRz05olroEEvcq42PT1c
+	M2W7+im0SzxseIUxdtKyFMO/ocyQJNft0BNywp4RyrV1OSUfRz6Lm4cGTW7pC9IRNDSE
+	FwyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=/CimrzZj0QMGR3Ai3iBS6uAW088fKEF0CoRvJxp6iyM=;
-	b=P6jBRHorKG1EqVQaQOxCfEzvABRKZLLe03o5eKkY3Lt/xtwBiwVu09ihdq9CnBeykE
-	JHe94//5b3OsjCoB1buB2ojTINFrul5F9PQQy3Msig6uUTq4av5r98NIGt3l3OM0fQrm
-	DxwM+M4IRNTeo8M3BoJ0NKRa/+0P4XAHPtXnp5XaTGh2W8Y+S23cHGYsV2vjafy+KQXE
-	JDqarnZw1KN3P1yyk0gn/jKqXRZf1qK/8248Q7nkIgroEI/nGGjmkqpqquUHMEzBlOqq
-	DRFLLE2Xc7e/deMAg70bO5pKqLr6AW/SzNrdmcOxrWMSf+V4JFLdWTWoc0d9eaXWsH78
-	a4MA==
-X-Gm-Message-State: AG10YOQglwvMV96vSOE70KpMDRphvDiLzsZBjSG+vFdu7YzGStLVboZlRdfzAavjP2XUYxEPhuz9epKFjt9viQ==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=g30jPtoAZQyhhCaTI+SW6rBA8IpGfumAavaERGEPZRE=;
+	b=aKB18GBn6FcHgNsBfL7/JSTjNWq30So5PZSoGn1BqtHiXh0oVpBVWZCbJY+0c8/93M
+	146ll6er8lmm9ue2SyrkYFt2sZEqh+2nw5D4SXPYCP4NzHOJrJwIn4YE0Euq3/rPsP7R
+	OmYjmb5ORFXK+JqS5zqAfgzGhXRzI3DKu4p/AtchuZpswm+O2+5nlvdR6M/VOL67vJW/
+	YantfhxXU9UdhBU0CBwHsi7ODwYxM9nlXGMisvIWLwVKjbYg46g5KBFI3upRRo8Xb/vP
+	vdM9Z1eWUbcCjK5b+ZM0ZyA9lhqJz1n3E9rrwGbYkG6LM0IWoS5byTRoeLXvYys5J6n/
+	C7fg==
+X-Gm-Message-State: AG10YOSuEGwRDr7RR9tCAtSuWXubY0EeEjfyeTAUwj3h4hHXyIIJKc2oT2bzpS1o4nsjGgiOtIif/W1x3BlQEAQN
+X-Received: by 10.107.164.15 with SMTP id n15mr4535609ioe.148.1454525045202;
+	Wed, 03 Feb 2016 10:44:05 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.31.194.130 with SMTP id s124mr2227071vkf.92.1454523730669;
-	Wed, 03 Feb 2016 10:22:10 -0800 (PST)
-Received: by 10.103.86.81 with HTTP; Wed, 3 Feb 2016 10:22:10 -0800 (PST)
-In-Reply-To: <CAHWMYyCW7zbZftqu4auw7OBKEnxaoykCF-_hWtaYY5qJhaiebg@mail.gmail.com>
-References: <CAHWMYyCftLwJ2OsiAHNtgK94gy+9FAG_71mgi6A=+F_nuUJrGw@mail.gmail.com>
-	<1454430798277.69358@seescan.com>
-	<CAHWMYyCW7zbZftqu4auw7OBKEnxaoykCF-_hWtaYY5qJhaiebg@mail.gmail.com>
-Date: Wed, 3 Feb 2016 10:22:10 -0800
-Message-ID: <CAHWMYyAt4Mdn250Ku_uMtrHr1Awau-MPtwCaYDvi0YK8mDYE9g@mail.gmail.com>
-From: Todd Efflam <todd.efflam@gmail.com>
-To: Fred Ollinger <Fred.Ollinger@seescan.com>
+Received: by 10.107.162.70 with HTTP; Wed, 3 Feb 2016 10:43:45 -0800 (PST)
+In-Reply-To: <CALf_N3bW91zwfebcdvfseHFKQrnykSdAsvodjchVKGr2eym-2w@mail.gmail.com>
+References: <CALf_N3a0K0mODhMwBLJgDV5MEDd14CkxJAnWEX=+kLG=Q8NRxA@mail.gmail.com>
+	<CAJTo0LbiKF0w=NeNFRYmh_fc73HYH-1Zg6p1-8r46-oexFt6-A@mail.gmail.com>
+	<CALf_N3bW91zwfebcdvfseHFKQrnykSdAsvodjchVKGr2eym-2w@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 3 Feb 2016 18:43:45 +0000
+Message-ID: <CAJTo0LaSUoPmurmL6xwy10h-SMSWSk0iedLjkPGAD=6cm-YX0g@mail.gmail.com>
+To: Mark T <mtl1nuxd3v@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem installing ath10k firmware
+Subject: Re: Which Toolchain is being used to build Yocto ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,23 +69,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 18:22:12 -0000
+X-List-Received-Date: Wed, 03 Feb 2016 18:44:09 -0000
+Content-Type: multipart/alternative; boundary=001a11377682a3083f052ae2004f
+
+--001a11377682a3083f052ae2004f
 Content-Type: text/plain; charset=UTF-8
 
-Finally was able to get it work - the error seemed to be a combination
-of things.
+On 3 February 2016 at 18:15, Mark T <mtl1nuxd3v@gmail.com> wrote:
 
-We went with the modular build and ended up building the following as modules:
-CONFIG_ATH10K=m
-CONFIG_ATH10K_PCI=m
-CONFIG_ATH_CARDS=m
-CONFIG_ATH_COMMON=m
+> Thanks. That makes sense; all the cross compile tools are built using the
+> Host machines native toolchain on the host then the cross-toolchain used to
+> cross compile yocto for the target.
+>
 
-Then we added only "kernel-module-ath10k-pci" to IMAGE_INSTALL.   With
-those two steps, we were then able to push the firmware to the
-/lib/firmware/ directory as Fred had mentioned and ath10k was then
-working with our card.  Thanks for the help!
+Correct.
 
-Best,
-Todd
+Ross
 
+--001a11377682a3083f052ae2004f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 3 February 2016 at 18:15, Mark T <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:mtl1nuxd3v@gmail.com" target=3D"_blank">mtl1nuxd3v@gmail.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Thanks. That ma=
+kes sense; all the cross compile tools are built using the Host machines na=
+tive toolchain on the host then the cross-toolchain used to cross compile y=
+octo for the target.</div></blockquote><div><br></div><div>Correct.</div><d=
+iv><br></div><div>Ross=C2=A0</div></div></div></div>
+
+--001a11377682a3083f052ae2004f--
