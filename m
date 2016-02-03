@@ -1,48 +1,68 @@
-Return-Path: <bartosz.woronicz@nokia.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB024E00C31; Wed,  3 Feb 2016 06:16:14 -0800 (PST)
+	id 704E1E009EA; Wed,  3 Feb 2016 06:45:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [93.183.12.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from demumfd002.nsn-inter.net (demumfd002.nsn-inter.net
-	[93.183.12.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77FC9E00C2E
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 06:16:11 -0800 (PST)
-Received: from demuprx017.emea.nsn-intra.net ([10.150.129.56])
-	by demumfd002.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
-	u13EG5Gb006949
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK);
-	Wed, 3 Feb 2016 14:16:06 GMT
-Received: from [10.154.187.104] ([10.154.187.104])
-	by demuprx017.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
-	id u13EG4E2001780; Wed, 3 Feb 2016 15:16:04 +0100
-To: "EXT Burton, Ross" <ross.burton@intel.com>
-References: <56B1D2D1.5010508@nokia.com>
-	<CAJTo0LayhHP7wbcbLf7TOu8e=6-ERg90VdJu_Av9EfmBBFEmAg@mail.gmail.com>
-From: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
-Message-ID: <56B20BA1.2060004@nokia.com>
-Date: Wed, 3 Feb 2016 15:16:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C95CFE00951
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 06:45:13 -0800 (PST)
+Received: by mail-io0-f174.google.com with SMTP id 9so57541373iom.1
+	for <yocto@yoctoproject.org>; Wed, 03 Feb 2016 06:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=/KA/TSeDb8wXB2fsE4Lif+5k75hVMUzpUYYV4cUod40=;
+	b=Tw0PdwKyps/XOv7avWnbU2xGmWYkpdv207uiZjBGPSe2QAI0d+XooxSoPAALPiXr8s
+	frv6XK7VneZjCYxLmnLV3wlbjbXU7i1rHzqM1SDCERMtwnPLZR6dCSsG50fjdyWn//9R
+	fY79zmzprgf7JMrLABqMgYfiHY5nxnzHJkuIJeBFtUngYC6e5PNhMO7cM1UOTe2v6cyo
+	P7q1psZKSdNrI6ANTdulxiud61zbe+UCABD9myM5H7Br02vx0eJDgBTW/xDhy1tThpOC
+	TdwOt502K3TMi0OnVoTqvycmUj/aBmDBEsAS0AKXH0XN8Fd8ZgjFSV6ALX5sEMMjOhh6
+	T1xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=/KA/TSeDb8wXB2fsE4Lif+5k75hVMUzpUYYV4cUod40=;
+	b=PG5eBkvmZAGmVCbnhOYK6uTKlI/Wp97W0sKtMnZF8mlFf8eYmV51jIgM47MNvAgE5Q
+	MN6sQmShQCJnemPg+xNhxSw7c1bWjX1uL8Zqf8ffbSzcE2AHkLJVUdJWrxmv6qgW8HUq
+	E08YgQ3ot09x/guXFbsQjfq8Nqeh5N3EQj11MKeAM5h9osevW80b27d2mu/dZRx8BR7Z
+	41iIuX9Fck36Wh7RITUGC4MTpw/PApO2+x4+2rXwhlfUGxAL3Ve3Rxizmy4MrEPMJFDu
+	h9xVQ/yflz91FhcpRKRm9N0JjZ5bRQYdXYyzjSok7/zykYp3BHIctF4KTFyJg5CHUw0d
+	O3cw==
+X-Gm-Message-State: AG10YOR0NaTHbL6dPeSQPOeFDfaV46NAkljB056QcUzbrxRhBjNcba452LQJstyYL6UxQnr/hhunVasWfASpbg==
+X-Received: by 10.107.34.79 with SMTP id i76mr4327006ioi.195.1454510712786;
+	Wed, 03 Feb 2016 06:45:12 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LayhHP7wbcbLf7TOu8e=6-ERg90VdJu_Av9EfmBBFEmAg@mail.gmail.com>
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
-	further information)
-X-purgate-size: 3982
-X-purgate-ID: 151667::1454508966-0000462D-C7BA11D6/0/0
+Received: by 10.107.46.219 with HTTP; Wed, 3 Feb 2016 06:44:43 -0800 (PST)
+In-Reply-To: <EC7BC1CD2E085743BB2AE634252C39C1717A39@server.exchange.local>
+References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
+	<AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
+	<CAEyFGJGx-Cns4Sj3bru4L-e2cCmO+w0dPOy5TkYad9+n+0BuSQ@mail.gmail.com>
+	<EC7BC1CD2E085743BB2AE634252C39C1717A39@server.exchange.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 3 Feb 2016 06:44:43 -0800
+Message-ID: <CAMKF1sr-qwCsThsB3PH1v1_7u_jNpZAg-Pg=vp0ZOTHvbevbDg@mail.gmail.com>
+To: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Where should I append Yocto bitbake task to create work folder symlink ?
+Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,121 +74,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 14:16:14 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070902020608070401000607"
+X-List-Received-Date: Wed, 03 Feb 2016 14:45:15 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------070902020608070401000607
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-
-On 03.02.2016 11:28, EXT Burton, Ross wrote:
->
-> On 3 February 2016 at 10:13, Woronicz, Bartosz ( NSN - PL/Wroclaw) 
-> <bartosz.woronicz@nokia.com <mailto:bartosz.woronicz@nokia.com>> wrote:
->
->     Let's say I have my package at
->
->     host-64/tmp/work/x86_64-poky-linux/mypackage/1.2.3-r4/
->
->     I would like to have symlink created
->
->         host-64/tmp/work/x86_64-poky-linux/mypackage/latest -> 1.2.3-r4/
->
->     each time the new version is fetched and unpacked. How can I
->     achieve that ? Which class, task should I append, extend ?
+On Wed, Feb 3, 2016 at 3:46 AM, GUEYTAT Julien
+<j.gueytat@cdssoft.studiel.fr> wrote:
+> Hi everyone,
 >
 >
-> One way would be to create a new task that comes after unpack and 
-> creates the symlink.
 >
-> You may be interested in the rm_old_work class that can remove old 
-> work trees so there's only ever one work tree, and I believe due to 
-> how master does sysroot cleanup there's only ever one version in work/ 
-> now.
+> I understand that you are all rewriting the qtbase rule to include at lea=
+st
+> the modification to the QMAKE_LIBS_EGL variable.
 >
-> Ross
-But I need to the sysroot cleanup deliberately, right ?
+> The question is:
+>
+> Could we make somehow some work in meta-qt5 or meta-raspberrypi to not ha=
+ve
+> to overwrite the qtbase rule.
 
 
-----
+I dont understand. PAKCAGECONFIGS are specifically desined for this
+kind of scenario
+what problems are you seeing.
 
-Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw
+>
+> For instance=E2=80=A6 meta-raspberrypi is providing a package config file=
+ for EGL.
+> May be you could have meta-qt5 read this package config.
+>
+>
+>
+> That=E2=80=99s the question. I=E2=80=99d like to know what the maintainer=
+s of those two
+> layers think about that.
+>
+>
+>
+> Best Regards,
+>
+>
+>
+> De : Yannick Kiekens [mailto:yannickkiekens@gmail.com]
+> Envoy=C3=A9 : mercredi 3 f=C3=A9vrier 2016 08:41
+> =C3=80 : Khem Raj
+> Cc : GUEYTAT Julien; yocto@yoctoproject.org
+> Objet : Re: [yocto] [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not
+> properly set
+>
+>
+>
+> Have a look at this git repo: https://github.com/YannickKiekens/meta-qt5-=
+pi
+>
+> I have build a qt5 eglfs with raspberry pi2 backend on master branch
+> yesterday evening
+>
+>
+>
+> On Wed, Feb 3, 2016 at 7:08 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>
+>
+>
+> On Feb 2, 2016, at 8:50 AM, GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
+> wrote:
+>
+>
+>
+> Hi,
+>
+>
+>
+> It seems that there are some stiff missing between meta-qt5 or
+> meta-raspberrypi.
+>
+> When we set the option gles=E2=80=A6 to qtbase we don=E2=80=99t get the Q=
+MAKE_LIBS_EGL set
+> properly.
+>
+> We can compare a working set of variables in the qt mkspecs directory of =
+qt.
+>
+> There is one dedicated file for the RaspberryPi2. May be one also for
+> RaspberryPi.
+>
+> Anyway!
+>
+> How could we set those *_EGL variables properly? And=E2=80=A6 If they are=
+ properly
+> set, will qtbase will take them into account?
+>
+>
+>
+> I will be happy to propose a patch but I need to get more precision first=
+.
+>
+>
+>
+> Firstly show the DISTRO_FEATURES may be you are missing some important kn=
+obs
+> for EGL
+>
+> like openGL and gles2 etc.
+>
+>
+>
+> Thanks in advance,
+>
+>
+>
+>
+>
+>
+>
+> Julien GUEYTAT
+>
+> Ing=C3=A9nieur Informatique
+>
+> <image001.png>
+>
+> 1027, avenue du Docteur Julien Lefebre BP27
+>
+> 06271 Villeneuve-Loubet Cedex
+>
+> Fixe :  +33 (0) 492 024 545
+> Mob :  +33(0) 617 980 383
+> Fax :    +33(0) 492 024 546
+> Email : j.gueytat@cdssoft.studiel.fr
+>
+> www : www.studiel.fr
+>
+> P Pensez Environnement, imprimez seulement si n=C3=A9cessaire
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-
-
---------------070902020608070401000607
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <pre class="moz-signature" cols="72">
-</pre>
-    <div class="moz-cite-prefix">On 03.02.2016 11:28, EXT Burton, Ross
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJTo0LayhHP7wbcbLf7TOu8e=6-ERg90VdJu_Av9EfmBBFEmAg@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On 3 February 2016 at 10:13,
-            Woronicz, Bartosz ( NSN - PL/Wroclaw)
-            <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:bartosz.woronicz@nokia.com" target="_blank">bartosz.woronicz@nokia.com</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div id=":5qy" class="a3s" style="overflow:hidden">Let's
-                say I have my package at<br>
-                <br>
-                   
-                host-64/tmp/work/x86_64-poky-linux/mypackage/1.2.3-r4/<br>
-                <br>
-                I would like to have symlink created<br>
-                <br>
-                    host-64/tmp/work/x86_64-poky-linux/mypackage/latest
-                -&gt; 1.2.3-r4/<br>
-                <br>
-                each time the new version is fetched and unpacked. How
-                can I achieve that ? Which class, task should I append,
-                extend ?</div>
-            </blockquote>
-          </div>
-          <br>
-          One way would be to create a new task that comes after unpack
-          and creates the symlink.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">You may be interested in the
-          rm_old_work class that can remove old work trees so there's
-          only ever one work tree, and I believe due to how master does
-          sysroot cleanup there's only ever one version in work/ now.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Ross</div>
-      </div>
-    </blockquote>
-    But I need to the sysroot cleanup deliberately, right ?<br>
-    <br>
-    <br>
-    ----<br>
-    <pre class="moz-signature" cols="72">Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw</pre>
-    <br>
-  </body>
-</html>
-
---------------070902020608070401000607--
