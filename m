@@ -1,6 +1,6 @@
-Return-Path: <psiva87@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BEA7E00C2B; Tue,  2 Feb 2016 21:49:29 -0800 (PST)
+	id 445F3E00C2B; Tue,  2 Feb 2016 22:08:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (psiva87[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.217.179 listed in list.dnswl.org]
+	*      [209.85.220.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,46 +20,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
-	[209.85.217.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41C1DE00C29
-	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 21:49:23 -0800 (PST)
-Received: by mail-lb0-f179.google.com with SMTP id x4so5909811lbm.0
-	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 21:49:23 -0800 (PST)
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE106E00C29
+	for <yocto@yoctoproject.org>; Tue,  2 Feb 2016 22:08:50 -0800 (PST)
+Received: by mail-pa0-f51.google.com with SMTP id yy13so7756026pab.3
+	for <yocto@yoctoproject.org>; Tue, 02 Feb 2016 22:08:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=2QYiAzZy8AhJKW2dldAbLjRE8j3/5YSu+aJ7umKMO1k=;
-	b=lMlg5Hf8wNZUs8y79K25ewX+BFKKsRQKKDilx8e4tEjoxor//ekYhbNTaVrQ5Wwb3n
-	PdM1e1PsLvghYNqYsMP8czkLlgjxtDUQdUsuL3Ehe932oUREdu6/lEtPXlFSlcXl0vn9
-	p1p22Mn0LYOfgaoCkxBoIF9TNYfI1FYX9MYmCoGh3ivOz3yo0uxaIHAwiujlEb3kMx1W
-	bCbP7cmp/YHG8Z9o/o8VG2x0F4sAEtiYKvHr5IEMZIovJ4WheOZLvJoOFgSw9ck63yGI
-	tYzMmu529YOIC+URPRxrMNOmGtf2uLsdUoCwaPFB20MyZEd3YOU6GHhrP3OBdMj+J+RH
-	GRTg==
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=2HNnF6YKAM5H+iELmnDpf1DfJ9+3IV58t+Y8GYHszHY=;
+	b=KtriPRMSQxYeBh7/RaX2modpj3EnI+YRN6PGzx/gkEofw51h/5HpIlQJuXGlsxedun
+	E8QFr4G/lTF4bK0c4LNYil/5beOkq6HazSARJ9QB/rEFtJQVZmJGeH+kSXALTd+t0Jim
+	LtfMDKCaQ4nzttfJVllk2G9o2MaRIJ+FGpKZZkygTa3HaAY6hV2g9ldteO1QUG3yeIXQ
+	U5DkRxKAcC0cKWRLjEmx+CbAFF8QFoTd4HWKEAMHSKV8Bs83wkqzl+24HXt2dhFSoMoc
+	hXdsz4VLTnLgmFz9kjA3n4G77yp8IuDObbsVb6m2MZjbNp2Jb5fH7rfBXF6Ihy5Ie1GY
+	vv1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=2QYiAzZy8AhJKW2dldAbLjRE8j3/5YSu+aJ7umKMO1k=;
-	b=RADXt7gcdvoMvXbYE/l2OJAdYWIiX+ECkPQ4LujRqjSQScAkcRjWng5/ybtW1XH4Q9
-	I8c0u0WCdxezE2dsIrV+ErqZ8y2o9iteR5L3Tzw4N6AIXebXTkrUexXy36eEBR5toiw6
-	HzEF1YEK6c+4EsQqGaPjVA8hbZ5UzYl+2pWUeQObsmfHO6SpwwhyTfH1eTQuvv0BAdzF
-	8ZcT30whGuykqAPGZR5I5BdUpHwlXt6VPE40cSmRuQ4gbbo0r4enSi33Z9MrB10iGKit
-	96eK6b8nrZxx6nKygztJzI6zBzv9Z7xSKBUE+ZxfX4jcjk/9xBvcd/qPiv0IVKf2GobE
-	aOpA==
-X-Gm-Message-State: AG10YOTBH2wzqfIwGeeFmSIpExxLFVLtzakSD5dT9pgtB2tdtqYCgqKQCOcA20HtyF0x0/3q2Rpb7CLn7/uMyg==
-MIME-Version: 1.0
-X-Received: by 10.112.198.102 with SMTP id jb6mr12909861lbc.44.1454478561340; 
-	Tue, 02 Feb 2016 21:49:21 -0800 (PST)
-Received: by 10.112.143.6 with HTTP; Tue, 2 Feb 2016 21:49:21 -0800 (PST)
-In-Reply-To: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
-References: <tencent_20A63B0F0423506A7CA4FA64@qq.com>
-Date: Wed, 3 Feb 2016 11:19:21 +0530
-Message-ID: <CAOorjZRWEv7-UuHY_2cj_Ka0m+w1DkihH+agJFA--pW==zsbOQ@mail.gmail.com>
-From: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
-To: =?UTF-8?B?5byg5YGl?= <jackzhang1992@t.shu.edu.cn>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] errors when I "bitbake" an image for my rpi2 B+ board
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=2HNnF6YKAM5H+iELmnDpf1DfJ9+3IV58t+Y8GYHszHY=;
+	b=Vaa3ToEVivwWR2JlBsqyPVdwmxXVaIlbIn8hr/DcfZadoW8b08fKarUy19gyQWwu2k
+	MuQgO8jrnDJt4KOizSl6gjBTs/MTuu4GP9Nf4X8j/aBLl1APq5qoLOefnpWrLNoIi3to
+	/Fv3lCUAZdZatNlRq/fLBcn6Xg1rj2awZP0Ag+GoAXxzAlMgw5Vk0BnOELWn62Av9xZ8
+	QqJnif4leT+yiZj97GZ2ENlb9DcYULumwe+1J1Il8pf+gve0cXAjbb4AwmRVctqX2koE
+	bK2brX+G+MXpppnNOWdOVdDKbuJcw+7aAgal1LSERFy6e31c8RO4iJSAbyjG71AIsa3p
+	93sw==
+X-Gm-Message-State: AG10YOThw7FPOYuVDvjIKuEJeWYg08l/N7M0RVF5EpUD8olIOxmhuqvOR9bScEaO1Eu4kQ==
+X-Received: by 10.66.252.42 with SMTP id zp10mr53480380pac.29.1454479729884;
+	Tue, 02 Feb 2016 22:08:49 -0800 (PST)
+Received: from [192.168.0.4] (c-73-252-206-77.hsd1.ca.comcast.net.
+	[73.252.206.77]) by smtp.gmail.com with ESMTPSA id
+	s90sm1199332pfa.49.2016.02.02.22.08.48
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 02 Feb 2016 22:08:49 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
+Date: Tue, 2 Feb 2016 22:08:48 -0800
+Message-Id: <AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
+References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
+To: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
+X-Mailer: Apple Mail (2.3112)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,205 +77,270 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 05:49:29 -0000
-Content-Type: multipart/alternative; boundary=001a11c34aa8fb82ca052ad72d88
+X-List-Received-Date: Wed, 03 Feb 2016 06:08:52 -0000
+X-Groupsio-MsgNum: 28217
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---001a11c34aa8fb82ca052ad72d88
-Content-Type: text/plain; charset=UTF-8
+--Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B"
+
+--Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hi Jack,
-How about wget or curl of those urls, are you able to reach it? Also, see
-if explorer redirects this to https or other protocol?
 
-Regards,
-Sivasubramanian
+> On Feb 2, 2016, at 8:50 AM, GUEYTAT Julien =
+<j.gueytat@cdssoft.studiel.fr> wrote:
+>=20
+> Hi,
+>=20
+> It seems that there are some stiff missing between meta-qt5 or =
+meta-raspberrypi.
+> When we set the option gles=E2=80=A6 to qtbase we don=E2=80=99t get =
+the QMAKE_LIBS_EGL set properly.
+> We can compare a working set of variables in the qt mkspecs directory =
+of qt.
+> There is one dedicated file for the RaspberryPi2. May be one also for =
+RaspberryPi.
+> Anyway!
+> How could we set those *_EGL variables properly? And=E2=80=A6 If they =
+are properly set, will qtbase will take them into account?
+>=20
+> I will be happy to propose a patch but I need to get more precision =
+first.
 
-On Wed, Feb 3, 2016 at 8:11 AM, =E5=BC=A0=E5=81=A5 <jackzhang1992@t.shu.edu=
-.cn> wrote:
+Firstly show the DISTRO_FEATURES may be you are missing some important =
+knobs for EGL
+like openGL and gles2 etc.
 
-> [meta-raspberrypi]
-> Hi,every one.
-> I'm trying to use meta-raspberrypi layer to build an image for my
-> raspberrypi2 B+ board.
->
-> After I download poky,I git clone meta-raspberrypi layer as follows: "git
-> clone git://git.yoctoproject.org/meta-raspberrypi"
-> Then I totally follow the README in the meta-raspberrypi directory as
-> follows:
-> "
-> .........
-> How to use it:
->
-> 1. source poky/oe-init-build-env rpi-build
-> 2. Add needed layer to bblayers.conf:
->     - meta-raspberrypi
-> 3  Set MACHINE to "raspberrypi"/"raspberrypi2" in local.conf  (I set
-> machine to be "raspberrypi2" here)
-> 4. bitbake rpi-hwup-image
-> 5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is
-> used)
-> 6. Boot your RPI.
-> "
->
-> but it comes out with several errors after "bitbake", I don't know why, w=
-arnings
-> and errors are as follows:
-> "
-> WARNING: Failed to fetch URL
-> ftp://invisible-island.net/ncurses/current/ncurses-5.9-20150329.tgz,
-> attempting MIRRORS if available
-> WARNING: Failed to fetch URL
-> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz, attempting
-> MIRRORS if available
-> ERROR: Fetcher failure: Fetch command failed with exit code 4, output:
-> wget: unable to resolve host address 'kernel.org'
->
-> ERROR: Function failed: Fetcher failure for URL: '
-> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz'. Unable to
-> fetch URL from any source.
-> ERROR: Logfile of failure stored in:
-> /home/jackzhang1992/poky/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-li=
-nux-gnueabi/linux-libc-headers/4.1-r0/temp/log.do_fetch.8031
-> ERROR: Task 961
-> (/home/jackzhang1992/poky/meta/recipes-kernel/linux-libc-headers/
-> linux-libc-headers_4.1.bb, do_fetch) failed with exit code '1'
-> WARNING: Failed to fetch URL
-> http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-frontends-=
-3.12.0.0.tar.xz,
-> attempting MIRRORS if available
-> ERROR: Fetcher failure: Fetch command failed with exit code 4, output:
-> wget: unable to resolve host address 'ymorin.is-a-geek.org'
->
-> ERROR: Function failed: Fetcher failure for URL: '
-> http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-frontends-=
-3.12.0.0.tar.xz'.
-> Unable to fetch URL from any source.
-> ERROR: Logfile of failure stored in:
-> /home/jackzhang1992/poky/build/tmp/work/i686-linux/kconfig-frontends-nati=
-ve/3.12.0.0-r0/temp/log.do_fetch.8067
-> ERROR: Task 728
-> (virtual:native:/home/jackzhang1992/poky/meta/recipes-devtools/kconfig-fr=
-ontends/
-> kconfig-frontends_3.12.0.0.bb, do_fetch) failed with exit code '1'
-> WARNING: Failed to fetch URL
-> http://dotat.at/prog/unifdef/unifdef-2.10.tar.xz, attempting MIRRORS if
-> available
-> NOTE: Tasks Summary: Attempted 152 tasks of which 0 didn't need to be
-> rerun and 2 failed.
-> "
->
-> According to the errors, It seams there are many fetcher failures,but whe=
-n
-> I copy the link such as"
-> http://kernel.org/pub/linux/kernel/v4.x/linux-4.1.tar.xz"  to my firefox
-> explorer, It could find the files. It is very weird.
->
->
-> If you have any idea about it, pls contact with me.
-> Thanks
->
->
-> Jack
-> Shanghai
->
->
+> Thanks in advance,
+>=20
+>=20
+>=20
+> Julien GUEYTAT
+> Ing=C3=A9nieur Informatique
+> <image001.png>
+> 1027, avenue du Docteur Julien Lefebre BP27
+> 06271 Villeneuve-Loubet Cedex
+> Fixe :  +33 (0) 492 024 545
+> Mob :  +33(0) 617 980 383
+> Fax :    +33(0) 492 024 546
+> Email : j.gueytat@cdssoft.studiel.fr =
+<mailto:j.gueytat@cdssoft.studiel.fr>
+> www : www.studiel.fr <http://www.studiel.fr/>
+> P Pensez Environnement, imprimez seulement si n=C3=A9cessaire
+>=20
 > --
 > _______________________________________________
 > yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
 
---001a11c34aa8fb82ca052ad72d88
-Content-Type: text/html; charset=UTF-8
+--Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<div dir=3D"ltr"><div><div><div>Hi Jack,<br></div>How about wget or curl of=
- those urls, are you able to reach it? Also, see if explorer redirects this=
- to https or other protocol?<br><br></div>Regards,<br></div>Sivasubramanian=
-<br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed,=
- Feb 3, 2016 at 8:11 AM, =E5=BC=A0=E5=81=A5 <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:jackzhang1992@t.shu.edu.cn" target=3D"_blank">jackzhang1992@t.sh=
-u.edu.cn</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>[me=
-ta-raspberrypi]</div><div>Hi,every one.=C2=A0</div><div>I&#39;m trying to u=
-se meta-raspberrypi layer to build an image for my raspberrypi2 B+ board.=
-=C2=A0</div><div><div><br></div><div>After I download poky,I git clone meta=
--raspberrypi layer as follows:=C2=A0<span style=3D"line-height:1.5">&quot;g=
-it clone git://<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" tar=
-get=3D"_blank">git.yoctoproject.org/meta-raspberrypi</a>&quot;</span></div>=
-</div><div>Then I totally follow the README in the meta-raspberrypi directo=
-ry as follows:</div><div>&quot;</div><div><div>.........</div><div>How to u=
-se it:</div><div><br></div><div>1. source poky/oe-init-build-env rpi-build<=
-/div><div>2. Add needed layer to bblayers.conf:</div><div>=C2=A0 =C2=A0 - m=
-eta-raspberrypi</div><div>3 =C2=A0Set MACHINE to &quot;raspberrypi&quot;/&q=
-uot;raspberrypi2&quot; in local.conf =C2=A0(I set machine to be &quot;raspb=
-errypi2&quot; here)</div><div>4. bitbake rpi-hwup-image</div><div>5. dd to =
-a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is used)</div=
-><div>6. Boot your RPI.</div></div><div><span style=3D"line-height:1.5">&qu=
-ot;</span></div><div><span style=3D"line-height:1.5"><br></span></div><div>=
-but it comes out with several errors after &quot;bitbake&quot;, I don&#39;t=
- know why,=C2=A0<span style=3D"line-height:1.5">warnings and errors are as =
-follows:</span></div><div><div>&quot;</div><div>WARNING: Failed to fetch UR=
-L <a href=3D"ftp://invisible-island.net/ncurses/current/ncurses-5.9-2015032=
-9.tgz" target=3D"_blank">ftp://invisible-island.net/ncurses/current/ncurses=
--5.9-20150329.tgz</a>, attempting MIRRORS if available</div><div>WARNING: F=
-ailed to fetch URL <a href=3D"http://kernel.org/pub/linux/kernel/v4.x/linux=
--4.1.tar.xz" target=3D"_blank">http://kernel.org/pub/linux/kernel/v4.x/linu=
-x-4.1.tar.xz</a>, attempting MIRRORS if available</div><div>ERROR: Fetcher =
-failure: Fetch command failed with exit code 4, output:</div><div>wget: una=
-ble to resolve host address &#39;<a href=3D"http://kernel.org" target=3D"_b=
-lank">kernel.org</a>&#39;</div><div><br></div><div>ERROR: Function failed: =
-Fetcher failure for URL: &#39;<a href=3D"http://kernel.org/pub/linux/kernel=
-/v4.x/linux-4.1.tar.xz" target=3D"_blank">http://kernel.org/pub/linux/kerne=
-l/v4.x/linux-4.1.tar.xz</a>&#39;. Unable to fetch URL from any source.</div=
-><div>ERROR: Logfile of failure stored in: /home/jackzhang1992/poky/build/t=
-mp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/linux-libc-headers/4.1=
--r0/temp/log.do_fetch.8031</div><div>ERROR: Task 961 (/home/jackzhang1992/p=
-oky/meta/recipes-kernel/linux-libc-headers/<a href=3D"http://linux-libc-hea=
-ders_4.1.bb" target=3D"_blank">linux-libc-headers_4.1.bb</a>, do_fetch) fai=
-led with exit code &#39;1&#39;</div><div>WARNING: Failed to fetch URL <a hr=
-ef=3D"http://ymorin.is-a-geek.org/download/kconfig-frontends/kconfig-fronte=
-nds-3.12.0.0.tar.xz" target=3D"_blank">http://ymorin.is-a-geek.org/download=
-/kconfig-frontends/kconfig-frontends-3.12.0.0.tar.xz</a>, attempting MIRROR=
-S if available</div><div>ERROR: Fetcher failure: Fetch command failed with =
-exit code 4, output:</div><div>wget: unable to resolve host address &#39;<a=
- href=3D"http://ymorin.is-a-geek.org" target=3D"_blank">ymorin.is-a-geek.or=
-g</a>&#39;</div><div><br></div><div>ERROR: Function failed: Fetcher failure=
- for URL: &#39;<a href=3D"http://ymorin.is-a-geek.org/download/kconfig-fron=
-tends/kconfig-frontends-3.12.0.0.tar.xz" target=3D"_blank">http://ymorin.is=
--a-geek.org/download/kconfig-frontends/kconfig-frontends-3.12.0.0.tar.xz</a=
->&#39;. Unable to fetch URL from any source.</div><div>ERROR: Logfile of fa=
-ilure stored in: /home/jackzhang1992/poky/build/tmp/work/i686-linux/kconfig=
--frontends-native/3.12.0.0-r0/temp/log.do_fetch.8067</div><div>ERROR: Task =
-728 (virtual:native:/home/jackzhang1992/poky/meta/recipes-devtools/kconfig-=
-frontends/<a href=3D"http://kconfig-frontends_3.12.0.0.bb" target=3D"_blank=
-">kconfig-frontends_3.12.0.0.bb</a>, do_fetch) failed with exit code &#39;1=
-&#39;</div><div>WARNING: Failed to fetch URL <a href=3D"http://dotat.at/pro=
-g/unifdef/unifdef-2.10.tar.xz" target=3D"_blank">http://dotat.at/prog/unifd=
-ef/unifdef-2.10.tar.xz</a>, attempting MIRRORS if available</div><div>NOTE:=
- Tasks Summary: Attempted 152 tasks of which 0 didn&#39;t need to be rerun =
-and 2 failed.</div></div><div>&quot;</div><div><br></div><div>According to =
-the errors, It seams there are many fetcher failures,but when I copy the li=
-nk such as&quot;<span style=3D"line-height:1.5"><a href=3D"http://kernel.or=
-g/pub/linux/kernel/v4.x/linux-4.1.tar.xz" target=3D"_blank">http://kernel.o=
-rg/pub/linux/kernel/v4.x/linux-4.1.tar.xz</a></span><span style=3D"line-hei=
-ght:1.5">&quot; =C2=A0to my firefox explorer, It could find the files. It i=
-s very weird.</span></div><div><span style=3D"line-height:1.5"><br></span><=
-/div><div><span style=3D"line-height:1.5"><br></span></div><div><span style=
-=3D"line-height:1.5">If you have any idea about it, pls contact with me.</s=
-pan></div><div><span style=3D"line-height:1.5">Thanks</span></div><div><spa=
-n style=3D"line-height:1.5"><br></span></div><div><span style=3D"line-heigh=
-t:1.5"><br></span></div><div><span style=3D"line-height:1.5">Jack</span></d=
-iv><div><span style=3D"line-height:1.5">Shanghai</span></div><div><span sty=
-le=3D"line-height:1.5"><br></span></div><div><u></u><u></u></div><br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Feb 2, 2016, at 8:50 AM, GUEYTAT Julien &lt;<a =
+href=3D"mailto:j.gueytat@cdssoft.studiel.fr" =
+class=3D"">j.gueytat@cdssoft.studiel.fr</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"WordSection1" style=3D"page: WordSection1; font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">Hi,<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">It =
+seems that there are some stiff missing between meta-qt5 or =
+meta-raspberrypi.<o:p class=3D""></o:p></span></div><div style=3D"margin: =
+0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><span lang=3D"EN-US" class=3D"">When we set the option =
+gles=E2=80=A6 to qtbase we don=E2=80=99t get the QMAKE_LIBS_EGL set =
+properly.<o:p class=3D""></o:p></span></div><div style=3D"margin: 0cm =
+0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><span lang=3D"EN-US" class=3D"">We can compare a working set =
+of variables in the qt mkspecs directory of qt.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D"">There is one dedicated file for the =
+RaspberryPi2. May be one also for RaspberryPi.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D"">Anyway!<o:p class=3D""></o:p></span></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">How =
+could we set those *_EGL variables properly? And=E2=80=A6 If they are =
+properly set, will qtbase will take them into account?<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+lang=3D"EN-US" class=3D""><o:p class=3D"">&nbsp;</o:p></span></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" class=3D"">I will =
+be happy to propose a patch but I need to get more precision =
+first.</span></div></div></div></blockquote><div><br =
+class=3D""></div><div>Firstly show the DISTRO_FEATURES may be you are =
+missing some important knobs for EGL</div><div>like openGL and gles2 =
+etc.</div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1; =
+font-family: Ubuntu; font-size: 14px; font-style: normal; font-variant: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;"><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; =
+font-family: Calibri, sans-serif;" class=3D""><span lang=3D"EN-US" =
+class=3D""><o:p class=3D""></o:p></span></div><div style=3D"margin: 0cm =
+0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><span lang=3D"EN-US" class=3D"">Thanks in advance,<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><b =
+class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D"">Julien =
+GUEYTAT<o:p class=3D""></o:p></span></b></div><div style=3D"margin: 0cm =
+0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><b class=3D""><span style=3D"color: rgb(31, 73, 125);" =
+class=3D"">Ing=C3=A9nieur Informatique<o:p =
+class=3D""></o:p></span></b></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><span style=3D"color: rgb(31, 73, 125);" class=3D""><span =
+id=3D"cid:image001.png@01D15DE2.555941C0">&lt;image001.png&gt;</span><o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
+style=3D"font-size: 10pt; color: rgb(31, 73, 125);" class=3D"">1027, =
+avenue du Docteur Julien Lefebre BP27</span><b class=3D""><span =
+style=3D"color: rgb(31, 73, 125);" class=3D""><o:p =
+class=3D""></o:p></span></b></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><span style=3D"font-size: 10pt; color: rgb(31, 73, 125);" =
+class=3D"">06271 Villeneuve-Loubet Cedex<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><u =
+class=3D""><span style=3D"font-size: 10pt; color: rgb(31, 73, 125);" =
+class=3D"">Fixe</span></u><span style=3D"font-size: 10pt; color: rgb(31, =
+73, 125);" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span>:&nbsp; +33 (0) =
+492&nbsp;024 545<br class=3D""><u class=3D"">Mob</u><span =
+class=3D"Apple-converted-space">&nbsp;</span>:&nbsp; +33(0) 617 980 =
+383<br class=3D""><u class=3D"">Fax</u><span =
+class=3D"Apple-converted-space">&nbsp;</span>:&nbsp;&nbsp;&nbsp; +33(0) =
+492&nbsp;024 546<br class=3D""><u class=3D"">Email</u><span =
+class=3D"Apple-converted-space">&nbsp;</span>:<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><span class=3D""><a =
+href=3D"mailto:j.gueytat@cdssoft.studiel.fr" style=3D"color: rgb(149, =
+79, 114); text-decoration: underline;" class=3D""><span style=3D"color: =
+rgb(5, 99, 193);" class=3D"">j.gueytat@cdssoft.studiel.fr</span></a><span =
+style=3D"color: rgb(31, 73, 125);" class=3D""><o:p =
+class=3D""></o:p></span></span></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><u class=3D""><span style=3D"font-size: 10pt; color: rgb(31, =
+73, 125);" class=3D"">www</span></u><span style=3D"font-size: 10pt; =
+color: rgb(31, 73, 125);" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span>:<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><span class=3D""><a =
+href=3D"http://www.studiel.fr/" style=3D"color: rgb(149, 79, 114); =
+text-decoration: underline;" class=3D""><span style=3D"color: rgb(5, 99, =
+193);" class=3D"">www.studiel.fr</span></a><span style=3D"color: rgb(31, =
+73, 125);" class=3D""><o:p class=3D""></o:p></span></span></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><b class=3D""><span style=3D"font-size: =
+24pt; font-family: Webdings; color: green;" class=3D"">P</span></b><b =
+class=3D""><span style=3D"font-size: 12pt; font-family: 'Times New =
+Roman', serif;" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span></span></b><b =
+class=3D""><span style=3D"font-size: 10pt; font-family: Arial, =
+sans-serif; color: green;" class=3D"">Pensez Environnement, imprimez =
+seulement si n=C3=A9cessaire</span></b><span style=3D"color: rgb(31, 73, =
+125);" class=3D""><o:p class=3D""></o:p></span></div><div style=3D"margin:=
+ 0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div></div><span =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" class=3D"">yocto mailing =
+list</span><br style=3D"font-family: Ubuntu; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: rgb(149, 79, =
+114); text-decoration: underline; font-family: Ubuntu; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+rgb(149, 79, 114); text-decoration: underline; font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></body></html>=
 
---001a11c34aa8fb82ca052ad72d88--
+--Apple-Mail=_41565DA6-A841-4E4D-9FFC-F28152766A0B--
+
+--Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlaxmXAACgkQuwUzVZGdMxRHJQCgjRVxOwogJHJZLqBit01p6u/W
+fMgAniaWYg7tuCJUK0tKnY4M7xLvChy9
+=8IO9
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_1CC576F4-D86C-455E-BAF7-E436B5B31168--
