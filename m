@@ -1,38 +1,50 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <nathan@nathan.to>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECAF1E00C3D; Wed,  3 Feb 2016 09:29:36 -0800 (PST)
+	id 1686BE00C39; Wed,  3 Feb 2016 09:54:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.72.237.35 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99120E00C39
-	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 09:29:34 -0800 (PST)
-Received: from poczta.nazwa.pl (unknown [10.252.0.23])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 8916243FA6D;
-	Wed,  3 Feb 2016 18:29:32 +0100 (CET)
-Date: Wed, 3 Feb 2016 18:29:32 +0100 (CET)
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: shubham.kumar4@wipro.com, yocto@yoctoproject.org
-Message-ID: <1036585921.17607.1454520572537.JavaMail.open-xchange@ox13.netart.com.pl>
-In-Reply-To: <SIXPR03MB067233AA7F87CE945DD71D63D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
-References: <SIXPR03MB0672F01139FBB3CB521AAB45D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
-	<SIXPR03MB06727E3A2C2ACCB4528A26A9D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>,
-	<1454510985.3990.8.camel@open-rnd.pl>
-	<SIXPR03MB067233AA7F87CE945DD71D63D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
-MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.6.2-Rev33
-X-Originating-Client: com.openexchange.ox.gui.dhtml
-Subject: Re: [meta-intel]:Quark not accepting "root" username at login prompt
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C46DFE00B63
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 09:54:20 -0800 (PST)
+Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id A9C0C3DA44
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 12:54:16 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=from
+	:content-type:content-transfer-encoding:subject:message-id:date
+	:to:mime-version; s=sasl; bh=MZm2zP3OtZBKzcL0pE9xPwyTq40=; b=qw5
+	OwE2OEJAG2GPBlokxdn7qTR+7wQHRNnv4JQrEeLRhGuu8z2DL8L/jNCNDROEYMYa
+	9t7JVQA9kgkPFA8GB1rWerSG6u4M0VCCEYAM9Z2txATdCS3yt+HWoQ2NJrchy9em
+	hoH+QTnNPzdi9q4IZv208f1lrxYIYkJHXNEnCC/A=
+Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id A2AFD3DA43
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 12:54:16 -0500 (EST)
+Received: from [192.168.1.101] (unknown [92.185.42.4])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id 04A513DA40
+	for <yocto@yoctoproject.org>; Wed,  3 Feb 2016 12:54:15 -0500 (EST)
+From: Nathan Sowatskey <nathan@nathan.to>
+Message-Id: <1ACB66D7-DFA3-4468-B552-A20214EA1BB5@nathan.to>
+Date: Wed, 3 Feb 2016 18:52:13 +0100
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
+X-Mailer: Apple Mail (2.3119)
+X-Pobox-Relay-ID: 243EC45A-CA9F-11E5-B0C9-04C16BB36C07-96844961!pb-smtp0.pobox.com
+Subject: libsnmp and others
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,51 +53,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Feb 2016 17:29:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 03 Feb 2016 17:54:24 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-> Dnia 3 luty 2016 o 15:55 shubham.kumar4@wipro.com napisa=C5=82(a):
->
->
-> In "final_build/conf/local.conf" , EXTRA_IMAGE_FEATURES =3D "debug-tweaks=
-".
->
-> So, yes "debug-tweaks" is present.
->
+Hi
 
-Try running bitbake -e <yourimagename> and check the value of
-IMAGE_FEATURES (and where it gets assigned).
+I have these missing dependencies when running a test executable on my =
+Yocto image. It is a qemux86_64 core-image-kernel-dev image, built as =
+=E2=80=9Cbitbake core-image-kernel-dev=E2=80=9D.
 
-You may also want to check if /etc/shadow in the rootfs contains proper
-entry. It should look like this:
+ 0x0000000000000001 (NEEDED)             Shared library: [libsnmp.so.30]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5Network.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5SerialPort.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5Core.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libpthread.so.0]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
 
-       root:*:16834:0:99999:7:::
+My conf files are here:
 
-When inspecting the output of bitbake -e, look for IMAGE_ROOTFS, this
-will point to the location of the rootfs for your image.
+https://github.com/DevOps4Networks/iox-yocto-build/tree/master/conf
 
---
-Maciej Borz=C4=99cki
-Senior Software Engineer at Open-RnD Sp. z o.o.
-www.open-rnd.pl, Facebook, Twitter
+I seem to be adding, for example, meta-qt5 as a layer, but the Qt5 libs =
+seem to be missing.
 
-Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe zawie=
-ra=C4=87 chronione prawem
-lub poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
-adomo=C5=9Bci i
-u=C5=BCytku os=C3=B3b, do kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bl=
-i wiadomo=C5=9B=C4=87 zosta=C5=82a
-otrzymana przypadkowo zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania =
-do
-os=C3=B3b trzecich. W takim przypadku uprasza si=C4=99 o natychmiastowe
-zniszczenie wiadomo=C5=9Bci oraz poinformowanie nadawcy o zaistnia=C5=82ej
-sytuacji za pomoc=C4=85 wiadomo=C5=9Bci zwrotnej. Dzi=C4=99kujemy.
+I am not sure where libsnmp should come from, but I am adding =
+meta-networking which looked like it had SNMP.
 
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended
-addressee, you may neither use this message nor copy or deliver it to
-anyone. In such case, you should immediately destroy this message and
-kindly notify the sender by reply email. Thank you.
+I also have:
+
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks package-management tools-idk"
+
+But the STDC++ and GCC libs seems to be missing.
+
+I am obviously not doing something right, so any pointers gratefully =
+appreciated.
+
+Many thanks
+
+Nathan
+
+=E2=80=94
+Nathan John Sowatskey
+Consulting Engineer - Programmable Infrastructure, DevOps, IoT and SDN
+nathan@nathan.to
+www.linkedin.com/in/nathandevops
+XMPP: nathandotto@im.koderoot.net
+Google: nathanjohnsowatskey@gmail.com
+Skype: nathan_sowatskey
+Twitter: NathanDotTo
+GitHub: https://github.com/DevOps4Networks
+http://www.kipling.org.uk/poems_if.htm
+
 
