@@ -1,88 +1,68 @@
-Return-Path: <shubham.kumar4@wipro.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78CAEE00C8F; Thu,  4 Feb 2016 03:17:12 -0800 (PST)
+	id AB9A7E00C94; Thu,  4 Feb 2016 04:09:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [203.91.208.14 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (idealsim[at]laposte.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [194.117.213.104 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from wipro-chn-out01.wipro.com (wipro-chn-out01.wipro.com
-	[203.91.208.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 791EDE00A7D
-	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 03:17:05 -0800 (PST)
-X-AuditID: cb5bdd88-f79ee6d000001534-5d-56b333305f91
-X-Invalid-Recipients: 
-Received: from BLR-OUT-EDG03.wipro.com ( [203.91.201.88])
-	by wipro-chn-out01.wipro.com (Symantec Mail Security) with SMTP id
-	7C.40.05428.03333B65; Thu,  4 Feb 2016 16:47:04 +0530 (IST)
-Received: from BLR-EC-MBX1.wipro.com (10.208.51.111) by
-	BLR-OUT-EDG03.wipro.com (203.91.193.33) with Microsoft SMTP Server
-	(TLS) id 14.3.266.1; Thu, 4 Feb 2016 16:46:46 +0530
-Received: from wipro-blr-tls01.wipro.com (203.91.193.39) by
-	BLR-EC-MBX1.wipro.com (10.208.51.111) with Microsoft SMTP Server (TLS)
-	id 14.3.266.1; Thu, 4 Feb 2016 16:46:46 +0530
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (65.55.88.216) by
-	wipro-blr-tls01.wipro.com (203.91.193.39) with Microsoft SMTP Server
-	(TLS) id 14.3.266.1; Thu, 4 Feb 2016 16:46:42 +0530
-Received: from SIXPR03MB0672.apcprd03.prod.outlook.com (10.160.238.142) by
-	SIXPR03MB0672.apcprd03.prod.outlook.com (10.160.238.142) with Microsoft
-	SMTP Server (TLS) id 15.1.396.15; Thu, 4 Feb 2016 11:16:40 +0000
-Received: from SIXPR03MB0672.apcprd03.prod.outlook.com ([10.160.238.142]) by
-	SIXPR03MB0672.apcprd03.prod.outlook.com ([10.160.238.142]) with mapi id
-	15.01.0396.020; Thu, 4 Feb 2016 11:16:40 +0000
-From: <shubham.kumar4@wipro.com>
-To: <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] [meta-intel]:Quark not accepting "root" username at
-	login prompt
-Thread-Index: AQHRXne6BvZjGpKKWUqs+vIN6ugpkp8aVidlgAARJ4CAAAEaD4AAK4sAgADU8W2AABK4gIAAAiOBgAAeo4CAAB9+bg==
-Date: Thu, 4 Feb 2016 11:16:40 +0000
-Message-ID: <SIXPR03MB0672B8815A8B18D9F2C6981BD4D10@SIXPR03MB0672.apcprd03.prod.outlook.com>
-References: <SIXPR03MB0672F01139FBB3CB521AAB45D4D00@SIXPR03MB0672.apcprd03.prod.outlook.com>
-	<CAMKF1so_i2iZJxv2fdV58XtYnDVODCzi8d1nFEEKqm=Z1wH4vA@mail.gmail.com>
-	<SIXPR03MB06723015AFA054223A0F4226D4D10@SIXPR03MB0672.apcprd03.prod.outlook.com>,
-	<3567390.mrz9OiGkxe@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <3567390.mrz9OiGkxe@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=wipro.com; 
-x-originating-ip: [198.175.68.39]
-x-microsoft-exchange-diagnostics: 1; SIXPR03MB0672;
-	5:yS2owojzpfO+6UK46gi93yTJhR/oVqY0MSBjeqk72a/29pxA+YLfp+xQ100zaNmbuBDZOXX/Q2jp/kNPeRK7ZPRxYfyomE6me5UUYPXgAut8An44mXEFvM4+kFDTGcEGtBKerkQ0THnoZirvmKG6LA==;
-	24:+Jt/GEQ7hbd5IMQhw3YPR9IvHnYV8HOLE/n4mhdpTNWkpBgcjiwtk2nUSI9V9+PFFsQM0uOGOhhUum4bMecvXVp0TSh9BHAQSLfUMihYI3I=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:SIXPR03MB0672;
-x-ms-office365-filtering-correlation-id: ee5030e8-0ad9-4339-c62e-08d32d54a7ff
-x-microsoft-antispam-prvs: <SIXPR03MB067275B175651ADA707D6135D4D10@SIXPR03MB0672.apcprd03.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(62627912741753);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(61425038)(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001)(61426038)(61427038);
-	SRVR:SIXPR03MB0672; BCL:0; PCL:0; RULEID:; SRVR:SIXPR03MB0672; 
-x-forefront-prvs: 084285FC5C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(43544003)(152014003)(24454002)(164054003)(3280700002)(3660700001)(106116001)(87936001)(19580405001)(5003600100002)(50986999)(2906002)(33656002)(1096002)(189998001)(4326007)(19580395003)(76176999)(5002640100001)(40100003)(5001960100002)(76576001)(54356999)(1220700001)(110136002)(102836003)(10400500002)(6116002)(3846002)(586003)(66066001)(86362001)(11100500001)(93886004)(77096005)(2950100001)(5008740100001)(92566002)(74316001)(5004730100002)(122556002)(2900100001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:SIXPR03MB0672;
-	H:SIXPR03MB0672.apcprd03.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from smtp.laposte.net (smtpoutz29.laposte.net [194.117.213.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FC90E00C8F
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 04:09:14 -0800 (PST)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout017 (Postfix) with ESMTP id BFC70A00DE0
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 13:09:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail1;
+	t=1454587752; bh=Mqb9RhQoh8s9PhmMYAV3Emdq48VPTpbVMaCR4GauCrw=;
+	h=To:Subject:Date:From;
+	b=gXs/qqwCZ2hr74wTC1Cj5QTVPdGmyzvFp+cMwmgrN1HUNj89xfAostWZItRRcf2H3
+	msdEhA1ADmiYE6PxVS+69zwagGCOJSb9SSY5rRHiyH/lFZU0SsMwpmjFRWw1a3cEow
+	JXxm8nDqS+vIjO9fGe3F8pxegFcKAa6PkI6z6gRXIa8WlmC9dWu/XnRP/gK/6nSD4d
+	0cd14Ado0RbjtQHvgPZF/SQipXRr0kBgpg9Bu6Dpc6C1gbe3CUCiUciH1OZ3JFNIz9
+	Xb7bmnSsL+pXNmS0JZAhAfhKM/47Otx5SdiFPcURC5SLo1E3qZtip6BY4rz4O9KY3B
+	17fNBxMz1vjtg==
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.laposte [10.128.63.5])
+	by lpn-prd-vrout017 (Postfix) with ESMTP id BCB6AA00DA0
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 13:09:12 +0100 (CET)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id B073470E250
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 13:09:12 +0100 (CET)
+Received: from pc-mls.ecafaros.local (unknown [195.200.163.38])
+	by lpn-prd-vrin004 (Postfix) with ESMTPA id 8E80D70E245
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 13:09:12 +0100 (CET)
+To: yocto@yoctoproject.org
+Date: Thu, 04 Feb 2016 13:09:12 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2016 11:16:40.7182 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 258ac4e4-146a-411e-9dc8-79a9e12fd6da
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SIXPR03MB0672
-X-OrganizationHeadersPreserved: SIXPR03MB0672.apcprd03.prod.outlook.com
-X-CrossPremisesHeadersPromoted: BLR-HES-EDG02.wipro.com
-X-CrossPremisesHeadersFiltered: BLR-HES-EDG02.wipro.com
-X-CFilter-Loop: Reflected
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-intel]:Quark not accepting "root" username at login prompt
+From: idealsim <idealsim@laposte.net>
+Message-ID: <op.yca5dm1gmnlnty@pc-mls.ecafaros.local>
+User-Agent: Opera Mail/1.0 (Win32)
+X-VR-SrcIP: 195.200.163.38
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekjedrvddtgdefiecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecunecujfgurheptgfvufffggfh
+X-VR-Cause-3: kfgfsegrtderredtreelnecuhfhrohhmpehiuggvrghlshhimhcuoehiuggvrghlshhimheslhgrphho
+X-VR-Cause-4: shhtvgdrnhgvtheqnecuffhomhgrihhnpehophgvrhgrrdgtohhmnecurfgrrhgrmhepmhhouggvpehs
+X-VR-Cause-5: mhhtphhouhhtpdhhvghlohepphgtqdhmlhhsrdgvtggrfhgrrhhoshdrlhhotggrlhdpihhnvghtpedu
+X-VR-Cause-6: leehrddvtddtrdduieefrdefkedpmhgrihhlfhhrohhmpehiuggvrghlshhimheslhgrphhoshhtvgdr
+X-VR-Cause-7: nhgvthdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhjvggtthdrohhrgh
+X-VR-AvState: No
+X-VR-State: 0
+Subject: Re: yocto and linux mint 17.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,54 +74,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Feb 2016 11:17:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Feb 2016 12:09:18 -0000
+Content-Type: multipart/alternative; boundary=----------EciqInxd8Tquaox4zJHZTu
+
+------------EciqInxd8Tquaox4zJHZTu
+Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
+Content-Transfer-Encoding: Quoted-Printable
+
+Up ! nobodies have an idea ?
+
+Le Thu, 04 Feb 2016 13:08:00 +0100, a =E9crit:
+
+>
+> Hi all, i'm new on yocto and i have a problem to start a buil with my =
+ =
+
+> host pc. My pc is under linux mint 17.3 (cinnamon) 64 bits. When i  =
+
+> launch a bitbake, i >have this error :
+>
+> ImportError: No module named pysqlite2
+> /home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/event.py:107=
+:  =
+
+> RuntimeWarning: Parent module 'bb' not found while handling absolute  =
+
+> >import
+> from bb.msg import BBLogFormatter
+> Error in atexit._run_exitfuncs:
+> Traceback (most recent call last):
+> File "/usr/local/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+> func(*targs, **kargs)
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/event.py", =
+ =
+
+> line 107, in print_ui_queue
+> from bb.msg import BBLogFormatter
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/__init__.py=
+",  =
+
+> line 77, in <module>
+> from bb import fetch2 as fetch
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/fetch2/__in=
+it__.py",  =
+
+> line 37, in <module>
+> import bb.persist_data, bb.utils
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/persist_dat=
+a.py",  =
+
+> line 35, in <module>
+> from pysqlite2 import dbapi2 as sqlite3
+> ImportError: No module named pysqlite2
+> Error in sys.exitfunc:
+> Traceback (most recent call last):
+> File "/usr/local/lib/python2.7/atexit.py", line 24, in _run_exitfuncs
+> func(*targs, **kargs)
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/event.py", =
+ =
+
+> line 107, in print_ui_queue
+> from bb.msg import BBLogFormatter
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/__init__.py=
+",  =
+
+> line 77, in <module>
+> from bb import fetch2 as fetch
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/fetch2/__in=
+it__.py",  =
+
+> line 37, in <module>
+> import bb.persist_data, bb.utils
+> File  =
+
+> "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/persist_dat=
+a.py",  =
+
+> line 35, in <module>
+> from pysqlite2 import dbapi2 as sqlite3
+> ImportError: No module named pysqlite2
+>
+>
+>  apparently bb can't import pysqlite2 ? I already install pip install =
+ =
+
+> pysqlite libsqlite3-dev but nothing to solve my problem ... An idea to=
+  =
+
+> >resolve this please ?
+> --Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mai=
+l/
 
 
-On Thu, 04 Feb 2016 07:31:32 shubham.kumar4@wipro.com wrote:
-> >That entry is already there in "<build>/conf/local.conf " file as follow=
-s:-
->>
-> ># We default to enabling the debugging tweaks.
-> >EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
->>
-> >In addition to the above, I have also added "tools-sdk" and "tools-debug=
-" as
-> >follows in the same file :-
->>
-> >#Other packages
-> >EXTRA_IMAGE_FEATURES =3D "tools-sdk"
-> >EXTRA_IMAGE_FEATURES =3D "tools-debug"
->>
-> >Is there anything else I'm missing?
 
->Er... is that exactly how you are setting the EXTRA_IMAGE_FEATURES value? =
-If
->it is, =3D sets the value, it does not add to it, so you're wiping out the
->previous items. You presumably want to be using +=3D rather than =3D .
+-- =
 
->Cheers,
->Paul
+Utilisant le logiciel de courrier d'Opera : http://www.opera.com/mail/
 
+------------EciqInxd8Tquaox4zJHZTu
+Content-Type: multipart/related; boundary=----------EciqInxd8TquaoG7Ga95m3
 
-Thanks Paul. The issue is solved now. You pointed out the correct mistake :=
-). However, I had been doing the same mistake while building extra packages=
- for qemux86. But it didn't throw any such error, and the virtual machine w=
-orked just perfectly fine. However, It was not the same with Galileo.
-But I would take care of these issues in future.
-Thanks Paul , Thanks Maciej. Have a Great day ahead !!
+------------EciqInxd8TquaoG7Ga95m3
+Content-Type: text/html; charset=iso-8859-15
+Content-ID: <op.1454587752399.ac9195655d6a208e@172.22.9.5>
+Content-Transfer-Encoding: Quoted-Printable
 
-Thanks,
-Shubham_K
-The information contained in this electronic message and any attachments to=
- this message are intended for the exclusive use of the addressee(s) and ma=
-y contain proprietary, confidential or privileged information. If you are n=
-ot the intended recipient, you should not disseminate, distribute or copy t=
-his e-mail. Please notify the sender immediately and destroy all copies of =
-this message and any attachments. WARNING: Computer viruses can be transmit=
-ted via email. The recipient should check this email and any attachments fo=
-r the presence of viruses. The company accepts no liability for any damage =
-caused by any virus transmitted by this email. www.wipro.com
+<!DOCTYPE html><html><head><style type=3D"text/css">body { font-family:'=
+Times New Roman'; font-size:13px}</style>
+<style type=3D"text/css">body { font-family:'Times New Roman'; font-size=
+:13px}</style>
+</head>
+<body><div>Up ! nobodies have an idea ?</div><div><br></div><div>Le Thu,=
+ 04 Feb 2016 13:08:00 +0100,  a =E9crit:<br></div><br><blockquote style=3D=
+"margin: 0 0 0.80ex; border-left: #0000FF 2px solid; padding-left: 1ex">=
+<div><br>Hi all, i'm new on yocto and i have a problem to start a buil w=
+ith my host pc. My pc is under linux mint 17.3 (cinnamon) 64 bits. When =
+i launch a bitbake, i have this error :<br><br><font color=3D"#ff8000"><=
+em>ImportError: No module named pysqlite2<br>/home/mls/bin/fsl-release-b=
+sp/sources/poky/bitbake/lib/bb/event.py:107: RuntimeWarning: Parent modu=
+le 'bb' not found while handling absolute import<br>  from bb.msg import=
+ BBLogFormatter<br>Error in atexit._run_exitfuncs:<br>Traceback (most re=
+cent call last):<br>  File "/usr/local/lib/python2.7/atexit.py", line 24=
+, in _run_exitfuncs<br>    func(*targs, **kargs)<br>  File "/home/mls/bi=
+n/fsl-release-bsp/sources/poky/bitbake/lib/bb/event.py", line 107, in pr=
+int_ui_queue<br>    from bb.msg import BBLogFormatter<br>  File "/home/m=
+ls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/__init__.py", line 77=
+, in &lt;module&gt;<br>    from bb import fetch2 as fetch<br>  File "/ho=
+me/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/fetch2/__init__.p=
+y", line 37, in &lt;module&gt;<br>    import bb.persist_data, bb.utils<b=
+r>  File "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/lib/bb/pers=
+ist_data.py", line 35, in &lt;module&gt;<br>    from pysqlite2 import db=
+api2 as sqlite3<br>ImportError: No module named pysqlite2<br>Error in sy=
+s.exitfunc:<br>Traceback (most recent call last):<br>  File "/usr/local/=
+lib/python2.7/atexit.py", line 24, in _run_exitfuncs<br>    func(*targs,=
+ **kargs)<br>  File "/home/mls/bin/fsl-release-bsp/sources/poky/bitbake/=
+lib/bb/event.py", line 107, in print_ui_queue<br>    from bb.msg import =
+BBLogFormatter<br>  File "/home/mls/bin/fsl-release-bsp/sources/poky/bit=
+bake/lib/bb/__init__.py", line 77, in &lt;module&gt;<br>    from bb impo=
+rt fetch2 as fetch<br>  File "/home/mls/bin/fsl-release-bsp/sources/poky=
+/bitbake/lib/bb/fetch2/__init__.py", line 37, in &lt;module&gt;<br>    i=
+mport bb.persist_data, bb.utils<br>  File "/home/mls/bin/fsl-release-bsp=
+/sources/poky/bitbake/lib/bb/persist_data.py", line 35, in &lt;module&gt=
+;<br>    from pysqlite2 import dbapi2 as sqlite3<br>ImportError: No modu=
+le named pysqlite2</em></font><br><br><br>
+&nbsp;
+<span style=3D"color: rgb(51, 51, 51); font-family: 'Lucida Grande', 'Tr=
+ebuchet MS', Verdana, Helvetica, Arial, sans-serif; font-size: 13px; fon=
+t-style: normal; font-variant: normal; font-weight: normal; letter-spaci=
+ng: normal; line-height: 18.2px; orphans: auto; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 1; word-=
+spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important=
+; float: none; background-color: rgb(224, 237, 211);">apparently bb can'=
+t import pysqlite2 ? I already install pip install pysqlite libsqlite3-d=
+ev but nothing to solve my problem ... An idea to resolve this please ?<=
+/span>
+<br><br></div><div id=3D"M2Signature"><div>-- </div><div>Utilisant le lo=
+giciel de courrier d'Opera : <a href=3D"http://www.opera.com/mail/">http=
+://www.opera.com/mail/</a></div></div></blockquote><br><br><br><div id=3D=
+"M2Signature"><div>-- </div><div>Utilisant le logiciel de courrier d'Ope=
+ra : <a href=3D"http://www.opera.com/mail/">http://www.opera.com/mail/</=
+a></div></div></body></html>
 
+------------EciqInxd8TquaoG7Ga95m3--
+
+------------EciqInxd8Tquaox4zJHZTu--
