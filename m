@@ -1,44 +1,37 @@
-Return-Path: <j.gueytat@cdssoft.studiel.fr>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2749DE00C8E; Thu,  4 Feb 2016 01:23:45 -0800 (PST)
+	id 647A5E00C8E; Thu,  4 Feb 2016 02:16:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [5.135.56.197 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.studiel.fr (mail.studiel.fr [5.135.56.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CA36E009C5
-	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 01:23:40 -0800 (PST)
-Received: from server.exchange.local ([10.151.0.118]) by server.exchange.local
-	([5.135.56.197]) with mapi id 14.02.0247.003;
-	Thu, 4 Feb 2016 10:23:39 +0100
-From: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
-To: 'Khem Raj' <raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not
-	properly set
-Thread-Index: AdFd2fOG/fKCBVTvTAm3KRpMOdIaWQAZwMoAAAM3cAAACoKG8AAESrGAAAI8NaAAGt0vgAALmipA
-Date: Thu, 4 Feb 2016 09:23:38 +0000
-Message-ID: <EC7BC1CD2E085743BB2AE634252C39C1717BBB@server.exchange.local>
-References: <EC7BC1CD2E085743BB2AE634252C39C17170D3@server.exchange.local>
-	<AC56FBE6-C8E7-47CF-971A-3E3F8C3F4422@gmail.com>
-	<CAEyFGJGx-Cns4Sj3bru4L-e2cCmO+w0dPOy5TkYad9+n+0BuSQ@mail.gmail.com>
-	<EC7BC1CD2E085743BB2AE634252C39C1717A39@server.exchange.local>
-	<CAMKF1sr-qwCsThsB3PH1v1_7u_jNpZAg-Pg=vp0ZOTHvbevbDg@mail.gmail.com>
-	<EC7BC1CD2E085743BB2AE634252C39C1717AAD@server.exchange.local>
-	<CAMKF1spqHf5bFpc8bUg8PfzSSfQQGa3MP=9Y-wCGZT0My-Aryw@mail.gmail.com>
-In-Reply-To: <CAMKF1spqHf5bFpc8bUg8PfzSSfQQGa3MP=9Y-wCGZT0My-Aryw@mail.gmail.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [46.218.87.184]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5][meta-raspberrypi]: QMAKE_LIBS_EGL not properly set
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 153D0E009C5
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 02:16:25 -0800 (PST)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga102.jf.intel.com with ESMTP; 04 Feb 2016 02:16:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,395,1449561600"; d="scan'208";a="42269958"
+Received: from linux.intel.com ([10.23.219.25])
+	by fmsmga004.fm.intel.com with ESMTP; 04 Feb 2016 02:16:14 -0800
+Received: from mbabyjoh-mobl.fi.intel.com (mbabyjoh-mobl.fi.intel.com
+	[10.237.72.71])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id DA0996A4002
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 03:04:06 -0800 (PST)
+From: "Maxin B. John" <maxin.john@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  4 Feb 2016 12:19:11 +0200
+Message-Id: <1454581151-21463-1-git-send-email-maxin.john@intel.com>
+X-Mailer: git-send-email 2.4.0
+Subject: [PATCH] formfactor: add machconfig for Beaglebone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,98 +43,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Feb 2016 09:23:45 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 04 Feb 2016 10:16:28 -0000
 
-SSBqdXN0IGNoZWNrZWQgeW91ciBtYXN0ZXIgYnJhbmNoIGFuZCBzYXcgdGhlIHVwZGF0ZXMgb24g
-dGhlIHBrZ2NvbmZpZyBhbmQgY21ha2UgZmlsZXMgZ2VuZXJhdGlvbi4NCg0KRWl0aGVyIHdlIG1h
-a2UgbWV0YS1xdDUgbG9vayBmb3IgdGhlIEdMRVN2MiBwYWNrYWdlIGNvbmZpZyBmaWxlIHRvIHVw
-ZGF0ZSBwcm9wZXJseSB0aGUgUU1BS0VfTElCU19FR0wgdmFyaWFibGUuDQpPdGhlcndpc2Ugd2Ug
-Y2hlY2sgaW4gbWV0YS1yYXNwYmVycnlwaSB0aGF0IHRoZSBtZXRhLXF0NSBpcyBlbmFibGVkIHRv
-IGZlZWQgRVhUUkFfUU1BS0VWQVJTX1BSRS4NCg0KTGV0J3Mgc2F5IHRoYXQgYm90aCBvcHRpb25z
-IHNob3VsZCB3b3JrLg0KVGhlIGZpcnN0IG9wdGlvbiBjb3VsZCBicmluZyBzb21lIHBhdGNoZXMg
-dG8gUXQgbWFpbnN0cmVhbS4NClRoZSBzZWNvbmQgaXMgcXVpdGUgY2xlYW4gYW5kIGVhc3kgdG8g
-dHJ5Lg0KDQpJJ2xsIGZvcmsgeW91ciBicmFuY2ggYW5kIHRyeSBvdXQgdGhlIHNlY29uZCBvcHRp
-b24uDQoNCi0gSGF2ZSBhIG5pY2UgZGF5DQoNCi0tLS0tTWVzc2FnZSBkJ29yaWdpbmUtLS0tLQ0K
-RGXCoDogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dIA0KRW52b3nDqcKgOiBq
-ZXVkaSA0IGbDqXZyaWVyIDIwMTYgMDU6MzgNCsOAwqA6IEdVRVlUQVQgSnVsaWVuDQpDY8KgOiBZ
-YW5uaWNrIEtpZWtlbnM7IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCk9iamV0wqA6IFJlOiBbeW9j
-dG9dIFttZXRhLXF0NV1bbWV0YS1yYXNwYmVycnlwaV06IFFNQUtFX0xJQlNfRUdMIG5vdCBwcm9w
-ZXJseSBzZXQNCg0KT24gV2VkLCBGZWIgMywgMjAxNiBhdCA2OjU0IEFNLCBHVUVZVEFUIEp1bGll
-biA8ai5ndWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5mcj4gd3JvdGU6DQo+IFNldHRpbmcgcHJvcGVy
-bHkgdGhlIHZhcmlhYmxlIFBBQ0tBR0VDT05GSUdfR0wgdG8gZ2xlczIgZG9lcyBOT1QgdXBkYXRl
-IHByb3Blcmx5IHRoZSB2YXJpYWJsZSBRTUFLRV9MSUJTX0VHTC4NCj4gQnkgZGVmYXVsdCBRTUFL
-RV9MSUJTX0VHTCA9IC1sRUdMDQo+IEFuZCBkZXBlbmRpbmcgb24gaGFyZHdhcmUuLi4gaXQgbWln
-aHQgYmUgc29tZXRoaW5nIGxpa2UgUU1BS0VfTElCU19FR0wgPSAtbEVHTCAtbEdMRVN2MiBmb3Ig
-aW5zdGFuY2UuDQo+IEFuZCB0aGlzIHNwZWNpZmljIGxpbmUuLi4gIi1sRUdMIC1sR0xFU3YyIiBp
-cyBvbmx5IGtub3cgaW4gdGhlIHByb3ZpZGVyIG9mIHZpcnR1YWwvbGliZ2xlc3YyIC4uLiBpbiB0
-aGlzIGNhc2UgbWV0YS1yYXNwYmVycnkuDQo+IFRoZSBCU1AgbGF5ZXIgY291bGQgcHJvdmlkZSBh
-IHBhY2thZ2UgY29uZmlnIGZpbGUgd2hpY2ggd2lsbCBiZSByZWFkIHRvIHNldCBRTUFLRV9MSUJT
-X0VHTCBwcm9wZXJseS4NCj4NCj4gPT4gV2hpY2ggbWVhbnMgd2Ugd291bGQgbmVlZCBlYWNoIHBh
-Y2thZ2UgcHJvdmlkaW5nIHZpcnR1YWwvbGliZ2xlc3YyIC4uLiB0byBwcm92aWRlIGFsc28gYSBw
-YWNrYWdlIGNvbmZpZyBmaWxlLg0KPg0KPiBJIGhvcGUgaXQncyBjbGVhciBub3cuIFRlbGwgbWUg
-aWYgSSBtaXNzZWQgc29tZXRoaW5nLg0KDQp5b3UgY2FuIHRyeSBteSBmb3JrIG9mIG1ldGEtcmFz
-cGJlcnJ5cGkgSSBhbSBjYXJyeWluZyBmZXcgcGF0Y2hlcyB3aGljaCBmaXggcGtnY29uZmlnIHN0
-dWZmIGFsb25nIHdpdGggd2F5bGFuZCBzdXBwb3J0ICh3aXApDQoNCj4NCj4gLS0tLS1NZXNzYWdl
-IGQnb3JpZ2luZS0tLS0tDQo+IERlIDogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5j
-b21dIEVudm95w6kgOiBtZXJjcmVkaSAzIGbDqXZyaWVyIA0KPiAyMDE2IDE1OjQ1IMOAIDogR1VF
-WVRBVCBKdWxpZW4gQ2MgOiBZYW5uaWNrIEtpZWtlbnM7IA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnIE9iamV0IDogUmU6IFt5b2N0b10gDQo+IFttZXRhLXF0NV1bbWV0YS1yYXNwYmVycnlwaV06
-IFFNQUtFX0xJQlNfRUdMIG5vdCBwcm9wZXJseSBzZXQNCj4NCj4gT24gV2VkLCBGZWIgMywgMjAx
-NiBhdCAzOjQ2IEFNLCBHVUVZVEFUIEp1bGllbiA8ai5ndWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5m
-cj4gd3JvdGU6DQo+PiBIaSBldmVyeW9uZSwNCj4+DQo+Pg0KPj4NCj4+IEkgdW5kZXJzdGFuZCB0
-aGF0IHlvdSBhcmUgYWxsIHJld3JpdGluZyB0aGUgcXRiYXNlIHJ1bGUgdG8gaW5jbHVkZSBhdCAN
-Cj4+IGxlYXN0IHRoZSBtb2RpZmljYXRpb24gdG8gdGhlIFFNQUtFX0xJQlNfRUdMIHZhcmlhYmxl
-Lg0KPj4NCj4+IFRoZSBxdWVzdGlvbiBpczoNCj4+DQo+PiBDb3VsZCB3ZSBtYWtlIHNvbWVob3cg
-c29tZSB3b3JrIGluIG1ldGEtcXQ1IG9yIG1ldGEtcmFzcGJlcnJ5cGkgdG8gDQo+PiBub3QgaGF2
-ZSB0byBvdmVyd3JpdGUgdGhlIHF0YmFzZSBydWxlLg0KPg0KPg0KPiBJIGRvbnQgdW5kZXJzdGFu
-ZC4gUEFLQ0FHRUNPTkZJR1MgYXJlIHNwZWNpZmljYWxseSBkZXNpbmVkIGZvciB0aGlzIGtpbmQg
-b2Ygc2NlbmFyaW8gd2hhdCBwcm9ibGVtcyBhcmUgeW91IHNlZWluZy4NCj4NCj4+DQo+PiBGb3Ig
-aW5zdGFuY2XigKYgbWV0YS1yYXNwYmVycnlwaSBpcyBwcm92aWRpbmcgYSBwYWNrYWdlIGNvbmZp
-ZyBmaWxlIGZvciBFR0wuDQo+PiBNYXkgYmUgeW91IGNvdWxkIGhhdmUgbWV0YS1xdDUgcmVhZCB0
-aGlzIHBhY2thZ2UgY29uZmlnLg0KPj4NCj4+DQo+Pg0KPj4gVGhhdOKAmXMgdGhlIHF1ZXN0aW9u
-LiBJ4oCZZCBsaWtlIHRvIGtub3cgd2hhdCB0aGUgbWFpbnRhaW5lcnMgb2YgdGhvc2UgDQo+PiB0
-d28gbGF5ZXJzIHRoaW5rIGFib3V0IHRoYXQuDQo+Pg0KPj4NCj4+DQo+PiBCZXN0IFJlZ2FyZHMs
-DQo+Pg0KPj4NCj4+DQo+PiBEZSA6IFlhbm5pY2sgS2lla2VucyBbbWFpbHRvOnlhbm5pY2traWVr
-ZW5zQGdtYWlsLmNvbV0gRW52b3nDqSA6DQo+PiBtZXJjcmVkaSAzIGbDqXZyaWVyIDIwMTYgMDg6
-NDEgw4AgOiBLaGVtIFJhaiBDYyA6IEdVRVlUQVQgSnVsaWVuOyANCj4+IHlvY3RvQHlvY3RvcHJv
-amVjdC5vcmcgT2JqZXQgOiBSZTogW3lvY3RvXQ0KPj4gW21ldGEtcXQ1XVttZXRhLXJhc3BiZXJy
-eXBpXTogUU1BS0VfTElCU19FR0wgbm90IHByb3Blcmx5IHNldA0KPj4NCj4+DQo+Pg0KPj4gSGF2
-ZSBhIGxvb2sgYXQgdGhpcyBnaXQgcmVwbzoNCj4+IGh0dHBzOi8vZ2l0aHViLmNvbS9ZYW5uaWNr
-S2lla2Vucy9tZXRhLXF0NS1waQ0KPj4NCj4+IEkgaGF2ZSBidWlsZCBhIHF0NSBlZ2xmcyB3aXRo
-IHJhc3BiZXJyeSBwaTIgYmFja2VuZCBvbiBtYXN0ZXIgYnJhbmNoIA0KPj4geWVzdGVyZGF5IGV2
-ZW5pbmcNCj4+DQo+Pg0KPj4NCj4+IE9uIFdlZCwgRmViIDMsIDIwMTYgYXQgNzowOCBBTSwgS2hl
-bSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4gd3JvdGU6DQo+Pg0KPj4NCj4+DQo+PiBPbiBGZWIg
-MiwgMjAxNiwgYXQgODo1MCBBTSwgR1VFWVRBVCBKdWxpZW4gDQo+PiA8ai5ndWV5dGF0QGNkc3Nv
-ZnQuc3R1ZGllbC5mcj4NCj4+IHdyb3RlOg0KPj4NCj4+DQo+Pg0KPj4gSGksDQo+Pg0KPj4NCj4+
-DQo+PiBJdCBzZWVtcyB0aGF0IHRoZXJlIGFyZSBzb21lIHN0aWZmIG1pc3NpbmcgYmV0d2VlbiBt
-ZXRhLXF0NSBvciANCj4+IG1ldGEtcmFzcGJlcnJ5cGkuDQo+Pg0KPj4gV2hlbiB3ZSBzZXQgdGhl
-IG9wdGlvbiBnbGVz4oCmIHRvIHF0YmFzZSB3ZSBkb27igJl0IGdldCB0aGUgDQo+PiBRTUFLRV9M
-SUJTX0VHTCBzZXQgcHJvcGVybHkuDQo+Pg0KPj4gV2UgY2FuIGNvbXBhcmUgYSB3b3JraW5nIHNl
-dCBvZiB2YXJpYWJsZXMgaW4gdGhlIHF0IG1rc3BlY3MgZGlyZWN0b3J5IG9mIHF0Lg0KPj4NCj4+
-IFRoZXJlIGlzIG9uZSBkZWRpY2F0ZWQgZmlsZSBmb3IgdGhlIFJhc3BiZXJyeVBpMi4gTWF5IGJl
-IG9uZSBhbHNvIGZvciANCj4+IFJhc3BiZXJyeVBpLg0KPj4NCj4+IEFueXdheSENCj4+DQo+PiBI
-b3cgY291bGQgd2Ugc2V0IHRob3NlICpfRUdMIHZhcmlhYmxlcyBwcm9wZXJseT8gQW5k4oCmIElm
-IHRoZXkgYXJlIA0KPj4gcHJvcGVybHkgc2V0LCB3aWxsIHF0YmFzZSB3aWxsIHRha2UgdGhlbSBp
-bnRvIGFjY291bnQ/DQo+Pg0KPj4NCj4+DQo+PiBJIHdpbGwgYmUgaGFwcHkgdG8gcHJvcG9zZSBh
-IHBhdGNoIGJ1dCBJIG5lZWQgdG8gZ2V0IG1vcmUgcHJlY2lzaW9uIGZpcnN0Lg0KPj4NCj4+DQo+
-Pg0KPj4gRmlyc3RseSBzaG93IHRoZSBESVNUUk9fRkVBVFVSRVMgbWF5IGJlIHlvdSBhcmUgbWlz
-c2luZyBzb21lIA0KPj4gaW1wb3J0YW50IGtub2JzIGZvciBFR0wNCj4+DQo+PiBsaWtlIG9wZW5H
-TCBhbmQgZ2xlczIgZXRjLg0KPj4NCj4+DQo+Pg0KPj4gVGhhbmtzIGluIGFkdmFuY2UsDQo+Pg0K
-Pj4NCj4+DQo+Pg0KPj4NCj4+DQo+Pg0KPj4gSnVsaWVuIEdVRVlUQVQNCj4+DQo+PiBJbmfDqW5p
-ZXVyIEluZm9ybWF0aXF1ZQ0KPj4NCj4+IDxpbWFnZTAwMS5wbmc+DQo+Pg0KPj4gMTAyNywgYXZl
-bnVlIGR1IERvY3RldXIgSnVsaWVuIExlZmVicmUgQlAyNw0KPj4NCj4+IDA2MjcxIFZpbGxlbmV1
-dmUtTG91YmV0IENlZGV4DQo+Pg0KPj4gRml4ZSA6ICArMzMgKDApIDQ5MiAwMjQgNTQ1DQo+PiBN
-b2IgOiAgKzMzKDApIDYxNyA5ODAgMzgzDQo+PiBGYXggOiAgICArMzMoMCkgNDkyIDAyNCA1NDYN
-Cj4+IEVtYWlsIDogai5ndWV5dGF0QGNkc3NvZnQuc3R1ZGllbC5mcg0KPj4NCj4+IHd3dyA6IHd3
-dy5zdHVkaWVsLmZyDQo+Pg0KPj4gUCBQZW5zZXogRW52aXJvbm5lbWVudCwgaW1wcmltZXogc2V1
-bGVtZW50IHNpIG7DqWNlc3NhaXJlDQo+Pg0KPj4NCj4+DQo+PiAtLQ0KPj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IHlvY3RvIG1haWxpbmcgbGlz
-dA0KPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
-Y3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+Pg0KPj4NCj4+DQo+Pg0KPj4gLS0NCj4+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiB5b2N0byBtYWlsaW5n
-IGxpc3QNCj4+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+IGh0dHBzOi8vbGlzdHMueW9jdG9w
-cm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPj4NCj4+DQo=
+We need machconfig file to automatically choose between
+physical and virtual keyboards.
+
+[YOCTO #9027]
+
+Signed-off-by: Maxin B. John <maxin.john@intel.com>
+---
+ meta-yocto-bsp/recipes-bsp/formfactor/formfactor/beaglebone/machconfig | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 meta-yocto-bsp/recipes-bsp/formfactor/formfactor/beaglebone/machconfig
+
+diff --git a/meta-yocto-bsp/recipes-bsp/formfactor/formfactor/beaglebone/machconfig b/meta-yocto-bsp/recipes-bsp/formfactor/formfactor/beaglebone/machconfig
+new file mode 100644
+index 0000000..ffce012
+--- /dev/null
++++ b/meta-yocto-bsp/recipes-bsp/formfactor/formfactor/beaglebone/machconfig
+@@ -0,0 +1,3 @@
++# Assume a USB mouse and keyboard are connected
++HAVE_TOUCHSCREEN=0
++HAVE_KEYBOARD=1
+-- 
+2.4.0
+
 
