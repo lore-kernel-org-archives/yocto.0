@@ -1,62 +1,61 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE146E00CCC; Fri,  5 Feb 2016 01:03:02 -0800 (PST)
+	id 3CEF0E00CCC; Fri,  5 Feb 2016 01:12:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1895FE00B5A
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 01:03:01 -0800 (PST)
-Received: by mail-ig0-f175.google.com with SMTP id mw1so9626153igb.1
-	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 01:03:01 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10276E00B5A
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 01:12:31 -0800 (PST)
+Received: by mail-io0-f180.google.com with SMTP id 9so122700506iom.1
+	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 01:12:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=nVkJjOGpHPIaOqevr21AI5bHOn0varvk+ABJIDD7WWU=;
-	b=i6ZIbvi4zTAeGCt7DcTCIzLxtLwuH+abGgoYUh7E128PwpQL73S3s8uCBDQPYmAjKB
-	TMpicHuDMZMGoI7ovG0PZubF+Ygj0IAOSyCQ9ATE23J/olnSfEnTPWDdL4DmsP2HTdP1
-	+5mw0bZs+ve8CGRAjmrdsk7e7wVGLshcG+guMBwcrWf2EzVzAT7fO3pxbiLRLQbKedt1
-	1foH6JxRf1+B88Sotkw00zr1gMls11gH/JZETodQ/dyM0/qR9b+9gYEHM3WYyU/pq3Fb
-	hpqvwz6CUrZN9L5yr6x4s9fKrhHEEpGezz7/OOHvU2nqZF84dVX8RuE4Nk7wQCdaO8g6
-	8xhg==
+	bh=1wKWIzjg81NmuLh39S+ikuGeZraLJGh6w6Dqne7IPPw=;
+	b=W4I/bfS+MCRNdsTZrlif5XttdDUeIcz20v3FP7VhKRNOGDc+q8t8oCHUfLuwUpmEe9
+	WYfVyMDLLbSF5BkiKy/iiJQk3Lyw5qD0nJJMPYuPpayn1G16YKSrwu28WRjtgXpznDVR
+	cmZQA+28xCM4ETrSTujiLgk6/KKEdndTKSxLR6PxYD1L7X+HXSv3ZjgQZ1rkCtCfxCnq
+	DM1j304NvES9lDGY1HJjPA4wE8fivuxV73lePFP+aJOfhIp2GKN1kUYCPMVq+kiIwEjp
+	AAj5QibSPOMhkrmTVuQHUYq9UnoK6ChLiYrfM4KRjXmLWM3TN5a3r9wHgY7jo0+VPPuX
+	wPkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=nVkJjOGpHPIaOqevr21AI5bHOn0varvk+ABJIDD7WWU=;
-	b=dzzdKl/4mfkoSii41XzTI3eeB5C+bfzj0jmLQ7o41AeTWuCTwetCkdz5eRWERhWMCd
-	E27GdhSIDcHzjv+9NjNy9kPZWFnAXMCU77ScO/NrlR2wEFL5miHCBoeeWzx0yU7qhkPx
-	k9gwA61yxRs0MzEgLRUtisWpUC8T8RwvFlP5tZLY30wyZ0VXq55qsmIUxzV5f2FBkQjq
-	VE8YTPVfkbmqpJiA/DzBruJXP7gJr+RxxWUBwzGymXTCxCJfs5yOKFkPx8H6jwvupmGS
-	oGPZL47QrRCiSxA241cijyTqJFKzUBC61MjctHoqAgNmLOImgvrex/qkZZ1ROwGUViSa
-	5PeQ==
-X-Gm-Message-State: AG10YOQw4OsUFxVhu8GaMsrI/TAGu6lpLquGGqJknzSoVgM+T2UMnMTo1lQ4DuoWPXFXUszLl4BpcZlMP/FltF3r
-X-Received: by 10.50.160.7 with SMTP id xg7mr5252726igb.64.1454662980798; Fri,
-	05 Feb 2016 01:03:00 -0800 (PST)
+	bh=1wKWIzjg81NmuLh39S+ikuGeZraLJGh6w6Dqne7IPPw=;
+	b=dX14iKGb2YpufrK2oDGbHtsIXw+HlXrv+XHImkbkeVF6YiAgwoUJtHymPnC4ox8FTF
+	JZw/EpGkfFBE3/LhtGWMz/aKp2q9bUx4LablR9jxWbbJaIX+1Hh9XGjFDtrh0P4+lxWz
+	4rtLniMmTO5r/KGQ7aCSYm7Id8ryrytjp3wkEVSpCSH5BazqVxCfJHh+43KmVfdn99jw
+	g15xN3Oy/vOvCBYr7mfRbXG4CZecujS0mtoPBc8YLmATE+7LnCV/csh7s1gPKb92pePv
+	DtkkeGMMZ83AhIDxKWjwtSm2G4IZR0Ovvtb8JgtWOzq3sthiyHEDTHSBRDndN9our8xW
+	u32g==
+X-Gm-Message-State: AG10YORyBrGKixe7A+mnqBh1MxH9QGypsaDLl0gCMZhsKM9wK8295mXIF2nuAz4cPobziIJJfG7dupOgIOxk7u30
+X-Received: by 10.107.3.220 with SMTP id e89mr12982967ioi.99.1454663551365;
+	Fri, 05 Feb 2016 01:12:31 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 5 Feb 2016 01:02:41 -0800 (PST)
-In-Reply-To: <A2879B89-41D4-42C2-8C86-A0ABD2F149B5@gmail.com>
-References: <1454624831-25414-1-git-send-email-ross.burton@intel.com>
-	<A2879B89-41D4-42C2-8C86-A0ABD2F149B5@gmail.com>
+Received: by 10.107.162.70 with HTTP; Fri, 5 Feb 2016 01:12:11 -0800 (PST)
+In-Reply-To: <2236FBA76BA1254E88B949DDB74E612B41A6F227@IRSMSX102.ger.corp.intel.com>
+References: <2236FBA76BA1254E88B949DDB74E612B41A6F227@IRSMSX102.ger.corp.intel.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 5 Feb 2016 09:02:41 +0000
-Message-ID: <CAJTo0LZYuGLd=emba4YW1f-rQ6o9+xVpgV-ZJZHvzq0cKNX82w@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 5 Feb 2016 09:12:11 +0000
+Message-ID: <CAJTo0LY6-=w7W6Cwx4JxmQmOLktauPhxFN+_VdT9Hj0PK0n1dQ@mail.gmail.com>
+To: "Reshetova, Elena" <elena.reshetova@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][yocto-autobuilder] nightly-musl: also build core-image-weston
+Subject: Re: What is the correct way to get a list of package run-time dependencies during the build process?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,66 +67,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 09:03:02 -0000
-Content-Type: multipart/alternative; boundary=001a11339de83d25c1052b021e47
+X-List-Received-Date: Fri, 05 Feb 2016 09:12:35 -0000
+Content-Type: multipart/alternative; boundary=001a113f0e7c3f47d1052b024026
 
---001a11339de83d25c1052b021e47
+--001a113f0e7c3f47d1052b024026
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 5 February 2016 at 02:08, Khem Raj <raj.khem@gmail.com> wrote:
+On 5 February 2016 at 08:27, Reshetova, Elena <elena.reshetova@intel.com>
+wrote:
 
-> > diff --git a/buildset-config.controller/nightly-musl.conf
-> b/buildset-config.controller/nightly-musl.conf
-> > index 9a82e6b..5da90c3 100644
-> > --- a/buildset-config.controller/nightly-musl.conf
-> > +++ b/buildset-config.controller/nightly-musl.conf
-> > @@ -12,7 +12,7 @@ steps: [{'SetDest':{}},
-> >                             'buildhistory' : False, 'distro': 'poky=E2=
-=80=99,
+> I noticed that during the build bitbake supplies you rather correct (if i=
+t
+> is correct in the recipe) list of recipe build-time dependencies. However=
+,
+> this isn=E2=80=99t true for run-time dependencies. Moreover it seems that=
+ when you
+> define a recipe you don=E2=80=99t have to list run-time dependencies, but=
+ rather
+> than package manager would figure it out.
 >
-> one generic problem I see is that poky packages rpm and rpm does not work
-> with musl.
-> when I build core-image-sato with OE-Core it works out fine.
 >
-> fixing rpm with musl will need some some patching. I was wondering we
-> could use poky-tiny + opkg combo
-> for musl.
-
-
-We can switch nightly-musl over to just opkg whilst rpm is known to be
-broken.  We already have a separate tiny buildset.
+After do_package has run the dependencies will be correct, but until that
+point the runtime library dependencies won't have been extracted.
 
 Ross
 
---001a11339de83d25c1052b021e47
+--001a113f0e7c3f47d1052b024026
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 February 2016 at 02:08, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> =
-wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex"><span class=3D"">&gt; diff --git a=
-/buildset-config.controller/nightly-musl.conf b/buildset-config.controller/=
-nightly-musl.conf<br>
-&gt; index 9a82e6b..5da90c3 100644<br>
-&gt; --- a/buildset-config.controller/nightly-musl.conf<br>
-&gt; +++ b/buildset-config.controller/nightly-musl.conf<br>
-&gt; @@ -12,7 +12,7 @@ steps: [{&#39;SetDest&#39;:{}},<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&#39;buildhistory&#39; : False, &#39;dist=
-ro&#39;: &#39;poky=E2=80=99,<br>
-<br>
-</span>one generic problem I see is that poky packages rpm and rpm does not=
- work with musl.<br>
-when I build core-image-sato with OE-Core it works out fine.<br>
-<br>
-fixing rpm with musl will need some some patching. I was wondering we could=
- use poky-tiny + opkg combo<br>
-for musl.</blockquote></div><br>We can switch nightly-musl over to just opk=
-g whilst rpm is known to be broken.=C2=A0 We already have a separate tiny b=
-uildset.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extr=
-a">Ross</div></div>
+On 5 February 2016 at 08:27, Reshetova, Elena <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:elena.reshetova@intel.com" target=3D"_blank">elena.reshetova@int=
+el.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"=
+MsoNormal"><span lang=3D"EN-GB">I noticed that during the build bitbake sup=
+plies you rather correct (if it is correct in the recipe) list of recipe bu=
+ild-time dependencies. However, this isn=E2=80=99t true for run-time depend=
+encies. Moreover it seems that when you define a recipe you don=E2=80=99t h=
+ave to list run-time dependencies, but rather than package manager would fi=
+gure it out. <u></u><u></u></span></p><p class=3D"MsoNormal"></p></blockquo=
+te></div><br>After do_package has run the dependencies will be correct, but=
+ until that point the runtime library dependencies won&#39;t have been extr=
+acted.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"=
+>Ross</div></div>
 
---001a11339de83d25c1052b021e47--
+--001a113f0e7c3f47d1052b024026--
