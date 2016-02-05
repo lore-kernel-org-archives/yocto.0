@@ -1,27 +1,63 @@
-Return-Path: <pokybuild@centos7-a.osl.yoctoproject.org>
+Return-Path: <nathan@nathan.to>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03232E00D36; Fri,  5 Feb 2016 10:28:04 -0800 (PST)
+	id 75187E00D34; Fri,  5 Feb 2016 11:04:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.72.237.35 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from centos7-a.osl.yoctoproject.org (ab01 [10.0.10.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D439DE00D2E
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 10:28:02 -0800 (PST)
-Received: by centos7-a.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 44EA39BC42; Fri,  5 Feb 2016 18:28:02 +0000 (GMT)
-Date: Fri, 05 Feb 2016 18:28:01 +0000
-To: yocto@yoctoproject.org
-User-Agent: Heirloom mailx 12.5 7/5/10
-MIME-Version: 1.0
-Message-Id: <20160205182802.44EA39BC42@centos7-a.osl.yoctoproject.org>
-From: pokybuild@centos7-a.osl.yoctoproject.org (Poky Build User)
-Cc: otavio@ossystems.com.br
-Subject: Release Candidate Build for yocto-2.0.1.rc4.rc4 now available.
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F32BFE00BA4
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 11:04:04 -0800 (PST)
+Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 97F2141B2D;
+	Fri,  5 Feb 2016 14:04:01 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=content-type
+	:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to; s=sasl; bh=
+	R9QCvrfFARM0YkwY7UTI20yg7Bw=; b=u9kinjlL8kmnwTWz3W6VRXRiHEjr4lMO
+	iu/Sw1eF4rx2rysr/fpO8uis/qMIA+Z01nblMJhf65z6Mu4oL3WtyONPKSkke/CV
+	CfTvp+IulT97vRRC4G1UZnOD4ZZt8EoXg2RdKirE+1m2L42v3iYho8nXL4fD4/cx
+	5OQKaP7kT5I=
+Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 4778941B2B;
+	Fri,  5 Feb 2016 14:04:01 -0500 (EST)
+Received: from [10.41.136.109] (unknown [83.61.76.185])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id 1DCF941B26;
+	Fri,  5 Feb 2016 14:03:54 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
+From: Nathan Sowatskey <nathan@nathan.to>
+In-Reply-To: <CAMKF1soqv+YvKTBvvQwxfo=DwG9AAbsLWYjZ+X5a9W4b7MCTKA@mail.gmail.com>
+Date: Fri, 5 Feb 2016 20:00:24 +0100
+Message-Id: <BDCA882D-3735-4726-9AEA-5265FE853643@nathan.to>
+References: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
+	<CAJTo0La9vryBMou_wnKKdmdC61Kgu7u2JL+vpx1RY+s7Gbe7QA@mail.gmail.com>
+	<2D89126E-8678-494A-A98B-5F5D5723E860@nathan.to>
+	<CAJTo0LbbM_TXswmQxbqP5yr4Pf9geh7Ru6=iD3nHNHscC8q-nQ@mail.gmail.com>
+	<30E23744-25E6-43C3-A831-A8195E8787C9@nathan.to>
+	<CAJTo0LZFMT=JyABkd1mzLJhB9npzkTLO_sXsReMD=hKvDsuFBw@mail.gmail.com>
+	<1454695459773.33828@seescan.com>
+	<7A197409-A596-4F9C-AF6A-A46A2529AB05@nathan.to>
+	<1454695732426.82900@seescan.com>
+	<D353173E-F5C7-4BCC-A975-D5E986B190D3@nathan.to>
+	<CAMKF1sq6tRyHMfzDX7s=QaZxr8KsT+_kcFJLBkzqTPuc=oyLXA@mail.gmail.com>
+	<1117582A-9849-43DC-91FE-15F2F972B12B@nathan.to>
+	<CAMKF1soqv+YvKTBvvQwxfo=DwG9AAbsLWYjZ+X5a9W4b7MCTKA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.3119)
+X-Pobox-Relay-ID: 34C36752-CC3B-11E5-BD56-79226BB36C07-96844961!pb-smtp0.pobox.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: libgcc_s not present in Yocto image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,32 +69,1876 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 18:28:04 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Feb 2016 19:04:14 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Thanks Khem. Please see below:
 
-A release candidate build for yocto-2.0.1.rc4 is now available at:
+readelf -a /usr/bin/testprog             =20
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00=20
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           Advanced Micro Devices X86-64
+  Version:                           0x1
+  Entry point address:               0x405ac0
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          495792 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         9
+  Size of section headers:           64 (bytes)
+  Number of section headers:         38
+  Section header string table index: 35
 
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-2.0.1.rc4
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .interp           PROGBITS         0000000000400238  00000238
+       000000000000001c  0000000000000000   A       0     0     1
+  [ 2] .note.ABI-tag     NOTE             0000000000400254  00000254
+       0000000000000020  0000000000000000   A       0     0     4
+  [ 3] .note.gnu.build-i NOTE             0000000000400274  00000274
+       0000000000000024  0000000000000000   A       0     0     4
+  [ 4] .gnu.hash         GNU_HASH         0000000000400298  00000298
+       000000000000061c  0000000000000000   A       5     0     8
+  [ 5] .dynsym           DYNSYM           00000000004008b8  000008b8
+       0000000000001ba8  0000000000000018   A       6     1     8
+  [ 6] .dynstr           STRTAB           0000000000402460  00002460
+       00000000000023a6  0000000000000000   A       0     0     1
+  [ 7] .gnu.version      VERSYM           0000000000404806  00004806
+       000000000000024e  0000000000000002   A       5     0     2
+  [ 8] .gnu.version_r    VERNEED          0000000000404a58  00004a58
+       00000000000000b0  0000000000000000   A       6     4     8
+  [ 9] .rela.dyn         RELA             0000000000404b08  00004b08
+       00000000000000d8  0000000000000018   A       5     0     8
+  [10] .rela.plt         RELA             0000000000404be0  00004be0
+       00000000000008d0  0000000000000018   A       5    12     8
+  [11] .init             PROGBITS         00000000004054b0  000054b0
+       000000000000001a  0000000000000000  AX       0     0     4
+  [12] .plt              PROGBITS         00000000004054d0  000054d0
+       00000000000005f0  0000000000000010  AX       0     0     16
+  [13] .text             PROGBITS         0000000000405ac0  00005ac0
+       0000000000002902  0000000000000000  AX       0     0     16
+  [14] .fini             PROGBITS         00000000004083c4  000083c4
+       0000000000000009  0000000000000000  AX       0     0     4
+  [15] .rodata           PROGBITS         00000000004083d0  000083d0
+       0000000000000098  0000000000000000   A       0     0     8
+  [16] .eh_frame_hdr     PROGBITS         0000000000408468  00008468
+       00000000000004c4  0000000000000000   A       0     0     4
+  [17] .eh_frame         PROGBITS         0000000000408930  00008930
+       00000000000013ec  0000000000000000   A       0     0     8
+  [18] .gcc_except_table PROGBITS         0000000000409d1c  00009d1c
+       0000000000000124  0000000000000000   A       0     0     4
+  [19] .init_array       INIT_ARRAY       000000000060ad50  0000ad50
+       0000000000000010  0000000000000000  WA       0     0     8
+  [20] .fini_array       FINI_ARRAY       000000000060ad60  0000ad60
+       0000000000000008  0000000000000000  WA       0     0     8
+  [21] .jcr              PROGBITS         000000000060ad68  0000ad68
+       0000000000000008  0000000000000000  WA       0     0     8
+  [22] .data.rel.ro      PROGBITS         000000000060ad70  0000ad70
+       0000000000000008  0000000000000000  WA       0     0     8
+  [23] .dynamic          DYNAMIC          000000000060ad78  0000ad78
+       0000000000000240  0000000000000010  WA       6     0     8
+  [24] .got              PROGBITS         000000000060afb8  0000afb8
+       0000000000000048  0000000000000008  WA       0     0     8
+  [25] .got.plt          PROGBITS         000000000060b000  0000b000
+       0000000000000308  0000000000000008  WA       0     0     8
+  [26] .data             PROGBITS         000000000060b308  0000b308
+       0000000000000028  0000000000000000  WA       0     0     8
+  [27] .bss              NOBITS           000000000060b330  0000b330
+       0000000000000008  0000000000000000  WA       0     0     1
+  [28] .comment          PROGBITS         0000000000000000  0000b330
+       000000000000004d  0000000000000001  MS       0     0     1
+  [29] .debug_aranges    PROGBITS         0000000000000000  0000b37d
+       0000000000000890  0000000000000000           0     0     1
+  [30] .debug_info       PROGBITS         0000000000000000  0000bc0d
+       00000000000358fc  0000000000000000           0     0     1
+  [31] .debug_abbrev     PROGBITS         0000000000000000  00041509
+       0000000000001139  0000000000000000           0     0     1
+  [32] .debug_line       PROGBITS         0000000000000000  00042642
+       0000000000001ab4  0000000000000000           0     0     1
+  [33] .debug_str        PROGBITS         0000000000000000  000440f6
+       000000000003458f  0000000000000001  MS       0     0     1
+  [34] .debug_ranges     PROGBITS         0000000000000000  00078685
+       00000000000008b0  0000000000000000           0     0     1
+  [35] .shstrtab         STRTAB           0000000000000000  00078f35
+       0000000000000175  0000000000000000           0     0     1
+  [36] .symtab           SYMTAB           0000000000000000  00079a30
+       0000000000002358  0000000000000018          37    83     8
+  [37] .strtab           STRTAB           0000000000000000  0007bd88
+       0000000000002940  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor =
+specific)
 
+There are no section groups in this file.
 
-Please begin QA on this build as soon as possible.
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000400040 =
+0x0000000000400040
+                 0x00000000000001f8 0x00000000000001f8  R E    8
+  INTERP         0x0000000000000238 0x0000000000400238 =
+0x0000000000400238
+                 0x000000000000001c 0x000000000000001c  R      1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x0000000000000000 0x0000000000400000 =
+0x0000000000400000
+                 0x0000000000009e40 0x0000000000009e40  R E    200000
+  LOAD           0x000000000000ad50 0x000000000060ad50 =
+0x000000000060ad50
+                 0x00000000000005e0 0x00000000000005e8  RW     200000
+  DYNAMIC        0x000000000000ad78 0x000000000060ad78 =
+0x000000000060ad78
+                 0x0000000000000240 0x0000000000000240  RW     8
+  NOTE           0x0000000000000254 0x0000000000400254 =
+0x0000000000400254
+                 0x0000000000000044 0x0000000000000044  R      4
+  GNU_EH_FRAME   0x0000000000008468 0x0000000000408468 =
+0x0000000000408468
+                 0x00000000000004c4 0x00000000000004c4  R      4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 =
+0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     10
+  GNU_RELRO      0x000000000000ad50 0x000000000060ad50 =
+0x000000000060ad50
+                 0x00000000000002b0 0x00000000000002b0  R      1
 
+ Section to Segment mapping:
+  Segment Sections...
+   00    =20
+   01     .interp=20
+   02     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym =
+.dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text =
+.fini .rodata .eh_frame_hdr .eh_frame .gcc_except_table=20
+   03     .init_array .fini_array .jcr .data.rel.ro .dynamic .got =
+.got.plt .data .bss=20
+   04     .dynamic=20
+   05     .note.ABI-tag .note.gnu.build-id=20
+   06     .eh_frame_hdr=20
+   07    =20
+   08     .init_array .fini_array .jcr .data.rel.ro .dynamic .got=20
 
-Build hash information: 
-meta-intel : 4e87c59bdedaa8c3e44fc02fd23be726c4d1dfb9 
-meta-fsl-arm : 35b8b9bd9863de208ab60e33b55f10ee43e2619b 
-meta-minnow : 9c965ef5252e383843d796cd8b50c61b3034b6ae 
-meta-qt4 : 80e9ccf584ea215ac0e9706bd1df852bb2bb4ba9 
-meta-qt3 : b08996efbfb3b26e62b608f34ebf5e671b36ec61 
-meta-fsl-ppc : d9443cbd98f2d4717d84d8325fc6099f5a3e6a25 
-poky : 12fae239641cc7a72c509a1a0841ab8bb06ce7f0 
+Dynamic section at offset 0xad78 contains 31 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libsnmp.so.30]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5Network.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5SerialPort.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libQt5Core.so.5]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: =
+[libpthread.so.0]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000c (INIT)               0x4054b0
+ 0x000000000000000d (FINI)               0x4083c4
+ 0x0000000000000019 (INIT_ARRAY)         0x60ad50
+ 0x000000000000001b (INIT_ARRAYSZ)       16 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x60ad60
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x400298
+ 0x0000000000000005 (STRTAB)             0x402460
+ 0x0000000000000006 (SYMTAB)             0x4008b8
+ 0x000000000000000a (STRSZ)              9126 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x60b000
+ 0x0000000000000002 (PLTRELSZ)           2256 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x404be0
+ 0x0000000000000007 (RELA)               0x404b08
+ 0x0000000000000008 (RELASZ)             216 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000006ffffffe (VERNEED)            0x404a58
+ 0x000000006fffffff (VERNEEDNUM)         4
+ 0x000000006ffffff0 (VERSYM)             0x404806
+ 0x0000000000000000 (NULL)               0x0
 
+Relocation section '.rela.dyn' at offset 0x4b08 contains 9 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name =
++ Addend
+00000060afb8  000d00000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZN12QMapDataBase11sha + 0
+00000060afc0  001c00000006 R_X86_64_GLOB_DAT 0000000000000000 =
+__gmon_start__ + 0
+00000060afc8  001f00000006 R_X86_64_GLOB_DAT 0000000000000000 _ZSt4cout =
++ 0
+00000060afd0  002000000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZN9QHashData11shared_ + 0
+00000060afd8  002c00000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZN10QArrayData11share + 0
+00000060afe0  002f00000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZNSt8ios_base4InitD1E + 0
+00000060afe8  00ac00000006 R_X86_64_GLOB_DAT 0000000000405970 =
+__pthread_key_create + 0
+00000060aff0  005300000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZSt4endlIcSt11char_tr + 0
+00000060aff8  006200000006 R_X86_64_GLOB_DAT 0000000000000000 =
+_ZN9QListData11shared_ + 0
 
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
+Relocation section '.rela.plt' at offset 0x4be0 contains 94 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name =
++ Addend
+00000060b018  000100000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__cxa_begin_catch + 0
+00000060b020  000200000007 R_X86_64_JUMP_SLO 0000000000000000 memcpy + 0
+00000060b028  000300000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN5QFileC1Ev + 0
+00000060b030  000400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN11QSerialPortD1Ev + 0
+00000060b038  000500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZNSt18basic_stringstr + 0
+00000060b040  000600000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN16QCoreApplicationD + 0
+00000060b048  000800000007 R_X86_64_JUMP_SLO 0000000000000000 _ZNSsC1Ev =
++ 0
+00000060b050  000900000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineOptio + 0
+00000060b058  000a00000007 R_X86_64_JUMP_SLO 0000000000000000 _Znwm + 0
+00000060b060  000b00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b068  000c00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QObjectD1Ev + 0
+00000060b070  000e00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN13QPluginLoaderC1EP + 0
+00000060b078  000f00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QMetaType25registe + 0
+00000060b080  001000000007 R_X86_64_JUMP_SLO 0000000000000000 close + 0
+00000060b088  001100000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN4QDirD1Ev + 0
+00000060b090  001200000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN11QSerialPortC1EP7Q + 0
+00000060b098  001300000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__cxa_demangle + 0
+00000060b0a0  001400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__stack_chk_fail + 0
+00000060b0a8  001500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN16QCoreApplication1 + 0
+00000060b0b0  001600000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QRegExpC1Ev + 0
+00000060b0b8  001700000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_Z22qInstallMessageHan + 0
+00000060b0c0  001800000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b0c8  001900000007 R_X86_64_JUMP_SLO 0000000000000000 signal + 0
+00000060b0d0  001a00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN21QNetworkAccessMan + 0
+00000060b0d8  001b00000007 R_X86_64_JUMP_SLO 0000000000000000 connect + =
+0
+00000060b0e0  001c00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__gmon_start__ + 0
+00000060b0e8  001d00000007 R_X86_64_JUMP_SLO 0000000000000000 strlen + 0
+00000060b0f0  001e00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+backtrace_symbols + 0
+00000060b0f8  002100000007 R_X86_64_JUMP_SLO 0000000000000000 socket + 0
+00000060b100  002200000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN5QFileD1Ev + 0
+00000060b108  002300000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN21QNetworkAccessMan + 0
+00000060b110  002400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+netsnmp_free + 0
+00000060b118  002500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QString16fromAscii + 0
+00000060b120  002600000007 R_X86_64_JUMP_SLO 0000000000000000 _ZdlPv + 0
+00000060b128  002700000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZStlsISt11char_traits + 0
+00000060b130  002800000007 R_X86_64_JUMP_SLO 0000000000000000 =
+snmp_add_null_var + 0
+00000060b138  002900000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN8QVariantD1Ev + 0
+00000060b140  010d00000007 R_X86_64_JUMP_SLO 0000000000405730 =
+__gxx_personality_v0 + 0
+00000060b148  002a00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN16QCoreApplication2 + 0
+00000060b150  002b00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QThreadC1EP7QObjec + 0
+00000060b158  002d00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_Unwind_Resume + 0
+00000060b160  003000000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN16QCoreApplicationC + 0
+00000060b168  003100000007 R_X86_64_JUMP_SLO 0000000000000000 =
+snmp_pdu_create + 0
+00000060b170  003200000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN11QJsonObjectC1Ev + 0
+00000060b178  003300000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN13QJsonDocumentD1Ev + 0
+00000060b180  003400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QHashData11free_he + 0
+00000060b188  003500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN6QTimerC1EP7QObject + 0
+00000060b190  003600000007 R_X86_64_JUMP_SLO 0000000000000000 =
+snmp_synch_response + 0
+00000060b198  003700000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b1a0  003800000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QSaveFileD1Ev + 0
+00000060b1a8  003900000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN10QJsonArrayC1Ev + 0
+00000060b1b0  003a00000007 R_X86_64_JUMP_SLO 0000000000000000 read + 0
+00000060b1b8  003b00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN8QProcessC1EP7QObje + 0
+00000060b1c0  003c00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__cxa_end_catch + 0
+00000060b1c8  003d00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN20QContiguousCacheD + 0
+00000060b1d0  003e00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QObjectC1EPS_ + 0
+00000060b1d8  003f00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QListData6detachEi + 0
+00000060b1e0  004000000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__cxa_rethrow + 0
+00000060b1e8  004100000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN13QJsonDocumentC1Ev + 0
+00000060b1f0  004200000007 R_X86_64_JUMP_SLO 0000000000000000 snmp_error =
++ 0
+00000060b1f8  004300000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN10QJsonValueD1Ev + 0
+00000060b200  004400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN11QMetaObject14norm + 0
+00000060b208  004500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN11QJsonObjectD1Ev + 0
+00000060b210  004600000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZNSt18basic_stringstr + 0
+00000060b218  004700000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN20QContiguousCacheD + 0
+00000060b220  004800000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QSaveFileC1EP7QObj + 0
+00000060b228  004900000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QListData7disposeE + 0
+00000060b230  004a00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN8QProcessD1Ev + 0
+00000060b238  004b00000007 R_X86_64_JUMP_SLO 0000000000000000 snmp_open =
++ 0
+00000060b240  004c00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__cxa_atexit + 0
+00000060b248  004d00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b250  004e00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QRegExpD1Ev + 0
+00000060b258  004f00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN6QTimerD1Ev + 0
+00000060b260  00ac00000007 R_X86_64_JUMP_SLO 0000000000405970 =
+__pthread_key_create + 0
+00000060b268  005000000007 R_X86_64_JUMP_SLO 0000000000000000 =
+__libc_start_main + 0
+00000060b270  005100000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN7QThreadD1Ev + 0
+00000060b278  005200000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN10QArrayData10deall + 0
+00000060b280  005400000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZNSt8ios_base4InitC1E + 0
+00000060b288  005500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b290  005700000007 R_X86_64_JUMP_SLO 0000000000000000 =
+snmp_sess_init + 0
+00000060b298  005800000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZNSolsEPFRSoS_E + 0
+00000060b2a0  005900000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN10QJsonValueC1ENS_4 + 0
+00000060b2a8  005a00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN12QMapDataBase8free + 0
+00000060b2b0  005b00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN9QMetaType22registe + 0
+00000060b2b8  005c00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN16QCoreApplication4 + 0
+00000060b2c0  005d00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN12QMapDataBase8free + 0
+00000060b2c8  005e00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN4QDirC1ERK7QString + 0
+00000060b2d0  005f00000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN13QPluginLoaderD1Ev + 0
+00000060b2d8  006000000007 R_X86_64_JUMP_SLO 0000000000000000 =
+snmp_free_pdu + 0
+00000060b2e0  006100000007 R_X86_64_JUMP_SLO 0000000000000000 sleep + 0
+00000060b2e8  006300000007 R_X86_64_JUMP_SLO 0000000000000000 _ZNSsD1Ev =
++ 0
+00000060b2f0  006400000007 R_X86_64_JUMP_SLO 0000000000000000 backtrace =
++ 0
+00000060b2f8  006500000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN18QCommandLineParse + 0
+00000060b300  006600000007 R_X86_64_JUMP_SLO 0000000000000000 =
+_ZN10QJsonArrayD1Ev + 0
+
+The decoding of unwind sections for machine type Advanced Micro Devices =
+X86-64 is not currently supported.
+
+Symbol table '.dynsym' contains 295 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND=20
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_begin_catch@CXXABI_1.3 (2)
+     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+memcpy@GLIBC_2.14 (3)
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN5QFileC1Ev
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QSerialPortD1Ev
+     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt18basic_stringstream@GLIBCXX_3.4 (4)
+     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplicationD1Ev
+     7: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_ITM_deregisterTMCloneTab
+     8: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSsC1Ev@GLIBCXX_3.4 (4)
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineOptionD1
+    10: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Znwm@GLIBCXX_3.4 (4)
+    11: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParserD1
+    12: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QObjectD1Ev
+    13: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase11shared
+    14: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QPluginLoaderC1EP7QO
+    15: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QMetaType25registerNo
+    16: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+close@GLIBC_2.2.5 (5)
+    17: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN4QDirD1Ev
+    18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QSerialPortC1EP7QObj
+    19: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_demangle@CXXABI_1.3 (2)
+    20: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__stack_chk_fail@GLIBC_2.4 (6)
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication18se
+    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QRegExpC1Ev
+    23: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Z22qInstallMessageHandle
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser7p
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+signal@GLIBC_2.2.5 (7)
+    26: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN21QNetworkAccessManage
+    27: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+connect@GLIBC_2.2.5 (5)
+    28: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+__gmon_start__
+    29: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+strlen@GLIBC_2.2.5 (7)
+    30: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+backtrace_symbols@GLIBC_2.2.5 (7)
+    31: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZSt4cout@GLIBCXX_3.4 (4)
+    32: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN9QHashData11shared_nul
+    33: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+socket@GLIBC_2.2.5 (7)
+    34: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN5QFileD1Ev
+    35: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN21QNetworkAccessManage
+    36: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND netsnmp_free
+    37: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QString16fromAscii_he
+    38: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZdlPv@GLIBCXX_3.4 (4)
+    39: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZStlsISt11char_traitsIcE@GLIBCXX_3.4 (4)
+    40: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_add_null_var
+    41: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QVariantD1Ev
+    42: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication21se
+    43: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QThreadC1EP7QObject
+    44: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN10QArrayData11shared_n
+    45: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Unwind_Resume@GCC_3.0 (8)
+    46: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_Jv_RegisterClasses
+    47: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt8ios_base4InitD1Ev@GLIBCXX_3.4 (4)
+    48: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplicationC1ER
+    49: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_pdu_create
+    50: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QJsonObjectC1Ev
+    51: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QJsonDocumentD1Ev
+    52: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QHashData11free_helpe
+    53: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN6QTimerC1EP7QObject
+    54: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_synch_response
+    55: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser16
+    56: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QSaveFileD1Ev
+    57: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonArrayC1Ev
+    58: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+read@GLIBC_2.2.5 (5)
+    59: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QProcessC1EP7QObject
+    60: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_end_catch@CXXABI_1.3 (2)
+    61: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN20QContiguousCacheData
+    62: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QObjectC1EPS_
+    63: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QListData6detachEi
+    64: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_rethrow@CXXABI_1.3 (2)
+    65: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QJsonDocumentC1Ev
+    66: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_error
+    67: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonValueD1Ev
+    68: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QMetaObject14normali
+    69: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QJsonObjectD1Ev
+    70: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt18basic_stringstream@GLIBCXX_3.4 (4)
+    71: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN20QContiguousCacheData
+    72: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QSaveFileC1EP7QObject
+    73: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QListData7disposeEPNS
+    74: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QProcessD1Ev
+    75: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_open
+    76: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_atexit@GLIBC_2.2.5 (7)
+    77: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParserC1
+    78: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QRegExpD1Ev
+    79: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN6QTimerD1Ev
+    80: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__libc_start_main@GLIBC_2.2.5 (7)
+    81: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QThreadD1Ev
+    82: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QArrayData10dealloca
+    83: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZSt4endlIcSt11char_trait@GLIBCXX_3.4 (4)
+    84: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt8ios_base4InitC1Ev@GLIBCXX_3.4 (4)
+    85: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser13
+    86: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_ITM_registerTMCloneTable
+    87: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_sess_init
+    88: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSolsEPFRSoS_E@GLIBCXX_3.4 (4)
+    89: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonValueC1ENS_4Typ
+    90: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase8freeDat
+    91: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QMetaType22registerNo
+    92: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication4exe
+    93: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase8freeTre
+    94: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN4QDirC1ERK7QString
+    95: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QPluginLoaderD1Ev
+    96: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_free_pdu
+    97: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+sleep@GLIBC_2.2.5 (7)
+    98: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN9QListData11shared_nul
+    99: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSsD1Ev@GLIBCXX_3.4 (4)
+   100: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+backtrace@GLIBC_2.2.5 (7)
+   101: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser25
+   102: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonArrayD1Ev
+   103: 00000000004068f2    11 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   104: 00000000004080f4    36 FUNC    WEAK   DEFAULT   13 =
+_ZNK5qLessIiEclERKiS2_
+   105: 00000000004074a0    42 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE8freeDataEP9
+   106: 0000000000406c60    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIbEC1
+   107: 000000000040707c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiED2Ev
+   108: 0000000000407a9b    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate34Sequential
+   109: 0000000000406f52    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiEC2Ev
+   110: 0000000000407b38    26 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC1EP
+   111: 00000000004069cb    13 FUNC    WEAK   DEFAULT   13 =
+_ZN10QArrayData10sharedNu
+   112: 0000000000406c1c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiED1Ev
+   113: 0000000000406a6e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC1Ev
+   114: 0000000000407744    29 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC2ER
+   115: 0000000000406bc2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListC1Ev
+   116: 00000000004068d6    21 FUNC    WEAK   DEFAULT   13 =
+_ZStorSt13_Ios_OpenmodeS_
+   117: 0000000000406fae    26 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   118: 0000000000406886    19 FUNC    WEAK   DEFAULT   13 _ZnwmPv
+   119: 00000000004078fe    19 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiE8destructEP
+   120: 00000000004072ac    36 FUNC    WEAK   DEFAULT   13 =
+_ZN15QBasicAtomicOpsILi4E
+   121: 0000000000406daa    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringEC1Ev
+   122: 0000000000407812    32 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE8
+   123: 00000000004054b0     0 FUNC    GLOBAL DEFAULT   11 _init
+   124: 0000000000408026    42 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratormiE
+   125: 00000000004073d3    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE10
+   126: 00000000004071e6    74 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiED
+   127: 0000000000407724    31 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratordeE
+   128: 0000000000406fef   114 FUNC    WEAK   DEFAULT   13 =
+_Z17qRegisterMetaTypeIiEi
+   129: 000000000040799e    11 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapNodeIiiE14destroy
+   130: 0000000000407932    49 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE3e
+   131: 0000000000408350   101 FUNC    GLOBAL DEFAULT   13 =
+__libc_csu_init
+   132: 00000000004080b6    62 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorplE
+   133: 0000000000407f64    16 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE1
+   134: 0000000000406ec2    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiED2Ev
+   135: 0000000000406c88    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__basic_futureISsE
+   136: 0000000000407fe0    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE8concreteEPN
+   137: 000000000040689a    32 FUNC    WEAK   DEFAULT   13 =
+_ZNSt12__shared_ptrINSt13
+   138: 0000000000406b8e    41 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData3endEv
+   139: 00000000004077c0    82 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE1
+   140: 0000000000406c6c    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt11atomic_boolC2Ev
+   141: 0000000000408074    65 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratormiE
+   142: 0000000000406ca4    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6futureISsED2Ev
+   143: 0000000000406c38    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIiEC1
+   144: 000000000040798a    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapDataIiiE4rootEv
+   145: 0000000000406f12    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiED2Ev
+   146: 0000000000407140    32 FUNC    WEAK   DEFAULT   13 =
+_ZN5QPairIiiEC2Ev
+   147: 0000000000406c44    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6atomicIiEC2Ev
+   148: 0000000000406bb7    11 FUNC    WEAK   DEFAULT   13 =
+_ZN12QMetaTypeId2IiE14qt_
+   149: 00000000004069d8    28 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayC1Ev
+   150: 0000000000406f6e    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   151: 0000000000408118    39 FUNC    WEAK   DEFAULT   13 =
+_Z5qSwapIiEvRT_S1_
+   152: 0000000000406e00    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   153: 0000000000406d48    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIcE10
+   154: 0000000000405ac0     0 FUNC    GLOBAL DEFAULT   13 _start
+   155: 0000000000406e1a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   156: 0000000000406ae8    44 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefC2Ev
+   157: 0000000000406fc8    39 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   158: 00000000004068f2    11 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   159: 0000000000406b14    11 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefD1Ev
+   160: 0000000000407fc4    28 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE4d
+   161: 0000000000406b20    31 FUNC    WEAK   DEFAULT   13 =
+_ZN9QListData7disposeEv
+   162: 0000000000406bfa    33 FUNC    WEAK   DEFAULT   13 =
+_ZN11QSharedDataC1Ev
+   163: 00000000004076e2    66 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE3endEv
+   164: 0000000000406c60    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIbEC2
+   165: 00000000004079c6    28 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   166: 000000000040696c    55 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QtPrivate8RefCount8i
+   167: 0000000000406e50    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiEC1Ev
+   168: 0000000000407fef    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   169: 0000000000406a6e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC2Ev
+   170: 0000000000406c1c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiED2Ev
+   171: 0000000000407856    53 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringE13node
+   172: 0000000000405970     0 FUNC    WEAK   DEFAULT  UND =
+__pthread_key_create@GLIBC_2.2.5 (5)
+   173: 00000000004076a0    66 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE5beginEv
+   174: 0000000000406d53    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIcE10
+   175: 0000000000407230   124 FUNC    WEAK   DEFAULT   13 =
+_ZNSt16_Sp_counted_baseIL
+   176: 0000000000406a8a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringD1Ev
+   177: 0000000000407062    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiEC1Ev
+   178: 0000000000408164    36 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorppEv
+   179: 0000000000406bc2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListC2Ev
+   180: 0000000000406d2c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   181: 0000000000406bde    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListD1Ev
+   182: 00000000004081ac   209 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13detach_help
+   183: 0000000000407912    32 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE5b
+   184: 0000000000406daa    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringEC2Ev
+   185: 0000000000406cc0    43 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__shared_countILN9
+   186: 0000000000407aaa    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate35Associativ
+   187: 00000000004071e6    74 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiED
+   188: 0000000000406dc4    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringED1Ev
+   189: 000000000040761e   101 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE7deallocEPN9Q
+   190: 0000000000407398    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapDataI7QString8QV
+   191: 0000000000407535   233 FUNC    WEAK   DEFAULT   13 =
+_Z27qRegisterNormalizedMe
+   192: 00000000004079fe    59 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   193: 0000000000408050    36 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratormmEv
+   194: 00000000004070b8   135 FUNC    WEAK   DEFAULT   13 =
+_Z5qSortI5QListIiEEvRT_
+   195: 00000000004068eb     6 FUNC    WEAK   DEFAULT   13 _Z7qt_noopv
+   196: 000000000040827d    15 FUNC    WEAK   DEFAULT   13 =
+_ZSt4moveIRiEONSt16remove
+   197: 000000000060b330     0 NOTYPE  GLOBAL DEFAULT   27 __bss_start
+   198: 0000000000406c88    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__basic_futureISsE
+   199: 0000000000407336    98 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapDataI7QString8QVa
+   200: 00000000004072d0   101 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringE7deall
+   201: 0000000000407ffe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13detach_help
+   202: 00000000004079e2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   203: 000000000040689a    32 FUNC    WEAK   DEFAULT   13 =
+_ZNSt12__shared_ptrINSt13
+   204: 0000000000407832    35 FUNC    WEAK   DEFAULT   13 =
+_ZN6QFlagsIN9QMetaType8Ty
+   205: 0000000000407963    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE10
+   206: 0000000000406d84    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataItE10
+   207: 00000000004079aa    28 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE11deleteNode
+   208: 0000000000407fa7    28 FUNC    WEAK   DEFAULT   13 =
+_ZN25QContiguousCacheType
+   209: 0000000000407ab9    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate6IsPairIiE17
+   210: 0000000000406ea8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiEC1Ev
+   211: 0000000000406b40    36 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData7isEmptyEv
+   212: 0000000000406fae    26 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   213: 00000000004069a4    39 FUNC    WEAK   DEFAULT   13 =
+_ZN10QArrayData4dataEv
+   214: 0000000000406c38    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIiEC2
+   215: 0000000000407b38    26 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC2EP
+   216: 00000000004073de    96 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiE8freeDataEP
+   217: 00000000004069d8    28 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayC2Ev
+   218: 00000000004069f4    53 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayD1Ev
+   219: 0000000000407a39    11 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   220: 0000000000406abf    41 FUNC    WEAK   DEFAULT   13 =
+_Z4qMaxIiERKT_S2_S2_
+   221: 0000000000406ef8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiEC1Ev
+   222: 000000000040828c    77 FUNC    WEAK   DEFAULT   13 =
+_ZSt4swapIiEvRT_S1_
+   223: 0000000000406e1a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   224: 00000000004073c0    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapNodeI7QString8QV
+   225: 0000000000406bfa    33 FUNC    WEAK   DEFAULT   13 =
+_ZN11QSharedDataC2Ev
+   226: 0000000000406b14    11 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefD2Ev
+   227: 00000000004074ca    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   228: 000000000040788c   114 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapNodeI7QString8QVa
+   229: 0000000000407684    28 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE5emptyEv
+   230: 0000000000406e50    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiEC2Ev
+   231: 0000000000406e6c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiED1Ev
+   232: 00000000004068ba    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt10shared_ptrINSt13__
+   233: 00000000004068fe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN10QAtomicIntC1Ei
+   234: 0000000000407160   133 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiEC
+   235: 0000000000406a8a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringD2Ev
+   236: 0000000000407062    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiEC2Ev
+   237: 00000000004083d0     4 OBJECT  GLOBAL DEFAULT   15 =
+_IO_stdin_used
+   238: 000000000040743e    98 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapDataIiiE7destroyE
+   239: 000000000060b338     0 NOTYPE  GLOBAL DEFAULT   27 _end
+   240: 0000000000406bde    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListD2Ev
+   241: 000000000040707c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiED1Ev
+   242: 0000000000406f52    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiEC1Ev
+   243: 0000000000406cc0    43 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__shared_countILN9
+   244: 00000000004083c4     0 FUNC    GLOBAL DEFAULT   14 _fini
+   245: 0000000000406dc4    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringED2Ev
+   246: 0000000000408188    35 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorgtE
+   247: 0000000000407b52    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE4Node1tEv
+   248: 0000000000407a90    11 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate17MetaObject
+   249: 0000000000407aec    28 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE7isEmptyEv
+   250: 000000000060b330     0 NOTYPE  GLOBAL DEFAULT   26 _edata
+   251: 000000000040752a    11 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate17QMetaTypeI
+   252: 0000000000406cec    37 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   253: 00000000004083c0     2 FUNC    GLOBAL DEFAULT   13 =
+__libc_csu_fini
+   254: 0000000000407ac8    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate26MetaTypeSm
+   255: 0000000000407f74    51 FUNC    WEAK   DEFAULT   13 =
+_ZNK16QContiguousCacheIiE
+   256: 00000000004082da   110 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE9node_copyEPN
+   257: 000000000060b308     0 NOTYPE  WEAK   DEFAULT   26 data_start
+   258: 0000000000407761    94 FUNC    WEAK   DEFAULT   13 =
+_ZN18QAlgorithmsPrivate11
+   259: 0000000000406a2a    67 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC2EPKc
+   260: 0000000000406926    69 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate8RefCount5de
+   261: 0000000000407a44    76 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   262: 0000000000407ad8    19 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13node_destru
+   263: 00000000004073ac    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapNodeI7QString8QV
+   264: 0000000000406ea8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiEC2Ev
+   265: 0000000000406ec2    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiED1Ev
+   266: 00000000004065a8   535 FUNC    GLOBAL DEFAULT   13 main
+   267: 0000000000407b08    47 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE6detachEv
+   268: 0000000000406d12    25 FUNC    WEAK   DEFAULT   13 =
+_ZNK19QBasicAtomicInteger
+   269: 0000000000405730     0 FUNC    GLOBAL DEFAULT  UND =
+__gxx_personality_v0@CXXABI_1.3 (2)
+   270: 000000000040750e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN21QScopedPointerDelete
+   271: 0000000000406c6c    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt11atomic_boolC1Ev
+   272: 00000000004069f4    53 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayD2Ev
+   273: 0000000000406ca4    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6futureISsED1Ev
+   274: 0000000000406ef8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiEC2Ev
+   275: 0000000000406d79    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataItE10
+   276: 0000000000406f12    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiED1Ev
+   277: 00000000004074e4    42 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   278: 0000000000406c44    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6atomicIiEC1Ev
+   279: 0000000000407140    32 FUNC    WEAK   DEFAULT   13 =
+_ZN5QPairIiiEC1Ev
+   280: 0000000000407744    29 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC1ER
+   281: 00000000004074ca    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   282: 000000000060b308     0 NOTYPE  GLOBAL DEFAULT   26 __data_start
+   283: 0000000000406f6e    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   284: 0000000000406b64    41 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData5beginEv
+   285: 0000000000406e00    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   286: 0000000000406a2a    67 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC1EPKc
+   287: 0000000000407b61  1027 FUNC    WEAK   DEFAULT   13 =
+_ZN18QAlgorithmsPrivate11
+   288: 0000000000406e6c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiED2Ev
+   289: 00000000004068ba    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt10shared_ptrINSt13__
+   290: 0000000000406fc8    39 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   291: 00000000004068fe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN10QAtomicIntC2Ei
+   292: 0000000000406ae8    44 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefC1Ev
+   293: 0000000000407160   133 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiEC
+   294: 0000000000408140    35 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorltE
+
+Symbol table '.symtab' contains 377 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND=20
+     1: 0000000000400238     0 SECTION LOCAL  DEFAULT    1=20
+     2: 0000000000400254     0 SECTION LOCAL  DEFAULT    2=20
+     3: 0000000000400274     0 SECTION LOCAL  DEFAULT    3=20
+     4: 0000000000400298     0 SECTION LOCAL  DEFAULT    4=20
+     5: 00000000004008b8     0 SECTION LOCAL  DEFAULT    5=20
+     6: 0000000000402460     0 SECTION LOCAL  DEFAULT    6=20
+     7: 0000000000404806     0 SECTION LOCAL  DEFAULT    7=20
+     8: 0000000000404a58     0 SECTION LOCAL  DEFAULT    8=20
+     9: 0000000000404b08     0 SECTION LOCAL  DEFAULT    9=20
+    10: 0000000000404be0     0 SECTION LOCAL  DEFAULT   10=20
+    11: 00000000004054b0     0 SECTION LOCAL  DEFAULT   11=20
+    12: 00000000004054d0     0 SECTION LOCAL  DEFAULT   12=20
+    13: 0000000000405ac0     0 SECTION LOCAL  DEFAULT   13=20
+    14: 00000000004083c4     0 SECTION LOCAL  DEFAULT   14=20
+    15: 00000000004083d0     0 SECTION LOCAL  DEFAULT   15=20
+    16: 0000000000408468     0 SECTION LOCAL  DEFAULT   16=20
+    17: 0000000000408930     0 SECTION LOCAL  DEFAULT   17=20
+    18: 0000000000409d1c     0 SECTION LOCAL  DEFAULT   18=20
+    19: 000000000060ad50     0 SECTION LOCAL  DEFAULT   19=20
+    20: 000000000060ad60     0 SECTION LOCAL  DEFAULT   20=20
+    21: 000000000060ad68     0 SECTION LOCAL  DEFAULT   21=20
+    22: 000000000060ad70     0 SECTION LOCAL  DEFAULT   22=20
+    23: 000000000060ad78     0 SECTION LOCAL  DEFAULT   23=20
+    24: 000000000060afb8     0 SECTION LOCAL  DEFAULT   24=20
+    25: 000000000060b000     0 SECTION LOCAL  DEFAULT   25=20
+    26: 000000000060b308     0 SECTION LOCAL  DEFAULT   26=20
+    27: 000000000060b330     0 SECTION LOCAL  DEFAULT   27=20
+    28: 0000000000000000     0 SECTION LOCAL  DEFAULT   28=20
+    29: 0000000000000000     0 SECTION LOCAL  DEFAULT   29=20
+    30: 0000000000000000     0 SECTION LOCAL  DEFAULT   30=20
+    31: 0000000000000000     0 SECTION LOCAL  DEFAULT   31=20
+    32: 0000000000000000     0 SECTION LOCAL  DEFAULT   32=20
+    33: 0000000000000000     0 SECTION LOCAL  DEFAULT   33=20
+    34: 0000000000000000     0 SECTION LOCAL  DEFAULT   34=20
+    35: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    36: 000000000060ad68     0 OBJECT  LOCAL  DEFAULT   21 __JCR_LIST__
+    37: 0000000000405af0     0 FUNC    LOCAL  DEFAULT   13 =
+deregister_tm_clones
+    38: 0000000000405b20     0 FUNC    LOCAL  DEFAULT   13 =
+register_tm_clones
+    39: 0000000000405b60     0 FUNC    LOCAL  DEFAULT   13 =
+__do_global_dtors_aux
+    40: 000000000060b330     1 OBJECT  LOCAL  DEFAULT   27 =
+completed.6973
+    41: 000000000060ad60     0 OBJECT  LOCAL  DEFAULT   20 =
+__do_global_dtors_aux_fin
+    42: 0000000000405b80     0 FUNC    LOCAL  DEFAULT   13 frame_dummy
+    43: 000000000060ad50     0 OBJECT  LOCAL  DEFAULT   19 =
+__frame_dummy_init_array_
+    44: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.cpp
+    45: 00000000004083d8     1 OBJECT  LOCAL  DEFAULT   15 =
+_ZStL19piecewise_construc
+    46: 0000000000405bae    22 FUNC    LOCAL  DEFAULT   13 =
+_ZL18__gthread_active_pv
+    47: 0000000000405bc4    27 FUNC    LOCAL  DEFAULT   13 =
+_ZN9__gnu_cxxL18__exchang
+    48: 0000000000405bdf    43 FUNC    LOCAL  DEFAULT   13 =
+_ZN9__gnu_cxxL25__exchang
+    49: 0000000000405c0a    69 FUNC    LOCAL  DEFAULT   13 =
+_ZN9__gnu_cxxL27__exchang
+    50: 00000000004083d9     1 OBJECT  LOCAL  DEFAULT   15 =
+_ZStL13allocator_arg
+    51: 00000000004083da     1 OBJECT  LOCAL  DEFAULT   15 _ZStL6ignore
+    52: 00000000004083db     1 OBJECT  LOCAL  DEFAULT   15 =
+_ZStL10defer_lock
+    53: 00000000004083dc     1 OBJECT  LOCAL  DEFAULT   15 =
+_ZStL11try_to_lock
+    54: 00000000004083dd     1 OBJECT  LOCAL  DEFAULT   15 =
+_ZStL10adopt_lock
+    55: 000000000060b331     1 OBJECT  LOCAL  DEFAULT   27 =
+_ZStL8__ioinit
+    56: 000000000060b318     8 OBJECT  LOCAL  DEFAULT   26 _ZL1n
+    57: 000000000060b320     8 OBJECT  LOCAL  DEFAULT   26 _ZL1v
+    58: 0000000000405c4f    18 FUNC    LOCAL  DEFAULT   13 =
+_ZL6func009QtMsgTypeRK18Q
+    59: 0000000000405c61    10 FUNC    LOCAL  DEFAULT   13 _ZL6func01i
+    60: 0000000000405c6c    28 FUNC    LOCAL  DEFAULT   13 =
+_ZZL6func02vEN11dummy_cla
+    61: 0000000000405c6c    28 FUNC    LOCAL  DEFAULT   13 =
+_ZZL6func02vEN11dummy_cla
+    62: 0000000000405c88  2336 FUNC    LOCAL  DEFAULT   13 _ZL6func02v
+    63: 00000000004067c0    22 FUNC    LOCAL  DEFAULT   13 =
+_ZN18QSharedDataPointerIZ
+    64: 00000000004067d6    81 FUNC    LOCAL  DEFAULT   13 =
+_ZN18QSharedDataPointerIZ
+    65: 00000000004067c0    22 FUNC    LOCAL  DEFAULT   13 =
+_ZN18QSharedDataPointerIZ
+    66: 00000000004067d6    81 FUNC    LOCAL  DEFAULT   13 =
+_ZN18QSharedDataPointerIZ
+    67: 0000000000406827    74 FUNC    LOCAL  DEFAULT   13 =
+_Z41__static_initializati
+    68: 0000000000408464     4 OBJECT  LOCAL  DEFAULT   15 =
+_ZN9__gnu_cxxL21__default
+    69: 0000000000406871    21 FUNC    LOCAL  DEFAULT   13 =
+_GLOBAL__sub_I_main
+    70: 000000000060ad70     8 OBJECT  LOCAL  DEFAULT   22 =
+_ZZL18__gthread_active_pv
+    71: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS =
+testprog_autom
+    72: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    73: 0000000000409d18     0 OBJECT  LOCAL  DEFAULT   17 __FRAME_END__
+    74: 000000000060ad68     0 OBJECT  LOCAL  DEFAULT   21 __JCR_END__
+    75: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS=20
+    76: 000000000060b330     0 OBJECT  LOCAL  DEFAULT   26 __TMC_END__
+    77: 000000000060ad60     0 NOTYPE  LOCAL  DEFAULT   19 =
+__init_array_end
+    78: 000000000060ad50     0 NOTYPE  LOCAL  DEFAULT   19 =
+__init_array_start
+    79: 000000000060b000     0 OBJECT  LOCAL  DEFAULT   25 =
+_GLOBAL_OFFSET_TABLE_
+    80: 000000000060ad78     0 OBJECT  LOCAL  DEFAULT   23 _DYNAMIC
+    81: 000000000060b310     0 OBJECT  LOCAL  DEFAULT   26 __dso_handle
+    82: 000000000060b328     8 OBJECT  LOCAL  DEFAULT   26 =
+DW.ref.__gxx_personality_
+    83: 00000000004068f2    11 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+    84: 0000000000406ca4    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6futureISsED1Ev
+    85: 0000000000406e00    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+    86: 00000000004065a8   535 FUNC    GLOBAL DEFAULT   13 main
+    87: 00000000004069f4    53 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayD1Ev
+    88: 0000000000406a6e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC2Ev
+    89: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_begin_catch@@CXXABI
+    90: 0000000000406cc0    43 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__shared_countILN9
+    91: 0000000000407062    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiEC1Ev
+    92: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+memcpy@@GLIBC_2.14
+    93: 0000000000406f12    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiED2Ev
+    94: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN5QFileC1Ev
+    95: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QSerialPortD1Ev
+    96: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt18basic_stringstream
+    97: 0000000000405ac0     0 FUNC    GLOBAL DEFAULT   13 _start
+    98: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplicationD1Ev
+    99: 0000000000408050    36 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratormmEv
+   100: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_ITM_deregisterTMCloneTab
+   101: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSsC1Ev@@GLIBCXX_3.4
+   102: 00000000004076a0    66 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE5beginEv
+   103: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineOptionD1
+   104: 0000000000408188    35 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorgtE
+   105: 0000000000407b38    26 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC2EP
+   106: 00000000004083c4     0 FUNC    GLOBAL DEFAULT   14 _fini
+   107: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Znwm@@GLIBCXX_3.4
+   108: 00000000004070b8   135 FUNC    WEAK   DEFAULT   13 =
+_Z5qSortI5QListIiEEvRT_
+   109: 00000000004083c0     2 FUNC    GLOBAL DEFAULT   13 =
+__libc_csu_fini
+   110: 00000000004072ac    36 FUNC    WEAK   DEFAULT   13 =
+_ZN15QBasicAtomicOpsILi4E
+   111: 0000000000407ac8    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate26MetaTypeSm
+   112: 0000000000406daa    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringEC1Ev
+   113: 0000000000407160   133 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiEC
+   114: 0000000000407a9b    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate34Sequential
+   115: 0000000000406fc8    39 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   116: 00000000004068d6    21 FUNC    WEAK   DEFAULT   13 =
+_ZStorSt13_Ios_OpenmodeS_
+   117: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParserD1
+   118: 00000000004069a4    39 FUNC    WEAK   DEFAULT   13 =
+_ZN10QArrayData4dataEv
+   119: 0000000000406bfa    33 FUNC    WEAK   DEFAULT   13 =
+_ZN11QSharedDataC2Ev
+   120: 0000000000406c60    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIbEC2
+   121: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QObjectD1Ev
+   122: 0000000000407932    49 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE3e
+   123: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase11shared
+   124: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QPluginLoaderC1EP7QO
+   125: 0000000000406a2a    67 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC1EPKc
+   126: 0000000000407b38    26 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC1EP
+   127: 00000000004069d8    28 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayC1Ev
+   128: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QMetaType25registerNo
+   129: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+close@@GLIBC_2.2.5
+   130: 0000000000407b08    47 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE6detachEv
+   131: 0000000000406ec2    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiED2Ev
+   132: 0000000000407963    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE10
+   133: 0000000000407b52    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE4Node1tEv
+   134: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN4QDirD1Ev
+   135: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QSerialPortC1EP7QObj
+   136: 00000000004074a0    42 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE8freeDataEP9
+   137: 000000000060b308     0 NOTYPE  GLOBAL DEFAULT   26 __data_start
+   138: 0000000000406b14    11 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefD1Ev
+   139: 0000000000408164    36 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorppEv
+   140: 0000000000407062    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiEC2Ev
+   141: 0000000000407744    29 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC1ER
+   142: 0000000000407160   133 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiEC
+   143: 0000000000406926    69 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate8RefCount5de
+   144: 0000000000406c1c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiED2Ev
+   145: 0000000000406e6c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiED1Ev
+   146: 000000000060b330     0 NOTYPE  GLOBAL DEFAULT   27 __bss_start
+   147: 00000000004073ac    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapNodeI7QString8QV
+   148: 0000000000406daa    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringEC2Ev
+   149: 0000000000406cc0    43 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__shared_countILN9
+   150: 0000000000406f6e    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   151: 000000000040696c    55 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QtPrivate8RefCount8i
+   152: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_demangle@@CXXABI_1.
+   153: 0000000000406d84    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataItE10
+   154: 0000000000406c6c    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt11atomic_boolC2Ev
+   155: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__stack_chk_fail@@GLIBC_2
+   156: 00000000004081ac   209 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13detach_help
+   157: 0000000000406abf    41 FUNC    WEAK   DEFAULT   13 =
+_Z4qMaxIiERKT_S2_S2_
+   158: 0000000000407a90    11 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate17MetaObject
+   159: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication18se
+   160: 0000000000406c38    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIiEC2
+   161: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QRegExpC1Ev
+   162: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Z22qInstallMessageHandle
+   163: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser7p
+   164: 00000000004080f4    36 FUNC    WEAK   DEFAULT   13 =
+_ZNK5qLessIiEclERKiS2_
+   165: 0000000000406b40    36 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData7isEmptyEv
+   166: 0000000000406c60    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIbEC1
+   167: 00000000004068f2    11 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   168: 00000000004074ca    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   169: 0000000000406f52    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiEC1Ev
+   170: 0000000000407230   124 FUNC    WEAK   DEFAULT   13 =
+_ZNSt16_Sp_counted_baseIL
+   171: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+signal@@GLIBC_2.2.5
+   172: 00000000004068fe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN10QAtomicIntC2Ei
+   173: 0000000000408140    35 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorltE
+   174: 00000000004079c6    28 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   175: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN21QNetworkAccessManage
+   176: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+connect@@GLIBC_2.2.5
+   177: 000000000060b338     0 NOTYPE  GLOBAL DEFAULT   27 _end
+   178: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+__gmon_start__
+   179: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+strlen@@GLIBC_2.2.5
+   180: 0000000000406e1a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   181: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+backtrace_symbols@@GLIBC_
+   182: 0000000000406886    19 FUNC    WEAK   DEFAULT   13 _ZnwmPv
+   183: 0000000000406e00    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   184: 0000000000407398    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapDataI7QString8QV
+   185: 0000000000406f6e    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   186: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZSt4cout@@GLIBCXX_3.4
+   187: 0000000000407812    32 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE8
+   188: 0000000000406ef8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiEC1Ev
+   189: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN9QHashData11shared_nul
+   190: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+socket@@GLIBC_2.2.5
+   191: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _ZN5QFileD1Ev
+   192: 00000000004073d3    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE10
+   193: 0000000000406ef8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiEC2Ev
+   194: 0000000000407aec    28 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE7isEmptyEv
+   195: 00000000004079aa    28 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE11deleteNode
+   196: 000000000040761e   101 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE7deallocEPN9Q
+   197: 000000000040750e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN21QScopedPointerDelete
+   198: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN21QNetworkAccessManage
+   199: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND netsnmp_free
+   200: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QString16fromAscii_he
+   201: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZdlPv@@GLIBCXX_3.4
+   202: 0000000000406c88    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__basic_futureISsE
+   203: 0000000000406dc4    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringED2Ev
+   204: 0000000000407a44    76 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   205: 00000000004068ba    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt10shared_ptrINSt13__
+   206: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZStlsISt11char_traitsIcE
+   207: 0000000000407fa7    28 FUNC    WEAK   DEFAULT   13 =
+_ZN25QContiguousCacheType
+   208: 0000000000406fef   114 FUNC    WEAK   DEFAULT   13 =
+_Z17qRegisterMetaTypeIiEi
+   209: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_add_null_var
+   210: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QVariantD1Ev
+   211: 0000000000407336    98 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapDataI7QString8QVa
+   212: 000000000040689a    32 FUNC    WEAK   DEFAULT   13 =
+_ZNSt12__shared_ptrINSt13
+   213: 0000000000406ca4    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6futureISsED2Ev
+   214: 0000000000405730     0 FUNC    GLOBAL DEFAULT  UND =
+__gxx_personality_v0@@CXX
+   215: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication21se
+   216: 0000000000406e50    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiEC2Ev
+   217: 000000000060b330     0 NOTYPE  GLOBAL DEFAULT   26 _edata
+   218: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QThreadC1EP7QObject
+   219: 00000000004068fe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN10QAtomicIntC1Ei
+   220: 00000000004079e2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   221: 0000000000406ea8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiEC2Ev
+   222: 00000000004069cb    13 FUNC    WEAK   DEFAULT   13 =
+_ZN10QArrayData10sharedNu
+   223: 0000000000407912    32 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE5b
+   224: 000000000040752a    11 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate17QMetaTypeI
+   225: 0000000000408118    39 FUNC    WEAK   DEFAULT   13 =
+_Z5qSwapIiEvRT_S1_
+   226: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN10QArrayData11shared_n
+   227: 0000000000406c88    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt14__basic_futureISsE
+   228: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_Unwind_Resume@@GCC_3.0
+   229: 0000000000407fc4    28 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIiE4d
+   230: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_Jv_RegisterClasses
+   231: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt8ios_base4InitD1Ev@@
+   232: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplicationC1ER
+   233: 0000000000407a39    11 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   234: 00000000004076e2    66 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE3endEv
+   235: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_pdu_create
+   236: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QJsonObjectC1Ev
+   237: 00000000004073c0    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapNodeI7QString8QV
+   238: 0000000000407ab9    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate6IsPairIiE17
+   239: 0000000000407761    94 FUNC    WEAK   DEFAULT   13 =
+_ZN18QAlgorithmsPrivate11
+   240: 0000000000407aaa    15 FUNC    WEAK   DEFAULT   13 =
+_ZN9QtPrivate35Associativ
+   241: 0000000000407b61  1027 FUNC    WEAK   DEFAULT   13 =
+_ZN18QAlgorithmsPrivate11
+   242: 0000000000406a8a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringD1Ev
+   243: 0000000000407f74    51 FUNC    WEAK   DEFAULT   13 =
+_ZNK16QContiguousCacheIiE
+   244: 0000000000406f52    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiEC2Ev
+   245: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QJsonDocumentD1Ev
+   246: 0000000000406a2a    67 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC2EPKc
+   247: 0000000000406c6c    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt11atomic_boolC1Ev
+   248: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QHashData11free_helpe
+   249: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN6QTimerC1EP7QObject
+   250: 0000000000406fae    26 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   251: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_synch_response
+   252: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser16
+   253: 0000000000408350   101 FUNC    GLOBAL DEFAULT   13 =
+__libc_csu_init
+   254: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QSaveFileD1Ev
+   255: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonArrayC1Ev
+   256: 0000000000407f64    16 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE1
+   257: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+read@@GLIBC_2.2.5
+   258: 0000000000406ae8    44 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefC2Ev
+   259: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QProcessC1EP7QObject
+   260: 00000000004068eb     6 FUNC    WEAK   DEFAULT   13 _Z7qt_noopv
+   261: 00000000004073de    96 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiE8freeDataEP
+   262: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_end_catch@@CXXABI_1
+   263: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN20QContiguousCacheData
+   264: 0000000000406bde    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListD1Ev
+   265: 0000000000406e6c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiED2Ev
+   266: 0000000000406d12    25 FUNC    WEAK   DEFAULT   13 =
+_ZNK19QBasicAtomicInteger
+   267: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QObjectC1EPS_
+   268: 000000000040799e    11 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapNodeIiiE14destroy
+   269: 0000000000406f12    64 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiED1Ev
+   270: 00000000004077c0    82 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiE1
+   271: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QListData6detachEi
+   272: 0000000000406b20    31 FUNC    WEAK   DEFAULT   13 =
+_ZN9QListData7disposeEv
+   273: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_rethrow@@CXXABI_1.3
+   274: 0000000000407fef    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   275: 0000000000406cec    37 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   276: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QJsonDocumentC1Ev
+   277: 0000000000407856    53 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringE13node
+   278: 0000000000406e50    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiEC1Ev
+   279: 0000000000406ec2    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiED1Ev
+   280: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_error
+   281: 00000000004054b0     0 FUNC    GLOBAL DEFAULT   11 _init
+   282: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonValueD1Ev
+   283: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QMetaObject14normali
+   284: 0000000000407140    32 FUNC    WEAK   DEFAULT   13 =
+_ZN5QPairIiiEC2Ev
+   285: 0000000000406bfa    33 FUNC    WEAK   DEFAULT   13 =
+_ZN11QSharedDataC1Ev
+   286: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN11QJsonObjectD1Ev
+   287: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt18basic_stringstream
+   288: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN20QContiguousCacheData
+   289: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QSaveFileC1EP7QObject
+   290: 000000000040788c   114 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapNodeI7QString8QVa
+   291: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QListData7disposeEPNS
+   292: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN8QProcessD1Ev
+   293: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_open
+   294: 0000000000406a8a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringD2Ev
+   295: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__cxa_atexit@@GLIBC_2.2.5
+   296: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParserC1
+   297: 0000000000406c44    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6atomicIiEC1Ev
+   298: 0000000000406bde    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListD2Ev
+   299: 0000000000406c38    11 FUNC    WEAK   DEFAULT   13 =
+_ZNSt13__atomic_baseIiEC1
+   300: 0000000000406bc2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListC1Ev
+   301: 000000000040689a    32 FUNC    WEAK   DEFAULT   13 =
+_ZNSt12__shared_ptrINSt13
+   302: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QRegExpD1Ev
+   303: 00000000004074ca    25 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   304: 0000000000406fc8    39 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   305: 0000000000406c44    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt6atomicIiEC2Ev
+   306: 0000000000406b8e    41 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData3endEv
+   307: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN6QTimerD1Ev
+   308: 00000000004071e6    74 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiED
+   309: 0000000000405970     0 FUNC    WEAK   DEFAULT  UND =
+__pthread_key_create@@GLI
+   310: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+__libc_start_main@@GLIBC_
+   311: 0000000000406e1a    53 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapI7QString8QVarian
+   312: 00000000004071e6    74 FUNC    WEAK   DEFAULT   13 =
+_ZN16QContiguousCacheIiED
+   313: 0000000000406c1c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN4QSetIiED1Ev
+   314: 000000000040707c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiED2Ev
+   315: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN7QThreadD1Ev
+   316: 0000000000407832    35 FUNC    WEAK   DEFAULT   13 =
+_ZN6QFlagsIN9QMetaType8Ty
+   317: 000000000060b308     0 NOTYPE  WEAK   DEFAULT   26 data_start
+   318: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QArrayData10dealloca
+   319: 00000000004072d0   101 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringE7deall
+   320: 0000000000406b64    41 FUNC    WEAK   DEFAULT   13 =
+_ZNK9QListData5beginEv
+   321: 00000000004069d8    28 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayC2Ev
+   322: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZSt4endlIcSt11char_trait
+   323: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSt8ios_base4InitC1Ev@@
+   324: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser13
+   325: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND =
+_ITM_registerTMCloneTable
+   326: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+snmp_sess_init
+   327: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSolsEPFRSoS_E@@GLIBCXX
+   328: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonValueC1ENS_4Typ
+   329: 0000000000407744    29 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE8iteratorC2ER
+   330: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase8freeDat
+   331: 0000000000406bc2    28 FUNC    WEAK   DEFAULT   13 =
+_ZN11QStringListC2Ev
+   332: 00000000004074e4    42 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIi15QHashDummyVa
+   333: 00000000004068ba    28 FUNC    WEAK   DEFAULT   13 =
+_ZNSt10shared_ptrINSt13__
+   334: 0000000000406ea8    25 FUNC    WEAK   DEFAULT   13 =
+_ZN4QMapIiiEC1Ev
+   335: 000000000040827d    15 FUNC    WEAK   DEFAULT   13 =
+_ZSt4moveIRiEONSt16remove
+   336: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN9QMetaType22registerNo
+   337: 0000000000406fae    26 FUNC    WEAK   DEFAULT   13 =
+_ZN14QScopedPointerIPi21Q
+   338: 0000000000406d79    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataItE10
+   339: 00000000004079fe    59 FUNC    WEAK   DEFAULT   13 =
+_ZN17QtMetaTypePrivate23Q
+   340: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN16QCoreApplication4exe
+   341: 0000000000406d48    11 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIcE10
+   342: 00000000004082da   110 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE9node_copyEPN
+   343: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN12QMapDataBase8freeTre
+   344: 0000000000407fe0    15 FUNC    WEAK   DEFAULT   13 =
+_ZN5QHashIiiE8concreteEPN
+   345: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN4QDirC1ERK7QString
+   346: 0000000000407ad8    19 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13node_destru
+   347: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN13QPluginLoaderD1Ev
+   348: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND snmp_free_pdu
+   349: 0000000000407ffe    40 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiE13detach_help
+   350: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+sleep@@GLIBC_2.2.5
+   351: 0000000000408074    65 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratormiE
+   352: 0000000000407684    28 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE5emptyEv
+   353: 0000000000408026    42 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratormiE
+   354: 0000000000406a6e    28 FUNC    WEAK   DEFAULT   13 =
+_ZN7QStringC1Ev
+   355: 00000000004083d0     4 OBJECT  GLOBAL DEFAULT   15 =
+_IO_stdin_used
+   356: 0000000000406ae8    44 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefC1Ev
+   357: 00000000004080b6    62 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratorplE
+   358: 00000000004078fe    19 FUNC    WEAK   DEFAULT   13 =
+_ZN7QVectorIiE8destructEP
+   359: 0000000000406bb7    11 FUNC    WEAK   DEFAULT   13 =
+_ZN12QMetaTypeId2IiE14qt_
+   360: 0000000000406dc4    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListI7QStringED1Ev
+   361: 0000000000406d2c    28 FUNC    WEAK   DEFAULT   13 =
+_ZN19QBasicAtomicIntegerI
+   362: 0000000000407724    31 FUNC    WEAK   DEFAULT   13 =
+_ZNK5QListIiE8iteratordeE
+   363: 0000000000000000     0 OBJECT  GLOBAL DEFAULT  UND =
+_ZN9QListData11shared_nul
+   364: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZNSsD1Ev@@GLIBCXX_3.4
+   365: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+backtrace@@GLIBC_2.2.5
+   366: 0000000000406b14    11 FUNC    WEAK   DEFAULT   13 =
+_ZN10QStringRefD2Ev
+   367: 000000000040798a    19 FUNC    WEAK   DEFAULT   13 =
+_ZNK8QMapDataIiiE4rootEv
+   368: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN18QCommandLineParser25
+   369: 00000000004069f4    53 FUNC    WEAK   DEFAULT   13 =
+_ZN10QByteArrayD2Ev
+   370: 0000000000407535   233 FUNC    WEAK   DEFAULT   13 =
+_Z27qRegisterNormalizedMe
+   371: 000000000040828c    77 FUNC    WEAK   DEFAULT   13 =
+_ZSt4swapIiEvRT_S1_
+   372: 000000000040743e    98 FUNC    WEAK   DEFAULT   13 =
+_ZN8QMapDataIiiE7destroyE
+   373: 0000000000407140    32 FUNC    WEAK   DEFAULT   13 =
+_ZN5QPairIiiEC1Ev
+   374: 0000000000406d53    38 FUNC    WEAK   DEFAULT   13 =
+_ZN15QTypedArrayDataIcE10
+   375: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND =
+_ZN10QJsonArrayD1Ev
+   376: 000000000040707c    60 FUNC    WEAK   DEFAULT   13 =
+_ZN5QListIiED1Ev
+
+Histogram for `.gnu.hash' bucket list length (total of 131 buckets):
+ Length  Number     % of total  Coverage
+      0  25         ( 19.1%)
+      1  50         ( 38.2%)     26.0%
+      2  36         ( 27.5%)     63.5%
+      3  15         ( 11.5%)     87.0%
+      4  2          (  1.5%)     91.1%
+      5  2          (  1.5%)     96.4%
+      6  0          (  0.0%)     96.4%
+      7  1          (  0.8%)    100.0%
+
+Version symbols section '.gnu.version' contains 295 entries:
+ Addr: 0000000000404806  Offset: 0x004806  Link: 5 (.dynsym)
+  000:   0 (*local*)       2 (CXXABI_1.3)    3 (GLIBC_2.14)    0 =
+(*local*)   =20
+  004:   0 (*local*)       4 (GLIBCXX_3.4)   0 (*local*)       0 =
+(*local*)   =20
+  008:   4 (GLIBCXX_3.4)   0 (*local*)       4 (GLIBCXX_3.4)   0 =
+(*local*)   =20
+  00c:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  010:   5 (GLIBC_2.2.5)   0 (*local*)       0 (*local*)       2 =
+(CXXABI_1.3)=20
+  014:   6 (GLIBC_2.4)     0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  018:   0 (*local*)       7 (GLIBC_2.2.5)   0 (*local*)       5 =
+(GLIBC_2.2.5)
+  01c:   0 (*local*)       7 (GLIBC_2.2.5)   7 (GLIBC_2.2.5)   4 =
+(GLIBCXX_3.4)
+  020:   0 (*local*)       7 (GLIBC_2.2.5)   0 (*local*)       0 =
+(*local*)   =20
+  024:   0 (*local*)       0 (*local*)       4 (GLIBCXX_3.4)   4 =
+(GLIBCXX_3.4)
+  028:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  02c:   0 (*local*)       8 (GCC_3.0)       0 (*local*)       4 =
+(GLIBCXX_3.4)
+  030:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  034:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  038:   0 (*local*)       0 (*local*)       5 (GLIBC_2.2.5)   0 =
+(*local*)   =20
+  03c:   2 (CXXABI_1.3)    0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  040:   2 (CXXABI_1.3)    0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  044:   0 (*local*)       0 (*local*)       4 (GLIBCXX_3.4)   0 =
+(*local*)   =20
+  048:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  04c:   7 (GLIBC_2.2.5)   0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  050:   7 (GLIBC_2.2.5)   0 (*local*)       0 (*local*)       4 =
+(GLIBCXX_3.4)
+  054:   4 (GLIBCXX_3.4)   0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  058:   4 (GLIBCXX_3.4)   0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  05c:   0 (*local*)       0 (*local*)       0 (*local*)       0 =
+(*local*)   =20
+  060:   0 (*local*)       7 (GLIBC_2.2.5)   0 (*local*)       4 =
+(GLIBCXX_3.4)
+  064:   7 (GLIBC_2.2.5)   0 (*local*)       0 (*local*)       1 =
+(*global*)  =20
+  068:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  06c:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  070:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  074:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  078:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  07c:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  080:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  084:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  088:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  08c:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  090:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  094:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  098:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  09c:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0a0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0a4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0a8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0ac:   5 (GLIBC_2.2.5)   1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0b0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0b4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0b8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0bc:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0c0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0c4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0c8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0cc:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0d0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0d4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0d8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0dc:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0e0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0e4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0e8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0ec:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0f0:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0f4:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0f8:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  0fc:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  100:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  104:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  108:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  10c:   1 (*global*)      2 (CXXABI_1.3)    1 (*global*)      1 =
+(*global*)  =20
+  110:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  114:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  118:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  11c:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  120:   1 (*global*)      1 (*global*)      1 (*global*)      1 =
+(*global*)  =20
+  124:   1 (*global*)      1 (*global*)      1 (*global*)  =20
+
+Version needs section '.gnu.version_r' contains 4 entries:
+ Addr: 0x0000000000404a58  Offset: 0x004a58  Link: 6 (.dynstr)
+  000000: Version: 1  File: libgcc_s.so.1  Cnt: 1
+  0x0010:   Name: GCC_3.0  Flags: none  Version: 8
+  0x0020: Version: 1  File: libpthread.so.0  Cnt: 1
+  0x0030:   Name: GLIBC_2.2.5  Flags: none  Version: 5
+  0x0040: Version: 1  File: libc.so.6  Cnt: 3
+  0x0050:   Name: GLIBC_2.2.5  Flags: none  Version: 7
+  0x0060:   Name: GLIBC_2.4  Flags: none  Version: 6
+  0x0070:   Name: GLIBC_2.14  Flags: none  Version: 3
+  0x0080: Version: 1  File: libstdc++.so.6  Cnt: 2
+  0x0090:   Name: GLIBCXX_3.4  Flags: none  Version: 4
+  0x00a0:   Name: CXXABI_1.3  Flags: none  Version: 2
+
+Displaying notes found at file offset 0x00000254 with length 0x00000020:
+  Owner                 Data size	Description
+  GNU                  0x00000010	NT_GNU_ABI_TAG (ABI version tag)
+    OS: Linux, ABI: 2.6.24
+
+Displaying notes found at file offset 0x00000274 with length 0x00000024:
+  Owner                 Data size	Description
+  GNU                  0x00000014	NT_GNU_BUILD_ID (unique build ID =
+bitstring)
+    Build ID: 26317096ed83d21bc6808f0d2d47b12de1ab31ce
+root@qemux86-64:~#=20
+
+> On 5 Feb 2016, at 19:26, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+> On Fri, Feb 5, 2016 at 10:23 AM, Nathan Sowatskey <nathan@nathan.to> =
+wrote:
+>> Hi Kem
+>>=20
+>> The testprog was given to me as a .deb package by a third party to =
+test. I did not compile it and I don=E2=80=99t know what they did =
+either.
+>=20
+> OK, paste the out of readelf -a on this binary
+> its mosly looking for libraries in wrong path
+> is it done on debian/ubuntu in multiarch directory structure ?
+
 
