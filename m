@@ -1,37 +1,37 @@
 Return-Path: <elena.reshetova@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2AE8E00CCC; Fri,  5 Feb 2016 01:20:36 -0800 (PST)
+	id 903DCE00CE4; Fri,  5 Feb 2016 02:45:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB402E00B5A
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 01:20:33 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga102.fm.intel.com with ESMTP; 05 Feb 2016 01:20:33 -0800
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC49BE00CDE
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 02:45:31 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga104.fm.intel.com with ESMTP; 05 Feb 2016 02:45:31 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.22,399,1449561600"; 
-	d="p7s'?scan'208,217";a="42913396"
-Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
-	by fmsmga004.fm.intel.com with ESMTP; 05 Feb 2016 01:20:32 -0800
+	d="p7s'?scan'208,217";a="877670489"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+	by orsmga001.jf.intel.com with ESMTP; 05 Feb 2016 02:45:30 -0800
+Received: from irsmsx155.ger.corp.intel.com (163.33.192.3) by
+	IRSMSX109.ger.corp.intel.com (163.33.3.23) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Fri, 5 Feb 2016 10:45:28 +0000
 Received: from irsmsx102.ger.corp.intel.com ([169.254.2.97]) by
-	IRSMSX106.ger.corp.intel.com ([169.254.8.197]) with mapi id
-	14.03.0248.002; Fri, 5 Feb 2016 09:20:31 +0000
+	irsmsx155.ger.corp.intel.com ([169.254.14.217]) with mapi id
+	14.03.0248.002; Fri, 5 Feb 2016 10:45:28 +0000
 From: "Reshetova, Elena" <elena.reshetova@intel.com>
 To: "Burton, Ross" <ross.burton@intel.com>
 Thread-Topic: [yocto] What is the correct way to get a list of package
 	run-time dependencies during the build process?
-Thread-Index: AQHRX/Ve0y246UDh3EGnMBXa6mxsLZ8dLM+w
-Date: Fri, 5 Feb 2016 09:20:30 +0000
-Message-ID: <2236FBA76BA1254E88B949DDB74E612B41A6F277@IRSMSX102.ger.corp.intel.com>
+Thread-Index: AQHRX/Ve0y246UDh3EGnMBXa6mxsLZ8dQ/Og
+Date: Fri, 5 Feb 2016 10:45:27 +0000
+Message-ID: <2236FBA76BA1254E88B949DDB74E612B41A6F30D@IRSMSX102.ger.corp.intel.com>
 References: <2236FBA76BA1254E88B949DDB74E612B41A6F227@IRSMSX102.ger.corp.intel.com>
 	<CAJTo0LY6-=w7W6Cwx4JxmQmOLktauPhxFN+_VdT9Hj0PK0n1dQ@mail.gmail.com>
 In-Reply-To: <CAJTo0LY6-=w7W6Cwx4JxmQmOLktauPhxFN+_VdT9Hj0PK0n1dQ@mail.gmail.com>
@@ -53,17 +53,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 09:20:36 -0000
-X-Groupsio-MsgNum: 28294
+X-List-Received-Date: Fri, 05 Feb 2016 10:45:36 -0000
+X-Groupsio-MsgNum: 28295
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_00A8_01D16007.38452C30"
+	micalg=SHA1; boundary="----=_NextPart_000_00AF_01D16013.16116960"
 
-------=_NextPart_000_00A8_01D16007.38452C30
+------=_NextPart_000_00AF_01D16013.16116960
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_00A9_01D16007.38452C30"
+	boundary="----=_NextPart_001_00B0_01D16013.16116960"
 
-------=_NextPart_001_00A9_01D16007.38452C30
+------=_NextPart_001_00B0_01D16013.16116960
 Content-Type: text/plain;
 	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,13 +79,27 @@ run-time dependencies, but rather than package manager would figure it =
 out.=20
 
 
-After do_package has run the dependencies will be correct, but until =
+>After do_package has run the dependencies will be correct, but until =
 that point the runtime library dependencies won't have been extracted.
 
 =20
 
-Oh, this is a great advice. Thank you Ross! This would save me another =
-headache :)
+Actually my task seems to run after do_package has already run, but I =
+don=E2=80=99t have RDEPENDS filled with anything useful. How you =
+supposed to query them from bitbake? I was trying these variants:=20
+
+=20
+
+recipe.r_deps =3D d.getVar('RDEPENDS_' +  <http://recipe.name> =
+recipe.name, True)
+
+=20
+
+or even simple:
+
+=20
+
+recipe.r_deps =3D d.getVar('RDEPENDS=E2=80=99, True)
 
 =20
 
@@ -93,7 +107,7 @@ Best Regards,
 Elena.
 
 
-------=_NextPart_001_00A9_01D16007.38452C30
+------=_NextPart_001_00B0_01D16013.16116960
 Content-Type: text/html;
 	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
@@ -107,9 +121,6 @@ http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
 name=3DGenerator content=3D"Microsoft Word 15 (filtered =
 medium)"><style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -131,9 +142,13 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-reply;
+	{mso-style-type:personal;
 	font-family:"Calibri",sans-serif;
 	color:#1F497D;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-family:"Calibri",sans-serif;
@@ -164,26 +179,33 @@ dependencies. However, this isn=E2=80=99t true for run-time =
 dependencies. Moreover it seems that when you define a recipe you =
 don=E2=80=99t have to list run-time dependencies, but rather than =
 package manager would figure it out. =
-</span><o:p></o:p></p></blockquote></div><p class=3DMsoNormal><br>After =
-do_package has run the dependencies will be correct, but until that =
-point the runtime library dependencies won't have been =
-extracted.<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal><span lang=3DEN-GB style=3D'color:#1F497D'>Oh, this is =
-a great advice. Thank you Ross! This would save me another headache =
-</span><span lang=3DEN-GB =
-style=3D'font-family:Wingdings;color:#1F497D'>J</span><span lang=3DEN-GB =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-GB =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-GB =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Best =
+</span><o:p></o:p></p></blockquote></div><p class=3DMsoNormal><br><span =
+lang=3DEN-GB>&gt;After do_package has run the dependencies will be =
+correct, but until that point the runtime library dependencies won't =
+have been extracted.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+lang=3DEN-GB><o:p>&nbsp;</o:p></span></p></div><div><p =
+class=3DMsoNormal><span lang=3DEN-GB>Actually my task seems to run after =
+do_package has already run, but I don=E2=80=99t have RDEPENDS filled =
+with anything useful. How you supposed to query them from bitbake? I was =
+trying these variants: <o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB>recipe.r_deps =3D d.getVar('RDEPENDS_' + </span><a =
+href=3D"http://recipe.name" target=3D"_blank"><span =
+lang=3DEN-GB>recipe.name</span></a><span lang=3DEN-GB>, =
+True)<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-GB>or even simple:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB>recipe.r_deps =3D =
+d.getVar('RDEPENDS=E2=80=99, True)<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-GB>Best =
 Regards,<br>Elena.<o:p></o:p></span></p></div></div></div></body></html>
 
-------=_NextPart_001_00A9_01D16007.38452C30--
+------=_NextPart_001_00B0_01D16013.16116960--
 
-------=_NextPart_000_00A8_01D16007.38452C30
+------=_NextPart_000_00AF_01D16013.16116960
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -306,8 +328,8 @@ WOJYZCer+SGEGCYldn7YSPDOmlxpd8XlO3M1m1gAfsmnU/AjacOYnKyp/THuGC97/7NcWHfkR9vD
 z1fq9jGCA/kwggP1AgEBMIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxML
 U2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBF
 eHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRCAhMzAAAPeuDTfWPn74vVAAAAAA96MAkGBSsOAwIa
-BQCgggI9MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDIwNTA5
-MjAyOVowIwYJKoZIhvcNAQkEMRYEFCg6jQ6m5Fr/oaHSrDISf/fWubc/MIGTBgkqhkiG9w0BCQ8x
+BQCgggI9MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDIwNTEw
+NDUyNlowIwYJKoZIhvcNAQkEMRYEFPOkGSrK/dJyDXDTCjDrZMTKsN4JMIGTBgkqhkiG9w0BCQ8x
 gYUwgYIwCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjAKBggqhkiG9w0DBzALBglghkgBZQMEAQIw
 DgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIaMAsGCWCGSAFlAwQCAzALBglg
 hkgBZQMEAgIwCwYJYIZIAWUDBAIBMIGhBgkrBgEEAYI3EAQxgZMwgZAweTELMAkGA1UEBhMCVVMx
@@ -316,11 +338,11 @@ YXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgNEECEzMAAGce
 yeUJ4F3k0k4AAAAAZx4wgaMGCyqGSIb3DQEJEAILMYGToIGQMHkxCzAJBgNVBAYTAlVTMQswCQYD
 VQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9u
 MSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAhMzAABnHsnlCeBd
-5NJOAAAAAGceMA0GCSqGSIb3DQEBAQUABIIBAKqaLkz3l1e2RvF5j+4MIrm4ro1057TNlnxvHz5x
-BYAgn7EAsz/g9I1v4LyuX8d+/I8JgzH9PI5nSHgY7nP5653TqGSk9ezgzWewqfeL+SFY3zGge+gf
-fhrrvrIMOgrY+P9KTURXc9K/moLshcfwefR9Ctiol5Nm+8xO1nBZbMpBsE2idhmuiFPXMfwbWzLr
-bHR+52kJGyBkEYHtYKJs36zci5xBuLIRiv4d9vWatMZMnLfWjw4q6zpYYvJiMPM5ojFy216V7j1u
-Pq5ZCnH4XOHQkAt32zckG55yIIAUSpPJ61FZUcJ6BqKD7Dg7RB62AK9eZktjfY9vwewmg51fdhwA
+5NJOAAAAAGceMA0GCSqGSIb3DQEBAQUABIIBADCHEtAeCP0kBin2pKu9owsE87K0VeEhWRGhuGb9
+ocFVWPraFQzv6t8KPp13uUlqBiX/JKPgb33a4ZNfdmAXtCFMKsxB5U7UWceS2XKqzk60Q4bSEGDh
+w1nEJLKC6FCEJaGPezjC4tS6LgX43zBuPTxV5F6VWv6ArNlAEMF7HwFmxU71chX7yg8A6oyT8UDo
+3IC6amk4NTflD2uUh0uNhxfjrWTQ+PochXyxKh2r6yg2/gqRwxf58gvbuFNJNaAWMy1O+HWbD0lL
+VPfd+nE5f7omONIDNTMLKnZrMmx3qPHAl+Dl8cWxP+KYDYLjJ0/gEGvf9+8Q7sFk58O9ja/ajb4A
 AAAAAAA=
 
-------=_NextPart_000_00A8_01D16007.38452C30--
+------=_NextPart_000_00AF_01D16013.16116960--
