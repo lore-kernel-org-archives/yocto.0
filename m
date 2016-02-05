@@ -1,63 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4E5FE00D2E; Fri,  5 Feb 2016 09:56:38 -0800 (PST)
+	id CC298E00D2F; Fri,  5 Feb 2016 10:00:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.179 listed in list.dnswl.org]
-Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
-	[209.85.213.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D4B9E00D25
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 09:56:35 -0800 (PST)
-Received: by mail-ig0-f179.google.com with SMTP id mw1so18911289igb.1
-	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 09:56:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=psdaKtD8lurN1ocoNXVR30vGRn6iZcJI1ahL3SYIVn8=;
-	b=FlibceKk9kBS98WN/tgTW4lwYWeZHG2P0tRMkeBVU39GFXdaZdICLIxUhwum8/+p7W
-	UHxQt+tJp2F8NGG5/raFezY2U2HYkchVvSnwYZLvslFpB8aDV5lHQKG5q/LooWKfGvgA
-	5IJo9FfeSC439TR2R6N7dgdNzMIeWO/RdDZ4pS8l/J6P5p9OIT1NMNe3OJoZxn20MKER
-	kXaKnJh58hpIdQrp1UdeHDmt6OSmN8hu5lG24ia7amVt62ZsXQjM6i3nZrgCVKuwqttv
-	XfT82xQfAg8kV/0LZkwDhCaipBiwPMAmHN78IcYUPh/+B6lD+LgyXAhxmsKhVyEP6wIM
-	MvlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=psdaKtD8lurN1ocoNXVR30vGRn6iZcJI1ahL3SYIVn8=;
-	b=Mz3yhoR0knMSnrf75FszFFCKanXNOhJPCrL+dYlSaY5zaeElmegDMcvd9sjFUKXbVZ
-	tDEGvIfXscdMQ5aT2+SkUznHcKGrQ7lGfL+qJIj+A/a3BYsb5xQCBcGHW/YCAt0Aq2ga
-	UK9r0FwMfKJrfOzqI2d4TIdt+PO9CgZ6BBDwv2/hEZBiuf2h09D+7hvUWFMXKMlov/m+
-	wm+FgCci6kLiupJqKO0mDJADDpDgk/GXS02r3Aaora6Dp506FLAb/kuXnwI+71a9I30P
-	5RxI8pjCRR1igKwa0i0ZzBWzr5wTJalQnAmRZ/gdR0wozK5d0tdFNfo6aLmSRP0//FwM
-	iAkQ==
-X-Gm-Message-State: AG10YOTTgOxFInbKaQzpzfW3fpAPWt7RsyoW4qWH80boY9uuJqs9D4QWxSzAf8q3P2Wd/DciYLhUwdD2LJG+uAWO
-X-Received: by 10.50.23.108 with SMTP id l12mr17437685igf.78.1454694995326;
-	Fri, 05 Feb 2016 09:56:35 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 5 Feb 2016 09:56:15 -0800 (PST)
-In-Reply-To: <30E23744-25E6-43C3-A831-A8195E8787C9@nathan.to>
+Received: from FLEMING.seektech.com (mail.seektech.com [66.192.149.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6173AE00D2C
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 10:00:12 -0800 (PST)
+Received: from WRIGHT.seescan.com (192.168.11.30) by mail.seektech.com
+	(192.168.3.10) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Fri, 5 Feb 2016 10:00:09 -0800
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Fri, 5 Feb 2016 10:00:10 -0800
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Fri, 5 Feb 2016 10:00:10 -0800
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: Nathan Sowatskey <nathan@nathan.to>, "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] libgcc_s not present in Yocto image
+Thread-Index: AQHRYAo/2mYO8sqa1UiA5S63nXMvgZ8d32cAgAA5LICAAAc8gIAAIL4A//99QK0=
+Date: Fri, 5 Feb 2016 18:00:09 +0000
+Message-ID: <1454695095703.96261@seescan.com>
 References: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
 	<CAJTo0La9vryBMou_wnKKdmdC61Kgu7u2JL+vpx1RY+s7Gbe7QA@mail.gmail.com>
 	<2D89126E-8678-494A-A98B-5F5D5723E860@nathan.to>
-	<CAJTo0LbbM_TXswmQxbqP5yr4Pf9geh7Ru6=iD3nHNHscC8q-nQ@mail.gmail.com>
+	<CAJTo0LbbM_TXswmQxbqP5yr4Pf9geh7Ru6=iD3nHNHscC8q-nQ@mail.gmail.com>,
 	<30E23744-25E6-43C3-A831-A8195E8787C9@nathan.to>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 5 Feb 2016 17:56:15 +0000
-Message-ID: <CAJTo0LZFMT=JyABkd1mzLJhB9npzkTLO_sXsReMD=hKvDsuFBw@mail.gmail.com>
-To: Nathan Sowatskey <nathan@nathan.to>
+In-Reply-To: <30E23744-25E6-43C3-A831-A8195E8787C9@nathan.to>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
+MIME-Version: 1.0
+X-GFI-SMTP-Submission: 1
+X-GFI-SMTP-HelloDomain: WRIGHT.seescan.com
+X-GFI-SMTP-RemoteIP: 192.168.11.30
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: libgcc_s not present in Yocto image
 X-BeenThere: yocto@yoctoproject.org
@@ -71,59 +54,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 17:56:38 -0000
-Content-Type: multipart/alternative; boundary=089e0149cbe874359e052b099206
-
---089e0149cbe874359e052b099206
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 05 Feb 2016 18:00:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-On 5 February 2016 at 17:47, Nathan Sowatskey <nathan@nathan.to> wrote:
+What are results of:=0A=
+=0A=
+ $ file testprog=0A=
+=0A=
+Frederick=0A=
+________________________________________=0A=
+From: Nathan Sowatskey <nathan@nathan.to>=0A=
+Sent: Friday, February 5, 2016 9:47 AM=0A=
+To: Burton, Ross=0A=
+Cc: yocto@yoctoproject.org; Fred Ollinger=0A=
+Subject: Re: [yocto] libgcc_s not present in Yocto image=0A=
+=0A=
+Hi Ross=0A=
+=0A=
+Many thanks for following up. Fred also offered some helpful suggestions in=
+ a different thread.=0A=
+=0A=
+The program in question was supplied to me by a third party for testing, so=
+ I shall obscure the name here and call it testprog.=0A=
+=0A=
+It was installed by:=0A=
+=0A=
+dpkg -i ./testprog.deb=0A=
+=0A=
+=0A=
+Where the .deb file was supplied to me. I don=92t know what that was built =
+on though.=0A=
+=0A=
+Then:=0A=
+=0A=
+which testprog=0A=
+/usr/bin/testprog=0A=
+/usr/bin/testprog=0A=
+-sh: /usr/bin/testprog: No such file or directory=0A=
+=0A=
+Then I:=0A=
+=0A=
+readelf -a /usr/bin/testprog | grep Shared=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libsnmp.so.30]=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt5Network.so.=
+5]=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt5SerialPort.=
+so.5]=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libQt5Core.so.5]=
+=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]=
+=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libpthread.so.0]=
+=0A=
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]=0A=
+=0A=
+Followed by:=0A=
+=0A=
+find /usr/lib -name libQt5Network.so.5=0A=
+/usr/lib/libQt5Network.so.5=0A=
+=0A=
+So, I have that lib.=0A=
+=0A=
+find /usr/lib -name libgcc_s.so.1=0A=
+root@qemux86-64:~#=0A=
+=0A=
+I don=92t have that lib.=0A=
+=0A=
+With ldd I get:=0A=
+=0A=
+ldd /usr/bin/testprog=0A=
+/usr/bin/ldd: line 117: /usr/bin/testprog: No such file or directory=0A=
+=0A=
+So, that=92s where I am at this stage.=0A=
+=0A=
+Regards=0A=
+=0A=
+Nathan=0A=
+=0A=
+> On 5 Feb 2016, at 16:50, Burton, Ross <ross.burton@intel.com> wrote:=0A=
+>=0A=
+>=0A=
+> On 5 February 2016 at 15:24, Nathan Sowatskey <nathan@nathan.to> wrote:=
+=0A=
+> I suspect that my test program, which was supplied to me as a .deb packag=
+e, was compiled on Ubuntu, and so links to libgcc_s.so.1. I can=92t see any=
+ obvious way to get libgcc_s.so.1 on Yocto. I already have:=0A=
+>=0A=
+> libgcc contains /lib/libgcc_s.so.1, so it should be installed in your ima=
+ge already:=0A=
+>=0A=
+> How are you determining that it isn't in your image, and that your applic=
+ation doesn't work?=0A=
+>=0A=
+> Ross=0A=
+=0A=
 
-> find /usr/lib -name libgcc_s.so.1
-> root@qemux86-64:~#
->
-> I don=E2=80=99t have that lib.
->
-
-As I said, libgcc_s.so.1 is in /lib, not /usr/lib.
-
-
-> With ldd I get:
->
-> ldd /usr/bin/testprog
-> /usr/bin/ldd: line 117: /usr/bin/testprog: No such file or directory
->
-
-Well ldd appears to be having a bit of a panic.  Try objdump -p
-/usr/bin/testprog instead.
-
-Ross
-
---089e0149cbe874359e052b099206
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 February 2016 at 17:47, Nathan Sowatskey <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:nathan@nathan.to" target=3D"_blank">nathan@nathan.to</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":hx5" class=3D"a3s"=
- style=3D"overflow:hidden">find /usr/lib -name libgcc_s.so.1<br>
-root@qemux86-64:~#<br>
-<br>
-I don=E2=80=99t have that lib.<br></div></blockquote><div><br></div><div>As=
- I said, libgcc_s.so.1 is in /lib, not /usr/lib.</div><div>=C2=A0</div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex"><div id=3D":hx5" class=3D"a3s" style=3D"overflow=
-:hidden">
-With ldd I get:<br>
-<br>
-ldd /usr/bin/testprog<br>
-/usr/bin/ldd: line 117: /usr/bin/testprog: No such file or directory</div><=
-/blockquote></div><div class=3D"gmail_extra"><br></div>Well ldd appears to =
-be having a bit of a panic.=C2=A0 Try objdump -p /usr/bin/testprog instead.=
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross<=
-/div></div>
-
---089e0149cbe874359e052b099206--
