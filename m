@@ -1,36 +1,47 @@
-Return-Path: <markus.lehtonen@linux.intel.com>
+Return-Path: <nathan@nathan.to>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61CA2E00CE7; Fri,  5 Feb 2016 02:53:29 -0800 (PST)
+	id D43CEE00CEF; Fri,  5 Feb 2016 03:41:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.72.237.35 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09D90E00CE3
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 02:53:25 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga104.fm.intel.com with ESMTP; 05 Feb 2016 02:53:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,399,1449561600"; d="scan'208";a="647647553"
-Received: from mwoodwar-mobl8.ger.corp.intel.com (HELO [10.252.19.30])
-	([10.252.19.30])
-	by FMSMGA003.fm.intel.com with ESMTP; 05 Feb 2016 02:53:25 -0800
-User-Agent: Microsoft-MacOutlook/0.0.0.150701
-Date: Fri, 05 Feb 2016 12:53:23 +0200
-From: Markus Lehtonen <markus.lehtonen@linux.intel.com>
-To: Chris Trobridge <christrobridge@hotmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <828E5A00-39E2-4522-A379-7F828152785D@linux.intel.com>
-Thread-Topic: [yocto] Signed RPMs
-References: <DUB130-W75F413446FD2227886136DDAD10@phx.gbl>
-	<8D8D7F9C-EA46-4F48-9298-6D50BA671BE9@linux.intel.com>
-	<DUB130-W3021BF7B2487DF73566399DAD20@phx.gbl>
-In-Reply-To: <DUB130-W3021BF7B2487DF73566399DAD20@phx.gbl>
-Mime-version: 1.0
-Subject: Re: Signed RPMs
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2F2CE00CED
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 03:41:21 -0800 (PST)
+Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id 018253D976
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 06:41:19 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=from
+	:content-type:content-transfer-encoding:subject:message-id:date
+	:to:mime-version; s=sasl; bh=3uCz0LdZz+3BQRoYAU8GnRSdnqk=; b=tHO
+	iVXrT162Bf0QGmr7IOmvYX6fD6GhDMp+ph6bOwwbMovXAYH7HKql1LCsKSLwiD1V
+	ymtOI+o89blQ6NNXyn0vzaN1OXhOfI/9YkXmK7eE0SkZ+04cwF4NxFN68Crxmz6D
+	SsRxGRdSqBD+GFrilXxIpl+8z6hu8ExHgv0j1TfA=
+Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
+	by pb-smtp0.pobox.com (Postfix) with ESMTP id ED4073D975
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 06:41:18 -0500 (EST)
+Received: from [10.41.136.109] (unknown [83.61.76.185])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id 6A6DA3D974
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 06:41:18 -0500 (EST)
+From: Nathan Sowatskey <nathan@nathan.to>
+Message-Id: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
+Date: Fri, 5 Feb 2016 12:40:21 +0100
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
+X-Mailer: Apple Mail (2.3119)
+X-Pobox-Relay-ID: 5EFF7FB2-CBFD-11E5-9DCC-79226BB36C07-96844961!pb-smtp0.pobox.com
+Subject: libgcc_s not present in Yocto image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +53,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 10:53:29 -0000
-Content-type: text/plain;
-	charset="UTF-8"
-Content-transfer-encoding: 7bit
+X-List-Received-Date: Fri, 05 Feb 2016 11:41:31 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 05/02/16 11:15, "Chris Trobridge" <christrobridge@hotmail.com> wrote:
+Hi
 
->> Date: Fri, 5 Feb 2016 10:00:50 +0200
->> Subject: Re: [yocto] Signed RPMs
->> From: markus.lehtonen@linux.intel.com
->> To: christrobridge@hotmail.com; yocto@yoctoproject.org
->> 
->> Hi Chris,
->> 
->>  ...
->> 
->> That really should not be needed. What version of poky are you using? I was not able to reproduce your problem. Try building signing-keys, does it copy the pubkey to the correct place?
->> 
->
->
->This could well be the issue  - I need gobject introspection so I am using poky-contrib ("akanavin/gobject-introspection-experimental:7145f5b9dbd84a26fe4b5ee6ab9077b1ff1ee3a5").
+I am working with a test program which has a dependency on libgcc_s.=20
 
-OK, that is probably the reason. There were at least some dependency problems in the signing feature which were fixed not that long ago.
+On Ubuntu that is available, for example from a 14.04 Ubuntu desktop =
+build:
 
+find /usr/lib -name "*gcc*=E2=80=9D
+...
+/usr/lib/gcc/x86_64-linux-gnu/4.8/libgcc_s.so
+...
 
->I got another error later building the rootfs that mentioned not finding DSA.  It may be related to not having a suitable poky, but also I am using an ECDSA key pair generated with gpg2.
+On the Yocto image I am building (see below for conf files), I don=E2=80=99=
+t see that library. What I do see is:
 
-I haven't tried signing with ECDSA keys. I've been using too old gpg for that. I probably have to test this, too.
+find /usr/lib -name "*gcc*"
+/usr/lib/gcc
+/usr/lib/gcc/gcc
+/usr/lib/gcc/x86_64-poky-linux/5.2.0/include/stdint-gcc.h
+/usr/lib/x86_64-poky-linux/5.2.0/libgcc.a
+/usr/lib/x86_64-poky-linux/5.2.0/libgcc_eh.a
 
+The build configuration files are here:
 
->I have cloned a fresh poky (main) instance, switched to a DSA signing key and built the signing-keys target from that fine, with the RPM-GPG-PUBKEY in sysroots.  So I will bear this in mind in future.
+https://github.com/DevOps4Networks/iox-yocto-build/tree/master/conf
 
-Good. Let us know if you have some further issues.
+Is there a way to get the libgcc_s library on a Yocto image? Is that =
+even the right thing to do?
 
+Many thanks
 
-Thanks,
-  Markus
+Nathan
+
+=E2=80=94
+Nathan John Sowatskey
+Consulting Engineer - Programmable Infrastructure, DevOps, IoT and SDN
+nathan@nathan.to
+www.linkedin.com/in/nathandevops
+XMPP: nathandotto@im.koderoot.net
+Google: nathanjohnsowatskey@gmail.com
+Skype: nathan_sowatskey
+Twitter: NathanDotTo
+GitHub: https://github.com/DevOps4Networks
+http://www.kipling.org.uk/poems_if.htm
 
 
