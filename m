@@ -1,63 +1,58 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CC1EE00D14; Fri,  5 Feb 2016 07:50:35 -0800 (PST)
+	id 52D68E00D14; Fri,  5 Feb 2016 08:07:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01E7DE00D01
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 07:50:29 -0800 (PST)
-Received: by mail-ig0-f172.google.com with SMTP id ik10so43103316igb.1
-	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 07:50:29 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C54DE00D01
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 08:07:34 -0800 (PST)
+Received: by mail-wm0-f42.google.com with SMTP id p63so33603263wmp.1
+	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 08:07:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=E/G5mxM/mgJz7tt1uZ4fS7ezhUyvSJDseo022zhUvAU=;
-	b=FhRN+GQgNot2JHOqTG8xu//6TyJUDvjeoWwZjvHHM/WfRlLJnE3ikcXdMYALAj1XP9
-	Z3/kF3l/5AfLPloDuVk5L1cKGR/Cre7qgFBOy3joMxSEfmBEob1rqMEDXUKXQvsE4YRr
-	T4map2PZb9UJCgpmfm2K71zT1rpc9nlME+M5+G9+4qokpe0LZr95Bm45s7lTW4cntvsS
-	0p6JRM3+X6m0c5BQmx6rCW2iUEYxPttGEFwge+uVfe3cHRvBHa1cAYUPgKoA85EFeTL2
-	AMi/Fo8psOLsxASOQtpq/89bg+hyMyY/6B2/xjatDI32MRO1zWlGuWNtSKg+Jgi2aPp1
-	eqLA==
+	h=from:to:subject:date:message-id;
+	bh=iSe6LApMXeF0GUT1B271xfTh+kSA8iOI+Hffv8td92k=;
+	b=X/mJ9OhKhaq8y2nAYaoC16fPUlZmIfZXLsfd+FeX5yAKHBvyz9c8yYn5pqBaRpLwua
+	/wJ88qnUddUf7Mz87DxU3+smRCiIF1/l0kjW+pr4u0Q6IUVL3Wt3hlJBTWPy2yX1jcKz
+	yQ54+EPj8U/DHoiuyyuUsxHFN7ocZtapNAXSXijKHrWjMOuB86Y2Jab8Tbw91sO9Ous9
+	AppFA2NQOho7RHvrpHZQNqIkNAJsZQIkPdsv3GS0AYqDs88t3x+1ZNNV471doqhR1GgQ
+	Vv0QWNMrusQ8U8uZBzC5opH55uORz24O0V2RTKE9CNohUQ8f/rkiN3I4Fv92kFHfr6/2
+	Qt6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=E/G5mxM/mgJz7tt1uZ4fS7ezhUyvSJDseo022zhUvAU=;
-	b=Rb6JQkjYW8La72eF48Pji/io2vQHk2Ab22agnQinim32Sx/7ZJoftNR38MlGsdODwj
-	PbvqWraVlWxOzWClrSuvsh9HSfsOE9gSYVbUse8Oo9/lMqajL75zNObqrSVaUJIW01hY
-	zHidrmF20/QqxANRFCo5HjJkQijKy33813ry3DHPfs8o7SvCdqru39btHam3ol0qKONy
-	bHCODLOWNeFVwKpvs+BeyChbkxhN99Oi8u6S6XkdrnJWMJzg2RjVwR8uQ7B6gY/LtnvC
-	xWS8mH8Q1ijLFpPp5Szw6R4Va8sN2bQ3W+Se/xClS40jP7WsFYVHYOFCQbMnMGPZwhrg
-	6akQ==
-X-Gm-Message-State: AG10YOSMHiNKyhH11QAecdzIWAnYRmL7DG4U+X/KOzsK+KRpv91FVDj/9H3dhe84nGWhCNqypo2wYTnYj2IlRFcR
-X-Received: by 10.50.43.133 with SMTP id w5mr10330485igl.52.1454687428975;
-	Fri, 05 Feb 2016 07:50:28 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 5 Feb 2016 07:50:09 -0800 (PST)
-In-Reply-To: <2D89126E-8678-494A-A98B-5F5D5723E860@nathan.to>
-References: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
-	<CAJTo0La9vryBMou_wnKKdmdC61Kgu7u2JL+vpx1RY+s7Gbe7QA@mail.gmail.com>
-	<2D89126E-8678-494A-A98B-5F5D5723E860@nathan.to>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 5 Feb 2016 15:50:09 +0000
-Message-ID: <CAJTo0LbbM_TXswmQxbqP5yr4Pf9geh7Ru6=iD3nHNHscC8q-nQ@mail.gmail.com>
-To: Nathan Sowatskey <nathan@nathan.to>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: libgcc_s not present in Yocto image
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=iSe6LApMXeF0GUT1B271xfTh+kSA8iOI+Hffv8td92k=;
+	b=VgzYKkc1YeVgq0OpYddAENsdYp+Y3SnpEP9m4w+uOIQLGM7t/KPJr3UGh4JXk8hZ8R
+	JVqWAgTZu+n3HwKshUI4Fc43SIcE4FcD+JsUBoBCD8eR/PDvRrZr9jb3gyir7ZLIP3t2
+	15TSAgWhdQVa+tTFC5t4tKWNJU53qCxWHV6rlkx0wb/P9Oxlw3IE0IYjgSfjs4LadJoL
+	PsecHQ29ugxdESrqfl74bb6qEOXHLlJZHI7f0OzDtFahidNv/aWJaVzP4F6qh9eUOXT1
+	1Vkup9w7SEyqup2Wtm6B4sBHdfweHp3GAuC3zSUXLcU9/bqtfC+Ds3wdSJZT0AW+RGwV
+	aUnQ==
+X-Gm-Message-State: AG10YOTs82rfUgZ/MtXYtW8gqxoA3V31Wh5iV4/DXC6xvh3eXd8I0g80GW5cE68RI1182CYJ
+X-Received: by 10.28.23.73 with SMTP id 70mr35981061wmx.37.1454688454111;
+	Fri, 05 Feb 2016 08:07:34 -0800 (PST)
+Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
+	by smtp.gmail.com with ESMTPSA id
+	v2sm17978139wmd.24.2016.02.05.08.07.33 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 05 Feb 2016 08:07:33 -0800 (PST)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  5 Feb 2016 16:07:29 +0000
+Message-Id: <1454688449-8689-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 2.7.0
+Subject: [PATCH][yocto-autobuilder] nightly-musl: build core-image-weston, only use ipkg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,46 +64,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 15:50:35 -0000
-Content-Type: multipart/alternative; boundary=089e01175f2b76c500052b07cf45
+X-List-Received-Date: Fri, 05 Feb 2016 16:07:36 -0000
 
---089e01175f2b76c500052b07cf45
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Build core-image-weston for more coverage, and use ipkg explicitly as rpm is
+known to break with musl.
 
-On 5 February 2016 at 15:24, Nathan Sowatskey <nathan@nathan.to> wrote:
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ buildset-config.controller/nightly-musl.conf | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> I suspect that my test program, which was supplied to me as a .deb
-> package, was compiled on Ubuntu, and so links to libgcc_s.so.1. I can=E2=
-=80=99t see
-> any obvious way to get libgcc_s.so.1 on Yocto. I already have:
->
+diff --git a/buildset-config.controller/nightly-musl.conf b/buildset-config.controller/nightly-musl.conf
+index 9a82e6b..49ae91d 100644
+--- a/buildset-config.controller/nightly-musl.conf
++++ b/buildset-config.controller/nightly-musl.conf
+@@ -10,9 +10,10 @@ steps: [{'SetDest':{}},
+         {'GetDistroVersion' : {'distro': 'poky'}},
+         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64',
+                             'buildhistory' : False, 'distro': 'poky',
++                            'packages': 'ipk',
+                             'atextappend' : '\nTCLIBC="musl"\n' }},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+-        {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato'}},
++        {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato core-image-weston'}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
+ 
+-- 
+2.7.0
 
-libgcc contains /lib/libgcc_s.so.1, so it should be installed in your image
-already:
 
-How are you determining that it isn't in your image, and that your
-application doesn't work?
-
-Ross
-
---089e01175f2b76c500052b07cf45
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 February 2016 at 15:24, Nathan Sowatskey <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:nathan@nathan.to" target=3D"_blank">nathan@nathan.to</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":gtk" class=3D"a3s"=
- style=3D"overflow:hidden">I suspect that my test program, which was suppli=
-ed to me as a .deb package, was compiled on Ubuntu, and so links to libgcc_=
-s.so.1. I can=E2=80=99t see any obvious way to get libgcc_s.so.1 on Yocto. =
-I already have:<br></div></blockquote></div><br>libgcc contains /lib/libgcc=
-_s.so.1, so it should be installed in your image already:</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra">How are you determini=
-ng that it isn&#39;t in your image, and that your application doesn&#39;t w=
-ork?</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
-oss</div></div>
-
---089e01175f2b76c500052b07cf45--
