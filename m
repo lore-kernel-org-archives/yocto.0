@@ -1,44 +1,41 @@
-Return-Path: <jackzhang1992@t.shu.edu.cn>
+Return-Path: <josiasinacio@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC8D5E00CDC; Thu,  4 Feb 2016 20:52:08 -0800 (PST)
+	id C4210E00CE4; Thu,  4 Feb 2016 22:07:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_50,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (josiasinacio[at]hotmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtpproxy19.qq.com (smtpproxy19.qq.com [184.105.206.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A61AE00CD6
-	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 20:52:02 -0800 (PST)
-X-QQ-GoodBg: 2
-X-QQ-SSF: 00400000000000F0
-X-QQ-FEAT: ToKXzzSIZBbm6Q9eeJpUFc3M6j7mF2+YwGYVkkSlIfO2K5LltvukfIHvnWWbh
-	sk2TTp0zFFaWeGSTOSYZao1RLFvPzmlHT6O8rYMhYHSph1tZrlDJ+342Pfz2//k/NsL/N1b
-	egN9O+LsRc5CCcO5QqsrSWm/A8OBrGa0OUL1UCDDy6a+ktV6sSNSH8b1CZOXbnE6GLzrGv7
-	2PuxyCDzIYfPjKE3cWyxDTb6Pb5dssiHjx1JfM+79T9UZ3Co8aE2nI6XsmaVRguCQhADN1e
-	Wn3g==
-X-QQ-BUSINESS-ORIGIN: 2
-X-Originating-IP: 180.152.116.238
-X-QQ-STYLE: 
-X-QQ-mid: bizmailfree67t1454647916t3835
-From: "=?utf-8?B?5byg5YGl?=" <jackzhang1992@t.shu.edu.cn>
-To: "=?utf-8?B?eW9jdG8=?=" <yocto@yoctoproject.org>
-Mime-Version: 1.0
-Date: Fri, 5 Feb 2016 12:51:56 +0800
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4927]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.54.190.144 listed in list.dnswl.org]
+Received: from BAY004-OMC3S6.hotmail.com (bay004-omc3s6.hotmail.com
+	[65.54.190.144])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90A53E00CDE
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 22:07:09 -0800 (PST)
+Received: from BAY173-DS15 ([65.54.190.189]) by BAY004-OMC3S6.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Thu, 4 Feb 2016 22:07:09 -0800
+X-TMN: [iU49sJdEJLzexUqm/lnHYKQNsa9V1cCO]
+X-Originating-Email: [josiasinacio@hotmail.com]
+Message-ID: <BAY173-DS15454BC9EF91180F69AC74C1D20@phx.gbl>
+From: Josias Inacio da Silva Filho <josiasinacio@hotmail.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 5 Feb 2016 01:07:08 -0500
+MIME-Version: 1.0
 X-Priority: 3
-Message-ID: <tencent_5FC6845803059A4B305A193A@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <tencent_569636730269A1CE59E0E877@qq.com>
-	<CAMKF1srrrJoyvJw8sfwk3MUPHPO4OAM8fiEVZS=ci+jtBkcaPQ@mail.gmail.com>
-In-Reply-To: <CAMKF1srrrJoyvJw8sfwk3MUPHPO4OAM8fiEVZS=ci+jtBkcaPQ@mail.gmail.com>
-X-QQ-ReplyHash: 2021326321
-X-QQ-SENDSIZE: 520
-X-QQ-Bgrelay: 1
-Subject: plan-list for porting linux Re: About how port yocto to a customized MIPS cpu
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-OriginalArrivalTime: 05 Feb 2016 06:07:09.0973 (UTC)
+	FILETIME=[72D89C50:01D15FDB]
+Subject: Execute recipe only after kernel is built and rootfs file is created in deploy folder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,223 +47,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 04:52:08 -0000
+X-List-Received-Date: Fri, 05 Feb 2016 06:07:13 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_56B42A6C_093D7F38_64710102"
-Content-Transfer-Encoding: 8Bit
+	boundary="----=_NextPart_000_00B1_01D15FB1.891C7A10"
 
-------=_NextPart_56B42A6C_093D7F38_64710102
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+------=_NextPart_000_00B1_01D15FB1.891C7A10
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksZXZlcnlvbmU6DQogICBGb3Igbm93LCBJIGhhdmUgZmluaXNoZWQgdGhlIHlvY3RvIHF1
-cmtfc3RhcnQgZG9jdW1lbnQsIGFuZCBzdWNjZWVkZWQgaW4gYnVpbGRpbmcgdGhlIHlvY3Rv
-LXJhc3BiZXJyeXBpIGltYWdlIGZvciBteSBycGkyIEIrIGJvYXJkLiBJIGJlbGVpdmUgaXQn
-cyBhIGdvb2Qgc3RhcnQhDQogICBCdXQgYWZ0ZXIgdGhhdCwgSSBzdGlsbCB3aXNoIHRvIGZp
-Z3VyZSBvdXQgaG93IHRvIHBvcnQgYSBsaW51eCBzeXN0ZW0gdG8gbXkgZnBnYSBib2FyZCB3
-aXRoIGEgIm1pcHMzMiIgY3B1LiBJbiB0aGUgZnV0dXJlLCBJIHdpbGwgbG9vayBpbnRvIGhv
-dyB0byB3cml0ZSB0aGUgYnNwIG9mIHlvY3RvIHByb2plY3QgYnkgcmVmZXJpbmcgdG8gdGhl
-IHBva3kgcmVmZXJlbmNlIGRpc3RyaWJ1dGlvbiwgdGhlIG1ldGEtcmFzcGJlcnJ5cGkgYXMg
-d2VsbCBhcyB0aGUgZG9jdW1lbnQgInlvY3RvIHByb2plY3QgQlNQIGRldmVsbG9wcycgZ3Vp
-ZGUyLjAiIC4gDQoNCg0KVGhpcyBpcyBteSBwbGFuIGxpc3RzOg0KICAgIDAxLiB0byB3cml0
-ZSBhIHlvY3RvIGJzcCBmb3IgbXkgZGV2aWNlDQogICAgMDIubGVhcm4gdG8gdXNlIHFlbXUN
-CiAgICAwMy5sZWFybiB0byB1c2UgdWJvbw0KICAgIDA0LmxlYXJuIHRvIHVzZSBhcmNobGlu
-dXggZm9yIGEgZ2VuZXJhbCB1bmRlcnN0YW5kaW5nIG9mIGhvdyBhIGxpbnV4IHN5c3RlbSBy
-dW5zIGFuZCBpdCdzIG1lY2hhbmlzbXMuIA0KICAgIC4uLg0KDQoNCklmIGFueW9uZSBnZXRz
-IHNvbWUgaWRlYXMscGxzIGZlZWwgZnJlZSB0byBjb250YWN0IHdpdGggbWUNClRoYW5rIHlv
-dSxhbmQgYmVzdCByZWdhcmRzDQpKYWNrDQpTaGFuZ2hhaQ0KIA0KIA0KLS0tLS0tLS0tLS0t
-LS0tLS0tIE9yaWdpbmFsIC0tLS0tLS0tLS0tLS0tLS0tLQ0KRnJvbTogICJLaGVtIFJhaiI8
-cmFqLmtoZW1AZ21haWwuY29tPjsNCkRhdGU6ICBUaHUsIEphbiAyOCwgMjAxNiAwMzoxMCBB
-TQ0KVG86ICAiSmFja1poYW5nIjxqYWNremhhbmcxOTkyQHQuc2h1LmVkdS5jbj47IA0KQ2M6
-ICAieW9jdG8iPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+OyANClN1YmplY3Q6ICBSZTogW3lv
-Y3RvXSBBYm91dCBob3cgcG9ydCB5b2N0byB0byBhIGN1c3RvbWl6ZWQgTUlQUyBjcHUNCg0K
-IA0KDQpPbiBUdWUsIEphbiAyNiwgMjAxNiBhdCA3OjA5IFBNLCDlvKDlgaUgPGphY2t6aGFu
-ZzE5OTJAdC5zaHUuZWR1LmNuPiB3cm90ZToNCkJ1dCBJIGhhdmUgbm8gaWRlYSB3aGF0J3Mg
-aW5zaWRlIHRoZSAuaW1nIGZpbGVzLCBhbmQgaG93IHRvIGxldCBteSBmcGdhIGJvYXJkIHRv
-IHVuZGVyc3RhbmQgdGhlIC5pbWcgZmlsZXMuIA0KDQoNClNvIHRoaXMgIGlzIHJlYXNvbiB3
-aHkgSSdtIGhlcmUgdG8gYXNrIHlvdSBndXlzIGZvciBzb21lIGhlbHAuDQoNCg0KQW5kIHdp
-c2ggdG8ga25vdyBpZiBpdCBpcyBwb3NzaWJsZSB0byBwb3J0IHRoZSAieW9jdG8iIHRvIG15
-IG93biBwcm9qZWN0Lg0KDQoNCg0KDQoNCuKAi2ltYWdlIGZpbGVzIGFyZSBnZW5lcmF0ZWQg
-aW4gc2V2ZXJhbCBmb3JtYXRzLiBUaGVyZSBpcyBvcHRpb24gdG8gZ2VuZXJhdGUgdGFyYmFs
-bHMuIFlvdSBjYW4gYWx3YXlzIHRha2UgdGhlIHRhcmJhbGwgYW5kIHVudGFyIGl0IGFuZCBs
-b29rIHdoYXQgaW5zaWRlDQpzZWNvbmRseSwgZm9yIHlvdXIgRlBHQSB0byB1bmRlcnN0YW5k
-IHRoaXMsIHlvdSBwcm9iYWJseSB3aWxsIG5lZWQgdG9vbHMgdG8gZG93bmxvYWQgdGhlIGJp
-bmFyeSB0byBtZW1vcnkgd2hpY2ggaXMgdmlzaXRpYmxlIHRvIEZQR0EgaWYgSSBhc3N1bWUg
-RlBHQQ0KaXMgc2l0dGluZyBhbG9uZyB3aXRoIGEgYXBwbGljYXRpb24gcHJvY2Vzc29yIHdo
-aWNoIGNhbiB0aGVuIGhlbHAgeW91IHRvIGZsYXNoIGl0IHRvIHJlbGV2YW50IG1lbW9yeSBw
-YXJ0cy4gDQoNCg0KaWYgeW91ciBhcHBsaWNhdGlvbiBwcm9jZXNzb3IgaGFzIGEgYm9vdGxv
-YWRlciBlLmcuIHVib290IHdoaWNoIGNhbiB1c2UgU0QgY2FyZHMgYXMgYm9vdCBtZWRpYSB0
-aGVuIHlvdSBjYW4gdXNlIHdpYyB0b29sIHRvIGdlbmVyYXRlIFNEIGNhcmQNCmltYWdlcyBk
-aXJlY3RseSBmcm9tIHlvY3RvLiB3aWMgaXMgZG9jdW1lbnRlZCBpbiBkZXYgbWFudWFsIHNv
-IHBsZWFzZSBsb29rIHRoZXJlIG9uIGhvdyB0byBzZXQgaXQgdXAuIE9yIHlvdSBjYW4gbG9v
-ayBhdCBzb21lIG90aGVyIEJTUHMgbGlrZQ0KYmVhZ2xlYm9uZSAoIGFuZ3N0cm9tICkgb3Ig
-cmFzcGJlcnJ5cGkgb3IgZnJlZXNjYWxlIGxheWVyIGZvciBzY3JpcHRzIHRvIGdlbmVyYXRl
-IHRoZSBTRCBjYXJkIGltYWdlcyBhbmQgbW9kZWwgeW91ciB1c2luZyB0aG9zZS7igIsNCg0K
-DQoNCg0KPT09PT09PT09PT09PT0NCk9uIFR1ZSwgSmFuIDI2LCAyMDE2IGF0IDc6MDkgUE0s
-IOW8oOWBpSA8amFja3poYW5nMTk5MkB0LnNodS5lZHUuY24+IHdyb3RlOg0KDQoNCmhpLGV2
-ZXJ5b25lOg0KICAgIFRoaXMgaXMgSmFjayBmcm9tIFNoYW5naGFpLCBpbiBteSBmaXJzdCB5
-ZWFyIGluIGdyYWR1YXRlIHNjaG9vbC4NCiAgICBJJ20gc2VuZGluZyBlbWFpbCBoZXJlIHRv
-IGFza2luZyBmb3Igc29tZSBoZWxwIGFib3V0ICJob3cgdG8gcG9ydCBsaW51eCBvbiBhIGN1
-c3RvbWl6ZWQgY3B1IHJ1biBvbiBGUEdBIGJvYXJkIi4NCkJlZm9yZSBJIGhhdmUgYmVlbiB3
-b3JraW5nIG9uIGhvdyB0byB1c2UgInZlcmlsb2ciIHRvIG1ha2UgYSBjcHUgKGJhc2VkIG9u
-IE1JUFMzMiBJU0EpIG9uIGEgRlBHQSBib2FyZCwgYW5kIGZvciBub3cgIEkgY291bGQgZm9y
-bSBhIHNldCBvZiBjcHUgY29kZSwgYW5kIHVzZSBhc3NlbWJseSBvbiBpdC4NClRoZSBmb2xs
-b3dpbmcgaXMgbXkgdGV0cmlzIGRlbW8sd2hpY2ggaXMgd3JpdHRlbiBpbiBhc3NlbWJseSBs
-YW5ndWFnZSBhbmQgcnVuIG9uIHRoZSBNUElTMzIgQ1BVICh3cml0dGVuIGluIHZlcmlsb2cg
-b24gRlBHQSBib2FyZCkuDQpodHRwOi8vd3d3LnR1ZG91LmNvbS9wcm9ncmFtcy92aWV3L2Ut
-RTVsVnJRZlR3Lw0KVGhlc2UgZGF5cywgSSBzdGFydCB0byB0aGluayB0aGUgcXVlc3Rpb24g
-YWJvdXQgaG93IHRvIHBvcnQgbGludXggb24gbXkgdGlueSAiY3B1Ii4gU28gSSBmaW5kICJ5
-b2N0byIsd2hpY2ggc2VlbXMgdGhlIHRoaW5nIHRoYXQgY291bGQgaGVscCBtZS4NCkkgaGF2
-ZSBmaW5pc2hlZCB0aGUgInlvY3RvIHByb2plY3QgcXVpY2sgc3RhcnQiIGRvY3VtZW50IG9u
-bGluZSB5ZXN0ZXJkYXkuIChodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjAv
-eW9jdG8tcHJvamVjdC1xcy95b2N0by1wcm9qZWN0LXFzLmh0bWwpDQphbmQgd2FzIHZlcnkg
-aGFwcHkgdG8gc2VlIHRoYXQgaXQgY291bGQgImJvb3QiIG9uIHRoZSBxZW11IHNpbXVsYXRv
-ci4NCmFuZCBJIGZvdW5kIHRoZSBmb2xsb3dpbmcgYXJlIHRoZSBib290IGltYWdlIGZpbGVz
-Og0KICAgYnpJbWFnZTsgYnpJbWdhZ2UuYmluOyBjb3JlLWltZ2FlLXNhdG8tcWVtdXg4Ni5l
-eHQ0O2NvcmUtaW1hZ2Utc2F0by1xZW11eDg2LnRhci5iejI7bW9kdWxlcy1xZW11eDg2LnRn
-eiAuLi5ldGMNCg0KDQpJbiBzb21lIGVtYmVkZGVkIGJvYXJkcywgdGhleSB1c3VhbGx5IHdy
-aXRlIGEgbGludXggaW1hZ2UgZmlsZSguaW1nICkgdG8gYSBzZCBjYXJkLiBUaGVuIHBsdWcg
-aW4gdG8gdGhlIGJvYXJkLiBGaW5hbGx5IGl0IGJvb3RzLg0KQnV0IEkgaGF2ZSBubyBpZGVh
-IHdoYXQncyBpbnNpZGUgdGhlIC5pbWcgZmlsZXMsIGFuZCBob3cgdG8gbGV0IG15IGZwZ2Eg
-Ym9hcmQgdG8gdW5kZXJzdGFuZCB0aGUgLmltZyBmaWxlcy4NClNvIHRoaXMgIGlzIHJlYXNv
-biB3aHkgSSdtIGhlcmUgdG8gYXNrIHlvdSBndXlzIGZvciBzb21lIGhlbHAuDQpBbmQgd2lz
-aCB0byBrbm93IGlmIGl0IGlzIHBvc3NpYmxlIHRvIHBvcnQgdGhlICJ5b2N0byIgdG8gbXkg
-b3duIHByb2plY3QuDQpUaGFuayB5b3UgYW5kIEJlc3Qgd2lzaGVzICENClRvIGdlZWtzIDop
-DQoNCg0KSmFjaw==
+Hi guys,
 
-------=_NextPart_56B42A6C_093D7F38_64710102
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
+I=E2=80=99m trying to run a recipe that has dependencies in the =
+generation of the roofts and kernel image files. Without those two files =
+already in the deploy folder, I cannot start running my recipe.
 
-PGRpdj5IaSxldmVyeW9uZTo8L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDtGb3Igbm93LCBJIGhh
-dmUgZmluaXNoZWQgdGhlIHlvY3RvIHF1cmtfc3RhcnQgZG9jdW1lbnQsIGFuZCBzdWNjZWVk
-ZWQgaW4gYnVpbGRpbmcgdGhlIHlvY3RvLXJhc3BiZXJyeXBpIGltYWdlIGZvciBteSBycGky
-IEIrIGJvYXJkLiBJIGJlbGVpdmUgaXQncyBhIGdvb2Qgc3RhcnQhPC9kaXY+PGRpdj4mbmJz
-cDsgJm5ic3A7QnV0IGFmdGVyIHRoYXQsIEkgc3RpbGwgd2lzaCB0byBmaWd1cmUgb3V0IGhv
-dyB0byBwb3J0IGEgbGludXggc3lzdGVtIHRvIG15IGZwZ2EgYm9hcmQgd2l0aCBhICJtaXBz
-MzIiIGNwdS4gSW4gdGhlIGZ1dHVyZSwgSSB3aWxsIGxvb2sgaW50byBob3cgdG8gd3JpdGUg
-dGhlIGJzcCBvZiB5b2N0byBwcm9qZWN0IGJ5IHJlZmVyaW5nIHRvIHRoZSBwb2t5IHJlZmVy
-ZW5jZSBkaXN0cmlidXRpb24sIHRoZSBtZXRhLXJhc3BiZXJyeXBpIGFzIHdlbGwgYXMgdGhl
-IGRvY3VtZW50ICJ5b2N0byBwcm9qZWN0IEJTUCBkZXZlbGxvcHMnIGd1aWRlMi4wIiAuJm5i
-c3A7PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGlzIGlzIG15IHBsYW4gbGlzdHM6PC9k
-aXY+PGRpdj4mbmJzcDsgJm5ic3A7IDAxLiB0byB3cml0ZSBhIHlvY3RvIGJzcCBmb3IgbXkg
-ZGV2aWNlPC9kaXY+PGRpdj4mbmJzcDsgJm5ic3A7IDAyLmxlYXJuIHRvIHVzZSBxZW11PC9k
-aXY+PGRpdj4mbmJzcDsgJm5ic3A7IDAzLmxlYXJuIHRvIHVzZSB1Ym9vPC9kaXY+PGRpdj4m
-bmJzcDsgJm5ic3A7IDA0LmxlYXJuIHRvIHVzZSBhcmNobGludXggZm9yIGEgZ2VuZXJhbCB1
-bmRlcnN0YW5kaW5nIG9mIGhvdyBhIGxpbnV4IHN5c3RlbSBydW5zIGFuZCBpdCdzIG1lY2hh
-bmlzbXMuJm5ic3A7PC9kaXY+PGRpdj4mbmJzcDsgJm5ic3A7IC4uLjwvZGl2PjxkaXY+PGJy
-PjwvZGl2PjxkaXY+SWYgYW55b25lIGdldHMgc29tZSBpZGVhcyxwbHMgZmVlbCBmcmVlIHRv
-IGNvbnRhY3Qgd2l0aCBtZTwvZGl2PjxkaXY+VGhhbmsgeW91LGFuZCBiZXN0IHJlZ2FyZHM8
-L2Rpdj48ZGl2PkphY2s8L2Rpdj48ZGl2PlNoYW5naGFpPC9kaXY+PGRpdj48aW5jbHVkZXRh
-aWw+PGRpdj4mbmJzcDs8L2Rpdj48ZGl2PiZuYnNwOzwvZGl2PjxkaXYgc3R5bGU9ImZvbnQ6
-VmVyZGFuYSBub3JtYWwgMTRweDtjb2xvcjojMDAwOyI+PGRpdiBzdHlsZT0iRk9OVC1TSVpF
-OiAxMnB4O0ZPTlQtRkFNSUxZOiBBcmlhbCBOYXJyb3c7cGFkZGluZzoycHggMCAycHggMDsi
-Pi0tLS0tLS0tLS0tLS0tLS0tLSZuYnNwO09yaWdpbmFsJm5ic3A7LS0tLS0tLS0tLS0tLS0t
-LS0tPC9kaXY+PGRpdiBzdHlsZT0iRk9OVC1TSVpFOiAxMnB4O2JhY2tncm91bmQ6I2VmZWZl
-ZjtwYWRkaW5nOjhweDsiPjxkaXYgaWQ9Im1lbnVfc2VuZGVyIj48Yj5Gcm9tOiA8L2I+Jm5i
-c3A7IktoZW0gUmFqIiZsdDtyYWoua2hlbUBnbWFpbC5jb20mZ3Q7OzwvZGl2PjxkaXY+PGI+
-RGF0ZTogPC9iPiZuYnNwO1RodSwgSmFuIDI4LCAyMDE2IDAzOjEwIEFNPC9kaXY+PGRpdj48
-Yj5UbzogPC9iPiZuYnNwOyJKYWNrWmhhbmciJmx0O2phY2t6aGFuZzE5OTJAdC5zaHUuZWR1
-LmNuJmd0OzsgPHdicj48L2Rpdj48ZGl2PjxiPkNjOiA8L2I+Jm5ic3A7InlvY3RvIiZsdDt5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0OzsgPHdicj48L2Rpdj48ZGl2PjxiPlN1YmplY3Q6
-IDwvYj4mbmJzcDtSZTogW3lvY3RvXSBBYm91dCBob3cgcG9ydCB5b2N0byB0byBhIGN1c3Rv
-bWl6ZWQgTUlQUyBjcHU8L2Rpdj48L2Rpdj48ZGl2PiZuYnNwOzwvZGl2PjxkaXYgZGlyPSJs
-dHIiPjxkaXYgY2xhc3M9ImdtYWlsX2V4dHJhIj48YnI+PGRpdiBjbGFzcz0iZ21haWxfcXVv
-dGUiPk9uIFR1ZSwgSmFuIDI2LCAyMDE2IGF0IDc6MDkgUE0sIOW8oOWBpSA8c3BhbiBkaXI9
-Imx0ciI+Jmx0OzxhIGhyZWY9Im1haWx0bzpqYWNremhhbmcxOTkyQHQuc2h1LmVkdS5jbiIg
-dGFyZ2V0PSJfYmxhbmsiPmphY2t6aGFuZzE5OTJAdC5zaHUuZWR1LmNuPC9hPiZndDs8L3Nw
-YW4+IHdyb3RlOjxicj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJt
-YXJnaW46MCAwIDAgLjhleDtib3JkZXItbGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxl
-ZnQ6MWV4Ij48ZGl2PkJ1dCBJIGhhdmUgbm8gaWRlYSB3aGF0J3MgaW5zaWRlIHRoZSAuaW1n
-IGZpbGVzLCBhbmQgaG93IHRvIGxldCBteSBmcGdhIGJvYXJkIHRvIHVuZGVyc3RhbmQgdGhl
-IC5pbWcgZmlsZXMuJm5ic3A7PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5TbyB0aGlzICZu
-YnNwO2lzIHJlYXNvbiB3aHkgSSdtIGhlcmUgdG8gYXNrIHlvdSBndXlzIGZvciBzb21lIGhl
-bHAuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5BbmQgd2lzaCB0byBrbm93IGlmIGl0IGlz
-IHBvc3NpYmxlIHRvIHBvcnQgdGhlICJ5b2N0byIgdG8gbXkgb3duIHByb2plY3QuPC9kaXY+
-PGRpdj48YnI+PC9kaXY+PGRpdj48L2Rpdj48L2Jsb2NrcXVvdGU+PC9kaXY+PGJyPjxkaXYg
-Y2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lhLHNlcmlm
-Ij7igItpbWFnZSBmaWxlcyBhcmUgZ2VuZXJhdGVkIGluIHNldmVyYWwgZm9ybWF0cy4gVGhl
-cmUgaXMgb3B0aW9uIHRvIGdlbmVyYXRlIHRhcmJhbGxzLiBZb3UgY2FuIGFsd2F5cyB0YWtl
-IHRoZSB0YXJiYWxsIGFuZCB1bnRhciBpdCBhbmQgbG9vayB3aGF0IGluc2lkZTwvZGl2Pjxk
-aXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lhLHNl
-cmlmIj5zZWNvbmRseSwgZm9yIHlvdXIgRlBHQSB0byB1bmRlcnN0YW5kIHRoaXMsIHlvdSBw
-cm9iYWJseSB3aWxsIG5lZWQgdG9vbHMgdG8gZG93bmxvYWQgdGhlIGJpbmFyeSB0byBtZW1v
-cnkgd2hpY2ggaXMgdmlzaXRpYmxlIHRvIEZQR0EgaWYgSSBhc3N1bWUgRlBHQTwvZGl2Pjxk
-aXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250LWZhbWlseTpnZW9yZ2lhLHNl
-cmlmIj5pcyBzaXR0aW5nIGFsb25nIHdpdGggYSBhcHBsaWNhdGlvbiBwcm9jZXNzb3Igd2hp
-Y2ggY2FuIHRoZW4gaGVscCB5b3UgdG8gZmxhc2ggaXQgdG8gcmVsZXZhbnQgbWVtb3J5IHBh
-cnRzLiZuYnNwOzwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250
-LWZhbWlseTpnZW9yZ2lhLHNlcmlmIj48YnI+PC9kaXY+PGRpdiBjbGFzcz0iZ21haWxfZGVm
-YXVsdCIgc3R5bGU9ImZvbnQtZmFtaWx5Omdlb3JnaWEsc2VyaWYiPmlmIHlvdXIgYXBwbGlj
-YXRpb24gcHJvY2Vzc29yIGhhcyBhIGJvb3Rsb2FkZXIgZS5nLiB1Ym9vdCB3aGljaCBjYW4g
-dXNlIFNEIGNhcmRzIGFzIGJvb3QgbWVkaWEgdGhlbiB5b3UgY2FuIHVzZSB3aWMgdG9vbCB0
-byBnZW5lcmF0ZSBTRCBjYXJkPC9kaXY+PGRpdiBjbGFzcz0iZ21haWxfZGVmYXVsdCIgc3R5
-bGU9ImZvbnQtZmFtaWx5Omdlb3JnaWEsc2VyaWYiPmltYWdlcyBkaXJlY3RseSBmcm9tIHlv
-Y3RvLiB3aWMgaXMgZG9jdW1lbnRlZCBpbiBkZXYgbWFudWFsIHNvIHBsZWFzZSBsb29rIHRo
-ZXJlIG9uIGhvdyB0byBzZXQgaXQgdXAuIE9yIHlvdSBjYW4gbG9vayBhdCBzb21lIG90aGVy
-IEJTUHMgbGlrZTwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2RlZmF1bHQiIHN0eWxlPSJmb250
-LWZhbWlseTpnZW9yZ2lhLHNlcmlmIj5iZWFnbGVib25lICggYW5nc3Ryb20gKSBvciByYXNw
-YmVycnlwaSBvciBmcmVlc2NhbGUgbGF5ZXIgZm9yIHNjcmlwdHMgdG8gZ2VuZXJhdGUgdGhl
-IFNEIGNhcmQgaW1hZ2VzIGFuZCBtb2RlbCB5b3VyIHVzaW5nIHRob3NlLuKAizwvZGl2Pjxi
-cj48L2Rpdj48ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGJyPjwvZGl2PjxkaXYgY2xhc3M9
-ImdtYWlsX2V4dHJhIj49PT09PT09PT09PT09PTwvZGl2PjxkaXYgY2xhc3M9ImdtYWlsX2V4
-dHJhIj5PbiBUdWUsIEphbiAyNiwgMjAxNiBhdCA3OjA5IFBNLCDlvKDlgaUmbmJzcDs8c3Bh
-biBkaXI9Imx0ciI+Jmx0OzxhIGhyZWY9Im1haWx0bzpqYWNremhhbmcxOTkyQHQuc2h1LmVk
-dS5jbiIgdGFyZ2V0PSJfYmxhbmsiPmphY2t6aGFuZzE5OTJAdC5zaHUuZWR1LmNuPC9hPiZn
-dDs8L3NwYW4+Jm5ic3A7d3JvdGU6PC9kaXY+PGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxi
-cj48L2Rpdj48ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGRpdiBzdHlsZT0iZm9udC1mYW1p
-bHk6ICdsdWNpZGEgR3JhbmRlJywgVmVyZGFuYTsgbGluZS1oZWlnaHQ6IG5vcm1hbDsiPjxz
-cGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+aGksZXZlcnlvbmU6PC9zcGFuPjwvZGl2
-PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiAnbHVjaWRhIEdyYW5kZScsIFZlcmRhbmE7IGxp
-bmUtaGVpZ2h0OiBub3JtYWw7Ij48aW5jbHVkZXRhaWw+PGRpdj4mbmJzcDsgJm5ic3A7IFRo
-aXMgaXMgSmFjayBmcm9tIFNoYW5naGFpLCBpbiBteSBmaXJzdCB5ZWFyIGluIGdyYWR1YXRl
-IHNjaG9vbC48L2Rpdj48ZGl2PiZuYnNwOyAmbmJzcDsgSSdtIHNlbmRpbmcgZW1haWwgaGVy
-ZSB0byBhc2tpbmcgZm9yIHNvbWUgaGVscCBhYm91dDxmb250IGNvbG9yPSIjMDAwMGZmIj4m
-bmJzcDsiPGI+aG93IHRvIHBvcnQgbGludXggb24gYSBjdXN0b21pemVkIGNwdSBydW4gb24g
-RlBHQSBib2FyZCI8L2I+PC9mb250PjxiPi48L2I+PC9kaXY+PGRpdj48Zm9udCBjb2xvcj0i
-I2ZmMDAwMCI+QmVmb3JlPC9mb250PjxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+
-Jm5ic3A7SSBoYXZlIGJlZW4gd29ya2luZyBvbiBob3cgdG8gdXNlICJ2ZXJpbG9nIiB0byBt
-YWtlIGEgY3B1IChiYXNlZCBvbiBNSVBTMzIgSVNBKSBvbiBhIEZQR0EgYm9hcmQsIGFuZCBm
-b3Igbm93ICZuYnNwO0kgY291bGQgZm9ybSBhIHNldCBvZiBjcHUgY29kZSwgYW5kIHVzZSBh
-c3NlbWJseSBvbiBpdC48L3NwYW4+PC9kaXY+PGRpdj5UaGUgZm9sbG93aW5nIGlzIG15IHRl
-dHJpcyBkZW1vLHdoaWNoIGlzIHdyaXR0ZW4gaW4gYXNzZW1ibHkgbGFuZ3VhZ2UgYW5kIHJ1
-biBvbiB0aGUgTVBJUzMyIENQVSAod3JpdHRlbiBpbiB2ZXJpbG9nIG9uIEZQR0EgYm9hcmQp
-LjwvZGl2PjxkaXY+PGEgaHJlZj0iaHR0cDovL3d3dy50dWRvdS5jb20vcHJvZ3JhbXMvdmll
-dy9lLUU1bFZyUWZUdy8iIHRhcmdldD0iX2JsYW5rIiBzdHlsZT0ib3V0bGluZTogbm9uZTsg
-Y29sb3I6IHJnYig0MiwgODgsIDExMSk7Ij5odHRwOi8vd3d3LnQ8d2JyPnVkb3UuY29tL3By
-bzx3YnI+Z3JhbXMvdmlldy9lPHdicj4tRTVsVnJRZlR3LzwvYT48L2Rpdj48ZGl2Pjxmb250
-IGNvbG9yPSIjZmYwMDAwIj5UaGVzZSBkYXlzPC9mb250PjxzcGFuIHN0eWxlPSJsaW5lLWhl
-aWdodDogMS41OyI+LCBJIHN0YXJ0IHRvIHRoaW5rIHRoZSBxdWVzdGlvbiBhYm91dCBob3cg
-dG8gcG9ydCBsaW51eCBvbiBteSB0aW55ICJjcHUiLiBTbyBJIGZpbmQgInlvY3RvIix3aGlj
-aCBzZWVtcyB0aGUgdGhpbmcgdGhhdCBjb3VsZCBoZWxwIG1lLjwvc3Bhbj48L2Rpdj48ZGl2
-PkkgaGF2ZSBmaW5pc2hlZCB0aGUgInlvY3RvIHByb2plY3QgcXVpY2sgc3RhcnQiIGRvY3Vt
-ZW50IG9ubGluZSB5ZXN0ZXJkYXkuICg8c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6IDEuNTsi
-PjxhIGhyZWY9Imh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuMC95b2N0by1w
-cm9qZWN0LXFzL3lvY3RvLXByb2plY3QtcXMuaHRtbCkiIHRhcmdldD0iX2JsYW5rIiBzdHls
-ZT0ib3V0bGluZTogbm9uZTsgY29sb3I6IHJnYig0MiwgODgsIDExMSk7Ij5odHRwOi8vd3d3
-Lnk8d2JyPm9jdG9wcm9qZWN0Ljx3YnI+b3JnL2RvY3MvMi4wPHdicj4veW9jdG8tcHJvamU8
-d2JyPmN0LXFzL3lvY3RvLTx3YnI+cHJvamVjdC1xcy5oPHdicj50bWwpPC9hPjwvc3Bhbj48
-L2Rpdj48ZGl2PmFuZCB3YXMgdmVyeSBoYXBweSB0byBzZWUgdGhhdCBpdCBjb3VsZCAiYm9v
-dCIgb24gdGhlIHFlbXUgc2ltdWxhdG9yLjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImxpbmUt
-aGVpZ2h0OiAxLjU7Ij5hbmQgSSBmb3VuZCB0aGUgZm9sbG93aW5nIGFyZSB0aGUgYm9vdCBp
-bWFnZSBmaWxlczo8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0ibGluZS1oZWlnaHQ6
-IDEuNTsiPiZuYnNwOyAmbmJzcDtiekltYWdlOyBiekltZ2FnZS5iaW47IGNvcmUtaW1nYWUt
-c2F0by1xZW11eDg2LmV4dDQ7Y29yZS1pbWFnZS1zYXRvLXFlbXV4ODYudGFyLmJ6Mjttb2R1
-bGVzLXFlbXV4ODYudGd6IC4uLmV0Yzwvc3Bhbj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PkluIHNvbWUgZW1iZWRkZWQgYm9hcmRzLCB0aGV5IHVzdWFsbHkgd3JpdGUgYSBsaW51eCBp
-bWFnZSBmaWxlKC5pbWcgKSB0byBhIHNkIGNhcmQuIFRoZW4gcGx1ZyBpbiB0byB0aGUgYm9h
-cmQuIEZpbmFsbHkgaXQgYm9vdHMuPC9kaXY+PGRpdj5CdXQgSSBoYXZlIG5vIGlkZWEgd2hh
-dCdzIGluc2lkZSB0aGUgLmltZyBmaWxlcywgYW5kIGhvdyB0byBsZXQgbXkgZnBnYSBib2Fy
-ZCB0byB1bmRlcnN0YW5kIHRoZSAuaW1nIGZpbGVzLjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9
-ImxpbmUtaGVpZ2h0OiAxLjU7Ij5TbyB0aGlzICZuYnNwO2lzIHJlYXNvbiB3aHkgSSdtIGhl
-cmUgdG8gYXNrIHlvdSBndXlzIGZvciBzb21lIGhlbHAuPC9zcGFuPjwvZGl2PjxkaXY+QW5k
-IHdpc2ggdG8ga25vdyBpZiBpdCBpcyBwb3NzaWJsZSB0byBwb3J0IHRoZSAieW9jdG8iIHRv
-IG15IG93biBwcm9qZWN0LjwvZGl2PjxkaXY+VGhhbmsgeW91IGFuZCBCZXN0IHdpc2hlcyZu
-YnNwOzxzcGFuIHN0eWxlPSJsaW5lLWhlaWdodDogMS41OyI+ITwvc3Bhbj48L2Rpdj48ZGl2
-PlRvIGdlZWtzIDopPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5KYWNrPC9kaXY+PC9pbmNs
-dWRldGFpbD48L2Rpdj48L2Rpdj48L2Rpdj4NCg0KPC9kaXY+PCEtLTwhW2VuZGlmXS0tPjwv
-aW5jbHVkZXRhaWw+PC9kaXY+
+Some suggested that I should add the task in a class and make that =
+dependent of do_rootfs. Then, inherit that class in a recipe. But I =
+haven=E2=80=99t been successful with that. Here=E2=80=99s what I have:
 
-------=_NextPart_56B42A6C_093D7F38_64710102--
+myclass.bbclass:
+
+do_work() {
+        #main work done here
+}
+addtask work after do_rootfs
+
+##### end of class=20
+
+myrecipe.bb:
+
+inherit myclass
+
+do_deploy() {
+    do_work
+}
+addtask do_deploy
+
+##### end of recipe
+
+
+This must be very wrong, as the do_deploy task of my recipe is being =
+executed before do_rootfs happens, so it fails because do_work needs =
+files that haven=E2=80=99t been created in the deploy folder yet.
+
+How can I fix this? Do I really need a class and recipe, or can I get =
+away with just having one or the other?
+
+Thanks,
+Josias
+
+------=_NextPart_000_00B1_01D15FB1.891C7A10
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD></HEAD>
+<BODY dir=3Dltr>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-FAMILY: 'Arial'; COLOR: #000000; FONT-SIZE: 10pt">
+<DIV=20
+style=3D"FONT-STYLE: normal; DISPLAY: inline; FONT-FAMILY: 'Calibri'; =
+COLOR: #000000; FONT-SIZE: small; FONT-WEIGHT: normal; TEXT-DECORATION: =
+none">
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-FAMILY: 'Arial'; COLOR: #000000; FONT-SIZE: 10pt">
+<DIV>Hi guys,</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>I=E2=80=99m trying to run a recipe that has dependencies in the =
+generation of the=20
+roofts and kernel image files. Without those two files already in the =
+deploy=20
+folder, I cannot start running my recipe.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Some suggested that I should add the task in a class and make that=20
+dependent of do_rootfs. Then, inherit that class in a recipe. But I =
+haven=E2=80=99t been=20
+successful with that. Here=E2=80=99s what I have:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><STRONG><U>myclass.bbclass:</U></STRONG></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>do_work() {</DIV>
+<DIV>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #main work done =
+here</DIV>
+<DIV>}</DIV>
+<DIV>addtask work after do_rootfs</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>##### end of class </DIV>
+<DIV>&nbsp;</DIV>
+<DIV><STRONG><U>myrecipe.bb:</U></STRONG></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>inherit myclass</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>do_deploy() {</DIV>
+<DIV>&nbsp;&nbsp;&nbsp; do_work</DIV>
+<DIV>}</DIV>
+<DIV>addtask do_deploy</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>##### end of recipe</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>This must be very wrong, as the do_deploy task of my recipe is =
+being=20
+executed before do_rootfs happens, so it fails because do_work needs =
+files that=20
+haven=E2=80=99t been created in the deploy folder yet.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>How can I fix this? Do I really need a class and recipe, or can I =
+get away=20
+with just having one or the other?</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Thanks,</DIV>
+<DIV>Josias</DIV></DIV></DIV></DIV></DIV></DIV></BODY></HTML>
+
+------=_NextPart_000_00B1_01D15FB1.891C7A10--
