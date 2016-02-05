@@ -1,50 +1,41 @@
-Return-Path: <nathan@nathan.to>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96785E00CCC; Fri,  5 Feb 2016 01:13:47 -0800 (PST)
+	id B8458E00CCC; Fri,  5 Feb 2016 01:15:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.72.237.35 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63A92E00B5A
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 01:13:36 -0800 (PST)
-Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
-	by pb-smtp0.pobox.com (Postfix) with ESMTP id B2ED53C192
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 04:13:34 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=content-type
-	:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to; s=sasl; bh=
-	uOn2L1O+uVjVvJjQgIlfmoifFjU=; b=Teb/hEB1tf3exTyyGtD7Ka0zXlfGtd5J
-	/eZZnauXZosIhQAIHIu3u6RwdheQQ7N1FA21FRXbqm2Voab6qSXy/bHznzprsSOX
-	cW3Se+f6Bl2UNZcINQSKy9zJkGvo+gfwRpUlQUeuytciA2k2MjAzwqbNoxyLwjNQ
-	Ya8MsJBrYtY=
-Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
-	by pb-smtp0.pobox.com (Postfix) with ESMTP id 9E12E3C191
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 04:13:34 -0500 (EST)
-Received: from [10.41.136.109] (unknown [83.61.76.185])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id EBE233C190
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 04:13:33 -0500 (EST)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
-From: Nathan Sowatskey <nathan@nathan.to>
-In-Reply-To: <6A2B2841-46AB-4B44-A675-CF5B1EEF545D@nathan.to>
-Date: Fri, 5 Feb 2016 10:13:09 +0100
-Message-Id: <26F7901E-8417-4F1F-B758-088CE182C2D2@nathan.to>
-References: <6A2B2841-46AB-4B44-A675-CF5B1EEF545D@nathan.to>
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3119)
-X-Pobox-Relay-ID: BB5C88B4-CBE8-11E5-A0DC-79226BB36C07-96844961!pb-smtp0.pobox.com
-Subject: Re: libQt5Network.so.5 - How does one get that please?
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.38 listed in list.dnswl.org]
+Received: from DUB004-OMC3S29.hotmail.com (dub004-omc3s29.hotmail.com
+	[157.55.2.38])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA7C9E00B5A
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 01:15:11 -0800 (PST)
+Received: from DUB130-W30 ([157.55.2.8]) by DUB004-OMC3S29.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Fri, 5 Feb 2016 01:15:10 -0800
+X-TMN: [gKbEQPlXlLT4P30P0IeXML3Lu8mCIUxa]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W3021BF7B2487DF73566399DAD20@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: Markus Lehtonen <markus.lehtonen@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 5 Feb 2016 09:15:10 +0000
+Importance: Normal
+In-Reply-To: <8D8D7F9C-EA46-4F48-9298-6D50BA671BE9@linux.intel.com>
+References: <DUB130-W75F413446FD2227886136DDAD10@phx.gbl>,
+	<8D8D7F9C-EA46-4F48-9298-6D50BA671BE9@linux.intel.com>
+MIME-Version: 1.0
+X-OriginalArrivalTime: 05 Feb 2016 09:15:10.0859 (UTC)
+	FILETIME=[B6C735B0:01D15FF5]
+Subject: Re: Signed RPMs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,61 +47,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Feb 2016 09:13:47 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Fri, 05 Feb 2016 09:15:16 -0000
+Content-Type: multipart/alternative;
+	boundary="_b8b2bf97-7559-4838-b4e0-2ee376959cc3_"
+
+--_b8b2bf97-7559-4838-b4e0-2ee376959cc3_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-It turns out that the build is correct, in that the libraries are there, =
-but the test program I am using is not finding them :-/
-
-So, for future reference, at least part what is required to work is =
-correct in my build.
-
-Regards
-
-Nathan
-
-> On 4 Feb 2016, at 17:39, Nathan Sowatskey <nathan@nathan.to> wrote:
->=20
-> Hi
->=20
-> My application has a dependency on libQt5Network.so.5.
->=20
-> I have my build configured here:
->=20
-> https://github.com/DevOps4Networks/iox-yocto-build/tree/master/conf
->=20
-> I expect that some combination of the BBLAYERS and the =
-IMAGE_INSTALL_append should allow me to get that library in my Yocto =
-image.
->=20
-> I am not sure which layer has the qtnetwork recipe in it, as I can=E2=80=
-=99t find that here:
->=20
-> http://layers.openembedded.org/layerindex/branch/master/layers/
->=20
-> Any ideas gratefully received.
->=20
-> Many thanks
->=20
-> Nathan
->=20
-> =E2=80=94
-> Nathan John Sowatskey
-> Consulting Engineer - Programmable Infrastructure, DevOps, IoT and SDN
-> nathan@nathan.to
-> www.linkedin.com/in/nathandevops
-> XMPP: nathandotto@im.koderoot.net
-> Google: nathanjohnsowatskey@gmail.com
-> Skype: nathan_sowatskey
-> Twitter: NathanDotTo
-> GitHub: https://github.com/DevOps4Networks
-> http://www.kipling.org.uk/poems_if.htm
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
+> Date: Fri=2C 5 Feb 2016 10:00:50 +0200
+> Subject: Re: [yocto] Signed RPMs
+> From: markus.lehtonen@linux.intel.com
+> To: christrobridge@hotmail.com=3B yocto@yoctoproject.org
+>=20
+> Hi Chris=2C
+>=20
+>  ...
+>=20
+> That really should not be needed. What version of poky are you using? I w=
+as not able to reproduce your problem. Try building signing-keys=2C does it=
+ copy the pubkey to the correct place?>=20
+
+This could well be the issue  - I need gobject introspection so I am using =
+poky-contrib ("akanavin/gobject-introspection-experimental:7145f5b9dbd84a26=
+fe4b5ee6ab9077b1ff1ee3a5").
+I got another error later building the rootfs that mentioned not finding DS=
+A.  It may be related to not having a suitable poky=2C but also I am using =
+an ECDSA key pair generated with gpg2.
+I have cloned a fresh poky (main) instance=2C switched to a DSA signing key=
+ and built the signing-keys target from that fine=2C with the RPM-GPG-PUBKE=
+Y in sysroots.  So I will bear this in mind in future.
+> Cheers=2C
+>   Markus
+>=20
+
+Cheers=2CChris
+ 		 	   		  =
+
+--_b8b2bf97-7559-4838-b4e0-2ee376959cc3_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'><br><br><div>&gt=3B Date: Fri=2C=
+ 5 Feb 2016 10:00:50 +0200<br>&gt=3B Subject: Re: [yocto] Signed RPMs<br>&g=
+t=3B From: markus.lehtonen@linux.intel.com<br>&gt=3B To: christrobridge@hot=
+mail.com=3B yocto@yoctoproject.org<br>&gt=3B <br>&gt=3B Hi Chris=2C<br>&gt=
+=3B <br>&gt=3B &nbsp=3B...<br>&gt=3B <br><span style=3D"font-size: 12pt=3B"=
+>&gt=3B That really should not be needed. What version of poky are you usin=
+g? I was not able to reproduce your problem. Try building signing-keys=2C d=
+oes it copy the pubkey to the correct place?</span></div><div>&gt=3B <br><b=
+r></div><div>This could well be the issue &nbsp=3B- I need gobject introspe=
+ction so I am using poky-contrib ("akanavin/gobject-introspection-experimen=
+tal:7145f5b9dbd84a26fe4b5ee6ab9077b1ff1ee3a5").</div><div><br></div><div><s=
+pan style=3D"font-size: 12pt=3B">I got another error later building the roo=
+tfs that mentioned not finding DSA. &nbsp=3BIt may be related to not having=
+ a suitable poky=2C but also I am using an ECDSA key pair generated with gp=
+g2.</span></div><div><span style=3D"font-size: 12pt=3B"><br></span></div><d=
+iv><span style=3D"font-size: 12pt=3B">I have cloned a fresh poky (main) ins=
+tance=2C switched to a DSA signing key and built the signing-keys target fr=
+om that fine=2C with the&nbsp=3B</span>RPM-GPG-PUBKEY in sysroots. &nbsp=3B=
+So I will bear this in mind in future.</div><div><br></div><div>&gt=3B Chee=
+rs=2C<br>&gt=3B   Markus<br>&gt=3B <br></div><div><span style=3D"font-size:=
+ 12pt=3B"><br></span></div><div><span style=3D"font-size: 12pt=3B">Cheers=
+=2C</span></div><div><div>Chris</div></div><div><br></div> 		 	   		  </div=
+></body>
+</html>=
+
+--_b8b2bf97-7559-4838-b4e0-2ee376959cc3_--
