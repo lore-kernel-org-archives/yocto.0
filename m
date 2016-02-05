@@ -1,58 +1,71 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C041EE00CC7; Thu,  4 Feb 2016 14:27:18 -0800 (PST)
+	id 7AA53E00CC4; Thu,  4 Feb 2016 18:08:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59206E00CC4
-	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 14:27:15 -0800 (PST)
-Received: by mail-wm0-f48.google.com with SMTP id p63so2954467wmp.1
-	for <yocto@yoctoproject.org>; Thu, 04 Feb 2016 14:27:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:subject:date:message-id;
-	bh=6/dUmoBBtIIwvrEXaWVjeJfCLTRPVGJWzMZNGYnVI7A=;
-	b=NTSDrkCJxKIeN5JqPIbWIrtW4PF9YWhr8fgpPbKPVBHTvPbkVFG61ZtLNhsuj5EXag
-	nQb+ZvI6GFyDkQpoQuC1Xzzf7095E+WQwjKEpYa+DFV7EC8Mm0MtOVaZNj8QoFwWtcme
-	sy1PLT4sFHlY8iixisWKz8cRUXJecMv8MpSz+xsc2aDm29OG0+s4WXIKLbdujwh/tFU5
-	PXHyP5Rklvm5StQXgB0CoVPIra3av2sDj+nzsU11xzeBnua/XdBhfmeaWcuaILNw0rS9
-	CkMlGrcimSpYNcr5uYrZi0TKtkIL7F60IshEi2074pSGSpoILe1Z0DNpU5dXTvQRXf2B
-	aDsg==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.172 listed in list.dnswl.org]
+Received: from mail-pf0-f172.google.com (mail-pf0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AF51E00B3A
+	for <yocto@yoctoproject.org>; Thu,  4 Feb 2016 18:08:32 -0800 (PST)
+Received: by mail-pf0-f172.google.com with SMTP id w123so60138413pfb.0
+	for <yocto@yoctoproject.org>; Thu, 04 Feb 2016 18:08:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=/SAxeH9gHwg7j3o1+ip5AfUWK0L/CKwM/V9mT81i/rI=;
+	b=FDt0PcmJjxe8sgc6NDbT1TIfgKmpkueC0kLDtVP9/jhpLDFTFFwVHGmihwivoiAQRx
+	5AdQBECq2WPxbWeWkOJkHE/vQdONTYtmgCUnXRfeT9T3OUNJqh0ZH6hzlGn7EuMsOlhn
+	x2Jhsx5hgyLT2wcjrIa8x1N1ZRjwWgO5hLaMj3b9obMhledD6in4ot0TdMxUUT+b5PiM
+	Wnq5DjQbvMIvYbtxgvSJzdhUbZshvcZC/vRt15+hKwjH4q5Qb/qd1dDRTJt4YS/xyuuC
+	/fvMajbiNWCjtPCK0OedaVFug5lwPgVeegnqV0oftV/wXhvgBGgVq8nkpnj7QVFKIowf
+	PxTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=6/dUmoBBtIIwvrEXaWVjeJfCLTRPVGJWzMZNGYnVI7A=;
-	b=SPfAO0ATTCDyo2FlIgHSM5v3jFTQ3qeGIygYjAYrzUQN57RLSK1bFqC3xdCWT4TFSC
-	wbE5BBvoYHsPxMo1+k50lxVWuWOXDnHyoEfxl3oXuTUdQFQZlP8RD2bRbJYmrYQWGWh6
-	1ZfxsqaW6i0MnZWO1orG5szbI8Gn0ZGEbULnieCVNo+Jj15sGdxHtlnQUHBB9GAaQiHD
-	5JaM3+SA5hPyKSVflrDvNZXE5byL0u9GlXq2U7PEETl0KS9PuYihi8wG+sUv6+dZG55t
-	cvbe73604NZKLqBAsAxSOTCf6DvfVpPwfyxLirkwqPW1ZQj4ZHTOE8eNgip4UuL09MwH
-	xGlg==
-X-Gm-Message-State: AG10YOSWJc7BJNn8+lUmjo5utF97coLfHnUrrTTDXVouk88yRWrneLCOgpLHvsw4IBUZ7A4b
-X-Received: by 10.28.47.23 with SMTP id v23mr13202955wmv.7.1454624834880;
-	Thu, 04 Feb 2016 14:27:14 -0800 (PST)
-Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=/SAxeH9gHwg7j3o1+ip5AfUWK0L/CKwM/V9mT81i/rI=;
+	b=KhKmm6KZ0S9VpIKK3kM+wlp3hntr44RQAxnalZvEy0DYuPL8K43vkLozbNg3C1GulP
+	elCTKY9P8a07XgH0SKPdfDIC4eW4EN0f4vhSxb+Bb3UWqWfiqlP5Cvm0vlTDR93+LH8r
+	qx6qp2yDXvjktEH6NxNBFPvzq1QRagBkr2LMJaVmS79+cDTi302ackhf3RE8t1iDmSm8
+	RZSlT59KTxrNOwhA7AQKa0c84hylkCeCdN82f/Yc8f3L5gK5tFmj/578xJTNG0GrCo8V
+	7ZL+yryTKBza2ZemUyBrnutAGMEfbcRZulY/CX9uWa5QwtUHkTlSP74HinYT7mZN5lFe
+	BTKg==
+X-Gm-Message-State: AG10YOTIxfUlfnfU0R0XJVrIYUNiM2uuMw7lNA4RWrIDuwg5eAMfxLg+saQvhlV0O5nZDA==
+X-Received: by 10.98.0.84 with SMTP id 81mr6407209pfa.67.1454638112405;
+	Thu, 04 Feb 2016 18:08:32 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:bcf2:ba04:e76c:6df3?
+	([2601:646:8802:5d5c:bcf2:ba04:e76c:6df3])
 	by smtp.gmail.com with ESMTPSA id
-	f205sm14594179wme.4.2016.02.04.14.27.13 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 04 Feb 2016 14:27:14 -0800 (PST)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  4 Feb 2016 22:27:11 +0000
-Message-Id: <1454624831-25414-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 2.7.0
-Subject: [PATCH][yocto-autobuilder] nightly-musl: also build core-image-weston
+	h65sm20028177pfh.43.2016.02.04.18.08.31
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 04 Feb 2016 18:08:31 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1454624831-25414-1-git-send-email-ross.burton@intel.com>
+Date: Thu, 4 Feb 2016 18:08:26 -0800
+Message-Id: <A2879B89-41D4-42C2-8C86-A0ABD2F149B5@gmail.com>
+References: <1454624831-25414-1-git-send-email-ross.burton@intel.com>
+To: Ross Burton <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][yocto-autobuilder] nightly-musl: also build core-image-weston
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,27 +77,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Feb 2016 22:27:18 -0000
+X-List-Received-Date: Fri, 05 Feb 2016 02:08:37 -0000
+X-Groupsio-MsgNum: 28283
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_88C0A2C3-E29F-45E7-ADB5-047CBEC7F7A6";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- buildset-config.controller/nightly-musl.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/buildset-config.controller/nightly-musl.conf b/buildset-config.controller/nightly-musl.conf
-index 9a82e6b..5da90c3 100644
---- a/buildset-config.controller/nightly-musl.conf
-+++ b/buildset-config.controller/nightly-musl.conf
-@@ -12,7 +12,7 @@ steps: [{'SetDest':{}},
-                             'buildhistory' : False, 'distro': 'poky',
-                             'atextappend' : '\nTCLIBC="musl"\n' }},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
--        {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato'}},
-+        {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato core-image-weston'}},
-         {'SendErrorReport': {}},
-         {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
- 
--- 
-2.7.0
+--Apple-Mail=_88C0A2C3-E29F-45E7-ADB5-047CBEC7F7A6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
 
+> On Feb 4, 2016, at 2:27 PM, Ross Burton <ross.burton@intel.com> wrote:
+>=20
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
+> ---
+> buildset-config.controller/nightly-musl.conf | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/buildset-config.controller/nightly-musl.conf =
+b/buildset-config.controller/nightly-musl.conf
+> index 9a82e6b..5da90c3 100644
+> --- a/buildset-config.controller/nightly-musl.conf
+> +++ b/buildset-config.controller/nightly-musl.conf
+> @@ -12,7 +12,7 @@ steps: [{'SetDest':{}},
+>                             'buildhistory' : False, 'distro': =
+'poky=E2=80=99,
+
+one generic problem I see is that poky packages rpm and rpm does not =
+work with musl.
+when I build core-image-sato with OE-Core it works out fine.
+
+fixing rpm with musl will need some some patching. I was wondering we =
+could use poky-tiny + opkg combo
+for musl.
+
+
+>                             'atextappend' : '\nTCLIBC=3D"musl"\n' }},
+>         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+> -        {'BuildImages': {'images':  'core-image-minimal =
+core-image-full-cmdline core-image-sato'}},
+> +        {'BuildImages': {'images':  'core-image-minimal =
+core-image-full-cmdline core-image-sato core-image-weston'}},
+>         {'SendErrorReport': {}},
+>         {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
+>=20
+> --
+> 2.7.0
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_88C0A2C3-E29F-45E7-ADB5-047CBEC7F7A6
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAla0BB4ACgkQuwUzVZGdMxTUJQCfVW4tG776L3wnTVQ5XqPuilQ+
+E1kAniuNw+d9ulAt+9+n2bTIVnUvvEzC
+=0F56
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_88C0A2C3-E29F-45E7-ADB5-047CBEC7F7A6--
