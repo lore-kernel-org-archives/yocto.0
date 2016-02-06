@@ -1,45 +1,57 @@
-Return-Path: <nathan@nathan.to>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B6B9E00C02; Fri,  5 Feb 2016 23:38:00 -0800 (PST)
+	id B3CCAE00C02; Fri,  5 Feb 2016 23:52:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.72.237.35 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sasl.smtp.pobox.com (pb-smtp0.int.icgroup.com [208.72.237.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A0D8E00BF8
-	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 23:37:56 -0800 (PST)
-Received: from sasl.smtp.pobox.com (unknown [127.0.0.1])
-	by pb-smtp0.pobox.com (Postfix) with ESMTP id 98C6C3768E;
-	Sat,  6 Feb 2016 02:37:55 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=content-type
-	:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to; s=sasl; bh=
-	lErvboLSPrOKpgFO4kH+yTwag9I=; b=IwqUH84V9hkY0dZ3XJKWwFh5qqj1XPN7
-	3QVf0FCibZsuRxG3hA442lR5KzR6pvQcyJFv2pDWYklp+vTvmsg6cSK2XPmLVfIx
-	8BMj/qhXUf6WW5y1vW/ZzYIVZtZ3jymJc8C6Yo1l2VpiBodp7SnBKgSmWF5t6Kk2
-	6XfjURNUbpE=
-Received: from pb-smtp0.int.icgroup.com (unknown [127.0.0.1])
-	by pb-smtp0.pobox.com (Postfix) with ESMTP id 911143768D;
-	Sat,  6 Feb 2016 02:37:55 -0500 (EST)
-Received: from [10.41.136.109] (unknown [83.61.76.185])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by pb-smtp0.pobox.com (Postfix) with ESMTPSA id C807B3768B;
-	Sat,  6 Feb 2016 02:37:54 -0500 (EST)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3119\))
-From: Nathan Sowatskey <nathan@nathan.to>
-In-Reply-To: <CAMKF1soGpt_BA1FFsiOSZxpoT5RH6LjwKBTiCqz+C=6KFr_Aog@mail.gmail.com>
-Date: Sat, 6 Feb 2016 08:36:57 +0100
-Message-Id: <3DDC4837-5BF7-4959-A4FF-A07435B3DE5A@nathan.to>
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E53ACE00BF8
+	for <yocto@yoctoproject.org>; Fri,  5 Feb 2016 23:52:08 -0800 (PST)
+Received: by mail-qg0-f47.google.com with SMTP id y89so11576427qge.2
+	for <yocto@yoctoproject.org>; Fri, 05 Feb 2016 23:52:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Ohogx8p7tiCnnXCxuWYyKv7pdXYWdAOWG0TUpJ24g9A=;
+	b=kGLALwT07jv9LdImWUsEMSDUtT3NiLCJBCT1HP2pCLuk70qHGOh6hPHSngHb3oxuA2
+	q2YJ3MbKIyAJ9G4EoX9/FYjmKUcpkQYq/bkkkbm/jUcQd42KUiSLSNbwVqas1evH9Ta5
+	uhoUi8bzwxCIp5q+xAkzp/P93Y1nL2NmhTHpyoxLCjhaW4sfv6Ugcu1sDRyRlYXRrou1
+	u7hoZkzGgyuL3g10zA30BF3Ocl+9Ma1v5V4IBgj2XkUwBPgVV/4wz9FMTvNWD+mIaaxo
+	M5HEDfrT+U5gRujLnoiS6zVTSEwsY4rcg6mD+/QV0G8KjxNsc9OYp7kMptpQQybIBgDo
+	+O7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=Ohogx8p7tiCnnXCxuWYyKv7pdXYWdAOWG0TUpJ24g9A=;
+	b=Fj0mPtQ0A4DIFHjely2RcXDt6eAVcn2EAVrTI3GEneNysifmMv8IYBA2GXbkW61ZgI
+	4Seezz7zJyqONy0FaOECCSGazK1vUXXLz7sgIF/Z0MDqDmvMnJLdblJJ9KCUyXcEYg94
+	9kQOjrXspTH53/K02/9y8bI9vxhv/6bDYYWM1e/sYjMFWNxnPQUOrPYZDrOEU9+YzeCB
+	MIVHvaFmQSYBq2YdNUesiD6hhPCdwycqvSELG/zRGng7LEbAnBgo/SepVgcIQO87jjmM
+	0Q1cHLWbE7KHaPdixWV8H28HZ627czZCWgGCiDp9UwnWYpmckLhYCLpqUxwZpeE7BLtr
+	QiGA==
+X-Gm-Message-State: AG10YOS/czsFHKP2K4pFt9u0Nvxda7D343ZG/glHOwaLpQtwM3Qu6BincodprG4+0KISGxOrg6SIuQp9bYGmLQ==
+X-Received: by 10.141.3.86 with SMTP id f83mr22812731qhd.98.1454745127714;
+	Fri, 05 Feb 2016 23:52:07 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.55.130.196 with HTTP; Fri, 5 Feb 2016 23:51:38 -0800 (PST)
+In-Reply-To: <3DDC4837-5BF7-4959-A4FF-A07435B3DE5A@nathan.to>
 References: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
 	<CAJTo0La9vryBMou_wnKKdmdC61Kgu7u2JL+vpx1RY+s7Gbe7QA@mail.gmail.com>
 	<2D89126E-8678-494A-A98B-5F5D5723E860@nathan.to>
@@ -54,9 +66,11 @@ References: <7534F688-4CCB-468C-9E52-813388BC391C@nathan.to>
 	<CAMKF1spXFvGQs-NM7eRD6ZFBVnoZPysrQec=nLfqkmFUBuSO+Q@mail.gmail.com>
 	<CAJTo0LZc+MN02kQusy-on2g5kcohyHFQMY0ShtFnvgQhO2V9MQ@mail.gmail.com>
 	<CAMKF1soGpt_BA1FFsiOSZxpoT5RH6LjwKBTiCqz+C=6KFr_Aog@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.3119)
-X-Pobox-Relay-ID: 891E78A0-CCA4-11E5-8B0F-79226BB36C07-96844961!pb-smtp0.pobox.com
+	<3DDC4837-5BF7-4959-A4FF-A07435B3DE5A@nathan.to>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 5 Feb 2016 23:51:38 -0800
+Message-ID: <CAMKF1soTRnmbuiwOzg+NLgJp7abaWyQnGwFjrWj8N9c8Hzw8cw@mail.gmail.com>
+To: Nathan Sowatskey <nathan@nathan.to>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: libgcc_s not present in Yocto image
 X-BeenThere: yocto@yoctoproject.org
@@ -70,52 +84,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Feb 2016 07:38:00 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Sat, 06 Feb 2016 07:52:11 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Khem
+by ld.so I mean dynamic linker shared lib not literally ld.so file
+it should be in /lib/ld*.so
 
-Thanks for trying to help :-)
 
-I read what you have suggested below as trying to execute =E2=80=9Cld.so=E2=
-=80=9D and passing my program as an argument.
-
-I can=E2=80=99t find a file called =E2=80=9Cld.so=E2=80=9D on either my =
-Yocto image, or even the Ubuntu box that I am using to build it (which I =
-use as a comparative reference).
-
-What am I mis understanding please?
-
-Regards
-
-Nathan
-
-> On 5 Feb 2016, at 21:49, Khem Raj <raj.khem@gmail.com> wrote:
->=20
-> On Fri, Feb 5, 2016 at 12:46 PM, Burton, Ross <ross.burton@intel.com> =
-wrote:
->>=20
->> On 5 February 2016 at 19:56, Khem Raj <raj.khem@gmail.com> wrote:
->>>=20
->>>>> interpreter /lib64/ld-linux-x86-64.so.2
->>>>=20
->>>>=20
->>>> Does the loader hunt around for this, as this is certainly not =
-present
->>>> in a
->>>> default OE image?
->>>=20
->>> no it wont. infact thats the loader.
->>=20
->>=20
->> Yeah, what I meant is would the kernel hunt for that.  So, that's the
->> problem?
->=20
-> kernel wont. you can try doing
->=20
-> /path/to/ld.so <your-binary>
->>=20
->> Ross
-
+On Fri, Feb 5, 2016 at 11:36 PM, Nathan Sowatskey <nathan@nathan.to> wrote:
+> Hi Khem
+>
+> Thanks for trying to help :-)
+>
+> I read what you have suggested below as trying to execute =E2=80=9Cld.so=
+=E2=80=9D and passing my program as an argument.
+>
+> I can=E2=80=99t find a file called =E2=80=9Cld.so=E2=80=9D on either my Y=
+octo image, or even the Ubuntu box that I am using to build it (which I use=
+ as a comparative reference).
+>
+> What am I mis understanding please?
+>
+> Regards
+>
+> Nathan
+>
+>> On 5 Feb 2016, at 21:49, Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>> On Fri, Feb 5, 2016 at 12:46 PM, Burton, Ross <ross.burton@intel.com> wr=
+ote:
+>>>
+>>> On 5 February 2016 at 19:56, Khem Raj <raj.khem@gmail.com> wrote:
+>>>>
+>>>>>> interpreter /lib64/ld-linux-x86-64.so.2
+>>>>>
+>>>>>
+>>>>> Does the loader hunt around for this, as this is certainly not presen=
+t
+>>>>> in a
+>>>>> default OE image?
+>>>>
+>>>> no it wont. infact thats the loader.
+>>>
+>>>
+>>> Yeah, what I meant is would the kernel hunt for that.  So, that's the
+>>> problem?
+>>
+>> kernel wont. you can try doing
+>>
+>> /path/to/ld.so <your-binary>
+>>>
+>>> Ross
+>
 
