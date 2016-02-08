@@ -1,57 +1,27 @@
-Return-Path: <stanislav.liubchynskyi@nokia.com>
+Return-Path: <pokybuild@centos6.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3F80E00D78; Mon,  8 Feb 2016 00:20:01 -0800 (PST)
+	id 27652E00D79; Mon,  8 Feb 2016 00:21:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [93.183.12.32 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from demumfd001.nsn-inter.net (demumfd001.nsn-inter.net
-	[93.183.12.32])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09BD4E007DC
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 00:19:58 -0800 (PST)
-Received: from muimrel001.emea.nsn-intra.net ([10.159.32.132])
-	by demumfd001.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
-	u188JsMU009380
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 8 Feb 2016 08:19:54 GMT
-Received: from DEMUHTC002.nsn-intra.net ([10.159.42.33])
-	by muimrel001.emea.nsn-intra.net (8.14.3/8.14.3) with ESMTP id
-	u188JsNk004218
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 8 Feb 2016 08:19:54 GMT
-Received: from DEMUHTC006.nsn-intra.net (10.159.42.37) by
-	DEMUHTC002.nsn-intra.net (10.159.42.33) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Mon, 8 Feb 2016 09:19:53 +0100
-Received: from DEMUMBX010.nsn-intra.net ([169.254.10.103]) by
-	DEMUHTC006.nsn-intra.net ([10.159.42.37]) with mapi id 14.03.0248.002;
-	Mon, 8 Feb 2016 09:19:53 +0100
-From: "Liubchynskyi, Stanislav (Nokia - PL/Wroclaw)"
-	<stanislav.liubchynskyi@nokia.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: fortran in yocto
-Thread-Index: AdFiSXz5UZC35uPnQ7+zHpkvLBXHSA==
-Date: Mon, 8 Feb 2016 08:19:53 +0000
-Message-ID: <27918A11C8439E4B9B5BCA1715BABB74016F46B6@DEMUMBX010.nsn-intra.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.159.42.101]
+Received: from centos6.osl.yoctoproject.org (ab04 [10.0.10.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E66C2E00C28
+	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 00:21:47 -0800 (PST)
+Received: by centos6.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 99092202D0D; Mon,  8 Feb 2016 08:21:47 +0000 (UTC)
+Date: Mon, 08 Feb 2016 08:21:47 +0000
+To: yocto@yoctoproject.org
+User-Agent: Heirloom mailx 12.4 7/29/08
 MIME-Version: 1.0
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
-	further information)
-X-purgate-size: 2894
-X-purgate-ID: 151667::1454919594-00001C0B-3F46AD75/0/0
-Subject: fortran in yocto
+Message-Id: <20160208082147.99092202D0D@centos6.osl.yoctoproject.org>
+From: pokybuild@centos6.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-2.0.1.rc6.rc6 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,91 +33,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Feb 2016 08:20:01 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_27918A11C8439E4B9B5BCA1715BABB74016F46B6DEMUMBX010nsnin_"
-
---_000_27918A11C8439E4B9B5BCA1715BABB74016F46B6DEMUMBX010nsnin_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-I want to add fortran support to yocto build. I try different way whitch de=
-scribe in the ethernet but enyone does't work. I use fido branch and gcc 4.=
-9. Can you describe me step by step how to enable fortran in yocto or where=
- I can find work instruction.
-Thanks for help.
+X-List-Received-Date: Mon, 08 Feb 2016 08:21:49 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
 
+A release candidate build for yocto-2.0.1.rc6 is now available at:
 
-Best regards,
-
-Stanislav Liubchynskyi
-Software Developer, LFS, OPSW Wroclaw
-Mobile Broadband, Nokia Networks
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-2.0.1.rc6
 
 
---_000_27918A11C8439E4B9B5BCA1715BABB74016F46B6DEMUMBX010nsnin_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Please begin QA on this build as soon as possible.
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;"><font face=3D"Tahoma" size=3D"2" color=3D"black"><span style=3D"font=
--size:10pt;" dir=3D"ltr">
-<div>
-<div>Hi, <br>
-</div>
-I want to add fortran support to yocto build. I try different way whitch de=
-scribe in the ethernet but enyone does't work. I use fido branch and gcc 4.=
-9. Can you describe me step by step how to enable fortran in yocto or where=
- I can find work instruction.
-<br>
-</div>
-Thanks for help. </span></font>
-<div><br>
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px">
-<div style=3D"font-family:Tahoma; font-size:13px"><br>
-<div style=3D"font-family:Tahoma; font-size:13px"><br>
-<font face=3D"Calibri CE" size=3D"2"><span style=3D"font-size:11pt"><font f=
-ace=3D"Nokia Pure Headline Light" color=3D"#2E74B5">Best regards,<br>
-<br>
-</font></span></font>
-<div><font face=3D"Calibri CE" size=3D"2"><span style=3D"font-size:11pt"><f=
-ont face=3D"Nokia Pure Headline Light CE" color=3D"#2E74B5"><b>Stanislav Li=
-ubchynskyi<br>
-</b></font></span></font></div>
-<div><font face=3D"Calibri CE" size=3D"2"><span style=3D"font-size:11pt"><f=
-ont face=3D"Nokia Pure Headline Light" color=3D"#2E74B5">Software Developer=
-, LFS, OPSW Wroclaw</font></span></font></div>
-<div><font face=3D"Calibri CE" size=3D"2"><span style=3D"font-size:11pt"><f=
-ont face=3D"Nokia Pure Headline Light" color=3D"#2E74B5">Mobile Broadband, =
-Nokia Networks</font></span></font></div>
-<br>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
 
---_000_27918A11C8439E4B9B5BCA1715BABB74016F46B6DEMUMBX010nsnin_--
+Build hash information: 
+meta-intel : 4e87c59bdedaa8c3e44fc02fd23be726c4d1dfb9 
+meta-fsl-arm : 35b8b9bd9863de208ab60e33b55f10ee43e2619b 
+meta-minnow : 9c965ef5252e383843d796cd8b50c61b3034b6ae 
+meta-qt4 : 80e9ccf584ea215ac0e9706bd1df852bb2bb4ba9 
+meta-qt3 : b08996efbfb3b26e62b608f34ebf5e671b36ec61 
+meta-fsl-ppc : d9443cbd98f2d4717d84d8325fc6099f5a3e6a25 
+poky : 5b12268f6e17574999f91628a60e21711cf62ee4 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
+
