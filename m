@@ -1,45 +1,62 @@
-Return-Path: <adrian.ratiu@ni.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C87B2E00D78; Mon,  8 Feb 2016 00:43:35 -0800 (PST)
+	id EE0A0E00D33; Mon,  8 Feb 2016 00:58:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [130.164.80.24 listed in list.dnswl.org]
-Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91695E007DC
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 00:43:31 -0800 (PST)
-Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-chan1-1338.natinst.com
-	[130.164.19.134])
-	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	u188hS6K002063; Mon, 8 Feb 2016 02:43:28 -0600
-Received: from adi-pc-linux.emea.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2016020802432891-743019 ;
-	Mon, 8 Feb 2016 02:43:28 -0600 
-Date: Mon, 8 Feb 2016 10:43:14 +0200
-From: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
-To: "Liubchynskyi, Stanislav (Nokia - PL/Wroclaw)"
-	<stanislav.liubchynskyi@nokia.com>
-Message-ID: <20160208104314.5b623bbd@adi-pc-linux.emea.corp.natinst.com>
-In-Reply-To: <27918A11C8439E4B9B5BCA1715BABB74016F46B6@DEMUMBX010.nsn-intra.net>
-References: <27918A11C8439E4B9B5BCA1715BABB74016F46B6@DEMUMBX010.nsn-intra.net>
-Organization: National Instruments
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AA08E007DC
+	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 00:58:52 -0800 (PST)
+Received: by mail-io0-f180.google.com with SMTP id 9so188802950iom.1
+	for <yocto@yoctoproject.org>; Mon, 08 Feb 2016 00:58:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=vcjtlTwq5hO7RY/xAqouPke1pQ8p/dfRe+bBTOBeCb4=;
+	b=chbmmTogUWlDbBnMsjz0AEI+L6nh58RKhbN+WwK0QuK+VRglZCqvnL8l+M8qoTjfWV
+	BZ5FtRkHlsW6twhaRkO4Mip3+cTy+QXZxaA4kZ6B77aQy7bV3w1whJPbT9cIBKxASZq3
+	23zMFiASmjnU2qqNxOgsoLkL9D5n28iFMf74QFWaEFacmN7/FqXZY+8JWN96nJmDtk/V
+	aucRVgOJX97ecDjxT6i+Y7TBbL4vYIWbGVgLedmsiZcclj0L9FUOX5MuHlUgkNzQ7o2W
+	RAcC6UOgMRp/Khrbm1IzZhp6yUeYEnBpGRw0lKCtH0u2LCr2FDGQxRCnLMA9VmZP2zMV
+	JaiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=vcjtlTwq5hO7RY/xAqouPke1pQ8p/dfRe+bBTOBeCb4=;
+	b=dONVQE38F2v+NmnFgw7+H9NpdJ0pT+FAJ49l2DteRc8kXdJ36dRZMZJahRkNzx+arD
+	mHKa1dOxFFe1a2Rlay0L9gLzaORn6J9NCS7xHO9+nMdufVXZpkA+7iwkoDCUHR2T47wx
+	M7oaoaYZPbWklUB8DksiZ6Aox2iXLu4JipB622cbT7ePdlbBAZlcCMFDNW+wq0dhQYeT
+	PJs+xQSX4wJZdVqQN7BLlwxTTRae8lLuE/OfTqNfJhI8j2LBPTUi540pDDL2d2/HOEto
+	V9X4df4F+OC9VOBfvF7pTrPhAmIA+D9B5DZ+AqFv+8FEQ4gIKd9DMY3thJueSzVWD8WO
+	1CGg==
+X-Gm-Message-State: AG10YOQhJP8IdHHB5iSgBNHnqdyUwvNZZ+8BY2JtFw8CQT81w3TT4z0q23SXDEvACrPDWLn02vCSIVdFSfXcT+uW
+X-Received: by 10.107.3.220 with SMTP id e89mr24734475ioi.99.1454921931430;
+	Mon, 08 Feb 2016 00:58:51 -0800 (PST)
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 02/08/2016 02:43:29 AM,
-	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 02/08/2016 02:43:29 AM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2016-02-08_05:, , signatures=0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: fortran in yocto
+Received: by 10.107.162.70 with HTTP; Mon, 8 Feb 2016 00:58:32 -0800 (PST)
+In-Reply-To: <A705D969-9C1F-4429-97EA-3A9E3A8BB8E4@keylevel.com>
+References: <020DD3FF-9405-4003-9C1B-F29F060567BD@keylevel.com>
+	<A705D969-9C1F-4429-97EA-3A9E3A8BB8E4@keylevel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 8 Feb 2016 08:58:32 +0000
+Message-ID: <CAJTo0LZxoT8b433vJtJi7wZSfwWCcAXC77N3WFJkj3pzaLsNVw@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Installing only part of linux-firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,36 +68,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Feb 2016 08:43:35 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Mon, 08 Feb 2016 08:58:55 -0000
+Content-Type: multipart/alternative; boundary=001a113f0e7ce634d5052b3e683e
+
+--001a113f0e7ce634d5052b3e683e
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi
+On 7 February 2016 at 21:49, Chris Tapp <opensource@keylevel.com> wrote:
 
-On Mon, 8 Feb 2016 08:19:53 +0000
-"Liubchynskyi, Stanislav (Nokia - PL/Wroclaw)" <stanislav.liubchynskyi@noki=
-a.com> wrote:
+> I=E2=80=99ve now done this by creating a bbappend for linux-firmware:
+>
+> PACKAGES =3D+ "${PN}-rtl_nic"
+>
+> FILES_${PN}-rtl_nic =3D " \
+>   /lib/firmware/rtl_nic/* \
+> =E2=80=9C
+>
+> Does what I want, but is that the best way of doing it?
+>
 
-> Hi,
-> I want to add fortran support to yocto build. I try different way whitch =
-describe in the ethernet but enyone does't work. I use fido branch and gcc =
-4.9. Can you describe me step by step how to enable fortran in yocto or whe=
-re I can find work instruction.
-> Thanks for help.
+This is the best way for you now.
 
-Fortran support in gcc is disabled by default, to enable it add the followi=
-ng line to your config, then build the libgfortran package.
+That's exactly why the recipe has quite a lot of subpackages, feel free to
+submit more upstream.
 
-FORTRAN=5Fforcevariable =3D ",fortran"
+Ross
 
->=20
->=20
->=20
-> Best regards,
->=20
-> Stanislav Liubchynskyi
-> Software Developer, LFS, OPSW Wroclaw
-> Mobile Broadband, Nokia Networks
->=20
+--001a113f0e7ce634d5052b3e683e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 7 February 2016 at 21:49, Chris Tapp <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:opensource@keylevel.com" target=3D"_blank">opensource@keylevel.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":kr0" class=
+=3D"a3s" style=3D"overflow:hidden">I=E2=80=99ve now done this by creating a=
+ bbappend for linux-firmware:<br>
+<br>
+PACKAGES =3D+ &quot;${PN}-rtl_nic&quot;<br>
+<br>
+FILES_${PN}-rtl_nic =3D &quot; \<br>
+=C2=A0 /lib/firmware/rtl_nic/* \<br>
+=E2=80=9C<br>
+<br>
+Does what I want, but is that the best way of doing it?</div></blockquote><=
+/div><div class=3D"gmail_extra"><br></div>This is the best way for you now.=
+</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">That&=
+#39;s exactly why the recipe has quite a lot of subpackages, feel free to s=
+ubmit more upstream.</div><div class=3D"gmail_extra"><br></div><div class=
+=3D"gmail_extra">Ross</div></div>
 
+--001a113f0e7ce634d5052b3e683e--
