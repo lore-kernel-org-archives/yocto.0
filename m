@@ -1,51 +1,61 @@
-Return-Path: <Michael.Baumann@vector.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0E91E00D97; Mon,  8 Feb 2016 08:12:10 -0800 (PST)
+	id B75CCE00D97; Mon,  8 Feb 2016 08:14:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [217.89.139.142 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp2.vector.com (smtp2.vector.com [217.89.139.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E5A2E0086B
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 08:12:07 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp2.vector.com (Postfix) with ESMTP id 492F4852C9
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 17:12:06 +0100 (CET)
-X-Virus-Scanned: amavisd-new at vector.com
-Received: from smtp2.vector.com ([127.0.0.1])
-	by localhost (smtp2.vector.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t-4yrM0a8G07 for <yocto@yoctoproject.org>;
-	Mon,  8 Feb 2016 17:12:05 +0100 (CET)
-Received: from vistrex5.vi.vector.int (unknown [10.49.3.65])
-	by smtp2.vector.com (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 17:12:05 +0100 (CET)
-Received: from VISTREX4.vi.vector.int ([169.254.2.171]) by
-	vistrex5.vi.vector.int ([10.49.3.65]) with mapi id 14.03.0279.002;
-	Mon, 8 Feb 2016 17:12:05 +0100
-From: "Baumann, Michael" <Michael.Baumann@vector.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: how to create a named_pipe in my image
-Thread-Index: AdFiglSzvesxSbrsQM6AJUZMTpd6SQAB90Pw
-Date: Mon, 8 Feb 2016 16:12:04 +0000
-Message-ID: <D3B58608AFC8B244BA0ACD53B2AE612598EEF622@vistrex4.vi.vector.int>
-References: <D3B58608AFC8B244BA0ACD53B2AE612598EEF5C6@vistrex4.vi.vector.int>
-In-Reply-To: <D3B58608AFC8B244BA0ACD53B2AE612598EEF5C6@vistrex4.vi.vector.int>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.49.72.45]
-x-g-data-mailsecurity-for-exchange-state: 0
-x-g-data-mailsecurity-for-exchange-error: 0
-x-g-data-mailsecurity-for-exchange-sender: 23
-x-g-data-mailsecurity-for-exchange-server: 8959ae4b-c457-4990-be14-918c767bdf10
-x-g-data-mailsecurity-for-exchange-guid: 081ABA8B-6B32-4949-9D43-A409B057DB18
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D36E0086B
+	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 08:14:52 -0800 (PST)
+Received: by mail-io0-f178.google.com with SMTP id 9so200287226iom.1
+	for <yocto@yoctoproject.org>; Mon, 08 Feb 2016 08:14:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=6t1U/kKJO0i6nHFXMAvi/1VusPpDLgmzoZf3l9y3+kE=;
+	b=cn+DVMQINJbQKHJRnGpTHX8xn9p+rHN/Hy3/wONmdzas91fOy8hnxl/It7YoLbuF3t
+	AVw4j8VRRKiq9prrst+SmgusBhzFbSI6yyf9Tc1KxD8pQ/gPLZhga3QCCducdwVlBvqI
+	QDDYedPXiDR0XsL0zZfeAkGr3ohX/DxtKeoqupb8fJjRGyhyHUg44FUojekAERCkkU4o
+	6AXltAotZPS47uDCRdCaY6ub6qC8k9z09NyY086/spToLFw/7UC+SVEHmdGUmGLqSFSl
+	sFVBvysbfv6PtYWNGoFCTg5Gmgo9smygGGbMZHFftJ7+aW1qlH8KpNb0ouy71at4BE/3
+	ioig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=6t1U/kKJO0i6nHFXMAvi/1VusPpDLgmzoZf3l9y3+kE=;
+	b=kjVOUjJ8LAMvPHFTECpvs/ibR8QdvpcQ9ABjS+xXv21AKMKwy+gndwx4goTOMrsPJx
+	TV6qPmHjCQlQuuYt2/wRTbHzjHk/C3ejd770JEZDrcEze06PdazllNOlcy5WRpYpmYEK
+	gLmuONT7qMNW22Gk4fm5Y2GIvRJbFZ7MmkPpYw4/Wl/B7iqhIRxEJw8I9323hk8YecX8
+	Ny9ENKMbkwN6u+RvqCFnDVaVsiJNwqi58fSW8B1wGdNb/pi/ukWoyMEWFcxrq0OTnf+N
+	V1TaanW+Cayptm9yLWS3wvfhERwL0W8RKHMqvFtlTZvL3n3UssYzACrWVeHFnH8Z5TTW
+	j0/g==
+X-Gm-Message-State: AG10YORQC6QWHUVVurrzfFORIXU4cb8+c+glwFRGQcg7cYB6iCaJWzN1mYfrDetOpG4XLNVupZEkZUnpR/Hm/Vnx
+X-Received: by 10.107.3.220 with SMTP id e89mr26471630ioi.99.1454948091680;
+	Mon, 08 Feb 2016 08:14:51 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.107.162.70 with HTTP; Mon, 8 Feb 2016 08:14:32 -0800 (PST)
+In-Reply-To: <D3B58608AFC8B244BA0ACD53B2AE612598EEF622@vistrex4.vi.vector.int>
+References: <D3B58608AFC8B244BA0ACD53B2AE612598EEF5C6@vistrex4.vi.vector.int>
+	<D3B58608AFC8B244BA0ACD53B2AE612598EEF622@vistrex4.vi.vector.int>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 8 Feb 2016 16:14:32 +0000
+Message-ID: <CAJTo0Lav44kxc8i-VDSEUrHdFAaC7kjrLG97w2pmOjw+TZvM0Q@mail.gmail.com>
+To: "Baumann, Michael" <Michael.Baumann@vector.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: how to create a named_pipe in my image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -58,42 +68,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Feb 2016 16:12:11 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 08 Feb 2016 16:14:56 -0000
+Content-Type: multipart/alternative; boundary=001a113f0e7c2bf4b4052b44806e
+
+--001a113f0e7c2bf4b4052b44806e
+Content-Type: text/plain; charset=UTF-8
+
+On 8 February 2016 at 16:12, Baumann, Michael <Michael.Baumann@vector.com>
+wrote:
+
+> Possibly it's because named pipes cannot be packed into an archive? If
+> yes, how can I circumvent this?
+>
+
+It would be interesting to see what happens if you change PACKAGE_CLASSES
+to use rpm instead of ipkg.  One workaround would be to create the fifo in
+a postinst.
+
+Ross
+
+--001a113f0e7c2bf4b4052b44806e
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-To make my question more precise:
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 February 2016 at 16:12, Baumann, Michael <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Michael.Baumann@vector.com" target=3D"_blank">Michael.Baumann@ve=
+ctor.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=
+=3D":mw6" class=3D"a3s" style=3D"overflow:hidden">Possibly it&#39;s because=
+ named pipes cannot be packed into an archive? If yes, how can I circumvent=
+ this?<br></div></blockquote></div><br>It would be interesting to see what =
+happens if you change PACKAGE_CLASSES to use rpm instead of ipkg.=C2=A0 One=
+ workaround would be to create the fifo in a postinst.</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-mkfifo in the do_install() section works. I can see the named pipe in build=
-/tmp-glibc/work/*/*/*/ but my bitbake hangs in the  do_package_write_ipk an=
-d do_package_qa tasks.
-Possibly it's because named pipes cannot be packed into an archive? If yes,=
- how can I circumvent this?
-
-Regards
-Michael
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Baumann, Michael
->Sent: Monday, February 08, 2016 4:07 PM
->To: yocto@yoctoproject.org
->Subject: [yocto] how to create a named_pipe in my image
->
->Hi,
->
->I try to create a named pipe (fifo) for my target filesystem.
->I tried it in my <image>.bb file in the do_install() section with "mkfifo
-><path_to_pipe_in_target_fs>"
->
->Any ideas gratefully received.
->
->Regards
->Michael
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+--001a113f0e7c2bf4b4052b44806e--
