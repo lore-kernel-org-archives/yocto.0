@@ -1,50 +1,65 @@
-Return-Path: <Michael.Baumann@vector.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B90BBE00D97; Mon,  8 Feb 2016 08:39:12 -0800 (PST)
+	id A9699E00D95; Mon,  8 Feb 2016 08:58:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [217.89.139.142 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp2.vector.com (smtp2.vector.com [217.89.139.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C137CE00C34
-	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 08:39:10 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp2.vector.com (Postfix) with ESMTP id BDA3A852C9;
-	Mon,  8 Feb 2016 17:39:09 +0100 (CET)
-X-Virus-Scanned: amavisd-new at vector.com
-Received: from smtp2.vector.com ([127.0.0.1])
-	by localhost (smtp2.vector.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vaOsDR5Kx2ev; Mon,  8 Feb 2016 17:39:08 +0100 (CET)
-Received: from vistrex6.vi.vector.int (unknown [10.49.3.66])
-	by smtp2.vector.com (Postfix) with ESMTPS;
-	Mon,  8 Feb 2016 17:39:08 +0100 (CET)
-Received: from VISTREX4.vi.vector.int ([169.254.2.171]) by
-	vistrex6.vi.vector.int ([10.49.3.66]) with mapi id 14.03.0279.002;
-	Mon, 8 Feb 2016 17:39:09 +0100
-From: "Baumann, Michael" <Michael.Baumann@vector.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] how to create a named_pipe in my image
-Thread-Index: AdFiglSzvesxSbrsQM6AJUZMTpd6SQAB90Pw///ybwD//+sEsA==
-Date: Mon, 8 Feb 2016 16:39:07 +0000
-Message-ID: <D3B58608AFC8B244BA0ACD53B2AE612598EEF674@vistrex4.vi.vector.int>
-References: <D3B58608AFC8B244BA0ACD53B2AE612598EEF5C6@vistrex4.vi.vector.int>
-	<D3B58608AFC8B244BA0ACD53B2AE612598EEF622@vistrex4.vi.vector.int>
-	<CAJTo0Lav44kxc8i-VDSEUrHdFAaC7kjrLG97w2pmOjw+TZvM0Q@mail.gmail.com>
-In-Reply-To: <CAJTo0Lav44kxc8i-VDSEUrHdFAaC7kjrLG97w2pmOjw+TZvM0Q@mail.gmail.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.49.72.45]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
+	[209.85.213.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28E89E00C34
+	for <yocto@yoctoproject.org>; Mon,  8 Feb 2016 08:58:18 -0800 (PST)
+Received: by mail-ig0-f169.google.com with SMTP id xg9so59960828igb.1
+	for <yocto@yoctoproject.org>; Mon, 08 Feb 2016 08:58:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=tRunz7GaJEBasPkGLp0c0caOGgIT/onMgjOMSLOdE5c=;
+	b=p3BcQ2r0dz0xMmztQJo1ONjCuKS1xjEs7jh16jQT34wqB8M7XkqcO3qOabGfuWKfj0
+	wj4WAr72s7cosIzw7PwpNzpiDrJXjsQzn4HHRPtG4aqG3ygWk0yGuXPyc/5Nq6dzQZsZ
+	kaPJUXjWkyrrvdX1964PmGi7Qei0Uq7KzDcMiKfE52SaLQzO9A+jfV4gSI0ebgCg2AR8
+	Jt1ynHf+PPtV0xYe/UlmumCPrHPo0idsnZddEzuudR8z4wvlLP3dupuHUifxcjUEm3oA
+	ApQfJ1yKWprE+OH+zpuYRXgLi166uM8ziNP9zSUiQDpKcFI96WK3rywktDh85pvNVThz
+	2CHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=tRunz7GaJEBasPkGLp0c0caOGgIT/onMgjOMSLOdE5c=;
+	b=McFyjAhJm6Dodf3/yuBuzJOQP1bDUpAqcGgpV7iCMKhv+oyAdDCSdD9dtrlIee53hL
+	l1OqmVaLzN1scR78ilDYH6A/l/ZbTR3lD7RErpOSckby3NAsOFVvGuGT8qSBK74N8P23
+	gyjmVz3Lr3CnY9O68p5nTha9ArlXNvz1dOhunQKxwy3S3PkVNpXBGjVrj4E7koG7pPlj
+	8EM6t1Z47dm9IZhXZA4PpdBZWDQmTjZz1KSfrudjVElzxcZJRdD2MCXywaY6ID0WV/k5
+	Py8tRX/Fq1ppj/P4pLNAhlVHZ/VeHiHyDxbirfbJVpnUFc3djvBuoZRvoNQpEB60DrFy
+	Afag==
+X-Gm-Message-State: AG10YOQhVkjT9W+FFU8UuAhIQhWCCVJkF4sAKfOi+lDQv6QSS1WVudmxEyNh6KiAjAce/7kxauTrcKplqOgbyuoC
+X-Received: by 10.50.111.111 with SMTP id ih15mr25406148igb.78.1454950698401; 
+	Mon, 08 Feb 2016 08:58:18 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.107.162.70 with HTTP; Mon, 8 Feb 2016 08:57:59 -0800 (PST)
+In-Reply-To: <2236FBA76BA1254E88B949DDB74E612B41A702E2@IRSMSX102.ger.corp.intel.com>
+References: <2236FBA76BA1254E88B949DDB74E612B41A6F227@IRSMSX102.ger.corp.intel.com>
+	<CAJTo0LY6-=w7W6Cwx4JxmQmOLktauPhxFN+_VdT9Hj0PK0n1dQ@mail.gmail.com>
+	<2236FBA76BA1254E88B949DDB74E612B41A6F30D@IRSMSX102.ger.corp.intel.com>
+	<CAJTo0LZ3buNGnROT0ufhosvtpjNPS8L4QMjYq+deKb8htQSGzA@mail.gmail.com>
+	<2236FBA76BA1254E88B949DDB74E612B41A702E2@IRSMSX102.ger.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 8 Feb 2016 16:57:59 +0000
+Message-ID: <CAJTo0LYck297gJ0-yNH+xzMM3BejLO-2YK1zkw1Tp3zL9wtchg@mail.gmail.com>
+To: "Reshetova, Elena" <elena.reshetova@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to create a named_pipe in my image
+Subject: Re: What is the correct way to get a list of package run-time dependencies during the build process?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,110 +71,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Feb 2016 16:39:12 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_D3B58608AFC8B244BA0ACD53B2AE612598EEF674vistrex4vivecto_"
+X-List-Received-Date: Mon, 08 Feb 2016 16:58:20 -0000
+Content-Type: multipart/alternative; boundary=089e0149be348b7fbc052b451b13
 
---_000_D3B58608AFC8B244BA0ACD53B2AE612598EEF674vistrex4vivecto_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--089e0149be348b7fbc052b451b13
+Content-Type: text/plain; charset=UTF-8
 
-VGhhbmsgeW91IFJvc3MuDQpTd2l0Y2hpbmcgdG8gcnBtIHBhY2thZ2Ugc2hvd2VkIHRoZSBzYW1l
-IGJlaGF2aW9yLg0KSXMgdGhlcmUgYW5vdGhlciB3b3JrYXJvdW5kIHRoYW4gYSBwb3N0IGluc3Rh
-bGwgc2NyaXB0Pw0KDQpSZWdhcmRzLA0KTWljaGFlbA0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21h
-aWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQpTZW50OiBNb25kYXksIEZlYnJ1YXJ5IDA4LCAy
-MDE2IDU6MTUgUE0NClRvOiBCYXVtYW5uLCBNaWNoYWVsDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gaG93IHRvIGNyZWF0ZSBhIG5hbWVkX3BpcGUgaW4g
-bXkgaW1hZ2UNCg0KDQpPbiA4IEZlYnJ1YXJ5IDIwMTYgYXQgMTY6MTIsIEJhdW1hbm4sIE1pY2hh
-ZWwgPE1pY2hhZWwuQmF1bWFubkB2ZWN0b3IuY29tPG1haWx0bzpNaWNoYWVsLkJhdW1hbm5AdmVj
-dG9yLmNvbT4+IHdyb3RlOg0KUG9zc2libHkgaXQncyBiZWNhdXNlIG5hbWVkIHBpcGVzIGNhbm5v
-dCBiZSBwYWNrZWQgaW50byBhbiBhcmNoaXZlPyBJZiB5ZXMsIGhvdyBjYW4gSSBjaXJjdW12ZW50
-IHRoaXM/DQoNCkl0IHdvdWxkIGJlIGludGVyZXN0aW5nIHRvIHNlZSB3aGF0IGhhcHBlbnMgaWYg
-eW91IGNoYW5nZSBQQUNLQUdFX0NMQVNTRVMgdG8gdXNlIHJwbSBpbnN0ZWFkIG9mIGlwa2cuICBP
-bmUgd29ya2Fyb3VuZCB3b3VsZCBiZSB0byBjcmVhdGUgdGhlIGZpZm8gaW4gYSBwb3N0aW5zdC4N
-Cg0KUm9zcw0K
+On 8 February 2016 at 16:20, Reshetova, Elena <elena.reshetova@intel.com>
+wrote:
 
---_000_D3B58608AFC8B244BA0ACD53B2AE612598EEF674vistrex4vivecto_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> >Did you mean RDEPENDS_ + package name?
+>
+>
+>
+> I have it like this:
+>
+>
+>
+> recipe.name = d.getVar('PN', True)
+>
+> recipe.r_deps = d.getVar('RDEPENDS_' + recipe.name, True)
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdl
-MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
-by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAu
-ODVwdCA3MC44NXB0IDIuMGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldv
-cmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hh
-cGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlm
-XS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQi
-Pg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94
-bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJERSIgbGluaz0iYmx1ZSIgdmxp
-bms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0
-OTdEIj5UaGFuayB5b3UgUm9zcy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
-RjQ5N0QiPlN3aXRjaGluZyB0byBycG0gcGFja2FnZSBzaG93ZWQgdGhlIHNhbWUgYmVoYXZpb3Iu
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5JcyB0aGVyZSBhbm90
-aGVyIHdvcmthcm91bmQgdGhhbiBhIHBvc3QgaW5zdGFsbCBzY3JpcHQ/PG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+TWljaGFlbA0KPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6
-c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2
-IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGlu
-ZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21h
-JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21h
-JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3Nz
-LmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBGZWJydWFyeSAw
-OCwgMjAxNiA1OjE1IFBNPGJyPg0KPGI+VG86PC9iPiBCYXVtYW5uLCBNaWNoYWVsPGJyPg0KPGI+
-Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBb
-eW9jdG9dIGhvdyB0byBjcmVhdGUgYSBuYW1lZF9waXBlIGluIG15IGltYWdlPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gOCBGZWJydWFyeSAyMDE2
-IGF0IDE2OjEyLCBCYXVtYW5uLCBNaWNoYWVsICZsdDs8YSBocmVmPSJtYWlsdG86TWljaGFlbC5C
-YXVtYW5uQHZlY3Rvci5jb20iIHRhcmdldD0iX2JsYW5rIj5NaWNoYWVsLkJhdW1hbm5AdmVjdG9y
-LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGRpdiBpZD0iOm13NiI+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5Qb3NzaWJseSBpdCdzIGJlY2F1c2UgbmFtZWQgcGlwZXMgY2Fubm90
-IGJlIHBhY2tlZCBpbnRvIGFuIGFyY2hpdmU/IElmIHllcywgaG93IGNhbiBJIGNpcmN1bXZlbnQg
-dGhpcz88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48YnI+DQpJdCB3b3VsZCBiZSBpbnRlcmVzdGluZyB0byBzZWUgd2hhdCBoYXBwZW5zIGlmIHlv
-dSBjaGFuZ2UgUEFDS0FHRV9DTEFTU0VTIHRvIHVzZSBycG0gaW5zdGVhZCBvZiBpcGtnLiZuYnNw
-OyBPbmUgd29ya2Fyb3VuZCB3b3VsZCBiZSB0byBjcmVhdGUgdGhlIGZpZm8gaW4gYSBwb3N0aW5z
-dC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jv
-ZHk+DQo8L2h0bWw+DQo=
+So I wasn't quite right - I think you also need to come after
+do_packagedata and also you'll need to read the subpackage metadata.
+Inspired by insane.bbclass, this works:
 
---_000_D3B58608AFC8B244BA0ACD53B2AE612598EEF674vistrex4vivecto_--
+addtask printrdeps before do_build after do_package do_packagedata
+do_printrdeps[nostamp] = "1"
+python do_printrdeps() {
+    bb.build.exec_func("read_subpackage_metadata", d)
+    for p in d.getVar("PACKAGES", True).split():
+        bb.warn("Got package %s" % p)
+        bb.warn("Got RDEPENDS %s" % d.getVar("RDEPENDS_" + p, True))
+}
+
+--089e0149be348b7fbc052b451b13
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 8 February 2016 at 16:20, Reshetova, Elena <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:elena.reshetova@intel.com" target=3D"_blank">el=
+ena.reshetova@intel.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"=
+><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,20=
+4);border-left-style:solid;padding-left:1ex"><div lang=3D"FI" link=3D"blue"=
+ vlink=3D"purple"><span class=3D""><p class=3D"MsoNormal"><span lang=3D"EN-=
+GB" style=3D"color:rgb(31,73,125)">&gt;</span><span lang=3D"EN-GB">Did you =
+mean RDEPENDS_ + package name?</span><br><u></u></p></span><div><p class=3D=
+"MsoNormal"><span lang=3D"EN-GB" style=3D"color:rgb(31,73,125)"><u></u>=C2=
+=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"f=
+ont-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">I have i=
+t like this: <u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"=
+EN-GB" style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,=
+73,125)"><u></u>=C2=A0<u></u></span></p></div><div><p class=3D"MsoNormal"><=
+span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
+color:rgb(31,73,125)"><a href=3D"http://recipe.name" target=3D"_blank">reci=
+pe.name</a> =3D d.getVar(&#39;PN&#39;, True)<u></u><u></u></span></p><span =
+class=3D""><p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:1=
+1pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">recipe.r_deps =3D =
+d.getVar(&#39;RDEPENDS_&#39; + <a href=3D"http://recipe.name" target=3D"_bl=
+ank"><span lang=3D"FI" style=3D"color:rgb(31,73,125);text-decoration:none">=
+recipe.name</span></a>, True)</span></p></span></div></div></blockquote><di=
+v><br></div><div>So I wasn&#39;t quite right - I think you also need to com=
+e after do_packagedata and also you&#39;ll need to read the subpackage meta=
+data.=C2=A0 Inspired by insane.bbclass, this works:<br></div><div><br></div=
+><div><div>addtask printrdeps before do_build after do_package do_packageda=
+ta</div><div>do_printrdeps[nostamp] =3D &quot;1&quot;</div><div>python do_p=
+rintrdeps() {</div><div>=C2=A0 =C2=A0 bb.build.exec_func(&quot;read_subpack=
+age_metadata&quot;, d)</div><div>=C2=A0 =C2=A0 for p in d.getVar(&quot;PACK=
+AGES&quot;, True).split():</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.warn(&q=
+uot;Got package %s&quot; % p)</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.warn=
+(&quot;Got RDEPENDS %s&quot; % d.getVar(&quot;RDEPENDS_&quot; + p, True))</=
+div><div>}</div><div><br></div></div></div></div></div>
+
+--089e0149be348b7fbc052b451b13--
