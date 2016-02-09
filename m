@@ -1,42 +1,50 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <bartosz.woronicz@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27293E00DA5; Tue,  9 Feb 2016 05:39:54 -0800 (PST)
+	id 40379E00DA3; Tue,  9 Feb 2016 05:51:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.34 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [93.183.12.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from DUB004-OMC3S25.hotmail.com (dub004-omc3s25.hotmail.com
-	[157.55.2.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA67CE00C9F
-	for <yocto@yoctoproject.org>; Tue,  9 Feb 2016 05:39:52 -0800 (PST)
-Received: from DUB130-W80 ([157.55.2.8]) by DUB004-OMC3S25.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 9 Feb 2016 05:39:51 -0800
-X-TMN: [NjvsbWtUmU0xX6u3mduLqG5yrzjHQ9sD]
-X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W80FAF94DB735074C8DA800DAD60@phx.gbl>
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 9 Feb 2016 13:39:50 +0000
-Importance: Normal
-In-Reply-To: <DUB130-W324DDADF2A42496E8D4656DAD60@phx.gbl>
-References: <020DD3FF-9405-4003-9C1B-F29F060567BD@keylevel.com>, ,
-	<A705D969-9C1F-4429-97EA-3A9E3A8BB8E4@keylevel.com>, ,
-	<CAJTo0LZxoT8b433vJtJi7wZSfwWCcAXC77N3WFJkj3pzaLsNVw@mail.gmail.com>,
-	<DUB130-W324DDADF2A42496E8D4656DAD60@phx.gbl>
+Received: from demumfd002.nsn-inter.net (demumfd002.nsn-inter.net
+	[93.183.12.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5CFFE00C9F
+	for <yocto@yoctoproject.org>; Tue,  9 Feb 2016 05:51:18 -0800 (PST)
+Received: from demuprx017.emea.nsn-intra.net ([10.150.129.56])
+	by demumfd002.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
+	u19DpAew022387
+	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK);
+	Tue, 9 Feb 2016 13:51:10 GMT
+Received: from [10.154.187.104] ([10.154.187.104])
+	by demuprx017.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
+	id u19Dp3t7009406; Tue, 9 Feb 2016 14:51:04 +0100
+To: "EXT Burton, Ross" <ross.burton@intel.com>
+References: <56B1D2D1.5010508@nokia.com> <1454497513.3990.6.camel@open-rnd.pl>
+	<56B33100.9020903@nokia.com> <56B89638.9060905@nokia.com>
+	<1454939078.3938.18.camel@open-rnd.pl> <56B9A55A.9040607@nokia.com>
+	<CAJTo0LYj05btWH+pnLkp-gwd+S1qefys+_ZhdEMBGShqm08nrQ@mail.gmail.com>
+From: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
+Message-ID: <56B9EEC7.8010303@nokia.com>
+Date: Tue, 9 Feb 2016 14:51:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-X-OriginalArrivalTime: 09 Feb 2016 13:39:51.0056 (UTC)
-	FILETIME=[59C3F900:01D1633F]
-Subject: Re: Installing only part of linux-firmware
+In-Reply-To: <CAJTo0LYj05btWH+pnLkp-gwd+S1qefys+_ZhdEMBGShqm08nrQ@mail.gmail.com>
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
+X-purgate: clean
+X-purgate: This mail is considered clean (visit http://www.eleven.de for
+	further information)
+X-purgate-size: 6712
+X-purgate-ID: 151667::1455025870-00004E94-27C1B138/0/0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Where should I append Yocto bitbake task to create work folder symlink ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,169 +56,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Feb 2016 13:39:54 -0000
+X-List-Received-Date: Tue, 09 Feb 2016 13:51:22 -0000
 Content-Type: multipart/alternative;
-	boundary="_4ff71ff9-06f4-4005-bac0-2120c6c76344_"
+	boundary="------------020005030204070402020500"
 
---_4ff71ff9-06f4-4005-bac0-2120c6c76344_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+--------------020005030204070402020500
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Digging deeper=2C I can see that versions 13 and 16 are in the linux-firmwa=
-re source repository=2C so it is just a question of adding a package.  I wa=
-s already just adding the one firmware image I required.
-Looks like a good candidate for a practice patch.
-Cheers=2CChris
+Cheers, mate!
 
-From: christrobridge@hotmail.com
-To: ross.burton@intel.com
-Date: Tue=2C 9 Feb 2016 10:15:45 +0000
-CC: yocto@yoctoproject.org
-Subject: Re: [yocto] Installing only part of linux-firmware
+That solves my issue (but with small fix).
+/do_unpack[postfuncs] += "do_latest_link"
+/instead/
+//do_unpack[postfuncs] += "latest_link"
 
-=0A=
-=0A=
-=0A=
-I have been pondering linux-firmware recently too.
-I have a device fitted that requires the 'iwlwifi-7260' firmware.
-This was working but the current driver is requesting versions  13 to 10 of=
- the firmware=2C in that order.The current (master) poky recipe has version=
-s 8 and 9.The source repo (I believe=2C https://github.com/OpenELEC/iwlwifi=
--firmware/tree/master/firmware) has versions up to 17 now.
-I can likewise add newer versions of firmware but do you ever prune out old=
- versions?  In this case is seems that the choice of firmware limited by th=
-e drivers specified by that version of yocto (via the kernel).
-Regards=2CChris
-From: ross.burton@intel.com
-Date: Mon=2C 8 Feb 2016 08:58:32 +0000
-To: opensource@keylevel.com
-CC: yocto@yoctoproject.org
-Subject: Re: [yocto] Installing only part of linux-firmware
+Because, without "do_" it says
+WARNING: Function latest_link doesn't exist
+
+/Here is the whole bbclass/:
+/
+
+    DESCRIPTION = "Creates symlink to the latest version workdir of the
+    package"
+
+    do_latest_link() {
+         if [ -n "${WORKDIR}" ]; then
+             linkname="$(dirname ${WORKDIR})/latest"
+             rm -f $linkname
+             ln -s $(basename ${WORKDIR}) $linkname
+         fi
+    }
+    addtask latest_link after do_unpack
+
+    do_unpack[postfuncs] += "do_latest_link"
 
 
-On 7 February 2016 at 21:49=2C Chris Tapp <opensource@keylevel.com> wrote:
-I=92ve now done this by creating a bbappend for linux-firmware:
-=0A=
+But for better understanding I made the more throughout look into the 
+documentations. I found the information about "postfuncs" you talk about 
+[1]. However, the tasks description [2] doesn't say anything about 
+including the task in the process, it just describes the demanded order 
+that the task is put ( addtask something after|before othertask ).
 
-=0A=
-PACKAGES =3D+ "${PN}-rtl_nic"
-=0A=
+That is so, until I read "3.6. Variable Flags"  [3]. Where is quite 
+clearly stated those variables control functionality and *dependencies*.
+The documentation is quite unclear in that case.
 
-=0A=
-FILES_${PN}-rtl_nic =3D " \
-=0A=
-  /lib/firmware/rtl_nic/* \
-=0A=
-=93
-=0A=
+[1] 
+http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#executing-tasks
+[2] 
+http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#tasks
+[3] 
+http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#variable-flags 
 
-=0A=
-Does what I want=2C but is that the best way of doing it?
-This is the best way for you now.
-That's exactly why the recipe has quite a lot of subpackages=2C feel free t=
-o submit more upstream.
-Ross=0A=
 
--- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =0A=
+Kind regards,
+Bartosz Woronicz
+Engineer, Software Configuration (SCM)
+NSN - PL/Wroclaw
 
--- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
+On 09.02.2016 10:10, EXT Burton, Ross wrote:
+>
+> On 9 February 2016 at 08:37, Woronicz, Bartosz ( NSN - PL/Wroclaw) 
+> <bartosz.woronicz@nokia.com <mailto:bartosz.woronicz@nokia.com>> wrote:
+>
+>     Ok, but I don't want to run it everytime, just after the
+>     do_unpack. What I need to put it in requirements for each recipe ?
+>     Maybe something like
+>
+>     do_unpack[require] = "latest_link"
+>
+>
+> do_unpack[postfuncs] += "latest_link" will run latest_link after 
+> unpack has executed.
+>
+> Ross
 
---_4ff71ff9-06f4-4005-bac0-2120c6c76344_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+
+--------------020005030204070402020500
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>Digging deeper=2C I can see that=
- versions 13 and 16 are in the linux-firmware source repository=2C so it is=
- just a question of adding a package. &nbsp=3BI was already just adding the=
- one firmware image I required.<div><br></div><div>Looks like a good candid=
-ate for a practice patch.</div><div><br></div><div>Cheers=2C</div><div>Chri=
-s<br><br><div><hr id=3D"stopSpelling">From: christrobridge@hotmail.com<br>T=
-o: ross.burton@intel.com<br>Date: Tue=2C 9 Feb 2016 10:15:45 +0000<br>CC: y=
-octo@yoctoproject.org<br>Subject: Re: [yocto] Installing only part of linux=
--firmware<br><br>=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass .ecxhmmessage P {=0A=
-padding:0px=3B=0A=
-}=0A=
-=0A=
-.ExternalClass body.ecxhmmessage {=0A=
-font-size:12pt=3B=0A=
-font-family:Calibri=3B=0A=
-}=0A=
-=0A=
---></style>=0A=
-<div dir=3D"ltr">I have been pondering linux-firmware recently too.<div><br=
-></div><div>I have a device fitted that requires the 'iwlwifi-7260' firmwar=
-e.</div><div><br></div><div>This was working but the current driver is requ=
-esting versions &nbsp=3B13 to 10 of the firmware=2C in that order.</div><di=
-v><span style=3D"font-size:12pt=3B">The current (master) poky recipe has ve=
-rsions 8 and 9.</span></div><div><span style=3D"font-size:12pt=3B">The sour=
-ce repo (I believe=2C&nbsp=3B</span><a href=3D"https://github.com/OpenELEC/=
-iwlwifi-firmware/tree/master/firmware" target=3D"_blank" style=3D"font-size=
-:12pt=3B">https://github.com/OpenELEC/iwlwifi-firmware/tree/master/firmware=
-</a><span style=3D"font-size:12pt=3B">) has versions up to 17 now.</span></=
-div><div><br></div><div>I can likewise add newer versions of firmware but d=
-o you ever prune out old versions? &nbsp=3BIn this case is seems that the c=
-hoice of firmware limited by the drivers specified by that version of yocto=
- (via the kernel).</div><div><br></div><div>Regards=2C</div><div>Chris</div=
-><div><br><div><hr id=3D"ecxstopSpelling">From: ross.burton@intel.com<br>Da=
-te: Mon=2C 8 Feb 2016 08:58:32 +0000<br>To: opensource@keylevel.com<br>CC: =
-yocto@yoctoproject.org<br>Subject: Re: [yocto] Installing only part of linu=
-x-firmware<br><br><div dir=3D"ltr"><div class=3D"ecxgmail_extra"><br><div c=
-lass=3D"ecxgmail_quote">On 7 February 2016 at 21:49=2C Chris Tapp <span dir=
-=3D"ltr">&lt=3B<a href=3D"mailto:opensource@keylevel.com" target=3D"_blank"=
->opensource@keylevel.com</a>&gt=3B</span> wrote:<br><blockquote class=3D"ec=
-xgmail_quote" style=3D"border-left:1px #ccc solid=3Bpadding-left:1ex=3B"><d=
-iv id=3D"ecx:kr0" class=3D"ecxa3s" style=3D"overflow:hidden=3B">I=92ve now =
-done this by creating a bbappend for linux-firmware:<br>=0A=
-<br>=0A=
-PACKAGES =3D+ "${PN}-rtl_nic"<br>=0A=
-<br>=0A=
-FILES_${PN}-rtl_nic =3D " \<br>=0A=
-&nbsp=3B /lib/firmware/rtl_nic/* \<br>=0A=
-=93<br>=0A=
-<br>=0A=
-Does what I want=2C but is that the best way of doing it?</div></blockquote=
-></div><div class=3D"ecxgmail_extra"><br></div>This is the best way for you=
- now.</div><div class=3D"ecxgmail_extra"><br></div><div class=3D"ecxgmail_e=
-xtra">That's exactly why the recipe has quite a lot of subpackages=2C feel =
-free to submit more upstream.</div><div class=3D"ecxgmail_extra"><br></div>=
-<div class=3D"ecxgmail_extra">Ross</div></div>=0A=
-<br>-- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto</div></div> 		 	   		  </div>=
-=0A=
-<br>-- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto</div></div> 		 	   		  </div>=
-</body>
-</html>=
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Cheers, mate!<br>
+    <br>
+    That solves my issue (but with small fix). <br>
+    <i>do_unpack[postfuncs] += "do_latest_link"<br>
+    </i>instead<i><br>
+    </i><i>do_unpack[postfuncs] += "latest_link"<br>
+      <br>
+      Because, without "do_" it says<br>
+      WARNING: Function latest_link doesn't exist<br>
+      <br>
+    </i>Here is the whole bbclass<i>:<br>
+    </i>
+    <blockquote>DESCRIPTION = "Creates symlink to the latest version
+      workdir of the package"<br>
+      <br>
+      do_latest_link() {<br>
+          if [ -n "${WORKDIR}" ]; then<br>
+              linkname="$(dirname ${WORKDIR})/latest"<br>
+              rm -f $linkname<br>
+              ln -s $(basename ${WORKDIR}) $linkname<br>
+          fi<br>
+      }<br>
+      addtask latest_link after do_unpack<br>
+      <br>
+      do_unpack[postfuncs] += "do_latest_link"<br>
+    </blockquote>
+    <br>
+    But for better understanding I made the more throughout look into
+    the documentations. I found the information about "postfuncs" you
+    talk about [1]. However, the tasks description [2] doesn't say
+    anything about including the task in the process, it just describes
+    the demanded order that the task is put ( addtask something
+    after|before othertask ).<br>
+    <br>
+    That is so, until I read "3.6. Variable Flags"  [3]. Where is quite
+    clearly stated those variables control functionality and
+    *dependencies*. <br>
+    The documentation is quite unclear in that case.<br>
+    <br>
+    [1]
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#executing-tasks">http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#executing-tasks</a><br>
+    [2]
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#tasks">http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#tasks</a><br>
+    [3]
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#variable-flags">http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#variable-flags</a>
+    <pre class="moz-signature" cols="72">Kind regards,
+Bartosz Woronicz
+Engineer, Software Configuration (SCM)
+NSN - PL/Wroclaw</pre>
+    <div class="moz-cite-prefix">On 09.02.2016 10:10, EXT Burton, Ross
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAJTo0LYj05btWH+pnLkp-gwd+S1qefys+_ZhdEMBGShqm08nrQ@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <div dir="ltr">
+        <div class="gmail_extra"><br>
+          <div class="gmail_quote">On 9 February 2016 at 08:37,
+            Woronicz, Bartosz ( NSN - PL/Wroclaw) <span dir="ltr">&lt;<a
+                moz-do-not-send="true"
+                href="mailto:bartosz.woronicz@nokia.com" target="_blank"><a class="moz-txt-link-abbreviated" href="mailto:bartosz.woronicz@nokia.com">bartosz.woronicz@nokia.com</a></a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <div id=":283" class="a3s" style="overflow:hidden">Ok, but
+                I don't want to run it everytime, just after the
+                do_unpack. What I need to put it in requirements for
+                each recipe ?<br>
+                Maybe something like<br>
+                <br>
+                do_unpack[require] = "latest_link"<br>
+              </div>
+            </blockquote>
+          </div>
+          <br>
+          do_unpack[postfuncs] += "latest_link" will run latest_link
+          after unpack has executed.</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">Ross</div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---_4ff71ff9-06f4-4005-bac0-2120c6c76344_--
+--------------020005030204070402020500--
