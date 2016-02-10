@@ -1,16 +1,15 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4189AE0090C; Wed, 10 Feb 2016 12:08:51 -0800 (PST)
+	id 88C09E00911; Wed, 10 Feb 2016 12:09:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -18,54 +17,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.180 listed in list.dnswl.org]
-Received: from mail-pf0-f180.google.com (mail-pf0-f180.google.com
-	[209.85.192.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01746E008E1
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:08:47 -0800 (PST)
-Received: by mail-pf0-f180.google.com with SMTP id c10so17416126pfc.2
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:08:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=UzTopFBNjKzyMVxbLPUf0N9g8JAt7IZjlEy9u+EjEh8=;
-	b=QrGx6UexYNr5PRd1FCBsrmLbdWgZn2mEU7BmQkxPswWB2W0Y5vSsLZAy8WqzwfxlsK
-	1fWA2hI9yikOsB5VmyFDTaVq6lnDCRzGb9A1NCoCjL9ubjlo86CA5JG9pdyhhwSOaX1j
-	jcyM/a28NJFg/5SF9tz96Q50rhdc2go0enIqZ+WR/MRoq27uV0KWI1ujt1FEK03d6ocb
-	Go6KtbXSCMl+grK4whNtfC+Z/q0VXSIJsBr4NQd0DXcZWfQwPL2fw/RAGfgLlhei6+ZU
-	CSSTWsoa0bI0Y4hzx5qIZTvJrJRaO/wUVizNXQEmTk4ZrTwF1P/4prinQZZFrDEpNGoU
-	pDEw==
+	*      [209.85.214.178 listed in list.dnswl.org]
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C09B9E00929
+	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:09:26 -0800 (PST)
+Received: by mail-ob0-f178.google.com with SMTP id wb13so44737613obb.1
+	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:09:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=broadcom.com; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=GEKB8NNLB/EXK9QLB+0Ef+/nVamzAD8cLrCOeFy7tjU=;
+	b=HdzbjYzEskrhjq+SotcFJTgJwUyXJWDtwm9pCzOuubska6KExL3msR3TZVktH7VDOm
+	QKi9LvQWPAXTrnu0u1/gwP6eiVkz+cm6h0JniqTZN8qwdo/gdhTlkpZSqZweAvGEVNKs
+	OdP36qZeK8t+kQVOZgx7qXwIz0K10q/ww12Ew=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:content-type:from
-	:in-reply-to:date:cc:message-id:references:to;
-	bh=UzTopFBNjKzyMVxbLPUf0N9g8JAt7IZjlEy9u+EjEh8=;
-	b=j4uKFesTECiGpfk6NNiVRRo3yCKppDTjLmYq8skZWYZzJDzzan+wMu8mj2eeXB69Gr
-	yZ6kWW+FaRY331fplbbv5v/EcOrgTYGMsbAml4uE4KC4mBCe+DqEXsdVZApkiFLjd8jc
-	rK7HVY+WO+lnFVTeESnOknRQYnzTSpyyPbFLh/72MLrwsryyIDgfc8yVKR4bOHangNpa
-	CuGBQu6ze9WAoHU3aHtfN1YRAlIoyeiwrPyEhhZb0VO+yXU/A6S5tWdC63bozZttN2bV
-	ywst4lS9we2cUPsQtX/lj6tz9rU0c8Y70s3cQMSDfKj/sypHj8q2mdpxxfV+50S9dkwY
-	qLUg==
-X-Gm-Message-State: AG10YOTxwFrPB/ZCXfbN+Xme/yrCtErf1brjcWHTUWSl6NWcilzhBw6Cf3H5hAH8L1M/Gg==
-X-Received: by 10.98.17.92 with SMTP id z89mr61672139pfi.16.1455134926827;
-	Wed, 10 Feb 2016 12:08:46 -0800 (PST)
-Received: from ?IPv6:2601:646:8802:5d5c:cc82:3541:372c:9294?
-	([2601:646:8802:5d5c:cc82:3541:372c:9294])
-	by smtp.gmail.com with ESMTPSA id
-	xm10sm7109843pab.12.2016.02.10.12.08.45
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 10 Feb 2016 12:08:45 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <56BB66B5.7000401@windriver.com>
-Date: Wed, 10 Feb 2016 12:08:40 -0800
-Message-Id: <DF6400FC-9DE0-40FA-8247-9C2D4153A10E@gmail.com>
-References: <56BAE751.6080000@mlbassoc.com> <56BB66B5.7000401@windriver.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-X-Mailer: Apple Mail (2.3112)
-Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
-Subject: Re: Debugging shared libraries
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=GEKB8NNLB/EXK9QLB+0Ef+/nVamzAD8cLrCOeFy7tjU=;
+	b=jyUjmEZGa2TM7Wsy9nD17IRSN4KUo/ZJ9hKjwfHOw97xeb6+k3f5Sp45vmTQaCVXFu
+	yiEv6+Sx58wekkbZOiwyqChUlfFcysWImvZj9SA6/bVAThEXUJ2VVBiGj3q1FTcuKHIz
+	jqDMDbCyVqGjcdBvSdEu51m5BtYp50EhJK0igG/eJx1CRtYza6EjMfJaZ9FTXVADbjGY
+	hNPsx4H+O/tzCPvG8NTYwKnh0ru5s8R76JGlB2xfM/SPfc95xv6StFBRkb2FBRLGcKQ6
+	D4zFMCRwMflRXC2PMA7PTIDLii+FBiVAgezNfvcAgBx+jsCV6G/w3hAuXWLcJbPNEJ/I
+	svcA==
+X-Gm-Message-State: AG10YOSq3DtC4NFekzYU8hvjvZD0gLXjPeQC8zhE7zWpywjTNPtCWTItH8PSMH06xF7hpHUZ3efpfnxFGklMqj2T
+MIME-Version: 1.0
+X-Received: by 10.60.59.37 with SMTP id w5mr21247984oeq.44.1455134966119; Wed,
+	10 Feb 2016 12:09:26 -0800 (PST)
+Received: by 10.202.93.69 with HTTP; Wed, 10 Feb 2016 12:09:26 -0800 (PST)
+In-Reply-To: <CABcZANkwg5mf5qAdjvP1kxjeynM__O2-GrQvESPqmQyAKQME+A@mail.gmail.com>
+References: <CAAJbk1FY6R1urdH-5oMynmprX4jS1-NkHR2V-z3rnBabN9_ZsQ@mail.gmail.com>
+	<CABcZANkwg5mf5qAdjvP1kxjeynM__O2-GrQvESPqmQyAKQME+A@mail.gmail.com>
+Date: Wed, 10 Feb 2016 15:09:26 -0500
+Message-ID: <CAAJbk1FQ6FMUXkQQBJnpEG1VVdMVNsbPVAt-=NeLf1rEtmeURA@mail.gmail.com>
+From: Xi Zhou Zhou <joel.zhou@broadcom.com>
+To: Christopher Larson <clarson@kergoth.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Inline Python function name define
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,174 +67,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Feb 2016 20:08:51 -0000
-X-Groupsio-MsgNum: 28415
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 10 Feb 2016 20:09:43 -0000
+Content-Type: multipart/alternative; boundary=089e0149d186c262db052b700243
 
---Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+--089e0149d186c262db052b700243
+Content-Type: text/plain; charset=UTF-8
+
+The code works for me.
 
 
-> On Feb 10, 2016, at 8:35 AM, Mark Hatle <mark.hatle@windriver.com> =
+Thanks,
+Joel
+
+On Wed, Feb 10, 2016 at 2:04 PM, Christopher Larson <clarson@kergoth.com>
 wrote:
->=20
-> On 2/10/16 1:31 AM, Gary Thomas wrote:
->> I'm trying to debug some code (mplayer) which uses some shared
->> libraries from ffmpeg.  When I use GDB (via gdbserver), I don't
->> get all the debug information I need - note that many of the shared
->> libraries do not have any symbolic debugging info:
->=20
-> Is your system using the the split debug binaries, and if so, do you =
-have them
-> all installed on the system that GDB is running on?
->=20
-> (When GDB starts, you should see it load the symbols, or error it =
-can't find them.)
->=20
-> Assuming you DO have the symbol files available, and some things are =
-lacking
-> debuginfo, it's possible those recipes are not properly building with =
-full
-> symbols (they should be, the whole system should be.)
->=20
-> Easiest way to check is do a readelf/objdump on the .debug version of =
-the
-> library and check that there are dwarf symbols present... if not, it's =
-probably
-> a recipe error.
->=20
-> --Mark
->=20
->> (gdb) info sharedlibrary
->> =46rom        To          Syms Read   Shared Object Library
->> 0xb6fcf800  0xb6feaf08  Yes         =
-/tmp/p0382.img/lib/ld-linux-armhf.so.3
->> 0xb6fa6fa8  0xb6fb2b40  Yes (*)     /tmp/p0382.img/lib/libtinfo.so.5
->> 0xb6f6d210  0xb6f8c200  Yes         =
-/tmp/p0382.img/usr/lib/libpng16.so.16
->> 0xb6f488e8  0xb6f54a60  Yes         /tmp/p0382.img/lib/libz.so.1
->> 0xb6f069f0  0xb6f34264  Yes         =
-/tmp/p0382.img/usr/lib/libjpeg.so.8
->> 0xb6edbaf0  0xb6eee29c  Yes         =
-/tmp/p0382.img/usr/lib/libdvdread.so.4
->> 0xb6eb6108  0xb6ec7ae8  Yes         =
-/tmp/p0382.img/usr/lib/libass.so.4
->> 0xb6e808b8  0xb6e95384  Yes         =
-/tmp/p0382.img/usr/lib/libvorbis.so.0
->> 0xb6e6b4b4  0xb6e6d7e4  Yes         =
-/tmp/p0382.img/usr/lib/libogg.so.0
->> 0xb6e48978  0xb6e55eb4  Yes         =
-/tmp/p0382.img/usr/lib/libspeex.so.1
->> 0xb6dfe818  0xb6e1b8b4  Yes (*)     =
-/tmp/p0382.img/usr/lib/libfaad.so.2
->> 0xb6d92df0  0xb6dd4e78  Yes (*)     =
-/tmp/p0382.img/usr/lib/libavutil.so.54
->> 0xb5de0640  0xb64a2e18  Yes (*)     =
-/tmp/p0382.img/usr/lib/libavcodec.so.56
->> 0xb5c17528  0xb5d65840  Yes (*)     =
-/tmp/p0382.img/usr/lib/libavformat.so.56
->> 0xb5b81688  0xb5be8db8  Yes (*)     =
-/tmp/p0382.img/usr/lib/libswscale.so.3
->> 0xb5b5f578  0xb5b6c718  Yes (*)     =
-/tmp/p0382.img/usr/lib/libswresample.so.1
->> 0xb5b44998  0xb5b4b490  Yes (*)     =
-/tmp/p0382.img/usr/lib/libpostproc.so.53
->> 0xb5b1f0e0  0xb5b2e194  Yes         =
-/tmp/p0382.img/lib/libpthread.so.0
->> 0xb5aa4c00  0xb5ad46d0  Yes         /tmp/p0382.img/lib/libm.so.6
->> 0xb5a859ec  0xb5a8fc34  Yes         =
-/tmp/p0382.img/usr/lib/libXext.so.6
->> 0xb597b728  0xb59f92bc  Yes         =
-/tmp/p0382.img/usr/lib/libX11.so.6
->> 0xb5946fc8  0xb59573d0  Yes         =
-/tmp/p0382.img/usr/lib/libtheoradec.so.1
->> 0xb5887910  0xb591bbb8  Yes (*)     =
-/tmp/p0382.img/usr/lib/libasound.so.2
->> 0xb58579f8  0xb58586ac  Yes         =
-/tmp/p0382.img/usr/lib/libXss.so.1
->> 0xb5844ca0  0xb5846bac  Yes         /tmp/p0382.img/usr/lib/libXv.so.1
->> 0xb57e7700  0xb58265e0  Yes         =
-/tmp/p0382.img/usr/lib/libSDL-1.2.so.0
->> 0xb56bae00  0xb57abb28  Yes         /tmp/p0382.img/lib/libc.so.6
->> 0xb569292c  0xb5693724  Yes         /tmp/p0382.img/lib/libdl.so.2
->> 0xb5650a70  0xb566e6a4  Yes         =
-/tmp/p0382.img/usr/lib/libfontconfig.so.1
->> 0xb561e324  0xb563951c  Yes         =
-/tmp/p0382.img/usr/lib/libexpat.so.1
->> 0xb559d36c  0xb55f5cb4  Yes         =
-/tmp/p0382.img/usr/lib/libfreetype.so.6
->> 0xb55622b0  0xb5567e84  Yes         =
-/tmp/p0382.img/usr/lib/libenca.so.0
->> 0xb541fbc0  0xb54b5a08  Yes (*)     =
-/tmp/p0382.img/usr/lib/libx264.so.144
->> 0xb53d4df0  0xb53fa0b0  Yes         =
-/tmp/p0382.img/usr/lib/libtheoraenc.so.1
->> 0xb53a72b0  0xb53bd258  Yes (*)     =
-/tmp/p0382.img/usr/lib/liblzma.so.5
->> 0xb5386050  0xb5392cc0  Yes (*)     =
-/tmp/p0382.img/usr/lib/libbz2.so.0
->> 0xb5367810  0xb5373b30  Yes         =
-/tmp/p0382.img/usr/lib/libxcb.so.1
->> 0xb534da00  0xb534e5a8  Yes         =
-/tmp/p0382.img/usr/lib/libXau.so.6
->> 0xb5339f80  0xb533b69c  Yes         =
-/tmp/p0382.img/usr/lib/libXdmcp.so.6
->> 0xb5323720  0xb5326ea0  Yes         /tmp/p0382.img/lib/librt.so.1
->> 0xb530b6e0  0xb5311234  Yes         =
-/tmp/p0382.img/usr/lib/libXrandr.so.2
->> 0xb52f3530  0xb52f9060  Yes         =
-/tmp/p0382.img/usr/lib/libXrender.so.1
->> 0xb52d3160  0xb52e18a4  Yes         /tmp/p0382.img/lib/libgcc_s.so.1
->> (*): Shared library is missing debugging information.
->>=20
->> Is this a function of how those libraries were built (by the recipe)
->> or something else?  How can I get the symbolic debugging info =
-enabled?
->>=20
->> Thanks for any pointers
 
+> def foo(d):
+>     # Do something
+>
+> FOO = "${@foo(d)}"
+>
+> On Wed, Feb 10, 2016 at 12:02 PM Xi Zhou Zhou <joel.zhou@broadcom.com>
+> wrote:
+>
+>> Hi,
+>>
+>> I want to manipulate a variable with inline python function in a recipe.
+>> The code is something like this.
+>>
+>> python newpv() {
+>>     return 999
+>> }
+>>
+>> PV = "${@newpv()}"
+>>
+>>
+>> The error is "name 'newpv' is not defined"
+>>
+>> ERROR: ExpansionError during parsing /home/joelz/poky/build/
+>> ../meta-test/recipes-bsp/mytest/mytest.bb: Failure expanding variable
+>> PV, expression was ${@newpv()} which triggered exception NameError: name
+>> 'newpv' is not defined
+>>
+>>
+>> What's the right way to create inline python function in Yocto recipe?
+>>
+>>
+>> Thanks,
+>> Joel
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
-Usually it works well if you add
+--089e0149d186c262db052b700243
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-EXTRA_IMAGE_FEATURES_append =3D =E2=80=9C dbg-pkgs=E2=80=9D
+<div dir=3D"ltr">The code works for me.</div><div class=3D"gmail_extra"><br=
+ clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><br><di=
+v>Thanks,</div><div>Joel</div></div></div></div>
+<br><div class=3D"gmail_quote">On Wed, Feb 10, 2016 at 2:04 PM, Christopher=
+ Larson <span dir=3D"ltr">&lt;<a href=3D"mailto:clarson@kergoth.com" target=
+=3D"_blank">clarson@kergoth.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">def foo(d):<div>=C2=A0 =C2=A0 # Do something=
+</div><div><br></div><div>FOO =3D &quot;${@foo(d)}&quot;</div></div><br><di=
+v class=3D"gmail_quote"><div><div class=3D"h5"><div dir=3D"ltr">On Wed, Feb=
+ 10, 2016 at 12:02 PM Xi Zhou Zhou &lt;<a href=3D"mailto:joel.zhou@broadcom=
+.com" target=3D"_blank">joel.zhou@broadcom.com</a>&gt; wrote:<br></div></di=
+v></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div><div class=3D"h5"><div dir=3D"l=
+tr">Hi,<div><br></div><div>I want to manipulate a variable with inline pyth=
+on function in a recipe.=C2=A0</div><div>The code is something like this.</=
+div><div><br></div><blockquote style=3D"margin:0px 0px 0px 40px;border:none=
+;padding:0px"><div><div></div></div></blockquote><div><div style=3D"display=
+:block;padding:0.5em;color:rgb(51,51,51);font-family:monospace;background:r=
+gb(248,248,248)"><blockquote style=3D"margin:0px 0px 0px 40px;border:none;p=
+adding:0px"><div><div><span style=3D"color:rgb(153,0,0);font-weight:bold">p=
+ython</span> newpv() {</div></div><div><div>=C2=A0 =C2=A0 <span style=3D"co=
+lor:rgb(153,0,0);font-weight:bold">return</span> <span style=3D"color:rgb(0=
+,128,128)">999</span></div></div><div><div>}</div></div></blockquote><block=
+quote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div><div>P=
+V =3D <span style=3D"color:rgb(221,17,68)">&quot;<span style=3D"color:rgb(0=
+,128,128)">${@newpv()}</span>&quot;</span></div></div></blockquote></div></=
+div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><=
+div><div></div></div></blockquote><div><div><br></div><div>The error is &qu=
+ot;name &#39;newpv&#39; is not defined&quot;</div><div><br></div></div><blo=
+ckquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div><div=
+></div></div></blockquote><div><div style=3D"display:block;overflow-x:auto;=
+padding:0.5em;color:rgb(51,51,51);font-family:monospace;background:rgb(248,=
+248,248)"><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:=
+0px"><div><div><span style=3D"color:rgb(0,128,128)">ERROR</span>: Expansion=
+Error during parsing <span style=3D"color:rgb(0,153,38)">/home/joelz/poky/b=
+uild/</span>../meta-test/recipes-bsp/mytest/mytest.<span style=3D"color:rgb=
+(0,128,128)">bb</span>: Failure expanding variable PV, expression was ${<sp=
+an>@newpv</span>()} which triggered exception <span style=3D"color:rgb(0,12=
+8,128)">NameError</span>: name <span style=3D"color:rgb(221,17,68)">&#39;ne=
+wpv&#39;</span> <span style=3D"color:rgb(51,51,51);font-weight:bold">is</sp=
+an> <span style=3D"color:rgb(51,51,51);font-weight:bold">not</span> defined=
+</div></div></blockquote><div><div><div><div dir=3D"ltr"></div></div></div>=
+</div></div></div><div><div><div><div dir=3D"ltr"><br></div><div>What&#39;s=
+ the right way to create inline python function in Yocto recipe?</div><div =
+dir=3D"ltr"><br></div><div dir=3D"ltr"><br><div>Thanks,</div><div>Joel</div=
+></div></div></div>
+</div></div></div></div><span class=3D"HOEnZb"><font color=3D"#888888">
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div>
+</blockquote></div><br></div>
 
-image size grows but you get good debug view on target.
-
-another option, I usually use is setup feeds
-and then
-
-opkg install <package>-dbg
-
-which pulls in a section of debug info needed to debug a given package.
-
-
->>=20
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAla7mMwACgkQuwUzVZGdMxTzRgCdGoLa4a5BXJwk4ZRwjIJTGlul
-SuUAn0r6YV3jxKMG36+7oQzZ7yijmUTg
-=S8RQ
------END PGP SIGNATURE-----
-
---Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F--
+--089e0149d186c262db052b700243--
