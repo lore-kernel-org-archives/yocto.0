@@ -1,18 +1,14 @@
-Return-Path: <oliver.graute@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 590E5E0090C; Wed, 10 Feb 2016 11:06:21 -0800 (PST)
+	id 4189AE0090C; Wed, 10 Feb 2016 12:08:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MALFORMED_FREEMAIL,
-	MISSING_HEADERS, RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (oliver.graute[at]gmail.com)
-	*  1.0 MISSING_HEADERS Missing To: header
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,46 +16,56 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* 2.7 MALFORMED_FREEMAIL Bad headers on message from free email service
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0719E008B4
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 11:06:20 -0800 (PST)
-Received: by mail-ig0-f174.google.com with SMTP id ik10so21398321igb.1
-	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 11:06:20 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.180 listed in list.dnswl.org]
+Received: from mail-pf0-f180.google.com (mail-pf0-f180.google.com
+	[209.85.192.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01746E008E1
+	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:08:47 -0800 (PST)
+Received: by mail-pf0-f180.google.com with SMTP id c10so17416126pfc.2
+	for <yocto@yoctoproject.org>; Wed, 10 Feb 2016 12:08:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:cc
-	:content-type; bh=oftaewz4tVBT5msphEM0V5/RSjVWflCwCea+yfFmRxY=;
-	b=k9UM1HJ7eCp2qfes3rBS3uUEDuWhwQpkZ6UcJ79iJX2Ex0gUCLwtsSgsvqlU4u1kiC
-	M9g5kHjmqhiAj2VfmG96zMaHPlFUma5Xgr7xGg1snuKvh+QhiijXMI8C+s2bxCcX+iuq
-	LfjzDzoJ79KoaX4YGCsPJE28YLZg9keaT65Ump63SRNnbjCuMfYTVancoFawP4SlFeLT
-	57eV4+umhlXMSYgIwQIh7i3pvh/TQM6jpdLnHXLBjQlfCUL7y+AVBnPmOyjiTiximz3I
-	PI7Cir5rVMPmh7tq4lBctBbW2oc1fTxRg3AUzY3U5FMFJv3N+avkDpLjWGWw+bRBcPWO
-	qEqQ==
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=UzTopFBNjKzyMVxbLPUf0N9g8JAt7IZjlEy9u+EjEh8=;
+	b=QrGx6UexYNr5PRd1FCBsrmLbdWgZn2mEU7BmQkxPswWB2W0Y5vSsLZAy8WqzwfxlsK
+	1fWA2hI9yikOsB5VmyFDTaVq6lnDCRzGb9A1NCoCjL9ubjlo86CA5JG9pdyhhwSOaX1j
+	jcyM/a28NJFg/5SF9tz96Q50rhdc2go0enIqZ+WR/MRoq27uV0KWI1ujt1FEK03d6ocb
+	Go6KtbXSCMl+grK4whNtfC+Z/q0VXSIJsBr4NQd0DXcZWfQwPL2fw/RAGfgLlhei6+ZU
+	CSSTWsoa0bI0Y4hzx5qIZTvJrJRaO/wUVizNXQEmTk4ZrTwF1P/4prinQZZFrDEpNGoU
+	pDEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:cc:content-type;
-	bh=oftaewz4tVBT5msphEM0V5/RSjVWflCwCea+yfFmRxY=;
-	b=dvu1KDPE6GG8FO7SslUQPZ9MCSciojtpRpAowKsRYNOspbuXHVTbZYVdDUGpxmeH8s
-	ob9Vnfn9uRzIcFjh3eJA9mXBpZOdt7VmV4P0Q+SPjhXo3tPOqBdScmzf0jeH4eqGYU+c
-	nRQOuLkeQdd/NnE0pXu0ZR+yvtRRHy9vpmBt0LXyxU08uLBO+V4JidhS2avi3VL70yfr
-	1AE0fRSlK0hMiDphmXcKvWIBnSHF53qz+agtt2nsQlEDh0APKWcpqP8WPEe9C5BPkqz6
-	yp6704ltcRWTvn1y8UVLIMfX+9qkQiMyvo8j3d0HxTioOWbGEqrjcudYs0D6N59hD7N5
-	9A3w==
-X-Gm-Message-State: AG10YOTkFQYU/ETLFDu7OUCRQ1iw1upA0OiI4UDmyUzNf/zDBHdzi4mgHKe2Npi01HxDYY21+C40JPLJpXzY8w==
-MIME-Version: 1.0
-X-Received: by 10.50.160.41 with SMTP id xh9mr9726179igb.76.1455131180218;
-	Wed, 10 Feb 2016 11:06:20 -0800 (PST)
-Received: by 10.79.122.194 with HTTP; Wed, 10 Feb 2016 11:06:20 -0800 (PST)
-In-Reply-To: <20160210101913.GA31234@linux.intel.com>
-References: <20160209082916.GB6748@graute-opti>
-	<20160210101913.GA31234@linux.intel.com>
-Date: Wed, 10 Feb 2016 20:06:20 +0100
-Message-ID: <CA+KjHfZCg+7EENA-9+Dx9m4p6hZahELgfJc-aBqWB2FmZhYHZA@mail.gmail.com>
-From: Oliver Graute <oliver.graute@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: wic adds wrong mount lines to my fstab
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=UzTopFBNjKzyMVxbLPUf0N9g8JAt7IZjlEy9u+EjEh8=;
+	b=j4uKFesTECiGpfk6NNiVRRo3yCKppDTjLmYq8skZWYZzJDzzan+wMu8mj2eeXB69Gr
+	yZ6kWW+FaRY331fplbbv5v/EcOrgTYGMsbAml4uE4KC4mBCe+DqEXsdVZApkiFLjd8jc
+	rK7HVY+WO+lnFVTeESnOknRQYnzTSpyyPbFLh/72MLrwsryyIDgfc8yVKR4bOHangNpa
+	CuGBQu6ze9WAoHU3aHtfN1YRAlIoyeiwrPyEhhZb0VO+yXU/A6S5tWdC63bozZttN2bV
+	ywst4lS9we2cUPsQtX/lj6tz9rU0c8Y70s3cQMSDfKj/sypHj8q2mdpxxfV+50S9dkwY
+	qLUg==
+X-Gm-Message-State: AG10YOTxwFrPB/ZCXfbN+Xme/yrCtErf1brjcWHTUWSl6NWcilzhBw6Cf3H5hAH8L1M/Gg==
+X-Received: by 10.98.17.92 with SMTP id z89mr61672139pfi.16.1455134926827;
+	Wed, 10 Feb 2016 12:08:46 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:cc82:3541:372c:9294?
+	([2601:646:8802:5d5c:cc82:3541:372c:9294])
+	by smtp.gmail.com with ESMTPSA id
+	xm10sm7109843pab.12.2016.02.10.12.08.45
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 10 Feb 2016 12:08:45 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <56BB66B5.7000401@windriver.com>
+Date: Wed, 10 Feb 2016 12:08:40 -0800
+Message-Id: <DF6400FC-9DE0-40FA-8247-9C2D4153A10E@gmail.com>
+References: <56BAE751.6080000@mlbassoc.com> <56BB66B5.7000401@windriver.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: Debugging shared libraries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,57 +77,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Feb 2016 19:06:21 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 10 Feb 2016 20:08:51 -0000
+X-Groupsio-MsgNum: 28415
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-On Wed, Feb 10, 2016 at 11:19 AM, Ed Bartosh <ed.bartosh@linux.intel.com> wrote:
-> Hi Oliver,
->
-> On Tue, Feb 09, 2016 at 09:29:16AM +0100, Oliver Graute wrote:
->> # It uses SPL and u-boot
->> #
->> # The disk layout used is:
->> #  - ----- --------- ---------- -------- --------- ---------- ------------
->> # | | SPL | u-boot  |  /boot1  | /boot2 | rootfs1 | rootfs2  |    data    |
->> #  - ----- --------- ---------- -------- --------- ---------- ------------
->> # ^ ^     ^         ^         ^              ^
->> # | |     |         |         |              |
->> # 0 1kiB  69kiB     4MiB   4MiB + 20MiB    4MiB + 8Mib + rootfs1 + rootfs2 + data
->> #
->> part SPL --source rawcopy --sourceparams="file=SPL" --ondisk mmcblk --no-table --align 1
->> part u-boot --source rawcopy --sourceparams="file=u-boot.img" --ondisk mmcblk --no-table --align 69
->> part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 4096 --size 20M --extra-space 0
->> #part /boot2 --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot2 --active --align 4096 --size 8M --extra-space 0
->> part / --source rootfs --ondisk mmcblk --fstype=ext3 --label root --align 4 --size 125
->> part /rescue --source rootfs --ondisk mmcblk --fstype=ext3 --label secondary --align 4 --size 125
->> part /data --ondisk mmcblk --fstype=ext3 --label data --align 4 --size 730
->>
->> Some sugesstions to fix this?
-> How exactly wic complains if you use --ondisk mmcblk0 ?
->
-> It worked for me with this .wks:
-> part /boot --source bootimg-pcbios --ondisk mmcblk0 --label boot --active --align 1024
-> part / --source rootfs --ondisk mmcblk0 --fstype=ext3 --label root --align 1024
-> part /rescue --source rootfs --ondisk mmcblk0 --fstype=ext3 --label secondary --align 4 --size 125
-> part /data --ondisk mmcblk0 --fstype=ext3 --label data --align 4 --size 730
->
-> bootloader --timeout=0 --append="rootwait rootfstype=ext3 console=tty0"
->
-> and produced these 2 lines in fstab:
-> /dev/mmcblk0p3  /rescue ext3    defaults        0       0
-> /dev/mmcblk0p5  /data   ext3    defaults        0       0
->
-> If you provide more info about your setup(layers used?) I can try to
-> reproduce it and fix the issue.
-> Creating bug in https://bugzilla.yoctoproject.org would be great too.
+--Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hello Ed,
 
-it is working now with --ondisk mmcblk0. I'am not sure why it didn't
-worked before. I can't reproduce it anymore. Thx for your help and sorry
-for the noise.
+> On Feb 10, 2016, at 8:35 AM, Mark Hatle <mark.hatle@windriver.com> =
+wrote:
+>=20
+> On 2/10/16 1:31 AM, Gary Thomas wrote:
+>> I'm trying to debug some code (mplayer) which uses some shared
+>> libraries from ffmpeg.  When I use GDB (via gdbserver), I don't
+>> get all the debug information I need - note that many of the shared
+>> libraries do not have any symbolic debugging info:
+>=20
+> Is your system using the the split debug binaries, and if so, do you =
+have them
+> all installed on the system that GDB is running on?
+>=20
+> (When GDB starts, you should see it load the symbols, or error it =
+can't find them.)
+>=20
+> Assuming you DO have the symbol files available, and some things are =
+lacking
+> debuginfo, it's possible those recipes are not properly building with =
+full
+> symbols (they should be, the whole system should be.)
+>=20
+> Easiest way to check is do a readelf/objdump on the .debug version of =
+the
+> library and check that there are dwarf symbols present... if not, it's =
+probably
+> a recipe error.
+>=20
+> --Mark
+>=20
+>> (gdb) info sharedlibrary
+>> =46rom        To          Syms Read   Shared Object Library
+>> 0xb6fcf800  0xb6feaf08  Yes         =
+/tmp/p0382.img/lib/ld-linux-armhf.so.3
+>> 0xb6fa6fa8  0xb6fb2b40  Yes (*)     /tmp/p0382.img/lib/libtinfo.so.5
+>> 0xb6f6d210  0xb6f8c200  Yes         =
+/tmp/p0382.img/usr/lib/libpng16.so.16
+>> 0xb6f488e8  0xb6f54a60  Yes         /tmp/p0382.img/lib/libz.so.1
+>> 0xb6f069f0  0xb6f34264  Yes         =
+/tmp/p0382.img/usr/lib/libjpeg.so.8
+>> 0xb6edbaf0  0xb6eee29c  Yes         =
+/tmp/p0382.img/usr/lib/libdvdread.so.4
+>> 0xb6eb6108  0xb6ec7ae8  Yes         =
+/tmp/p0382.img/usr/lib/libass.so.4
+>> 0xb6e808b8  0xb6e95384  Yes         =
+/tmp/p0382.img/usr/lib/libvorbis.so.0
+>> 0xb6e6b4b4  0xb6e6d7e4  Yes         =
+/tmp/p0382.img/usr/lib/libogg.so.0
+>> 0xb6e48978  0xb6e55eb4  Yes         =
+/tmp/p0382.img/usr/lib/libspeex.so.1
+>> 0xb6dfe818  0xb6e1b8b4  Yes (*)     =
+/tmp/p0382.img/usr/lib/libfaad.so.2
+>> 0xb6d92df0  0xb6dd4e78  Yes (*)     =
+/tmp/p0382.img/usr/lib/libavutil.so.54
+>> 0xb5de0640  0xb64a2e18  Yes (*)     =
+/tmp/p0382.img/usr/lib/libavcodec.so.56
+>> 0xb5c17528  0xb5d65840  Yes (*)     =
+/tmp/p0382.img/usr/lib/libavformat.so.56
+>> 0xb5b81688  0xb5be8db8  Yes (*)     =
+/tmp/p0382.img/usr/lib/libswscale.so.3
+>> 0xb5b5f578  0xb5b6c718  Yes (*)     =
+/tmp/p0382.img/usr/lib/libswresample.so.1
+>> 0xb5b44998  0xb5b4b490  Yes (*)     =
+/tmp/p0382.img/usr/lib/libpostproc.so.53
+>> 0xb5b1f0e0  0xb5b2e194  Yes         =
+/tmp/p0382.img/lib/libpthread.so.0
+>> 0xb5aa4c00  0xb5ad46d0  Yes         /tmp/p0382.img/lib/libm.so.6
+>> 0xb5a859ec  0xb5a8fc34  Yes         =
+/tmp/p0382.img/usr/lib/libXext.so.6
+>> 0xb597b728  0xb59f92bc  Yes         =
+/tmp/p0382.img/usr/lib/libX11.so.6
+>> 0xb5946fc8  0xb59573d0  Yes         =
+/tmp/p0382.img/usr/lib/libtheoradec.so.1
+>> 0xb5887910  0xb591bbb8  Yes (*)     =
+/tmp/p0382.img/usr/lib/libasound.so.2
+>> 0xb58579f8  0xb58586ac  Yes         =
+/tmp/p0382.img/usr/lib/libXss.so.1
+>> 0xb5844ca0  0xb5846bac  Yes         /tmp/p0382.img/usr/lib/libXv.so.1
+>> 0xb57e7700  0xb58265e0  Yes         =
+/tmp/p0382.img/usr/lib/libSDL-1.2.so.0
+>> 0xb56bae00  0xb57abb28  Yes         /tmp/p0382.img/lib/libc.so.6
+>> 0xb569292c  0xb5693724  Yes         /tmp/p0382.img/lib/libdl.so.2
+>> 0xb5650a70  0xb566e6a4  Yes         =
+/tmp/p0382.img/usr/lib/libfontconfig.so.1
+>> 0xb561e324  0xb563951c  Yes         =
+/tmp/p0382.img/usr/lib/libexpat.so.1
+>> 0xb559d36c  0xb55f5cb4  Yes         =
+/tmp/p0382.img/usr/lib/libfreetype.so.6
+>> 0xb55622b0  0xb5567e84  Yes         =
+/tmp/p0382.img/usr/lib/libenca.so.0
+>> 0xb541fbc0  0xb54b5a08  Yes (*)     =
+/tmp/p0382.img/usr/lib/libx264.so.144
+>> 0xb53d4df0  0xb53fa0b0  Yes         =
+/tmp/p0382.img/usr/lib/libtheoraenc.so.1
+>> 0xb53a72b0  0xb53bd258  Yes (*)     =
+/tmp/p0382.img/usr/lib/liblzma.so.5
+>> 0xb5386050  0xb5392cc0  Yes (*)     =
+/tmp/p0382.img/usr/lib/libbz2.so.0
+>> 0xb5367810  0xb5373b30  Yes         =
+/tmp/p0382.img/usr/lib/libxcb.so.1
+>> 0xb534da00  0xb534e5a8  Yes         =
+/tmp/p0382.img/usr/lib/libXau.so.6
+>> 0xb5339f80  0xb533b69c  Yes         =
+/tmp/p0382.img/usr/lib/libXdmcp.so.6
+>> 0xb5323720  0xb5326ea0  Yes         /tmp/p0382.img/lib/librt.so.1
+>> 0xb530b6e0  0xb5311234  Yes         =
+/tmp/p0382.img/usr/lib/libXrandr.so.2
+>> 0xb52f3530  0xb52f9060  Yes         =
+/tmp/p0382.img/usr/lib/libXrender.so.1
+>> 0xb52d3160  0xb52e18a4  Yes         /tmp/p0382.img/lib/libgcc_s.so.1
+>> (*): Shared library is missing debugging information.
+>>=20
+>> Is this a function of how those libraries were built (by the recipe)
+>> or something else?  How can I get the symbolic debugging info =
+enabled?
+>>=20
+>> Thanks for any pointers
 
-best regards,
 
-Oliver
+Usually it works well if you add
 
+EXTRA_IMAGE_FEATURES_append =3D =E2=80=9C dbg-pkgs=E2=80=9D
+
+image size grows but you get good debug view on target.
+
+another option, I usually use is setup feeds
+and then
+
+opkg install <package>-dbg
+
+which pulls in a section of debug info needed to debug a given package.
+
+
+>>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAla7mMwACgkQuwUzVZGdMxTzRgCdGoLa4a5BXJwk4ZRwjIJTGlul
+SuUAn0r6YV3jxKMG36+7oQzZ7yijmUTg
+=S8RQ
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_4EA58CE4-8624-4B33-AEA5-E59FB1D5190F--
