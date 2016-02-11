@@ -1,63 +1,38 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BC83E00C25; Thu, 11 Feb 2016 13:30:34 -0800 (PST)
+	id ADC27E00C2F; Thu, 11 Feb 2016 13:48:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.50 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f50.google.com (mail-lf0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBE3CE00C1C
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 13:30:30 -0800 (PST)
-Received: by mail-lf0-f50.google.com with SMTP id 78so40264794lfy.3
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 13:30:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=aEvTFPpcaGtT7R1NtQrhdudymRaPyW+XFMapjM8jSn0=;
-	b=H8/eOtxuzaFwTp/QSqex4dM5k9Pl6pFD9l1wfWMkwVYq22ZxJGNHJFX7phDkMmVZ6S
-	9q0KviCKUkIqCDH86BukkKaPggaZTgauvIxgdxDPis7zD0RhOvSX/VOn0DrAo3Y8W7ra
-	9DzPakYJUmxkrrhcuvoJ6xmkInFnPko+pablyg7xpA7wwF7w7W/cwvGa1UEnN+zs7bXy
-	UFKrnq87XdWmUPjIVKtslwsFYsbLXDMhwXvlU8DgN0VoWr19PW8cDVtlx2emhn5eZBsD
-	Y5p8D3GkmvPzDkxDuyqSNOBg18gJB3M7jnAIoCflm44ptUXftd1CWdukTEZfkhCPhTym
-	TpoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:content-type;
-	bh=aEvTFPpcaGtT7R1NtQrhdudymRaPyW+XFMapjM8jSn0=;
-	b=KwNoKJITyLWOA6bYtHJ04PnDaKM7uAi/Ilzjds0Dm2xGnb4qrmGdh1S9y32RmssbwM
-	i+1QbczzrwazgI9VvBrwaPAECi8h9M4RC/KgEh65Cv7j4f8ptk5w1KlHOsRd+bbVPDJv
-	c6rL6EEOOHgR7edNetAHhdRRqAgkl64+o3CDteGO2r1Y1zGs/mE1Uvc21D9uc1zK+98E
-	b9Eg1zH6nLVHLTLcXuk8H5KBK3XDgkowb0uErURAJcnKp+mktmBfKdZkPtrQJNuSAdFo
-	hht+0Uk4f3vea0F49z2445mYrvgyUQ//GiX4utsdnYWXeijXEFk5DnomvYopvuGOLxOv
-	ck9w==
-X-Gm-Message-State: AG10YORQliLI7j6ZUt1qN6f+aetS1C1jRGtZUm6YNSjMZ6AbS9FVAxDulECYG4g+HQlGgPlTSD3JDXWdcf8dfA==
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7B43E00C1C
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 13:48:26 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u1BLmBZQ012119
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 11 Feb 2016 13:48:12 -0800
+Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Thu, 11 Feb 2016 13:48:11 -0800
+To: Gary Thomas <gary@mlbassoc.com>, Khem Raj <raj.khem@gmail.com>
+References: <56BAE751.6080000@mlbassoc.com> <56BB66B5.7000401@windriver.com>
+	<DF6400FC-9DE0-40FA-8247-9C2D4153A10E@gmail.com>
+	<56BC02E0.3020200@mlbassoc.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <56BD019A.8050605@windriver.com>
+Date: Thu, 11 Feb 2016 15:48:10 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.5.1
 MIME-Version: 1.0
-X-Received: by 10.25.142.136 with SMTP id q130mr20825098lfd.56.1455226229001; 
-	Thu, 11 Feb 2016 13:30:29 -0800 (PST)
-Received: by 10.25.137.85 with HTTP; Thu, 11 Feb 2016 13:30:28 -0800 (PST)
-In-Reply-To: <CABatt_xxvB+FTJfVaXWj4i=FdYYLNr0C3ALuayoXBV7pUnKJ3Q@mail.gmail.com>
-References: <CABatt_xxvB+FTJfVaXWj4i=FdYYLNr0C3ALuayoXBV7pUnKJ3Q@mail.gmail.com>
-Date: Thu, 11 Feb 2016 21:30:28 +0000
-Message-ID: <CABatt_zmzoQXUa88VQaf9M8ccnQaTQmBvWzmDacThVA8hCrRqQ@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: ERROR: busybox-udhcpd not found in the base feeds
+In-Reply-To: <56BC02E0.3020200@mlbassoc.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Debugging shared libraries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,125 +44,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 21:30:34 -0000
-Content-Type: multipart/alternative; boundary=001a114035ac72953d052b854296
+X-List-Received-Date: Thu, 11 Feb 2016 21:48:27 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a114035ac72953d052b854296
-Content-Type: text/plain; charset=UTF-8
+On 2/10/16 9:41 PM, Gary Thomas wrote:
+> On 2016-02-10 21:08, Khem Raj wrote:
+>>
+>>> On Feb 10, 2016, at 8:35 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
+>>>
+>>> On 2/10/16 1:31 AM, Gary Thomas wrote:
+>>>> I'm trying to debug some code (mplayer) which uses some shared
+>>>> libraries from ffmpeg.  When I use GDB (via gdbserver), I don't
+>>>> get all the debug information I need - note that many of the shared
+>>>> libraries do not have any symbolic debugging info:
+>>>
+>>> Is your system using the the split debug binaries, and if so, do you have them
+>>> all installed on the system that GDB is running on?
+>>>
+>>> (When GDB starts, you should see it load the symbols, or error it can't find them.)
+>>>
+>>> Assuming you DO have the symbol files available, and some things are lacking
+>>> debuginfo, it's possible those recipes are not properly building with full
+>>> symbols (they should be, the whole system should be.)
+>>>
+>>> Easiest way to check is do a readelf/objdump on the .debug version of the
+>>> library and check that there are dwarf symbols present... if not, it's probably
+>>> a recipe error.
+>>>
+>>> --Mark
+>>>
+>>>> (gdb) info sharedlibrary
+>>>>  From        To          Syms Read   Shared Object Library
+>>>> 0xb6fcf800  0xb6feaf08  Yes         /tmp/p0382.img/lib/ld-linux-armhf.so.3
+>>>> 0xb6fa6fa8  0xb6fb2b40  Yes (*)     /tmp/p0382.img/lib/libtinfo.so.5
+>>>> 0xb6f6d210  0xb6f8c200  Yes         /tmp/p0382.img/usr/lib/libpng16.so.16
+>>>> 0xb6f488e8  0xb6f54a60  Yes         /tmp/p0382.img/lib/libz.so.1
+>>>> 0xb6f069f0  0xb6f34264  Yes         /tmp/p0382.img/usr/lib/libjpeg.so.8
+>>>> 0xb6edbaf0  0xb6eee29c  Yes         /tmp/p0382.img/usr/lib/libdvdread.so.4
+>>>> 0xb6eb6108  0xb6ec7ae8  Yes         /tmp/p0382.img/usr/lib/libass.so.4
+>>>> 0xb6e808b8  0xb6e95384  Yes         /tmp/p0382.img/usr/lib/libvorbis.so.0
+>>>> 0xb6e6b4b4  0xb6e6d7e4  Yes         /tmp/p0382.img/usr/lib/libogg.so.0
+>>>> 0xb6e48978  0xb6e55eb4  Yes         /tmp/p0382.img/usr/lib/libspeex.so.1
+>>>> 0xb6dfe818  0xb6e1b8b4  Yes (*)     /tmp/p0382.img/usr/lib/libfaad.so.2
+>>>> 0xb6d92df0  0xb6dd4e78  Yes (*)     /tmp/p0382.img/usr/lib/libavutil.so.54
+>>>> 0xb5de0640  0xb64a2e18  Yes (*)     /tmp/p0382.img/usr/lib/libavcodec.so.56
+>>>> 0xb5c17528  0xb5d65840  Yes (*)     /tmp/p0382.img/usr/lib/libavformat.so.56
+>>>> 0xb5b81688  0xb5be8db8  Yes (*)     /tmp/p0382.img/usr/lib/libswscale.so.3
+>>>> 0xb5b5f578  0xb5b6c718  Yes (*)     /tmp/p0382.img/usr/lib/libswresample.so.1
+>>>> 0xb5b44998  0xb5b4b490  Yes (*)     /tmp/p0382.img/usr/lib/libpostproc.so.53
+>>>> 0xb5b1f0e0  0xb5b2e194  Yes         /tmp/p0382.img/lib/libpthread.so.0
+>>>> 0xb5aa4c00  0xb5ad46d0  Yes         /tmp/p0382.img/lib/libm.so.6
+>>>> 0xb5a859ec  0xb5a8fc34  Yes         /tmp/p0382.img/usr/lib/libXext.so.6
+>>>> 0xb597b728  0xb59f92bc  Yes         /tmp/p0382.img/usr/lib/libX11.so.6
+>>>> 0xb5946fc8  0xb59573d0  Yes         /tmp/p0382.img/usr/lib/libtheoradec.so.1
+>>>> 0xb5887910  0xb591bbb8  Yes (*)     /tmp/p0382.img/usr/lib/libasound.so.2
+>>>> 0xb58579f8  0xb58586ac  Yes         /tmp/p0382.img/usr/lib/libXss.so.1
+>>>> 0xb5844ca0  0xb5846bac  Yes         /tmp/p0382.img/usr/lib/libXv.so.1
+>>>> 0xb57e7700  0xb58265e0  Yes         /tmp/p0382.img/usr/lib/libSDL-1.2.so.0
+>>>> 0xb56bae00  0xb57abb28  Yes         /tmp/p0382.img/lib/libc.so.6
+>>>> 0xb569292c  0xb5693724  Yes         /tmp/p0382.img/lib/libdl.so.2
+>>>> 0xb5650a70  0xb566e6a4  Yes         /tmp/p0382.img/usr/lib/libfontconfig.so.1
+>>>> 0xb561e324  0xb563951c  Yes         /tmp/p0382.img/usr/lib/libexpat.so.1
+>>>> 0xb559d36c  0xb55f5cb4  Yes         /tmp/p0382.img/usr/lib/libfreetype.so.6
+>>>> 0xb55622b0  0xb5567e84  Yes         /tmp/p0382.img/usr/lib/libenca.so.0
+>>>> 0xb541fbc0  0xb54b5a08  Yes (*)     /tmp/p0382.img/usr/lib/libx264.so.144
+>>>> 0xb53d4df0  0xb53fa0b0  Yes         /tmp/p0382.img/usr/lib/libtheoraenc.so.1
+>>>> 0xb53a72b0  0xb53bd258  Yes (*)     /tmp/p0382.img/usr/lib/liblzma.so.5
+>>>> 0xb5386050  0xb5392cc0  Yes (*)     /tmp/p0382.img/usr/lib/libbz2.so.0
+>>>> 0xb5367810  0xb5373b30  Yes         /tmp/p0382.img/usr/lib/libxcb.so.1
+>>>> 0xb534da00  0xb534e5a8  Yes         /tmp/p0382.img/usr/lib/libXau.so.6
+>>>> 0xb5339f80  0xb533b69c  Yes         /tmp/p0382.img/usr/lib/libXdmcp.so.6
+>>>> 0xb5323720  0xb5326ea0  Yes         /tmp/p0382.img/lib/librt.so.1
+>>>> 0xb530b6e0  0xb5311234  Yes         /tmp/p0382.img/usr/lib/libXrandr.so.2
+>>>> 0xb52f3530  0xb52f9060  Yes         /tmp/p0382.img/usr/lib/libXrender.so.1
+>>>> 0xb52d3160  0xb52e18a4  Yes         /tmp/p0382.img/lib/libgcc_s.so.1
+>>>> (*): Shared library is missing debugging information.
+>>>>
+>>>> Is this a function of how those libraries were built (by the recipe)
+>>>> or something else?  How can I get the symbolic debugging info enabled?
+>>>>
+>>>> Thanks for any pointers
+>>
+>>
+>> Usually it works well if you add
+>>
+>> EXTRA_IMAGE_FEATURES_append = “ dbg-pkgs”
+>>
+>> image size grows but you get good debug view on target.
+>>
+>> another option, I usually use is setup feeds
+>> and then
+>>
+>> opkg install <package>-dbg
+>>
+>> which pulls in a section of debug info needed to debug a given package.
+>>
+> 
+> I've done all this already.  The problem is that for the libraries which
+> have no symbols there are no corresponding -dbg packages :-(  I looked
+> at the ffmpeg recipe (where the libswresample library I'm most interested
+> in comes from) and there is serious magic involved in the packaging.  I'm
+> pretty sure that's where the discrepancy lies...  Any help understanding
+> how to fix that would be appreciated.
 
-Hi,
+If the package is being built from source, I'd expect -dbg to be generated.. if
+it's not, we definitely should investigate.
 
-I think I understand what has happened.
-It's just occured to me that the udhcpd code is probably part of busybox by
-default and is in the busybox package, so I checked the defconfig and
-CONFIG_UDHCPD is set to y.   I'm assuming that the busybox-udhcpd package
-contains just the init script which of course doesn't get installed as
-DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit" has been set which means I
-have an empty package which then results in the not found in base feeds
-error.
-Does this sound right??
+The intention has always been to generate -dbg for the core pieces..  External
+layers can disable it if they're packaging binaries or commercial, but that is
+different.
 
-I can remove busybox-udhcpd from the image but it does seem wrong to remove
-this from the image when in fact all I'm removing is in the initscript.
+--Mark
 
-Maybe something like
-IMAGE_REMOVE += "
-${@bb.utils.contains('DISTRO_FEATURES','systemd','busybox-udhcpd','',d)}"
-in busybox recipe, if there is such a thing to stop people like me hitting
-this problem again
-
-One question that springs to mind is that if udhcpd is part of busybox by
-default how do you override this with another DHCP server? Which is
-something I may have to look into.
-
-Many Thanks,
-Martin.
+> 
 
 
-
-
-On Thu, Feb 11, 2016 at 5:57 PM, Martin Townsend <mtownsend1973@gmail.com>
-wrote:
-
-> Hi,
->
-> I've just moved over to using systemd on a project but am seeing the error
-> listed in the subject.
-> I added the following to local.conf as there is no distribution config
-> file.
->
-> VIRTUAL-RUNTIME_init_manager = "systemd"
-> DISTRO_FEATURES_append = " systemd"
-> # Prevent the SysVinit distribution feature from being automatically
-> enabled
-> # Breaks busybox-udhcpd for some reason.
-> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
->
-> My understanding is that the last line will stop init scripts being
-> installed if the recipe has systemd support.  Adding
-> VIRTUAL-RUNTIME_initscripts = "" would completely disable init scripts I
-> think so I didn't put this in.  So the above should use systemd where
-> appropriate otherwise use sysV init scripts.
->
-> I then blew away all sstate, cache and tmp directories and rebuilt and get
-> the error.  If I comment out the last line the error goes away but I get
-> all the sys V init scripts.  I checked the recipe and it inherits systemd
-> and update-rc.d and I think the problem may be that busybox builds syslog
-> with a systemd service but all the remaining components use init scripts as
-> far as I can see, including udhcpd.  I looked in packages-split and
-> busybox-udhcpd is empty.
->
-> Any help appreciated,
-> Martin.
->
-
---001a114035ac72953d052b854296
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hi,<br></div><div><br>I think I understand what =
-has happened.<br>It&#39;s just occured to me that the udhcpd code is probab=
-ly part of busybox by default and is in the busybox package, so I checked t=
-he defconfig and CONFIG_UDHCPD is set to y. =C2=A0 I&#39;m assuming that th=
-e busybox-udhcpd package contains just the init script which of course does=
-n&#39;t get installed as DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysv=
-init&quot; has been set which means I have an empty package which then resu=
-lts in the not found in base feeds error. <br></div>Does this sound right??=
-<br><br></div><div>I can remove busybox-udhcpd from the image but it does s=
-eem wrong to remove this from the image when in fact all I&#39;m removing i=
-s in the initscript.<br><br>Maybe something like<br>IMAGE_REMOVE +=3D &quot=
-; ${@bb.utils.contains(&#39;DISTRO_FEATURES&#39;,&#39;systemd&#39;,&#39;bus=
-ybox-udhcpd&#39;,&#39;&#39;,d)}&quot;<br></div><div>in busybox recipe, if t=
-here is such a thing to stop people like me hitting this problem again<br><=
-br></div><div>One question that springs to mind is that if udhcpd is part o=
-f busybox by default how do you override this with another DHCP server? Whi=
-ch is something I may have to look into.=C2=A0 <br></div><div><br></div><di=
-v>Many Thanks,<br></div><div>Martin.<br></div><div><br></div><div><br></div=
-><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu=
-, Feb 11, 2016 at 5:57 PM, Martin Townsend <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:mtownsend1973@gmail.com" target=3D"_blank">mtownsend1973@gmail.com<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><d=
-iv><div><div>Hi,<br><br></div>I&#39;ve just moved over to using systemd on =
-a project but am seeing the error listed in the subject.<br></div>I added t=
-he following to local.conf as there is no distribution config file.<br><br>=
-VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;<br>DISTRO_FEATURES_app=
-end =3D &quot; systemd&quot;<br># Prevent the SysVinit distribution feature=
- from being automatically enabled<br># Breaks busybox-udhcpd for some reaso=
-n.<br>DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysvinit&quot;<br><br><=
-/div><div>My understanding is that the last line will stop init scripts bei=
-ng installed if the recipe has systemd support.=C2=A0 Adding VIRTUAL-RUNTIM=
-E_initscripts =3D &quot;&quot; would completely disable init scripts I thin=
-k so I didn&#39;t put this in.=C2=A0 So the above should use systemd where =
-appropriate otherwise use sysV init scripts. <br></div><div><br></div><div>=
-I then blew away all sstate, cache and tmp directories and rebuilt and get =
-the error.=C2=A0 If I comment out the last line the error goes away but I g=
-et all the sys V init scripts.=C2=A0 I checked the recipe and it inherits s=
-ystemd and update-rc.d and I think the problem may be that busybox builds s=
-yslog with a systemd service but all the remaining components use init scri=
-pts as far as I can see, including udhcpd.=C2=A0 I looked in packages-split=
- and busybox-udhcpd is empty.<br><br></div><div>Any help appreciated,<br></=
-div><div>Martin.=C2=A0 <br></div></div>
-</blockquote></div><br></div>
-
---001a114035ac72953d052b854296--
