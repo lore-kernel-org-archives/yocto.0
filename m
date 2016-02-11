@@ -1,40 +1,61 @@
-Return-Path: <Fahad_Usman@mentor.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 017FDE00BB6; Thu, 11 Feb 2016 02:47:05 -0800 (PST)
+	id 34946E00BB6; Thu, 11 Feb 2016 02:58:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3D9FE00B9C
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 02:47:03 -0800 (PST)
-Received: from nat-ies.mentorg.com ([192.94.31.2]
-	helo=SVR-IES-FEM-01.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1aTom6-0000GO-PW from Fahad_Usman@mentor.com ;
-	Thu, 11 Feb 2016 02:47:02 -0800
-Received: from [137.202.156.162] (137.202.0.76) by
-	SVR-IES-FEM-01.mgc.mentorg.com (137.202.0.104) with Microsoft SMTP
-	Server (TLS) id 14.3.224.2; Thu, 11 Feb 2016 10:47:01 +0000
-To: <ed.bartosh@linux.intel.com>
-References: <56BB7201.4080904@mentor.com>
-	<20160211063627.GA4868@linux.intel.com>
-From: "Usman, Fahad" <Fahad_Usman@mentor.com>
-Message-ID: <56BC66A1.7090605@mentor.com>
-Date: Thu, 11 Feb 2016 15:46:57 +0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
+	[209.85.213.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3F04E00B9C
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 02:58:19 -0800 (PST)
+Received: by mail-ig0-f174.google.com with SMTP id y8so2962426igp.1
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 02:58:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=jlbdJh1hHkY9Sbd6uemE7CVPusqGBlr/Ak3IE7nQ7rs=;
+	b=AAXS//XJu5aBJYh4fM/hkUeVSyU6YNzDQVGZOCvRtA8AXmrUqQAR6R1liazyyuVOxo
+	Uh1U79l5vZPBKtOob+nodFZtpGyJrVcs3mOhQ+Cq6jG8qbc+IhyDJCD6LmF9f3NCDQBY
+	tvesSH8TSb5aF+r4C2aDWCawm2jiIJ7nF24odfKpxnbyhlIZ0lfw/CVF3ghbnYZ9zMgf
+	0sl5rop2ITD+ZF4P8SS/o0Dv4cVWSCDjnED2eYxQ+Cv8KTHdFRvIsR4apr5lILOQ5GWq
+	p61LEeppDD8C3CB9XiyiMMGZ8OErV7kiPv8SvkYg5tyWY0rI6nda3nr2T/6zOF09MvgG
+	L5Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=jlbdJh1hHkY9Sbd6uemE7CVPusqGBlr/Ak3IE7nQ7rs=;
+	b=BhzDPnqisn3ALmJoX4UjOjkmv/ZdOFJ7ISaxP9Xz90QS+RuMz4FUUu5rtwaCfLgQEP
+	Fk/g2eYNy0QgpknmHt2iHbu8pqYc5RN5GqBzvMM+Jf1jLuP5c8JB3w2NAR2UyuFS5KLp
+	nWUXaGTEEiyT6Mio2PspTATQvBiEkEfexT65lKxzDaba5wmciMfvNDd4pbiMAet9ng8y
+	A4w/x9kIOXjkyazVDIB78HNW/M1Gvgc0byZ3TmL+GTmNcq+JIvnnI3RshGeQ0S4nqom4
+	0Bpzj8VQ/XTW/2KAIap16tG6odNZK+zFuNmIB8IPfTpklB6xCy78JZPP+w7AS65QRp3a
+	uQ4g==
+X-Gm-Message-State: AG10YOQJJ0aGL6a92pcyao4XKI6KdtsZ853iRfa+jR3aU5YN1hiAtJwPK8mSxhnZbfnXeY5ELvbpb/TiXqSpmfUk
+X-Received: by 10.50.43.133 with SMTP id w5mr14826356igl.52.1455188299120;
+	Thu, 11 Feb 2016 02:58:19 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20160211063627.GA4868@linux.intel.com>
-X-Originating-IP: [137.202.0.76]
-Cc: yocto@yoctoproject.org
-Subject: Re: wic: Setting partition id value?
+Received: by 10.107.162.70 with HTTP; Thu, 11 Feb 2016 02:57:59 -0800 (PST)
+In-Reply-To: <56BC6621.6000809@nokia.com>
+References: <56BC6621.6000809@nokia.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 11 Feb 2016 10:57:59 +0000
+Message-ID: <CAJTo0Lan0mShTsA7ybk0OZH3qFmtvWpOv113Wv6V=m7BannUeg@mail.gmail.com>
+To: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: valgrind-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,20 +67,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 10:47:05 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Feb 2016 10:58:23 -0000
+Content-Type: multipart/alternative; boundary=089e01175f2ba69d27052b7c6dc5
 
-On 02/11/2016 11:36 AM, Ed Bartosh wrote:
-> This is not supported by wic, but shouldn't be hard to implement.
-> Please create an issue in bugzilla and assign to me if you want me to
-> do it.
-Thanks Ed,
-I have created this bug, 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=9096. Do let me know 
-if you need any more information.
+--089e01175f2ba69d27052b7c6dc5
+Content-Type: text/plain; charset=UTF-8
 
---
-Regards,
-Fahad.
+Hi,
 
+On 11 February 2016 at 10:44, Woronicz, Bartosz ( NSN - PL/Wroclaw) <
+bartosz.woronicz@nokia.com> wrote:
+
+> Any ideas why I cannot build native valgrind ?
+> http://pastebin.com/e2h6AWxN
+> "Missing or unbuildable dependency chain was: ['valgrind-native',
+> 'glibc-dbg-native']"
+>
+> Also tried bitbake glibc-dbg . nothing provides that, but it is required
+> in recipe
+>
+
+The short answer is because valgrind doesn't have a native form yet.
+Presumably you added BBCLASSEXTEND=native yourself, so you get to fix it. :)
+
+valgrind RRECOMMENDS $(TCLIBC)-dbg as without debugging symbols it's fairly
+useless, and TCLIBC is the variable for the libc being used (in your case,
+glibc).  As a recommends, it will be built.
+
+However, native recipes don't usually depend on the C library (base.bbclass
+handles the addition of those core dependencies, and doesn't run on native
+builds) so you've hit a new corner case.
+
+The easy fix would be to remove the recommends in the native build case:
+
+RRECOMMENDS_${PN}_class-native = ""
+
+Surprisingly enough it then builds!
+
+Also remember that we strip the native sysroot, so if you want a native
+valgrind to be useful in any way you'll have to disable that too
+(INHIBIT_SYSROOT_STRIP).
+
+(it would probably be easier to use the host valgrind, to be honest)
+
+Ross
+
+--089e01175f2ba69d27052b7c6dc5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,</div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On 11 February 2016 at 10:44, Woronicz,=
+ Bartosz ( NSN - PL/Wroclaw) <span dir=3D"ltr">&lt;<a href=3D"mailto:bartos=
+z.woronicz@nokia.com" target=3D"_blank">bartosz.woronicz@nokia.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":n3" class=3D"a3=
+s" style=3D"overflow:hidden">Any ideas why I cannot build native valgrind ?=
+ <a href=3D"http://pastebin.com/e2h6AWxN" rel=3D"noreferrer" target=3D"_bla=
+nk">http://pastebin.com/e2h6AWxN</a><br>
+&quot;Missing or unbuildable dependency chain was: [&#39;valgrind-native&#3=
+9;, &#39;glibc-dbg-native&#39;]&quot;<br>
+<br>
+Also tried bitbake glibc-dbg . nothing provides that, but it is required in=
+ recipe</div></blockquote></div><br>The short answer is because valgrind do=
+esn&#39;t have a native form yet.=C2=A0 Presumably you added BBCLASSEXTEND=
+=3Dnative yourself, so you get to fix it. :)</div><div class=3D"gmail_extra=
+"><br></div><div class=3D"gmail_extra">valgrind RRECOMMENDS $(TCLIBC)-dbg a=
+s without debugging symbols it&#39;s fairly useless, and TCLIBC is the vari=
+able for the libc being used (in your case, glibc).=C2=A0 As a recommends, =
+it will be built.</div><div class=3D"gmail_extra"><br></div><div class=3D"g=
+mail_extra">However, native recipes don&#39;t usually depend on the C libra=
+ry (base.bbclass handles the addition of those core dependencies, and doesn=
+&#39;t run on native builds) so you&#39;ve hit a new corner case.</div><div=
+ class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">The easy fix wo=
+uld be to remove the recommends in the native build case:</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">RRECOMMENDS_${PN}_cla=
+ss-native =3D &quot;&quot;</div><div class=3D"gmail_extra"><br></div><div c=
+lass=3D"gmail_extra">Surprisingly enough it then builds!</div><div class=3D=
+"gmail_extra"><br></div><div class=3D"gmail_extra">Also remember that we st=
+rip the native sysroot, so if you want a native valgrind to be useful in an=
+y way you&#39;ll have to disable that too (INHIBIT_SYSROOT_STRIP).</div><di=
+v class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">(it would prob=
+ably be easier to use the host valgrind, to be honest)</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--089e01175f2ba69d27052b7c6dc5--
