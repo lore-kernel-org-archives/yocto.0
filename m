@@ -1,14 +1,15 @@
-Return-Path: <pervivek@gmail.com>
+Return-Path: <roman.shaposhnikov@globallogic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7828E00C35; Thu, 11 Feb 2016 07:40:05 -0800 (PST)
+	id 6995CE00C33; Thu, 11 Feb 2016 07:53:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pervivek[at]gmail.com)
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,45 +18,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.46 listed in list.dnswl.org]
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7338FE00C1F
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:40:02 -0800 (PST)
-Received: by mail-vk0-f46.google.com with SMTP id k196so39348349vka.0
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:40:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=SuxE4y02grwX1t7JzOqFKSz31cGStLn931q7y+jGrNQ=;
-	b=zTcZyWqVYcBV86y0OcOZ7cPKVWEGAxXlYJNQCcMgKUdwr+Jb6LU0lTywUnxs+I3CA6
-	b+BasKa9F7tJAromqTRkD+oXwsst/LK5gy9WCRKcwo7DLTPn73fI4LlAU7G5YvMzpF5F
-	IueUAFg+9SzYvV/O17m/pz9UqQDdhbJQSsWoi8MMzCBpSWRx1Ze52flE5QMO/xNiY0g3
-	oQVW7lunegQaU4urSafqcIiFKtZiaDg4O2J44QKy+Zqliowj7kpQH3GgwO+Zhue6DOgk
-	hV2QZP4ZhNNuyXbcfUUPC1uXX5VHlal2miP/MOABmFbyfSGqpCpPnSce6raAenti0J7c
-	N7sw==
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ABA2E00BC2
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:53:16 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id l127so58424835iof.3
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:53:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=globallogic.com; s=google;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=2BFQkTVeE8gG/NhKmF0A73ruqc5+7ERZDz9YwOn1VAg=;
+	b=VCpaChRVvcdzQnEXE8+DWP6rU/2tWfUPNec1+Z/sV77HJ+r371HqMIGoXRH2lfnkL2
+	FioHUNp1qnlPuzOsEnq8wL38hUQAnxE3UZFaQY6qv+0sBFmbsdCBUDzP7zfTVbt75CV8
+	G9fjC2rwB1Ady1h2wR2B4sUboq6jeh0XLLt7w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
 	:content-type;
-	bh=SuxE4y02grwX1t7JzOqFKSz31cGStLn931q7y+jGrNQ=;
-	b=ZEbIpocgzB9LU26Q3Da8dgZCltME3x91Tj7e1Yuf44AmQL65idVBSsdcTHC/RRuRMu
-	4oQ/4bxAAXj+w9PuK5jXcd2EF0wxiI0QpOAOZ1i6LCU/Dbw2nPgTaHZrBs2BX2Er8Uef
-	kh3cMl6YynwFLlKua95zpBEYk8bNbwYSLI2lTcuPsK63GHe2aZu8fRkNuB3ZpP8SstN1
-	GiPP6WSnzgSnibnESYdirhyBEYnUuY26X6/xclW4XXRTOXTfTlogFeLJfajAt+/6V5rd
-	tW2+ZCPHdvyPaOyN2HKsMxWxrkv9EjUxMyB3ckE6eIKf6ckgwiKxoYnPk5DymFQX4Q9m
-	7q2w==
-X-Gm-Message-State: AG10YOR1X0ffWAoIbdDbhZwpzfNQaz3NxJi+J3lv4IVy7Ce56KMjrGZIpcjdPeJcXvDEhhcgvdKI2ya45l4ZsQ==
+	bh=2BFQkTVeE8gG/NhKmF0A73ruqc5+7ERZDz9YwOn1VAg=;
+	b=iCht3FQFsrIKDk05/sEKuG9CJTOysyxExwah8c5LvNJRPTt3gQsxtKiiLJnyXiRhtr
+	XO9+2iL4oKURIuwL7x7ktL7Bi0IcLSesn+98zyY2wx6eOaMCMZQcHTBWyFNERdyVk41f
+	Y6m/++Wh2GA0G8jbRWyNuSzY23HYPIaWsSYvDY+AkzPTjaT1EUaJIL+U69lpxEByGnW6
+	2bXUSukgdGzXuUyJLt4VYczega8YklrqprvDRVqL/8oMYrTH7THAPTa7xmmxcc41usrp
+	VTKUVlheAEmVAAspB6WC+9Yi153x10doOdLk4n5iNkaW+6mgEkoQgcHAiTsd+fQdwpu4
+	TgLA==
+X-Gm-Message-State: AG10YOQurw94dAkopmocd5cUSJlNCEy/Mn6k4/m+IgwdSvo0xL3bP/+bmAeL3r6VpiYR/kPsTEszREqRKIrHFqDn
+X-Received: by 10.107.154.79 with SMTP id c76mr43043174ioe.53.1455205996430;
+	Thu, 11 Feb 2016 07:53:16 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.31.178.146 with SMTP id b140mr34656657vkf.108.1455205201569; 
-	Thu, 11 Feb 2016 07:40:01 -0800 (PST)
-Received: by 10.31.229.71 with HTTP; Thu, 11 Feb 2016 07:40:01 -0800 (PST)
-Date: Thu, 11 Feb 2016 21:10:01 +0530
-Message-ID: <CALLyC8RLpNFDrr63E=+yt06RGUGVpqAzn4erwkyJ-LrHqwNOPw@mail.gmail.com>
-From: Vivek Per <pervivek@gmail.com>
-To: Yocto <yocto@yoctoproject.org>
-Subject: How to create do_populate_sysroot_append task
+Received: by 10.107.15.170 with HTTP; Thu, 11 Feb 2016 07:52:57 -0800 (PST)
+From: Roman Shaposhnikov <roman.shaposhnikov@globallogic.com>
+Date: Thu, 11 Feb 2016 17:52:57 +0200
+Message-ID: <CAN27R1YrO9QstzxTnq1AtcWkM=wtr4Pkg-f88kPsepCx3+4Obg@mail.gmail.com>
+To: Marius <mdlcameras@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to build for various boards from one yocto installatio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,33 +64,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 15:40:06 -0000
-Content-Type: multipart/alternative; boundary=001a1144034c1d6a4a052b805d18
+X-List-Received-Date: Thu, 11 Feb 2016 15:53:21 -0000
+Content-Type: multipart/alternative; boundary=001a1140fa207e24d0052b808ceb
 
---001a1144034c1d6a4a052b805d18
+--001a1140fa207e24d0052b808ceb
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
-    I want to add some additional kernel files to sysroot directory . I
-want to extend do_populate_sysroot task , I want to copy few more files in
-to sysroot after do_populate_sysroot and before do_package. I tried to
-create do_populate_sysroot_append() in recipe  but it is getting parsing
-error . how could i add file in sysroot after populate_sysroot and before
-do_package.
+Hi Mariues,
 
-Thanks in advance
-   Vivek
+Yes, you can do this. At least you should create separate machine config.
+For more details please check -
+http://www.yoctoproject.org/docs/1.8/bsp-guide/bsp-guide.html (this will
+provide you general process overview)
 
---001a1144034c1d6a4a052b805d18
+On Thu, Feb 2, 2016 at 3:20 AM, Marius <mdlcameras@gmail.com > wrote:
+
+> I have a custom board (similar to BBB) that has no HDMI and no network
+> as well as a standard BBB. I want to build images for each from my yocto
+> (poky-jethro) installation.
+> Can it be done and if so how do I go about that?
+>
+> Regards
+> Marius
+> -------------- next part --------------
+> An HTML attachment was scrubbed...
+> URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20160202/980b86b3/attachment.html>
+>
+>
+-- 
+Regards,
+
+Roman Shaposhnikov
+
+--001a1140fa207e24d0052b808ceb
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 I want to add some additional kernel=
- files to sysroot directory . I want to extend do_populate_sysroot task , I=
- want to copy few more files in to sysroot after do_populate_sysroot and be=
-fore do_package. I tried to create do_populate_sysroot_append() in recipe =
-=C2=A0but it is getting parsing error . how could i add file in sysroot aft=
-er populate_sysroot and before do_package.</div><div><br></div><div>Thanks =
-in advance</div><div>=C2=A0 =C2=A0Vivek</div></div>
+<div dir=3D"ltr"><div>Hi Mariues,</div><div><br></div><div>Yes, you can do =
+this. At least you should create separate machine config.</div><div>For mor=
+e details please check -=C2=A0<a href=3D"http://www.yoctoproject.org/docs/1=
+.8/bsp-guide/bsp-guide.html">http://www.yoctoproject.org/docs/1.8/bsp-guide=
+/bsp-guide.html</a> (this will provide you general process overview)</div><=
+div><br></div><font color=3D"#500050"><span style=3D"font-size:12.8px">On T=
+hu, Feb 2, 2016 at 3:20 AM, Marius &lt;<a href=3D"mailto:mdlcameras@gmail.c=
+om" target=3D"_blank">mdlcameras@gmail.com</a> &gt;=C2=A0</span></font><spa=
+n style=3D"color:rgb(80,0,80);font-size:12.8px">wrote:</span><br style=3D"c=
+olor:rgb(80,0,80);font-size:12.8px"><blockquote class=3D"gmail_quote" style=
+=3D"color:rgb(80,0,80);font-size:12.8px;margin:0px 0px 0px 0.8ex;border-lef=
+t-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><pre style=3D"white-space:pre-wrap;color:rgb=
+(0,0,0)">I have a custom board (similar to BBB) that has no HDMI and no net=
+work=20
+as well as a standard BBB. I want to build images for each from my yocto=20
+(poky-jethro) installation.
+Can it be done and if so how do I go about that?
 
---001a1144034c1d6a4a052b805d18--
+Regards
+Marius
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
+ts/20160202/980b86b3/attachment.html" target=3D"_blank">http://lists.yoctop=
+roject.org/pipermail/yocto/attachments/20160202/980b86b3/attachment.html</a=
+>&gt;</pre></div></blockquote><div><br></div>--=C2=A0<div><span style=3D"fo=
+nt-size:12.8px">Regards,</span><br><div><div dir=3D"ltr"><div><div dir=3D"l=
+tr"><div><div dir=3D"ltr">
+<p style=3D"margin:0px"><span style=3D"font-family:Calibri;font-size:10pt;f=
+ont-weight:600;color:rgb(51,51,51)">Roman Shaposhnikov=C2=A0</span></p></di=
+v></div></div></div></div></div>
+</div></div>
+
+--001a1140fa207e24d0052b808ceb--
