@@ -1,46 +1,61 @@
-Return-Path: <bartosz.woronicz@nokia.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA2A3E00BD0; Thu, 11 Feb 2016 04:38:29 -0800 (PST)
+	id 5EB74E00BEB; Thu, 11 Feb 2016 05:52:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [93.183.12.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from demumfd002.nsn-inter.net (demumfd002.nsn-inter.net
-	[93.183.12.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57A62E00BB9
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 04:38:25 -0800 (PST)
-Received: from demuprx016.emea.nsn-intra.net ([10.150.129.55])
-	by demumfd002.nsn-inter.net (8.15.2/8.15.2) with ESMTPS id
-	u1BCcMhX025314
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=OK);
-	Thu, 11 Feb 2016 12:38:22 GMT
-Received: from [10.154.187.104] ([10.154.187.104])
-	by demuprx016.emea.nsn-intra.net (8.12.11.20060308/8.12.11) with ESMTP
-	id u1BCcMjR006501; Thu, 11 Feb 2016 13:38:22 +0100
-To: "EXT Burton, Ross" <ross.burton@intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 240C5E00BE6
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 05:52:13 -0800 (PST)
+Received: by mail-ig0-f177.google.com with SMTP id xg9so35225289igb.1
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 05:52:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=8335qrqXHkfc98YYH0rF+GE35Dd5tSGHxPI1Dy5K+u4=;
+	b=ZdIvyc6HMHnlrPzjmMAvnO++x8bkzkq3wsd0CFNPVmFRF1BPgI8lMsmYfrChL14BVa
+	EcR9ZHbnZjSCdRwwZqTTMQ+3MtTdJwXLKjsL5LFAkL6e0DEn/rDWwmAf7G07HBDD74ie
+	O2dtjZZkLQKoDKxOV2t9gA+eIFWCo1sJfRUMwdvELEvwiioZ4GqGp0MdL/1rL5NQDD3I
+	M5QfEKBXOPNE4MipJwnX8dpcXdV4aSZ7zanwXTMoR3l01d00rR8jYdJ5IjiulE9qDbxT
+	gI2Tm775TXhCZW3iQDsZapZkH3ngLlVilVkcTPWVpJFPR+QmMDyZD+kmKVA3CxYwQ06L
+	CEsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=8335qrqXHkfc98YYH0rF+GE35Dd5tSGHxPI1Dy5K+u4=;
+	b=F7wysEoq5y9Fy6ydaiCK90RakZXPevJHH46m2a9C1KnUPjcJtTzdr/FvBQufnW+dqO
+	lC3zZ7Zx8Y+c7Kh+MrbC5GcaLLrMZVMZmi84LBa/4BWN2godrRVqKN4XfpjEfDxVSEsK
+	PxiMUL5x5Wha+NCoobEZplmwlMDBEseEDawjZHql2eA5PofHWDUKtTHPFhLeF3KnHLb6
+	m4YwdVt5CBX7//JcUtju9jRVFDfTb+PhK3LiBRhSM4e3Uck+tUovnAz+giN5Qlu4SlmN
+	DL6enLHC2rLVrViwaT4xns3mKIG2ROD0K8htDk3UdRUaAIZyV2Mof3ok9OM5IUACHwfv
+	Vv7w==
+X-Gm-Message-State: AG10YOQ9IIW3p7jSe2hArmJvYiW5BV6MQ69v2OCOIxkmZnXd5HetktGPf2779K/8AGlESdY1brE+qQHFJbTVICqV
+X-Received: by 10.50.126.8 with SMTP id mu8mr15569299igb.52.1455198733317;
+	Thu, 11 Feb 2016 05:52:13 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.162.70 with HTTP; Thu, 11 Feb 2016 05:51:53 -0800 (PST)
+In-Reply-To: <56BC80BE.5030707@nokia.com>
 References: <56BC6621.6000809@nokia.com>
 	<CAJTo0Lan0mShTsA7ybk0OZH3qFmtvWpOv113Wv6V=m7BannUeg@mail.gmail.com>
-From: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
-Message-ID: <56BC80BE.5030707@nokia.com>
-Date: Thu, 11 Feb 2016 13:38:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-In-Reply-To: <CAJTo0Lan0mShTsA7ybk0OZH3qFmtvWpOv113Wv6V=m7BannUeg@mail.gmail.com>
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) http://www.eleven.de
-X-purgate: clean
-X-purgate: This mail is considered clean (visit http://www.eleven.de for
-	further information)
-X-purgate-size: 6882
-X-purgate-ID: 151667::1455194303-00004E94-724C2FD6/0/0
+	<56BC80BE.5030707@nokia.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 11 Feb 2016 13:51:53 +0000
+Message-ID: <CAJTo0LYzQMYj+3BhVHCXyfU0tFkB7ZUopskhf+oCHyz00Tdckg@mail.gmail.com>
+To: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: valgrind-native
 X-BeenThere: yocto@yoctoproject.org
@@ -54,173 +69,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 12:38:29 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070601060002030501010303"
+X-List-Received-Date: Thu, 11 Feb 2016 13:52:17 -0000
+Content-Type: multipart/alternative; boundary=047d7b1635bf93d16d052b7edb4a
 
---------------070601060002030501010303
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--047d7b1635bf93d16d052b7edb4a
+Content-Type: text/plain; charset=UTF-8
 
-Hi Ross,
+On 11 February 2016 at 12:38, Woronicz, Bartosz ( NSN - PL/Wroclaw) <
+bartosz.woronicz@nokia.com> wrote:
 
-many thanks for nice explanation. At my shallow research, I notice, that 
-valgrind is somewhat special demanding packages with debugging symbols, 
-sooo... I actually don't need all packages to be unstripped. Only those 
-I am developing and testing. Therefore i might need create some class 
-that will require debug symbols.
-And, propalby I will also need glibc with DBG symbols... or not ?
+> many thanks for nice explanation. At my shallow research, I notice, that
+> valgrind is somewhat special demanding packages with debugging symbols,
+> sooo... I actually don't need all packages to be unstripped. Only those I
+> am developing and testing. Therefore i might need create some class that
+> will require debug symbols.
+> And, propalby I will also need glibc with DBG symbols... or not ?
+>
 
+Yes, if you set INHIBIT_SYSROOT_STRIP then all of the sysroots will be
+unstripped, but you'll want all the debug symbols for the libraries that
+are used from the host (such as glibc).
 
-"Presumably you added BBCLASSEXTEND=native yourself, so you get to fix 
-it. :)"
-Indeed, I did so ;-]
+Ross
 
-Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw
+--047d7b1635bf93d16d052b7edb4a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 11.02.2016 11:57, EXT Burton, Ross wrote:
-> Hi,
->
-> On 11 February 2016 at 10:44, Woronicz, Bartosz ( NSN - PL/Wroclaw) 
-> <bartosz.woronicz@nokia.com <mailto:bartosz.woronicz@nokia.com>> wrote:
->
->     Any ideas why I cannot build native valgrind ?
->     http://pastebin.com/e2h6AWxN
->     "Missing or unbuildable dependency chain was: ['valgrind-native',
->     'glibc-dbg-native']"
->
->     Also tried bitbake glibc-dbg . nothing provides that, but it is
->     required in recipe
->
->
-> The short answer is because valgrind doesn't have a native form yet.  
-> Presumably you added BBCLASSEXTEND=native yourself, so you get to fix 
-> it. :)
->
-> valgrind RRECOMMENDS $(TCLIBC)-dbg as without debugging symbols it's 
-> fairly useless, and TCLIBC is the variable for the libc being used (in 
-> your case, glibc). As a recommends, it will be built.
->
-> However, native recipes don't usually depend on the C library 
-> (base.bbclass handles the addition of those core dependencies, and 
-> doesn't run on native builds) so you've hit a new corner case.
->
-> The easy fix would be to remove the recommends in the native build case:
->
-> RRECOMMENDS_${PN}_class-native = ""
->
-> Surprisingly enough it then builds!
->
-> Also remember that we strip the native sysroot, so if you want a 
-> native valgrind to be useful in any way you'll have to disable that 
-> too (INHIBIT_SYSROOT_STRIP).
->
-> (it would probably be easier to use the host valgrind, to be honest)
->
-> Ross
-
-
---------------070601060002030501010303
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi Ross,<br>
-    <br>
-    many thanks for nice explanation. At my shallow research, I notice,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 11 February 2016 at 12:38, Woronicz, Bartosz ( NSN - PL/Wroclaw) <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:bartosz.woronicz@nokia.com" target=3D"_bla=
+nk">bartosz.woronicz@nokia.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div text=3D"#000000" bgcolor=3D"#FFFFFF">many thanks for nic=
+e explanation. At my shallow research, I notice,
     that valgrind is somewhat special demanding packages with debugging
-    symbols, sooo... I actually don't need all packages to be
+    symbols, sooo... I actually don&#39;t need all packages to be
     unstripped. Only those I am developing and testing. Therefore i
     might need create some class that will require debug symbols. <br>
-    And, propalby I will also need glibc with DBG symbols... or not ?<br>
-    <br>
-    <br>
-    "Presumably you added BBCLASSEXTEND=native yourself, so you get to
-    fix it. :)"<br>
-    Indeed, I did so ;-]<br>
-    <br>
-    <pre class="moz-signature" cols="72">Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-NSN - PL/Wroclaw</pre>
-    <div class="moz-cite-prefix">On 11.02.2016 11:57, EXT Burton, Ross
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJTo0Lan0mShTsA7ybk0OZH3qFmtvWpOv113Wv6V=m7BannUeg@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <div dir="ltr">
-        <div class="gmail_extra">Hi,</div>
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On 11 February 2016 at 10:44,
-            Woronicz, Bartosz ( NSN - PL/Wroclaw) <span dir="ltr">&lt;<a
-                moz-do-not-send="true"
-                href="mailto:bartosz.woronicz@nokia.com" target="_blank"><a class="moz-txt-link-abbreviated" href="mailto:bartosz.woronicz@nokia.com">bartosz.woronicz@nokia.com</a></a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div id=":n3" class="a3s" style="overflow:hidden">Any
-                ideas why I cannot build native valgrind ? <a
-                  moz-do-not-send="true"
-                  href="http://pastebin.com/e2h6AWxN" rel="noreferrer"
-                  target="_blank"><a class="moz-txt-link-freetext" href="http://pastebin.com/e2h6AWxN">http://pastebin.com/e2h6AWxN</a></a><br>
-                "Missing or unbuildable dependency chain was:
-                ['valgrind-native', 'glibc-dbg-native']"<br>
-                <br>
-                Also tried bitbake glibc-dbg . nothing provides that,
-                but it is required in recipe</div>
-            </blockquote>
-          </div>
-          <br>
-          The short answer is because valgrind doesn't have a native
-          form yet.  Presumably you added BBCLASSEXTEND=native yourself,
-          so you get to fix it. :)</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">valgrind RRECOMMENDS $(TCLIBC)-dbg as
-          without debugging symbols it's fairly useless, and TCLIBC is
-          the variable for the libc being used (in your case, glibc). 
-          As a recommends, it will be built.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">However, native recipes don't usually
-          depend on the C library (base.bbclass handles the addition of
-          those core dependencies, and doesn't run on native builds) so
-          you've hit a new corner case.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">The easy fix would be to remove the
-          recommends in the native build case:</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">RRECOMMENDS_${PN}_class-native = ""</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Surprisingly enough it then builds!</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Also remember that we strip the native
-          sysroot, so if you want a native valgrind to be useful in any
-          way you'll have to disable that too (INHIBIT_SYSROOT_STRIP).</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">(it would probably be easier to use the
-          host valgrind, to be honest)</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Ross</div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+    And, propalby I will also need glibc with DBG symbols... or not ?<span =
+class=3D""><br></span></div></blockquote></div><br>Yes, if you set INHIBIT_=
+SYSROOT_STRIP then all of the sysroots will be unstripped, but you&#39;ll w=
+ant all the debug symbols for the libraries that are used from the host (su=
+ch as glibc).</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail=
+_extra">Ross</div></div>
 
---------------070601060002030501010303--
+--047d7b1635bf93d16d052b7edb4a--
