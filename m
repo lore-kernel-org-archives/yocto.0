@@ -1,52 +1,61 @@
-Return-Path: <sagar.bhanagay@hpe.com>
+Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08587E00C29; Thu, 11 Feb 2016 09:43:02 -0800 (PST)
+	id BDD6DE00C29; Thu, 11 Feb 2016 09:58:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.240.92.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mtownsend1973[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 7792 seconds by postgrey-1.32 at yocto-www;
-	Thu, 11 Feb 2016 09:43:00 PST
-Received: from g9t5009.houston.hp.com (g9t5009.houston.hp.com [15.240.92.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD2F7E00C1F
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 09:43:00 -0800 (PST)
-Received: from G9W8453.americas.hpqcorp.net (g9w8453.houston.hp.com
-	[16.216.160.211])
-	(using TLSv1.2 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by g9t5009.houston.hp.com (Postfix) with ESMTPS id D360358
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 17:42:59 +0000 (UTC)
-Received: from G9W8453.americas.hpqcorp.net (16.216.160.211) by
-	G9W8453.americas.hpqcorp.net (16.216.160.211) with Microsoft SMTP
-	Server (TLS) id 15.0.1076.9; Thu, 11 Feb 2016 17:42:42 +0000
-Received: from G4W6305.americas.hpqcorp.net (16.210.26.230) by
-	G9W8453.americas.hpqcorp.net (16.216.160.211) with Microsoft SMTP
-	Server (TLS) id 15.0.1076.9 via Frontend Transport;
-	Thu, 11 Feb 2016 17:42:42 +0000
-Received: from G4W3233.americas.hpqcorp.net ([169.254.5.127]) by
-	G4W6305.americas.hpqcorp.net ([16.210.26.230]) with mapi id
-	14.03.0169.001; Thu, 11 Feb 2016 17:42:19 +0000
-From: "Bhanagay, Sagar" <sagar.bhanagay@hpe.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Need some info regarding parsing all recipe files
-Thread-Index: AdFk4Mzj5RAb0s8ETv6HWg0jBxykjgAEmPVg
-Date: Thu, 11 Feb 2016 17:42:19 +0000
-Message-ID: <EC8BB00EF68CF14E9A15000E115CBC8102C167@G4W3233.americas.hpqcorp.net>
-References: <EC8BB00EF68CF14E9A15000E115CBC8102BE8A@G4W3233.americas.hpqcorp.net>
-In-Reply-To: <EC8BB00EF68CF14E9A15000E115CBC8102BE8A@G4W3233.americas.hpqcorp.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [16.210.192.232]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BDF6E00C1F
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 09:57:59 -0800 (PST)
+Received: by mail-lb0-f171.google.com with SMTP id tk3so19885162lbb.3
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 09:57:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=CsjucmSkod8t2bWbdVu52Kb+I6QHPF9FIVF+HPaijLM=;
+	b=EZnNeC0EidewdYbiGCNG7nuWVBSXAmUVOJfZ9nhACT+Dlcgqj/TCGiXFtkyLB6Iea5
+	HGM17QMCwymLO98NX5ypnLyMHxqAZO2WT2AJcweo1lHLAwbce9hq7/Tyicq9/ftND7Qy
+	U0AdUa+Kz0Qi7hrPtVrodzZ5AC+WnJVQutZTwYpnKxvLa/755uOY1kgv+YCsyDt4rW9f
+	rn8fBVAVtaxj9v8lB3i7fo7fH/0Pdnd1g1p2nn7giguB02C1zTaqAzylBWFGiNZltsYa
+	73MlBMR8CAq1+OJkkf+H1JZw8PxLSxEHqKnrdm0nnGajxTup3Gh56vnAdM7HFMj2HxE+
+	V2rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=CsjucmSkod8t2bWbdVu52Kb+I6QHPF9FIVF+HPaijLM=;
+	b=C5VYYrQJDM02N3ultER/ON07WhxJSSyP1v1BRk//UXbKZNYfr7XWFKFo9kw/dOVsTZ
+	Y8FqYcLTyrndkb/bVimEecmzrR1l8htBt/STzJx6l8QCST3w1Ass7c2mOluLrIuUvAQ5
+	Xw0tZu29YDleFg/phZZvChWE94mqbiJug6xitp83PbR1vp2SkhUncSmah+svQ4ulocqS
+	4qt9c9mvb+8kK+YW8hr2f2TxpkSgcjmISTTe+Q3nERjPBEiGCiso2+Dgmp5upeWf+Y/+
+	edy1WpW9arP6hAJkVi81WVYGD43rI0XsphCUPx2r5k1KCFQqJFMhdHopPoqlyjFELIKS
+	hZVA==
+X-Gm-Message-State: AG10YOSJ/+iD8NZppzSa8em4NL7/njcrzIejmqqBwgn8U4BoZAJWJ9QadDKUKx+LN7zIhVzzSHPmAhTw6HxzXw==
 MIME-Version: 1.0
-Subject: Need some info regarding parsing all recipe files
+X-Received: by 10.112.12.98 with SMTP id x2mr19169269lbb.76.1455213479063;
+	Thu, 11 Feb 2016 09:57:59 -0800 (PST)
+Received: by 10.25.137.85 with HTTP; Thu, 11 Feb 2016 09:57:59 -0800 (PST)
+Date: Thu, 11 Feb 2016 17:57:59 +0000
+Message-ID: <CABatt_xxvB+FTJfVaXWj4i=FdYYLNr0C3ALuayoXBV7pUnKJ3Q@mail.gmail.com>
+From: Martin Townsend <mtownsend1973@gmail.com>
+To: yocto@yoctoproject.org
+Subject: ERROR: busybox-udhcpd not found in the base feeds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,143 +67,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 17:43:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_EC8BB00EF68CF14E9A15000E115CBC8102C167G4W3233americashp_"
+X-List-Received-Date: Thu, 11 Feb 2016 17:58:01 -0000
+Content-Type: multipart/alternative; boundary=001a11c39ea87df8ab052b824a98
 
---_000_EC8BB00EF68CF14E9A15000E115CBC8102C167G4W3233americashp_
-Content-Type: text/plain; charset="us-ascii"
+--001a11c39ea87df8ab052b824a98
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+I've just moved over to using systemd on a project but am seeing the error
+listed in the subject.
+I added the following to local.conf as there is no distribution config file.
+
+VIRTUAL-RUNTIME_init_manager = "systemd"
+DISTRO_FEATURES_append = " systemd"
+# Prevent the SysVinit distribution feature from being automatically enabled
+# Breaks busybox-udhcpd for some reason.
+DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+
+My understanding is that the last line will stop init scripts being
+installed if the recipe has systemd support.  Adding
+VIRTUAL-RUNTIME_initscripts = "" would completely disable init scripts I
+think so I didn't put this in.  So the above should use systemd where
+appropriate otherwise use sysV init scripts.
+
+I then blew away all sstate, cache and tmp directories and rebuilt and get
+the error.  If I comment out the last line the error goes away but I get
+all the sys V init scripts.  I checked the recipe and it inherits systemd
+and update-rc.d and I think the problem may be that busybox builds syslog
+with a systemd service but all the remaining components use init scripts as
+far as I can see, including udhcpd.  I looked in packages-split and
+busybox-udhcpd is empty.
+
+Any help appreciated,
+Martin.
+
+--001a11c39ea87df8ab052b824a98
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>I&#39;ve just moved over t=
+o using systemd on a project but am seeing the error listed in the subject.=
+<br></div>I added the following to local.conf as there is no distribution c=
+onfig file.<br><br>VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;<br>=
+DISTRO_FEATURES_append =3D &quot; systemd&quot;<br># Prevent the SysVinit d=
+istribution feature from being automatically enabled<br># Breaks busybox-ud=
+hcpd for some reason.<br>DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysv=
+init&quot;<br><br></div><div>My understanding is that the last line will st=
+op init scripts being installed if the recipe has systemd support.=C2=A0 Ad=
+ding VIRTUAL-RUNTIME_initscripts =3D &quot;&quot; would completely disable =
+init scripts I think so I didn&#39;t put this in.=C2=A0 So the above should=
+ use systemd where appropriate otherwise use sysV init scripts. <br></div><=
+div><br></div><div>I then blew away all sstate, cache and tmp directories a=
+nd rebuilt and get the error.=C2=A0 If I comment out the last line the erro=
+r goes away but I get all the sys V init scripts.=C2=A0 I checked the recip=
+e and it inherits systemd and update-rc.d and I think the problem may be th=
+at busybox builds syslog with a systemd service but all the remaining compo=
+nents use init scripts as far as I can see, including udhcpd.=C2=A0 I looke=
+d in packages-split and busybox-udhcpd is empty.<br><br></div><div>Any help=
+ appreciated,<br></div><div>Martin.=C2=A0 <br></div></div>
 
-I'm Sagar & I work for the HPE Openswitch project.
-I'm new to Yocto & do forgive my naivety.
-
-We use Yocto for building our NOS images & I plan to do the following -
-I want to go through all the recipe files & print out one field (say SRCREV=
-) from them (if it exists) to a file.
-I also want this file to be packaged in the image (at say - /etc/srcrev.txt=
-).
-I can do that by writing a Python script, but I was exploring if there's an=
-y native way that Yocto supports to do that.
-
-I don't want to change any recipe file to include any "config_prepend" clau=
-se or so.
-Is there some way (maybe tweaking the base class?) in which I can achieve t=
-his?
-
-If I were to write a custom Python script, how do I trigger it during make?
-
-Thanks
-~Sagar
-
---_000_EC8BB00EF68CF14E9A15000E115CBC8102C167G4W3233americashp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Courier New";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Courier New";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Hello,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I&#8217;m Sagar &amp; I work for the HPE Openswitch project.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I&#8217;m new to Yocto &amp; do forgive my naivety.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-We use <span style=3D"color:black">
-Yocto for building our NOS images </span>&amp; I plan to do the following &=
-#8211; <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I want to go through all the recipe files &amp; print out one field (say SR=
-CREV) from them (if it exi<span style=3D"color:black">sts) to a file</span>=
-.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;;c=
-olor:black">I also want this file to be packaged in the image (at say - /et=
-c/srcrev.txt).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I can do that by writing a Python script, but I was exploring if there&#821=
-7;s any native way that Yocto supports to do that.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I don&#8217;t want to change any recipe file to include any &#8220;config_p=
-repend&#8221; clause or so.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Is there some way (maybe tweaking the base class?) in which I can achieve t=
-his?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-If I were to write a custom Python script, how do I trigger it during make?=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Thanks<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-~Sagar<o:p></o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_EC8BB00EF68CF14E9A15000E115CBC8102C167G4W3233americashp_--
+--001a11c39ea87df8ab052b824a98--
