@@ -1,62 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B974AE00BFD; Thu, 11 Feb 2016 06:33:12 -0800 (PST)
+	id E7828E00C35; Thu, 11 Feb 2016 07:40:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44A57E00BE9
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 06:33:10 -0800 (PST)
-Received: by mail-ig0-f170.google.com with SMTP id xg9so36034579igb.1
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 06:33:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=6C1ua+h/VxU9YiUGC2YWYwaFXQ8VeYOlKqJGc/gGGE4=;
-	b=ebtS3jOvxSIoPeh3KjdXHg8nAgqwYjgdyGjIsQiE8PamufVq1zR8NILs/GgORDRBZj
-	PBQMwpMlFpwEZxvfScPhdXUzb+C5tlAWkSC+roAbaj9hDuK+SPa/UnPiprrq1qlfBYC1
-	Qd/Wvfdxn9VGB0MzYqbeSEXnvq9IkNji3Ig3+JFEMgOGIdN29G1MsSLmc9Qbq+Wycq8L
-	VUkRK3zKXMk2UbMiT2shD9JrjInNmAKRtABrPfRX3hvLWPJO93OJv7QbiBBF4Vdgm9qg
-	iriF3pz0Tp1aes3oznqOQF+zzXlipEXkWGlTf4F8j06yHsoGNX2MxBTualcmqdcpR54k
-	bGrg==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.46 listed in list.dnswl.org]
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7338FE00C1F
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:40:02 -0800 (PST)
+Received: by mail-vk0-f46.google.com with SMTP id k196so39348349vka.0
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 07:40:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=SuxE4y02grwX1t7JzOqFKSz31cGStLn931q7y+jGrNQ=;
+	b=zTcZyWqVYcBV86y0OcOZ7cPKVWEGAxXlYJNQCcMgKUdwr+Jb6LU0lTywUnxs+I3CA6
+	b+BasKa9F7tJAromqTRkD+oXwsst/LK5gy9WCRKcwo7DLTPn73fI4LlAU7G5YvMzpF5F
+	IueUAFg+9SzYvV/O17m/pz9UqQDdhbJQSsWoi8MMzCBpSWRx1Ze52flE5QMO/xNiY0g3
+	oQVW7lunegQaU4urSafqcIiFKtZiaDg4O2J44QKy+Zqliowj7kpQH3GgwO+Zhue6DOgk
+	hV2QZP4ZhNNuyXbcfUUPC1uXX5VHlal2miP/MOABmFbyfSGqpCpPnSce6raAenti0J7c
+	N7sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=6C1ua+h/VxU9YiUGC2YWYwaFXQ8VeYOlKqJGc/gGGE4=;
-	b=A0apZ5ra6W7DHFvkY8JnI5D9Dnx/UI4M8MZs3u3ki4UUoxqVFNs15FcCEDp0r9W13y
-	ItYwv+dqI0B3z4rF/x22nUHW+ivn8xHOqUZgY0ih2+n3eahO9t273wzNYVHEQxmk4s0+
-	LVnF7VGgGiBo23i4SVgtMEUethXMuBJFP5AsxbavhyIR1V4Gqowm/rMO8w4VpE5fLxiU
-	c/LEaBpHGA+hZnm9XPx54ZS7UXwFFmV5W2YcG8D8A90tCFKA81/SFIkV6goojnwc5o/1
-	8TAblj9ZDzVhubu6yTOssGW+ByrW552x8hS1Cb+EkSop7i7qYuMJM7BC5/aPjpBT4W2t
-	gfqw==
-X-Gm-Message-State: AG10YOSMOvN/75rA3cTcjCn3bTQ2/2L41+zkc7n3HHToC1dGMPev7Gla8IcfNUFNhwufTGOLPTmhFWMrLvcrXJNS
-X-Received: by 10.50.78.227 with SMTP id e3mr15531065igx.64.1455201190078;
-	Thu, 11 Feb 2016 06:33:10 -0800 (PST)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=SuxE4y02grwX1t7JzOqFKSz31cGStLn931q7y+jGrNQ=;
+	b=ZEbIpocgzB9LU26Q3Da8dgZCltME3x91Tj7e1Yuf44AmQL65idVBSsdcTHC/RRuRMu
+	4oQ/4bxAAXj+w9PuK5jXcd2EF0wxiI0QpOAOZ1i6LCU/Dbw2nPgTaHZrBs2BX2Er8Uef
+	kh3cMl6YynwFLlKua95zpBEYk8bNbwYSLI2lTcuPsK63GHe2aZu8fRkNuB3ZpP8SstN1
+	GiPP6WSnzgSnibnESYdirhyBEYnUuY26X6/xclW4XXRTOXTfTlogFeLJfajAt+/6V5rd
+	tW2+ZCPHdvyPaOyN2HKsMxWxrkv9EjUxMyB3ckE6eIKf6ckgwiKxoYnPk5DymFQX4Q9m
+	7q2w==
+X-Gm-Message-State: AG10YOR1X0ffWAoIbdDbhZwpzfNQaz3NxJi+J3lv4IVy7Ce56KMjrGZIpcjdPeJcXvDEhhcgvdKI2ya45l4ZsQ==
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Thu, 11 Feb 2016 06:32:50 -0800 (PST)
-In-Reply-To: <3534892.4K3lPByQ7B@nickl>
-References: <CAJTo0LaMycXVjZLoPMU7Te2HDpp7+YUu8GGuNznhk8D8Yje27A@mail.gmail.com>
-	<3534892.4K3lPByQ7B@nickl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 11 Feb 2016 14:32:50 +0000
-Message-ID: <CAJTo0LY6r8od5c3rysNWFg=-3c0jWx4STaaPQD-pcEmUmqh2Dw@mail.gmail.com>
-To: Nick Leverton <nick@leverton.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Dropping Debian 7 as supported?
+X-Received: by 10.31.178.146 with SMTP id b140mr34656657vkf.108.1455205201569; 
+	Thu, 11 Feb 2016 07:40:01 -0800 (PST)
+Received: by 10.31.229.71 with HTTP; Thu, 11 Feb 2016 07:40:01 -0800 (PST)
+Date: Thu, 11 Feb 2016 21:10:01 +0530
+Message-ID: <CALLyC8RLpNFDrr63E=+yt06RGUGVpqAzn4erwkyJ-LrHqwNOPw@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: How to create do_populate_sysroot_append task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,46 +67,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2016 14:33:12 -0000
-Content-Type: multipart/alternative; boundary=089e0111b7340304d5052b7f6ea2
+X-List-Received-Date: Thu, 11 Feb 2016 15:40:06 -0000
+Content-Type: multipart/alternative; boundary=001a1144034c1d6a4a052b805d18
 
---089e0111b7340304d5052b7f6ea2
+--001a1144034c1d6a4a052b805d18
 Content-Type: text/plain; charset=UTF-8
 
-On 11 February 2016 at 14:21, Nick Leverton <nick@leverton.org> wrote:
+Hi,
+    I want to add some additional kernel files to sysroot directory . I
+want to extend do_populate_sysroot task , I want to copy few more files in
+to sysroot after do_populate_sysroot and before do_package. I tried to
+create do_populate_sysroot_append() in recipe  but it is getting parsing
+error . how could i add file in sysroot after populate_sysroot and before
+do_package.
 
-> Possibly a little early - Debian 7 will be going onto LTS security support
-> for
-> two years, starting some time this month.  Quoting from
-> https://wiki.debian.org/LTS
->
+Thanks in advance
+   Vivek
 
-Ah yes, I'd forgotten about the LTS project and was looking at the security
-team.
-
-This does make it less clear, but it's still an old release and we can't
-support/test on everything.
-
-Ross
-
---089e0111b7340304d5052b7f6ea2
+--001a1144034c1d6a4a052b805d18
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 11 February 2016 at 14:21, Nick Leverton <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:nick@leverton.org" target=3D"_blank">nick@leverton.org</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1xi" class=3D"a3=
-s" style=3D"overflow:hidden">Possibly a little early - Debian 7 will be goi=
-ng onto LTS security support for<br>
-two years, starting some time this month.=C2=A0 Quoting from<br>
-<a href=3D"https://wiki.debian.org/LTS" rel=3D"noreferrer" target=3D"_blank=
-">https://wiki.debian.org/LTS</a></div></blockquote></div><br>Ah yes, I&#39=
-;d forgotten about the LTS project and was looking at the security team.</d=
-iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">This doe=
-s make it less clear, but it&#39;s still an old release and we can&#39;t su=
-pport/test on everything.</div><div class=3D"gmail_extra"><br></div><div cl=
-ass=3D"gmail_extra">Ross</div></div>
+<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 I want to add some additional kernel=
+ files to sysroot directory . I want to extend do_populate_sysroot task , I=
+ want to copy few more files in to sysroot after do_populate_sysroot and be=
+fore do_package. I tried to create do_populate_sysroot_append() in recipe =
+=C2=A0but it is getting parsing error . how could i add file in sysroot aft=
+er populate_sysroot and before do_package.</div><div><br></div><div>Thanks =
+in advance</div><div>=C2=A0 =C2=A0Vivek</div></div>
 
---089e0111b7340304d5052b7f6ea2--
+--001a1144034c1d6a4a052b805d18--
