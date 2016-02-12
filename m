@@ -1,40 +1,72 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F03B5E00C4B; Thu, 11 Feb 2016 19:49:41 -0800 (PST)
+	id 44F66E00C58; Thu, 11 Feb 2016 21:47:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F14AE00C44
-	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 19:49:38 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 5E0CA68A01B; Fri, 12 Feb 2016 03:49:37 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id E5B0068A019;
-	Fri, 12 Feb 2016 03:49:33 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 73C52674009C;
-	Fri, 12 Feb 2016 04:49:33 +0100 (CET)
-To: Khem Raj <raj.khem@gmail.com>
-References: <56BAE751.6080000@mlbassoc.com> <56BB66B5.7000401@windriver.com>
-	<DF6400FC-9DE0-40FA-8247-9C2D4153A10E@gmail.com>
-	<56BC02E0.3020200@mlbassoc.com> <56BD019A.8050605@windriver.com>
-	<56BD4D4A.7070904@mlbassoc.com>
-	<5F58602F-A6A2-40A6-AD2D-A463C007FFA8@gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56BD564D.5020500@mlbassoc.com>
-Date: Fri, 12 Feb 2016 04:49:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-In-Reply-To: <5F58602F-A6A2-40A6-AD2D-A463C007FFA8@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Debugging shared libraries
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11464E00C4F
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 21:47:30 -0800 (PST)
+Received: by mail-pa0-f46.google.com with SMTP id yy13so41172677pab.3
+	for <yocto@yoctoproject.org>; Thu, 11 Feb 2016 21:47:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=1FGdtorqksZ/YaIc45PYvjz/8NDuDOFvN4DZqkK14MA=;
+	b=mSqYy6/it4GPG3+FYFQj+SxLywfmptWXhYV1upqZA5EG3zf2ai43ymQbvE8tzZB2sA
+	gYWlp7ng02LkeYmiAEG12DLq6igq511tGvovmZ/rI4gJBDx3Q2sSeYhtSfxO5DXbrcJ4
+	+MzbxIsBxRuE+Pxq+XFf/TlVWvdzS2xwh/AgWLe7q6BdJfrEFOEonrzdBpPzneyFNOh4
+	XGw6CE7KVXxH401vVaDznXfogNypitwdQOvsb5dNAIeKqisOAsIj+UIan7eDnMsroOB6
+	rFrY4bB4HHbid2i8IvmeJBFl3/lkwhnYl4QSzn5fRKHGDixP+ofo8ZaC8NVUCFeRGx7a
+	kRKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=1FGdtorqksZ/YaIc45PYvjz/8NDuDOFvN4DZqkK14MA=;
+	b=QKK4JduRnc8yKsbEVnyNOTPnfRw7YXObdqDPyn0R+zXv7dBMxE8Eu9J56uLlHwuQuT
+	HI4htTnoLVO9GVRx8k94dm4y1xSu8yVCopLBYJ/rbOrNuTo5OFjCzP4UikS2AMHUMAwz
+	MIRTFAv5eJ1G+rkHKOHx7WaSu8vo9PXvQ5ku5yR/gcCDU31bilFuGANsr9gpMcxCXzq8
+	LVG5TkUL3tQSpTtkGXJ+S7DqwJySg8keOnj0vIXX44rEEWo81uDrCA7bmLN/9VaetIZ1
+	N+ANR7Wk/kRT0Aom2nljrAl6faaMh7+fvxat/pZbIMbavfltf5MUqqIRL05sx9HZeQVH
+	cpSg==
+X-Gm-Message-State: AG10YOTWC7W7+J5rN4I6vkUSvuypEnkyhfPmA6hTJZcQV7Zw/FMkPrlYYoqj2+kQQoCBaQ==
+X-Received: by 10.67.2.10 with SMTP id bk10mr70934181pad.26.1455256049992;
+	Thu, 11 Feb 2016 21:47:29 -0800 (PST)
+Received: from ?IPv6:2601:646:8802:5d5c:20d3:911e:9c91:8595?
+	([2601:646:8802:5d5c:20d3:911e:9c91:8595])
+	by smtp.gmail.com with ESMTPSA id
+	d8sm16171299pas.14.2016.02.11.21.47.28
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 11 Feb 2016 21:47:28 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <7eb23ce64ad7493485184af5224b8646@NASANEXM02C.na.qualcomm.com>
+Date: Thu, 11 Feb 2016 21:47:24 -0800
+Message-Id: <B8247686-0F74-4B5C-8F31-8D9E010B696A@gmail.com>
+References: <7eb23ce64ad7493485184af5224b8646@NASANEXM02C.na.qualcomm.com>
+To: "Stroz, Glenn" <gstroz@qti.qualcomm.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Selecting a specific tuning in an application recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,144 +78,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Feb 2016 03:49:42 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Feb 2016 05:47:33 -0000
+X-Groupsio-MsgNum: 28444
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_A77CED41-1D77-48A8-8ACA-F9F6D37225CD";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-On 2016-02-12 04:18, Khem Raj wrote:
->
->> On Feb 11, 2016, at 7:11 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->>
->> On 2016-02-11 22:48, Mark Hatle wrote:
->>> On 2/10/16 9:41 PM, Gary Thomas wrote:
->>>> On 2016-02-10 21:08, Khem Raj wrote:
->>>>>
->>>>>> On Feb 10, 2016, at 8:35 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
->>>>>>
->>>>>> On 2/10/16 1:31 AM, Gary Thomas wrote:
->>>>>>> I'm trying to debug some code (mplayer) which uses some shared
->>>>>>> libraries from ffmpeg.  When I use GDB (via gdbserver), I don't
->>>>>>> get all the debug information I need - note that many of the shared
->>>>>>> libraries do not have any symbolic debugging info:
->>>>>>
->>>>>> Is your system using the the split debug binaries, and if so, do you have them
->>>>>> all installed on the system that GDB is running on?
->>>>>>
->>>>>> (When GDB starts, you should see it load the symbols, or error it can't find them.)
->>>>>>
->>>>>> Assuming you DO have the symbol files available, and some things are lacking
->>>>>> debuginfo, it's possible those recipes are not properly building with full
->>>>>> symbols (they should be, the whole system should be.)
->>>>>>
->>>>>> Easiest way to check is do a readelf/objdump on the .debug version of the
->>>>>> library and check that there are dwarf symbols present... if not, it's probably
->>>>>> a recipe error.
->>>>>>
->>>>>> --Mark
->>>>>>
->>>>>>> (gdb) info sharedlibrary
->>>>>>>   From        To          Syms Read   Shared Object Library
->>>>>>> 0xb6fcf800  0xb6feaf08  Yes         /tmp/p0382.img/lib/ld-linux-armhf.so.3
->>>>>>> 0xb6fa6fa8  0xb6fb2b40  Yes (*)     /tmp/p0382.img/lib/libtinfo.so.5
->>>>>>> 0xb6f6d210  0xb6f8c200  Yes         /tmp/p0382.img/usr/lib/libpng16.so.16
->>>>>>> 0xb6f488e8  0xb6f54a60  Yes         /tmp/p0382.img/lib/libz.so.1
->>>>>>> 0xb6f069f0  0xb6f34264  Yes         /tmp/p0382.img/usr/lib/libjpeg.so.8
->>>>>>> 0xb6edbaf0  0xb6eee29c  Yes         /tmp/p0382.img/usr/lib/libdvdread.so.4
->>>>>>> 0xb6eb6108  0xb6ec7ae8  Yes         /tmp/p0382.img/usr/lib/libass.so.4
->>>>>>> 0xb6e808b8  0xb6e95384  Yes         /tmp/p0382.img/usr/lib/libvorbis.so.0
->>>>>>> 0xb6e6b4b4  0xb6e6d7e4  Yes         /tmp/p0382.img/usr/lib/libogg.so.0
->>>>>>> 0xb6e48978  0xb6e55eb4  Yes         /tmp/p0382.img/usr/lib/libspeex.so.1
->>>>>>> 0xb6dfe818  0xb6e1b8b4  Yes (*)     /tmp/p0382.img/usr/lib/libfaad.so.2
->>>>>>> 0xb6d92df0  0xb6dd4e78  Yes (*)     /tmp/p0382.img/usr/lib/libavutil.so.54
->>>>>>> 0xb5de0640  0xb64a2e18  Yes (*)     /tmp/p0382.img/usr/lib/libavcodec.so.56
->>>>>>> 0xb5c17528  0xb5d65840  Yes (*)     /tmp/p0382.img/usr/lib/libavformat.so.56
->>>>>>> 0xb5b81688  0xb5be8db8  Yes (*)     /tmp/p0382.img/usr/lib/libswscale.so.3
->>>>>>> 0xb5b5f578  0xb5b6c718  Yes (*)     /tmp/p0382.img/usr/lib/libswresample.so.1
->>>>>>> 0xb5b44998  0xb5b4b490  Yes (*)     /tmp/p0382.img/usr/lib/libpostproc.so.53
->>>>>>> 0xb5b1f0e0  0xb5b2e194  Yes         /tmp/p0382.img/lib/libpthread.so.0
->>>>>>> 0xb5aa4c00  0xb5ad46d0  Yes         /tmp/p0382.img/lib/libm.so.6
->>>>>>> 0xb5a859ec  0xb5a8fc34  Yes         /tmp/p0382.img/usr/lib/libXext.so.6
->>>>>>> 0xb597b728  0xb59f92bc  Yes         /tmp/p0382.img/usr/lib/libX11.so.6
->>>>>>> 0xb5946fc8  0xb59573d0  Yes         /tmp/p0382.img/usr/lib/libtheoradec.so.1
->>>>>>> 0xb5887910  0xb591bbb8  Yes (*)     /tmp/p0382.img/usr/lib/libasound.so.2
->>>>>>> 0xb58579f8  0xb58586ac  Yes         /tmp/p0382.img/usr/lib/libXss.so.1
->>>>>>> 0xb5844ca0  0xb5846bac  Yes         /tmp/p0382.img/usr/lib/libXv.so.1
->>>>>>> 0xb57e7700  0xb58265e0  Yes         /tmp/p0382.img/usr/lib/libSDL-1.2.so.0
->>>>>>> 0xb56bae00  0xb57abb28  Yes         /tmp/p0382.img/lib/libc.so.6
->>>>>>> 0xb569292c  0xb5693724  Yes         /tmp/p0382.img/lib/libdl.so.2
->>>>>>> 0xb5650a70  0xb566e6a4  Yes         /tmp/p0382.img/usr/lib/libfontconfig.so.1
->>>>>>> 0xb561e324  0xb563951c  Yes         /tmp/p0382.img/usr/lib/libexpat.so.1
->>>>>>> 0xb559d36c  0xb55f5cb4  Yes         /tmp/p0382.img/usr/lib/libfreetype.so.6
->>>>>>> 0xb55622b0  0xb5567e84  Yes         /tmp/p0382.img/usr/lib/libenca.so.0
->>>>>>> 0xb541fbc0  0xb54b5a08  Yes (*)     /tmp/p0382.img/usr/lib/libx264.so.144
->>>>>>> 0xb53d4df0  0xb53fa0b0  Yes         /tmp/p0382.img/usr/lib/libtheoraenc.so.1
->>>>>>> 0xb53a72b0  0xb53bd258  Yes (*)     /tmp/p0382.img/usr/lib/liblzma.so.5
->>>>>>> 0xb5386050  0xb5392cc0  Yes (*)     /tmp/p0382.img/usr/lib/libbz2.so.0
->>>>>>> 0xb5367810  0xb5373b30  Yes         /tmp/p0382.img/usr/lib/libxcb.so.1
->>>>>>> 0xb534da00  0xb534e5a8  Yes         /tmp/p0382.img/usr/lib/libXau.so.6
->>>>>>> 0xb5339f80  0xb533b69c  Yes         /tmp/p0382.img/usr/lib/libXdmcp.so.6
->>>>>>> 0xb5323720  0xb5326ea0  Yes         /tmp/p0382.img/lib/librt.so.1
->>>>>>> 0xb530b6e0  0xb5311234  Yes         /tmp/p0382.img/usr/lib/libXrandr.so.2
->>>>>>> 0xb52f3530  0xb52f9060  Yes         /tmp/p0382.img/usr/lib/libXrender.so.1
->>>>>>> 0xb52d3160  0xb52e18a4  Yes         /tmp/p0382.img/lib/libgcc_s.so.1
->>>>>>> (*): Shared library is missing debugging information.
->>>>>>>
->>>>>>> Is this a function of how those libraries were built (by the recipe)
->>>>>>> or something else?  How can I get the symbolic debugging info enabled?
->>>>>>>
->>>>>>> Thanks for any pointers
->>>>>
->>>>>
->>>>> Usually it works well if you add
->>>>>
->>>>> EXTRA_IMAGE_FEATURES_append = “ dbg-pkgs”
->>>>>
->>>>> image size grows but you get good debug view on target.
->>>>>
->>>>> another option, I usually use is setup feeds
->>>>> and then
->>>>>
->>>>> opkg install <package>-dbg
->>>>>
->>>>> which pulls in a section of debug info needed to debug a given package.
->>>>>
->>>>
->>>> I've done all this already.  The problem is that for the libraries which
->>>> have no symbols there are no corresponding -dbg packages :-(  I looked
->>>> at the ffmpeg recipe (where the libswresample library I'm most interested
->>>> in comes from) and there is serious magic involved in the packaging.  I'm
->>>> pretty sure that's where the discrepancy lies...  Any help understanding
->>>> how to fix that would be appreciated.
->>>
->>> If the package is being built from source, I'd expect -dbg to be generated.. if
->>> it's not, we definitely should investigate.
->>
->> Definitely standard (OE-core) package, being built from sources.  No -dbg for
->> the libraries in question.
->>
->>>
->>> The intention has always been to generate -dbg for the core pieces..  External
->>> layers can disable it if they're packaging binaries or commercial, but that is
->>> different.
->>
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=9104
->>
->> As obvious from the list above, there are other packages with libraries that
->> have no -dbg as well.  This bug was filed against ffmpeg only, perhaps it should
->> be more generic…
->
->
-> Can you check if the makery of this package is not respecting the CFLAGS passed from
-> OE env ?
+--Apple-Mail=_A77CED41-1D77-48A8-8ACA-F9F6D37225CD
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_3A7792DE-D745-4055-B6A4-E3324AC73A1E"
 
-I gave the recipe a quick look and found the missing steps to build the -dbg packages.
-I can now debug those libraries :-)
+--Apple-Mail=_3A7792DE-D745-4055-B6A4-E3324AC73A1E
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-I'll send a patch to OE-core to fix this.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+> On Feb 11, 2016, at 11:25 AM, Stroz, Glenn <gstroz@qti.qualcomm.com> =
+wrote:
+>=20
+> Hi,
+>=20
+> We=E2=80=99re trying to build a 64 bit arm project. However, one of =
+our applications needs to be built in 32 bit mode as it isn=E2=80=99t =
+supported in 64 bit yet. I=E2=80=99ve looked around and it looks like I =
+need to adjust the tuning to be for armv7 instead of the default. =
+However, when I set DEFAULTTUNE in the application recipe it does not =
+compile the 32 bit cross compiler and bails out with a dependency error. =
+Is there a system in place where we can adjust the tuning for a specific =
+recipe?
+>=20
+> Multilib doesn=E2=80=99t appear to be the solution since it=E2=80=99s =
+tailored towards libraries and not applications. Not sure if there=E2=80=99=
+s anything else that would work.
 
+infact multilib is the solution, its not limited to libraries. If =
+multilib worked for your arch you would
+
+bitbake lib32-<yourapp>
+and it will bring in all needed dependencies + compile your app in 32bit =
+mode or whatever the multilib warrants.
+
+Question however is if combination that you are expecting is supported =
+or not.
+
+>=20
+> Thanks,
+> Glenn
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+
+--Apple-Mail=_3A7792DE-D745-4055-B6A4-E3324AC73A1E
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Feb 11, 2016, at 11:25 AM, Stroz, Glenn &lt;<a =
+href=3D"mailto:gstroz@qti.qualcomm.com" =
+class=3D"">gstroz@qti.qualcomm.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"WordSection1" style=3D"page: WordSection1; font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Hi,<o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">We=E2=80=99re trying to build a 64 bit =
+arm project. However, one of our applications needs to be built in 32 =
+bit mode as it isn=E2=80=99t supported in 64 bit yet. I=E2=80=99ve =
+looked around and it looks like I need to adjust the tuning to be for =
+armv7 instead of the default. However, when I set DEFAULTTUNE in the =
+application recipe it does not compile the 32 bit cross compiler and =
+bails out with a dependency error. Is there a system in place where we =
+can adjust the tuning for a specific recipe?<o:p =
+class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Multilib =
+doesn=E2=80=99t appear to be the solution since it=E2=80=99s tailored =
+towards libraries and not applications. Not sure if there=E2=80=99s =
+anything else that would work.</div></div></div></blockquote><div><br =
+class=3D""></div><div>infact multilib is the solution, its not limited =
+to libraries. If multilib worked for your arch you would</div><div><br =
+class=3D""></div><div>bitbake lib32-&lt;yourapp&gt;</div><div>and it =
+will bring in all needed dependencies + compile your app in 32bit mode =
+or whatever the multilib warrants.</div><div><br =
+class=3D""></div><div>Question however is if combination that you are =
+expecting is supported or not.</div><br class=3D""><blockquote =
+type=3D"cite" class=3D""><div class=3D""><div class=3D"WordSection1" =
+style=3D"page: WordSection1; font-family: Ubuntu; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">Thanks,<o:p class=3D""></o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">Glenn<o:p class=3D""></o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div></div><span =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Ubuntu; font-size: 14px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" class=3D"">yocto mailing =
+list</span><br style=3D"font-family: Ubuntu; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: rgb(149, 79, =
+114); text-decoration: underline; font-family: Ubuntu; font-size: 14px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+rgb(149, 79, 114); text-decoration: underline; font-family: Ubuntu; =
+font-size: 14px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_3A7792DE-D745-4055-B6A4-E3324AC73A1E--
+
+--Apple-Mail=_A77CED41-1D77-48A8-8ACA-F9F6D37225CD
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAla9ce8ACgkQuwUzVZGdMxSoYwCeOS+szEkHcR1h0ojMtr6c4jUV
+P9QAniZa0WaY5hy5XS1f6Lw8clIene9V
+=G4cr
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_A77CED41-1D77-48A8-8ACA-F9F6D37225CD--
