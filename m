@@ -1,71 +1,81 @@
-Return-Path: <mdlcameras@gmail.com>
+Return-Path: <teodor.madan@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4E12E00C58; Fri, 12 Feb 2016 01:50:52 -0800 (PST)
+	id 00EA6E00C58; Fri, 12 Feb 2016 01:56:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mdlcameras[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.112.74 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0049EE00C4D
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 01:50:49 -0800 (PST)
-Received: by mail-wm0-f46.google.com with SMTP id c200so12508555wme.0
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 01:50:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:reply-to:user-agent
-	:mime-version:content-type;
-	bh=aDDDDlBJswYWxjiCHW4RX2mZ0SGQklkqHULI9as2nBI=;
-	b=kwbnX/xF/zIwJB+bY5D8c3rBZ14+Rl46a2kV/gOf+WMBdH72koQnVgdEdplj60Y8TC
-	FjXYv6ncJfGzeeQ9aPHgMIZFoVMfYmtc0SNzMk7Z3yoqUXxAEVvi2zGQkKZwaUmKyDo7
-	qScRmJc/DsALdQka4sqDN6abwWGLwlpR0gxiuIB4bYALk7JOn7bQuF7gNOh/nJgngUxF
-	A5uMYQ10Us1dUTJ46TRwFzmYRcWwCI18u6dnjkUDaxAfp/Z08zEySq5Gg9uzDFQAHTLn
-	Q3mq+fjHMbyZ2zVZb0VXb4QY5GkQvmC3UJcTalJjTW9Ri32j+/9QXo/S/KV8IvvVs8Rb
-	Ijww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:reply-to:user-agent:mime-version:content-type;
-	bh=aDDDDlBJswYWxjiCHW4RX2mZ0SGQklkqHULI9as2nBI=;
-	b=QVLserCnDdjhQZtGMKJNIg/rdJs4yIAx1aX1ZkAYYdojRA3M+Q2WOcmBzb+KZCEZG+
-	QJWoH1JT0VPisa3VrTYNqEmiev4xlVu2BF8qdepJpjtnq02PZyybSgze1N2whcCnLg06
-	vOh9yRyNUAzFv3zZPL3JqLNSAjeA9QDEyPe/HAYIkyXjGKH6vt9bNfBKHzbCz2rR7JoM
-	UKsTq+Mtunijd6/Zt2A+p2vlBSgprDkCHSc/nupzjjiLAXpUKHTGdwfVPx+Xu6JO4xEx
-	QduGUMDv6fV52nPLUsXUnS3qNHs7OtrcSU7tV9PALUFNk2u1UYTTfouQ66xx/kuwI2mx
-	1OBQ==
-X-Gm-Message-State: AG10YOQQ4XfLKKEW3KRKwBtz9pQnShsmgzJjgBZy95YVNEEPkKnVGl8JqeVS9Mv703Kfrg==
-X-Received: by 10.28.224.87 with SMTP id x84mr2048073wmg.32.1455270648154;
-	Fri, 12 Feb 2016 01:50:48 -0800 (PST)
-Received: from [127.0.0.1] ([80.95.0.196]) by smtp.gmail.com with ESMTPSA id
-	x186sm1564470wmg.19.2016.02.12.01.50.45
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 12 Feb 2016 01:50:47 -0800 (PST)
-From: Marius <mdlcameras@gmail.com>
-To: "Teodor Madan" <teodor.madan@nxp.com>, "yocto@yoctoproject.org"
+Received: from emea01-am1-obe.outbound.protection.outlook.com
+	(mail-am1on0074.outbound.protection.outlook.com [157.56.112.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F94BE00C4D
+	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 01:55:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com; 
+	s=selector1-nxp-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=OC6WYfLSNt5jDEQgChTHQoX17UyFBLjl6x1GqNaWyyY=;
+	b=FDuxJh1DJaVxf2wgcxR7hKjETFg4rjOp3WCIO+zB3T0IhBqIg2NXw96g6IEN768gEYxGk/d9Amr2zukKEWC/N0ZGOTyo8mzkpdZebOt7chck2ajIewFn332xXl/uT//0I/WCUrXl95u4s8FKTJIlUCoqAMxaVZdVpOEV+aMCqVk=
+Received: from DB5PR04MB1653.eurprd04.prod.outlook.com (10.164.39.11) by
+	DB5PR04MB1653.eurprd04.prod.outlook.com (10.164.39.11) with Microsoft
+	SMTP Server (TLS) id 15.1.409.15; Fri, 12 Feb 2016 09:40:09 +0000
+Received: from DB5PR04MB1653.eurprd04.prod.outlook.com ([10.164.39.11]) by
+	DB5PR04MB1653.eurprd04.prod.outlook.com ([10.164.39.11]) with mapi id
+	15.01.0409.017; Fri, 12 Feb 2016 09:40:09 +0000
+From: Teodor Madan <teodor.madan@nxp.com>
+To: Marius <mdlcameras@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Date: Fri, 12 Feb 2016 09:50:41 +0000
-Message-Id: <em4a9b71f8-5e8a-4d32-9de9-27bfa854c101@marius-pc>
-In-Reply-To: <DB5PR04MB1653621E75AC2BAA1E7F89899DA90@DB5PR04MB1653.eurprd04.prod.outlook.com>
-User-Agent: eM_Client/6.0.24316.0
-Mime-Version: 1.0
+Thread-Topic: Re[2]: [yocto] Eclipse IDE plugin failure
+Thread-Index: AQHRZDAUryS9wTRvcUKv54KHzRM8M58mmvmAgAAnFgCAAWW4MA==
+Date: Fri, 12 Feb 2016 09:40:09 +0000
+Message-ID: <DB5PR04MB1653621E75AC2BAA1E7F89899DA90@DB5PR04MB1653.eurprd04.prod.outlook.com>
+References: <DB5PR04MB16535E6ABE82F1701380CEA89DA80@DB5PR04MB1653.eurprd04.prod.outlook.com>
+	<em035621f1-5a9a-4472-b20b-95e762a0bb3b@marius-pc>
+In-Reply-To: <em035621f1-5a9a-4472-b20b-95e762a0bb3b@marius-pc>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+	header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [192.88.146.1]
+x-microsoft-exchange-diagnostics: 1; DB5PR04MB1653;
+	5:DpB4Ni3Q27MOv9toZVAUZnDQtiKLnvKwtSwG2sxmdQh6sCbDGxwJ6YFDJ1Ho69WzbrmsqcCJltKmkcqUfxbdToiMBwNKnqiT6oSWMtaS86OdwMTL/LGNVYvwMZEQ5g7TYr4yRT2tTITegGe7nhzpOA==;
+	24:d/waxbc7wOmat0l1prnhXcs70uL6hrID/Dcf5j2INlsfcJMc/XwaB1voix4h2uaW1/mWT8Ags6ZqDQr8+HoRvjrT9nLWFpVdn98DiLQ+3xs=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB5PR04MB1653;
+x-ms-office365-filtering-correlation-id: 60cec31b-c40b-4e30-5b18-08d333907f7d
+x-microsoft-antispam-prvs: <DB5PR04MB1653C32BDAF880FDC25380AC9DA90@DB5PR04MB1653.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(185117386973197);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:DB5PR04MB1653; BCL:0; PCL:0; RULEID:; SRVR:DB5PR04MB1653; 
+x-forefront-prvs: 0850800A29
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(377424004)(13464003)(19625215002)(19580395003)(19580405001)(189998001)(54356999)(107886002)(5001960100002)(86362001)(50986999)(76176999)(19300405004)(33656002)(66066001)(19617315012)(11100500001)(16236675004)(106116001)(5002640100001)(5003600100002)(122556002)(74316001)(1220700001)(87936001)(5008740100001)(92566002)(102836003)(6116002)(586003)(3846002)(790700001)(1096002)(5001770100001)(40100003)(76576001)(3660700001)(2950100001)(5004730100002)(2501003)(10400500002)(2900100001)(3280700002)(77096005)(2906002)(15975445007)(21314002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DB5PR04MB1653;
+	H:DB5PR04MB1653.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Feb 2016 09:40:09.4882 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR04MB1653
 Subject: Re: Eclipse IDE plugin failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Marius <mdlcameras@gmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -74,350 +84,260 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Feb 2016 09:50:52 -0000
+X-List-Received-Date: Fri, 12 Feb 2016 09:56:01 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------=_MB153520A4-A6A4-4195-8115-E7F530CC81F0"
+	boundary="_000_DB5PR04MB1653621E75AC2BAA1E7F89899DA90DB5PR04MB1653eurp_"
 
---------=_MB153520A4-A6A4-4195-8115-E7F530CC81F0
-Content-Type: text/plain; format=flowed; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_DB5PR04MB1653621E75AC2BAA1E7F89899DA90DB5PR04MB1653eurp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks Teo, I will give it a go.
+WW91IHNob3VsZCBmb2xsb3cgc3RlcHMgZnJvbSBodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcv
+ZG9jcy8yLjAvZGV2LW1hbnVhbC9kZXYtbWFudWFsLmh0bWwjemlwLWZpbGUtbWV0aG9kDQoNCldo
+ZW4gZm9sbG93aW5nIHN0ZXBzIHVzZSDigJxtYXJzL3lvY3RvLTIuMOKAnSBicmFuY2ggaW5zdGVh
+ZCBvZiDigJxsdW5hL3lvY3RvLTIuMOKAnS4NCllvdSBzaG91bGQgYXBwbHkgcGF0Y2ggd2l0aCDi
+gJxnaXQgYW3igJ0gYWZ0ZXIgZG9pbmcgZ2l0IGNoZWNrb3V0IGF0IHN0ZXAgMy4gaS5lLiBwYXRj
+aCBzaG91bGQgYmUgY29tbWl0dGVkIGluIGxvY2FsIHJlcG9zaXRvcnkgYmVmb3JlIHN0YXJ0aW5n
+IHRoZSBidWlsZC4NCkltcG9ydGFudDogeW91IHNob3VsZCBhZGQg4oCcLWzigJ0gYXJndW1lbnQg
+dG8gYnVpbGQuc2ggYXQgc3RlcCA3Lg0KDQpUZW8NCg0KRnJvbTogTWFyaXVzIFttYWlsdG86bWRs
+Y2FtZXJhc0BnbWFpbC5jb21dDQpTZW50OiBUaHVyc2RheSwgRmVicnVhcnkgMTEsIDIwMTYgMTQ6
+MTENClRvOiBUZW9kb3IgTWFkYW4gPHRlb2Rvci5tYWRhbkBueHAuY29tPjsgeW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZw0KU3ViamVjdDogUmVbMl06IFt5b2N0b10gRWNsaXBzZSBJREUgcGx1Z2luIGZh
+aWx1cmUNCg0KQWggdGhhbmtzIFRlby4gRG8geW91IGtub3cgb2YgYW4gaW5zdHJ1Y3Rpb24gc29t
+ZXdoZXJlIHRvIGdldCB0aGUgcGF0Y2ggYWZmZWN0ZWQuIEkgZG9udCByZWFsbHkga25vdyBob3cg
+dG8gZG8gdGhhdCBhcyBJIGFtIGluc3RhbGxpbmcgZGlyZWN0bHkgZnJvbSByZXBvc2l0b3JpZXMg
+b24gdGhlIG5ldC4NCg0KLS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tDQpGcm9tOiAiVGVv
+ZG9yIE1hZGFuIiA8dGVvZG9yLm1hZGFuQG54cC5jb208bWFpbHRvOnRlb2Rvci5tYWRhbkBueHAu
+Y29tPj4NClRvOiAiTWFyaXVzIiA8bWRsY2FtZXJhc0BnbWFpbC5jb208bWFpbHRvOm1kbGNhbWVy
+YXNAZ21haWwuY29tPj47ICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnPiIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmc+Pg0KU2VudDogMjAxNi0wMi0xMSAxMzoxMzozOQ0KU3ViamVjdDogUkU6IFt5
+b2N0b10gRWNsaXBzZSBJREUgcGx1Z2luIGZhaWx1cmUNCg0KQSBwYXRjaCBoYXMgYmVlbiBwcm9w
+b3NlZCBhdCBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIw
+MTYtSmFudWFyeS8wMjc5NTEuaHRtbA0KSSBqdXN0IGhhdmUgdmVyaWZpZWQgdGhlIHBhdGNoIGFu
+ZCBpdCB3b3JrZWQgZm9yIG1lLg0KDQpUZW8NCg0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3Rv
+cHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZz4gW21haWx0
+bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9j
+dG9wcm9qZWN0Lm9yZz5dIE9uIEJlaGFsZiBPZiBNYXJpdXMNClNlbnQ6IFdlZG5lc2RheSwgRmVi
+cnVhcnkgMTAsIDIwMTYgMjA6MjINClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KU3ViamVjdDogW3lvY3RvXSBFY2xpcHNlIElERSBwbHVn
+aW4gZmFpbHVyZQ0KDQpJIGluc3RhbGxlZCB0aGUgbGF0ZXN0IEVjbGlwc2UgKE1hcnMpIGFuZCBh
+dHRlbXB0ZWQgdG8gaW5zdGFsbCB0aGUgcGx1Z2luLiBUaGUgaW5zdGFsbGF0aW9uIGZhaWxlZCBh
+bmQgdGhlIHJlcG9ydGVkIGVycm9yIHdhcyB0aGF0IGl0IGNvdWxkIG5vdCBsb2NhdGUgdGhlIFRN
+IFRlcm1pbmFsIHZlcnNpb24gMy54eHguIFRoZSBUTSB0ZXJtaW5hbCBpcyBpbnN0YWxsZWQgYnV0
+IGl0IGlzIHZlcnNpb24gNC4wMHh4eA0KDQpTaG91bGQgSSByYXRoZXIgaW5zdGFsbCBvbGRlciB2
+ZXJzaW9ucyBvZiB0aGUgc29mdHdhcmUgb3IgaXMgdGhlcmUgYSB3b3JrYXJvdW5kIGZvciB0aGlz
+IHByb2JsZW0/IElmIHNvIHdoYXQgaXMgc3VnZ2VzdGVkIHRvIGJlIGdvb2QgYW5kIHdvcmtpbmc/
+DQoNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NClJlZ2FyZHMgLyBHcm9ldGUNCg0K
+TWFyaXVzIEQuIExpZWJlbmJlcmcNCisyNyA4MiA2OTggMzI1MQ0KKzI3IDEyIDc0MyA2MDY0DQoN
+Cg==
 
+--_000_DB5PR04MB1653621E75AC2BAA1E7F89899DA90DB5PR04MB1653eurp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
->You should follow steps from=20
->http://www.yoctoproject.org/docs/2.0/dev-manual/dev-manual.html#zip-file-m=
-ethod
->
->
->
->When following steps use =E2=80=9Cmars/yocto-2.0=E2=80=9D branch instead=
- of=20
->=E2=80=9Cluna/yocto-2.0=E2=80=9D.
->
->You should apply patch with =E2=80=9Cgit am=E2=80=9D after doing git check=
-out at step=20
->3. i.e. patch should be committed in local repository before starting=20
->the build.
->
->Important: you should add =E2=80=9C-l=E2=80=9D argument to build.sh at =
-step 7.
->
->
->
->Teo
->
->
->
->From: Marius [mailto:mdlcameras@gmail.com]
->Sent: Thursday, February 11, 2016 14:11
->To: Teodor Madan <teodor.madan@nxp.com>; yocto@yoctoproject.org
->Subject: Re[2]: [yocto] Eclipse IDE plugin failure
->
->
->
->Ah thanks Teo. Do you know of an instruction somewhere to get the patch=
-=20
->affected. I dont really know how to do that as I am installing directly=
-=20
->from repositories on the net.
->
->
->
->------ Original Message ------
->
->From: "Teodor Madan" <teodor.madan@nxp.com>
->
->To: "Marius" <mdlcameras@gmail.com>; "yocto@yoctoproject.org"=20
-><yocto@yoctoproject.org>
->
->Sent: 2016-02-11 13:13:39
->
->Subject: RE: [yocto] Eclipse IDE plugin failure
->
->
->
->>A patch has been proposed at=20
->>https://lists.yoctoproject.org/pipermail/yocto/2016-January/027951.html
->>
->>I just have verified the patch and it worked for me.
->>
->>
->>
->>Teo
->>
->>
->>
->>
->>
->>From:yocto-bounces@yoctoproject.org=20
->>[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Marius
->>Sent: Wednesday, February 10, 2016 20:22
->>To:yocto@yoctoproject.org
->>Subject: [yocto] Eclipse IDE plugin failure
->>
->>
->>
->>I installed the latest Eclipse (Mars) and attempted to install the=20
->>plugin. The installation failed and the reported error was that it=20
->>could not locate the TM Terminal version 3.xxx. The TM terminal is=20
->>installed but it is version 4.00xxx
->>
->>
->>
->>Should I rather install older versions of the software or is there a=20
->>workaround for this problem? If so what is suggested to be good and=20
->>working?
->>
->>
->>
->>
->>
->>-----------------------------
->>
->>Regards / Groete
->>
->>
->>
->>Marius D. Liebenberg
->>
->>+27 82 698 3251
->>
->>+27 12 743 6064
->>
->>
->>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglw
+YW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
+cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0K
+CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5
+OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowY207
+DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNvdXJpZXIgTmV3Ijt9DQp0dA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJZm9udC1m
+YW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1z
+dHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6
+OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseTpD
+b25zb2xhczt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJ
+e21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCglt
+YXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1s
+ZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9t
+YW4iLHNlcmlmO30NCnAubXNvbm9ybWFsMDAsIGxpLm1zb25vcm1hbDAwLCBkaXYubXNvbm9ybWFs
+MDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsMDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1h
+cmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBO
+ZXcgUm9tYW4iLHNlcmlmO30NCnAubXNvY2hwZGVmYXVsdCwgbGkubXNvY2hwZGVmYXVsdCwgZGl2
+Lm1zb2NocGRlZmF1bHQNCgl7bXNvLXN0eWxlLW5hbWU6bXNvY2hwZGVmYXVsdDsNCgltc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uaHRtbHByZWZvcm1hdHRlZGNo
+YXIwDQoJe21zby1zdHlsZS1uYW1lOmh0bWxwcmVmb3JtYXR0ZWRjaGFyO30NCnNwYW4uZW1haWxz
+dHlsZTIxDQoJe21zby1zdHlsZS1uYW1lOmVtYWlsc3R5bGUyMTt9DQpzcGFuLkVtYWlsU3R5bGUy
+NQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
+cy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTI2DQoJe21zby1zdHls
+ZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
+Ow0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
+b3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6
+ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9
+DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
+bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
+YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
+b2R5IGxhbmc9IkVOLVVTIiBsaW5rPSIjMDAwMDAwIiB2bGluaz0iIzAwMDAwMCI+DQo8ZGl2IGNs
+YXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPllvdSBzaG91bGQgZm9sbG93IHN0ZXBzIGZyb20NCjxhIGhyZWY9Imh0
+dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuMC9kZXYtbWFudWFsL2Rldi1tYW51YWwu
+aHRtbCN6aXAtZmlsZS1tZXRob2QiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOndpbmRvd3RleHQiPmh0
+dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuMC9kZXYtbWFudWFsL2Rldi1tYW51YWwu
+aHRtbCN6aXAtZmlsZS1tZXRob2Q8L3NwYW4+PC9hPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWY7Y29sb3I6IzFGNDk3RCI+V2hlbiBmb2xsb3dpbmcgc3RlcHMgdXNlIOKAnG1hcnMveW9jdG8t
+Mi4w4oCdIGJyYW5jaCBpbnN0ZWFkIG9mIOKAnGx1bmEveW9jdG8tMi4w4oCdLjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj5Zb3Ugc2hvdWxkIGFwcGx5IHBhdGNoIHdpdGgg4oCcZ2l0IGFt4oCdIGFmdGVyIGRv
+aW5nIGdpdCBjaGVja291dCBhdCBzdGVwIDMuIGkuZS4gcGF0Y2ggc2hvdWxkIGJlIGNvbW1pdHRl
+ZCBpbiBsb2NhbCByZXBvc2l0b3J5IGJlZm9yZSBzdGFydGluZyB0aGUgYnVpbGQuPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPkltcG9ydGFudDogeW91IHNob3VsZCBhZGQg4oCcLWzigJ0gYXJndW1lbnQgdG8g
+YnVpbGQuc2ggYXQgc3RlcCA3Lg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj5UZW88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtw
+YWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9u
+ZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBj
+bSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFu
+PjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBNYXJpdXMgW21haWx0bzptZGxjYW1lcmFzQGdtYWlsLmNv
+bV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgRmVicnVhcnkgMTEsIDIwMTYgMTQ6MTE8
+YnI+DQo8Yj5Ubzo8L2I+IFRlb2RvciBNYWRhbiAmbHQ7dGVvZG9yLm1hZGFuQG54cC5jb20mZ3Q7
+OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlWzJdOiBbeW9j
+dG9dIEVjbGlwc2UgSURFIHBsdWdpbiBmYWlsdXJlPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
+aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OyxzYW5zLXNlcmlmIj5BaCB0aGFua3MgVGVv
+LiBEbyB5b3Uga25vdyBvZiBhbiBpbnN0cnVjdGlvbiBzb21ld2hlcmUgdG8gZ2V0IHRoZSBwYXRj
+aCBhZmZlY3RlZC4gSSBkb250IHJlYWxseSBrbm93IGhvdyB0byBkbyB0aGF0IGFzIEkgYW0gaW5z
+dGFsbGluZyBkaXJlY3RseSBmcm9tIHJlcG9zaXRvcmllcyBvbiB0aGUgbmV0LjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OyxzYW5z
+LXNlcmlmIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
+eTomcXVvdDtUYWhvbWEmcXVvdDssc2Fucy1zZXJpZiI+LS0tLS0tIE9yaWdpbmFsIE1lc3NhZ2Ug
+LS0tLS0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+VGFob21hJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206ICZxdW90O1Rlb2RvciBNYWRhbiZxdW90OyAm
+bHQ7PGEgaHJlZj0ibWFpbHRvOnRlb2Rvci5tYWRhbkBueHAuY29tIj48dT48c3BhbiBzdHlsZT0i
+Y29sb3I6IzA1NjNDMSI+dGVvZG9yLm1hZGFuQG54cC5jb208L3NwYW4+PC91PjwvYT4mZ3Q7PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
+b3Q7LHNhbnMtc2VyaWYiPlRvOiAmcXVvdDtNYXJpdXMmcXVvdDsgJmx0OzxhIGhyZWY9Im1haWx0
+bzptZGxjYW1lcmFzQGdtYWlsLmNvbSI+PHU+PHNwYW4gc3R5bGU9ImNvbG9yOiMwNTYzQzEiPm1k
+bGNhbWVyYXNAZ21haWwuY29tPC9zcGFuPjwvdT48L2E+Jmd0OzsgJnF1b3Q7PGEgaHJlZj0ibWFp
+bHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+JnF1
+b3Q7DQogJmx0OzxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj48dT48c3Bh
+biBzdHlsZT0iY29sb3I6IzA1NjNDMSI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvc3Bhbj48L3U+
+PC9hPiZndDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVv
+dDtUYWhvbWEmcXVvdDssc2Fucy1zZXJpZiI+U2VudDogMjAxNi0wMi0xMSAxMzoxMzozOTxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90
+OyxzYW5zLXNlcmlmIj5TdWJqZWN0OiBSRTogW3lvY3RvXSBFY2xpcHNlIElERSBwbHVnaW4gZmFp
+bHVyZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
+aG9tYSZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXYgaWQ9IngwYjBkMGVlYzQ0Mjk0MmNiOTY2NzM5NjI4ZTRjNjMyNyI+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtw
+YWRkaW5nOjBjbSAwY20gMGNtIDguMHB0O21hcmdpbi1sZWZ0OjMuNzVwdDttYXJnaW4tdG9wOjIu
+MjVwdDttYXJnaW4tcmlnaHQ6MGNtO21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkEgcGF0Y2ggaGFzIGJlZW4g
+cHJvcG9zZWQgYXQNCjxhIGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBl
+cm1haWwveW9jdG8vMjAxNi1KYW51YXJ5LzAyNzk1MS5odG1sIj4NCjx1PjxzcGFuIHN0eWxlPSJj
+b2xvcjojMDU2M0MxIj5odHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWlsL3lv
+Y3RvLzIwMTYtSmFudWFyeS8wMjc5NTEuaHRtbDwvc3Bhbj48L3U+PC9hPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEIj5JIGp1c3QgaGF2ZSB2ZXJpZmllZCB0aGUgcGF0Y2ggYW5kIGl0IHdvcmtlZCBmb3IgbWUu
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UZW88bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41
+cHQ7cGFkZGluZzowY20gMGNtIDBjbSA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVy
+Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBj
+bSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwv
+c3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4NCjxhIGhyZWY9Im1haWx0bzp5b2N0by1ib3VuY2Vz
+QHlvY3RvcHJvamVjdC5vcmciPjx1PjxzcGFuIHN0eWxlPSJjb2xvcjojMDU2M0MxIj55b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmc8L3NwYW4+PC91PjwvYT4gW21haWx0bzo8YSBocmVmPSJt
+YWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIj48dT48c3BhbiBzdHlsZT0iY29s
+b3I6IzA1NjNDMSI+eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPC9zcGFuPjwvdT48L2E+
+XQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5NYXJpdXM8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5
+LCBGZWJydWFyeSAxMCwgMjAxNiAyMDoyMjxicj4NCjxiPlRvOjwvYj4gPGEgaHJlZj0ibWFpbHRv
+OnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPjx1PjxzcGFuIHN0eWxlPSJjb2xvcjojMDU2M0MxIj55
+b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9zcGFuPjwvdT48L2E+PGJyPg0KPGI+U3ViamVjdDo8L2I+
+IFt5b2N0b10gRWNsaXBzZSBJREUgcGx1Z2luIGZhaWx1cmU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LHNhbnMtc2VyaWYiPkkgaW5zdGFs
+bGVkIHRoZSBsYXRlc3QgRWNsaXBzZSAoTWFycykgYW5kIGF0dGVtcHRlZCB0byBpbnN0YWxsIHRo
+ZSBwbHVnaW4uIFRoZSBpbnN0YWxsYXRpb24gZmFpbGVkIGFuZCB0aGUgcmVwb3J0ZWQgZXJyb3Ig
+d2FzIHRoYXQgaXQgY291bGQgbm90IGxvY2F0ZSB0aGUgVE0gVGVybWluYWwgdmVyc2lvbg0KIDMu
+eHh4LiBUaGUgVE0gdGVybWluYWwgaXMgaW5zdGFsbGVkIGJ1dCBpdCBpcyB2ZXJzaW9uIDQuMDB4
+eHg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhv
+bWEmcXVvdDssc2Fucy1zZXJpZiI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LHNhbnMtc2VyaWYiPlNob3VsZCBJIHJh
+dGhlciBpbnN0YWxsIG9sZGVyIHZlcnNpb25zIG9mIHRoZSBzb2Z0d2FyZSBvciBpcyB0aGVyZSBh
+IHdvcmthcm91bmQgZm9yIHRoaXMgcHJvYmxlbT8gSWYgc28gd2hhdCBpcyBzdWdnZXN0ZWQgdG8g
+YmUgZ29vZCBhbmQgd29ya2luZz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
+LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssc2Fucy1zZXJpZiI+Jm5ic3A7PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBpZD0ic2lnbmF0dXJlX29sZCI+DQo8ZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
+dDssc2Fucy1zZXJpZiI+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS08bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssc2Fucy1z
+ZXJpZiI+UmVnYXJkcyAvIEdyb2V0ZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssc2Fu
+cy1zZXJpZiI+TWFyaXVzIEQuIExpZWJlbmJlcmc8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssc2Fucy1zZXJpZiI+JiM0MzsyNyA4
+MiA2OTggMzI1MTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O1RhaG9tYSZxdW90OyxzYW5zLXNlcmlmIj4mIzQzOzI3IDEyIDc0MyA2MDY0PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O1RhaG9tYSZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---------=_MB153520A4-A6A4-4195-8115-E7F530CC81F0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<HTML xmlns=3D"http://www.w3.org/TR/REC-html40" xmlns:v =3D "urn:schemas-mi=
-crosoft-com:vml" xmlns:o =3D "urn:schemas-microsoft-com:office:office" xmln=
-s:w =3D "urn:schemas-microsoft-com:office:word" xmlns:m =3D "http://schemas=
-.microsoft.com/office/2004/12/omml"><HEAD>
-<STYLE id=3DeMClientCss>blockquote.cite { margin-left: 5px; margin-right:=
- 0px; padding-left: 10px; padding-right:0px; border-left: 1px solid #cccccc=
- }
-blockquote.cite2 {margin-left: 5px; margin-right: 0px; padding-left: 10px;=
- padding-right:0px; border-left: 1px solid #cccccc; margin-top: 3px; paddin=
-g-top: 0px; }
-.plain pre, .plain tt { font-family: monospace; font-size: 100%; font-weigh=
-t: normal; font-style: normal;}
-a img { border: 0px; }body {font-family: Tahoma;font-size: 10pt;}
-.plain pre, .plain tt {font-family: Tahoma;font-size: 10pt;}
-</STYLE>
-
-<STYLE>#x8b3d23b55ca64c5e8bf080bb44e213dc DIV.MsoNormal, #x8b3d23b55ca64c5e=
-8bf080bb44e213dc LI.MsoNormal, #x8b3d23b55ca64c5e8bf080bb44e213dc P.MsoNorm=
-al
-{FONT-SIZE: 12pt; FONT-FAMILY: "Times New Roman",serif; MARGIN: 0cm 0cm =
-0pt}
-#x8b3d23b55ca64c5e8bf080bb44e213dc PRE
-{FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; MARGIN: 0cm 0cm 0pt; mso-styl=
-e-priority: 99; mso-style-link: "HTML Preformatted Char"}
-#x8b3d23b55ca64c5e8bf080bb44e213dc TT
-{FONT-FAMILY: "Courier New"; mso-style-priority: 99}
-#x8b3d23b55ca64c5e8bf080bb44e213dc SPAN.HTMLPreformattedChar
-{FONT-FAMILY: Consolas; mso-style-priority: 99; mso-style-link: "HTML Prefo=
-rmatted"; mso-style-name: "HTML Preformatted Char"}
-#x8b3d23b55ca64c5e8bf080bb44e213dc DIV.msonormal0, #x8b3d23b55ca64c5e8bf080=
-bb44e213dc LI.msonormal0, #x8b3d23b55ca64c5e8bf080bb44e213dc P.msonormal0
-{FONT-SIZE: 12pt; FONT-FAMILY: "Times New Roman",serif; MARGIN-LEFT: 0cm;=
- MARGIN-RIGHT: 0cm; mso-style-name: msonormal; mso-margin-top-alt: auto;=
- mso-margin-bottom-alt: auto}
-#x8b3d23b55ca64c5e8bf080bb44e213dc DIV.msonormal00, #x8b3d23b55ca64c5e8bf08=
-0bb44e213dc LI.msonormal00, #x8b3d23b55ca64c5e8bf080bb44e213dc P.msonormal0=
-0
-{FONT-SIZE: 12pt; FONT-FAMILY: "Times New Roman",serif; MARGIN-LEFT: 0cm;=
- MARGIN-RIGHT: 0cm; mso-style-name: msonormal0; mso-margin-top-alt: auto;=
- mso-margin-bottom-alt: auto}
-#x8b3d23b55ca64c5e8bf080bb44e213dc DIV.msochpdefault, #x8b3d23b55ca64c5e8bf=
-080bb44e213dc LI.msochpdefault, #x8b3d23b55ca64c5e8bf080bb44e213dc P.msochp=
-default
-{FONT-SIZE: 12pt; FONT-FAMILY: "Times New Roman",serif; MARGIN-LEFT: 0cm;=
- MARGIN-RIGHT: 0cm; mso-style-name: msochpdefault; mso-margin-top-alt: auto=
-; mso-margin-bottom-alt: auto}
-#x8b3d23b55ca64c5e8bf080bb44e213dc SPAN.htmlpreformattedchar0
-{mso-style-name: htmlpreformattedchar}
-#x8b3d23b55ca64c5e8bf080bb44e213dc SPAN.emailstyle21
-{mso-style-name: emailstyle21}
-#x8b3d23b55ca64c5e8bf080bb44e213dc SPAN.EmailStyle25
-{FONT-FAMILY: "Calibri",sans-serif; COLOR: #1f497d; mso-style-type: persona=
-l}
-#x8b3d23b55ca64c5e8bf080bb44e213dc SPAN.EmailStyle26
-{FONT-FAMILY: "Calibri",sans-serif; COLOR: #1f497d; mso-style-type: persona=
-l-reply}
-#x8b3d23b55ca64c5e8bf080bb44e213dc .msochpdefault
-{FONT-SIZE: 10pt; mso-style-type: export-only}
-#x8b3d23b55ca64c5e8bf080bb44e213dc DIV.WordSection1
-{page: WordSection1}
-</STYLE>
-</HEAD>
-<BODY lang=3DEN-US scroll=3Dauto link=3D#000000 vLink=3D#000000 class>
-<DIV>Thanks Teo, I will give it a go.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>&nbsp;</DIV>
-<DIV id=3Dx8b3d23b55ca64c5e8bf080bb44e213dc>
-<BLOCKQUOTE class=3Dcite2 cite=3DDB5PR04MB1653621E75AC2BAA1E7F89899DA90@DB5=
-PR04MB1653.eurprd04.prod.outlook.com type=3D"cite">
-<DIV class=3DWordSection1>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>You should follow steps from <A href=3D"http:/=
-/www.yoctoproject.org/docs/2.0/dev-manual/dev-manual.html#zip-file-method">=
-<SPAN style=3D"COLOR: windowtext">http://www.yoctoproject.org/docs/2.0/dev-=
-manual/dev-manual.html#zip-file-method</SPAN></A><o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>When following steps use =E2=80=9Cmars/yocto-2=
-.0=E2=80=9D branch instead of =E2=80=9Cluna/yocto-2.0=E2=80=9D.<o:p></o:p><=
-/SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>You should apply patch with =E2=80=9Cgit am=
-=E2=80=9D after doing git checkout at step 3. i.e. patch should be committe=
-d in local repository before starting the build.<o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>Important: you should add =E2=80=9C-l=E2=80=
-=9D argument to build.sh at step 7. <o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>Teo<o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<DIV style=3D"BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BO=
-TTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: =
-4pt; BORDER-LEFT: blue 1.5pt solid; PADDING-RIGHT: 0cm">
-<DIV>
-<DIV style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; =
-BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; PADDING-=
-LEFT: 0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
-<P class=3DMsoNormal><B><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calib=
-ri",sans-serif'>From:</SPAN></B><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY=
-: "Calibri",sans-serif'> Marius [mailto:<A href=3D"mailto:mdlcameras@gmail.=
-com">mdlcameras@gmail.com</A>] <BR><B>Sent:</B> Thursday, February 11, 2016=
- 14:11<BR><B>To:</B> Teodor Madan &lt;<A href=3D"mailto:teodor.madan@nxp.co=
-m">teodor.madan@nxp.com</A>&gt;; <A href=3D"mailto:yocto@yoctoproject.org">=
-yocto@yoctoproject.org</A><BR><B>Subject:</B> Re[2]: [yocto] Eclipse IDE=
- plugin failure<o:p></o:p></SPAN></P></DIV></DIV>
-<P class=3DMsoNormal><o:p>&nbsp;</o:p></P>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Ah thanks Teo. Do you know of an instruction somewhere to get=
- the patch affected. I dont really know how to do that as I am installing=
- directly from repositories on the net.<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>------ Original Message ------<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>From: "Teodor Madan" &lt;<A href=3D"mailto:teodor.madan@nxp.com=
-"><U><SPAN style=3D"COLOR: #0563c1">teodor.madan@nxp.com</SPAN></U></A>&gt;=
-<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>To: "Marius" &lt;<A href=3D"mailto:mdlcameras@gmail.com"><U><SP=
-AN style=3D"COLOR: #0563c1">mdlcameras@gmail.com</SPAN></U></A>&gt;; "<A=
- href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</A>" &lt;<A=
- href=3D"mailto:yocto@yoctoproject.org"><U><SPAN style=3D"COLOR: #0563c1">y=
-octo@yoctoproject.org</SPAN></U></A>&gt;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Sent: 2016-02-11 13:13:39<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Subject: RE: [yocto] Eclipse IDE plugin failure<o:p></o:p></SPA=
-N></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV id=3Dx0b0d0eec442942cb966739628e4c6327>
-<BLOCKQUOTE style=3D"BORDER-TOP: medium none; BORDER-RIGHT: medium none;=
- BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING=
--LEFT: 8pt; MARGIN: 2.25pt 0cm 5pt 3.75pt; BORDER-LEFT: #cccccc 1pt solid;=
- PADDING-RIGHT: 0cm">
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>A patch has been proposed at <A href=3D"https:=
-//lists.yoctoproject.org/pipermail/yocto/2016-January/027951.html"><U><SPAN=
- style=3D"COLOR: #0563c1">https://lists.yoctoproject.org/pipermail/yocto/20=
-16-January/027951.html</SPAN></U></A><o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>I just have verified the patch and it worked=
- for me.<o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'>Teo<o:p></o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri"=
-,sans-serif; COLOR: #1f497d'><o:p>&nbsp;</o:p></SPAN></P>
-<DIV style=3D"BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BO=
-TTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: =
-4pt; BORDER-LEFT: blue 1.5pt solid; PADDING-RIGHT: 0cm">
-<DIV>
-<DIV style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; =
-BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; PADDING-=
-LEFT: 0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
-<P class=3DMsoNormal><B><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calib=
-ri",sans-serif'>From:</SPAN></B><SPAN style=3D'FONT-SIZE: 11pt; FONT-FAMILY=
-: "Calibri",sans-serif'> <A href=3D"mailto:yocto-bounces@yoctoproject.org">=
-<U><SPAN style=3D"COLOR: #0563c1">yocto-bounces@yoctoproject.org</SPAN></U>=
-</A> [mailto:<A href=3D"mailto:yocto-bounces@yoctoproject.org"><U><SPAN =
-style=3D"COLOR: #0563c1">yocto-bounces@yoctoproject.org</SPAN></U></A>] =
-<B>On Behalf Of </B>Marius<BR><B>Sent:</B> Wednesday, February 10, 2016 =
-20:22<BR><B>To:</B> <A href=3D"mailto:yocto@yoctoproject.org"><U><SPAN styl=
-e=3D"COLOR: #0563c1">yocto@yoctoproject.org</SPAN></U></A><BR><B>Subject:</=
-B> [yocto] Eclipse IDE plugin failure<o:p></o:p></SPAN></P></DIV></DIV>
-<P class=3DMsoNormal><o:p>&nbsp;</o:p></P>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>I installed the latest Eclipse (Mars) and attempted to install=
- the plugin. The installation failed and the reported error was that it =
-could not locate the TM Terminal version 3.xxx. The TM terminal is installe=
-d but it is version 4.00xxx<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Should I rather install older versions of the software or is=
- there a workaround for this problem? If so what is suggested to be good=
- and working?<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<DIV id=3Dsignature_old>
-<DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>-----------------------------<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Regards / Groete<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>Marius D. Liebenberg<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>+27 82 698 3251<o:p></o:p></SPAN></P></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>+27 12 743 6064<o:p></o:p></SPAN></P></DIV></DIV></DIV>
-<DIV>
-<P class=3DMsoNormal><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",=
-sans-serif'>&nbsp;<o:p></o:p></SPAN></P></DIV></DIV></DIV></BLOCKQUOTE></DI=
-V></DIV></DIV></BLOCKQUOTE></DIV></BODY></HTML>
-
---------=_MB153520A4-A6A4-4195-8115-E7F530CC81F0--
+--_000_DB5PR04MB1653621E75AC2BAA1E7F89899DA90DB5PR04MB1653eurp_--
