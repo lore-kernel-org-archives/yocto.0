@@ -1,61 +1,63 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 798E4E00C58; Fri, 12 Feb 2016 02:35:34 -0800 (PST)
+	id B687EE00C61; Fri, 12 Feb 2016 03:04:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B907E00C4D
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 02:35:30 -0800 (PST)
-Received: by mail-io0-f177.google.com with SMTP id 9so87632051iom.1
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 02:35:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=YUWkecUkZCJ6+RqE2wDMHjL2rtyv81ryATiprFz6WL8=;
-	b=qHb0kaVmCXSd3BfAee7+UR4mQbHe8iQFIbqnk1g/KH+SZRSy3msoLs/cSU4aEo7Suy
-	vY8Yd3DAxfJYDx3RoSbGaAiS+Yo+2Gn8DO0L6g9o1RBaAj3kIsD1Ol6hAzZ7CL5uUnH4
-	xXRkbUyflo3K9z3L/cVjX3iJM0zA91a1XnCs0+wnaTx1n/a83A4373+IPcPFSff5Dez+
-	KKjXWPhC3i9od5t1/JCojvIGkRV7iLRZ87GN9smtOq6hzRaM2qc9GQYjn9WWlUeqQTn8
-	Q0nsF4o7+WwwaeVRzoRovbbYTuBhZ2tHPf2F3+CvanyuZJ3bilnxQ5pCasJ0Qi3T+Wii
-	wqMA==
+	*      [209.85.213.48 listed in list.dnswl.org]
+Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 634FDE00C55
+	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 03:04:38 -0800 (PST)
+Received: by mail-vk0-f48.google.com with SMTP id e6so57898959vkh.2
+	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 03:04:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=pUqrbLfy79r5oSbmBIhbvjUZTRLt5JE6he4uk3+7ugg=;
+	b=XjlndrCJYjDoFDWtI8yo+WJ+25oYBCccC786aCRMNn5G/Ymlk/nar13URuQmcDVYdu
+	Vq7/BemrdR7Lk1LBJPQA/WYW3F2jsUVCPd4jgYQIuX5pWX/BeUp+Tx5q2U0SlIovASQK
+	fTR6poXTqXnXotdO1+wLFca0RLX+5oAC07nrYBi1SjMj18Pu4JVg3/jHVOlC3crk7M52
+	rgs0o6dQc0PRe6SRDiArL+LF+PpIzvCxyQKmc7NYBE2SqsIXbBcpYD5LsVUxccIXT7Xh
+	iULP8FXanjFVtbeI5u/LbTaJd0/eOD8Je7HB/rgr3SgX0Hqo/qqsiTT9qu5RJObh1eX6
+	T64Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YUWkecUkZCJ6+RqE2wDMHjL2rtyv81ryATiprFz6WL8=;
-	b=cq3WFG+SiEuA6xQkE0ETfyEErIK2gfuTL1TvZwoUwsUGLCm3ZPKPO+dbpX3hm+C00J
-	i7E3yCqfx2y3qdyRdg91/8Cv2R7YvGduXHsVYrxV0reNZ9hgOa0TiIe9Y0n0/WZzUiiT
-	3VbcAgT7JqfRb0e2PzQAKRYxM/xwtaGNUtLdUCXSrPO5zC4JbUjES4rhObMz8U9GXvfJ
-	TR8LYFNf/3ebA8Oh/pUgzCoK476uDKE0XoTWcsRw/SWCJ9snci6ySkCGMHN+JlY19Jc/
-	mto1KE6gRiMWhY9AJesu2CaXZZeHbqEgK+dzG9x2Rv2IbiZa8X+krpUEiQHRL6zB5pA0
-	owwA==
-X-Gm-Message-State: AG10YOSWaYlML+De1em1+1ZSzI173Lgl0VRZX00yQIH44dLV5wE/rSnGKWXkFvgEvq50d1UddC1Os0mIFq/erLaq
-X-Received: by 10.107.3.220 with SMTP id e89mr1961302ioi.99.1455273330301;
-	Fri, 12 Feb 2016 02:35:30 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:content-type;
+	bh=pUqrbLfy79r5oSbmBIhbvjUZTRLt5JE6he4uk3+7ugg=;
+	b=c5JlSdhIOnOGQXWkTZcDue+zTAz7FXB5MmZmA8GSFv/tSGnS8c49pk7e+4L0gEUC6A
+	6fvzkmz381tmdS4ohjmeuoj5AbP47OhCgAclxkp7T9TRWJ3cRGveub7NbS1p5nyt7Zkl
+	0yOao21w0AbVK2E5C4CJyxXdGViEsK/+a/F6tQkgdz2NCdTJqzDGLXxHjZ6t/IUE/cAw
+	2Tx7HRZB6kixYgrp3pzjyyYKhNFgX0x0aGBrsGMnZwlbhSC63mYSClDda0rQBvf4TEcc
+	6xaTFLo7+4hXNGluLF/F/aGC97qq/+YJxDXWcW0uq/PZsQofwaoGlr6rxg4k1o06X0hN
+	LVdw==
+X-Gm-Message-State: AG10YOQsb0sNBp/szZgA9/ChwQek/GlRlUy07MuPfTGNm3C53OaSoX5Zoqhegn1UwaWP4U0Fg+dorcK2V5L34g==
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 12 Feb 2016 02:35:10 -0800 (PST)
-In-Reply-To: <BLU168-W106A58D34CE0CD2EFBF941EBA90@phx.gbl>
-References: <BLU168-W106A58D34CE0CD2EFBF941EBA90@phx.gbl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 12 Feb 2016 10:35:10 +0000
-Message-ID: <CAJTo0Lb5FK7C3FduCRM+zDNCOiHKkNwgPVWBxEVBd2N5gawsAQ@mail.gmail.com>
-To: Sridhar Pitchai <sridhar.pitchai@outlook.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: native tool is not installed before it is used
+X-Received: by 10.31.178.146 with SMTP id b140mr622713vkf.108.1455275077637;
+	Fri, 12 Feb 2016 03:04:37 -0800 (PST)
+Received: by 10.31.229.71 with HTTP; Fri, 12 Feb 2016 03:04:37 -0800 (PST)
+In-Reply-To: <CALLyC8RLpNFDrr63E=+yt06RGUGVpqAzn4erwkyJ-LrHqwNOPw@mail.gmail.com>
+References: <CALLyC8RLpNFDrr63E=+yt06RGUGVpqAzn4erwkyJ-LrHqwNOPw@mail.gmail.com>
+Date: Fri, 12 Feb 2016 16:34:37 +0530
+Message-ID: <CALLyC8Tz+igKObccXXbj_5PGg3zVZenSY8jkMG9RpuLH-hUdKA@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: Re: How to create do_populate_sysroot_append task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,55 +69,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Feb 2016 10:35:34 -0000
-Content-Type: multipart/alternative; boundary=001a113f0e7ce77518052b9039d0
+X-List-Received-Date: Fri, 12 Feb 2016 11:04:41 -0000
+Content-Type: multipart/alternative; boundary=001a1144034c0da272052b90a251
 
---001a113f0e7ce77518052b9039d0
+--001a1144034c0da272052b90a251
 Content-Type: text/plain; charset=UTF-8
 
-On 12 February 2016 at 06:10, Sridhar Pitchai <sridhar.pitchai@outlook.com>
-wrote:
+I got the solution for the above issue , we can create a custom has given
+below  in the recipe
 
-> I have a recipe, where It need protobuf-c-compiler (natvily) to auto
-> generate files before it can be compiled. i have added protobuf-c-native in
-> the DEPENDS list. but the compilation is failling at do_autogen, compiling
-> the proto-c is not installed in staging_bindir_native.
-> But if  bitbake protobuf-c-native manually and then bitbake the recipe it
-> is working fine.
+#################
+addtask copy_files_sysroot after do_populate_sysroot before do_package
+
+do_copy_files_sysroot() {
+------------------------
+-----------------------
+ }
+#################
+I hope this solution  may be used for the other
+
+On Thu, Feb 11, 2016 at 9:10 PM, Vivek Per <pervivek@gmail.com> wrote:
+
+> Hi,
+>     I want to add some additional kernel files to sysroot directory . I
+> want to extend do_populate_sysroot task , I want to copy few more files in
+> to sysroot after do_populate_sysroot and before do_package. I tried to
+> create do_populate_sysroot_append() in recipe  but it is getting parsing
+> error . how could i add file in sysroot after populate_sysroot and before
+> do_package.
+>
+> Thanks in advance
+>    Vivek
 >
 
-That's because DEPENDS = "foo" actually means do_configure[depends] =
-"foo".  This is so that packages can fetch/unpack/patch whilst their build
-dependencies are being built.
-
-Instead of adding a new task to run autogen which will run *before*
-configure and therefore before your dependencies have been build, simply
-do_configure_prepend() if the operations need to happen before cmake runs.
-
-Ross
-
---001a113f0e7ce77518052b9039d0
+--001a1144034c0da272052b90a251
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 12 February 2016 at 06:10, Sridhar Pitchai <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:sridhar.pitchai@outlook.com" target=3D"_blank">sridhar.pitchai@o=
-utlook.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I h=
-ave a recipe, where It need protobuf-c-compiler (natvily) to auto generate =
-files before it can be compiled. i have added protobuf-c-native in the DEPE=
-NDS list. but the compilation is failling at do_autogen, compiling the prot=
-o-c is not installed in staging_bindir_native.</div><div>But if =C2=A0bitba=
-ke protobuf-c-native manually and then bitbake the recipe it is working fin=
-e.=C2=A0</div></blockquote></div><br>That&#39;s because DEPENDS =3D &quot;f=
-oo&quot; actually means do_configure[depends] =3D &quot;foo&quot;.=C2=A0 Th=
-is is so that packages can fetch/unpack/patch whilst their build dependenci=
-es are being built.</div><div class=3D"gmail_extra"><br></div><div class=3D=
-"gmail_extra">Instead of adding a new task to run autogen which will run *b=
-efore* configure and therefore before your dependencies have been build, si=
-mply do_configure_prepend() if the operations need to happen before cmake r=
-uns.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
-oss</div></div>
+<div dir=3D"ltr">I got the solution for the above issue , we can create a c=
+ustom has given below =C2=A0in the recipe=C2=A0<div><br><div>##############=
+###<br><div><div>addtask copy_files_sysroot after do_populate_sysroot befor=
+e do_package</div><div><br></div><div>do_copy_files_sysroot() { =C2=A0</div=
+><div>------------------------</div><div>-----------------------</div><div>=
+=C2=A0}</div></div></div><div>#################</div></div><div>I hope this=
+ solution =C2=A0may be used for the other</div></div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On Thu, Feb 11, 2016 at 9:10 PM, Vivek =
+Per <span dir=3D"ltr">&lt;<a href=3D"mailto:pervivek@gmail.com" target=3D"_=
+blank">pervivek@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex"><div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 I want to add some additional=
+ kernel files to sysroot directory . I want to extend do_populate_sysroot t=
+ask , I want to copy few more files in to sysroot after do_populate_sysroot=
+ and before do_package. I tried to create do_populate_sysroot_append() in r=
+ecipe =C2=A0but it is getting parsing error . how could i add file in sysro=
+ot after populate_sysroot and before do_package.</div><div><br></div><div>T=
+hanks in advance</div><span class=3D"HOEnZb"><font color=3D"#888888"><div>=
+=C2=A0 =C2=A0Vivek</div></font></span></div>
+</blockquote></div><br></div>
 
---001a113f0e7ce77518052b9039d0--
+--001a1144034c0da272052b90a251--
