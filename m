@@ -1,61 +1,69 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <gstroz@qti.qualcomm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFAF5E00C87; Fri, 12 Feb 2016 12:01:15 -0800 (PST)
+	id 9384CE00C92; Fri, 12 Feb 2016 17:20:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 241EBE00AF4
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 12:01:13 -0800 (PST)
-Received: by mail-io0-f182.google.com with SMTP id l127so102418364iof.3
-	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 12:01:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kergoth-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-type; bh=ukBa8RC2JVjG6dOO0B3bqdLXUo9HTtri57oXsIAYIhE=;
-	b=rDXhCbimrnHGpFNCmcB4CkQYGQtiB91SrbclDNvx693PSplRPmdBHIZ0WaK7G5PYxJ
-	dUiqDuqLoNbTyG3NvEKV5Y53sT/sIE9Q2kb/6rQxz3qOKbFPDG4E+BzLbwJRPYG+ML+d
-	BQfXeKj+7hqheQ6GnAknHn8IYRrUitSRcYs1wK4d6UjxNcw+rBb0fXihj9tw1+GMCsFA
-	AjmoteljWqAeop6J4ORTATTVllzKF1ZK6cH7wD37JoBid9n8ux5H4mu2NrbpOLUHTFyX
-	FnBZgX2RcTerBfLA6XC6KOyUTJiNaSzZqs15tDaDAW5oTyLLkK08Qt6KFbPZbKI8nFsK
-	cfPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:content-type;
-	bh=ukBa8RC2JVjG6dOO0B3bqdLXUo9HTtri57oXsIAYIhE=;
-	b=IeuAGHrICVbOYmveFHSo0cdJOpQR4mWBe8mW0P/VQQQ9ofzelyf2U/kAGv2NtwJhej
-	9qCMNLwswK+MNNPhTjDB6eKQlllC29/qE7jXtVxwDz7yMKnxU93BtMFfRKIeN7gtdwpQ
-	H3Xaqcf3f4em4D8xqB+EyKbgJhK57Zat5Cx+sDHz5OOv22yMo5h2/TjU/pS1neTdggYs
-	lakGIxKlgAn20ACa60w6bpW9JV/tyasXdRw9GVmhV1HPlgWZN3rYkjWWdAnJDGD3oDjU
-	9HkqpBL9SuXOVEZwtynnvxp9SD6DwKFAjE867AdOXd+P69CJ7u3mGWTkR/0n/4MR7A+K
-	hgqQ==
-X-Gm-Message-State: AG10YOTFrAUDt9laTfi1MA9UX0p1WAFAMMdbuUaC8II1/m7UFSIdP2alej3ocJv+G5JOGcYiR+leq+JZnCBO/A==
-X-Received: by 10.107.29.209 with SMTP id d200mr4698917iod.27.1455307272821;
-	Fri, 12 Feb 2016 12:01:12 -0800 (PST)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [199.106.114.254 listed in list.dnswl.org]
+Received: from wolverine01.qualcomm.com (wolverine01.qualcomm.com
+	[199.106.114.254])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C19EE00C13
+	for <yocto@yoctoproject.org>; Fri, 12 Feb 2016 17:20:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
+	s=qcdkim; t=1455326431; x=1486862431;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:mime-version;
+	bh=r0aD4B1v1eFLnaKeD/HJl2o8/9iaQ4YVGerO8ltHMtg=;
+	b=NZXhe7i1xWTiyrb0gUVI3P8/9jnz+ABmLYPcMx8jR54SEtqOJLVU0fRN
+	wYgEbbY6GSptlC3Mf4n9tlS9CaVQ0LqSvMWeuyFOmmYvR3D7JOvR1sS/+
+	U7optchMV0JgxQxbnNMIrID+bRlkHqxCKxIUrjkrCVMS0dJLSjMpClZjt o=;
+X-IronPort-AV: E=Sophos;i="5.22,438,1449561600"; 
+	d="scan'208,217";a="168688129"
+Received: from ironmsg02-l-new.qualcomm.com (HELO ironmsg02-L.qualcomm.com)
+	([10.53.140.109])
+	by wolverine01.qualcomm.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	12 Feb 2016 17:20:26 -0800
+X-IronPort-AV: E=McAfee;i="5700,7163,8073"; a="637518013"
+Received: from nasanexm02f.na.qualcomm.com ([10.85.0.87])
+	by ironmsg02-L.qualcomm.com with ESMTP/TLS/RC4-SHA;
+	12 Feb 2016 17:20:25 -0800
+Received: from NASANEXM02C.na.qualcomm.com (10.85.0.43) by
+	nasanexm02f.na.qualcomm.com (10.85.0.87) with Microsoft SMTP Server
+	(TLS) id 15.0.1130.7; Fri, 12 Feb 2016 17:20:25 -0800
+Received: from NASANEXM02C.na.qualcomm.com ([10.85.0.43]) by
+	NASANEXM02C.na.qualcomm.com ([10.85.0.43]) with mapi id 15.00.1130.005;
+	Fri, 12 Feb 2016 17:20:25 -0800
+From: "Stroz, Glenn" <gstroz@qti.qualcomm.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Selecting a specific tuning in an application recipe?
+Thread-Index: AdFlAB0rDvcMaAlrQUaStptDOJ5TYQAm8nMAABgmS0A=
+Date: Sat, 13 Feb 2016 01:20:24 +0000
+Message-ID: <3a2a39fcdc934f24a30f12fa6ee8d911@NASANEXM02C.na.qualcomm.com>
+References: <7eb23ce64ad7493485184af5224b8646@NASANEXM02C.na.qualcomm.com>
+	<B8247686-0F74-4B5C-8F31-8D9E010B696A@gmail.com>
+In-Reply-To: <B8247686-0F74-4B5C-8F31-8D9E010B696A@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [199.106.115.192]
 MIME-Version: 1.0
-References: <c0fe5ddbf4bb4b3491dcc6e92bb88602@chdua14.duagon.ads>
-	<CABcZANkkZ5gsXSHP3iqxA+5Z6vP-Z2aUKM8DiJhG45z1Q2Nz9Q@mail.gmail.com>
-	<f061a595660d4b9eb1516ef98c58de06@chdua14.duagon.ads>
-In-Reply-To: <f061a595660d4b9eb1516ef98c58de06@chdua14.duagon.ads>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Fri, 12 Feb 2016 20:01:03 +0000
-Message-ID: <CABcZANnuoQe6Tu6ipzRK=JTnjxvcv0PY_TUQVmm9Ypt_fvimBw@mail.gmail.com>
-To: Thomas Kaufmann <Thomas.Kaufmann@duagon.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto/Poky with external linaro toolchain
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Selecting a specific tuning in an application recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,126 +75,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Feb 2016 20:01:15 -0000
-Content-Type: multipart/alternative; boundary=001a11408e9e0924b5052b9821a1
+X-List-Received-Date: Sat, 13 Feb 2016 01:20:34 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3a2a39fcdc934f24a30f12fa6ee8d911NASANEXM02Cnaqualcommco_"
 
---001a11408e9e0924b5052b9821a1
-Content-Type: text/plain; charset=UTF-8
+--_000_3a2a39fcdc934f24a30f12fa6ee8d911NASANEXM02Cnaqualcommco_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Fri, Feb 12, 2016 at 2:47 AM Thomas Kaufmann <Thomas.Kaufmann@duagon.com>
-wrote:
+VGhhbmsgeW91IOKAkyB0aGlzIHdvcmtlZC4gR290IGNhdWdodCB1cCBvbiB0aGUgaWRlYSBvZiBt
+dWx0aWxpYiBiZWluZyBmb3IgbGlicmFyaWVzIG9ubHkuIFVzaW5nIGl0IG9uIGJpbmFyaWVzIHdv
+cmtlZCBwZXJmZWN0bHkuDQoNCi1HbGVubg0KDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5r
+aGVtQGdtYWlsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBGZWJydWFyeSAxMSwgMjAxNiA5OjQ3IFBN
+DQpUbzogU3Ryb3osIEdsZW5uDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDog
+UmU6IFt5b2N0b10gU2VsZWN0aW5nIGEgc3BlY2lmaWMgdHVuaW5nIGluIGFuIGFwcGxpY2F0aW9u
+IHJlY2lwZT8NCg0KDQpPbiBGZWIgMTEsIDIwMTYsIGF0IDExOjI1IEFNLCBTdHJveiwgR2xlbm4g
+PGdzdHJvekBxdGkucXVhbGNvbW0uY29tPG1haWx0bzpnc3Ryb3pAcXRpLnF1YWxjb21tLmNvbT4+
+IHdyb3RlOg0KDQpIaSwNCg0KV2XigJlyZSB0cnlpbmcgdG8gYnVpbGQgYSA2NCBiaXQgYXJtIHBy
+b2plY3QuIEhvd2V2ZXIsIG9uZSBvZiBvdXIgYXBwbGljYXRpb25zIG5lZWRzIHRvIGJlIGJ1aWx0
+IGluIDMyIGJpdCBtb2RlIGFzIGl0IGlzbuKAmXQgc3VwcG9ydGVkIGluIDY0IGJpdCB5ZXQuIEni
+gJl2ZSBsb29rZWQgYXJvdW5kIGFuZCBpdCBsb29rcyBsaWtlIEkgbmVlZCB0byBhZGp1c3QgdGhl
+IHR1bmluZyB0byBiZSBmb3IgYXJtdjcgaW5zdGVhZCBvZiB0aGUgZGVmYXVsdC4gSG93ZXZlciwg
+d2hlbiBJIHNldCBERUZBVUxUVFVORSBpbiB0aGUgYXBwbGljYXRpb24gcmVjaXBlIGl0IGRvZXMg
+bm90IGNvbXBpbGUgdGhlIDMyIGJpdCBjcm9zcyBjb21waWxlciBhbmQgYmFpbHMgb3V0IHdpdGgg
+YSBkZXBlbmRlbmN5IGVycm9yLiBJcyB0aGVyZSBhIHN5c3RlbSBpbiBwbGFjZSB3aGVyZSB3ZSBj
+YW4gYWRqdXN0IHRoZSB0dW5pbmcgZm9yIGEgc3BlY2lmaWMgcmVjaXBlPw0KDQpNdWx0aWxpYiBk
+b2VzbuKAmXQgYXBwZWFyIHRvIGJlIHRoZSBzb2x1dGlvbiBzaW5jZSBpdOKAmXMgdGFpbG9yZWQg
+dG93YXJkcyBsaWJyYXJpZXMgYW5kIG5vdCBhcHBsaWNhdGlvbnMuIE5vdCBzdXJlIGlmIHRoZXJl
+4oCZcyBhbnl0aGluZyBlbHNlIHRoYXQgd291bGQgd29yay4NCg0KaW5mYWN0IG11bHRpbGliIGlz
+IHRoZSBzb2x1dGlvbiwgaXRzIG5vdCBsaW1pdGVkIHRvIGxpYnJhcmllcy4gSWYgbXVsdGlsaWIg
+d29ya2VkIGZvciB5b3VyIGFyY2ggeW91IHdvdWxkDQoNCmJpdGJha2UgbGliMzItPHlvdXJhcHA+
+DQphbmQgaXQgd2lsbCBicmluZyBpbiBhbGwgbmVlZGVkIGRlcGVuZGVuY2llcyArIGNvbXBpbGUg
+eW91ciBhcHAgaW4gMzJiaXQgbW9kZSBvciB3aGF0ZXZlciB0aGUgbXVsdGlsaWIgd2FycmFudHMu
+DQoNClF1ZXN0aW9uIGhvd2V2ZXIgaXMgaWYgY29tYmluYXRpb24gdGhhdCB5b3UgYXJlIGV4cGVj
+dGluZyBpcyBzdXBwb3J0ZWQgb3Igbm90Lg0KDQoNCg0KVGhhbmtzLA0KR2xlbm4NCg0KLS0NCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWls
+aW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVj
+dC5vcmc+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-> Hi Christopher
->
->
->
-> thanks for this hint, this prevented a lot of packages from being built.
->
-> However I still face an additional issue. in the last step of
-> do_populate_sdk, when the sdk is actually supposed to be put together.
->
-> I get this output:
->
->
->
-> Collected errors:
->
-> * satisfy_dependencies_for: Cannot satisfy the following dependencies for
-> packagegroup-core-standalone-sdk-target:
->
-> *            libc6 (= 2015.08-r0) *      glibc-utils *
->
->  * opkg_install_cmd: Cannot install package
-> packagegroup-core-standalone-sdk-target.
->
->
->
-> how can it be, that everything is built correctly and in the end there is
-> a dependency missing?
->
-> I tried altering my LIBC_DEPENDENCIES, but with no success so far.
->
-> I am also using tclibc-external-linaro-toolchain.inc from
->
->
-> http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-extras/conf/distro/include/tclibc-external-linaro-toolchain.inc;hb=HEAD
->
+--_000_3a2a39fcdc934f24a30f12fa6ee8d911NASANEXM02Cnaqualcommco_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This looks like it's specific to your linaro toolchain bits. I'd recommend
-contacting the linaro or arago folks.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpVYnVudHU7DQoJcGFub3NlLTE6MCAwIDAg
+MCAwIDAgMCAwIDAgMDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxp
+Lk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206
+LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9t
+YW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZp
+c2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5
+Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uYXBw
+bGUtY29udmVydGVkLXNwYWNlDQoJe21zby1zdHlsZS1uYW1lOmFwcGxlLWNvbnZlcnRlZC1zcGFj
+ZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5N
+c29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZTox
+MC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdp
+bjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29y
+ZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZd
+LS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+
+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3ht
+bD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2
+bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmsgeW91IOKAkyB0aGlz
+IHdvcmtlZC4gR290IGNhdWdodCB1cCBvbiB0aGUgaWRlYSBvZiBtdWx0aWxpYiBiZWluZyBmb3Ig
+bGlicmFyaWVzIG9ubHkuIFVzaW5nIGl0IG9uIGJpbmFyaWVzIHdvcmtlZCBwZXJmZWN0bHkuDQo8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4tR2xlbm48
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEu
+MHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gS2hlbSBS
+YWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNk
+YXksIEZlYnJ1YXJ5IDExLCAyMDE2IDk6NDcgUE08YnI+DQo8Yj5Ubzo8L2I+IFN0cm96LCBHbGVu
+bjxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6
+PC9iPiBSZTogW3lvY3RvXSBTZWxlY3RpbmcgYSBzcGVjaWZpYyB0dW5pbmcgaW4gYW4gYXBwbGlj
+YXRpb24gcmVjaXBlPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJn
+aW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPk9uIEZlYiAxMSwgMjAxNiwgYXQgMTE6MjUgQU0sIFN0cm96LCBHbGVubiAmbHQ7PGEg
+aHJlZj0ibWFpbHRvOmdzdHJvekBxdGkucXVhbGNvbW0uY29tIj5nc3Ryb3pAcXRpLnF1YWxjb21t
+LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiZuYnNwOzxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZiI+V2XigJlyZSB0cnlpbmcgdG8gYnVpbGQgYSA2NCBiaXQgYXJtIHBy
+b2plY3QuIEhvd2V2ZXIsIG9uZSBvZiBvdXIgYXBwbGljYXRpb25zIG5lZWRzIHRvIGJlIGJ1aWx0
+IGluIDMyIGJpdCBtb2RlIGFzIGl0IGlzbuKAmXQgc3VwcG9ydGVkIGluIDY0IGJpdCB5ZXQuIEni
+gJl2ZSBsb29rZWQgYXJvdW5kIGFuZCBpdA0KIGxvb2tzIGxpa2UgSSBuZWVkIHRvIGFkanVzdCB0
+aGUgdHVuaW5nIHRvIGJlIGZvciBhcm12NyBpbnN0ZWFkIG9mIHRoZSBkZWZhdWx0LiBIb3dldmVy
+LCB3aGVuIEkgc2V0IERFRkFVTFRUVU5FIGluIHRoZSBhcHBsaWNhdGlvbiByZWNpcGUgaXQgZG9l
+cyBub3QgY29tcGlsZSB0aGUgMzIgYml0IGNyb3NzIGNvbXBpbGVyIGFuZCBiYWlscyBvdXQgd2l0
+aCBhIGRlcGVuZGVuY3kgZXJyb3IuIElzIHRoZXJlIGEgc3lzdGVtIGluIHBsYWNlIHdoZXJlIHdl
+DQogY2FuIGFkanVzdCB0aGUgdHVuaW5nIGZvciBhIHNwZWNpZmljIHJlY2lwZT88bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWYiPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+TXVsdGlsaWIgZG9lc27igJl0IGFw
+cGVhciB0byBiZSB0aGUgc29sdXRpb24gc2luY2UgaXTigJlzIHRhaWxvcmVkIHRvd2FyZHMgbGli
+cmFyaWVzIGFuZCBub3QgYXBwbGljYXRpb25zLiBOb3Qgc3VyZSBpZiB0aGVyZeKAmXMgYW55dGhp
+bmcgZWxzZSB0aGF0IHdvdWxkIHdvcmsuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmluZmFj
+dCBtdWx0aWxpYiBpcyB0aGUgc29sdXRpb24sIGl0cyBub3QgbGltaXRlZCB0byBsaWJyYXJpZXMu
+IElmIG11bHRpbGliIHdvcmtlZCBmb3IgeW91ciBhcmNoIHlvdSB3b3VsZDxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5iaXRiYWtlIGxpYjMyLSZs
+dDt5b3VyYXBwJmd0OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+YW5kIGl0IHdpbGwgYnJpbmcgaW4gYWxsIG5lZWRlZCBkZXBlbmRlbmNpZXMgJiM0
+MzsgY29tcGlsZSB5b3VyIGFwcCBpbiAzMmJpdCBtb2RlIG9yIHdoYXRldmVyIHRoZSBtdWx0aWxp
+YiB3YXJyYW50cy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+UXVlc3Rpb24gaG93ZXZlciBpcyBpZiBjb21iaW5hdGlvbiB0aGF0IHlvdSBhcmUg
+ZXhwZWN0aW5nIGlzIHN1cHBvcnRlZCBvciBub3QuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVv
+dGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+Jm5ic3A7PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5HbGVubjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZiI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVv
+dDtVYnVudHUmcXVvdDssc2VyaWYiPi0tPHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFj
+ZSI+Jm5ic3A7PC9zcGFuPjxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPC9zcGFuPjxhIGhyZWY9
+Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjVwdDtmb250LWZhbWlseTomcXVvdDtVYnVudHUmcXVvdDssc2VyaWY7Y29sb3I6Izk1NEY3MiI+
+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvc3Bhbj48L2E+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VWJ1bnR1JnF1b3Q7LHNlcmlmIj48YnI+DQo8L3NwYW4+
+PGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtVYnVudHUmcXVv
+dDssc2VyaWY7Y29sb3I6Izk1NEY3MiI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xp
+c3RpbmZvL3lvY3RvPC9zcGFuPjwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1
+b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---001a11408e9e0924b5052b9821a1
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Fri=
-, Feb 12, 2016 at 2:47 AM Thomas Kaufmann &lt;<a href=3D"mailto:Thomas.Kauf=
-mann@duagon.com">Thomas.Kaufmann@duagon.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Christopher<u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">thanks for this hint, thi=
-s prevented a lot of packages from being built.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">However I still face an a=
-dditional issue. in the last step of do_populate_sdk, when the sdk is actua=
-lly supposed to be put together.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I get this output:<u></u>=
-<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Collected errors:<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">* satisfy_dependencies_fo=
-r: Cannot satisfy the following dependencies for packagegroup-core-standalo=
-ne-sdk-target:<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">* =C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 libc6 (=3D 2015.08-r0) * =C2=A0=C2=
-=A0=C2=A0=C2=A0 glibc-utils *
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0* opkg_install_cmd:=
- Cannot install package packagegroup-core-standalone-sdk-target.<u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">how can it be, that every=
-thing is built correctly and in the end there is a dependency missing?<u></=
-u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I tried altering my LIBC_=
-DEPENDENCIES, but with no success so far.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I am also using tclibc-ex=
-ternal-linaro-toolchain.inc from<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><a href=3D"http://arago-p=
-roject.org/git/?p=3Dmeta-arago.git;a=3Dblob;f=3Dmeta-arago-extras/conf/dist=
-ro/include/tclibc-external-linaro-toolchain.inc;hb=3DHEAD" target=3D"_blank=
-">http://arago-project.org/git/?p=3Dmeta-arago.git;a=3Dblob;f=3Dmeta-arago-=
-extras/conf/distro/include/tclibc-external-linaro-toolchain.inc;hb=3DHEAD</=
-a></span></p></div></div></blockquote><div><br></div><div>This looks like i=
-t&#39;s specific to your linaro toolchain bits. I&#39;d recommend contactin=
-g the linaro or arago folks.=C2=A0</div></div></div>
-
---001a11408e9e0924b5052b9821a1--
+--_000_3a2a39fcdc934f24a30f12fa6ee8d911NASANEXM02Cnaqualcommco_--
