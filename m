@@ -1,61 +1,43 @@
-Return-Path: <daltonfury42@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3170E00C67; Sat, 13 Feb 2016 23:06:41 -0800 (PST)
+	id 9C2ECE00C67; Sun, 14 Feb 2016 02:25:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (daltonfury42[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.50 listed in list.dnswl.org]
-Received: from mail-vk0-f50.google.com (mail-vk0-f50.google.com
-	[209.85.213.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 891EFE00C5C
-	for <yocto@yoctoproject.org>; Sat, 13 Feb 2016 23:06:38 -0800 (PST)
-Received: by mail-vk0-f50.google.com with SMTP id e185so87428950vkb.1
-	for <yocto@yoctoproject.org>; Sat, 13 Feb 2016 23:06:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=JfKUvCKB88gMcDnd6/hvenHoNmcLQX6s/IJT6XcZaMA=;
-	b=wbG3OWI/7DEHLr7x9a+nhoQX5BSSQSMb+rO/olSLi5PAmFpdPxXA+BuSFL0P99qhn1
-	qHAp/eJvJPrfK0rlxHIev2cqKyInCDIucoZ3v7h3/BeonzYIijWGpxdbKg52bMzcyIWH
-	UaD7yf4ovcomtki/spSwsVbKGFTmWOGZrH3RhaSPzUG1IwsjGdNCJQvt8MeIJ1VInbqB
-	hcdrggHK6K2iVTbnqpGWrmxCaXHjatLz+iUVIWMNcecGXq9nrg9gzaPf6AAYF1NM7kc0
-	VeTbWiZ1e84vLjHJUBCFpeknLcF3ZkhcQqEVikeECYVgDIYfFJ4sy7xu3dWC+wpejscL
-	YApw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=JfKUvCKB88gMcDnd6/hvenHoNmcLQX6s/IJT6XcZaMA=;
-	b=kfoqESGJGjWEVfJ5UOLoz4OsyNKITjOplnEhfFr+eYiSV8me+f8rPN/15IQfOfcP7o
-	96BcrH8VeidJjm6HJEptWT/bnfFACDCVE9czhDpjnjlK12WXBNYdfH6UFSuzg7ODJWJB
-	eTvUeYRzu4FamQpZL11AnoPQyNTCFqU8VuE9GMWk2nVw2jjsHtvo30ab+8O4A0qFWs/3
-	ECkYeVuIQzZXg9Lgf31k+iheBZDbcJUsEsEWtC46ufRQD8N2bzHPdayDLDjHIt9VEOmI
-	WrGwzZwjtdG24eG1dnLYp7PdVLza02Rmylxu2tQGXYWghd6Ou+rWUakAl9HguXqZ0wnf
-	B97Q==
-X-Gm-Message-State: AG10YOSpp2oTSCV430p42BAlmFDTXbklvwxtPFwOR+dfRoRPO14TnUaRRGw2wnYkLHWeCT630H3jymp/3cZCfQ==
-X-Received: by 10.31.10.199 with SMTP id 190mr8478694vkk.51.1455433597647;
-	Sat, 13 Feb 2016 23:06:37 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.31.167.9 with HTTP; Sat, 13 Feb 2016 23:05:58 -0800 (PST)
-From: Dalton Fury <daltonfury42@gmail.com>
-Date: Sun, 14 Feb 2016 12:35:58 +0530
-Message-ID: <CALH0Xhk0x5y=MLAB0iPY2Nv62q6=AZQ46B710JnSzFRCOYqKYQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: do_populate_staging does not copy everything.
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51668E00C52
+	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 02:25:02 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u1EAOtf5014869; Sun, 14 Feb 2016 10:24:55 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id 7WRayzefVG0e; Sun, 14 Feb 2016 10:24:55 +0000 (GMT)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u1EAOrMq014866
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Sun, 14 Feb 2016 10:24:54 GMT
+Message-ID: <1455445493.16142.384.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 14 Feb 2016 10:24:53 +0000
+In-Reply-To: <CAMKF1spdna7gtQvgAR7KH584G4xj-DV8PzVrWYKRsvfnVfiQ-Q@mail.gmail.com>
+References: <CAJTo0LaMycXVjZLoPMU7Te2HDpp7+YUu8GGuNznhk8D8Yje27A@mail.gmail.com>
+	<3534892.4K3lPByQ7B@nickl>
+	<CAJTo0LY6r8od5c3rysNWFg=-3c0jWx4STaaPQD-pcEmUmqh2Dw@mail.gmail.com>
+	<2ABA8704-6F76-49C0-8DD4-8C74295CF4EB@gmail.com>
+	<1455384501.16142.372.camel@linuxfoundation.org>
+	<CAMKF1spdna7gtQvgAR7KH584G4xj-DV8PzVrWYKRsvfnVfiQ-Q@mail.gmail.com>
+X-Mailer: Evolution 3.16.5-1ubuntu3.1 
+Mime-Version: 1.0
+Cc: Nick Leverton <nick@leverton.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Dropping Debian 7 as supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,64 +49,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Feb 2016 07:06:41 -0000
-Content-Type: multipart/alternative; boundary=001a1144017695023f052bb58ab3
+X-List-Received-Date: Sun, 14 Feb 2016 10:25:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a1144017695023f052bb58ab3
-Content-Type: text/plain; charset=UTF-8
+On Sat, 2016-02-13 at 10:12 -0800, Khem Raj wrote:
+> On Sat, Feb 13, 2016 at 9:28 AM, Richard Purdie
+> <richard.purdie@linuxfoundation.org> wrote:
+> > On Sat, 2016-02-13 at 15:30 +0100, Jens Rehsack wrote:
+> > > > Am 11.02.2016 um 15:32 schrieb Burton, Ross <
+> > > > ross.burton@intel.com>
+> > > > :
+> > > > 
+> > > > 
+> > > > On 11 February 2016 at 14:21, Nick Leverton <nick@leverton.org>
+> > > > wrote:
+> > > > Possibly a little early - Debian 7 will be going onto LTS
+> > > > security
+> > > > support for
+> > > > two years, starting some time this month.  Quoting from
+> > > > https://wiki.debian.org/LTS
+> > > > 
+> > > > Ah yes, I'd forgotten about the LTS project and was looking at
+> > > > the
+> > > > security team.
+> > > > 
+> > > > This does make it less clear, but it's still an old release and
+> > > > we
+> > > > can't support/test on everything.
+> > > 
+> > > Sure, but are there some serious/expensive maintaining efforts
+> > > continuing support Debian 7?
+> > > Or is it an approach to kick Debian from list of supported
+> > > distributions for (above?) reasons?
+> > > 
+> > > Since I run some build instances on a Debian 7 machine which is
+> > > not
+> > > going to be upgraded that
+> > > soon (don't want Debian 8, but don't want to reinstall from
+> > > scratch
+> > > and migrate my Xen VM's ...),
+> > > dropping support for "it's just time to move on" is more a
+> > > Desktop
+> > > philosophy, not for embedded/datacenter
+> > > approaches ...
+> > 
+> > For example, we'd like to use the sparse option when building
+> > rootfs:
+> > 
+> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=9099
+> > 
+> > This support isn't available in the version of dd in debian 7. Our
+> > options are:
+> > 
+> > * Build a dd -native
+> 
+> For core feature like sparse files its better to control our own 
+> destiny and use dd-native regardless.
 
-I have written a recipe for a package A which is a build dependency for
-another package B. But the package B (which uses cmake) does not find A.
-According to the docs,
+There are certain core utilities which its very hard to add into the
+dependency chains correctly. With xz, I recently gave up trying to get
+the patches right. I'm sure it could be done, it didn't seem worth the
+effort though. dd and other coreutils fall into the same category, very
+hard to get right without races. There is probably a redesign of the
+some of the way staging happens needed to make it work and that is a
+low priority right now.
 
-"do_configure task for recipe "a" depends on the do_populate_sysroot task
-of recipe "b". This means anything that recipe "b" puts into sysroot is
-available when recipe "a" is configuring itself."
+>  But that does not mean we should
+> not drop debian7 or arcane centos distros that we keep supporting for
+> ever. I still see patches for centos 5.8 in metadata.
 
-I checked the log.do_populate_sysroot() and it is not copying every file
-that is needed. But everything installed by package B is present in the
-final image in the right locations. Since everything is not copied to the
-sysroot, the do_configure of package B fails to find the build deps.
+We did retire centos 6 recently (qemu wouldn't run there correctly for
+any of the automated tests).
 
-For every file that has not been copied by do_populate_rootfs, I get a
-warning when I bitbake:
+Cheers,
 
-WARNING: QA Issue: cuda-cudart-6-5: found library in wrong location:
-/usr/local/cuda-6.5/targets/armv7-linux-gnueabihf/lib/libcudart.so
+Richard
 
-There are several other QA errors too. I can't do anything about them
-because they are prebuild binaries and I do not have the sources.
 
-But the package is in the right location. What could be causing this?
-
---001a1144017695023f052bb58ab3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I have written a recipe for a package A which is a build d=
-ependency for another package B. But the package B (which uses cmake) does =
-not find A. According to the docs,<div><br></div><div>&quot;<code class=3D"=
-" style=3D"font-size:medium;font-family:Courier,monospace;color:rgb(51,51,5=
-1);line-height:24px">do_configure</code><span style=3D"color:rgb(51,51,51);=
-font-family:Verdana,Sans,sans-serif;font-size:medium;line-height:24px">=C2=
-=A0task for recipe &quot;a&quot; depends on the=C2=A0</span><code class=3D"=
-" style=3D"font-size:medium;font-family:Courier,monospace;color:rgb(51,51,5=
-1);line-height:24px">do_populate_sysroot</code><span style=3D"color:rgb(51,=
-51,51);font-family:Verdana,Sans,sans-serif;font-size:medium;line-height:24p=
-x">=C2=A0task of recipe &quot;b&quot;. This means anything that recipe &quo=
-t;b&quot; puts into sysroot is available when recipe &quot;a&quot; is confi=
-guring itself.</span>&quot;</div><div><br></div><div>I checked the log.do_p=
-opulate_sysroot() and it is not copying every file that is needed. But ever=
-ything installed by package B is present in the final image in the right lo=
-cations. Since everything is not copied to the sysroot, the do_configure of=
- package B fails to find the build deps.</div><div><br></div><div>For every=
- file that has not been copied by do_populate_rootfs, I get a warning when =
-I bitbake:</div><div><br></div><div><div>WARNING: QA Issue: cuda-cudart-6-5=
-: found library in wrong location: /usr/local/cuda-6.5/targets/armv7-linux-=
-gnueabihf/lib/libcudart.so</div></div><div><br></div><div>There are several=
- other QA errors too. I can&#39;t do anything about them because they are p=
-rebuild binaries and I do not have the sources.</div><div><br></div><div>Bu=
-t the package is in the right location. What could be causing this?</div></=
-div>
-
---001a1144017695023f052bb58ab3--
