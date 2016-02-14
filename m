@@ -1,64 +1,75 @@
-Return-Path: <mario.goulart@gmail.com>
+Return-Path: <ikatsnelson@vmem.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8641BE00D0E; Sun, 14 Feb 2016 08:48:27 -0800 (PST)
+	id B2BA1E00D10; Sun, 14 Feb 2016 12:57:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mario.goulart[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.80 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2213E00D03
-	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 08:48:23 -0800 (PST)
-Received: by mail-wm0-f54.google.com with SMTP id g62so28235408wme.1
-	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 08:48:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=lBHrNOh/gU/BpxjIvKoT4yadCJn7TdqWFK80e3aoeFU=;
-	b=BHbSTbNMiRyxo3XFeX53fNIrj/9SchhqnKUIEW2TEot5zmS4r74e+7k3JbJzsv0fwx
-	f5LJP9f02U11UbxKO0UdVd7PMHeGPT2QN6kvYsI6pB55pHF5lyaAuITVF/EftNi9SRvn
-	Gd+c4Nyk4kfX9vp1KKv3xBadrgxJuRo0/AIhdOjdSnYU5yaL2TIHfreeHHO+vWQ2q8In
-	7sHOlhPTlfBj+vT9jowWgRpNMKWiEqOuGSdAAoOAMUnLCx8cESHD18uo74LTMgJ8WG7W
-	Ra4xR47EUs94dEXsPErPMvnwdftxXnM6EciEnQsqlYteVCz6goYKUGloJPBPoHHtPMTe
-	HZ2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=lBHrNOh/gU/BpxjIvKoT4yadCJn7TdqWFK80e3aoeFU=;
-	b=ivBSBNdPJFpZKsist3M3LjNxVu/Pum2/RrE9Q6Yf31VgGFHBX+RrRYRdf+BO5m8yi/
-	rfvCLCWA57jQ3jlpqP4UBGDIBuRKdxybkmhYHiCp/5D4dMyFLfr7FZUElMWCY8Ucfh7X
-	QIDDvspiZZFhnxObUcUg2WDe10ctrN4ohfD6A54wZAZsxMfqT21X6/lpuuFv3YbnEOW6
-	n8guRMh0on0Pq8Jp760G3qTJmsBxLCiIUciel8Bm9NWfxvTH0T1lP/TJ+ytGKcFTpy25
-	OsmISyngAY5CBh2PeQfti56JZB3TWMmzhR5hsQp46OZeYqxpQgN0bCzGg3FHUMWiMuS7
-	ZyOw==
-X-Gm-Message-State: AG10YOQRU4duC6dUG8QOqWC8SbYewK/8hwowm4qTm3/qbFwFK7hrH11tQO7dOJG9KbjPBg==
-X-Received: by 10.28.148.130 with SMTP id w124mr8408987wmd.71.1455468502536;
-	Sun, 14 Feb 2016 08:48:22 -0800 (PST)
-Received: from localhost.localdomain
-	(HSI-KBW-37-49-88-119.hsi14.kabel-badenwuerttemberg.de.
-	[37.49.88.119]) by smtp.gmail.com with ESMTPSA id
-	t195sm11715572wme.13.2016.02.14.08.48.21
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 14 Feb 2016 08:48:21 -0800 (PST)
-From: Mario Domenech Goulart <mario.goulart@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 14 Feb 2016 17:47:09 +0100
-Message-Id: <1455468429-31718-1-git-send-email-mario.goulart@gmail.com>
-X-Mailer: git-send-email 2.1.4
-Cc: scott.m.rifenbark@intel.com
-Subject: [yocto-docs][PATCH] ref-manual: typo fix (s/If if/If/)
+X-Greylist: delayed 8195 seconds by postgrey-1.32 at yocto-www;
+	Sun, 14 Feb 2016 12:57:25 PST
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0080.outbound.protection.outlook.com [207.46.100.80])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2C14E00CB4
+	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 12:57:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vmem1.onmicrosoft.com; 
+	s=selector1-vmem-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=HnxxIaTy1NZth/moVcL/14Raouy0J/RAOXsLSVGuefo=;
+	b=AStBCOWk1yCr4agxu7V1lKemfPFLhSWZ9XKWJc3LxMHkA/G1iIR5bnSaNBOz5dp37LrLmDyCMN1zGeYkiI/JZxAoM3rmylKJ5ngOoReLioTb4S5dymBkuyaPwjSwuY71qkMk1IJqbCkDhy5p+LUCrPfKRfe3X9eq06O0W0Kam4o=
+Received: from CO1PR05MB442.namprd05.prod.outlook.com (10.141.73.146) by
+	CO1PR05MB442.namprd05.prod.outlook.com (10.141.73.146) with Microsoft
+	SMTP Server (TLS) id 15.1.409.15; Sun, 14 Feb 2016 18:24:46 +0000
+Received: from CO1PR05MB442.namprd05.prod.outlook.com ([169.254.13.39]) by
+	CO1PR05MB442.namprd05.prod.outlook.com ([169.254.13.39]) with mapi id
+	15.01.0409.017; Sun, 14 Feb 2016 18:24:46 +0000
+From: Ilya Katsnelson <ikatsnelson@vmem.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ERROR: Error executing a python function in exec_python_func()
+	autogenerated
+Thread-Index: AQHRZ1R/f2hto6ApX0KwwYEc/rDTFA==
+Date: Sun, 14 Feb 2016 18:24:46 +0000
+Message-ID: <CO1PR05MB4420A312C79F11C61F7D0FCD7AB0@CO1PR05MB442.namprd05.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: vmem.com; dkim=none (message not signed)
+	header.d=none;vmem.com; dmarc=none action=none header.from=vmem.com;
+x-originating-ip: [172.7.144.219]
+x-microsoft-exchange-diagnostics: 1; CO1PR05MB442;
+	5:EsYwpmFSOBnl4W4oCpBcDpsni8MVGpLOnNo4YiKXYMELRARI2ASLnqtisGv1u0RWaTCQ+f29iLARlbxhxAQY+6BOpZjUNUmB1eOAAQdjW4Lm0pKtC0f1ZbxkrJeSPnCh6D24xTbfFIsTyQIIxx1FtA==;
+	24:99ByDWO8VCJ01feY1QDI99oqJPZrafOY2g1t0WVj3B3qN7NdVIA2lh3Z2VPKlgDy65zgSeMLpeOKFh1e4T1gahL3nkj04nB40Ndr8QaAwXU=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CO1PR05MB442;
+x-ms-office365-filtering-correlation-id: 21487237-5f28-4668-322e-08d3356c1df2
+x-microsoft-antispam-prvs: <CO1PR05MB442510C4FD0A6DA83662826D7AB0@CO1PR05MB442.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001);
+	SRVR:CO1PR05MB442; BCL:0; PCL:0; RULEID:; SRVR:CO1PR05MB442; 
+x-forefront-prvs: 0852EB6797
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(66066001)(450100001)(3846002)(11100500001)(586003)(87936001)(6116002)(40100003)(1096002)(1220700001)(122556002)(102836003)(2501003)(5008740100001)(1730700002)(2900100001)(86362001)(33656002)(2906002)(19625215002)(54356999)(99286002)(19627405001)(76576001)(16236675004)(5003600100002)(5002640100001)(107886002)(50986999)(110136002)(189998001)(74316001)(5001960100002)(229853001)(92566002)(5004730100002)(106116001)(2351001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CO1PR05MB442;
+	H:CO1PR05MB442.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+MIME-Version: 1.0
+X-OriginatorOrg: vmem.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Feb 2016 18:24:46.2027 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 6fa3283e-bf88-4e4a-8ab2-b90d2044551b
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR05MB442
+Subject: ERROR: Error executing a python function in exec_python_func() autogenerated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,27 +81,210 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Feb 2016 16:48:27 -0000
+X-List-Received-Date: Sun, 14 Feb 2016 20:57:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CO1PR05MB4420A312C79F11C61F7D0FCD7AB0CO1PR05MB442namprd_"
 
-Signed-off-by: Mario Domenech Goulart <mario.goulart@gmail.com>
----
- documentation/ref-manual/ref-variables.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--_000_CO1PR05MB4420A312C79F11C61F7D0FCD7AB0CO1PR05MB442namprd_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index f752856..8184c3a 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -8696,7 +8696,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR = "${INC_PR}.3"
-                 </para>
- 
-                 <para>
--                    If if you use the <filename>PACKAGE_GROUP</filename>
-+                    If you use the <filename>PACKAGE_GROUP</filename>
-                     variable, the OpenEmbedded build system issues a warning
-                     message.
-                 </para>
--- 
-2.1.4
+Hello:
 
 
+Has anyone seen this error?
+
+
+ERROR: Error executing a python function in exec_python_func() autogenerate=
+d:
+
+The stack trace of python calls that resulted in this exception/failure was=
+:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:do_package(d)
+     0003:
+File: '~/work/angstrom/sources/openembedded-core/meta/classes/package.bbcla=
+ss', lineno: 1982, function: do_package
+     1978:    workdir =3D d.getVar('WORKDIR', True)
+     1979:    outdir =3D d.getVar('DEPLOY_DIR', True)
+     1980:    dest =3D d.getVar('D', True)
+     1981:    dvar =3D d.getVar('PKGD', True)
+ *** 1982:    pn =3D d.getVar('PN', True)
+     1983:
+     1984:    if not workdir or not outdir or not dest or not dvar or not p=
+n:
+     1985:        msg =3D "WORKDIR, DEPLOY_DIR, D, PN and PKGD all must be =
+defined, unable to package"
+     1986:        package_qa_handle_error("var-undefined", msg, d)
+File: '~/work/angstrom/sources/openembedded-core/meta/classes/package.bbcla=
+ss', lineno: 1965, function: set_alternative_vars
+     1961:    # way that the output of this class changes.  rpmdeps is a go=
+od example
+     1962:    # as any change to rpmdeps requires this to be rerun.
+     1963:    # PACKAGE_BBCLASS_VERSION =3D "1"
+     1964:
+ *** 1965:    # Init cachedpath
+     1966:    global cpath
+     1967:    cpath =3D oe.cachedpath.CachedPath()
+     1968:
+     1969:    #############################################################=
+##############
+Exception: IOError: [Errno 2] No such file or directory: '~/work/angstrom/b=
+uild/tmp-angstrom_v2015_12-glibc/work/armv7at2hf-vfp-neon-angstrom-linux-gn=
+ueabi/busybox/1.23.2-r0/image${sysconfdir}/busybox.links.nosuid'
+
+ERROR: Function failed: do_package
+ERROR: Logfile of failure stored in: ~/work/angstrom/build/tmp-angstrom_v20=
+15_12-glibc/work/armv7at2hf-vfp-neon-angstrom-linux-gnueabi/busybox/1.23.2-=
+r0/temp/log.do_package.175963
+ERROR: Task 203 (~/work/angstrom/sources/openembedded-core/meta/recipes-cor=
+e/busybox/busybox_1.23.2.bb, do_package) failed with exit code '1'
+
+I'm running the Angstrom distribution. It is the jethro branch latest.
+Does anyone know what might be causing this error?
+
+
+Thanks for help,
+
+-Ilya.
+
+
+
+--_000_CO1PR05MB4420A312C79F11C61F7D0FCD7AB0CO1PR05MB442namprd_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hello:</p>
+<p><br>
+</p>
+<p>Has anyone seen this error?</p>
+<p><br style=3D"font-family: 'Courier New', monospace; font-size: 10pt;">
+</p>
+<p></p>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">ERROR: Error executing a python function in exec_python_func() autogenera=
+ted:</span></div>
+<div><br style=3D"font-family: 'Courier New', monospace; font-size: 10pt;">
+</div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">The stack trace of python calls that resulted in this exception/failure w=
+as:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;module=
+&gt;</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;0001:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp;*** 0002:do_package(d)</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;0003:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">File: '~/work/angstrom/sources/openembedded-core/meta/classes/package.bbc=
+lass', lineno: 1982, function: do_package</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1978: &nbsp; &nbsp;workdir =3D d.getVar('WORKDIR', Tr=
+ue)</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1979: &nbsp; &nbsp;outdir =3D d.getVar('DEPLOY_DIR', =
+True)</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1980: &nbsp; &nbsp;dest =3D d.getVar('D', True)</span=
+></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1981: &nbsp; &nbsp;dvar =3D d.getVar('PKGD', True)</s=
+pan></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp;*** 1982: &nbsp; &nbsp;pn =3D d.getVar('PN', True)</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1983:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1984: &nbsp; &nbsp;if not workdir or not outdir or no=
+t dest or not dvar or not pn:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1985: &nbsp; &nbsp; &nbsp; &nbsp;msg =3D &quot;WORKDI=
+R, DEPLOY_DIR, D, PN and PKGD all must be defined, unable to package&quot;<=
+/span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1986: &nbsp; &nbsp; &nbsp; &nbsp;package_qa_handle_er=
+ror(&quot;var-undefined&quot;, msg, d)</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">File: '~/work/angstrom/sources/openembedded-core/meta/classes/package.bbc=
+lass', lineno: 1965, function: set_alternative_vars</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1961: &nbsp; &nbsp;# way that the output of this clas=
+s changes. &nbsp;rpmdeps is a good example</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1962: &nbsp; &nbsp;# as any change to rpmdeps require=
+s this to be rerun.</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1963: &nbsp; &nbsp;# PACKAGE_BBCLASS_VERSION =3D &quo=
+t;1&quot;</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1964:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp;*** 1965: &nbsp; &nbsp;# Init cachedpath</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1966: &nbsp; &nbsp;global cpath</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1967: &nbsp; &nbsp;cpath =3D oe.cachedpath.CachedPath=
+()</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1968:</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">&nbsp; &nbsp; &nbsp;1969: &nbsp; &nbsp;##################################=
+#########################################</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">Exception: IOError: [Errno 2] No such file or directory: '~/work/angstrom=
+/build/tmp-angstrom_v2015_12-glibc/work/armv7at2hf-vfp-neon-angstrom-linux-=
+gnueabi/busybox/1.23.2-r0/image${sysconfdir}/busybox.links.nosuid'</span></=
+div>
+<div><br style=3D"font-family: 'Courier New', monospace; font-size: 10pt;">
+</div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">ERROR: Function failed: do_package</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">ERROR: Logfile of failure stored in: ~/work/angstrom/build/tmp-angstrom_v=
+2015_12-glibc/work/armv7at2hf-vfp-neon-angstrom-linux-gnueabi/busybox/1.23.=
+2-r0/temp/log.do_package.175963</span></div>
+<div><span style=3D"font-family: 'Courier New', monospace; font-size: 10pt;=
+">ERROR: Task 203 (~/work/angstrom/sources/openembedded-core/meta/recipes-c=
+ore/busybox/busybox_1.23.2.bb, do_package) failed with exit code '1'</span>=
+</div>
+<div><br>
+</div>
+I'm running the Angstrom distribution. It is the&nbsp;jethro branch latest.=
+</div>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+Does anyone know what might be causing this error?<br>
+<p></p>
+<p><br>
+</p>
+<p>Thanks for help,<br>
+</p>
+<p>-Ilya.<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CO1PR05MB4420A312C79F11C61F7D0FCD7AB0CO1PR05MB442namprd_--
