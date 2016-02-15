@@ -1,26 +1,76 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17B24E00D21; Sun, 14 Feb 2016 21:25:45 -0800 (PST)
+	id 64AA3E00D21; Sun, 14 Feb 2016 22:54:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rehsack[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BB1FE00D1D
-	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 21:25:40 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 2AD4E84A5752
-	for <yocto@yoctoproject.org>; Mon, 15 Feb 2016 00:25:40 -0500 (EST)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 15 Feb 2016 05:25:40 -0000
-Message-ID: <20160215052540.25280.88441@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E5F6E00D1D
+	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 22:54:23 -0800 (PST)
+Received: by mail-wm0-f43.google.com with SMTP id a4so42297077wme.1
+	for <yocto@yoctoproject.org>; Sun, 14 Feb 2016 22:54:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=H76cLbVYyIoLdUPQ03Ad5iOIiWb6II1VDjd17D0SHyA=;
+	b=S6vBV1W9khgWQoF0csncQAzZenrfZooqgc0eW6LnAJ+rnOX4tQMBe9OeEBD1b9ZRon
+	VhkrKaEWTZ0NbGi+ORbX6G4L4MmP+1g15oNg9lQuN9P9XuW9JWozDXzsb45pdg1h7jLN
+	6hwNN/qSFn49OctfZoYSDU2yHJfLp5xBELqOW/2xRROYXX9vS7DUbxxnVcazcnCPqN7D
+	pJjoV8fOXYD/LawHW5oor9BqHgR07R58uGalzc1A/8PudyWQ7YneoGAMGAj1quHUtUj1
+	fZmuD8KHEcqtQwQsHjtA6xoP5F3mbeeNozXXhIHuX7G7IjvFM852l3XdTQE7F0LnFLmM
+	F8cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:content-type:from
+	:in-reply-to:date:cc:message-id:references:to;
+	bh=H76cLbVYyIoLdUPQ03Ad5iOIiWb6II1VDjd17D0SHyA=;
+	b=OzjaB9KSy4RE1FIzdMKh6Cb1K28RT7IkuYNkACdbsiZrB+GypG9KlBqNgzJVjEWZkR
+	vvYOnW+mu1tj5+Gg20SbtkyS1aHjX0vY/u4xKzSnulohGYJFlF+TOhjwYMmjE4U+HYHJ
+	YqcEyCdTbl9DdQvT6GMc8qwEkD7OSX/w9Ozxz4Epecv6odFlsgqMxFxG0jrTKNJJjUO2
+	Mlwn9LzNjTx/ZaqcBV9PAfjxJX2yCnfvBdYRHRcVZlFPI0feC1yGoxpbeMRnaOe+FqaX
+	XccsSPu5DoqNu35UZxBp5AjSaFsvQWmMHRm+tQKuEQVrc3k4gku6A7rUP+9vsLSgpdEs
+	YGxQ==
+X-Gm-Message-State: AG10YORobNy1tqGwKICQtqTclFF4iBmoaio5zH5kBAr8/2pAndEZ40jDQdnPn0xSB/YSyg==
+X-Received: by 10.28.48.137 with SMTP id w131mr11330319wmw.73.1455519262754;
+	Sun, 14 Feb 2016 22:54:22 -0800 (PST)
+Received: from walter.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
+	[87.139.84.12]) by smtp.gmail.com with ESMTPSA id
+	v2sm14117915wmd.24.2016.02.14.22.54.21
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 14 Feb 2016 22:54:21 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Jens Rehsack <rehsack@gmail.com>
+In-Reply-To: <1455445493.16142.384.camel@linuxfoundation.org>
+Date: Mon, 15 Feb 2016 07:54:19 +0100
+Message-Id: <61D1E514-5AF5-4C5B-A3CD-6227A537CF3B@gmail.com>
+References: <CAJTo0LaMycXVjZLoPMU7Te2HDpp7+YUu8GGuNznhk8D8Yje27A@mail.gmail.com>
+	<3534892.4K3lPByQ7B@nickl>
+	<CAJTo0LY6r8od5c3rysNWFg=-3c0jWx4STaaPQD-pcEmUmqh2Dw@mail.gmail.com>
+	<2ABA8704-6F76-49C0-8DD4-8C74295CF4EB@gmail.com>
+	<1455384501.16142.372.camel@linuxfoundation.org>
+	<CAMKF1spdna7gtQvgAR7KH584G4xj-DV8PzVrWYKRsvfnVfiQ-Q@mail.gmail.com>
+	<1455445493.16142.384.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.3112)
+Cc: Nick Leverton <nick@leverton.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Dropping Debian 7 as supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,116 +82,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Feb 2016 05:25:45 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 15 Feb 2016 06:54:27 -0000
+X-Groupsio-MsgNum: 28479
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_88AB840F-AB1E-4674-A91A-3EF340F17B69";
+	protocol="application/pgp-signature"; micalg=pgp-sha512
 
-This mail was sent out by Recipe reporting system.
+--Apple-Mail=_88AB840F-AB1E-4674-A91A-3EF340F17B69
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+> Am 14.02.2016 um 11:24 schrieb Richard Purdie =
+<richard.purdie@linuxfoundation.org>:
+>=20
+> On Sat, 2016-02-13 at 10:12 -0800, Khem Raj wrote:
+>> On Sat, Feb 13, 2016 at 9:28 AM, Richard Purdie
+>> <richard.purdie@linuxfoundation.org> wrote:
+>>> On Sat, 2016-02-13 at 15:30 +0100, Jens Rehsack wrote:
+>>>>> Am 11.02.2016 um 15:32 schrieb Burton, Ross <
+>>>>> ross.burton@intel.com>
+>>>>> :
+>>>>>=20
+>>>>>=20
+>>>>> On 11 February 2016 at 14:21, Nick Leverton <nick@leverton.org>
+>>>>> wrote:
+>>>>> Possibly a little early - Debian 7 will be going onto LTS
+>>>>> security
+>>>>> support for
+>>>>> two years, starting some time this month.  Quoting from
+>>>>> https://wiki.debian.org/LTS
+>>>>>=20
+>>>>> Ah yes, I'd forgotten about the LTS project and was looking at
+>>>>> the
+>>>>> security team.
+>>>>>=20
+>>>>> This does make it less clear, but it's still an old release and
+>>>>> we
+>>>>> can't support/test on everything.
+>>>>=20
+>>>> Sure, but are there some serious/expensive maintaining efforts
+>>>> continuing support Debian 7?
+>>>> Or is it an approach to kick Debian from list of supported
+>>>> distributions for (above?) reasons?
+>>>>=20
+>>>> Since I run some build instances on a Debian 7 machine which is
+>>>> not
+>>>> going to be upgraded that
+>>>> soon (don't want Debian 8, but don't want to reinstall from
+>>>> scratch
+>>>> and migrate my Xen VM's ...),
+>>>> dropping support for "it's just time to move on" is more a
+>>>> Desktop
+>>>> philosophy, not for embedded/datacenter
+>>>> approaches ...
+>>>=20
+>>> For example, we'd like to use the sparse option when building
+>>> rootfs:
+>>>=20
+>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9099
+>>>=20
+>>> This support isn't available in the version of dd in debian 7. Our
+>>> options are:
+>>>=20
+>>> * Build a dd -native
 
-You can check the detail information at:
+That's something complete different than "End of regular support, =
+switching
+to LTS" - so based on missing features, any distribution which doesn't
+fulfill the required features should be discarded from list of supported
+distributions unless the required features are Yocto patches in =
+upstream.
+In such a case the drop smells like misusing power (then a smoother way
+should be found),
 
-http://recipes.yoctoproject.org/
+>> For core feature like sparse files its better to control our own
+>> destiny and use dd-native regardless.
+>=20
+> There are certain core utilities which its very hard to add into the
+> dependency chains correctly. With xz, I recently gave up trying to get
+> the patches right. I'm sure it could be done, it didn't seem worth the
+> effort though. dd and other coreutils fall into the same category, =
+very
+> hard to get right without races. There is probably a redesign of the
+> some of the way staging happens needed to make it work and that is a
+> low priority right now.
 
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-texinfo               6.0          6.1                   Alejandro Hernandez
-python-git            1.0.1        1.0.2                 Alejandro Hernandez
-python3-pip           8.0.0        8.0.2                 Alejandro Hernandez
-python3-setuptools    19.4         20.1.1                Alejandro Hernandez
-ruby                  2.2.2        2.3.0                 Alejandro Hernandez
-python-pygobject      2.28.3       3.19.2                Alejandro Hernandez  Newer versions of python-py...
-python-setuptools     19.4         20.1.1                Alejandro Hernandez
-liberation-fonts      1.04         2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-mkelfimage            4.0+gitX     4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
-apt                   1.0.10.1     1.2.3                 Aníbal Limón
-dpkg                  1.18.2       1.18.4                Aníbal Limón
-pinentry              0.9.2        0.9.7                 Armin Kuster
-nettle                3.1.1        3.2                   Armin Kuster
-guilt-native          0.35+gitX    0.36+gitAUTOINC+2...  Bruce Ashfield
-linux-libc-headers    4.4          4.4.1                 Bruce Ashfield
-systemd               228+gitX     229+gitAUTOINC+95...  Chen Qi
-grep                  2.22         2.23                  Chen Qi
-diffstat              1.60         1.61                  Chen Qi
-coreutils             8.24         8.25                  Chen Qi
-dbus-glib             0.104        0.106                 Chen Qi
-cups                  2.0.4        2.1.3                 Chen Qi
-findutils             4.5.14       4.5.19                Chen Qi
-pax-utils             1.1.4        1.1.5                 Hongxu Jia
-ncurses               6.0          6.0+20160213          Hongxu Jia
-createrepo            0.4.11       0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-gnupg                 2.1.10       2.1.11                Hongxu Jia
-libgcrypt             1.6.4        1.6.5                 Hongxu Jia
-ghostscript           9.16         9.18                  Hongxu Jia
-elfutils              0.164        0.165                 Hongxu Jia
-wayland               1.9.0        1.9.93                Jussi Kukkonen
-weston                1.9.0        1.9.93                Jussi Kukkonen
-clutter-gst-3.0       3.0.14       3.0.16                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.6       3.18.7                Jussi Kukkonen
-libinput              1.1.4        1.1.901               Jussi Kukkonen
-cmake                 3.4.2        3.4.3                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1       1.79.1                Jussi Kukkonen
-vala                  0.30.0       0.30.1                Jussi Kukkonen
-gtk+3                 3.18.6       3.18.7                Jussi Kukkonen
-pixman                0.32.8       0.34.0                Jussi Kukkonen
-xserver-xorg          1.18.0       1.18.1                Jussi Kukkonen
-xkeyboard-config      2.16         2.17                  Jussi Kukkonen
-glew                  1.12.0       1.13.0                Jussi Kukkonen
-vte                   0.28.2       0.42.4                Jussi Kukkonen       matchbox-terminal needs to ...
-linuxdoc-tools-na...  0.9.69       0.9.71                Jussi Kukkonen
-slang                 2.2.4        2.3.0                 Kai Kang
-libsdl2               2.0.3        2.0.4                 Kai Kang
-rpm                   5.4.14       5.4.15                Mark Hatle           5.4.15 has a package databa...
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0        4.7.0                 Matthew McClintock
-db                    6.0.30       6.1.26                Maxin B. John        Updating to 6.1.x requires ...
-ffmpeg                2.8.6        3.0                   No maintainer
-apt-native            1.0.10.1     1.2.3                 No maintainer
-cmake-native          3.4.2        3.4.3                 No maintainer
-ifupdown              0.8.2        0.8.10                No maintainer
-libsolv               0.6.17+gitX  0.6.18+gitAUTOINC...  No maintainer
-debianutils           4.5.1        4.7                   No maintainer
-sgmlspl-native        1.1+gitX     1.03+gitAUTOINC+f...  No maintainer
-adt-installer         0.3.0        0.3.1                 Randy Witt
-libcap                2.24         2.25                  Robert Yang
-git                   2.7.0        2.7.1                 Robert Yang
-mklibs-native         0.1.40       0.1.41                Robert Yang
-lsbinitscripts        9.64         9.65                  Ross Burton
-base-passwd           3.5.29       3.5.39                Ross Burton          Version 3.5.38 requires cde...
-alsa-plugins          1.0.29       1.1.0                 Tanu Kaskinen
-pulseaudio            6.0          8.0                   Tanu Kaskinen
-alsa-utils            1.0.29       1.1.0                 Tanu Kaskinen
-alsa-utils-scripts    1.0.29       1.1.0                 Tanu Kaskinen
-alsa-tools            1.0.29       1.1.0                 Tanu Kaskinen
-chkconfig             1.3.58       1.7                   Wenzong Fan          Version 1.5 requires selinux
-ccache                3.2.3        3.2.4                 Wenzong Fan
-gettext               0.19.6       0.19.7                Wenzong Fan
+Having an implicit xy.bbclass adding dependency to =
+yocto-coreutils-native
+isn't a way? As said several times, my pkgsrc background leads me to
+Yocto for embedded Linux development - and this background educated add
+nb* utilities for each host utility which is incompatible to the
+infrastructure.
 
-Upgradable count: 62
-Upgradable total count: 71
+>> But that does not mean we should
+>> not drop debian7 or arcane centos distros that we keep supporting for
+>> ever. I still see patches for centos 5.8 in metadata.
+>=20
+> We did retire centos 6 recently (qemu wouldn't run there correctly for
+> any of the automated tests).
 
-The based commit is:
+Which is again a good reason for retiring support for a dedicated
+distribution. I'm a bit torn regarding the lifecycle of RHEL/Cent OS,
+which is 10 years after release - dropping support for enterprise
+grade distribution to quick leaves a taste/smell ... (don't know how to
+express).
 
-commit bd06944249c3de3f629c013e14f446464441c4da
-Author: Pascal Bach <pascal.bach@siemens.com>
-Date:   Fri Feb 12 16:06:13 2016 +0100
+Don't get me wrong - it is absolutely reasonable to retire distributions
+lacking important features which can't be added with reasonable effort
+into build chain. Deciding which important feature requires such a
+retirement should be proved with an eye of lifecycle of server =
+distributions.
 
-    lib/oe/terminal: set workdir for konsole terminal
-    
-    It seems that if the --workdir option is not set konsole does open in the users
-    home directory. By setting --workdir . konsole opens in the recipes work
-    directory. This is the same behavior as observed for other consoles.
-    (Tested with Konsole 2.14.2 on Debian Jessie).
-    
-    Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cheers
+--
+Jens Rehsack - rehsack@gmail.com
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
+--Apple-Mail=_88AB840F-AB1E-4674-A91A-3EF340F17B69
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iQIcBAEBCgAGBQJWwXYcAAoJEESZlq7c5Qqd1NUP/3+1G3RH/3qYsgn8PsTs3AKZ
+0ZP4CfiaCD0gKcDk8i+DyhJEiGTCvZwJTv2uOwk8ExYrjQNQpvGo0Z8op3YZ9p3D
+lJZOUCngeHRdK+ZzHvIw7UtKGvofmPghkBjscsOfLJDMgJbfPe3DsbeV41DITvXD
+E80Obx1dZc3nPVdeJAEofv04p8eoMQOST3Ai8c9XYcC6w3F8h4/T7i6BaWsbxgUe
+K81gJMAZZC6XKH7erzO6kaL6Gs8stsECiqNmRsugvYyo+8BgeZUNoJKnaNhNyF8Z
+x5jSk3yDdtZcs0574nzeWueE1rZWsFKPnO4i5WC3qUJV2HzuZ7c8jbE0qWdTkN4V
+4OS2+b1mVaAuZiJUEND7B0gLYx9AadTthWrH1kb696QUNWe3h2D6g5RL9gKbDTB/
+MhdLV69t7BsGlfI1rzv6Z7nnHWLfPDpqQRt81Jhk7CqFNNMz+80RjjziEaTWA0Dz
+sQ8iswBBgPnbhw2ioxGEYfpUOYStDwZlv75R66A9lLB5wNbeFZkD9KPuS7E3Ixs8
+NGsQuktnhJOg2wO8/wduszgaauQadip/moo92Wr+BBfeyGE6pgIKNGWcXE0dPxok
+EuXl4Mr2yswwD9i0QzMgvd67Ykr0BLpt5B3CCZDQEUaKb0Cxj592T1H6lmA0w9RH
+WzwTR/3PVnpze75WiGL9
+=nOne
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_88AB840F-AB1E-4674-A91A-3EF340F17B69--
