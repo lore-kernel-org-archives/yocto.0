@@ -1,33 +1,87 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <gmane@reliableembeddedsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 297E4E00C13; Wed, 17 Feb 2016 20:41:13 -0800 (PST)
+	id 47F5AE00C22; Thu, 18 Feb 2016 02:34:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01E58E00C13
-	for <yocto@yoctoproject.org>; Wed, 17 Feb 2016 20:41:07 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga103.fm.intel.com with ESMTP; 17 Feb 2016 20:41:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,464,1449561600"; d="scan'208";a="888343886"
-Received: from tmglnx.jf.intel.com ([10.7.198.182])
-	by orsmga001.jf.intel.com with ESMTP; 17 Feb 2016 20:41:06 -0800
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 17 Feb 2016 21:37:28 -0800
-Message-Id: <1455773848-6890-3-git-send-email-tracy.graydon@intel.com>
-X-Mailer: git-send-email 2.4.3
-In-Reply-To: <1455773848-6890-1-git-send-email-tracy.graydon@intel.com>
-References: <1455773848-6890-1-git-send-email-tracy.graydon@intel.com>
-Subject: [yocto-autobuilder][PATCH 3/3] bin/release_scripts/release.py
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [108.163.201.230 listed in list.dnswl.org]
+X-Greylist: delayed 66237 seconds by postgrey-1.32 at yocto-www;
+	Thu, 18 Feb 2016 02:34:20 PST
+Received: from delivery.mailspamprotection.com
+	(delivery.mailspamprotection.com [108.163.201.230])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A38E00C1C
+	for <yocto@yoctoproject.org>; Thu, 18 Feb 2016 02:34:20 -0800 (PST)
+Received: from ns1.siteground282.com ([184.154.233.8]
+	helo=serv01.siteground282.com)
+	by se2.mailspamprotection.com with esmtps
+	(TLSv1.2:DHE-RSA-AES256-SHA:256) (Exim 4.85)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1aW4gF-0002yC-UZ
+	for yocto@yoctoproject.org; Wed, 17 Feb 2016 10:10:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=reliableembeddedsystems.com; s=dkim; 
+	h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version;
+	bh=08YFyLjDMpX862jvdlKiIoNEa+iVO4NhDRi8bErInMU=; 
+	b=h14yo41FN6uRVM4gniQQA+HwPxjCT4UU0BC9xhKyp1hMCEBiNYGlsYnVsqS835q0z4yc7CTZzSkSTY+RBHPe9ECTmuzeoldfeGbL3kWmJLbPsXt2DHWxJV7JOu8D4g0z7ZCV+P2OPzSkEObf7zRfQtcn9hcSFJwdevOpS1jhLYk=;
+Received: from [127.0.0.1] (port=36270 helo=secure282.sgcpanel.com)
+	by serv01.siteground282.com with esmtpa (Exim 4.80.1)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1aW4gD-0002t1-14; Wed, 17 Feb 2016 10:10:17 -0600
+MIME-Version: 1.0
+Date: Wed, 17 Feb 2016 10:10:16 -0600
+From: gmane@reliableembeddedsystems.com
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <3066941.Zu6KT7nLmM@peggleto-mobl.ger.corp.intel.com>
+References: <b30acf5cbe7f661029158ab7e80a2ba4@reliableembeddedsystems.com>
+	<CAJTo0LZmM_h3+KcuTeBPmwxGi0RiELLDcghrLhbDo7MEBiadTg@mail.gmail.com>
+	<5c17683eb1b7ade5712032f603470aee@reliableembeddedsystems.com>
+	<3066941.Zu6KT7nLmM@peggleto-mobl.ger.corp.intel.com>
+Message-ID: <445e5a3625b0edb293ac3cb07da6728e@reliableembeddedsystems.com>
+X-Sender: gmane@reliableembeddedsystems.com
+User-Agent: Roundcube Webmail/1.0.5
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - serv01.siteground282.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
+X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
+	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
+	8WfReHqUOdh1n/PPcFyFbPA+npozUehHFsrk+yhUB6M2CfxcqFgY3O1mYqB0B1z1pRXWhjh9fdbl
+	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S4rjo9pjU2jwGeOCxBY5D4UaYsqX
+	q41MoOtzweKQlohrFyrtVW4KaRSURqFyxA+5hz/fZ77l9WrLiw3jbC6gJt3PWdnJQeN5cgRmGf5G
+	X0xwhXsBjV/r0cSqC1xhIwVnc0ks5uz+SxUE4e8QCBKvyQCW/0SRYQ0ROxX2dwaCJb79Jwd/Ie5B
+	ug3IiAebyObbQrbRF0J+AL6gRRwFcty0/RFX0QIjIjCn1zvQuUxCBw4J+4fateCeFsLSBPBEabXV
+	ietQy3uAkh2klY0pFWVKuKSFewGNX+vRxKoLXGEjBWdzGfxNlhQyZmS3TgLw2A6IYmrveHWGqmrm
+	KHH4pzVsBPjpd66zq7t8jrxsZWFJWZQXcxw3qqhc+N6cuEg4XWh5FiJjFf1NgFCarWv3c1m+15y4
+	+f2bl5T8yciCn5WQ8LLiTKlMEeT1N6wcSlD/nRGK6zJBq66m5xNeLi+XiDcbSiw=
+X-Report-Abuse-To: spam@quarantine.mailspamprotection.com
+X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJb0kolOUiviGeQyDsBgQ6PBA3cTUQ1R++keuE7RDJ8Kg3RbMLUalw1oC
+	mj99/u+Poh38tEMU4IgC4sNz49qn3HHnhRv/ZJ3kEy8bfiAr+Fb/UpndEJ0YoaLytXXo8BMTaX2p
+	Mk7LBarWD9Fj4R3eIu5amSKkALoA6KDzkQ8jq89Qglr+eUaqsXi6ilYykBRNmy1w3rhXI7ypWHcC
+	zReLskSoC1jzfYuYzO5TaopJL1l0EkXKTCB9mgAH2nNvM1GFDcH5C2MO7hTENZJE35bUvwA=
+X-Originating-IP: 184.154.233.8
+X-SpamExperts-Domain: siteground282.com
+X-SpamExperts-Username: 184.154.233.8
+Authentication-Results: mailspamprotection.com;
+	auth=pass smtp.auth=184.154.233.8@siteground282.com
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.19)
+X-Recommended-Action: accept
+Cc: yocto@yoctoproject.org, chris_larson@mentor.com
+Subject: Re: jethro 2.0.1/ubi-utils not installed on target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +93,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Feb 2016 04:41:13 -0000
+X-List-Received-Date: Thu, 18 Feb 2016 10:34:27 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Tracy Graydon <tracy.graydon@intel.com>
+Hi,
 
-This is part of the release automation work, related to Yocto bug #8942. This
-patch adds the ADT repo publishing functionality for backward compatability
-for point releases, etc. Not used going forward since we have moved to the
-eSDK instead, so this defaults to NOT publishing the ADT repo. A flag has
-been added to cue publishing, along with an option to provide a custom
-target direactory name for oddball cases where release numbering may not
-be linear. i.e There was no 1.9 release, so ADT repo for 2.0_M1 would have
-actually been 1.8+snapshot. This allows for those corner cases.
+On 2016-02-17 04:07, Paul Eggleton wrote:
+> Hi Robert,
+> 
+> 
+> If you want the complete list of packages you can only get it after a 
+> recipe
+> has been built, at which time oe-pkgdata-util can be used:
+> 
+> $ oe-pkgdata-util list-pkgs -p mtd-utils
+> mtd-utils-jffs2
+> mtd-utils-ubifs
+> mtd-utils-misc
+> mtd-utils-dbg
+> mtd-utils-dev
+> mtd-utils-doc
+> mtd-utils
+> 
+> The reason this is only available after building (strictly speaking, 
+> after
+> do_packagedata has executed for the recipe in question) is that often 
+> the list
+> of packages isn't determined until then; for example, kernel module 
+> packages
+> are completely dynamic based on those modules that are enabled.
+> 
+> Cheers,
+> Paul
 
-Signed-off-by: Tracy Graydon <tracy.graydon@intel.com>
----
- bin/release_scripts/release.py | 58 +++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 54 insertions(+), 4 deletions(-)
+Thanks.
 
-diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
-index c332718..83c198e 100755
---- a/bin/release_scripts/release.py
-+++ b/bin/release_scripts/release.py
-@@ -317,6 +317,37 @@ def gen_rel_md5(dirname, md5_file):
-     f.close()
-     return
- 
-+def publish_adt(rel_id, rel_type, opts):
-+    if opts:
-+        ADT_DIR = os.path.join(ADT_BASE, opts)
-+    else:
-+        if rel_type == "milestone":
-+            chunks = split_thing(rel_id, "_")
-+            id_thing = float(chunks[0])
-+            id_thing = id_thing - 0.1
-+            rel_id = str(id_thing) + "+" + "snapshot"
-+        ADT_DIR = os.path.join(ADT_BASE, rel_id)
-+    print "ADT_DIR: %s" %ADT_DIR
-+    if os.path.exists(ADT_DIR):
-+        print "ADT_DIR %s EXISTS! Refusing to clobber!" %ADT_DIR
-+        sys.exit()
-+    else:
-+        ADT_ROOTFS = os.path.join(ADT_DIR, "rootfs")
-+        ADT_IPK = os.path.join(ADT_DIR, "adt-ipk")
-+        QEMU_DIR = os.path.join(MACHINES, "qemu")
-+        IPK_DIR = os.path.join(RELEASE_DIR, "ipk")
-+        os.mkdir(ADT_DIR)
-+        os.mkdir(ADT_ROOTFS)
-+        dirlist = get_list(QEMU_DIR)
-+
-+        for dirname in dirlist:
-+            QEMU_SRC = os.path.join(QEMU_DIR, dirname)
-+            QEMU_TARGET = os.path.join(ADT_ROOTFS, dirname)
-+            print "QEMU_SRC: %s" %QEMU_SRC
-+            sync_it(QEMU_SRC, QEMU_TARGET, "")
-+        
-+        sync_it(IPK_DIR, ADT_IPK, "")
-+    return
- 
- if __name__ == '__main__':
-     
-@@ -326,6 +357,7 @@ if __name__ == '__main__':
-     VHOSTS = "/srv/www/vhosts"
-     AB_BASE = os.path.join(VHOSTS, "autobuilder.yoctoproject.org/pub/releases")
-     DL_BASE = os.path.join(VHOSTS, "downloads.yoctoproject.org/releases")
-+    ADT_BASE = os.path.join(VHOSTS, "adtrepo.yoctoproject.org")
- 
-     # List of the directories we delete from all releases
-     UNLOVED = ['rpm', 'deb', 'ptest', 'adt-installer-QA']
-@@ -346,7 +378,12 @@ if __name__ == '__main__':
-     parser.add_option("-p", "--poky-ver",
-                       type="string", dest="poky",
-                       help="Required for Major and Point releases. i.e. 14.0.0")
--                     
-+    parser.add_option("-a", action="store_true", dest="pub_adt",
-+                      help="Publish an ADT repo for the release. Default is NOT to publish.")
-+    parser.add_option("-d", "--adt-dir",
-+                      type="string", dest="adt_dir",
-+                      help="Use when you need to publish the ADT repo to a custom location. i.e. python adtcopy -b yocto-2.0_M1.rc1 -a 1.8+snaphot")
-+
-     (options, args) = parser.parse_args()
-  
-     REL_TYPE = ""
-@@ -395,12 +432,12 @@ if __name__ == '__main__':
-         print "Build ID is a required argument."
-         print "Please use -h or --help for options."
-         sys.exit()
--
-+   
-     if not (RELEASE and RC and REL_ID and REL_TYPE):
-         print "Can't determine the release type. Check your args."
-         print "You gave me: %s" %options.build
-         sys.exit()
--
-+    
-     print "RC_DIR: %s" %RC_DIR
-     print "RELEASE: %s" %RELEASE
-     print "RC: %s" %RC
-@@ -420,7 +457,7 @@ if __name__ == '__main__':
-     ECLIPSE_DIR = os.path.join(RELEASE_DIR, "eclipse-plugin")
-     BUILD_APP_DIR = os.path.join(RELEASE_DIR, "build-appliance")
-     REL_MD5_FILE = RELEASE + ".md5sum"
--       
-+
-     # For all releases:
-     # 1) Rsync the rc candidate to a staging dir where all work happens
-     sync_it(RC_SOURCE, RELEASE_DIR, UNLOVED)
-@@ -461,3 +498,16 @@ if __name__ == '__main__':
-     print "Publishing release to downloads."
-     sync_it(RELEASE_DIR, DL_DIR, "")
- 
-+    # 9) Publish the ADT repo. The default is NOT to publish the ADT. The ADT 
-+    # is deprecated as of 2.1_M1. However, we need to retain backward 
-+    # compatability for point releases, etc. We do this step after all the other
-+    #  stuff because we want the symlinks to have been converted, extraneous 
-+    # files deleted, and md5sums generated.
-+    #
-+    if options.pub_adt:
-+        if options.adt_dir:
-+            print "Publishing the ADT repo using custom dir %s" %options.adt_dir
-+            publish_adt(REL_ID, REL_TYPE, options.adt_dir)
-+        else:
-+            print "Publishing ADT repo."
-+            publish_adt(REL_ID, REL_TYPE, "")
--- 
-2.4.3
+So would something I hacked up quickly like this work?
 
+test.sh:
+-->
+bitbake -s |  awk '{ print $1}' > test.txt
+tail -n +6 test.txt > test1.txt
+while IFS='' read -r line || [[ -n "$line" ]]; do
+     echo "-->"
+     echo "oe-pkgdata-util list-pkgs -p $line"
+     oe-pkgdata-util list-pkgs -p $line 2> /dev/null
+     echo "<--"
+done < test1.txt
+<--
+
+./test.sh | grep mtd
+oe-pkgdata-util list-pkgs -p core-image-minimal-mtdutils
+oe-pkgdata-util list-pkgs -p mtd-utils
+mtd-utils-jffs2
+mtd-utils-ubifs
+mtd-utils-misc
+mtd-utils-dbg
+mtd-utils-dev
+mtd-utils-doc
+mtd-utils
+oe-pkgdata-util list-pkgs -p mtd-utils-native
+oe-pkgdata-util list-pkgs -p mtdev
+mtdev-dbg
+mtdev-staticdev
+mtdev-dev
+mtdev
+
+> 
+> PS if you wish to email me could you please use my email address rather 
+> than
+> the gmane alias you're currently using.
+
+I'll try. Now I reply with your regular email (hoping gmane will not 
+scramble it)
+
+Regards,
+
+Robert
 
