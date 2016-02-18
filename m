@@ -1,34 +1,31 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06EF3E00BF4; Wed, 17 Feb 2016 18:47:55 -0800 (PST)
+	id 817CBE00BF4; Wed, 17 Feb 2016 18:58:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4DF3E00BEB
-	for <yocto@yoctoproject.org>; Wed, 17 Feb 2016 18:47:52 -0800 (PST)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F65BE00B8B
+	for <yocto@yoctoproject.org>; Wed, 17 Feb 2016 18:58:15 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u1I2lpf8011791
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 17 Feb 2016 18:47:51 -0800 (PST)
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u1I2wEPW016111
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Wed, 17 Feb 2016 18:58:14 -0800
 Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Wed, 17 Feb 2016 18:47:50 -0800
+	Wed, 17 Feb 2016 18:58:14 -0800
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Wed, 17 Feb 2016 18:47:49 -0800
-Message-ID: <1455763670-30916-1-git-send-email-liezhi.yang@windriver.com>
+Date: Wed, 17 Feb 2016 18:58:14 -0800
+Message-ID: <1455764294-7032-1-git-send-email-liezhi.yang@windriver.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [meta-selinux] [PATCH 1/2] libsepol: fix libsepol.pc failed sanity test
+Subject: [meta-selinux] [PATCH] libsemanage: fix libsepol.pc failed sanity test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,29 +37,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Feb 2016 02:47:55 -0000
+X-List-Received-Date: Thu, 18 Feb 2016 02:58:21 -0000
 Content-Type: text/plain
 
-ERROR: libsepol-2.4-r0 do_populate_sysroot: QA Issue: libsepol.pc failed sanity test (tmpdir) in path /path/to//sysroot-destdir//usr/lib/pkgconfig [pkgconfig]
+ERROR: libsemanage-2.4-r0 do_populate_sysroot: QA Issue: libselinux.pc failed sanity test (tmpdir) in path /path/to/sysroot-destdir//usr/lib/pkgconfig [pkgconfig]
 
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- ...rc-Makefile-fix-includedir-in-libsepol.pc.patch |   28 ++++++++++++++++++++
- recipes-security/selinux/libsepol_2.4.bb           |    2 ++
- recipes-security/selinux/libsepol_git.bb           |    2 ++
- 3 files changed, 32 insertions(+)
- create mode 100644 recipes-security/selinux/libsepol/0001-src-Makefile-fix-includedir-in-libsepol.pc.patch
+ ...-Makefile-fix-includedir-in-libselinux.pc.patch |   28 ++++++++++++++++++++
+ recipes-security/selinux/libsemanage_2.4.bb        |    1 +
+ recipes-security/selinux/libsemanage_git.bb        |    1 +
+ 3 files changed, 30 insertions(+)
+ create mode 100644 recipes-security/selinux/libsemanage/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
 
-diff --git a/recipes-security/selinux/libsepol/0001-src-Makefile-fix-includedir-in-libsepol.pc.patch b/recipes-security/selinux/libsepol/0001-src-Makefile-fix-includedir-in-libsepol.pc.patch
+diff --git a/recipes-security/selinux/libsemanage/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch b/recipes-security/selinux/libsemanage/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
 new file mode 100644
-index 0000000..8a6e047
+index 0000000..72b97df
 --- /dev/null
-+++ b/recipes-security/selinux/libsepol/0001-src-Makefile-fix-includedir-in-libsepol.pc.patch
++++ b/recipes-security/selinux/libsemanage/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
 @@ -0,0 +1,28 @@
-+From 05907644755048f9335e05dc540f810bb580477f Mon Sep 17 00:00:00 2001
++From 63d2c02a4dfa5ccd5d62a9f80b6a50cbb9946fbb Mon Sep 17 00:00:00 2001
 +From: Robert Yang <liezhi.yang@windriver.com>
-+Date: Thu, 18 Feb 2016 02:04:59 +0000
-+Subject: [PATCH] src/Makefile: fix includedir in libsepol.pc
++Date: Thu, 18 Feb 2016 02:39:16 +0000
++Subject: [PATCH] src/Makefile: fix includedir in libselinux.pc
 +
 +Upstream-Status: Pending
 +
@@ -72,41 +69,42 @@ index 0000000..8a6e047
 + 1 file changed, 1 insertion(+), 1 deletion(-)
 +
 +diff --git a/src/Makefile b/src/Makefile
-+index db6c2ba..c03ee92 100644
++index 1920029..06d291d 100644
 +--- a/src/Makefile
 ++++ b/src/Makefile
-+@@ -43,7 +43,7 @@ $(LIBSO): $(LOBJS) $(LIBMAP)
++@@ -115,7 +115,7 @@ $(LIBSO): $(LOBJS)
 + 	ln -sf $@ $(TARGET) 
 + 
 + $(LIBPC): $(LIBPC).in ../VERSION
 +-	sed -e 's/@VERSION@/$(VERSION)/; s:@prefix@:$(PREFIX):; s:@libdir@:$(LIBBASE):; s:@includedir@:$(INCLUDEDIR):' < $< > $@
 ++	sed -e 's/@VERSION@/$(VERSION)/; s:@prefix@:$(PREFIX):; s:@libdir@:$(LIBBASE):; s:@includedir@:${prefix}/include:' < $< > $@
 + 
-+ $(LIBMAP): $(LIBMAP).in
-+ ifneq ($(DISABLE_CIL),y)
++ selinuxswig_python_exception.i: ../include/selinux/selinux.h
++ 	bash exception.sh > $@ 
 +-- 
 +2.5.0
 +
-diff --git a/recipes-security/selinux/libsepol_2.4.bb b/recipes-security/selinux/libsepol_2.4.bb
-index fa83e5f..ef835b3 100644
---- a/recipes-security/selinux/libsepol_2.4.bb
-+++ b/recipes-security/selinux/libsepol_2.4.bb
-@@ -5,3 +5,5 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
- 
- SRC_URI[md5sum] = "8a75d27acf17af1911797e6b12986b50"
- SRC_URI[sha256sum] = "299015d59932404c6b69d365fdecffe5c0e2f9c44e08b47286a4bfc02ee49659"
-+
-+SRC_URI += "file://0001-src-Makefile-fix-includedir-in-libsepol.pc.patch"
-diff --git a/recipes-security/selinux/libsepol_git.bb b/recipes-security/selinux/libsepol_git.bb
-index 3f83c90..f36ac3b 100644
---- a/recipes-security/selinux/libsepol_git.bb
-+++ b/recipes-security/selinux/libsepol_git.bb
-@@ -5,3 +5,5 @@ include selinux_git.inc
- include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
-+
-+SRC_URI += "file://0001-src-Makefile-fix-includedir-in-libsepol.pc.patch"
+diff --git a/recipes-security/selinux/libsemanage_2.4.bb b/recipes-security/selinux/libsemanage_2.4.bb
+index 2e0dfd5..4306675 100644
+--- a/recipes-security/selinux/libsemanage_2.4.bb
++++ b/recipes-security/selinux/libsemanage_2.4.bb
+@@ -14,5 +14,6 @@ SRC_URI += "\
+ 	file://libsemanage-define-FD_CLOEXEC-as-necessary.patch;striplevel=2 \
+ 	file://libsemanage-allow-to-disable-audit-support.patch \
+ 	file://libsemanage-disable-expand-check-on-policy-load.patch \
++	file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
+ 	"
+ FILES_${PN} += "/usr/libexec"
+diff --git a/recipes-security/selinux/libsemanage_git.bb b/recipes-security/selinux/libsemanage_git.bb
+index 9106904..eaef3ab 100644
+--- a/recipes-security/selinux/libsemanage_git.bb
++++ b/recipes-security/selinux/libsemanage_git.bb
+@@ -13,4 +13,5 @@ SRC_URI += "\
+ 	file://libsemanage-drop-Wno-unused-but-set-variable.patch \
+ 	file://libsemanage-define-FD_CLOEXEC-as-necessary.patch;striplevel=2 \
+ 	file://libsemanage-allow-to-disable-audit-support.patch \
++	file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
+ 	"
 -- 
 1.7.9.5
 
