@@ -1,35 +1,34 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5837DE00D42; Fri, 19 Feb 2016 08:12:39 -0800 (PST)
+	id 73FE7E00D09; Fri, 19 Feb 2016 08:12:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
 	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF3FDE00D09
-	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 08:12:37 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA97E00C8D
+	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 08:12:35 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 19 Feb 2016 08:12:37 -0800
+	by fmsmga103.fm.intel.com with ESMTP; 19 Feb 2016 08:12:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,471,1449561600"; d="scan'208";a="655723883"
+X-IronPort-AV: E=Sophos;i="5.22,471,1449561600"; d="scan'208";a="655723853"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.35])
-	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2016 08:12:37 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2016 08:12:35 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 19 Feb 2016 10:14:47 -0600
-Message-Id: <1455898489-10556-7-git-send-email-anibal.limon@linux.intel.com>
+Date: Fri, 19 Feb 2016 10:14:43 -0600
+Message-Id: <1455898489-10556-3-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
-Subject: [[PATCH][autobuilder] 6/8] autobuilder/lib/buildsteps.py: ShellCommandCleanEnv preserve PATH
+Subject: [[PATCH][autobuilder] 2/8] autobuilder/buildsteps: Add ToasterSetupVenv step.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,25 +44,52 @@ X-List-Received-Date: Fri, 19 Feb 2016 16:12:39 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+ToasterSetupVenv creates a virtualenv and install requeriments
+for run toaster and toaster tests.
+
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- lib/python2.7/site-packages/autobuilder/lib/buildsteps.py | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../autobuilder/buildsteps/ToasterSetupVenv.py     | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
 
-diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-index 8b719fa..3693a7a 100644
---- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-+++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-@@ -26,7 +26,8 @@ class ShellCommandCleanEnv(ShellCommand):
-             preserve_env = kwargs['PENV']
-             del kwargs['PENV']
-         else:
--            preserve_env = ['HOME', 'PWD', 'http_proxy', 'https_proxy',
-+            preserve_env = ['HOME', 'PWD', 'PATH',
-+                            'http_proxy', 'https_proxy',
-                             'ftp_proxy', 'no_proxy', 'GIT_PROXY_COMMAND']
- 
-         env_command = self._get_env_cleaned_command(shell, preserve_env)
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
+new file mode 100644
+index 0000000..54cf1e7
+--- /dev/null
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
+@@ -0,0 +1,31 @@
++'''
++Created on Feb 15, 2016
++
++__author__ = "Anibal (alimon) Limon"
++__copyright__ = "Copyright 2016, Intel Corp."
++__credits__ = ["Anibal Limon"]
++__license__ = "GPL"
++__version__ = "2.0"
++__maintainer__ = "Anibal Limon"
++__email__ = "anibal.limon@linux.intel.com"
++'''
++
++from lib.buildsteps import ShellCommandCleanEnv
++
++class ToasterSetupVenv(ShellCommandCleanEnv):
++    haltOnFailure = True
++    flunkOnFailure = True
++    name = "ToasterSetupVenv"
++
++    def __init__(self, factory, argdict=None, **kwargs):
++        self.factory = factory
++        self.description = "Creating virtualenv..."
++
++        oe_cmd = "source ./oe-init-build-env;"
++        venv_cmd = "virtualenv venv; source venv/bin/activate;"
++        install_cmd = "pip install -r ../bitbake/toaster-requirements.txt;"
++        install_tests_cmd = "pip install -r ../bitbake/toaster-tests-requirements.txt;"
++
++        self.command = oe_cmd + venv_cmd + install_cmd + install_tests_cmd 
++
++        ShellCommandCleanEnv.__init__(self, factory, argdict, **kwargs)
 -- 
 2.1.4
 
