@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73FE7E00D09; Fri, 19 Feb 2016 08:12:39 -0800 (PST)
+	id 91D05E00D42; Fri, 19 Feb 2016 08:12:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,23 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA97E00C8D
-	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 08:12:35 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F93FE00D00
+	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 08:12:37 -0800 (PST)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 19 Feb 2016 08:12:35 -0800
+	by fmsmga103.fm.intel.com with ESMTP; 19 Feb 2016 08:12:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,471,1449561600"; d="scan'208";a="655723853"
+X-IronPort-AV: E=Sophos;i="5.22,471,1449561600"; d="scan'208";a="655723880"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.35])
-	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2016 08:12:35 -0800
+	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2016 08:12:36 -0800
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 19 Feb 2016 10:14:43 -0600
-Message-Id: <1455898489-10556-3-git-send-email-anibal.limon@linux.intel.com>
+Date: Fri, 19 Feb 2016 10:14:46 -0600
+Message-Id: <1455898489-10556-6-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
-Subject: [[PATCH][autobuilder] 2/8] autobuilder/buildsteps: Add ToasterSetupVenv step.
+Subject: [[PATCH][autobuilder] 5/8] buildsteps/ToasterRunTests.py: Add step for run toaster tests. buildset-config.toaster/toaster-tests.conf: Add ToasterRunTests step.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,20 +44,29 @@ X-List-Received-Date: Fri, 19 Feb 2016 16:12:39 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-ToasterSetupVenv creates a virtualenv and install requeriments
-for run toaster and toaster tests.
-
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- .../autobuilder/buildsteps/ToasterSetupVenv.py     | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
+ buildset-config.toaster/toaster-tests.conf         |  1 +
+ .../autobuilder/buildsteps/ToasterRunTests.py      | 31 ++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ToasterRunTests.py
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
+diff --git a/buildset-config.toaster/toaster-tests.conf b/buildset-config.toaster/toaster-tests.conf
+index 22ac176..c471c92 100644
+--- a/buildset-config.toaster/toaster-tests.conf
++++ b/buildset-config.toaster/toaster-tests.conf
+@@ -15,5 +15,6 @@ steps: [{'SetDest':{}},
+         {'GetBitbakeVersion': {}},
+ 	{'ToasterSetupVenv': {}},
+ 	{'ToasterStart': {}},
++	{'ToasterRunTests': {}},
+ 	{'ToasterStop': {}},
+        ]
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterRunTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterRunTests.py
 new file mode 100644
-index 0000000..54cf1e7
+index 0000000..392b600
 --- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterSetupVenv.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ToasterRunTests.py
 @@ -0,0 +1,31 @@
 +'''
 +Created on Feb 15, 2016
@@ -72,22 +81,22 @@ index 0000000..54cf1e7
 +'''
 +
 +from lib.buildsteps import ShellCommandCleanEnv
++import os
 +
-+class ToasterSetupVenv(ShellCommandCleanEnv):
++class ToasterRunTests(ShellCommandCleanEnv):
 +    haltOnFailure = True
 +    flunkOnFailure = True
-+    name = "ToasterSetupVenv"
++    name = "ToasterRunTests"
 +
 +    def __init__(self, factory, argdict=None, **kwargs):
 +        self.factory = factory
-+        self.description = "Creating virtualenv..."
++        self.description = "Running toaster tests..."
 +
 +        oe_cmd = "source ./oe-init-build-env;"
-+        venv_cmd = "virtualenv venv; source venv/bin/activate;"
-+        install_cmd = "pip install -r ../bitbake/toaster-requirements.txt;"
-+        install_tests_cmd = "pip install -r ../bitbake/toaster-tests-requirements.txt;"
++        venv_cmd = "source venv/bin/activate;"
++        cmd = "DISPLAY=:1 toaster-test --run-all-tests;"
 +
-+        self.command = oe_cmd + venv_cmd + install_cmd + install_tests_cmd 
++        self.command = oe_cmd + venv_cmd + cmd
 +
 +        ShellCommandCleanEnv.__init__(self, factory, argdict, **kwargs)
 -- 
