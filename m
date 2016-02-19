@@ -1,37 +1,31 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A4C1E00B9C; Thu, 18 Feb 2016 13:42:12 -0800 (PST)
+	id EBE89E00C6A; Thu, 18 Feb 2016 18:46:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1716 seconds by postgrey-1.32 at yocto-www;
-	Thu, 18 Feb 2016 13:42:10 PST
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AA0FE00B66
-	for <yocto@yoctoproject.org>; Thu, 18 Feb 2016 13:42:10 -0800 (PST)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.125])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1aWVsn-0003gR-HI; Thu, 18 Feb 2016 21:13:06 +0000
-Message-ID: <56C63405.8030408@twobit.us>
-Date: Thu, 18 Feb 2016 13:13:41 -0800
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.8.0
-MIME-Version: 1.0
-To: Joe MacDonald <joe_macdonald@mentor.com>, yocto@yoctoproject.org
-References: <1455763309-9622-1-git-send-email-joe_macdonald@mentor.com>
-In-Reply-To: <1455763309-9622-1-git-send-email-joe_macdonald@mentor.com>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: Re: [meta-selinux][PATCH] MAINTAINERS: Update maintainers file
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76B03E00C4F
+	for <yocto@yoctoproject.org>; Thu, 18 Feb 2016 18:46:04 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga101.fm.intel.com with ESMTP; 18 Feb 2016 18:46:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,468,1449561600"; d="scan'208";a="889214083"
+Received: from tmglnx.jf.intel.com ([10.7.198.182])
+	by orsmga001.jf.intel.com with ESMTP; 18 Feb 2016 18:46:04 -0800
+From: "Graydon, Tracy" <tracy.graydon@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 18 Feb 2016 19:42:22 -0800
+Message-Id: <1455853344-16237-1-git-send-email-tracy.graydon@intel.com>
+X-Mailer: git-send-email 2.4.3
+Subject: [yocto-autobuilder][PATCH 1/3] bin/release_scripts/release.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,15 +37,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Feb 2016 21:42:12 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Feb 2016 02:46:08 -0000
 
-On 02/17/2016 06:41 PM, Joe MacDonald wrote:
-> Adding Philip Tricca as a common layer maintainer and marking Pascal as
+Fixed tarball repackaging to add missing branch name to the new
+tarball name. i.e. <blob>-<hash>.tar.bz2 was being renamed to
+<blob>-<poky-ver>.14.0.1.tar.bz2, which is wrong. Should be renamed to
+<blob>-<branch>-<poky-ver>.tar.bz2.
 
-Thanks Joe. I'm working my way through the backlog now.
+Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+---
+ bin/release_scripts/release.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Best,
-Philip
+diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
+index 83c198e..8751a04 100755
+--- a/bin/release_scripts/release.py
++++ b/bin/release_scripts/release.py
+@@ -94,7 +94,7 @@ def fix_tarballs():
+         filename = chunks[0]
+         basename = split_thing(filename, "-")
+         index = len(basename)-1
+-        basename[index] = POKY_VER
++        basename[index] = "-".join([BRANCH, POKY_VER])
+         new_name = rejoin_thing(basename, "-")
+         chunks[0] = new_name
+         new_blob = rejoin_thing(chunks, ".")
+@@ -511,3 +511,4 @@ if __name__ == '__main__':
+         else:
+             print "Publishing ADT repo."
+             publish_adt(REL_ID, REL_TYPE, "")
++
+-- 
+2.4.3
+
 
