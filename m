@@ -1,6 +1,6 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E906E00CC6; Fri, 19 Feb 2016 02:31:42 -0800 (PST)
+	id A8136E00D46; Fri, 19 Feb 2016 08:12:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCED8E00C60
-	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 02:31:41 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Feb 2016 02:31:40 -0800
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CCE0E00C44
+	for <yocto@yoctoproject.org>; Fri, 19 Feb 2016 08:12:35 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 19 Feb 2016 08:12:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,470,1449561600"; d="scan'208";a="749296238"
-Received: from mbabyjoh-mobl.fi.intel.com ([10.237.72.71])
-	by orsmga003.jf.intel.com with ESMTP; 19 Feb 2016 02:31:39 -0800
-Date: Fri, 19 Feb 2016 12:35:14 +0200
-From: "Maxin B. John" <maxin.john@intel.com>
-To: Vivek Per <pervivek@gmail.com>
-Message-ID: <20160219103514.GA27222@mbabyjoh-mobl.fi.intel.com>
-References: <CALLyC8SKmc0+7tMU8X6JwCriP9orCGvbVToFwgj6jytvpdd1GA@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="5.22,471,1449561600"; d="scan'208";a="655723845"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.35])
+	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2016 08:12:34 -0800
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 19 Feb 2016 10:14:42 -0600
+Message-Id: <1455898489-10556-2-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1455898489-10556-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CALLyC8SKmc0+7tMU8X6JwCriP9orCGvbVToFwgj6jytvpdd1GA@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: which package/recipe produces "ss" utility
+Subject: [[PATCH][autobuilder] 1/8] autobuilder/lib: Add buildsteps module for provide helpers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,31 +40,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Feb 2016 10:31:42 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 19 Feb 2016 16:12:38 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Vivek,
+Add ShellCommandCleanEnv helper for run command in a clean
+enviroment a shell for run the command can be specified also
+the variables to preserve in the new enviroment.
 
-On Fri, Feb 19, 2016 at 10:17:30AM +0530, Vivek Per wrote:
-> Does any one know which package produces ss utility in yocto.
-> i tried iproute2 reciepe which is not present.
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ .../site-packages/autobuilder/lib/buildsteps.py    | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
 
-Please use the "iproute2-ss" which is available in the "master" branch:
+diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+new file mode 100644
+index 0000000..8b719fa
+--- /dev/null
++++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+@@ -0,0 +1,41 @@
++'''
++Created on Feb 15, 2016
++
++__author__ = "Anibal (alimon) Limon"
++__copyright__ = "Copyright 2016, Intel Corp."
++__credits__ = ["Anibal Limon"]
++__license__ = "GPL"
++__version__ = "2.0"
++__maintainer__ = "Anibal Limon"
++__email__ = "anibal.limon@linux.intel.com"
++'''
++
++import os
++from buildbot.steps.shell import ShellCommand
++
++DEFAULT_SHELL = 'bash'
++
++class ShellCommandCleanEnv(ShellCommand):
++    def __init__(self, factory, argdict=None, **kwargs):
++        shell = DEFAULT_SHELL
++        if 'SHELL' in kwargs:
++            shell = kwargs['SHELL']
++            del kwargs['SHELL']
++
++        if 'PENV' in kwargs:
++            preserve_env = kwargs['PENV']
++            del kwargs['PENV']
++        else:
++            preserve_env = ['HOME', 'PWD', 'http_proxy', 'https_proxy',
++                            'ftp_proxy', 'no_proxy', 'GIT_PROXY_COMMAND']
++
++        env_command = self._get_env_cleaned_command(shell, preserve_env)
++        self.command = "%s \'%s\'" % (env_command, self.command)
++        ShellCommand.__init__(self, **kwargs)
++
++    def _get_env_cleaned_command(self, shell, preserve_env):
++        pe_cmd = ''
++        for pe in preserve_env:
++            pe_cmd += "%s=\"$%s\" " % (pe, pe)
++
++        return "env -i %s %s -c " % (pe_cmd, shell)
+-- 
+2.1.4
 
-# oe-pkgdata-util list-pkgs -p iproute2
-iproute2-tc
-iproute2-lnstat
-iproute2-ifstat
-iproute2-genl
-iproute2-rtacct
-iproute2-nstat
-iproute2-ss
-iproute2-dbg
-iproute2-dev
-iproute2-doc
-iproute2
-
-Best Regards,
-Maxin
 
