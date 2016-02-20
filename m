@@ -1,6 +1,6 @@
-Return-Path: <valentin.lebescond@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67069E00D01; Sat, 20 Feb 2016 08:26:14 -0800 (PST)
+	id 335EFE00CF2; Sat, 20 Feb 2016 11:09:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (valentin.lebescond[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,47 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB2F8E00CEF
-	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 08:26:10 -0800 (PST)
-Received: by mail-wm0-f53.google.com with SMTP id g62so109693882wme.0
-	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 08:26:09 -0800 (PST)
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B88E6E0073D
+	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 11:09:50 -0800 (PST)
+Received: by mail-qg0-f47.google.com with SMTP id y9so86765348qgd.3
+	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 11:09:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=LYYbs2cNX8FrsUTkaYALR2ipBxjsGD8gv8D/ylx/B30=;
-	b=K1ShOaaOM6LnUOtZMqq6/Edc5jTkZZ9uNIua80qqogOr06UEGIJ5ce25EovFy0uAIp
-	UEgwJe19WxnRB0WCjROSc4ygSU1Wznu6Ldp98MuFsZIK4is3V5dNFp61aWl8qCIhgLF5
-	1ukKH2rm4U1MtHEasU33k23DIQPSoxyQ5yxU9WkwapTvDQZzqX0dSNDfvo3Yh0Lwaqi7
-	wtQ5qw+uUQWlwpj0f6W92gigmXSqeN0e9rRkgo4/bpIPqPwSSIx1Li9YGvqh3Lq5g+Ee
-	3aYdnKk73EX173L+NvaQX4uUJ3a//9M3u3xQnbr4XlvdNROcXaNHmgnEpvAp3IFYmZSa
-	CC/A==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=2+vt184couVUB4VD1GbWt+868L9v+J5FCUYQtsHCm0M=;
+	b=nqhUUu9j2Xe41b+LCnLxeqe9QbLfp2Spv5pgeayRvlL12LY90pZhajIuKJjMqV7KuH
+	OHfsKB+ZkMfpYY6q1y2iye4SHEvXSKuzM/zC6MvDAEma9GrdJHalP1WLdtpYVw4eHEjX
+	fvfTmg13rClr2Qzwh/C7nFaYy7DBtCt4FRCIwVCwCwL7wV7eSq6XkGtEpDNj4yE470Sf
+	vpz64u5kbLOL7W1uTUvQHe3Vb7hseQ4D94hvSYLCYquLg3JtNPP7dUSMwrx2E6OyIYYT
+	g22b4Fu6Xm6AdZOPatNxCqLomdQhlMoeVRRNXzv8bDMV9mGdJkGEiRuwNUInpy6ITSAT
+	Tiow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=LYYbs2cNX8FrsUTkaYALR2ipBxjsGD8gv8D/ylx/B30=;
-	b=PNwpfxzkwdDl6WYaXIhwvt9RQBWcJcv0HoXME7NwxGn2cXePFg/8zkVmgvtY8WIjfe
-	yEwIhpbhuYkDBN3tFn3O9NY7nhOmyB1F6Hm/dc1lYEs2447XkGOnbCQmcMy4PYAP7tNu
-	D5OOGwjwW9pO///tWwo8dSioxmAC1cffoZen9HQHw8IjeNc33x8p3FHdCj3gsTt3qyyl
-	oINfv3/IxNVdq98nxMqX3zfh7jAVRZwjW2nNXV171wP37wsicddcjqM0DAtrva+pLBTy
-	EL6FOeQF/Tl7F1ZAJUucC2BBla9aIXhoKuMDQjK8MKGGsUfVwim4t1XWSIEb5H5b/Rnn
-	NKuA==
-X-Gm-Message-State: AG10YOTOzODJ2Lv+ZxK5frKC93838zOWZeWp7pIZhrce2gQchn3vF9IJgKZ8JO+QgmUNkA==
-X-Received: by 10.28.98.138 with SMTP id w132mr3077672wmb.45.1455985569289;
-	Sat, 20 Feb 2016 08:26:09 -0800 (PST)
-Received: from localhost.localdomain (128-79-70-219.hfc.dyn.abo.bbox.fr.
-	[128.79.70.219]) by smtp.gmail.com with ESMTPSA id
-	74sm12744914wmn.17.2016.02.20.08.26.07
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 20 Feb 2016 08:26:07 -0800 (PST)
-From: Valentin LE BESCOND <valentin.lebescond@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat, 20 Feb 2016 17:25:59 +0100
-Message-Id: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-chip][PATCH] added md5 for ntc's modified u-boot Licences/README file.
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=2+vt184couVUB4VD1GbWt+868L9v+J5FCUYQtsHCm0M=;
+	b=IC475p8q0buWNpTNXQL8DvO2zuPji7h1/+jPloMnVjCGPNTmS5xuYSa4yFYnoyAOFi
+	53Nc6tRxIhMP87m+1+1ibwmO4L8za59BItMnOxkODoZeWB7GGfV0tQRXdryenW0EFAYn
+	VE/us1EEwAz1o/8vw5lCA2zKRFrS6j4tBUh3TV6a6Bwh6h9ym0lzlxUhb7M1fw3TJKXv
+	FxcKQ4wukx3jSx0xzoyAM9amkOIPIT28/LMnrHj0tveCd5vZ3uuFt4bC8v/17cFaZ4v9
+	fdY/RGNkQTc1DZomgewV7a8faheveYYklFR5O5KchyOBoUAVwa/kxPOagTrfx0WCmSef
+	s2bg==
+X-Gm-Message-State: AG10YOTFBYmGrZBOfc3G4XJ4Us/3VdDtX8JImqJsxNtrO9UTfvKjo5VYF82FoqARaMY75slX/bZxFag2Su8y4w==
+X-Received: by 10.140.100.141 with SMTP id s13mr24088091qge.25.1455995389696; 
+	Sat, 20 Feb 2016 11:09:49 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.55.130.196 with HTTP; Sat, 20 Feb 2016 11:09:20 -0800 (PST)
+In-Reply-To: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
+References: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 20 Feb 2016 11:09:20 -0800
+Message-ID: <CAMKF1soimB54aRBbDjxG=jfk5H0aThNAONqnxxzBujnxrE84mQ@mail.gmail.com>
+To: Valentin LE BESCOND <valentin.lebescond@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-chip][PATCH] added md5 for ntc's modified u-boot Licences/README file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +70,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Feb 2016 16:26:14 -0000
+X-List-Received-Date: Sat, 20 Feb 2016 19:09:53 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Nitnelav <valentin.lebescond@gmail.com>
+On Sat, Feb 20, 2016 at 8:25 AM, Valentin LE BESCOND
+<valentin.lebescond@gmail.com> wrote:
+> From: Nitnelav <valentin.lebescond@gmail.com>
+>
+> Signed-off-by: Nitnelav <valentin.lebescond@gmail.com>
+> ---
+>  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
+> index 2342478..0b9032f 100644
+> --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
+> +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
+> @@ -8,6 +8,8 @@ PROVIDES += "u-boot"
+>  UBOOT_VERSION ?= "2015.07"
+>  PV = "${UBOOT_VERSION}+git${SRCPV}"
+>
+> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
+> +
 
-Signed-off-by: Nitnelav <valentin.lebescond@gmail.com>
----
- recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
- 1 file changed, 2 insertions(+)
+while checksumming more is merrier, it would be good to know why we
+should check for this one ?
 
-diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
-index 2342478..0b9032f 100644
---- a/recipes-bsp/u-boot/u-boot-chip_git.bb
-+++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
-@@ -8,6 +8,8 @@ PROVIDES += "u-boot"
- UBOOT_VERSION ?= "2015.07"
- PV = "${UBOOT_VERSION}+git${SRCPV}"
- 
-+LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
-+
- SRCREV ?= "854d5fcc641d8d8914c03a69d7172815d5b81a99"
- BRANCH ?= "chip/stable"
- SRC_URI = "git://github.com/NextThingCo/CHIP-u-boot.git;branch=${BRANCH}"
--- 
-1.9.1
-
+>  SRCREV ?= "854d5fcc641d8d8914c03a69d7172815d5b81a99"
+>  BRANCH ?= "chip/stable"
+>  SRC_URI = "git://github.com/NextThingCo/CHIP-u-boot.git;branch=${BRANCH}"
+> --
+> 1.9.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
