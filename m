@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 335EFE00CF2; Sat, 20 Feb 2016 11:09:53 -0800 (PST)
+	id 9137DE00D36; Sat, 20 Feb 2016 16:48:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.47 listed in list.dnswl.org]
+	*      [209.85.220.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,46 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
-	[209.85.192.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B88E6E0073D
-	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 11:09:50 -0800 (PST)
-Received: by mail-qg0-f47.google.com with SMTP id y9so86765348qgd.3
-	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 11:09:50 -0800 (PST)
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3720DE00CF2
+	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 16:48:22 -0800 (PST)
+Received: by mail-pa0-f52.google.com with SMTP id yy13so70678988pab.3
+	for <yocto@yoctoproject.org>; Sat, 20 Feb 2016 16:48:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=2+vt184couVUB4VD1GbWt+868L9v+J5FCUYQtsHCm0M=;
-	b=nqhUUu9j2Xe41b+LCnLxeqe9QbLfp2Spv5pgeayRvlL12LY90pZhajIuKJjMqV7KuH
-	OHfsKB+ZkMfpYY6q1y2iye4SHEvXSKuzM/zC6MvDAEma9GrdJHalP1WLdtpYVw4eHEjX
-	fvfTmg13rClr2Qzwh/C7nFaYy7DBtCt4FRCIwVCwCwL7wV7eSq6XkGtEpDNj4yE470Sf
-	vpz64u5kbLOL7W1uTUvQHe3Vb7hseQ4D94hvSYLCYquLg3JtNPP7dUSMwrx2E6OyIYYT
-	g22b4Fu6Xm6AdZOPatNxCqLomdQhlMoeVRRNXzv8bDMV9mGdJkGEiRuwNUInpy6ITSAT
-	Tiow==
+	h=from:to:subject:date:message-id;
+	bh=o2iokCN80SFGfLocoBXsRjvlxGfib+lfY9puRX3pJt0=;
+	b=BW/EwYxnl9qYFCTwNuxm07vqoFg9oatYRzXMoLxG8LIxpuaQvj0QGqdtPzY9mb6bO6
+	7+g7TppHah8XYwRVzySsdO5AvDdug4KNDzRi73fEf01Ea0vyrj4QVZPY+Kp+Aij1MCR4
+	dmbj7R2wcbjGLywzeUb3MiukwCI8Dz7cOsSTg2UcHL4whSHNji8oO/je07U4hhoyhTN8
+	J8+AzH4szoFsF8HthjwS9Wg0gf1bpfXkhtAXEFZQDJ5dcBF9NWuQ1ZXmgoT+VXvmDpUg
+	LqQM2tpKeGWSygS/kZTDjKHYZBWIlsBgsx0tJrS1d1+8Aabnu258msqskYa7i9l2DTLT
+	1BGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=2+vt184couVUB4VD1GbWt+868L9v+J5FCUYQtsHCm0M=;
-	b=IC475p8q0buWNpTNXQL8DvO2zuPji7h1/+jPloMnVjCGPNTmS5xuYSa4yFYnoyAOFi
-	53Nc6tRxIhMP87m+1+1ibwmO4L8za59BItMnOxkODoZeWB7GGfV0tQRXdryenW0EFAYn
-	VE/us1EEwAz1o/8vw5lCA2zKRFrS6j4tBUh3TV6a6Bwh6h9ym0lzlxUhb7M1fw3TJKXv
-	FxcKQ4wukx3jSx0xzoyAM9amkOIPIT28/LMnrHj0tveCd5vZ3uuFt4bC8v/17cFaZ4v9
-	fdY/RGNkQTc1DZomgewV7a8faheveYYklFR5O5KchyOBoUAVwa/kxPOagTrfx0WCmSef
-	s2bg==
-X-Gm-Message-State: AG10YOTFBYmGrZBOfc3G4XJ4Us/3VdDtX8JImqJsxNtrO9UTfvKjo5VYF82FoqARaMY75slX/bZxFag2Su8y4w==
-X-Received: by 10.140.100.141 with SMTP id s13mr24088091qge.25.1455995389696; 
-	Sat, 20 Feb 2016 11:09:49 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Sat, 20 Feb 2016 11:09:20 -0800 (PST)
-In-Reply-To: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
-References: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 20 Feb 2016 11:09:20 -0800
-Message-ID: <CAMKF1soimB54aRBbDjxG=jfk5H0aThNAONqnxxzBujnxrE84mQ@mail.gmail.com>
-To: Valentin LE BESCOND <valentin.lebescond@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-chip][PATCH] added md5 for ntc's modified u-boot Licences/README file.
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=o2iokCN80SFGfLocoBXsRjvlxGfib+lfY9puRX3pJt0=;
+	b=cmZj+Z/sVwqUqbt/pmnFZFWnoTwe/xOZy4SPvSbSuQ13tWjTktUU2SY4G/Nd/RW+VF
+	tHPVWeJO9YrYENJIV29yHjHnZBCI/DD+IZpbrErKyh+DyZqYA+/o0CwrJOsencdmiOaf
+	0B9iT0IeRPyCh7pjfixTl1IyrQZRe5Nim3yeZQk3QluTls6cYrUv+1terqvUsxqIyuJs
+	8VzYN5FOwEXQmkNEGHZpnPck5QBEl5JQPT4wG+xda+xdvq4/j2QXHkVeD24t5X1qgdsb
+	aAsVtQ1w0Pv6mvEMMJYMN30iHXhbd+EcN5UvAb6SyqUwfEneSKMdUfNiF8XQJus3f+W6
+	gwOw==
+X-Gm-Message-State: AG10YOQSIpxZ6dTBbDMrkVJwW0PiSoTzlFxEZ8Kh8VbRMy3Bs6j2x+cbdVKU4EDx1tRiew==
+X-Received: by 10.66.237.38 with SMTP id uz6mr28447355pac.136.1456015702065;
+	Sat, 20 Feb 2016 16:48:22 -0800 (PST)
+Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
+	fn3sm27129972pab.20.2016.02.20.16.48.19 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 20 Feb 2016 16:48:20 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 20 Feb 2016 16:48:16 -0800
+Message-Id: <1456015696-27034-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][PATCH] tripwire: Fix build issue for armeb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,41 +69,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Feb 2016 19:09:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 21 Feb 2016 00:48:24 -0000
 
-On Sat, Feb 20, 2016 at 8:25 AM, Valentin LE BESCOND
-<valentin.lebescond@gmail.com> wrote:
-> From: Nitnelav <valentin.lebescond@gmail.com>
->
-> Signed-off-by: Nitnelav <valentin.lebescond@gmail.com>
-> ---
->  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> index 2342478..0b9032f 100644
-> --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
-> +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> @@ -8,6 +8,8 @@ PROVIDES += "u-boot"
->  UBOOT_VERSION ?= "2015.07"
->  PV = "${UBOOT_VERSION}+git${SRCPV}"
->
-> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
-> +
+add config parama for armeb
 
-while checksumming more is merrier, it would be good to know why we
-should check for this one ?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/tripwire/files/add_armeb_arch.patch | 18 ++++++++++++++++++
+ recipes-security/tripwire/tripwire_2.4.2.2.bb        |  1 +
+ 2 files changed, 19 insertions(+)
+ create mode 100644 recipes-security/tripwire/files/add_armeb_arch.patch
 
->  SRCREV ?= "854d5fcc641d8d8914c03a69d7172815d5b81a99"
->  BRANCH ?= "chip/stable"
->  SRC_URI = "git://github.com/NextThingCo/CHIP-u-boot.git;branch=${BRANCH}"
-> --
-> 1.9.1
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/recipes-security/tripwire/files/add_armeb_arch.patch b/recipes-security/tripwire/files/add_armeb_arch.patch
+new file mode 100644
+index 0000000..2379d66
+--- /dev/null
++++ b/recipes-security/tripwire/files/add_armeb_arch.patch
+@@ -0,0 +1,18 @@
++tripwire: Add armeb support
++
++Upstream-Status: Submitted to tripwire-dev
++
++Signed-off-by: Armin Kuster <akuster@mvista.com>
++
++diff -Naurp tripwire-2.4.2.2-src_org/config.sub tripwire-2.4.2.2-src/config.sub
++--- tripwire-2.4.2.2-src_org/config.sub	2015-07-20 15:03:04.161452573 +0530
+++++ tripwire-2.4.2.2-src/config.sub	2015-07-20 15:06:07.077673139 +0530
++@@ -268,7 +268,7 @@ case $basic_machine in
++ 	# FIXME: clean up the formatting here.
++ 	vax-* | tahoe-* | i*86-* | i860-* | ia64-* | m32r-* | m68k-* | m68000-* \
++ 	      | m88k-* | sparc-* | ns32k-* | fx80-* | arc-* | c[123]* | aarch64-* | aarch64be-*  \
++-	      | arm-*  | armbe-* | armle-* | armv*-* | strongarm-* | xscale-* \
+++	      | arm-*  | armeb-* | armbe-* | armle-* | armv*-* | strongarm-* | xscale-* \
++ 	      | mips-* | pyramid-* | tron-* | a29k-* | romp-* | rs6000-* \
++ 	      | power-* | none-* | 580-* | cray2-* | h8300-* | h8500-* | i960-* \
++ 	      | xmp-* | ymp-* \
+diff --git a/recipes-security/tripwire/tripwire_2.4.2.2.bb b/recipes-security/tripwire/tripwire_2.4.2.2.bb
+index 6fc6759..55c4013 100644
+--- a/recipes-security/tripwire/tripwire_2.4.2.2.bb
++++ b/recipes-security/tripwire/tripwire_2.4.2.2.bb
+@@ -15,6 +15,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/project/${BPN}/${BPN}-src/${BPN}-${PV}/${BPN}-$
+ 	   file://twpol-yocto.txt \
+ 	   file://tripwire_add_ppc64.patch \
+        file://tripwire_add_aarch64_to_configure.patch \
++       file://add_armeb_arch.patch \
+        "
+ SRC_URI[md5sum] = "2462ea16fb0b5ae810471011ad2f2dd6"
+ SRC_URI[sha256sum] = "e09a7bdca9302e704cc62067399e0b584488f825b0e58c82ad6d54cd2e899fad"
+-- 
+2.3.5
+
 
