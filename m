@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20DBEE00BAA; Mon, 22 Feb 2016 10:37:17 -0800 (PST)
+	id DC012E00BAA; Mon, 22 Feb 2016 10:40:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,49 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.44 listed in list.dnswl.org]
-Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
-	[209.85.192.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E83A5E00AAB
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:37:13 -0800 (PST)
-Received: by mail-qg0-f44.google.com with SMTP id b67so118181884qgb.1
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:37:13 -0800 (PST)
+Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
+	[209.85.192.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 465ECE00AAB
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:40:13 -0800 (PST)
+Received: by mail-qg0-f51.google.com with SMTP id y9so119705791qgd.3
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:40:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=Q65rTEt/+pL6UY/ndFir0dXSKmipHvk8LlH/R64jbUg=;
-	b=UTsrkAwvx/ZK/kQAE3noYbiX/PU+SvL7U37aDXEe9r5GUDaOBaJum5CSev6ghQhJ3o
-	PMelNI/Yhe2JF0Z1OYuuMYALj/Ec0Wegah8xMTJ0daqRYCVndovDITUJdNm2/PcRwdvv
-	s2OaDzuGCFv3fPjsFNsFdC3b3Kp4+qEA1PdIK4L6fqe4+yw0fek++t3rwMv8T8jOLd6N
-	pl4qWyYaJGzAm5r64ZzcGU+Bk1rPhKpNo71ukCMbKaCJCLPzlcQkNW1ehovdDMeMclNq
-	zxhT5x5bvA6AEs4+Nb6DqhNhP0dhAZFVwJHqOv6jvqC6pDPimSSEbzfqFAJJee0cE9xw
-	C/Vg==
+	bh=vHRehxm0JBlyoieeTipvk1wzy1D4NEy0Y2Tpj+NpPcI=;
+	b=M7jn6HVEE69LFylu2dZs7EdDQmXHJNlk4o1IWkRvjS7cn5xra+e2QEdi8Pyu/seQaT
+	MH2CrIrkq2GYde7XQaRh4Vlo035pd1hE/vqgLT/8TpCKnpWnC+x+RKTKESNFEZurXvHN
+	H3Fbcd5SCm1feSVfDByuy+IXLTB5AiqByTY63tH1DBrKv9MPe1OKUfGQjohn4hwYrmeb
+	j3+dMvXGwkb28HCA4ie88QrYAtbCjkr03qPskru8P68IL6Q3bTYgMSXngACHMJoQzbpV
+	w4aA0dfIMMhGRYoXuHJU5EHa+X73aKCnts44TUoeewS1fF5lV9bii7Yegp+KrS5rMRju
+	fa+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=Q65rTEt/+pL6UY/ndFir0dXSKmipHvk8LlH/R64jbUg=;
-	b=D/JPE8m6zWH5TbDuJnFvzFTA4+fZM35aMb77mbBNwZgm5vjPH/LEBYBsNgOTcbfFBd
-	s+HOFU0xub2eKErMUplCIOMWujTccUi08DvgkiuIJdkDh72dJmSojXkm5gupBMqWHHe5
-	bqRNZlqfEImimGo5lxAk7of9XC3mZsDsVVDGIQfIOEIQcN0ZnigMHsw4sJKIUIfBvh6l
-	mVCfiWTi2HDdooRUJyos445aPpS+/Hil+L7alb5E7MMaXx+HPRbEFK+HX54gHDAarF9G
-	b+8Yt+pbeH3/6CFrPmBY/RIHas1iy/M1rnRWUJSPYPz0GpEpM/ipAfsR4uz2k16SCwmh
-	LJtA==
-X-Gm-Message-State: AG10YOR4ynyWGxbSQrGBzUeryvvrMROFD2LKcLlByMneaGV8YijjzKFvHW1x+5uIYEIpnNZCeDvCjo0IGeBDAA==
-X-Received: by 10.140.238.8 with SMTP id j8mr38576592qhc.76.1456166233040;
-	Mon, 22 Feb 2016 10:37:13 -0800 (PST)
+	bh=vHRehxm0JBlyoieeTipvk1wzy1D4NEy0Y2Tpj+NpPcI=;
+	b=SXz9IOsXrSd/AKvhCmIHiXqOKnJW097k6PqFzSRHOMo6oEB9ucBvQk0OylU5YxE3C6
+	8/m4qeN+A3YPFvwldOKpcsdBlDpotcXfiSGl8zJD69PttzYB/LkLvXNLGRWLEi0vJ0QT
+	N7fpZUuPesYtjsw5MaumsStVzhI0P9Qss9EA0ebasVI1uIk0kEsrDYaf9oeKsfp18uy3
+	t5+fB7bSH+hI9ZG20RIBoLkuJ9m4febKT2G84OyhLkF6NSJpy55VBH/A5ERDQJVVKVYQ
+	HeYDWXBEqR0SE4v9K565csxEcWfb4nXblk42KO01Of3loxTIEKq2S7HCeNXDCOTd3YiF
+	Gnsg==
+X-Gm-Message-State: AG10YOSx+pG3c0lKifyVljHqFSmdBay23Oat4TEtCt3AafgCXEpacvYyQAQlesH9LVGCUSEq2GLyZ1hvleinZw==
+X-Received: by 10.140.254.9 with SMTP id z9mr38163719qhc.5.1456166413112; Mon,
+	22 Feb 2016 10:40:13 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Mon, 22 Feb 2016 10:36:43 -0800 (PST)
-In-Reply-To: <56CAB4ED.1010208@easyarm.com>
-References: <56CAB4ED.1010208@easyarm.com>
+Received: by 10.55.130.196 with HTTP; Mon, 22 Feb 2016 10:39:43 -0800 (PST)
+In-Reply-To: <1456132597.1329.24.camel@settopsurvey.com>
+References: <1456132597.1329.24.camel@settopsurvey.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 22 Feb 2016 10:36:43 -0800
-Message-ID: <CAMKF1spf8FT_UvoVkrpipJxsDi8CQwJyuWtEjmiq0MOuju0d=w@mail.gmail.com>
-To: Surya <surya.n@easyarm.com>
+Date: Mon, 22 Feb 2016 10:39:43 -0800
+Message-ID: <CAMKF1sq7ckpqkyK+AJJrXs5T4POeVMyAtV9M=S0OMEbxVXBz_g@mail.gmail.com>
+To: simo <sazzalin@settopsurvey.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Qt5browser-problem
+Subject: Re: Bitbake does not apply changes and sometimes it removes the kernel-source directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,27 +70,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 18:37:17 -0000
+X-List-Received-Date: Mon, 22 Feb 2016 18:40:16 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Sun, Feb 21, 2016 at 11:12 PM, Surya <surya.n@easyarm.com> wrote:
-> Hello,
+On Mon, Feb 22, 2016 at 1:16 AM, simo <sazzalin@settopsurvey.com> wrote:
+> Hi all,
 >
-> Is there any qt5 webbrowser based on qtwebkit or webengine ,which works with
-> audio video application? I have worked on otter-browser,snowshoe ,but in all
-> cases i can only access normal pages like google.com etc.,,but streaming is
-> not possible.I cant see youtube videos or any video application. Any
-> suggestion on this ..
+> I am using a 'poky fido 13.0.1' Yocto distribution and I am experiencing
+> some problem after modifying the Linux kernel code and recompiling it.
+>
+> Bitbake is not applying the changes and sometimes deletes the source
+> folder (but I have a backup, of course).
+>
+> From yocto environment shell, I execute:
+>
+> ~$ bitbake linux-gumstix -c compile -f
+>
+> and then to create an image and having a kernel file compiled available:
+>
+> ~$ bitbake core-image-base
+>
+> What is the best way to recompile an edited source with bitbake from
+> shell ? And why it removes the kernel-source directory ?
 
-IIRC there is a sample browser called fancybrowser that can be
-installed allong with qtwebkit
+you can use devtool to setup an component sandbox and make changes
+there that would
+be preferred approach.
 
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#using-devtool-in-your-workflow
+
+second option is to use quilt based workflow where you use quilt in
+the workdir to generate the patch
+and then ship it into metadata and apply it as a patch via SRC_URI
+
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#using-a-quilt-workflow
 
 >
+> Thank you in advance for your help.
 >
+> Regards,
+> Simon
 >
-> Thanks
-> Surya
 > --
 > _______________________________________________
 > yocto mailing list
