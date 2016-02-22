@@ -1,42 +1,69 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BE67E00C4F; Mon, 22 Feb 2016 08:07:59 -0800 (PST)
+	id 6420CE00C31; Mon, 22 Feb 2016 08:19:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 287DCE00C31
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 08:07:56 -0800 (PST)
-Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
-	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1aXt1f-0004cv-QK from Joe_MacDonald@mentor.com ;
-	Mon, 22 Feb 2016 08:07:55 -0800
-Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
-	(147.34.96.168) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 22 Feb 2016 08:07:55 -0800
-Received: by burninator (Postfix, from userid 1000)	id 9E331580CB9; Mon, 22
-	Feb 2016 11:07:54 -0500 (EST)
-Date: Mon, 22 Feb 2016 11:07:54 -0500
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F10D9E00AAB
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 08:19:05 -0800 (PST)
+Received: by mail-wm0-f53.google.com with SMTP id c200so179548218wme.0
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 08:19:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=FwuLhyxsfbuS1Z6z8UlQpee2Y8/17NTNJcSiK1xZQaw=;
+	b=yxIP/ME2E+T2ckjO4fjx46PZz1Q/8+mZDpIglcnuXM1P3k/4TWeWG/2p5f/zJWv2ub
+	4lk31eMW4+q8q9/nqQac76cU5ldXev27ZC4JklWp6/CREO2Wh6sbl7wGE2aR4eerZXCX
+	hMvwTs091HPvzfKlETZYFZ7yJmQAeF2d/qmuNCtLdN7+KbA5w8wxUHIkNTpBXJMeKQE+
+	y7cd8OjBpG0I4Pb374S1oST0bJrOGuUpEbmrwK5XLAmWdeMNJvVwPYjfK9EiSWS4WLBx
+	WMTq5Ek3KESz6iO3YBj3tXPk+dhE6CaZrtmtnlHxMwB2LQ9mbWKjthIyjRoPiyJ/t76/
+	M5ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=FwuLhyxsfbuS1Z6z8UlQpee2Y8/17NTNJcSiK1xZQaw=;
+	b=jHQNyHW0mvgjkes5sCEhW84Pu499yXlkQxTlKG+AWsr2cMhmtBQ8bYHJdK47mdBzkm
+	OiZbsDQTsiOEbdvpmpeTt3bHeGTLJFa8dUf+OSKYIvoSs6kxksmcbTXNmWOiykPCRh84
+	1fch1hVOoxq0+8J87VlVHi/3esIjDbY8sszcejtGejgypfmt8SkJd1X0u37rW7iaj/vp
+	bzDfOYfeVjILeHG5HPw7fhEhuI+FIonYI6sPlrTiX+CFzTAaVbU1fUe3Tkt7Ejzs7No/
+	WzWsRJLfruAGwb1WbLyAlXEtUCju7bbEXNZkYalYeZsBduJ79o4u7/pEAbe0GME/uCJW
+	08+Q==
+X-Gm-Message-State: AG10YORR9H8OqRQZf9Fpl8OYHnICYMJb0CihfMzkf6VbVrFWaVASPA+KFx/5Hyj7TReDDw==
+X-Received: by 10.28.131.141 with SMTP id f135mr13029143wmd.33.1456157944839; 
+	Mon, 22 Feb 2016 08:19:04 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id
+	n9sm25234994wjy.36.2016.02.22.08.19.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 22 Feb 2016 08:19:03 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Mon, 22 Feb 2016 17:19:56 +0100
 To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <20160222160754.GC2255@mentor.com>
+Message-ID: <20160222161956.GE6329@jama>
 References: <1455922741-3342-1-git-send-email-radzy@windriver.com>
 	<56CB1DC8.1030505@windriver.com> <20160222153336.GB2255@mentor.com>
 	<CAJTo0LY7D1o9+9mU13DdEnK_h4SjZPX3+jph5A4fXny_HSHuoA@mail.gmail.com>
 MIME-Version: 1.0
 In-Reply-To: <CAJTo0LY7D1o9+9mU13DdEnK_h4SjZPX3+jph5A4fXny_HSHuoA@mail.gmail.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.23 (2014-03-12)
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Cc: "T.O. Radzy Radzykewycz" <radzy@windriver.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-selinux][PATCH] swig is in meta-oe, remove this copy
@@ -51,58 +78,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 16:07:59 -0000
-X-Groupsio-MsgNum: 28561
+X-List-Received-Date: Mon, 22 Feb 2016 16:19:08 -0000
+X-Groupsio-MsgNum: 28562
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="aT9PWwzfKXlsBJM1"
+	protocol="application/pgp-signature"; boundary="ytoMbUMiTKPMT3hY"
 Content-Disposition: inline
 
---aT9PWwzfKXlsBJM1
+--ytoMbUMiTKPMT3hY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-[Re: [yocto] [meta-selinux][PATCH] swig is in meta-oe, remove this copy] On=
- 16.02.22 (Mon 15:58) Burton, Ross wrote:
-
+On Mon, Feb 22, 2016 at 03:58:44PM +0000, Burton, Ross wrote:
+> On 22 February 2016 at 15:33, Joe MacDonald <Joe_MacDonald@mentor.com>
+> wrote:
 >=20
-> On 22 February 2016 at 15:33, Joe MacDonald <Joe_MacDonald@mentor.com> wr=
-ote:
->=20
->     I'm also not against removing the local copy (I don't think it adds
->     anything to the layer and occasionally causes headaches), but I really
->     don't want to make meta-selinux dependent on meta-oe components, so I
->     guess I'm voting for keeping it.
->=20
+> > I'm also not against removing the local copy (I don't think it adds
+> > anything to the layer and occasionally causes headaches), but I really
+> > don't want to make meta-selinux dependent on meta-oe components, so I
+> > guess I'm voting for keeping it.
+> >
 >=20
 > Luckily it's also in oe-core (meta/recipes-devtools/swig/swig_3.0.8.bb).
 
-And, y'know what?  I thought I'd had this very conversation with Armin
-regarding it being in meta-security ages back, but since swig was still
-in meta-selinux and Radzy mentioned it's also still in meta-oe, I
-assumed it must've been some other package duplicated between
-meta-selinux and meta-security (libcap-ng, perhaps?).
+And it was removed from meta-oe couple months ago:
 
-So with that, let's say my only concern no longer applies.  :-)
+commit 02f98d1bc7dc585538df5c96c2b0ccdd857ec46f
+Author:     Wenzong Fan <wenzong.fan@windriver.com>
+AuthorDate: Thu Oct 8 01:31:36 2015 -0400
+Commit:     Martin Jansa <Martin.Jansa@gmail.com>
+CommitDate: Tue Oct 13 12:28:17 2015 +0200
+
+    swig: remove package
+   =20
+    swig 3.0.6 has been moved to oe-croe:
+      66923c6776da13bd4513a73c3f7c5e60d74eb0f3
+   =20
+    Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+    Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 
 --=20
--Joe MacDonald.
-:wq
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
---aT9PWwzfKXlsBJM1
+--ytoMbUMiTKPMT3hY
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+Version: GnuPG v2
 
-iQEcBAEBAgAGBQJWyzJaAAoJEEn8ffcsOfaW+gQH/RIDbQuoY2lnqHkCSxR7IsKU
-2kbGJNgmK+H6Tzm1bPUQ+xI3rj3Tpx2eC+5nFtkCf3BHgJCcjb7wR2F8/GSXhYDB
-9/iGJCg7tW3HNkinrK0k0fE7jAqco6lt46xAtzAb3mvGZditU8DH50ZxPQtj6e98
-GERvneVFiRQpAacb3OQ3MKMqgOyFZ64gMs5uq70VbDX65abbaA1IAONCmdWVY8zK
-cI0dALurr8oMWbDNLNQCPdmw8oOFQLabHOeinKwCqMZ5WdqjGsQ6M7Gn+j+I2PSa
-+aqUijZuazY1YEe7pQpyKC47DpN6/n3vfDe1ph1cB+5b6l+BjBOpBgOQHhOkhUQ=
-=eW/1
+iEYEARECAAYFAlbLNSsACgkQN1Ujt2V2gBx15wCgumAg7Dmj/jaEOPwOPwXO7+1z
+oo8AoIGHDlhJnettck1a7tF5TDQ+XQyy
+=DY2t
 -----END PGP SIGNATURE-----
 
---aT9PWwzfKXlsBJM1--
+--ytoMbUMiTKPMT3hY--
