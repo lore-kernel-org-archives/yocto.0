@@ -1,44 +1,66 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B253E00BAB; Mon, 22 Feb 2016 09:55:24 -0800 (PST)
+	id 6EB81E00BAB; Mon, 22 Feb 2016 10:00:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58BA1E00B70
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 09:55:21 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u1MHtJaI006261
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 22 Feb 2016 09:55:19 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 22 Feb 2016 09:55:18 -0800
-To: Martin Jansa <martin.jansa@gmail.com>, "Burton, Ross"
-	<ross.burton@intel.com>
-References: <1455922741-3342-1-git-send-email-radzy@windriver.com>
-	<56CB1DC8.1030505@windriver.com> <20160222153336.GB2255@mentor.com>
-	<CAJTo0LY7D1o9+9mU13DdEnK_h4SjZPX3+jph5A4fXny_HSHuoA@mail.gmail.com>
-	<20160222161956.GE6329@jama>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <56CB4B85.9040905@windriver.com>
-Date: Mon, 22 Feb 2016 11:55:17 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC106E00B70
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:00:39 -0800 (PST)
+Received: by mail-qg0-f41.google.com with SMTP id b35so116947602qge.0
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 10:00:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=G+JozWvB34LaTB8WKBeYmE+NPON7DRgiLSL+h6KiwkI=;
+	b=lL1ce64h1l45tE8R3kwp7gHA2vJp7tWAdGV+gafKkn6JKEio+LpNuskTX2NtgfiQJ6
+	6fDexIra93ShskMWb23KSs05RRheOnR7OmZM12p7LoZoWM/v0TN9yTmFqW4yEyGheISb
+	UU68+rHdK40as8Q4DdSRr0LMBIK8VOC/it1mxLHGSVFg7iCRBAWHW9pWLgUdeOonqVQJ
+	eq+Vf4UDdCRGyWi82X+bJAHz3pqpOLv8ceOwl8kAhT3oAIvDPxHv0NIQMxGcp5Q1Anqc
+	hN0aKnKb50hkMw2HALevIyBIZXYpBpn6IDZ8U+x3HTFbLbGlrImcWZnjI0Rl4pMANJK4
+	Vexg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=G+JozWvB34LaTB8WKBeYmE+NPON7DRgiLSL+h6KiwkI=;
+	b=KC0JK78vu1zI2iP5FGA2WQRPJ3E34jQSv+5MHVPztzTbnlmybSd6FVHYagsfv2EV08
+	rdLmrPgagKW5uoI8dtc94Qgkk3B/6eRO9mbl1giZEiMCVhahgeO4SKJ45giQxc8ZMgHQ
+	MVm5lk4zVU313YB3aly8Pwfc951lrgiFT49kZQ7+DqriBdLpmV3D7r0T1qSXU5bPkFBP
+	9QZ5wg5UoNMbkrL0n04aQEAxbhWi2K+cVD4aZ34fd3zoIM4weE69OtzHB2G9JZ18KkQ5
+	OhDa+gp624P1xqwSBhGtj0Jdt8fzkDtmDFbK2if+KPsJ7Zfm1/ZeaGxLG+WblJccS5xM
+	ObZg==
+X-Gm-Message-State: AG10YOSJxt/+ktmf+GW0lqEXoAc2sfJwnLX93ElPch4Y5++wciGWRxVb7qYgg/KkwUHi5UK/QdwTzyuJpfE1/g==
+X-Received: by 10.140.241.5 with SMTP id m5mr20705523qhc.98.1456164038592;
+	Mon, 22 Feb 2016 10:00:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20160222161956.GE6329@jama>
-Cc: "T.O. Radzy Radzykewycz" <radzy@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux][PATCH] swig is in meta-oe, remove this copy
+Received: by 10.55.130.196 with HTTP; Mon, 22 Feb 2016 10:00:09 -0800 (PST)
+In-Reply-To: <CAP2S6e7-SK2RwXsFjiAch8Rpiv56C7ziD_WpiiKquXiAESKpUg@mail.gmail.com>
+References: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
+	<CAMKF1soimB54aRBbDjxG=jfk5H0aThNAONqnxxzBujnxrE84mQ@mail.gmail.com>
+	<CAP2S6e7-SK2RwXsFjiAch8Rpiv56C7ziD_WpiiKquXiAESKpUg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 22 Feb 2016 10:00:09 -0800
+Message-ID: <CAMKF1sqzf81Yu3p+RR43Cq2eyRDFR58Z8AENVVxbUZRdRV=pbg@mail.gmail.com>
+To: Valentin Le bescond <valentin.lebescond@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-chip][PATCH] added md5 for ntc's modified u-boot Licences/README file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,43 +72,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 17:55:24 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 22 Feb 2016 18:00:41 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2/22/16 10:19 AM, Martin Jansa wrote:
-> On Mon, Feb 22, 2016 at 03:58:44PM +0000, Burton, Ross wrote:
->> On 22 February 2016 at 15:33, Joe MacDonald <Joe_MacDonald@mentor.com>
->> wrote:
+On Sun, Feb 21, 2016 at 4:30 AM, Valentin Le bescond
+<valentin.lebescond@gmail.com> wrote:
+> Hi, sorry it was my first (tiny) try at a contribution ... Should I have
+> explained more in the title ?
+>
+> Next Thing Co changed the Licences/README file in their repo.
+> And in the u-boot.inc file used by u-boot-chip, this file is chekced with
+> LIC_FILES_CHKSUM. And so it doesn't build without a modification of the m=
+d5.
+> That's it !
+>
+
+hmmm ok.
+
+>
+> Le sam. 20 f=C3=A9vr. 2016 =C3=A0 20:09, Khem Raj <raj.khem@gmail.com> a =
+=C3=A9crit :
 >>
->>> I'm also not against removing the local copy (I don't think it adds
->>> anything to the layer and occasionally causes headaches), but I really
->>> don't want to make meta-selinux dependent on meta-oe components, so I
->>> guess I'm voting for keeping it.
->>>
+>> On Sat, Feb 20, 2016 at 8:25 AM, Valentin LE BESCOND
+>> <valentin.lebescond@gmail.com> wrote:
+>> > From: Nitnelav <valentin.lebescond@gmail.com>
+>> >
+>> > Signed-off-by: Nitnelav <valentin.lebescond@gmail.com>
+>> > ---
+>> >  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
+>> >  1 file changed, 2 insertions(+)
+>> >
+>> > diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb
+>> > b/recipes-bsp/u-boot/u-boot-chip_git.bb
+>> > index 2342478..0b9032f 100644
+>> > --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
+>> > +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
+>> > @@ -8,6 +8,8 @@ PROVIDES +=3D "u-boot"
+>> >  UBOOT_VERSION ?=3D "2015.07"
+>> >  PV =3D "${UBOOT_VERSION}+git${SRCPV}"
+>> >
+>> > +LIC_FILES_CHKSUM =3D
+>> > "file://Licenses/README;md5=3D0507cd7da8e7ad6d6701926ec9b84c95"
+>> > +
 >>
->> Luckily it's also in oe-core (meta/recipes-devtools/swig/swig_3.0.8.bb).
-> 
-> And it was removed from meta-oe couple months ago:
-> 
-> commit 02f98d1bc7dc585538df5c96c2b0ccdd857ec46f
-> Author:     Wenzong Fan <wenzong.fan@windriver.com>
-> AuthorDate: Thu Oct 8 01:31:36 2015 -0400
-> Commit:     Martin Jansa <Martin.Jansa@gmail.com>
-> CommitDate: Tue Oct 13 12:28:17 2015 +0200
-> 
->     swig: remove package
->     
->     swig 3.0.6 has been moved to oe-croe:
->       66923c6776da13bd4513a73c3f7c5e60d74eb0f3
->     
->     Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->     Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-> 
-> 
-> 
-
-Yup.. lets yank it then from meta-selinux, no reason to keep carrying it forward.
-
---Mark
+>> while checksumming more is merrier, it would be good to know why we
+>> should check for this one ?
+>>
+>> >  SRCREV ?=3D "854d5fcc641d8d8914c03a69d7172815d5b81a99"
+>> >  BRANCH ?=3D "chip/stable"
+>> >  SRC_URI =3D
+>> > "git://github.com/NextThingCo/CHIP-u-boot.git;branch=3D${BRANCH}"
+>> > --
+>> > 1.9.1
+>> >
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
 
