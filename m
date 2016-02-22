@@ -1,6 +1,6 @@
-Return-Path: <philip@balister.org>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF646E00931; Mon, 22 Feb 2016 05:34:43 -0800 (PST)
+	id 094C8E009C3; Mon, 22 Feb 2016 06:00:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,35 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 738B6E008C6
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 05:34:39 -0800 (PST)
-Received: (qmail 10765 invoked by uid 1003); 22 Feb 2016 13:34:38 -0000
-Received: from unknown (HELO ?192.168.11.140?)
-	(philip@opensdr.com@71.171.13.83)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	22 Feb 2016 13:34:38 -0000
-To: "sebastian.rohde@tu-dortmund.de" <sebastian.rohde@tu-dortmund.de>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <829E1DFECFCA904FBE9BB9228564C2B301412FAA3F@ex2010mbx1.tu-dortmund.de>
-	<1989092.7OVe9rXmCs@rjs-zotac.streifs.net>
-	<829E1DFECFCA904FBE9BB9228564C2B301412FADD9@ex2010mbx1.tu-dortmund.de>
-From: Philip Balister <philip@balister.org>
-Message-ID: <56CB0E6A.40805@balister.org>
-Date: Mon, 22 Feb 2016 08:34:34 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.0
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C498E008C6;
+	Mon, 22 Feb 2016 06:00:44 -0800 (PST)
+Received: from svr-orw-fem-06.mgc.mentorg.com ([147.34.97.120])
+	by relay1.mentorg.com with esmtp 
+	id 1aXr2a-0001NH-F1 from Joe_MacDonald@mentor.com ;
+	Mon, 22 Feb 2016 06:00:44 -0800
+Received: from burninator (147.34.91.1) by SVR-ORW-FEM-06.mgc.mentorg.com
+	(147.34.97.120) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 22 Feb 2016 06:00:44 -0800
+Received: by burninator (Postfix, from userid 1000)	id 28D57580CB9; Mon, 22
+	Feb 2016 09:00:43 -0500 (EST)
+Date: Mon, 22 Feb 2016 09:00:43 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Philip Tricca <flihp@twobit.us>, <michael@yoctoproject.org>
+Message-ID: <20160222140042.GA2255@mentor.com>
+References: <1455763309-9622-1-git-send-email-joe_macdonald@mentor.com>
+	<56C93C17.20704@twobit.us>
 MIME-Version: 1.0
-In-Reply-To: <829E1DFECFCA904FBE9BB9228564C2B301412FADD9@ex2010mbx1.tu-dortmund.de>
-Cc: Rudolf J Streif <rudolf.streif@gmail.com>
-Subject: Re: Package Level Dependencies
+In-Reply-To: <56C93C17.20704@twobit.us>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] MAINTAINERS: Update maintainers file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,87 +48,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 13:34:43 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 22 Feb 2016 14:00:48 -0000
+X-Groupsio-MsgNum: 28548
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="NzB8fVQJ5HfG6fxh"
+Content-Disposition: inline
 
-On 02/22/2016 08:00 AM, sebastian.rohde@tu-dortmund.de wrote:
-> Hi Rudolf,
-> 
-> Thnx for your input! I guess I can see your point. In particular I wasn't thinking so much on using ".inc" files.
-> Due to the fact that I will be having like 10-20 different test123-config-xxx packages managing this using "RCONFLICTS" might be tedious.
-> I guess this is what virtual packages (say test123-config-xxx has something like PROVIDES=virtual/test123-config and test123 has a RDEPENDS on virtual/test123-config) are for and I will try to follow this path for now.
-> 
-> For a couple of reasons, the configuration files are in the same git repository as the source code of "test123". Is there a way of sharing working directories between (at least all config-package recipes, such as I don't net to checkout the whole git repository for each of my 10-20 config packages?
+--NzB8fVQJ5HfG6fxh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Would selecting the conf file with a MACHINE override help here?
+[Re: [yocto] [meta-selinux][PATCH] MAINTAINERS: Update maintainers file] On=
+ 16.02.20 (Sat 20:24) Philip Tricca wrote:
 
-Philip
+> On 02/17/2016 06:41 PM, Joe MacDonald wrote:
+> > Adding Philip Tricca as a common layer maintainer and marking Pascal as
+> > away.
+>=20
+> While the admins upstream get my ssh key in place I did a pass over the
+> pending patches and the current state of the repo. There isn't a lot to
+> do in the actual meta-selinux layer beyond what's already on the list.
+> There was only one fix needed to get the build working again:
+>=20
+> The xattr patches to e2fsprogs have been superseded by the work that
+> WindRiver has been doing in upstream e2fsprogs. There's a bug in their
+> implementation though and the root directory on the rootfs image doesn't
+> get labeled. I've sent a fix to the upstream maintainer. In the meantime
+> the current patches can just be dropped and replaced with this one.
+>=20
+> There's also one fix required to get a login shell working. In
+> openembedded-core, commit
+> http://git.openembedded.org/openembedded-core/commit/?id=3Db93369a7943949=
+f51057e0a704f5524ab7682fe6
+> breaks the login process when the SELinux policy is enforced. I've sent
+> a patch upstream to fix this:
+> http://article.gmane.org/gmane.comp.handhelds.openembedded.core/76599
+>=20
+> When I can commit these changes they're ready to go. After that I'll do
+> another pass over the list and pick up the remaining patches that
+> weren't required to get basic functionality back.
 
-> 
-> Regards,
-> Sebastian
-> 
-> -----Ursprüngliche Nachricht-----
-> Von: Rudolf J Streif [mailto:rudolf.streif@gmail.com]
-> Gesendet: Montag, 22. Februar 2016 02:38
-> An: yocto@yoctoproject.org
-> Cc: Rohde, Sebastian <sebastian.rohde@tu-dortmund.de>
-> Betreff: Re: [yocto] Package Level Dependencies
-> 
-> Hi Sebastian,
-> 
->> I have a recipe (say: "test123") that provides a complex piece of
->> software (cmake-based). The software needs some configuration file
->> (say "test123.conf"). There are multiple variants of the configuration
->> file, sharing the same name, i.e. "test123.conf" exists in different
->> variants for multiple hardware configurations.
->>
->> My aim would be to have multiple packages like "test123-config-XXX"
->> and "test123-config-YYY", that cannot be installed at the same time,
->> while having one of the packages is a dependency for the main package "test123".
-> 
-> These are two conflicting packages.
-> 
->>
->> Is there a way to achieve this? From my current understanding,
->> dependencies are "per-recipe" and not "per-package". Is there any way
->> to achieve package level dependencies? I would like to avoid having
->> multiple recipes as there are many configuration file options which
->> are currently located in the same large source repository as the main software.
-> 
-> Look at it from the perspective of conflicting packages.
-> 
-> My approach to this would be the following:
-> 
-> 1. Write an include file test123.inc that includes all of the guts of your recipe.
-> 
-> 2. Write the two recipes test123-config-XXX_1.0.bb and test123-config-
-> YYY_1.0.bb:
-> 
-> test123-config-XXX_1.0.bb
-> 
-> require test123.inc
-> 
-> SRC_URI += "test123-XXX.conf"
-> 
-> do_install_append() {
->    # install config file here
->    install 544 test123-XXX.conf ${D}/<location> }
-> 
-> RCONFLICTS_${PN} = "test123-config-YYY"
-> 
-> Analog for test123-config-YYY_1.0.bb
-> 
-> 
-> You are essentially sharing all of the recipe through the test123.inc and only add the config file to the respective target recipe. The RCONFLICTS_${PN} directive will flag an error if both conflicting packages are attempted to be installed.
-> 
-> BR,
-> Rudi
-> 
-> Wichtiger Hinweis: Die Information in dieser E-Mail ist vertraulich. Sie ist ausschließlich für den Adressaten bestimmt. Sollten Sie nicht der für diese E-Mail bestimmte Adressat sein, unterrichten Sie bitte den Absender und vernichten Sie diese Mail. Vielen Dank.
-> Unbeschadet der Korrespondenz per E-Mail, sind unsere Erklärungen ausschließlich final rechtsverbindlich, wenn sie in herkömmlicher Schriftform (mit eigenhändiger Unterschrift) oder durch Übermittlung eines solchen Schriftstücks per Telefax erfolgen.
-> 
-> Important note: The information included in this e-mail is confidential. It is solely intended for the recipient. If you are not the intended recipient of this e-mail please contact the sender and delete this message. Thank you. Without prejudice of e-mail correspondence, our statements are only legally binding when they are made in the conventional written form (with personal signature) or when such documents are sent by fax.
-> 
+Awesome, thanks Philip.  I've pushed the change to the repo this morning
+that lists you in the maintainers file, but if you haven't got access yet
+to push to the repo yourself I'll be happy to take a PR from  you and
+merge it myself.  I think I'm finally getting my head above water today.
 
+Also, Michael, we talked last summer about getting meta-selinux added to
+the list of projects monitored by Patchwork at patchwork.openembedded.org
+and everyone seemed in favour of it but we didn't seem to close the loop
+on it.  What's needed from Philip / Mark / myself to make that happen?
+
+--=20
+-Joe MacDonald.
+:wq
+
+--NzB8fVQJ5HfG6fxh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJWyxSIAAoJEEn8ffcsOfaW/UsH/18UsAinux9GOp4vQLFF43MT
+hAQt4aHNBXzdQgxklT/oqB43PWf3UfKlAa514EaZhtdk74Lj5U2XrNAV01NDVETQ
+jfCiUbaCvvEJnkLIgipiLzy9sZiEUr9/Ge5J9CzHJgi1C5LReG0JnRJAIWG/nMgv
+XD2qK9uhbgsSOfWCOw7Fs3o5oYuB2DTQE0sUGXlc8TMuPV38rIxhE3LbeNDCDGss
+pd+twVCx0e3B0wDwl0m1Vn5wkpIe0q8m/8QiH1NnBHcxrsgEyYC9ujSbGNcN73ec
+Ow332yp/mjd6tHzTCmTOOsRNoaFXhsW9bwQ50Xz6sUYPfpaNkHcA8MNLb1BRbrg=
+=qPyj
+-----END PGP SIGNATURE-----
+
+--NzB8fVQJ5HfG6fxh--
