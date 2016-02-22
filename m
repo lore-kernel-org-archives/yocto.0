@@ -1,42 +1,61 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE7E4E00C31; Mon, 22 Feb 2016 07:33:43 -0800 (PST)
+	id 5F0E0E00C31; Mon, 22 Feb 2016 07:38:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8801DE00838
-	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 07:33:40 -0800 (PST)
-Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
-	by relay1.mentorg.com with esmtp 
-	id 1aXsUV-00046j-67 from Joe_MacDonald@mentor.com ;
-	Mon, 22 Feb 2016 07:33:39 -0800
-Received: from burninator (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
-	(147.34.97.41) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 22 Feb 2016 07:33:38 -0800
-Received: by burninator (Postfix, from userid 1000)	id 2063B580CB9; Mon, 22
-	Feb 2016 10:33:37 -0500 (EST)
-Date: Mon, 22 Feb 2016 10:33:37 -0500
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Message-ID: <20160222153336.GB2255@mentor.com>
-References: <1455922741-3342-1-git-send-email-radzy@windriver.com>
-	<56CB1DC8.1030505@windriver.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DB55E00838
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 07:38:32 -0800 (PST)
+Received: by mail-ig0-f173.google.com with SMTP id y8so89163912igp.0
+	for <yocto@yoctoproject.org>; Mon, 22 Feb 2016 07:38:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=htZ64aH5sVsBNAv6rOq6bgjxKiqR1aD/XEDLxWswjoI=;
+	b=fhA54yoPQweSfl7go8afPAvEJ8OAnJSQRNPFJZ95yoaPBV5BdvPKPP9kaFTRqzwsyQ
+	u3S0WUrgY40tVke1cqD9flygZvl48FjC1QInp7PqPNjZAV9x8iV27vPSa6aZn+l7tJNm
+	+nCSLXXJ4iIDDnwnSU7zLyXKYM8780LvOPqsZPMZ3pGfjsRZIIGskE3fglcozEXnRzRp
+	clTzNOyiuIPvk1jkuMXmzmjFVqlxYhxfNGKVucATSt4TtudpaYhizB2HbyVhiwy0AXcC
+	Zhw2tmKOTAhCjF2A8bz1ZF8Sn0C7qKLh86ldnmWNXTWIUJi+3+GzIY91lWnj1CVemdte
+	YYlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=htZ64aH5sVsBNAv6rOq6bgjxKiqR1aD/XEDLxWswjoI=;
+	b=A3WvhdwNFrBJXwKJsiTdL4mT97UfWVfLdL0cAYulDkmA5jyeMtmG13ku4uMVjBicuH
+	Wb1WacQHaPVXGFC9GcnRiOdjOIUO4HioZSaCvplXmYePu7jpNgujMKkBinEHMS5+BZPN
+	Qf2bMDOv0TM3zSZ3eewD0aylxOTKHc2ZsZrwLkjZwm06/st4T6fArCNnrUxW1vEiNZnO
+	N2fwLwmUbGyUNkgyG7BXPls1DkwzhJtm8pv0Dx6LR4t9XbdOVdNN5c+molmBr1c8H375
+	ItQ1oSop8OMptBvzpT0XKy8/xEBcw1mArgWCIq2YgzI/b7FEUt2onqj3ujsMzZVa9rlp
+	DobA==
+X-Gm-Message-State: AG10YORVm1WmJ4zFSsjp40QEoPX0AlkafAcfwX/EBsjnIYeQkUDY1MyuLE2g4W03k890AZ+JvHqJAJZPTKhUDq0t
+X-Received: by 10.50.138.72 with SMTP id qo8mr11789753igb.81.1456155511919;
+	Mon, 22 Feb 2016 07:38:31 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <56CB1DC8.1030505@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "T.O. Radzy Radzykewycz" <radzy@windriver.com>, yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] swig is in meta-oe, remove this copy
+Received: by 10.107.130.214 with HTTP; Mon, 22 Feb 2016 07:37:52 -0800 (PST)
+In-Reply-To: <1456154103-13478-4-git-send-email-anibal.limon@linux.intel.com>
+References: <1456154103-13478-1-git-send-email-anibal.limon@linux.intel.com>
+	<1456154103-13478-4-git-send-email-anibal.limon@linux.intel.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Mon, 22 Feb 2016 15:37:52 +0000
+Message-ID: <CAPhnLPA4+MpqnAOW67b9u+B+dxzG=kgV2-FqbydKw3vH63sMew@mail.gmail.com>
+To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [[PATCHv2][autobuilder] 4/4] buildset-config.toaster: Remove unused template toaster-build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,357 +67,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2016 15:33:44 -0000
-X-Groupsio-MsgNum: 28555
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="i0/AhcQY5QxfSsSZ"
-Content-Disposition: inline
-
---i0/AhcQY5QxfSsSZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 22 Feb 2016 15:38:36 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-[Re: [meta-selinux][PATCH] swig is in meta-oe, remove this copy] On 16.02.2=
-2 (Mon 08:40) Mark Hatle wrote:
+I'm going to pull all but this patch (4/4), because I'll eventually
+need this configuration.
 
-> On 2/19/16 4:59 PM, T.O. Radzy Radzykewycz wrote:
-> > A more recent version of swig is in meta-oe, and the local
-> > version does not seem to provide any additional functionality or
-> > security features.  So best to just use the one in meta-oe and
-> > eliminate duplication.
-> >=20
-> > Signed-off-by: T.O. Radzy Radzykewycz <radzy@windriver.com>
->=20
-> In the past we carried our own version of swig to break any dependency on=
- meta-oe.
->=20
-> I'm not sure if we want to keep doing that or not -- but if we do keep ou=
-r own
-> version, we need to make sure it stays in sync w/ meta-oe (and the needs =
-of the
-> selinux components).
->=20
-> Joe/Philip, any comments?
->=20
-> (I'm not against removing the local copy, but I want to make sure it make=
-s sense
-> first.)
+-b
 
-I'm also not against removing the local copy (I don't think it adds
-anything to the layer and occasionally causes headaches), but I really
-don't want to make meta-selinux dependent on meta-oe components, so I
-guess I'm voting for keeping it.
+On 22 February 2016 at 15:15, An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.in=
+tel.com> wrote:
+> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
+> ---
+>  buildset-config.toaster/toaster-build.conf | 29 ------------------------=
+-----
+>  1 file changed, 29 deletions(-)
+>  delete mode 100644 buildset-config.toaster/toaster-build.conf
+>
+> diff --git a/buildset-config.toaster/toaster-build.conf b/buildset-config=
+.toaster/toaster-build.conf
+> deleted file mode 100644
+> index 09a03e2..0000000
+> --- a/buildset-config.toaster/toaster-build.conf
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -[toaster-build]
+> -builders: 'example-worker'
+> -props: [{'atext':{'prop_type':'StringParameter',
+> -                       'size': 15,
+> -                       'name': 'atext',
+> -                       'default': '',
+> -                       'label':'<hr><h3> auto.conf:</h3>'}},
+> -        {'bbtext':{'prop_type':'StringParameter',
+> -                       'size': 15,
+> -                       'name': 'bbtext',
+> -                       'default': '',
+> -                       'label':'<hr><h3> bblayers.conf:</h3>'}},
+> -        {'images':{'prop_type':'StringParameter',
+> -                       'size': 15,
+> -                       'name': 'images',
+> -                       'default': '',
+> -                       'label':'<hr><h3> images:</h3>'}},
+> -        {'layers':{'prop_type':'StringParameter',
+> -                       'size': 15,
+> -                       'name': 'layers',
+> -                       'default': '',
+> -                       'label':'<hr><h3> repo string (ast):</h3>'}}]
+> -steps: [{'SetDest':{}},
+> -        {'CheckOutToasterLayers': {}},
+> -        {'RunPreamble': {}},
+> -        {'GetDistroVersion' : {'distro': 'poky'}},
+> -        {'CreateAutoConf': {'atext' : '#TOASTER'}},
+> -        {'CreateBBLayersConf': {'bbtext' : '#TOASTER'}},
+> -        {'BuildImages': {'images': '#TOASTER'}}]
+> --
+> 2.1.4
+>
 
--J.
 
->=20
-> --Mark
->=20
-> > ---
-> >  recipes-devtools/swig/swig.inc                     | 59 --------------=
-----
-> >  ...lf-exe-for-swig-swiglib-on-non-Win32-plat.patch | 69 --------------=
---------
-> >  ...nfigure-use-pkg-config-for-pcre-detection.patch | 65 --------------=
-------
-> >  recipes-devtools/swig/swig_2.0.10.bb               | 11 ----
-> >  4 files changed, 204 deletions(-)
-> >  delete mode 100644 recipes-devtools/swig/swig.inc
-> >  delete mode 100644 recipes-devtools/swig/swig/0001-Use-proc-self-exe-f=
-or-swig-swiglib-on-non-Win32-plat.patch
-> >  delete mode 100644 recipes-devtools/swig/swig/0001-configure-use-pkg-c=
-onfig-for-pcre-detection.patch
-> >  delete mode 100644 recipes-devtools/swig/swig_2.0.10.bb
-> >=20
-> > diff --git a/recipes-devtools/swig/swig.inc b/recipes-devtools/swig/swi=
-g.inc
-> > deleted file mode 100644
-> > index 74ce5064fe37..000000000000
-> > --- a/recipes-devtools/swig/swig.inc
-> > +++ /dev/null
-> > @@ -1,59 +0,0 @@
-> > -DESCRIPTION =3D "SWIG - Simplified Wrapper and Interface Generator"
-> > -HOMEPAGE =3D "http://swig.sourceforge.net/"
-> > -LICENSE =3D "BSD & GPLv3"
-> > -LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3De7807a6282784a7dde4c846626b=
-08fc6 \
-> > -                    file://LICENSE-GPL;md5=3Dd32239bcb673463ab874e80d4=
-7fae504 \
-> > -                    file://LICENSE-UNIVERSITIES;md5=3D8ce9dcc8f7c994de=
-4a408b205c72ba08"
-> > -
-> > -SECTION =3D "devel"
-> > -INC_PR =3D "r3"
-> > -
-> > -DEPENDS =3D "libpcre python"
-> > -
-> > -SRC_URI =3D "${SOURCEFORGE_MIRROR}/${BPN}/${BPN}-${PV}.tar.gz"
-> > -
-> > -inherit autotools pythonnative
-> > -
-> > -EXTRA_OECONF =3D " \
-> > -    --with-python=3D${PYTHON} \
-> > -    --without-allegrocl \
-> > -    --without-android \
-> > -    --without-boost \
-> > -    --without-chicken \
-> > -    --without-clisp \
-> > -    --without-csharp \
-> > -    --without-d \
-> > -    --without-gcj \
-> > -    --without-go \
-> > -    --without-guile \
-> > -    --without-java \
-> > -    --without-lua \
-> > -    --without-mzscheme \
-> > -    --without-ocaml \
-> > -    --without-octave \
-> > -    --without-perl5 \
-> > -    --without-pike \
-> > -    --without-php \
-> > -    --without-python3 \
-> > -    --without-r \
-> > -    --without-ruby \
-> > -    --without-tcl \
-> > -"
-> > -
-> > -BBCLASSEXTEND =3D "native nativesdk"
-> > -
-> > -do_configure() {
-> > -    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.guess =
-${S}/Tools/config
-> > -    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.sub ${=
-S}/Tools/config
-> > -    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.guess =
-${S}
-> > -    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.sub ${=
-S}
-> > -    oe_runconf
-> > -}
-> > -
-> > -def swiglib_relpath(d):
-> > -    swiglib =3D d.getVar('datadir', True) + "/" + d.getVar('BPN', True=
-) + "/" + d.getVar('PV', True)
-> > -    return os.path.relpath(swiglib, d.getVar('bindir', True))
-> > -
-> > -do_install_append_class-native() {
-> > -	create_wrapper ${D}${bindir}/swig SWIG_LIB=3D'`dirname $''realpath`'/=
-${@swiglib_relpath(d)}
-> > -}
-> > diff --git a/recipes-devtools/swig/swig/0001-Use-proc-self-exe-for-swig=
--swiglib-on-non-Win32-plat.patch b/recipes-devtools/swig/swig/0001-Use-proc=
--self-exe-for-swig-swiglib-on-non-Win32-plat.patch
-> > deleted file mode 100644
-> > index 81df3e264f52..000000000000
-> > --- a/recipes-devtools/swig/swig/0001-Use-proc-self-exe-for-swig-swigli=
-b-on-non-Win32-plat.patch
-> > +++ /dev/null
-> > @@ -1,69 +0,0 @@
-> > -From a4a0440a644c6c5e5da096efe3cf05ba309a284f Mon Sep 17 00:00:00 2001
-> > -From: "NODA, Kai" <nodakai@gmail.com>
-> > -Date: Sun, 22 Apr 2012 17:01:02 +0900
-> > -Subject: [PATCH] Use /proc/self/exe for "swig -swiglib" on non-Win32
-> > - platforms.
-> > -
-> > -If it wasn't found, then fall back to a fixed string just as before.
-> > -
-> > -Upstream-Status: Submitted
-> > -http://sourceforge.net/mailarchive/message.php?msg_id=3D29179733
-> > -
-> > ----
-> > - Source/Modules/main.cxx |   24 ++++++++++++++++++++++--
-> > - 1 file changed, 22 insertions(+), 2 deletions(-)
-> > -
-> > -diff --git a/Source/Modules/main.cxx b/Source/Modules/main.cxx
-> > -index d2f5d3b..cbb0a12 100644
-> > ---- a/Source/Modules/main.cxx
-> > -+++ b/Source/Modules/main.cxx
-> > -@@ -26,6 +26,11 @@ char cvsroot_main_cxx[] =3D "$Id$";
-> > - #include "cparse.h"
-> > - #include <ctype.h>
-> > - #include <limits.h>		// for INT_MAX
-> > -+#ifndef _WIN32
-> > -+#include <cstddef>
-> > -+#include <unistd.h>		// for readlink
-> > -+#include <sys/stat.h>		// for stat
-> > -+#endif
-> > -=20
-> > - // Global variables
-> > -=20
-> > -@@ -902,9 +907,9 @@ int SWIG_main(int argc, char *argv[], Language *l)=
- {
-> > -=20
-> > -   // Check for SWIG_LIB environment variable
-> > -   if ((c =3D getenv("SWIG_LIB")) =3D=3D (char *) 0) {
-> > -+    char *p;
-> > - #if defined(_WIN32)
-> > -     char buf[MAX_PATH];
-> > --    char *p;
-> > -     if (!(GetModuleFileName(0, buf, MAX_PATH) =3D=3D 0 || (p =3D strr=
-chr(buf, '\\')) =3D=3D 0)) {
-> > -       *(p + 1) =3D '\0';
-> > -       SwigLib =3D NewStringf("%sLib", buf); // Native windows install=
-ation path
-> > -@@ -914,7 +919,22 @@ int SWIG_main(int argc, char *argv[], Language *l=
-) {
-> > -     if (Len(SWIG_LIB_WIN_UNIX) > 0)
-> > -       SwigLibWinUnix =3D NewString(SWIG_LIB_WIN_UNIX); // Unix instal=
-lation path using a drive letter (for msys/mingw)
-> > - #else
-> > --    SwigLib =3D NewString(SWIG_LIB);
-> > -+    char buf[PATH_MAX];
-> > -+    if (0 < ::readlink("/proc/self/exe", buf, sizeof(buf)) &&
-> > -+        (p =3D ::strstr(buf, "/bin/swig"))) {
-> > -+        int major, minor, patch;
-> > -+        const int ret =3D ::sscanf(VERSION, "%d.%d.%d", &major, &mino=
-r, &patch);
-> > -+        if (3 =3D=3D ret) {
-> > -+            const ::ptrdiff_t dir_part_len =3D p - buf;
-> > -+            ::snprintf(p, PATH_MAX - dir_part_len, "/share/swig/%d.%d=
-=2E%d", major, minor, patch);
-> > -+            struct ::stat stat_res;
-> > -+            if (0 =3D=3D ::stat(buf, &stat_res) && S_ISDIR(stat_res.s=
-t_mode)) {
-> > -+                SwigLib =3D NewString(buf);
-> > -+            }
-> > -+        }
-> > -+    }
-> > -+    if (NULL =3D=3D SwigLib)
-> > -+        SwigLib =3D NewString(SWIG_LIB);
-> > - #endif
-> > -   } else {
-> > -     SwigLib =3D NewString(c);
-> > ---=20
-> > -1.7.9.5
-> > -
-> > diff --git a/recipes-devtools/swig/swig/0001-configure-use-pkg-config-f=
-or-pcre-detection.patch b/recipes-devtools/swig/swig/0001-configure-use-pkg=
--config-for-pcre-detection.patch
-> > deleted file mode 100644
-> > index 5644b1531f19..000000000000
-> > --- a/recipes-devtools/swig/swig/0001-configure-use-pkg-config-for-pcre=
--detection.patch
-> > +++ /dev/null
-> > @@ -1,65 +0,0 @@
-> > -From cd596816f28407ac403bcb2249f964cefd81f22a Mon Sep 17 00:00:00 2001
-> > -From: Koen Kooi <koen.kooi@linaro.org>
-> > -Date: Tue, 17 Jun 2014 08:18:17 +0200
-> > -Subject: [PATCH] configure: use pkg-config for pcre detection
-> > -
-> > -Signed-off-by: Koen Kooi <koen.kooi@linaro.org>
-> > -Upstream-Status: pending
-> > ----
-> > - configure.ac |   39 +++++++--------------------------------
-> > - 1 file changed, 7 insertions(+), 32 deletions(-)
-> > -
-> > -diff --git a/configure.ac b/configure.ac
-> > -index c94c2e9..24420c5 100644
-> > ---- a/configure.ac
-> > -+++ b/configure.ac
-> > -@@ -70,39 +70,14 @@ AC_MSG_RESULT([$with_pcre])
-> > -=20
-> > - dnl To make configuring easier, check for a locally built PCRE using =
-the Tools/pcre-build.sh script
-> > - if test x"${with_pcre}" =3D xyes ; then=20
-> > --  AC_MSG_CHECKING([whether to use local PCRE])
-> > --  local_pcre_config=3Dno
-> > --  if test -z $PCRE_CONFIG; then
-> > --    if test -f `pwd`/pcre/pcre-swig-install/bin/pcre-config; then
-> > --      PCRE_CONFIG=3D`pwd`/pcre/pcre-swig-install/bin/pcre-config
-> > --      local_pcre_config=3D$PCRE_CONFIG
-> > --    fi
-> > --  fi
-> > --  AC_MSG_RESULT([$local_pcre_config])
-> > --fi
-> > --AS_IF([test "x$with_pcre" !=3D xno],
-> > --  [AX_PATH_GENERIC([pcre],
-> > --    [], dnl Minimal version of PCRE we need -- accept any
-> > --    [], dnl custom sed script for version parsing is not needed
-> > --    [AC_DEFINE([HAVE_PCRE], [1], [Define if you have PCRE library])
-> > --     LIBS=3D"$LIBS $PCRE_LIBS"
-> > --     CPPFLAGS=3D"$CPPFLAGS $PCRE_CFLAGS"
-> > --    ],
-> > --    [AC_MSG_FAILURE([
-> > --        Cannot find pcre-config script from PCRE (Perl Compatible Reg=
-ular Expressions)
-> > --        library package. This dependency is needed for configure to c=
-omplete,
-> > --        Either:
-> > --        - Install the PCRE developer package on your system (preferre=
-d approach).
-> > --        - Download the PCRE source tarball, build and install on your=
- system
-> > --          as you would for any package built from source distribution.
-> > --        - Use the Tools/pcre-build.sh script to build PCRE just for S=
-WIG to statically
-> > --          link against. Run 'Tools/pcre-build.sh --help' for instruct=
-ions.
-> > --          (quite easy and does not require privileges to install PCRE=
- on your system)
-> > --        - Use configure --without-pcre to disable regular expressions=
- support in SWIG
-> > --          (not recommended).])
-> > --    ])
-> > -+  PKG_CHECK_MODULES([PCRE], [libpcre], [
-> > -+    AC_DEFINE([HAVE_PCRE], [1], [Define if you have PCRE library])
-> > -+    LIBS=3D"$LIBS $PCRE_LIBS"
-> > -+    CPPFLAGS=3D"$CPPFLAGS $PCRE_CFLAGS"
-> > -+  ], [
-> > -+    AC_MSG_WARN([$PCRE_PKG_ERRORS])
-> > -   ])
-> > --
-> > -+fi
-> > -=20
-> > - dnl CCache
-> > - AC_ARG_ENABLE([ccache], AS_HELP_STRING([--disable-ccache], [disable b=
-uilding and installation of ccache-swig executable (default enabled)]), [en=
-able_ccache=3D$enableval], [enable_ccache=3Dyes])
-> > ---=20
-> > -1.7.9.5
-> > -
-> > diff --git a/recipes-devtools/swig/swig_2.0.10.bb b/recipes-devtools/sw=
-ig/swig_2.0.10.bb
-> > deleted file mode 100644
-> > index 5f1ff5992359..000000000000
-> > --- a/recipes-devtools/swig/swig_2.0.10.bb
-> > +++ /dev/null
-> > @@ -1,11 +0,0 @@
-> > -require ${BPN}.inc
-> > -
-> > -PR =3D "${INC_PR}.0"
-> > -
-> > -SRC_URI +=3D "file://0001-Use-proc-self-exe-for-swig-swiglib-on-non-Wi=
-n32-plat.patch \
-> > -            file://0001-configure-use-pkg-config-for-pcre-detection.pa=
-tch \
-> > -           "
-> > -
-> > -SRC_URI[md5sum] =3D "6d5e7ad05b4a404e5e85db9befb70c9a"
-> > -SRC_URI[sha256sum] =3D "d1eef329e867124ce60838b5ad07c763146b6c8f250dd2=
-2a861ead7406f78e63"
-> > -
-> >=20
->=20
 
 --=20
--Joe MacDonald.
-:wq
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
---i0/AhcQY5QxfSsSZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJWyypQAAoJEEn8ffcsOfaWsDYIAMM3twffgZ4v3jPSNIMVaLM3
-tjODdr8q9Yuj4ZWsrHaZbDh4vMCibxZcZoTg+ByAtWfucjaiWriijamkxVWbi4/e
-uT8dXnhUhJqNUQqcEMxQtQtX2w9ULZyeQ+PFLBcRSGPNKVAYF6hJQdtJj+1Uedpj
-CGc90EqnR1JfONZEdd0exTqJemgEhbjhuAxxVg+1GY2x+8L67d6xxoLqlXoTTdwb
-ITX6O6Ju2eQeJ3Em/KLUtFrI9XGm7GTnGNobdaA7gN46bmIyFJuCBA8mT1ApJ3GZ
-Aud/m7bezkQfsu7wsj+e6rYHDUVeJOQZ+L85ga+NUgmX1KH9KU7FJN8DCSjPfd8=
-=rZLj
------END PGP SIGNATURE-----
-
---i0/AhcQY5QxfSsSZ--
