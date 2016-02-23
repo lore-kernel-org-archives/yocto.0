@@ -1,64 +1,59 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <valentin.lebescond@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3F70E00D1C; Tue, 23 Feb 2016 11:54:06 -0800 (PST)
+	id 222E2E00D1E; Tue, 23 Feb 2016 12:10:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
+	mail provider *      (valentin.lebescond[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3C40E00CCC
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 11:54:02 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id s5so72511349qkd.0
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 11:54:02 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9B72E00CCC
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 12:10:05 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id g62so216799593wme.0
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 12:10:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=wSCv8yMHgSp/95RwvLrrfl+F5KfuNiPWFtKFV45u9BU=;
-	b=oghgs6ZeqFCd4iOT8dvaF9S0cIIwo09ztG1ztKv/FKQYbwHqueH3jeD8kz/FnbuG9q
-	tv58M30UmV8Eme3TkHezSbCOS178ZYDUYdO1gJCVBCSM6zYmc5UKFaMfEii5AtYssw+w
-	fBLdFyyx1mAv7Xfm1KA89pwA+j4KT1u7piDa3H/dFe+KfN6+lVwZBaerV5pp/n9jlhl3
-	cm4Z8mxbnfOnPjgB3HsDR5KCOwzGppFNB7UXnyU8nv/CgFhKJ2fnAXIVuGwcRBPPDxiE
-	DAQTxTG0ywyASwSMxLMVhoy6HbydUZS2bCoMQjhg49kHjHRssFpsLIk10Z6F/kexFspB
-	cVcA==
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=c4PBEzR2dc3ibHTrw9Npc6plo6+oUW9oRhj9Ipk7N2s=;
+	b=dGQpV8guwa0wcxQ7xiHVv8qus81LDCVtR6wbx2Y58ofnC795POtu7LcqIY7w/1NDOA
+	O2uPPLS8FFE48d5C5PMNhaRVpqXzT2EJwbGB1lNTphzkazs3qQ8VzjHiuMFouOzvEu5k
+	uIuXWSgrqtmqHJLVvkEzHIWDFM6Vg9nY04OlD5HeVIi3qPYiG8cl9MtPc+PojQ1T6/UO
+	MiNrWTe7KCQ8rZ3dbnA98q66DeBwZ++XMIUeaUs1PbB5WQdvbQAW6I5pVDzSKQFoIxOh
+	9ulKa3EVCdZEuyJynVPw8xMCuW4Zr/KVohZeN5WCuTj4/o7VtH0II+QLg3QH/3m8YI7z
+	5CGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=wSCv8yMHgSp/95RwvLrrfl+F5KfuNiPWFtKFV45u9BU=;
-	b=bC7Tu+e6Em8mY+LILOHSGuj10OAwnnAT+7mIaivVLDIcVE70tBF84ChTox4uCauHXf
-	jb2SA9v998OA2yMsfO7W/vlF503ezwgPRA7jKrE492gWQlqKpef9w5fxqWbNsPZmKKdF
-	bgeEisYCrpqylyuSy5MPpaYMAeOJlrpdxpZag35R8VkNWKSApXY1mRBOT5HDCgCf2rfh
-	JNECGb7+UFsmW2n+wVce8L3rBSxY5QTQzzg08lRU+VCVRTABhkLDtfIhD5UmbRw6np0E
-	GqBpaK0JgejY+MWJXAqChxw7vRk4z2kUNOfTaqVvWHp17pAZrXeRhE9eNLFu/XLAxVEz
-	TS2Q==
-X-Gm-Message-State: AG10YOSKxWd8qYsJwGPtwpTuQ8bFbUaH85SlM9egrhHWl9jH0iQIojQ7Qoyt7OSO+NgVyFjHLUAambTgDaPZVQ==
-X-Received: by 10.55.78.70 with SMTP id c67mr43511497qkb.37.1456257241732;
-	Tue, 23 Feb 2016 11:54:01 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-type;
+	bh=c4PBEzR2dc3ibHTrw9Npc6plo6+oUW9oRhj9Ipk7N2s=;
+	b=HmUQVnyPiDFfFYG+BCzG7aKluSVw2EjDxhcyAR4BSo2ipnkqs9udp4V+J3mzvThDkR
+	Bpjbfzo3e1uJs04eQ0DbZ0y4lbNT00ZJgW3dhHXOYX/4tZZeftPk/O/WFbRZGjtpr+G7
+	7gytGxwPijmjiL7AKLgaBqZtt8ep5OT7BTo1g12gEMSS84g0w5MnYBINO2dhjnLDc/py
+	pcaptAFmTqClbHWBhBx6d7xikOlkh88A4wWnseptOukcy94Bq3RfavfcNtZyBXKBoa3o
+	dFUDLFv0RCVEq1X8ExFeoRydKkk0ejMYCQP1d16wQ6j1yi3w5mWkdWksDcEW0wf+0ZDs
+	WbuQ==
+X-Gm-Message-State: AG10YORXjoVyuFjWaKu52bJWxQ8AKTv1+WzyPQqRYaeY2kOo/9c5sPwrR/hZMzyd+fErIXVrNirP80Ounf1SPQ==
+X-Received: by 10.194.95.40 with SMTP id dh8mr40210997wjb.146.1456258204165;
+	Tue, 23 Feb 2016 12:10:04 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Tue, 23 Feb 2016 11:53:32 -0800 (PST)
-In-Reply-To: <1456255515.10581.2.camel@sierrawireless.com>
-References: <1456255515.10581.2.camel@sierrawireless.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 23 Feb 2016 14:53:32 -0500
-Message-ID: <CAMKF1srU_Ewx1HzMHv+AQNhHeoy3b1L1bRvBaZ8556a8+7NLew@mail.gmail.com>
-To: Darcy Watkins <dwatkins@sierrawireless.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Does CVE-2015-7547 affect eglibc?
+From: Valentin Le bescond <valentin.lebescond@gmail.com>
+Date: Tue, 23 Feb 2016 20:09:54 +0000
+Message-ID: <CAP2S6e6T3LqwAaFF-cn7eUY4Y5QbiYy0Ej_LSZtbuF3GRomkLg@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, urnen81@yahoo.es
+Subject: [meta-chip] How to flash yocto's output into CHIP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,39 +65,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Feb 2016 19:54:07 -0000
+X-List-Received-Date: Tue, 23 Feb 2016 20:10:10 -0000
+Content-Type: multipart/alternative; boundary=047d7bea350ef5ec23052c758835
+
+--047d7bea350ef5ec23052c758835
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Feb 23, 2016 at 2:25 PM, Darcy Watkins
-<dwatkins@sierrawireless.com> wrote:
-> Hi,
->
-> CVE-2015-7547 glibc vulnerability has been published as affecting glibc
-> since ver 2.9 (fixed in 2.23 and patched in 2.22 and 2.21).
->
-> Anyone know if we need the same security fixes in eglibc?
+Hi,
 
-yes you do. Eglibc was nothing but glibc+few fixes.
+I'm wondering if anyone managed to flash the CHIP board with a (successful)
+yocto image build.
 
->
-> --
->
-> Regards,
->
-> Darcy
->
-> ---
->
-> Darcy Watkins
-> Staff Engineer, Firmware
-> Sierra Wireless
-> 13811 Wireless Way, Richmond, BC
-> Canada, V6V 3A4
-> [P1]
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I didn't succeed but here are the few things I found :
 
+Comparing the files expected in CHIP-tools/ and the ones available in Yocto
+deploy/image/chip/ I see some are missing in yocto :
+uboot-env.bin
+sunxi-spl-with-ecc.bin
+I tried using the ones downloaded with chip-update-firmware.sh but it
+doesn't work...
+
+While flashing, at some point, the chip (in FEL mode) disconnects the USB
+connection. If it goes well the chip reconnects as a ttyACM0. If it doesn't
+go well (which is my case), chip never shows up !
+
+If anyone managed to get the thing working please let me know. If not I am
+willing to try any idea you may have.
+
+Regards,
+
+Valentin
+
+--047d7bea350ef5ec23052c758835
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>I&#39;m wondering if anyon=
+e managed to flash the CHIP board with a (successful) yocto image build.<br=
+><br></div>I didn&#39;t succeed but here are the few things I found :<p>Com=
+paring the files expected in CHIP-tools/ and the ones available in
+ Yocto deploy/image/chip/ I see some are missing in yocto : <br>uboot-env.b=
+in<br>sunxi-spl-with-ecc.bin</p>
+
+I tried using the ones downloaded with  chip-update-firmware.sh but it does=
+n&#39;t work...<br><br></div><div>While flashing, at some point, the chip (=
+in FEL mode) disconnects the USB connection. If it goes well the chip recon=
+nects as a <span class=3D"ember-view" id=3D"ember1076"><span class=3D"searc=
+h-highlight">ttyA</span>CM0. If it doesn&#39;t go well (which is my case), =
+chip never shows up !<br><br></span></div><div><span class=3D"ember-view" i=
+d=3D"ember1076">If anyone managed to get the thing working please let me kn=
+ow. If not I am willing to try any idea you may have.<br><br></span></div><=
+div><span class=3D"ember-view" id=3D"ember1076">Regards,<br><br></span></di=
+v><div><span class=3D"ember-view" id=3D"ember1076">Valentin</span></div></d=
+iv>
+
+--047d7bea350ef5ec23052c758835--
