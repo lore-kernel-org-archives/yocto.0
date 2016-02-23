@@ -1,64 +1,28 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04490E00D38; Tue, 23 Feb 2016 13:37:18 -0800 (PST)
+	id 18532E00D5C; Tue, 23 Feb 2016 13:44:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDED0E00B45
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 13:37:14 -0800 (PST)
-Received: by mail-ig0-f172.google.com with SMTP id y8so1964507igp.1
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 13:37:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to; 
-	bh=F5YVOZGnfJeJDIRPSEWsI9Ls552/f1kEtRGL9bC+zUE=;
-	b=mSZEPCs8NA8FwouyZV0neZPKcE7whukTRfwIgCKUAvMhYiW6ckSobvT+s+BsTXxNpM
-	UOL0bt4rQqmzUznjVi0RmtR7OqrLMQ7yTNNV81L4MccIqQ3NLxdieKMsV1aNQDOlyWH5
-	pNFWML5tgNG2fgRgae2/RNCgwIEiPvz/D+zHOU7IKaclM1VqQDTgfu0RJp2HxJrn2SUc
-	2y1Wj4GpZWlvzPeT9MWTs90QHyJ0h3NeU+3PjNVvOse5iWhipAXRpA54taZrmVP3Lehc
-	Z/fomNHUXavuSZhtLpNxddDSba48j5ptyICyUQ7Ck2Jqh2ygb38oN0FxstO7ChZ8Hh+E
-	KwoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to;
-	bh=F5YVOZGnfJeJDIRPSEWsI9Ls552/f1kEtRGL9bC+zUE=;
-	b=f/HdJi0863oeIJ90hyYwCZgYqsXTwomVSbkJsQrVbdrbLSoccyYMz7PTdVsDyBdtU+
-	+B2yy4hN3tJiKzClgMARy2shlvbP1FcfYSxRA00MXKZFNwj7AqAimnI+Op90PzBLVznw
-	kOZiXGjT0/in5Y1oYJdHLN6Ut9xKfySCejfkuagyjK7lQ4KmlRKyEiTuoJzUTT9bKUCI
-	9sBo1uZ9ahzNQiw6Z9pOWwr5HEKSQvTlOD2owQyYaOv91hL9WBhbgiEf7eStVA9Dj6aX
-	NAOavnlBV52OdKlyMCjA4KlMbgUsXUXg+m252WS6bEFxgmHIJcCY4rK/sxz7yxgYxbAm
-	Qolw==
-X-Gm-Message-State: AG10YOQjOLnIqwMKWiFqqB9P3v7v9gGOi4aD9yDFoqwT1GzN+NmGrDwd4pHEk+YmB/i8mLg/DVtLVwUrfLKUZg==
-MIME-Version: 1.0
-X-Received: by 10.50.66.238 with SMTP id i14mr16872085igt.52.1456263434040;
-	Tue, 23 Feb 2016 13:37:14 -0800 (PST)
-Received: by 10.36.25.81 with HTTP; Tue, 23 Feb 2016 13:37:13 -0800 (PST)
-In-Reply-To: <20160223210251.GC10598@ad.chargestorm.se>
-References: <1454173548-5806-1-git-send-email-raj.khem@gmail.com>
-	<20160223210251.GC10598@ad.chargestorm.se>
-Date: Tue, 23 Feb 2016 22:37:13 +0100
-Message-ID: <CALbNGRSLRGvmdTNg6hF8YwGXRPza5Xn8sLLjrcgOrT+B1--+yA@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Adjust for libexecdir changes
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B13A8E00D38
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 13:44:32 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga104.fm.intel.com with ESMTP; 23 Feb 2016 13:44:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,491,1449561600"; d="scan'208";a="751934760"
+Received: from tmglnx.jf.intel.com ([10.7.198.182])
+	by orsmga003.jf.intel.com with ESMTP; 23 Feb 2016 13:44:31 -0800
+From: "Graydon, Tracy" <tracy.graydon@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 23 Feb 2016 14:40:42 -0800
+Message-Id: <1456267247-15726-1-git-send-email-tracy.graydon@intel.com>
+X-Mailer: git-send-email 2.4.3
+Subject: [yocto-autobuilder][PATCH 1/6] bin/release_scripts/relnotes.sh: Add script to generate release notes template.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,55 +34,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Feb 2016 21:37:18 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 23 Feb 2016 21:44:34 -0000
 
-On Tue, Feb 23, 2016 at 10:02 PM, Anders Darander <anders@chargestorm.se> wrote:
-> Ping?
->
-> We can't build on master branch without this fix...
->
-> Cheers,
-> Anders
->
-> * Khem Raj <raj.khem@gmail.com> [160130 18:07]:
->
->> libexecdir has changed its location in latest OE core, it used to be
->> pointing to /usr/lib which was essentially same as libdir and when
->> hardcoded in do_rpiboot_mkimage it worked.
->
->> Fixes kernel build failures e.g.
->
->> DEBUG: Executing shell function do_rpiboot_mkimage
->> /a/builder/mnt/build-oe/tmp-musl/work/raspberrypi2-oe-linux-musleabi/linux-raspberrypi/1_4.1.10+gitAUTOINC+b74df9228c-r0/temp/run.do_rpiboot_mkimage.5543:
->> line 111:
->> /a/builder/mnt/build-oe/tmp-musl/sysroots/x86_64-linux/usr/lib/rpi-mkimage/mkknlimg: No such file or directory
->
->> Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> ---
->>  recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->
->> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
->> index 70e8bfe..0798788 100644
->> --- a/recipes-kernel/linux/linux-raspberrypi.inc
->> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
->> @@ -60,7 +60,7 @@ do_rpiboot_mkimage() {
->>      if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
->>          if test -n "${KERNEL_DEVICETREE}"; then
->>              # Add RPi bootloader trailer to kernel image to enable DeviceTree support
->> -            ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
->> +            ${STAGING_DIR_NATIVE}${libexecdir}/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
->>          fi
->>      fi
->>  }
-> --
-> Anders Darander, Senior System Architect
-> ChargeStorm AB / eStorm AB
-> --
-This patch is mandatory but there was a serial with additional fixes
-send by Maciej Borzecki on Feb 2nd. I think this is worth taken into
-account.
+This is a capture of the command-line ickiness that we have been
+using to generate the basic release notes draft. It's frightfully ugly, but
+gets the job done for now.
 
-Andreas
+Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+---
+ bin/release_scripts/relnotes.sh | 82 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100755 bin/release_scripts/relnotes.sh
+
+diff --git a/bin/release_scripts/relnotes.sh b/bin/release_scripts/relnotes.sh
+new file mode 100755
+index 0000000..a88f0b8
+--- /dev/null
++++ b/bin/release_scripts/relnotes.sh
+@@ -0,0 +1,82 @@
++#!/bin/bash
++
++# NOTE! This script will blissfully clobber any pre-existing poky repos, 
++# previous release notes with same filename, etc. 
++#
++# This is a quick and ugly script to generate the release notes draft.
++#
++# Usage: ./relnotes.sh <release_ID> <rc#> <branch> <poky-ver>
++# i.e. ./relnotes.sh yocto-2.0.1 rc6 jethro 14.0.1
++#
++# Currently the revision in the git log portion is hard coded. You 
++# will want to change accordingly! 
++# i.e. git log --pretty=format:"%s" yocto-2.0..HEAD |grep CVE >> $HOME/CVE;
++# Change the yocto-2.0 bit to whatever it needs to be for the given release.
++
++
++
++clear
++REL_ID=$1
++RC=$2
++BRANCH=$3
++POKY_VER=$4
++RELEASE=$REL_ID
++VHOSTS="/srv/www/vhosts"
++AB_BASE="$VHOSTS/autobuilder.yoctoproject.org/pub/releases"
++DL_BASE="$VHOSTS/downloads.yoctoproject.org/releases"
++RC_SOURCE="$AB_BASE/$RELEASE.$RC"
++RELEASE_DIR="$AB_BASE/$RELEASE"
++MACHINES="$RELEASE_DIR/machines"
++HOME=~/work/release
++echo "REL_ID: $REL_ID"
++echo "RC: $RC"
++echo "BRANCH: $BRANCH"
++echo "POKY_VER: $POKY_VER"
++echo "RELEASE: $RELEASE"
++echo "AB_BASE: $AB_BASE"
++echo "DL_BASE: $DL_BASE"
++echo "RC_SOURCE: $RC_SOURCE"
++echo "RELEASE_DIR: $RELEASE_DIR"
++echo "MACHINES: $MACHINES"
++echo
++
++if [[ -e $HOME/RELEASENOTES.$RELEASE ]]; then
++    rm -v $HOME/RELEASENOTES.$RELEASE
++fi
++if [[ -e $HOME/CVE ]]; then
++    rm -v $HOME/CVE
++fi
++if [[ -e $HOME/FIXES ]]; then
++    rm -v $HOME/FIXES
++fi
++if [[ -d $HOME/poky ]]; then
++    rm -rvf $HOME/poky
++fi
++
++for x in `ls $RELEASE_DIR/*.bz2.md5sum | grep -v "\-fsl" | grep -v "\-ppc"`; do 
++   layer=`basename $x | sed 's/\-'"$BRANCH"'\-'"$POKY_VER"'.tar.bz2.md5sum//g'`; 
++   tarball=`basename $x |sed 's/\.md5sum//g'`; 
++   ghash=`ls $RELEASE_DIR/$layer*.bz2 | grep -v $BRANCH | sed 's/'"$layer"'-//g' | sed 's/.tar.bz2//g'`;
++   ghash=`basename $ghash`
++   echo "Release Name: " $layer-$BRANCH-$POKY_VER; 
++   echo "Branch: $BRANCH"; 
++   echo "Tag: $BRANCH-$POKY_VER"; 
++   echo "Hash: " $ghash; 
++   echo "md5: `cat $RELEASE_DIR/$tarball.md5sum`"; 
++   echo "Download Locations:"; 
++   echo "http://downloads.yoctoproject.org/releases/yocto/$RELEASE/$tarball"; 
++   echo "http://mirrors.kernel.org/yocto/yocto/$RELEASE/$tarball"; echo ""; 
++done >> $HOME/RELEASENOTES.$RELEASE
++
++git clone git://git.yoctoproject.org/poky;
++cd poky; 
++git checkout $BRANCH; 
++echo -e "\n-------\nSecurity Fixes\n-------" >> $HOME/CVE;
++git log --pretty=format:"%s" yocto-2.0..HEAD |grep CVE >> $HOME/CVE; 
++echo -e "\n-------\nFixes\n-------" >> $HOME/FIXES; 
++git log --pretty=format:"%s" yocto-2.0..HEAD |grep -v CVE >> $HOME/FIXES; 
++cat $HOME/CVE >> $HOME/RELEASENOTES.$RELEASE; cat $HOME/FIXES >> $HOME/RELEASENOTES.$RELEASE
++cd $HOME
++
++
++
+-- 
+2.4.3
+
 
