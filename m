@@ -1,6 +1,6 @@
 Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAF8DE00D5C; Tue, 23 Feb 2016 13:44:34 -0800 (PST)
+	id DA116E00D60; Tue, 23 Feb 2016 13:44:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,22 +9,22 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7057E00D45
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 13:44:32 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C476E00D49
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 13:44:33 -0800 (PST)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP; 23 Feb 2016 13:44:32 -0800
+	by fmsmga104.fm.intel.com with ESMTP; 23 Feb 2016 13:44:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,491,1449561600"; d="scan'208";a="751934766"
+X-IronPort-AV: E=Sophos;i="5.22,491,1449561600"; d="scan'208";a="751934769"
 Received: from tmglnx.jf.intel.com ([10.7.198.182])
 	by orsmga003.jf.intel.com with ESMTP; 23 Feb 2016 13:44:31 -0800
 From: "Graydon, Tracy" <tracy.graydon@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 23 Feb 2016 14:40:44 -0800
-Message-Id: <1456267247-15726-3-git-send-email-tracy.graydon@intel.com>
+Date: Tue, 23 Feb 2016 14:40:45 -0800
+Message-Id: <1456267247-15726-4-git-send-email-tracy.graydon@intel.com>
 X-Mailer: git-send-email 2.4.3
 In-Reply-To: <1456267247-15726-1-git-send-email-tracy.graydon@intel.com>
 References: <1456267247-15726-1-git-send-email-tracy.graydon@intel.com>
-Subject: [yocto-autobuilder][PATCH 3/6] bin/release_scripts/release.py: add a check for valid rc candidate
+Subject: [yocto-autobuilder][PATCH 4/6] bin/release_scripts/release.py: add ADT publishing feature to release script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +39,124 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 X-List-Received-Date: Tue, 23 Feb 2016 21:44:34 -0000
 
 This is part of the release automation work, related to Yocto bug #8942. This
-patch adds a check for a valid release candidate ID passed in from command line
-and quits if it is bogus. Adds a few comments/output for the user for the
-various release steps to improve clarity.
+patch adds the ADT repo publishing functionality for backward compatability
+for point releases, etc. Not used going forward since we have moved to the
+eSDK instead, so this defaults to NOT publishing the ADT repo. A flag has
+been added to cue publishing, along with an option to provide a custom
+target direactory name for oddball cases where release numbering may not
+be linear. i.e There was no 1.9 release, so ADT repo for 2.0_M1 would have
+actually been 1.8+snapshot. This allows for those corner cases.
 
 Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
 ---
- bin/release_scripts/release.py | 53 +++++++++++++++++++++++++++++++-----------
- 1 file changed, 39 insertions(+), 14 deletions(-)
+ bin/release_scripts/release.py | 58 +++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 54 insertions(+), 4 deletions(-)
 
 diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
-index 3dab369..c332718 100755
+index c332718..83c198e 100755
 --- a/bin/release_scripts/release.py
 +++ b/bin/release_scripts/release.py
-@@ -360,19 +360,23 @@ if __name__ == '__main__':
-     else:
-         BRANCH = ""
+@@ -317,6 +317,37 @@ def gen_rel_md5(dirname, md5_file):
+     f.close()
+     return
  
--
-     if options.build:
-         # Figure out the release name, type of release, and generate some vars, do some basic validation
--        chunks = split_thing(options.build, ".")
-+        options.build = options.build.lower()
-+        RC = split_thing(options.build, ".")[-1]
-+        chunks = split_thing(options.build, ".") # i.e. split yocto-2.1_m1.rc1
-         chunks.pop()
--        RELEASE = rejoin_thing(chunks, ".")
--        rel_thing = split_thing(options.build, "-")
--        RC = split_thing(options.build, ".")[-1].lower()
--        RC_DIR = RELEASE + "." + RC
--        REL_ID = split_thing(RELEASE, "-")[-1]
--        milestone = split_thing(REL_ID, "_")
--        if len(milestone) == 1:
--            thing = split_thing(milestone[0], ".")
-+        chunks[1] = chunks[1].upper()
-+        RELEASE = rejoin_thing(chunks, ".")  # i.e. yocto-2.1_m1
-+        REL_ID = split_thing(RELEASE, "-")[-1].upper()
-+        RC_DIR = rejoin_thing([RELEASE, RC], ".")
-+        RC_SOURCE = os.path.join(AB_BASE, RC_DIR)
-+        if not os.path.exists(RC_SOURCE):
-+            print "%s does not appear to be a valid RC dir. Check your args." %RC_SOURCE
-+            sys.exit()
-+        relstring = split_thing(REL_ID, "_")
-+        if len(relstring) == 1:
-+            thing = split_thing(relstring[0], ".")
-             if len(thing) == 3:
-                 REL_TYPE = "point"
-             elif len(thing) == 2:
-@@ -385,14 +389,27 @@ if __name__ == '__main__':
-                 print "Please use -h or --help for options."
-                 sys.exit()
-         else:
--            MILESTONE = milestone.pop()
-+            MILESTONE = relstring.pop()
-             REL_TYPE = "milestone"
-     else:
++def publish_adt(rel_id, rel_type, opts):
++    if opts:
++        ADT_DIR = os.path.join(ADT_BASE, opts)
++    else:
++        if rel_type == "milestone":
++            chunks = split_thing(rel_id, "_")
++            id_thing = float(chunks[0])
++            id_thing = id_thing - 0.1
++            rel_id = str(id_thing) + "+" + "snapshot"
++        ADT_DIR = os.path.join(ADT_BASE, rel_id)
++    print "ADT_DIR: %s" %ADT_DIR
++    if os.path.exists(ADT_DIR):
++        print "ADT_DIR %s EXISTS! Refusing to clobber!" %ADT_DIR
++        sys.exit()
++    else:
++        ADT_ROOTFS = os.path.join(ADT_DIR, "rootfs")
++        ADT_IPK = os.path.join(ADT_DIR, "adt-ipk")
++        QEMU_DIR = os.path.join(MACHINES, "qemu")
++        IPK_DIR = os.path.join(RELEASE_DIR, "ipk")
++        os.mkdir(ADT_DIR)
++        os.mkdir(ADT_ROOTFS)
++        dirlist = get_list(QEMU_DIR)
++
++        for dirname in dirlist:
++            QEMU_SRC = os.path.join(QEMU_DIR, dirname)
++            QEMU_TARGET = os.path.join(ADT_ROOTFS, dirname)
++            print "QEMU_SRC: %s" %QEMU_SRC
++            sync_it(QEMU_SRC, QEMU_TARGET, "")
++        
++        sync_it(IPK_DIR, ADT_IPK, "")
++    return
+ 
+ if __name__ == '__main__':
+     
+@@ -326,6 +357,7 @@ if __name__ == '__main__':
+     VHOSTS = "/srv/www/vhosts"
+     AB_BASE = os.path.join(VHOSTS, "autobuilder.yoctoproject.org/pub/releases")
+     DL_BASE = os.path.join(VHOSTS, "downloads.yoctoproject.org/releases")
++    ADT_BASE = os.path.join(VHOSTS, "adtrepo.yoctoproject.org")
+ 
+     # List of the directories we delete from all releases
+     UNLOVED = ['rpm', 'deb', 'ptest', 'adt-installer-QA']
+@@ -346,7 +378,12 @@ if __name__ == '__main__':
+     parser.add_option("-p", "--poky-ver",
+                       type="string", dest="poky",
+                       help="Required for Major and Point releases. i.e. 14.0.0")
+-                     
++    parser.add_option("-a", action="store_true", dest="pub_adt",
++                      help="Publish an ADT repo for the release. Default is NOT to publish.")
++    parser.add_option("-d", "--adt-dir",
++                      type="string", dest="adt_dir",
++                      help="Use when you need to publish the ADT repo to a custom location. i.e. python adtcopy -b yocto-2.0_M1.rc1 -a 1.8+snaphot")
++
+     (options, args) = parser.parse_args()
+  
+     REL_TYPE = ""
+@@ -395,12 +432,12 @@ if __name__ == '__main__':
          print "Build ID is a required argument."
          print "Please use -h or --help for options."
          sys.exit()
--    
--    RC_SOURCE = os.path.join(AB_BASE, RC_DIR)
-+
-+    if not (RELEASE and RC and REL_ID and REL_TYPE):
-+        print "Can't determine the release type. Check your args."
-+        print "You gave me: %s" %options.build
-+        sys.exit()
-+
-+    print "RC_DIR: %s" %RC_DIR
-+    print "RELEASE: %s" %RELEASE
-+    print "RC: %s" %RC
-+    print "REL_ID: %s" %REL_ID
-+    print "REL_TYPE: %s" %REL_TYPE
-+    if MILESTONE:
-+        print "MILESTONE: %s" %MILESTONE
-+    print
-+
-     PLUGIN_DIR = os.path.join(DL_BASE, "eclipse-plugin", REL_ID)
-     RELEASE_DIR = os.path.join(AB_BASE, RELEASE)
-     DL_DIR = os.path.join(DL_BASE, RELEASE)
-@@ -403,36 +420,44 @@ if __name__ == '__main__':
+-
++   
+     if not (RELEASE and RC and REL_ID and REL_TYPE):
+         print "Can't determine the release type. Check your args."
+         print "You gave me: %s" %options.build
+         sys.exit()
+-
++    
+     print "RC_DIR: %s" %RC_DIR
+     print "RELEASE: %s" %RELEASE
+     print "RC: %s" %RC
+@@ -420,7 +457,7 @@ if __name__ == '__main__':
      ECLIPSE_DIR = os.path.join(RELEASE_DIR, "eclipse-plugin")
      BUILD_APP_DIR = os.path.join(RELEASE_DIR, "build-appliance")
      REL_MD5_FILE = RELEASE + ".md5sum"
-- 
-+       
+-       
++
      # For all releases:
      # 1) Rsync the rc candidate to a staging dir where all work happens
      sync_it(RC_SOURCE, RELEASE_DIR, UNLOVED)
-     
-     # 2) Convert the symlinks in build-appliance dir.
-+    print "Converting the build-appliance symlink."
-     convert_symlinks(BUILD_APP_DIR)
- 
-     # 3) In machines dir, convert the symlinks, delete the cruft
-+    print "Cleaning up the machines dirs, converting symlinks."
-     dirlist = get_list(MACHINES)
-     for dirname in dirlist:
-         dirname = os.path.join(MACHINES, dirname)
-         convert_symlinks(dirname)
-         nuke_cruft(dirname, CRUFT_LIST)
-+    print "Generating fresh md5sums."
-     gen_md5sum(MACHINES)
-     
-     # For major and point releases
-     if REL_TYPE == "major" or REL_TYPE == "point":
-         # 4) Fix up the eclipse and poky tarballs
-+        print "Cleaning up the eclipse, poky and other tarballs."
-         fix_tarballs()
- 
-         # 5) Publish the eclipse stuff
-+        print "Publishing the eclipse plugins."
-         pub_eclipse(ECLIPSE_DIR, PLUGIN_DIR)
- 
-         # 6) Make the bsps
-+        print "Generating the BSP tarballs."
-         make_bsps(BSP_LIST, BSP_DIR)
- 
-     # 7) Generate the master md5sum file for the release (for all releases)
-+    print "Generating the master md5sum table."
-     gen_rel_md5(RELEASE_DIR, REL_MD5_FILE)
-     
-     # 8) sync to downloads
-+    print "Publishing release to downloads."
+@@ -461,3 +498,16 @@ if __name__ == '__main__':
+     print "Publishing release to downloads."
      sync_it(RELEASE_DIR, DL_DIR, "")
  
++    # 9) Publish the ADT repo. The default is NOT to publish the ADT. The ADT 
++    # is deprecated as of 2.1_M1. However, we need to retain backward 
++    # compatability for point releases, etc. We do this step after all the other
++    #  stuff because we want the symlinks to have been converted, extraneous 
++    # files deleted, and md5sums generated.
++    #
++    if options.pub_adt:
++        if options.adt_dir:
++            print "Publishing the ADT repo using custom dir %s" %options.adt_dir
++            publish_adt(REL_ID, REL_TYPE, options.adt_dir)
++        else:
++            print "Publishing ADT repo."
++            publish_adt(REL_ID, REL_TYPE, "")
 -- 
 2.4.3
 
