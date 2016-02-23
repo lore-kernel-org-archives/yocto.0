@@ -1,17 +1,21 @@
-Return-Path: <valentin.lebescond@gmail.com>
+Return-Path: <urnen81@yahoo.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 669B6E00CB9; Tue, 23 Feb 2016 01:40:50 -0800 (PST)
+	id C7474E00CB9; Tue, 23 Feb 2016 02:16:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	HTML_MESSAGE, MISSING_HEADERS,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (valentin.lebescond[at]gmail.com)
+	mail provider *      (urnen81[at]yahoo.es)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
+	*      [212.82.96.216 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (oliver <urnen81[at]yahoo.es> )
+	*  1.0 MISSING_HEADERS Missing To: header
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,49 +24,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2843E00C20
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 01:40:48 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id g62so201254638wme.0
-	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 01:40:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=8SDTBUU1twVpZg3eqRj5uccvGIhZ494aDRQYshcHVJ0=;
-	b=baETRhbaBd8EFU/LkMNFMF8qiLb6OsWYa40kvOOxx9WWMvKZtcaaaD2/GTbO05ggpa
-	YJr19nYFw/qXTThz1nHD+r25b3lCznU9oJhQ955KdXl+zaS8WTQVAsQrd6KwE1v8s6G/
-	0B5/Gy5BXw8klxwziNRFhaD/X6Tka8XJcgIM8e6T/O6TP+pdTPnUy7cpBdoWRnm27Vzi
-	BPgCC/vLHYYaecGum74nBreaYW6kYMOrcEpboIWXFhqbJIv3Z4DpVy5JUpY7Yg+64Nwr
-	B0cxeQYnaeY3ZZ5vGWmuLv/Jbrq3fYHspWLR9gmDPNtIgbS9X727qxDk0WNJfbeleR7P
-	389g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=8SDTBUU1twVpZg3eqRj5uccvGIhZ494aDRQYshcHVJ0=;
-	b=b6FNQFnm0zrOuUwB75KuOLOK+hCMYUzoaBAejBEip9DhPP0N8ypBQ4kom0jM8tDJXt
-	nssJEWueHj/O0fsVb8DukQlJVbtXFtyn3qppwiq+TZWq+G/RlNf1LM+QpH9IXNyNeOZn
-	I/O0dG/1S1K4U/kR5+N1fO0XR/e5Z2ghBNeBS2Pog0rj2b0Oxd7LpbirgufEmlj8Zwg1
-	6RsAOtDy0WGn+uROBYpiCYZZcPq7+FxhZXNTWSs8bRrtfoDFs/bMdfrXAw7a9Ke62M4U
-	UyBJ94MNT1TEjOT7+GcLlXb0X0JyvH5AbVy57/mS0t0E9jGv8hjERDeoKsoRiRzMLc7C
-	NCfw==
-X-Gm-Message-State: AG10YOSzrMdvcVpwhs49ursJb7dvHgE2Aojs65VBWKg3g7a6qoKgw/UX5BxUEbpXXTS2HfB/4p4qO+GAevxLvQ==
-X-Received: by 10.28.229.132 with SMTP id c126mr16543143wmh.72.1456220447630; 
-	Tue, 23 Feb 2016 01:40:47 -0800 (PST)
+Received: from nm17-vm1.bullet.mail.ir2.yahoo.com
+	(nm17-vm1.bullet.mail.ir2.yahoo.com [212.82.96.216])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14716E00C20
+	for <yocto@yoctoproject.org>; Tue, 23 Feb 2016 02:15:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.es; s=s2048;
+	t=1456222557; bh=BiOiZTuSE5kBdM3yLO8SMAKp0lFB8JzZZgwYUi3Kyqo=;
+	h=Date:From:Reply-To:Cc:In-Reply-To:References:Subject:From:Subject;
+	b=C2NG7PUeZY+hzULKqM2K1mo97cmlUFnrtTk6aWjE1wDzyeeJHoqeWvHZIa36UA/THjD9QgdDNkzPW2v8Hq6TUxvNIiAI3MyWh6+zJvjk/I5mnElMtUAoFBtvO9UU3ZZ8uHEEr0nH+Gwbht/WnhoZDUKQnU/FxG+c05SpiGsYjJL1ETqHO7nJtp9Or4XGIUp9mntklPNiQMTz6NpBhWattPRQisgBpMnnbcwlAek0t/8DlAh9WRFsiOxquukvvrT6geNzxIt5b5cO8KshdZeoEmiZ9vsWtpu0epFLkd6BB8SNcN0qhI7ZID8vNAN2Ryg+6AxQj4uqzPiMFv3ciMoCOg==
+Received: from [212.82.98.126] by nm17.bullet.mail.ir2.yahoo.com with NNFMP;
+	23 Feb 2016 10:15:57 -0000
+Received: from [212.82.98.71] by tm19.bullet.mail.ir2.yahoo.com with NNFMP;
+	23 Feb 2016 10:15:57 -0000
+Received: from [127.0.0.1] by omp1008.mail.ir2.yahoo.com with NNFMP;
+	23 Feb 2016 10:15:57 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 570945.15247.bm@omp1008.mail.ir2.yahoo.com
+X-YMail-OSG: JxMBviQVM1nfxeP401fet2iB33jvwqHgGTzzaHUBh6dwkWMPZ37vF1eOb_H3Rda
+	G4RTl31ykWrg9D2sZdMNbzAJXvO2aWT4liXtXSl9rX6asQQ1X_it74vKKV4CF5fXusOwNcD5XcNR
+	IIEABQlSB49vZ1MedBtQ1FDdKGavMYRSps5MVou4soBC6ojmQXYKuGm1DoMcHF0JOqQ4iSgj0SWK
+	vSZEQ9LE5ipU_BJKYZfuY8pD653qWbfyfGbTwR9a8RSF6wC7aZ6bQe4JxR_yQ8YMaMabyh5ZvUbY
+	qFbGNEvIuWK0f73tCb7nHGh1j47Biq3AHyBOwMCPCRJPhTIeuYff4BnnjGknX581loVQuv7bpqls
+	8Dv4ToMfKctexOHSlC9WBON3q7f35qXrBWNi.Myx1VidRMuypVMgl.xGDzpgc2P5_ltoR2eJUoG1
+	1VaToFx_QzhnyPc2vwymSVaHx5NN3uroWb97tjLCJTdvoLiMvyX4DwlhFZzCIbRwrZ5bXF1f04KK
+	V7Uk2.buP_P1ShjnOKSFppv0MqA--
+Received: by 212.82.98.116; Tue, 23 Feb 2016 10:15:56 +0000 
+Date: Tue, 23 Feb 2016 10:15:56 +0000 (UTC)
+From: Oliver <urnen81@yahoo.es>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <545916676.13393477.1456222556523.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <CAMKF1sqoauqS_MwfVNgWcXnM8RJkDY1mN-uHDML+MR5g12VfOA@mail.gmail.com>
+References: <CAMKF1sqoauqS_MwfVNgWcXnM8RJkDY1mN-uHDML+MR5g12VfOA@mail.gmail.com>
 MIME-Version: 1.0
-References: <1455985559-6341-1-git-send-email-valentin.lebescond@gmail.com>
-	<CAMKF1soimB54aRBbDjxG=jfk5H0aThNAONqnxxzBujnxrE84mQ@mail.gmail.com>
-	<CAP2S6e7-SK2RwXsFjiAch8Rpiv56C7ziD_WpiiKquXiAESKpUg@mail.gmail.com>
-	<CAMKF1sqzf81Yu3p+RR43Cq2eyRDFR58Z8AENVVxbUZRdRV=pbg@mail.gmail.com>
-In-Reply-To: <CAMKF1sqzf81Yu3p+RR43Cq2eyRDFR58Z8AENVVxbUZRdRV=pbg@mail.gmail.com>
-From: Valentin Le bescond <valentin.lebescond@gmail.com>
-Date: Tue, 23 Feb 2016 09:40:37 +0000
-Message-ID: <CAP2S6e7kN9+heZkSimHg2OtuqhqSfYS7pUjp4fD5oLwEwNz12A@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-chip][PATCH] added md5 for ntc's modified u-boot Licences/README file.
+Subject: Re: Post Generation of debug information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Oliver <urnen81@yahoo.es>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,167 +69,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Feb 2016 09:40:50 -0000
-Content-Type: multipart/alternative; boundary=001a1145bb927eee7e052c6cbeec
+X-List-Received-Date: Tue, 23 Feb 2016 10:16:00 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_13393476_995439419.1456222556518"
 
---001a1145bb927eee7e052c6cbeec
+------=_Part_13393476_995439419.1456222556518
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Cool,
+In this special case the tool is Lauterbach's Trace32.=20
 
-By the way @Olivier, did you manage to flash the board at some point ?
-I spent a hole weekend trying to...
+If I understand properly each piece of output I would eventually need, I wo=
+uld need to modify its origin recipes to ensure they deploy the such files =
+in DEPLOY_DIR_IMAGE/SOME_WHERE. There I could proceed in a similar way as t=
+he image_types classes.
+Paths are the first motivation, but physical addresses, offsets configurati=
+ons which might could only be fetched from grepping the code could be next.=
+ Ideally I would not like to modify others recipes.
+In a more generic way, is there a way a recipe accesses variables of other =
+recipes?
 
-Le lun. 22 f=C3=A9vr. 2016 =C3=A0 19:00, Khem Raj <raj.khem@gmail.com> a =
-=C3=A9crit :
 
-> On Sun, Feb 21, 2016 at 4:30 AM, Valentin Le bescond
-> <valentin.lebescond@gmail.com> wrote:
-> > Hi, sorry it was my first (tiny) try at a contribution ... Should I hav=
+    El Lunes 22 de febrero de 2016 19:46, Khem Raj <raj.khem@gmail.com> esc=
+ribi=C3=B3:
+=20
+
+ On Mon, Feb 22, 2016 at 7:41 AM, Oliver <urnen81@yahoo.es> wrote:
+> I have the need to generate some scripts for a debugger tool. As a first
+> approach, these generated scripts could contain paths on where specific
+> binary files are stored on the file system.
+>
+> Such purpose has been partially fulfilled with a recipe implementing the
+> do_compile task to generate those files, assuming not implementing the
+> deploying tasks, nothing gets integrated in the final image.
+>
+> Therefore the debugger tool could go to build/work/temp/=E2=80=A6/myrecip=
+e/=E2=80=A6
+> (WORKDIR of the recipe) as a startpoint for such scripts.
+>
+> 2 Questions:
+>
+> -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 There would be a better solution for =
+this task?
+> -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 The task has not been as successfully=
+ as expected. Ideally I
+> would access variables of other recipes to know where they are their
+> output/intermediate files. E.g. location of an elf file for u-boot. Is th=
+ere
+> any way around this?
+>
+
+There are ways implemented e.g. you can generate an image tarball in two pi=
+eces
+1. binaries
+2. Associated debug info and symbols
+
+The untar both in same place.
+
+Point your cross gdb to this location via setting appropriate sysroot
+in .gdbinit
+and that will be it.
+
+However its not clear if thats what you are looking for. If you want to poi=
+nt to
+components build directory instead of a full rootfs then you have to enhacn=
 e
-> > explained more in the title ?
-> >
-> > Next Thing Co changed the Licences/README file in their repo.
-> > And in the u-boot.inc file used by u-boot-chip, this file is chekced wi=
-th
-> > LIC_FILES_CHKSUM. And so it doesn't build without a modification of the
-> md5.
-> > That's it !
-> >
+the .gdbinit a bit more.
+
+I am assuming that gdb is the debugging tool you are trying to use
+
+> Regards
 >
-> hmmm ok.
->
-> >
-> > Le sam. 20 f=C3=A9vr. 2016 =C3=A0 20:09, Khem Raj <raj.khem@gmail.com> =
-a =C3=A9crit :
-> >>
-> >> On Sat, Feb 20, 2016 at 8:25 AM, Valentin LE BESCOND
-> >> <valentin.lebescond@gmail.com> wrote:
-> >> > From: Nitnelav <valentin.lebescond@gmail.com>
-> >> >
-> >> > Signed-off-by: Nitnelav <valentin.lebescond@gmail.com>
-> >> > ---
-> >> >  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
-> >> >  1 file changed, 2 insertions(+)
-> >> >
-> >> > diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb
-> >> > b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> >> > index 2342478..0b9032f 100644
-> >> > --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
-> >> > +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> >> > @@ -8,6 +8,8 @@ PROVIDES +=3D "u-boot"
-> >> >  UBOOT_VERSION ?=3D "2015.07"
-> >> >  PV =3D "${UBOOT_VERSION}+git${SRCPV}"
-> >> >
-> >> > +LIC_FILES_CHKSUM =3D
-> >> > "file://Licenses/README;md5=3D0507cd7da8e7ad6d6701926ec9b84c95"
-> >> > +
-> >>
-> >> while checksumming more is merrier, it would be good to know why we
-> >> should check for this one ?
-> >>
-> >> >  SRCREV ?=3D "854d5fcc641d8d8914c03a69d7172815d5b81a99"
-> >> >  BRANCH ?=3D "chip/stable"
-> >> >  SRC_URI =3D
-> >> > "git://github.com/NextThingCo/CHIP-u-boot.git;branch=3D${BRANCH}
-> <http://github.com/NextThingCo/CHIP-u-boot.git;branch=3D$%7BBRANCH%7D>"
-> >> > --
-> >> > 1.9.1
-> >> >
-> >> > --
-> >> > _______________________________________________
-> >> > yocto mailing list
-> >> > yocto@yoctoproject.org
-> >> > https://lists.yoctoproject.org/listinfo/yocto
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---001a1145bb927eee7e052c6cbeec
+  
+
+------=_Part_13393476_995439419.1456222556518
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Cool,<br><br></div>By the way @Olivier, did you manag=
-e to flash the board at some point ?<br>I spent a hole weekend trying to...=
-<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">Le=C2=A0lun. 22 f=
-=C3=A9vr. 2016 =C3=A0=C2=A019:00, Khem Raj &lt;<a href=3D"mailto:raj.khem@g=
-mail.com">raj.khem@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex">On Sun, Feb 21, 2016 at 4:30 AM, Valentin Le bescond<=
-br>
-&lt;<a href=3D"mailto:valentin.lebescond@gmail.com" target=3D"_blank">valen=
-tin.lebescond@gmail.com</a>&gt; wrote:<br>
-&gt; Hi, sorry it was my first (tiny) try at a contribution ... Should I ha=
-ve<br>
-&gt; explained more in the title ?<br>
-&gt;<br>
-&gt; Next Thing Co changed the Licences/README file in their repo.<br>
-&gt; And in the u-boot.inc file used by u-boot-chip, this file is chekced w=
-ith<br>
-&gt; LIC_FILES_CHKSUM. And so it doesn&#39;t build without a modification o=
-f the md5.<br>
-&gt; That&#39;s it !<br>
-&gt;<br>
-<br>
-hmmm ok.<br>
-<br>
-&gt;<br>
-&gt; Le sam. 20 f=C3=A9vr. 2016 =C3=A0 20:09, Khem Raj &lt;<a href=3D"mailt=
-o:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; a =C3=A9=
-crit :<br>
-&gt;&gt;<br>
-&gt;&gt; On Sat, Feb 20, 2016 at 8:25 AM, Valentin LE BESCOND<br>
-&gt;&gt; &lt;<a href=3D"mailto:valentin.lebescond@gmail.com" target=3D"_bla=
-nk">valentin.lebescond@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; From: Nitnelav &lt;<a href=3D"mailto:valentin.lebescond@gmail=
-.com" target=3D"_blank">valentin.lebescond@gmail.com</a>&gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Signed-off-by: Nitnelav &lt;<a href=3D"mailto:valentin.lebesc=
-ond@gmail.com" target=3D"_blank">valentin.lebescond@gmail.com</a>&gt;<br>
-&gt;&gt; &gt; ---<br>
-&gt;&gt; &gt;=C2=A0 recipes-bsp/u-boot/<a href=3D"http://u-boot-chip_git.bb=
-" rel=3D"noreferrer" target=3D"_blank">u-boot-chip_git.bb</a> | 2 ++<br>
-&gt;&gt; &gt;=C2=A0 1 file changed, 2 insertions(+)<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; diff --git a/recipes-bsp/u-boot/<a href=3D"http://u-boot-chip=
-_git.bb" rel=3D"noreferrer" target=3D"_blank">u-boot-chip_git.bb</a><br>
-&gt;&gt; &gt; b/recipes-bsp/u-boot/<a href=3D"http://u-boot-chip_git.bb" re=
-l=3D"noreferrer" target=3D"_blank">u-boot-chip_git.bb</a><br>
-&gt;&gt; &gt; index 2342478..0b9032f 100644<br>
-&gt;&gt; &gt; --- a/recipes-bsp/u-boot/<a href=3D"http://u-boot-chip_git.bb=
-" rel=3D"noreferrer" target=3D"_blank">u-boot-chip_git.bb</a><br>
-&gt;&gt; &gt; +++ b/recipes-bsp/u-boot/<a href=3D"http://u-boot-chip_git.bb=
-" rel=3D"noreferrer" target=3D"_blank">u-boot-chip_git.bb</a><br>
-&gt;&gt; &gt; @@ -8,6 +8,8 @@ PROVIDES +=3D &quot;u-boot&quot;<br>
-&gt;&gt; &gt;=C2=A0 UBOOT_VERSION ?=3D &quot;2015.07&quot;<br>
-&gt;&gt; &gt;=C2=A0 PV =3D &quot;${UBOOT_VERSION}+git${SRCPV}&quot;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; +LIC_FILES_CHKSUM =3D<br>
-&gt;&gt; &gt; &quot;file://Licenses/README;md5=3D0507cd7da8e7ad6d6701926ec9=
-b84c95&quot;<br>
-&gt;&gt; &gt; +<br>
-&gt;&gt;<br>
-&gt;&gt; while checksumming more is merrier, it would be good to know why w=
-e<br>
-&gt;&gt; should check for this one ?<br>
-&gt;&gt;<br>
-&gt;&gt; &gt;=C2=A0 SRCREV ?=3D &quot;854d5fcc641d8d8914c03a69d7172815d5b81=
-a99&quot;<br>
-&gt;&gt; &gt;=C2=A0 BRANCH ?=3D &quot;chip/stable&quot;<br>
-&gt;&gt; &gt;=C2=A0 SRC_URI =3D<br>
-&gt;&gt; &gt; &quot;git://<a href=3D"http://github.com/NextThingCo/CHIP-u-b=
-oot.git;branch=3D$%7BBRANCH%7D" rel=3D"noreferrer" target=3D"_blank">github=
-.com/NextThingCo/CHIP-u-boot.git;branch=3D${BRANCH}</a>&quot;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; 1.9.1<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">y=
-octo@yoctoproject.org</a><br>
-&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/y=
-octo</a><br>
-</blockquote></div>
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif;font-size:16px"><div id=3D"yui_3_16_0_1_1456147178319_39986" dir=
+=3D"ltr"><span id=3D"yui_3_16_0_1_1456147178319_39434"><span id=3D"yui_3_16=
+_0_1_1456147178319_39434">In this special case the tool is Lauterbach's Tra=
+ce32. <br></span></span></div><div id=3D"yui_3_16_0_1_1456147178319_40379" =
+dir=3D"ltr"><span id=3D"yui_3_16_0_1_1456147178319_39434"><span id=3D"yui_3=
+_16_0_1_1456147178319_39434"><br></span></span></div><div id=3D"yui_3_16_0_=
+1_1456147178319_40132" dir=3D"ltr">If I understand properly each piece of o=
+utput I would eventually need, I would need to modify its origin recipes to=
+ ensure they deploy the such files in DEPLOY_DIR_IMAGE/SOME_WHERE. There I =
+could proceed in a similar way as the image_types classes.</div><div id=3D"=
+yui_3_16_0_1_1456147178319_40440" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
+_0_1_1456147178319_40203" dir=3D"ltr"><span id=3D"yui_3_16_0_1_145614717831=
+9_39434"><span id=3D"yui_3_16_0_1_1456147178319_39434">Paths=20
+are the first motivation, but physical addresses, offsets configurations wh=
+ich might could only be fetched from grepping the code could=20
+be next. Ideally I would not like to modify others recipes.<br></span></spa=
+n></div><div id=3D"yui_3_16_0_1_1456147178319_39987" dir=3D"ltr"><span id=
+=3D"yui_3_16_0_1_1456147178319_39434"><span id=3D"yui_3_16_0_1_145614717831=
+9_39434"></span>In a more generic way, is there a way a recipe accesses var=
+iables of other recipes?</span></div><br><div class=3D"qtdSeparateBR"><br><=
+br></div><div style=3D"display: block;" class=3D"yahoo_quoted"> <div style=
+=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Gr=
+ande, sans-serif; font-size: 16px;"> <div style=3D"font-family: HelveticaNe=
+ue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size:=
+ 16px;"> <div dir=3D"ltr"><font face=3D"Arial" size=3D"2"> El Lunes 22 de f=
+ebrero de 2016 19:46, Khem Raj &lt;raj.khem@gmail.com&gt; escribi=C3=B3:<br=
+></font></div>  <br><br> <div class=3D"y_msg_container">On Mon, Feb 22, 201=
+6 at 7:41 AM, Oliver &lt;<a shape=3D"rect" ymailto=3D"mailto:urnen81@yahoo.=
+es" href=3D"mailto:urnen81@yahoo.es">urnen81@yahoo.es</a>&gt; wrote:<br cle=
+ar=3D"none">&gt; I have the need to generate some scripts for a debugger to=
+ol. As a first<br clear=3D"none">&gt; approach, these generated scripts cou=
+ld contain paths on where specific<br clear=3D"none">&gt; binary files are =
+stored on the file system.<br clear=3D"none">&gt;<br clear=3D"none">&gt; Su=
+ch purpose has been partially fulfilled with a recipe implementing the<br c=
+lear=3D"none">&gt; do_compile task to generate those files, assuming not im=
+plementing the<br clear=3D"none">&gt; deploying tasks, nothing gets integra=
+ted in the final image.<br clear=3D"none">&gt;<br clear=3D"none">&gt; There=
+fore the debugger tool could go to build/work/temp/=E2=80=A6/myrecipe/=E2=
+=80=A6<br clear=3D"none">&gt; (WORKDIR of the recipe) as a startpoint for s=
+uch scripts.<br clear=3D"none">&gt;<br clear=3D"none">&gt; 2 Questions:<br =
+clear=3D"none">&gt;<br clear=3D"none">&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; There would be a better solution for this task?<br clear=3D"none">&gt; =
+-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The task has not been as successfully a=
+s expected. Ideally I<br clear=3D"none">&gt; would access variables of othe=
+r recipes to know where they are their<br clear=3D"none">&gt; output/interm=
+ediate files. E.g. location of an elf file for u-boot. Is there<br clear=3D=
+"none">&gt; any way around this?<br clear=3D"none">&gt;<br clear=3D"none"><=
+br clear=3D"none">There are ways implemented e.g. you can generate an image=
+ tarball in two pieces<br clear=3D"none">1. binaries<br clear=3D"none">2. A=
+ssociated debug info and symbols<br clear=3D"none"><br clear=3D"none">The u=
+ntar both in same place.<br clear=3D"none"><br clear=3D"none">Point your cr=
+oss gdb to this location via setting appropriate sysroot<br clear=3D"none">=
+in .gdbinit<br clear=3D"none">and that will be it.<br clear=3D"none"><br cl=
+ear=3D"none">However its not clear if thats what you are looking for. If yo=
+u want to point to<br clear=3D"none">components build directory instead of =
+a full rootfs then you have to enhacne<br clear=3D"none">the .gdbinit a bit=
+ more.<br clear=3D"none"><br clear=3D"none">I am assuming that gdb is the d=
+ebugging tool you are trying to use<div class=3D"yqt2053857404" id=3D"yqtfd=
+91284"><br clear=3D"none"><br clear=3D"none">&gt; Regards<br clear=3D"none"=
+>&gt;<br clear=3D"none">&gt; --<br clear=3D"none">&gt; ____________________=
+___________________________<br clear=3D"none">&gt; yocto mailing list<br cl=
+ear=3D"none">&gt; <a shape=3D"rect" ymailto=3D"mailto:yocto@yoctoproject.or=
+g" href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br cle=
+ar=3D"none">&gt; <a shape=3D"rect" href=3D"https://lists.yoctoproject.org/l=
+istinfo/yocto" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yo=
+cto</a><br clear=3D"none">&gt;</div><br><br></div>  </div> </div>  </div></=
+div></body></html>
 
---001a1145bb927eee7e052c6cbeec--
+------=_Part_13393476_995439419.1456222556518--
