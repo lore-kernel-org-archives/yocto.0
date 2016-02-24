@@ -1,74 +1,67 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0CDCE00A9C; Wed, 24 Feb 2016 13:31:55 -0800 (PST)
+	id 64169E00B3A; Wed, 24 Feb 2016 13:44:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
+	*      [209.85.192.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B65C0E00948;
-	Wed, 24 Feb 2016 13:31:52 -0800 (PST)
-Received: by mail-pf0-f171.google.com with SMTP id c10so20474743pfc.2;
-	Wed, 24 Feb 2016 13:31:52 -0800 (PST)
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 036CEE00A92
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 13:44:49 -0800 (PST)
+Received: by mail-qg0-f47.google.com with SMTP id b35so25594696qge.0
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 13:44:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=isn1P1sCD6xfHWdpF6GqQiMPpvdaa8tdDujeRZcSp2I=;
-	b=Jl3He8fyTo8O1wn1vILXC2aEw5RKOS4s9X1P0pA7u+1zolXAXV0PgW779aPnOTknCo
-	1yYHHDMDpFUaHxhpV4CAzheACJQhH67NQNHAqcwpC1x0b+Be+0hji1kGAn9dLDxp2r3Y
-	/o5mv4Z1I4eEz9zWey8c/5Ki7i+lI7Dx5WrpmSKaoxEHbjfjvV81+D1MlAU7jlU/Xt7i
-	u3U75/U8HrxbTeCsWRhmLcKOd8OsBtXRsyZyJdLGlQpxLRNjBgTGEX5XMWNE4Krr8i6t
-	jBleCZMJ3CjXVAfLvhAzni3xu/ODSy0xFB3m6Zr7XsC17jSS4y1nVB7PpPWDE5ZCQwx8
-	+5VQ==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=+gDCi6Ch7XIuc2ZT9bOomRgUJX4znLXf4ESW5UxcB00=;
+	b=z3fmxYsBsHyTJtWFrG6YbsCrRvmb3asuyvEzeO1ul+Gn3kvnjtTL3U7TD9PNbVJmZo
+	eg5ag5nWDFyQLsMw3oIEyCTLMYt7cIe8/1LVpoPqU7nlpy//M8LOjipjfKNVARce4OBX
+	rZd16fsN1QMPAClkWHFDAWVJ8rp3r7y+UVH5XSuCQndjEJGwWeJ8GQwax7pupCGvdHro
+	/+DI8WlTFrETHMdp012sfnqEDkiCw8HY+jJU1LQlLETPFWt1bewAy0ArtwKDNJRwzj7P
+	a+BaYTFFk7ErGCIHOkcZ4tEGx5q/93mB2Z9T02hJt6D/eg9BE98isetx85oLKM4IbJma
+	J85Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=isn1P1sCD6xfHWdpF6GqQiMPpvdaa8tdDujeRZcSp2I=;
-	b=NuhAKV2nGr43wdzBE8Ed/Spoelx1ZpQFT6v9ckm7IauHohiAy87MjzpprzUtWTjBjT
-	/ljHWc4iIzgQN4Pw+MYvGcyGJNGWsXK3nIvchgfcfPFyn+B5n2U/DOeKLN/vl1ZFGirM
-	/Z04o01Eeyav+nR5o9g7bK3m084QHlC0ovEiqjhHPN2hCAcVyhEDD9+8QnNtBFJILcwF
-	hln0KxGlCXTs1qgmi9EsjUej9CqPBXQJpr2Do1NTRa+dE1V3ZFknZiEI2vAXK6hTyhcQ
-	ClNcXxfhnQRSeJDbUtREpmnisp4Qf7uhz5Bv08W0Xe9vk+3cEvwDZXVm/y+yDSe/5o6G
-	nGDA==
-X-Gm-Message-State: AG10YORoHSulTXJNgt05FZgm1DDzG4Imd5eygY/O1FheSRTQ6PI6ZGFxMYX2RLMF10X3RA==
-X-Received: by 10.98.64.26 with SMTP id n26mr57921618pfa.149.1456349512425;
-	Wed, 24 Feb 2016 13:31:52 -0800 (PST)
-Received: from Akusters-laptop.local (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by smtp.googlemail.com with ESMTPSA id
-	m5sm7105662pfi.84.2016.02.24.13.31.50
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 24 Feb 2016 13:31:50 -0800 (PST)
-To: Philip Balister <philip@balister.org>, akuster <akuster@mvista.com>,
-	Jeff Osier-Mixon <jefro@jefro.net>,
-	Yocto Project <yocto@yoctoproject.org>, yocto-announce@yoctoproject.org
-References: <CA+YB3rYvuwFo1WDCQzO4vzhXGT05Nd7dThwdFRv3xhZ3yxAUOQ@mail.gmail.com>
-	<56A91153.20901@mvista.com> <56A93B76.7070506@balister.org>
-	<56CC8E79.50200@gmail.com> <56CDE328.4090708@balister.org>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <56CE214C.7040002@gmail.com>
-Date: Wed, 24 Feb 2016 13:31:56 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:content-type;
+	bh=+gDCi6Ch7XIuc2ZT9bOomRgUJX4znLXf4ESW5UxcB00=;
+	b=mzlXtNugQAsvFxgqIzJp4dTdkbuIGn14hBkFYUCEezXjjZ29zOJ1UQkKbH+45HGABH
+	VHNdZPgw9vL6d0usEIRzwQmvaiRuDkO9j8rDfyskzbydl1qQyL1ERx4GFOF8F0tMPO7m
+	txmOFqPUqk5uy38K690cClRDfSjZpkP2DgaQifK/MaJBM4UdeHnKTFyG//0m0W5zalge
+	raiJJjkWuZZHLSH6X1AOnPPvr8rIEcQA3Jp50ZF/DL/Xk6gJgarB2Qu5X0UKNONP3dmu
+	k5Ppn1ZOPihXGOg5N9fYqKDVlu5X4e/l+xlLVVr9z+154PZBZEe5QPzBl9vHzWL0OLph
+	6+UA==
+X-Gm-Message-State: AG10YOTWLnttYXdOIoNVG6nNgbQWxNjaNPWnoXscGwZ7ExwVR9K9ZPUKMQguObhH+erPuNr9bl3+AjxDgrpXFA==
 MIME-Version: 1.0
-In-Reply-To: <56CDE328.4090708@balister.org>
-Subject: Re: Embedded Linux Conference, YP DevDay, and OEDAM
+X-Received: by 10.140.104.234 with SMTP id a97mr4227145qgf.57.1456350288918;
+	Wed, 24 Feb 2016 13:44:48 -0800 (PST)
+Received: by 10.55.130.196 with HTTP; Wed, 24 Feb 2016 13:44:48 -0800 (PST)
+Received: by 10.55.130.196 with HTTP; Wed, 24 Feb 2016 13:44:48 -0800 (PST)
+In-Reply-To: <20160224202824.GA5109@ad.chargestorm.se>
+References: <1454173548-5806-1-git-send-email-raj.khem@gmail.com>
+	<20160223210251.GC10598@ad.chargestorm.se>
+	<CALbNGRSLRGvmdTNg6hF8YwGXRPza5Xn8sLLjrcgOrT+B1--+yA@mail.gmail.com>
+	<20160224202824.GA5109@ad.chargestorm.se>
+Date: Wed, 24 Feb 2016 16:44:48 -0500
+Message-ID: <CAMKF1soW-j3CztWY2gYy=hCGz0O9pV6iLqveAQTbvREvOj=0DQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Adjust for libexecdir changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,67 +73,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Feb 2016 21:31:55 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Feb 2016 21:44:51 -0000
+Content-Type: multipart/alternative; boundary=001a11352ee2a3c2f2052c8af999
 
-On 2/24/16 9:06 AM, Philip Balister wrote:
-> On 02/23/2016 11:53 AM, akuster808 wrote:
->>
->> On 01/27/2016 01:49 PM, Philip Balister wrote:
->>> On 01/27/2016 07:49 PM, akuster wrote:
->>>>
->>>> On 01/27/2016 10:15 AM, Jeff Osier-Mixon wrote:
->>>>> If you are planning to attend the Embedded Linux Conference in San
->>>>> Diego this April, I wanted to let you know about the Yocto Project
->>>>> Developer Day that the team is planning. This will be similar to
->>>>> previous DevDays, with hands-on training in both introductory and
->>>>> advanced tracks. The day will happen just after ELC, on April 7 at the
->>>>> Marriott in downtown San Diego, just across from the ELC venue. We'll
->>>>> have more details posted later this week.
->>>>>
->>>>> The project is also a sponsor for the event and we will have a booth.
->>>>> If you have something cool that you have been working on and would
->>>>> like to show it off in the booth during the conference, let me know
->>>>> and we'll see what we can do to make some space for your project.
->>>> I will be bring at least one demo. Not sure if its cool.
->>>>
->>>>> For those also in the OpenEmbedded community, there will be an OE
->>>>> developer's meeting and working session on Friday, April 8. This is a
->>>>> working session for OE members (not an educational session, sorry!)
->>>>> and space is limited, so if you plan to attend, please let me know so
->>>>> I can plan space accordingly.
->>>> I will be there. I take it there will be a wiki sigh up like before?
->>> Yep, I'm on the road, but will copy the last OE developer meeting to
->>> start to page. If you do not have a wiki account go ahead and make on.
->> Is there an OEDAM page yet?
-> There is now. Needs work still.
+--001a11352ee2a3c2f2052c8af999
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Feb 24, 2016 1:30 PM, "Anders Darander" <anders@chargestorm.se> wrote:
 >
-> http://openembedded.org/wiki/OEDAM_2016
+> * Andreas M=C3=BCller <schnitzeltony@googlemail.com> [160223 22:38]:
+> > > * Khem Raj <raj.khem@gmail.com> [160130 18:07]:
+> > >
+> > >> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc
+b/recipes-kernel/linux/linux-raspberrypi.inc
+> > >> index 70e8bfe..0798788 100644
+> > >> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+> > >> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+> > >> @@ -60,7 +60,7 @@ do_rpiboot_mkimage() {
+> > >>      if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage" ; then
+> > >>          if test -n "${KERNEL_DEVICETREE}"; then
+> > >>              # Add RPi bootloader trailer to kernel image to enable
+DeviceTree support
+> > >> -            ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg
+--dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
+> > >> +            ${STAGING_DIR_NATIVE}${libexecdir}/mkknlimg --dtok
+${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
+> > >>          fi
+> > >>      fi
+> > >>  }
+> > This patch is mandatory but there was a serial with additional fixes
+> > send by Maciej Borzecki on Feb 2nd. I think this is worth taken into
+> > account.
+> >
 >
->>> Accounts need to be approved by a human now, the spammers were getting
->>> bad again :(
->> Submitted a login request a month ago and no email or response.
->>
-> Email notifications have been funny, but your account is there. Let me
-> know if you are still having problems.
-
-nope. works now.
-
-thanks
-Armin
+> Yes, that's right.
 >
-> Philip
+> If the rest of the patches in that series is non-controversial, could we
+> have them applied? Otherwise, could we have Khem's patch applied, and
+> the other series rebased upon that?
 >
->> I am not a bot.
->>
->> - Armin
->>> Philip
->>>
->>>
->>>
->>>> - armin
->>>>> thanks!
->>>>>
 
+This will also make layer incompatible with jethro and older releases. So
+before applying this patch jethro has to branch out
 
+> We've had the master branch non-building for quite a while now...
+>
+> I'm just keen to get either of those patches applied to
+> meta-raspberrypi. I'd like to avoid having to use a local fork as much
+> as possible...
+>
+> Cheers,
+> Anders
+>
+> --
+> Anders Darander, Senior System Architect
+> ChargeStorm AB / eStorm AB
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--001a11352ee2a3c2f2052c8af999
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr"><br>
+On Feb 24, 2016 1:30 PM, &quot;Anders Darander&quot; &lt;<a href=3D"mailto:=
+anders@chargestorm.se">anders@chargestorm.se</a>&gt; wrote:<br>
+&gt;<br>
+&gt; * Andreas M=C3=BCller &lt;<a href=3D"mailto:schnitzeltony@googlemail.c=
+om">schnitzeltony@googlemail.com</a>&gt; [160223 22:38]:<br>
+&gt; &gt; &gt; * Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khe=
+m@gmail.com</a>&gt; [160130 18:07]:<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; diff --git a/recipes-kernel/linux/linux-raspberrypi.inc =
+b/recipes-kernel/linux/linux-raspberrypi.inc<br>
+&gt; &gt; &gt;&gt; index 70e8bfe..0798788 100644<br>
+&gt; &gt; &gt;&gt; --- a/recipes-kernel/linux/linux-raspberrypi.inc<br>
+&gt; &gt; &gt;&gt; +++ b/recipes-kernel/linux/linux-raspberrypi.inc<br>
+&gt; &gt; &gt;&gt; @@ -60,7 +60,7 @@ do_rpiboot_mkimage() {<br>
+&gt; &gt; &gt;&gt;=C2=A0 =C2=A0 =C2=A0 if test &quot;x${KERNEL_IMAGETYPE}&q=
+uot; !=3D &quot;xuImage&quot; ; then<br>
+&gt; &gt; &gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if test -n &quot;${KER=
+NEL_DEVICETREE}&quot;; then<br>
+&gt; &gt; &gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Add RP=
+i bootloader trailer to kernel image to enable DeviceTree support<br>
+&gt; &gt; &gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${STAGING_DIR=
+_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTP=
+UT}<br>
+&gt; &gt; &gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${STAGING_DIR=
+_NATIVE}${libexecdir}/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}<br>
+&gt; &gt; &gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; &gt; &gt;&gt;=C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; &gt; &gt;&gt;=C2=A0 }<br>
+&gt; &gt; This patch is mandatory but there was a serial with additional fi=
+xes<br>
+&gt; &gt; send by Maciej Borzecki on Feb 2nd. I think this is worth taken i=
+nto<br>
+&gt; &gt; account.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; Yes, that&#39;s right.<br>
+&gt;<br>
+&gt; If the rest of the patches in that series is non-controversial, could =
+we<br>
+&gt; have them applied? Otherwise, could we have Khem&#39;s patch applied, =
+and<br>
+&gt; the other series rebased upon that?<br>
+&gt;</p>
+<p dir=3D"ltr">This will also make layer incompatible with jethro and older=
+ releases. So before applying this patch jethro has to branch out</p>
+<p dir=3D"ltr">&gt; We&#39;ve had the master branch non-building for quite =
+a while now...<br>
+&gt;<br>
+&gt; I&#39;m just keen to get either of those patches applied to<br>
+&gt; meta-raspberrypi. I&#39;d like to avoid having to use a local fork as =
+much<br>
+&gt; as possible...<br>
+&gt;<br>
+&gt; Cheers,<br>
+&gt; Anders<br>
+&gt;<br>
+&gt; --<br>
+&gt; Anders Darander, Senior System Architect<br>
+&gt; ChargeStorm AB / eStorm AB<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
+s.yoctoproject.org/listinfo/yocto</a><br>
+</p>
+
+--001a11352ee2a3c2f2052c8af999--
