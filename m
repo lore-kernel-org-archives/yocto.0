@@ -1,35 +1,65 @@
-Return-Path: <j.gueytat@cdssoft.studiel.fr>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98454E00D2B; Wed, 24 Feb 2016 07:29:57 -0800 (PST)
+	id 3341DE00D2B; Wed, 24 Feb 2016 07:36:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [5.135.56.197 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.studiel.fr (mail.studiel.fr [5.135.56.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2913E008C1
-	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 07:29:52 -0800 (PST)
-Received: from server.exchange.local ([10.151.0.118]) by server.exchange.local
-	([10.151.0.118]) with mapi id 14.02.0247.003;
-	Wed, 24 Feb 2016 16:29:50 +0100
-From: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto]: git tag and PV variable
-Thread-Index: AdFvFzeS5j9T7J5/QQKtA3x9j5EGfg==
-Date: Wed, 24 Feb 2016 15:29:50 +0000
-Message-ID: <EC7BC1CD2E085743BB2AE634252C39C171A8EE@server.exchange.local>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [46.218.87.184]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88499E00C2D
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 07:36:20 -0800 (PST)
+Received: by mail-qk0-f176.google.com with SMTP id x1so7999018qkc.1
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 07:36:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=5l854eR8nDO5iGROJ3Jbr/8OlnjikfCQ6sseIuvKJBA=;
+	b=yXvsLDAlRbE9vSCEKl+7G08Ptcu8dXuhp+W3BHiH0N3URr8KR0W7Mz1jYCWdYykKaH
+	JF1GbY+H3p4ID4Hv+xJp+i6rf0lzzXky3SZsdhgRMQXgpsB2uCahOhlySWn8ej7aIb0E
+	52Cstw6wsjyG3efFqHwQzdpG1iMtOpVzvJAu7j8SHV2zq8uv/XSdc/+1gyv0gyFAIPqD
+	/SmdBxvMjivkzCT6xY10vXTbu8GpBTpXRE2KPnaL5kDZuuaDYES+HKQhkWf4U4KFtpKa
+	ru+HqYLZ507RDdyQPDklH3TIC+ZrqWj0jM5GSHBy1jo6uLPRc7qMhAKVk9pCtMPlUwRW
+	wqgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=5l854eR8nDO5iGROJ3Jbr/8OlnjikfCQ6sseIuvKJBA=;
+	b=KDLKX7ZYwB/nsJBLkHCM+vtuFQVlN44btc/1mayLpokimu+Aq1r9XoWH+IKL5eG9I+
+	yhD8jKiAjbigVDRrWDiLPJKp6RtKD840alxy7xiOoNF/ybvBS0N7Ad+fIM29qh6R5nWu
+	sVhm3ID3YY549lazjQj/jPcC5v1twqGyXXzvkCp5/tgllf5bfPMRXeW34EAp5ZI1YEvb
+	p4BCx/7rvqqEnZVrZW/kk8lJQ5CV4r+3k5Ck18fpmO09sAgfOiPCQB6b0F8K5tHL3y5C
+	mi8DEqZyk5H593Tw6cVj0vC4c3OxXvVGiNrPY8j1tGP/kp2z9KPJGxS6OJqfUWIRHSGx
+	MXLA==
+X-Gm-Message-State: AG10YOSFc43EliF+vnMO2JKkadxKZGZe14SmpMIPBvooOM0s8p/J3mr71lyOZ4SLY3Y1YwElij+pwWdgyE2Yzw==
+X-Received: by 10.55.73.199 with SMTP id w190mr48824108qka.77.1456328179234;
+	Wed, 24 Feb 2016 07:36:19 -0800 (PST)
 MIME-Version: 1.0
-Subject: : git tag and PV variable
+Received: by 10.55.130.196 with HTTP; Wed, 24 Feb 2016 07:35:49 -0800 (PST)
+In-Reply-To: <EC7BC1CD2E085743BB2AE634252C39C171A8EE@server.exchange.local>
+References: <EC7BC1CD2E085743BB2AE634252C39C171A8EE@server.exchange.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 24 Feb 2016 10:35:49 -0500
+Message-ID: <CAMKF1srvkpRBAQHfuPPTLdFtZEaRHNDeL39kWP-RqEWqJFcHbg@mail.gmail.com>
+To: GUEYTAT Julien <j.gueytat@cdssoft.studiel.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: : git tag and PV variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,187 +71,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Feb 2016 15:29:57 -0000
-X-Groupsio-MsgNum: 28599
-Content-Language: fr-FR
-Content-Type: multipart/related;
-	boundary="_004_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_";
-	type="multipart/alternative"
+X-List-Received-Date: Wed, 24 Feb 2016 15:36:24 -0000
+X-Groupsio-MsgNum: 28600
+Content-Type: multipart/related; boundary=001a114a8696cd1b8a052c85d374
 
---_004_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_
-Content-Type: multipart/alternative;
-	boundary="_000_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_"
+--001a114a8696cd1b8a052c85d374
+Content-Type: multipart/alternative; boundary=001a114a8696cd1b87052c85d373
 
---_000_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a114a8696cd1b87052c85d373
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, Feb 24, 2016 at 10:29 AM, GUEYTAT Julien <
+j.gueytat@cdssoft.studiel.fr> wrote:
 
-I have this command in my qmake pro files:
-VERSION =3D $$system(git describe --abbrev=3D0 --tags)
+> Hi,
+>
+>
+>
+> I have this command in my qmake pro files:
+>
+> VERSION =3D $$system(git describe --abbrev=3D0 --tags)
+>
+>
+>
+> I would like to have the package manager follow the tag versioning.
+>
+>
+>
+> Which means I would like to have something like:
+>
+> PV =3D "git describe --abbrev=3D0 --tags"
+>
+> SRC_URI =3D "${STUDIEL_GIT}/core.git;protocol=3Dfile;tag=3D${PV}"
+>
+>
+>
+> It does not work for sure. What is the correct way to do this ?
+>
 
-I would like to have the package manager follow the tag versioning.
-
-Which means I would like to have something like:
-PV =3D "git describe --abbrev=3D0 --tags"
-SRC_URI =3D "${STUDIEL_GIT}/core.git;protocol=3Dfile;tag=3D${PV}"
-
-It does not work for sure. What is the correct way to do this ?
-
-Thanks for sharing!
-
-Julien GUEYTAT
-Ing=E9nieur Informatique
-[Logo CDS SOFT]
-1027, avenue du Docteur Julien Lefebre BP27
-06271 Villeneuve-Loubet Cedex
-Fixe :  +33 (0) 492 024 545
-Mob :  +33(0) 617 980 383
-Fax :    +33(0) 492 024 546
-Email : j.gueytat@cdssoft.studiel.fr<mailto:j.gueytat@cdssoft.studiel.fr>
-www : www.studiel.fr<http://www.studiel.fr/>
-P Pensez Environnement, imprimez seulement si n=E9cessaire
+=E2=80=8BSRC_URI is required by fetcher and there is nothing to git describ=
+e before
+it is fetched.=E2=80=8B
+so thats your problem.
 
 
---_000_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_
-Content-Type: text/html; charset="iso-8859-1"
+
+>
+>
+> Thanks for sharing!
+>
+>
+>
+> *Julien GUEYTAT*
+>
+> *Ing=C3=A9nieur Informatique*
+>
+> [image: Logo CDS SOFT]
+>
+> 1027, avenue du Docteur Julien Lefebre BP27
+>
+> 06271 Villeneuve-Loubet Cedex
+>
+> *Fixe* :  +33 (0) 492 024 545
+> *Mob* :  +33(0) 617 980 383
+> *Fax* :    +33(0) 492 024 546
+> *Email* : j.gueytat@cdssoft.studiel.fr
+>
+> *www* : www.studiel.fr
+>
+> *P* *Pensez Environnement, imprimez seulement si n=C3=A9cessaire*
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a114a8696cd1b87052c85d373
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Webdings;
-	panose-1:5 3 1 2 1 5 9 6 7 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif"><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Wed, Feb 24, 2016 at 10:29 AM, GUEYTAT Julien <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:j.gueytat@cdssoft.studiel.fr" target=3D"_blank">j.gueytat@cds=
+soft.studiel.fr</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">I have this command in my qmake=
- pro files:<o:p></o:p></span></p>
+ pro files:<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">VERSION =3D $$system(git descri=
-be --abbrev=3D0 --tags)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+be --abbrev=3D0 --tags)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">I would like to have the packag=
-e manager follow the tag versioning.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+e manager follow the tag versioning.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Which means I would like to hav=
-e something like:<o:p></o:p></span></p>
+e something like:<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">PV =3D &quot;git describe --abb=
-rev=3D0 --tags&quot;<o:p></o:p></span></p>
+rev=3D0 --tags&quot;<u></u><u></u></span></p>
 <p class=3D"MsoNormal">SRC_URI =3D &quot;${STUDIEL_GIT}/core.git;protocol=
-=3Dfile;tag=3D${PV}&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+=3Dfile;tag=3D${PV}&quot;<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">It does not work for sure. What=
- is the correct way to do this&nbsp;?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for sharing!<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:#1F497D;mso-f=
-areast-language:FR">Julien GUEYTAT<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:#1F497D;mso-f=
-areast-language:FR">Ing=E9nieur Informatique<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:FR=
-"><img width=3D"209" height=3D"51" id=3D"Image_x0020_1" src=3D"cid:image001=
-.png@01D16F1F.FB78C3C0" alt=3D"Logo CDS SOFT"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;color:#1F497D;mso-fa=
-reast-language:FR">1027, avenue du Docteur Julien Lefebre BP27</span><b><sp=
-an style=3D"color:#1F497D;mso-fareast-language:FR"><o:p></o:p></span></b></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;color:#1F497D;mso-fa=
-reast-language:FR">06271 Villeneuve-Loubet Cedex<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><u><span style=3D"font-size:10.0pt;color:#1F497D;mso=
--fareast-language:FR">Fixe</span></u><span style=3D"font-size:10.0pt;color:=
-#1F497D;mso-fareast-language:FR"> :&nbsp; &#43;33 (0) 492&nbsp;024 545<br>
-<u>Mob</u> :&nbsp; &#43;33(0) 617 980 383<br>
-<u>Fax</u> :&nbsp;&nbsp;&nbsp; &#43;33(0) 492&nbsp;024 546<br>
-<u>Email</u> : </span><span style=3D"mso-fareast-language:FR"><a href=3D"ma=
-ilto:j.gueytat@cdssoft.studiel.fr"><span style=3D"color:#0563C1">j.gueytat@=
-cdssoft.studiel.fr</span></a><span style=3D"color:#1F497D"><o:p></o:p></spa=
-n></span></p>
-<p class=3D"MsoNormal"><u><span style=3D"font-size:10.0pt;color:#1F497D;mso=
--fareast-language:FR">www</span></u><span style=3D"font-size:10.0pt;color:#=
-1F497D;mso-fareast-language:FR"> :
-</span><span style=3D"mso-fareast-language:FR"><a href=3D"http://www.studie=
-l.fr/"><span style=3D"color:#0563C1">www.studiel.fr</span></a><span style=
-=3D"color:#1F497D"><o:p></o:p></span></span></p>
+ is the correct way to do this=C2=A0?</span></p></div></div></blockquote><d=
+iv><br></div><div><div class=3D"gmail_default" style=3D"font-family:georgia=
+,serif">=E2=80=8BSRC_URI is required by fetcher and there is nothing to git=
+ describe before it is fetched.=E2=80=8B</div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif">so thats your problem.</div><br></div><=
+div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><div lang=3D"FR" link=3D"#05=
+63C1" vlink=3D"#954F72"><div><p class=3D"MsoNormal"><span lang=3D"EN-US"><u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for sharing!<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:#1f497d">Juli=
+en GUEYTAT<u></u><u></u></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:#1f497d">Ing=
+=C3=A9nieur Informatique<u></u><u></u></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d"><img width=3D"209" hei=
+ght=3D"51" src=3D"cid:image001.png@01D16F1F.FB78C3C0" alt=3D"Logo CDS SOFT"=
+><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;color:#1f497d">1027,=
+ avenue du Docteur Julien Lefebre BP27</span><b><span style=3D"color:#1f497=
+d"><u></u><u></u></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;color:#1f497d">06271=
+ Villeneuve-Loubet Cedex<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u><span style=3D"font-size:10.0pt;color:#1f497d">Fi=
+xe</span></u><span style=3D"font-size:10.0pt;color:#1f497d"> :=C2=A0 +33 (0=
+) 492=C2=A0024 545<br>
+<u>Mob</u> :=C2=A0 +33(0) 617 980 383<br>
+<u>Fax</u> :=C2=A0=C2=A0=C2=A0 +33(0) 492=C2=A0024 546<br>
+<u>Email</u> : </span><span><a href=3D"mailto:j.gueytat@cdssoft.studiel.fr"=
+ target=3D"_blank"><span style=3D"color:#0563c1">j.gueytat@cdssoft.studiel.=
+fr</span></a><span style=3D"color:#1f497d"><u></u><u></u></span></span></p>
+<p class=3D"MsoNormal"><u><span style=3D"font-size:10.0pt;color:#1f497d">ww=
+w</span></u><span style=3D"font-size:10.0pt;color:#1f497d"> :
+</span><span><a href=3D"http://www.studiel.fr/" target=3D"_blank"><span sty=
+le=3D"color:#0563c1">www.studiel.fr</span></a><span style=3D"color:#1f497d"=
+><u></u><u></u></span></span></p>
 <p class=3D"MsoNormal"><b><span style=3D"font-size:24.0pt;font-family:Webdi=
-ngs;color:green;mso-fareast-language:FR">P</span></b><b><span style=3D"font=
--size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-lang=
-uage:FR">
+ngs;color:green">P</span></b><b><span style=3D"font-size:12.0pt;font-family=
+:&quot;Times New Roman&quot;,serif">
 </span></b><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:green;mso-fareast-language:FR">Pensez Environnement, impr=
-imez seulement si n=E9cessaire</span></b><span style=3D"color:#1F497D;mso-f=
-areast-language:FR"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+,sans-serif;color:green">Pensez Environnement, imprimez seulement si n=C3=
+=A9cessaire</span></b><span style=3D"color:#1f497d"><u></u><u></u></span></=
+p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_--
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div></div>
 
---_004_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_
+--001a114a8696cd1b87052c85d373--
+
+--001a114a8696cd1b8a052c85d374
 Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=7552;
-	creation-date="Wed, 24 Feb 2016 15:25:32 GMT";
-	modification-date="Wed, 24 Feb 2016 15:25:32 GMT"
-Content-ID: <image001.png@01D16F1F.FB78C3C0>
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
+Content-ID: <image001.png@01D16F1F.FB78C3C0>
+X-Attachment-Id: 308b0913e253e1ab_0.0.1
 
 iVBORw0KGgoAAAANSUhEUgAAANEAAAAzCAYAAAAJtu1mAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAB0ASURBVHhe
@@ -357,4 +387,4 @@ A4/o/eOl0HoewFx8PEDTErnyA3v09nlm3bO/A/+lSyc7zJicfAIBzjkfP8CEfAIBWixQV67HUH4/
 0u+Dpo0KEsxJWyPor3n0fjfJ3zrjmfD+fXEG5VJ+WQNB4AECyFsPxkx7Tv6Z62nHu+UKnygg9iNf
 RjBwnmDg/wC1ArguDtiwIAAAAABJRU5ErkJggg==
 
---_004_EC7BC1CD2E085743BB2AE634252C39C171A8EEserverexchangeloc_--
+--001a114a8696cd1b8a052c85d374--
