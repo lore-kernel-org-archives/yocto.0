@@ -1,38 +1,62 @@
-Return-Path: <philip@balister.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9FA6E0071E; Wed, 24 Feb 2016 09:06:51 -0800 (PST)
+	id D570DE006AD; Wed, 24 Feb 2016 09:10:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id BCC2DE006AD
-	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 09:06:50 -0800 (PST)
-Received: (qmail 29774 invoked by uid 1003); 24 Feb 2016 17:06:49 -0000
-Received: from unknown (HELO ?192.168.11.140?)
-	(philip@opensdr.com@71.171.13.83)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	24 Feb 2016 17:06:49 -0000
-To: akuster808 <akuster808@gmail.com>, akuster <akuster@mvista.com>,
-	Jeff Osier-Mixon <jefro@jefro.net>,
-	Yocto Project <yocto@yoctoproject.org>, yocto-announce@yoctoproject.org
-References: <CA+YB3rYvuwFo1WDCQzO4vzhXGT05Nd7dThwdFRv3xhZ3yxAUOQ@mail.gmail.com>
-	<56A91153.20901@mvista.com> <56A93B76.7070506@balister.org>
-	<56CC8E79.50200@gmail.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <56CDE328.4090708@balister.org>
-Date: Wed, 24 Feb 2016 12:06:48 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.177 listed in list.dnswl.org]
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8676BE00404
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 09:10:52 -0800 (PST)
+Received: by mail-ob0-f177.google.com with SMTP id jq7so23448862obb.0
+	for <yocto@yoctoproject.org>; Wed, 24 Feb 2016 09:10:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=3yna5AnLcCdmxUd/cMqqOZ0q4S3uVOqOCst0NY36C4o=;
+	b=anmlqVV1KiYzKphZqvg4bqvlvd+kNRjcxhH1UKNK/MxDvDbyWBnfCFz/CXhaD8PPAa
+	SRi0BL13sNSJ7YLxNHM/NyK7bzD2oh9swAGb+brG6GSEv+MUbamgdTbd2hHtTrlLdHTh
+	m7+dj8OfHmwpM+vn3iDe8a0Wgad8IXnBSL/BXsaqj9ovvRn8g28G86/QGAIJnVaHK+P7
+	bmeuO1WiMNv8fdB1vmC+8WjpzYZ8bRPMXvBgcQEUaAPlN/XjunUv/kP1iIGlOt24Kq3A
+	vz7rquVj1NdqPzF8QYIz5CIUneKEm3HSBzlQ/t/K0lQrKxdVen53svqUlc227zXZ2Z6a
+	oiyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=3yna5AnLcCdmxUd/cMqqOZ0q4S3uVOqOCst0NY36C4o=;
+	b=hFGTfXu7JVEwSFl3Qe1uhR8yfjeFw5UYTwyiYUqJX74TVcQyarAldTU5itdvFPR7ih
+	+VlRJ9cBkCYsMarQ27BHSjIxjga5v3yJ/0pFVLn6Lyq7hNBmFLOMJykXRVnKvMzE4FJ7
+	LDwhocz3oS0JVJWXhxNp4PmeDvnS9f7u+EYvrK23UwoLVsS7Yy6qfB7hwz6RkgOuIIi7
+	0V2hsIKwCbK6n6N9q/kwKuQ9rR11DTUU4D59WvB3GAHh8Gt/YdhA5DSPHboFo6xPSMaz
+	f43e1E76Ty6tzxiAuR/6AuDKZG7dOF8gv+U0aIMF5AGr0gm9NdLpkGNjM2/Y+wY0IYrr
+	RWdQ==
+X-Gm-Message-State: AG10YOSr1Drp3ExgfcZnSnygWWEF1gi1yltd16zP5EETNbfCyxLIiabmwVoTHj8/mwxHRvqs6VvMK74ECge/ioZx
+X-Received: by 10.50.43.226 with SMTP id z2mr23643456igl.78.1456333851664;
+	Wed, 24 Feb 2016 09:10:51 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <56CC8E79.50200@gmail.com>
-Subject: Re: Embedded Linux Conference, YP DevDay, and OEDAM
+Received: by 10.107.162.70 with HTTP; Wed, 24 Feb 2016 09:10:32 -0800 (PST)
+In-Reply-To: <33006C99F5A5194A9B7A7715DFA3E383EB81AF8A@ALA-MBB.corp.ad.wrs.com>
+References: <1455922741-3342-1-git-send-email-radzy@windriver.com>
+	<56CB1DC8.1030505@windriver.com>
+	<33006C99F5A5194A9B7A7715DFA3E383EB81AF8A@ALA-MBB.corp.ad.wrs.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 24 Feb 2016 17:10:32 +0000
+Message-ID: <CAJTo0LaRP_AY9X3A5pLDY72NmKNjg3M0L6QLrO+rDuRY9vpa2Q@mail.gmail.com>
+To: "Radzykewycz, T (Radzy)" <radzy@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCH] swig is in meta-oe, remove this copy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,75 +68,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Feb 2016 17:06:51 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Feb 2016 17:10:55 -0000
+Content-Type: multipart/alternative; boundary=047d7bfea0f4e763ad052c872514
 
-On 02/23/2016 11:53 AM, akuster808 wrote:
-> 
-> 
-> On 01/27/2016 01:49 PM, Philip Balister wrote:
->> On 01/27/2016 07:49 PM, akuster wrote:
->>>
->>>
->>> On 01/27/2016 10:15 AM, Jeff Osier-Mixon wrote:
->>>> If you are planning to attend the Embedded Linux Conference in San
->>>> Diego this April, I wanted to let you know about the Yocto Project
->>>> Developer Day that the team is planning. This will be similar to
->>>> previous DevDays, with hands-on training in both introductory and
->>>> advanced tracks. The day will happen just after ELC, on April 7 at the
->>>> Marriott in downtown San Diego, just across from the ELC venue. We'll
->>>> have more details posted later this week.
->>>>
->>>> The project is also a sponsor for the event and we will have a booth.
->>>> If you have something cool that you have been working on and would
->>>> like to show it off in the booth during the conference, let me know
->>>> and we'll see what we can do to make some space for your project.
->>>
->>> I will be bring at least one demo. Not sure if its cool.
->>>
->>>>
->>>> For those also in the OpenEmbedded community, there will be an OE
->>>> developer's meeting and working session on Friday, April 8. This is a
->>>> working session for OE members (not an educational session, sorry!)
->>>> and space is limited, so if you plan to attend, please let me know so
->>>> I can plan space accordingly.
->>>
->>> I will be there. I take it there will be a wiki sigh up like before?
->>
->> Yep, I'm on the road, but will copy the last OE developer meeting to
->> start to page. If you do not have a wiki account go ahead and make on.
-> 
-> Is there an OEDAM page yet?
+--047d7bfea0f4e763ad052c872514
+Content-Type: text/plain; charset=UTF-8
 
-There is now. Needs work still.
+On 22 February 2016 at 14:51, Radzykewycz, T (Radzy) <radzy@windriver.com>
+wrote:
 
-http://openembedded.org/wiki/OEDAM_2016
+> It's easy enough to update the one in meta-selinux, if the decision is
+> to keep the duplicate.  I have a 3.0.6 => 3.0.8 update ready to upload
+> to meta-oe, and I can do meta-selinux at the same time.
+>
 
-> 
->> Accounts need to be approved by a human now, the spammers were getting
->> bad again :(
-> 
-> Submitted a login request a month ago and no email or response.
-> 
+In master at least, swig isn't in meta-oe and oe-core has 3.0.8 already.
+ oe-core jethro has 3.0.6.  Basically, there's no reason for anything
+targeting jethro onwards to ship swig.
 
-Email notifications have been funny, but your account is there. Let me
-know if you are still having problems.
+Ross
 
-Philip
+--047d7bfea0f4e763ad052c872514
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-> I am not a bot.
-> 
-> - Armin
->>
->> Philip
->>
->>
->>
->>>
->>> - armin
->>>>
->>>> thanks!
->>>>
-> 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 22 February 2016 at 14:51, Radzykewycz, T (Radzy) <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:radzy@windriver.com" target=3D"_blank">radzy@windriver.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":6py" =
+class=3D"a3s" style=3D"overflow:hidden">It&#39;s easy enough to update the =
+one in meta-selinux, if the decision is<br>
+to keep the duplicate.=C2=A0 I have a 3.0.6 =3D&gt; 3.0.8 update ready to u=
+pload<br>
+to meta-oe, and I can do meta-selinux at the same time.</div></blockquote><=
+/div><br>In master at least, swig isn&#39;t in meta-oe and oe-core has 3.0.=
+8 already. =C2=A0oe-core jethro has 3.0.6.=C2=A0 Basically, there&#39;s no =
+reason for anything targeting jethro onwards to ship swig.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
+--047d7bfea0f4e763ad052c872514--
