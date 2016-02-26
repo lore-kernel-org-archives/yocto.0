@@ -1,13 +1,15 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B696E00D46; Thu, 25 Feb 2016 23:52:30 -0800 (PST)
+	id 8293AE00D48; Fri, 26 Feb 2016 00:00:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -15,58 +17,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10733E00D3A
-	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 23:52:26 -0800 (PST)
-Received: by mail-pf0-f182.google.com with SMTP id q63so47912790pfb.0
-	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 23:52:26 -0800 (PST)
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B81A1E00D3A
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 00:00:14 -0800 (PST)
+Received: by mail-pa0-f43.google.com with SMTP id ho8so48460387pac.2
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 00:00:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=zolvohg3YiLHMwATtDlsXnCb7vO6tLw3/GaG9rTsHPQ=;
-	b=anLLEMkTVH9P3rrJ7UnIqFZORQCrsp/MOagHsuIWq4YgphlttJX7fSJc53wx5zHIGm
-	LdrbM9AG5JQnKA/6tkWPov1JRTiKb3z6NbDrVIbhshPbqrPY3bwEhyFo9qq65qWjnX6E
-	vfNcS5fjpGHams6K/d76M3TTKTNwIISr+7JczUonH3aA02WEqVuCtdU1vsRkBLGAtFOC
-	axMHzDiwqiOBNZz4lI6pNqlmnu1c8nTipub1YHcNdB9R9Nkn4sgnUPOetsdccdy7V7er
-	SHIjKDef9+BbpTqsbUwxbWhzqG9wic3iTDfGGlFHeX4rHQtTqkxEAfYL5XIAyq2IXg8A
-	TseQ==
+	:to; bh=tkDMMTHAlwySHGp1CtaOvvJRzO41MfYzCgpKsZMk7tU=;
+	b=nEaoEPHjbtvFr6ipURUc4F3VrS4GiaCePy9ESKTcUUPrZju+/bRHdt4mDwBXf3A3gA
+	jIuxXil+2YsWd7uhl9zYEl8Gl1cxr1sB5z88iMghJtSRc1BnaUipWt7XLnPZPQdPbSjE
+	G22o3Xs7F2kA9iO2gDVvmjobZbREx2tH+Sy2if+x8xjhSaAIJ5oukqc2Jmh/mbt+TI/y
+	YSssvAVFx0KdcrC7kfoGTXW385Q9o8g12+Fy69AuW6oFB9tJv75KmheRobIVoujQE8Wl
+	vXMCGDY+71Cqj2QSbr1iXciUkQ/M6hscZfoWtvtOOmZrCxIAXh72S+0uOLY4PAGOjRPg
+	uerA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=zolvohg3YiLHMwATtDlsXnCb7vO6tLw3/GaG9rTsHPQ=;
-	b=boU/OWPVjAOaNu4X6+GnFjAkOIlR4TJ6erOHs9AR+j5+axMXhZoRE4ovwW0rRxBIJ7
-	Eanio9cJQRHYOuh215lN6ZQHclneZWqHDV2aFRmVnfIsnuS83KQW3HZ4ZVGn3wAQ3sOQ
-	bcmv9c22mrydJhsSn/OjVyH8YEi1g1OG1CrIjayq02GGk4a3LLDSakr+AI9CGCjmepg4
-	r20OrTYklcinMPFWanH7YMdUGFjndtPo+a/5/3QHqrD6zxDFb7t/og1EpDvBYltP8ChH
-	JbW3qqgliwhEAX0YCLyEGkckRbmCBSn+P5120mJ9L6yWlfz8NG8Vm7kBBp4982lqEkpD
-	jsTw==
-X-Gm-Message-State: AD7BkJIrm4cfp0ASJr1Q10NjjuYb0v3RLX6xr++BCIV374y6f8NKQS+IlShHn4NWOQERjA==
-X-Received: by 10.98.16.85 with SMTP id y82mr213927pfi.90.1456473146025;
-	Thu, 25 Feb 2016 23:52:26 -0800 (PST)
+	bh=tkDMMTHAlwySHGp1CtaOvvJRzO41MfYzCgpKsZMk7tU=;
+	b=QpvEY0g/2GKQrl5Rl0qwv8ckI7pmkxUjo8lbyiQIDV9HspYQFVm7ledrahzrSrfa4+
+	/3VAgNCKCJmuc2GmWtWnQdvRDs8kbvQVNuw2TmZ83tuZgU3oU8PGZEbljO4LYzXn0RKO
+	c9obuxQC4YNxkezK/SCrK/M5zIkW/UkCKZEKTKzcr4uwEmVX+GaoOsXR+UyLgAwlIuSV
+	eVf/QVMgCEvoueP47G0ScPqu/pjB12bNQqw6Ixf280n8cqe3PI1RinycuC/Qj6JIizl0
+	6tdiGzkoRdvSer44RYdXrcTSMt75Mrc8LzJv9E8r9dZLQlvAwSOt/jV3rPm0YBdwqiY/
+	BY1Q==
+X-Gm-Message-State: AD7BkJKCAT/iUoRJyKf+AO4sdrlqCL21xft4uF0MkRwg7GUHClmjJKqJ9MPZA8IUp/3QQA==
+X-Received: by 10.66.190.131 with SMTP id gq3mr260940pac.42.1456473613582;
+	Fri, 26 Feb 2016 00:00:13 -0800 (PST)
 Received: from ?IPv6:2601:646:8800:5a9a:4537:747c:ca81:76b7?
 	([2601:646:8800:5a9a:4537:747c:ca81:76b7])
 	by smtp.gmail.com with ESMTPSA id
-	dg1sm17105347pad.18.2016.02.25.23.52.24
+	ss5sm17183908pab.15.2016.02.26.00.00.12
 	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 25 Feb 2016 23:52:24 -0800 (PST)
+	Fri, 26 Feb 2016 00:00:12 -0800 (PST)
 Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
 X-Pgp-Agent: GPGMail 2.6b2
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <5002400B-3C1E-4BA7-9A66-E52FC85BA07F@sierrawireless.com>
-Date: Thu, 25 Feb 2016 23:52:18 -0800
-Message-Id: <EE025BCE-0C29-44DB-83BD-8FED40604D70@gmail.com>
-References: <1456255515.10581.2.camel@sierrawireless.com>
-	<CAMKF1srU_Ewx1HzMHv+AQNhHeoy3b1L1bRvBaZ8556a8+7NLew@mail.gmail.com>
-	<56CCD461.1060505@windriver.com>
-	<1456267969.27839.3.camel@sierrawireless.com>
-	<56CCF5E8.3000005@gmail.com> <56CDDC73.1000000@windriver.com>
-	<56CDDF64.3080508@gmail.com>
-	<5002400B-3C1E-4BA7-9A66-E52FC85BA07F@sierrawireless.com>
-To: Darcy Watkins <dwatkins@sierrawireless.com>
+In-Reply-To: <CAE_REAud2o+A+HsxieiDSGB8GQT3+M7h8yfSBK9NLPTm2RERkA@mail.gmail.com>
+Date: Fri, 26 Feb 2016 00:00:06 -0800
+Message-Id: <C22CC5C2-072C-4A62-8987-867909106B55@gmail.com>
+References: <CAE_REAud2o+A+HsxieiDSGB8GQT3+M7h8yfSBK9NLPTm2RERkA@mail.gmail.com>
+To: Gaurang Shastri <gmshastri@gmail.com>
 X-Mailer: Apple Mail (2.3112)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Does CVE-2015-7547 affect eglibc?
+Subject: Re: Package generates RPM with lib${PN} - how to include in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,111 +74,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 07:52:30 -0000
-X-Groupsio-MsgNum: 28629
+X-List-Received-Date: Fri, 26 Feb 2016 08:00:16 -0000
+X-Groupsio-MsgNum: 28630
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA";
+	boundary="Apple-Mail=_57A24DE9-41BB-4D6E-BB0E-2FE820A4AFE8";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA
+--Apple-Mail=_57A24DE9-41BB-4D6E-BB0E-2FE820A4AFE8
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_914352BD-87AB-41DB-816E-F6E89BAA8677"
+
+--Apple-Mail=_914352BD-87AB-41DB-816E-F6E89BAA8677
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
-Can you describe the regressions in some more detail
 
-> On Feb 25, 2016, at 5:43 PM, Darcy Watkins =
-<dwatkins@sierrawireless.com> wrote:
+> On Feb 25, 2016, at 5:45 AM, Gaurang Shastri <gmshastri@gmail.com> =
+wrote:
 >=20
-> Be careful about rushing out fixes. We are observing regressions in =
-software triggered by changes in glibc  behaviour.
+> Hi Team,
 >=20
+> I have one package X and recipe as X.bb, which generates RPM as =
+lib${X}-*.rpm
 >=20
-> ---
+> If I want this package as part of my SDK, what entry should i write in =
+meta-toolchain.bb <http://meta-toolchain.bb/> file:
+
+meta-toolchain should not be used, it has been deprecated in favor of -c =
+populate_sdk task
+so you should create an image and add lib${X}-* to IMAGE_INSTALL and =
+then do bitbake -cpopulate_sdk
+to generate a SDK.
+
+>=20
+> I tried adding "nativesdk-X" in meta-toolchain, but everytime it fails =
+with:
+> ERROR: nativesdk-X not found in the base feeds (x86_64-nativesdk =
+noarch any all).
+>=20
+> This is because RPM generates with the name libX-*.rpm.
 >=20
 > Regards,
->=20
-> Darcy
->=20
-> Darcy Watkins
-> Staff Engineer, Firmware
-> Sierra Wireless
-> http://sierrawireless.com
-> [M3]
->=20
->> On Feb 24, 2016, at 8:57 AM, akuster808 <akuster808@gmail.com> wrote:
->>=20
->>=20
->>=20
->>> On 02/24/2016 08:38 AM, Mark Hatle wrote:
->>>> On 2/23/16 6:14 PM, akuster808 wrote:
->>>>=20
->>>>=20
->>>>> On 02/23/2016 02:52 PM, Darcy Watkins wrote:
->>>>>> On Tue, 2016-02-23 at 13:51 -0800, Mark Hatle wrote:
->>>>>>> On 2/23/16 1:53 PM, Khem Raj wrote:
->>>>>>> On Tue, Feb 23, 2016 at 2:25 PM, Darcy Watkins
->>>>>>>> CVE-2015-7547 glibc vulnerability has been published as =
-affecting glibc
->>>>>>>> since ver 2.9 (fixed in 2.23 and patched in 2.22 and 2.21).
->>>>>>>>=20
->>>>>>>> Anyone know if we need the same security fixes in eglibc?
->>>>>>>=20
->>>>>>> yes you do. Eglibc was nothing but glibc+few fixes.
->>>>>>=20
->>>>>> Yes this affects all eglibc version 2.9 and newer up to glibc =
-2.23.
->>>>>>=20
->>>>>> As far as I'm aware, this affects all Yocto Project versions up =
-to 2.0.
->>>>>=20
->>>>> I will be interested in knowing which Yocto Project versions will
->>>>> receive the fixes.
->>>>=20
->>>> Master, 2.0 and 1.8 all have the fixes.
->>>> How far back do we go in matters like this?
->>>=20
->>> Official support is current (in development) and the last two =
-releases.  So up
->>> to about a year and a half of support.
->>>=20
->>> After this point, it becomes community support.  This really means, =
-if someone
->>> in the community wants to continue support past the YP's support =
-guidelines they
->>> are welcome to do so -- but there won't be any official releases, =
-only checkins
->>> to the repository.
->>=20
->> much better explanation than mine.
->>=20
->> thanks,
->> Armin
->>>=20
->>> We have done this on some OpenSSL fixes in the past, but it was =
-based on
->>> specific requests and people submitting the fixes to be included =
-with older
->>> versions.
->>>=20
->>>> 1.7 (dizzy) I plan on doing soon. beyond that I do not know. those =
-are
->>>> all community supported.
->>>>=20
->>>> - armin
->>>>>=20
->>>>> Thanks in advance!
->>>>>=20
->>>>>> (The patch referenced by the security announcement applies to all =
-of the
->>>>>> versions of glibc I've needed to apply it to for my customers.  A =
-few per-line
->>>>>> tweaks might be necessary, but it was fairly easy.)
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+> Gaurang Shastri
 > --
 > _______________________________________________
 > yocto mailing list
@@ -190,7 +124,49 @@ few per-line
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA
+--Apple-Mail=_914352BD-87AB-41DB-816E-F6E89BAA8677
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Feb 25, 2016, at 5:45 AM, Gaurang Shastri &lt;<a =
+href=3D"mailto:gmshastri@gmail.com" class=3D"">gmshastri@gmail.com</a>&gt;=
+ wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
+dir=3D"ltr" class=3D""><div class=3D""><div class=3D""><div =
+class=3D""><div class=3D""><div class=3D""><div class=3D"">Hi Team,<br =
+class=3D""><br class=3D""></div>I have one package X and recipe as X.bb, =
+which generates RPM as lib${X}-*.rpm<br class=3D""><br class=3D""></div>If=
+ I want this package as part of my SDK, what entry should i write in <a =
+href=3D"http://meta-toolchain.bb/" class=3D"">meta-toolchain.bb</a> =
+file:<br =
+class=3D""></div></div></div></div></div></div></blockquote><div><br =
+class=3D""></div><div>meta-toolchain should not be used, it has been =
+deprecated in favor of -c populate_sdk task</div><div>so you should =
+create an image and add lib${X}-* to IMAGE_INSTALL and then do bitbake =
+-cpopulate_sdk&nbsp;</div><div>to generate a SDK.</div><br =
+class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><div =
+dir=3D"ltr" class=3D""><div class=3D""><div class=3D""><div =
+class=3D""><div class=3D""><br class=3D""></div>I tried adding =
+"nativesdk-X" in meta-toolchain, but everytime it fails with:<br =
+class=3D"">ERROR: nativesdk-X not found in the base feeds =
+(x86_64-nativesdk noarch any all).<br class=3D""><br class=3D""></div>This=
+ is because RPM generates with the name libX-*.rpm.<br class=3D""><br =
+class=3D""></div>Regards,<br class=3D""></div>Gaurang Shastri<br =
+class=3D""></div>
+-- <br class=3D"">_______________________________________________<br =
+class=3D"">yocto mailing list<br class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
+class=3D""></div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_914352BD-87AB-41DB-816E-F6E89BAA8677--
+
+--Apple-Mail=_57A24DE9-41BB-4D6E-BB0E-2FE820A4AFE8
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -201,9 +177,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlbQBDcACgkQuwUzVZGdMxSRYwCcDI+HRKhZqi5wMg+SEgj3TnFF
-o1EAnAqCrlpAm+wMkGVJwor9ThRZCtlH
-=FDWc
+iEYEARECAAYFAlbQBgwACgkQuwUzVZGdMxT6hACaAs2EMl+JJ7AMnDATr6XzYFC7
+/skAn2AhY0cfNmRSc2a9esA5D4PGOLgL
+=vkCP
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA--
+--Apple-Mail=_57A24DE9-41BB-4D6E-BB0E-2FE820A4AFE8--
