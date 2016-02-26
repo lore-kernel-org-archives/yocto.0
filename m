@@ -1,60 +1,62 @@
-Return-Path: <kubiznak.petr@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD889E00DA6; Fri, 26 Feb 2016 09:56:59 -0800 (PST)
+	id 79BC0E00DA6; Fri, 26 Feb 2016 10:05:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kubiznak.petr[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86EEFE00D16
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 09:56:55 -0800 (PST)
-Received: by mail-ig0-f180.google.com with SMTP id y8so43019708igp.0
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 09:56:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=oG9sQ+ro+XWyHx1Z4INR48yb4DgP2jHLjbpqF5QH7uc=;
-	b=a+jHpK6xDd8vdbyDtZEd+NqqDZYcwpcYayFaMSbHL3G3rSbSmZ4iKa7Ee6aCYosHem
-	i676PyzBBK1dpcviHNRrinpvMlUigZGBi8ESK7n+w3No50zdRCSrZi4IRAPEvsGR0M1b
-	5AUN259USL/YjTxwIBa2iQYBZdXjmE9cF7D9SHCG+Kem+zyZKSiFEBWF4S6PYgYrKu/Z
-	2YtaWlsYAMa++k5vjFRQlw/VPBPVWzv9jOLsL2qWJq4uDrKIbt+JbO/hDNeL8FOz7WqO
-	H1lh++2stH9OUbWQYkV8ptKNQYG4airxkDf7OWvtL8uECn2XMb27TM/dpRoafaF4YVMX
-	OmqA==
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8661E00D16
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 10:05:09 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id a4so80185491wme.1
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 10:05:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=k5xT2Ef1Cdd82a4Apd/BFkQwC+Kofq19xc0Stb+f6EI=;
+	b=AupB1euuoUa4UxCGBFFx12Vv1sYjwnL8/YvW+V+XiWGGIC3hinA5c3liJhi2tjnVej
+	AtRfVKNPmjnzS6vEg62+Fnd2ekSZEDCSPcSfRIwk2+ocqQrcYsMpR95fuFOpf610H4TN
+	4oHXJSRxjfgXa0cl550JPSKFf7RvWhi9/wrKRPmUwdRucgxzwUAO+a5Na2o8fTFYVfxG
+	S/nZzyCsBpPuvmdU0+HxUiZswCwagTkUOaXJcnXK/KiqIevDG5nS2LiFUeaNk+wWzxJq
+	2bVyzG9VMuy6zpGO03FF04bh3tP/iUwPwcUgHYdcCXNXWEb/zY3B51m+udtQCJkNFF+s
+	cTmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=oG9sQ+ro+XWyHx1Z4INR48yb4DgP2jHLjbpqF5QH7uc=;
-	b=KKDUfQfktEyEvn7GdA2LVgQ6xRLK1O+BtFqbA9OHnt6FTjDTzldw61k16kJZatcbV1
-	qqHLGPqpT+lJTe7bOzSjDdS8hwiAVa1fUutshjbuQ+TQMH5CGn5DPN5ssok0+DIeTqrJ
-	gMaAOme0vfu0rli9m0eWjbAl/kVGpNbIVyt8DZ26P4YzTrJ3I0T3NFyXrf25Q62KDXhc
-	+M/kp4c3NnmgMjYsoGybKuOKjQe109caFo7KsPPD/X0RnQCpeM+0wKSp6E0N2dGUGsO/
-	VuYViuwXMi0OGhWkz84ksFb7EU++LEcopji9EyZOJt3vZlxW9l8JzpLqbc6utoaYIQgz
-	8DWQ==
-X-Gm-Message-State: AD7BkJI1vtoMNaVe4w5MErTOkklBLMi+8TdQsrCzaD2xhy+eyZNz3ZqB7y55N8u9V3KfebERV2Mulw7H9cl03Q==
-X-Received: by 10.50.150.97 with SMTP id uh1mr3963659igb.39.1456509415060;
-	Fri, 26 Feb 2016 09:56:55 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=k5xT2Ef1Cdd82a4Apd/BFkQwC+Kofq19xc0Stb+f6EI=;
+	b=GMo6OODThnLIpp80L7008IuIgWfYedc7+n2/2lru8eGC19DIq1uvOK32KzQ1xl8c1E
+	0b2kDvPGQENRzB/FGT8IuM/adRS0g+cdez1Og/ogflAFy1AqpkJeggMVxyud2MXFUvxY
+	tgHN2C1a+3X6pQIEi+alX0oBbL+KD6x/nhWCj1XmjNBGM2VvBg7E3t+2pKpe5Lo/oQU5
+	uCAqX2iJY58jR67C458E8mv4z1brnSneRaGJjAYKqgHBrCrLj/HAEywHwXL9TuvnorO3
+	DI6TrQQpE8yzwm4+9f/wUnN+ySCa6rKff9WVE6ThKe4e+o+xIHZpB4SM9TWI/ZgClSUl
+	dvHw==
+X-Gm-Message-State: AD7BkJIpMmtjzWPjwerflFonTA6W5c4LGVB21h1oK3lX9aGdxCQG1Qfr5VFORIcrkMRcSqE2bXD6i0wCS2XksQ==
+X-Received: by 10.28.73.136 with SMTP id w130mr4783387wma.36.1456509908465;
+	Fri, 26 Feb 2016 10:05:08 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.79.113.29 with HTTP; Fri, 26 Feb 2016 09:56:35 -0800 (PST)
-From: =?UTF-8?B?UGV0ciBLdWJpesWIw6Fr?= <kubiznak.petr@gmail.com>
-Date: Fri, 26 Feb 2016 18:56:35 +0100
-Message-ID: <CAD+X0UQFHqgJTi-A3aOC7dD_Lb6n6Yz9aen6yA4OdBVHvxpCYw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Changing file group from an image recipe
+Received: by 10.28.126.135 with HTTP; Fri, 26 Feb 2016 10:04:28 -0800 (PST)
+X-Originating-IP: [2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d]
+In-Reply-To: <876d8b2d6f4549cebde5792d84860bee@technux.se>
+References: <1456478817-7221-1-git-send-email-net147@gmail.com>
+	<20160226171446.GA4154@resin.home>
+	<876d8b2d6f4549cebde5792d84860bee@technux.se>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 26 Feb 2016 19:04:28 +0100
+Message-ID: <CAK18fxGKNWMUh=SmKe+3=GF3ttayvm_DyhtzFztBxvfzdj64sg@mail.gmail.com>
+To: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: fix path to mkknlimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,77 +68,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 17:56:59 -0000
-Content-Type: multipart/alternative; boundary=001a1137f7144bf969052cb006ca
+X-List-Received-Date: Fri, 26 Feb 2016 18:05:12 -0000
+Content-Type: multipart/alternative; boundary=001a114b7e0cb4d46f052cb023a4
 
---001a1137f7144bf969052cb006ca
+--001a114b7e0cb4d46f052cb023a4
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-In dizzy, I have a problem with changing a file group from an image recipe.
-I create a user admin from an application recipe, say app.bb:
-...
-inherit pkgconfig cmake update-rc.d useradd
-USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "admin"
-...
+--
+Andrei Gherzan
 
-Creating the user works fine. Now I need to grant the admin user rights to
-reboot the system. I tested I need to change the group ownership of
-/sbin/halt.sysvinit and move "/sbin/reboot" from /etc/busybox.links.nosuid
-to /etc/busybox.links.suid. So I do the following in the image recipe, say
-myimage.bb:
-...
-inherit core-image
-ROOTFS_POSTPROCESS_COMMAND += "set_admin_rights;"
-set_admin_rights () {
-  # admin needs to be able to reboot the system
-  echo /sbin/reboot >> ${IMAGE_ROOTFS}/${sysconfdir}/busybox.links.suid
-  sed -i '/\/sbin\/reboot/d'
-${IMAGE_ROOTFS}/${sysconfdir}/busybox.links.nosuid
-  chgrp admin ${IMAGE_ROOTFS}/sbin/halt.sysvinit
+On Fri, Feb 26, 2016 at 6:48 PM, Petter Mab=C3=A4cker <petter@technux.se> w=
+rote:
+
+> 2016-02-26 18:14 skrev Andrei Gherzan:
+>
+> On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:
+>
+> The path had libexecdir hardcoded so it was no longer correct when
+> libexecdir was changed in meta/conf/bitbake.conf from ${libdir}/${BPN} to
+> ${prefix_native}/libexec for nativesdk recipes. Fixes "No such file or
+> directory" error when executing do_rpiboot_mkimage. Signed-off-by: Jonath=
+an
+> Liu <net147@gmail.com> --- recipes-kernel/linux/linux-raspberrypi.inc | 2
+> +- 1 file changed, 1 insertion(+), 1 deletion(-) diff --git
+> a/recipes-kernel/linux/linux-raspberrypi.inc
+> b/recipes-kernel/linux/linux-raspberrypi.inc index 70e8bfe..8c7c46c 10064=
+4
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
+> b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@
+> do_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage" ; th=
+en
+> if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloader trailer to
+> kernel image to enable DeviceTree support -
+> ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT=
 }
+> ${KERNEL_OUTPUT} + ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok
+> ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} fi fi } -- 2.7.1
+>
+> Back alive. testing this.
+> --
+> Andrei Gherzan
+>
+>
+>  Hi,
+>
+> I think we should use the older patchset from *Maciej Borzecki * (that
+> solves this and some other minor stuffs) instead. It also keeps the
+> rpi-mkimage structure:
+>
+>
+> https://lists.yoctoproject.org/pipermail/yocto/2016-February/028271.html
+>
+> BR Petter
+>
+Very good catch Petter. I'll test that PR.
 
-Anyway, this does not work, and I get the following output during bitbaking:
-WARNING: log_check: warning: group admin does not exist - using root
-
-It looks like the myimage.bb recipe does not know about the created admin
-user, even though it is known in app.bb and changing some files' group
-locally in that recipe works as expected.
-
-Can someone please suggest how to properly change the group, or how to
-achieve required functionality more elegantly?
-
-Thanks, Petr
-
---001a1137f7144bf969052cb006ca
+--001a114b7e0cb4d46f052cb023a4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>In dizzy, I have a problem with changing a file group=
- from an image recipe. I create a user admin from an application recipe, sa=
-y <a href=3D"http://app.bb">app.bb</a>:<br>...<br>inherit pkgconfig cmake u=
-pdate-rc.d useradd<br>USERADD_PACKAGES =3D &quot;${PN}&quot;<br>USERADD_PAR=
-AM_${PN} =3D &quot;admin&quot;<br>...<br><br></div>Creating the user works =
-fine. Now I need to grant the admin user rights to reboot the system. I tes=
-ted I need to change the group ownership of /sbin/halt.sysvinit and move &q=
-uot;/sbin/reboot&quot; from /etc/busybox.links.nosuid to /etc/busybox.links=
-.suid. So I do the following in the image recipe, say <a href=3D"http://myi=
-mage.bb">myimage.bb</a>:<br>...<br><div><div>inherit core-image<br>ROOTFS_P=
-OSTPROCESS_COMMAND +=3D &quot;set_admin_rights;&quot;<br>set_admin_rights (=
-) {<br>=C2=A0 # admin needs to be able to reboot the system<br>=C2=A0 echo =
-/sbin/reboot &gt;&gt; ${IMAGE_ROOTFS}/${sysconfdir}/busybox.links.suid<br>=
-=C2=A0 sed -i &#39;/\/sbin\/reboot/d&#39; ${IMAGE_ROOTFS}/${sysconfdir}/bus=
-ybox.links.nosuid<br>=C2=A0 chgrp admin ${IMAGE_ROOTFS}/sbin/halt.sysvinit<=
-br>}<br><br clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"l=
-tr"><div>Anyway, this does not work, and I get the following output during =
-bitbaking:<br>WARNING: log_check: warning: group admin does not exist - usi=
-ng root<br><br></div><div>It looks like the <a href=3D"http://myimage.bb">m=
-yimage.bb</a> recipe does not know about the created admin user, even thoug=
-h it is known in <a href=3D"http://app.bb">app.bb</a> and changing some fil=
-es&#39; group locally in that recipe works as expected.<br><br></div><div>C=
-an someone please suggest how to properly change the group, or how to achie=
-ve required functionality more elegantly?<br><br></div><div>Thanks, Petr</d=
-iv><br></div></div></div>
-</div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br clear=3D"all"><div><div cla=
+ss=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>--</div>=
+Andrei Gherzan</div></div></div></div></div>
+<br><div class=3D"gmail_quote">On Fri, Feb 26, 2016 at 6:48 PM, Petter Mab=
+=C3=A4cker <span dir=3D"ltr">&lt;<a href=3D"mailto:petter@technux.se" targe=
+t=3D"_blank">petter@technux.se</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;bo=
+rder-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">=
+<u></u>
+<div style=3D"font-family:Helvetica,Arial,sans-serif"><div><div class=3D"h5=
+">
+<p>2016-02-26 18:14 skrev Andrei Gherzan:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px;border-left-color:rgb(1=
+6,16,255);border-left-width:2px;border-left-style:solid;margin-left:5px;wid=
+th:100%">
+<pre>On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px;border-left-color:rgb(1=
+6,16,255);border-left-width:2px;border-left-style:solid;margin-left:5px;wid=
+th:100%">The path had libexecdir hardcoded so it was no longer correct when=
+ libexecdir was changed in meta/conf/bitbake.conf from ${libdir}/${BPN} to =
+${prefix_native}/libexec for nativesdk recipes. Fixes &quot;No such file or=
+ directory&quot; error when executing do_rpiboot_mkimage. Signed-off-by: Jo=
+nathan Liu &lt;<a href=3D"mailto:net147@gmail.com" target=3D"_blank">net147=
+@gmail.com</a>&gt; --- recipes-kernel/linux/linux-raspberrypi.inc | 2 +- 1 =
+file changed, 1 insertion(+), 1 deletion(-) diff --git a/recipes-kernel/lin=
+ux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc index=
+ 70e8bfe..8c7c46c 100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +=
+++ b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@ do_rpiboo=
+t_mkimage() { if test &quot;x${KERNEL_IMAGETYPE}&quot; !=3D &quot;xuImage&q=
+uot; ; then if test -n &quot;${KERNEL_DEVICETREE}&quot;; then # Add RPi boo=
+tloader trailer to kernel image to enable DeviceTree support - ${STAGING_DI=
+R_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUT=
+PUT} + ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERN=
+EL_OUTPUT} fi fi } -- 2.7.1</blockquote>
+<pre>Back alive. testing this.
 
---001a1137f7144bf969052cb006ca--
+<span>--=20
+Andrei Gherzan<br><br><br>
+</span></pre>
+</blockquote>
+</div></div><p>Hi,<br><br>I think we should use the older patchset from <em=
+>Maciej Borzecki </em> (that solves this and some other minor stuffs) inste=
+ad. It also keeps the rpi-mkimage structure:<br><br><br><a href=3D"https://=
+lists.yoctoproject.org/pipermail/yocto/2016-February/028271.html" target=3D=
+"_blank">https://lists.yoctoproject.org/pipermail/yocto/2016-February/02827=
+1.html</a><br><br>BR Petter</p>
+</div>
+</blockquote></div>Very good catch Petter. I&#39;ll test that PR.<br></div>=
+</div>
+
+--001a114b7e0cb4d46f052cb023a4--
