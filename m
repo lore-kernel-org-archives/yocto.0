@@ -1,37 +1,65 @@
-Return-Path: <philip@balister.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 445D0E00DB1; Fri, 26 Feb 2016 12:16:28 -0800 (PST)
+	id 329C0E00DAF; Fri, 26 Feb 2016 12:59:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id B167AE00DA6
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:16:26 -0800 (PST)
-Received: (qmail 18462 invoked by uid 1003); 26 Feb 2016 20:16:25 -0000
-Received: from unknown (HELO ?192.168.11.140?)
-	(philip@opensdr.com@71.171.15.136)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	26 Feb 2016 20:16:25 -0000
-To: Rudolf J Streif <rudolf.streif@gmail.com>, yocto@yoctoproject.org
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B239E00C23
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:59:14 -0800 (PST)
+Received: by mail-ig0-f170.google.com with SMTP id z8so43805080ige.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=9vM3H/KBU22OrgWucuW00lvaX2DbWnSX7hToXMj/nBI=;
+	b=2M+nDdPpTX/ZJGJT/VFXu3EavEaSunTH6OAJoWC13X/Ubgoz2PaZeVUws2g9QaF0Mt
+	qsCdN5Z07ialxeoi7k/yjg3N8qFLuC51KnPmT22YQxSsO3SQpv/Kw+38AYwEagnoeZ0J
+	OuhNnIaOs4KZNU/tV9VDrOQZV78TK4T8ZAwQsYmoqjJQpGBB9xePxSDgKWfGwemV0Q+Z
+	wpROY+CU1ZZkoife5D8tD5h/3nys9kpd0jE9A8JuuwpcNnR4IGhA+WgdRR23v+dyUAiv
+	m3iiWwYQ29VaGqrTjSsv7twOx12qB67z+pv4wamjS8rbVVJuf0pnuHpd68OB30yGifP/
+	YCYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=9vM3H/KBU22OrgWucuW00lvaX2DbWnSX7hToXMj/nBI=;
+	b=WXCVusRNIVvGEYgMDjVDqZtEt2dAjgyPIPB0c5T2ggChwGpFeDZVZSttWTskHmgSsU
+	csfTxctzb8OOJswJyWjJ+wFwu7vmxF1Yn5og8RSaDNdgGllwFdW0BJjK3d2lbaf5LUAX
+	B579zmKoExugtCxfEW79eg8KWtky2pvrCfrKR9SPa3Or1qF0TRvzp68l+s6SoZmDdOk1
+	1LfDt7weMwTrmvwdM9DRwp8LyVIS67zvH2yT2TZm7E2YzYdT2o4IDSyIj4jlmBWgKO8M
+	+tu5gq6Ca5G67fHMCXmErSWSzfNz9Hkcdq8jRmXJbIsAu8MzcdkKF7sgaLwqTcx02lCr
+	4htg==
+X-Gm-Message-State: AD7BkJIxhP/CfNMeOg/PDYIrqfa6G2t/eHbJ1V1Uv/S7W6xN7fzSSxK4TwfwKj7lWJafmPmnDGS886luZfqXXF7w
+X-Received: by 10.50.126.8 with SMTP id mu8mr4537756igb.52.1456520354243; Fri,
+	26 Feb 2016 12:59:14 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.162.70 with HTTP; Fri, 26 Feb 2016 12:58:54 -0800 (PST)
+In-Reply-To: <56D0B298.9050108@balister.org>
 References: <1456508168.11498.95.camel@linuxfoundation.org>
 	<56D09D35.8040002@balister.org>
 	<1456512644.11498.108.camel@linuxfoundation.org>
 	<2042150.gN3rpHrprf@rjs-zotac.streifs.net>
-From: Philip Balister <philip@balister.org>
-Message-ID: <56D0B298.9050108@balister.org>
-Date: Fri, 26 Feb 2016 15:16:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
-MIME-Version: 1.0
-In-Reply-To: <2042150.gN3rpHrprf@rjs-zotac.streifs.net>
-Cc: "openembedded-core@lists.openembedded.org"
+	<56D0B298.9050108@balister.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 26 Feb 2016 20:58:54 +0000
+Message-ID: <CAJTo0LbNVZ9k5P+ugk-kg4_PBG0P8nbkJpBHjkv2XqvJrjsdyA@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf J Streif <rudolf.streif@gmail.com>,
+	"openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] Yocto Project Status WW09
 X-BeenThere: yocto@yoctoproject.org
@@ -45,50 +73,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 20:16:28 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Feb 2016 20:59:16 -0000
+Content-Type: multipart/alternative; boundary=047d7b1635bf52fd62052cb292b4
 
-On 02/26/2016 02:52 PM, Rudolf J Streif wrote:
->>>>
->>>> * We're about to try and transition meta-yocto within meta-yocto to
->>>>
->>>>   meta-poky. The amount of pain this is causing is horrible :(.
->>>
->>> Thanks for doing this. Can you summarize the pain? Are there any
->>> important lessons here?
->>
->> The key lesson is our current "migration" code in OE-Core sucks and I
->> have some patches in progress which rewrite pieces of it in a way that
->> makes it more useful. I'm therefore trying to make some positives from
->> it.
->>
->> That said, I haven't found a way to make this work without leaving a
->> dummy layer.conf in the old location since a missing layer.conf file is
->> fatal to bitbake very early on before any migration code triggers.
->>
->> More should become clear when I post the patches, I've been holding off
->> that until I actually manage a patch set that works on the
->> autobuilder...
->>
->> Patches should be out over the weekend (in time for the freeze).
-> 
-> Sounds like a lot of work and potential for breaking things with little added 
-> value other than a more consistent naming. What was the rationale for making 
-> the change, if I may ask?
+--047d7b1635bf52fd62052cb292b4
+Content-Type: text/plain; charset=UTF-8
 
-Consistent naming :) It does it make it much easier to explain what the
-meta-yocto layer is for. This has been one source of a great deal of
-confusion about how all the pieces come together.
+On 26 February 2016 at 20:16, Philip Balister <philip@balister.org> wrote:
 
-I must admit, I'm surprised this is tricky. I look forward to seeing
-what needs doing. Hopefully, it shows me things I can avoid in my work.
+> I must admit, I'm surprised this is tricky. I look forward to seeing
+> what needs doing. Hopefully, it shows me things I can avoid in my work.
+>
 
-Philip
+The moral of the story is don't rename layers if you want to maintain a
+semblance of migration.  Renaming meta-yocto to meta-poky means the
+bblayers.conf is invalid, so the migration code can't run because bitbake
+aborts too early.
 
-> 
-> Thanks,
-> :rjs
-> 
-> 
+Ross
 
+--047d7b1635bf52fd62052cb292b4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 26 February 2016 at 20:16, Philip Balister <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:philip@balister.org" target=3D"_blank">philip@balister.org</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1o9" class=
+=3D"a3s" style=3D"overflow:hidden">I must admit, I&#39;m surprised this is =
+tricky. I look forward to seeing<br>
+what needs doing. Hopefully, it shows me things I can avoid in my work.<br>=
+</div></blockquote></div><br>The moral of the story is don&#39;t rename lay=
+ers if you want to maintain a semblance of migration.=C2=A0 Renaming meta-y=
+octo to meta-poky means the bblayers.conf is invalid, so the migration code=
+ can&#39;t run because bitbake aborts too early.</div><div class=3D"gmail_e=
+xtra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--047d7b1635bf52fd62052cb292b4--
