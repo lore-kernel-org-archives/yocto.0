@@ -1,73 +1,64 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C371DE00DAF; Fri, 26 Feb 2016 11:52:08 -0800 (PST)
+	id A9A7DE00E3B; Fri, 26 Feb 2016 11:54:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5123FE00DA6
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:52:06 -0800 (PST)
-Received: by mail-pa0-f42.google.com with SMTP id ho8so57423944pac.2
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:52:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=4YM8osP17iT8FkNM12c5m1iUhK1JTv7dO7qBcMPt2fI=;
-	b=gDTyWnE5/nSLd1D5s3Yn4zI9fXaS3QxbYnIRC3bavbsTz+ag7jr2LytlEnX8i/HsXN
-	vW1x+7edfwcV7i8aATEnHb6xv9g3HSPtgWYO1EJ/G/yfOIdI+MTZpL4VSL23i9V48Zy6
-	+ZMbni3FmR3Scddieet2bKSjn/aEpF2PplPSsiaSV6Q3Cb4Vvt4jFu/Y8XPN41u5Gva1
-	7pUEdK1nN9uH7iZgkLZNL+n8mI0ykezKawz5KxVFG1qq06P5I4XAQzbv2ycWP+Enc1sX
-	v3mOdzsIre/6IjbzidSFX+inNYKlfFCCNcLYrZx9ezccbMzPcPpcNwi0Tu3Zqm4Jbx3A
-	fHcg==
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434EAE00DAF
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:53:53 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id a4so870177wme.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:53:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=+dVtr9uuZu2ro02zKYWv6pWwQ1KIzqUAE52j/0x3TDc=;
+	b=w8cgj/WpAx0DV8Swc9IVHVE/i9PpkkSB+FbL78c3gDemdHKSsAeOsGAcD9216l05fm
+	0v1YC/aXBvsLU02gq8H3F0KR3AwyPr1RAfE7THE4AaWmYHOuEtpQo4kvsPtVVSrFMoyN
+	3A3tr1VxvZAPxAuXNpufZha39QoUHjuL2kw2GoyTUbBAPE93IJs37dKy5GpRQmHMpWIj
+	OO5WGT1Ru5UkBaycKeh4NQ1dngUBa8+ODsgMjqnbNreQE3KWxHXk62y6Rop8DwCvSDgT
+	cuOWHcJdcxGDZdvMkAD1Hwdk3MX2JVxvFZlsMibqgBOTVOux8XIbbuST8tPWar4UXJkU
+	t87g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:user-agent
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	bh=4YM8osP17iT8FkNM12c5m1iUhK1JTv7dO7qBcMPt2fI=;
-	b=I4ltsdbEMG5xgGNeypuSP2WX0lTwjD8nN45P8AI6zv4WWyt30WXrkPcUt4wYqTo5K/
-	xu/Hq8s3Q9qSy+UYMdEZaNxhiv3gaF57+iQ3dy3XCrtnBM+SyZ42eiE5+GXc9rt3I45W
-	4EgvgLmJST78Cxd4euwlRI5kHfj2JzMc6M4GCqNN/9FKJ6/e4gfJP5HdTOu+7+0zQ+83
-	+egS2KOw/oze4OXavx0CMMV1z4FfENATVAYnxZ1doya0XKJOf434k5OiHwmGGDYW7xlR
-	1lL4vby003L3FHvBDG+P0bSY8Wmf31zaYIN1kGxkXwX3DJH5kM2ik6ML6QrvMFwj1NY1
-	7tIg==
-X-Gm-Message-State: AD7BkJLhpKBbEs8lh1WYwl/xnOeaBoouXum7pYONHeNVkvR5/suR2HP7KRZF7gRXn/Pf6g==
-X-Received: by 10.66.190.131 with SMTP id gq3mr4548189pac.42.1456516325974;
-	Fri, 26 Feb 2016 11:52:05 -0800 (PST)
-Received: from rjs-zotac.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=+dVtr9uuZu2ro02zKYWv6pWwQ1KIzqUAE52j/0x3TDc=;
+	b=TNbc40O7GZw6P82vnzcK48EqMaJf1zzUl8x3/nh3pJtm3ujBBpRBTnfJIOBAv2pGzc
+	cQAFpD5NRz0TtdPGExE3LtjleIIC41TsAMORpnFweiOHmDHSxjklthzMbd68pFFeQ4ob
+	BwM5Ejs/odTjBhTrWCvcv8GaxDeKPWgIvRXMA1dwn1hzrgkg8ix4PsE+8qC0Nv+TGrAT
+	lYGwuGmrEneK/b1r6jcu06sT29mgERMPWI/lw4nDuMjYhVEHvZwnKbDuk+IRcQHuZiuH
+	TxzsLqIl5mluBQFnKctAcP2PJRQ/RIzRTRn4uVyz8+h/RjFsVwsYjejd2RQDZ9LSRixY
+	TxCg==
+X-Gm-Message-State: AD7BkJIG1VOj9+AXldbhnV7V34pSUOsFZwbKmpyoTCxrd1FnHbtK9Gtz4PgVCB8xA1T/TQ==
+X-Received: by 10.194.103.5 with SMTP id fs5mr3432694wjb.42.1456516432586;
+	Fri, 26 Feb 2016 11:53:52 -0800 (PST)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
 	by smtp.gmail.com with ESMTPSA id
-	v29sm21174614pfa.31.2016.02.26.11.52.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 26 Feb 2016 11:52:04 -0800 (PST)
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Feb 2016 11:52:03 -0800
-Message-ID: <2042150.gN3rpHrprf@rjs-zotac.streifs.net>
-User-Agent: KMail/4.14.10 (Linux/4.3.5-200.fc22.x86_64+debug; KDE/4.14.14;
-	x86_64; ; )
-In-Reply-To: <1456512644.11498.108.camel@linuxfoundation.org>
-References: <1456508168.11498.95.camel@linuxfoundation.org>
-	<56D09D35.8040002@balister.org>
-	<1456512644.11498.108.camel@linuxfoundation.org>
+	jo6sm13759275wjb.48.2016.02.26.11.53.51
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 26 Feb 2016 11:53:51 -0800 (PST)
+Date: Fri, 26 Feb 2016 20:53:45 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+Message-ID: <20160226195345.GA27062@resin.home>
+References: <1454423507-25187-1-git-send-email-maciej.borzecki@open-rnd.pl>
 MIME-Version: 1.0
-Cc: "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Yocto Project Status WW09
+In-Reply-To: <1454423507-25187-1-git-send-email-maciej.borzecki@open-rnd.pl>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org, Maciek Borzecki <maciek.borzecki@gmail.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/3] libexecdir fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,38 +70,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 19:52:08 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 26 Feb 2016 19:54:00 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > > 
-> > > * We're about to try and transition meta-yocto within meta-yocto to
-> > > 
-> > >   meta-poky. The amount of pain this is causing is horrible :(.
-> > 
-> > Thanks for doing this. Can you summarize the pain? Are there any
-> > important lessons here?
-> 
-> The key lesson is our current "migration" code in OE-Core sucks and I
-> have some patches in progress which rewrite pieces of it in a way that
-> makes it more useful. I'm therefore trying to make some positives from
-> it.
-> 
-> That said, I haven't found a way to make this work without leaving a
-> dummy layer.conf in the old location since a missing layer.conf file is
-> fatal to bitbake very early on before any migration code triggers.
-> 
-> More should become clear when I post the patches, I've been holding off
-> that until I actually manage a patch set that works on the
-> autobuilder...
-> 
-> Patches should be out over the weekend (in time for the freeze).
+On Tue, Feb 02, 2016 at 03:31:44PM +0100, Maciej Borzecki wrote:
+> A couple of fixes that resolve issues with recent change of libexecdir
+> in OE-core.
+>
+> The first patch cleans up the recipe to install rpi-mkimage tools into
+> ${libexecdir}/rpi-mkimage. This preserves the original nesting of
+> rpi-mkimage under ${libdir}.
+>
+> The 2nd and 3rd patch use ${STAGING_LIBEXECDIR_NATIVE} rather than a mix
+> of ${STAGING_DIR_NATIVE}${libexecdir} to keep things clean.
+>
+> Maciej Borzecki (3):
+>   rpi-mkimage: install tools under {libexecdir}/rpi-mkimage
+>   u-boot-rpi: use STAGING_LIBEXECDIR_NATIVE for rpi-mkimage tools
+>   linux-raspberrypi: use STAGING_LIBEXECDIR_NATIVE for rpi-mkimage tools
+>
+>  recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb | 4 ++--
+>  recipes-bsp/u-boot/u-boot-rpi_git.bb       | 2 +-
+>  recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
+>
+> --
+> 2.5.0
+>
 
-Sounds like a lot of work and potential for breaking things with little added 
-value other than a more consistent naming. What was the rationale for making 
-the change, if I may ask?
+Hi,
 
-Thanks,
-:rjs
+Merged the patch set to master. Thank you.
 
+--
+Andrei Gherzan
 
