@@ -1,15 +1,13 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CCB28E00D2C; Thu, 25 Feb 2016 18:54:15 -0800 (PST)
+	id 4B696E00D46; Thu, 25 Feb 2016 23:52:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,49 +15,58 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44F33E00D25
-	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 18:54:14 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id o6so27564038qkc.2
-	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 18:54:14 -0800 (PST)
+Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10733E00D3A
+	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 23:52:26 -0800 (PST)
+Received: by mail-pf0-f182.google.com with SMTP id q63so47912790pfb.0
+	for <yocto@yoctoproject.org>; Thu, 25 Feb 2016 23:52:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=thTEIoXIAGrsfK2Ac3DGmgyZXlDuqd31SExStqlWlow=;
-	b=ZKJjIroZyHKiPPSRwdThRbPMRYKyCWLEYxk4WF0Hhrw0fX/HSZTIi/MhG+uO9hmN/m
-	xPNK3g4AovJQCjHVKv59bejHigBidksQoX90SaRld9+dh9DJep5jY2/U0IGV6u0yqcMY
-	02lGaeEqKM20YvmKkCzu/udQFkyeO15D2793uFFeUT/pHohZZ0KeAwcV6tru1rJSWujJ
-	9u+GK5YI5Zb2li3nQ2wOh9a/5Co5qTIJWbpRflNmQhJivKnijBfJpEZBZY5er3McO7YJ
-	wUxSTNg+y9Za6pV9rhCziMrSp46OtjChA5W03TJExxVOixeNHAreKT0zi5ssUxGkgnH3
-	RcfA==
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=zolvohg3YiLHMwATtDlsXnCb7vO6tLw3/GaG9rTsHPQ=;
+	b=anLLEMkTVH9P3rrJ7UnIqFZORQCrsp/MOagHsuIWq4YgphlttJX7fSJc53wx5zHIGm
+	LdrbM9AG5JQnKA/6tkWPov1JRTiKb3z6NbDrVIbhshPbqrPY3bwEhyFo9qq65qWjnX6E
+	vfNcS5fjpGHams6K/d76M3TTKTNwIISr+7JczUonH3aA02WEqVuCtdU1vsRkBLGAtFOC
+	axMHzDiwqiOBNZz4lI6pNqlmnu1c8nTipub1YHcNdB9R9Nkn4sgnUPOetsdccdy7V7er
+	SHIjKDef9+BbpTqsbUwxbWhzqG9wic3iTDfGGlFHeX4rHQtTqkxEAfYL5XIAyq2IXg8A
+	TseQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=thTEIoXIAGrsfK2Ac3DGmgyZXlDuqd31SExStqlWlow=;
-	b=EVovNSve4TECvwrsOAOH5aJub7+EMRsZCjHVyg4NsV9fr1XUa40HnS/6xv1ORpvIxc
-	TKzVgNh8II/X1v58725erkSi6hvhz0J31M7EONhiT8JD+cIF37xCZFRR5Onbc+6JXR4Z
-	Y06qCyW1NpX0a71SCCPN+V7yGDeLsNvXU7DqsMJEWyBp88UCldlv1FP3/C4Cb40rMgG+
-	WZE0l2uek/FVKH3XfS8w0T/Avvs2rcTqR5z3CCd6HfwdnH6bz+/1ClxogL3Truiv7yfm
-	2XbXOe1kXbiQd5MTgs2D+/FF4QVrwR8zjqrlGfSUKZTDjxZgphnAI4//CHC0JUVNtqGt
-	WYqw==
-X-Gm-Message-State: AG10YOTRCad1DkkRRpIb15NsisMqLHSZFTlqAuqvHJGiUQHXpEXSLv3a1f3bWXtHcC4HR+xpkst4gBPZM+VIgA==
-MIME-Version: 1.0
-X-Received: by 10.55.74.197 with SMTP id x188mr61144279qka.104.1456455254162; 
-	Thu, 25 Feb 2016 18:54:14 -0800 (PST)
-Received: by 10.55.130.196 with HTTP; Thu, 25 Feb 2016 18:54:14 -0800 (PST)
-Received: by 10.55.130.196 with HTTP; Thu, 25 Feb 2016 18:54:14 -0800 (PST)
-In-Reply-To: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
-References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
-Date: Thu, 25 Feb 2016 18:54:14 -0800
-Message-ID: <CAMKF1spgKSosWNxwUM1suPRZD2VRbNVDsFjr55sv6GMYWCVGtw@mail.gmail.com>
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=zolvohg3YiLHMwATtDlsXnCb7vO6tLw3/GaG9rTsHPQ=;
+	b=boU/OWPVjAOaNu4X6+GnFjAkOIlR4TJ6erOHs9AR+j5+axMXhZoRE4ovwW0rRxBIJ7
+	Eanio9cJQRHYOuh215lN6ZQHclneZWqHDV2aFRmVnfIsnuS83KQW3HZ4ZVGn3wAQ3sOQ
+	bcmv9c22mrydJhsSn/OjVyH8YEi1g1OG1CrIjayq02GGk4a3LLDSakr+AI9CGCjmepg4
+	r20OrTYklcinMPFWanH7YMdUGFjndtPo+a/5/3QHqrD6zxDFb7t/og1EpDvBYltP8ChH
+	JbW3qqgliwhEAX0YCLyEGkckRbmCBSn+P5120mJ9L6yWlfz8NG8Vm7kBBp4982lqEkpD
+	jsTw==
+X-Gm-Message-State: AD7BkJIrm4cfp0ASJr1Q10NjjuYb0v3RLX6xr++BCIV374y6f8NKQS+IlShHn4NWOQERjA==
+X-Received: by 10.98.16.85 with SMTP id y82mr213927pfi.90.1456473146025;
+	Thu, 25 Feb 2016 23:52:26 -0800 (PST)
+Received: from ?IPv6:2601:646:8800:5a9a:4537:747c:ca81:76b7?
+	([2601:646:8800:5a9a:4537:747c:ca81:76b7])
+	by smtp.gmail.com with ESMTPSA id
+	dg1sm17105347pad.18.2016.02.25.23.52.24
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 25 Feb 2016 23:52:24 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
+X-Pgp-Agent: GPGMail 2.6b2
 From: Khem Raj <raj.khem@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org, Brian Avery <brian.avery@intel.com>,
-	openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] Removing Hob for 2.1
+In-Reply-To: <5002400B-3C1E-4BA7-9A66-E52FC85BA07F@sierrawireless.com>
+Date: Thu, 25 Feb 2016 23:52:18 -0800
+Message-Id: <EE025BCE-0C29-44DB-83BD-8FED40604D70@gmail.com>
+References: <1456255515.10581.2.camel@sierrawireless.com>
+	<CAMKF1srU_Ewx1HzMHv+AQNhHeoy3b1L1bRvBaZ8556a8+7NLew@mail.gmail.com>
+	<56CCD461.1060505@windriver.com>
+	<1456267969.27839.3.camel@sierrawireless.com>
+	<56CCF5E8.3000005@gmail.com> <56CDDC73.1000000@windriver.com>
+	<56CDDF64.3080508@gmail.com>
+	<5002400B-3C1E-4BA7-9A66-E52FC85BA07F@sierrawireless.com>
+To: Darcy Watkins <dwatkins@sierrawireless.com>
+X-Mailer: Apple Mail (2.3112)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Does CVE-2015-7547 affect eglibc?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,122 +78,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 02:54:15 -0000
-Content-Type: multipart/alternative; boundary=001a114a8b9c0e48e8052ca36a70
+X-List-Received-Date: Fri, 26 Feb 2016 07:52:30 -0000
+X-Groupsio-MsgNum: 28629
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---001a114a8b9c0e48e8052ca36a70
-Content-Type: text/plain; charset=UTF-8
-
-Go ahead
-On Feb 25, 2016 6:50 PM, "Paul Eggleton" <paul.eggleton@linux.intel.com>
-wrote:
-
-> Hi folks,
->
-> So we've been gearing up the Toaster web UI to replace the Hob (GTK+
-> based) UI
-> for some time now; Hob has basically been on life support for the past few
-> releases. As of late last month in master, Toaster has the capability to
-> select the packages in an image, removing the last thing that Hob could do
-> that Toaster couldn't. This means it's about time we looked at removing
-> Hob -
-> particularly if we want to do so for the upcoming 2.1 release as we should
-> really do so within the M3 development timeframe which is almost over.
->
-> To recap, the reasons why Hob ought to be removed include:
->
-> - The code is tightly woven into BitBake, making it fragile. This means it
-> needs significant QA and maintenance on an ongoing basis.
->
-> - Some of the implementation is not ideal; we'll be able to remove some
-> cruft
-> from BitBake and OE-Core at the same time.
->
-> - It's GTK+ 2 based, not the current GTK+ 3.
->
-> - Toaster is now a much more capable UI and is being actively maintained
->
-> I'm maintaining a list of things we would drop together with Hob, so I
-> could
-> probably come up with a patchset - I just wanted to give people a heads up
-> and
-> double check that this is something we indeed want to do in 2.1. Any
-> comments?
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
-> _______________________________________________
-> Openembedded-architecture mailing list
-> Openembedded-architecture@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
->
-
---001a114a8b9c0e48e8052ca36a70
-Content-Type: text/html; charset=UTF-8
+--Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-<p dir=3D"ltr">Go ahead</p>
-<div class=3D"gmail_quote">On Feb 25, 2016 6:50 PM, &quot;Paul Eggleton&quo=
-t; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux=
-.intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">Hi folks,<br>
-<br>
-So we&#39;ve been gearing up the Toaster web UI to replace the Hob (GTK+ ba=
-sed) UI<br>
-for some time now; Hob has basically been on life support for the past few<=
-br>
-releases. As of late last month in master, Toaster has the capability to<br=
->
-select the packages in an image, removing the last thing that Hob could do<=
-br>
-that Toaster couldn&#39;t. This means it&#39;s about time we looked at remo=
-ving Hob -<br>
-particularly if we want to do so for the upcoming 2.1 release as we should<=
-br>
-really do so within the M3 development timeframe which is almost over.<br>
-<br>
-To recap, the reasons why Hob ought to be removed include:<br>
-<br>
-- The code is tightly woven into BitBake, making it fragile. This means it<=
-br>
-needs significant QA and maintenance on an ongoing basis.<br>
-<br>
-- Some of the implementation is not ideal; we&#39;ll be able to remove some=
- cruft<br>
-from BitBake and OE-Core at the same time.<br>
-<br>
-- It&#39;s GTK+ 2 based, not the current GTK+ 3.<br>
-<br>
-- Toaster is now a much more capable UI and is being actively maintained<br=
->
-<br>
-I&#39;m maintaining a list of things we would drop together with Hob, so I =
-could<br>
-probably come up with a patchset - I just wanted to give people a heads up =
-and<br>
-double check that this is something we indeed want to do in 2.1. Any commen=
-ts?<br>
-<br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-_______________________________________________<br>
-Openembedded-architecture mailing list<br>
-<a href=3D"mailto:Openembedded-architecture@lists.openembedded.org">Openemb=
-edded-architecture@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-arch=
-itecture" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.or=
-g/mailman/listinfo/openembedded-architecture</a><br>
-</blockquote></div>
+Can you describe the regressions in some more detail
 
---001a114a8b9c0e48e8052ca36a70--
+> On Feb 25, 2016, at 5:43 PM, Darcy Watkins =
+<dwatkins@sierrawireless.com> wrote:
+>=20
+> Be careful about rushing out fixes. We are observing regressions in =
+software triggered by changes in glibc  behaviour.
+>=20
+>=20
+> ---
+>=20
+> Regards,
+>=20
+> Darcy
+>=20
+> Darcy Watkins
+> Staff Engineer, Firmware
+> Sierra Wireless
+> http://sierrawireless.com
+> [M3]
+>=20
+>> On Feb 24, 2016, at 8:57 AM, akuster808 <akuster808@gmail.com> wrote:
+>>=20
+>>=20
+>>=20
+>>> On 02/24/2016 08:38 AM, Mark Hatle wrote:
+>>>> On 2/23/16 6:14 PM, akuster808 wrote:
+>>>>=20
+>>>>=20
+>>>>> On 02/23/2016 02:52 PM, Darcy Watkins wrote:
+>>>>>> On Tue, 2016-02-23 at 13:51 -0800, Mark Hatle wrote:
+>>>>>>> On 2/23/16 1:53 PM, Khem Raj wrote:
+>>>>>>> On Tue, Feb 23, 2016 at 2:25 PM, Darcy Watkins
+>>>>>>>> CVE-2015-7547 glibc vulnerability has been published as =
+affecting glibc
+>>>>>>>> since ver 2.9 (fixed in 2.23 and patched in 2.22 and 2.21).
+>>>>>>>>=20
+>>>>>>>> Anyone know if we need the same security fixes in eglibc?
+>>>>>>>=20
+>>>>>>> yes you do. Eglibc was nothing but glibc+few fixes.
+>>>>>>=20
+>>>>>> Yes this affects all eglibc version 2.9 and newer up to glibc =
+2.23.
+>>>>>>=20
+>>>>>> As far as I'm aware, this affects all Yocto Project versions up =
+to 2.0.
+>>>>>=20
+>>>>> I will be interested in knowing which Yocto Project versions will
+>>>>> receive the fixes.
+>>>>=20
+>>>> Master, 2.0 and 1.8 all have the fixes.
+>>>> How far back do we go in matters like this?
+>>>=20
+>>> Official support is current (in development) and the last two =
+releases.  So up
+>>> to about a year and a half of support.
+>>>=20
+>>> After this point, it becomes community support.  This really means, =
+if someone
+>>> in the community wants to continue support past the YP's support =
+guidelines they
+>>> are welcome to do so -- but there won't be any official releases, =
+only checkins
+>>> to the repository.
+>>=20
+>> much better explanation than mine.
+>>=20
+>> thanks,
+>> Armin
+>>>=20
+>>> We have done this on some OpenSSL fixes in the past, but it was =
+based on
+>>> specific requests and people submitting the fixes to be included =
+with older
+>>> versions.
+>>>=20
+>>>> 1.7 (dizzy) I plan on doing soon. beyond that I do not know. those =
+are
+>>>> all community supported.
+>>>>=20
+>>>> - armin
+>>>>>=20
+>>>>> Thanks in advance!
+>>>>>=20
+>>>>>> (The patch referenced by the security announcement applies to all =
+of the
+>>>>>> versions of glibc I've needed to apply it to for my customers.  A =
+few per-line
+>>>>>> tweaks might be necessary, but it was fairly easy.)
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlbQBDcACgkQuwUzVZGdMxSRYwCcDI+HRKhZqi5wMg+SEgj3TnFF
+o1EAnAqCrlpAm+wMkGVJwor9ThRZCtlH
+=FDWc
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_B7AA98DE-9A37-4961-8455-F42BCC13AFAA--
