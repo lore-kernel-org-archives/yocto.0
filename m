@@ -1,39 +1,46 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58C2CE00DA8; Fri, 26 Feb 2016 09:36:22 -0800 (PST)
+	id 51C42E00DAA; Fri, 26 Feb 2016 09:49:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.228 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30405E00D9A
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 09:36:19 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u1QHaCbp007758; Fri, 26 Feb 2016 17:36:12 GMT
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id CzFfm06oLlzd; Fri, 26 Feb 2016 17:36:12 +0000 (GMT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u1QHa884007754
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Fri, 26 Feb 2016 17:36:09 GMT
-Message-ID: <1456508168.11498.95.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Date: Fri, 26 Feb 2016 17:36:08 +0000
-X-Mailer: Evolution 3.16.5-1ubuntu3.1 
-Mime-Version: 1.0
-Subject: [OE-core] Yocto Project Status WW09
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Fri, 26 Feb 2016 09:49:07 PST
+Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98506E00D16
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 09:49:07 -0800 (PST)
+X-Halon-ID: 14fcdc54-dcb1-11e5-8752-005056917c0c
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Fri, 26 Feb 2016 18:48:02 +0100 (CET)
+MIME-Version: 1.0
+Date: Fri, 26 Feb 2016 18:48:06 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Yocto <yocto@yoctoproject.org>, Andrei Gherzan <andrei@gherzan.ro>,
+	<net147@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <20160226171446.GA4154@resin.home>
+References: <1456478817-7221-1-git-send-email-net147@gmail.com>
+	<20160226171446.GA4154@resin.home>
+Message-ID: <876d8b2d6f4549cebde5792d84860bee@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: fix path to mkknlimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -42,63 +49,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 17:36:22 -0000
-Content-Type: multipart/mixed; boundary="=-jJLpRv3E4lYoMgRZzwBd"
+X-List-Received-Date: Fri, 26 Feb 2016 17:49:11 -0000
+Content-Type: multipart/alternative;
+	boundary="=_aa15e375d5d1c937a100ba41e6dd7173"
 
---=-jJLpRv3E4lYoMgRZzwBd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+--=_aa15e375d5d1c937a100ba41e6dd7173
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
 
-Current Dev Position: YP 2.1 M3
-Next Deadline: YP 2.1 M3 Cutoff (Feature Freeze) February 29, 2016
  
-SWAT team rotation: Tracy -> Alejandero
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
- 
-Key Status/Updates:
-* 2.1 Feature Freeze is upon us. If there is any feature you want to 
-  see in 2.1 which isn't going to make the deadline, talk to RP.
-* We plan to release 2.1 M2 despite the sato glib issue, granting an
-  exception for the high bug and then  concentrate on 2.1 M3.
-* 2.1 M3 build won't happen until sato glib issue resolved.
-* Also planning to merge the gobject-introspection changes 
-* Pseudo connection issue appears to be addressed with increased retry 
-  numbers. Tests ongoing.
-* We're about to try and transition meta-yocto within meta-yocto to 
-  meta-poky. The amount of pain this is causing is horrible :(.
-* We're considering a bump in the minimum git version requirements 
-  due to the requirements of various pieces of project tooling.
-* We're rebuilding jethro 2.0.1 due to the glibc security issue, now 
-  at -rc7.
- 
-Key YP 2.1 Dates:
-YP 2.1 M2 Target release date is February 12, 2016 (Will slip a few
-weeks.)
-YP 2.1 M3 Cutoff (Feature Freeze) date is February 29, 2016 noon GMT
-YP 2.1 M3 Target release date is March 18, 2016
-YP 2.1 M4 / Final Cutoff: March 28, 2016 noon GMT - Stabilization only
-milestone.
-YP 2.1 Final Release Target: April 29, 2016
- 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
- 
-Tracking Metrics:
-            WDD 2565 (last week 2585)
-(https://wiki.yoctoproject.org/charts/combo.html)
- 
-[If anyone has suggestions for other information you’d like to see on
-this weekly status update, let us know!]
- 
-Thanks,
- 
-Richard-- 
-_______________________________________________
-Openembedded-core mailing list
-Openembedded-core@lists.openembedded.org
-http://lists.openembedded.org/mailman/listinfo/openembedded-core
-
 
---=-jJLpRv3E4lYoMgRZzwBd--
+2016-02-26 18:14 skrev Andrei Gherzan: 
+
+> On Fri, Feb 26, 2016 at
+08:26:57PM +1100, Jonathan Liu wrote:
+> 
+>> The path had libexecdir
+hardcoded so it was no longer correct when libexecdir was changed in
+meta/conf/bitbake.conf from ${libdir}/${BPN} to ${prefix_native}/libexec
+for nativesdk recipes. Fixes "No such file or directory" error when
+executing do_rpiboot_mkimage. Signed-off-by: Jonathan Liu
+<net147@gmail.com> --- recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
+1 file changed, 1 insertion(+), 1 deletion(-) diff --git
+a/recipes-kernel/linux/linux-raspberrypi.inc
+b/recipes-kernel/linux/linux-raspberrypi.inc index 70e8bfe..8c7c46c
+100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
+b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@
+do_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" != "xuImage" ;
+then if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloader
+trailer to kernel image to enable DeviceTree support -
+${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok
+${KERNEL_OUTPUT} ${KERNEL_OUTPUT} +
+${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}
+${KERNEL_OUTPUT} fi fi } -- 2.7.1
+> 
+> Back alive. testing this.
+> 
+> --
+
+> Andrei Gherzan
+
+Hi,
+
+I think we should use the older patchset from
+_Maciej Borzecki _ (that solves this and some other minor stuffs)
+instead. It also keeps the rpi-mkimage
+structure:
+
+https://lists.yoctoproject.org/pipermail/yocto/2016-February/028271.html
+
+BR
+Petter 
+
+--=_aa15e375d5d1c937a100ba41e6dd7173
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2016-02-26 18:14 skrev Andrei Gherzan:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">The path had libexecdir hardcoded so =
+it was no longer correct when libexecdir was changed in meta/conf/bitbake=
+=2Econf from ${libdir}/${BPN} to ${prefix_native}/libexec for nativesdk rec=
+ipes. Fixes "No such file or directory" error when executing do_rpiboot_mki=
+mage. Signed-off-by: Jonathan Liu &lt;<a href=3D"mailto:net147@gmail.com">n=
+et147@gmail.com</a>&gt; --- recipes-kernel/linux/linux-raspberrypi.inc | 2 =
++- 1 file changed, 1 insertion(+), 1 deletion(-) diff --git a/recipes-kerne=
+l/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc =
+index 70e8bfe..8c7c46c 100644 --- a/recipes-kernel/linux/linux-raspberrypi=
+=2Einc +++ b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@ d=
+o_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage" ; then =
+if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloader trailer to ker=
+nel image to enable DeviceTree support - ${STAGING_DIR_NATIVE}/usr/lib/rpi-=
+mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} + ${STAGING_LIBEX=
+ECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} fi fi } -- =
+2.7.1</blockquote>
+<pre>Back alive. testing this.
+
+<span class=3D"sig">--=20
+Andrei Gherzan<br /><br /><br />
+</span></pre>
+</blockquote>
+<p>Hi,<br /><br />I think we should use the older patchset from <em>Maciej =
+Borzecki </em> (that solves this and some other minor stuffs) instead. It a=
+lso keeps the rpi-mkimage structure:<br /><br /><br />https://lists.yoctopr=
+oject.org/pipermail/yocto/2016-February/028271.html<br /><br />BR Petter</p=
+>
+</body></html>
+
+--=_aa15e375d5d1c937a100ba41e6dd7173--
