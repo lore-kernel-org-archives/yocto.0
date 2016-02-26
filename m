@@ -1,6 +1,6 @@
 Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4207E00D58; Fri, 26 Feb 2016 03:35:30 -0800 (PST)
+	id 51ACAE00D58; Fri, 26 Feb 2016 03:55:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,50 +15,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf0-f175.google.com (mail-pf0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC1CAE00D40
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 03:35:27 -0800 (PST)
-Received: by mail-pf0-f175.google.com with SMTP id w128so3306833pfb.2
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 03:35:27 -0800 (PST)
+Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D07B4E00D40
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 03:55:37 -0800 (PST)
+Received: by mail-pf0-f171.google.com with SMTP id q63so51149114pfb.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 03:55:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-transfer-encoding;
-	bh=/kEK3SnDH/P8gcGOxJwLfFw7dnWFyA7HrxBC37yabTk=;
-	b=gYbeYeMCmwuEtrkWQMhO9AhVMegDhiBlC8xOWYK9UCf2FiJGfmwkwGSJNoCR15m4H6
-	HjaNieeQnaOP8AAGwgUte+LjIKxYvDudKY8SVj0pechN96Z1t1dAOtOl4S530zT40HAm
-	YwmOyOXua+ILmuAcIbRf9HE0oSKGScWosGZmlRoPeukgCh3b4kx3n3eEtZWjHZE41Zi2
-	tiN3JMlAkQt7/b9qn302qEJIdMuH5EkA/asJ95bnRivASI0U0qrjEgvR6PRK41kNX9Qm
-	jr5b56WODsay+m9AN48DP2MSjwJNGu1gifaI0VYNiDv8LsisyxzmkSKr1Ts6htb+aaRX
-	esEA==
+	h=from:to:cc:subject:date:message-id;
+	bh=r0jQ15HiDUdKKmHmYybbo2UrGPJZtdB8JSYFbAWYl5g=;
+	b=B1mQrKudZgWPjh91D4YggPr6VG4gxKqVpGMQub0fvMWosAyze7adubxUY2FKv95fAm
+	794FJKb68Sj/LnI4tr446ykVWup9nRRk1ax8yJ27Pcsou5rsKy6zxOUDqUFa3yxnimvR
+	H3iq4E1g4iKTskplpJh89pSiN2VvuNMI8cFarNn3D8QnBfAf6GJykQ9qSRkzkNRK54LL
+	xUYvYlxJN4iOxbv1O1B5mRh7rVVJnJo+lQ2POwX7hTP220CNFHkmiE/CO9VAkGlBqS/T
+	SGLzSevYa0MuW7Y18y6iRzXhiWn7Xdjssw/9QRtu8cBzu+dPnqG4oURNDcdCuu1sDXSR
+	IDlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-transfer-encoding;
-	bh=/kEK3SnDH/P8gcGOxJwLfFw7dnWFyA7HrxBC37yabTk=;
-	b=b1Ph7QLWDC+k+tqKwfz3duQ98X1cxHaQyXKy4ve2CUxBLu5TJVVQt6EewNPqgRq+bX
-	CxRxDHvkqas9ObQeUvzXU+zWIkQh1X3QRAVskcy7EYKDK2p3zX7ve7Z7ll+b8Kp9Tmx4
-	39s/ujRRjb+Dz29jNPAqQXiKb8x6rDaO+oAS12dZL3yMz5cdr54mNGlTHYOTpXT0gNTx
-	IcFbVLcNQ+wNBLz62U/GcTEKjxPw72eeN2dRtke1VVHPptYxH3R2/CgbmoH1Qky5Z6Ss
-	TwGQPlJa/XMbHPdQBmGtam/b97ELyjOVIXerpnL9qc+bc7hcMz/ef9j9f1+KtjjYkKpb
-	07uQ==
-X-Gm-Message-State: AD7BkJLRUgb1VS6cuCrlOCJ581hFIVB9VzqUjdXliL3RlLRVOPErosBbMCNJeoHpPPfTrxi75KGyUt1/5Z6uEw==
-MIME-Version: 1.0
-X-Received: by 10.98.16.198 with SMTP id 67mr1316832pfq.21.1456486526662; Fri,
-	26 Feb 2016 03:35:26 -0800 (PST)
-Received: by 10.66.155.201 with HTTP; Fri, 26 Feb 2016 03:35:26 -0800 (PST)
-In-Reply-To: <CAMKF1soW-j3CztWY2gYy=hCGz0O9pV6iLqveAQTbvREvOj=0DQ@mail.gmail.com>
-References: <1454173548-5806-1-git-send-email-raj.khem@gmail.com>
-	<20160223210251.GC10598@ad.chargestorm.se>
-	<CALbNGRSLRGvmdTNg6hF8YwGXRPza5Xn8sLLjrcgOrT+B1--+yA@mail.gmail.com>
-	<20160224202824.GA5109@ad.chargestorm.se>
-	<CAMKF1soW-j3CztWY2gYy=hCGz0O9pV6iLqveAQTbvREvOj=0DQ@mail.gmail.com>
-Date: Fri, 26 Feb 2016 22:35:26 +1100
-Message-ID: <CANwerB0+Vr6jvHyAW9vW6LT=qJa+GV4g5TbNxqqxDHC4GVWbgA@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=r0jQ15HiDUdKKmHmYybbo2UrGPJZtdB8JSYFbAWYl5g=;
+	b=OGHoJBk/oAxGmoxXZRATlyat/VQ785bcNoqqFeCjsT9mJ3/TFuTJjlr8MUsYdMGRSd
+	dcSWhh8K+8X92EhHd1GG4+xDh0OqtJ3DBjHrUAuoIbAvTojxQt0FABD/i5xXqjNPVoPo
+	kg3+qyFZ8uZYKKckTEW14QOoGWeogzL0Jnczb0TucJsK8lSpWkJOpcO0CMJUAXjmg086
+	DWOqPouI0ksyXl5i5bLvPZ6EluXfao9o1ob988DXfGw8zCdFKfip/ITFevNJaOB8hJHR
+	nGNo1PTzh5/C0kNRChp0x7sc4dZYiMT8RXMB2/LMOHfsifA4b6FFKfSQrLruCeu+IogV
+	70iQ==
+X-Gm-Message-State: AD7BkJL6V9RxfAu0ZHOiSUG8aVt0ETAfp4Q4VYuHcg6+W7+hJhgZCkJtl2R+3csvbeXbiw==
+X-Received: by 10.98.93.2 with SMTP id r2mr1450506pfb.64.1456487737396;
+	Fri, 26 Feb 2016 03:55:37 -0800 (PST)
+Received: from 60-242-179-244.static.tpgi.com.au
+	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
+	by smtp.gmail.com with ESMTPSA id
+	e79sm18965099pfb.76.2016.02.26.03.55.36
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 26 Feb 2016 03:55:36 -0800 (PST)
 From: Jonathan Liu <net147@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Adjust for libexecdir changes
+To: yocto@yoctoproject.org
+Date: Fri, 26 Feb 2016 22:55:48 +1100
+Message-Id: <1456487748-11307-1-git-send-email-net147@gmail.com>
+X-Mailer: git-send-email 2.7.1
+Subject: [meta-raspberrypi][PATCH] omxplayer: bump revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,91 +66,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 11:35:30 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 26 Feb 2016 11:55:40 -0000
 
-Hi Khem,
+Fixes compile errors with ffmpeg 3.0.
 
-I just posted another patch which does basically the same thing but
-uses ${STAGING_LIBEXECDIR_NATIVE}.
-I checked the expansion of ${STAGING_LIBEXECDIR_NATIVE} on daisy
-branch and master.
+Signed-off-by: Jonathan Liu <net147@gmail.com>
+---
+ recipes-multimedia/omxplayer/omxplayer_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-daisy:
-[...]/sysroots/x86_64-linux/usr/lib/rpi-mkimage/mkknlimg
-which matches the previous hardcoded path before the patch
+diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+index 2f45fb0..a0690a0 100644
+--- a/recipes-multimedia/omxplayer/omxplayer_git.bb
++++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+ DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh"
+ PR = "r4"
+ 
+-SRCREV = "d99bd86c9fd80ea01f98761e130d7ac9a2bb7588"
++SRCREV = "15a490b2397b358776c56b017a137c4716eb6b4e"
+ SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
+            file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
+            file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
+-- 
+2.7.1
 
-master:
-[...]/sysroots/x86_64-linux/usr/libexec/mkknlimg
-
-So it looks like my patch should work on older branches too...
-
-Regards,
-Jonathan
-
-On 25 February 2016 at 08:44, Khem Raj <raj.khem@gmail.com> wrote:
->
-> On Feb 24, 2016 1:30 PM, "Anders Darander" <anders@chargestorm.se> wrote:
->>
->> * Andreas M=C3=BCller <schnitzeltony@googlemail.com> [160223 22:38]:
->> > > * Khem Raj <raj.khem@gmail.com> [160130 18:07]:
->> > >
->> > >> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc
->> > >> b/recipes-kernel/linux/linux-raspberrypi.inc
->> > >> index 70e8bfe..0798788 100644
->> > >> --- a/recipes-kernel/linux/linux-raspberrypi.inc
->> > >> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
->> > >> @@ -60,7 +60,7 @@ do_rpiboot_mkimage() {
->> > >>      if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage" ; then
->> > >>          if test -n "${KERNEL_DEVICETREE}"; then
->> > >>              # Add RPi bootloader trailer to kernel image to enable
->> > >> DeviceTree support
->> > >> -            ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg
->> > >> --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
->> > >> +            ${STAGING_DIR_NATIVE}${libexecdir}/mkknlimg --dtok
->> > >> ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
->> > >>          fi
->> > >>      fi
->> > >>  }
->> > This patch is mandatory but there was a serial with additional fixes
->> > send by Maciej Borzecki on Feb 2nd. I think this is worth taken into
->> > account.
->> >
->>
->> Yes, that's right.
->>
->> If the rest of the patches in that series is non-controversial, could we
->> have them applied? Otherwise, could we have Khem's patch applied, and
->> the other series rebased upon that?
->>
->
-> This will also make layer incompatible with jethro and older releases. So
-> before applying this patch jethro has to branch out
->
->> We've had the master branch non-building for quite a while now...
->>
->> I'm just keen to get either of those patches applied to
->> meta-raspberrypi. I'd like to avoid having to use a local fork as much
->> as possible...
->>
->> Cheers,
->> Anders
->>
->> --
->> Anders Darander, Senior System Architect
->> ChargeStorm AB / eStorm AB
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
