@@ -1,46 +1,39 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20A94E00DB1; Fri, 26 Feb 2016 12:08:43 -0800 (PST)
+	id 445D0E00DB1; Fri, 26 Feb 2016 12:16:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1B38E00DA6
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:08:39 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Feb 2016 12:08:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,504,1449561600"; d="scan'208";a="924712497"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Feb 2016 12:08:38 -0800
-Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 26 Feb 2016 12:08:38 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.244]) by
-	ORSMSX111.amr.corp.intel.com ([169.254.12.9]) with mapi id
-	14.03.0248.002; Fri, 26 Feb 2016 12:08:37 -0800
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [ANNOUNCEMENT] Milestone 2 for Yocto Project 2.1 now available.  
-Thread-Index: AQHRcDaE0sjo8RrF/UOXV1WBnDMFmJ8+woeA
-Date: Fri, 26 Feb 2016 20:08:37 +0000
-Message-ID: <D2F5F079.917E%tracy.graydon@intel.com>
-References: <D2F4ECCA.8D4C%tracy.graydon@intel.com>
-In-Reply-To: <D2F4ECCA.8D4C%tracy.graydon@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.6.1.160122
-x-originating-ip: [10.255.74.149]
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id B167AE00DA6
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:16:26 -0800 (PST)
+Received: (qmail 18462 invoked by uid 1003); 26 Feb 2016 20:16:25 -0000
+Received: from unknown (HELO ?192.168.11.140?)
+	(philip@opensdr.com@71.171.15.136)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	26 Feb 2016 20:16:25 -0000
+To: Rudolf J Streif <rudolf.streif@gmail.com>, yocto@yoctoproject.org
+References: <1456508168.11498.95.camel@linuxfoundation.org>
+	<56D09D35.8040002@balister.org>
+	<1456512644.11498.108.camel@linuxfoundation.org>
+	<2042150.gN3rpHrprf@rjs-zotac.streifs.net>
+From: Philip Balister <philip@balister.org>
+Message-ID: <56D0B298.9050108@balister.org>
+Date: Fri, 26 Feb 2016 15:16:24 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Milestone 2 for Yocto Project 2.1 now available.
+In-Reply-To: <2042150.gN3rpHrprf@rjs-zotac.streifs.net>
+Cc: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Yocto Project Status WW09
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,23 +45,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 20:08:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <82CA3BC78A0471468220A69F7D16F6F5@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 26 Feb 2016 20:16:28 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-VGhlIHNlY29uZCBtaWxlc3RvbmUgcmVsZWFzZSBmb3IgWW9jdG8gUHJvamVjdCAyLjEgaXMgYXZh
-aWxhYmxlIGZvcg0KZG93bmxvYWQgbm93Lg0KDQpodHRwOi8vZG93bmxvYWRzLnlvY3RvcHJvamVj
-dC5vcmcvcmVsZWFzZXMveW9jdG8vbWlsZXN0b25lcy95b2N0by0yLjFfTTIvDQoNClRoYW5rIHlv
-dSB0byBldmVyeW9uZSBmb3IgeW91ciBjb250cmlidXRpb25zLg0KDQplY2xpcHNlLXBva3kva2Vw
-bGVyLW1hc3RlciBjZjYwYWMyOTM2MjlmYzhlY2Q2YzRlYjM3MDlhNmYzMzRiNDk5ZDBjDQplY2xp
-cHNlLXBva3kvbHVuYS1tYXN0ZXIgNDVhYTVjNzc1MjNiZGYwNTFkNTQ4ZmZmNDMwNTM4Mjk0MmRi
-MmViYg0KZWNsaXBzZS1wb2t5L21hcnMtbWFzdGVyIDFkMTc5ZGRjYmQxOTgzYmY3YmNmZTk4ZWZk
-Y2JiMTg2YmRjY2NhNGYNCm1ldGEtcXQzIDdkOTU4YjkyOGE0YTM4YTE4Njc0NmZhYmJjMGQ4MTY5
-ZGQ4YmIzYTYNCm1ldGEtcXQ0IDQwNThiMDc3MzM4MWY4OTRkOTE1ZWEzZGZhYzVmZTA1MmQ4MmE5
-YTcNCnBva3kgMTUyOTE0ZjI5ODNjNWQ2OTAwMWRlMWQ0NmNlOTk1NDdmYTFlNzVmZQ0KDQpUZXN0
-IHJlcG9ydCBhdDoNCg0KaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9XVzA4Xy1f
-MjAxNi0wMi0xN18tX0Z1bGxfUGFzc18yLjFfTTIucmMzDQoNCg0KVHJhY3kgR3JheWRvbg0KWW9j
-dG8gUHJvamVjdA0KQnVpbGQgYW5kIFJlbGVhc2UNCg0KDQoNCg0K
+On 02/26/2016 02:52 PM, Rudolf J Streif wrote:
+>>>>
+>>>> * We're about to try and transition meta-yocto within meta-yocto to
+>>>>
+>>>>   meta-poky. The amount of pain this is causing is horrible :(.
+>>>
+>>> Thanks for doing this. Can you summarize the pain? Are there any
+>>> important lessons here?
+>>
+>> The key lesson is our current "migration" code in OE-Core sucks and I
+>> have some patches in progress which rewrite pieces of it in a way that
+>> makes it more useful. I'm therefore trying to make some positives from
+>> it.
+>>
+>> That said, I haven't found a way to make this work without leaving a
+>> dummy layer.conf in the old location since a missing layer.conf file is
+>> fatal to bitbake very early on before any migration code triggers.
+>>
+>> More should become clear when I post the patches, I've been holding off
+>> that until I actually manage a patch set that works on the
+>> autobuilder...
+>>
+>> Patches should be out over the weekend (in time for the freeze).
+> 
+> Sounds like a lot of work and potential for breaking things with little added 
+> value other than a more consistent naming. What was the rationale for making 
+> the change, if I may ask?
+
+Consistent naming :) It does it make it much easier to explain what the
+meta-yocto layer is for. This has been one source of a great deal of
+confusion about how all the pieces come together.
+
+I must admit, I'm surprised this is tricky. I look forward to seeing
+what needs doing. Hopefully, it shows me things I can avoid in my work.
+
+Philip
+
+> 
+> Thanks,
+> :rjs
+> 
+> 
 
