@@ -1,67 +1,68 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 329C0E00DAF; Fri, 26 Feb 2016 12:59:16 -0800 (PST)
+	id 27364E00DAF; Fri, 26 Feb 2016 13:03:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (net147[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B239E00C23
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:59:14 -0800 (PST)
-Received: by mail-ig0-f170.google.com with SMTP id z8so43805080ige.0
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 12:59:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=9vM3H/KBU22OrgWucuW00lvaX2DbWnSX7hToXMj/nBI=;
-	b=2M+nDdPpTX/ZJGJT/VFXu3EavEaSunTH6OAJoWC13X/Ubgoz2PaZeVUws2g9QaF0Mt
-	qsCdN5Z07ialxeoi7k/yjg3N8qFLuC51KnPmT22YQxSsO3SQpv/Kw+38AYwEagnoeZ0J
-	OuhNnIaOs4KZNU/tV9VDrOQZV78TK4T8ZAwQsYmoqjJQpGBB9xePxSDgKWfGwemV0Q+Z
-	wpROY+CU1ZZkoife5D8tD5h/3nys9kpd0jE9A8JuuwpcNnR4IGhA+WgdRR23v+dyUAiv
-	m3iiWwYQ29VaGqrTjSsv7twOx12qB67z+pv4wamjS8rbVVJuf0pnuHpd68OB30yGifP/
-	YCYQ==
+Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7455BE00C23
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 13:03:11 -0800 (PST)
+Received: by mail-pf0-f174.google.com with SMTP id q63so57767187pfb.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 13:03:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-transfer-encoding;
+	bh=DvIuedeER1PnBcaA1lLm6AEpmCdhCgHdej9jojof1Og=;
+	b=rYGDCWq0Vus86CUJvQMyC5BNeU4rB6jHv8SP36EKRz5arNzJCxIqxE/a1EuL+idEsT
+	XNF54fzbZbzzjxTiqHar9lKaNzWEjTZt+oVsFfulUT1JjERVlXocqbqkSJGp52zMG+q5
+	KBaT0gdYp/S3+zkno+xi8tYwDnin0WWkjopiXWaWsp/qDMngI6YfImuEe4BIXG3OensD
+	qL3PBHe/lCoSnPVA/ZC5qWyLtyQUkVzpEOZFhLnLxCXx3Gb1iVtez/8MxCK0+CSJCKbw
+	vri3J4FTEsMvC9unf8TzutI+qs1Ijy2pTlplkrQTEr1Z8d+euIXw7yoHrloiMRU/llaA
+	xUBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=9vM3H/KBU22OrgWucuW00lvaX2DbWnSX7hToXMj/nBI=;
-	b=WXCVusRNIVvGEYgMDjVDqZtEt2dAjgyPIPB0c5T2ggChwGpFeDZVZSttWTskHmgSsU
-	csfTxctzb8OOJswJyWjJ+wFwu7vmxF1Yn5og8RSaDNdgGllwFdW0BJjK3d2lbaf5LUAX
-	B579zmKoExugtCxfEW79eg8KWtky2pvrCfrKR9SPa3Or1qF0TRvzp68l+s6SoZmDdOk1
-	1LfDt7weMwTrmvwdM9DRwp8LyVIS67zvH2yT2TZm7E2YzYdT2o4IDSyIj4jlmBWgKO8M
-	+tu5gq6Ca5G67fHMCXmErSWSzfNz9Hkcdq8jRmXJbIsAu8MzcdkKF7sgaLwqTcx02lCr
-	4htg==
-X-Gm-Message-State: AD7BkJIxhP/CfNMeOg/PDYIrqfa6G2t/eHbJ1V1Uv/S7W6xN7fzSSxK4TwfwKj7lWJafmPmnDGS886luZfqXXF7w
-X-Received: by 10.50.126.8 with SMTP id mu8mr4537756igb.52.1456520354243; Fri,
-	26 Feb 2016 12:59:14 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-transfer-encoding;
+	bh=DvIuedeER1PnBcaA1lLm6AEpmCdhCgHdej9jojof1Og=;
+	b=UT4BpEtHM7qzQ3TJLKewgtrA//thRoAdbsaKQkl75E9wxMudpFVnngeH27CXMfSYQp
+	YX/4CY8v/mnfZ+TXU2dADcvVfG/6hKnvCRDkBPX8LdEyd4i+/Qu7JHUoCqFQJURtZT6S
+	tOBqujaj6ueFWQTe+/HnFcWiBS/cs/MV4RBio69LqKX85alCfVYv+zaJUOlCrm9ldp3t
+	g2tHrMy0MtSRk2IsXYrjQNKaDhfsqF1ejPPgu1cGxkqZcJoJCC51mDwlppLnbS4JH8HH
+	vywX3RLfQnj/64Ay8vdVsZWgWoCVW4o+OpNwTVMRzWWcTo0+njgHxnofUSfFMhLKt6O5
+	oFXA==
+X-Gm-Message-State: AD7BkJLSuK5KVn23DhNDpWgh6HnPLVHRT+EclzDa6WtUWnm4br72n5XwjPlsRIyjDRrKQ3AZDqih2DfmMFqq7Q==
 MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Fri, 26 Feb 2016 12:58:54 -0800 (PST)
-In-Reply-To: <56D0B298.9050108@balister.org>
-References: <1456508168.11498.95.camel@linuxfoundation.org>
-	<56D09D35.8040002@balister.org>
-	<1456512644.11498.108.camel@linuxfoundation.org>
-	<2042150.gN3rpHrprf@rjs-zotac.streifs.net>
-	<56D0B298.9050108@balister.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 26 Feb 2016 20:58:54 +0000
-Message-ID: <CAJTo0LbNVZ9k5P+ugk-kg4_PBG0P8nbkJpBHjkv2XqvJrjsdyA@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf J Streif <rudolf.streif@gmail.com>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Yocto Project Status WW09
+X-Received: by 10.98.87.5 with SMTP id l5mr2838298pfb.101.1456520590769; Fri,
+	26 Feb 2016 13:03:10 -0800 (PST)
+Received: by 10.66.155.201 with HTTP; Fri, 26 Feb 2016 13:03:10 -0800 (PST)
+In-Reply-To: <20160226195505.GB27062@resin.home>
+References: <1456478817-7221-1-git-send-email-net147@gmail.com>
+	<20160226171446.GA4154@resin.home>
+	<876d8b2d6f4549cebde5792d84860bee@technux.se>
+	<CAK18fxGKNWMUh=SmKe+3=GF3ttayvm_DyhtzFztBxvfzdj64sg@mail.gmail.com>
+	<20160226195505.GB27062@resin.home>
+Date: Sat, 27 Feb 2016 08:03:10 +1100
+Message-ID: <CANwerB1NhH7sSS-zy8GUHVou4-Ny62=QQpGHsjUaXLf9ii1TMg@mail.gmail.com>
+From: Jonathan Liu <net147@gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: fix path to mkknlimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,41 +74,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 20:59:16 -0000
-Content-Type: multipart/alternative; boundary=047d7b1635bf52fd62052cb292b4
-
---047d7b1635bf52fd62052cb292b4
+X-List-Received-Date: Fri, 26 Feb 2016 21:03:12 -0000
 Content-Type: text/plain; charset=UTF-8
-
-On 26 February 2016 at 20:16, Philip Balister <philip@balister.org> wrote:
-
-> I must admit, I'm surprised this is tricky. I look forward to seeing
-> what needs doing. Hopefully, it shows me things I can avoid in my work.
->
-
-The moral of the story is don't rename layers if you want to maintain a
-semblance of migration.  Renaming meta-yocto to meta-poky means the
-bblayers.conf is invalid, so the migration code can't run because bitbake
-aborts too early.
-
-Ross
-
---047d7b1635bf52fd62052cb292b4
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 26 February 2016 at 20:16, Philip Balister <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:philip@balister.org" target=3D"_blank">philip@balister.org</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1o9" class=
-=3D"a3s" style=3D"overflow:hidden">I must admit, I&#39;m surprised this is =
-tricky. I look forward to seeing<br>
-what needs doing. Hopefully, it shows me things I can avoid in my work.<br>=
-</div></blockquote></div><br>The moral of the story is don&#39;t rename lay=
-ers if you want to maintain a semblance of migration.=C2=A0 Renaming meta-y=
-octo to meta-poky means the bblayers.conf is invalid, so the migration code=
- can&#39;t run because bitbake aborts too early.</div><div class=3D"gmail_e=
-xtra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+On 27 February 2016 at 06:55, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Fri, Feb 26, 2016 at 07:04:28PM +0100, Andrei Gherzan wrote:
+>>    --
+>>    Andrei Gherzan
+>>    On Fri, Feb 26, 2016 at 6:48 PM, Petter Mab=C3=A4cker
+>>    <[1]petter@technux.se> wrote:
+>>
+>>    2016-02-26 18:14 skrev Andrei Gherzan:
+>>
+>> On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:
+>>
+>>      The path had libexecdir hardcoded so it was no longer correct when
+>>      libexecdir was changed in meta/conf/bitbake.conf from
+>>      ${libdir}/${BPN} to ${prefix_native}/libexec for nativesdk recipes.
+>>      Fixes "No such file or directory" error when executing
+>>      do_rpiboot_mkimage. Signed-off-by: Jonathan Liu
+>>      <[2]net147@gmail.com> --- recipes-kernel/linux/linux-raspberrypi.in=
+c
+>>      | 2 +- 1 file changed, 1 insertion(+), 1 deletion(-) diff --git
+>>      a/recipes-kernel/linux/linux-raspberrypi.inc
+>>      b/recipes-kernel/linux/linux-raspberrypi.inc index 70e8bfe..8c7c46c
+>>      100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
+>>      b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@
+>>      do_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage=
+" ;
+>>      then if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloader
+>>      trailer to kernel image to enable DeviceTree support -
+>>      ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok
+>>      ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} +
+>>      ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}
+>>      ${KERNEL_OUTPUT} fi fi } -- 2.7.1
+>>
+>> Back alive. testing this.
+>>
+>> --
+>> Andrei Gherzan
+>>
+>>
+>>    Hi,
+>>    I think we should use the older patchset from Maciej Borzecki (that
+>>    solves this and some other minor stuffs) instead. It also keeps the
+>>    rpi-mkimage structure:
+>>    [3]https://lists.yoctoproject.org/pipermail/yocto/2016-February/02827=
+1.
+>>    html
+>>    BR Petter
+>>
+>>    Very good catch Petter. I'll test that PR.
+>
+> Merged the patch set sent by Maciej. Which covers this patch too.
+> Thanks,
+>
+> --
+> Andrei Gherzan
 
---047d7b1635bf52fd62052cb292b4--
+Note that Maciej's patch doesn't really preserve the path on older
+branches like you expect.
+
+On master branch:
+${libexecdir}/rpi-mkimage expands to /usr/libexec/rpi-mkimage
+
+On daisy branch:
+${libexecdir}/rpi-mkimage expands to /usr/lib/rpi-mkimage/rpi-mkimage
+
+Regards,
+Jonathan
+
