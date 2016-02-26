@@ -1,6 +1,6 @@
 Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1619BE00D7D; Fri, 26 Feb 2016 06:26:47 -0800 (PST)
+	id 82555E00D7D; Fri, 26 Feb 2016 06:29:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,50 +15,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5F16E00911
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 06:26:46 -0800 (PST)
-Received: by mail-io0-f172.google.com with SMTP id 9so118670884iom.1
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 06:26:46 -0800 (PST)
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AFC5E00911
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 06:29:32 -0800 (PST)
+Received: by mail-io0-f180.google.com with SMTP id z135so124254685iof.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 06:29:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:to:references:cc:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=qftO0BtJWxHnWJ70lZOXnxm93p5IKJJz3bS81/fY9+4=;
-	b=jD9sOMFSwZ0PuAkjekkiYIBPMODPOu+wmDvKctw8+jzUEmPAXhqlQb20qDdbmshjRe
-	e/HoMuhH9vVtt1QhHvLbhqmBL0jlcCxOaTz+f9Ivy8QGVMCG1Hq8bQ7j4upL4KCXr9jL
-	ptuZsifd1+s7i1UR0RzUU1yCVkUnJ+2EtlCfhcf8n08fscJDGqncaxJ2zjoruHbC4C7f
-	gcVMqM/z4VYRodnW/3sSC/q+4eomfw6UQcXo/4/YWY6Wn9895PPTIDWJ7F+ENOGcx8O3
-	alNEh8l8BYL68HSdob4/0SN/ToSbmpX2+hP37CTqaE4jpTNp5E0pN6XsbNw/KeKmdHtL
-	/rWQ==
+	bh=cMtFf08Bl4RPP961vqUlMwLCVf9iO6rA4ynORqBHXIc=;
+	b=PGSdUZ4l+GJmCsZdkU76dMzSvIM4+9OnfaV1stNw7LKKbILJNUT0FTm1ZvqrswHrRD
+	okKS2hVpjZlfHF66THQcyPdheRCgJqUht3+G5K3Wv13JIIY35l+jqV/pWRX9qGNn5N/g
+	2KYuS8oQ1yUG6jEJy24AQxOtPbKlc5FBX0gxaw4dhQ5U5alT5UhjWocxfPbbSRa2gp2i
+	fIY8f6XXlcvcUDifgi8NXMAV6S6v3WOXNN6nhlamWbiHoslqQefovd8O5bW73Z5LwLl/
+	O5gWXprrERlVhzTu+o/6vo/mzN+Z5NJ7XfSeWZOivitaKfsbSMXBCY21pxSjPUO95H0N
+	PeZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=qftO0BtJWxHnWJ70lZOXnxm93p5IKJJz3bS81/fY9+4=;
-	b=LrUV8TTv3OLAyeCI7qrrIDdW+/kUtJqqYeTNzLGLPB7dCWOWZYKNHi6ClQq0k5LRBI
-	lw5i4BEh2pwYY4hX3hDQOIDnmWjrn+r6wwCyUDSROF3Xb7ddUPIe3OsA/iz9DqXz75Es
-	snv7XHXBEFN98qfjnqH0LAxfcOQG3UZumrII31S+TWEPix4uS0dAzj5vnPowUouLzoNj
-	ejzJpbtCuBmCscm67o9C+NhcnLv6Vtt2JrQk2LvoypmfjgtHxJ3WCwKV2qmYA772/M0o
-	PtjR5cZ+eQaLrbKZVNDMlsbfudzgl39giKtIxhf+IHDwWjqNqjRxEDdXhuioPGX9JvGo
-	bSiA==
-X-Gm-Message-State: AG10YOQRhsXWhMc2zdh7RHhrOrA0SM4wAcQd4pT7OsgZ7/H6/67ZcWFHZWAiLxqv9hI2EA==
-X-Received: by 10.107.14.66 with SMTP id 63mr8921565ioo.150.1456496805728;
-	Fri, 26 Feb 2016 06:26:45 -0800 (PST)
+	bh=cMtFf08Bl4RPP961vqUlMwLCVf9iO6rA4ynORqBHXIc=;
+	b=BCNwU9+QS7NHrFbPNrbsg1jfkmbkVI5V7PSHbm4IPMOaI7vZDmx/OsVKmnvtuOfAJW
+	MBDwwdEEH3NJQxpzl9bB0utsd8Agm9zhUHElI0ffEY2rD9tx9rIybw8GYLlfeP2M9Bch
+	lX6sd10FcN+yJ/xVPB2NhWRMAKKEOWQudXfm1o3LwecxvYlp+sgfihdNtPSVAvldwFvi
+	eiIpOL5GeH9vzGcDaPcr65siMlEBxAIHRDk5KBSdN+wDDDlBggHUBPAwob1sN7v2KR/V
+	NZjf72LzN57jCjk0/XMkXQ/Ddfw7WjzxObuSP1UKQznitz3946yHlnXo5tG4HGvonKA/
+	z2IQ==
+X-Gm-Message-State: AG10YOS0uErY3JfSGhi1J9ULi8DFN6kCmhuaGfrqFP+vZBC5Ve3JMRdYRnnTmL53eNFJyg==
+X-Received: by 10.107.44.77 with SMTP id s74mr8243829ios.185.1456496972309;
+	Fri, 26 Feb 2016 06:29:32 -0800 (PST)
 Received: from [192.168.0.11]
 	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
 	[99.231.110.121]) by smtp.googlemail.com with ESMTPSA id
-	t16sm5353151ioe.36.2016.02.26.06.26.44
+	wz3sm1390584igb.16.2016.02.26.06.29.31
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 26 Feb 2016 06:26:44 -0800 (PST)
+	Fri, 26 Feb 2016 06:29:31 -0800 (PST)
 To: Philip Balister <philip@balister.org>,
 	Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org, 
 	openembedded-architecture@lists.openembedded.org
 References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
 	<56D05536.3090904@balister.org>
 From: nick <xerofoify@gmail.com>
-Message-ID: <56D060A3.6040309@gmail.com>
-Date: Fri, 26 Feb 2016 09:26:43 -0500
+Message-ID: <56D0614A.1020200@gmail.com>
+Date: Fri, 26 Feb 2016 09:29:30 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.5.1
 MIME-Version: 1.0
@@ -76,7 +76,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 14:26:47 -0000
+X-List-Received-Date: Fri, 26 Feb 2016 14:29:33 -0000
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
@@ -126,6 +126,7 @@ I known Toaster needs to be run with a browser can it be made to run as a non br
 service similar to Hob if not already done so.
 Just my thoughts,
 Nick
+P.S. Sorry if anybody gets a second email as I was not subscribed to openembedded architecture.
 >> Cheers,
 >> Paul
 >>
