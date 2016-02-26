@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9A7DE00E3B; Fri, 26 Feb 2016 11:54:00 -0800 (PST)
+	id D007BE00DCA; Fri, 26 Feb 2016 11:55:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,57 +8,61 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+	*      [74.125.82.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434EAE00DAF
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:53:53 -0800 (PST)
-Received: by mail-wm0-f47.google.com with SMTP id a4so870177wme.0
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:53:53 -0800 (PST)
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B4AE00DB5
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:55:08 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id g62so85771636wme.0
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:55:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=+dVtr9uuZu2ro02zKYWv6pWwQ1KIzqUAE52j/0x3TDc=;
-	b=w8cgj/WpAx0DV8Swc9IVHVE/i9PpkkSB+FbL78c3gDemdHKSsAeOsGAcD9216l05fm
-	0v1YC/aXBvsLU02gq8H3F0KR3AwyPr1RAfE7THE4AaWmYHOuEtpQo4kvsPtVVSrFMoyN
-	3A3tr1VxvZAPxAuXNpufZha39QoUHjuL2kw2GoyTUbBAPE93IJs37dKy5GpRQmHMpWIj
-	OO5WGT1Ru5UkBaycKeh4NQ1dngUBa8+ODsgMjqnbNreQE3KWxHXk62y6Rop8DwCvSDgT
-	cuOWHcJdcxGDZdvMkAD1Hwdk3MX2JVxvFZlsMibqgBOTVOux8XIbbuST8tPWar4UXJkU
-	t87g==
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=EcZ0pppINV5jP+9pXqxR5VszCzDqugk/d3cEagz2YVM=;
+	b=DAodbMp6gbE2BriKOGb3K8OTgRGxyrHm2DgpPsOj5ZawKycTDM4qc/aByTWNxlemc0
+	LNdN9Ip2t0Oc/S/4UUpAQFExKgc8BvJC869d63L8Hx4/kDHHfvxgAvmMYmM5lRyqRZYi
+	H1pi/qFKh9DwnLqVv7wg6QE4WFapSun7ILk+tJCB7CzFvnJtBa7fKyJKWOsccVmAasMF
+	24BrOP7q3vbIaT435y2+m42OhCAAOXxKqW8GWXrFirF8SNdx7fW99kVvL9qTvT7jZJrs
+	Do/Ngxlyalj0hyzUjBhUTGcN54jMPDERdN9vAsJ4+o1AscnAEt4kHHMmAbL5q38KgUOJ
+	PtuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=+dVtr9uuZu2ro02zKYWv6pWwQ1KIzqUAE52j/0x3TDc=;
-	b=TNbc40O7GZw6P82vnzcK48EqMaJf1zzUl8x3/nh3pJtm3ujBBpRBTnfJIOBAv2pGzc
-	cQAFpD5NRz0TtdPGExE3LtjleIIC41TsAMORpnFweiOHmDHSxjklthzMbd68pFFeQ4ob
-	BwM5Ejs/odTjBhTrWCvcv8GaxDeKPWgIvRXMA1dwn1hzrgkg8ix4PsE+8qC0Nv+TGrAT
-	lYGwuGmrEneK/b1r6jcu06sT29mgERMPWI/lw4nDuMjYhVEHvZwnKbDuk+IRcQHuZiuH
-	TxzsLqIl5mluBQFnKctAcP2PJRQ/RIzRTRn4uVyz8+h/RjFsVwsYjejd2RQDZ9LSRixY
-	TxCg==
-X-Gm-Message-State: AD7BkJIG1VOj9+AXldbhnV7V34pSUOsFZwbKmpyoTCxrd1FnHbtK9Gtz4PgVCB8xA1T/TQ==
-X-Received: by 10.194.103.5 with SMTP id fs5mr3432694wjb.42.1456516432586;
-	Fri, 26 Feb 2016 11:53:52 -0800 (PST)
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=EcZ0pppINV5jP+9pXqxR5VszCzDqugk/d3cEagz2YVM=;
+	b=KejJprQdlN25caHjda4DmmTcYoU28Cfyhf8Gun8gGV+2OfsPifRUs50kA6HaV6ZUhQ
+	hAcBetwdSRRgOUfJS5tdeJ9myG+iGC9Iqct+GDmrmB0RqcM7TMoEpwBmNytIjx593CHb
+	SDp0cYtPlq+C1QOSlc3xiXhgEGjTGCdopMg6suXr2YPOkhcYa8ub2fKYKxgBpUUQsBPG
+	MILjzwmhYbpyyAYLQ0yf3m845YGXsIXpJlg0hVHGgUVZzCHlxFyW/uz33GbkX/ooeFhr
+	bygoFAOcLkXc7N4J2uBd8oyJ4rZBvnEr2IATWf/FeD58Q6i893v0gEgBOBGo590+PblH
+	6LYw==
+X-Gm-Message-State: AD7BkJJBbr54bUCQvI4SoH2Pp2hTvfxAgpdLiZZ305MfvAiuTztxvNgWB75oc4/D60quvg==
+X-Received: by 10.28.218.145 with SMTP id r139mr5287504wmg.52.1456516508045;
+	Fri, 26 Feb 2016 11:55:08 -0800 (PST)
 Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
 	by smtp.gmail.com with ESMTPSA id
-	jo6sm13759275wjb.48.2016.02.26.11.53.51
+	js8sm13774168wjc.37.2016.02.26.11.55.06
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 26 Feb 2016 11:53:51 -0800 (PST)
-Date: Fri, 26 Feb 2016 20:53:45 +0100
+	Fri, 26 Feb 2016 11:55:06 -0800 (PST)
+Date: Fri, 26 Feb 2016 20:55:05 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-Message-ID: <20160226195345.GA27062@resin.home>
-References: <1454423507-25187-1-git-send-email-maciej.borzecki@open-rnd.pl>
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20160226195505.GB27062@resin.home>
+References: <1456478817-7221-1-git-send-email-net147@gmail.com>
+	<20160226171446.GA4154@resin.home>
+	<876d8b2d6f4549cebde5792d84860bee@technux.se>
+	<CAK18fxGKNWMUh=SmKe+3=GF3ttayvm_DyhtzFztBxvfzdj64sg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1454423507-25187-1-git-send-email-maciej.borzecki@open-rnd.pl>
+In-Reply-To: <CAK18fxGKNWMUh=SmKe+3=GF3ttayvm_DyhtzFztBxvfzdj64sg@mail.gmail.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org, Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: Re: [meta-raspberrypi][PATCH 0/3] libexecdir fixes
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: fix path to mkknlimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,38 +74,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 19:54:00 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Fri, 26 Feb 2016 19:55:14 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 02, 2016 at 03:31:44PM +0100, Maciej Borzecki wrote:
-> A couple of fixes that resolve issues with recent change of libexecdir
-> in OE-core.
+On Fri, Feb 26, 2016 at 07:04:28PM +0100, Andrei Gherzan wrote:
+>    --
+>    Andrei Gherzan
+>    On Fri, Feb 26, 2016 at 6:48 PM, Petter Mabäcker
+>    <[1]petter@technux.se> wrote:
 >
-> The first patch cleans up the recipe to install rpi-mkimage tools into
-> ${libexecdir}/rpi-mkimage. This preserves the original nesting of
-> rpi-mkimage under ${libdir}.
+>    2016-02-26 18:14 skrev Andrei Gherzan:
 >
-> The 2nd and 3rd patch use ${STAGING_LIBEXECDIR_NATIVE} rather than a mix
-> of ${STAGING_DIR_NATIVE}${libexecdir} to keep things clean.
+> On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:
 >
-> Maciej Borzecki (3):
->   rpi-mkimage: install tools under {libexecdir}/rpi-mkimage
->   u-boot-rpi: use STAGING_LIBEXECDIR_NATIVE for rpi-mkimage tools
->   linux-raspberrypi: use STAGING_LIBEXECDIR_NATIVE for rpi-mkimage tools
+>      The path had libexecdir hardcoded so it was no longer correct when
+>      libexecdir was changed in meta/conf/bitbake.conf from
+>      ${libdir}/${BPN} to ${prefix_native}/libexec for nativesdk recipes.
+>      Fixes "No such file or directory" error when executing
+>      do_rpiboot_mkimage. Signed-off-by: Jonathan Liu
+>      <[2]net147@gmail.com> --- recipes-kernel/linux/linux-raspberrypi.inc
+>      | 2 +- 1 file changed, 1 insertion(+), 1 deletion(-) diff --git
+>      a/recipes-kernel/linux/linux-raspberrypi.inc
+>      b/recipes-kernel/linux/linux-raspberrypi.inc index 70e8bfe..8c7c46c
+>      100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
+>      b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@
+>      do_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" != "xuImage" ;
+>      then if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloader
+>      trailer to kernel image to enable DeviceTree support -
+>      ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok
+>      ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} +
+>      ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}
+>      ${KERNEL_OUTPUT} fi fi } -- 2.7.1
 >
->  recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb | 4 ++--
->  recipes-bsp/u-boot/u-boot-rpi_git.bb       | 2 +-
->  recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
->  3 files changed, 4 insertions(+), 4 deletions(-)
+> Back alive. testing this.
 >
 > --
-> 2.5.0
+> Andrei Gherzan
 >
+>
+>    Hi,
+>    I think we should use the older patchset from Maciej Borzecki (that
+>    solves this and some other minor stuffs) instead. It also keeps the
+>    rpi-mkimage structure:
+>    [3]https://lists.yoctoproject.org/pipermail/yocto/2016-February/028271.
+>    html
+>    BR Petter
+>
+>    Very good catch Petter. I'll test that PR.
 
-Hi,
-
-Merged the patch set to master. Thank you.
+Merged the patch set sent by Maciej. Which covers this patch too.
+Thanks,
 
 --
 Andrei Gherzan
