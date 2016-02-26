@@ -1,59 +1,33 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 595E9E00D63; Fri, 26 Feb 2016 05:21:30 -0800 (PST)
+	id BB00CE00D72; Fri, 26 Feb 2016 05:38:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C45DE00D46
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 05:21:29 -0800 (PST)
-Received: by mail-pa0-f48.google.com with SMTP id fl4so51176446pad.0
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 05:21:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=RxW+GWShJNbY/JGCg1saFF76okEPeqe+qn3Eelg14Bc=;
-	b=aYc0RLZ67mYtyPFA7yAT7WjMn6hMiKT4BWd2Xjgm3vg6r9juwst7Icjd9M2ubPPrB0
-	zkPRHCtdzB0O3YPxuY9TmN1mGxhxvuoD09UcliM2TpuETNsIHQfDJTd3Qt2B2adzGnWI
-	th7/GpQx9VT3zidsh46b2ca2BEKyZBs6wyXGiAGBeFH3GmHFj65z9mMv+zFJWa0+hM+s
-	Scdj8VpLEeh2RPgxDq8dMuOg+m+C2icbMjqFujZ6NHRSRUm3v4bGYOJ0B86fiBkdMGqI
-	A7D5dbvxA1B7w1+fKItVv/3CwzsGr7x6EJxqnlEp/4ZrA4+JHsdwG05dpAczHGcP2DpF
-	P94w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=RxW+GWShJNbY/JGCg1saFF76okEPeqe+qn3Eelg14Bc=;
-	b=OkHCRBUkseCt4XFwDOyGUWEulfqXsXrZQb5kYo2v4vFC+TYxAw6IgDTy+E85z5ZFfn
-	bj9jIjBmedsxsIk4GGfkihSkHg0jSlNliCf5b/8gQTBog7k0CF/tAor/x2/FDnpQGf7k
-	wOp2UhTm3L0mqb/bve1VrS/ObkwNMqi25nHLg19QIwLJ/OCLF6Blt5yCgIrgKm0pdkzQ
-	30lJOpNmTbzXhY7LtlOJ8lONrH1QCiD0wzKdKGRVVR8pXq8aFXsiiqiJJ402KUeOSRrr
-	VhdkWWqyHgXO9acqD70teEIJp8bilpgHlnMtwTDt8B89XrjMX8bLV5TlTyoOR6UuMvbv
-	eRCQ==
-X-Gm-Message-State: AD7BkJIJE6KAj+VgS35dLvFsVp65ZpbnxikRhJ4vcKd8ffbP5Bhtr3sTCnpXwZwbTkXn8A==
-X-Received: by 10.66.191.104 with SMTP id gx8mr1978755pac.21.1456492888972;
-	Fri, 26 Feb 2016 05:21:28 -0800 (PST)
-Received: from 60-242-179-244.static.tpgi.com.au
-	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id r5sm19580846pap.7.2016.02.26.05.21.27
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 26 Feb 2016 05:21:28 -0800 (PST)
-From: Jonathan Liu <net147@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat, 27 Feb 2016 00:21:08 +1100
-Message-Id: <1456492868-19761-1-git-send-email-net147@gmail.com>
-X-Mailer: git-send-email 2.7.1
-Subject: [meta-raspberrypi][PATCH] omxplayer: fix host-user-contaminated QA warnings
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2C94CE00D58
+	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 05:38:00 -0800 (PST)
+Received: (qmail 8311 invoked by uid 1003); 26 Feb 2016 13:37:59 -0000
+Received: from unknown (HELO ?192.168.11.124?)
+	(philip@opensdr.com@71.171.15.136)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	26 Feb 2016 13:37:59 -0000
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org,
+	openembedded-architecture@lists.openembedded.org
+References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <56D05536.3090904@balister.org>
+Date: Fri, 26 Feb 2016 08:37:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
+MIME-Version: 1.0
+In-Reply-To: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
+Cc: Brian Avery <brian.avery@intel.com>
+Subject: Re: [Openembedded-architecture] Removing Hob for 2.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,30 +39,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 13:21:30 -0000
+X-List-Received-Date: Fri, 26 Feb 2016 13:38:03 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Explicitly chown the installed files to fix host-user-contaminated QA
-warnings for libavcodec, libavdevice, libavfilter, libavformat,
-libavutil and libswresample shared libraries.
+On 02/25/2016 09:49 PM, Paul Eggleton wrote:
+> Hi folks,
+> 
+> So we've been gearing up the Toaster web UI to replace the Hob (GTK+ based) UI 
+> for some time now; Hob has basically been on life support for the past few 
+> releases. As of late last month in master, Toaster has the capability to 
 
-Signed-off-by: Jonathan Liu <net147@gmail.com>
----
- recipes-multimedia/omxplayer/omxplayer_git.bb | 1 +
- 1 file changed, 1 insertion(+)
+Please remove Hob.
 
-diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-index a0690a0..8816273 100644
---- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-+++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-@@ -61,6 +61,7 @@ do_install() {
-     oe_runmake STRIP='echo skipping strip' dist
-     mkdir -p ${D}${datadir}/fonts/truetype/freefont/
-     install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
-+    chown root:root -R ${D}
- }
- 
- FILES_${PN} = "${bindir}/omxplayer* \
--- 
-2.7.1
+I've heard that the Linux Foundation training still mentions Hob, I'll
+double check that this content is removed and shifted to Toaster.
 
+Philip
+
+> select the packages in an image, removing the last thing that Hob could do 
+> that Toaster couldn't. This means it's about time we looked at removing Hob - 
+> particularly if we want to do so for the upcoming 2.1 release as we should 
+> really do so within the M3 development timeframe which is almost over.
+> 
+> To recap, the reasons why Hob ought to be removed include:
+> 
+> - The code is tightly woven into BitBake, making it fragile. This means it 
+> needs significant QA and maintenance on an ongoing basis.
+> 
+> - Some of the implementation is not ideal; we'll be able to remove some cruft 
+> from BitBake and OE-Core at the same time.
+> 
+> - It's GTK+ 2 based, not the current GTK+ 3.
+> 
+> - Toaster is now a much more capable UI and is being actively maintained
+> 
+> I'm maintaining a list of things we would drop together with Hob, so I could 
+> probably come up with a patchset - I just wanted to give people a heads up and 
+> double check that this is something we indeed want to do in 2.1. Any comments?
+> 
+> Cheers,
+> Paul
+> 
 
