@@ -1,17 +1,17 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BE5FE00DF9; Sat, 27 Feb 2016 05:49:16 -0800 (PST)
+	id 3AB86E00E0A; Sat, 27 Feb 2016 07:27:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (net147[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,45 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 978FFE00D61
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 05:49:08 -0800 (PST)
-Received: by mail-wm0-f50.google.com with SMTP id p65so18017127wmp.1
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 05:49:08 -0800 (PST)
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11488E0086B
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:09 -0800 (PST)
+Received: by mail-qg0-f44.google.com with SMTP id y9so87795301qgd.3
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=loruohY29jnH0whvzYA0JRUStwiFFd0QeGOPV1t0c/4=;
-	b=CHIZ7oTgg8bRIr9aTxNBtnT3Mv0s/U5PqfKAv/Vu3zHf0P4cKoJHZTvOPlspa0jyW5
-	6hkstnRdPGYcc4a56DtfrPVSrfD5Hp2fdySVXEZsF/FANvuVxXbJY6ZF6lJplSEryln2
-	u0uYvPnfJYH9cSexhc2cvDj0zWW+xHbzU3IySv0tYCJ/mVUAFcdT17pL9PyA/veWpTRL
-	WRKSMOLEV5ruGxrbWa3JctJRnX+LANRZGXlI09XV/DRH6NIhixYIv/Nsjs0BE95qKRAC
-	WrzNhbXnvLnOHItUb4p1khMKQj/2WhN/VcQ+xWF4vdJiEgxOHd2XJxtfxs2hZ6hpychL
-	i3bQ==
+	h=from:to:cc:subject:date:message-id;
+	bh=v24f3engqqm3sB1D/7qiQcZrHM1KdA+YGGL0a7TJPUw=;
+	b=aEc8Ai2HPfJKYLt6/Cmay71dYjzUo8vwja7HJEmRC+lUwV41wZJZRwfIrD8n0QFVE2
+	vkEdBFbc8gMecF/J93eyN93jLm/jvZ7OUYsqq/PGqaWGIe3pyHUtz6FYkI8ImWadO6Rp
+	+a7RjsZTj0ESsrxc+e/YJWtqhK1Dz08J7wKltPRRzPuS09ekQqScQA24x8sJXpUy/ANi
+	htUDHCMB5ris3+Wvo6CE3gm92p3BRNPHmRYpRXjP8l2TaAU2iW8Hh5Y/fkdyy/J00lF0
+	lSuTbUBNEHGhyC2aXPmX2aWdJN9ewE4PtnMa66Okc+ltG6kNPgytzvLRJCFFIEukbdfW
+	QNpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=loruohY29jnH0whvzYA0JRUStwiFFd0QeGOPV1t0c/4=;
-	b=S85SGCEGqR3LEprC4MQAnOPpfL2lfvRpRr64IRl/CoQoDW4AeAZfDJKG4EzkEpRdEP
-	QStM2x5Tq/8Trv9zfwQIYE1gRMD9QPhEK426AWgU+yJPvGHCKYaTiJib7GuvIlNlDTfT
-	UxD328vhfOXstQv87IaUL8R0PHWYkchLcStKBc8vVgu9sfJ++yWg+sVKbR0Upeo6gqhb
-	TvVVrGxkBAYhJRhCG/Zo6xsFYTbU8CVuVHzKANT4ZBvRuaLt5ysyOM8dVFeCDsnSbf2e
-	AXIYwbGvqFvLJ2GTo4xvMHuYhwiqjBD32zdsVZEAN1hN+jRNurrnm1WLw2I9YvO5GkuI
-	DxVw==
-X-Gm-Message-State: AD7BkJK4q2I16eIv2CAUGUPJk03zCtStba0EL6892Hn+XRV71Wwc0LiUsSorifQcoEMBv5qM0xF4mtXNs8zW7A==
-MIME-Version: 1.0
-X-Received: by 10.28.171.8 with SMTP id u8mr2798518wme.97.1456580947568; Sat,
-	27 Feb 2016 05:49:07 -0800 (PST)
-Received: by 10.27.9.133 with HTTP; Sat, 27 Feb 2016 05:49:07 -0800 (PST)
-In-Reply-To: <20160227125601.GB28071@resin.home>
-References: <1456492868-19761-1-git-send-email-net147@gmail.com>
-	<20160227125601.GB28071@resin.home>
-Date: Sun, 28 Feb 2016 00:49:07 +1100
-Message-ID: <CANwerB0GuLWxL5Rsane0Ws7DUK6tOuSm0nohnw9M89oTaHp4zg@mail.gmail.com>
-From: Jonathan Liu <net147@gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] omxplayer: fix host-user-contaminated QA warnings
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=v24f3engqqm3sB1D/7qiQcZrHM1KdA+YGGL0a7TJPUw=;
+	b=gJnN3ZbDGCKYmmt3fSGydm3V+WvE33QokLnDY1c+Iz2qB4C3pQFMkakL8WcE8+7PrW
+	hZBhZ6Eyj3XE16a+M9yxCoya0HJp8qbSW6+kPR4+mkJEYgfcGKE2SOWDVONIS4MqAmGk
+	K8UrQAp7TYI5Pb4FAIijJ/B6yKosTT2R+PXpK0BiTzbYnrGG8cTtWD5M2cV5PKRbuvl/
+	1dF7Y6paLWHxl6DJ6QqUC6hEWV7IGyf966R8gmoMBNDchJaHmILNk0o4Kp0K+vqwrlR9
+	ekoZLsCkJ1DI/slZ2IJdEFP8GY5df3UyNfsqEL8lSbrdpl13ibOrNVVX+YPPEyBn6YRg
+	72RQ==
+X-Gm-Message-State: AD7BkJLNXyQTG2PLiutQCwYAPixTofu7L8jJTXFBz5p7HK7CBcGhkdrjCnhFwExuWjooyA==
+X-Received: by 10.140.132.149 with SMTP id 143mr9007472qhe.7.1456586829012;
+	Sat, 27 Feb 2016 07:27:09 -0800 (PST)
+Received: from eos.sys.comcast.net (a-96-118-179-133.sys.comcast.net.
+	[96.118.179.133]) by smtp.gmail.com with ESMTPSA id
+	197sm7416770qhr.36.2016.02.27.07.27.08
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 27 Feb 2016 07:27:08 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 27 Feb 2016 15:26:39 +0000
+Message-Id: <cover.1456586389.git.raj.khem@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-raspberrypi][PATCH 00/23] Kernel/userland upgrade wayland support and clang fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,64 +69,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Feb 2016 13:49:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 27 Feb 2016 15:27:21 -0000
 
-On 27 February 2016 at 23:56, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Sat, Feb 27, 2016 at 12:21:08AM +1100, Jonathan Liu wrote:
->> Explicitly chown the installed files to fix host-user-contaminated QA
->> warnings for libavcodec, libavdevice, libavfilter, libavformat,
->> libavutil and libswresample shared libraries.
->>
->> Signed-off-by: Jonathan Liu <net147@gmail.com>
->> ---
->>  recipes-multimedia/omxplayer/omxplayer_git.bb | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
->> index a0690a0..8816273 100644
->> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
->> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
->> @@ -61,6 +61,7 @@ do_install() {
->>      oe_runmake STRIP='echo skipping strip' dist
->>      mkdir -p ${D}${datadir}/fonts/truetype/freefont/
->>      install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
->> +    chown root:root -R ${D}
->>  }
->>
->>  FILES_${PN} = "${bindir}/omxplayer* \
->> --
->> 2.7.1
->>
->
-> Actually the problem here is how the package does the dist target.
->
-> Makefile:
-> ...
-> <-->cp -a ffmpeg_compiled/usr/lib/*.so* $(DIST)/usr/lib/omxplayer/
-> ...
->
-> This means that even if ran in a fackroot environment, this will preserve the
-> user id and other file attributes generating the warnings you pointed out.
->
-> In order to fix this I would vote for a patch that would change the archive
-> flag to a simple -R (-P is default anyway). What do you think?
->
-> As well this patch should go upstream too as I don't see the idea behind
-> copying those while preserving the file attributes.
->
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> --
-> Andrei Gherzan
+This patchset has been growing for a while, Adds recipes for kenrel 4.4 and switches
+to use kernel 4.4
+Fixes userland to compile with clang
+Upgrade userland to latest
+Add option to support GPU_MEM_1024
+Upgrade firmware to latest
 
-I have submitted a pull request to omxplayer to use -P. No point using
--R as it is just copying libraries rather than directories.
+Khem Raj (23):
+  userland: Upgrade to latest git master
+  userland: Fix build with clang compiler
+  userland: Add wayland support
+  weston: Enable rpi compositor backend
+  rpi-gpio: Upgrade to 0.6.1 and fix build with clang
+  eglinfo-x11,eglinfo-fb: Add EGLINFO_DEVICE via bbappends
+  python-rtimu: Fix build with musl
+  wiringPi: Fix build with musl
+  Delete rpc flushing of thread in glEGLImageTargetTexture2DOES
+  rpio: Include sys/types.h for caddr_t
+  userland: Define PROJECT_APIVER and rprovide libgles2 libgl
+  userland: Add wayland to deps if in DISTRO_FEATURES
+  userland: Fix build race with wayland support
+  gstreamer1.0-omx: Add raspberry pi optimization patches and config
+    options
+  weston: Specify egl and compositor options for rpi
+  gstreamer1.0-omx: Backports and fixes for smooth video playback
+  linux-raspberrypi: Upgrade 4.1 kernel to 4.1.17
+  firmware: Upgrade to latest stable 20160209
+  rpi-config: Upgrade to tip of tree to get GPU_MEM_1024
+  linux-raspberrypi: Add recipe for 4.4 release
+  userland: Upgrade to latest
+  linux-raspberrypi: Upgrade 4.4.1 -> 4.4.2
+  userland: Drop extern inline patches
 
-Regards,
-Jonathan
+ README                                             |    2 +
+ conf/machine/include/rpi-default-versions.inc      |    2 +-
+ recipes-bsp/bootfiles/bcm2835-bootfiles.bb         |    2 +-
+ recipes-bsp/bootfiles/rpi-config_git.bb            |    5 +-
+ recipes-bsp/common/firmware.inc                    |    4 +-
+ ...0001-include-asm-ioctl.h-for-ioctl-define.patch |   33 +
+ recipes-devtools/python/python-rtimu_git.bb        |    4 +-
+ .../rpi-gpio/0001-Remove-nested-functions.patch    |  294 +++
+ .../{rpi-gpio_0.5.11.bb => rpi-gpio_0.6.1.bb}      |    6 +-
+ ...-types.h-explicitly-for-getting-caddr_t-d.patch |   30 +
+ recipes-devtools/python/rpio_0.10.0.bb             |    6 +-
+ ...de-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch |   58 +
+ recipes-devtools/wiringPi/wiringpi_git.bb          |    8 +-
+ recipes-graphics/eglinfo/eglinfo-fb_%.bbappend     |    1 +
+ recipes-graphics/eglinfo/eglinfo-x11_%.bbappend    |    1 +
+ .../userland/0001-fix-gcc-5.x-inlines.patch        |   26 -
+ .../userland/userland/0002-fix-musl-build.patch    |   22 -
+ .../0002-set-VMCS_INSTALL_PREFIX-to-usr.patch      |    7 +-
+ ...make-generate-and-install-pkgconfig-files.patch |   24 +-
+ .../0003-fix-alloc-size-uninitialized.patch        |   13 -
+ ...-applications-to-set-next-resource-handle.patch |  208 +++
+ ...ayland-Add-support-for-the-Wayland-winsys.patch | 1880 ++++++++++++++++++++
+ .../0007-wayland-Add-Wayland-example.patch         |  866 +++++++++
+ ...-wayland-egl-Add-bcm_host-to-dependencies.patch |   28 +
+ ...emove-faulty-assert-to-make-weston-happy-.patch |   29 +
+ ...0-zero-out-wl-buffers-in-egl_surface_free.patch |   33 +
+ ...011-initialize-front-back-wayland-buffers.patch |   34 +
+ .../userland/userland/0012-Remove-RPC_FLUSH.patch  |   27 +
+ .../userland/0013-fix-cmake-dependency-race.patch  |   78 +
+ .../0014-Fix-enum-conversion-warnings.patch        |   99 ++
+ recipes-graphics/userland/userland_git.bb          |   33 +-
+ recipes-graphics/wayland/weston_%.bbappend         |    4 +
+ recipes-graphics/weston/weston_%.bbappend          |    7 +
+ recipes-kernel/linux/linux-raspberrypi_4.1.bb      |    4 +-
+ ...raspberrypi_4.1.bb => linux-raspberrypi_4.4.bb} |    6 +-
+ .../gstreamer1.0-omx/0001-config-files-path.patch  |  137 ++
+ ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |   47 +
+ .../0003-fix-decoder-flushing.patch                |   15 +
+ .../0003-no-timeout-on-get-state.patch             |   16 +
+ ...erly-handle-drain-requests-while-flushing.patch |   69 +
+ ...-gst_omx_video_dec_set_format-if-there-s-.patch |   30 +
+ .../gstreamer/gstreamer1.0-omx_%.bbappend          |   22 +
+ 42 files changed, 4114 insertions(+), 106 deletions(-)
+ create mode 100644 recipes-devtools/python/python-rtimu/0001-include-asm-ioctl.h-for-ioctl-define.patch
+ create mode 100644 recipes-devtools/python/rpi-gpio/0001-Remove-nested-functions.patch
+ rename recipes-devtools/python/{rpi-gpio_0.5.11.bb => rpi-gpio_0.6.1.bb} (70%)
+ create mode 100644 recipes-devtools/python/rpio/0001-include-sys-types.h-explicitly-for-getting-caddr_t-d.patch
+ create mode 100644 recipes-devtools/wiringPi/wiringpi/0001-include-asm-ioctl.h-directly-for-_IOC_SIZEBITS.patch
+ create mode 100644 recipes-graphics/eglinfo/eglinfo-fb_%.bbappend
+ create mode 100644 recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
+ delete mode 100644 recipes-graphics/userland/userland/0001-fix-gcc-5.x-inlines.patch
+ delete mode 100644 recipes-graphics/userland/userland/0002-fix-musl-build.patch
+ delete mode 100644 recipes-graphics/userland/userland/0003-fix-alloc-size-uninitialized.patch
+ create mode 100644 recipes-graphics/userland/userland/0005-Allow-applications-to-set-next-resource-handle.patch
+ create mode 100644 recipes-graphics/userland/userland/0006-wayland-Add-support-for-the-Wayland-winsys.patch
+ create mode 100644 recipes-graphics/userland/userland/0007-wayland-Add-Wayland-example.patch
+ create mode 100644 recipes-graphics/userland/userland/0008-wayland-egl-Add-bcm_host-to-dependencies.patch
+ create mode 100644 recipes-graphics/userland/userland/0009-interface-remove-faulty-assert-to-make-weston-happy-.patch
+ create mode 100644 recipes-graphics/userland/userland/0010-zero-out-wl-buffers-in-egl_surface_free.patch
+ create mode 100644 recipes-graphics/userland/userland/0011-initialize-front-back-wayland-buffers.patch
+ create mode 100644 recipes-graphics/userland/userland/0012-Remove-RPC_FLUSH.patch
+ create mode 100644 recipes-graphics/userland/userland/0013-fix-cmake-dependency-race.patch
+ create mode 100644 recipes-graphics/userland/userland/0014-Fix-enum-conversion-warnings.patch
+ create mode 100644 recipes-graphics/wayland/weston_%.bbappend
+ create mode 100644 recipes-graphics/weston/weston_%.bbappend
+ copy recipes-kernel/linux/{linux-raspberrypi_4.1.bb => linux-raspberrypi_4.4.bb} (50%)
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-config-files-path.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-fix-decoder-flushing.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-no-timeout-on-get-state.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0004-Properly-handle-drain-requests-while-flushing.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
+
+-- 
+1.9.1
+
 
