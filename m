@@ -1,69 +1,64 @@
-Return-Path: <net147@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57186E00B6F; Sat, 27 Feb 2016 04:25:32 -0800 (PST)
+	id D3B78E00B46; Sat, 27 Feb 2016 04:56:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (net147[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50967E009D7
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 04:25:29 -0800 (PST)
-Received: by mail-wm0-f47.google.com with SMTP id p65so16546999wmp.1
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 04:25:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-transfer-encoding;
-	bh=umSA5g1qss3yJbuJJ/8CtrHJ4cs1I9XvQkMohetB2mg=;
-	b=XsXAqoisyQ6UTClTOJvoL6k571uxpgsIcGz2tLN8PoXxt/dJlUFzAU44m0FW8aolk0
-	xBB9OTtUgJAkOg1daOWxaK6U9VYU1tmf1+n6bBMh3AKvP/Mmj53u5XqEBec9RKBvGs+S
-	uCl5aSbBvPpWJ+DcaZ5P2jwMddiGgSHKGwEYTy3QScEpEzfryZg6uDP86eT1g3/76Epi
-	HF3zHf2QJpggct1+W3UTUnfOK36jjLtKHCNck7ymyzYAgUYPZ7SzV/6QpNWYL8FUEeOp
-	PRr/RMhssUL96eSYnJx2/finEWAGEJYf9aDn4JnYxxOR5ZeaKWiMn7YbkCjO6An1cD9T
-	iZNA==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10739E009D7
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 04:56:05 -0800 (PST)
+Received: by mail-wm0-f50.google.com with SMTP id g62so103054689wme.0
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 04:56:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=EizzsdWzioIO1kDqAzb0xnNvhXqMq98lASAKpiJxU2Y=;
+	b=iB+dsxx1mTwSyVTb1dJsU07rtp2bnxv5SwhHds7G/ggzDyPhWb/XtNE2LgHO5/HZAc
+	EM6xr9Ivuys41hn0yjV7zBO0bcARRcyKM9jrUMjheaGRxlqmhbi9qL/1B/FC1pM6K8iD
+	/lQ8Zetns5lNzvFbs58k+5pC430hUoR2HjSFDAKk2goM61gQxL41AgnlpFoUmIU0fKCz
+	IP4i0lDHpOG589Z4HwJKYWS65TcTfBEQ2hDPgQ+HRYrHW29srlp/QkaWXbe+dNOURe5u
+	AhUm/Wle2edAYYOjgQAjan/gfXrNODF55tUReorHRpOf3S2NksFiqGs3ST7ZvQHAgjn2
+	zNbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-transfer-encoding;
-	bh=umSA5g1qss3yJbuJJ/8CtrHJ4cs1I9XvQkMohetB2mg=;
-	b=Vq1htf9Xa3UXZXB84wErCm9xYY66ATohbRUNVrS7nFvTZVket4R/IIiYHl23RrBgko
-	ebOwkvDhQsyDwKWhBumEfkgp7dzA1fXrya1GSJBgtHVFy/4GbT3kriapL9UQW0pRbEET
-	oNOo/5ydnwBfgW5wYsYf1J+EbHWUQv4E1W7Lwf/JxFPHLNCtOMIaXZ3C3LoQJY3Umrk/
-	VvehCNN7iq+FEk9gIhMMjHlaM1h91bWmeRTZ9OsGLwYGAwiohw4/CFAzlVwqmmGDKiA9
-	vDRIGZvfV+cVzMzGKqi2vBMnON6iVZxFTFhZPvVKrxOI0ZHrmeylMPC1aKZ41kozg3Ze
-	YDew==
-X-Gm-Message-State: AD7BkJKLoDQ3PUhmGrPznxZA5WfzC6AAXSHngLnjJeF/17SOf2NyXRCS2AA3SS9/sYUKq2uuQBk2+x8XieOGKA==
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=EizzsdWzioIO1kDqAzb0xnNvhXqMq98lASAKpiJxU2Y=;
+	b=fLFHtMSZC8VICkNFUO1563pJAO6W2iMlDaT/mwTYxYCId5DBcpgZlBmD78rraznpBi
+	ROL3wp0PxRIAIZ1ZRISRWiswRJiDXIeBKtZXVH5/2EtFGhAVc3tszhySZAj8wbAWyAQK
+	CfRj8V0vOmpWeXafBuWTtMNp9UD1DICJ+eP1Tmd3CCXszLc39klZtrkciVTzAjd6yeXn
+	nbZ7Lg/96qFniscF51Sxp7Beh7coghw9sLNR6wF9n2Jz4iaI6nNY5rjxrKi1LM9pcE0o
+	pv6Sp+/7XbF84mL57lMryI8wYMPPR6OrVfxYwtlokeiqL1MAkHIRi1EqSzLyF0O0atmm
+	imng==
+X-Gm-Message-State: AD7BkJIJhujzIe8WEiUQ8NpMnzoZPYKOFM+C9Qggxeg4XEdAmfjjEoxwvytwLA1j8/VyEg==
+X-Received: by 10.28.156.194 with SMTP id f185mr1944273wme.35.1456577764808;
+	Sat, 27 Feb 2016 04:56:04 -0800 (PST)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	k124sm7040249wmb.11.2016.02.27.04.56.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 27 Feb 2016 04:56:03 -0800 (PST)
+Date: Sat, 27 Feb 2016 13:56:01 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Jonathan Liu <net147@gmail.com>
+Message-ID: <20160227125601.GB28071@resin.home>
+References: <1456492868-19761-1-git-send-email-net147@gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.194.86.68 with SMTP id n4mr7347674wjz.150.1456575929052;
-	Sat, 27 Feb 2016 04:25:29 -0800 (PST)
-Received: by 10.27.9.133 with HTTP; Sat, 27 Feb 2016 04:25:28 -0800 (PST)
-In-Reply-To: <20160226212038.GA28071@resin.home>
-References: <1456478817-7221-1-git-send-email-net147@gmail.com>
-	<20160226171446.GA4154@resin.home>
-	<876d8b2d6f4549cebde5792d84860bee@technux.se>
-	<CAK18fxGKNWMUh=SmKe+3=GF3ttayvm_DyhtzFztBxvfzdj64sg@mail.gmail.com>
-	<20160226195505.GB27062@resin.home>
-	<CANwerB1NhH7sSS-zy8GUHVou4-Ny62=QQpGHsjUaXLf9ii1TMg@mail.gmail.com>
-	<20160226212038.GA28071@resin.home>
-Date: Sat, 27 Feb 2016 23:25:28 +1100
-Message-ID: <CANwerB3hkBTe628KYDG0owzUYjTodMT8X8HhzUmpMA+uT2P_CQ@mail.gmail.com>
-From: Jonathan Liu <net147@gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: fix path to mkknlimg
+In-Reply-To: <1456492868-19761-1-git-send-email-net147@gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] omxplayer: fix host-user-contaminated QA warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,107 +70,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Feb 2016 12:25:32 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 27 Feb 2016 12:56:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 27 February 2016 at 23:21, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Sat, Feb 27, 2016 at 08:03:10AM +1100, Jonathan Liu wrote:
->> On 27 February 2016 at 06:55, Andrei Gherzan <andrei@gherzan.ro> wrote:
->> > On Fri, Feb 26, 2016 at 07:04:28PM +0100, Andrei Gherzan wrote:
->> >>    --
->> >>    Andrei Gherzan
->> >>    On Fri, Feb 26, 2016 at 6:48 PM, Petter Mab=C3=A4cker
->> >>    <[1]petter@technux.se> wrote:
->> >>
->> >>    2016-02-26 18:14 skrev Andrei Gherzan:
->> >>
->> >> On Fri, Feb 26, 2016 at 08:26:57PM +1100, Jonathan Liu wrote:
->> >>
->> >>      The path had libexecdir hardcoded so it was no longer correct wh=
-en
->> >>      libexecdir was changed in meta/conf/bitbake.conf from
->> >>      ${libdir}/${BPN} to ${prefix_native}/libexec for nativesdk recip=
-es.
->> >>      Fixes "No such file or directory" error when executing
->> >>      do_rpiboot_mkimage. Signed-off-by: Jonathan Liu
->> >>      <[2]net147@gmail.com> --- recipes-kernel/linux/linux-raspberrypi=
-.inc
->> >>      | 2 +- 1 file changed, 1 insertion(+), 1 deletion(-) diff --git
->> >>      a/recipes-kernel/linux/linux-raspberrypi.inc
->> >>      b/recipes-kernel/linux/linux-raspberrypi.inc index 70e8bfe..8c7c=
-46c
->> >>      100644 --- a/recipes-kernel/linux/linux-raspberrypi.inc +++
->> >>      b/recipes-kernel/linux/linux-raspberrypi.inc @@ -60,7 +60,7 @@
->> >>      do_rpiboot_mkimage() { if test "x${KERNEL_IMAGETYPE}" !=3D "xuIm=
-age" ;
->> >>      then if test -n "${KERNEL_DEVICETREE}"; then # Add RPi bootloade=
-r
->> >>      trailer to kernel image to enable DeviceTree support -
->> >>      ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok
->> >>      ${KERNEL_OUTPUT} ${KERNEL_OUTPUT} +
->> >>      ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}
->> >>      ${KERNEL_OUTPUT} fi fi } -- 2.7.1
->> >>
->> >> Back alive. testing this.
->> >>
->> >> --
->> >> Andrei Gherzan
->> >>
->> >>
->> >>    Hi,
->> >>    I think we should use the older patchset from Maciej Borzecki (tha=
-t
->> >>    solves this and some other minor stuffs) instead. It also keeps th=
-e
->> >>    rpi-mkimage structure:
->> >>    [3]https://lists.yoctoproject.org/pipermail/yocto/2016-February/02=
-8271.
->> >>    html
->> >>    BR Petter
->> >>
->> >>    Very good catch Petter. I'll test that PR.
->> >
->> > Merged the patch set sent by Maciej. Which covers this patch too.
->> > Thanks,
->> >
->> > --
->> > Andrei Gherzan
->>
->> Note that Maciej's patch doesn't really preserve the path on older
->> branches like you expect.
->>
->> On master branch:
->> ${libexecdir}/rpi-mkimage expands to /usr/libexec/rpi-mkimage
->>
->> On daisy branch:
->> ${libexecdir}/rpi-mkimage expands to /usr/lib/rpi-mkimage/rpi-mkimage
+On Sat, Feb 27, 2016 at 12:21:08AM +1100, Jonathan Liu wrote:
+> Explicitly chown the installed files to fix host-user-contaminated QA
+> warnings for libavcodec, libavdevice, libavfilter, libavformat,
+> libavutil and libswresample shared libraries.
 >
-> This is a very good catch. But for now this patch is not in daisy it is o=
-nly in
-> master which is supposed to work with poky master. I do understand your
-> concern. And I think it is the same thing on jethro too. So you propose r=
-elying
-> on STAGING_LIBEXECDIR_NATIVE and let it append or not BPN?
+> Signed-off-by: Jonathan Liu <net147@gmail.com>
+> ---
+>  recipes-multimedia/omxplayer/omxplayer_git.bb | 1 +
+>  1 file changed, 1 insertion(+)
 >
+> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+> index a0690a0..8816273 100644
+> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
+> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+> @@ -61,6 +61,7 @@ do_install() {
+>      oe_runmake STRIP='echo skipping strip' dist
+>      mkdir -p ${D}${datadir}/fonts/truetype/freefont/
+>      install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
+> +    chown root:root -R ${D}
+>  }
+>
+>  FILES_${PN} = "${bindir}/omxplayer* \
 > --
-> Andrei Gherzan
+> 2.7.1
+>
 
-I propose my patch instead which has the following behavior and goes
-along with the libexecdir change rather than trying to go against it.
+Actually the problem here is how the package does the dist target.
 
-My patch has the following paths for mkknlimg.
+Makefile:
+...
+<-->cp -a ffmpeg_compiled/usr/lib/*.so* $(DIST)/usr/lib/omxplayer/
+...
 
-daisy:
-[...]/sysroots/x86_64-linux/usr/lib/rpi-mkimage/mkknlimg
-which matches the previous hardcoded path before the patch so the path
-doesn't change with the patch for older branches
+This means that even if ran in a fackroot environment, this will preserve the
+user id and other file attributes generating the warnings you pointed out.
 
-master:
-[...]/sysroots/x86_64-linux/usr/libexec/mkknlimg
+In order to fix this I would vote for a patch that would change the archive
+flag to a simple -R (-P is default anyway). What do you think?
 
-You can then do something similar for U-Boot.
+As well this patch should go upstream too as I don't see the idea behind
+copying those while preserving the file attributes.
 
-Regards,
-Jonathan
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--
+Andrei Gherzan
 
