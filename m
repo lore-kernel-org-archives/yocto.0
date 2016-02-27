@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89A35E00C44; Sat, 27 Feb 2016 07:27:30 -0800 (PST)
+	id 7E5A5E00E05; Sat, 27 Feb 2016 07:27:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.42 listed in list.dnswl.org]
+	*      [209.85.220.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,51 +19,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
-	[209.85.192.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02E9CE00CC4
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:17 -0800 (PST)
-Received: by mail-qg0-f42.google.com with SMTP id y9so87796777qgd.3
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:17 -0800 (PST)
+Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB323E00DF5
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:22 -0800 (PST)
+Received: by mail-qk0-f169.google.com with SMTP id s5so42378484qkd.0
+	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 07:27:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:in-reply-to:references;
-	bh=qW9mmdHVdj3ZkWhoNZhguFi1iynljPYaG/iLN8ij8LA=;
-	b=aiq/pGMpkEPo1KYdmkmlWhvlwlQe3N4FZIwqin0RGMsYV7odeZzAasdycB0ReSvIzm
-	+TNEKfkjPndV8UF7UO4c5TujwbVfOiFNuDJWlx1uc7vxADTa04DUN2aECnp15BaCev7g
-	KosoJJ32hbMQstwv29E6S2pDd2rylehg16xsyYsOGMn4JesBLTPX1yf2kVuNVxHScGzZ
-	5B8M4kGoZnAIlkFvG1DZMszKA6v1R/UaMNFMcxT1lgJB1C/YKWNafHsAzjExKpWWLA0U
-	5kAKA7pUQ5I7VFNNCEigYryqtqWM8Bg0VaKNiOEQYYcc3O5InBvHhFVuJPtKFqQSi7f6
-	/oew==
+	bh=xq6Yq3w4ZWwAkjHdz6Adp4RaEFbE6Mz61fTP+vZ/wbY=;
+	b=apF5boqSNx8JNjkvbKGkMy54TB64atKRZs9gdy4rC9TcK5L1tDGl0BIVOdR2pFLq70
+	V/b2EoF52ctf55QGvO9QOrwpnP/HRnbFZ7jgBuIhi9wVtwUnxcdPmSHixvssq5dN+xlU
+	Agr0DG/2+YefvtPxXvYYviDuOs+NOYXXoHw4ehVvoWMNawqr5PawnE57/yVnu/Xzps0G
+	kLR4cn0F8cAuBO4uyEHhiFx5cgx9Aa62VyKj1+oqp2Af6rBcGMArQkpmv4lALZ6d18+j
+	LRcc/S7qgfXQsiC7PcT9TaSPTh1rJRn/1+wy3lgVl5vpXvdcUp2/OqsTNzQGxj8fUoTg
+	+Uzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:in-reply-to:references;
-	bh=qW9mmdHVdj3ZkWhoNZhguFi1iynljPYaG/iLN8ij8LA=;
-	b=QnY9nKOLUGx17nWv5YdjA4FEsBF8Bsq2Ait1SqPWx3qJBbeF/gdcm8w06UICYuqy7+
-	fC1G4i8izBR7AhlDNBHnNNxQuw2I4tkqa5aX2g97sFtqPVlaNlkEYwTOp7t+k242Y7nj
-	JhOqzUSaB2v6a0ATWnrhvYXA+7BrChIAdmFGVkgw0ps/zwIPJvCpjBLDruM1YUsmoc+/
-	qxTwZ1fmzF/inGwhqwcSuXPes83K91xRxzD5H06ncJ9ux+U+m15UUgvlIwJ1pPwJN3jK
-	HC0CgyU3F/zR4MBrRcnQ0ntIjHB12MLnF08E0a1JiC0IAxzVu8fNCkCn6UxYMn5au9je
-	0OaA==
-X-Gm-Message-State: AD7BkJJwvuRnxpLoKayo7IPWkrR9/Py2Rgqy5r6eM/+xJEWNgBJaDcTNPiK/vITkelCVkA==
-X-Received: by 10.140.157.7 with SMTP id d7mr9416595qhd.17.1456586837072;
-	Sat, 27 Feb 2016 07:27:17 -0800 (PST)
+	bh=xq6Yq3w4ZWwAkjHdz6Adp4RaEFbE6Mz61fTP+vZ/wbY=;
+	b=VJMreGHWTaH1pVkPgjKgC29XDdJVmugdmawjihYXmU4SB4XAo4Lxr3o0zsHcgrtFqk
+	CbMy6IA2g3AqC2zaqkPmWU0jISeCOLVJijZ2kGGJ7t3MQWBZj8OxGc06hCIuC4cv5hws
+	mLmPVNxmHo29Yp1zxFcckRPNcGK2LSqrh5JGVPPxMLHFJqZkrdFBCmwwwfijVQnpP4L0
+	mzRKnTqdSQnGU4SJOdXc6X4Urr9cgqxmRQuwCQ5gHbvpzSliGPitAW5u/kPt2BKi+3Ea
+	Oy6VaRKD/NPhAq3eo5GFN409WPUT2jgRhSLWyCYwljZ+RuYmMjn18Ueh59NlO6TGXPkG
+	K5zA==
+X-Gm-Message-State: AD7BkJKJn6s0VoFe4gx68/Av6OTKIH0FIDavyCWOoXH99qRyH87aCRqW7TMrXec2Bv8GZg==
+X-Received: by 10.55.197.207 with SMTP id k76mr9141954qkl.15.1456586841488;
+	Sat, 27 Feb 2016 07:27:21 -0800 (PST)
 Received: from eos.sys.comcast.net (a-96-118-179-133.sys.comcast.net.
 	[96.118.179.133]) by smtp.gmail.com with ESMTPSA id
-	197sm7416770qhr.36.2016.02.27.07.27.16
+	197sm7416770qhr.36.2016.02.27.07.27.21
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 27 Feb 2016 07:27:16 -0800 (PST)
+	Sat, 27 Feb 2016 07:27:21 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 27 Feb 2016 15:26:53 +0000
-Message-Id: <536add59223b30b39bd76f76e0119794f85755c5.1456586389.git.raj.khem@gmail.com>
+Date: Sat, 27 Feb 2016 15:27:02 +0000
+Message-Id: <1e09fc0f6f5dab169d4cbff6663cb224843a795b.1456586389.git.raj.khem@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <cover.1456586389.git.raj.khem@gmail.com>
 References: <cover.1456586389.git.raj.khem@gmail.com>
 In-Reply-To: <cover.1456586389.git.raj.khem@gmail.com>
 References: <cover.1456586389.git.raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 14/23] gstreamer1.0-omx: Add raspberry pi optimization patches and config options
+Subject: [meta-raspberrypi][PATCH 23/23] userland: Drop extern inline patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,264 +75,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Feb 2016 15:27:30 -0000
+X-List-Received-Date: Sat, 27 Feb 2016 15:27:31 -0000
 
-Patches from Hong Li <honglh@gmail.com>
+Not needed since the issues have been fixed differently upstream
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../gstreamer1.0-omx/0001-config-files-path.patch  | 137 +++++++++++++++++++++
- ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  47 +++++++
- .../0003-fix-decoder-flushing.patch                |  15 +++
- .../gstreamer/gstreamer1.0-omx_%.bbappend          |  19 +++
- 4 files changed, 218 insertions(+)
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-config-files-path.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-fix-decoder-flushing.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
+ ...LINE_DECL-to-not-use-extern-inlines-in-de.patch | 45 ------------
+ ...rm_types-Dont-use-extern-inline-with-clan.patch | 84 ----------------------
+ recipes-graphics/userland/userland_git.bb          |  2 -
+ 3 files changed, 131 deletions(-)
+ delete mode 100644 recipes-graphics/userland/userland/0001-Fix-VCOS_INLINE_DECL-to-not-use-extern-inlines-in-de.patch
+ delete mode 100644 recipes-graphics/userland/userland/0004-vcos_platform_types-Dont-use-extern-inline-with-clan.patch
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-config-files-path.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-config-files-path.patch
-new file mode 100644
-index 0000000..a7da922
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-config-files-path.patch
-@@ -0,0 +1,137 @@
-+--- a/config/bellagio/gstomx.conf
-++++ b/config/bellagio/gstomx.conf
-+@@ -1,6 +1,6 @@
-+ [omxmpeg4videodec]
-+ type-name=GstOMXMPEG4VideoDec
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_decoder.mpeg4
-+ rank=256
-+ in-port-index=0
-+@@ -9,7 +9,7 @@
-+ 
-+ [omxh264dec]
-+ type-name=GstOMXH264Dec
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_decoder.avc
-+ rank=256
-+ in-port-index=0
-+@@ -18,7 +18,7 @@
-+ 
-+ [omxmpeg4videoenc]
-+ type-name=GstOMXMPEG4VideoEnc
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_encoder.mpeg4
-+ rank=0
-+ in-port-index=0
-+@@ -27,7 +27,7 @@
-+ 
-+ [omxaacenc]
-+ type-name=GstOMXAACEnc
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.audio_encoder.aac
-+ rank=0
-+ in-port-index=0
-+--- a/config/rpi/gstomx.conf
-++++ b/config/rpi/gstomx.conf
-+@@ -1,6 +1,6 @@
-+ [omxmpeg2videodec]
-+ type-name=GstOMXMPEG2VideoDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -9,7 +9,7 @@
-+ 
-+ [omxmpeg4videodec]
-+ type-name=GstOMXMPEG4VideoDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -18,7 +18,7 @@
-+ 
-+ [omxh263dec]
-+ type-name=GstOMXH263Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -27,7 +27,7 @@
-+ 
-+ [omxh264dec]
-+ type-name=GstOMXH264Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -36,7 +36,7 @@
-+ 
-+ [omxtheoradec]
-+ type-name=GstOMXTheoraDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -45,7 +45,7 @@
-+ 
-+ [omxvp8dec]
-+ type-name=GstOMXVP8Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -54,7 +54,7 @@
-+ 
-+ [omxmjpegdec]
-+ type-name=GstOMXMJPEGDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -63,7 +63,7 @@
-+ 
-+ [omxvc1dec]
-+ type-name=GstOMXWMVDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=256
-+ in-port-index=130
-+@@ -73,7 +73,7 @@
-+ 
-+ [omxh264enc]
-+ type-name=GstOMXH264Enc
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_encode
-+ rank=257
-+ in-port-index=200
-+@@ -82,7 +82,7 @@
-+ 
-+ [omxanalogaudiosink]
-+ type-name=GstOMXAnalogAudioSink
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.audio_render
-+ rank=256
-+ in-port-index=100
-+@@ -92,7 +92,7 @@
-+ 
-+ [omxhdmiaudiosink]
-+ type-name=GstOMXHdmiAudioSink
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.audio_render
-+ rank=257
-+ in-port-index=100
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx/0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-new file mode 100644
-index 0000000..aef21a5
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-@@ -0,0 +1,47 @@
-+From 2e111e52f96f0b942abda120c30a876629bd73fc Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-+Date: Mon, 25 May 2015 14:53:35 +0200
-+Subject: [PATCH] Don't try to acquire buffer when src pad isn't active
-+
-+This solves a race condition when setting the pipeline from PAUSE to
-+NULL while the decoder loop is still running. Without this patch, the
-+thread which interacts with the decode sink pad gets blocked here:
-+
-+  gst_element_change_state()
-+  gst_element_change_state_func()
-+  gst_element_pads_activate() --> Deactivating pads
-+  activate_pads()
-+  gst_pad_set_active()
-+  gst_pad_activate_mode()
-+  post_activate()
-+  GST_PAD_STREAM_LOCK()
-+
-+while gst_omx_port_acquire_buffer() gets stalled forever in
-+gst_omx_component_wait_message() waiting for a message that will never
-+arrive:
-+
-+  gst_omx_video_dec_loop()
-+  gst_omx_port_acquire_buffer()
-+  gst_omx_component_wait_message()
-+---
-+ omx/gstomxvideodec.c | 5 +++++
-+ 1 file changed, 5 insertions(+)
-+
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index cd24944..57a61dd 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -1247,6 +1247,11 @@ gst_omx_video_dec_loop (GstOMXVideoDec * self)
-+   GstClockTimeDiff deadline;
-+   OMX_ERRORTYPE err;
-+ 
-++  if (!gst_pad_is_active(GST_VIDEO_DECODER_SRC_PAD (self))) {
-++    GST_DEBUG_OBJECT (self, "Src pad not active, not acquiring buffer and flushing instead");
-++      goto flushing;
-++  }
-++
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+   port = self->eglimage ? self->egl_out_port : self->dec_out_port;
-+ #else
-+-- 
-+1.8.3.2
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-fix-decoder-flushing.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-fix-decoder-flushing.patch
-new file mode 100644
-index 0000000..a244b09
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx/0003-fix-decoder-flushing.patch
-@@ -0,0 +1,15 @@
-+diff --git a/omx/gstomx.c b/omx/gstomx.c
-+index 69696c4..c382019 100644
-+--- a/omx/gstomx.c
-++++ b/omx/gstomx.c
-+@@ -1508,8 +1508,8 @@ gst_omx_port_set_flushing (GstOMXPort * port, GstClockTime timeout,
-+     last_error = OMX_ErrorNone;
-+     gst_omx_component_handle_messages (comp);
-+     while (signalled && last_error == OMX_ErrorNone && !port->flushed
-+-        && port->buffers
-+-        && port->buffers->len > g_queue_get_length (&port->pending_buffers)) {
-++     /* && port->buffers
-++        && port->buffers->len > g_queue_get_length (&port->pending_buffers) */) {
-+       signalled = gst_omx_component_wait_message (comp, timeout);
-+       if (signalled)
-+         gst_omx_component_handle_messages (comp);
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
-new file mode 100644
-index 0000000..b313acd
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
-@@ -0,0 +1,19 @@
-+#
-+# Need to make this conditional to gstreamer1
-+#
-+SRC_URI_append_rpi = " \
-+             file://0001-config-files-path.patch \
-+             file://0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
-+             file://0003-fix-decoder-flushing.patch \
-+"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx:"
-+
-+GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
-+GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
-+
-+
-+# How to make this RPI specific?
-+EXTRA_OECONF_append_rpi  = " CFLAGS="$CFLAGS -I${STAGING_DIR_TARGET}/usr/include/IL -I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux""
-+#examples only build with GL but not GLES, so disable it for RPI
-+EXTRA_OECONF_append_rpi = " --disable-examples"
+diff --git a/recipes-graphics/userland/userland/0001-Fix-VCOS_INLINE_DECL-to-not-use-extern-inlines-in-de.patch b/recipes-graphics/userland/userland/0001-Fix-VCOS_INLINE_DECL-to-not-use-extern-inlines-in-de.patch
+deleted file mode 100644
+index ebeefd3..0000000
+--- a/recipes-graphics/userland/userland/0001-Fix-VCOS_INLINE_DECL-to-not-use-extern-inlines-in-de.patch
++++ /dev/null
+@@ -1,45 +0,0 @@
+-From 58e03d60603baabf63137cdc81ed774cc94d26d6 Mon Sep 17 00:00:00 2001
+-From: Khem Raj <raj.khem@gmail.com>
+-Date: Sat, 6 Feb 2016 11:00:25 -0800
+-Subject: [PATCH 01/13] Fix VCOS_INLINE_DECL to not use extern inlines in
+- declarations
+-
+-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+----
+- interface/vcos/pthreads/vcos_platform_types.h | 2 +-
+- interface/vcos/vcos_types.h                   | 4 ++--
+- 2 files changed, 3 insertions(+), 3 deletions(-)
+-
+-diff --git a/interface/vcos/pthreads/vcos_platform_types.h b/interface/vcos/pthreads/vcos_platform_types.h
+-index 17b422d..64fb381 100644
+---- a/interface/vcos/pthreads/vcos_platform_types.h
+-+++ b/interface/vcos/pthreads/vcos_platform_types.h
+-@@ -61,7 +61,7 @@ vcos_pthreads_logging_assert(const char *file, const char *func, unsigned int li
+- #define VCOS_ASSERT_MSG(...) ((VCOS_ASSERT_LOGGING && !VCOS_ASSERT_LOGGING_DISABLE) ? vcos_pthreads_logging_assert(__FILE__, __func__, __LINE__, __VA_ARGS__) : (void)0)
+- 
+- #define VCOS_INLINE_BODIES
+--#define VCOS_INLINE_DECL extern __inline__
+-+#define VCOS_INLINE_DECL extern
+- #define VCOS_INLINE_IMPL static __inline__
+- 
+- #ifdef __cplusplus
+-diff --git a/interface/vcos/vcos_types.h b/interface/vcos/vcos_types.h
+-index 6feb4d2..e64fd99 100644
+---- a/interface/vcos/vcos_types.h
+-+++ b/interface/vcos/vcos_types.h
+-@@ -121,10 +121,10 @@ typedef enum
+- #if defined(NDEBUG)
+- 
+- #ifdef __GNUC__
+--# define VCOS_INLINE_DECL extern __inline__
+-+# define VCOS_INLINE_DECL extern
+- # define VCOS_INLINE_IMPL static __inline__
+- #else
+--# define VCOS_INLINE_DECL static _VCOS_INLINE   /* declare a func */
+-+# define VCOS_INLINE_DECL extern
+- # define VCOS_INLINE_IMPL static _VCOS_INLINE   /* implement a func inline */
+- #endif
+- 
+--- 
+-2.7.1
+-
+diff --git a/recipes-graphics/userland/userland/0004-vcos_platform_types-Dont-use-extern-inline-with-clan.patch b/recipes-graphics/userland/userland/0004-vcos_platform_types-Dont-use-extern-inline-with-clan.patch
+deleted file mode 100644
+index 4d508d2..0000000
+--- a/recipes-graphics/userland/userland/0004-vcos_platform_types-Dont-use-extern-inline-with-clan.patch
++++ /dev/null
+@@ -1,84 +0,0 @@
+-From 7c07db6c640ec4dfc6baec23f86c7b312028c9c6 Mon Sep 17 00:00:00 2001
+-From: Khem Raj <raj.khem@gmail.com>
+-Date: Sun, 23 Aug 2015 13:41:33 -0700
+-Subject: [PATCH 04/13] vcos_platform_types: Dont use extern inline with clang
+-
+-Its very gcc specific implementation here in this code, we cant use
+-it with clang as such, so we will use static inline instead which is
+-common across gcc and clang starting c99 std onwards
+-
+-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+----
+- interface/vcos/pthreads/vcos_platform_types.h | 4 ----
+- interface/vcos/vcos_timer.h                   | 5 -----
+- interface/vcos/vcos_types.h                   | 2 +-
+- 3 files changed, 1 insertion(+), 10 deletions(-)
+-
+-diff --git a/interface/vcos/pthreads/vcos_platform_types.h b/interface/vcos/pthreads/vcos_platform_types.h
+-index 64fb381..6ebcaad 100644
+---- a/interface/vcos/pthreads/vcos_platform_types.h
+-+++ b/interface/vcos/pthreads/vcos_platform_types.h
+-@@ -60,10 +60,6 @@ vcos_pthreads_logging_assert(const char *file, const char *func, unsigned int li
+- 
+- #define VCOS_ASSERT_MSG(...) ((VCOS_ASSERT_LOGGING && !VCOS_ASSERT_LOGGING_DISABLE) ? vcos_pthreads_logging_assert(__FILE__, __func__, __LINE__, __VA_ARGS__) : (void)0)
+- 
+--#define VCOS_INLINE_BODIES
+--#define VCOS_INLINE_DECL extern
+--#define VCOS_INLINE_IMPL static __inline__
+--
+- #ifdef __cplusplus
+- }
+- #endif
+-diff --git a/interface/vcos/vcos_timer.h b/interface/vcos/vcos_timer.h
+-index bdfa657..1de2d46 100644
+---- a/interface/vcos/vcos_timer.h
+-+++ b/interface/vcos/vcos_timer.h
+-@@ -76,7 +76,6 @@ VCOSPRE_ VCOS_STATUS_T VCOSPOST_ vcos_timer_init(void);
+-   * @param context   context passed to expiration routine
+-   *
+-   */
+--VCOS_INLINE_DECL
+- VCOS_STATUS_T vcos_timer_create(VCOS_TIMER_T *timer,
+-                                 const char *name,
+-                                 void (*expiration_routine)(void *context),
+-@@ -91,24 +90,20 @@ VCOS_STATUS_T vcos_timer_create(VCOS_TIMER_T *timer,
+-   * @param timer     timer handle
+-   * @param delay     Delay to wait for, in ms
+-   */
+--VCOS_INLINE_DECL
+- void vcos_timer_set(VCOS_TIMER_T *timer, VCOS_UNSIGNED delay);
+- 
+- /** Stop an already running timer.
+-   *
+-   * @param timer     timer handle
+-   */
+--VCOS_INLINE_DECL
+- void vcos_timer_cancel(VCOS_TIMER_T *timer);
+- 
+- /** Stop a timer and restart it.
+-   * @param timer     timer handle
+-   * @param delay     delay in ms
+-   */
+--VCOS_INLINE_DECL
+- void vcos_timer_reset(VCOS_TIMER_T *timer, VCOS_UNSIGNED delay);
+- 
+--VCOS_INLINE_DECL
+- void vcos_timer_delete(VCOS_TIMER_T *timer);
+- 
+- #ifdef __cplusplus
+-diff --git a/interface/vcos/vcos_types.h b/interface/vcos/vcos_types.h
+-index e64fd99..7d86742 100644
+---- a/interface/vcos/vcos_types.h
+-+++ b/interface/vcos/vcos_types.h
+-@@ -120,7 +120,7 @@ typedef enum
+- 
+- #if defined(NDEBUG)
+- 
+--#ifdef __GNUC__
+-+#if defined(__GNUC__) && !defined(__clang__)
+- # define VCOS_INLINE_DECL extern
+- # define VCOS_INLINE_IMPL static __inline__
+- #else
+--- 
+-2.7.1
+-
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 4eb67fe..accc707 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -20,10 +20,8 @@ SRCREV = "748b2ba6112435063352d72f48d1d6dcc124bd6f"
+ 
+ SRC_URI = "\
+     git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+-    file://0001-Fix-VCOS_INLINE_DECL-to-not-use-extern-inlines-in-de.patch \
+     file://0002-set-VMCS_INSTALL_PREFIX-to-usr.patch \
+     file://0003-cmake-generate-and-install-pkgconfig-files.patch \
+-    file://0004-vcos_platform_types-Dont-use-extern-inline-with-clan.patch \
+     file://0005-Allow-applications-to-set-next-resource-handle.patch \
+     file://0006-wayland-Add-support-for-the-Wayland-winsys.patch \
+     file://0007-wayland-Add-Wayland-example.patch \
 -- 
 1.9.1
 
