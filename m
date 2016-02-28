@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63A31E00C9F; Sun, 28 Feb 2016 02:48:18 -0800 (PST)
+	id 2697AE00C9F; Sun, 28 Feb 2016 02:49:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,57 +8,59 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+	*      [74.125.82.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFCE1E00BBF
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:48:14 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id n186so5562823wmn.0
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:48:14 -0800 (PST)
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53288E00BBF
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:49:52 -0800 (PST)
+Received: by mail-wm0-f50.google.com with SMTP id p65so34572150wmp.1
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:49:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=U3nviXCHqcfnL/yJon9FdMAUArKNcEScIxpYdnTOt9k=;
-	b=c8mYgpG1Rmk7eLhFJdrmpAlpwbk0AZUYQUfvhkhYJI6s992hTTemXjrlpyyvppdBnt
-	8EIpR6W3f4hxTvM4I2d40MaZxxsfnKMUKed2OJB+egtOjB7WTMmU4qVV11Jq+0XKCkr5
-	MODcZhEPIdF1Vjk7Y4xqh3AOJX0hoKINf+h/VBjwjo4wxVbQO9Wm1hsBvUAYOilN5bt4
-	irfyd4ilQLnA31j6tGSbPvCw23245Zyl5YiFEf94gjyO4crOyGIohdOjixZuNXOLK/c6
-	8DhVe8Xy7zsUXC3DjPdH9FF+7MqrOfUrbWqBzkhTbrFrWX4fyVQT7fh6KH2G/WrpX+rG
-	mTLw==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=ZmfZUj1E5Mo5yLOY/taxbjOOzNt5QKJXJvRsDA6BLUE=;
+	b=mj8IInUfLf1uWLfcr6rxYeD1J9KMRhGD6kIooyhE8POji2inCyY2K1Pu5ceu/yN+ns
+	xFQd0CB9B3eeGMQps/vlUre9laMKe+JXIMsmyBBPoHAXfeQuFdMH8VihTCEcrB2SR08Y
+	RPz4Xes5sbqzW5hUJtv9EZJX4YO0KoXl+3WFis8Yan35PcwGFR4FFum29pQM/4FbMqU1
+	/j/xC6jQ0LPn9+U5Z8a4RrEloGvCdrC00aFvdl9MkW5U98tnV+C4dzdzgSuuCs0/ZTw9
+	2qJVHEZchaK0NuPi3ZCKJCkrGAfclNr/6KMStj6tHVQqPVHiyltdTU13wt3E2+Z5VpCQ
+	ypng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=U3nviXCHqcfnL/yJon9FdMAUArKNcEScIxpYdnTOt9k=;
-	b=NEg3DtzTEqi/TiP1mo3LqHjutCrNWmw60/7wZXP6AVWW+0LZKGZ+wHm8QEr9D2BXJD
-	NrWA7jBxoR3yTAalFb6+MZoF9tjQrPVUUqZVEak0N4tM2uGoerVfCCXVARBzw27JgsyR
-	REwGxOfA5M+4RsLabM1bzYECrzcZ292q+7i9Co1v44jXiiwFtDqCu9Uh2M6SaFfEka15
-	yWsDcUAtCzlW9jGsHooLaG7NOP77BOiKWyFICWdUVDzBeASOiyqTOcJZAZWNqWR0PtJR
-	nqJ0Aupy/Dy7/N8BvcynvTuov3mSaJ6MHCJeBRunyFCEQMKRMlvwzYtbJUohs8E3mkbu
-	YxDA==
-X-Gm-Message-State: AD7BkJKmS0Gwr+skm/a84X0/SKlxmSCybVbboOcw74AAWBhHVtoMY1u5mGR9A+54s03KsA==
-X-Received: by 10.194.115.35 with SMTP id jl3mr9611155wjb.76.1456656493272;
-	Sun, 28 Feb 2016 02:48:13 -0800 (PST)
-Received: from localhost.localdomain
-	([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=ZmfZUj1E5Mo5yLOY/taxbjOOzNt5QKJXJvRsDA6BLUE=;
+	b=JDD8/PjjkBNmX/+qNfjEaXhqoqUW/kjtic6RXlzTErwKcgT6TNQoLRGACeRo2AVEla
+	Zx7pGa1Zyer9XoE4AiWTw0edoQRkjw9daUIUy0v9Jqf5z2ONlwosu/RYJFuyNrlm272K
+	a4oso9iHndOcPUBx0mwz5rN0wqA53Xy28TmIglX7rULEkhznSnRsJ3Mt81PClWS/l+O0
+	NhUIyRvPUSqHK/DliI/XcZx/bmI76oRGlF1R0G7PkkWWgmI2Fm88iAO4QWIvVnl7OvlG
+	aiUV9E2iuBpYK8hFrE1h+ulPWMCZj5anzqPfV6yBYsbUbbK2eWSxO4epnqSP8dauI4ua
+	Y4AQ==
+X-Gm-Message-State: AD7BkJKkkbIyD1wjy3Dfvl9l+li3paGTSQ3MdUcCPmjoQi3/PMa492QIfGBYhAM2CHXNmg==
+X-Received: by 10.28.216.141 with SMTP id p135mr6648360wmg.22.1456656591667;
+	Sun, 28 Feb 2016 02:49:51 -0800 (PST)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
 	by smtp.gmail.com with ESMTPSA id
-	c136sm11030402wmd.3.2016.02.28.02.48.11
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 28 Feb 2016 02:48:12 -0800 (PST)
+	gt7sm20680795wjc.1.2016.02.28.02.49.50
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 28 Feb 2016 02:49:50 -0800 (PST)
+Date: Sun, 28 Feb 2016 11:49:48 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Sun, 28 Feb 2016 11:48:08 +0100
-Message-Id: <1456656488-1882-1-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.7.0
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20160228104948.GE12618@resin.home>
+References: <1455099994-7591-1-git-send-email-voxtok@voxtok.com>
+	<ce692fa73cad56b731e286cf407112dd@technux.se>
 MIME-Version: 1.0
-Cc: =?UTF-8?q?St=C3=A9phane=20Cerveau?= <voxtok@voxtok.com>,
-	=?UTF-8?q?St=C3=A9phane=20Cerveau?= <scerveau@voxtok.com>
-Subject: [meta-raspberrypi][PATCH v3 1/1] linux-raspberry.inc: add initramfs support
+In-Reply-To: <ce692fa73cad56b731e286cf407112dd@technux.se>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH V2] linux-raspberry.inc: add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,40 +72,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Feb 2016 10:48:18 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 28 Feb 2016 10:49:55 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-From: St√©phane Cerveau <scerveau@voxtok.com>
+On Sun, Feb 28, 2016 at 09:09:33AM +0100, Petter Mab√§cker wrote:
+>    5
+> 
+> 
+> 
+> Petter Mab‰cker
+> 
+> Technux <petter@technux.se>
+> www.technux.se
+> 
+>    2016-02-10 11:26 skrev StÈphane Cerveau:
+> 
+> append initramfs creation to install RPi bootloader trailer
+> 
+> Signed-off-by: StÈphane Cerveau <[1]voxtok@voxtok.com>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi.inc | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/l
+> inux-raspberrypi.inc
+> index 70e8bfe..74dbf19 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+> @@ -64,4 +64,13 @@ do_rpiboot_mkimage() {
+>          fi
+>      fi
+>  }
+> +do_bundle_initramfs_append() {
+> +    if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
+> +        if test -n "${KERNEL_DEVICETREE}"; then
+> +            # Add RPi bootloader trailer to kernel image to enable DeviceTree s
+> upport
+> +            ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KERNEL_
+> OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
+> +        fi
+> +    fi
+> +}
+> +
+>  addtask rpiboot_mkimage before do_install after do_compile
+> --
+> 2.1.4
+> 
+>    Hi,
+> 
+>    You should change the path to mkknlimg to use:
+>    ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg
+> 
+>    See the discussion about this in:
+>    https://lists.yoctoproject.org/pipermail/yocto/2016-February/028769.htm
+>    l
+> 
+>    BR Petter
+> 
+> References
+> 
+>    1. mailto:voxtok@voxtok.com
 
-append initramfs creation to install RPi bootloader trailer
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Signed-off-by: St√©phane Cerveau <voxtok@voxtok.com>
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-kernel/linux/linux-raspberrypi.inc | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Hi Peter. I pushed a v3 patch which adds this change. Thanks.
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index 8c7c46c..1befee4 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -64,4 +64,14 @@ do_rpiboot_mkimage() {
-         fi
-     fi
- }
-+
-+do_bundle_initramfs_append() {
-+    if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
-+        if test -n "${KERNEL_DEVICETREE}"; then
-+            # Add RPi bootloader trailer to kernel image to enable DeviceTree support
-+            ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
-+        fi
-+    fi
-+}
-+
- addtask rpiboot_mkimage before do_install after do_compile
 -- 
-2.7.0
-
+Andrei Gherzan
 
