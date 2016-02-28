@@ -1,6 +1,6 @@
 Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77430E00CA4; Sat, 27 Feb 2016 23:56:37 -0800 (PST)
+	id 33EE8E00CA3; Sun, 28 Feb 2016 00:09:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -14,27 +14,25 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-06.binero.net
 	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F513E00BBF
-	for <yocto@yoctoproject.org>; Sat, 27 Feb 2016 23:56:33 -0800 (PST)
-X-Halon-ID: c5c37882-ddf0-11e5-8752-005056917c0c
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 357B8E00BBF
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 00:09:31 -0800 (PST)
+X-Halon-ID: 96d0d803-ddf2-11e5-8752-005056917c0c
 Authorized-sender: petter@technux.se
 Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Sun, 28 Feb 2016 08:56:28 +0100 (CET)
+	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 09:09:28 +0100 (CET)
 MIME-Version: 1.0
-Date: Sun, 28 Feb 2016 08:56:33 +0100
+Date: Sun, 28 Feb 2016 09:09:33 +0100
 From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: Andrei Gherzan <andrei@gherzan.ro>
+To: <yocto@yoctoproject.org>
 Organization: Technux
 Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <1452789643-17903-4-git-send-email-petter@technux.se>
-References: <1452789643-17903-1-git-send-email-petter@technux.se>
-	<1452789643-17903-4-git-send-email-petter@technux.se>
-Message-ID: <decadab49c1ce664ee1e7b5e52cbfcaa@technux.se>
+In-Reply-To: <1455099994-7591-1-git-send-email-voxtok@voxtok.com>
+References: <1455099994-7591-1-git-send-email-voxtok@voxtok.com>
+Message-ID: <ce692fa73cad56b731e286cf407112dd@technux.se>
 X-Sender: petter@technux.se
 User-Agent: Binero Webmail/0.8.4
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH v2 3/7] linux-raspberrypi: Update 4.1 recipe to 4.1.15
+Subject: Re: [meta-raspberrypi][PATCH V2] linux-raspberry.inc: add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,103 +45,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Feb 2016 07:56:37 -0000
+X-List-Received-Date: Sun, 28 Feb 2016 08:09:35 -0000
 Content-Type: multipart/alternative;
-	boundary="=_8fa8224ecc4193b327a74b0f6a349646"
+	boundary="=_3aaab1d16df763ec0e3895ef23a40b8f"
 
---=_8fa8224ecc4193b327a74b0f6a349646
+--=_3aaab1d16df763ec0e3895ef23a40b8f
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
 
  
 
-2016-01-14 17:40 skrev Petter Mabäcker: 
+5 
 
-> [Support #69]
+Petter Mabäcker
+
+Technux
+<petter@technux.se>
+www.technux.se
+
+2016-02-10 11:26 skrev Stéphane
+Cerveau: 
+
+> append initramfs creation to install RPi bootloader
+trailer
 > 
->
-Signed-off-by: Petter Mabäcker <petter@technux.se>
+> Signed-off-by: Stéphane Cerveau <voxtok@voxtok.com>
 > ---
 >
-recipes-kernel/linux/linux-raspberrypi_4.1.bb | 4 ++--
-> 1 file changed,
-2 insertions(+), 2 deletions(-)
+recipes-kernel/linux/linux-raspberrypi.inc | 9 +++++++++
+> 1 file
+changed, 9 insertions(+)
 > 
 > diff --git
-a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> index 3a3cf40..cae459a
+a/recipes-kernel/linux/linux-raspberrypi.inc
+b/recipes-kernel/linux/linux-raspberrypi.inc
+> index 70e8bfe..74dbf19
 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc
 > +++
-b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> @@ -1,6 +1,6 @@
+b/recipes-kernel/linux/linux-raspberrypi.inc
+> @@ -64,4 +64,13 @@
+do_rpiboot_mkimage() {
+> fi
+> fi
+> }
+> +do_bundle_initramfs_append() {
 >
--LINUX_VERSION ?= "4.1.10"
-> +LINUX_VERSION ?= "4.1.15"
-> 
-> -SRCREV =
-"b74df9228c27f55361c065bc5dbfba88861cc771"
-> +SRCREV =
-"02a8ee530e32b08e5df44f10e24d5fd82bb960e3"
-> SRC_URI =
-"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y"
++ if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
+> + if test -n
+"${KERNEL_DEVICETREE}"; then
+> + # Add RPi bootloader trailer to kernel
+image to enable DeviceTree support
+> +
+${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok
+${KERNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
+> + fi
+> + fi
 >
++}
+> +
+> addtask rpiboot_mkimage before do_install after do_compile
+> --
 
-> require linux-raspberrypi.inc
+> 2.1.4
 
-Hi Andrei, 
+Hi, 
 
-This commit can be
-skipped, since Khem have done an even newer update of the 4.1 kernel
-(4.1.10 --> 4.1.17) in the large series of commits from yesterday
-(https://lists.yoctoproject.org/pipermail/yocto/2016-February/028754.html).
-Do you want me to send an updated version of this series of commit
-without it or not? 
+You should change the path to mkknlimg to use:
+${STAGING_LIBEXECDIR_NATIVE}/mkknlimg 
+
+See the discussion about this
+in:
+https://lists.yoctoproject.org/pipermail/yocto/2016-February/028769.html
+
 
 BR Petter 
 
---=_8fa8224ecc4193b327a74b0f6a349646
+--=_3aaab1d16df763ec0e3895ef23a40b8f
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html; charset=UTF-8
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2016-01-14 17:40 skrev Petter Mab&auml;cker:</p>
+<p>5</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div>
+<pre>Petter Mab&auml;cker
+
+Technux &lt;petter@technux.se&gt;
+www.technux.se</pre>
+</div>
+<p>2016-02-10 11:26 skrev St&eacute;phane Cerveau:</p>
 <blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
 x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
 d --><!-- meta ignored -->
-<pre>[Support #69]
+<pre>append initramfs creation to install RPi bootloader trailer
 
-Signed-off-by: Petter Mab&auml;cker &lt;<a href=3D"mailto:petter@technux.se=
-">petter@technux.se</a>&gt;
+Signed-off-by: St&eacute;phane Cerveau &lt;<a href=3D"mailto:voxtok@voxtok=
+=2Ecom">voxtok@voxtok.com</a>&gt;
 ---
- recipes-kernel/linux/linux-raspberrypi_4.1.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-kernel/linux/linux-raspberrypi.inc | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel=
-/linux/linux-raspberrypi_4.1.bb
-index 3a3cf40..cae459a 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-@@ -1,6 +1,6 @@
--LINUX_VERSION ?=3D "4.1.10"
-+LINUX_VERSION ?=3D "4.1.15"
-=20
--SRCREV =3D "b74df9228c27f55361c065bc5dbfba88861cc771"
-+SRCREV =3D "02a8ee530e32b08e5df44f10e24d5fd82bb960e3"
- SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=
-=3Drpi-4.1.y"
-=20
- require linux-raspberrypi.inc</pre>
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/li=
+nux/linux-raspberrypi.inc
+index 70e8bfe..74dbf19 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -64,4 +64,13 @@ do_rpiboot_mkimage() {
+         fi
+     fi
+ }
++do_bundle_initramfs_append() {
++    if test "x${KERNEL_IMAGETYPE}" !=3D "xuImage" ; then
++        if test -n "${KERNEL_DEVICETREE}"; then
++            # Add RPi bootloader trailer to kernel image to enable DeviceT=
+ree support
++            ${STAGING_DIR_NATIVE}/usr/lib/rpi-mkimage/mkknlimg --dtok ${KE=
+RNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
++        fi
++    fi
++}
++
+ addtask rpiboot_mkimage before do_install after do_compile
+<span class=3D"sig">--=20
+2.1.4
+</span></pre>
 </blockquote>
-<p>Hi Andrei,</p>
-<p>This commit can be skipped, since Khem have done an even newer update of=
- the 4.1 kernel (4.1.10 --&gt; 4.1.17) in the large series of commits from =
-yesterday (https://lists.yoctoproject.org/pipermail/yocto/2016-February/028=
-754.html). Do you want me to send an updated version of this series of comm=
-it without it or not?</p>
+<p>Hi,</p>
+<p>You should change the path to mkknlimg to use: ${STAGING_LIBEXECDIR_NATI=
+VE}/mkknlimg</p>
+<p>See the discussion about this in: https://lists.yoctoproject.org/piperma=
+il/yocto/2016-February/028769.html</p>
 <p>BR Petter</p>
 </body></html>
 
---=_8fa8224ecc4193b327a74b0f6a349646--
+--=_3aaab1d16df763ec0e3895ef23a40b8f--
