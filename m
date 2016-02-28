@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5246E00DAA; Sun, 28 Feb 2016 02:22:45 -0800 (PST)
+	id E6810E00DD1; Sun, 28 Feb 2016 02:23:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,53 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDEEE00DAC
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:22:29 -0800 (PST)
-Received: by mail-wm0-f68.google.com with SMTP id p65so5361730wmp.1
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:22:29 -0800 (PST)
+	*      [74.125.82.66 listed in list.dnswl.org]
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD93BE00D3D
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:22:58 -0800 (PST)
+Received: by mail-wm0-f66.google.com with SMTP id n186so5507210wmn.0
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 02:22:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=eDvf1cG4Sc/uUZTy1K9SrMJNKMasSGZXKiknHBU+aDc=;
-	b=flM7UXZHMaV9ssQCHjS9wumdM5zTfyTCu9DFYhdkBKk/PUf0y6EzSVsmOBhs8VoarX
-	TTGO4XIW0zixeaU8P/H3AO3Rl53Yuoy557qX6QmH7+XHtwvgvm+a01hCSv8moBet4ixs
-	Q1zid2+1RLn/vkvEsRQDIao8oXUBR11S4wlLsLyPWduCZe6Jhhz4/NvzZoJ3ymbv4lsd
-	Bz0QaqFeylbySvXOqebubvDqjorAkSQfkbg8ebIdxl7jeiLUKW/z048ZEXWTUdqDn55t
-	fflOfypHnEvyJosBlnS9QR3dWWZKFw9GiSMkX/1SaDehkvKDKdXK9d5tGxcKjMFmw6Nf
-	F7EQ==
+	bh=YZdCoXIPexyyhtvcQmVxqH0RvH8XwRP1kAL+fD0ioFU=;
+	b=z8lxRkri30VJ1elKHq2G7km7Qx3gasOKEeVzsfj7Rh9U/5ojNj4tWix0WpTGeF5CQU
+	19PAtGrljeGWsGEqCMpLUmYwTm2JOmYKlHdj607J8GQmHT4p/DI9B2BPSa7Rq4zciE5w
+	VpBgmeV3DYiPraSaeWVt9msGEEDwoGosmJT1nEIp9rdsLm3CVMe9LQqeYkzrhPNKMRU0
+	ozP0VOD2FQUEAy/lr3xYVjoqX5T1Efm1TtbGGxGm+6xgD4mkfWaksZ0izMtingwy3Gf4
+	uqbfszevsNsEQa4vPbv9F3rdvNpgFwaFc2RoKgk7bAdU6AprFa0UfmlX7QopD7/9NvaG
+	qEAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=eDvf1cG4Sc/uUZTy1K9SrMJNKMasSGZXKiknHBU+aDc=;
-	b=dTjz2X25SkFJ+eklHIyXLtj3F6puJpLaa0rUQdbdnS8z7LpwyTtxj+QxXuqxbZMNE1
-	APofiZq2kEogipKPb2mrn25SEIgjv3X3/TghAP39mmDpLuFEI55YE2WZsXEEchaGsJ2b
-	PU36VvxP2X2x8/l+kgIISn6Co73w8spYqlADMExO+f+gSZo62SSYoBc9HbG6WtRUGt+W
-	Br5xzxS0Gwe3iA4qMIOvnUJZO2FM82zvujBQkaBFsJbTqsHc6MpjypOObs6qnpq60m1r
-	wnJYQrmvWTARRIgJ/gs6zwWOsASajdeV7gEPkHjFKX8Vu70rwFjZZGGPfkYHSm972jL+
-	Edow==
-X-Gm-Message-State: AD7BkJJZjujYv7NH+FzjLByayW7PdjzSV8aI+RCUopqdaC9ZXc8kCa3e/E7xMwTkt5tuLw==
-X-Received: by 10.194.188.20 with SMTP id fw20mr11708511wjc.80.1456654949128; 
-	Sun, 28 Feb 2016 02:22:29 -0800 (PST)
+	bh=YZdCoXIPexyyhtvcQmVxqH0RvH8XwRP1kAL+fD0ioFU=;
+	b=ko9u89Ltf2Wf6eXspO5ebKF4KHE0+4GeTDpv499CQYflXCqSefAhJzsbVA+BjyLqh3
+	kYhu5cxYokgWVLHV4HmaMGrYsKBewo6lLEpM4NdKaG9M9qnZ1TNUXzUPHx2tGCPFw0t5
+	ArcOTBEGhYVK7zgF49FjgfwNu1HqYjTHgmgY/7OdqkaXth4S/z8obbfhy397ZeqV3SDn
+	Gdh7YDCTax5SgXP6oZfBnn7b2+5QbfpLCL1vQekaYi62GKTNnbA9ji3b0C3pJyuu2p83
+	qON6IR/XU8pjilydbaLP4BDsVI/1qohEqTpm5+OFaARnWkYD7vrdzK7YgZ9rNsNqFQen
+	L9ZA==
+X-Gm-Message-State: AD7BkJKCFw6ltK0O9QKYJZroM/T+oCoAz0uCHBV6pjYDvJBlZBiXG/KpfwiiuwIL1oKUAg==
+X-Received: by 10.194.109.161 with SMTP id ht1mr314060wjb.43.1456654977356;
+	Sun, 28 Feb 2016 02:22:57 -0800 (PST)
 Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
 	by smtp.gmail.com with ESMTPSA id
-	hm9sm20482068wjb.34.2016.02.28.02.22.28
+	74sm11039328wmn.17.2016.02.28.02.22.56
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 28 Feb 2016 02:22:28 -0800 (PST)
-Date: Sun, 28 Feb 2016 11:22:26 +0100
+	Sun, 28 Feb 2016 02:22:56 -0800 (PST)
+Date: Sun, 28 Feb 2016 11:22:54 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Jonathan Liu <net147@gmail.com>
-Message-ID: <20160228102226.GC12618@resin.home>
+Message-ID: <20160228102254.GD12618@resin.home>
 References: <1456580809-29922-1-git-send-email-net147@gmail.com>
-	<1456580809-29922-2-git-send-email-net147@gmail.com>
+	<1456580809-29922-3-git-send-email-net147@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1456580809-29922-2-git-send-email-net147@gmail.com>
+In-Reply-To: <1456580809-29922-3-git-send-email-net147@gmail.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/3] linux-raspberrypi: update path to mkknlimg
+Subject: Re: [meta-raspberrypi][PATCH 3/3] u-boot-rpi: update path to imagetool-uncompressed.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,34 +71,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Feb 2016 10:22:45 -0000
+X-List-Received-Date: Sun, 28 Feb 2016 10:23:10 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Sun, Feb 28, 2016 at 12:46:48AM +1100, Jonathan Liu wrote:
+On Sun, Feb 28, 2016 at 12:46:49AM +1100, Jonathan Liu wrote:
 > Signed-off-by: Jonathan Liu <net147@gmail.com>
 > ---
->  recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
+>  recipes-bsp/u-boot/u-boot-rpi_git.bb | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-> index 05f2d2b..8c7c46c 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi.inc
-> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
-> @@ -60,7 +60,7 @@ do_rpiboot_mkimage() {
->      if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
->          if test -n "${KERNEL_DEVICETREE}"; then
->              # Add RPi bootloader trailer to kernel image to enable DeviceTree support
-> -            ${STAGING_LIBEXECDIR_NATIVE}/rpi-mkimage/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
-> +            ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}
->          fi
->      fi
+> diff --git a/recipes-bsp/u-boot/u-boot-rpi_git.bb b/recipes-bsp/u-boot/u-boot-rpi_git.bb
+> index ea0c173..8bffaa3 100644
+> --- a/recipes-bsp/u-boot/u-boot-rpi_git.bb
+> +++ b/recipes-bsp/u-boot/u-boot-rpi_git.bb
+> @@ -24,6 +24,6 @@ COMPATIBLE_MACHINE = "raspberrypi"
+>  
+>  do_compile_append() {
+>      # Create kernel.img from uboot.bin and name it u-boot.img
+> -    ${STAGING_LIBEXECDIR_NATIVE}/rpi-mkimage/imagetool-uncompressed.py u-boot.bin
+> +    ${STAGING_LIBEXECDIR_NATIVE}/imagetool-uncompressed.py u-boot.bin
+>      mv kernel.img u-boot.img
 >  }
 > -- 
 > 2.7.1
 > 
 > -- 
+
 Merged to master. Thanks.
+
 -- 
 Andrei Gherzan
 
