@@ -1,65 +1,46 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3731EE00CE8; Sun, 28 Feb 2016 03:48:57 -0800 (PST)
+	id ADE5EE00C91; Sun, 28 Feb 2016 05:44:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.228 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76146E00C9F
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 03:48:54 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id n186so5693246wmn.0
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 03:48:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=COt64MSbrLKCyIhnu1ErKuVepjNncOV60lXSQ1Fv2dM=;
-	b=qDzwSVfVlholrMVyVULXc3BLcDIpkvHu7hGelJbZFpQd8bAg1NF8DC41bzoQyuWDM9
-	j+xYxQthmogzxc3908zkaOCREyFipLVpSEHf1fXHijjOL1QAzS2cNQFHga7n63jZ4nDb
-	tBhMSnH95IXaSopPVp5BwcxnZGPJQEEC8NV6nPwttijikXQPR6IHed1OgZ9Qt9PMf0nA
-	+TzQTFkRE02Yk3lu0YmKrv4K8Tw+Kmu+cO4li/3jz9wdIKWws0zt+eld1KZzYdduj2RM
-	G2JlOoarMPvQwdtrG3FZvi48O5uvHA04YPoK7MmbwRRa7wIlpCsVTB+bo/uMcftYiP+J
-	2C/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=COt64MSbrLKCyIhnu1ErKuVepjNncOV60lXSQ1Fv2dM=;
-	b=VGlzwpGIBA1BFJbIjSRoY+cLfD4/8n2q+zhLeyQAG77wtj5/XPBlhWndv7om5WspIY
-	G6K9CQ1oboT/QMU5tFjL3uYmkUDlcoKfgkMULNWZLcvG4ubM3E5opchwY2kqIYtLi6t+
-	vRv5L/IMJoHIKyArJCpHES1nxv2EvzJVXGJuQfxdwN+/d8bKFLbvGywctL9iLPAc2bXp
-	E+g5PT+9RMyXVubpGOFGGBeNAL3NJO+/OdbeB4DfT1kFzyF/CQyDC4FJfS9tdkH97Uho
-	kAeLW9whYT8NFnvIwpbTlGj2VpbtozgnREvDZy2CH3PMItSpK7+C+1k+ooerOIwIWbQZ
-	GFDg==
-X-Gm-Message-State: AD7BkJIPpyiJAnfsSBBJx62g79/KCcOBBc+qYVcW4Ml5ST9/32tizGMrr/15/USr0n39hw==
-X-Received: by 10.28.12.80 with SMTP id 77mr6474175wmm.19.1456660133529;
-	Sun, 28 Feb 2016 03:48:53 -0800 (PST)
-Received: from localhost.localdomain
-	([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id
-	gg7sm20842892wjd.10.2016.02.28.03.48.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 28 Feb 2016 03:48:52 -0800 (PST)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Sun, 28 Feb 2016 12:48:36 +0100
-Message-Id: <1456660116-15810-2-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.7.0
-In-Reply-To: <1456660116-15810-1-git-send-email-andrei@gherzan.ro>
-References: <1456660116-15810-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH v4 2/2] linux-raspberrypi: Make sure we have initramfs image before running mkknlimg
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AFF1E00C91
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 05:44:38 -0800 (PST)
+X-Halon-ID: 653c978c-de21-11e5-8752-005056917c0c
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Sun, 28 Feb 2016 14:44:31 +0100 (CET)
+MIME-Version: 1.0
+Date: Sun, 28 Feb 2016 14:44:36 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <20160228110222.GA2087@resin.home>
+References: <1452789643-17903-1-git-send-email-petter@technux.se>
+	<1452789643-17903-4-git-send-email-petter@technux.se>
+	<decadab49c1ce664ee1e7b5e52cbfcaa@technux.se>
+	<20160228105158.GF12618@resin.home> <20160228110222.GA2087@resin.home>
+Message-ID: <0ed4c3bfa9af685cd6f51bcb4b0d3e57@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v2 3/7] linux-raspberrypi: Update 4.1 recipe to 4.1.15
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,35 +49,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Feb 2016 11:48:57 -0000
+X-List-Received-Date: Sun, 28 Feb 2016 13:44:42 -0000
+Content-Type: multipart/alternative;
+	boundary="=_dfcb20309331a56d2ab7db4159693ef9"
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-kernel/linux/linux-raspberrypi.inc | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+--=_dfcb20309331a56d2ab7db4159693ef9
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index 1befee4..5a8a175 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -66,10 +66,12 @@ do_rpiboot_mkimage() {
- }
  
- do_bundle_initramfs_append() {
--    if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
--        if test -n "${KERNEL_DEVICETREE}"; then
--            # Add RPi bootloader trailer to kernel image to enable DeviceTree support
--            ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
-+    if [ ! -z "${INITRAMFS_IMAGE}" -a x"${INITRAMFS_IMAGE_BUNDLE}" = x1 ]; then
-+        if test "x${KERNEL_IMAGETYPE}" != "xuImage" ; then
-+            if test -n "${KERNEL_DEVICETREE}"; then
-+                # Add RPi bootloader trailer to kernel image to enable DeviceTree support
-+                ${STAGING_LIBEXECDIR_NATIVE}/mkknlimg --dtok ${KERNEL_OUTPUT}.initramfs ${KERNEL_OUTPUT}.initramfs
-+            fi
-         fi
-     fi
- }
--- 
-2.7.0
+
+2016-02-28 12:02 skrev Andrei Gherzan: 
+
+> On Sun, Feb 28, 2016 at
+11:51:58AM +0100, Andrei Gherzan wrote:
+> 
+>> On Sun, Feb 28, 2016 at
+08:56:33AM +0100, Petter Mabäcker wrote: 
+>> 
+>>> 2016-01-14 17:40 skrev
+Petter Mab?cker: [Support #69] Signed-off-by: Petter Mab?cker
+<[1]petter@technux.se> --- recipes-kernel/linux/linux-raspberrypi_4.1.bb
+| 4 ++-- 1 file changed, 2 insertions(+), 2 deletions(-) diff --git
+a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linu
+x/linux-raspberrypi_4.1.bb index 3a3cf40..cae459a 100644 ---
+a/recipes-kernel/linux/linux-raspberrypi_4.1.bb +++
+b/recipes-kernel/linux/linux-raspberrypi_4.1.bb @@ -1,6 +1,6 @@
+-LINUX_VERSION ?= "4.1.10" +LINUX_VERSION ?= "4.1.15" -SRCREV =
+"b74df9228c27f55361c065bc5dbfba88861cc771" +SRCREV =
+"02a8ee530e32b08e5df44f10e24d5fd82bb960e3" SRC_URI =
+"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y "
+require linux-raspberrypi.inc Hi Andrei, This commit can be skipped,
+since Khem have done an even newer update of the 4.1 kernel (4.1.10 -->
+4.1.17) in the large series of commits from yesterday
+(https://lists.yoctoproject.org/pipermail/yocto/2016-February/028754.ht
+[1] ml). Do you want me to send an updated version of this series of
+commit without it or not? BR Petter References 1.
+mailto:petter@technux.se
+>> Thanks Peter. No need to bother. I'll keep
+in mind not to pull this patch.
+> 
+> Petter,
+> 
+> Actually I do have a
+request. Could you please send the v2 again (or a v3)
+> cause even if
+they are on the ml archive I don't have it in my mailbox (this
+> kinda
+worries me). Sorry for this and thank you in advance.
+> 
+> --
+> Andrei
+Gherzan
+
+I will send up a v3 with the kernel bump commit removed (and
+also a fix for a minor typo in the README..). 
+
+BR Petter 
+
+Petter
+Mabäcker
+
+Technux <petter@technux.se>
+www.technux.se
 
 
+
+Links:
+------
+[1]
+https://lists.yoctoproject.org/pipermail/yocto/2016-February/028754.ht
+
+--=_dfcb20309331a56d2ab7db4159693ef9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2016-02-28 12:02 skrev Andrei Gherzan:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On Sun, Feb 28, 2016 at 11:51:58AM +0100, Andrei Gherzan wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">On Sun, Feb 28, 2016 at 08:56:33AM +0=
+100, Petter Mab&auml;cker wrote:
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">2016-01-14 17:40 skrev Petter Mab?cke=
+r: [Support #69] Signed-off-by: Petter Mab?cker &lt;[1]<a href=3D"mailto:pe=
+tter@technux.se">petter@technux.se</a>&gt; --- recipes-kernel/linux/linux-r=
+aspberrypi_4.1.bb | 4 ++-- 1 file changed, 2 insertions(+), 2 deletions(-) =
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel=
+/linu x/linux-raspberrypi_4.1.bb index 3a3cf40..cae459a 100644 --- a/recipe=
+s-kernel/linux/linux-raspberrypi_4.1.bb +++ b/recipes-kernel/linux/linux-ra=
+spberrypi_4.1.bb @@ -1,6 +1,6 @@ -LINUX_VERSION ?=3D "4.1.10" +LINUX_VERSIO=
+N ?=3D "4.1.15" -SRCREV =3D "b74df9228c27f55361c065bc5dbfba88861cc771" +SRC=
+REV =3D "02a8ee530e32b08e5df44f10e24d5fd82bb960e3" SRC_URI =3D "git://githu=
+b.com/raspberrypi/linux.git;protocol=3Dgit;branch=3Drpi-4.1.y " require lin=
+ux-raspberrypi.inc Hi Andrei, This commit can be skipped, since Khem have d=
+one an even newer update of the 4.1 kernel (4.1.10 --&gt; 4.1.17) in the la=
+rge series of commits from yesterday (<a href=3D"https://lists.yoctoproject=
+=2Eorg/pipermail/yocto/2016-February/028754.ht">https://lists.yoctoproject=
+=2Eorg/pipermail/yocto/2016-February/028754.ht</a> ml). Do you want me to s=
+end an updated version of this series of commit without it or not? BR Pette=
+r References 1. mailto:<a href=3D"mailto:petter@technux.se">petter@technux=
+=2Ese</a></blockquote>
+Thanks Peter. No need to bother. I'll keep in mind not to pull this patch=
+=2E</blockquote>
+<pre>Petter,
+
+Actually I do have a request. Could you please send the v2 again (or a v3)
+cause even if they are on the ml archive I don't have it in my mailbox (thi=
+s
+kinda worries me). Sorry for this and thank you in advance.
+
+--
+Andrei Gherzan
+</pre>
+</blockquote>
+<p>I will send up a v3 with the kernel bump commit removed (and also a fix =
+for a minor typo in the README..).</p>
+<p>BR Petter</p>
+<div>
+<pre>Petter Mab&auml;cker
+
+Technux &lt;petter@technux.se&gt;
+www.technux.se</pre>
+</div>
+</body></html>
+
+--=_dfcb20309331a56d2ab7db4159693ef9--
