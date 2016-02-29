@@ -1,68 +1,36 @@
-Return-Path: <anders.darander@gmail.com>
+Return-Path: <christian@poessinger.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88545E00DAA; Fri, 26 Feb 2016 11:15:58 -0800 (PST)
+	id 84274E00CDF; Mon, 29 Feb 2016 09:25:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (anders.darander[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
-	[209.85.217.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 238AEE00D9A
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:15:55 -0800 (PST)
-Received: by mail-lb0-f177.google.com with SMTP id bc4so51864788lbc.2
-	for <yocto@yoctoproject.org>; Fri, 26 Feb 2016 11:15:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=/IdN7uG7a0g2c4757sScIHPhWbhEr/S9Q3M5nnHJkZ0=;
-	b=doVh2r62Cyg080BERht7/H3P7Yeap2zDk43/p80xB4TRBjoVta9z5nad1ml1rbOeM2
-	2H5attpllz9pvW4NT+ENcSSM0RMXm7d0axMnhrLICvSMho9WaEWDRaBYhB4pxX7gsOKm
-	fOyHY79UMAo2gIlt9p+4isplgGVUs+3XePss5H4g2ykGxj2XiTX5bi/MUN5CawEgy692
-	m9hkV8ayrgwAIJyKLBnB+CPqGWfY9PaUY4DKexCOUIB0sNwDbt/S05QSpxAddI/I5D2Y
-	Jrb+8B7PXMtpvs1t22+DhGdZtJwkQn8AxTuIU7mJU+yNyyOdsY5qrzveJksXgTc6rvIW
-	6Biw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=/IdN7uG7a0g2c4757sScIHPhWbhEr/S9Q3M5nnHJkZ0=;
-	b=dw38RGmjXwc8tKu6icxZ13ug1W0jSNyjDYPePf81gGIxHdAqygHbFeKqfab68gGH2C
-	0vh0VjfBCqIf7nHpp30rmu8sZ0huS643e3XtkNT/sVc8eaIWoSR0gVM/EneEJFE7/46/
-	DEPpRPVJQhUpQ68+4vsEbmwm7609HwCuT9tnfTtwOidg29qTIthaHKiNRv1r2v1ynfbl
-	BVdDYPbbGYyRFZnKh3c0HPso7pvmZ7iOyrAeG0zFdJnAMNtrK/JYa+mT1fWBq+V0A39I
-	3s4GwFkRElz2Bg8HVHXxZXVsehkt7K589QuLHRIiLsweY+Btr2FmP1+hn58P/6PT12sr
-	OWsA==
-X-Gm-Message-State: AD7BkJIHc1U99lo3J/ZnLwj0tjQa1Eqi36Av+g7PVLk2Q+ZQDfwoMW/43aiGZ2jh9HhJWczi5v7F9Y2Sk8WAbA==
-X-Received: by 10.112.168.5 with SMTP id zs5mr1287374lbb.56.1456514153592;
-	Fri, 26 Feb 2016 11:15:53 -0800 (PST)
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Mon, 29 Feb 2016 09:25:51 PST
+Received: from HE.hosted.gefoekom.de (he.hosted.gefoekom.de [194.145.150.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5D52E00833
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 09:25:51 -0800 (PST)
+Received: from HE.hosted.gefoekom.de ([fe80::bd33:552d:44e3:3bad]) by
+	HE.hosted.gefoekom.de ([fe80::bd33:552d:44e3:3bad%14]) with mapi id
+	14.03.0266.001; Mon, 29 Feb 2016 18:24:37 +0100
+From: =?iso-8859-1?Q?Christian_P=F6ssinger?= <christian@poessinger.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-mingw][PATCH] Renamed version specific bbappend of mpfr,
+	binutils-cross-canadian,
+	gdb-cross-canadian and libmpc to wildcard bbappend files.
+Thread-Index: AdFzFfBLBU9qOSQaSiKQkrnDO5YO2A==
+Date: Mon, 29 Feb 2016 17:24:36 +0000
+Message-ID: <4D72230CAA2B6B47B89730E2006D198364C54B7B@HE.hosted.gefoekom.de>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [188.193.141.63]
 MIME-Version: 1.0
-References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
-	<CAMKF1spgKSosWNxwUM1suPRZD2VRbNVDsFjr55sv6GMYWCVGtw@mail.gmail.com>
-In-Reply-To: <CAMKF1spgKSosWNxwUM1suPRZD2VRbNVDsFjr55sv6GMYWCVGtw@mail.gmail.com>
-From: Anders Darander <anders.darander@gmail.com>
-Date: Fri, 26 Feb 2016 19:15:43 +0000
-Message-ID: <CAE4k23_0=nw4caHLXPDCygvFd47dJ2s9muxDFGPEibb2yQKh2Q@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
 X-Mailman-Approved-At: Wed, 02 Mar 2016 08:00:41 -0800
-Cc: yocto@yoctoproject.org, Brian Avery <brian.avery@intel.com>,
-	openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] Removing Hob for 2.1
+Subject: [meta-mingw][PATCH] Renamed version specific bbappend of mpfr, binutils-cross-canadian, gdb-cross-canadian and libmpc to wildcard bbappend files.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,32 +42,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Feb 2016 19:15:58 -0000
-Content-Type: multipart/alternative; boundary=001a11c2409abc3f36052cb12006
-
---001a11c2409abc3f36052cb12006
-Content-Type: text/plain; charset=UTF-8
-
-On Fri, 26 Feb 2016, 03:54 Khem Raj <raj.khem@gmail.com> wrote:
-
-> Go ahead
->
-Yes, go ahead.
-
->
-
---001a11c2409abc3f36052cb12006
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Mon, 29 Feb 2016 17:25:56 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<br><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Fri, 26 Feb 2016, 03=
-:54=C2=A0Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">G=
-o ahead</p></blockquote></div><div>Yes, go ahead.=C2=A0</div><div class=3D"=
-gmail_quote"></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-">
-</blockquote></div>
+Renamed version specific bbappend of mpfr, binutils-cross-canadian, gdb-cro=
+ss-canadian and libmpc to wildcard bbappend files.
 
---001a11c2409abc3f36052cb12006--
+Signed-off-by: Christian Poessinger <christian at poessinger.com>
+
+---
+ recipes-devtools/binutils/binutils-cross-canadian_%.bbappend     | 5 +++++
+ recipes-devtools/binutils/binutils-cross-canadian_2.25%.bbappend | 5 -----
+ recipes-devtools/gdb/gdb-cross-canadian_%.bbappend               | 5 +++++
+ recipes-devtools/gdb/gdb-cross-canadian_7.9.1.bbappend           | 5 -----
+ recipes-support/libmpc/libmpc_%.bbappend                         | 1 +
+ recipes-support/libmpc/libmpc_1.0.3.bbappend                     | 1 -
+ recipes-support/mpfr/mpfr_%.bbappend                             | 1 +
+ recipes-support/mpfr/mpfr_3.1.3.bbappend                         | 1 -
+ 8 files changed, 12 insertions(+), 12 deletions(-)
+ create mode 100644 recipes-devtools/binutils/binutils-cross-canadian_%.bba=
+ppend
+ delete mode 100644 recipes-devtools/binutils/binutils-cross-canadian_2.25%=
+.bbappend
+ create mode 100644 recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
+ delete mode 100644 recipes-devtools/gdb/gdb-cross-canadian_7.9.1.bbappend
+ create mode 100644 recipes-support/libmpc/libmpc_%.bbappend
+ delete mode 100644 recipes-support/libmpc/libmpc_1.0.3.bbappend
+ create mode 100644 recipes-support/mpfr/mpfr_%.bbappend
+ delete mode 100644 recipes-support/mpfr/mpfr_3.1.3.bbappend
+
+diff --git a/recipes-devtools/binutils/binutils-cross-canadian_%.bbappend b=
+/recipes-devtools/binutils/binutils-cross-canadian_%.bbappend
+new file mode 100644
+index 0000000..026c932
+--- /dev/null
++++ b/recipes-devtools/binutils/binutils-cross-canadian_%.bbappend
+@@ -0,0 +1,5 @@
++EXTRA_OECONF_append_sdkmingw32 =3D " --disable-plugins --disable-nls"
++LDFLAGS_append_sdkmingw32 =3D " -Wl,-static"
++
++DEPENDS_remove_sdkmingw32 =3D "nativesdk-gettext"
++DEPENDS_remove_sdkmingw32 =3D "nativesdk-flex"
+diff --git a/recipes-devtools/binutils/binutils-cross-canadian_2.25%.bbappe=
+nd b/recipes-devtools/binutils/binutils-cross-canadian_2.25%.bbappend
+deleted file mode 100644
+index 026c932..0000000
+--- a/recipes-devtools/binutils/binutils-cross-canadian_2.25%.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-EXTRA_OECONF_append_sdkmingw32 =3D " --disable-plugins --disable-nls"
+-LDFLAGS_append_sdkmingw32 =3D " -Wl,-static"
+-
+-DEPENDS_remove_sdkmingw32 =3D "nativesdk-gettext"
+-DEPENDS_remove_sdkmingw32 =3D "nativesdk-flex"
+diff --git a/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend b/recipes-d=
+evtools/gdb/gdb-cross-canadian_%.bbappend
+new file mode 100644
+index 0000000..bf4bd75
+--- /dev/null
++++ b/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
+@@ -0,0 +1,5 @@
++LDFLAGS_append_sdkmingw32 =3D " -Wl,-static"
++EXEEXT_sdkmingw32 =3D ".exe"
++DEPENDS_remove_sdkmingw32 =3D "nativesdk-ncurses nativesdk-readline native=
+sdk-python"
++RDEPENDS_${PN}_remove_sdkmingw32 =3D "nativesdk-python-core nativesdk-pyth=
+on-lang nativesdk-python-re nativesdk-python-codecs nativesdk-python-netcli=
+ent"
++EXTRA_OECONF_append_sdkmingw32 =3D "--without-curses --without-system-read=
+line --with-python=3Dno"
+diff --git a/recipes-devtools/gdb/gdb-cross-canadian_7.9.1.bbappend b/recip=
+es-devtools/gdb/gdb-cross-canadian_7.9.1.bbappend
+deleted file mode 100644
+index bf4bd75..0000000
+--- a/recipes-devtools/gdb/gdb-cross-canadian_7.9.1.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-LDFLAGS_append_sdkmingw32 =3D " -Wl,-static"
+-EXEEXT_sdkmingw32 =3D ".exe"
+-DEPENDS_remove_sdkmingw32 =3D "nativesdk-ncurses nativesdk-readline native=
+sdk-python"
+-RDEPENDS_${PN}_remove_sdkmingw32 =3D "nativesdk-python-core nativesdk-pyth=
+on-lang nativesdk-python-re nativesdk-python-codecs nativesdk-python-netcli=
+ent"
+-EXTRA_OECONF_append_sdkmingw32 =3D "--without-curses --without-system-read=
+line --with-python=3Dno"
+diff --git a/recipes-support/libmpc/libmpc_%.bbappend b/recipes-support/lib=
+mpc/libmpc_%.bbappend
+new file mode 100644
+index 0000000..0d289df
+--- /dev/null
++++ b/recipes-support/libmpc/libmpc_%.bbappend
+@@ -0,0 +1 @@
++EXTRA_OECONF_append_mingw32 =3D "--enable-static --disable-shared"
+\ No newline at end of file
+diff --git a/recipes-support/libmpc/libmpc_1.0.3.bbappend b/recipes-support=
+/libmpc/libmpc_1.0.3.bbappend
+deleted file mode 100644
+index 0d289df..0000000
+--- a/recipes-support/libmpc/libmpc_1.0.3.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-EXTRA_OECONF_append_mingw32 =3D "--enable-static --disable-shared"
+\ No newline at end of file
+diff --git a/recipes-support/mpfr/mpfr_%.bbappend b/recipes-support/mpfr/mp=
+fr_%.bbappend
+new file mode 100644
+index 0000000..4252e8d
+--- /dev/null
++++ b/recipes-support/mpfr/mpfr_%.bbappend
+@@ -0,0 +1 @@
++EXTRA_OECONF_append_mingw32 =3D " --disable-shared"
+\ No newline at end of file
+diff --git a/recipes-support/mpfr/mpfr_3.1.3.bbappend b/recipes-support/mpf=
+r/mpfr_3.1.3.bbappend
+deleted file mode 100644
+index 4252e8d..0000000
+--- a/recipes-support/mpfr/mpfr_3.1.3.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-EXTRA_OECONF_append_mingw32 =3D " --disable-shared"
+\ No newline at end of file
+--
+2.7.2
+
+
