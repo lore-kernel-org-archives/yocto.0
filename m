@@ -1,39 +1,35 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jussi.laako@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E889E00D26; Mon, 29 Feb 2016 06:07:01 -0800 (PST)
+	id 98908E00D26; Mon, 29 Feb 2016 06:24:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23CEFE00CBC
-	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 06:06:58 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u1TE6jAZ009360
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 29 Feb 2016 06:06:45 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 29 Feb 2016 06:06:44 -0800
-To: Philip Tricca <flihp@twobit.us>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <56D274C6.90607@twobit.us> <56D27649.4040306@twobit.us>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <56D45073.3050800@windriver.com>
-Date: Mon, 29 Feb 2016 08:06:43 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F931E00CBC
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 06:24:06 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga102.fm.intel.com with ESMTP; 29 Feb 2016 06:23:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,520,1449561600"; 
+	d="scan'208,223";a="661178859"
+Received: from jlaako-mobl2.ger.corp.intel.com (HELO [10.237.66.162])
+	([10.237.66.162])
+	by FMSMGA003.fm.intel.com with ESMTP; 29 Feb 2016 06:23:58 -0800
+To: yocto@yoctoproject.org
+From: Jussi Laako <jussi.laako@linux.intel.com>
+Message-ID: <56D4547D.70803@linux.intel.com>
+Date: Mon, 29 Feb 2016 16:23:57 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-In-Reply-To: <56D27649.4040306@twobit.us>
-Subject: Re: [meta-selinux] git recipes
+Subject: [PATCH] Fix booting from eMMC on BeagleBone Black
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,56 +41,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Feb 2016 14:07:01 -0000
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Mon, 29 Feb 2016 14:24:10 -0000
+X-Groupsio-MsgNum: 28733
+Content-Type: multipart/mixed; boundary="------------080003060502060406010307"
+
+--------------080003060502060406010307
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2/27/16 10:23 PM, Philip Tricca wrote:
-> Adding a sensible subject.
+Hello,
 
-Sorry couldn't reply when I saw this when you first sent it.  Corporate email
-server went down for those of us who DON'T use outlook.. argh..
+By default, on BeagleBone, u-boot only looks for rootfs UUID from first 
+mmc device and thus only from microSD. Thus booting from eMMC fails in 
+kernel panic because command line has empty root partition UUID 
+"root=PARTUUID=".
 
-Anyway..
-
-What I'm generally used to in the Yocto Project work is that the 'git' version
-picks a specific git snapshot and makes it a quick operation for someone to
-arbitrarily change that snapshot by adjusting the SRCREV.
-
-We don't use the AUTOREV parameter, because that causes the system to have to do
-a git pull in order to evaluate the available versions and determine the SRCREV
-to use.  So it's all down to a parsing and performance issue.
-
-What I've done on some of my own projects is have an AUTOREV version (locally),
-then when it triggers a recipe breakage, I think update the SRCREV and fix it in
-the remote tree..  so I get the autorev, the world gets a version of the package
-that keeps working.  (I also update the SRCREV other times as well.. but the
-autorev breakage is one of the key triggers.)
-
-Joe might have some suggestions as well, I'm not against AUTOREV per say, but I
-am worried about any performance issues during the parse.
-
---Mark
-
-> On 02/27/2016 08:17 PM, Philip Tricca wrote:
->> While going through the backlog I ran across the 'git' versions of the
->> user space. I noticed that a recent contribution was adding a patch to
->> the git recipe and I figured that this patch would already be upstream
->> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
->> hard wired (SRCREV) to a commit id but it's way back from the end of
->> 2013. They're also disabled via DEFAULT_PREFERENCE = "-1"
->>
->> These 'git' versions seem super useful for testing bleeding edge stuff
->> so IMHO keeping them around would be the right thing to do. Not sure how
->> I feel about them tracking an ancient commit though. Since they're never
->> built by default it seems reasonable to track the master branch.
->>
->> What's our philosophy w/r to recipes that pull from git? Is there some
->> history behind this SRCREV?
->>
->> Thanks,
->> Philip
->>
-> 
+This patch makes it first look in the same place as before and if the 
+lookup fails (no microSD inserted) it next looks up for the rootfs UUID 
+on the second mmc device which is the on-board eMMC. I placed the 
+bbappend and patch on meta-yocto-bsp layer because the BeagleBone 
+support in general is located there.
 
 
+Best regards,
+
+	- Jussi Laako
+
+
+--------------080003060502060406010307
+Content-Type: text/x-patch;
+ name="0001-Search-for-rootfs-partitions-on-both-SD-and-eMMC.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename*0="0001-Search-for-rootfs-partitions-on-both-SD-and-eMMC.patch"
+
+From f54171b120b1fa47a592bdb8f3fbac2350e1757e Mon Sep 17 00:00:00 2001
+From: Jussi Laako <jussi.laako@linux.intel.com>
+Date: Mon, 29 Feb 2016 16:12:11 +0200
+Subject: [PATCH] Search for rootfs partitions on both SD and eMMC
+
+On BeagleBone Black, first attempt to find rootfs from microSD
+and then from eMMC if not available.
+
+Fixes: #9176
+
+Signed-off-by: Jussi Laako <jussi.laako@linux.intel.com>
+---
+ ...r-bootable-partitions-on-both-SD-and-eMMC.patch | 38 ++++++++++++++++++++++
+ .../recipes-bsp/u-boot/u-boot_2016.01.bbappend     |  3 ++
+ 2 files changed, 41 insertions(+)
+ create mode 100644 meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
+ create mode 100644 meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
+
+diff --git a/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
+new file mode 100644
+index 0000000..729dddf
+--- /dev/null
++++ b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
+@@ -0,0 +1,38 @@
++From 86cc560ff9a6578326532e277d987e24661e5f04 Mon Sep 17 00:00:00 2001
++From: Jussi Laako <jussi.laako@linux.intel.com>
++Date: Fri, 26 Feb 2016 14:58:32 +0200
++Subject: [PATCH] Search for bootable partitions on both SD and eMMC
++
++On BeagleBone Black, first attempt to boot from microSD and then from
++eMMC if not available.
++
++Signed-off-by: Jussi Laako <jussi.laako@linux.intel.com>
++---
++ include/configs/ti_armv7_common.h | 11 ++++++++++-
++ 1 file changed, 10 insertions(+), 1 deletion(-)
++
++diff --git a/include/configs/ti_armv7_common.h b/include/configs/ti_armv7_common.h
++index 199612b..ece87ab 100644
++--- a/include/configs/ti_armv7_common.h
+++++ b/include/configs/ti_armv7_common.h
++@@ -60,7 +60,16 @@
++ #define DEFAULT_MMC_TI_ARGS \
++ 	"mmcdev=0\0" \
++ 	"mmcrootfstype=ext4 rootwait\0" \
++-	"finduuid=part uuid mmc 0:2 uuid\0" \
+++	"findsduuid=part uuid mmc 0:2 sduuid\0" \
+++	"findemmcuuid=part uuid mmc 1:2 emmcuuid\0" \
+++	"finduuid=if run findsduuid; then "\
+++		"echo \"Boot from microSD\"; "\
+++		"setenv uuid ${sduuid}; " \
+++	"else " \
+++		"run findemmcuuid; " \
+++		"echo \"Boot from eMMC\"; " \
+++		"setenv uuid ${emmcuuid}; " \
+++	"fi;\0" \
++ 	"args_mmc=run finduuid;setenv bootargs console=${console} " \
++ 		"${optargs} " \
++ 		"root=PARTUUID=${uuid} rw " \
++-- 
++2.7.0
++
+diff --git a/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
+new file mode 100644
+index 0000000..01c8e68
+--- /dev/null
++++ b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI_append = " file://0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch"
+-- 
+2.7.0
+
+
+--------------080003060502060406010307--
