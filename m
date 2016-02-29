@@ -1,35 +1,60 @@
-Return-Path: <jussi.laako@linux.intel.com>
+Return-Path: <haemarkus@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98908E00D26; Mon, 29 Feb 2016 06:24:10 -0800 (PST)
+	id E03E2E00D26; Mon, 29 Feb 2016 06:35:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (haemarkus[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.41 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F931E00CBC
-	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 06:24:06 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Feb 2016 06:23:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,520,1449561600"; 
-	d="scan'208,223";a="661178859"
-Received: from jlaako-mobl2.ger.corp.intel.com (HELO [10.237.66.162])
-	([10.237.66.162])
-	by FMSMGA003.fm.intel.com with ESMTP; 29 Feb 2016 06:23:58 -0800
-To: yocto@yoctoproject.org
-From: Jussi Laako <jussi.laako@linux.intel.com>
-Message-ID: <56D4547D.70803@linux.intel.com>
-Date: Mon, 29 Feb 2016 16:23:57 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f41.google.com (mail-lf0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED2C9E00CE1
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 06:35:46 -0800 (PST)
+Received: by mail-lf0-f41.google.com with SMTP id j78so92502294lfb.1
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 06:35:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=AnRbXYGxzgnO7cRgQngte7TyZPO6q9cTTbWRmM5a4VA=;
+	b=X9zSNsiMUMz4hd5nDjfx72o1yCab9OHHbw16JNvMQfzDrJXJXWo4uNQN7KPMSxY3Fi
+	LTNy3o2mnqmyqFB0B++WPCLYjVvJsWC4xdgCmxfpnK+QEeNSOSyzhhIYwCkrNkQHfmnl
+	bzk38hKLZEk/LuEaDtW28ZopiU4lDwSoGVAhiLV8hR3bdn8jOH73znGMgFxz1YgdodWG
+	nvzwU3oPpUvdmeaH0BNtwvZO5NVkeMfY2wiFfd+RiOiYTFE+KPzwKVi9BNHZcPprLIQl
+	4iXNZlagZ6YUdMVAA4hL81T42JY0EaFCY5rH94g4W3pJVmJWl1dYrV3s0XgTbvmWkB4v
+	hzkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=AnRbXYGxzgnO7cRgQngte7TyZPO6q9cTTbWRmM5a4VA=;
+	b=WrrTWs62PTsLQZB7AN/A81cVuQTbt53ONsPiGqJ3pwbSyNvpEwOpu0ZJbJYLHBxc6Q
+	u+6r3+ayFqcVzOEVGqTb+PEgwB4Vj5XcijW2J9qNoVJ1CHZHVU8+FcI7mH0XEIq7AAX+
+	WDiR8KMK+YbSrkGYqj8g+GSOMUTvYOXFvRN48EY9L/Cfffr6HEBNvkKc8bELAWJ77ZGB
+	Noo+2sj0fa6HUhpC0TeM/+bRrzOUnjLNV6qgZzJkSDJ09R1QiIdxb1oRuZieguVmFPcN
+	t2ByoJr5UcNn7ed5uAUVzQt2CXzGbtx+q0dAudbDPJU+85eUvB5isfzjr4q+sQ5h+c41
+	hPEQ==
+X-Gm-Message-State: AD7BkJK8aU/b0Zg5kbIa5Di8yQQ3E87jPu/lhZU4+EqusG2x6gvgccw8DBkYXmwj1ThpF9RSKiTBYQXKhS4UAA==
 MIME-Version: 1.0
-Subject: [PATCH] Fix booting from eMMC on BeagleBone Black
+X-Received: by 10.25.167.18 with SMTP id q18mr4564289lfe.27.1456756544778;
+	Mon, 29 Feb 2016 06:35:44 -0800 (PST)
+Received: by 10.112.75.9 with HTTP; Mon, 29 Feb 2016 06:35:44 -0800 (PST)
+Date: Mon, 29 Feb 2016 15:35:44 +0100
+Message-ID: <CAJ0mxBz=jW89WeUtNQ1tFdTq6Qbh6313BoqDMcFsN3saXr7BXA@mail.gmail.com>
+From: Markus Haege <haemarkus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: hello world fails in eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,113 +66,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Feb 2016 14:24:10 -0000
-X-Groupsio-MsgNum: 28733
-Content-Type: multipart/mixed; boundary="------------080003060502060406010307"
+X-List-Received-Date: Mon, 29 Feb 2016 14:35:49 -0000
+Content-Type: multipart/alternative; boundary=001a1141084e603dfd052ce990ab
 
---------------080003060502060406010307
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a1141084e603dfd052ce990ab
+Content-Type: text/plain; charset=UTF-8
 
-Hello,
+Hello there,
 
-By default, on BeagleBone, u-boot only looks for rootfs UUID from first 
-mmc device and thus only from microSD. Thus booting from eMMC fails in 
-kernel panic because command line has empty root partition UUID 
-"root=PARTUUID=".
+I searched the web for a while, figured out that I'm not the first person
+with this problem
+but I don't find the solution.
 
-This patch makes it first look in the same place as before and if the 
-lookup fails (no microSD inserted) it next looks up for the rootfs UUID 
-on the second mmc device which is the on-board eMMC. I placed the 
-bbappend and patch on meta-yocto-bsp layer because the BeagleBone 
-support in general is located there.
+I use Debian 8 with Eclipse luna Release 2.
+I installed the yocto plugins in eclipse as described in the manual.
 
+Now I want to compile a hello world for the meta-raspberrypi but it fails:
 
-Best regards,
+The C compiler
 
-	- Jussi Laako
+"/home/markus/poky/meta-raspberrypi/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc"
+  is not able to compile a simple test program.
 
+/home/markus/poky/meta-raspberrypi/tmp/sysroots/x86_64-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
+  error: cmTryCompileExec1319352149 uses VFP register arguments,
+  CMakeFiles/cmTryCompileExec1319352149.dir/testCCompiler.c.o does not
 
---------------080003060502060406010307
-Content-Type: text/x-patch;
- name="0001-Search-for-rootfs-partitions-on-both-SD-and-eMMC.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename*0="0001-Search-for-rootfs-partitions-on-both-SD-and-eMMC.patch"
+I sourced the environment setup so eclipse finds under
+properties/C++Build/Environment the settings. That's all I achieved.
+I read about flags to set but don't know where. Something about floating
+point. What I read was very old.
 
-From f54171b120b1fa47a592bdb8f3fbac2350e1757e Mon Sep 17 00:00:00 2001
-From: Jussi Laako <jussi.laako@linux.intel.com>
-Date: Mon, 29 Feb 2016 16:12:11 +0200
-Subject: [PATCH] Search for rootfs partitions on both SD and eMMC
+Thanks to any help
 
-On BeagleBone Black, first attempt to find rootfs from microSD
-and then from eMMC if not available.
+Markus
 
-Fixes: #9176
+--001a1141084e603dfd052ce990ab
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jussi Laako <jussi.laako@linux.intel.com>
----
- ...r-bootable-partitions-on-both-SD-and-eMMC.patch | 38 ++++++++++++++++++++++
- .../recipes-bsp/u-boot/u-boot_2016.01.bbappend     |  3 ++
- 2 files changed, 41 insertions(+)
- create mode 100644 meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
- create mode 100644 meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
+<div dir=3D"ltr">Hello there,<div><br></div><div>I searched the web for a w=
+hile, figured out that I&#39;m not the first person with this problem</div>=
+<div>but I don&#39;t find the solution.</div><div><br></div><div>I use Debi=
+an 8 with Eclipse luna Release 2.</div><div>I installed the yocto plugins i=
+n eclipse as described in the manual.</div><div><br></div><div>Now I want t=
+o compile a hello world for the meta-raspberrypi but it fails:</div><div><b=
+r></div><div><div>The C compiler</div><div>=C2=A0 &quot;/home/markus/poky/m=
+eta-raspberrypi/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/ar=
+m-poky-linux-gnueabi-gcc&quot;</div><div>=C2=A0 is not able to compile a si=
+mple test program.</div></div><div><br></div><div><div>/home/markus/poky/me=
+ta-raspberrypi/tmp/sysroots/x86_64-linux/usr/libexec/arm-poky-linux-gnueabi=
+/gcc/arm-poky-linux-gnueabi/5.2.0/ld:</div><div>=C2=A0 error: cmTryCompileE=
+xec1319352149 uses VFP register arguments,</div><div>=C2=A0 CMakeFiles/cmTr=
+yCompileExec1319352149.dir/testCCompiler.c.o does not</div></div><div><br><=
+/div><div>I sourced the environment setup so eclipse finds under properties=
+/C++Build/Environment the settings. That&#39;s all I achieved.</div><div>I =
+read about flags to set but don&#39;t know where. Something about floating =
+point. What I read was very old.</div><div><br></div><div>Thanks to any hel=
+p</div><div><br></div><div>Markus</div></div>
 
-diff --git a/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
-new file mode 100644
-index 0000000..729dddf
---- /dev/null
-+++ b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot/0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch
-@@ -0,0 +1,38 @@
-+From 86cc560ff9a6578326532e277d987e24661e5f04 Mon Sep 17 00:00:00 2001
-+From: Jussi Laako <jussi.laako@linux.intel.com>
-+Date: Fri, 26 Feb 2016 14:58:32 +0200
-+Subject: [PATCH] Search for bootable partitions on both SD and eMMC
-+
-+On BeagleBone Black, first attempt to boot from microSD and then from
-+eMMC if not available.
-+
-+Signed-off-by: Jussi Laako <jussi.laako@linux.intel.com>
-+---
-+ include/configs/ti_armv7_common.h | 11 ++++++++++-
-+ 1 file changed, 10 insertions(+), 1 deletion(-)
-+
-+diff --git a/include/configs/ti_armv7_common.h b/include/configs/ti_armv7_common.h
-+index 199612b..ece87ab 100644
-+--- a/include/configs/ti_armv7_common.h
-++++ b/include/configs/ti_armv7_common.h
-+@@ -60,7 +60,16 @@
-+ #define DEFAULT_MMC_TI_ARGS \
-+ 	"mmcdev=0\0" \
-+ 	"mmcrootfstype=ext4 rootwait\0" \
-+-	"finduuid=part uuid mmc 0:2 uuid\0" \
-++	"findsduuid=part uuid mmc 0:2 sduuid\0" \
-++	"findemmcuuid=part uuid mmc 1:2 emmcuuid\0" \
-++	"finduuid=if run findsduuid; then "\
-++		"echo \"Boot from microSD\"; "\
-++		"setenv uuid ${sduuid}; " \
-++	"else " \
-++		"run findemmcuuid; " \
-++		"echo \"Boot from eMMC\"; " \
-++		"setenv uuid ${emmcuuid}; " \
-++	"fi;\0" \
-+ 	"args_mmc=run finduuid;setenv bootargs console=${console} " \
-+ 		"${optargs} " \
-+ 		"root=PARTUUID=${uuid} rw " \
-+-- 
-+2.7.0
-+
-diff --git a/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
-new file mode 100644
-index 0000000..01c8e68
---- /dev/null
-+++ b/meta-yocto-bsp/recipes-bsp/u-boot/u-boot_2016.01.bbappend
-@@ -0,0 +1,3 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI_append = " file://0001-Search-for-bootable-partitions-on-both-SD-and-eMMC.patch"
--- 
-2.7.0
-
-
---------------080003060502060406010307--
+--001a1141084e603dfd052ce990ab--
