@@ -1,38 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC42EE00D22; Sun, 28 Feb 2016 19:49:06 -0800 (PST)
+	id 308CDE00D37; Sun, 28 Feb 2016 21:28:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4664AE00D0B
-	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 19:49:02 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 5CC8F68A019; Mon, 29 Feb 2016 03:49:01 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 61C3268A019;
-	Mon, 29 Feb 2016 03:48:59 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 1E68467405E8;
-	Mon, 29 Feb 2016 04:48:58 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
-	<3327973.x6IgOsuVxr@peggleto-mobl.ger.corp.intel.com>
-	<AAAE6561-746E-498D-A499-C5A0E2668D9C@gmail.com>
-	<56D3BB9C.8090105@gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56D3BFA9.9080200@mlbassoc.com>
-Date: Mon, 29 Feb 2016 04:48:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E82AE00C43
+	for <yocto@yoctoproject.org>; Sun, 28 Feb 2016 21:28:08 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 2D0098481248
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 00:28:07 -0500 (EST)
 MIME-Version: 1.0
-In-Reply-To: <56D3BB9C.8090105@gmail.com>
-Subject: Re: [Openembedded-architecture] Standalone image writer
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 29 Feb 2016 05:28:07 -0000
+Message-ID: <20160229052807.20654.57990@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,77 +32,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Feb 2016 03:49:06 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Feb 2016 05:28:14 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 02/29/2016 04:31 AM, Trevor Woerner wrote:
->
->
-> On 02/28/16 20:46, Khem Raj wrote:
->>> On Feb 28, 2016, at 4:17 PM, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
->>>
->>> (changing subject line so people don't miss this slight tangent)
->>>
->>> I'd almost completely forgotten, but the part of what we wrote for Hob to
->>> write images to a USB stick or SD card (bitbake/bin/image-writer) is actually
->>> a standalone application. There's not a lot to it - pick your image file and
->>> then the device you want to write it to; it has some logic in it to not let
->>> you accidentally write to devices that aren't USB sticks.
->>>
->>> A few points:
->>>
->>> - I'm not sure very many people know this tool exists, so it's likely it's not
->>> being widely used. Having said that it is a nice simple UI that does the job.
->>>
->>> - It shares some code with Hob, but mostly not the bits with code quality
->>> issues, though it is still GTK+ 2 based.
->>>
->>> - It doesn't support the advanced SD card writing functionality that has been
->>> implented within wic over the last few releases, which is pretty important for
->>> devices where a special partition layout is expected by the bootloader.
->>>
->>> - Toaster can't really have this functionality in it because it's web based
->>> and the web server might not be running locally, so writing to a local USB
->>> stick or SD card isn't going to be practical from there; about all it could do
->>> is provide instructions on how to write the image once you've downloaded it.
->>>
->>> - I believe there are other equivalent tools out there that various distros
->>> use for taking a downloadable ISO image and writing it to a USB stick. I
->>> haven't done a survey to find out if if any of them work in quite the same way;
->>> I know some of them actually unpack the image and then re-create a filesystem
->>> on the device, which isn't the right thing for our images.
->>>
->>> - We do have a command-line equivalent in the form of scripts/contrib/ddimage
->>> in OE-Core. Of course it's command-line and thus less friendly but it does the
->>> job (and also has some safeguards against writing to the wrong device).
->>>
->>> So what do we do with this? We have two choices really:
->>>
->>> A) Drop bitbake/bin/imagewriter along with Hob; we could potentially
->>> resurrect it again later if desired
->>>
->>> B) Preserve it along with the shared modules that it requires
->>>
->>> Thoughts?
->>
->> Option A. There are USB writer tool in your favorite distros and OSes, and I have
->> seen people use those tools more often.
->
-> Some platforms, e.g. Minnow, use their own image writing script (i.e. mkefidisk.sh). If there are other platforms which
-> need some special tool that isn't generically available from the host and the hob tool could be made to accommodate them
-> all, I'd prefer to see one tool that can do all of them instead of a bunch of tools, one for each platform.
+This mail was sent out by Recipe reporting system.
 
-As Paul mentioned, each platform seems to want to do this "their
-own way" which is troublesome at best for embedded systems.  I think
-it would be much better to maintain one way that works with what we
-are building (OE based embedded devices) rather than relying on the
-whims of others.  So, if it's not too hard, I'd prefer that this
-ability be kept, even as a stand-alone script.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version    Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------  --------------------  -------------------  ------------------------------
+texinfo               6.0        6.1                   Alejandro Hernandez
+python-dbus           1.2.0      1.2.2                 Alejandro Hernandez
+python3-pip           8.0.0      8.0.3                 Alejandro Hernandez
+python3-setuptools    19.4       20.2.2                Alejandro Hernandez
+python-pygobject      2.28.3     3.19.90               Alejandro Hernandez  Newer versions of python-py...
+python-setuptools     19.4       20.2.2                Alejandro Hernandez
+liberation-fonts      1.04       2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+btrfs-tools           4.4        4.4.1                 Alexander Kanavin
+watchdog              5.14       5.15                  Alexander Kanavin
+nss                   3.21       3.22.1                Alexander Kanavin
+mkelfimage            4.0+gitX   4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
+apt                   1.0.10.1   1.2.4                 Aníbal Limón
+pinentry              0.9.2      0.9.7                 Armin Kuster
+linux-libc-headers    4.4        4.4.3                 Bruce Ashfield
+guilt-native          0.35+gitX  0.36+gitAUTOINC+2...  Bruce Ashfield
+sysstat               11.2.0     11.3.1                Chen Qi
+createrepo            0.4.11     0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+ghostscript           9.16       9.18                  Hongxu Jia
+elfutils              0.164      0.165                 Hongxu Jia
+libinput              1.1.4      1.2.1                 Jussi Kukkonen
+wayland               1.9.0      1.10.0                Jussi Kukkonen
+xrandr                1.4.3      1.5.0                 Jussi Kukkonen
+openssh               7.1p2      7.2p1                 Jussi Kukkonen
+docbook-xsl-style...  1.78.1     1.79.1                Jussi Kukkonen
+gsettings-desktop...  3.19.3     3.19.90               Jussi Kukkonen
+xserver-xorg          1.18.0     1.18.1                Jussi Kukkonen
+weston                1.9.0      1.10.0                Jussi Kukkonen
+pixman                0.32.8     0.34.0                Jussi Kukkonen
+xkeyboard-config      2.16       2.17                  Jussi Kukkonen
+vte                   0.28.2     0.42.4                Jussi Kukkonen       matchbox-terminal needs to ...
+linuxdoc-tools-na...  0.9.69     0.9.71                Jussi Kukkonen
+slang                 2.2.4      2.3.0                 Kai Kang
+prelink               1.0+gitX   20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.14     5.4.15                Mark Hatle           5.4.15 has a package databa...
+libpfm4               4.6.0      4.7.0                 Matthew McClintock
+db                    6.0.30     6.1.26                Maxin B. John        Updating to 6.1.x requires ...
+harfbuzz              1.2.1      1.2.3                 Maxin B. John
+xf86-input-libinput   0.16.0     0.17.0                No maintainer
+gdb-cross-canadia...  7.10.1     7.11                  No maintainer
+gdb-cross-i586        7.10.1     7.11                  No maintainer
+apt-native            1.0.10.1   1.2.4                 No maintainer
+ifupdown              0.8.2      0.8.10                No maintainer
+sgmlspl-native        1.1+gitX   1.03+gitAUTOINC+f...  No maintainer
+gdb                   7.10.1     7.11                  Richard Purdie
+nasm                  2.11.08    2.12                  Richard Purdie
+libcap                2.24       2.25                  Robert Yang
+mklibs-native         0.1.40     0.1.41                Robert Yang
+lsbinitscripts        9.64       9.65                  Ross Burton
+base-passwd           3.5.29     3.5.39                Ross Burton          Version 3.5.38 requires cde...
+gettext               0.19.6     0.19.7                Wenzong Fan
+chkconfig             1.3.58     1.7                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 42
+Upgradable total count: 51
+
+The based commit is:
+
+commit 390bad905537820f49add855c95d726b5b55c8fa
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Sun Feb 28 22:53:03 2016 +0000
+
+    sanity: Fix int verses string reference
+    
+    The sanity update code needs to be passed an int, not string.
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
