@@ -1,6 +1,6 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6804BE00D4A; Mon, 29 Feb 2016 08:24:29 -0800 (PST)
+	id 8EAD8E008EE; Mon, 29 Feb 2016 11:52:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,30 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2D15E008E1
-	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 08:24:25 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u1TGOOGp015717
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 08:24:24 -0800
-Received: from soho-mhatle-m.local (172.25.36.235) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 29 Feb 2016 08:24:24 -0800
-To: <yocto@yoctoproject.org>
-References: <CAJ0mxBz=jW89WeUtNQ1tFdTq6Qbh6313BoqDMcFsN3saXr7BXA@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <56D470B7.2090700@windriver.com>
-Date: Mon, 29 Feb 2016 10:24:23 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71629E00851
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 11:52:14 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga104.fm.intel.com with ESMTP; 29 Feb 2016 11:52:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.22,521,1449561600"; d="scan'208";a="923684841"
+Received: from tnaray1-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.141.193])
+	by orsmga002.jf.intel.com with ESMTP; 29 Feb 2016 11:52:10 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Date: Tue, 01 Mar 2016 08:52:08 +1300
+Message-ID: <3422071.a5vtJpgWht@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.2-301.fc23.x86_64; KDE/4.14.17; x86_64; ;
+	)
+In-Reply-To: <D2F9DB3A.7513C%belen.barros.pena@intel.com>
+References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
+	<3845777.DZXZ3IeRVd@peggleto-mobl.ger.corp.intel.com>
+	<D2F9DB3A.7513C%belen.barros.pena@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJ0mxBz=jW89WeUtNQ1tFdTq6Qbh6313BoqDMcFsN3saXr7BXA@mail.gmail.com>
-Subject: Re: hello world fails in eclipse
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [Openembedded-architecture] Standalone image writer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,59 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Feb 2016 16:24:29 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Feb 2016 19:52:24 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2/29/16 8:35 AM, Markus Haege wrote:
-> Hello there,
+On Mon, 29 Feb 2016 11:27:15 Barros Pena, Belen wrote:
+> On 29/02/2016 08:12, "yocto-bounces@yoctoproject.org on behalf of Paul
+> Eggleton" <yocto-bounces@yoctoproject.org on behalf of
+> paul.eggleton@linux.intel.com> wrote:
+> >There isn't a frontend UI for wic that I am aware of though - as I
+> >mentioned earlier image-writer has no support for it, it's just doing a
+> >straight dd to the device.
 > 
-> I searched the web for a while, figured out that I'm not the first person with
-> this problem
-> but I don't find the solution.
+> We would really like to add support for wic at some point.
 > 
-> I use Debian 8 with Eclipse luna Release 2.
-> I installed the yocto plugins in eclipse as described in the manual.
-> 
-> Now I want to compile a hello world for the meta-raspberrypi but it fails:
-> 
-> The C compiler
->  
-> "/home/markus/poky/meta-raspberrypi/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc"
->   is not able to compile a simple test program.
-> 
-> /home/markus/poky/meta-raspberrypi/tmp/sysroots/x86_64-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/5.2.0/ld:
->   error: cmTryCompileExec1319352149 uses VFP register arguments,
->   CMakeFiles/cmTryCompileExec1319352149.dir/testCCompiler.c.o does not
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=8769
 
-I'm not sure about the eclipse aspect of this, but the failure is indicating
-that one item is trying to use one ABI, and other items are using a different
-ABI.  Resulting in incompatibilities.  (This for ARM is EABI and HF EABI --
-error says "cmTryCompileExec1319352149" is the HF EABI.)
+True, but that's a slightly different usage of wic - i.e. preparing the 
+formatted image, which we should support. However, writing a formatted image 
+to an SD card / USB stick isn't something you could practically do from a web-
+based application I don't think - not without help from a local application at 
+any rate.
 
-About the best I can suggest it to check that eclipse imported not only the name
-of the compile, but also the required compiler (and linker) arguments from the
-environment file.
+Cheers,
+Paul
 
-Also verify that any produced make (cmake) files are not overriding the compile
-and link cflags with something else.
+-- 
 
-> I sourced the environment setup so eclipse finds under
-> properties/C++Build/Environment the settings. That's all I achieved.
-> I read about flags to set but don't know where. Something about floating point.
-> What I read was very old.
-
-The flags in question that are incompatible are:
-
--mfloat-abi=hard
--mfloat-abi=softfp
-
---Mark
-
-> Thanks to any help
-> 
-> Markus
-> 
-> 
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
