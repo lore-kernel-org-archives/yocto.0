@@ -1,6 +1,6 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 764F7E00BAB; Tue,  1 Mar 2016 04:54:55 -0800 (PST)
+	id E23A7E00BB9; Tue,  1 Mar 2016 05:24:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,53 +8,59 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
+	*      [74.125.82.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E5DE00B97
-	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 04:54:51 -0800 (PST)
-Received: by mail-ig0-f172.google.com with SMTP id hb3so17104159igb.0
-	for <yocto@yoctoproject.org>; Tue, 01 Mar 2016 04:54:51 -0800 (PST)
+Received: from mail-wm0-f45.google.com (mail-wm0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91D6FE00B97
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 05:24:00 -0800 (PST)
+Received: by mail-wm0-f45.google.com with SMTP id p65so33289590wmp.0
+	for <yocto@yoctoproject.org>; Tue, 01 Mar 2016 05:24:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=67x5Dz9otigiZDoZZYFf8qPh5G7UPspE4UbScZmqB9U=;
-	b=TxhV3WNR9uiaFu0z9Hs1Ew9g4InZYRfjbQmcWUw1xMl+6CYrmqbG7SvaiwwSol/Br3
-	PHGngHCNYJCQ2Io5fot5VRScfADPCQTG0huvKBgwVS5VMVV92seIIYqyXyjiwt6uMdRH
-	tgDd6Jc16qzi6kgJ/AYnwdiDP3WpFozynWAcAllNwv9vAZ6XBfUEYtRKy6Lb59DABIAR
-	khPL4gLfxDhQsgukkbo2S+9fe8ZXtGtC4Eir0xOd6sqP0B8s5+GRz90PgO3+jNwdZASQ
-	xI7+35xiDxPu+E4nRY0jIL6YwKL78DqWDok3MvRlnqKqysePlr/xbb1UHsJ706FNEu2W
-	i9ag==
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=tp1WvR5Nr2T8SisjiUKAa2lFelok+Lvs0JmFCihlaWQ=;
+	b=GPCeyjSjY1vWzzk77ZeTDvBkY5HCmEdjzktek8dG4bw/V2S9ELTE8wzj40jjYnWGPn
+	JruPY/haFJfqhoMMTJRPOdzW7UU2+xxbzwctR3EaXj40siRz3cw7602lU1ju2HzNkBq+
+	VeGnCps+3iS4HEwYTovcHpLuFJ878jvMClOSV0zOX4hv7p+2GYe8npw9ckyk5yvOjZ2i
+	xizLYI070q3PGLAVkoCZ1Tv0/JbX6jMLAnNG8aG7RDh9HE/rrnwBFWZyg6PV9VHpmCvr
+	yLAy7dY5nHEUArBBMiiycDwSK7E6xbjq/9GjO4jwThbEgzfBwIawO3njUX7a0bPVTtXo
+	skPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=67x5Dz9otigiZDoZZYFf8qPh5G7UPspE4UbScZmqB9U=;
-	b=FL5hZsAqfKTi1EggW6W9T1GCV1lu2N84gCMVFqk5YOb0l9HFQkMJxFuJ29PZ6fuIjZ
-	hS7bOUnQqLTQGLePTTkLR1P50a/eHuqeA8lBV0IYWgKBvZtzf9tbM/NeiwqeMD44j3VK
-	8W7CyvMa55NlFB/L9a376fOGseGtl574RecumbjP0nDoK7DWTmx23Dz2Z80056XbRkFx
-	V+aObN5TFzHHy9udBXoj8p2H867I7AfApFek1/Mp7IasRCQy8Xm6N1SY3OwBGjg3cjTu
-	r9gpaMmZKSvhfmUz0uvqObZ7YCdMagEkPz6J3FS0QlhvuNHcBhMZtOcRLSqN9X0nS0Go
-	nnxA==
-X-Gm-Message-State: AD7BkJLn2PPpGj97889oro5L67LqYuWQ6BFk55yfWSprrwZh0/bDfRBQVsLbdrXN2vvYjP6wOpA6PlRPUOc8mbPM
-X-Received: by 10.50.129.8 with SMTP id ns8mr3267626igb.81.1456836891347; Tue,
-	01 Mar 2016 04:54:51 -0800 (PST)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=tp1WvR5Nr2T8SisjiUKAa2lFelok+Lvs0JmFCihlaWQ=;
+	b=ipbDIAAHD3bC3FOdCkM3X2q6mDDMSWZR1iU+qsKSfpggZz4iQRIef4o/NThdt20Zw5
+	OiZkFLERJUw3lJdTllRuvbG3MGzRlUMNvHgpp3VmnWdNqUBsfdC68ucJKeU/zt5Fnw4Q
+	X6sJkt+0KE5V762EFAlBXH/Y3+BwTSN9n3Z6kDAvKAiQV/A37sC/XwmZCHDeJJuUyO8s
+	c8jEHEbT19AQMHew1SiqW59ZLwoLYSkNfQG5so+Z6neE7dlvhbjZf0PXyQMzYRaNgMhw
+	SH0TozG6uSUPu+PItVgAUjsb003TDoX5fBWvKpPMen2WV5QzIuLbesy2aUxPkACAxXCR
+	9sfQ==
+X-Gm-Message-State: AD7BkJL2cc6YJ/L5QbE+lt8UFfQIzpXr0M0pPsOCqQLAnYagc5Vk3aytj3rtGfKRXvva6Q==
+X-Received: by 10.28.46.82 with SMTP id u79mr3990432wmu.67.1456838639220;
+	Tue, 01 Mar 2016 05:23:59 -0800 (PST)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	b5sm21351077wmh.15.2016.03.01.05.23.57
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 01 Mar 2016 05:23:57 -0800 (PST)
+Date: Tue, 1 Mar 2016 14:23:52 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20160301131114.GA21641@resin.home>
+References: <1456667173-28743-1-git-send-email-petter@technux.se>
+	<1456667173-28743-4-git-send-email-petter@technux.se>
 MIME-Version: 1.0
-Received: by 10.107.130.214 with HTTP; Tue, 1 Mar 2016 04:54:12 -0800 (PST)
-In-Reply-To: <1456792612-28764-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1456792612-28764-1-git-send-email-anibal.limon@linux.intel.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Tue, 1 Mar 2016 12:54:12 +0000
-Message-ID: <CAPhnLPCJjUoh-mGxpZgHsO1K0OZY0ZWSnQCYN3V+kdGxsE=Ssg@mail.gmail.com>
-To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][autobuilder] lib/buildsteps.py: Add BitbakeShellCommand class for dump bitbake logs
+In-Reply-To: <1456667173-28743-4-git-send-email-petter@technux.se>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v3 3/6] rpi-config: I2C support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,201 +72,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2016 12:54:55 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Mar 2016 13:24:05 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On 1 March 2016 at 00:36, An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.=
-com> wrote:
-> The BitbakeShellCommand is a new class for store common methods when
-> is aim to run bitbake inside an step.
+On Sun, Feb 28, 2016 at 02:46:10PM +0100, Petter Mabäcker wrote:
+> With newer kernels (>=3.18) that supports device-trees I2C
+> should be enabled with device-trees.
 >
-> This commit overrides commandComplete method for search in bitbake
-> stdout if ERROR exists and if found then open the bitbake log and
-> dumps into new bitbake_logs output.
-
-Yes, I like this a lot. I'm going to pull it into master-next and test
-it for a bit. Expect it in master/production in a few days.
-
--b
-
+> This is now support by adding:
+> ENABLE_I2C = "1"
+> in local.conf
 >
-> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
+> This will enable the dtparams:
+> i2c1
+> i2c_arm
+>
+> Signed-off-by: Petter Mabäcker <petter@technux.se>
 > ---
->  .../autobuilder/buildsteps/BuildImages.py          |  4 +++-
->  .../autobuilder/buildsteps/BuildToolchainImages.py |  4 +++-
->  .../autobuilder/buildsteps/GetBitbakeVersion.py    |  4 +++-
->  .../autobuilder/buildsteps/RunESDKSanityTests.py   |  4 +++-
->  .../autobuilder/buildsteps/RunSDKSanityTests.py    |  4 +++-
->  .../autobuilder/buildsteps/RunSanityTests.py       |  4 +++-
->  .../site-packages/autobuilder/lib/buildsteps.py    | 28 ++++++++++++++++=
-++++++
->  7 files changed, 46 insertions(+), 6 deletions(-)
+>  README                                  | 21 +++++++++++++--------
+>  recipes-bsp/bootfiles/rpi-config_git.bb |  6 ++++++
+>  2 files changed, 19 insertions(+), 8 deletions(-)
 >
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImag=
-es.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-> index 4987ef3..5ed6e1a 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-> @@ -17,7 +17,9 @@ from distutils.version import StrictVersion
->  from buildbot.status.results import SUCCESS
->  import os
+> diff --git a/README b/README
+> index a168692..8ef4e7a 100644
+> --- a/README
+> +++ b/README
+> @@ -21,10 +21,11 @@ Contents:
+>      2.G. Optional - Enable offline compositing support
+>      2.H. Optional - Enable kgdb over console support
+>      2.I. Optional - Enable SPI bus
+> -    2.J. Images
+> -    2.K. Boot to U-Boot
+> -    2.L. Image with Initramfs
+> -    2.M. Device tree support
+> +    2.J. Optional - Enable I2C
+> +    2.K. Images
+> +    2.L. Boot to U-Boot
+> +    2.M. Image with Initramfs
+> +    2.N. Device tree support
+>  3. Extra apps
+>      3.A. omxplayer
+>  4. Source code and mirrors
+> @@ -151,8 +152,12 @@ ENABLE_KGDB = "1"
+>  When using device tree kernels, set this variable to enable the SPI bus
+>  ENABLE_SPI_BUS = "1"
 >
-> -class BuildImages(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
+> +2.J. Optional - Enable I2C
+> +==========================
+> +When using device tree kernels, set this variable to enable I2C
+> +ENABLE_I2C = "1"
+>
+> -2.J. Images
+> +2.K. Images
+>  ===========
+>  * rpi-hwup-image
+>      Hardware up image
+> @@ -162,7 +167,7 @@ ENABLE_SPI_BUS = "1"
+>      Image based on rpi-basic-image which includes most of the packages in this
+>      layer and some media samples.
+>
+> -2.K. Boot to U-Boot
+> +2.L. Boot to U-Boot
+>  ===================
+>  To have u-boot load kernel image, set in your local.conf
+>  KERNEL_IMAGETYPE = "uImage"
+> @@ -170,7 +175,7 @@ KERNEL_IMAGETYPE = "uImage"
+>  This will make kernel.img be u-boot image which will load uImage.
+>  By default, kernel.img is the actual kernel image (ex. Image).
+>
+> -2.L. Image with Initramfs
+> +2.M. Image with Initramfs
+>  =========================
+>  To build an initramfs image :
+>      * Set this 3 kernel variables (in linux-raspberrypi.inc for example)
+> @@ -183,7 +188,7 @@ To build an initramfs image :
+>      * Set the meta-rasberrypi variable (in raspberrypi.conf for example)
+>          - KERNEL_INITRAMFS = "-initramfs"
+>
+> -2.M. Device tree support
+> +2.N. Device tree support
+>  =========================
+>  Device tree for RPi is only supported when using linux-raspberrypi 3.18+
+>  kernels.
+> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+> index aa11b25..ccb9b7f 100644
+> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+> @@ -72,6 +72,12 @@ do_deploy() {
+>          echo "# Enable SPI bus" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>          echo "dtparam=spi=on" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>      fi
 > +
-> +class BuildImages(BitbakeShellCommand):
->      haltOnFailure =3D False
->      flunkOnFailure =3D True
->      name =3D "BuildImages"
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildTool=
-chainImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildTo=
-olchainImages.py
-> index 51069c2..0594ac2 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainIm=
-ages.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainIm=
-ages.py
-> @@ -15,7 +15,9 @@ from buildbot.steps.shell import ShellCommand
->  from buildbot.process.buildstep import LogLineObserver
->  import os
+> +    if [ -n "${ENABLE_I2C}" ]; then
+> +        echo "# Enable I2C" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> +        echo "dtparam=i2c1=on" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> +        echo "dtparam=i2c_arm=on" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> +    fi
+>  }
 >
-> -class BuildToolchainImages(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
-> +
-> +class BuildToolchainImages(BitbakeShellCommand):
->      haltOnFailure =3D False
->      flunkOnFailure =3D True
->      name =3D "Building Toolchain Images"
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbak=
-eVersion.py b/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbake=
-Version.py
-> index dc6c25b..94b5efe 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersio=
-n.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersio=
-n.py
-> @@ -16,7 +16,9 @@ from buildbot.process.properties import WithProperties
->  from twisted.python import log
->  from autobuilder.config import *
->
-> -class GetBitbakeVersion(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
-> +
-> +class GetBitbakeVersion(BitbakeShellCommand):
->      haltOnFailure =3D False
->      flunkOnFailure =3D False
->      name =3D "GetBitbakeVersion"
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSa=
-nityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSa=
-nityTests.py
-> index e3df6c8..f2817d4 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTes=
-ts.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTes=
-ts.py
-> @@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
->  from twisted.python import log as tlog
->  import os, re
->
-> -class RunESDKSanityTests(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
-> +
-> +class RunESDKSanityTests(BitbakeShellCommand):
->
->      haltOnFailure =3D False
->      flunkOnFailure =3D True
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSan=
-ityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSani=
-tyTests.py
-> index cc0321f..1eeb4d3 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTest=
-s.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTest=
-s.py
-> @@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
->  from twisted.python import log as tlog
->  import os, re
->
-> -class RunSDKSanityTests(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
-> +
-> +class RunSDKSanityTests(BitbakeShellCommand):
->
->      haltOnFailure =3D False
->      flunkOnFailure =3D True
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanity=
-Tests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTest=
-s.py
-> index 62f04af..15a714c 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.p=
-y
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.p=
-y
-> @@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
->  from twisted.python import log as tlog
->  import os, re
->
-> -class RunSanityTests(ShellCommand):
-> +from lib.buildsteps import BitbakeShellCommand
-> +
-> +class RunSanityTests(BitbakeShellCommand):
->
->      haltOnFailure =3D False
->      flunkOnFailure =3D True
-> diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/=
-lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-> index 3693a7a..4d2787d 100644
-> --- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-> +++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-> @@ -11,6 +11,8 @@ __email__ =3D "anibal.limon@linux.intel.com"
->  '''
->
->  import os
-> +import re
-> +
->  from buildbot.steps.shell import ShellCommand
->
->  DEFAULT_SHELL =3D 'bash'
-> @@ -40,3 +42,29 @@ class ShellCommandCleanEnv(ShellCommand):
->              pe_cmd +=3D "%s=3D\"$%s\" " % (pe, pe)
->
->          return "env -i %s %s -c " % (pe_cmd, shell)
-> +
-> +class BitbakeShellCommand(ShellCommand):
-> +    def commandComplete(self, cmd):
-> +        if cmd.didFail():
-> +            log =3D self.addLog('bitbake_logs')
-> +            paths_displayed =3D []
-> +
-> +            rexp =3D re.compile("^ERROR: Logfile of failure stored in: (=
-.*)$")
-> +            out =3D cmd.logs['stdio'].getText()
-> +            for line in out.split('\n'):
-> +                m =3D rexp.match(line)
-> +                if m:
-> +                    path =3D m.group(1)
-> +
-> +                    if path in paths_displayed:
-> +                        continue
-> +
-> +                    paths_displayed.append(path)
-> +
-> +                    log.addStdout("Output of: %s\n" % path)
-> +                    with open(path, "r") as f:
-> +                        log.addStdout(f.read())
-> +                    log.addStdout("End output of: %s\n" % path)
-> +                    log.addStdout("\n\n\n\n")
-> +            log.finish()
-> +
-> --
-> 2.1.4
->
+>  addtask deploy before do_package after do_install
 
+I rebased this on current master and merged to master. Thanks.
 
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+--
+Andrei Gherzan
 
