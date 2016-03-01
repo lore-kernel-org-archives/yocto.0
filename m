@@ -1,34 +1,60 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15F52E00951; Mon, 29 Feb 2016 16:36:52 -0800 (PST)
+	id 44D71E00A27; Mon, 29 Feb 2016 16:49:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B75BBE008EE
-	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 16:36:48 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 29 Feb 2016 16:36:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,521,1449561600"; d="scan'208";a="661487103"
-Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.54])
-	by FMSMGA003.fm.intel.com with ESMTP; 29 Feb 2016 16:36:47 -0800
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16F63E008EE
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 16:49:15 -0800 (PST)
+Received: by mail-io0-f171.google.com with SMTP id n190so2886087iof.0
+	for <yocto@yoctoproject.org>; Mon, 29 Feb 2016 16:49:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=deserted-net.20150623.gappssmtp.com; s=20150623;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=mWXU6iM4/Wrpo3L7xfCmjmExLfQozL+gY5+km2nshkw=;
+	b=rlV7jSDdHb47ERyYljQPvbNyUJCkbbbm9y+/6Vdiw1NdrSFn13BOWy3yfj+gE+OzxC
+	0K/lokSmYNU/RUTpWQMgFGxqeJvmWhwV40xM8UrkXhyJg4cbKF9PQb7+Y7k6PPIFiFsj
+	SzWiY6lCgQkkK9r7dS7AkWFqOMmtwuHvfqK2MThHnDLaQl9IJB6QW+Fb60gIx/N2sx8D
+	UkiRw2mw83NSKz97cOUdlp/mugCCGaROFLeCcvbV64lYCGqraUCe5RkH+LjLIGuLQZwm
+	pIcfDvwxGYq5nNmANA9uBV07IRvGYfOq3opwWmAvIxgU+Vxnxa2tF/8+CVmV+DgQAN75
+	n/LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+	bh=mWXU6iM4/Wrpo3L7xfCmjmExLfQozL+gY5+km2nshkw=;
+	b=exKd+osKP++Tm1/WFmgESI7DkOT4954oTc5ehNF4SbC/QWTY0XltF//vEXvMgtqqAn
+	jTUWmnhAopxdadxlWdOLPFowly2jFkMq23tWjGg1tA9IMmDY9KAVOrKeSPTMMDlOoctm
+	L3PFq2iUarfiv2jtYVLYXwJhosHfrTNXUy7g7W7Bozn6d7OaeEIeR+O6oWk6jNxpslNM
+	/R6Or3nsEyZzq5UDop3hkVMHEHC8hNKEWqzf4paJCnAdxTdj0qFXeBP4b6aafeXGlZOE
+	kd8KTe4qQOZaZLj+iqBA6q7F5ggY1b36BqwOe+WzCNUnwGLZUw/i7T9leVAEzOWJ2bxS
+	V33w==
+X-Gm-Message-State: AG10YOTnfZ55cwM+b4VBS8LgKIG7mjWoulnksnHCDpg5sbVWF6Jg7agakNdigb5CqGf/4g==
+X-Received: by 10.107.16.17 with SMTP id y17mr26469343ioi.119.1456793354945;
+	Mon, 29 Feb 2016 16:49:14 -0800 (PST)
+Received: from mir.deserted.net ([23.233.31.74])
+	by smtp.gmail.com with ESMTPSA id
+	j10sm7794180igx.15.2016.02.29.16.49.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 29 Feb 2016 16:49:13 -0800 (PST)
+Sender: Joe MacDonald <joe@deserted.net>
+From: Joe MacDonald <joe_macdonald@mentor.com>
 To: yocto@yoctoproject.org
-Date: Mon, 29 Feb 2016 18:36:52 -0600
-Message-Id: <1456792612-28764-1-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-MIME-Version: 1.0
-Subject: [PATCH][autobuilder] lib/buildsteps.py: Add BitbakeShellCommand class for dump bitbake logs
+Date: Mon, 29 Feb 2016 19:49:43 -0500
+Message-Id: <1456793383-2569-1-git-send-email-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [autobuilder][PATCH] CreateBBLayersConf: optionally exclude repos from default bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,162 +66,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2016 00:36:52 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 01 Mar 2016 00:49:19 -0000
 
-The BitbakeShellCommand is a new class for store common methods when
-is aim to run bitbake inside an step.
+When a repo is listed in the autobuilder config file, it is automatically
+included in the resulting bblayers.conf.  In most scenarios this is the
+correct thing to do, however it results in a build error if a layer such
+as meta-openembedded is one of the listed repos:
 
-This commit overrides commandComplete method for search in bitbake
-stdout if ERROR exists and if found then open the bitbake log and
-dumps into new bitbake_logs output.
+  IOError: [Errno 2] file [...]/build/meta-openembedded/conf/layer.conf not found
 
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+since meta-openembedded does not contain a top-level conf/ tree and is not
+intended to be included as a meta-* layer itself.
+
+Add an 'autoinclude' flag to the 'repo:' stanza of the config file with
+the default being 'True' (ie. the current behaviour) but when set to
+'False' the layer will still be checked out (making this behaviour
+distinct from the 'checkout' flag) but not included in the bblayer.conf by
+default, only layers specifically referenced in the CreateBBLayersConf
+section of the 'steps:' stanza will be included.
+
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
 ---
- .../autobuilder/buildsteps/BuildImages.py          |  4 +++-
- .../autobuilder/buildsteps/BuildToolchainImages.py |  4 +++-
- .../autobuilder/buildsteps/GetBitbakeVersion.py    |  4 +++-
- .../autobuilder/buildsteps/RunESDKSanityTests.py   |  4 +++-
- .../autobuilder/buildsteps/RunSDKSanityTests.py    |  4 +++-
- .../autobuilder/buildsteps/RunSanityTests.py       |  4 +++-
- .../site-packages/autobuilder/lib/buildsteps.py    | 28 ++++++++++++++++++++++
- 7 files changed, 46 insertions(+), 6 deletions(-)
+ .../site-packages/autobuilder/buildsteps/CreateBBLayersConf.py         | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-index 4987ef3..5ed6e1a 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-@@ -17,7 +17,9 @@ from distutils.version import StrictVersion
- from buildbot.status.results import SUCCESS
- import os
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateBBLayersConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateBBLayersConf.py
+index 03cb2a1..ace9fbb 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateBBLayersConf.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateBBLayersConf.py
+@@ -95,7 +95,8 @@ class CreateBBLayersConf(ShellCommand):
+                         elif layer.iterkeys().next()=="meta-qt4":
+                             if layerversioncore is not None and int(layerversioncore) > 6:
+                                 fout = fout + workdir + '/build/' + layer.iterkeys().next() + ' \ \n'
+-                        else:
++                        elif (layer[layer.iterkeys().next()].has_key('autoinclude') and layer[layer.iterkeys().next()]['autoinclude'] is not False) or \
++                             layer[layer.iterkeys().next()].has_key('autoinclude') is False:
+                             fout = fout + workdir + '/build/' + layer.iterkeys().next() + ' \ \n'
+                         ldirs.append(layer.iterkeys().next())
  
--class BuildImages(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class BuildImages(BitbakeShellCommand):
-     haltOnFailure = False
-     flunkOnFailure = True
-     name = "BuildImages"
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainImages.py
-index 51069c2..0594ac2 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainImages.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildToolchainImages.py
-@@ -15,7 +15,9 @@ from buildbot.steps.shell import ShellCommand
- from buildbot.process.buildstep import LogLineObserver
- import os
- 
--class BuildToolchainImages(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class BuildToolchainImages(BitbakeShellCommand):
-     haltOnFailure = False
-     flunkOnFailure = True
-     name = "Building Toolchain Images"
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersion.py b/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersion.py
-index dc6c25b..94b5efe 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersion.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/GetBitbakeVersion.py
-@@ -16,7 +16,9 @@ from buildbot.process.properties import WithProperties
- from twisted.python import log
- from autobuilder.config import *
- 
--class GetBitbakeVersion(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class GetBitbakeVersion(BitbakeShellCommand):
-     haltOnFailure = False
-     flunkOnFailure = False
-     name = "GetBitbakeVersion"
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTests.py
-index e3df6c8..f2817d4 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTests.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunESDKSanityTests.py
-@@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
- from twisted.python import log as tlog
- import os, re
- 
--class RunESDKSanityTests(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class RunESDKSanityTests(BitbakeShellCommand):
- 
-     haltOnFailure = False
-     flunkOnFailure = True
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTests.py
-index cc0321f..1eeb4d3 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTests.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSDKSanityTests.py
-@@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
- from twisted.python import log as tlog
- import os, re
- 
--class RunSDKSanityTests(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class RunSDKSanityTests(BitbakeShellCommand):
- 
-     haltOnFailure = False
-     flunkOnFailure = True
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-index 62f04af..15a714c 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-@@ -16,7 +16,9 @@ from buildbot.status.results import SUCCESS, FAILURE
- from twisted.python import log as tlog
- import os, re
- 
--class RunSanityTests(ShellCommand):
-+from lib.buildsteps import BitbakeShellCommand
-+
-+class RunSanityTests(BitbakeShellCommand):
- 
-     haltOnFailure = False
-     flunkOnFailure = True
-diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-index 3693a7a..4d2787d 100644
---- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-+++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-@@ -11,6 +11,8 @@ __email__ = "anibal.limon@linux.intel.com"
- '''
- 
- import os
-+import re
-+
- from buildbot.steps.shell import ShellCommand
- 
- DEFAULT_SHELL = 'bash'
-@@ -40,3 +42,29 @@ class ShellCommandCleanEnv(ShellCommand):
-             pe_cmd += "%s=\"$%s\" " % (pe, pe)
- 
-         return "env -i %s %s -c " % (pe_cmd, shell)
-+
-+class BitbakeShellCommand(ShellCommand):
-+    def commandComplete(self, cmd):
-+        if cmd.didFail():
-+            log = self.addLog('bitbake_logs')
-+            paths_displayed = []
-+
-+            rexp = re.compile("^ERROR: Logfile of failure stored in: (.*)$")
-+            out = cmd.logs['stdio'].getText()
-+            for line in out.split('\n'):
-+                m = rexp.match(line)
-+                if m:
-+                    path = m.group(1)
-+
-+                    if path in paths_displayed:
-+                        continue
-+
-+                    paths_displayed.append(path)
-+
-+                    log.addStdout("Output of: %s\n" % path)
-+                    with open(path, "r") as f:
-+                        log.addStdout(f.read())
-+                    log.addStdout("End output of: %s\n" % path)
-+                    log.addStdout("\n\n\n\n")
-+            log.finish()
-+
 -- 
-2.1.4
+1.9.1
 
 
