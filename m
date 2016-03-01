@@ -1,45 +1,45 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4789CE00B63; Tue,  1 Mar 2016 02:47:06 -0800 (PST)
+	id 33055E00C18; Tue,  1 Mar 2016 02:48:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 188 seconds by postgrey-1.32 at yocto-www;
-	Tue, 01 Mar 2016 02:47:03 PST
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F331DE00AAF
-	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 02:47:03 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160301104352437_0685;
-	Tue, 01 Mar 2016 02:43:52 -0800
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [127.0.0.1] (port=46417 helo=localhost)
-	by astoria.ccjclearline.com with esmtpa (Exim 4.80)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1aahnc-0006Fe-Vl; Tue, 01 Mar 2016 05:45:05 -0500
-Received: from 216.191.234.70 ([216.191.234.70]) by
-	astoria.ccjclearline.com (Horde Framework) with HTTP; Tue, 01 Mar 2016
-	05:44:55 -0500
-Message-ID: <20160301054455.93873ngpmfyku8kk@astoria.ccjclearline.com>
-Date: Tue, 01 Mar 2016 05:44:55 -0500
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Andrea Adami <andrea.adami@gmail.com>
-References: <20160229181912.2795661i683s2v40@astoria.ccjclearline.com>
-	<CAAQYJAviVJSJceLhvkyMwfkGTAYg+ZFX9SqOMfLb764uc04e-A@mail.gmail.com>
-In-Reply-To: <CAAQYJAviVJSJceLhvkyMwfkGTAYg+ZFX9SqOMfLb764uc04e-A@mail.gmail.com>
+X-Greylist: delayed 301 seconds by postgrey-1.32 at yocto-www;
+	Tue, 01 Mar 2016 02:48:00 PST
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE6D1E00B8C
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 02:48:00 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id B1AF827E709;
+	Tue,  1 Mar 2016 10:42:57 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id XzaaAdF1liDq; Tue,  1 Mar 2016 10:42:36 +0000 (UTC)
+Received: from [10.221.15.227]
+	(host86-187-154-130.range86-187.btcentralplus.com [86.187.154.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id AC8B627E704;
+	Tue,  1 Mar 2016 10:42:34 +0000 (UTC)
+To: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+References: <1456826490-14432-1-git-send-email-adrian.ratiu@ni.com>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <56D57219.20101@dynamicdevices.co.uk>
+Date: Tue, 1 Mar 2016 10:42:33 +0000
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-User-Agent: Internet Messaging Program (IMP) H3 (4.3.11)
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to organize my patches for multiple kernels and multiple target boards?
+In-Reply-To: <1456826490-14432-1-git-send-email-adrian.ratiu@ni.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mono][PATCH] recipies-mono: fix LIC_FILES_CHKSUM URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,136 +51,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Mar 2016 10:47:06 -0000
-Content-Type: text/plain;
- charset=UTF-8;
- DelSp="Yes";
- format="flowed"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 01 Mar 2016 10:48:21 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-Quoting Andrea Adami <andrea.adami@gmail.com>:
 
-> On Tue, Mar 1, 2016 at 12:19 AM, Robert P. J. Day  
-> <rpjday@crashcourse.ca> wrote:
->>   (i posted a much lengthier version of this on oe-core recently, but i want
->> to cut it down and ask specific questions to clarify what i *think* is going
->> on.)
->>
->>   i want to pull in an existing layer with recipes for linux-4.0.bb and
->> linux-4.1.bb, and extend them with .bbappend files, to support two
->> closely-related
->> machines i'm defining -- call them "mach1" and "mach2". AFAICT, my patches
->> will
->> fall somewhere in a 3x3 matrix of possibilities:
->>
->>   * 3 possibilities of applying against mach1, mach2 or both
->>   * 3 possibilities of applying against linux-4.0, linux-4.1 or both
->>
->> so there's my 3x3 matrix.
->>
->>   the obvious kernel recipe directory structure would be:
->>
->>   linux/
->>     linux-4.0.bbappend
->>     linux-4.1.bbappend
->>     linux-4.0/            [4.0-specific patches]
->>     linux-4.1/            [4.1-specific patches]
->>     linux/                [patches that apply to both]
->>
->> which suggests that both my .bbappend files would have to contain the line:
->>
->>   FILESEXTRAPATHS_prepend := "${THISDIR}/${BP}:${THISDIR}/${BPN}"
->>
->> so the SRC_URI search path for linux-4.0.bbappend entries would be
->> prepended with:
->>
->>   * linux-4.0/        [4.0-specific patches]
->>   * linux/            [patches that apply to both]
->>
->> and similarly for linux.4.1.bbappend. how am i doing so far? this would
->> mean that, for each recipe, the more specific directory would be searched
->> before the general directory. but wait ... there's more.
->>
->>   now i want to further categorize patches based on exclusive to mach1,
->> exclusive to mach2, or applicable to both, and since the machine name is
->> one of the entries in FILESOVERRIDES, i can extend the directory structure
->> as:
->>
->>   linux-4.0/
->>     mach1/
->>     mach2/
->>   linux-4.1/
->>     mach1/
->>     mach2/
->>   linux/
->>     mach1/
->>     mach2/
->>
->> and there's my 3x3 matrix of patches, correct? and here's where it gets
->> unclear.
->>
->>   i really don't want to have to number all my patches with prefixes like
->> 0001-, 0002- and so on, so what is the ordering of processing for .scc,
->> .cfg and .patch/.diff files? rather than just lump all the patches into
->> a single .scc file, i want to refine the patches across multiple .scc
->> files. is there an imposed order on SRC_URI entries, .scc files and so
->> on? that's probably all i need to finish this off.
->>
->> rday
+
+On 01/03/2016 10:01, Ioan-Adrian Ratiu wrote:
+> Build fails with the following error (caused by a typo s/files/file/):
 >
-> Robert,
+> "Failure expanding variable do_fetch[file-checksums], expression was
+> ${@bb.fetch.get_checksum_file_list(d)}  ${@get_lic_checksum_file_list(d)}
+> which triggered exception IndexError: string index out of range"
 >
-> in the past I have done pretty much the same: scc,cfg and patches all
-> packed in the recipe.
-> Please see these (outdated) layout examples for linux-yocto* that were
-> in meta-handheld.
->
-> for 3.10, using .cfg & .scc
-> http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux?h=dylan
->
-> Or simplified, for 3.14, using defconfig, with patches listed in SRC_URI
-> http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux?h=dizzy
+> Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+> ---
 
-   thanks, i'll check that out. first thing i want to be absolutely clear
-on is, if i have multiple patch directories, i need to add them *all*
-to the search path, as in:
-
-   FILESEXTRAPATHS_prepend := "${THISDIR}/${BP}:${THISDIR}/${BPN}"
-
-and certainly in that order, as i want the more specific version
-patches to be found first. so that bit is correct, yes?
-
-   next, i'm still unclear on whether there is any enforced ordering
-on the processing of .scc files. i know that some folks number their
-patch files as 0001-*, 0002-* and so on, in order to enforce a
-patching order (because the order that one specifies patch/diff files
-in the SRC_URI doesn't mean anything, correct?)
-
-   however, i would rather not use a numbering scheme like that because,
-well, it's ugly, and given that i will have patches scattered all over
-the patch directories and subdirectories on a per-kernel and a
-per-target board basis, it just wouldn't make much sense.
-
-   so my plan is to (predictably) group related patch files and .cfg
-files into a number of .scc files but (again) is there any enforced
-search order for .scc files? i'm assuming my setting for FILESEXTRAPATHS
-and use of FILESOVERRIDES will kick in here ... will the order of
-the .scc files in SRC_URI have any effect as well?
-
-   also, once a .scc file is located, will the location of the listed
-.cfg and .patch/.diff files inside it start a whole new search process
-based on FILESEXTRAPATHS and FILESOVERRIDES?
-
-   if this is all written down somewhere, just point me to it. thank
-you kindly.
-
-rday
-
-p.s. all of this is in aid of trying to avoid ordering mishaps when
-applying patches, but i'm guessing that if i design my .scc files
-carefully to be logically self-contained, i can probably avoid
-accidents like that in the first place.
-
-
+Applied, thanks Adrian.
 
