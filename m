@@ -1,6 +1,6 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16A24E00D13; Tue,  1 Mar 2016 21:40:25 -0800 (PST)
+	id 13704E00D1E; Tue,  1 Mar 2016 21:40:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,31 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4029E00D0E
-	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 21:40:21 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u225eBWg007696
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Tue, 1 Mar 2016 21:40:11 -0800
-Received: from server.local (147.11.118.203) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 1 Mar 2016 21:40:11 -0800
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <20160229181912.2795661i683s2v40@astoria.ccjclearline.com>
-	<CAAQYJAviVJSJceLhvkyMwfkGTAYg+ZFX9SqOMfLb764uc04e-A@mail.gmail.com>
-	<20160301054455.93873ngpmfyku8kk@astoria.ccjclearline.com>
-	<56D5A54D.6020100@windriver.com>
-	<20160301151917.60296jgnojic36sk@astoria.ccjclearline.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <56D67CBA.2000204@windriver.com>
-Date: Wed, 2 Mar 2016 00:40:10 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 847EEE00D15
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 21:40:30 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[10.79.148.125])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1aazVf-0005qQ-9u; Wed, 02 Mar 2016 05:39:45 +0000
+To: Joe MacDonald <Joe_MacDonald@mentor.com>,
+	Mark Hatle <mark.hatle@windriver.com>
+References: <56D274C6.90607@twobit.us> <56D27649.4040306@twobit.us>
+	<56D45073.3050800@windriver.com> <20160301183028.GB12524@mentor.com>
+From: Philip Tricca <flihp@twobit.us>
+Message-ID: <56D67CD4.9030006@twobit.us>
+Date: Tue, 1 Mar 2016 21:40:36 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Icedove/38.6.0
 MIME-Version: 1.0
-In-Reply-To: <20160301151917.60296jgnojic36sk@astoria.ccjclearline.com>
+In-Reply-To: <20160301183028.GB12524@mentor.com>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to organize my patches for multiple kernels and multiple target boards?
+Subject: Re: [meta-selinux] git recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,215 +44,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 05:40:25 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 02 Mar 2016 05:40:31 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-On 2016-03-01 3:19 PM, Robert P. J. Day wrote:
-> Quoting Bruce Ashfield <bruce.ashfield@windriver.com>:
+On 03/01/2016 10:30 AM, Joe MacDonald wrote:
+> [Re: [yocto] [meta-selinux] git recipes] On 16.02.29 (Mon 08:06) Mark Hatle wrote:
+> 
+>> On 2/27/16 10:23 PM, Philip Tricca wrote:
+>>> Adding a sensible subject.
+>>
+>> Sorry couldn't reply when I saw this when you first sent it.  Corporate email
+>> server went down for those of us who DON'T use outlook.. argh..
+>>
+>> Anyway..
+>>
+>> What I'm generally used to in the Yocto Project work is that the 'git' version
+>> picks a specific git snapshot and makes it a quick operation for someone to
+>> arbitrarily change that snapshot by adjusting the SRCREV.
+> 
+> This has been the approach I'd always tried to take with _git recipes as
+> well and it tends to work very well for ones that are either the only or
+> the preferred recipe.  I think in our case we were always preferring the
+> released versions for several historical reasons and the _git recipes were
+> relegated to the second-tier because of it.  But that means that basically
+> they never got updated.
+> 
+> About a year and a half ago I started seriously talking about dumping the
+> userspace tools entirely and only ever working out of the _git recipes.
+> Shrikant started doing that work after I discussed it with him but we
+> never got beyond the policy recipes.  So if you guys think this is not a
+> completely insane thing to do, that's the direction I'd like to go with
+> this.
+> 
+>> We don't use the AUTOREV parameter, because that causes the system to have to do
+>> a git pull in order to evaluate the available versions and determine the SRCREV
+>> to use.  So it's all down to a parsing and performance issue.
+> 
+> And avoiding surprises on the other side of the bathtub curve, when
+> updates pop up that we aren't prepared for.  :-)  But we've been behind
+> on developments aging out, too, so I don't have a strong case to argue
+> against AUTOREV.
 >
->> On 16-03-01 05:44 AM, Robert P. J. Day wrote:
->>> Quoting Andrea Adami <andrea.adami@gmail.com>:
+>> What I've done on some of my own projects is have an AUTOREV version (locally),
+>> then when it triggers a recipe breakage, I think update the SRCREV and fix it in
+>> the remote tree..  so I get the autorev, the world gets a version of the package
+>> that keeps working.  (I also update the SRCREV other times as well.. but the
+>> autorev breakage is one of the key triggers.)
+>>
+>> Joe might have some suggestions as well, I'm not against AUTOREV per say, but I
+>> am worried about any performance issues during the parse.
+> 
+> I would really rather avoid AUTOREV, but I think the way we would
+> accomplish that is to edge away from our current recipes and bring the
+> _git ones back to centre stage.  Then we're likely to stay on top of a
+> fixed SRCREV anyway.
+
+I think there's something to be said for a simple approach. For those
+showing up and trying to figure out what's going on / how the build
+works it would likely ease their entry if we had straight forward
+recipes that build from the usptream release tarballs. For those wanting
+to verify hashes published by upstream (and maybe signed) this makes
+life easier as well.
+
+Mark's point is well taken though and there's lots of value in having
+the git recipes for those who want to experiment. I think Marks test /
+development setup / tracking AUTOREV behind closed doors is very useful.
+
+In the interest of not making too many changes too early on I'd like to
+propose the following:
+- keep the release-tracking recipes the default, no change in
+PREFERRED_VERSIONs etc.
+- Keep the git recipes around and still pointing to a static SRCREV
+- Update SRCREV to the latest release and keep it up to date as we move
+the userspace etc forward
+- Do not maintain a patch queue for the git recipes
+
+I think this last point is likely the only departure from our current
+approach (and my 3rd point is just an update). My reason for removing
+the patch queue is that if someone wants to experiment with git they'll
+likely not want any of those patches. The patch queue will probably just
+get in their way.
+
+> But as I say, maybe I'm completely insane on this point.
+
+Nothing insane but I'm feeling conservative, maybe just till the dust
+settles. Agree / disagree with the above as a first step at least?
+
+Philip
+
+> 
+> -J.
+> 
+>>
+>> --Mark
+>>
+>>> On 02/27/2016 08:17 PM, Philip Tricca wrote:
+>>>> While going through the backlog I ran across the 'git' versions of the
+>>>> user space. I noticed that a recent contribution was adding a patch to
+>>>> the git recipe and I figured that this patch would already be upstream
+>>>> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
+>>>> hard wired (SRCREV) to a commit id but it's way back from the end of
+>>>> 2013. They're also disabled via DEFAULT_PREFERENCE = "-1"
+>>>>
+>>>> These 'git' versions seem super useful for testing bleeding edge stuff
+>>>> so IMHO keeping them around would be the right thing to do. Not sure how
+>>>> I feel about them tracking an ancient commit though. Since they're never
+>>>> built by default it seems reasonable to track the master branch.
+>>>>
+>>>> What's our philosophy w/r to recipes that pull from git? Is there some
+>>>> history behind this SRCREV?
+>>>>
+>>>> Thanks,
+>>>> Philip
+>>>>
 >>>
->>>> On Tue, Mar 1, 2016 at 12:19 AM, Robert P. J. Day
->>>> <rpjday@crashcourse.ca> wrote:
->>>>>  (i posted a much lengthier version of this on oe-core recently, but
->>>>> i want
->>>>> to cut it down and ask specific questions to clarify what i *think*
->>>>> is going
->>>>> on.)
->>>>>
->>>>>  i want to pull in an existing layer with recipes for linux-4.0.bb and
->>>>> linux-4.1.bb, and extend them with .bbappend files, to support two
->>>>> closely-related
->>>>> machines i'm defining -- call them "mach1" and "mach2". AFAICT, my
->>>>> patches
->>>>> will
->>>>> fall somewhere in a 3x3 matrix of possibilities:
->>>>>
->>>>>  * 3 possibilities of applying against mach1, mach2 or both
->>>>>  * 3 possibilities of applying against linux-4.0, linux-4.1 or both
->>>>>
->>>>> so there's my 3x3 matrix.
->>>>>
->>>>>  the obvious kernel recipe directory structure would be:
->>>>>
->>>>>  linux/
->>>>>    linux-4.0.bbappend
->>>>>    linux-4.1.bbappend
->>>>>    linux-4.0/            [4.0-specific patches]
->>>>>    linux-4.1/            [4.1-specific patches]
->>>>>    linux/                [patches that apply to both]
->>>>>
->>>>> which suggests that both my .bbappend files would have to contain the
->>>>> line:
->>>>>
->>>>>  FILESEXTRAPATHS_prepend := "${THISDIR}/${BP}:${THISDIR}/${BPN}"
->>>>>
->>>>> so the SRC_URI search path for linux-4.0.bbappend entries would be
->>>>> prepended with:
->>>>>
->>>>>  * linux-4.0/        [4.0-specific patches]
->>>>>  * linux/            [patches that apply to both]
->>>>>
->>>>> and similarly for linux.4.1.bbappend. how am i doing so far? this
->>>>> would
->>>>> mean that, for each recipe, the more specific directory would be
->>>>> searched
->>>>> before the general directory. but wait ... there's more.
->>>>>
->>>>>  now i want to further categorize patches based on exclusive to mach1,
->>>>> exclusive to mach2, or applicable to both, and since the machine
->>>>> name is
->>>>> one of the entries in FILESOVERRIDES, i can extend the directory
->>>>> structure
->>>>> as:
->>>>>
->>>>>  linux-4.0/
->>>>>    mach1/
->>>>>    mach2/
->>>>>  linux-4.1/
->>>>>    mach1/
->>>>>    mach2/
->>>>>  linux/
->>>>>    mach1/
->>>>>    mach2/
->>>>>
->>>>> and there's my 3x3 matrix of patches, correct? and here's where it
->>>>> gets
->>>>> unclear.
->>>>>
->>>>>  i really don't want to have to number all my patches with prefixes
->>>>> like
->>>>> 0001-, 0002- and so on, so what is the ordering of processing for
->>>>> .scc,
->>>>> .cfg and .patch/.diff files? rather than just lump all the patches
->>>>> into
->>>>> a single .scc file, i want to refine the patches across multiple .scc
->>>>> files. is there an imposed order on SRC_URI entries, .scc files and so
->>>>> on? that's probably all i need to finish this off.
->>>>>
->>>>> rday
->>>>
->>>> Robert,
->>>>
->>>> in the past I have done pretty much the same: scc,cfg and patches all
->>>> packed in the recipe.
->>>> Please see these (outdated) layout examples for linux-yocto* that were
->>>> in meta-handheld.
->>>>
->>>> for 3.10, using .cfg & .scc
->>>> http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux?h=dylan
->>>>
->>>>
->>>>
->>>> Or simplified, for 3.14, using defconfig, with patches listed in
->>>> SRC_URI
->>>> http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux?h=dizzy
->>>>
->>>>
->>>
->>>   thanks, i'll check that out. first thing i want to be absolutely clear
->>> on is, if i have multiple patch directories, i need to add them *all*
->>> to the search path, as in:
->>>
->>>   FILESEXTRAPATHS_prepend := "${THISDIR}/${BP}:${THISDIR}/${BPN}"
->>>
->>> and certainly in that order, as i want the more specific version
->>> patches to be found first. so that bit is correct, yes?
->>>
->>>   next, i'm still unclear on whether there is any enforced ordering
->>> on the processing of .scc files. i know that some folks number their
->>> patch files as 0001-*, 0002-* and so on, in order to enforce a
->>> patching order (because the order that one specifies patch/diff files
->>> in the SRC_URI doesn't mean anything, correct?)
 >>
->> I'm waiting for someone to slap me for saying something so definitive,
->> but here it goes anyay ... The order in the SRC_URI definitely matters.
->> The order that they are specified is the order the patches are applied.
->> Otherwise, a patch stack of any depth wouldn't be possible. Only if you
->> are doing wildcard patches and rely on shell globbing would numbering
->> be critical.
->
-> eggcellent ... i assume that SRC_URI ordering is imposed on *all* SRC_URI
-> items, that being .scc, .cfg and .patch/.diff files, as in SRC_URI is
-> processed strictly in order for all of its constituent items? i always
-
-It is. If it isn't, that's a bug.
-
-> assumed as much, i just don't recall ever seeing that written down. and,
-> uh, i suspect scott rifenbark can testify that i'm moderately familiar
-> with the manuals. :-)
->
->>>   however, i would rather not use a numbering scheme like that because,
->>> well, it's ugly, and given that i will have patches scattered all over
->>> the patch directories and subdirectories on a per-kernel and a
->>> per-target board basis, it just wouldn't make much sense.
->>
->> Agreed.
->>
->>>   so my plan is to (predictably) group related patch files and .cfg
->>> files into a number of .scc files but (again) is there any enforced
->>> search order for .scc files? i'm assuming my setting for FILESEXTRAPATHS
->>> and use of FILESOVERRIDES will kick in here ... will the order of
->>> the .scc files in SRC_URI have any effect as well?
->>
->> .scc files will be processed in the order they are found on the
->> SRC_URI, and then the patches the order they are within the .scc
->> files.
->
-> getting better and better ...
->
->>>   also, once a .scc file is located, will the location of the listed
->>> .cfg and .patch/.diff files inside it start a whole new search process
->>> based on FILESEXTRAPATHS and FILESOVERRIDES?
->>
->> The search path is created relative to the .scc file that is referencing
->> a patch, and across any directory that has a .scc file in the SRC_URI.
->> The .scc feature descriptions are self contained, hence "reaching
->> outside"
->> to a parent, or other directory structure isn't a good thing. Just list
->> things on the SRC_URI if that is required.
->
->    ah, so to clarify, if i refer to a .scc file, my FILESEXTRAPATHS and
-> FILESOVERRIDES will kick in to *find* it, but once found, its internal
-> references will be treated as local to where the .scc file was found?
-> good, that makes sense, i like that.
-
-Correct.
-
->
->>>   if this is all written down somewhere, just point me to it. thank
->>> you kindly.
->>
->> IIRC it is in the kernel development manual (the .scc file parts), but
->> the SRC_URI and patch order is common to any recipe that bitbake/oe-core
->> process.
->
->>> p.s. all of this is in aid of trying to avoid ordering mishaps when
->>> applying patches, but i'm guessing that if i design my .scc files
->>> carefully to be logically self-contained, i can probably avoid
->>> accidents like that in the first place.
->>
->> Correct. The .scc files, kernel-cache and management found within
->> the files was created to manage hundreds of patches for overlapping
->> boards, much like you are describing.
->>
->> In the end, when complexity gets really high, a git repo with branches
->> is probably easier ... and with that description, I've just covered
->> how patch management with .scc files leads to the linux-yocto tree :)
->>
->> Bruce
->
->    smugness becomes you. :-)
-
-Ha! :)
-
-Bruce
-
->
-> rday
->
->
 
 
