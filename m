@@ -1,46 +1,70 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3D28E007B5; Wed,  2 Mar 2016 11:04:26 -0800 (PST)
+	id 986CAE00852; Wed,  2 Mar 2016 11:27:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rudolf.streif[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A197E006AE
-	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 11:04:24 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 02 Mar 2016 11:04:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,530,1449561600"; d="scan'208";a="925388442"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by orsmga002.jf.intel.com with ESMTP; 02 Mar 2016 11:04:11 -0800
-Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Wed, 2 Mar 2016 11:04:10 -0800
-Received: from orsmsx102.amr.corp.intel.com ([169.254.3.42]) by
-	ORSMSX113.amr.corp.intel.com ([169.254.9.125]) with mapi id
-	14.03.0248.002; Wed, 2 Mar 2016 11:04:10 -0800
-From: "Randle, William C" <william.c.randle@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Question about access local stash/bitbucket server via
-	yocto
-Thread-Index: AQHRdLZNLGPRWWHwRUOTm2/A0KN+Ig==
-Date: Wed, 2 Mar 2016 19:04:09 +0000
-Message-ID: <1456945402.2259.2.camel@intel.com>
-References: <OF43D40F78.BEF1AE15-ON88257F6A.0061E32E-88257F6A.0061FA08@selinc.com>
-In-Reply-To: <OF43D40F78.BEF1AE15-ON88257F6A.0061E32E-88257F6A.0061FA08@selinc.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.0.162]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
+Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 677F2E0079A
+	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 11:27:30 -0800 (PST)
+Received: by mail-pf0-f170.google.com with SMTP id 63so9704290pfe.3
+	for <yocto@yoctoproject.org>; Wed, 02 Mar 2016 11:27:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=Kg5csqy4R8gh3WLRgMXxWMWHrZlMX0RcZThh+dksAeI=;
+	b=zRbc5lBvOcBJxBzmhGaSTvn7cuqsXHF3zbbjlkAgWHzTxewKSHJ7LbiUl+MT/m5CQJ
+	4KIiAUp3YO6aIqVIKNOdFWJmDHR9FStLoSv+V98b7gV4/2fn9Vq5bFKoUffggve9Fh7+
+	JoWFIrJTQ5QxwwzibvhHHZ6Uf87PJgnmpaf3zv+nCE6GAIG5nWViffCQYTbcHaG/f03w
+	4BkddOSga6pnTfSH8nZTica2N/WSTv6LxDkXSJthC29bZ+YjkRryrLRFcXZzcsCZoKvf
+	CBdXxzVf60kR4kUAletvb//RR54arvZHqAU6F2tynQDdc8u1qODzcTnjEA3nFOkbjMEH
+	JM+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:user-agent
+	:in-reply-to:references:mime-version:content-transfer-encoding;
+	bh=Kg5csqy4R8gh3WLRgMXxWMWHrZlMX0RcZThh+dksAeI=;
+	b=Pt5GyCyTsiUw8LQk/D3OPjYUuRJbg4oRvu+DLpZxm9f5UaVNeDKOUAVNo6ST5RKO14
+	qZKqIpCG0nv5QAW5l0uzBBbD+Njp0R3aUyS+nbZXxbr7vWv8niNRjmi2FJ103ONo7iRH
+	jkLIyfZRJDV8OQlTgy0t95aH/BKHD6BpGkA0U5fToWl6kGpCp6zXUJbq5HRQFymxbsPA
+	czASWomCLM2Jfdl0X/UFeLBICDJPRutctfixlxt4LWt5iXmMuDj18ENQzkzW2Egi0SYl
+	mmlEqPY0JRbEXtLf9LVEyLBk3b/yoa6LXCWIVZ/AN1XHsLSDuJ3a/9QNpgdLqNyFSIRP
+	mBDA==
+X-Gm-Message-State: AD7BkJIbL1EFxMGWhoXPGmDed/4ei5Wu1lUklf8phr6C6t2TCLYx97vMBI87wBkG/OxY2A==
+X-Received: by 10.98.15.67 with SMTP id x64mr10093662pfi.60.1456946849677;
+	Wed, 02 Mar 2016 11:27:29 -0800 (PST)
+Received: from rjs-zotac.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
+	by smtp.gmail.com with ESMTPSA id 3sm54765031pfn.59.2016.03.02.11.27.28
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 02 Mar 2016 11:27:29 -0800 (PST)
+From: Rudolf J Streif <rudolf.streif@gmail.com>
+To: ed.bartosh@linux.intel.com
+Date: Wed, 02 Mar 2016 11:27:27 -0800
+Message-ID: <2278237.L7q9SH0zBY@rjs-zotac.streifs.net>
+User-Agent: KMail/4.14.10 (Linux/4.3.5-200.fc22.x86_64+debug; KDE/4.14.14;
+	x86_64; ; )
+In-Reply-To: <20160302064735.GA21419@linux.intel.com>
+References: <5285202.8PW0mz0glJ@rjs-zotac.streifs.net>
+	<20160302064735.GA21419@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: Question about access local stash/bitbucket server via yocto
+Cc: yocto@yoctoproject.org
+Subject: Re: [wic] Creating sdimage-bootpart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,65 +76,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 19:04:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B03F133A48958C44A680917CCEC51C53@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 02 Mar 2016 19:27:32 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-T24gV2VkLCAyMDE2LTAzLTAyIGF0IDA5OjUwIC0wODAwLCByb2JlcnRfam9zbHluQHNlbGluYy5j
-b20gd3JvdGU6DQo+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyB3cm90ZSBvbiAwMy8w
-Mi8yMDE2IDA2OjIzOjEyIEFNOg0KPiANCj4gPiANCj4gPiBGcm9tOiAiT2xzc29uIFJpa2FyZCAo
-UkJTTi9FU1cxKSIgPFJpa2FyZC5PbHNzb25Ac2UuYm9zY2guY29tPg0KPiA+IFRvOiAieW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZyIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+LMKgDQo+ID4gRGF0ZTog
-MDMvMDIvMjAxNiAwNjozMSBBTQ0KPiA+IFN1YmplY3Q6IFt5b2N0b10gUXVlc3Rpb24gYWJvdXQg
-YWNjZXNzIGxvY2FsIHN0YXNoL2JpdGJ1Y2tldCBzZXJ2ZXINCj4gPiB2aWHCoA0KPiB5b2N0bw0K
-PiA+IA0KPiA+IFNlbnQgYnk6IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZw0KPiA+IA0K
-PiA+IERlYXIgWW9jdG8gbWVtYmVycywNCj4gPiANCj4gPiBNeSBmaXJzdCBwb3N0IHNvIGhlcmUg
-d2UgZ2/igKYuDQo+ID4gMSkgSSBhbSBuZXcgdG8geW9jdG8gYW5kIHNvIGlzIHRoZSBjb21wYW55
-IEkgd29yayBmb3LigKYuDQo+ID4gMikgTXkgY29tcGFueXMgZmlyZXdhbGwvaW50cmFuZXQgYmxv
-Y2tzIGdpdCBwcm90b2NvbCBzbyBvbmx5IGh0dHANCj4gPiB3b3Jrc+KApsKgDQo+ID4gDQo+ID4g
-DQo+ID4gQW55aG93LCBpbiB0aGUgY29tcGFueSB0aGVyZSBpcyBhIGxvY2FsIHN0YXNoL2JpdGJ1
-Y2tldCBzZXZlcg0KPiA+IHdoaWNowqANCj4gPiBydW4gb24gWFhYWCBwb3J0IG51bWJlciB3aGVy
-ZSBJIGhhdmUgc29tZSByZXBvc2l0b3JpZXMgYW5kIEkgYW0NCj4gPiBhYmxlDQo+ID4gdG8gY2xv
-bmUgdGhlbSB3aXRoOsKgDQo+ID4gZ2l0IGNsb25lIGh0dHA6Ly88VVNFUj5APHNlcnZlcj46PFBP
-UlQ+L1hYWC9+WVlZL1paWi5naXRbJTNjVVNFUiUNCj4gPiAzZUAlM2NzZXJ2ZXIlM2VdID09PiBU
-aGlzIHdvcmtzIGZpbmUgZnJvbSBjb21tYW5kIGxpbmUsIG5vdGUgdGhlDQo+ID4g4oCcfuKAnQ0K
-PiA+IA0KPiA+IEhvd2V2ZXIsIG5vdyBJIHdhbnQgdG8gZG8gdGhlIGNsb25lIGZyb20gYSB5b2N0
-by9iaXRiYWtlIGZpbGUgScKgDQo+ID4gY3JlYXRlZCBhcyBmb2xsb3dzOg0KPiA+IExJQ19GSUxF
-U19DSEtTVU0gPSAiZmlsZTovL0xJQ0VOU0U7bWQ1PVhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFgi
-DQo+ID4gRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vJHtQTn0tJHtQVn06
-Ig0KPiA+IFNSQ1JFViA9ICJYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFgi
-DQo+ID4gU1JDX1VSSSA9ICJodHRwOi88VVNFUj5APHNlcnZlcj46PFBPUlQ+L1hYWC9+WVlZL1pa
-Wi5naXQiDQo+ID4gSG93ZXZlciB0aGlzIGZhaWxzIHdpdGggVXNlcm5hbWUvUGFzc3dvcmQgQXV0
-aGVudGljYXRpb24gRmFpbGVkwqANCj4gPiB3aGljaCBJIGZpbmQgc3RyYW5nZSBzaW5jZSBJIGhh
-dmUgbm8gcHJvYmxlbSB3aXRoIGdpdCBjbG9uZSDigKYuLg0KPiBVc2luZyBTU0ggaXMgcHJvYmFi
-bHkgeW91ciBiZXN0IGJldC4gWW91J2xsIG5lZWQgdG8gdXBsb2FkIHlvdXINCj4gcHVibGljDQo+
-IGtleSB0byBTdGFzaCBmaXJzdCAoaXQncyBpbiB5b3VyIGFjY291bnQgc2V0dGluZ3MpLiBUaGUg
-U1JDX1VSSQ0KPiBzeW50YXggaXMNCj4gYSBiaXQgYXdrd2FyZCBpbiBteSBvcGluaW9uLCBidXQg
-aXQgbG9va3MgbGlrZSB0aGlzOg0KPiBTUkNfVVJJID0NCj4gImdpdDovLzx1c2VyPkA8c2VydmVy
-Pjo8cG9ydD4vWFhYL35ZWVkvWlpaLmdpdDtwcm90b2NvbD1zc2giDQo+IA0KPiBOb3RlIHRoYXQg
-dGhlIHVzZXIgaXMgbm90IHlvdXIgU3Rhc2ggdXNlcm5hbWUsIGl0J3MgdGhlIHVzZXIgdGhhdA0K
-PiBTdGFzaA0KPiB1c2VzIGZvciBTU0guIEl0IGlzIHByb2JhYmx5ICJnaXQiIG9yIHNvbWV0aGlu
-ZyBzaW1pbGFyLiBUaGUgcG9ydA0KPiBudW1iZXINCj4gYW5kIHRpbGRlIGFyZSBub3QgYSBwcm9i
-bGVtLg0KDQpZb3UgbWF5IGFsc28gbmVlZCB0byBjYWNoZSB5b3VyIHBhc3NwaHJhc2UgdXNpbmcg
-c3NoLWFnZW50L3NzaC1hZGQsIGFzDQpiaXRiYWtlIGl0IG5vdCBzZXR1cCB0byBwcm9tcHQgeW91
-IGZvciBpdC4NCg0KPiA+IA0KPiA+IA0KPiA+IE5vdyBJIGhhdmUgdHdvIHF1ZXN0aW9uczoNCj4g
-PiAxKcKgwqDCoMKgwqBJcyBpdCBwb3NzaWJsZSB0byBhZGQgbXkgVVNFUiBhbmQgUEFTU1dPUkQg
-aW4gdGhlIGJpdGJha2UvDQo+ID4geW9jdG8gKCouYmIgZmlsZSkgZmlsZSB0byB3b3JrIGFyb3Vu
-ZCB0aGUgVXNlcm5hbWUvUGFzc3dvcmTCoA0KPiA+IEF1dGhlbnRpY2F0aW9uIEZhaWxlZCBwcm9i
-bGVtLg0KPiA+IDIpwqDCoMKgwqDCoEkgYWxzbyBoYXZlIGEgcXVlc3Rpb24gaWYgdGhlcmUgYXJl
-IGFueSBsaW1pdGF0aW9uIGluIHRoZcKgDQo+ID4gcGF0aCBJIHVzZSwgZm9yIGV4YW1wbGU6DQo+
-ID4gYS7CoMKgwqDCoMKgSXMgaXQgT0sgdG8gaGF2ZSA8UE9SVD4gbnVtYmVyIGFzIHBhcnQgb2Yg
-cGF0aCwgSSBoYXZlbuKAmXTCoA0KPiA+IHNlZW4gdGhhdCBpbiBhbnkgb3RoZXIgZmlsZXMgcmVs
-YXRlZCB0byB5b2N0by9iaXRiYWtlPyBBbmQgaWYgbm90wqANCj4gPiBob3cgZG8gSSBzcGVjaWZ5
-IHRoZSBQT1JUIG51bWJlcj8NCj4gPiBiLsKgwqDCoMKgT3IgbWF5YmUgdGhlIOKAnH7igJ0gd2ls
-bCBjYXVzZSBwcm9ibGVtICwgSSBoYXZlbuKAmXQgc2VlbiB0aGlzIGluwqANCj4gPiBhbnkgcGF0
-aCBuYW1lcyByZWxhdGVkIHRvIHlvY3RvL2JpdGJha2U/DQo+ID4gDQo+ID4gQW55IGFkdmljZSBJ
-IGFwcHJlY2lhdGVkLg0KPiA+IA0KPiA+IE1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4gLyBCZXN0
-IHJlZ2FyZHPCoA0KPiA+IA0KPiA+IFJpa2FyZCBPbHNzb24NCj4gPiANCj4gPiBFbmdpbmVlcmlu
-ZyBTb2Z0d2FyZSwgTHVuZCwgU3dlZGVuIChSQlNOL0VTVynCoA0KPiA+IFRlbC4gKzQ2KDQ2KTI3
-MC02ODQzIHwgUmlrYXJkLk9sc3NvbjJAc2UuYm9zY2guY29twqANCj4gLS0NCj4gUm9iZXJ0IEpv
-c2x5bg0KPiBTb2Z0d2FyZSBFbmdpbmVlciwgUiZEIC0gQXV0b21hdGlvbg0KPiBTY2h3ZWl0emVy
-IEVuZ2luZWVyaW5nIExhYm9yYXRvcmllcw0KPiA1MDktMzMyLTE4OTAgZXh0LiAzMjE0
+Hi Ed,
+
+> 
+> Interesting. I thought that this commit shoud fix the issue:
+> http://cgit.openembedded.org/openembedded-core/commit/?id=264c03e854f77c3b62acb710384f66716ccbf469
+
+Thanks. I was not aware of that patch.
+
+> 
+> Which branch do you use?
+> 
+Jethro. Master seems to be broken right now. It does not compile gdb-7.10.1 (at least not for ARM), which is what I need.
+
+:rjs
+
 
