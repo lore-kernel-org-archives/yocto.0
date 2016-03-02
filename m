@@ -1,45 +1,39 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <radzy@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A0C0E00D6B; Wed,  2 Mar 2016 07:40:45 -0800 (PST)
+	id 102F6E00D6B; Wed,  2 Mar 2016 07:47:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 500E2E00CA6
-	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 07:40:43 -0800 (PST)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160302154026097_0685;
-	Wed, 02 Mar 2016 07:40:26 -0800
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [127.0.0.1] (port=36098 helo=localhost)
-	by astoria.ccjclearline.com with esmtpa (Exim 4.80)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1ab8uA-0005yY-JQ; Wed, 02 Mar 2016 10:41:38 -0500
-Received: from 216.191.234.70 ([216.191.234.70]) by
-	astoria.ccjclearline.com (Horde Framework) with HTTP; Wed, 02 Mar 2016
-	10:41:38 -0500
-Message-ID: <20160302104138.5032300q6wkcmack@astoria.ccjclearline.com>
-Date: Wed, 02 Mar 2016 10:41:38 -0500
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <20160229181912.2795661i683s2v40@astoria.ccjclearline.com>
-	<CAAQYJAviVJSJceLhvkyMwfkGTAYg+ZFX9SqOMfLb764uc04e-A@mail.gmail.com>
-	<20160301054455.93873ngpmfyku8kk@astoria.ccjclearline.com>
-	<56D5A54D.6020100@windriver.com>
-In-Reply-To: <56D5A54D.6020100@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7444E00CA6
+	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 07:47:48 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u22FllhY020327
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 2 Mar 2016 07:47:47 -0800 (PST)
+Received: from ALA-MBA.corp.ad.wrs.com ([169.254.3.21]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0248.002;
+	Wed, 2 Mar 2016 07:47:46 -0800
+From: "Radzykewycz, T (Radzy)" <radzy@windriver.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-selinux] git recipes
+Thread-Index: AQHRdJniyMHODZb5kkqSxR6aCrsV+w==
+Date: Wed, 2 Mar 2016 15:47:45 +0000
+Message-ID: <33006C99F5A5194A9B7A7715DFA3E383EB84972B@ALA-MBA.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.216.89]
 MIME-Version: 1.0
-User-Agent: Internet Messaging Program (IMP) H3 (4.3.11)
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to organize my patches for multiple kernels and multiple target boards?
+Subject: Re: [meta-selinux] git recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,97 +45,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 15:40:45 -0000
-Content-Type: text/plain;
- charset=UTF-8;
- DelSp="Yes";
- format="flowed"
-Content-Disposition: inline
-Content-Transfer-Encoding: 7bit
-
-Quoting Bruce Ashfield <bruce.ashfield@windriver.com>:
-
-> On 16-03-01 05:44 AM, Robert P. J. Day wrote:
-
->>   also, once a .scc file is located, will the location of the listed
->> .cfg and .patch/.diff files inside it start a whole new search process
->> based on FILESEXTRAPATHS and FILESOVERRIDES?
-
-> The search path is created relative to the .scc file that is referencing
-> a patch, and across any directory that has a .scc file in the SRC_URI.
-> The .scc feature descriptions are self contained, hence "reaching outside"
-> to a parent, or other directory structure isn't a good thing. Just list
-> things on the SRC_URI if that is required.
-
-   one more question, if i might, as i'm still unclear on what flexibility
-i have with finding .cfg or .patch files from a .scc file.
-
-   imagine i have a number of kernel .bbappend files and corresponding
-patch directories:
-
-   * linux-4.0.bbappend and linux-4.0/
-   * linux-4.1.bbappend and linux-4.1/
-   * linux-4.2.bbappend and linux-4.2/
-
-and so on, as well as wanting to refer to five machines, "m1" through
-"m5". consider the following possibility related specifically to
-kernel version 4.1:
-
-   linux-4.1/
-     rday.scc
-     1.patch
-     2.patch
-     3.patch
-     4.patch
-     m3/
-       4.patch
-
-so imagine my linux-4.1.bbappend file does SRC_URI += "rday.scc" --
-when i do a build for kernel 4.1, the search process should locate
-the rday.scc file in linux-4.1/ (as long as i have no other
-higher-priority FILESOVERRIDES that get in the way, of course).
-
-   now if rday.scc contains references to all four patches and i'm
-building for, say, machine "m1", it makes sense that all four
-of those patches directly under linux-4.1/ will be the ones
-included, correct?
-
-   but if, instead, i was building for machine "m3", as you can
-see, it would be nice if the FILESOVERRIDES feature would kick in
-and select the machine-specific patch "m3/4.patch. so all of the
-regular patches would be used, *unless* i was building for m3,
-at which point the patch m3/4.patch would override the "generic"
-4.patch. (the same logic would apply to .cfg files, too, of course.)
-
-   is that what would happen? better yet, is that anything i
-should even be contemplating? it's not as if i need that feature
-right this instant, but it would be nice to know it's available
-just in case.
-
-   even weirder, could i get away with something like this?
-
-   linux-4.1/
-     rday.scc
-     1.patch
-     2.patch
-     3.patch
-     4.patch
-     m3/
-       rday.scc
-       4.patch
-
-once again, my .bbappend file would "SRC_URI += rday.scc", and if
-i'm building for kernel 4.1, it should find the one directly under
-linux-4.1/, *unless* my target machine is "m3", at which point
-the file m3/rday.scc would take precedence, which would pick up
-the specific patch file m3/4.patch, but would use the higher-level
-generic patch files for all others.
-
-   the first case i think has value and i'd like to know how to do
-it; the second case is admittedly weirder and i'm not sure i
-want to defend even *trying* to do it, but i figured i'd ask.
-
-rday
+X-List-Received-Date: Wed, 02 Mar 2016 15:47:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
+________________________________________
+On 3/1/16 21:40, Philip Tricca wrote:
+> On 03/01/2016 10:30 AM, Joe MacDonald wrote:
+> > [Re: [yocto] [meta-selinux] git recipes] On 16.02.29 (Mon 08:06) Mark H=
+atle wrote:
+> >
+> >> On 2/27/16 10:23 PM, Philip Tricca wrote:
+> >>> Adding a sensible subject.
+> >>
+> >> Sorry couldn't reply when I saw this when you first sent it.  Corporat=
+e email
+> >> server went down for those of us who DON'T use outlook.. argh..
+> >>
+> >> Anyway..
+> >>
+> >> What I'm generally used to in the Yocto Project work is that the 'git'=
+ version
+> >> picks a specific git snapshot and makes it a quick operation for someo=
+ne to
+> >> arbitrarily change that snapshot by adjusting the SRCREV.
+> >
+> > This has been the approach I'd always tried to take with _git recipes a=
+s
+> > well and it tends to work very well for ones that are either the only o=
+r
+> > the preferred recipe.  I think in our case we were always preferring th=
+e
+> > released versions for several historical reasons and the _git recipes w=
+ere
+> > relegated to the second-tier because of it.  But that means that basica=
+lly
+> > they never got updated.
+> >
+> > About a year and a half ago I started seriously talking about dumping t=
+he
+> > userspace tools entirely and only ever working out of the _git recipes.
+> > Shrikant started doing that work after I discussed it with him but we
+> > never got beyond the policy recipes.  So if you guys think this is not =
+a
+> > completely insane thing to do, that's the direction I'd like to go with
+> > this.
+> >
+> >> We don't use the AUTOREV parameter, because that causes the system to =
+have to do
+> >> a git pull in order to evaluate the available versions and determine t=
+he SRCREV
+> >> to use.  So it's all down to a parsing and performance issue.
+> >
+> > And avoiding surprises on the other side of the bathtub curve, when
+> > updates pop up that we aren't prepared for.  :-)  But we've been behind
+> > on developments aging out, too, so I don't have a strong case to argue
+> > against AUTOREV.
+> >
+> >> What I've done on some of my own projects is have an AUTOREV version (=
+locally),
+> >> then when it triggers a recipe breakage, I think update the SRCREV and=
+ fix it in
+> >> the remote tree..  so I get the autorev, the world gets a version of t=
+he package
+> >> that keeps working.  (I also update the SRCREV other times as well.. b=
+ut the
+> >> autorev breakage is one of the key triggers.)
+> >>
+> >> Joe might have some suggestions as well, I'm not against AUTOREV per s=
+ay, but I
+> >> am worried about any performance issues during the parse.
+> >
+> > I would really rather avoid AUTOREV, but I think the way we would
+> > accomplish that is to edge away from our current recipes and bring the
+> > _git ones back to centre stage.  Then we're likely to stay on top of a
+> > fixed SRCREV anyway.
+>=20
+> I think there's something to be said for a simple approach. For those
+> showing up and trying to figure out what's going on / how the build
+> works it would likely ease their entry if we had straight forward
+> recipes that build from the usptream release tarballs. For those wanting
+> to verify hashes published by upstream (and maybe signed) this makes
+> life easier as well.
+
+My comments, FWIW:
+
+I'm not sure I agree that having both recipes is a simple approach.
+
+If you're getting started, then you may not be aware of how
+PREFERRED_VERSION works, or even that it is available at all.
+Depending on your personal inclination, you may assume one way
+or the other.
+
+Using a _git recipe as default, where SRCREV points to something
+similar to the latest release might be a better way than having
+two recipes.
+
+> Mark's point is well taken though and there's lots of value in having
+> the git recipes for those who want to experiment. I think Marks test /
+> development setup / tracking AUTOREV behind closed doors is very useful.
+>
+> In the interest of not making too many changes too early on I'd like to
+> propose the following:
+> - keep the release-tracking recipes the default, no change in
+> PREFERRED_VERSIONs etc.
+> - Keep the git recipes around and still pointing to a static SRCREV
+> - Update SRCREV to the latest release and keep it up to date as we move
+> the userspace etc forward
+> - Do not maintain a patch queue for the git recipes
+>=20
+> I think this last point is likely the only departure from our current
+> approach (and my 3rd point is just an update). My reason for removing
+> the patch queue is that if someone wants to experiment with git they'll
+> likely not want any of those patches. The patch queue will probably just
+> get in their way.
+
+I like the idea of not maintaining a patch queue for git recipes.
+I'm not sure how well it will work in practice, though.  This
+policy would assume that all git recipes are for projects that
+are maintained by reasonable maintainers who accept our input.
+Maybe that's the case most of the time, but I doubt it's always
+the case.  A trivial change to "Do not normally maintain...." would
+sit with me better.
+
+Enjoy!
+
+				-- radzy
+
+> > But as I say, maybe I'm completely insane on this point.
+>=20
+> Nothing insane but I'm feeling conservative, maybe just till the dust
+> settles. Agree / disagree with the above as a first step at least?
+>=20
+> Philip
+>=20
+> >
+> > -J.
+> >
+> >>
+> >> --Mark
+> >>
+> >>> On 02/27/2016 08:17 PM, Philip Tricca wrote:
+> >>>> While going through the backlog I ran across the 'git' versions of t=
+he
+> >>>> user space. I noticed that a recent contribution was adding a patch =
+to
+> >>>> the git recipe and I figured that this patch would already be upstre=
+am
+> >>>> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
+> >>>> hard wired (SRCREV) to a commit id but it's way back from the end of
+> >>>> 2013. They're also disabled via DEFAULT_PREFERENCE =3D "-1"
+> >>>>
+> >>>> These 'git' versions seem super useful for testing bleeding edge stu=
+ff
+> >>>> so IMHO keeping them around would be the right thing to do. Not sure=
+ how
+> >>>> I feel about them tracking an ancient commit though. Since they're n=
+ever
+> >>>> built by default it seems reasonable to track the master branch.
+> >>>>
+> >>>> What's our philosophy w/r to recipes that pull from git? Is there so=
+me
+> >>>> history behind this SRCREV?
+> >>>>
+> >>>> Thanks,
+> >>>> Philip
 
