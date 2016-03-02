@@ -1,6 +1,6 @@
 Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13704E00D1E; Tue,  1 Mar 2016 21:40:31 -0800 (PST)
+	id 2428AE00D41; Tue,  1 Mar 2016 21:43:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,30 +9,29 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 847EEE00D15
-	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 21:40:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62434E00D13
+	for <yocto@yoctoproject.org>; Tue,  1 Mar 2016 21:43:05 -0800 (PST)
 Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
 	helo=[10.79.148.125])
 	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
 	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1aazVf-0005qQ-9u; Wed, 02 Mar 2016 05:39:45 +0000
-To: Joe MacDonald <Joe_MacDonald@mentor.com>,
-	Mark Hatle <mark.hatle@windriver.com>
-References: <56D274C6.90607@twobit.us> <56D27649.4040306@twobit.us>
-	<56D45073.3050800@windriver.com> <20160301183028.GB12524@mentor.com>
+	id 1aazYB-0005qu-41; Wed, 02 Mar 2016 05:42:20 +0000
+To: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+References: <1455921936-24140-1-git-send-email-alejandro.delcastillo@ni.com>
+	<56D61E9D.5020607@ni.com>
 From: Philip Tricca <flihp@twobit.us>
-Message-ID: <56D67CD4.9030006@twobit.us>
-Date: Tue, 1 Mar 2016 21:40:36 -0800
+Message-ID: <56D67D70.6010608@twobit.us>
+Date: Tue, 1 Mar 2016 21:43:12 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Icedove/38.6.0
 MIME-Version: 1.0
-In-Reply-To: <20160301183028.GB12524@mentor.com>
+In-Reply-To: <56D61E9D.5020607@ni.com>
 X-SA-Exim-Connect-IP: 50.185.54.102
 X-SA-Exim-Mail-From: flihp@twobit.us
 X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
 X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux] git recipes
+Cc: yocto@yoctoproject.org, Xin.Ouyang@windriver.com
+Subject: Re: [meta-selinux][PATCH] busybox: explicitly set temporary shell scripts to be executable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,121 +43,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 05:40:31 -0000
+X-List-Received-Date: Wed, 02 Mar 2016 05:43:21 -0000
 Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/01/2016 10:30 AM, Joe MacDonald wrote:
-> [Re: [yocto] [meta-selinux] git recipes] On 16.02.29 (Mon 08:06) Mark Hatle wrote:
+On 03/01/2016 02:58 PM, Alejandro del Castillo wrote:
+> I first started looking at busybox postinst (modified on meta-selinux) since I
+> am getting errors during "opkg upgrade buysbox". The errors that I am getting
+> are of the form:
 > 
->> On 2/27/16 10:23 PM, Philip Tricca wrote:
->>> Adding a sensible subject.
->>
->> Sorry couldn't reply when I saw this when you first sent it.  Corporate email
->> server went down for those of us who DON'T use outlook.. argh..
->>
->> Anyway..
->>
->> What I'm generally used to in the Yocto Project work is that the 'git' version
->> picks a specific git snapshot and makes it a quick operation for someone to
->> arbitrarily change that snapshot by adjusting the SRCREV.
+> update-alternatives: Error: not linking /bin/gunzip to
+> /usr/lib/busybox/bin/gunzip since /bin/gunzip exists and is not a link
 > 
-> This has been the approach I'd always tried to take with _git recipes as
-> well and it tends to work very well for ones that are either the only or
-> the preferred recipe.  I think in our case we were always preferring the
-> released versions for several historical reasons and the _git recipes were
-> relegated to the second-tier because of it.  But that means that basically
-> they never got updated.
+> Which only happen for utilities that don't have any alternative installed after
+> removing busybox, hence no symlink. Utilities that do have an alternative
+> installed are correctly processed, for example:
 > 
-> About a year and a half ago I started seriously talking about dumping the
-> userspace tools entirely and only ever working out of the _git recipes.
-> Shrikant started doing that work after I discussed it with him but we
-> never got beyond the policy recipes.  So if you guys think this is not a
-> completely insane thing to do, that's the direction I'd like to go with
-> this.
+> update-alternatives: Linking /usr/bin/ar to /usr/bin/x86_64-nilrt-linux-ar
 > 
->> We don't use the AUTOREV parameter, because that causes the system to have to do
->> a git pull in order to evaluate the available versions and determine the SRCREV
->> to use.  So it's all down to a parsing and performance issue.
+> The root problem is that meta-selinux on commit
+> 521ca9c9cf370840e9f8c808a7955aa5da7c356e replaced the temporary symlink creation
+> on postinst with sh wrappers, which breaks update-alternatives when it tries to
+> update symlinks (which are now sh wrappers).
 > 
-> And avoiding surprises on the other side of the bathtub curve, when
-> updates pop up that we aren't prepared for.  :-)  But we've been behind
-> on developments aging out, too, so I don't have a strong case to argue
-> against AUTOREV.
->
->> What I've done on some of my own projects is have an AUTOREV version (locally),
->> then when it triggers a recipe breakage, I think update the SRCREV and fix it in
->> the remote tree..  so I get the autorev, the world gets a version of the package
->> that keeps working.  (I also update the SRCREV other times as well.. but the
->> autorev breakage is one of the key triggers.)
->>
->> Joe might have some suggestions as well, I'm not against AUTOREV per say, but I
->> am worried about any performance issues during the parse.
-> 
-> I would really rather avoid AUTOREV, but I think the way we would
-> accomplish that is to edge away from our current recipes and bring the
-> _git ones back to centre stage.  Then we're likely to stay on top of a
-> fixed SRCREV anyway.
+> Is there a reason why the postinst needs to be different on the selinux version
+> of busybox? If the postinst is just creating temporary symlinks which will go
+> away once the update-alternatives block later on the script runs, do we need the
+> sh wrappers?
 
-I think there's something to be said for a simple approach. For those
-showing up and trying to figure out what's going on / how the build
-works it would likely ease their entry if we had straight forward
-recipes that build from the usptream release tarballs. For those wanting
-to verify hashes published by upstream (and maybe signed) this makes
-life easier as well.
-
-Mark's point is well taken though and there's lots of value in having
-the git recipes for those who want to experiment. I think Marks test /
-development setup / tracking AUTOREV behind closed doors is very useful.
-
-In the interest of not making too many changes too early on I'd like to
-propose the following:
-- keep the release-tracking recipes the default, no change in
-PREFERRED_VERSIONs etc.
-- Keep the git recipes around and still pointing to a static SRCREV
-- Update SRCREV to the latest release and keep it up to date as we move
-the userspace etc forward
-- Do not maintain a patch queue for the git recipes
-
-I think this last point is likely the only departure from our current
-approach (and my 3rd point is just an update). My reason for removing
-the patch queue is that if someone wants to experiment with git they'll
-likely not want any of those patches. The patch queue will probably just
-get in their way.
-
-> But as I say, maybe I'm completely insane on this point.
-
-Nothing insane but I'm feeling conservative, maybe just till the dust
-settles. Agree / disagree with the above as a first step at least?
+Thanks for the additional context Alejandro. I don't have enough history
+yet to pull answers to stuff like this out at will though. Hopefully
+someone with the right background will chime in. Either way I'll circle
+back once the easy stuff in the backlog is done and we'll try to sort
+something out.
 
 Philip
 
+> On 02/19/2016 04:45 PM, Alejandro del Castillo wrote:
+>> During an on target upgrade, the postinst script is creating scripts
+>> that call buysbox, to avoid missing commands errors. However, the
+>> scripts permissions are not set explicitly, relying on the mask.
+>>
+>> Signed-off-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+>> ---
+>>  recipes-core/busybox/busybox_%.bbappend | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/recipes-core/busybox/busybox_%.bbappend b/recipes-core/busybox/busybox_%.bbappend
+>> index b4935b2..2e806af 100644
+>> --- a/recipes-core/busybox/busybox_%.bbappend
+>> +++ b/recipes-core/busybox/busybox_%.bbappend
+>> @@ -78,6 +78,7 @@ pkg_postinst_${PN} () {
+>>  						# we can use busybox here because even if we are using splitted busybox
+>>  						# we've made a symlink from /bin/busybox to /bin/busybox.nosuid.
+>>  						busybox echo "#!/bin/busybox$suffix" > $link
+>> +                                                /bin/busybox.nosuid chmod 755 $link
+>>  					fi
+>>  				done < /etc/busybox.links$suffix
+>>  			fi
+>>
 > 
-> -J.
-> 
->>
->> --Mark
->>
->>> On 02/27/2016 08:17 PM, Philip Tricca wrote:
->>>> While going through the backlog I ran across the 'git' versions of the
->>>> user space. I noticed that a recent contribution was adding a patch to
->>>> the git recipe and I figured that this patch would already be upstream
->>>> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
->>>> hard wired (SRCREV) to a commit id but it's way back from the end of
->>>> 2013. They're also disabled via DEFAULT_PREFERENCE = "-1"
->>>>
->>>> These 'git' versions seem super useful for testing bleeding edge stuff
->>>> so IMHO keeping them around would be the right thing to do. Not sure how
->>>> I feel about them tracking an ancient commit though. Since they're never
->>>> built by default it seems reasonable to track the master branch.
->>>>
->>>> What's our philosophy w/r to recipes that pull from git? Is there some
->>>> history behind this SRCREV?
->>>>
->>>> Thanks,
->>>> Philip
->>>>
->>>
->>
 
 
