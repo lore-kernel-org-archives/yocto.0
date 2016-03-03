@@ -1,64 +1,36 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3D519E00851; Wed,  2 Mar 2016 15:18:50 -0800 (PST)
+	id AB81CE00948; Wed,  2 Mar 2016 19:59:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C7F1E0073D
-	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 15:18:46 -0800 (PST)
-Received: by mail-wm0-f52.google.com with SMTP id n186so108285551wmn.1
-	for <yocto@yoctoproject.org>; Wed, 02 Mar 2016 15:18:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=Izzk8j8eCafBJ+6cireDCcok/y8MKbp0pQFTTR3DZQQ=;
-	b=Xs3p4NSidv1iqHffo3P2mS54BTpIgymDkAFrlWle0YPD9iRFOVS56CTM374YZrDUwo
-	MU5/0w6qkhdG3Ym84rVKFxQFFu/QrXk0DPScz1sxcQbeGxn3TURpzwNo3B9aVkqgDgAZ
-	rGhtCtUbcssK1py97DVUKITCECf+5G1AwQRJY7zBWkX+uy0tdZXzPi8G14eEhNyAqT7J
-	1UOz8AJK7NG61YMoTGRj8n9gw0vdJf+9eDyDn+anYCxiFgGQ6blMVmXVegsLaenV5hpu
-	ouViTuQwvSZXgtoTTw+nQamFZmfj0/vs6bJk4aP6R5BYhUW6OmdoR4kamdRRNZ5cVrsg
-	D2Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=Izzk8j8eCafBJ+6cireDCcok/y8MKbp0pQFTTR3DZQQ=;
-	b=d+zCRWfhzYR8hOd4I9FLJANeSpnWpxIMCwjjdcXE/GQWvKT+QFGkcBPlUwW6r172V9
-	sGYLcWKutf6X3iZl53eJTvi7OsEYXxO5Z5VGiPnfMjBtu5+2EHmecjpxzXVyrNTHQ5VW
-	grrkrLl44zNiWxnFThWIgDq6fl51MrtrIklKhW3dVJz1bXCpqTJzIXUGzoep51Wbv4Uy
-	7LOI6YVeZLeFHYXGEVMxkdF6K2xu7h/ea+lrA77ETEGQGgMNTZ9bLfFrRpyAdzCnid1m
-	g+AHaUoD1Q2uRH2qSfWTeVThmVC8VlUXdr0wCN1S25x8u9L+ijceuIhWd/U+gyBNdWj4
-	z3bg==
-X-Gm-Message-State: AD7BkJIO2JLwmmiOIWxmmR0z+I7vNH0U3bA22UufwYOpRug6jZSgJdn82x25v86zHnedMmNiuoAsS6DkXZ2lQA==
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37C4FE00920
+	for <yocto@yoctoproject.org>; Wed,  2 Mar 2016 19:59:41 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[10.79.148.125])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1abKPd-0006fK-Ko; Thu, 03 Mar 2016 03:58:55 +0000
+To: "Radzykewycz, T (Radzy)" <radzy@windriver.com>
+References: <33006C99F5A5194A9B7A7715DFA3E383EB84972B@ALA-MBA.corp.ad.wrs.com>
+From: Philip Tricca <flihp@twobit.us>
+Message-ID: <56D7B6B4.7060401@twobit.us>
+Date: Wed, 2 Mar 2016 19:59:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Icedove/38.6.0
 MIME-Version: 1.0
-X-Received: by 10.28.228.85 with SMTP id b82mr2554323wmh.36.1456960725786;
-	Wed, 02 Mar 2016 15:18:45 -0800 (PST)
-Received: by 10.28.126.135 with HTTP; Wed, 2 Mar 2016 15:18:45 -0800 (PST)
-X-Originating-IP: [84.56.32.62]
-Received: by 10.28.126.135 with HTTP; Wed, 2 Mar 2016 15:18:45 -0800 (PST)
-In-Reply-To: <12143516.nF9hEN28vI@peggleto-mobl.ger.corp.intel.com>
-References: <2956615.y8hyrZheM7@peggleto-mobl.ger.corp.intel.com>
-	<3422071.a5vtJpgWht@peggleto-mobl.ger.corp.intel.com>
-	<CAFzUWGnCD1m3jmbgyNqhhM0QeeO1mGnGuk7qy=F329r1zLoTqA@mail.gmail.com>
-	<12143516.nF9hEN28vI@peggleto-mobl.ger.corp.intel.com>
-Date: Thu, 3 Mar 2016 00:18:45 +0100
-Message-ID: <CAK18fxFyQagAo8Nht2S0PPDPYkz7+tTV2_oxQ_i4ckgc_DP-Vw@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, Giordon Stark <gstark@cern.ch>
-Subject: Re: [Openembedded-architecture] Standalone image writer
+In-Reply-To: <33006C99F5A5194A9B7A7715DFA3E383EB84972B@ALA-MBA.corp.ad.wrs.com>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux] git recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,207 +42,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Mar 2016 23:18:50 -0000
-Content-Type: multipart/alternative; boundary=001a114b0dea833f3d052d191af4
+X-List-Received-Date: Thu, 03 Mar 2016 03:59:43 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---001a114b0dea833f3d052d191af4
-Content-Type: text/plain; charset=UTF-8
+On 03/02/2016 07:47 AM, Radzykewycz, T (Radzy) wrote:
+> ________________________________________
+> On 3/1/16 21:40, Philip Tricca wrote:
+>> On 03/01/2016 10:30 AM, Joe MacDonald wrote:
+>>> [Re: [yocto] [meta-selinux] git recipes] On 16.02.29 (Mon 08:06) Mark Hatle wrote:
+>>>
+>>>> On 2/27/16 10:23 PM, Philip Tricca wrote:
+>>>>> Adding a sensible subject.
+>>>>
+>>>> Sorry couldn't reply when I saw this when you first sent it.  Corporate email
+>>>> server went down for those of us who DON'T use outlook.. argh..
+>>>>
+>>>> Anyway..
+>>>>
+>>>> What I'm generally used to in the Yocto Project work is that the 'git' version
+>>>> picks a specific git snapshot and makes it a quick operation for someone to
+>>>> arbitrarily change that snapshot by adjusting the SRCREV.
+>>>
+>>> This has been the approach I'd always tried to take with _git recipes as
+>>> well and it tends to work very well for ones that are either the only or
+>>> the preferred recipe.  I think in our case we were always preferring the
+>>> released versions for several historical reasons and the _git recipes were
+>>> relegated to the second-tier because of it.  But that means that basically
+>>> they never got updated.
+>>>
+>>> About a year and a half ago I started seriously talking about dumping the
+>>> userspace tools entirely and only ever working out of the _git recipes.
+>>> Shrikant started doing that work after I discussed it with him but we
+>>> never got beyond the policy recipes.  So if you guys think this is not a
+>>> completely insane thing to do, that's the direction I'd like to go with
+>>> this.
+>>>
+>>>> We don't use the AUTOREV parameter, because that causes the system to have to do
+>>>> a git pull in order to evaluate the available versions and determine the SRCREV
+>>>> to use.  So it's all down to a parsing and performance issue.
+>>>
+>>> And avoiding surprises on the other side of the bathtub curve, when
+>>> updates pop up that we aren't prepared for.  :-)  But we've been behind
+>>> on developments aging out, too, so I don't have a strong case to argue
+>>> against AUTOREV.
+>>>
+>>>> What I've done on some of my own projects is have an AUTOREV version (locally),
+>>>> then when it triggers a recipe breakage, I think update the SRCREV and fix it in
+>>>> the remote tree..  so I get the autorev, the world gets a version of the package
+>>>> that keeps working.  (I also update the SRCREV other times as well.. but the
+>>>> autorev breakage is one of the key triggers.)
+>>>>
+>>>> Joe might have some suggestions as well, I'm not against AUTOREV per say, but I
+>>>> am worried about any performance issues during the parse.
+>>>
+>>> I would really rather avoid AUTOREV, but I think the way we would
+>>> accomplish that is to edge away from our current recipes and bring the
+>>> _git ones back to centre stage.  Then we're likely to stay on top of a
+>>> fixed SRCREV anyway.
+>>
+>> I think there's something to be said for a simple approach. For those
+>> showing up and trying to figure out what's going on / how the build
+>> works it would likely ease their entry if we had straight forward
+>> recipes that build from the usptream release tarballs. For those wanting
+>> to verify hashes published by upstream (and maybe signed) this makes
+>> life easier as well.
+> 
+> My comments, FWIW:
+> 
+> I'm not sure I agree that having both recipes is a simple approach.
+> 
+> If you're getting started, then you may not be aware of how
+> PREFERRED_VERSION works, or even that it is available at all.
+> Depending on your personal inclination, you may assume one way
+> or the other.
+> 
+> Using a _git recipe as default, where SRCREV points to something
+> similar to the latest release might be a better way than having
+> two recipes.
 
-I think it depends on what kind of users we are targeting. I didn't even
-know about the existence of this tool (heard but can't say I know anything
-about it). And all the people I am in contact with use distro specific
-tools. Maybe if we target less technical people or we just want a distro
-unification tool simply for ease of use, it would make sense to keep it -
-even though I don't really understand why this hard separation in between
-wic and image burner. Whatever you generate, you need to burn so the
-process is clear and could be unified as an option.
-On 2 Mar 2016 10:18 pm, "Paul Eggleton" <paul.eggleton@linux.intel.com>
-wrote:
+Fair points.
 
-> Hi Giordon,
->
-> The image writer in question has no specific support for Xilinx boards. If
-> you're having a problem relating to the Xilinx BSP and you don't get a
-> response here then I'd suggest contacting the BSP maintainer(s).
->
-> Cheers,
-> Paul
->
-> On Mon, 29 Feb 2016 20:05:44 Giordon Stark wrote:
-> > Hi all,
-> >
-> > In a similar problem -- I find that the boot.bin file does not work out
-> of
-> > the box when I copy the files over to the SDCard to boot on a Xilinx
-> board.
-> > I end up having to open the SDK and generate a BOOT image myself using
-> the
-> > other files that were generated (u-boot, devicetree) with the SDK's
-> > FSBL.elf. Is this a known problem or would a centralized solution for
-> > creating the image solve this?
-> >
-> > Giordon
-> >
-> > On Mon, Feb 29, 2016 at 1:53 PM Paul Eggleton
-> > <paul.eggleton@linux.intel.com>
-> > wrote:
-> > > On Mon, 29 Feb 2016 11:27:15 Barros Pena, Belen wrote:
-> > > > On 29/02/2016 08:12, "yocto-bounces@yoctoproject.org on behalf of
-> Paul
-> > > > Eggleton" <yocto-bounces@yoctoproject.org on behalf of
-> > > >
-> > > > paul.eggleton@linux.intel.com> wrote:
-> > > > >There isn't a frontend UI for wic that I am aware of though - as I
-> > > > >mentioned earlier image-writer has no support for it, it's just
-> doing a
-> > > > >straight dd to the device.
-> > > >
-> > > > We would really like to add support for wic at some point.
-> > > >
-> > > > https://bugzilla.yoctoproject.org/show_bug.cgi?id=8769
-> > >
-> > > True, but that's a slightly different usage of wic - i.e. preparing the
-> > > formatted image, which we should support. However, writing a formatted
-> > > image
-> > > to an SD card / USB stick isn't something you could practically do
-> from a
-> > > web-
-> > > based application I don't think - not without help from a local
-> > > application at
-> > > any rate.
-> > >
-> > > Cheers,
-> > > Paul
-> > >
-> > > --
-> > >
-> > > Paul Eggleton
-> > > Intel Open Source Technology Centre
-> > > --
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+>> Mark's point is well taken though and there's lots of value in having
+>> the git recipes for those who want to experiment. I think Marks test /
+>> development setup / tracking AUTOREV behind closed doors is very useful.
+>>
+>> In the interest of not making too many changes too early on I'd like to
+>> propose the following:
+>> - keep the release-tracking recipes the default, no change in
+>> PREFERRED_VERSIONs etc.
+>> - Keep the git recipes around and still pointing to a static SRCREV
+>> - Update SRCREV to the latest release and keep it up to date as we move
+>> the userspace etc forward
+>> - Do not maintain a patch queue for the git recipes
+>>
+>> I think this last point is likely the only departure from our current
+>> approach (and my 3rd point is just an update). My reason for removing
+>> the patch queue is that if someone wants to experiment with git they'll
+>> likely not want any of those patches. The patch queue will probably just
+>> get in their way.
+> 
+> I like the idea of not maintaining a patch queue for git recipes.
+> I'm not sure how well it will work in practice, though.  This
+> policy would assume that all git recipes are for projects that
+> are maintained by reasonable maintainers who accept our input.
+> Maybe that's the case most of the time, but I doubt it's always
+> the case.  A trivial change to "Do not normally maintain...." would
+> sit with me better.
 
---001a114b0dea833f3d052d191af4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Agree. What I want to avoid is the current situation where people are
+submitting patches that add backport patches to the _git recipes that
+are already in the upstream git repo. Carrying around patches that
+aren't upstream yet (or as you point out, necessary but not accepted
+upstream) may be necessary.
 
-<p dir=3D"ltr">I think it depends on what kind of users we are targeting. I=
- didn&#39;t even know about the existence of this tool (heard but can&#39;t=
- say I know anything about it). And all the people I am in contact with use=
- distro specific tools. Maybe if we target less technical people or we just=
- want a distro unification tool simply for ease of use, it would make sense=
- to keep it - even though I don&#39;t really understand why this hard separ=
-ation in between wic and image burner. Whatever you generate, you need to b=
-urn so the process is clear and could be unified as an option.</p>
-<div class=3D"gmail_quote">On 2 Mar 2016 10:18 pm, &quot;Paul Eggleton&quot=
-; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.=
-intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail=
-_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
-1ex">Hi Giordon,<br>
-<br>
-The image writer in question has no specific support for Xilinx boards. If<=
-br>
-you&#39;re having a problem relating to the Xilinx BSP and you don&#39;t ge=
-t a<br>
-response here then I&#39;d suggest contacting the BSP maintainer(s).<br>
-<br>
-Cheers,<br>
-Paul<br>
-<br>
-On Mon, 29 Feb 2016 20:05:44 Giordon Stark wrote:<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; In a similar problem -- I find that the boot.bin file does not work ou=
-t of<br>
-&gt; the box when I copy the files over to the SDCard to boot on a Xilinx b=
-oard.<br>
-&gt; I end up having to open the SDK and generate a BOOT image myself using=
- the<br>
-&gt; other files that were generated (u-boot, devicetree) with the SDK&#39;=
-s<br>
-&gt; FSBL.elf. Is this a known problem or would a centralized solution for<=
-br>
-&gt; creating the image solve this?<br>
-&gt;<br>
-&gt; Giordon<br>
-&gt;<br>
-&gt; On Mon, Feb 29, 2016 at 1:53 PM Paul Eggleton<br>
-&gt; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@lin=
-ux.intel.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt; &gt; On Mon, 29 Feb 2016 11:27:15 Barros Pena, Belen wrote:<br>
-&gt; &gt; &gt; On 29/02/2016 08:12, &quot;<a href=3D"mailto:yocto-bounces@y=
-octoproject.org">yocto-bounces@yoctoproject.org</a> on behalf of Paul<br>
-&gt; &gt; &gt; Eggleton&quot; &lt;<a href=3D"mailto:yocto-bounces@yoctoproj=
-ect.org">yocto-bounces@yoctoproject.org</a> on behalf of<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; <a href=3D"mailto:paul.eggleton@linux.intel.com">paul.egglet=
-on@linux.intel.com</a>&gt; wrote:<br>
-&gt; &gt; &gt; &gt;There isn&#39;t a frontend UI for wic that I am aware of=
- though - as I<br>
-&gt; &gt; &gt; &gt;mentioned earlier image-writer has no support for it, it=
-&#39;s just doing a<br>
-&gt; &gt; &gt; &gt;straight dd to the device.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; We would really like to add support for wic at some point.<b=
-r>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; <a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D8769" rel=3D"noreferrer" target=3D"_blank">https://bugzilla.yoctoproject=
-.org/show_bug.cgi?id=3D8769</a><br>
-&gt; &gt;<br>
-&gt; &gt; True, but that&#39;s a slightly different usage of wic - i.e. pre=
-paring the<br>
-&gt; &gt; formatted image, which we should support. However, writing a form=
-atted<br>
-&gt; &gt; image<br>
-&gt; &gt; to an SD card / USB stick isn&#39;t something you could practical=
-ly do from a<br>
-&gt; &gt; web-<br>
-&gt; &gt; based application I don&#39;t think - not without help from a loc=
-al<br>
-&gt; &gt; application at<br>
-&gt; &gt; any rate.<br>
-&gt; &gt;<br>
-&gt; &gt; Cheers,<br>
-&gt; &gt; Paul<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt;<br>
-&gt; &gt; Paul Eggleton<br>
-&gt; &gt; Intel Open Source Technology Centre<br>
-&gt; &gt; --<br>
-&gt; &gt; _______________________________________________<br>
-&gt; &gt; yocto mailing list<br>
-&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org<=
-/a><br>
-&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"=
-noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto=
-</a><br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+Thanks,
+Philip
 
---001a114b0dea833f3d052d191af4--
+> Enjoy!
+> 
+> 				-- radzy
+> 
+>>> But as I say, maybe I'm completely insane on this point.
+>>
+>> Nothing insane but I'm feeling conservative, maybe just till the dust
+>> settles. Agree / disagree with the above as a first step at least?
+>>
+>> Philip
+>>
+>>>
+>>> -J.
+>>>
+>>>>
+>>>> --Mark
+>>>>
+>>>>> On 02/27/2016 08:17 PM, Philip Tricca wrote:
+>>>>>> While going through the backlog I ran across the 'git' versions of the
+>>>>>> user space. I noticed that a recent contribution was adding a patch to
+>>>>>> the git recipe and I figured that this patch would already be upstream
+>>>>>> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
+>>>>>> hard wired (SRCREV) to a commit id but it's way back from the end of
+>>>>>> 2013. They're also disabled via DEFAULT_PREFERENCE = "-1"
+>>>>>>
+>>>>>> These 'git' versions seem super useful for testing bleeding edge stuff
+>>>>>> so IMHO keeping them around would be the right thing to do. Not sure how
+>>>>>> I feel about them tracking an ancient commit though. Since they're never
+>>>>>> built by default it seems reasonable to track the master branch.
+>>>>>>
+>>>>>> What's our philosophy w/r to recipes that pull from git? Is there some
+>>>>>> history behind this SRCREV?
+>>>>>>
+>>>>>> Thanks,
+>>>>>> Philip
+
+
