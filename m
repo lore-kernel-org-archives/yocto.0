@@ -1,44 +1,31 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <belen.barros.pena@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2DF7BE00CCA; Fri,  4 Mar 2016 08:11:40 -0800 (PST)
+	id B5F97E00CD0; Fri,  4 Mar 2016 08:49:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E33EE00AB6
-	for <yocto@yoctoproject.org>; Fri,  4 Mar 2016 08:11:35 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 04 Mar 2016 08:11:35 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53F5EE00AB6
+	for <yocto@yoctoproject.org>; Fri,  4 Mar 2016 08:49:20 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga102.fm.intel.com with ESMTP; 04 Mar 2016 08:49:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.22,536,1449561600"; 
-	d="scan'208,217";a="929697677"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Mar 2016 08:11:29 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.21]) by
-	fmsmsx104.amr.corp.intel.com ([169.254.3.62]) with mapi id
-	14.03.0248.002; Fri, 4 Mar 2016 08:11:29 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW10
-Thread-Index: AdF2MGvVkkbD6inaQZCjlAbgBOYCUw==
-Date: Fri, 4 Mar 2016 16:11:28 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E57041CC9@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-MIME-Version: 1.0
-Subject: Yocto Project Status WW10
+X-IronPort-AV: E=Sophos;i="5.22,536,1449561600"; d="scan'208";a="926922608"
+Received: from unknown (HELO bbarrosp-mac03.local.com) ([10.252.25.62])
+	by orsmga002.jf.intel.com with ESMTP; 04 Mar 2016 08:49:18 -0800
+From: Belen Barros Pena <belen.barros.pena@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  4 Mar 2016 16:49:09 +0000
+Message-Id: <1457110149-4756-1-git-send-email-belen.barros.pena@linux.intel.com>
+X-Mailer: git-send-email 2.5.4 (Apple Git-61)
+Subject: [PATCH] documentation: remove all references to Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,539 +37,338 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Mar 2016 16:11:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57041CC9fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 04 Mar 2016 16:49:23 -0000
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57041CC9fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Belen Barros Pena <belen.barros.pena@intel.com>
+
+Hob and the packageinfo class have now been removed from the code base.
+This patch removes all references to:
+
+* Hob
+* meta-hob
+* packageinfo and
+* BBLAYERS_NON_REMOVABLE
+
+from the documentation.
+
+So long, Hob, and thanks for all the fish.
+
+Signed-off-by: Belen Barros Pena <belen.barros.pena@intel.com>
+---
+ documentation/bsp-guide/bsp.xml                    |  5 --
+ documentation/dev-manual/dev-manual-intro.xml      |  5 --
+ documentation/dev-manual/dev-manual-model.xml      | 47 -------------------
+ documentation/ref-manual/introduction.xml          |  4 --
+ documentation/ref-manual/migration.xml             | 14 +-----
+ documentation/ref-manual/ref-bitbake.xml           |  2 +-
+ documentation/ref-manual/ref-classes.xml           | 16 -------
+ documentation/ref-manual/ref-structure.xml         |  3 +-
+ documentation/ref-manual/ref-variables.xml         | 54 ----------------------
+ .../toaster-manual/toaster-manual-intro.xml        | 19 --------
+ 10 files changed, 3 insertions(+), 166 deletions(-)
+
+diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
+index ec39ec9..8cf2a1e 100644
+--- a/documentation/bsp-guide/bsp.xml
++++ b/documentation/bsp-guide/bsp.xml
+@@ -1403,11 +1403,6 @@
+         /usr/local/src/yocto/meta-yocto-bsp \
+         /usr/local/src/yocto/meta-myarm \
+         "
+-
+-     BBLAYERS_NON_REMOVABLE ?= " \
+-        /usr/local/src/yocto/meta \
+-        /usr/local/src/yocto/meta-yocto \
+-        "
+                     </literallayout>
+                     Adding the layer to this file allows the build system to build the BSP and
+                     the <filename>yocto-kernel</filename> tool to be able to find the layer and
+diff --git a/documentation/dev-manual/dev-manual-intro.xml b/documentation/dev-manual/dev-manual-intro.xml
+index e350882..5affa86 100644
+--- a/documentation/dev-manual/dev-manual-intro.xml
++++ b/documentation/dev-manual/dev-manual-intro.xml
+@@ -169,11 +169,6 @@
+                     release of the Yocto Project.
+                     </para></listitem>
+                 <listitem><para><emphasis>
+-                    <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink>:</emphasis>
+-                    A graphical user interface for BitBake.
+-                    Hob's primary goal is to enable a user to perform common tasks more easily.
+-                    </para></listitem>
+-                <listitem><para><emphasis>
+                     <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/toaster'>Toaster</ulink>:</emphasis>
+                     An Application Programming Interface (API) and web-based
+                     interface to the OpenEmbedded build system, which uses
+diff --git a/documentation/dev-manual/dev-manual-model.xml b/documentation/dev-manual/dev-manual-model.xml
+index 984d08d..489547d 100644
+--- a/documentation/dev-manual/dev-manual-model.xml
++++ b/documentation/dev-manual/dev-manual-model.xml
+@@ -48,12 +48,6 @@
+              Toaster provides an efficient interface to the OpenEmbedded build
+              that allows you to start builds and examine build statistics.
+              </para></listitem>
+-         <listitem><para><emphasis>Image Development using Hob:</emphasis>
+-             You can use the <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink>
+-             to build custom operating system images within the build
+-             environment.
+-             Hob provides an efficient interface to the OpenEmbedded build system.
+-             </para></listitem>
+          <listitem><para><emphasis>Using a Development Shell:</emphasis>
+              You can use a <filename>devshell</filename> to efficiently debug
+              commands or simply edit packages.
+@@ -3189,47 +3183,6 @@
+     </para>
+ </section>
+ 
+-<section id='image-development-using-hob'>
+-    <title>Image Development Using Hob</title>
+-
+-    <para>
+-        The <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink> is a graphical user interface for the
+-        OpenEmbedded build system, which is based on BitBake.
+-        You can use the Hob to build custom operating system images within the Yocto Project build environment.
+-        Hob simply provides a friendly interface over the build system used during development.
+-        In other words, building images with the Hob lets you take care of common build tasks more easily.
+-    </para>
+-
+-    <para>
+-        For a better understanding of Hob, see the project page at
+-        <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'></ulink>
+-        on the Yocto Project website.
+-        If you follow the "Documentation" link from the Hob page, you will
+-        find a short introductory training video on Hob.
+-        The following lists some features of Hob:
+-        <itemizedlist>
+-            <listitem><para>You can setup and run Hob using these commands:
+-            <literallayout class='monospaced'>
+-     $ source oe-init-build-env
+-     $ hob
+-            </literallayout></para></listitem>
+-            <listitem><para>You can set the
+-                <ulink url='&YOCTO_DOCS_REF_URL;#var-MACHINE'><filename>MACHINE</filename></ulink>
+-                for which you are building the image.</para></listitem>
+-            <listitem><para>You can modify various policy settings such as the
+-                package format with which to build,
+-                the parallelism BitBake uses, whether or not to build an
+-                external toolchain, and which host to build against.
+-                </para></listitem>
+-            <listitem><para>You can manage
+-                <link linkend='understanding-and-creating-layers'>layers</link>.</para></listitem>
+-            <listitem><para>You can select a base image and then add extra packages for your custom build.
+-                </para></listitem>
+-            <listitem><para>You can launch and monitor the build from within Hob.</para></listitem>
+-        </itemizedlist>
+-    </para>
+-</section>
+-
+ <section id="platdev-appdev-devshell">
+     <title>Using a Development Shell</title>
+ 
+diff --git a/documentation/ref-manual/introduction.xml b/documentation/ref-manual/introduction.xml
+index 57e4a25..e82f834 100644
+--- a/documentation/ref-manual/introduction.xml
++++ b/documentation/ref-manual/introduction.xml
+@@ -192,10 +192,6 @@
+             supported Linux distribution, instances might exist where you
+             encounter a problem while using the Yocto Project on a specific
+             distribution.
+-            For example, the CentOS 6.4 distribution does not include the
+-            Gtk+ 2.20.0 and PyGtk 2.21.0 (or higher) packages, which are
+-            required to run
+-            <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink>.
+         </note>
+     </section>
+ 
+diff --git a/documentation/ref-manual/migration.xml b/documentation/ref-manual/migration.xml
+index 7f1ef8c..670e1c1 100644
+--- a/documentation/ref-manual/migration.xml
++++ b/documentation/ref-manual/migration.xml
+@@ -125,7 +125,7 @@
+                 reference hardware Board Support Packages (BSPs), respectively:
+                 <filename>meta-yocto</filename> and
+                 <filename>meta-yocto-bsp</filename>.
+-                When running BitBake or Hob for the first time after upgrading,
++                When running BitBake for the first time after upgrading,
+                 your <filename>conf/bblayers.conf</filename> file will be
+                 updated to handle this change and you will be asked to
+                 re-run or restart for the changes to take effect.
+@@ -1446,18 +1446,6 @@
+         </section>
+     </section>
+ 
+-    <section id='migration-1.6-directory-layout-changes'>
+-        <title>Directory Layout Changes</title>
+-
+-        <para>
+-            The <filename>meta-hob</filename> layer has been removed from
+-            the top-level of the
+-            <ulink url='&YOCTO_DOCS_DEV_URL;#source-directory'>Source Directory</ulink>.
+-            The contents of this layer are no longer needed by the Hob
+-            user interface for building images and toolchains.
+-        </para>
+-    </section>
+-
+     <section id='migration-1.6-package-test-ptest'>
+         <title>Package Test (ptest)</title>
+ 
+diff --git a/documentation/ref-manual/ref-bitbake.xml b/documentation/ref-manual/ref-bitbake.xml
+index dc402db..90afe93 100644
+--- a/documentation/ref-manual/ref-bitbake.xml
++++ b/documentation/ref-manual/ref-bitbake.xml
+@@ -414,7 +414,7 @@ Options:
+   -l DEBUG_DOMAINS, --log-domains=DEBUG_DOMAINS
+                         Show debug logging for the specified logging domains
+   -P, --profile         Profile the command and save reports.
+-  -u UI, --ui=UI        The user interface to use (e.g. knotty, hob, depexp).
++  -u UI, --ui=UI        The user interface to use (e.g. knotty, depexp).
+   -t SERVERTYPE, --servertype=SERVERTYPE
+                         Choose which server to use, process or xmlrpc.
+   --revisions-changed   Set the exit code depending on whether upstream
+diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
+index c4f15c9..bf4e5a9 100644
+--- a/documentation/ref-manual/ref-classes.xml
++++ b/documentation/ref-manual/ref-classes.xml
+@@ -2558,22 +2558,6 @@
+     </para>
+ </section>
+ 
+-<section id='ref-classes-packageinfo'>
+-    <title><filename>packageinfo.bbclass</filename></title>
+-
+-    <para>
+-        The <filename>packageinfo</filename> class
+-        gives a BitBake user interface the ability to retrieve information
+-        about output packages from the <filename>pkgdata</filename> files.
+-    </para>
+-
+-    <para>
+-        This class is enabled automatically when using the
+-        <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink>
+-        user interface.
+-    </para>
+-</section>
+-
+ <section id='ref-classes-patch'>
+     <title><filename>patch.bbclass</filename></title>
+ 
+diff --git a/documentation/ref-manual/ref-structure.xml b/documentation/ref-manual/ref-structure.xml
+index 725435e..578b381 100644
+--- a/documentation/ref-manual/ref-structure.xml
++++ b/documentation/ref-manual/ref-structure.xml
+@@ -738,8 +738,7 @@
+         <para>
+             Be careful when deleting files in this directory.
+             You can safely delete old images from this directory (e.g.
+-            <filename>core-image-*</filename>, <filename>hob-image-*</filename>,
+-            etc.).
++            <filename>core-image-*</filename>).
+             However, the kernel (<filename>*zImage*</filename>, <filename>*uImage*</filename>, etc.),
+             bootloader and other supplementary files might be deployed here prior to building an
+             image.
+diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
+index 71f4ca6..fabce13 100644
+--- a/documentation/ref-manual/ref-variables.xml
++++ b/documentation/ref-manual/ref-variables.xml
+@@ -1134,20 +1134,7 @@
+        /home/scottrif/poky/meta-yocto-bsp \
+        /home/scottrif/poky/meta-mykernel \
+        "
+-
+-     BBLAYERS_NON_REMOVABLE ?= " \
+-       /home/scottrif/poky/meta \
+-       /home/scottrif/poky/meta-yocto \
+-       "
+                     </literallayout>
+-                    <note>
+-                        The
+-                        <link linkend='var-BBLAYERS_NON_REMOVABLE'><filename>BBLAYERS_NON_REMOVABLE</filename></link>
+-                        variable exists only for
+-                        <ulink url='https://www.yoctoproject.org/tools-resources/projects/hob'>Hob</ulink>.
+-                        The OpenEmbedded build system does not use this
+-                        variable.
+-                    </note>
+                 </para>
+ 
+                 <para>
+@@ -1157,47 +1144,6 @@
+             </glossdef>
+         </glossentry>
+ 
+-        <glossentry id='var-BBLAYERS_NON_REMOVABLE'><glossterm>BBLAYERS_NON_REMOVABLE</glossterm>
+-            <info>
+-                BBLAYERS_NON_REMOVABLE[doc] = "Lists core layers that cannot be removed from the bblayers.conf file."
+-            </info>
+-            <glossdef>
+-                <para role="glossdeffirst">
+-<!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
+-                    Lists core layers that cannot be removed from the
+-                    <filename>bblayers.conf</filename> file during a build
+-                    using the
+-                    <ulink url='https://www.yoctoproject.org/tools-resources/projects/hob'>Hob</ulink>.
+-                    <note>
+-                        When building an image outside of Hob, the OpenEmbedded
+-                        build system ignores this variable.
+-                    </note>
+-                </para>
+-
+-                <para>
+-                    In order for BitBake to build your image using Hob, your
+-                    <filename>bblayers.conf</filename> file must include the
+-                    <filename>meta</filename> and <filename>meta-yocto</filename>
+-                    core layers.
+-                    Here is an example that shows these two layers listed in
+-                    the <filename>BBLAYERS_NON_REMOVABLE</filename> statement:
+-                    <literallayout class='monospaced'>
+-     BBLAYERS = " \
+-       /home/scottrif/poky/meta \
+-       /home/scottrif/poky/meta-yocto \
+-       /home/scottrif/poky/meta-yocto-bsp \
+-       /home/scottrif/poky/meta-mykernel \
+-       "
+-
+-     BBLAYERS_NON_REMOVABLE ?= " \
+-       /home/scottrif/poky/meta \
+-       /home/scottrif/poky/meta-yocto \
+-       "
+-                    </literallayout>
+-                </para>
+-            </glossdef>
+-        </glossentry>
+-
+         <glossentry id='var-BBMASK'><glossterm>BBMASK</glossterm>
+             <info>
+                 BBMASK[doc] = "Prevents BitBake from processing specific recipes or recipe append files."
+diff --git a/documentation/toaster-manual/toaster-manual-intro.xml b/documentation/toaster-manual/toaster-manual-intro.xml
+index 278c33f..ee1dcba 100644
+--- a/documentation/toaster-manual/toaster-manual-intro.xml
++++ b/documentation/toaster-manual/toaster-manual-intro.xml
+@@ -14,25 +14,6 @@
+         remote build servers.
+     </para>
+ 
+-    <note>
+-        <para>
+-            This release of Toaster does allow you to configure and initiate
+-            builds.
+-            However, you cannot use Toaster to customize image recipes, which
+-            still must either be done by hand or through
+-            <ulink url='&YOCTO_HOME_URL;/tools-resources/projects/hob'>Hob</ulink>.
+-            As Toaster matures, it eventually will equal and surpass Hob
+-            functionality, at which time Hob will be deprecated.
+-        </para>
+-
+-        <para>
+-            For more information on Hob,
+-            see the
+-            "<ulink url='&YOCTO_DOCS_DEV_URL;#image-development-using-hob'>Image Development Using Hob</ulink>"
+-           section in the Yocto Project Development Manual.
+-        </para>
+-    </note>
+-
+     <section id='intro-features'>
+         <title>Toaster Features</title>
+ 
+-- 
+2.5.4 (Apple Git-61)
 
 
-
-Current Dev Position: YP 2.1 M4 (Stabilization only milestone.)
-
-Next Deadline: YP 2.1 M3 Target release date is March 18, 2016
-
-
-SWAT team rotation: Alejandro -> Jussi
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-*        M3 is proving a challenge to stabilize. There was a separate email=
- discussing the various challenges we've had so far. There are several rema=
-ining issues with various patches including gobject-introspection, rpm upgr=
-ade, eSDK, uninative and prelink as well as some 'random' failures. We're c=
-ontinuing to work through these and expect to have an M3 build early next w=
-eek.
-
-*        Right now we don't have fixes for the prelink issue (which breaks =
-glib and hence sato) and this will block M3 until resolved.
-
-*        We're likely to propose we default to using uninative in poky and =
-provide an include file other distros can use too.
-
-*        We're now past feature freeze so no more feature development for 2=
-.1 will be considered.
-
-*        The 2.0.1-rc7 build has finished QA and is likely to be finally re=
-leased.
-
-
-Key YP 2.1 Dates:
-
-YP 2.1 M3 Target release date is March 18, 2016
-
-YP 2.1 M4 / Final Cutoff: March 28, 2016 noon GMT - Stabilization only mile=
-stone.
-
-YP 2.1 Final Release Target: April 29, 2016
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
-
-
-Tracking Metrics:
-
-            WDD 2577 (last week 2565 )
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57041CC9fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:201479464;
-	mso-list-template-ids:1866104902;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:2129690442;
-	mso-list-template-ids:784236514;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.1 M4 (Stabilization only milestone.)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.1 M3 Target release date is March 18, 2016</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Alejandro -&gt; Jussi
-</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">M3 is proving a challenge to stab=
-ilize. There was a separate email discussing the various challenges we&#821=
-7;ve had so far. There are several remaining issues
- with various patches including gobject-introspection, rpm upgrade, eSDK, u=
-ninative and prelink as well as some &#8216;random&#8217; failures. We&#821=
-7;re continuing to work through these and expect to have an M3 build early =
-next week.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Right now we don&#8217;t have fix=
-es for the prelink issue (which breaks glib and hence sato) and this will b=
-lock M3 until resolved.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We&#8217;re likely to propose we =
-default to using uninative in poky and provide an include file other distro=
-s can use too.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We&#8217;re now past feature free=
-ze so no more feature development for 2.1 will be considered.<o:p></o:p></s=
-pan></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">The 2.0.1-rc7 build has finished =
-QA and is likely to be finally released.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.1 Dates:<=
-/span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;co=
-lor:black">YP 2.1 M3 Target release date is March 18, 2016</span><o:p></o:p=
-></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;co=
-lor:black">YP 2.1 M4 / Final Cutoff: March 28, 2016 noon GMT - Stabilizatio=
-n only milestone.</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;co=
-lor:black">YP 2.1 Final Release Target: April 29, 2016</span><o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.1_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.1_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.1_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.1_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2577 (last week 2565 )</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
-gestions for other information you&#8217;d like to see on this weekly statu=
-s update, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57041CC9fmsmsx111amrcor_--
