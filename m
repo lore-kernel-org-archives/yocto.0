@@ -1,63 +1,47 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <robert_joslyn@selinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 226C8E00BE2; Fri,  4 Mar 2016 15:32:50 -0800 (PST)
+	id 1C377E00BFE; Fri,  4 Mar 2016 16:12:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.117.214.143 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA51E00BA0
-	for <yocto@yoctoproject.org>; Fri,  4 Mar 2016 15:32:47 -0800 (PST)
-Received: by mail-qk0-f172.google.com with SMTP id o6so27323615qkc.2
-	for <yocto@yoctoproject.org>; Fri, 04 Mar 2016 15:32:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=NL21mfBo3hsQPOXuwkyMta+Ch7VKSr2T0WWdbutogyg=;
-	b=GtDal1TFe/aY7Ed/2+5/PuhNYtvlC3VCaqK93UYTdslbBIet8ZDVal9sErY5/g8dR2
-	XDO6LPiOV7ju9SvUaKEvoV+Qltv2xFD5He1y9bwJym3KHrQOC3AVQbxwE6HetDKg31K8
-	6fJqrxP61mX6CRz8ymSWiu0jUvFAfmNM0qw/9nt2yoTzOoeWDL6kMtnWPOET4zFkcPoh
-	owTEhsK01yjDW7POETJsHtrB361aMQQtqnLEZakT22pU7Z0kWsJUv3xCthiHQU68l5iI
-	QSkXxpqfii/VbVJKkLBzSIAtXx+ig2XkEyR1iCzfW2J/I+zIZun6ptWlee0Fmse3QJw4
-	vwDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=NL21mfBo3hsQPOXuwkyMta+Ch7VKSr2T0WWdbutogyg=;
-	b=AvfQPllxJimW5mXKCw/9GJSVt9HaaM0JAdVuCpFIdG5o+1hxQdZ/xu4Zio7ax9DLNA
-	4GMBp+Hhi0tK2bKwLkdguK1UvYv8pdLolzbu2YtUOGYAeM/PVPlRnUGOWBtbV/LRmE5U
-	MFX7XuCjw9SNM/3l0ikjUNInLQizcLaS7MJnJ8eksf+/oLRNnHn7eLvHBEsNaN/+4OLx
-	hpaJMEJRB6nRsmldveTFs/UJ4S3ARTywN4JuFJBOeUEUJos1wqsCOKSC893JSElUeOJU
-	TB4GpK2pjOE6JlvmrrQzrA6Or5TV9iwiMbkthVVcrF05vqYG5D4SaXFf6rscpitmVIUl
-	PvqQ==
-X-Gm-Message-State: AD7BkJJuE6eCLCQleDvREzBcP6TBVzovwoQVNIITMAkpByJQytQyczTsfAsTSav6XuRiir8vanHtOSct2wErkw==
-X-Received: by 10.55.73.199 with SMTP id w190mr13541242qka.77.1457134367361;
-	Fri, 04 Mar 2016 15:32:47 -0800 (PST)
+Received: from volare.selinc.com (volare.selinc.com [74.117.214.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F745E00BA0
+	for <yocto@yoctoproject.org>; Fri,  4 Mar 2016 16:12:57 -0800 (PST)
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by volare.selinc.com (8.15.0.59/8.15.0.59) with ESMTP id u250Cv8O026743
+	for <yocto@yoctoproject.org>; Fri, 4 Mar 2016 16:12:57 -0800
+In-Reply-To: <CAMKF1sqwf11WhEAtCtRf+VrqR=BVCegRCVsnc2MeaUK7ReoH3A@mail.gmail.com>
+References: <OF21316994.A2EBE251-ON88257F6C.007FC931-88257F6C.007FFBBB@selinc.com>
+	<CAMKF1sqwf11WhEAtCtRf+VrqR=BVCegRCVsnc2MeaUK7ReoH3A@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Fri, 4 Mar 2016 15:32:17 -0800 (PST)
-In-Reply-To: <CALLyC8QD3TtxYCHX+UkwqmSVfzu02y8=GZmc0G8FdO8Rm22pbQ@mail.gmail.com>
-References: <CALLyC8QD3TtxYCHX+UkwqmSVfzu02y8=GZmc0G8FdO8Rm22pbQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 5 Mar 2016 07:32:17 +0800
-Message-ID: <CAMKF1sp+j53gMh_uVeqpL+TYFyy75NuRhoQXnaYhKMey8rMekA@mail.gmail.com>
-To: Vivek Per <pervivek@gmail.com>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Which package provides reboot.target and shudown.target
+X-KeepSent: FA897E48:32A2821D-88257F6C:00833AFA;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF39 May 13, 2013
+Message-ID: <OFFA897E48.32A2821D-ON88257F6C.00833AFA-88257F6D.00012E40@selinc.com>
+From: robert_joslyn@selinc.com
+Date: Fri, 4 Mar 2016 16:12:54 -0800
+X-MIMETrack: S/MIME Sign by Notes Client on Robert Joslyn/SEL(Release 8.5.3FP4
+	SHF39|May 13, 2013) at 03/04/2016 04:12:53 PM,
+	Serialize by Notes Client on Robert Joslyn/SEL(Release 8.5.3FP4
+	SHF39|May 13, 2013) at 03/04/2016 04:12:53 PM,
+	Serialize complete at 03/04/2016 04:12:53 PM,
+	S/MIME Sign failed at 03/04/2016 04:12:53 PM: The cryptographic key was
+	not found,
+	Serialize by Router on Edison/SEL(Release 9.0.1FP3 HF515|April 25,
+	2015) at 03/04/2016 04:12:57 PM,
+	Serialize complete at 03/04/2016 04:12:57 PM
+X-Proofpoint-Virus-Version: vendor=nai engine=5800 definitions=8094
+	signatures=670697
+Subject: Re: btrfs-tools Requires libgcc_s.so.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,37 +53,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Mar 2016 23:32:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 05 Mar 2016 00:12:59 -0000
+Content-Type: text/plain; charset="US-ASCII"
 
-On Fri, Mar 4, 2016 at 5:25 PM, Vivek Per <pervivek@gmail.com> wrote:
-> Hi,
->                I am using systemd in my target, Currently I am using "reboot
-> -f" to reboot the system, i don't want to reboot like that. I am not able to
-> reboot my system by simply using "reboot" , because I am using systemd not
-> sysvinit. In sysvinit it internally calls "telinit" (or) "shutdown" with
-> runlevels(0-6) , But both are absent in my case . I am using reboot command
-> form "busybox". I dont know whether "reboot" command is provided from any
-> other package. Can any one suggest me how can i use just "reboot" to reboot
-> my system. I am using Yocto build setup (poky 1.7) for this.
->    I found that systemd provides some runlevels similar to sysvinit  as
-> given below
-> https://www.freedesktop.org/software/systemd/man/systemd.special.html
->  Does any one can tell which recipe provides these target files. Any help is
-> appreciated .
+Khem Raj <raj.khem@gmail.com> wrote on 03/04/2016 03:26:37 PM:
+> 
+> On Sat, Mar 5, 2016 at 7:17 AM,  <robert_joslyn@selinc.com> wrote:
+> > I'm building an image using btrfs and I noticed a problem with the
+> > btrfs-tools recipe in Jethro (using core-image-minimal and a 64-bit
+> > machine). The recipe builds fine, but I get the following error when
+> > attempting certain operations using btrfs, such as trying to start a
+> > scrub:
+> >
+> > root@test:~# btrfs scrub start /
+> > scrub started on /, fsid 79dc4fed-a0f7-43e2-b9e7-056b1a2c4cdd 
+(pid=333)
+> > libgcc_s.so.1 must be installed for pthread_cancel to work
+> >
+> > I can solve this by adding libgcc to RDEPENDS for btrfs-tools.
+> 
+> thats fine.
 
-user systemctl reboot
+What is the process for getting this fixed upstream? Trivial patch is 
+below, if that is sufficient.
 
->
->
-> Thanks and Regards
->    Vivek
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Signed-off-by: Robert Joslyn <robert_joslyn@selinc.com>
+---
+diff --git a/meta/recipes-devtools/btrfs-tools/btrfs-tools_4.1.2.bb 
+b/meta/recipes-devtools/btrfs-tools/btrfs-tools_4.1.2.bb
+index 37c622b..cc2ccfc 100644
+--- a/meta/recipes-devtools/btrfs-tools/btrfs-tools_4.1.2.bb
++++ b/meta/recipes-devtools/btrfs-tools/btrfs-tools_4.1.2.bb
+@@ -11,6 +11,7 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=fcb02dc552a041dee27e4b85c7396067"
+ SECTION = "base"
+ DEPENDS = "util-linux attr e2fsprogs lzo acl"
++RDEPENDS_${PN} = "libgcc"
+
+ SRCREV = "7f1328ccb5d159efe850d4eaea9b49bbe8c4181e"
+ SRC_URI = 
+"git://git.kernel.org/pub/scm/linux/kernel/git/kdave/btrfs-progs.git \
 
