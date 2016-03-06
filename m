@@ -1,38 +1,39 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <mkbrown32@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F003CE00BB9; Sun,  6 Mar 2016 12:31:03 -0800 (PST)
+	id 40320E00BB9; Sun,  6 Mar 2016 14:09:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8045DE0084E
-	for <yocto@yoctoproject.org>; Sun,  6 Mar 2016 12:31:00 -0800 (PST)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.125])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1acfJX-00011g-Iq; Sun, 06 Mar 2016 20:30:09 +0000
-To: Joe MacDonald <Joe_MacDonald@mentor.com>
-References: <33006C99F5A5194A9B7A7715DFA3E383EB84972B@ALA-MBA.corp.ad.wrs.com>
-	<56D7B6B4.7060401@twobit.us> <20160303204436.GE4671@mentor.com>
-From: Philip Tricca <flihp@twobit.us>
-Message-ID: <56DC938C.2070005@twobit.us>
-Date: Sun, 6 Mar 2016 12:31:08 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Icedove/38.6.0
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mkbrown32[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.54.190.166 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0041]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Sun, 06 Mar 2016 14:09:32 PST
+Received: from BAY004-OMC3S28.hotmail.com (bay004-omc3s28.hotmail.com
+	[65.54.190.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD1F8E0084E
+	for <yocto@yoctoproject.org>; Sun,  6 Mar 2016 14:09:32 -0800 (PST)
+Received: from BAY181-W53 ([65.54.190.188]) by BAY004-OMC3S28.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Sun, 6 Mar 2016 14:08:31 -0800
+X-TMN: [bckcGuxm2b+2zMk2a6VJOIJLdldpFgaM]
+X-Originating-Email: [mkbrown32@hotmail.com]
+Message-ID: <BAY181-W538F4FDB696298C602C191AEB00@phx.gbl>
+From: Mark Brown <mkbrown32@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 6 Mar 2016 14:08:30 -0800
+Importance: Normal
 MIME-Version: 1.0
-In-Reply-To: <20160303204436.GE4671@mentor.com>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: "Radzykewycz, T \(Radzy\)" <radzy@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux] git recipes
+X-OriginalArrivalTime: 06 Mar 2016 22:08:31.0239 (UTC)
+	FILETIME=[B7F3D170:01D177F4]
+Subject: Controlling Bitbake Memory usage under Windows/Virtualbox/Ubuntu platform
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,203 +45,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Mar 2016 20:31:04 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 06 Mar 2016 22:09:35 -0000
+Content-Type: multipart/alternative;
+	boundary="_e27dfcd3-3e1e-4b10-8a46-a62f8977c817_"
 
-On 03/03/2016 12:44 PM, Joe MacDonald wrote:
-> [Re: [yocto] [meta-selinux] git recipes] On 16.03.02 (Wed 19:59) Philip Tricca wrote:
-> 
->> On 03/02/2016 07:47 AM, Radzykewycz, T (Radzy) wrote:
->>> ________________________________________
->>> On 3/1/16 21:40, Philip Tricca wrote:
->>>> On 03/01/2016 10:30 AM, Joe MacDonald wrote:
->>>>> [Re: [yocto] [meta-selinux] git recipes] On 16.02.29 (Mon 08:06) Mark Hatle wrote:
->>>>>
->>>>>> On 2/27/16 10:23 PM, Philip Tricca wrote:
->>>>>>> Adding a sensible subject.
->>>>>>
->>>>>> Sorry couldn't reply when I saw this when you first sent it.  Corporate email
->>>>>> server went down for those of us who DON'T use outlook.. argh..
->>>>>>
->>>>>> Anyway..
->>>>>>
->>>>>> What I'm generally used to in the Yocto Project work is that the 'git' version
->>>>>> picks a specific git snapshot and makes it a quick operation for someone to
->>>>>> arbitrarily change that snapshot by adjusting the SRCREV.
->>>>>
->>>>> This has been the approach I'd always tried to take with _git recipes as
->>>>> well and it tends to work very well for ones that are either the only or
->>>>> the preferred recipe.  I think in our case we were always preferring the
->>>>> released versions for several historical reasons and the _git recipes were
->>>>> relegated to the second-tier because of it.  But that means that basically
->>>>> they never got updated.
->>>>>
->>>>> About a year and a half ago I started seriously talking about dumping the
->>>>> userspace tools entirely and only ever working out of the _git recipes.
->>>>> Shrikant started doing that work after I discussed it with him but we
->>>>> never got beyond the policy recipes.  So if you guys think this is not a
->>>>> completely insane thing to do, that's the direction I'd like to go with
->>>>> this.
->>>>>
->>>>>> We don't use the AUTOREV parameter, because that causes the system to have to do
->>>>>> a git pull in order to evaluate the available versions and determine the SRCREV
->>>>>> to use.  So it's all down to a parsing and performance issue.
->>>>>
->>>>> And avoiding surprises on the other side of the bathtub curve, when
->>>>> updates pop up that we aren't prepared for.  :-)  But we've been behind
->>>>> on developments aging out, too, so I don't have a strong case to argue
->>>>> against AUTOREV.
->>>>>
->>>>>> What I've done on some of my own projects is have an AUTOREV version (locally),
->>>>>> then when it triggers a recipe breakage, I think update the SRCREV and fix it in
->>>>>> the remote tree..  so I get the autorev, the world gets a version of the package
->>>>>> that keeps working.  (I also update the SRCREV other times as well.. but the
->>>>>> autorev breakage is one of the key triggers.)
->>>>>>
->>>>>> Joe might have some suggestions as well, I'm not against AUTOREV per say, but I
->>>>>> am worried about any performance issues during the parse.
->>>>>
->>>>> I would really rather avoid AUTOREV, but I think the way we would
->>>>> accomplish that is to edge away from our current recipes and bring the
->>>>> _git ones back to centre stage.  Then we're likely to stay on top of a
->>>>> fixed SRCREV anyway.
->>>>
->>>> I think there's something to be said for a simple approach. For those
->>>> showing up and trying to figure out what's going on / how the build
->>>> works it would likely ease their entry if we had straight forward
->>>> recipes that build from the usptream release tarballs. For those wanting
->>>> to verify hashes published by upstream (and maybe signed) this makes
->>>> life easier as well.
->>>
->>> My comments, FWIW:
->>>
->>> I'm not sure I agree that having both recipes is a simple approach.
->>>
->>> If you're getting started, then you may not be aware of how
->>> PREFERRED_VERSION works, or even that it is available at all.
->>> Depending on your personal inclination, you may assume one way
->>> or the other.
-> 
-> I'm somewhat in agreement with Radzy here, though I think the issue may be
-> a bit more subtle than even this.  I think we're more likely to have
-> people coming from a place where they're reasonably familiar with bitbake
-> and Yocto and are thinking they need SELinux to address security issues
-> than we are to have people familiar with SELinux trying to figure out "all
-> this Yocto stuff".
-> 
-> But either way I think the point is still valid.  Any time I see multiple
-> copies of the same recipes in a single layer my first thought is to look
-> at the with an eye toward "why" and "which one is most likely to work for
-> me?"  If we can provide one that will work as well as possible out of the
-> box for the common Yocto-based use-case, I think everyone wins.  I also
-> think it's easier for someone coming in cold on at least one of the topics
-> to integrate a tarball-based recipe than one that pulls from git, so as
-> maintainers I think our time is better spent providing the one that's more
-> difficult and potentially more broadly applicable.
-> 
->>> Using a _git recipe as default, where SRCREV points to something
->>> similar to the latest release might be a better way than having
->>> two recipes.
->>
->> Fair points.
->>
->>>> Mark's point is well taken though and there's lots of value in having
->>>> the git recipes for those who want to experiment. I think Marks test /
->>>> development setup / tracking AUTOREV behind closed doors is very useful.
->>>>
->>>> In the interest of not making too many changes too early on I'd like to
->>>> propose the following:
->>>> - keep the release-tracking recipes the default, no change in
->>>> PREFERRED_VERSIONs etc.
->>>> - Keep the git recipes around and still pointing to a static SRCREV
->>>> - Update SRCREV to the latest release and keep it up to date as we move
->>>> the userspace etc forward
->>>> - Do not maintain a patch queue for the git recipes
->>>>
->>>> I think this last point is likely the only departure from our current
->>>> approach (and my 3rd point is just an update). My reason for removing
->>>> the patch queue is that if someone wants to experiment with git they'll
->>>> likely not want any of those patches. The patch queue will probably just
->>>> get in their way.
->>>
->>> I like the idea of not maintaining a patch queue for git recipes.
->>> I'm not sure how well it will work in practice, though.  This
->>> policy would assume that all git recipes are for projects that
->>> are maintained by reasonable maintainers who accept our input.
->>> Maybe that's the case most of the time, but I doubt it's always
->>> the case.  A trivial change to "Do not normally maintain...." would
->>> sit with me better.
->>
->> Agree.
-> 
-> Here too.
-> 
->> What I want to avoid is the current situation where people are
->> submitting patches that add backport patches to the _git recipes that
->> are already in the upstream git repo.
-> 
-> And again, I completely agree.  I think, actually, the first time we see
-> anyone submitting a backport patch we need to ask if it's a backport from
-> an in-development version or from a newer version and if it's a newer
-> released version, that's an indication our versions are too old.
+--_e27dfcd3-3e1e-4b10-8a46-a62f8977c817_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-This is issue I'm most interested in solving. In going through the
-backlog I ran across this situation and it just looked weird to me. Very
-helpful info from this thread and it looks like enough to make progress.
+I do not see anything in the Bitbake manual for controlling how much memory
+Bitbake should consider itself entitled to consume in the=20
+development platform within which it runs.
+=20
+Running it on //Windows 7 64//i7-2620M//Virtualbox//Ubuntu 14 32-bit//=2C
+I told Virtualbox to allow Ubuntu to use 1.5 GBytes=2C but Windows Task Man=
+ager
+indicates the whole Virtualbox/Ubuntu thread is using only 160 MBytes=20
+-- and is generating approximately 1=2C000 page faults per second.
+=20
+Perhaps as a result=2C this Gumstix Overo build has completed only 760 out =
+of 3792
+total tasks in 21 hours -- at this rate it will complete in 5-6 days.
+=20
+How does the user terminate Bitbake at its current stage=2C increase the me=
+mory it is using=2C
+and then restart in order to speed up this process ?
+=20
+ 		 	   		  =
 
-I'll grab the patch from Wenzong to update the policy recipe to
-2.20151208 and start making a pass over the other _git recipes to bring
-them up to parity with the release we're currently tracking. This
-includes cleaning out the patch queues.
+--_e27dfcd3-3e1e-4b10-8a46-a62f8977c817_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Philip
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>I do not see anything in the Bit=
+bake manual for controlling how much memory<BR>Bitbake should consider itse=
+lf entitled to consume in the <BR>development platform within which it runs=
+.<BR>&nbsp=3B<BR>Running it on //Windows 7 64//i7-2620M//Virtualbox//Ubuntu=
+ 14 32-bit//=2C<BR>I told Virtualbox to allow Ubuntu to use 1.5 GBytes=2C b=
+ut Windows Task Manager<BR>indicates the whole Virtualbox/Ubuntu thread is =
+using only 160 MBytes <BR>--&nbsp=3Band is generating approximately 1=2C000=
+ page faults per second.<BR>&nbsp=3B<BR>Perhaps as a result=2C this Gumstix=
+ Overo build has completed only 760 out of 3792<BR>total tasks in 21 hours =
+-- at this rate it will complete in 5-6 days.<BR>&nbsp=3B<BR>How does the u=
+ser terminate Bitbake at its current stage=2C increase the memory it is usi=
+ng=2C<BR>and then restart in order to speed up this process ?<BR>&nbsp=3B<B=
+R> 		 	   		  </div></body>
+</html>=
 
-> 
-> -J.
-> 
->> Carrying around patches that aren't upstream yet (or as you point out,
->> necessary but not accepted upstream) may be necessary.
->>
->> Thanks,
->> Philip
->>
->>> Enjoy!
->>>
->>> 				-- radzy
->>>
->>>>> But as I say, maybe I'm completely insane on this point.
->>>>
->>>> Nothing insane but I'm feeling conservative, maybe just till the dust
->>>> settles. Agree / disagree with the above as a first step at least?
->>>>
->>>> Philip
->>>>
->>>>>
->>>>> -J.
->>>>>
->>>>>>
->>>>>> --Mark
->>>>>>
->>>>>>> On 02/27/2016 08:17 PM, Philip Tricca wrote:
->>>>>>>> While going through the backlog I ran across the 'git' versions of the
->>>>>>>> user space. I noticed that a recent contribution was adding a patch to
->>>>>>>> the git recipe and I figured that this patch would already be upstream
->>>>>>>> and so wouldn't be necessary. Not so. The 'git' versions have SRCREV
->>>>>>>> hard wired (SRCREV) to a commit id but it's way back from the end of
->>>>>>>> 2013. They're also disabled via DEFAULT_PREFERENCE = "-1"
->>>>>>>>
->>>>>>>> These 'git' versions seem super useful for testing bleeding edge stuff
->>>>>>>> so IMHO keeping them around would be the right thing to do. Not sure how
->>>>>>>> I feel about them tracking an ancient commit though. Since they're never
->>>>>>>> built by default it seems reasonable to track the master branch.
->>>>>>>>
->>>>>>>> What's our philosophy w/r to recipes that pull from git? Is there some
->>>>>>>> history behind this SRCREV?
->>>>>>>>
->>>>>>>> Thanks,
->>>>>>>> Philip
->>
-
-
+--_e27dfcd3-3e1e-4b10-8a46-a62f8977c817_--
