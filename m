@@ -1,60 +1,34 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7385E008C1; Sat,  5 Mar 2016 13:41:08 -0800 (PST)
+	id 0E593E00BE8; Sun,  6 Mar 2016 12:08:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 173A0E00863
-	for <yocto@yoctoproject.org>; Sat,  5 Mar 2016 13:41:07 -0800 (PST)
-Received: by mail-ig0-f170.google.com with SMTP id qc2so91045igb.1
-	for <yocto@yoctoproject.org>; Sat, 05 Mar 2016 13:41:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UiCRxc59CmgS6tarvnTkBdTTjhaAxGmX9K+1yRuPNEo=;
-	b=fu2E2S4IrY01eNpiuP1L1H4Gh6Cx+c4ivgvdUCdW7x121Gnk9RdGX/uLphM9qKYxe/
-	pqSctS8yfMitg8Q1PCVReVUHGYePJUEU1urv/5MMhcAeLIiKv+z3XEnDbuYgNhEdaqRG
-	owtmk9Nkib206Q0I4sJHBsiVMwfaDTm4KHGsY6Qzm4zlva2lvcbYFNPex5olYa5pUOrm
-	nMUxdfkaO8nOX4M1JcDjxkblTNfbsNVr7hWWmVMJxcwr5imbyxcfBqPmcHkmv3hnxzBC
-	oNwnwfDrrv0EjMM88afnB5oRhbMduM2UNIuCl4Lpt1xyJAVolmu3X5lv5489u6i+3paz
-	ovLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=UiCRxc59CmgS6tarvnTkBdTTjhaAxGmX9K+1yRuPNEo=;
-	b=OvbjPCaMjpyoKCgjxWsy/S9tbI8JPN1MqFWwIPZjV3wUtkaoKDuy7iKCGy1dkmoy4h
-	uPZHxSLqzM5ruLQ79WFZtY0qKWYrM/BhZXe6OKhanOptJRBdL88GjgZHmF/nMM1tu2Py
-	T4L3Rt46Z6P0US58YE5zzxgLqY+wOgp+vUhJzJHmfFcLpuatAJVHgAKjucxwMXZ+t3M9
-	lmsP6UgvaqrSU6PAXwJG9gvpnazWAxmJONSdcXrq1kgpKUQF9uaI8GGPUKLCkwR9D6Cu
-	M6uyp2YXq0KSacNgzO52m58PmsjQS34G9mBkOrdnOo4trR++ITux8g89mhM2McPlqdJJ
-	y6Qw==
-X-Gm-Message-State: AD7BkJKfuDWlyJv1UQ0Ezsf6UzleyEq2iQnhcG+F+rlstVTYCrEIC90CUuWnC8s10iysufdPPybtgQC6TJhIUE3B
-X-Received: by 10.50.126.8 with SMTP id mu8mr5038964igb.52.1457214067453; Sat,
-	05 Mar 2016 13:41:07 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Sat, 5 Mar 2016 13:40:48 -0800 (PST)
-In-Reply-To: <18448427.V3ACvxT67R@rjs-zotac.streifs.net>
-References: <18448427.V3ACvxT67R@rjs-zotac.streifs.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sat, 5 Mar 2016 21:40:48 +0000
-Message-ID: <CAJTo0La2CZAKw0Cd4_NpPLt=qXy3x3Arv36huhUMmCH3tV14YA@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building gdb-7.10 for arm with master
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA3CBE0084E
+	for <yocto@yoctoproject.org>; Sun,  6 Mar 2016 12:08:45 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=slag.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1acexy-00010C-6t; Sun, 06 Mar 2016 20:07:52 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: mark.hatle@windriver.com
+Date: Sun,  6 Mar 2016 20:08:23 +0000
+Message-Id: <1457294903-74025-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 2.1.4
+In-Reply-To: <56D8A187.8050502@windriver.com>
+References: <56D8A187.8050502@windriver.com>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: [PATCH] udev: Rename udev bbappend to eudev.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,67 +40,424 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Mar 2016 21:41:08 -0000
-Content-Type: multipart/alternative; boundary=047d7b1635bfda559a052d5416ff
+X-List-Received-Date: Sun, 06 Mar 2016 20:08:49 -0000
 
---047d7b1635bfda559a052d5416ff
-Content-Type: text/plain; charset=UTF-8
+Required by switch to eudev in oe-core. Dropping PR since this is
+effectively a new recipe.
 
-On 5 March 2016 at 21:19, Rudolf J Streif <rudolf.streif@gmail.com> wrote:
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-core/eudev/eudev/init           | 144 ++++++++++++++++++++++++++++++++
+ recipes-core/eudev/eudev/udev-cache     |  32 +++++++
+ recipes-core/eudev/eudev_3.1.5.bbappend |   3 +
+ recipes-core/udev/udev/init             | 144 --------------------------------
+ recipes-core/udev/udev/udev-cache       |  32 -------
+ recipes-core/udev/udev_182.bbappend     |   5 --
+ 6 files changed, 179 insertions(+), 181 deletions(-)
+ create mode 100644 recipes-core/eudev/eudev/init
+ create mode 100644 recipes-core/eudev/eudev/udev-cache
+ create mode 100644 recipes-core/eudev/eudev_3.1.5.bbappend
+ delete mode 100644 recipes-core/udev/udev/init
+ delete mode 100644 recipes-core/udev/udev/udev-cache
+ delete mode 100644 recipes-core/udev/udev_182.bbappend
 
-> compile fails with the following error message:
->
-> | make[2]: *** No rule to make target '../readline/libreadline.a', needed
-> by 'gdb'.  Stop.
-> | make[2]: *** Waiting for unfinished jobs....
->
-> The reason seems to be a broken path to the built-in readline in the
-> makefile as the default configuration is
-> --without-system-readline. Enabling
->
-> PACKAGECONFIG_append_pn-dbg = " readline"
->
+diff --git a/recipes-core/eudev/eudev/init b/recipes-core/eudev/eudev/init
+new file mode 100644
+index 0000000..9a4b293
+--- /dev/null
++++ b/recipes-core/eudev/eudev/init
+@@ -0,0 +1,144 @@
++#!/bin/sh
++
++### BEGIN INIT INFO
++# Provides:          udev
++# Required-Start:    mountvirtfs
++# Required-Stop:
++# Default-Start:     S
++# Default-Stop:
++# Short-Description: Start udevd, populate /dev and load drivers.
++### END INIT INFO
++
++export TZ=/etc/localtime
++
++[ -d /sys/class ] || exit 1
++[ -r /proc/mounts ] || exit 1
++[ -x @UDEVD@ ] || exit 1
++if [ "$use_udev_cache" != "" ]; then
++	[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
++fi
++[ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf
++[ -f /etc/default/rcS ] && . /etc/default/rcS
++
++readfiles () {
++   READDATA=""
++   for filename in $@; do
++	   if [ -r $filename ]; then
++		   while read line; do
++			   READDATA="$READDATA$line"
++		   done < $filename
++	   fi
++   done
++}
++
++kill_udevd () {
++    pid=`pidof -x udevd`
++    [ -n "$pid" ] && kill $pid
++}
++
++case "$1" in
++  start)
++    export ACTION=add
++    # propagate /dev from /sys
++    echo "Starting udev"
++
++    # Check for requireed devtmpfs before trying to start udev and
++    # mount a no-existant fs.
++    if ! grep -q devtmpfs /proc/filesystems
++    then
++        echo "Missing devtmpfs, which is required for udev to run";
++        echo "Halting..."
++        halt
++    fi
++    # mount the devtmpfs on /dev, if not already done
++    LANG=C awk '$2 == "/dev" && ($3 == "devtmpfs") { exit 1 }' /proc/mounts && {
++            mount -n -o mode=0755 -t devtmpfs none "/dev"
++    }
++    [ -e /dev/pts ] || mkdir -m 0755 /dev/pts
++    [ -e /dev/shm ] || mkdir -m 1777 /dev/shm
++    # the automount rule for udev needs /tmp directory available, as /tmp is a symlink
++    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need to make sure
++    # /var/volatile/tmp directory to be available.
++    mkdir -p /var/volatile/tmp
++
++    # restorecon /run early to allow mdadm creating dir /run/mdadm
++    test ! -x /sbin/restorecon || /sbin/restorecon -F /run
++
++    # Cache handling.
++    # A list of files which are used as a criteria to judge whether the udev cache could be reused.
++    CMP_FILE_LIST="/proc/version /proc/cmdline /proc/devices /proc/atags"
++    if [ "$use_udev_cache" != "" ]; then
++	    if [ "$DEVCACHE" != "" ]; then
++		    if [ -e $DEVCACHE ]; then
++			    readfiles $CMP_FILE_LIST
++			    NEWDATA="$READDATA"
++			    readfiles /etc/udev/cache.data
++			    OLDDATA="$READDATA"
++			    if [ "$OLDDATA" = "$NEWDATA" ]; then
++				    tar --directory=/ -xf $DEVCACHE > /dev/null 2>&1
++				    not_first_boot=1
++				    [ "$VERBOSE" != "no" ] && echo "udev: using cache file $DEVCACHE"
++				    [ -e /dev/shm/udev.cache ] && rm -f /dev/shm/udev.cache
++			    else
++				    # Output detailed reason why the cached /dev is not used
++				    if [ "$VERBOSE" != "no" ]; then
++					    echo "udev: udev cache not used"
++					    echo "udev: we use $CMP_FILE_LIST as criteria to judge whether the cache /dev could be resued"
++					    echo "udev: olddata: $OLDDATA"
++					    echo "udev: newdata: $NEWDATA"
++				    fi
++				    echo "$NEWDATA" > /dev/shm/udev.cache
++			    fi
++			    /usr/sbin/setenforce 1
++		    else
++			    if [ "$ROOTFS_READ_ONLY" != "yes" ]; then
++				    # If rootfs is not read-only, it's possible that a new udev cache would be generated;
++				    # otherwise, we do not bother to read files.
++				    readfiles $CMP_FILE_LIST
++				    echo "$READDATA" > /dev/shm/udev.cache
++			    fi
++		    fi
++	    fi
++    fi
++
++    # make_extra_nodes
++    kill_udevd > "/dev/null" 2>&1
++
++    # trigger the sorted events
++    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
++    @UDEVD@ -d
++
++    udevadm control --env=STARTUP=1
++    if [ "$not_first_boot" != "" ];then
++            udevadm trigger --action=add --subsystem-nomatch=tty --subsystem-nomatch=mem --subsystem-nomatch=vc --subsystem-nomatch=vtconsole --subsystem-nomatch=misc --subsystem-nomatch=dcon --subsystem-nomatch=pci_bus  --subsystem-nomatch=graphics	 --subsystem-nomatch=backlight --subsystem-nomatch=video4linux	--subsystem-nomatch=platform
++            (udevadm settle --timeout=10; udevadm control --env=STARTUP=)&
++    else
++            udevadm trigger --action=add
++            udevadm settle
++    fi
++
++    test ! -x /sbin/restorecon || /sbin/restorecon -F /dev /dev/shm /dev/pts
++
++    ;;
++  stop)
++    echo "Stopping udevd"
++    start-stop-daemon --stop --name udevd --quiet
++    ;;
++  restart)
++    $0 stop
++    sleep 1
++    $0 start
++    ;;
++  status)
++    pid=`pidof -x udevd`
++    if [ -n "$pid" ]; then
++	echo "udevd (pid $pid) is running ..."
++    else
++	echo "udevd is stopped"
++    fi
++    ;;
++  *)
++    echo "Usage: $0 {start|stop|status|restart}"
++    exit 1
++esac
++exit 0
+diff --git a/recipes-core/eudev/eudev/udev-cache b/recipes-core/eudev/eudev/udev-cache
+new file mode 100644
+index 0000000..6898577
+--- /dev/null
++++ b/recipes-core/eudev/eudev/udev-cache
+@@ -0,0 +1,32 @@
++#!/bin/sh -e
++
++### BEGIN INIT INFO
++# Provides:          udev-cache
++# Required-Start:    mountall
++# Required-Stop:
++# Default-Start:     S
++# Default-Stop:
++# Short-Description: cache /dev to speedup the udev next boot
++### END INIT INFO
++
++export TZ=/etc/localtime
++
++[ -r /proc/mounts ] || exit 1
++[ -x @UDEVD@ ] || exit 1
++[ -d /sys/class ] || exit 1
++
++[ -f /etc/default/rcS ] && . /etc/default/rcS
++[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
++
++if [ "$ROOTFS_READ_ONLY" = "yes" ]; then
++    [ "$VERBOSE" != "no" ] && echo "udev-cache: read-only rootfs, skip generating udev-cache"
++    exit 0
++fi
++
++if [ "$DEVCACHE" != "" -a -e /dev/shm/udev.cache ]; then
++	echo "Populating dev cache"
++	tar --directory=/ --selinux --xattrs -cf "$DEVCACHE" dev
++	mv /dev/shm/udev.cache /etc/udev/cache.data
++fi
++
++exit 0
+diff --git a/recipes-core/eudev/eudev_3.1.5.bbappend b/recipes-core/eudev/eudev_3.1.5.bbappend
+new file mode 100644
+index 0000000..e1e7cd1
+--- /dev/null
++++ b/recipes-core/eudev/eudev_3.1.5.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++inherit enable-selinux
+diff --git a/recipes-core/udev/udev/init b/recipes-core/udev/udev/init
+deleted file mode 100644
+index bb8b95b..0000000
+--- a/recipes-core/udev/udev/init
++++ /dev/null
+@@ -1,144 +0,0 @@
+-#!/bin/sh
+-
+-### BEGIN INIT INFO
+-# Provides:          udev
+-# Required-Start:    mountvirtfs
+-# Required-Stop:     
+-# Default-Start:     S
+-# Default-Stop:
+-# Short-Description: Start udevd, populate /dev and load drivers.
+-### END INIT INFO
+-
+-export TZ=/etc/localtime
+-
+-[ -d /sys/class ] || exit 1
+-[ -r /proc/mounts ] || exit 1
+-[ -x @UDEVD@ ] || exit 1
+-if [ "$use_udev_cache" != "" ]; then
+-	[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
+-fi
+-[ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf
+-[ -f /etc/default/rcS ] && . /etc/default/rcS
+-
+-readfiles () {
+-   READDATA=""
+-   for filename in $@; do
+-	   if [ -r $filename ]; then
+-		   while read line; do
+-			   READDATA="$READDATA$line"
+-		   done < $filename
+-	   fi
+-   done
+-}
+-
+-kill_udevd () {
+-    pid=`pidof -x udevd`
+-    [ -n "$pid" ] && kill $pid
+-}
+-
+-case "$1" in
+-  start)
+-    export ACTION=add
+-    # propagate /dev from /sys
+-    echo "Starting udev"
+-
+-    # Check for requireed devtmpfs before trying to start udev and
+-    # mount a no-existant fs.
+-    if ! grep -q devtmpfs /proc/filesystems
+-    then
+-        echo "Missing devtmpfs, which is required for udev to run";
+-        echo "Halting..."
+-        halt
+-    fi
+-    # mount the devtmpfs on /dev, if not already done
+-    LANG=C awk '$2 == "/dev" && ($3 == "devtmpfs") { exit 1 }' /proc/mounts && {
+-            mount -n -o mode=0755 -t devtmpfs none "/dev"
+-    }
+-    [ -e /dev/pts ] || mkdir -m 0755 /dev/pts
+-    [ -e /dev/shm ] || mkdir -m 1777 /dev/shm
+-    # the automount rule for udev needs /tmp directory available, as /tmp is a symlink
+-    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need to make sure
+-    # /var/volatile/tmp directory to be available.
+-    mkdir -p /var/volatile/tmp
+-
+-    # restorecon /run early to allow mdadm creating dir /run/mdadm
+-    test ! -x /sbin/restorecon || /sbin/restorecon -F /run
+-
+-    # Cache handling.
+-    # A list of files which are used as a criteria to judge whether the udev cache could be reused.
+-    CMP_FILE_LIST="/proc/version /proc/cmdline /proc/devices /proc/atags"
+-    if [ "$use_udev_cache" != "" ]; then
+-	    if [ "$DEVCACHE" != "" ]; then
+-		    if [ -e $DEVCACHE ]; then
+-			    readfiles $CMP_FILE_LIST
+-			    NEWDATA="$READDATA"
+-			    readfiles /etc/udev/cache.data
+-			    OLDDATA="$READDATA"
+-			    if [ "$OLDDATA" = "$NEWDATA" ]; then
+-				    tar --directory=/ -xf $DEVCACHE > /dev/null 2>&1
+-				    not_first_boot=1
+-				    [ "$VERBOSE" != "no" ] && echo "udev: using cache file $DEVCACHE"
+-				    [ -e /dev/shm/udev.cache ] && rm -f /dev/shm/udev.cache
+-			    else
+-				    # Output detailed reason why the cached /dev is not used
+-				    if [ "$VERBOSE" != "no" ]; then
+-					    echo "udev: udev cache not used"
+-					    echo "udev: we use $CMP_FILE_LIST as criteria to judge whether the cache /dev could be resued"
+-					    echo "udev: olddata: $OLDDATA"
+-					    echo "udev: newdata: $NEWDATA"
+-				    fi
+-				    echo "$NEWDATA" > /dev/shm/udev.cache
+-			    fi
+-			    /usr/sbin/setenforce 1
+-		    else
+-			    if [ "$ROOTFS_READ_ONLY" != "yes" ]; then
+-				    # If rootfs is not read-only, it's possible that a new udev cache would be generated;
+-				    # otherwise, we do not bother to read files.
+-				    readfiles $CMP_FILE_LIST
+-				    echo "$READDATA" > /dev/shm/udev.cache
+-			    fi
+-		    fi
+-	    fi
+-    fi
+-
+-    # make_extra_nodes
+-    kill_udevd > "/dev/null" 2>&1
+-
+-    # trigger the sorted events
+-    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
+-    @UDEVD@ -d
+-
+-    udevadm control --env=STARTUP=1
+-    if [ "$not_first_boot" != "" ];then
+-            udevadm trigger --action=add --subsystem-nomatch=tty --subsystem-nomatch=mem --subsystem-nomatch=vc --subsystem-nomatch=vtconsole --subsystem-nomatch=misc --subsystem-nomatch=dcon --subsystem-nomatch=pci_bus  --subsystem-nomatch=graphics	 --subsystem-nomatch=backlight --subsystem-nomatch=video4linux	--subsystem-nomatch=platform
+-            (udevadm settle --timeout=10; udevadm control --env=STARTUP=)&
+-    else
+-            udevadm trigger --action=add
+-            udevadm settle
+-    fi
+-
+-    test ! -x /sbin/restorecon || /sbin/restorecon -F /dev /dev/shm /dev/pts
+-
+-    ;;
+-  stop)
+-    echo "Stopping udevd"
+-    start-stop-daemon --stop --name udevd --quiet
+-    ;;
+-  restart)
+-    $0 stop
+-    sleep 1
+-    $0 start
+-    ;;
+-  status)
+-    pid=`pidof -x udevd`
+-    if [ -n "$pid" ]; then
+-	echo "udevd (pid $pid) is running ..."
+-    else
+-	echo "udevd is stopped"
+-    fi
+-    ;;
+-  *)
+-    echo "Usage: $0 {start|stop|status|restart}"
+-    exit 1
+-esac
+-exit 0
+diff --git a/recipes-core/udev/udev/udev-cache b/recipes-core/udev/udev/udev-cache
+deleted file mode 100644
+index 6898577..0000000
+--- a/recipes-core/udev/udev/udev-cache
++++ /dev/null
+@@ -1,32 +0,0 @@
+-#!/bin/sh -e
+-
+-### BEGIN INIT INFO
+-# Provides:          udev-cache
+-# Required-Start:    mountall
+-# Required-Stop:
+-# Default-Start:     S
+-# Default-Stop:
+-# Short-Description: cache /dev to speedup the udev next boot
+-### END INIT INFO
+-
+-export TZ=/etc/localtime
+-
+-[ -r /proc/mounts ] || exit 1
+-[ -x @UDEVD@ ] || exit 1
+-[ -d /sys/class ] || exit 1
+-
+-[ -f /etc/default/rcS ] && . /etc/default/rcS
+-[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache
+-
+-if [ "$ROOTFS_READ_ONLY" = "yes" ]; then
+-    [ "$VERBOSE" != "no" ] && echo "udev-cache: read-only rootfs, skip generating udev-cache"
+-    exit 0
+-fi
+-
+-if [ "$DEVCACHE" != "" -a -e /dev/shm/udev.cache ]; then
+-	echo "Populating dev cache"
+-	tar --directory=/ --selinux --xattrs -cf "$DEVCACHE" dev
+-	mv /dev/shm/udev.cache /etc/udev/cache.data
+-fi
+-
+-exit 0
+diff --git a/recipes-core/udev/udev_182.bbappend b/recipes-core/udev/udev_182.bbappend
+deleted file mode 100644
+index 6f8f049..0000000
+--- a/recipes-core/udev/udev_182.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-PR .= ".4"
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-inherit with-selinux
+-- 
+2.1.4
 
-The default is with system readline...
 
-gdb-common.inc:PACKAGECONFIG ??= "readline"
-
-However if you do have PACKAGECONFIG set to "" for gdb for some reason then
-you'll want to cherry-pick ce2542057d877044a7548f2884d192f4f672c75a
-(master-next) to fix builds with the internal readline if you've got
-no-static-libs enabled (which is true for Poky).
-
-Ross
-
---047d7b1635bfda559a052d5416ff
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 March 2016 at 21:19, Rudolf J Streif <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:rudolf.streif@gmail.com" target=3D"_blank">rudolf.streif@gmail.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);b=
-order-left-style:solid;padding-left:1ex"><div id=3D":1wf" class=3D"" style=
-=3D"overflow:hidden">compile fails with the following error message:<br>
-<br>
-| make[2]: *** No rule to make target &#39;../readline/libreadline.a&#39;, =
-needed by &#39;gdb&#39;.=C2=A0 Stop.<br>
-| make[2]: *** Waiting for unfinished jobs....<br>
-<br>
-The reason seems to be a broken path to the built-in readline in the makefi=
-le as the default configuration is<br>
---without-system-readline. Enabling<br>
-<br>
-PACKAGECONFIG_append_pn-dbg =3D &quot; readline&quot;</div></blockquote></d=
-iv><br>The default is with system readline...</div><div class=3D"gmail_extr=
-a"><br></div><div class=3D"gmail_extra">gdb-common.inc:PACKAGECONFIG ??=3D =
-&quot;readline&quot;<br></div><div class=3D"gmail_extra"><br></div><div cla=
-ss=3D"gmail_extra">However if you do have PACKAGECONFIG set to &quot;&quot;=
- for gdb for some reason then you&#39;ll want to cherry-pick ce2542057d8770=
-44a7548f2884d192f4f672c75a (master-next) to fix builds with the internal re=
-adline if you&#39;ve got no-static-libs enabled (which is true for Poky).</=
-div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</d=
-iv></div>
-
---047d7b1635bfda559a052d5416ff--
