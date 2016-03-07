@@ -1,6 +1,6 @@
 Return-Path: <sds@tycho.nsa.gov>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72562E00B9C; Mon,  7 Mar 2016 12:54:14 -0800 (PST)
+	id E92CCE00C94; Mon,  7 Mar 2016 12:54:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,25 +12,25 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from emvm-gh1-uea09.nsa.gov (emvm-gh1-uea09.nsa.gov [63.239.67.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCEE0E00894
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 12:54:13 -0800 (PST)
-X-TM-IMSS-Message-ID: <5220df3600020aab@nsa.gov>
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6F50E0083D
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 12:54:17 -0800 (PST)
+X-TM-IMSS-Message-ID: <5220d7c700020aa8@nsa.gov>
 Received: from tarius.tycho.ncsc.mil ([144.51.242.1]) by nsa.gov
 	([10.208.42.194]) with ESMTP (TREND IMSS SMTP Service 7.1) id
-	5220df3600020aab ; Mon, 7 Mar 2016 15:57:14 -0500
+	5220d7c700020aa8 ; Mon, 7 Mar 2016 15:57:12 -0500
 Received: from moss-pluto.infosec.tycho.ncsc.mil (moss-pluto [192.168.25.131])
 	by tarius.tycho.ncsc.mil (8.14.4/8.14.4) with ESMTP id
-	u27KrMGP003618; Mon, 7 Mar 2016 15:54:02 -0500
+	u27KrMGO003618; Mon, 7 Mar 2016 15:54:00 -0500
 From: Stephen Smalley <sds@tycho.nsa.gov>
 To: flihp@twobit.us
-Date: Mon,  7 Mar 2016 15:52:51 -0500
-Message-Id: <1457383972-6283-12-git-send-email-sds@tycho.nsa.gov>
+Date: Mon,  7 Mar 2016 15:52:50 -0500
+Message-Id: <1457383972-6283-11-git-send-email-sds@tycho.nsa.gov>
 X-Mailer: git-send-email 2.4.3
 In-Reply-To: <1457383972-6283-1-git-send-email-sds@tycho.nsa.gov>
 References: <1457383972-6283-1-git-send-email-sds@tycho.nsa.gov>
 X-TM-AS-MML: disable
 Cc: yocto@yoctoproject.org
-Subject: [PATCH 12/13] libselinux: Only mount /proc if necessary
+Subject: [PATCH 11/13] refpolicy: Add support for the SYSTEMD build.conf option.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,88 +42,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Mar 2016 20:54:14 -0000
+X-List-Received-Date: Mon, 07 Mar 2016 20:54:27 -0000
 
-selinux upstream commit 5a8d8c499b2ef80eaa7b5abe2ec68d7101e613bf
+refpolicy has introduced a new build.conf option, SYSTEMD=y,
+to enable rules specific to using systemd as the init system.
+In particular, without setting this option, rules for direct
+domain transitions from init_t to daemon domains are not included
+in the policy.  Define a POLICY_SYSTEMD variable in the refpolicy
+common include file that can be set elsewhere to enable this support.
 
 Signed-off-by: Stephen Smalley <sds@tycho.nsa.gov>
 ---
- .../libselinux-only-mount-proc-if-necessary.patch  | 54 ++++++++++++++++++++++
- recipes-security/selinux/libselinux_2.5.bb         |  1 +
- 2 files changed, 55 insertions(+)
- create mode 100644 recipes-security/selinux/libselinux/libselinux-only-mount-proc-if-necessary.patch
+ recipes-security/refpolicy/refpolicy_common.inc | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/recipes-security/selinux/libselinux/libselinux-only-mount-proc-if-necessary.patch b/recipes-security/selinux/libselinux/libselinux-only-mount-proc-if-necessary.patch
-new file mode 100644
-index 0000000..ab157b6
---- /dev/null
-+++ b/recipes-security/selinux/libselinux/libselinux-only-mount-proc-if-necessary.patch
-@@ -0,0 +1,54 @@
-+From 0d9368ee5af662a99cf123407884ba0e42053c68 Mon Sep 17 00:00:00 2001
-+From: Stephen Smalley <sds@tycho.nsa.gov>
-+Date: Mon, 29 Feb 2016 10:10:55 -0500
-+Subject: [PATCH] libselinux: only mount /proc if necessary
-+
-+Commit 9df498884665d ("libselinux: Mount procfs before checking
-+/proc/filesystems") changed selinuxfs_exists() to always try
-+mounting /proc before reading /proc/filesystems.  However, this is
-+unnecessary if /proc is already mounted and can produce avc denials
-+if the process is not allowed to perform the mount.  Check first
-+to see if /proc is already present and only try the mount if it is not.
-+
-+Signed-off-by: Stephen Smalley <sds@tycho.nsa.gov>
-+---
-+ src/init.c | 11 +++++++++--
-+ 1 file changed, 9 insertions(+), 2 deletions(-)
-+
-+diff --git a/src/init.c b/src/init.c
-+index 3db4de0..3530594 100644
-+--- a/src/init.c
-++++ b/src/init.c
-+@@ -12,6 +12,7 @@
-+ #include <stdint.h>
-+ #include <limits.h>
-+ #include <sys/mount.h>
-++#include <linux/magic.h>
-+ 
-+ #include "dso.h"
-+ #include "policy.h"
-+@@ -57,13 +58,19 @@ static int verify_selinuxmnt(const char *mnt)
-+ 
-+ int selinuxfs_exists(void)
-+ {
-+-	int exists = 0, mnt_rc = 0;
-++	int exists = 0, mnt_rc = -1, rc;
-++	struct statfs sb;
-+ 	FILE *fp = NULL;
-+ 	char *buf = NULL;
-+ 	size_t len;
-+ 	ssize_t num;
-+ 
-+-	mnt_rc = mount("proc", "/proc", "proc", 0, 0);
-++	do {
-++		rc = statfs("/proc", &sb);
-++	} while (rc < 0 && errno == EINTR);
-++
-++	if (rc == 0 && ((uint32_t)sb.f_type != (uint32_t)PROC_SUPER_MAGIC))
-++		mnt_rc = mount("proc", "/proc", "proc", 0, 0);
-+ 
-+ 	fp = fopen("/proc/filesystems", "r");
-+ 	if (!fp) {
-+-- 
-+2.4.3
-+
-diff --git a/recipes-security/selinux/libselinux_2.5.bb b/recipes-security/selinux/libselinux_2.5.bb
-index a744b2f..0e2d864 100644
---- a/recipes-security/selinux/libselinux_2.5.bb
-+++ b/recipes-security/selinux/libselinux_2.5.bb
-@@ -11,5 +11,6 @@ SRC_URI += "\
-         file://libselinux-make-O_CLOEXEC-optional.patch \
-         file://libselinux-make-SOCK_CLOEXEC-optional.patch \
-         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
-+        file://libselinux-only-mount-proc-if-necessary.patch \
-         file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
-         "
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 0b0b2fd..67d0426 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -35,6 +35,7 @@ POLICY_DISTRO ?= "redhat"
+ POLICY_UBAC ?= "n"
+ POLICY_UNK_PERMS ?= "allow"
+ POLICY_DIRECT_INITRC ?= "n"
++POLICY_SYSTEMD ?= "n"
+ POLICY_MONOLITHIC ?= "n"
+ POLICY_CUSTOM_BUILDOPT ?= ""
+ POLICY_QUIET ?= "y"
+@@ -48,6 +49,7 @@ EXTRA_OEMAKE += "NAME=${POLICY_NAME} \
+ 	UBAC=${POLICY_UBAC} \
+ 	UNK_PERMS=${POLICY_UNK_PERMS} \
+ 	DIRECT_INITRC=${POLICY_DIRECT_INITRC} \
++	SYSTEMD=${POLICY_SYSTEMD} \
+ 	MONOLITHIC=${POLICY_MONOLITHIC} \
+ 	CUSTOM_BUILDOPT=${POLICY_CUSTOM_BUILDOPT} \
+ 	QUIET=${POLICY_QUIET} \
 -- 
 2.4.3
 
