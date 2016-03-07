@@ -1,92 +1,46 @@
-Return-Path: <alejandro.delcastillo@ni.com>
+Return-Path: <Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 853BCE00833; Mon,  7 Mar 2016 08:00:28 -0800 (PST)
+	id AA1EEE00833; Mon,  7 Mar 2016 09:15:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.121 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0121.outbound.protection.outlook.com [207.46.100.121])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D99E00720
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 08:00:26 -0800 (PST)
-Authentication-Results: deserted.net; dkim=none (message not signed)
-	header.d=none; deserted.net; dmarc=none action=none header.from=ni.com; 
-Received: from [10.2.33.36] (130.164.62.82) by
-	BY2PR04MB848.namprd04.prod.outlook.com (10.242.39.13) with Microsoft
-	SMTP Server (TLS) id 15.1.415.20; Mon, 7 Mar 2016 16:00:24 +0000
-Message-ID: <56DDA57D.3060209@ni.com>
-Date: Mon, 7 Mar 2016 09:59:57 -0600
-From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Received: from FLEMING.seektech.com (mail.seektech.com [66.192.149.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8898E006CA
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 09:15:52 -0800 (PST)
+Received: from WRIGHT.seescan.com (192.168.11.30) by mail.seektech.com
+	(192.168.3.10) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Mon, 7 Mar 2016 09:15:50 -0800
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Mon, 7 Mar 2016 09:15:50 -0800
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Mon, 7 Mar 2016 09:15:50 -0800
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: Philip Tricca <flihp@twobit.us>, "mark.hatle@windriver.com"
+	<mark.hatle@windriver.com>
+Thread-Topic: [yocto] [PATCH] udev: Rename udev bbappend to eudev.
+Thread-Index: AQHRd+RLOaJa76NO8EG7e/E+4PVCgZ9OOgiu
+Date: Mon, 7 Mar 2016 17:15:49 +0000
+Message-ID: <1457370830386.13338@seescan.com>
+References: <56D8A187.8050502@windriver.com>,
+	<1457294903-74025-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1457294903-74025-1-git-send-email-flihp@twobit.us>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
 MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>
-References: <1455921936-24140-1-git-send-email-alejandro.delcastillo@ni.com>
-	<56D61E9D.5020607@ni.com> <56D67D70.6010608@twobit.us>
-In-Reply-To: <56D67D70.6010608@twobit.us>
-X-Originating-IP: [130.164.62.82]
-X-ClientProxiedBy: BY2PR05CA034.namprd05.prod.outlook.com (10.141.250.24) To
-	BY2PR04MB848.namprd04.prod.outlook.com (10.242.39.13)
-X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
-	2:g1YVI+u9jKlePQm5OuvdNQEWG1FPM08T/17peO9CC0SO9/LvDPvD6+8Qn2YvpUni2hEq6sjlZt4PAeLiN6twVFaP3bj7rF86PSXBVO8xk/eVaEDq0NjY/iYAR5f3tEc0P2ffcPBNCMy/8RycfejGow==;
-	3:qaChWaYiY3g1nI2qUybb9UgYdaoXDcRwQ1HiTqvvqWktcSUI5uXfgrk2FRud+QHYXFU4EGy99QCDDGrrU2q4c+McKwFnwiNieJcmfc4N7X9rwI/65uOLEf3CqqGoNOv8;
-	25:O4s/+TOgOtxxnOCNeyuffDAAwZ0oeOJ8vog3MqvxBXhQgkb3xqJzMEGvZ6lm/q05uwtLIRfbFRYCGqFqf6V5x1VAYvq/LPNs54DvjJ8rGH0v1CBOdg1ZfhjDnDpxj/ZU+GlO5pV8whE7sHzAptqZ86R/J47Il9LhcwhZ3I2hYrcv/4wKmWVA9eSSZqvZbjz9d5TXEYnkX5y28XqFOzLZSk5ycT4XwGVYETWaLo2cCB1u8xqzNWF/im4bbiOIiwNJuWobdVZM/tCYXusFWYs345JGLqN8IEA87pOFq533HogFPQdVUGbpsjg6AMWJKSVYiwVOymRk3oSYk4k1A61mUA==
-X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR04MB848;
-X-MS-Office365-Filtering-Correlation-Id: 46e6e67f-a10f-41ec-e952-08d346a198a6
-X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
-	20:dLH1m6CMnE7Qw7qwTjQR0F6KHj0egpVhq3dG7Jg9Hq1qrvhE+UB6a8sPWYGvUkqdzWYARu3MyKZQUcv3L2tJemTRYZgQSc2d7ScBTFFmVFcGIOCuLdPa5T6qF5BVm95brwkqiDbpDnrSY3F98cIN6mppy4lENwkyjuXzH+sfb0QaMJYTB02PsBhegt+UwwIWNr/vnVCbL6Dbq3N5Vnj7043Oug9bHDRaHN8I2HkiDJ9ghYK+X+Ias4SqunIgN/epimgFLITe8PCPD+O2KuwoRB6LoEm8GM4UVlskhGMsGM9tT4qCtc0EEyJ5f4C17Xr/IvAjT2VFj4p/bvYYfab/4+q/wrMD2uTytA3a0AuKiz2MvLLxxjEFATfNA07qcKZo2o6/KLhn1fkw/BZlnjWlwASxAs7J7hX536owjklCaLORrcUVMAFnHwwbXf/cr6HE3/tN0zrJyoMzcsZRxQVi9waNiUP2A0UxrOGvXQggOglJAqPNu8S2or68pC/DJvkVw+DYfox5VO6rI4eGWIl9mQcCZtwuaGBmi9Jg7CTVtNK3cvVAzXM/YDpj1FMYe77pSN6LMOb7jO4awUim/MqEahkga7fzwU4pSXSpJnXbwDU=
-X-Microsoft-Antispam-PRVS: <BY2PR04MB848F3098E7CCEC877F9839F86B10@BY2PR04MB848.namprd04.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
-	SRVR:BY2PR04MB848; BCL:0; PCL:0; RULEID:; SRVR:BY2PR04MB848; 
-X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
-	4:k6N5nwQa+aKPvcBqwC2ZlBiiXILERHzTz61clmTmxkHTOQLI1BwnZ5Ok4gyoFZqtqFRghu9BSwNC5q7vbaiouw+pHVKeBLG2sloHb02X0LUk+sbrVtIWHgeBE9vIhaOWuLoxvvdeM3GuYdEUb1XRUp+izQmcy6LVlVyzPzPGrVeyZ4jvbXrUBD7d4EBDsU3Zd5xZ80JYDNFKbZygMWNOO4f6MQqgAMF80FZ8zqu0xcaKFEhMPk2WiCoQewhq6JaRs4nAWlHdJxwh4FvFXaylvWqYR5zQlVTbsNXCIejanWZcRla22gEl+6jcWYLYpNCaZpuZNkzYOsPwyN6ORXkrw/uQLP72eQR2mOCrk0+0fSfxPAqrl8s/pStUplxWgDOv
-X-Forefront-PRVS: 087474FBFA
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10019020)(4630300001)(6049001)(6009001)(377454003)(24454002)(57704003)(479174004)(83506001)(189998001)(50986999)(65816999)(230700001)(5004730100002)(110136002)(54356999)(87266999)(76176999)(40100003)(122386002)(2950100001)(50466002)(92566002)(23746002)(4001350100001)(86362001)(6116002)(2906002)(80316001)(36756003)(33656002)(586003)(47776003)(65806001)(81166005)(1096002)(66066001)(65956001)(3846002)(42186005)(5008740100001)(4326007)(59896002)(77096005)(87976001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BY2PR04MB848; H:[10.2.33.36];
-	FPR:; SPF:None; MLV:sfv; LANG:en; 
-X-Microsoft-Exchange-Diagnostics: =?Windows-1252?Q?1; BY2PR04MB848;
-	23:tCuPn+n201T4OxPjJCOGAuk/XfmF3y2C2Dzp7B?=
-	=?Windows-1252?Q?RgiG5oeqFx4drJt1AL+aDaytpGwLA8ob7liJ1LFTWrG/o9urXJS8xceK?=
-	=?Windows-1252?Q?dnppefK07CQzxYDg7yMZLh8plM5N+ADY8Xxqp9plBiEiDleGNGEwiPDy?=
-	=?Windows-1252?Q?7RIS/X1/QerhR+xSZiXhjBt3B0Rruz/eWNCeaqKg2hPbbidLNrUaEHX0?=
-	=?Windows-1252?Q?Ewm093bonesAZmME6RN0dxZe+dPHszuHkNuERdfF5kBC5uDozUr9Ip1r?=
-	=?Windows-1252?Q?VZNB4K7z3uGSwwNFIcHrlK1dtot69I2DX1Yqm6f1XviYwbMQvUGnL7UZ?=
-	=?Windows-1252?Q?hbS2t3QDLSZXNkry4flyUqavToMsKawXhwlZsM3c9d2RYZMWSQU09ePH?=
-	=?Windows-1252?Q?oloEnj1yO9ceJvqtM4Z1mi16j/CwJQkVSbxNbSADQifh8pjXJT7GmplR?=
-	=?Windows-1252?Q?7/C5ofSoRouTCPjF74Kvz8t+19tlEwBFcQLg7yZFDjGl7lWNiaTzZFQG?=
-	=?Windows-1252?Q?kQyZ75SZBoHLg+bDMlJXvf0daqFX812nfrhhqV+g3+/Lim1VQ/zdGpRf?=
-	=?Windows-1252?Q?q3QjBeqCp8Ewr5RNckUd4Pt06UTQbTjUll7FXG7afEQFG7NogrjiPunY?=
-	=?Windows-1252?Q?ilZvi/WEMHP5hS36lTa64Nz2SwILYsOasxfX638SVyW6+i7xW4ru4kbH?=
-	=?Windows-1252?Q?/YLQeWIfe0xmJ3TVftdU74yaCVEcTnY2pad9zHAfdNhltBCAsb5gYs5G?=
-	=?Windows-1252?Q?IpnTu7TawUZlFTpP0wbsc2C00tN1c7RPF7YNfQvn0Lcapjmz7s42J3Hu?=
-	=?Windows-1252?Q?3j07tpfwKjWDN/GX7UClr6iyhE5Vb9XBgcrGW9BkHC1VKtxiJmY8TmD+?=
-	=?Windows-1252?Q?YXGDoiJuzQruXdQMaFYZ7u5cIgiYtPPLH/5KxrtgOXJG+TnZhAYoFSTO?=
-	=?Windows-1252?Q?1ohuJ+T2ZbtH3IXaSArZrtI0DtweZ92zjpbRVWNY8ADKeLcFZLDCE3pS?=
-	=?Windows-1252?Q?8TZH1aJRDtOiD4jew30wyCUzb3rurYNNQajm3ixqzQVtSeBOSqJbz2yx?=
-	=?Windows-1252?Q?Swh594/KkMStSFUVJFqh3jLfbcIeY2sHvY87rwHpCYVXRbcammRTdaj7?=
-	=?Windows-1252?Q?5cbZkqgs4pQ82BHJ6whze/9rt4wDiuZEwPPkOFxwxqPyYk3J9y08I+CU?=
-	=?Windows-1252?Q?ko3/877aYJinv+veejzBQFdUlTu9YFHm/g+61u57HV0uP8c9HL?=
-X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
-	5:VassMs9DJ7HtaqJikhgI7zEM3an1mJFiZZSxl+NHx7L/S3E2A49gpMNS0DN2ymjozE/IxY7RuOCrPIIm4hID+ph9RGofxUHcIwqz557okixQ5FClpX9qbMIvbKCURdYILttHcHJ5/3mZ6gXd2TigrQ==;
-	24:tLE9acpi8ggJBxpxCBl2PLnROljk6U/pVoomWEz1AkLfeQeZqVbUrhpR55xw10wfPiZ0+hcjj37pnP6EZ3fbfQh9i6G2+kjj6F6OfVEt/Nk=
-SpamDiagnosticOutput: 1:23
-SpamDiagnosticMetadata: NSPM
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2016 16:00:24.8657 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR04MB848
-Cc: yocto@yoctoproject.org, Xin.Ouyang@windriver.com
-Subject: Re: [meta-selinux][PATCH] busybox: explicitly set temporary shell scripts to be executable
+X-GFI-SMTP-Submission: 1
+X-GFI-SMTP-HelloDomain: WRIGHT.seescan.com
+X-GFI-SMTP-RemoteIP: 192.168.11.30
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] udev: Rename udev bbappend to eudev.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -98,50 +52,501 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Mar 2016 16:00:28 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Mar 2016 17:15:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 03/01/2016 11:43 PM, Philip Tricca wrote:
-> On 03/01/2016 02:58 PM, Alejandro del Castillo wrote:
->> I first started looking at busybox postinst (modified on meta-selinux) since I
->> am getting errors during "opkg upgrade buysbox". The errors that I am getting
->> are of the form:
->>
->> update-alternatives: Error: not linking /bin/gunzip to
->> /usr/lib/busybox/bin/gunzip since /bin/gunzip exists and is not a link
->>
->> Which only happen for utilities that don't have any alternative installed after
->> removing busybox, hence no symlink. Utilities that do have an alternative
->> installed are correctly processed, for example:
->>
->> update-alternatives: Linking /usr/bin/ar to /usr/bin/x86_64-nilrt-linux-ar
->>
->> The root problem is that meta-selinux on commit
->> 521ca9c9cf370840e9f8c808a7955aa5da7c356e replaced the temporary symlink creation
->> on postinst with sh wrappers, which breaks update-alternatives when it tries to
->> update symlinks (which are now sh wrappers).
->>
->> Is there a reason why the postinst needs to be different on the selinux version
->> of busybox? If the postinst is just creating temporary symlinks which will go
->> away once the update-alternatives block later on the script runs, do we need the
->> sh wrappers?
-> 
-> Thanks for the additional context Alejandro. I don't have enough history
-> yet to pull answers to stuff like this out at will though. Hopefully
-> someone with the right background will chime in. Either way I'll circle
-> back once the easy stuff in the backlog is done and we'll try to sort
-> something out.
-
-Sounds good, I hope someone can provide background since it looks to me like the
-postinst is wrong, but I don't have historic context.
-
-Let me know if I can help in any way.
-
--- 
-Cheers,
-
-Alejandro
+Can someone please let me know what the reasoning behind the switch to eude=
+v?=0A=
+=0A=
+Sincerely,=0A=
+=0A=
+Frederick=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Philip Tricca <flihp@twobit.us>=0A=
+Sent: Sunday, March 6, 2016 12:08 PM=0A=
+To: mark.hatle@windriver.com=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: [yocto] [PATCH] udev: Rename udev bbappend to eudev.=0A=
+=0A=
+Required by switch to eudev in oe-core. Dropping PR since this is=0A=
+effectively a new recipe.=0A=
+=0A=
+Signed-off-by: Philip Tricca <flihp@twobit.us>=0A=
+---=0A=
+ recipes-core/eudev/eudev/init           | 144 ++++++++++++++++++++++++++++=
+++++=0A=
+ recipes-core/eudev/eudev/udev-cache     |  32 +++++++=0A=
+ recipes-core/eudev/eudev_3.1.5.bbappend |   3 +=0A=
+ recipes-core/udev/udev/init             | 144 ----------------------------=
+----=0A=
+ recipes-core/udev/udev/udev-cache       |  32 -------=0A=
+ recipes-core/udev/udev_182.bbappend     |   5 --=0A=
+ 6 files changed, 179 insertions(+), 181 deletions(-)=0A=
+ create mode 100644 recipes-core/eudev/eudev/init=0A=
+ create mode 100644 recipes-core/eudev/eudev/udev-cache=0A=
+ create mode 100644 recipes-core/eudev/eudev_3.1.5.bbappend=0A=
+ delete mode 100644 recipes-core/udev/udev/init=0A=
+ delete mode 100644 recipes-core/udev/udev/udev-cache=0A=
+ delete mode 100644 recipes-core/udev/udev_182.bbappend=0A=
+=0A=
+diff --git a/recipes-core/eudev/eudev/init b/recipes-core/eudev/eudev/init=
+=0A=
+new file mode 100644=0A=
+index 0000000..9a4b293=0A=
+--- /dev/null=0A=
++++ b/recipes-core/eudev/eudev/init=0A=
+@@ -0,0 +1,144 @@=0A=
++#!/bin/sh=0A=
++=0A=
++### BEGIN INIT INFO=0A=
++# Provides:          udev=0A=
++# Required-Start:    mountvirtfs=0A=
++# Required-Stop:=0A=
++# Default-Start:     S=0A=
++# Default-Stop:=0A=
++# Short-Description: Start udevd, populate /dev and load drivers.=0A=
++### END INIT INFO=0A=
++=0A=
++export TZ=3D/etc/localtime=0A=
++=0A=
++[ -d /sys/class ] || exit 1=0A=
++[ -r /proc/mounts ] || exit 1=0A=
++[ -x @UDEVD@ ] || exit 1=0A=
++if [ "$use_udev_cache" !=3D "" ]; then=0A=
++       [ -f /etc/default/udev-cache ] && . /etc/default/udev-cache=0A=
++fi=0A=
++[ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf=0A=
++[ -f /etc/default/rcS ] && . /etc/default/rcS=0A=
++=0A=
++readfiles () {=0A=
++   READDATA=3D""=0A=
++   for filename in $@; do=0A=
++          if [ -r $filename ]; then=0A=
++                  while read line; do=0A=
++                          READDATA=3D"$READDATA$line"=0A=
++                  done < $filename=0A=
++          fi=0A=
++   done=0A=
++}=0A=
++=0A=
++kill_udevd () {=0A=
++    pid=3D`pidof -x udevd`=0A=
++    [ -n "$pid" ] && kill $pid=0A=
++}=0A=
++=0A=
++case "$1" in=0A=
++  start)=0A=
++    export ACTION=3Dadd=0A=
++    # propagate /dev from /sys=0A=
++    echo "Starting udev"=0A=
++=0A=
++    # Check for requireed devtmpfs before trying to start udev and=0A=
++    # mount a no-existant fs.=0A=
++    if ! grep -q devtmpfs /proc/filesystems=0A=
++    then=0A=
++        echo "Missing devtmpfs, which is required for udev to run";=0A=
++        echo "Halting..."=0A=
++        halt=0A=
++    fi=0A=
++    # mount the devtmpfs on /dev, if not already done=0A=
++    LANG=3DC awk '$2 =3D=3D "/dev" && ($3 =3D=3D "devtmpfs") { exit 1 }' /=
+proc/mounts && {=0A=
++            mount -n -o mode=3D0755 -t devtmpfs none "/dev"=0A=
++    }=0A=
++    [ -e /dev/pts ] || mkdir -m 0755 /dev/pts=0A=
++    [ -e /dev/shm ] || mkdir -m 1777 /dev/shm=0A=
++    # the automount rule for udev needs /tmp directory available, as /tmp =
+is a symlink=0A=
++    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need=
+ to make sure=0A=
++    # /var/volatile/tmp directory to be available.=0A=
++    mkdir -p /var/volatile/tmp=0A=
++=0A=
++    # restorecon /run early to allow mdadm creating dir /run/mdadm=0A=
++    test ! -x /sbin/restorecon || /sbin/restorecon -F /run=0A=
++=0A=
++    # Cache handling.=0A=
++    # A list of files which are used as a criteria to judge whether the ud=
+ev cache could be reused.=0A=
++    CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices /proc/atags=
+"=0A=
++    if [ "$use_udev_cache" !=3D "" ]; then=0A=
++           if [ "$DEVCACHE" !=3D "" ]; then=0A=
++                   if [ -e $DEVCACHE ]; then=0A=
++                           readfiles $CMP_FILE_LIST=0A=
++                           NEWDATA=3D"$READDATA"=0A=
++                           readfiles /etc/udev/cache.data=0A=
++                           OLDDATA=3D"$READDATA"=0A=
++                           if [ "$OLDDATA" =3D "$NEWDATA" ]; then=0A=
++                                   tar --directory=3D/ -xf $DEVCACHE > /de=
+v/null 2>&1=0A=
++                                   not_first_boot=3D1=0A=
++                                   [ "$VERBOSE" !=3D "no" ] && echo "udev:=
+ using cache file $DEVCACHE"=0A=
++                                   [ -e /dev/shm/udev.cache ] && rm -f /de=
+v/shm/udev.cache=0A=
++                           else=0A=
++                                   # Output detailed reason why the cached=
+ /dev is not used=0A=
++                                   if [ "$VERBOSE" !=3D "no" ]; then=0A=
++                                           echo "udev: udev cache not used=
+"=0A=
++                                           echo "udev: we use $CMP_FILE_LI=
+ST as criteria to judge whether the cache /dev could be resued"=0A=
++                                           echo "udev: olddata: $OLDDATA"=
+=0A=
++                                           echo "udev: newdata: $NEWDATA"=
+=0A=
++                                   fi=0A=
++                                   echo "$NEWDATA" > /dev/shm/udev.cache=
+=0A=
++                           fi=0A=
++                           /usr/sbin/setenforce 1=0A=
++                   else=0A=
++                           if [ "$ROOTFS_READ_ONLY" !=3D "yes" ]; then=0A=
++                                   # If rootfs is not read-only, it's poss=
+ible that a new udev cache would be generated;=0A=
++                                   # otherwise, we do not bother to read f=
+iles.=0A=
++                                   readfiles $CMP_FILE_LIST=0A=
++                                   echo "$READDATA" > /dev/shm/udev.cache=
+=0A=
++                           fi=0A=
++                   fi=0A=
++           fi=0A=
++    fi=0A=
++=0A=
++    # make_extra_nodes=0A=
++    kill_udevd > "/dev/null" 2>&1=0A=
++=0A=
++    # trigger the sorted events=0A=
++    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug=0A=
++    @UDEVD@ -d=0A=
++=0A=
++    udevadm control --env=3DSTARTUP=3D1=0A=
++    if [ "$not_first_boot" !=3D "" ];then=0A=
++            udevadm trigger --action=3Dadd --subsystem-nomatch=3Dtty --sub=
+system-nomatch=3Dmem --subsystem-nomatch=3Dvc --subsystem-nomatch=3Dvtconso=
+le --subsystem-nomatch=3Dmisc --subsystem-nomatch=3Ddcon --subsystem-nomatc=
+h=3Dpci_bus  --subsystem-nomatch=3Dgraphics       --subsystem-nomatch=3Dbac=
+klight --subsystem-nomatch=3Dvideo4linux  --subsystem-nomatch=3Dplatform=0A=
++            (udevadm settle --timeout=3D10; udevadm control --env=3DSTARTU=
+P=3D)&=0A=
++    else=0A=
++            udevadm trigger --action=3Dadd=0A=
++            udevadm settle=0A=
++    fi=0A=
++=0A=
++    test ! -x /sbin/restorecon || /sbin/restorecon -F /dev /dev/shm /dev/p=
+ts=0A=
++=0A=
++    ;;=0A=
++  stop)=0A=
++    echo "Stopping udevd"=0A=
++    start-stop-daemon --stop --name udevd --quiet=0A=
++    ;;=0A=
++  restart)=0A=
++    $0 stop=0A=
++    sleep 1=0A=
++    $0 start=0A=
++    ;;=0A=
++  status)=0A=
++    pid=3D`pidof -x udevd`=0A=
++    if [ -n "$pid" ]; then=0A=
++       echo "udevd (pid $pid) is running ..."=0A=
++    else=0A=
++       echo "udevd is stopped"=0A=
++    fi=0A=
++    ;;=0A=
++  *)=0A=
++    echo "Usage: $0 {start|stop|status|restart}"=0A=
++    exit 1=0A=
++esac=0A=
++exit 0=0A=
+diff --git a/recipes-core/eudev/eudev/udev-cache b/recipes-core/eudev/eudev=
+/udev-cache=0A=
+new file mode 100644=0A=
+index 0000000..6898577=0A=
+--- /dev/null=0A=
++++ b/recipes-core/eudev/eudev/udev-cache=0A=
+@@ -0,0 +1,32 @@=0A=
++#!/bin/sh -e=0A=
++=0A=
++### BEGIN INIT INFO=0A=
++# Provides:          udev-cache=0A=
++# Required-Start:    mountall=0A=
++# Required-Stop:=0A=
++# Default-Start:     S=0A=
++# Default-Stop:=0A=
++# Short-Description: cache /dev to speedup the udev next boot=0A=
++### END INIT INFO=0A=
++=0A=
++export TZ=3D/etc/localtime=0A=
++=0A=
++[ -r /proc/mounts ] || exit 1=0A=
++[ -x @UDEVD@ ] || exit 1=0A=
++[ -d /sys/class ] || exit 1=0A=
++=0A=
++[ -f /etc/default/rcS ] && . /etc/default/rcS=0A=
++[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache=0A=
++=0A=
++if [ "$ROOTFS_READ_ONLY" =3D "yes" ]; then=0A=
++    [ "$VERBOSE" !=3D "no" ] && echo "udev-cache: read-only rootfs, skip g=
+enerating udev-cache"=0A=
++    exit 0=0A=
++fi=0A=
++=0A=
++if [ "$DEVCACHE" !=3D "" -a -e /dev/shm/udev.cache ]; then=0A=
++       echo "Populating dev cache"=0A=
++       tar --directory=3D/ --selinux --xattrs -cf "$DEVCACHE" dev=0A=
++       mv /dev/shm/udev.cache /etc/udev/cache.data=0A=
++fi=0A=
++=0A=
++exit 0=0A=
+diff --git a/recipes-core/eudev/eudev_3.1.5.bbappend b/recipes-core/eudev/e=
+udev_3.1.5.bbappend=0A=
+new file mode 100644=0A=
+index 0000000..e1e7cd1=0A=
+--- /dev/null=0A=
++++ b/recipes-core/eudev/eudev_3.1.5.bbappend=0A=
+@@ -0,0 +1,3 @@=0A=
++FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"=0A=
++=0A=
++inherit enable-selinux=0A=
+diff --git a/recipes-core/udev/udev/init b/recipes-core/udev/udev/init=0A=
+deleted file mode 100644=0A=
+index bb8b95b..0000000=0A=
+--- a/recipes-core/udev/udev/init=0A=
++++ /dev/null=0A=
+@@ -1,144 +0,0 @@=0A=
+-#!/bin/sh=0A=
+-=0A=
+-### BEGIN INIT INFO=0A=
+-# Provides:          udev=0A=
+-# Required-Start:    mountvirtfs=0A=
+-# Required-Stop:=0A=
+-# Default-Start:     S=0A=
+-# Default-Stop:=0A=
+-# Short-Description: Start udevd, populate /dev and load drivers.=0A=
+-### END INIT INFO=0A=
+-=0A=
+-export TZ=3D/etc/localtime=0A=
+-=0A=
+-[ -d /sys/class ] || exit 1=0A=
+-[ -r /proc/mounts ] || exit 1=0A=
+-[ -x @UDEVD@ ] || exit 1=0A=
+-if [ "$use_udev_cache" !=3D "" ]; then=0A=
+-       [ -f /etc/default/udev-cache ] && . /etc/default/udev-cache=0A=
+-fi=0A=
+-[ -f /etc/udev/udev.conf ] && . /etc/udev/udev.conf=0A=
+-[ -f /etc/default/rcS ] && . /etc/default/rcS=0A=
+-=0A=
+-readfiles () {=0A=
+-   READDATA=3D""=0A=
+-   for filename in $@; do=0A=
+-          if [ -r $filename ]; then=0A=
+-                  while read line; do=0A=
+-                          READDATA=3D"$READDATA$line"=0A=
+-                  done < $filename=0A=
+-          fi=0A=
+-   done=0A=
+-}=0A=
+-=0A=
+-kill_udevd () {=0A=
+-    pid=3D`pidof -x udevd`=0A=
+-    [ -n "$pid" ] && kill $pid=0A=
+-}=0A=
+-=0A=
+-case "$1" in=0A=
+-  start)=0A=
+-    export ACTION=3Dadd=0A=
+-    # propagate /dev from /sys=0A=
+-    echo "Starting udev"=0A=
+-=0A=
+-    # Check for requireed devtmpfs before trying to start udev and=0A=
+-    # mount a no-existant fs.=0A=
+-    if ! grep -q devtmpfs /proc/filesystems=0A=
+-    then=0A=
+-        echo "Missing devtmpfs, which is required for udev to run";=0A=
+-        echo "Halting..."=0A=
+-        halt=0A=
+-    fi=0A=
+-    # mount the devtmpfs on /dev, if not already done=0A=
+-    LANG=3DC awk '$2 =3D=3D "/dev" && ($3 =3D=3D "devtmpfs") { exit 1 }' /=
+proc/mounts && {=0A=
+-            mount -n -o mode=3D0755 -t devtmpfs none "/dev"=0A=
+-    }=0A=
+-    [ -e /dev/pts ] || mkdir -m 0755 /dev/pts=0A=
+-    [ -e /dev/shm ] || mkdir -m 1777 /dev/shm=0A=
+-    # the automount rule for udev needs /tmp directory available, as /tmp =
+is a symlink=0A=
+-    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need=
+ to make sure=0A=
+-    # /var/volatile/tmp directory to be available.=0A=
+-    mkdir -p /var/volatile/tmp=0A=
+-=0A=
+-    # restorecon /run early to allow mdadm creating dir /run/mdadm=0A=
+-    test ! -x /sbin/restorecon || /sbin/restorecon -F /run=0A=
+-=0A=
+-    # Cache handling.=0A=
+-    # A list of files which are used as a criteria to judge whether the ud=
+ev cache could be reused.=0A=
+-    CMP_FILE_LIST=3D"/proc/version /proc/cmdline /proc/devices /proc/atags=
+"=0A=
+-    if [ "$use_udev_cache" !=3D "" ]; then=0A=
+-           if [ "$DEVCACHE" !=3D "" ]; then=0A=
+-                   if [ -e $DEVCACHE ]; then=0A=
+-                           readfiles $CMP_FILE_LIST=0A=
+-                           NEWDATA=3D"$READDATA"=0A=
+-                           readfiles /etc/udev/cache.data=0A=
+-                           OLDDATA=3D"$READDATA"=0A=
+-                           if [ "$OLDDATA" =3D "$NEWDATA" ]; then=0A=
+-                                   tar --directory=3D/ -xf $DEVCACHE > /de=
+v/null 2>&1=0A=
+-                                   not_first_boot=3D1=0A=
+-                                   [ "$VERBOSE" !=3D "no" ] && echo "udev:=
+ using cache file $DEVCACHE"=0A=
+-                                   [ -e /dev/shm/udev.cache ] && rm -f /de=
+v/shm/udev.cache=0A=
+-                           else=0A=
+-                                   # Output detailed reason why the cached=
+ /dev is not used=0A=
+-                                   if [ "$VERBOSE" !=3D "no" ]; then=0A=
+-                                           echo "udev: udev cache not used=
+"=0A=
+-                                           echo "udev: we use $CMP_FILE_LI=
+ST as criteria to judge whether the cache /dev could be resued"=0A=
+-                                           echo "udev: olddata: $OLDDATA"=
+=0A=
+-                                           echo "udev: newdata: $NEWDATA"=
+=0A=
+-                                   fi=0A=
+-                                   echo "$NEWDATA" > /dev/shm/udev.cache=
+=0A=
+-                           fi=0A=
+-                           /usr/sbin/setenforce 1=0A=
+-                   else=0A=
+-                           if [ "$ROOTFS_READ_ONLY" !=3D "yes" ]; then=0A=
+-                                   # If rootfs is not read-only, it's poss=
+ible that a new udev cache would be generated;=0A=
+-                                   # otherwise, we do not bother to read f=
+iles.=0A=
+-                                   readfiles $CMP_FILE_LIST=0A=
+-                                   echo "$READDATA" > /dev/shm/udev.cache=
+=0A=
+-                           fi=0A=
+-                   fi=0A=
+-           fi=0A=
+-    fi=0A=
+-=0A=
+-    # make_extra_nodes=0A=
+-    kill_udevd > "/dev/null" 2>&1=0A=
+-=0A=
+-    # trigger the sorted events=0A=
+-    echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug=0A=
+-    @UDEVD@ -d=0A=
+-=0A=
+-    udevadm control --env=3DSTARTUP=3D1=0A=
+-    if [ "$not_first_boot" !=3D "" ];then=0A=
+-            udevadm trigger --action=3Dadd --subsystem-nomatch=3Dtty --sub=
+system-nomatch=3Dmem --subsystem-nomatch=3Dvc --subsystem-nomatch=3Dvtconso=
+le --subsystem-nomatch=3Dmisc --subsystem-nomatch=3Ddcon --subsystem-nomatc=
+h=3Dpci_bus  --subsystem-nomatch=3Dgraphics       --subsystem-nomatch=3Dbac=
+klight --subsystem-nomatch=3Dvideo4linux  --subsystem-nomatch=3Dplatform=0A=
+-            (udevadm settle --timeout=3D10; udevadm control --env=3DSTARTU=
+P=3D)&=0A=
+-    else=0A=
+-            udevadm trigger --action=3Dadd=0A=
+-            udevadm settle=0A=
+-    fi=0A=
+-=0A=
+-    test ! -x /sbin/restorecon || /sbin/restorecon -F /dev /dev/shm /dev/p=
+ts=0A=
+-=0A=
+-    ;;=0A=
+-  stop)=0A=
+-    echo "Stopping udevd"=0A=
+-    start-stop-daemon --stop --name udevd --quiet=0A=
+-    ;;=0A=
+-  restart)=0A=
+-    $0 stop=0A=
+-    sleep 1=0A=
+-    $0 start=0A=
+-    ;;=0A=
+-  status)=0A=
+-    pid=3D`pidof -x udevd`=0A=
+-    if [ -n "$pid" ]; then=0A=
+-       echo "udevd (pid $pid) is running ..."=0A=
+-    else=0A=
+-       echo "udevd is stopped"=0A=
+-    fi=0A=
+-    ;;=0A=
+-  *)=0A=
+-    echo "Usage: $0 {start|stop|status|restart}"=0A=
+-    exit 1=0A=
+-esac=0A=
+-exit 0=0A=
+diff --git a/recipes-core/udev/udev/udev-cache b/recipes-core/udev/udev/ude=
+v-cache=0A=
+deleted file mode 100644=0A=
+index 6898577..0000000=0A=
+--- a/recipes-core/udev/udev/udev-cache=0A=
++++ /dev/null=0A=
+@@ -1,32 +0,0 @@=0A=
+-#!/bin/sh -e=0A=
+-=0A=
+-### BEGIN INIT INFO=0A=
+-# Provides:          udev-cache=0A=
+-# Required-Start:    mountall=0A=
+-# Required-Stop:=0A=
+-# Default-Start:     S=0A=
+-# Default-Stop:=0A=
+-# Short-Description: cache /dev to speedup the udev next boot=0A=
+-### END INIT INFO=0A=
+-=0A=
+-export TZ=3D/etc/localtime=0A=
+-=0A=
+-[ -r /proc/mounts ] || exit 1=0A=
+-[ -x @UDEVD@ ] || exit 1=0A=
+-[ -d /sys/class ] || exit 1=0A=
+-=0A=
+-[ -f /etc/default/rcS ] && . /etc/default/rcS=0A=
+-[ -f /etc/default/udev-cache ] && . /etc/default/udev-cache=0A=
+-=0A=
+-if [ "$ROOTFS_READ_ONLY" =3D "yes" ]; then=0A=
+-    [ "$VERBOSE" !=3D "no" ] && echo "udev-cache: read-only rootfs, skip g=
+enerating udev-cache"=0A=
+-    exit 0=0A=
+-fi=0A=
+-=0A=
+-if [ "$DEVCACHE" !=3D "" -a -e /dev/shm/udev.cache ]; then=0A=
+-       echo "Populating dev cache"=0A=
+-       tar --directory=3D/ --selinux --xattrs -cf "$DEVCACHE" dev=0A=
+-       mv /dev/shm/udev.cache /etc/udev/cache.data=0A=
+-fi=0A=
+-=0A=
+-exit 0=0A=
+diff --git a/recipes-core/udev/udev_182.bbappend b/recipes-core/udev/udev_1=
+82.bbappend=0A=
+deleted file mode 100644=0A=
+index 6f8f049..0000000=0A=
+--- a/recipes-core/udev/udev_182.bbappend=0A=
++++ /dev/null=0A=
+@@ -1,5 +0,0 @@=0A=
+-PR .=3D ".4"=0A=
+-=0A=
+-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"=0A=
+-=0A=
+-inherit with-selinux=0A=
+--=0A=
+2.1.4=0A=
+=0A=
+--=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
