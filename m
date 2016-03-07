@@ -1,73 +1,60 @@
-Return-Path: <Arun.Biyani@us.bosch.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F3A4E00C65; Mon,  7 Mar 2016 06:00:34 -0800 (PST)
+	id 3FB15E0048B; Mon,  7 Mar 2016 06:40:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [139.15.243.226 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 453 seconds by postgrey-1.32 at yocto-www;
-	Mon, 07 Mar 2016 06:00:32 PST
-Received: from imta21.fe.bosch.de (imta21.fe.bosch.de [139.15.243.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BD7DE00C60
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 06:00:32 -0800 (PST)
-Received: from smtp6-v.fe.bosch.de (imta24.fe.bosch.de [139.15.243.27])
-	by imta21.fe.bosch.de (Postfix) with ESMTP id 97FBAC0656
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 14:52:58 +0100 (CET)
-Received: from vsmta13.fe.internet.bosch.com (unknown [10.4.98.53])
-	by imta24.fe.bosch.de (Postfix) with ESMTP id 33D3AD8009E
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 14:52:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=us.bosch.com;
-	s=2015-01-21; t=1457358774;
-	bh=wh8LdGTmae4xf7N1tBI3FFBci7tXF0C0P7sH7Rg00c0=; l=10;
-	h=From:From:Reply-To:Sender;
-	b=kjg6YevcHidU7lP4aCIJD0GjrW4SsE4asFwjsZz/fv6idfstXg+xb2IHecMQA5Ps0
-	2Iopnom5oQkeW9BbvljoBe69yzEDdPag+bmB9Pyyi3JyV6yrMQrA+32xrKSalKeL/9
-	fZ8/zGpJVbG9orWBpUGiu/kUPZPFYKdqUqTdAsjI=
-Received: from FE-MBX1006.de.bosch.com (vsgw23.fe.internet.bosch.com
-	[10.4.98.23])
-	by vsmta13.fe.internet.bosch.com (Postfix) with ESMTP id 0E9AD2E4032F
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 14:52:54 +0100 (CET)
-Received: from FE-MBX1005.de.bosch.com (10.3.230.25) by
-	FE-MBX1006.de.bosch.com (10.3.230.19) with Microsoft SMTP Server (TLS)
-	id 15.0.1104.5; Mon, 7 Mar 2016 14:52:53 +0100
-Received: from FE-MBX1005.de.bosch.com ([fe80::79fe:41f9:e629:ee17]) by
-	FE-MBX1005.de.bosch.com ([fe80::79fe:41f9:e629:ee17%24]) with mapi id
-	15.00.1104.000; Mon, 7 Mar 2016 14:52:53 +0100
-From: "Biyani Arun (CM/ESC-NA)" <Arun.Biyani@us.bosch.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Adding lxc support to image
-Thread-Index: AdF4eAL5ZD+Tb/NKRl2ybZqpWjEFng==
-Date: Mon, 7 Mar 2016 13:52:53 +0000
-Message-ID: <77ab469bd8b94861935db88f04e9a256@FE-MBX1005.de.bosch.com>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.225.160.17]
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0544E003DB
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 06:40:24 -0800 (PST)
+Received: by mail-ig0-f179.google.com with SMTP id z8so40475546ige.0
+	for <yocto@yoctoproject.org>; Mon, 07 Mar 2016 06:40:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=StX4l8POWnLPQaS5asd28Mzj6McFfktAKHhPf+JXieo=;
+	b=2P9ar8da5Omig8vzNYA11fphvzTxBVtzYBfCH7ZvDCIa49SpUYzmXoWSA11A93oK8Z
+	cMk0xnSgLhTiLNlqqotCEFfxL7LZR4MKgTc6F7jZC9ZQzoIQPwTz+lvl7Xvq+VrxWkr4
+	38RH/S9UvsZEyBmjQ+B7NRFxYN6TeYsUTUBH6EugK7W95JLe70rMfBv9DVAQbU+CjZgj
+	rr0ZtMCx908lwtmpEjOBtil+U6N7+Tl+upqa+8rUTHX/8fGPE7mujW4CcpldqdaNFeWO
+	ZQKdKM4KDM6/tVQFTIJp8U7jcddt/lX1UXvMXTk8aw9ORmmGQ4PnPSIe+nNq2RELp6g5
+	d0Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=StX4l8POWnLPQaS5asd28Mzj6McFfktAKHhPf+JXieo=;
+	b=ERdvNoc0HkT4xxI7xgy3ToA5THeTJNlLCAUPJzfP6mMoxun2oYe4j4L2hsNSRnobg6
+	vhW9tHrBMKfVXpa793RYcxtqGgkojWnvFwFlpAnrhs7ZVBlev95IZqVRmgAL8GKQOXLD
+	9v/0GCgvJcixGD+0N4kyEoMDxgUmSVtCsRGJThjbI4rvmXXgk6d0mAS8p8s+veEMZ1Tl
+	Hxwa0Lppofbgs1W2zY+UYiU+IGIq0kWoMqhgVL1mHLllyAe8FNbw0r+UgvmhSuDV3syk
+	TyxGVf5pL+q7JfoX8nEiI4oz9vXvfj6WEhi+yquTbA/XcNO8p8nR+AzKXWrHC6GmDTHp
+	W22Q==
+X-Gm-Message-State: AD7BkJKxN8u/VOGWw98Rb4hQnwmYU2opMPLWAMtuXiZ0DaYXwphBOlAn1+rWH3RxNQuBx4c6DPlTeNf7oBB/O+6o
+X-Received: by 10.50.112.101 with SMTP id ip5mr11731351igb.52.1457361623799;
+	Mon, 07 Mar 2016 06:40:23 -0800 (PST)
 MIME-Version: 1.0
-X-TM-AS-MML: disable
-X-TM-AS-Product-Ver: IMSS-7.1.0.1679-8.0.0.1202-22176.006
-X-TMASE-MatchedRID: qojOyvwE2G4gs4c2lNMI4EKcYi5Qw/RV0TSMhl9BEMTVU2WiOk7jaFpq
-	2K/Emlk1NZgKuXgLgpMTIM+CgCzqHvZyTDo2IZ6UvHKClHGjjr0cZd/OW4yvKgeLCIX046iBjNL
-	xrcxKViUihgJVrNniBX0MvTyUldaf96nKz1YAXzlYKMMlFh4BnXiv6DU+4dNS2vMIK7cENxEVag
-	Cy2zgulVSwGvCl8CreN862GpoHoW5wYm+MaMfk2uQYBHVKqgDUfS0Ip2eEHnyvXSmSdlcYmn8ow
-	SQ57rVIKrauXd3MZDVyir52KV+djEB3FyuoYMSVZat+fXZ7yMf3WVx7mPSmD2ub7+USXOBX74gp
-	+miMPyJ80f6xv5kj2KFsubwK6T7kceXXC3qSduUaFYNa4sreNg==
-X-Mailman-Approved-At: Mon, 07 Mar 2016 06:36:12 -0800
-Subject: Adding lxc support to image
+Received: by 10.107.162.70 with HTTP; Mon, 7 Mar 2016 06:40:04 -0800 (PST)
+In-Reply-To: <77ab469bd8b94861935db88f04e9a256@FE-MBX1005.de.bosch.com>
+References: <77ab469bd8b94861935db88f04e9a256@FE-MBX1005.de.bosch.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 7 Mar 2016 14:40:04 +0000
+Message-ID: <CAJTo0LZKxQJLxBDLWmZeR2_uzxj-M7pUUNvKEpzoHJf75zjcrg@mail.gmail.com>
+To: "Biyani Arun (CM/ESC-NA)" <Arun.Biyani@us.bosch.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding lxc support to image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,79 +66,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Mar 2016 14:00:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_77ab469bd8b94861935db88f04e9a256FEMBX1005deboschcom_"
+X-List-Received-Date: Mon, 07 Mar 2016 14:40:28 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a8458e570df052d7671c4
 
---_000_77ab469bd8b94861935db88f04e9a256FEMBX1005deboschcom_
-Content-Type: text/plain; charset="us-ascii"
+--047d7b3a8458e570df052d7671c4
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I would like to include lxc style container support in poky image. I added =
-"meta-virtualization" to my
-bblayers.conf. I now get errors when running "bitbake-layers show-recipes".
-
-Parsing recipes..ERROR: No recipes available for:
-  /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoct=
-o_4.4.bbappend
-  /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoct=
-o_4.1.bbappend
-
-I placed the bbappend files in the appropriate directory but I still get th=
-is message. Please help.
-
-What are the changes needed to include lxc support in the image?
-
-
-
-
---_000_77ab469bd8b94861935db88f04e9a256FEMBX1005deboschcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 7 March 2016 at 13:52, Biyani Arun (CM/ESC-NA) <Arun.Biyani@us.bosch.com=
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Arial" size=3D"2"><span style=3D"font-size:10pt;">
-<div>I would like to include lxc style container support in poky image. I a=
-dded &#8220;meta-virtualization&#8221; to my</div>
-<div>bblayers.conf. I now get errors when running &#8220;bitbake-layers sho=
-w-recipes&#8221;.</div>
-<div>&nbsp;</div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Pars=
-ing recipes..ERROR: No recipes available for:</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p; /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoc=
-to_4.4.bbappend</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p; /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoc=
-to_4.1.bbappend</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">I pl=
-aced the bbappend files in the appropriate directory but I still get this m=
-essage. Please help.</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">What=
- are the changes needed to include lxc support in the image?</span></font><=
-/div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
+wrote:
 
---_000_77ab469bd8b94861935db88f04e9a256FEMBX1005deboschcom_--
+> I would like to include lxc style container support in poky image. I adde=
+d
+> =E2=80=9Cmeta-virtualization=E2=80=9D to my
+> bblayers.conf. I now get errors when running =E2=80=9Cbitbake-layers show=
+-recipes=E2=80=9D.
+>
+> Parsing recipes..ERROR: No recipes available for:
+>
+> /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoct=
+o_4.4.bbappend
+>
+> /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yoct=
+o_4.1.bbappend
+>
+>
+
+Looks like you're using meta-virtualisation from git master, but an older
+release of oe-core.  Always use corresponding branches, so if you're using
+oe-core 2.0 (jethro) then you need the jethro branch of meta-virtualization=
+.
+
+Ross
+
+--047d7b3a8458e570df052d7671c4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 7 March 2016 at 13:52, Biyani Arun (CM/ESC-NA) <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:Arun.Biyani@us.bosch.com" target=3D"_blank">Arun.Biyani@us.b=
+osch.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I w=
+ould like to include lxc style container support in poky image. I added =E2=
+=80=9Cmeta-virtualization=E2=80=9D to my</div>
+<div>bblayers.conf. I now get errors when running =E2=80=9Cbitbake-layers s=
+how-recipes=E2=80=9D.</div>
+<div>=C2=A0</div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt">Parsi=
+ng recipes..ERROR: No recipes available for:</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt">=C2=
+=A0 /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yo=
+cto_4.4.bbappend</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt">=C2=
+=A0 /home/fcadev/GR_Yocto/meta-virtualization/recipes-kernel/linux/linux-yo=
+cto_4.1.bbappend</span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt">=C2=
+=A0</span></font></div></blockquote></div><br>Looks like you&#39;re using m=
+eta-virtualisation from git master, but an older release of oe-core.=C2=A0 =
+Always use corresponding branches, so if you&#39;re using oe-core 2.0 (jeth=
+ro) then you need the jethro branch of meta-virtualization.</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--047d7b3a8458e570df052d7671c4--
