@@ -1,58 +1,52 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <sagar.bhanagay@hpe.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C13D0E0083D; Mon,  7 Mar 2016 13:51:36 -0800 (PST)
+	id C6EB7E0083D; Mon,  7 Mar 2016 14:07:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+	*      [15.201.208.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20172E0077F
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 13:51:33 -0800 (PST)
-Received: by mail-ig0-f176.google.com with SMTP id ig19so35880787igb.0
-	for <yocto@yoctoproject.org>; Mon, 07 Mar 2016 13:51:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZK3OaQNemXdtZek//rxIPQD6XnAotiXCcknV1IgWn0U=;
-	b=dqS34ubz7p+hhQfF64MB50wh/L/BOvoPHwpkDbX1KGR+zCxwG+hi5V/ob7qIkXiVcX
-	cFHYKDnkO/sL62Q2FgUVDIybUdMevDjaeS0m6MWecBzC5g3iDuq2m7l3wJWL7GX1pWLg
-	vBaiVOxCt/zYCJ51dWoU+JYdCtBuF0kvkJerFEvj+QqoQ3uk01OLqqHYwQubMJpi5Rxb
-	sTLzbYqRcxLM3y6+5EkYzd0HupPrNZZADVB2sZSXTCPbgjXqsciC64JjEZoFHYYFeV+q
-	gsDZ0Edfi9lGEL/H4APm0/ftpHsXXMtrcFfImzS18yl8ke5THkVzURX7YtDNlx4s9p4u
-	XKcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZK3OaQNemXdtZek//rxIPQD6XnAotiXCcknV1IgWn0U=;
-	b=eorxyJxJBgm83uDLLt3tmI4WquY3fqZqUMszFP8VVfdYNCzDZF5YiaTmLVmHnURUvm
-	+3IgP3R98clRJZUMBdGWoPQOtcZGNFulCCSnXegpwnXjZPgD3VJz9B0In9tTl+TlRMn3
-	3mZCobKG5QehapZrgsUfGBxShbUg682fNj9tkq0wl5oXwkTwwXwtmybA4EPpQsTCgOzV
-	vWQsG4XkAwXQqspQeMQNdX9J6SBZPmgUr9bNFdBg1J0rRrmEmpmEigEOU4vIQk+bfxzc
-	VZfepUL0mfZ+nBOh1y0Sb9ZbmdGs8exe2aRh1qzDFVaD5NRUmP3KnWA3UEQD3qfa4OFk
-	ReYg==
-X-Gm-Message-State: AD7BkJIqOofUHcAvHDIOxTL9W4H2epKO4LOvV0BOTPReBbxQ2CjuE/BrPqJ35iL//bRSmY3aBoDuHLCknwz8672S
-X-Received: by 10.50.43.226 with SMTP id z2mr15013004igl.78.1457387492845;
-	Mon, 07 Mar 2016 13:51:32 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.162.70 with HTTP; Mon, 7 Mar 2016 13:51:13 -0800 (PST)
-In-Reply-To: <EC8BB00EF68CF14E9A15000E115CBC8108F25488@G4W3291.americas.hpqcorp.net>
+X-Greylist: delayed 1212 seconds by postgrey-1.32 at yocto-www;
+	Mon, 07 Mar 2016 14:07:05 PST
+Received: from g4t3426.houston.hp.com (g4t3426.houston.hp.com [15.201.208.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC7F3E0077F
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 14:07:05 -0800 (PST)
+Received: from G4W9119.americas.hpqcorp.net (g4w9119.houston.hp.com
+	[16.210.20.214])
+	(using TLSv1.2 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by g4t3426.houston.hp.com (Postfix) with ESMTPS id 9A91367
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 22:07:04 +0000 (UTC)
+Received: from G4W9119.americas.hpqcorp.net (2002:10eb:26ef::10eb:26ef) by
+	G4W9119.americas.hpqcorp.net (2002:10eb:26ef::10eb:26ef) with Microsoft
+	SMTP Server (TLS) id 15.0.1076.9; Mon, 7 Mar 2016 22:07:03 +0000
+Received: from G4W6303.americas.hpqcorp.net (16.210.26.228) by
+	G4W9119.americas.hpqcorp.net (16.210.20.214) with Microsoft SMTP Server
+	(TLS)
+	id 15.0.1076.9 via Frontend Transport; Mon, 7 Mar 2016 22:07:03 +0000
+Received: from G4W3291.americas.hpqcorp.net ([169.254.8.132]) by
+	G4W6303.americas.hpqcorp.net ([16.210.26.228]) with mapi id
+	14.03.0169.001; Mon, 7 Mar 2016 22:07:03 +0000
+From: "Bhanagay, Sagar" <sagar.bhanagay@hpe.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] packages with PKGSIZE 0
+Thread-Index: AQHReLuGgi+a4gt3LESVPJGjN66D2p9OiVCQ
+Date: Mon, 7 Mar 2016 22:07:02 +0000
+Message-ID: <EC8BB00EF68CF14E9A15000E115CBC8108F254AA@G4W3291.americas.hpqcorp.net>
 References: <EC8BB00EF68CF14E9A15000E115CBC8108F25488@G4W3291.americas.hpqcorp.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 7 Mar 2016 21:51:13 +0000
-Message-ID: <CAJTo0LY0Qo5K8MZrqhCZKkLfjdUJ=N19WFaxvaEh+CGpMbquTw@mail.gmail.com>
-To: "Bhanagay, Sagar" <sagar.bhanagay@hpe.com>
+	<CAJTo0LY0Qo5K8MZrqhCZKkLfjdUJ=N19WFaxvaEh+CGpMbquTw@mail.gmail.com>
+In-Reply-To: <CAJTo0LY0Qo5K8MZrqhCZKkLfjdUJ=N19WFaxvaEh+CGpMbquTw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [16.216.65.178]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: packages with PKGSIZE 0
 X-BeenThere: yocto@yoctoproject.org
@@ -66,89 +60,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Mar 2016 21:51:36 -0000
-Content-Type: multipart/alternative; boundary=047d7bfea0f4cfc391052d7c77f4
+X-List-Received-Date: Mon, 07 Mar 2016 22:07:07 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_EC8BB00EF68CF14E9A15000E115CBC8108F254AAG4W3291americas_"
 
---047d7bfea0f4cfc391052d7c77f4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_EC8BB00EF68CF14E9A15000E115CBC8108F254AAG4W3291americas_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 7 March 2016 at 21:46, Bhanagay, Sagar <sagar.bhanagay@hpe.com> wrote:
+SSBzZWUhDQpUaGlzIGlzIGdvb2QgaW5mb3JtYXRpb24sIFJvc3MuDQpUcnVseSBhcHByZWNpYXRl
+IHRoZSBpbnNpZ2h0Lg0KDQpUaGFua3MNCn5TYWdhcg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21h
+aWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQpTZW50OiBNb25kYXksIE1hcmNoIDcsIDIwMTYg
+MTo1MSBQTQ0KVG86IEJoYW5hZ2F5LCBTYWdhcg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
+ClN1YmplY3Q6IFJlOiBbeW9jdG9dIHBhY2thZ2VzIHdpdGggUEtHU0laRSAwDQoNCg0KT24gNyBN
+YXJjaCAyMDE2IGF0IDIxOjQ2LCBCaGFuYWdheSwgU2FnYXIgPHNhZ2FyLmJoYW5hZ2F5QGhwZS5j
+b208bWFpbHRvOnNhZ2FyLmJoYW5hZ2F5QGhwZS5jb20+PiB3cm90ZToNCkkgd2FzIGdvaW5nIHRo
+cm91Z2ggdGhlIGxpc3Qgb2YgcGFja2FnZXMgaW5zdGFsbGVkIGluIHRoZSBpbWFnZSAoYXMgcGVy
+IHRoZSBtYW5pZmVzdCBmaWxlKS4NCkkgbm90aWNlZCB0aGF0IG1ldGFkYXRhIGluZm9ybWF0aW9u
+IGZvciB0aGVzZSBwYWNrYWdlcyBpcyBwcmVzZW50IGF0IC0NCi9idWlsZC90bXAvc3lzcm9vdHMv
+TkFNRS9wa2dkYXRhL3J1bnRpbWUvDQoNCk5vdyBJIGRvIG5vdGljZSB0aGF0IHJhcmVseSBmb3Ig
+YSBmZXcgcGFja2FnZXMgbWVudGlvbmVkIGluIHRoZSBtYW5pZmVzdCBsaXN0LCB0aGUgY29ycmVz
+cG9uZGluZyBtZXRhZGF0YSBmaWxlIGlzIG5vdCBwcmVzZW50IGhlcmUuDQpBbHNvIHNvbWV0aW1l
+cywgdGhvdWdoIHRoZSBmaWxlIGlzIHByZXNlbnQsIGl0IHNheXMg4oCcUEtHU0laRV9wa2duYW1l
+OiAw4oCdDQpFeGFtcGxlOiBQS0dTSVpFX3BhY2thZ2Vncm91cC1iYXNlLWlwdjY6IDANCg0KV2hh
+dCBhcmUgdGhlc2UgMCBzaXplIHBhY2thZ2VzIHRoYXQgbWFuaWZlc3Qgc2F5cyBhcmUgcGFydCBv
+ZiB0aGUgaW1hZ2U/DQoNClRoZXkncmUgY2FsbGVkIG1ldGFwYWNrYWdlczogdGhleSBleGlzdCBh
+cyBwYWNrYWdlcyBidXQgZG9uJ3QgYWN0dWFsbHkgaW5zdGFsbCBhbnkgZmlsZXMuICBUaGV5J3Jl
+IHVzZWQgdG8gcHVsbCBpbiBvdGhlciBwYWNrYWdlcyB0aHJvdWdoIGRlcGVuZGVuY2llcy4gIHBh
+Y2thZ2Vncm91cC1iYXNlLWlwdjYgaXMgYSBiYWQgZXhhbXBsZSBhcyBpdCBhY3R1YWxseSBvbmx5
+IHB1bGxzIGluIG9uZSBvdGhlciBwYWNrYWdlLCBidXQgcGFja2FnZWdyb3VwLWJhc2UtYmx1ZXRv
+b3RoIGlzIGEgZ29vZCBleGFtcGxlIGFzIGluc3RhbGxpbmcgdGhhdCBjYXVzZXMgYWJvdXQgMTUg
+a2VybmVsIG1vZHVsZSBwYWNrYWdlcyB0byBiZSBwdWxsZWQgaW4gKHRvIGVuYWJsZSBibHVldG9v
+dGggc3VwcG9ydCkuDQoNClJvc3MNCg0KUm9zcw0K
 
-> I was going through the list of packages installed in the image (as per
-> the manifest file).
->
-> I noticed that metadata information for these packages is present at -
->
-> */build/tmp/sysroots/NAME/pkgdata/runtime/*
->
->
->
-> Now I do notice that rarely for a few packages mentioned in the manifest
-> list, the corresponding metadata file is not present here.
->
-> Also sometimes, though the file is present, it says =E2=80=9CPKGSIZE_pkgn=
-ame: 0=E2=80=9D
->
-> Example: PKGSIZE_packagegroup-base-ipv6: 0
->
->
->
-> What are these 0 size packages that manifest says are part of the image?
->
->
-They're called metapackages: they exist as packages but don't actually
-install any files.  They're used to pull in other packages through
-dependencies.  packagegroup-base-ipv6 is a bad example as it actually only
-pulls in one other package, but packagegroup-base-bluetooth is a good
-example as installing that causes about 15 kernel module packages to be
-pulled in (to enable bluetooth support).
+--_000_EC8BB00EF68CF14E9A15000E115CBC8108F254AAG4W3291americas_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Ross
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ291cmllciBO
+ZXciOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
+ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2Ug
+V29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAx
+LjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
+Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
+PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
+dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
+CjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4N
+CjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90
+Oztjb2xvcjojMUY0OTdEIj5JIHNlZSE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGlzIGlzIGdvb2QgaW5mb3JtYXRp
+b24sIFJvc3MuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcm
+cXVvdDs7Y29sb3I6IzFGNDk3RCI+VHJ1bHkgYXBwcmVjaWF0ZSB0aGUgaW5zaWdodC48bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjojMUY0
+OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5l
+dyZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj5+U2FnYXI8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjojMUY0OTdE
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24s
+IFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4g
+TW9uZGF5LCBNYXJjaCA3LCAyMDE2IDE6NTEgUE08YnI+DQo8Yj5Ubzo8L2I+IEJoYW5hZ2F5LCBT
+YWdhcjxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1Ympl
+Y3Q6PC9iPiBSZTogW3lvY3RvXSBwYWNrYWdlcyB3aXRoIFBLR1NJWkUgMDxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiA3IE1hcmNoIDIwMTYgYXQgMjE6NDYsIEJoYW5h
+Z2F5LCBTYWdhciAmbHQ7PGEgaHJlZj0ibWFpbHRvOnNhZ2FyLmJoYW5hZ2F5QGhwZS5jb20iIHRh
+cmdldD0iX2JsYW5rIj5zYWdhci5iaGFuYWdheUBocGUuY29tPC9hPiZndDsgd3JvdGU6PG86cD48
+L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29s
+aWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQu
+OHB0O21hcmdpbi1yaWdodDowaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPkkgd2FzIGdvaW5nIHRocm91
+Z2ggdGhlIGxpc3Qgb2YgcGFja2FnZXMgaW5zdGFsbGVkIGluIHRoZSBpbWFnZSAoYXMgcGVyIHRo
+ZSBtYW5pZmVzdCBmaWxlKS48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+
+SSBub3RpY2VkIHRoYXQgbWV0YWRhdGEgaW5mb3JtYXRpb24gZm9yIHRoZXNlIHBhY2thZ2VzIGlz
+IHByZXNlbnQgYXQgLQ0KPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj48Yj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsi
+Pi9idWlsZC90bXAvc3lzcm9vdHMvTkFNRS9wa2dkYXRhL3J1bnRpbWUvPC9zcGFuPjwvYj48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtD
+b3VyaWVyIE5ldyZxdW90OyI+Tm93IEkgZG8gbm90aWNlIHRoYXQgcmFyZWx5IGZvciBhIGZldyBw
+YWNrYWdlcyBtZW50aW9uZWQgaW4gdGhlIG1hbmlmZXN0IGxpc3QsIHRoZSBjb3JyZXNwb25kaW5n
+IG1ldGFkYXRhIGZpbGUgaXMgbm90IHByZXNlbnQgaGVyZS48L3NwYW4+PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtD
+b3VyaWVyIE5ldyZxdW90OyI+QWxzbyBzb21ldGltZXMsIHRob3VnaCB0aGUgZmlsZSBpcyBwcmVz
+ZW50LCBpdCBzYXlzIOKAnFBLR1NJWkVfcGtnbmFtZTogMOKAnTwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7Ij5FeGFtcGxlOiBQS0dTSVpFX3BhY2thZ2Vncm91cC1iYXNlLWlw
+djY6IDA8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+Jm5ic3A7PC9zcGFu
+PjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4t
+dG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPldoYXQgYXJlIHRoZXNlIDAgc2l6ZSBw
+YWNrYWdlcyB0aGF0IG1hbmlmZXN0IHNheXMgYXJlIHBhcnQgb2YgdGhlIGltYWdlPzwvc3Bhbj48
+bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PGJyPg0KVGhleSdyZSBjYWxsZWQgbWV0YXBhY2thZ2VzOiB0aGV5IGV4aXN0IGFzIHBhY2th
+Z2VzIGJ1dCBkb24ndCBhY3R1YWxseSBpbnN0YWxsIGFueSBmaWxlcy4mbmJzcDsgVGhleSdyZSB1
+c2VkIHRvIHB1bGwgaW4gb3RoZXIgcGFja2FnZXMgdGhyb3VnaCBkZXBlbmRlbmNpZXMuICZuYnNw
+O3BhY2thZ2Vncm91cC1iYXNlLWlwdjYgaXMgYSBiYWQgZXhhbXBsZSBhcyBpdCBhY3R1YWxseSBv
+bmx5IHB1bGxzIGluIG9uZSBvdGhlciBwYWNrYWdlLCBidXQgcGFja2FnZWdyb3VwLWJhc2UtYmx1
+ZXRvb3RoDQogaXMgYSBnb29kIGV4YW1wbGUgYXMgaW5zdGFsbGluZyB0aGF0IGNhdXNlcyBhYm91
+dCAxNSBrZXJuZWwgbW9kdWxlIHBhY2thZ2VzIHRvIGJlIHB1bGxlZCBpbiAodG8gZW5hYmxlIGJs
+dWV0b290aCBzdXBwb3J0KS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Ross
-
---047d7bfea0f4cfc391052d7c77f4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 7 March 2016 at 21:46, Bhanagay, Sagar <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:sagar.bhanagay@hpe.com" target=3D"_blank">sagar.bhanagay@hpe.com</a>=
-&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"=
-><span style=3D"font-family:&quot;Courier New&quot;">I was going through th=
-e list of packages installed in the image (as per the manifest file).<u></u=
-><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-I noticed that metadata information for these packages is present at -
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Courier New&quot=
-;">/build/tmp/sysroots/NAME/pkgdata/runtime/<u></u><u></u></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Now I do notice that rarely for a few packages mentioned in the manifest li=
-st, the corresponding metadata file is not present here.<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Also sometimes, though the file is present, it says =E2=80=9CPKGSIZE_pkgnam=
-e: 0=E2=80=9D<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Example: PKGSIZE_packagegroup-base-ipv6: 0<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-What are these 0 size packages that manifest says are part of the image?<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>They&#39;re called metapa=
-ckages: they exist as packages but don&#39;t actually install any files.=C2=
-=A0 They&#39;re used to pull in other packages through dependencies. =C2=A0=
-packagegroup-base-ipv6 is a bad example as it actually only pulls in one ot=
-her package, but packagegroup-base-bluetooth is a good example as installin=
-g that causes about 15 kernel module packages to be pulled in (to enable bl=
-uetooth support).</div><div class=3D"gmail_extra"><br></div><div class=3D"g=
-mail_extra">Ross</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
-ail_extra">Ross</div></div>
-
---047d7bfea0f4cfc391052d7c77f4--
+--_000_EC8BB00EF68CF14E9A15000E115CBC8108F254AAG4W3291americas_--
