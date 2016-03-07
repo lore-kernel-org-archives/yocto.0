@@ -1,41 +1,92 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C17CCE007B5; Mon,  7 Mar 2016 07:42:28 -0800 (PST)
+	id 853BCE00833; Mon,  7 Mar 2016 08:00:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.121 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00E2AE00720
-	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 07:42:25 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u27FgA15007088
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 7 Mar 2016 07:42:10 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 7 Mar 2016 07:42:09 -0800
-To: Philip Tricca <flihp@twobit.us>, "T.O. Radzy Radzykewycz"
-	<radzy@windriver.com>, <joe_macdonald@mentor.com>
-References: <1456786237-28300-1-git-send-email-radzy@windriver.com>
-	<56DCBF6A.2020908@twobit.us>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <56DDA150.5080001@windriver.com>
-Date: Mon, 7 Mar 2016 09:42:08 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.6.0
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0121.outbound.protection.outlook.com [207.46.100.121])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D99E00720
+	for <yocto@yoctoproject.org>; Mon,  7 Mar 2016 08:00:26 -0800 (PST)
+Authentication-Results: deserted.net; dkim=none (message not signed)
+	header.d=none; deserted.net; dmarc=none action=none header.from=ni.com; 
+Received: from [10.2.33.36] (130.164.62.82) by
+	BY2PR04MB848.namprd04.prod.outlook.com (10.242.39.13) with Microsoft
+	SMTP Server (TLS) id 15.1.415.20; Mon, 7 Mar 2016 16:00:24 +0000
+Message-ID: <56DDA57D.3060209@ni.com>
+Date: Mon, 7 Mar 2016 09:59:57 -0600
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-In-Reply-To: <56DCBF6A.2020908@twobit.us>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] audit: upgrade 2.4.4 -> 2.5
+To: Philip Tricca <flihp@twobit.us>
+References: <1455921936-24140-1-git-send-email-alejandro.delcastillo@ni.com>
+	<56D61E9D.5020607@ni.com> <56D67D70.6010608@twobit.us>
+In-Reply-To: <56D67D70.6010608@twobit.us>
+X-Originating-IP: [130.164.62.82]
+X-ClientProxiedBy: BY2PR05CA034.namprd05.prod.outlook.com (10.141.250.24) To
+	BY2PR04MB848.namprd04.prod.outlook.com (10.242.39.13)
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
+	2:g1YVI+u9jKlePQm5OuvdNQEWG1FPM08T/17peO9CC0SO9/LvDPvD6+8Qn2YvpUni2hEq6sjlZt4PAeLiN6twVFaP3bj7rF86PSXBVO8xk/eVaEDq0NjY/iYAR5f3tEc0P2ffcPBNCMy/8RycfejGow==;
+	3:qaChWaYiY3g1nI2qUybb9UgYdaoXDcRwQ1HiTqvvqWktcSUI5uXfgrk2FRud+QHYXFU4EGy99QCDDGrrU2q4c+McKwFnwiNieJcmfc4N7X9rwI/65uOLEf3CqqGoNOv8;
+	25:O4s/+TOgOtxxnOCNeyuffDAAwZ0oeOJ8vog3MqvxBXhQgkb3xqJzMEGvZ6lm/q05uwtLIRfbFRYCGqFqf6V5x1VAYvq/LPNs54DvjJ8rGH0v1CBOdg1ZfhjDnDpxj/ZU+GlO5pV8whE7sHzAptqZ86R/J47Il9LhcwhZ3I2hYrcv/4wKmWVA9eSSZqvZbjz9d5TXEYnkX5y28XqFOzLZSk5ycT4XwGVYETWaLo2cCB1u8xqzNWF/im4bbiOIiwNJuWobdVZM/tCYXusFWYs345JGLqN8IEA87pOFq533HogFPQdVUGbpsjg6AMWJKSVYiwVOymRk3oSYk4k1A61mUA==
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR04MB848;
+X-MS-Office365-Filtering-Correlation-Id: 46e6e67f-a10f-41ec-e952-08d346a198a6
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
+	20:dLH1m6CMnE7Qw7qwTjQR0F6KHj0egpVhq3dG7Jg9Hq1qrvhE+UB6a8sPWYGvUkqdzWYARu3MyKZQUcv3L2tJemTRYZgQSc2d7ScBTFFmVFcGIOCuLdPa5T6qF5BVm95brwkqiDbpDnrSY3F98cIN6mppy4lENwkyjuXzH+sfb0QaMJYTB02PsBhegt+UwwIWNr/vnVCbL6Dbq3N5Vnj7043Oug9bHDRaHN8I2HkiDJ9ghYK+X+Ias4SqunIgN/epimgFLITe8PCPD+O2KuwoRB6LoEm8GM4UVlskhGMsGM9tT4qCtc0EEyJ5f4C17Xr/IvAjT2VFj4p/bvYYfab/4+q/wrMD2uTytA3a0AuKiz2MvLLxxjEFATfNA07qcKZo2o6/KLhn1fkw/BZlnjWlwASxAs7J7hX536owjklCaLORrcUVMAFnHwwbXf/cr6HE3/tN0zrJyoMzcsZRxQVi9waNiUP2A0UxrOGvXQggOglJAqPNu8S2or68pC/DJvkVw+DYfox5VO6rI4eGWIl9mQcCZtwuaGBmi9Jg7CTVtNK3cvVAzXM/YDpj1FMYe77pSN6LMOb7jO4awUim/MqEahkga7fzwU4pSXSpJnXbwDU=
+X-Microsoft-Antispam-PRVS: <BY2PR04MB848F3098E7CCEC877F9839F86B10@BY2PR04MB848.namprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:BY2PR04MB848; BCL:0; PCL:0; RULEID:; SRVR:BY2PR04MB848; 
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
+	4:k6N5nwQa+aKPvcBqwC2ZlBiiXILERHzTz61clmTmxkHTOQLI1BwnZ5Ok4gyoFZqtqFRghu9BSwNC5q7vbaiouw+pHVKeBLG2sloHb02X0LUk+sbrVtIWHgeBE9vIhaOWuLoxvvdeM3GuYdEUb1XRUp+izQmcy6LVlVyzPzPGrVeyZ4jvbXrUBD7d4EBDsU3Zd5xZ80JYDNFKbZygMWNOO4f6MQqgAMF80FZ8zqu0xcaKFEhMPk2WiCoQewhq6JaRs4nAWlHdJxwh4FvFXaylvWqYR5zQlVTbsNXCIejanWZcRla22gEl+6jcWYLYpNCaZpuZNkzYOsPwyN6ORXkrw/uQLP72eQR2mOCrk0+0fSfxPAqrl8s/pStUplxWgDOv
+X-Forefront-PRVS: 087474FBFA
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(4630300001)(6049001)(6009001)(377454003)(24454002)(57704003)(479174004)(83506001)(189998001)(50986999)(65816999)(230700001)(5004730100002)(110136002)(54356999)(87266999)(76176999)(40100003)(122386002)(2950100001)(50466002)(92566002)(23746002)(4001350100001)(86362001)(6116002)(2906002)(80316001)(36756003)(33656002)(586003)(47776003)(65806001)(81166005)(1096002)(66066001)(65956001)(3846002)(42186005)(5008740100001)(4326007)(59896002)(77096005)(87976001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BY2PR04MB848; H:[10.2.33.36];
+	FPR:; SPF:None; MLV:sfv; LANG:en; 
+X-Microsoft-Exchange-Diagnostics: =?Windows-1252?Q?1; BY2PR04MB848;
+	23:tCuPn+n201T4OxPjJCOGAuk/XfmF3y2C2Dzp7B?=
+	=?Windows-1252?Q?RgiG5oeqFx4drJt1AL+aDaytpGwLA8ob7liJ1LFTWrG/o9urXJS8xceK?=
+	=?Windows-1252?Q?dnppefK07CQzxYDg7yMZLh8plM5N+ADY8Xxqp9plBiEiDleGNGEwiPDy?=
+	=?Windows-1252?Q?7RIS/X1/QerhR+xSZiXhjBt3B0Rruz/eWNCeaqKg2hPbbidLNrUaEHX0?=
+	=?Windows-1252?Q?Ewm093bonesAZmME6RN0dxZe+dPHszuHkNuERdfF5kBC5uDozUr9Ip1r?=
+	=?Windows-1252?Q?VZNB4K7z3uGSwwNFIcHrlK1dtot69I2DX1Yqm6f1XviYwbMQvUGnL7UZ?=
+	=?Windows-1252?Q?hbS2t3QDLSZXNkry4flyUqavToMsKawXhwlZsM3c9d2RYZMWSQU09ePH?=
+	=?Windows-1252?Q?oloEnj1yO9ceJvqtM4Z1mi16j/CwJQkVSbxNbSADQifh8pjXJT7GmplR?=
+	=?Windows-1252?Q?7/C5ofSoRouTCPjF74Kvz8t+19tlEwBFcQLg7yZFDjGl7lWNiaTzZFQG?=
+	=?Windows-1252?Q?kQyZ75SZBoHLg+bDMlJXvf0daqFX812nfrhhqV+g3+/Lim1VQ/zdGpRf?=
+	=?Windows-1252?Q?q3QjBeqCp8Ewr5RNckUd4Pt06UTQbTjUll7FXG7afEQFG7NogrjiPunY?=
+	=?Windows-1252?Q?ilZvi/WEMHP5hS36lTa64Nz2SwILYsOasxfX638SVyW6+i7xW4ru4kbH?=
+	=?Windows-1252?Q?/YLQeWIfe0xmJ3TVftdU74yaCVEcTnY2pad9zHAfdNhltBCAsb5gYs5G?=
+	=?Windows-1252?Q?IpnTu7TawUZlFTpP0wbsc2C00tN1c7RPF7YNfQvn0Lcapjmz7s42J3Hu?=
+	=?Windows-1252?Q?3j07tpfwKjWDN/GX7UClr6iyhE5Vb9XBgcrGW9BkHC1VKtxiJmY8TmD+?=
+	=?Windows-1252?Q?YXGDoiJuzQruXdQMaFYZ7u5cIgiYtPPLH/5KxrtgOXJG+TnZhAYoFSTO?=
+	=?Windows-1252?Q?1ohuJ+T2ZbtH3IXaSArZrtI0DtweZ92zjpbRVWNY8ADKeLcFZLDCE3pS?=
+	=?Windows-1252?Q?8TZH1aJRDtOiD4jew30wyCUzb3rurYNNQajm3ixqzQVtSeBOSqJbz2yx?=
+	=?Windows-1252?Q?Swh594/KkMStSFUVJFqh3jLfbcIeY2sHvY87rwHpCYVXRbcammRTdaj7?=
+	=?Windows-1252?Q?5cbZkqgs4pQ82BHJ6whze/9rt4wDiuZEwPPkOFxwxqPyYk3J9y08I+CU?=
+	=?Windows-1252?Q?ko3/877aYJinv+veejzBQFdUlTu9YFHm/g+61u57HV0uP8c9HL?=
+X-Microsoft-Exchange-Diagnostics: 1; BY2PR04MB848;
+	5:VassMs9DJ7HtaqJikhgI7zEM3an1mJFiZZSxl+NHx7L/S3E2A49gpMNS0DN2ymjozE/IxY7RuOCrPIIm4hID+ph9RGofxUHcIwqz557okixQ5FClpX9qbMIvbKCURdYILttHcHJ5/3mZ6gXd2TigrQ==;
+	24:tLE9acpi8ggJBxpxCBl2PLnROljk6U/pVoomWEz1AkLfeQeZqVbUrhpR55xw10wfPiZ0+hcjj37pnP6EZ3fbfQh9i6G2+kjj6F6OfVEt/Nk=
+SpamDiagnosticOutput: 1:23
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2016 16:00:24.8657 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR04MB848
+Cc: yocto@yoctoproject.org, Xin.Ouyang@windriver.com
+Subject: Re: [meta-selinux][PATCH] busybox: explicitly set temporary shell scripts to be executable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,388 +98,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Mar 2016 15:42:28 -0000
+X-List-Received-Date: Mon, 07 Mar 2016 16:00:28 -0000
 Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
-On 3/6/16 5:38 PM, Philip Tricca wrote:
-> Tested this today and it works as expected: thanks!
-> 
-> This leaves the same PR value as the previous version. The OE style
-> guide thinks PR should be removed when PV changes. Since we're going
-> from 2.4.4 -> 2.5 this makes me think that since PV changes PR should be
-> removed. I've never given this much thought in the past so I had to look
 
-Correct.. when the PV changes, remove the PR and everything from that point on
-is automatic.
 
---Mark
+On 03/01/2016 11:43 PM, Philip Tricca wrote:
+> On 03/01/2016 02:58 PM, Alejandro del Castillo wrote:
+>> I first started looking at busybox postinst (modified on meta-selinux) since I
+>> am getting errors during "opkg upgrade buysbox". The errors that I am getting
+>> are of the form:
+>>
+>> update-alternatives: Error: not linking /bin/gunzip to
+>> /usr/lib/busybox/bin/gunzip since /bin/gunzip exists and is not a link
+>>
+>> Which only happen for utilities that don't have any alternative installed after
+>> removing busybox, hence no symlink. Utilities that do have an alternative
+>> installed are correctly processed, for example:
+>>
+>> update-alternatives: Linking /usr/bin/ar to /usr/bin/x86_64-nilrt-linux-ar
+>>
+>> The root problem is that meta-selinux on commit
+>> 521ca9c9cf370840e9f8c808a7955aa5da7c356e replaced the temporary symlink creation
+>> on postinst with sh wrappers, which breaks update-alternatives when it tries to
+>> update symlinks (which are now sh wrappers).
+>>
+>> Is there a reason why the postinst needs to be different on the selinux version
+>> of busybox? If the postinst is just creating temporary symlinks which will go
+>> away once the update-alternatives block later on the script runs, do we need the
+>> sh wrappers?
+> 
+> Thanks for the additional context Alejandro. I don't have enough history
+> yet to pull answers to stuff like this out at will though. Hopefully
+> someone with the right background will chime in. Either way I'll circle
+> back once the easy stuff in the backlog is done and we'll try to sort
+> something out.
 
-> it up and may have misunderstood the docs. Is removing PR like this
-> correct or should it be left as is?
-> 
-> Thanks,
-> Philip
-> 
-> On 02/29/2016 02:50 PM, T.O. Radzy Radzykewycz wrote:
->> * rebase patch audit-python-configure.patch
->>
->> * remove audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch
->>   as it had already been applied upstream
->>
->> * 2.5 includes miscellaneous enhancements and fixes:
->>
->> 2.5
->> - Make augenrules the default method to load audit rules
->> - Put rules in its own directory and break out rules into groups
->> - Have auditd do a fsync before closing log
->> - Make default flush setting larger
->> - In auparse. terminate the generated strings (Burn Alting)
->> - In auditd, add incremental_async flushing mode
->> - Clean up dangling fields in DAEMON events
->> - Add audit by process name support to auditctl (Richard Briggs)
->> - Relax permissions on systemd files
->> - Fix auparse to handle interlaced events (Burn Alting)
->> - Allow more syslog facilities in audispd-syslog (Aleksander Adamowski)
->>
->> 2.4.5
->> - Fix auditd disk flushing for data and sync modes
->> - Fix auditctl to not show options not supported on older OS
->> - Add audit.m4 file to aid adding support to other projects
->> - Fix C99 inline function build issue
->> - Add account lock and unlock event types
->> - Change logging loophole check to geteuid()
->> - Fix ausearch to not consider AUDIT_PROCTITLE events malformed (Burn Alting)
->> - Fix ausearch to parse FEATURE_CHANGE events
->>
->> ( From http://people.redhat.com/sgrubb/audit/ChangeLog )
->>
->> Signed-off-by: T.O. Radzy Radzykewycz <radzy@windriver.com>
->> ---
->>  ...et-inline-functions-work-with-gnu89-gnu11.patch |  71 --------------
->>  .../audit/audit/audit-python-configure.patch       |   3 +-
->>  recipes-security/audit/audit_2.4.4.bb              | 100 --------------------
->>  recipes-security/audit/audit_2.5.bb                | 104 +++++++++++++++++++++
->>  4 files changed, 106 insertions(+), 172 deletions(-)
->>  delete mode 100644 recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch
->>  delete mode 100644 recipes-security/audit/audit_2.4.4.bb
->>  create mode 100644 recipes-security/audit/audit_2.5.bb
->>
->> diff --git a/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch b/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch
->> deleted file mode 100644
->> index 578cfc1dc476..000000000000
->> --- a/recipes-security/audit/audit/audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch
->> +++ /dev/null
->> @@ -1,71 +0,0 @@
->> -From 15036dd4fa9eb209f5e148c6f7ee081f5ca78fa4 Mon Sep 17 00:00:00 2001
->> -From: Wenzong Fan <wenzong.fan@windriver.com>
->> -Date: Fri, 11 Sep 2015 03:37:13 -0400
->> -Subject: [PATCH] audit/auvirt: get inline functions work with both gnu89 & gnu11
->> -
->> -After gcc upgraded to gcc5, and if the codes are compiled without
->> -optimization (-O0), and the below error will happen:
->> -
->> -  auvirt.c:484: undefined reference to `copy_str'
->> -  auvirt.c:667: undefined reference to `is_resource'
->> -  collect2: error: ld returned 1 exit status
->> -
->> -gcc5 defaults to -std=gnu11 instead of -std=gnu89, and it requires that
->> -exactly one C source file has the callable copy of the inline function.
->> -Consider the following program:
->> -
->> -  inline int
->> -  foo (void)
->> -  {
->> -    return 42;
->> -  }
->> -
->> -  int
->> -  main (void)
->> -  {
->> -    return foo ();
->> -  }
->> -
->> -The program above will not link with the C99 inline semantics, because
->> -no out-of-line function foo is generated. To fix this, either mark the
->> -function foo as static, or add the following declaration:
->> -
->> -  static inline int foo (void);
->> -
->> -More information refer to: https://gcc.gnu.org/gcc-5/porting_to.html
->> -
->> -Note: using "extern inline" will fail to build with gcc4.x, so replace
->> -inline with "static inline".
->> -
->> -Upstream-Status: Pending
->> -
->> -Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->> ----
->> - tools/auvirt/auvirt.c | 4 ++--
->> - 1 file changed, 2 insertions(+), 2 deletions(-)
->> -
->> -diff --git a/tools/auvirt/auvirt.c b/tools/auvirt/auvirt.c
->> -index 655c454..b16d718 100644
->> ---- a/tools/auvirt/auvirt.c
->> -+++ b/tools/auvirt/auvirt.c
->> -@@ -138,7 +138,7 @@ void event_free(struct event *event)
->> - 	}
->> - }
->> - 
->> --inline char *copy_str(const char *str)
->> -+static inline char *copy_str(const char *str)
->> - {
->> - 	return (str) ? strdup(str) : NULL;
->> - }
->> -@@ -650,7 +650,7 @@ int process_control_event(auparse_state_t *au)
->> - 	return 0;
->> - }
->> - 
->> --inline int is_resource(const char *res)
->> -+static inline int is_resource(const char *res)
->> - {
->> - 	if (res == NULL ||
->> - 	    res[0] == '\0' ||
->> --- 
->> -1.9.1
->> -
->> diff --git a/recipes-security/audit/audit/audit-python-configure.patch b/recipes-security/audit/audit/audit-python-configure.patch
->> index b47cf5d2d968..cb62ec3022bb 100644
->> --- a/recipes-security/audit/audit/audit-python-configure.patch
->> +++ b/recipes-security/audit/audit/audit-python-configure.patch
->> @@ -8,6 +8,7 @@ Upstream-Status: pending
->>  Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
->>  Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->>  Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->> +Signed-off-by: T.O. Radzy Radzykewycz <radzy@windriver.com>
->>  ---
->>   configure.ac | 17 ++---------------
->>   1 file changed, 2 insertions(+), 15 deletions(-)
->> @@ -29,7 +30,7 @@ index 1f48cb4..cdb5219 100644
->>  -	AC_MSG_NOTICE(Python bindings will be built)
->>  -else
->>  -	python_found="no"
->> --	if test x$use_python = xyes ; then
->> +-	if test "x$use_python" = xyes ; then
->>  -		AC_MSG_ERROR([Python explicitly requested and python headers were not found])
->>  -	else
->>  -		AC_MSG_WARN("Python headers not found - python bindings will not be made")
->> diff --git a/recipes-security/audit/audit_2.4.4.bb b/recipes-security/audit/audit_2.4.4.bb
->> deleted file mode 100644
->> index 55a5b12ba9c9..000000000000
->> --- a/recipes-security/audit/audit_2.4.4.bb
->> +++ /dev/null
->> @@ -1,100 +0,0 @@
->> -SUMMARY = "User space tools for kernel auditing"
->> -DESCRIPTION = "The audit package contains the user space utilities for \
->> -storing and searching the audit records generated by the audit subsystem \
->> -in the Linux kernel."
->> -HOMEPAGE = "http://people.redhat.com/sgrubb/audit/"
->> -SECTION = "base"
->> -PR = "r8"
->> -LICENSE = "GPLv2+ & LGPLv2+"
->> -LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
->> -
->> -SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
->> -           file://audit-python-configure.patch \
->> -           file://audit-python.patch \
->> -           file://fix-swig-host-contamination.patch \
->> -           file://auditd \
->> -           file://auditd.service \
->> -           file://audit-volatile.conf \
->> -           file://audit-auvirt-get-inline-functions-work-with-gnu89-gnu11.patch \
->> -"
->> -SRC_URI[md5sum] = "72b0fd94d32846142bc472f0d91e62b4"
->> -SRC_URI[sha256sum] = "25f57f465f3230d7b1166b615ffd6748818a3dc225d0e8b396c5b2e951674e23"
->> -
->> -inherit autotools pythonnative update-rc.d systemd
->> -
->> -UPDATERCPN = "auditd"
->> -INITSCRIPT_NAME = "auditd"
->> -INITSCRIPT_PARAMS = "defaults"
->> -
->> -SYSTEMD_SERVICE_${PN} = "auditd.service"
->> -
->> -DEPENDS += "python tcp-wrappers libcap-ng linux-libc-headers (>= 2.6.30)"
->> -
->> -EXTRA_OECONF += "--without-prelude \
->> -	--with-libwrap \
->> -	--enable-gssapi-krb5=no \
->> -	--with-libcap-ng=yes \
->> -	--with-python=yes \
->> -	--libdir=${base_libdir} \
->> -	--sbindir=${base_sbindir} \
->> -        --without-python3 \
->> -        --disable-zos-remote \
->> -	"
->> -EXTRA_OECONF_append_arm = " --with-arm=yes"
->> -
->> -EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
->> -	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
->> -	pyexecdir=${libdir}/python${PYTHON_BASEVERSION}/site-packages \
->> -	STDINC='${STAGING_INCDIR}' \
->> -	"
->> -
->> -SUMMARY_audispd-plugins = "Plugins for the audit event dispatcher"
->> -DESCRIPTION_audispd-plugins = "The audispd-plugins package provides plugins for the real-time \
->> -interface to the audit system, audispd. These plugins can do things \
->> -like relay events to remote machines or analyze events for suspicious \
->> -behavior."
->> -
->> -PACKAGES =+ "audispd-plugins"
->> -PACKAGES += "auditd ${PN}-python"
->> -
->> -FILES_${PN} = "${sysconfdir}/libaudit.conf ${base_libdir}/libaudit.so.1* ${base_libdir}/libauparse.so.*"
->> -FILES_auditd += "${bindir}/* ${base_sbindir}/* ${sysconfdir}/*"
->> -FILES_audispd-plugins += "${sysconfdir}/audisp/audisp-remote.conf \
->> -	${sysconfdir}/audisp/plugins.d/au-remote.conf \
->> -	${sbindir}/audisp-remote ${localstatedir}/spool/audit \
->> -	"
->> -FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/*/.debug"
->> -FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}"
->> -FILES_${PN}-dev += "${base_libdir}/*.so ${base_libdir}/*.la ${base_libdir}/pkgconfig/*"
->> -
->> -CONFFILES_auditd += "${sysconfdir}/audit/audit.rules"
->> -RDEPENDS_auditd += "bash"
->> -
->> -do_install_append() {
->> -	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.a
->> -	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.la
->> -
->> -	# reuse auditd config
->> -	[ ! -e ${D}/etc/default ] && mkdir ${D}/etc/default
->> -	mv ${D}/etc/sysconfig/auditd ${D}/etc/default
->> -	rmdir ${D}/etc/sysconfig/
->> -
->> -	# replace init.d
->> -	install -D -m 0755 ${S}/../auditd ${D}/etc/init.d/auditd
->> -	rm -rf ${D}/etc/rc.d
->> -
->> -	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
->> -		install -d ${D}${sysconfdir}/tmpfiles.d/
->> -		install -m 0644 ${WORKDIR}/audit-volatile.conf ${D}${sysconfdir}/tmpfiles.d/
->> -	fi
->> -	
->> -	# install systemd unit files
->> -	install -d ${D}${systemd_unitdir}/system
->> -	install -m 0644 ${WORKDIR}/auditd.service ${D}${systemd_unitdir}/system
->> -
->> -	chmod 750 ${D}/etc/audit ${D}/etc/audit/rules.d
->> -	chmod 640 ${D}/etc/audit/auditd.conf ${D}/etc/audit/rules.d/audit.rules
->> -
->> -	# Based on the audit.spec "Copy default rules into place on new installation"
->> -	cp ${D}/etc/audit/rules.d/audit.rules ${D}/etc/audit/audit.rules
->> -}
->> diff --git a/recipes-security/audit/audit_2.5.bb b/recipes-security/audit/audit_2.5.bb
->> new file mode 100644
->> index 000000000000..53aa23dabdd9
->> --- /dev/null
->> +++ b/recipes-security/audit/audit_2.5.bb
->> @@ -0,0 +1,104 @@
->> +SUMMARY = "User space tools for kernel auditing"
->> +DESCRIPTION = "The audit package contains the user space utilities for \
->> +storing and searching the audit records generated by the audit subsystem \
->> +in the Linux kernel."
->> +HOMEPAGE = "http://people.redhat.com/sgrubb/audit/"
->> +SECTION = "base"
->> +PR = "r8"
->> +LICENSE = "GPLv2+ & LGPLv2+"
->> +LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
->> +
->> +SRC_URI = "http://people.redhat.com/sgrubb/${BPN}/${BPN}-${PV}.tar.gz \
->> +           file://audit-python-configure.patch \
->> +           file://audit-python.patch \
->> +           file://fix-swig-host-contamination.patch \
->> +           file://auditd \
->> +           file://auditd.service \
->> +           file://audit-volatile.conf \
->> +"
->> +SRC_URI[md5sum] = "e721d48f3e1927c84b7c176b3bdbc443"
->> +SRC_URI[sha256sum] = "9b0a0760c6f37d80cbbfe46a74db722e60ac8100b28eb31953878ffca8ac14b4"
->> +
->> +
->> +inherit autotools pythonnative update-rc.d systemd
->> +
->> +UPDATERCPN = "auditd"
->> +INITSCRIPT_NAME = "auditd"
->> +INITSCRIPT_PARAMS = "defaults"
->> +
->> +SYSTEMD_SERVICE_${PN} = "auditd.service"
->> +
->> +DEPENDS += "python tcp-wrappers libcap-ng linux-libc-headers (>= 2.6.30)"
->> +
->> +EXTRA_OECONF += "--without-prelude \
->> +	--with-libwrap \
->> +	--enable-gssapi-krb5=no \
->> +	--with-libcap-ng=yes \
->> +	--with-python=yes \
->> +	--libdir=${base_libdir} \
->> +	--sbindir=${base_sbindir} \
->> +        --without-python3 \
->> +        --disable-zos-remote \
->> +	"
->> +EXTRA_OECONF_append_arm = " --with-arm=yes"
->> +
->> +EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
->> +	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
->> +	pyexecdir=${libdir}/python${PYTHON_BASEVERSION}/site-packages \
->> +	STDINC='${STAGING_INCDIR}' \
->> +	"
->> +
->> +SUMMARY_audispd-plugins = "Plugins for the audit event dispatcher"
->> +DESCRIPTION_audispd-plugins = "The audispd-plugins package provides plugins for the real-time \
->> +interface to the audit system, audispd. These plugins can do things \
->> +like relay events to remote machines or analyze events for suspicious \
->> +behavior."
->> +
->> +PACKAGES =+ "audispd-plugins"
->> +PACKAGES += "auditd ${PN}-python"
->> +
->> +FILES_${PN} = "${sysconfdir}/libaudit.conf ${base_libdir}/libaudit.so.1* ${base_libdir}/libauparse.so.*"
->> +FILES_auditd += "${bindir}/* ${base_sbindir}/* ${sysconfdir}/*"
->> +FILES_audispd-plugins += "${sysconfdir}/audisp/audisp-remote.conf \
->> +	${sysconfdir}/audisp/plugins.d/au-remote.conf \
->> +	${sbindir}/audisp-remote ${localstatedir}/spool/audit \
->> +	"
->> +FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/*/.debug"
->> +FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}"
->> +FILES_${PN}-dev += "${base_libdir}/*.so ${base_libdir}/*.la ${base_libdir}/pkgconfig/*"
->> +
->> +CONFFILES_auditd += "${sysconfdir}/audit/audit.rules"
->> +RDEPENDS_auditd += "bash"
->> +
->> +do_install_append() {
->> +	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.a
->> +	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.la
->> +
->> +	# reuse auditd config
->> +	[ ! -e ${D}/etc/default ] && mkdir ${D}/etc/default
->> +	mv ${D}/etc/sysconfig/auditd ${D}/etc/default
->> +	rmdir ${D}/etc/sysconfig/
->> +
->> +	# replace init.d
->> +	install -D -m 0755 ${S}/../auditd ${D}/etc/init.d/auditd
->> +	rm -rf ${D}/etc/rc.d
->> +
->> +	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
->> +		install -d ${D}${sysconfdir}/tmpfiles.d/
->> +		install -m 0644 ${WORKDIR}/audit-volatile.conf ${D}${sysconfdir}/tmpfiles.d/
->> +	fi
->> +	
->> +	# install systemd unit files
->> +	install -d ${D}${systemd_unitdir}/system
->> +	install -m 0644 ${WORKDIR}/auditd.service ${D}${systemd_unitdir}/system
->> +
->> +	# audit-2.5 doesn't install any rules by default, so we do that here
->> +	mkdir -p ${D}/etc/audit ${D}/etc/audit/rules.d
->> +	cp ${S}/rules/10-base-config.rules ${D}/etc/audit/rules.d/audit.rules
->> +
->> +	chmod 750 ${D}/etc/audit ${D}/etc/audit/rules.d
->> +	chmod 640 ${D}/etc/audit/auditd.conf ${D}/etc/audit/rules.d/audit.rules
->> +
->> +	# Based on the audit.spec "Copy default rules into place on new installation"
->> +	cp ${D}/etc/audit/rules.d/audit.rules ${D}/etc/audit/audit.rules
->> +}
->>
-> 
+Sounds good, I hope someone can provide background since it looks to me like the
+postinst is wrong, but I don't have historic context.
 
+Let me know if I can help in any way.
+
+-- 
+Cheers,
+
+Alejandro
 
