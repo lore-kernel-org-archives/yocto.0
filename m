@@ -1,60 +1,33 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <stefano.cordibella@edalab.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73A01E0083D; Tue,  8 Mar 2016 06:10:23 -0800 (PST)
+	id C7364E008F1; Tue,  8 Mar 2016 06:54:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.181 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [62.149.158.218 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
-	[209.85.217.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74009E006AE
-	for <yocto@yoctoproject.org>; Tue,  8 Mar 2016 06:10:21 -0800 (PST)
-Received: by mail-lb0-f181.google.com with SMTP id x1so19541921lbj.3
-	for <yocto@yoctoproject.org>; Tue, 08 Mar 2016 06:10:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=Y0LY/ESPGZt/5EOavrE6+Qk0z2TAcpmmrjj+mcfrVQM=;
-	b=K7GA2HKkpABMJQb39p8yKgA8Co4N/J2dxAtcTU9O55r5dpVJ4YWN0zdJmdgiPOpKh4
-	u+Z3FRGrRdkPZdA9STYzElGphLTlD+uIV+xfhaw5QkFU9fxS+3+s+yh00YphK/o8vRdt
-	LQEz0uAULhdoHi9bi1CZKBvNxKXDBxIRspD/mYzuwI4VejLG6zmcCZ90HodWGI4mVUy5
-	lsOiuVmvOMlo18ktLLAwkLGYf/+SQvnlQn5EeW7gUsSpB33vmZZE4RoQf4u4YLHPX+aY
-	I71CgREtzZj9EGmq+I4krsMr1zMXjNkOyUFC80VxNW0m4T7sRUX7dvdDH73DvSoP7AII
-	pgPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=Y0LY/ESPGZt/5EOavrE6+Qk0z2TAcpmmrjj+mcfrVQM=;
-	b=VGvE69P2tASH5dniIgItOVShJsvVIgCXO3S9XkfKeyfF+2iFPR1eQ11G+PlyCa2g4t
-	i+fVnTLuZkMEhoinnSiXYv7pEzzgh9h6svyUaV02TC1Z02U0AWE4fxxQQl3pPrsfqCDf
-	zFpHZukXoUBb0cieP0sJiX66w1XQH8VIiQI+DGWqR305h71auoco2vWcgONbsFU3mQPy
-	8w8ZbTyMMLTNfO8SQyLThSiJic0KMhBe4twIwPTROK4D0etBKdAV1UrNEHzJcVdA5URR
-	JH68G38Hgx5ODPkZlXE0WOOua/rw5ECWiaGpVqCkyBuWzuk/5pDYfGh+r0lrNgp/mR2M
-	D/6g==
-X-Gm-Message-State: AD7BkJISIBxI23X/ZBeHB3Y91LlIL4CdgxM1mkZvn/2MFJMRXYjsrP5iNLVgl65VGD+OJc055bR8CCTfPm33aw==
-MIME-Version: 1.0
-X-Received: by 10.25.212.207 with SMTP id l198mr9824047lfg.163.1457446219696; 
-	Tue, 08 Mar 2016 06:10:19 -0800 (PST)
-Received: by 10.25.41.139 with HTTP; Tue, 8 Mar 2016 06:10:19 -0800 (PST)
-Date: Tue, 8 Mar 2016 14:10:19 +0000
-Message-ID: <CABatt_yxV953+dGoK-4P+FHOX55qgP=M3NVFCRZ72vd9FY+0yQ@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+Received: from smtpcmd01218.aruba.it (smtpcmd01218.aruba.it [62.149.158.218])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA8B4E008C6
+	for <yocto@yoctoproject.org>; Tue,  8 Mar 2016 06:54:08 -0800 (PST)
+Received: from [157.27.224.72] ([157.27.224.72])
+	by smtpcmd01.ad.aruba.it with bizsmtp
+	id TSu51s01X1aLQ4l01Su5xH; Tue, 08 Mar 2016 15:54:06 +0100
 To: yocto@yoctoproject.org
-Subject: systemd, dpkg and read-only-rootfs
+From: Stefano Cordibella <stefano.cordibella@edalab.it>
+Message-ID: <56DEE78D.6070609@edalab.it>
+Date: Tue, 8 Mar 2016 15:54:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
+MIME-Version: 1.0
+Subject: Image SDK with qmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,82 +39,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Mar 2016 14:10:23 -0000
-Content-Type: multipart/alternative; boundary=001a1141228c34509e052d8a246f
+X-List-Received-Date: Tue, 08 Mar 2016 14:54:15 -0000
+Content-Type: multipart/alternative;
+	boundary="------------050305060608000905020308"
 
---001a1141228c34509e052d8a246f
-Content-Type: text/plain; charset=UTF-8
+--------------050305060608000905020308
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi list,
+     I am working on an image that use Qt5 and now I want to share an 
+SDK with some of our developers.
 
-I'm using the Jethro branch to build a system that uses dpkg for a package
-installer and systemd for the init manager.  Recently I took the plunge and
-added read-only-rootfs and have found a few "features" that I thought I
-would share.
+When I try to generate the SDK with bitbake -c populate_sdk 
+<image_name>  there isn't a cross qmake in the generated SDK.
+On the other hand when I try to use bitbake meta-toolchain-qt5 some 
+image libraries and tools are missing on the SDK.
 
-1) dpkg-configure service fails.
-This service looks like it's a first time boot action that runs dpkg
---configure -a which I assume is to finish all half installed packages that
-needed to be finished on the real target because it couldn't be installed
-during do_rootfs.  This actually succeeds as none of my packages are half
-configured, otherwise this would fail.  The problem lies when it tries to
-disable itself, it looks like systemctl disable call tries to update
-symlink in /etc/systemd.  I have tried remounting rw then disabling and
-then remount ro which I'm hoping will work, if not I will remove as I have
-a first boot script for factory builds and will move to there.
+I read about Qt5 and SDK in the meta-qt5 wiki, but I suppose that the 
+related patch is integrated in the fido release that I am using.
 
-2) There are a bunch of configuration files in /usr/lib/tmpfiles.d that
-clash with files/directories that have already been created by Yocto which
-only throws warnings but the files/directories that it tries to create in a
-read-only rootfs cause the systemd-tmpfiles-setup.service to fail.  I've
-patched the files in the systemd source directory to work around this, just
-testing now.
+So the question is: are there any way to generate a complete SDK with 
+Qt5 cross tools for my custom image? I have to add some sort on 
+nativesdk qt5 package to my image in IMAGE_INSTALL ?
 
-3) It looks like Yocto mount binds /var/lib into tmpfs (/var/volatile/lib),
-base-files recipe.  Now the dpkg database files are in this directory so
-I'm guessing this will stop me from doing upgrades.  We don't use apt-get
-but implement our own package manager so I was hoping to stop all services
-remount rootfs as rw, perform upgrade, remount rootfs as ro.
-Not sure what to do about this one, I could try and move dpkg database
-files to somewhere else, might throw up other problems.  Or mount bind all
-directories in /var/lib except dpkg?? Thoughts appreciated.
+Thank you in advance,
+Stefano.
 
-Best Regards,
-Martin.
+-- 
+*Stefano Cordibella*
+EDALab s.r.l. - Networked Embedded Systems
 
---001a1141228c34509e052d8a246f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Strada Le Grazie, 15 - 37134 Verona - Italy
+email : stefano.cordibella@edalab.it
+skype : stefano.cordibella
+tel. : +39 045 802 70 85
+web : www.edalab.it
 
-<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi,<br><br>I&#39;m usin=
-g the Jethro branch to build a system that uses dpkg for a package installe=
-r and systemd for the init manager.=C2=A0 Recently I took the plunge and ad=
-ded read-only-rootfs and have found a few &quot;features&quot; that I thoug=
-ht I would share.<br><br></div>1) dpkg-configure service fails.<br></div>Th=
-is service looks like it&#39;s a first time boot action that runs dpkg --co=
-nfigure -a which I assume is to finish all half installed packages that nee=
-ded to be finished on the real target because it couldn&#39;t be installed =
-during do_rootfs.=C2=A0 This actually succeeds as none of my packages are h=
-alf configured, otherwise this would fail.=C2=A0 The problem lies when it t=
-ries to disable itself, it looks like systemctl disable call tries to updat=
-e symlink in /etc/systemd.=C2=A0 I have tried remounting rw then disabling =
-and then remount ro which I&#39;m hoping will work, if not I will remove as=
- I have a first boot script for factory builds and will move to there.<br><=
-br></div>2) There are a bunch of configuration files in /usr/lib/tmpfiles.d=
- that clash with files/directories that have already been created by Yocto =
-which only throws warnings but the files/directories that it tries to creat=
-e in a read-only rootfs cause the systemd-tmpfiles-setup.service to fail.=
-=C2=A0 I&#39;ve patched the files in the systemd source directory to work a=
-round this, just testing now.<br><br></div>3) It looks like Yocto mount bin=
-ds /var/lib into tmpfs (/var/volatile/lib), base-files recipe.=C2=A0 Now th=
-e dpkg database files are in this directory so I&#39;m guessing this will s=
-top me from doing upgrades.=C2=A0 We don&#39;t use apt-get but implement ou=
-r own package manager so I was hoping to stop all services remount rootfs a=
-s rw, perform upgrade, remount rootfs as ro. <br></div>Not sure what to do =
-about this one, I could try and move dpkg database files to somewhere else,=
- might throw up other problems.=C2=A0 Or mount bind all directories in /var=
-/lib except dpkg?? Thoughts appreciated.<br><br></div>Best Regards,<br></di=
-v>Martin.<br><div><div><div><div><div><div><div><div><br></div></div></div>=
-</div></div></div></div></div></div>
+--------------050305060608000905020308
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---001a1141228c34509e052d8a246f--
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hi list,<br>
+        I am working on an image that use Qt5 and now I want to share an
+    SDK with some of our developers.<br>
+    <br>
+    When I try to generate the SDK with <tt>bitbake -c populate_sdk
+      &lt;image_name&gt;</tt>  there isn't a cross qmake in the
+    generated SDK.<br>
+    On the other hand when I try to use <tt>bitbake meta-toolchain-qt5</tt>
+    some image libraries and tools are missing on the SDK.<br>
+    <br>
+    I read about Qt5 and SDK in the meta-qt5 wiki, but I suppose that
+    the related patch is integrated in the fido release that I am using.<br>
+    <br>
+    So the question is: are there any way to generate a complete SDK
+    with Qt5 cross tools for my custom image? I have to add some sort on
+    nativesdk qt5 package to my image in IMAGE_INSTALL ?<br>
+    <br>
+    Thank you in advance,<br>
+    Stefano.<br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <title></title>
+      <div class="moz-signature"> <b>Stefano Cordibella</b><br>
+        EDALab s.r.l. - Networked Embedded Systems<br>
+        <br>
+        Strada Le Grazie, 15 - 37134 Verona - Italy<br>
+        email : <a class="moz-txt-link-abbreviated" href="mailto:stefano.cordibella@edalab.it">stefano.cordibella@edalab.it</a><br>
+        skype : stefano.cordibella<br>
+        tel. : +39 045 802 70 85<br>
+        web : <a class="moz-txt-link-abbreviated" href="http://www.edalab.it">www.edalab.it</a><br>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------050305060608000905020308--
