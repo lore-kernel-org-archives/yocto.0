@@ -1,17 +1,17 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC70FE00720; Tue,  8 Mar 2016 10:53:00 -0800 (PST)
+	id 0FEF8E0092C; Tue,  8 Mar 2016 18:17:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,49 +20,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AE59E00720
-	for <yocto@yoctoproject.org>; Tue,  8 Mar 2016 10:52:53 -0800 (PST)
-Received: by mail-wm0-f43.google.com with SMTP id l68so145719803wml.0
-	for <yocto@yoctoproject.org>; Tue, 08 Mar 2016 10:52:53 -0800 (PST)
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91889E00911
+	for <yocto@yoctoproject.org>; Tue,  8 Mar 2016 18:17:02 -0800 (PST)
+Received: by mail-qk0-f180.google.com with SMTP id x1so14670548qkc.1
+	for <yocto@yoctoproject.org>; Tue, 08 Mar 2016 18:17:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:date:message-id:in-reply-to:references:user-agent:subject
-	:mime-version; bh=wheinOqDYhGvcx8SV4zzM/dgeP1tHkbvbeaELAvcJAY=;
-	b=Y3Of3QUJQTZi/FgZ+xVpYWHQtb8wkScPvm+mtTpVoJHlJ8gJYw0gtcuf4S9D0NEkK9
-	91ktIZGiNwFnuUMJDCHeWTIZpP+oHEObjhYNfQJg/rX16Ie4IlkEQBb+8prFs4gCSbj7
-	HS1KEaYrhUnbagHkGP1nr+suvm02jvWaeAdqTqZ2gfx76j/x3ViEpJ0LmbnJwr4S2yMZ
-	8LZOBfKvPP6X13BfFOLx0vMgHrJDaVIzvVK+P6qYKH7R2nsZEzCT+IcXyorbioYzHshq
-	pNO5aJI+aHd+ZLuw+IPxbGF/U3y3llfyNrP+iLyXDo6Xm0YJotJTlbm7TJF6xtUOhtVG
-	bdeg==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=2MWN4nQWyGu0EH7qX8KwhpbUGCTfn2MXY25/xlsvNo8=;
+	b=s19exlWPYGpz7AWkv46xqi2QSDzyRDCZRWzwWP7eADPqnXbGebc9K8FyU+hQeHJFX9
+	F3ozw+/+hHu4iUpWwP9qDK/F6bQYOoKXDjEYGkD6ESNh9zoLEs4ukU+WGTm3MhWB5U3Z
+	jrAcERV0m/Xt53LPJivQEj7d/GmP4oSvxrrBOpgPZHHYnA8ooIVnaStC4YNZXtDDswW/
+	BjRqkk+Izo/WKeO8WA3+8vr6NHBW7uJPHYhUhBwKsr9GHV+dUphIKVU4d7rjbeJ9kvZm
+	Z9D6qgW6HjnTPVsRFMKUABHbHF7VB+ie1x2eA4QDUuqLMEl9C+OKcx/LaGJwU2F+Wx7l
+	QZ0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:date:message-id:in-reply-to:references
-	:user-agent:subject:mime-version;
-	bh=wheinOqDYhGvcx8SV4zzM/dgeP1tHkbvbeaELAvcJAY=;
-	b=UHOQ7HuH/xFez/Nu+tMmXpGWRju78INcp7w259e/VUOeqXfmXVcUyen9vK3AKXtB1h
-	jIMTpqh3WcN+TJdHnZbZ3EratfOZZHI8rJFVtN5Y6zHHzYX7JW8czYgf06yg3hXzZaWL
-	wS9mA33MyP8+KXMbRp5eeq7J9mnAEUI9Oz49yZUiZOBaNRkuI+nTCTMqQIYpO5q0dAWa
-	67ejEUixkv3bMzpAcNZteaB38d9HJKszmLF4ZK8cZ9SReZhtug0wwMFhP+ra/xlZp1Nk
-	UD7aoc0sM34tkz94gT8II9zyeJw3nC0PfwuXTO18Bzj7PigkiQlOwqycB97J+H/KPaXA
-	hd3w==
-X-Gm-Message-State: AD7BkJL7Hykp3S9pzTvfUnPRpYiM1gd3Rh9egf+dhIJDwAq/sKslQOxH+Z6X5c3WCQEg4A==
-X-Received: by 10.28.153.138 with SMTP id b132mr14971850wme.36.1457463172335; 
-	Tue, 08 Mar 2016 10:52:52 -0800 (PST)
-Received: from [192.168.23.165]
-	(HSI-KBW-46-223-219-101.hsi.kabel-badenwuerttemberg.de.
-	[46.223.219.101])
-	by smtp.gmail.com with ESMTPSA id 192sm4761525wmw.0.2016.03.08.10.52.51
-	for <yocto@yoctoproject.org> (version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 08 Mar 2016 10:52:51 -0800 (PST)
-From: Christian Ege <k4230r6@gmail.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 08 Mar 2016 19:52:50 +0100
-Message-ID: <153579313d0.27ac.b5f386b42cd5ccf91b9cb7358bc3020d@gmail.com>
-In-Reply-To: <56DEE78D.6070609@edalab.it>
-References: <56DEE78D.6070609@edalab.it>
-User-Agent: AquaMail/1.6.1.3 (build: 26000003)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=2MWN4nQWyGu0EH7qX8KwhpbUGCTfn2MXY25/xlsvNo8=;
+	b=BeIIpph83eFfPk147pYwsJQVvm+fQpb4rM87913eR3zlOA9Mcy1qh2mnM2m/I/skRk
+	4CSKIdpngUnGOURlMVa31A4Cqmvg0V096rJItO996rdNSES6Poj4FvBMj6EQy//ydrKC
+	Jbn8gEe8YEExSadCLEYjhY2/DdnkdLzRR1T2GonkdOutbLGTM8yWvn+1TC62DaIv2vK/
+	gk4Mv2+jmdytFZOFnvtD4Smt15ZMsQQonHEHrLseBabH+j8GXM9MWrVroY1QvmP1TMvZ
+	+OaxmRytTi1Czv/NXEu8M7YWL1GjMgpbk4yfMhp0oVbuyLd9dJ7VRlTws3VfWZ9IlaTM
+	HSnQ==
+X-Gm-Message-State: AD7BkJJkLfl9D6J9uMveI1GsKrFfGDz19HU/R6jy+caVnrEABAh/g1nROR/NIX3CSiHEWckoeaouauyNP+Ldhw==
 MIME-Version: 1.0
-Subject: Re: Image SDK with qmake
+X-Received: by 10.55.73.199 with SMTP id w190mr39928255qka.77.1457489821614;
+	Tue, 08 Mar 2016 18:17:01 -0800 (PST)
+Received: by 10.55.130.196 with HTTP; Tue, 8 Mar 2016 18:17:01 -0800 (PST)
+Received: by 10.55.130.196 with HTTP; Tue, 8 Mar 2016 18:17:01 -0800 (PST)
+In-Reply-To: <56DE87AA.7090109@actia.se>
+References: <56DE87AA.7090109@actia.se>
+Date: Wed, 9 Mar 2016 09:17:01 +0700
+Message-ID: <CAMKF1sqeY7BVaDNifDgY3VyKmbS-qX8zNuci-O8GXMnfW=dJAg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: John Ernberg <john.ernberg@actia.se>
+Cc: yocto@yoctoproject.org
+Subject: Re: Replacing eglibc with glibc in Yocto 1.6.1?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,140 +71,469 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Mar 2016 18:53:00 -0000
-Content-Type: multipart/alternative;
-	boundary="----------1535793158b600927ac48f6a20"
+X-List-Received-Date: Wed, 09 Mar 2016 02:17:06 -0000
+Content-Type: multipart/alternative; boundary=001a114a869614c8bc052d944bbd
 
-------------1535793158b600927ac48f6a20
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+--001a114a869614c8bc052d944bbd
+Content-Type: text/plain; charset=UTF-8
 
-Hi Stefano,
-
-
-Am 8. März 2016 3:55:09 nachm. schrieb Stefano Cordibella 
-<stefano.cordibella@edalab.it>:
-
-> Hi list,
->      I am working on an image that use Qt5 and now I want to share an
-> SDK with some of our developers.
+On Mar 8, 2016 3:06 PM, "John Ernberg" <john.ernberg@actia.se> wrote:
 >
-> When I try to generate the SDK with bitbake -c populate_sdk
-> <image_name>  there isn't a cross qmake in the generated SDK.
-> On the other hand when I try to use bitbake meta-toolchain-qt5 some
-> image libraries and tools are missing on the SDK.
+> Hi
+>
+> I'm using Yocto 1.6.1 (Daisy) in a project, and I'm not allowed to
+> update to a newer version, I did however get the task to update from
+> eglibc-2.19 to glibc-2.23.
 >
 
-Have you put this in your image?
-inherit populate_sdk_qt5
-
-Like I did for meta-udoo
-https://github.com/graugans/meta-udoo/blob/jethro/qt5-layer/recipes-qt/images/udoo-image-qt5.bb
-
-Best,
-Christian
-
-> I read about Qt5 and SDK in the meta-qt5 wiki, but I suppose that the
-> related patch is integrated in the fido release that I am using.
+There are many changes which make it not a drop in replacement at recipe
+level. You should just change the existing recipe to backport patches from
+2.1
+Its not going to be a simple excercise even then
+> So far I have imported the recipes from Yocto 2.1, including the
+> tclibc-glibc.inc file.
+> Changed the TCLIBC variable to the new value.
+> Imported the configuration values from the other .inc files (such as
+> preferred version) into my distro.conf.
+> Disabled the distro feature ptest (temporary).
 >
-> So the question is: are there any way to generate a complete SDK with
-> Qt5 cross tools for my custom image? I have to add some sort on
-> nativesdk qt5 package to my image in IMAGE_INSTALL ?
+> After these changes I am getting the error log attached below.
+> One solution I tried was setting the RPROVIDES from eglibc to "". It
+> didn't change anything.
 >
-> Thank you in advance,
-> Stefano.
+> I am wondering if anyone has any advice on what I have done wrong?
 >
-> --
-> *Stefano Cordibella*
-> EDALab s.r.l. - Networked Embedded Systems
->
-> Strada Le Grazie, 15 - 37134 Verona - Italy
-> email : stefano.cordibella@edalab.it
-> skype : stefano.cordibella
-> tel. : +39 045 802 70 85
-> web : www.edalab.it
+> Thank you in advance and best regards // John Ernberg
 >
 >
+> Build log using "bitbake -vD [image]":
 >
-> ----------
+> DEBUG: providers for glibc are: ['glibc']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc (for item glibc)
+> DEBUG: sorted providers for glibc are:
+> ['/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+']
+> NOTE: Resolving any missing task queue dependencies
+> DEBUG: providers for quilt-native are: ['quilt-native']
+> DEBUG: sorted providers for quilt-native are:
+> ['/home/jernberg/yocto/sources/poky/meta/recipes-devtools/quilt/
+quilt-native_0.61.bb']
+> DEBUG: providers for virtual/fakeroot-native are: ['pseudo-native']
+> NOTE: selecting pseudo-native to satisfy virtual/fakeroot-native due to
+> PREFERRED_PROVIDERS
+> DEBUG: sorted providers for virtual/fakeroot-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/pseudo/
+pseudo_1.5.1.bb']
+> DEBUG: providers for prelink-native are: ['prelink-native']
+> DEBUG: sorted providers for prelink-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/prelink/
+prelink_git.bb']
+> DEBUG: providers for rpm-native are: ['rpm-native']
+> DEBUG: sorted providers for rpm-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/rpm/
+rpm_5.4.9.bb']
+> DEBUG: providers for file-native are: ['file-native']
+> DEBUG: sorted providers for file-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/file/
+file_5.16.bb']
+> DEBUG: providers for autoconf-native are: ['autoconf-native']
+> DEBUG: sorted providers for autoconf-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/autoconf/
+autoconf_2.69.bb']
+> DEBUG: providers for automake-native are: ['automake-native']
+> DEBUG: sorted providers for automake-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/automake/
+automake_1.14.bb']
+> DEBUG: providers for libtool-native are: ['libtool-native']
+> DEBUG: sorted providers for libtool-native are:
+> ['/home/jernberg/yocto/sources/poky/meta/recipes-devtools/libtool/
+libtool-native_2.4.2.bb']
+> DEBUG: providers for gnu-config-native are: ['gnu-config-native']
+> DEBUG: sorted providers for gnu-config-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/gnu-config/
+gnu-config_20120814.bb']
+> DEBUG: providers for virtual/arm-distro-linux-gnueabi-gcc-initial are:
+> ['gcc-cross-initial']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-devtools/gcc/
+gcc-cross-initial_4.8.bb
+> as PREFERRED_VERSION 4.8% of package gcc-cross-initial (for item
+> virtual/arm-distro-linux-gnueabi-gcc-initial)
+> NOTE: selecting gcc-cross-initial to satisfy
+> virtual/arm-distro-linux-gnueabi-gcc-initial due to PREFERRED_PROVIDERS
+> DEBUG: sorted providers for virtual/arm-distro-linux-gnueabi-gcc-initial
+> are:
+> ['/home/jernberg/yocto/sources/poky/meta/recipes-devtools/gcc/
+gcc-cross-initial_4.8.bb']
+> DEBUG: providers for linux-libc-headers are: ['linux-libc-headers']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-kernel/linux-libc-headers/
+linux-libc-headers_3.14.bb
+> as PREFERRED_VERSION 3.14 of package linux-libc-headers (for item
+> linux-libc-headers)
+> NOTE: selecting linux-libc-headers to satisfy linux-libc-headers due to
+> PREFERRED_PROVIDERS
+> DEBUG: sorted providers for linux-libc-headers are:
+>
+['/home/jernberg/yocto/sources/poky/meta/recipes-kernel/linux-libc-headers/
+linux-libc-headers_3.14.bb']
+> DEBUG: providers for virtual/arm-distro-linux-gnueabi-libc-initial are:
+> ['glibc-initial', 'eglibc-initial']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc-initial (for item
+> virtual/arm-distro-linux-gnueabi-libc-initial)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb
+> as PREFERRED_VERSION 2.19 of package eglibc-initial (for item
+> virtual/arm-distro-linux-gnueabi-libc-initial)
+> NOTE: selecting glibc-initial to satisfy
+> virtual/arm-distro-linux-gnueabi-libc-initial due to PREFERRED_PROVIDERS
+> DEBUG: sorted providers for
+> virtual/arm-distro-linux-gnueabi-libc-initial are:
+> ['/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb',
+> '/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb']
+> DEBUG: providers for gperf-native are: ['gperf-native']
+> DEBUG: sorted providers for gperf-native are:
+>
+['virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-extended/gperf/
+gperf_3.0.4.bb']
+> DEBUG: providers for libsegfault are: ['glibc', 'eglibc']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc (for item libsegfault)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+as
+> PREFERRED_VERSION 2.19 of package eglibc (for item libsegfault)
+> NOTE: selecting glibc to satisfy runtime libsegfault due to
+> PREFERRED_PROVIDER_virtual/libc = glibc
+> DEBUG: sorted runtime providers for libsegfault are:
+> ['/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+',
+> '/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+']
+> DEBUG: providers for glibc-dev are: ['glibc', 'eglibc']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc (for item glibc-dev)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+as
+> PREFERRED_VERSION 2.19 of package eglibc (for item glibc-dev)
+> NOTE: selecting glibc to satisfy runtime glibc-dev due to
+> PREFERRED_PROVIDER_virtual/libc = glibc
+> DEBUG: sorted runtime providers for glibc-dev are:
+> ['/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+',
+> '/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+']
+> DEBUG: providers for glibc are: ['glibc-initial', 'eglibc-initial',
+> 'glibc', 'eglibc', 'nativesdk-eglibc-initial', 'nativesdk-glibc-initial']
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc-initial (for item glibc)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb
+> as PREFERRED_VERSION 2.19 of package eglibc-initial (for item glibc)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+> as PREFERRED_VERSION 2.23 of package glibc (for item glibc)
+> DEBUG: selecting
+> /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+as
+> PREFERRED_VERSION 2.19 of package eglibc (for item glibc)
+> DEBUG: selecting
+>
+virtual:nativesdk:/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb
+> as PREFERRED_VERSION 2.19 of package nativesdk-eglibc-initial (for item
+> glibc)
+> DEBUG: selecting
+>
+virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb
+> as PREFERRED_VERSION 2.23 of package nativesdk-glibc-initial (for item
+> glibc)
+> NOTE: selecting glibc to satisfy runtime glibc due to
+> PREFERRED_PROVIDER_virtual/libc = glibc
+> NOTE: selecting glibc-initial to satisfy runtime glibc due to
+> PREFERRED_PROVIDER_virtual/arm-distro-linux-gnueabi-libc-initial =
+> glibc-initial
+> NOTE: selecting nativesdk-glibc-initial to satisfy runtime glibc due to
+> PREFERRED_PROVIDER_virtual/nativesdk-x86_64-distrosdk-linux-libc-initial
+> = nativesdk-glibc-initial
+> ERROR: Trying to resolve runtime dependency glibc resulted in
+> conflicting PREFERRED_PROVIDER entries being found.
+> The providers found were:
+> ['/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb
+',
+> '/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb',
+>
+'virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb']
+> The PREFERRED_PROVIDER entries resulting in this conflict were:
+> ['PREFERRED_PROVIDER_virtual/libc = glibc',
+> 'PREFERRED_PROVIDER_virtual/arm-distro-linux-gnueabi-libc-initial =
+> glibc-initial',
+> 'PREFERRED_PROVIDER_virtual/nativesdk-x86_64-distrosdk-linux-libc-initial
+=
+> nativesdk-glibc-initial']
+> DEBUG: sorted runtime providers for glibc are:
+>
+['virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb',
+> '/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/
+glibc-initial_2.23.bb',
+> '/home/jernberg/yocto/sources/yocto/recipes-core/glibc/glibc_2.23.bb',
+> '/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb',
+> '/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/eglibc_2.19.bb
+',
+>
+'virtual:nativesdk:/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/
+eglibc-initial_2.19.bb']
+> NOTE: multiple providers are available for runtime glibc
+> (nativesdk-glibc-initial, glibc-initial, glibc, eglibc-initial, eglibc,
+> nativesdk-eglibc-initial)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match glibc
+> NOTE: Runtime target 'glibc' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['glibc']
+> DEBUG: File
+> '/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/glibc_2.23.bb'
+is
+> unbuildable, removing...
+> NOTE: Target 'glibc' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['glibc', 'glibc']
+> ERROR: Required build target 'glibc' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['glibc', 'glibc']
+>
+> Summary: There were 2 WARNING messages shown.
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit
+code.
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
-------------1535793158b600927ac48f6a20
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: 8bit
+--001a114a869614c8bc052d944bbd
+Content-Type: text/html; charset=UTF-8
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html"/>
-</head>
-<body>
-<div style="color: black;">
-<p style="margin: 0 0 1em 0; color: black;">Hi Stefano,</p>
-<p style="margin: 0 0 1em 0; color: black; font-family: sans-serif;"><br></p>
-<p style="margin: 0 0 1em 0; color: black; font-family: sans-serif;">Am 8.
-März 2016 3:55:09 nachm. schrieb Stefano Cordibella
-&lt;stefano.cordibella@edalab.it&gt;:</p>
-<p style="margin: 0 0 1em 0; color: black; font-family: sans-serif;">&gt;
-Hi list,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I am working on an image that use Qt5
-and now I want to share an <br>
-&gt; SDK with some of our developers.<br>
+<p dir="ltr"><br>
+On Mar 8, 2016 3:06 PM, &quot;John Ernberg&quot; &lt;<a href="mailto:john.ernberg@actia.se">john.ernberg@actia.se</a>&gt; wrote:<br>
 &gt;<br>
-&gt; When I try to generate the SDK with bitbake -c populate_sdk <br>
-&gt; &lt;image_name&gt;&nbsp; there isn't a cross qmake in the generated
-SDK.<br>
-&gt; On the other hand when I try to use bitbake meta-toolchain-qt5 some <br>
-&gt; image libraries and tools are missing on the SDK.<br>
+&gt; Hi<br>
+&gt;<br>
+&gt; I&#39;m using Yocto 1.6.1 (Daisy) in a project, and I&#39;m not allowed to<br>
+&gt; update to a newer version, I did however get the task to update from<br>
+&gt; eglibc-2.19 to glibc-2.23.<br>
 &gt;</p>
-<p style="margin: 0 0 1em 0; color: black;"></p>
-<p style="margin: 0 0 1em 0; color: black;">Have you put this in your
-image?<br>
-inherit populate_sdk_qt5</p>
-<p style="margin: 0 0 1em 0; color: black;">Like I did for meta-udoo<br>
-<a
-href="https://github.com/graugans/meta-udoo/blob/jethro/qt5-layer/recipes-qt/images/udoo-image-qt5.bb">https://github.com/graugans/meta-udoo/blob/jethro/qt5-layer/recipes-qt/images/udoo-image-qt5.bb</a></p>
-<p style="margin: 0 0 1em 0; color: black;">Best,<br>
-Christian<br>
-</p>
-<p style="margin: 0 0 1em 0; color: black; font-family: sans-serif;"><br>
-&gt; I read about Qt5 and SDK in the meta-qt5 wiki, but I suppose that the <br>
-&gt; related patch is integrated in the fido release that I am using.<br>
+<p dir="ltr">There are many changes which make it not a drop in replacement at recipe level. You should just change the existing recipe to backport patches from 2.1<br>
+Its not going to be a simple excercise even then<br>
+&gt; So far I have imported the recipes from Yocto 2.1, including the<br>
+&gt; tclibc-glibc.inc file.<br>
+&gt; Changed the TCLIBC variable to the new value.<br>
+&gt; Imported the configuration values from the other .inc files (such as<br>
+&gt; preferred version) into my distro.conf.<br>
+&gt; Disabled the distro feature ptest (temporary).<br>
 &gt;<br>
-&gt; So the question is: are there any way to generate a complete SDK with <br>
-&gt; Qt5 cross tools for my custom image? I have to add some sort on <br>
-&gt; nativesdk qt5 package to my image in IMAGE_INSTALL ?<br>
+&gt; After these changes I am getting the error log attached below.<br>
+&gt; One solution I tried was setting the RPROVIDES from eglibc to &quot;&quot;. It<br>
+&gt; didn&#39;t change anything.<br>
 &gt;<br>
-&gt; Thank you in advance,<br>
-&gt; Stefano.<br>
+&gt; I am wondering if anyone has any advice on what I have done wrong?<br>
 &gt;<br>
-&gt; -- <br>
-&gt; *Stefano Cordibella*<br>
-&gt; EDALab s.r.l. - Networked Embedded Systems<br>
-&gt;<br>
-&gt; Strada Le Grazie, 15 - 37134 Verona - Italy<br>
-&gt; email : stefano.cordibella@edalab.it<br>
-&gt; skype : stefano.cordibella<br>
-&gt; tel. : +39 045 802 70 85<br>
-&gt; web : <a href="http://www.edalab.it">www.edalab.it</a><br>
+&gt; Thank you in advance and best regards // John Ernberg<br>
 &gt;<br>
 &gt;<br>
+&gt; Build log using &quot;bitbake -vD [image]&quot;:<br>
 &gt;<br>
-&gt; ----------<br>
-&gt; -- <br>
+&gt; DEBUG: providers for glibc are: [&#39;glibc&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc (for item glibc)<br>
+&gt; DEBUG: sorted providers for glibc are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39;]<br>
+&gt; NOTE: Resolving any missing task queue dependencies<br>
+&gt; DEBUG: providers for quilt-native are: [&#39;quilt-native&#39;]<br>
+&gt; DEBUG: sorted providers for quilt-native are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/poky/meta/recipes-devtools/quilt/<a href="http://quilt-native_0.61.bb">quilt-native_0.61.bb</a>&#39;]<br>
+&gt; DEBUG: providers for virtual/fakeroot-native are: [&#39;pseudo-native&#39;]<br>
+&gt; NOTE: selecting pseudo-native to satisfy virtual/fakeroot-native due to<br>
+&gt; PREFERRED_PROVIDERS<br>
+&gt; DEBUG: sorted providers for virtual/fakeroot-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/pseudo/<a href="http://pseudo_1.5.1.bb">pseudo_1.5.1.bb</a>&#39;]<br>
+&gt; DEBUG: providers for prelink-native are: [&#39;prelink-native&#39;]<br>
+&gt; DEBUG: sorted providers for prelink-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/prelink/<a href="http://prelink_git.bb">prelink_git.bb</a>&#39;]<br>
+&gt; DEBUG: providers for rpm-native are: [&#39;rpm-native&#39;]<br>
+&gt; DEBUG: sorted providers for rpm-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/rpm/<a href="http://rpm_5.4.9.bb">rpm_5.4.9.bb</a>&#39;]<br>
+&gt; DEBUG: providers for file-native are: [&#39;file-native&#39;]<br>
+&gt; DEBUG: sorted providers for file-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/file/<a href="http://file_5.16.bb">file_5.16.bb</a>&#39;]<br>
+&gt; DEBUG: providers for autoconf-native are: [&#39;autoconf-native&#39;]<br>
+&gt; DEBUG: sorted providers for autoconf-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/autoconf/<a href="http://autoconf_2.69.bb">autoconf_2.69.bb</a>&#39;]<br>
+&gt; DEBUG: providers for automake-native are: [&#39;automake-native&#39;]<br>
+&gt; DEBUG: sorted providers for automake-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/automake/<a href="http://automake_1.14.bb">automake_1.14.bb</a>&#39;]<br>
+&gt; DEBUG: providers for libtool-native are: [&#39;libtool-native&#39;]<br>
+&gt; DEBUG: sorted providers for libtool-native are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/poky/meta/recipes-devtools/libtool/<a href="http://libtool-native_2.4.2.bb">libtool-native_2.4.2.bb</a>&#39;]<br>
+&gt; DEBUG: providers for gnu-config-native are: [&#39;gnu-config-native&#39;]<br>
+&gt; DEBUG: sorted providers for gnu-config-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-devtools/gnu-config/<a href="http://gnu-config_20120814.bb">gnu-config_20120814.bb</a>&#39;]<br>
+&gt; DEBUG: providers for virtual/arm-distro-linux-gnueabi-gcc-initial are:<br>
+&gt; [&#39;gcc-cross-initial&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-devtools/gcc/<a href="http://gcc-cross-initial_4.8.bb">gcc-cross-initial_4.8.bb</a><br>
+&gt; as PREFERRED_VERSION 4.8% of package gcc-cross-initial (for item<br>
+&gt; virtual/arm-distro-linux-gnueabi-gcc-initial)<br>
+&gt; NOTE: selecting gcc-cross-initial to satisfy<br>
+&gt; virtual/arm-distro-linux-gnueabi-gcc-initial due to PREFERRED_PROVIDERS<br>
+&gt; DEBUG: sorted providers for virtual/arm-distro-linux-gnueabi-gcc-initial<br>
+&gt; are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/poky/meta/recipes-devtools/gcc/<a href="http://gcc-cross-initial_4.8.bb">gcc-cross-initial_4.8.bb</a>&#39;]<br>
+&gt; DEBUG: providers for linux-libc-headers are: [&#39;linux-libc-headers&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-kernel/linux-libc-headers/<a href="http://linux-libc-headers_3.14.bb">linux-libc-headers_3.14.bb</a><br>
+&gt; as PREFERRED_VERSION 3.14 of package linux-libc-headers (for item<br>
+&gt; linux-libc-headers)<br>
+&gt; NOTE: selecting linux-libc-headers to satisfy linux-libc-headers due to<br>
+&gt; PREFERRED_PROVIDERS<br>
+&gt; DEBUG: sorted providers for linux-libc-headers are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/poky/meta/recipes-kernel/linux-libc-headers/<a href="http://linux-libc-headers_3.14.bb">linux-libc-headers_3.14.bb</a>&#39;]<br>
+&gt; DEBUG: providers for virtual/arm-distro-linux-gnueabi-libc-initial are:<br>
+&gt; [&#39;glibc-initial&#39;, &#39;eglibc-initial&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc-initial (for item<br>
+&gt; virtual/arm-distro-linux-gnueabi-libc-initial)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a><br>
+&gt; as PREFERRED_VERSION 2.19 of package eglibc-initial (for item<br>
+&gt; virtual/arm-distro-linux-gnueabi-libc-initial)<br>
+&gt; NOTE: selecting glibc-initial to satisfy<br>
+&gt; virtual/arm-distro-linux-gnueabi-libc-initial due to PREFERRED_PROVIDERS<br>
+&gt; DEBUG: sorted providers for<br>
+&gt; virtual/arm-distro-linux-gnueabi-libc-initial are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a>&#39;]<br>
+&gt; DEBUG: providers for gperf-native are: [&#39;gperf-native&#39;]<br>
+&gt; DEBUG: sorted providers for gperf-native are:<br>
+&gt; [&#39;virtual:native:/home/jernberg/yocto/sources/poky/meta/recipes-extended/gperf/<a href="http://gperf_3.0.4.bb">gperf_3.0.4.bb</a>&#39;]<br>
+&gt; DEBUG: providers for libsegfault are: [&#39;glibc&#39;, &#39;eglibc&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc (for item libsegfault)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a> as<br>
+&gt; PREFERRED_VERSION 2.19 of package eglibc (for item libsegfault)<br>
+&gt; NOTE: selecting glibc to satisfy runtime libsegfault due to<br>
+&gt; PREFERRED_PROVIDER_virtual/libc = glibc<br>
+&gt; DEBUG: sorted runtime providers for libsegfault are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a>&#39;]<br>
+&gt; DEBUG: providers for glibc-dev are: [&#39;glibc&#39;, &#39;eglibc&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc (for item glibc-dev)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a> as<br>
+&gt; PREFERRED_VERSION 2.19 of package eglibc (for item glibc-dev)<br>
+&gt; NOTE: selecting glibc to satisfy runtime glibc-dev due to<br>
+&gt; PREFERRED_PROVIDER_virtual/libc = glibc<br>
+&gt; DEBUG: sorted runtime providers for glibc-dev are:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a>&#39;]<br>
+&gt; DEBUG: providers for glibc are: [&#39;glibc-initial&#39;, &#39;eglibc-initial&#39;,<br>
+&gt; &#39;glibc&#39;, &#39;eglibc&#39;, &#39;nativesdk-eglibc-initial&#39;, &#39;nativesdk-glibc-initial&#39;]<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc-initial (for item glibc)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a><br>
+&gt; as PREFERRED_VERSION 2.19 of package eglibc-initial (for item glibc)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package glibc (for item glibc)<br>
+&gt; DEBUG: selecting<br>
+&gt; /home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a> as<br>
+&gt; PREFERRED_VERSION 2.19 of package eglibc (for item glibc)<br>
+&gt; DEBUG: selecting<br>
+&gt; virtual:nativesdk:/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a><br>
+&gt; as PREFERRED_VERSION 2.19 of package nativesdk-eglibc-initial (for item<br>
+&gt; glibc)<br>
+&gt; DEBUG: selecting<br>
+&gt; virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a><br>
+&gt; as PREFERRED_VERSION 2.23 of package nativesdk-glibc-initial (for item<br>
+&gt; glibc)<br>
+&gt; NOTE: selecting glibc to satisfy runtime glibc due to<br>
+&gt; PREFERRED_PROVIDER_virtual/libc = glibc<br>
+&gt; NOTE: selecting glibc-initial to satisfy runtime glibc due to<br>
+&gt; PREFERRED_PROVIDER_virtual/arm-distro-linux-gnueabi-libc-initial =<br>
+&gt; glibc-initial<br>
+&gt; NOTE: selecting nativesdk-glibc-initial to satisfy runtime glibc due to<br>
+&gt; PREFERRED_PROVIDER_virtual/nativesdk-x86_64-distrosdk-linux-libc-initial<br>
+&gt; = nativesdk-glibc-initial<br>
+&gt; ERROR: Trying to resolve runtime dependency glibc resulted in<br>
+&gt; conflicting PREFERRED_PROVIDER entries being found.<br>
+&gt; The providers found were:<br>
+&gt; [&#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a>&#39;,<br>
+&gt; &#39;virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a>&#39;]<br>
+&gt; The PREFERRED_PROVIDER entries resulting in this conflict were:<br>
+&gt; [&#39;PREFERRED_PROVIDER_virtual/libc = glibc&#39;,<br>
+&gt; &#39;PREFERRED_PROVIDER_virtual/arm-distro-linux-gnueabi-libc-initial =<br>
+&gt; glibc-initial&#39;,<br>
+&gt; &#39;PREFERRED_PROVIDER_virtual/nativesdk-x86_64-distrosdk-linux-libc-initial =<br>
+&gt; nativesdk-glibc-initial&#39;]<br>
+&gt; DEBUG: sorted runtime providers for glibc are:<br>
+&gt; [&#39;virtual:nativesdk:/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc-initial_2.23.bb">glibc-initial_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/yocto/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a>&#39;,<br>
+&gt; &#39;/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc_2.19.bb">eglibc_2.19.bb</a>&#39;,<br>
+&gt; &#39;virtual:nativesdk:/home/jernberg/yocto/sources/poky/meta/recipes-core/eglibc/<a href="http://eglibc-initial_2.19.bb">eglibc-initial_2.19.bb</a>&#39;]<br>
+&gt; NOTE: multiple providers are available for runtime glibc<br>
+&gt; (nativesdk-glibc-initial, glibc-initial, glibc, eglibc-initial, eglibc,<br>
+&gt; nativesdk-eglibc-initial)<br>
+&gt; NOTE: consider defining a PREFERRED_PROVIDER entry to match glibc<br>
+&gt; NOTE: Runtime target &#39;glibc&#39; is unbuildable, removing...<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;glibc&#39;]<br>
+&gt; DEBUG: File<br>
+&gt; &#39;/home/jernberg/yocto/sources/meta-test/recipes-core/glibc/<a href="http://glibc_2.23.bb">glibc_2.23.bb</a>&#39; is<br>
+&gt; unbuildable, removing...<br>
+&gt; NOTE: Target &#39;glibc&#39; is unbuildable, removing...<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;glibc&#39;, &#39;glibc&#39;]<br>
+&gt; ERROR: Required build target &#39;glibc&#39; has no buildable providers.<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;glibc&#39;, &#39;glibc&#39;]<br>
+&gt;<br>
+&gt; Summary: There were 2 WARNING messages shown.<br>
+&gt; Summary: There were 2 ERROR messages shown, returning a non-zero exit code.<br>
+&gt; --<br>
 &gt; _______________________________________________<br>
 &gt; yocto mailing list<br>
-&gt; yocto@yoctoproject.org<br>
-&gt; <a
-href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
+&gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </p>
-</div>
-</body>
-</html>
 
-------------1535793158b600927ac48f6a20--
+--001a114a869614c8bc052d944bbd--
