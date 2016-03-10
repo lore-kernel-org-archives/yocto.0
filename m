@@ -1,51 +1,46 @@
-Return-Path: <andy.pont@sdcsystems.com>
+Return-Path: <pab@pabigot.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55FDFE00C92; Thu, 10 Mar 2016 02:14:53 -0800 (PST)
+	id 32B4DE00C9A; Thu, 10 Mar 2016 02:36:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_50,MSGID_MULTIPLE_AT,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@'
-	characters
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.40.44.11 listed in list.dnswl.org]
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.5000]
-X-Greylist: delayed 533 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 Mar 2016 02:14:50 PST
-Received: from smtprelay.hostedemail.com (smtprelay0011.hostedemail.com
-	[216.40.44.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4EEBE00C89
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 02:14:50 -0800 (PST)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
-	[10.5.19.251])
-	by smtpgrave03.hostedemail.com (Postfix) with ESMTP id C53CA290C23
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 10:05:57 +0000 (UTC)
-Received: from filter.hostedemail.com (unknown [216.40.38.60])
-	by smtprelay03.hostedemail.com (Postfix) with ESMTP id 2F8296B60B
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 10:05:56 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: spot86_33be4ba302520
-X-Filterd-Recvd-Size: 918
-Received: from sdcapont (unknown [5.133.41.213])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf07.hostedemail.com (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 10:05:55 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 10 Mar 2016 10:05:50 -0000
-Organization: SDC Systems Limited
-Message-ID: <00bb01d17ab4$6d4bef50$47e3cdf0$@pont@sdcsystems.com>
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [173.201.192.235 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+X-Greylist: delayed 91 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Mar 2016 02:35:57 PST
+Received: from p3plsmtpa07-06.prod.phx3.secureserver.net
+	(p3plsmtpa07-06.prod.phx3.secureserver.net [173.201.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F53AE00C89
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 02:35:57 -0800 (PST)
+Received: from [192.168.65.10] ([75.72.225.8])
+	by p3plsmtpa07-06.prod.phx3.secureserver.net with 
+	id UAaQ1s00W0BVjqb01AaRde; Thu, 10 Mar 2016 03:34:26 -0700
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Martin Jansa <martin.jansa@gmail.com>, "Burton, Ross"
+	<ross.burton@intel.com>, openembedded-core@lists.openembedded.org
+References: <18448427.V3ACvxT67R@rjs-zotac.streifs.net>
+	<CAJTo0La2CZAKw0Cd4_NpPLt=qXy3x3Arv36huhUMmCH3tV14YA@mail.gmail.com>
+	<20160309225058.GM2542@jama>
+	<1457564551.2804.199.camel@linuxfoundation.org>
+From: "Peter A. Bigot" <pab@pabigot.com>
+Organization: Peter Bigot Consulting, LLC
+Message-ID: <56E14DB0.7040500@pabigot.com>
+Date: Thu, 10 Mar 2016 04:34:24 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdF6tGx8xnAv8UNmRrmcHEuGkGcieg==
-Subject: TI DM355
+In-Reply-To: <1457564551.2804.199.camel@linuxfoundation.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf J Streif <rudolf.streif@gmail.com>
+Subject: Re: [OE-core] Wrong sstate signatures for cross toolchain Was: Building gdb-7.10 for arm with master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: andy.pont@sdcsystems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,20 +49,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Mar 2016 10:14:53 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Thu, 10 Mar 2016 10:36:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-gb
 
-Hello,
+On 03/09/2016 05:02 PM, Richard Purdie wrote:
+> On Wed, 2016-03-09 at 23:50 +0100, Martin Jansa wrote:
+>> What's even more interesting is that even gcc-cross-initial has
+>> different signatures for 2 ARM MACHINEs with different DEFAULTTUNES
+>>
+>> OE qemuarm7@ ~/build/oe-core $ grep ^DEFAULTTUNE= env.gdb-cross-arm*
+>> env.gdb-cross-arm:DEFAULTTUNE="armv5te"
+>> env.gdb-cross-arm7:DEFAULTTUNE="armv7a-neon"
+>>
+>> OE qemuarm7@ ~/build/oe-core $ ls tmp-glibc/sstate
+>> -diff/1457556601/*/*/*gcc-cross-initial*/*do_configure*
+>> tmp-glibc/sstate-diff/1457556601/qemuarm/x86_64-linux/gcc-cross
+>> -initial-arm/5.3.0
+>> -r0.do_configure.sigdata.e54e7a04acf1029cc37463114c7e4dba
+>> tmp-glibc/sstate-diff/1457556601/qemuarm7/x86_64-linux/gcc-cross
+>> -initial-arm/5.3.0
+>> -r0.do_configure.sigdata.3496e3dde08a49b14462741cc6f8d239
+>> OE qemuarm7@ ~/build/oe-core $ bitbake-diffsigs tmp-glibc/sstate
+>> -diff/1457556601/*/*/*gcc-cross-initial*/*do_configure*
+>> basehash changed from 5848199c69eee0db746de21c5458c13d to
+>> 673cd8d19bc4cbea132900a670593df6
+>> Variable EXTRA_OECONF value changed from '--with-newlib --without
+>> -headers --disable-shared --disable-threads --disable-multilib -
+>> -disable-__cxa_atexit --enable-languages=c --program
+>> -prefix=${TARGET_PREFIX} --with-sysroot=/not/exist --with-build
+>> -sysroot=${GCCCROSS_BUILDSYSROOT} ${EXTRA_OECONF_INITIAL}
+>> ${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '--with
+>> -ld=${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}ld.bfd', '', d)}
+>> ${EXTRA_OECONF_GCC_FLOAT} ${@get_gcc_ppc_plt_settings(bb, d)} --with
+>> -native-system-header-dir=${SYSTEMHEADERS}${DISABLE_STATIC}
+>> ${@gettext_oeconf(d)}
+>> DISTRO_FEATURES{ld-is-gold} = Unset' to '--with-newlib --without
+>> -headers --disable-shared --disable-threads --disable-multilib -
+>> -disable-__cxa_atexit --enable-languages=c --program
+>> -prefix=${TARGET_PREFIX} --with-sysroot=/not/exist --with-build
+>> -sysroot=${GCCCROSS_BUILDSYSROOT} ${EXTRA_OECONF_INITIAL}
+>> ${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '--with
+>> -ld=${STAGING_BINDIR_TOOLCHAIN}/${TARGET_PREFIX}ld.bfd', '', d)}
+>> ${EXTRA_OECONF_GCC_FLOAT} ${@get_gcc_ppc_plt_settings(bb, d)} --with
+>> -native-system-header-dir=${SYSTEMHEADERS}${DISABLE_STATIC}
+>> ${@gettext_oeconf(d)} --with-arch=armv7-a
+>> DISTRO_FEATURES{ld-is-gold} = Unset'
+> To answer my own question, it looks like:
+>
+> gcc-configure-common.inc:EXTRA_OECONF_append_armv6 = " --with-arch=armv6"
+> gcc-configure-common.inc:EXTRA_OECONF_append_armv7a = " --with-arch=armv7-a"
+> gcc-configure-common.inc:EXTRA_OECONF_append_armv7ve = " --with-arch=armv7-a"
+>
+> which effectively comes from:
+>
+> http://git.yoctoproject.org/cgit.cgi/poky/commit/meta/recipes-devtools/gcc/gcc-configure-common.inc?id=c0a071e16ec04f485f06eece5b807e5afbe1c1f1
+>
+> The concept of having one gcc for each arch precludes such changes :(.
 
-I appreciate that the TI DM355 is now a very old device (ARM9 based) but I
-was wondering what the best starting point would be as I can't see it in the
-meta-ti layer.
+Yes.  Fundamentally the Yocto concept of arch appears to be inconsistent 
+with gcc's concept in that the defaults for Yocto don't match the 
+defaults for gcc on the same platform.  At the time I submitted that 
+patch reworking how the toolchain is built wasn't feasible.
 
-Any thoughts?
+I'm not working with Yocto at this time so can't contribute to the 
+solution, however if/when I get the opportunity I can help verify that 
+the bug the patch fixed hasn't been re-introduced.
 
-Andy.
+Peter
+> I believe these overrides need to move to the gcc-target.inc file.
+>
+> Cheers,
+>
+> Richard
+>
 
 
