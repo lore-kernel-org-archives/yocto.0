@@ -1,36 +1,40 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <helio.castro@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23BB5E00CA0; Thu, 10 Mar 2016 05:51:22 -0800 (PST)
+	id C6DADE00CA9; Thu, 10 Mar 2016 06:10:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.245.222.98 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D00B0E00B45
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:51:20 -0800 (PST)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id F3FE068A01A; Thu, 10 Mar 2016 13:51:19 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 7507868A019;
-	Thu, 10 Mar 2016 13:51:19 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 1ECFE6740554;
-	Thu, 10 Mar 2016 14:51:19 +0100 (CET)
-To: Martin Jansa <martin.jansa@gmail.com>
-References: <56E174E6.1050305@mlbassoc.com> <20160310135128.GH2573@jama>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56E17BD7.1070503@mlbassoc.com>
-Date: Thu, 10 Mar 2016 14:51:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+X-Greylist: delayed 159 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Mar 2016 06:10:00 PST
+Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE471E00C91
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 06:10:00 -0800 (PST)
+Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:40633
+	helo=mail.bmw-carit.de)
+	by mail.bmw-carit.de with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Helio.Castro@bmw-carit.de>)
+	id 1ae1FG-00079u-2K
+	for yocto@yoctoproject.org; Thu, 10 Mar 2016 15:07:18 +0100
+Received: from localhost (172.20.20.223) by Exchange2010.bmw-carit.intra
+	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Thu, 10 Mar 2016 15:07:18 +0100
+X-CTCH-RefID: str=0001.0A0C0203.56E17F96.026C, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: <helio.castro@bmw-carit.de>
+To: <yocto@yoctoproject.org>
+Date: Thu, 10 Mar 2016 15:07:04 +0100
+Message-ID: <1457618824-40656-1-git-send-email-helio.castro@bmw-carit.de>
+X-Mailer: git-send-email 2.5.0
 MIME-Version: 1.0
-In-Reply-To: <20160310135128.GH2573@jama>
-Cc: yocto@yoctoproject.org
-Subject: Re: Dualing downloads
+X-Originating-IP: [172.20.20.223]
+Subject: [PATCH][oe-core] gcc: Fix the license on GNU OpenMP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,40 +46,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Mar 2016 13:51:22 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 10 Mar 2016 14:10:07 -0000
+Content-Type: text/plain
 
-On 2016-03-10 14:51, Martin Jansa wrote:
-> On Thu, Mar 10, 2016 at 02:21:42PM +0100, Gary Thomas wrote:
->> If I have a package X that depends on X-native and they build
->> from the same sources, doesn't the fetch step duplicate effort
->> if the sources need to be downloaded from scratch?  I just saw
->> this [appear to] happen and it's not clear if the sources were
->> downloaded once or twice.
->
-> The first one should create the lock file and second fetch task should
-> just reuse the already downloaded source.
->
-> Otherwise sharing whole downloads directory between multiple builders
-> wouldn't work as well.
->
+From: Helio Chissini de Castro <helio.castro@bmw-carit.de>
 
-That's great, thanks
+Poky jethro has libgomp ( GNU OpenMP ) license marked as GPL-3.0,
+where's in fact the correct is GPL-3.0 with GCC Library Runtime Exception
 
->> I this is the case, perhaps if X depends on X-native then X.fetch
->> should depend on X-native.fetch so then download happens only once?
->> Or is that too hard to detect?
->>
->> For many packages (and fast network links) this probably isn't an
->> issue, but I could imagine some very large packages simply wasting
->> network bandwidth.
->>
->> Note: I'm happy if I'm wrong about this, it just jumped out at me.
+Signed-off-by: Helio Chissini de Castro <helio.castro@bmw-carit.de>
+---
+ meta/recipes-devtools/gcc/gcc-runtime.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/meta/recipes-devtools/gcc/gcc-runtime.inc b/meta/recipes-devtools/gcc/gcc-runtime.inc
+index 690d780..b2856d3 100644
+--- a/meta/recipes-devtools/gcc/gcc-runtime.inc
++++ b/meta/recipes-devtools/gcc/gcc-runtime.inc
+@@ -119,9 +119,9 @@ LICENSE_libatomic = "GPL-3.0-with-GCC-exception"
+ LICENSE_libatomic-dev = "GPL-3.0-with-GCC-exception"
+ LICENSE_libatomic-staticdev = "GPL-3.0-with-GCC-exception"
+ 
+-LICENSE_libgomp = "GPLv3"
+-LICENSE_libgomp-dev = "GPLv3"
+-LICENSE_libgomp-staticdev = "GPLv3"
++LICENSE_libgomp = "GPL-3.0-with-GCC-exception"
++LICENSE_libgomp-dev = "GPL-3.0-with-GCC-exception"
++LICENSE_libgomp-staticdev = "GPL-3.0-with-GCC-exception"
+ 
+ # The base package doesn't exist, so we clear the recommends.
+ RRECOMMENDS_${PN}-dbg = ""
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.5.0
+
 
