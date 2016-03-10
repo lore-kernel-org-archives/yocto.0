@@ -1,63 +1,68 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1507BE00CA4; Thu, 10 Mar 2016 05:46:43 -0800 (PST)
+	id 1153DE00CA6; Thu, 10 Mar 2016 05:48:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C20C9E00B45
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:46:40 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id l68so3920064wml.3
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:46:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68FF9E00B45
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:48:30 -0800 (PST)
+Received: by mail-wm0-f42.google.com with SMTP id n186so31105585wmn.1
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:48:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=x8/RmC1beQK3K9l8vT52qXpASR3eHU5OTnPiVLMyx/g=;
-	b=c3VgQCBSi5NkkLPj0psI25Hjbtr1q05tA7Q4AYdGCBwhZryDld4HT7cHJJog1yCnkT
-	Ci8vcB6ucEpsoYqr7Yl/5Vi/0x5eWtFkgkRheIKEmiKcrE4Rq/ior3dOd4cLllNnghVr
-	rId9mLmN+X2ayr8BpyAayVRNIXg+PgziJvcNGe8LvUmV0Vh91Y8OZbYLZedtmfUw6fmk
-	Me85Oa50/B2RJqJlgPkL+tu9mDnh7oBVp3n5l+zcQNB+tazHwAZ0AlvtkC6DQt0b1LNV
-	28l3mVfCtGU2CUwk/HDUpezYC6sakLdMyLAjNgp6lF72JNUfwffsVKfiIQl89tKcutv+
-	pYJg==
+	bh=Hs5F3GK9Z8lh29NVEFag5tTq88IGvflxpJLsV3fwMYY=;
+	b=n8GFD7bNVyLWejyO3p4cZc5lK1FaYxFwKx1PPITcy1HxTtH60MYLut/sN62FptMkLF
+	BeGbR57qrrBayWjfdQvySapXFDfFsamQJwvRp2wmOLn0FhvXXIG04ruByhGQ1Mn8U/+v
+	+BMgRXYKJy6uyw0OVfuikFRDAJPsQB6M973L9Sz6pZ3rq/nx8tdFcXKc330gmRM/Lkhu
+	dHnuphHrz/Pzwc+3o/U8szz6rF38ekneH/L3K1SeFTE3Dhwz9ZKw4yn6z/FIUEXJvG95
+	k75asd+GfAx+tJqrRZbfggVjTgdjUyiO8ei19cwzdHrtLY+nfagBz3RelZbz5Y2CNpoh
+	wDFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=x8/RmC1beQK3K9l8vT52qXpASR3eHU5OTnPiVLMyx/g=;
-	b=H1864jBvYSAVymrSvlVcoj/caz2dHK2hT3Cb1AcqQGIJrvcMGwRHV52LXnbjh+XPSD
-	vedQ3q3/FnNVH5WtooZW/wHw3GF6nfLuIqnQnYH7lNg0Wwnvf0KuCMyW5hH7UK1qZa2a
-	HBnSdBKP3qHRupgx5ky6Lqh0N5T9T+/vm7fa2lNB1H5Ur6lMuBTjnUrfrsDI/xQuNY1m
-	5Yb6L6fjlx7x4ou4PKSTtRjT4StQSu+4PqlxeluU3x8QnhthQyv0Tnj/5R6tgyH11B04
-	Z0wqx35UVAWgzSfK1mXQM6hEia+PIQevXMzRQOP6eXbkE717PK9UPsdB4607JkFwdRmt
-	te2g==
-X-Gm-Message-State: AD7BkJJuMTufTJ742ulIz9wiNadbjFdWVTw1Xl1KwnTf9i66tF50e3oBN+s0SNfCmgBv9w==
-X-Received: by 10.28.145.8 with SMTP id t8mr4095268wmd.103.1457617599271;
-	Thu, 10 Mar 2016 05:46:39 -0800 (PST)
-Received: from resin ([109.100.140.128])
-	by smtp.gmail.com with ESMTPSA id t8sm3593952wjy.41.2016.03.10.05.46.38
+	bh=Hs5F3GK9Z8lh29NVEFag5tTq88IGvflxpJLsV3fwMYY=;
+	b=GnZ+SFGS3q+JDxFuaPAqAMbjA1/XtzHsCq1mcdYpRYMLptgDqcRFoact1vvSv/etr7
+	/KpZKfK6d9/QsUGMVYFaY75TZb93sUC+H+0EWWnw1WSfPP1BsPMA50xtFN0bHY+ymbQf
+	y/gOXl1Uc/sc0mIRUr8sflpUgH2VEisllbRHQ4OzWDsdbyQ25TWu7fZGr11mIhgWSMG/
+	8HlciF7ExgRHcsL17YVdToZqudJF9h+J26ZuW+rh9GBrK0XVo6CbzOP6kiklAN4/f0/t
+	WKX0gME3kfaGpd000TI26ZHzssN7aDU3MKye+mGBNkIWetmz7lAT/o4y6RhezFSNDYBG
+	QtPA==
+X-Gm-Message-State: AD7BkJJ718RfQBWBPScHeOaocsHeHjo3gHvR5qjFgBXQhozx6TN9p9OaFkmJixtLaYFU7Q==
+X-Received: by 10.28.228.137 with SMTP id b131mr3981660wmh.16.1457617709982;
+	Thu, 10 Mar 2016 05:48:29 -0800 (PST)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by smtp.gmail.com with ESMTPSA id 8sm3657128wmk.13.2016.03.10.05.48.28
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 10 Mar 2016 05:46:38 -0800 (PST)
-Date: Thu, 10 Mar 2016 14:46:32 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Theodor Gherzan <theodor@gherzan.ro>
-Message-ID: <20160310134632.GA20329@resin>
-References: <1457532907-49811-1-git-send-email-theodor@gherzan.ro>
+	Thu, 10 Mar 2016 05:48:29 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Thu, 10 Mar 2016 14:51:28 +0100
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20160310135128.GH2573@jama>
+References: <56E174E6.1050305@mlbassoc.com>
 MIME-Version: 1.0
-In-Reply-To: <1457532907-49811-1-git-send-email-theodor@gherzan.ro>
+In-Reply-To: <56E174E6.1050305@mlbassoc.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Update revision to include rpi3 support
+Subject: Re: Dualing downloads
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,44 +74,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Mar 2016 13:46:43 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 10 Mar 2016 13:48:33 -0000
+X-Groupsio-MsgNum: 28966
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="OpLPJvDmhXTZE4Lg"
 Content-Disposition: inline
 
-On Wed, Mar 09, 2016 at 04:15:02PM +0200, Theodor Gherzan wrote:
-> From: Theodor Gherzan <theodor@resin.io>
-> 
-> Signed-off-by: Theodor Gherzan <theodor@resin.io>
-> ---
->  recipes-kernel/linux/linux-raspberrypi_4.1.bb | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> index e26019e..b55c9ff 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> @@ -1,8 +1,8 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->  
-> -LINUX_VERSION ?= "4.1.17"
-> +LINUX_VERSION ?= "4.1.18"
->  
-> -SRCREV = "cb2f10196a9b718a2d94bb4ac0887c2ea14988ae"
-> +SRCREV = "fcc9ad149fbe78e9931b8e769ac54d5430587465"
->  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y \
->             file://0001-dts-add-overlay-for-pitft22.patch \
->            "
-> -- 
-> 2.1.4
-> 
-> -- 
+--OpLPJvDmhXTZE4Lg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 10, 2016 at 02:21:42PM +0100, Gary Thomas wrote:
+> If I have a package X that depends on X-native and they build
+> from the same sources, doesn't the fetch step duplicate effort
+> if the sources need to be downloaded from scratch?  I just saw
+> this [appear to] happen and it's not clear if the sources were
+> downloaded once or twice.
+
+The first one should create the lock file and second fetch task should
+just reuse the already downloaded source.
+
+Otherwise sharing whole downloads directory between multiple builders
+wouldn't work as well.
+
+> I this is the case, perhaps if X depends on X-native then X.fetch
+> should depend on X-native.fetch so then download happens only once?
+> Or is that too hard to detect?
+>=20
+> For many packages (and fast network links) this probably isn't an
+> issue, but I could imagine some very large packages simply wasting
+> network bandwidth.
+>=20
+> Note: I'm happy if I'm wrong about this, it just jumped out at me.
+>=20
+> --=20
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-Merged the entire patch set to master. Thanks.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
--- 
-Andrei Gherzan
+--OpLPJvDmhXTZE4Lg
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlbhe98ACgkQN1Ujt2V2gByegwCdFxi1+teaS9dAd5wPb7miTMKV
+gv8AnRUMAyeH6opyJf+sLv+NNe13YWl0
+=SrH5
+-----END PGP SIGNATURE-----
+
+--OpLPJvDmhXTZE4Lg--
