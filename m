@@ -1,40 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19635E00C1B; Wed,  9 Mar 2016 18:27:48 -0800 (PST)
+	id 566D7E00C92; Thu, 10 Mar 2016 00:12:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99A4BE00BF5
-	for <yocto@yoctoproject.org>; Wed,  9 Mar 2016 18:27:44 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 09 Mar 2016 18:27:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,313,1455004800"; d="scan'208";a="920618076"
-Received: from mlim-mobl4.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.143.14])
-	by fmsmga001.fm.intel.com with ESMTP; 09 Mar 2016 18:27:41 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Mark Brown <mkbrown32@hotmail.com>
-Date: Thu, 10 Mar 2016 15:27:39 +1300
-Message-ID: <1602071.YmYkmr06gY@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.4.3-300.fc23.x86_64; KDE/4.14.17; x86_64; ;
-	)
-In-Reply-To: <BAY181-W583CA3631BD8968591D5FEAEB40@phx.gbl>
-References: <BAY181-W50B0A075391862300C0057AEB10@phx.gbl>
-	<3096733.Nm5QEVLyy2@peggleto-mobl.ger.corp.intel.com>
-	<BAY181-W583CA3631BD8968591D5FEAEB40@phx.gbl>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBDCFE00C8D
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 00:12:17 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 5D6A568A01C; Thu, 10 Mar 2016 08:12:15 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id D320E68A019;
+	Thu, 10 Mar 2016 08:12:14 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 7B4FF6740554;
+	Thu, 10 Mar 2016 09:12:14 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
+Message-ID: <56E12C5E.6030904@mlbassoc.com>
+Date: Thu, 10 Mar 2016 09:12:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Failed to fetch URL git://gitorious.org/raw2rgbpnm/raw2rgbpnm.git
+Subject: Long-term package revision maintenance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,42 +39,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Mar 2016 02:27:48 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 10 Mar 2016 08:12:19 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> > From: paul.eggleton@linux.intel.com
-> > To: mkbrown32@hotmail.com
-> > CC: yocto@yoctoproject.org; ross.burton@intel.com
-> > Subject: Re: [yocto] Failed to fetch URL
-> > git://gitorious.org/raw2rgbpnm/raw2rgbpnm.git Date: Thu, 10 Mar 2016
-> > 14:39:01 +1300
-> > 
-> > On Wed, 09 Mar 2016 14:56:55 Mark Brown wrote:
-> > > The certificate file is there and appears to contain a series of several
-> > > encrypted certificates. And there are numerous other .crt and .pem files
-> > > in there, mostly links to files. Does this build need to be run as admin
-> > > or sudo   to enable this mirror capability ?
-> > 
-> > Definitely not. You should never run builds as root; in this case it
-> > wouldn't help you anyway.
->
-> Is it possible that the network pathway through Windows/Virtualbox to Ubuntu
-> is interfering with the certification ssl process ?
+I've been running local PR servers for my builds.  This works
+quite well, as long as I don't touch my build trees.
 
-I would be surprised, it's much more likely that there's some misconfiguration 
-within the VM or a bad interaction with our fetcher.
+What's the best way to manage versions long-term?  i.e. if I
+have a deployed system that I build today, but may not touch
+for a long time (years?) and I might not want to keep my build
+trees for that long.  If I just blow away the build tree, the
+next time I build for that target, all of the version info will
+be lost.  I'd like to be able to pick up where I left off.
 
-You've specified protocol=http but I see the gitorious archive site is 
-redirecting to https. Does it make any difference at all if you say 
-protocol=https instead? I'm clutching at straws, but it's worth a try at 
-least.
+It it safe enough to just save .../cache/prserv.sqlite3?  or
+is there a better way?  I tried the bitbake-prserv-tool export
+but I'm not sure it does what I want.  In particular, I don't
+plan on saving the sstate info and will probably just expect
+to rebuild from scratch.  When I ran the export, I see things
+like this:
+   $ grep bash PR-list.conf
+   PRAUTO$bash-completion-2.1-r0$ppce500v2$5044c7315caa9edef95defcc20bdf74a = "1"
+   PRAUTO_bash-completion-2.1-r0_ppce500v2 = "1"
+   PRAUTO$bash-4.3.30-r0$ppce500v2$03b7364b0d93910fee2eddf1f2c83f4b = "1"
+   PRAUTO_bash-4.3.30-r0_ppce500v2 = "1"
 
-Cheers,
-Paul
+So, if I import this file into a new build tree, will it properly
+track that the next revision of bash should be r2 (assuming that
+its signature changes and r1 if it doesn't change)?  Is it sufficient
+to export the PR list when I'm packing the project up and then import
+it back when I need to resume?  I really want to be able to keep a
+package feed that I can manage over time without having to preserve
+the build tree that was used to create it.
+
+Thanks for any advice
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
