@@ -1,6 +1,6 @@
-Return-Path: <laguest@archeia.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC850E00CA0; Thu, 10 Mar 2016 04:50:24 -0800 (PST)
+	id 77A5AE00CA4; Thu, 10 Mar 2016 05:21:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,26 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 356 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 Mar 2016 04:50:19 PST
-Received: from beast.archeia.com (beast.archeia.com [74.207.226.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75FD1E00B45
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 04:50:19 -0800 (PST)
-Received: from [192.168.0.2] (0545bbff.skybroadband.com [5.69.187.255])
-	(Authenticated sender: laguest)
-	by beast.archeia.com (Postfix) with ESMTPSA id 315D28002
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 12:46:43 +0000 (GMT)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33968E00B45
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 05:21:44 -0800 (PST)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id C3C8B68A019; Thu, 10 Mar 2016 13:21:43 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 62CB468A019;
+	Thu, 10 Mar 2016 13:21:43 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id D8F586740554;
+	Thu, 10 Mar 2016 14:21:42 +0100 (CET)
 To: yocto@yoctoproject.org
-From: "Luke A. Guest" <laguest@archeia.com>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <56E16C71.6000806@archeia.com>
-Date: Thu, 10 Mar 2016 12:45:37 +0000
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <56E174E6.1050305@mlbassoc.com>
+Date: Thu, 10 Mar 2016 14:21:42 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.0
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-Subject: [meta-ada] Misconfigure in gcc/ada/gcc-interface/Makefile, tmake_file list is wrong on MIPS/x86
+Subject: Dualing downloads
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +39,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Mar 2016 12:50:24 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 10 Mar 2016 13:21:48 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+If I have a package X that depends on X-native and they build
+from the same sources, doesn't the fetch step duplicate effort
+if the sources need to be downloaded from scratch?  I just saw
+this [appear to] happen and it's not clear if the sources were
+downloaded once or twice.
 
-I'm trying to get my meta-ada layer working with jethro, gcc-4.9. I've
-tried to build qemux86, qemumips and qemuarm so far. At this time, I've
-added "ada" to --enable-languages and I'm trying to get the thing to
-build first. Both qemux86 and qemumips targets have misconfigured
-gcc/ada/gcc-interface/Makefile at line 164, the i586 target generates:
+I this is the case, perhaps if X depends on X-native then X.fetch
+should depend on X-native.fetch so then download happens only once?
+Or is that too hard to detect?
 
-tmake_file =  $(srcdir)/config/t-slibgcc $(srcdir)/config/t-linux
-$(srcdir)/config/t-glibc ./config/i386/t-linux64
-$(srcdir)/config/i386/t-pmm_malloc $(srcdir)/config/i386/t-i386
-$(srcdir)/config/i386/t-linux
+For many packages (and fast network links) this probably isn't an
+issue, but I could imagine some very large packages simply wasting
+network bandwidth.
 
-mips target generates:
+Note: I'm happy if I'm wrong about this, it just jumped out at me.
 
-tmake_file =  $(srcdir)/config/mips/t-mips $(srcdir)/config/t-slibgcc
-$(srcdir)/config/t-linux $(srcdir)/config/t-glibc ./config/mips/t-linux64
-
-Both lines are trying to include t-linux64 from their respective config
-dirs, but they should have the prefix "$(srcdir)" and not "."
-
-Luckily the arm target seems to build, so I can carry on there, but it
-would be nice to have all targets working.
-
-Can anyone help me work out what is going on here?
-
-Thanks,
-Luke.
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
