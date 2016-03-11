@@ -1,36 +1,65 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <pervivek@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02C49E00CD3; Thu, 10 Mar 2016 19:07:24 -0800 (PST)
+	id 8BDE4E00BA0; Thu, 10 Mar 2016 20:57:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pervivek[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED458E00CCD
-	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 19:07:22 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP; 10 Mar 2016 19:07:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,318,1455004800"; d="scan'208";a="762096787"
-Received: from scheong2-mobl2.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.170.99])
-	by orsmga003.jf.intel.com with ESMTP; 10 Mar 2016 19:07:19 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Steve Rae <steve.rae@broadcom.com>
-Date: Fri, 11 Mar 2016 16:07:16 +1300
-Message-ID: <22778070.Zm7ATvHsG7@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.4.3-300.fc23.x86_64; KDE/4.14.17; x86_64; ;
-	)
-In-Reply-To: <2731700.yuibnYHsdA@peggleto-mobl.ger.corp.intel.com>
-References: <CAM7GXo=mfAE5p4tiiYk6wrpSXU6XQTdY7edQJ+kgew-ch9OLZQ@mail.gmail.com>
-	<2731700.yuibnYHsdA@peggleto-mobl.ger.corp.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.54 listed in list.dnswl.org]
+Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E98AE00B89
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 20:56:55 -0800 (PST)
+Received: by mail-vk0-f54.google.com with SMTP id c3so121754640vkb.3
+	for <yocto@yoctoproject.org>; Thu, 10 Mar 2016 20:56:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=qADMUnGjQ61+MWJ1Pe6ZmSFbEgXS/9dO/rnIMp94b1s=;
+	b=bMRU7/Z4ogHCD+dDYlYWCsgrr1RxDrTthNoWCyFF92fxM214hwdayrxmvfwqeAR/yo
+	zW1J7u9d3Cqla/qkPdJgB94zAeiv1s2J7TLD3IvogH6aI/sX7Nqrzd9c/kFW2ox77ZPZ
+	wpjfcCB+bee2ceirb5Ueegr8zx4dSmuyzzBEOm4GWN5OvOAU8PntIidDl+BZYxMT1GwZ
+	gdRsmxbnSJUzjzY8rhpuzJJSm3wHye8MkOeK6LVfDLRKM/YjlrA2N4b7fPZyweCmelN2
+	J5+YWfQUr/durgPBM4cAc3DimXyV+CsaHE/NcuZwfjoQYmccqRDRgwuKFojNLNXtWfM5
+	G5qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=qADMUnGjQ61+MWJ1Pe6ZmSFbEgXS/9dO/rnIMp94b1s=;
+	b=jsOCFtR5ZwR05ZMdlOO0/AEXQrxSWzhQaw3o7UZ5Ez0kh1yPNUmGyGqTlhhvq3ktzo
+	HOkbDemDA+BJl2/CvdcCcV2Ocd2nS08/GygOyr5ArQzXL/i9sWWaoxDBYgq4sSbNA78t
+	pvDALW86OdTWxMfvFGpecYQpWQya+MQ2hoPWZcxc3NelBeF4pi75LhnWghp9RSPFO5HD
+	Y40xEjaJk7PLGUCZg7t3UH6dcWgdgUJpA1R5jsnSIZ/tg72VDP1lCNbHTWNmLuAi1EyH
+	1BqKKiHQgmWp6m2igpD5JF9EVT3iuaL+VOB5hfml/XXgo4IxfO2frGHPuL+yOolsKsFY
+	kfBw==
+X-Gm-Message-State: AD7BkJJHzLuYsJ/yTo0kojlV6JMpnRjxKBwK7+zhrBoiaNwbyL1kfx+Aynz8nbblW2GqK9XXn+bzoFUEqmk3/w==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: kernel: "devtool modify -x" issue
+X-Received: by 10.31.49.210 with SMTP id x201mr7424458vkx.81.1457672215432;
+	Thu, 10 Mar 2016 20:56:55 -0800 (PST)
+Received: by 10.31.229.71 with HTTP; Thu, 10 Mar 2016 20:56:55 -0800 (PST)
+In-Reply-To: <CAJTo0LbP28EHd+Gd-Vp8PKrBoavfU-+k1BB9MmvnRV0cjcKbUg@mail.gmail.com>
+References: <CALLyC8SWZ8LfnDwAWpsFxY8PZj+f6w7bySXiBmq8E7o63OVkUw@mail.gmail.com>
+	<CAJTo0LbP28EHd+Gd-Vp8PKrBoavfU-+k1BB9MmvnRV0cjcKbUg@mail.gmail.com>
+Date: Fri, 11 Mar 2016 10:26:55 +0530
+Message-ID: <CALLyC8QZLpEtd2h7vho8mH=iFHO_4_dhVxvMi_=VuQEV08k2Gg@mail.gmail.com>
+From: Vivek Per <pervivek@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: How to add some additional enviroment variables to /etc/profile file while building IMAGE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,65 +71,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Mar 2016 03:07:25 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 11 Mar 2016 04:57:00 -0000
+Content-Type: multipart/alternative; boundary=001a1143873e99941e052dbec234
 
-On Fri, 11 Mar 2016 07:55:25 Paul Eggleton wrote:
-> On Wed, 09 Mar 2016 10:12:30 Steve Rae wrote:
-> > ( using jethro )
-> > 
-> > I have a 'linux-yocto-custom' layer which builds successfully; then I run:
-> >     devtool modify -x linux-yocto-custom ../../poky-dev/kernel
-> > >> 
-> > >> I see a line:
-> >   Cloning into '/tmp/devtoolfgiLXr/workdir/source'...
-> > 
-> > Then I run:
-> >     devtool build linux-yocto-custom
-> > >> 
-> > >> it reports the following:
-> > Log data follows:
-> > | DEBUG: Executing shell function do_kernel_configme
-> > | NOTE: kernel configme
-> > | [INFO] Configuring target/machine combo: "standard/bcmjava"
-> > | [ERROR] frag
-> > 
-> > /tmp/devtoolfgiLXr/workdir/source/.meta/cfg/scratch/obj/tmp/devtoolfgiLXr/
-> > wo rkdir/defconfig does not exist
-> > 
-> > | [ERROR] No configuration fragments found, this typically is a
-> > 
-> > misconfigured BSP.
-> > 
-> > |         Check that fragments (or defconfigs) are referenced by the board
-> > 
-> > description.
-> > 
-> > | config of "standard/bcmjava" failed
-> > | WARNING: exit code 1 from a shell command.
-> > 
-> > which is true, because "devtool modify -x" deletes the temp directory
-> > ("/tmp/devtoolfgiLXr") that it used to create this specified workspace....
-> 
-> Hmm, it looks like the temporary path is leaking in somewhere. Is there an
-> easy way I can reproduce this here so I can debug it?
+--001a1143873e99941e052dbec234
+Content-Type: text/plain; charset=UTF-8
 
-Actually I just realised, this task ought not to be running at all - in master
-we've disabled it under these circumsances. There's also one other fix on
-master that you'd benefit from in jethro - I've put them both on this
-contrib branch:
+Thank you very much!!
 
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=paule/jethro-fixes4
+On Mon, Mar 7, 2016 at 3:53 PM, Burton, Ross <ross.burton@intel.com> wrote:
 
-If you could let me know how it works for you that would be great; I'll send
-it out soon.
+>
+> On 7 March 2016 at 10:20, Vivek Per <pervivek@gmail.com> wrote:
+>
+>>      i want to add some additional enviroment variables in /etc/profile
+>> file. How can i add these while building, so that it reflect in my target
+>> image.
+>>
+>
+> base-files is the recipe that ships /etc/profile, so you can use a
+> bbappend to either replace the file entirely or _append a function to write
+> your changes during the build.
+>
+> Ross
+>
 
-Cheers,
-Paul
+--001a1143873e99941e052dbec234
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
+<div dir=3D"ltr">Thank you very much!!</div><div class=3D"gmail_extra"><br>=
+<div class=3D"gmail_quote">On Mon, Mar 7, 2016 at 3:53 PM, Burton, Ross <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blan=
+k">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><span class=3D""><br><div=
+ class=3D"gmail_quote">On 7 March 2016 at 10:20, Vivek Per <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:pervivek@gmail.com" target=3D"_blank">pervivek@gmai=
+l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>=C2=A0 =
+=C2=A0 =C2=A0i want to add some additional enviroment variables in /etc/pro=
+file file. How can i add these while building, so that it reflect in my tar=
+get image.</div><div></div></blockquote></div><br></span>base-files is the =
+recipe that ships /etc/profile, so you can use a bbappend to either replace=
+ the file entirely or _append a function to write your changes during the b=
+uild.</div><span class=3D"HOEnZb"><font color=3D"#888888"><div class=3D"gma=
+il_extra"><br></div><div class=3D"gmail_extra">Ross</div></font></span></di=
+v>
+</blockquote></div><br></div>
 
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--001a1143873e99941e052dbec234--
