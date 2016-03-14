@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5EDDE00D53; Sun, 13 Mar 2016 22:35:46 -0700 (PDT)
+	id E6E66E00D53; Sun, 13 Mar 2016 23:09:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,51 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.179 listed in list.dnswl.org]
-Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EA04E00D4A
-	for <yocto@yoctoproject.org>; Sun, 13 Mar 2016 22:35:42 -0700 (PDT)
-Received: by mail-pf0-f179.google.com with SMTP id n5so90266259pfn.2
-	for <yocto@yoctoproject.org>; Sun, 13 Mar 2016 22:35:42 -0700 (PDT)
+Received: from mail-qg0-f54.google.com (mail-qg0-f54.google.com
+	[209.85.192.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66703E00D4A
+	for <yocto@yoctoproject.org>; Sun, 13 Mar 2016 23:09:48 -0700 (PDT)
+Received: by mail-qg0-f54.google.com with SMTP id t4so145851060qge.0
+	for <yocto@yoctoproject.org>; Sun, 13 Mar 2016 23:09:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=a1IsBpcIgUjkyT1DxfOHbukYQn6VYNrPiR3QZqFIBEo=;
-	b=rMpLGElRXR6D3/g45sTOQtlHkQUVk1HV+Yq1cbF8EokG2BnB8iSQd14pT+n19iJEtl
-	phm5ZSfS21A+qATAYQeFTtCu/+a0i0v1Gxl7krh9m049FMiHItvXYAu6XTzLPB0f6Ot9
-	L6ZhE5lpg+IvhQCHwLscUWgcO7aVbaXMt/WJ10eflXke4cv23KO4pKMldHpJdQC8POuq
-	YOjlWG5uQwQSNyuliLr2CKmU/l2PETT1eKwCQ8r6KMDiVMviI4KDC3MmxMK0ZQ/tzj/b
-	/5gwE594vnO7XZcN8JuIyvCG68m8lkYXZOdrqOWXeOZu8aUWg0NFunwIczlimi5nwdXp
-	AH8A==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=bgSQ2GpTE0b3yskQyt9e96yFT6nS8JxLVuwwnQHtROE=;
+	b=GccNiho1feO4NoutS5Tf29MDS+d/AxJebrzq85N/mO9VcclB9oIB7IefrPeRmuXEf/
+	KzIGv1eI3nqHtLYE9NQbWddl2Q9T5C85zN0YSztokR2+yxqChYtX87hZKAHmnmdiD1vp
+	WDR1IepHYuDhpBu3u/lHYclJjYJuI4yA5bijbmQgBCaSQOH8nHevzFqofp+kG9DYejPG
+	441k7nNKBF8msf8gsyUkbzZYJNG0NWPkCmj90a9DubP7lZybzP6t0YejWK1aHfXbO5NK
+	T0ZoZYGK1VNmjCefjXtJJ3TtvlTWRma0xNHqrvZQLA7Mr0nqkAJi9wnZ0FHq/ga0YpmC
+	6hNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=a1IsBpcIgUjkyT1DxfOHbukYQn6VYNrPiR3QZqFIBEo=;
-	b=hfXBhR5Q90fTMIUTBjlpjVvnM5eMF5j/CPZbsPGL0dn2DqeCubJAY0E9uGacSnD0w9
-	BqJ2jDtO81piGILKqM1Svflc8Zf0fDDC6ia5Dtm550iE+4vy/ZB/LLFBTqoqUoGGB49l
-	VSPdNwUuxU5uACJHhjb+pZey35n1z5+x85xp+xsIRxls9D8nvP6hHipKvjDeFjgUdyin
-	f/p6vS42NDegZTdu2dn3ECUN++XDOxBbx6cUmVmDSydtvIyIjRZaHA5FE3VFsI8kE5iG
-	aYRkmAfA7CHSk5m26HUmY7KJb/6b8DN+Cnx/FSVG5HyGh+TsUODKmIeSnEjCMuePYDrr
-	rskA==
-X-Gm-Message-State: AD7BkJKETRtW1DwKVcQvGOT0VX1mGVx8mtu+EpgiYR4mARSHNFuttLYLsK+Dxu76GY0X+A==
-X-Received: by 10.98.10.6 with SMTP id s6mr10838492pfi.139.1457933742434;
-	Sun, 13 Mar 2016 22:35:42 -0700 (PDT)
-Received: from haswell.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	y15sm28709806pfi.16.2016.03.13.22.35.40
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 13 Mar 2016 22:35:41 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 13 Mar 2016 22:34:01 -0700
-Message-Id: <1457933641-23892-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.7.3
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=bgSQ2GpTE0b3yskQyt9e96yFT6nS8JxLVuwwnQHtROE=;
+	b=IeLTffGUkUAxW4iMfnCcLM+jWYpcJng5IXdU9nzfUgOx5iWAwM+FaEw8DMo3c+w/4D
+	huGEcar4x71q9/YO5BIZrLknN9mPaG0Lkh6nEfZSc42kkU+l+3rLJiso8LTLoI3QfPdo
+	Q0WNQhbcJHjp3gZW6xpmRsKhiOrtGGfqkd+JmyzelUxNtYCQi8jQVg8OwP3T34Co9o5Z
+	vTTS+o4Ldt0V4PdBPVqVP3BjQK58tRkwiDGBDiSHYI2WSjchFVgcQRlnAGFt/THhBgUi
+	Y3K9zFzXpSdKJ1Td+pz+i65zVixxmWr8Y4qEPdqnRxXVCVmVvUCLniYZ42zk/7IMHFHG
+	9u5g==
+X-Gm-Message-State: AD7BkJIcJunArVtka/t/fbmLrmH6WX13Ctn2aaTVZjDf6aaus0hJ67kXbcA2xmuxZiecLW06qkqMWvhohtQREQ==
+X-Received: by 10.140.100.244 with SMTP id s107mr27141293qge.19.1457935788441; 
+	Sun, 13 Mar 2016 23:09:48 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH] linux-raspberrypi-4.4: Add the pitft22 overlay from adafruit
+Received: by 10.55.130.196 with HTTP; Sun, 13 Mar 2016 23:09:19 -0700 (PDT)
+In-Reply-To: <56E64947.5020606@mlbassoc.com>
+References: <56E64947.5020606@mlbassoc.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 13 Mar 2016 23:09:19 -0700
+Message-ID: <CAMKF1sr3DgBbiAHAb0GngGDZeN-LUhFWH0s7bQ+zm2iYD-EaDA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Problems building live image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,148 +70,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Mar 2016 05:35:46 -0000
+X-List-Received-Date: Mon, 14 Mar 2016 06:09:52 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../0001-dts-add-overlay-for-pitft22.patch         | 106 +++++++++++++++++++++
- recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  10 +-
- 2 files changed, 113 insertions(+), 3 deletions(-)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-dts-add-overlay-for-pitft22.patch
+just use IMAGE_FSTYPES =3D "vmdk" if you plan to use virtualbox and need
+a raw image.
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0001-dts-add-overlay-for-pitft22.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-dts-add-overlay-for-pitft22.patch
-new file mode 100644
-index 0000000..7cb076f
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-dts-add-overlay-for-pitft22.patch
-@@ -0,0 +1,106 @@
-+From a28bd410022b32a64e208f04b45add6326990332 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
-+Date: Fri, 8 Jan 2016 09:02:44 +0100
-+Subject: [PATCH] dts: add overlay for pitft22
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+Upstream-Status: Pending
-+
-+Add the pitft22 overlay from adafruit Adafruit-Pi-Kernel-o-Matic repo:
-+https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic
-+
-+Signed-off-by: Petter Mabäcker <petter@technux.se>
-+---
-+ arch/arm/boot/dts/overlays/Makefile            |  1 +
-+ arch/arm/boot/dts/overlays/pitft22-overlay.dts | 69 ++++++++++++++++++++++++++
-+ 2 files changed, 70 insertions(+)
-+ create mode 100755 arch/arm/boot/dts/overlays/pitft22-overlay.dts
-+
-+Index: kernel-source/arch/arm/boot/dts/overlays/pitft22-overlay.dts
-+===================================================================
-+--- /dev/null
-++++ kernel-source/arch/arm/boot/dts/overlays/pitft22-overlay.dts
-+@@ -0,0 +1,69 @@
-++/*
-++ * Device Tree overlay for pitft by Adafruit
-++ *
-++ */
-++
-++/dts-v1/;
-++/plugin/;
-++
-++/ {
-++        compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
-++
-++        fragment@0 {
-++                target = <&spi0>;
-++                __overlay__ {
-++                        status = "okay";
-++
-++                        spidev@0{
-++                                status = "disabled";
-++                        };
-++
-++                        spidev@1{
-++                                status = "disabled";
-++                        };
-++                };
-++        };
-++
-++        fragment@1 {
-++                target = <&gpio>;
-++                __overlay__ {
-++                        pitft_pins: pitft_pins {
-++                                brcm,pins = <25>;
-++                                brcm,function = <1>; /* out */
-++                                brcm,pull = <0>; /* none */
-++                        };
-++                };
-++        };
-++
-++        fragment@2 {
-++                target = <&spi0>;
-++                __overlay__ {
-++                        /* needed to avoid dtc warning */
-++                        #address-cells = <1>;
-++                        #size-cells = <0>;
-++
-++                        pitft: pitft@0{
-++                                compatible = "ilitek,ili9340";
-++                                reg = <0>;
-++                                pinctrl-names = "default";
-++                                pinctrl-0 = <&pitft_pins>;
-++
-++                                spi-max-frequency = <32000000>;
-++                                rotate = <90>;
-++                                fps = <25>;
-++                                bgr;
-++                                buswidth = <8>;
-++                                dc-gpios = <&gpio 25 0>;
-++                                debug = <0>;
-++                        };
-++
-++                };
-++        };
-++
-++        __overrides__ {
-++                speed =   <&pitft>,"spi-max-frequency:0";
-++                rotate =  <&pitft>,"rotate:0";
-++                fps =     <&pitft>,"fps:0";
-++                debug =   <&pitft>,"debug:0";
-++        };
-++};
-+Index: kernel-source/arch/arm/boot/dts/overlays/Makefile
-+===================================================================
-+--- kernel-source.orig/arch/arm/boot/dts/overlays/Makefile
-++++ kernel-source/arch/arm/boot/dts/overlays/Makefile
-+@@ -43,6 +43,7 @@ dtbo-$(RPI_DT_OVERLAYS) += pi3-disable-b
-+ dtbo-$(RPI_DT_OVERLAYS) += pi3-miniuart-bt.dtbo
-+ dtbo-$(RPI_DT_OVERLAYS) += piscreen.dtbo
-+ dtbo-$(RPI_DT_OVERLAYS) += piscreen2r.dtbo
-++dtbo-$(RPI_DT_OVERLAYS) += pitft22-overlay.dtbo
-+ dtbo-$(RPI_DT_OVERLAYS) += pitft28-capacitive.dtbo
-+ dtbo-$(RPI_DT_OVERLAYS) += pitft28-resistive.dtbo
-+ dtbo-$(RPI_DT_OVERLAYS) += pps-gpio.dtbo
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-index f7c5bfb..027d964 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-@@ -1,6 +1,10 @@
--LINUX_VERSION ?= "4.4.3"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
- 
--SRCREV = "36babd89241c85258acebe06616f1f1a58356f8e"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y"
-+LINUX_VERSION ?= "4.4.5"
-+
-+SRCREV = "a2c8f5b320a7ca852551bb58a816fcb2b462f9bc"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
-+           file://0001-dts-add-overlay-for-pitft22.patch \
-+"
- 
- require linux-raspberrypi.inc
--- 
-2.7.3
-
+On Sun, Mar 13, 2016 at 10:16 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> I'd like to to some testing that qemu just doesn't seem up to
+> so I attempted to build a live ISO per the documentation. I
+> added these lines to local.conf:
+>   IMAGE_FSTYPES_genericx86 +=3D "live"
+>   NOISO_genericx86 =3D "0"
+>
+> When I try to build core-image-base I get this error:
+>   ERROR: INITRD_IMAGE_LIVE core-image-minimal-initramfs cannot use image
+> live, hddimg or iso.
+>   ERROR: Check IMAGE_FSTYPES and INITRAMFS_FSTYPES settings.
+>   ERROR: Failed to parse recipe:
+> /local/poky-cutting-edge/meta/recipes-core/images/core-image-minimal-init=
+ramfs.bb
+>
+> I'm using a recent Poky checkout (d53413d3a8444c38a83ea37867c8af7754d8e70=
+2)
+>
+> Am I just doing something wrong here? I was following this section of the
+> mega-manual:
+>
+>   26.56. image-live.bbclass=C2=B6
+>
+>   The image-live class supports building "live" images.
+>
+>   Normally, you do not use this class directly. Instead, you add "live" t=
+o
+> IMAGE_FSTYPES.
+>   For example, if you were building an ISO image, you would add "live" to
+> IMAGE_FSTYPES,
+>   set the NOISO variable to "0" and the build system would use the
+> image-live class to
+>   build the ISO image.
+>
+> I don't have any available hardware for this testing, so I thought
+> I'd use VirtualBox.  Is this a reasonable approach?  I want to use
+> a live ISO so I get a writable file system.  I tried just using the
+> .hddimage but that doesn't boot with VirtualBox :-(
+>
+> To be clear, along with the additions above in local.conf, I tried:
+>   $ MACHINE=3Dgenericx86 bitbake core-image-base
+>
+> Thanks for any ideas
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
