@@ -1,33 +1,60 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A783EE00D4A; Mon, 14 Mar 2016 05:41:46 -0700 (PDT)
+	id BC378E00D4A; Mon, 14 Mar 2016 05:46:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 192BCE00BE8
-	for <yocto@yoctoproject.org>; Mon, 14 Mar 2016 05:41:42 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 4BD3468A019; Mon, 14 Mar 2016 12:41:40 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id CE78168A019;
-	Mon, 14 Mar 2016 12:41:39 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 47B8D67408F9;
-	Mon, 14 Mar 2016 13:41:39 +0100 (CET)
-To: yocto@yoctoproject.org
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56E6B182.1060505@mlbassoc.com>
-Date: Mon, 14 Mar 2016 13:41:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5214AE00BE8
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2016 05:46:38 -0700 (PDT)
+Received: by mail-io0-f178.google.com with SMTP id n190so220731570iof.0
+	for <yocto@yoctoproject.org>; Mon, 14 Mar 2016 05:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zkpKAm2ptFmVtJu0CxOlMnEiBtrr17vsKDQFw/vaa2E=;
+	b=MiRJhsY1/qPR0VvCaWwQgdqWbCix3cp0QkbjYOYyoRm0ZvdcHBAiCRwlUbxBSUHX1E
+	k6WrKPWG0YbDXR9PXA1Cu63nCzI9UcdP61zTcmHRs7v261zB0sZEYWQGo3RYNMCYt/WA
+	YwTFMnaLYUMSq6HaScTWkrJrbOEFanXLl0+KPTwB6HRy0VJeorMt8kEI3N+QTlxQut5v
+	AMCQNGRXtBI/0LuTVtP4WUO8z4n54qEBja9iToNUROsGNwRye2+64cD47/P873Xfd6BM
+	wz9KATjCINBnqNCvn5ujF9bVRZaeEUNnjMOJlAMEVE93jdwAndCwimJmze14OJnJIq8L
+	EyUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zkpKAm2ptFmVtJu0CxOlMnEiBtrr17vsKDQFw/vaa2E=;
+	b=d0SgcZbr+tIPJ/lYNlDLwx+GpvyxoAneBVdDlyS8zHaYg3z0FEv5LMfcMDsIVjH8Mz
+	sDx+uZ1HTK0DOOdRMplXr5GjoWlxLq9AgKCavNWn1uOVs8sjVhbXC0XawYDT9PE3ib91
+	2RmhnQS+2zcoffEmzQu4GH0VkfXBIyZREOvnOT969XzXbRMaVpcLDV0kH3kXjyf6tx10
+	Rf4b2+B77nIw9vNz397zGxd0oQJRCklqL2BMlQgoV5bSVRT3o5gCBsB5ltunHU7dQP0O
+	WEaD4ep6ysHBAu7c5TD8TFKtV5AFB5bGJp32QKM+PnBQrpLWA4D+J1YUSrrTho2qiIpa
+	GKcA==
+X-Gm-Message-State: AD7BkJIfM1xm3cfKsQJX42gjLIrJguCdGHHyM18fiFYIWBI3cziRSuJBQz9OSSRQXZg5aQXRCCZxtjxiIm7UXd03
+X-Received: by 10.107.16.19 with SMTP id y19mr21682550ioi.148.1457959598328;
+	Mon, 14 Mar 2016 05:46:38 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Strange build dependency
+Received: by 10.107.162.70 with HTTP; Mon, 14 Mar 2016 05:46:19 -0700 (PDT)
+In-Reply-To: <56E6B182.1060505@mlbassoc.com>
+References: <56E6B182.1060505@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 14 Mar 2016 12:46:19 +0000
+Message-ID: <CAJTo0LZYi3PK2KJC3vqrN2AVwMGSN=dVZZckWk_0XpNsvu9jeA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Strange build dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,30 +66,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Mar 2016 12:41:46 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Mar 2016 12:46:42 -0000
+Content-Type: multipart/alternative; boundary=001a113fd1eaf4a291052e01ab7c
 
-I'm trying to sort out a problem with perl and have been switching
-between two different versions.  What I don't understand is why
-so many recipes are being rebuilt when I change.  I tried examining
-the dependencies with -g -u depexp but I'm unable to see why it's
-happening.
+--001a113fd1eaf4a291052e01ab7c
+Content-Type: text/plain; charset=UTF-8
 
-I'm building core-image-base (+perl) from a recent Poky checkout.
-I notice that a number of packages that don't seem to be related
-to perl (or even hardly to each other) are rebuilt, e.g. avahi,
-openssl and others.
+On 14 March 2016 at 12:41, Gary Thomas <gary@mlbassoc.com> wrote:
 
-How can I find out what's going on here?
+> How can I find out what's going on here?
+>
 
-BTW, I'm using this [testing] layer for this effort (related to
-my perl question from last week):
-   https://github.com/GaryThomas/meta-amanda.git
+bitbake-whatchanged is generally helpful here.  Do a build in one
+configuration, switch to the other, run bitbake-whatchanged.  It will
+identify the hashes that have changed and try and chase them down.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+That said perl is quite a deep recipe so rebuilding that will certainly
+bubble up the tree causing all sorts of rebuilds.
 
+Ross
+
+--001a113fd1eaf4a291052e01ab7c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 14 March 2016 at 12:41, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><div id=3D":338" class=3D"a3s" styl=
+e=3D"overflow:hidden">How can I find out what&#39;s going on here?<br></div=
+></blockquote></div><br>bitbake-whatchanged is generally helpful here.=C2=
+=A0 Do a build in one configuration, switch to the other, run bitbake-whatc=
+hanged.=C2=A0 It will identify the hashes that have changed and try and cha=
+se them down.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail=
+_extra">That said perl is quite a deep recipe so rebuilding that will certa=
+inly bubble up the tree causing all sorts of rebuilds.</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a113fd1eaf4a291052e01ab7c--
