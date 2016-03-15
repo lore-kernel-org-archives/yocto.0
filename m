@@ -1,33 +1,38 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DF99E00D87; Tue, 15 Mar 2016 05:17:16 -0700 (PDT)
+	id 2D7EAE00C52; Tue, 15 Mar 2016 06:44:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 76F54E00C9B
-	for <yocto@yoctoproject.org>; Tue, 15 Mar 2016 05:17:14 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.266.1;
-	Tue, 15 Mar 2016 13:17:12 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4451)	id 41CD428BA23;
-	Tue, 15 Mar 2016 13:17:13 +0100 (CET)
-From: Adrian Dudau <adrian.dudau@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 15 Mar 2016 13:17:13 +0100
-Message-ID: <1458044233-48383-1-git-send-email-adrian.dudau@enea.com>
-X-Mailer: git-send-email 1.9.1
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9FE7E00C2A
+	for <yocto@yoctoproject.org>; Tue, 15 Mar 2016 06:44:22 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 60EB568A01D; Tue, 15 Mar 2016 13:44:18 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 7E32968A01C;
+	Tue, 15 Mar 2016 13:44:11 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id D4E1E67400A8;
+	Tue, 15 Mar 2016 14:44:10 +0100 (CET)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <56DED4A8.6070009@mlbassoc.com> <56DFD5DC.60008@mlbassoc.com>
+	<56DFDEB1.7010705@mlbassoc.com>
+	<CAJTo0Lbvhy=K-0Tcyi7PyLCksrFJMfeqEEu3Qxer8q1PHs8Bkw@mail.gmail.com>
+Message-ID: <56E811AA.1090800@mlbassoc.com>
+Date: Tue, 15 Mar 2016 14:44:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: adrian.dudau@enea.com does not
-	designate permitted sender hosts)
-Subject: [meta-cgl][PATCH] cgl-init-build-env: Add meta-cloud-services to bblayers
+In-Reply-To: <CAJTo0Lbvhy=K-0Tcyi7PyLCksrFJMfeqEEu3Qxer8q1PHs8Bkw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Host contamination that isn't
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,30 +44,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Mar 2016 12:17:16 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 15 Mar 2016 13:44:25 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Recipes in meta-openstack depend on the ruby class defined in it.
+On 03/15/2016 12:44 PM, Burton, Ross wrote:
+>
+> On 9 March 2016 at 08:28, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>
+>     BTW, if I run 'bitbake <package> -c cleanall' where <package> is the
+>     name of my recipe that is creating a user (in this case amanda), shouldn't
+>     that user/group be removed from the sysroot?  It's not and it took me a
+>     long time to realize this - my first attempts at adjusting the USERADD
+>     parameters were simply being ignored because the user still existed.
+>
+>     Maybe this is a bug [that I should file]?
+>
+>
+> Probably, and yes please.
 
-Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
----
- cgl-init-build-env | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Done: https://bugzilla.yoctoproject.org/show_bug.cgi?id=9262
 
-diff --git a/cgl-init-build-env b/cgl-init-build-env
-index bb046b6..29dfb38 100755
---- a/cgl-init-build-env
-+++ b/cgl-init-build-env
-@@ -124,7 +124,7 @@ while getopts ":hb:c:d:f:g:j:k:l:m:ts:" OPTION; do
-     esac
- done
- 
--METALAYERS="$METALAYERS,meta-cloud-services/meta-openstack,meta-openembedded/meta-filesystems,meta-openembedded/meta-networking,meta-openembedded/meta-oe,meta-openembedded/meta-perl,meta-openembedded/meta-python"
-+METALAYERS="$METALAYERS,meta-cloud-services,meta-cloud-services/meta-openstack,meta-openembedded/meta-filesystems,meta-openembedded/meta-networking,meta-openembedded/meta-oe,meta-openembedded/meta-perl,meta-openembedded/meta-python"
- CGLROOT="$(pwd)"
- CGLROOT=$(readlink -f "$CGLROOT")
- DISTRO="poky-cgl"
 -- 
-1.9.1
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
