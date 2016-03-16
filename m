@@ -1,79 +1,60 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <ashish.shrivastava@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8913E00B37; Wed, 16 Mar 2016 07:20:35 -0700 (PDT)
+	id 265E0E00B37; Wed, 16 Mar 2016 08:04:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [194.117.213.102 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.60.68.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1366 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Mar 2016 07:20:28 PDT
-Received: from smtp.laposte.net (smtpoutz27.laposte.net [194.117.213.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E24AE00872
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 07:20:28 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout015 (Postfix) with ESMTP id 639F41C78EC
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 14:57:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail1;
-	t=1458136660; bh=F9U+wFHlXKH0IUwODTGyXHQ8INcuyENgflDPRZ7IO18=;
-	h=Subject:To:References:Cc:From:Date:In-Reply-To;
-	b=WJtCM39bqKFz/X8rzPwe+ONPzTkw9pHn8y+BcAuJYREDpXE42Mcy5gyK/95O6eQJG
-	OP38vZYBr35+TFm3SBrXg1gyscAgHS9EWcOq8H4Ln74Z/n0XNrIA3i5Dc8Aw28dmuU
-	TaaDMFymHAoG8utCQ99nStCWkXQJozMBz1gtaah7uRJXEvKRb5/TZ8D3CnATVh67+L
-	6q6fESIYl1WywzPkLETnflkBdsZnsHavYiA2jlWkLJttwPga9c2AjG7plAK6nJ1Dcx
-	CkzBcw5Yz25A8IaTO/VjXqCFFoI8mfSvE24+F2UGYoKCZYvvV9wtI7Hfc+cUrgXXrp
-	kpbAPN47dwNtA==
-Received: from lpn-prd-vrin003 (lpn-prd-vrin003.laposte [10.128.63.4])
-	by lpn-prd-vrout015 (Postfix) with ESMTP id AA6B41C7925
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 14:57:36 +0100 (CET)
-Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
-	by lpn-prd-vrin003 (Postfix) with ESMTP id 9700B48C3B5
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 14:57:36 +0100 (CET)
-Received: from [192.168.1.45] (ARennes-654-1-161-212.w92-139.abo.wanadoo.fr
-	[92.139.120.212])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by lpn-prd-vrin003 (Postfix) with ESMTPSA id 6264848C3A9;
-	Wed, 16 Mar 2016 14:57:36 +0100 (CET)
-To: Christian Ege <k4230r6@gmail.com>
-References: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
-	<56E913A0.2030603@laposte.net>
-	<CAALGJZYWqQGbRMp70LNVyZyWMyd7ac-L5aGrdA4VrWX=Z+BvwA@mail.gmail.com>
-From: idealsim <idealsim@laposte.net>
-Message-ID: <56E9664F.8000505@laposte.net>
-Date: Wed, 16 Mar 2016 14:57:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+	*      [score: 0.0004]
+X-Greylist: delayed 591 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Mar 2016 08:04:21 PDT
+Received: from bes.se.axis.com (bes.se.axis.com [195.60.68.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E44BE00872
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 08:04:21 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bes.se.axis.com (Postfix) with ESMTP id 31F6F2E135
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 15:54:29 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bes.se.axis.com
+Received: from bes.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bes.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id dH41mHkLPXQb for <yocto@yoctoproject.org>;
+	Wed, 16 Mar 2016 15:54:27 +0100 (CET)
+Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
+	by bes.se.axis.com (Postfix) with ESMTP id 813012E119
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 15:54:27 +0100 (CET)
+Received: from boulder.se.axis.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 61DD716B5
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 15:54:27 +0100 (CET)
+Received: from thoth.se.axis.com (thoth.se.axis.com [10.0.2.173])
+	by boulder.se.axis.com (Postfix) with ESMTP id 56BD014B0
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 15:54:27 +0100 (CET)
+Received: from XBOX04.axis.com (xbox04.axis.com [10.0.5.18])
+	by thoth.se.axis.com (Postfix) with ESMTP id 546691061
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 15:54:27 +0100 (CET)
+Received: from XBOX04.axis.com (10.0.5.18) by XBOX04.axis.com (10.0.5.18) with
+	Microsoft SMTP Server (TLS) id 15.0.1156.6;
+	Wed, 16 Mar 2016 15:54:27 +0100
+Received: from XBOX04.axis.com ([fe80::210a:724b:68cb:a917]) by
+	XBOX04.axis.com ([fe80::210a:724b:68cb:a917%23]) with mapi id
+	15.00.1156.000; Wed, 16 Mar 2016 15:54:27 +0100
+From: Ashish Shrivastava <ashish.shrivastava@axis.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Not able to disable introspection in gstreamer
+Thread-Index: AQHRf5LFwELForL9LUyz5SVVn8hAlw==
+Date: Wed, 16 Mar 2016 14:54:27 +0000
+Message-ID: <1458140066928.8568@axis.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.55]
 MIME-Version: 1.0
-In-Reply-To: <CAALGJZYWqQGbRMp70LNVyZyWMyd7ac-L5aGrdA4VrWX=Z+BvwA@mail.gmail.com>
-X-VR-SrcIP: 92.139.120.212
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekkedrtddvgdehjecutefuodetggdotefrodftvfcurfhrohhf
-X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
-X-VR-Cause-3: ucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkegrtddtfeejnecuhfhrohhmpehi
-X-VR-Cause-4: uggvrghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpeih
-X-VR-Cause-5: ohgtthhophhrohhjvggtthdrohhrghdpghhithhhuhgsrdgtohhmnecukfhppeelvddrudefledruddv
-X-VR-Cause-6: tddrvdduvdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedr
-X-VR-Cause-7: uddrgeehngdpihhnvghtpeelvddrudefledruddvtddrvdduvddpmhgrihhlfhhrohhmpehiuggvrghl
-X-VR-Cause-8: shhimheslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopehkgedvfedtrheisehgmhgrihhlrdgtohhm
-X-VR-AvState: No
-X-VR-State: 0
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Qt5.6 new modules
+Subject: Not able to disable introspection in gstreamer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,70 +66,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2016 14:20:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 16 Mar 2016 15:04:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the tip. I will try it out and let you know ...
+?Hi,
 
-Regards,
 
-Mickaël
+I am trying to build latest poky version from upstream but it was failing i=
+n "gobject-introspection-data?".
 
-Le 16/03/2016 10:17, Christian Ege a écrit :
-> Hi,,
->
-> 2016-03-16 9:04 GMT+01:00 idealsim <idealsim@laposte.net>:
->> Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 and
->> works fine (thanks to Christian Ege ). The problem is that I'm looking for
->> https://github.com/qtproject/qtquickcontrols2 and
->> https://github.com/qtproject/qtserialbus. My question is how we can add this
->> modules to our build ?  I add this to our local.conf :
->>
->>      "qtquickcontrols2 \
->>       qtserialbus \
->>      "
->> But this modules don't have buildable providers ! If someone can help to
->> said me how to proceed ...
-> You can try to add a meta-qt5/recipes-qt/qt5/qtserialbus_git.bb and
-> take for example meta-qt5/recipes-qt/qt5/qtsensors_git.bb as reference
->
-> require qt5.inc
-> require qt5-git.inc
-> # There are no LGPLv3-only licensed files in this component.
-> # There are no GPLv2 licensed files in this component.
-> LICENSE = "GFDL-1.3 & BSD & (LGPL-2.1 &
-> The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
-> LIC_FILES_CHKSUM = " \
-> file://LICENSE.LGPLv21;md5=58a180e1cf84c756c29f782b3a485c29 \
-> file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98 \
-> file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb \
-> file://LGPL_EXCEPTION.txt;md5=9625233da42f9e0ce9d63651a9d97654 \
-> file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
-> file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec \
-> "
-> DEPENDS += "qtbase"
->
-> SRCREV = "71a323e1f12df8d213a4052621027e223eb5a343"
->
-> The configure step will bail out due to the fact that you have wrong
-> checksums but it will show you the right ones
->
-> Best,
-> Christian
->
->
->> regards,
->>
->> Mickael
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
+I disabled it with comments mentioned in:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?id=3D8c14c74=
+6da1784c4bdaa621dde6fccd99e72ef1b
+
+
+by adding folloing line in config:
+
+MACHINE_FEATURES_BACKFILL_CONSIDERED =3D "gobject-introspection-data"
+
+
+Now gstreamer is throwing error for introspection.
+
+
+I am trying to disable it but with no success.
+
+
+Anyone who knows how to disable introspection in gstreamer would be of grea=
+t help.
+
+
+Regards
+
+Ashish
 
 
