@@ -1,38 +1,59 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <k4230r6@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5314FE00B63; Wed, 16 Mar 2016 10:52:09 -0700 (PDT)
+	id 7F297E0086B; Wed, 16 Mar 2016 12:29:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (k4230r6[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E355FE00B46
-	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 10:52:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 16 Mar 2016 10:52:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,345,1455004800"; 
-	d="asc'?scan'208";a="935313143"
-Received: from jalamego-mobl2.zpn.intel.com (HELO [10.219.5.140])
-	([10.219.5.140])
-	by orsmga002.jf.intel.com with ESMTP; 16 Mar 2016 10:52:04 -0700
-To: yocto@yoctoproject.org
-References: <1457565752-20659-1-git-send-email-jose.a.lamego@linux.intel.com>
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-Message-ID: <56E99D36.6040808@linux.intel.com>
-Date: Wed, 16 Mar 2016 11:51:50 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.181 listed in list.dnswl.org]
+Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
+	[209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CD21E007D2
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 12:29:15 -0700 (PDT)
+Received: by mail-lb0-f181.google.com with SMTP id qe11so542986lbc.3
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 12:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=eARVYYZVl0+1eB6Yk7kxdXR4QMtL27bihqc3XgT/P0Y=;
+	b=G1//bYrnNoWtM8jF8ig1SMUktH8oxczDPdtc4Q2sEbD783jC4zcGMNiM3lf/3KnFhi
+	fsqDCRAxPvLtGLX0hpY6w/q9cq9+CR3aM8/pFzaH40jtpKfQ4BqaqwhiQXC4LgWLaGvA
+	DAVfruVm+Rw4CQ+VPg9z9DaiYOAtiQydkFXnPUIcYLm6/j07hklCzF+/BGhntwRdqANl
+	CutFCbZOlSjOLhR+MOJsEQuU7RlhiyK8LlG/gSevRQqI2pEwA0UQzLUQqPUADo3ujUqt
+	ZqTiCwS4BmcRu5vI3dZpqsoXIYLS2d9b7c/79e+kS0mrvEuMHo+b3S3x8hGI3322yXt0
+	KrLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=eARVYYZVl0+1eB6Yk7kxdXR4QMtL27bihqc3XgT/P0Y=;
+	b=VQIhQtTIRR8ed5cTPC6E0DvtcsEGBr0oCpvSvT6hpRcmYgqt+pYylEnDW7Z+ty6V2+
+	cEH2a49aI5Aan/9s2/z4dCrqp4U0qbrf4QfGJLPVWA6gLhU2KpXr+PIkTez9pRXAGFzk
+	aIFM4GYJ000GYQTDlATnIgaiPdOqS56hA4juz90vXc/bBTCRgKDxOlIuzpbkam2Y/SUl
+	EPwETtWEAVctwnyKY3oUy9ssBpbFRaIVeHR0YwjUdzt4cXtecLDtIdtOZ/3DvQmf0Ut7
+	DNYFAxVXIgEgi0lJNa5ixxxmJNuqnzgtTuF0f1Qg72oqB+yZ+090sSlhEB0aYKMRwmt8
+	HysQ==
+X-Gm-Message-State: AD7BkJKNZU3jLCtxBzRhBqJ2V+mC49VWPLAR+sUyoDINMmpCF9YtWfJMlZ8ptfoClVAzoVQEMUBYxw7cNZaQuw==
 MIME-Version: 1.0
-In-Reply-To: <1457565752-20659-1-git-send-email-jose.a.lamego@linux.intel.com>
-Cc: timothy.t.orling@intel.com
-Subject: Re: [PATCH 1/3][eclipse-poky][mars] systemtap: Add button to browse to build folder.
+X-Received: by 10.112.205.68 with SMTP id le4mr2083710lbc.62.1458156553868;
+	Wed, 16 Mar 2016 12:29:13 -0700 (PDT)
+Received: by 10.25.205.10 with HTTP; Wed, 16 Mar 2016 12:29:13 -0700 (PDT)
+Date: Wed, 16 Mar 2016 20:29:13 +0100
+Message-ID: <CAALGJZZwG1ifVf7J0WdvNyXWN81Ot2m3rWgSUhTX2Gueywx3fw@mail.gmail.com>
+From: Christian Ege <k4230r6@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: [master] ERROR: gobject-introspection-1.46.0-r0 do_populate_sysroot:
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,314 +65,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2016 17:52:09 -0000
-X-Groupsio-MsgNum: 29056
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="Hc4oUbJDxITF2VNPrkB7H48xDv9VamRJM"
+X-List-Received-Date: Wed, 16 Mar 2016 19:29:20 -0000
+X-Groupsio-MsgNum: 29057
+Content-Type: multipart/mixed; boundary=001a11c3c34a6bb5d5052e2f87b0
 
---Hc4oUbJDxITF2VNPrkB7H48xDv9VamRJM
-Content-Type: multipart/mixed; boundary="rVr4CFEdkauL9TpV6oh90px7wAXe1dq4N"
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-To: yocto@yoctoproject.org
-Cc: todor.minchev@intel.com, Adrian Dudau <adrian.dudau@enea.com>,
- timothy.t.orling@intel.com
-Message-ID: <56E99D36.6040808@linux.intel.com>
-Subject: Re: [yocto][PATCH 1/3][eclipse-poky][mars] systemtap: Add button to
- browse to build folder.
-References: <1457565752-20659-1-git-send-email-jose.a.lamego@linux.intel.com>
-In-Reply-To: <1457565752-20659-1-git-send-email-jose.a.lamego@linux.intel.com>
+--001a11c3c34a6bb5d5052e2f87b0
+Content-Type: text/plain; charset=UTF-8
 
---rVr4CFEdkauL9TpV6oh90px7wAXe1dq4N
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Ping
+with the latest master from today I ran in some trouble:
 
-On 03/09/2016 05:22 PM, Jose Lamego wrote:
-> From: Adrian Dudau <adrian.dudau@enea.com>
->=20
-> Fixes [Yocto 4423]
-> Porting commit a80114b5d1c8d774fd9271da48a38654321d4817 from
-> the Juno branch.
->=20
-> Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
-> ---
->  .../src/org/yocto/remote/utils/ShellSession.java   |  6 +++--
->  .../src/org/yocto/sdk/remotetools/Messages.java    |  1 +
->  .../sdk/remotetools/actions/SystemtapHandler.java  |  3 ++-
->  .../sdk/remotetools/actions/SystemtapModel.java    |  5 ++--
->  .../actions/SystemtapSettingDialog.java            | 28 ++++++++++++++=
-++++++++
->  .../org/yocto/sdk/remotetools/messages.properties  |  3 ++-
->  6 files changed, 40 insertions(+), 6 deletions(-)
->=20
-> diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/=
-ShellSession.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/u=
-tils/ShellSession.java
-> index 4ac8001..2a4dbf5 100644
-> --- a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSe=
-ssion.java
-> +++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSe=
-ssion.java
-> @@ -46,6 +46,7 @@ public class ShellSession {
->  	private String shellPath =3D null;
->  	private final String initCmd;
->  	private final File root;
-> +        private final File builddir;
-> =20
->  	private OutputStreamWriter out;
-> =20
-> @@ -68,8 +69,9 @@ public class ShellSession {
->  		return sb.toString();
->  	}
-> =20
-> -	public ShellSession(int shellType, File root, String initCmd, OutputS=
-tream out) throws IOException {
-> +	public ShellSession(int shellType, File root, File builddir, String i=
-nitCmd, OutputStream out) throws IOException {
->  		this.root =3D root;
-> +                this.builddir =3D builddir;
->  		this.initCmd  =3D initCmd;
->  		if (out =3D=3D null) {
->  			this.out =3D new OutputStreamWriter(null);
-> @@ -93,7 +95,7 @@ public class ShellSession {
->  		}
-> =20
->  		if (initCmd !=3D null) {
-> -			execute("source " + initCmd);
-> +			execute("source " + initCmd + " " + builddir.getAbsolutePath());
->  		}
->  	}
-> =20
-> diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remote=
-tools/Messages.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk=
-/remotetools/Messages.java
-> index 093118d..16f5dc8 100644
-> --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/M=
-essages.java
-> +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/M=
-essages.java
-> @@ -40,6 +40,7 @@ public class Messages extends NLS {
->  	public static String TerminalViewer_text;
->  	//public static String Systemtap_KO_Text;
->  	public static String Metadata_Location;
-> +        public static String Builddir_Location;
->  	public static String User_ID;
->  	public static String Remote_User_ID;
->  	public static String Remote_Host;
-> diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remote=
-tools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/s=
-rc/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-> index 79048aa..86c963f 100644
-> --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapHandler.java
-> +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapHandler.java
-> @@ -53,6 +53,7 @@ public class SystemtapHandler extends AbstractHandler=
- {
->  		if(setting.open() =3D=3D BaseSettingDialog.OK) {
-> =20
->  			String metadata_location =3D ((SystemtapSettingDialog)setting).getM=
-etadataLocation();
-> +                        String builddir_location =3D ((SystemtapSettin=
-gDialog)setting).getBuilddirLocation();
->  			String remote_host =3D ((SystemtapSettingDialog)setting).getRemoteH=
-ost();
->  			String user_id =3D ((SystemtapSettingDialog)setting).getUserID();
->  			String systemtap_script =3D ((SystemtapSettingDialog)setting).getSy=
-stemtapScript();
-> @@ -66,7 +67,7 @@ public class SystemtapHandler extends AbstractHandler=
- {
->  			if (terminalSubSystem !=3D null) {
->  				TerminalsUI terminalsUI =3D TerminalsUI.getInstance();
->  				TerminalViewer terminalViewer =3D terminalsUI.activateTerminalsVie=
-w();
-> -				SystemtapModel op =3D new SystemtapModel(metadata_location,remote_=
-host, user_id, systemtap_script,
-> +				SystemtapModel op =3D new SystemtapModel(metadata_location,builddi=
-r_location,remote_host, user_id, systemtap_script,
->  						systemtap_args,window.getShell().getDisplay());
->  				try {
->  					op.setHost(host);
-> diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remote=
-tools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src=
-/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-> index c769574..2a76bbd 100644
-> --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapModel.java
-> +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapModel.java
-> @@ -37,6 +37,7 @@ public class SystemtapModel extends BaseModel {
-> =20
->  	protected MessageConsole sessionConsole;
->  	private String metadata_location;
-> +        private String builddir_location;
->  	private String remote_host;
->  	private String user_id;
->  	private String systemtap_script;
-> @@ -44,7 +45,7 @@ public class SystemtapModel extends BaseModel {
-> =20
->  	Display display;
->  =09
-> -	public SystemtapModel(String metadata_location, String remote_host, S=
-tring user_id, String systemtap_script, String systemtap_args, Display di=
-splay) {
-> +	public SystemtapModel(String metadata_location, String builddir_locat=
-ion, String remote_host, String user_id, String systemtap_script, String =
-systemtap_args, Display display) {
->  		super(null, TASK_NAME, "", "");
->  		this.metadata_location =3D metadata_location;
->  		this.remote_host =3D remote_host;
-> @@ -89,7 +90,7 @@ public class SystemtapModel extends BaseModel {
->  			throws InvocationTargetException, InterruptedException {
->  		try {
->  			ShellSession shell =3D new ShellSession(ShellSession.SHELL_TYPE_BAS=
-H,=20
-> -												new File(this.metadata_location),
-> +												new File(this.metadata_location), new File(this.builddir_l=
-ocation),
->  												DEFAULT_INIT_SCRIPT, sessionConsole.newOutputStream());
->  			boolean acceptedKey =3D shell.ensureKnownHostKey(user_id, remote_ho=
-st);
->  			if (acceptedKey) {
-> diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remote=
-tools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotet=
-ools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-> index 2b90727..5c14c9a 100644
-> --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapSettingDialog.java
-> +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/a=
-ctions/SystemtapSettingDialog.java
-> @@ -37,18 +37,21 @@ public class SystemtapSettingDialog extends Dialog =
-{
->  	static protected String TITLE=3D"Systemtap Crosstap";
->  	protected String title;
->  	protected String metadata_location;
-> +        protected String builddir_location;
->  	protected String systemtap_script;
->  	protected String user_id;
->  	protected String remote_host;
->  	protected String systemtap_args;
->  	protected boolean okPressed;
->  	protected Button metadataLocationBtn;
-> +        protected Button builddirLocationBtn;
->  	protected Button systemtapScriptBtn;
->  	protected Text userIDText;
->  	protected Text remoteHostText;
->  	protected Text systemtapArgsText;
->  	protected Text systemtapScriptText;
->  	protected Text metadataLocationText;
-> +        protected Text builddirLocationText;
->  =09
->  	protected SystemtapSettingDialog(Shell parentShell, String title) {
->  		super(parentShell);
-> @@ -74,6 +77,10 @@ public class SystemtapSettingDialog extends Dialog {=
+Build Configuration:
+BB_VERSION        = "1.29.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "udooneo"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.0+snapshot-20160316"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon
+callconvention-hard       cortexa9"
+TARGET_FPU        = "hard"
+meta
+meta-poky         = "HEAD:8debfea81e69d038bd2d56314b272cb74f5582ed"
+meta-oe
+meta-multimedia
+meta-python
+meta-networking   = "HEAD:35d91f32c462ad5889cb3229766d6d4ed2c80a4c"
+meta-qt5          = "master-5.6:b2d5376b41625521b9a081fe800345fff33d8dd6"
+meta-ruby         = "HEAD:35d91f32c462ad5889cb3229766d6d4ed2c80a4c"
+meta-fsl-arm      = "HEAD:37564e6801ce82fad979b4f57151c676d80e8a6c"
+meta-fsl-arm-extra = "HEAD:36a638abe1238bdc8e0ef1242dd7bfab59cc48d7"
+meta-fsl-demos    = "HEAD:6b779b2cb0d231063fc035a9a0871d722366c329"
+meta-udoo         = "master:1b38bcec5057b93017a00f107e0738ce64ade66f"
+meta-swupdate     = "master:44516e81a494afef3be7e3f249713fdec6e6e32a"
 
->  	public String getMetadataLocation() {
->  		return metadata_location;
->  	}
-> +
-> +        public String getBuilddirLocation() {
-> +                return builddir_location;
-> +        }
->  =09
->  	public String getRemoteHost() {
->  		return remote_host;
-> @@ -119,6 +126,14 @@ public class SystemtapSettingDialog extends Dialog=
- {
->  		metadataLocationBtn =3D addDirSelectButton(textContainer, metadataLo=
-cationText);
->  	=09
->  		label =3D new Label(projComp, SWT.NONE);
-> +                label.setText(Messages.Builddir_Location);
-> +                textContainer =3D new Composite(projComp, SWT.NONE);
-> +                textContainer.setLayout(new GridLayout(2, false));
-> +                textContainer.setLayoutData(new GridData(SWT.FILL, SWT=
-=2ECENTER, true, false));
-> +                builddirLocationText =3D (Text)addTextControl(textCont=
-ainer, builddir_location);
-> +                builddirLocationBtn =3D addDirSelectButton(textContain=
-er, builddirLocationText);
-> +
-> +                label =3D new Label(projComp, SWT.NONE);
->  		label.setText(Messages.Remote_User_ID);
->  		userIDText =3D new Text(projComp, SWT.SINGLE | SWT.BORDER);
->  	=09
-> @@ -219,6 +234,19 @@ public class SystemtapSettingDialog extends Dialog=
- {
->  			CommonHelper.showErrorDialog("SystemTap Error", null, "The specifie=
-d metadata location is not a directory!");
->  			return;
->  		}
-> +                builddir_location =3D builddirLocationText.getText();
-> +                if ( (builddir_location =3D=3D null) || builddir_locat=
-ion.isEmpty()) {
-> +                        CommonHelper.showErrorDialog("SystemTap Error"=
-, null, "Please specify your builddir location!");
-> +                        return;
-> +                }
-> +                File builddir_dir =3D new File(builddir_location);
-> +                if (!builddir_dir.exists()) {
-> +                        CommonHelper.showErrorDialog("SystemTap Error"=
-, null, "The specified builddir location does not exist!");
-> +                }
-> +                if (!metadata_dir.isDirectory()) {
-> +                        CommonHelper.showErrorDialog("SystemTap Error"=
-, null, "The specified builddir location is not a directory!");
-> +                        return;
-> +                }
->  		user_id =3D userIDText.getText();
->  		if ( (user_id =3D=3D null) || user_id.isEmpty()) {
->  			CommonHelper.showErrorDialog("SystemTap Error", null, "Please speci=
-fy remote user id!");
-> diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remote=
-tools/messages.properties b/plugins/org.yocto.sdk.remotetools/src/org/yoc=
-to/sdk/remotetools/messages.properties
-> index bc065b9..173897a 100644
-> --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/m=
-essages.properties
-> +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/m=
-essages.properties
-> @@ -35,6 +35,7 @@ Powertop_ShowPid_Text=3Dshow pids in wakeups list
->  TerminalViewer_text=3DThis view is dedicated to Yocto Remote tools. Pl=
-ease use the "Yocto Remote Tools" menu to open the view.
->  //Systemtap_KO_Text=3DKernel Module:
->  Metadata_Location=3DMetadata Location:
-> +Builddir_Location=3DBuild dir Location:
->  User_ID=3DUser ID:
->  Remote_User_ID=3DRemote User ID:
->  Remote_Host=3DRemote Host:
-> @@ -46,4 +47,4 @@ LocalJob_Title=3DLaunching local application
->  ErrorLocalJob=3DFailed in launching local application
-> =20
->  RemoteShellExec_1=3DExecuting {0} {1}
-> -RemoteShellExec_2=3DCould not create the hostShellProcess.\n
-> \ No newline at end of file
-> +RemoteShellExec_2=3DCould not create the hostShellProcess.\n
->=20
-
---=20
-Jose Lamego | OTC Embedded Platforms & Tools | GDC
+NOTE: Preparing RunQueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: gobject-introspection-1.46.0-r0 do_populate_sysroot: The recipe
+gobject-introspection is trying to install files into a shared area
+when those files already exist. Those files and their manifest
+location are:
+   /data/FSL/fsl-community-bsp-master/build/tmp/sysroots/udooneo/usr/share/gobject-introspection-1.0/Makefile.introspection
+ Matched in manifest-udooneo-gtk-doc-stub.populate_sysroot
+ /data/FSL/fsl-community-bsp-master/build/tmp/sysroots/udooneo/usr/share/aclocal/introspection.m4
+ Matched in manifest-udooneo-gtk-doc-stub.populate_sysroot
+Please verify which recipe should provide the above files.
+The build has stopped as continuing in this scenario WILL break
+things, if not now, possibly in the future (we've seen builds fail
+several months later). If the system knew how to recover from this
+automatically it would however there are several different scenarios
+which can result in this and we don't know which one this is. It may
+be you have switched providers of something like virtual/kernel (e.g.
+from linux-yocto to linux-yocto-dev), in that case you need to execute
+the clean task for both recipes and it will resolve this error. It may
+be you changed DISTRO_FEATURES from systemd to udev or vice versa.
+Cleaning those recipes should again resolve this error however
+switching DISTRO_FEATURES on an existing build directory is not
+supported, you should really clean out tmp and rebuild (reusing sstate
+should be safe). It could be the overlapping files detected are
+harmless in which case adding them to SSTATE_DUPWHITELIST may be the
+correct solution. It could also be your build is including two
+different conflicting versions of things (e.g. bluez 4 and bluez 5 and
+the correct solution for that would be to resolve the conflict. If in
+doubt, please ask on the mailing list, sharing the error and filelist
+above.
+ERROR: gobject-introspection-1.46.0-r0 do_populate_sysroot: If the
+above message is too much, the simpler version is you're advised to
+wipe out tmp and rebuild (reusing sstate is fine). That will likely
+fix things in most (but not all) cases.
+ERROR: gobject-introspection-1.46.0-r0 do_populate_sysroot: Function
+failed: sstate_task_postfunc
+ERROR: Logfile of failure stored in:
+/data/FSL/fsl-community-bsp-master/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/gobject-introspection/1.46.0-r0/temp/log.do_populate_sysroot.16494
+ERROR: Task 1802
+(/data/FSL/fsl-community-bsp-master/sources/poky/meta/recipes-gnome/gobject-introspection/gobject-introspection_1.46.0.bb,
+do_populate_sysroot) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 4772 tasks of which 4742 didn't need to
+be rerun and 1 failed.
+No currently running tasks (4772 of 5254)
 
 
---rVr4CFEdkauL9TpV6oh90px7wAXe1dq4N--
+Any help is appreciated.
 
---Hc4oUbJDxITF2VNPrkB7H48xDv9VamRJM
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Best,
+Christian
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+-- 
+http://ch.ege.io/
 
-iQEcBAEBAgAGBQJW6Z1FAAoJEFJAtowlSEbnPvIH/3XxxvuS+Dx46IBP2JRC1pEJ
-Om144IuBa20oEzonEVvgt7UYfFOpDrzbRoMvsGoWEemppi5liCbJAzIQJ7feQnFg
-VK7GLhDXnJ5eJTSQvb3CRsSlTFpvfJJj334Y/cAx1FoCfoHV4cF8N9q4zMyw+0oZ
-beAPyNXTWnLEbd7PQmVHecjE5XkS0/YP9YRoOVfpvbfWoPuQTl+XRf6WRFv9M89v
-FWIAiDaOaZKPGFWLv7MwOyNDGCF/oMGWcgS4fQ89G3dD/x2RwcBW469z09n/WYAc
-cuFZM1pKJzJDKntjbjxEtizpS8AFUUV1JRMwfqdo/IzubBSFcr52cArAgwG4veU=
-=kxpG
------END PGP SIGNATURE-----
+--001a11c3c34a6bb5d5052e2f87b0
+Content-Type: application/octet-stream; name="log.do_populate_sysroot.16494"
+Content-Disposition: attachment; filename="log.do_populate_sysroot.16494"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_ilv8p75v0
 
---Hc4oUbJDxITF2VNPrkB7H48xDv9VamRJM--
+REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
+RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
+ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fcG9wdWxhdGVfc3lzcm9vdApERUJVRzogU0lURSBm
+aWxlcyBbJ2VuZGlhbi1saXR0bGUnLCAnYml0LTMyJywgJ2FybS1jb21tb24nLCAnYXJtLTMyJywg
+J2NvbW1vbi1saW51eCcsICdjb21tb24tZ2xpYmMnLCAnYXJtLWxpbnV4JywgJ2FybS1saW51eC1n
+bnVlYWJpJywgJ2NvbW1vbiddCkRFQlVHOiBFeGVjdXRpbmcgc2hlbGwgZnVuY3Rpb24gc3lzcm9v
+dF9zdGFnZV9hbGwKMCBibG9ja3MKMCBibG9ja3MKMCBibG9ja3MKREVCVUc6IFNoZWxsIGZ1bmN0
+aW9uIHN5c3Jvb3Rfc3RhZ2VfYWxsIGZpbmlzaGVkCkRFQlVHOiBFeGVjdXRpbmcgcHl0aG9uIGZ1
+bmN0aW9uIHN5c3Jvb3Rfc3RyaXAKREVCVUc6IHJ1bnN0cmlwOiAnYXJtLXBva3ktbGludXgtZ251
+ZWFiaS1zdHJpcCcgLS1yZW1vdmUtc2VjdGlvbj0uY29tbWVudCAtLXJlbW92ZS1zZWN0aW9uPS5u
+b3RlIC0tc3RyaXAtdW5uZWVkZWQgJy9kYXRhL0ZTTC9mc2wtY29tbXVuaXR5LWJzcC1tYXN0ZXIv
+YnVpbGQvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9nb2JqZWN0
+LWludHJvc3BlY3Rpb24vMS40Ni4wLXIwL3N5c3Jvb3QtZGVzdGRpci91c3IvbGliL2xpYmdpcmVw
+b3NpdG9yeS0xLjAuc28uMS4wLjAnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1wb2t5LWxpbnV4LWdu
+dWVhYmktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1vdmUtc2VjdGlvbj0u
+bm90ZSAtLXN0cmlwLXVubmVlZGVkICcvZGF0YS9GU0wvZnNsLWNvbW11bml0eS1ic3AtbWFzdGVy
+L2J1aWxkL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvZ29iamVj
+dC1pbnRyb3NwZWN0aW9uLzEuNDYuMC1yMC9zeXNyb290LWRlc3RkaXIvdXNyL2xpYi9nb2JqZWN0
+LWludHJvc3BlY3Rpb24vZ2lzY2FubmVyL19naXNjYW5uZXIuc28nCkRFQlVHOiBQeXRob24gZnVu
+Y3Rpb24gc3lzcm9vdF9zdHJpcCBmaW5pc2hlZApERUJVRzogU0lURSBmaWxlcyBbJ2VuZGlhbi1s
+aXR0bGUnLCAnYml0LTMyJywgJ2FybS1jb21tb24nLCAnYXJtLTMyJywgJ2NvbW1vbi1saW51eCcs
+ICdjb21tb24tZ2xpYmMnLCAnYXJtLWxpbnV4JywgJ2FybS1saW51eC1nbnVlYWJpJywgJ2NvbW1v
+biddCkRFQlVHOiBFeGVjdXRpbmcgc2hlbGwgZnVuY3Rpb24gZ2lfYmluYXJpZXNfc3lzcm9vdF9w
+cmVwcm9jZXNzCjAgYmxvY2tzCkRFQlVHOiBTaGVsbCBmdW5jdGlvbiBnaV9iaW5hcmllc19zeXNy
+b290X3ByZXByb2Nlc3MgZmluaXNoZWQKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBkb19wb3B1bGF0
+ZV9zeXNyb290IGZpbmlzaGVkCkRFQlVHOiBFeGVjdXRpbmcgcHl0aG9uIGZ1bmN0aW9uIGRvX3Fh
+X3N0YWdpbmcKTk9URTogUUEgY2hlY2tpbmcgc3RhZ2luZwpERUJVRzogUHl0aG9uIGZ1bmN0aW9u
+IGRvX3FhX3N0YWdpbmcgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24g
+c3N0YXRlX3Rhc2tfcG9zdGZ1bmMKREVCVUc6IFN0YWdpbmcgZmlsZXMgZnJvbSAvZGF0YS9GU0wv
+ZnNsLWNvbW11bml0eS1ic3AtbWFzdGVyL2J1aWxkL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1w
+b2t5LWxpbnV4LWdudWVhYmkvZ29iamVjdC1pbnRyb3NwZWN0aW9uLzEuNDYuMC1yMC9zeXNyb290
+LWRlc3RkaXIgdG8gL2RhdGEvRlNML2ZzbC1jb21tdW5pdHktYnNwLW1hc3Rlci9idWlsZC90bXAv
+c3lzcm9vdHMvdWRvb25lbwpFUlJPUjogVGhlIHJlY2lwZSBnb2JqZWN0LWludHJvc3BlY3Rpb24g
+aXMgdHJ5aW5nIHRvIGluc3RhbGwgZmlsZXMgaW50byBhIHNoYXJlZCBhcmVhIHdoZW4gdGhvc2Ug
+ZmlsZXMgYWxyZWFkeSBleGlzdC4gVGhvc2UgZmlsZXMgYW5kIHRoZWlyIG1hbmlmZXN0IGxvY2F0
+aW9uIGFyZToKICAgL2RhdGEvRlNML2ZzbC1jb21tdW5pdHktYnNwLW1hc3Rlci9idWlsZC90bXAv
+c3lzcm9vdHMvdWRvb25lby91c3Ivc2hhcmUvZ29iamVjdC1pbnRyb3NwZWN0aW9uLTEuMC9NYWtl
+ZmlsZS5pbnRyb3NwZWN0aW9uCiBNYXRjaGVkIGluIG1hbmlmZXN0LXVkb29uZW8tZ3RrLWRvYy1z
+dHViLnBvcHVsYXRlX3N5c3Jvb3QKIC9kYXRhL0ZTTC9mc2wtY29tbXVuaXR5LWJzcC1tYXN0ZXIv
+YnVpbGQvdG1wL3N5c3Jvb3RzL3Vkb29uZW8vdXNyL3NoYXJlL2FjbG9jYWwvaW50cm9zcGVjdGlv
+bi5tNAogTWF0Y2hlZCBpbiBtYW5pZmVzdC11ZG9vbmVvLWd0ay1kb2Mtc3R1Yi5wb3B1bGF0ZV9z
+eXNyb290ClBsZWFzZSB2ZXJpZnkgd2hpY2ggcmVjaXBlIHNob3VsZCBwcm92aWRlIHRoZSBhYm92
+ZSBmaWxlcy4KVGhlIGJ1aWxkIGhhcyBzdG9wcGVkIGFzIGNvbnRpbnVpbmcgaW4gdGhpcyBzY2Vu
+YXJpbyBXSUxMIGJyZWFrIHRoaW5ncywgaWYgbm90IG5vdywgcG9zc2libHkgaW4gdGhlIGZ1dHVy
+ZSAod2UndmUgc2VlbiBidWlsZHMgZmFpbCBzZXZlcmFsIG1vbnRocyBsYXRlcikuIElmIHRoZSBz
+eXN0ZW0ga25ldyBob3cgdG8gcmVjb3ZlciBmcm9tIHRoaXMgYXV0b21hdGljYWxseSBpdCB3b3Vs
+ZCBob3dldmVyIHRoZXJlIGFyZSBzZXZlcmFsIGRpZmZlcmVudCBzY2VuYXJpb3Mgd2hpY2ggY2Fu
+IHJlc3VsdCBpbiB0aGlzIGFuZCB3ZSBkb24ndCBrbm93IHdoaWNoIG9uZSB0aGlzIGlzLiBJdCBt
+YXkgYmUgeW91IGhhdmUgc3dpdGNoZWQgcHJvdmlkZXJzIG9mIHNvbWV0aGluZyBsaWtlIHZpcnR1
+YWwva2VybmVsIChlLmcuIGZyb20gbGludXgteW9jdG8gdG8gbGludXgteW9jdG8tZGV2KSwgaW4g
+dGhhdCBjYXNlIHlvdSBuZWVkIHRvIGV4ZWN1dGUgdGhlIGNsZWFuIHRhc2sgZm9yIGJvdGggcmVj
+aXBlcyBhbmQgaXQgd2lsbCByZXNvbHZlIHRoaXMgZXJyb3IuIEl0IG1heSBiZSB5b3UgY2hhbmdl
+ZCBESVNUUk9fRkVBVFVSRVMgZnJvbSBzeXN0ZW1kIHRvIHVkZXYgb3IgdmljZSB2ZXJzYS4gQ2xl
+YW5pbmcgdGhvc2UgcmVjaXBlcyBzaG91bGQgYWdhaW4gcmVzb2x2ZSB0aGlzIGVycm9yIGhvd2V2
+ZXIgc3dpdGNoaW5nIERJU1RST19GRUFUVVJFUyBvbiBhbiBleGlzdGluZyBidWlsZCBkaXJlY3Rv
+cnkgaXMgbm90IHN1cHBvcnRlZCwgeW91IHNob3VsZCByZWFsbHkgY2xlYW4gb3V0IHRtcCBhbmQg
+cmVidWlsZCAocmV1c2luZyBzc3RhdGUgc2hvdWxkIGJlIHNhZmUpLiBJdCBjb3VsZCBiZSB0aGUg
+b3ZlcmxhcHBpbmcgZmlsZXMgZGV0ZWN0ZWQgYXJlIGhhcm1sZXNzIGluIHdoaWNoIGNhc2UgYWRk
+aW5nIHRoZW0gdG8gU1NUQVRFX0RVUFdISVRFTElTVCBtYXkgYmUgdGhlIGNvcnJlY3Qgc29sdXRp
+b24uIEl0IGNvdWxkIGFsc28gYmUgeW91ciBidWlsZCBpcyBpbmNsdWRpbmcgdHdvIGRpZmZlcmVu
+dCBjb25mbGljdGluZyB2ZXJzaW9ucyBvZiB0aGluZ3MgKGUuZy4gYmx1ZXogNCBhbmQgYmx1ZXog
+NSBhbmQgdGhlIGNvcnJlY3Qgc29sdXRpb24gZm9yIHRoYXQgd291bGQgYmUgdG8gcmVzb2x2ZSB0
+aGUgY29uZmxpY3QuIElmIGluIGRvdWJ0LCBwbGVhc2UgYXNrIG9uIHRoZSBtYWlsaW5nIGxpc3Qs
+IHNoYXJpbmcgdGhlIGVycm9yIGFuZCBmaWxlbGlzdCBhYm92ZS4KRVJST1I6IElmIHRoZSBhYm92
+ZSBtZXNzYWdlIGlzIHRvbyBtdWNoLCB0aGUgc2ltcGxlciB2ZXJzaW9uIGlzIHlvdSdyZSBhZHZp
+c2VkIHRvIHdpcGUgb3V0IHRtcCBhbmQgcmVidWlsZCAocmV1c2luZyBzc3RhdGUgaXMgZmluZSku
+IFRoYXQgd2lsbCBsaWtlbHkgZml4IHRoaW5ncyBpbiBtb3N0IChidXQgbm90IGFsbCkgY2FzZXMu
+CkRFQlVHOiBQeXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcG9zdGZ1bmMgZmluaXNoZWQKRVJS
+T1I6IEZ1bmN0aW9uIGZhaWxlZDogc3N0YXRlX3Rhc2tfcG9zdGZ1bmMK
+
+--001a11c3c34a6bb5d5052e2f87b0--
