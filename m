@@ -1,65 +1,77 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB9DDE007DC; Tue, 15 Mar 2016 17:24:19 -0700 (PDT)
+	id A8F54E0083D; Wed, 16 Mar 2016 01:25:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (idealsim[at]laposte.net)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.43 listed in list.dnswl.org]
+	*      [178.22.154.198 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E801E006AE
-	for <yocto@yoctoproject.org>; Tue, 15 Mar 2016 17:24:18 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id u110so30060189qge.3
-	for <yocto@yoctoproject.org>; Tue, 15 Mar 2016 17:24:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=5oRA30gAfSvz6uheYBlTKnkW5KQvj2uyPbxx2lBYIZc=;
-	b=r7O5BQ5MhFmTFBqh88h0ThOC3cAqG6XewNAZ0rwk5rFKxXbT/D+2ER2IWflLZbB4bV
-	f77H2NMUWYUDhxDkCYUnLe/aBhxo8J/5qrYuNsI2mnVWuwpHrzqGNCnyIWCWl2HST81U
-	qrmr4bxd4FPXaRVaMjn+wLPRJwrFapSu+9HRTNYzEG5qAe9HFQRYaeV0R+1So4/zjAnU
-	2s4p5ODCgSlWBoWQQfRXn/M41guTBuwiZvyfH7jzQ1O63OcKT2jTQSBAoh76evjrkplY
-	8ccqT9MmWjPlwyFuF9UyzRp8wEnPQIvgS4Egmw1PHlP4jWXE20zvn1K3asT/QwNA7OOy
-	n7mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=5oRA30gAfSvz6uheYBlTKnkW5KQvj2uyPbxx2lBYIZc=;
-	b=adFsTKd2C4FmzYBo7s/eAa1U6GDB0biSqqooEJs94ks0AEvEcei3SDfaGMAgYoWvTx
-	Q9rifu6XLwIhqdGtp2SBvT4dOZQxSH+vVYDOvlcyCRYt35Q3Lv/buUlp94USUWLRryUp
-	dW2kMU238eEEnmVqquPa7nzP18tU+/nxdqadVYRV9QF5WixjBScQ3TQ8mJLJ2iaA1iUI
-	JNB0dshuflK8EoIOdx0YEeEi9WvleXlENrVPAje8w2jjXkDDJQLAhjzAmkl47XHsGtJx
-	Y4IMy4CTOHEnPL653tGBHqj8Q25OCW/OYeq9WxBVXuJ4VEPc1iLP6sFeVLAEUiW7w+al
-	+Ytw==
-X-Gm-Message-State: AD7BkJLxh91xNMEVOm9F0cC/3qA2e/b6y+npCENLxesVFZQtHDiHN6c36z343xWN6LlCj8A5rU5W69TMdTTGUQ==
+X-Greylist: delayed 1221 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Mar 2016 01:25:17 PDT
+Received: from smtp.laposte.net (smtpoutz298.laposte.net [178.22.154.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38C7FE007F2
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 01:25:17 -0700 (PDT)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id F3A3045E259
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 09:04:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail1;
+	t=1458115494; bh=UbfpYlCzP3ikqLLqzpB59FCV1GysOu0v6hZtGSP/J+0=;
+	h=Subject:References:To:From:Date:In-Reply-To;
+	b=opEtHW07EYK+57xenpOdiXwO9im8xippICIcfeArQfDgEUAT6AJ14E5AsohVXKnpG
+	Vk3kTfpZFvG9SM0482uaLs0m82qpzCy9UlLLioT9Ff1pKxUqEVHsxdTZ88ewLm9POI
+	sZ4jE6VjBomU6gfNq1XmlIR8RtioSiy8kqs1zbo7p+OlrYLfJbeckj5j/fcRcq45XA
+	d7QQb4oLj/Us0w5X+IzJfApa8OHVdeqcXN7kzSc6xpAD4Fffe1P7r8vu0crSkvC5By
+	e7xri035zfyNiZ10XUQ1GRl1C5MOjIXz6e+4A5TCUbdPsSZsAdw27s+kb0QNw0jUlz
+	ui3fz+RMPIXqg==
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.prosodie [10.128.63.5])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id ED00745E257
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 09:04:50 +0100 (CET)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id DD82670E244
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 09:04:50 +0100 (CET)
+Received: from [192.168.1.45] (ARennes-654-1-113-87.w2-13.abo.wanadoo.fr
+	[2.13.96.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin004 (Postfix) with ESMTPSA id 82AD470E23F
+	for <yocto@yoctoproject.org>; Wed, 16 Mar 2016 09:04:50 +0100 (CET)
+References: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
+To: yocto@yoctoproject.org
+From: idealsim <idealsim@laposte.net>
+X-Forwarded-Message-Id: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
+Message-ID: <56E913A0.2030603@laposte.net>
+Date: Wed, 16 Mar 2016 09:04:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-X-Received: by 10.140.172.212 with SMTP id s203mr1291562qhs.41.1458087857404; 
-	Tue, 15 Mar 2016 17:24:17 -0700 (PDT)
-Received: by 10.55.130.196 with HTTP; Tue, 15 Mar 2016 17:24:16 -0700 (PDT)
-Received: by 10.55.130.196 with HTTP; Tue, 15 Mar 2016 17:24:16 -0700 (PDT)
-In-Reply-To: <9A61AAE9-AAD4-4DD4-8EDA-37213EC09B3D@keylevel.com>
-References: <9A61AAE9-AAD4-4DD4-8EDA-37213EC09B3D@keylevel.com>
-Date: Tue, 15 Mar 2016 17:24:16 -0700
-Message-ID: <CAMKF1sodiaivma5gFneA+SwkQZdr79-gZo7mffW1QQnzH9BcdA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Master or master-next?
+In-Reply-To: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
+X-VR-SrcIP: 2.13.96.87
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekkedrtddugdduvdehucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefufhfvhffk
+X-VR-Cause-3: ffgfgggjtgfgsehtjegrtddtfeelnecuhfhrohhmpehiuggvrghlshhimhcuoehiuggvrghlshhimhes
+X-VR-Cause-4: lhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkphepvddrudef
+X-VR-Cause-5: rdeliedrkeejnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghloheplgduledvrdduieek
+X-VR-Cause-6: rddurdeghegnpdhinhgvthepvddrudefrdeliedrkeejpdhmrghilhhfrhhomhepihguvggrlhhsihhm
+X-VR-Cause-7: sehlrghpohhsthgvrdhnvghtpdhrtghpthhtohephihotghtoheshihotghtohhprhhojhgvtghtrdho
+X-VR-Cause-8: rhhg
+X-VR-AvState: No
+X-VR-State: 0
+Subject: Qt5.6 new modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,63 +83,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Mar 2016 00:24:20 -0000
-Content-Type: multipart/alternative; boundary=001a113a7eaecac15f052e1f88e9
+X-List-Received-Date: Wed, 16 Mar 2016 08:25:19 -0000
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a113a7eaecac15f052e1f88e9
-Content-Type: text/plain; charset=UTF-8
+Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 
+and works fine (thanks to Christian Ege ). The problem is that I'm 
+looking for https://github.com/qtproject/qtquickcontrols2 and 
+https://github.com/qtproject/qtserialbus. My question is how we can add 
+this modules to our build ?  I add this to our local.conf :
 
-Master
-On Mar 15, 2016 3:57 PM, "Chris Tapp" <opensource@keylevel.com> wrote:
+     "qtquickcontrols2 \
+      qtserialbus \
+     "
+But this modules don't have buildable providers ! If someone can help to 
+said me how to proceed ...
 
-> Should I use master or master-next to track 2.1 release progress?
->
-> --
->
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
->
-> ----
-> You can tell you're getting older when your car insurance gets real cheap!
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+regards,
 
---001a113a7eaecac15f052e1f88e9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Mickael
 
-<p dir=3D"ltr">Master</p>
-<div class=3D"gmail_quote">On Mar 15, 2016 3:57 PM, &quot;Chris Tapp&quot; =
-&lt;<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a>&=
-gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Should I=
- use master or master-next to track 2.1 release progress?<br>
-<br>
---<br>
-<br>
-Chris Tapp<br>
-<a href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a><br>
-<a href=3D"http://www.keylevel.com" rel=3D"noreferrer" target=3D"_blank">ww=
-w.keylevel.com</a><br>
-<br>
-----<br>
-You can tell you&#39;re getting older when your car insurance gets real che=
-ap!<br>
-<br>
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div>
 
---001a113a7eaecac15f052e1f88e9--
+
