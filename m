@@ -1,63 +1,57 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <david.weisgerber@ms-gmbh.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA441E00BEA; Thu, 17 Mar 2016 02:10:57 -0700 (PDT)
+	id 4C55FE00BF4; Thu, 17 Mar 2016 02:23:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.227.17.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1F6AE00BBF
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 02:10:56 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id p65so107250788wmp.0
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 02:10:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=58c4wUr+fBGDafHQl/lV6UZ4GcT+J6aUpXmP5Bp9+X4=;
-	b=nWZ82Ki8FqEHWjTzcfjEM99ooPlSWLcJb1XV0DkjQ41zm0gsnqegyT5rPu9xK9tj+9
-	VeCdRUXNScBrfhcQwQydI8QpdU8m7ImyWq+0qo1KomVLW+vUSqSVF7gk3CT/s94W3TGB
-	5mP4DOv4hg8k5+WHZd/mPk6Mi1eXI0Devi6iGqnQ+OJzpCvxwmFigurpT714aWV3ZiJp
-	C9A4JxMfwNzGjN3Qvq0lBw0WDyxvijFelSNHcWeNA2G93nlhr6cVm+8Oqxb5fMGyVFd9
-	zwSCtqiUxlfVlDCeCTB9f9fL+vixpS29ffHDRxs2BbbgiTlO27FCfm+J30NC9OC5VC67
-	EVyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=58c4wUr+fBGDafHQl/lV6UZ4GcT+J6aUpXmP5Bp9+X4=;
-	b=Urxk2BEojY0pPb8/49reo4TMJ8K7pHvvdq+OEnRnGKEruBRVGkyy5JcPW4ry2h91Gu
-	5hY6avdNR109B6cLafMRGJnGoctwNMV1ooJrQramTSdO0NX+f3W/MOpCzcgAYcFlZh0H
-	tkaui0blMlzNxOCXGCeL6zplHyuj0bm09ovSfsxRm8HWGqXQ4V0bNL+IkUOeB8PM5oiR
-	qIMHaOyEi4MmnAfdmJ8h0KhBO0T/z/55UMDcEYq3Kr+4TLH2SgY1/gDZGoy6KLf+jiz+
-	mWbPiU611RqBvNUYdglBWkfal0n/0kQEgO/L7SWuNkEwtx+h5paVJynnqGt18EI34oJ9
-	uwoA==
-X-Gm-Message-State: AD7BkJLN3b+h4BxHT6uPuBspcsOXVQVpedps8gH3hOVrH/EfTnNcvu+c/sjIJXsMxGRNzVVv0Y/WMGIW0lWHhQ==
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Thu, 17 Mar 2016 02:23:13 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A20B4E00BEA
+	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 02:23:13 -0700 (PDT)
+Received: from fourconnected.homeip.net ([91.63.241.179]) by
+	mrelayeu.kundenserver.de (mreue102) with ESMTPSA (Nemesis) id
+	0MhlTv-1aSvFy0lRD-00MvFE for <yocto@yoctoproject.org>; Thu, 17 Mar 2016
+	10:18:09 +0100
+Received: from port-212-202-162-14.static.qsc.de ([212.202.162.14]
+	helo=valkyrie.localnet) by fourconnected.homeip.net with esmtpsa
+	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:256) (Exim 4.80)
+	(envelope-from <david.weisgerber@ms-gmbh.de>) id 1agU4F-0002p5-34
+	for yocto@yoctoproject.org; Thu, 17 Mar 2016 10:18:07 +0100
+From: David Weisgerber <david.weisgerber@ms-gmbh.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 17 Mar 2016 10:17:56 +0100
+Message-ID: <16216620.hxMGgcOmQf@valkyrie>
+Organization: M&S GmbH
+User-Agent: KMail/5.0.2 (Linux/4.2.0-27-generic; KDE/5.15.0; x86_64; ; )
+In-Reply-To: <CAOorjZT6u3kXG8nt2ADrc9FD3EPSsWn_HwQuV+12A+O=E7OKAw@mail.gmail.com>
+References: <7024625.68jMvv6Lbg@valkyrie>
+	<CAOorjZT6u3kXG8nt2ADrc9FD3EPSsWn_HwQuV+12A+O=E7OKAw@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.28.50.133 with SMTP id y127mr33747033wmy.4.1458205855851;
-	Thu, 17 Mar 2016 02:10:55 -0700 (PDT)
-Received: by 10.194.201.104 with HTTP; Thu, 17 Mar 2016 02:10:55 -0700 (PDT)
-In-Reply-To: <CAJTo0LaVEa3-GL6Nd3uMkBC0P7PvUj23FqTLchMo8bLcLbKXCg@mail.gmail.com>
-References: <CALf_N3bObyR-EPgVLtjS+NMmYETQsavs+DT45gxhF8CT1m1-yw@mail.gmail.com>
-	<CAJTo0LaVEa3-GL6Nd3uMkBC0P7PvUj23FqTLchMo8bLcLbKXCg@mail.gmail.com>
-Date: Thu, 17 Mar 2016 02:10:55 -0700
-Message-ID: <CAJ86T=V-YaLEbH=i+34ZfB27Krnpg_F-XP=k7dBRA+g=D_gBFA@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Conditional compile for package in layer.conf for Qemu
+X-Provags-ID: V03:K0:3e/gw6pZ4IIEXKMG65CT+v/oefvunY50PBVVy4iJ7sb0fzHIQVx
+	rFw3ur6eBSw0ZjZT/jPbL9+u9vfCbGK+QY76VTCReBs+Vjwm8GW8Q3z5Gld9QC5AN6YvMSv
+	cbCCPRQElarnOK823OfxGN9lr/hEvWeIY6Iwp9EWCvKgUOcZdyxrgd0gxjoQrk4mKo+kbsW
+	AC6R20s0npGEX1rQuaufw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:taoIAtdgxX8=:Fv4sGCTYPRHBvYSGSk8OVI
+	motr552EYIcwYLZT09HIky9t4KuIH8TZ/CxcvZY9Tqv+Up8DXGzXdwIBhdVBTV70SLQiznpuO
+	lsJs9MQW7qualsy+m7m5QU3/bsiW+Zzk9KR2cpvFfKP7bvVBDLcw6/6Pk7q8rBRQGwdgYNonb
+	iTYmNpQu9ig75L1holhJMOgnWVueMeEArPV+eBGLbuEaHjp62l1rV6ojN4sOUZBH265M0uMOK
+	aHRZzBDQ2PkfluWP7fBoPk7yGchN1mMy0qzAcS1ZflHsczdm2CG15FN+SVtyCBUe9KpdMY4Vf
+	z9zX/Rp8+3yUzHibWCKyIbph+cNWAXHrjs/Srs+8F4Q0rtCoJKfN3qWDHtUtweZYBNrh95qN4
+	LjsQ8164O0MdhLjXFS2xgO1dDK5hhvJALxKn0iAm32ra8b9bhqxY5tuKzx/90Bw4ccrbFDLKG
+	P0qxRPyyv0df95wfy2/Me1Hf90zh9UUeqn1svI2D+F6QuLYTLXYvajgdwSX+szKyp2yY3I9xF
+	yG8iG5g8MaagdTwgAiB19+BR6saB2E2zG4q8J/vSPFDdrUkmjl4l8lql3qY2pa2sBInKl2dmF
+	exKyAR44kxlcgbXDT+s+hAz5uybTP14ODcqWqPF61v3CHgw4jXbGdqHsRPBhoFzmU3MH30k7T
+	ThvVekiV/YWHMBH+due9RQkaDypmAPQ0yMOVEHkXj9aVhFJ+2yrrd8RNk7i8wOtw+3Rd1+35m
+	3b46DA3iJ1KUfniB
+Subject: Re: Compiling raspberry2 with eglinfo-x11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,56 +63,185 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Mar 2016 09:10:58 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 17 Mar 2016 09:23:17 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Mar 16, 2016 at 2:01 AM, Burton, Ross <ross.burton@intel.com> wrote:
->
-> On 16 March 2016 at 08:56, Mark T <mtl1nuxd3v@gmail.com> wrote:
->>
->> I'd like to be able to do the following
->>
->> IMAGE_INSTALL_append += "package_a"
+Hi,
+I got Qt to compile by solving the following "problem" in the userland EGL / 
+GLESv2 code:
+# Khronos
+#
+# Note: in Android the linker is unable or unwilling to resolve
+# dynamically using already loaded symbols. The libraries here
+# have quite a few circular dependencies, and so the only way
+# to make it work seems to be to have everything static.
 
-It's not typical usage to combine += with _append, pick one or the other.
+There is a circular dependency between libEGL and libGLESv2. You can fix the 
+Qt compile by adding the following qtbase_%.bbappend:
+do_configure_prepend_rpi() {
+    cat > ${S}/mkspecs/oe-device-extra.pri << 'EOF'
+EGLFS_DEVICE_INTEGRATION = eglfs_brcm
+QMAKE_INCDIR_EGL = $$[QT_SYSROOT]${includedir}/interface/vmcs_host/linux
+QMAKE_INCDIR_OPENGL_ES2 = $${QMAKE_INCDIR_EGL}
+QMAKE_LIBS_EGL = -lEGL -lGLESv2
+EOF
+}
 
-Using _append is generally more reliable if you're not sure how the
-variable you're appending to was originally initialised, however with
-_append you need to manually include a leading space character, ie:
+which just changes the order of linking to the libraries.
 
-IMAGE_INSTALL_append = " package_a"
+However, I am still not able to get the Qt eglfs programs running due to the 
+following problem:
+* failed to add service - already in use?
+which must be coming from the userland code
 
->> if ( not qemu )
->> IMAGE_INSTALL_append += "package_b"
->> endif
->
->
-> The neater way would be if you can easily identify what "not qemu" is, for
-> example:
->
-> IMAGE_INSTALL_append_intel-corei7-64 = "package_b"
->
-> Would install package_b only for intel-corei7-64 machines.
->
-> If you want to support arbitrary machines but not qemu then something like
-> this might work:
->
-> MOREDEPS = "package_b"
-> MOREDEPS_qemuall = ""
-> IMAGE_INSTALL_append = " ${MOREDEPS}"
->
-> (qemuall is an override that is enabled by all qemu machines)
+My problem could be caused by the fact, that changing GPU_MEM does not seem to 
+have any effect atm and the vc4 driver isn't loaded at startup...
 
-Another alternative would be something like:
+Thanks for help,
+David
 
-IMAGE_INSTALL_remove_qemuall = "package_b"
+On Thursday, March 17, 2016 12:41:17 PM SIVA SUBRAMANIAN. P wrote:
+> What is your preferred GLES provider set to, userland or mesa?
+> 
+> On Wed, Mar 16, 2016 at 8:51 PM, David Weisgerber
+> 
+> <david.weisgerber@ms-gmbh.de> wrote:
+> > Hi,
+> > 
+> > I have problems compiling eglinfo-x11 (as well as Qt 5 from meta-qt5) with
+> > egl.
+> > 
+> > I have setup poky, meta-raspberrypi (and meta-qt5) from git and I am on
+> > branch master.
+> > 
+> > My target is to get a distribution with working (hw acceleratetd) Qt5 with
+> > QML GUI. I have already spent some days on getting qteverywheredemo
+> > running
+> > but I did not succeed yet.
+> > 
+> > As a first test I wanted to get eglinfo-x11 running but it gives the
+> > following error when compiling:
+> > 
+> > [11/11] cxxprogram: build/release/src/json_writer.cpp.1.o
+> > build/release/src/log.cpp.1.o build/release/src/main.cpp.1.o
+> > build/release/src/process_egl.cpp.1.o build/release/src/scopes.cpp.1.o
+> > build/release/src/text_writer.cpp.1.o
+> > build/release/src/json-sax/json.c.1.o
+> > b
+> > uild/release/src/platform_x11_generic.cpp.1.o
+> > build/release/src/openvg_stats.cpp.1.o
+> > build/release/src/process_openvg.cpp.1.o -> build/release/eglinfo
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glDiscardFramebufferEXT'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glPointSizePointerOES'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_set_error_api'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_BindFramebuffer'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glintAttribPointer'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_state_free'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_FramebufferRenderbuffer'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_buffer_info_set'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_set_error'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_DeleteFramebuffers'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `gl11_client_state_init'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_GetFramebufferAttachmentParameteriv'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_IsRenderbuffer'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_GetRenderbufferParameteriv'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_DeleteRenderbuffers'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glBufferSubData'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_FramebufferTexture2D'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_BindRenderbuffer'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_GenerateMipmap'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_RenderbufferStorage'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_GenFramebuffers'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_GenRenderbuffers'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_CheckFramebufferStatus'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `gl20_client_state_init'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_buffer_info_get'
+> > /home/david/yocto/poky/build/tmp/sysroots/raspberrypi2/usr/lib/libEGL.so:
+> > undefined reference to `glxx_client_IsFramebuffer'
+> > 
+> > 
+> > 
+> > It links to libEGL and libGLESv2. nm says that this symbols should be in
+> > libGLESv2 but it just does not catch them up somehow?
+> > 
+> > 
+> > 
+> > My image is configured as follows:
+> > 
+> > include recipes-core/images/rpi-hwup-image.bb
+> > 
+> > 
+> > 
+> > GPU_MEM = "64"
+> > 
+> > 
+> > 
+> > LICENSE_FLAGS_WHITELIST = "commercial"
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > PACKAGECONFIG_append_pn-qtbase = "gles2"
+> > 
+> > 
+> > 
+> > SPLASH = "psplash-custopi"
+> > 
+> > 
+> > 
+> > ENABLE_SPI_BUS = "1"
+> > 
+> > 
+> > 
+> > IMAGE_FEATURES += "ssh-server-openssh splash x11-sato"
+> > 
+> > IMAGE_INSTALL_append = "qtbase qtbase-fonts custorouter custopi-gui
+> > packagegroup-core-full-cmdline bluez5 wireless-tools wpa-supplicant
+> > qt5everywheredemo fontconfig freetype packagegroup-core-x11-base
+> > packagegroup-core-x11-sato eglinfo-x11"
+> > 
+> > 
+> > 
+> > IMAGE_LINGUAS ?= "de-de es-es fr-fr en-gb"
+> > 
+> > 
+> > 
+> > Thanks for help!
+> > 
+> > 
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
-> Ross
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
