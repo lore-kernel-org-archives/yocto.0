@@ -1,17 +1,16 @@
-Return-Path: <matt.hoosier@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35DCFE00BF8; Thu, 17 Mar 2016 04:07:07 -0700 (PDT)
+	id 298A5E00C02; Thu, 17 Mar 2016 05:38:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (matt.hoosier[at]gmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,42 +18,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0096E00BEC
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 04:07:03 -0700 (PDT)
-Received: by mail-wm0-f46.google.com with SMTP id l124so80484788wmf.1
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 04:07:03 -0700 (PDT)
+	*      [74.125.82.54 listed in list.dnswl.org]
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E5F8E00BF4
+	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 05:38:32 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id p65so115311637wmp.0
+	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 05:38:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=AWZl5CuTGzIj2NaGUy3uOlIlxVoDvtcojg6xlXuGUAM=;
-	b=ikDDnd+fdQFcJE/HxY6S1qV0qK5UE2RDgNhtuudysD0hFpkcYw/uAs6ZvpfFuqZAjG
-	bRoB/McRjarAedLXTLFFzdpmtx7cBdYNKQ+MLWBbxJUyFz3SpN+etni3m6IVJMuQ571E
-	MshEMRpqhPnZ5vUfBJ99gCUgWjtrQO8SfEmWXZZDdGOBdoLeZRlYdzRgkpI+I4YkOdyJ
-	Tt/E5HPYWxqa4BGS2jkGNbe9LfQRUsQfx8XQKrzjQAgOHM4cXLBw1kz0dQVUP/NvHqqO
-	O/SvTIJzHSZbxMANcv6EhDHNGISIcMIcWay6nzhFShbbImACPQuJLD4wdI1apS3h3U/Y
-	5btg==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=xroD40Vp/7I1ZyfekWZDBzGJitg6e7Enu+jqv5bVxP0=;
+	b=oaQCvOrfY7ABAqwFeVcq5ZYD0xkkjNrNr/Nb3lkfZhAL87/zSrZxYSkaj6xrpNP1pV
+	liYMUjjDgp3ImlPYOE/lhvg2oLLuUMXCRh/P63w7G3B2FLztgZ9PPtVWpeLlR+bCv/+E
+	GCADoe+o8KA9S6/vQHubvqLcIwxmIVY/34NbUiLt/Jo1l5gbgkoLWCSvFALcFMsBjNJx
+	+2eb7+vWCvopdeKzu/5scrSt4H3YZsmN0OK7XS8x57Ps2sRl78GKTJ5KP2oBFmXKdtFR
+	uwmMUFXmQdunQv10YU/M6bIxp4RLrIP9397J1uGDRjZUFcYFUIAFeDrQt6lIgAYVxEvM
+	+WsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=AWZl5CuTGzIj2NaGUy3uOlIlxVoDvtcojg6xlXuGUAM=;
-	b=IKMVUQGb0+WicTfRhRW06pqrkngk6hkI0O41PUYpqeN56uiRM/G6TqN/RzH7llZA+R
-	3KnCxkeHMHXdB6uY9FsfHpVDIahccyVRlJrw0KHhZzge2Y3U1IJkDJfMdot70souTW1y
-	R89xWNfCV0/OjaGPMy5DdcPeAlsIi6sLhPjcETSe602w0Yd0copupchfenL6mGqUI96X
-	pae7JVCWp/b1LZ39l6pyPzjh0xv+ua88xV+qUeQideJr/1s+FnRdtxK+Bxcd2FkwA4RC
-	P+N9v5NPTu4iLBXV3dI75uqNEc3MEjU2764Ug3tZQyFUiW2wA/zsxgXy4OkGjVLZD8XX
-	Xl7Q==
-X-Gm-Message-State: AD7BkJJzSaV4H2UQ8PRRrEDSjh/X3WUGz+SFzlZqenRY28DFiJpr8rZ0koV0Dgs0dBuSJsgtBJRuZyrvd/l2iA==
-X-Received: by 10.194.216.99 with SMTP id op3mr9444771wjc.26.1458212822190;
-	Thu, 17 Mar 2016 04:07:02 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=xroD40Vp/7I1ZyfekWZDBzGJitg6e7Enu+jqv5bVxP0=;
+	b=j1o2LhDKA09MM9BPiZyn/i2BzM5Kka3IkhpdHnp4Tz+XQRDgXadpz3mTjwXFNXccPH
+	qvjiaOaKFgi+ybd6YJAS/CUyGqWNTPkCqzAbcf7KZV4YRdTsgK84uri4AhsT23SDhv5R
+	YagT/o8LOE1Y5tO2lS0194vqEta5ER4/YVyuNqvrqwSWiu/wnrtJVTcyC9tzIiNWjyog
+	tpfc2yK5NvGAN+VQVn5clghD7VmduYMiZz6fTxUJ6mn5i7JtR07EDcqp6kf6VqO2WpS+
+	P5D4vwW33oGddIszF+xfmG2K8fESaKeq2uDibOWkat7x8dR8nONxMl6fI/MxG6S33/bD
+	JeLA==
+X-Gm-Message-State: AD7BkJIHAjbw02m+tTJngvqeE0zNynJ7Bck9pshfnquL9O3X3iKE5yb9psz6eOCuHqswkFG8DKMatFP3hecnSA==
 MIME-Version: 1.0
-Received: by 10.28.0.83 with HTTP; Thu, 17 Mar 2016 04:06:22 -0700 (PDT)
-From: Matt Hoosier <matt.hoosier@gmail.com>
-Date: Thu, 17 Mar 2016 06:06:22 -0500
-Message-ID: <CAJgxT39h8BPhuaEME6ueMJV8YgbtsijAEMt3h-k-qhpbNtFm+w@mail.gmail.com>
-To: openembedded-devel <openembedded-devel@openembedded.org>,
-	yocto@yoctoproject.org
-Subject: [meta-qt5] [meta-mingw] Any success using these two layers together?
+X-Received: by 10.28.158.149 with SMTP id h143mr10224011wme.61.1458218311204; 
+	Thu, 17 Mar 2016 05:38:31 -0700 (PDT)
+Received: by 10.194.201.104 with HTTP; Thu, 17 Mar 2016 05:38:31 -0700 (PDT)
+In-Reply-To: <CAOorjZSr_N8rVLCs2wamXikSz-zB8v3DMYchoBqTVC3a65bebQ@mail.gmail.com>
+References: <CAOorjZSr_N8rVLCs2wamXikSz-zB8v3DMYchoBqTVC3a65bebQ@mail.gmail.com>
+Date: Thu, 17 Mar 2016 05:38:31 -0700
+Message-ID: <CAJ86T=Up6VuOC3vYsyn+U9yuhT5BaVzSLaQtGQS8eaG8uc1a8w@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Compiling kernel 4.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,32 +68,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Mar 2016 11:07:07 -0000
-Content-Type: multipart/alternative; boundary=089e0141a19046127f052e3ca174
-
---089e0141a19046127f052e3ca174
+X-List-Received-Date: Thu, 17 Mar 2016 12:38:36 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Does anybody have experience using meta-qt5 and meta-ming together to
-produce a usable SDK including Qt development tools for use on a Windows
-host together?
+On Wed, Mar 16, 2016 at 11:21 PM, SIVA SUBRAMANIAN.P <psiva87@gmail.com> wrote:
+> Hi,
+> While compiling linux kernel 4.4 for 96boards, I'm getting below error
+> even though openssl headers are available in sysroot path.
+>
+> |   HOSTCC  scripts/selinux/mdp/mdp
+> | /mnt/home/knagabhirava/hikey/build/tmp-glibc/work-shared/hikey/kernel-source/scripts/extract-cert.c:21:25:
+> fatal error: openssl/bio.h: No such file or directory
+> |  #include <openssl/bio.h>
+> |                          ^
+> | compilation terminated.
+>
+> ERROR: Task 6 (/mnt/home/knagabhirava/hikey/build/../meta-96boards/recipes-kernel/linux/linux-96boards_git.bb,
+> do_compile) failed with exit code '1'
 
-The stock recipes for producing the nativesdk flavors of certain Qt
-packages would seem to require some modification from vanilla meta-qt5
-upstream to be able to target mingw.
+If extract-cert.c is being compiled with HOSTCC then the recipe should
+probably depend on openssl-native (not openssl). Or maybe the
+assumption is that openssl development libraries are installed on the
+host (e.g. "apt-get install libssl-dev" for Debian based systems).
 
-Cheers,
-Matt
+Either way, this isn't the right mailing list for meta-96boards questions...
 
---089e0141a19046127f052e3ca174
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+> Any idea/pointers?
+>
+> Regards,
+> Sivasubramanian
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-<div dir=3D"ltr">Does anybody have experience using meta-qt5 and meta-ming =
-together to produce a usable SDK including Qt development tools for use on =
-a Windows host together?<div><br></div><div>The stock recipes for producing=
- the nativesdk flavors of certain Qt packages would seem to require some mo=
-dification from vanilla meta-qt5 upstream to be able to target mingw.<div><=
-br></div><div>Cheers,</div><div>Matt</div></div></div>
-
---089e0141a19046127f052e3ca174--
