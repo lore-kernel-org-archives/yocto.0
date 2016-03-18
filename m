@@ -1,66 +1,55 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <r.schwarz@sotec.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B497DE00C60; Fri, 18 Mar 2016 00:16:34 -0700 (PDT)
+	id BAF33E00C64; Fri, 18 Mar 2016 01:32:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
-	[209.85.217.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A50BE00C39
-	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 00:16:29 -0700 (PDT)
-Received: by mail-lb0-f170.google.com with SMTP id k12so82592807lbb.1
-	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 00:16:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-transfer-encoding;
-	bh=5/hHYIggX5KUmCLWj5XBGSC2ILZPlVEHaGGdtlHrb7g=;
-	b=EhIZbcdXbpQdV2Y6alUB/4Qef2ShIZKlkCAvDdATTS76mt9xDBCT9XcSj1ttfmxAeM
-	niIVNkkePRt/i6+f9vKZY+0AwWbgnPIzw9yGi+9p3biC7QybBFKggx1Our9jqnTBGPeE
-	TIkaIeyKejDEHd9sAGlsCO5aB++ZffR3b7N4cCtIlVNM4wZBExrsQgzJyCRLDcp3rkQe
-	leg2pP/N6A2a1k1kTNmVYWKT05u8bWSk9x8S2Efsz1y9Eh7Ow8/SQG4QMWCzpSveFSUX
-	br66fhnLyAdN0M30wY7Ew2PvfGddp2BdNseescqqnn0yWHeXEBzhKo1K+RJ7p0Kp4HS9
-	oL5A==
+Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
+	[209.85.217.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51D75E00C39
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 01:32:37 -0700 (PDT)
+Received: by mail-lb0-f177.google.com with SMTP id qe11so29379477lbc.3
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 01:32:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=sotec-eu.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Tb8VlXoMTdyE+Xa1dJUQnw+ZP7kVtqK/oUiKMtVPefI=;
+	b=Dah5AU/pNEEMl15KKYYZASUVQAIY06xN4WcCH8EhAVIJp9PPVRUGGKXnX0b/Snybft
+	S0KIzpCpSNZ77m44pAeoGw700gTxYhSdtaP4T9BIu3Wbb9rgkOqZm+IrJkERlqASZPlh
+	sdZMblissJNTyccm7EbODdOKWtmU5aEfrujKBkmLUvH7oVsmlMPxQdK/caEL81Qkhvs8
+	Xc/NSk0h3WV3ChkHMD+YBEjuV7vS/qjQwwM3v1rnRb5ngN1EXJFMJ2GgHSFyJGSvz30a
+	k/fDET5Y3Kl3fweSyxbprJw+WXnAYPhqR4TwM2rcxHhwyqBtgHXHSSROCVL33N/rxBRd
+	NYdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:content-transfer-encoding;
-	bh=5/hHYIggX5KUmCLWj5XBGSC2ILZPlVEHaGGdtlHrb7g=;
-	b=IwHHv9aK+rO5arHS5wk5qgnCsV3fGXrpAi2XoL8j5wQ3VGjh0TZu+HHUOPopfXhDmh
-	B4ClSZq8BtPOqnlspVfiAN+mRdsbxsDyUTYXMA6lmxpzdLp26aU1wIyQsxZre1QVX4yW
-	vVpN9F8l1D5QxrZmffBXAtxYY0xbPe/zB0qEpzW45Uzp0TvIKrs/OT2MHPl5+x7Qi5U5
-	IbNEWDblBXndhftLeLOLfoXC26zBSEXkIkzVp/D8WKnJ/blUDk0LZMwp/TNf56qoEb69
-	7K78fZgn2LelTLPbSkJlST9aybqgRd9rkhC+0vYGp+gXOyhVI31NUtDu7EhmNT9ez00Z
-	8u8w==
-X-Gm-Message-State: AD7BkJJTlZ0oremGp6/nvPvyWikOhaGA5/ac544s7bwPU6CPvd0+uIFY8EnJLHM3R7D00fjiC8+ESoY4U/zMzw==
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Tb8VlXoMTdyE+Xa1dJUQnw+ZP7kVtqK/oUiKMtVPefI=;
+	b=O2pIH1d4+s4kzN8RX9pcgCc2DK9O2HWuRVuv8qlUCV+atQmYQSpCSDZkE3yU8P9Mlq
+	y52Ssa5WU5fVCthGcX6RNRMXwsQXpdQiL9Ua0CWiLOl6eDnoL7lvawmUJejVOyd+weox
+	U/0zY8EYrODNlW/a2e6P1JQY7jKuL7zZEUgh3h9B4RKGi9Gp9+kmMlbq3fGDDx5P7Gv/
+	jTE10tlW6vpR51gyo69C2XE5sOH5c+euKM+FFCeU571X3YQyqnaWEgyC9fOII2x0f7T4
+	EJNCoqsCO9DXddlRSdVTegRGWuuOZyNC2+9+Bn5H+9YhQdGRaT8I1LHfI0VTfmcoMJLW
+	JW/Q==
+X-Gm-Message-State: AD7BkJKac4YeOPRDw6HGLcRJCASrWBvSiO8QUgbUe+h3v9FNTSqa0kFTJSeOvlVwiGK2hxoat00g/eIngJR4/F7C98cO9kM3U//1O1YsQ5ADxEiCOQhFkssRhnLsRSuQDaaSlx6o1LxcCAyZN5k=
+X-Received: by 10.112.201.202 with SMTP id kc10mr5427313lbc.33.1458289955702; 
+	Fri, 18 Mar 2016 01:32:35 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.112.124.137 with SMTP id mi9mr5213497lbb.112.1458285387973; 
-	Fri, 18 Mar 2016 00:16:27 -0700 (PDT)
-Received: by 10.25.205.10 with HTTP; Fri, 18 Mar 2016 00:16:27 -0700 (PDT)
-In-Reply-To: <56EAD860.4000306@laposte.net>
-References: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
-	<56E913A0.2030603@laposte.net>
-	<CAALGJZYWqQGbRMp70LNVyZyWMyd7ac-L5aGrdA4VrWX=Z+BvwA@mail.gmail.com>
-	<56E9664F.8000505@laposte.net> <56EAD860.4000306@laposte.net>
-Date: Fri, 18 Mar 2016 08:16:27 +0100
-Message-ID: <CAALGJZaPgvZmpXiwADH0Lvu-KV9GD56XGMVJNWrRwke370xGjA@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: <DKIM> Re: Qt5.6 new modules
+From: Ruben Schwarz <r.schwarz@sotec.eu>
+Date: Fri, 18 Mar 2016 08:32:26 +0000
+Message-ID: <CAEMorpgmXyJpR5Fwg53D1J9JOj+Hv0mWXmGhO1kW7O1th5o78A@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Upgrade from Daisy to Jethro -> Hardware Problems (Device Tree)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,156 +61,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Mar 2016 07:16:34 -0000
+X-List-Received-Date: Fri, 18 Mar 2016 08:32:42 -0000
+Content-Type: multipart/alternative; boundary=001a11c26b22ca2fa2052e4e965d
+
+--001a11c26b22ca2fa2052e4e965d
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-2016-03-17 17:16 GMT+01:00 idealsim <idealsim@laposte.net>:
-> Hi, i have started a build of the image this master Branch, like you said=
- i
-> have an error on qtserialbus :
->
-> WARNING: Failed to fetch URL
-> git://github.com/qtproject/qtserialbus.git;name=3Dqtserialbus;branch=3D5.=
-6;protocol=3Dgit,
-> attempting MIRRORS if available
-> ERROR: Fetcher failure: Unable to find revision
-> 6a16281aceedb713676e16c3074e6f7ea1e70b79 in branch 5.6 even from upstream
-> ERROR: Function failed: Fetcher failure for URL:
-> 'git://github.com/qtproject/qtserialbus.git;name=3Dqtserialbus;branch=3D5=
-.6;protocol=3Dgit'.
-> Unable to fetch URL from any source.
-> ERROR: Logfile of failure stored in:
-> /media/modjo/data1TO/yocto/seco/udoo-community-bsp/neoBuild/tmp/work/cort=
-exa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+6=
-a16281ace-r0/temp/log.do_fetch.5862
-> ERROR: Task 894
-> (/media/modjo/data1TO/yocto/seco/udoo-community-bsp/sources/meta-qt5/reci=
-pes-qt/qt5/qtserialbus_git.bb,
-> do_fetch) failed with exit code '1'
->
-> This is my qtserialbus_git.bb :
->
-> require qt5.inc
-> require qt5-git.inc
->
-> # There are no LGPLv3-only licensed files in this component.
-> # There are no GPLv2 licensed files in this component.
-> LICENSE =3D "GFDL-1.3 & BSD & (LGPL-2.1 & The-Qt-Company-Qt-LGPL-Exceptio=
-n-1.1
-> | LGPL-3.0)"
-> LIC_FILES_CHKSUM =3D " \
->     file://LICENSE.LGPLv3;md5=3Db8c75190712063cde04e1f41b6fdad98 \
->     file://LICENSE.GPLv3;md5=3D40f9bf30e783ddc201497165dfb32afb \
->     file://LICENSE.FDL;md5=3D6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
->     file://LICENSE.GPLv2;md5=3D05832301944453ec79e40ba3c3cfceec \
-> "
->
-> DEPENDS +=3D "qtbase qtserialport"
->
-> SRCREV =3D "6a16281aceedb713676e16c3074e6f7ea1e70b79"
-The SRCREV is the git SHA1 of the repository qtserialbus. For the 5.6
-Branch the latest one is:
+we have a customized hardware based on Beaglebone Black. We created an BSP
+Layer with daisy and everything worked fine.
 
-SRCREV =3D "92c979c6652d55c30ab9118d45db74d8da96fc3b"
+Now we decided to upgrade our yocto sources from daisy (Kernel 3.14.4) to
+jethro (Kernel 4.1.15).
 
+I adjusted the Kernel patches to work with new sources. The system boots
+but the network interfaces aren't available.
+ip a shows only the loopback interface.
 
-You can check the SHA1s here:
-https://github.com/qtproject/qtserialbus/commits/5.6
+I see that the Kernel Image changed from uImage to zImage. Device Tree
+files are used as an the previous build.
 
-The MD5 Sums will be complained during configure step and bitbake wil
-tell you the right ones.
-Please check if the Licences do match
+Does anybody know if I have to change the device tree files to work with
+the new Kernel? Any other ideas how to solve this problem?
 
-Regards,
-Christian
-
->
-> An idea is welcome !
->
-> Regards,
->
-> Micka=C3=ABl
->
->
->
-> Le 16/03/2016 14:57, idealsim a =C3=A9crit :
->
-> Thanks for the tip. I will try it out and let you know ...
->
-> Regards,
->
-> Micka=C3=ABl
->
-> Le 16/03/2016 10:17, Christian Ege a =C3=A9crit :
->
-> Hi,,
->
-> 2016-03-16 9:04 GMT+01:00 idealsim <idealsim@laposte.net>:
->
-> Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 an=
-d
-> works fine (thanks to Christian Ege ). The problem is that I'm looking fo=
-r
-> https://github.com/qtproject/qtquickcontrols2 and
-> https://github.com/qtproject/qtserialbus. My question is how we can add t=
-his
-> modules to our build ?  I add this to our local.conf :
->
->      "qtquickcontrols2 \
->       qtserialbus \
->      "
-> But this modules don't have buildable providers ! If someone can help to
-> said me how to proceed ...
->
-> You can try to add a meta-qt5/recipes-qt/qt5/qtserialbus_git.bb and
-> take for example meta-qt5/recipes-qt/qt5/qtsensors_git.bb as reference
->
-> require qt5.inc
-> require qt5-git.inc
-> # There are no LGPLv3-only licensed files in this component.
-> # There are no GPLv2 licensed files in this component.
-> LICENSE =3D "GFDL-1.3 & BSD & (LGPL-2.1 &
-> The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
-> LIC_FILES_CHKSUM =3D " \
-> file://LICENSE.LGPLv21;md5=3D58a180e1cf84c756c29f782b3a485c29 \
-> file://LICENSE.LGPLv3;md5=3Db8c75190712063cde04e1f41b6fdad98 \
-> file://LICENSE.GPLv3;md5=3D40f9bf30e783ddc201497165dfb32afb \
-> file://LGPL_EXCEPTION.txt;md5=3D9625233da42f9e0ce9d63651a9d97654 \
-> file://LICENSE.FDL;md5=3D6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
-> file://LICENSE.GPLv2;md5=3D05832301944453ec79e40ba3c3cfceec \
-> "
-> DEPENDS +=3D "qtbase"
->
-> SRCREV =3D "71a323e1f12df8d213a4052621027e223eb5a343"
->
-> The configure step will bail out due to the fact that you have wrong
-> checksums but it will show you the right ones
->
-> Best,
-> Christian
->
->
-> regards,
->
-> Mickael
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
->
-
-
+Best regards
+Ruben
 
 --=20
-http://ch.ege.io/
 
+
+Besuchen Sie unseren Chrome Webshop unter shop.cloudwuerdig.com
+
+www.sotec.eu | www.cloudwuerdig.com=20
+--=20
+SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=20
+Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=20
+Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664,=20
+Gesch=C3=A4ftsf=C3=BChrer: Florian Holz=20
+Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der SOTEC Software Entwi=
+cklungs=20
+GmbH + Co Mikrocomputertechnik KG
+
+Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten =
+Adressaten=20
+bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen=
+=20
+Vertreter sein sollten, so beachten Sie bitte, dass jede Form der=20
+Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe=
+ des=20
+Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem F=
+all=20
+mit dem Absender der e-Mail in Verbindung zu setzen.
+
+The content of this e-mail is meant exclusively for the person to whom it=
+=20
+is addressed. If you are not the person to whom this e-mail is addressed or=
+=20
+his/her representative, please be informed, that any form of knowledge,=20
+publication, duplication or distribution of the content of this e-mail is=
+=20
+inadmissible. We ask you, therefore, in such a case to please contact the=
+=20
+sender of this e-mail.
+
+
+--001a11c26b22ca2fa2052e4e965d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>we have a customized hardware based=
+ on Beaglebone Black. We created an BSP Layer with daisy and everything wor=
+ked fine.</div><div><br></div><div>Now we decided to upgrade our yocto sour=
+ces from daisy (Kernel 3.14.4) to jethro (Kernel 4.1.15).=C2=A0</div><div><=
+br></div><div>I adjusted the Kernel patches to work with new sources. The s=
+ystem boots but the network interfaces aren&#39;t available.</div><div>ip a=
+ shows only the loopback interface.</div><div><br></div><div>I see that the=
+ Kernel Image changed from uImage to zImage. Device Tree files are used as =
+an the previous build.</div><div><br></div><div>Does anybody know if I have=
+ to change the device tree files to work with the new Kernel? Any other ide=
+as how to solve this problem?</div><div><br></div><div>Best regards</div><d=
+iv>Ruben</div></div>
+
+<br>
+<p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"></p><=
+p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em;vertical-=
+align:baseline"></p><p style=3D"font-family:Arial;font-size:11px;vertical-a=
+lign:baseline">Besuchen Sie unseren Chrome Webshop unter <a href=3D"http://=
+shop.cloudwuerdig.com" target=3D"_blank">shop.cloudwuerdig.com</a></p><p st=
+yle=3D"font-family:Arial;font-size:11px;vertical-align:baseline"><span styl=
+e=3D"font-weight:bold;vertical-align:baseline"><a href=3D"http://www.sotec.=
+eu/" style=3D"text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.=
+sotec.eu</a>=C2=A0|=C2=A0<a href=3D"http://www.cloudwuerdig.com/" style=3D"=
+text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.<wbr>cloudwuer=
+dig.com</a>=C2=A0</span><br>--=C2=A0<br>SOTEC Software Entwicklungs GmbH + =
+Co Mikrocomputertechnik KG=C2=A0<br>Calwer Stra=C3=9Fe 11, D-75395 Ostelshe=
+im=C2=A0<br>Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664, G=
+esch=C3=A4ftsf=C3=BChrer: Florian Holz=C2=A0<br>Cloudw=C3=BCrdig=C2=AE ist =
+eine eingetragene Marke der SOTEC Software Entwicklungs GmbH + Co Mikrocomp=
+utertechnik KG</p><p style=3D"font-family:Arial;font-size:11px;vertical-ali=
+gn:baseline">Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den =
+bezeichneten Adressaten bestimmt. Wenn Sie nicht der vorgesehene Adressat d=
+ieser e-Mail oder dessen Vertreter sein sollten, so beachten Sie bitte, das=
+s jede Form der Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung=
+ oder Weitergabe des Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten =
+Sie, sich in diesem Fall mit dem Absender der e-Mail in Verbindung zu setze=
+n.</p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"=
+>The content of this e-mail is meant exclusively for the person to whom it =
+is addressed. If you are not the person to whom this e-mail is addressed or=
+ his/her representative, please be informed, that any form of knowledge, pu=
+blication, duplication or distribution of the content of this e-mail is ina=
+dmissible. We ask you, therefore, in such a case to please contact the send=
+er of this e-mail.</p><p style=3D"font-family:Arial,Helvetica,sans-serif;fo=
+nt-size:1.3em"></p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-=
+size:1.3em"></p>
+
+--001a11c26b22ca2fa2052e4e965d--
