@@ -1,34 +1,66 @@
-Return-Path: <Rongqing.Li@windriver.com>
+Return-Path: <k4230r6@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC683E00C62; Thu, 17 Mar 2016 23:20:56 -0700 (PDT)
+	id B497DE00C60; Fri, 18 Mar 2016 00:16:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (k4230r6[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E4F2E00C57
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 23:20:53 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u2I6KqH6016719
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 17 Mar 2016 23:20:52 -0700 (PDT)
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.248.2; Thu, 17 Mar 2016 23:20:51 -0700
-From: <rongqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 18 Mar 2016 14:16:00 +0800
-Message-ID: <1458281760-5750-1-git-send-email-rongqing.li@windriver.com>
-X-Mailer: git-send-email 1.9.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A50BE00C39
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 00:16:29 -0700 (PDT)
+Received: by mail-lb0-f170.google.com with SMTP id k12so82592807lbb.1
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 00:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-transfer-encoding;
+	bh=5/hHYIggX5KUmCLWj5XBGSC2ILZPlVEHaGGdtlHrb7g=;
+	b=EhIZbcdXbpQdV2Y6alUB/4Qef2ShIZKlkCAvDdATTS76mt9xDBCT9XcSj1ttfmxAeM
+	niIVNkkePRt/i6+f9vKZY+0AwWbgnPIzw9yGi+9p3biC7QybBFKggx1Our9jqnTBGPeE
+	TIkaIeyKejDEHd9sAGlsCO5aB++ZffR3b7N4cCtIlVNM4wZBExrsQgzJyCRLDcp3rkQe
+	leg2pP/N6A2a1k1kTNmVYWKT05u8bWSk9x8S2Efsz1y9Eh7Ow8/SQG4QMWCzpSveFSUX
+	br66fhnLyAdN0M30wY7Ew2PvfGddp2BdNseescqqnn0yWHeXEBzhKo1K+RJ7p0Kp4HS9
+	oL5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:content-transfer-encoding;
+	bh=5/hHYIggX5KUmCLWj5XBGSC2ILZPlVEHaGGdtlHrb7g=;
+	b=IwHHv9aK+rO5arHS5wk5qgnCsV3fGXrpAi2XoL8j5wQ3VGjh0TZu+HHUOPopfXhDmh
+	B4ClSZq8BtPOqnlspVfiAN+mRdsbxsDyUTYXMA6lmxpzdLp26aU1wIyQsxZre1QVX4yW
+	vVpN9F8l1D5QxrZmffBXAtxYY0xbPe/zB0qEpzW45Uzp0TvIKrs/OT2MHPl5+x7Qi5U5
+	IbNEWDblBXndhftLeLOLfoXC26zBSEXkIkzVp/D8WKnJ/blUDk0LZMwp/TNf56qoEb69
+	7K78fZgn2LelTLPbSkJlST9aybqgRd9rkhC+0vYGp+gXOyhVI31NUtDu7EhmNT9ez00Z
+	8u8w==
+X-Gm-Message-State: AD7BkJJTlZ0oremGp6/nvPvyWikOhaGA5/ac544s7bwPU6CPvd0+uIFY8EnJLHM3R7D00fjiC8+ESoY4U/zMzw==
 MIME-Version: 1.0
-Subject: [PATCH][meta-cgl] ocfs2-tools: uprev to 1.8.4
+X-Received: by 10.112.124.137 with SMTP id mi9mr5213497lbb.112.1458285387973; 
+	Fri, 18 Mar 2016 00:16:27 -0700 (PDT)
+Received: by 10.25.205.10 with HTTP; Fri, 18 Mar 2016 00:16:27 -0700 (PDT)
+In-Reply-To: <56EAD860.4000306@laposte.net>
+References: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
+	<56E913A0.2030603@laposte.net>
+	<CAALGJZYWqQGbRMp70LNVyZyWMyd7ac-L5aGrdA4VrWX=Z+BvwA@mail.gmail.com>
+	<56E9664F.8000505@laposte.net> <56EAD860.4000306@laposte.net>
+Date: Fri, 18 Mar 2016 08:16:27 +0100
+Message-ID: <CAALGJZaPgvZmpXiwADH0Lvu-KV9GD56XGMVJNWrRwke370xGjA@mail.gmail.com>
+From: Christian Ege <k4230r6@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: <DKIM> Re: Qt5.6 new modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,124 +72,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Mar 2016 06:20:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 18 Mar 2016 07:16:34 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Roy Li <rongqing.li@windriver.com>
+Hi,
 
-1. 1.8.4 asks libaio
-2. remove 0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch
-which has been merged into 1.8.4
-3. remove the host contamination by replacing the host related path
-in do_configure_prepend
-4. add bash into RDEPENDS, since /etc/init.d/ocfs2 and /etc/init.d/o2cb
-are the bash scripts
+2016-03-17 17:16 GMT+01:00 idealsim <idealsim@laposte.net>:
+> Hi, i have started a build of the image this master Branch, like you said=
+ i
+> have an error on qtserialbus :
+>
+> WARNING: Failed to fetch URL
+> git://github.com/qtproject/qtserialbus.git;name=3Dqtserialbus;branch=3D5.=
+6;protocol=3Dgit,
+> attempting MIRRORS if available
+> ERROR: Fetcher failure: Unable to find revision
+> 6a16281aceedb713676e16c3074e6f7ea1e70b79 in branch 5.6 even from upstream
+> ERROR: Function failed: Fetcher failure for URL:
+> 'git://github.com/qtproject/qtserialbus.git;name=3Dqtserialbus;branch=3D5=
+.6;protocol=3Dgit'.
+> Unable to fetch URL from any source.
+> ERROR: Logfile of failure stored in:
+> /media/modjo/data1TO/yocto/seco/udoo-community-bsp/neoBuild/tmp/work/cort=
+exa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+6=
+a16281ace-r0/temp/log.do_fetch.5862
+> ERROR: Task 894
+> (/media/modjo/data1TO/yocto/seco/udoo-community-bsp/sources/meta-qt5/reci=
+pes-qt/qt5/qtserialbus_git.bb,
+> do_fetch) failed with exit code '1'
+>
+> This is my qtserialbus_git.bb :
+>
+> require qt5.inc
+> require qt5-git.inc
+>
+> # There are no LGPLv3-only licensed files in this component.
+> # There are no GPLv2 licensed files in this component.
+> LICENSE =3D "GFDL-1.3 & BSD & (LGPL-2.1 & The-Qt-Company-Qt-LGPL-Exceptio=
+n-1.1
+> | LGPL-3.0)"
+> LIC_FILES_CHKSUM =3D " \
+>     file://LICENSE.LGPLv3;md5=3Db8c75190712063cde04e1f41b6fdad98 \
+>     file://LICENSE.GPLv3;md5=3D40f9bf30e783ddc201497165dfb32afb \
+>     file://LICENSE.FDL;md5=3D6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
+>     file://LICENSE.GPLv2;md5=3D05832301944453ec79e40ba3c3cfceec \
+> "
+>
+> DEPENDS +=3D "qtbase qtserialport"
+>
+> SRCREV =3D "6a16281aceedb713676e16c3074e6f7ea1e70b79"
+The SRCREV is the git SHA1 of the repository qtserialbus. For the 5.6
+Branch the latest one is:
 
-Signed-off-by: Roy Li <rongqing.li@windriver.com>
----
- ...cfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch | 29 ----------------------
- .../{ocfs2-tools_1.6.4.bb => ocfs2-tools_1.8.4.bb} | 28 ++++++++++++++++-----
- 2 files changed, 22 insertions(+), 35 deletions(-)
- delete mode 100644 meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch
- rename meta-cgl-common/recipes-cgl/ocfs2-tools/{ocfs2-tools_1.6.4.bb => ocfs2-tools_1.8.4.bb} (77%)
+SRCREV =3D "92c979c6652d55c30ab9118d45db74d8da96fc3b"
 
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch
-deleted file mode 100644
-index f07cdab..0000000
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--From 507f5cf55e25fd12d138cc28eb061c7e0b8615b8 Mon Sep 17 00:00:00 2001
--From: Li xin <lixin.fnst@cn.fujitsu.com>
--Date: Fri, 12 Dec 2014 16:14:10 +0900
--Subject: [PATCH 2/3] ocfs2_fs.h mount.ocfs2.c: fix compile error
--
--Upstream-Status: pending
--
--Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
-----
-- include/ocfs2-kernel/ocfs2_fs.h | 2 +-
-- mount.ocfs2/mount.ocfs2.c       | 4 +++-
-- 2 files changed, 4 insertions(+), 2 deletions(-)
--
--diff --git a/include/ocfs2-kernel/ocfs2_fs.h b/include/ocfs2-kernel/ocfs2_fs.h
--index 2140bb3..00add7b 100644
----- a/include/ocfs2-kernel/ocfs2_fs.h
--+++ b/include/ocfs2-kernel/ocfs2_fs.h
--@@ -1311,7 +1311,7 @@ static inline int ocfs2_sprintf_system_inode_name(char *buf, int len,
-- }
-- 
-- static inline void ocfs2_set_de_type(struct ocfs2_dir_entry *de,
---				    umode_t mode)
--+				     unsigned short mode)
-- {
-- 	de->file_type = ocfs2_type_by_mode[(mode & S_IFMT)>>S_SHIFT];
-- }
---- 
--1.8.4.2
--
-diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.6.4.bb b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb
-similarity index 77%
-rename from meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.6.4.bb
-rename to meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb
-index acc8379..18ef563 100644
---- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.6.4.bb
-+++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb
-@@ -12,20 +12,18 @@ SECTION = "System Environment/Base"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
--SRC_URI = " \
--    https://oss.oracle.com/projects/${BPN}/dist/files/source/v1.6/${BP}.tar.gz \
--    file://0002-ocfs2_fs.h-mount.ocfs2.c-fix-compile-error.patch \
-+SRC_URI = "git://oss.oracle.com/git/ocfs2-tools.git \
-     file://0003-vendor-common-o2cb.ocf-add-new-conf-file.patch \
-     file://cluster.conf.sample \
-     file://o2cb.service \
-     file://ocfs2.service \
- "
--SRC_URI[md5sum] = "2e94423507b63fcc08f93c094e789be8"
--SRC_URI[sha256sum] = "dda9db208312e3e5f4f55ee77e66e7b35b9cc10421bc02065a6c168e42b24755"
-+SRCREV = "0b8be47d61dbdcd08d21c83f0b3993735b884ef9"
-+S = "${WORKDIR}/git"
- 
- inherit autotools-brokensep pkgconfig systemd
- 
--DEPENDS = "corosync openais cluster-glue pacemaker libxml2 linux-libc-headers e2fsprogs"
-+DEPENDS = "corosync openais cluster-glue pacemaker libxml2 linux-libc-headers e2fsprogs libaio"
- RDEPENDS_${PN} = "bash coreutils net-tools module-init-tools e2fsprogs chkconfig glib-2.0"
- ASNEEDED_pn-${PN} = ""
- PARALLEL_MAKE = ""
-@@ -38,6 +36,22 @@ EXTRA_OECONF = " \
-     --enable-dynamic-fsck=yes \
-     --enable-dynamic-ctl=yes \
- "
-+
-+do_configure_prepend () {
-+        # fix here or EXTRA_OECONF
-+        sed -i -e '/^PYTHON_INCLUDES="-I/c\
-+PYTHON_INCLUDES="-I=/usr/include/python${PYTHON_BASEVERSION}"' \
-+                ${S}/pythondev.m4
-+        sed -i  -e 's:PYTHON_PREFIX/lib/python:PYTHON_PREFIX/${baselib}/python:' \
-+            -e 's:PYTHON_EXEC_PREFIX}/lib/python:PYTHON_EXEC_PREFIX}/${baselib}/python:' \
-+                ${S}/python.m4
-+
-+        # fix the AIS_TRY_PATH which will search corosync|openais
-+        # AIS_TRY_PATH=":/usr/lib64/:/usr/lib:/usr/local/lib64:/usr/local/lib"
-+        sed -i -e '/^AIS_TRY_PATH=":\/usr\/lib64:/s;:;:=;g' ${S}/configure.in
-+}
-+
-+
- do_compile_prepend() {
-     for m in `find . -name "Makefile"` ; do
-         sed -i -e "s@-I/usr/include@-I${STAGING_DIR_TARGET}/usr/include@g" $m
-@@ -73,3 +87,5 @@ do_install() {
-         install -m 755 vendor/common/o2cb.init ${D}/${libexecdir}/o2cb-helper
-     fi
- }
-+
-+RDEPENDS_${PN} = "bash"
--- 
-1.9.1
 
+You can check the SHA1s here:
+https://github.com/qtproject/qtserialbus/commits/5.6
+
+The MD5 Sums will be complained during configure step and bitbake wil
+tell you the right ones.
+Please check if the Licences do match
+
+Regards,
+Christian
+
+>
+> An idea is welcome !
+>
+> Regards,
+>
+> Micka=C3=ABl
+>
+>
+>
+> Le 16/03/2016 14:57, idealsim a =C3=A9crit :
+>
+> Thanks for the tip. I will try it out and let you know ...
+>
+> Regards,
+>
+> Micka=C3=ABl
+>
+> Le 16/03/2016 10:17, Christian Ege a =C3=A9crit :
+>
+> Hi,,
+>
+> 2016-03-16 9:04 GMT+01:00 idealsim <idealsim@laposte.net>:
+>
+> Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 an=
+d
+> works fine (thanks to Christian Ege ). The problem is that I'm looking fo=
+r
+> https://github.com/qtproject/qtquickcontrols2 and
+> https://github.com/qtproject/qtserialbus. My question is how we can add t=
+his
+> modules to our build ?  I add this to our local.conf :
+>
+>      "qtquickcontrols2 \
+>       qtserialbus \
+>      "
+> But this modules don't have buildable providers ! If someone can help to
+> said me how to proceed ...
+>
+> You can try to add a meta-qt5/recipes-qt/qt5/qtserialbus_git.bb and
+> take for example meta-qt5/recipes-qt/qt5/qtsensors_git.bb as reference
+>
+> require qt5.inc
+> require qt5-git.inc
+> # There are no LGPLv3-only licensed files in this component.
+> # There are no GPLv2 licensed files in this component.
+> LICENSE =3D "GFDL-1.3 & BSD & (LGPL-2.1 &
+> The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
+> LIC_FILES_CHKSUM =3D " \
+> file://LICENSE.LGPLv21;md5=3D58a180e1cf84c756c29f782b3a485c29 \
+> file://LICENSE.LGPLv3;md5=3Db8c75190712063cde04e1f41b6fdad98 \
+> file://LICENSE.GPLv3;md5=3D40f9bf30e783ddc201497165dfb32afb \
+> file://LGPL_EXCEPTION.txt;md5=3D9625233da42f9e0ce9d63651a9d97654 \
+> file://LICENSE.FDL;md5=3D6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
+> file://LICENSE.GPLv2;md5=3D05832301944453ec79e40ba3c3cfceec \
+> "
+> DEPENDS +=3D "qtbase"
+>
+> SRCREV =3D "71a323e1f12df8d213a4052621027e223eb5a343"
+>
+> The configure step will bail out due to the fact that you have wrong
+> checksums but it will show you the right ones
+>
+> Best,
+> Christian
+>
+>
+> regards,
+>
+> Mickael
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+>
+
+
+
+--=20
+http://ch.ege.io/
 
