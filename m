@@ -1,55 +1,80 @@
-Return-Path: <r.schwarz@sotec.eu>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BAF33E00C64; Fri, 18 Mar 2016 01:32:42 -0700 (PDT)
+	id 194C9E00C6F; Fri, 18 Mar 2016 02:00:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.177 listed in list.dnswl.org]
+	*      [178.22.154.200 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (idealsim[at]laposte.net)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
-	[209.85.217.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51D75E00C39
-	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 01:32:37 -0700 (PDT)
-Received: by mail-lb0-f177.google.com with SMTP id qe11so29379477lbc.3
-	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 01:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sotec-eu.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Tb8VlXoMTdyE+Xa1dJUQnw+ZP7kVtqK/oUiKMtVPefI=;
-	b=Dah5AU/pNEEMl15KKYYZASUVQAIY06xN4WcCH8EhAVIJp9PPVRUGGKXnX0b/Snybft
-	S0KIzpCpSNZ77m44pAeoGw700gTxYhSdtaP4T9BIu3Wbb9rgkOqZm+IrJkERlqASZPlh
-	sdZMblissJNTyccm7EbODdOKWtmU5aEfrujKBkmLUvH7oVsmlMPxQdK/caEL81Qkhvs8
-	Xc/NSk0h3WV3ChkHMD+YBEjuV7vS/qjQwwM3v1rnRb5ngN1EXJFMJ2GgHSFyJGSvz30a
-	k/fDET5Y3Kl3fweSyxbprJw+WXnAYPhqR4TwM2rcxHhwyqBtgHXHSSROCVL33N/rxBRd
-	NYdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Tb8VlXoMTdyE+Xa1dJUQnw+ZP7kVtqK/oUiKMtVPefI=;
-	b=O2pIH1d4+s4kzN8RX9pcgCc2DK9O2HWuRVuv8qlUCV+atQmYQSpCSDZkE3yU8P9Mlq
-	y52Ssa5WU5fVCthGcX6RNRMXwsQXpdQiL9Ua0CWiLOl6eDnoL7lvawmUJejVOyd+weox
-	U/0zY8EYrODNlW/a2e6P1JQY7jKuL7zZEUgh3h9B4RKGi9Gp9+kmMlbq3fGDDx5P7Gv/
-	jTE10tlW6vpR51gyo69C2XE5sOH5c+euKM+FFCeU571X3YQyqnaWEgyC9fOII2x0f7T4
-	EJNCoqsCO9DXddlRSdVTegRGWuuOZyNC2+9+Bn5H+9YhQdGRaT8I1LHfI0VTfmcoMJLW
-	JW/Q==
-X-Gm-Message-State: AD7BkJKac4YeOPRDw6HGLcRJCASrWBvSiO8QUgbUe+h3v9FNTSqa0kFTJSeOvlVwiGK2hxoat00g/eIngJR4/F7C98cO9kM3U//1O1YsQ5ADxEiCOQhFkssRhnLsRSuQDaaSlx6o1LxcCAyZN5k=
-X-Received: by 10.112.201.202 with SMTP id kc10mr5427313lbc.33.1458289955702; 
-	Fri, 18 Mar 2016 01:32:35 -0700 (PDT)
+Received: from smtp.laposte.net (smtpoutz300.laposte.net [178.22.154.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 880E1E00C64
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 02:00:46 -0700 (PDT)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id E25178A61F
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 10:00:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail1;
+	t=1458291644; bh=VPLIjS8zrrZi1+Ob8KFcfJHjGDJ1XE4vD48KpvOBx+U=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=qSvRF84Btnua/9yeL92cg1v/Ix+k/w7NO6Qv0ZehS7rCofxoMpNyDGFuZOrhpFej4
+	P2gZI4wHyICi3kcp0V/jD5nzRd2+xfsZ4Iv1jktQyy2FfPzYRGSp5B+V6+lk8NFaCl
+	ff++QJkrZMVFJUBc7exc5qEtQu119OaSFUBchoHusqGWsSZWU7zwDyyMtR8C3c1Dgt
+	3KjyB0aZeZpHYzmUlCzeWzhaMsYvFyf2zOX9bc9OVeuUs5KjI1r0yyc8IIjYC4MvDh
+	C8ovih1ouvIyJbV61mNTiaWMrbNwTwbOYSnteGmzlLLnztUz40cg2DrCUTUFa4az5Q
+	2lydVk7tPLHTw==
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.laposte [10.128.63.5])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id ABF148B2E3
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 10:00:44 +0100 (CET)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id 945D770E255
+	for <yocto@yoctoproject.org>; Fri, 18 Mar 2016 10:00:44 +0100 (CET)
+Received: from [192.168.1.45] (ARennes-654-1-161-212.w92-139.abo.wanadoo.fr
+	[92.139.120.212])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin004 (Postfix) with ESMTPSA id 235CF70E23F;
+	Fri, 18 Mar 2016 10:00:44 +0100 (CET)
+To: Christian Ege <k4230r6@gmail.com>,
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <op.yec9f2hdmnlnty@pc-mls.ecafaros.local>
+	<56E913A0.2030603@laposte.net>
+	<CAALGJZYWqQGbRMp70LNVyZyWMyd7ac-L5aGrdA4VrWX=Z+BvwA@mail.gmail.com>
+	<56E9664F.8000505@laposte.net> <56EAD860.4000306@laposte.net>
+	<CAALGJZaPgvZmpXiwADH0Lvu-KV9GD56XGMVJNWrRwke370xGjA@mail.gmail.com>
+From: idealsim <idealsim@laposte.net>
+Message-ID: <56EBC3BB.9030105@laposte.net>
+Date: Fri, 18 Mar 2016 10:00:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-From: Ruben Schwarz <r.schwarz@sotec.eu>
-Date: Fri, 18 Mar 2016 08:32:26 +0000
-Message-ID: <CAEMorpgmXyJpR5Fwg53D1J9JOj+Hv0mWXmGhO1kW7O1th5o78A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Upgrade from Daisy to Jethro -> Hardware Problems (Device Tree)
+In-Reply-To: <CAALGJZaPgvZmpXiwADH0Lvu-KV9GD56XGMVJNWrRwke370xGjA@mail.gmail.com>
+X-VR-SrcIP: 92.139.120.212
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekkedrtdehgddufedtucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtsegrtdgrrgdtfeejnecuhfhrohhmpehi
+X-VR-Cause-4: uggvrghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpeih
+X-VR-Cause-5: ohgtthhophhrohhjvggtthdrohhrghdpghhithhhuhgsrdgtohhmnecukfhppeelvddrudefledruddv
+X-VR-Cause-6: tddrvdduvdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedr
+X-VR-Cause-7: uddrgeehngdpihhnvghtpeelvddrudefledruddvtddrvdduvddpmhgrihhlfhhrohhmpehiuggvrghl
+X-VR-Cause-8: shhimheslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopehkgedvfedtrheisehgmhgrihhlrdgtohhm
+X-VR-AvState: No
+X-VR-State: 0
+Subject: Re: <DKIM> Re: <DKIM> Re: Qt5.6 new modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,120 +86,395 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Mar 2016 08:32:42 -0000
-Content-Type: multipart/alternative; boundary=001a11c26b22ca2fa2052e4e965d
+X-List-Received-Date: Fri, 18 Mar 2016 09:00:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------------040802080205070806000604"
 
---001a11c26b22ca2fa2052e4e965d
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--------------040802080205070806000604
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hi and thank you, now i know where to find SRCREV !
+After adjust this variable and LICENSE.FDL the source is fetched. My bb :
+/
+//require qt5.inc//
+//require qt5-git.inc//
+//
+//# There are no LGPLv3-only licensed files in this component.//
+//# There are no GPLv2 licensed files in this component.//
+//LICENSE = "GFDL-1.3 & BSD & (LGPL-2.1 & 
+The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"//
+//LIC_FILES_CHKSUM = " \//
+//file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98 \//
+//file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb \//
+//    file://LICENSE.FDL;md5=f70ee9a6c44ae8917586fea34dff0ab5 \//
+//file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec \//
+//"//
+//
+//DEPENDS += "qtbase qtserialport"//
+//
+//SRCREV = "92c979c6652d55c30ab9118d45db74d8da96fc3b"/
 
-we have a customized hardware based on Beaglebone Black. We created an BSP
-Layer with daisy and everything worked fine.
+When i launch bitbake qtserialbus, the process build without error, but 
+it seems there is something missing because the compile step is very 
+fast and my 
+neoBuild/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+92c979c665-r0/package/ 
+folder is empty ! If i take the qtsensors folder, there are this folder 
+(in package) :
+usr/
+     include/
+     lib/
+     src/
 
-Now we decided to upgrade our yocto sources from daisy (Kernel 3.14.4) to
-jethro (Kernel 4.1.15).
+I'm looking to meta-qt5 BSP to find where i can precise to build my new 
+recipe but didn't find anything can help. Do you know how to proceed ?
 
-I adjusted the Kernel patches to work with new sources. The system boots
-but the network interfaces aren't available.
-ip a shows only the loopback interface.
+regards,
 
-I see that the Kernel Image changed from uImage to zImage. Device Tree
-files are used as an the previous build.
+Le 18/03/2016 08:16, Christian Ege a écrit :
+> Hi,
+>
+> 2016-03-17 17:16 GMT+01:00 idealsim <idealsim@laposte.net>:
+>> Hi, i have started a build of the image this master Branch, like you said i
+>> have an error on qtserialbus :
+>>
+>> WARNING: Failed to fetch URL
+>> git://github.com/qtproject/qtserialbus.git;name=qtserialbus;branch=5.6;protocol=git,
+>> attempting MIRRORS if available
+>> ERROR: Fetcher failure: Unable to find revision
+>> 6a16281aceedb713676e16c3074e6f7ea1e70b79 in branch 5.6 even from upstream
+>> ERROR: Function failed: Fetcher failure for URL:
+>> 'git://github.com/qtproject/qtserialbus.git;name=qtserialbus;branch=5.6;protocol=git'.
+>> Unable to fetch URL from any source.
+>> ERROR: Logfile of failure stored in:
+>> /media/modjo/data1TO/yocto/seco/udoo-community-bsp/neoBuild/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+6a16281ace-r0/temp/log.do_fetch.5862
+>> ERROR: Task 894
+>> (/media/modjo/data1TO/yocto/seco/udoo-community-bsp/sources/meta-qt5/recipes-qt/qt5/qtserialbus_git.bb,
+>> do_fetch) failed with exit code '1'
+>>
+>> This is my qtserialbus_git.bb :
+>>
+>> require qt5.inc
+>> require qt5-git.inc
+>>
+>> # There are no LGPLv3-only licensed files in this component.
+>> # There are no GPLv2 licensed files in this component.
+>> LICENSE = "GFDL-1.3 & BSD & (LGPL-2.1 & The-Qt-Company-Qt-LGPL-Exception-1.1
+>> | LGPL-3.0)"
+>> LIC_FILES_CHKSUM = " \
+>>      file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98 \
+>>      file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb \
+>>      file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
+>>      file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec \
+>> "
+>>
+>> DEPENDS += "qtbase qtserialport"
+>>
+>> SRCREV = "6a16281aceedb713676e16c3074e6f7ea1e70b79"
+> The SRCREV is the git SHA1 of the repository qtserialbus. For the 5.6
+> Branch the latest one is:
+>
+> SRCREV = "92c979c6652d55c30ab9118d45db74d8da96fc3b"
+>
+>
+> You can check the SHA1s here:
+> https://github.com/qtproject/qtserialbus/commits/5.6
+>
+> The MD5 Sums will be complained during configure step and bitbake wil
+> tell you the right ones.
+> Please check if the Licences do match
+>
+> Regards,
+> Christian
+>
+>> An idea is welcome !
+>>
+>> Regards,
+>>
+>> Mickaël
+>>
+>>
+>>
+>> Le 16/03/2016 14:57, idealsim a écrit :
+>>
+>> Thanks for the tip. I will try it out and let you know ...
+>>
+>> Regards,
+>>
+>> Mickaël
+>>
+>> Le 16/03/2016 10:17, Christian Ege a écrit :
+>>
+>> Hi,,
+>>
+>> 2016-03-16 9:04 GMT+01:00 idealsim <idealsim@laposte.net>:
+>>
+>> Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 and
+>> works fine (thanks to Christian Ege ). The problem is that I'm looking for
+>> https://github.com/qtproject/qtquickcontrols2 and
+>> https://github.com/qtproject/qtserialbus. My question is how we can add this
+>> modules to our build ?  I add this to our local.conf :
+>>
+>>       "qtquickcontrols2 \
+>>        qtserialbus \
+>>       "
+>> But this modules don't have buildable providers ! If someone can help to
+>> said me how to proceed ...
+>>
+>> You can try to add a meta-qt5/recipes-qt/qt5/qtserialbus_git.bb and
+>> take for example meta-qt5/recipes-qt/qt5/qtsensors_git.bb as reference
+>>
+>> require qt5.inc
+>> require qt5-git.inc
+>> # There are no LGPLv3-only licensed files in this component.
+>> # There are no GPLv2 licensed files in this component.
+>> LICENSE = "GFDL-1.3 & BSD & (LGPL-2.1 &
+>> The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
+>> LIC_FILES_CHKSUM = " \
+>> file://LICENSE.LGPLv21;md5=58a180e1cf84c756c29f782b3a485c29 \
+>> file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98 \
+>> file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb \
+>> file://LGPL_EXCEPTION.txt;md5=9625233da42f9e0ce9d63651a9d97654 \
+>> file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
+>> file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec \
+>> "
+>> DEPENDS += "qtbase"
+>>
+>> SRCREV = "71a323e1f12df8d213a4052621027e223eb5a343"
+>>
+>> The configure step will bail out due to the fact that you have wrong
+>> checksums but it will show you the right ones
+>>
+>> Best,
+>> Christian
+>>
+>>
+>> regards,
+>>
+>> Mickael
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>>
+>>
+>
+>
 
-Does anybody know if I have to change the device tree files to work with
-the new Kernel? Any other ideas how to solve this problem?
 
-Best regards
-Ruben
+--------------040802080205070806000604
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---=20
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hi and thank you, now i know where to find SRCREV !<br>
+    After adjust this variable and LICENSE.FDL the source is fetched. My
+    bb :<br>
+    <small><i><br>
+      </i><i>require qt5.inc</i><i><br>
+      </i><i>require qt5-git.inc</i><i><br>
+      </i><i><br>
+      </i><i># There are no LGPLv3-only licensed files in this
+        component.</i><i><br>
+      </i><i># There are no GPLv2 licensed files in this component.</i><i><br>
+      </i><i>LICENSE = "GFDL-1.3 &amp; BSD &amp; (LGPL-2.1 &amp;
+        The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"</i><i><br>
+      </i><i>LIC_FILES_CHKSUM = " \</i><i><br>
+      </i><i>   
+        <a class="moz-txt-link-freetext" href="file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98">file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98</a> \</i><i><br>
+      </i><i>   
+        <a class="moz-txt-link-freetext" href="file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb">file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb</a> \</i><i><br>
+      </i><i>    <a class="moz-txt-link-freetext" href="file://LICENSE.FDL;md5=f70ee9a6c44ae8917586fea34dff0ab5">file://LICENSE.FDL;md5=f70ee9a6c44ae8917586fea34dff0ab5</a>
+        \</i><i><br>
+      </i><i>   
+        <a class="moz-txt-link-freetext" href="file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec">file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec</a> \</i><i><br>
+      </i><i>"</i><i><br>
+      </i><i><br>
+      </i><i>DEPENDS += "qtbase qtserialport"</i><i><br>
+      </i><i><br>
+      </i><i>SRCREV = "92c979c6652d55c30ab9118d45db74d8da96fc3b"</i></small><br>
+    <br>
+    When i launch bitbake qtserialbus, the process build without error,
+    but it seems there is something missing because the compile step is
+    very fast and my
+    neoBuild/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+92c979c665-r0/package/
+    folder is empty ! If i take the qtsensors folder, there are this
+    folder (in package) :<br>
+    usr/<br>
+        include/<br>
+        lib/<br>
+        src/<br>
+    <br>
+    I'm looking to meta-qt5 BSP to find where i can precise to build my
+    new recipe but didn't find anything can help. Do you know how to
+    proceed ?<br>
+    <br>
+    regards,<br>
+    <br>
+    <div class="moz-cite-prefix">Le 18/03/2016 08:16, Christian Ege a
+      écrit :<br>
+    </div>
+    <blockquote
+cite="mid:CAALGJZaPgvZmpXiwADH0Lvu-KV9GD56XGMVJNWrRwke370xGjA@mail.gmail.com"
+      type="cite">
+      <pre wrap="">Hi,
+
+2016-03-17 17:16 GMT+01:00 idealsim <a class="moz-txt-link-rfc2396E" href="mailto:idealsim@laposte.net">&lt;idealsim@laposte.net&gt;</a>:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">Hi, i have started a build of the image this master Branch, like you said i
+have an error on qtserialbus :
+
+WARNING: Failed to fetch URL
+git://github.com/qtproject/qtserialbus.git;name=qtserialbus;branch=5.6;protocol=git,
+attempting MIRRORS if available
+ERROR: Fetcher failure: Unable to find revision
+6a16281aceedb713676e16c3074e6f7ea1e70b79 in branch 5.6 even from upstream
+ERROR: Function failed: Fetcher failure for URL:
+'git://github.com/qtproject/qtserialbus.git;name=qtserialbus;branch=5.6;protocol=git'.
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in:
+/media/modjo/data1TO/yocto/seco/udoo-community-bsp/neoBuild/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/qtserialbus/5.5.99+5.6.0-rc+gitAUTOINC+6a16281ace-r0/temp/log.do_fetch.5862
+ERROR: Task 894
+(/media/modjo/data1TO/yocto/seco/udoo-community-bsp/sources/meta-qt5/recipes-qt/qt5/qtserialbus_git.bb,
+do_fetch) failed with exit code '1'
+
+This is my qtserialbus_git.bb :
+
+require qt5.inc
+require qt5-git.inc
+
+# There are no LGPLv3-only licensed files in this component.
+# There are no GPLv2 licensed files in this component.
+LICENSE = "GFDL-1.3 &amp; BSD &amp; (LGPL-2.1 &amp; The-Qt-Company-Qt-LGPL-Exception-1.1
+| LGPL-3.0)"
+LIC_FILES_CHKSUM = " \
+    <a class="moz-txt-link-freetext" href="file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98">file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98</a> \
+    <a class="moz-txt-link-freetext" href="file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb">file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb</a> \
+    <a class="moz-txt-link-freetext" href="file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e">file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e</a> \
+    <a class="moz-txt-link-freetext" href="file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec">file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec</a> \
+"
+
+DEPENDS += "qtbase qtserialport"
+
+SRCREV = "6a16281aceedb713676e16c3074e6f7ea1e70b79"
+</pre>
+      </blockquote>
+      <pre wrap="">The SRCREV is the git SHA1 of the repository qtserialbus. For the 5.6
+Branch the latest one is:
+
+SRCREV = "92c979c6652d55c30ab9118d45db74d8da96fc3b"
 
 
-Besuchen Sie unseren Chrome Webshop unter shop.cloudwuerdig.com
+You can check the SHA1s here:
+<a class="moz-txt-link-freetext" href="https://github.com/qtproject/qtserialbus/commits/5.6">https://github.com/qtproject/qtserialbus/commits/5.6</a>
 
-www.sotec.eu | www.cloudwuerdig.com=20
---=20
-SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=20
-Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=20
-Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664,=20
-Gesch=C3=A4ftsf=C3=BChrer: Florian Holz=20
-Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der SOTEC Software Entwi=
-cklungs=20
-GmbH + Co Mikrocomputertechnik KG
+The MD5 Sums will be complained during configure step and bitbake wil
+tell you the right ones.
+Please check if the Licences do match
 
-Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten =
-Adressaten=20
-bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen=
-=20
-Vertreter sein sollten, so beachten Sie bitte, dass jede Form der=20
-Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe=
- des=20
-Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem F=
-all=20
-mit dem Absender der e-Mail in Verbindung zu setzen.
+Regards,
+Christian
 
-The content of this e-mail is meant exclusively for the person to whom it=
-=20
-is addressed. If you are not the person to whom this e-mail is addressed or=
-=20
-his/her representative, please be informed, that any form of knowledge,=20
-publication, duplication or distribution of the content of this e-mail is=
-=20
-inadmissible. We ask you, therefore, in such a case to please contact the=
-=20
-sender of this e-mail.
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">
+An idea is welcome !
+
+Regards,
+
+Mickaël
 
 
---001a11c26b22ca2fa2052e4e965d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>we have a customized hardware based=
- on Beaglebone Black. We created an BSP Layer with daisy and everything wor=
-ked fine.</div><div><br></div><div>Now we decided to upgrade our yocto sour=
-ces from daisy (Kernel 3.14.4) to jethro (Kernel 4.1.15).=C2=A0</div><div><=
-br></div><div>I adjusted the Kernel patches to work with new sources. The s=
-ystem boots but the network interfaces aren&#39;t available.</div><div>ip a=
- shows only the loopback interface.</div><div><br></div><div>I see that the=
- Kernel Image changed from uImage to zImage. Device Tree files are used as =
-an the previous build.</div><div><br></div><div>Does anybody know if I have=
- to change the device tree files to work with the new Kernel? Any other ide=
-as how to solve this problem?</div><div><br></div><div>Best regards</div><d=
-iv>Ruben</div></div>
+Le 16/03/2016 14:57, idealsim a écrit :
 
-<br>
-<p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"></p><=
-p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em;vertical-=
-align:baseline"></p><p style=3D"font-family:Arial;font-size:11px;vertical-a=
-lign:baseline">Besuchen Sie unseren Chrome Webshop unter <a href=3D"http://=
-shop.cloudwuerdig.com" target=3D"_blank">shop.cloudwuerdig.com</a></p><p st=
-yle=3D"font-family:Arial;font-size:11px;vertical-align:baseline"><span styl=
-e=3D"font-weight:bold;vertical-align:baseline"><a href=3D"http://www.sotec.=
-eu/" style=3D"text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.=
-sotec.eu</a>=C2=A0|=C2=A0<a href=3D"http://www.cloudwuerdig.com/" style=3D"=
-text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.<wbr>cloudwuer=
-dig.com</a>=C2=A0</span><br>--=C2=A0<br>SOTEC Software Entwicklungs GmbH + =
-Co Mikrocomputertechnik KG=C2=A0<br>Calwer Stra=C3=9Fe 11, D-75395 Ostelshe=
-im=C2=A0<br>Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664, G=
-esch=C3=A4ftsf=C3=BChrer: Florian Holz=C2=A0<br>Cloudw=C3=BCrdig=C2=AE ist =
-eine eingetragene Marke der SOTEC Software Entwicklungs GmbH + Co Mikrocomp=
-utertechnik KG</p><p style=3D"font-family:Arial;font-size:11px;vertical-ali=
-gn:baseline">Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den =
-bezeichneten Adressaten bestimmt. Wenn Sie nicht der vorgesehene Adressat d=
-ieser e-Mail oder dessen Vertreter sein sollten, so beachten Sie bitte, das=
-s jede Form der Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung=
- oder Weitergabe des Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten =
-Sie, sich in diesem Fall mit dem Absender der e-Mail in Verbindung zu setze=
-n.</p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"=
->The content of this e-mail is meant exclusively for the person to whom it =
-is addressed. If you are not the person to whom this e-mail is addressed or=
- his/her representative, please be informed, that any form of knowledge, pu=
-blication, duplication or distribution of the content of this e-mail is ina=
-dmissible. We ask you, therefore, in such a case to please contact the send=
-er of this e-mail.</p><p style=3D"font-family:Arial,Helvetica,sans-serif;fo=
-nt-size:1.3em"></p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-=
-size:1.3em"></p>
+Thanks for the tip. I will try it out and let you know ...
 
---001a11c26b22ca2fa2052e4e965d--
+Regards,
+
+Mickaël
+
+Le 16/03/2016 10:17, Christian Ege a écrit :
+
+Hi,,
+
+2016-03-16 9:04 GMT+01:00 idealsim <a class="moz-txt-link-rfc2396E" href="mailto:idealsim@laposte.net">&lt;idealsim@laposte.net&gt;</a>:
+
+Hi, we have build an image for udoo neo from meta-qt5 jansa/master-5.6 and
+works fine (thanks to Christian Ege ). The problem is that I'm looking for
+<a class="moz-txt-link-freetext" href="https://github.com/qtproject/qtquickcontrols2">https://github.com/qtproject/qtquickcontrols2</a> and
+<a class="moz-txt-link-freetext" href="https://github.com/qtproject/qtserialbus">https://github.com/qtproject/qtserialbus</a>. My question is how we can add this
+modules to our build ?  I add this to our local.conf :
+
+     "qtquickcontrols2 \
+      qtserialbus \
+     "
+But this modules don't have buildable providers ! If someone can help to
+said me how to proceed ...
+
+You can try to add a meta-qt5/recipes-qt/qt5/qtserialbus_git.bb and
+take for example meta-qt5/recipes-qt/qt5/qtsensors_git.bb as reference
+
+require qt5.inc
+require qt5-git.inc
+# There are no LGPLv3-only licensed files in this component.
+# There are no GPLv2 licensed files in this component.
+LICENSE = "GFDL-1.3 &amp; BSD &amp; (LGPL-2.1 &amp;
+The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0)"
+LIC_FILES_CHKSUM = " \
+<a class="moz-txt-link-freetext" href="file://LICENSE.LGPLv21;md5=58a180e1cf84c756c29f782b3a485c29">file://LICENSE.LGPLv21;md5=58a180e1cf84c756c29f782b3a485c29</a> \
+<a class="moz-txt-link-freetext" href="file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98">file://LICENSE.LGPLv3;md5=b8c75190712063cde04e1f41b6fdad98</a> \
+<a class="moz-txt-link-freetext" href="file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb">file://LICENSE.GPLv3;md5=40f9bf30e783ddc201497165dfb32afb</a> \
+<a class="moz-txt-link-freetext" href="file://LGPL_EXCEPTION.txt;md5=9625233da42f9e0ce9d63651a9d97654">file://LGPL_EXCEPTION.txt;md5=9625233da42f9e0ce9d63651a9d97654</a> \
+<a class="moz-txt-link-freetext" href="file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e">file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e</a> \
+<a class="moz-txt-link-freetext" href="file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec">file://LICENSE.GPLv2;md5=05832301944453ec79e40ba3c3cfceec</a> \
+"
+DEPENDS += "qtbase"
+
+SRCREV = "71a323e1f12df8d213a4052621027e223eb5a343"
+
+The configure step will bail out due to the fact that you have wrong
+checksums but it will show you the right ones
+
+Best,
+Christian
+
+
+regards,
+
+Mickael
+
+
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+
+
+
+
+
+</pre>
+      </blockquote>
+      <pre wrap="">
+
+
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------040802080205070806000604--
