@@ -1,63 +1,32 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC78FE00CB8; Sun, 20 Mar 2016 03:00:33 -0700 (PDT)
+	id 31C58E00CB4; Sun, 20 Mar 2016 04:24:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA350E00CAF
-	for <yocto@yoctoproject.org>; Sun, 20 Mar 2016 03:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:
-	Subject; bh=g71sKNur6/NCuC6D+ATr+CJYQ4Pjr2LRyTZ17k7LlSQ=;
-	b=OMUxQ6TTDO/z+cqH+
-	2G0PRXtofuatXpE0gX2p5/NFf8X+dHU+koTHVgzRdPRfWzpSkAS9jDILzZ8jE17viyG7IJPt11Ut1
-	yPdURgd0XsK/HHhzDwaot1fdsxIBGyu12tN/8sLy4JFmakew66H1ZWyxkBwAB1VY2QIauKgn+9Kuw
-	=;
-Received: from durham.keylevel.com ([88.97.63.243]:3209
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
-	(Exim 4.86_1) (envelope-from <opensource@keylevel.com>)
-	id 1aha9r-000Gjd-2b; Sun, 20 Mar 2016 10:00:27 +0000
-Mime-Version: 1.0 (Mac OS X Mail 9.2 \(3112\))
-From: Chris Tapp <opensource@keylevel.com>
-X-Priority: 3 (Normal)
-In-Reply-To: <51323.10.252.7.138.1458327545.squirrel@linux.intel.com>
-Date: Sun, 20 Mar 2016 10:00:29 +0000
-Message-Id: <2068123A-5E62-416A-969A-7915F8BBE6A4@keylevel.com>
-References: <AC14D1AE-9912-433D-BD90-A8519C28BA10@keylevel.com>
-	<CAJ86T=VyELsdt2XJ+SV9ZX8fst91ZLBEyU6ucPRXiEWDU9P7Fg@mail.gmail.com>
-	<51323.10.252.7.138.1458327545.squirrel@linux.intel.com>
-To: alexander.kanavin@linux.intel.com
-X-Mailer: Apple Mail (2.3112)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Possible introspection failure in master
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 827E2E00C73
+	for <yocto@yoctoproject.org>; Sun, 20 Mar 2016 04:24:45 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga101.jf.intel.com with ESMTP; 20 Mar 2016 04:24:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,365,1455004800"; d="scan'208";a="69863281"
+Received: from lauridse-mobl2.ger.corp.intel.com (HELO
+	heimdall.ger.corp.intel.com) ([10.252.7.136])
+	by fmsmga004.fm.intel.com with ESMTP; 20 Mar 2016 04:24:43 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Sun, 20 Mar 2016 13:24:37 +0200
+Message-Id: <1458473077-22833-1-git-send-email-jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.7.0
+Subject: [matchbox-panel-2][PATCH] showdesktop: Make sure active state is initialized
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,43 +38,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Mar 2016 10:00:33 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 20 Mar 2016 11:24:46 -0000
 
+There are cases (in qemu at least) where set_active()
+is never called on startup. Make sure we initialize the active
+state so the icon gets loaded and the applet is not confused
+about the current state.
 
-> On 18 Mar 2016, at 18:59, alexander.kanavin@linux.intel.com wrote:
->=20
->> The gstreamer _git recipes have not been updated to include the
->> gobject introspection patches which were applied to the 1.6.3 =
-recipes.
->=20
-> Yeah, I forgot about the git recipes, as they're totally hidden from
-> default builds. I'll get them fixed.
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+---
+ applets/showdesktop/showdesktop.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Thanks - I=E2=80=99ll try and keep an eye open so I can have a look once =
-the changes are available.
-
->=20
->> Try disabling gobject introspection via DISTRO or MACHINE features, =
-ie:
->>=20
->>  MACHINE_FEATURES_BACKFILL_CONSIDERED_append =3D "
->> gobject-introspection-data"
->=20
-> That is not going to help, I'm afraid. The recipes need further custom
-> fixing even when introspection is disabled.
->=20
-> Alex
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
+diff --git a/applets/showdesktop/showdesktop.c b/applets/showdesktop/showdesktop.c
+index 61dd5c2..33c13e1 100644
+--- a/applets/showdesktop/showdesktop.c
++++ b/applets/showdesktop/showdesktop.c
+@@ -181,6 +181,12 @@ button_clicked_cb (GtkButton         *button,
+ 	            &xev);
+ }
+ 
++static void
++realize_cb (GtkWidget *button, ShowDesktopApplet *applet)
++{
++        sync_applet (applet);
++}
++
+ G_MODULE_EXPORT GtkWidget *
+ mb_panel_applet_create (const char    *id,
+                         GtkOrientation orientation)
+@@ -216,6 +222,10 @@ mb_panel_applet_create (const char    *id,
+                           "clicked",
+                           G_CALLBACK (button_clicked_cb),
+                           applet);
++        g_signal_connect (button,
++                          "realize",
++                          G_CALLBACK (realize_cb),
++                          applet);
+ 
+         g_object_weak_ref (G_OBJECT (button),
+                            (GWeakNotify) show_desktop_applet_free,
+-- 
+2.7.0
 
 
