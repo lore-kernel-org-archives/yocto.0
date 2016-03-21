@@ -1,31 +1,44 @@
-Return-Path: <william.c.randle@intel.com>
+Return-Path: <charles.chau@habeyusa.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39ABDE00BB9; Mon, 21 Mar 2016 13:42:57 -0700 (PDT)
+	id 7C228E00CC0; Mon, 21 Mar 2016 17:31:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 108ACE00973
-	for <yocto@yoctoproject.org>; Mon, 21 Mar 2016 13:42:53 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 21 Mar 2016 13:42:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,373,1455004800"; d="scan'208";a="928855578"
-Received: from wcrandle-mobl1.jf.intel.com ([10.24.6.123])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Mar 2016 13:42:51 -0700
-From: Bill Randle <william.c.randle@intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 3187 seconds by postgrey-1.32 at yocto-www;
+	Mon, 21 Mar 2016 17:31:14 PDT
+Received: from server.habeyonline.com (server.habeyonline.com [142.4.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51B8EE00C90
+	for <yocto@yoctoproject.org>; Mon, 21 Mar 2016 17:31:14 -0700 (PDT)
+Received: from [96.31.254.242] (port=42433 helo=[192.168.0.227])
+	by server.habeyonline.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
+	(envelope-from <charles.chau@habeyusa.com>) id 1ai9Oe-0004Rw-DX
+	for yocto@yoctoproject.org; Mon, 21 Mar 2016 23:38:04 +0000
 To: yocto@yoctoproject.org
-Date: Mon, 21 Mar 2016 13:42:37 -0700
-Message-Id: <1458592957-26199-1-git-send-email-william.c.randle@intel.com>
-X-Mailer: git-send-email 2.5.0
-Subject: [PATCH] add !meta-poky to .gitignore file
+From: Charles Chau <charles.chau@habeyusa.com>
+Message-ID: <56F085DC.7040206@habeyusa.com>
+Date: Mon, 21 Mar 2016 16:38:04 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.habeyonline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - habeyusa.com
+X-Get-Message-Sender-Via: server.habeyonline.com: authenticated_id:
+	charles.chau@habeyusa.com
+X-Authenticated-Sender: server.habeyonline.com: charles.chau@habeyusa.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Qt WebEngine Recipe do_install_append()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,29 +50,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Mar 2016 20:42:57 -0000
+X-List-Received-Date: Tue, 22 Mar 2016 00:31:18 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010909050107060505090908"
 
-Another meta-yocto -> meta-poky transition item. Git complained
-on commit that files in meta-poky could not be committed.
+--------------010909050107060505090908
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Bill Randle <william.c.randle@intel.com>
----
- .gitignore | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Hello,
 
-diff --git a/.gitignore b/.gitignore
-index 036ad09..196952e 100644
---- a/.gitignore
-+++ b/.gitignore
-@@ -14,6 +14,7 @@ hob-image-*.bb
- *.orig
- *.rej
- *~
-+!meta-poky
- !meta-yocto
- !meta-yocto-bsp
- !meta-yocto-imported
+I found these lines in the Qt WebEngine 5.5 and 5.6 Recipe
+
+/do_install_append() {//
+//        rmdir ${D}${OE_QMAKE_PATH_PLUGINS}/${BPN} 
+${D}${OE_QMAKE_PATH_PLUGINS} || true//
+//        sed -i 's@ -Wl,--start-group.*-Wl,--end-group@@g; s@-L${B}[^ 
+]* @ @g' ${D}${libdir}/pkgconfig/Qt5WebEngineCore.pc//
+//    }//
+/
+Version 5.5 compile without problem.  However, to make Qt Web Engine 
+compile for 5.6, I needed to delete these lines.  But, 
+qtwebengine-qmlplugins, qtwebengine-plugins, and qtwebengine-examples 
+are all gone from the build (from 5.6). These lines return error in 
+which the system cannot access those directories.
+
+Could someone explain what do they mean? especially the `sed` one. What 
+happened to the Qtwebengine plugins, qmlplugins and examples in Qt 
+WebEngine 5.6?
+
+Thank you,
+
 -- 
-2.5.0
+Charles Chau
 
 
+--------------010909050107060505090908
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello,<br>
+    <br>
+    I found these lines in the Qt WebEngine 5.5 and 5.6 Recipe<br>
+    <br>
+       <i> do_install_append() {</i><i><br>
+    </i><i>        rmdir ${D}${OE_QMAKE_PATH_PLUGINS}/${BPN}
+      ${D}${OE_QMAKE_PATH_PLUGINS} || true</i><i><br>
+    </i><i>        sed -i 's@ -Wl,--start-group.*-Wl,--end-group@@g;
+      s@-L${B}[^ ]* @ @g' ${D}${libdir}/pkgconfig/Qt5WebEngineCore.pc</i><i><br>
+    </i><i>    }</i><i><br>
+    </i><br>
+    Version 5.5 compile without problem.  However, to make Qt Web Engine
+    compile for 5.6, I needed to delete these lines.  But,
+    qtwebengine-qmlplugins, qtwebengine-plugins, and
+    qtwebengine-examples are all gone from the build (from 5.6). These
+    lines return error in which the system cannot access those
+    directories.<br>
+    <br>
+    Could someone explain what do they mean? especially the `sed` one. 
+    What happened to the Qtwebengine plugins, qmlplugins and examples in
+    Qt WebEngine 5.6?<br>
+    <br>
+    Thank you,<br>
+    <pre class="moz-signature" cols="72">-- 
+Charles Chau
+</pre>
+  </body>
+</html>
+
+--------------010909050107060505090908--
