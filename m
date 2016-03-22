@@ -1,64 +1,60 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0AB41E004A0; Tue, 22 Mar 2016 03:57:30 -0700 (PDT)
+	id DC052E006AD; Tue, 22 Mar 2016 05:14:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.48 listed in list.dnswl.org]
-Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC717E00443
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 03:57:26 -0700 (PDT)
-Received: by mail-vk0-f48.google.com with SMTP id e185so248506850vkb.1
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 03:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=/xMMG1BhUBUlRPldTs5IcCeSHPUCSHgkz+dswaeyqJU=;
-	b=EASfmnorY8S6C7a1EFnrWC04ZQecwJLKgnBM/P6t2prxr3GtQaRlG5TvL5RIXea+Id
-	N20H3EhVkFFAnOg02kph80Z/Yp+IENV1tNtVLOoR7PtF2jtWfBeff1wuXIwvRd9JhXuO
-	BJVAhDowmXnhLNYei9nycck4cOxXLDBa+JAMmCZqmi47r0pvE9C2m1KRcozXxcVpiLs5
-	Wi9jg89RQ1gdI63q/9101ftgwubrMKkYZBfMix6xn6PQuegE5TXMk0TM7r8fRoCbd01l
-	WVQEronEYnxcFvYEz4GDZRH/syG2xYn+qX39pMaAYUfs+6Vjo8DaS+A6jDrEDhbiUQmx
-	ujjw==
+	*      [209.85.214.170 listed in list.dnswl.org]
+Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
+	[209.85.214.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82D5EE0048B
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 05:14:09 -0700 (PDT)
+Received: by mail-ob0-f170.google.com with SMTP id m7so198644223obh.3
+	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 05:14:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=eISLLAbrXY487rsbYXO1Kn9a8bOYdMU6cpZCzrPb43c=;
+	b=H0btQrryiUgcBNJQ416AtPLpYRgw8y4pnn2qi/J3iU5ACVm4Xcv00acfbl6eDB7RNE
+	PAHFrdoDpgC2n40rdx9YDdvIW9GebbN5RhXf4C4GvqJrnBzbcqYUEQgqlFUGWVR088W3
+	X2GWVI4z99okRHpsKR2/Sz8RJaY9hCfOa6FdJN4jYG9R2TB2fUHZATCuMdBZcj+tBd7e
+	yE4URBiurxsigyjrlWnRaSu8LjRR3MNZtY0/6HUdvkXFvgwTwiC3LjrzZ9UIdkKHDxl2
+	OVaHnbGdoybDpT4wXWN3QTLH84tKCIF0H2+m60Vnmzj5X/ws6YPA62D13ADw/wdYCyNP
+	NVXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=/xMMG1BhUBUlRPldTs5IcCeSHPUCSHgkz+dswaeyqJU=;
-	b=ZElv2ByxWNHK6y80zJwF9hcicqiZ1ex44Imda5dI8H2dEXVA9sB64L8AAngQqD4HHp
-	jmD61jzpbWJlH1EQB0l4Aihv35uqQnEPnyDDd3fx9IfcJ6TzyLOSwXh2awV4ivBqzgNY
-	wN7SaFO93CO2pb4BHWnILB8FBNymx37UL1ziFuUPc90YfdFjppxPoPq+cwncr3GmYHY4
-	38hpMPYSS184StSw7oGtxM4hnABmEZVvU57MwuQaGaYV/XH92IdL0mB86tLVQbY8XOdz
-	EKGunrJfbkFptasrdo0d0sn1WHPKXCdQmo6MKLt3e5jEkdKbWDsOJWfbcGjH08/m9MDB
-	k4zg==
-X-Gm-Message-State: AD7BkJKMfTcsjre1ftfbynt3VXL3zRKxN65SDoXwHcXl9VCNQuDM1Gu+jrrZWD5+j2jmmPXm/b7ymUlTsnjwuw==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=eISLLAbrXY487rsbYXO1Kn9a8bOYdMU6cpZCzrPb43c=;
+	b=TTryV2FIklnRzvvgyqBsKoS0hfUzIvJzT0n3GXmOItSeUp4prIujEPKIlfRvLY7kXq
+	u4wDujgquCaihi73j/LRKMKP5jAOTNQjDWpEIGeXAQaZlPo1De/CcvdKFQb9iOqoYj3g
+	K8HFaiD/mg1APLzbSZsUxv05LmReSCmWc/MdUUMMeQr5j1jBDhw5Ysbw+i2PEAsfueAD
+	KmNwBTZXaEuHu9sX5lqYF+0r5unN+xjia1V4LiKNDwB5Uo6h+XDQHz5nd6Idl/ZIFxv2
+	IWWdxjLWWTyU88qJVvxnZ9/8i5tkKZCjLRp4DbfGluRhInT8C1cRYGnrbAvPHGBzVVun
+	bV5w==
+X-Gm-Message-State: AD7BkJJgdf+N01cRQkuZDozp9P6jRJOOHHFPzg8bUavN6V4cNls/29qvF/7hucDtEu4w3dHJGzEE+DvXQE+m+wLj
+X-Received: by 10.182.242.4 with SMTP id wm4mr20398861obc.85.1458648848963;
+	Tue, 22 Mar 2016 05:14:08 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.31.21.4 with SMTP id 4mr35677190vkv.151.1458644245766; Tue,
-	22 Mar 2016 03:57:25 -0700 (PDT)
-Received: by 10.159.38.228 with HTTP; Tue, 22 Mar 2016 03:57:25 -0700 (PDT)
-In-Reply-To: <CABcZANmWgA=zQ0+DnLvCk5JbPwvWYk0chc7hBAATB-7AaVrQfw@mail.gmail.com>
-References: <CAF3SDA7Z35icGYqTb16buTUw7EsoNj5+KUaq6nDZbReqbgqQvw@mail.gmail.com>
-	<CABcZANmWgA=zQ0+DnLvCk5JbPwvWYk0chc7hBAATB-7AaVrQfw@mail.gmail.com>
-Date: Tue, 22 Mar 2016 07:57:25 -0300
-Message-ID: <CAF3SDA6CsWgBogdp8HfwNUm8rRXKfm4y5AgeeM1sY4MSs4AD4w@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Christopher Larson <clarson@kergoth.com>
+Received: by 10.202.90.134 with HTTP; Tue, 22 Mar 2016 05:13:49 -0700 (PDT)
+In-Reply-To: <1458643295-23529-1-git-send-email-jussi.kukkonen@intel.com>
+References: <1458643295-23529-1-git-send-email-jussi.kukkonen@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 22 Mar 2016 12:13:49 +0000
+Message-ID: <CAJTo0LaU3nPrOW5=gGGVXHzt4JQdo-HSV22ufYUc=hcXt25CLw@mail.gmail.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Two or more _append()'s on same task
+Subject: Re: [matchbox-desktop-2][PATCH] Do nothing on delete-event when not STANDALONE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,42 +66,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Mar 2016 10:57:30 -0000
+X-List-Received-Date: Tue, 22 Mar 2016 12:14:12 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff24ea37efe5e052ea226e5
+
+--e89a8ff24ea37efe5e052ea226e5
 Content-Type: text/plain; charset=UTF-8
 
-Thank you for the reply Christopher!
+On 22 March 2016 at 10:41, Jussi Kukkonen <jussi.kukkonen@intel.com> wrote:
 
-Best regards,
-
-2016-03-14 15:10 GMT-03:00 Christopher Larson <clarson@kergoth.com>:
+> This prevents an opportunistic alt-F4 from closing the desktop.
 >
->
-> On Mon, Mar 14, 2016 at 10:56 AM Daniel. <danielhilst@gmail.com> wrote:
->>
->> Hi all,
->>
->> I was wondering how OE/Yocto would respond if the same task is appended
->> twice.
->>
->> If I have a .bbclass that already creates a do_install_append() and I
->> inherit this class at my recipe, will my do_install_append be aplied:
->>
->> - Before .bbclass do_install_append()
->> - After it
->> - Will not be aplied
->>
->> Now if I declare my do_install_append before the inherit line, will it
->> be aplied before the .bbclass's do_install_append?
->>
->> How Yocto handles this _append stuff?
->
->
-> Append/prepend are cumulative, just like +=/+=/.=/=.. *all* appends are
-> applied, in the order they're seen while parsing.
 
+Pushed, thanks
 
+Ross
 
--- 
-"Do or do not. There is no try"
-  Yoda Master
+--e89a8ff24ea37efe5e052ea226e5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 22 March 2016 at 10:41, Jussi Kukkonen <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@intel.com=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":ce8" c=
+lass=3D"a3s" style=3D"overflow:hidden">This prevents an opportunistic alt-F=
+4 from closing the desktop.<br></div></blockquote></div><br>Pushed, thanks<=
+/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</=
+div></div>
+
+--e89a8ff24ea37efe5e052ea226e5--
