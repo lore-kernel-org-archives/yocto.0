@@ -1,37 +1,46 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 382FEE0092C; Wed, 23 Mar 2016 01:40:54 -0700 (PDT)
+	id 5FD68E0092C; Wed, 23 Mar 2016 01:57:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8284E00863
-	for <yocto@yoctoproject.org>; Wed, 23 Mar 2016 01:40:47 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id B288C68A019; Wed, 23 Mar 2016 08:40:46 +0000 (GMT)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id D799D68A019;
-	Wed, 23 Mar 2016 08:40:43 +0000 (GMT)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 57DC767400D0;
-	Wed, 23 Mar 2016 09:40:43 +0100 (CET)
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Wed, 23 Mar 2016 01:57:03 PDT
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13624E00863
+	for <yocto@yoctoproject.org>; Wed, 23 Mar 2016 01:57:03 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1aieMZ-0007tb-D5
+	for yocto@yoctoproject.org; Wed, 23 Mar 2016 09:41:59 +0100
+Received: from ppp-2-86-163-12.home.otenet.gr ([2.86.163.12])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 23 Mar 2016 09:41:59 +0100
+Received: from gmane by ppp-2-86-163-12.home.otenet.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 23 Mar 2016 09:41:59 +0100
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-References: <56F2215B.1000309@mlbassoc.com>
-	<CAMKF1souitmv7XGJ-0h3mKK2R7W8ZeRakaT9UgL3jDNzQ7OioA@mail.gmail.com>
-	<56F24F4E.70607@mlbassoc.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <56F2568B.2050105@mlbassoc.com>
-Date: Wed, 23 Mar 2016 09:40:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
-MIME-Version: 1.0
-In-Reply-To: <56F24F4E.70607@mlbassoc.com>
-Subject: Re: perl 5.22 and 32 bit targets
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Wed, 23 Mar 2016 10:41:46 +0200
+Message-ID: <56F256CA.3080301@reliableembeddedsystems.com>
+References: <CAEMorpieMRySSz9YVzw+yNXZyeYMS3icKQZZHNvbR8U9AzEqdA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp-2-86-163-12.home.otenet.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+In-Reply-To: <CAEMorpieMRySSz9YVzw+yNXZyeYMS3icKQZZHNvbR8U9AzEqdA@mail.gmail.com>
+Subject: Re: upgrade daisy -> jethro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,77 +52,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Mar 2016 08:40:54 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 23 Mar 2016 08:57:07 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-On 2016-03-23 09:09, Gary Thomas wrote:
-> On 2016-03-23 06:36, Khem Raj wrote:
->> On Tue, Mar 22, 2016 at 9:53 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->>> I hope this is the correct place to discuss this problem.  It
->>> is all about a difference in behavior between a program built
->>> using bitbake/OE (only OE-core is needed) vs building the program
->>> on the target hardware itself.
->>>
->>> I've been struggling with this problem since perl was upgraded
->>> to version 5.22.  I'm working on Amanda (Advanced Maryland Archive
->>> tool) which is written primarily in perl and uses swig interfaces
->>> to access native C functions.  This code works great when using
->>> the previous perl (5.20.x) but fails on all 32 bit targets with
->>> perl 5.22
->>>
->>> The interesting thing is that if I build Amanda on my target
->>> directly (using SDK tools), it works perfectly even with perl
->>> 5.22, so it seems that there is some [subtle] difference between
->>> building using bitbake/OE than when built on the self-hosted
->>> target.  I've compared the builds and the only thing I could
->>> find (from the output of configure) is a difference in sizeof(off_t)
->>> Sadly, when I tried to adjust this in the OE build, it didn't
->>> make any difference, but perhaps I didn't make this change
->>> correctly or completely.
->>
->> do you have largefile support turned on ? if you do then it might
->> be detecting it wrongly during configure since we cache it to a
->> non-largefile case
->>
->> so try to add something like
->>
->> EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'largefile',
->> 'ac_cv_sizeof_off_t=8', '', d)}"
->>
->> while building perl or the affected program and see if that helps
->
-> Thanks for the idea, but that didn't help.  I also forced some CFLAGS
-> to match, in particular:
->    -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
-> but this didn't make any difference either.
->
+Hi,
 
-On a whim I just tried a little experiment where I took the *.o files
-from the perl subdirectory (where all the swig shims live) from a working
-(self-hosted) build and moved them to my bitbake/OE build.  I then touched
-all the *.o and *.lo files in the perl tree to force a relink. I then ran
-   % bitbake amanda -C compile && bitbake core-image-base
-to my surprise, amanda works!  So the culprit lies somewhere within the
-swig generated glue.  I've tried comparing these files before and I didn't
-find anything other than cosmetic differences (mostly comments about the
-name of the file processed, etc).  I've added this subtree to "results"
-in my github layer in case someone can see what might be relevant.
+On 03/23/2016 10:17 AM, Ruben Schwarz wrote:
+> Hi,
+> 
+> we have a customized board with Texas Instruments AM335x Processor. It's
+> based on Beaglebone Black and EVM Starter Kit.
+> 
+> We have a working yocto-daisy image running U-Boot 2013.07 and Kernel
+> 3.14. No we want to upgrade to jethro, including U-Boot 2015.07 and
+> Kernel 4.1.
 
-Any ideas what might be different and make this swig generated glue fail?
-Note that the swig interface files are rebuilt as part of the build process
-and both bitbake/OE and self-hosted are using the same swig version.
+Why don't you get a beagle bone black and retry there?
 
->>>
->>> Anyway, I'm looking for some help to solve this.  I've put
->>> all the relevant pieces and notes about the process at:
->>>    https://github.com/GaryThomas/meta-amanda.git
->
+Like this it would be easier to help, since we don't have your custom board.
+
+I use a 4.4.x kernel with the mainline device tree am335x-boneblack.dtb
+which works as well for a 4.1.x kernel.
+
+Regards,
+
+Robert
+...WANTED: Schroedinger's Cat. Dead or Alive.
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
