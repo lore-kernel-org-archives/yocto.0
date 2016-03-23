@@ -1,61 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59FFEE0090C; Tue, 22 Mar 2016 22:37:17 -0700 (PDT)
+	id 1CA52E00920; Wed, 23 Mar 2016 01:09:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E59FFE008EE
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 22:37:13 -0700 (PDT)
-Received: by mail-qg0-f45.google.com with SMTP id w104so4073010qge.1
-	for <yocto@yoctoproject.org>; Tue, 22 Mar 2016 22:37:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=2B0RFO9PBMHR9T1k+QMr+mSyxP6Vhwe8FTPzKBauj1k=;
-	b=JKjPEi4UCzrml8wYiRDwjBDjhVIsAlUmIUNKdqbhV+Ms/N2DE/lil3SsJ6P45E+vjN
-	eqWxqJ6U0zfYMoyNLo6iwSlvXNFgdEEeflsRQ26FO1rokaYPROW+bF3jQzzx/R1AbW4l
-	GQ3AaDd8lddMoy905GTbccSvQcbOqI5uO2PVSTFqqf4gf+b2M1PVC2w7CZP+Ep5jTK8R
-	dQfwHbcQUFd/mf5RnKTRBuw/kStj+MVMh72efyk+kL+QuLZIaGpZ7Kf9s/K4QXS+Scyx
-	SBPd/jw3+3zw/7Pxti0m/RS2A14xgxedbYv/LK26kG66tBGI1So+1Fz0bc2+j5UjWA7A
-	inLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=2B0RFO9PBMHR9T1k+QMr+mSyxP6Vhwe8FTPzKBauj1k=;
-	b=buSvO7OgRctQzDNrSDKXXaoFgDgNfmKFDX4p5/S0EL90S1FMktRB2LpET7xvGku4kr
-	Ki63SLsy+3GzfnRea49cVDf6mVIfejJBCDfNR3xVTWDo4a0+PzGsHV9vTWTw2G+cvyHT
-	ZOvSbBHqPG+ys+J39JuEKRdgpVyMHeN3QHEh6aMdSWVK6kZNdIkzrp2lsv8UDHSEd67U
-	tfVfaHywQA8ofPljODFcFPI8z30zcz20eTQIrOAd7HcZMaek3qysajweCJM5TLMNB8bN
-	fhr2xacya/Q7ceaGesBzUfpTA5U1gMNWJbGmOjivpw+ZmwJ4FrebouKI9hJ/nXObQrdT
-	Qm5Q==
-X-Gm-Message-State: AD7BkJLDtY//+FVnpbu0WEYbYFtGH/0OFcypBuehuSc/vNcDsSBmicIX4QX3Vh/AfaE8Og8aQrjAbH6fAWFWRA==
-X-Received: by 10.140.254.9 with SMTP id z9mr1039950qhc.5.1458711432688; Tue,
-	22 Mar 2016 22:37:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Tue, 22 Mar 2016 22:36:43 -0700 (PDT)
-In-Reply-To: <56F2215B.1000309@mlbassoc.com>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C646AE00863
+	for <yocto@yoctoproject.org>; Wed, 23 Mar 2016 01:09:55 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 6768768A01A; Wed, 23 Mar 2016 08:09:54 +0000 (GMT)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id AED7868A019;
+	Wed, 23 Mar 2016 08:09:51 +0000 (GMT)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 05FDB67400D0;
+	Wed, 23 Mar 2016 09:09:50 +0100 (CET)
+To: Khem Raj <raj.khem@gmail.com>
 References: <56F2215B.1000309@mlbassoc.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 22 Mar 2016 22:36:43 -0700
-Message-ID: <CAMKF1souitmv7XGJ-0h3mKK2R7W8ZeRakaT9UgL3jDNzQ7OioA@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+	<CAMKF1souitmv7XGJ-0h3mKK2R7W8ZeRakaT9UgL3jDNzQ7OioA@mail.gmail.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <56F24F4E.70607@mlbassoc.com>
+Date: Wed, 23 Mar 2016 09:09:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1souitmv7XGJ-0h3mKK2R7W8ZeRakaT9UgL3jDNzQ7OioA@mail.gmail.com>
 Cc: yocto discussion <yocto@yoctoproject.org>
 Subject: Re: perl 5.22 and 32 bit targets
 X-BeenThere: yocto@yoctoproject.org
@@ -69,56 +43,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Mar 2016 05:37:17 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 23 Mar 2016 08:09:59 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 22, 2016 at 9:53 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-> I hope this is the correct place to discuss this problem.  It
-> is all about a difference in behavior between a program built
-> using bitbake/OE (only OE-core is needed) vs building the program
-> on the target hardware itself.
+On 2016-03-23 06:36, Khem Raj wrote:
+> On Tue, Mar 22, 2016 at 9:53 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> I hope this is the correct place to discuss this problem.  It
+>> is all about a difference in behavior between a program built
+>> using bitbake/OE (only OE-core is needed) vs building the program
+>> on the target hardware itself.
+>>
+>> I've been struggling with this problem since perl was upgraded
+>> to version 5.22.  I'm working on Amanda (Advanced Maryland Archive
+>> tool) which is written primarily in perl and uses swig interfaces
+>> to access native C functions.  This code works great when using
+>> the previous perl (5.20.x) but fails on all 32 bit targets with
+>> perl 5.22
+>>
+>> The interesting thing is that if I build Amanda on my target
+>> directly (using SDK tools), it works perfectly even with perl
+>> 5.22, so it seems that there is some [subtle] difference between
+>> building using bitbake/OE than when built on the self-hosted
+>> target.  I've compared the builds and the only thing I could
+>> find (from the output of configure) is a difference in sizeof(off_t)
+>> Sadly, when I tried to adjust this in the OE build, it didn't
+>> make any difference, but perhaps I didn't make this change
+>> correctly or completely.
 >
-> I've been struggling with this problem since perl was upgraded
-> to version 5.22.  I'm working on Amanda (Advanced Maryland Archive
-> tool) which is written primarily in perl and uses swig interfaces
-> to access native C functions.  This code works great when using
-> the previous perl (5.20.x) but fails on all 32 bit targets with
-> perl 5.22
+> do you have largefile support turned on ? if you do then it might
+> be detecting it wrongly during configure since we cache it to a
+> non-largefile case
 >
-> The interesting thing is that if I build Amanda on my target
-> directly (using SDK tools), it works perfectly even with perl
-> 5.22, so it seems that there is some [subtle] difference between
-> building using bitbake/OE than when built on the self-hosted
-> target.  I've compared the builds and the only thing I could
-> find (from the output of configure) is a difference in sizeof(off_t)
-> Sadly, when I tried to adjust this in the OE build, it didn't
-> make any difference, but perhaps I didn't make this change
-> correctly or completely.
-
-do you have largefile support turned on ? if you do then it might
-be detecting it wrongly during configure since we cache it to a
-non-largefile case
-
-so try to add something like
-
-EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'largefile',
-'ac_cv_sizeof_off_t=8', '', d)}"
-
-while building perl or the affected program and see if that helps
-
+> so try to add something like
 >
-> Anyway, I'm looking for some help to solve this.  I've put
-> all the relevant pieces and notes about the process at:
->   https://github.com/GaryThomas/meta-amanda.git
+> EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'largefile',
+> 'ac_cv_sizeof_off_t=8', '', d)}"
 >
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> while building perl or the affected program and see if that helps
+
+Thanks for the idea, but that didn't help.  I also forced some CFLAGS
+to match, in particular:
+   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+but this didn't make any difference either.
+
+>>
+>> Anyway, I'm looking for some help to solve this.  I've put
+>> all the relevant pieces and notes about the process at:
+>>    https://github.com/GaryThomas/meta-amanda.git
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
