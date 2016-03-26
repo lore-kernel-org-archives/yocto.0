@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F153CE00C39; Sat, 26 Mar 2016 09:59:51 -0700 (PDT)
+	id 91D69E00C38; Sat, 26 Mar 2016 09:59:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01F5FE00C31
-	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:47 -0700 (PDT)
-Received: by mail-qg0-f45.google.com with SMTP id j35so80527639qge.0
-	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:47 -0700 (PDT)
+	*      [209.85.192.53 listed in list.dnswl.org]
+Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
+	[209.85.192.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D25AE00C2E
+	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:49 -0700 (PDT)
+Received: by mail-qg0-f53.google.com with SMTP id y89so80404333qge.2
+	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=n9hXHUs21Gp64eQ+0R5jNwjywNxbDbSXqdeHFv9Oob8=;
-	b=ycEQlnBG75NtI1rcQVX+fGeQ50shS5uS9cmg+Le4NfcsGl4IDubpy6163Vlxi6J56H
-	QOQEUqW7CeQ3BmtMHRO2WJ1m3omHBmvFWgyeih/BIKNwPoPlCQYLLDCAl7TpuBm4ZU6n
-	qEIih8R1GRJNjVCXC6TGwrFbR/iTZPl9jNJpKPMof5VWseYw2l/SYCdomLAlVtka58GU
-	AJiL/PDMu6SLTk4iG6rcmHdOKGowyqvl3NSugPuWBRNxdOXjxsVRJPDe0gjxf2BlEDN6
-	Ws6QCczP4sBOy4zTXxbIu3bAj5chKriwhsk6i9uTkyQBJVrIar08EyZBovZPBFTjfP2A
-	2juw==
+	bh=ryzfFhMUoq1HkzJdW73Ly1CMRj8qqRvAbPn8DmTyrmQ=;
+	b=fzNRuH6tRzsBQdItcpwD4SRk1xsjms+nm+qMeVPCdi/5wfgo9TqIUKDB09FhEcxT4q
+	n8v48q5NC6xzOyYQxNjCN5vOTWuaBpKQHw01hOHcETpgX07FqQ+b59KgRWvX/f9va8tO
+	ToMhocaeVZrF43j0nyvPRtXGbSV2zUsIItvWoApTzvn6Y1KacJOyeQohYeWcxckYgE6Z
+	l3mmjsv37NxtfkV3e+ipq95ZX0LQRW6wr7Lvj9UmCxa+YFDPwPOZCr9hu0cr+s947+n7
+	jFSBB5nfVmWq66G86Bwcntgt9RP4PndFSL0SHh2kRMlFgHK7QVoqVTL+YTlT62+hjycn
+	Mquw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=n9hXHUs21Gp64eQ+0R5jNwjywNxbDbSXqdeHFv9Oob8=;
-	b=CZV+bvGmjeZrvBkJl/lKCpfrTHw6zNcs2BBBEv/YgAGXZPb/koSYGtQ4L0ALx4ZS65
-	vQ5lk6zhIbhP01p/r4syfMSSoF1m6hbbCf30JJbaR2o9o6onWKiX4eNc8mtB27//NcHu
-	FjTkV5NU/3hFU2KkD3KRnk79T54VLljErk3eS8vP2pGAeesxkyL2RkjskkzPeoq2NHdu
-	/ljTzKCwye7uXBra8bJPVVlU54TnGvz2iVEeffgkLX2R+VJR1m/nczpF/ge0pChplY0L
-	esV+U9s2MZ9MVTmAgCFkbuWOM/EDuYZXcprw9B3e+UaWU8RgSodvYMizxaTv7bcYEigM
-	o+Gg==
-X-Gm-Message-State: AD7BkJJeRs6vNXPUrC3Fvfz5Lu326YrdwoBxyUM7xwO+uk3KQ31e3SFjgkXnJxCDqTYOzg==
-X-Received: by 10.140.220.207 with SMTP id q198mr26273428qhb.103.1459011586631;
-	Sat, 26 Mar 2016 09:59:46 -0700 (PDT)
+	bh=ryzfFhMUoq1HkzJdW73Ly1CMRj8qqRvAbPn8DmTyrmQ=;
+	b=mKU5oYmBgpzBZUX+xKT424vmBu0D/wh/gFeGVwz7zGfyhqZP0mVpwhrjBQ76o/3MQC
+	6PnoOwyvvE1VRg5kO+S9W58Wzng8flaJw4uioXzJhmqPvzg1D9QDIxuhx4nKB+7WVy7/
+	BQo1svj6M/GFPVwfIGgYH0BCXiryl7WQOdTG3l+4TX5CES5oCekbl+MvwT+ptCdlRbPu
+	Dk9edn04q9JajQj6dgCcdtWjioSPWab0JUZ8eX03R2b1fEsgHdNPPgdwtk3Z0RhEApa2
+	SOpvtg5M9VL9AKxZ2irGMpVBJECQIGnY9B+WK0UZl7AC2y9b9GFj0u9ViY9lYOYV6o4U
+	XBsA==
+X-Gm-Message-State: AD7BkJJiP2UmYOieaWA47nnj3oBbW+kJ0CrVRFhVH2toQZZXNtVkybbkwemHvRLasGoCsg==
+X-Received: by 10.140.131.6 with SMTP id 6mr24990198qhd.67.1459011588634;
+	Sat, 26 Mar 2016 09:59:48 -0700 (PDT)
 Received: from eos.sys.comcast.net (a-96-118-179-133.sys.comcast.net.
 	[96.118.179.133]) by smtp.gmail.com with ESMTPSA id
-	o128sm7955368qhb.34.2016.03.26.09.59.45
+	o128sm7955368qhb.34.2016.03.26.09.59.48
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 26 Mar 2016 09:59:46 -0700 (PDT)
+	Sat, 26 Mar 2016 09:59:48 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 26 Mar 2016 16:59:34 +0000
-Message-Id: <1459011577-14870-2-git-send-email-raj.khem@gmail.com>
+Date: Sat, 26 Mar 2016 16:59:37 +0000
+Message-Id: <1459011577-14870-5-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1459011577-14870-1-git-send-email-raj.khem@gmail.com>
 References: <1459011577-14870-1-git-send-email-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 2/5] sdcard_image: Depend on do_deploy for kernel
+Subject: [meta-raspberrypi][PATCH 5/5] userland: Implement dispmanx_wrap_buffer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,31 +74,111 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sat, 26 Mar 2016 16:59:52 -0000
 
-SD image is expecting dtb files to be deployed in
-deploy area, this step however is done when do_deploy
-of kernel is finished and we need to pin that in
-dependency list, otherwise there are build race conditions
-during builds especially visible when building with initramfs
-enabled.
-
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- classes/sdcard_image-rpi.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../0015-wl-dispmanx-buffer-wrapping.patch         | 80 ++++++++++++++++++++++
+ recipes-graphics/userland/userland_git.bb          |  1 +
+ 2 files changed, 81 insertions(+)
+ create mode 100644 recipes-graphics/userland/userland/0015-wl-dispmanx-buffer-wrapping.patch
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 2e9bdb3..f20ff04 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -53,7 +53,7 @@ IMAGE_DEPENDS_rpi-sdimg = " \
- 			parted-native \
- 			mtools-native \
- 			dosfstools-native \
--			virtual/kernel \
-+			virtual/kernel:do_deploy \
- 			${IMAGE_BOOTLOADER} \
- 			${@bb.utils.contains('KERNEL_IMAGETYPE', 'uImage', 'u-boot', '',d)} \
- 			"
+diff --git a/recipes-graphics/userland/userland/0015-wl-dispmanx-buffer-wrapping.patch b/recipes-graphics/userland/userland/0015-wl-dispmanx-buffer-wrapping.patch
+new file mode 100644
+index 0000000..1a0faba
+--- /dev/null
++++ b/recipes-graphics/userland/userland/0015-wl-dispmanx-buffer-wrapping.patch
+@@ -0,0 +1,80 @@
++implement buffer wrapping interface for dispmanx
++
++Courtesy: Zan Dobersek
++
++diff --git a/interface/khronos/ext/egl_wayland.c b/interface/khronos/ext/egl_wayland.c
++index 5730743..9ef89cd 100644
++--- a/interface/khronos/ext/egl_wayland.c
+++++ b/interface/khronos/ext/egl_wayland.c
++@@ -133,8 +133,50 @@ dispmanx_create_buffer(struct wl_client *client, struct wl_resource *resource,
++                                      buffer->handle);
++ }
++ 
+++static void
+++dispmanx_wrap_buffer(struct wl_client *client, struct wl_resource *resource,
+++                     uint32_t id, uint32_t handle, int32_t width, int32_t height,
+++                     uint32_t stride, uint32_t buffer_height, uint32_t format)
+++{
+++   struct wl_dispmanx_server_buffer *buffer;
+++   VC_IMAGE_TYPE_T vc_format = get_vc_format(format);
+++   uint32_t dummy;
+++
+++   if(vc_format == VC_IMAGE_MIN) {
+++      wl_resource_post_error(resource,
+++                             WL_DISPMANX_ERROR_INVALID_FORMAT,
+++                             "invalid format");
+++      return;
+++   }
+++
+++   buffer = calloc(1, sizeof *buffer);
+++   if (buffer == NULL) {
+++      wl_resource_post_no_memory(resource);
+++      return;
+++   }
+++
+++   buffer->handle = handle;
+++   buffer->width = width;
+++   buffer->height = height;
+++   buffer->format = format;
+++
+++   buffer->resource = wl_resource_create(resource->client, &wl_buffer_interface,
+++                                         1, id);
+++   if (!buffer->resource) {
+++      wl_resource_post_no_memory(resource);
+++      vc_dispmanx_resource_delete(buffer->handle);
+++      free(buffer);
+++      return;
+++   }
+++
+++   wl_resource_set_implementation(buffer->resource,
+++				       (void (**)(void)) &dispmanx_buffer_interface,
+++				       buffer, destroy_buffer);
+++}
+++
++ static const struct wl_dispmanx_interface dispmanx_interface = {
++    dispmanx_create_buffer,
+++   dispmanx_wrap_buffer,
++ };
++ 
++ static void
++diff --git a/interface/wayland/dispmanx.xml b/interface/wayland/dispmanx.xml
++index c18626d..11ed1ef 100644
++--- a/interface/wayland/dispmanx.xml
+++++ b/interface/wayland/dispmanx.xml
++@@ -118,6 +118,16 @@
++       <arg name="buffer" type="object" interface="wl_buffer"/>
++       <arg name="handle" type="uint"/>
++     </event>
+++
+++    <request name="wrap_buffer">
+++      <arg name="id" type="new_id" interface="wl_buffer"/>
+++      <arg name="handle" type="uint"/>
+++      <arg name="width" type="int"/>
+++      <arg name="height" type="int"/>
+++      <arg name="stride" type="uint"/>
+++      <arg name="buffer_height" type="uint"/>
+++      <arg name="format" type="uint"/>
+++    </request>
++   </interface>
++ 
++ </protocol>
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 0189a16..ca9123e 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -34,6 +34,7 @@ SRC_URI = "\
+     file://0012-Fix-enum-conversion-warnings.patch \
+     file://0013-Fix-for-framerate-with-nested-composition.patch \
+     file://0014-Fix-errors-due-to-ignored-return-code.patch \
++    file://0015-wl-dispmanx-buffer-wrapping.patch \
+ "
+ S = "${WORKDIR}/git"
+ 
 -- 
 1.9.1
 
