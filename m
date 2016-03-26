@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BC5BE00C38; Sat, 26 Mar 2016 09:59:51 -0700 (PDT)
+	id F153CE00C39; Sat, 26 Mar 2016 09:59:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.49 listed in list.dnswl.org]
-Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
-	[209.85.192.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9994E0078E
+	*      [209.85.192.45 listed in list.dnswl.org]
+Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
+	[209.85.192.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01F5FE00C31
 	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:47 -0700 (PDT)
-Received: by mail-qg0-f49.google.com with SMTP id u110so80427544qge.3
+Received: by mail-qg0-f45.google.com with SMTP id j35so80527639qge.0
 	for <yocto@yoctoproject.org>; Sat, 26 Mar 2016 09:59:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=+k5WsRQmvtPtvmttkGOztH/6EtHbZVncjNMHkjykTeo=;
-	b=CV1Av0SXJL4x4oRIwLwS2PggwEmExQSsxUW6g5l2ru6sHyVRCQmdt9ArCNmb0Yb7T2
-	Ox+4zSs+YphWVxFFripsTO49N92Txycki7tP2tqNtjHjdvWSxfBlMmW0b4TVx6AcqpOs
-	uDR9yp5JV4s1nw2EA9NvbLc0PDJh5OBt6cr+EmoGcCoC5ay6xMrfzPLAm+e/gnsRT4gX
-	p+oc+0VIEPncSFUq8Nt38yWQiXeoCAiNkTyQf4BwDPbu1YKz/WspFCDB7sOTPAgV23za
-	FMML6A96nGg9+sPtsXTeQoyFdRol2HjXq9PqQmB88YH+1afkPKVb9herUkjLQ/ktn37Z
-	YKXw==
+	bh=n9hXHUs21Gp64eQ+0R5jNwjywNxbDbSXqdeHFv9Oob8=;
+	b=ycEQlnBG75NtI1rcQVX+fGeQ50shS5uS9cmg+Le4NfcsGl4IDubpy6163Vlxi6J56H
+	QOQEUqW7CeQ3BmtMHRO2WJ1m3omHBmvFWgyeih/BIKNwPoPlCQYLLDCAl7TpuBm4ZU6n
+	qEIih8R1GRJNjVCXC6TGwrFbR/iTZPl9jNJpKPMof5VWseYw2l/SYCdomLAlVtka58GU
+	AJiL/PDMu6SLTk4iG6rcmHdOKGowyqvl3NSugPuWBRNxdOXjxsVRJPDe0gjxf2BlEDN6
+	Ws6QCczP4sBOy4zTXxbIu3bAj5chKriwhsk6i9uTkyQBJVrIar08EyZBovZPBFTjfP2A
+	2juw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=+k5WsRQmvtPtvmttkGOztH/6EtHbZVncjNMHkjykTeo=;
-	b=EiuTZkhi39U1aYUDeB/KdNSfhfq0ZsBeBPpnYgvGxrHVW6l3S2Zczv6xzQRT3Up9r2
-	PfODkBYpBIVcnh6+LLmC/Ra1Vc4e7NJgfOwR3+dIFCfX6umDQB2A6vFmjCOVkHsd1YJs
-	wuMHdXYexjtcHVIZWIzkpUmbfMKFINHJF2M2kf+868xksphyZXe7Rnbe+BpgFX4eV4jJ
-	pbbRo3FNwJL6qsuVnda5tVW7/Yv1RqzijgMbRfomBYeMYPROJh0R5BIMB6/E3083Hd9L
-	M8cjKdPetSuwP8zW0C0ElRri1kykFqQmPpLQxij04hamin78fwmmPlegCartgU2JYenI
-	f9Jw==
-X-Gm-Message-State: AD7BkJIK4BZcLCBRhf+K2GrQlB0iwHiVRSF2RIaHLWmRhK4cmBoPMOz537fzxtSd3fvE4Q==
-X-Received: by 10.140.169.4 with SMTP id p4mr26100317qhp.71.1459011587214;
-	Sat, 26 Mar 2016 09:59:47 -0700 (PDT)
+	bh=n9hXHUs21Gp64eQ+0R5jNwjywNxbDbSXqdeHFv9Oob8=;
+	b=CZV+bvGmjeZrvBkJl/lKCpfrTHw6zNcs2BBBEv/YgAGXZPb/koSYGtQ4L0ALx4ZS65
+	vQ5lk6zhIbhP01p/r4syfMSSoF1m6hbbCf30JJbaR2o9o6onWKiX4eNc8mtB27//NcHu
+	FjTkV5NU/3hFU2KkD3KRnk79T54VLljErk3eS8vP2pGAeesxkyL2RkjskkzPeoq2NHdu
+	/ljTzKCwye7uXBra8bJPVVlU54TnGvz2iVEeffgkLX2R+VJR1m/nczpF/ge0pChplY0L
+	esV+U9s2MZ9MVTmAgCFkbuWOM/EDuYZXcprw9B3e+UaWU8RgSodvYMizxaTv7bcYEigM
+	o+Gg==
+X-Gm-Message-State: AD7BkJJeRs6vNXPUrC3Fvfz5Lu326YrdwoBxyUM7xwO+uk3KQ31e3SFjgkXnJxCDqTYOzg==
+X-Received: by 10.140.220.207 with SMTP id q198mr26273428qhb.103.1459011586631;
+	Sat, 26 Mar 2016 09:59:46 -0700 (PDT)
 Received: from eos.sys.comcast.net (a-96-118-179-133.sys.comcast.net.
 	[96.118.179.133]) by smtp.gmail.com with ESMTPSA id
-	o128sm7955368qhb.34.2016.03.26.09.59.46
+	o128sm7955368qhb.34.2016.03.26.09.59.45
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
 	Sat, 26 Mar 2016 09:59:46 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 26 Mar 2016 16:59:35 +0000
-Message-Id: <1459011577-14870-3-git-send-email-raj.khem@gmail.com>
+Date: Sat, 26 Mar 2016 16:59:34 +0000
+Message-Id: <1459011577-14870-2-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1459011577-14870-1-git-send-email-raj.khem@gmail.com>
 References: <1459011577-14870-1-git-send-email-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 3/5] eglinfo-x11: Disable --as-needed
+Subject: [meta-raspberrypi][PATCH 2/5] sdcard_image: Depend on do_deploy for kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,26 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Mar 2016 16:59:51 -0000
+X-List-Received-Date: Sat, 26 Mar 2016 16:59:52 -0000
 
---as-needed exposes a dependency problem where libegl needs some symbols
-from libgles2 but the order that waf uses on linker cmdline for these
-libs is reversed so we end up with link time failures e.g.
-
-libEGL.so: undefined reference to `glxx_client_GetRenderbufferParameteriv'
+SD image is expecting dtb files to be deployed in
+deploy area, this step however is done when do_deploy
+of kernel is finished and we need to pin that in
+dependency list, otherwise there are build race conditions
+during builds especially visible when building with initramfs
+enabled.
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- recipes-graphics/eglinfo/eglinfo-x11_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
+ classes/sdcard_image-rpi.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend b/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
-index 7f8b600..fd32abc 100644
---- a/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
-+++ b/recipes-graphics/eglinfo/eglinfo-x11_%.bbappend
-@@ -1 +1,2 @@
- EGLINFO_DEVICE_rpi  = "raspberrypi"
-+ASNEEDED = ""
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 2e9bdb3..f20ff04 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -53,7 +53,7 @@ IMAGE_DEPENDS_rpi-sdimg = " \
+ 			parted-native \
+ 			mtools-native \
+ 			dosfstools-native \
+-			virtual/kernel \
++			virtual/kernel:do_deploy \
+ 			${IMAGE_BOOTLOADER} \
+ 			${@bb.utils.contains('KERNEL_IMAGETYPE', 'uImage', 'u-boot', '',d)} \
+ 			"
 -- 
 1.9.1
 
