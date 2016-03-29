@@ -1,6 +1,6 @@
 Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E60EE00C29; Tue, 29 Mar 2016 08:04:23 -0700 (PDT)
+	id 9C247E00C27; Tue, 29 Mar 2016 08:04:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,20 +13,22 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from bin-vsp-out-02.atm.binero.net (bin-mail-out-06.binero.net
 	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7714CE00951
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 08:04:19 -0700 (PDT)
-X-Halon-ID: 7f717ee1-f5bf-11e5-aff0-005056917f90
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7865AE0096D
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 08:04:20 -0700 (PDT)
+X-Halon-ID: 80bb5c00-f5bf-11e5-aff0-005056917f90
 Authorized-sender: petter@technux.se
 Received: from elxbvzzwp1-cy.localdomain (unknown [78.78.107.132])
 	by bin-vsp-out-02.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
-	Tue, 29 Mar 2016 17:04:12 +0200 (CEST)
+	Tue, 29 Mar 2016 17:04:14 +0200 (CEST)
 From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
 To: yocto@yoctoproject.org
-Date: Tue, 29 Mar 2016 17:04:07 +0200
-Message-Id: <1459263851-32643-1-git-send-email-petter@technux.se>
+Date: Tue, 29 Mar 2016 17:04:10 +0200
+Message-Id: <1459263851-32643-4-git-send-email-petter@technux.se>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1459263851-32643-1-git-send-email-petter@technux.se>
+References: <1459263851-32643-1-git-send-email-petter@technux.se>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 0/4] Various upgrade/fixes from Technux
+Subject: [meta-raspberrypi][PATCH 3/4] rpi-base.inc: Add overlay for rpi-ft5406
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,29 +44,26 @@ X-List-Received-Date: Tue, 29 Mar 2016 15:04:23 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Various fixes from Technux, with focus on PiTFT28 resistive support and
-Official Raspberry Pi 7 inch touchscreen enablers.
+rpi-ft5406 is an enabler for Official Raspberry Pi 7 inch
+touchscreen support.
 
-Petter Mabäcker (4):
-  pitft: Add support for pitft28r
-  rpi-base.inc: Remove deprecated MACHINE_FEATURES
-  rpi-base.inc: Add overlay for rpi-ft5406
-  .gitignore: Ignore some additional files
+Signed-off-by: Petter Mabäcker <petter@technux.se>
+---
+ conf/machine/include/rpi-base.inc | 1 +
+ 1 file changed, 1 insertion(+)
 
- .gitignore                                                          | 2 ++
- README                                                              | 1 +
- conf/machine/include/rpi-base.inc                                   | 4 +++-
- recipes-bsp/bootfiles/rpi-config_git.bb                             | 6 ++++++
- .../xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf  | 5 +++++
- .../xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf         | 6 ++++++
- .../xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf  | 5 -----
- recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend      | 6 ++++--
- recipes-kernel/linux/linux-raspberrypi.inc                          | 2 ++
- 9 files changed, 29 insertions(+), 8 deletions(-)
- create mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf
- create mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf
- delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf
-
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+index f70e952..34eb774 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -35,6 +35,7 @@ KERNEL_DEVICETREE ?= " \
+     overlays/pitft22-overlay.dtb \
+     overlays/pitft28-resistive-overlay.dtb \
+     overlays/pps-gpio-overlay.dtb \
++    overlays/rpi-ft5406-overlay.dtb \
+     overlays/w1-gpio-overlay.dtb \
+     overlays/w1-gpio-pullup-overlay.dtb \
+     "
 -- 
 1.9.1
 
