@@ -1,72 +1,38 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8ADB6E006AE; Tue, 29 Mar 2016 13:03:41 -0700 (PDT)
+	id 39864E006AE; Tue, 29 Mar 2016 13:54:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.74.38.228 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53EDDE0048B
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 13:03:36 -0700 (PDT)
-Received: by mail-pa0-f42.google.com with SMTP id td3so21797969pab.2
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 13:03:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=maEqf9Z3MK5hQw2Tju2JFx1MdI8YU2T+vnn7ke9up/U=;
-	b=gtMg094v4grRB44ZmRYlqRDzU+8OneU9bo1jTnEM4kN72OeNfT/7tw7mfao1kuoVOm
-	KrgD9Gm1dGy5QW8YAqZ1HyNGaqhC/p2CcL6ZXNuRNzlLfdnALMlptZaf8QT/jHV3M3X6
-	6QQz1zvbKElKg0u3fLD6auk18owgm9bWQGnGL2p4q4M8VwqKH1/9i0wcHQiwapxJfnoa
-	zwDOlB5NqzHaMo4mF/db7Hmfbw1bDJrPvfYd6czzhNuMHLNUSVcAENGZflOkp16O6GZr
-	8JpDrHcdn5hZ+8vIH8DPupHhB+u+nIC2v0kpThrejC0hv6ge6Q3XmmSZTIbtZBhglS6N
-	zJXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:user-agent
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	bh=maEqf9Z3MK5hQw2Tju2JFx1MdI8YU2T+vnn7ke9up/U=;
-	b=HWSvYyWXnkPvXGhDeMGZ1WdZvwZhJ6/S6ofWQ27sn7x2Yjus0gpgro0TuKs/ZdD9NI
-	0Csfs69y8JI4mgmzJzwNxmvDRAvT9OHYDWMA5hANq+OLeWZZAys8Dcembu2m0BzEoGAz
-	mTTQIdHwrKo4gIvAjGrNQHQL5B5RUM/7kIFGAJK+63j4koOzJg+t5tV+8Ml7yALjcTbR
-	dQ+bz6thXZ4yFEqBBkdVewSEu+cbxir3uzyzYFPiwB4C6RbPswSD4GPwiM5i9bm61o+R
-	udyY2Rj5r45WlcbIiZiXKrALKDe1CNiONFKfxchDtaLV9+2LAUYUoHzsY6rfnOiyGlPV
-	OuSw==
-X-Gm-Message-State: AD7BkJLxXkdBSJK3tu1aUsoM42LrouVB51F2UA+fY50obnpif4WRTSm7U2BrOYmLTLnasw==
-X-Received: by 10.66.55.70 with SMTP id q6mr6280068pap.126.1459281816086;
-	Tue, 29 Mar 2016 13:03:36 -0700 (PDT)
-Received: from rjs-zotac.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
-	by smtp.gmail.com with ESMTPSA id ez6sm311279pab.12.2016.03.29.13.03.35
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 29 Mar 2016 13:03:35 -0700 (PDT)
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue, 29 Mar 2016 13:03:34 -0700
-Message-ID: <5328453.C7Dxv7TdD1@rjs-zotac.streifs.net>
-User-Agent: KMail/4.14.10 (Linux/4.4.5-200.fc22.x86_64+debug; KDE/4.14.17;
-	x86_64; ; )
-In-Reply-To: <56FADE23.8090300@balister.org>
-References: <CA+YB3rY9NKNFJNtTwQQwePfwAm37skk8jtDnBoQEBqxiE-i2Hg@mail.gmail.com>
-	<56FADE23.8090300@balister.org>
+Received: from bin-vsp-out-02.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 892B7E0048B
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 13:54:06 -0700 (PDT)
+X-Halon-ID: 5ca08358-f5f0-11e5-aff0-005056917f90
+Authorized-sender: petter@technux.se
+Received: from [192.168.1.11] (unknown [85.195.55.167])
+	by bin-vsp-out-02.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
+	Tue, 29 Mar 2016 22:53:59 +0200 (CEST)
+To: Khem Raj <raj.khem@gmail.com>
+References: <1459263851-32643-1-git-send-email-petter@technux.se>
+	<1459263851-32643-2-git-send-email-petter@technux.se>
+	<127D05D7-F0BC-4D36-8E9E-4F3C10E104EF@gmail.com>
+From: =?UTF-8?Q?Petter_Mab=c3=a4cker?= <petter@technux.se>
+Message-ID: <56FAEB92.5050709@technux.se>
+Date: Tue, 29 Mar 2016 22:54:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.4.0
 MIME-Version: 1.0
-Cc: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: OEDAM: New Location - Catamaran resort
+In-Reply-To: <127D05D7-F0BC-4D36-8E9E-4F3C10E104EF@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/4] pitft: Add support for pitft28r
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,45 +44,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Mar 2016 20:03:41 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 29 Mar 2016 20:54:12 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-We need the final headcount by next Monday.
+On 03/29/2016 05:59 PM, Khem Raj wrote:
+>> On Mar 29, 2016, at 8:04 AM, Petter Mabäcker <petter@technux.se> wrote:
+>>
+>> The support for PiTFT 28 inch resistive touchscreen is optional
+>> and can be enabled by adding below in local.conf:
+>>
+>> MACHINE_FEATURES += "pitft pitft28r”
+>>
+> will this work with all kernel recipes available in layer ?
+It works on 3.18+. I just realized that 3.14 support was not removed 
+when we took in 4.4 (so it will not work on that kernel). Since the 
+general policy we have is to support three kernel versions; latest 
+stable (4.4) + two longterm (4.1 and 3.18), I can send up a commit that 
+removes 3.14 support in 'master' within this series.
 
-Food, breakfast, lunch and refreshments, will be provided. If you have special dietary needs such as vegetarian, gluten-free etc. please indicate so behind you name. We'll do the best to accommodate them.
+Thanks for your help to pointing this out!
 
-Rudi
-
-On Tuesday, March 29, 2016 12:57:23 PM Philip Balister wrote:
-> OEDAM moved. Thanks Rudi and Jefro.
-> 
-> Please add your name to the attendee list so Jefro can get the correct
-> amount of food and coffee. He needs the number "soon".
-> 
-> Philip
-> 
-> -------- Forwarded Message --------
-> Subject: OEDAM: New Location - Catamaran resort
-> Date: Mon, 28 Mar 2016 13:36:41 -0700
-> From: Jeff Osier-Mixon <jefro@jefro.net>
-> Reply-To: openembedded-members@lists.openembedded.org
-> To: openembedded-members@lists.openembedded.org
-> <openembedded-members@lists.openembedded.org>
-> 
-> The OpenEmbedded meeting on Friday April 8, which was previously
-> announced, has been moved to the Catamaran Resort & Hotel.
-> Transportation will be provided. The meeting is still 9am-5pm.
-> 
-> 3999 Mission Boulevard
-> San Diego, CA 92109
-> 858-539-8727
-> 
-> Again, OEDAM will be at the Catamaran, NOT at the Marriott. The wiki
-> page and this mailing list will be updated with transportation info.
-> 
-> Thanks to Rudi Streif for finding us a great location!
-> 
-> 
+BR Petter
+>
+>
+>> Signed-off-by: Petter Mabäcker <petter@technux.se>
+>> ---
+>> README                                                              | 1 +
+>> conf/machine/include/rpi-base.inc                                   | 1 +
+>> recipes-bsp/bootfiles/rpi-config_git.bb                             | 6 ++++++
+>> .../xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf  | 5 +++++
+>> .../xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf         | 6 ++++++
+>> .../xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf  | 5 -----
+>> recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend      | 6 ++++--
+>> recipes-kernel/linux/linux-raspberrypi.inc                          | 2 ++
+>> 8 files changed, 25 insertions(+), 7 deletions(-)
+>> create mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf
+>> create mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf
+>> delete mode 100644 recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf
+>>
+>> diff --git a/README b/README
+>> index 536926b..54b1ac3 100644
+>> --- a/README
+>> +++ b/README
+>> @@ -232,6 +232,7 @@ the modelname should be added as a MACHINE_FEATURES in local.conf like below:
+>>
+>> List of currently supported models:
+>>      - pitft22
+>> +    - pitft28r
+>>
+>>
+>> 4. Extra apps
+>> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+>> index 792150e..a9e8053 100644
+>> --- a/conf/machine/include/rpi-base.inc
+>> +++ b/conf/machine/include/rpi-base.inc
+>> @@ -33,6 +33,7 @@ KERNEL_DEVICETREE ?= " \
+>>      overlays/iqaudio-dacplus-overlay.dtb \
+>>      overlays/lirc-rpi-overlay.dtb \
+>>      overlays/pitft22-overlay.dtb \
+>> +    overlays/pitft28-resistive-overlay.dtb \
+>>      overlays/pps-gpio-overlay.dtb \
+>>      overlays/w1-gpio-overlay.dtb \
+>>      overlays/w1-gpio-pullup-overlay.dtb \
+>> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+>> index 4d41723..2941982 100644
+>> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+>> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+>> @@ -17,6 +17,7 @@ PR = "r4"
+>>
+>> PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
+>> PITFT22="${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0", d)}"
+>> +PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0", d)}"
+>>
+>> inherit deploy
+>>
+>> @@ -90,6 +91,11 @@ do_deploy() {
+>>          echo "# Enable PITFT22 display" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>>          echo "dtoverlay=pitft22,rotate=270,speed=32000000,txbuflen=32768" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>>      fi
+>> +
+>> +    if [ "${PITFT28r}" = "1" ]; then
+>> +        echo "# Enable PITFT28r display" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>> +        echo "dtoverlay=pitft28-resistive,rotate=90,speed=32000000,txbuflen=32768" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>> +    fi
+>> }
+>>
+>> addtask deploy before do_package after do_install
+>> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf
+>> new file mode 100644
+>> index 0000000..0d2b36b
+>> --- /dev/null
+>> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/98-pitft.conf
+>> @@ -0,0 +1,5 @@
+>> +Section "Device"
+>> +    Identifier "Adafruit PiTFT"
+>> +    Driver "fbdev"
+>> +    Option "fbdev" "/dev/fb1"
+>> +EndSection
+>> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf
+>> new file mode 100644
+>> index 0000000..f8b578c
+>> --- /dev/null
+>> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-calibration.conf
+>> @@ -0,0 +1,6 @@
+>> +Section "InputClass"
+>> +        Identifier      "calibration"
+>> +        MatchProduct    "stmpe-ts"
+>> +        Option  "Calibration"   "3800 200 200 3800"
+>> +        Option  "SwapAxes"      "1"
+>> +EndSection
+>> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf b/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf
+>> deleted file mode 100644
+>> index 0d2b36b..0000000
+>> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config/rpi/xorg.conf.d/99-pitft.conf
+>> +++ /dev/null
+>> @@ -1,5 +0,0 @@
+>> -Section "Device"
+>> -    Identifier "Adafruit PiTFT"
+>> -    Driver "fbdev"
+>> -    Option "fbdev" "/dev/fb1"
+>> -EndSection
+>> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> index 0ae2ee0..062de2d 100644
+>> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> @@ -1,7 +1,8 @@
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>
+>> SRC_URI_append_rpi = " file://xorg.conf.d/10-evdev.conf \
+>> -                       file://xorg.conf.d/99-pitft.conf \
+>> +                       file://xorg.conf.d/98-pitft.conf \
+>> +                       file://xorg.conf.d/99-calibration.conf \
+>>                       "
+>>
+>> do_install_append_rpi () {
+>> @@ -10,7 +11,8 @@ do_install_append_rpi () {
+>>
+>> 	PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
+>> 	if [ "${PITFT}" = "1" ]; then
+>> -		install -m 0644 ${WORKDIR}/xorg.conf.d/99-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+>> +		install -m 0644 ${WORKDIR}/xorg.conf.d/98-pitft.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+>> +		install -m 0644 ${WORKDIR}/xorg.conf.d/99-calibration.conf ${D}/${sysconfdir}/X11/xorg.conf.d/
+>> 	fi
+>> }
+>>
+>> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+>> index 24e7fe2..142ad7f 100644
+>> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+>> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+>> @@ -27,6 +27,8 @@ CMDLINE_append = ' ${@base_conditional("ENABLE_KGDB", "1", "kgdboc=ttyAMA0,11520
+>>
+>> UDEV_GE_141 ?= "1"
+>>
+>> +KERNEL_MODULE_AUTOLOAD += "${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "stmpe-ts", "", d)}"
+>> +
+>> # Set programmatically some variables during recipe parsing
+>> # See http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#anonymous-python-functions
+>> python __anonymous () {
+>> --
+>> 1.9.1
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
 
