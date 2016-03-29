@@ -1,49 +1,59 @@
-Return-Path: <michael.blaettler@siemens.com>
+Return-Path: <ashish.shrivastava@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDF8FE00B46; Tue, 29 Mar 2016 03:52:14 -0700 (PDT)
+	id 777C6E00B9C; Tue, 29 Mar 2016 05:31:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [194.138.37.39 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0683]
-X-Greylist: delayed 222 seconds by postgrey-1.32 at yocto-www;
-	Tue, 29 Mar 2016 03:52:06 PDT
-Received: from lizzard.sbs.de (lizzard.sbs.de [194.138.37.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6150AE00AE4
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 03:52:06 -0700 (PDT)
-Received: from mail1.sbs.de (mail1.sbs.de [192.129.41.35])
-	by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id u2TAmNiJ032196
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 12:48:23 +0200
-Received: from DEFTHW99ERKMSX.ww902.siemens.net
-	(defthw99erkmsx.ww902.siemens.net [139.22.70.147])
-	by mail1.sbs.de (8.15.2/8.15.2) with ESMTPS id u2TAmNmG004811
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 12:48:23 +0200
-Received: from DENBGAT9ERPMSX.ww902.siemens.net (139.22.70.194) by
-	DEFTHW99ERKMSX.ww902.siemens.net (139.22.70.147) with Microsoft SMTP
-	Server (TLS) id 14.3.279.2; Tue, 29 Mar 2016 12:48:23 +0200
-Received: from DEFTHW99EH2MSX.ww902.siemens.net ([169.254.12.131]) by
-	DENBGAT9ERPMSX.ww902.siemens.net ([139.22.70.194]) with mapi id
-	14.03.0279.002; Tue, 29 Mar 2016 12:48:22 +0200
-From: "Blaettler, Michael" <michael.blaettler@siemens.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.60.68.10 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from bes.se.axis.com (bes.se.axis.com [195.60.68.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61D31E00B30
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 05:31:22 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bes.se.axis.com (Postfix) with ESMTP id 457502E0B0
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 14:31:21 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bes.se.axis.com
+Received: from bes.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bes.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id ojMWjDtTN3oi for <yocto@yoctoproject.org>;
+	Tue, 29 Mar 2016 14:31:20 +0200 (CEST)
+Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
+	by bes.se.axis.com (Postfix) with ESMTP id 68FC12E097
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 14:31:20 +0200 (CEST)
+Received: from boulder.se.axis.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 4AE45156E
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 14:31:20 +0200 (CEST)
+Received: from thoth.se.axis.com (thoth.se.axis.com [10.0.2.173])
+	by boulder.se.axis.com (Postfix) with ESMTP id 40300D9
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 14:31:20 +0200 (CEST)
+Received: from XBOX01.axis.com (xbox01.axis.com [10.0.5.15])
+	by thoth.se.axis.com (Postfix) with ESMTP id 3F340FA2
+	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 14:31:20 +0200 (CEST)
+Received: from XBOX04.axis.com (10.0.5.18) by XBOX01.axis.com (10.0.5.15) with
+	Microsoft SMTP Server (TLS) id 15.0.1156.6;
+	Tue, 29 Mar 2016 14:31:17 +0200
+Received: from XBOX04.axis.com ([fe80::210a:724b:68cb:a917]) by
+	XBOX04.axis.com ([fe80::210a:724b:68cb:a917%23]) with mapi id
+	15.00.1156.000; Tue, 29 Mar 2016 14:31:17 +0200
+From: Ashish Shrivastava <ashish.shrivastava@axis.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-java] Use openjdk-8 as javac and java VM
-Thread-Index: AdGJqINmEKQhsw1VSMSm2SVMATGe3Q==
-Date: Tue, 29 Mar 2016 10:48:22 +0000
-Message-ID: <347AAC56F29ACA4EA31B39C2109A6FE702EA4441@DEFTHW99EH2MSX.ww902.siemens.net>
+Thread-Topic: pwauth: Unable to recognise the format of the input file
+	(gobject-introspection disabled)
+Thread-Index: AQHRiaJi0qUGMldvFE+/u0Xi9Bfuag==
+Date: Tue, 29 Mar 2016 12:31:16 +0000
+Message-ID: <1459254679831.22120@axis.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [139.22.70.17]
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.55]
 MIME-Version: 1.0
-Subject: [meta-java] Use openjdk-8 as javac and java VM
+Subject: pwauth: Unable to recognise the format of the input file (gobject-introspection disabled)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,77 +65,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Mar 2016 10:52:14 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_347AAC56F29ACA4EA31B39C2109A6FE702EA4441DEFTHW99EH2MSXw_"
-
---_000_347AAC56F29ACA4EA31B39C2109A6FE702EA4441DEFTHW99EH2MSXw_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 29 Mar 2016 12:31:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all
-
-I am currently struggling with selecting the Java virtual machine and Java =
-compiler. I'd like to use the Java VM and Java Compiler provided by openjdk=
--8-native in the meta-java layer.
-It was possible to build openjdk-8-native without any problems but after so=
-urcing the environment-script the javac command points to the compiler inst=
-alled by ecj-bootstrap-native and the java command points to the VM install=
-ed by cacao-native.
-Afterwards I tried to add openjdk-8 as a provider for "virtual/javac-native=
-" and "virtual/java-native" but then the image isn't buildable due to recur=
-sive inclusions.
-
-How can I select the java vm and java compiler from openjdk-8 as my default=
- compiler/VM?
-Can anybody assist me?
+Hi,
 
 
-Thanks in advance
+I am getting issue in pwauth: "Unable to recognize the format of the input =
+file".
 
-Michael
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ERROR: pwauth-2.3.11-r0 do_package: objcopy failed with exit code 256 (cmd =
+was 'mipsisa32r2el-axis-linux-gnu-objcopy' --only-keep-debug '/home/ashishs=
+/dists/jangal-poky-master/builds/q3505/tmp/work/mips32r2el-nf-poky-linux/pw=
+auth/2.3.11-r0/package/usr/sbin/pwauth' '/home/ashishs/dists/jangal-poky-ma=
+ster/builds/q3505/tmp/work/mips32r2el-nf-poky-linux/pwauth/2.3.11-r0/packag=
+e/usr/sbin/.debug/pwauth'):
+mipsisa32r2el-axis-linux-gnu-objcopy: Unable to recognise the format of the=
+ input file `/home/ashishs/dists/jangal-poky-master/builds/q3505/tmp/work/m=
+ips32r2el-nf-poky-linux/pwauth/2.3.11-r0/package/usr/sbin/pwauth'
+ERROR: pwauth-2.3.11-r0 do_package: Function failed: split_and_strip_files
+ERROR: Logfile of failure stored in: /home/ashishs/dists/jangal-poky-master=
+/builds/q3505/tmp/work/mips32r2el-nf-poky-linux/pwauth/2.3.11-r0/temp/log.d=
+o_package.27212
+ERROR: Task 11 (/home/ashishs/dists/jangal-poky-master/meta-axis/recipes-ht=
+tpd/pwauth/pwauth_2.3.11.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 447 tasks of which 438 didn't need to be rer=
+un and 1 failed.
 
 
---_000_347AAC56F29ACA4EA31B39C2109A6FE702EA4441DEFTHW99EH2MSXw_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Hi all</div>
-<div>&nbsp;</div>
-<div>I am currently struggling with selecting the Java virtual machine and =
-Java compiler. I&#8217;d like to use the Java VM and Java Compiler provided=
- by openjdk-8-native in the meta-java layer.</div>
-<div>It was possible to build openjdk-8-native without any problems but aft=
-er sourcing the environment-script the javac command points to the compiler=
- installed by ecj-bootstrap-native and the java command points to the VM in=
-stalled by cacao-native.</div>
-<div>Afterwards I tried to add openjdk-8 as a provider for &#8220;virtual/j=
-avac-native&#8221; and &#8220;virtual/java-native&#8221; but then the image=
- isn&#8217;t buildable due to recursive inclusions.</div>
-<div>&nbsp;</div>
-<div>How can I select the java vm and java compiler from openjdk-8 as my de=
-fault compiler/VM?</div>
-<div>Can anybody assist me?</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>Thanks in advance</div>
-<div>&nbsp;</div>
-<div>Michael </div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+log.do_package.27212 says:
 
---_000_347AAC56F29ACA4EA31B39C2109A6FE702EA4441DEFTHW99EH2MSXw_--
+DEBUG: Executing python function sstate_task_prefunc
+DEBUG: Python function sstate_task_prefunc finished
+DEBUG: Executing python function do_package
+DEBUG: Executing python function package_get_auto_pr
+DEBUG: Python function package_get_auto_pr finished
+DEBUG: Executing python function perform_packagecopy
+DEBUG: Python function perform_packagecopy finished
+DEBUG: Executing python function split_and_strip_files
+ERROR: objcopy failed with exit code 256 (cmd was 'mipsisa32r2el-axis-linux=
+-gnu-objcopy' --only-keep-debug '/home/ashishs/dists/jangal-poky-master/bui=
+lds/q3505/tmp/work/mips32r2el-nf-poky-linux/pwauth/2.3.11-r0/package/usr/sb=
+in/pwauth' '/home/ashishs/dists/jangal-poky-master/builds/q3505/tmp/work/mi=
+ps32r2el-nf-poky-linux/pwauth/2.3.11-r0/package/usr/sbin/.debug/pwauth'):
+mipsisa32r2el-axis-linux-gnu-objcopy: Unable to recognise the format of the=
+ input file `/home/ashishs/dists/jangal-poky-master/builds/q3505/tmp/work/m=
+ips32r2el-nf-poky-linux/pwauth/2.3.11-r0/package/usr/sbin/pwauth'
+DEBUG: Python function split_and_strip_files finished
+DEBUG: Python function do_package finished
+ERROR: Function failed: split_and_strip_files
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output from file viewer for input file:
+ashishs@lnxashishs> file /home/ashishs/dists/jangal-poky-master/builds/q350=
+5/tmp/work/mips32r2el-nf-poky-linux/pwauth/2.3.11-r0/package/usr/sbin/pwaut=
+h
+
+/home/ashishs/dists/jangal-poky-master/builds/q3505/tmp/work/mips32r2el-nf-=
+poky-linux/pwauth/2.3.11-r0/package/usr/sbin/pwauth: setuid ELF 64-bit LSB =
+executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs)=
+, for GNU/Linux 2.6.26, BuildID[sha1]=3D0x42ffc2e02c207590b06b9c77c32318d44=
+b34d004, not stripped
+ashishs@ln
+
+
+
+gobject-introspection is disabled by:
+DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "gobject-introspection-data"
+
+
+Regards
+Ashish
+
+
+
+
