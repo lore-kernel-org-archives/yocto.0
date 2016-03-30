@@ -1,44 +1,63 @@
-Return-Path: <max.chi@portwell.com.tw>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27BB0E00BF8; Tue, 29 Mar 2016 23:21:06 -0700 (PDT)
+	id A0779E00833; Wed, 30 Mar 2016 14:39:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,DEAR_SOMETHING,
-	HTML_MESSAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  2.0 DEAR_SOMETHING BODY: Contains 'Dear (something)'
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.5000]
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Tue, 29 Mar 2016 23:21:04 PDT
-Received: from ex10.portwell.com.tw (ex10.portwell.com.tw [122.147.166.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 507EFE00AE4
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 23:21:04 -0700 (PDT)
-Received: from ex10.portwell.com.tw ([fe80::900d:6b8d:ff60:e975]) by
-	ex10.portwell.com.tw ([fe80::900d:6b8d:ff60:e975%13]) with mapi;
-	Wed, 30 Mar 2016 14:23:10 +0800
-From: =?big5?B?TWF4IENoaSAorPbEULu3KSA6IDg1Nzk=?= <max.chi@portwell.com.tw>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [Portwell] Install Yocto on Samsung eMMC
-Thread-Index: AdGKTC6ZDwUcArfIQ768Hm3tLfyoTg==
-Importance: high
-X-Priority: 1
-Date: Wed, 30 Mar 2016 06:19:58 +0000
-Message-ID: <32E0B8718AB0814882747D62286E529302958AF532@ex10.portwell.com.tw>
-Accept-Language: zh-TW, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 30 Mar 2016 14:35:59 -0700
-Cc: =?big5?B?SmFyZWQgTGluICiqTKRssLcpIDogODM4Mw==?=
-	<jared.lin@portwell.com.tw>,
-	=?big5?B?VGhvbWFzIExpZW4gKLNzvFe5RikgOiA4Mjcx?=
-	<thomas.lien@portwell.com.tw>,
-	=?big5?B?RnJlZGVyaWMgV2FuZyAopP2uYb7LKSA6IDgyMzM=?=
-	<frederic.wang@portwell.com.tw>,
-	=?big5?B?SmFzb24gTGluICAoqkyr2Kb5KSA6IDgyMzA=?= <jason.lin@portwell.com.tw>
-Subject: [Portwell] Install Yocto on Samsung eMMC
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yw0-f171.google.com (mail-yw0-f171.google.com
+	[209.85.161.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AFE5E0048B
+	for <yocto@yoctoproject.org>; Wed, 30 Mar 2016 14:39:22 -0700 (PDT)
+Received: by mail-yw0-f171.google.com with SMTP id h65so75132504ywe.0
+	for <yocto@yoctoproject.org>; Wed, 30 Mar 2016 14:39:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=6UsjEN/4vZgGoC9voBtKfOh7McVUgj570diHy6C+1S0=;
+	b=NxyRrcCIYh+q4d7kiOL5YgzeogD9aInsB7c5+k4yWza6goMaUnrKC47K5qceN9VMqF
+	RSJlGn+Yyb7IHsxCe1tw0qa4+LBS7JHB9teJrSQugBEnhYiklrvMxe5RD/KpaL7O4CMY
+	mk4TsEBnXoAUrAwXYQjkj1xMOTRJw+8fDq+24jGSRXE+oMyfYIMrPyjdOSEiqm8Ykxvz
+	UbA9pQmiPBNLI5DTpO2qjPVU4hGwp74plAukcMk4GMs7DSHLd4rzHVlcy3CZCPOt0DZf
+	VEwGRFf14acyH+sHoApaMlsoOTdvTEQ7rPIUoSGqCC5n8aQm82HqeVuTswDwo++4+X85
+	2b5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=6UsjEN/4vZgGoC9voBtKfOh7McVUgj570diHy6C+1S0=;
+	b=WwN0Q6RbMHBGwhPoEIhUnat8/6ftuR6trOHj9xqGstUC9gAQ8Hz9uF5jAPbYpF9s88
+	fPzdAP7vjGw+/bNvvsFFFbh/P42pXpaDKMjLrjJ2qmhaJ+UKBIrLx3FDopOYepmqBvPA
+	eq6E0PKpdMtSFApfkAk9zASAZIWa7XTBFULUAHK1WmLWu2dFPR2zj38yIEgShmfN4VZx
+	SREc/kfmcGYkWR0HWalf1QlailOWhMLGDzOXMCwaChe150HxZZ7MYc4ON3mFJ5H0fBB2
+	0FZLnM/gpWitux/1n12FI8iyuijxfiT2+fbCdF6PdCLBOv9PuBACCu2idGndOHfXHxue
+	GXGA==
+X-Gm-Message-State: AD7BkJK7PQjXahZ11Jv90lgKlB69s07AzFjFhdfFHGUgZg9hUBKcvuAnFHK+OOAHDFP6ug==
+X-Received: by 10.37.43.135 with SMTP id r129mr289401ybr.172.1459373961486;
+	Wed, 30 Mar 2016 14:39:21 -0700 (PDT)
+Received: from Pahoa2.mvista.com ([64.2.3.194])
+	by smtp.gmail.com with ESMTPSA id
+	y187sm3667657ywc.17.2016.03.30.14.39.20 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 30 Mar 2016 14:39:20 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 30 Mar 2016 14:39:18 -0700
+Message-Id: <1459373958-13371-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][V3][PATCH] paxctl: fix compile issue.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,115 +69,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Mar 2016 06:21:06 -0000
-Content-Language: zh-TW
-Content-Type: multipart/alternative;
-	boundary="_000_32E0B8718AB0814882747D62286E529302958AF532ex10portwellc_"
+X-List-Received-Date: Wed, 30 Mar 2016 21:39:25 -0000
 
---_000_32E0B8718AB0814882747D62286E529302958AF532ex10portwellc_
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+use CC from build not host via EXTRA_OEMAKE
 
-RGVhciBTaXJzLA0KDQpXZaGmcmUgZmFjaW5nIGlzc3VlIG9uIGluc3RhbGxpbmcgWW9jdG8gb24g
-U2Ftc3VuZyBlTU1DLiBUaGUgZU1NQyBtb2RlbCBpcyBhcyBiZWxvdy4gSG93ZXZlciwgd2UgdHJp
-ZWQgdG8gaW5zdGFsbCBvbiBNaWNyb24gZU1NQyBhbmQgaXShpnMgbm8gcHJvYmxlbS4gV2WhpnJl
-IGp1c3Qgd29uZGVyaW5nIGlmIFlvY3RvIG5lZWRzIHRvIHVzZSB3aXRoIHNwZWNpZmljIGVNTUMg
-YnJhbmQvbW9kZWw/DQoNCktMTUFHMkdFTkQtQjAzMQ0KDQpUaGFuayB5b3Ugc28gbXVjaC4NCg0K
-WW91cnMgc2luY2VyZWx5LA0KDQpNYXggQ2hpDQpKb2luIFBvcnR3ZWxsIGluIHRoZSBFbGVjdHJp
-YyBEcmVhbSENClBvcnR3ZWxsLCBJbmMuIC8gSW5kdXN0cmlhbCBQbGF0Zm9ybSBTZXJ2aWNlIEJV
-DQpUZWw6ICs4ODYtMi03NzMxLTg4ODggIzg1NzkNCldlYnNpdGU6IHd3dy5wb3J0d2VsbC5jb20u
-dHc8aHR0cDovL3d3dy5wb3J0d2VsbC5jb20udHcvPg0KDQo=
+thanks khem
 
---_000_32E0B8718AB0814882747D62286E529302958AF532ex10portwellc_
-Content-Type: text/html; charset="big5"
-Content-Transfer-Encoding: quoted-printable
+this fixes the below error.
+WARNING: paxctl-0.9-r0 do_package_qa: QA Issue: /sbin/paxctl contained in package paxctl requires libc.so.6(GLIBC_2.3.4)(64bit), but no providers found in RDEPENDS_paxctl? [file-rdeps]
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40"><head><meta http-equiv=3DContent-Type content=3D"text/html; charset=3Db=
-ig5"><meta name=3DGenerator content=3D"Microsoft Word 14 (filtered medium)"=
-><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=B7s=B2=D3=A9=FA=C5=E9;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:=B7s=B2=D3=A9=FA=C5=E9;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:=B7L=B3n=A5=BF=B6=C2=C5=E9;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"\@=B7s=B2=D3=A9=FA=C5=E9";
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"\@=B7L=B3n=A5=BF=B6=C2=C5=E9";
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:purple;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-TW link=3Dblue vli=
-nk=3Dpurple style=3D'text-justify-trim:punctuation'><div class=3DWordSectio=
-n1><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:purple'>Dear Sirs=
-,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'col=
-or:purple'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN=
--US style=3D'color:purple'>We=A1=A6re facing issue on installing Yocto on S=
-amsung eMMC. The eMMC model is as below. However, we tried to install on Mi=
-cron eMMC and it=A1=A6s no problem. We=A1=A6re just wondering if Yocto need=
-s to use with specific eMMC brand/model?<o:p></o:p></span></p><p class=3DMs=
-oNormal><span lang=3DEN-US style=3D'color:purple'><o:p>&nbsp;</o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:purple'>KLMAG2GEN=
-D-B031<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=
-=3D'color:purple'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span la=
-ng=3DEN-US style=3D'color:purple'>Thank you so much.<o:p></o:p></span></p><=
-p class=3DMsoNormal><span lang=3DEN-US style=3D'color:purple'><o:p>&nbsp;</=
-o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:purpl=
-e'>Yours sincerely,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3D=
-EN-US style=3D'color:purple'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNorm=
-al><span lang=3DEN-US style=3D'color:purple'>Max Chi<o:p></o:p></span></p><=
-p class=3DMsoNormal><b><i><span lang=3DEN-US style=3D'color:purple'>Join Po=
-rtwell in the Electric Dream!<o:p></o:p></span></i></b></p><p class=3DMsoNo=
-rmal><span lang=3DEN-US style=3D'color:purple'>Portwell, Inc. / Industrial =
-Platform Service BU<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3D=
-EN-US style=3D'color:purple'>Tel: +886-2-7731-8888 <b>#8579</b><o:p></o:p><=
-/span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'color:purple'>We=
-bsite: <a href=3D"http://www.portwell.com.tw/" title=3D"http://www.portwell=
-.com.tw/"><span style=3D'color:purple'>www.portwell.com.tw</span></a><o:p><=
-/o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></=
-span></p></div></body></html>=
+minor recipe cleanup
 
---_000_32E0B8718AB0814882747D62286E529302958AF532ex10portwellc_--
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/paxctl/paxctl_0.9.bb | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/recipes-security/paxctl/paxctl_0.9.bb b/recipes-security/paxctl/paxctl_0.9.bb
+index 8eadad1..d69219f 100644
+--- a/recipes-security/paxctl/paxctl_0.9.bb
++++ b/recipes-security/paxctl/paxctl_0.9.bb
+@@ -8,13 +8,13 @@ LIC_FILES_CHKSUM = "file://paxctl.c;beginline=1;endline=5;md5=0ddd065c61020dda79
+                     file://paxctl-elf.c;beginline=1;endline=5;md5=99f453ce7f6d1687ee808982e2924813 \
+ 		   "
+ 
+-SRC_URI = "http://pax.grsecurity.net/paxctl-${PV}.tar.gz"
++SRC_URI = "http://pax.grsecurity.net/${BP}.tar.gz"
++
+ SRC_URI[md5sum] = "9bea59b1987dc4e16c2d22d745374e64"
+ SRC_URI[sha256sum] = "a330ddd812688169802a3ba29e5e3b19956376b8f6f73b8d7e9586eb04423c2e"
+ 
++EXTRA_OEMAKE = "CC='${CC}' DESTDIR='${D}'"
++
+ do_install() {
+-	oe_runmake 'DESTDIR=${D}' install
++	oe_runmake install
+ }
+-
+-FILES_${PN} = "${base_sbindir}/paxctl"
+-FILES_${PN}-doc = "${mandir}/man1/paxctl.1"
+-- 
+2.3.5
+
+
