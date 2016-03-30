@@ -1,66 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96391E00B37; Tue, 29 Mar 2016 20:44:44 -0700 (PDT)
+	id 9CF19E00C51; Wed, 30 Mar 2016 06:25:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.245.222.98 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6F36E00AE4
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 20:44:39 -0700 (PDT)
-Received: by mail-pf0-f182.google.com with SMTP id 4so31037552pfd.0
-	for <yocto@yoctoproject.org>; Tue, 29 Mar 2016 20:44:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=8qCAWlAv0JDxesSNdV1UpSCCThYgihWZRDYSZp4xXvM=;
-	b=cKzX+Amaec6sDM5Imsp+qh9asqU7pncCs57IONDG5COrpRJYEm+zkg6fdRaZY9i6Fz
-	iRcT3Wd4K/IizwCVeeFBLmLgmHoISC/GIuxmmYO8hDz8m34Ujd3mW++bjOWrerRQwrb/
-	RLfCoiX1pXgiDd4mQKzFjOEYeaJP3bm5XvSmksAe7qEzsLgjpYML9aWyvc/ScGFUFozf
-	bWe95RYzl//CPdj5s5OXGTUBl6G8PQqV+qwuJ9usF2sbyhVCNlx03AlyTARifa3ZTWaG
-	cE7Hx0Gg6BcBS33S6DnYIehpnFSFNKeqG/pcE28fwmS6UkkH/s/ahts0a7kHbY7DYdkL
-	ZEFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=8qCAWlAv0JDxesSNdV1UpSCCThYgihWZRDYSZp4xXvM=;
-	b=aHHDBP/n22hj9RJ8vwGqUKQvj7y4qOMeIq5233M+hL2VeUIAFHY1+4qJuJ/udeSVXa
-	0ntv4LlWE0tM0QPTC+ocj3DL3/kLwqKlaInlFWhQWa/GZOne1usXqc6UkbWvrv9aAbR7
-	EyQiYr6WwcBGXLuJNi/4G4xpudB0gVCzb97PfFw95X5FsSYUaXYzrlPgBgjcFm2Wv4JA
-	c3I9SheTiZVy4+JURPpGckkG5LMX+PGS0q1v2QXYWtznRIvgKcvfRzSFvY/eo55pQ6CU
-	RceNjrIywuEC5aSH/IWXV6G1mltmbkNGbDd+k9lMmTAJAWrA9iJ0kTxio89BPwpv2k/n
-	pODA==
-X-Gm-Message-State: AD7BkJI9I4Js1wzG0arSQq6V0T8cptOKvzpiOlSphBvpp6Mci3pyZE/fncl0rB+6ZSz0fA==
-X-Received: by 10.98.71.91 with SMTP id u88mr9252649pfa.161.1459309479496;
-	Tue, 29 Mar 2016 20:44:39 -0700 (PDT)
-Received: from haswell.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192])
-	by smtp.gmail.com with ESMTPSA id f66sm1630274pff.8.2016.03.29.20.44.38
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 29 Mar 2016 20:44:38 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue, 29 Mar 2016 20:44:31 -0700
-Message-Id: <1459309471-13065-2-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1459309471-13065-1-git-send-email-raj.khem@gmail.com>
-References: <1459309471-13065-1-git-send-email-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 2/2] userland: Fix tearing effect seen with wayland compositors
+X-Greylist: delayed 127 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Mar 2016 06:25:00 PDT
+Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A78EE00C3A
+	for <yocto@yoctoproject.org>; Wed, 30 Mar 2016 06:25:00 -0700 (PDT)
+Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:45215
+	helo=mail.bmw-carit.de)
+	by mail.bmw-carit.de with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1alG5C-0003bW-0g; Wed, 30 Mar 2016 15:22:50 +0200
+Received: from localhost (172.20.20.238) by Exchange2010.bmw-carit.intra
+	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Wed, 30 Mar 2016 15:22:49 +0200
+Date: Wed, 30 Mar 2016 15:22:49 +0200
+From: Clemens Lang <clemens.lang@bmw-carit.de>
+To: <openembedded-core@lists.openembedded.org>
+Message-ID: <20160330132249.GM14883@ulm-bmuc496424.bmw-carit.de>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Originating-IP: [172.20.20.238]
+Cc: yocto@yoctoproject.org
+Subject: [PATCH] ldconfig-native: Fix ELF flags on 64-bit binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,87 +44,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Mar 2016 03:44:44 -0000
+X-List-Received-Date: Wed, 30 Mar 2016 13:25:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Introduce EGL flush in few more places
+Yocto's ldconfig-native was exported from an old version of glibc and
+generates an ld.so.cache that is partially ignored by current versions
+of glibc when loading libraries. This occurs for 64-bit binaries, where
+glibc expects FLAG_ELF_LIBC6, but ldconfig-native only generates the
+standard ELF flag. Fix this with an additional patch on top of the patch
+for now.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+You can verify this by applying the patch below to your target copy of
+glibc and running
+
+  LD_DEBUG=libs /lib64/ld-linux-x86-64.so.2 --list $anybinary
+
+--- ./elf/dl-cache.c.orig       2016-01-07 11:05:36.823447171 +0100
++++ ./elf/dl-cache.c    2016-01-07 11:19:53.925878628 +0100
+@@ -106,6 +106,8 @@
+                if (_dl_cache_check_flags (flags)                             \
+                    && _dl_cache_verify_ptr (lib->value))                     \
+                  {                                                           \
++                   if (__glibc_unlikely (GLRO_dl_debug_mask & DL_DEBUG_LIBS))\
++                       _dl_debug_printf ("  considering file %s\n", cache_data + lib->value); \
+                    if (best == NULL || flags == GLRO(dl_correct_cache_id))   \
+                      {                                                       \
+                        HWCAP_CHECK;                                          \
+@@ -117,6 +119,9 @@
+                             searching.  */                                   \
+                          break;                                              \
+                      }                                                       \
++                 } else {                                                    \
++                     if (__glibc_unlikely (GLRO_dl_debug_mask & DL_DEBUG_LIBS))              \
++                       _dl_debug_printf ("  ignoring file %s due to flags %x, expected %x\n", cache_data + lib->value, lib->flags, GLRO(dl_correct_cache_id)); \
+                  }                                                           \
+              }                                                               \
+            while (++middle <= right);                                        \
+@@ -265,14 +270,23 @@
+
+       /* Only accept hwcap if it's for the right platform.  */
+ #define HWCAP_CHECK \
+-      if (lib->hwcap & hwcap_exclude)                                        \
++      if (lib->hwcap & hwcap_exclude) {                                              \
++       if (__glibc_unlikely (GLRO_dl_debug_mask & DL_DEBUG_LIBS))            \
++           _dl_debug_printf ("   hwcap mismatch %x vs. %x\n", lib->hwcap, hwcap_exclude); \
+        continue;                                                             \
+-      if (GLRO(dl_osversion) && lib->osversion > GLRO(dl_osversion))         \
++      }                                                                              \
++      if (GLRO(dl_osversion) && lib->osversion > GLRO(dl_osversion)) {       \
++       if (__glibc_unlikely (GLRO_dl_debug_mask & DL_DEBUG_LIBS))            \
++           _dl_debug_printf ("   os version mismatch %x vs. %x\n", lib->osversion, GLRO(dl_osversion)); \
+        continue;                                                             \
++      }                                                                              \
+       if (_DL_PLATFORMS_COUNT                                                \
+          && (lib->hwcap & _DL_HWCAP_PLATFORM) != 0                           \
+-         && (lib->hwcap & _DL_HWCAP_PLATFORM) != platform)                   \
+-       continue
++         && (lib->hwcap & _DL_HWCAP_PLATFORM) != platform) {                 \
++       if (__glibc_unlikely (GLRO_dl_debug_mask & DL_DEBUG_LIBS))            \
++           _dl_debug_printf ("   platform mismatch %x vs. %x\n", lib->hwcap & _DL_HWCAP_PLATFORM, platform); \
++       continue;                                                             \
++      }
+       SEARCH_CACHE (cache_new);
+     }
+   else
+
+This version of ldconfig-native should really be replaced with a version
+matching the glibc source in use on the target platform.
+
+Signed-off-by: Clemens Lang <clemens.lang@bmw-carit.de>
 ---
- ...Fix-for-framerate-with-nested-composition.patch | 46 ++++++++++++++++++----
- 1 file changed, 39 insertions(+), 7 deletions(-)
+ .../add-64-bit-flag-for-ELF64-entries.patch        | 27 ++++++++++++++++------
+ 1 file changed, 20 insertions(+), 7 deletions(-)
 
-diff --git a/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch b/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-index 6377e31..2fa9d66 100644
---- a/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-+++ b/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-@@ -1,20 +1,39 @@
--From 7f424ce48f6c14118aea2ab770b3bbf87e1f0393 Mon Sep 17 00:00:00 2001
-+From e5affc4ff145eedf61e2625a8919622c92d0b8ba Mon Sep 17 00:00:00 2001
- From: Khem Raj <raj.khem@gmail.com>
--Date: Thu, 24 Mar 2016 14:30:58 -0700
--Subject: [PATCH 13/13] Fix for framerate with nested composition
-+Date: Tue, 29 Mar 2016 20:38:30 -0700
-+Subject: [PATCH 13/14] Fix for framerate with nested composition
- 
- frame rate appears irregular and lower than expected when using nested composition.
- 
- Signed-off-by: Khem Raj <raj.khem@gmail.com>
- ---
-- interface/khronos/egl/egl_client.c | 1 +
-- 1 file changed, 1 insertion(+)
-+ interface/khronos/egl/egl_client.c | 9 ++++++++-
-+ 1 file changed, 8 insertions(+), 1 deletion(-)
- 
- diff --git a/interface/khronos/egl/egl_client.c b/interface/khronos/egl/egl_client.c
--index 024f3ed..95bb581 100644
-+index 024f3ed..d8a007c 100644
- --- a/interface/khronos/egl/egl_client.c
- +++ b/interface/khronos/egl/egl_client.c
--@@ -2360,6 +2360,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-+@@ -2342,6 +2342,9 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-+                      surface->back_wl_buffer = buffer;
-+                   }
-+ 
-++                  glFlush();
-++                  glFinish();
-++
-+                   RPC_CALL7(eglIntSwapBuffers_impl,
-+                         thread,
-+                         EGLINTSWAPBUFFERS_ID_V2,
-+@@ -2353,6 +2356,8 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-+                         RPC_UINT(khrn_platform_get_window_position(surface->win)),
-+                         RPC_INT(surface->back_wl_buffer->resource));
-+ 
-++                  RPC_FLUSH(thread);
-++
-+                   surface->front_wl_buffer->in_use = 1;
-+                   wl_surface_attach(wl_egl_window->wl_surface,
-+                                     surface->front_wl_buffer->wl_buffer,
-+@@ -2360,10 +2365,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-                    wl_surface_damage(wl_egl_window->wl_surface, 0, 0,
-                                      surface->width, surface->height);
-                    wl_surface_commit(wl_egl_window->wl_surface);
-@@ -22,6 +41,19 @@ index 024f3ed..95bb581 100644
+diff --git a/meta/recipes-core/glibc/ldconfig-native-2.12.1/add-64-bit-flag-for-ELF64-entries.patch b/meta/recipes-core/glibc/ldconfig-native-2.12.1/add-64-bit-flag-for-ELF64-entries.patch
+index a9af110..f4e38d4 100644
+--- a/meta/recipes-core/glibc/ldconfig-native-2.12.1/add-64-bit-flag-for-ELF64-entries.patch
++++ b/meta/recipes-core/glibc/ldconfig-native-2.12.1/add-64-bit-flag-for-ELF64-entries.patch
+@@ -64,7 +64,7 @@ index 0bf0de3..6e87afc 100644
+  #undef check_ptr
+  #define check_ptr(ptr)						\
+  do								\
+-@@ -290,6 +295,35 @@ process_elf_file64 (const char *file_name, const char *lib, int *flag,
++@@ -290,6 +295,48 @@ process_elf_file64 (const char *file_name, const char *lib, int *flag,
+       libc5/libc6.  */
+    *flag = FLAG_ELF;
   
-                    while(ret != -1 && surface->back_wl_buffer->in_use)
-                       ret = wl_display_dispatch_queue(wl_display, process->wl_queue);
-+-               } else
-++               } else {
-+ #endif
-+                RPC_CALL6(eglIntSwapBuffers_impl,
-+                      thread,
-+@@ -2376,6 +2382,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-+                      RPC_UINT(khrn_platform_get_window_position(surface->win)));
-+ 
-+                RPC_FLUSH(thread);
-++               }
-+ 
-+ #ifdef ANDROID
-+                CLIENT_UNLOCK();
- -- 
- 2.7.4
- 
+@@ -73,23 +73,36 @@ index 0bf0de3..6e87afc 100644
+ +  switch (elf_header->e_machine)
+ +    {
+ +    case EM_IA_64:
+-+      *flag |= FLAG_IA64_LIB64;
+++      /* Intel 64bit libraries are always libc.so.6+. */
+++      /* see sysdeps/unix/sysv/linux/ia64/readelflib.c */
+++      *flag |= FLAG_IA64_LIB64|FLAG_ELF_LIBC6;
+ +      break;
+ +    case EM_X86_64:
+-+      *flag |= FLAG_X8664_LIB64;
+++      /* X86-64 64bit libraries are always libc.so.6+. */
+++      /* see sysdeps/unix/sysv/linux/i386/readelflib.c */
+++      *flag |= FLAG_X8664_LIB64|FLAG_ELF_LIBC6;
+ +      break;
+ +    case EM_S390:
+-+      *flag |= FLAG_S390_LIB64;
+++      /* S/390 64bit libraries are always libc.so.6+. */
+++      /* see sysdeps/unix/sysv/linux/s390/readelflib.c */
+++      *flag |= FLAG_S390_LIB64|FLAG_ELF_LIBC6;
+ +      break;
+ +    case EM_PPC64:
+-+      *flag |= FLAG_POWERPC_LIB64;
+++      /* PowerPC 64bit libraries are always libc.so.6+. */
+++      /* see sysdeps/unix/sysv/linux/powerpc/readelflib.c */
+++      *flag |= FLAG_POWERPC_LIB64|FLAG_ELF_LIBC6;
+ +      break;
+ +    case EM_MIPS:
+ +    case EM_MIPS_RS3_LE:
+-+      *flag |= FLAG_MIPS64_LIBN64;
+++      /* n64 libraries are always libc.so.6+. */
+++      /* NOTE: This does not correctly distinguish NAN2008 binaries and is possibly broken */
+++      /* see sysdeps/unix/sysv/linux/mips/readelflib.c */
+++      *flag |= FLAG_MIPS64_LIBN64|FLAG_ELF_LIBC6;
+ +      break;
+ +    case EM_AARCH64:
+-+      *flag |= FLAG_AARCH64_LIB64;
+++      /* AArch64 libraries are always libc.so.6+. */
+++      /* see sysdeps/unix/sysv/linux/arm/readelflib.c */
+++      *flag |= FLAG_AARCH64_LIB64|FLAG_ELF_LIBC6;
+ +      break;
+ +    default:
+ +      error(0, 0, "%s is a 64-bit ELF for unknown machine %lx\n",
 -- 
-2.7.4
+2.8.0.rc3
 
+-- 
+Clemens Lang • Development Specialist
+BMW Car IT GmbH • Lise-Meitner-Str. 14 • 89081 Ulm • http://bmw-carit.com
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Geschäftsführer: Michael Würtenberger und Reinhard Stolle
+Sitz und Registergericht: München HRB 134810
+-------------------------------------------------------------------------
 
