@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6429EE00C84; Thu, 31 Mar 2016 14:25:26 -0700 (PDT)
+	id 29B17E00C89; Thu, 31 Mar 2016 14:26:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,24 +10,24 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFBFEE00C71
-	for <yocto@yoctoproject.org>; Thu, 31 Mar 2016 14:25:23 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 31 Mar 2016 14:25:22 -0700
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEFAAE00C7E
+	for <yocto@yoctoproject.org>; Thu, 31 Mar 2016 14:26:21 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga103.jf.intel.com with ESMTP; 31 Mar 2016 14:26:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,424,1455004800"; d="scan'208";a="935789018"
+X-IronPort-AV: E=Sophos;i="5.24,424,1455004800"; d="scan'208";a="945594778"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.90])
-	by fmsmga001.fm.intel.com with ESMTP; 31 Mar 2016 14:25:22 -0700
+	by orsmga002.jf.intel.com with ESMTP; 31 Mar 2016 14:26:20 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: opkg-devel@googlegroups.co,
 	yocto@yoctoproject.org
-Date: Thu, 31 Mar 2016 15:26:01 -0600
-Message-Id: <1459459561-21506-1-git-send-email-anibal.limon@linux.intel.com>
+Date: Thu, 31 Mar 2016 15:27:01 -0600
+Message-Id: <1459459621-21610-1-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Subject: [PATCH] opkg-build: Exit when fail to list files.
+Subject: [PATCH][opkg-utils] opkg-build: Exit when fail to list files.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Mar 2016 21:25:26 -0000
+X-List-Received-Date: Thu, 31 Mar 2016 21:26:25 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
