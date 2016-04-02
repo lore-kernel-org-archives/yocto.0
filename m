@@ -1,40 +1,70 @@
-Return-Path: <haleigh@edt.com>
+Return-Path: <michael.d.dumont@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6ADFE00C71; Thu, 31 Mar 2016 13:35:27 -0700 (PDT)
+	id DADCEE00CA3; Fri,  1 Apr 2016 21:57:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (michael.d.dumont[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 484 seconds by postgrey-1.32 at yocto-www;
-	Thu, 31 Mar 2016 13:35:26 PDT
-Received: from out.West.EXCH083.serverdata.net
-	(cas083-co-8.exch083.serverdata.net [199.193.206.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB9FCE00C2E
-	for <yocto@yoctoproject.org>; Thu, 31 Mar 2016 13:35:26 -0700 (PDT)
-Received: from MBX083-W1-CO-2.EXCH083.serverpod.net (10.224.171.45) by
-	MBX083-W1-CO-1.EXCH083.serverpod.net (10.224.171.44) with Microsoft
-	SMTP Server (TLS) id 15.0.1130.7; Thu, 31 Mar 2016 13:27:21 -0700
-Received: from MBX083-W1-CO-2.EXCH083.serverpod.net ([10.224.171.45]) by
-	MBX083-W1-CO-2.EXCH083.serverpod.net ([10.224.171.45]) with mapi id
-	15.00.1130.005; Thu, 31 Mar 2016 13:27:21 -0700
-From: Haleigh Novak <haleigh@edt.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Adding Demo Utilities to /proc
-Thread-Index: AQHRi4nl0a4QG5QKzU+6G0P4ioBjLw==
-Date: Thu, 31 Mar 2016 20:27:21 +0000
-Message-ID: <1459456041513.82091@edt.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [207.173.172.180]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7813DE00A9C
+	for <yocto@yoctoproject.org>; Fri,  1 Apr 2016 21:57:13 -0700 (PDT)
+Received: by mail-lb0-f175.google.com with SMTP id bc4so87463844lbc.2
+	for <yocto@yoctoproject.org>; Fri, 01 Apr 2016 21:57:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rxLFYfiFUnpzbrCuvUbxXtz0+cBXawng8QdzvKu0Elo=;
+	b=Fyg7BzD9qRSKTG0NnI4ORfgUkq+jhlarj6wHFUprdBimw2XXeydFS9QjJm9EcEo7ZZ
+	qcEvzTBmJpZp4Gg28w5NxvKQTTkAc6hUbJzxjj0Kb621Vo0EnvMgGIikisciZfMpZD7t
+	g5qDePtBy8XC7PTj/+eKdpU5gClWm56YvqEaxenvV3w+Mq57/HNRZO6fUEdHjiCljlhY
+	g4zwaOfN5eesLublajv1WXZbgiCAEAfNMmTkLKnU4EBOuEFZsPYBtWgANHl7sxY78URC
+	LYImqr47acnJ556kV+UtNw19H7JUCoxV74vrff4gt8htWe4NB3ncJEZ8cpGR69YDqGij
+	STrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rxLFYfiFUnpzbrCuvUbxXtz0+cBXawng8QdzvKu0Elo=;
+	b=eSd68qrc2LuS0ArHd1aB8TdqceEAJ95MXyG/iKoMpEZLrn2Wssq+nhIjjR0yRGuE65
+	3gCOjO7A74YORyjsTLSB3ke719F4XSSWLQIb5m0JCzXRMjaeS6Rdox0QH9gLI/ul7Z2x
+	pFeRjUgmB0l6QZ+eI38EBEiUvb0AH8/NP1Azs/m2Ee+m0+wH4HTeEVcbUR99Y7LxkdgM
+	EOe0pWN9Vo1ytH0xGtHFy+IM6/6DsG3UWYcQGOTEA3WkEJTErOqKjokVhpQ/WKnN2WJl
+	MvPMlMrqyjsZp5OCUjLLPGx140DRVzwnWcC/SOVZtV90Q4sP1Q6moHOJQ9UHJBZ8r86v
+	J7Cg==
+X-Gm-Message-State: AD7BkJKjBQ/w+ZYMWNqta3qQKdqNzVP5DE+fvYSZVTwD+KmIuuxbroSzcBaPcu7WVf+lfpD+R+iOEurUmSdidA==
+X-Received: by 10.112.128.225 with SMTP id nr1mr4827996lbb.101.1459573031606; 
+	Fri, 01 Apr 2016 21:57:11 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.114.78.231 with HTTP; Fri, 1 Apr 2016 21:56:52 -0700 (PDT)
+In-Reply-To: <20160402040301.GA20785@linux-mkz6>
+References: <1704123.nFWplM32RM@valkyrie> <20160331152604.GA23623@linux-yxv0>
+	<655B9BF4-0067-4E41-9B09-BD74A530B79C@gmail.com>
+	<20160401191729.GA25051@linux-yxv0>
+	<20160401224604.GA30256@linux-yxv0>
+	<46A38E77-8BDD-4272-9619-2583EC019F1E@gmail.com>
+	<20160402040301.GA20785@linux-mkz6>
+From: Michael Dumont <michael.d.dumont@gmail.com>
+Date: Fri, 1 Apr 2016 21:56:52 -0700
+Message-ID: <CAK_GGH-sUj-5xdRWh+U=hnGYnBQeCOmKsR0fL0WcikABnphtsg@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
 X-Mailman-Approved-At: Sat, 02 Apr 2016 15:43:12 -0700
-Subject: Adding Demo Utilities to /proc
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberry] Raspberry Pi 3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,140 +76,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Mar 2016 20:35:27 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative; boundary="_000_145945604151382091edtcom_"
+X-List-Received-Date: Sat, 02 Apr 2016 04:57:18 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a865c129ff7052f795403
 
---_000_145945604151382091edtcom_
-Content-Type: text/plain; charset="iso-8859-1"
+--047d7b3a865c129ff7052f795403
+Content-Type: text/plain; charset=UTF-8
+
+Trevor,
+
+I know with the Pi3 they swapped ttyAMA0 to support Bluetooth.
+
+They put ttyS0 on the 40-pin header, but the clock used for the baud rate
+generation on ttyS0 is tied to the core frequency, and it can cause
+fluctuations when the core frequency scales up and down.
+
+I believe the official fix is to set core_freq=250 so that the core clock
+is always at it's lowest value and never needs to change.  There's also a
+dtoverlay that swaps the two UARTs back so you can get the stable UART on
+the 40-pin header.
+
+Not clear to me that this is your exact problem, but it might be worth a
+quick test?
+
+Some notes here:
+https://www.raspberrypi.org/forums/viewtopic.php?f=107&t=138223
+
+Hope this helps,
+
+-Mike
+
+On Fri, Apr 1, 2016 at 9:03 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+
+> On Fri 2016-04-01 @ 03:55:31 PM, Khem Raj wrote:
+> >
+> > > On Apr 1, 2016, at 3:46 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> > >
+> > > On Fri 2016-04-01 @ 03:17:29 PM, Trevor Woerner wrote:
+> > >> As far as I can tell there are two raspberry pi OE layers which
+> include this
+> > >> commit:
+> > >>
+> > >> 1. git://git.yoctoproject.org/meta-raspberrypi::master
+> > >> 2. https://github.com/kraj/meta-raspberrypi.git::kraj/master
+> > > [...]
+> > >> - Using 1 (the official layer from Andrei) I get an image that boots
+> but the
+> > >>   console remains messed up (as before).
+> > >>
+> > >> - Using 2 (the layer from Khem) I get an image that flashes the
+> rainbow
+> > >>   pattern on the HDMI monitor, shows the 4 berries, then stops.
+> Nothing else
+> > >>   happens, no messages on the console.
+> > >
+> > > I get the same results with no local.conf tweaks and building the
+> > > rpi-basic-image.
+> > >
+> > > Does anyone have a run-tested, OE-built, raspi3 image with working
+> console?
+> > >
+> >
+> > can you select 4.1 for kernel and try with master, Andre has merged all
+> my changes
+> > today
+>
+> Yes, that's one of the options I have already tried; it boots but the
+> console
+> is still garbled.
+>
+> The 4.1 kernel is the default in Andrei's layer. Using the 4.4 kernel from
+> your layer I can't get past the 4 raspberries.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--047d7b3a865c129ff7052f795403
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+<div dir=3D"ltr">Trevor,<div><br></div><div>I know with the Pi3 they swappe=
+d ttyAMA0 to support Bluetooth.</div><div><br></div><div>They put ttyS0 on =
+the 40-pin header, but the clock used for the baud rate generation on ttyS0=
+ is tied to the core frequency, and it can cause fluctuations when the core=
+ frequency scales up and down.<br></div><div><br></div><div>I believe the o=
+fficial fix is to set core_freq=3D250 so that the core clock is always at i=
+t&#39;s lowest value and never needs to change.=C2=A0 There&#39;s also a dt=
+overlay that swaps the two UARTs back so you can get the stable UART on the=
+ 40-pin header.</div><div><br></div><div>Not clear to me that this is your =
+exact problem, but it might be worth a quick test?</div><div><br></div><div=
+>Some notes here:=C2=A0<a href=3D"https://www.raspberrypi.org/forums/viewto=
+pic.php?f=3D107&amp;t=3D138223">https://www.raspberrypi.org/forums/viewtopi=
+c.php?f=3D107&amp;t=3D138223</a></div><div><br></div><div>Hope this helps,<=
+/div><div><br></div><div>-Mike</div></div><div class=3D"gmail_extra"><br><d=
+iv class=3D"gmail_quote">On Fri, Apr 1, 2016 at 9:03 PM, Trevor Woerner <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:twoerner@gmail.com" target=3D"_blank">=
+twoerner@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<span class=3D"">On Fri 2016-04-01 @ 03:55:31 PM, Khem Raj wrote:<br>
+&gt;<br>
+&gt; &gt; On Apr 1, 2016, at 3:46 PM, Trevor Woerner &lt;<a href=3D"mailto:=
+twoerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<br>
+&gt; &gt;<br>
+&gt; &gt; On Fri 2016-04-01 @ 03:17:29 PM, Trevor Woerner wrote:<br>
+&gt; &gt;&gt; As far as I can tell there are two raspberry pi OE layers whi=
+ch include this<br>
+&gt; &gt;&gt; commit:<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; 1. git://<a href=3D"http://git.yoctoproject.org/meta-raspberr=
+ypi::master" rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/meta=
+-raspberrypi::master</a><br>
+&gt; &gt;&gt; 2. <a href=3D"https://github.com/kraj/meta-raspberrypi.git::k=
+raj/master" rel=3D"noreferrer" target=3D"_blank">https://github.com/kraj/me=
+ta-raspberrypi.git::kraj/master</a><br>
+&gt; &gt; [...]<br>
+&gt; &gt;&gt; - Using 1 (the official layer from Andrei) I get an image tha=
+t boots but the<br>
+&gt; &gt;&gt;=C2=A0 =C2=A0console remains messed up (as before).<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; - Using 2 (the layer from Khem) I get an image that flashes t=
+he rainbow<br>
+&gt; &gt;&gt;=C2=A0 =C2=A0pattern on the HDMI monitor, shows the 4 berries,=
+ then stops. Nothing else<br>
+&gt; &gt;&gt;=C2=A0 =C2=A0happens, no messages on the console.<br>
+&gt; &gt;<br>
+&gt; &gt; I get the same results with no local.conf tweaks and building the=
+<br>
+&gt; &gt; rpi-basic-image.<br>
+&gt; &gt;<br>
+&gt; &gt; Does anyone have a run-tested, OE-built, raspi3 image with workin=
+g console?<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; can you select 4.1 for kernel and try with master, Andre has merged al=
+l my changes<br>
+&gt; today<br>
+<br>
+</span>Yes, that&#39;s one of the options I have already tried; it boots bu=
+t the console<br>
+is still garbled.<br>
+<br>
+The 4.1 kernel is the default in Andrei&#39;s layer. Using the 4.4 kernel f=
+rom<br>
+your layer I can&#39;t get past the 4 raspberries.<br>
+<div class=3D"HOEnZb"><div class=3D"h5">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
 
-
-Firstly I would like to say that I am new here and fairly new to Yocto, so =
-I do apologize if this is the wrong board for this question. (And if it is =
-could someone direct me to the correct board?) Background on me: graduated =
-OSU before Fall 2015 started with a BA Computer Science Computer Systems - =
-minimal yocto ~2 months baby level stuff.
-
-
-Some background on the issue: I am following these directions http://www.cr=
-ashcourse.ca/introduction-linux-kernel-programming/lesson-11-adding-proc-fi=
-les-your-modules-part-1 to create a jiffies utility  folder in /proc as a p=
-recursor to a larger project. I have made the appropriate changes within th=
-e /usr/src/kernel/fs/proc folder and now I am trying to compile and load th=
-e module, to place a jiffies entry in /proc. Well when I run 'make' from /u=
-sr/src/kernel/ I get most of the way through, way past building my jiffies.=
-o file in user/src/kernel/fs/proc, without errors but toward the end I get =
-the following error.
-
-
-LZO     arch/arm/boot/compressed/piggy.lzo
-/bin/sh: lzop: command not found
-/usr/src/kernel/arch/arm/boot/compressed/Makefile:193: recipe for target 'a=
-rch/arm/boot/compressed/piggy.lzo' failed
-make[2]: *** [arch/arm/boot/compressed/piggy.lzo] Error 1
-/usr/src/kernel/arch/arm/boot/Makefile:52: recipe for target 'arch/arm/boot=
-/compressed/vmlinux' failed
-make[1]: *** [arch/arm/boot/compressed/vmlinux] Error 2
-/usr/src/kernel/arch/arm/Makefile:305: recipe for target 'zImage' failed
-make: *** [zImage] Error 2
-
-I had not though to try to 'make' in this manner before I attempted this pr=
-oject so I don't know if this worked originally. My yocto build is located =
-on one host machine and the actual implementation / working area is on anot=
-her with an arm processor. I ssh into my device that the yocto build is for=
- and from there I work with the code. If I try to 'make' on the host machin=
-e I get an error that it can not find/access some generated files so  hat o=
-ption I think is out and googling only resulted in that type of solution on=
-e to be done on my host machine.
-
-Has anyone ever had this problem before or could point me in a better direc=
-tion?
-
-Thank you.
-
-H
-
---_000_145945604151382091edtcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!-- p { margin-top: 0px; m=
-argin-bottom: 0px; }--></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hello All,&nbsp;<br>
-</p>
-<p><br>
-</p>
-<p>Firstly I would like to say that I am new&nbsp;here and fairly new to Yo=
-cto, so I do apologize if this is the wrong board for this question. (And i=
-f it is could someone direct me to the correct board?) Background on me: gr=
-aduated OSU before&nbsp;Fall 2015 started&nbsp;with
- a BA Computer Science Computer Systems -&nbsp;minimal yocto ~2 months baby=
- level stuff.<br>
-</p>
-<p><br>
-</p>
-<p>Some background on the issue: I am following these directions&nbsp;<a hr=
-ef=3D"http://www.crashcourse.ca/introduction-linux-kernel-programming/lesso=
-n-11-adding-proc-files-your-modules-part-1">http://www.crashcourse.ca/intro=
-duction-linux-kernel-programming/lesson-11-adding-proc-files-your-modules-p=
-art-1</a>
- to create a jiffies utility&nbsp; folder in /proc as a precursor to a larg=
-er project. I have made the appropriate changes within the /usr/src/kernel/=
-fs/proc folder and now I am trying to compile and load the module, to place=
- a jiffies entry in /proc. Well when
- I run 'make' from /usr/src/kernel/ I get most of the way through, way&nbsp=
-;past building my jiffies.o file in user/src/kernel/fs/proc,&nbsp;without e=
-rrors but toward the end I get the following error.<br>
-</p>
-<p><br>
-</p>
-<div>LZO &nbsp; &nbsp; arch/arm/boot/compressed/piggy.lzo</div>
-<div>/bin/sh: lzop: command not found</div>
-<div>/usr/src/kernel/arch/arm/boot/compressed/Makefile:193: recipe for targ=
-et 'arch/arm/boot/compressed/piggy.lzo' failed</div>
-<div>make[2]: *** [arch/arm/boot/compressed/piggy.lzo] Error 1</div>
-<div>/usr/src/kernel/arch/arm/boot/Makefile:52: recipe for target 'arch/arm=
-/boot/compressed/vmlinux' failed</div>
-<div>make[1]: *** [arch/arm/boot/compressed/vmlinux] Error 2</div>
-<div>/usr/src/kernel/arch/arm/Makefile:305: recipe for target 'zImage' fail=
-ed</div>
-<div>make: *** [zImage] Error 2</div>
-<div>&nbsp;<br>
-</div>
-<div>I had not though to try to 'make' in this manner before I attempted th=
-is project so I don't know if this worked originally.&nbsp;My yocto build i=
-s located on one host&nbsp;machine and the actual implementation / working =
-area is on&nbsp;another with an arm processor.
- I ssh into my device that the yocto&nbsp;build is for and from there I&nbs=
-p;work with the code.&nbsp;If I try to 'make' on the host machine I get an =
-error that it can not find/access&nbsp;some generated files so &nbsp;hat op=
-tion I think is out and googling only resulted in that type
- of solution one to be done on my host machine.&nbsp;&nbsp;<br>
-</div>
-<div><br>
-</div>
-<div>Has anyone ever had this problem before or could point me in a better =
-direction?<br>
-</div>
-<div><br>
-</div>
-<div>Thank you.<br>
-</div>
-<div><br>
-</div>
-<div>H<br>
-</div>
-</body>
-</html>
-
---_000_145945604151382091edtcom_--
+--047d7b3a865c129ff7052f795403--
