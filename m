@@ -1,70 +1,56 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A360E00CA5; Sat,  2 Apr 2016 01:14:28 -0700 (PDT)
+	id 067C5E0093E; Sat,  2 Apr 2016 08:10:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
+	mail provider *      (toolmmy[at]gmail.com)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A2CFE00BB9
-	for <yocto@yoctoproject.org>; Sat,  2 Apr 2016 01:14:27 -0700 (PDT)
-Received: by mail-pf0-f171.google.com with SMTP id x3so107189075pfb.1
-	for <yocto@yoctoproject.org>; Sat, 02 Apr 2016 01:14:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=JIx0Xa/AB9cqPfelb9vdM1NG5AeJdMNG6KsMlYYbmd0=;
-	b=dGtK6DiFKKaHFkUq9hJALrdQ7nM/pYXJ3ukuHQEHhR0MNoDgyIXRYT4uRHn7tovrwh
-	MlhWxRrV+D2sn5NqYOmyDYGiuuihqqWJd9I4OtJ7aqer4cNNv5dua9T/0T0IRijKy9EO
-	0FK08TwFIx5hcHQ8IhG9msbIItdCJ/fkAIkwKvNp0AlAvlAn0ef2e3teCxM2wjmoo9Yy
-	0yirmPqxW457TXsYqhbzoX9CFCeqJLbvkTY82B741KUxVRuzj2sjCatABGxzCV9ybXf2
-	oGbHtk5PrtMF/vVSME260UHbxSLLKFTfE828srLy6/wydhdue9xDV1fzlXvvoWNAdQuN
-	AqTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=JIx0Xa/AB9cqPfelb9vdM1NG5AeJdMNG6KsMlYYbmd0=;
-	b=DT9BL2cBSPaaAL3eTt/eWs/nrN8h85mGhFgAPdGKFy5XZfsBOnt+3CjBkL8XbkHrst
-	dDtQLcpgfZpiiKNc9MPec0GUK8/wE+yDOYJMddXsghPZ+2ns+nfkGZXOzGf+FV/kf86q
-	RFiDO5Etaa7umyF6b8r6cFUaFE4pT419U6FROwYFYiqhadyKkjIbRXjtEHQmoUc0QJ7B
-	kdxstsY6bqHhwEKGNolLKsGv7ZodH9KYEBIrQwDLnyeofxLIP2QkNkQqTVkef7ufijTs
-	Lsph1hJZ5PxFclHoyOd1gkvw+HLcUlr6Y6/8uWrJp1iQ//BlDKIn9Y0w/VMjwKWT8Bfx
-	/tYQ==
-X-Gm-Message-State: AD7BkJJD4VlnHFoUD5+/W7Z/wkUdT0mG76FfNVwCYrw/HyL5uyCyq4MPjwWoFenHJYPr0g==
-X-Received: by 10.98.8.91 with SMTP id c88mr7673162pfd.47.1459584867185;
-	Sat, 02 Apr 2016 01:14:27 -0700 (PDT)
-Received: from ?IPv6:2601:646:8800:5a9a:1156:ef7c:5e3a:2bb9?
-	([2601:646:8800:5a9a:1156:ef7c:5e3a:2bb9])
-	by smtp.gmail.com with ESMTPSA id
-	q2sm24868920pfq.88.2016.04.02.01.14.26
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Sat, 02 Apr 2016 01:14:26 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1459510631-20294-1-git-send-email-andrei@gherzan.ro>
-Date: Sat, 2 Apr 2016 01:14:26 -0700
-Message-Id: <B0AEC937-52AB-4910-8612-93C06577FACC@gmail.com>
-References: <1459510631-20294-1-git-send-email-andrei@gherzan.ro>
-To: Andrei Gherzan <andrei@gherzan.ro>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] userland: In case of wayland configuration build needs wayland-native
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CBE6E00527
+	for <yocto@yoctoproject.org>; Sat,  2 Apr 2016 08:10:11 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1amNBd-0000Vk-Ta
+	for yocto@yoctoproject.org; Sat, 02 Apr 2016 17:10:06 +0200
+Received: from HSI-KBW-095-208-027-092.hsi5.kabel-badenwuerttemberg.de
+	([95.208.27.92]) by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 02 Apr 2016 17:10:05 +0200
+Received: from toolmmy by
+	HSI-KBW-095-208-027-092.hsi5.kabel-badenwuerttemberg.de with
+	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 02 Apr 2016 17:10:05 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Tom Doehring <toolmmy@gmail.com>
+Date: Sat, 2 Apr 2016 14:49:44 +0000 (UTC)
+Message-ID: <loom.20160402T164713-575@post.gmane.org>
+References: <1704123.nFWplM32RM@valkyrie> <20160331152604.GA23623@linux-yxv0>
+	<655B9BF4-0067-4E41-9B09-BD74A530B79C@gmail.com>
+	<20160401191729.GA25051@linux-yxv0>
+	<20160401224604.GA30256@linux-yxv0>
+	<46A38E77-8BDD-4272-9619-2583EC019F1E@gmail.com>
+	<20160402040301.GA20785@linux-mkz6>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 95.208.27.92 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+	rv:45.0) Gecko/20100101 Firefox/45.0)
+Subject: Re: [meta-raspberry] Raspberry Pi 3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,82 +62,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Apr 2016 08:14:28 -0000
-X-Groupsio-MsgNum: 29252
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_F965396E-FBBF-4684-BA0E-C430AC3D866B";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_F965396E-FBBF-4684-BA0E-C430AC3D866B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-
-> On Apr 1, 2016, at 4:37 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->=20
-> Building wayland support requires availability of wayland-scanner to =
-avoid
-> build errors like:
->=20
-> | /bin/sh:
-> | =
-/home/andrei/work/yocto/build-rpi-master/tmp/sysroots/x86_64-linux/usr/bin=
-/wayland-scanner:
-> | No such file or directory
->=20
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
-> recipes-graphics/userland/userland_git.bb | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/recipes-graphics/userland/userland_git.bb =
-b/recipes-graphics/userland/userland_git.bb
-> index ca9123e..536c3ec 100644
-> --- a/recipes-graphics/userland/userland_git.bb
-> +++ b/recipes-graphics/userland/userland_git.bb
-> @@ -45,7 +45,7 @@ EXTRA_OECMAKE =3D "-DCMAKE_BUILD_TYPE=3DRelease =
--DCMAKE_EXE_LINKER_FLAGS=3D'-Wl,--no-a
->=20
-> PACKAGECONFIG ?=3D "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', =
-'wayland', '', d)}"
->=20
-> -PACKAGECONFIG[wayland] =3D "-DBUILD_WAYLAND=3DTRUE =
--DWAYLAND_SCANNER_EXECUTABLE:FILEPATH=3D${STAGING_BINDIR_NATIVE}/wayland-s=
-canner,,wayland"
-> +PACKAGECONFIG[wayland] =3D "-DBUILD_WAYLAND=3DTRUE =
--DWAYLAND_SCANNER_EXECUTABLE:FILEPATH=3D${STAGING_BINDIR_NATIVE}/wayland-s=
-canner,wayland-native,wayland=E2=80=9D
-
-this is ok.
-
->=20
-> CFLAGS_append =3D " -fPIC"
->=20
-> --
-> 2.7.4
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_F965396E-FBBF-4684-BA0E-C430AC3D866B
+X-List-Received-Date: Sat, 02 Apr 2016 15:10:15 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Trevor Woerner <twoerner@...> writes:
 
-iEYEARECAAYFAlb/f2IACgkQuwUzVZGdMxT/YQCcDvJdTfr/UZmBKykRNImStDbU
-qroAnR+CYEWiUq8a5MuAYHFlHSev0pjc
-=wpZM
------END PGP SIGNATURE-----
+> 
+> On Fri 2016-04-01  <at>  03:55:31 PM, Khem Raj wrote:
+> > 
+> > > On Apr 1, 2016, at 3:46 PM, Trevor Woerner <twoerner@...> wrote:
+> > > 
+> > > On Fri 2016-04-01  <at>  03:17:29 PM, Trevor Woerner wrote:
+> > >> As far as I can tell there are two raspberry pi OE layers which
+include this
+> > >> commit:
+> > >> 
+> > >> 1. git://git.yoctoproject.org/meta-raspberrypi::master
+> > >> 2. https://github.com/kraj/meta-raspberrypi.git::kraj/master
+> > > [...]
+> > >> - Using 1 (the official layer from Andrei) I get an image that boots
+but the
+> > >>   console remains messed up (as before).
+> > >> 
+> > >> - Using 2 (the layer from Khem) I get an image that flashes the rainbow
+> > >>   pattern on the HDMI monitor, shows the 4 berries, then stops.
+Nothing else
+> > >>   happens, no messages on the console.
+> > > 
+> > > I get the same results with no local.conf tweaks and building the
+> > > rpi-basic-image.
+> > > 
+> > > Does anyone have a run-tested, OE-built, raspi3 image with working
+console?
+> > > 
+> > 
+> > can you select 4.1 for kernel and try with master, Andre has merged all
+my changes
+> > today
+> 
+> Yes, that's one of the options I have already tried; it boots but the console
+> is still garbled.
+> 
+> The 4.1 kernel is the default in Andrei's layer. Using the 4.4 kernel from
+> your layer I can't get past the 4 raspberries.
 
---Apple-Mail=_F965396E-FBBF-4684-BA0E-C430AC3D866B--
+Hi everyone,
+
+this is nothing that depends on the kernel itself. There was a major change
+in the /dev/ttyAMA0 in order to make use of the bluetooth module. There is
+an overlay that allows using the console and the bluetooth module on
+parallel (pi3-miniuart-bt) with a lower baudrate while useing hciattach. If
+you don't want to use the bluetooth module you can switch back to the
+console by using the pi3-disalble-bt overlay.
+
+See also: https://www.raspberrypi.org/forums/viewtopic.php?t=138120&p=926637
+
+
+
