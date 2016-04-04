@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48396E00C2F; Mon,  4 Apr 2016 08:06:38 -0700 (PDT)
+	id 416E6E00C37; Mon,  4 Apr 2016 08:08:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
+	*      [209.85.220.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,51 +19,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A009EE00B9C
-	for <yocto@yoctoproject.org>; Mon,  4 Apr 2016 08:06:34 -0700 (PDT)
-Received: by mail-pf0-f173.google.com with SMTP id c20so37476812pfc.1
-	for <yocto@yoctoproject.org>; Mon, 04 Apr 2016 08:06:34 -0700 (PDT)
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0629E00BFD
+	for <yocto@yoctoproject.org>; Mon,  4 Apr 2016 08:08:30 -0700 (PDT)
+Received: by mail-pa0-f46.google.com with SMTP id fe3so146077086pab.1
+	for <yocto@yoctoproject.org>; Mon, 04 Apr 2016 08:08:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
+	h=date:from:to:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=2b5xAarecZ37pFhjQx49wReJ4nsFP7jH/KO4yoHa+yE=;
-	b=dVYjNsXhkSr7imPlphFRMTws/UunD4yBPBxoEhVt1EwFWewXqXsP4GZVZcxfEvPkQI
-	NXnZSYvct5INVyZmBwBrcjCeM70KJ6quQBJZ/TrfO88yKccZEjxj03J1J1jhHCZK1z4S
-	+z0Lfc0NeQZStYaFy3rXWjseaxMzOmFMUJkKBsW9KSbspelZ1yUeArT4a42OlrKtIMwk
-	JjdewWG7DsPv9lAP0UxBfwWCmZ4XF+SVtL5uh2/Cg05ZSofEvtyqO3ZNTR8zgQeEez2q
-	nhpgd6tcm2k96BdP1E7S+2Wm6OSaCvQVNeAhGyW3Yb5WaY8lilV/ZvePfcURAZrKRCfp
-	+yEg==
+	bh=8XFOBbMY0EmMckHr4e0rX92MyFKMQ+WDiyxBaBwQPuA=;
+	b=GSf8AgNIzQuB/c+eVNLG7WMCKP6WChl7D2k+RV8Av8r2hDFPyjdZpN3du8qGBvvjn8
+	8mPZ6+QJcq7RBaY9EEU+/3pnjEAqYPdxRsSMHRQ8z3iJ9ZPwIEzdVw02FQ8HbHrzR9b5
+	r+AP4MEejtmOoUZLpEjUjnG5GkTj9AzWUVkPT1uDFP/PTijh0jwhmgnfu1zs3u3ok5j7
+	3YlCQBinKHA16T1XYxPlajDPfH6peWvLCIFzLmdemB+V+IpmeDPMVT35zKc4OGqAzMJ/
+	UqaFeFzchI+WnVoiUNBfDNomC17YFMM9xA6pmFLw9WzR6KbeXD8TspgOk0LHDJl2JOgz
+	idGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	h=x-gm-message-state:date:from:to:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=2b5xAarecZ37pFhjQx49wReJ4nsFP7jH/KO4yoHa+yE=;
-	b=VjlZ3+0i9Csm2tPpFmB4TvfS9LVagcxPVXmaY88yRKqKOaiwLehuln64i7ZLMQmxEs
-	5oJYkOmr1ywqmugb0vgq7sBzFk/8x0DBPEZg8Bdw862J/de397SXCHLMKR3N4alljPRZ
-	Bczy6R/jylWnu/lulSia1lGP3ABYJe0p72fchwaS4OUaU8kgdua/wtR0mOkmDI5TuwK5
-	1wUz5JfBD+Rm6WHtD0dV9O4UuXf+m+zn0ytQ7FYDxPnCip+dzsv3CdCO9J2ctE1Sq9Oa
-	+JJJgFhKyliVOMt+6WipKJgV9nb7cx5EkX2drjt+MZEcNov0veqk2VUNUaH2EePbrCkr
-	bLGA==
-X-Gm-Message-State: AD7BkJLoF/tMQf+bwE4WCpQIsG/Esc9WaI3ZzjjDhTZUxdXvTLDitvc4dLT32mjqgQWTPw==
-X-Received: by 10.98.69.1 with SMTP id s1mr21990041pfa.56.1459782393511;
-	Mon, 04 Apr 2016 08:06:33 -0700 (PDT)
+	bh=8XFOBbMY0EmMckHr4e0rX92MyFKMQ+WDiyxBaBwQPuA=;
+	b=HhZ7EX7xFEwmz1Iaa9HaEyyIrjXUBCWrUhMvxhLCP2yXNNQ7Vdh/wq5Ha6goB1uokT
+	GCjratDeUUhsBcZptSs2mtscBXzrTanEPcXQct2T4aswVcVfs0jaPlSF9+qTebMY2fnP
+	0c+a7sgrmhM52J6TQgoJXtG2m5uBhoYQN/fXNqKIL2ySUvRsTf8rzhAzrWwYmD5C2FZL
+	RpAQsfxVon/5vAVQGDL/IeQTKnBdL43VyFHcXrJkJsOlDlzaPhFIm2ZT/B3SfEwvIEvD
+	0vl2nkYz9WvLcLmuL8PZiXo0GBrTO/kEGtfvmaiXa4exui54U4JPMdq24vuM6LtfkU4B
+	koQw==
+X-Gm-Message-State: AD7BkJLkV3JhEdVbko6QtRQZlNOwUdN1NZ4dQC6TrzemBghp87WmDNMLwpT4qVviwWzHyQ==
+X-Received: by 10.67.8.100 with SMTP id dj4mr54264322pad.88.1459782509626;
+	Mon, 04 Apr 2016 08:08:29 -0700 (PDT)
 Received: from linux-mkz6 ([209.65.105.133]) by smtp.gmail.com with ESMTPSA id
-	ez6sm1066440pab.12.2016.04.04.08.06.32
+	n11sm40265854pfb.74.2016.04.04.08.08.28 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 04 Apr 2016 08:06:32 -0700 (PDT)
-Date: Mon, 4 Apr 2016 08:06:30 -0700
+	Mon, 04 Apr 2016 08:08:28 -0700 (PDT)
+Date: Mon, 4 Apr 2016 08:08:21 -0700
 From: Trevor Woerner <twoerner@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20160404150630.GB29635@linux-mkz6>
-References: <1459776291-5464-1-git-send-email-twoerner@gmail.com>
-	<57027B09.2090808@mlbassoc.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Message-ID: <20160404150821.GA15145@linux-mkz6>
+References: <1704123.nFWplM32RM@valkyrie> <20160331152604.GA23623@linux-yxv0>
+	<20160404013856.GA6212@linux-mkz6>
+	<CAMKF1srVw_661GixzEC7gy-Kt7dBGKOAw_dXPzs4KdR5AajNxg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <57027B09.2090808@mlbassoc.com>
+In-Reply-To: <CAMKF1srVw_661GixzEC7gy-Kt7dBGKOAw_dXPzs4KdR5AajNxg@mail.gmail.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-raspberrypi 1/2] raspberrypi3: serial console
+Subject: Re: [meta-raspberry] Raspberry Pi 3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,45 +75,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Apr 2016 15:06:38 -0000
+X-List-Received-Date: Mon, 04 Apr 2016 15:08:32 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-On Mon 2016-04-04 @ 04:32:41 PM, Gary Thomas wrote:
-> On 04/04/2016 03:24 PM, Trevor Woerner wrote:
-> >The serial console on the Raspberry Pi 3 is located at /dev/ttyS0 and not
-> >/dev/ttyAMA0.
+On Sun 2016-04-03 @ 07:29:59 PM, Khem Raj wrote:
+> On Sun, Apr 3, 2016 at 6:38 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> > Thanks to everyone for their help!! It looks like I've got something working,
+> > not sure if this is a "solution" or if most would just consider it a
+> > work-around:
 > >
-> >Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> >---
-> >  conf/machine/raspberrypi3.conf | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> >diff --git a/conf/machine/raspberrypi3.conf b/conf/machine/raspberrypi3.conf
-> >index 1b73f2f..2c3df41 100644
-> >--- a/conf/machine/raspberrypi3.conf
-> >+++ b/conf/machine/raspberrypi3.conf
-> >@@ -7,3 +7,5 @@ MACHINEOVERRIDES = "raspberrypi2:${MACHINE}"
-> >  MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-brcm43430"
-> >
-> >  include conf/machine/raspberrypi2.conf
-> >+
-> >+SERIAL_CONSOLE_raspberrypi3 = "115200 ttyS0"
-> >
+> > 1) use Andrei's meta-raspberrypi layer (which selects linux kernel 4.1 by
+> > default)
 > 
-> Why the _raspberrypi3 modifier?  Wouldn't SERIAL_CONSOLE = "115200 ttyS0" do?
+> thats good.
 
-oh, I see what you mean. maybe, let me check
+Here's some more details that will, hopefully, help others duplicate my
+results:
+
+	Build Configuration:
+	BB_VERSION        = "1.29.1"
+	BUILD_SYS         = "x86_64-linux"
+	NATIVELSBSTRING   = "openSUSE-project-13.2"
+	TARGET_SYS        = "arm-poky-linux-gnueabi"
+	MACHINE           = "raspberrypi3"
+	DISTRO            = "poky"
+	DISTRO_VERSION    = "2.0+snapshot-20160404"
+	TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4 callconvention-hard cortexa7"
+	TARGET_FPU        = "hard"
+	meta-raspberrypi  = "contrib/twoerner/raspi3:7037617fca920f6e26c2a6968fa1ec67f495035d"
+	meta-poky
+	meta              = "master:af5f423887d1c41cf7279f6e537077726ae13082"
+
+	meta-raspberrypi
+		git://git.yoctoproject.org/meta-raspberrypi
+		(branch based on master at 84af6e7de3b8ea64ab374028aa95dc3a288ae85c)
+
+	meta-poky
+		git://git.yoctoproject.org/poky
+
+My bblayers just pulls in these two layers, my local.conf has no local tweaks,
+and you need to apply the two patches I recently sent to the mailing list.
+
+
 
 > 
-> -- 
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > 2) add the following to your local.conf:
+> >
+> >         SERIAL_CONSOLE_forcevariable = "115200 ttyS0"
+> >         CORE_FREQ = "250"
+> 
+> Send a patch to document this in README.
+> 
+> >
+> > 3) ??
+> >
+> > 4) profit!!
+> >
+> > I've tested with poky building both core-image-x11 and
+> > core-image-full-cmdline.
+> >
+> > Best regards,
+> >         Trevor
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
