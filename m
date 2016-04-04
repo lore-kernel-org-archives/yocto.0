@@ -1,26 +1,66 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 517EEE00B6F; Sun,  3 Apr 2016 21:30:36 -0700 (PDT)
+	id 9C6EDE00B6F; Sun,  3 Apr 2016 23:20:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.44 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0248FE00AD8
-	for <yocto@yoctoproject.org>; Sun,  3 Apr 2016 21:30:33 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 097588A36155
-	for <yocto@yoctoproject.org>; Mon,  4 Apr 2016 00:30:33 -0400 (EDT)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
+	[209.85.215.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3935FE00AD8
+	for <yocto@yoctoproject.org>; Sun,  3 Apr 2016 23:19:57 -0700 (PDT)
+Received: by mail-lf0-f44.google.com with SMTP id c62so153415304lfc.1
+	for <yocto@yoctoproject.org>; Sun, 03 Apr 2016 23:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=eA0oX6AuGHbb6x0DDLU3cfccpBiKXac6YHe5KDI99GA=;
+	b=BubFkVdVBb2l6AE6PQlGs9JWt0Xizq8NttTfe/+ORdJu6PYFRHxAiLlf3lb8VGhznf
+	nZu/cEeJ+G6LLid4FaZRL2dLfYMMhMoJ0sJnDQ96UE7gvJ/DeX6fqFXxTgR0VxILP3Ov
+	sBgGCGNBWrWKs6vI7LDCJ2zr9xeEhBmq4P5L/lr+7xaa0zFuaZ0t6sPVJeOCACCa3h+g
+	jvOzCqYa47pzVN8G5N/yvF43RhH8jE0VbU4a4JVwZDe6DcjlCfhWMZg9MW27YFYeB5Xj
+	GCorOTtfzS20colmFM/lLoog0fEAmIoVOWEadmwfzMR5dTdt8bALySHrTsw/Rd+fiITs
+	QDhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=eA0oX6AuGHbb6x0DDLU3cfccpBiKXac6YHe5KDI99GA=;
+	b=Yr2qlf9N62C5nMQxYJbuBpSRQGXjR44/OkzsF4pAA0GTYSNI0jBuhtJP5tbtJxnPIM
+	GpcNhenXp81ejKrFQZbS80kyVEU6yeAYAEONUEWtaOzJCKnx9eWdtEZua/OzdiqjuTuO
+	ML5T8RTuJcBIgv5qRzz981KSoJFhQVLcvTsLL/M9mca76phfd3x/ZsI79ZqyJTaPpU1+
+	q3QJ3mBmDvJtmD8cnw7aNuvrXVY2VvqOEYUuEyLICbKpSzHnD2EzJkzdhgQo6z0kTZt4
+	0A8icuw+B0qAY/2xJK+NVf2PBjUpoC001i8KUmoZBNBMjVg7XJL3qFr78fErxfmS5W7W
+	xbig==
+X-Gm-Message-State: AD7BkJKX2CnC4zskaExSJLvF9Dct+zXkDHSOJs0viUBj1s0IuKvK8uZ6vWYLvPyHopeCeXmoYxbqN7weReQXtA==
+X-Received: by 10.25.212.6 with SMTP id l6mr4212937lfg.163.1459750795840; Sun,
+	03 Apr 2016 23:19:55 -0700 (PDT)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 04 Apr 2016 04:30:33 -0000
-Message-ID: <20160404043033.11912.84445@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Sender: jefro.net@gmail.com
+Received: by 10.112.55.101 with HTTP; Sun, 3 Apr 2016 23:19:36 -0700 (PDT)
+In-Reply-To: <5328453.C7Dxv7TdD1@rjs-zotac.streifs.net>
+References: <CA+YB3rY9NKNFJNtTwQQwePfwAm37skk8jtDnBoQEBqxiE-i2Hg@mail.gmail.com>
+	<56FADE23.8090300@balister.org>
+	<5328453.C7Dxv7TdD1@rjs-zotac.streifs.net>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Sun, 3 Apr 2016 23:19:36 -0700
+X-Google-Sender-Auth: 81TEwc0w6_CesEWnllHdy5w8Ww0
+Message-ID: <CA+YB3rZz4DVbu78rRogyqQw9=LMPWPFFpxQw1DvKNARHh2aLDQ@mail.gmail.com>
+To: Rudolf J Streif <rudolf.streif@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Fwd: OEDAM: New Location - Catamaran resort
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,180 +72,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Apr 2016 04:30:36 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 04 Apr 2016 06:20:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
-This mail was sent out by Recipe reporting system.
+At this point, I have had no requestes for vegetarian etc. and only a
+few responses regarding transportation, so I will NOT be ordering a
+bus. If you do need transportation and haven't let me know, please do
+so asap. thanks
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+On Tue, Mar 29, 2016 at 1:03 PM, Rudolf J Streif
+<rudolf.streif@gmail.com> wrote:
+> We need the final headcount by next Monday.
+>
+> Food, breakfast, lunch and refreshments, will be provided. If you have special dietary needs such as vegetarian, gluten-free etc. please indicate so behind you name. We'll do the best to accommodate them.
+>
+> Rudi
+>
+> On Tuesday, March 29, 2016 12:57:23 PM Philip Balister wrote:
+>> OEDAM moved. Thanks Rudi and Jefro.
+>>
+>> Please add your name to the attendee list so Jefro can get the correct
+>> amount of food and coffee. He needs the number "soon".
+>>
+>> Philip
+>>
+>> -------- Forwarded Message --------
+>> Subject: OEDAM: New Location - Catamaran resort
+>> Date: Mon, 28 Mar 2016 13:36:41 -0700
+>> From: Jeff Osier-Mixon <jefro@jefro.net>
+>> Reply-To: openembedded-members@lists.openembedded.org
+>> To: openembedded-members@lists.openembedded.org
+>> <openembedded-members@lists.openembedded.org>
+>>
+>> The OpenEmbedded meeting on Friday April 8, which was previously
+>> announced, has been moved to the Catamaran Resort & Hotel.
+>> Transportation will be provided. The meeting is still 9am-5pm.
+>>
+>> 3999 Mission Boulevard
+>> San Diego, CA 92109
+>> 858-539-8727
+>>
+>> Again, OEDAM will be at the Catamaran, NOT at the Marriott. The wiki
+>> page and this mailing list will be updated with transportation info.
+>>
+>> Thanks to Rudi Streif for finding us a great location!
+>>
+>>
+>
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-You can check the detail information at:
 
-http://recipes.yoctoproject.org/
-
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-texinfo               6.0           6.1                   Alejandro Hernandez
-python-dbus           1.2.0         1.2.4                 Alejandro Hernandez
-python-mako           1.0.3         1.0.4                 Alejandro Hernandez
-python-numpy          1.10.4        1.11.0                Alejandro Hernandez
-python-pygobject      3.18.2        3.20.0                Alejandro Hernandez
-python3-pip           8.0.0         8.1.1                 Alejandro Hernandez
-python3-setuptools    19.4          20.6.7                Alejandro Hernandez
-python-setuptools     19.4          20.6.7                Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gcr                   3.18.0        3.20.0                Alexander Kanavin
-gnome-desktop3        3.18.2        3.20.0                Alexander Kanavin
-libsecret             0.18.4        0.18.5                Alexander Kanavin
-watchdog              5.14          5.15                  Alexander Kanavin
-kexec-tools           2.0.11        2.0.12                Alexander Kanavin
-btrfs-tools           4.4           4.5.1                 Alexander Kanavin
-systemtap-uprobes     2.9           3.0                   Alexander Kanavin
-systemtap             2.9           3.0                   Alexander Kanavin
-epiphany              3.18.4        3.20.0                Alexander Kanavin
-hwlatdetect           0.96          0.97                  Alexander Kanavin
-rt-tests              0.96          0.97                  Alexander Kanavin
-webkitgtk             2.10.7        2.12.0                Alexander Kanavin
-gnutls                3.4.9         3.4.10                Alexander Kanavin
-icu                   56.1          57.1                  Alexander Kanavin
-nss                   3.21          3.23                  Alexander Kanavin
-babeltrace            1.3.1         1.3.2                 Alexander Kanavin
-msmtp                 1.6.3         1.6.4                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
-iso-codes             3.65          3.67                  Alexander Kanavin
-apt                   1.0.10.1      1.2.9                 Aníbal Limón
-qemu                  2.5.0         2.5.1                 Aníbal Limón
-linux-libc-headers    4.4           4.5                   Bruce Ashfield
-guilt-native          0.35+gitX     0.36+gitAUTOINC+2...  Bruce Ashfield
-dbus-test             1.10.6        1.10.8                Chen Qi
-dbus                  1.10.6        1.10.8                Chen Qi
-curl                  7.47.1        7.48.0                Chen Qi
-byacc                 20150711      20160324              Chen Qi
-gzip                  1.6           1.7                   Chen Qi
-sudo                  1.8.15        1.8.16                Chen Qi
-sysstat               11.2.0        11.3.2                Chen Qi
-grep                  2.23          2.24                  Chen Qi
-build-appliance-i...  14.0.0        14.0.1                Cristian Iorga
-dhcp                  4.3.3         4.3.4                 Hongxu Jia
-ncurses               6.0+20160213  6.0+20160319          Hongxu Jia
-pax-utils             1.1.5         1.1.6                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-man-pages             4.04          4.05                  Hongxu Jia
-libnewt-python        0.52.18       0.52.19               Hongxu Jia
-libnewt               0.52.18       0.52.19               Hongxu Jia
-elfutils              0.164         0.166                 Hongxu Jia
-pango                 1.38.1        1.40.0                Jussi Kukkonen
-mesa                  11.1.1        11.1.2                Jussi Kukkonen
-libinput              1.1.4         1.2.2                 Jussi Kukkonen
-wayland               1.9.0         1.10.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.8        3.20.2                Jussi Kukkonen
-xrandr                1.4.3         1.5.0                 Jussi Kukkonen
-openssh               7.1p2         7.2p2                 Jussi Kukkonen
-gsettings-desktop...  3.19.3        3.20.0                Jussi Kukkonen
-dropbear              2015.71       2016.73               Jussi Kukkonen
-expat                 2.1.0         2.1.1                 Jussi Kukkonen
-weston                1.9.0         1.10.0                Jussi Kukkonen
-glib-2.0              2.46.2        2.48.0                Jussi Kukkonen
-glib-networking       2.46.1        2.48.0                Jussi Kukkonen
-libxkbcommon          0.5.0         0.6.0                 Jussi Kukkonen
-pixman                0.32.8        0.34.0                Jussi Kukkonen
-xkeyboard-config      2.16          2.17                  Jussi Kukkonen
-inputproto            2.3.1         2.3.2                 Jussi Kukkonen
-videoproto            2.3.2         2.3.3                 Jussi Kukkonen
-xserver-xorg          1.18.0        1.18.2                Jussi Kukkonen
-cmake                 3.4.3         3.5.1                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1        1.79.1                Jussi Kukkonen
-at-spi2-atk           2.18.1        2.20.0                Jussi Kukkonen
-at-spi2-core          2.18.3        2.20.0                Jussi Kukkonen
-atk                   2.18.0        2.20.0                Jussi Kukkonen
-vala                  0.30.1        0.32.0                Jussi Kukkonen
-libsoup-2.4           2.52.2        2.54.0.1              Jussi Kukkonen
-vte                   0.28.2        0.44.0                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.16        3.0.18                Jussi Kukkonen
-gdk-pixbuf            2.32.3        2.34.0                Jussi Kukkonen
-gtk+3                 3.18.8        3.20.2                Jussi Kukkonen
-gtk+                  2.24.29       2.24.30               Jussi Kukkonen
-json-glib             1.0.4         1.2.0                 Jussi Kukkonen
-librsvg               2.40.13       2.40.15               Jussi Kukkonen
-cairo                 1.14.6        1.15.2                Jussi Kukkonen
-clutter-1.0           1.24.2        1.26.0                Jussi Kukkonen
-clutter-gtk-1.0       1.6.6         1.8.0                 Jussi Kukkonen
-mesa-demos            8.2.0         8.3.0                 Jussi Kukkonen
-mesa-gl               11.1.1        11.1.2                Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69        0.9.71                Jussi Kukkonen
-slang                 2.2.4         2.3.0                 Kai Kang
-uclibc                1.0.12+gitX   1.0.13                Khem Raj
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0         4.7.0                 Matthew McClintock
-acpid                 2.0.26        2.0.27                Maxin B. John
-bluez5                5.37          5.38                  Maxin B. John
-iproute2              4.4.0         4.5.0                 Maxin B. John
-sqlite3               3.11.0        3.12.0                Maxin B. John
-gstreamer1.0-libav    1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0          1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-orc                   0.4.24        0.4.25                Maxin B. John
-gstreamer1.0-rtsp...  1.6.2         1.8.0                 Maxin B. John
-db                    6.0.30        6.1.26                Maxin B. John
-ethtool               4.2           4.5                   Maxin B. John
-mc                    4.8.15        4.8.16                Maxin B. John
-harfbuzz              1.2.3         1.2.4                 Maxin B. John
-pkgconfig             0.29+gitX     0.29.1+gitAUTOINC...  Maxin B. John
-gdb-cross-canadia...  7.10.1        7.11                  No maintainer
-gdb-cross-i586        7.10.1        7.11                  No maintainer
-ffmpeg                3.0           3.0.1                 No maintainer
-cantarell-fonts       0.0.21+gitX   0.13+gitAUTOINC+7...  No maintainer
-ifupdown              0.8.2         0.8.10                No maintainer
-uclibc-initial        1.0.12+gitX   1.0.13                No maintainer
-apt-native            1.0.10.1      1.2.9                 No maintainer
-cmake-native          3.4.3         3.5.1                 No maintainer
-gobject-introspec...  1.46.0        1.48.0                No maintainer
-sgmlspl-native        1.1+gitX      1.03+gitAUTOINC+f...  No maintainer
-xf86-input-libinput   0.16.0        0.17.0                No maintainer
-lttng-modules         2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-gdb                   7.10.1        7.11                  Richard Purdie
-nasm                  2.11.08       2.12.01               Richard Purdie
-mpfr                  3.1.3         3.1.4                 Richard Purdie
-gnu-efi               3.0.3         3.0.4                 Robert Yang
-git                   2.7.2         2.8.1                 Robert Yang
-tcl                   8.6.4         8.6.5                 Robert Yang
-libcap                2.24          2.25                  Robert Yang
-mklibs-native         0.1.40        0.1.41                Robert Yang
-base-passwd           3.5.29        3.5.39                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.64          9.65                  Ross Burton
-alsa-lib              1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils            1.1.0         1.1.1                 Tanu Kaskinen
-alsa-plugins          1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils-scripts    1.1.0         1.1.1                 Tanu Kaskinen
-gettext               0.19.6        0.19.7                Wenzong Fan
-chkconfig             1.3.58        1.7                   Wenzong Fan          Version 1.5 requires selinux
-
-Upgradable count: 132
-Upgradable total count: 138
-
-The based commit is:
-
-commit d60806e56aed2f62f6a0e030a564f7fdc4a1314d
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sun Apr 3 10:14:15 2016 +0100
-
-    build-appliance-image: Exclude DDATETIME from task signature
-    
-    Otherwise the task hash changes between server and worker context
-    leading to changing task checksums.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+-- 
+Jeff Osier-Mixon
+Open Source Community Architect, Intel Corporation
 
