@@ -1,33 +1,67 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07638E00B97; Sun,  3 Apr 2016 17:22:11 -0700 (PDT)
+	id 716F1E00AD7; Sun,  3 Apr 2016 18:39:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7DD7E00B97
-	for <yocto@yoctoproject.org>; Sun,  3 Apr 2016 17:22:08 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=slag.twobit.us)
-	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1amsFw-0002qF-Il; Mon, 04 Apr 2016 00:20:39 +0000
-From: Philip Tricca <flihp@twobit.us>
-To: mark.hatle@windriver.com, Joe_MacDonald@mentor.com, yocto@yoctoproject.org
-Date: Mon,  4 Apr 2016 00:21:35 +0000
-Message-Id: <1459729295-79553-4-git-send-email-flihp@twobit.us>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1459729295-79553-1-git-send-email-flihp@twobit.us>
-References: <1459729295-79553-1-git-send-email-flihp@twobit.us>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: [meta-selinux][PATCH 3/3] refpolicy_common: Sanity test DEFAULT_ENFORCING value and set default.
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01127E008EE
+	for <yocto@yoctoproject.org>; Sun,  3 Apr 2016 18:39:05 -0700 (PDT)
+Received: by mail-pa0-f51.google.com with SMTP id fe3so132806312pab.1
+	for <yocto@yoctoproject.org>; Sun, 03 Apr 2016 18:39:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=06GRXWCd6anTC/gVXwpmfeBwRMQ6w4zW/rwaf/znG1o=;
+	b=Rmbd2fmp9oxFLrLn/onxf8peAJTq4xnjEagOKEJQs+9Ql6rQwzVhQojttl/WfZfxVk
+	E0cNFTejJs4dM63BifQVbJbwuhAIODf2BXZIFMCazsL9GNPGhivPcO8YwD5KPHTyt9os
+	huNyxDRONjvWOo7yg9D9diCGOQqgGnEfANFmak5nuBi5pJS5KrnVFn44EMQy0Zu2dYgw
+	6qMp64GlAz9biMNUcqUp56b9kB6JJsewLHsSBPwJqoHvR0CZkNa99D+twBhakPh18cXN
+	L54MVDTimrb5cTcb4EyP73pKQiMFH9fdaCHi+KY1giCWypkXFgmCuhJWzwiha1wN8uoc
+	URAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=06GRXWCd6anTC/gVXwpmfeBwRMQ6w4zW/rwaf/znG1o=;
+	b=Dc0FLczctvtm8nVkXwJdlzHNcDVxFSE7dpVRVudfBQ29UtwRC57jURcQJsnfHkZ7je
+	KHwsuglmEIdZuL5fDB0lGVLbe7aHfhlEKrPSQBM71D0Q6hXh8Fcnk+GT7EsJoKzeqy25
+	3wab/dQQo9E3eQ75bLG8QY/GXf2rstMJ4ISTMN1RusYrKmQBefpukl8hsjxdSqidlS5I
+	wrYSLrBh8peKjbqn2bP0jDiO9H/cFpOw3TznJ9CHYSaxYIu8XlJcGvXLo8iJzoRswDKz
+	exSF2slib8+IAdVL+uGBt+vI1Jlp40W31yMfH2+1U1R95TRbTJPRgJn2ZmKENlmwkByB
+	MKDg==
+X-Gm-Message-State: AD7BkJKW68fjshjt3FBrLd+6AFcPQZojZLuDxHeY9tqBXO4Nh0xhnhclZrRLv5SJjlAtnw==
+X-Received: by 10.66.65.228 with SMTP id a4mr49107647pat.4.1459733945461;
+	Sun, 03 Apr 2016 18:39:05 -0700 (PDT)
+Received: from linux-mkz6 ([209.65.105.133]) by smtp.gmail.com with ESMTPSA id
+	p75sm34883232pfi.29.2016.04.03.18.39.04 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 03 Apr 2016 18:39:04 -0700 (PDT)
+Date: Sun, 3 Apr 2016 18:38:56 -0700
+From: Trevor Woerner <twoerner@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Message-ID: <20160404013856.GA6212@linux-mkz6>
+References: <1704123.nFWplM32RM@valkyrie> <20160331152604.GA23623@linux-yxv0>
+MIME-Version: 1.0
+In-Reply-To: <20160331152604.GA23623@linux-yxv0>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [meta-raspberry] Raspberry Pi 3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,40 +73,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Apr 2016 00:22:11 -0000
+X-List-Received-Date: Mon, 04 Apr 2016 01:39:07 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Use the anonymous python function to be sure the value set for
-'SELINUX' in the config file is something useful. In the event that
-DEFAULT_ENFORCING isn't set to one of the 3 permissible values we
-set it to 'permissive'.
+Thanks to everyone for their help!! It looks like I've got something working,
+not sure if this is a "solution" or if most would just consider it a
+work-around:
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- recipes-security/refpolicy/refpolicy_common.inc | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+1) use Andrei's meta-raspberrypi layer (which selects linux kernel 4.1 by
+default)
 
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index 305675f..10e972d 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -66,6 +66,16 @@ EXTRA_OEMAKE += "tc_usrbindir=${STAGING_BINDIR_NATIVE}"
- EXTRA_OEMAKE += "OUTPUT_POLICY=`${STAGING_BINDIR_NATIVE}/checkpolicy -V | cut -d' ' -f1`"
- EXTRA_OEMAKE += "CC='${BUILD_CC}' CFLAGS='${BUILD_CFLAGS}' PYTHON='${PYTHON}'"
- 
-+python __anonymous () {
-+    import re
-+
-+    # make sure DEFAULT_ENFORCING is something sane
-+    if not re.match('^(enforcing|permissive|disabled)$',
-+                    d.getVar('DEFAULT_ENFORCING', True),
-+                    flags=0):
-+        d.setVar('DEFAULT_ENFORCING', 'permissive')
-+}
-+
- do_compile() {
- 	oe_runmake conf
- 	oe_runmake policy
--- 
-2.1.4
+2) add the following to your local.conf:
+	
+	SERIAL_CONSOLE_forcevariable = "115200 ttyS0"
+	CORE_FREQ = "250"
 
+3) ??
+
+4) profit!!
+
+I've tested with poky building both core-image-x11 and
+core-image-full-cmdline.
+
+Best regards,
+	Trevor
 
