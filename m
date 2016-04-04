@@ -1,66 +1,58 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C6EDE00B6F; Sun,  3 Apr 2016 23:20:02 -0700 (PDT)
+	id 1E974E00B9E; Mon,  4 Apr 2016 02:30:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
+	*      [209.85.217.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3935FE00AD8
-	for <yocto@yoctoproject.org>; Sun,  3 Apr 2016 23:19:57 -0700 (PDT)
-Received: by mail-lf0-f44.google.com with SMTP id c62so153415304lfc.1
-	for <yocto@yoctoproject.org>; Sun, 03 Apr 2016 23:19:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=eA0oX6AuGHbb6x0DDLU3cfccpBiKXac6YHe5KDI99GA=;
-	b=BubFkVdVBb2l6AE6PQlGs9JWt0Xizq8NttTfe/+ORdJu6PYFRHxAiLlf3lb8VGhznf
-	nZu/cEeJ+G6LLid4FaZRL2dLfYMMhMoJ0sJnDQ96UE7gvJ/DeX6fqFXxTgR0VxILP3Ov
-	sBgGCGNBWrWKs6vI7LDCJ2zr9xeEhBmq4P5L/lr+7xaa0zFuaZ0t6sPVJeOCACCa3h+g
-	jvOzCqYa47pzVN8G5N/yvF43RhH8jE0VbU4a4JVwZDe6DcjlCfhWMZg9MW27YFYeB5Xj
-	GCorOTtfzS20colmFM/lLoog0fEAmIoVOWEadmwfzMR5dTdt8bALySHrTsw/Rd+fiITs
-	QDhQ==
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D682E00AF4
+	for <yocto@yoctoproject.org>; Mon,  4 Apr 2016 02:30:42 -0700 (PDT)
+Received: by mail-lb0-f171.google.com with SMTP id vo2so151811053lbb.1
+	for <yocto@yoctoproject.org>; Mon, 04 Apr 2016 02:30:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=gU2+x4wVFE3bDTwZwEIG424YwSl7llptoMNxdyF7R4w=;
+	b=kBTOPe3a+pmBaayvATKvDJw55l1nXvrRxv45TVWeWtgaiX5gTHIlUSRU38nvQX5VPU
+	dlo8iaFPVHBYoiYj/b/Du+ctvztMhPZMJeWUhL5PgoUyiYO1CPmlLsvYGTVQKzCeJF5o
+	rBr5x3yV+oE5RF9LERfbHPGURATPsT+XJRQUk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=eA0oX6AuGHbb6x0DDLU3cfccpBiKXac6YHe5KDI99GA=;
-	b=Yr2qlf9N62C5nMQxYJbuBpSRQGXjR44/OkzsF4pAA0GTYSNI0jBuhtJP5tbtJxnPIM
-	GpcNhenXp81ejKrFQZbS80kyVEU6yeAYAEONUEWtaOzJCKnx9eWdtEZua/OzdiqjuTuO
-	ML5T8RTuJcBIgv5qRzz981KSoJFhQVLcvTsLL/M9mca76phfd3x/ZsI79ZqyJTaPpU1+
-	q3QJ3mBmDvJtmD8cnw7aNuvrXVY2VvqOEYUuEyLICbKpSzHnD2EzJkzdhgQo6z0kTZt4
-	0A8icuw+B0qAY/2xJK+NVf2PBjUpoC001i8KUmoZBNBMjVg7XJL3qFr78fErxfmS5W7W
-	xbig==
-X-Gm-Message-State: AD7BkJKX2CnC4zskaExSJLvF9Dct+zXkDHSOJs0viUBj1s0IuKvK8uZ6vWYLvPyHopeCeXmoYxbqN7weReQXtA==
-X-Received: by 10.25.212.6 with SMTP id l6mr4212937lfg.163.1459750795840; Sun,
-	03 Apr 2016 23:19:55 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=gU2+x4wVFE3bDTwZwEIG424YwSl7llptoMNxdyF7R4w=;
+	b=Jgp6kNOih+Xs3as4tpmZJ5fAD9lGzP06Ci+doL9TwTz+vzFLU8R18oTgdLkVe8TkRg
+	FSkMU37z6r3D/fuLnYB5rYEPQx0/qidqQMSG82uHih/KQYxBsICS8iaVLzcyKFmN7DWm
+	pmTbgzQuV/M+5+1YrTWyAgtO8RpFvkm3DPEGofA5nXMywzsm7cg/f+DrXBdy2iviy0HW
+	6PeeN3gxtv/NQxbLwDpRSbEDqqw8oK56L1U3pJkKRjt68kxQi3bdsDpsQD2c37VaFahX
+	SsN+K6CqHIny4rPuba2AhUW4N42G0nf5HaMl/ah0ABBh/YTsx+FGI1hNqwDhOIZ5jolf
+	M7Cg==
+X-Gm-Message-State: AD7BkJJA4JMO4QFf5RT5w6eB4Fllj9bcl1v81cw9C4v+itj1OClr7KKvZulJyJB4KYeWmHSbwQ7WvjlI4cgVYyGd
+X-Received: by 10.28.215.16 with SMTP id o16mr10940205wmg.57.1459762240073;
+	Mon, 04 Apr 2016 02:30:40 -0700 (PDT)
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.55.101 with HTTP; Sun, 3 Apr 2016 23:19:36 -0700 (PDT)
-In-Reply-To: <5328453.C7Dxv7TdD1@rjs-zotac.streifs.net>
-References: <CA+YB3rY9NKNFJNtTwQQwePfwAm37skk8jtDnBoQEBqxiE-i2Hg@mail.gmail.com>
-	<56FADE23.8090300@balister.org>
-	<5328453.C7Dxv7TdD1@rjs-zotac.streifs.net>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Sun, 3 Apr 2016 23:19:36 -0700
-X-Google-Sender-Auth: 81TEwc0w6_CesEWnllHdy5w8Ww0
-Message-ID: <CA+YB3rZz4DVbu78rRogyqQw9=LMPWPFFpxQw1DvKNARHh2aLDQ@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Fwd: OEDAM: New Location - Catamaran resort
+Received: by 10.194.206.33 with HTTP; Mon, 4 Apr 2016 02:30:20 -0700 (PDT)
+In-Reply-To: <3011913.B3k47xJghH@peggleto-mobl.ger.corp.intel.com>
+References: <05908ff25fd54be287c631f4bc5b006b@SI-MBX1022.de.bosch.com>
+	<3011913.B3k47xJghH@peggleto-mobl.ger.corp.intel.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Mon, 4 Apr 2016 11:30:20 +0200
+Message-ID: <CAP71WjxnqQrZRVTuANO7Y86qVVkN1nYRKc4ozX=0L+OD5OYh0w@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Append to bblayers.conf and local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,62 +64,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Apr 2016 06:20:02 -0000
+X-List-Received-Date: Mon, 04 Apr 2016 09:30:45 -0000
 Content-Type: text/plain; charset=UTF-8
 
-At this point, I have had no requestes for vegetarian etc. and only a
-few responses regarding transportation, so I will NOT be ordering a
-bus. If you do need transportation and haven't let me know, please do
-so asap. thanks
-
-On Tue, Mar 29, 2016 at 1:03 PM, Rudolf J Streif
-<rudolf.streif@gmail.com> wrote:
-> We need the final headcount by next Monday.
+On Sun, Apr 3, 2016 at 10:54 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>> We are receiving bblayer.conf and local.conf from external supplier which
+>> already have layers/configuration added. Now we want to add our own
+>> layers/configuration by appending to these files this to avoid manual merge
+>> work each time a delivery from external supplier is made.
+>>
+>> Question:
+>> How do I append layers/configuration to bblayer.conf and local.conf?
 >
-> Food, breakfast, lunch and refreshments, will be provided. If you have special dietary needs such as vegetarian, gluten-free etc. please indicate so behind you name. We'll do the best to accommodate them.
+> The best answer I can give is these files aren't really meant to be
+> distributed. If you have too much specific stuff in these files (particularly
+> local.conf) then I would say it's possible your supplier has put things in the
+> wrong place.
 >
-> Rudi
->
-> On Tuesday, March 29, 2016 12:57:23 PM Philip Balister wrote:
->> OEDAM moved. Thanks Rudi and Jefro.
->>
->> Please add your name to the attendee list so Jefro can get the correct
->> amount of food and coffee. He needs the number "soon".
->>
->> Philip
->>
->> -------- Forwarded Message --------
->> Subject: OEDAM: New Location - Catamaran resort
->> Date: Mon, 28 Mar 2016 13:36:41 -0700
->> From: Jeff Osier-Mixon <jefro@jefro.net>
->> Reply-To: openembedded-members@lists.openembedded.org
->> To: openembedded-members@lists.openembedded.org
->> <openembedded-members@lists.openembedded.org>
->>
->> The OpenEmbedded meeting on Friday April 8, which was previously
->> announced, has been moved to the Catamaran Resort & Hotel.
->> Transportation will be provided. The meeting is still 9am-5pm.
->>
->> 3999 Mission Boulevard
->> San Diego, CA 92109
->> 858-539-8727
->>
->> Again, OEDAM will be at the Catamaran, NOT at the Marriott. The wiki
->> page and this mailing list will be updated with transportation info.
->>
->> Thanks to Rudi Streif for finding us a great location!
->>
->>
->
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+> The way it ought to work is, you add the needed layers to your bblayers.conf,
+> then go to your local.conf and set DISTRO and MACHINE and anything you need
+> for *local* configuration (e.g. local paths) and that's pretty much it. If you
+> have to include a whole bunch of extra lines in local.conf, those lines really
+> should be elsewhere (e.g. custom distro config, or the machine .conf file if
+> they are specific to the machine.)
 
-
-
--- 
-Jeff Osier-Mixon
-Open Source Community Architect, Intel Corporation
+Note that you can use conf/auto.conf and conf/site.conf as well, these
+files are parsed at the same time as conf/local.conf, so if you really
+cannot change local.conf, you can use the one of the other ones.
 
