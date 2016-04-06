@@ -1,64 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ysan99@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69DE1E006C7; Wed,  6 Apr 2016 08:52:25 -0700 (PDT)
+	id 967CAE0096D; Wed,  6 Apr 2016 10:18:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ysan99[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D76EFE0048B
-	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 08:52:23 -0700 (PDT)
-Received: by mail-io0-f169.google.com with SMTP id 2so61279648ioy.1
-	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 08:52:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ya0Os+v4a7oN5rByZFBFfk83YAj1CYJ0K6ZAWYyGAog=;
-	b=AlL7h0XiVDTmBGoGYHR0xGpNh/EWH8Ok4cgRZ8Bd5R18tDyFb6Tt5I2RWLMGN1TzGm
-	1r1FhGXyhjd2HkSs3txcHshvsduhW/DwtWn7rQWnwBxhdSXnwsmnxTA+S7TuyKk1UsGX
-	3m+aivsQNny+GC/CsajBaWujctcScW88hXSxGVjHWGdJRcXkcOyxG8hhscPeHGzVT6nC
-	VGNeTY5hi07BOWq3KdEsRSfGwYbfj0tl6gM9KXW7kBUvtZno6ovmiFTf56sz4zlKpD6U
-	Yp3ehUb/tcW8nK1Pz2PHc0MgWJw2vkoqYplKc1XAcwOOrE8aIxncKN4Ctai4IINrXngC
-	3ntg==
+Received: from mail-yw0-f169.google.com (mail-yw0-f169.google.com
+	[209.85.161.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40728E0048B
+	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 10:18:23 -0700 (PDT)
+Received: by mail-yw0-f169.google.com with SMTP id g3so65111364ywa.3
+	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 10:18:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=CkqXU3c5+xa2i/HLl0gxzIW9J4Hv6vUJdQXaJH1qp7U=;
+	b=lSrM07MVjTNYb7X0+MWf8K855OXS6gY4NiumexCGvfvTft9IxjuKvl8PW7s9dyztHi
+	Zv5g/yNkZ0XzZBTrd2UjWMwfWVSDmts5Lqwyi6w+pkbfSR1q9+P7lDYTBuSCHD2doZON
+	bPjToSDkvvj+ptGEXPA3CnxdGpIhK2PSDLtGUX4FUS9znjop1KBRfjl3vdqJRCs9wL5Y
+	X74B1u+CaV+xVKh73NM59HGgmgxl2E23X6UNCdziqwtx9fhSB5ywJe9lhGJju5SoGEgH
+	NRs+xZSNqiEqksnvBrnBuC4QyNj0JgaBK+5M2oAkSFB07hRhOIkBwzGE4YN4hZmXAwyj
+	nHpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ya0Os+v4a7oN5rByZFBFfk83YAj1CYJ0K6ZAWYyGAog=;
-	b=fLPwe+E5K9FhkJF5UsR5Q2njX4Uq9S1zq/pEW2YYc8I1swVdqLMfG4fjqavAsmfMXe
-	6OfToqYKqYbAd2XIl9bjzHywQ7FtdNuuQkm/MfMwe2/8PehncteImfr5lkhTfLg/f2DN
-	cF1W24SF4p2AraLv+EiCp64xgMLbTXg7E3FWtI8Kaz4VMyF8/qlwwNw1jN70rALU+B5a
-	z8lLyc3j8p+mil/IVOLFHpHXAvlcq4lNmMFKL8GkGp1RHCsmzDkWgl3WUeJD+0YcmPi3
-	6QHp5LLyygZv1nmC1Vu9AU+fQ6SQ3zxJy+1ED3aEIgyq0ARMzan7cmVA8fKlMcm6Xd1g
-	vxMg==
-X-Gm-Message-State: AD7BkJLREYB2W1fdpxf4NlULxmPVYW7bHVj/rxBBm2L3GSYNuBAqrn8naBSARhEYwlX8NVtTVSqBBu9ik7wF+D29
-X-Received: by 10.107.134.84 with SMTP id i81mr24440376iod.99.1459957942889;
-	Wed, 06 Apr 2016 08:52:22 -0700 (PDT)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=CkqXU3c5+xa2i/HLl0gxzIW9J4Hv6vUJdQXaJH1qp7U=;
+	b=eJSpca5ldZD2Uv0kWywCVfBreFLKGhViGxKiD8P5tlze+f5/Ma5DHQTvuzp9a/TO2i
+	BR8qz8z7LHQ7nSBrT4PJnXfytYgo0BB41S2pVzQC1N7iLhy6fvlmPerGpwxu9Rg4eBRs
+	Y4lvt5+RB0jWlwqO3QmPJFUc8TbLtN4SeEqeN0Ub/vImAw7umV8uyHTCBQdBHqEec30G
+	ytJYJkELvPBrOy4N0iAVH0XLRCiOwBWqLJDKZwAMLfK9EwmMlKZf5v3sGvMso7NhNs0O
+	hReGZuiASD2s3OFLv3HsMzLt6SHEnwpDMXl9D2XM03MDOWqkOCrW1xt5XRVOhtIEJrTG
+	zHVA==
+X-Gm-Message-State: AD7BkJKQEQnxhTLmJ7vrLBJj4UL/RhgC1MVN/DbgTwEA0PAEepGF8EjWLzlL0/3wfOCaE71JMm53BfZalYMl/w==
 MIME-Version: 1.0
-Received: by 10.107.132.24 with HTTP; Wed, 6 Apr 2016 08:52:03 -0700 (PDT)
-In-Reply-To: <DUB130-W30F71C6509C95E9FA2606EDA9F0@phx.gbl>
-References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
-	<CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
-	<DUB130-W492E3B0F53AE2AA9EE0F0ADA9F0@phx.gbl>
-	<CAJTo0Lbg10pM7VT0ZiaqC7r5YwvdX9_c3X9P=vrPdFX3C6maLQ@mail.gmail.com>
-	<DUB130-W30F71C6509C95E9FA2606EDA9F0@phx.gbl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 6 Apr 2016 16:52:03 +0100
-Message-ID: <CAJTo0LYa+BZxy47950p8g7HqgRFQiHCeS3ZThtetopm-1ZDScg@mail.gmail.com>
-To: Chris Trobridge <christrobridge@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Python GObject Errors on yocto-2.1_M3.rc2
+X-Received: by 10.129.5.215 with SMTP id 206mr19064785ywf.210.1459963103193;
+	Wed, 06 Apr 2016 10:18:23 -0700 (PDT)
+Received: by 10.37.17.195 with HTTP; Wed, 6 Apr 2016 10:18:22 -0700 (PDT)
+Received: by 10.37.17.195 with HTTP; Wed, 6 Apr 2016 10:18:22 -0700 (PDT)
+Date: Wed, 6 Apr 2016 22:48:22 +0530
+Message-ID: <CAFcFeQKU5EkgSdw-Wyy3gcF4sNTMZO4WtFjgptaFbwrgZeyhPQ@mail.gmail.com>
+From: Santosh Y <ysan99@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Sharing Sstate cache among different platform architectures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,49 +67,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Apr 2016 15:52:25 -0000
-Content-Type: multipart/alternative; boundary=001a113febc89356cd052fd2f25e
+X-List-Received-Date: Wed, 06 Apr 2016 17:18:25 -0000
+Content-Type: multipart/alternative; boundary=001a1142cdd426caa3052fd42651
 
---001a113febc89356cd052fd2f25e
+--001a1142cdd426caa3052fd42651
 Content-Type: text/plain; charset=UTF-8
 
-On 6 April 2016 at 16:45, Chris Trobridge <christrobridge@hotmail.com>
-wrote:
+Hello,
 
-> I will try to sort that out tomorrow (poky@yoctoproject.org, right?).
->
+Can sstate cache be shared among builds for different architectures like
+x86 & PowerPC?
 
-No, openembedded-core@lists.openembedded.org
+Thanks.
+Santosh
 
-Regarding python3, whenever I change the "--with-python" option to
-> something other than "python2.7" then I get an error.
->
-
-You need to change the inherits to pull in python3native.  Sadly flipping
-between py2 and py3 isn't trivial.
-
-Ross
-
---001a113febc89356cd052fd2f25e
+--001a1142cdd426caa3052fd42651
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 6 April 2016 at 16:45, Chris Trobridge <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hotmail=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":8q=
-d" class=3D"a3s" style=3D"overflow:hidden">I will try to sort that out tomo=
-rrow (<a href=3D"mailto:poky@yoctoproject.org">poky@yoctoproject.org</a>, r=
-ight?).<br></div></blockquote><div><br></div><div>No, <a href=3D"mailto:ope=
-nembedded-core@lists.openembedded.org">openembedded-core@lists.openembedded=
-.org</a></div><div><br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":8qd=
-" class=3D"a3s" style=3D"overflow:hidden">
-Regarding python3, whenever I change=C2=A0the &quot;--with-python&quot; opt=
-ion to something other than &quot;python2.7&quot; then I get an error.<br><=
-/div></blockquote><div><br></div><div>You need to change the inherits to pu=
-ll in python3native.=C2=A0 Sadly flipping between py2 and py3 isn&#39;t tri=
-vial.</div><div><br></div><div>Ross</div></div></div></div>
+<p dir="ltr">Hello,</p>
+<p dir="ltr">Can sstate cache be shared among builds for different architectures like x86 &amp; PowerPC?</p>
+<p dir="ltr">Thanks.<br>
+Santosh</p>
 
---001a113febc89356cd052fd2f25e--
+--001a1142cdd426caa3052fd42651--
