@@ -1,58 +1,41 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE865E00C64; Wed,  6 Apr 2016 03:57:32 -0700 (PDT)
+	id 14852E00C5D; Wed,  6 Apr 2016 04:20:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.1.141 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 433DDE00B37
-	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 03:57:30 -0700 (PDT)
-Received: by mail-ig0-f177.google.com with SMTP id kb1so38368038igb.0
-	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 03:57:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=brNOZkj5GBh25K/bmPZYW5paXbConeyiKe31BJH5nms=;
-	b=p4cjoxsWGI8YeEUPpk+cHV0ajo7xI6pO+rDz0agQLY2xds6aZ/h/WTzcv1yBImY2vn
-	Wv6kxrmv0HdqWuEFXCnIOmijQ+W2/amm/tHo+BcqiiYC2RPrcnNx9PMnTSfYs5wJH1d4
-	9QHcp7+qZV6GiamqVNOhK82tgi8FfOOjkhroiduMpSR5bQU8YXqHaGlHgkMI3qdzum7F
-	ywtTBsvQep9z3LT+F4F0ODUruUq+m+7JUaoUkgN++9FbHE+ornvM+nhsQ3MmQ53JOw5C
-	J4+ay+U3eUzxctrcFjyd/zSylsQF+DhFQ2r6mXK/oOUJyIYEnyHI9PRcUdmqxlhUprJ8
-	9bow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=brNOZkj5GBh25K/bmPZYW5paXbConeyiKe31BJH5nms=;
-	b=fBU4Tsh/XSyhQS4WxQswlw4MVK6b8vh8iZP9/OMRMjvK80fklGPIBPst81JEjbH5zF
-	jfHFGWZjfy4iL0pC2jiJDuW4xVa5r6lBISEO9a2lLkLh7sAg7sazPk2xFxPQNtV8CZL7
-	IWsIcZlPy/DyV5mlyoNMgd71vFMCuTfE8iqpYTata8oRpGdLH5RgcNFQgQbuzXbbLZg6
-	a/pC1Wp3WcDaSd34jH/nRsWAHkyq4SjUnoxRh2cRzJ7+27T16ampM6J/OqPL2mi6LDMS
-	bJK6n0bZXyxRbHL84bCddzvYdS/JZmxJVuBc/kxY+IhW9Tx9gGyUTOGowuL7DKR1cTA4
-	/AuA==
-X-Gm-Message-State: AD7BkJIzlCupq0B8y/RK1K3n3Y5/lDYoDC5/qZuBGAVuT9EEKsnppOoWA2S1/PRoUKA05r7e8UVb9O9N4G1WQmdh
-X-Received: by 10.50.43.226 with SMTP id z2mr22947528igl.78.1459940250210;
-	Wed, 06 Apr 2016 03:57:30 -0700 (PDT)
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Wed, 06 Apr 2016 04:20:21 PDT
+Received: from DUB004-OMC2S2.hotmail.com (dub004-omc2s2.hotmail.com
+	[157.55.1.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC626E00C43
+	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 04:20:21 -0700 (PDT)
+Received: from DUB130-W49 ([157.55.1.137]) by DUB004-OMC2S2.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Wed, 6 Apr 2016 04:19:19 -0700
+X-TMN: [fjdyxGMxDv7ffqPCXnyKO4/mgHt+XpUP]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W492E3B0F53AE2AA9EE0F0ADA9F0@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Apr 2016 12:19:18 +0100
+Importance: Normal
+In-Reply-To: <CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
+References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>,
+	<CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.107.132.24 with HTTP; Wed, 6 Apr 2016 03:57:10 -0700 (PDT)
-In-Reply-To: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
-References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 6 Apr 2016 11:57:10 +0100
-Message-ID: <CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
-To: Chris Trobridge <christrobridge@hotmail.com>
+X-OriginalArrivalTime: 06 Apr 2016 11:19:19.0404 (UTC)
+	FILETIME=[29A7BAC0:01D18FF6]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Python GObject Errors on yocto-2.1_M3.rc2
 X-BeenThere: yocto@yoctoproject.org
@@ -66,40 +49,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Apr 2016 10:57:32 -0000
-Content-Type: multipart/alternative; boundary=047d7bfea0f40231d0052fced492
+X-List-Received-Date: Wed, 06 Apr 2016 11:20:27 -0000
+Content-Type: multipart/alternative;
+	boundary="_6d9fee32-f52e-4d9d-9fce-60bffbe826c1_"
 
---047d7bfea0f40231d0052fced492
-Content-Type: text/plain; charset=UTF-8
-
-On 6 April 2016 at 11:53, Chris Trobridge <christrobridge@hotmail.com>
-wrote:
-
-> ImportError: No module named importlib
->
-
-Looks like python-gobject needs to depend on python-importlib.  Not sure
-why that isn't in -core to be honest.
-
-Can you add python-importlib to your image and see if it then works, or if
-other modules are missing?
-
-Ross
-
---047d7bfea0f40231d0052fced492
-Content-Type: text/html; charset=UTF-8
+--_6d9fee32-f52e-4d9d-9fce-60bffbe826c1_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 6 April 2016 at 11:53, Chris Trobridge <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hotmail=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>ImportErr=
-or: No module named importlib</div><div></div></blockquote></div><br>Looks =
-like python-gobject needs to depend on python-importlib.=C2=A0 Not sure why=
- that isn&#39;t in -core to be honest.</div><div class=3D"gmail_extra"><br>=
-</div><div class=3D"gmail_extra">Can you add python-importlib to your image=
- and see if it then works, or if other modules are missing?</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+Thanks Ross=2C
+This did the trick for python 2.7=2C and "from gi.repository import GObject=
+" works too.
+It's still not installed for python 3.5.  I will see if I did anything spec=
+ific to make that happen but it's odd that it worked before.
+Regards=2CChris
 
---047d7bfea0f40231d0052fced492--
+From: ross.burton@intel.com
+Date: Wed=2C 6 Apr 2016 11:57:10 +0100
+Subject: Re: [yocto] Python GObject Errors on yocto-2.1_M3.rc2
+To: christrobridge@hotmail.com
+CC: yocto@yoctoproject.org
+
+
+On 6 April 2016 at 11:53=2C Chris Trobridge <christrobridge@hotmail.com> wr=
+ote:
+ImportError: No module named importlib
+Looks like python-gobject needs to depend on python-importlib.  Not sure wh=
+y that isn't in -core to be honest.
+Can you add python-importlib to your image and see if it then works=2C or i=
+f other modules are missing?
+Ross 		 	   		  =
+
+--_6d9fee32-f52e-4d9d-9fce-60bffbe826c1_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Thanks Ross=2C<div><br></div><di=
+v>This did the trick for python 2.7=2C and "from gi.repository import GObje=
+ct" works too.</div><div><br></div><div>It's still not installed for python=
+ 3.5. &nbsp=3BI will see if I did anything specific to make that happen but=
+ it's odd that it worked before.</div><div><br></div><div>Regards=2C</div><=
+div>Chris<br><br><div><hr id=3D"stopSpelling">From: ross.burton@intel.com<b=
+r>Date: Wed=2C 6 Apr 2016 11:57:10 +0100<br>Subject: Re: [yocto] Python GOb=
+ject Errors on yocto-2.1_M3.rc2<br>To: christrobridge@hotmail.com<br>CC: yo=
+cto@yoctoproject.org<br><br><div dir=3D"ltr"><div class=3D"ecxgmail_extra">=
+<br><div class=3D"ecxgmail_quote">On 6 April 2016 at 11:53=2C Chris Trobrid=
+ge <span dir=3D"ltr">&lt=3B<a href=3D"mailto:christrobridge@hotmail.com" ta=
+rget=3D"_blank">christrobridge@hotmail.com</a>&gt=3B</span> wrote:<br><bloc=
+kquote class=3D"ecxgmail_quote" style=3D"border-left:1px #ccc solid=3Bpaddi=
+ng-left:1ex=3B"><div>ImportError: No module named importlib</div><div></div=
+></blockquote></div><br>Looks like python-gobject needs to depend on python=
+-importlib.&nbsp=3B Not sure why that isn't in -core to be honest.</div><di=
+v class=3D"ecxgmail_extra"><br></div><div class=3D"ecxgmail_extra">Can you =
+add python-importlib to your image and see if it then works=2C or if other =
+modules are missing?</div><div class=3D"ecxgmail_extra"><br></div><div clas=
+s=3D"ecxgmail_extra">Ross</div></div></div></div> 		 	   		  </div></body>
+</html>=
+
+--_6d9fee32-f52e-4d9d-9fce-60bffbe826c1_--
