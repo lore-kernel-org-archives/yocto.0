@@ -1,68 +1,32 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <martin@spotwise.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1489AE00C5B; Tue,  5 Apr 2016 20:39:31 -0700 (PDT)
+	id 6978BE00C5D; Wed,  6 Apr 2016 02:07:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.201.84.163 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
-	[209.85.217.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EFFEE00C55
-	for <yocto@yoctoproject.org>; Tue,  5 Apr 2016 20:39:27 -0700 (PDT)
-Received: by mail-lb0-f170.google.com with SMTP id bc4so21583607lbc.2
-	for <yocto@yoctoproject.org>; Tue, 05 Apr 2016 20:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=hRdqGXURQDRjbixjtEa0gmBj955m7k+OzWisHdZ0v+w=;
-	b=CTWggMDS3h72esVSVyOIkGuODQMqUXSAHeseU6Nbtwjw13+vXBTXov4DKmZxvbGHjr
-	xDocUAn7wu6QciBjt9staReOwIAgvjlT4r3gXFXA7EltxQsGwQipYoH0POda92fkINL/
-	OqKuq6lk53noT+wej0iXECeJcJ3QuULqiuVbQXMGG+V2UUCRZkC3gdaBAq7RupjlisnD
-	cpH8IEIiaWlZ/Aerp0xR6lPXizWTqjvhDFlcZR0VmWY4LMlDDtdFj5jv/NRJG0t0rdim
-	YPv3HupIvvECoeljoPb/h1g/QXrvf3WgnNZZzP2kxbg5fzI9trqpdBw4U3+secoZUYaA
-	HT+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=hRdqGXURQDRjbixjtEa0gmBj955m7k+OzWisHdZ0v+w=;
-	b=kdzwNQU5isBhJGxdFQGowu+QgOgjTrzmPRIn/Zub6/+sTuySa1iM6tlxiXjWsW2jdJ
-	m69jo4FnS9QO6h1Fg5IVkpGIRpzK2/fhxrZ1xe9zG1as9eTf1OaQvsnEbzLt+jS8upne
-	CnqGuN7KqpiZ/ZFzumYLftZ5tA94jc+HSbIX9j87qOsIUneXpF9UW1XLdA3YrcJeq65g
-	IK+wRfLefPixH1Hio8m1ucxN+KlhlQiCOtnj/AquV/HAL6iEzRnkYMP5Qfk7XzMMLBRj
-	EnykuiBTDN6vgmNvACaCIXcxrXVgJtP54SnYkAfTbthTRU9LNBk9MhR3isRc12r3LwM+
-	9C8g==
-X-Gm-Message-State: AD7BkJJsQvOVccFz7VdPUDtcgF3+LUu81YeNIQE208j0GF0XwHA9bEtkteUay8r7qWdRRhUeoxnSE1pJ2esfIA==
-X-Received: by 10.112.168.194 with SMTP id zy2mr971674lbb.102.1459913966035;
-	Tue, 05 Apr 2016 20:39:26 -0700 (PDT)
-MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.55.101 with HTTP; Tue, 5 Apr 2016 20:39:06 -0700 (PDT)
-In-Reply-To: <1604312.a7pP1GrPCb@rjs-zotac.streifs.net>
-References: <56DEF97F.9070306@balister.org> <1458767514382.89578@seescan.com>
-	<56F42DA1.4090902@balister.org>
-	<1604312.a7pP1GrPCb@rjs-zotac.streifs.net>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Tue, 5 Apr 2016 20:39:06 -0700
-X-Google-Sender-Auth: Mk0JilE2j0LKoSt9vWVXcML-Sg0
-Message-ID: <CA+YB3ra_JQ5tqYgzD9BWBwNi4V+Y1sQYPNNpyPS9a+Q8h27NqQ@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [oe] [OE-core] OEDAM, April 8 in San Diego after ELC
+Received: from sender163-mail.zoho.com (sender163-mail.zoho.com
+	[74.201.84.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D7B6E00B37
+	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 02:07:16 -0700 (PDT)
+Received: from [10.1.1.92] (c-d1b2e055.17-2-64736c10.cust.bredbandsbolaget.se
+	[85.224.178.209]) by mx.zohomail.com
+	with SMTPS id 1459933635177471.04469962085284;
+	Wed, 6 Apr 2016 02:07:15 -0700 (PDT)
+From: Martin Bergek <martin@spotwise.com>
+Message-Id: <246B01F2-8EE3-4593-B1E8-E5785B7FA082@spotwise.com>
+Date: Wed, 6 Apr 2016 11:07:10 +0200
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Zoho-Virus-Status: 1
+Subject: [oe] Problem building apache2 with php5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,19 +38,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Apr 2016 03:39:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 06 Apr 2016 09:07:24 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Just a final transportation update for those attending OEDAM.
+I created an image in more than a year ago with apache2 and php5. Now =
+when I pull in all updates since then I realise that mod_php has been =
+moved from the modphp recipe in meta-webserver to the php recipe in =
+meta-oe.
 
-Transportation will be via carpool. Tom, Rudi, Armin, and myself have
-volunteered to drive. Together we have room for 19 out of the 20
-signed up. Let's plan to meet in front of the Hyatt at 8:30am on
-Friday. If you are late or otherwise unable to be there at that time,
-let me know and we'll arrange alternate transportation. If you are
-planning to drive yourself, please let me know so we don't wait for
-you.
+I have created a php_5.6.12.bbappend file in which I have=20
 
-Armin will be driving north after the meeting, so if you ride up there
-with him I will either make two trips back or arrange for a cab.
+	PACKAGECONFIG_append =3D " apache2=E2=80=9D
+
+Not entirely sure if this is the way to do it but when I try to build =
+the php recipe I get a bunch of errors (see below) and would really =
+appreciate some pointer on how to do it.
+
+Would it be easier to build nginx with php support?
+
+
+In file included from =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/mod_php5.c:26:0:
+| =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/php_apache.h:24:19: fatal error: httpd.h: No =
+such file or directory
+| compilation terminated.
+| In file included from =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/apache_config.c:25:0:
+| =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/php_apache.h:24:19: fatal error: httpd.h: No =
+such file or directory
+| compilation terminated.
+| Makefile:474: recipe for target 'sapi/apache2handler/mod_php5.lo' =
+failed
+| make: *** [sapi/apache2handler/mod_php5.lo] Error 1
+| make: *** Waiting for unfinished jobs....
+| Makefile:478: recipe for target 'sapi/apache2handler/apache_config.lo' =
+failed
+| make: *** [sapi/apache2handler/apache_config.lo] Error 1
+| =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/php_functions.c:33:23: fatal error: =
+ap_config.h: No such file or directory
+| compilation terminated.
+| Makefile:480: recipe for target 'sapi/apache2handler/php_functions.lo' =
+failed
+| make: *** [sapi/apache2handler/php_functions.lo] Error 1
+| =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/php=
+-5.6.12/sapi/apache2handler/sapi_apache2.c:41:23: fatal error: =
+ap_config.h: No such file or directory
+| compilation terminated.
+| Makefile:476: recipe for target 'sapi/apache2handler/sapi_apache2.lo' =
+failed
+| make: *** [sapi/apache2handler/sapi_apache2.lo] Error 1
+| WARNING: exit code 1 from a shell command.
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at =
+/home/martin/Yocto/poky/rpi/tmp/work/x86_64-linux/php-native/5.6.12-r0/tem=
+p/log.do_compile.2418)
+
+
 
