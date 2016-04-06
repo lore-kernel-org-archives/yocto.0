@@ -1,39 +1,60 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8819E00C5B; Wed,  6 Apr 2016 03:54:29 -0700 (PDT)
+	id BE865E00C64; Wed,  6 Apr 2016 03:57:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.38 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Wed, 06 Apr 2016 03:54:28 PDT
-Received: from DUB004-OMC3S29.hotmail.com (dub004-omc3s29.hotmail.com
-	[157.55.2.38])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5F68E00B37
-	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 03:54:28 -0700 (PDT)
-Received: from DUB130-W48 ([157.55.2.8]) by DUB004-OMC3S29.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Wed, 6 Apr 2016 03:53:26 -0700
-X-TMN: [2xmMUtnQgYpA2bspaXEA+RIqQv2IEPa+]
-X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 6 Apr 2016 11:53:25 +0100
-Importance: Normal
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 433DDE00B37
+	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 03:57:30 -0700 (PDT)
+Received: by mail-ig0-f177.google.com with SMTP id kb1so38368038igb.0
+	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 03:57:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=brNOZkj5GBh25K/bmPZYW5paXbConeyiKe31BJH5nms=;
+	b=p4cjoxsWGI8YeEUPpk+cHV0ajo7xI6pO+rDz0agQLY2xds6aZ/h/WTzcv1yBImY2vn
+	Wv6kxrmv0HdqWuEFXCnIOmijQ+W2/amm/tHo+BcqiiYC2RPrcnNx9PMnTSfYs5wJH1d4
+	9QHcp7+qZV6GiamqVNOhK82tgi8FfOOjkhroiduMpSR5bQU8YXqHaGlHgkMI3qdzum7F
+	ywtTBsvQep9z3LT+F4F0ODUruUq+m+7JUaoUkgN++9FbHE+ornvM+nhsQ3MmQ53JOw5C
+	J4+ay+U3eUzxctrcFjyd/zSylsQF+DhFQ2r6mXK/oOUJyIYEnyHI9PRcUdmqxlhUprJ8
+	9bow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=brNOZkj5GBh25K/bmPZYW5paXbConeyiKe31BJH5nms=;
+	b=fBU4Tsh/XSyhQS4WxQswlw4MVK6b8vh8iZP9/OMRMjvK80fklGPIBPst81JEjbH5zF
+	jfHFGWZjfy4iL0pC2jiJDuW4xVa5r6lBISEO9a2lLkLh7sAg7sazPk2xFxPQNtV8CZL7
+	IWsIcZlPy/DyV5mlyoNMgd71vFMCuTfE8iqpYTata8oRpGdLH5RgcNFQgQbuzXbbLZg6
+	a/pC1Wp3WcDaSd34jH/nRsWAHkyq4SjUnoxRh2cRzJ7+27T16ampM6J/OqPL2mi6LDMS
+	bJK6n0bZXyxRbHL84bCddzvYdS/JZmxJVuBc/kxY+IhW9Tx9gGyUTOGowuL7DKR1cTA4
+	/AuA==
+X-Gm-Message-State: AD7BkJIzlCupq0B8y/RK1K3n3Y5/lDYoDC5/qZuBGAVuT9EEKsnppOoWA2S1/PRoUKA05r7e8UVb9O9N4G1WQmdh
+X-Received: by 10.50.43.226 with SMTP id z2mr22947528igl.78.1459940250210;
+	Wed, 06 Apr 2016 03:57:30 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 06 Apr 2016 10:53:26.0348 (UTC)
-	FILETIME=[8BF630C0:01D18FF2]
-Subject: Python GObject Errors on yocto-2.1_M3.rc2
+Received: by 10.107.132.24 with HTTP; Wed, 6 Apr 2016 03:57:10 -0700 (PDT)
+In-Reply-To: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
+References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Apr 2016 11:57:10 +0100
+Message-ID: <CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
+To: Chris Trobridge <christrobridge@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Python GObject Errors on yocto-2.1_M3.rc2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,84 +66,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Apr 2016 10:54:29 -0000
-Content-Type: multipart/alternative;
-	boundary="_65808208-e274-4891-b596-56c731023435_"
+X-List-Received-Date: Wed, 06 Apr 2016 10:57:32 -0000
+Content-Type: multipart/alternative; boundary=047d7bfea0f40231d0052fced492
 
---_65808208-e274-4891-b596-56c731023435_
-Content-Type: text/plain; charset="iso-8859-1"
+--047d7bfea0f40231d0052fced492
+Content-Type: text/plain; charset=UTF-8
+
+On 6 April 2016 at 11:53, Chris Trobridge <christrobridge@hotmail.com>
+wrote:
+
+> ImportError: No module named importlib
+>
+
+Looks like python-gobject needs to depend on python-importlib.  Not sure
+why that isn't in -core to be honest.
+
+Can you add python-importlib to your image and see if it then works, or if
+other modules are missing?
+
+Ross
+
+--047d7bfea0f40231d0052fced492
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 6 April 2016 at 11:53, Chris Trobridge <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hotmail=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>ImportErr=
+or: No module named importlib</div><div></div></blockquote></div><br>Looks =
+like python-gobject needs to depend on python-importlib.=C2=A0 Not sure why=
+ that isn&#39;t in -core to be honest.</div><div class=3D"gmail_extra"><br>=
+</div><div class=3D"gmail_extra">Can you add python-importlib to your image=
+ and see if it then works, or if other modules are missing?</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-
-I have a code base using gobject introspection that has been running fine o=
-n Alex's gobject-introspection-experimental branch on poky-contrib but is b=
-roken on 2.1 M3.
-I am using it with python3 (3.5) but it isn't accessible with python27 eith=
-er.  It appears it may be partially installed for 2.7 but not at all for 3.=
-5.
-To simplify things=2C I have built core-image-full-cmdline on genericx86-64=
- and this gives the same result as my image:
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3DPoky (Yocto Project Reference Distro=
-) 2.0+snapshot-20160406 genericx86-64 console
-genericx86-64 login: rootroot@genericx86-64:~# pythonPython 2.7.11 (default=
-=2C Apr  6 2016=2C 10:05:21) [GCC 5.3.0] on linux2Type "help"=2C "copyright=
-"=2C "credits" or "license" for more information.>>> import giTraceback (mo=
-st recent call last):  File "<stdin>"=2C line 1=2C in <module>  File "/usr/=
-lib/python2.7/site-packages/gi/__init__.py"=2C line 29=2C in <module>    im=
-port importlibImportError: No module named importlib>>> =3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Is there something else I need to change to get gobject introspection to wo=
-rk with the RC or does this indicate a bug/omission?
-Cheers=2CChris
- 		 	   		  =
-
---_65808208-e274-4891-b596-56c731023435_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'><div><br></div><div><br></div>I =
-have a code base using gobject introspection that has been running fine on =
-Alex's&nbsp=3Bgobject-introspection-experimental branch on poky-contrib but=
- is broken on 2.1 M3.<div><br></div><div>I am using it with python3 (3.5) b=
-ut it isn't accessible with python27 either. &nbsp=3BIt appears it may be p=
-artially installed for 2.7 but not at all for 3.5.</div><div><br></div><div=
->To simplify things=2C I have built core-image-full-cmdline on&nbsp=3B<span=
- style=3D"font-size: 12pt=3B">genericx86-64 and this gives the same result =
-as my image:</span></div><div><span style=3D"font-size: 12pt=3B"><br></span=
-></div><div><div><div style=3D"font-size: 12pt=3B">=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D</div></div><div>Poky (Yocto Project Reference Distro) 2.0+s=
-napshot-20160406 genericx86-64 console</div><div><br></div><div>genericx86-=
-64 login: root</div><div>root@genericx86-64:~# python</div><div>Python 2.7.=
-11 (default=2C Apr &nbsp=3B6 2016=2C 10:05:21)&nbsp=3B</div><div>[GCC 5.3.0=
-] on linux2</div><div>Type "help"=2C "copyright"=2C "credits" or "license" =
-for more information.</div><div>&gt=3B&gt=3B&gt=3B import gi</div><div>Trac=
-eback (most recent call last):</div><div>&nbsp=3B File "&lt=3Bstdin&gt=3B"=
-=2C line 1=2C in &lt=3Bmodule&gt=3B</div><div>&nbsp=3B File "/usr/lib/pytho=
-n2.7/site-packages/gi/__init__.py"=2C line 29=2C in &lt=3Bmodule&gt=3B</div=
-><div>&nbsp=3B &nbsp=3B import importlib</div><div>ImportError: No module n=
-amed importlib</div><div>&gt=3B&gt=3B&gt=3B&nbsp=3B</div><div style=3D"font=
--size: 12pt=3B">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></div><div sty=
-le=3D"font-size: 12pt=3B"><br></div><div style=3D"font-size: 12pt=3B">Is th=
-ere something else I need to change to get gobject introspection to work wi=
-th the RC or does this indicate a bug/omission?</div><div style=3D"font-siz=
-e: 12pt=3B"><br></div><div style=3D"font-size: 12pt=3B">Cheers=2C</div><div=
- style=3D"font-size: 12pt=3B">Chris</div><div style=3D"font-size: 12pt=3B">=
-<br></div> 		 	   		  </div></body>
-</html>=
-
---_65808208-e274-4891-b596-56c731023435_--
+--047d7bfea0f40231d0052fced492--
