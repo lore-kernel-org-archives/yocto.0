@@ -1,61 +1,67 @@
-Return-Path: <ysan99@gmail.com>
+Return-Path: <ronaldo@brc2.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 967CAE0096D; Wed,  6 Apr 2016 10:18:25 -0700 (PDT)
+	id A8FF2E0077F; Wed,  6 Apr 2016 12:55:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ysan99[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.218.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f169.google.com (mail-yw0-f169.google.com
-	[209.85.161.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40728E0048B
-	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 10:18:23 -0700 (PDT)
-Received: by mail-yw0-f169.google.com with SMTP id g3so65111364ywa.3
-	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 10:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=CkqXU3c5+xa2i/HLl0gxzIW9J4Hv6vUJdQXaJH1qp7U=;
-	b=lSrM07MVjTNYb7X0+MWf8K855OXS6gY4NiumexCGvfvTft9IxjuKvl8PW7s9dyztHi
-	Zv5g/yNkZ0XzZBTrd2UjWMwfWVSDmts5Lqwyi6w+pkbfSR1q9+P7lDYTBuSCHD2doZON
-	bPjToSDkvvj+ptGEXPA3CnxdGpIhK2PSDLtGUX4FUS9znjop1KBRfjl3vdqJRCs9wL5Y
-	X74B1u+CaV+xVKh73NM59HGgmgxl2E23X6UNCdziqwtx9fhSB5ywJe9lhGJju5SoGEgH
-	NRs+xZSNqiEqksnvBrnBuC4QyNj0JgaBK+5M2oAkSFB07hRhOIkBwzGE4YN4hZmXAwyj
-	nHpA==
+Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
+	[209.85.218.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A17CE0048B
+	for <yocto@yoctoproject.org>; Wed,  6 Apr 2016 12:55:28 -0700 (PDT)
+Received: by mail-oi0-f65.google.com with SMTP id q133so8772791oib.1
+	for <yocto@yoctoproject.org>; Wed, 06 Apr 2016 12:55:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=brc2-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=YXypGGz5n1jiFAsDL0AXJPdI/5JI6j2NoSygYvxpZ0M=;
+	b=DwifMdbvzJCQSlWCIsHCgNyk/Q1kQFMoAis4kSHXNq9ryl/fK2n10N1E0x5tp/AwQa
+	carY0mrG4BzEVdfc3EUfn9qKLhYVN016ZqnftgCxth9qkDtICEQrgsTm/na8R4gVxQOt
+	iZYILDw5430i24p0w0w7Nv4O9wgChANW2H2xYGGS+Zcx6MYwliS/ETwCTSZZ62ytYmIn
+	5F8MwIo0uYziL/Q7LYIrg1tyooreRg6CQyc92/jh3V0BNmsUJZiMX8mOOqjCrwWm3tZK
+	LHikIdnfrqAYf2ze8KvLvVnkpg+J/4GVa/nu6RicwP8D3pdoRNriWYg0WKsy55l2lbft
+	sF2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=CkqXU3c5+xa2i/HLl0gxzIW9J4Hv6vUJdQXaJH1qp7U=;
-	b=eJSpca5ldZD2Uv0kWywCVfBreFLKGhViGxKiD8P5tlze+f5/Ma5DHQTvuzp9a/TO2i
-	BR8qz8z7LHQ7nSBrT4PJnXfytYgo0BB41S2pVzQC1N7iLhy6fvlmPerGpwxu9Rg4eBRs
-	Y4lvt5+RB0jWlwqO3QmPJFUc8TbLtN4SeEqeN0Ub/vImAw7umV8uyHTCBQdBHqEec30G
-	ytJYJkELvPBrOy4N0iAVH0XLRCiOwBWqLJDKZwAMLfK9EwmMlKZf5v3sGvMso7NhNs0O
-	hReGZuiASD2s3OFLv3HsMzLt6SHEnwpDMXl9D2XM03MDOWqkOCrW1xt5XRVOhtIEJrTG
-	zHVA==
-X-Gm-Message-State: AD7BkJKQEQnxhTLmJ7vrLBJj4UL/RhgC1MVN/DbgTwEA0PAEepGF8EjWLzlL0/3wfOCaE71JMm53BfZalYMl/w==
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=YXypGGz5n1jiFAsDL0AXJPdI/5JI6j2NoSygYvxpZ0M=;
+	b=l+D5lbmPmaB8cxtsyLy7JMGytTSOnyEN+UiRlFVxjTfLp9WlaW8/KklWi5CnIYpEa4
+	c9aHK0/d2raxz801HsYbTAR0JsB3QM3tXddRvddBqQYJ+nKNwqfLCSOgHd2kuN8wLcNF
+	L3Lp+lxpxerFp8+2Ou7zeYgm2/qbIR5dku8FpaT5Me6L+ROopUpxZz89vN18lRWViOhK
+	eYqTkPYYTyUjG01HQ1RnIbuK8VEjpmNB9XgvaQ02SVL2XKpbIvvlUqZJKi0f+WwIQUfJ
+	vpLTEYg+fcBw/dKY5DjXjpdi0wSDZY2gjjDz3lUchMiUVQ0VugKEc8wmIej2cwqvgbzp
+	xYRQ==
+X-Gm-Message-State: AD7BkJLskYarc4GEnrdyqJw7ZpvK42cr5TRc2bcvZjayV59+YJJzeZL+n68vLe3fpIyPiaTF7LEG0zIKGIravA==
 MIME-Version: 1.0
-X-Received: by 10.129.5.215 with SMTP id 206mr19064785ywf.210.1459963103193;
-	Wed, 06 Apr 2016 10:18:23 -0700 (PDT)
-Received: by 10.37.17.195 with HTTP; Wed, 6 Apr 2016 10:18:22 -0700 (PDT)
-Received: by 10.37.17.195 with HTTP; Wed, 6 Apr 2016 10:18:22 -0700 (PDT)
-Date: Wed, 6 Apr 2016 22:48:22 +0530
-Message-ID: <CAFcFeQKU5EkgSdw-Wyy3gcF4sNTMZO4WtFjgptaFbwrgZeyhPQ@mail.gmail.com>
-From: Santosh Y <ysan99@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Sharing Sstate cache among different platform architectures
+X-Received: by 10.157.9.243 with SMTP id 48mr19068971otz.94.1459972528201;
+	Wed, 06 Apr 2016 12:55:28 -0700 (PDT)
+Received: by 10.202.4.71 with HTTP; Wed, 6 Apr 2016 12:55:28 -0700 (PDT)
+In-Reply-To: <CAJTo0LYQO0GhOL1otLHBj7QR-b2uAxqH+CQjac_5DZT6R2_Zug@mail.gmail.com>
+References: <CALRMKQr4A0r2Mseu1uuQaZXpWKokjQ=ZizfkatR4J2mjpQpSvw@mail.gmail.com>
+	<25644105.gyxDGl902X@rjs-zotac.streifs.net>
+	<CALRMKQo7GPHQLPLTm_dO9uoQgBhGriNW9GFBoG6VOPfaqCeHAA@mail.gmail.com>
+	<CAJTo0LaW9jWNK8x_MuxoSjJUsWVTBTA5mN4EtmaFFYLhAC4Edw@mail.gmail.com>
+	<CALRMKQrWwR03YyenAefS1GaPQ34GhmRCz0r5GS=rR+1gx45Jqg@mail.gmail.com>
+	<CAJTo0LYYRHjZGezVmKBzhv9tEtEJmAEDdMPGMCmcFy==xQVOXQ@mail.gmail.com>
+	<CALRMKQri=KgPhxk-0iTUxD59PU-K0i6bfvcxkVF6i_J7UX_Agw@mail.gmail.com>
+	<CAJTo0LYQO0GhOL1otLHBj7QR-b2uAxqH+CQjac_5DZT6R2_Zug@mail.gmail.com>
+Date: Wed, 6 Apr 2016 13:55:28 -0600
+Message-ID: <CALRMKQqD+DpqOP7HK1TPK8VY8ce6n-0wVAeSZWMa7zUWjX_nrQ@mail.gmail.com>
+From: Ronald Oakes <ronaldo@brc2.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf J Streif <rudolf.streif@gmail.com>
+Subject: Re: Python do_install fails on QEMUX86-64 and corei7-64 under Debian 8.0.3 isolated station
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,26 +73,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Apr 2016 17:18:25 -0000
-Content-Type: multipart/alternative; boundary=001a1142cdd426caa3052fd42651
-
---001a1142cdd426caa3052fd42651
+X-List-Received-Date: Wed, 06 Apr 2016 19:55:32 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hello,
+Alas, not legally (government contract).  I might be able to burn them
+to CD, but I'd still have to bring them home to email them.
 
-Can sstate cache be shared among builds for different architectures like
-x86 & PowerPC?
+For what it's worth, I may be able to work around this by using the
+Poky-Tiny distribution, which is closer to what I'll need for the
+minimalist system we need in the end.
 
-Thanks.
-Santosh
+RonO
 
---001a1142cdd426caa3052fd42651
-Content-Type: text/html; charset=UTF-8
+On Wed, Apr 6, 2016 at 9:36 AM, Burton, Ross <ross.burton@intel.com> wrote:
+>
+> On 6 April 2016 at 15:27, Ronald Oakes <ronaldo@brc2.com> wrote:
+>>
+>> Unfortunately, my build system is airgapped from the Internet, making
+>> copying files into emails (or attaching them) extremely difficult.
+>
+>
+> Can you not put them on a USB stick?
+>
+> Ross
 
-<p dir="ltr">Hello,</p>
-<p dir="ltr">Can sstate cache be shared among builds for different architectures like x86 &amp; PowerPC?</p>
-<p dir="ltr">Thanks.<br>
-Santosh</p>
-
---001a1142cdd426caa3052fd42651--
