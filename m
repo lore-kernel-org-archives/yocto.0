@@ -1,63 +1,28 @@
-Return-Path: <mbroadst@gmail.com>
+Return-Path: <thomas.elste@imms.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E0B6E00C75; Thu,  7 Apr 2016 07:38:26 -0700 (PDT)
+	id BC0A0E00C37; Thu,  7 Apr 2016 08:01:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mbroadst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 181A9E007C5
-	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 07:38:23 -0700 (PDT)
-Received: by mail-oi0-f49.google.com with SMTP id p188so100982976oih.2
-	for <yocto@yoctoproject.org>; Thu, 07 Apr 2016 07:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to; 
-	bh=Gwt5zmY7Qnoxx83c60bYDRGB6nCX09e+JjJwAPsR7bk=;
-	b=eJ0mu+wBIAV+3udiF66zexvsAhRXjlARtr2MDji4DrU0cia7t65ex8rzJjFz8ieBER
-	S+nCOMPm+EwYO3cCOIf++DoWeTuH+eLCLi2ZBTcI4aGtFfzKjGBS9WcgjhXmhv11gQyv
-	lHCrEnAjUavXdGk7ZunyMX+hZvSolThYRcT24XYibQFr9RH8WGz7NeVQ27qQFfFhQBkZ
-	wHAMOYtfOMEUWuRfuE88mvZ8A3nWLOztMZj38+xKEylcqE+4MGGjx5W0xlSCxIdz3ujs
-	c/TS/U9x6q2sOZf4LvH2M8RSr6dHGHsd+eXN+UW7FZaiQRH89eji634pDsh7rDp853wf
-	HCMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to;
-	bh=Gwt5zmY7Qnoxx83c60bYDRGB6nCX09e+JjJwAPsR7bk=;
-	b=IYs2iPzQwYefSWveQ9FfH+xe1t5JjIkeHmSbTGxWG+54VT2/bytP+9ePb4WJM5oN5u
-	kmMt+N8hXneiI93v7RJdL5rEM5Dy4m9hEY6ckWNxnRlhVKlzefQmjGhfHW7VvWnrgTaK
-	HC8DWYIEOfRMpwh1AHCrTttiKPcGxkP35bkWKE6Nq3l4mqXPztkmPkcHYAH7AMPHY4PO
-	FKz5Mv6OniLBU+TY/MiFB3PFotuMyiTM6VToxNDzuY66PSArl2adnXqnzGnmW1nnwLit
-	ohdpUto07hh/ISBaxHwhU6CPwuUDDVVdsna3lNPcmC7LDIOc6F1K8GOhYvDpq040gZ+B
-	UmKQ==
-X-Gm-Message-State: AD7BkJIUvvoggZKMWTQY/2yWCENhMuVQyaP8mAMxe9AdJVKhLqhdXdEKT5tBc7fDDJRGg5KBSS4iElNTUpPzcg==
-MIME-Version: 1.0
-X-Received: by 10.157.5.106 with SMTP id 97mr1510308otw.127.1460039902910;
-	Thu, 07 Apr 2016 07:38:22 -0700 (PDT)
-Received: by 10.202.69.215 with HTTP; Thu, 7 Apr 2016 07:38:22 -0700 (PDT)
-In-Reply-To: <CAMsD-yD2njxx9DBTfnEivFUmzUVWQn19+F7pPLsr7HHcVq1Ayw@mail.gmail.com>
-References: <CAMsD-yD2njxx9DBTfnEivFUmzUVWQn19+F7pPLsr7HHcVq1Ayw@mail.gmail.com>
-Date: Thu, 7 Apr 2016 10:38:22 -0400
-Message-ID: <CAMsD-yA5gC3V=bwomF2RKFx30-0T9B4A3i2=53v2sMyawdN+3Q@mail.gmail.com>
-From: Matt Broadstone <mbroadst@gmail.com>
+X-Greylist: delayed 528 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Apr 2016 08:01:35 PDT
+Received: from can05.de (can05.de [217.172.166.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1484FE007C5
+	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 08:01:35 -0700 (PDT)
+Received: from localhost.localdomain (unknown [194.95.250.53])
+	(Authenticated sender: web372p3)
+	by can05.de (can05.de) with ESMTPA id 4E3171C2B1E;
+	Thu,  7 Apr 2016 16:52:45 +0200 (CEST)
+From: Thomas Elste <thomas.elste@imms.de>
 To: yocto@yoctoproject.org
-Subject: Re: out of tree kernel modules using autotools
+Date: Thu,  7 Apr 2016 16:52:32 +0200
+Message-Id: <1460040752-9058-1-git-send-email-thomas.elste@imms.de>
+X-Mailer: git-send-email 2.4.10
+Subject: [eclipse-poky][PATCH] org.yocto.sdk.ide: Use CFLAGS from CC variable in cmake toolchain file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,96 +34,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Apr 2016 14:38:26 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0479a4c55fd0052fe60704
+X-List-Received-Date: Thu, 07 Apr 2016 15:01:39 -0000
 
---94eb2c0479a4c55fd0052fe60704
-Content-Type: text/plain; charset=UTF-8
+The CC and CXX variables imported from the Yocto build environment
+may contain additional compiler flags after the compiler name. Extract
+those and add them to cmake toolchain file variables, too.
 
-On Thu, Apr 7, 2016 at 10:05 AM, Matt Broadstone <mbroadst@gmail.com> wrote:
+Signed-off-by: Thomas Elste <thomas.elste@imms.de>
+---
 
-> Hello,
-> I'm beginning a process to try to build zfs-on-linux for my image (as I
-> have yet to find any existing work in this area), and am running into some
-> trouble building out of tree kernel modules with autotools.
->
-> I've been loosely basing my recipe off of the one over here:
-> https://github.com/Freescale/meta-freescale/blob/master/recipes-kernel/kernel-modules/kernel-module-perf-qoriq_0.8.2.bb
->
-> Here is the current recipe:
->
-> <snip>
-> inherit module autotools
-> SRC_URI = "
-> http://archive.zfsonlinux.org/downloads/zfsonlinux/spl/spl-0.6.5.6.tar.gz"
-> SRC_URI[md5sum] = "4544b80018ddc5c39ed395363a582228"
-> SRC_URI[sha256sum] =
-> "167595fe76eb5497c3a1ffe396b6300155d0cbe46d06824a710099ca1ae1b8bd"
-> EXTRA_OECONF += "--with-config=kernel --with-linux=${KERNEL_PATH}"
-> <snip>
->
-> This recipe builds fine, except that it's using the installed kernel
-> sources for the base ubuntu system rather than those build by yocto. I can
-> confirm that the kernel has already been built, and sources are available,
-> however when entering into the devshell for this package neither KERNEL_SRC
-> nor KERNEL_PATH are defined (they are simply empty), despite what the
-> documentation for the module bbclass indicates.
->
-> It seems I'm missing something important here?  Also any other references
-> to examples of building these types of modules would be greatly appreciated.
->
-> Regards,
-> Matt
->
+Hi,
 
-It looks like the variable is indeed defined, however not in a way where I
-could have seen it via the devshell. I fixed the build by adding an
-additional `--with-linux-obj=${STAGING_KERNEL_BUILDDIR}`, apologies for the
-noise!
+using the Yocto plugin for Eclipse to generate CMake based C projects
+I've encountered a problem. I'm using a standalone armhf toolchain
+(ADT) for building the project. Compiling works fine but linkings fails
+due to a mismatch in the FP ABI of object files and target sysroot
+libraries.
 
-Matt
+This happens as the compiler is not called with all the flags
+necessary. The flags which appear in the environment file of the ADT in
+the CC/CXX variable are not present. For example CC for my toolchain
+looks like this:
 
---94eb2c0479a4c55fd0052fe60704
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+export CC="arm-poky-linux-gnueabi-gcc  -march=armv7-a -mfloat-abi=hard
+-mfpu=neon -mtune=cortex-a7 --sysroot=$SDKTARGETSYSROOT"
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Thu, Apr 7, 2016 at 10:05 AM, Matt Broadstone <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:mbroadst@gmail.com" target=3D"_blank">mbroadst@gmail.com<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);=
-border-left-style:solid;padding-left:1ex"><div dir=3D"ltr">Hello,<div>I&#39=
-;m beginning a process to try to build zfs-on-linux for my image (as I have=
- yet to find any existing work in this area), and am running into some trou=
-ble building out of tree kernel modules with autotools.</div><div><br></div=
-><div>I&#39;ve been loosely basing my recipe off of the one over here:=C2=
-=A0<a href=3D"https://github.com/Freescale/meta-freescale/blob/master/recip=
-es-kernel/kernel-modules/kernel-module-perf-qoriq_0.8.2.bb" target=3D"_blan=
-k">https://github.com/Freescale/meta-freescale/blob/master/recipes-kernel/k=
-ernel-modules/kernel-module-perf-qoriq_0.8.2.bb</a></div><div><br></div><di=
-v>Here is the current recipe:</div><div><br></div><div>&lt;snip&gt;</div><d=
-iv><div>inherit module autotools</div><div>SRC_URI =3D &quot;<a href=3D"htt=
-p://archive.zfsonlinux.org/downloads/zfsonlinux/spl/spl-0.6.5.6.tar.gz" tar=
-get=3D"_blank">http://archive.zfsonlinux.org/downloads/zfsonlinux/spl/spl-0=
-.6.5.6.tar.gz</a>&quot;</div><div>SRC_URI[md5sum] =3D &quot;4544b80018ddc5c=
-39ed395363a582228&quot;</div><div>SRC_URI[sha256sum] =3D &quot;167595fe76eb=
-5497c3a1ffe396b6300155d0cbe46d06824a710099ca1ae1b8bd&quot;</div><div>EXTRA_=
-OECONF +=3D &quot;--with-config=3Dkernel --with-linux=3D${KERNEL_PATH}&quot=
-;</div></div><div>&lt;snip&gt;</div><div><br></div><div>This recipe builds =
-fine, except that it&#39;s using the installed kernel sources for the base =
-ubuntu system rather than those build by yocto. I can confirm that the kern=
-el has already been built, and sources are available, however when entering=
- into the devshell for this package neither KERNEL_SRC nor KERNEL_PATH are =
-defined (they are simply empty), despite what the documentation for the mod=
-ule bbclass indicates.=C2=A0</div><div><br></div><div>It seems I&#39;m miss=
-ing something important here?=C2=A0 Also any other references to examples o=
-f building these types of modules would be greatly appreciated.</div><div><=
-br></div><div>Regards,</div><div>Matt</div></div>
-</blockquote></div><br></div><div class=3D"gmail_extra">It looks like the v=
-ariable is indeed defined, however not in a way where I could have seen it =
-via the devshell. I fixed the build by adding an additional `--with-linux-o=
-bj=3D${STAGING_KERNEL_BUILDDIR}`, apologies for the noise!</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Matt</div><div class=
-=3D"gmail_extra"><br></div></div>
+Everything after the compiler name does not get integrated into the
+CMake toolchain file generated by the Eclipse plugin (which in case of
+the float-abi flag leads to the previous mentioned build error).
 
---94eb2c0479a4c55fd0052fe60704--
+So I propose the attached patch, which adds everything found (except
+sysroot entries) after the compiler name in the C/CXX build environment
+variable to the CMake toolchain file (OECMAKE_C_FLAGS, etc.).
+
+
+Best regards
+Thomas
+
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    | 22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
+
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
+index b3d0f2c..44ccfe6 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
+@@ -45,19 +45,33 @@ public class YoctoSDKCMakeProjectNature extends YoctoSDKProjectNature {
+ 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
+ 
+ 		String ccString = YoctoSDKUtils.getEnvValue(project, "CC");
++		String ccFlagsString = "";
+ 
+ 		if (!ccString.equals("") && !ccString.equals(" ")) {
+ 			ccString.trim();
+-			ccString = ccString.split(" ")[0];
++			String[] ccSplitString = ccString.split(" ");
++			ccString = ccSplitString[0];
++
++			for(int i=1; i<ccSplitString.length; i++) {
++				if(ccSplitString[i].indexOf("sysroot")<0)
++					ccFlagsString+=ccSplitString[i] + " ";
++			}
+ 		}
+ 
+ 		env.addVariable("OECMAKE_C_COMPILER", ccString,
+ 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
+ 		String cxxString = YoctoSDKUtils.getEnvValue(project, "CXX");
++		String cxxFlagsString = "";
+ 
+ 		if (!cxxString.equals("") && !cxxString.equals(" ")) {
+ 			cxxString.trim();
+-			cxxString = cxxString.split(" ")[0];
++			String[] cxxSplitString = cxxString.split(" ");
++			cxxString = cxxSplitString[0];
++
++			for(int i=1; i<cxxSplitString.length; i++) {
++				if(cxxSplitString[i].indexOf("sysroot")<0)
++					cxxFlagsString+=cxxSplitString[i] +  " ";
++			}
+ 		}
+ 
+ 		env.addVariable("OECMAKE_CXX_COMPILER", cxxString,
+@@ -65,8 +79,8 @@ public class YoctoSDKCMakeProjectNature extends YoctoSDKProjectNature {
+ 
+ 		String hostCCArchString = YoctoSDKUtils.getEnvValue(project, "HOST_CC_ARCH");
+ 		String toolchainOptionsString = YoctoSDKUtils.getEnvValue(project, "TOOLCHAIN_OPTIONS");
+-		String cppFlagsString = YoctoSDKUtils.getEnvValue(project, "CPPFLAGS");
+-		String cxxFlagsString = YoctoSDKUtils.getEnvValue(project, "CXXFLAGS");
++		String cppFlagsString = YoctoSDKUtils.getEnvValue(project, "CPPFLAGS") + " " + ccFlagsString;
++		cxxFlagsString = YoctoSDKUtils.getEnvValue(project, "CXXFLAGS") + " " + cxxFlagsString;
+ 		String selectedOptimizationString = YoctoSDKUtils.getEnvValue(project, "SELECTED_OPTIMIZATION");
+ 		env.addVariable("OECMAKE_C_FLAGS", hostCCArchString + " " + toolchainOptionsString + " " + cppFlagsString,
+ 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
+-- 
+2.4.10
+
+
