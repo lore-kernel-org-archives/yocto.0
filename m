@@ -1,28 +1,60 @@
-Return-Path: <thomas.elste@imms.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC0A0E00C37; Thu,  7 Apr 2016 08:01:39 -0700 (PDT)
+	id A6677E00C4C; Thu,  7 Apr 2016 08:41:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 528 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Apr 2016 08:01:35 PDT
-Received: from can05.de (can05.de [217.172.166.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1484FE007C5
-	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 08:01:35 -0700 (PDT)
-Received: from localhost.localdomain (unknown [194.95.250.53])
-	(Authenticated sender: web372p3)
-	by can05.de (can05.de) with ESMTPA id 4E3171C2B1E;
-	Thu,  7 Apr 2016 16:52:45 +0200 (CEST)
-From: Thomas Elste <thomas.elste@imms.de>
-To: yocto@yoctoproject.org
-Date: Thu,  7 Apr 2016 16:52:32 +0200
-Message-Id: <1460040752-9058-1-git-send-email-thomas.elste@imms.de>
-X-Mailer: git-send-email 2.4.10
-Subject: [eclipse-poky][PATCH] org.yocto.sdk.ide: Use CFLAGS from CC variable in cmake toolchain file
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46EDBE00C28
+	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 08:41:51 -0700 (PDT)
+Received: by mail-io0-f172.google.com with SMTP id o126so76226469iod.0
+	for <yocto@yoctoproject.org>; Thu, 07 Apr 2016 08:41:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hrDbq1rF9cecWMdYGYlhWSEra7v4aplk2KvXjoEFdiA=;
+	b=H2CUkVy/RBhHrNrdSTqyVEkdYcof3YHXBiuzn75vaM4NN+f+UIZ6DbpO9X3w0JQbPe
+	WNDulV0ly/YxcX6tbXxMve5EjNmPFtzGJC9F6A1WuOF/IKgeZt+LoR2g6O5FypCXsvJu
+	iBwLCMKZKhUbemvBfHDqVjHKQLkC7SuyYXynkm1hK+UEMznpGUCB8pWNY8tEg4h4jm0R
+	oQQggN4yrZK7NTU2zVcHrtTPX8oW6CFyJo0+nXS1C2S87sGE+TLYTfrLIEAus54zwm6n
+	h5I3CfG3CZ++4iguhXxhqdXTOttSAv/Jdr6k55VzXM6YzskZyK205funi+NllMov8k75
+	/7Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hrDbq1rF9cecWMdYGYlhWSEra7v4aplk2KvXjoEFdiA=;
+	b=QIlNodfHIorYhgTIuvqPlpNaT2u9Dl0k5VFKzCcdlFcKB7L3xSVYvmFN5g2ujsMOff
+	Qgsa3u6xAIbbFC3kwZXxXp+2DByoNsr9/wfYCGW8IgCtYZBYk4E05Bp4UdAzNJlk3Bx0
+	ZdyZBsOKTAtVKu84BCxJyB16IjzWuEbIxy3HkJjXn6m1bVJuy+mAT/McoJILw4F979Y/
+	bLynOZjd0dyGzt/iFZlq7CRXZPbl4NUsAa9rZvg2Wmkk+qWJUb6F7CwxgQf28erK++98
+	8uJXym/FlhyrD+BcNx8UwdG1HaqJDuEpm664WHfcDoLuKQ9Y/lGGj9WyQqG4hf4o+pdK
+	bxPA==
+X-Gm-Message-State: AD7BkJKAxgTQtzKGXoQJVOwcTJmr0RSoJ9LWXJZDqRl+vUpetFPTLLW8rRU4ForHzTKQrHX5dbegQQbVsp9hrycf
+X-Received: by 10.107.135.74 with SMTP id j71mr4565556iod.133.1460043710624;
+	Thu, 07 Apr 2016 08:41:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.132.24 with HTTP; Thu, 7 Apr 2016 08:41:31 -0700 (PDT)
+In-Reply-To: <570660C6.9020601@gctnet.de>
+References: <570660C6.9020601@gctnet.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 7 Apr 2016 16:41:31 +0100
+Message-ID: <CAJTo0LY8Wk_oas8YiumBmW1WNmYgZc1y=8k+oF_-ccXD9C_UCQ@mail.gmail.com>
+To: bader@gctnet.de
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Error including PHP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,98 +66,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Apr 2016 15:01:39 -0000
+X-List-Received-Date: Thu, 07 Apr 2016 15:41:54 -0000
+Content-Type: multipart/alternative; boundary=001a113f9218bac343052fe6eabd
 
-The CC and CXX variables imported from the Yocto build environment
-may contain additional compiler flags after the compiler name. Extract
-those and add them to cmake toolchain file variables, too.
+--001a113f9218bac343052fe6eabd
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Thomas Elste <thomas.elste@imms.de>
----
+On 7 April 2016 at 14:29, Hans-Georg Bader <bader@gctnet.de> wrote:
 
-Hi,
+> Here is the output:
+> bader@ubuntu64:~/oe-core/build$ bitbake -b php_5.4.36
+> WARNING: Buildfile specified, dependencies will not be handled. If this is
+> not what you want, do not use -b / --buildfile.
+>
 
-using the Yocto plugin for Eclipse to generate CMake based C projects
-I've encountered a problem. I'm using a standalone armhf toolchain
-(ADT) for building the project. Compiling works fine but linkings fails
-due to a mismatch in the FP ABI of object files and target sysroot
-libraries.
+The clue is in the output.  Don't use -b as it doesn't build dependencies,
+which is why configure fails.  Just do:
 
-This happens as the compiler is not called with all the flags
-necessary. The flags which appear in the environment file of the ADT in
-the CC/CXX variable are not present. For example CC for my toolchain
-looks like this:
+$ bitbake php
 
-export CC="arm-poky-linux-gnueabi-gcc  -march=armv7-a -mfloat-abi=hard
--mfpu=neon -mtune=cortex-a7 --sysroot=$SDKTARGETSYSROOT"
+Ross
 
-Everything after the compiler name does not get integrated into the
-CMake toolchain file generated by the Eclipse plugin (which in case of
-the float-abi flag leads to the previous mentioned build error).
+--001a113f9218bac343052fe6eabd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-So I propose the attached patch, which adds everything found (except
-sysroot entries) after the compiler name in the C/CXX build environment
-variable to the CMake toolchain file (OECMAKE_C_FLAGS, etc.).
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 7 April 2016 at 14:29, Hans-Georg Bader <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:bader@gctnet.de" target=3D"_blank">bader@gctnet.de</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><div text=3D"#000000" bgcolor=3D"#F=
+FFFFF">Here is the output:<br>
+    <small><small>bader@ubuntu64:~/oe-core/build$ bitbake -b php_5.4.36<br>
+        WARNING: Buildfile specified, dependencies will not be handled.
+        If this is not what you want, do not use -b / --buildfile.</small><=
+/small></div></blockquote></div><br>The clue is in the output.=C2=A0 Don&#3=
+9;t use -b as it doesn&#39;t build dependencies, which is why configure fai=
+ls.=C2=A0 Just do:</div><div class=3D"gmail_extra"><br></div><div class=3D"=
+gmail_extra">$ bitbake php</div><div class=3D"gmail_extra"><br></div><div c=
+lass=3D"gmail_extra">Ross</div></div>
 
-
-Best regards
-Thomas
-
- .../ide/natures/YoctoSDKCMakeProjectNature.java    | 22 ++++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
-
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
-index b3d0f2c..44ccfe6 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
-@@ -45,19 +45,33 @@ public class YoctoSDKCMakeProjectNature extends YoctoSDKProjectNature {
- 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
- 
- 		String ccString = YoctoSDKUtils.getEnvValue(project, "CC");
-+		String ccFlagsString = "";
- 
- 		if (!ccString.equals("") && !ccString.equals(" ")) {
- 			ccString.trim();
--			ccString = ccString.split(" ")[0];
-+			String[] ccSplitString = ccString.split(" ");
-+			ccString = ccSplitString[0];
-+
-+			for(int i=1; i<ccSplitString.length; i++) {
-+				if(ccSplitString[i].indexOf("sysroot")<0)
-+					ccFlagsString+=ccSplitString[i] + " ";
-+			}
- 		}
- 
- 		env.addVariable("OECMAKE_C_COMPILER", ccString,
- 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
- 		String cxxString = YoctoSDKUtils.getEnvValue(project, "CXX");
-+		String cxxFlagsString = "";
- 
- 		if (!cxxString.equals("") && !cxxString.equals(" ")) {
- 			cxxString.trim();
--			cxxString = cxxString.split(" ")[0];
-+			String[] cxxSplitString = cxxString.split(" ");
-+			cxxString = cxxSplitString[0];
-+
-+			for(int i=1; i<cxxSplitString.length; i++) {
-+				if(cxxSplitString[i].indexOf("sysroot")<0)
-+					cxxFlagsString+=cxxSplitString[i] +  " ";
-+			}
- 		}
- 
- 		env.addVariable("OECMAKE_CXX_COMPILER", cxxString,
-@@ -65,8 +79,8 @@ public class YoctoSDKCMakeProjectNature extends YoctoSDKProjectNature {
- 
- 		String hostCCArchString = YoctoSDKUtils.getEnvValue(project, "HOST_CC_ARCH");
- 		String toolchainOptionsString = YoctoSDKUtils.getEnvValue(project, "TOOLCHAIN_OPTIONS");
--		String cppFlagsString = YoctoSDKUtils.getEnvValue(project, "CPPFLAGS");
--		String cxxFlagsString = YoctoSDKUtils.getEnvValue(project, "CXXFLAGS");
-+		String cppFlagsString = YoctoSDKUtils.getEnvValue(project, "CPPFLAGS") + " " + ccFlagsString;
-+		cxxFlagsString = YoctoSDKUtils.getEnvValue(project, "CXXFLAGS") + " " + cxxFlagsString;
- 		String selectedOptimizationString = YoctoSDKUtils.getEnvValue(project, "SELECTED_OPTIMIZATION");
- 		env.addVariable("OECMAKE_C_FLAGS", hostCCArchString + " " + toolchainOptionsString + " " + cppFlagsString,
- 				IEnvironmentVariable.ENVVAR_REPLACE, delimiter, ccdesc);
--- 
-2.4.10
-
-
+--001a113f9218bac343052fe6eabd--
