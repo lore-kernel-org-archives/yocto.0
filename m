@@ -1,60 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6677E00C4C; Thu,  7 Apr 2016 08:41:54 -0700 (PDT)
+	id 6FFA8E00C4C; Thu,  7 Apr 2016 09:58:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46EDBE00C28
-	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 08:41:51 -0700 (PDT)
-Received: by mail-io0-f172.google.com with SMTP id o126so76226469iod.0
-	for <yocto@yoctoproject.org>; Thu, 07 Apr 2016 08:41:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hrDbq1rF9cecWMdYGYlhWSEra7v4aplk2KvXjoEFdiA=;
-	b=H2CUkVy/RBhHrNrdSTqyVEkdYcof3YHXBiuzn75vaM4NN+f+UIZ6DbpO9X3w0JQbPe
-	WNDulV0ly/YxcX6tbXxMve5EjNmPFtzGJC9F6A1WuOF/IKgeZt+LoR2g6O5FypCXsvJu
-	iBwLCMKZKhUbemvBfHDqVjHKQLkC7SuyYXynkm1hK+UEMznpGUCB8pWNY8tEg4h4jm0R
-	oQQggN4yrZK7NTU2zVcHrtTPX8oW6CFyJo0+nXS1C2S87sGE+TLYTfrLIEAus54zwm6n
-	h5I3CfG3CZ++4iguhXxhqdXTOttSAv/Jdr6k55VzXM6YzskZyK205funi+NllMov8k75
-	/7Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hrDbq1rF9cecWMdYGYlhWSEra7v4aplk2KvXjoEFdiA=;
-	b=QIlNodfHIorYhgTIuvqPlpNaT2u9Dl0k5VFKzCcdlFcKB7L3xSVYvmFN5g2ujsMOff
-	Qgsa3u6xAIbbFC3kwZXxXp+2DByoNsr9/wfYCGW8IgCtYZBYk4E05Bp4UdAzNJlk3Bx0
-	ZdyZBsOKTAtVKu84BCxJyB16IjzWuEbIxy3HkJjXn6m1bVJuy+mAT/McoJILw4F979Y/
-	bLynOZjd0dyGzt/iFZlq7CRXZPbl4NUsAa9rZvg2Wmkk+qWJUb6F7CwxgQf28erK++98
-	8uJXym/FlhyrD+BcNx8UwdG1HaqJDuEpm664WHfcDoLuKQ9Y/lGGj9WyQqG4hf4o+pdK
-	bxPA==
-X-Gm-Message-State: AD7BkJKAxgTQtzKGXoQJVOwcTJmr0RSoJ9LWXJZDqRl+vUpetFPTLLW8rRU4ForHzTKQrHX5dbegQQbVsp9hrycf
-X-Received: by 10.107.135.74 with SMTP id j71mr4565556iod.133.1460043710624;
-	Thu, 07 Apr 2016 08:41:50 -0700 (PDT)
+	*      [157.55.2.17 listed in list.dnswl.org]
+Received: from DUB004-OMC3S8.hotmail.com (dub004-omc3s8.hotmail.com
+	[157.55.2.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BF15E00C28
+	for <yocto@yoctoproject.org>; Thu,  7 Apr 2016 09:58:26 -0700 (PDT)
+Received: from DUB130-W18 ([157.55.2.9]) by DUB004-OMC3S8.hotmail.com over TLS
+	secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Thu, 7 Apr 2016 09:58:25 -0700
+X-TMN: [t2m6DARlGRFjJicZm7abxuXkC4GKcwGz]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W181AE532D0FF79446FCC38DA900@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 7 Apr 2016 17:58:24 +0100
+Importance: Normal
+In-Reply-To: <5706634E.9040106@linux.intel.com>
+References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>,
+	<CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>,
+	<DUB130-W492E3B0F53AE2AA9EE0F0ADA9F0@phx.gbl>,
+	<CAJTo0Lbg10pM7VT0ZiaqC7r5YwvdX9_c3X9P=vrPdFX3C6maLQ@mail.gmail.com>,
+	<DUB130-W30F71C6509C95E9FA2606EDA9F0@phx.gbl>,
+	<CAJTo0LYa+BZxy47950p8g7HqgRFQiHCeS3ZThtetopm-1ZDScg@mail.gmail.com>,
+	<57066063.1010008@linux.intel.com>,
+	<CAJTo0LbNeUEY-K2LW9Fw3Nh64yh65aQPXC4jS4-1JAmLM7c3PQ@mail.gmail.com>,
+	<5706634E.9040106@linux.intel.com>
 MIME-Version: 1.0
-Received: by 10.107.132.24 with HTTP; Thu, 7 Apr 2016 08:41:31 -0700 (PDT)
-In-Reply-To: <570660C6.9020601@gctnet.de>
-References: <570660C6.9020601@gctnet.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 7 Apr 2016 16:41:31 +0100
-Message-ID: <CAJTo0LY8Wk_oas8YiumBmW1WNmYgZc1y=8k+oF_-ccXD9C_UCQ@mail.gmail.com>
-To: bader@gctnet.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error including PHP
+X-OriginalArrivalTime: 07 Apr 2016 16:58:25.0712 (UTC)
+	FILETIME=[B369B300:01D190EE]
+Subject: Re: Python GObject Errors on yocto-2.1_M3.rc2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,44 +54,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Apr 2016 15:41:54 -0000
-Content-Type: multipart/alternative; boundary=001a113f9218bac343052fe6eabd
+X-List-Received-Date: Thu, 07 Apr 2016 16:58:30 -0000
+Content-Type: multipart/alternative;
+	boundary="_30d88e18-4c00-4613-831f-e912105d9026_"
 
---001a113f9218bac343052fe6eabd
-Content-Type: text/plain; charset=UTF-8
-
-On 7 April 2016 at 14:29, Hans-Georg Bader <bader@gctnet.de> wrote:
-
-> Here is the output:
-> bader@ubuntu64:~/oe-core/build$ bitbake -b php_5.4.36
-> WARNING: Buildfile specified, dependencies will not be handled. If this is
-> not what you want, do not use -b / --buildfile.
->
-
-The clue is in the output.  Don't use -b as it doesn't build dependencies,
-which is why configure fails.  Just do:
-
-$ bitbake php
-
-Ross
-
---001a113f9218bac343052fe6eabd
-Content-Type: text/html; charset=UTF-8
+--_30d88e18-4c00-4613-831f-e912105d9026_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 7 April 2016 at 14:29, Hans-Georg Bader <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:bader@gctnet.de" target=3D"_blank">bader@gctnet.de</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div text=3D"#000000" bgcolor=3D"#F=
-FFFFF">Here is the output:<br>
-    <small><small>bader@ubuntu64:~/oe-core/build$ bitbake -b php_5.4.36<br>
-        WARNING: Buildfile specified, dependencies will not be handled.
-        If this is not what you want, do not use -b / --buildfile.</small><=
-/small></div></blockquote></div><br>The clue is in the output.=C2=A0 Don&#3=
-9;t use -b as it doesn&#39;t build dependencies, which is why configure fai=
-ls.=C2=A0 Just do:</div><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra">$ bitbake php</div><div class=3D"gmail_extra"><br></div><div c=
-lass=3D"gmail_extra">Ross</div></div>
+> To: yocto@yoctoproject.org
+> From: alexander.kanavin@linux.intel.com
+> Date: Thu=2C 7 Apr 2016 16:40:30 +0300
+> Subject: Re: [yocto] Python GObject Errors on yocto-2.1_M3.rc2
+>=20
+> On 04/07/2016 04:35 PM=2C Burton=2C Ross wrote:
+>=20
+> > Yeah=2C that. :)  Annoyingly it's not just a PACKAGECONFIG due to how
+> > python-native works.
+>=20
+> Yeah=2C the annoying side effect is that every python thingy needs to be=
+=20
+> packaged twice - not so visible in oe-core=2C but very visible in=20
+> meta-oe's meta-python:
+>=20
+> http://cgit.openembedded.org/meta-openembedded/tree/meta-python/recipes-d=
+evtools/python
+>=20
+> Will be fixed by deprecating python 2=2C of course.
+>=20
+> Alex
 
---001a113f9218bac343052fe6eabd--
+Is there a  shorter term solution that's generally applicable=2C like a sep=
+arate python3-gobject recipe?
+I've done something similar before but it had issues (produces duplicate ou=
+tput) that are hard to deal with satisfactorily.
+At least this explains why my code stopped working.
+Chris
+ 		 	   		  =
+
+--_30d88e18-4c00-4613-831f-e912105d9026_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'><div>&gt=3B To: yocto@yoctoproje=
+ct.org<br>&gt=3B From: alexander.kanavin@linux.intel.com<br>&gt=3B Date: Th=
+u=2C 7 Apr 2016 16:40:30 +0300<br>&gt=3B Subject: Re: [yocto] Python GObjec=
+t Errors on yocto-2.1_M3.rc2<br>&gt=3B <br>&gt=3B On 04/07/2016 04:35 PM=2C=
+ Burton=2C Ross wrote:<br>&gt=3B <br>&gt=3B &gt=3B Yeah=2C that. :)  Annoyi=
+ngly it's not just a PACKAGECONFIG due to how<br>&gt=3B &gt=3B python-nativ=
+e works.<br>&gt=3B <br>&gt=3B Yeah=2C the annoying side effect is that ever=
+y python thingy needs to be <br>&gt=3B packaged twice - not so visible in o=
+e-core=2C but very visible in <br>&gt=3B meta-oe's meta-python:<br>&gt=3B <=
+br>&gt=3B http://cgit.openembedded.org/meta-openembedded/tree/meta-python/r=
+ecipes-devtools/python<br>&gt=3B <br>&gt=3B Will be fixed by deprecating py=
+thon 2=2C of course.<br>&gt=3B <br>&gt=3B Alex<br><br></div><div>Is there a=
+ &nbsp=3Bshorter term solution that's generally applicable=2C like a separa=
+te python3-gobject recipe?</div><div><br></div><div>I've done something sim=
+ilar before but it had issues (produces duplicate output) that are hard to =
+deal with satisfactorily.</div><div><br></div><div>At least this explains w=
+hy my code stopped working.</div><div><br></div><div>Chris</div><div><br></=
+div> 		 	   		  </div></body>
+</html>=
+
+--_30d88e18-4c00-4613-831f-e912105d9026_--
