@@ -1,35 +1,62 @@
-Return-Path: <agikling@minnetronix.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12920E00BF5; Fri,  8 Apr 2016 08:05:54 -0700 (PDT)
+	id 480D8E00C1B; Fri,  8 Apr 2016 08:10:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DRUGS_MUSCLE,
-	HTML_MESSAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, HTML_OBFUSCATE_10_20,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.1 HTML_OBFUSCATE_10_20 BODY: Message is 10% to 20% HTML obfuscation
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.2 DRUGS_MUSCLE Refers to a muscle relaxant
-Received: from mxex2010.minnetronix.com (vpn.minnetronix.com [207.250.0.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF1CE00BB9
-	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 08:05:51 -0700 (PDT)
-Received: from MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395]) by
-	MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395%25]) with mapi id
-	14.03.0248.002; Fri, 8 Apr 2016 10:05:50 -0500
-From: Andy Gikling <agikling@minnetronix.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Prescribed way to make global variables in recipes?
-Thread-Index: AdGRoyaPXt+jelztRB6qyGDou3i0VQAK+ZGAAAoPecA=
-Date: Fri, 8 Apr 2016 15:05:49 +0000
-Message-ID: <3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3@MXEX2010.minnetronix.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68B60E00BB9
+	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 08:10:44 -0700 (PDT)
+Received: by mail-ig0-f177.google.com with SMTP id g8so18571035igr.0
+	for <yocto@yoctoproject.org>; Fri, 08 Apr 2016 08:10:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=7NAjy3zLuKRtyHfp3pF8+xfjkqfza5v7t/OP3KY0qSQ=;
+	b=go/QyvpPRql2snnG0d2TBo5t3u/OVE+mbO+uesiMc0KhnMTbDFFbNY+cFGzw98Ngq8
+	UuTT2W2vuwFxN3RMTSgnJfY47a7w+2kRgup9+C8oxVKC4WeYjJOJFb8PTjHUff5+Ato9
+	UeMOJe1Ax+zLTN1ZjjZ7L9lLRPjJRjahqdHZGoPGMMFulsnCg93AC9QT9K/L8nvuWhxQ
+	AEXRwEFMcZBU0seGCJ6zb1SlU7WzdvmHCwKt0QWT588Y8DZ77AylZtIrNXTMNdNu1gXE
+	lSLVHtY2f25txsFzf2OgbfHmD+BZlOv1FaA90EJCeMbZkQIBl9sGLtfuUmpLz66DS4sD
+	yMRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=7NAjy3zLuKRtyHfp3pF8+xfjkqfza5v7t/OP3KY0qSQ=;
+	b=fcZA15wzYndQkWaS6GkycVO0gw6c+C448GNgjSXdhC+oUrpJaZ6E/Hoxqoumcp1bd9
+	xAYEaQAXrn6mBpiwUI7Arkv/I621n+tNfgG39f2MGlkA4ZHdlDjF5Sqz2TyJwxIjV1B9
+	F+1zSeCFwfz2+nlRFU+JBIs3RFJYBik7Wo+omwalAVV8mibZAIIBo6IDYnGkEepoWYab
+	Pr+WoQ7DsqaTbqzrPaFivPFYgcdrDnocNobYJrOeIgPfn/MxK8FaTwJgjxzHf6gBEGCO
+	xFCzC4yp7nATIdysGazZp+SSf2j0U5LioBygE0L25WJTUxgcSY8qfL3OjTwWeDV6DP5X
+	18kw==
+X-Gm-Message-State: AOPr4FXdjMFtykCDM2MQ3n//auqrysboM1Vbl2K+FI7Ad3y9rlaRgbETM5aoSiPUMMThAI4M6AFP3tbR6ogEBZ3Q
+X-Received: by 10.50.217.200 with SMTP id pa8mr1999670igc.78.1460128243522;
+	Fri, 08 Apr 2016 08:10:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.132.24 with HTTP; Fri, 8 Apr 2016 08:10:24 -0700 (PDT)
+In-Reply-To: <3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3@MXEX2010.minnetronix.com>
 References: <3804BDFE6D2105429FC87BEC5F7ABA16CCD48B@MXEX2010.minnetronix.com>
 	<CAJTo0LZVdjL6GtZVnTnabz_cnHwrraD8vyq_B58R2o0SpqEyVg@mail.gmail.com>
-In-Reply-To: <CAJTo0LZVdjL6GtZVnTnabz_cnHwrraD8vyq_B58R2o0SpqEyVg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.28.10]
-MIME-Version: 1.0
+	<3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3@MXEX2010.minnetronix.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 8 Apr 2016 16:10:24 +0100
+Message-ID: <CAJTo0LYxqkorjARwMUZ-mCTYUruJmOcf-Y2gnM2D5s0pOfZbbw@mail.gmail.com>
+To: Andy Gikling <agikling@minnetronix.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Prescribed way to make global variables in recipes?
 X-BeenThere: yocto@yoctoproject.org
@@ -43,197 +70,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Apr 2016 15:05:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3MXEX2010minnetron_"
+X-List-Received-Date: Fri, 08 Apr 2016 15:10:48 -0000
+Content-Type: multipart/alternative; boundary=14dae9340dc5483934052ffa99a8
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3MXEX2010minnetron_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--14dae9340dc5483934052ffa99a8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Um9zcywNCg0KUGVyZmVjdCB0aGFuayB5b3Ugc28gbXVjaC4gIFRoYXQgbWFrZXMgdG90YWwgc2Vu
-c2Ugbm93Lg0KDQpJIGxpa2UgdGhlIGlkZWEgb2YganVzdCBoYXZpbmcgdHdvIGRpZmZlcmVudCBy
-ZWNpcGVzIGFuZCB0aGVuIHVzZSBJTUFHRV9JTlNUQUxMLiAgSG93ZXZlciwgaW4gdGhlIHUtYm9v
-dCBleGFtcGxlIEnigJltIGFjdHVhbGx5IGp1c3QgdXNpbmcgYSBiYmFwcGVuZCB0byB0aGUgdS1i
-b290IHJlY2lwZSBwcm92aWRlZCB3aXRoIG91ciB0YXJnZXQgU09N4oCZcyBic3AuICBDYW4gSSBz
-ZWxlY3QgZGlmZmVyZW50IGJiYXBwZW5kIGZpbGVzIGluIG15IGltYWdlIHJlY2lwZSB3aXRoIElN
-QUdFX0lOU1RBTEw/ICBJIGRvbuKAmXQgdGhpbmsgc28gYnV0IEnigJlsbCB0cnkgdGhvdWdoLg0K
-DQpTbyB3aGF0IGRvIEkgZG8gaW4gdGhhdCBjYXNlPyBKdXN0IG1ha2UgdHdvIG9mIG15IG93biB2
-ZXJzaW9ucyBvZiB0aGUgdS1ib290XzIwMTQuMDQuYmIgZmlsZSwgYW5kIGdpdmUgdGhlbSBkaWZm
-ZXJlbnQgbmFtZXM/ICBGb3IgZXhhbXBsZSDigJx1LWJvb3QtZmF1eF8yMDE0LjA0LmJi4oCdIGFu
-ZCDigJx1LWJvb3QtZmF1eC1kZWJ1Z18yMDE0LjA0LmJi4oCdID8gIFRoYXQgc2hvdWxkIHdvcmsg
-YnV0IGRvZXMgdGhhdCBtYWtlIHNlbnNlIHRvIGRvPw0KDQpUaGFua3MgYWdhaW4sDQoNCn5BbmR5
-IEdpa2xpbmcNCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwu
-Y29tXQ0KU2VudDogRnJpZGF5LCBBcHJpbCAwOCwgMjAxNiA5OjQ0IEFNDQpUbzogQW5keSBHaWts
-aW5nDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gUHJl
-c2NyaWJlZCB3YXkgdG8gbWFrZSBnbG9iYWwgdmFyaWFibGVzIGluIHJlY2lwZXM/DQoNCk9uIDgg
-QXByaWwgMjAxNiBhdCAxNTozMCwgQW5keSBHaWtsaW5nIDxhZ2lrbGluZ0BtaW5uZXRyb25peC5j
-b208bWFpbHRvOmFnaWtsaW5nQG1pbm5ldHJvbml4LmNvbT4+IHdyb3RlOg0KRGVhciBZb2N0bywN
-Cg0KRmlyc3Qgb2YgYWxsLCBJIGxvdmUgdGhpcyBwcm9qZWN0LiAgVGhhbmtzIGZvciBhbGwgeW91
-ciBoYXJkIHdvcmsuDQoNClF1ZXN0aW9uOiAgV2hhdCBpcyB0aGUgcHJlc2NyaWJlZCB3YXkgdG8g
-YWxsb3cgaW1hZ2UgcmVjaXBlcyB0byBtYWtlIGdsb2JhbCBjb25maWd1cmF0aW9uIHZhcmlhYmxl
-cyB0aGF0IG90aGVyIHJlY2lwZXMgY2FuIHVzZT8NCg0KWW91IGNhbid0LiAgVGhlIGJhc2ljIHJl
-YXNvbiBiZWluZyB0aGF0IGltYWdlcyBhcmUgYnVpbHQgZnJvbSBwYWNrYWdlcywgYW5kIHRoZSBw
-YWNrYWdlcyBoYXZlIGFscmVhZHkgYmVlbiBidWlsdCB3aGVuIHRoZSBpbWFnZSBpcyBidWlsdC4N
-Cg0KSWRlYWxseSwgZm9yIENJIHB1cnBvc2VzIHdlIHdvdWxkIGxpa2UgdG8gYWxsb3cgb3VyIENJ
-IHNlcnZlciB0byBzaW1wbHkgY2FsbCDigJxiaXRiYWtlIGZhdXgtYXBw4oCdIHRvIG1ha2UgYSBy
-ZWxlYXNlIGJ1aWxkIGFuZCB0aGVuIOKAnGJpdGJha2UgZmF1eC1hcHAtZGVidWfigJ0gdG8gbWFr
-ZSBhIGRlYnVnIGJ1aWxkLiAgVGhlIHRob3VnaHQgcHJvY2VzcyBpcyBJIGNvdWxkIGhhdmUgYSB2
-YXJpYWJsZSBkZWZpbmVkIGluIGJvdGgg4oCcZmF1eC1hcHBfMC4xLmJiPGh0dHA6Ly9mYXV4LWFw
-cF8wLjEuYmI+4oCdIGFuZCDigJxmYXV4LWFwcC1kZWJ1Z18wLjEuYmI8aHR0cDovL2ZhdXgtYXBw
-LWRlYnVnXzAuMS5iYj7igJ0gY2FsbGVkIEZBVVhfUkVMRUFTRV9NT0RFLiAgSW4gZmF1eC1hcHBf
-MC4xLmJiPGh0dHA6Ly9mYXV4LWFwcF8wLjEuYmI+IHRoaXMgdmFyaWFibGUgd291bGQgYmUgc2V0
-IHRvIOKAnHJlbGVhc2XigJ0gYW5kIGluIGZhdXgtYXBwLWRlYnVnXzAuMS5iYjxodHRwOi8vZmF1
-eC1hcHAtZGVidWdfMC4xLmJiPiBpdCB3b3VsZCBiZSBzZXQgdG8g4oCcZGVidWcu4oCdDQoNCklu
-IHlvdXIgdmlldywgd2hhdCB3b3VsZCBoYXBwZW4gaWYgeW91IGRpZCAiYml0YmFrZSBmYXV4LWFw
-cCBmYXV4LWFwcC1kZWJ1ZyI/DQoNClRoZXJlIGFyZSBzZXZlcmFsIHdheXMgdG8gZml4IHRoaXMg
-dGhhdCBkb24ndCBpbnZvbHZlIGJyZWFraW5nIGhvdyBPRSB3b3Jrcy4gIEVpdGhlciBoYXZlIGEg
-cm9vdGZzLXRpbWUgcG9zdHByb2Nlc3MgY29tbWFuZCBpbiB0aGUgZGVidWcgaW1hZ2UgcmVjaXBl
-IHRoYXQgbWFuaXB1bGF0ZXMgdGhlIGluc3RhbGxlZCBmaWxlIHN5c3RlbSwgb3IgaGF2ZSB0d28g
-cmVjaXBlcyBmb3IgdGhlIHRoaW5nIHRoYXQgY2hhbmdlcyAoaW4gdGhpcyBjYXNlIHUtYm9vdCkg
-d2hlcmUgb25lIGluY2x1ZGVzIHRoZSBvdGhlciBhbmQgbWFrZXMgdGhlIGNoYW5nZXMgcmVxdWly
-ZWQsIGFuZCB0aGUgaW1hZ2UgaW5zdGFsbCB0aGUgcmVsZXZhbnQgcGFja2FnZSAodS1ib290IHZz
-IHUtYm9vdC1kZWJ1ZykuDQoNClJvc3MNCg==
+On 8 April 2016 at 16:05, Andy Gikling <agikling@minnetronix.com> wrote:
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3MXEX2010minnetron_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> So what do I do in that case? Just make two of my own versions of the
+> u-boot_2014.04.bb file, and give them different names?  For example =E2=
+=80=9C
+> u-boot-faux_2014.04.bb=E2=80=9D and =E2=80=9Cu-boot-faux-debug_2014.04.bb=
+=E2=80=9D ?  That should
+> work but does that make sense to do?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
-QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
-LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
-IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
-cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
-Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
-cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPlJvc3MsPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDsiPlBlcmZlY3QgdGhhbmsgeW91IHNvIG11Y2guJm5ic3A7IFRoYXQgbWFr
-ZXMgdG90YWwgc2Vuc2Ugbm93LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-Ij5JIGxpa2UgdGhlIGlkZWEgb2YganVzdCBoYXZpbmcgdHdvIGRpZmZlcmVudCByZWNpcGVzIGFu
-ZCB0aGVuIHVzZSBJTUFHRV9JTlNUQUxMLiZuYnNwOyBIb3dldmVyLCBpbiB0aGUgdS1ib290IGV4
-YW1wbGUgSeKAmW0gYWN0dWFsbHkganVzdCB1c2luZyBhIGJiYXBwZW5kIHRvIHRoZSB1LWJvb3Qg
-cmVjaXBlIHByb3ZpZGVkDQogd2l0aCBvdXIgdGFyZ2V0IFNPTeKAmXMgYnNwLiZuYnNwOyBDYW4g
-SSBzZWxlY3QgZGlmZmVyZW50IGJiYXBwZW5kIGZpbGVzIGluIG15IGltYWdlIHJlY2lwZSB3aXRo
-IElNQUdFX0lOU1RBTEw/Jm5ic3A7IEkgZG9u4oCZdCB0aGluayBzbyBidXQgSeKAmWxsIHRyeSB0
-aG91Z2guPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
-cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPlNvIHdoYXQgZG8g
-SSBkbyBpbiB0aGF0IGNhc2U/IEp1c3QgbWFrZSB0d28gb2YgbXkgb3duIHZlcnNpb25zIG9mIHRo
-ZSB1LWJvb3RfMjAxNC4wNC5iYiBmaWxlLCBhbmQgZ2l2ZSB0aGVtIGRpZmZlcmVudCBuYW1lcz8m
-bmJzcDsgRm9yIGV4YW1wbGUg4oCcdS1ib290LWZhdXhfMjAxNC4wNC5iYuKAnSBhbmQg4oCcdS1i
-b290LWZhdXgtZGVidWdfMjAxNC4wNC5iYuKAnQ0KID8mbmJzcDsgVGhhdCBzaG91bGQgd29yayBi
-dXQgZG9lcyB0aGF0IG1ha2Ugc2Vuc2UgdG8gZG8/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDsiPlRoYW5rcyBhZ2Fpbiw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90OyI+fkFuZHkgR2lrbGluZzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7Ij4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJy
-Pg0KPGI+U2VudDo8L2I+IEZyaWRheSwgQXByaWwgMDgsIDIwMTYgOTo0NCBBTTxicj4NCjxiPlRv
-OjwvYj4gQW5keSBHaWtsaW5nPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFByZXNjcmliZWQgd2F5IHRvIG1ha2Ug
-Z2xvYmFsIHZhcmlhYmxlcyBpbiByZWNpcGVzPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPk9uIDggQXByaWwgMjAxNiBhdCAxNTozMCwgQW5keSBHaWtsaW5nICZsdDs8YSBo
-cmVmPSJtYWlsdG86YWdpa2xpbmdAbWlubmV0cm9uaXguY29tIiB0YXJnZXQ9Il9ibGFuayI+YWdp
-a2xpbmdAbWlubmV0cm9uaXguY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8ZGl2
-Pg0KPGRpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xp
-ZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44
-cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
-byI+RGVhciBZb2N0byw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5i
-c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
-bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkZpcnN0IG9mIGFsbCwg
-SSBsb3ZlIHRoaXMgcHJvamVjdC4mbmJzcDsgVGhhbmtzIGZvciBhbGwgeW91ciBoYXJkIHdvcmsu
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
-b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
-O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5RdWVzdGlvbjombmJzcDsgV2hhdCBpcyB0aGUg
-cHJlc2NyaWJlZCB3YXkgdG8gYWxsb3cgaW1hZ2UgcmVjaXBlcyB0byBtYWtlIGdsb2JhbCBjb25m
-aWd1cmF0aW9uIHZhcmlhYmxlcyB0aGF0IG90aGVyIHJlY2lwZXMgY2FuIHVzZT88bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5Zb3UgY2FuJ3QuJm5ic3A7IFRoZSBiYXNpYyByZWFzb24gYmVpbmcgdGhhdCBp
-bWFnZXMgYXJlIGJ1aWx0IGZyb20gcGFja2FnZXMsIGFuZCB0aGUgcGFja2FnZXMgaGF2ZSBhbHJl
-YWR5IGJlZW4gYnVpbHQgd2hlbiB0aGUgaW1hZ2UgaXMgYnVpbHQuPG86cD48L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlk
-ICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0Ljhw
-dDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
-c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
-Ij5JZGVhbGx5LCBmb3IgQ0kgcHVycG9zZXMgd2Ugd291bGQgbGlrZSB0byBhbGxvdyBvdXIgQ0kg
-c2VydmVyIHRvIHNpbXBseSBjYWxsIOKAnGJpdGJha2UgZmF1eC1hcHDigJ0gdG8gbWFrZSBhIHJl
-bGVhc2UgYnVpbGQgYW5kIHRoZW4g4oCcYml0YmFrZSBmYXV4LWFwcC1kZWJ1Z+KAnSB0byBtYWtl
-IGEgZGVidWcgYnVpbGQuJm5ic3A7DQogVGhlIHRob3VnaHQgcHJvY2VzcyBpcyBJIGNvdWxkIGhh
-dmUgYSB2YXJpYWJsZSBkZWZpbmVkIGluIGJvdGgg4oCcPGEgaHJlZj0iaHR0cDovL2ZhdXgtYXBw
-XzAuMS5iYiIgdGFyZ2V0PSJfYmxhbmsiPmZhdXgtYXBwXzAuMS5iYjwvYT7igJ0gYW5kIOKAnDxh
-IGhyZWY9Imh0dHA6Ly9mYXV4LWFwcC1kZWJ1Z18wLjEuYmIiIHRhcmdldD0iX2JsYW5rIj5mYXV4
-LWFwcC1kZWJ1Z18wLjEuYmI8L2E+4oCdIGNhbGxlZCBGQVVYX1JFTEVBU0VfTU9ERS4mbmJzcDsg
-SW4NCjxhIGhyZWY9Imh0dHA6Ly9mYXV4LWFwcF8wLjEuYmIiIHRhcmdldD0iX2JsYW5rIj5mYXV4
-LWFwcF8wLjEuYmI8L2E+IHRoaXMgdmFyaWFibGUgd291bGQgYmUgc2V0IHRvIOKAnHJlbGVhc2Xi
-gJ0gYW5kIGluDQo8YSBocmVmPSJodHRwOi8vZmF1eC1hcHAtZGVidWdfMC4xLmJiIiB0YXJnZXQ9
-Il9ibGFuayI+ZmF1eC1hcHAtZGVidWdfMC4xLmJiPC9hPiBpdCB3b3VsZCBiZSBzZXQgdG8g4oCc
-ZGVidWcu4oCdPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SW4geW91ciB2aWV3LCB3aGF0IHdvdWxkIGhh
-cHBlbiBpZiB5b3UgZGlkICZxdW90O2JpdGJha2UgZmF1eC1hcHAgZmF1eC1hcHAtZGVidWcmcXVv
-dDs/PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PlRoZXJlIGFyZSBzZXZlcmFsIHdheXMgdG8gZml4IHRoaXMgdGhhdCBkb24ndCBpbnZvbHZlIGJy
-ZWFraW5nIGhvdyBPRSB3b3Jrcy4mbmJzcDsgRWl0aGVyIGhhdmUgYSByb290ZnMtdGltZSBwb3N0
-cHJvY2VzcyBjb21tYW5kIGluIHRoZSBkZWJ1ZyBpbWFnZSByZWNpcGUgdGhhdCBtYW5pcHVsYXRl
-cyB0aGUgaW5zdGFsbGVkIGZpbGUgc3lzdGVtLCBvciBoYXZlIHR3byByZWNpcGVzIGZvciB0aGUg
-dGhpbmcgdGhhdCBjaGFuZ2VzDQogKGluIHRoaXMgY2FzZSB1LWJvb3QpIHdoZXJlIG9uZSBpbmNs
-dWRlcyB0aGUgb3RoZXIgYW5kIG1ha2VzIHRoZSBjaGFuZ2VzIHJlcXVpcmVkLCBhbmQgdGhlIGlt
-YWdlIGluc3RhbGwgdGhlIHJlbGV2YW50IHBhY2thZ2UgKHUtYm9vdCB2cyB1LWJvb3QtZGVidWcp
-LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5S
-b3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3MXEX2010minnetron_--
+As the stock u-boot appears to be sufficient I'd say use that and then add
+a u-boot-faux-debug_2014.04.bb recipe that just does "include
+u-boot-${PV}.bb" and then whatever SRC_URI changes you want in that version=
+.
+
+Hopefully you don't need to make any fiddly changes to the recipe as PN is
+now different.
+
+Ross
+
+--14dae9340dc5483934052ffa99a8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 April 2016 at 16:05, Andy Gikling <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:agikling@minnetronix.com" target=3D"_blank">agikling@minnetronix.com</a=
+>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span style=3D"font-s=
+ize:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">So what =
+do I do in that case? Just make two of my own versions of the <a href=3D"ht=
+tp://u-boot_2014.04.bb" target=3D"_blank">u-boot_2014.04.bb</a> file, and g=
+ive them different names?=C2=A0 For example =E2=80=9C<a href=3D"http://u-bo=
+ot-faux_2014.04.bb" target=3D"_blank">u-boot-faux_2014.04.bb</a>=E2=80=9D a=
+nd =E2=80=9C<a href=3D"http://u-boot-faux-debug_2014.04.bb" target=3D"_blan=
+k">u-boot-faux-debug_2014.04.bb</a>=E2=80=9D
+ ?=C2=A0 That should work but does that make sense to do?</span></blockquot=
+e></div><br>As the stock u-boot appears to be sufficient I&#39;d say use th=
+at and then add a <a href=3D"http://u-boot-faux-debug_2014.04.bb">u-boot-fa=
+ux-debug_2014.04.bb</a> recipe that just does &quot;include u-boot-${PV}.bb=
+&quot; and then whatever SRC_URI changes you want in that version.</div><di=
+v class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Hopefully you =
+don&#39;t need to make any fiddly changes to the recipe as PN is now differ=
+ent.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
+oss</div><div class=3D"gmail_extra"><br></div></div>
+
+--14dae9340dc5483934052ffa99a8--
