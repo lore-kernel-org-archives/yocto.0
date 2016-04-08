@@ -1,43 +1,38 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <agikling@minnetronix.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A0E7E006C7; Fri,  8 Apr 2016 08:18:31 -0700 (PDT)
+	id 6E6E6E007B5; Fri,  8 Apr 2016 10:22:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00BEEE0048B
-	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 08:18:29 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP; 08 Apr 2016 08:18:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,454,1455004800"; d="scan'208,217";a="81634938"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga004.fm.intel.com with ESMTP; 08 Apr 2016 08:18:28 -0700
-Received: from orsmsx155.amr.corp.intel.com ([169.254.7.110]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.4.95]) with mapi id
-	14.03.0248.002; Fri, 8 Apr 2016 08:18:27 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW15
-Thread-Index: AdGRqZNMKKifZhMuRMWKHbsWLbl3XA==
-Date: Fri, 8 Apr 2016 15:18:26 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E570D8CD8@ORSMSX155.amr.corp.intel.com>
+Received: from mxex2010.minnetronix.com (vpn.minnetronix.com [207.250.0.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1172CE0048B
+	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 10:22:10 -0700 (PDT)
+Received: from MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395]) by
+	MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395%25]) with mapi id
+	14.03.0248.002; Fri, 8 Apr 2016 12:22:09 -0500
+From: Andy Gikling <agikling@minnetronix.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Prescribed way to make global variables in recipes?
+Thread-Index: AdGRoyaPXt+jelztRB6qyGDou3i0VQAK+ZGAAAoPecD//7bJAIAANcKA
+Date: Fri, 8 Apr 2016 17:22:09 +0000
+Message-ID: <3804BDFE6D2105429FC87BEC5F7ABA16CCD56C@MXEX2010.minnetronix.com>
+References: <3804BDFE6D2105429FC87BEC5F7ABA16CCD48B@MXEX2010.minnetronix.com>
+	<CAJTo0LZVdjL6GtZVnTnabz_cnHwrraD8vyq_B58R2o0SpqEyVg@mail.gmail.com>
+	<3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3@MXEX2010.minnetronix.com>
+	<CAJTo0LYxqkorjARwMUZ-mCTYUruJmOcf-Y2gnM2D5s0pOfZbbw@mail.gmail.com>
+In-Reply-To: <CAJTo0LYxqkorjARwMUZ-mCTYUruJmOcf-Y2gnM2D5s0pOfZbbw@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [192.168.28.10]
 MIME-Version: 1.0
-Subject: Yocto Project Status WW15
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Prescribed way to make global variables in recipes?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,430 +44,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Apr 2016 15:18:31 -0000
+X-List-Received-Date: Fri, 08 Apr 2016 17:22:12 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E570D8CD8ORSMSX155amrcor_"
+	boundary="_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E570D8CD8ORSMSX155amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Current Dev Position: YP 2.1 M4 (Stabilization only milestone.)
+VGhpcyBkb2VzbuKAmXQgc2VlbSB0byBiZSBhIHZpYWJsZSBvcHRpb24uICBJ4oCZbSBzdGlsbCBt
+aXNzaW5nIHNvbWV0aGluZyBJIHRoaW5rLg0KDQpXZSBhcmUgYWRkaW5nIG91ciBvd24gbGF5ZXIg
+b24gdG9wIG9mIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllci4gIEluIHRoZWlyIGxheWVyIHRoZXJl
+IGlzIGEgc3BlY2lhbGl6ZWQgdS1ib290IHJlY2lwZSBmb3IgdGhlIGlteDYgd2UgYXJlIHVzaW5n
+Lg0KDQpTbyBJIHRyeSB0byBtYWtlIGEgcmVjaXBlIGZvciB1Ym9vdCAodS1ib290LWZhdXhfMjAx
+NC4wNC5iYjxodHRwOi8vdS1ib290LWZhdXhfMjAxNC4wNC5iYj4pIHRoYXQgaW5jbHVkZXMgdGhl
+IHZlbmRvcuKAmXMgdWJvb3QgcmVjaXBlIHdpdGgg4oCcaW5jbHVkZSByZWNpcGVzLWJzcC91LWJv
+b3QvdS1ib290XzIwMTQuMDQuYmLigJ0gYXMgc3VnZ2VzdGVkIGFuZCB0cnkgdG8gYnVpbGQgYW4g
+aW1hZ2UgdGhhdCBpcyBnb2luZyB0byBJTUFHRV9JTlNUQUxMIG15IGN1c3RvbWl6ZWQgdmVyc2lv
+biBvZiB1LWJvb3QgaW5zdGVhZCBvZiB0aGUgc29jIHZlbmRvcuKAmXMuICBIb3dldmVyLCBJIGdl
+dCBhbiBlcnJvciBhdCBiaXRiYWtlIHBhcnNlIHRpbWUgc2F5aW5nOg0KDQpFUlJPUjogTXVsdGlw
+bGUgLmJiIGZpbGVzIGFyZSBkdWUgdG8gYmUgYnVpbHQgd2hpY2ggZWFjaCBwcm92aWRlIHUtYm9v
+dA0KDQpUaGlzIG1ha2VzIHNlbnNlIGJlY2F1c2UgYml0YmFrZSBzZWVzIHRoYXQgeWVzLCBpbiBm
+YWN0IG5vdyB0aGVyZSBhcmUgdHdvIHJlY2lwZXMgdGhhdCBwcm92aWRlIHUtYm9vdC4gIEkgc3Vw
+cG9zZSBJIGNhbiBkbyBzb21ldGhpbmcgbGlrZSB1c2Ug4oCcUFJFRkVSUkVEX1BST1ZJREVSX3Ut
+Ym9vdOKAnSBpbiBteSBsb2NhbC5jb25mLCBidXQgbm93IEkgbmVlZCB0byBjaGFuZ2UgbXkgbG9j
+YWwuY29uZiBhbnkgdGltZSBJIHdhbnQgdG8gYnVpbGQgYSBkaWZmZXJlbnQgaW1hZ2UgKGllIGJp
+dGJha2UgZmF1eC1hcHAgYW5kIGJpdGJha2UgZmF1eC1hcHAtZGVidWcpLiAgSSByZWFsbHkgd2Fu
+dCBhIHdvcmtmbG93IHRoYXQgZG9lc27igJl0IHJlcXVpcmUgbWUgdG8gY2hhbmdlIGNvbmZpZ3Vy
+YXRpb24gZmlsZXMsIGluc3RlYWQganVzdCBiaXRiYWtlIGRpZmZlcmVudCBpbWFnZSByZWNpcGVz
+Lg0KDQpJbiB0aGlzIHByb2plY3QgSSBhbHNvIG5lZWQgdG8gY29uZGl0aW9uYWxseSBwYXRjaCB0
+aGUga2VybmVsIGFuZCBJ4oCZbSBnb2luZyB0byBoYXZlIHRoaXMgc2FtZSBwcm9ibGVtIHdpdGgg
+bXVsdGlwbGUga2VybmVsIHByb3ZpZGVycyBhcyB3ZWxsLiAgQWxzbywgSSBkb27igJl0IHdhbnQg
+dG8gcmVtb3ZlIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllciB0byBnZXQgYXJvdW5kIHRoaXMgZXJy
+b3IuICBUaGVpciBsYXllciBzZXRzIHVwIHRoZSBtYWNoaW5lIGFuZCBhbGwgc29ydHMgb2Ygb3Ro
+ZXIgdGhpbmdzLiAgSWYgSSBnb3QgcmlkIG9mIGl0IEkgd291bGQgbmVlZCB0byBidWlsZCBhbGwg
+dGhhdCBmdW5jdGlvbmFsaXR5IGludG8gbXkgcHJvamVjdOKAmXMgbGF5ZXLigKYgIG9yIGlzIHRo
+aXMgd2hhdCBJ4oCZbSBnb2luZyB0byBuZWVkIHRvIGRvPw0KDQpUaG91Z2h0cz8NCg0KfkFuZHkN
+Cg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2Vu
+dDogRnJpZGF5LCBBcHJpbCAwOCwgMjAxNiAxMDoxMCBBTQ0KVG86IEFuZHkgR2lrbGluZw0KQ2M6
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFByZXNjcmliZWQg
+d2F5IHRvIG1ha2UgZ2xvYmFsIHZhcmlhYmxlcyBpbiByZWNpcGVzPw0KDQoNCk9uIDggQXByaWwg
+MjAxNiBhdCAxNjowNSwgQW5keSBHaWtsaW5nIDxhZ2lrbGluZ0BtaW5uZXRyb25peC5jb208bWFp
+bHRvOmFnaWtsaW5nQG1pbm5ldHJvbml4LmNvbT4+IHdyb3RlOg0KU28gd2hhdCBkbyBJIGRvIGlu
+IHRoYXQgY2FzZT8gSnVzdCBtYWtlIHR3byBvZiBteSBvd24gdmVyc2lvbnMgb2YgdGhlIHUtYm9v
+dF8yMDE0LjA0LmJiPGh0dHA6Ly91LWJvb3RfMjAxNC4wNC5iYj4gZmlsZSwgYW5kIGdpdmUgdGhl
+bSBkaWZmZXJlbnQgbmFtZXM/ICBGb3IgZXhhbXBsZSDigJx1LWJvb3QtZmF1eF8yMDE0LjA0LmJi
+PGh0dHA6Ly91LWJvb3QtZmF1eF8yMDE0LjA0LmJiPuKAnSBhbmQg4oCcdS1ib290LWZhdXgtZGVi
+dWdfMjAxNC4wNC5iYjxodHRwOi8vdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYj7igJ0gPyAg
+VGhhdCBzaG91bGQgd29yayBidXQgZG9lcyB0aGF0IG1ha2Ugc2Vuc2UgdG8gZG8/DQoNCkFzIHRo
+ZSBzdG9jayB1LWJvb3QgYXBwZWFycyB0byBiZSBzdWZmaWNpZW50IEknZCBzYXkgdXNlIHRoYXQg
+YW5kIHRoZW4gYWRkIGEgdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYjxodHRwOi8vdS1ib290
+LWZhdXgtZGVidWdfMjAxNC4wNC5iYj4gcmVjaXBlIHRoYXQganVzdCBkb2VzICJpbmNsdWRlIHUt
+Ym9vdC0ke1BWfS5iYiIgYW5kIHRoZW4gd2hhdGV2ZXIgU1JDX1VSSSBjaGFuZ2VzIHlvdSB3YW50
+IGluIHRoYXQgdmVyc2lvbi4NCg0KSG9wZWZ1bGx5IHlvdSBkb24ndCBuZWVkIHRvIG1ha2UgYW55
+IGZpZGRseSBjaGFuZ2VzIHRvIHRoZSByZWNpcGUgYXMgUE4gaXMgbm93IGRpZmZlcmVudC4NCg0K
+Um9zcw0KDQo=
 
-Next Deadline: YP 2.1 Final Release Target: April 29, 2016
+--_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBp
+bjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0K
+CXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
+Pg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1s
+PjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpl
+eHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVs
+YXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGlu
+az0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaGlzIGRvZXNu
+4oCZdCBzZWVtIHRvIGJlIGEgdmlhYmxlIG9wdGlvbi4mbmJzcDsgSeKAmW0gc3RpbGwgbWlzc2lu
+ZyBzb21ldGhpbmcgSSB0aGluay48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+OyI+V2UgYXJlIGFkZGluZyBvdXIgb3duIGxheWVyIG9uIHRvcCBvZiBvdXIgc29jIHZlbmRvcuKA
+mXMgbGF5ZXIuJm5ic3A7IEluIHRoZWlyIGxheWVyIHRoZXJlIGlzIGEgc3BlY2lhbGl6ZWQgdS1i
+b290IHJlY2lwZSBmb3IgdGhlIGlteDYgd2UgYXJlIHVzaW5nLiZuYnNwOw0KPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPlNvIEkgdHJ5IHRvIG1ha2UgYSByZWNpcGUgZm9y
+IHVib290ICg8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48YSBocmVmPSJodHRw
+Oi8vdS1ib290LWZhdXhfMjAxNC4wNC5iYiIgdGFyZ2V0PSJfYmxhbmsiPjxzcGFuIHN0eWxlPSJj
+b2xvcjp3aW5kb3d0ZXh0Ij51LWJvb3QtZmF1eF8yMDE0LjA0LmJiPC9zcGFuPjwvYT4pPC9zcGFu
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+DQogdGhhdCBpbmNsdWRlcyB0aGUgdmVuZG9y
+4oCZcyB1Ym9vdCByZWNpcGUgd2l0aCDigJxpbmNsdWRlIHJlY2lwZXMtYnNwL3UtYm9vdC91LWJv
+b3RfMjAxNC4wNC5iYuKAnSBhcyBzdWdnZXN0ZWQgYW5kIHRyeSB0byBidWlsZCBhbiBpbWFnZSB0
+aGF0IGlzIGdvaW5nIHRvIElNQUdFX0lOU1RBTEwgbXkgY3VzdG9taXplZCB2ZXJzaW9uIG9mIHUt
+Ym9vdCBpbnN0ZWFkIG9mIHRoZSBzb2MgdmVuZG9y4oCZcy4mbmJzcDsgSG93ZXZlciwgSSBnZXQg
+YW4gZXJyb3IgYXQgYml0YmFrZQ0KIHBhcnNlIHRpbWUgc2F5aW5nOjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5FUlJPUjogTXVsdGlwbGUgLmJiIGZpbGVzIGFyZSBkdWUg
+dG8gYmUgYnVpbHQgd2hpY2ggZWFjaCBwcm92aWRlIHUtYm9vdDxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaGlzIG1ha2VzIHNlbnNlIGJlY2F1c2UgYml0YmFrZSBzZWVz
+IHRoYXQgeWVzLCBpbiBmYWN0IG5vdyB0aGVyZSBhcmUgdHdvIHJlY2lwZXMgdGhhdCBwcm92aWRl
+IHUtYm9vdC4mbmJzcDsgSSBzdXBwb3NlIEkgY2FuIGRvIHNvbWV0aGluZyBsaWtlIHVzZSDigJxQ
+UkVGRVJSRURfUFJPVklERVJfdS1ib2904oCdDQogaW4gbXkgbG9jYWwuY29uZiwgYnV0IG5vdyBJ
+IG5lZWQgdG8gY2hhbmdlIG15IGxvY2FsLmNvbmYgYW55IHRpbWUgSSB3YW50IHRvIGJ1aWxkIGEg
+ZGlmZmVyZW50IGltYWdlIChpZSBiaXRiYWtlIGZhdXgtYXBwIGFuZCBiaXRiYWtlIGZhdXgtYXBw
+LWRlYnVnKS4mbmJzcDsgSSByZWFsbHkgd2FudCBhIHdvcmtmbG93IHRoYXQgZG9lc27igJl0IHJl
+cXVpcmUgbWUgdG8gY2hhbmdlIGNvbmZpZ3VyYXRpb24gZmlsZXMsIGluc3RlYWQganVzdCBiaXRi
+YWtlIGRpZmZlcmVudA0KIGltYWdlIHJlY2lwZXMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDsiPkluIHRoaXMgcHJvamVjdCBJIGFsc28gbmVlZCB0byBjb25kaXRpb25hbGx5
+IHBhdGNoIHRoZSBrZXJuZWwgYW5kIEnigJltIGdvaW5nIHRvIGhhdmUgdGhpcyBzYW1lIHByb2Js
+ZW0gd2l0aCBtdWx0aXBsZSBrZXJuZWwgcHJvdmlkZXJzIGFzIHdlbGwuJm5ic3A7IEFsc28sIEkg
+ZG9u4oCZdCB3YW50IHRvIHJlbW92ZQ0KIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllciB0byBnZXQg
+YXJvdW5kIHRoaXMgZXJyb3IuJm5ic3A7IFRoZWlyIGxheWVyIHNldHMgdXAgdGhlIG1hY2hpbmUg
+YW5kIGFsbCBzb3J0cyBvZiBvdGhlciB0aGluZ3MuJm5ic3A7IElmIEkgZ290IHJpZCBvZiBpdCBJ
+IHdvdWxkIG5lZWQgdG8gYnVpbGQgYWxsIHRoYXQgZnVuY3Rpb25hbGl0eSBpbnRvIG15IHByb2pl
+Y3TigJlzIGxheWVy4oCmJm5ic3A7IG9yIGlzIHRoaXMgd2hhdCBJ4oCZbSBnb2luZyB0byBuZWVk
+IHRvIGRvPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaG91Z2h0cz88
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDsiPjxicj4NCn5BbmR5IDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29t
+XQ0KPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgQXByaWwgMDgsIDIwMTYgMTA6MTAgQU08YnI+
+DQo8Yj5Ubzo8L2I+IEFuZHkgR2lrbGluZzxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBQcmVzY3JpYmVkIHdheSB0
+byBtYWtlIGdsb2JhbCB2YXJpYWJsZXMgaW4gcmVjaXBlcz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+T24gOCBBcHJpbCAyMDE2IGF0IDE2OjA1LCBBbmR5IEdpa2xpbmcg
+Jmx0OzxhIGhyZWY9Im1haWx0bzphZ2lrbGluZ0BtaW5uZXRyb25peC5jb20iIHRhcmdldD0iX2Js
+YW5rIj5hZ2lrbGluZ0BtaW5uZXRyb25peC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+U28g
+d2hhdCBkbyBJIGRvIGluIHRoYXQgY2FzZT8gSnVzdCBtYWtlIHR3byBvZiBteSBvd24gdmVyc2lv
+bnMgb2YgdGhlDQo8YSBocmVmPSJodHRwOi8vdS1ib290XzIwMTQuMDQuYmIiIHRhcmdldD0iX2Js
+YW5rIj51LWJvb3RfMjAxNC4wNC5iYjwvYT4gZmlsZSwgYW5kIGdpdmUgdGhlbSBkaWZmZXJlbnQg
+bmFtZXM/Jm5ic3A7IEZvciBleGFtcGxlIOKAnDxhIGhyZWY9Imh0dHA6Ly91LWJvb3QtZmF1eF8y
+MDE0LjA0LmJiIiB0YXJnZXQ9Il9ibGFuayI+dS1ib290LWZhdXhfMjAxNC4wNC5iYjwvYT7igJ0g
+YW5kIOKAnDxhIGhyZWY9Imh0dHA6Ly91LWJvb3QtZmF1eC1kZWJ1Z18yMDE0LjA0LmJiIiB0YXJn
+ZXQ9Il9ibGFuayI+dS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYjwvYT7igJ0NCiA/Jm5ic3A7
+IFRoYXQgc2hvdWxkIHdvcmsgYnV0IGRvZXMgdGhhdCBtYWtlIHNlbnNlIHRvIGRvPzwvc3Bhbj48
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KQXMgdGhl
+IHN0b2NrIHUtYm9vdCBhcHBlYXJzIHRvIGJlIHN1ZmZpY2llbnQgSSdkIHNheSB1c2UgdGhhdCBh
+bmQgdGhlbiBhZGQgYSA8YSBocmVmPSJodHRwOi8vdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5i
+YiI+DQp1LWJvb3QtZmF1eC1kZWJ1Z18yMDE0LjA0LmJiPC9hPiByZWNpcGUgdGhhdCBqdXN0IGRv
+ZXMgJnF1b3Q7aW5jbHVkZSB1LWJvb3QtJHtQVn0uYmImcXVvdDsgYW5kIHRoZW4gd2hhdGV2ZXIg
+U1JDX1VSSSBjaGFuZ2VzIHlvdSB3YW50IGluIHRoYXQgdmVyc2lvbi48bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG9wZWZ1bGx5IHlvdSBkb24n
+dCBuZWVkIHRvIG1ha2UgYW55IGZpZGRseSBjaGFuZ2VzIHRvIHRoZSByZWNpcGUgYXMgUE4gaXMg
+bm93IGRpZmZlcmVudC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-SWAT team rotation: Saul -> Paul
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-*        YP 2.1 M3.rc2 was released
-
-*        YP 2.1 release branches ('krogoth') were created and M4.rc1 went i=
-nto QA
-
-*        Nobody replied about buildhistory so it would seem nobody cares (o=
-r nobody reads these reports)?!
-
-*        We managed a significant amount of bug closure last week which cau=
-sed WDD to drop for a change however we suspect it may rise again next week=
-.
-
-*        There have been a lot of good bugfixes being submitted however the=
- rate seems to have significantly tapered off yet more work remains.
-
-*        We're starting to think about 2.2, if you have enhancements you'd =
-like to see in 2.2, please do make sure the bugzilla has entries for them.
-
-
-Key YP 2.1 Dates:
-
-YP 2.1 Final Release Target: April 29, 2016 (Still on Track)
-
-
-Tracking Metrics:
-
-            WDD 2566 (last week 2748)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.1_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.1_Features
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E570D8CD8ORSMSX155amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:2118329204;
-	mso-list-template-ids:-1634152604;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.1 M4 (Stabilization only milestone.)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.1 Final Release Target: April 29, 2016</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Saul -&gt; Paul</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.1 M3.rc2 was released<o:p></=
-o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.1 release branches (&#8216;k=
-rogoth&#8217;) were created and M4.rc1 went into QA<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Nobody replied about buildhistory=
- so it would seem nobody cares (or nobody reads these reports)?!<o:p></o:p>=
-</span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We managed a significant amount o=
-f bug closure last week which caused WDD to drop for a change however we su=
-spect it may rise again next week.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">There have been a lot of good bug=
-fixes being submitted however the rate seems to have significantly tapered =
-off yet more work remains.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We&#8217;re starting to think abo=
-ut 2.2, if you have enhancements you&#8217;d like to see in 2.2, please do =
-make sure the bugzilla has entries for them.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.1 Dates:<=
-/span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;co=
-lor:black">YP 2.1 Final Release Target: April 29, 2016 (Still on Track)</sp=
-an><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2566 (last week 2748)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.1_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.1_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.1_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.1_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.1_=
-Features</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.2_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.2_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
-gestions for other information you&#8217;d like to see on this weekly statu=
-s update, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E570D8CD8ORSMSX155amrcor_--
+--_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_--
