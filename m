@@ -1,39 +1,45 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC210E00C76; Fri,  8 Apr 2016 02:06:19 -0700 (PDT)
+	id 09506E00C76; Fri,  8 Apr 2016 05:16:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [208.80.204.84 listed in list.dnswl.org]
-Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82CE5E00B8B
-	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 02:06:12 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
-	via TCP (outbound) with ESMTPS id 20160408090601545_0484
-	for <yocto@yoctoproject.org>; Fri, 08 Apr 2016 09:06:01 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [216.191.234.70] (port=53501 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1aoSNx-0007mF-DM
-	for yocto@yoctoproject.org; Fri, 08 Apr 2016 05:07:25 -0400
-Date: Fri, 8 Apr 2016 05:05:53 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1604080500280.3385@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D066EE00BE8
+	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 05:16:44 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 08 Apr 2016 05:16:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,449,1455004800"; d="scan'208";a="941043322"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Apr 2016 05:16:38 -0700
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <DUB130-W48119310217EFF39E1E035DA9F0@phx.gbl>
+	<CAJTo0LbdXCPtc7PF_25Yc00T0pt=Ptq12whkehT5LVnnwS7RtA@mail.gmail.com>
+	<DUB130-W492E3B0F53AE2AA9EE0F0ADA9F0@phx.gbl>
+	<CAJTo0Lbg10pM7VT0ZiaqC7r5YwvdX9_c3X9P=vrPdFX3C6maLQ@mail.gmail.com>
+	<DUB130-W30F71C6509C95E9FA2606EDA9F0@phx.gbl>
+	<CAJTo0LYa+BZxy47950p8g7HqgRFQiHCeS3ZThtetopm-1ZDScg@mail.gmail.com>
+	<57066063.1010008@linux.intel.com>
+	<CAJTo0LbNeUEY-K2LW9Fw3Nh64yh65aQPXC4jS4-1JAmLM7c3PQ@mail.gmail.com>
+	<5706634E.9040106@linux.intel.com>
+	<DUB130-W181AE532D0FF79446FCC38DA900@phx.gbl>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <5707A126.4050107@linux.intel.com>
+Date: Fri, 8 Apr 2016 15:16:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Icedove/38.6.0
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: does any YP guide show clearly how to use a local git kernel repo?
+In-Reply-To: <DUB130-W181AE532D0FF79446FCC38DA900@phx.gbl>
+Subject: Re: Python GObject Errors on yocto-2.1_M3.rc2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,34 +51,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Apr 2016 09:06:19 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Fri, 08 Apr 2016 12:16:48 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 04/07/2016 07:58 PM, Chris Trobridge wrote:
 
-  in my travels, i frequently read online about people asking how to
-set up a kernel recipe to point at a local kernel source tree or local
-kernel git repo and, as best i can tell, this isn't really explained
-in any kind of detail in any YP guide, including the kernel
-development guide.
+> http://cgit.openembedded.org/meta-openembedded/tree/meta-python/recipes-devtools/python
+>  >
+>  > Will be fixed by deprecating python 2, of course.
+>  >
+>  > Alex
+>
+> Is there a  shorter term solution that's generally applicable, like a
+> separate python3-gobject recipe?
 
-  it seems one has to dig around to finally come up with the SRC_URI
-setting for cloning a local git repo, as in:
+In principle, yes - if you need to have pygobject both for 2 and 3 at 
+the same time, you can have two slightly different recipes; but I don't 
+know if it will work. You need to try and see.
 
-SRC_URI="git:///<localdir>;protocol=file; ... etc etc ..."
-
-is this described *in detail* in any YP guide? because it's certainly
-one of those FAQs.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Alex
 
