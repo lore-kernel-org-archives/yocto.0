@@ -1,36 +1,65 @@
-Return-Path: <agikling@minnetronix.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E6E6E007B5; Fri,  8 Apr 2016 10:22:12 -0700 (PDT)
+	id 9D87EE00ACF; Fri,  8 Apr 2016 17:49:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mxex2010.minnetronix.com (vpn.minnetronix.com [207.250.0.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1172CE0048B
-	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 10:22:10 -0700 (PDT)
-Received: from MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395]) by
-	MXEX2010.minnetronix.com ([fe80::385f:83b7:e616:4395%25]) with mapi id
-	14.03.0248.002; Fri, 8 Apr 2016 12:22:09 -0500
-From: Andy Gikling <agikling@minnetronix.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Prescribed way to make global variables in recipes?
-Thread-Index: AdGRoyaPXt+jelztRB6qyGDou3i0VQAK+ZGAAAoPecD//7bJAIAANcKA
-Date: Fri, 8 Apr 2016 17:22:09 +0000
-Message-ID: <3804BDFE6D2105429FC87BEC5F7ABA16CCD56C@MXEX2010.minnetronix.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
+Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24DB8E007D2
+	for <yocto@yoctoproject.org>; Fri,  8 Apr 2016 17:49:45 -0700 (PDT)
+Received: by mail-wm0-f46.google.com with SMTP id l6so82207457wml.1
+	for <yocto@yoctoproject.org>; Fri, 08 Apr 2016 17:49:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-transfer-encoding;
+	bh=AKUBbx1W1fxtva0L8XpeG+qJfOs5k8NNf8i0/FikZFg=;
+	b=DH+RsEE7YAtNeL27FZsjOURuB4soBYRaCbpfn2BpppzFjoKBooQY3IUaQEnurvALOk
+	Z4fb3YxJI+SsudkrzkzXIENmLuJxx+OTKw2zvq9jUbuETy5RyaqfTdZKOCdJrs5rAfTK
+	JxJIv/8iYY6bEg/Dgx6FxK48NKjeVbriRhdprj3UXZj57KgqzRjI6JafS2oTHuNn6LZp
+	GahQ5fOCsV8UEPAy3zTjVmNbRu0Qw8hy+A9O6kIdnBKioAf3BvI/ly+SbddEpPh6NbzR
+	71s8yT4IPd/DI41mAaGmawLs/x/vG052+lBRxYnBoAhlX5gBZeD1+70H1xPL/a5/804S
+	cjEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-transfer-encoding;
+	bh=AKUBbx1W1fxtva0L8XpeG+qJfOs5k8NNf8i0/FikZFg=;
+	b=Gt7rl+GuRZTrM3TPmXHh+rpKAao927YFb+o6kyMjAQPcdFPAJTLjkdRRS5BI7BQhIw
+	xG3YyewEYz8Y1ncFZxI+QzhHTrASaDj3EZ80Ep9VzB3Z+ToZn1fZytatwxcfPUB3rLUJ
+	wNjRRT1cOhG4eYNbYFsB4OcDQflJTNWPo6SxK78Ch4t/9csLDHKAIsDQJTJXpAoYFmY9
+	ZSz65n2UChjytA+rPv1BqCGAo8yY3XBqQ1Lij1nwQuRQHj5py8Uq0NNyZNJLil64CkZo
+	YlE45c83eT8/cCvpm+u11RVl8g9UqAj9/nFqtLs6pyBRsNxRR6H15cwEl3N/g3v8Xtz8
+	1k/Q==
+X-Gm-Message-State: AD7BkJIZ5uPH4vPLv+X7aH4G1zAKSyYutQJ9goXDdN4jWfR58rW14MXMF85W9LwkpAnB7zuw+qFySg4ODj2ApQ==
+MIME-Version: 1.0
+X-Received: by 10.28.49.3 with SMTP id x3mr6343195wmx.4.1460162985133; Fri, 08
+	Apr 2016 17:49:45 -0700 (PDT)
+Received: by 10.194.201.104 with HTTP; Fri, 8 Apr 2016 17:49:45 -0700 (PDT)
+In-Reply-To: <3804BDFE6D2105429FC87BEC5F7ABA16CCD56C@MXEX2010.minnetronix.com>
 References: <3804BDFE6D2105429FC87BEC5F7ABA16CCD48B@MXEX2010.minnetronix.com>
 	<CAJTo0LZVdjL6GtZVnTnabz_cnHwrraD8vyq_B58R2o0SpqEyVg@mail.gmail.com>
 	<3804BDFE6D2105429FC87BEC5F7ABA16CCD4F3@MXEX2010.minnetronix.com>
 	<CAJTo0LYxqkorjARwMUZ-mCTYUruJmOcf-Y2gnM2D5s0pOfZbbw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYxqkorjARwMUZ-mCTYUruJmOcf-Y2gnM2D5s0pOfZbbw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.28.10]
-MIME-Version: 1.0
+	<3804BDFE6D2105429FC87BEC5F7ABA16CCD56C@MXEX2010.minnetronix.com>
+Date: Fri, 8 Apr 2016 17:49:45 -0700
+Message-ID: <CAJ86T=WSeBPPRBYxLiygMwLJfJ0qEv=QQ2CaM=rb2ObkT11tNg@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: Andy Gikling <agikling@minnetronix.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Prescribed way to make global variables in recipes?
 X-BeenThere: yocto@yoctoproject.org
@@ -44,199 +73,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Apr 2016 17:22:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_"
+X-List-Received-Date: Sat, 09 Apr 2016 00:49:52 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Fri, Apr 8, 2016 at 10:22 AM, Andy Gikling <agikling@minnetronix.com> wr=
+ote:
+> This doesn=E2=80=99t seem to be a viable option.  I=E2=80=99m still missi=
+ng something I
+> think.
+>
+> We are adding our own layer on top of our soc vendor=E2=80=99s layer.  In=
+ their
+> layer there is a specialized u-boot recipe for the imx6 we are using.
+>
+> So I try to make a recipe for uboot (u-boot-faux_2014.04.bb) that include=
+s
+> the vendor=E2=80=99s uboot recipe with =E2=80=9Cinclude
+> recipes-bsp/u-boot/u-boot_2014.04.bb=E2=80=9D as suggested and try to bui=
+ld an image
+> that is going to IMAGE_INSTALL my customized version of u-boot instead of
+> the soc vendor=E2=80=99s.  However, I get an error at bitbake parse time =
+saying:
+>
+> ERROR: Multiple .bb files are due to be built which each provide u-boot
+>
+> This makes sense because bitbake sees that yes, in fact now there are two
+> recipes that provide u-boot.
 
-VGhpcyBkb2VzbuKAmXQgc2VlbSB0byBiZSBhIHZpYWJsZSBvcHRpb24uICBJ4oCZbSBzdGlsbCBt
-aXNzaW5nIHNvbWV0aGluZyBJIHRoaW5rLg0KDQpXZSBhcmUgYWRkaW5nIG91ciBvd24gbGF5ZXIg
-b24gdG9wIG9mIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllci4gIEluIHRoZWlyIGxheWVyIHRoZXJl
-IGlzIGEgc3BlY2lhbGl6ZWQgdS1ib290IHJlY2lwZSBmb3IgdGhlIGlteDYgd2UgYXJlIHVzaW5n
-Lg0KDQpTbyBJIHRyeSB0byBtYWtlIGEgcmVjaXBlIGZvciB1Ym9vdCAodS1ib290LWZhdXhfMjAx
-NC4wNC5iYjxodHRwOi8vdS1ib290LWZhdXhfMjAxNC4wNC5iYj4pIHRoYXQgaW5jbHVkZXMgdGhl
-IHZlbmRvcuKAmXMgdWJvb3QgcmVjaXBlIHdpdGgg4oCcaW5jbHVkZSByZWNpcGVzLWJzcC91LWJv
-b3QvdS1ib290XzIwMTQuMDQuYmLigJ0gYXMgc3VnZ2VzdGVkIGFuZCB0cnkgdG8gYnVpbGQgYW4g
-aW1hZ2UgdGhhdCBpcyBnb2luZyB0byBJTUFHRV9JTlNUQUxMIG15IGN1c3RvbWl6ZWQgdmVyc2lv
-biBvZiB1LWJvb3QgaW5zdGVhZCBvZiB0aGUgc29jIHZlbmRvcuKAmXMuICBIb3dldmVyLCBJIGdl
-dCBhbiBlcnJvciBhdCBiaXRiYWtlIHBhcnNlIHRpbWUgc2F5aW5nOg0KDQpFUlJPUjogTXVsdGlw
-bGUgLmJiIGZpbGVzIGFyZSBkdWUgdG8gYmUgYnVpbHQgd2hpY2ggZWFjaCBwcm92aWRlIHUtYm9v
-dA0KDQpUaGlzIG1ha2VzIHNlbnNlIGJlY2F1c2UgYml0YmFrZSBzZWVzIHRoYXQgeWVzLCBpbiBm
-YWN0IG5vdyB0aGVyZSBhcmUgdHdvIHJlY2lwZXMgdGhhdCBwcm92aWRlIHUtYm9vdC4gIEkgc3Vw
-cG9zZSBJIGNhbiBkbyBzb21ldGhpbmcgbGlrZSB1c2Ug4oCcUFJFRkVSUkVEX1BST1ZJREVSX3Ut
-Ym9vdOKAnSBpbiBteSBsb2NhbC5jb25mLCBidXQgbm93IEkgbmVlZCB0byBjaGFuZ2UgbXkgbG9j
-YWwuY29uZiBhbnkgdGltZSBJIHdhbnQgdG8gYnVpbGQgYSBkaWZmZXJlbnQgaW1hZ2UgKGllIGJp
-dGJha2UgZmF1eC1hcHAgYW5kIGJpdGJha2UgZmF1eC1hcHAtZGVidWcpLiAgSSByZWFsbHkgd2Fu
-dCBhIHdvcmtmbG93IHRoYXQgZG9lc27igJl0IHJlcXVpcmUgbWUgdG8gY2hhbmdlIGNvbmZpZ3Vy
-YXRpb24gZmlsZXMsIGluc3RlYWQganVzdCBiaXRiYWtlIGRpZmZlcmVudCBpbWFnZSByZWNpcGVz
-Lg0KDQpJbiB0aGlzIHByb2plY3QgSSBhbHNvIG5lZWQgdG8gY29uZGl0aW9uYWxseSBwYXRjaCB0
-aGUga2VybmVsIGFuZCBJ4oCZbSBnb2luZyB0byBoYXZlIHRoaXMgc2FtZSBwcm9ibGVtIHdpdGgg
-bXVsdGlwbGUga2VybmVsIHByb3ZpZGVycyBhcyB3ZWxsLiAgQWxzbywgSSBkb27igJl0IHdhbnQg
-dG8gcmVtb3ZlIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllciB0byBnZXQgYXJvdW5kIHRoaXMgZXJy
-b3IuICBUaGVpciBsYXllciBzZXRzIHVwIHRoZSBtYWNoaW5lIGFuZCBhbGwgc29ydHMgb2Ygb3Ro
-ZXIgdGhpbmdzLiAgSWYgSSBnb3QgcmlkIG9mIGl0IEkgd291bGQgbmVlZCB0byBidWlsZCBhbGwg
-dGhhdCBmdW5jdGlvbmFsaXR5IGludG8gbXkgcHJvamVjdOKAmXMgbGF5ZXLigKYgIG9yIGlzIHRo
-aXMgd2hhdCBJ4oCZbSBnb2luZyB0byBuZWVkIHRvIGRvPw0KDQpUaG91Z2h0cz8NCg0KfkFuZHkN
-Cg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2Vu
-dDogRnJpZGF5LCBBcHJpbCAwOCwgMjAxNiAxMDoxMCBBTQ0KVG86IEFuZHkgR2lrbGluZw0KQ2M6
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFByZXNjcmliZWQg
-d2F5IHRvIG1ha2UgZ2xvYmFsIHZhcmlhYmxlcyBpbiByZWNpcGVzPw0KDQoNCk9uIDggQXByaWwg
-MjAxNiBhdCAxNjowNSwgQW5keSBHaWtsaW5nIDxhZ2lrbGluZ0BtaW5uZXRyb25peC5jb208bWFp
-bHRvOmFnaWtsaW5nQG1pbm5ldHJvbml4LmNvbT4+IHdyb3RlOg0KU28gd2hhdCBkbyBJIGRvIGlu
-IHRoYXQgY2FzZT8gSnVzdCBtYWtlIHR3byBvZiBteSBvd24gdmVyc2lvbnMgb2YgdGhlIHUtYm9v
-dF8yMDE0LjA0LmJiPGh0dHA6Ly91LWJvb3RfMjAxNC4wNC5iYj4gZmlsZSwgYW5kIGdpdmUgdGhl
-bSBkaWZmZXJlbnQgbmFtZXM/ICBGb3IgZXhhbXBsZSDigJx1LWJvb3QtZmF1eF8yMDE0LjA0LmJi
-PGh0dHA6Ly91LWJvb3QtZmF1eF8yMDE0LjA0LmJiPuKAnSBhbmQg4oCcdS1ib290LWZhdXgtZGVi
-dWdfMjAxNC4wNC5iYjxodHRwOi8vdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYj7igJ0gPyAg
-VGhhdCBzaG91bGQgd29yayBidXQgZG9lcyB0aGF0IG1ha2Ugc2Vuc2UgdG8gZG8/DQoNCkFzIHRo
-ZSBzdG9jayB1LWJvb3QgYXBwZWFycyB0byBiZSBzdWZmaWNpZW50IEknZCBzYXkgdXNlIHRoYXQg
-YW5kIHRoZW4gYWRkIGEgdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYjxodHRwOi8vdS1ib290
-LWZhdXgtZGVidWdfMjAxNC4wNC5iYj4gcmVjaXBlIHRoYXQganVzdCBkb2VzICJpbmNsdWRlIHUt
-Ym9vdC0ke1BWfS5iYiIgYW5kIHRoZW4gd2hhdGV2ZXIgU1JDX1VSSSBjaGFuZ2VzIHlvdSB3YW50
-IGluIHRoYXQgdmVyc2lvbi4NCg0KSG9wZWZ1bGx5IHlvdSBkb24ndCBuZWVkIHRvIG1ha2UgYW55
-IGZpZGRseSBjaGFuZ2VzIHRvIHRoZSByZWNpcGUgYXMgUE4gaXMgbm93IGRpZmZlcmVudC4NCg0K
-Um9zcw0KDQo=
+I guess the problem here is not that you have two versions of u-boot
+but that you are trying to include both of them at once - e.g. one you
+added explicitly via IMAGE_INSTALL and one that the machine config
+probably added via MACHINE_EXTRA_RDEPENDS or similar. To fix that,
+you'll need to find a way to disable the dependency being added via
+the machine config (it's not a perfect solution though because if you
+then try to build an image to which you have not explicitly added a
+u-boot dependency too you'll end up with a build which doesn't contain
+any u-boot image at all...).
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> I suppose I can do something like use
+> =E2=80=9CPREFERRED_PROVIDER_u-boot=E2=80=9D in my local.conf, but now I n=
+eed to change my
+> local.conf any time I want to build a different image (ie bitbake faux-ap=
+p
+> and bitbake faux-app-debug).  I really want a workflow that doesn=E2=80=
+=99t require
+> me to change configuration files, instead just bitbake different image
+> recipes.
+>
+> In this project I also need to conditionally patch the kernel and I=E2=80=
+=99m going
+> to have this same problem with multiple kernel providers as well.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBp
-bjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0K
-CXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1s
-Pg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1s
-PjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpl
-eHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVs
-YXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGlu
-az0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaGlzIGRvZXNu
-4oCZdCBzZWVtIHRvIGJlIGEgdmlhYmxlIG9wdGlvbi4mbmJzcDsgSeKAmW0gc3RpbGwgbWlzc2lu
-ZyBzb21ldGhpbmcgSSB0aGluay48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-OyI+V2UgYXJlIGFkZGluZyBvdXIgb3duIGxheWVyIG9uIHRvcCBvZiBvdXIgc29jIHZlbmRvcuKA
-mXMgbGF5ZXIuJm5ic3A7IEluIHRoZWlyIGxheWVyIHRoZXJlIGlzIGEgc3BlY2lhbGl6ZWQgdS1i
-b290IHJlY2lwZSBmb3IgdGhlIGlteDYgd2UgYXJlIHVzaW5nLiZuYnNwOw0KPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
-b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPlNvIEkgdHJ5IHRvIG1ha2UgYSByZWNpcGUgZm9y
-IHVib290ICg8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48YSBocmVmPSJodHRw
-Oi8vdS1ib290LWZhdXhfMjAxNC4wNC5iYiIgdGFyZ2V0PSJfYmxhbmsiPjxzcGFuIHN0eWxlPSJj
-b2xvcjp3aW5kb3d0ZXh0Ij51LWJvb3QtZmF1eF8yMDE0LjA0LmJiPC9zcGFuPjwvYT4pPC9zcGFu
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+DQogdGhhdCBpbmNsdWRlcyB0aGUgdmVuZG9y
-4oCZcyB1Ym9vdCByZWNpcGUgd2l0aCDigJxpbmNsdWRlIHJlY2lwZXMtYnNwL3UtYm9vdC91LWJv
-b3RfMjAxNC4wNC5iYuKAnSBhcyBzdWdnZXN0ZWQgYW5kIHRyeSB0byBidWlsZCBhbiBpbWFnZSB0
-aGF0IGlzIGdvaW5nIHRvIElNQUdFX0lOU1RBTEwgbXkgY3VzdG9taXplZCB2ZXJzaW9uIG9mIHUt
-Ym9vdCBpbnN0ZWFkIG9mIHRoZSBzb2MgdmVuZG9y4oCZcy4mbmJzcDsgSG93ZXZlciwgSSBnZXQg
-YW4gZXJyb3IgYXQgYml0YmFrZQ0KIHBhcnNlIHRpbWUgc2F5aW5nOjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
-cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5FUlJPUjogTXVsdGlwbGUgLmJiIGZpbGVzIGFyZSBkdWUg
-dG8gYmUgYnVpbHQgd2hpY2ggZWFjaCBwcm92aWRlIHUtYm9vdDxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaGlzIG1ha2VzIHNlbnNlIGJlY2F1c2UgYml0YmFrZSBzZWVz
-IHRoYXQgeWVzLCBpbiBmYWN0IG5vdyB0aGVyZSBhcmUgdHdvIHJlY2lwZXMgdGhhdCBwcm92aWRl
-IHUtYm9vdC4mbmJzcDsgSSBzdXBwb3NlIEkgY2FuIGRvIHNvbWV0aGluZyBsaWtlIHVzZSDigJxQ
-UkVGRVJSRURfUFJPVklERVJfdS1ib2904oCdDQogaW4gbXkgbG9jYWwuY29uZiwgYnV0IG5vdyBJ
-IG5lZWQgdG8gY2hhbmdlIG15IGxvY2FsLmNvbmYgYW55IHRpbWUgSSB3YW50IHRvIGJ1aWxkIGEg
-ZGlmZmVyZW50IGltYWdlIChpZSBiaXRiYWtlIGZhdXgtYXBwIGFuZCBiaXRiYWtlIGZhdXgtYXBw
-LWRlYnVnKS4mbmJzcDsgSSByZWFsbHkgd2FudCBhIHdvcmtmbG93IHRoYXQgZG9lc27igJl0IHJl
-cXVpcmUgbWUgdG8gY2hhbmdlIGNvbmZpZ3VyYXRpb24gZmlsZXMsIGluc3RlYWQganVzdCBiaXRi
-YWtlIGRpZmZlcmVudA0KIGltYWdlIHJlY2lwZXMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDsiPkluIHRoaXMgcHJvamVjdCBJIGFsc28gbmVlZCB0byBjb25kaXRpb25hbGx5
-IHBhdGNoIHRoZSBrZXJuZWwgYW5kIEnigJltIGdvaW5nIHRvIGhhdmUgdGhpcyBzYW1lIHByb2Js
-ZW0gd2l0aCBtdWx0aXBsZSBrZXJuZWwgcHJvdmlkZXJzIGFzIHdlbGwuJm5ic3A7IEFsc28sIEkg
-ZG9u4oCZdCB3YW50IHRvIHJlbW92ZQ0KIG91ciBzb2MgdmVuZG9y4oCZcyBsYXllciB0byBnZXQg
-YXJvdW5kIHRoaXMgZXJyb3IuJm5ic3A7IFRoZWlyIGxheWVyIHNldHMgdXAgdGhlIG1hY2hpbmUg
-YW5kIGFsbCBzb3J0cyBvZiBvdGhlciB0aGluZ3MuJm5ic3A7IElmIEkgZ290IHJpZCBvZiBpdCBJ
-IHdvdWxkIG5lZWQgdG8gYnVpbGQgYWxsIHRoYXQgZnVuY3Rpb25hbGl0eSBpbnRvIG15IHByb2pl
-Y3TigJlzIGxheWVy4oCmJm5ic3A7IG9yIGlzIHRoaXMgd2hhdCBJ4oCZbSBnb2luZyB0byBuZWVk
-IHRvIGRvPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5UaG91Z2h0cz88
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDsiPjxicj4NCn5BbmR5IDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29t
-XQ0KPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwgQXByaWwgMDgsIDIwMTYgMTA6MTAgQU08YnI+
-DQo8Yj5Ubzo8L2I+IEFuZHkgR2lrbGluZzxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBQcmVzY3JpYmVkIHdheSB0
-byBtYWtlIGdsb2JhbCB2YXJpYWJsZXMgaW4gcmVjaXBlcz88bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+T24gOCBBcHJpbCAyMDE2IGF0IDE2OjA1LCBBbmR5IEdpa2xpbmcg
-Jmx0OzxhIGhyZWY9Im1haWx0bzphZ2lrbGluZ0BtaW5uZXRyb25peC5jb20iIHRhcmdldD0iX2Js
-YW5rIj5hZ2lrbGluZ0BtaW5uZXRyb25peC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+U28g
-d2hhdCBkbyBJIGRvIGluIHRoYXQgY2FzZT8gSnVzdCBtYWtlIHR3byBvZiBteSBvd24gdmVyc2lv
-bnMgb2YgdGhlDQo8YSBocmVmPSJodHRwOi8vdS1ib290XzIwMTQuMDQuYmIiIHRhcmdldD0iX2Js
-YW5rIj51LWJvb3RfMjAxNC4wNC5iYjwvYT4gZmlsZSwgYW5kIGdpdmUgdGhlbSBkaWZmZXJlbnQg
-bmFtZXM/Jm5ic3A7IEZvciBleGFtcGxlIOKAnDxhIGhyZWY9Imh0dHA6Ly91LWJvb3QtZmF1eF8y
-MDE0LjA0LmJiIiB0YXJnZXQ9Il9ibGFuayI+dS1ib290LWZhdXhfMjAxNC4wNC5iYjwvYT7igJ0g
-YW5kIOKAnDxhIGhyZWY9Imh0dHA6Ly91LWJvb3QtZmF1eC1kZWJ1Z18yMDE0LjA0LmJiIiB0YXJn
-ZXQ9Il9ibGFuayI+dS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5iYjwvYT7igJ0NCiA/Jm5ic3A7
-IFRoYXQgc2hvdWxkIHdvcmsgYnV0IGRvZXMgdGhhdCBtYWtlIHNlbnNlIHRvIGRvPzwvc3Bhbj48
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KQXMgdGhl
-IHN0b2NrIHUtYm9vdCBhcHBlYXJzIHRvIGJlIHN1ZmZpY2llbnQgSSdkIHNheSB1c2UgdGhhdCBh
-bmQgdGhlbiBhZGQgYSA8YSBocmVmPSJodHRwOi8vdS1ib290LWZhdXgtZGVidWdfMjAxNC4wNC5i
-YiI+DQp1LWJvb3QtZmF1eC1kZWJ1Z18yMDE0LjA0LmJiPC9hPiByZWNpcGUgdGhhdCBqdXN0IGRv
-ZXMgJnF1b3Q7aW5jbHVkZSB1LWJvb3QtJHtQVn0uYmImcXVvdDsgYW5kIHRoZW4gd2hhdGV2ZXIg
-U1JDX1VSSSBjaGFuZ2VzIHlvdSB3YW50IGluIHRoYXQgdmVyc2lvbi48bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG9wZWZ1bGx5IHlvdSBkb24n
-dCBuZWVkIHRvIG1ha2UgYW55IGZpZGRseSBjaGFuZ2VzIHRvIHRoZSByZWNpcGUgYXMgUE4gaXMg
-bm93IGRpZmZlcmVudC48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
-DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+If you want to change the kernel too then maybe your best option is
+just to define a new machine config (you can use a similar approach as
+you used for the u-boot recipe of including the original and then
+over-riding just the options you want to change).
 
---_000_3804BDFE6D2105429FC87BEC5F7ABA16CCD56CMXEX2010minnetron_--
+Since the machine config is a global config file which affects all
+recipes, you can also use it to set the global variables etc you were
+planning to use to conditionally apply u-boot patches, so you would no
+longer need multiple u-boot recipes or multiple images.
+
+> Also, I
+> don=E2=80=99t want to remove our soc vendor=E2=80=99s layer to get around=
+ this error.  Their
+> layer sets up the machine and all sorts of other things.  If I got rid of=
+ it
+> I would need to build all that functionality into my project=E2=80=99s la=
+yer=E2=80=A6  or is
+> this what I=E2=80=99m going to need to do?
+>
+>
+>
+> Thoughts?
+>
+>
+> ~Andy
+>
+>
+>
+> From: Burton, Ross [mailto:ross.burton@intel.com]
+> Sent: Friday, April 08, 2016 10:10 AM
+> To: Andy Gikling
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Prescribed way to make global variables in recipes?
+>
+>
+>
+>
+>
+> On 8 April 2016 at 16:05, Andy Gikling <agikling@minnetronix.com> wrote:
+>
+> So what do I do in that case? Just make two of my own versions of the
+> u-boot_2014.04.bb file, and give them different names?  For example
+> =E2=80=9Cu-boot-faux_2014.04.bb=E2=80=9D and =E2=80=9Cu-boot-faux-debug_2=
+014.04.bb=E2=80=9D ?  That should
+> work but does that make sense to do?
+>
+>
+> As the stock u-boot appears to be sufficient I'd say use that and then ad=
+d a
+> u-boot-faux-debug_2014.04.bb recipe that just does "include u-boot-${PV}.=
+bb"
+> and then whatever SRC_URI changes you want in that version.
+>
+>
+>
+> Hopefully you don't need to make any fiddly changes to the recipe as PN i=
+s
+> now different.
+>
+>
+>
+> Ross
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
