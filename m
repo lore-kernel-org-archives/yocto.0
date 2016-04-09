@@ -1,69 +1,70 @@
-Return-Path: <berlinvince@yahoo.com>
+Return-Path: <toolmmy@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DAA0E00929; Sat,  9 Apr 2016 09:41:09 -0700 (PDT)
+	id D16C2E00AD8; Sat,  9 Apr 2016 03:48:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_IMAGE_ONLY_20,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_LOW,T_REMOTE_IMAGE autolearn=ham version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (berlinvince[at]yahoo.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [98.136.217.44 listed in list.dnswl.org]
-	* 1.5 HTML_IMAGE_ONLY_20 BODY: HTML: images with 1600-2000 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4048]
+	mail provider *      (toolmmy[at]googlemail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from nm37-vm8.bullet.mail.gq1.yahoo.com
-	(nm37-vm8.bullet.mail.gq1.yahoo.com [98.136.217.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4177BE0077E
-	for <yocto@yoctoproject.org>; Sat,  9 Apr 2016 09:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1460220065; bh=x9moAzP6ELeS9J5Z+zUVcyz7uUob4aabTvRsHBfeEc0=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=ufsS4CvOWIQ54lExUK82pmWQLcSY1n8oJTNdtFJoON0ZUvJKHTHjelYyZThVHpnHlzDQux+6oZOVbEPh5KP7li5c+Mhc8NOu9roUfdgsIOrTnAq7rn0h3KxCTgRM0aRmB5eYk8AP2rQO9zH4mrLRMPnA2qvo7JmR/R4keqWeChfMU3Ht2uJQHV6t9IDhg9SHp9ixI3iy5/HQm13v1Yo3j2VS/sj45rDKtesxSgo2NpFSRDYVf8NWbkVd6nmNCRKh9nc7EisbePr7I7T66wjRGUp8bmgMsXWpDYJnpGVQqr+wuldlcaszL4XcVAdd/lqG3HwOwJv8lkH37QSRkezcig==
-Received: from [127.0.0.1] by nm37.bullet.mail.gq1.yahoo.com with NNFMP;
-	09 Apr 2016 16:41:05 -0000
-Received: from [216.39.60.183] by nm37.bullet.mail.gq1.yahoo.com with NNFMP;
-	09 Apr 2016 16:38:04 -0000
-Received: from [98.139.170.179] by tm19.bullet.mail.gq1.yahoo.com with NNFMP;
-	09 Apr 2016 16:38:04 -0000
-Received: from [98.139.212.217] by tm22.bullet.mail.bf1.yahoo.com with NNFMP;
-	09 Apr 2016 16:38:04 -0000
-Received: from [127.0.0.1] by omp1026.mail.bf1.yahoo.com with NNFMP;
-	09 Apr 2016 16:38:04 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 378373.5442.bm@omp1026.mail.bf1.yahoo.com
-X-YMail-OSG: hWTLBKoVM1kSY5UPjo5B6HcUwcJosvXbyXhm2dFF7yWbvXCvTvxsLStgwa5PUqL
-	LsI7Y5r.qp7xj4UlVQsrBcg6d1PRI9acW.v5pEJvUEvwlpnIODsK9we82NFvS6LY32ZKKxuCtYPq
-	uWjsyY.1FH0.mQjoTh.IFDL2ELJh8ch0JFp5VzufUZSVWj6MeR4AvniG8XCqhNRuvao92OgSJLp0
-	dFmItE6at85VPA2NvOCg67o.6oiDyDOih5NQcgXeeKCs7DDLR.Fbij88qGbpvnpNKJhXq8AWp3P3
-	QrdlDarnD3fUOyU2gdZC4bLoqaGQkBXkhvxZ0Rah63Zq9QDbLAp_zmAnJaSVSLPdpBVmr8tN5Pmh
-	QLAmZ5uEr6EKzCQ9EbxwQ0CQsO_qoJMvaturNJE5VNq8BBrxxH5BRIy4ghPFpPstNW1bLKlB7FTh
-	U6r_RAT0cNj7oKJdw9ll6EGL7KupWiCOWH0eaQ72besnz4IpxW68bkyk4OGeyEDQ6yahioUQ9Qtb
-	fXg--
-Received: by 76.13.27.70; Sat, 09 Apr 2016 16:38:03 +0000 
-Date: Sat, 9 Apr 2016 16:38:03 +0000 (UTC)
-From: Berlin Vince Joe V S <berlinvince@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1213150485.2252203.1460219883667.JavaMail.yahoo@mail.yahoo.com>
-MIME-Version: 1.0
-References: <1213150485.2252203.1460219883667.JavaMail.yahoo.ref@mail.yahoo.com>
-X-Mailman-Approved-At: Sun, 10 Apr 2016 08:30:13 -0700
-Subject: Yocto touch
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DB15E00ACF
+	for <yocto@yoctoproject.org>; Sat,  9 Apr 2016 03:48:12 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id a140so9784934wma.2
+	for <yocto@yoctoproject.org>; Sat, 09 Apr 2016 03:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=HhTPk0qowtN9yZ43n7X/gp9TOjniJKl4tEHqlsrdf+E=;
+	b=D40F03lrtuV1L3uwm7aLBzis+VfP/VerZtIuvNn6T3HHZArT9+2W8BuKlL+9p+9ql/
+	qqbGolYDLLhNJFtb67/WXcFcuFpaN/f81zFPa4E6P0BY/1nMbSPvlU1P/1o4BuMWM6v+
+	qr1ydskWhr9LWCAo3fB48Jtv8B8GpMDXzwKRkucrxvT59FNzLZGrTZo3QujkSjB+cyBY
+	m/hdyCIOGxh+y/eODjfD9k2UlcFLtT2zpPbzgK4G7B+uwX9P4MbeaKtpL/Ljvp3Msxg3
+	q2H7bx25FcHUPAXJG/759JYAvtzxis0Y3KDSsaS4O3zM55/l2nv12/X7fxxOiNL9nJoe
+	jOQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=HhTPk0qowtN9yZ43n7X/gp9TOjniJKl4tEHqlsrdf+E=;
+	b=AfVpiLLRHwAqH5wNnQdC+NEBa286yxZT7hqSbqFp1B3MblD9jszde5YJu61jYNr31u
+	ZC9E1QtgSvnIPN24koFYlBcNKUVY0rWjNYoyCxzRAzSx5HTRo58PI0ltLvoX5C8Fn9M7
+	7D1nUddVfpSOWbmyRZLcJtpPmVecwohLsitVpHaK/6Pb76zsXwqMFxlCzZkQQNrBADrb
+	fVJ3YcP+Xi5KaBP+XH14q89UmThktmTmAA4D/PvigICAFGUHpuaAthOFk627uBCXJkR7
+	a4joUCbbeE5jksu7SIZBSgESmEYsoipo3bfeIZIgnjtPJd3dAEENvF2ySJYQ/Kf8Ya++
+	RAAg==
+X-Gm-Message-State: AD7BkJI+gAI8xSih9EsHNhFpTDlR2Zl06PMbIgb9BME3yE/kH3NaGwOYdg3Z47l5uXyuaw==
+X-Received: by 10.28.55.139 with SMTP id e133mr8755120wma.98.1460198891065;
+	Sat, 09 Apr 2016 03:48:11 -0700 (PDT)
+Received: from localhost.localdomain
+	(HSI-KBW-095-208-027-092.hsi5.kabel-badenwuerttemberg.de.
+	[95.208.27.92]) by smtp.gmail.com with ESMTPSA id
+	cb2sm17640326wjc.16.2016.04.09.03.48.09
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 09 Apr 2016 03:48:10 -0700 (PDT)
+From: toolmmy <toolmmy@googlemail.com>
+X-Google-Original-From: toolmmy <toolmmy@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat,  9 Apr 2016 12:48:03 +0200
+Message-Id: <1460198883-15445-1-git-send-email-toolmmy@gmail.com>
+X-Mailer: git-send-email 1.9.1
+X-Mailman-Approved-At: Sun, 10 Apr 2016 08:40:15 -0700
+Cc: toolmmy <toolmmy@gmail.com>
+Subject: [meta-raspberrypi][PATCH] linux-firmware: Rework of brcmfmac43430 firmware handling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Berlin Vince Joe V S <berlinvince@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,53 +73,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Apr 2016 16:41:09 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2252202_585456337.1460219883665"
+X-List-Received-Date: Sat, 09 Apr 2016 10:48:15 -0000
 
-------=_Part_2252202_585456337.1460219883665
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+The current version of the recipe produces the following warnings while createing an image:
 
-hi ,,I already posted my query on yocto mail but it won't get moderator approval I don't know why ? 
-I am working on KONTRON SMARC(IMX6"Freescale"). I need to build the yocoto that can control all the devices that are connected to KONTRON but it won't. Now the problem is i am trying to interface with a capacitive touch screen (FT5x06 family) the Driver is already available but it is not working.
-Any way I am really need help could you please tell me if i need to add a hardware driver individually what are the files I need to take care of .... but OS Run Good but touch is not responding!!!
+WARNING: The license listed Firmware-broadcom_brcm80211 was not in the licenses collected for recipe linux-firmwa
+re
+WARNING: [log_check] td-core-image: found a warning message in the logfile (keyword 'WARNING:'):
+[log_check] WARNING: The license listed Firmware-broadcom_brcm80211 was not in the licenses collected for recipe
+linux-firmware
 
+This commit contains a rework of the brcm80211 firmware handling and deploys the firmware and the LICENSE files that fixes the warning messages.
 
-Please help me guys 
+Signed-off-by: Tom Doehring <toolmmy@gmail.com>
+---
+ .../linux-firmware/linux-firmware_git.bbappend       | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
+diff --git a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+index f0c9fe2..20ef05f 100644
+--- a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
++++ b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+@@ -1,6 +1,10 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-LIC_FILES_CHKSUM_append = "file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
++LICENSE_append = " & Firmware-broadcom_brcm80211"
++
++LIC_FILES_CHKSUM_append = " file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
++
++NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENSE.broadcom_brcm80211"
+ 
+ SRC_URI_append = " \
+     file://brcmfmac43430-sdio.bin \
+@@ -9,21 +13,21 @@ SRC_URI_append = " \
+     "
+ 
+ do_install_append() {
+-    cp ${WORKDIR}/brcmfmac43430-sdio.* ${D}/lib/firmware/brcm
++    cp ${WORKDIR}/brcmfmac43430-sdio.* ${D}/lib/firmware/brcm/
++    cp ${WORKDIR}/LICENSE.broadcom_brcm80211 ${D}/lib/firmware/
+ }
+ 
+-PACKAGES =+ "${PN}-brcm43430"
++PACKAGES =+ "${PN}-brcm43430 ${PN}-brcm43430-license"
++
++LICENSE_${PN}-brcm43430 = "Firmware-broadcom_brcm80211"
++FILES_${PN}-brcm43430-license = "/lib/firmware/LICENSE.broadcom_brcm80211"
+ FILES_${PN}-brcm43430 = " \
+     /lib/firmware/brcm/brcmfmac43430-sdio.bin \
+     /lib/firmware/brcm/brcmfmac43430-sdio.txt \
+     "
+ 
+-LICENSE_append = " & Firmware-broadcom_brcm80211"
+-NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENCE.broadcom_brcm80211"
+-LICENSE_${PN}-brcm43430 = "LICENSE.broadcom_brcm80211"
++RDEPENDS_${PN}-brcm43430 += "${PN}-brcm43430-license"
+ 
+ ALTERNATIVE_LINK_NAME[brcmfmac-sdio.bin] = "/lib/firmware/brcm/brcmfmac-sdio.bin"
+ ALTERNATIVE_TARGET_linux-firmware-brcm43430[brcmfmac-sdio.bin] = "/lib/firmware/brcm/brcmfmac43430-sdio.bin"
+ ALTERNATIVE_linux-firmware-brcm43430 = "brcmfmac-sdio.bin"
+-
+-RDEPENDPS_${PN}-brcm43430 += "${PN}-broadcom-license"
 
-
-
-------=_Part_2252202_585456337.1460219883665
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helve=
-tica, Arial, Lucida Grande, sans-serif;font-size:16px"><div id=3D"yui_3_16_=
-0_ym19_1_1460219217569_2897">hi ,,</div><div id=3D"yui_3_16_0_ym19_1_146021=
-9217569_2896" dir=3D"ltr">I already posted my query on yocto mail but it wo=
-n't get moderator approval I don't know why ? <img data-id=3D"07657113-2643=
--2175-55a0-f9ceeb5ec832" src=3D"https://s.yimg.com/ok/u/assets/img/emoticon=
-s/emo37.gif" alt=3D"*:-S worried" title=3D"*:-S worried" class=3D"yahoo-ign=
-ore-inline-image"></div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2908" di=
-r=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2814" dir=3D=
-"ltr">I am working on KONTRON SMARC(IMX6"Freescale"). I need to build the y=
-ocoto that can control all the devices that are connected to KONTRON but it=
- won't. Now the problem is i am trying to interface with a capacitive touch=
- screen (FT5x06 family) the Driver is already available but it is not worki=
-ng.</div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2860" dir=3D"ltr"><br><=
-/div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2732" dir=3D"ltr">Any way I=
- am really need help could you please tell me if i need to add a hardware d=
-river individually what are the files I need to take care of .... but OS Ru=
-n Good but touch is not responding!!!</div><div id=3D"yui_3_16_0_ym19_1_146=
-0219217569_2940" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1460219=
-217569_2886" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_14602192175=
-69_2889" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2=
-888" dir=3D"ltr">Please help me guys <br></div><div id=3D"yui_3_16_0_ym19_1=
-_1460219217569_2887" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_146=
-0219217569_2537"><br></div><div id=3D"yui_3_16_0_ym19_1_1460219217569_2976"=
-><br></div></div></body></html>
-
-------=_Part_2252202_585456337.1460219883665--
