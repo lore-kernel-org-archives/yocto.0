@@ -1,26 +1,43 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E9F4E00D69; Sun, 10 Apr 2016 21:25:13 -0700 (PDT)
+	id D991AE00D38; Mon, 11 Apr 2016 05:54:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C9E6E00D55
-	for <yocto@yoctoproject.org>; Sun, 10 Apr 2016 21:25:09 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 8D3AF84A9AA1
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 00:25:08 -0400 (EDT)
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47F6FE0083D
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 05:54:36 -0700 (PDT)
+Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
+	by relay1.mentorg.com with esmtp 
+	id 1apbMR-0006ac-ID from Joe_MacDonald@mentor.com ;
+	Mon, 11 Apr 2016 05:54:35 -0700
+Received: from burninator (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
+	(147.34.97.41) with Microsoft SMTP Server id 14.3.224.2;
+	Mon, 11 Apr 2016 05:54:35 -0700
+Received: by burninator (Postfix, from userid 1000)	id BD8F9580616; Mon, 11
+	Apr 2016 08:54:33 -0400 (EDT)
+Date: Mon, 11 Apr 2016 08:54:33 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: wenzong fan <wenzong.fan@windriver.com>
+Message-ID: <20160411125433.GA4693@mentor.com>
+References: <1459729295-79553-1-git-send-email-flihp@twobit.us>
+	<1459729295-79553-3-git-send-email-flihp@twobit.us>
+	<57076B89.20404@windriver.com>
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 11 Apr 2016 04:25:08 -0000
-Message-ID: <20160411042508.25543.93779@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <57076B89.20404@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 2/3] Integrate selinux-config into refpolicy_common.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,189 +49,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Apr 2016 04:25:13 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Apr 2016 12:54:40 -0000
+X-Groupsio-MsgNum: 29357
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="NzB8fVQJ5HfG6fxh"
+Content-Disposition: inline
 
-This mail was sent out by Recipe reporting system.
+--NzB8fVQJ5HfG6fxh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi Wenzong,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+[Re: [yocto] [meta-selinux][PATCH 2/3] Integrate selinux-config into refpol=
+icy_common.] On 16.04.08 (Fri 16:27) wenzong fan wrote:
 
-You can check the detail information at:
+> This causes do_populate_sysroot error if build two or more types of
+> refpolicy:
+>=20
+> $ bitbake refpolicy-minimum && bitbake refpolicy-mls
+>=20
+> ERROR: refpolicy-mls-git-r0 do_populate_sysroot: The recipe refpolicy-mls=
+ is
+> trying to install files into a shared area when those files already exist.
+> Those files and their manifest location are:
 
-http://recipes.yoctoproject.org/
+I think this was always the intent with the series Philip submitted last
+week (for reference, the thread is
+https://www.mail-archive.com/yocto@yoctoproject.org/msg28530.html).
+Isn't this (part of) the expected behaviour of the virtual provider
+mechanism?  We did discuss what it would mean to be trying out multiple
+policies on a system at the same time and at the time it seemed like the
+"just works" angle was more important than "buffet style" when it came
+to providing policy on the image.
 
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-texinfo               6.0           6.1                   Alejandro Hernandez
-ruby                  2.2.2         2.3.0                 Alejandro Hernandez
-perl                  5.22.1        5.22.2                Alejandro Hernandez
-python-dbus           1.2.0         1.2.4                 Alejandro Hernandez
-python-mako           1.0.3         1.0.4                 Alejandro Hernandez
-python-numpy          1.10.4        1.11.0                Alejandro Hernandez
-python-pygobject      3.18.2        3.20.0                Alejandro Hernandez
-python-scons          2.4.1         2.5.0                 Alejandro Hernandez
-python3-pip           8.0.0         8.1.1                 Alejandro Hernandez
-python3-setuptools    19.4          20.7.0                Alejandro Hernandez
-python-setuptools     19.4          20.7.0                Alejandro Hernandez
-perl-native           5.22.1        5.22.2                Alejandro Hernandez
-python-scons-native   2.4.1         2.5.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gcr                   3.18.0        3.20.0                Alexander Kanavin
-gnome-desktop3        3.18.2        3.20.0                Alexander Kanavin
-libsecret             0.18.4        0.18.5                Alexander Kanavin
-watchdog              5.14          5.15                  Alexander Kanavin
-kexec-tools           2.0.11        2.0.12                Alexander Kanavin
-btrfs-tools           4.4           4.5.1                 Alexander Kanavin
-systemtap-uprobes     2.9           3.0                   Alexander Kanavin
-systemtap             2.9           3.0                   Alexander Kanavin
-epiphany              3.18.4        3.20.1                Alexander Kanavin
-hwlatdetect           0.96          0.97                  Alexander Kanavin
-rt-tests              0.96          0.97                  Alexander Kanavin
-webkitgtk             2.10.7        2.12.0                Alexander Kanavin
-gnutls                3.4.9         3.4.10                Alexander Kanavin
-icu                   56.1          57.1                  Alexander Kanavin
-nss                   3.21          3.23                  Alexander Kanavin
-babeltrace            1.3.1         1.3.2                 Alexander Kanavin
-msmtp                 1.6.3         1.6.4                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
-iso-codes             3.65          3.67                  Alexander Kanavin
-apt                   1.0.10.1      1.2.10                Aníbal Limón
-qemu                  2.5.0         2.5.1                 Aníbal Limón
-pinentry              0.9.2         0.9.7                 Armin Kuster
-linux-libc-headers    4.4           4.5                   Bruce Ashfield
-guilt-native          0.35+gitX     0.36+gitAUTOINC+2...  Bruce Ashfield
-dbus-test             1.10.6        1.10.8                Chen Qi
-dbus                  1.10.6        1.10.8                Chen Qi
-curl                  7.47.1        7.48.0                Chen Qi
-byacc                 20150711      20160324              Chen Qi
-gzip                  1.6           1.7                   Chen Qi
-sudo                  1.8.15        1.8.16                Chen Qi
-sysstat               11.2.0        11.3.2                Chen Qi
-grep                  2.23          2.24                  Chen Qi
-build-appliance-i...  14.0.0        14.0.1                Cristian Iorga
-dhcp                  4.3.3         4.3.4                 Hongxu Jia
-ncurses               6.0+20160213  6.0+20160319          Hongxu Jia
-pax-utils             1.1.5         1.1.6                 Hongxu Jia
-man-pages             4.04          4.05                  Hongxu Jia
-libnewt-python        0.52.18       0.52.19               Hongxu Jia
-libnewt               0.52.18       0.52.19               Hongxu Jia
-elfutils              0.164         0.166                 Hongxu Jia
-pango                 1.38.1        1.40.0                Jussi Kukkonen
-mesa                  11.1.1        11.2.0                Jussi Kukkonen
-libinput              1.1.4         1.2.2                 Jussi Kukkonen
-wayland               1.9.0         1.10.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.8        3.20.2                Jussi Kukkonen
-xrandr                1.4.3         1.5.0                 Jussi Kukkonen
-openssh               7.1p2         7.2p2                 Jussi Kukkonen
-gsettings-desktop...  3.19.3        3.20.0                Jussi Kukkonen
-dropbear              2015.71       2016.73               Jussi Kukkonen
-expat                 2.1.0         2.1.1                 Jussi Kukkonen
-weston                1.9.0         1.10.0                Jussi Kukkonen
-glib-2.0              2.46.2        2.48.0                Jussi Kukkonen
-glib-networking       2.46.1        2.48.0                Jussi Kukkonen
-libxkbcommon          0.5.0         0.6.1                 Jussi Kukkonen
-pixman                0.32.8        0.34.0                Jussi Kukkonen
-xkeyboard-config      2.16          2.17                  Jussi Kukkonen
-inputproto            2.3.1         2.3.2                 Jussi Kukkonen
-videoproto            2.3.2         2.3.3                 Jussi Kukkonen
-xserver-xorg          1.18.0        1.18.3                Jussi Kukkonen
-cmake                 3.4.3         3.5.1                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1        1.79.1                Jussi Kukkonen
-at-spi2-atk           2.18.1        2.20.0                Jussi Kukkonen
-at-spi2-core          2.18.3        2.20.0                Jussi Kukkonen
-atk                   2.18.0        2.20.0                Jussi Kukkonen
-vala                  0.30.1        0.32.0                Jussi Kukkonen
-libsoup-2.4           2.52.2        2.54.0.1              Jussi Kukkonen
-vte                   0.28.2        0.44.0                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.16        3.0.18                Jussi Kukkonen
-gdk-pixbuf            2.32.3        2.34.0                Jussi Kukkonen
-gtk+3                 3.18.8        3.20.2                Jussi Kukkonen
-gtk+                  2.24.29       2.24.30               Jussi Kukkonen
-json-glib             1.0.4         1.2.0                 Jussi Kukkonen
-librsvg               2.40.13       2.40.15               Jussi Kukkonen
-cairo                 1.14.6        1.15.2                Jussi Kukkonen
-clutter-1.0           1.24.2        1.26.0                Jussi Kukkonen
-clutter-gtk-1.0       1.6.6         1.8.0                 Jussi Kukkonen
-fontconfig            2.11.94       2.11.95               Jussi Kukkonen
-mesa-demos            8.2.0         8.3.0                 Jussi Kukkonen
-mesa-gl               11.1.1        11.2.0                Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69        0.9.71                Jussi Kukkonen
-slang                 2.2.4         2.3.0                 Kai Kang
-uclibc                1.0.12+gitX   1.0.13                Khem Raj
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0         4.7.0                 Matthew McClintock
-acpid                 2.0.26        2.0.27                Maxin B. John
-bluez5                5.37          5.39                  Maxin B. John
-iproute2              4.4.0         4.5.0                 Maxin B. John
-sqlite3               3.11.0        3.12.1                Maxin B. John
-gstreamer1.0-libav    1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0          1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-orc                   0.4.24        0.4.25                Maxin B. John
-gstreamer1.0-rtsp...  1.6.2         1.8.0                 Maxin B. John
-db                    6.0.30        6.1.26                Maxin B. John
-ethtool               4.2           4.5                   Maxin B. John
-mc                    4.8.15        4.8.16                Maxin B. John
-harfbuzz              1.2.3         1.2.6                 Maxin B. John
-pkgconfig             0.29+gitX     0.29.1+gitAUTOINC...  Maxin B. John
-gdb-cross-canadia...  7.10.1        7.11                  No maintainer
-gdb-cross-i586        7.10.1        7.11                  No maintainer
-ffmpeg                3.0           3.0.1                 No maintainer
-cantarell-fonts       0.0.21+gitX   0.13+gitAUTOINC+7...  No maintainer
-libsolv               0.6.19        0.6.20                No maintainer
-ifupdown              0.8.2         0.8.10                No maintainer
-uclibc-initial        1.0.12+gitX   1.0.13                No maintainer
-apt-native            1.0.10.1      1.2.10                No maintainer
-cmake-native          3.4.3         3.5.1                 No maintainer
-gobject-introspec...  1.46.0        1.48.0                No maintainer
-sgmlspl-native        1.1+gitX      1.03+gitAUTOINC+f...  No maintainer
-xf86-input-libinput   0.16.0        0.18.0                No maintainer
-lttng-modules         2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-gdb                   7.10.1        7.11                  Richard Purdie
-nasm                  2.11.08       2.12.01               Richard Purdie
-mpfr                  3.1.3         3.1.4                 Richard Purdie
-gnu-efi               3.0.3         3.0.4                 Robert Yang
-git                   2.7.2         2.8.1                 Robert Yang
-tcl                   8.6.4         8.6.5                 Robert Yang
-libcap                2.24          2.25                  Robert Yang
-mklibs-native         0.1.40        0.1.41                Robert Yang
-base-passwd           3.5.29        3.5.39                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.64          9.65                  Ross Burton
-alsa-lib              1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils            1.1.0         1.1.1                 Tanu Kaskinen
-alsa-plugins          1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils-scripts    1.1.0         1.1.1                 Tanu Kaskinen
-gettext               0.19.6        0.19.7                Wenzong Fan
-chkconfig             1.3.58        1.7                   Wenzong Fan          Version 1.5 requires selinux
+It might be worth considering extending the changes to only do some
+install steps at, say, do_rootfs but I don't know if that even makes
+sense, this is really the first I've thought of it.  I think Philip's
+original changes are good, though, for our maintenance and for clients
+of meta-selinux.
 
-Upgradable count: 140
-Upgradable total count: 145
+-J.
 
-The based commit is:
+>=20
+> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
+64/etc/selinux/sepolgen.conf
+>  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+>=20
+> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
+64/etc/selinux/config
+>  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+>=20
+> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
+64/sysroot-providers/virtual_refpolicy
+>  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+> Please verify which recipe should provide the above files.
+>=20
+> Philip,
+>=20
+> Can you consider to withdraw the integration?
+>=20
+> Thanks
+> Wenzong
+>=20
+> On 04/04/2016 08:21 AM, Philip Tricca wrote:
+> >With the virutal package there's no need for a separate recipe to build
+> >the config. This can be generated and included as part of the policy
+> >package.
+> >
+> >Signed-off-by: Philip Tricca <flihp@twobit.us>
+> >---
+> >  .../packagegroups/packagegroup-core-selinux.bb     |  1 -
+> >  .../packagegroups/packagegroup-selinux-minimal.bb  |  1 -
+> >  recipes-security/refpolicy/refpolicy_common.inc    | 30 ++++++++++++++=
+--
+> >  recipes-security/selinux/selinux-config_0.1.bb     | 40 --------------=
+--------
+> >  4 files changed, 28 insertions(+), 44 deletions(-)
+> >  delete mode 100644 recipes-security/selinux/selinux-config_0.1.bb
+> >
+> >diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb=
+ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> >index 62c5a76..c6d22b7 100644
+> >--- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> >+++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> >@@ -22,7 +22,6 @@ RDEPENDS_${PN} =3D " \
+> >  	packagegroup-selinux-policycoreutils \
+> >  	setools \
+> >  	setools-console \
+> >-	selinux-config \
+> >  	selinux-autorelabel \
+> >  	selinux-init \
+> >  	selinux-labeldev \
+> >diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal=
+=2Ebb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> >index 87ae686..451ae8b 100644
+> >--- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> >+++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> >@@ -21,7 +21,6 @@ RDEPENDS_${PN} =3D "\
+> >  	policycoreutils-semodule \
+> >  	policycoreutils-sestatus \
+> >  	policycoreutils-setfiles \
+> >-	selinux-config \
+> >  	selinux-labeldev \
+> >  	virtual/refpolicy \
+> >  "
+> >diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-s=
+ecurity/refpolicy/refpolicy_common.inc
+> >index ba887e4..305675f 100644
+> >--- a/recipes-security/refpolicy/refpolicy_common.inc
+> >+++ b/recipes-security/refpolicy/refpolicy_common.inc
+> >@@ -1,3 +1,5 @@
+> >+DEFAULT_ENFORCING ??=3D "enforcing"
+> >+
+> >  SECTION =3D "base"
+> >  LICENSE =3D "GPLv2"
+> >
+> >@@ -14,7 +16,8 @@ SRC_URI +=3D "file://customizable_types \
+> >
+> >  S =3D "${WORKDIR}/refpolicy"
+> >
+> >-FILES_${PN} =3D " \
+> >+CONFFILES_${PN} +=3D "${sysconfdir}/selinux/config"
+> >+FILES_${PN} +=3D " \
+> >  	${sysconfdir}/selinux/${POLICY_NAME}/ \
+> >  	${datadir}/selinux/${POLICY_NAME}/*.pp \
+> >  	${localstatedir}/lib/selinux/${POLICY_NAME}/ \
+> >@@ -25,7 +28,6 @@ FILES_${PN}-dev =3D+ " \
+> >  "
+> >
+> >  DEPENDS +=3D "checkpolicy-native policycoreutils-native m4-native"
+> >-RDEPENDS_${PN} +=3D "selinux-config"
+> >
+> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> >
+> >@@ -137,13 +139,37 @@ install_misc_files () {
+> >  	oe_runmake 'DESTDIR=3D${D}' 'prefix=3D${D}${prefix}' install-headers
+> >  }
+> >
+> >+install_config () {
+> >+	echo "\
+> >+# This file controls the state of SELinux on the system.
+> >+# SELINUX=3D can take one of these three values:
+> >+#     enforcing - SELinux security policy is enforced.
+> >+#     permissive - SELinux prints warnings instead of enforcing.
+> >+#     disabled - No SELinux policy is loaded.
+> >+SELINUX=3D${DEFAULT_ENFORCING}
+> >+# SELINUXTYPE=3D can take one of these values:
+> >+#     standard - Standard Security protection.
+> >+#     mls - Multi Level Security protection.
+> >+#     targeted - Targeted processes are protected.
+> >+#     mcs - Multi Category Security protection.
+> >+SELINUXTYPE=3D${POLICY_TYPE}
+> >+" > ${WORKDIR}/config
+> >+	install -d ${D}/${sysconfdir}/selinux
+> >+	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
+> >+}
+> >+
+> >  do_install () {
+> >  	prepare_policy_store
+> >  	rebuild_policy
+> >  	install_misc_files
+> >+	install_config
+> >  }
+> >
+> >  do_install_append(){
+> >  	# While building policies on target, Makefile will be searched from S=
+ELINUX_DEVEL_PATH
+> >  	echo "SELINUX_DEVEL_PATH=3D${datadir}/selinux/${POLICY_NAME}/include"=
+ > ${D}${sysconfdir}/selinux/sepolgen.conf
+> >  }
+> >+
+> >+sysroot_stage_all_append () {
+> >+	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
+> >+}
+> >diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-se=
+curity/selinux/selinux-config_0.1.bb
+> >deleted file mode 100644
+> >index e902e98..0000000
+> >--- a/recipes-security/selinux/selinux-config_0.1.bb
+> >+++ /dev/null
+> >@@ -1,40 +0,0 @@
+> >-DEFAULT_ENFORCING ??=3D "enforcing"
+> >-
+> >-SUMMARY =3D "SELinux configuration"
+> >-DESCRIPTION =3D "\
+> >-SELinux configuration files for Yocto. \
+> >-"
+> >-
+> >-SECTION =3D "base"
+> >-LICENSE =3D "MIT"
+> >-LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfb=
+cb788c80a0384361b4de20420"
+> >-PR =3D "r4"
+> >-
+> >-S =3D "${WORKDIR}"
+> >-
+> >-CONFFILES_${PN} +=3D "${sysconfdir}/selinux/config"
+> >-
+> >-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> >-
+> >-do_install () {
+> >-	echo "\
+> >-# This file controls the state of SELinux on the system.
+> >-# SELINUX=3D can take one of these three values:
+> >-#     enforcing - SELinux security policy is enforced.
+> >-#     permissive - SELinux prints warnings instead of enforcing.
+> >-#     disabled - No SELinux policy is loaded.
+> >-SELINUX=3D${DEFAULT_ENFORCING}
+> >-# SELINUXTYPE=3D can take one of these values:
+> >-#     standard - Standard Security protection.
+> >-#     mls - Multi Level Security protection.
+> >-#     targeted - Targeted processes are protected.
+> >-#     mcs - Multi Category Security protection.
+> >-SELINUXTYPE=3D${@d.getVar("PREFERRED_PROVIDER_virtual/refpolicy", False=
+)[len("refpolicy-"):]}
+> >-" > ${WORKDIR}/config
+> >-	install -d ${D}/${sysconfdir}/selinux
+> >-	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
+> >-}
+> >-
+> >-sysroot_stage_all_append () {
+> >-	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
+> >-}
+> >
 
-commit d2734fbfe209fcb8bd908b55e64d1ea8712d02c1
-Author: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Date:   Wed Apr 6 12:56:01 2016 +0200
+--=20
+-Joe MacDonald.
+:wq
 
-    local.conf.sample: Make it possible to override EXTRA_IMAGE_FEATURES
-    
-    It should be possible to override EXTRA_IMAGE_FEATURES in auto.conf,
-    which is read before local.conf.
-    
-    Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+--NzB8fVQJ5HfG6fxh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
+iQEcBAEBAgAGBQJXC56GAAoJEEn8ffcsOfaW6O4H/jbEklVotXl8HT3qhj0m2s+V
+8D/w24HOSQ2NtGiZc6f2s0xmdWB6nHG/8Uvx+b9pZTt3efhVtu9xPf/wzklGif1J
+qDuKLP7vdMJHdDM6Y6kBv9sp1LxEzSi88GWdUSQCoDEYmuTRtl0c6gu9QZK5Z4DX
+tbh/5PemxMHSuLbwDg+rX8iQoO9Alb0i412RF85UiZz3OyBhjMijKmjg+IvS8Mzc
+rfppiCrbGGSfMixrffAfIXJ8F0ASskYu5mYYCErVoRilnMg7IHIhy6gDmWXVOV/d
+kl2cin9HQh4TKiWpSRfAK6Jtq1xrQY1eKNGfCfnEBTkHQaRThqOsefa1wsap3o4=
+=En+E
+-----END PGP SIGNATURE-----
+
+--NzB8fVQJ5HfG6fxh--
