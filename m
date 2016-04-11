@@ -1,43 +1,63 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D991AE00D38; Mon, 11 Apr 2016 05:54:40 -0700 (PDT)
+	id 86A3FE00CD8; Mon, 11 Apr 2016 06:55:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47F6FE0083D
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 05:54:36 -0700 (PDT)
-Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
-	by relay1.mentorg.com with esmtp 
-	id 1apbMR-0006ac-ID from Joe_MacDonald@mentor.com ;
-	Mon, 11 Apr 2016 05:54:35 -0700
-Received: from burninator (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
-	(147.34.97.41) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 11 Apr 2016 05:54:35 -0700
-Received: by burninator (Postfix, from userid 1000)	id BD8F9580616; Mon, 11
-	Apr 2016 08:54:33 -0400 (EDT)
-Date: Mon, 11 Apr 2016 08:54:33 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: wenzong fan <wenzong.fan@windriver.com>
-Message-ID: <20160411125433.GA4693@mentor.com>
-References: <1459729295-79553-1-git-send-email-flihp@twobit.us>
-	<1459729295-79553-3-git-send-email-flihp@twobit.us>
-	<57076B89.20404@windriver.com>
-MIME-Version: 1.0
-In-Reply-To: <57076B89.20404@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 2/3] Integrate selinux-config into refpolicy_common.
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BE47E0092C
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 06:55:50 -0700 (PDT)
+Received: by mail-pf0-f170.google.com with SMTP id e128so124402912pfe.3
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 06:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=JjjNHWGGo6+SJqzBks/ffL3sPsnFHsD+Z2HC1pelCoY=;
+	b=0me9l7AKZK8EGv4Wq3ORXoI9H1qGly9dTdd87Wa4ftk/+uKKTU+KW5YFB9Z7JtMeyH
+	5Vy/Btlg1c7EitSDd1yrHyoYarMqlLKZ9pi/H0WWtKmBaJP1HHjWhByffRfNdWqpeRC6
+	F3EZAK6TRxRGosovR5aZTpNQd5PEUMTDxROXCxblp8YyrJvYdjgQWzljRcP921XB/xNn
+	CgkhBuellpnjXrIz9ASpNE0SitPBzu6Hf0j+27VzN8x5KfEBTVcLxvBDjZ/3RoyPpsU9
+	urO6gMGm5ints8hfUl8HenGZN4Mezs6zMztClMk4IoAnUKZyHeNBYhJp5lEID/s+em5n
+	gefg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=JjjNHWGGo6+SJqzBks/ffL3sPsnFHsD+Z2HC1pelCoY=;
+	b=e3HjR5e/Iys8/xdc/DeL8YLlbwY2DAIvciEN+YOF23YCQFbX/VvlCwasb9ueCgOp6p
+	J/MfIpzCWQFOBeJzs0v1nkue7NrFB6BKqKgAeydG2lNqMA+DdWMMRqCISclCmQINAo8e
+	5aCj1Fd11wAMnmCivR8gqWHEjd0cL55nIEeKTKRFH4fUAVvBTsF9aqPlAwUTpYburk/3
+	tc1AHutyny1K+aHuTrXvqNVjDV2PunsTFppKU4IRfFaJTO88z2rf4d02U7WbY2jYYCjZ
+	JbpDr9jwjF7IKh0/ZRBzmjrMsS0neUJQO3kKIFZY0YVrQWhZIhARMYyTzmbxpc/xaBK8
+	rTrg==
+X-Gm-Message-State: AD7BkJJQ79HtYwCkbaiNVWyHf4ISa869THxl9L8/ipe2wMdPR30OeHIrFpjfwcom8fIt8g==
+X-Received: by 10.98.17.74 with SMTP id z71mr33078138pfi.30.1460382950346;
+	Mon, 11 Apr 2016 06:55:50 -0700 (PDT)
+Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
+	20sm36534710pfj.80.2016.04.11.06.55.48 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 11 Apr 2016 06:55:49 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 11 Apr 2016 06:55:46 -0700
+Message-Id: <1460382946-19295-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][PATCH] nmap: update to 7.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,250 +69,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Apr 2016 12:54:40 -0000
-X-Groupsio-MsgNum: 29357
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="NzB8fVQJ5HfG6fxh"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 11 Apr 2016 13:55:53 -0000
 
---NzB8fVQJ5HfG6fxh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/nmap/{nmap_7.11.bb => nmap_7.12.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-security/nmap/{nmap_7.11.bb => nmap_7.12.bb} (94%)
 
-Hi Wenzong,
+diff --git a/recipes-security/nmap/nmap_7.11.bb b/recipes-security/nmap/nmap_7.12.bb
+similarity index 94%
+rename from recipes-security/nmap/nmap_7.11.bb
+rename to recipes-security/nmap/nmap_7.12.bb
+index 27efe7b..47cd7b6 100644
+--- a/recipes-security/nmap/nmap_7.11.bb
++++ b/recipes-security/nmap/nmap_7.12.bb
+@@ -7,8 +7,8 @@ LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=51f7052ac85aaf1a21
+ 
+ SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
+ 
+-SRC_URI[md5sum] = "0dc7fcde978b4891ba9fd91d16f19fce"
+-SRC_URI[sha256sum] = "13fa971555dec00e495a5b72c1f9efa1363b8e6c7388a2f05117cb0778c0954a"
++SRC_URI[md5sum] = "0764f4dabe7cccda3c49fc3990b62a8a"
++SRC_URI[sha256sum] = "63df082a87c95a189865d37304357405160fc6333addcf5b84204c95e0539b04"
+ 
+ inherit autotools-brokensep pkgconfig distro_features_check
+ 
+-- 
+2.3.5
 
-[Re: [yocto] [meta-selinux][PATCH 2/3] Integrate selinux-config into refpol=
-icy_common.] On 16.04.08 (Fri 16:27) wenzong fan wrote:
 
-> This causes do_populate_sysroot error if build two or more types of
-> refpolicy:
->=20
-> $ bitbake refpolicy-minimum && bitbake refpolicy-mls
->=20
-> ERROR: refpolicy-mls-git-r0 do_populate_sysroot: The recipe refpolicy-mls=
- is
-> trying to install files into a shared area when those files already exist.
-> Those files and their manifest location are:
-
-I think this was always the intent with the series Philip submitted last
-week (for reference, the thread is
-https://www.mail-archive.com/yocto@yoctoproject.org/msg28530.html).
-Isn't this (part of) the expected behaviour of the virtual provider
-mechanism?  We did discuss what it would mean to be trying out multiple
-policies on a system at the same time and at the time it seemed like the
-"just works" angle was more important than "buffet style" when it came
-to providing policy on the image.
-
-It might be worth considering extending the changes to only do some
-install steps at, say, do_rootfs but I don't know if that even makes
-sense, this is really the first I've thought of it.  I think Philip's
-original changes are good, though, for our maintenance and for clients
-of meta-selinux.
-
--J.
-
->=20
-> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
-64/etc/selinux/sepolgen.conf
->  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
->=20
-> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
-64/etc/selinux/config
->  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
->=20
-> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-=
-64/sysroot-providers/virtual_refpolicy
->  Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
-> Please verify which recipe should provide the above files.
->=20
-> Philip,
->=20
-> Can you consider to withdraw the integration?
->=20
-> Thanks
-> Wenzong
->=20
-> On 04/04/2016 08:21 AM, Philip Tricca wrote:
-> >With the virutal package there's no need for a separate recipe to build
-> >the config. This can be generated and included as part of the policy
-> >package.
-> >
-> >Signed-off-by: Philip Tricca <flihp@twobit.us>
-> >---
-> >  .../packagegroups/packagegroup-core-selinux.bb     |  1 -
-> >  .../packagegroups/packagegroup-selinux-minimal.bb  |  1 -
-> >  recipes-security/refpolicy/refpolicy_common.inc    | 30 ++++++++++++++=
---
-> >  recipes-security/selinux/selinux-config_0.1.bb     | 40 --------------=
---------
-> >  4 files changed, 28 insertions(+), 44 deletions(-)
-> >  delete mode 100644 recipes-security/selinux/selinux-config_0.1.bb
-> >
-> >diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb=
- b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-> >index 62c5a76..c6d22b7 100644
-> >--- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
-> >+++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-> >@@ -22,7 +22,6 @@ RDEPENDS_${PN} =3D " \
-> >  	packagegroup-selinux-policycoreutils \
-> >  	setools \
-> >  	setools-console \
-> >-	selinux-config \
-> >  	selinux-autorelabel \
-> >  	selinux-init \
-> >  	selinux-labeldev \
-> >diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal=
-=2Ebb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> >index 87ae686..451ae8b 100644
-> >--- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> >+++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> >@@ -21,7 +21,6 @@ RDEPENDS_${PN} =3D "\
-> >  	policycoreutils-semodule \
-> >  	policycoreutils-sestatus \
-> >  	policycoreutils-setfiles \
-> >-	selinux-config \
-> >  	selinux-labeldev \
-> >  	virtual/refpolicy \
-> >  "
-> >diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-s=
-ecurity/refpolicy/refpolicy_common.inc
-> >index ba887e4..305675f 100644
-> >--- a/recipes-security/refpolicy/refpolicy_common.inc
-> >+++ b/recipes-security/refpolicy/refpolicy_common.inc
-> >@@ -1,3 +1,5 @@
-> >+DEFAULT_ENFORCING ??=3D "enforcing"
-> >+
-> >  SECTION =3D "base"
-> >  LICENSE =3D "GPLv2"
-> >
-> >@@ -14,7 +16,8 @@ SRC_URI +=3D "file://customizable_types \
-> >
-> >  S =3D "${WORKDIR}/refpolicy"
-> >
-> >-FILES_${PN} =3D " \
-> >+CONFFILES_${PN} +=3D "${sysconfdir}/selinux/config"
-> >+FILES_${PN} +=3D " \
-> >  	${sysconfdir}/selinux/${POLICY_NAME}/ \
-> >  	${datadir}/selinux/${POLICY_NAME}/*.pp \
-> >  	${localstatedir}/lib/selinux/${POLICY_NAME}/ \
-> >@@ -25,7 +28,6 @@ FILES_${PN}-dev =3D+ " \
-> >  "
-> >
-> >  DEPENDS +=3D "checkpolicy-native policycoreutils-native m4-native"
-> >-RDEPENDS_${PN} +=3D "selinux-config"
-> >
-> >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >
-> >@@ -137,13 +139,37 @@ install_misc_files () {
-> >  	oe_runmake 'DESTDIR=3D${D}' 'prefix=3D${D}${prefix}' install-headers
-> >  }
-> >
-> >+install_config () {
-> >+	echo "\
-> >+# This file controls the state of SELinux on the system.
-> >+# SELINUX=3D can take one of these three values:
-> >+#     enforcing - SELinux security policy is enforced.
-> >+#     permissive - SELinux prints warnings instead of enforcing.
-> >+#     disabled - No SELinux policy is loaded.
-> >+SELINUX=3D${DEFAULT_ENFORCING}
-> >+# SELINUXTYPE=3D can take one of these values:
-> >+#     standard - Standard Security protection.
-> >+#     mls - Multi Level Security protection.
-> >+#     targeted - Targeted processes are protected.
-> >+#     mcs - Multi Category Security protection.
-> >+SELINUXTYPE=3D${POLICY_TYPE}
-> >+" > ${WORKDIR}/config
-> >+	install -d ${D}/${sysconfdir}/selinux
-> >+	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
-> >+}
-> >+
-> >  do_install () {
-> >  	prepare_policy_store
-> >  	rebuild_policy
-> >  	install_misc_files
-> >+	install_config
-> >  }
-> >
-> >  do_install_append(){
-> >  	# While building policies on target, Makefile will be searched from S=
-ELINUX_DEVEL_PATH
-> >  	echo "SELINUX_DEVEL_PATH=3D${datadir}/selinux/${POLICY_NAME}/include"=
- > ${D}${sysconfdir}/selinux/sepolgen.conf
-> >  }
-> >+
-> >+sysroot_stage_all_append () {
-> >+	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
-> >+}
-> >diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-se=
-curity/selinux/selinux-config_0.1.bb
-> >deleted file mode 100644
-> >index e902e98..0000000
-> >--- a/recipes-security/selinux/selinux-config_0.1.bb
-> >+++ /dev/null
-> >@@ -1,40 +0,0 @@
-> >-DEFAULT_ENFORCING ??=3D "enforcing"
-> >-
-> >-SUMMARY =3D "SELinux configuration"
-> >-DESCRIPTION =3D "\
-> >-SELinux configuration files for Yocto. \
-> >-"
-> >-
-> >-SECTION =3D "base"
-> >-LICENSE =3D "MIT"
-> >-LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfb=
-cb788c80a0384361b4de20420"
-> >-PR =3D "r4"
-> >-
-> >-S =3D "${WORKDIR}"
-> >-
-> >-CONFFILES_${PN} +=3D "${sysconfdir}/selinux/config"
-> >-
-> >-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >-
-> >-do_install () {
-> >-	echo "\
-> >-# This file controls the state of SELinux on the system.
-> >-# SELINUX=3D can take one of these three values:
-> >-#     enforcing - SELinux security policy is enforced.
-> >-#     permissive - SELinux prints warnings instead of enforcing.
-> >-#     disabled - No SELinux policy is loaded.
-> >-SELINUX=3D${DEFAULT_ENFORCING}
-> >-# SELINUXTYPE=3D can take one of these values:
-> >-#     standard - Standard Security protection.
-> >-#     mls - Multi Level Security protection.
-> >-#     targeted - Targeted processes are protected.
-> >-#     mcs - Multi Category Security protection.
-> >-SELINUXTYPE=3D${@d.getVar("PREFERRED_PROVIDER_virtual/refpolicy", False=
-)[len("refpolicy-"):]}
-> >-" > ${WORKDIR}/config
-> >-	install -d ${D}/${sysconfdir}/selinux
-> >-	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
-> >-}
-> >-
-> >-sysroot_stage_all_append () {
-> >-	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
-> >-}
-> >
-
---=20
--Joe MacDonald.
-:wq
-
---NzB8fVQJ5HfG6fxh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJXC56GAAoJEEn8ffcsOfaW6O4H/jbEklVotXl8HT3qhj0m2s+V
-8D/w24HOSQ2NtGiZc6f2s0xmdWB6nHG/8Uvx+b9pZTt3efhVtu9xPf/wzklGif1J
-qDuKLP7vdMJHdDM6Y6kBv9sp1LxEzSi88GWdUSQCoDEYmuTRtl0c6gu9QZK5Z4DX
-tbh/5PemxMHSuLbwDg+rX8iQoO9Alb0i412RF85UiZz3OyBhjMijKmjg+IvS8Mzc
-rfppiCrbGGSfMixrffAfIXJ8F0ASskYu5mYYCErVoRilnMg7IHIhy6gDmWXVOV/d
-kl2cin9HQh4TKiWpSRfAK6Jtq1xrQY1eKNGfCfnEBTkHQaRThqOsefa1wsap3o4=
-=En+E
------END PGP SIGNATURE-----
-
---NzB8fVQJ5HfG6fxh--
