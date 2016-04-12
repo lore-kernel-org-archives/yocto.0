@@ -1,6 +1,6 @@
 Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41980E00D72; Tue, 12 Apr 2016 04:43:34 -0700 (PDT)
+	id 4D016E00D5A; Tue, 12 Apr 2016 04:43:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,20 +12,22 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	high *      trust
 	*      [134.134.136.24 listed in list.dnswl.org]
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9010E00C8D
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 04:43:31 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED246E00D2F
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 04:43:32 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 12 Apr 2016 04:43:31 -0700
+	by orsmga102.jf.intel.com with ESMTP; 12 Apr 2016 04:43:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,473,1455004800"; d="scan'208";a="953244112"
+X-IronPort-AV: E=Sophos;i="5.24,473,1455004800"; d="scan'208";a="953244123"
 Received: from heimdall.fi.intel.com ([10.237.68.144])
-	by orsmga002.jf.intel.com with ESMTP; 12 Apr 2016 04:43:30 -0700
+	by orsmga002.jf.intel.com with ESMTP; 12 Apr 2016 04:43:31 -0700
 From: Jussi Kukkonen <jussi.kukkonen@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 12 Apr 2016 14:43:39 +0300
-Message-Id: <1460461420-29917-1-git-send-email-jussi.kukkonen@intel.com>
+Date: Tue, 12 Apr 2016 14:43:40 +0300
+Message-Id: <1460461420-29917-2-git-send-email-jussi.kukkonen@intel.com>
 X-Mailer: git-send-email 2.8.0.rc3
-Subject: [matchbox-wm][PATCH 1/2] wm: disregard Caps/Num/Scroll-lock when handling keypresses
+In-Reply-To: <1460461420-29917-1-git-send-email-jussi.kukkonen@intel.com>
+References: <1460461420-29917-1-git-send-email-jussi.kukkonen@intel.com>
+Subject: [matchbox-wm][PATCH 2/2] keys: Grab all modifier combos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,42 +41,26 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 12 Apr 2016 11:43:34 -0000
 
-<alt>-Tab and other keybindings should work even when the various
-locks are on.
+Handle even the last combo, the one with all modifiers applied at the
+same time.
 
 Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
 ---
- src/wm.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ src/keys.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/wm.c b/src/wm.c
-index 2d05ff0..00d88c5 100644
---- a/src/wm.c
-+++ b/src/wm.c
-@@ -1074,6 +1074,7 @@ wm_handle_keypress(Wm *w, XKeyEvent *e)
- #ifndef NO_KBD
-   MBConfigKbdEntry *entry =  w->config->kb->entrys;
-   Client *p = NULL;
-+  int state = e->state;
+diff --git a/src/keys.c b/src/keys.c
+index 68c27dd..bc83bd4 100644
+--- a/src/keys.c
++++ b/src/keys.c
+@@ -495,7 +495,7 @@ keys_grab(Wm *w, Bool ungrab)
+       int ignored_mask = 0;
  
- #ifdef USE_LIBSN
-   Bool found = False;
-@@ -1094,11 +1095,14 @@ wm_handle_keypress(Wm *w, XKeyEvent *e)
- 	   return;
- 	 }
-        }
--   
-+
-+   /* Don't care about Caps/Num/Scroll lock here */
-+   state &= ~w->config->kb->lock_mask;
-+
-    while (entry != NULL)
-      {
-        if (XKeycodeToKeysym(w->dpy, e->keycode, entry->index) == entry->key
--	   && e->state == entry->ModifierMask )
-+	   && state == entry->ModifierMask )
- 	{
- 	  switch (entry->action) 
+       /* Needed to grab all ignored combo's too */
+-      while (ignored_mask < (int) w->config->kb->lock_mask)
++      while (ignored_mask <= (int) w->config->kb->lock_mask)
+ 	{                                       
+ 	  if (ignored_mask & ~(w->config->kb->lock_mask))
  	    {
 -- 
 2.8.0.rc3
