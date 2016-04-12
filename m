@@ -1,6 +1,6 @@
 Return-Path: <ankur.tyagi85@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80104E00D53; Mon, 11 Apr 2016 19:32:51 -0700 (PDT)
+	id 169A8E00C9D; Mon, 11 Apr 2016 20:26:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (ankur.tyagi85[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.218.47 listed in list.dnswl.org]
+	*      [209.85.214.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,37 +20,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
-	[209.85.218.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A14FE00AAB
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 19:32:47 -0700 (PDT)
-Received: by mail-oi0-f47.google.com with SMTP id s79so6188394oie.1
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 19:32:47 -0700 (PDT)
+Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
+	[209.85.214.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF4C6E00AAF
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 20:26:15 -0700 (PDT)
+Received: by mail-ob0-f169.google.com with SMTP id bg3so3574478obb.1
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 20:26:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=cfB2bLwVOFJI6ffyqaK2RCmfAFlmrPvd5KfDnTiUsIw=;
-	b=tggNLBSloK6cvPBgQilGGbHme1ceLb3YFbBYr0ZjdYBhuc++Tumk6eXhoQfanyWw96
-	ll1+WSeh+PkSAJM9rJtDR+FtDz9g01dhLPgSe1KwHev+DTxZ4OO0IpH9MGz8XCZKGWh3
-	YGmfjUx0T6Qd58LGkpwW1HiQ81XETwHEl+t1rJr7upmO3DMXlmkk8WSNu+DBg1FKbZuQ
-	20aRlgwpydsrKCL04bvPtl+z9+TeduX9JkVmsl8456AJUjkxWtKCNfZoQcPeVU2t81Ev
-	HjEOICyU1/DoyZHqZMArp6VsLS8uRggzOx2fKnpdbK4h7/hC3YWtR7uWlT8YCZeL1o9y
-	2Gdg==
+	:cc; bh=5Y/7pbE6IowKb7Woo57++Iwf2A6MuJQgc+mMb6zFVRg=;
+	b=dJBkLp15oF3Zgva/nKsDDssDl/SdiTczr0fwIdbZjkLjGtW+MN/IdFZ7r5lv0UkUOa
+	71BEfbEtn9PS2xRLdA3vpcFDJah5YNX9ezuctX/W/Ef6LXLs2qxRu/6vBt5QxU0dhyfd
+	9WAXI1EHxuyF/Q+OzA2AZraEuI7EaunzWeYkhr0UaG4uG6/2M33RmF0e51nxrqq6UiQ1
+	fyyAM/cJMSjCJFTa9r8pCnsaOe9G0FfWTwPBBizMvUC2LaJlbKrV0a0Te32i9t/ReYW4
+	Q689wS5VQMBXJTGGJkx914xjYbbQuuEagju488mzUuQQuNTT2ljXzAmLs+bUcc5qoL5R
+	pGmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=cfB2bLwVOFJI6ffyqaK2RCmfAFlmrPvd5KfDnTiUsIw=;
-	b=f3w3Rlj5ruX/oquzaVzu8c2rECNhFcwyAy67n7QITao92KMm97Zchf61Ol7yw5B+qt
-	ayU528RTjFVNCilnVVINuBRHe9dc1MQlk3gvADiIspOlR2ph3YDXO30cUscqrm7LV1IK
-	VduCtkuVN1UsX7kPRBS2bOVdTP8DEtOV/7TlIb2R2ZF0EIfXxvag8iKLQXRwu4iHMsaX
-	cc4TxGFiXpuODsPlewrzKUkPSTSZ855UmNnAk2oeICyfGUT1L7ZkH0kYpSw/2PpOuKTq
-	03SmareUZ+rx1xwr2ZpJdMJD0lFhFfj/ZJjBD4jS3VbIA3e6CrcGSezd/wGZUCKoG0HT
-	90zg==
-X-Gm-Message-State: AOPr4FUM3/goBddN5mh6jp5wgm1UIHAFLNaxR/lc7MtA36Gpr/2+x7MyjTCfEbFgDdia5dVb33g+wYvlABweyA==
-X-Received: by 10.202.172.201 with SMTP id v192mr283840oie.29.1460428367329;
-	Mon, 11 Apr 2016 19:32:47 -0700 (PDT)
+	bh=5Y/7pbE6IowKb7Woo57++Iwf2A6MuJQgc+mMb6zFVRg=;
+	b=UFMVCaJq/ZX4sfgOWOzLiorOoJgzK3dREbrCT9EqzDJiWDm+6Sy1v6U6jqU0rt0zs3
+	ojNDkQbpPcpRLxhWmMv3hNlx0DY17+N4eCNZ0OKRa/AUR/ofIFhibh7igMfAXuCTmU8s
+	AmgxLwqCbBCtvQwfEsl8ahZgQGJAYqmXXNVvKsbsRv62ey2abfQ8f+sWycvqh6Tf7Lgv
+	tLXzK8cuhzlEokZdI6aFwtKoPqcXhU8WdnfFnLPpdH3D+3+OMIDR3Soqbhg/EKYXjxRn
+	UOyP9IUkIe3pvOfcaJUdeOu3pnoLWLzvQL/4KapZMXWSd717sNHtkxMJX7laCw8i5N5j
+	JAAg==
+X-Gm-Message-State: AOPr4FXgPry8RdUrneKaPzwWDyY9APTekwgVBGDZkcNCaFNb3X/GDCcoRqL1/qIOCE3HpG9H7/lAFc2OJ7ywkw==
+X-Received: by 10.182.255.197 with SMTP id as5mr421911obd.86.1460431574834;
+	Mon, 11 Apr 2016 20:26:14 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.202.227.131 with HTTP; Mon, 11 Apr 2016 19:32:27 -0700 (PDT)
+Received: by 10.202.227.131 with HTTP; Mon, 11 Apr 2016 20:25:55 -0700 (PDT)
 In-Reply-To: <CAHQecY4PBZ-PHi6SefradTq5o2PXKo0wbo-jid80hMc0bfkYgA@mail.gmail.com>
 References: <56DEF97F.9070306@balister.org> <1458767514382.89578@seescan.com>
 	<56F30D13.6030909@balister.org>
@@ -58,10 +58,10 @@ References: <56DEF97F.9070306@balister.org> <1458767514382.89578@seescan.com>
 	<20160412013543.GV16135@denix.org> <570C52DB.6060901@balister.org>
 	<CAHQecY4PBZ-PHi6SefradTq5o2PXKo0wbo-jid80hMc0bfkYgA@mail.gmail.com>
 From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Tue, 12 Apr 2016 14:32:27 +1200
-Message-ID: <CADySD0E_HRSQ3ytibHCPYcFm5Y-rv96u=b1u38ABkE7s2ahzbw@mail.gmail.com>
+Date: Tue, 12 Apr 2016 15:25:55 +1200
+Message-ID: <CADySD0E3cJ93=QnDjdiXGQZFcKDp6kyzV1a+4A3v4VsegxZmog@mail.gmail.com>
 To: openembedded-devel@lists.openembedded.org
-X-Mailman-Approved-At: Tue, 12 Apr 2016 08:20:49 -0700
+X-Mailman-Approved-At: Tue, 12 Apr 2016 08:20:48 -0700
 Cc: "openembedded-members@lists.openembedded.org"
 	<openembedded-members@lists.openembedded.org>,
 	openembedded-core <openembedded-core@lists.openembedded.org>,
@@ -78,22 +78,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 02:32:51 -0000
-Content-Type: multipart/alternative; boundary=001a113ced740e00d90530407a56
+X-List-Received-Date: Tue, 12 Apr 2016 03:26:19 -0000
+Content-Type: multipart/alternative; boundary=001a1134a9163ca52605304139ea
 
---001a113ced740e00d90530407a56
+--001a1134a9163ca52605304139ea
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-=E2=80=8B
 Hi,
-=E2=80=8B
+
 Is there any information/material posted online for people who weren't able
 to attend because of geographical barriers ?
 
 regards
 Ankur
-
 
 On Tue, Apr 12, 2016 at 1:48 PM, Tom King <ka6sox@gmail.com> wrote:
 
@@ -110,8 +107,7 @@ On Tue, Apr 12, 2016 at 1:48 PM, Tom King <ka6sox@gmail.com> wrote:
 > > > On Mon, Apr 11, 2016 at 03:35:21PM -0700, Rudolf J Streif wrote:
 > > >> Hello Everyone:
 > > >>
-> > >> If you attended OEDAM last Friday in San Diego, I very much hope tha=
-t
+> > >> If you attended OEDAM last Friday in San Diego, I very much hope that
 > > you enjoyed being here.
 > > >>
 > > >> The Catamaran Hotel, where we held the meeting, would very much
@@ -142,24 +138,19 @@ t
 > http://lists.openembedded.org/mailman/listinfo/openembedded-devel
 >
 
---001a113ced740e00d90530407a56
+--001a1134a9163ca52605304139ea
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"color:rgb(51,51,153)=
-;font-family:georgia,serif;font-size:small">=E2=80=8B</div><div>Hi,<div cla=
-ss=3D"gmail_default" style=3D"color:rgb(51,51,153);font-family:georgia,seri=
-f;font-size:small">=E2=80=8B</div></div><div>Is there any information/mater=
-ial posted online for people who weren&#39;t able to attend because of geog=
-raphical barriers ?<br><br>regards<br>Ankur</div><div class=3D"gmail_extra"=
-><br clear=3D"all"></div><div class=3D"gmail_extra"><div class=3D"gmail_sig=
-nature">
-<br></div></div><div class=3D"gmail_quote">On Tue, Apr 12, 2016 at 1:48 PM,=
- Tom King <span dir=3D"ltr">&lt;<a href=3D"mailto:ka6sox@gmail.com" target=
-=3D"_blank">ka6sox@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left=
--color:rgb(204,204,204);border-left-width:1px;border-left-style:solid">do w=
-e have meeting minutes posted someplace?<br>
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>Is there any information=
+/material posted online for people who weren&#39;t able to attend because o=
+f geographical barriers ?<br><br>regards<br>Ankur</div><div><br></div><div =
+class=3D"gmail_quote">On Tue, Apr 12, 2016 at 1:48 PM, Tom King <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:ka6sox@gmail.com" target=3D"_blank">ka6sox@g=
+mail.com</a>&gt;</span> wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204=
+,204,204);border-left-width:1px;border-left-style:solid">do we have meeting=
+ minutes posted someplace?<br>
 <br>
 thanks<br>
 <br>
@@ -204,7 +195,7 @@ ed-core@lists.openembedded.org</a><br>
 &gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded=
 -core" target=3D"_blank" rel=3D"noreferrer">http://lists.openembedded.org/m=
 ailman/listinfo/openembedded-core</a><br>
-<div class=3D"HOEnZb"><div class=3D"h5">&gt;<br>
+<div><div class=3D"h5">&gt;<br>
 --<br>
 _______________________________________________<br>
 Openembedded-devel mailing list<br>
@@ -213,6 +204,6 @@ evel@lists.openembedded.org</a><br>
 <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-deve=
 l" target=3D"_blank" rel=3D"noreferrer">http://lists.openembedded.org/mailm=
 an/listinfo/openembedded-devel</a><br>
-</div></div></blockquote></div><div class=3D"gmail_extra"><br></div></div>
+</div></div></blockquote><div class=3D"gmail_extra"><br></div></div>
 
---001a113ced740e00d90530407a56--
+--001a1134a9163ca52605304139ea--
