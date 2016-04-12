@@ -1,52 +1,31 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 761A9E00E7E; Tue, 12 Apr 2016 03:35:07 -0700 (PDT)
+	id 41980E00D72; Tue, 12 Apr 2016 04:43:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.181.39 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 345 seconds by postgrey-1.32 at yocto-www;
-	Tue, 12 Apr 2016 03:35:03 PDT
-Received: from smtp-out11.electric.net (smtp-out11.electric.net
-	[185.38.181.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD68E00C00
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 03:35:03 -0700 (PDT)
-Received: from 1apvZM-0005gn-UM by out11b.electric.net with emc1-ok (Exim 4.85)
-	(envelope-from <Adrian.Dudau@enea.com>) id 1apvZM-0005hL-VF
-	for yocto@yoctoproject.org; Tue, 12 Apr 2016 03:29:16 -0700
-Received: by emcmailer; Tue, 12 Apr 2016 03:29:16 -0700
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out11b.electric.net with smtp (Exim 4.85)
-	(envelope-from <Adrian.Dudau@enea.com>) id 1apvZM-0005gn-UM
-	for yocto@yoctoproject.org; Tue, 12 Apr 2016 03:29:16 -0700
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0294.000; Tue, 12 Apr 2016 12:29:15 +0200
-From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-qt3][PATCH] classes: add qmake_base.bbclass
-Thread-Index: AQHReHWVQTNlZTKCi0KCfM4JnhVYkJ+GOeCA
-Date: Tue, 12 Apr 2016 10:29:15 +0000
-Message-ID: <1460456955.3257.1.camel@sestows129.enea.se>
-References: <1457357400-3594-1-git-send-email-adrian.dudau@enea.com>
-In-Reply-To: <1457357400-3594-1-git-send-email-adrian.dudau@enea.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.141.157]
-MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: Adrian.Dudau@enea.com
-X-PolicySMART: 6030817
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Subject: Re: [meta-qt3][PATCH] classes: add qmake_base.bbclass
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9010E00C8D
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 04:43:31 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Apr 2016 04:43:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,473,1455004800"; d="scan'208";a="953244112"
+Received: from heimdall.fi.intel.com ([10.237.68.144])
+	by orsmga002.jf.intel.com with ESMTP; 12 Apr 2016 04:43:30 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 12 Apr 2016 14:43:39 +0300
+Message-Id: <1460461420-29917-1-git-send-email-jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.8.0.rc3
+Subject: [matchbox-wm][PATCH 1/2] wm: disregard Caps/Num/Scroll-lock when handling keypresses
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,100 +37,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 10:35:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <99DEB43AAB1EB2478CBC00F284A41319@local>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 12 Apr 2016 11:43:34 -0000
 
-T24gbcOlbiwgMjAxNi0wMy0wNyBhdCAxNDozMCArMDEwMCwgQWRyaWFuIER1ZGF1IHdyb3RlOg0K
-PiBUaGUgY2xhc3Mgd2FzIHJlbW92ZWQgZnJvbSBvZSBjbGFzc2VzLCBidXQgc29tZSByZWNpcGVz
-IGxpa2UNCj4gcXQteDExLWZyZWUgc3RpbGwgaW5oZXJpdCBpdC4gS2VlcCB0aGUgY2xhc3Mgd2l0
-aGluIHRoZSBsYXllciB0bw0KPiBhY29tbW1vZGF0ZSB0aGVtLg0KPiANCj4gU2lnbmVkLW9mZi1i
-eTogQWRyaWFuIER1ZGF1IDxhZHJpYW4uZHVkYXVAZW5lYS5jb20+DQo+IC0tLQ0KPiAgY2xhc3Nl
-cy9xbWFrZV9iYXNlLmJiY2xhc3MgfCAxMTkgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgMTE5IGluc2VydGlvbnMoKykNCj4g
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBjbGFzc2VzL3FtYWtlX2Jhc2UuYmJjbGFzcw0KPiANCj4gZGlm
-ZiAtLWdpdCBhL2NsYXNzZXMvcW1ha2VfYmFzZS5iYmNsYXNzIGIvY2xhc3Nlcy9xbWFrZV9iYXNl
-LmJiY2xhc3MNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMC4uZGM5ODcx
-Mw0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2NsYXNzZXMvcW1ha2VfYmFzZS5iYmNsYXNzDQo+
-IEBAIC0wLDAgKzEsMTE5IEBADQo+ICtRTUFLRV9NS1NQRUNfUEFUSCA/PSAiJHtTVEFHSU5HX0RB
-VEFESVJfTkFUSVZFfS9xbWFrZSINCj4gKw0KPiArT0VfUU1BS0VfUExBVEZPUk0gPSAiJHtUQVJH
-RVRfT1N9LW9lLWcrKyINCj4gK1FNQUtFU1BFQyA6PSAiJHtRTUFLRV9NS1NQRUNfUEFUSH0vJHtP
-RV9RTUFLRV9QTEFURk9STX0iDQo+ICsNCj4gKyMgV2Ugb3ZlcnJpZGUgdGhpcyBjb21wbGV0ZWx5
-IHRvIGVsaW1pbmF0ZSB0aGUgLWUgbm9ybWFsbHkgcGFzc2VkIGluDQo+ICtFWFRSQV9PRU1BS0Ug
-PSAiIg0KPiArDQo+ICtleHBvcnQgT0VfUU1BS0VfQ0M9IiR7Q0N9Ig0KPiArZXhwb3J0IE9FX1FN
-QUtFX0NGTEFHUz0iJHtDRkxBR1N9Ig0KPiArZXhwb3J0IE9FX1FNQUtFX0NYWD0iJHtDWFh9Ig0K
-PiArZXhwb3J0IE9FX1FNQUtFX0xERkxBR1M9IiR7TERGTEFHU30iDQo+ICtleHBvcnQgT0VfUU1B
-S0VfQVI9IiR7QVJ9Ig0KPiArZXhwb3J0IE9FX1FNQUtFX1NUUklQPSJlY2hvIg0KPiArZXhwb3J0
-IE9FX1FNQUtFX1JQQVRIPSItV2wsLXJwYXRoLWxpbmssIg0KPiArDQo+ICsjIGRlZmF1bHQgdG8g
-cXRlMiB2aWEgYmIuY29uZiwgaW5oZXJpdCBxdDN4MTEgdG8gY29uZmlndXJlIGZvciBxdDN4MTEN
-Cj4gKw0KPiArb2VfcW1ha2VfbWtzcGVjcyAoKSB7DQo+ICsgICAgbWtkaXIgLXAgbWtzcGVjcy8k
-e09FX1FNQUtFX1BMQVRGT1JNfQ0KPiArICAgIGZvciBmIGluICR7UU1BS0VfTUtTUEVDX1BBVEh9
-LyR7T0VfUU1BS0VfUExBVEZPUk19Lyo7IGRvDQo+ICsgICAgICAgIGlmIFsgLUwgJGYgXTsgdGhl
-bg0KPiArICAgICAgICAgICAgbG5rPWByZWFkbGluayAkZmANCj4gKyAgICAgICAgICAgIGlmIFsg
-LWYgbWtzcGVjcy8ke09FX1FNQUtFX1BMQVRGT1JNfS8kbG5rIF07IHRoZW4NCj4gKyAgICAgICAg
-ICAgICAgICBsbiAtcyAkbG5rIG1rc3BlY3MvJHtPRV9RTUFLRV9QTEFURk9STX0vYGJhc2VuYW1l
-ICRmYA0KPiArICAgICAgICAgICAgZWxzZQ0KPiArICAgICAgICAgICAgICAgIGNwICRmIG1rc3Bl
-Y3MvJHtPRV9RTUFLRV9QTEFURk9STX0vDQo+ICsgICAgICAgICAgICBmaQ0KPiArICAgICAgICBl
-bHNlDQo+ICsgICAgICAgICAgICBjcCAkZiBta3NwZWNzLyR7T0VfUU1BS0VfUExBVEZPUk19Lw0K
-PiArICAgICAgICBmaQ0KPiArICAgIGRvbmUNCj4gK30NCj4gKw0KPiArZG9fZ2VuZXJhdGVfcXRf
-Y29uZmlnX2ZpbGUoKSB7DQo+ICsJZXhwb3J0IFFUX0NPTkZfUEFUSD0ke1dPUktESVJ9L3F0LmNv
-bmYNCj4gKwljYXQgPiAke1dPUktESVJ9L3F0LmNvbmYgPDxFT0YNCj4gK1tQYXRoc10NCj4gK1By
-ZWZpeCA9DQo+ICtCaW5hcmllcyA9ICR7U1RBR0lOR19CSU5ESVJfTkFUSVZFfQ0KPiArSGVhZGVy
-cyA9ICR7U1RBR0lOR19JTkNESVJ9LyR7UVRfRElSX05BTUV9DQo+ICtQbHVnaW5zID0gJHtTVEFH
-SU5HX0xJQkRJUn0vJHtRVF9ESVJfTkFNRX0vcGx1Z2lucy8NCj4gK01rc3BlY3MgPSAke1NUQUdJ
-TkdfREFUQURJUn0vJHtRVF9ESVJfTkFNRX0vbWtzcGVjcy8NCj4gK0VPRg0KPiArfQ0KPiArDQo+
-ICthZGR0YXNrIGdlbmVyYXRlX3F0X2NvbmZpZ19maWxlIGFmdGVyIGRvX3BhdGNoIGJlZm9yZSBk
-b19jb25maWd1cmUNCj4gKw0KPiArcW1ha2VfYmFzZV9kb19jb25maWd1cmUoKSB7DQo+ICsJY2Fz
-ZSAke1FNQUtFU1BFQ30gaW4NCj4gKwkqbGludXgtb2UtZysrfCpsaW51eC11Y2xpYmMtb2UtZysr
-fCpsaW51eC1nbnVlYWJpLW9lLWcrK3wqbGludXgtdWNsaWJjZWFiaS1vZS1nKyt8KmxpbnV4LWdu
-dXNwZS1vZS1nKyt8KmxpbnV4LXVjbGliY3NwZS1vZS1nKyt8KmxpbnV4LWdudW4zMi1vZS1nKysp
-DQo+ICsJCTs7DQo+ICsJKi1vZS1nKyspDQo+ICsJCWRpZSBVbnN1cHBvcnRlZCB0YXJnZXQgJHtU
-QVJHRVRfT1N9IGZvciBvZS1nKysgcW1ha2Ugc3BlYw0KPiArCQk7Ow0KPiArCSopDQo+ICsJCWJi
-bm90ZSBTZWFyY2hpbmcgZm9yIHFtYWtlIHNwZWMgZmlsZQ0KPiArCQlwYXRocz0iJHtRTUFLRV9N
-S1NQRUNfUEFUSH0vcXdzLyR7VEFSR0VUX09TfS0ke1RBUkdFVF9BUkNIfS1nKysiDQo+ICsJCXBh
-dGhzPSIke1FNQUtFX01LU1BFQ19QQVRIfS8ke1RBUkdFVF9PU30tZysrICRwYXRocyINCj4gKw0K
-PiArCQlpZiAoZWNobyAiJHtUQVJHRVRfQVJDSH0ifGdyZXAgLXEgJ2kuODYnKTsgdGhlbg0KPiAr
-CQkJcGF0aHM9IiR7UU1BS0VfTUtTUEVDX1BBVEh9L3F3cy8ke1RBUkdFVF9PU30teDg2LWcrKyAk
-cGF0aHMiDQo+ICsJCWZpDQo+ICsJCWZvciBpIGluICRwYXRoczsgZG8NCj4gKwkJCWlmIHRlc3Qg
-LWUgJGk7IHRoZW4NCj4gKwkJCQlleHBvcnQgUU1BS0VTUEVDPSRpDQo+ICsJCQkJYnJlYWsNCj4g
-KwkJCWZpDQo+ICsJCWRvbmUNCj4gKwkJOzsNCj4gKwllc2FjDQo+ICsNCj4gKwliYm5vdGUgInVz
-aW5nIHFtYWtlIHNwZWMgaW4gJHtRTUFLRVNQRUN9LCB1c2luZyBwcm9maWxlcyAnJHtRTUFLRV9Q
-Uk9GSUxFU30nIg0KPiArDQo+ICsJaWYgWyAteiAiJHtRTUFLRV9QUk9GSUxFU30iIF07IHRoZW4g
-DQo+ICsJCVBST0ZJTEVTPSJgbHMgKi5wcm9gIg0KPiArCWVsc2UNCj4gKwkJUFJPRklMRVM9IiR7
-UU1BS0VfUFJPRklMRVN9Ig0KPiArCWZpDQo+ICsNCj4gKwlpZiBbIC16ICIkUFJPRklMRVMiIF07
-IHRoZW4NCj4gKwkJZGllICJRTUFLRV9QUk9GSUxFUyBub3Qgc2V0IGFuZCBubyBwcm9maWxlcyBm
-b3VuZCBpbiAkUFdEIg0KPiArICAgICAgICBmaQ0KPiArDQo+ICsJaWYgWyAhIC16ICIke0VYVFJB
-X1FNQUtFVkFSU19QT1NUfSIgXTsgdGhlbg0KPiArCQlBRlRFUj0iLWFmdGVyIg0KPiArCQlRTUFL
-RV9WQVJTVUJTVF9QT1NUPSIke0VYVFJBX1FNQUtFVkFSU19QT1NUfSINCj4gKwkJYmJub3RlICJx
-bWFrZSBwb3N0dmFyIHN1YnN0aXR1dGlvbjogJHtFWFRSQV9RTUFLRVZBUlNfUE9TVH0iDQo+ICsJ
-ZmkNCj4gKw0KPiArCWlmIFsgISAteiAiJHtFWFRSQV9RTUFLRVZBUlNfUFJFfSIgXTsgdGhlbg0K
-PiArCQlRTUFLRV9WQVJTVUJTVF9QUkU9IiR7RVhUUkFfUU1BS0VWQVJTX1BSRX0iDQo+ICsJCWJi
-bm90ZSAicW1ha2UgcHJldmFyIHN1YnN0aXR1dGlvbjogJHtFWFRSQV9RTUFLRVZBUlNfUFJFfSIN
-Cj4gKwlmaQ0KPiArDQo+ICsJIyBIYWNrIC5wcm8gZmlsZXMgdG8gdXNlIE9FIHV0aWxpdGllcw0K
-PiArCUxDT05WRVJUX05BTUU9JChiYXNlbmFtZSAke09FX1FNQUtFX0xDT05WRVJUfSkNCj4gKwlM
-UkVMRUFTRV9OQU1FPSQoYmFzZW5hbWUgJHtPRV9RTUFLRV9MUkVMRUFTRX0pDQo+ICsJTFVQREFU
-RV9OQU1FPSQoYmFzZW5hbWUgJHtPRV9RTUFLRV9MVVBEQVRFfSkNCj4gKwlYTUxQQVRURVJOU19O
-QU1FPSQoYmFzZW5hbWUgJHtPRV9RTUFLRV9YTUxQQVRURVJOU30pDQo+ICsJZmluZCAtbmFtZSAn
-Ki5wcm8nIFwNCj4gKwkgICAgIC1leGVjIHNlZCAtaSAtZSAic3xcKD1ccyouKlwpLyRMQ09OVkVS
-VF9OQU1FfFwxL2xjb252ZXJ0fGciIFwNCj4gKwkgICAgICAgICAgICAgICAgICAtZSAic3xcKD1c
-cyouKlwpLyRMUkVMRUFTRV9OQU1FfFwxL2xyZWxlYXNlfGciIFwNCj4gKwkgICAgICAgICAgICAg
-ICAgICAtZSAic3xcKD1ccyouKlwpLyRMVVBEQVRFX05BTUV8XDEvbHVwZGF0ZXxnIiBcDQo+ICsJ
-ICAgICAgICAgICAgICAgICAgLWUgInN8XCg9XHMqLipcKS8kWE1MUEFUVEVSTlNfTkFNRXxcMS94
-bWxwYXR0ZXJuc3xnIiBcDQo+ICsJICAgICAgICAgICAgICAgICAgLWUgInN8XCg9XHMqLipcKS9s
-Y29udmVydHxcMS8kTENPTlZFUlRfTkFNRXxnIiBcDQo+ICsJICAgICAgICAgICAgICAgICAgLWUg
-InN8XCg9XHMqLipcKS9scmVsZWFzZXxcMS8kTFJFTEVBU0VfTkFNRXxnIiBcDQo+ICsJICAgICAg
-ICAgICAgICAgICAgLWUgInN8XCg9XHMqLipcKS9sdXBkYXRlfFwxLyRMVVBEQVRFX05BTUV8ZyIg
-XA0KPiArCSAgICAgICAgICAgICAgICAgIC1lICJzfFwoPVxzKi4qXCkveG1scGF0dGVybnN8XDEv
-JFhNTFBBVFRFUk5TX05BTUV8ZyIgXA0KPiArCSAgICAgICAgICAgICAgICAgICd7fScgJzsnDQo+
-ICsNCj4gKyNiYm5vdGUgIkNhbGxpbmcgJyR7T0VfUU1BS0VfUU1BS0V9IC1tYWtlZmlsZSAtc3Bl
-YyAke1FNQUtFU1BFQ30gLW8gTWFrZWZpbGUgJFFNQUtFX1ZBUlNVQlNUX1BSRSAkQUZURVIgJFBS
-T0ZJTEVTICRRTUFLRV9WQVJTVUJTVF9QT1NUJyINCj4gKwl1bnNldCBRTUFLRVNQRUMgfHwgdHJ1
-ZQ0KPiArCSR7T0VfUU1BS0VfUU1BS0V9IC1tYWtlZmlsZSAtc3BlYyAke1FNQUtFU1BFQ30gLW8g
-TWFrZWZpbGUgJFFNQUtFX1ZBUlNVQlNUX1BSRSAkQUZURVIgJFBST0ZJTEVTICRRTUFLRV9WQVJT
-VUJTVF9QT1NUIHx8IGRpZSAiRXJyb3IgY2FsbGluZyAke09FX1FNQUtFX1FNQUtFfSBvbiAkUFJP
-RklMRVMiDQo+ICt9DQo+ICsNCj4gK0VYUE9SVF9GVU5DVElPTlMgZG9fY29uZmlndXJlDQo+ICsN
-Cj4gK2FkZHRhc2sgY29uZmlndXJlIGFmdGVyIGRvX3VucGFjayBkb19wYXRjaCBiZWZvcmUgZG9f
-Y29tcGlsZQ0KPiAtLSANCj4gMS45LjENCj4gDQoNCnBpbmc/DQo=
+<alt>-Tab and other keybindings should work even when the various
+locks are on.
+
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+---
+ src/wm.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/wm.c b/src/wm.c
+index 2d05ff0..00d88c5 100644
+--- a/src/wm.c
++++ b/src/wm.c
+@@ -1074,6 +1074,7 @@ wm_handle_keypress(Wm *w, XKeyEvent *e)
+ #ifndef NO_KBD
+   MBConfigKbdEntry *entry =  w->config->kb->entrys;
+   Client *p = NULL;
++  int state = e->state;
+ 
+ #ifdef USE_LIBSN
+   Bool found = False;
+@@ -1094,11 +1095,14 @@ wm_handle_keypress(Wm *w, XKeyEvent *e)
+ 	   return;
+ 	 }
+        }
+-   
++
++   /* Don't care about Caps/Num/Scroll lock here */
++   state &= ~w->config->kb->lock_mask;
++
+    while (entry != NULL)
+      {
+        if (XKeycodeToKeysym(w->dpy, e->keycode, entry->index) == entry->key
+-	   && e->state == entry->ModifierMask )
++	   && state == entry->ModifierMask )
+ 	{
+ 	  switch (entry->action) 
+ 	    {
+-- 
+2.8.0.rc3
+
 
