@@ -1,38 +1,53 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FCE2E00DE1; Mon, 11 Apr 2016 22:54:23 -0700 (PDT)
+	id C0C4BE00E03; Tue, 12 Apr 2016 01:55:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+	UNPARSEABLE_RELAY autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mojtaba.aajami[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBBBBE00BFD
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 22:54:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u3C5s9qM005530
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 11 Apr 2016 22:54:09 -0700
-Received: from [128.224.162.227] (128.224.162.227) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 11 Apr 2016 22:54:08 -0700
-Message-ID: <570C8D7E.8040804@windriver.com>
-Date: Tue, 12 Apr 2016 13:54:06 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>, Joe MacDonald <Joe_MacDonald@mentor.com>
-References: <1459729295-79553-1-git-send-email-flihp@twobit.us>
-	<1459729295-79553-3-git-send-email-flihp@twobit.us>
-	<57076B89.20404@windriver.com>
-	<20160411125433.GA4693@mentor.com> <570C71B6.2010808@twobit.us>
-In-Reply-To: <570C71B6.2010808@twobit.us>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 2/3] Integrate selinux-config into refpolicy_common.
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines *  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7C1EE00C41
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 01:55:06 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1apu6C-0003Xb-GJ
+	for yocto@yoctoproject.org; Tue, 12 Apr 2016 10:55:05 +0200
+Received: from noble.yonsei.ac.kr ([noble.yonsei.ac.kr])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 10:55:04 +0200
+Received: from mojtaba.aajami by noble.yonsei.ac.kr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 10:55:04 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: mojtaba aajami <mojtaba.aajami@gmail.com>
+Date: Tue, 12 Apr 2016 08:44:52 +0000 (UTC)
+Message-ID: <loom.20160412T104246-984@post.gmane.org>
+References: <21582822.75.1424326318941.JavaMail.kraghavendra@Raghavendra>
+	<2313626.76.1424326407786.JavaMail.kraghavendra@Raghavendra>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 165.132.221.124 (Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+	Chrome/49.0.2623.112 Safari/537.36)
+Subject: Re: Issue while building the meta-oic layer for my bsp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,252 +59,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 05:54:23 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Tue, 12 Apr 2016 08:55:08 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-On 04/12/2016 11:55 AM, Philip Tricca wrote:
-> Hello,
->
-> On 04/11/2016 05:54 AM, Joe MacDonald wrote:
->>> This causes do_populate_sysroot error if build two or more types of
->>> refpolicy:
->>>
->>> $ bitbake refpolicy-minimum && bitbake refpolicy-mls
->>>
->>> ERROR: refpolicy-mls-git-r0 do_populate_sysroot: The recipe refpolicy-mls is
->>> trying to install files into a shared area when those files already exist.
->>> Those files and their manifest location are:
->>
->> I think this was always the intent with the series Philip submitted last
->> week (for reference, the thread is
->> https://www.mail-archive.com/yocto@yoctoproject.org/msg28530.html).
->> Isn't this (part of) the expected behaviour of the virtual provider
->> mechanism?
->
-> This is the question I think we need to figure out. My understanding
-> (quite possibly wrong) is that the virtual provider stuff would prevent
-> the installation of more than one provider. I hadn't considered the
-> implications for the sysroot.
->
-> Is the ability to install multiple providers in the sysroot expected? I
-> imagine that this problem must have been solved before in another
-> package with virtual providers that install the same file. I'm happy to
-> doing some digging here but if anyone knows of a good example I'd
-> appreciate a pointer.
->
->> We did discuss what it would mean to be trying out multiple
->> policies on a system at the same time and at the time it seemed like the
->> "just works" angle was more important than "buffet style" when it came
->> to providing policy on the image.
->
-> I guess the thing I like the most about setting the policy package up as
-> a virtual package is the ability to select the policy type as a distro
-> config. The virtual provider seemed like a natural fit as it's a pattern
-> that similar packages (kernel etc) use extensively.
->
->> It might be worth considering extending the changes to only do some
->> install steps at, say, do_rootfs but I don't know if that even makes
->> sense, this is really the first I've thought of it.  I think Philip's
->> original changes are good, though, for our maintenance and for clients
->> of meta-selinux.
->
-> There may be a middle ground and I think that would be leaving the
-> configuration file as a separate package. Personally I liked the idea of
-> rolling the config file into the policy package as it was always a bit
-> awkward requiring coordination of some variables across the policy and
-> the config package which made it a bit brittle.
->
-> Wenzong: A few questions: What's your use case for building multiple
-> policy packages? Would you suggest just backing out the removal of the
-> config package or the whole virtual provider thing?
 
-Hi Philip,
 
-The virtual provider is OK, just restore the config package is the 
-simplest ways for fixing such issue I think.
+Raghavendra Kakarla <raghavendra.kakarla@...> writes:
 
-My use cases include:
-a. update refpolicy and build each type to make sure patch/build/install 
-work;
-b. run world build with meta-selinux layer.
+> 
+> Hi,
+> 
+> I need to build meta-oic layer on yocto for my machine which is a mips32 
+processor core.
+> 
+> While i am building i got following errors. Could you please help me for 
+resolve this issue.
+> 
+> Errors are like following:
+> 
+> ERROR: Function failed: do_install (log file is located at 
+/home/testuser/poky/build/tmp/work/mips32r2el-poky-linux/iotivity/0.9.0-
+r0/temp/log.do_install.11175)
+> ERROR: Logfile of failure stored in: 
+/home/testuser/poky/build/tmp/work/mips32r2el-poky-linux/iotivity/0.9.0-
+r0/temp/log.do_install.11175
+> Log data follows:
+> | DEBUG: Executing shell function do_install
+> | install: cannot stat
+> `/home/testuser/poky/build/tmp/work/mips32r2el-poky-linux/iotivity/0.9.0-
+r0/iotivity-0.9.0/out/yocto//release/libcoap.so':
+> No such file or directory
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_install (log file is located at 
+/home/testuser/poky/build/tmp/work/mips32r2el-poky-linux/iotivity/0.9.0-
+r0/temp/log.do_install.11175)
+> ERROR: Task 2 (/home/testuser/poky/meta-oic/recipes-
+core/iotivity/iotivity_0.9.0.bb,
+> do_install) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 657 tasks of which 632 didn't need to be 
+rerun and 1 failed.
+> Waiting for 0 running tasks to finish:
+> 
+> Thanks & Regards,
+> Raghavendra K.
+> 
 
-Thanks
-Wenzong
 
->
-> Thanks,
-> Philip
->
->>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/etc/selinux/sepolgen.conf
->>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
->>>
->>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/etc/selinux/config
->>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
->>>
->>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/sysroot-providers/virtual_refpolicy
->>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
->>> Please verify which recipe should provide the above files.
->>>
->>> Philip,
->>>
->>> Can you consider to withdraw the integration?
->>>
->>> Thanks
->>> Wenzong
->>>
->>> On 04/04/2016 08:21 AM, Philip Tricca wrote:
->>>> With the virutal package there's no need for a separate recipe to build
->>>> the config. This can be generated and included as part of the policy
->>>> package.
->>>>
->>>> Signed-off-by: Philip Tricca <flihp@twobit.us>
->>>> ---
->>>>   .../packagegroups/packagegroup-core-selinux.bb     |  1 -
->>>>   .../packagegroups/packagegroup-selinux-minimal.bb  |  1 -
->>>>   recipes-security/refpolicy/refpolicy_common.inc    | 30 ++++++++++++++--
->>>>   recipes-security/selinux/selinux-config_0.1.bb     | 40 ----------------------
->>>>   4 files changed, 28 insertions(+), 44 deletions(-)
->>>>   delete mode 100644 recipes-security/selinux/selinux-config_0.1.bb
->>>>
->>>> diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
->>>> index 62c5a76..c6d22b7 100644
->>>> --- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
->>>> +++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
->>>> @@ -22,7 +22,6 @@ RDEPENDS_${PN} = " \
->>>>   	packagegroup-selinux-policycoreutils \
->>>>   	setools \
->>>>   	setools-console \
->>>> -	selinux-config \
->>>>   	selinux-autorelabel \
->>>>   	selinux-init \
->>>>   	selinux-labeldev \
->>>> diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->>>> index 87ae686..451ae8b 100644
->>>> --- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->>>> +++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->>>> @@ -21,7 +21,6 @@ RDEPENDS_${PN} = "\
->>>>   	policycoreutils-semodule \
->>>>   	policycoreutils-sestatus \
->>>>   	policycoreutils-setfiles \
->>>> -	selinux-config \
->>>>   	selinux-labeldev \
->>>>   	virtual/refpolicy \
->>>>   "
->>>> diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
->>>> index ba887e4..305675f 100644
->>>> --- a/recipes-security/refpolicy/refpolicy_common.inc
->>>> +++ b/recipes-security/refpolicy/refpolicy_common.inc
->>>> @@ -1,3 +1,5 @@
->>>> +DEFAULT_ENFORCING ??= "enforcing"
->>>> +
->>>>   SECTION = "base"
->>>>   LICENSE = "GPLv2"
->>>>
->>>> @@ -14,7 +16,8 @@ SRC_URI += "file://customizable_types \
->>>>
->>>>   S = "${WORKDIR}/refpolicy"
->>>>
->>>> -FILES_${PN} = " \
->>>> +CONFFILES_${PN} += "${sysconfdir}/selinux/config"
->>>> +FILES_${PN} += " \
->>>>   	${sysconfdir}/selinux/${POLICY_NAME}/ \
->>>>   	${datadir}/selinux/${POLICY_NAME}/*.pp \
->>>>   	${localstatedir}/lib/selinux/${POLICY_NAME}/ \
->>>> @@ -25,7 +28,6 @@ FILES_${PN}-dev =+ " \
->>>>   "
->>>>
->>>>   DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
->>>> -RDEPENDS_${PN} += "selinux-config"
->>>>
->>>>   PACKAGE_ARCH = "${MACHINE_ARCH}"
->>>>
->>>> @@ -137,13 +139,37 @@ install_misc_files () {
->>>>   	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install-headers
->>>>   }
->>>>
->>>> +install_config () {
->>>> +	echo "\
->>>> +# This file controls the state of SELinux on the system.
->>>> +# SELINUX= can take one of these three values:
->>>> +#     enforcing - SELinux security policy is enforced.
->>>> +#     permissive - SELinux prints warnings instead of enforcing.
->>>> +#     disabled - No SELinux policy is loaded.
->>>> +SELINUX=${DEFAULT_ENFORCING}
->>>> +# SELINUXTYPE= can take one of these values:
->>>> +#     standard - Standard Security protection.
->>>> +#     mls - Multi Level Security protection.
->>>> +#     targeted - Targeted processes are protected.
->>>> +#     mcs - Multi Category Security protection.
->>>> +SELINUXTYPE=${POLICY_TYPE}
->>>> +" > ${WORKDIR}/config
->>>> +	install -d ${D}/${sysconfdir}/selinux
->>>> +	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
->>>> +}
->>>> +
->>>>   do_install () {
->>>>   	prepare_policy_store
->>>>   	rebuild_policy
->>>>   	install_misc_files
->>>> +	install_config
->>>>   }
->>>>
->>>>   do_install_append(){
->>>>   	# While building policies on target, Makefile will be searched from SELINUX_DEVEL_PATH
->>>>   	echo "SELINUX_DEVEL_PATH=${datadir}/selinux/${POLICY_NAME}/include" > ${D}${sysconfdir}/selinux/sepolgen.conf
->>>>   }
->>>> +
->>>> +sysroot_stage_all_append () {
->>>> +	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
->>>> +}
->>>> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
->>>> deleted file mode 100644
->>>> index e902e98..0000000
->>>> --- a/recipes-security/selinux/selinux-config_0.1.bb
->>>> +++ /dev/null
->>>> @@ -1,40 +0,0 @@
->>>> -DEFAULT_ENFORCING ??= "enforcing"
->>>> -
->>>> -SUMMARY = "SELinux configuration"
->>>> -DESCRIPTION = "\
->>>> -SELinux configuration files for Yocto. \
->>>> -"
->>>> -
->>>> -SECTION = "base"
->>>> -LICENSE = "MIT"
->>>> -LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->>>> -PR = "r4"
->>>> -
->>>> -S = "${WORKDIR}"
->>>> -
->>>> -CONFFILES_${PN} += "${sysconfdir}/selinux/config"
->>>> -
->>>> -PACKAGE_ARCH = "${MACHINE_ARCH}"
->>>> -
->>>> -do_install () {
->>>> -	echo "\
->>>> -# This file controls the state of SELinux on the system.
->>>> -# SELINUX= can take one of these three values:
->>>> -#     enforcing - SELinux security policy is enforced.
->>>> -#     permissive - SELinux prints warnings instead of enforcing.
->>>> -#     disabled - No SELinux policy is loaded.
->>>> -SELINUX=${DEFAULT_ENFORCING}
->>>> -# SELINUXTYPE= can take one of these values:
->>>> -#     standard - Standard Security protection.
->>>> -#     mls - Multi Level Security protection.
->>>> -#     targeted - Targeted processes are protected.
->>>> -#     mcs - Multi Category Security protection.
->>>> -SELINUXTYPE=${@d.getVar("PREFERRED_PROVIDER_virtual/refpolicy", False)[len("refpolicy-"):]}
->>>> -" > ${WORKDIR}/config
->>>> -	install -d ${D}/${sysconfdir}/selinux
->>>> -	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
->>>> -}
->>>> -
->>>> -sysroot_stage_all_append () {
->>>> -	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
->>>> -}
->>>>
->>
->
->
+Hi 
+
+Have you seen the instruction provided here?
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-oic/about/?h=1.0.1
+
+Regards,
+Mojtaba
+
 
