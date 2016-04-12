@@ -1,70 +1,33 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <dwinn@trellisware.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7D32E006D3; Tue, 12 Apr 2016 08:24:53 -0700 (PDT)
+	id 39EABE00E3C; Tue, 12 Apr 2016 13:24:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.43 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
-	[209.85.215.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A83A9E00522
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 08:24:49 -0700 (PDT)
-Received: by mail-lf0-f43.google.com with SMTP id e190so30437447lfe.0
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 08:24:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=7P3wK01wjViqosdbzSIPrgQmppNkWqA9CKP0hIqj5yc=;
-	b=1HcPb09LFFBcBonuVX9WMg3qCpWuY/vJM5D8d+BtDANrLrZSvQobRziU3bTx2Vbb4p
-	lToRbKQwYi5VgSegDIDMM5vzgpvy93Z/Om7X0W2Aaz825B+HP2SiUClSJg2wNA3Za1T9
-	AQXkv2CIKqZcnmw31/k6WfA4B2Tugflxn9QHrH0bTInMEUkJBE+TXFEtC85fuQLt3VA7
-	4Sou5JOHakmHb4TNYJemaMcSYfZTI1fT0Zap1Bgd1Pl379dzeulKg+XzY0nHiTT97sfb
-	qIeb1Fi347/76ACcrB1ZvDYL64soJeoIcGN3QsvLwySiKAZghyFggjcMF31UrSNl8oVE
-	Wtmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=7P3wK01wjViqosdbzSIPrgQmppNkWqA9CKP0hIqj5yc=;
-	b=iqLkhjC6Y6gXiqgCjDzsrJcyD4Ct+l7aJA9HzomRbH3JeLDrb2JX33AllbuPA8niJF
-	sYnAdNR/DrAp/Nli/NKdTUYJD7gpHLNK7gL/t/0Gm87Q2ScOcefNAlKCzspPpHCNWBWN
-	nHzer1ZE/paos79QX+2VIaCw2k28uzBL/VQv5y7qKFjTT+kOPhVyBRiwIm+qo6KgAk1F
-	BIFAOQIkUsBxK413AMIvJaILdDqQBgV+TtZXxNW4k5wAyeArU0ez9+ezeVMqsImbqSny
-	cwqrYUPh4Qv22rN+LPMDcG5H7OoVV4muinExL/ZgX2l4IWW/N54f2iSuuW8zCeIGwILh
-	5iVA==
-X-Gm-Message-State: AOPr4FUyS2aQ+IFd3n2vh5WgNMn5bflN8/w/TUMGef9nBa552WFdEkrDX4MR0Wz4QFgTwFxY3jBgc/6C44O+PA==
-X-Received: by 10.25.37.135 with SMTP id l129mr1788348lfl.56.1460474688507;
-	Tue, 12 Apr 2016 08:24:48 -0700 (PDT)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0007]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Apr 2016 13:24:49 PDT
+Received: from mail.trellisware.com (mail.trellisware.com [67.52.137.189])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 847EAE00C62
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 13:24:49 -0700 (PDT)
+Received: from TWHQ-MAIL2.trellisware.com ([fe80::2144:f72b:6748:e86a]) by
+	TWHQ-MAIL1.trellisware.com ([fe80::1df7:bb6b:f7e8:b34c%15]) with mapi
+	id 14.03.0266.001; Tue, 12 Apr 2016 13:23:44 -0700
+From: David Winn <dwinn@trellisware.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issues toaster and devtool together
+Thread-Index: AdGU+TW7BcoJ5h/DTEiOHYr0yFgAfA==
+Date: Tue, 12 Apr 2016 20:23:43 +0000
+Message-ID: <D85DF636754686499AE75C7EA009AA8E839861F7@TWHQ-MAIL2.trellisware.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.3.100]
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.8.68 with HTTP; Tue, 12 Apr 2016 08:24:28 -0700 (PDT)
-In-Reply-To: <CAHQecY4PBZ-PHi6SefradTq5o2PXKo0wbo-jid80hMc0bfkYgA@mail.gmail.com>
-References: <56DEF97F.9070306@balister.org> <1458767514382.89578@seescan.com>
-	<56F30D13.6030909@balister.org>
-	<2408177.Nm4BLto1dd@rjs-zotac.streifs.net>
-	<20160412013543.GV16135@denix.org> <570C52DB.6060901@balister.org>
-	<CAHQecY4PBZ-PHi6SefradTq5o2PXKo0wbo-jid80hMc0bfkYgA@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Tue, 12 Apr 2016 08:24:28 -0700
-X-Google-Sender-Auth: 55_6rAyW5V4eQnVPNa1LabfPd0U
-Message-ID: <CA+YB3rbjhPsvzN_b70qzXXop61cdzqKbi9H2pKBeo5yRoHhL7Q@mail.gmail.com>
-To: Tom King <ka6sox@gmail.com>
-Cc: "openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [OE-core] [oe] OEDAM, April 8 in San Diego after ELC
+Subject: Issues toaster and devtool together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,62 +39,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 15:24:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 12 Apr 2016 20:24:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Coming soon to a wiki page near you
-
-
-On Mon, Apr 11, 2016 at 6:48 PM, Tom King <ka6sox@gmail.com> wrote:
-> do we have meeting minutes posted someplace?
->
-> thanks
->
-> tom
->
-> On Mon, Apr 11, 2016 at 6:43 PM, Philip Balister <philip@balister.org>
-> wrote:
->>
->> On 04/11/2016 09:35 PM, Denys Dmytriyenko wrote:
->> > On Mon, Apr 11, 2016 at 03:35:21PM -0700, Rudolf J Streif wrote:
->> >> Hello Everyone:
->> >>
->> >> If you attended OEDAM last Friday in San Diego, I very much hope that
->> >> you enjoyed being here.
->> >>
->> >> The Catamaran Hotel, where we held the meeting, would very much
->> >> appreciate your feedback:
->> >>
->> >> www.catamaranresort.com/trip
->> >>
->> >> I hope you all had a safe trip back home,
->> >
->> > And huge thanks to Rudi and Jefro for their help in organizing the
->> > event!
->> >
->>
->> And an even bigger thanks to everyone that came to the meeting. You are
->> the people that make OpenEmbedded great!
->>
->> Philip
->> --
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
->
->
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
-
-
-
--- 
-Jeff Osier-Mixon
-Open Source Community Architect, Intel Corporation
+Hello,=0A=
+I was recently part of the Yocto Dev Day event, and learned a lot of good t=
+ools for working with OE. I then got home and wanted to fold many of them i=
+nto our development process. Unfortunately I've hit a problem; toaster and =
+devtool don't seem to run in the same working copy.=0A=
+=0A=
+Here's what I'm doing:=0A=
+> git clone ...poky poky=0A=
+> cd poky=0A=
+> git checkout jethro=0A=
+> source oe-init-build-env=0A=
+> source toaster start=0A=
+> devtool modify -x which scratch/which=0A=
+ERROR: Only one copy of bitbake should be run against a build directory=0A=
+=0A=
+My intent was to use devtool to do my development and then use toaster to b=
+rowse what happened in the working copy. Is this working for anyone else? A=
+ny tips to fix the error above?=0A=
+=0A=
+Thanks,=0A=
+David=
 
