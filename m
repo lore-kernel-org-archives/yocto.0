@@ -1,6 +1,6 @@
-Return-Path: <ka6sox@gmail.com>
+Return-Path: <challinan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B46CEE00E42; Mon, 11 Apr 2016 18:48:29 -0700 (PDT)
+	id 592E4E00E44; Mon, 11 Apr 2016 18:52:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ka6sox[at]gmail.com)
+	mail provider *      (challinan[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
+	*      [209.85.214.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,52 +20,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82EA1E00970
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 18:48:26 -0700 (PDT)
-Received: by mail-oi0-f54.google.com with SMTP id y204so5114065oie.3
-	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 18:48:26 -0700 (PDT)
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C769E00970
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 18:52:55 -0700 (PDT)
+Received: by mail-ob0-f177.google.com with SMTP id tz8so2548642obc.0
+	for <yocto@yoctoproject.org>; Mon, 11 Apr 2016 18:52:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=LlEFUYnSyczJYjtbRrPaf7N7hzaC4oXS+JU0y+auFEQ=;
-	b=ayvl3Q7ZhfBdWcqLZgmTTNkLSw0liVKNlfOBNX0uVuGPi2brLJMoB5L9Y7msN/cv0I
-	HrA8fHfSllKfBWuc1dHo/baNPGdcSWtTFcILx63RtpZyQIiEWAPwuUgKz0J6H9KT5ELs
-	Q/+LSCxudmg22nf85pJfHWb77DAlzYZoAfQ0Yc+FhLfnr+QTA8k8qpZ+NoavYiyfahuh
-	1+TXtr0hhnVuk0m+lyZMoJWAAo/rIE23eh9SGfi5DI8BDHg198AZEdpJaxche3Qtrd+/
-	Z6ILZDQ/GyxHzx0N1Y7aceBUlNkuW36avJ9BRQUX0SJx8T/r58vZ8wn2xM9JVzuhHxu4
-	HqIA==
+	:cc; bh=gwUOH5b7N5kCefgXDcvN64CxnKBxb4VvRDWmDwaN5bU=;
+	b=LKHambtgA1JIkAgwSndeOqIfSQGo7DUeBlXTk9PXmiyVBs/4qNInVvCwhCvzGTcYPC
+	W0UP/CrnNKjyiU3M7xTxiZLTHAA6on8F6jKDIXm5txtnp4u4clDdGK6pcRwxH0F3L/39
+	71XyEXIBjD+iyTsmjhVp0u3UYeSY+b8H5m6p2OwoTTeyYUbF63MHxjwI+6dzmK6EPGjI
+	hXOzptp73ztebEWkmT4cpV3oIaC0YvX64J8i5h5KDpwvY1el6XflRXwKWvTDTx/nyHl4
+	RlETb/ftykQCKBTWRl0dZrgTdAHI+vsbbIjaMmJaLq02KSiRq+q4YAo1ZA2p1MuRmKLh
+	n6yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc;
-	bh=LlEFUYnSyczJYjtbRrPaf7N7hzaC4oXS+JU0y+auFEQ=;
-	b=OFqGg35C1mk9epKHbTu7ZjfK/XUtewETPl0YHS0TXIXZ+XFlgZBnblWxLNeVIgtLmq
-	cOkerMF/ynQRENwl3h3+6i2SZUpFAlX2d93FeVTW7RaK+dmWrz7Uc01CFkOox+xR2J2b
-	MyaidYi2FnxRr8fRR/4YEr3N3DYtvAtM2wNVYJfeJbUipmpxlLJJlbIdsGGMCobwvWng
-	c5lzGLVUM6if+pU5Nl82XrQGXkLPR/sX+jhYyZ+k5gNH0t4dlTcxQi4d3C+h3pVrPN7p
-	lInJU68AzxzrWAVBB5a6hfYo58xlXlSqY9i2h+Lim2qhb5aKxfptSuUmjEvPZTuJlKya
-	gaNg==
-X-Gm-Message-State: AOPr4FWfqzv5HyYyof4OMn1AeHZwckQeqGY4uJpJVTuS0aEIpsmLT/ic9QmFMTjpJbvsQ7ZIbRarasJSOO9Oow==
+	bh=gwUOH5b7N5kCefgXDcvN64CxnKBxb4VvRDWmDwaN5bU=;
+	b=cbACEQoLL4r8uk1w20MWxiKiWUPbuXT7mE7+9x3p7AOabGE9Ar9KPCIa6xNTQ4fcJM
+	JG3uVdeb4IQ2pAB2oEtKfnvsLbqcKdAtViCBzhZLOdresoG5pvU2meTp+19dQ3aphi9U
+	2GCDZyo+oZJSB8O8ueK2uMZctzmfzuYyBod7utYGUdiC07VQARLFS1/yZhw18HujG2Ya
+	lgvLcyE7t8OR4MzJq6dZGKABC0EKYTuyaHandbHzZCubpKusTetW85ddpcrrwwcgOZyO
+	TbVg1ZFgGFbBVGxGdHvhe1hrhxIwq60CFXLTPUzrLfLSeeevOY96GcaCgS5nv6flo2gg
+	E9Zg==
+X-Gm-Message-State: AOPr4FWAkREkfFwRg3d8qQaOF6J129h+3ke84OU+9Lb/pRR8uJ/q21aBop2sFH8GyaY1XnvkWcJUUr3VNTygCA==
 MIME-Version: 1.0
-X-Received: by 10.202.168.195 with SMTP id r186mr262632oie.40.1460425705613;
-	Mon, 11 Apr 2016 18:48:25 -0700 (PDT)
-Received: by 10.202.231.16 with HTTP; Mon, 11 Apr 2016 18:48:25 -0700 (PDT)
-In-Reply-To: <570C52DB.6060901@balister.org>
-References: <56DEF97F.9070306@balister.org> <1458767514382.89578@seescan.com>
-	<56F30D13.6030909@balister.org>
-	<2408177.Nm4BLto1dd@rjs-zotac.streifs.net>
-	<20160412013543.GV16135@denix.org> <570C52DB.6060901@balister.org>
-Date: Mon, 11 Apr 2016 18:48:25 -0700
-Message-ID: <CAHQecY4PBZ-PHi6SefradTq5o2PXKo0wbo-jid80hMc0bfkYgA@mail.gmail.com>
-From: Tom King <ka6sox@gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	openembedded-devel@lists.openembedded.org,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [oe] OEDAM, April 8 in San Diego after ELC
+X-Received: by 10.182.105.136 with SMTP id gm8mr243975obb.31.1460425975194;
+	Mon, 11 Apr 2016 18:52:55 -0700 (PDT)
+Received: by 10.202.71.199 with HTTP; Mon, 11 Apr 2016 18:52:55 -0700 (PDT)
+In-Reply-To: <CALRMKQodeu99iu=6Sg1xMAkK3cchbTt0JEGBTy-4TwALttx-XQ@mail.gmail.com>
+References: <CALRMKQqW=aUg-uwNqyBEvX2RdB4oh+_j-t_KBpKp1a2cCgskjQ@mail.gmail.com>
+	<CAJ86T=WaPSiWoy0zNiaV8GnWd_7zJ1L2-qJNFU=MUbgidDy31Q@mail.gmail.com>
+	<CALRMKQodeu99iu=6Sg1xMAkK3cchbTt0JEGBTy-4TwALttx-XQ@mail.gmail.com>
+Date: Mon, 11 Apr 2016 21:52:55 -0400
+Message-ID: <CAME0jBTj6rHSAxP_yBEGHrmG8R1vAsMbt6Xj9PVm+qBRWbUB5Q@mail.gmail.com>
+From: Chris Hallinan <challinan@gmail.com>
+To: Ronald Oakes <ronaldo@brc2.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: A lot of, seemingly, hung tasks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,92 +72,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Apr 2016 01:48:29 -0000
-Content-Type: multipart/alternative; boundary=001a113ce2c46774d205303fdb3d
+X-List-Received-Date: Tue, 12 Apr 2016 01:52:57 -0000
+Content-Type: multipart/alternative; boundary=089e0129526478ea3305303feb3b
 
---001a113ce2c46774d205303fdb3d
+--089e0129526478ea3305303feb3b
 Content-Type: text/plain; charset=UTF-8
 
-do we have meeting minutes posted someplace?
+I have very occasionally hit hung tasks, but I was usually able to identify
+the exact task which was hanging, it was never "many".  Note that some
+tasks which may appear "hung" may be waiting for a dependency to complete.
+You could try some brute force debugging...set these in local.conf:
 
-thanks
+BB_NUMBER_THREADS = "1"
+PARALLEL_MAKE = "-j1"
 
-tom
+Then try building again, and yes it will take a long time.
 
-On Mon, Apr 11, 2016 at 6:43 PM, Philip Balister <philip@balister.org>
-wrote:
+if something is actually hanging, it would be useful to know what task, not
+only the bitbake "task" but the actual process as reported by ps.  A
+bitbake "task" can spawn many processes as it works to complete it's job.
 
-> On 04/11/2016 09:35 PM, Denys Dmytriyenko wrote:
-> > On Mon, Apr 11, 2016 at 03:35:21PM -0700, Rudolf J Streif wrote:
-> >> Hello Everyone:
-> >>
-> >> If you attended OEDAM last Friday in San Diego, I very much hope that
-> you enjoyed being here.
-> >>
-> >> The Catamaran Hotel, where we held the meeting, would very much
-> appreciate your feedback:
-> >>
-> >> www.catamaranresort.com/trip
-> >>
-> >> I hope you all had a safe trip back home,
-> >
-> > And huge thanks to Rudi and Jefro for their help in organizing the event!
-> >
+In the past, once I found the hanging process, strace usually helped me
+discover why.
+
+You mention a "low-end" 2-core machine...RAM is everything.  If you're
+running Linux out of memory, you get what you deserve <grin>
+
+Remember, poky-tiny refers to the resulting distribution you are building,
+not the machine you want to build it on ;)
+
+-Chris
+
+
+
+On Mon, Apr 11, 2016 at 9:38 PM, Ronald Oakes <ronaldo@brc2.com> wrote:
+
+> It looks like it is hanging fairly consistently during the
+> gcc-cross-initial-x86_64-5.2.0-r0 do_compile or do_install steps.
+> I've tried stopping, cleaning, and just building
+> gcc-cross-initial-x86_64, but it still hangs.
 >
-> And an even bigger thanks to everyone that came to the meeting. You are
-> the people that make OpenEmbedded great!
+> I'm going to try a 32 bit build just to see if I can get past this.
 >
-> Philip
+> Ron Oakes
+>
+> On Mon, Apr 11, 2016 at 12:35 PM, Andre McCurdy <armccurdy@gmail.com>
+> wrote:
+> > On Mon, Apr 11, 2016 at 11:22 AM, Ronald Oakes <ronaldo@brc2.com> wrote:
+> >> Over the weekend, I upgraded my connected development platform to
+> >> Debian 8.4.0 from Centos 7.
+> >>
+> >> However, today I have yet to make a successful poky-tiny build for
+> >> either coreI7-64 or qemux86-64.  In each case, I've aborted the build
+> >> after one or more tasks has stopped doing anything for 30 minutes or
+> >> more.
+> >>
+> >> I define "stopped doing anything" as having not touched a file in 30
+> >> minutes, while the CPU utilization (on this 2 core, low end, ASUS
+> >> VivoPC) drops very low.
+> >>
+> >> I've tried re-running the offending recipes and tasks individually,
+> >> and cleaning and restarting from scratch, but I keep ending up with
+> >> something hung.
+> >>
+> >> Any ideas what is up, and, more importantly, what I should do to
+> resolve it?
+> >
+> > Have you used bitbake with the "--debug" option or run "ps axf" or
+> > similar to see which tasks or commands are hanging?
+> >
+> >> Ron Oakes
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
 > --
 > _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---001a113ce2c46774d205303fdb3d
+
+
+-- 
+Life is like Linux - it never stands still.
+
+--089e0129526478ea3305303feb3b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">do we have meeting minutes posted someplace?<div><br></div=
-><div>thanks</div><div><br></div><div>tom</div></div><div class=3D"gmail_ex=
-tra"><br><div class=3D"gmail_quote">On Mon, Apr 11, 2016 at 6:43 PM, Philip=
- Balister <span dir=3D"ltr">&lt;<a href=3D"mailto:philip@balister.org" targ=
-et=3D"_blank">philip@balister.org</a>&gt;</span> wrote:<br><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><span class=3D"">On 04/11/2016 09:35 PM, Denys Dmytriyenko w=
-rote:<br>
-&gt; On Mon, Apr 11, 2016 at 03:35:21PM -0700, Rudolf J Streif wrote:<br>
-&gt;&gt; Hello Everyone:<br>
-&gt;&gt;<br>
-&gt;&gt; If you attended OEDAM last Friday in San Diego, I very much hope t=
-hat you enjoyed being here.<br>
-&gt;&gt;<br>
-&gt;&gt; The Catamaran Hotel, where we held the meeting, would very much ap=
-preciate your feedback:<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"http://www.catamaranresort.com/trip" rel=3D"noreferrer"=
- target=3D"_blank">www.catamaranresort.com/trip</a><br>
-&gt;&gt;<br>
-&gt;&gt; I hope you all had a safe trip back home,<br>
-&gt;<br>
-&gt; And huge thanks to Rudi and Jefro for their help in organizing the eve=
-nt!<br>
-&gt;<br>
+<div dir=3D"ltr">I have very occasionally hit hung tasks, but I was usually=
+ able to identify the exact task which was hanging, it was never &quot;many=
+&quot;.=C2=A0 Note that some tasks which may appear &quot;hung&quot; may be=
+ waiting for a dependency to complete.=C2=A0 You could try some brute force=
+ debugging...set these in local.conf:<div><br><div>BB_NUMBER_THREADS =3D &q=
+uot;1&quot;</div><div>PARALLEL_MAKE =3D &quot;-j1&quot;</div><div><br></div=
+><div>Then try building again, and yes it will take a long time.</div><div>=
+<br></div><div>if something is actually hanging, it would be useful to know=
+ what task, not only the bitbake &quot;task&quot; but the actual process as=
+ reported by ps.=C2=A0 A bitbake &quot;task&quot; can spawn many processes =
+as it works to complete it&#39;s job.</div><div><br></div><div>In the past,=
+ once I found the hanging process, strace usually helped me discover why.</=
+div><div><br></div><div>You mention a &quot;low-end&quot; 2-core machine...=
+RAM is everything.=C2=A0 If you&#39;re running Linux out of memory, you get=
+ what you deserve &lt;grin&gt;</div><div><br></div><div>Remember, poky-tiny=
+ refers to the resulting distribution you are building, not the machine you=
+ want to build it on ;)</div><div><br></div><div>-Chris</div><div><br></div=
+><div><br></div></div></div><div class=3D"gmail_extra"><br><div class=3D"gm=
+ail_quote">On Mon, Apr 11, 2016 at 9:38 PM, Ronald Oakes <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:ronaldo@brc2.com" target=3D"_blank">ronaldo@brc2.com<=
+/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">It looks like it is=
+ hanging fairly consistently during the<br>
+gcc-cross-initial-x86_64-5.2.0-r0 do_compile or do_install steps.<br>
+I&#39;ve tried stopping, cleaning, and just building<br>
+gcc-cross-initial-x86_64, but it still hangs.<br>
 <br>
-</span>And an even bigger thanks to everyone that came to the meeting. You =
-are<br>
-the people that make OpenEmbedded great!<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Philip<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5">--<br>
+I&#39;m going to try a 32 bit build just to see if I can get past this.<br>
+<br>
+Ron Oakes<br>
+<br>
+On Mon, Apr 11, 2016 at 12:35 PM, Andre McCurdy &lt;<a href=3D"mailto:armcc=
+urdy@gmail.com">armccurdy@gmail.com</a>&gt; wrote:<br>
+&gt; On Mon, Apr 11, 2016 at 11:22 AM, Ronald Oakes &lt;<a href=3D"mailto:r=
+onaldo@brc2.com">ronaldo@brc2.com</a>&gt; wrote:<br>
+&gt;&gt; Over the weekend, I upgraded my connected development platform to<=
+br>
+&gt;&gt; Debian 8.4.0 from Centos 7.<br>
+&gt;&gt;<br>
+&gt;&gt; However, today I have yet to make a successful poky-tiny build for=
+<br>
+&gt;&gt; either coreI7-64 or qemux86-64.=C2=A0 In each case, I&#39;ve abort=
+ed the build<br>
+&gt;&gt; after one or more tasks has stopped doing anything for 30 minutes =
+or<br>
+&gt;&gt; more.<br>
+&gt;&gt;<br>
+&gt;&gt; I define &quot;stopped doing anything&quot; as having not touched =
+a file in 30<br>
+&gt;&gt; minutes, while the CPU utilization (on this 2 core, low end, ASUS<=
+br>
+&gt;&gt; VivoPC) drops very low.<br>
+&gt;&gt;<br>
+&gt;&gt; I&#39;ve tried re-running the offending recipes and tasks individu=
+ally,<br>
+&gt;&gt; and cleaning and restarting from scratch, but I keep ending up wit=
+h<br>
+&gt;&gt; something hung.<br>
+&gt;&gt;<br>
+&gt;&gt; Any ideas what is up, and, more importantly, what I should do to r=
+esolve it?<br>
+&gt;<br>
+&gt; Have you used bitbake with the &quot;--debug&quot; option or run &quot=
+;ps axf&quot; or<br>
+&gt; similar to see which tasks or commands are hanging?<br>
+&gt;<br>
+&gt;&gt; Ron Oakes<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">&gt;&gt; --<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto<=
+/a><br>
+--<br>
 _______________________________________________<br>
-Openembedded-core mailing list<br>
-<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
-re@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
-" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/mailma=
-n/listinfo/openembedded-core</a><br>
-</div></div></blockquote></div><br></div>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div class=3D"gmail_signature">Life is like Linux - it never stands still=
+.<br><br></div>
+</div>
 
---001a113ce2c46774d205303fdb3d--
+--089e0129526478ea3305303feb3b--
