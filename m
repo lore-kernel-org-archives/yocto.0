@@ -1,65 +1,64 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 575FDE00D54; Tue, 12 Apr 2016 19:51:57 -0700 (PDT)
+	id CC15DE00DC3; Tue, 12 Apr 2016 20:07:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C17E00B9E
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 19:51:51 -0700 (PDT)
-Received: by mail-wm0-f53.google.com with SMTP id u206so51925674wme.1
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 19:51:51 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D21AE00B9E
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:07:19 -0700 (PDT)
+Received: by mail-wm0-f47.google.com with SMTP id n3so52418403wmn.0
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:07:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=AqxPPnpMLP86qymyEirGzp8/WI3iF5K1EQ3RD0Bhhx4=;
-	b=Lz2N9obx6Y6p2oauJG5vtRqsyJD149r4n/3z9q0nxQoSBhuHiQzz7K/hfFBn7nLAj9
-	XB0fj10gcJZg/QUZKO2pX/uuzIEOlE3QqWHBPzvGXgiEmQf147oRUUqbp9PI19LggmNs
-	y6rMmvsXWnw5y9ooD30+zlaWIpb5hGicOCSvsNr0z3NPkygJOkdUX0RkCscit1+3+WXl
-	DPOktND3aXjn/6XuiiZ5tDBmYXg7dYl41tJIMkgFwYRvZoLPQPfMDYYmPK8JO2lx1ZBi
-	yGr8sTpDZkPrF2nzfYZZJ5Rj02l1agg1AzdmPrwR1QY5Wn4THUzf2uwmq8Jzh84Zk15H
-	2oOw==
+	bh=FOjfuioN6DRsc/Hno89q/A56YdVzr5q09ZCHeSj2+qA=;
+	b=Ldo4vW1BaIooEPcY0NgWPKzopodPl6nx5NuEN2rnnL5OCvbZpdmHTR7uUbMzRvD8aQ
+	ZiJNE4w9juaH2AGGNSHYkF8jZ1j0i4YTD0bbKxOk3EHmT0bG3/W9ZBMBTpFOyYiCt4N1
+	0J1JKKc8MPfumCib8ywlHXussLbhtKt0XmYjhEtPi/F5cQRxzvNrGxTgiVlQGouYNlXX
+	nT2H8LpgUtHMizdFewVjUrY4RNEJEmhiq0BaWMaIXKtWAr6HAw7LC21roQIC4bfmypUU
+	E98sD/VJCUhL7wpeq+lDIXUsFCVCmLv0MQqCDuAK2ieHL7cxnSnnBesrSsarRr5N8P/y
+	Uv2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=AqxPPnpMLP86qymyEirGzp8/WI3iF5K1EQ3RD0Bhhx4=;
-	b=j3HzIqO5G42IevIbPNdSpXdE7LGV4+v2eJbvkvdGVC6qYYc9j95LDD7g+VJ6rg7Lp8
-	N+T6r+cAfoFaHAmwTebNDykmn08MvM2K1IA9viwSKxUL4ZSCvxFzFiKbS31dSERlvdQ3
-	HNFPup2mapKbK7EnojNvACRc7yd9WLbOsFZM///tnXerVN/JkkNd/JqffW8dSO0zW7XK
-	j8W9CCb0DIB/wLLzkPnv/PGAaRzj58PHBfPfrn1IMs8S6jeTZsW0sxuxJ2g36ekIduZP
-	tpwUmVoM9Y0k7zWdmObWR6kTAIbr+9dmK0I6OzTVe/scrANo+1Wim+KcZa5rpRWg0PQT
-	uGOg==
-X-Gm-Message-State: AOPr4FXBJ4IO2fSK+SutfLZjPmWHh4qabYf82P1dmvfuCE/184bdO0G9bIUgxr6427wseQ==
-X-Received: by 10.194.192.36 with SMTP id hd4mr6639351wjc.85.1460515910253;
-	Tue, 12 Apr 2016 19:51:50 -0700 (PDT)
+	bh=FOjfuioN6DRsc/Hno89q/A56YdVzr5q09ZCHeSj2+qA=;
+	b=XMI3/aSrwR/sL4tbU/nJRymZLEIdHI5fDztEZxwcbt3oKRzMW60UqFkfYn2OE/dz/y
+	mNIW/jJJAY6g54+Jy9Ze7xeNGBAy0wWoO8u9sRJm7xoorhT8HAh1lGwP00wVBd6627+3
+	uz9GJ6DfRQmf2RWFPem4Bc4ssmKa1iEt/0Njn5qzBYtIa5IXWvU63Jx6dOQBPshImif1
+	OSNrTOKWQWKkP/H08kvjAbqGlADh2jA8z4+qqchxkATUapnuafEe4WohaCfSr/oY2Hlv
+	LGEqwoHYHh1JwkWrumOqZqSKdjnUNHfnskm+bv1oP67D922ITuwMqOgpq5y/mFoamz0d
+	5YMQ==
+X-Gm-Message-State: AOPr4FUXrkRrqzNrXX/dw2oYn4tWCMl7qi0cCPQtCb+0riqb4TW4BuUf2yq0CoJUvd8ZQg==
+X-Received: by 10.28.92.69 with SMTP id q66mr7915434wmb.102.1460516838595;
+	Tue, 12 Apr 2016 20:07:18 -0700 (PDT)
 Received: from resin (dslb-088-076-238-192.088.076.pools.vodafone-ip.de.
 	[88.76.238.192]) by smtp.gmail.com with ESMTPSA id
-	k125sm25481569wmb.14.2016.04.12.19.51.48
+	j71sm25629626wmj.21.2016.04.12.20.07.17
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 12 Apr 2016 19:51:48 -0700 (PDT)
-Date: Wed, 13 Apr 2016 04:51:47 +0200
+	Tue, 12 Apr 2016 20:07:18 -0700 (PDT)
+Date: Wed, 13 Apr 2016 05:07:16 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <20160413025147.GE22139@resin>
-References: <1460411685-12573-1-git-send-email-twoerner@gmail.com>
-	<1460411685-12573-2-git-send-email-twoerner@gmail.com>
+To: toolmmy <toolmmy@googlemail.com>
+Message-ID: <20160413030716.GF22139@resin>
+References: <1460198883-15445-1-git-send-email-toolmmy@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1460411685-12573-2-git-send-email-twoerner@gmail.com>
+In-Reply-To: <1460198883-15445-1-git-send-email-toolmmy@gmail.com>
 User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH v2 2/2] raspberrypi3: set core frequency
+Cc: yocto@yoctoproject.org, toolmmy <toolmmy@gmail.com>
+Subject: Re: [meta-raspberrypi][PATCH] linux-firmware: Rework of brcmfmac43430 firmware handling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,64 +70,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 02:51:57 -0000
-X-Groupsio-MsgNum: 29395
+X-List-Received-Date: Wed, 13 Apr 2016 03:07:24 -0000
+X-Groupsio-MsgNum: 29396
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n+lFg1Zro7sl44OB"
+	protocol="application/pgp-signature"; boundary="L2Brqb15TUChFOBK"
 Content-Disposition: inline
 
---n+lFg1Zro7sl44OB
+--L2Brqb15TUChFOBK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Apr 11, 2016 at 05:54:45PM -0400, Trevor Woerner wrote:
-> Pegging the core frequency at 250 avoids any fluctuations of the baud rate on
-> the console.
+On Sat, Apr 09, 2016 at 12:48:03PM +0200, toolmmy wrote:
+> The current version of the recipe produces the following warnings while createing an image:
 >
-> See:
-> 	https://www.raspberrypi.org/forums/viewtopic.php?f=107&t=138223
+> WARNING: The license listed Firmware-broadcom_brcm80211 was not in the licenses collected for recipe linux-firmwa
+> re
+> WARNING: [log_check] td-core-image: found a warning message in the logfile (keyword 'WARNING:'):
+> [log_check] WARNING: The license listed Firmware-broadcom_brcm80211 was not in the licenses collected for recipe
+> linux-firmware
 >
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> This commit contains a rework of the brcm80211 firmware handling and deploys the firmware and the LICENSE files that fixes the warning messages.
+>
+> Signed-off-by: Tom Doehring <toolmmy@gmail.com>
 > ---
->  conf/machine/raspberrypi3.conf | 1 +
->  1 file changed, 1 insertion(+)
+>  .../linux-firmware/linux-firmware_git.bbappend       | 20 ++++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
 >
-> diff --git a/conf/machine/raspberrypi3.conf b/conf/machine/raspberrypi3.conf
-> index cb6056e..81301c3 100644
-> --- a/conf/machine/raspberrypi3.conf
-> +++ b/conf/machine/raspberrypi3.conf
-> @@ -9,3 +9,4 @@ MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-brcm43430"
->  include conf/machine/raspberrypi2.conf
+> diff --git a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> index f0c9fe2..20ef05f 100644
+> --- a/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> +++ b/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> @@ -1,6 +1,10 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 >
->  SERIAL_CONSOLE = "115200 ttyS0"
-> +CORE_FREQ = "250"
+> -LIC_FILES_CHKSUM_append = "file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
+> +LICENSE_append = " & Firmware-broadcom_brcm80211"
+> +
+> +LIC_FILES_CHKSUM_append = " file://${WORKDIR}/LICENSE.broadcom_brcm80211;md5=8cba1397cda6386db37210439a0da3eb"
+> +
+> +NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENSE.broadcom_brcm80211"
+>
+>  SRC_URI_append = " \
+>      file://brcmfmac43430-sdio.bin \
+> @@ -9,21 +13,21 @@ SRC_URI_append = " \
+>      "
+>
+>  do_install_append() {
+> -    cp ${WORKDIR}/brcmfmac43430-sdio.* ${D}/lib/firmware/brcm
+> +    cp ${WORKDIR}/brcmfmac43430-sdio.* ${D}/lib/firmware/brcm/
+> +    cp ${WORKDIR}/LICENSE.broadcom_brcm80211 ${D}/lib/firmware/
+>  }
+>
+> -PACKAGES =+ "${PN}-brcm43430"
+> +PACKAGES =+ "${PN}-brcm43430 ${PN}-brcm43430-license"
+> +
+> +LICENSE_${PN}-brcm43430 = "Firmware-broadcom_brcm80211"
+> +FILES_${PN}-brcm43430-license = "/lib/firmware/LICENSE.broadcom_brcm80211"
+>  FILES_${PN}-brcm43430 = " \
+>      /lib/firmware/brcm/brcmfmac43430-sdio.bin \
+>      /lib/firmware/brcm/brcmfmac43430-sdio.txt \
+>      "
+>
+> -LICENSE_append = " & Firmware-broadcom_brcm80211"
+> -NO_GENERIC_LICENSE[Firmware-broadcom_brcm80211] = "LICENCE.broadcom_brcm80211"
+> -LICENSE_${PN}-brcm43430 = "LICENSE.broadcom_brcm80211"
+> +RDEPENDS_${PN}-brcm43430 += "${PN}-brcm43430-license"
+>
+>  ALTERNATIVE_LINK_NAME[brcmfmac-sdio.bin] = "/lib/firmware/brcm/brcmfmac-sdio.bin"
+>  ALTERNATIVE_TARGET_linux-firmware-brcm43430[brcmfmac-sdio.bin] = "/lib/firmware/brcm/brcmfmac43430-sdio.bin"
+>  ALTERNATIVE_linux-firmware-brcm43430 = "brcmfmac-sdio.bin"
+> -
+> -RDEPENDPS_${PN}-brcm43430 += "${PN}-broadcom-license"
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I think it would be better to use enable_uart in config.txt for this
-situation. Setting it to 1 would work on all the rpi versions with
-current firmware (to be tested).
+Merged to master. Thanks.
 
 --
 Andrei Gherzan
 
---n+lFg1Zro7sl44OB
+--L2Brqb15TUChFOBK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXDbRCAAoJEHO76Gt+erfPLGoQAIp/CbyGuj+7KvoL4Z+UTYKZ
-HTbxy3qZ7onep2ao3IhC0x3yIPDevcSzy234aKJzoAMMVGWymWnzkLq7rj/fBmKl
-6TGF+4nuGdgEuHYMfg2D1rdw9wDMyP5P81rNSSUQ4uz25qRtMOAVltPNNPfmo38x
-hx3LNytxKEQ+9Fwcj+yHI/f9HoEXJJd4SCgdFUrrzSIMFENe4UQPT+tWBynbvAz6
-b4VM/zi4rQOa/4O1iF3jubnzuGtqsrrFoSdErG3kNMF+QEdK2KyCKpnA9j3/BtCF
-Ufoan8ySEUmqPqv6vOEHVR9H0VKJAXLhMuAXjKc/MgQpg0rpy9i41Ys2hcGMt2J9
-gqOkMCA3cIUcua71DQOy+Wz02DmFw1kCdzw05kzyDUZ5yC4REfyjnsLIWIbwFO8i
-2w3Tft6QU3DRvvidL0XZLT5fRPUR9VcLZ/Yq0Q/RSHi2ymgR3RG6n0T2qLRbRGzS
-gZ+FBfpACEyPOJxmlMnza5com7/3IZ6bZ3hMTc3k/E+CUBZYl7tZSHi6493XPBCe
-u4lODdo4xYBVfyjj3iH8K51YxUG9rv7MBpOATkxbEwhn4DT0et0XhC9IUF79MBF2
-AY+znN3wSpg/D9dSmBxCwa2iBOMT+nGc6gKIDN43I9l+2IcCdF0b1WtYvA1g43qo
-wyfhhsSPQyEtUFgm/Irx
-=zm1F
+iQIcBAEBCAAGBQJXDbfkAAoJEHO76Gt+erfP8V8QALZPKybAuW0LWhD5Vu2qgqoq
+3ZYLGPS1HNcPnCNRS7rRnKmZDcNgYJp9rf4bh/9s1PMgeDTWKdDcFBYNCly4VsOo
+c66OpP7xLHBVMnwXyPorH8QHRZftNIoNH0QAxDM9M48Nsm+FGVLt8O5voF/m1VMB
+w34wgrwMbpX1Rlos4sysm8ho7PCuvTLfspBMPbt2+24m9ry5kcnbGtSFDN35fpg9
+9ndGWXN1hkJR/lI+tcGbi22aetvT+rrDhfZQjHeLKX25ptYDUzmQtDIzN8rV5wtU
+TbRwymiDnjvDfB4LyG/2WjnIbBAG08NvJkmVD8EILFiUYNYawYCM3N2cItt/XeZE
+OYcgO7+BT5LDDUG+FkA1SUh/99mFu5SVqSDnU2kfeUcYCGv7ir35cdWGIQB2xY7J
+7jHVSV8Z8sqtSAGKCJpE0uzf3crL1T4BEuhawD6yIvUCCBIQmzFR38r1q4VcAA9T
+k2h3nrUJ3J73gzkYQ70WYTfo5Vt2RR1EDzJyjx8QwDiOzDcUjTDPzKwcK6f0Aq8e
+xWOhmJAAX+kmt0otIT2aV5LzWGFuy8ckRxUqN2W9zcpB1jY+67pdfFzvFWQMT1oo
+ScIcLMNPWSQhiEK2o6nbMXRRv9t1PxmSv96X86yj8wAjpIRilA+4x5Bdt55unbP+
+6BjMKN9mGQKUvo0bl8Jw
+=wS1G
 -----END PGP SIGNATURE-----
 
---n+lFg1Zro7sl44OB--
+--L2Brqb15TUChFOBK--
