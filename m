@@ -1,76 +1,70 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CADDE00C22; Wed, 13 Apr 2016 09:36:14 -0700 (PDT)
+	id AAFE9E00D02; Wed, 13 Apr 2016 09:41:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.49 listed in list.dnswl.org]
+	*      [209.85.213.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
-	[209.85.220.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FAF6E007C5
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 09:36:09 -0700 (PDT)
-Received: by mail-pa0-f49.google.com with SMTP id er2so7345989pad.3
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 09:36:09 -0700 (PDT)
+Received: from mail-ig0-f193.google.com (mail-ig0-f193.google.com
+	[209.85.213.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BD52E007C5
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 09:41:18 -0700 (PDT)
+Received: by mail-ig0-f193.google.com with SMTP id qu10so7306079igc.1
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 09:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=E+tY70qs8icqPgoLW0SmkTOF5D4p03SPCWD1AcxTyKs=;
-	b=KA8LLLLkBj+NIOo8tEhMAYZm3iA8UecGA5oSQzH/+rjQoqBxxEOWHnikFMW4o/g9n9
-	pKfL3mSkVRrhLXE2sZfqnq4ZkOp6gAfdH+okjmanUITl94yf0WROSPLvnDBjPYsv6S5m
-	m6VMVaBVvRgNYzHjNUW5mLeqfiuB/FsDQp9TNatg95h67eYKvYDUS8svn2DvFeggaBSZ
-	xj3eQff9+isidQaP7FX1ti0KMg5NkrmjhmAH28PWfUixhzMoDBjC2MqvqfzmkUBOfApV
-	UCZgNdbe/+Lx02TqinOMkecDkUFWfyjS7FpL8UCDAC9THQe67F8YZ3PnzHAztNRUObn7
-	iu3Q==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=CnJMdxzffjRdX7Ui9ewhjXExTPIFkagZ1LCc2+viM3U=;
+	b=oOiuQNpWjyWXDMNmceMR/nKeBpyYQ5THTTRTkSHyzpbjmVKDdEnCNWZhbrutKcLdUe
+	zJBgHw/vFbc+9Efie1u5xNJWv9mrr5GWMKfJ6fgqIeDzzoVOsitfW9dFrCWcwU9qlPiT
+	reTxhiHVh92EhAN/jzK1wx8rWjTpjPvaBV7PYc7E0JdhoXd4lAFLtquGHRvy+gJksm5N
+	FjEhpgDlsfXctcQ3BZvS45Vtgxt7S+Tp/gUOUCh2n80VD5DshXajtwRBwKuIritQBKrG
+	HfSyZGOzw7ZVCWbOkDLQZMKo6eCwlm6JwT48eerjVvQevVP1hS5Oh8lZDs6vW/aSlJz+
+	Hd1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=E+tY70qs8icqPgoLW0SmkTOF5D4p03SPCWD1AcxTyKs=;
-	b=HmxVZ1Il8KrSYs7mIqfiaioNKGlsm3Tmxn/gNuEpp9MCIU9Iq5GgWQxwCUocUPDq39
-	llXKZQ3pnGBHMxvZocwAddGUhWmHKHAKjyzNhQxdY8w1j3LTXk4+vgXFHRlEqDkv7AEm
-	6a4W9uaV4iHpymlXIP03K+VKy+XTfBpYoz20VB56wBWaGUBIJP103urRj25jGCubLF92
-	GHhaO4mZcwWzw9eExEmzrNdAo/YFnRtoWRo1KK6eZcZc24VtmpdTclsh9RxjPbsOXjRi
-	VCue5K5wbUnSrmVq+De+PVAZV5R3nZvHQqvAsGTJ0+YC8j28R2w/G2mL/0uubx/eLR7h
-	rCrw==
-X-Gm-Message-State: AOPr4FXRvxx6RIaRdmnOYJ1yHLbW1iasTnRZ0XawM/EA84S7q4nKMyVqD8TFp1yzdaNG8A==
-X-Received: by 10.66.236.97 with SMTP id ut1mr14205011pac.24.1460565368932;
-	Wed, 13 Apr 2016 09:36:08 -0700 (PDT)
-Received: from ?IPv6:2601:646:8800:5a9a:4d18:bf8b:3814:e511?
-	([2601:646:8800:5a9a:4d18:bf8b:3814:e511])
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=CnJMdxzffjRdX7Ui9ewhjXExTPIFkagZ1LCc2+viM3U=;
+	b=RaQd2mPuq8h1jQG779Py+kSElsVs0bpZIol7TVm9NyRnFRzcQk9Kp7sT2J/Egifssg
+	HWNVl+krU4V9h29LRwGY/69vaAw3FTbHIKWKnHQsMwJFHw1t1gc4I2Z5TJNZq3Fedmni
+	84FSv4atdv5u92mhwElChYKUHwNsT+HhGkOnIXQBMtpGCXUX6fUbL8MkkduFxFqIDc0/
+	Awf8qf0qyBxBVCfFAPvFnxPN0KXjDfpNNU0zSxMaw62yBA86dZjTKMabop906+3mUiST
+	3OdUHEmKvdlq5onPjeHwYPxClQChirB2EtzDW5YCkM1Dkq1nkwr6S7eoqHiDkec5s3FE
+	vG8w==
+X-Gm-Message-State: AOPr4FXTsrOtlPLyo4+UFtAhd5M4i0EGhjKLHpBaFi8MqIpaoJ/PuSInramW4yFOArBYWQ==
+X-Received: by 10.50.61.174 with SMTP id q14mr4205618igr.25.1460565677541;
+	Wed, 13 Apr 2016 09:41:17 -0700 (PDT)
+Received: from linux-yxv0 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
 	by smtp.gmail.com with ESMTPSA id
-	e87sm52176656pfb.76.2016.04.13.09.36.07
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 13 Apr 2016 09:36:08 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CANwerB0+ScCiSOz2A6ioTXy0B+8SZkQ-qYz6=TiP5iR5DxnGJA@mail.gmail.com>
-Date: Wed, 13 Apr 2016 09:36:07 -0700
-Message-Id: <FBBBC78B-8DAC-423E-A79B-5E64072D6EFE@gmail.com>
-References: <1459619952-26621-1-git-send-email-raj.khem@gmail.com>
-	<1459619952-26621-2-git-send-email-raj.khem@gmail.com>
-	<CANwerB3k8hfWBRqXjDgHzptKjaMjX2TDmvFHrReJ+-PhD4NfVw@mail.gmail.com>
-	<CAMKF1spNx-DPTzvg9NnJrYDoy90ce1+Y7qb50hPLv3hv02WPoQ@mail.gmail.com>
-	<CANwerB0+ScCiSOz2A6ioTXy0B+8SZkQ-qYz6=TiP5iR5DxnGJA@mail.gmail.com>
-To: Jonathan Liu <net147@gmail.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 2/2] userland: Make vchostif as shared library
+	gi3sm1013472igc.21.2016.04.13.09.41.16
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 13 Apr 2016 09:41:16 -0700 (PDT)
+Date: Wed, 13 Apr 2016 12:41:29 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Message-ID: <20160413164129.GB27168@linux-yxv0>
+References: <1460411685-12573-1-git-send-email-twoerner@gmail.com>
+	<20160413022036.GC22139@resin>
+MIME-Version: 1.0
+In-Reply-To: <20160413022036.GC22139@resin>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v2 1/2] raspberrypi3: serial console
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,385 +76,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 16:36:14 -0000
-X-Groupsio-MsgNum: 29412
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_AACB4B37-76FF-4F20-8D6A-D62130976EA2";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Wed, 13 Apr 2016 16:41:20 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---Apple-Mail=_AACB4B37-76FF-4F20-8D6A-D62130976EA2
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_EA354360-F0B0-47A5-8749-622A49762725"
-
---Apple-Mail=_EA354360-F0B0-47A5-8749-622A49762725
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-Thats interesting, I will try to reproduce it
-
-> On Apr 13, 2016, at 7:21 AM, Jonathan Liu <net147@gmail.com> wrote:
->=20
-> On Thursday, 14 April 2016, Khem Raj <raj.khem@gmail.com =
-<mailto:raj.khem@gmail.com>> wrote:
-> On Wed, Apr 13, 2016 at 3:05 AM, Jonathan Liu <net147@gmail.com =
-<javascript:;>> wrote:
-> > Hi Khem,
+On Wed 2016-04-13 @ 04:20:36 AM, Andrei Gherzan wrote:
+> On Mon, Apr 11, 2016 at 05:54:44PM -0400, Trevor Woerner wrote:
+> > The serial console on the Raspberry Pi 3 is located at /dev/ttyS0 and not
+> > /dev/ttyAMA0.
 > >
-> > On 3 April 2016 at 03:59, Khem Raj <raj.khem@gmail.com =
-<javascript:;>> wrote:
-> >> This helps in using this library when building
-> >> with PIE binaries
-> >>
-> >> Signed-off-by: Khem Raj <raj.khem@gmail.com <javascript:;>>
-> >> ---
-> >>  .../0014-build-shared-library-for-vchostif.patch   | 28 =
-++++++++++++++++++++++
-> >>  recipes-graphics/userland/userland_git.bb =
-<http://userland_git.bb/>          |  1 +
-> >>  2 files changed, 29 insertions(+)
-> >>  create mode 100644 =
-recipes-graphics/userland/userland/0014-build-shared-library-for-vchostif.=
-patch
-> >>
-> >> diff --git =
-a/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch =
-b/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch
-> >> new file mode 100644
-> >> index 0000000..ca7cb66
-> >> --- /dev/null
-> >> +++ =
-b/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch
-> >> @@ -0,0 +1,28 @@
-> >> +=46rom 4e9aa3fffb458ca4fafd2241c18e9c8008b66ad8 Mon Sep 17 =
-00:00:00 2001
-> >> +From: Khem Raj <raj.khem@gmail.com <javascript:;>>
-> >> +Date: Sat, 2 Apr 2016 10:37:24 -0700
-> >> +Subject: [PATCH] build shared library for vchostif
-> >> +
-> >> +Fixes #149
-> >> +
-> >> +Signed-off-by: Khem Raj <raj.khem@gmail.com <javascript:;>>
-> >> +---
-> >> + interface/vmcs_host/CMakeLists.txt | 2 +-
-> >> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> >> +
-> >> +diff --git a/interface/vmcs_host/CMakeLists.txt =
-b/interface/vmcs_host/CMakeLists.txt
-> >> +index 22949a8..f8c2f2f 100755
-> >> +--- a/interface/vmcs_host/CMakeLists.txt
-> >> ++++ b/interface/vmcs_host/CMakeLists.txt
-> >> +@@ -17,7 +17,7 @@ set(VCHOSTIF_SOURCE
-> >> + #            ${VMCS_TARGET}/vmcs_main.c
-> >> + #  vc_vchi_haud.c
-> >> +
-> >> +-add_library(vchostif ${VCHOSTIF_SOURCE})
-> >> ++add_library(vchostif SHARED ${VCHOSTIF_SOURCE})
-> >> +
-> >> + #add_library(bufman            vc_vchi_bufman.c            )
-> >> +
-> >> +--
-> >> +2.8.0
-> >> +
-> >> diff --git a/recipes-graphics/userland/userland_git.bb =
-<http://userland_git.bb/> b/recipes-graphics/userland/userland_git.bb =
-<http://userland_git.bb/>
-> >> index efa2128..6ed8fcf 100644
-> >> --- a/recipes-graphics/userland/userland_git.bb =
-<http://userland_git.bb/>
-> >> +++ b/recipes-graphics/userland/userland_git.bb =
-<http://userland_git.bb/>
-> >> @@ -33,6 +33,7 @@ SRC_URI =3D "\
-> >>      file://0011-fix-cmake-dependency-race.patch \
-> >>      file://0012-Fix-enum-conversion-warnings.patch \
-> >>      file://0013-Fix-for-framerate-with-nested-composition.patch \
-> >> +    file://0014-build-shared-library-for-vchostif.patch \
-> >>      file://0015-wl-dispmanx-buffer-wrapping.patch \
-> >>  "
-> >>  S =3D "${WORKDIR}/git"
-> >> --
-> >> 2.8.0
-> >>
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org <javascript:;>
-> >> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+> > Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> > ---
+> >  conf/machine/raspberrypi3.conf | 2 ++
+> >  1 file changed, 2 insertions(+)
 > >
-> > This breaks omxplayer compilation when linking omxplayer.bin:
-> > =
-[...]/sysroots/x86_64-linux/usr/libexec/arm-custom-linux-gnueabi/gcc/arm-c=
-ustom-linux-gnueabi/5.3.0/ld:
-> > omxplayer.o: undefined reference to symbol
-> > 'vc_dispmanx_resource_write_data'
-> > [...]/sysroots/raspberrypi2/usr/lib/libvchostif.so: error adding
-> > symbols: DSO missing from command line
->=20
-> Interestingly i dont see this error. Are you using gold ?
-> see if this library is on linker cmdline or not
-> Using whatever is the default for OE-core in master branch.
->=20
->  | arm-custom-linux-gnueabi-g++  -march=3Darmv7ve -marm
->  -mfpu=3Dneon-vfpv4  -mfloat-abi=3Dhard -mcpu=3Dcortex-a7
-> --sysroot=3D/home/build/git/pi2/build/tmp/sysroots/ra
-> spberrypi2 -L/home/build/git/pi2/build/tmp/work/cor
-> texa7hf-neon-vfpv4-custom-linux-gnueabi/omxplayer/gi
-> t-r4/git/ffmpeg_compiled/usr/lib                   -
-> L/home/build/git/pi2/build/tmp/sysroots/raspberrypi
-> 2/lib                   -L/home/build/git/pi2/build
-> /tmp/sysroots/raspberrypi2/usr/lib
->  -L./ -Lffmpeg_compiled/usr/lib/ -lc -lWFC -lGLESv2
-> -lEGL -lbcm_host -lopenmaxil -lfreetype -lz -o omxpl
-> ayer.bin linux/XMemUtils.o utils/log.o DynamicDll.o
-> utils/PCMRemap.o utils/RegExp.o OMXSubtitleTagSami.o
->  OMXOverlayCodecText.o BitstreamConverter.o linux/RB
-> P.o OMXThread.o OMXReader.o OMXStreamInfo.o OMXAudio
-> CodecOMX.o OMXCore.o OMXVideo.o OMXAudio.o OMXClock.
-> o File.o OMXPlayerVideo.o OMXPlayerAudio.o OMXPlayer
-> Subtitles.o SubtitleRenderer.o Unicode.o Srt.o KeyCo
-> nfig.o OMXControl.o Keyboard.o omxplayer.o -lvchiq_a
-> rm -lvcos -ldbus-1 -lrt -lpthread -lavutil -lavcodec
->  -lavformat -lswscale -lswresample -lpcre
-> | =
-/home/build/git/pi2/build/tmp/sysroots/x86_64-linux/usr/libexec/arm-custom=
--linux-gnueabi/gcc/arm-custom-linux-gnueabi/5.3.0/ld: omxplayer.o: =
-undefined reference to symbol 'vc_dispmanx_resource_write_data'
-> | =
-/home/build/git/pi2/build/tmp/sysroots/raspberrypi2/usr/lib/libvchostif.so=
-: error adding symbols: DSO
->  missing from command line
-> | collect2: error: ld returned 1 exit status
-> | Makefile:53: recipe for target 'omxplayer.bin' failed
-> | make: *** [omxplayer.bin] Error 1
->=20
+> > diff --git a/conf/machine/raspberrypi3.conf b/conf/machine/raspberrypi3.conf
+> > index 1b73f2f..cb6056e 100644
+> > --- a/conf/machine/raspberrypi3.conf
+> > +++ b/conf/machine/raspberrypi3.conf
+> > @@ -7,3 +7,5 @@ MACHINEOVERRIDES = "raspberrypi2:${MACHINE}"
+> >  MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-brcm43430"
 > >
-> > Regards,
-> > Jonathan
+> >  include conf/machine/raspberrypi2.conf
+> > +
+> > +SERIAL_CONSOLE = "115200 ttyS0"
+> 
+> As this seems not to be unified anymore, would it make sense to remove
+> it from rpi-base.inc and define it in every machine conf?
 
+Sure, I can do that too, no problem. I'll start a new patch series for just
+this one change since it is a different solution (therefore it won't be a v3
+on this one).
 
---Apple-Mail=_EA354360-F0B0-47A5-8749-622A49762725
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">Thats interesting, I will try to reproduce it<div =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Apr 13, 2016, at 7:21 AM, Jonathan Liu &lt;<a =
-href=3D"mailto:net147@gmail.com" class=3D"">net147@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D"">On =
-Thursday, 14 April 2016, Khem Raj &lt;<a =
-href=3D"mailto:raj.khem@gmail.com" class=3D"">raj.khem@gmail.com</a>&gt; =
-wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Wed, Apr 13, =
-2016 at 3:05 AM, Jonathan Liu &lt;<a href=3D"javascript:;" =
-onclick=3D"_e(event, 'cvml', 'net147@gmail.com')" =
-class=3D"">net147@gmail.com</a>&gt; wrote:<br class=3D"">
-&gt; Hi Khem,<br class=3D"">
-&gt;<br class=3D"">
-&gt; On 3 April 2016 at 03:59, Khem Raj &lt;<a href=3D"javascript:;" =
-onclick=3D"_e(event, 'cvml', 'raj.khem@gmail.com')" =
-class=3D"">raj.khem@gmail.com</a>&gt; wrote:<br class=3D"">
-&gt;&gt; This helps in using this library when building<br class=3D"">
-&gt;&gt; with PIE binaries<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; Signed-off-by: Khem Raj &lt;<a href=3D"javascript:;" =
-onclick=3D"_e(event, 'cvml', 'raj.khem@gmail.com')" =
-class=3D"">raj.khem@gmail.com</a>&gt;<br class=3D"">
-&gt;&gt; ---<br class=3D"">
-&gt;&gt;&nbsp; .../0014-build-shared-library-for-vchostif.patch&nbsp; =
-&nbsp;| 28 ++++++++++++++++++++++<br class=3D"">
-&gt;&gt;&nbsp; recipes-graphics/userland/<a =
-href=3D"http://userland_git.bb/" target=3D"_blank" =
-class=3D"">userland_git.bb</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; =
-1 +<br class=3D"">
-&gt;&gt;&nbsp; 2 files changed, 29 insertions(+)<br class=3D"">
-&gt;&gt;&nbsp; create mode 100644 =
-recipes-graphics/userland/userland/0014-build-shared-library-for-vchostif.=
-patch<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; diff --git =
-a/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch =
-b/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch<br class=3D"">
-&gt;&gt; new file mode 100644<br class=3D"">
-&gt;&gt; index 0000000..ca7cb66<br class=3D"">
-&gt;&gt; --- /dev/null<br class=3D"">
-&gt;&gt; +++ =
-b/recipes-graphics/userland/userland/0014-build-shared-library-for-vchosti=
-f.patch<br class=3D"">
-&gt;&gt; @@ -0,0 +1,28 @@<br class=3D"">
-&gt;&gt; +=46rom 4e9aa3fffb458ca4fafd2241c18e9c8008b66ad8 Mon Sep 17 =
-00:00:00 2001<br class=3D"">
-&gt;&gt; +From: Khem Raj &lt;<a href=3D"javascript:;" onclick=3D"_e(event,=
- 'cvml', 'raj.khem@gmail.com')" class=3D"">raj.khem@gmail.com</a>&gt;<br =
-class=3D"">
-&gt;&gt; +Date: Sat, 2 Apr 2016 10:37:24 -0700<br class=3D"">
-&gt;&gt; +Subject: [PATCH] build shared library for vchostif<br =
-class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; +Fixes #149<br class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; +Signed-off-by: Khem Raj &lt;<a href=3D"javascript:;" =
-onclick=3D"_e(event, 'cvml', 'raj.khem@gmail.com')" =
-class=3D"">raj.khem@gmail.com</a>&gt;<br class=3D"">
-&gt;&gt; +---<br class=3D"">
-&gt;&gt; + interface/vmcs_host/CMakeLists.txt | 2 +-<br class=3D"">
-&gt;&gt; + 1 file changed, 1 insertion(+), 1 deletion(-)<br class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; +diff --git a/interface/vmcs_host/CMakeLists.txt =
-b/interface/vmcs_host/CMakeLists.txt<br class=3D"">
-&gt;&gt; +index 22949a8..f8c2f2f 100755<br class=3D"">
-&gt;&gt; +--- a/interface/vmcs_host/CMakeLists.txt<br class=3D"">
-&gt;&gt; ++++ b/interface/vmcs_host/CMakeLists.txt<br class=3D"">
-&gt;&gt; +@@ -17,7 +17,7 @@ set(VCHOSTIF_SOURCE<br class=3D"">
-&gt;&gt; + #&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-${VMCS_TARGET}/vmcs_main.c<br class=3D"">
-&gt;&gt; + #&nbsp; vc_vchi_haud.c<br class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; +-add_library(vchostif ${VCHOSTIF_SOURCE})<br class=3D"">
-&gt;&gt; ++add_library(vchostif SHARED ${VCHOSTIF_SOURCE})<br class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; + #add_library(bufman&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-vc_vchi_bufman.c&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )<br class=3D"">=
-
-&gt;&gt; +<br class=3D"">
-&gt;&gt; +--<br class=3D"">
-&gt;&gt; +2.8.0<br class=3D"">
-&gt;&gt; +<br class=3D"">
-&gt;&gt; diff --git a/recipes-graphics/userland/<a =
-href=3D"http://userland_git.bb/" target=3D"_blank" =
-class=3D"">userland_git.bb</a> b/recipes-graphics/userland/<a =
-href=3D"http://userland_git.bb/" target=3D"_blank" =
-class=3D"">userland_git.bb</a><br class=3D"">
-&gt;&gt; index efa2128..6ed8fcf 100644<br class=3D"">
-&gt;&gt; --- a/recipes-graphics/userland/<a =
-href=3D"http://userland_git.bb/" target=3D"_blank" =
-class=3D"">userland_git.bb</a><br class=3D"">
-&gt;&gt; +++ b/recipes-graphics/userland/<a =
-href=3D"http://userland_git.bb/" target=3D"_blank" =
-class=3D"">userland_git.bb</a><br class=3D"">
-&gt;&gt; @@ -33,6 +33,7 @@ SRC_URI =3D "\<br class=3D"">
-&gt;&gt;&nbsp; &nbsp; &nbsp; <a =
-href=3D"file:///0011-fix-cmake-dependency-race.patch" =
-class=3D"">file://0011-fix-cmake-dependency-race.patch</a> \<br =
-class=3D"">
-&gt;&gt;&nbsp; &nbsp; &nbsp; <a =
-href=3D"file:///0012-Fix-enum-conversion-warnings.patch" =
-class=3D"">file://0012-Fix-enum-conversion-warnings.patch</a> \<br =
-class=3D"">
-&gt;&gt;&nbsp; &nbsp; &nbsp; <a =
-href=3D"file:///0013-Fix-for-framerate-with-nested-composition.patch" =
-class=3D"">file://0013-Fix-for-framerate-with-nested-composition.patch</a>=
- \<br class=3D"">
-&gt;&gt; +&nbsp; &nbsp; <a =
-href=3D"file:///0014-build-shared-library-for-vchostif.patch" =
-class=3D"">file://0014-build-shared-library-for-vchostif.patch</a> \<br =
-class=3D"">
-&gt;&gt;&nbsp; &nbsp; &nbsp; <a =
-href=3D"file:///0015-wl-dispmanx-buffer-wrapping.patch" =
-class=3D"">file://0015-wl-dispmanx-buffer-wrapping.patch</a> \<br =
-class=3D"">
-&gt;&gt;&nbsp; "<br class=3D"">
-&gt;&gt;&nbsp; S =3D "${WORKDIR}/git"<br class=3D"">
-&gt;&gt; --<br class=3D"">
-&gt;&gt; 2.8.0<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; --<br class=3D"">
-&gt;&gt; _______________________________________________<br class=3D"">
-&gt;&gt; yocto mailing list<br class=3D"">
-&gt;&gt; <a href=3D"javascript:;" onclick=3D"_e(event, 'cvml', =
-'yocto@yoctoproject.org')" class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-target=3D"_blank" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a><br =
-class=3D"">
-&gt;<br class=3D"">
-&gt; This breaks omxplayer compilation when linking omxplayer.bin:<br =
-class=3D"">
-&gt; =
-[...]/sysroots/x86_64-linux/usr/libexec/arm-custom-linux-gnueabi/gcc/arm-c=
-ustom-linux-gnueabi/5.3.0/ld:<br class=3D"">
-&gt; omxplayer.o: undefined reference to symbol<br class=3D"">
-&gt; 'vc_dispmanx_resource_write_data'<br class=3D"">
-&gt; [...]/sysroots/raspberrypi2/usr/lib/libvchostif.so: error adding<br =
-class=3D"">
-&gt; symbols: DSO missing from command line<br class=3D"">
-<br class=3D"">
-Interestingly i dont see this error. Are you using gold ?<br class=3D"">
-see if this library is on linker cmdline or not</blockquote><div =
-class=3D"">Using whatever is the default for OE-core in master =
-branch.<span class=3D""></span></div><div class=3D"">&nbsp;</div><div =
-class=3D"">&nbsp;| arm-custom-linux-gnueabi-g++ &nbsp;-march=3Darmv7ve =
--marm</div><div class=3D"">&nbsp;-mfpu=3Dneon-vfpv4 =
-&nbsp;-mfloat-abi=3Dhard -mcpu=3Dcortex-a7&nbsp;</div><div =
-class=3D"">--sysroot=3D/home/build/git/pi2/build/tmp/sysroots/ra</div><div=
- class=3D"">spberrypi2 =
--L/home/build/git/pi2/build/tmp/work/cor</div><div =
-class=3D"">texa7hf-neon-vfpv4-custom-linux-gnueabi/omxplayer/gi</div><div =
-class=3D"">t-r4/git/ffmpeg_compiled/usr/lib &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -</div><div =
-class=3D"">L/home/build/git/pi2/build/tmp/sysroots/raspberrypi</div><div =
-class=3D"">2/lib &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; -L/home/build/git/pi2/build</div><div =
-class=3D"">/tmp/sysroots/raspberrypi2/usr/lib &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div><div class=3D"">&nbsp;-L./ =
--Lffmpeg_compiled/usr/lib/ -lc -lWFC -lGLESv2&nbsp;</div><div =
-class=3D"">-lEGL -lbcm_host -lopenmaxil -lfreetype -lz -o =
-omxpl</div><div class=3D"">ayer.bin linux/XMemUtils.o utils/log.o =
-DynamicDll.o&nbsp;</div><div class=3D"">utils/PCMRemap.o utils/RegExp.o =
-OMXSubtitleTagSami.o</div><div class=3D"">&nbsp;OMXOverlayCodecText.o =
-BitstreamConverter.o linux/RB</div><div class=3D"">P.o OMXThread.o =
-OMXReader.o OMXStreamInfo.o OMXAudio</div><div class=3D"">CodecOMX.o =
-OMXCore.o OMXVideo.o OMXAudio.o OMXClock.</div><div class=3D"">o File.o =
-OMXPlayerVideo.o OMXPlayerAudio.o OMXPlayer</div><div =
-class=3D"">Subtitles.o SubtitleRenderer.o Unicode.o Srt.o =
-KeyCo</div><div class=3D"">nfig.o OMXControl.o Keyboard.o omxplayer.o =
--lvchiq_a</div><div class=3D"">rm -lvcos -ldbus-1 -lrt -lpthread =
--lavutil -lavcodec</div><div class=3D"">&nbsp;-lavformat -lswscale =
--lswresample -lpcre</div><div class=3D"">| =
-/home/build/git/pi2/build/tmp/sysroots/x86_64-linux/usr/libexec/arm-custom=
--linux-gnueabi/gcc/arm-custom-linux-gnueabi/5.3.0/ld: omxplayer.o: =
-undefined reference to symbol =
-'vc_dispmanx_resource_write_data'</div><div class=3D"">| =
-/home/build/git/pi2/build/tmp/sysroots/raspberrypi2/usr/lib/libvchostif.so=
-: error adding symbols: DSO</div><div class=3D"">&nbsp;missing from =
-command line</div><div class=3D"">| collect2: error: ld returned 1 exit =
-status</div><div class=3D"">| Makefile:53: recipe for =
-target&nbsp;'omxplayer.bin' failed</div><div class=3D"">| make: *** =
-[omxplayer.bin] Error 1</div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<br class=3D"">
-&gt;<br class=3D"">
-&gt; Regards,<br class=3D"">
-&gt; Jonathan<br class=3D"">
-</blockquote>
-</div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_EA354360-F0B0-47A5-8749-622A49762725--
-
---Apple-Mail=_AACB4B37-76FF-4F20-8D6A-D62130976EA2
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlcOdXcACgkQuwUzVZGdMxRBBQCfTWBJXEdNLOOJhmsc29J/G3Z9
-NgEAn06fX6ogDxnoHzRsTc7MQxnM+XE4
-=369I
------END PGP SIGNATURE-----
-
---Apple-Mail=_AACB4B37-76FF-4F20-8D6A-D62130976EA2--
