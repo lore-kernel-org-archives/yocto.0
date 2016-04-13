@@ -1,6 +1,6 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62B35E00D25; Wed, 13 Apr 2016 13:08:02 -0700 (PDT)
+	id 833CFE00D7E; Wed, 13 Apr 2016 15:04:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,46 +18,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.46 listed in list.dnswl.org]
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 347EBE00833
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 13:07:57 -0700 (PDT)
-Received: by mail-vk0-f46.google.com with SMTP id t129so84688885vkg.2
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 13:07:57 -0700 (PDT)
+	*      [209.85.223.196 listed in list.dnswl.org]
+Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
+	[209.85.223.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A27E00833
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 15:04:16 -0700 (PDT)
+Received: by mail-io0-f196.google.com with SMTP id g185so8714362ioa.0
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 15:04:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=c1NZPtBVg531EWV7enbav0YWf5HodIEvpDdNWVDaCu4=;
-	b=DdQeoBPw+QX+yTDL+PZrJDSbX5V/AglP/Q5/yaM4NlaL0pyGr8fb8PeuJX7kbXFgLp
-	uMYa9/LLff1jRI+HRn7EHmjCdAfy0LxrvyHAAVfNydnVdkmD4IAcZIQhcKN1bk0ZyMY6
-	eabuWLoiQ5SLZBZEyviL24rv2ytf8+2c4P0zAffmLPK0V++33fvWKW9XOUTYzENjgoUA
-	X7AU80petpYuUtf/FZkb00JRvQfEcv/zXkrApZGE+tqYNW+l7iYL/m+6jxgHQekQsX1X
-	mv7+Poe/cD6o7nrkrZ11Th6iJbqV8Az8X+q+6XKtNQSgbw1vns0Y6J4ooS2d4CpEVkdy
-	i9TQ==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=D3oiPTlvdOoY+vbrvFFfFdcCLp+8Df+eS/6ROMQVxBg=;
+	b=gyrKb0Bt3iSeCY4/FnK/b7v9PICym5Uyg01gM5dcMTA62sbgLpMbFvK68durkBQS76
+	pW70plFA/PG1R3cWwrpPRP55MuGhn8UB1WJ8w5zTYi+yWp04m94GGZ/qtszFvzoAa/rB
+	9BAppJJa645eMNmQPxEb1ULj6ciScHV1TnAZhu8bAHv558iqIHp0JwJMN9f5DAN8pDvg
+	CGDmVlSDG33Og+wzxYO+UGDb0B4PPOAdjgoE8dhiHcuzvyjrmLMxPBlTds+HesRFlyeW
+	1zem/Imir3md+/121PJAbWDKhN+FJ1FgI1Y/tjRx4KSWQ9TXugcdC68jJlFhMDZZsg3u
+	FEnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=c1NZPtBVg531EWV7enbav0YWf5HodIEvpDdNWVDaCu4=;
-	b=NjlPUxa/Mk7qAj/+yTNuob98Z19Y+BUOyYM5/B1vVI6NP0DapfhANgsrHxmQrBtAuD
-	eO+uJAz+6QFTyF/+zpq2HjJ5vQpaXHBHcll7R7jH6lNg19tPfqq1WkZwlxlqQmxjyyla
-	0cVu6uN6qWpOdOYA9XY6GzOD1eis8EQHrr60LOmzeFml257uOY2Kr+PmnQ2KeXHOVv5K
-	2HpoK13KU766r6PAoFQgahE4Fb7WPWrbGHixqU/Wa8Uj+eBDkDAPsWr9VLNpIE5oAJZD
-	ThLmHqHG9C50o6MEjvbUr1karCWfpYXaybSFvNaKK2TXeD4+xEYILdOM2ZaOmyPeMnb0
-	6J5g==
-X-Gm-Message-State: AOPr4FU/Qh2edfkGYxyotfhc5c9OhhSvLltQfbaA508wpr46dS6/v9qwLUyZdksOKGvUpT4ajtQtphyRJQ6lmQ==
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=D3oiPTlvdOoY+vbrvFFfFdcCLp+8Df+eS/6ROMQVxBg=;
+	b=YJtOBF400aomApyJm9lMQPxOI/CYy/xkVSkasYpV2HiTWwyLxan3LWgVRW3tkUGSOn
+	lb0xSd4eiqtebOy9LHke4rS7m8LIMJCTFIWQThPQNXMDHirLghVZdSij+0sz6L1Wr821
+	AF9idpqFwL9pp+VvlojF20BV0bqQZH6nUtmWwCJsEvgZbVJ+6WkSHygScjAdbBE/3/yk
+	4eRDb7d3qIXG5MLtzn20eZND9sPIOnzFDEgh3xQOqzUKe4tqeB/JHyKVSipfIhgnJoTW
+	h4fJcXHAJDAAzb6A067PMV/O4j4Nu74Z7VR7yaVgozApDZ+GJYmGsEeDDCFEN9jZZADt
+	gldQ==
+X-Gm-Message-State: AOPr4FUr7DeeV7QUhNVG4VddfB9Ja760t9U9IDcAPnP/yzEzAPrwLKxqnpIGScq2eWaQJA==
+X-Received: by 10.107.13.65 with SMTP id 62mr13026026ion.186.1460585055831;
+	Wed, 13 Apr 2016 15:04:15 -0700 (PDT)
+Received: from linux-yxv0 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	74sm24564374ios.28.2016.04.13.15.04.14
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 13 Apr 2016 15:04:14 -0700 (PDT)
+Date: Wed, 13 Apr 2016 18:04:28 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: Petter =?utf-8?B?TWFiw6Rja2Vy?= <petter@technux.se>
+Message-ID: <20160413220428.GC27168@linux-yxv0>
+References: <1459348549-32007-1-git-send-email-petter@technux.se>
+	<1459348549-32007-4-git-send-email-petter@technux.se>
 MIME-Version: 1.0
-X-Received: by 10.31.161.195 with SMTP id k186mr4920989vke.129.1460578077020; 
-	Wed, 13 Apr 2016 13:07:57 -0700 (PDT)
-Received: by 10.176.66.227 with HTTP; Wed, 13 Apr 2016 13:07:56 -0700 (PDT)
-In-Reply-To: <09232bb667868c885b64dfd7ac49dfab@reliableembeddedsystems.com>
-References: <09232bb667868c885b64dfd7ac49dfab@reliableembeddedsystems.com>
-Date: Wed, 13 Apr 2016 17:07:56 -0300
-Message-ID: <CAF3SDA4Br9BujStKyiXdau0U9YJUqVH0nE4tH08RmVb4h=woDg@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: something like kernel configuration fragments for device tree?
+In-Reply-To: <1459348549-32007-4-git-send-email-petter@technux.se>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH v2 3/5] rpi-base.inc: Add overlay for rpi-ft5406
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,42 +77,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 20:08:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 13 Apr 2016 22:04:23 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Hi Robert,
+On Wed 2016-03-30 @ 04:35:47 PM, Petter Mabäcker wrote:
+> rpi-ft5406 is an enabler for Official Raspberry Pi 7 inch
+> touchscreen support.
 
-I know that Raspberry Pi has "Device Tree Overlays", for other
-platforms I don't know if that is possible. If you're using Pi you may
-add DT Overlays by patching,
-take a look at https://www.raspberrypi.org/documentation/configuration/device-tree.md
-$ Part 2: Device Tree overlays. I think that this is applied by
-Pi's boot loader, but I have no ideia if u-boot supports such thing,
+I have an official raspberry pi 7" touchscreen and it's not obvious to me how
+I would go about enabling it in my config. If I had one of the others I would
+simply add:
 
-Regards, and good luck
-- dhs
+	MACHINE_FEATURES += "pitft pitft22"
 
-2016-04-12 10:45 GMT-03:00  <gmane@reliableembeddedsystems.com>:
-> Hi,
->
-> I was wondering if there is something like kernel config fragments also
-> available for device trees from the YP.
->
-> It would be convenient, since kernel configuration and device tree might be
-> related in some cases.
->
-> Regards,
->
-> Robert
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+or
 
+	MACHINE_FEATURES += "pitft pitft28r"
 
+to my conf/local.conf, but what do I do for the official touchscreen?
 
--- 
-"Do or do not. There is no try"
-  Yoda Master
+Also, by trial and error I've discovered that my touchscreen comes up as
+/dev/fb0 and not /dev/fb1. But the xorg config for touchscreen support assumes
+/dev/fb1. Am I doing something wrong in my build or can anyone think of a
+reason why my screen would be /dev/fb0 instead of /dev/fb1?
+
+By the way
+
+	MACHINE_FEATURES += "pitft pitft22"
+
+seems to work for me if I use /dev/fb0, but I'm not sure if that's a fluke?
+
+Best regards,
+	Trevor
 
