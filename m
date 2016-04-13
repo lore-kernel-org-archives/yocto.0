@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7F77E00C73; Tue, 12 Apr 2016 20:12:40 -0700 (PDT)
+	id AB5B9E00C73; Tue, 12 Apr 2016 20:15:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,56 +8,61 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+	*      [74.125.82.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2B24E00B9E
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:12:38 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id u206so52430388wme.1
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:12:38 -0700 (PDT)
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1825BE00B9E
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:15:41 -0700 (PDT)
+Received: by mail-wm0-f52.google.com with SMTP id v188so150429335wme.1
+	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:15:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:references:mime-version
+	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=CrlVEN+u7sSEUrZfh5vODDXY5SxTkRn82SpZ5zIBil8=;
-	b=CDT1hGuSYnSJcSHyTf4Nj8EFlip86A3BKLpPqBluQneKYRYYn4bmGFsg7U+oAiI5Lr
-	nRlmsFQ+tLhTN60qpu4aLCDPFuPivyIr1dIL/S9NPhFaNiFVxSp1SHfNABEZ0Dv5tLx9
-	hrz/Ja24hQo53dBTk4pcN0MwYHSzXVU8+wK8h4/NuIMnCv3esfCppBGoVz4vpAsaWjQ3
-	s+hZQ8RgsNMmtgJVkej3+LS4kQYwwxezfRKzr7kCUA1a+s1cf0zXvWdwsFhSUbQ78Z4K
-	ZofqbHmSdckhv0+9NgK84PRCvTu9FbKGvEV0duXK5YP8Q6H/16ND37QQ3oOChPqT8wDW
-	aK8Q==
+	bh=GJl7YBtJfm2g197K1AiQQ2ckz8zLre6tm+ZKbSoCiRE=;
+	b=imXQQJGI8gEZlIZnyzi3xUKTJoQpzJDGcE1cJXhc6DbXgd0XLWZrgDIMKyyKIq25Jv
+	xcWiAoFvf9AQrXXF7hlIiYxyBrOYotb4VkCwUuDenbBAlm+W10BeNHFAOm2j1HdNHXNp
+	FBMeKJH3at3UQeKR0D7/GiczezT/IAweoi52QO+MzbCK9zEy9/DRPWwLtn8diwD1IyGB
+	3+uCx53o3E5eKvtsN5sKjFPKPG2SAn9DXkWD5ay5cjPVaYm8p5gNhm3d0uGxbZjK8u3l
+	sPpWp7pp9bgTzVy+mdS4Vjt80vXOFTSUlBGkDlXa9PvJNw7z9NCWLg8mbpsSqAfOjq9F
+	8uxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:references
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=CrlVEN+u7sSEUrZfh5vODDXY5SxTkRn82SpZ5zIBil8=;
-	b=SyZU67uXkqdO/9nk7NXMqRPZkM7bh7ezQGyUzbZCsfzxaJO2yaqp+KI+sREd7NZH0N
-	eS8qyZ6qnHMLSxUnCfnjXhFBTzjkAxsJrGAKz2+pCwKHf6SkxVC2VIs04zibL+ZEgv4G
-	N6nYhcGw9olPPiwVhcOrQk849QUq3dpA3tayvx+ztOSOjREJVxm+b5RbkPlwx/iqh3Ow
-	rwKsiMziynn2mn64EPyEwd0Fhy5TZVNUfduAGXh5WvU7MsAs1+gzNnti0Ot4FNNflAmO
-	LbZ3hvMfvrfzh6w0NVDEza5PD662vtouPDLIDrvwaxAAvipKnkB8zEFoFesSCc1D94R3
-	TUYQ==
-X-Gm-Message-State: AOPr4FVs8Ib6Dgpz7h0NsFawGtdmW1+Vmq5MfSYoL4BlKkW9k4X0plJSUGFQdlCVEpzQyg==
-X-Received: by 10.194.58.138 with SMTP id r10mr6954976wjq.153.1460517157895;
-	Tue, 12 Apr 2016 20:12:37 -0700 (PDT)
+	bh=GJl7YBtJfm2g197K1AiQQ2ckz8zLre6tm+ZKbSoCiRE=;
+	b=lvo6rzGydDetPI3HMKfVqoYGbqkvn/DN7WR7yoXsaWZYSK/z5qUVj3WxOyJB1zZlzx
+	FUcf3c+zgz6rLLN1tVUvM7B63iEDLLsDdIbGDHcEUnyRaYp5OdyfrmYZdcRSinjnBO0j
+	OXbPvyphMsOgHdo6y43z+2iTqsGHDhqQrdI63Zp+hnpLFDyI6M6Crxiy2LKSlDKrzlJE
+	nly3jTLanHg9zmKZG2Sx2J1hyI4EqoylEvMYafS+ke4fQKV1T9J4y5ZfbfY3Bp3nfxhY
+	kQNvuoFKSRLvV+4R19mHhYHFIFbWJRsDOgiWheedzbjUc1+2GKd5QdR2UWs3SZVrffg4
+	6lYA==
+X-Gm-Message-State: AOPr4FWe2/OhWnG62OCFolP7pl7j2t8gSvPzFdOisLY8YnHfA1N5D7wGZOfLaraUpnlBJA==
+X-Received: by 10.194.234.101 with SMTP id ud5mr6903813wjc.34.1460517341130;
+	Tue, 12 Apr 2016 20:15:41 -0700 (PDT)
 Received: from resin (dslb-088-076-238-192.088.076.pools.vodafone-ip.de.
-	[88.76.238.192]) by smtp.gmail.com with ESMTPSA id
-	o128sm25573966wmb.19.2016.04.12.20.12.37 for <yocto@yoctoproject.org>
+	[88.76.238.192])
+	by smtp.gmail.com with ESMTPSA id gr4sm678883wjd.23.2016.04.12.20.15.39
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 12 Apr 2016 20:12:37 -0700 (PDT)
-Date: Wed, 13 Apr 2016 05:12:35 +0200
+	Tue, 12 Apr 2016 20:15:39 -0700 (PDT)
+Date: Wed, 13 Apr 2016 05:15:38 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Message-ID: <20160413031235.GH22139@resin>
-References: <1459510631-20294-1-git-send-email-andrei@gherzan.ro>
+To: Theodor Gherzan <theodor@gherzan.ro>
+Message-ID: <20160413031538.GI22139@resin>
+References: <1457532907-49811-1-git-send-email-theodor@gherzan.ro>
+	<1457532907-49811-4-git-send-email-theodor@gherzan.ro>
+	<CANwerB3Xp2_vZ320gfiWWEWOuCQzvHVuXgDiPpopFD2AuVT3-w@mail.gmail.com>
+	<20160329220650.GD4325@resin>
+	<CAJjOg+H3TFZUw0wB8Gw+BP2pzyE7pgzThj84eJm9LqPd9_VgKg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1459510631-20294-1-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <CAJjOg+H3TFZUw0wB8Gw+BP2pzyE7pgzThj84eJm9LqPd9_VgKg@mail.gmail.com>
 User-Agent: Mutt/1.6.0 (2016-04-01)
-Subject: Re: [PATCH 1/1] userland: In case of wayland configuration build needs wayland-native
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 4/6] linux-firmware: Add brcmfmac43430 firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,70 +74,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 03:12:40 -0000
-X-Groupsio-MsgNum: 29398
+X-List-Received-Date: Wed, 13 Apr 2016 03:15:44 -0000
+X-Groupsio-MsgNum: 29399
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="N8ia4yKhAKKETby7"
+	protocol="application/pgp-signature"; boundary="X0cz4bGbQuRbxrVl"
 Content-Disposition: inline
 
---N8ia4yKhAKKETby7
+--X0cz4bGbQuRbxrVl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Apr 01, 2016 at 01:37:11PM +0200, Andrei Gherzan wrote:
-> Building wayland support requires availability of wayland-scanner to avoid
-> build errors like:
->
-> | /bin/sh:
-> | /home/andrei/work/yocto/build-rpi-master/tmp/sysroots/x86_64-linux/usr/bin/wayland-scanner:
-> | No such file or directory
->
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
->  recipes-graphics/userland/userland_git.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-> index ca9123e..536c3ec 100644
-> --- a/recipes-graphics/userland/userland_git.bb
-> +++ b/recipes-graphics/userland/userland_git.bb
-> @@ -45,7 +45,7 @@ EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-a
->
->  PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}"
->
-> -PACKAGECONFIG[wayland] = "-DBUILD_WAYLAND=TRUE -DWAYLAND_SCANNER_EXECUTABLE:FILEPATH=${STAGING_BINDIR_NATIVE}/wayland-scanner,,wayland"
-> +PACKAGECONFIG[wayland] = "-DBUILD_WAYLAND=TRUE -DWAYLAND_SCANNER_EXECUTABLE:FILEPATH=${STAGING_BINDIR_NATIVE}/wayland-scanner,wayland-native,wayland"
->
->  CFLAGS_append = " -fPIC"
->
-> --
-> 2.7.4
+On Wed, Apr 06, 2016 at 02:30:41AM +0100, Theodor Gherzan wrote:
+> I will have a look.
 >
 
-Merged to master.
+No need to take a look on this anymore Theodor. It was fixed in master.
+
+> Theodor Gherzan
+>
+> On Tue, Mar 29, 2016 at 11:06 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> > On Fri, Mar 25, 2016 at 11:34:21AM +1100, Jonathan Liu wrote:
+> >> Hi Theodor,
+> >>
+> >> On 10 March 2016 at 01:15, Theodor Gherzan <theodor@gherzan.ro> wrote:
+> >> > From: Theodor Gherzan <theodor@resin.io>
+> >> >
+> >> > Signed-off-by: Theodor Gherzan <theodor@resin.io>
+> >> > ---
+> >> >  .../linux-firmware/LICENSE.broadcom_brcm80211      | 205 +++++++++++++++++++++
+> >> >  .../linux-firmware/brcmfmac43430-sdio.bin          | Bin 0 -> 368957 bytes
+> >> >  .../linux-firmware/brcmfmac43430-sdio.txt          |  66 +++++++
+> >> >  .../linux-firmware/linux-firmware_git.bbappend     |  29 +++
+> >> >  4 files changed, 300 insertions(+)
+> >> >  create mode 100644 recipes-kernel/linux-firmware/linux-firmware/LICENSE.broadcom_brcm80211
+> >> >  create mode 100644 recipes-kernel/linux-firmware/linux-firmware/brcmfmac43430-sdio.bin
+> >> >  create mode 100644 recipes-kernel/linux-firmware/linux-firmware/brcmfmac43430-sdio.txt
+> >> >  create mode 100644 recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+> >>
+> >> I get the following warning when building an image that installs
+> >> linux-firmware-ralink package (but not any of the other firmware
+> >> packages):
+> >> [log_check] WARNING: The license listed Firmware-broadcom_brcm80211
+> >> was not in the licenses collected for recipe linux-firmware
+> >>
+> >> It seems the license is not being packaged correctly.
+> >>
+> >> Could you please have a look?
+> >
+> > Theodor,
+> >
+> > Any chance you can take a look on this?
+> >
+> > Cheers!
+> >
+> > --
+> > Andrei Gherzan
 
 --
 Andrei Gherzan
 
---N8ia4yKhAKKETby7
+--X0cz4bGbQuRbxrVl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXDbkjAAoJEHO76Gt+erfPnPYP/31T/h8z6MDZGEVBNDmBzPIR
-VA4yC8lr4nIxRh3yrWiKOnAQyvl47mw972pLODTHVEV8zvoRD0kjXBGaU9sHjw60
-/bNRGbh+7E8EcxFDqnPOzJH06yBdXlE7qWR0PjvzZrFKOCforQ6ttcs2M5egxj//
-8yeRlenVMJLjdZ+BU5cYp4eE2spEa6rzLf+6KLbtn1TkwgunIyeulPmWII0ACNat
-3QkQsLrjXzzHe6sIrLBo6/FFeOkk3+Can8PTayaid2IyKGLUHiu6g94861mah9h+
-H9d1i2QR4QRQdhNZop/BgapwTzi3m80BVzZzbDYRTiZnMQqY2HivOWPvAvO78wap
-zWqyKsjlyaRrc5hbla/rTNFsn1NdgIltPVaDnA9HotH2wWyhUVL51ecMwvjkoGdx
-+JWaOVlyiZKsRqH7sKqpUonm9Z60GKXmEvNUlLS4XFv9svpgrB+PmPES9l8cctwe
-FwwahAsnyBgJyJipWn6WV9uOZQWci0Puej4a+7cC/PrXplMwlTSBtqY9uKNVMcrr
-30+oM1c69fuY+VpdEvIAIHWZRLVd/9+2VjCRy+W1B9pRq00SIJfSGWnDBEC8L54e
-BKZ6uSSUOo+S/yxS/eYTvnAAJi09ox7saY1dS9sqTJvmlzw9IsJlYBg4n3KD2FZ6
-IYS7ofgIFKOpLDCfVYwc
-=nxAY
+iQIcBAEBCAAGBQJXDbnaAAoJEHO76Gt+erfPU2UP/3g6dSUnCjABTh4AL5hY/GoS
+5I1TMmcfkEcbkJo4rnH3pNWo6GGlNIq+Sr2/0fJgpfeJAjpQOfnIEBKxrBhgpfwY
+CsHQrgIYYiVAjKQP5sXsNXLTh1TKfUbckj0PzKjA2dE4d/On1KWxGyMWt8tBG83W
+n3QL5P/oV7a8krYavYsbdim/F6hTKxI2AwXALLS7Y+uu0w1GutrkC/Z3f6sRrxkh
+sk2ZoSvISt3BEB++UfYWeV7U+3p07kNUX0dAqL5VH3y4JqGUAxa5H4x7PtAwAMfg
+peLXltnShGkLGUeIUXcNMLnNj50yWnjis5TPxmIQ2vGVRnnaYjLEoIhzHF/Iqrvs
+8NyZKzj8wbBO6yVcmhBfllEJjC+FnmGuWbbAq6SIa5Kw5cQayUUkxkk+LZMM3erE
+PC9cQL/WJgqCJYHZMmlKMp50Da/81dB8ulz6iyur0L+aik54PXNzBFCM9nSbNXME
+2Tcplo7JuQ/iqkfPlzGmeoAlF0dc9gNeZffmPqtloOJPq59Jrq23cF2SLkWsN1u3
+Pz0aBZsfvRsS+AseYLQ6pmuYWfm8RFoSPBHaYMmhvzPTQgxqAe1BrXg+AFgorzlr
+AcpTf3S18KtHccL1hhG4zSq/zsFoXS/aU5hD9a2IN7hnixPmS+MfNFTMW3dkTXId
+Q8FRRmSOONTGJe9NVqMD
+=vefT
 -----END PGP SIGNATURE-----
 
---N8ia4yKhAKKETby7--
+--X0cz4bGbQuRbxrVl--
