@@ -1,64 +1,42 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DE5AE00CD8; Tue, 12 Apr 2016 20:30:08 -0700 (PDT)
+	id 47879E00E01; Wed, 13 Apr 2016 00:24:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25F18E00B9E
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:30:04 -0700 (PDT)
-Received: by mail-wm0-f47.google.com with SMTP id n3so52954435wmn.0
-	for <yocto@yoctoproject.org>; Tue, 12 Apr 2016 20:30:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=Fx2YxPw1wUQ3AEjting7L17+J/HqK2Prao7HgaadP1c=;
-	b=IiTl0MnU2Y2zyzvWau+R84fzStwQLs2fZpsl3Ehzq/gGwW1jqZLsWHEANqf04bX6eC
-	DNoXFps/gglEyjzq4FV1AuVnO/i5DvwjfVz65ElOmNy5AvrvVGvfYUJN1zX7MVektKrf
-	hX/c3U2JkK8T65Jhc/KftiRutkfhcFu6jhP2Kvr2wbi8w7mOkiHM/yMtCXlWj+ohnWzF
-	l991p9KjmisyOzbPmQMSGs4Wdh/T/7ZraG7T16cX/wBLGXi1xUo6gBCH1i8PkExj2vmb
-	X+u8NXkRoFA9BlNey8Oy/Ru0dU38z7OL1dvBgyEvnmMTURc3sI5lnSe84pOGSJT72E9M
-	1BQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Fx2YxPw1wUQ3AEjting7L17+J/HqK2Prao7HgaadP1c=;
-	b=G98RWumNLFdTots6GFGlOEVYLNgP2N9QKu7g9OCLmq7oxNQ61vJ18HTO4WHF+cAMK0
-	TR5y/oW2akdFgExckx0mk6DPUGEo6Zmymz4lcyRCG8OfBRGJVKs5qcxkQCY2OPaNEs8Q
-	Ueog/S+ePVgtdXuikw6wuQAz1mtpOcPrSfh+gntMkrR9nMTohSKBzd1uUJ53hqWbmx6d
-	rOInZio+oTOdPI3pFtczcmAqSbJqNt7J1ujlnajnTiqNfvhVeZ3T9LfO4T7yc4R1BR9O
-	nYIlSJc68ABVYJpIdsYkn1Tzjre0agUr5P3qrNQ9/a6zZf9QwLPIK4gxU9h76T5eYPQa
-	6amg==
-X-Gm-Message-State: AOPr4FUfXHgwn9M/NLNSJrwUUkNERx2+2ljWlmS2DM0yJa+Wq7vNKtiSIA7n09Ts7TgEeg==
-X-Received: by 10.194.83.42 with SMTP id n10mr7163508wjy.20.1460518203643;
-	Tue, 12 Apr 2016 20:30:03 -0700 (PDT)
-Received: from resin (dslb-088-076-238-192.088.076.pools.vodafone-ip.de.
-	[88.76.238.192]) by smtp.gmail.com with ESMTPSA id
-	w67sm25598175wmd.23.2016.04.12.20.30.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 12 Apr 2016 20:30:03 -0700 (PDT)
-Date: Wed, 13 Apr 2016 05:30:00 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20160413033000.GK22139@resin>
-References: <1459619952-26621-1-git-send-email-raj.khem@gmail.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01540E00C8F
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 00:23:55 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u3D7NeRS016639
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 13 Apr 2016 00:23:43 -0700 (PDT)
+Received: from [128.224.162.227] (128.224.162.227) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
+	Wed, 13 Apr 2016 00:23:40 -0700
+Message-ID: <570DF3FA.4020805@windriver.com>
+Date: Wed, 13 Apr 2016 15:23:38 +0800
+From: wenzong fan <wenzong.fan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <1459619952-26621-1-git-send-email-raj.khem@gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
+To: Joe MacDonald <Joe_MacDonald@mentor.com>
+References: <1459729295-79553-1-git-send-email-flihp@twobit.us>
+	<1459729295-79553-3-git-send-email-flihp@twobit.us>
+	<57076B89.20404@windriver.com>
+	<20160411125433.GA4693@mentor.com> <570C71B6.2010808@twobit.us>
+	<570C8D7E.8040804@windriver.com> <20160412140507.GA7154@mentor.com>
+In-Reply-To: <20160412140507.GA7154@mentor.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/2] userland: Fix a build regression in builds not using wayland
+Subject: Re: [meta-selinux][PATCH 2/3] Integrate selinux-config into refpolicy_common.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,190 +48,288 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Apr 2016 03:30:08 -0000
-X-Groupsio-MsgNum: 29400
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hl1kWnBARzJiTscN"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 13 Apr 2016 07:24:00 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---hl1kWnBARzJiTscN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 04/12/2016 10:05 PM, Joe MacDonald wrote:
+> Philip / Wenzong,
+>
+> [Re: [yocto] [meta-selinux][PATCH 2/3] Integrate selinux-config into refpolicy_common.] On 16.04.12 (Tue 13:54) wenzong fan wrote:
+>
+>> On 04/12/2016 11:55 AM, Philip Tricca wrote:
+>>> Hello,
+>>>
+>>> On 04/11/2016 05:54 AM, Joe MacDonald wrote:
+>>>>> This causes do_populate_sysroot error if build two or more types of
+>>>>> refpolicy:
+>>>>>
+>>>>> $ bitbake refpolicy-minimum && bitbake refpolicy-mls
+>>>>>
+>>>>> ERROR: refpolicy-mls-git-r0 do_populate_sysroot: The recipe refpolicy-mls is
+>>>>> trying to install files into a shared area when those files already exist.
+>>>>> Those files and their manifest location are:
+>>>>
+>>>> I think this was always the intent with the series Philip submitted last
+>>>> week (for reference, the thread is
+>>>> https://www.mail-archive.com/yocto@yoctoproject.org/msg28530.html).
+>>>> Isn't this (part of) the expected behaviour of the virtual provider
+>>>> mechanism?
+>>>
+>>> This is the question I think we need to figure out. My understanding
+>>> (quite possibly wrong) is that the virtual provider stuff would prevent
+>>> the installation of more than one provider. I hadn't considered the
+>>> implications for the sysroot.
+>>>
+>>> Is the ability to install multiple providers in the sysroot expected? I
+>>> imagine that this problem must have been solved before in another
+>>> package with virtual providers that install the same file. I'm happy to
+>>> doing some digging here but if anyone knows of a good example I'd
+>>> appreciate a pointer.
+>>>
+>>>> We did discuss what it would mean to be trying out multiple
+>>>> policies on a system at the same time and at the time it seemed like the
+>>>> "just works" angle was more important than "buffet style" when it came
+>>>> to providing policy on the image.
+>>>
+>>> I guess the thing I like the most about setting the policy package up as
+>>> a virtual package is the ability to select the policy type as a distro
+>>> config. The virtual provider seemed like a natural fit as it's a pattern
+>>> that similar packages (kernel etc) use extensively.
+>>>
+>>>> It might be worth considering extending the changes to only do some
+>>>> install steps at, say, do_rootfs but I don't know if that even makes
+>>>> sense, this is really the first I've thought of it.  I think Philip's
+>>>> original changes are good, though, for our maintenance and for clients
+>>>> of meta-selinux.
+>>>
+>>> There may be a middle ground and I think that would be leaving the
+>>> configuration file as a separate package. Personally I liked the idea of
+>>> rolling the config file into the policy package as it was always a bit
+>>> awkward requiring coordination of some variables across the policy and
+>>> the config package which made it a bit brittle.
+>>>
+>>> Wenzong: A few questions: What's your use case for building multiple
+>>> policy packages? Would you suggest just backing out the removal of the
+>>> config package or the whole virtual provider thing?
+>>
+>> Hi Philip,
+>>
+>> The virtual provider is OK, just restore the config package is the simplest
+>> ways for fixing such issue I think.
+>>
+>> My use cases include:
+>> a. update refpolicy and build each type to make sure patch/build/install
+>> work;
+>
+> That's not necessarily an argument against the change ...
+>
+>> b. run world build with meta-selinux layer.
+>
+> ... but I think this is.  Or, rather, I think what we have now makes more
+> sense from an end-user perspective, that your image wouldn't have more
+> than a single policy installed at a time and that if you tried to install
+> multiple policies for nearly everyone this represents a mistake and
+> undesirable behaviour so warnings / errors are appropriate.
+>
+> But if this is breaking world builds with yocto+meta-selinux, that's
+> something I'd like to repair.  Though I'm surprised that what we have
+> right now would break the world builds.  Philip / Wenzong / Mark:  Do you
+> have publicly-accessible world builds right now?  I don't and I don't have
+> world builds for yocto+meta-selinux on my autobuilder, but I'll go set one
+> up if you don't have one.
 
-On Sat, Apr 02, 2016 at 10:59:11AM -0700, Khem Raj wrote:
-> Update userland to latest
->
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ---
->  ...Fix-for-framerate-with-nested-composition.patch | 21 ++++++-----
->  ...014-Fix-errors-due-to-ignored-return-code.patch | 43 ----------------------
->  recipes-graphics/userland/userland_git.bb          |  3 +-
->  3 files changed, 12 insertions(+), 55 deletions(-)
->  delete mode 100644 recipes-graphics/userland/userland/0014-Fix-errors-due-to-ignored-return-code.patch
->
-> diff --git a/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch b/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-> index 2fa9d66..ff9ccce 100644
-> --- a/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-> +++ b/recipes-graphics/userland/userland/0013-Fix-for-framerate-with-nested-composition.patch
-> @@ -1,17 +1,17 @@
-> -From e5affc4ff145eedf61e2625a8919622c92d0b8ba Mon Sep 17 00:00:00 2001
-> +From f8779a124fc447b63c1ba1795330bdc2d765dc7a Mon Sep 17 00:00:00 2001
->  From: Khem Raj <raj.khem@gmail.com>
->  Date: Tue, 29 Mar 2016 20:38:30 -0700
-> -Subject: [PATCH 13/14] Fix for framerate with nested composition
-> +Subject: [PATCH 13/13] Fix for framerate with nested composition
->
->  frame rate appears irregular and lower than expected when using nested composition.
->
->  Signed-off-by: Khem Raj <raj.khem@gmail.com>
->  ---
-> - interface/khronos/egl/egl_client.c | 9 ++++++++-
-> - 1 file changed, 8 insertions(+), 1 deletion(-)
-> + interface/khronos/egl/egl_client.c | 8 ++++++++
-> + 1 file changed, 8 insertions(+)
->
->  diff --git a/interface/khronos/egl/egl_client.c b/interface/khronos/egl/egl_client.c
-> -index 024f3ed..d8a007c 100644
-> +index 024f3ed..83970ec 100644
->  --- a/interface/khronos/egl/egl_client.c
->  +++ b/interface/khronos/egl/egl_client.c
->  @@ -2342,6 +2342,9 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-> @@ -33,7 +33,7 @@ index 024f3ed..d8a007c 100644
->                     surface->front_wl_buffer->in_use = 1;
->                     wl_surface_attach(wl_egl_window->wl_surface,
->                                       surface->front_wl_buffer->wl_buffer,
-> -@@ -2360,10 +2365,11 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-> +@@ -2360,11 +2365,13 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
->                     wl_surface_damage(wl_egl_window->wl_surface, 0, 0,
->                                       surface->width, surface->height);
->                     wl_surface_commit(wl_egl_window->wl_surface);
-> @@ -41,12 +41,13 @@ index 024f3ed..d8a007c 100644
->
->                     while(ret != -1 && surface->back_wl_buffer->in_use)
->                        ret = wl_display_dispatch_queue(wl_display, process->wl_queue);
-> --               } else
-> -+               } else {
-> +                } else
->   #endif
-> ++               {
->                  RPC_CALL6(eglIntSwapBuffers_impl,
->                        thread,
-> -@@ -2376,6 +2382,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
-> +                      EGLINTSWAPBUFFERS_ID,
-> +@@ -2376,6 +2383,7 @@ EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers(EGLDisplay dpy, EGLSurface surf)
->                        RPC_UINT(khrn_platform_get_window_position(surface->win)));
->
->                  RPC_FLUSH(thread);
-> @@ -55,5 +56,5 @@ index 024f3ed..d8a007c 100644
->   #ifdef ANDROID
->                  CLIENT_UNLOCK();
->  --
-> -2.7.4
-> +2.8.0
->
-> diff --git a/recipes-graphics/userland/userland/0014-Fix-errors-due-to-ignored-return-code.patch b/recipes-graphics/userland/userland/0014-Fix-errors-due-to-ignored-return-code.patch
-> deleted file mode 100644
-> index 2d11e9b..0000000
-> --- a/recipes-graphics/userland/userland/0014-Fix-errors-due-to-ignored-return-code.patch
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -From 8ac57765d8b971aaa5ee5c610d8df25fa2ea36da Mon Sep 17 00:00:00 2001
-> -From: Khem Raj <raj.khem@gmail.com>
-> -Date: Thu, 24 Mar 2016 15:03:50 -0700
-> -Subject: [PATCH 14/14] Fix errors due to ignored return code
-> -
-> -Clang warns/errors about not checking the return
-> -values from chdir() and fread(), here we check
-> -for chdir return code and report back using error()
-> -API, and second fix to fread is to let compiler
-> -ignore the value via assigning it to an unused variable
-> -
-> -Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ----
-> - host_applications/linux/apps/dtoverlay/dtoverlay_main.c | 6 ++++--
-> - 1 file changed, 4 insertions(+), 2 deletions(-)
-> -
-> -diff --git a/host_applications/linux/apps/dtoverlay/dtoverlay_main.c b/host_applications/linux/apps/dtoverlay/dtoverlay_main.c
-> -index 4b33809..fa8324f 100755
-> ---- a/host_applications/linux/apps/dtoverlay/dtoverlay_main.c
-> -+++ b/host_applications/linux/apps/dtoverlay/dtoverlay_main.c
-> -@@ -353,7 +353,8 @@ static int dtoverlay_remove(STATE_T *state, const char *overlay)
-> -     int rmpos;
-> -     int i;
-> -
-> --    chdir(work_dir);
-> -+    if (chdir(work_dir) != 0)
-> -+	return error("chdir to %s failed", work_dir);
-> -
-> -     overlay_dir = sprintf_dup("%s/%s", dt_overlays_dir, overlay);
-> -     if (!dir_exists(overlay_dir))
-> -@@ -633,7 +634,8 @@ static int overlay_applied(const char *overlay_dir)
-> -     FILE *fp = fopen(status_path, "r");
-> -     if (fp)
-> -     {
-> --	fread(status, sizeof(status), 1, fp);
-> -+	int bytes __attribute__((unused));
-> -+	bytes = fread(status, sizeof(status), 1, fp);
-> - 	fclose(fp);
-> -     }
-> -     free_string(status_path);
-> ---
-> -2.7.4
-> -
-> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-> index ca9123e..efa2128 100644
-> --- a/recipes-graphics/userland/userland_git.bb
-> +++ b/recipes-graphics/userland/userland_git.bb
-> @@ -16,7 +16,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
->
->  SRCBRANCH = "master"
->  SRCFORK = "raspberrypi"
-> -SRCREV = "2f56a2943a9eb8420df52ccf91f5a1c5a70e8713"
-> +SRCREV = "703a2c4b35e23ee44ad84db6b9c3f89c0a627143"
->
->  SRC_URI = "\
->      git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
-> @@ -33,7 +33,6 @@ SRC_URI = "\
->      file://0011-fix-cmake-dependency-race.patch \
->      file://0012-Fix-enum-conversion-warnings.patch \
->      file://0013-Fix-for-framerate-with-nested-composition.patch \
-> -    file://0014-Fix-errors-due-to-ignored-return-code.patch \
->      file://0015-wl-dispmanx-buffer-wrapping.patch \
->  "
->  S = "${WORKDIR}/git"
-> --
-> 2.8.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Oh, it's my fault. I can't reproduce the issue with a fresh build now, 
+it must be I had been run refpolicy-* build manually :(
 
-Merged both patches. Thanks.
+I don't want to install multiple policies to target as well, so I have 
+no objection now.
 
---
-Andrei Gherzan
+Thanks all for your patience.
 
---hl1kWnBARzJiTscN
-Content-Type: application/pgp-signature; name="signature.asc"
+Wenzong
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+>
+> -J.
+>
+>>
+>> Thanks
+>> Wenzong
+>>
+>>>
+>>> Thanks,
+>>> Philip
+>>>
+>>>>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/etc/selinux/sepolgen.conf
+>>>>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+>>>>>
+>>>>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/etc/selinux/config
+>>>>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+>>>>>
+>>>>> /buildarea/raid5/wfan/yocto/builds/selinux_sysvinit/tmp/sysroots/qemux86-64/sysroot-providers/virtual_refpolicy
+>>>>>   Matched in manifest-qemux86-64-refpolicy-minimum.populate_sysroot
+>>>>> Please verify which recipe should provide the above files.
+>>>>>
+>>>>> Philip,
+>>>>>
+>>>>> Can you consider to withdraw the integration?
+>>>>>
+>>>>> Thanks
+>>>>> Wenzong
+>>>>>
+>>>>> On 04/04/2016 08:21 AM, Philip Tricca wrote:
+>>>>>> With the virutal package there's no need for a separate recipe to build
+>>>>>> the config. This can be generated and included as part of the policy
+>>>>>> package.
+>>>>>>
+>>>>>> Signed-off-by: Philip Tricca <flihp@twobit.us>
+>>>>>> ---
+>>>>>>   .../packagegroups/packagegroup-core-selinux.bb     |  1 -
+>>>>>>   .../packagegroups/packagegroup-selinux-minimal.bb  |  1 -
+>>>>>>   recipes-security/refpolicy/refpolicy_common.inc    | 30 ++++++++++++++--
+>>>>>>   recipes-security/selinux/selinux-config_0.1.bb     | 40 ----------------------
+>>>>>>   4 files changed, 28 insertions(+), 44 deletions(-)
+>>>>>>   delete mode 100644 recipes-security/selinux/selinux-config_0.1.bb
+>>>>>>
+>>>>>> diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+>>>>>> index 62c5a76..c6d22b7 100644
+>>>>>> --- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
+>>>>>> +++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+>>>>>> @@ -22,7 +22,6 @@ RDEPENDS_${PN} = " \
+>>>>>>   	packagegroup-selinux-policycoreutils \
+>>>>>>   	setools \
+>>>>>>   	setools-console \
+>>>>>> -	selinux-config \
+>>>>>>   	selinux-autorelabel \
+>>>>>>   	selinux-init \
+>>>>>>   	selinux-labeldev \
+>>>>>> diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+>>>>>> index 87ae686..451ae8b 100644
+>>>>>> --- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+>>>>>> +++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+>>>>>> @@ -21,7 +21,6 @@ RDEPENDS_${PN} = "\
+>>>>>>   	policycoreutils-semodule \
+>>>>>>   	policycoreutils-sestatus \
+>>>>>>   	policycoreutils-setfiles \
+>>>>>> -	selinux-config \
+>>>>>>   	selinux-labeldev \
+>>>>>>   	virtual/refpolicy \
+>>>>>>   "
+>>>>>> diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+>>>>>> index ba887e4..305675f 100644
+>>>>>> --- a/recipes-security/refpolicy/refpolicy_common.inc
+>>>>>> +++ b/recipes-security/refpolicy/refpolicy_common.inc
+>>>>>> @@ -1,3 +1,5 @@
+>>>>>> +DEFAULT_ENFORCING ??= "enforcing"
+>>>>>> +
+>>>>>>   SECTION = "base"
+>>>>>>   LICENSE = "GPLv2"
+>>>>>>
+>>>>>> @@ -14,7 +16,8 @@ SRC_URI += "file://customizable_types \
+>>>>>>
+>>>>>>   S = "${WORKDIR}/refpolicy"
+>>>>>>
+>>>>>> -FILES_${PN} = " \
+>>>>>> +CONFFILES_${PN} += "${sysconfdir}/selinux/config"
+>>>>>> +FILES_${PN} += " \
+>>>>>>   	${sysconfdir}/selinux/${POLICY_NAME}/ \
+>>>>>>   	${datadir}/selinux/${POLICY_NAME}/*.pp \
+>>>>>>   	${localstatedir}/lib/selinux/${POLICY_NAME}/ \
+>>>>>> @@ -25,7 +28,6 @@ FILES_${PN}-dev =+ " \
+>>>>>>   "
+>>>>>>
+>>>>>>   DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
+>>>>>> -RDEPENDS_${PN} += "selinux-config"
+>>>>>>
+>>>>>>   PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>>>>>
+>>>>>> @@ -137,13 +139,37 @@ install_misc_files () {
+>>>>>>   	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install-headers
+>>>>>>   }
+>>>>>>
+>>>>>> +install_config () {
+>>>>>> +	echo "\
+>>>>>> +# This file controls the state of SELinux on the system.
+>>>>>> +# SELINUX= can take one of these three values:
+>>>>>> +#     enforcing - SELinux security policy is enforced.
+>>>>>> +#     permissive - SELinux prints warnings instead of enforcing.
+>>>>>> +#     disabled - No SELinux policy is loaded.
+>>>>>> +SELINUX=${DEFAULT_ENFORCING}
+>>>>>> +# SELINUXTYPE= can take one of these values:
+>>>>>> +#     standard - Standard Security protection.
+>>>>>> +#     mls - Multi Level Security protection.
+>>>>>> +#     targeted - Targeted processes are protected.
+>>>>>> +#     mcs - Multi Category Security protection.
+>>>>>> +SELINUXTYPE=${POLICY_TYPE}
+>>>>>> +" > ${WORKDIR}/config
+>>>>>> +	install -d ${D}/${sysconfdir}/selinux
+>>>>>> +	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
+>>>>>> +}
+>>>>>> +
+>>>>>>   do_install () {
+>>>>>>   	prepare_policy_store
+>>>>>>   	rebuild_policy
+>>>>>>   	install_misc_files
+>>>>>> +	install_config
+>>>>>>   }
+>>>>>>
+>>>>>>   do_install_append(){
+>>>>>>   	# While building policies on target, Makefile will be searched from SELINUX_DEVEL_PATH
+>>>>>>   	echo "SELINUX_DEVEL_PATH=${datadir}/selinux/${POLICY_NAME}/include" > ${D}${sysconfdir}/selinux/sepolgen.conf
+>>>>>>   }
+>>>>>> +
+>>>>>> +sysroot_stage_all_append () {
+>>>>>> +	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
+>>>>>> +}
+>>>>>> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
+>>>>>> deleted file mode 100644
+>>>>>> index e902e98..0000000
+>>>>>> --- a/recipes-security/selinux/selinux-config_0.1.bb
+>>>>>> +++ /dev/null
+>>>>>> @@ -1,40 +0,0 @@
+>>>>>> -DEFAULT_ENFORCING ??= "enforcing"
+>>>>>> -
+>>>>>> -SUMMARY = "SELinux configuration"
+>>>>>> -DESCRIPTION = "\
+>>>>>> -SELinux configuration files for Yocto. \
+>>>>>> -"
+>>>>>> -
+>>>>>> -SECTION = "base"
+>>>>>> -LICENSE = "MIT"
+>>>>>> -LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+>>>>>> -PR = "r4"
+>>>>>> -
+>>>>>> -S = "${WORKDIR}"
+>>>>>> -
+>>>>>> -CONFFILES_${PN} += "${sysconfdir}/selinux/config"
+>>>>>> -
+>>>>>> -PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>>>>> -
+>>>>>> -do_install () {
+>>>>>> -	echo "\
+>>>>>> -# This file controls the state of SELinux on the system.
+>>>>>> -# SELINUX= can take one of these three values:
+>>>>>> -#     enforcing - SELinux security policy is enforced.
+>>>>>> -#     permissive - SELinux prints warnings instead of enforcing.
+>>>>>> -#     disabled - No SELinux policy is loaded.
+>>>>>> -SELINUX=${DEFAULT_ENFORCING}
+>>>>>> -# SELINUXTYPE= can take one of these values:
+>>>>>> -#     standard - Standard Security protection.
+>>>>>> -#     mls - Multi Level Security protection.
+>>>>>> -#     targeted - Targeted processes are protected.
+>>>>>> -#     mcs - Multi Category Security protection.
+>>>>>> -SELINUXTYPE=${@d.getVar("PREFERRED_PROVIDER_virtual/refpolicy", False)[len("refpolicy-"):]}
+>>>>>> -" > ${WORKDIR}/config
+>>>>>> -	install -d ${D}/${sysconfdir}/selinux
+>>>>>> -	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
+>>>>>> -}
+>>>>>> -
+>>>>>> -sysroot_stage_all_append () {
+>>>>>> -	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
+>>>>>> -}
+>>>>>>
+>>>>
+>>>
+>>>
+>
 
-iQIcBAEBCAAGBQJXDb04AAoJEHO76Gt+erfPK3YP/1h773kp6cV6hXrRyEE0wSja
-gOUI32Cw4Z7VAArjp5XOzACcgwZrnlH74lyhSXxQ10Afrn6Q5StFLSsFsAczXKWH
-VdO4y79QubV83Usb58WakjQAe6itdqeyWct4bTqx7aaTlzE3qPqGXZMNB+asjhbr
-ossAfTJYWGPrYrSjvRC2CqFwh0NePBv/g+Uygpm9B5eE95TSOeoSj0B3bCnnwP0w
-WQtNEu4n1xkz2W0kj8lbVRHFSR6h5drUHGpvt/3PLINokR3lcb+AdjEnHOQj+CLu
-69SgYAhoVJsNwesSeW5WisMB3BPT+5mrX1mls8tuXM/C/x6CWi5FjMRe/I/PbRWf
-EugA+6bdaH0mTKA64Sdf6D9MjCuWudr/B8Sc3l/T/DkuQcQYK4kFm8ukeRSwfRrH
-g7WU2nb8ge7zYdqEfBMqX29L92gpSJxpUouYKOf6GmKwfEn2qRPhppb3XkdUrZRU
-y+Yq46Kh++LTMuYGl3ajKkxMl0zhsvUDtHY5Brk59NQFZI548Gd0ueEwXufbK3rA
-GikbDjtUfbxSwrNgOZ8LJr8zIzHmLAz7YXmW9PncrnexCY8p5b9aI55nehhtBEq/
-yqf8v5Zu9RYStjACClcI1QIS7o7iIXDXQAZQoBsuT22sqIeIdc5yHW+32ZdGdckq
-E9MJ4FzcmDiHlxbMWon7
-=Wr/Y
------END PGP SIGNATURE-----
-
---hl1kWnBARzJiTscN--
