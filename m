@@ -1,60 +1,52 @@
-Return-Path: <charles.krinke@gmail.com>
+Return-Path: <sidprice@softtools.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FF0EE00E64; Thu, 14 Apr 2016 10:36:07 -0700 (PDT)
+	id 0CD4EE00E64; Thu, 14 Apr 2016 10:38:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (charles.krinke[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.184.2.64 listed in list.dnswl.org]
+	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2857]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.45 listed in list.dnswl.org]
-Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
-	[209.85.213.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27558E00D7D
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:36:02 -0700 (PDT)
-Received: by mail-vk0-f45.google.com with SMTP id c4so118249543vkb.3
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:36:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=8WvZN6KcUnICUkKG2BvHnDCDspm/ezvfKEcSjGWikfA=;
-	b=mqptZZqGY06lhv2LSBFFhufqFAdzpWYJrUn1xQbCmefTMOynFPH0IwR/FOP1bXxcvd
-	XLwdDBomAmQem9KCL9T6zuquTR/TbddfqDXMRQHZJ0kMD578dEUlcr5FkqByxlZF1VjO
-	M6kU5A8iMjzK6HaibWkDh4PETOiMtWAgGdQt7zM2DKD0NyimdytbSlBDgWHWV8ZwxXGB
-	zA2sqbuud6XqTZSiezF/23G2XnozVsyfmKYmeDz8GnU8rrDefTSt4aaZmqK4JcG/HZf7
-	QveOuj064lOthEvha7Ki3ob4mrLiPo6fI2RRynrasjxTQ/SDla8tPMm2N1+/css8kxTE
-	P+6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8WvZN6KcUnICUkKG2BvHnDCDspm/ezvfKEcSjGWikfA=;
-	b=ZrpmBW4JlCPst9oeQn067QZG6j37n5YrijsZpVOwP3mfx0IpniNjDeXqsKCHJgRAvf
-	I6nRhgXySWRM01Xtivqp1E88tNbX/8CAYbYtdmbbwt2Nj5I3EpCfDfUowLf8X4rOpYXT
-	n8cRQVr5l5n4XpNfglszqLh5QUsaLrzydU4+6iNiU3ub6d6JdHfPD4UfW210T8BxBuTb
-	dsf9QuahFHDueMG5lBKJsFwE50nr9yDD0sNKy7CzBHm6ycZHjyQdO/TemDbjIaUqkfHq
-	rI02SxwCgZ1Ttn5HX7wFSmUs+xAanbSNv6f828EenMWn9Xe6Ky1q9VpHSnZZlRh/9enz
-	c7pA==
-X-Gm-Message-State: AOPr4FXSqOdwsiZzl5q48vW+i7g5xSWXd5wA0jDvOsgMrb0AH5CCyoxDpHhRv5Oyn3VklpZiLxjr0PNm0HcpSw==
-X-Received: by 10.31.52.147 with SMTP id b141mr8207029vka.82.1460655361795;
-	Thu, 14 Apr 2016 10:36:01 -0700 (PDT)
+X-Greylist: delayed 430 seconds by postgrey-1.32 at yocto-www;
+	Thu, 14 Apr 2016 10:38:36 PDT
+Received: from mx1a.swcp.com (mx1a.swcp.com [216.184.2.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3DB4E00D7D
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:38:36 -0700 (PDT)
+Received: from ame7.swcp.com (ame7.swcp.com [216.184.2.70])
+	by mx1a.swcp.com (8.14.4/8.14.4/Debian-4) with ESMTP id u3EHWqlu025918
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 11:32:52 -0600
+Received-SPF: pass (ame7.swcp.com: authenticated connection)
+	receiver=ame7.swcp.com; client-ip=67.42.135.123;
+	helo=SJDevelopment; envelope-from=sidprice@softtools.com;
+	x-software=spfmilter 2.001 http://www.acme.com/software/spfmilter/ with
+	libspf2-1.2.10; 
+Received: from SJDevelopment ([67.42.135.123]) (authenticated bits=0)
+	by ame7.swcp.com (8.15.2/8.15.2) with ESMTPSA id u3EHVLHE080258
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT)
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 11:31:23 -0600 (MDT)
+	(envelope-from sidprice@softtools.com)
+X-Authentication-Warning: ame7.swcp.com: Host [67.42.135.123] claimed to be
+	SJDevelopment
+From: "Sid Price" <sidprice@softtools.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 14 Apr 2016 11:31:11 -0600
+Message-ID: <009201d19673$710b33a0$53219ae0$@softtools.com>
 MIME-Version: 1.0
-Received: by 10.31.180.80 with HTTP; Thu, 14 Apr 2016 10:35:42 -0700 (PDT)
-From: Charles Krinke <charles.krinke@gmail.com>
-Date: Thu, 14 Apr 2016 10:35:42 -0700
-Message-ID: <CALo-6+hwVYUev6Mit_-myyT26brPm0VX+LxFPDm6JySNULdsnA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Understanding Yocto
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdGWc1zZVZnCSGkNQ263gxsbwkKu4g==
+X-Scanned-By: MIMEDefang 2.75
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.4.3
+	(ame7.swcp.com [216.184.2.128]);
+	Thu, 14 Apr 2016 11:31:23 -0600 (MDT)
+X-Virus-Scanned: clamav-milter 0.98.7 at ame7
+X-Virus-Status: Clean
+Subject: environment setup script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,32 +58,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 17:36:07 -0000
-Content-Type: multipart/alternative; boundary=001a1143f846faacd405307553d7
+X-List-Received-Date: Thu, 14 Apr 2016 17:38:40 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0093_01D19641.2670EAB0"
+Content-Language: en-us
 
---001a1143f846faacd405307553d7
-Content-Type: text/plain; charset=UTF-8
+------=_NextPart_000_0093_01D19641.2670EAB0
+Content-Type: text/plain;
+	charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
-I am trying to build an imx6 bsp and having a little trouble with the
-"repo" command.
+Hello, I am new to Yocto and relatively new to Linux. I am working my way
+through the "Getting Started" guide and I have met a problem. I am trying to
+run the "environment-setup ." script for the arm platform. First I notice
+that when I list the folder /opt/poky/2.0.1 I see the scripts but they are
+not shown as executable. Is this correct? When I try the following command I
+am told "Permission denied":
 
-Can someone help me understand how to apt-get this package into my
-development system, please? "sudo apt-get install repo" fails, so I suspect
-it needs a name with version or a slightly different name.
+ 
 
--- 
-Charles Krinke
+/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi
 
---001a1143f846faacd405307553d7
-Content-Type: text/html; charset=UTF-8
+ 
+
+If I use sudo I see "command not found"
+
+ 
+
+Any pointers would be very much appreciated,
+
+Sid
+
+ 
+
+Sid Price
+
+Desktop Application and Embedded System Design
+
+ 
+
+
+------=_NextPart_000_0093_01D19641.2670EAB0
+Content-Type: text/html;
+	charset="US-ASCII"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I am trying to build an imx6 bsp and having a little =
-trouble with the &quot;repo&quot; command.</div><div><br></div><div>Can som=
-eone help me understand how to apt-get this package into my development sys=
-tem, please? &quot;sudo apt-get install repo&quot; fails, so I suspect it n=
-eeds a name with version or a slightly different name.<br clear=3D"all"><br=
->-- <br></div><div class=3D"gmail_signature">Charles Krinke<br><br></div>
-</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello, I am new to Yocto and relatively new to Linux. =
+I am working my way through the &#8220;Getting Started&#8221; guide and =
+I have met a problem. I am trying to run the &#8220;environment-setup =
+&#8230;&#8221; script for the arm platform. First I notice that when I =
+list the folder /opt/poky/2.0.1 I see the scripts but they are not shown =
+as executable. Is this correct? When I try the following command I am =
+told &#8220;Permission denied&#8221;:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnu=
+eabi<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>If I use sudo I see &#8220;command not =
+found&#8221;<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Any pointers would be very much =
+appreciated,<o:p></o:p></p><p class=3DMsoNormal>Sid<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><i>Sid =
+Price<o:p></o:p></i></p><p class=3DMsoNormal><i>Desktop Application and =
+Embedded System Design<o:p></o:p></i></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---001a1143f846faacd405307553d7--
+------=_NextPart_000_0093_01D19641.2670EAB0--
