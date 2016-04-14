@@ -1,52 +1,63 @@
-Return-Path: <sidprice@softtools.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 500AFE00E60; Thu, 14 Apr 2016 10:57:40 -0700 (PDT)
+	id 9430DE00EA5; Thu, 14 Apr 2016 11:56:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.184.2.64 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx1a.swcp.com (mx1a.swcp.com [216.184.2.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D834CE00C5D
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:57:37 -0700 (PDT)
-Received: from ame8.swcp.com (ame8.swcp.com [216.184.2.163])
-	by mx1a.swcp.com (8.14.4/8.14.4/Debian-4) with ESMTP id u3EHx3oU030289; 
-	Thu, 14 Apr 2016 11:59:03 -0600
-Received-SPF: pass (ame8.swcp.com: authenticated connection)
-	receiver=ame8.swcp.com; client-ip=67.42.135.123;
-	helo=SJDevelopment; envelope-from=sidprice@softtools.com;
-	x-software=spfmilter 2.001 http://www.acme.com/software/spfmilter/ with
-	libspf2-1.2.10; 
-Received: from SJDevelopment ([67.42.135.123]) (authenticated bits=0)
-	by ame8.swcp.com (8.15.2/8.15.2) with ESMTPSA id u3EHvW2f042622
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Thu, 14 Apr 2016 11:57:33 -0600 (MDT)
-	(envelope-from sidprice@softtools.com)
-X-Authentication-Warning: ame8.swcp.com: Host [67.42.135.123] claimed to be
-	SJDevelopment
-From: "Sid Price" <sidprice@softtools.com>
-To: "'Christopher Larson'" <clarson@kergoth.com>, <yocto@yoctoproject.org>
-References: <009201d19673$710b33a0$53219ae0$@softtools.com>
-	<CABcZANkVC3qdywVZedFTNzgADnUB24SEJBKSdNHV85SGRH2jjA@mail.gmail.com>
-In-Reply-To: 
-Date: Thu, 14 Apr 2016 11:57:22 -0600
-Message-ID: <00a001d19677$196eee30$4c4cca90$@softtools.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQE3+xxjjHLIeA2VRwRBoC0IFaZWXAJLDMkxoKqdqBCAAAGaoA==
-X-Scanned-By: MIMEDefang 2.75
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.4.3
-	(ame8.swcp.com [216.184.2.128]);
-	Thu, 14 Apr 2016 11:57:34 -0600 (MDT)
-X-Virus-Scanned: clamav-milter 0.98.7 at ame8
-X-Virus-Status: Clean
-Subject: Re: environment setup script
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C67F5E00D95
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 11:56:22 -0700 (PDT)
+Received: by mail-qk0-f180.google.com with SMTP id r184so32089077qkc.1
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 11:56:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=3cJ7PyrK+3PuSCesuL8XXjoOKYwpAweP8TyT+MyCu8Y=;
+	b=bd7oSkA8wuIOWE89trdRyFmpRLFJKlZt4Mv2jidXJLtXWgJT6ZSmmeFMuxVRGqTUNb
+	ZMDEcaihKNrXstSN5OzhlGfL9WGvsdy2vb0DozWYO+FkRkrCISmFb/uAarrUsdTzu8rA
+	1u2RruMEUkglkoV5NZULbUAFkCyEbVMFH6qMVyz5QVoVO59Ibxv6Cqu0kVK+BKMVcx9G
+	vh9DiJQ498ozc7S7DAGKSlaEEofhY1oczQOnBYoLObUlG/QX4RVDiW8+7penDeGFDfhv
+	xgeK07L8wbJOyXM8i3s1cgIWY5Ney6/JZEqoFrM9ZynYXYDbfK4ShOYcM1M5f03+dNbC
+	Nhow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=3cJ7PyrK+3PuSCesuL8XXjoOKYwpAweP8TyT+MyCu8Y=;
+	b=FS/XFwTA41m8Jq+H+30SFH+w0ot+yzJvCN6COen09/O7xoRW9hcAZsTTpvQbg1zWkh
+	pnnGIYIFE957eoXLmr9vE01g+N9Tgu+BN57LJPcqjdxT6/ktsLCM2rOm0SvsKv0vwJFM
+	RdAip6XqGv3oe6m3USnHaRDFt2EkJEoXJnysoO+U8eVZ9xJVVr6XNSpIKwBI+3+6zeU/
+	GmHdvtoHXX2UqqlXm42N3Mvo3iGiNh1faSRelYQ89wglZRxpwmhuY21ogHoinrc52WEm
+	Qr7MDBATL/C7pdH7RJL7HqKXwe86TOCAeNRvWW6/htrEYSScbaQVIXVV9AhEcP+k+bOt
+	jFPA==
+X-Gm-Message-State: AOPr4FUkMpBC7hPF6NEgvX7rWsml4hQIINDhdkNi/bU5TZ86t/bn0/24IAPAxD0ROdpbQQ==
+X-Received: by 10.55.78.70 with SMTP id c67mr20620809qkb.37.1460660181970;
+	Thu, 14 Apr 2016 11:56:21 -0700 (PDT)
+Received: from eos.sys.comcast.net (a-96-118-179-133.sys.comcast.net.
+	[96.118.179.133]) by smtp.gmail.com with ESMTPSA id
+	z110sm18649303qgd.45.2016.04.14.11.56.21
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 14 Apr 2016 11:56:21 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 14 Apr 2016 18:56:16 +0000
+Message-Id: <1460660176-21191-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-poky][PATCH] poky-tiny: Use linux-yocto-tiny for qemux86 only
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,173 +69,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 17:57:40 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00A1_01D19644.CED4CC50"
-Content-Language: en-us
+X-List-Received-Date: Thu, 14 Apr 2016 18:56:37 -0000
 
-------=_NextPart_000_00A1_01D19644.CED4CC50
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+This is not working for other BSPs yet and we cant
+use poky-tiny profile for them. So make it qemux86
+specific for now
 
-On Thu, Apr 14, 2016 at 10:39 AM Sid Price <sidprice@softtools.com =
-<mailto:sidprice@softtools.com> > wrote:
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ meta-poky/conf/distro/poky-tiny.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hello, I am new to Yocto and relatively new to Linux. I am working my =
-way through the =E2=80=9CGetting Started=E2=80=9D guide and I have met a =
-problem. I am trying to run the =E2=80=9Cenvironment-setup =
-=E2=80=A6=E2=80=9D script for the arm platform. First I notice that when =
-I list the folder /opt/poky/2.0.1 I see the scripts but they are not =
-shown as executable. Is this correct? When I try the following command I =
-am told =E2=80=9CPermission denied=E2=80=9D:
-
-=20
-
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi
-
-=20
-
-If I use sudo I see =E2=80=9Ccommand not found=E2=80=9D
-
-=20
-
-The setup script has to be *sourced* into your shell, not run. The =
-instructions most likely included a leading '.' but you missed it. =
-Either type '. =
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi' or 'source =
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi' in your =
-shell.
-
-=20
-
-Using =E2=80=9Csource =
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi=E2=80=9D =
-appeared to work, no errors reported. Should I now expect to see new =
-environment variables when I use =E2=80=9Cprintenv=E2=80=9D, because I =
-don=E2=80=99t see any of those mentioned in the getting started guide.
-
-Sid
-
-=20
-
-I reduced the command to simply =E2=80=9Csource =
-./environment-setup-armv5e-poky-linux-eabi=E2=80=9D and now it worked =
-=E2=80=A6 many thanks,
-
-Sid
+diff --git a/meta-poky/conf/distro/poky-tiny.conf b/meta-poky/conf/distro/poky-tiny.conf
+index c6a9086..7a429fe 100644
+--- a/meta-poky/conf/distro/poky-tiny.conf
++++ b/meta-poky/conf/distro/poky-tiny.conf
+@@ -36,7 +36,7 @@ TCLIBC = "musl"
+ 
+ # Distro config is evaluated after the machine config, so we have to explicitly
+ # set the kernel provider to override a machine config.
+-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-tiny"
++PREFERRED_PROVIDER_virtual/kernel_qemux86 = "linux-yocto-tiny"
+ PREFERRED_VERSION_linux-yocto-tiny ?= "4.4%"
+ 
+ # We can use packagegroup-core-boot, but in the future we may need a new packagegroup-core-tiny
+-- 
+1.9.1
 
 
-------=_NextPart_000_00A1_01D19644.CED4CC50
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>On Thu, =
-Apr 14, 2016 at 10:39 AM Sid Price &lt;<a =
-href=3D"mailto:sidprice@softtools.com">sidprice@softtools.com</a>&gt; =
-wrote:<o:p></o:p></p><blockquote style=3D'border:none;border-left:solid =
-#CCCCCC 1.0pt;padding:0in 0in 0in =
-6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5=
-.0pt'><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hello, I am =
-new to Yocto and relatively new to Linux. I am working my way through =
-the =E2=80=9CGetting Started=E2=80=9D guide and I have met a problem. I =
-am trying to run the =E2=80=9Cenvironment-setup =E2=80=A6=E2=80=9D =
-script for the arm platform. First I notice that when I list the folder =
-/opt/poky/2.0.1 I see the scripts but they are not shown as executable. =
-Is this correct? When I try the following command I am told =
-=E2=80=9CPermission denied=E2=80=9D:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>/opt/poky/2.=
-0.1/environment-setup-armv5e-poky-linux-gnueabi<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>If I use =
-sudo I see =E2=80=9Ccommand not =
-found=E2=80=9D<o:p></o:p></p></div></div></blockquote><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>The setup script has to be *sourced* into your shell, =
-not run. The instructions most likely included a leading '.' but you =
-missed it. Either type '. =
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi' or =
-'source&nbsp;/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi'=
- in your shell.<o:p></o:p></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Using =E2=80=9Csource =
-/opt/poky/2.0.1/environment-setup-armv5e-poky-linux-gnueabi=E2=80=9D =
-appeared to work, no errors reported. Should I now expect to see new =
-environment variables when I use =E2=80=9Cprintenv=E2=80=9D, because I =
-don=E2=80=99t see any of those mentioned in the getting started =
-guide.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Sid<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'><o:p>&nbsp;</=
-o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>I reduced =
-the command to simply =E2=80=9Csource =
-./environment-setup-armv5e-poky-linux-eabi=E2=80=9D and now it worked =
-=E2=80=A6 many thanks,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Sid<o:p></o:p=
-></span></p></div></div></body></html>
-
-------=_NextPart_000_00A1_01D19644.CED4CC50--
