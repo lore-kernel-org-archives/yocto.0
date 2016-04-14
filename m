@@ -1,63 +1,60 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <charles.krinke@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D661EE0077E; Thu, 14 Apr 2016 09:27:27 -0700 (PDT)
+	id 4FF0EE00E64; Thu, 14 Apr 2016 10:36:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.48 listed in list.dnswl.org]
+	mail provider *      (charles.krinke[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
-	[209.85.192.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 679CEE00527
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 09:27:25 -0700 (PDT)
-Received: by mail-qg0-f48.google.com with SMTP id c6so66088231qga.1
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 09:27:25 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.45 listed in list.dnswl.org]
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27558E00D7D
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:36:02 -0700 (PDT)
+Received: by mail-vk0-f45.google.com with SMTP id c4so118249543vkb.3
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 10:36:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=q4lgUe1oConlr1Zh+1rYqBZQE93mV2oXxPFggOFqU00=;
-	b=V2b8fJ0ozlLLHWmwNQ12E38Ld5n7juHUmFCuwNxikkI2Er4kPheKDh6BIxslsVHpPA
-	H5JuUiskH2MALb0Hoy6Pr1BGnj9jaAKU5iRgkmDztb8HFxVyoclRNhf9u2aGQ+eRNSc2
-	a90AoC/d303agv56U+AjRnZ3naPYaWiQDn+WasPOLyzH4DDG1dnv24/UjKurbz9eiOSV
-	Zbddnw8pYS6IvfDMmFB25lnCpe/3QTD+ZmOwMaL6SAHZ5QI5HdQoyXZAGlr4dogftqjg
-	xRrUeRWH6jXcEdzxA7591BnUTcDFA0UEVqmGdB/rDvICtIlc0j2MezBBgQu7sqAl7WPG
-	IeBQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=8WvZN6KcUnICUkKG2BvHnDCDspm/ezvfKEcSjGWikfA=;
+	b=mqptZZqGY06lhv2LSBFFhufqFAdzpWYJrUn1xQbCmefTMOynFPH0IwR/FOP1bXxcvd
+	XLwdDBomAmQem9KCL9T6zuquTR/TbddfqDXMRQHZJ0kMD578dEUlcr5FkqByxlZF1VjO
+	M6kU5A8iMjzK6HaibWkDh4PETOiMtWAgGdQt7zM2DKD0NyimdytbSlBDgWHWV8ZwxXGB
+	zA2sqbuud6XqTZSiezF/23G2XnozVsyfmKYmeDz8GnU8rrDefTSt4aaZmqK4JcG/HZf7
+	QveOuj064lOthEvha7Ki3ob4mrLiPo6fI2RRynrasjxTQ/SDla8tPMm2N1+/css8kxTE
+	P+6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=q4lgUe1oConlr1Zh+1rYqBZQE93mV2oXxPFggOFqU00=;
-	b=GolCLOZBKNQn5JdHbKG9WPXCk4QFtk2N+AA5rqdGpvDG9b0cVh/c8hEutjn/DrvvR4
-	4nNhJ5I5dz62kd4KHdeOy55Xlwn2+FvhJL3CNp0oynd8kpy4FGhLhmad2LTLmLlopDQ1
-	Z197QITXP5KOjNa4AAgBEUWIQCr76KudsVw4wB25spa8Xoa7NedN8KzGUcwtIP2PCGYA
-	wphGoGiCE7FeGSMQJDAV0iehd62LT3rvBgLXngqWI+lWAq6vxJGdoBl7SwncjVQsIx9p
-	HzEQeEmU8QREvpvcrM8VXmu97kWBDHWYzqb1+AkqyGMl2ecLABtvXdQAmXkkK8YlGmjY
-	DVDw==
-X-Gm-Message-State: AOPr4FUFN8yEv0BBBdl09rt8E6XhQSXNlfCdt0Yl0HzJ6VZ1/16xcf/jX+pgJFKc9hZE+Ugl2GLXYBYYx1HJHA==
-X-Received: by 10.140.100.184 with SMTP id s53mr18876797qge.19.1460651244516; 
-	Thu, 14 Apr 2016 09:27:24 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=8WvZN6KcUnICUkKG2BvHnDCDspm/ezvfKEcSjGWikfA=;
+	b=ZrpmBW4JlCPst9oeQn067QZG6j37n5YrijsZpVOwP3mfx0IpniNjDeXqsKCHJgRAvf
+	I6nRhgXySWRM01Xtivqp1E88tNbX/8CAYbYtdmbbwt2Nj5I3EpCfDfUowLf8X4rOpYXT
+	n8cRQVr5l5n4XpNfglszqLh5QUsaLrzydU4+6iNiU3ub6d6JdHfPD4UfW210T8BxBuTb
+	dsf9QuahFHDueMG5lBKJsFwE50nr9yDD0sNKy7CzBHm6ycZHjyQdO/TemDbjIaUqkfHq
+	rI02SxwCgZ1Ttn5HX7wFSmUs+xAanbSNv6f828EenMWn9Xe6Ky1q9VpHSnZZlRh/9enz
+	c7pA==
+X-Gm-Message-State: AOPr4FXSqOdwsiZzl5q48vW+i7g5xSWXd5wA0jDvOsgMrb0AH5CCyoxDpHhRv5Oyn3VklpZiLxjr0PNm0HcpSw==
+X-Received: by 10.31.52.147 with SMTP id b141mr8207029vka.82.1460655361795;
+	Thu, 14 Apr 2016 10:36:01 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Thu, 14 Apr 2016 09:26:55 -0700 (PDT)
-In-Reply-To: <14E4216AB3B3624BB1E80BC692D0F413D8D3A301@EU-EHV-EXM01-P.global.tektronix.net>
-References: <14E4216AB3B3624BB1E80BC692D0F413D8D3A301@EU-EHV-EXM01-P.global.tektronix.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 14 Apr 2016 09:26:55 -0700
-Message-ID: <CAMKF1sr9_8bY-T4ghGT1o9xfMdfUcG_HuGFOgRGy=M2v7wsOpQ@mail.gmail.com>
-To: "Vajzovic, Tom" <Tom.Vajzovic@irisys.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bitbake -c clean for all recipes
+Received: by 10.31.180.80 with HTTP; Thu, 14 Apr 2016 10:35:42 -0700 (PDT)
+From: Charles Krinke <charles.krinke@gmail.com>
+Date: Thu, 14 Apr 2016 10:35:42 -0700
+Message-ID: <CALo-6+hwVYUev6Mit_-myyT26brPm0VX+LxFPDm6JySNULdsnA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Understanding Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,24 +66,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 16:27:27 -0000
+X-List-Received-Date: Thu, 14 Apr 2016 17:36:07 -0000
+Content-Type: multipart/alternative; boundary=001a1143f846faacd405307553d7
+
+--001a1143f846faacd405307553d7
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Apr 14, 2016 at 4:18 AM, Vajzovic, Tom
-<Tom.Vajzovic@irisys.co.uk> wrote:
-> Hi,
->
-> What command can I use to do the equivalent of running "bitbake -c clean" (or cleanstate etc) for all recipes that have previously been run?
+I am trying to build an imx6 bsp and having a little trouble with the
+"repo" command.
 
-Thats almost equivalent of rm -rf tmp
-since you have sstate it should rebuild really quick.
+Can someone help me understand how to apt-get this package into my
+development system, please? "sudo apt-get install repo" fails, so I suspect
+it needs a name with version or a slightly different name.
 
->
-> Thanks,
-> Tom
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Charles Krinke
 
+--001a1143f846faacd405307553d7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I am trying to build an imx6 bsp and having a little =
+trouble with the &quot;repo&quot; command.</div><div><br></div><div>Can som=
+eone help me understand how to apt-get this package into my development sys=
+tem, please? &quot;sudo apt-get install repo&quot; fails, so I suspect it n=
+eeds a name with version or a slightly different name.<br clear=3D"all"><br=
+>-- <br></div><div class=3D"gmail_signature">Charles Krinke<br><br></div>
+</div>
+
+--001a1143f846faacd405307553d7--
