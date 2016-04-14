@@ -1,60 +1,33 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB9CDE00C4C; Thu, 14 Apr 2016 04:33:23 -0700 (PDT)
+	id 550A5E00D71; Thu, 14 Apr 2016 05:10:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C1A8E00931
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 04:33:17 -0700 (PDT)
-Received: by mail-ig0-f176.google.com with SMTP id ui10so87648528igc.1
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 04:33:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ggSVmarJEr7MnOWs+N0ex9gQRi9sLw4fdrPXSdBBr/Y=;
-	b=CQucoBF+aJ8Sz30m4jgU14wW7SsfBPQfYLG/P++hhTte+dBngQLdWScoBSvLts7/fd
-	QiUx4bHYD5MHTzMUMPe14I9towtleyR7iJaFkUg6LJB7KHvfqMCO/O0kNWiS49WoRUDC
-	cyrrsiOuI27NP7Wn+7+y/nvzW+Jbxv3PLgxE3hctXAXqD/sb2aJz0ueBcKz3HbbI9SI+
-	pAI6f5Hl3OpBDRDBkzC9hH5H8NQqrs+n0BSBTMvLZr9Ay/Px7UagjQjESSwdPNa29tWt
-	3A36puFEyNz7AYQvygnVGM/4zjsI5ssZuuNKhRewGyEVa8exHSuaZRA8zmjPkqqJgbhw
-	RXOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ggSVmarJEr7MnOWs+N0ex9gQRi9sLw4fdrPXSdBBr/Y=;
-	b=EGRfMFtkDkOb8NiZCTVUsxFNuRj7u83rmO5ZPActXWgs/ry/lXab5rKMEd5A/ft1g9
-	pn1xpwrENy6O+0+j5iIMYcHv0sXoXwbW9qSfjIE2dXVt+I9Q/NWy201U6VSPjNTRaw8F
-	dJfxXyREQ021RCc0yUOVoJKMJrdRm08OSWJIuP3HHxRkt4Jl27hru9I1smgE0tydT2eD
-	faknz3CY1Bhxk7FPS8XZrZ0TT4tXxX7naTrbv/dWs/6IZKXnqJ6Te8RgKX4z8ReicTHx
-	uYbAxF9vsrCknhINWZwofLSVsrDTjwzD8LH6c6zGnv4t6nozxeZZ+fajpAA68ritKZIU
-	4CYg==
-X-Gm-Message-State: AOPr4FWvOgLkhevKFylrCUKz5+PiGufvXghwTx8RyMsNhHaoLWw2UuuYGqn9x6Ai67TQi+a7ORsrjpWHy1HTxHEM
-X-Received: by 10.50.67.113 with SMTP id m17mr15508583igt.52.1460633596706;
-	Thu, 14 Apr 2016 04:33:16 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.132.24 with HTTP; Thu, 14 Apr 2016 04:32:57 -0700 (PDT)
-In-Reply-To: <1460631581-16990-1-git-send-email-richard.leitner@skidata.com>
-References: <1460631581-16990-1-git-send-email-richard.leitner@skidata.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 Apr 2016 12:32:57 +0100
-Message-ID: <CAJTo0LYxtzv7cN5TQn+iu-gcnqbBN2uqbEseHBdw=dhjtNWZtQ@mail.gmail.com>
-To: Richard Leitner <richard.leitner@skidata.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [psplash][PATCH 5/5] psplash: fix remaining unused-parameter warnings
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2556BE00931
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 05:10:53 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 14 Apr 2016 05:10:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,484,1455004800"; d="scan'208";a="932336139"
+Received: from heimdall.fi.intel.com ([10.237.68.144])
+	by orsmga001.jf.intel.com with ESMTP; 14 Apr 2016 05:10:51 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 14 Apr 2016 15:10:51 +0300
+Message-Id: <b8f164945c53c1ca74800a2d3adfd5cd9d0bb1d0.1460633980.git.jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.8.0.rc3
+In-Reply-To: <cover.1460633980.git.jussi.kukkonen@intel.com>
+References: <cover.1460633980.git.jussi.kukkonen@intel.com>
+Subject: [matchbox-keyboard][PATCH 1/1] gtk-im: Add support for GTK+3 as well as GTK+2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,179 +39,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 11:33:23 -0000
-Content-Type: multipart/alternative; boundary=047d7bd753eaaddc8f0530704269
+X-List-Received-Date: Thu, 14 Apr 2016 12:10:58 -0000
 
---047d7bd753eaaddc8f0530704269
-Content-Type: text/plain; charset=UTF-8
+* A few changes to avoid deprecated macros, otherwise the code works
+  for both versions
+* add --enable-gtk3-im configure flag
 
-All pushed, thanks Richard.
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+---
+ Makefile.am          |  6 +-----
+ configure.ac         | 29 +++++++++++++++++++++--------
+ gtk-im/Makefile.am   | 29 +++++++++++++++++++++++------
+ gtk-im/im-context.c  |  2 +-
+ gtk-im/im-protocol.c | 10 ++++++----
+ 5 files changed, 52 insertions(+), 24 deletions(-)
 
-Ross
+diff --git a/Makefile.am b/Makefile.am
+index fb45d97..e4510f9 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,13 +1,9 @@
+-SUBDIRS = src layouts
++SUBDIRS = src layouts gtk-im
+ 
+ if WANT_EXAMPLES
+ SUBDIRS += examples
+ endif
+ 
+-if WANT_IM
+-SUBDIRS += gtk-im
+-endif 
+-
+ if WANT_APPLET
+ SUBDIRS += applet
+ endif 
+diff --git a/configure.ac b/configure.ac
+index 2e86301..6c1b4ea 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -45,10 +45,16 @@ AC_ARG_ENABLE(examples,
+ AM_CONDITIONAL(WANT_EXAMPLES, test x$enable_examples = xyes)
+  
+ AC_ARG_ENABLE(gtk-im,
+-  AC_HELP_STRING([--enable-gtk-im], [enable GTK+ IM support [default=no]]),
+-   		enable_im=$enableval, 
+-		enable_im=no)	    
+-AM_CONDITIONAL(WANT_IM, test x$enable_im = xyes)
++  AC_HELP_STRING([--enable-gtk-im], [enable GTK2+ IM support [default=no]]),
++                 enable_gtk2_im=$enableval,
++                 enable_gtk2_im=no)
++AM_CONDITIONAL(WANT_GTK2_IM, test x$enable_gtk2_im = xyes)
++
++AC_ARG_ENABLE(gtk3-im,
++  AC_HELP_STRING([--enable-gtk3-im], [enable GTK3+ IM support [default=no]]),
++                enable_gtk3_im=$enableval,
++                enable_gtk3_im=no)
++AM_CONDITIONAL(WANT_GTK3_IM, test x$enable_gtk3_im = xyes)
+ 
+ AC_ARG_ENABLE(applet,
+   AC_HELP_STRING([--enable-applet], [enable panel applet [default=no]]),
+@@ -98,16 +104,22 @@ if test x$enable_cairo = xyes; then
+    AC_DEFINE_UNQUOTED(WANT_CAIRO, 1, [Use Cairo to paint libs])
+ fi
+ 
+-if test x$enable_examples = xyes || test x$enable_im = xyes || test x$enable_gtk_widget = xyes; then
++if test x$enable_examples = xyes || test x$enable_gtk2_im = xyes || test x$enable_gtk_widget = xyes; then
+    PKG_CHECK_MODULES(GTK2, gtk+-2.0)
+    GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
+    AC_SUBST(GTK_VERSION)
+-
+-   if test x$enable_im = xyes || test x$enable_gtk_widget = xyes; then
++   if test x$enable_gtk_widget = xyes; then
+       LIBRARY_REQUIRES="$LIBRARY_REQUIRES gtk+-2.0"
+    fi
+ fi
+ 
++if test x$enable_gtk3_im = xyes; then
++   PKG_CHECK_MODULES(GTK3, gtk+-3.0)
++   GTK3VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-3.0`
++   AC_SUBST(GTK3VERSION)
++fi
++
++
+ if test x$enable_applet = xyes; then
+    PKG_CHECK_MODULES(APPLET, matchbox-panel)
+ fi
+@@ -260,6 +272,7 @@ echo "
+             Building with Cairo:          ${enable_cairo}
+             Building Gtk widget:          ${enable_gtk_widget}
+             Building Examples:            ${enable_examples}
+-            Building GTK+ Input Method:   ${enable_im}
++            Building GTK2+ Input Method:  ${enable_gtk2_im}
++            Building GTK3+ Input Method:  ${enable_gtk3_im}
+             Building panel applet:        ${enable_applet}
+ "
+diff --git a/gtk-im/Makefile.am b/gtk-im/Makefile.am
+index 9b797d0..66bfcee 100644
+--- a/gtk-im/Makefile.am
++++ b/gtk-im/Makefile.am
+@@ -1,14 +1,31 @@
+ AM_CFLAGS = -Wall
+ 
+-imdir = @libdir@/gtk-2.0/@GTK_VERSION@/immodules/
+-im_LTLIBRARIES = libmb-im-invoker.la
++if WANT_GTK2_IM
++gtk2imdir = @libdir@/gtk-2.0/@GTK_VERSION@/immodules/
++gtk2im_LTLIBRARIES = libmbgtk2-im-invoker.la
+ # TODO: remove lib prefix
+ 
+-libmb_im_invoker_la_CPPFLAGS = @GTK2_CFLAGS@ -I${top_srcdir}/src
+-libmb_im_invoker_la_LDFLAGS = -avoid-version
+-libmb_im_invoker_la_LIBADD = @GTK2_LIBS@
++libmbgtk2_im_invoker_la_CPPFLAGS = @GTK2_CFLAGS@ -I${top_srcdir}/src
++libmbgtk2_im_invoker_la_LDFLAGS = -avoid-version
++libmbgtk2_im_invoker_la_LIBADD = @GTK2_LIBS@
+ 
+-libmb_im_invoker_la_SOURCES = \
++libmbgtk2_im_invoker_la_SOURCES = \
++        im-module.c \
++        im-context.h im-context.c \
++        im-protocol.h im-protocol.c
++endif
++
++if WANT_GTK3_IM
++gtk3imdir = @libdir@/gtk-3.0/@GTK3VERSION@/immodules/
++gtk3im_LTLIBRARIES = libmbgtk3-im-invoker.la
++# TODO: remove lib prefix
++
++libmbgtk3_im_invoker_la_CPPFLAGS = @GTK3_CFLAGS@ -I${top_srcdir}/src
++libmbgtk3_im_invoker_la_LDFLAGS = -avoid-version
++libmbgtk3_im_invoker_la_LIBADD = @GTK3_LIBS@
++
++libmbgtk3_im_invoker_la_SOURCES = \
+ 	im-module.c \
+ 	im-context.h im-context.c \
+ 	im-protocol.h im-protocol.c
++endif
+diff --git a/gtk-im/im-context.c b/gtk-im/im-context.c
+index 087cc14..3e1749e 100644
+--- a/gtk-im/im-context.c
++++ b/gtk-im/im-context.c
+@@ -16,7 +16,7 @@
+  *
+  */
+ 
+-#include <gtk/gtkimcontextsimple.h>
++#include <gtk/gtk.h>
+ 
+ #include "im-context.h"
+ #include "im-protocol.h"
+diff --git a/gtk-im/im-protocol.c b/gtk-im/im-protocol.c
+index ac2711a..de98fd6 100644
+--- a/gtk-im/im-protocol.c
++++ b/gtk-im/im-protocol.c
+@@ -29,24 +29,26 @@ protocol_send_event (MBKeyboardRemoteOperation op)
+ {
+   XEvent event;
+   int xerror;
++  Display *display = gdk_x11_get_default_xdisplay ();
++  Window window = gdk_x11_get_default_root_xwindow ();
+ 
+   memset (&event, 0, sizeof (XEvent));
+ 
+   event.xclient.type = ClientMessage;
+-  event.xclient.window = gdk_x11_get_default_root_xwindow ();
++  event.xclient.window = window;
+   event.xclient.message_type = gdk_x11_get_xatom_by_name ("_MB_IM_INVOKER_COMMAND");
+   event.xclient.format = 32;
+   event.xclient.data.l[0] = op;
+ 
+   gdk_error_trap_push ();
+ 
+-  XSendEvent (GDK_DISPLAY (), 
+-	      gdk_x11_get_default_root_xwindow (), 
++  XSendEvent (display,
++	      window,
+ 	      False,
+ 	      SubstructureRedirectMask | SubstructureNotifyMask,
+ 	      &event);
+ 
+-  XSync (GDK_DISPLAY(), False);
++  XSync (display, False);
+   
+   if ((xerror = gdk_error_trap_pop ())) {
+     g_warning ("X error %d", xerror);
+-- 
+2.8.0.rc3
 
-On 14 April 2016 at 11:59, Richard Leitner <richard.leitner@skidata.com>
-wrote:
 
-> Define UNUSED macro for GCC's ((__unused__)) attribute and use it for
-> the remaining unused-parameter warnings. These unused parameters are
-> required due to the definition of the sighandler_t.
->
-> This fixes following unused-parameter warnings:
->
-> psplash.c: In function 'psplash_exit':
-> psplash.c:36:19: warning: unused parameter 'signum' [-Wunused-parameter]
->
-> psplash-console.c: In function 'vt_request':
-> psplash-console.c:27:17: warning: unused parameter 'sig'
-> [-Wunused-parameter]
->
-> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> ---
->  psplash-console.c | 2 +-
->  psplash.c         | 2 +-
->  psplash.h         | 6 ++++++
->  3 files changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/psplash-console.c b/psplash-console.c
-> index 9b7dfb9..055f5b0 100644
-> --- a/psplash-console.c
-> +++ b/psplash-console.c
-> @@ -24,7 +24,7 @@ static int VTNumInitial   = -1;
->  static int Visible        =  1;
->
->  static void
-> -vt_request (int sig)
-> +vt_request (int UNUSED(sig))
->  {
->    DBG("mark, visible:%i", Visible);
->
-> diff --git a/psplash.c b/psplash.c
-> index c72d120..04d3d49 100644
-> --- a/psplash.c
-> +++ b/psplash.c
-> @@ -33,7 +33,7 @@
->         )
->
->  void
-> -psplash_exit (int signum)
-> +psplash_exit (int UNUSED(signum))
->  {
->    DBG("mark");
->
-> diff --git a/psplash.h b/psplash.h
-> index 22d73a3..7b1298f 100644
-> --- a/psplash.h
-> +++ b/psplash.h
-> @@ -69,6 +69,12 @@ typedef int            bool;
->  #define DBG(x, a...) do {} while (0)
->  #endif
->
-> +#ifdef __GNUC__
-> +#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
-> +#else
-> +#  define UNUSED(x) UNUSED_ ## x
-> +#endif
-> +
->  typedef struct PSplashFont
->  {
->      char *name;                                /* Font name. */
-> --
-> 2.1.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---047d7bd753eaaddc8f0530704269
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">All pushed, thanks Richard.<div><br></div><div>Ross</div><=
-/div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 14 April =
-2016 at 11:59, Richard Leitner <span dir=3D"ltr">&lt;<a href=3D"mailto:rich=
-ard.leitner@skidata.com" target=3D"_blank">richard.leitner@skidata.com</a>&=
-gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Define UNUSED macro for=
- GCC&#39;s ((__unused__)) attribute and use it for<br>
-the remaining unused-parameter warnings. These unused parameters are<br>
-required due to the definition of the sighandler_t.<br>
-<br>
-This fixes following unused-parameter warnings:<br>
-<br>
-psplash.c: In function &#39;psplash_exit&#39;:<br>
-psplash.c:36:19: warning: unused parameter &#39;signum&#39; [-Wunused-param=
-eter]<br>
-<br>
-psplash-console.c: In function &#39;vt_request&#39;:<br>
-psplash-console.c:27:17: warning: unused parameter &#39;sig&#39;<br>
-[-Wunused-parameter]<br>
-<br>
-Signed-off-by: Richard Leitner &lt;<a href=3D"mailto:richard.leitner@skidat=
-a.com">richard.leitner@skidata.com</a>&gt;<br>
----<br>
-=C2=A0psplash-console.c | 2 +-<br>
-=C2=A0psplash.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 2 +-<br>
-=C2=A0psplash.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 6 ++++++<br>
-=C2=A03 files changed, 8 insertions(+), 2 deletions(-)<br>
-<br>
-diff --git a/psplash-console.c b/psplash-console.c<br>
-index 9b7dfb9..055f5b0 100644<br>
---- a/psplash-console.c<br>
-+++ b/psplash-console.c<br>
-@@ -24,7 +24,7 @@ static int VTNumInitial=C2=A0 =C2=A0=3D -1;<br>
-=C2=A0static int Visible=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D=C2=A0 1;<br>
-<br>
-=C2=A0static void<br>
--vt_request (int sig)<br>
-+vt_request (int UNUSED(sig))<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0DBG(&quot;mark, visible:%i&quot;, Visible);<br>
-<br>
-diff --git a/psplash.c b/psplash.c<br>
-index c72d120..04d3d49 100644<br>
---- a/psplash.c<br>
-+++ b/psplash.c<br>
-@@ -33,7 +33,7 @@<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 )<br>
-<br>
-=C2=A0void<br>
--psplash_exit (int signum)<br>
-+psplash_exit (int UNUSED(signum))<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0DBG(&quot;mark&quot;);<br>
-<br>
-diff --git a/psplash.h b/psplash.h<br>
-index 22d73a3..7b1298f 100644<br>
---- a/psplash.h<br>
-+++ b/psplash.h<br>
-@@ -69,6 +69,12 @@ typedef int=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 boo=
-l;<br>
-=C2=A0#define DBG(x, a...) do {} while (0)<br>
-=C2=A0#endif<br>
-<br>
-+#ifdef __GNUC__<br>
-+#=C2=A0 define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))<br>
-+#else<br>
-+#=C2=A0 define UNUSED(x) UNUSED_ ## x<br>
-+#endif<br>
-+<br>
-=C2=A0typedef struct PSplashFont<br>
-=C2=A0{<br>
-=C2=A0 =C2=A0 =C2=A0char *name;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /* Fo=
-nt name. */<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-2.1.4<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div>
-
---047d7bd753eaaddc8f0530704269--
