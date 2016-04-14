@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 995F8E00E4A; Thu, 14 Apr 2016 08:36:01 -0700 (PDT)
+	id B4711E00E60; Thu, 14 Apr 2016 08:36:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,48 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.67 listed in list.dnswl.org]
-Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
-	[209.85.220.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F84DE00C1E
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 08:36:00 -0700 (PDT)
-Received: by mail-pa0-f67.google.com with SMTP id vv3so7092963pab.0
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 08:36:00 -0700 (PDT)
+Received: from mail-pf0-f172.google.com (mail-pf0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82A88E00E56
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 08:36:01 -0700 (PDT)
+Received: by mail-pf0-f172.google.com with SMTP id 184so47223886pff.0
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 08:36:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=+aj8VL56rRSc4rgexVP7xztXudRQee7I/P6/lUUG7eM=;
-	b=pVlBG1VVKEYnFOjdjPq/zfIrCMDpyGDWs7SkLHYklPEcsP4QkJ8FSvq7tr1p5oOOCi
-	iUefMinPLKeraoRaFeiK36IPiBq9sZ7PZVB52nvJ5o+3xZ5ViUUK8mw5wXVpeUAbb8M+
-	rWMjLMbo5gYJ5HUcL19zaOKXCCOYZ19Cbgcl8dXkwZDqtXDufKcH9Wn6KpWCWNKXl4Es
-	UoOk6aQ7Y4QonFa2ACXkewGHIcAUOjgnIzqNPKAe3QGXc+47aF/0JoV7MfC1vlJ9oFSH
-	U6uHNt7ZhX8tGPm+9CE9EaE5sWJCi2RhYwRPB+0e0J/OgSoKu767T+ror7xn/Qgu4Ixo
-	tBVA==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=nw7m2dQtG8hQI+B79/gjFciVXCvec7jik8Dif4G4B+A=;
+	b=Mo0GOh4n2R3XoPgpEniXq/LHK163egvhLM07FzmZKBMbPCRTnkoZTj3v55H5GQrOZi
+	I2ujR0wJgxGfaVZQC9LYnZKfxMM8WZyQKQ3zrpwVi45Ws38YCib2ntkODrcIggk87XYg
+	FFqicUHSKAgtoGoF0Q1ZmIDjCPwAQtK/7Dl1M2da0BDIt3hV4ER6qG/bpNweIw4JuSzC
+	vhAc23B3BQB+aIa4Xd/Ej40TBSiUAqEUyoOsMacW8mcHQz+nmue9xdu1XfRhtg8xoDnZ
+	Eq52DYcHo3UGWMQ9vcXo3kiVGY1r1RknV17ogymrcLSodjBvaw2pXfHhMm7P6sDLfqli
+	cRrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=+aj8VL56rRSc4rgexVP7xztXudRQee7I/P6/lUUG7eM=;
-	b=ZhiwRGR3xEzAqQ2izhQz75V6mNTr5umj6Wp/+gKjBfPEfpqgEtlJKnLYhxoJp7SyFN
-	xVR68GK3MIRRRjG+7HzW1090OzekKU3qS4uQuafHi8cK/GhPmSM1I92z/8Occfn84xWd
-	uOhq+6qxlxZW1Zlqe6BbxUvhCOxKkmM0mLEYvwkWWyz2Q6itbiherhKuAOmyxJwYdxb8
-	MCwJvtjBKnsH7iLw98r6l6/ZRKZT6PDcEqi6YbhrTzbwerFawsUa4FACADTCpydViDy9
-	kFg6xwsiZjVhMxyhgVec1kOZCz1Qf64lhMUlYx8wLZLyB1lCgqm9lqUnXA/ET0rq0vmb
-	73Ig==
-X-Gm-Message-State: AOPr4FXDQZOXC3sp3KJ4PMLTSrOgYo8AZZb+gLBNgC5B6QJiEgFyDMCMhYtNG38ZKTMp+Q==
-X-Received: by 10.66.33.1 with SMTP id n1mr22099686pai.65.1460648159679;
-	Thu, 14 Apr 2016 08:35:59 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=nw7m2dQtG8hQI+B79/gjFciVXCvec7jik8Dif4G4B+A=;
+	b=dYLYlkzZ0XsAxWo7aoLjkfiJ2R18J3J2G5TVw1gOE8ea4T7yWw/vIopXsidoSxTUpS
+	8irE2ar++C5Zqd6fKIlgOoGBpl7krMXpwrRz2jqXOKWC4HG6hYbwjKJ/NCn1aZfyRs3S
+	E4pRyGZlTBEoeZUdHRDKbz8lqmLglSZ4Mdk9UBxg/bT5raoym4peVupYAR30GdpiW/3P
+	gK6cF/Te3WfpmercpLISOrhSss2lRLeCNjOZi+LPjkB1E5i5tSpOW9H4iSOvIn4c2ZoS
+	AVTyp7mdQRzreoL5tdvKXR7sMf8Ro7bdGpLJmoAiym7gQMuipKqog29+Xxogiuy1Xpqo
+	MJyQ==
+X-Gm-Message-State: AOPr4FVh0Z0nU3ffXWzlZz7+5Ta0udEsE7jPw2yLlmmrWx7MOJMQGZn0durdWXqLj7ydXg==
+X-Received: by 10.98.10.136 with SMTP id 8mr22353946pfk.67.1460648161471;
+	Thu, 14 Apr 2016 08:36:01 -0700 (PDT)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
-	c9sm58728396pfd.24.2016.04.14.08.35.57 for <yocto@yoctoproject.org>
+	c9sm58728396pfd.24.2016.04.14.08.35.59 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 14 Apr 2016 08:35:58 -0700 (PDT)
+	Thu, 14 Apr 2016 08:36:00 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 14 Apr 2016 08:35:46 -0700
-Message-Id: <1460648147-15324-1-git-send-email-akuster808@gmail.com>
+Date: Thu, 14 Apr 2016 08:35:47 -0700
+Message-Id: <1460648147-15324-2-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.3.5
-Subject: [meta-security][PATCH 1/2] libdhash: add package
+In-Reply-To: <1460648147-15324-1-git-send-email-akuster808@gmail.com>
+References: <1460648147-15324-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] sssd: add new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,35 +72,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 15:36:01 -0000
-
-required by sssd
+X-List-Received-Date: Thu, 14 Apr 2016 15:36:04 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/libdhash/ding-libs_0.5.0.bb | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 recipes-security/libdhash/ding-libs_0.5.0.bb
+ recipes-security/sssd/files/sssd.conf |  8 ++++
+ recipes-security/sssd/sssd_1.13.3.bb  | 72 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 80 insertions(+)
+ create mode 100644 recipes-security/sssd/files/sssd.conf
+ create mode 100644 recipes-security/sssd/sssd_1.13.3.bb
 
-diff --git a/recipes-security/libdhash/ding-libs_0.5.0.bb b/recipes-security/libdhash/ding-libs_0.5.0.bb
+diff --git a/recipes-security/sssd/files/sssd.conf b/recipes-security/sssd/files/sssd.conf
 new file mode 100644
-index 0000000..9db66e8
+index 0000000..1709a7a
 --- /dev/null
-+++ b/recipes-security/libdhash/ding-libs_0.5.0.bb
-@@ -0,0 +1,13 @@
-+SUMMARY = "Dynamic hash table implementation"
-+DESCRIPTION = "Dynamic hash table implementation"
-+HOMEPAGE = "https://fedorahosted.org/released/ding-libs"
++++ b/recipes-security/sssd/files/sssd.conf
+@@ -0,0 +1,8 @@
++[sssd]
++services = nss, pam
++config_file_version = 2
++
++[nss]
++
++[pam]
++
+diff --git a/recipes-security/sssd/sssd_1.13.3.bb b/recipes-security/sssd/sssd_1.13.3.bb
+new file mode 100644
+index 0000000..d538af3
+--- /dev/null
++++ b/recipes-security/sssd/sssd_1.13.3.bb
+@@ -0,0 +1,72 @@
++SUMMARY = "system security services daemon"
++DESCRIPTION = "SSSD is a system security services daemon"
++HOMEPAGE = "https://fedorahosted.org/sssd/"
 +SECTION = "base"
 +LICENSE = "GPLv3+"
 +LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 +
-+SRC_URI = "https://fedorahosted.org/released/${BPN}/${BP}.tar.gz"
++DEPENDS = "openldap cyrus-sasl libtdb ding-libs libpam c-ares krb5"
++DEPENDS += "libldb dbus libtalloc libpcre glib-2.0 popt e2fsprogs libtevent"
 +
-+inherit autotools pkgconfig
++SRCREV = "70862d81a9a1228ad27ad35c9e99cc24b77940c6"
 +
-+SRC_URI[md5sum] = "786f2880d30136a61df02e5d740ddc6e"
-+SRC_URI[sha256sum] = "dab937537a05d7a7cbe605fdb9b3809080d67b124ac97eb321255b35f5b172fd"
++PV = "1.13.3+git${SRCPV}"
++
++SRC_URI = "git://git.fedorahosted.org/git/sssd.git;branch='sssd-1-13' \
++            file://sssd.conf "
++
++S = "${WORKDIR}/git"
++
++inherit autotools pkgconfig gettext update-rc.d python-dir
++
++CACHED_CONFIGUREVARS = "ac_cv_member_struct_ldap_conncb_lc_arg=no \
++    ac_cv_path_PYTHON2=${PYTHON_DIR} ac_cv_prog_HAVE_PYTHON3=${PYTHON_DIR} \
++    "
++
++PACKAGECONFIG ?="nss"
++PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
++
++PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
++PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
++PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
++PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
++PACKAGECONFIG[python2] = "--with-python2-bindings, --without-python2-bindings"
++PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
++PACKAGECONFIG[nss] = "--with-crypto=nss, , nss"
++PACKAGECONFIG[cyrpto] = "--with-crypto=libcrypto, , libcrypto"
++PACKAGECONFIG[nscd] = "--with-nscd=, --without-nscd, "
++PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
++PACKAGECONFIG[systemd] = "--with-systemdunitdir=${systemd_unitdir}/system/, --with-systemdunitdir="
++PACKAGECONFIG[systemd] = "--with-systemdconfdir=${systemd_unitdir}/system/, --with-systemdconfdir="
++
++EXTRA_OECONF += "--disable-rpath --disable-config-lib --disable-cifs-idmap-plugin --without-nfsv4-idmapd-plugin --without-ipa-getkeytab"
++
++do_configure_prepend() {
++    mkdir -p ${AUTOTOOLS_AUXDIR}/build
++    cp ${STAGING_DATADIR_NATIVE}/gettext/config.rpath ${AUTOTOOLS_AUXDIR}/build/
++
++    # libresove has host path, remove it
++    sed -i -e "s#\$sss_extra_libdir##" ${S}/src/external/libresolv.m4
++}
++
++do_install () {
++    oe_runmake install  DESTDIR="${D}"
++    rmdir --ignore-fail-on-non-empty "${D}/${bindir}"
++    install -d ${D}/${sysconfdir}/${BPN}
++    install -m 600 ${WORKDIR}/${BPN}.conf ${D}/${sysconfdir}/${BPN}
++}
++
++CONFFILES_${PN} = "${sysconfdir}/${BPN}/${BPN}.conf"
++
++INITSCRIPT_NAME = "sssd"
++INITSCRIPT_PARAMS = "start 02 5 3 2 . stop 20 0 1 6 ."
++SYSTEMD_SERVICE_${PN} = "${BPN}.service"
++SYSTEMD_AUTO_ENABLE = "disable"
++
++FILES_${PN} += "${libdir} ${datadir} /run ${libdir}/*.so* "
++FILES_${PN}-dev = " ${includedir}/* ${libdir}/*la ${libdir}/*/*la"
++
++# The package contains symlinks that trip up insane
++INSANE_SKIP_${PN} = "dev-so"
++
++RDEPENDS_${PN} += "bind dbus"
 -- 
 2.3.5
 
