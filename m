@@ -1,34 +1,60 @@
-Return-Path: <prvs=905201302=Richard.Leitner@skidata.com>
+Return-Path: <yegorslists@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BCC4E00CAE; Thu, 14 Apr 2016 02:29:41 -0700 (PDT)
+	id 44ADEE00D69; Thu, 14 Apr 2016 03:12:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yegorslists[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.68 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail2.skidata.com (mail2.skidata.com [80.120.57.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DDFDE00931
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 02:29:39 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2CsBACbYg9X/0oKEKxehAt9BrwpFw2FagKCAgEBAQEBAYENhEIBAQQBAQEvATsKEQsNCwkWDwkDAgECARUBHhEGAQwGAgKIM8I4AQEBAQYBAQEBHIYhhEuEDxEBHIVYBZgLgVSEI4UshFFOhACDBReFP48phEtqiEY2fgEBAQ
-X-IPAS-Result: A2CsBACbYg9X/0oKEKxehAt9BrwpFw2FagKCAgEBAQEBAYENhEIBAQQBAQEvATsKEQsNCwkWDwkDAgECARUBHhEGAQwGAgKIM8I4AQEBAQYBAQEBHIYhhEuEDxEBHIVYBZgLgVSEI4UshFFOhACDBReFP48phEtqiEY2fgEBAQ
-To: Philip Balister <philip@balister.org>, <yocto@yoctoproject.org>
-References: <1460555872-27920-1-git-send-email-richard.leitner@skidata.com>
-	<1460555872-27920-3-git-send-email-richard.leitner@skidata.com>
-	<570EA131.7030100@balister.org>
-From: Richard Leitner <richard.leitner@skidata.com>
-Message-ID: <570F6323.7040209@skidata.com>
-Date: Thu, 14 Apr 2016 11:30:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Icedove/38.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f68.google.com (mail-vk0-f68.google.com
+	[209.85.213.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0DABE00931
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 03:12:55 -0700 (PDT)
+Received: by mail-vk0-f68.google.com with SMTP id a6so9935244vkh.1
+	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 03:12:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=51heGkAMhHD7DuISIxAwz7Q5lkOuwAv/KspmCcG0VAQ=;
+	b=UVIM/cAzmcXOE4Y3WCEvdQWdsqkW9DwkZXYNwzIuxy7FXoS8IEJaJ4UWVA/mlTQzn7
+	1rMDE/7dhX13Hu5fH781/fnDxkMBjSrpSBxSBuIakmCeDDf8U0FmPQIFy+CWC8Buqur7
+	H4l2dxOlnCNNrxfjar9kg7Jh9gOaL8JjsVHh7RZ0mzTfWQpFiUnBH6mua3Kid4ZPZBIt
+	kQ10MfFeFZ7Nra1im9q9ADhUjqW/mtVwfSgobTqH+gRZgyJW2s3pxviD7TLyUTc8YKc6
+	pd9JjZ8ubdf6nMccMlbMmdWt1qTYWRkbnoiXA9bLIcn5h22B1QVeURLxn6Vnko3VesgS
+	EK6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=51heGkAMhHD7DuISIxAwz7Q5lkOuwAv/KspmCcG0VAQ=;
+	b=CBON4Gn2KRiuDomkqycNYGX339MuWqy0OBncYN+nUKP7886H4SLAs5JlYnegr4c4gn
+	b4648qIlq9MbiBX6QVGkEkDnGMjdlrd5Iq4lhQINYC3InZuBZeKLyafNs5m6PrFUPHf7
+	kpTINf+5ToNP835zR2bkUZ2O+Or0LshAxh4FCorW7ZYV/SYSO45hFW6Y0rMgUN4eulxK
+	m0JRe6jEWWf3IKyEbcdhR0KxFr7Ey6D32lBB04rftVqIFO8i6iHHasNwc6lnWBKo6hWv
+	hUOMFqdzCXzSMyX0HOkB9Q0EuANApuyKoZsKzraY3iuWBu0lW9wyI8bCpInuEUeKkLCh
+	q8KA==
+X-Gm-Message-State: AOPr4FWiAzEAktA3+fSYP2lYqDyqWzRhWMVhAsRwxBoqgSXma9+IsrfuB3Jgak9/sgrqMqJTZI1lUCpBb6I5OA==
+X-Received: by 10.31.16.204 with SMTP id 73mr7300455vkq.78.1460628774769; Thu,
+	14 Apr 2016 03:12:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <570EA131.7030100@balister.org>
-X-Originating-IP: [172.16.60.30]
-X-ClientProxiedBy: sdex1srv.skidata.net (172.16.10.92) To sdex1srv.skidata.net
-	(172.16.10.92)
-Subject: Re: [psplash][PATCH 3/3] README: add "Contributing" guideline
+Received: by 10.31.190.196 with HTTP; Thu, 14 Apr 2016 03:12:35 -0700 (PDT)
+From: Yegor Yefremov <yegorslists@googlemail.com>
+Date: Thu, 14 Apr 2016 12:12:35 +0200
+Message-ID: <CAGm1_ku6qF3f=QtkdhCsOtf2q1S-ceLLGGFn76+9=158wjP-qQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Running an own script after kernel compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,51 +66,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 09:29:41 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 14 Apr 2016 10:12:59 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Philip,
+I have my own ITS file, that is required to create a FIT image. ITS
+file has a special configuration, that cannot be automatically created
+using Yocto's recipes. So I need a way to invoke my own script. How
+can I do it?
 
-On 04/13/2016 09:42 PM, Philip Balister wrote:
->> +
->> > +Contributing
->> > +============
->> > +To contribute to this layer you should submit the patches for review to the
->> > +mailing list (yocto@yoctoproject.org).
->> > +
->> > +Please refer to
->> > +    http://openembedded.org/wiki/Commit_Patch_Message_Guidelines
->> > +for some useful guidelines to be followed when submitting patches.
->> > +
->> > +Mailing list:
->> > +    https://lists.yoctoproject.org/listinfo/yocto
->> > +
->> > +When creating patches, please use something like:
->> > +    git format-patch -M -s --subject-prefix='psplash][PATCH' origin
->> > +
->> > +When sending patches, please use something like:
->> > +    git send-email --to yocto@yoctoproject.org <generated patch>
->> > 
-> I cut and paste this line from the meta-oe README for sending patches,
-> it is a bit simpler than the two step process:
-> 
-> https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/README#L9
+Thanks.
 
-The line we are talking about is:
-git send-email -M -1 --to openembedded-devel@lists.openembedded.org
---subject-prefix=meta-oe][PATCH
-isn't it?
-
-You're right, for one patch this line is simpler/faster. But basically I
-like to create the patches first (and be able to review them) and send
-them afterwards in a separate step.
-
-Nonetheless if you like to add the "direct" send-email line I would at
-least suggest to:
-	a) use "origin" as rev instead of "-1"
-	b) add "--annotate"
-
-regards,
-Richard
+Yegor
 
