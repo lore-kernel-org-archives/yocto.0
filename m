@@ -1,70 +1,45 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 544F1E00E63; Wed, 13 Apr 2016 18:28:26 -0700 (PDT)
+	id D5355E00E34; Wed, 13 Apr 2016 21:57:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.74.38.227 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.51 listed in list.dnswl.org]
-Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
-	[209.85.192.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C99D2E00833
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 18:28:22 -0700 (PDT)
-Received: by mail-qg0-f51.google.com with SMTP id f52so55502145qga.3
-	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 18:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=PiqbVeJ79b0T+c5vR5E1o5q2l2K7Zmsnmi03NoH1bl0=;
-	b=WEN54SwbQBLcWn5tp26kv39P6yR3Yn6HyiiAzhsfJoLF8G4zuiJKWYtMIXIhvzjK35
-	+Bv/NfCa4ixSi7IG3liEAPrmTzZnyQi0Zuqg3+LlKqvsJG8JRYzcbmn010hhE/D30whJ
-	8Ov2kWtDolGsHsa4W4zwSGOdDUejQQTi3fly77za6/7Zdbmd3CkzUzEaxQACHu/BVMyx
-	cV4mi3PSoXDCshbV8LTPSu5CQW9Z1DGusCR+Qi7gmUvOtM9i4oiUGwnRZOntXu9Rg4FZ
-	vqNnIWIjDbTI+8MpTb2Fh/uduY5731AEBn1zoZRTvCLUTLdxT9rmC6KsBjoo2wORxupk
-	xsSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=PiqbVeJ79b0T+c5vR5E1o5q2l2K7Zmsnmi03NoH1bl0=;
-	b=VqWvCWiBA/4vqWQ5k9CcrFQQE65cTPhFGdfMjmWXdR39BcpWUc04RVEi8n7LN9bIJ6
-	eWmFwteqIe2kZ0F7Uu7vKooUZJXalZ2RRj9UFMft9SL566f9yUfBABx3xMfYRpfCnb7g
-	UTr8jf1HExllWc0WbHqiqrsmVuZ2ZZiVHEEL2AFpDKAzZk4om34PyqhjihAxDhR+pU+z
-	/T3Q3TF16DD79FXcU6AZJfpzMJSyshQ8kCMZvRQj7tMbrIH70gSr+vh/KB5GoccEY5A8
-	P4hOgkqItVNq0R4Myi1QrioyPchuybnFB48yrw/6vQakmO+cdmAdPcs4ZjlpLI1+mSwM
-	1srg==
-X-Gm-Message-State: AOPr4FXli6nwVnnEhEz6ZGldK2TxhBbE4RoC7RNZJXWFhy5JwFkpY2N93/fF8qmbCQVdx18xIzBrFlzQTIyomA==
+Received: from bin-vsp-out-03.atm.binero.net (vsp-unauthed02.binero.net
+	[195.74.38.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F470E00D26
+	for <yocto@yoctoproject.org>; Wed, 13 Apr 2016 21:57:40 -0700 (PDT)
+X-Halon-ID: 641f02a0-01fd-11e6-8ffc-0050569116f7
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-03.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Thu, 14 Apr 2016 06:57:29 +0200 (CEST)
 MIME-Version: 1.0
-X-Received: by 10.140.37.113 with SMTP id q104mr14693636qgq.104.1460597301594; 
-	Wed, 13 Apr 2016 18:28:21 -0700 (PDT)
-Received: by 10.55.130.196 with HTTP; Wed, 13 Apr 2016 18:28:20 -0700 (PDT)
-Received: by 10.55.130.196 with HTTP; Wed, 13 Apr 2016 18:28:20 -0700 (PDT)
+Date: Thu, 14 Apr 2016 06:57:34 +0200
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Trevor Woerner <twoerner@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
 In-Reply-To: <20160413220428.GC27168@linux-yxv0>
 References: <1459348549-32007-1-git-send-email-petter@technux.se>
 	<1459348549-32007-4-git-send-email-petter@technux.se>
 	<20160413220428.GC27168@linux-yxv0>
-Date: Wed, 13 Apr 2016 18:28:20 -0700
-Message-ID: <CAMKF1srF=TiHno7Kn43nyWOuPC_myvOm9iVgP-CRN6Hg5xYiag@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <17db394963e2c69517409f2de14c9210@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi][PATCH v2 3/5] rpi-base.inc: Add overlay for rpi-ft5406
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,112 +48,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 01:28:26 -0000
-Content-Type: multipart/alternative; boundary=001a11c1373e5250c1053067cf99
+X-List-Received-Date: Thu, 14 Apr 2016 04:57:43 -0000
+Content-Type: multipart/alternative;
+	boundary="=_a7240ad9b2aaad70ab5efe6f294d4a98"
 
---001a11c1373e5250c1053067cf99
+--=_a7240ad9b2aaad70ab5efe6f294d4a98
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Apr 13, 2016 3:05 PM, "Trevor Woerner" <twoerner@gmail.com> wrote:
->
-> On Wed 2016-03-30 @ 04:35:47 PM, Petter Mab=C3=A4cker wrote:
-> > rpi-ft5406 is an enabler for Official Raspberry Pi 7 inch
-> > touchscreen support.
->
-> I have an official raspberry pi 7" touchscreen and it's not obvious to me
-how
-> I would go about enabling it in my config. If I had one of the others I
+ 
+
+2016-04-14 00:04 skrev Trevor Woerner: 
+
+> On Wed 2016-03-30 @
+04:35:47 PM, Petter Mabäcker wrote:
+> 
+>> rpi-ft5406 is an enabler for
+Official Raspberry Pi 7 inch touchscreen support.
+> 
+> I have an
+official raspberry pi 7" touchscreen and it's not obvious to me how
+> I
+would go about enabling it in my config. If I had one of the others I
 would
 > simply add:
->
->         MACHINE_FEATURES +=3D "pitft pitft22"
->
+> 
+> MACHINE_FEATURES += "pitft pitft22"
+> 
 > or
 >
->         MACHINE_FEATURES +=3D "pitft pitft28r"
+
+> MACHINE_FEATURES += "pitft pitft28r"
+> 
+> to my conf/local.conf, but
+what do I do for the official touchscreen?
+> 
+> Also, by trial and error
+I've discovered that my touchscreen comes up as
+> /dev/fb0 and not
+/dev/fb1. But the xorg config for touchscreen support assumes
 >
-> to my conf/local.conf, but what do I do for the official touchscreen?
->
-> Also, by trial and error I've discovered that my touchscreen comes up as
-> /dev/fb0 and not /dev/fb1. But the xorg config for touchscreen support
-assumes
-> /dev/fb1. Am I doing something wrong in my build or can anyone think of a
+/dev/fb1. Am I doing something wrong in my build or can anyone think of
+a
 > reason why my screen would be /dev/fb0 instead of /dev/fb1?
->
-> By the way
->
->         MACHINE_FEATURES +=3D "pitft pitft22"
->
-> seems to work for me if I use /dev/fb0, but I'm not sure if that's a
-fluke?
+> 
+> By
+the way
+> 
+> MACHINE_FEATURES += "pitft pitft22"
+> 
+> seems to work for
+me if I use /dev/fb0, but I'm not sure if that's a fluke?
+> 
+> Best
+regards,
+> Trevor
 
-Check the device trees. Are you using  4.1 kernel or some other
->
-> Best regards,
->         Trevor
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi Trevor, 
 
---001a11c1373e5250c1053067cf99
-Content-Type: text/html; charset=UTF-8
+Actually it's very simple for the
+Official rpi touchscreen. 
+
+1. Ensure that you DON'T have pitft support
+enabled when using this touchscreen! (PiTFT uses /dev/fb1, which isn't
+the case for the official toucscreen). 
+
+2. Build for example
+'core-image-sato' 
+
+3. Add: 
+
+echo "dtoverlay=rpi-ft5406" >>
+/path/to/sdcard/boot/config.txt 
+
+...and you are done. 
+
+Like stated in
+the commit msg this is just an enabler for being able to configure
+rpi-ft5406. When I have time I will send the complete solution for this,
+perhaps a good idea is to do like a MACHINE_FEATURES as well, to make it
+look similar to the PiTFT's usage? 
+
+BR Petter 
+
+Petter
+Mabäcker
+
+Technux <petter@technux.se>
+www.technux.se
+ 
+
+--=_a7240ad9b2aaad70ab5efe6f294d4a98
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<p dir=3D"ltr"><br>
-On Apr 13, 2016 3:05 PM, &quot;Trevor Woerner&quot; &lt;<a href=3D"mailto:t=
-woerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; On Wed 2016-03-30 @ 04:35:47 PM, Petter Mab=C3=A4cker wrote:<br>
-&gt; &gt; rpi-ft5406 is an enabler for Official Raspberry Pi 7 inch<br>
-&gt; &gt; touchscreen support.<br>
-&gt;<br>
-&gt; I have an official raspberry pi 7&quot; touchscreen and it&#39;s not o=
-bvious to me how<br>
-&gt; I would go about enabling it in my config. If I had one of the others =
-I would<br>
-&gt; simply add:<br>
-&gt;<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 MACHINE_FEATURES +=3D &quot;pitft pitft22&=
-quot;<br>
-&gt;<br>
-&gt; or<br>
-&gt;<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 MACHINE_FEATURES +=3D &quot;pitft pitft28r=
-&quot;<br>
-&gt;<br>
-&gt; to my conf/local.conf, but what do I do for the official touchscreen?<=
-br>
-&gt;<br>
-&gt; Also, by trial and error I&#39;ve discovered that my touchscreen comes=
- up as<br>
-&gt; /dev/fb0 and not /dev/fb1. But the xorg config for touchscreen support=
- assumes<br>
-&gt; /dev/fb1. Am I doing something wrong in my build or can anyone think o=
-f a<br>
-&gt; reason why my screen would be /dev/fb0 instead of /dev/fb1?<br>
-&gt;<br>
-&gt; By the way<br>
-&gt;<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 MACHINE_FEATURES +=3D &quot;pitft pitft22&=
-quot;<br>
-&gt;<br>
-&gt; seems to work for me if I use /dev/fb0, but I&#39;m not sure if that&#=
-39;s a fluke?</p>
-<p dir=3D"ltr">Check the device trees. Are you using=C2=A0 4.1 kernel or so=
-me other<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 Trevor<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2016-04-14 00:04 skrev Trevor Woerner:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>On Wed 2016-03-30 @ 04:35:47 PM, Petter Mab&auml;cker wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">rpi-ft5406 is an enabler for Official=
+ Raspberry Pi 7 inch touchscreen support.</blockquote>
+<pre>I have an official raspberry pi 7" touchscreen and it's not obvious to=
+ me how
+I would go about enabling it in my config. If I had one of the others I wou=
+ld
+simply add:
 
---001a11c1373e5250c1053067cf99--
+	MACHINE_FEATURES +=3D "pitft pitft22"
+
+or
+
+	MACHINE_FEATURES +=3D "pitft pitft28r"
+
+to my conf/local.conf, but what do I do for the official touchscreen?
+
+Also, by trial and error I've discovered that my touchscreen comes up as
+/dev/fb0 and not /dev/fb1. But the xorg config for touchscreen support assu=
+mes
+/dev/fb1. Am I doing something wrong in my build or can anyone think of a
+reason why my screen would be /dev/fb0 instead of /dev/fb1?
+
+By the way
+
+	MACHINE_FEATURES +=3D "pitft pitft22"
+
+seems to work for me if I use /dev/fb0, but I'm not sure if that's a fluke?
+
+Best regards,
+	Trevor
+</pre>
+</blockquote>
+<p>&nbsp;</p>
+<p>Hi Trevor,</p>
+<p>Actually it's very simple for the Official rpi touchscreen.</p>
+<p>1. Ensure that you DON'T have pitft support enabled when using this touc=
+hscreen! (PiTFT uses /dev/fb1, which isn't the case for the official toucsc=
+reen).</p>
+<p>2. Build for example 'core-image-sato'</p>
+<p>3. Add:</p>
+<p>echo "dtoverlay=3Drpi-ft5406" &gt;&gt; /path/to/sdcard/boot/config.txt</=
+p>
+<p>...and you are done.</p>
+<p>&nbsp;</p>
+<p>Like stated in the commit msg this is just an enabler for being able to =
+configure rpi-ft5406. When I have time I will send the complete solution fo=
+r this, perhaps a good idea is to do like a MACHINE_FEATURES as well, to ma=
+ke it look similar to the PiTFT's usage?</p>
+<p>BR Petter</p>
+<p>&nbsp;</p>
+<div>
+<pre>Petter Mab&auml;cker
+
+Technux &lt;petter@technux.se&gt;
+www.technux.se</pre>
+</div>
+</body></html>
+
+--=_a7240ad9b2aaad70ab5efe6f294d4a98--
