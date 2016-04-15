@@ -1,63 +1,60 @@
-Return-Path: <pxmyhdev@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B398BE00D91; Thu, 14 Apr 2016 13:05:27 -0700 (PDT)
+	id 91DB4E00AD7; Fri, 15 Apr 2016 08:25:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	MANY_SPAN_IN_TEXT, 
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pxmyhdev[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.195 listed in list.dnswl.org]
-	*  2.3 MANY_SPAN_IN_TEXT Many <SPAN> tags embedded within text
-Received: from mail-yw0-f195.google.com (mail-yw0-f195.google.com
-	[209.85.161.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B1A2E00C7D
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 13:05:24 -0700 (PDT)
-Received: by mail-yw0-f195.google.com with SMTP id k197so12350536ywe.2
-	for <yocto@yoctoproject.org>; Thu, 14 Apr 2016 13:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=gX1zyWw5FbKcG6HCWjF8CfXvcvh0WVGXrgElvAXVcI8=;
-	b=hbaEv+LcnqirfmM3z8ABroLseZayD1SzeBIhsv/TPGiV789ZYL8uvUXeltDUZPAVUZ
-	mx6lkwAIlwoiQCVKTRFbJRVRPot6vGJW9uEVFwlLk90iYg/ZA9pGxU6JeuUveYRRbj6Y
-	IhqkIQ+9SRoUKG9KWD3e0JwXLOYUO5tGaRvT1+sWt1WGteROeTV9kzSMr9A/jZ8TVClC
-	1yJYDGSQk6wo8fZq2PR5YS0rSTJEJV1uZtB5JoQwsEp00tLEsOJ7gjBvhcDaoqhayXoQ
-	DSB6ab+p+tGsQ78rEGVijQUVwU6iPnDGsmDvFASVL0eFspxBCypWeVCjD9D/oUBMDi5D
-	BgeQ==
+Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61056E006D3
+	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 08:25:31 -0700 (PDT)
+Received: by mail-io0-f175.google.com with SMTP id u185so137874685iod.3
+	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 08:25:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=fEgsCEyduagSjkfSMG1QfFhoFtoP5J3B8sKG+tO2up8=;
+	b=I6PKxvZ1gXs5rDZZt8kmo0RbCNq+VsQ0sFJP8o3Pfd2CHUG7MNkKvGnRAkd4nMPNTd
+	p0+8EYpxLXM4f1h4HYUy0kQ/eXmuNoUcCqFahqvzBpyF+b6VAWMCYebTB6w82+XOzb7C
+	xKCSiD8PJ7HknU5GKq2IDHOoxaEd32LKq/RjhsW1dpGAatDLXU6JpbkLx5L9V7f4gWaB
+	/QtJJPckk7nmT3DmMZFjUdI2Igzte3U7yNpPPGe6ykJAymkPK5a1nCkitHuIECJpjXY8
+	ABnGrOjkFKkG5G5WB4hogKQulezNVuiPoNKZFY1mRyb6on3lJVbVmW1dA6aCXN8e4mYC
+	AlRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=gX1zyWw5FbKcG6HCWjF8CfXvcvh0WVGXrgElvAXVcI8=;
-	b=TYmcVfhHnU673N1b6QsQH0yal+cq6pxkHaQMu2GW0QWisCcGKnQKc43BnU0IyuNm3A
-	aKzBtFMngrFt60hMh8V+E9M98x63AAEFXx9mU5A31szBYPNGMJhrCCJYJ413EqeEQaxC
-	KuDkgYi471UA+Tmh/PgAIFN3/0CleiNTS4TpFKcAROso9omv/S8OL9grtUGAiEQQWiK0
-	WcdEchQew7Pewgy1b0jaaimnvIBJ9KL6UC+xd4hhlFrzNurSFseqC0/Ocu3w9qRdckwk
-	GPD22/z4SrwddYTDy2BxlmzJGTgaE1n+gL6T7Fp2+vJey/vuvDjQxZ+aXqKcBwp+n8jm
-	CNqw==
-X-Gm-Message-State: AOPr4FVI4EQoRP8eEicNk97Jy/h8G4KzDXuKo5qGubwxCK7RAdJ6OaVNxNBKiWxTVijPFlbFBysP9RMv2yCj3g==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=fEgsCEyduagSjkfSMG1QfFhoFtoP5J3B8sKG+tO2up8=;
+	b=CdEmXRB8mjfupJ/TZzCsJcJGb3MmzDZdkRzhsqAFGj3E9eWEIdoX28DmdZ+D5c7s/X
+	7v1ubJgT3Z9x7iqhdXs78ZjpHg9d5ctuGKN3obqpN2O3FfopmWPqmXCwK1BLzpLy47LI
+	QCKJY36Dhtdc4QUdmEX2+I5eItYHXBuasqgX4uxgDu0YogqRiDjDbFRnOcAuLTkh5rRz
+	V4jynSORTcq0RUuUcgCWIz5/BVaaOkKDkFjUXLHGebWnkKwKgHFdyu2+l0nI0c4yEfIN
+	uZKePnesgzz7KpRZ+oNYwndWzNMVb6scjxUqSSE/eX6Ffisjh/HEoCG4T5UWRiFcZVDM
+	QFYQ==
+X-Gm-Message-State: AOPr4FXBi74kSR95dqXV4B62K4mhEPDR7nTrSDCf9b+dEuETA5MUBrQ5LHOnJ6Es9hjbv9vfS0wU/VUwycMHBWpW
+X-Received: by 10.107.16.104 with SMTP id y101mr21560965ioi.148.1460733931228; 
+	Fri, 15 Apr 2016 08:25:31 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.13.221.18 with SMTP id g18mr9555590ywe.316.1460664324233;
-	Thu, 14 Apr 2016 13:05:24 -0700 (PDT)
-Received: by 10.37.103.213 with HTTP; Thu, 14 Apr 2016 13:05:24 -0700 (PDT)
-Date: Thu, 14 Apr 2016 16:05:24 -0400
-Message-ID: <CAPYQ8X5omDPpo6QDPWqaQ_Grm5iwg=kiJ41zE09SYGk9oYwWhw@mail.gmail.com>
-From: Michael Hu <pxmyhdev@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Fri, 15 Apr 2016 08:20:02 -0700
-Subject: remove Yocto systemd features
+Received: by 10.107.132.24 with HTTP; Fri, 15 Apr 2016 08:25:11 -0700 (PDT)
+In-Reply-To: <CAPYQ8X5omDPpo6QDPWqaQ_Grm5iwg=kiJ41zE09SYGk9oYwWhw@mail.gmail.com>
+References: <CAPYQ8X5omDPpo6QDPWqaQ_Grm5iwg=kiJ41zE09SYGk9oYwWhw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 15 Apr 2016 16:25:11 +0100
+Message-ID: <CAJTo0LbXKQ470S+Qn0a6LhE-qQUsUmjvV4Ek7UTMUZgt+k6i1g@mail.gmail.com>
+To: Michael Hu <pxmyhdev@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: remove Yocto systemd features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,128 +66,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Apr 2016 20:05:27 -0000
-Content-Type: multipart/alternative; boundary=94eb2c0742042e9d6d0530776a4a
+X-List-Received-Date: Fri, 15 Apr 2016 15:25:35 -0000
+Content-Type: multipart/alternative; boundary=001a113ff0201524eb0530879fac
 
---94eb2c0742042e9d6d0530776a4a
+--001a113ff0201524eb0530879fac
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 14 April 2016 at 21:05, Michael Hu <pxmyhdev@gmail.com> wrote:
 
-Yocto pulls in systemd and enable certain features by default.I am trying
-to remove some features in systemd *225* yocto builds such as logind (just
-for testing purpose), I was trying to use a '*.bbappend' file with
-'PACKAGECONFIG_append' to achieve that, but seems like it only takes
-options defined in poky/meta/recipes-core/systemd/systemd_225.bb file.
-systemd_229.bb has logind option, but I'd like to do it in system_225.bb
+> Yocto pulls in systemd and enable certain features by default.I am trying
+> to remove some features in systemd *225* yocto builds such as logind
+> (just for testing purpose), I was trying to use a '*.bbappend' file with
+> 'PACKAGECONFIG_append' to achieve that, but seems like it only takes
+> options defined in poky/meta/recipes-core/systemd/systemd_225.bb file.
+> systemd_229.bb has logind option, but I'd like to do it in system_225.bb
+>
 
+If the recipe doesn't have a PACKAGECONFIG then you can either copy it from
+229 and add it in the bbappend:
 
-Available options in 225 are resolved/networkd/audit etc listed below.
-which does not include logind, is there any way I can remove those features?
+PACKAGECONFIG[logind] = "--enable-logind,--disable-logind"
 
+As it's then a packageconfig option that isn't selected, it will be
+disabled.  That's not very clear though so you could just directly pass the
+configure options:
 
-PACKAGECONFIG[xz] = "--enable-xz,--disable-xz,xz"
-PACKAGECONFIG[cryptsetup] =
-"--enable-libcryptsetup,--disable-libcryptsetup,cryptsetup"
-PACKAGECONFIG[microhttpd] =
-"--enable-microhttpd,--disable-microhttpd,libmicrohttpd"
-PACKAGECONFIG[elfutils] = "--enable-elfutils,--disable-elfutils,elfutils"
-PACKAGECONFIG[resolved] = "--enable-resolved,--disable-resolved"
-PACKAGECONFIG[networkd] = "--enable-networkd,--disable-networkd"
-PACKAGECONFIG[libidn] = "--enable-libidn,--disable-libidn,libidn"
-PACKAGECONFIG[audit] = "--enable-audit,--disable-audit,audit"
-PACKAGECONFIG[manpages] =
-"--enable-manpages,--disable-manpages,libxslt-native xmlto-native
-docbook-xml-dtd4-native docbook-xsl-stylesheets-native"
-PACKAGECONFIG[pam] = "--enable-pam,--disable-pam,libpam"
+EXTRA_OECONF_append = " --disable-logind"
 
-...
+Ross
 
-...
-
-
-
-also I'd like to remove functions like graphical user session support
-and display service etc. Any ideas if that's possible?
-
-
-Thanks,
-
-
-Michael
-
---94eb2c0742042e9d6d0530776a4a
+--001a113ff0201524eb0530879fac
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Yocto pulls in systemd and enable c=
-ertain features by default.I am trying to remove some features in systemd <=
-b>225</b> yocto builds such as logind (just for testing purpose), I was try=
-ing to use a &#39;*.bbappend&#39; file with &#39;PACKAGECONFIG_append&#39; =
-to achieve that, but seems like it only takes options defined in poky/meta/=
-recipes-core/systemd/<a href=3D"http://systemd_225.bb">systemd_225.bb</a> f=
-ile. <a href=3D"http://systemd_229.bb">systemd_229.bb</a> has logind option=
-, but I&#39;d like to do it in <a href=3D"http://system_225.bb">system_225.=
-bb</a></div><div><br></div><div><br></div><div>Available options in 225 are=
- resolved/networkd/audit etc listed below. which does not include logind, i=
-s there any way I can remove those features?</div><div><pre style=3D"paddin=
-g:0px;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);font-size:13.3333px=
-"><code><br></code></pre><pre style=3D"padding:0px;margin-top:0px;margin-bo=
-ttom:0px;color:rgb(0,0,0);font-size:13.3333px"><code>PACKAGECONFIG<span cla=
-ss=3D"">[</span>xz<span class=3D"">] =3D</span> <span class=3D"" style=3D"c=
-olor:rgb(191,3,3)">&quot;--enable-xz,--disable-xz,xz&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>cryptsetup<span class=3D"">] =3D</spa=
-n> <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-libcryptset=
-up,--disable-libcryptsetup,cryptsetup&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>microhttpd<span class=3D"">] =3D</spa=
-n> <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-microhttpd,=
---disable-microhttpd,libmicrohttpd&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>elfutils<span class=3D"">] =3D</span>=
- <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-elfutils,--di=
-sable-elfutils,elfutils&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>resolved<span class=3D"">] =3D</span>=
- <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-resolved,--di=
-sable-resolved&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>networkd<span class=3D"">] =3D</span>=
- <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-networkd,--di=
-sable-networkd&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>libidn<span class=3D"">] =3D</span> <=
-span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-libidn,--disabl=
-e-libidn,libidn&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>audit<span class=3D"">] =3D</span> <s=
-pan class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-audit,--disable-=
-audit,audit&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>manpages<span class=3D"">] =3D</span>=
- <span class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-manpages,--di=
-sable-manpages,libxslt-native xmlto-native docbook-xml-dtd4-native docbook-=
-xsl-stylesheets-native&quot;</span>
-PACKAGECONFIG<span class=3D"">[</span>pam<span class=3D"">] =3D</span> <spa=
-n class=3D"" style=3D"color:rgb(191,3,3)">&quot;--enable-pam,--disable-pam,=
-libpam&quot;</span></code></pre><pre style=3D"padding:0px;margin-top:0px;ma=
-rgin-bottom:0px;font-size:13.3333px"><font color=3D"#bf0303">...</font></pr=
-e><pre style=3D"padding:0px;margin-top:0px;margin-bottom:0px;font-size:13.3=
-333px"><font color=3D"#bf0303">...</font></pre><pre style=3D"padding:0px;ma=
-rgin-top:0px;margin-bottom:0px;font-size:13.3333px"><font color=3D"#bf0303"=
-><br></font></pre><pre style=3D"padding:0px;margin-top:0px;margin-bottom:0p=
-x;font-size:13.3333px"><font color=3D"#bf0303"><br></font></pre><pre style=
-=3D"padding:0px;margin-top:0px;margin-bottom:0px;font-size:13.3333px"><code=
-><span class=3D""><font color=3D"#000000"><font face=3D"arial, helvetica, s=
-ans-serif">also I&#39;d like to remove functions like graphical user sessio=
-n support and display service etc. Any ideas if that&#39;s possible?</font>=
-</font></span></code></pre><pre style=3D"padding:0px;margin-top:0px;margin-=
-bottom:0px;font-size:13.3333px"><code><span class=3D""><font color=3D"#0000=
-00"><font face=3D"arial, helvetica, sans-serif"><br></font></font></span></=
-code></pre><pre style=3D"padding:0px;margin-top:0px;margin-bottom:0px;font-=
-size:13.3333px"><code><span class=3D""><font color=3D"#000000"><font face=
-=3D"arial, helvetica, sans-serif">Thanks,</font></font></span></code></pre>=
-<pre style=3D"padding:0px;margin-top:0px;margin-bottom:0px;font-size:13.333=
-3px"><code><span class=3D""><font color=3D"#000000"><font face=3D"arial, he=
-lvetica, sans-serif"><br></font></font></span></code></pre><pre style=3D"pa=
-dding:0px;margin-top:0px;margin-bottom:0px;font-size:13.3333px"><code><span=
- class=3D""><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
-rif">Michael</font></font></span></code></pre><pre style=3D"padding:0px;mar=
-gin-top:0px;margin-bottom:0px;color:rgb(0,0,0);font-size:13.3333px"><code><=
-span class=3D"" style=3D"color:rgb(191,3,3)"><br></span></code></pre></div>=
-</div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 14 April 2016 at 21:05, Michael Hu <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:pxmyhdev@gmail.com" target=3D"_blank">pxmyhdev@gmail.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
+le:solid;padding-left:1ex"><div>Yocto pulls in systemd and enable certain f=
+eatures by default.I am trying to remove some features in systemd <b>225</b=
+> yocto builds such as logind (just for testing purpose), I was trying to u=
+se a &#39;*.bbappend&#39; file with &#39;PACKAGECONFIG_append&#39; to achie=
+ve that, but seems like it only takes options defined in poky/meta/recipes-=
+core/systemd/<a href=3D"http://systemd_225.bb" target=3D"_blank">systemd_22=
+5.bb</a> file. <a href=3D"http://systemd_229.bb" target=3D"_blank">systemd_=
+229.bb</a> has logind option, but I&#39;d like to do it in <a href=3D"http:=
+//system_225.bb" target=3D"_blank">system_225.bb</a></div><div></div></bloc=
+kquote></div><div class=3D"gmail_extra"><br></div>If the recipe doesn&#39;t=
+ have a PACKAGECONFIG then you can either copy it from 229 and add it in th=
+e bbappend:</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
+xtra"><div class=3D"gmail_extra">PACKAGECONFIG[logind] =3D &quot;--enable-l=
+ogind,--disable-logind&quot;</div><div><br></div><div>As it&#39;s then a pa=
+ckageconfig option that isn&#39;t selected, it will be disabled.=C2=A0 That=
+&#39;s not very clear though so you could just directly pass the configure =
+options:</div></div><div class=3D"gmail_extra"><br>EXTRA_OECONF_append =3D =
+&quot; --disable-logind&quot;</div><div class=3D"gmail_extra"><br></div><di=
+v class=3D"gmail_extra">Ross</div></div>
 
---94eb2c0742042e9d6d0530776a4a--
+--001a113ff0201524eb0530879fac--
