@@ -1,29 +1,38 @@
-Return-Path: <prvs=906cf07d3=Richard.Leitner@skidata.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41CC3E00E71; Fri, 15 Apr 2016 01:49:41 -0700 (PDT)
+	id B63FCE00CBB; Fri, 15 Apr 2016 03:02:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail2.skidata.com (mail2.skidata.com [80.120.57.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC25EE008EE
-	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 01:49:36 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2CnBADMqRBX/0oKEKxehQgGuBuEDoYOggwBAQEBAQGBDYVBKIEWDgXKVAEBCCCGIYhYAX2FCgWYDIFVjDuBZYdrDIUzjymES2qICT9+AQEB
-X-IPAS-Result: A2CnBADMqRBX/0oKEKxehQgGuBuEDoYOggwBAQEBAQGBDYVBKIEWDgXKVAEBCCCGIYhYAX2FCgWYDIFVjDuBZYdrDIUzjymES2qICT9+AQEB
-From: Richard Leitner <richard.leitner@skidata.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 15 Apr 2016 10:49:50 +0200
-Message-ID: <1460710190-22696-1-git-send-email-richard.leitner@skidata.com>
-X-Mailer: git-send-email 2.1.4
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 011A7E00D26
+	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 03:02:42 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 15 Apr 2016 03:02:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,486,1455004800"; d="scan'208";a="955588898"
+Received: from shermanc-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.145.244])
+	by orsmga002.jf.intel.com with ESMTP; 15 Apr 2016 03:02:41 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: David Winn <dwinn@trellisware.com>
+Date: Fri, 15 Apr 2016 22:02:37 +1200
+Message-ID: <3827036.bJIVWrBCJx@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.6-301.fc23.x86_64; KDE/4.14.18; x86_64; ;
+	)
+In-Reply-To: <D85DF636754686499AE75C7EA009AA8E839861F7@TWHQ-MAIL2.trellisware.com>
+References: <D85DF636754686499AE75C7EA009AA8E839861F7@TWHQ-MAIL2.trellisware.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.60.30]
-X-ClientProxiedBy: sdex1srv.skidata.net (172.16.10.92) To sdex1srv.skidata.net
-	(172.16.10.92)
-Subject: [psplash][PATCH] psplash: add option to read startup message from file
+Cc: yocto@yoctoproject.org
+Subject: Re: Issues toaster and devtool together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,91 +44,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Apr 2016 08:49:41 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 15 Apr 2016 10:02:48 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This patch adds an option to read the displayed message from a file.
-Additionally the maximum length for the read string can be defined.
-If both, a message (STARTUP_MSG) and a file (STARTUP_MSG_FILE) are
-defined the content of the file will be appended to the message.
-The string will be cutted after the given maximum number of chars.
+Hi David,
 
-For these changes the following defines were introduced:
-  PSPLASH_STARTUP_MSG_MAX_LEN ... maximum lenght of the complete message
-  PSPLASH_STARTUP_MSG_FILE ...... path to the file to read
+On Tue, 12 Apr 2016 20:23:43 David Winn wrote:
+> I was recently part of the Yocto Dev Day event, and learned a lot of good
+> tools for working with OE. I then got home and wanted to fold many of them
+> into our development process. Unfortunately I've hit a problem; toaster and
+> devtool don't seem to run in the same working copy.
+> Here's what I'm doing:
+> > git clone ...poky poky
+> > cd poky
+> > git checkout jethro
+> > source oe-init-build-env
+> > source toaster start
+> > devtool modify -x which scratch/which
+> 
+> ERROR: Only one copy of bitbake should be run against a build directory
+> 
+> My intent was to use devtool to do my development and then use toaster to
+> browse what happened in the working copy. Is this working for anyone else?
+> Any tips to fix the error above?
 
-Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
----
- psplash-config.h |  5 +++++
- psplash.c        | 29 ++++++++++++++++++++++++++++-
- 2 files changed, 33 insertions(+), 1 deletion(-)
+Unfortunately this is a known limitation - having Toaster running prevents 
+running devtool and some of our other command line utilities [1]. We plan to 
+address this in the next release, for now I'm afraid the only workaround is to 
+stop Toaster when you need to run devtool.
 
-diff --git a/psplash-config.h b/psplash-config.h
-index 82bb76d..7fa44fa 100644
---- a/psplash-config.h
-+++ b/psplash-config.h
-@@ -21,6 +21,11 @@
- 
- /* Text to output on program start; if undefined, output nothing */
- #define PSPLASH_STARTUP_MSG ""
-+#define PSPLASH_STARTUP_MSG_MAX_LEN 32
-+
-+/* File to read and display its first line on program start;
-+ * if undefined, output nothing; if MSG is defined also, append to it */
-+#define PSPLASH_STARTUP_MSG_FILE ""
- 
- /* Bool indicating if the image is fullscreen, as opposed to split screen */
- #define PSPLASH_IMG_FULLSCREEN 0
-diff --git a/psplash.c b/psplash.c
-index 04d3d49..b7d2d28 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -208,6 +208,9 @@ main (int argc, char** argv)
-   int        pipe_fd, i = 0, angle = 0, ret = 0;
-   PSplashFB *fb;
-   bool       disable_console_switch = FALSE;
-+  char       msg[PSPLASH_STARTUP_MSG_MAX_LEN];
-+  int        msglen;
-+  FILE      *fd_msg;
-   
-   signal(SIGHUP, psplash_exit);
-   signal(SIGINT, psplash_exit);
-@@ -298,9 +301,33 @@ main (int argc, char** argv)
- 
-   psplash_draw_progress (fb, 0);
- 
-+  memset(msg, 0, PSPLASH_STARTUP_MSG_MAX_LEN);
-+  msglen = 0;
- #ifdef PSPLASH_STARTUP_MSG
--  psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
-+  snprintf(msg, PSPLASH_STARTUP_MSG_MAX_LEN, "%s", PSPLASH_STARTUP_MSG);
-+  msglen = strlen(msg);
- #endif
-+#ifdef PSPLASH_STARTUP_MSG_FILE
-+  fd_msg = fopen (PSPLASH_STARTUP_MSG_FILE, "r");
-+  if (fd_msg)
-+    {
-+      if (msglen == 0)
-+        {
-+          fgets (msg, PSPLASH_STARTUP_MSG_MAX_LEN, fd_msg);
-+        }
-+      else
-+        {
-+          fgets (&msg[msglen + 1], PSPLASH_STARTUP_MSG_MAX_LEN - msglen - 1, fd_msg);
-+          msg[msglen] = ' ';
-+        }
-+      fclose (fd_msg);
-+    }
-+  msglen = strlen(msg);
-+#endif
-+
-+  /* draw message if we have one */
-+  if (msglen > 0)
-+    psplash_draw_msg (fb, msg);
- 
-   psplash_main (fb, pipe_fd, 0);
- 
+Cheers,
+Paul
+
+[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=5470
+
 -- 
-2.1.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
