@@ -1,65 +1,29 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <prvs=906cf07d3=Richard.Leitner@skidata.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59F2BE00D67; Fri, 15 Apr 2016 01:06:00 -0700 (PDT)
+	id 41CC3E00E71; Fri, 15 Apr 2016 01:49:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17F0CE009D7
-	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 01:05:56 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id y144so3889859wmd.0
-	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 01:05:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-transfer-encoding;
-	bh=V22vso0bU0jmVG7vBJw6/JF1OWxqvuynEUFjyGSnQZ0=;
-	b=UWFEAc52fUfVJB5IYXqz7xiPfKLRXdtLaPae75kSAl/mNK2AT0ZQcjZ23FD9PmmV6V
-	fyBtYoe0amn0w12/cNMIRTOL2o8duub0jYM/QSTKrNwPLozr7eW+sDSRxjaXKezBWTsk
-	v0UIvPGWArLOyCmA2vXg2PwkN2dAW7bCVHdx9VXpZj3V/dTKhW4HhxFmyw/PrnZkOgoj
-	ohZxv8qTVkf6QKCAaULC4gGlC39hkIxkWjtf3USMhEYL0vcKZLMXyIlJHouzf/eWxGMC
-	/1WfYPAGN5Ux+8J0XUZfL1T8ltz+Sz+GQElxpp4nm8+Qaph0enrU/ArZlUxutNmTeepg
-	H8RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-transfer-encoding;
-	bh=V22vso0bU0jmVG7vBJw6/JF1OWxqvuynEUFjyGSnQZ0=;
-	b=cVsc3nyceZrm93oSOMKH/EzfNZqDvelswz5dhRhPYl74XZkwfYpY/urPJZE4poXUyR
-	WkTrVNIJZzyh0b8IK5pG5f9D87H/Q98GK5XMrLkAx//+9KR9EH+2Y12jchd1D/sQdD7e
-	oEbrDJAG3fyAyn6ybYIOU7IW0VzhF7AO0NiSQfFfxcI/fihVEVzrMYgCloGZioPSdRMB
-	cVdqYpnOuEbflijz/UIYU+eL79uNtWBvzJ146nADPRigM0x52JJayphi3jWCiP90yMsl
-	TC/zneHcCWFsyTAEI32w/Xi5IIX18zvDhEYaVEsm6jDw4kubfH/afUK95z35S74zDZjN
-	Q8eg==
-X-Gm-Message-State: AOPr4FVKd1AgrEoH6e9GnLk17nDc0FMqo/sWbnJ5JULsj04Ts+8uQQ+zAGs15k4kEvBbCsWeZZjAb6qucTXTtw==
+Received: from mail2.skidata.com (mail2.skidata.com [80.120.57.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC25EE008EE
+	for <yocto@yoctoproject.org>; Fri, 15 Apr 2016 01:49:36 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A2CnBADMqRBX/0oKEKxehQgGuBuEDoYOggwBAQEBAQGBDYVBKIEWDgXKVAEBCCCGIYhYAX2FCgWYDIFVjDuBZYdrDIUzjymES2qICT9+AQEB
+X-IPAS-Result: A2CnBADMqRBX/0oKEKxehQgGuBuEDoYOggwBAQEBAQGBDYVBKIEWDgXKVAEBCCCGIYhYAX2FCgWYDIFVjDuBZYdrDIUzjymES2qICT9+AQEB
+From: Richard Leitner <richard.leitner@skidata.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 15 Apr 2016 10:49:50 +0200
+Message-ID: <1460710190-22696-1-git-send-email-richard.leitner@skidata.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-X-Received: by 10.28.138.196 with SMTP id m187mr2792030wmd.61.1460707555886;
-	Fri, 15 Apr 2016 01:05:55 -0700 (PDT)
-Received: by 10.194.235.3 with HTTP; Fri, 15 Apr 2016 01:05:55 -0700 (PDT)
-In-Reply-To: <14E4216AB3B3624BB1E80BC692D0F413D8D3A40C@EU-EHV-EXM01-P.global.tektronix.net>
-References: <14E4216AB3B3624BB1E80BC692D0F413D8D3A301@EU-EHV-EXM01-P.global.tektronix.net>
-	<CAJTo0LYoTANyh5sdgb_ru8JkjKCQ1S0RkyXLfaKmgu+fb8MTow@mail.gmail.com>
-	<14E4216AB3B3624BB1E80BC692D0F413D8D3A40C@EU-EHV-EXM01-P.global.tektronix.net>
-Date: Fri, 15 Apr 2016 01:05:55 -0700
-Message-ID: <CAJ86T=VApngN2E-3dBCh76w7gg6pSJ478yyMG+R9ps=1o_A1qw@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-To: "Vajzovic, Tom" <Tom.Vajzovic@irisys.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bitbake -c clean for all recipes
+X-Originating-IP: [172.16.60.30]
+X-ClientProxiedBy: sdex1srv.skidata.net (172.16.10.92) To sdex1srv.skidata.net
+	(172.16.10.92)
+Subject: [psplash][PATCH] psplash: add option to read startup message from file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,58 +35,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Apr 2016 08:06:00 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 Apr 2016 08:49:41 -0000
+Content-Type: text/plain
 
-On Fri, Apr 15, 2016 at 12:18 AM, Vajzovic, Tom
-<Tom.Vajzovic@irisys.co.uk> wrote:
-> Hi Ross & Raj,
->
-> From: Burton, Ross [mailto:ross.burton@intel.com]
-> Sent: 14 April 2016 17:25
->>
->> On 14 April 2016 at 12:18, Vajzovic, Tom <Tom.Vajzovic@irisys.co.uk> wro=
-te:
->> What command can I use to do the equivalent of running
->> "bitbake -c clean" (or cleanstate etc) for all recipes that have previou=
-sly been run?
->>
->> The easy answer here is rm -rf tmp/.
->
-> And what about cleanstate or cleanall?
+This patch adds an option to read the displayed message from a file.
+Additionally the maximum length for the read string can be defined.
+If both, a message (STARTUP_MSG) and a file (STARTUP_MSG_FILE) are
+defined the content of the file will be appended to the message.
+The string will be cutted after the given maximum number of chars.
 
-  clean : roughly the same as removing tmp
-  cleansstate : roughly the same as removing tmp and sstate-cache
-  cleanall : roughly the same as removing tmp, sstate-cache and downloads
+For these changes the following defines were introduced:
+  PSPLASH_STARTUP_MSG_MAX_LEN ... maximum lenght of the complete message
+  PSPLASH_STARTUP_MSG_FILE ...... path to the file to read
 
->> What do you actually want to do?
->
-> What I want to do is be certain that I am in the exact state that I would=
- be in if I had made a clean checkout and then build from scratch.
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ psplash-config.h |  5 +++++
+ psplash.c        | 29 ++++++++++++++++++++++++++++-
+ 2 files changed, 33 insertions(+), 1 deletion(-)
 
-Then remove tmp, sstate-cache and downloads. To be certain, remove
-your build directory too.
+diff --git a/psplash-config.h b/psplash-config.h
+index 82bb76d..7fa44fa 100644
+--- a/psplash-config.h
++++ b/psplash-config.h
+@@ -21,6 +21,11 @@
+ 
+ /* Text to output on program start; if undefined, output nothing */
+ #define PSPLASH_STARTUP_MSG ""
++#define PSPLASH_STARTUP_MSG_MAX_LEN 32
++
++/* File to read and display its first line on program start;
++ * if undefined, output nothing; if MSG is defined also, append to it */
++#define PSPLASH_STARTUP_MSG_FILE ""
+ 
+ /* Bool indicating if the image is fullscreen, as opposed to split screen */
+ #define PSPLASH_IMG_FULLSCREEN 0
+diff --git a/psplash.c b/psplash.c
+index 04d3d49..b7d2d28 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -208,6 +208,9 @@ main (int argc, char** argv)
+   int        pipe_fd, i = 0, angle = 0, ret = 0;
+   PSplashFB *fb;
+   bool       disable_console_switch = FALSE;
++  char       msg[PSPLASH_STARTUP_MSG_MAX_LEN];
++  int        msglen;
++  FILE      *fd_msg;
+   
+   signal(SIGHUP, psplash_exit);
+   signal(SIGINT, psplash_exit);
+@@ -298,9 +301,33 @@ main (int argc, char** argv)
+ 
+   psplash_draw_progress (fb, 0);
+ 
++  memset(msg, 0, PSPLASH_STARTUP_MSG_MAX_LEN);
++  msglen = 0;
+ #ifdef PSPLASH_STARTUP_MSG
+-  psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
++  snprintf(msg, PSPLASH_STARTUP_MSG_MAX_LEN, "%s", PSPLASH_STARTUP_MSG);
++  msglen = strlen(msg);
+ #endif
++#ifdef PSPLASH_STARTUP_MSG_FILE
++  fd_msg = fopen (PSPLASH_STARTUP_MSG_FILE, "r");
++  if (fd_msg)
++    {
++      if (msglen == 0)
++        {
++          fgets (msg, PSPLASH_STARTUP_MSG_MAX_LEN, fd_msg);
++        }
++      else
++        {
++          fgets (&msg[msglen + 1], PSPLASH_STARTUP_MSG_MAX_LEN - msglen - 1, fd_msg);
++          msg[msglen] = ' ';
++        }
++      fclose (fd_msg);
++    }
++  msglen = strlen(msg);
++#endif
++
++  /* draw message if we have one */
++  if (msglen > 0)
++    psplash_draw_msg (fb, msg);
+ 
+   psplash_main (fb, pipe_fd, 0);
+ 
+-- 
+2.1.4
 
-There's not usually any need to do this kind of thing though (apart
-from as a learning exercise).
-
-> The particular case that made me ask was that I added BB_GENERATE_MIRROR_=
-TARBALLS =3D "1" to local.conf and wanted to trigger doing that.  The fact =
-that just running bitbake <imagename> didn't do it made me paranoid about w=
-hat other changes I might make that wouldn't get picked up, so I want to kn=
-ow how to roll back to set points in the build process and build from there=
- (eg: clean, cleanstate, cleanall and any others that you can tell me about=
-).
->
-> Many thanks,
-> Tom
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
