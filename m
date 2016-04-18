@@ -1,40 +1,65 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <yegorslists@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1EBAE00CFE; Mon, 18 Apr 2016 00:34:35 -0700 (PDT)
+	id D38A8E00D9E; Mon, 18 Apr 2016 01:19:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	URI_HEX autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yegorslists[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60744E0077F
-	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 00:34:27 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u3I7YJ88012497
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=NO);
-	Mon, 18 Apr 2016 00:34:19 -0700 (PDT)
-Received: from [128.224.162.227] (128.224.162.227) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
-	Mon, 18 Apr 2016 00:34:18 -0700
-Message-ID: <57148DF9.8020905@windriver.com>
-Date: Mon, 18 Apr 2016 15:34:17 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
+	[209.85.213.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BA34E0077F
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 01:19:13 -0700 (PDT)
+Received: by mail-vk0-f65.google.com with SMTP id e185so21803513vkb.2
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 01:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ycUn38Wq6GB+L4V/hfx31qFmb4ZocXjeH2ZjsSFI8ww=;
+	b=JRek64VnfaWCWFOx9ingEjYTQ7DHP0foGAjyFqsKdyechkcyx6/kJK6zY82vCj2dhu
+	woE80sgwZJs0R4jl6D6164MCteymINPN1DSiQ4nKzR1fZEl82qEU0TSDDZhNQ70nbnbR
+	itfUoE26rZfalb3Ioz3EbQYt2rC+7Pe95t6m1VeNX42u58N8jcs95jth22TaB2ENsg0u
+	63BAiWSrFpuy05ucWy0zEiIueT+Cp9nfUbqRRRaK2vz4Lsn2eFXU+qFcRmDSORNDgQne
+	KqEVaTWpv2KlJBWATI0q23wWdSX/dXiS8XRdvnYPzAG5u9HCuP6udnn0CLqoG6ld9pXA
+	+KHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ycUn38Wq6GB+L4V/hfx31qFmb4ZocXjeH2ZjsSFI8ww=;
+	b=SXRRv77Am2fuVdNW0l+u2SdsUPmfQtGEJs4LPSz4tJ4r8Wf+fJODB//hh00+/crDG4
+	kH+yLuw8et3S10+4wcj20hCU73xVUrnl7G7Hue1m9//SF+sQaSYOzivN4KhgMW1HpHqP
+	QYrh2xcbQau57Cr1inqpl98PIkBCO9YBOpKHDlzqBQQZmuzLgWleBdqRbJRtx1GClnWx
+	D9LVBb3JGxuiOvSboDno6YA9IGUPBUzj9XcNuQS3QYPpkUEXzEdnmqTRksqCr76XhUCC
+	p2bynnN4+lR/rvyvvBoE8kmVe9UmVZVh/i/G8VEGQm280nZcnhYueN8/gTz1uSHUlN6Z
+	eHOQ==
+X-Gm-Message-State: AOPr4FVdeR4gu6Ogy5bBnPgcdATXM49QCsxoECtbdvifEzFQucN6sKdoEYMDE8NG4aflkT9kzMssowx+PQmuMg==
+X-Received: by 10.159.35.130 with SMTP id 2mr3822535uao.107.1460967553009;
+	Mon, 18 Apr 2016 01:19:13 -0700 (PDT)
 MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>
-References: <1460103572-63539-1-git-send-email-wenzong.fan@windriver.com>
-	<5713F9F7.8040106@twobit.us>
-In-Reply-To: <5713F9F7.8040106@twobit.us>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-selinux] refpolicy-minimum: port changes for prepare_policy_store
+Received: by 10.31.190.135 with HTTP; Mon, 18 Apr 2016 01:18:53 -0700 (PDT)
+In-Reply-To: <CAAfyv37XwvUv6Avy72E=fNi3hkRW6xonoowBTwbxvt17ERV9AQ@mail.gmail.com>
+References: <CAGm1_ku6qF3f=QtkdhCsOtf2q1S-ceLLGGFn76+9=158wjP-qQ@mail.gmail.com>
+	<CAAfyv37XwvUv6Avy72E=fNi3hkRW6xonoowBTwbxvt17ERV9AQ@mail.gmail.com>
+From: Yegor Yefremov <yegorslists@googlemail.com>
+Date: Mon, 18 Apr 2016 10:18:53 +0200
+Message-ID: <CAGm1_ksiWzaxzD-HxH9pF+XJ312jXTvSRwDvc_VEpW05uO=omA@mail.gmail.com>
+To: Belisko Marek <marek.belisko@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Running an own script after kernel compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,148 +71,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Apr 2016 07:34:36 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Apr 2016 08:19:16 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 04/18/2016 05:02 AM, Philip Tricca wrote:
-> Hello Wenzong,
+On Thu, Apr 14, 2016 at 12:19 PM, Belisko Marek <marek.belisko@gmail.com> wrote:
+> Hi,
 >
-> On 04/08/2016 01:19 AM, wenzong.fan@windriver.com wrote:
->> From: Wenzong Fan <wenzong.fan@windriver.com>
->>
->> Apply the changes to refpolicy-minimum_2.20151208.bb:
->>
->>    commit bfaf278116e6c3a04bb82c9f8a4f8629a0a85df8
->>    Author: Wenzong Fan <wenzong.fan@windriver.com>
->>    Date:   Tue Oct 27 06:25:04 2015 -0400
->>
->>      refpolicy-minimum: update prepare_policy_store
->>
->>      * update prepare_policy_store() for supporting SELinux 2.4 & CIL, the
->>        logic is from refpolicy_common.inc but with minimum set of policy
->>        modules;
->>
->>      * add extra policy modules that required by sysnetwork, without those
->>        modules the install process will fail with error:
->>
->>          | Failed to resolve roletype statement at 62 of \
->>            .../image/var/lib/selinux/minimum/tmp/modules/100/sysnetwork/cil
->>          | Failed to resolve ast
->>          | semodule:  Failed!
->>
->>      Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->>      Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
->>
->> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->> ---
->
-> This looks great but in testing it I'm unable to use the 'minimum'
-> refpolicy recipe in any image. The recipe builds fine but the do_rootfs
-> fails trying to label the filesystem. I haven't been able to find the
-> root cause for this yet, but I'm seeing this behavior both before and
-> after adding this patch so it may be a preexisting issue?
->
-> Given all of that, I've merged this patch into master since it doesn't
-> seem related to the issue I'm seeing. Still, some help in resolving the
-> issue I'm seeing with the minimum refpolicy recipe would be appreciated.
+> On Thu, Apr 14, 2016 at 12:12 PM, Yegor Yefremov
+> <yegorslists@googlemail.com> wrote:
+>> I have my own ITS file, that is required to create a FIT image. ITS
+>> file has a special configuration, that cannot be automatically created
+>> using Yocto's recipes. So I need a way to invoke my own script. How
+>> can I do it?
+> depends which yocto version you are using but you can use (reuse)
+> kernel-fitimage.bbclass present in jethro.
+> which will generate its file from kernel + dts you will define + with
+> that its will build FIT image. But not sure if it's really what you
+> need.
 
-Hi Philip,
+So, I've solved the problem via adding a task:
 
-Thanks for getting the change merged.
+do_create_fitimage() {
+        cp ${THISDIR}/linux-yocto-custom/kernel-fit.its ${DEPLOY_DIR_IMAGE}
+        uboot-mkimage -f ${DEPLOY_DIR_IMAGE}/kernel-fit.its
+${DEPLOY_DIR_IMAGE}/kernel-fit.itb
+}
 
-I did a test and see errors about:
+addtask create_fitimage before do_packagedata after do_deploy
 
- 
-/.../core-image-selinux/1.0-r0/rootfs//etc/selinux/mcs/contexts/files/file_contexts: 
-No such file or directory
+No the question is, how to handle out-of-tree DTS files?
+meta/recipes-kernel/linux/linux-dtb.inc won't copy DTS files to
+"${B}/arch/${ARCH}/boot/dts/${DTB}"
 
-That should be the SELINUXTYPE in /etc/selinux/config is not correct, 
-below patches could fix it:
-
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -162,7 +162,8 @@ SELINUX=${DEFAULT_ENFORCING}
-  #     mls - Multi Level Security protection.
-  #     targeted - Targeted processes are protected.
-  #     mcs - Multi Category Security protection.
--SELINUXTYPE=${POLICY_TYPE}
-+#     minimum - Minimum Security protection.
-+SELINUXTYPE=${POLICY_NAME}
-
-It works in my test, please feel free to integrate it if you think it 
-makes sense.
-
-Thanks
-Wenzong
-
->
-> Thanks,
-> Philip
->
->>   .../refpolicy/refpolicy-minimum_2.20151208.bb      | 41 ++++++++++++++++------
->>   1 file changed, 30 insertions(+), 11 deletions(-)
->>
->> diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->> index b275821..47ed558 100644
->> --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->> +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->> @@ -26,23 +26,42 @@ EXTRA_POLICY_MODULES += "nscd"
->>   # "login", so "login" process will access to /var/spool/mail.
->>   EXTRA_POLICY_MODULES += "mta"
->>
->> +# sysnetwork requires type definitions (insmod_t, consoletype_t,
->> +# hostname_t, ping_t, netutils_t) from modules:
->> +EXTRA_POLICY_MODULES += "modutils consoletype hostname netutils"
->> +
->>   POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
->>
->>   # re-write the same func from refpolicy_common.inc
->>   prepare_policy_store () {
->>   	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
->> +	POL_PRIORITY=100
->> +	POL_SRC=${D}${datadir}/selinux/${POLICY_NAME}
->> +	POL_STORE=${D}${localstatedir}/lib/selinux/${POLICY_NAME}
->> +	POL_ACTIVE_MODS=${POL_STORE}/active/modules/${POL_PRIORITY}
->>
->>   	# Prepare to create policy store
->> -	mkdir -p ${D}${sysconfdir}/selinux/
->> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
->> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
->> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
->> -	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
->> -	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
->> -		bzip2 -f $i && mv -f $i.bz2 $i
->> -	done
->> -	cp base.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
->> -	for i in ${POLICY_MODULES_MIN}; do
->> -		cp ${i}.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i.pp`
->> +	mkdir -p ${POL_STORE}
->> +	mkdir -p ${POL_ACTIVE_MODS}
->> +
->> +	# get hll type from suffix on base policy module
->> +	HLL_TYPE=$(echo ${POL_SRC}/base.* | awk -F . '{if (NF>1) {print $NF}}')
->> +	HLL_BIN=${STAGING_DIR_NATIVE}${prefix}/libexec/selinux/hll/${HLL_TYPE}
->> +
->> +	for i in base ${POLICY_MODULES_MIN}; do
->> +		MOD_FILE=${POL_SRC}/${i}.${HLL_TYPE}
->> +		MOD_DIR=${POL_ACTIVE_MODS}/${i}
->> +		mkdir -p ${MOD_DIR}
->> +		echo -n "${HLL_TYPE}" > ${MOD_DIR}/lang_ext
->> +
->> +		if ! bzip2 -t ${MOD_FILE} >/dev/null 2>&1; then
->> +			${HLL_BIN} ${MOD_FILE} | bzip2 --stdout > ${MOD_DIR}/cil
->> +			bzip2 -f ${MOD_FILE} && mv -f ${MOD_FILE}.bz2 ${MOD_FILE}
->> +		else
->> +			bunzip2 --stdout ${MOD_FILE} | \
->> +				${HLL_BIN} | \
->> +				bzip2 --stdout > ${MOD_DIR}/cil
->> +		fi
->> +		cp ${MOD_FILE} ${MOD_DIR}/hll
->>   	done
->>   }
->>
->
->
->
+Yegor
 
