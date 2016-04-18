@@ -1,26 +1,68 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91C2AE00CF1; Sun, 17 Apr 2016 21:24:07 -0700 (PDT)
+	id 13C80E00E9D; Sun, 17 Apr 2016 22:15:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79935E00C2A
-	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 21:24:04 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id EB6C0849E134
-	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 00:24:02 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 18 Apr 2016 04:24:02 -0000
-Message-ID: <20160418042402.10800.46840@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45A3AE00C2A
+	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 22:15:10 -0700 (PDT)
+Received: by mail-pa0-f43.google.com with SMTP id zm5so75134443pac.0
+	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 22:15:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:subject:date:message-id:to:mime-version;
+	bh=crAoWIkStZYz2CGbrCQkmprkIjS5bqLwlJ/vzLe3qTM=;
+	b=dWHVUt2RpLV6RxhYFYHRszDYr1cOhzPvjDSsyyGLNuJuWepnxcQWwI8wYlJ96CDUpj
+	5YSXoq1b8sNq+BhS8tiGdlF/0NELXJBWSjtXn1Sb9uXyiGV5QXeMJOEp5SC5yFp8inqC
+	2X3fAu0jXlMLQtaG4/LXq5W0OVTUAyRsrxfVdjTIitR5F4UxNHAgFtakgtVaklgdUYqe
+	Sr5qxYXXNz7Q9FKb17BKMgb5dZTHuzfotQwJb7DENe1GT8KiBWm2bqrDMjoN+d/Sgh15
+	c0Qzw8/82pFxODgR459w1Qrr95x4ox1vqVWEcfSjULAgVNovvzUk5WARPpwQFTlLjpMm
+	srIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:subject:date:message-id:to:mime-version;
+	bh=crAoWIkStZYz2CGbrCQkmprkIjS5bqLwlJ/vzLe3qTM=;
+	b=OwMKhlMlLWmgVKyiN8eFYBunweuCS3tOCR085hZj3jMw7qbkKuEn+TzM5eYXeCnzqw
+	fq8maxn8IhCAIJhVXNOGr2j/g1hvXrDgdJC1Lr6Am+yaNzeiNFrS+MNEVPIOvssoL/ZD
+	SWo7ZcT2o4vdFTCrmneU6N0PzhRv0NXgZkNpGr9dmE8yiqAtiiVGVkjqPj2QKYqzuARb
+	tegxJZ0Q0WTlMDASktN/wB/a/F+saRkU5cH5Z85Q+dEvaLYA3GqvwmdDenaLnfUgYfIc
+	kaYCw5FhYepwdrBrC0YU/8JroiEx/inPQ2Kqk6NnlAtt8TOiP1X1igV/w+u9wrF8SFq9
+	qS7A==
+X-Gm-Message-State: AOPr4FVVJPnP6DUrVorMqoSlmH3j+vPVBnNS15jnXYJnQDYNZK2pVuiUXWnQG6tKOs2PhA==
+X-Received: by 10.66.62.232 with SMTP id b8mr46803647pas.104.1460956510485;
+	Sun, 17 Apr 2016 22:15:10 -0700 (PDT)
+Received: from ?IPv6:2601:646:8800:5a9a:bcd4:460b:c427:512f?
+	([2601:646:8800:5a9a:bcd4:460b:c427:512f])
+	by smtp.gmail.com with ESMTPSA id
+	y27sm80126857pfi.11.2016.04.17.22.15.08
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Sun, 17 Apr 2016 22:15:09 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+X-Pgp-Agent: GPGMail 2.6b2
+Date: Sun, 17 Apr 2016 22:15:03 -0700
+Message-Id: <B1D22563-F31B-4EF1-90D6-16EB391134D5@gmail.com>
+To: OE Core mailing list <openembedded-core@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+Subject: [RFT] GCC 6 Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,195 +74,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Apr 2016 04:24:07 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Apr 2016 05:15:14 -0000
+X-Groupsio-MsgNum: 29474
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_D380721D-F5EE-491D-A6B6-0C25DCA60A6B";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-This mail was sent out by Recipe reporting system.
+--Apple-Mail=_D380721D-F5EE-491D-A6B6-0C25DCA60A6B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hello all,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+I have put together a potential gcc6 upgrade recipe set, and pushed the =
+branch to tree here
 
-You can check the detail information at:
 
-http://recipes.yoctoproject.org/
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/gcc-6
 
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-texinfo               6.0           6.1                   Alejandro Hernandez
-ruby                  2.2.2         2.3.0                 Alejandro Hernandez
-perl                  5.22.1        5.24.0                Alejandro Hernandez
-python-dbus           1.2.0         1.2.4                 Alejandro Hernandez
-python-mako           1.0.3         1.0.4                 Alejandro Hernandez
-python-numpy          1.10.4        1.11.0                Alejandro Hernandez
-python-pygobject      3.18.2        3.20.0                Alejandro Hernandez
-python-scons          2.4.1         2.5.0                 Alejandro Hernandez
-python3-pip           8.0.0         8.1.1                 Alejandro Hernandez
-python3-setuptools    19.4          20.9.0                Alejandro Hernandez
-python-setuptools     19.4          20.9.0                Alejandro Hernandez
-perl-native           5.22.1        5.24.0                Alejandro Hernandez
-python-scons-native   2.4.1         2.5.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gcr                   3.18.0        3.20.0                Alexander Kanavin
-gnome-desktop3        3.18.2        3.20.1                Alexander Kanavin
-libsecret             0.18.4        0.18.5                Alexander Kanavin
-watchdog              5.14          5.15                  Alexander Kanavin
-kexec-tools           2.0.11        2.0.12                Alexander Kanavin
-btrfs-tools           4.4           4.5.1                 Alexander Kanavin
-sysprof               1.2.0+gitX    3.20.0+gitAUTOINC...  Alexander Kanavin
-systemtap-uprobes     2.9           3.0                   Alexander Kanavin
-systemtap             2.9           3.0                   Alexander Kanavin
-epiphany              3.18.4        3.20.1                Alexander Kanavin
-hwlatdetect           0.96          0.97                  Alexander Kanavin
-rt-tests              0.96          0.97                  Alexander Kanavin
-webkitgtk             2.10.7        2.12.1                Alexander Kanavin
-gnutls                3.4.9         3.4.11                Alexander Kanavin
-icu                   56.1          57.1                  Alexander Kanavin
-nss                   3.21          3.23                  Alexander Kanavin
-babeltrace            1.3.1         1.3.2                 Alexander Kanavin
-msmtp                 1.6.3         1.6.4                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
-iso-codes             3.65          3.67                  Alexander Kanavin
-apt                   1.0.10.1      1.2.10                Aníbal Limón
-qemu                  2.5.0         2.5.1                 Aníbal Limón
-pinentry              0.9.2         0.9.7                 Armin Kuster
-linux-libc-headers    4.4           4.5.1                 Bruce Ashfield
-guilt-native          0.35+gitX     0.36+gitAUTOINC+2...  Bruce Ashfield
-dbus-test             1.10.6        1.10.8                Chen Qi
-dbus                  1.10.6        1.10.8                Chen Qi
-util-linux            2.27.1        2.28                  Chen Qi
-curl                  7.47.1        7.48.0                Chen Qi
-byacc                 20150711      20160324              Chen Qi
-gzip                  1.6           1.7                   Chen Qi
-sudo                  1.8.15        1.8.16                Chen Qi
-sysstat               11.2.0        11.3.3                Chen Qi
-grep                  2.23          2.24                  Chen Qi
-build-appliance-i...  14.0.0        14.0.1                Cristian Iorga
-dhcp                  4.3.3         4.3.4                 Hongxu Jia
-ncurses               6.0+20160213  6.0+20160319          Hongxu Jia
-pax-utils             1.1.5         1.1.6                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-libgcrypt             1.6.5         1.7.0                 Hongxu Jia
-man-pages             4.04          4.05                  Hongxu Jia
-libnewt-python        0.52.18       0.52.19               Hongxu Jia
-libnewt               0.52.18       0.52.19               Hongxu Jia
-elfutils              0.164         0.166                 Hongxu Jia
-pango                 1.38.1        1.40.1                Jussi Kukkonen
-mesa                  11.1.1        11.2.1                Jussi Kukkonen
-libinput              1.1.4         1.2.3                 Jussi Kukkonen
-wayland               1.9.0         1.10.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.8        3.20.3                Jussi Kukkonen
-xrandr                1.4.3         1.5.0                 Jussi Kukkonen
-openssh               7.1p2         7.2p2                 Jussi Kukkonen
-gsettings-desktop...  3.19.3        3.20.0                Jussi Kukkonen
-dropbear              2015.71       2016.73               Jussi Kukkonen
-expat                 2.1.0         2.1.1                 Jussi Kukkonen
-weston                1.9.0         1.10.0                Jussi Kukkonen
-glib-2.0              2.46.2        2.48.0                Jussi Kukkonen
-glib-networking       2.46.1        2.48.0                Jussi Kukkonen
-libxkbcommon          0.5.0         0.6.1                 Jussi Kukkonen
-pixman                0.32.8        0.34.0                Jussi Kukkonen
-xkeyboard-config      2.16          2.17                  Jussi Kukkonen
-inputproto            2.3.1         2.3.2                 Jussi Kukkonen
-videoproto            2.3.2         2.3.3                 Jussi Kukkonen
-xserver-xorg          1.18.0        1.18.3                Jussi Kukkonen
-cmake                 3.4.3         3.5.2                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1        1.79.1                Jussi Kukkonen
-at-spi2-atk           2.18.1        2.20.1                Jussi Kukkonen
-at-spi2-core          2.18.3        2.20.1                Jussi Kukkonen
-atk                   2.18.0        2.20.0                Jussi Kukkonen
-vala                  0.30.1        0.32.0                Jussi Kukkonen
-libsoup-2.4           2.52.2        2.54.0.1              Jussi Kukkonen
-vte                   0.28.2        0.44.1                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.16        3.0.18                Jussi Kukkonen
-gdk-pixbuf            2.32.3        2.34.0                Jussi Kukkonen
-gtk+3                 3.18.8        3.20.3                Jussi Kukkonen
-gtk+                  2.24.29       2.24.30               Jussi Kukkonen
-json-glib             1.0.4         1.2.0                 Jussi Kukkonen
-librsvg               2.40.13       2.40.15               Jussi Kukkonen
-cairo                 1.14.6        1.15.2                Jussi Kukkonen
-clutter-1.0           1.24.2        1.26.0                Jussi Kukkonen
-clutter-gtk-1.0       1.6.6         1.8.0                 Jussi Kukkonen
-fontconfig            2.11.94       2.11.95               Jussi Kukkonen
-mesa-demos            8.2.0         8.3.0                 Jussi Kukkonen
-mesa-gl               11.1.1        11.2.1                Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69        0.9.71                Jussi Kukkonen
-slang                 2.2.4         2.3.0                 Kai Kang
-uclibc                1.0.12+gitX   1.0.13                Khem Raj
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0         4.7.0                 Matthew McClintock
-acpid                 2.0.26        2.0.27                Maxin B. John
-bluez5                5.37          5.39                  Maxin B. John
-iproute2              4.4.0         4.5.0                 Maxin B. John
-sqlite3               3.11.0        3.12.1                Maxin B. John
-gstreamer1.0-libav    1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0          1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0                 Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
-orc                   0.4.24        0.4.25                Maxin B. John
-gstreamer1.0-rtsp...  1.6.2         1.8.0                 Maxin B. John
-db                    6.0.30        6.2.23                Maxin B. John
-libtasn1              4.7           4.8                   Maxin B. John
-ethtool               4.2           4.5                   Maxin B. John
-mc                    4.8.15        4.8.16                Maxin B. John
-harfbuzz              1.2.3         1.2.6                 Maxin B. John
-pkgconfig             0.29+gitX     0.29.1+gitAUTOINC...  Maxin B. John
-gdb-cross-canadia...  7.10.1        7.11                  No maintainer
-gdb-cross-i586        7.10.1        7.11                  No maintainer
-xf86-input-libinput   0.16.0        0.18.0                No maintainer
-ffmpeg                3.0           3.0.1                 No maintainer
-cantarell-fonts       0.0.21+gitX   0.13+gitAUTOINC+7...  No maintainer
-libsolv               0.6.19        0.6.20                No maintainer
-ifupdown              0.8.2         0.8.10                No maintainer
-uclibc-initial        1.0.12+gitX   1.0.13                No maintainer
-apt-native            1.0.10.1      1.2.10                No maintainer
-cmake-native          3.4.3         3.5.2                 No maintainer
-gobject-introspec...  1.46.0        1.48.0                No maintainer
-sgmlspl-native        1.1+gitX      1.03+gitAUTOINC+f...  No maintainer
-lttng-modules         2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-gdb                   7.10.1        7.11                  Richard Purdie
-nasm                  2.11.08       2.12.01               Richard Purdie
-mpfr                  3.1.3         3.1.4                 Richard Purdie
-gnu-efi               3.0.3         3.0.4                 Robert Yang
-file                  5.25          5.26                  Robert Yang
-git                   2.7.2         2.8.1                 Robert Yang
-tcl                   8.6.4         8.6.5                 Robert Yang
-libcap                2.24          2.25                  Robert Yang
-mklibs-native         0.1.40        0.1.41                Robert Yang
-base-passwd           3.5.29        3.5.39                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.64          9.65                  Ross Burton
-alsa-lib              1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils            1.1.0         1.1.1                 Tanu Kaskinen
-alsa-plugins          1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils-scripts    1.1.0         1.1.1                 Tanu Kaskinen
-ccache                3.2.4         3.2.5                 Wenzong Fan
-gettext               0.19.6        0.19.7                Wenzong Fan
-chkconfig             1.3.58        1.7                   Wenzong Fan          Version 1.5 requires selinux
+and also at github fork of mine.
 
-Upgradable count: 146
-Upgradable total count: 152
+https://github.com/kraj/openembedded-core/tree/kraj/master
 
-The based commit is:
+You need to set
 
-commit 37aac647d510557323083c77c3114476440a325d
-Author: Robert Yang <liezhi.yang@windriver.com>
-Date:   Tue Apr 5 22:34:25 2016 -0700
+GCCVERSION =3D =E2=80=9C6.%=E2=80=9D
 
-    fs-perms.txt: fix ROOT_HOME's permission
-    
-    It should be 0700 rather than 0755.
-    
-    Reported-by: Charles Chan <charles.wh.chan@gmail.com>
-    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
+in local.conf to enable it.
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
+There are few recipes in OE-Core which still don=E2=80=99t compile e.g.
+
+see
+
+http://errors.yoctoproject.org/Errors/Build/14782/
+
+any help in fixing them or otherwise fixing other layers is appreciated.
+
+gcc6 is a major release for some info see
+
+https://gcc.gnu.org/gcc-6/changes.html
+
+and porting guide
+
+https://gcc.gnu.org/gcc-6/porting_to.html
+
+
+Thanks
+
+-Khem
+
+--Apple-Mail=_D380721D-F5EE-491D-A6B6-0C25DCA60A6B
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlcUbVwACgkQuwUzVZGdMxRPTACfUVB+XNWT+8+tZYfq38MBc5DQ
+d8YAoI475gdTOoaX/3suuYdeaqvgf83D
+=eSJK
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_D380721D-F5EE-491D-A6B6-0C25DCA60A6B--
