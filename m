@@ -1,38 +1,26 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA91DE00CF8; Sun, 17 Apr 2016 14:02:34 -0700 (PDT)
+	id 91C2AE00CF1; Sun, 17 Apr 2016 21:24:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, URI_HEX autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.1 URI_HEX URI: URI hostname has long hexadecimal
-	sequence
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FF22E00C1D
-	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 14:02:31 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.104])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1artoA-0004ku-SS; Sun, 17 Apr 2016 21:00:43 +0000
-To: wenzong.fan@windriver.com
-References: <1460103572-63539-1-git-send-email-wenzong.fan@windriver.com>
-From: Philip Tricca <flihp@twobit.us>
-Message-ID: <5713F9F7.8040106@twobit.us>
-Date: Sun, 17 Apr 2016 14:02:47 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Icedove/38.7.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79935E00C2A
+	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 21:24:04 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id EB6C0849E134
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 00:24:02 -0400 (EDT)
 MIME-Version: 1.0
-In-Reply-To: <1460103572-63539-1-git-send-email-wenzong.fan@windriver.com>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-selinux] refpolicy-minimum: port changes for prepare_policy_store
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 18 Apr 2016 04:24:02 -0000
+Message-ID: <20160418042402.10800.46840@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,115 +32,195 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Apr 2016 21:02:34 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Apr 2016 04:24:07 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hello Wenzong,
+This mail was sent out by Recipe reporting system.
 
-On 04/08/2016 01:19 AM, wenzong.fan@windriver.com wrote:
-> From: Wenzong Fan <wenzong.fan@windriver.com>
-> 
-> Apply the changes to refpolicy-minimum_2.20151208.bb:
-> 
->   commit bfaf278116e6c3a04bb82c9f8a4f8629a0a85df8
->   Author: Wenzong Fan <wenzong.fan@windriver.com>
->   Date:   Tue Oct 27 06:25:04 2015 -0400
-> 
->     refpolicy-minimum: update prepare_policy_store
-> 
->     * update prepare_policy_store() for supporting SELinux 2.4 & CIL, the
->       logic is from refpolicy_common.inc but with minimum set of policy
->       modules;
-> 
->     * add extra policy modules that required by sysnetwork, without those
->       modules the install process will fail with error:
-> 
->         | Failed to resolve roletype statement at 62 of \
->           .../image/var/lib/selinux/minimum/tmp/modules/100/sysnetwork/cil
->         | Failed to resolve ast
->         | semodule:  Failed!
-> 
->     Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->     Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-> 
-> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-> ---
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-This looks great but in testing it I'm unable to use the 'minimum'
-refpolicy recipe in any image. The recipe builds fine but the do_rootfs
-fails trying to label the filesystem. I haven't been able to find the
-root cause for this yet, but I'm seeing this behavior both before and
-after adding this patch so it may be a preexisting issue?
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Given all of that, I've merged this patch into master since it doesn't
-seem related to the issue I'm seeing. Still, some help in resolving the
-issue I'm seeing with the minimum refpolicy recipe would be appreciated.
+You can check the detail information at:
 
-Thanks,
-Philip
+http://recipes.yoctoproject.org/
 
->  .../refpolicy/refpolicy-minimum_2.20151208.bb      | 41 ++++++++++++++++------
->  1 file changed, 30 insertions(+), 11 deletions(-)
-> 
-> diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-> index b275821..47ed558 100644
-> --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-> +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
-> @@ -26,23 +26,42 @@ EXTRA_POLICY_MODULES += "nscd"
->  # "login", so "login" process will access to /var/spool/mail.
->  EXTRA_POLICY_MODULES += "mta"
->  
-> +# sysnetwork requires type definitions (insmod_t, consoletype_t,
-> +# hostname_t, ping_t, netutils_t) from modules:
-> +EXTRA_POLICY_MODULES += "modutils consoletype hostname netutils"
-> +
->  POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
->  
->  # re-write the same func from refpolicy_common.inc
->  prepare_policy_store () {
->  	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
-> +	POL_PRIORITY=100
-> +	POL_SRC=${D}${datadir}/selinux/${POLICY_NAME}
-> +	POL_STORE=${D}${localstatedir}/lib/selinux/${POLICY_NAME}
-> +	POL_ACTIVE_MODS=${POL_STORE}/active/modules/${POL_PRIORITY}
->  
->  	# Prepare to create policy store
-> -	mkdir -p ${D}${sysconfdir}/selinux/
-> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
-> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
-> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
-> -	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
-> -	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
-> -		bzip2 -f $i && mv -f $i.bz2 $i
-> -	done
-> -	cp base.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
-> -	for i in ${POLICY_MODULES_MIN}; do
-> -		cp ${i}.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i.pp`
-> +	mkdir -p ${POL_STORE}
-> +	mkdir -p ${POL_ACTIVE_MODS}
-> +
-> +	# get hll type from suffix on base policy module
-> +	HLL_TYPE=$(echo ${POL_SRC}/base.* | awk -F . '{if (NF>1) {print $NF}}')
-> +	HLL_BIN=${STAGING_DIR_NATIVE}${prefix}/libexec/selinux/hll/${HLL_TYPE}
-> +
-> +	for i in base ${POLICY_MODULES_MIN}; do
-> +		MOD_FILE=${POL_SRC}/${i}.${HLL_TYPE}
-> +		MOD_DIR=${POL_ACTIVE_MODS}/${i}
-> +		mkdir -p ${MOD_DIR}
-> +		echo -n "${HLL_TYPE}" > ${MOD_DIR}/lang_ext
-> +
-> +		if ! bzip2 -t ${MOD_FILE} >/dev/null 2>&1; then
-> +			${HLL_BIN} ${MOD_FILE} | bzip2 --stdout > ${MOD_DIR}/cil
-> +			bzip2 -f ${MOD_FILE} && mv -f ${MOD_FILE}.bz2 ${MOD_FILE}
-> +		else
-> +			bunzip2 --stdout ${MOD_FILE} | \
-> +				${HLL_BIN} | \
-> +				bzip2 --stdout > ${MOD_DIR}/cil
-> +		fi
-> +		cp ${MOD_FILE} ${MOD_DIR}/hll
->  	done
->  }
-> 
+Package               Version       Upstream version      Maintainer           NoUpgradeReason
+--------------------  ------------  --------------------  -------------------  ------------------------------
+texinfo               6.0           6.1                   Alejandro Hernandez
+ruby                  2.2.2         2.3.0                 Alejandro Hernandez
+perl                  5.22.1        5.24.0                Alejandro Hernandez
+python-dbus           1.2.0         1.2.4                 Alejandro Hernandez
+python-mako           1.0.3         1.0.4                 Alejandro Hernandez
+python-numpy          1.10.4        1.11.0                Alejandro Hernandez
+python-pygobject      3.18.2        3.20.0                Alejandro Hernandez
+python-scons          2.4.1         2.5.0                 Alejandro Hernandez
+python3-pip           8.0.0         8.1.1                 Alejandro Hernandez
+python3-setuptools    19.4          20.9.0                Alejandro Hernandez
+python-setuptools     19.4          20.9.0                Alejandro Hernandez
+perl-native           5.22.1        5.24.0                Alejandro Hernandez
+python-scons-native   2.4.1         2.5.0                 Alejandro Hernandez
+liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+gcr                   3.18.0        3.20.0                Alexander Kanavin
+gnome-desktop3        3.18.2        3.20.1                Alexander Kanavin
+libsecret             0.18.4        0.18.5                Alexander Kanavin
+watchdog              5.14          5.15                  Alexander Kanavin
+kexec-tools           2.0.11        2.0.12                Alexander Kanavin
+btrfs-tools           4.4           4.5.1                 Alexander Kanavin
+sysprof               1.2.0+gitX    3.20.0+gitAUTOINC...  Alexander Kanavin
+systemtap-uprobes     2.9           3.0                   Alexander Kanavin
+systemtap             2.9           3.0                   Alexander Kanavin
+epiphany              3.18.4        3.20.1                Alexander Kanavin
+hwlatdetect           0.96          0.97                  Alexander Kanavin
+rt-tests              0.96          0.97                  Alexander Kanavin
+webkitgtk             2.10.7        2.12.1                Alexander Kanavin
+gnutls                3.4.9         3.4.11                Alexander Kanavin
+icu                   56.1          57.1                  Alexander Kanavin
+nss                   3.21          3.23                  Alexander Kanavin
+babeltrace            1.3.1         1.3.2                 Alexander Kanavin
+msmtp                 1.6.3         1.6.4                 Alexander Kanavin
+mkelfimage            4.0+gitX      4.3+gitAUTOINC+1b...  Alexander Kanavin    mkelfimage has been removed...
+iso-codes             3.65          3.67                  Alexander Kanavin
+apt                   1.0.10.1      1.2.10                Aníbal Limón
+qemu                  2.5.0         2.5.1                 Aníbal Limón
+pinentry              0.9.2         0.9.7                 Armin Kuster
+linux-libc-headers    4.4           4.5.1                 Bruce Ashfield
+guilt-native          0.35+gitX     0.36+gitAUTOINC+2...  Bruce Ashfield
+dbus-test             1.10.6        1.10.8                Chen Qi
+dbus                  1.10.6        1.10.8                Chen Qi
+util-linux            2.27.1        2.28                  Chen Qi
+curl                  7.47.1        7.48.0                Chen Qi
+byacc                 20150711      20160324              Chen Qi
+gzip                  1.6           1.7                   Chen Qi
+sudo                  1.8.15        1.8.16                Chen Qi
+sysstat               11.2.0        11.3.3                Chen Qi
+grep                  2.23          2.24                  Chen Qi
+build-appliance-i...  14.0.0        14.0.1                Cristian Iorga
+dhcp                  4.3.3         4.3.4                 Hongxu Jia
+ncurses               6.0+20160213  6.0+20160319          Hongxu Jia
+pax-utils             1.1.5         1.1.6                 Hongxu Jia
+createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.5         1.7.0                 Hongxu Jia
+man-pages             4.04          4.05                  Hongxu Jia
+libnewt-python        0.52.18       0.52.19               Hongxu Jia
+libnewt               0.52.18       0.52.19               Hongxu Jia
+elfutils              0.164         0.166                 Hongxu Jia
+pango                 1.38.1        1.40.1                Jussi Kukkonen
+mesa                  11.1.1        11.2.1                Jussi Kukkonen
+libinput              1.1.4         1.2.3                 Jussi Kukkonen
+wayland               1.9.0         1.10.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.18.8        3.20.3                Jussi Kukkonen
+xrandr                1.4.3         1.5.0                 Jussi Kukkonen
+openssh               7.1p2         7.2p2                 Jussi Kukkonen
+gsettings-desktop...  3.19.3        3.20.0                Jussi Kukkonen
+dropbear              2015.71       2016.73               Jussi Kukkonen
+expat                 2.1.0         2.1.1                 Jussi Kukkonen
+weston                1.9.0         1.10.0                Jussi Kukkonen
+glib-2.0              2.46.2        2.48.0                Jussi Kukkonen
+glib-networking       2.46.1        2.48.0                Jussi Kukkonen
+libxkbcommon          0.5.0         0.6.1                 Jussi Kukkonen
+pixman                0.32.8        0.34.0                Jussi Kukkonen
+xkeyboard-config      2.16          2.17                  Jussi Kukkonen
+inputproto            2.3.1         2.3.2                 Jussi Kukkonen
+videoproto            2.3.2         2.3.3                 Jussi Kukkonen
+xserver-xorg          1.18.0        1.18.3                Jussi Kukkonen
+cmake                 3.4.3         3.5.2                 Jussi Kukkonen
+docbook-xsl-style...  1.78.1        1.79.1                Jussi Kukkonen
+at-spi2-atk           2.18.1        2.20.1                Jussi Kukkonen
+at-spi2-core          2.18.3        2.20.1                Jussi Kukkonen
+atk                   2.18.0        2.20.0                Jussi Kukkonen
+vala                  0.30.1        0.32.0                Jussi Kukkonen
+libsoup-2.4           2.52.2        2.54.0.1              Jussi Kukkonen
+vte                   0.28.2        0.44.1                Jussi Kukkonen       matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.16        3.0.18                Jussi Kukkonen
+gdk-pixbuf            2.32.3        2.34.0                Jussi Kukkonen
+gtk+3                 3.18.8        3.20.3                Jussi Kukkonen
+gtk+                  2.24.29       2.24.30               Jussi Kukkonen
+json-glib             1.0.4         1.2.0                 Jussi Kukkonen
+librsvg               2.40.13       2.40.15               Jussi Kukkonen
+cairo                 1.14.6        1.15.2                Jussi Kukkonen
+clutter-1.0           1.24.2        1.26.0                Jussi Kukkonen
+clutter-gtk-1.0       1.6.6         1.8.0                 Jussi Kukkonen
+fontconfig            2.11.94       2.11.95               Jussi Kukkonen
+mesa-demos            8.2.0         8.3.0                 Jussi Kukkonen
+mesa-gl               11.1.1        11.2.1                Jussi Kukkonen
+linuxdoc-tools-na...  0.9.69        0.9.71                Jussi Kukkonen
+slang                 2.2.4         2.3.0                 Kai Kang
+uclibc                1.0.12+gitX   1.0.13                Khem Raj
+prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0         4.7.0                 Matthew McClintock
+acpid                 2.0.26        2.0.27                Maxin B. John
+bluez5                5.37          5.39                  Maxin B. John
+iproute2              4.4.0         4.5.0                 Maxin B. John
+sqlite3               3.11.0        3.12.1                Maxin B. John
+gstreamer1.0-libav    1.7.2+gitX    1.8.0                 Maxin B. John
+gstreamer1.0          1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX    1.8.0                 Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX    1.8.0+gitAUTOINC+...  Maxin B. John
+orc                   0.4.24        0.4.25                Maxin B. John
+gstreamer1.0-rtsp...  1.6.2         1.8.0                 Maxin B. John
+db                    6.0.30        6.2.23                Maxin B. John
+libtasn1              4.7           4.8                   Maxin B. John
+ethtool               4.2           4.5                   Maxin B. John
+mc                    4.8.15        4.8.16                Maxin B. John
+harfbuzz              1.2.3         1.2.6                 Maxin B. John
+pkgconfig             0.29+gitX     0.29.1+gitAUTOINC...  Maxin B. John
+gdb-cross-canadia...  7.10.1        7.11                  No maintainer
+gdb-cross-i586        7.10.1        7.11                  No maintainer
+xf86-input-libinput   0.16.0        0.18.0                No maintainer
+ffmpeg                3.0           3.0.1                 No maintainer
+cantarell-fonts       0.0.21+gitX   0.13+gitAUTOINC+7...  No maintainer
+libsolv               0.6.19        0.6.20                No maintainer
+ifupdown              0.8.2         0.8.10                No maintainer
+uclibc-initial        1.0.12+gitX   1.0.13                No maintainer
+apt-native            1.0.10.1      1.2.10                No maintainer
+cmake-native          3.4.3         3.5.2                 No maintainer
+gobject-introspec...  1.46.0        1.48.0                No maintainer
+sgmlspl-native        1.1+gitX      1.03+gitAUTOINC+f...  No maintainer
+lttng-modules         2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
+gdb                   7.10.1        7.11                  Richard Purdie
+nasm                  2.11.08       2.12.01               Richard Purdie
+mpfr                  3.1.3         3.1.4                 Richard Purdie
+gnu-efi               3.0.3         3.0.4                 Robert Yang
+file                  5.25          5.26                  Robert Yang
+git                   2.7.2         2.8.1                 Robert Yang
+tcl                   8.6.4         8.6.5                 Robert Yang
+libcap                2.24          2.25                  Robert Yang
+mklibs-native         0.1.40        0.1.41                Robert Yang
+base-passwd           3.5.29        3.5.39                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.64          9.65                  Ross Burton
+alsa-lib              1.1.0         1.1.1                 Tanu Kaskinen
+alsa-utils            1.1.0         1.1.1                 Tanu Kaskinen
+alsa-plugins          1.1.0         1.1.1                 Tanu Kaskinen
+alsa-utils-scripts    1.1.0         1.1.1                 Tanu Kaskinen
+ccache                3.2.4         3.2.5                 Wenzong Fan
+gettext               0.19.6        0.19.7                Wenzong Fan
+chkconfig             1.3.58        1.7                   Wenzong Fan          Version 1.5 requires selinux
 
+Upgradable count: 146
+Upgradable total count: 152
+
+The based commit is:
+
+commit 37aac647d510557323083c77c3114476440a325d
+Author: Robert Yang <liezhi.yang@windriver.com>
+Date:   Tue Apr 5 22:34:25 2016 -0700
+
+    fs-perms.txt: fix ROOT_HOME's permission
+    
+    It should be 0700 rather than 0755.
+    
+    Reported-by: Charles Chan <charles.wh.chan@gmail.com>
+    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
