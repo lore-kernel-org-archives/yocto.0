@@ -1,70 +1,40 @@
-Return-Path: <yreiss@cisco.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 756EDE00E6C; Sun, 17 Apr 2016 23:55:56 -0700 (PDT)
+	id E1EBAE00CFE; Mon, 18 Apr 2016 00:34:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_HI,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [173.37.86.73 listed in list.dnswl.org]
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URI_HEX autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Sun, 17 Apr 2016 23:55:53 PDT
-Received: from rcdn-iport-2.cisco.com (rcdn-iport-2.cisco.com [173.37.86.73])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BDFFE0077F
-	for <yocto@yoctoproject.org>; Sun, 17 Apr 2016 23:55:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=477; q=dns/txt; s=iport;
-	t=1460962553; x=1462172153; h=from:to:subject:date:message-id:
-	content-transfer-encoding:mime-version;
-	bh=vtM3Tan5xGNsPur3Mt4JJ7tha1Y5hmv4qtLkVsT4ddg=;
-	b=dHoEb0qXzWOw5JXMglLyrjpN/Dz9Bbb+Jd2H0y9DP1m4bqhiVuXLntiK
-	vjMK35UhdCAga86OlbqVs/ZJPqc2FWsXVW82A+LSafg9nFNWzrsKJiyGM
-	KK7JdPxYHYmMpT8icanl58aVcGUn9uoca/oyH1Kl+eVYHM7E4hquQ562v w=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AMAgAghBRX/5NdJa1bgziBVrodAQ2Bc?=
-	=?us-ascii?q?Yc3OBQBAQEBAQEBZRwLhEg6UQE+QiYBBBuIIZhBoGoBAQgCAR2GIY5gBZgOAYE?=
-	=?us-ascii?q?tjFmBWI1AjyoBHgEBQoNoiSh+AQEB?=
-X-IronPort-AV: E=Sophos;i="5.24,501,1454976000"; d="scan'208";a="97534373"
-Received: from rcdn-core-11.cisco.com ([173.37.93.147])
-	by rcdn-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 Apr 2016 06:54:50 +0000
-Received: from XCH-RTP-015.cisco.com (xch-rtp-015.cisco.com [64.101.220.155])
-	by rcdn-core-11.cisco.com (8.14.5/8.14.5) with ESMTP id
-	u3I6soJS017961
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 06:54:50 GMT
-Received: from xch-rtp-014.cisco.com (64.101.220.154) by XCH-RTP-015.cisco.com
-	(64.101.220.155) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
-	Mon, 18 Apr 2016 02:54:49 -0400
-Received: from xch-rtp-014.cisco.com ([64.101.220.154]) by
-	XCH-RTP-014.cisco.com ([64.101.220.154]) with mapi id 15.00.1104.009;
-	Mon, 18 Apr 2016 02:54:49 -0400
-From: "Yigal Reiss (yreiss)" <yreiss@cisco.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Adding kernel module to rootfs without changing machine's
-	configuration
-Thread-Index: AdGZO4E3JB15jQBTTBaZ9RNKAqingQ==
-Date: Mon, 18 Apr 2016 06:54:49 +0000
-Message-ID: <690f5e51a76642d689429a2a29067083@XCH-RTP-014.cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.56.237.15]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60744E0077F
+	for <yocto@yoctoproject.org>; Mon, 18 Apr 2016 00:34:27 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u3I7YJ88012497
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=NO);
+	Mon, 18 Apr 2016 00:34:19 -0700 (PDT)
+Received: from [128.224.162.227] (128.224.162.227) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
+	Mon, 18 Apr 2016 00:34:18 -0700
+Message-ID: <57148DF9.8020905@windriver.com>
+Date: Mon, 18 Apr 2016 15:34:17 +0800
+From: wenzong fan <wenzong.fan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Subject: Adding kernel module to rootfs without changing machine's configuration
+To: Philip Tricca <flihp@twobit.us>
+References: <1460103572-63539-1-git-send-email-wenzong.fan@windriver.com>
+	<5713F9F7.8040106@twobit.us>
+In-Reply-To: <5713F9F7.8040106@twobit.us>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH][meta-selinux] refpolicy-minimum: port changes for prepare_policy_store
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,21 +46,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Apr 2016 06:55:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Apr 2016 07:34:36 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I am able to add a kernel module to the rootfs by appending it to the MACHI=
-NE_EXTRA_RDEPENDS of the <platform>.conf under the machine folder of the BS=
-P. E.g. for adding nfq:
-MACHINE_EXTRA_RDEPENDS +=3D "kernel-module-xt-multiport ...  kernel-module-=
-xt-nfqueue"
+On 04/18/2016 05:02 AM, Philip Tricca wrote:
+> Hello Wenzong,
+>
+> On 04/08/2016 01:19 AM, wenzong.fan@windriver.com wrote:
+>> From: Wenzong Fan <wenzong.fan@windriver.com>
+>>
+>> Apply the changes to refpolicy-minimum_2.20151208.bb:
+>>
+>>    commit bfaf278116e6c3a04bb82c9f8a4f8629a0a85df8
+>>    Author: Wenzong Fan <wenzong.fan@windriver.com>
+>>    Date:   Tue Oct 27 06:25:04 2015 -0400
+>>
+>>      refpolicy-minimum: update prepare_policy_store
+>>
+>>      * update prepare_policy_store() for supporting SELinux 2.4 & CIL, the
+>>        logic is from refpolicy_common.inc but with minimum set of policy
+>>        modules;
+>>
+>>      * add extra policy modules that required by sysnetwork, without those
+>>        modules the install process will fail with error:
+>>
+>>          | Failed to resolve roletype statement at 62 of \
+>>            .../image/var/lib/selinux/minimum/tmp/modules/100/sysnetwork/cil
+>>          | Failed to resolve ast
+>>          | semodule:  Failed!
+>>
+>>      Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+>>      Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+>>
+>> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+>> ---
+>
+> This looks great but in testing it I'm unable to use the 'minimum'
+> refpolicy recipe in any image. The recipe builds fine but the do_rootfs
+> fails trying to label the filesystem. I haven't been able to find the
+> root cause for this yet, but I'm seeing this behavior both before and
+> after adding this patch so it may be a preexisting issue?
+>
+> Given all of that, I've merged this patch into master since it doesn't
+> seem related to the issue I'm seeing. Still, some help in resolving the
+> issue I'm seeing with the minimum refpolicy recipe would be appreciated.
 
-I would like to make the override (i.e. add my own kernel module, and possi=
-bly apply kernel patches) from my own layer without touching the provided B=
-SP layer. Is this possible?
+Hi Philip,
 
-Thanks,
-Yigal
+Thanks for getting the change merged.
+
+I did a test and see errors about:
+
+ 
+/.../core-image-selinux/1.0-r0/rootfs//etc/selinux/mcs/contexts/files/file_contexts: 
+No such file or directory
+
+That should be the SELINUXTYPE in /etc/selinux/config is not correct, 
+below patches could fix it:
+
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -162,7 +162,8 @@ SELINUX=${DEFAULT_ENFORCING}
+  #     mls - Multi Level Security protection.
+  #     targeted - Targeted processes are protected.
+  #     mcs - Multi Category Security protection.
+-SELINUXTYPE=${POLICY_TYPE}
++#     minimum - Minimum Security protection.
++SELINUXTYPE=${POLICY_NAME}
+
+It works in my test, please feel free to integrate it if you think it 
+makes sense.
+
+Thanks
+Wenzong
+
+>
+> Thanks,
+> Philip
+>
+>>   .../refpolicy/refpolicy-minimum_2.20151208.bb      | 41 ++++++++++++++++------
+>>   1 file changed, 30 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
+>> index b275821..47ed558 100644
+>> --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
+>> +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
+>> @@ -26,23 +26,42 @@ EXTRA_POLICY_MODULES += "nscd"
+>>   # "login", so "login" process will access to /var/spool/mail.
+>>   EXTRA_POLICY_MODULES += "mta"
+>>
+>> +# sysnetwork requires type definitions (insmod_t, consoletype_t,
+>> +# hostname_t, ping_t, netutils_t) from modules:
+>> +EXTRA_POLICY_MODULES += "modutils consoletype hostname netutils"
+>> +
+>>   POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
+>>
+>>   # re-write the same func from refpolicy_common.inc
+>>   prepare_policy_store () {
+>>   	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
+>> +	POL_PRIORITY=100
+>> +	POL_SRC=${D}${datadir}/selinux/${POLICY_NAME}
+>> +	POL_STORE=${D}${localstatedir}/lib/selinux/${POLICY_NAME}
+>> +	POL_ACTIVE_MODS=${POL_STORE}/active/modules/${POL_PRIORITY}
+>>
+>>   	# Prepare to create policy store
+>> -	mkdir -p ${D}${sysconfdir}/selinux/
+>> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
+>> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
+>> -	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
+>> -	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
+>> -	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
+>> -		bzip2 -f $i && mv -f $i.bz2 $i
+>> -	done
+>> -	cp base.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
+>> -	for i in ${POLICY_MODULES_MIN}; do
+>> -		cp ${i}.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i.pp`
+>> +	mkdir -p ${POL_STORE}
+>> +	mkdir -p ${POL_ACTIVE_MODS}
+>> +
+>> +	# get hll type from suffix on base policy module
+>> +	HLL_TYPE=$(echo ${POL_SRC}/base.* | awk -F . '{if (NF>1) {print $NF}}')
+>> +	HLL_BIN=${STAGING_DIR_NATIVE}${prefix}/libexec/selinux/hll/${HLL_TYPE}
+>> +
+>> +	for i in base ${POLICY_MODULES_MIN}; do
+>> +		MOD_FILE=${POL_SRC}/${i}.${HLL_TYPE}
+>> +		MOD_DIR=${POL_ACTIVE_MODS}/${i}
+>> +		mkdir -p ${MOD_DIR}
+>> +		echo -n "${HLL_TYPE}" > ${MOD_DIR}/lang_ext
+>> +
+>> +		if ! bzip2 -t ${MOD_FILE} >/dev/null 2>&1; then
+>> +			${HLL_BIN} ${MOD_FILE} | bzip2 --stdout > ${MOD_DIR}/cil
+>> +			bzip2 -f ${MOD_FILE} && mv -f ${MOD_FILE}.bz2 ${MOD_FILE}
+>> +		else
+>> +			bunzip2 --stdout ${MOD_FILE} | \
+>> +				${HLL_BIN} | \
+>> +				bzip2 --stdout > ${MOD_DIR}/cil
+>> +		fi
+>> +		cp ${MOD_FILE} ${MOD_DIR}/hll
+>>   	done
+>>   }
+>>
+>
+>
+>
 
