@@ -1,37 +1,42 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4A2FE00ED9; Tue, 19 Apr 2016 10:45:24 -0700 (PDT)
+	id 30136E00F3A; Tue, 19 Apr 2016 10:51:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57EADE00D1C
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 10:45:22 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u3JHjKUI025624
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Tue, 19 Apr 2016 10:45:20 -0700
-Received: from server.local (147.11.116.31) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.248.2;
-	Tue, 19 Apr 2016 10:45:19 -0700
-To: "Vajzovic, Tom" <Tom.Vajzovic@irisys.co.uk>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <14E4216AB3B3624BB1E80BC692D0F413D8D3A4F7@EU-EHV-EXM01-P.global.tektronix.net>
-	<CADkTA4P1zrxf2Ob7NnLKRhm1XjA9AVFj=aD_bL9nhZZP-2a1QA@mail.gmail.com>
-	<14E4216AB3B3624BB1E80BC692D0F413D8D43038@EU-EHV-EXM01-P.global.tektronix.net>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <57166EAF.9010808@windriver.com>
-Date: Tue, 19 Apr 2016 13:45:19 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
-	Gecko/20100101 Thunderbird/38.7.2
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E34F7E00D1C
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 19 Apr 2016 10:51:34 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Apr 2016 10:51:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,506,1455004800"; d="scan'208";a="962096605"
+Received: from linux.intel.com ([10.23.219.25])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Apr 2016 10:51:28 -0700
+Received: by linux.intel.com (Postfix, from userid 48)
+	id A043A6A4007; Tue, 19 Apr 2016 11:39:04 -0700 (PDT)
+Received: from 10.252.24.10 (SquirrelMail authenticated user alexander.kanavin)
+	by linux.intel.com with HTTP; Tue, 19 Apr 2016 21:39:04 +0300 (EEST)
+Message-ID: <54866.10.252.24.10.1461091144.squirrel@linux.intel.com>
+Date: Tue, 19 Apr 2016 21:39:04 +0300 (EEST)
+From: alexander.kanavin@linux.intel.com
+To: yocto@lists.yoctoproject.org
+User-Agent: SquirrelMail/1.4.8-5.el4.centos.8
 MIME-Version: 1.0
-In-Reply-To: <14E4216AB3B3624BB1E80BC692D0F413D8D43038@EU-EHV-EXM01-P.global.tektronix.net>
-Subject: Re: module do_configure depends on kernel .config and headers
+X-Priority: 3 (Normal)
+Importance: Normal
+References: 
+In-Reply-To: 
+Cc: paul.eggleton@linux.intel.com
+Subject: gobject introspection release notes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,95 +48,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2016 17:45:24 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Apr 2016 17:51:39 -0000
+Content-Type: text/plain;charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
 
-On 2016-04-18 6:16 AM, Vajzovic, Tom wrote:
-> Hi Bruce,
->
-> From: Bruce Ashfield
-> Sent: 15 April 2016 18:15
->> On Fri, Apr 15, 2016 at 12:02 PM, Vajzovic, Tom wrote:
->>>
->>> I am using a meta layer provided by a SOM manufacturer.
->>> They have a recipe which sets:
->>
->> What branch are you using ?
->
-> Fido.
->
->>> inherit module
->>>
->>> export KLIB_BUILD="${STAGING_KERNEL_DIR}"
->>> export KLIB="${D}"
->>>
->>> and then its do_configure script calls make, and the Makefile
->>> expects $(KLIB_BUILD)/.config to exist, and the kernel headers to be
->>> in the same place.
->>>
->>> This sometimes succeeds and sometimes fails, which I presume is to
->>> do with the order that the other entries in the run-queue are
->>> executed.
->>>
->>> I thought that this might be because the dependency on the kernel
->>> .config and headers is not correctly recorded in the recipe.
->>>
->>> I added a .bbappend file to the recipe in my own layer which
->>> contains:
->>>
->>> do_configure[depends] += "virtual/kernel:do_shared_workdir"
->>>
->>> But this has not resolved the problem.  I have used
->>> bitbake-layers to verify that my bbappend is being applied.
->>>
->>> So my questions are:
->>>
->>> Is $(KLIB_BUILD) the correct place to look for the kernel
->>> .config and headers?
->>
->> The .config is in: STAGING_KERNEL_BUILDDIR, that also has any
->> generated files as part of the build.
->>
->> The headers are in the shared_workdir, as you had found:
->> STAGING_KERNEL_DIR
->
-> I have a copy of .config in both STAGING_KERNEL_DIR and
-> STAGING_KERNEL_BUILDDIR.  They differ only on that the latter has
-> CONFIG_LOCALVERSION added.  Is this normal?  Can I depend on the
-> copy in STAGING_KERNEL_DIR? I think that is what the configure
-> script is currently using.  How else might it differ?
+Hello,
 
-They shouldn't really differ at all, but there's been issues with
-the timing on when the shared directory is populated, so there
-may be a lurking race on fido.
+here is the information about gobject introspection that should be placed
+to the release notes of the upcoming yocto release.
 
-I'd count on the one in the kernel_builddir, but I imagine that
-either will work in a pinch.
+1. Introduction
 
->
->>> What is the correct way to record the dependency in the recipe?
->>>
->>> Why isn't this done in module.bbclass?  Wouldn't all modules depend
->>> on the kernel headers?
->>
->> It pretty much does, with this in module-base.bbclass:
->> do_configure[depends] += "virtual/kernel:do_compile_kernelmodules"
->
-> In my Fido modules-base.bbclass I have exactly:
->
-> do_configure[depends] += "virtual/kernel:do_shared_workdir"
->
-> So this means that my bbappend is a no-op (I only looked as far as
-> modules.bbclass; I missed modules-base).
+This Yocto release adds support for generating and packaging GObject 
+introspection data. GObject introspection data is a description of the API
+provided by libraries built on top of GLib framework, and that framework's
+GObject mechanism in particular. The data is generated when building such
+a library, by linking the library with a small executable binary that 
+asks the library to describe itself, then executing the binary and 
+processing its output. Making this work in a cross-compilation environment
+is difficult, because the library is produced for the target architecture,
 
-Hmm. So we are no further ahead.
+but its code needs to be executed on the build host. This problem is 
+solved in Yocto by running the code through Qemu emulator which allows 
+precisely that, but unfortunately Qemu does not always work perfectly (see
+known issues list below).
 
-Bruce
+2. Why all this trouble?
 
->
-> Thanks,
-> Tom
->
+GObject introspection is nowadays the standard mechanism for accessing
+GObject-based software from runtime environments. If you want to construct
+
+GStreamer pipelines using Python, or control UPnP infrastructure using 
+Javascript and GUPnP, this is the only way to do it.
+
+3. Where does generated introspection data go?
+
+Gir files go to -dev packages, typelib files go to main packages
+(they are packaged together with libraries that are introspected).
+
+4. I don't need introspection data (or Qemu does not work on my
+combination of build host and target architecture), how can I switch it  
+off?
+
+You have two options:
+a) add
+DISTRO_FEATURES_BACKFILL_CONSIDERED = "gobject-introspection-data" to your
+distro configuration. This will disable building introspection data using
+qemu, but will still enable building introspection tools and  libraries
+(building them does not require the use of qemu).
+
+b) add
+MACHINE_FEATURES_BACKFILL_CONSIDERED = "qemu-usermode"
+to your machine configuration. This will disable the use of qemu when 
+building packages for your machine; at the moment this feature is
+used only by introspection recipes and has the same effect as option a), 
+but in the future there may be other features that this affects.
+
+If introspection data is disabled, it can still be obtained through other 
+means (for example, by copying the data from a suitable sysroot, or 
+generating it on the target hardware). Yocto currently does not provide 
+specific support for these techniques.
+
+5. How do I enable generating introspection data in my library package?
+(variant: I have a library that no longer builds against latest Yocto  
+release, and build process prints introspection related errors, how to fix
+it?)
+
+a. Inherit gobject-introspection class.
+
+b. Make sure introspection is not disabled anywhere in the recipe or its
+includes. Also, make sure that 'gobject-introspection-data' is neither
+
+in DISTRO_FEATURES_BACKFILL_CONSIDERED, and 'qemu-usermode is not in 
+MACHINE_FEATURES_BACKFILL_CONSIDERED, or nothing will happen.
+
+c. Try to build the recipe; if this results in build errors that look like
+something is unable to find .so libraries, check where these
+libraries
+are in the source tree and add GIR_EXTRA_LIBS_PATH=${B}/something/.libs to
+the recipe (look at recipes in oe-core which have that variable for a 
+template).
+
+c. Any other errors probably mean that introspection support in a package
+is not entirely standard, and breaks down in a cross-compilation
+environment. Custom-made fixing is needed then - please come to the yocto 
+mailing list for help.
+
+6. How do I test that introspection works in an image?
+
+a. Make sure that 'gobject-introspection-data' is not in
+DISTRO_FEATURES_BACKFILL_CONSIDERED and 'qemu-usermode' is not in
+MACHINE_FEATURES_BACKFILL_CONSIDERED.
+
+b. Build core-image-sato.
+
+c. Start terminal, start python in the terminal.
+
+d. Type out something like:
+
+>>> from gi.repository import GLib
+>>> GLib.get_host_name()
+
+e. Also, try something more advanced, for example:
+http://python-gtk-3-tutorial.readthedocs.org/en/latest/introduction.html
+
+7. Known issues:
+
+- qemu-ppc64 crashes out immediately; so introspection data
+cannot be built on that architecture
+
+- x32 is not supported by qemu; therefore introspection data is disabled
+there.
+
+- musl is causing transient glib binaries to crash on assertion failures,
+so generating introspection data is disabled there as well
+
+- introspection is disabled for some specific packages under specific
+arhcitectures (such as gcr, libsecret, webkit), because qemu is not able 
+to run the binaries correctly
+
+
+Thanks,
+Alex
 
 
