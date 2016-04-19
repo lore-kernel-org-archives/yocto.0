@@ -1,39 +1,60 @@
-Return-Path: <contact@jgueytat.fr>
+Return-Path: <techie1304@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A88CE00ED9; Tue, 19 Apr 2016 02:16:55 -0700 (PDT)
+	id 2D798E00EA0; Tue, 19 Apr 2016 05:23:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.70.178.86 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (techie1304[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1465 seconds by postgrey-1.32 at yocto-www;
-	Tue, 19 Apr 2016 02:16:50 PDT
-Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B2EEE00CA2
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 02:16:50 -0700 (PDT)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
-	[217.70.183.197])
-	by slow1-d.mail.gandi.net (Postfix) with ESMTP id 9BBEC486E67
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 10:46:11 +0200 (CEST)
-X-Originating-IP: 92.245.156.62
-Received: from [192.168.1.49] (unknown [92.245.156.62])
-	(Authenticated sender: contact@jgueytat.fr)
-	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 8AF3541C086
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 10:46:11 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Julien Gueytat <contact@jgueytat.fr>
-Message-ID: <5715F053.8040801@jgueytat.fr>
-Date: Tue, 19 Apr 2016 10:46:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.67 listed in list.dnswl.org]
+Received: from mail-oi0-f67.google.com (mail-oi0-f67.google.com
+	[209.85.218.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B80EAE00D8A
+	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 05:22:59 -0700 (PDT)
+Received: by mail-oi0-f67.google.com with SMTP id b10so1033120oig.1
+	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 05:22:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=S7mB+A61OobiHfY7Nt+p/2SUWhw3ga/0qD8YmErL9Ac=;
+	b=KhLv2RKjqXWOMZg+8y92u2K1tQyt1tjpKmoLmKE45kl1M/EZhdKvjACpVVrHa+tzNI
+	PvvnCKprDQQatauw1zxBskMDN6kqnY/lq6z/FcazQEc4LMBuWai7SvZ6QUcu3JDFxGhy
+	HJH4oPUVX05xmUqVb3aaC4LM3uFnLfCnpM1TWp4CNEhLrK11VgBeQKHTVBHhDfh6burK
+	TRE7ucLqFZJD9Txo7dUTGIJ0Bp6KXcRAI3FkACdJ86dFRDmdE4GX0+mKsfqADqPR0F7B
+	dBrKdzvV+jLqHJyng2YXrynmQNlkY+CBZYSGZSv87+aD9JljX6wLO7nvpZPpWmVTifBh
+	IkPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=S7mB+A61OobiHfY7Nt+p/2SUWhw3ga/0qD8YmErL9Ac=;
+	b=gk/2bQq/Hj32tGggERWYAAmLTT+tsA5kr9IVSSNH2ojFog9dWuRSEKyAEcIX8kGgVN
+	9FbPQ/ue7gBKJUQU20OhYvtkbGIsvN+y09G1lwO3ECyBfyyURcNWCc919GYmDaisJwVv
+	3dTOJX42WNoriPxoaMCoH2gTgX5SUKdPQTYFMP8NlPYyfMfvEz6l/69xI2WKDUOcsJCM
+	8lNayerKQ5od+kMbaRMqnWOfE0MJ2a9EN+OBHSzAzJ1i8bU6o38CsoYWXII2+N+40s3Q
+	ilIdUpI2uFCM+5rcMGBPELdZiDhQO9zKlzmXBnJhN0g3cVRSD6EW6b0YYl0N7bXmm6iu
+	Vxng==
+X-Gm-Message-State: AOPr4FVsFWgpzTw+m85Jeuu6ooqTOJ/pKz+8TtMX8IU6BmOtS7ES3mm52PUSPIbc/7Tel+tqqsaOFbiD0jkf2A==
 MIME-Version: 1.0
-Subject: [meta-qt5][meta-raspberrypi]: Qt5 with EGL support for the Raspberry through linux-oe-g++
+X-Received: by 10.157.13.229 with SMTP id 92mr1094132ots.134.1461068578851;
+	Tue, 19 Apr 2016 05:22:58 -0700 (PDT)
+Received: by 10.202.173.199 with HTTP; Tue, 19 Apr 2016 05:22:58 -0700 (PDT)
+Date: Tue, 19 Apr 2016 17:52:58 +0530
+Message-ID: <CANX2g8nHy66MyrGHvA57Ce4V6hQTt-Hr6BihAb21WYTdLs9gvw@mail.gmail.com>
+From: akash garg <techie1304@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Enable WL1835 cape with beaglebone & yocto latest release jethro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,180 +66,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2016 09:16:55 -0000
-Content-Type: multipart/alternative;
-	boundary="------------080008000709080404050907"
+X-List-Received-Date: Tue, 19 Apr 2016 12:23:01 -0000
+Content-Type: multipart/alternative; boundary=001a1148d28ea294960530d589f0
 
---------------080008000709080404050907
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a1148d28ea294960530d589f0
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+Hello Everybody,
+      Can anyone help me to enable support for *WL1835 *Cape (TI module)
+with *Beaglebone black *using *yocto project* latest
+      release *Jethro*. How can be this module added in final image core
+image sato or core image minimal.
 
-I still can't figure out the patch to apply in meta-qt5 to get EGL 
-support with the Raspberry.
+Thanks
 
-The test to check EGL does not pass and fails with the following command:
+--001a1148d28ea294960530d589f0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-arm-poky-linux-gnueabi-g++  -march=armv7-a -marm  -mthumb-interwork 
--mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7 
---sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels 
--Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl egl.o 
--lGLESv2 -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
+<div dir=3D"ltr"><div>Hello Everybody,<br></div><div>=C2=A0 =C2=A0 =C2=A0 C=
+an anyone help me to enable support for=C2=A0<b>WL1835=C2=A0</b>Cape (TI mo=
+dule) with=C2=A0<b>Beaglebone black=C2=A0</b>using=C2=A0<b>yocto project</b=
+>=C2=A0latest=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 release=C2=A0<b>Jethro</=
+b>. How can be this module added in final image core image sato or core ima=
+ge minimal.=C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0<br clear=3D"all"><d=
+iv>Thanks<br></div></div></div>
 
-
-Here is the content of the file egl.pro:
-
-$ cat egl.pro
-SOURCES = egl.cpp
-
-for(p, QMAKE_LIBDIR_EGL) {
-     exists($$p):LIBS += -L$$p
-}
-
-message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-message("In egl.pro - 1: LIBS = $$LIBS")
-
-!isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL
-!isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL
-
-message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-message("In egl.pro - 2: LIBS = $$LIBS")
-
-CONFIG -= qt
-
-In the main ./configure file of qtbase:
-
-| In configure #1: QMAKE_LIBS_EGL =
-| In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif 
--lbcm_host -lvcos -lvchiq_arm -pthread
-
-The variable QMAKE_LIBS_EGL is set properly.
-
-
-In the ./config.tests/qpa/egl/egl.pro file:
-
-| Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL
-| Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2 -lbcm_host 
--lvchostif -lvcos -lvchiq_arm -pthread
-| Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL
-| Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2 -lbcm_host 
--lvchostif -lvcos -lvchiq_arm -pthread -lEGL
-
-
-*What I see is that:*
-In the configure file the variable QMAKE_LIBS_EGL is properly set 
-through pkg-config.
-In the egl.pro file... The variable LIBS gets the content of 
-QMAKE_LIBS_EGL and the variable QMAKE_LIBS_EGL gets back to its default 
--lEGL.
-
-In the end with have -lGLESv2 before -lEGL and this does not link.
-
-I checked also the content of .qmake.vars:
-grep QMAKE_LIBS_EGL .qmake.vars
-QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host -lvcos 
--lvchiq_arm -pthread
-
-
-The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to have 
-his job done too late...
-
-If someone has an idea to get the proper correction done...
-
-Best Regards,
-Julien
-
-
---------------080008000709080404050907
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi,<br>
-    <br>
-    I still can't figure out the patch to apply in meta-qt5 to get EGL
-    support with the Raspberry.<br>
-    <br>
-    The test to check EGL does not pass and fails with the following
-    command:<br>
-    <br>
-    arm-poky-linux-gnueabi-g++  -march=armv7-a -marm  -mthumb-interwork
-    -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7
-    --sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels
-
-    -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl egl.o  
-    -lGLESv2 -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL<br>
-    <br>
-    <br>
-    Here is the content of the file egl.pro:<br>
-    <br>
-    $ cat egl.pro <br>
-    SOURCES = egl.cpp<br>
-    <br>
-    for(p, QMAKE_LIBDIR_EGL) {<br>
-        exists($$p):LIBS += -L$$p<br>
-    }<br>
-    <br>
-    message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")<br>
-    message("In egl.pro - 1: LIBS = $$LIBS")<br>
-    <br>
-    !isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL<br>
-    !isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL<br>
-    <br>
-    message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")<br>
-    message("In egl.pro - 2: LIBS = $$LIBS")<br>
-    <br>
-    CONFIG -= qt<br>
-    <br>
-    In the main ./configure file of qtbase:<br>
-    <br>
-    | In configure #1: QMAKE_LIBS_EGL =<br>
-    | In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host
-    -lvchostif -lbcm_host -lvcos -lvchiq_arm -pthread<br>
-    <br>
-    The variable QMAKE_LIBS_EGL is set properly.<br>
-    <br>
-    <br>
-    In the ./config.tests/qpa/egl/egl.pro file:<br>
-    <br>
-    | Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL<br>
-    | Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2 -lbcm_host
-    -lvchostif -lvcos -lvchiq_arm -pthread<br>
-    | Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL<br>
-    | Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2 -lbcm_host
-    -lvchostif -lvcos -lvchiq_arm -pthread -lEGL<br>
-    <br>
-    <br>
-    <b>What I see is that:</b><br>
-    In the configure file the variable QMAKE_LIBS_EGL is properly set
-    through pkg-config.<br>
-    In the egl.pro file... The variable LIBS gets the content of
-    QMAKE_LIBS_EGL and the variable QMAKE_LIBS_EGL gets back to its
-    default -lEGL.<br>
-    <br>
-    In the end with have -lGLESv2 before -lEGL and this does not link.<br>
-    <br>
-    I checked also the content of .qmake.vars:<br>
-    grep QMAKE_LIBS_EGL .qmake.vars <br>
-    QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host
-    -lvcos -lvchiq_arm -pthread<br>
-    <br>
-    <br>
-    The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to
-    have his job done too late...<br>
-    <br>
-    If someone has an idea to get the proper correction done...<br>
-    <br>
-    Best Regards,<br>
-    Julien<br>
-    <br>
-  </body>
-</html>
-
---------------080008000709080404050907--
+--001a1148d28ea294960530d589f0--
