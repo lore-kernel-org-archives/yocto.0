@@ -1,67 +1,64 @@
-Return-Path: <btv1==91899773384==Fred.Ollinger@seescan.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 968DAE00E44; Wed, 20 Apr 2016 14:04:37 -0700 (PDT)
+	id 56927E00F5C; Wed, 20 Apr 2016 14:05:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.seescan.com (mail3.seescan.com [69.43.130.106])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D05EEE00DB3
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:04:34 -0700 (PDT)
-X-ASG-Debug-ID: 1461186273-0b39aa668a1b19a0001-yzSStA
-Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
-	ESMTP id bI2Uk5krsFzelBJ5 (version=TLSv1
-	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 20 Apr 2016 14:04:33 -0700 (PDT)
-X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
-Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
-	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Wed, 20 Apr 2016 14:04:32 -0700
-Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
-	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
-	15.00.1044.021; Wed, 20 Apr 2016 14:04:32 -0700
-From: Fred Ollinger <Fred.Ollinger@seescan.com>
-To: Moti Cohen <motic.mail@gmail.com>
-Thread-Topic: [yocto] MySQL recipe for yocto
-X-ASG-Orig-Subj: Re: [yocto] MySQL recipe for yocto
-Thread-Index: AQHRmyjOLapru0AWo0+245L7Iv2QYZ+THL+AgACSX4D//4sZDYAAjl6A//+Qv0E=
-Date: Wed, 20 Apr 2016 21:04:32 +0000
-Message-ID: <1461186266075.92629@seescan.com>
-References: <CAHvG4AC_F76W0GH=fYuv8YMa66hPDqNGv_g4fo_qwBra5muxgg@mail.gmail.com>
-	<1461173123581.97537@seescan.com>
-	<CAHvG4ADLMkqJ+6p=12u2WJxfkD025gi=jN5msa17LqT5ZfO2tQ@mail.gmail.com>
-	<1461179526735.1762@seescan.com>,
-	<CAHvG4ABwEc_5QT7jq2LKb976Jw=G6CHLt-UEJtrjk=brn-C4mA@mail.gmail.com>
-In-Reply-To: <CAHvG4ABwEc_5QT7jq2LKb976Jw=G6CHLt-UEJtrjk=brn-C4mA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [50.59.178.108]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96A20E00F46
+	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:05:06 -0700 (PDT)
+Received: by mail-wm0-f42.google.com with SMTP id n3so101890894wmn.0
+	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=8w7M3bDBUd//BgjVFNdArkg6HrLE+WJysa5ZrwM9eUo=;
+	b=0JZgtQtVpB8o82dmSpf3rMZE8c/sDyPmluFGjERPsxlfB4PIl46FFeWWsJGirH31q4
+	o9z4hWugIJt2dsg5d3NPZsU+crI7Xiws4UMBw46oDQxytU6PA8jjM0XRXuitN6OMV+F2
+	s12KBMEWiPUrok4EKoinw9fD6qcJeEgQGcY6xy+XOtAWcZ3+2XXBnXzaxVUQVAiSjYiy
+	Hom0n1grzVYmEukTNztARLkbPcJbLxppQZpF3Golubb0XUaD3JVFG0JGxMxPJA+6O+Nt
+	TJGk8SuinaBrNZDs1eaW/losb+AMhmOkQETnUMkRCLV+QR290c69LSEdnOUJlvw7midb
+	mcJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=8w7M3bDBUd//BgjVFNdArkg6HrLE+WJysa5ZrwM9eUo=;
+	b=XI66dszUGLHdhkagl3uNfBbZ7t2wKk/G6zWlOlrRNoSf2WoeGE8uDZQUY46bhT9u3G
+	Sy0IPr9E6pbwnb7fbNY1i0TSf4lg0/OvEtlU6SAW4vDydqzZ5UCK8LJco3yBsHfzOVjc
+	mz9+XS6VyWp+cmdrOwrf9MAUxsUBwqhsL0MoX+sjFIYS8ThRk3zwL/9XvGYtBjAC3lq9
+	Sa2k4rJxDri2bE+A1NTzd4pEAcu7TdDUOst2Au1fN59O9l8LRKLSIa2GElhe8AMuTuxX
+	W1pynEejxIIhVHF5bF8QoQwKBv936nE750wrzKHHWf/5snIA8E62Bu0gmQ0AvAMcpEQd
+	v5Sw==
+X-Gm-Message-State: AOPr4FXb0CNjVMMnqMKhK6pzuJNlBYSJZYw41nZMK9niI2o8jluXhY/B66Z5ra4f86M9Kw==
+X-Received: by 10.194.86.129 with SMTP id p1mr6086362wjz.117.1461186304732;
+	Wed, 20 Apr 2016 14:05:04 -0700 (PDT)
+Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	ln7sm2747411wjb.40.2016.04.20.14.05.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 20 Apr 2016 14:05:03 -0700 (PDT)
+Date: Wed, 20 Apr 2016 23:05:01 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Julien Gueytat <contact@jgueytat.fr>
+Message-ID: <20160420210501.GK1588@resin>
+References: <5715F053.8040801@jgueytat.fr>
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[192.168.11.30]
-X-Barracuda-Start-Time: 1461186273
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
-X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
-X-Barracuda-Scan-Msg-Size: 6187
-X-Virus-Scanned: by bsmtpd at seescan.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.4612 1.0000 0.0000
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
-	tests=BSF_SC0_MISMATCH_TO
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.28912
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    Envelope rcpt doesn't match header
+In-Reply-To: <5715F053.8040801@jgueytat.fr>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: MySQL recipe for yocto
+Subject: Re: [meta-qt5][meta-raspberrypi]: Qt5 with EGL support for the Raspberry through linux-oe-g++
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,190 +70,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2016 21:04:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-| NOTE: nothing to configure
-
-
-Seems like "configure" file is not there.
-
-
-That sometimes happens when a source code tree is first checked out for dev=
-elopers.
-
-
-Sometimes there's an "autogen.sh" or you have to run stuff including but no=
-t limited to "aclocal;autoconf".
-
-
-I suggest the next step:
-
-
-1. Post the .bb file here for mysql that you have so far.
-
-
-2. Look into the source code dir for mysql and look for a "configure" file.
-
-
-3. Read up on the usual directions on how mysql is now built from your sour=
-ce code. Is there a README or the like in there?
-
-
-4. For a quick sanity test, build the code for your PC to ensure that you c=
-an do this and you know how the process works.
-
-
-5. We can take the results of all the rest and fix the .bb file.
-
-
-Frederick
-
-________________________________
-From: Moti Cohen <motic.mail@gmail.com>
-Sent: Wednesday, April 20, 2016 1:39 PM
-To: Fred Ollinger
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] MySQL recipe for yocto
-
-OK,
-I tried it and the patches errors went away, thanks !
-Now, I'm facing a new one related to the do_configure:
-
-ERROR: Function failed: do_configure (log file is located at /home/yocto/yo=
-cto/build_yocto/build/tmp/work/x86_64-linux/mysql5-native/5.6.29-r0/temp/lo=
-g.do_configure.7221)
-ERROR: Logfile of failure stored in: /home/yocto/yocto/build_yocto/build/tm=
-p/work/x86_64-linux/mysql5-native/5.6.29-r0/temp/log.do_configure.7221
-Log data follows:
-| DEBUG: Executing python function sysroot_cleansstate
-| DEBUG: Python function sysroot_cleansstate finished
-| DEBUG: Executing shell function autotools_preconfigure
-| DEBUG: Shell function autotools_preconfigure finished
-| DEBUG: Executing python function autotools_copy_aclocals
-| DEBUG: Python function autotools_copy_aclocals finished
-| DEBUG: Executing shell function do_configure
-| NOTE: nothing to configure
-| sed: can't read /home/yocto/yocto/build_yocto/build/tmp/work/x86_64-linux=
-/mysql5-native/5.6.29-r0/mysql-5.6.29/sql/share/Makefile: No such file or d=
-irectory
-| WARNING: exit code 2 from a shell command.
-| ERROR: Function failed: do_configure (log file is located at /home/yocto/=
-yocto/build_yocto/build/tmp/work/x86_64-linux/mysql5-native/5.6.29-r0/temp/=
-log.do_configure.7221)
-ERROR: Task 1373 (/home/yocto/yocto/build_yocto/sources/meta-openembedded/m=
-eta-oe/recipes-support/mysql/mysql5-native_5.6.29.bb<http://mysql5-native_5=
-.6.29.bb>, do_configure) failed with exit code '1'
-
-the recipe's .inc file include the below line, however it looks like the ma=
-kefile do not exist.
-
-do_configure_append() {
-     sed -i /comp_err/d ${S}/sql/share/Makefile
-}
-
-Again, any help will be appreciated.
-
-
-
-
-On Wed, Apr 20, 2016 at 10:12 PM, Fred Ollinger <Fred.Ollinger@seescan.com<=
-mailto:Fred.Ollinger@seescan.com>> wrote:
-You can get rid of the patches in the bb file.
-
-
-Look for SRC_URI
-
-
-See any .patch files and remove them and try to build again.
-
-
-Please post build errors.
-
-
-Frederick
-
-________________________________
-From: Moti Cohen <motic.mail@gmail.com<mailto:motic.mail@gmail.com>>
-Sent: Wednesday, April 20, 2016 12:08 PM
-To: Fred Ollinger
-Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: Re: [yocto] MySQL recipe for yocto
-
-Thanks Fred,
-
-I actually tried it and replaced the PV to a newer one, i used 5.6.29 inste=
-ad of 5.1.40 which is the latest "real" MySQL supported by openembedded. I =
-also added the relevant SHA numbers etc.
-
-The problem is that the recipe includes quite a few patches that are now sh=
-owing many errors when applied during the build. I guess that these patches=
- are related to the original 5.1.40 version and I'm not sure they should be=
- applied to the newer one. Unfortunetly, as I'm not an expert, it seems lik=
-e it will be a difficult task for me to clean these errors.
-
-I realy hope there's a simpler way go about it :)
-
-
-
-On Wed, Apr 20, 2016 at 8:25 PM, Fred Ollinger <Fred.Ollinger@seescan.com<m=
-ailto:Fred.Ollinger@seescan.com><mailto:Fred.Ollinger@seescan.com<mailto:Fr=
-ed.Ollinger@seescan.com>>> wrote:
-I'd start with the mysql recipe and update the source reference and try to =
-build it.
-
-
-If this fails, you might need to change some other things.
-
-
-Here's a howto on writing a recipe:
-
-
-https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#new-re=
-cipe-writing-a-new-recipe
-
-
-
-________________________________
-From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
-<mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.or=
-g>> <yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org><=
-mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org=
->>> on behalf of Moti Cohen <motic.mail@gmail.com<mailto:motic.mail@gmail.c=
-om><mailto:motic.mail@gmail.com<mailto:motic.mail@gmail.com>>>
-Sent: Wednesday, April 20, 2016 10:18 AM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org><mailto:yocto@yoct=
-oproject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] MySQL recipe for yocto
-
-Hi all,
-this is my 1'st post to this list so I hope I'm doing it right :)
-
-I need to add MySQL for my yocto build.
-Looking online for a recipe - i found that there is one for MySQL under:
-/meta-openembedded/meta-oe/recipes-support/mysql/..
-The thing is that instead of MySQL, the recipe reffers to MariaDB which is =
-a kind of a drop-in replacemnet and since I need to have the "real" MySQL i=
-n my build - I cannot use it.
-looking into history log of mysql in the meta-openembedded git, it can be s=
-een the the switch between MySQL and MariaDB was made at 2013 and from then=
- onwards it's MariaDB.
-
-http://cgit.openembedded.org/meta-openembedded/commit/meta-oe/recipes-suppo=
-rt/mysql?id=3D72e23c12296fbc77193898c38426add58d0c2d71
-
-Now to the question, do you know how can I add the "real" MySQL to my build=
- ?
-looking before 2013 at the meta-openembedded git i can find a recipe for My=
-SQL which seems to support a "real" MySQL however, it's very old version (5=
-.1) and I'm not sure how and if I can update it to one of the latest (e.g. =
-MySQL 5.6).
-
-Will appriciate any feedback on this.
-Thanks in advance,
-Motico
-
-
-
+X-List-Received-Date: Wed, 20 Apr 2016 21:05:26 -0000
+X-Groupsio-MsgNum: 29531
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sdEQJo40s7ofW8iR"
+Content-Disposition: inline
+
+--sdEQJo40s7ofW8iR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Apr 19, 2016 at 10:46:11AM +0200, Julien Gueytat wrote:
+> Hi,
+>
+> I still can't figure out the patch to apply in meta-qt5 to get EGL support
+> with the Raspberry.
+>
+> The test to check EGL does not pass and fails with the following command:
+>
+> arm-poky-linux-gnueabi-g++  -march=armv7-a -marm  -mthumb-interwork
+> -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7 --sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels
+> -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl egl.o -lGLESv2
+> -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
+>
+>
+> Here is the content of the file egl.pro:
+>
+> $ cat egl.pro
+> SOURCES = egl.cpp
+>
+> for(p, QMAKE_LIBDIR_EGL) {
+>     exists($$p):LIBS += -L$$p
+> }
+>
+> message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
+> message("In egl.pro - 1: LIBS = $$LIBS")
+>
+> !isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL
+> !isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL
+>
+> message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
+> message("In egl.pro - 2: LIBS = $$LIBS")
+>
+> CONFIG -= qt
+>
+> In the main ./configure file of qtbase:
+>
+> | In configure #1: QMAKE_LIBS_EGL =
+> | In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif
+> -lbcm_host -lvcos -lvchiq_arm -pthread
+>
+> The variable QMAKE_LIBS_EGL is set properly.
+>
+>
+> In the ./config.tests/qpa/egl/egl.pro file:
+>
+> | Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL
+> | Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2 -lbcm_host
+> -lvchostif -lvcos -lvchiq_arm -pthread
+> | Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL
+> | Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2 -lbcm_host
+> -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
+>
+>
+> *What I see is that:*
+> In the configure file the variable QMAKE_LIBS_EGL is properly set through
+> pkg-config.
+> In the egl.pro file... The variable LIBS gets the content of QMAKE_LIBS_EGL
+> and the variable QMAKE_LIBS_EGL gets back to its default -lEGL.
+>
+> In the end with have -lGLESv2 before -lEGL and this does not link.
+>
+> I checked also the content of .qmake.vars:
+> grep QMAKE_LIBS_EGL .qmake.vars
+> QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host -lvcos
+> -lvchiq_arm -pthread
+>
+>
+> The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to have his
+> job done too late...
+>
+> If someone has an idea to get the proper correction done...
+>
+> Best Regards,
+> Julien
+>
+
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Merged to master. Thanks.
+
+--
+Andrei Gherzan
+
+--sdEQJo40s7ofW8iR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJXF+79AAoJEHO76Gt+erfPyYMQAJooerVLaFYxR7BPlwzc+zwV
+WxdN05bJqnOPtsIvfyC6gVnWvwWnI+YBSd/lrtMGvw4EajWV8MRqqerNOYHkFNHI
+JpGXfO4FVDywvh13U1zogilLZhhBxdU3C5LtvfDQPiUvDaKrhbFd4P9S9rntDg8x
+iOp/d9UDEwyaNeCSP+0fS1iwQJ3Mt/QgDE6n5fwRrOgsRlq1ES4h2Hy7criNPw8Y
+e5CBDCpNgS8ur/dDzWde+VSJ2iLj20vI36iJRg3qhSrMgFM9nb/g/38IZZDrRotP
+0ocVlkM/SWVGbMV5iDijcNN5EMaevD1B+Z2J5BjqHAf8ETELZfRzlNiyJRd8zcxt
+TvLqe+Jw5cHJvZWMGMnc1w/nOAyLrPLf3VA0Lh02ZBZYvDXeY4MJ2x9JBm2gqFLA
+RXv3t66EXjDjSM8DJBbw79RajHqW0+DXcaa0fpZ+U5QIkNX6lBwNLaMP6kI0ZlZY
+KdM0275E9L0Oa7hZbiRyP+Bo59nyru66AJBP/GxCZt7E8zvrzx3xxGvzacC2ItbK
+7iA+8w7/zH2Drn7AUpAHRTqzlNYtlRbCJ57fhXeKNtnWhRMhN4+AgULzcUscnHjb
+UwPt3MWX1U4nC/lq012Uj47GH/HmrICzXWOgGjNP/eltv9Kw8ROCRnrTU+dssL24
+Xk63NCQeM4oIbYPjoNQV
+=mcQL
+-----END PGP SIGNATURE-----
+
+--sdEQJo40s7ofW8iR--
