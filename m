@@ -1,65 +1,43 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E19BE00E44; Wed, 20 Apr 2016 14:06:54 -0700 (PDT)
+	id 2187CE00EBB; Wed, 20 Apr 2016 14:20:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4F1DE00F1A
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:06:27 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id u206so101469706wme.1
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:06:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=hLHcPPWkfRvy2I/R1Ey1SBjj24tsyLt5S2O3pdrMZ5U=;
-	b=eS8/hpteG4/abuR+6BZNvtrT0Heh7FjEhJeO3qU0270AYoYLSbc5UTCe3DQ6JAQDKi
-	UmbFBh1iEU2rcM5NiJSFuSJqCBK1mszqTWstJJpod+JiY6lvfZGBVCGrsR5KjTo10kiT
-	rU8rEOoZ3IiizoiOz99fCPPiHq7+vDDcYXb/vX06o0UeFCO2YYs8hL5rd7D482zSlVfa
-	OOGE1d7sm1dXMbDm+ZweCVFmFzWIzRMAWSociges3Fg3dREedzG6SMmTelFYjeLTZJX+
-	Rt47KwD5SHlcgKAtrAEEIy5MFxK83LXWti9YU/gqY2YJhIgUWpnDu/UlCs3w1BBKLROa
-	qSkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=hLHcPPWkfRvy2I/R1Ey1SBjj24tsyLt5S2O3pdrMZ5U=;
-	b=KFffoM99gQbPDjm4JklKAQ8w4doS4nJLcDhcnKGpuOCvqYR8XLTsxg6qVTKS2i3yxI
-	dHQr6L6F7OOAKdp6jwkJ78hW57kZfqrQBOe5Kc89nOLGE2gpcv2dVCwgq6Hi2golrcTr
-	a0acujCmR015gYPOoleGCXTbDtlo+oayUhuKZqGL7FfHXxHlTkJx7cJxnAshpp9o7H/1
-	pOaAQELmNnw+hszS4Y3MqqUiJk7ArNPHMLjH/koAPxk5dkzHbGcycZsNS1eZ950TcQ0w
-	cDnR3FDn/vLkmrZXXD4JKTWwC7suj5foBMRfTR8GyOz0KTVGL/ZqU+GZC3yfaweJlMRU
-	lqhQ==
-X-Gm-Message-State: AOPr4FWxFb0UbxnEmE7sWJ6O7n/JLjp16zatYUvMWTCeX4TpMILOYRyjUK8Y6atkBISm4Q==
-X-Received: by 10.28.55.139 with SMTP id e133mr11244373wma.98.1461186386519;
-	Wed, 20 Apr 2016 14:06:26 -0700 (PDT)
-Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id
-	by7sm7437820wjc.18.2016.04.20.14.06.25
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 20 Apr 2016 14:06:25 -0700 (PDT)
-Date: Wed, 20 Apr 2016 23:06:24 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Julien Gueytat <contact@jgueytat.fr>
-Message-ID: <20160420210624.GM1588@resin>
-References: <5715F053.8040801@jgueytat.fr>
- <20160420210501.GK1588@resin>
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4224EE00DCB
+	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 14:20:11 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20160420212008245_0486;
+	Wed, 20 Apr 2016 21:20:08 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [99.240.204.5] (port=43780 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1aszYz-0007LU-8j; Wed, 20 Apr 2016 17:21:33 -0400
+Date: Wed, 20 Apr 2016 17:19:56 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+In-Reply-To: <CADkTA4OaTRbBWp_-X=9MRa5KOFXfMJewPcyTUyrouZKxmfRcjw@mail.gmail.com>
+Message-ID: <alpine.LFD.2.20.1604201706100.22193@localhost.localdomain>
+References: <alpine.LFD.2.20.1604201229260.24374@localhost.localdomain>
+	<20160420180421.GD2561@jama>
+	<alpine.LFD.2.20.1604201418060.31154@localhost.localdomain>
+	<CADkTA4OaTRbBWp_-X=9MRa5KOFXfMJewPcyTUyrouZKxmfRcjw@mail.gmail.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <20160420210501.GK1588@resin>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5][meta-raspberrypi]: Qt5 with EGL support for the Raspberry through linux-oe-g++
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a known issue with how SRC_URI uses OVERRIDES to locate .scc files?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,132 +49,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2016 21:06:54 -0000
-X-Groupsio-MsgNum: 29533
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HL3CiL6n73+IAdG4"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 20 Apr 2016 21:20:16 -0000
+Content-Type: multipart/mixed; BOUNDARY="8323328-247315371-1461187200=:22193"
 
---HL3CiL6n73+IAdG4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Apr 20, 2016 at 11:05:01PM +0200, Andrei Gherzan wrote:
-> On Tue, Apr 19, 2016 at 10:46:11AM +0200, Julien Gueytat wrote:
-> > Hi,
-> >
-> > I still can't figure out the patch to apply in meta-qt5 to get EGL support
-> > with the Raspberry.
-> >
-> > The test to check EGL does not pass and fails with the following command:
-> >
-> > arm-poky-linux-gnueabi-g++  -march=armv7-a -marm  -mthumb-interwork
-> > -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7 --sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels
-> > -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl egl.o -lGLESv2
-> > -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
-> >
-> >
-> > Here is the content of the file egl.pro:
-> >
-> > $ cat egl.pro
-> > SOURCES = egl.cpp
-> >
-> > for(p, QMAKE_LIBDIR_EGL) {
-> >     exists($$p):LIBS += -L$$p
-> > }
-> >
-> > message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-> > message("In egl.pro - 1: LIBS = $$LIBS")
-> >
-> > !isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL
-> > !isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL
-> >
-> > message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-> > message("In egl.pro - 2: LIBS = $$LIBS")
-> >
-> > CONFIG -= qt
-> >
-> > In the main ./configure file of qtbase:
-> >
-> > | In configure #1: QMAKE_LIBS_EGL =
-> > | In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif
-> > -lbcm_host -lvcos -lvchiq_arm -pthread
-> >
-> > The variable QMAKE_LIBS_EGL is set properly.
-> >
-> >
-> > In the ./config.tests/qpa/egl/egl.pro file:
-> >
-> > | Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL
-> > | Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2 -lbcm_host
-> > -lvchostif -lvcos -lvchiq_arm -pthread
-> > | Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL
-> > | Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2 -lbcm_host
-> > -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
-> >
-> >
-> > *What I see is that:*
-> > In the configure file the variable QMAKE_LIBS_EGL is properly set through
-> > pkg-config.
-> > In the egl.pro file... The variable LIBS gets the content of QMAKE_LIBS_EGL
-> > and the variable QMAKE_LIBS_EGL gets back to its default -lEGL.
-> >
-> > In the end with have -lGLESv2 before -lEGL and this does not link.
-> >
-> > I checked also the content of .qmake.vars:
-> > grep QMAKE_LIBS_EGL .qmake.vars
-> > QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host -lvcos
-> > -lvchiq_arm -pthread
-> >
-> >
-> > The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to have his
-> > job done too late...
-> >
-> > If someone has an idea to get the proper correction done...
-> >
-> > Best Regards,
-> > Julien
-> >
->
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-> Merged to master. Thanks.
->
-
-Ignore this message. Sorry for the noise but I replied to the wrong
-email.
-
-> --
-> Andrei Gherzan
+--8323328-247315371-1461187200=:22193
+Content-Type: text/plain; charset=KOI8-R
+Content-Transfer-Encoding: 8BIT
 
 
+  ok, i've narrowed this down to a fairly trivial case, so allow me to
+describe it. first, in my kernel recipes directory structure, i have
+subdirectories:
 
---
-Andrei Gherzan
+linux-windriver-3.14/
+linux-windriver-4.1/
+linux-windriver/
 
---HL3CiL6n73+IAdG4
-Content-Type: application/pgp-signature; name="signature.asc"
+and that last directory contains:
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+$ tree linux-windriver
+linux-windriver
+ÜÄÄ mxeiii            (target board in question)
+Åöö ÜÄÄ mm.patch
+Åöö ÑÄÄ mm.scc
+ÜÄÄ ssd_sil.cfg
+ÜÄÄ ssd_sil.patch
+ÜÄÄ ssd_sil.scc
+ÜÄÄ uio.cfg
+ÜÄÄ uio.patch
+ÑÄÄ uio.scc
 
-iQIcBAEBCAAGBQJXF+9PAAoJEHO76Gt+erfPeZoP/1EgBr04I5KJLAw5MwxDq63L
-SeOu9vGRRdNs4IMKDOxw0lLvAessJ+roJVekuzwgEf3grb2es2Svvw82LJOfO20r
-HE6ObxIj1KikmVqluUC8cPC0LUHWFxtlnqIFEvLeE6OuFqiYjkveLQqqmLROwDur
-TqN4zogOJ5MIZ5AwkElblQ/L+RpkERMaHFfOUxh5gcuLamHknqkQwQ3tOETnt6vD
-C+62bv5NY/th+gnJYFGte/8CS/5rFDwHLQ3tJcY6nfxRDhCjNQJIBkesZzMjBiR8
-y+bIp7cIRhnJeFpVPI4HLuz6IQeGEAXsqTherPFyd0FQ5Hj0jiYJoRyEknMDRJ2A
-F+OZf3abx1KZ8ZuQ/8qamfmnhBdyrFWENoJcskiSQayogJvs90z8LUITwrHO6hP0
-+7UeHpqCbJALFFbH96QumrgCN2/JeNtqwVPr6Jnq8j6kgNeP/l6Bd0T4J3e+6VCX
-+bKkrdNTtZMyTfoTM/eHGfX1Y1+NNfBdWOCxWG01GrmF/CD0q8wasrxTRwlFMqMI
-PUBbd8qDVRMkaUrMcKZ9hHXgLcZfx6NMAO7G55l3wHIUwEv8PRYDTZDPOPhMEdyO
-Ue0ZTjRRrsLXzvjlSYxBp8VaOnNcib8NYSibrA0xmicwOqFQCS4tnZFsaMO7mWyf
-+ebh7OxfuuGMRkgBgD5s
-=ZPJa
------END PGP SIGNATURE-----
+  so, that directory contains two SRC_URI items *immediately*
+underneath, and one more further under mxeiii/, which is my target
+board.
 
---HL3CiL6n73+IAdG4--
+  first experiment:
+
+SRC_URI += " \
+        file://new_board.scc \           (adding this has no effect)
+        file://uio.scc \
+        file://ssd_sil.scc \
+"
+
+so (other than new_board.scc), i am processing only .scc files
+immediately under linux-windriver/. and that works fine:
+
+  $ make linux-windriver.configure
+
+and i can list
+bitbake_build/tmp/work-shared/mxeiii/kernel-source/.kernel-meta/cfg/standard/mxeiii/config.log:
+
+[INFO] Sanitizing .kernel-meta/cfg/mxeiii/new_board.cfg
+[INFO] Sanitizing
+.kernel-meta/cfg/scratch/obj/home/rpjday/swe/recipes-kernel/linux/linux-windriver/uio.cfg
+[INFO] Sanitizing
+.kernel-meta/cfg/scratch/obj/home/rpjday/swe/recipes-kernel/linux/linux-windriver/ssd_sil.cfg
+[INFO] Sanitizing .kernel-meta/cfg/kernel-meta/cfg/systemd.cfg
+
+so far, so good.
+
+  now, let's extend SRC_URI to pick up one more item, but this one
+from the lower mxeiii/ directory:
+
+SRC_URI += " \
+        file://new_board.scc \
+        file://uio.scc \
+        file://ssd_sil.scc \
+        file://mm.scc \              <----- new item
+"
+
+after a clean and configure:
+
+
+ERROR: Function failed: do_kernel_configme (log file is located at
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work/mxeiii-wrs-linux/linux-windriver/4.1-r0/temp/do_kernel_configme/log.do_kernel_configme.11821)
+ERROR: Logfile of failure stored in:
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work/mxeiii-wrs-linux/linux-windriver/4.1-r0/temp/do_kernel_configme/log.do_kernel_configme.11821
+Log data follows:
+| DEBUG: Executing shell function do_kernel_configme
+| NOTE: kernel configme
+| [INFO] Configuring target/machine combo: "standard/mxeiii"
+| ERROR: could not sanitize configuration fragments
+|    errors are logged in
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work-shared/mxeiii/kernel-source/.kernel-meta/cfg/standard/mxeiii/config.log
+| WARNING:
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work/mxeiii-wrs-linux/linux-windriver/4.1-r0/temp/do_kernel_configme/run.do_kernel_configme.11821:1
+exit 1 from
+|   configme ${configmeflags} --reconfig --output
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work/mxeiii-wrs-linux/linux-windriver/4.1-r0/linux-mxeiii-standard-build
+standard mxeiii
+| ERROR: Function failed: do_kernel_configme (log file is located at
+/home/rpjday/Builds/swe/8/m/bitbake_build/tmp/work/mxeiii-wrs-linux/linux-windriver/4.1-r0/temp/do_kernel_configme/log.do_kernel_configme.11821)
+ERROR: Task 6
+(/home/rpjday/Builds/swe/8/m/layers/wr-kernel/recipes-kernel/linux/linux-windriver_4.1.bb,
+do_kernel_configme) failed with exit code '1'
+
+and here's the config.log file from that attempt:
+
+[INFO] Sanitizing .kernel-meta/cfg/mxeiii/new_board.cfg
+[INFO] Sanitizing .kernel-meta/cfg/uio.cfg
+[ERROR] Kern frag .kernel-meta/cfg/uio.cfg does not exist
+
+Notice how this differs from the first two lines from the successful
+configure before:
+
+[INFO] Sanitizing .kernel-meta/cfg/mxeiii/new_board.cfg
+[INFO] Sanitizing
+.kernel-meta/cfg/scratch/obj/home/rpjday/swe/recipes-kernel/linux/linux-windriver/uio.cfg
+
+The pattern appears to be that, once the SRC_URI search is forced to
+enter that mxeiii/ subdirectory to find something, the search for
+previously found SRC_URI items gets totally borked.
+
+I've tried this several times, and the behaviour is consistent.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323328-247315371-1461187200=:22193--
