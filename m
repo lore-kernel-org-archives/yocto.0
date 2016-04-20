@@ -1,48 +1,27 @@
-Return-Path: <contact@jgueytat.fr>
+Return-Path: <pokybuild@ubuntu1510.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20A48E00C87; Tue, 19 Apr 2016 16:52:44 -0700 (PDT)
+	id D022BE00C28; Tue, 19 Apr 2016 21:43:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.70.178.86 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from slow1-d.mail.gandi.net (slow1-d.mail.gandi.net [217.70.178.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80CF5E00C80
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 16:52:42 -0700 (PDT)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
-	[217.70.183.198])
-	by slow1-d.mail.gandi.net (Postfix) with ESMTP id 5E9B647A6A3
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 01:46:44 +0200 (CEST)
-Received: from mfilter29-d.gandi.net (mfilter29-d.gandi.net [217.70.178.160])
-	by relay6-d.mail.gandi.net (Postfix) with ESMTP id C18FEFB886;
-	Wed, 20 Apr 2016 01:46:40 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mfilter29-d.gandi.net
-Received: from relay6-d.mail.gandi.net ([IPv6:::ffff:217.70.183.198])
-	by mfilter29-d.gandi.net (mfilter29-d.gandi.net [::ffff:10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id 7O4gwzRoEg_s; Wed, 20 Apr 2016 01:46:38 +0200 (CEST)
-X-Originating-IP: 80.215.192.207
-Received: from [192.168.43.244] (unknown [80.215.192.207])
-	(Authenticated sender: contact@jgueytat.fr)
-	by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 53739FB887;
-	Wed, 20 Apr 2016 01:46:37 +0200 (CEST)
+Received: from ubuntu1510.i.yoctoproject.org (ab06 [10.0.10.106])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A571E00C28;
+	Tue, 19 Apr 2016 21:43:31 -0700 (PDT)
+Received: by ubuntu1510.i.yoctoproject.org (Postfix, from userid 1006)
+	id 58561300A09; Tue, 19 Apr 2016 21:43:31 -0700 (PDT)
+Date: Tue, 19 Apr 2016 21:43:31 -0700
 To: yocto@yoctoproject.org
-References: <5715F053.8040801@jgueytat.fr>
-From: Julien Gueytat <contact@jgueytat.fr>
-Message-ID: <5716C35C.3040800@jgueytat.fr>
-Date: Wed, 20 Apr 2016 01:46:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+User-Agent: Heirloom mailx 12.5 6/20/10
 MIME-Version: 1.0
-In-Reply-To: <5715F053.8040801@jgueytat.fr>
+Message-Id: <20160420044331.58561300A09@ubuntu1510.i.yoctoproject.org>
+From: pokybuild@ubuntu1510.osl.yoctoproject.org (Poky Build User)
 Cc: otavio@ossystems.com.br
-Subject: Re: [meta-qt5][meta-raspberrypi]: Qt5 with EGL support for the Raspberry through linux-oe-g++
+Subject: Release Candidate Build for yocto-2.1.rc2.rc2 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,270 +33,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Apr 2016 23:52:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------090207060601010202020800"
+X-List-Received-Date: Wed, 20 Apr 2016 04:43:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
---------------090207060601010202020800
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi again guys,
-
-after more investigations:
-
-I found out that the default value -lEGL comes from 
-./mkspecs/common/linux.conf which is included in 
-./mkspecs/linux-oe-g++/qmake.conf
-
-linux-oe-g++ being the only generic mkspecs that should be used in Yocto
-
-So! At the time the configuration enters egl.pro the content of the 
-variables LIBS and QMAKE_EGL_LIBS are still a bit weird for me :
-
-1- LIBS already has the content of the QMAKE_EGL_LIBS content from the 
-result of the pkg-config command.
-2- QMAKE_EGL_LIBS has the content of the default value found in 
-./mkspecs/common/linux.conf
-
-There are two options to have it properly working:
-- First and easy option : remove the QMAKE_EGL_LIBS default variable in 
-./mkspecs/linux-oe-g++/qmake.conf since the good libs seems to already 
-been present in the LIBS variable.
-- Second option : understand why the LIBS variable is already properly 
-set and why the QMAKE_EGL_LIBS properly computed in the configure and 
-present .qmake.vars is not used. (I would say that the device spec 
-overrides the one from qmake spec... I did not dig further yet.)
-
-Anyway I'm pretty sure the trouble comes from meta-qt5 side now. I'm 
-pretty sure meta-raspberrypi maintainers can confirm that their master 
-branch handles pkg-config stuff now.
-
-Thanks advance for having a look on this guys,
-Best Regards
+-e 
+A release candidate build for yocto-2.1.rc2 is now available at:
 
 
-Le 19/04/2016 10:46, Julien Gueytat a écrit :
-> Hi,
->
-> I still can't figure out the patch to apply in meta-qt5 to get EGL 
-> support with the Raspberry.
->
-> The test to check EGL does not pass and fails with the following command:
->
-> arm-poky-linux-gnueabi-g++  -march=armv7-a -marm -mthumb-interwork 
-> -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7 
-> --sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels 
-> -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl egl.o   
-> -lGLESv2 -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
->
->
-> Here is the content of the file egl.pro:
->
-> $ cat egl.pro
-> SOURCES = egl.cpp
->
-> for(p, QMAKE_LIBDIR_EGL) {
->     exists($$p):LIBS += -L$$p
-> }
->
-> message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-> message("In egl.pro - 1: LIBS = $$LIBS")
->
-> !isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL
-> !isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL
->
-> message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")
-> message("In egl.pro - 2: LIBS = $$LIBS")
->
-> CONFIG -= qt
->
-> In the main ./configure file of qtbase:
->
-> | In configure #1: QMAKE_LIBS_EGL =
-> | In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host 
-> -lvchostif -lbcm_host -lvcos -lvchiq_arm -pthread
->
-> The variable QMAKE_LIBS_EGL is set properly.
->
->
-> In the ./config.tests/qpa/egl/egl.pro file:
->
-> | Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL
-> | Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2 -lbcm_host 
-> -lvchostif -lvcos -lvchiq_arm -pthread
-> | Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL
-> | Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2 -lbcm_host 
-> -lvchostif -lvcos -lvchiq_arm -pthread -lEGL
->
->
-> *What I see is that:*
-> In the configure file the variable QMAKE_LIBS_EGL is properly set 
-> through pkg-config.
-> In the egl.pro file... The variable LIBS gets the content of 
-> QMAKE_LIBS_EGL and the variable QMAKE_LIBS_EGL gets back to its 
-> default -lEGL.
->
-> In the end with have -lGLESv2 before -lEGL and this does not link.
->
-> I checked also the content of .qmake.vars:
-> grep QMAKE_LIBS_EGL .qmake.vars
-> QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host 
-> -lvcos -lvchiq_arm -pthread
->
->
-> The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to 
-> have his job done too late...
->
-> If someone has an idea to get the proper correction done...
->
-> Best Regards,
-> Julien
->
->
->
+http://autobuilder.yoctoproject.org/pub/releases/yocto-2.1.rc2
 
 
---------------090207060601010202020800
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi again guys,<br>
-    <br>
-    after more investigations:<br>
-    <br>
-    I found out that the default value -lEGL comes from
-    ./mkspecs/common/linux.conf which is included in
-    ./mkspecs/linux-oe-g++/qmake.conf<br>
-    <br>
-    linux-oe-g++ being the only generic mkspecs that should be used in
-    Yocto<br>
-    <br>
-    So! At the time the configuration enters egl.pro the content of the
-    variables LIBS and QMAKE_EGL_LIBS are still a bit weird for me :<br>
-    <br>
-    1- LIBS already has the content of the QMAKE_EGL_LIBS content from
-    the result of the pkg-config command.<br>
-    2- QMAKE_EGL_LIBS has the content of the default value found in
-    ./mkspecs/common/linux.conf<br>
-    <br>
-    There are two options to have it properly working:<br>
-    - First and easy option : remove the QMAKE_EGL_LIBS default variable
-    in ./mkspecs/linux-oe-g++/qmake.conf since the good libs seems to
-    already been present in the LIBS variable.<br>
-    - Second option : understand why the LIBS variable is already
-    properly set and why the QMAKE_EGL_LIBS properly computed in the
-    configure and present .qmake.vars is not used. (I would say that the
-    device spec overrides the one from qmake spec... I did not dig
-    further yet.)<br>
-    <br>
-    Anyway I'm pretty sure the trouble comes from meta-qt5 side now. I'm
-    pretty sure meta-raspberrypi maintainers can confirm that their
-    master branch handles pkg-config stuff now.<br>
-    <br>
-    Thanks advance for having a look on this guys,<br>
-    Best Regards<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">Le 19/04/2016 10:46, Julien Gueytat a
-      écrit :<br>
-    </div>
-    <blockquote cite="mid:5715F053.8040801@jgueytat.fr" type="cite">
-      <meta http-equiv="content-type" content="text/html;
-        charset=windows-1252">
-      Hi,<br>
-      <br>
-      I still can't figure out the patch to apply in meta-qt5 to get EGL
-      support with the Raspberry.<br>
-      <br>
-      The test to check EGL does not pass and fails with the following
-      command:<br>
-      <br>
-      arm-poky-linux-gnueabi-g++  -march=armv7-a -marm 
-      -mthumb-interwork -mfloat-abi=hard -mfpu=neon-vfpv4
-      -mtune=cortex-a7
-      --sysroot=/home/jgueytat/projects/LightPixels/poky/build/tmp/sysroots/lightpixels
+Please begin QA on this build as soon as possible.
 
 
-      -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-O1 -o egl
-      egl.o   -lGLESv2 -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread
-      -lEGL<br>
-      <br>
-      <br>
-      Here is the content of the file egl.pro:<br>
-      <br>
-      $ cat egl.pro <br>
-      SOURCES = egl.cpp<br>
-      <br>
-      for(p, QMAKE_LIBDIR_EGL) {<br>
-          exists($$p):LIBS += -L$$p<br>
-      }<br>
-      <br>
-      message("In egl.pro - 1: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")<br>
-      message("In egl.pro - 1: LIBS = $$LIBS")<br>
-      <br>
-      !isEmpty(QMAKE_INCDIR_EGL): INCLUDEPATH += $$QMAKE_INCDIR_EGL<br>
-      !isEmpty(QMAKE_LIBS_EGL): LIBS += $$QMAKE_LIBS_EGL<br>
-      <br>
-      message("In egl.pro - 2: QMAKE_LIBS_EGL = $$QMAKE_LIBS_EGL")<br>
-      message("In egl.pro - 2: LIBS = $$LIBS")<br>
-      <br>
-      CONFIG -= qt<br>
-      <br>
-      In the main ./configure file of qtbase:<br>
-      <br>
-      | In configure #1: QMAKE_LIBS_EGL =<br>
-      | In configure #2: QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host
-      -lvchostif -lbcm_host -lvcos -lvchiq_arm -pthread<br>
-      <br>
-      The variable QMAKE_LIBS_EGL is set properly.<br>
-      <br>
-      <br>
-      In the ./config.tests/qpa/egl/egl.pro file:<br>
-      <br>
-      | Project MESSAGE: In egl.pro - 1: QMAKE_LIBS_EGL = -lEGL<br>
-      | Project MESSAGE: In egl.pro - 1: LIBS = -lEGL -lGLESv2
-      -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread<br>
-      | Project MESSAGE: In egl.pro - 2: QMAKE_LIBS_EGL = -lEGL<br>
-      | Project MESSAGE: In egl.pro - 2: LIBS = -lEGL -lGLESv2
-      -lbcm_host -lvchostif -lvcos -lvchiq_arm -pthread -lEGL<br>
-      <br>
-      <br>
-      <b>What I see is that:</b><br>
-      In the configure file the variable QMAKE_LIBS_EGL is properly set
-      through pkg-config.<br>
-      In the egl.pro file... The variable LIBS gets the content of
-      QMAKE_LIBS_EGL and the variable QMAKE_LIBS_EGL gets back to its
-      default -lEGL.<br>
-      <br>
-      In the end with have -lGLESv2 before -lEGL and this does not link.<br>
-      <br>
-      I checked also the content of .qmake.vars:<br>
-      grep QMAKE_LIBS_EGL .qmake.vars <br>
-      QMAKE_LIBS_EGL = -lEGL -lGLESv2 -lbcm_host -lvchostif -lbcm_host
-      -lvcos -lvchiq_arm -pthread<br>
-      <br>
-      <br>
-      The command QMakeVar set QMAKE_LIBS_EGL "$QMAKE_LIBS_EGL" seems to
-      have his job done too late...<br>
-      <br>
-      If someone has an idea to get the proper correction done...<br>
-      <br>
-      Best Regards,<br>
-      Julien<br>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
+Build hash information: 
+meta-intel : b6c9d76e184c219cca688ad309841084615e315d 
+meta-fsl-arm : b2512d4365937c5067761a545d8d9dda70b2f852 
+meta-minnow : 9c965ef5252e383843d796cd8b50c61b3034b6ae 
+meta-qt4 : 4058b0773381f894d915ea3dfac5fe052d82a9a7 
+meta-qt3 : 7d958b928a4a38a186746fabbc0d8169dd8bb3a6 
+meta-fsl-ppc : ec1f751131454a9279792cf9a0279f1f40055a2b 
+poky : 6c1c01392d91f512e2949ad1d57a75a8077478ba 
 
---------------090207060601010202020800--
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
+
