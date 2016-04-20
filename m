@@ -1,41 +1,47 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4D68E00C9B; Tue, 19 Apr 2016 22:30:05 -0700 (PDT)
+	id 24CA8E00F69; Wed, 20 Apr 2016 04:49:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, URI_HEX autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.1 URI_HEX URI: URI hostname has long hexadecimal
-	sequence
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.180.40 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A20DE00C28
-	for <yocto@yoctoproject.org>; Tue, 19 Apr 2016 22:29:58 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.104])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1askgG-0006PF-SG; Wed, 20 Apr 2016 05:28:05 +0000
-To: George McCollister <george.mccollister@gmail.com>,
-	wenzong fan <wenzong.fan@windriver.com>
-References: <1460103572-63539-1-git-send-email-wenzong.fan@windriver.com>
-	<5713F9F7.8040106@twobit.us> <57148DF9.8020905@windriver.com>
-	<CAFSKS=ObDBisOn9CLOm7Q=KuYHbw-17yhj_9BCOA1rpETWSMFw@mail.gmail.com>
-From: Philip Tricca <flihp@twobit.us>
-Message-ID: <571713E4.5000905@twobit.us>
-Date: Tue, 19 Apr 2016 22:30:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Icedove/38.7.0
+Received: from smtp-out10.electric.net (smtp-out10.electric.net
+	[185.38.180.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C87EEE00BF8
+	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 04:49:34 -0700 (PDT)
+Received: from 1asqdP-0002iu-W3 by out10b.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>) id 1asqdQ-0002jO-UN
+	for yocto@yoctoproject.org; Wed, 20 Apr 2016 04:49:32 -0700
+Received: by emcmailer; Wed, 20 Apr 2016 04:49:32 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out10b.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>) id 1asqdP-0002iu-W3
+	for yocto@yoctoproject.org; Wed, 20 Apr 2016 04:49:31 -0700
+Received: from sestofb11.enea.se (172.21.3.146) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 20 Apr 2016 13:49:31 +0200
+Received: by sestofb11.enea.se (Postfix, from userid 4451)	id A3CE42413C1;
+	Wed, 20 Apr 2016 13:49:31 +0200 (CEST)
+From: Adrian Dudau <adrian.dudau@enea.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 20 Apr 2016 13:49:31 +0200
+Message-ID: <1461152971-36152-1-git-send-email-adrian.dudau@enea.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <CAFSKS=ObDBisOn9CLOm7Q=KuYHbw-17yhj_9BCOA1rpETWSMFw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-selinux] refpolicy-minimum: port changes for prepare_policy_store
+Received-SPF: None (SESTOEX08.enea.se: adrian.dudau@enea.com does not
+	designate permitted sender hosts)
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-PolicySMART: 6030817
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: [meta-qt3][PATCH] classes: add qmake_base.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,183 +53,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2016 05:30:05 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Apr 2016 11:49:40 -0000
+Content-Type: text/plain
 
-On 04/19/2016 11:34 AM, George McCollister wrote:
-> On Mon, Apr 18, 2016 at 2:34 AM, wenzong fan <wenzong.fan@windriver.com> wrote:
->> On 04/18/2016 05:02 AM, Philip Tricca wrote:
->>>
->>> Hello Wenzong,
->>>
->>> On 04/08/2016 01:19 AM, wenzong.fan@windriver.com wrote:
->>>>
->>>> From: Wenzong Fan <wenzong.fan@windriver.com>
->>>>
->>>> Apply the changes to refpolicy-minimum_2.20151208.bb:
->>>>
->>>>    commit bfaf278116e6c3a04bb82c9f8a4f8629a0a85df8
->>>>    Author: Wenzong Fan <wenzong.fan@windriver.com>
->>>>    Date:   Tue Oct 27 06:25:04 2015 -0400
->>>>
->>>>      refpolicy-minimum: update prepare_policy_store
->>>>
->>>>      * update prepare_policy_store() for supporting SELinux 2.4 & CIL,
->>>> the
->>>>        logic is from refpolicy_common.inc but with minimum set of policy
->>>>        modules;
->>>>
->>>>      * add extra policy modules that required by sysnetwork, without
->>>> those
->>>>        modules the install process will fail with error:
->>>>
->>>>          | Failed to resolve roletype statement at 62 of \
->>>>
->>>> .../image/var/lib/selinux/minimum/tmp/modules/100/sysnetwork/cil
->>>>          | Failed to resolve ast
->>>>          | semodule:  Failed!
->>>>
->>>>      Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->>>>      Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
->>>>
->>>> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->>>> ---
->>>
->>>
->>> This looks great but in testing it I'm unable to use the 'minimum'
->>> refpolicy recipe in any image. The recipe builds fine but the do_rootfs
->>> fails trying to label the filesystem. I haven't been able to find the
->>> root cause for this yet, but I'm seeing this behavior both before and
->>> after adding this patch so it may be a preexisting issue?
->>>
->>> Given all of that, I've merged this patch into master since it doesn't
->>> seem related to the issue I'm seeing. Still, some help in resolving the
->>> issue I'm seeing with the minimum refpolicy recipe would be appreciated.
->>
->>
->> Hi Philip,
->>
->> Thanks for getting the change merged.
->>
->> I did a test and see errors about:
->>
->>
->> /.../core-image-selinux/1.0-r0/rootfs//etc/selinux/mcs/contexts/files/file_contexts:
->> No such file or directory
->>
->> That should be the SELINUXTYPE in /etc/selinux/config is not correct, below
->> patches could fix it:
->>
->> --- a/recipes-security/refpolicy/refpolicy_common.inc
->> +++ b/recipes-security/refpolicy/refpolicy_common.inc
->> @@ -162,7 +162,8 @@ SELINUX=${DEFAULT_ENFORCING}
->>  #     mls - Multi Level Security protection.
->>  #     targeted - Targeted processes are protected.
->>  #     mcs - Multi Category Security protection.
->> -SELINUXTYPE=${POLICY_TYPE}
->> +#     minimum - Minimum Security protection.
->> +SELINUXTYPE=${POLICY_NAME}
->>
->> It works in my test, please feel free to integrate it if you think it makes
->> sense.
->>
-> 
-> With this change my refpolicy-targeted build completes again.
+The class was removed from oe classes, but some recipes like
+qt-x11-free still inherit it. Keep the class within the layer to
+acommmodate them.
 
-Problem solved. Thanks!
+Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
+---
+ classes/qmake_base.bbclass | 119 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 119 insertions(+)
+ create mode 100644 classes/qmake_base.bbclass
 
-> Thanks,
-> George
-> 
->> Thanks
->> Wenzong
->>
->>
->>>
->>> Thanks,
->>> Philip
->>>
->>>>   .../refpolicy/refpolicy-minimum_2.20151208.bb      | 41
->>>> ++++++++++++++++------
->>>>   1 file changed, 30 insertions(+), 11 deletions(-)
->>>>
->>>> diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->>>> b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->>>> index b275821..47ed558 100644
->>>> --- a/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->>>> +++ b/recipes-security/refpolicy/refpolicy-minimum_2.20151208.bb
->>>> @@ -26,23 +26,42 @@ EXTRA_POLICY_MODULES += "nscd"
->>>>   # "login", so "login" process will access to /var/spool/mail.
->>>>   EXTRA_POLICY_MODULES += "mta"
->>>>
->>>> +# sysnetwork requires type definitions (insmod_t, consoletype_t,
->>>> +# hostname_t, ping_t, netutils_t) from modules:
->>>> +EXTRA_POLICY_MODULES += "modutils consoletype hostname netutils"
->>>> +
->>>>   POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
->>>>
->>>>   # re-write the same func from refpolicy_common.inc
->>>>   prepare_policy_store () {
->>>>         oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
->>>> +       POL_PRIORITY=100
->>>> +       POL_SRC=${D}${datadir}/selinux/${POLICY_NAME}
->>>> +       POL_STORE=${D}${localstatedir}/lib/selinux/${POLICY_NAME}
->>>> +       POL_ACTIVE_MODS=${POL_STORE}/active/modules/${POL_PRIORITY}
->>>>
->>>>         # Prepare to create policy store
->>>> -       mkdir -p ${D}${sysconfdir}/selinux/
->>>> -       mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
->>>> -       mkdir -p
->>>> ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
->>>> -       mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
->>>> -       touch
->>>> ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
->>>> -       for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
->>>> -               bzip2 -f $i && mv -f $i.bz2 $i
->>>> -       done
->>>> -       cp base.pp
->>>> ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
->>>> -       for i in ${POLICY_MODULES_MIN}; do
->>>> -               cp ${i}.pp
->>>> ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename
->>>> $i.pp`
->>>> +       mkdir -p ${POL_STORE}
->>>> +       mkdir -p ${POL_ACTIVE_MODS}
->>>> +
->>>> +       # get hll type from suffix on base policy module
->>>> +       HLL_TYPE=$(echo ${POL_SRC}/base.* | awk -F . '{if (NF>1) {print
->>>> $NF}}')
->>>> +
->>>> HLL_BIN=${STAGING_DIR_NATIVE}${prefix}/libexec/selinux/hll/${HLL_TYPE}
->>>> +
->>>> +       for i in base ${POLICY_MODULES_MIN}; do
->>>> +               MOD_FILE=${POL_SRC}/${i}.${HLL_TYPE}
->>>> +               MOD_DIR=${POL_ACTIVE_MODS}/${i}
->>>> +               mkdir -p ${MOD_DIR}
->>>> +               echo -n "${HLL_TYPE}" > ${MOD_DIR}/lang_ext
->>>> +
->>>> +               if ! bzip2 -t ${MOD_FILE} >/dev/null 2>&1; then
->>>> +                       ${HLL_BIN} ${MOD_FILE} | bzip2 --stdout >
->>>> ${MOD_DIR}/cil
->>>> +                       bzip2 -f ${MOD_FILE} && mv -f ${MOD_FILE}.bz2
->>>> ${MOD_FILE}
->>>> +               else
->>>> +                       bunzip2 --stdout ${MOD_FILE} | \
->>>> +                               ${HLL_BIN} | \
->>>> +                               bzip2 --stdout > ${MOD_DIR}/cil
->>>> +               fi
->>>> +               cp ${MOD_FILE} ${MOD_DIR}/hll
->>>>         done
->>>>   }
->>>>
->>>
->>>
->>>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/classes/qmake_base.bbclass b/classes/qmake_base.bbclass
+new file mode 100644
+index 0000000..dc98713
+--- /dev/null
++++ b/classes/qmake_base.bbclass
+@@ -0,0 +1,119 @@
++QMAKE_MKSPEC_PATH ?= "${STAGING_DATADIR_NATIVE}/qmake"
++
++OE_QMAKE_PLATFORM = "${TARGET_OS}-oe-g++"
++QMAKESPEC := "${QMAKE_MKSPEC_PATH}/${OE_QMAKE_PLATFORM}"
++
++# We override this completely to eliminate the -e normally passed in
++EXTRA_OEMAKE = ""
++
++export OE_QMAKE_CC="${CC}"
++export OE_QMAKE_CFLAGS="${CFLAGS}"
++export OE_QMAKE_CXX="${CXX}"
++export OE_QMAKE_LDFLAGS="${LDFLAGS}"
++export OE_QMAKE_AR="${AR}"
++export OE_QMAKE_STRIP="echo"
++export OE_QMAKE_RPATH="-Wl,-rpath-link,"
++
++# default to qte2 via bb.conf, inherit qt3x11 to configure for qt3x11
++
++oe_qmake_mkspecs () {
++    mkdir -p mkspecs/${OE_QMAKE_PLATFORM}
++    for f in ${QMAKE_MKSPEC_PATH}/${OE_QMAKE_PLATFORM}/*; do
++        if [ -L $f ]; then
++            lnk=`readlink $f`
++            if [ -f mkspecs/${OE_QMAKE_PLATFORM}/$lnk ]; then
++                ln -s $lnk mkspecs/${OE_QMAKE_PLATFORM}/`basename $f`
++            else
++                cp $f mkspecs/${OE_QMAKE_PLATFORM}/
++            fi
++        else
++            cp $f mkspecs/${OE_QMAKE_PLATFORM}/
++        fi
++    done
++}
++
++do_generate_qt_config_file() {
++	export QT_CONF_PATH=${WORKDIR}/qt.conf
++	cat > ${WORKDIR}/qt.conf <<EOF
++[Paths]
++Prefix =
++Binaries = ${STAGING_BINDIR_NATIVE}
++Headers = ${STAGING_INCDIR}/${QT_DIR_NAME}
++Plugins = ${STAGING_LIBDIR}/${QT_DIR_NAME}/plugins/
++Mkspecs = ${STAGING_DATADIR}/${QT_DIR_NAME}/mkspecs/
++EOF
++}
++
++addtask generate_qt_config_file after do_patch before do_configure
++
++qmake_base_do_configure() {
++	case ${QMAKESPEC} in
++	*linux-oe-g++|*linux-uclibc-oe-g++|*linux-gnueabi-oe-g++|*linux-uclibceabi-oe-g++|*linux-gnuspe-oe-g++|*linux-uclibcspe-oe-g++|*linux-gnun32-oe-g++)
++		;;
++	*-oe-g++)
++		die Unsupported target ${TARGET_OS} for oe-g++ qmake spec
++		;;
++	*)
++		bbnote Searching for qmake spec file
++		paths="${QMAKE_MKSPEC_PATH}/qws/${TARGET_OS}-${TARGET_ARCH}-g++"
++		paths="${QMAKE_MKSPEC_PATH}/${TARGET_OS}-g++ $paths"
++
++		if (echo "${TARGET_ARCH}"|grep -q 'i.86'); then
++			paths="${QMAKE_MKSPEC_PATH}/qws/${TARGET_OS}-x86-g++ $paths"
++		fi
++		for i in $paths; do
++			if test -e $i; then
++				export QMAKESPEC=$i
++				break
++			fi
++		done
++		;;
++	esac
++
++	bbnote "using qmake spec in ${QMAKESPEC}, using profiles '${QMAKE_PROFILES}'"
++
++	if [ -z "${QMAKE_PROFILES}" ]; then 
++		PROFILES="`ls *.pro`"
++	else
++		PROFILES="${QMAKE_PROFILES}"
++	fi
++
++	if [ -z "$PROFILES" ]; then
++		die "QMAKE_PROFILES not set and no profiles found in $PWD"
++        fi
++
++	if [ ! -z "${EXTRA_QMAKEVARS_POST}" ]; then
++		AFTER="-after"
++		QMAKE_VARSUBST_POST="${EXTRA_QMAKEVARS_POST}"
++		bbnote "qmake postvar substitution: ${EXTRA_QMAKEVARS_POST}"
++	fi
++
++	if [ ! -z "${EXTRA_QMAKEVARS_PRE}" ]; then
++		QMAKE_VARSUBST_PRE="${EXTRA_QMAKEVARS_PRE}"
++		bbnote "qmake prevar substitution: ${EXTRA_QMAKEVARS_PRE}"
++	fi
++
++	# Hack .pro files to use OE utilities
++	LCONVERT_NAME=$(basename ${OE_QMAKE_LCONVERT})
++	LRELEASE_NAME=$(basename ${OE_QMAKE_LRELEASE})
++	LUPDATE_NAME=$(basename ${OE_QMAKE_LUPDATE})
++	XMLPATTERNS_NAME=$(basename ${OE_QMAKE_XMLPATTERNS})
++	find -name '*.pro' \
++	     -exec sed -i -e "s|\(=\s*.*\)/$LCONVERT_NAME|\1/lconvert|g" \
++	                  -e "s|\(=\s*.*\)/$LRELEASE_NAME|\1/lrelease|g" \
++	                  -e "s|\(=\s*.*\)/$LUPDATE_NAME|\1/lupdate|g" \
++	                  -e "s|\(=\s*.*\)/$XMLPATTERNS_NAME|\1/xmlpatterns|g" \
++	                  -e "s|\(=\s*.*\)/lconvert|\1/$LCONVERT_NAME|g" \
++	                  -e "s|\(=\s*.*\)/lrelease|\1/$LRELEASE_NAME|g" \
++	                  -e "s|\(=\s*.*\)/lupdate|\1/$LUPDATE_NAME|g" \
++	                  -e "s|\(=\s*.*\)/xmlpatterns|\1/$XMLPATTERNS_NAME|g" \
++	                  '{}' ';'
++
++#bbnote "Calling '${OE_QMAKE_QMAKE} -makefile -spec ${QMAKESPEC} -o Makefile $QMAKE_VARSUBST_PRE $AFTER $PROFILES $QMAKE_VARSUBST_POST'"
++	unset QMAKESPEC || true
++	${OE_QMAKE_QMAKE} -makefile -spec ${QMAKESPEC} -o Makefile $QMAKE_VARSUBST_PRE $AFTER $PROFILES $QMAKE_VARSUBST_POST || die "Error calling ${OE_QMAKE_QMAKE} on $PROFILES"
++}
++
++EXPORT_FUNCTIONS do_configure
++
++addtask configure after do_unpack do_patch before do_compile
+-- 
+1.9.1
 
 
