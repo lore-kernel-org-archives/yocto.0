@@ -1,68 +1,41 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <contact@jgueytat.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D54A4E00CE8; Thu, 21 Apr 2016 10:52:53 -0700 (PDT)
+	id C420EE00CEA; Thu, 21 Apr 2016 10:55:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,MISSING_MID,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
+	*      [217.70.183.198 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99039E00948
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 10:52:47 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id 127so5173003wmz.0
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 10:52:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=svLx2cKAFa7rC+oMq02ldVWWBULSnFZ0yVDS/3xP69Q=;
-	b=jPRhoqkqwnK6WvjRuVZ6x/EWmKilxbT15U/N+fZpxphUOP/WiIITH6F8Er0gMvPmsh
-	AnXIVAMAyBw9B+tp9qK9A0sDtFbHbEvKyx6GRMgjccRRVr9c4Aw5Y73JlhXk8/7cAAaC
-	1g93wxJzwIzQidXbwKV2lS1nsMVjX6gjOJ5zaTUguVuOB5yErhG9xDTepY43Nqek5xVQ
-	z//rGtjM3qR2A9opOkU0QE28Belon7qBZQiTpSC+Pqp0nKsnNJU9mXWpxgpf0GLWtdKs
-	zq9anyt0+WEtv4RN65NzJjvOsWpxR/mCBdKz3OQvOhkfxuL49fFm5m5O8JPj3hyvDLq8
-	RQfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=svLx2cKAFa7rC+oMq02ldVWWBULSnFZ0yVDS/3xP69Q=;
-	b=V0S5qq6mTT3zacUgJ6J3tp0JXVwS+LmBUNgOfyiJtBKpsSo0cneYxQpjMKz9fz1ZIl
-	ERcHn+ZFz/WLyEc4YLEEEwrIFQ22lHxRY9qR3QvURqI8m1M8lEo2fi98S5nxHZ44sFcv
-	LOtTxeIRScxAub+B7P5AHGVanxDaOSq+oVaxKcCBclLpOYqCdlaOHQ2ZJEJz8hG1MmrV
-	zXtIpfXHjD7HWfIiNvRSdVLvKGAhAsLIqbvZUdQPz+VyiDrDCxh9xNZxdc9PwZN/6HBB
-	emXbrc7JJs4lB3iDF6hT5t2vRGyU3Ztaxb3yXnJxy8/noaIVbGWy+xVGEmd72PhZgV9I
-	wbAQ==
-X-Gm-Message-State: AOPr4FW7qRBWX2hrtLSRBwGBBmEmh6t4V/RYj7QHW2ypQ+XTArE3Hw+zHsuXKis2eGo0bw==
-X-Received: by 10.194.125.201 with SMTP id ms9mr15904403wjb.71.1461261167235; 
-	Thu, 21 Apr 2016 10:52:47 -0700 (PDT)
-Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id
-	d123sm16038993wmd.9.2016.04.21.10.52.46
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 21 Apr 2016 10:52:46 -0700 (PDT)
-Date: Thu, 21 Apr 2016 19:52:44 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Theodor Gherzan <theodor@gherzan.ro>
-Message-ID: <20160421175244.GR1588@resin>
-References: <1461259933-1661-1-git-send-email-theodor@gherzan.ro>
-	<1461259933-1661-3-git-send-email-theodor@gherzan.ro>
-	<20160421174319.GQ1588@resin>
-	<CAJjOg+G2Xyp96wE_yyr=XamnwpSdnn5Ywk4GoP0B8P-pFXOGrA@mail.gmail.com>
-	<CAJjOg+EqA-Cbi+Sv+q5j64RxXt3UMwD+y8PUoOYU7A9FKrQp9g@mail.gmail.com>
+	*  0.5 MISSING_MID Missing Message-Id: header
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
+	[217.70.183.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61325E00948
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 10:55:36 -0700 (PDT)
+Received: from mfilter14-d.gandi.net (mfilter14-d.gandi.net [217.70.178.142])
+	by relay6-d.mail.gandi.net (Postfix) with ESMTP id F13DBFB8A9;
+	Thu, 21 Apr 2016 19:55:35 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mfilter14-d.gandi.net
+Received: from relay6-d.mail.gandi.net ([IPv6:::ffff:217.70.183.198])
+	by mfilter14-d.gandi.net (mfilter14-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id AJ__1qyLy_S7; Thu, 21 Apr 2016 19:55:33 +0200 (CEST)
+X-Originating-IP: 80.215.202.149
+Received: from [100.80.65.96] (unknown [80.215.202.149])
+	(Authenticated sender: contact@jgueytat.fr)
+	by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 8CE86FB886;
+	Thu, 21 Apr 2016 19:55:31 +0200 (CEST)
+Date: Thu, 21 Apr 2016 19:55:27 +0200
+From: Julien Gueytat <contact@jgueytat.fr>
+To: Andrei Gherzan <andrei@gherzan.ro>
 MIME-Version: 1.0
-In-Reply-To: <CAJjOg+EqA-Cbi+Sv+q5j64RxXt3UMwD+y8PUoOYU7A9FKrQp9g@mail.gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 3/5] rpi-config: Add UART enabler
+Message-Id: <20160421175538.C420EE00CEA@yocto-www.yoctoproject.org>
+Cc: yocto@yoctoproject.org, otavio@ossystems.com.br
+Subject: Re: [meta-qt5][meta-raspberrypi]: Qt5 with EGL support for the Raspberry through linux-oe-g++
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,51 +47,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2016 17:52:53 -0000
-X-Groupsio-MsgNum: 29559
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="//h4sZKAxcnndsN6"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 21 Apr 2016 17:55:38 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
---//h4sZKAxcnndsN6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+VGhhbmtzIGZvciB0aGUgbGluay4KSSBhbHJlYWR5IGhhdmUgZm91bmQgbXkgaGFjayBwYXRjaC4g
+OykKSSdsbCB0YWtlIHNvbWUgdGltZSB0byBjaGVjayB0aGUgRUdMIHRlc3QgZGVkaWNhdGVkIHRv
+IHRoZSBSYXNwYmVycnkgaW4gUXQuIEkgZGlkIG5vdCBjaGVjayB0aGlzIG9uZSB5ZXQuCgpSZWdh
+cmRzLAoKU2VudCBmcm9tIG15IFdJS08gUkFJTkJPVyBMSVRFIDRHTGUgMjEgYXZyLiAyMDE2IDc6
+MTAgUE0sIEFuZHJlaSBHaGVyemFuIGEgw6ljcml0IDogPiA+IEhpIEp1bGllbiwgPiA+IE9uIFRo
+dSwgQXByIDIxLCAyMDE2IGF0IDEwOjE1OjIzQU0gKzAyMDAsIEp1bGllbiBHdWV5dGF0IHdyb3Rl
+OiA+ID4gSnVzdCB0byBrZWVwIHlvdSBpbmZvcm1lZCB0aGF0IGEgYnVnIHJlcG9ydCBoYXMgYmVl
+biBvcGVuZWQgdG8gUXQ6ID4gPiBodHRwczovL2J1Z3JlcG9ydHMucXQuaW8vYnJvd3NlL1FUQlVH
+LTUyNzM5ID4gPiA+ID4gV2UgbWlnaHQgc2F2ZSBzb21lIHBhdGNoZXMgaW4gbGF5ZXJzIGJ5IHNv
+bHZpbmcgdGhpcywgPiA+IFRoYW5rcyBmb3IgaGVscGluZywgPiA+ID4gPiBHcmVhdCBKdWxpZW4u
+IEhlcmUgaXMgYSBoaW50IC0gd291bGQgdGhpcyBoZWxwIHlvdXIgcHJvYmxlbT8gPiBodHRwczov
+L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTYtRmVicnVhcnkvMDI4
+Mjc3Lmh0bWwgPiA+ID4gTGUgMjAvMDQvMjAxNiAwMTo0NiwgSnVsaWVuIEd1ZXl0YXQgYSDDqWNy
+aXQgOiA+ID4gPiBIaSBhZ2FpbiBndXlzLCA+ID4gPiA+ID4gPiBhZnRlciBtb3JlIGludmVzdGln
+YXRpb25zOiA+ID4gPiA+ID4gPiBJIGZvdW5kIG91dCB0aGF0IHRoZSBkZWZhdWx0IHZhbHVlIC1s
+RUdMIGNvbWVzIGZyb20gPiA+ID4gLi9ta3NwZWNzL2NvbW1vbi9saW51eC5jb25mIHdoaWNoIGlz
+IGluY2x1ZGVkIGluID4gPiA+IC4vbWtzcGVjcy9saW51eC1vZS1nKysvcW1ha2UuY29uZiA+ID4g
+PiA+ID4gPiBsaW51eC1vZS1nKysgYmVpbmcgdGhlIG9ubHkgZ2VuZXJpYyBta3NwZWNzIHRoYXQg
+c2hvdWxkIGJlIHVzZWQgaW4gWW9jdG8gPiA+ID4gPiA+ID4gU28hIEF0IHRoZSB0aW1lIHRoZSBj
+b25maWd1cmF0aW9uIGVudGVycyBlZ2wucHJvIHRoZSBjb250ZW50IG9mIHRoZSA+ID4gPiB2YXJp
+YWJsZXMgTElCUyBhbmQgUU1BS0VfRUdMX0xJQlMgYXJlIHN0aWxsIGEgYml0IHdlaXJkIGZvciBt
+ZSA6ID4gPiA+ID4gPiA+IDEtIExJQlMgYWxyZWFkeSBoYXMgdGhlIGNvbnRlbnQgb2YgdGhlIFFN
+QUtFX0VHTF9MSUJTIGNvbnRlbnQgZnJvbSB0aGUgPiA+ID4gcmVzdWx0IG9mIHRoZSBwa2ctY29u
+ZmlnIGNvbW1hbmQuID4gPiA+IDItIFFNQUtFX0VHTF9MSUJTIGhhcyB0aGUgY29udGVudCBvZiB0
+aGUgZGVmYXVsdCB2YWx1ZSBmb3VuZCBpbiA+ID4gPiAuL21rc3BlY3MvY29tbW9uL2xpbnV4LmNv
+bmYgPiA+ID4gPiA+ID4gVGhlcmUgYXJlIHR3byBvcHRpb25zIHRvIGhhdmUgaXQgcHJvcGVybHkg
+d29ya2luZzogPiA+ID4gLSBGaXJzdCBhbmQgZWFzeSBvcHRpb24gOiByZW1vdmUgdGhlIFFNQUtF
+X0VHTF9MSUJTIGRlZmF1bHQgdmFyaWFibGUgaW4gPiA+ID4gLi9ta3NwZWNzL2xpbnV4LW9lLWcr
+Ky9xbWFrZS5jb25mIHNpbmNlIHRoZSBnb29kIGxpYnMgc2VlbXMgdG8gYWxyZWFkeSA+ID4gPiBi
+ZWVuIHByZXNlbnQgaW4gdGhlIExJQlMgdmFyaWFibGUuID4gPiA+IC0gU2Vjb25kIG9wdGlvbiA6
+IHVuZGVyc3RhbmQgd2h5IHRoZSBMSUJTIHZhcmlhYmxlIGlzIGFscmVhZHkgcHJvcGVybHkgPiA+
+ID4gc2V0IGFuZCB3aHkgdGhlIFFNQUtFX0VHTF9MSUJTIHByb3Blcmx5IGNvbXB1dGVkIGluIHRo
+ZSBjb25maWd1cmUgYW5kID4gPiA+IHByZXNlbnQgLnFtYWtlLnZhcnMgaXMgbm90IHVzZWQuIChJ
+IHdvdWxkIHNheSB0aGF0IHRoZSBkZXZpY2Ugc3BlYyA+ID4gPiBvdmVycmlkZXMgdGhlIG9uZSBm
+cm9tIHFtYWtlIHNwZWMuLi4gSSBkaWQgbm90IGRpZyBmdXJ0aGVyIHlldC4pID4gPiA+ID4gPiA+
+IEFueXdheSBJJ20gcHJldHR5IHN1cmUgdGhlIHRyb3VibGUgY29tZXMgZnJvbSBtZXRhLXF0NSBz
+aWRlIG5vdy4gSSdtID4gPiA+IHByZXR0eSBzdXJlIG1ldGEtcmFzcGJlcnJ5cGkgbWFpbnRhaW5l
+cnMgY2FuIGNvbmZpcm0gdGhhdCB0aGVpciBtYXN0ZXIgPiA+ID4gYnJhbmNoIGhhbmRsZXMgcGtn
+LWNvbmZpZyBzdHVmZiBub3cuID4gPiA+ID4gPiA+IFRoYW5rcyBhZHZhbmNlIGZvciBoYXZpbmcg
+YSBsb29rIG9uIHRoaXMgZ3V5cywgPiA+ID4gQmVzdCBSZWdhcmRzID4gPiA+ID4gPiA+ID4gPiA+
+IExlIDE5LzA0LzIwMTYgMTA6NDYsIEp1bGllbiBHdWV5dGF0IGEgw6ljcml0IDogPiA+ID4gPiBI
+aSwgPiA+ID4gPiA+ID4gPiA+IEkgc3RpbGwgY2FuJ3QgZmlndXJlIG91dCB0aGUgcGF0Y2ggdG8g
+YXBwbHkgaW4gbWV0YS1xdDUgdG8gZ2V0IEVHTCA+ID4gPiA+IHN1cHBvcnQgd2l0aCB0aGUgUmFz
+cGJlcnJ5LiA+ID4gPiA+ID4gPiA+ID4gVGhlIHRlc3QgdG8gY2hlY2sgRUdMIGRvZXMgbm90IHBh
+c3MgYW5kIGZhaWxzIHdpdGggdGhlIGZvbGxvd2luZyBjb21tYW5kOiA+ID4gPiA+ID4gPiA+ID4g
+YXJtLXBva3ktbGludXgtZ251ZWFiaS1nKyvCoCAtbWFyY2g9YXJtdjctYSAtbWFybSAtbXRodW1i
+LWludGVyd29yayA+ID4gPiA+IC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9bmVvbi12ZnB2NCAtbXR1
+bmU9Y29ydGV4LWE3IC0tc3lzcm9vdD0vaG9tZS9qZ3VleXRhdC9wcm9qZWN0cy9MaWdodFBpeGVs
+cy9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9saWdodHBpeGVscyA+ID4gPiA+IC1XbCwtTzEgLVds
+LC0taGFzaC1zdHlsZT1nbnUgLVdsLC0tYXMtbmVlZGVkIC1XbCwtTzEgLW8gZWdsIGVnbC5vID4g
+PiA+ID4gLWxHTEVTdjIgLWxiY21faG9zdCAtbHZjaG9zdGlmIC1sdmNvcyAtbHZjaGlxX2FybSAt
+cHRocmVhZCAtbEVHTCA+ID4gPiA+ID4gPiA+ID4gPiA+ID4gPiBIZXJlIGlzIHRoZSBjb250ZW50
+IG9mIHRoZSBmaWxlIGVnbC5wcm86ID4gPiA+ID4gPiA+ID4gPiAkIGNhdCBlZ2wucHJvID4gPiA+
+ID4gU09VUkNFUyA9IGVnbC5jcHAgPiA+ID4gPiA+ID4gPiA+IGZvcihwLCBRTUFLRV9MSUJESVJf
+RUdMKSB7ID4gPiA+ID7CoMKgwqDCoCBleGlzdHMoJCRwKTpMSUJTICs9IC1MJCRwID4gPiA+ID4g
+fSA+ID4gPiA+ID4gPiA+ID4gbWVzc2FnZSgiSW4gZWdsLnBybyAtIDE6IFFNQUtFX0xJQlNfRUdM
+ID0gJCRRTUFLRV9MSUJTX0VHTCIpID4gPiA+ID4gbWVzc2FnZSgiSW4gZWdsLnBybyAtIDE6IExJ
+QlMgPSAkJExJQlMiKSA+ID4gPiA+ID4gPiA+ID4gIWlzRW1wdHkoUU1BS0VfSU5DRElSX0VHTCk6
+IElOQ0xVREVQQVRIICs9ICQkUU1BS0VfSU5DRElSX0VHTCA+ID4gPiA+ICFpc0VtcHR5KFFNQUtF
+X0xJQlNfRUdMKTogTElCUyArPSAkJFFNQUtFX0xJQlNfRUdMID4gPiA+ID4gPiA+ID4gPiBtZXNz
+YWdlKCJJbiBlZ2wucHJvIC0gMjogUU1BS0VfTElCU19FR0wgPSAkJFFNQUtFX0xJQlNfRUdMIikg
+PiA+ID4gPiBtZXNzYWdlKCJJbiBlZ2wucHJvIC0gMjogTElCUyA9ICQkTElCUyIpID4gPiA+ID4g
+PiA+ID4gPiBDT05GSUcgLT0gcXQgPiA+ID4gPiA+ID4gPiA+IEluIHRoZSBtYWluIC4vY29uZmln
+dXJlIGZpbGUgb2YgcXRiYXNlOiA+ID4gPiA+ID4gPiA+ID4gfCBJbiBjb25maWd1cmUgIzE6IFFN
+QUtFX0xJQlNfRUdMID0gPiA+ID4gPiB8IEluIGNvbmZpZ3VyZSAjMjogUU1BS0VfTElCU19FR0wg
+PSAtbEVHTCAtbEdMRVN2MiAtbGJjbV9ob3N0ID4gPiA+ID4gLWx2Y2hvc3RpZiAtbGJjbV9ob3N0
+IC1sdmNvcyAtbHZjaGlxX2FybSAtcHRocmVhZCA+ID4gPiA+ID4gPiA+ID4gVGhlIHZhcmlhYmxl
+IFFNQUtFX0xJQlNfRUdMIGlzIHNldCBwcm9wZXJseS4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
+SW4gdGhlIC4vY29uZmlnLnRlc3RzL3FwYS9lZ2wvZWdsLnBybyBmaWxlOiA+ID4gPiA+ID4gPiA+
+ID4gfCBQcm9qZWN0IE1FU1NBR0U6IEluIGVnbC5wcm8gLSAxOiBRTUFLRV9MSUJTX0VHTCA9IC1s
+RUdMID4gPiA+ID4gfCBQcm9qZWN0IE1FU1NBR0U6IEluIGVnbC5wcm8gLSAxOiBMSUJTID0gLWxF
+R0wgLWxHTEVTdjIgLWxiY21faG9zdCA+ID4gPiA+IC1sdmNob3N0aWYgLWx2Y29zIC1sdmNoaXFf
+YXJtIC1wdGhyZWFkID4gPiA+ID4gfCBQcm9qZWN0IE1FU1NBR0U6IEluIGVnbC5wcm8gLSAyOiBR
+TUFLRV9MSUJTX0VHTCA9IC1sRUdMID4gPiA+ID4gfCBQcm9qZWN0IE1FU1NBR0U6IEluIGVnbC5w
+cm8gLSAyOiBMSUJTID0gLWxFR0wgLWxHTEVTdjIgLWxiY21faG9zdCA+ID4gPiA+IC1sdmNob3N0
+aWYgLWx2Y29zIC1sdmNoaXFfYXJtIC1wdGhyZWFkIC1sRUdMID4gPiA+ID4gPiA+ID4gPiA+ID4g
+PiA+ICpXaGF0IEkgc2VlIGlzIHRoYXQ6KiA+ID4gPiA+IEluIHRoZSBjb25maWd1cmUgZmlsZSB0
+aGUgdmFyaWFibGUgUU1BS0VfTElCU19FR0wgaXMgcHJvcGVybHkgc2V0ID4gPiA+ID4gdGhyb3Vn
+aCBwa2ctY29uZmlnLiA+ID4gPiA+IEluIHRoZSBlZ2wucHJvIGZpbGUuLi4gVGhlIHZhcmlhYmxl
+IExJQlMgZ2V0cyB0aGUgY29udGVudCBvZiA+ID4gPiA+IFFNQUtFX0xJQlNfRUdMIGFuZCB0aGUg
+dmFyaWFibGUgUU1BS0VfTElCU19FR0wgZ2V0cyBiYWNrIHRvIGl0cyA+ID4gPiA+IGRlZmF1bHQg
+LWxFR0wuID4gPiA+ID4gPiA+ID4gPiBJbiB0aGUgZW5kIHdpdGggaGF2ZSAtbEdMRVN2MiBiZWZv
+cmUgLWxFR0wgYW5kIHRoaXMgZG9lcyBub3QgbGluay4gPiA+ID4gPiA+ID4gPiA+IEkgY2hlY2tl
+ZCBhbHNvIHRoZSBjb250ZW50IG9mIC5xbWFrZS52YXJzOiA+ID4gPiA+IGdyZXAgUU1BS0VfTElC
+U19FR0wgLnFtYWtlLnZhcnMgPiA+ID4gPiBRTUFLRV9MSUJTX0VHTCA9IC1sRUdMIC1sR0xFU3Yy
+IC1sYmNtX2hvc3QgLWx2Y2hvc3RpZiAtbGJjbV9ob3N0ID4gPiA+ID4gLWx2Y29zIC1sdmNoaXFf
+YXJtIC1wdGhyZWFkID4gPiA+ID4gPiA+ID4gPiA+ID4gPiA+IFRoZSBjb21tYW5kIFFNYWtlVmFy
+IHNldCBRTUFLRV9MSUJTX0VHTCAiJFFNQUtFX0xJQlNfRUdMIiBzZWVtcyB0byA+ID4gPiA+IGhh
+dmUgaGlzIGpvYiBkb25lIHRvbyBsYXRlLi4uID4gPiA+ID4gPiA+ID4gPiBJZiBzb21lb25lIGhh
+cyBhbiBpZGVhIHRvIGdldCB0aGUgcHJvcGVyIGNvcnJlY3Rpb24gZG9uZS4uLiA+ID4gPiA+ID4g
+PiA+ID4gQmVzdCBSZWdhcmRzLCA+ID4gPiA+IEp1bGllbiA+ID4gPiA+ID4gPiA+ID4gPiA+ID4g
+PiA+ID4gPiA+ID4gPiA+ID4gLS0gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fID4gPiB5b2N0byBtYWlsaW5nIGxpc3QgPiA+IHlvY3RvQHlvY3RvcHJv
+amVjdC5vcmcgPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0
+byA+ID4gPiAtLSA+IEFuZHJlaSBHaGVyemFu
 
-On Thu, Apr 21, 2016 at 06:47:29PM +0100, Theodor Gherzan wrote:
-> A new config.txt setting has been introduced - enable_uart - the
-> purpose of which is to control the initialisation of the UART(*). The
-> default value varies according to the primary UART on the platform -
-> if the PL011 is the primary UART (that used for the console and boot
-> messages) then enable_uart defaults to 1, and if the mini-UART is the
-> primary then it defaults to 0.
->
 
-Got it now. So people with rpi3 will need to set this to get serial
-enabled but rpi1-2 will get it by default. Can you please add a summary
-in README too?
-
---
-Andrei Gherzan
-
---//h4sZKAxcnndsN6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJXGRNsAAoJEHO76Gt+erfPZL4P/2CgsZ7Fn6VLwJit8rbQCrZ7
-k2V0Re2QsC0cubQc0mqEj7kRwFEyuGL5GD3lkgkRQF1ZgI9O+nMtFmdOnjgYZmSp
-/05jzYhcOnMEYSfp33HQkRfVzPWl8bkRlHMgL3Ydw4ciCDVNU+ee5UEFvBjw3lp/
-Mf/1rKtP/9QWE2tPbZvdRoXSv39CxdpC7AYQL8PlG09VynMU57qrAlgnWFQWfe8p
-mPlAyYb33T6BrzTX1auDJT5tyi4uhbLqeC6MaCxsgx41zcxlOfGjUoVpE8LMh8hX
-QTV8u/X8cIO7XCslQHOrzLsU/ixgQnmjXHLMvAsVQgbqfJwHheitD+daoFmk+3RU
-oHoWG/oXZNDlnI8nreo8dX0MFRYXcrvPvvKiJLHP4zk1ZQoD3XW+CmWVeBHf+K63
-cTa4hfyRZN9Y5Gq9qESQdlG3y++fTIvxlb4diZgiNElOROftP0tTj+ujcF/gqu9U
-zoaRxht1xdEaF+nBNVzuywDXCri5QjtiRWi4VTBGJt9dnWWqaVsIwBuLNlSJaPKq
-RGZRM+DmCyR2Ei8GyPQfbvPHgn3XMPatm3TbzavhHRvy92ym/m5Yijc8pK7aP2Vt
-Vfnpgm0Ceb1B2sreaIvt9Wim27EC09gpvrTJq9zsL3yRRJLhG5gc8EZzo8aVhhSq
-5kQTStFd5YfdXWt5UO/b
-=IVlD
------END PGP SIGNATURE-----
-
---//h4sZKAxcnndsN6--
