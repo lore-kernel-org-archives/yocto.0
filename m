@@ -1,6 +1,6 @@
 Return-Path: <theodor@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF56EE00E0E; Thu, 21 Apr 2016 12:31:20 -0700 (PDT)
+	id 40D2EE00E00; Thu, 21 Apr 2016 12:31:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,44 +15,47 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514D3E00AAF
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:31:17 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id l6so24012750wml.3
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:31:17 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAE38E00DBA
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:31:20 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id n3so24115424wmn.1
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:31:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=2oT8tD/M0UpimaqRoqLFgd/21mRG/1UWq8J3ziwmmdM=;
-	b=suHHBb7xjWCzxeKi4hAVAWnbBqU7z3pYPlRgPCMkHii6kjVl/Dq/9GiDjLaWcmFUdx
-	L5dAhUM5pxqysGucISqhyBKdX0GDPD0JCE17my5BFPFFg2HGUWy4zZMBgu8zFUHXL9gA
-	mEm+DXZJ3+wtYu3BAu8hK4DTUMK+KzvvJSKRXnUFqRasQpoA/FUT7yqwdlegR7K9ZNrv
-	9VBhmyALd3FvR9hyJiajF7Wqopgo3h/zZngVjnGjA6l3JWRkF1gUBijeOSWxxNTGuc90
-	lTBMwVyQFjPBEb+kJUeLZ33X/OPTuiCuYEm0uvard5kKZRbImFlP1ra5/XzXTn72gJUJ
-	5jrA==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
+	b=tcklOziTI+pta9PCMoDQDzi23mv7dnvRsEaRl0yYh7yHc2QVuxHyAch19oxW2bJOto
+	7fisYzwbev+RdYz/aaaRfjTkX6lo6RXkGKGvRzO7NkT5aHJfM5zkcOlhJmnVANsbbdOd
+	sCM9S7xSv+f+vUI8JH2wQunPQh0KaGTA0u9030tPVBlMVsJ1L2gR86s049pkxkpDnQ1U
+	S7C4vRfmHylMV/Y6QYulN7km41KxDYHJ9dFqXi3HDXPNP02y6RRzk4+wB6H9pwybQdOe
+	kXLdFdBA228dDMhSWKPC1bNXdTTuCugeQIGxJBRF1o2kw+HcVCUoQ7vHcECQRZk/8jhr
+	YaJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=2oT8tD/M0UpimaqRoqLFgd/21mRG/1UWq8J3ziwmmdM=;
-	b=ioLUW+qtKBfIoQb8/1JsF1r1r6voIMiW2yWiuOhW30EU/L0wlr7fe4nsE3M1AfwfUi
-	8/gGzVk0lFTxZ+tNlxBIvv+7BcAxV9kJxNSPDEMXh8DLx6RNMR6LA5BDLygnJf2lC6Mu
-	Nc7WtAU1iWsFE3ExFXWH6jqeaynrzSa0ahnxHlhU0v73D7QMXl+WWuPKuQzRs3advjB8
-	Q/e/fjM7oJONak/RbTuNvSP5T6S8vtKPgYDmp2fxCBrlikmUTYryojAo+E47xVPG0gRZ
-	vMyC3jrgsva9ZFUJKROP5YMXc6cXt9EfzIuch+sjQRT9ykz8Pi+j6drU60ulbQfPk5ba
-	KxEQ==
-X-Gm-Message-State: AOPr4FVDCu+gPl/7LYSygsNaHgPJhiEUxttMbp4Er2zGjynunUOKLvxGLUi2PHpol88OZg==
-X-Received: by 10.194.192.36 with SMTP id hd4mr15491190wjc.85.1461267076596;
-	Thu, 21 Apr 2016 12:31:16 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
+	b=VCTQIq42LGGpZJe2T0HxqR27GoNaIU833coJtch+8cd1GLySCEA7wnn8yvmUmlGK1T
+	3uB1I5+ZoBPuk0dMiHl8aEr3MM2Ayo/jY+qNP881v4Ye5klu+eX4RYLT/ch0rXWI0/rY
+	FNfvviv+BG4jrp2cs/o4XrNdJW2QVvIzbkfTrgMM3FGu20h3Jw6QZltyzq3LiCx8Zx+4
+	uiGEMInFmK6qx/VNUDficaF5oDBXnWtmyqDmo2jwWHmmMe26zsuLUExW2HAgo6PLMgbl
+	qyC4pID19JD0OHzqT4d67LcPuCzKrOtKBg1PgI4vGQUoVHkEPSHhw/Av5wYRPEofVmrS
+	3phg==
+X-Gm-Message-State: AOPr4FVxy4kl0YLPpuTqEfr8vZW7yOVFKST5HjAhtiFAWu/z8ljHMEva/V+heO4vvmqIBg==
+X-Received: by 10.28.165.216 with SMTP id o207mr6611314wme.31.1461267080064;
+	Thu, 21 Apr 2016 12:31:20 -0700 (PDT)
 Received: from Theodors-MBP.home
 	(host81-159-212-160.range81-159.btcentralplus.com. [81.159.212.160])
-	by smtp.gmail.com with ESMTPSA id m14sm4744524wmc.4.2016.04.21.12.31.15
+	by smtp.gmail.com with ESMTPSA id m14sm4744524wmc.4.2016.04.21.12.31.18
 	(version=TLS1 cipher=AES128-SHA bits=128/128);
-	Thu, 21 Apr 2016 12:31:15 -0700 (PDT)
+	Thu, 21 Apr 2016 12:31:19 -0700 (PDT)
 From: Theodor Gherzan <theodor@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Apr 2016 20:31:06 +0100
-Message-Id: <1461267069-9448-1-git-send-email-theodor@gherzan.ro>
+Date: Thu, 21 Apr 2016 20:31:09 +0100
+Message-Id: <1461267069-9448-4-git-send-email-theodor@gherzan.ro>
 X-Mailer: git-send-email 2.6.4 (Apple Git-63)
-Subject: [meta-raspberrypi][PATCH 1/4] firmware.inc: Update firmware to include various serial fixes
+In-Reply-To: <1461267069-9448-1-git-send-email-theodor@gherzan.ro>
+References: <1461267069-9448-1-git-send-email-theodor@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH 4/4] README: Document new variable configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,28 +67,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2016 19:31:20 -0000
+X-List-Received-Date: Thu, 21 Apr 2016 19:31:21 -0000
 
 From: Theodor Gherzan <theodor@resin.io>
 
 Signed-off-by: Theodor Gherzan <theodor@resin.io>
 ---
- recipes-bsp/common/firmware.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ README | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-index c1117d6..abc7d06 100644
---- a/recipes-bsp/common/firmware.inc
-+++ b/recipes-bsp/common/firmware.inc
-@@ -1,5 +1,5 @@
--RPIFW_SRCREV ?= "046effa13ebc4cc7601df4f06f4834bd0eebb0f8"
--RPIFW_DATE ?= "20160326"
-+RPIFW_SRCREV ?= "c5e131971c323f5658c7c5d4b1dd105d37903a99"
-+RPIFW_DATE ?= "20160303"
- RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
- RPIFW_S ?= "${WORKDIR}/git"
-
---
+diff --git a/README b/README
+index ec9f905..ee330df 100644
+--- a/README
++++ b/README
+@@ -29,6 +29,7 @@ Contents:
+     3.L. Enable SPI bus
+     3.M. Enable I2C
+     3.N. Enable PiTFT support
++    3.O. Enable UART support
+ 4. Extra apps
+     4.A. omxplayer
+ 5. Board Configuration
+@@ -238,6 +239,12 @@ List of currently supported models:
+     - pitft22
+     - pitft28r
+ 
++3.O. Enable UART
++===============
++Set this variable to enable UART on raspberypi3:
++ENABLE_UART = "1"
++
++Note: The value of enable_uart would be set to 1 by default on raspberrypi 1/2.
+ 
+ 4. Extra apps
+ =============
+-- 
 2.1.4
 
 
