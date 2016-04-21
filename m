@@ -1,6 +1,6 @@
 Return-Path: <theodor@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12612E00E34; Thu, 21 Apr 2016 12:42:51 -0700 (PDT)
+	id 4B0AAE00E30; Thu, 21 Apr 2016 12:42:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,48 +15,48 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C468DE00E22
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id r12so12156183wme.0
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0EC0E00AAF
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:50 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id n3so24188416wmn.1
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=oJb3NcTa4f4tOGnjbbPFrOWgCf7EzDNk0f9VrXB/pJA=;
-	b=1FchNpQZaFmfu37MS9BKrWO5am5xj63Uw4O3qDdSXr3uckZEFFnVfNTEWyFY+Gm/rk
-	mDrjmECAKVkTN/vkNojV1WAvmCHmthxbt45Et1Y0W22dUunTvVCoG1NDtCT8PSBUEq8e
-	ZeZg7DnXNkqLKGfpspFzJzDHT4TkkqiEEVZisfNBiN37e1KuTd4GOy2vz4QW3SViv8wl
-	oeTbzsoJQd14kAkYx8S2KiPUhgrXONJki81DsC3uZfdaT18g9H2s+7593nYylhHhPoS+
-	o3Y6BZDQGZHAPcAdm5nAW7kxYnIa9e+VRB1F2VS++yGUkC8u3GTCVG+pC32DINqiMvPt
-	mnQg==
+	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
+	b=WeVZ3Avstp0/nO7+JU7uVx0KV8ie2EpR0qnliAKWtfWSe+0LNspIHWAs2Ziwuc09jB
+	wIKRefGkXuftiGrhCsu8I+qE/Gffhn7VrILXm9fzhPyuCpr3UFKsaA+m34TGdVvVGmuP
+	7coSWdj9lgFbhnqpTEG+bLVuughU2fw3WkLd11KdDcVzWeTeoxwjnvLEfauuCYLc1+oD
+	m2pk4A43C0tL5PlraG2342yt1zOKp9eoMsCi39BGMg9w3l7Cw6Z2dVEeu+7DdK+h1GZi
+	VCmBBihY4nurZPfiFykrX0+B8VxHkIaOf0rp2qDR0S46xanGWPrWyvIJJw5DxRMxbywR
+	Ti0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=oJb3NcTa4f4tOGnjbbPFrOWgCf7EzDNk0f9VrXB/pJA=;
-	b=fKM58zKL+msDyD64h7qXbL/gKQDn5AClXjO486syfEPIVhA4qBwMuoy9+K+VBYwakR
-	gM+gN42DnK0ScQk2P5xeNQRaIM3hRPS/TaOMPBYdWo48smhlhqjH6cphg5GjcKCU31FQ
-	TqceIahn36qIrm2bFVE8wSlTtxSRDCqEUTmKedD7vsggVc6dSGX1CzEwspyFrVeWhbam
-	evsOnbMwnxBUX2pZEkwP1/AilMr0UWcYUR7qE6HlIQ8Nx6XyqBP0rmZQdlaopQsu8Rah
-	zsGYo7apO9v0/fWp1DVZfzgSbSxs1FXQQUW2LGIIhmV6ItU51pvCDL2uz3vGo51raXtV
-	Zg+w==
-X-Gm-Message-State: AOPr4FUEfP2O7FXLccpiEkTPDMl68zgXJArPa7iOMEiB18fBhpbuTrr8GEAwbTCglGP2/Q==
-X-Received: by 10.28.18.10 with SMTP id 10mr40227912wms.0.1461267768827;
-	Thu, 21 Apr 2016 12:42:48 -0700 (PDT)
+	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
+	b=au0o1DnxeiSFhqgIJbe9hfMarQatXv/9T+QtCQjG3xgUpn7nAcFSAfgv2iB6IPUq3w
+	JSPbXNIy0znf6Ffrgcb4RbEB4oGuWPFsU+2g8fqbfw8f1qz83GaDbwXoSHVdETHbZTkD
+	/TfJUxVpsOBaV1eZ0c5Et1UeRhliM6TFxx2ODAjVQNWZv0LNpJ97eLK5sL+nMpvHyl/m
+	GTCmp/EzL0M6WzmfRr4HMoef81F4yqJYWMXP2I7rxcqrO7IonJBSRxShtU6pBfVfT6r8
+	lNAaIZyqpWcPb4/vPBJQHAdF9fQ4mOFNyRuCBP/ZhnVqwig4BJWonSPoBP8DGXFec8yx
+	rWIw==
+X-Gm-Message-State: AOPr4FVKUbwkMQOwbtA9LxfRlFWhIo2L6sxvIQoaQOdPyLaUTJcJaIU9rk5IOxtcTgqmrg==
+X-Received: by 10.194.179.168 with SMTP id dh8mr18681478wjc.130.1461267769952; 
+	Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
 Received: from Theodors-MBP.home
 	(host81-159-212-160.range81-159.btcentralplus.com. [81.159.212.160])
 	by smtp.gmail.com with ESMTPSA id
-	u79sm16375815wmu.8.2016.04.21.12.42.47
+	u79sm16375815wmu.8.2016.04.21.12.42.48
 	(version=TLS1 cipher=AES128-SHA bits=128/128);
-	Thu, 21 Apr 2016 12:42:47 -0700 (PDT)
+	Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
 From: Theodor Gherzan <theodor@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Apr 2016 20:42:38 +0100
-Message-Id: <1461267759-10268-3-git-send-email-theodor@gherzan.ro>
+Date: Thu, 21 Apr 2016 20:42:39 +0100
+Message-Id: <1461267759-10268-4-git-send-email-theodor@gherzan.ro>
 X-Mailer: git-send-email 2.6.4 (Apple Git-63)
 In-Reply-To: <1461267759-10268-1-git-send-email-theodor@gherzan.ro>
 References: <1461267759-10268-1-git-send-email-theodor@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 3/4] linux-raspberrypi: Make use of serial aliases
+Subject: [meta-raspberrypi][PATCH 4/4] README: Document new variable configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,27 +72,36 @@ X-List-Received-Date: Thu, 21 Apr 2016 19:42:51 -0000
 
 From: Theodor Gherzan <theodor@resin.io>
 
-The firmware will parse cmdline and replace serial aliases with the
-actual serial console port.
-
 Signed-off-by: Theodor Gherzan <theodor@resin.io>
 ---
- recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ README | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index f8e0c92..eccbbc6 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -20,7 +20,7 @@ KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
- KERNEL_DEFCONFIG_raspberrypi2 ?= "bcm2709_defconfig"
+diff --git a/README b/README
+index ec9f905..ee330df 100644
+--- a/README
++++ b/README
+@@ -29,6 +29,7 @@ Contents:
+     3.L. Enable SPI bus
+     3.M. Enable I2C
+     3.N. Enable PiTFT support
++    3.O. Enable UART support
+ 4. Extra apps
+     4.A. omxplayer
+ 5. Board Configuration
+@@ -238,6 +239,12 @@ List of currently supported models:
+     - pitft22
+     - pitft28r
  
- # CMDLINE for raspberrypi
--CMDLINE = "dwc_otg.lpm_enable=0 console=ttyAMA0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait"
-+CMDLINE = "dwc_otg.lpm_enable=0 console=serial0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait"
++3.O. Enable UART
++===============
++Set this variable to enable UART on raspberypi3:
++ENABLE_UART = "1"
++
++Note: The value of enable_uart would be set to 1 by default on raspberrypi 1/2.
  
- # Add the kernel debugger over console kernel command line option if enabled
- CMDLINE_append = ' ${@base_conditional("ENABLE_KGDB", "1", "kgdboc=ttyAMA0,115200", "", d)}'
+ 4. Extra apps
+ =============
 -- 
 2.1.4
 
