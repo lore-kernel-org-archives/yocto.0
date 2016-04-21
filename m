@@ -1,59 +1,31 @@
-Return-Path: <piotr.lewicki@elfin.de>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F351E00948; Wed, 20 Apr 2016 06:12:45 -0700 (PDT)
+	id 062E1E00DA3; Thu, 21 Apr 2016 08:17:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 272EEE00522
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 06:12:41 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id v188so203012203wme.1
-	for <yocto@yoctoproject.org>; Wed, 20 Apr 2016 06:12:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=elfin-de.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=Z30E6ac5w9kij+gJd9cKHt9ORAjQ9YL/WxI9TfCKwoc=;
-	b=wc85WnIUN2b7LSVB6hfUDQcQHJ8ahRMXJSiFznY7zZ2CHdchF9XndctsMexl/JFyU2
-	lRxE4G1uWgcmY+BCyGfz4BlHnDrKpWSs19zHoczAbgejNeD5XmUBAnJCzuIgvC+P5wVp
-	6o6UrFC5kTzwC5OWo1rwtlqqYe5AgJCEFaW4lqVU1gLYAEGsLJNOEAs63kxEG3Ypws1j
-	ut5QQlv0+VPXdHHg0r3MutnTRTRwZPzLgJ1LIfzw2rK8zFWZL2cZAj4sgJS91yQsRpdr
-	UWaMJitgvVdSSmuLCF4Gvd6PGFfPy+qc52ga88zefQCFTtc1MIavKF8TfrLA4s1AaAMJ
-	ALMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=Z30E6ac5w9kij+gJd9cKHt9ORAjQ9YL/WxI9TfCKwoc=;
-	b=bsnIQcQBvIOgkHxMsls/MgnyhxiKm3cyKuSXOVSBDEyjA+P/QYBIZ3LKcvMmTzF67p
-	jA1sqOJUPkOsW3Yl73lDrJfky91/mF4ZYwr7j8W2HrPur+u5bBVCVwINHxZ3rI4KpRyA
-	fsYdRyfa7jtG5kVSCdhZIehD1rv+tCRXNpAyAILYg8CNbSZhURgjych7r8WQ36+a15Op
-	ng6g7fiZ9WeCF0lUNxx0tMZdZnVhucUwNRpY4AS1t4hTXwRXsAcXBso+UT+pJcp3vFbH
-	lygHj+fakK8EuNPl7KpzWRGnI6kMMvyB/LCHv/eeOPvJshz9uqhW5OwKvn49M6di7QxT
-	Q7dw==
-X-Gm-Message-State: AOPr4FVXeGrIBzVrgPQXZ3bjowyfrpNcJJNXLR61UGfHv7XbPaKO18Ey6mm6EtrNYlfLOw==
-X-Received: by 10.28.227.130 with SMTP id a124mr9794134wmh.2.1461157960327;
-	Wed, 20 Apr 2016 06:12:40 -0700 (PDT)
-Received: from localhost.localdomain (b2b-94-79-174-114.unitymedia.biz.
-	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
-	u192sm9610869wmd.11.2016.04.20.06.12.39
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 20 Apr 2016 06:12:39 -0700 (PDT)
-From: "piotr.lewicki" <piotr.lewicki@elfin.de>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 480 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Apr 2016 08:17:37 PDT
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AAE2E0077F
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 08:17:36 -0700 (PDT)
 To: yocto@yoctoproject.org
-Date: Wed, 20 Apr 2016 15:11:32 +0200
-Message-Id: <1461157892-9156-1-git-send-email-piotr.lewicki@elfin.de>
-X-Mailer: git-send-email 2.5.0
-X-Mailman-Approved-At: Thu, 21 Apr 2016 07:40:53 -0700
-Subject: [PATCH] replace libav with ffmpeg and add a patch fixing building omxplayer after 3645b27848edd0d873925f5fa2a7686f3ff9eeb9
+MIME-Version: 1.0
+X-KeepSent: 0C6F089D:524ED2DE-C1257F9C:0052415B;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF0C6F089D.524ED2DE-ONC1257F9C.0052415B-C1257F9C.00534696@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Thu, 21 Apr 2016 17:09:35 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 21.04.2016 17:17:37,
+	Serialize complete at 21.04.2016 17:17:37
+Subject: Binary Configuration Support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,57 +37,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Apr 2016 13:12:45 -0000
+X-List-Received-Date: Thu, 21 Apr 2016 15:17:39 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 00534695C1257F9C_="
 
----
- .../omxplayer/explicitly_link_with_vchostif_library.patch   | 13 +++++++++++++
- recipes-multimedia/omxplayer/omxplayer_git.bb               |  5 +++--
- 2 files changed, 16 insertions(+), 2 deletions(-)
- create mode 100644 recipes-multimedia/omxplayer/omxplayer/explicitly_link_with_vchostif_library.patch
+--=_alternative 00534695C1257F9C_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-multimedia/omxplayer/omxplayer/explicitly_link_with_vchostif_library.patch b/recipes-multimedia/omxplayer/omxplayer/explicitly_link_with_vchostif_library.patch
-new file mode 100644
-index 0000000..642f63a
---- /dev/null
-+++ b/recipes-multimedia/omxplayer/omxplayer/explicitly_link_with_vchostif_library.patch
-@@ -0,0 +1,13 @@
-+diff --git a/Makefile b/Makefile
-+index 80b63b1..bcfadfb 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -51,7 +51,7 @@ version:
-+ 	bash gen_version.sh > version.h 
-+ 
-+ omxplayer.bin: version $(OBJS)
-+-	$(CXX) $(LDFLAGS) -o omxplayer.bin $(OBJS) -lvchiq_arm -lvcos -ldbus-1 -lrt -lpthread -lavutil -lavcodec -lavformat -lswscale -lswresample -lpcre
-++	$(CXX) $(LDFLAGS) -o omxplayer.bin $(OBJS) -lvchiq_arm -lvchostif -lvcos -ldbus-1 -lrt -lpthread -lavutil -lavcodec -lavformat -lswscale -lswresample -lpcre
-+ 	$(STRIP) omxplayer.bin
-+ 
-+ help.h: README.md Makefile
-diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-index c8251fe..c2b1342 100644
---- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-+++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-@@ -7,8 +7,8 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
--DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh"
--PR = "r4"
-+DEPENDS = "libpcre ffmpeg virtual/egl boost freetype dbus openssl samba libssh"
-+PR = "r5"
- 
- SRCREV = "15a490b2397b358776c56b017a137c4716eb6b4e"
- SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
-@@ -19,6 +19,7 @@ SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master
-            file://fix-tar-command-with-DIST.patch \
-            file://use-native-pkg-config.patch \
-            file://don-t-preserve-file-attributes-when-cp.patch \
-+           file://explicitly_link_with_vchostif_library.patch \
-            "
- S = "${WORKDIR}/git"
- 
--- 
-2.5.0
+Hej,
+
+I read that there is a way to the binary configuration (
+https://wiki.yoctoproject.org/wiki/Binary=5Fconfiguration=5Fsupport). It is=
+=20
+described jow this internally works. But I am missing an example how to=20
+use it praticaly.
+
+My learning system is a SAMA5D3x Eval board from Atmel. For that I am=20
+using the meta-atmel layer to generate an kernel + rootfs. Now I want to=20
+configure the network to static IPs etc. For me the binary support seems=20
+designed for that.
+
+Can you explain me, how to use it?
+
+http://stackoverflow.com/questions/36764613/how-to-configurate-yocto-builds=
+-by-useing-the-binary-configuration
+
+Kind regards!
+
+Stefan Jaritz
 
 
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 00534695C1257F9C_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej,</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I read that there is a way to the bi=
+nary
+configuration (</font><a href=3Dhttps://wiki.yoctoproject.org/wiki/Binary=
+=5Fconfiguration=5Fsupport><font size=3D2 color=3Dblue face=3D"sans-serif">=
+https://wiki.yoctoproject.org/wiki/Binary=5Fconfiguration=5Fsupport</font><=
+/a><font size=3D2 face=3D"sans-serif">).
+It is described jow this internally works. But I am missing an example
+how to use it praticaly.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">My learning system is a SAMA5D3x Eval
+board from Atmel. For that I am using the meta-atmel layer to generate
+an kernel + rootfs. Now I want to configure the network to static IPs etc.
+For me the binary support seems designed for that.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Can you explain me, how to use it?</=
+font>
+<br>
+<br><a href=3D"http://stackoverflow.com/questions/36764613/how-to-configura=
+te-yocto-builds-by-useing-the-binary-configuration"><font size=3D2 color=3D=
+blue face=3D"sans-serif">http://stackoverflow.com/questions/36764613/how-to=
+-configurate-yocto-builds-by-useing-the-binary-configuration</font></a>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Kind regards!<br>
+<br>
+Stefan Jaritz<br>
+<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 00534695C1257F9C_=--
