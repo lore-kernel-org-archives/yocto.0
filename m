@@ -1,6 +1,6 @@
 Return-Path: <theodor@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B0AAE00E30; Thu, 21 Apr 2016 12:42:51 -0700 (PDT)
+	id 69267E00E22; Thu, 21 Apr 2016 12:42:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,55 +8,55 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0EC0E00AAF
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:50 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id n3so24188416wmn.1
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:50 -0700 (PDT)
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCC42E00D67
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:48 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id l6so24083282wml.3
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 12:42:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
-	b=WeVZ3Avstp0/nO7+JU7uVx0KV8ie2EpR0qnliAKWtfWSe+0LNspIHWAs2Ziwuc09jB
-	wIKRefGkXuftiGrhCsu8I+qE/Gffhn7VrILXm9fzhPyuCpr3UFKsaA+m34TGdVvVGmuP
-	7coSWdj9lgFbhnqpTEG+bLVuughU2fw3WkLd11KdDcVzWeTeoxwjnvLEfauuCYLc1+oD
-	m2pk4A43C0tL5PlraG2342yt1zOKp9eoMsCi39BGMg9w3l7Cw6Z2dVEeu+7DdK+h1GZi
-	VCmBBihY4nurZPfiFykrX0+B8VxHkIaOf0rp2qDR0S46xanGWPrWyvIJJw5DxRMxbywR
-	Ti0A==
+	bh=yGmnrZfFRPQBO2EaqyTZgEcwKsDl9+GCAO3InSvUx/s=;
+	b=Ku9YPqtFDLr61x50+zHG3zTSJBqT1WDmwIeT7Xoq04WPROIbJJJGn+1yxRzhTOv+Ax
+	eem+3VXsC1nJYyPLs4gEid7iDbJsbsDsqu1umqkfOQ2Nj0zU1yZ3JV+k1yUPiY5lAPkA
+	ZOmjeVjBweeHW11K6X1TaNLDB77OMPhq1kWhx96fmIYTyy1re/nOm448Z4Mn1lMIkCyJ
+	7ej8dh3nLDJS1bPvC3uLotfzjqD2C9+BaS3lN8SWiqv2PyuP3RY7AW/kNnjJ5pXRbu46
+	BrOg194TkhJHjKsgizLXuRfEgUdXiukYyIt7YpiXUwlo9D4GsB313UXtGaVPQ8ZMpvr2
+	A1Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=JuDJNZ2wIsXnY/IlmTKH2wI1GHHoW0YnjUgYltHGruw=;
-	b=au0o1DnxeiSFhqgIJbe9hfMarQatXv/9T+QtCQjG3xgUpn7nAcFSAfgv2iB6IPUq3w
-	JSPbXNIy0znf6Ffrgcb4RbEB4oGuWPFsU+2g8fqbfw8f1qz83GaDbwXoSHVdETHbZTkD
-	/TfJUxVpsOBaV1eZ0c5Et1UeRhliM6TFxx2ODAjVQNWZv0LNpJ97eLK5sL+nMpvHyl/m
-	GTCmp/EzL0M6WzmfRr4HMoef81F4yqJYWMXP2I7rxcqrO7IonJBSRxShtU6pBfVfT6r8
-	lNAaIZyqpWcPb4/vPBJQHAdF9fQ4mOFNyRuCBP/ZhnVqwig4BJWonSPoBP8DGXFec8yx
-	rWIw==
-X-Gm-Message-State: AOPr4FVKUbwkMQOwbtA9LxfRlFWhIo2L6sxvIQoaQOdPyLaUTJcJaIU9rk5IOxtcTgqmrg==
-X-Received: by 10.194.179.168 with SMTP id dh8mr18681478wjc.130.1461267769952; 
-	Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
+	bh=yGmnrZfFRPQBO2EaqyTZgEcwKsDl9+GCAO3InSvUx/s=;
+	b=ORN4e6M4THLC1mHvuWzLdDP9O4UTBHLm+yzMunxsP8aoQtxPv9B/2SgSVltidqv4sB
+	wrlArk2W3mSaSYucuv0E8CgLCa8ZH21LaE3rMKkFkty/FGXHWCTHxQ2mXqCGwll68b8y
+	KLUaWuxBBnwCGxT+cFLLsBfB1Gx0+4gaS+u8Q+QlN0tbM7CJY1fpwZz+FdL7obwzUiqT
+	aiWQ27w+/jKmYVaAzxBB9eKH5NI90aTvudL+aRTTK6FVbqwwrTp8/cuoTK1CBIQpidFq
+	oZUC4aKa+3J7kpJyP61V/F23qHei/HiOE3I/JTnCFJEHhiZOmRR/kIE+b4Y5VqTMz7Wd
+	yeBw==
+X-Gm-Message-State: AOPr4FXyUvrlof5h4yKnE//5NXTDVNUpo5hMHhMGRV9tUipUxxjW3VFCZq1wRoFfE+7IZw==
+X-Received: by 10.28.4.194 with SMTP id 185mr16066839wme.11.1461267767722;
+	Thu, 21 Apr 2016 12:42:47 -0700 (PDT)
 Received: from Theodors-MBP.home
 	(host81-159-212-160.range81-159.btcentralplus.com. [81.159.212.160])
 	by smtp.gmail.com with ESMTPSA id
-	u79sm16375815wmu.8.2016.04.21.12.42.48
+	u79sm16375815wmu.8.2016.04.21.12.42.46
 	(version=TLS1 cipher=AES128-SHA bits=128/128);
-	Thu, 21 Apr 2016 12:42:49 -0700 (PDT)
+	Thu, 21 Apr 2016 12:42:46 -0700 (PDT)
 From: Theodor Gherzan <theodor@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Apr 2016 20:42:39 +0100
-Message-Id: <1461267759-10268-4-git-send-email-theodor@gherzan.ro>
+Date: Thu, 21 Apr 2016 20:42:37 +0100
+Message-Id: <1461267759-10268-2-git-send-email-theodor@gherzan.ro>
 X-Mailer: git-send-email 2.6.4 (Apple Git-63)
 In-Reply-To: <1461267759-10268-1-git-send-email-theodor@gherzan.ro>
 References: <1461267759-10268-1-git-send-email-theodor@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 4/4] README: Document new variable configuration
+Subject: [meta-raspberrypi][PATCH 2/4] rpi-config: Add UART enabler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,34 +74,25 @@ From: Theodor Gherzan <theodor@resin.io>
 
 Signed-off-by: Theodor Gherzan <theodor@resin.io>
 ---
- README | 7 +++++++
- 1 file changed, 7 insertions(+)
+ recipes-bsp/bootfiles/rpi-config_git.bb | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/README b/README
-index ec9f905..ee330df 100644
---- a/README
-+++ b/README
-@@ -29,6 +29,7 @@ Contents:
-     3.L. Enable SPI bus
-     3.M. Enable I2C
-     3.N. Enable PiTFT support
-+    3.O. Enable UART support
- 4. Extra apps
-     4.A. omxplayer
- 5. Board Configuration
-@@ -238,6 +239,12 @@ List of currently supported models:
-     - pitft22
-     - pitft28r
- 
-+3.O. Enable UART
-+===============
-+Set this variable to enable UART on raspberypi3:
-+ENABLE_UART = "1"
+diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+index 2941982..0fbb17e 100644
+--- a/recipes-bsp/bootfiles/rpi-config_git.bb
++++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+@@ -95,6 +95,11 @@ do_deploy() {
+     if [ "${PITFT28r}" = "1" ]; then
+         echo "# Enable PITFT28r display" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "dtoverlay=pitft28-resistive,rotate=90,speed=32000000,txbuflen=32768" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 +
-+Note: The value of enable_uart would be set to 1 by default on raspberrypi 1/2.
++    # UART support
++    if [ "${ENABLE_UART}" = "1" ]; then
++        echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
++        echo "enable_uart=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+     fi
+ }
  
- 4. Extra apps
- =============
 -- 
 2.1.4
 
