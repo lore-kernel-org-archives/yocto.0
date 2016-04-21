@@ -1,70 +1,70 @@
-Return-Path: <ico2ico2@gmail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05908E00CE3; Thu, 21 Apr 2016 06:08:10 -0700 (PDT)
+	id 86761E00CEC; Thu, 21 Apr 2016 06:32:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2E7FE006D3
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 06:08:06 -0700 (PDT)
-Received: by mail-oi0-f49.google.com with SMTP id x201so82195926oif.3
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 06:08:06 -0700 (PDT)
+Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
+	[209.85.218.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B0EAE00B6F
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 06:32:11 -0700 (PDT)
+Received: by mail-oi0-f47.google.com with SMTP id k142so83523914oib.1
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 06:32:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to; bh=laPc/1VaKeU1F/RFDEdRaFh9JnkUd6ZavPQ1k3rpah4=;
-	b=QxR8Ak6xsgg8ptZTZM3wNJ7DxdmaYX+v0Oa2Yypjki2CjnXGBt2vSKGvYSpdRGECh2
-	UuGI4R8ElE1wGaPkpHwwZUgG80B4a/1RO0Le+f3yV6oBlHlqpB9lE15NWQxMAO/juEKJ
-	prHMp9a9fIDgnKuxlas4aQdlEyWeUhQOEoCwy9k+5CRzly767heowN+GL8ymFPSIXt/c
-	po1IQUVnCktOlHghC66ayo3rb6iQ+KMFB0JPchWWJMSyhAQMbW7ajcPnbjN3Yd+fD1DD
-	st0Xg51/sE9UdFpp/hCm/04PKR09oqG97/9fVHvlsbelDuMzY+J7eO3S5RGQzoDxBRS5
-	bWHA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sassan-me-uk.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to; bh=laPc/1VaKeU1F/RFDEdRaFh9JnkUd6ZavPQ1k3rpah4=;
-	b=lcy0saIDTgt/YhfoBZhsROUl82ZzD538fk2BcALrcaZEWpiuixIxNiNldJYIH+twMF
-	zek99DHtWfrBPnLmMAUH/0yujz81u3/s9fU3YF511ka0OJIWGmPpZaPz0hqYHD5ghKRh
-	OHill68jwUrCTBlNL4SYKOKeraBtZDJVFhVNud/WtvPzrzQkwsqBp+q6PMtUIN7pkmQb
-	P8ZaIol2XJ4jQTzUvqZ1Egl8gbovRAAuuBX4gLskJA0x8TPCKKR70H3OOuXLpkzXtyLY
-	kjJ9YD5CBVzrQiugywYIcMxCbhGMzLUxBueTTQ7rre2mHBYZxIEA54bKUIqDbZyPLkWz
-	FW/A==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=rBbkGA5dTP+xLI8iRqk98EhNhLvo8s6W4LsCCFNIzQ8=;
+	b=da/2dw4jGQwvdcMZKRytw5k//zpzHekmj2ApFo/oCHW/+ZaZ9enM7ODKx7P1KCcjJz
+	kcxOci/9zxGVROMeoiaP8GMoqSrYxIfKL9uHCg9kUCSCZ3sSnZ/vV5P3lABCEBWrGxc2
+	cuO/UVrusJdcIV4BIkAqYgDx/doAO5GJtTwK2MmCpKKbKW33a0mJhe+Aakh3jLK81gjr
+	STdwJJSun3el9VcaWHgSX8E/Fx3j1kOIxdJW52GTxE3niGE0GyqkIeAEPAE5VTlLKwba
+	SJoGW4JL3xZgUG1W+PU7WJt7moxdhqsoTLTe8g3Q5Zx6HHd8RK6tnvK4BecsdpUsahRa
+	YfXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
-	:message-id:subject:from:to;
-	bh=laPc/1VaKeU1F/RFDEdRaFh9JnkUd6ZavPQ1k3rpah4=;
-	b=cyHWblSXe/nw+PzyHsLwrYWf4AhVuvKIpOZ3DNTovf3kiPx/diTZJ9JFYO3sSQBDV4
-	/Eg3wgehw9cSXMAwtrzFPP13HhVHuKTnwIxDB0Ws9oYQ1wc3lM6ofJKYM+W31JbpN+i+
-	8fcL4DR8ps24pWjk72lmt9i5x7nzKAwyxgJcQM4jkg45Zi05I/1SDHdPSgD8yzPOtQ8j
-	4cL8gnoLn3vxofUVZvjx3lyi/32ossMGvwmYP37XYVOWCLR1n8yacEdgtkt5Ai8ekmp9
-	8UgXw87DSzkSYrBfZ3tiHmxFdRIhaVohbEsIQE/4i/B3FNibw9qfk+yIuFVBEGCG9SH1
-	2EpA==
-X-Gm-Message-State: AOPr4FVMz1fRjj2+zIkXhKhslJ5Xsg5HW6B/pduR0MaWIyAaWzJCvTn/fcJmfTV5abMqBkGxNGmxYgxLvntdXA==
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=rBbkGA5dTP+xLI8iRqk98EhNhLvo8s6W4LsCCFNIzQ8=;
+	b=U60ajKehfTm6GJS3WNwfilBFawYYLj/qFq/pt8YeWu4sL6PHLpR/ZdKXa3A6ZItKC2
+	bLhjJrmceMTrlqPldf+aZP9/G2BXjgVqZMP+E4hhEDyggR5qUE1cDCsweWJBn7xUIY9E
+	6nLu5EMFfOfhbTvW7BzRDRz66jdul51HzThZWj+gwxwLnDtFaDTAK8a6iDI7vIdg6zxk
+	i+CGe/2/FZSx4HYfxX3OAAlbbM3Mbsfl49/H5d5fnplP2sh2XMWRz6aha3l1Sht6mp5K
+	9a1RXz7FWXTWnqR9Fsk/xhQRpEUHJLrS/2gfZ5B5Ev0puwMVJ4UyHZyHnb8bO694k4q/
+	lDGg==
+X-Gm-Message-State: AOPr4FU6vedmZ0yeCNxz77JE4mSwmdFwTmGCnZEWWyTqm8QXw8IPQQKW8UYH6QwzwPxC6lmtP9fxE3CrLFIvDw==
 MIME-Version: 1.0
-X-Received: by 10.157.2.69 with SMTP id 63mr6419378otb.170.1461244085714; Thu,
-	21 Apr 2016 06:08:05 -0700 (PDT)
-Sender: ico2ico2@gmail.com
-Received: by 10.60.22.70 with HTTP; Thu, 21 Apr 2016 06:08:05 -0700 (PDT)
-In-Reply-To: <CAAz8cFi=_GeHhBWjLjL-obNOSb+9n890E8J_J17HWXF7Qzz1Aw@mail.gmail.com>
-References: <CAAz8cFi=_GeHhBWjLjL-obNOSb+9n890E8J_J17HWXF7Qzz1Aw@mail.gmail.com>
-Date: Thu, 21 Apr 2016 14:08:05 +0100
-X-Google-Sender-Auth: edTvOVRzBZZJvX7dbzWej38_RuI
-Message-ID: <CAAz8cFg-FP_2wiT_6YaTHtrtTesHNUm1Zd4Kneb-7fz5aiNj4w@mail.gmail.com>
-From: Sassan Panahinejad <sassan@sassan.me.uk>
-To: yocto@yoctoproject.org
-Subject: Preventing rebuild of dependencies
+X-Received: by 10.202.170.65 with SMTP id t62mr5341198oie.60.1461245530603;
+	Thu, 21 Apr 2016 06:32:10 -0700 (PDT)
+Received: by 10.157.32.135 with HTTP; Thu, 21 Apr 2016 06:32:10 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.20.1604210456050.10388@localhost.localdomain>
+References: <alpine.LFD.2.20.1604201229260.24374@localhost.localdomain>
+	<20160420180421.GD2561@jama>
+	<alpine.LFD.2.20.1604201418060.31154@localhost.localdomain>
+	<CADkTA4OaTRbBWp_-X=9MRa5KOFXfMJewPcyTUyrouZKxmfRcjw@mail.gmail.com>
+	<alpine.LFD.2.20.1604201830390.30638@localhost.localdomain>
+	<CADkTA4Pga=V5+dozKb4tiZXTmBVPSZ3z5tw+zo_4kgssAy1kMQ@mail.gmail.com>
+	<alpine.LFD.2.20.1604210456050.10388@localhost.localdomain>
+Date: Thu, 21 Apr 2016 09:32:10 -0400
+Message-ID: <CADkTA4ONLXwfCMOOQEpvbDicf68eR3+c+5PF3htiHja32yK3Gg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a known issue with how SRC_URI uses OVERRIDES to locate .scc files?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,68 +76,235 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2016 13:08:10 -0000
-Content-Type: multipart/alternative; boundary=94eb2c114d24a8ca400530fe66b3
+X-List-Received-Date: Thu, 21 Apr 2016 13:32:16 -0000
+Content-Type: multipart/alternative; boundary=001a113c352cc80a420530febc61
 
---94eb2c114d24a8ca400530fe66b3
+--001a113c352cc80a420530febc61
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Thu, Apr 21, 2016 at 4:59 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+wrote:
 
-On several Yocto-based projects I've worked on, I've ended up accidentally
-triggering rebuilds of large packages such as QT or Chromium.
+> On Wed, 20 Apr 2016, Bruce Ashfield wrote:
+>
+> >
+> >
+> > On Wed, Apr 20, 2016 at 6:37 PM, Robert P. J. Day <rpjday@crashcourse.ca>
+> wrote:
+> >       On Wed, 20 Apr 2016, Bruce Ashfield wrote:
+> >
+> >       > You haven't supplied your SRC_URI in the question ... what does
+> it
+> >       > look like ?
+> >       >
+> >       > It has no relation to the SRC_URI, probably a run of the mill
+> bug in
+> >       > the processing code. I'd suggest taking it up with Wind River
+> >       > support.
+> >       >
+> >       > Alternatively, if you have this somewhere that I clone and
+> launch a
+> >       > test build, I can help you out .. but I won't be able to easily
+> >       > reproduce that situation from scratch.
+> >
+> >         ok, i found what appears to be a cheap workaround for this, and
+> i'm
+> >       curious if this makes any sense.  recall original kernel recipe
+> >       directory structure:
+> >
+> >         linux-windriver/
+> >           uio.*
+> >           ssd.*
+> >           mxeiii/
+> >             mm.*
+> >
+> >       when SRC_URI mentioned only that first-level stuff (uio, ssd), then
+> >       the configure step worked fine. but as soon as i added the mm.scc
+> file
+> >       to SRC_URI, it just seems that any descent into a lower-level
+> >       directory based on OVERRIDES totally bones the search process. so,
+> i
+> >       wondered, how can i work around this?
+> >
+> >         oh, wait, no problem. see, all target boards are powerpc, so
+> >       "powerpc" is one of the possible OVERRIDES. obviously, there is no
+> >       *actual* value in using an OVERRIDE for which *every* *single*
+> *board*
+> >       is compatible ... oh, wait, there is.
+> >
+> >         so i restructured:
+> >
+> >         linux-windriver/
+> >           mxeiii/
+> >             mm.*
+> >           powerpc/
+> >             uio.*
+> >             ssd.*
+> >
+> >       it looks idiotic to take the uio.* and ssd.* content, which should
+> be
+> >       generic, and deliberately put it in a subdirectory, unless that
+> >       subdirectory represents an OVERRIDE which matches every board and,
+> ta
+> >       da, solves the problem.
+> >
+> >         i need a drink.
+> >
+> >
+> > Following up to the list. I was able to take a reproducer for this
+> > and indeed find some *really* old code that didn't handle a trailing
+> > / properly. The end result was the inability to find the
+> > configuration fragments that were not in subdirectories.
+>
+>   just to be clear, there was no problem finding config fragments that
+> were not in subdirectories until i somehow triggered the bug by
+> *adding* an item that *was* in a subdirectory, and that's when things
+> went to hell.
+>
+>   so the "bug" apparently never manifested itself until i triggered it
+> by doing something else. does that sound about right?
+>
 
-The example I keep running into at the moment is whenever I modify the
-kernel config, I trigger Chromium to rebuild next time I rebuild the image.
-This means losing as much as 4 hours every time.
+Correct. The subdirs were getting a trailing / and hence when the fragments
+were
+all gathered up (in case the original location is remote), they were being
+dumped
+into .kernel-meta/cfg/<the absolute path to the fragment>/foo.cfg.
 
-When searching for a solution, I found other posts and the workaround
-usually given is not to rebuild the image after kernel changes and copy the
-kernel manually. That's all very well, but I'm also making changes to other
-parts of the system and therefore need to be able to rebuild the image
-without waiting for Chromium to compile.
+Later on the configuration was looking for them in just <subdir>/foo.cfg ..
+and
+couldn't find them.
 
-The problem seems to come down to one of Chromium's deps depending on the
-kernel for some headers. Now naturally changes to a dependency results in a
-rebuild, but I the operator know that the change in question will not have
-any affect.
+Bloody trailing slashes!
 
-I'd like to just be able to blacklist rebuilding of Chromium and QT, but I
-can't find a way other than sticking in some fake rules in the Chromium
-recipe. In buildroot, one could often cheat by touching the relevant stamp
-file to make it think it had rebuilt. Is the same possible in Yocto?
+Bruce
 
-Note: sstate-cache is enabled.
 
-Thanks
-Sassan Panahinejad
+>
+> rday
 
---94eb2c114d24a8ca400530fe66b3
+
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end"
+
+--001a113c352cc80a420530febc61
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div>Hi,<br><b=
-r></div><div>On several Yocto-based projects I&#39;ve worked on, I&#39;ve e=
-nded up accidentally triggering rebuilds of large packages such as QT or Ch=
-romium.<br><br></div><div>The example I keep running into at the moment is =
-whenever I modify the kernel config, I trigger Chromium to rebuild next tim=
-e I rebuild the image. This means losing as much as 4 hours every time.<br>=
-<br></div><div>When searching for a solution, I found other posts and the w=
-orkaround usually given is not to rebuild the image after kernel changes an=
-d copy the kernel manually. That&#39;s all very well, but I&#39;m also maki=
-ng changes to other parts of the system and therefore need to be able to re=
-build the image without waiting for Chromium to compile.<br><br></div><div>=
-The problem seems to come down to one of Chromium&#39;s deps depending on t=
-he kernel for some headers. Now naturally changes to a dependency results i=
-n a rebuild, but I the operator know that the change in question will not h=
-ave any affect.<br><br></div><div>I&#39;d like to just be able to blacklist=
- rebuilding of Chromium and QT, but I can&#39;t find a way other than stick=
-ing in some fake rules in the Chromium recipe. In buildroot, one could ofte=
-n cheat by touching the relevant stamp file to make it think it had rebuilt=
-. Is the same possible in Yocto?<br><br></div><div>Note: sstate-cache is en=
-abled.<br><br></div><div>Thanks<span class=3D"HOEnZb"><font color=3D"#88888=
-8"><br></font></span></div><span class=3D"HOEnZb"><font color=3D"#888888"><=
-div>Sassan Panahinejad<br></div></font></span></div>
-</div><br></div>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Thu, Apr 21, 2016 at 4:59 AM, Robert P. J. Day <span dir=3D"ltr">&lt=
+;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcou=
+rse.ca</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=
+=3D"HOEnZb"><div class=3D"h5">On Wed, 20 Apr 2016, Bruce Ashfield wrote:<br=
+>
+<br>
+&gt;<br>
+&gt;<br>
+&gt; On Wed, Apr 20, 2016 at 6:37 PM, Robert P. J. Day &lt;<a href=3D"mailt=
+o:rpjday@crashcourse.ca">rpjday@crashcourse.ca</a>&gt; wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0On Wed, 20 Apr 2016, Bruce Ashfield wrote:<b=
+r>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; You haven&#39;t supplied your SRC_URI i=
+n the question ... what does it<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; look like ?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; It has no relation to the SRC_URI, prob=
+ably a run of the mill bug in<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; the processing code. I&#39;d suggest ta=
+king it up with Wind River<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; support.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Alternatively, if you have this somewhe=
+re that I clone and launch a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; test build, I can help you out .. but I=
+ won&#39;t be able to easily<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; reproduce that situation from scratch.<=
+br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 ok, i found what appears to be a chea=
+p workaround for this, and i&#39;m<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0curious if this makes any sense.=C2=A0 recal=
+l original kernel recipe<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0directory structure:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 linux-windriver/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 uio.*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 ssd.*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 mxeiii/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 =C2=A0 mm.*<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0when SRC_URI mentioned only that first-level=
+ stuff (uio, ssd), then<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0the configure step worked fine. but as soon =
+as i added the mm.scc file<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0to SRC_URI, it just seems that any descent i=
+nto a lower-level<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0directory based on OVERRIDES totally bones t=
+he search process. so, i<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0wondered, how can i work around this?<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 oh, wait, no problem. see, all target=
+ boards are powerpc, so<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;powerpc&quot; is one of the possible O=
+VERRIDES. obviously, there is no<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0*actual* value in using an OVERRIDE for whic=
+h *every* *single* *board*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0is compatible ... oh, wait, there is.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 so i restructured:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 linux-windriver/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 mxeiii/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 =C2=A0 mm.*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 powerpc/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 =C2=A0 uio.*<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0 =C2=A0 ssd.*<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0it looks idiotic to take the uio.* and ssd.*=
+ content, which should be<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0generic, and deliberately put it in a subdir=
+ectory, unless that<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0subdirectory represents an OVERRIDE which ma=
+tches every board and, ta<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0da, solves the problem.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 i need a drink.<br>
+&gt;<br>
+&gt;<br>
+&gt; Following up to the list. I was able to take a reproducer for this<br>
+&gt; and indeed find some *really* old code that didn&#39;t handle a traili=
+ng<br>
+&gt; / properly. The end result was the inability to find the<br>
+&gt; configuration fragments that were not in subdirectories.<br>
+<br>
+</div></div>=C2=A0 just to be clear, there was no problem finding config fr=
+agments that<br>
+were not in subdirectories until i somehow triggered the bug by<br>
+*adding* an item that *was* in a subdirectory, and that&#39;s when things<b=
+r>
+went to hell.<br>
+<br>
+=C2=A0 so the &quot;bug&quot; apparently never manifested itself until i tr=
+iggered it<br>
+by doing something else. does that sound about right?<br></blockquote><div>=
+<br></div><div>Correct. The subdirs were getting a trailing / and hence whe=
+n the fragments were</div><div>all gathered up (in case the original locati=
+on is remote), they were being dumped</div><div>into .kernel-meta/cfg/&lt;t=
+he absolute path to the fragment&gt;/foo.cfg.</div><div><br></div><div>Late=
+r on the configuration was looking for them in just &lt;subdir&gt;/foo.cfg =
+.. and</div><div>couldn&#39;t find them.=C2=A0</div><div><br></div><div>Blo=
+ody trailing slashes!</div><div><br></div><div>Bruce</div><div>=C2=A0</div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+rday</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
+ss=3D"gmail_signature">&quot;Thou shalt not follow the NULL pointer, for ch=
+aos and madness await thee at its end&quot;</div>
+</div></div>
 
---94eb2c114d24a8ca400530fe66b3--
+--001a113c352cc80a420530febc61--
