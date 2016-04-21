@@ -1,47 +1,63 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <psiva87@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1DB9E00D6C; Thu, 21 Apr 2016 02:03:10 -0700 (PDT)
+	id 0855BE00DF5; Thu, 21 Apr 2016 04:15:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (psiva87[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 217 seconds by postgrey-1.32 at yocto-www;
-	Thu, 21 Apr 2016 02:03:07 PDT
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5813BE00948
-	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 02:03:07 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160421085922602_0685;
-	Thu, 21 Apr 2016 01:59:22 -0700
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [99.240.204.5] (port=49122 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1atATh-0001x5-6f; Thu, 21 Apr 2016 05:00:49 -0400
-Date: Thu, 21 Apr 2016 04:59:12 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4Pga=V5+dozKb4tiZXTmBVPSZ3z5tw+zo_4kgssAy1kMQ@mail.gmail.com>
-Message-ID: <alpine.LFD.2.20.1604210456050.10388@localhost.localdomain>
-References: <alpine.LFD.2.20.1604201229260.24374@localhost.localdomain>
-	<20160420180421.GD2561@jama>
-	<alpine.LFD.2.20.1604201418060.31154@localhost.localdomain>
-	<CADkTA4OaTRbBWp_-X=9MRa5KOFXfMJewPcyTUyrouZKxmfRcjw@mail.gmail.com>
-	<alpine.LFD.2.20.1604201830390.30638@localhost.localdomain>
-	<CADkTA4Pga=V5+dozKb4tiZXTmBVPSZ3z5tw+zo_4kgssAy1kMQ@mail.gmail.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEEFDE00931
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 04:15:46 -0700 (PDT)
+Received: by mail-lb0-f170.google.com with SMTP id ys16so25120385lbb.3
+	for <yocto@yoctoproject.org>; Thu, 21 Apr 2016 04:15:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=db6VwpDh/xmPPp2X1qV46TLyk5Tn5/XpWDK2/u/RvUQ=;
+	b=uP8y9hTT44lO2UV5kpx31VQJ5gFPGBuVI68RltoAlFSJhQ7U9eCpRfNjzSGQ+81JxC
+	PpHO5y/Vomn38TONXHzvWSL9SvsO36wwZfjVhEB/dWdBL8Eq9qcE2kDvIQbx1UNlmj3U
+	CJ+KjWlLALy0xxLYlr5SwKB0NqTx09OJ+j69L/8ib26AcrU/0+Oe0W5ahoUKpg3Lb3G6
+	CbqL+p/AMfAS9cRZf/FJCngJCZxBNTxawhHiGC7JzSztRu3iBgxlROqq65Pg7JHOI2Wh
+	brp6xGtFnnT5V7ug04Zv7NAEhCThxicIxVgcHJ3oWhHKx9FaHqL53ykilPY8yvCegXDS
+	+9tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=db6VwpDh/xmPPp2X1qV46TLyk5Tn5/XpWDK2/u/RvUQ=;
+	b=dGoXk5H//NRCYzxZO3MKtTVa7DVuAWX9NAUZR5iinHhmcfvxGZQkuIattG6sl+HXJZ
+	hrRQZMmTUUudlpovpBcyb8XqLPaaU1bSR+BC5ksJnrFsIZiJ1AS3ogGX1CcwWpvki8rx
+	uLVFyFX9/nIKp4FfBvuEdVLKO2DB9IXEzIlZzaCNsIooepHr55E+WVARvH6HrwD4MZ3f
+	fzxuO6vrHpbZ4Nx/DlYDPlDrbuIVFFMJ+U+YpFzpx4h3duB5IfdU3LTCmCxP0uI0ZI3L
+	CVpan5Ki5LsgjM4PsdGhD38fRHvxstwTXK+p6/U7i8ST7PhLOvP9AN8t00/YznSAkT//
+	xCvA==
+X-Gm-Message-State: AOPr4FVYJ7UhJeXNKwfj5miAzxvgdESmBHX7n4aI7+V/Hq4j8NpdTceUQb3ZtQUP2gL1njni8NhYVIbUwxzVPA==
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there a known issue with how SRC_URI uses OVERRIDES to locate .scc files?
+X-Received: by 10.112.65.102 with SMTP id w6mr6093393lbs.100.1461237344696;
+	Thu, 21 Apr 2016 04:15:44 -0700 (PDT)
+Received: by 10.112.199.106 with HTTP; Thu, 21 Apr 2016 04:15:44 -0700 (PDT)
+In-Reply-To: <PN1PR01MB0333A053858B523837CB313CEF6E0@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>
+References: <PN1PR01MB0333A053858B523837CB313CEF6E0@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>
+Date: Thu, 21 Apr 2016 16:45:44 +0530
+Message-ID: <CAOorjZRPCzPAhzzYd+uLS9e5XW8qu-n91yYNjLywK8oFqgnsmg@mail.gmail.com>
+From: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
+To: Harinath maddelal <Harinath.maddela@inedasystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build Failure Errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,82 +69,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Apr 2016 09:03:10 -0000
-Content-Type: multipart/mixed; BOUNDARY="8323328-1170277421-1461229155=:10388"
-
---8323328-1170277421-1461229155=:10388
+X-List-Received-Date: Thu, 21 Apr 2016 11:15:48 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
 
-On Wed, 20 Apr 2016, Bruce Ashfield wrote:
+Remove -Werror from CFLAGS or EXTRA_OECONF if any.
 
+On Thu, Apr 21, 2016 at 11:38 AM, Harinath maddelal
+<Harinath.maddela@inedasystems.com> wrote:
+>
+> Hi
 >
 >
-> On Wed, Apr 20, 2016 at 6:37 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->       On Wed, 20 Apr 2016, Bruce Ashfield wrote:
+> Im new to Yocto.
 >
->       > You haven't supplied your SRC_URI in the question ... what does it
->       > look like ?
->       >
->       > It has no relation to the SRC_URI, probably a run of the mill bug in
->       > the processing code. I'd suggest taking it up with Wind River
->       > support.
->       >
->       > Alternatively, if you have this somewhere that I clone and launch a
->       > test build, I can help you out .. but I won't be able to easily
->       > reproduce that situation from scratch.
->
->         ok, i found what appears to be a cheap workaround for this, and i'm
->       curious if this makes any sense.  recall original kernel recipe
->       directory structure:
->
->         linux-windriver/
->           uio.*
->           ssd.*
->           mxeiii/
->             mm.*
->
->       when SRC_URI mentioned only that first-level stuff (uio, ssd), then
->       the configure step worked fine. but as soon as i added the mm.scc file
->       to SRC_URI, it just seems that any descent into a lower-level
->       directory based on OVERRIDES totally bones the search process. so, i
->       wondered, how can i work around this?
->
->         oh, wait, no problem. see, all target boards are powerpc, so
->       "powerpc" is one of the possible OVERRIDES. obviously, there is no
->       *actual* value in using an OVERRIDE for which *every* *single* *board*
->       is compatible ... oh, wait, there is.
->
->         so i restructured:
->
->         linux-windriver/
->           mxeiii/
->             mm.*
->           powerpc/
->             uio.*
->             ssd.*
->
->       it looks idiotic to take the uio.* and ssd.* content, which should be
->       generic, and deliberately put it in a subdirectory, unless that
->       subdirectory represents an OVERRIDE which matches every board and, ta
->       da, solves the problem.
->
->         i need a drink.
+> After downloading poky and i added our BSP package. So while trying to
+> compile i get the following errors
 >
 >
-> Following up to the list. I was able to take a reproducer for this
-> and indeed find some *really* old code that didn't handle a trailing
-> / properly. The end result was the inability to find the
-> configuration fragments that were not in subdirectories.
+> ===
+>
+>   LD      init/mounts.o
+>   LD      init/built-in.o
+>   CC      mm/fadvise.o
+>   CC      arch/mips/incdhad1/diap/pllConfig.o
+>   CC      arch/mips/incdhad1/diap/dmcConfig.o
+> /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips/incdhad1/diap/pllConfig.c:136:2:
+> error: 'writel' is static but used in inline function 'setPixelClock' which
+> is not static [-Werror]
+>   writel(0x80030003, (void __iomem*)0xBE903064);
+>   ^
+> /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips/incdhad1/diap/pllConfig.c:121:2:
+> error: 'writel' is static but used in inline function 'setPixelClock' which
+> is not static [-Werror]
+>   writel(0x800A0003, (void __iomem*)0xBE903064);
+>   ^
+> ===========================
+>
+>
+> Looks like warnings are treated as errors. How can i compress warnings being
+> treated as errors.
+>
+>
+> Can you please help me in this.
+>
+>
+> Attaching log.do_compile file for further reference.
+>
+>
+> Expecting your reply. Thanks in Advance
+>
+>
+> Thanks and Regards,
+> Harinath
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-  just to be clear, there was no problem finding config fragments that
-were not in subdirectories until i somehow triggered the bug by
-*adding* an item that *was* in a subdirectory, and that's when things
-went to hell.
-
-  so the "bug" apparently never manifested itself until i triggered it
-by doing something else. does that sound about right?
-
-rday
-
---8323328-1170277421-1461229155=:10388--
