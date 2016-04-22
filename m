@@ -1,68 +1,58 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1AB68E00DEC; Fri, 22 Apr 2016 07:26:47 -0700 (PDT)
+	id 23AF7E00F6B; Fri, 22 Apr 2016 07:46:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.196 listed in list.dnswl.org]
-Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
-	[209.85.223.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4565E00C89
-	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 07:26:43 -0700 (PDT)
-Received: by mail-io0-f196.google.com with SMTP id s2so14825029iod.3
-	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 07:26:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=1XGf7gACej9kbNPgdFsUQXmUqxtgVKRJinUN8RGt5ok=;
-	b=AFJ1wmngqKuklTZipUxiP9x8/uwwI9q0c+5Vfn38Ue4dXsVmiiMh4Rxq7Ui5umkMjw
-	e/C6iB5oIg0+WO41BQcX2KEYmz7EppCg1qvJgGLwgIJuUgpaKMuVhjPADUyRdHLTBZ07
-	NT6ivAUmQ+MJutnc6hiAXX9KAd5X36dbEmGuVNcsnkHrawVMMZrTuzt0ByTposo7S5ne
-	kdbXMKR9A6fsB2JjMlchdqJb8MGHMVMv0TjUkzMCghIZNDzCnIqKvg+xMFB7WTfT4DrG
-	avBN84gokYQbW5aSZOIrZ80jLG4EtLHoNevR0VSsK5yRuslHh74WOHUTdh6kRz+tl0FS
-	PMQw==
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBF3DE00AD8
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 07:46:23 -0700 (PDT)
+Received: by mail-wm0-f48.google.com with SMTP id v188so23890296wme.1
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 07:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=h+xwUeazNAOTRAj0jQtOB1Zr7UrbyLiJ/abbTljUGWY=;
+	b=LPzU6LFqx45GB34tqvRF/1SPoybq8dio4fH6Qwcya2SQ6Q6UlJtcI1FuWeP40/4Izz
+	uAtqPApzGnu0a8LYeMl3UNE8J/VVbvFNjXc6uELZbfF6PsaD5PNxFAoz79htA6iqQv6N
+	TDHqZHiSDYrEEKxeQPqr4Ujzk9f7mxVLRgRbURU6IDBfUHwAjqUciKDdpha4hawxbPMG
+	Zkl1Pz62PfLQbakbcpLGvzBM76ZQm6x3Qa1QUnAPZhZAS4yFsMUOpHqflWJkOsXo56u0
+	aw20d0Fk0YKCddaN4YBROWKdQ0j+IM/LMH2ngz0g4nA+8KDXoriw5WRT6oQulFQRceO4
+	Yuog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=1XGf7gACej9kbNPgdFsUQXmUqxtgVKRJinUN8RGt5ok=;
-	b=NItMeT7lHCYtlqn01jfvTfbhb9wsTEcGf1piRmE4zw2hvWPNjnlOKxW3JWpP7Snw33
-	ntV9o9e5wLbfhAMbPhTcrP5LSVBbSaXpll8Dr1zIj50wRd0mONsAFvctv2L5523rktqh
-	ca6BN6ZxK8Ru5CxV2zM9s6JwzKPhdSZOeb6azVFpzCdMORPOtgkksiKydhCGQPNXWtg0
-	PdDyqmPw2JT4VDV3veI9ltjkJEXc1uiinvvFpjvnmI9zb/cL5r7qOpgKOFbAB1yOLaqO
-	R4QPRo3fD/zIzdCq1XFQlpry65Y8xbX2g1GqulWrGRlAVEIHg+Pth2l2c5n00XsiXSuw
-	CXqA==
-X-Gm-Message-State: AOPr4FVyItELAxTDTdM7OF+kScCm2fHwPjdQFljOY/Yja0Kg9Ifa772Otw1gs33DdAvmfA==
-X-Received: by 10.107.152.85 with SMTP id a82mr16765486ioe.46.1461335202804;
-	Fri, 22 Apr 2016 07:26:42 -0700 (PDT)
-Received: from linux-yxv0 (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	207sm4079300iou.33.2016.04.22.07.26.41
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 22 Apr 2016 07:26:42 -0700 (PDT)
-Date: Fri, 22 Apr 2016 10:26:38 -0400
-From: Trevor Woerner <twoerner@gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=h+xwUeazNAOTRAj0jQtOB1Zr7UrbyLiJ/abbTljUGWY=;
+	b=craFcBe7xd6LG0bU4Q0qHE7KsgdqzDqvjzKnJd2VGerlDU3gDtL2qMRovDAyg1mYCp
+	7muITe0bh3S2rIybV+YcH1g6zBUrkMhyK0O6yHCffQHAfanwuVlUnRd5S/PBHoUshcm3
+	7Mg6zozRboqFy9LbAbiNiDOsiDBGcbk6533pzJnrYKj2Qmt7RdjnU2EIh9AJiMPOfNnd
+	Xcvwsy4MVm58K3CBzIxhMSRfQ1/YqxmKSvAlwIDf7vRuERrcPZAdQIk1hNzG6DjT58wZ
+	t8gY92JlS30/6ISiUM9I8l/3E8P4Le/xuZ7oGfzuBHLhQcXKmqSbDxxsYdI0m0ch3nqm
+	P/hg==
+X-Gm-Message-State: AOPr4FVHUn+j2qRnlzZkJX7U80s/Lgo7enDkrh9aCZCT9URUDtimlQGt2z2Qu1Cq8KBkIw==
+X-Received: by 10.28.177.132 with SMTP id a126mr4136130wmf.86.1461336382462;
+	Fri, 22 Apr 2016 07:46:22 -0700 (PDT)
+Received: from localhost.localdomain
+	([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id m14sm3750574wmc.4.2016.04.22.07.46.20
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 22 Apr 2016 07:46:21 -0700 (PDT)
+From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Message-ID: <20160422142638.GA23308@linux-yxv0>
-References: <1460399310-15649-1-git-send-email-twoerner@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <1460399310-15649-1-git-send-email-twoerner@gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Subject: Re: [meta-chip][PATCH] u-boot-chip: fix md5sum
+Date: Fri, 22 Apr 2016 16:46:11 +0200
+Message-Id: <1461336375-19194-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 2.8.0
+Subject: [meta-raspberrypi][PATCH 1/5] linux-raspberrypi: Bump to v4.4.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,48 +64,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Apr 2016 14:26:47 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Fri, 22 Apr 2016 14:46:27 -0000
 
-ping?
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-(this is needed to build successfully)
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+index 8e4530f..9cb8aae 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.4.6"
++LINUX_VERSION ?= "4.4.7"
+ 
+-SRCREV = "2faaa2ccef9e4c595bd26f14285c225ceea6097e"
++SRCREV = "3de232825c9ba5989522b8691eb6ac5df6619458"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+            file://0001-dts-add-overlay-for-pitft22.patch \
+ "
+-- 
+2.8.0
 
-On Mon 2016-04-11 @ 02:28:30 PM, Trevor Woerner wrote:
-> The u-boot master and chip/stable branches have diverged such that the md5sums
-> of the License README files are now different. The latest master branch has
-> added a "SIL OPEN FONT LICENSE (OFL-1.1)" license.
-> 
-> diff:
-> 	--- chip/stable-README	2016-04-10 02:05:30.783023170 -0400
-> 	+++ upstream-README	2016-04-11 13:48:34.973027406 -0400
-> 	@@ -67,4 +67,5 @@
-> 	 IBM PIBS (PowerPC Initialization and		IBM-pibs			ibm-pibs.txt
-> 		Boot Software) license
-> 	 ISC License					ISC		Y		isc.txt			https://spdx.org/licenses/ISC
-> 	+SIL OPEN FONT LICENSE (OFL-1.1)		OFL-1.1		Y		OFL.txt			https://spdx.org/licenses/OFL-1.1.html
-> 	 X11 License					X11				x11.txt			https://spdx.org/licenses/X11.html
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
-> ---
->  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> index 2342478..60db3e0 100644
-> --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
-> +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
-> @@ -2,6 +2,8 @@ require recipes-bsp/u-boot/u-boot.inc
->  
->  DESCRIPTION = "U-Boot port for C.H.I.P. boards"
->  
-> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
-> +
->  DEPENDS += "dtc-native"
->  PROVIDES += "u-boot"
->  
-> -- 
-> 2.7.0.rc3
-> 
 
