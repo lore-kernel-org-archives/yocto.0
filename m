@@ -1,82 +1,44 @@
-Return-Path: <Manish.Jaggi@caviumnetworks.com>
+Return-Path: <amarnath.valluri@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B06FE00CAE; Mon, 25 Apr 2016 06:46:18 -0700 (PDT)
+	id 20139E00D26; Fri, 22 Apr 2016 04:09:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.54 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 964 seconds by postgrey-1.32 at yocto-www;
-	Mon, 25 Apr 2016 06:46:13 PDT
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0054.outbound.protection.outlook.com [207.46.100.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 049B6E00AE4
-	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 06:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-caviumnetworks-com;
-	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=ON2/3uAMNkdOAIkwHAHNnS+kYCC0ckn9gOViy21N0W8=;
-	b=VBK20zzGzbu3c5eckdJ627tLgCcYVn+K+sCcw/uZiY/Axt/q7uP01st63DBFNipADdb9lcNDwE+5D05UsEforus2Fs2HiOeZ/WcClZxxdEN4nLv7vBLa9B9HZCF3OqtNrzKozTzy43zcMgvW2Lts81+KQSMzybuZkPp26ak53b4=
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
-	BY1PR0701MB1595.namprd07.prod.outlook.com (10.162.110.149) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.466.19; Mon, 25 Apr 2016 13:30:06 +0000
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
-	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
-	mapi id 15.01.0466.025; Mon, 25 Apr 2016 13:30:06 +0000
-From: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E841E00C65
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 04:09:31 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Apr 2016 04:09:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,516,1455004800"; 
+	d="scan'208,217";a="690437565"
+Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
+	by FMSMGA003.fm.intel.com with ESMTP; 22 Apr 2016 04:09:21 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.10]) by
+	IRSMSX106.ger.corp.intel.com ([169.254.8.172]) with mapi id
+	14.03.0248.002; Fri, 22 Apr 2016 12:09:20 +0100
+From: "Valluri, Amarnath" <amarnath.valluri@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Fetcher failure: Unable to find revision
-	2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
-	upstream
-Thread-Index: AQHRnvYtSwgidqLbqEOk4YMTyaEoKw==
-Date: Mon, 25 Apr 2016 13:30:06 +0000
-Message-ID: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+Thread-Topic: Enable a recipe/package only when other dependent
+	recipe/package is part of image.
+Thread-Index: AdGch0/rYjJ0wn3QRIiGRFStAS/TSw==
+Date: Fri, 22 Apr 2016 11:09:19 +0000
+Message-ID: <D3C33C4430ACA6488F343D1125FCCECC380DEE65@irsmsx110.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=caviumnetworks.com;
-x-originating-ip: [64.2.3.194]
-x-ms-office365-filtering-correlation-id: b1ff4848-45b1-48a0-f67e-08d36d0db746
-x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1595;
-	5:R1RcahNostbwt8DhyZmwndjrWCphlc2qiaPs2N4hdGWKv6jHMlEHEAfoXDktRgSe+a6navxkih3khrHB+NeXJrE2bTUWq50tHC8oKMnLFZusJQZM2Ro61Z+smLvBQuWeHuSm8wtDL2QatK/5iQKy2jUlBv9KoZKuKBFjdn2MLAANQGHIZUNHnWKXW2xo42DG;
-	24:XglJsI+kIjCJ8m6TvqSwQyQambAkDgQscQb56Jxh75JLwhAXlTIWwTL7gQ0jWYbTwDkP/SwDOCogiwCcw9E7NVb2nQuiccWrowWlg9Xpggk=;
-	7:UR3rHjAz8tnDbdafPJ97YNB8eNyCyiGqskzTbIheEtGZrwEiayQxFiltrbwDPz/JH7SISDtHTmmzcz6at5GfmSCL8VxYtVrO5yDIY9jnF0djvFzr6IIAE4AZyyZdZmIPlUAGsmf3oTzptwL+/qBy6ta6UQ1QQyME0fa3DSUuZlwkR4yfhClyl0v8oLjoi/tVM/6wuLbg/RQWu0eGCv7rhMkP5fC5qPqEOw2PMLTgIcc=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1595;
-x-microsoft-antispam-prvs: <BY1PR0701MB15956AFD8D6DE65A7DB09BB1E1620@BY1PR0701MB1595.namprd07.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(9101521062)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:BY1PR0701MB1595; BCL:0; PCL:0; RULEID:;
-	SRVR:BY1PR0701MB1595; 
-x-forefront-prvs: 0923977CCA
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(54356999)(5004730100002)(2351001)(66066001)(2501003)(86362001)(229853001)(106116001)(99286002)(5003600100002)(5640700001)(450100001)(19580395003)(16236675004)(11100500001)(5002640100001)(33656002)(19625215002)(76576001)(50986999)(9686002)(5008740100001)(74316001)(81166005)(77096005)(3660700001)(92566002)(87936001)(3280700002)(19627405001)(122556002)(1730700002)(1220700001)(1096002)(110136002)(10400500002)(189998001)(2906002)(107886002)(586003)(2900100001)(102836003)(3846002)(6116002)(37363001)(15760500001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1595;
-	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
-	MLV:nov; PTR:InfoNoRecords; LANG:en; 
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-X-OriginatorOrg: caviumnetworks.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2016 13:30:06.2505 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1595
-Subject: Fetcher failure: Unable to find revision 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
+X-Mailman-Approved-At: Mon, 25 Apr 2016 06:54:20 -0700
+Subject: Enable a recipe/package only when other dependent recipe/package is part of image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,103 +50,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Apr 2016 13:46:18 -0000
+X-List-Received-Date: Fri, 22 Apr 2016 11:09:34 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BY1PR0701MB1594FEBCBD9F70D587587878E1620BY1PR0701MB1594_"
+	boundary="_000_D3C33C4430ACA6488F343D1125FCCECC380DEE65irsmsx110gercor_"
 
---_000_BY1PR0701MB1594FEBCBD9F70D587587878E1620BY1PR0701MB1594_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_D3C33C4430ACA6488F343D1125FCCECC380DEE65irsmsx110gercor_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-In my bb file I added the below line,
+Hello,
+
+I have my own layer, that provides configuration packages for core Linux co=
+mponents, for example 'connman-conf' for 'connman' package.
+
+I would like to provide a pakcagegroup-config, that should automatically se=
+lect the configuration packages that are part of image configuration. Say i=
+f 'connman' is part of image then it should add 'connman-conf' to its RDEPE=
+NDS_${PN}.
+
+For this I try to use 'oe.packagedata.pkgmap', to check if the core compone=
+nt exists as below:
+--------------------------------------------------------------------
+def check_if_enabled(comp, trueval, d):
+   import oe.packagedata
+   pkgmap =3D oe.packagedata.pkgmap(d)
+
+   if pkgmap is not None and pkgmap.get(comp) is not None:
+      return trueval
+
+   return ""
+
+RDEPENDS_${PN} =3D " \
+   ${@check_if_enabled("connman", "connman-conf", d)} \
+"
+-----------------------------------------------------------
+
+This works as expected when the packagedata is available, i.e., image is bu=
+ild at least once first, then my layer is added to BBLAYERS and then rebuil=
+d the image.
+But this fails when there is no packagedata cache available.
+
+Can someone help me to resolve this properly.
+
+Thanks,
+Amarnath
+---------------------------------------------------------------------
+Intel Finland Oy
+Registered Address: PL 281, 00181 Helsinki =
+
+Business Identity Code: 0357606 - 4 =
+
+Domiciled in Helsinki =
 
 
-SRCREV =3D "2134d97aa3a7ce38bb51f933f2e20cafde371085"
-SRC_URI =3D "git://git.yoctoproject.org/linux-yocto-dev"
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
-The revision id is of v4.4.3 tag.
-
-
-Below errors are generated upon kernel fetching
-
-
-ERROR: linux-4.4 do_fetch: Fetcher failure: Unable to find revision 2134d97=
-aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
-ERROR: linux-4.4 do_fetch: Function failed: Fetcher failure for URL: 'git:/=
-/git.yoctoproject.org/linux-yocto-dev'. Unable to fetch URL from any source=
-.
-
-It seems the revid / tag is not on any branch
-git branch  --contains 2134d97aa3a7ce38bb51f933f2e20cafde371085
-returns nothing.
-
-How to fix this issue ?
-
-
-Regards,
-Manish Jaggi
-
---_000_BY1PR0701MB1594FEBCBD9F70D587587878E1620BY1PR0701MB1594_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_D3C33C4430ACA6488F343D1125FCCECC380DEE65irsmsx110gercor_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 56.7pt 70.85pt 56.7pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:10pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
-<p>In my bb file I added the below line,</p>
-<p><br>
-</p>
-<p></p>
-<div>SRCREV =3D &quot;2134d97aa3a7ce38bb51f933f2e20cafde371085&quot;</div>
-<div>SRC_URI =3D &quot;git://git.yoctoproject.org/linux-yocto-dev&quot;</di=
-v>
-<div><br>
+<body lang=3D"FI" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have my own layer, that provi=
+des configuration packages for core Linux components, for example &#8216;co=
+nnman-conf&#8217; for &#8216;connman&#8217; package.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I would like to provide a pakca=
+gegroup-config, that should automatically select the configuration packages=
+ that are part of image configuration. Say if &#8216;connman&#8217; is part=
+ of image then it should add &#8216;connman-conf&#8217; to its
+ RDEPENDS_${PN}.&nbsp; <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">For this I try to use &#8216;oe=
+.packagedata.pkgmap&#8217;, to check if the core component exists as below:=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">-------------------------------=
+-------------------------------------<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">def check_if_enabled(comp, true=
+val, d):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp; import oe.packaged=
+ata<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp; pkgmap =3D oe.pack=
+agedata.pkgmap(d)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; &nbsp;if pkgmap is not N=
+one and pkgmap.get(comp) is not None:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;=
+return trueval<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; &nbsp;return &#8220;&#82=
+21;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">RDEPENDS_${PN} =3D &#8220; \<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp; ${@check_if_enable=
+d(&#8220;connman&#8221;, &#8220;connman-conf&#8221;, d)} \<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8220;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">-------------------------------=
+----------------------------<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">This works as expected when the=
+ packagedata is available, i.e., image is build at least once first, then m=
+y layer is added to BBLAYERS and then rebuild the image.<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But this fails when there is no=
+ packagedata cache available.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Can someone help me to resolve =
+this properly.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Amarnath<o:p></o:p></span></p>
 </div>
-The revision id is of v4.4.3 tag.&nbsp;
-<p></p>
-<p><br>
-</p>
-<p>Below errors are generated upon kernel fetching</p>
-<p><br>
-</p>
-<p></p>
-<div>ERROR: linux-4.4&nbsp;do_fetch: Fetcher failure: Unable to find revisi=
-on 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upst=
-ream</div>
-<div>ERROR: linux-4.4 do_fetch: Function failed: Fetcher failure for URL: '=
-git://git.yoctoproject.org/linux-yocto-dev'. Unable to fetch URL from any s=
-ource.</div>
-<div><br>
-</div>
-<div>It seems the revid / tag is not on any branch</div>
-<div>git branch &nbsp;--contains 2134d97aa3a7ce38bb51f933f2e20cafde371085&n=
-bsp;<br>
-</div>
-<div>returns nothing.</div>
-<div><br>
-</div>
-<div>How to fix this issue ?</div>
-<p></p>
-<p><br>
-</p>
-<div id=3D"Signature">
-<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
-tica,sans-serif; font-size:; margin:0">
-<font face=3D"Cordia New, sans-serif" size=3D"2">Regards,</font>
-<div><font face=3D"Cordia New, sans-serif" size=3D"2">Manish Jaggi</font></=
-div>
-</div>
-</div>
-</div>
-</body>
+<p>---------------------------------------------------------------------<br>
+Intel Finland Oy<br>
+Registered Address: PL 281, 00181 Helsinki <br>
+Business Identity Code: 0357606 - 4 <br>
+Domiciled in Helsinki </p>
+
+<p>This e-mail and any attachments may contain confidential material for<br>
+the sole use of the intended recipient(s). Any review or distribution<br>
+by others is strictly prohibited. If you are not the intended<br>
+recipient, please contact the sender and delete all copies.</p></body>
 </html>
 
---_000_BY1PR0701MB1594FEBCBD9F70D587587878E1620BY1PR0701MB1594_--
+--_000_D3C33C4430ACA6488F343D1125FCCECC380DEE65irsmsx110gercor_--
