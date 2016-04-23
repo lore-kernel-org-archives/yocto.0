@@ -1,63 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ryanelkholy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40248E00EE5; Fri, 22 Apr 2016 12:29:43 -0700 (PDT)
+	id 89B4DE00F25; Fri, 22 Apr 2016 18:07:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ryanelkholy[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07AE0E00849
-	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 12:29:39 -0700 (PDT)
-Received: by mail-io0-f175.google.com with SMTP id u185so129133954iod.3
-	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 12:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=vTGgMYSOu9DpWYrxm6HZLLGf81Yr1aHjHoK0DUKDdVQ=;
-	b=UV8lxD4EXccf57v/m+wOhP4n98j13x79QxRfuaNUNPZV4MvaWDqvts/JSCSG/crTwF
-	GGCiYfhF5zaIiDHwSSE1OyMvT371mYbmSi8oOuZ3crLiprqclDODDGvC9fD2vzdfohAR
-	IMjeYqSMKPT7McQJ3WWfu4Pf+GBI40qPAY3C9Oy4KrYp7rANI18RTzCxNvFW6IwfVES5
-	MIX4phBmGukpvqwrzptfSQ0mqx7BDsYZRKNyzQHM6cXoLBP7w3O7OMMYzXQvhy/ZtlA2
-	Prhy3ag2hUYz6yjpO3RJpVGFEMlo6iCIjh2Gu+nuPisxNwTBeqzq0WTEJdzrDz7xVv5+
-	/cwg==
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D654E00D1C
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 18:07:47 -0700 (PDT)
+Received: by mail-ig0-f171.google.com with SMTP id f1so31297401igr.1
+	for <yocto@yoctoproject.org>; Fri, 22 Apr 2016 18:07:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc;
+	bh=6VnzMzpSQFfArYAPCtWgEGhZ+5p6aV326pn1gNSmbpU=;
+	b=GsS/KsPJUFGro6rxUgJ/zp224C0vXEQvqPt4Q/PskOnDi0X7u0127F9RG+uSGIfGTc
+	QPydmDK685ZarrALNzI/P0x8f5NgsCt5OXztCG+tpIfPTxvgRJQ9kAMazrzLvNX+A3zr
+	f+RxLg3advNa4MoIjClsmyghos/5CzD81KwiFBLtoglmAKFbo5Kuv/jx4YXK59an79ig
+	0nARIW5aroacqyMx3/rmO0JSFW3Hs1mUJf80NrKaGHT7/99/JdunZg3I9xTls4XVIEK3
+	E7+LVq9dwBkOVQ5ZO4YncC11KwuhTno9356nEefJ8hWA+p2voHOzcbHOKKW/fDt4i8Mg
+	M8sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=vTGgMYSOu9DpWYrxm6HZLLGf81Yr1aHjHoK0DUKDdVQ=;
-	b=U5Wn6IV50dVJXPi8c0DrfJltwbL2YGkDS+LCeibYH5M3QEkwOpT4AqPfPUqgrt1oZs
-	f2T0ZHgQb4kQ6OW6CxRtAWSepzrHQjWxNA+1+T78BwzyTlNwlu8P1g+3PW8Nx80oBM/B
-	ZZ9m6K3/DijX5ogtAYGF3t0t/99GQDdgpCagjbyqu5GmsPJX7LSRHYVucfcaVjh/qhN7
-	pFfs4tOa87hcErEJ8VthRMloiCMiJhdrbAPRaUU/39sf8C5wfUIR1TcUEyuvM4bsIbfP
-	WNSMv3XiyRgUf6MUbY9lPRRsUDQwwnSdvo9APZfyzQSOCra8k92Kq6/DsuPAIMHdtUTp
-	a1QQ==
-X-Gm-Message-State: AOPr4FVgsQYQSY+P9tM+pbKJmeO4z/t6sJYC7363v6/Rt+vy6rXPWN1NXc2/Uwa84VjKgViEVFjJ5w/ebI0ePr1P
-X-Received: by 10.107.51.213 with SMTP id z204mr1829400ioz.148.1461353379164; 
-	Fri, 22 Apr 2016 12:29:39 -0700 (PDT)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc;
+	bh=6VnzMzpSQFfArYAPCtWgEGhZ+5p6aV326pn1gNSmbpU=;
+	b=GI1iHY4osxK8Eh+k1c5xmjrRCqWKtdLJ3+/7HFaGlJ/Sz/HQeG6WDVEkr9Xn3vKGGq
+	3iF7WfWhty6HCu7lgFyXVpuJL389zf2uR7DSE4pwVauq2YXkUDVMREoVzhdxKeH0eink
+	iYzwl3yNonlLXRVW3NsBxvNce6bYByp/Q8twXks8HAnXR47x2qzhAQ2s1Rdwubc9MfiI
+	lQY7wOqhUze+5iB/WFuAPKT9LknAv+NuatAdmuagD2qqTWSqRtsLf4ntyAs3+O96Hq8f
+	X80Q9MUzocGHDc++Z34WxIGrrXlxv8v6IiAY8VoWmjt5AyZmERNw8thvnrAsVKDmfDPA
+	gIUA==
+X-Gm-Message-State: AOPr4FXeI2UWgTyz4bN9l3DSSCNtFxb5mHQ80SEVT7eJtleZ+6YgjWtuo07WtfyFb9DG+EDZQUTMvD4bwQLMgw==
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Fri, 22 Apr 2016 12:29:19 -0700 (PDT)
-In-Reply-To: <20160422170410.GB23308@linux-yxv0>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155E570F86EE@fmsmsx111.amr.corp.intel.com>
-	<20160422170410.GB23308@linux-yxv0>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 22 Apr 2016 20:29:19 +0100
-Message-ID: <CAJTo0LYnK-sd+d1bkJN39AhkAN0t+42Nonm38Qyy3BXm1nLYdw@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Yocto Project Status WW17
+X-Received: by 10.50.29.51 with SMTP id g19mr210385igh.42.1461373666994; Fri,
+	22 Apr 2016 18:07:46 -0700 (PDT)
+Received: by 10.64.78.105 with HTTP; Fri, 22 Apr 2016 18:07:46 -0700 (PDT)
+Date: Fri, 22 Apr 2016 21:07:46 -0400
+Message-ID: <CAMZfsd6f7-s4pVyiNPs2sVmi+EC6yMyjCJeYTPobm0f6ffE2_w@mail.gmail.com>
+From: "Ryan Elkholy, PhD, PE" <ryanelkholy@gmail.com>
+To: openembedded-devel@lists.openembedded.org
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: [meta-qt5] EGL Error : Could not create the egl surface: error = 0x300b
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,45 +67,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Apr 2016 19:29:43 -0000
-Content-Type: multipart/alternative; boundary=001a11440cd00e8bc8053117d943
+X-List-Received-Date: Sat, 23 Apr 2016 01:07:49 -0000
+Content-Type: multipart/alternative; boundary=e89a8f8399b74e33cb05311c9201
 
---001a11440cd00e8bc8053117d943
+--e89a8f8399b74e33cb05311c9201
 Content-Type: text/plain; charset=UTF-8
 
-On 22 April 2016 at 18:04, Trevor Woerner <twoerner@gmail.com> wrote:
->
-> Have the eSDK and CROPS projects been announced publicly? Are they
-available
-> for us to "play with"?
+Hello,
 
+I am am trying to make a build that includes meta-qt5 without x11 or
+wayland on the Minnowboard Turbot (x86-64). I was successful in building my
+image but the problem occurred when testing my basic qt app on the image.
+When trying to run the app I get the following error:
 
-eSDK is the "extensible SDK', or what appears when you do bitbake image -c
-populate_sdk_ext.  This should be in the manual already, the tl;dr is that
-its an SDK you can manipulate after installation.
+EGL Error : Could not create the egl surface: error = 0x300
 
-CROPS is docker magic to do builds on Windows/Mac.  Todor did a
-presentation at ELC: http:
-//events.linuxfoundation.org/sites/events/files/slides/Todor_Minchev_CROPS_ELC_2016.pdf
-<http://events.linuxfoundation.org/sites/events/files/slides/Todor_Minchev_CROPS_ELC_2016.pdf>
+I have been trying to find a solution for this for weeks with no luck. I am
+able tu run my application when including x11, but I am trying to avoid it.
+Does anyone know any solution for this? Any insight will be helpful because
+I have been stumped for weeks. If nobody knows of a solution is it possible
+to dig deeper into this error and see what is causing it? If so, how?
 
-Ross
+Thanks
 
---001a11440cd00e8bc8053117d943
+--e89a8f8399b74e33cb05311c9201
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br>On 22 April 2016 at 18:04, Trevor Woerner &lt;<a href=
-=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<br>&gt;<br=
->&gt; Have the eSDK and CROPS projects been announced publicly? Are they av=
-ailable<br>&gt; for us to &quot;play with&quot;?<br><br><br>eSDK is the &qu=
-ot;extensible SDK&#39;, or what appears when you do bitbake image -c popula=
-te_sdk_ext.=C2=A0 This should be in the manual already, the tl;dr is that i=
-ts an SDK you can manipulate after installation.<br><br>CROPS is docker mag=
-ic to do builds on Windows/Mac.=C2=A0 Todor did a presentation at ELC: http=
-:<a href=3D"http://events.linuxfoundation.org/sites/events/files/slides/Tod=
-or_Minchev_CROPS_ELC_2016.pdf">//events.linuxfoundation.org/sites/events/fi=
-les/slides/Todor_Minchev_CROPS_ELC_2016.pdf</a><div><br></div><div>Ross</di=
-v></div>
+<div dir=3D"ltr"><div><div><div>Hello,<br><br></div>I am am trying to make =
+a build that includes meta-qt5 without x11 or wayland on the Minnowboard Tu=
+rbot (x86-64). I was successful in building my image but the problem occurr=
+ed when testing my basic qt app on the image. When trying to run the app I =
+get the following error:<br><br>EGL Error : Could not create the egl surfac=
+e: error =3D 0x300<br><br></div>I have been trying to find a solution for t=
+his for weeks with no luck. I am able tu run my application when including =
+x11, but I am trying to avoid it. Does anyone know any solution for this? A=
+ny insight will be helpful because I have been stumped for weeks. If nobody=
+ knows of a solution is it possible to dig deeper into this error and see w=
+hat is causing it? If so, how?<br><br></div>Thanks<br></div>
 
---001a11440cd00e8bc8053117d943--
+--e89a8f8399b74e33cb05311c9201--
