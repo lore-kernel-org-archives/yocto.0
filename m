@@ -1,55 +1,41 @@
-Return-Path: <ronaldo@brc2.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6D67E00849; Mon, 25 Apr 2016 09:58:39 -0700 (PDT)
+	id 10954E00857; Mon, 25 Apr 2016 10:35:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2865E00756
-	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 09:58:33 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id b10so23735713oig.1
-	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 09:58:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=brc2-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=QTtSvUJ08RtuNdxmEa3B/Bo4PtEDN2U5LMFl5cvhkAQ=;
-	b=NWR4ZEsDjOK+buC5EPYU5Bp64zkaDEN1P8baNac7PESzomraxncEDMG2hFvIMgwinI
-	Hmspa34nSunUHo1LH4lWVI76Udz0RAVMqetsYCdT6nwtjycozXLVq+Tluk8IyEdbN7bK
-	ggldOobu2XZXbMogLZzVjAf3cfyk/JkU4kr7kBleuABl2oEclrm2MtZxB0tgBI+KfiSc
-	D9RPds/JCjoo9lURL5k0KZkaka/tr7JXqyxxUZFPt2FUxH6yHuSmqR6mbNe2c3Jx4T3+
-	xbswQFF7OMWWtmpAzPhgQAqIi7TjYyvmqM2BU2URgXg4WIrYy2t4Mh/gHIemjf3dqDEB
-	X5IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=QTtSvUJ08RtuNdxmEa3B/Bo4PtEDN2U5LMFl5cvhkAQ=;
-	b=PfuxFdsT+zmj6S9gFXR8YZehnTFP6sjKl1p2yLhSZWwvgdyAS05uDl2WbLTVjO3zoZ
-	YqW2UXs/44RqMHWhHYOe+gO+T+XGiclQ02PKf33kROBmuwUDbQvARLyz3EFHpqVlyp4G
-	6bsjV8sajxmvAUWLN564R8/lHq/ZWkAsoVtAQ0drXZjJ6Xkksc5c4NsvZQlBTz2WQWdf
-	jq+ZsPvtKJCkcWxKwt5u6Mc/e2frzzKZ94o28V1RBEBozDtav78WBWobBJg8SR7jDuY1
-	nREBNbTatKENXyBOwpIHwIBkeJf1DHusX9Bm628YWNfzx6JnJ5+Yw1aN5N00DOCeUoJC
-	ET9g==
-X-Gm-Message-State: AOPr4FU8ngp3hW0xDYGcQctJERk5BmK2JlI7iJFiugNsPodZkBptDbIbIY5RP/qjhMYz6Ku64lHKNjoANJmdAw==
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D58C9E0077F
+	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 10:35:07 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u3PHYsK1008925
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 25 Apr 2016 10:34:54 -0700 (PDT)
+Received: from server.local (147.11.119.214) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.248.2;
+	Mon, 25 Apr 2016 10:34:54 -0700
+To: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>, "Burton, Ross"
+	<ross.burton@intel.com>
+References: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+	<CAJTo0LY9Vtas26+M_Zq2fzREkpqXLD-uNOtXpJbzN8_9it=1Pg@mail.gmail.com>
+	<BY1PR0701MB159480B842DF78C33DA2A161E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <571E553D.4070200@windriver.com>
+Date: Mon, 25 Apr 2016 13:34:53 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+	Gecko/20100101 Thunderbird/38.7.2
 MIME-Version: 1.0
-X-Received: by 10.202.66.135 with SMTP id p129mr365224oia.153.1461603513393;
-	Mon, 25 Apr 2016 09:58:33 -0700 (PDT)
-Received: by 10.202.45.65 with HTTP; Mon, 25 Apr 2016 09:58:33 -0700 (PDT)
-Date: Mon, 25 Apr 2016 10:58:33 -0600
-Message-ID: <CALRMKQqOC3NMTES88wXzdvjRsu2=qUvJ191wfSxPDEKq8DcfiA@mail.gmail.com>
-From: Ronald Oakes <ronaldo@brc2.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: More up to date network boot (PXE?) reference
+In-Reply-To: <BY1PR0701MB159480B842DF78C33DA2A161E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fetcher failure: Unable to find revision 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,17 +47,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Apr 2016 16:58:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 25 Apr 2016 17:35:12 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-My target will need to be loaded over the network - maintaining only a
-ram file system.  So, I've been reading up on doing network booting
-using PXE or gPXE.  However, the best reference (or the one I'm most
-likely to trust) is coming from the Yocto Project Wiki.  Except it is
-5.5 years out of date (September 2010).
+On 2016-04-25 12:10 PM, Jaggi, Manish wrote:
+>
+> ------------------------------------------------------------------------
+> *From:* Burton, Ross <ross.burton@intel.com>
+> *Sent:* Monday, April 25, 2016 8:12 PM
+> *To:* Jaggi, Manish
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Fetcher failure: Unable to find revision
+> 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
+> upstream
+>
+> On 25 April 2016 at 14:30, Jaggi, Manish
+> <Manish.Jaggi@caviumnetworks.com
+> <mailto:Manish.Jaggi@caviumnetworks.com>> wrote:
+>
+>     It seems the revid / tag is not on any branch
+>     git branch  --contains 2134d97aa3a7ce38bb51f933f2e20cafde371085
+>     returns nothing.
+>
+>     How to fix this issue ?
+>
+>
+> You probably want to use git branch -r --contains 213... as otherwise
+> git branch will only list local branches.  The web UI says that this
+> commit exists on master though...
+>
+> [Manish] Same output with -r.
+> Can you please share the link of web ui. As per the error it is not on
+> master branch.
 
-So, can anyone recommend a more recent reference to consult in trying
-to make sure I've got my build (etc.) set up correctly?
+linux-yoct-dev and linux-yocto-4.4 are different trees. linux-yocto-dev
+tracks the latest mainline kernel, not -stable.
 
-Ron Oakes
+So if you are looking for 4.4.3 on linux-yocto-dev, you aren't going
+to find it.
+
+Bruce
+
+>
+>
+> Ross
+>
+>
+
 
