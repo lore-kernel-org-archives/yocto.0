@@ -1,60 +1,60 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E869E0071E; Mon, 25 Apr 2016 07:32:37 -0700 (PDT)
+	id 598BFE0071E; Mon, 25 Apr 2016 07:43:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.177 listed in list.dnswl.org]
-Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
-	[209.85.161.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7B4EE00566
-	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 07:32:31 -0700 (PDT)
-Received: by mail-yw0-f177.google.com with SMTP id o66so214504850ywc.3
-	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 07:32:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=L1vq+MRkkbtFb4w2GAIBpaDrXnVLsBnPyg+O32vFaqs=;
-	b=BBsvF7YDrngtk5Uh5CXBcoas6jJpr5ki8RsfTR9sih/rnuaAdW8mttS2SeMXDzNp+a
-	U+FmgBu3NEm5Y1vCrBka6dRRtPdQ6VCz/Nd2SltsSu+jcRWWASUnQmHpN2yPGTsOMD4O
-	0BeSU/9oBa063n6tKWQVx2RbZdQUqNpwd1THkXbwDm4SHEtzke3zT1HaQr7D3/jg6em2
-	5B/gvqV1F/4Z5gukbFrS3Jwt+Wpnd8HXmOqbUtOJ90VK7CygmhqHTgodtzbdZ5Me+F1a
-	r7FZMFhi6+BGnwAA/kdbu1IjLaKgEIBeHM1pBtcWsjgNVDUGzu2/zv5NWIQp+H+wxZJF
-	sxbQ==
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2328EE00566
+	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 07:43:03 -0700 (PDT)
+Received: by mail-ig0-f170.google.com with SMTP id bi2so67752449igb.0
+	for <yocto@yoctoproject.org>; Mon, 25 Apr 2016 07:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=1XWCoBYJzhL5q0uM2JpVuoA0HT+Jxk4gd3cU54Q1Z2s=;
+	b=0OF0Ajs/qGfK6aaZLpRwmh7985L7CHip+8HjpTrcHu+BVJcaAeQuTyWqhZyj6SC9IN
+	QUH0tqEz5lGeGNBhYVvZgjDRrNIhm9FQl72L8TLHXymGQ6cXQ47NP+W6xDGkfz5GxAGU
+	7oubLT/ikn4tPRdVdTwYMcXG4dRO7jkATLMhYVSvNVD50DBg3tC2MqSPqhVuq00lcmOE
+	Z301IoU1yRsK1eV03vP1bHSNYqbUbQ/LvZea5hFXYeu+rgQDo5PerFR6plyVUoEdGqeW
+	eSx6TjLLEPyA/+qBY2UKVoWuhEHfKPAMdoBjncxeZF1fLAgPInJ8aYf8Lur7lVS9MtYR
+	F0jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=L1vq+MRkkbtFb4w2GAIBpaDrXnVLsBnPyg+O32vFaqs=;
-	b=h4nSRAlZleDKvWI+e+qPlSUWI2kRxoMEu6P0GoeOHS7mSSDaVbkjpY0DCc1QDjbNhN
-	a8Yb7/moQbomRZJSYc/220p1CjiZ0n0w+W7is9T0Lv5bbbe4m7qRgQt7VYGJccds4YTu
-	pmSUYgumYjLyq7qeirVrCSyDX9H9Iaqti4DJ7OaesdnbzexFs7ipTX4aNM4HK2vDbVbR
-	guTAx8m2iDiQmfrGZy5DwLP8abvifOj/JP3VluSWcB/F/myw6Zj2+O5i8UvXfTpYl0qK
-	aGtILkBfZBnMsKANxvENIkrH98A5MwiB78LRzTbSzy88RFcukl4j0HpJazm0MnA7lvLI
-	GY3g==
-X-Gm-Message-State: AOPr4FWRJu0bwf4uhz2T8rS4eWNFs3J8WOPXqVYFqg1X6xs1btLtYXEZ/V/dZeOYKlFLrlzXg+C72V6FYYULng==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=1XWCoBYJzhL5q0uM2JpVuoA0HT+Jxk4gd3cU54Q1Z2s=;
+	b=ak8RidGsWOGVbGU7JzKrn8RwhjgfS+lngUQE92HZzHRiX1Q95FBxkAXxGa+ToPTvrj
+	+K06EeZt75WRkIpnUzH5L3HO4T61NduHshecxqzbuQS7jG1P9HZRlN9Z2zN0NCb91aIN
+	lVBvmeP23r6os0SGPVD3Y6g7Gp4lXU8x+5qGpofkWQv1AoQgqOvsTOfdJkVnocbjrY1d
+	rIHqj/T7Y2gQryMoVe7RmCbMTAkUKh8yh8EayanTaNYGWMsjE1bL6+FChKcXrLh8PvjA
+	qVkfsstzmfhVVoqVDJMVdDAszC0ViPbxBjDG7ggNmfPdAcbIig+hEuQgStwuTyXNvn8+
+	5AjQ==
+X-Gm-Message-State: AOPr4FXuVc3w2UIvHkxnfg9gFxSfOA1hq3tLXi4q3i3sh8O65lXmLDS4Reyl4k2Z8eHP+BX+uUAZ1lk6dqGpf8Sh
+X-Received: by 10.50.62.20 with SMTP id u20mr12635105igr.52.1461595383021;
+	Mon, 25 Apr 2016 07:43:03 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.176.6.161 with SMTP id g30mr9279417uag.142.1461594381960;
-	Mon, 25 Apr 2016 07:26:21 -0700 (PDT)
-Received: by 10.176.66.227 with HTTP; Mon, 25 Apr 2016 07:26:21 -0700 (PDT)
-Date: Mon, 25 Apr 2016 11:26:21 -0300
-Message-ID: <CAF3SDA6udbSNzcx3to0E8aKVo+q6K02KXcKDMV2n1rbzbdhz5w@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Compiling tollchain at x64 to run at x86
+Received: by 10.107.9.106 with HTTP; Mon, 25 Apr 2016 07:42:43 -0700 (PDT)
+In-Reply-To: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+References: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 25 Apr 2016 15:42:43 +0100
+Message-ID: <CAJTo0LY9Vtas26+M_Zq2fzREkpqXLD-uNOtXpJbzN8_9it=1Pg@mail.gmail.com>
+To: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fetcher failure: Unable to find revision 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,36 +66,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Apr 2016 14:32:37 -0000
-Content-Type: multipart/alternative; boundary=94eb2c047ca0f14e2505314ff5c2
+X-List-Received-Date: Mon, 25 Apr 2016 14:43:07 -0000
+Content-Type: multipart/alternative; boundary=047d7bdca6069c85180531503196
 
---94eb2c047ca0f14e2505314ff5c2
+--047d7bdca6069c85180531503196
 Content-Type: text/plain; charset=UTF-8
 
-Hi everybody
+On 25 April 2016 at 14:30, Jaggi, Manish <Manish.Jaggi@caviumnetworks.com>
+wrote:
 
-I need to install a toolchain compiled by Yocto but my machine (where the
-toolchain will be compiled) is a x64, and the machine where the toolchain
-will run is x86. How can I achieve this?
+> It seems the revid / tag is not on any branch
+> git branch  --contains 2134d97aa3a7ce38bb51f933f2e20cafde371085
+> returns nothing.
+>
+> How to fix this issue ?
+>
 
-Best regards,
-- dhs
+You probably want to use git branch -r --contains 213... as otherwise git
+branch will only list local branches.  The web UI says that this commit
+exists on master though...
 
--- 
-*"Do or do not. There is no try"*
-  *Yoda Master*
+Ross
 
---94eb2c047ca0f14e2505314ff5c2
+--047d7bdca6069c85180531503196
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hi everybody<br><br></div>I need to install=
- a toolchain compiled by Yocto but my machine (where the toolchain will be =
-compiled) is a x64, and the machine where the toolchain will run is x86. Ho=
-w can I achieve this?<br><br></div>Best regards,<br></div><div>- dhs<br></d=
-iv><div><div><div><div><br>-- <br><div class=3D"gmail_signature"><div style=
-=3D"text-align:right"><i>&quot;Do or do not. There is no try&quot;</i><br><=
-i>=C2=A0 </i><i><b>Yoda Master</b></i><br></div></div>
-</div></div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 25 April 2016 at 14:30, Jaggi, Manish <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:Manish.Jaggi@caviumnetworks.com" target=3D"_blank">Manish.Jaggi@caviu=
+mnetworks.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb=
+(204,204,204);border-left-style:solid;padding-left:1ex"><div>It seems the r=
+evid / tag is not on any branch</div>
+<div>git branch =C2=A0--contains 2134d97aa3a7ce38bb51f933f2e20cafde371085=
+=C2=A0<br>
+</div>
+<div>returns nothing.</div>
+<div><br>
+</div>
+<div>How to fix this issue ?</div></blockquote></div><br>You probably want =
+to use git branch -r --contains 213... as otherwise git branch will only li=
+st local branches.=C2=A0 The web UI says that this commit exists on master =
+though...</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
+ra">Ross</div></div>
 
---94eb2c047ca0f14e2505314ff5c2--
+--047d7bdca6069c85180531503196--
