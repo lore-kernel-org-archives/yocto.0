@@ -1,77 +1,89 @@
-Return-Path: <Harinath.maddela@inedasystems.com>
+Return-Path: <Manish.Jaggi@caviumnetworks.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1FDADE00CEC; Tue, 26 Apr 2016 00:10:20 -0700 (PDT)
+	id 7C00FE00C43; Tue, 26 Apr 2016 00:46:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.169.93 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from IND01-MA1-obe.outbound.protection.outlook.com
-	(mail-ma1ind01on0082.outbound.protection.outlook.com [104.47.100.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7445AE0093B
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 00:10:13 -0700 (PDT)
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2on0093.outbound.protection.outlook.com [65.55.169.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08703E0093B
+	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 00:46:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=inedasystems.onmicrosoft.com; s=selector1-inedasystems-com;
+	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-caviumnetworks-com;
 	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=8ewVUX2v0hU0bX56M/3RJFCIxrzo3AJPIfhwO5vbsmM=;
-	b=B+TmYqWrkuuMpDAZib9wRsNR8iLW5YwuYd5CNhFRKszjmooGFk5QCfkdRZ+0TNh8H0tKoABStdb3EbRuKDPBkgKjKDJpdwGncSXe03OSsZLHJKeQLoRMfPm0Za2tJ4Yywkx5B4I5caC9TXIk/DGhmdpCO3ZJTSYsWFMOJKmeoGk=
-Received: from PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM (10.164.140.137) by
-	PN1PR01MB0336.INDPRD01.PROD.OUTLOOK.COM (10.164.140.140) with Microsoft
-	SMTP Server (TLS) id 15.1.466.19; Tue, 26 Apr 2016 07:10:08 +0000
-Received: from PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM ([10.164.140.137]) by
-	PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM ([10.164.140.137]) with mapi id
-	15.01.0477.012; Tue, 26 Apr 2016 07:10:09 +0000
-From: Harinath maddelal <Harinath.maddela@inedasystems.com>
-To: Khem Raj <raj.khem@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Kernel Build error
-Thread-Index: AQHRn4SLYSIGB7AV7UCUPj1JlvN22Z+bzvQAgAAAW7Q=
-Date: Tue, 26 Apr 2016 07:10:09 +0000
-Message-ID: <PN1PR01MB0333EF4C74C76713DA2E13CBEF630@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>
-References: <PN1PR01MB0333D0AA52455F3BFC07AB53EF630@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>,
-	<CAMKF1spiMKDGzfd21izpjak1rRm_XqpNzuTTd_Mx6726H9cw7Q@mail.gmail.com>
-In-Reply-To: <CAMKF1spiMKDGzfd21izpjak1rRm_XqpNzuTTd_Mx6726H9cw7Q@mail.gmail.com>
+	bh=M18K1O3SNbsX7d6RnrkzT+oKqRNIrTGuGZRkOXYJL9g=;
+	b=sct+0biQpARtCkBvgq27QqUO7lty1vxP3qf/Z7Xwh1VcVR9E/auBNE3ZIxMxJCzY9UevIFWwrtDORpe5SZ3jmqd/Q+/sHzAqWgXvxXqmlnKDwXXeuY9YE3ytW9zdu6m4V5LRjeQO7RCotIrcfegaRNuwvFWlvDYznRcV7GuFCjs=
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
+	BY1PR0701MB1596.namprd07.prod.outlook.com (10.162.110.15) with
+	Microsoft SMTP
+	Server (TLS) id 15.1.466.19; Tue, 26 Apr 2016 07:46:10 +0000
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
+	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
+	mapi id 15.01.0466.025; Tue, 26 Apr 2016 07:46:10 +0000
+From: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
+To: Zhenhua Luo <zhenhua.luo@nxp.com>, Bruce Ashfield
+	<bruce.ashfield@windriver.com>, "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Fetcher failure: Unable to find revision
+	2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
+	upstream
+Thread-Index: AQHRnvYtSwgidqLbqEOk4YMTyaEoK5+aw4aAgAAXEwKAABkHgIAAfDKzgAAUD4CAAFlhUIAABAoQ
+Date: Tue, 26 Apr 2016 07:46:10 +0000
+Message-ID: <BY1PR0701MB1594F778B7CFB72B01F05428E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
+References: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+	<CAJTo0LY9Vtas26+M_Zq2fzREkpqXLD-uNOtXpJbzN8_9it=1Pg@mail.gmail.com>
+	<BY1PR0701MB159480B842DF78C33DA2A161E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
+	<571E553D.4070200@windriver.com>
+	<BY1PR0701MB1594282E92D12DA005739343E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
+	<571ECE3F.60200@windriver.com>,
+	<AM2PR04MB06746613022C5864C46200D6EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
+In-Reply-To: <AM2PR04MB06746613022C5864C46200D6EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none; gmail.com;
-	dmarc=none action=none header.from=inedasystems.com; 
-x-originating-ip: [175.101.7.226]
-x-ms-office365-filtering-correlation-id: 64a3a2a3-3596-4179-1102-08d36da1cd87
-x-microsoft-exchange-diagnostics: 1; PN1PR01MB0336;
-	5:1cdOHJVo7kaH52AS4g3PICgv1GbruIaIKJ5gjkG+aNTYt0DzzzUyj200VIYy2Y6NqI/fQ0eOzlbpSOn/n6+fxxOivFyF4Uf9y+hvVzn0l5CES2c14Tp0Ly8GJjkHWb0nkeXsjWCxcwg7oq2z6pW/NuWdzIwBNsYCW0Unea+j/FKfkPA3FCA17o6kBTk1hSGy;
-	24:SZqifc2WdAOREtc09z+ZrqGcFUD7mVDqcGFNhkV4ubf5ZqgRPKjaa33O/1uDptyajiiuvceLhoJL/B4gg5biR0jGar79tcDzpzH6PCL6C/U=;
-	7:Se3Lb3uikFQ9sCd509CpONtzE31UUjrqwXBqg9RshSoGB/dRowBflkpFglbSuvkbwjewD5Ws92r1qOL8LVm81i6Sypqd+P+tVFtxkBMrvh7veAIRu1erVYzBwqpT0c119oQgGao3Vs/tOQ0ZcjUY+UuC7ixbnmCdfsApWMPI/PWk6v8QIZLyhwZxEefnIzX0c3x0zagofj1R3Z+V9jI1Z3ZVolckPvwkcI4ZkPaX7kA=;
-	20:yZAKx1ue3S2T78jYEkgUhzoVD47luQ9Whmz282Qv1tAGGjMAytxtbqiQV7YVnd9JJdj57+cFVe8RaC3HRxBV1p+k+uDjSa+CWX48YKKgQjuX8cLtPhHeM/dxGySelG1SJ3/A7pH+sLtrGdywALKeg0rU4nR2o6Xg73tNF4PlOd0=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:PN1PR01MB0336;
-x-microsoft-antispam-prvs: <PN1PR01MB0336D1F8112E432D75882705EF630@PN1PR01MB0336.INDPRD01.PROD.OUTLOOK.COM>
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=caviumnetworks.com;
+x-originating-ip: [64.2.3.194]
+x-ms-office365-filtering-correlation-id: 4ba09e1c-d3f5-4dbd-e1cb-08d36da6d5a9
+x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1596;
+	5:RXF44w4/ptKDCQ4hc+0XaOoP/QFcVmrmyKA32Yq5SMd5fn3HEPF478jKM2F/mF0hMs9R6dTve6Elx25K3HO1r8OXgAqJZJeuXgt2Vuw5BN8oarfEef835JpH7mq8SCuDQIJTI5DOr8mPcRUjq8CrsSilAfAoxMJgDTsTip1vbZZsnafAHOYFdTT9JxbLDkHp;
+	24:r0lYYxi/jXNnuVvvoGq24Fxp6nPKi96U9IIPqbZpOT2GyRgbbcXwq3diqGki3Bj3RXtsMoCUtm6j+EqBpzptfe6+vjoj4bVJvdLUkkr4q3s=;
+	7:OEs/wPphci+5E91D0AXfKNTb4RLXfgtJNmIqLUdOiEp5pnkKK2c9DR6fgs5CLknr0R5vWTztd7j1aqj0uY6ijZlgtXpAYSLIJhK9pAV0BC7ACnDWtc1uPFrO8RADaZh29ujA/2R8GGkDY0YN0ylpsoBjZBYUd7hdS3kD8F6rN+4epJx7YSs4ORMCiqQH76mHmHdm/lrjHk5jMO2XunfAt4gBYb1QppxpnEHtsdDz7xQ=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1596;
+x-microsoft-antispam-prvs: <BY1PR0701MB1596FAE3D3D7F897CF95CAD1E1630@BY1PR0701MB1596.namprd07.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(9101521072)(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:PN1PR01MB0336; BCL:0; PCL:0; RULEID:; SRVR:PN1PR01MB0336; 
+	RULEID:(9101521072)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
+	SRVR:BY1PR0701MB1596; BCL:0; PCL:0; RULEID:;
+	SRVR:BY1PR0701MB1596; 
 x-forefront-prvs: 0924C6A0D5
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(377454003)(53754006)(24454002)(53474002)(66066001)(77096005)(2950100001)(2900100001)(15975445007)(87936001)(5008740100001)(122556002)(5001770100001)(92566002)(54356999)(76176999)(50986999)(86362001)(19627405001)(19625215002)(33656002)(2501003)(5003600100002)(5004730100002)(19617315012)(107886002)(5002640100001)(189998001)(106116001)(16236675004)(10400500002)(586003)(3280700002)(102836003)(3846002)(2906002)(6116002)(16601075003)(3900700001)(81166005)(1096002)(3660700001)(1220700001)(19580395003)(19580405001)(9686002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:PN1PR01MB0336;
-	H:PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	SFS:(10009020)(6009001)(24454002)(377424004)(13464003)(377454003)(3900700001)(2906002)(586003)(2900100001)(2950100001)(3846002)(102836003)(4326007)(6116002)(19580395003)(3280700002)(189998001)(19580405001)(76576001)(3660700001)(81166005)(5001770100001)(1220700001)(1096002)(77096005)(74316001)(86362001)(15975445007)(9686002)(5003600100002)(5002640100001)(87936001)(5004730100002)(54356999)(76176999)(50986999)(5008740100001)(92566002)(33656002)(11100500001)(122556002)(66066001)(93886004)(99286002)(106116001)(10400500002)(15760500001)(7059030)(37363001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1596;
+	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
 	MLV:sfv; LANG:en; 
 spamdiagnosticoutput: 1:23
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: inedasystems.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2016 07:10:09.2058 (UTC)
+X-OriginatorOrg: caviumnetworks.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2016 07:46:10.3707 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 854eba29-8407-45bb-9043-7b8b086143dd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PR01MB0336
-Subject: Re: Kernel Build error
+X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1596
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fetcher failure: Unable to find revision 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,264 +95,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Apr 2016 07:10:20 -0000
+X-List-Received-Date: Tue, 26 Apr 2016 07:46:17 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PN1PR01MB0333EF4C74C76713DA2E13CBEF630PN1PR01MB0333INDP_"
-
---_000_PN1PR01MB0333EF4C74C76713DA2E13CBEF630PN1PR01MB0333INDP_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Thanks,
 
-Hi,
+It worked with standards/base branch.=20
 
+Regards,
+Manish Jaggi
 
-Kernel Version is 3.10.60 & our platform is mips32.
+________________________________________
+From: Zhenhua Luo <zhenhua.luo@nxp.com>
+Sent: Tuesday, April 26, 2016 1:02 PM
+To: Bruce Ashfield; Jaggi, Manish; Burton, Ross
+Cc: yocto@yoctoproject.org
+Subject: RE: [yocto] Fetcher failure: Unable to find revision 2134d97aa3a7c=
+e38bb51f933f2e20cafde371085 in branch master even from upstream
 
-For GCC I haven't made any changes. I have used the default GCC from yocto.=
- Looks like by default it is using 5.3.0 version.
-
-
-Can we specify our GCC in the YOCTO?
-
-
-Thanks and Regards,
-Harinath
-
-
-
-________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Tuesday, April 26, 2016 12:13 PM
-To: Harinath maddelal; yocto@yoctoproject.org
-Subject: Re: [yocto] Kernel Build error
-
-which version of kernel are you compiling and what version of gcc is in pla=
-y ?
-
-On Mon, Apr 25, 2016 at 11:31 PM Harinath maddelal <Harinath.maddela@inedas=
-ystems.com<mailto:Harinath.maddela@inedasystems.com>> wrote:
-
-Hi All,
+If the SHA exists in a tag instead of any branch, you can use nobranch para=
+meter, refer to http://git.yoctoproject.org/cgit.cgi/poky/tree/bitbake/lib/=
+bb/fetch2/git.py?id=3Dc4bcaa3f7ceac346af1555fff2b526ceeac92a54#n47.
 
 
-When i'm trying to build my kernel using yocto, im getting following error
+Best Regards,
 
-|   CHK     include/generated/compile.h
-|   AS      arch/mips/kernel/r4k_fpu.o
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S: Assembler messages:
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:89: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f0,272+0($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:90: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f2,272+16($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:91: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f4,272+32($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:92: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f6,272+48($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:93: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f8,272+64($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:94: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f10,272+80($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:95: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f12,272+96($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:96: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f14,272+112($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:97: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f16,272+128($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:98: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f18,272+144($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:99: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f20,272+160($4)'
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:100: Error: opcode not supported on this processor: mips3=
- (mips3) `sdc1 $f22,272+176($4)'
+Zhenhua
 
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Bruce Ashfield
+> Sent: Tuesday, April 26, 2016 10:11 AM
+> To: Jaggi, Manish <Manish.Jaggi@caviumnetworks.com>; Burton, Ross
+> <ross.burton@intel.com>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Fetcher failure: Unable to find revision
+> 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
+> upstream
+>
+> On 2016-04-25 9:05 PM, Jaggi, Manish wrote:
+> >
+> > ________________________________________
+> > From: Bruce Ashfield [bruce.ashfield@windriver.com]
+> > Sent: Monday, April 25, 2016 11:04 PM
+> > To: Jaggi, Manish; Burton, Ross
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] Fetcher failure: Unable to find revision
+> > 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
+> > upstream
+> >
+> > On 2016-04-25 12:10 PM, Jaggi, Manish wrote:
+> >>
+> >> ---------------------------------------------------------------------
+> >> ---
+> >> *From:* Burton, Ross <ross.burton@intel.com>
+> >> *Sent:* Monday, April 25, 2016 8:12 PM
+> >> *To:* Jaggi, Manish
+> >> *Cc:* yocto@yoctoproject.org
+> >> *Subject:* Re: [yocto] Fetcher failure: Unable to find revision
+> >> 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
+> >> upstream
+> >>
+> >> On 25 April 2016 at 14:30, Jaggi, Manish
+> >> <Manish.Jaggi@caviumnetworks.com
+> >> <mailto:Manish.Jaggi@caviumnetworks.com>> wrote:
+> >>
+> >>      It seems the revid / tag is not on any branch
+> >>      git branch  --contains 2134d97aa3a7ce38bb51f933f2e20cafde371085
+> >>      returns nothing.
+> >>
+> >>      How to fix this issue ?
+> >>
+> >>
+> >> You probably want to use git branch -r --contains 213... as otherwise
+> >> git branch will only list local branches.  The web UI says that this
+> >> commit exists on master though...
+> >>
+> >> [Manish] Same output with -r.
+> >> Can you please share the link of web ui. As per the error it is not
+> >> on master branch.
+> >
+> > linux-yoct-dev and linux-yocto-4.4 are different trees.
+> > linux-yocto-dev tracks the latest mainline kernel, not -stable.
+> >
+> > So if you are looking for 4.4.3 on linux-yocto-dev, you aren't going
+> > to find it.
+> >
+> > [Manish] the 4.4.3 tag is also not on master branch of the 4.4 tree.
+> > http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/tag/?h=3Dstan=
+d
+> > ard/base&id=3Dv4.4.3
+> > The master is 4.4
+>
+> It's on standard/base. master is left as the initial branch point of the =
+repository.
+> When LTSI is available, I tend to update master, but since 4.4 has no LTS=
+I
+> content, I leave master alone.
+>
+> Also note: I'm currently not pushing and -stable updates to that tree, si=
+nce I'm
+> temporarily frozen for the yocto 2.1 release.
+>
+>
+> >
+> > A clone and check from tag works manually, but when bitbake fetches it,=
+ it
+> throws error as bitbake is not able to find the commit on master branch.
+> > How to fix thisk
+>
+> don't use master, use standard/base as the branch.
+>
+> Bruce
+>
+> >
+> > Bruce
+> >
+> >>
+> >>
+> >> Ross
+> >>
+> >>
+> >
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
-Can you please tell me what could be the issue? We have used mips32r2 in ou=
-r machine file but if the error log is observed where it says "Error: opcod=
-e not supported on this processor: mips3 (mips3) `sdc1 $f6,272+48($4)".
-
-
-Can you please help me resolve this issue. Thanks in Advance
-
-
-Thanks and Regards,
-Harinath
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-______________________________________________________________________
-This email has been scanned by the Symantec Email Security.cloud service.
-For more information please visit http://www.symanteccloud.com
-______________________________________________________________________
-
---_000_PN1PR01MB0333EF4C74C76713DA2E13CBEF630PN1PR01MB0333INDP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p><br>
-</p>
-<p>Hi,</p>
-<p><br>
-</p>
-<p>Kernel Version is 3.10.60 &amp; our platform is mips32.</p>
-<p>For GCC I haven't made any changes. I have used the default GCC from yoc=
-to. Looks like by default it is using 5.3.0 version.</p>
-<p><br>
-</p>
-<p>Can we specify our GCC in the YOCTO?<br>
-</p>
-<p><br>
-</p>
-<div id=3D"Signature">
-<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
-tica,sans-serif; font-size:; margin:0">
-Thanks and Regards,<br>
-Harinath<br>
-<br>
-</div>
-</div>
-<br>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" color=
-=3D"#000000" face=3D"Calibri, sans-serif"><b>From:</b> Khem Raj &lt;raj.khe=
-m@gmail.com&gt;<br>
-<b>Sent:</b> Tuesday, April 26, 2016 12:13 PM<br>
-<b>To:</b> Harinath maddelal; yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Kernel Build error</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">which version of kernel are you compiling and what version=
- of gcc is in play ?</div>
-<br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr">On Mon, Apr 25, 2016 at 11:31 PM Harinath maddelal &lt;<a =
-href=3D"mailto:Harinath.maddela@inedasystems.com">Harinath.maddela@inedasys=
-tems.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex; border-left:1=
-px #ccc solid; padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-size:12pt; color:#000000; background-color:#ffffff; font=
--family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi All,</p>
-<p><br>
-</p>
-<p>When i'm trying to build my kernel using yocto, im getting following err=
-or</p>
-<br>
-|&nbsp;&nbsp; CHK&nbsp;&nbsp;&nbsp;&nbsp; include/generated/compile.h<br>
-|&nbsp;&nbsp; AS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arch/mips/kernel/r4k_fpu.o<b=
-r>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S: Assembler messages:<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:89: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f0,272&#43;0($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:90: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f2,272&#43;16($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:91: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f4,272&#43;32($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:92: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f6,272&#43;48($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:93: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f8,272&#43;64($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:94: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f10,272&#43;80($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:95: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f12,272&#43;96($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:96: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f14,272&#43;112($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:97: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f16,272&#43;128($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:98: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f18,272&#43;144($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:99: Error: opcode not supported on this processor: mips3 =
-(mips3) `sdc1 $f20,272&#43;160($4)'<br>
-| /home/harinathm/poky/build/tmp/work-shared/dhruva/kernel-source/arch/mips=
-/kernel/r4k_fpu.S:100: Error: opcode not supported on this processor: mips3=
- (mips3) `sdc1 $f22,272&#43;176($4)'<br>
-<br>
-<p><br>
-</p>
-<p>Can you please tell me what could be the issue? We have used mips32r2 in=
- our machine file but if the error log is observed where it says &quot;Erro=
-r: opcode not supported on this processor: mips3 (mips3) `sdc1 $f6,272&#43;=
-48($4)&quot;.</p>
-<p><br>
-</p>
-<p>Can you please help me resolve this issue. Thanks in Advance<br>
-</p>
-<p><br>
-</p>
-<div>
-<div name=3D"divtagdefaultwrapper">Thanks and Regards,<br>
-Harinath<br>
-<br>
-</div>
-</div>
-</div>
-</div>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote>
-</div>
-<br clear=3D"all">
-______________________________________________________________________<br>
-This email has been scanned by the Symantec Email Security.cloud service.<b=
-r>
-For more information please visit http://www.symanteccloud.com<br>
-______________________________________________________________________<br>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_PN1PR01MB0333EF4C74C76713DA2E13CBEF630PN1PR01MB0333INDP_--
