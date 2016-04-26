@@ -1,87 +1,83 @@
-Return-Path: <Manish.Jaggi@caviumnetworks.com>
+Return-Path: <zhenhua.luo@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C00FE00C43; Tue, 26 Apr 2016 00:46:17 -0700 (PDT)
+	id 324E3E00D06; Tue, 26 Apr 2016 00:47:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.93 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [157.55.234.63 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0093.outbound.protection.outlook.com [65.55.169.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08703E0093B
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 00:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-caviumnetworks-com;
+Received: from emea01-db3-obe.outbound.protection.outlook.com
+	(mail-db3on0063.outbound.protection.outlook.com [157.55.234.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4759DE00CEC
+	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 00:47:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com; 
+	s=selector1-nxp-com;
 	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=M18K1O3SNbsX7d6RnrkzT+oKqRNIrTGuGZRkOXYJL9g=;
-	b=sct+0biQpARtCkBvgq27QqUO7lty1vxP3qf/Z7Xwh1VcVR9E/auBNE3ZIxMxJCzY9UevIFWwrtDORpe5SZ3jmqd/Q+/sHzAqWgXvxXqmlnKDwXXeuY9YE3ytW9zdu6m4V5LRjeQO7RCotIrcfegaRNuwvFWlvDYznRcV7GuFCjs=
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
-	BY1PR0701MB1596.namprd07.prod.outlook.com (10.162.110.15) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.466.19; Tue, 26 Apr 2016 07:46:10 +0000
-Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
-	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
-	mapi id 15.01.0466.025; Tue, 26 Apr 2016 07:46:10 +0000
-From: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
-To: Zhenhua Luo <zhenhua.luo@nxp.com>, Bruce Ashfield
-	<bruce.ashfield@windriver.com>, "Burton, Ross" <ross.burton@intel.com>
+	bh=6gYRnGXpCyu7RZRJqiodTwl2yCqJ7yDow0g67rZtoOI=;
+	b=MpUtlEJ06/8JdFvrwrbxyq8N53RR9jxPoZEgJh2pX2s40N0SJSKzePvFVa7KFfXa9qJ9AX1bYbsZVbagjLeA6VHpFyp/6ip+wDRZIkuQmgQw437E/884haop8eMH8gprO8nLC263QKLN3hvMjRvE+Qi9/ZgaRlq3YEVWjUM5PvE=
+Received: from AM2PR04MB0674.eurprd04.prod.outlook.com (10.160.54.142) by
+	AM2PR04MB0674.eurprd04.prod.outlook.com (10.160.54.142) with Microsoft
+	SMTP Server (TLS) id 15.1.466.19; Tue, 26 Apr 2016 07:32:38 +0000
+Received: from AM2PR04MB0674.eurprd04.prod.outlook.com ([10.160.54.142]) by
+	AM2PR04MB0674.eurprd04.prod.outlook.com ([10.160.54.142]) with mapi id
+	15.01.0466.025; Tue, 26 Apr 2016 07:32:38 +0000
+From: Zhenhua Luo <zhenhua.luo@nxp.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "Jaggi, Manish"
+	<Manish.Jaggi@caviumnetworks.com>, "Burton, Ross" <ross.burton@intel.com>
 Thread-Topic: [yocto] Fetcher failure: Unable to find revision
 	2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
 	upstream
-Thread-Index: AQHRnvYtSwgidqLbqEOk4YMTyaEoK5+aw4aAgAAXEwKAABkHgIAAfDKzgAAUD4CAAFlhUIAABAoQ
-Date: Tue, 26 Apr 2016 07:46:10 +0000
-Message-ID: <BY1PR0701MB1594F778B7CFB72B01F05428E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
+Thread-Index: AQHRnvYtSwgidqLbqEOk4YMTyaEoK5+aw4aAgAAXEwKAABkHgIAAfDKzgAAUD4CAAFlhUA==
+Date: Tue, 26 Apr 2016 07:32:38 +0000
+Message-ID: <AM2PR04MB06746613022C5864C46200D6EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
 References: <BY1PR0701MB1594FEBCBD9F70D587587878E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
 	<CAJTo0LY9Vtas26+M_Zq2fzREkpqXLD-uNOtXpJbzN8_9it=1Pg@mail.gmail.com>
 	<BY1PR0701MB159480B842DF78C33DA2A161E1620@BY1PR0701MB1594.namprd07.prod.outlook.com>
 	<571E553D.4070200@windriver.com>
 	<BY1PR0701MB1594282E92D12DA005739343E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
-	<571ECE3F.60200@windriver.com>,
-	<AM2PR04MB06746613022C5864C46200D6EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
-In-Reply-To: <AM2PR04MB06746613022C5864C46200D6EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
+	<571ECE3F.60200@windriver.com>
+In-Reply-To: <571ECE3F.60200@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=caviumnetworks.com;
-x-originating-ip: [64.2.3.194]
-x-ms-office365-filtering-correlation-id: 4ba09e1c-d3f5-4dbd-e1cb-08d36da6d5a9
-x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1596;
-	5:RXF44w4/ptKDCQ4hc+0XaOoP/QFcVmrmyKA32Yq5SMd5fn3HEPF478jKM2F/mF0hMs9R6dTve6Elx25K3HO1r8OXgAqJZJeuXgt2Vuw5BN8oarfEef835JpH7mq8SCuDQIJTI5DOr8mPcRUjq8CrsSilAfAoxMJgDTsTip1vbZZsnafAHOYFdTT9JxbLDkHp;
-	24:r0lYYxi/jXNnuVvvoGq24Fxp6nPKi96U9IIPqbZpOT2GyRgbbcXwq3diqGki3Bj3RXtsMoCUtm6j+EqBpzptfe6+vjoj4bVJvdLUkkr4q3s=;
-	7:OEs/wPphci+5E91D0AXfKNTb4RLXfgtJNmIqLUdOiEp5pnkKK2c9DR6fgs5CLknr0R5vWTztd7j1aqj0uY6ijZlgtXpAYSLIJhK9pAV0BC7ACnDWtc1uPFrO8RADaZh29ujA/2R8GGkDY0YN0ylpsoBjZBYUd7hdS3kD8F6rN+4epJx7YSs4ORMCiqQH76mHmHdm/lrjHk5jMO2XunfAt4gBYb1QppxpnEHtsdDz7xQ=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1596;
-x-microsoft-antispam-prvs: <BY1PR0701MB1596FAE3D3D7F897CF95CAD1E1630@BY1PR0701MB1596.namprd07.prod.outlook.com>
+authentication-results: windriver.com; dkim=none (message not signed)
+	header.d=none; windriver.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [199.59.226.141]
+x-ms-office365-filtering-correlation-id: 2f2b165d-682a-4b34-9fe9-08d36da4f18c
+x-microsoft-exchange-diagnostics: 1; AM2PR04MB0674;
+	5:f7QZUTde6QDXFed9qonS9v2U4XGcTawM/X9nytLdunTFW1in6bzE9sDL+bh05Z///5P2qkvwm9bJcTBbjHQ5K+CguvbnUZfVWEwN6iqwiUox9PeJF2dRoISwod1vrP2kdlpU233+7E2VBrVXoDluhho61+QMdaFHoU4NPGIDrezMP0xSNi4u4L8DGVdkp/fu;
+	24:E/pQQXmQ8/0x+bch16tvuWYAbyeHbQPZnfs2ybyo/jt5l+GkLfIJ7/cV1tunjvfJkvXR45m+SV3CyGT3YA77Uworhm47IvWpkCcOv4wG9TI=;
+	7:SgykdISguvWOWH2mBSnwSgjaZ/vLWeSC2+0/G3XuBEBcfI//LHkqepbW9sda3cklxrLlsieLAWOnActRiETMKfA8qYXDGDBIbXKlj0rmqwesqqpnfXabVtKXX6B8/GWbQXlOg+Vl9UxbxZqGTCYcS/2YiG5xB08ExOhU5Z0QZG04XtD9D6UjID1wtwRjHmRmH8e5BODX+9hXMc5Mp4zFstT+DzdabYbNHTVSNA/CT0U=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:AM2PR04MB0674;
+x-microsoft-antispam-prvs: <AM2PR04MB067444F9C2319003CD540118EE630@AM2PR04MB0674.eurprd04.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(9101521072)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:BY1PR0701MB1596; BCL:0; PCL:0; RULEID:;
-	SRVR:BY1PR0701MB1596; 
+	RULEID:(9101521072)(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001)(6055026);
+	SRVR:AM2PR04MB0674; BCL:0; PCL:0; RULEID:; SRVR:AM2PR04MB0674; 
 x-forefront-prvs: 0924C6A0D5
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(24454002)(377424004)(13464003)(377454003)(3900700001)(2906002)(586003)(2900100001)(2950100001)(3846002)(102836003)(4326007)(6116002)(19580395003)(3280700002)(189998001)(19580405001)(76576001)(3660700001)(81166005)(5001770100001)(1220700001)(1096002)(77096005)(74316001)(86362001)(15975445007)(9686002)(5003600100002)(5002640100001)(87936001)(5004730100002)(54356999)(76176999)(50986999)(5008740100001)(92566002)(33656002)(11100500001)(122556002)(66066001)(93886004)(99286002)(106116001)(10400500002)(15760500001)(7059030)(37363001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1596;
-	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
+	SFS:(10009020)(6009001)(24454002)(377424004)(13464003)(377454003)(2906002)(3900700001)(3660700001)(5008740100001)(54356999)(3846002)(102836003)(1220700001)(6116002)(189998001)(1096002)(586003)(9686002)(122556002)(81166005)(3280700002)(19580395003)(33656002)(92566002)(2900100001)(11100500001)(2950100001)(19580405001)(86362001)(15975445007)(10400500002)(5003600100002)(5001770100001)(76576001)(5004730100002)(66066001)(77096005)(5002640100001)(50986999)(74316001)(87936001)(76176999)(106116001)(93886004)(4326007)(37363001)(15760500001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:AM2PR04MB0674;
+	H:AM2PR04MB0674.eurprd04.prod.outlook.com; FPR:; SPF:None;
 	MLV:sfv; LANG:en; 
 spamdiagnosticoutput: 1:23
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: caviumnetworks.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2016 07:46:10.3707 (UTC)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2016 07:32:38.1929 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1596
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM2PR04MB0674
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Fetcher failure: Unable to find revision 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from upstream
 X-BeenThere: yocto@yoctoproject.org
@@ -95,29 +91,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Apr 2016 07:46:17 -0000
+X-List-Received-Date: Tue, 26 Apr 2016 07:47:55 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-
-Thanks,
-
-It worked with standards/base branch.=20
-
-Regards,
-Manish Jaggi
-
-________________________________________
-From: Zhenhua Luo <zhenhua.luo@nxp.com>
-Sent: Tuesday, April 26, 2016 1:02 PM
-To: Bruce Ashfield; Jaggi, Manish; Burton, Ross
-Cc: yocto@yoctoproject.org
-Subject: RE: [yocto] Fetcher failure: Unable to find revision 2134d97aa3a7c=
-e38bb51f933f2e20cafde371085 in branch master even from upstream
 
 If the SHA exists in a tag instead of any branch, you can use nobranch para=
 meter, refer to http://git.yoctoproject.org/cgit.cgi/poky/tree/bitbake/lib/=
-bb/fetch2/git.py?id=3Dc4bcaa3f7ceac346af1555fff2b526ceeac92a54#n47.
+bb/fetch2/git.py?id=3Dc4bcaa3f7ceac346af1555fff2b526ceeac92a54#n47.=20
 
 
 Best Regards,
@@ -134,7 +115,7 @@ Zhenhua
 > Subject: Re: [yocto] Fetcher failure: Unable to find revision
 > 2134d97aa3a7ce38bb51f933f2e20cafde371085 in branch master even from
 > upstream
->
+>=20
 > On 2016-04-25 9:05 PM, Jaggi, Manish wrote:
 > >
 > > ________________________________________
@@ -188,28 +169,28 @@ Zhenhua
 d
 > > ard/base&id=3Dv4.4.3
 > > The master is 4.4
->
+>=20
 > It's on standard/base. master is left as the initial branch point of the =
 repository.
 > When LTSI is available, I tend to update master, but since 4.4 has no LTS=
 I
 > content, I leave master alone.
->
+>=20
 > Also note: I'm currently not pushing and -stable updates to that tree, si=
 nce I'm
 > temporarily frozen for the yocto 2.1 release.
->
->
+>=20
+>=20
 > >
 > > A clone and check from tag works manually, but when bitbake fetches it,=
  it
 > throws error as bitbake is not able to find the commit on master branch.
 > > How to fix thisk
->
+>=20
 > don't use master, use standard/base as the branch.
->
+>=20
 > Bruce
->
+>=20
 > >
 > > Bruce
 > >
@@ -219,7 +200,7 @@ nce I'm
 > >>
 > >>
 > >
->
+>=20
 > --
 > _______________________________________________
 > yocto mailing list
