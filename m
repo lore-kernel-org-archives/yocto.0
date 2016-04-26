@@ -1,60 +1,81 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Manish.Jaggi@caviumnetworks.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7F2FE00CFF; Tue, 26 Apr 2016 01:39:48 -0700 (PDT)
+	id AABD2E00CBC; Tue, 26 Apr 2016 01:53:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.110.76 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 547F3E00C37
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 01:39:46 -0700 (PDT)
-Received: by mail-ig0-f182.google.com with SMTP id u10so35246175igr.1
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 01:39:46 -0700 (PDT)
+X-Greylist: delayed 964 seconds by postgrey-1.32 at yocto-www;
+	Tue, 26 Apr 2016 01:53:19 PDT
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1on0076.outbound.protection.outlook.com [157.56.110.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A643E00C37
+	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 01:53:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1B4nICpFi3jdCyuSvnW9jfAphNaVpVgyNeYK08jXHjE=;
-	b=tDtIKGGSmO0hPPfyL0xuND4zC52XMQy12RA4C9zqJHkUpH0Z6YFnNPE+Wt7Y5iCmJC
-	YLG9CP575UHbO7SdVKZxyj1RFoCB2ZByWdpCPX/b/ay+/xptMVRCmEdxc01Bg4PVUQS5
-	MtQB6vYqv6T7EG5YWZ2/UKPh3kHuDkF+n1Rd/NeZ8NmGdIcqcWhnOuR5pfgJyWopqkkJ
-	W3R5LyDLIobzutsTBacAMpVFnmpoqMLCqMdg6669s+ObAWbqP+GdiHV2cGfVVs+OXiw8
-	PsLOAZHiY2ysQXaide5s2cchiYN2BT+vnzpCUgVNuN53zadr1HOB7fzwUupwoBEMwyWX
-	oBmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=1B4nICpFi3jdCyuSvnW9jfAphNaVpVgyNeYK08jXHjE=;
-	b=Lbh65xzBnAktAFMqBa7a0IYrRiwvBrpIfkj9PAM4nfr5La+MGO/Kiqcp5gznzV3ArN
-	I5vrNTkkx4rNHwHtqI/pgJekdmbeHc9YmbVZT7EjDAiSd9iPYslwqbIRawLbbBKUmE0h
-	wXEpnAeo7GKkjXgRP3d2HndCp4SEDEjGAQvw70abglfqbtLtiBu52sY/moAcgQMYpafh
-	LsLrEe5QsXmU5xWzuBWld53VyoG2MS2sjvD9QD3LE7hFt00y1Ana5RCL4nxejfV+PHUW
-	5TOv7URxk6emm2KGnvxKbI9lvvSuDWgKT4ritMtzm83rXY8NmQ0pyMjC+GniZto0yM8u
-	zbrA==
-X-Gm-Message-State: AOPr4FXUc7VRPKL0ZkpN9fqjCHu5wyDLuvrlvRHnWLPranTBgPOy4wpFyTsHbvRkQFDmqY9K5HrdKuvsIt/WUIOT
-X-Received: by 10.50.160.41 with SMTP id xh9mr1965983igb.64.1461659985558;
-	Tue, 26 Apr 2016 01:39:45 -0700 (PDT)
+	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-caviumnetworks-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=sMCLXJxQ7N144DmefYidMVr6J7ucu1lIX512FjWZY/E=;
+	b=NzLgX2vd3i7vp8rlGLSmfjaCPsV9q36+py3C17F1JLxzsYkvxyU3FFrWTXALhJYd5GBDIDCXvXvwR6DES+PcElz9k2UGZv69aAZCyNtZhoZKNc5068r+jCUrXTtszAIDaEJ6q6H4MqkcaSAqkZL1H0gcC6m6iZA/iVN5X1wIvwM=
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com (10.162.110.148) by
+	BY1PR0701MB1593.namprd07.prod.outlook.com (10.162.110.147) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.466.19; Tue, 26 Apr 2016 08:37:12 +0000
+Received: from BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) by
+	BY1PR0701MB1594.namprd07.prod.outlook.com ([10.162.110.148]) with
+	mapi id 15.01.0466.025; Tue, 26 Apr 2016 08:37:12 +0000
+From: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding native build
+	support for arm64/aarch64 in oe-rootfs. 
+Thread-Index: AQHRn5bTlMP1TWGpxUqB4PoRiPz5Mg==
+Date: Tue, 26 Apr 2016 08:37:12 +0000
+Message-ID: <BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=caviumnetworks.com;
+x-originating-ip: [64.2.3.194]
+x-ms-office365-filtering-correlation-id: eb658944-cee0-4a22-f8bc-08d36dadf68b
+x-microsoft-exchange-diagnostics: 1; BY1PR0701MB1593;
+	5:6B3p4KGX/McBrRpQCYXVZPWtEm8EQGO6w+VUru3f4ycjpARGFL2sGB8ZwXHtZBRNdplliGZwTB2Buprc/9xLJtdlj69qnk0gaZvKECMAalc3Ul9r2q4UO0GF16oV6ehpHkNUN9hnliM8n5bW4Rxg736fUIBltwme9iAYP0uWD9wmU5u/msGF2jx+NdPq1jGS;
+	24:WzhK8ikI42DT3exOmgZjJUH+BH3ob5zyMcAxORLNOZ5/a78O2mEcCF66gNUT3ZowKyOW6hBrDtmmZZE5yp/0dy11SjAhOWf7Xb67On+rhBE=;
+	7:iwamYawi3da2/WUKrp4zTVCwYS1vOwDLfUf1KE4TWMHyDSRa/WuRPRx6PY2XCmwSY5axTjpai/cGFtkOxZLQE2UMQD3yAsp/j2Hp/41ghEeqiPr0+XABb/3M8WilpM570555A3e7jbljgcbYXSKtZbqoNoYW7DRfsOx/KTkkEyZ27JCT0o5kKrRzlUFTSfmO2b1zzFW6WxbiQOHVALvEqT8/jnmuxjSVLq+hvbi781U=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0701MB1593;
+x-microsoft-antispam-prvs: <BY1PR0701MB15935E5F3D789372B91B7270E1630@BY1PR0701MB1593.namprd07.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(9101521072)(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
+	SRVR:BY1PR0701MB1593; BCL:0; PCL:0; RULEID:;
+	SRVR:BY1PR0701MB1593; 
+x-forefront-prvs: 0924C6A0D5
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(19625215002)(5008740100001)(5002640100001)(92566002)(110136002)(50986999)(74316001)(76576001)(107886002)(54356999)(5640700001)(81166005)(2501003)(106116001)(189998001)(102836003)(99286002)(2351001)(87936001)(229853001)(230783001)(3846002)(5003600100002)(2900100001)(1220700001)(1096002)(6116002)(586003)(19627405001)(5004730100002)(11100500001)(2906002)(77096005)(122556002)(10400500002)(86362001)(16236675004)(9686002)(450100001)(3660700001)(33656002)(3280700002)(19580395003)(1730700002)(66066001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0701MB1593;
+	H:BY1PR0701MB1594.namprd07.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Tue, 26 Apr 2016 01:39:26 -0700 (PDT)
-In-Reply-To: <OFFCA9FD4C.003E7E4C-ONC1257FA1.002BA274-C1257FA1.002C5AF6@esa-grimma.de>
-References: <OFFCA9FD4C.003E7E4C-ONC1257FA1.002BA274-C1257FA1.002C5AF6@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 26 Apr 2016 09:39:26 +0100
-Message-ID: <CAJTo0LYB=p-rOcz4MUxjkyWE1RX0zhTOdFvtaf_rMepjOPzMOg@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: problems with cmake finding the c++ includes
+X-OriginatorOrg: caviumnetworks.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2016 08:37:12.1103 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0701MB1593
+Subject: aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding native build support for arm64/aarch64 in oe-rootfs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,109 +87,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Apr 2016 08:39:48 -0000
-Content-Type: multipart/alternative; boundary=001a11380a1638daff05315f3cfa
+X-List-Received-Date: Tue, 26 Apr 2016 08:53:23 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630BY1PR0701MB1594_"
 
---001a11380a1638daff05315f3cfa
-Content-Type: text/plain; charset=UTF-8
-
-On 26 April 2016 at 09:04, <S.Jaritz@esa-grimma.de> wrote:
-
-> I am new to yocto. I like to create an recipe for the g3log library. I
-> managed to get the git sources and start the cmake compile. But it stops
-> when it tries to compile "#include <string>". Do you have an idea how to
-> fix that?
->
-
-Actually including the output of do_configure would be helpful to see what
-the errors are.  It's fairly common for cmake-using recipes to override the
-CFLAGS/CXXFLAGS provided by the user (in this case, bitbake) which tell it
-where the compiler is, so the CMakeLists need fixing.
-
-I'll also review your recipe.
-
-Below there is the content of the "g3log.bb":
-> ################################
-> SUMMARY = "g3log"
-> SECTION = "sek4"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM = "file://$
-> {COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
->
-
-This should point to the LICENSE file in the clone, and that license file
-doesn't say MIT.
-
-DEPENDS ="boost"
->
-> SRC_URI[md5sum] = "0dd4767bd072159e64ad69052bb1dbba"
-> SRC_URI[sha256sum] =
-> "4fbcc9afe24f6d8b5b90ff04481e88dd0b34f6a797825dab02cd88f129d3ccb7"
->
-
-If you're doing a git clone then you don't need SRC_URI checksums.
-
-
-> SRC_URI = "git://github.com/KjellKod/g3log.git;rev=1.2"
->
-
-It's best practise to use a SHA instead of a tag name, as the tag name
-needs to be resolved on every build which means a network operation.
-
-Ross
-
---001a11380a1638daff05315f3cfa
-Content-Type: text/html; charset=UTF-8
+--_000_BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630BY1PR0701MB1594_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 26 April 2016 at 09:04,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jarit=
-z@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif"=
->I am new to yocto. I like to create
-an recipe for the g3log library. I managed to get the git sources and start
-the cmake compile. But it stops when it tries to compile &quot;#include
-&lt;string&gt;&quot;. Do you have an idea how to fix that?</font>
-<br></blockquote><div><br></div><div>Actually including the output of do_co=
-nfigure would be helpful to see what the errors are.=C2=A0 It&#39;s fairly =
-common for cmake-using recipes to override the CFLAGS/CXXFLAGS provided by =
-the user (in this case, bitbake) which tell it where the compiler is, so th=
-e CMakeLists need fixing.</div><div><br></div><div>I&#39;ll also review you=
-r recipe.</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><font size=3D"=
-2" face=3D"sans-serif">Below there is the content of the &quot;<a href=3D"h=
-ttp://g3log.bb" target=3D"_blank">g3log.bb</a>&quot;:</font>
-<br><font size=3D"2" face=3D"sans-serif">################################</=
-font>
-<br><font size=3D"2" face=3D"sans-serif">SUMMARY =3D &quot;g3log&quot;</fon=
-t>
-<br><font size=3D"2" face=3D"sans-serif">SECTION =3D &quot;sek4&quot;</font=
->
-<br><font size=3D"2" face=3D"sans-serif">LICENSE =3D &quot;MIT&quot;</font>
-<br><font size=3D"2" face=3D"sans-serif">LIC_FILES_CHKSUM =3D &quot;</font>=
-<a><font size=3D"2" color=3D"blue" face=3D"sans-serif">file://$</font></a><=
-font size=3D"2" face=3D"sans-serif">{COMMON_LICENSE_DIR}/MIT;md5=3D0835ade6=
-98e0bcf8506ecda2f7b4f302&quot;</font>
-<br></blockquote><div><br></div><div>This should point to the LICENSE file =
-in the clone, and that license file doesn&#39;t say MIT.</div><div><br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif">DEPEN=
-DS =3D&quot;boost&quot;</font>
-<br>
-<br><font size=3D"2" face=3D"sans-serif">SRC_URI[md5sum] =3D &quot;0dd4767b=
-d072159e64ad69052bb1dbba&quot;</font>
-<br><font size=3D"2" face=3D"sans-serif">SRC_URI[sha256sum] =3D &quot;4fbcc=
-9afe24f6d8b5b90ff04481e88dd0b34f6a797825dab02cd88f129d3ccb7&quot;</font>
-<br></blockquote><div><br></div><div>If you&#39;re doing a git clone then y=
-ou don&#39;t need SRC_URI checksums.</div><div>=C2=A0</div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><font size=3D"2" face=3D"sans-serif">SRC_URI =3D &quot;git:/=
-/<a href=3D"http://github.com/KjellKod/g3log.git;rev=3D1.2" target=3D"_blan=
-k">github.com/KjellKod/g3log.git;rev=3D1.2</a>&quot;</font>
-<br></blockquote><div><br></div><div>It&#39;s best practise to use a SHA in=
-stead of a tag name, as the tag name needs to be resolved on every build wh=
-ich means a network operation.</div><div><br></div><div>Ross=C2=A0</div></d=
-iv></div></div>
 
---001a11380a1638daff05315f3cfa--
+Hi,
+
+I am trying to add a native compilation support to oe rootfs.
+
+Managed to add gcc ld support but upon compilation getting missing libs err=
+or.
+
+
+aarch64-oe-linux-gcc x.c
+x.c: In function 'main':
+x.c:3:2: warning: implicit declaration of function 'printf' [-Wimplicit-fun=
+ction-declaration]
+
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find crt1.o: No such file or directory
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find crti.o: No such file or directory
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find crtbegin.o: No such file or directory
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find -lgcc
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find -lgcc_s
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find -lc
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find -lgcc
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find -lgcc_s
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find crtend.o: No such file or directory
+/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/ld: ca=
+nnot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
+
+
+What is missing from my local.conf ?
+
+This is below I have added.
+
+IMAGE_INSTALL_append =3D "gcc"
+IMAGE_INSTALL_append +=3D " glibc"
+IMAGE_INSTALL_append +=3D " libgcc"
+IMAGE_INSTALL_append +=3D " binutils"
+IMAGE_INSTALL_append +=3D " gccmakedep"
+
+
+
+Regards,
+Manish Jaggi
+
+--_000_BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630BY1PR0701MB1594_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:10pt;color:#000000;back=
+ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
+<p><br>
+</p>
+<p>Hi,</p>
+<p>I am trying to add a native compilation support to oe rootfs.</p>
+<p>Managed to add gcc ld support but upon compilation getting missing libs =
+error.</p>
+<p><br>
+</p>
+<p></p>
+<div>aarch64-oe-linux-gcc x.c</div>
+<div>x.c: In function 'main':</div>
+<div>x.c:3:2: warning: implicit declaration of function 'printf' [-Wimplici=
+t-function-declaration]</div>
+<div><br>
+</div>
+<div></div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find crt1.o: No such file or directory</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find crti.o: No such file or directory</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find crtbegin.o: No such file or directory</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find -lgcc</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find -lgcc_s</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find -lc</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find -lgcc</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find -lgcc_s</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find crtend.o: No such file or directory</div>
+<div>/usr/lib/gcc/aarch64-oe-linux/5.3.0/../../../../aarch64-oe-linux/bin/l=
+d: cannot find crtn.o: No such file or directory</div>
+<div>collect2: error: ld returned 1 exit status</div>
+<div><br>
+</div>
+<br>
+<p></p>
+<p><br>
+</p>
+<p>What is missing from my local.conf ?</p>
+<p>This is below I have added.</p>
+<p></p>
+<div>IMAGE_INSTALL_append =3D &quot;gcc&quot;</div>
+<div>IMAGE_INSTALL_append &#43;=3D &quot; glibc&quot;</div>
+<div>IMAGE_INSTALL_append &#43;=3D &quot; libgcc&quot;</div>
+<div>IMAGE_INSTALL_append &#43;=3D &quot; binutils&quot;</div>
+<div>IMAGE_INSTALL_append &#43;=3D &quot; gccmakedep&quot;</div>
+<p></p>
+<p><br>
+</p>
+<p><br>
+</p>
+<div id=3D"Signature">
+<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
+tica,sans-serif; font-size:; margin:0">
+<font face=3D"Cordia New, sans-serif" size=3D"2">Regards,</font>
+<div><font face=3D"Cordia New, sans-serif" size=3D"2">Manish Jaggi</font></=
+div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630BY1PR0701MB1594_--
