@@ -1,6 +1,6 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA91CE00D5F; Tue, 26 Apr 2016 19:55:56 -0700 (PDT)
+	id C908AE00D69; Tue, 26 Apr 2016 20:52:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,32 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4DABE00D5A
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 19:55:54 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga104.fm.intel.com with ESMTP; 26 Apr 2016 19:55:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,539,1455004800"; d="scan'208";a="963494643"
-Received: from wlee9-mobl3.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.141.75])
-	by orsmga002.jf.intel.com with ESMTP; 26 Apr 2016 19:55:51 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Date: Wed, 27 Apr 2016 14:55:49 +1200
-Message-ID: <50406615.yUiX1aTJki@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.4.7-300.fc23.x86_64; KDE/4.14.18; x86_64; ;
-	)
-In-Reply-To: <CA+M3ks4p7uBwDCDYPhLBbBJMSVWnbx0tAib1dQmGeteP3ESvxw@mail.gmail.com>
-References: <CA+M3ks4p7uBwDCDYPhLBbBJMSVWnbx0tAib1dQmGeteP3ESvxw@mail.gmail.com>
+X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
+	Tue, 26 Apr 2016 20:52:38 PDT
+Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D694E00D65
+	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 20:52:38 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Wed, 27 Apr 2016 13:51:27 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 27 Apr 2016 13:51:26 +1000
+Thread-Topic: [PATCH] os-release: put double-quotes around variable contents
+Thread-Index: AdEHCDIlpXSktvkyShKh4eue4crWoSZL9I4w
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A4022D20C813B2@IR-CENTRAL.corp.innerrange.com>
+References: <1444885989-19002-1-git-send-email-craig.mcqueen@innerrange.com>
+In-Reply-To: <1444885989-19002-1-git-send-email-craig.mcqueen@innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1239-8.000.1202-22284.006
+x-tm-as-result: No--32.195600-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Brian Avery <brian.avery@intel.com>
-Subject: Re: Yocto ADT eclipse plugin and devtool
+Subject: Re: [PATCH] os-release: put double-quotes around variable contents
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,29 +45,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 02:55:56 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 27 Apr 2016 03:52:39 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Benjamin,
+I notice this patch hasn't been applied. Is there anything I can do to impr=
+ove it?
 
-On Mon, 25 Apr 2016 09:34:36 Benjamin Gaignard wrote:
-> devtool usage is well documented in ADT manual:
-> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#using-dev
-> tool-in-your-sdk-workflow but not explicit mention of how use it within
-> Eclipse.
-> 
-> Do you know if we can use devtool, for example to compile and load new
-> code, directly inside Eclipse ?
+Regards,
+Craig McQueen
 
-Not at present, however, offering devtool functionality within Eclipse is on 
-our list of things we'd like to implement.
 
-Cheers,
-Paul
+> -----Original Message-----
+> From: Craig McQueen
+> Sent: Thursday, 15 October 2015 4:13 PM
+> To: yocto@yoctoproject.org
+> Cc: Craig McQueen <craig.mcqueen@innerrange.com>
+> Subject: [PATCH] os-release: put double-quotes around variable contents
+>=20
+> This makes the resulting /etc/os-release file have valid shell assignment
+> syntax. This makes it loadable by a shell script, using the 'source' comm=
+and:
+>=20
+>     source /etc/os-release
+> ---
+>  meta/recipes-core/os-release/os-release.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/meta/recipes-core/os-release/os-release.bb b/meta/recipes-
+> core/os-release/os-release.bb
+> index db82760..2fda674 100644
+> --- a/meta/recipes-core/os-release/os-release.bb
+> +++ b/meta/recipes-core/os-release/os-release.bb
+> @@ -29,7 +29,7 @@ python do_compile () {
+>          for field in d.getVar('OS_RELEASE_FIELDS', True).split():
+>              value =3D d.getVar(field, True)
+>              if value:
+> -                f.write('{0}=3D{1}\n'.format(field, value))
+> +                f.write('{0}=3D"{1}"\n'.format(field, value))
+>      if d.getVar('RPM_SIGN_PACKAGES', True) =3D=3D '1':
+>          rpm_gpg_pubkey =3D d.getVar('RPM_GPG_PUBKEY', True)
+>          bb.utils.mkdirhier('${B}/rpm-gpg')
+> --
+> 2.1.4
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
