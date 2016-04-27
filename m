@@ -1,57 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <yegorslists@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E49BFE00D7E; Wed, 27 Apr 2016 01:59:57 -0700 (PDT)
+	id 1605FE00D8A; Wed, 27 Apr 2016 02:01:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yegorslists[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A56F2E00D79
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 01:59:54 -0700 (PDT)
-Received: by mail-io0-f173.google.com with SMTP id 190so34634518iow.1
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 01:59:54 -0700 (PDT)
+Received: from mail-qg0-f67.google.com (mail-qg0-f67.google.com
+	[209.85.192.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE787E00D88
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 02:01:21 -0700 (PDT)
+Received: by mail-qg0-f67.google.com with SMTP id b14so2667774qge.2
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 02:01:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	d=googlemail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=aKpVocO8U5rSalEU9M3HeN2zsYidYfaXwEpf+rz5Yl4=;
-	b=GihR7M/uiMds1NqoICuw7sc1SZ6QlfLLBg1y6u4+TyDiKCq2ShkxeKeaYfCAgqihPa
-	jp54IOehZII+GXJDmTX+yzwHuJpiX40yoEDk9VN2CzEJC5hJMlyO9TEQaw8j4QoiW48K
-	NJvXelV1Pu8aVYgtIYrIirdwusP/cXpJWf4++U0l2w/OPggw4ArgX9MR+VsB24/JNC3A
-	I9aDTdjmYGiU7g0r4pDOZkthKcNGJ+LDIL4Ed9jpeTmOSQR2G+VkilyF4fk3kG/9Z1HQ
-	SCmn86Ifkli2pyia6/EzJpmTI68CJOp3QThCDxDUbvcbyXY22W92wDIdfoHeO6TBlpWb
-	4esw==
+	:cc; bh=HsxMBJ9Xefoy356kglu65W2+T45ZSkyypmVew4Sc3Ws=;
+	b=gRgxStgOF+JRWGgaYYdtSgfqg2gxBPlglUEh4OzFTlGBTeRVsYogfxafnH6J/9cj+j
+	eHWrPt0f1EBcDTsBvIJ86NDsnR1r3X0zBHU4Fh7EOiZPFSwNBHIO9ISMgdQLgcH4EjmL
+	S2y9y5FB9SF+Caqf7iOb+E/t1INSsQPEHLVbQGS7CAxuw1S0BJaU+TdgK6NZrcHoJSSf
+	Hwf+UVTGHzS5B1+Y8Gl0E9PQo09CmwpmrFCy5jfaJMCUV6m1FyNfedntczAq+jFdGDui
+	ItFXoN+LLy+wLW3HyuR1fLPUGg99DsTcpOXvnD1pD7q/cjkb7SsL1J3LYjzXoeBtiecf
+	cCxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=aKpVocO8U5rSalEU9M3HeN2zsYidYfaXwEpf+rz5Yl4=;
-	b=lElGraSGaGkPr+tKfR0lzxNnyZIyl9gRLCfjQd0uXK0/visyvCCnaXSZLJGAUq8W18
-	ARn31aJqXqHT1O2KRbc9J7yFT6rUYlqcJq0+0lNsSvooNFu3PyK4LryKbQprjhHuyG6Y
-	r5M3pnecjO9JQfaPF2uj6OzpiXdDnenxNbiP/J94Qi1c3RPBDypIyi21bTRpUcf9BMjW
-	0gYqucG1FvfCylJSz6CyeBsRtmuE5Y5CNDXPIxNJJsiUrIdP05aArCIOd0ilsPIuPRyx
-	i1U8NLiwytj51vWlGGdhu8g6il8B/hjlxXdlmKC++WYyLAArHR6b6k2K/YlO2+u2s7lJ
-	aStA==
-X-Gm-Message-State: AOPr4FU6PtzOrnwaMnnWrvy7iAa3yIbrPJBETgb8Re8ghROsGcLxI/rZrz4laBs03a09dtf6duUB0lpqq7/q8ZYU
-X-Received: by 10.107.135.211 with SMTP id r80mr9422972ioi.133.1461747593892; 
-	Wed, 27 Apr 2016 01:59:53 -0700 (PDT)
+	bh=HsxMBJ9Xefoy356kglu65W2+T45ZSkyypmVew4Sc3Ws=;
+	b=W6IT8RYwJ4XUSxugRgGGtlwcRfUGA3z+jv1FKUDouna+aBjk/yikxLMMEuptdW4S3L
+	+e837Oz/2JqPol7Mb4P4Nnsw3UIY2JJq4XTOSdy/2q9m1Vf200sYItICK2tTrC8dSMxp
+	zeWICbN78R62AKSWFy3n+yqoBvqRU9OfuPd+Igx0qz9ET4EQspMmBBt/d6iTpzLI0NjJ
+	jZf/drvuNRVCcBO/jWFXW8gbi69WFot+++wFagx5PgZCMtWQR1MQLzPN7d1lZ5i3Oa0t
+	xmDAZw9mGKrsRH/94frOl2bMBhNFCaTU7dJe3EttpWHbjMUn4ki0yAZQQGncq2jkWFmv
+	C5CA==
+X-Gm-Message-State: AOPr4FUi/j0bSkh2zQWYfSBcOZ/rZLwxql06BEDK7l07+LlrPvRE9DFxAuQhzqWAIUltNfT5zv+lTfTs2hn5qw==
+X-Received: by 10.140.91.194 with SMTP id z60mr6935010qgd.70.1461747680655;
+	Wed, 27 Apr 2016 02:01:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Wed, 27 Apr 2016 01:59:34 -0700 (PDT)
+Received: by 10.55.101.142 with HTTP; Wed, 27 Apr 2016 02:01:01 -0700 (PDT)
 In-Reply-To: <57207CC3.3020905@mlbassoc.com>
 References: <57207CC3.3020905@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 27 Apr 2016 09:59:34 +0100
-Message-ID: <CAJTo0LbHvD417+AkLhM8153DhbpBAE9TTeGMbuEDr+BV0CJAbA@mail.gmail.com>
+From: Yegor Yefremov <yegorslists@googlemail.com>
+Date: Wed, 27 Apr 2016 11:01:01 +0200
+Message-ID: <CAGm1_kuWD1BVMMTfZ9v3F5VzvD80Y43SoROA61KD9cF82isPDQ@mail.gmail.com>
 To: Gary Thomas <gary@mlbassoc.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: eudev hwdb?
@@ -66,14 +70,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 08:59:58 -0000
-Content-Type: multipart/alternative; boundary=001a113ed20a15ebe5053173a28f
-
---001a113ed20a15ebe5053173a28f
+X-List-Received-Date: Wed, 27 Apr 2016 09:01:50 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 27 April 2016 at 09:48, Gary Thomas <gary@mlbassoc.com> wrote:
+Hi Gary,
 
+On Wed, Apr 27, 2016 at 10:48 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> I see that the replacement for udev (eudev) in OE-core takes nearly
+> 12MB on my i.MX6 (ARM CortexA7).  This is nearly 25% of my total
+> storage space (64MB NAND)!
+>
+> # ls -lR /etc/udev
+> /etc/udev:
+> total 6520
+> -rw-r--r-- 1 root root    1600 Jan  1  1970 cache.data
+> -r--r--r-- 1 root root 6660476 Apr 26 13:08 hwdb.bin
+> drwxr-xr-x 2 root root    1296 Apr 26 11:34 hwdb.d
+> -rw-r--r-- 1 root root      51 Apr 26 11:31 mount.blacklist
+> drwxr-xr-x 2 root root     160 Apr 26 11:35 mount.blacklist.d
+> drwxr-xr-x 2 root root     608 Apr 26 13:08 rules.d
+> drwxr-xr-x 2 root root     304 Apr 26 11:35 scripts
+> -rw-r--r-- 1 root root      49 Apr 26 11:34 udev.conf
+>
+> /etc/udev/hwdb.d:
+> total 5224
+> -rw-r--r-- 1 root root 1292931 Apr 26 11:34 20-OUI.hwdb
+> -rw-r--r-- 1 root root  126596 Apr 26 11:34 20-acpi-vendor.hwdb
+> -rw-r--r-- 1 root root   41289 Apr 26 11:34 20-bluetooth-vendor-product.hwdb
+> -rw-r--r-- 1 root root     111 Apr 26 11:34 20-net-ifname.hwdb
+> -rw-r--r-- 1 root root   13710 Apr 26 11:34 20-pci-classes.hwdb
+> -rw-r--r-- 1 root root 2648842 Apr 26 11:34 20-pci-vendor-model.hwdb
+> -rw-r--r-- 1 root root     783 Apr 26 11:34 20-sdio-classes.hwdb
+> -rw-r--r-- 1 root root    4067 Apr 26 11:34 20-sdio-vendor-model.hwdb
+> -rw-r--r-- 1 root root    8070 Apr 26 11:34 20-usb-classes.hwdb
+> -rw-r--r-- 1 root root 1113001 Apr 26 11:34 20-usb-vendor-model.hwdb
+> -rw-r--r-- 1 root root    3702 Apr 26 11:34 60-evdev.hwdb
+> -rw-r--r-- 1 root root   52967 Apr 26 11:34 60-keyboard.hwdb
+> -rw-r--r-- 1 root root   14217 Apr 26 11:34 70-mouse.hwdb
+> -rw-r--r-- 1 root root    4627 Apr 26 11:34 70-pointingstick.hwdb
+>
+> /etc/udev/mount.blacklist.d:
+> total 0
+>
+> /etc/udev/rules.d:
+> total 20
+> -rw-r--r-- 1 root root 1449 Apr 26 11:31 10-imx.rules
+> -rw-r--r-- 1 root root    0 Apr 26 11:34 80-net-name-slot.rules
+> -rw-r--r-- 1 root root  847 Apr 26 11:31 automount.rules
+> -rw-r--r-- 1 root root  757 Apr 26 11:31 autonet.rules
+> -rw-r--r-- 1 root root  885 Apr 26 11:34 local.rules
+> -rw-r--r-- 1 root root  843 Apr 26 11:31 localextra.rules
+>
+> /etc/udev/scripts:
+> total 8
+> -rwxr-xr-x 1 root root 2469 Apr 26 11:31 mount.sh
+> -rwxr-xr-x 1 root root 1402 Apr 26 11:31 network.sh
+>
 > Is there any way to not have both the hwdb.bin (which I assume
 > is a binary version of the hardware databases) and /etc/udev/hwdb.d?
 > Perhaps there is some way to only use one?
@@ -82,39 +134,15 @@ On 27 April 2016 at 09:48, Gary Thomas <gary@mlbassoc.com> wrote:
 > this (no experience) but my system needs to handle plug&play devices
 > which the current eudev does well.  It's just a huge "price" to pay.
 >
+> Any ideas or pointers would be great
 
-You could not install hwdb at all, it's a recommends so you can
-BAD_RECOMMENDS it away.  It's certainly possible to wipe away the source
-files for hwdb if you don't care about extending them at runtime but nobody
-has done that yet: a rootfs postproccess hook could delete it and confirm
-that everything works fine.
+eudev provides following configure option:
 
-Ross
+ --enable-hwdb  install hwdb.d files
 
---001a113ed20a15ebe5053173a28f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+this way you can omit hwdb.d installation by providing:
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 April 2016 at 09:48, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div id=3D":4f8" class=3D"a3s aXjCH=
-">Is there any way to not have both the hwdb.bin (which I assume<br>
-is a binary version of the hardware databases) and /etc/udev/hwdb.d?<br>
-Perhaps there is some way to only use one?<br>
-<br>
-Or maybe there is a better choice, such as mdev?=C2=A0 I&#39;m not sure abo=
-ut<br>
-this (no experience) but my system needs to handle plug&amp;play devices<br=
->
-which the current eudev does well.=C2=A0 It&#39;s just a huge &quot;price&q=
-uot; to pay.</div></blockquote></div><br>You could not install hwdb at all,=
- it&#39;s a recommends so you can BAD_RECOMMENDS it away.=C2=A0 It&#39;s ce=
-rtainly possible to wipe away the source files for hwdb if you don&#39;t ca=
-re about extending them at runtime but nobody has done that yet: a rootfs p=
-ostproccess hook could delete it and confirm that everything works fine.</d=
-iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</di=
-v></div>
+--disable-hwdb
 
---001a113ed20a15ebe5053173a28f--
+Yegor
+
