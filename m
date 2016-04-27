@@ -1,61 +1,73 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <trini@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E21B5E00E5C; Fri, 29 Apr 2016 07:52:26 -0700 (PDT)
+	id 745BFE00CAA; Wed, 27 Apr 2016 15:10:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.161.182 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
-Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4C5BE00D91
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 07:52:23 -0700 (PDT)
-Received: by mail-io0-f173.google.com with SMTP id d62so109891566iof.2
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 07:52:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6MZVjrzViKLAkuxow/VgwGy1gePyoi+ZzvmTr1zLYuI=;
-	b=OGunAeZhxmXZ/xCZ8cgVa2fQ/ktrxyQK0ZpxvL0KHsR/A/o7OoYpU7OSdOQu6H2m2N
-	I6xfYFJRWQgRQO7zf8136osmy9pHrG7tdAMDR7/vPd8oQf4dE1+Nqm/RLNaim1l05isq
-	i6psDi2cEGRv+eNt8n1GVv04FogXn/IG9sODq3PpVHp5007Vres39j7bnNd5uoXfrhnr
-	geT1ynzYcjKHb5L2BUj8naJ0PBNsNJKVhMaHACHVGQBH7sEi18dGq33DHt21gXTX8mfe
-	JXhjGLb7popSsxL9Bkv1BLEXusT+f7olntXCSmH2mG+bOcT3YZkoBxGMHMga6r6kifRs
-	E5jw==
+Received: from mail-yw0-f182.google.com (mail-yw0-f182.google.com
+	[209.85.161.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B4F2E00CA5
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 15:10:09 -0700 (PDT)
+Received: by mail-yw0-f182.google.com with SMTP id g133so90810127ywb.2
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 15:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=lz1rAL4sIDVw8RUnD4gCv3yW7B8uX5g/KlVywsCJVX0=;
+	b=LtYWcUsfee40TifJhdYOeyozptTQJ2GOi8nxyuN3bslIynXjrnB2jlEMyNe7/smng8
+	0auXWTF+kKtdsEXNciT9kGLQo7P+k5R3Gri/MPkDw/ozhhjtHA5lsixshCB5e0BeSeVe
+	KZOhFp1+Qv55mqwXojw6rRbEvbCQQwSeDGk4A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=6MZVjrzViKLAkuxow/VgwGy1gePyoi+ZzvmTr1zLYuI=;
-	b=cOVTAOIzA2/rmmGInvWfpiLrHw4cCuBz1y7fu0/GgG891bTmyDpkmVT8EAOZZY234t
-	JihNUXBtAbtsBXSMuD4SaaiNfJlzLtvs1pQU7Ni/ccJeRJBkLqA+bpx/Fg73oyPtqB+s
-	90v5e6FvXyW40EWR5qnI/D0DklhytljruymL5SfV1Z76HnI85FyPFmrnwoYa0iRKYiPW
-	WWIy0ci/vBVIgtHKj6UYXpIGT4rqOgJlW4BzLrkkk9RPCfsfpbdk9U2kRhb9yaM14NhW
-	pK/ksIsjn+st/e82MD0/EGVxr19n8PWW/PzXjbY5f7tDtjTJeg7OzZ8HXeiYgr/GZ3Rq
-	1MfQ==
-X-Gm-Message-State: AOPr4FUa+GIFO/kA24URMM3u9ykZ+Ih2uwn1bwFfkcFgf2bmm5BaE5yyhAzv8mqLqQTYUC06c+VGRc2pfBvrV5Uo
-X-Received: by 10.107.135.211 with SMTP id r80mr26680910ioi.133.1461941542588; 
-	Fri, 29 Apr 2016 07:52:22 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=lz1rAL4sIDVw8RUnD4gCv3yW7B8uX5g/KlVywsCJVX0=;
+	b=PvOdaZ+dMtEVj8/pt4KiIJIYyv63OTZg2hdxwdzKWKO6eJBirNMzZ80e20etRv/MxP
+	a3fhRuUtpKOtQNoQ3wRXSXwnJerKJBUWsP7RNft8wEX52vv5YKorqKUvfv//Wi5oAW6s
+	KtmUXJulKn3QBokvUu2rpHFvgvsoIzD7HeTBEId2uVIDswao/7G7pntBse4gH6AIyO9t
+	xGqmV6LUtU6cDlHVg43R9J3xnmuWibcATY5YG/FeziIfdlVkv0Sq0QXqJFtHEBiikGMF
+	M4o6CiGqh68Bt9/vBzl8vGT9W549NJz3boc6X8fW4KfhsY6gDtU/1ghFKwJMZv7ySl2M
+	uVnA==
+X-Gm-Message-State: AOPr4FVrb6jf2YhDZLRHyWn2MkIBkoXW0yvF7AstIZ0Sd4dWNAnx6DMo0oaEqj1sWw0vNg==
+X-Received: by 10.13.221.142 with SMTP id g136mr7157947ywe.59.1461795008629;
+	Wed, 27 Apr 2016 15:10:08 -0700 (PDT)
+Received: from bill-the-cat ([2001:470:8:32a:a8f1:8916:9925:ea71])
+	by smtp.gmail.com with ESMTPSA id
+	c196sm3073007ywb.24.2016.04.27.15.10.07
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Wed, 27 Apr 2016 15:10:07 -0700 (PDT)
+Date: Wed, 27 Apr 2016 18:10:05 -0400
+From: Tom Rini <trini@konsulko.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20160427221005.GA19598@bill-the-cat>
+References: <B1D22563-F31B-4EF1-90D6-16EB391134D5@gmail.com>
+	<CACS+7ZSpWgziO+GF++25dM7kgP4SZ_GDV+-DcEMQ_YUGyEEnfQ@mail.gmail.com>
+	<CAMKF1spQn114r9dCAk9z7c3hw-NJp3pVoVP+f3gao2mhLTBHYg@mail.gmail.com>
+	<CAMKF1spwimpQwSE38B5jWmyZXwMKy6znMEF9p-NmTM4mGGr+4g@mail.gmail.com>
+	<CAJTo0Lb25x1H44nGn05d6qBVLDpyiaZ3XW40fdrAWcP_D+qYwg@mail.gmail.com>
+	<CAJTo0LZZ3Hs_yrm5ceik4j8Orv-UQ9T72Wu=R_PCRKw4Y9-WCw@mail.gmail.com>
+	<CAMKF1sozR3_Mhy5PKSaKCo7S2yHrtLzTNrUURFhN38gV0AbkYQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Fri, 29 Apr 2016 07:52:03 -0700 (PDT)
-In-Reply-To: <4a06d2169cf1fdcb4427c105fdc54fc80c3f334b.1461913863.git.jussi.kukkonen@intel.com>
-References: <cover.1461913863.git.jussi.kukkonen@intel.com>
-	<4a06d2169cf1fdcb4427c105fdc54fc80c3f334b.1461913863.git.jussi.kukkonen@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 29 Apr 2016 15:52:03 +0100
-Message-ID: <CAJTo0Lbh=ZWyniBOC-+nD6jKxVjAR15v4yOPhzBaBYymW0HPzw@mail.gmail.com>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [xsettings-daemon][PATCH 2/2] Use gdk-x11-3.0 instead of 2.0
+In-Reply-To: <CAMKF1sozR3_Mhy5PKSaKCo7S2yHrtLzTNrUURFhN38gV0AbkYQ@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Mailman-Approved-At: Fri, 29 Apr 2016 08:07:06 -0700
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	OE Core mailing list <openembedded-core@lists.openembedded.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 6 Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,36 +79,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 14:52:27 -0000
-Content-Type: multipart/alternative; boundary=001a113ed20a542b460531a0cafa
+X-List-Received-Date: Wed, 27 Apr 2016 22:10:12 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a113ed20a542b460531a0cafa
-Content-Type: text/plain; charset=UTF-8
+On Wed, Apr 27, 2016 at 10:53:52AM -0700, Khem Raj wrote:
+> thanks I think most of them come to these categories. So any help in
+> fixing them is welcome.
+> 
+> 1. kernel older than 4.4, backport needed fixed into these branches or
+> move to newer kernels.
+> 2. uboot dont have gcc6 compiler header files, backport the needed fixes
 
-On 29 April 2016 at 08:47, Jussi Kukkonen <jussi.kukkonen@intel.com> wrote:
+9b2c282b348dfe966bbba967dc7a45ce817cce50 from mainline.
 
-> -PKG_CHECK_MODULES(APP, [gconf-2.0 gdk-x11-2.0 x11])
-> +PKG_CHECK_MODULES(APP, [gconf-2.0 gdk-x11-3.0 x11])
->
+> 2. meta-qt4 needs to use gnu++98
+> 3. gcc6 providing its own stdlib.h in libstdc++
+> 4. gcc6 swtiching to gnu++14 for C++ as default.
+> 5. GPLv2-only versions of recipes are simply old will need fixing
+> 
+> I will take a stab at fixing the nativesdk recipes which is mostly due
+> to stdlib.h issue.
 
-Looking at this, so little of GTK+ is used (just gdkx).  Maybe we should
-port this to pure XLib?
+Please do, I'd like to see some SDKs so I can get more U-Boot testing
+done with gcc-6 :)
 
-Ross
+-- 
+Tom
 
---001a113ed20a542b460531a0cafa
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 29 April 2016 at 08:47, Jussi Kukkonen <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@intel.com=
-</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2ni" c=
-lass=3D"a3s aXjCH">-PKG_CHECK_MODULES(APP, [gconf-2.0 gdk-x11-2.0 x11])<br>
-+PKG_CHECK_MODULES(APP, [gconf-2.0 gdk-x11-3.0 x11])<br></div></blockquote>=
-</div><br>Looking at this, so little of GTK+ is used (just gdkx).=C2=A0 May=
-be we should port this to pure XLib?</div><div class=3D"gmail_extra"><br></=
-div><div class=3D"gmail_extra">Ross</div></div>
-
---001a113ed20a542b460531a0cafa--
