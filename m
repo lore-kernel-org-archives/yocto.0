@@ -1,39 +1,42 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 838F8E00D7F; Wed, 27 Apr 2016 02:52:24 -0700 (PDT)
+	id F0CD8E00D7F; Wed, 27 Apr 2016 03:01:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.37 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AA41E00D7D
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 02:52:19 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 9949E68A01C; Wed, 27 Apr 2016 10:52:18 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id E852B68A01A;
-	Wed, 27 Apr 2016 10:52:17 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 5707167405AD;
-	Wed, 27 Apr 2016 11:52:17 +0200 (CEST)
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <57207CC3.3020905@mlbassoc.com>
-	<CAJTo0LbHvD417+AkLhM8153DhbpBAE9TTeGMbuEDr+BV0CJAbA@mail.gmail.com>
-	<572084BB.5090307@mlbassoc.com>
-	<CAJTo0LZYOE-Sd_8OR0oGHpigWBVQM+mFkmP69gSOO6RuRb7jDQ@mail.gmail.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <57208BD1.4030705@mlbassoc.com>
-Date: Wed, 27 Apr 2016 11:52:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from DUB004-OMC3S28.hotmail.com (dub004-omc3s28.hotmail.com
+	[157.55.2.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36BA3E00D7D
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 03:01:55 -0700 (PDT)
+Received: from DUB130-W22 ([157.55.2.8]) by DUB004-OMC3S28.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Wed, 27 Apr 2016 03:01:54 -0700
+X-TMN: [yk+pllrAitXISCPduOCxG32DPen49Phu]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W22A970398EE713D402DB8ADA640@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 27 Apr 2016 11:01:54 +0100
+Importance: Normal
+In-Reply-To: <DUB130-W353EF079A973F4C0B275BFDA640@phx.gbl>
+References: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>,
+	<DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>, ,
+	<CAJTo0LZGEfN68QJog53DSjsyQ7p-1FBa6MJot6nZCwt=C8ZG3w@mail.gmail.com>,
+	<DUB130-W353EF079A973F4C0B275BFDA640@phx.gbl>
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZYOE-Sd_8OR0oGHpigWBVQM+mFkmP69gSOO6RuRb7jDQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eudev hwdb?
+X-OriginalArrivalTime: 27 Apr 2016 10:01:54.0966 (UTC)
+	FILETIME=[D4077B60:01D1A06B]
+Subject: Re: Build Errors with new recipe for pjproject (autotools/pkgconfig)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,27 +48,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 09:52:24 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 27 Apr 2016 10:02:00 -0000
+Content-Type: multipart/alternative;
+	boundary="_955e6fd7-5141-4eec-8f7d-165d810d3024_"
 
-On 2016-04-27 11:23, Burton, Ross wrote:
->
-> On 27 April 2016 at 10:22, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     Can you explain a bit more? - BAD_RECOMMENDS doesn't seem to be documented.
->
->
-> My mistake - BAD_RECOMMENDATIONS.
->
-> http://www.yoctoproject.org/docs/2.0.1/ref-manual/ref-manual.html#var-BAD_RECOMMENDATIONS
+--_955e6fd7-5141-4eec-8f7d-165d810d3024_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, that worked.  Took away all of the hwdb files (binary and sources)
-but my system is working just fine without them (so far)
+Regarding:
+"Can you shine any light on the "-fdebug-prefix-map" related fatal QA error=
+s?  (leaking host paths) I've found some discussion in openembedded that su=
+ggests this should be fixed in the compiler but again I am curious why this=
+ (very simple) recipe has this issue but others don't."
+So DEBUG_FLAGS was changed recently but setting back to  "-g -feliminate-un=
+used-debug-types" avoids this issue.
+Regards=2CChris
+ 		 	   		  =
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--_955e6fd7-5141-4eec-8f7d-165d810d3024_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'><div><div dir=3D"ltr"><div><span=
+ style=3D"font-size:12pt=3B">Regarding:</span></div><div><span style=3D"fon=
+t-size:12pt=3B"><br></span></div><div><span style=3D"font-size:12pt=3B">"Ca=
+n you shine any light on the "</span>-fdebug-prefix-map" related fatal QA e=
+rrors? &nbsp=3B(leaking host paths) I've found some discussion in openembed=
+ded that suggests this should be fixed in the compiler but again I am curio=
+us why this (very simple) recipe has this issue but others don't."</div><di=
+v><br></div><div>So&nbsp=3BDEBUG_FLAGS was changed recently but setting bac=
+k to &nbsp=3B"-g -feliminate-unused-debug-types" avoids this issue.</div><d=
+iv><br></div><div>Regards=2C</div><div>Chris</div><div><span style=3D"font-=
+size: 12pt=3B"><br></span></div></div></div><style><!--=0A=
+.ExternalClass .ecxhmmessage P {=0A=
+padding:0px=3B=0A=
+}=0A=
+=0A=
+.ExternalClass body.ecxhmmessage {=0A=
+font-size:12pt=3B=0A=
+font-family:Calibri=3B=0A=
+}=0A=
+=0A=
+--></style> 		 	   		  </div></body>
+</html>=
+
+--_955e6fd7-5141-4eec-8f7d-165d810d3024_--
