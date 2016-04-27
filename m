@@ -1,88 +1,39 @@
-Return-Path: <Manish.Jaggi@caviumnetworks.com>
+Return-Path: <christrobridge@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1CD7E00D6F; Tue, 26 Apr 2016 22:53:39 -0700 (PDT)
+	id 245DDE00D74; Tue, 26 Apr 2016 23:27:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_WEB,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.91 listed in list.dnswl.org]
-	* 1.3 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
-	bl.spamcop.net
-	* [Blocked - see <http://www.spamcop.net/bl.shtml?111.93.218.67>]
-	*  0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [111.93.218.67 listed in dnsbl.sorbs.net]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (christrobridge[at]hotmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0091.outbound.protection.outlook.com [65.55.169.91])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39B56E00D69
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 22:53:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-caviumnetworks-com;
-	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=z0ZNi1c7+4md74eqrbVmAbvCaKWUk5cn0ANPlgHX794=;
-	b=gWtjzFVaQzup9JYgGR9rotfyJBxc8NQVJRzRF9jWRHOIkSAgw9Yo5krnJl4+ctkXabQCDFb61EbT8sHs59X6b6CIjISNN4GPemFr+81Sud8m8VVfji/kTWNYBkdAOqfXBbges8+xdThXJgx8EqeweABfm5O5WaUZXEmezh5YnrI=
-Received: from CY1PR0701MB1600.namprd07.prod.outlook.com (10.163.20.15) by
-	CY1PR0701MB1597.namprd07.prod.outlook.com (10.163.20.147) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.477.8; Wed, 27 Apr 2016 05:53:33 +0000
-Received: from CY1PR0701MB1600.namprd07.prod.outlook.com ([10.163.20.15]) by
-	CY1PR0701MB1600.namprd07.prod.outlook.com ([10.163.20.15]) with mapi id
-	15.01.0477.012; Wed, 27 Apr 2016 05:53:33 +0000
-From: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding
-	native build support for arm64/aarch64 in oe-rootfs.
-Thread-Index: AQHRn5bTlMP1TWGpxUqB4PoRiPz5Mp+b9BAAgAFd944=
-Date: Wed, 27 Apr 2016 05:53:33 +0000
-Message-ID: <CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640@CY1PR0701MB1600.namprd07.prod.outlook.com>
-References: <BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>,
-	<CAJTo0Laus7estW8kY9vRqW5qa_0hQmVtkRs7W3YXvvoDi1ewvQ@mail.gmail.com>
-In-Reply-To: <CAJTo0Laus7estW8kY9vRqW5qa_0hQmVtkRs7W3YXvvoDi1ewvQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: intel.com; dkim=none (message not signed)
-	header.d=none;intel.com; dmarc=none action=none
-	header.from=caviumnetworks.com;
-x-originating-ip: [111.93.218.67]
-x-ms-office365-filtering-correlation-id: bad21b19-6500-42a0-81b6-08d36e6044b9
-x-microsoft-exchange-diagnostics: 1; CY1PR0701MB1597;
-	5:3J9LFvsyY4I8DdT1jWS+zI0QXFLek/i+jBxFF/qxTTzCQSULxSDlpcEeSMVueT4i6N2oB0msRBeX3aaOJIr8RGoyWsPh+hQ/8hC5BrI/xQjj23LYRDqqm+BxJEaTynMQrHHlpEGQ6gs8xqDvN3SvwQ==;
-	24:D2VSRHhMXnN+xdA0ShWmQlmFeQO36gQy0Q4LgWa7G8kxbnwSc0hxPlMKoXi4iXTjl6coDk2ncgwTjg/68lKcNOeGRISEusQZ2XEsXZjsztk=;
-	7:8T75lmMnY+2+wAwLX3TJwdMIPxRwloa8aA7msLbriT5LXeqXdDVfzarktZ3Ajfs0ZTsjVJ6GSdl8ZmTgVhznh4crozjF933HiejIF6HHzrfYMDaDE+dIJw+fMhREkD23Q46B5m497pQw+yTHzHm6PuzOhIsqbyBB/cJ1dTqEB30PMcyChjnfVJVba3GqOzF5
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0701MB1597;
-x-microsoft-antispam-prvs: <CY1PR0701MB15975E040F7D6C9A06B8A357E1640@CY1PR0701MB1597.namprd07.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(9101521072)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046);
-	SRVR:CY1PR0701MB1597; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0701MB1597; 
-x-forefront-prvs: 0925081676
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(377454003)(24454002)(2950100001)(5008740100001)(3846002)(50986999)(4326007)(66066001)(11100500001)(54356999)(2900100001)(76176999)(189998001)(2906002)(81166005)(19625215002)(33656002)(74316001)(76576001)(19580405001)(586003)(19580395003)(77096005)(16236675004)(3660700001)(19627405001)(5003600100002)(1220700001)(1096002)(86362001)(5002640100001)(110136002)(106116001)(99286002)(10400500002)(92566002)(122556002)(102836003)(87936001)(9686002)(3280700002)(6116002)(230783001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0701MB1597;
-	H:CY1PR0701MB1600.namprd07.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [157.55.2.38 listed in list.dnswl.org]
+Received: from DUB004-OMC3S29.hotmail.com (dub004-omc3s29.hotmail.com
+	[157.55.2.38])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88A3BE00D6F
+	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 23:27:18 -0700 (PDT)
+Received: from DUB130-W61 ([157.55.2.7]) by DUB004-OMC3S29.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Tue, 26 Apr 2016 23:27:17 -0700
+X-TMN: [05Atnh/GxIEBvpOJauaTi/gi68QIFAiQ]
+X-Originating-Email: [christrobridge@hotmail.com]
+Message-ID: <DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>
+From: Chris Trobridge <christrobridge@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 27 Apr 2016 07:27:16 +0100
+Importance: Normal
+In-Reply-To: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
+References: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
 MIME-Version: 1.0
-X-OriginatorOrg: caviumnetworks.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2016 05:53:33.6264 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0701MB1597
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding native build support for arm64/aarch64 in oe-rootfs.
+X-OriginalArrivalTime: 27 Apr 2016 06:27:17.0819 (UTC)
+	FILETIME=[D8A6C8B0:01D1A04D]
+Subject: Re: Build Errors with new recipe for pjproject (autotools/pkgconfig)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,134 +45,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 05:53:39 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 27 Apr 2016 06:27:23 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640CY1PR0701MB1600_"
+	boundary="_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_"
 
---_000_CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640CY1PR0701MB1600_
-Content-Type: text/plain; charset="us-ascii"
+--_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-It worked, thanks!!
+Aside from the issues I mentioned previously=2C pjproject is detecting cros=
+s-compilation and this causes it to append '-x86_64-poky-linux-gnu' to all =
+its library names.
+This is then breaking autotools configuration in other recipes that are tes=
+ting for the base name.
+Is it common for a build process to differentiate cross compiled libraries =
+like this?  Is there a preferred way to deal with it?
+I'm not confident about changing the pjproject build but I can link the bas=
+e name to the extended name in do_install_append() so both names are presen=
+t. pkgconfig picks up the extended names so these are also used in other re=
+cipes too (both forms of name in the same command line...).
+Regards=2CChris
 
+From: christrobridge@hotmail.com
+To: yocto@yoctoproject.org
+Date: Tue=2C 26 Apr 2016 10:15:34 +0100
+Subject: [yocto] Build Errors with new recipe for pjproject	(autotools/pkgc=
+onfig)
 
-But I couldnt find support to include multilibs say for 32bit and 64bit gcc=
-.
+=0A=
+=0A=
+=0A=
+I have been trying to formulate a new recipe for pjproject (pjsip) - there =
+was one but it seems too old and isn't part of any layer now.
+The library seems to require a fairly straightforward autotools/pkgconfig r=
+ecipe but I get two errors=2C both of which I can see have come up before b=
+ut haven't been answered satisfactorily.
+The first is that the link stage fails with "x86_64-poky-linux-ld: unrecogn=
+ized option '-Wl=2C-O1'".
+I've found this answered as "tools being too old" but '-Wl=2C' is a gcc pre=
+fix to pass an option to the linker but the linker is being invoked directl=
+y and so this is really a configuration mismatch.  I can fix this with "LD=
+=3D$CXX" in do_configure_prepend() but I am puzzled as to why autotools wou=
+ld get confused this way in the first place?
+The second problem is possibly more recent: ERROR: pjproject-2.4.5-r0 do_po=
+pulate_sysroot: QA Issue: libpjproject.pc failed sanity test (tmpdir) in pa=
+th /home/chris/yocto/build/tmp/work/corei7-64-poky-linux/pjproject/2.4.5-r0=
+/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
+I think this is benign other than leaking my dev environment but there was =
+an oe gcc patch earlier this year that addressed this (http://lists.openemb=
+edded.org/pipermail/openembedded-core/2016-January/116468.html).
+Apparently there was QA change the broke a lot of recipes but it's not clea=
+r how to fix this recipe - from what I could tell the fix should have appli=
+ed to all recipes.  Adding '-gno-record-debug-prefix-map' should fix this b=
+ut the compiler option is not recognised.
+Any ideas on how to solve the QA error?
+I am using the poky commit for 2.1_M4.rc1.
+Thanks=2CChris
+ 		 	   		  =0A=
 
-There is a MULTILIB macro but I am not sure how to use it?
+-- =0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
 
-I think multilib recipes (bbfiles) are required, how to get them?
-
-
-
-Regards,
-Manish Jaggi
-________________________________
-From: Burton, Ross <ross.burton@intel.com>
-Sent: Tuesday, April 26, 2016 2:27:12 PM
-To: Jaggi, Manish
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding na=
-tive build support for arm64/aarch64 in oe-rootfs.
-
-
-On 26 April 2016 at 09:37, Jaggi, Manish <Manish.Jaggi@caviumnetworks.com<m=
-ailto:Manish.Jaggi@caviumnetworks.com>> wrote:
-IMAGE_INSTALL_append =3D "gcc"
-IMAGE_INSTALL_append +=3D " glibc"
-IMAGE_INSTALL_append +=3D " libgcc"
-IMAGE_INSTALL_append +=3D " binutils"
-IMAGE_INSTALL_append +=3D " gccmakedep"
-
-You left out the development headers and libraries required to actually lin=
-k.
-
-IMAGE_FEATURES is a more efficient way of doing this.  EXTRA_IMAGE_FEATURES=
- +=3D "tools-sdk" will add gcc/cpp/make/etc, and "dev-pkgs" will ensure tha=
-t all of the -dev packages are installed on your image, so you can link aga=
-inst anything you've installed.
-
-Ross
-
---_000_CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640CY1PR0701MB1600_
-Content-Type: text/html; charset="us-ascii"
+--_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body>
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:10pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Candara,Sans-Serif;">
-<p>It worked, thanks!!</p>
-<p><br>
-</p>
-<p>But I couldnt find support to include multilibs say for 32bit and 64bit =
-gcc.</p>
-<p>There is a MULTILIB macro but I am not sure how to use it?</p>
-<p>I think multilib&nbsp;recipes (bbfiles) are required, how to get them?</=
-p>
-<p><br>
-</p>
-<p><br>
-</p>
-<div id=3D"Signature">
-<div name=3D"divtagdefaultwrapper" style=3D"font-family:Calibri,Arial,Helve=
-tica,sans-serif; font-size:; margin:0">
-<font face=3D"Cordia New, sans-serif" size=3D"2">Regards,</font>
-<div><font face=3D"Cordia New, sans-serif" size=3D"2">Manish Jaggi</font></=
-div>
-</div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Burton, Ross &lt;ross=
-.burton@intel.com&gt;<br>
-<b>Sent:</b> Tuesday, April 26, 2016 2:27:12 PM<br>
-<b>To:</b> Jaggi, Manish<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] aarch64-oe-linux/bin/ld: cannot find -lgcc . Ad=
-ding native build support for arm64/aarch64 in oe-rootfs.</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail_extra"><br>
-<div class=3D"gmail_quote">On 26 April 2016 at 09:37, Jaggi, Manish <span d=
-ir=3D"ltr">
-&lt;<a href=3D"mailto:Manish.Jaggi@caviumnetworks.com" target=3D"_blank">Ma=
-nish.Jaggi@caviumnetworks.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div>IMAGE_INSTALL_append =3D &quot;gcc&quot;</div>
-<div>IMAGE_INSTALL_append &#43;=3D &quot; glibc&quot;</div>
-<div>IMAGE_INSTALL_append &#43;=3D &quot; libgcc&quot;</div>
-<div>IMAGE_INSTALL_append &#43;=3D &quot; binutils&quot;</div>
-<div>IMAGE_INSTALL_append &#43;=3D &quot; gccmakedep&quot;</div>
-</blockquote>
-</div>
-<br>
-You left out the development headers and libraries required to actually lin=
-k.</div>
-<div class=3D"gmail_extra"><br>
-</div>
-<div class=3D"gmail_extra">IMAGE_FEATURES is a more efficient way of doing =
-this.&nbsp; EXTRA_IMAGE_FEATURES &#43;=3D &quot;tools-sdk&quot; will add gc=
-c/cpp/make/etc, and &quot;dev-pkgs&quot; will ensure that all of the -dev p=
-ackages are installed on your image, so you can link against anything
- you've installed.</div>
-<div class=3D"gmail_extra"><br>
-</div>
-<div class=3D"gmail_extra">Ross</div>
-</div>
-</div>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Aside from the issues I mentione=
+d previously=2C pjproject is detecting cross-compilation and this causes it=
+ to append '-x86_64-poky-linux-gnu' to all its library names.<div><br></div=
+><div>This is then breaking autotools configuration in other recipes that a=
+re testing for the base name.</div><div><br></div><div>Is it common for a b=
+uild process to differentiate cross compiled libraries like this? &nbsp=3BI=
+s there a preferred way to deal with it?</div><div><br></div><div>I'm not c=
+onfident about changing the pjproject build but I can link the base name to=
+ the extended name in&nbsp=3Bdo_install_append() so both names are present.=
+ pkgconfig picks up the extended names so these are also used in other reci=
+pes too (both forms of name in the same command line...).</div><div><br></d=
+iv><div>Regards=2C</div><div>Chris<br><br><div><hr id=3D"stopSpelling">From=
+: christrobridge@hotmail.com<br>To: yocto@yoctoproject.org<br>Date: Tue=2C =
+26 Apr 2016 10:15:34 +0100<br>Subject: [yocto] Build Errors with new recipe=
+ for pjproject	(autotools/pkgconfig)<br><br>=0A=
+=0A=
+<style><!--=0A=
+.ExternalClass .ecxhmmessage P {=0A=
+padding:0px=3B=0A=
+}=0A=
+=0A=
+.ExternalClass body.ecxhmmessage {=0A=
+font-size:12pt=3B=0A=
+font-family:Calibri=3B=0A=
+}=0A=
+=0A=
+--></style>=0A=
+<div dir=3D"ltr">I have been trying to formulate a new recipe for pjproject=
+ (pjsip) - there was one but it seems too old and isn't part of any layer n=
+ow.<div><br></div><div>The library seems to require a fairly straightforwar=
+d autotools/pkgconfig recipe but I get two errors=2C both of which I can se=
+e have come up before but haven't been answered satisfactorily.</div><div><=
+br></div><div>The first is that the link stage fails with "x86_64-poky-linu=
+x-ld: unrecognized option '-Wl=2C-O1'".</div><div><br></div><div>I've found=
+ this answered as "tools being too old" but '-Wl=2C' is a gcc prefix to pas=
+s an option to the linker but the linker is being invoked directly and so t=
+his is really a configuration mismatch. &nbsp=3BI can fix this with "LD=3D$=
+CXX" in do_configure_prepend() but I am puzzled as to why autotools would g=
+et confused this way in the first place?</div><div><br></div><div>The secon=
+d problem is possibly more recent:&nbsp=3B</div><div>ERROR: pjproject-2.4.5=
+-r0 do_populate_sysroot: QA Issue: libpjproject.pc failed sanity test (tmpd=
+ir) in path /home/chris/yocto/build/tmp/work/corei7-64-poky-linux/pjproject=
+/2.4.5-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]</div><div><br></div=
+><div>I think this is benign other than leaking my dev environment but ther=
+e was an oe gcc patch earlier this year that addressed this (<a href=3D"htt=
+p://lists.openembedded.org/pipermail/openembedded-core/2016-January/116468.=
+html" target=3D"_blank" style=3D"font-size:12pt=3B">http://lists.openembedd=
+ed.org/pipermail/openembedded-core/2016-January/116468.html</a>).</div><div=
+><br></div><div>Apparently there was QA change the broke a lot of recipes b=
+ut it's not clear how to fix this recipe - from what I could tell the fix s=
+hould have applied to all recipes. &nbsp=3BAdding <span style=3D"white-spac=
+e:pre-wrap=3Bfont-size:12pt=3B">'-gno-record-debug-prefix-map' should fix t=
+his but the compiler option is not recognised.</span></div><div><span style=
+=3D"white-space:pre-wrap=3Bfont-size:12pt=3B"><br></span></div><div><span s=
+tyle=3D"white-space:pre-wrap=3Bfont-size:12pt=3B">Any ideas on how to solve=
+ the QA error?</span></div><div><br></div><div><span style=3D"white-space:p=
+re-wrap=3Bfont-size:12pt=3B">I am using the poky commit for </span><span st=
+yle=3D"white-space:pre-wrap=3B">2.1_M4.rc1.</span></div><div><br></div><div=
+>Thanks=2C</div><div>Chris</div><div><br></div> 		 	   		  </div>=0A=
+<br>-- =0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto</div></div> 		 	   		  </div>=
 </body>
-</html>
+</html>=
 
---_000_CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640CY1PR0701MB1600_--
+--_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_--
