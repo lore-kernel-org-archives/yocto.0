@@ -1,33 +1,66 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 285F6E00D7D; Wed, 27 Apr 2016 01:48:14 -0700 (PDT)
+	id D3D0DE00D7D; Wed, 27 Apr 2016 01:53:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7407E00D79
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 01:48:10 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id C5D0068A019; Wed, 27 Apr 2016 09:48:08 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 4DE1A68A019;
-	Wed, 27 Apr 2016 09:48:04 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id EE73A67405AD;
-	Wed, 27 Apr 2016 10:48:03 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <57207CC3.3020905@mlbassoc.com>
-Date: Wed, 27 Apr 2016 10:48:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47425E00D79
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 01:53:29 -0700 (PDT)
+Received: by mail-ig0-f171.google.com with SMTP id m9so34200509ige.1
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 01:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=lwfa8BJL5SYaBWticY86LwIaK5uEYAXoozuNZGY7ZJE=;
+	b=uU4bykzP8wjB05IQjqoOZDhe/+ujSOsOBMWftGzHTTbfO6ABjPwArAXHPknb8tQqQn
+	H0/QK8CB3AZqeE6bRLHvke4llZK6p+8YCHSnyhiP39L8ez+l45QgiRBXKDXIR4sycg5J
+	naojKFyn0Op4D5+9H66EBg5jVly4Nwwj94b/AJM6pl6QcTVTcqiGltdl4jDR5ggNgTOF
+	yfcAryPoBACLJIw/sPlXDkWGA0uBN9VwYUk+TYtuEQpiSZK8jeAzB1l60nRcjg8zpaBZ
+	Uo7HLk3aFZ8u+YNL9Nub0lHkiBy7rWWeu2aZj93/7DrrmbWh2P56yiTAo/GgoeU419KP
+	7Bew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=lwfa8BJL5SYaBWticY86LwIaK5uEYAXoozuNZGY7ZJE=;
+	b=mGLNZ7K1QijejTknIik1USrwlAI4oynz6CXjHq/hdylWdoauetfQCSNflYPIoTM2If
+	KsMdU0+1imguS0lccxJxS5/qvot+dBHAlLK5SXGWR0vvc9xCOyOBEPw8NiSueyisMcZK
+	uFPbGuCf+zswvGGM2LW0j14pa9QBMx3hnwhldYHfWhjocJp9UrZ+aYvp9kP+YWHIR7CB
+	sF/ZPlaS4/lcflnxSJa+JNAt0hsfVjzars/btwDui7NsTAMu42YibabRW9A5ErT12g7U
+	Whlp4f/qSn/EolPCIBNts3+XzieCs6tDmC8VlVQ/VZnuMnsjHJhlLgjgO87UvHwYh4r/
+	+bgA==
+X-Gm-Message-State: AOPr4FVjaFLJ31AtVbgnHNBcRwDAA5I3CDJK6LL5ag5RokUjlUrza+S85Yw75ITuLq+fhKwQ6LREe22SgDw3XTWN
+X-Received: by 10.50.150.1 with SMTP id ue1mr24101938igb.52.1461747209154;
+	Wed, 27 Apr 2016 01:53:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: eudev hwdb?
+Received: by 10.107.9.106 with HTTP; Wed, 27 Apr 2016 01:53:09 -0700 (PDT)
+In-Reply-To: <CAJTo0Lb25x1H44nGn05d6qBVLDpyiaZ3XW40fdrAWcP_D+qYwg@mail.gmail.com>
+References: <B1D22563-F31B-4EF1-90D6-16EB391134D5@gmail.com>
+	<CACS+7ZSpWgziO+GF++25dM7kgP4SZ_GDV+-DcEMQ_YUGyEEnfQ@mail.gmail.com>
+	<CAMKF1spQn114r9dCAk9z7c3hw-NJp3pVoVP+f3gao2mhLTBHYg@mail.gmail.com>
+	<CAMKF1spwimpQwSE38B5jWmyZXwMKy6znMEF9p-NmTM4mGGr+4g@mail.gmail.com>
+	<CAJTo0Lb25x1H44nGn05d6qBVLDpyiaZ3XW40fdrAWcP_D+qYwg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 27 Apr 2016 09:53:09 +0100
+Message-ID: <CAJTo0LZZ3Hs_yrm5ceik4j8Orv-UQ9T72Wu=R_PCRKw4Y9-WCw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>,
+	OE Core mailing list <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 6 Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,73 +72,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 08:48:14 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 27 Apr 2016 08:53:32 -0000
+Content-Type: multipart/alternative; boundary=001a11c30f0a274d2e0531738b5a
 
-I see that the replacement for udev (eudev) in OE-core takes nearly
-12MB on my i.MX6 (ARM CortexA7).  This is nearly 25% of my total
-storage space (64MB NAND)!
+--001a11c30f0a274d2e0531738b5a
+Content-Type: text/plain; charset=UTF-8
 
-# ls -lR /etc/udev
-/etc/udev:
-total 6520
--rw-r--r-- 1 root root    1600 Jan  1  1970 cache.data
--r--r--r-- 1 root root 6660476 Apr 26 13:08 hwdb.bin
-drwxr-xr-x 2 root root    1296 Apr 26 11:34 hwdb.d
--rw-r--r-- 1 root root      51 Apr 26 11:31 mount.blacklist
-drwxr-xr-x 2 root root     160 Apr 26 11:35 mount.blacklist.d
-drwxr-xr-x 2 root root     608 Apr 26 13:08 rules.d
-drwxr-xr-x 2 root root     304 Apr 26 11:35 scripts
--rw-r--r-- 1 root root      49 Apr 26 11:34 udev.conf
+Finally made errors.yp do the right thing:
+http://errors.yoctoproject.org/Errors/Latest/?filter=91ef7bf5ad13304827e2ef06738f7fc28ed650f6&type=commit
+is a list of all the failures.
 
-/etc/udev/hwdb.d:
-total 5224
--rw-r--r-- 1 root root 1292931 Apr 26 11:34 20-OUI.hwdb
--rw-r--r-- 1 root root  126596 Apr 26 11:34 20-acpi-vendor.hwdb
--rw-r--r-- 1 root root   41289 Apr 26 11:34 20-bluetooth-vendor-product.hwdb
--rw-r--r-- 1 root root     111 Apr 26 11:34 20-net-ifname.hwdb
--rw-r--r-- 1 root root   13710 Apr 26 11:34 20-pci-classes.hwdb
--rw-r--r-- 1 root root 2648842 Apr 26 11:34 20-pci-vendor-model.hwdb
--rw-r--r-- 1 root root     783 Apr 26 11:34 20-sdio-classes.hwdb
--rw-r--r-- 1 root root    4067 Apr 26 11:34 20-sdio-vendor-model.hwdb
--rw-r--r-- 1 root root    8070 Apr 26 11:34 20-usb-classes.hwdb
--rw-r--r-- 1 root root 1113001 Apr 26 11:34 20-usb-vendor-model.hwdb
--rw-r--r-- 1 root root    3702 Apr 26 11:34 60-evdev.hwdb
--rw-r--r-- 1 root root   52967 Apr 26 11:34 60-keyboard.hwdb
--rw-r--r-- 1 root root   14217 Apr 26 11:34 70-mouse.hwdb
--rw-r--r-- 1 root root    4627 Apr 26 11:34 70-pointingstick.hwdb
+Ross
 
-/etc/udev/mount.blacklist.d:
-total 0
+On 27 April 2016 at 09:02, Burton, Ross <ross.burton@intel.com> wrote:
 
-/etc/udev/rules.d:
-total 20
--rw-r--r-- 1 root root 1449 Apr 26 11:31 10-imx.rules
--rw-r--r-- 1 root root    0 Apr 26 11:34 80-net-name-slot.rules
--rw-r--r-- 1 root root  847 Apr 26 11:31 automount.rules
--rw-r--r-- 1 root root  757 Apr 26 11:31 autonet.rules
--rw-r--r-- 1 root root  885 Apr 26 11:34 local.rules
--rw-r--r-- 1 root root  843 Apr 26 11:31 localextra.rules
+>
+> On 21 April 2016 at 04:06, Khem Raj <raj.khem@gmail.com> wrote:
+>
+>> I have updated
+>>
+>> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/gcc-6
+>>
+>> With few more patches added now. Most of packages in OE-Core are
+>> building fine except linux-yocto on mips and ppc
+>>
+>
+> I threw this at the autobuilder.  Lots of c++ failures on various
+> architectures.
+>
+> https://autobuilder.yoctoproject.org/main/tgrid, the row for SHA 91ef.
+>
+> Ross
+>
 
-/etc/udev/scripts:
-total 8
--rwxr-xr-x 1 root root 2469 Apr 26 11:31 mount.sh
--rwxr-xr-x 1 root root 1402 Apr 26 11:31 network.sh
+--001a11c30f0a274d2e0531738b5a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Is there any way to not have both the hwdb.bin (which I assume
-is a binary version of the hardware databases) and /etc/udev/hwdb.d?
-Perhaps there is some way to only use one?
+<div dir=3D"ltr">Finally made errors.yp do the right thing:=C2=A0<a href=3D=
+"http://errors.yoctoproject.org/Errors/Latest/?filter=3D91ef7bf5ad13304827e=
+2ef06738f7fc28ed650f6&amp;type=3Dcommit">http://errors.yoctoproject.org/Err=
+ors/Latest/?filter=3D91ef7bf5ad13304827e2ef06738f7fc28ed650f6&amp;type=3Dco=
+mmit</a> is a list of all the failures.<div><br></div><div>Ross</div></div>=
+<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 27 April 2016 =
+at 09:02, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@=
+intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"=
+><span class=3D""><br><div class=3D"gmail_quote">On 21 April 2016 at 04:06,=
+ Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" targe=
+t=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;bo=
+rder-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">=
+<div>I have updated<br>
+<br>
+<a href=3D"http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dk=
+raj/gcc-6" rel=3D"noreferrer" target=3D"_blank">http://git.openembedded.org=
+/openembedded-core-contrib/log/?h=3Dkraj/gcc-6</a><br>
+<br>
+With few more patches added now. Most of packages in OE-Core are<br>
+building fine except linux-yocto on mips and ppc</div></blockquote></div><b=
+r></span>I threw this at the autobuilder.=C2=A0 Lots of c++ failures on var=
+ious architectures.</div><div class=3D"gmail_extra"><br></div><div class=3D=
+"gmail_extra"><a href=3D"https://autobuilder.yoctoproject.org/main/tgrid" t=
+arget=3D"_blank">https://autobuilder.yoctoproject.org/main/tgrid</a>, the r=
+ow for SHA 91ef.<span class=3D"HOEnZb"><font color=3D"#888888"><br></font><=
+/span></div><span class=3D"HOEnZb"><font color=3D"#888888"><div class=3D"gm=
+ail_extra"><br></div><div class=3D"gmail_extra">Ross</div></font></span></d=
+iv>
+</blockquote></div><br></div>
 
-Or maybe there is a better choice, such as mdev?  I'm not sure about
-this (no experience) but my system needs to handle plug&play devices
-which the current eudev does well.  It's just a huge "price" to pay.
-
-Any ideas or pointers would be great
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--001a11c30f0a274d2e0531738b5a--
