@@ -1,38 +1,60 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 245DDE00D74; Tue, 26 Apr 2016 23:27:23 -0700 (PDT)
+	id 276F0E00D79; Wed, 27 Apr 2016 00:41:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.38 listed in list.dnswl.org]
-Received: from DUB004-OMC3S29.hotmail.com (dub004-omc3s29.hotmail.com
-	[157.55.2.38])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88A3BE00D6F
-	for <yocto@yoctoproject.org>; Tue, 26 Apr 2016 23:27:18 -0700 (PDT)
-Received: from DUB130-W61 ([157.55.2.7]) by DUB004-OMC3S29.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 26 Apr 2016 23:27:17 -0700
-X-TMN: [05Atnh/GxIEBvpOJauaTi/gi68QIFAiQ]
-X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 27 Apr 2016 07:27:16 +0100
-Importance: Normal
-In-Reply-To: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
-References: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 000FAE00D72
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 00:41:35 -0700 (PDT)
+Received: by mail-ig0-f179.google.com with SMTP id g8so37856942igr.0
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 00:41:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+pTqsX6fVQ165JcbR5CMMRT1EQP4cdoeRQ1K5bnOsJs=;
+	b=nGuxnQJvzBMe1dIQthGgtO5P4ksHt01hv2c5poQR4/jGnkuP2e4biKwY2B1qGR9sYe
+	HZfERjH7F94ONbJ74WCxuwqh8+JMeFG/Edpbi2YiLD4PyhED+FqSCo6UTHP3K+jmQMD+
+	RyXF6ZNkWcBYcRsaEsjbHdQuJbUbKfaw03fT7Haa1z0FW/AfOMCHjPm1Jw052nR9Qirg
+	EF1VRfvlGa6sFNzNOz6PTIEU3YOy1gyCfJ50UA75g7ihvj9tD+AjQEk5kSwUNEpRC+re
+	2huSqXa5E7OXgcHyRd7VYeJwPhwcQugs1UU2HJpaOGvlEQEIAteRISiWoyh4zCbVxmx4
+	0UGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=+pTqsX6fVQ165JcbR5CMMRT1EQP4cdoeRQ1K5bnOsJs=;
+	b=PPVxPTcoMhQ7E3gDuSq2zNOHRD5OjbmLBd97+rgfU7eKiwg37Ayj8oZyvo+XZFcGHt
+	oTr5GVJdJLk4Yo01MInWSkKukXxgpu+Koojxwetp56dmInVq+bnG0siacLTN1mTOAeOF
+	zXVczY7GeUCfAMnnVml7YBvngrfd6JjeUTy6j6vcP0NFZ8/igpHXfHe+CtTLx+46s9rC
+	Nn0ME2Fnh4w+Gg3xqfMraCCpIC2pIx1RZ3zkpzeau5Er0uV3gdGvBj0hSiI13m17QI9b
+	JU13IPWxHVjedR25jk5Caii1flNPwdXsy6FW4kcp4uk2T/Pf75EdQt0Qtzul0S7ISacF
+	mmqQ==
+X-Gm-Message-State: AOPr4FUb7kRI7Mt1F0h0pSxDgQmi945uKqzVT9cGu8VBrXnOZahZx8ryxDErdks656R7JupoM1H+7OEpLRmpuDJ1
+X-Received: by 10.50.160.41 with SMTP id xh9mr8435156igb.64.1461742893775;
+	Wed, 27 Apr 2016 00:41:33 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 27 Apr 2016 06:27:17.0819 (UTC)
-	FILETIME=[D8A6C8B0:01D1A04D]
+Received: by 10.107.9.106 with HTTP; Wed, 27 Apr 2016 00:41:14 -0700 (PDT)
+In-Reply-To: <DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>
+References: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
+	<DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 27 Apr 2016 08:41:14 +0100
+Message-ID: <CAJTo0LZGEfN68QJog53DSjsyQ7p-1FBa6MJot6nZCwt=C8ZG3w@mail.gmail.com>
+To: Chris Trobridge <christrobridge@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Build Errors with new recipe for pjproject (autotools/pkgconfig)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,153 +67,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 06:27:23 -0000
-Content-Type: multipart/alternative;
-	boundary="_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_"
+X-List-Received-Date: Wed, 27 Apr 2016 07:41:41 -0000
+Content-Type: multipart/alternative; boundary=001a11380a16efd89a0531728924
 
---_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a11380a16efd89a0531728924
+Content-Type: text/plain; charset=UTF-8
+
+On 27 April 2016 at 07:27, Chris Trobridge <christrobridge@hotmail.com>
+wrote:
+
+> Aside from the issues I mentioned previously, pjproject is detecting
+> cross-compilation and this causes it to append '-x86_64-poky-linux-gnu' to
+> all its library names.
+>
+> This is then breaking autotools configuration in other recipes that are
+> testing for the base name.
+>
+> Is it common for a build process to differentiate cross compiled libraries
+> like this?  Is there a preferred way to deal with it?
+>
+
+No, that's rather unusual.  Typically you'd just have a different libdir
+per architecture.
+
+Ross
+
+--001a11380a16efd89a0531728924
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Aside from the issues I mentioned previously=2C pjproject is detecting cros=
-s-compilation and this causes it to append '-x86_64-poky-linux-gnu' to all =
-its library names.
-This is then breaking autotools configuration in other recipes that are tes=
-ting for the base name.
-Is it common for a build process to differentiate cross compiled libraries =
-like this?  Is there a preferred way to deal with it?
-I'm not confident about changing the pjproject build but I can link the bas=
-e name to the extended name in do_install_append() so both names are presen=
-t. pkgconfig picks up the extended names so these are also used in other re=
-cipes too (both forms of name in the same command line...).
-Regards=2CChris
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 27 April 2016 at 07:27, Chris Trobridge <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hotmai=
+l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"l=
+tr">Aside from the issues I mentioned previously, pjproject is detecting cr=
+oss-compilation and this causes it to append &#39;-x86_64-poky-linux-gnu&#3=
+9; to all its library names.<div><br></div><div>This is then breaking autot=
+ools configuration in other recipes that are testing for the base name.</di=
+v><div><br></div><div>Is it common for a build process to differentiate cro=
+ss compiled libraries like this?=C2=A0 Is there a preferred way to deal wit=
+h it?</div><div></div></div></blockquote></div><br>No, that&#39;s rather un=
+usual.=C2=A0 Typically you&#39;d just have a different libdir per architect=
+ure.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
+oss</div></div>
 
-From: christrobridge@hotmail.com
-To: yocto@yoctoproject.org
-Date: Tue=2C 26 Apr 2016 10:15:34 +0100
-Subject: [yocto] Build Errors with new recipe for pjproject	(autotools/pkgc=
-onfig)
-
-=0A=
-=0A=
-=0A=
-I have been trying to formulate a new recipe for pjproject (pjsip) - there =
-was one but it seems too old and isn't part of any layer now.
-The library seems to require a fairly straightforward autotools/pkgconfig r=
-ecipe but I get two errors=2C both of which I can see have come up before b=
-ut haven't been answered satisfactorily.
-The first is that the link stage fails with "x86_64-poky-linux-ld: unrecogn=
-ized option '-Wl=2C-O1'".
-I've found this answered as "tools being too old" but '-Wl=2C' is a gcc pre=
-fix to pass an option to the linker but the linker is being invoked directl=
-y and so this is really a configuration mismatch.  I can fix this with "LD=
-=3D$CXX" in do_configure_prepend() but I am puzzled as to why autotools wou=
-ld get confused this way in the first place?
-The second problem is possibly more recent: ERROR: pjproject-2.4.5-r0 do_po=
-pulate_sysroot: QA Issue: libpjproject.pc failed sanity test (tmpdir) in pa=
-th /home/chris/yocto/build/tmp/work/corei7-64-poky-linux/pjproject/2.4.5-r0=
-/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
-I think this is benign other than leaking my dev environment but there was =
-an oe gcc patch earlier this year that addressed this (http://lists.openemb=
-edded.org/pipermail/openembedded-core/2016-January/116468.html).
-Apparently there was QA change the broke a lot of recipes but it's not clea=
-r how to fix this recipe - from what I could tell the fix should have appli=
-ed to all recipes.  Adding '-gno-record-debug-prefix-map' should fix this b=
-ut the compiler option is not recognised.
-Any ideas on how to solve the QA error?
-I am using the poky commit for 2.1_M4.rc1.
-Thanks=2CChris
- 		 	   		  =0A=
-
--- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
-
---_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>Aside from the issues I mentione=
-d previously=2C pjproject is detecting cross-compilation and this causes it=
- to append '-x86_64-poky-linux-gnu' to all its library names.<div><br></div=
-><div>This is then breaking autotools configuration in other recipes that a=
-re testing for the base name.</div><div><br></div><div>Is it common for a b=
-uild process to differentiate cross compiled libraries like this? &nbsp=3BI=
-s there a preferred way to deal with it?</div><div><br></div><div>I'm not c=
-onfident about changing the pjproject build but I can link the base name to=
- the extended name in&nbsp=3Bdo_install_append() so both names are present.=
- pkgconfig picks up the extended names so these are also used in other reci=
-pes too (both forms of name in the same command line...).</div><div><br></d=
-iv><div>Regards=2C</div><div>Chris<br><br><div><hr id=3D"stopSpelling">From=
-: christrobridge@hotmail.com<br>To: yocto@yoctoproject.org<br>Date: Tue=2C =
-26 Apr 2016 10:15:34 +0100<br>Subject: [yocto] Build Errors with new recipe=
- for pjproject	(autotools/pkgconfig)<br><br>=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass .ecxhmmessage P {=0A=
-padding:0px=3B=0A=
-}=0A=
-=0A=
-.ExternalClass body.ecxhmmessage {=0A=
-font-size:12pt=3B=0A=
-font-family:Calibri=3B=0A=
-}=0A=
-=0A=
---></style>=0A=
-<div dir=3D"ltr">I have been trying to formulate a new recipe for pjproject=
- (pjsip) - there was one but it seems too old and isn't part of any layer n=
-ow.<div><br></div><div>The library seems to require a fairly straightforwar=
-d autotools/pkgconfig recipe but I get two errors=2C both of which I can se=
-e have come up before but haven't been answered satisfactorily.</div><div><=
-br></div><div>The first is that the link stage fails with "x86_64-poky-linu=
-x-ld: unrecognized option '-Wl=2C-O1'".</div><div><br></div><div>I've found=
- this answered as "tools being too old" but '-Wl=2C' is a gcc prefix to pas=
-s an option to the linker but the linker is being invoked directly and so t=
-his is really a configuration mismatch. &nbsp=3BI can fix this with "LD=3D$=
-CXX" in do_configure_prepend() but I am puzzled as to why autotools would g=
-et confused this way in the first place?</div><div><br></div><div>The secon=
-d problem is possibly more recent:&nbsp=3B</div><div>ERROR: pjproject-2.4.5=
--r0 do_populate_sysroot: QA Issue: libpjproject.pc failed sanity test (tmpd=
-ir) in path /home/chris/yocto/build/tmp/work/corei7-64-poky-linux/pjproject=
-/2.4.5-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]</div><div><br></div=
-><div>I think this is benign other than leaking my dev environment but ther=
-e was an oe gcc patch earlier this year that addressed this (<a href=3D"htt=
-p://lists.openembedded.org/pipermail/openembedded-core/2016-January/116468.=
-html" target=3D"_blank" style=3D"font-size:12pt=3B">http://lists.openembedd=
-ed.org/pipermail/openembedded-core/2016-January/116468.html</a>).</div><div=
-><br></div><div>Apparently there was QA change the broke a lot of recipes b=
-ut it's not clear how to fix this recipe - from what I could tell the fix s=
-hould have applied to all recipes. &nbsp=3BAdding <span style=3D"white-spac=
-e:pre-wrap=3Bfont-size:12pt=3B">'-gno-record-debug-prefix-map' should fix t=
-his but the compiler option is not recognised.</span></div><div><span style=
-=3D"white-space:pre-wrap=3Bfont-size:12pt=3B"><br></span></div><div><span s=
-tyle=3D"white-space:pre-wrap=3Bfont-size:12pt=3B">Any ideas on how to solve=
- the QA error?</span></div><div><br></div><div><span style=3D"white-space:p=
-re-wrap=3Bfont-size:12pt=3B">I am using the poky commit for </span><span st=
-yle=3D"white-space:pre-wrap=3B">2.1_M4.rc1.</span></div><div><br></div><div=
->Thanks=2C</div><div>Chris</div><div><br></div> 		 	   		  </div>=0A=
-<br>-- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto</div></div> 		 	   		  </div>=
-</body>
-</html>=
-
---_c3f34b02-fc59-43b5-91b3-6b7158ec43f7_--
+--001a11380a16efd89a0531728924--
