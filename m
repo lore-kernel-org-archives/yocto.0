@@ -1,63 +1,49 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <lars@visionweeding.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F3B9E00D8D; Wed, 27 Apr 2016 04:10:07 -0700 (PDT)
+	id 6BFDFE00D8D; Wed, 27 Apr 2016 04:39:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
+	*      [195.47.247.221 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E036BE00D84
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 04:10:02 -0700 (PDT)
-Received: by mail-io0-f170.google.com with SMTP id d62so42797011iof.2
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 04:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=wxZGh+Z7SaLqgWkcgsUcvKygbD0762DKZznFpnQy4ps=;
-	b=ojJd7NcSaY5xxebSYOxBz+Y7TSZQjM4XIJlWWQlkI5MUmT77ICovJ/3itwAQK1UaO+
-	uCOP8G17dl9v1lf6SJp5+prcHx6Ems2bjRT3uJYs+f76t7ascGCMEJ32j3NpTkLJZWw6
-	smHxGl/R5gK0swDp+omzbX3wSQG1Jpj5kT7tpXOucIE8ez9tKr5Huqljz/sqSh1yTWyI
-	54u6inW5v5eS7ZWBJl7M3vciULe+u2VDo5dHhbBQylWPL1n7GzD7pQ86ThODsrHLEMaX
-	suwNsAnOxrKVyJo0Ywng3D0U5x7oC87Zwjs6f3AJQJfDR+IxXvXBO9t4FymOk6K8spH/
-	2C3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=wxZGh+Z7SaLqgWkcgsUcvKygbD0762DKZznFpnQy4ps=;
-	b=G9s4rOWUd2gfko4CBxHZcKLCwWqZyi831QwgIDGpxSIRwtwY3LdtuTIHrOK307uD+u
-	SKFeb3BPIj/naRtLPGddPy6/tUX2CHD4ulSmqyDyQpAH+XQb0kTj5LRUPOnoh6Wz8422
-	ktr9lPwoGmBbC5aqr55MxhximEGFbOM1V+uKLx2QSgLO4X62hnL3iCxB9f9ccNJ2j2gH
-	2M9iPWBvHlp9BMJMDCBE8LTgtHuvzH+Z2DXRME5yoEQqZ3V1Gz2/PoxgKl30odzmVOaZ
-	a60SapHIJXJ8aXG1f295ZiLJNqgUxO/6HmI8bNq5rxlRXg+ZHBxDbPgBOz8+RjCiOZib
-	AYgQ==
-X-Gm-Message-State: AOPr4FVTUOwUU3X8lbRov9PJKi9I8rMTiVjxSSEj1jmYTD3FVEK/9KI4dZtnCSOWbGNhYQlPzb5rEMUA5+T1012n
-X-Received: by 10.107.135.211 with SMTP id r80mr10147286ioi.133.1461755402346; 
-	Wed, 27 Apr 2016 04:10:02 -0700 (PDT)
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Wed, 27 Apr 2016 04:39:31 PDT
+Received: from mailrelay3.public.one.com (mailrelay3.public.one.com
+	[195.47.247.221])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9827AE00D84
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 04:39:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=visionweeding.com; s=20140924;
+	h=from:subject:date:message-id:to:mime-version:content-type;
+	bh=j86nRU3K5EgQLptSzZzvYAAyZsoeZ7Hj4JsqPQ/rA5E=;
+	b=SoyokBVNi6I/CzqsqGe6mnr8Jz+J3kOmwmW7NCqIuM2xxUITvkvS9OBcoB1IT9durdq6L9AdOh2ms
+	hRBtcLhQnmEn6xd4Sz/MSTPJ/FhP7FZxoCd86S3A+g9HP8ZxRXB+0oIVgyz0Hl2tKANe1vbpQlZfs4
+	AgHYfscWLaHygGOk=
+X-HalOne-Cookie: 661d3160cd00575a351778746d17819357653477
+X-HalOne-ID: 8e3d59a4-0c6c-11e6-a8e4-b8ca3afa9d73
+Received: from [192.168.1.194] (unknown [86.58.170.151])
+	by smtpfilter1.public.one.com (Halon Mail Gateway) with ESMTPSA
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 11:38:26 +0000 (UTC)
+To: yocto@yoctoproject.org
+From: Lars Larsen <lars@visionweeding.com>
+Message-ID: <5720A4B2.2060509@visionweeding.com>
+Date: Wed, 27 Apr 2016 13:38:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Wed, 27 Apr 2016 04:09:42 -0700 (PDT)
-In-Reply-To: <DUB130-W353EF079A973F4C0B275BFDA640@phx.gbl>
-References: <DUB130-W103C61E8567B18DDA564BADA630@phx.gbl>
-	<DUB130-W61B8E41D400E4ACF8EF600DA640@phx.gbl>
-	<CAJTo0LZGEfN68QJog53DSjsyQ7p-1FBa6MJot6nZCwt=C8ZG3w@mail.gmail.com>
-	<DUB130-W353EF079A973F4C0B275BFDA640@phx.gbl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 27 Apr 2016 12:09:42 +0100
-Message-ID: <CAJTo0LZpFf5Mqhoi-tP-ZY8B93QXURrxe=_JDHOfKMQPWAhF3w@mail.gmail.com>
-To: Chris Trobridge <christrobridge@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build Errors with new recipe for pjproject (autotools/pkgconfig)
+Subject: Manipulating code and Building in offline environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,60 +55,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 11:10:07 -0000
-Content-Type: multipart/alternative; boundary=001a113ed20a8176f10531757321
+X-List-Received-Date: Wed, 27 Apr 2016 11:39:33 -0000
+Content-Type: multipart/alternative;
+	boundary="------------000807030800030302070706"
 
---001a113ed20a8176f10531757321
-Content-Type: text/plain; charset=UTF-8
+--------------000807030800030302070706
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 27 April 2016 at 10:07, Chris Trobridge <christrobridge@hotmail.com>
-wrote:
+Hello
 
-> pjproject hasn't been touched for 6 years and has some custom steps I
-> don't understand (
-> https://github.com/openembedded/openembedded/tree/master/recipes/pjproject
-> ).
->
-> asterisk (
-> https://github.com/openembedded/openembedded/tree/master/recipes/asterisk)
-> is simarly out of date on openembedded, although there is also asterisk in
-> meta-telephony (
-> https://github.com/sysmocom/meta-telephony/tree/master/recipes-asterisk/asterisk)
-> that is referenced.
->
+I have 2 questions
 
-I'm about to go and have lunch but I'll quickly say that the OE tree you're
-linking to is unmaintained and has been for many years.  The asterisk in
-meta-telephony is the one you should be looking at and ideally contributing
-too.
+I have finally managed to build an image like I want it.
 
-Ross
 
---001a113ed20a8176f10531757321
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I consists of a kernel.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 April 2016 at 10:07, Chris Trobridge <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hotmai=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>pjprojec=
-t hasn&#39;t been touched for 6 years and has some custom steps I don&#39;t=
- understand (<a href=3D"https://github.com/openembedded/openembedded/tree/m=
-aster/recipes/pjproject" style=3D"font-size:12pt" target=3D"_blank">https:/=
-/github.com/openembedded/openembedded/tree/master/recipes/pjproject</a>).</=
-div><div><br></div><div>asterisk (<a href=3D"https://github.com/openembedde=
-d/openembedded/tree/master/recipes/asterisk" style=3D"font-size:12pt" targe=
-t=3D"_blank">https://github.com/openembedded/openembedded/tree/master/recip=
-es/asterisk</a>) is simarly out of date on openembedded, although there is =
-also asterisk in meta-telephony (<a href=3D"https://github.com/sysmocom/met=
-a-telephony/tree/master/recipes-asterisk/asterisk" style=3D"font-size:12pt"=
- target=3D"_blank">https://github.com/sysmocom/meta-telephony/tree/master/r=
-ecipes-asterisk/asterisk</a>) that is referenced.</div></blockquote></div><=
-br>I&#39;m about to go and have lunch but I&#39;ll quickly say that the OE =
-tree you&#39;re linking to is unmaintained and has been for many years.=C2=
-=A0 The asterisk in meta-telephony is the one you should be looking at and =
-ideally contributing too.</div><div class=3D"gmail_extra"><br></div><div cl=
-ass=3D"gmail_extra">Ross</div></div>
+The ROS framework.
 
---001a113ed20a8176f10531757321--
+And our proprietary software under git control
+
+
+What I want to achieve is the following:
+
+When online it should fetch the latest commit (or what ever branch/tag) 
+from our git repo.
+
+It should be possible to take a laptop with a fresh checkout of all the 
+software, go to the field where the is NO INTERNET access, and be able 
+to patch our code on the spot ,and build fresh images, for the target.
+
+When online in our office environment all our own software is correctly 
+checked out from our git repo. and build. Beautifully.....
+
+But when offline ( I disconnect the LAN ) I continually gets errors like 
+“Failure expanding variable SRCPV” on our software modules.
+
+I have following in build/conf/local.conf
+
+
+BB_GENERATE_MIRROR_TARBALLS = "1"
+
+INHERIT += "own-mirrors"
+
+SOURCE_MIRROR_URL = "file://${DL_DIR}"
+
+
+and I experimented with BB_FETCH_PREMIRRORONLY = "1"
+
+with no appearent effect
+
+
+So question 1:
+
+How do I achieve the offline building. ?
+
+Is should be possible - right ?
+
+
+Question 2:
+
+Where in the tree is the checked out source code located, that bitbake 
+compiles from.
+
+
+
+Kind regards
+
+Lars Larsen
+
+
+
+--------------000807030800030302070706
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <p style="margin-bottom: 0in; line-height: 100%">Hello</p>
+    <p style="margin-bottom: 0in; line-height: 100%">I have 2 questions</p>
+    <p style="margin-bottom: 0in; line-height: 100%">I have finally
+      managed to build an image like I want it.</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+      I consists of a kernel.</p>
+    <p style="margin-bottom: 0in; line-height: 100%">The ROS framework.</p>
+    <p style="margin-bottom: 0in; line-height: 100%">And our proprietary
+      software under git control</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+      What I want to
+      achieve is the following:</p>
+    <p style="margin-bottom: 0in; line-height: 100%">When online it
+      should fetch the latest commit (or what ever branch/tag) from our
+      git
+      repo.</p>
+    <p style="margin-bottom: 0in; line-height: 100%">It should be
+      possible to take a laptop with a fresh checkout of all the
+      software,
+      go to the field where the is NO INTERNET access, and be able to
+      patch
+      our code on the spot ,and build fresh images, for the target.</p>
+    <p style="margin-bottom: 0in; line-height: 100%">When online in our
+      office environment all our own software is correctly checked out
+      from
+      our git repo. and build. Beautifully..... </p>
+    <p style="margin-bottom: 0in; line-height: 100%">But when offline (
+      I
+      disconnect the LAN ) I continually gets errors like “Failure
+      expanding
+      variable SRCPV” on our software modules.</p>
+    <p style="margin-bottom: 0in; line-height: 100%">I have following in
+      build/conf/local.conf</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0in; line-height: 100%">BB_GENERATE_MIRROR_TARBALLS
+=
+      "1"</p>
+    <p style="margin-bottom: 0in; line-height: 100%">INHERIT +=
+      "own-mirrors" </p>
+    <p style="margin-bottom: 0in; line-height: 100%">SOURCE_MIRROR_URL =
+      <a class="moz-txt-link-rfc2396E" href="file://${DL_DIR}">"file://${DL_DIR}"</a></p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0in; line-height: 100%">and I experimented
+      with BB_FETCH_PREMIRRORONLY = "1"</p>
+    <p style="margin-bottom: 0in; line-height: 100%">with no appearent
+      effect</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0in; line-height: 100%">So question 1:</p>
+    <p style="margin-bottom: 0in; line-height: 100%">How do I achieve
+      the
+      offline building. ? </p>
+    <p style="margin-bottom: 0in; line-height: 100%">Is should be
+      possible - right ?</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+      Question 2:</p>
+    <p style="margin-bottom: 0in; line-height: 100%">Where in the tree
+      is
+      the checked out source code located, that bitbake compiles from.</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <p style="margin-bottom: 0in; line-height: 100%">Kind regards</p>
+    <p style="margin-bottom: 0in; line-height: 100%">Lars Larsen</p>
+    <p style="margin-bottom: 0in; line-height: 100%"><br>
+    </p>
+    <title></title>
+    <meta name="generator" content="LibreOffice 4.2.8.2 (Linux)">
+    <style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		a:link { so-language: zxx }
+	-->
+	</style>
+  </body>
+</html>
+
+--------------000807030800030302070706--
