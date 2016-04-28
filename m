@@ -1,6 +1,6 @@
-Return-Path: <amarnath.valluri@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DB30E00DC4; Thu, 28 Apr 2016 05:28:01 -0700 (PDT)
+	id 67D49E00DC9; Thu, 28 Apr 2016 05:40:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,28 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB455E00DC1
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 05:27:59 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga104.fm.intel.com with ESMTP; 28 Apr 2016 05:27:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="964593766"
-Received: from avalluri-gigabyte.fi.intel.com (HELO [10.237.72.170])
-	([10.237.72.170])
-	by orsmga002.jf.intel.com with ESMTP; 28 Apr 2016 05:27:40 -0700
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1876E00DC1
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 05:40:45 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 8AEE268A01C; Thu, 28 Apr 2016 13:40:43 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 310AC68A019;
+	Thu, 28 Apr 2016 13:40:43 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id E27E8674006D;
+	Thu, 28 Apr 2016 14:40:42 +0200 (CEST)
 To: yocto@yoctoproject.org
-References: <571DBD45.5070607@intel.com>
-	<CAJTo0Laq1SN6GG4kG_vA3L3pMtAx8AOdY9-0B+e=LXN2AjOjMg@mail.gmail.com>
-	<571E07C5.9020807@intel.com>
-From: Amarnath Valluri <amarnath.valluri@intel.com>
-Message-ID: <57220283.5080908@intel.com>
-Date: Thu, 28 Apr 2016 15:30:59 +0300
+References: <alpine.LFD.2.20.1604280808070.25680@localhost.localdomain>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <572204CA.1090309@mlbassoc.com>
+Date: Thu, 28 Apr 2016 14:40:42 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.7.2
+	Thunderbird/38.6.0
 MIME-Version: 1.0
-In-Reply-To: <571E07C5.9020807@intel.com>
-Subject: Re: Enable a recipe/package only when other dependent recipe/package is part of image.
+In-Reply-To: <alpine.LFD.2.20.1604280808070.25680@localhost.localdomain>
+Subject: Re: what's the "standard" for adding .dts patches to a BSP layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,63 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 12:28:01 -0000
-Content-Type: text/plain; charset="windows-1252"; format="flowed"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 28 Apr 2016 12:40:48 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Ross,
+On 2016-04-28 14:14, Robert P. J. Day wrote:
 >
->>
->> An alternative would be to have some naming pattern for conf packages =
+>    looking for common practice here ... what's the canonical way that
+> one should add content to a .dts file for a new board -- all at once,
+> or broken into patches associated with corresponding .scc files that
+> come into play only if one selects that functionality?
+>
+>    i ask since i'm a big fan of modularity, but that doesn't seem to
+> work very well here. if i start with a baseline .dts file, and break
+> the rest into optional patches, then based on what a developer selects
+> for his build, some of those patches simply aren't going to apply very
+> cleanly.
+>
+>    it would, of course, be easier to just add everything even
+> potentially necessary to the single .dts file, since that's not really
+> adding any actual functionality, just adding more detailed information
+> about the target board (even if it's never used).
+>
+>    thoughts? am i overthinking this?
 
->> (-conf is reasonable) and invent a new image-feature called =
+One common way is to have a .dts (or .dtsi) file that includes all
+of the sections you might want, but leave them disabled, hence not
+changing the actual setup.  Then add snippets (via .scc or patch)
+that enable the sections.  This is how the i.MX6 space (FreeScale/NXP
+boards and products) is managed.
 
->> conf-packages that uses a glob to find all complementary packages =
-
->> matching the *-conf pattern.  This is how dev-pkgs, dbg-pkgs, =
-
->> doc-pkgs etc work.  I believe this is just a matter of =
-
->> setting COMPLEMENTARY_GLOB[conf-pkgs] =3D '*-conf' in your configuration.
-> I will try this, thanks.
-I tried this solution:
-   COMPLEMENTARY_GLOB[conf-pkgs] =3D '*-conf'
-   IMAGE_FEATURES_append =3D " conf-pkgs"
-
-But this did not work for me. The obvious reason(i guess) is no matching =
-
-packages build for '*-conf', though all configuration recipes provides =
-
-'<base_component>-conf' packages, but the dependency is missing to build =
-
-those packages :(.
-
-My layer provides configuration packages for core components, such as =
-
-'connman', 'openssh', 'dropbear', etc., which needs to/can be configured =
-
-with our configuration framework. I would like to find a way to pick the =
-
-corresponding config packages based on the image configuration, for =
-
-example 'openssh-conf' or 'dropbear-conf' whichever the image is =
-
-configured to use.
-
-Thanks,
-Amarnath
----------------------------------------------------------------------
-Intel Finland Oy
-Registered Address: PL 281, 00181 Helsinki =
-
-Business Identity Code: 0357606 - 4 =
-
-Domiciled in Helsinki =
-
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
