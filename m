@@ -1,72 +1,65 @@
-Return-Path: <btv1==926561f462b==Fred.Ollinger@seescan.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9926EE00DE6; Thu, 28 Apr 2016 09:17:06 -0700 (PDT)
+	id 20F9EE00DE1; Thu, 28 Apr 2016 09:26:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail.seescan.com (unknown [69.43.130.106])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C91AE00DE4
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 09:16:56 -0700 (PDT)
-X-ASG-Debug-ID: 1461860214-0b39aa668920cc10001-yzSStA
-Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
-	ESMTP id HmYWj6Tw8IHHtypw (version=TLSv1
-	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 28 Apr 2016 09:16:55 -0700 (PDT)
-X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
-Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
-	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Thu, 28 Apr 2016 09:16:54 -0700
-Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
-	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
-	15.00.1044.021; Thu, 28 Apr 2016 09:16:54 -0700
-From: Fred Ollinger <Fred.Ollinger@seescan.com>
-To: "S.Jaritz@esa-grimma.de" <S.Jaritz@esa-grimma.de>, "Burton, Ross"
-	<ross.burton@intel.com>
-Thread-Topic: Antwort: Re: [yocto] how to configure the build packages of a
-	makefile based libary
-X-ASG-Orig-Subj: Re: Antwort: Re: [yocto] how to configure the build packages
-	of a makefile based libary
-Thread-Index: AQHRoUclgcPSoZnVVkWpU3Tj70VxR5+fyiEA//+22hGAAHwoAIAABnOA//+MOCs=
-Date: Thu, 28 Apr 2016 16:16:53 +0000
-Message-ID: <1461860205721.41032@seescan.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4433CE00DDA
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 09:25:59 -0700 (PDT)
+Received: by mail-ig0-f176.google.com with SMTP id m9so71275554ige.1
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 09:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=wJCEkEwTZehNG4Z+9A5vAlcp1zkDRl6xmPYIBWdmLhg=;
+	b=Cgt9P7ufyRr/FcQsSCKVIWRW1YcUZU/haOvQQa+Wu7a7+44t7C9A+9gw8A7Nui9u2S
+	SkQBgU7QpYBJCw5uTMTU0fylqcIG8rp8yEGRBG9zMIajHALHg8vjuaa2cwUJ51DI0Z3t
+	NnIOFtioiIBG2m79cK8ZO2ucWr9i8Bbcny5vIFRwpbDYzt5tvyYwq2p5GGogdCHN8p0W
+	6gLfB2jlr3aB9SWv0DUKwfKQUyeOMXlRb0Qbxt/xqUTKFi+l16ga2M3wUgPVMElw8MLA
+	mlSQSsJHRvbgHsyn88XA1mohOBI8zbNzID45bFerJOD+7YvZR0UUquVFP75aQyOb4eER
+	w1/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=wJCEkEwTZehNG4Z+9A5vAlcp1zkDRl6xmPYIBWdmLhg=;
+	b=Hk0gL8C65G4b/ckunXVbSI0MysAFTxsIW+t0IyT4QZ4Uev7+IuzHw036VGjn4IoLlt
+	MemrZ8YjSotxDx5V2UZfZhotrIEIFbiVU40HzJzKtlvkUSxxZuOndriVdM0THRDBD1rj
+	xQKVVrlDzEMQsCKIPmZQUXJmDmhojvqg6QD5jx5bnym/D72EuIdHw8MgMqmr+hS3Ofya
+	7eJzxLMgpR0Ruz6jU9wjLXM0hja8Kg5WiZbfqphWFhmAXkysQKFkOhgJpy3REewQ65xt
+	NdCDuXqVyoc3ntIGA1pgEUAOZUlHeyLtx0cnjf7yJd9D5qNF5jqa4dOV7dBgwtxHO2OW
+	QUgQ==
+X-Gm-Message-State: AOPr4FWXq6kLRdrNxg5f6Yjyvs3d4B3bntoZ1tiLksKv3eYuYvkbYf/KitGAyTnu4CRGWLw+lEDVsTnvqUBNoHQZ
+X-Received: by 10.50.62.20 with SMTP id u20mr18889669igr.52.1461860759111;
+	Thu, 28 Apr 2016 09:25:59 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.9.106 with HTTP; Thu, 28 Apr 2016 09:25:39 -0700 (PDT)
+In-Reply-To: <SIXPR04MB0668640023EA6AFE4596C0ADEC650@SIXPR04MB0668.apcprd04.prod.outlook.com>
 References: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
 	<CAJTo0LZxD=ddhu4zkEZXi9=a4KufoiYnf7QG_-n5LgUHXifU_A@mail.gmail.com>
 	<OF1318AFAF.4F1EB7F1-ONC1257FA3.0041651C-C1257FA3.0042D0D2@esa-grimma.de>
 	<CAJTo0LbzDJ4=GcYO71VNeVA7RYqnWPpu_zxDPgKcNBBAune48g@mail.gmail.com>
 	<1461857100201.50766@seescan.com>
-	<CAJTo0LbRp5X9-Q7y4pyXQyBtgRs5A1LnaCYzBHCq0AmTqrXgnw@mail.gmail.com>,
+	<CAJTo0LbRp5X9-Q7y4pyXQyBtgRs5A1LnaCYzBHCq0AmTqrXgnw@mail.gmail.com>
 	<OF93501CEC.24CA3D84-ONC1257FA3.00576A53-C1257FA3.0058CC3A@esa-grimma.de>
-In-Reply-To: <OF93501CEC.24CA3D84-ONC1257FA3.00576A53-C1257FA3.0058CC3A@esa-grimma.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [50.59.178.108]
-MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[192.168.11.30]
-X-Barracuda-Start-Time: 1461860215
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
-X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
-X-Barracuda-Scan-Msg-Size: 5052
-X-Virus-Scanned: by bsmtpd at seescan.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0015 1.0000 -2.0109
-X-Barracuda-Spam-Score: -2.01
-X-Barracuda-Spam-Status: No,
-	SCORE=-2.01 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
-	tests=BSF_SC0_MISMATCH_TO
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.29133
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    Envelope rcpt doesn't match header
+	<SIXPR04MB0668640023EA6AFE4596C0ADEC650@SIXPR04MB0668.apcprd04.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 28 Apr 2016 17:25:39 +0100
+Message-ID: <CAJTo0LY3yqttg6hf3saU+RoLco1_GmNRy7pT+wDciBFFHep0HQ@mail.gmail.com>
+To: YUKATHARSANI JEYACHANDRA <yukatharsanij@tataelxsi.co.in>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Antwort: Re: how to configure the build packages of a makefile based libary
 X-BeenThere: yocto@yoctoproject.org
@@ -80,168 +73,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 16:17:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 28 Apr 2016 16:26:01 -0000
+Content-Type: multipart/alternative; boundary=047d7bdca606428e4a05318dfbe3
+
+--047d7bdca606428e4a05318dfbe3
+Content-Type: text/plain; charset=UTF-8
+
+On 28 April 2016 at 17:18, YUKATHARSANI JEYACHANDRA <
+yukatharsanij@tataelxsi.co.in> wrote:
+
+> Use INSANE_SKIP_${PN} = "installed-vs-shipped"  in your recipe to avoid
+> this error. Orelse, add FILES_${PN} += "/usr/local/" in your recipe.
+>
+> No.
+
+*Only* use installed-vs-shipped if you're incapable of a) packaging the
+files or b) deleting the files in a do_install_append.  Skipping that
+warning means you won't notice new files being added to the install that
+you don't package, which could result in broken packages.
+
+Ross
+
+--047d7bdca606428e4a05318dfbe3
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I don't know why that won't work.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 28 April 2016 at 17:18, YUKATHARSANI JEYACHANDRA <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:yukatharsanij@tataelxsi.co.in" target=3D"_blank">yukathars=
+anij@tataelxsi.co.in</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><p>Use INSANE_SKIP_${PN} =3D &quot;installed-vs-shipped&quot;=C2=A0 in yo=
+ur recipe to avoid this error. Orelse, add FILES_${PN} +=3D &quot;/usr/loca=
+l/&quot; in your recipe.</p>
+<p></p></blockquote></div><div class=3D"gmail_extra">No.</div><div class=3D=
+"gmail_extra"><br></div>*Only* use installed-vs-shipped if you&#39;re incap=
+able of a) packaging the files or b) deleting the files in a do_install_app=
+end.=C2=A0 Skipping that warning means you won&#39;t notice new files being=
+ added to the install that you don&#39;t package, which could result in bro=
+ken packages.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail=
+_extra">Ross</div></div>
 
-
-Note, if you don't set the PREFIX, they will add /usr/local anyway. Perhaps=
- that's the problem.
-
-
-Here's the relevant Makefile bits for the others to look at:
-
-
-# Installation related variables and target
-PREFIX?=3D/usr/local
-INCLUDE_PATH?=3Dinclude/hiredis
-LIBRARY_PATH?=3Dlib
-PKGCONF_PATH?=3Dpkgconfig
-INSTALL_INCLUDE_PATH=3D $(DESTDIR)$(PREFIX)/$(INCLUDE_PATH)
-INSTALL_LIBRARY_PATH=3D $(DESTDIR)$(PREFIX)/$(LIBRARY_PATH)
-INSTALL_PKGCONF_PATH=3D $(INSTALL_LIBRARY_PATH)/$(PKGCONF_PATH)
-
-
-
-install: $(DYLIBNAME) $(STLIBNAME) $(PKGCONFNAME)
-    mkdir -p $(INSTALL_INCLUDE_PATH) $(INSTALL_LIBRARY_PATH)
-    $(INSTALL) hiredis.h async.h read.h sds.h adapters $(INSTALL_INCLUDE_PA=
-TH)
-    $(INSTALL) $(DYLIBNAME) $(INSTALL_LIBRARY_PATH)/$(DYLIB_MINOR_NAME)
-    cd $(INSTALL_LIBRARY_PATH) && ln -sf $(DYLIB_MINOR_NAME) $(DYLIBNAME)
-    $(INSTALL) $(STLIBNAME) $(INSTALL_LIBRARY_PATH)
-    mkdir -p $(INSTALL_PKGCONF_PATH)
-    $(INSTALL) $(PKGCONFNAME) $(INSTALL_PKGCONF_PATH)
-
-
-________________________________
-From: S.Jaritz@esa-grimma.de <S.Jaritz@esa-grimma.de>
-Sent: Thursday, April 28, 2016 9:09 AM
-To: Burton, Ross
-Cc: Fred Ollinger; yocto@yoctoproject.org
-Subject: Antwort: Re: [yocto] how to configure the build packages of a make=
-file based libary
-
-Hej
-
-sorry - that does not work. Maybe you can show me some working/common code.
-
-Do I have to create the FILE_${PV} or/and FILE_${PV}-dev, FILE_${PV}-static=
-?
-
-The builded files go into the Git dir & the autotools-brokensep is generati=
-ng the package dir. I repeat my question: What are the commands in the bb f=
-ile to build the packages (release, static, dev, whatever ...)?
-
-Sorry - I do not understand at all the steps and theire parameters to build=
- a libary. Is there somewhere an example given?
-
-Below my bb file and the console error print.
-
-#### libhiredis ####
-SUMMARY =3D "libhiredis"
-SECTION =3D "sek4"
-LICENSE =3D "COPYING"
-LIC_FILES_CHKSUM =3D "file://$<file://$/>{WORKDIR}/git/COPYING;md5=3Dd84d65=
-9a35c666d23233e54503aaea51"
-
-# 0.13.3
-# SRCREV =3D "010756025e8cefd1bc66c6d4ed3b1648ef6f1f95"
-SRC_URI =3D "git://github.com/redis/hiredis.git;rev=3Dv0.13.3"
-
-S =3D "${WORKDIR}/git/"
-
-# we need to pass the Cxx parameter extra to the make call
-EXTRA_OEMAKE =3D "'CC=3D${CC}' 'RANLIB=3D${RANLIB}' 'AR=3D${AR}' 'CFLAGS=3D=
-${CFLAGS} -I${S}/include' 'BUILDDIR=3D${S}' 'DESTDIR=3D${D}'"
-
-inherit autotools-brokensep
-
-do_compile() {
-        oe_runmake all 'CC=3D${CC}'
-}
-
-do_install() {
-        oe_runmake install 'DESTDIR=3D${D}'
-}
-FILES_${PN} +=3D "/user/local"
-########
-
-### consol error ###
-ERROR: QA Issue: libhiredis: Files/directories were installed but not shipp=
-ed in any package:
-  /usr/local
-  /usr/local/lib
-  /usr/local/include
-  /usr/local/lib/libhiredis.so
-  /usr/local/lib/libhiredis.so.0.13
-  /usr/local/lib/libhiredis.a
-  /usr/local/lib/.debug
-  /usr/local/lib/pkgconfig
-  /usr/local/lib/.debug/libhiredis.so.0.13
-  /usr/local/lib/pkgconfig/hiredis.pc
-  /usr/local/include/hiredis
-  /usr/local/include/hiredis/sds.h
-  /usr/local/include/hiredis/read.h
-  /usr/local/include/hiredis/async.h
-  /usr/local/include/hiredis/hiredis.h
-  /usr/local/include/hiredis/adapters
-  /usr/local/include/hiredis/adapters/glib.h
-  /usr/local/include/hiredis/adapters/macosx.h
-  /usr/local/include/hiredis/adapters/libev.h
-  /usr/local/include/hiredis/adapters/libevent.h
-  /usr/local/include/hiredis/adapters/qt.h
-  /usr/local/include/hiredis/adapters/libuv.h
-  /usr/local/include/hiredis/adapters/ae.h
-  /usr/local/include/hiredis/adapters/ivykis.h
-Please set FILES such that these items are packaged. Alternatively if they =
-are unneeded, avoid installing them or delete them within do_install.
-libhiredis: 24 installed and not shipped files. [installed-vs-shipped]
-NOTE: Tasks Summary: Attempted 388 tasks of which 375 didn't need to be rer=
-un and all succeeded.
-########
-Mit freundlichen Gr=FC=DFen
-
-Stefan Jaritz
-Entwickler
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
-
-
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich er=
-halten
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser Ma=
-il
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-are
-not the intended recipient (or have received this e-mail in error) please
-notify the sender immediately and destroy this e-mail. Any unauthorized
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-forbidden.
-
+--047d7bdca606428e4a05318dfbe3--
