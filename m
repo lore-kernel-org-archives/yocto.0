@@ -1,72 +1,41 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B22DE00C62; Wed, 27 Apr 2016 13:10:28 -0700 (PDT)
+	id D9BC1E00D65; Wed, 27 Apr 2016 20:26:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.174 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
-	[209.85.192.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3D26E00C46
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 13:10:24 -0700 (PDT)
-Received: by mail-pf0-f174.google.com with SMTP id n1so27112581pfn.2
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 13:10:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=1Miv9Kf2/tuFRjyyXaCPKwI8kTvLKQ7fRi69xDMUF38=;
-	b=kpVHSJdRyXfXLb8OINvsLf1GS1/H81c1n+k9NfG/YDUqWsNPPFRVzTWWx2mFTrJ3h7
-	EbuhXCJYlRWAckbF6rY90Qm/Ri/Cv5q9e1mPAvUjr6E7sxm+3mUt7DhYaAQxEk1j1YOG
-	m9RWNPKTExMXbUaPsr44Dx3yMfbVGTwnlxKjMkLE+jO0p3IjVfX+GKU4tPkYMbHJNHXX
-	+SsXXw28TBgZpgBvbHOOuzAtl1gP0UlglCt5fKWI0VMo2GzJKQBqcwINke2jEDFtfMjc
-	5leJd3/F0ieDy4YQ8tgjhRZEX5P+wY8CvSQ3laFWVPbVhbYV68M9oC0yPipGmztY2JNp
-	BW9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=1Miv9Kf2/tuFRjyyXaCPKwI8kTvLKQ7fRi69xDMUF38=;
-	b=Rsm3E3huR6Ilez9SAF+OAB5wG7cXISByk5cjVcqw7081LbV1yuDwxrW58ZWqOA0hwl
-	eXoKWQnEb4LaXrV2kDyS9Pzqsh4yZ5fIYc1PANuvNmu/wXhVSETWLlpc4HJjWnpLJfcO
-	Ihq8LX7dcOY2ysbSRHLU0v+JttXgqT2q5TOF25FEVAgfn2wS2BeWTExxvUh78msz4CZ0
-	nAOHPa/Pm4ly9rG1LAkN601J+wTH/1klp0yIzeUuWhwlLI8KrbtEcLlh98rNZAPyRLNP
-	lslEefv88P+jjYZyx5myg7n3WQfzly9VUvGMeAprphOCU6mat7IB7GynUgZJ510SLIWI
-	69Pw==
-X-Gm-Message-State: AOPr4FWTqJ7mCwWPhEyDiCld6D4rz9ftvRCsdp/q7EI4/wMqa/38QU5SSF+IIvw3gRhd4g==
-X-Received: by 10.98.2.16 with SMTP id 16mr14794715pfc.148.1461787824182;
-	Wed, 27 Apr 2016 13:10:24 -0700 (PDT)
-Received: from ?IPv6:2601:647:4c01:b37d:54b2:1e01:90bd:b340?
-	([2601:647:4c01:b37d:54b2:1e01:90bd:b340])
-	by smtp.gmail.com with ESMTPSA id y3sm15776649par.2.2016.04.27.13.10.22
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 27 Apr 2016 13:10:23 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640@CY1PR0701MB1600.namprd07.prod.outlook.com>
-Date: Wed, 27 Apr 2016 13:10:18 -0700
-Message-Id: <9CA17DAE-D975-463A-910F-6C79132647D8@gmail.com>
-References: <BY1PR0701MB1594E5D662CBA5BFB5A38A17E1630@BY1PR0701MB1594.namprd07.prod.outlook.com>
-	<CAJTo0Laus7estW8kY9vRqW5qa_0hQmVtkRs7W3YXvvoDi1ewvQ@mail.gmail.com>
-	<CY1PR0701MB160009A0C1EDFF2E34BEF4E4E1640@CY1PR0701MB1600.namprd07.prod.outlook.com>
-To: "Jaggi, Manish" <Manish.Jaggi@caviumnetworks.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding native build support for arm64/aarch64 in oe-rootfs.
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3A73E00D5A
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 20:26:35 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 27 Apr 2016 20:26:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,545,1455004800"; 
+	d="scan'208,223";a="954491220"
+Received: from rramirez-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.172.158])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Apr 2016 20:26:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: S.Jaritz@esa-grimma.de
+Date: Thu, 28 Apr 2016 15:26:30 +1200
+Message-ID: <13054015.am85I5HgFS@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.7-300.fc23.x86_64; KDE/4.14.18; x86_64; ;
+	)
+In-Reply-To: <OFF73FCB05.018E1448-ONC1257FA2.002375E8-C1257FA2.00243E20@esa-grimma.de>
+References: <OFFCA9FD4C.003E7E4C-ONC1257FA1.002BA274-C1257FA1.002C5AF6@esa-grimma.de>
+	<58471203.UVK15pv3J4@peggleto-mobl.ger.corp.intel.com>
+	<OFF73FCB05.018E1448-ONC1257FA2.002375E8-C1257FA2.00243E20@esa-grimma.de>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: problems with cmake finding the c++ includes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,245 +47,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Apr 2016 20:10:28 -0000
-X-Groupsio-MsgNum: 29688
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_DE9736CB-18FB-4CD7-AB78-7AA4885F7B25";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Thu, 28 Apr 2016 03:26:38 -0000
+X-Groupsio-MsgNum: 29689
+Content-Type: multipart/mixed; boundary="nextPart1674661.EZvTcXHtNm"
+Content-Transfer-Encoding: 7Bit
 
---Apple-Mail=_DE9736CB-18FB-4CD7-AB78-7AA4885F7B25
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_6F89E5C4-8661-4302-9113-2E1917FC2127"
+--nextPart1674661.EZvTcXHtNm
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---Apple-Mail=_6F89E5C4-8661-4302-9113-2E1917FC2127
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+Hi Stefan,
 
-you could use multilib add something like this below to local.conf
+On Wed, 27 Apr 2016 08:35:51 S.Jaritz@esa-grimma.de wrote:
+> Thank you for taking time to check my problem. I fixed that. Maybe not how
+> you will do it.
+> My main problem still exists - the compiling problem when the std. c++
+> includes needed to be compiled. Maybee you have an idea how to tell the
+> cmake class where to search it's header files.
 
-require conf/multilib.conf
-MULTILIBS =3D "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7at-neon=E2=80=9D
+The problem is Build.cmake in the g3log sources is setting CMAKE_CXX_FLAGS 
+outright instead of adding to it, with the result that the default arguments 
+set by OE (most importantly --sysroot) aren't being supplied to the compiler, 
+so it can't find the standard headers. Really that file needs to be patched - 
+I've attached a patch to fix it which you can put in a "files" or "g3log" 
+directory alongside the recipe and add a file:// pointer to in SRC_URI, see 
+other recipes for examples).
 
-> On Apr 26, 2016, at 10:53 PM, Jaggi, Manish =
-<Manish.Jaggi@caviumnetworks.com> wrote:
->=20
-> It worked, thanks!!
->=20
-> But I couldnt find support to include multilibs say for 32bit and =
-64bit gcc.
-> There is a MULTILIB macro but I am not sure how to use it?
-> I think multilib recipes (bbfiles) are required, how to get them?
->=20
->=20
-> Regards,
-> Manish Jaggi
-> From: Burton, Ross <ross.burton@intel.com =
-<mailto:ross.burton@intel.com>>
-> Sent: Tuesday, April 26, 2016 2:27:12 PM
-> To: Jaggi, Manish
-> Cc: yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> Subject: Re: [yocto] aarch64-oe-linux/bin/ld: cannot find -lgcc . =
-Adding native build support for arm64/aarch64 in oe-rootfs.
->=20
->=20
-> On 26 April 2016 at 09:37, Jaggi, Manish =
-<Manish.Jaggi@caviumnetworks.com =
-<mailto:Manish.Jaggi@caviumnetworks.com>> wrote:
-> IMAGE_INSTALL_append =3D "gcc"
-> IMAGE_INSTALL_append +=3D " glibc"
-> IMAGE_INSTALL_append +=3D " libgcc"
-> IMAGE_INSTALL_append +=3D " binutils"
-> IMAGE_INSTALL_append +=3D " gccmakedep"
->=20
-> You left out the development headers and libraries required to =
-actually link.
->=20
-> IMAGE_FEATURES is a more efficient way of doing this.  =
-EXTRA_IMAGE_FEATURES +=3D "tools-sdk" will add gcc/cpp/make/etc, and =
-"dev-pkgs" will ensure that all of the -dev packages are installed on =
-your image, so you can link against anything you've installed.
->=20
-> Ross
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+Also attached is a patch to fix the fact that the libg3log.so library produced 
+wasn't versioned, which our build system expects and if it's not the case you 
+will get a QA error. It is possible to disable that check but this is a little 
+neater.
 
---Apple-Mail=_6F89E5C4-8661-4302-9113-2E1917FC2127
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+(I wouldn't normally go this far, but I was in a curious mood this afternoon.)
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">you could use multilib add something like this below to =
-local.conf<div class=3D""><br class=3D""><div class=3D""><div =
-class=3D"">require conf/multilib.conf</div><div class=3D"">MULTILIBS =3D =
-"multilib:lib32"</div><div class=3D"">DEFAULTTUNE_virtclass-multilib-lib32=
- =3D "armv7at-neon=E2=80=9D</div><div class=3D""><br =
-class=3D""></div><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Apr 26, 2016, at 10:53 PM, Jaggi, Manish &lt;<a =
-href=3D"mailto:Manish.Jaggi@caviumnetworks.com" =
-class=3D"">Manish.Jaggi@caviumnetworks.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-id=3D"divtagdefaultwrapper" style=3D"font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; font-size: 10pt; background-color: =
-rgb(255, 255, 255); font-family: Candara, sans-serif;" class=3D""><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D"">It worked, =
-thanks!!</div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""><br class=3D""></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D"">But I couldnt find support to include =
-multilibs say for 32bit and 64bit gcc.</div><div style=3D"margin-top: =
-0px; margin-bottom: 0px;" class=3D"">There is a MULTILIB macro but I am =
-not sure how to use it?</div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D"">I think multilib&nbsp;recipes (bbfiles) =
-are required, how to get them?</div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><br class=3D""></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div id=3D"Signature" class=3D""><div =
-name=3D"divtagdefaultwrapper" style=3D"font-family: Calibri, Arial, =
-Helvetica, sans-serif; margin: 0px;" class=3D""><font face=3D"Cordia =
-New, sans-serif" size=3D"2" class=3D"">Regards,</font><div =
-class=3D""><font face=3D"Cordia New, sans-serif" size=3D"2" =
-class=3D"">Manish Jaggi</font></div></div></div></div><hr tabindex=3D"-1" =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; display: inline-block; width: =
-1041.734375px;" class=3D""><span style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D""></span><div =
-id=3D"divRplyFwdMsg" dir=3D"ltr" style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D""><font face=3D"Calibri, sans-serif" style=3D"font-size: 11pt;" =
-class=3D""><b class=3D"">From:</b><span =
-class=3D"Apple-converted-space">&nbsp;</span>Burton, Ross &lt;<a =
-href=3D"mailto:ross.burton@intel.com" =
-class=3D"">ross.burton@intel.com</a>&gt;<br class=3D""><b =
-class=3D"">Sent:</b><span =
-class=3D"Apple-converted-space">&nbsp;</span>Tuesday, April 26, 2016 =
-2:27:12 PM<br class=3D""><b class=3D"">To:</b><span =
-class=3D"Apple-converted-space">&nbsp;</span>Jaggi, Manish<br =
-class=3D""><b class=3D"">Cc:</b><span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br class=3D""><b =
-class=3D"">Subject:</b><span =
-class=3D"Apple-converted-space">&nbsp;</span>Re: [yocto] =
-aarch64-oe-linux/bin/ld: cannot find -lgcc . Adding native build support =
-for arm64/aarch64 in oe-rootfs.</font><div =
-class=3D"">&nbsp;</div></div><div style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"gmail_extra"><br =
-class=3D""><div class=3D"gmail_quote">On 26 April 2016 at 09:37, Jaggi, =
-Manish<span class=3D"Apple-converted-space">&nbsp;</span><span dir=3D"ltr"=
- class=3D"">&lt;<a href=3D"mailto:Manish.Jaggi@caviumnetworks.com" =
-target=3D"_blank" =
-class=3D"">Manish.Jaggi@caviumnetworks.com</a>&gt;</span><span =
-class=3D"Apple-converted-space">&nbsp;</span>wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin: 0px 0px =
-0px 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, =
-204); border-left-style: solid; padding-left: 1ex;"><div =
-class=3D"">IMAGE_INSTALL_append =3D "gcc"</div><div =
-class=3D"">IMAGE_INSTALL_append +=3D " glibc"</div><div =
-class=3D"">IMAGE_INSTALL_append +=3D " libgcc"</div><div =
-class=3D"">IMAGE_INSTALL_append +=3D " binutils"</div><div =
-class=3D"">IMAGE_INSTALL_append +=3D " =
-gccmakedep"</div></blockquote></div><br class=3D"">You left out the =
-development headers and libraries required to actually link.</div><div =
-class=3D"gmail_extra"><br class=3D""></div><div =
-class=3D"gmail_extra">IMAGE_FEATURES is a more efficient way of doing =
-this.&nbsp; EXTRA_IMAGE_FEATURES +=3D "tools-sdk" will add =
-gcc/cpp/make/etc, and "dev-pkgs" will ensure that all of the -dev =
-packages are installed on your image, so you can link against anything =
-you've installed.</div><div class=3D"gmail_extra"><br =
-class=3D""></div><div class=3D"gmail_extra">Ross</div></div></div><span =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Ubuntu; font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: Ubuntu; font-size: 14px; =
-font-style: normal; font-variant-caps: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Ubuntu; =
-font-size: 14px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D""><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-style=3D"font-family: Ubuntu; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></div></div></body></html>=
+Cheers,
+Paul
 
---Apple-Mail=_6F89E5C4-8661-4302-9113-2E1917FC2127--
+PS if you could please retain the mailing list on replies (unless they need to 
+be private) that would be great.
 
---Apple-Mail=_DE9736CB-18FB-4CD7-AB78-7AA4885F7B25
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
+-- 
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Paul Eggleton
+Intel Open Source Technology Centre
 
-iEYEARECAAYFAlchHK4ACgkQuwUzVZGdMxRKAwCfaQF6xQ2lNEGfDza2kIONTCou
-71wAmwcA+N+cPI7RsRF6nw0ZkrHk5kwq
-=lxgj
------END PGP SIGNATURE-----
+--nextPart1674661.EZvTcXHtNm
+Content-Disposition: attachment; filename="0001-Ensure-default-CXX-flags-such-as-sysroot-don-t-get-w.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="UTF-8"; name="0001-Ensure-default-CXX-flags-such-as-sysroot-don-t-get-w.patch"
 
---Apple-Mail=_DE9736CB-18FB-4CD7-AB78-7AA4885F7B25--
+From d8cd848f5b52c7b494da721e313462fe058e8561 Mon Sep 17 00:00:00 2001
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Thu, 28 Apr 2016 15:15:55 +1200
+Subject: [PATCH 1/2] Ensure default CXX flags such as --sysroot don't get
+ wiped out
+
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ Build.cmake | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Build.cmake b/Build.cmake
+index 6b583f9..41bfaf5 100644
+--- a/Build.cmake
++++ b/Build.cmake
+@@ -23,7 +23,7 @@ SET(ACTIVE_CPP0xx_DIR "Release")
+ IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES ".*Clang")
+    MESSAGE("")
+    MESSAGE("cmake for Clang ")
+-   SET(CMAKE_CXX_FLAGS "-Wall -std=c++11 -Wunused -D_GLIBCXX_USE_NANOSLEEP")
++   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -Wunused -D_GLIBCXX_USE_NANOSLEEP")
+    IF (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++ -pthread")
+    ELSE()
+@@ -47,12 +47,12 @@ IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES ".*Clang")
+ ELSEIF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    MESSAGE("cmake for GCC ")
+    IF (APPLE)
+-       set(CMAKE_CXX_FLAGS "-Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP")
++       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP")
+    ELSEIF (MINGW)
+-       set(CMAKE_CXX_FLAGS "-Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
++       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
+    ELSE()
+        set(PLATFORM_LINK_LIBRIES rt)
+-       set(CMAKE_CXX_FLAGS "-Wall -rdynamic -Wunused -std=c++11 -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
++       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -rdynamic -Wunused -std=c++11 -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
+    ENDIF()
+ ENDIF()
+ 
+-- 
+2.5.5
+
+
+--nextPart1674661.EZvTcXHtNm
+Content-Disposition: attachment; filename="0002-Use-a-versioned-library.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="UTF-8"; name="0002-Use-a-versioned-library.patch"
+
+From b8090456a448f8623734b857be597b8eb242a869 Mon Sep 17 00:00:00 2001
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Thu, 28 Apr 2016 15:16:52 +1200
+Subject: [PATCH 2/2] Use a versioned library
+
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ Build.cmake | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Build.cmake b/Build.cmake
+index 41bfaf5..7ec73f6 100644
+--- a/Build.cmake
++++ b/Build.cmake
+@@ -107,7 +107,9 @@ if(ADD_BUILD_WIN_SHARED OR NOT(MSVC OR MINGW))
+    set_target_properties(g3logger_shared PROPERTIES
+       LINKER_LANGUAGE CXX
+       OUTPUT_NAME g3logger
+-      CLEAN_DIRECT_OUTPUT 1)
++      CLEAN_DIRECT_OUTPUT 1
++      VERSION "0.0.0"
++      SOVERSION 0)
+    IF(APPLE)
+       set_target_properties(g3logger_shared PROPERTIES MACOSX_RPATH TRUE)
+    ENDIF(APPLE)
+-- 
+2.5.5
+
+
+--nextPart1674661.EZvTcXHtNm--
