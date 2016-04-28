@@ -1,41 +1,55 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <r.schwarz@sotec.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9BC1E00D65; Wed, 27 Apr 2016 20:26:37 -0700 (PDT)
+	id A344BE00D8D; Wed, 27 Apr 2016 23:31:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3A73E00D5A
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 20:26:35 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 27 Apr 2016 20:26:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,545,1455004800"; 
-	d="scan'208,223";a="954491220"
-Received: from rramirez-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.172.158])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Apr 2016 20:26:32 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: S.Jaritz@esa-grimma.de
-Date: Thu, 28 Apr 2016 15:26:30 +1200
-Message-ID: <13054015.am85I5HgFS@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.4.7-300.fc23.x86_64; KDE/4.14.18; x86_64; ;
-	)
-In-Reply-To: <OFF73FCB05.018E1448-ONC1257FA2.002375E8-C1257FA2.00243E20@esa-grimma.de>
-References: <OFFCA9FD4C.003E7E4C-ONC1257FA1.002BA274-C1257FA1.002C5AF6@esa-grimma.de>
-	<58471203.UVK15pv3J4@peggleto-mobl.ger.corp.intel.com>
-	<OFF73FCB05.018E1448-ONC1257FA2.002375E8-C1257FA2.00243E20@esa-grimma.de>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
+	[209.85.215.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14531E00D84
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 23:31:55 -0700 (PDT)
+Received: by mail-lf0-f44.google.com with SMTP id y84so73376437lfc.0
+	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 23:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=sotec-eu.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=vxSj/gjwGIXCeSmy1NIryWo+K3n9wypcdMc6w6LkasQ=;
+	b=uTqcEO1JO8oUOTGehFjsFiiBxpB7rjmQJDUvSdtRKdaCYIUXcQRvHTILWHn5FKRLDD
+	9QpRQpBB3n1zEZkOwX2pVqosyAZ0+a9WbgpHQL8vsefxApkpxo8ccSDTtJO0EP3kEeOT
+	BYdtk9VIKFYY1vQY98yUC1YhqNy0hY3Nc1h4axFcIlWGxvSFNTANGlpKunVFCS7enn40
+	M86kupcdAgdHdQxQQypsLanHRqlrCyHLg4h8ibuWXR9ZovHDEBgV7/D2x06IBmUEAdMl
+	TwtFesLkxb0VfWQekOBJlmlGvQe4oAM8BnR+f4vvjHif7AL9m6gYxsW/PMu5pcvF915b
+	vOSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=vxSj/gjwGIXCeSmy1NIryWo+K3n9wypcdMc6w6LkasQ=;
+	b=FqTJ30fkILCehcvhoA/hTqTt46+Ml0q9Z8tMKoBBsfBzE7NexzSCIncwpD08gfWOeI
+	fJzGU3XfjCpAEgt90MNHlDnHvASTDqanLKKkkd219v2RCEe2VCJBE8/ZREVXp7jaKRMX
+	O3Cu9EW/fpLsL7hmUFqHX2y3DtdikqTA3jtIodPor1Akp8EBbyXQG/Et+n+akdU5uNQp
+	1ZKijAdTFMI6U+inYXKpQUnORsmY0iCHJG7EMVDAo4Innwg7IhfZc2xBLgT1EHOnn/2c
+	vd0OFnpcGIvDYRZppv7HQy4lI4zLZRhvVpv5v6T9/UWROIKXvNsjVNOOasgEQsndJyAU
+	nnjQ==
+X-Gm-Message-State: AOPr4FXVm5RjxRBQAeUOZHy+1EzVbOeyWOQJKvHzDIoi3OXvrPWxJj1eD3MRYPWqrltK5E0z0dN50MDZYm53PfcB0rfYpY8xC06Uf6bAoFWPYs5TOLFFMSIjNQJEXRHY892BRnaZIAPNnlBqFfQ=
+X-Received: by 10.112.13.33 with SMTP id e1mr4469564lbc.79.1461825113313; Wed,
+	27 Apr 2016 23:31:53 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: problems with cmake finding the c++ includes
+From: Ruben Schwarz <r.schwarz@sotec.eu>
+Date: Thu, 28 Apr 2016 06:31:43 +0000
+Message-ID: <CAEMorphG=a7-SVbBFiiMvSyaYNuqTuDZ0Dbr7K_Nan8h_GGL9A@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: populate_sdk cmake and eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,131 +61,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 03:26:38 -0000
-X-Groupsio-MsgNum: 29689
-Content-Type: multipart/mixed; boundary="nextPart1674661.EZvTcXHtNm"
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 28 Apr 2016 06:31:59 -0000
+Content-Type: multipart/alternative; boundary=001a11c39e269a779d053185aeb3
 
---nextPart1674661.EZvTcXHtNm
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+--001a11c39e269a779d053185aeb3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+Hi,
 
-On Wed, 27 Apr 2016 08:35:51 S.Jaritz@esa-grimma.de wrote:
-> Thank you for taking time to check my problem. I fixed that. Maybe not how
-> you will do it.
-> My main problem still exists - the compiling problem when the std. c++
-> includes needed to be compiled. Maybee you have an idea how to tell the
-> cmake class where to search it's header files.
+we created our own image for our custom hardware with yocto jethro.
+Everything works fine, thanks for this great tools!
 
-The problem is Build.cmake in the g3log sources is setting CMAKE_CXX_FLAGS 
-outright instead of adding to it, with the result that the default arguments 
-set by OE (most importantly --sysroot) aren't being supplied to the compiler, 
-so it can't find the standard headers. Really that file needs to be patched - 
-I've attached a patch to fix it which you can put in a "files" or "g3log" 
-directory alongside the recipe and add a file:// pointer to in SRC_URI, see 
-other recipes for examples).
+Now more developers have to write software for our project. I did the
+following steps to set up a application dev environment (as mentionend in
+application developers guide):
 
-Also attached is a patch to fix the fact that the libg3log.so library produced 
-wasn't versioned, which our build system expects and if it's not the case you 
-will get a QA error. It is possible to disable that check but this is a little 
-neater.
+1. Create sdk: bitbake myImage -c populate_sdk
+2. copy generated sdk.sh to a fresh installed ubuntu 14.04 and execute.
+Toolchain is installed in /opt/poky/2.0.1/
+3. install eclipse and the eclipse yocto plugin as mentionend in the docs.
+4. Create a new Yocto Autotools C++ Project -> Build -> copy to target ->
+Execute -> everything is fine!
+5. Create a new Yocto CMake C++ Project -> Build -> Error: unable to run
+cmake
+6. Compile cmake project by hand:
+cd PROJECT_FOLDER/Debug
+source /opt/poky/2.0.1/environment_setup...
+cmake ..
+make
 
-(I wouldn't normally go this far, but I was in a curious mood this afternoon.)
+compiles without errors
 
-Cheers,
-Paul
+*Now my questions:*
+Anybody here who uses a sdk with eclipse and cmake?
+Did I miss any configuration?
 
-PS if you could please retain the mailing list on replies (unless they need to 
-be private) that would be great.
+Not directly regarded to this problem:
+Anybody here who uses JetBrains CLion with a yocto toolchain/sdk?
 
--- 
+Thanks in advance and best regards
+Ruben
 
-Paul Eggleton
-Intel Open Source Technology Centre
-
---nextPart1674661.EZvTcXHtNm
-Content-Disposition: attachment; filename="0001-Ensure-default-CXX-flags-such-as-sysroot-don-t-get-w.patch"
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/x-patch; charset="UTF-8"; name="0001-Ensure-default-CXX-flags-such-as-sysroot-don-t-get-w.patch"
-
-From d8cd848f5b52c7b494da721e313462fe058e8561 Mon Sep 17 00:00:00 2001
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Thu, 28 Apr 2016 15:15:55 +1200
-Subject: [PATCH 1/2] Ensure default CXX flags such as --sysroot don't get
- wiped out
-
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- Build.cmake | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Build.cmake b/Build.cmake
-index 6b583f9..41bfaf5 100644
---- a/Build.cmake
-+++ b/Build.cmake
-@@ -23,7 +23,7 @@ SET(ACTIVE_CPP0xx_DIR "Release")
- IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES ".*Clang")
-    MESSAGE("")
-    MESSAGE("cmake for Clang ")
--   SET(CMAKE_CXX_FLAGS "-Wall -std=c++11 -Wunused -D_GLIBCXX_USE_NANOSLEEP")
-+   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -Wunused -D_GLIBCXX_USE_NANOSLEEP")
-    IF (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libstdc++ -pthread")
-    ELSE()
-@@ -47,12 +47,12 @@ IF ("${CMAKE_CXX_COMPILER_ID}" MATCHES ".*Clang")
- ELSEIF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-    MESSAGE("cmake for GCC ")
-    IF (APPLE)
--       set(CMAKE_CXX_FLAGS "-Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP")
-+       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP")
-    ELSEIF (MINGW)
--       set(CMAKE_CXX_FLAGS "-Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
-+       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused -std=c++11  -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
-    ELSE()
-        set(PLATFORM_LINK_LIBRIES rt)
--       set(CMAKE_CXX_FLAGS "-Wall -rdynamic -Wunused -std=c++11 -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
-+       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -rdynamic -Wunused -std=c++11 -pthread -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD")
-    ENDIF()
- ENDIF()
- 
--- 
-2.5.5
+--=20
 
 
---nextPart1674661.EZvTcXHtNm
-Content-Disposition: attachment; filename="0002-Use-a-versioned-library.patch"
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/x-patch; charset="UTF-8"; name="0002-Use-a-versioned-library.patch"
+Besuchen Sie uns auf der Hannover Messe vom 25. - 29. April, Halle 7, Stand=
+=20
+D 34 auf dem Gemeinschaftsstand Baden-W=C3=BCrttemberg! weitere Information=
+en=20
+<http://ow.ly/ZR5TO=EF=BB=BF>
 
-From b8090456a448f8623734b857be597b8eb242a869 Mon Sep 17 00:00:00 2001
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Thu, 28 Apr 2016 15:16:52 +1200
-Subject: [PATCH 2/2] Use a versioned library
+Besuchen Sie unseren Chrome Webshop unter shop.cloudwuerdig.com
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- Build.cmake | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+www.sotec.eu | www.cloudwuerdig.com=20
+--=20
+SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=20
+Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=20
+Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664,=20
+Gesch=C3=A4ftsf=C3=BChrer: Florian Holz=20
+Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der SOTEC Software Entwi=
+cklungs=20
+GmbH + Co Mikrocomputertechnik KG
 
-diff --git a/Build.cmake b/Build.cmake
-index 41bfaf5..7ec73f6 100644
---- a/Build.cmake
-+++ b/Build.cmake
-@@ -107,7 +107,9 @@ if(ADD_BUILD_WIN_SHARED OR NOT(MSVC OR MINGW))
-    set_target_properties(g3logger_shared PROPERTIES
-       LINKER_LANGUAGE CXX
-       OUTPUT_NAME g3logger
--      CLEAN_DIRECT_OUTPUT 1)
-+      CLEAN_DIRECT_OUTPUT 1
-+      VERSION "0.0.0"
-+      SOVERSION 0)
-    IF(APPLE)
-       set_target_properties(g3logger_shared PROPERTIES MACOSX_RPATH TRUE)
-    ENDIF(APPLE)
--- 
-2.5.5
+Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten =
+Adressaten=20
+bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen=
+=20
+Vertreter sein sollten, so beachten Sie bitte, dass jede Form der=20
+Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe=
+ des=20
+Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem F=
+all=20
+mit dem Absender der e-Mail in Verbindung zu setzen.
+
+The content of this e-mail is meant exclusively for the person to whom it=
+=20
+is addressed. If you are not the person to whom this e-mail is addressed or=
+=20
+his/her representative, please be informed, that any form of knowledge,=20
+publication, duplication or distribution of the content of this e-mail is=
+=20
+inadmissible. We ask you, therefore, in such a case to please contact the=
+=20
+sender of this e-mail.
 
 
---nextPart1674661.EZvTcXHtNm--
+--001a11c39e269a779d053185aeb3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"color:rgb(33,33,33);font-size:13px">Hi,</sp=
+an><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px">we created our own image for our cu=
+stom hardware with yocto jethro. Everything works fine, thanks for this gre=
+at tools!</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div>=
+<div style=3D"color:rgb(33,33,33);font-size:13px">Now more developers have =
+to write software for our project. I did the following steps to set up a ap=
+plication dev environment (as mentionend in application developers guide):<=
+/div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px">1. Create sdk:=C2=A0<span style=3D"=
+line-height:1.5">bitbake myImage -c populate_sdk</span></div><div style=3D"=
+color:rgb(33,33,33);font-size:13px">2. copy generated sdk.sh to a fresh ins=
+talled ubuntu 14.04 and execute. Toolchain is installed in /opt/poky/2.0.1/=
+</div><div style=3D"color:rgb(33,33,33);font-size:13px">3. install eclipse =
+and the eclipse yocto plugin as mentionend in the docs.</div><div style=3D"=
+color:rgb(33,33,33);font-size:13px">4. Create a new Yocto Autotools C++ Pro=
+ject -&gt; Build -&gt; copy to target -&gt; Execute -&gt; everything is fin=
+e!</div><div style=3D"color:rgb(33,33,33);font-size:13px">5. Create a new Y=
+octo CMake C++ Project -&gt; Build -&gt; Error: unable to run cmake</div><d=
+iv style=3D"color:rgb(33,33,33);font-size:13px">6. Compile cmake project by=
+ hand:</div><div style=3D"color:rgb(33,33,33);font-size:13px">cd PROJECT_FO=
+LDER/Debug</div><div style=3D"color:rgb(33,33,33);font-size:13px">source /o=
+pt/poky/2.0.1/environment_setup...</div><div style=3D"color:rgb(33,33,33);f=
+ont-size:13px">cmake ..</div><div style=3D"color:rgb(33,33,33);font-size:13=
+px">make</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><=
+div style=3D"color:rgb(33,33,33);font-size:13px">compiles without errors</d=
+iv><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px"><b>Now my questions:</b></div><div =
+style=3D"color:rgb(33,33,33);font-size:13px">Anybody here who uses a sdk wi=
+th eclipse and cmake?</div><div style=3D"color:rgb(33,33,33);font-size:13px=
+">Did I miss any configuration?</div><div style=3D"color:rgb(33,33,33);font=
+-size:13px"><br></div><div style=3D"color:rgb(33,33,33);font-size:13px">Not=
+ directly regarded to this problem:</div><div style=3D"color:rgb(33,33,33);=
+font-size:13px">Anybody here who uses JetBrains CLion with a yocto toolchai=
+n/sdk?</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><di=
+v style=3D"color:rgb(33,33,33);font-size:13px">Thanks in advance and best r=
+egards</div><div style=3D"color:rgb(33,33,33);font-size:13px">Ruben</div></=
+div>
+
+<br>
+<p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"></p><=
+p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em;vertical-=
+align:baseline"></p><p style=3D"font-family:Arial;font-size:11px;vertical-a=
+lign:baseline">Besuchen Sie uns auf der Hannover Messe vom 25. - 29. April,=
+ Halle 7, Stand D 34 auf dem Gemeinschaftsstand Baden-W=C3=BCrttemberg! <a =
+href=3D"http://ow.ly/ZR5TO=EF=BB=BF" target=3D"_blank">weitere Informatione=
+n</a></p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baseli=
+ne">Besuchen Sie unseren Chrome Webshop unter <a href=3D"http://shop.cloudw=
+uerdig.com" target=3D"_blank">shop.cloudwuerdig.com</a></p><p style=3D"font=
+-family:Arial;font-size:11px;vertical-align:baseline"><span style=3D"font-w=
+eight:bold;vertical-align:baseline"><a href=3D"http://www.sotec.eu/" style=
+=3D"text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.sotec.eu</=
+a>=C2=A0|=C2=A0<a href=3D"http://www.cloudwuerdig.com/" style=3D"text-decor=
+ation:none;color:rgb(0,0,0)" target=3D"_blank">www.<wbr>cloudwuerdig.com</a=
+>=C2=A0</span><br>--=C2=A0<br>SOTEC Software Entwicklungs GmbH + Co Mikroco=
+mputertechnik KG=C2=A0<br>Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=C2=A0<b=
+r>Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664, Gesch=C3=A4=
+ftsf=C3=BChrer: Florian Holz=C2=A0<br>Cloudw=C3=BCrdig=C2=AE ist eine einge=
+tragene Marke der SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechni=
+k KG</p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baselin=
+e">Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichnet=
+en Adressaten bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Ma=
+il oder dessen Vertreter sein sollten, so beachten Sie bitte, dass jede For=
+m der Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weit=
+ergabe des Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich =
+in diesem Fall mit dem Absender der e-Mail in Verbindung zu setzen.</p><p s=
+tyle=3D"font-family:Arial;font-size:11px;vertical-align:baseline">The conte=
+nt of this e-mail is meant exclusively for the person to whom it is address=
+ed. If you are not the person to whom this e-mail is addressed or his/her r=
+epresentative, please be informed, that any form of knowledge, publication,=
+ duplication or distribution of the content of this e-mail is inadmissible.=
+ We ask you, therefore, in such a case to please contact the sender of this=
+ e-mail.</p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.=
+3em"></p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em=
+"></p>
+
+--001a11c39e269a779d053185aeb3--
