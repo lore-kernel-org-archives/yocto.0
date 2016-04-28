@@ -1,6 +1,6 @@
 Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AF0AE00E15; Thu, 28 Apr 2016 06:05:36 -0700 (PDT)
+	id A43D6E00E25; Thu, 28 Apr 2016 06:05:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64CD3E00DD2
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 06:04:32 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95028E00DC4
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 06:04:36 -0700 (PDT)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Apr 2016 06:03:33 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 28 Apr 2016 06:03:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="794230455"
+X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="794230509"
 Received: from heimdall.fi.intel.com ([10.237.68.38])
-	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2016 06:03:32 -0700
+	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2016 06:03:35 -0700
 From: Jussi Kukkonen <jussi.kukkonen@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 28 Apr 2016 16:03:06 +0300
-Message-Id: <35b6871722a40808debb5e88e9dfb4f2cd2a9b06.1461830592.git.jussi.kukkonen@intel.com>
+Date: Thu, 28 Apr 2016 16:03:08 +0300
+Message-Id: <2cd5c7ee8b8596f0e852e53b5843e9711c14f4b1.1461830592.git.jussi.kukkonen@intel.com>
 X-Mailer: git-send-email 2.8.1
 In-Reply-To: <d356f0c5b1dda0fe49944c2a5ce0d1650019ce21.1461830592.git.jussi.kukkonen@intel.com>
 References: <d356f0c5b1dda0fe49944c2a5ce0d1650019ce21.1461830592.git.jussi.kukkonen@intel.com>
 In-Reply-To: <cover.1461830592.git.jussi.kukkonen@intel.com>
 References: <cover.1461830592.git.jussi.kukkonen@intel.com>
-Subject: [matchbox-desktop-2][PATCH 13/16] build: add a real INSTALL file
+Subject: [matchbox-desktop-2][PATCH 15/16] Use a GtkFlowBox instead of TakuTable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,391 +41,1008 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 13:05:36 -0000
+X-List-Received-Date: Thu, 28 Apr 2016 13:05:38 -0000
 
-From: Ross Burton <ross.burton@intel.com>
+Remove ~500 lines of code by using FlowBox instead of custom code
 
+Also avoid using GtkFixed when in desktop mode
+
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
 ---
- INSTALL | 370 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 370 insertions(+)
- create mode 100644 INSTALL
+ libtaku/Makefile.am          |   1 -
+ libtaku/taku-launcher-tile.c |   8 +-
+ libtaku/taku-launcher-tile.h |   2 +
+ libtaku/taku-table.c         | 533 -------------------------------------------
+ libtaku/taku-table.h         |  69 ------
+ libtaku/taku-tile.c          |   2 +-
+ src/desktop.c                | 121 +++++++---
+ src/taku-category-bar.c      |  23 +-
+ src/taku-category-bar.h      |   5 +-
+ 9 files changed, 118 insertions(+), 646 deletions(-)
+ delete mode 100644 libtaku/taku-table.c
+ delete mode 100644 libtaku/taku-table.h
 
-diff --git a/INSTALL b/INSTALL
-new file mode 100644
-index 0000000..a1e89e1
---- /dev/null
-+++ b/INSTALL
-@@ -0,0 +1,370 @@
-+Installation Instructions
-+*************************
-+
-+Copyright (C) 1994-1996, 1999-2002, 2004-2011 Free Software Foundation,
-+Inc.
-+
-+   Copying and distribution of this file, with or without modification,
-+are permitted in any medium without royalty provided the copyright
-+notice and this notice are preserved.  This file is offered as-is,
-+without warranty of any kind.
-+
-+Basic Installation
-+==================
-+
-+   Briefly, the shell commands `./configure; make; make install' should
-+configure, build, and install this package.  The following
-+more-detailed instructions are generic; see the `README' file for
-+instructions specific to this package.  Some packages provide this
-+`INSTALL' file but do not implement all of the features documented
-+below.  The lack of an optional feature in a given package is not
-+necessarily a bug.  More recommendations for GNU packages can be found
-+in *note Makefile Conventions: (standards)Makefile Conventions.
-+
-+   The `configure' shell script attempts to guess correct values for
-+various system-dependent variables used during compilation.  It uses
-+those values to create a `Makefile' in each directory of the package.
-+It may also create one or more `.h' files containing system-dependent
-+definitions.  Finally, it creates a shell script `config.status' that
-+you can run in the future to recreate the current configuration, and a
-+file `config.log' containing compiler output (useful mainly for
-+debugging `configure').
-+
-+   It can also use an optional file (typically called `config.cache'
-+and enabled with `--cache-file=config.cache' or simply `-C') that saves
-+the results of its tests to speed up reconfiguring.  Caching is
-+disabled by default to prevent problems with accidental use of stale
-+cache files.
-+
-+   If you need to do unusual things to compile the package, please try
-+to figure out how `configure' could check whether to do them, and mail
-+diffs or instructions to the address given in the `README' so they can
-+be considered for the next release.  If you are using the cache, and at
-+some point `config.cache' contains results you don't want to keep, you
-+may remove or edit it.
-+
-+   The file `configure.ac' (or `configure.in') is used to create
-+`configure' by a program called `autoconf'.  You need `configure.ac' if
-+you want to change it or regenerate `configure' using a newer version
-+of `autoconf'.
-+
-+   The simplest way to compile this package is:
-+
-+  1. `cd' to the directory containing the package's source code and type
-+     `./configure' to configure the package for your system.
-+
-+     Running `configure' might take a while.  While running, it prints
-+     some messages telling which features it is checking for.
-+
-+  2. Type `make' to compile the package.
-+
-+  3. Optionally, type `make check' to run any self-tests that come with
-+     the package, generally using the just-built uninstalled binaries.
-+
-+  4. Type `make install' to install the programs and any data files and
-+     documentation.  When installing into a prefix owned by root, it is
-+     recommended that the package be configured and built as a regular
-+     user, and only the `make install' phase executed with root
-+     privileges.
-+
-+  5. Optionally, type `make installcheck' to repeat any self-tests, but
-+     this time using the binaries in their final installed location.
-+     This target does not install anything.  Running this target as a
-+     regular user, particularly if the prior `make install' required
-+     root privileges, verifies that the installation completed
-+     correctly.
-+
-+  6. You can remove the program binaries and object files from the
-+     source code directory by typing `make clean'.  To also remove the
-+     files that `configure' created (so you can compile the package for
-+     a different kind of computer), type `make distclean'.  There is
-+     also a `make maintainer-clean' target, but that is intended mainly
-+     for the package's developers.  If you use it, you may have to get
-+     all sorts of other programs in order to regenerate files that came
-+     with the distribution.
-+
-+  7. Often, you can also type `make uninstall' to remove the installed
-+     files again.  In practice, not all packages have tested that
-+     uninstallation works correctly, even though it is required by the
-+     GNU Coding Standards.
-+
-+  8. Some packages, particularly those that use Automake, provide `make
-+     distcheck', which can by used by developers to test that all other
-+     targets like `make install' and `make uninstall' work correctly.
-+     This target is generally not run by end users.
-+
-+Compilers and Options
-+=====================
-+
-+   Some systems require unusual options for compilation or linking that
-+the `configure' script does not know about.  Run `./configure --help'
-+for details on some of the pertinent environment variables.
-+
-+   You can give `configure' initial values for configuration parameters
-+by setting variables in the command line or in the environment.  Here
-+is an example:
-+
-+     ./configure CC=c99 CFLAGS=-g LIBS=-lposix
-+
-+   *Note Defining Variables::, for more details.
-+
-+Compiling For Multiple Architectures
-+====================================
-+
-+   You can compile the package for more than one kind of computer at the
-+same time, by placing the object files for each architecture in their
-+own directory.  To do this, you can use GNU `make'.  `cd' to the
-+directory where you want the object files and executables to go and run
-+the `configure' script.  `configure' automatically checks for the
-+source code in the directory that `configure' is in and in `..'.  This
-+is known as a "VPATH" build.
-+
-+   With a non-GNU `make', it is safer to compile the package for one
-+architecture at a time in the source code directory.  After you have
-+installed the package for one architecture, use `make distclean' before
-+reconfiguring for another architecture.
-+
-+   On MacOS X 10.5 and later systems, you can create libraries and
-+executables that work on multiple system types--known as "fat" or
-+"universal" binaries--by specifying multiple `-arch' options to the
-+compiler but only a single `-arch' option to the preprocessor.  Like
-+this:
-+
-+     ./configure CC="gcc -arch i386 -arch x86_64 -arch ppc -arch ppc64" \
-+                 CXX="g++ -arch i386 -arch x86_64 -arch ppc -arch ppc64" \
-+                 CPP="gcc -E" CXXCPP="g++ -E"
-+
-+   This is not guaranteed to produce working output in all cases, you
-+may have to build one architecture at a time and combine the results
-+using the `lipo' tool if you have problems.
-+
-+Installation Names
-+==================
-+
-+   By default, `make install' installs the package's commands under
-+`/usr/local/bin', include files under `/usr/local/include', etc.  You
-+can specify an installation prefix other than `/usr/local' by giving
-+`configure' the option `--prefix=PREFIX', where PREFIX must be an
-+absolute file name.
-+
-+   You can specify separate installation prefixes for
-+architecture-specific files and architecture-independent files.  If you
-+pass the option `--exec-prefix=PREFIX' to `configure', the package uses
-+PREFIX as the prefix for installing programs and libraries.
-+Documentation and other data files still use the regular prefix.
-+
-+   In addition, if you use an unusual directory layout you can give
-+options like `--bindir=DIR' to specify different values for particular
-+kinds of files.  Run `configure --help' for a list of the directories
-+you can set and what kinds of files go in them.  In general, the
-+default for these options is expressed in terms of `${prefix}', so that
-+specifying just `--prefix' will affect all of the other directory
-+specifications that were not explicitly provided.
-+
-+   The most portable way to affect installation locations is to pass the
-+correct locations to `configure'; however, many packages provide one or
-+both of the following shortcuts of passing variable assignments to the
-+`make install' command line to change installation locations without
-+having to reconfigure or recompile.
-+
-+   The first method involves providing an override variable for each
-+affected directory.  For example, `make install
-+prefix=/alternate/directory' will choose an alternate location for all
-+directory configuration variables that were expressed in terms of
-+`${prefix}'.  Any directories that were specified during `configure',
-+but not in terms of `${prefix}', must each be overridden at install
-+time for the entire installation to be relocated.  The approach of
-+makefile variable overrides for each directory variable is required by
-+the GNU Coding Standards, and ideally causes no recompilation.
-+However, some platforms have known limitations with the semantics of
-+shared libraries that end up requiring recompilation when using this
-+method, particularly noticeable in packages that use GNU Libtool.
-+
-+   The second method involves providing the `DESTDIR' variable.  For
-+example, `make install DESTDIR=/alternate/directory' will prepend
-+`/alternate/directory' before all installation names.  The approach of
-+`DESTDIR' overrides is not required by the GNU Coding Standards, and
-+does not work on platforms that have drive letters.  On the other hand,
-+it does better at avoiding recompilation issues, and works well even
-+when some directory options were not specified in terms of `${prefix}'
-+at `configure' time.
-+
-+Optional Features
-+=================
-+
-+   If the package supports it, you can cause programs to be installed
-+with an extra prefix or suffix on their names by giving `configure' the
-+option `--program-prefix=PREFIX' or `--program-suffix=SUFFIX'.
-+
-+   Some packages pay attention to `--enable-FEATURE' options to
-+`configure', where FEATURE indicates an optional part of the package.
-+They may also pay attention to `--with-PACKAGE' options, where PACKAGE
-+is something like `gnu-as' or `x' (for the X Window System).  The
-+`README' should mention any `--enable-' and `--with-' options that the
-+package recognizes.
-+
-+   For packages that use the X Window System, `configure' can usually
-+find the X include and library files automatically, but if it doesn't,
-+you can use the `configure' options `--x-includes=DIR' and
-+`--x-libraries=DIR' to specify their locations.
-+
-+   Some packages offer the ability to configure how verbose the
-+execution of `make' will be.  For these packages, running `./configure
-+--enable-silent-rules' sets the default to minimal output, which can be
-+overridden with `make V=1'; while running `./configure
-+--disable-silent-rules' sets the default to verbose, which can be
-+overridden with `make V=0'.
-+
-+Particular systems
-+==================
-+
-+   On HP-UX, the default C compiler is not ANSI C compatible.  If GNU
-+CC is not installed, it is recommended to use the following options in
-+order to use an ANSI C compiler:
-+
-+     ./configure CC="cc -Ae -D_XOPEN_SOURCE=500"
-+
-+and if that doesn't work, install pre-built binaries of GCC for HP-UX.
-+
-+   HP-UX `make' updates targets which have the same time stamps as
-+their prerequisites, which makes it generally unusable when shipped
-+generated files such as `configure' are involved.  Use GNU `make'
-+instead.
-+
-+   On OSF/1 a.k.a. Tru64, some versions of the default C compiler cannot
-+parse its `<wchar.h>' header file.  The option `-nodtk' can be used as
-+a workaround.  If GNU CC is not installed, it is therefore recommended
-+to try
-+
-+     ./configure CC="cc"
-+
-+and if that doesn't work, try
-+
-+     ./configure CC="cc -nodtk"
-+
-+   On Solaris, don't put `/usr/ucb' early in your `PATH'.  This
-+directory contains several dysfunctional programs; working variants of
-+these programs are available in `/usr/bin'.  So, if you need `/usr/ucb'
-+in your `PATH', put it _after_ `/usr/bin'.
-+
-+   On Haiku, software installed for all users goes in `/boot/common',
-+not `/usr/local'.  It is recommended to use the following options:
-+
-+     ./configure --prefix=/boot/common
-+
-+Specifying the System Type
-+==========================
-+
-+   There may be some features `configure' cannot figure out
-+automatically, but needs to determine by the type of machine the package
-+will run on.  Usually, assuming the package is built to be run on the
-+_same_ architectures, `configure' can figure that out, but if it prints
-+a message saying it cannot guess the machine type, give it the
-+`--build=TYPE' option.  TYPE can either be a short name for the system
-+type, such as `sun4', or a canonical name which has the form:
-+
-+     CPU-COMPANY-SYSTEM
-+
-+where SYSTEM can have one of these forms:
-+
-+     OS
-+     KERNEL-OS
-+
-+   See the file `config.sub' for the possible values of each field.  If
-+`config.sub' isn't included in this package, then this package doesn't
-+need to know the machine type.
-+
-+   If you are _building_ compiler tools for cross-compiling, you should
-+use the option `--target=TYPE' to select the type of system they will
-+produce code for.
-+
-+   If you want to _use_ a cross compiler, that generates code for a
-+platform different from the build platform, you should specify the
-+"host" platform (i.e., that on which the generated programs will
-+eventually be run) with `--host=TYPE'.
-+
-+Sharing Defaults
-+================
-+
-+   If you want to set default values for `configure' scripts to share,
-+you can create a site shell script called `config.site' that gives
-+default values for variables like `CC', `cache_file', and `prefix'.
-+`configure' looks for `PREFIX/share/config.site' if it exists, then
-+`PREFIX/etc/config.site' if it exists.  Or, you can set the
-+`CONFIG_SITE' environment variable to the location of the site script.
-+A warning: not all `configure' scripts look for a site script.
-+
-+Defining Variables
-+==================
-+
-+   Variables not defined in a site shell script can be set in the
-+environment passed to `configure'.  However, some packages may run
-+configure again during the build, and the customized values of these
-+variables may be lost.  In order to avoid this problem, you should set
-+them in the `configure' command line, using `VAR=value'.  For example:
-+
-+     ./configure CC=/usr/local2/bin/gcc
-+
-+causes the specified `gcc' to be used as the C compiler (unless it is
-+overridden in the site shell script).
-+
-+Unfortunately, this technique does not work for `CONFIG_SHELL' due to
-+an Autoconf bug.  Until the bug is fixed you can use this workaround:
-+
-+     CONFIG_SHELL=/bin/bash /bin/bash ./configure CONFIG_SHELL=/bin/bash
-+
-+`configure' Invocation
-+======================
-+
-+   `configure' recognizes the following options to control how it
-+operates.
-+
-+`--help'
-+`-h'
-+     Print a summary of all of the options to `configure', and exit.
-+
-+`--help=short'
-+`--help=recursive'
-+     Print a summary of the options unique to this package's
-+     `configure', and exit.  The `short' variant lists options used
-+     only in the top level, while the `recursive' variant lists options
-+     also present in any nested packages.
-+
-+`--version'
-+`-V'
-+     Print the version of Autoconf used to generate the `configure'
-+     script, and exit.
-+
-+`--cache-file=FILE'
-+     Enable the cache: use and save the results of the tests in FILE,
-+     traditionally `config.cache'.  FILE defaults to `/dev/null' to
-+     disable caching.
-+
-+`--config-cache'
-+`-C'
-+     Alias for `--cache-file=config.cache'.
-+
-+`--quiet'
-+`--silent'
-+`-q'
-+     Do not print messages saying which checks are being made.  To
-+     suppress all normal output, redirect it to `/dev/null' (any error
-+     messages will still be shown).
-+
-+`--srcdir=DIR'
-+     Look for the package's source code in directory DIR.  Usually
-+     `configure' can determine that directory automatically.
-+
-+`--prefix=DIR'
-+     Use DIR as the installation prefix.  *note Installation Names::
-+     for more details, including other options available for fine-tuning
-+     the installation locations.
-+
-+`--no-create'
-+`-n'
-+     Run the configure checks, but stop before creating any output
-+     files.
-+
-+`configure' also accepts some other, not widely useful, options.  Run
-+`configure --help' for more details.
-+
+diff --git a/libtaku/Makefile.am b/libtaku/Makefile.am
+index 28f5da4..c457d9e 100644
+--- a/libtaku/Makefile.am
++++ b/libtaku/Makefile.am
+@@ -10,7 +10,6 @@ libtaku_a_SOURCES = \
+ 	taku-launcher-tile.c taku-launcher-tile.h \
+ 	taku-menu.h \
+ 	taku-menu-desktop.c \
+-	taku-table.c taku-table.h \
+ 	taku-tile.c taku-tile.h \
+ 	xutil.c xutil.h \
+ 	taku-queue-source.c taku-queue-source.h
+diff --git a/libtaku/taku-launcher-tile.c b/libtaku/taku-launcher-tile.c
+index 58deafb..b453eac 100644
+--- a/libtaku/taku-launcher-tile.c
++++ b/libtaku/taku-launcher-tile.c
+@@ -104,7 +104,7 @@ taku_launcher_tile_finalize (GObject *object)
+ }
+ 
+ /*
+- * Timeout callback to restore the state of the widget after the clicked state
++ * Timeout callback to restore the state of the widget after the activated state
+  * change.
+  */
+ static gboolean
+@@ -114,8 +114,8 @@ reset_state (gpointer data)
+   return FALSE;
+ }
+ 
+-static void
+-taku_launcher_tile_clicked (GtkButton *tile, gpointer user_data)
++void
++taku_launcher_tile_activate (TakuLauncherTile *tile)
+ {
+   TakuLauncherTile *launcher = TAKU_LAUNCHER_TILE (tile);
+ 
+@@ -160,8 +160,6 @@ static void
+ taku_launcher_tile_init (TakuLauncherTile *self)
+ {
+   self->priv = GET_PRIVATE (self);
+-
+-  g_signal_connect (self, "clicked", G_CALLBACK (taku_launcher_tile_clicked), NULL);
+ }
+ 
+ GtkWidget *
+diff --git a/libtaku/taku-launcher-tile.h b/libtaku/taku-launcher-tile.h
+index 62e8c74..c1b8cf9 100644
+--- a/libtaku/taku-launcher-tile.h
++++ b/libtaku/taku-launcher-tile.h
+@@ -72,6 +72,8 @@ GtkWidget* taku_launcher_tile_new (void);
+ GtkWidget* taku_launcher_tile_new_from_item (TakuMenuItem *item);
+ TakuMenuItem* taku_launcher_tile_get_item (TakuLauncherTile *tile);
+ 
++void taku_launcher_tile_activate (TakuLauncherTile *tile);
++
+ void taku_launcher_tile_add_group (TakuLauncherTile *tile, TakuLauncherCategory *category);
+ 
+ void taku_launcher_tile_remove_group (TakuLauncherTile *tile, TakuLauncherCategory *category);
+diff --git a/libtaku/taku-table.c b/libtaku/taku-table.c
+deleted file mode 100644
+index fa7da18..0000000
+--- a/libtaku/taku-table.c
++++ /dev/null
+@@ -1,533 +0,0 @@
+-/*
+- * Copyright (C) 2007 OpenedHand Ltd
+- *
+- * This program is free software; you can redistribute it and/or modify it under
+- * the terms of the GNU General Public License as published by the Free Software
+- * Foundation; either version 2 of the License, or (at your option) any later
+- * version.
+- *
+- * This program is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+- * details.
+- *
+- * You should have received a copy of the GNU General Public License along with
+- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+- * Place - Suite 330, Boston, MA 02111-1307, USA.
+- */
+-
+-#include <config.h>
+-#include <gtk/gtk.h>
+-#include <string.h>
+-#include "taku-table.h"
+-#include "taku-tile.h"
+-
+-G_DEFINE_TYPE (TakuTable, taku_table, GTK_TYPE_GRID);
+-
+-#define GET_PRIVATE(o) \
+-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), TAKU_TYPE_TABLE, TakuTablePrivate))
+-
+-#define DEFAULT_WIDTH 30
+-
+-struct _TakuTablePrivate
+-{
+-  int columns;
+-
+-  int x, y;
+-  gboolean reflowing;
+-
+-  GSequence *seq;
+-
+-  gpointer filter;
+-
+-  GList *dummies;
+-
+-  GtkIMContext *im_context;
+-};
+-
+-/* Compare two tiles lexographically */
+-static int
+-compare_tiles (gconstpointer a,
+-               gconstpointer b,
+-               gpointer      user_data)
+-{
+-  const char *ka, *kb;
+-
+-  ka = taku_tile_get_sort_key (TAKU_TILE (a));
+-  kb = taku_tile_get_sort_key (TAKU_TILE (b));
+-
+-  if (ka != NULL && kb == NULL)
+-    return 1;
+-  else if (ka == NULL && kb != NULL)
+-    return -1;
+-  else if (ka == NULL && kb == NULL)
+-    return 0;
+-  else
+-    return strcmp (ka, kb);
+-}
+-
+-/* Compare two tiles exactly */
+-static int
+-compare_tiles_exact (gconstpointer a,
+-                     gconstpointer b,
+-                     gpointer      user_data)
+-{
+-  int ret = compare_tiles (a, b, user_data);
+-
+-  if (ret == 0) {
+-    if (a < b)
+-      ret = -1;
+-    else if (a > b)
+-      ret = 1;
+-  }
+-
+-  return ret;
+-}
+-
+-/* Normalize strings for case and representation insensitive comparison */
+-static char *
+-utf8_normalize_and_casefold (const char *str)
+-{
+-  char *norm = g_utf8_normalize (str, -1, G_NORMALIZE_ALL);
+-  char *fold = g_utf8_casefold (str, -1);
+-  g_free (norm);
+-  return fold;
+-}
+-
+-/* Process keypress: Focus next tile which's primary text starts with the
+- * entered character */
+-static void
+-im_context_commit_cb (GtkIMContext *context,
+-                      const char   *str,
+-                      gpointer      user_data)
+-{
+-  TakuTable *table = TAKU_TABLE (user_data);
+-  GSequenceIter *begin_iter, *iter;
+-  GtkWidget *toplevel, *focused;
+-  char *norm_str;
+-
+-  norm_str = utf8_normalize_and_casefold (str);
+-
+-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (table));
+-  focused = gtk_window_get_focus (GTK_WINDOW (toplevel));
+-  if (focused)
+-    begin_iter = g_sequence_search (table->priv->seq, 
+-                                      focused, compare_tiles, NULL);
+-  else
+-    begin_iter = g_sequence_get_begin_iter (table->priv->seq);
+-
+-  iter = begin_iter;
+-  do {
+-    TakuTile *tile;
+-    const char *text;
+-    char *norm_text;
+-
+-    if (g_sequence_iter_is_end (iter)) {
+-      iter = g_sequence_get_begin_iter (table->priv->seq);
+-      if (iter == begin_iter)
+-        break;
+-    }
+-
+-    tile = g_sequence_get (iter);
+-    if (!gtk_widget_get_visible (GTK_WIDGET (tile)))
+-      goto next;
+-
+-    text = taku_tile_get_search_key (tile);
+-    if (text == NULL)
+-      goto next;
+-
+-    norm_text = utf8_normalize_and_casefold (text);
+-
+-    if (strncmp (norm_str, norm_text, strlen (norm_str)) == 0) {
+-      g_free (norm_text);
+-      gtk_widget_grab_focus (GTK_WIDGET (tile));
+-      break;
+-    }
+-
+-    g_free (norm_text);
+-
+-next:
+-    iter = g_sequence_iter_next (iter);
+-  } while (iter != begin_iter);
+-
+-  g_free (norm_str);
+-}
+-
+-static gboolean
+-on_tile_focus (GtkWidget *widget, GdkEventFocus *event, gpointer user_data)
+-{
+-  GtkWidget *container = GTK_WIDGET (user_data);
+-  GtkWidget *viewport = gtk_widget_get_parent (container);
+-  GtkAllocation widget_alloc, viewport_alloc;
+-  GtkAdjustment *adjustment;
+-
+-  gtk_widget_get_allocation (widget, &widget_alloc);
+-  gtk_widget_get_allocation (viewport, &viewport_alloc);
+-
+-  /* If the lowest point of the tile is lower than the height of the viewport,
+-   * or if the top of the tile is higher than the viewport is... */
+-  if (widget_alloc.y +
+-      widget_alloc.height > viewport_alloc.height ||
+-      widget_alloc.y < viewport_alloc.height) {
+-    adjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (viewport));
+-
+-    gtk_adjustment_clamp_page (adjustment,
+-                               widget_alloc.y,
+-                               widget_alloc.y +
+-                               widget_alloc.height);
+-  }
+-
+-  return FALSE;
+-}
+-
+-static void
+-reflow_foreach (gpointer widget, gpointer user_data)
+-{
+-  TakuTile *tile = TAKU_TILE (widget);
+-  TakuTable *table = TAKU_TABLE (user_data);
+-  GtkContainer *container = GTK_CONTAINER (user_data);
+-
+-  /* Filter out unwanted items */
+-  if (table->priv->filter != NULL) {
+-    if (!taku_tile_matches_filter (tile, table->priv->filter)) {
+-      gtk_widget_set_child_visible (widget, FALSE);
+-      return;
+-    }
+-  }
+-
+-  /* We want this item. Align. */
+-  gtk_widget_set_child_visible (widget, TRUE);
+-
+-  gtk_container_child_set (container, GTK_WIDGET (widget),
+-                           "left-attach", table->priv->x,
+-                           "top-attach", table->priv->y,
+-                           "width", 1,
+-                           "height", 1,
+-                           NULL);
+-  if (++table->priv->x >= table->priv->columns) {
+-    table->priv->x = 0;
+-    table->priv->y++;
+-  }
+-}
+-
+-static void
+-reflow (TakuTable *table)
+-{
+-  int i;
+-
+-  /* Only reflow when necessary */
+-  if (!gtk_widget_get_realized (GTK_WIDGET (table)))
+-    return;
+-
+-  /* Remove dummies */
+-  while (table->priv->dummies) {
+-    /* Call into the parent class straight away in order to bypass our
+-     * own remove implementation. */
+-    (* GTK_CONTAINER_CLASS (taku_table_parent_class)->remove)
+-      (GTK_CONTAINER (table), table->priv->dummies->data);
+-
+-    table->priv->dummies = g_list_delete_link (table->priv->dummies,
+-                                               table->priv->dummies);
+-  }
+-
+-  /* Reflow children */
+-  table->priv->x = table->priv->y = 0;
+-
+-  table->priv->reflowing = TRUE;
+-  g_sequence_foreach (table->priv->seq, reflow_foreach, table);
+-  table->priv->reflowing = FALSE;
+-
+-  /* Add dummy items if necessary to get required amount of columns */
+-  for (i = g_sequence_get_length (table->priv->seq);
+-       i < table->priv->columns; i++) {
+-    GtkWidget *dummy = gtk_label_new (NULL);
+-    gtk_widget_set_child_visible (dummy, TRUE);
+-
+-    gtk_grid_attach (GTK_GRID (table), dummy,
+-                     table->priv->x, table->priv->y, 1, 1);
+-    table->priv->x++;
+-
+-    table->priv->dummies = g_list_prepend (table->priv->dummies, dummy);
+-  }
+-}
+-
+-/*
+- * Implementation of gtk_container_add, so that applications can just call that
+- * and this class manages the position.
+- */
+-static void
+-container_add (GtkContainer *container, GtkWidget *widget)
+-{
+-  TakuTable *self = TAKU_TABLE (container);
+-
+-  g_return_if_fail (self);
+-  g_return_if_fail (TAKU_IS_TILE (widget));
+-
+-  g_sequence_insert_sorted (self->priv->seq, widget, compare_tiles, NULL);
+-
+-  gtk_grid_attach (GTK_GRID (container), widget, 0, 1, 1, 1);
+-
+-  reflow (self);
+-
+-  g_signal_connect (widget, "focus-in-event", G_CALLBACK (on_tile_focus), self);
+-}
+-
+-static void
+-container_remove (GtkContainer *container, GtkWidget *widget)
+-{
+-  TakuTable *self = TAKU_TABLE (container);
+-  GSequenceIter *iter;
+-
+-  g_return_if_fail (self);
+-
+-  /* Find the appropriate iter first */
+-  iter = g_sequence_search (self->priv->seq,
+-                              widget, compare_tiles_exact, NULL);
+-  iter = g_sequence_iter_prev (iter);
+-  if (g_sequence_iter_is_end (iter) || g_sequence_get (iter) != widget) {
+-    /* We have here a dummy, or something that is not contained */
+-    (* GTK_CONTAINER_CLASS (taku_table_parent_class)->remove)
+-                                                (container, widget);
+-
+-    return;
+-  }
+-
+-  /* And then remove it */
+-  g_sequence_remove (iter);
+-
+-  (* GTK_CONTAINER_CLASS (taku_table_parent_class)->remove) (container, widget);
+-
+-  reflow (self);
+-}
+-
+-static void
+-calculate_columns (GtkWidget *widget)
+-{
+-  TakuTable *table = TAKU_TABLE (widget);
+-  PangoContext *context;
+-  PangoFontMetrics *metrics;
+-  int table_width, width, new_cols;
+-  guint cell_text_width = DEFAULT_WIDTH;
+-
+-  table_width = gtk_widget_get_allocated_width (widget);
+-
+-  /* If we are currently reflowing the tiles, or the final allocation hasn't
+-     been decided yet, return */
+-  if (!gtk_widget_get_realized (widget) ||
+-      table->priv->reflowing ||
+-      table_width <= 1) {
+-    return;
+-  }
+-  context = gtk_widget_get_pango_context (widget);
+-  metrics = pango_context_get_metrics (context, gtk_widget_get_style (widget)->font_desc, NULL);
+-
+-  gtk_widget_style_get (widget, "cell-text-width", &cell_text_width, NULL);
+-
+-  width = PANGO_PIXELS
+-          (cell_text_width * pango_font_metrics_get_approximate_char_width (metrics));
+-  new_cols = MAX (1, table_width / width);
+-  if (table->priv->columns != new_cols) {
+-    table->priv->columns = new_cols;
+-
+-    reflow (table);
+-  }
+-
+-  pango_font_metrics_unref (metrics);
+-}
+-
+-static void
+-taku_table_realize (GtkWidget *widget)
+-{
+-  TakuTable *self = TAKU_TABLE (widget);
+-
+-  (* GTK_WIDGET_CLASS (taku_table_parent_class)->realize) (widget);
+-
+-  gtk_im_context_set_client_window (self->priv->im_context, gtk_widget_get_window (widget));
+-
+-  calculate_columns (widget);
+-}
+-
+-static void
+-taku_table_unrealize (GtkWidget *widget)
+-{
+-  TakuTable *self = TAKU_TABLE (widget);
+-
+-  gtk_im_context_set_client_window (self->priv->im_context, NULL);
+-
+-  (* GTK_WIDGET_CLASS (taku_table_parent_class)->unrealize) (widget);
+-}
+-
+-static void
+-on_size_allocate (GtkWidget     *widget,
+-                  GtkAllocation *allocation,
+-                  gpointer       user_data)
+-{
+-  calculate_columns (widget);
+-}
+-
+-static void
+-taku_table_style_set (GtkWidget *widget,
+-                      GtkStyle  *previous_style)
+-{
+-  (* GTK_WIDGET_CLASS (taku_table_parent_class)->style_set)
+-    (widget, previous_style);
+-
+-  calculate_columns (widget);
+-}
+-
+-static int
+-taku_table_focus_in_event (GtkWidget *widget, GdkEventFocus *event)
+-{
+-  TakuTable *self = TAKU_TABLE (widget);
+-
+-  gtk_im_context_focus_in (self->priv->im_context);
+-
+-  (* GTK_WIDGET_CLASS (taku_table_parent_class)->focus_in_event)
+-    (widget, event);
+-
+-  return FALSE;
+-}
+-
+-static int
+-taku_table_focus_out_event (GtkWidget *widget, GdkEventFocus *event)
+-{
+-  TakuTable *self = TAKU_TABLE (widget);
+-
+-  gtk_im_context_focus_out (self->priv->im_context);
+-
+-  (* GTK_WIDGET_CLASS (taku_table_parent_class)->focus_out_event)
+-    (widget, event);
+-
+-  return FALSE;
+-}
+-
+-static gboolean
+-taku_table_key_press_event (GtkWidget   *widget,
+-                            GdkEventKey *event)
+-{
+-  TakuTable *table = TAKU_TABLE (widget);
+-
+-  if (gtk_im_context_filter_keypress (table->priv->im_context, event))
+-    return TRUE;
+-
+-  return (* GTK_WIDGET_CLASS (taku_table_parent_class)->key_press_event)
+-           (widget, event);
+-}
+-
+-static void
+-taku_table_grab_focus (GtkWidget *widget)
+-{
+-  TakuTable *table = TAKU_TABLE (widget);
+-  GSequenceIter *iter;
+-
+-  iter = g_sequence_get_begin_iter (table->priv->seq);
+-  while (!g_sequence_iter_is_end (iter)) {
+-    GtkWidget *widget = g_sequence_get (iter);
+-
+-    if (gtk_widget_get_visible (widget)) {
+-      gtk_widget_grab_focus (widget);
+-
+-      break;
+-    }
+-
+-    iter = g_sequence_iter_next (iter);
+-  }
+-}
+-
+-static void
+-taku_table_finalize (GObject *object)
+-{
+-  TakuTable *table = TAKU_TABLE (object);
+-
+-  g_sequence_free (table->priv->seq);
+-
+-  g_list_free (table->priv->dummies);
+-
+-  g_object_unref (table->priv->im_context);
+-
+-  G_OBJECT_CLASS (taku_table_parent_class)->finalize (object);
+-}
+-
+-static void
+-taku_table_class_init (TakuTableClass *klass)
+-{
+-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+-  GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
+-
+-  g_type_class_add_private (klass, sizeof (TakuTablePrivate));
+-
+-  object_class->finalize     = taku_table_finalize;
+-
+-  widget_class->realize         = taku_table_realize;
+-  widget_class->unrealize       = taku_table_unrealize;
+-  widget_class->style_set       = taku_table_style_set;
+-  widget_class->focus_in_event  = taku_table_focus_in_event;
+-  widget_class->focus_out_event = taku_table_focus_out_event;
+-  widget_class->key_press_event = taku_table_key_press_event;
+-  widget_class->grab_focus      = taku_table_grab_focus;
+-
+-  container_class->add    = container_add;
+-  container_class->remove = container_remove;
+-
+-  gtk_widget_class_install_style_property (widget_class, g_param_spec_uint
+-                                           ("cell-text-width", "cell text width",
+-                                            "Width of the tiles in characters",
+-                                            0, G_MAXUINT, DEFAULT_WIDTH,
+-                                            G_PARAM_READABLE));
+-
+-}
+-
+-static void
+-taku_table_init (TakuTable *self)
+-{
+-  self->priv = GET_PRIVATE (self);
+-
+-  g_signal_connect (self, "size-allocate", G_CALLBACK (on_size_allocate), NULL);
+-
+-  g_object_set (self,
+-                "border-width", 6,
+-                "row-spacing", 6,
+-                "column-spacing", 6,
+-                "row-homogeneous", TRUE,
+-                "column-homogeneous", TRUE,
+-                NULL);
+-
+-  self->priv->columns = 0;
+-
+-  self->priv->reflowing = FALSE;
+-
+-  self->priv->seq = g_sequence_new (NULL);
+-
+-  self->priv->filter = NULL;
+-
+-  self->priv->dummies = NULL;
+-
+-  self->priv->im_context = gtk_im_multicontext_new ();
+-  g_signal_connect (self->priv->im_context, "commit",
+-                    G_CALLBACK (im_context_commit_cb), self);
+-}
+-
+-GtkWidget *
+-taku_table_new (void)
+-{
+-  return g_object_new (TAKU_TYPE_TABLE, NULL);
+-}
+-
+-void
+-taku_table_set_filter (TakuTable *table, gpointer filter)
+-{
+-  g_return_if_fail (TAKU_IS_TABLE (table));
+-
+-  table->priv->filter = filter;
+-
+-  reflow (table);
+-}
+-
+-gpointer
+-taku_table_get_filter (TakuTable *table)
+-{
+-  g_return_val_if_fail (TAKU_IS_TABLE (table), NULL);
+-
+-  return table->priv->filter;
+-}
+diff --git a/libtaku/taku-table.h b/libtaku/taku-table.h
+deleted file mode 100644
+index 585c5d4..0000000
+--- a/libtaku/taku-table.h
++++ /dev/null
+@@ -1,69 +0,0 @@
+-/*
+- * Copyright (C) 2007 OpenedHand Ltd
+- *
+- * This program is free software; you can redistribute it and/or modify it under
+- * the terms of the GNU General Public License as published by the Free Software
+- * Foundation; either version 2 of the License, or (at your option) any later
+- * version.
+- *
+- * This program is distributed in the hope that it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+- * details.
+- *
+- * You should have received a copy of the GNU General Public License along with
+- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+- * Place - Suite 330, Boston, MA 02111-1307, USA.
+- */
+-
+-#ifndef _TAKU_TABLE
+-#define _TAKU_TABLE
+-
+-#include <gtk/gtk.h>
+-
+-G_BEGIN_DECLS
+-
+-#define TAKU_TYPE_TABLE taku_table_get_type()
+-
+-#define TAKU_TABLE(obj) \
+-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
+-  TAKU_TYPE_TABLE, TakuTable))
+-
+-#define TAKU_TABLE_CLASS(klass) \
+-  (G_TYPE_CHECK_CLASS_CAST ((klass), \
+-  TAKU_TYPE_TABLE, TakuTableClass))
+-
+-#define TAKU_IS_TABLE(obj) \
+-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
+-  TAKU_TYPE_TABLE))
+-
+-#define TAKU_IS_TABLE_CLASS(klass) \
+-  (G_TYPE_CHECK_CLASS_TYPE ((klass), \
+-  TAKU_TYPE_TABLE))
+-
+-#define TAKU_TABLE_GET_CLASS(obj) \
+-  (G_TYPE_INSTANCE_GET_CLASS ((obj), \
+-  TAKU_TYPE_TABLE, TakuTableClass))
+-
+-typedef struct _TakuTablePrivate TakuTablePrivate;
+-
+-typedef struct {
+-  GtkGrid parent;
+-  TakuTablePrivate *priv;
+-} TakuTable;
+-
+-typedef struct {
+-  GtkGridClass parent_class;
+-} TakuTableClass;
+-
+-GType taku_table_get_type (void);
+-
+-GtkWidget* taku_table_new (void);
+-
+-void taku_table_set_filter (TakuTable *table, gpointer filter);
+-
+-gpointer taku_table_get_filter (TakuTable *table);
+-
+-G_END_DECLS
+-
+-#endif /* _TAKU_TABLE */
+diff --git a/libtaku/taku-tile.c b/libtaku/taku-tile.c
+index 974a164..64dd3d7 100644
+--- a/libtaku/taku-tile.c
++++ b/libtaku/taku-tile.c
+@@ -25,7 +25,7 @@
+ #include <gtk/gtk.h>
+ #include "taku-tile.h"
+ 
+-G_DEFINE_ABSTRACT_TYPE (TakuTile, taku_tile, GTK_TYPE_BUTTON);
++G_DEFINE_ABSTRACT_TYPE (TakuTile, taku_tile, GTK_TYPE_BIN);
+ 
+ static void
+ taku_tile_class_init (TakuTileClass *klass)
+diff --git a/src/desktop.c b/src/desktop.c
+index 0b055c8..ddb2786 100644
+--- a/src/desktop.c
++++ b/src/desktop.c
+@@ -26,7 +26,6 @@
+ #include <ctype.h>
+ 
+ #include "libtaku/taku-menu.h"
+-#include "libtaku/taku-table.h"
+ #include "libtaku/taku-icon-tile.h"
+ #include "libtaku/taku-launcher-tile.h"
+ #include "taku-category-bar.h"
+@@ -37,7 +36,7 @@
+ 
+ static GList *categories;
+ static TakuCategoryBar *bar;
+-static TakuTable *table;
++static GtkWidget *table;
+ static TakuMenu *menu;
+ static GtkWidget *fixed, *box;
+ 
+@@ -88,16 +87,14 @@ focus_cb (GtkWidget *widget, GtkDirectionType direction, gpointer user_data)
+ 
+   if (direction == GTK_DIR_LEFT) {
+     taku_category_bar_previous (bar);
+-
+-    gtk_widget_grab_focus (GTK_WIDGET (table));
+-
++    gtk_widget_child_focus (table, GTK_DIR_LEFT);
+     return TRUE;
+   } else if (direction == GTK_DIR_RIGHT) {
+     taku_category_bar_next (bar);
+-
+-    gtk_widget_grab_focus (GTK_WIDGET (table));
+-
++    gtk_widget_child_focus (table, GTK_DIR_RIGHT);
+     return TRUE;
++  } else if (direction == GTK_DIR_UP) {
++    gtk_flow_box_unselect_all (GTK_FLOW_BOX (table));
+   }
+ 
+   return FALSE;
+@@ -140,6 +137,56 @@ workarea_changed (int x, int y, int w, int h)
+   gtk_fixed_move (GTK_FIXED (fixed), box, x, y);
+ }
+ 
++static void table_size_allocate_cb (GtkWidget    *table,
++                                    GdkRectangle *allocation,
++                                    gpointer      user_data)
++{
++  gtk_flow_box_set_min_children_per_line (GTK_FLOW_BOX (table), allocation->width / 200); 
++}
++
++static gboolean
++table_filter (GtkFlowBoxChild *child, gpointer user_data)
++{
++  TakuTile *tile = TAKU_TILE (gtk_bin_get_child (GTK_BIN (child)));
++
++  return taku_tile_matches_filter (tile, taku_category_bar_get_current (bar));
++}
++
++static gint
++table_sort (GtkFlowBoxChild *child1,
++            GtkFlowBoxChild *child2,
++            gpointer user_data)
++{
++  GtkWidget *a, *b;
++  const char *ka, *kb;
++
++  a = gtk_bin_get_child (GTK_BIN(child1));
++  b = gtk_bin_get_child (GTK_BIN(child2));
++  ka = taku_tile_get_sort_key (TAKU_TILE (a));
++  kb = taku_tile_get_sort_key (TAKU_TILE (b));
++
++  if (ka != NULL && kb == NULL)
++    return 1;
++  else if (ka == NULL && kb != NULL)
++    return -1;
++  else if (ka == NULL && kb == NULL)
++    return 0;
++  else
++    return strcmp (ka, kb);
++}
++
++static void
++table_child_activated_cb (GtkFlowBox *table,
++                          GtkFlowBoxChild *child,
++                          gpointer userdata)
++{
++  GtkWidget *tile;
++
++  tile = gtk_bin_get_child (GTK_BIN (child));
++  if (TAKU_IS_LAUNCHER_TILE (tile))
++    taku_launcher_tile_activate (TAKU_LAUNCHER_TILE (tile));
++}
++
+ GtkWidget *
+ create_desktop (DesktopMode mode)
+ {
+@@ -157,6 +204,10 @@ create_desktop (DesktopMode mode)
+ 
+   screen = gtk_widget_get_screen (window);
+ 
++  /* Main VBox */
++  box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
++  gtk_widget_show (box);
++
+   switch (mode) {
+   case MODE_DESKTOP:
+     gtk_window_fullscreen (GTK_WINDOW (window));
+@@ -170,34 +221,32 @@ create_desktop (DesktopMode mode)
+     height = gdk_screen_get_height (screen);
+     gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+     gtk_window_move (GTK_WINDOW (window), 0, 0);
++
++    /* This fixed is used to position the desktop itself in the work area */
++    fixed = gtk_fixed_new ();
++    gtk_widget_show (fixed);
++    gtk_container_add (GTK_CONTAINER (window), fixed);
++    gtk_fixed_put (GTK_FIXED (fixed), box, 0, 0);
++
++    /* Set a sane default in case there is no work area defined yet */
++    workarea_changed (0, 0, width, height);
++    if (mode == MODE_DESKTOP || mode == MODE_TITLEBAR) {
++      x_monitor_workarea (screen, workarea_changed);
++    }
++
+     break;
+   case MODE_WINDOW:
+     width = 640;
+     height = 480;
+     gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+     g_signal_connect (window, "delete-event", G_CALLBACK (gtk_main_quit), NULL);
+-    /* TODO: fake workarea_changed calls on window resize */
++    gtk_container_add (GTK_CONTAINER (window), box);
+     break;
+   default:
+     g_assert_not_reached ();
+   }
+   gtk_widget_show (window);
+ 
+-  /* This fixed is used to position the desktop itself in the work area */
+-  fixed = gtk_fixed_new ();
+-  gtk_widget_show (fixed);
+-  gtk_container_add (GTK_CONTAINER (window), fixed);
+-
+-  /* Main VBox */
+-  box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+-  gtk_widget_show (box);
+-  gtk_fixed_put (GTK_FIXED (fixed), box, 0, 0);
+-
+-  /* Set a sane default in case there is no work area defined yet */
+-  workarea_changed (0, 0, width, height);
+-  if (mode == MODE_DESKTOP || mode == MODE_TITLEBAR) {
+-    x_monitor_workarea (screen, workarea_changed);
+-  }
+ 
+   /* Navigation bar */
+   bar = TAKU_CATEGORY_BAR (taku_category_bar_new ());
+@@ -212,20 +261,36 @@ create_desktop (DesktopMode mode)
+   gtk_box_pack_start (GTK_BOX (box), scrolled, TRUE, TRUE, 0);
+ 
+   viewport = gtk_viewport_new (NULL, NULL);
++  gtk_widget_set_valign (viewport, GTK_ALIGN_START);
+   gtk_viewport_set_shadow_type (GTK_VIEWPORT (viewport),
+                                 GTK_SHADOW_NONE);
+   gtk_widget_show (viewport);
+   gtk_container_add (GTK_CONTAINER (scrolled), viewport);
+ 
+-  table = TAKU_TABLE (taku_table_new ());
++  table = gtk_flow_box_new ();
++  gtk_flow_box_set_homogeneous (GTK_FLOW_BOX (table), TRUE);
++  gtk_flow_box_set_row_spacing (GTK_FLOW_BOX (table), 6);
++  gtk_flow_box_set_column_spacing (GTK_FLOW_BOX (table), 6);
++  g_signal_connect (table, "child-activated",
++                    G_CALLBACK (table_child_activated_cb), NULL);
++  g_signal_connect (table, "size-allocate",
++                    G_CALLBACK (table_size_allocate_cb), NULL);
+   g_signal_connect_after (table, "focus", G_CALLBACK (focus_cb), NULL);
+-  gtk_widget_show (GTK_WIDGET (table));
+-  gtk_container_add (GTK_CONTAINER (viewport), GTK_WIDGET (table));
++  gtk_flow_box_set_filter_func (GTK_FLOW_BOX (table),
++                                (GtkFlowBoxFilterFunc)table_filter,
++                                bar, NULL);
++  gtk_flow_box_set_sort_func (GTK_FLOW_BOX (table),
++                              (GtkFlowBoxSortFunc)table_sort,
++                              NULL, NULL);
++  gtk_widget_show (table);
++  gtk_container_add (GTK_CONTAINER (viewport), table);
++  gtk_flow_box_set_vadjustment (GTK_FLOW_BOX (table),
++                                gtk_scrollable_get_vadjustment (GTK_SCROLLABLE(viewport)));
+ 
+   menu = taku_menu_get_default ();
+   categories = taku_menu_get_categories (menu);
+ 
+-  taku_category_bar_set_table (bar, table);
++  taku_category_bar_set_table (bar, GTK_FLOW_BOX (table));
+   taku_category_bar_set_categories (bar, categories);
+ 
+   g_signal_connect (menu, "item-added", G_CALLBACK (on_item_added), NULL);
+diff --git a/src/taku-category-bar.c b/src/taku-category-bar.c
+index e5c5533..93bda61 100644
+--- a/src/taku-category-bar.c
++++ b/src/taku-category-bar.c
+@@ -21,12 +21,11 @@
+ #include <glib/gi18n.h>
+ #include <gtk/gtk.h>
+ 
+-#include "libtaku/taku-table.h"
+ #include "libtaku/taku-launcher-tile.h"
+ 
+ #include "taku-category-bar.h"
+ 
+-G_DEFINE_TYPE (TakuCategoryBar, taku_category_bar, GTK_TYPE_HBOX);
++G_DEFINE_TYPE (TakuCategoryBar, taku_category_bar, GTK_TYPE_BOX);
+ 
+ #define GET_PRIVATE(o) \
+   (G_TYPE_INSTANCE_GET_PRIVATE ((o), TAKU_TYPE_CATEGORY_BAR, TakuCategoryBarPrivate))
+@@ -34,7 +33,7 @@ G_DEFINE_TYPE (TakuCategoryBar, taku_category_bar, GTK_TYPE_HBOX);
+ #define LIST_DATA "taku-category-bar:list"
+ 
+ typedef struct {
+-  TakuTable *table;
++  GtkFlowBox *table;
+   GList *categories;
+   GList *current_category;
+   GtkWidget *prev_button, *popup_button, *next_button;
+@@ -78,9 +77,8 @@ set_category (TakuCategoryBar *bar, GList *category_list_item)
+   category = category_list_item->data;
+ 
+   gtk_label_set_text (priv->switcher_label, category->name);
+-  taku_table_set_filter (priv->table, category);
+-
+   priv->current_category = category_list_item;
++  gtk_flow_box_invalidate_filter (priv->table);
+ }
+ 
+ static void
+@@ -285,12 +283,12 @@ taku_category_bar_new (void)
+ }
+ 
+ void
+-taku_category_bar_set_table (TakuCategoryBar *bar, TakuTable *table)
++taku_category_bar_set_table (TakuCategoryBar *bar, GtkFlowBox *table)
+ {
+   TakuCategoryBarPrivate *priv;
+ 
+   g_return_if_fail (TAKU_IS_CATEGORY_BAR (bar));
+-  g_return_if_fail (TAKU_IS_TABLE (table));
++  g_return_if_fail (GTK_IS_FLOW_BOX (table));
+ 
+   priv = GET_PRIVATE (bar);
+   
+@@ -321,6 +319,17 @@ taku_category_bar_set_categories (TakuCategoryBar *bar, GList *categories)
+   }
+ }
+ 
++TakuLauncherCategory*
++taku_category_bar_get_current (TakuCategoryBar *bar)
++{
++  TakuCategoryBarPrivate *priv;
++
++  g_return_if_fail (TAKU_IS_CATEGORY_BAR (bar));
++  priv = GET_PRIVATE (bar);
++
++  return (TakuLauncherCategory*)priv->current_category->data;
++}
++
+ void
+ taku_category_bar_next (TakuCategoryBar *bar)
+ {
+diff --git a/src/taku-category-bar.h b/src/taku-category-bar.h
+index 0bc2693..ff93e86 100644
+--- a/src/taku-category-bar.h
++++ b/src/taku-category-bar.h
+@@ -20,7 +20,7 @@
+ #define _TAKU_CATEGORY_BAR
+ 
+ #include <gtk/gtk.h>
+-#include <libtaku/taku-table.h>
++#include "libtaku/taku-launcher-tile.h"
+ 
+ G_BEGIN_DECLS
+ 
+@@ -58,9 +58,10 @@ GType taku_category_bar_get_type (void);
+ 
+ GtkWidget* taku_category_bar_new (void);
+ 
+-void taku_category_bar_set_table (TakuCategoryBar *bar, TakuTable *table);
++void taku_category_bar_set_table (TakuCategoryBar *bar, GtkFlowBox *table);
+ void taku_category_bar_set_categories (TakuCategoryBar *bar, GList *categories);
+ 
++TakuLauncherCategory* taku_category_bar_get_current (TakuCategoryBar *bar);
+ void taku_category_bar_next (TakuCategoryBar *bar);
+ void taku_category_bar_previous (TakuCategoryBar *bar);
+ 
 -- 
 2.8.1
 
