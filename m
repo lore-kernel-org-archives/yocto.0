@@ -1,55 +1,79 @@
-Return-Path: <r.schwarz@sotec.eu>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A344BE00D8D; Wed, 27 Apr 2016 23:31:59 -0700 (PDT)
+	id 83A61E00D9B; Thu, 28 Apr 2016 00:08:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14531E00D84
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 23:31:55 -0700 (PDT)
-Received: by mail-lf0-f44.google.com with SMTP id y84so73376437lfc.0
-	for <yocto@yoctoproject.org>; Wed, 27 Apr 2016 23:31:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sotec-eu.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=vxSj/gjwGIXCeSmy1NIryWo+K3n9wypcdMc6w6LkasQ=;
-	b=uTqcEO1JO8oUOTGehFjsFiiBxpB7rjmQJDUvSdtRKdaCYIUXcQRvHTILWHn5FKRLDD
-	9QpRQpBB3n1zEZkOwX2pVqosyAZ0+a9WbgpHQL8vsefxApkpxo8ccSDTtJO0EP3kEeOT
-	BYdtk9VIKFYY1vQY98yUC1YhqNy0hY3Nc1h4axFcIlWGxvSFNTANGlpKunVFCS7enn40
-	M86kupcdAgdHdQxQQypsLanHRqlrCyHLg4h8ibuWXR9ZovHDEBgV7/D2x06IBmUEAdMl
-	TwtFesLkxb0VfWQekOBJlmlGvQe4oAM8BnR+f4vvjHif7AL9m6gYxsW/PMu5pcvF915b
-	vOSA==
+Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
+	[209.85.220.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1508DE00D8D
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 00:08:53 -0700 (PDT)
+Received: by mail-pa0-f42.google.com with SMTP id bt5so28767428pac.3
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 00:08:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=3hY132L/JAGNlvSpFaj0RAV4Ep4qsBHsw00XTskuFMU=;
+	b=eAty2ICHuwlpDpq7Lqrxj+RdRJvqnEoJ/WSlqIOtm7B7OYAF+11fGJP/d/Zsq8O5MT
+	QysjpEhqdkCYZIjwy4WWujBVcydQ/DFSjS3MD73k77gWf8+j5zN2yLgWD4IBOo3vEcnL
+	NlFJVhP9JgDeeJO5DP1uUrJt0mja47AeSwKNpZK3R1vc0gopUn1TD+3mZ2br/90fYeN8
+	ID6aGq1Bic57/sp6QUlDqOEWmRHMHE0c5pqMEiOsFmBiNQrJ7cr+k2UtJs1rI3o+VdKn
+	A9cFUXODd8sogCzkuRKOabMfmTR6E8qX4/qTgIbri9hnUZbb1Zzb8Su7qSf1SFUXBag8
+	Ws0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=vxSj/gjwGIXCeSmy1NIryWo+K3n9wypcdMc6w6LkasQ=;
-	b=FqTJ30fkILCehcvhoA/hTqTt46+Ml0q9Z8tMKoBBsfBzE7NexzSCIncwpD08gfWOeI
-	fJzGU3XfjCpAEgt90MNHlDnHvASTDqanLKKkkd219v2RCEe2VCJBE8/ZREVXp7jaKRMX
-	O3Cu9EW/fpLsL7hmUFqHX2y3DtdikqTA3jtIodPor1Akp8EBbyXQG/Et+n+akdU5uNQp
-	1ZKijAdTFMI6U+inYXKpQUnORsmY0iCHJG7EMVDAo4Innwg7IhfZc2xBLgT1EHOnn/2c
-	vd0OFnpcGIvDYRZppv7HQy4lI4zLZRhvVpv5v6T9/UWROIKXvNsjVNOOasgEQsndJyAU
-	nnjQ==
-X-Gm-Message-State: AOPr4FXVm5RjxRBQAeUOZHy+1EzVbOeyWOQJKvHzDIoi3OXvrPWxJj1eD3MRYPWqrltK5E0z0dN50MDZYm53PfcB0rfYpY8xC06Uf6bAoFWPYs5TOLFFMSIjNQJEXRHY892BRnaZIAPNnlBqFfQ=
-X-Received: by 10.112.13.33 with SMTP id e1mr4469564lbc.79.1461825113313; Wed,
-	27 Apr 2016 23:31:53 -0700 (PDT)
-MIME-Version: 1.0
-From: Ruben Schwarz <r.schwarz@sotec.eu>
-Date: Thu, 28 Apr 2016 06:31:43 +0000
-Message-ID: <CAEMorphG=a7-SVbBFiiMvSyaYNuqTuDZ0Dbr7K_Nan8h_GGL9A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: populate_sdk cmake and eclipse
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=3hY132L/JAGNlvSpFaj0RAV4Ep4qsBHsw00XTskuFMU=;
+	b=kUSU0xJW6pW8KXlaqkJ5yKwAu+fBV5j8gKQfnRmWCJBN2yHsaZdv0GeGI5zthptvUU
+	oczviXsIkrvWtg0EWAZRh4q1sNb3Cmb/kfJA1+MHPFQsB6Q2YNieTonKuUpd5+9MLsbf
+	cC4xRgODEJfkZXyW+qhN0dfdf3Japp+j/HjPjeLeXX/Ni5ErRZ3RoxQ7T63JIbhRU6wM
+	lXeP8x2sFG/FVBHP4Es0nXsRzoV+7XfXqLRLJffgV6JOVb9yvTkxZ0o1aRgywIqtW/qu
+	84G5xJq2blk41mGqJjwOd9vQwoI/ua+Ihr3cDn9EFOQNcQ0BvRp56gVbk80iVt2Zmt9J
+	G+2A==
+X-Gm-Message-State: AOPr4FWu4fUH7ZQRCSvc+hsPHPJ1cczRKt3meuA/q2LdjFlCXX9TNMpmuaeRJ/LNI7fyBw==
+X-Received: by 10.66.153.209 with SMTP id vi17mr18187357pab.0.1461827333100;
+	Thu, 28 Apr 2016 00:08:53 -0700 (PDT)
+Received: from ?IPv6:2601:646:8800:5a9a:7c73:e571:eae0:530b?
+	([2601:646:8800:5a9a:7c73:e571:eae0:530b])
+	by smtp.gmail.com with ESMTPSA id
+	71sm11995560pfy.32.2016.04.28.00.08.52
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 28 Apr 2016 00:08:52 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <20160427221005.GA19598@bill-the-cat>
+Date: Thu, 28 Apr 2016 00:08:46 -0700
+Message-Id: <403123E7-85F1-4CBF-9D6C-E6377B89D5EA@gmail.com>
+References: <B1D22563-F31B-4EF1-90D6-16EB391134D5@gmail.com>
+	<CACS+7ZSpWgziO+GF++25dM7kgP4SZ_GDV+-DcEMQ_YUGyEEnfQ@mail.gmail.com>
+	<CAMKF1spQn114r9dCAk9z7c3hw-NJp3pVoVP+f3gao2mhLTBHYg@mail.gmail.com>
+	<CAMKF1spwimpQwSE38B5jWmyZXwMKy6znMEF9p-NmTM4mGGr+4g@mail.gmail.com>
+	<CAJTo0Lb25x1H44nGn05d6qBVLDpyiaZ3XW40fdrAWcP_D+qYwg@mail.gmail.com>
+	<CAJTo0LZZ3Hs_yrm5ceik4j8Orv-UQ9T72Wu=R_PCRKw4Y9-WCw@mail.gmail.com>
+	<CAMKF1sozR3_Mhy5PKSaKCo7S2yHrtLzTNrUURFhN38gV0AbkYQ@mail.gmail.com>
+	<20160427221005.GA19598@bill-the-cat>
+To: Tom Rini <trini@konsulko.com>
+X-Mailer: Apple Mail (2.3124)
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	OE Core mailing list <openembedded-core@lists.openembedded.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 6 Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,170 +85,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 06:31:59 -0000
-Content-Type: multipart/alternative; boundary=001a11c39e269a779d053185aeb3
+X-List-Received-Date: Thu, 28 Apr 2016 07:08:55 -0000
+X-Groupsio-MsgNum: 29691
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_9996E5F6-1EC4-4693-8A7D-3882C063CFF0";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---001a11c39e269a779d053185aeb3
-Content-Type: text/plain; charset=UTF-8
+--Apple-Mail=_9996E5F6-1EC4-4693-8A7D-3882C063CFF0
 Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-we created our own image for our custom hardware with yocto jethro.
-Everything works fine, thanks for this great tools!
-
-Now more developers have to write software for our project. I did the
-following steps to set up a application dev environment (as mentionend in
-application developers guide):
-
-1. Create sdk: bitbake myImage -c populate_sdk
-2. copy generated sdk.sh to a fresh installed ubuntu 14.04 and execute.
-Toolchain is installed in /opt/poky/2.0.1/
-3. install eclipse and the eclipse yocto plugin as mentionend in the docs.
-4. Create a new Yocto Autotools C++ Project -> Build -> copy to target ->
-Execute -> everything is fine!
-5. Create a new Yocto CMake C++ Project -> Build -> Error: unable to run
-cmake
-6. Compile cmake project by hand:
-cd PROJECT_FOLDER/Debug
-source /opt/poky/2.0.1/environment_setup...
-cmake ..
-make
-
-compiles without errors
-
-*Now my questions:*
-Anybody here who uses a sdk with eclipse and cmake?
-Did I miss any configuration?
-
-Not directly regarded to this problem:
-Anybody here who uses JetBrains CLion with a yocto toolchain/sdk?
-
-Thanks in advance and best regards
-Ruben
-
---=20
+Content-Type: text/plain;
+	charset=us-ascii
 
 
-Besuchen Sie uns auf der Hannover Messe vom 25. - 29. April, Halle 7, Stand=
-=20
-D 34 auf dem Gemeinschaftsstand Baden-W=C3=BCrttemberg! weitere Information=
-en=20
-<http://ow.ly/ZR5TO=EF=BB=BF>
+> On Apr 27, 2016, at 3:10 PM, Tom Rini <trini@konsulko.com> wrote:
+>=20
+> On Wed, Apr 27, 2016 at 10:53:52AM -0700, Khem Raj wrote:
+>> thanks I think most of them come to these categories. So any help in
+>> fixing them is welcome.
+>>=20
+>> 1. kernel older than 4.4, backport needed fixed into these branches =
+or
+>> move to newer kernels.
+>> 2. uboot dont have gcc6 compiler header files, backport the needed =
+fixes
+>=20
+> 9b2c282b348dfe966bbba967dc7a45ce817cce50 from mainline.
+>=20
+>> 2. meta-qt4 needs to use gnu++98
+>> 3. gcc6 providing its own stdlib.h in libstdc++
+>> 4. gcc6 swtiching to gnu++14 for C++ as default.
+>> 5. GPLv2-only versions of recipes are simply old will need fixing
+>>=20
+>> I will take a stab at fixing the nativesdk recipes which is mostly =
+due
+>> to stdlib.h issue.
+>=20
+> Please do, I'd like to see some SDKs so I can get more U-Boot testing
+> done with gcc-6 :)
+>=20
 
-Besuchen Sie unseren Chrome Webshop unter shop.cloudwuerdig.com
+I have pushed couple of more fixes which should now fix the nativesdk =
+issues and SDKs should be building
 
-www.sotec.eu | www.cloudwuerdig.com=20
---=20
-SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=20
-Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=20
-Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664,=20
-Gesch=C3=A4ftsf=C3=BChrer: Florian Holz=20
-Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der SOTEC Software Entwi=
-cklungs=20
-GmbH + Co Mikrocomputertechnik KG
+Tree is here. Let me know how it goes.
 
-Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten =
-Adressaten=20
-bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen=
-=20
-Vertreter sein sollten, so beachten Sie bitte, dass jede Form der=20
-Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe=
- des=20
-Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem F=
-all=20
-mit dem Absender der e-Mail in Verbindung zu setzen.
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/gcc-6
 
-The content of this e-mail is meant exclusively for the person to whom it=
-=20
-is addressed. If you are not the person to whom this e-mail is addressed or=
-=20
-his/her representative, please be informed, that any form of knowledge,=20
-publication, duplication or distribution of the content of this e-mail is=
-=20
-inadmissible. We ask you, therefore, in such a case to please contact the=
-=20
-sender of this e-mail.
+and also to github
 
+https://github.com/kraj/openembedded-core/tree/kraj/master
 
---001a11c39e269a779d053185aeb3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--Apple-Mail=_9996E5F6-1EC4-4693-8A7D-3882C063CFF0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
-<div dir=3D"ltr"><span style=3D"color:rgb(33,33,33);font-size:13px">Hi,</sp=
-an><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
-=3D"color:rgb(33,33,33);font-size:13px">we created our own image for our cu=
-stom hardware with yocto jethro. Everything works fine, thanks for this gre=
-at tools!</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div>=
-<div style=3D"color:rgb(33,33,33);font-size:13px">Now more developers have =
-to write software for our project. I did the following steps to set up a ap=
-plication dev environment (as mentionend in application developers guide):<=
-/div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
-=3D"color:rgb(33,33,33);font-size:13px">1. Create sdk:=C2=A0<span style=3D"=
-line-height:1.5">bitbake myImage -c populate_sdk</span></div><div style=3D"=
-color:rgb(33,33,33);font-size:13px">2. copy generated sdk.sh to a fresh ins=
-talled ubuntu 14.04 and execute. Toolchain is installed in /opt/poky/2.0.1/=
-</div><div style=3D"color:rgb(33,33,33);font-size:13px">3. install eclipse =
-and the eclipse yocto plugin as mentionend in the docs.</div><div style=3D"=
-color:rgb(33,33,33);font-size:13px">4. Create a new Yocto Autotools C++ Pro=
-ject -&gt; Build -&gt; copy to target -&gt; Execute -&gt; everything is fin=
-e!</div><div style=3D"color:rgb(33,33,33);font-size:13px">5. Create a new Y=
-octo CMake C++ Project -&gt; Build -&gt; Error: unable to run cmake</div><d=
-iv style=3D"color:rgb(33,33,33);font-size:13px">6. Compile cmake project by=
- hand:</div><div style=3D"color:rgb(33,33,33);font-size:13px">cd PROJECT_FO=
-LDER/Debug</div><div style=3D"color:rgb(33,33,33);font-size:13px">source /o=
-pt/poky/2.0.1/environment_setup...</div><div style=3D"color:rgb(33,33,33);f=
-ont-size:13px">cmake ..</div><div style=3D"color:rgb(33,33,33);font-size:13=
-px">make</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><=
-div style=3D"color:rgb(33,33,33);font-size:13px">compiles without errors</d=
-iv><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><div style=
-=3D"color:rgb(33,33,33);font-size:13px"><b>Now my questions:</b></div><div =
-style=3D"color:rgb(33,33,33);font-size:13px">Anybody here who uses a sdk wi=
-th eclipse and cmake?</div><div style=3D"color:rgb(33,33,33);font-size:13px=
-">Did I miss any configuration?</div><div style=3D"color:rgb(33,33,33);font=
--size:13px"><br></div><div style=3D"color:rgb(33,33,33);font-size:13px">Not=
- directly regarded to this problem:</div><div style=3D"color:rgb(33,33,33);=
-font-size:13px">Anybody here who uses JetBrains CLion with a yocto toolchai=
-n/sdk?</div><div style=3D"color:rgb(33,33,33);font-size:13px"><br></div><di=
-v style=3D"color:rgb(33,33,33);font-size:13px">Thanks in advance and best r=
-egards</div><div style=3D"color:rgb(33,33,33);font-size:13px">Ruben</div></=
-div>
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-<br>
-<p style=3D"font-family:Arial;font-size:11px;vertical-align:baseline"></p><=
-p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em;vertical-=
-align:baseline"></p><p style=3D"font-family:Arial;font-size:11px;vertical-a=
-lign:baseline">Besuchen Sie uns auf der Hannover Messe vom 25. - 29. April,=
- Halle 7, Stand D 34 auf dem Gemeinschaftsstand Baden-W=C3=BCrttemberg! <a =
-href=3D"http://ow.ly/ZR5TO=EF=BB=BF" target=3D"_blank">weitere Informatione=
-n</a></p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baseli=
-ne">Besuchen Sie unseren Chrome Webshop unter <a href=3D"http://shop.cloudw=
-uerdig.com" target=3D"_blank">shop.cloudwuerdig.com</a></p><p style=3D"font=
--family:Arial;font-size:11px;vertical-align:baseline"><span style=3D"font-w=
-eight:bold;vertical-align:baseline"><a href=3D"http://www.sotec.eu/" style=
-=3D"text-decoration:none;color:rgb(0,0,0)" target=3D"_blank">www.sotec.eu</=
-a>=C2=A0|=C2=A0<a href=3D"http://www.cloudwuerdig.com/" style=3D"text-decor=
-ation:none;color:rgb(0,0,0)" target=3D"_blank">www.<wbr>cloudwuerdig.com</a=
->=C2=A0</span><br>--=C2=A0<br>SOTEC Software Entwicklungs GmbH + Co Mikroco=
-mputertechnik KG=C2=A0<br>Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=C2=A0<b=
-r>Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664, Gesch=C3=A4=
-ftsf=C3=BChrer: Florian Holz=C2=A0<br>Cloudw=C3=BCrdig=C2=AE ist eine einge=
-tragene Marke der SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechni=
-k KG</p><p style=3D"font-family:Arial;font-size:11px;vertical-align:baselin=
-e">Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichnet=
-en Adressaten bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Ma=
-il oder dessen Vertreter sein sollten, so beachten Sie bitte, dass jede For=
-m der Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weit=
-ergabe des Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich =
-in diesem Fall mit dem Absender der e-Mail in Verbindung zu setzen.</p><p s=
-tyle=3D"font-family:Arial;font-size:11px;vertical-align:baseline">The conte=
-nt of this e-mail is meant exclusively for the person to whom it is address=
-ed. If you are not the person to whom this e-mail is addressed or his/her r=
-epresentative, please be informed, that any form of knowledge, publication,=
- duplication or distribution of the content of this e-mail is inadmissible.=
- We ask you, therefore, in such a case to please contact the sender of this=
- e-mail.</p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.=
-3em"></p><p style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em=
-"></p>
+iEYEARECAAYFAlchtwMACgkQuwUzVZGdMxTRxQCeJQqXvEq4+19tUZJ8JEjL3DLH
+v6QAn199pD+6ApzCiIfMu52I9ZSK8Ypm
+=uR5z
+-----END PGP SIGNATURE-----
 
---001a11c39e269a779d053185aeb3--
+--Apple-Mail=_9996E5F6-1EC4-4693-8A7D-3882C063CFF0--
