@@ -1,63 +1,59 @@
-Return-Path: <psiva87@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1BC2E00D8F; Thu, 28 Apr 2016 03:52:10 -0700 (PDT)
+	id 8CB1BE00DAD; Thu, 28 Apr 2016 03:52:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (psiva87[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EA89E00D8F
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 03:52:07 -0700 (PDT)
-Received: by mail-lf0-f46.google.com with SMTP id y84so79593714lfc.0
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 03:52:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-transfer-encoding;
-	bh=Ts9IoNHabxS89oJHFbaQh2+JChIFJ0AAF/nnxHS1j/w=;
-	b=FT/bHl/bQY2gLr9NCKS5EkdctvWwOHicmyh9nYoDfGFZN+jcGp54TvkOnhVUGLoW37
-	lGFRIQpyICRYhwNgsj37+3W5w2rSSx9VrfmrV+3y3mgPRw2beulF3Di8Z0LHz+eUIGdO
-	CK5avLCtRdouMn/rO7S/UjFIXm2ovNWMECXvx4zTcUQk0fNYm9ypcKkC8k9fcz8PPs2N
-	lT6+6yEva1vE6OkFF3XYr3RoKKjThhPg86Nf/lqZGzL8XR4Vyk+Fca8MGwNtQYcy/Tq3
-	vZcz9MfO1tmZcNw/sv0HscR5iWI/N+uUqo4cPQPT40N+qpFkWBtha6MDGk3iboR1XJgQ
-	DXoA==
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33974E00DA3
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 03:52:19 -0700 (PDT)
+Received: by mail-io0-f169.google.com with SMTP id f89so72978409ioi.0
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 03:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=adrc37HF8UMyikHzjm+UwY1fIqw1wFDnjuj1xJQ4lTc=;
+	b=SFk2iLMM0hR7XFaAQsMJE8gAoT5mBTnrsvu4K8MmIEBwmFNR1mq1V0/dDIrXTNWUG6
+	UldjobIGtEblSTJwmvDDcuugNZj+kn7OH4SrTJChkZ/iDna69imLIhBpZKvtNfjpifoT
+	84dKvSgdvSZp3b8k2kU1xm7/okN3FUZcVPkIQDJPw8UIkyyOv96mXEA2QDrPAn+wM2PT
+	53uj7/0AUul9yX0k7HyGC/ZQWBmFEQ4JyaYeSOBJ1oTzU9dhRkAeIUaGAnyvOnhDSPYZ
+	ANf+N3Y9rQakPyPEY7wAObzP/N6LCFf5zyrDaOZ3GOVi5SOeAQ5YPKfOW2Rc8hVA8e6p
+	qYaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-transfer-encoding;
-	bh=Ts9IoNHabxS89oJHFbaQh2+JChIFJ0AAF/nnxHS1j/w=;
-	b=faXyW9OYiliLzzE8T3Hvrcy9XK4q0T5Gr3vf0KEKUlwawtU2ueKlN9JvWTv+0AyygB
-	t5sjXBaJNYcsjXTerid6VLtQ6UPveriLBTOk+VLoEg4nIL1jhwpCs7gE3/UBmveeTvBk
-	BFL9irIVsR/p2ZSZDjDNH68Z53QTB7gtmgMdtAfACX5Af7XsaB0/i1ueI7ADwzfaMcLc
-	1bf93sePvJSaamq6WQUPQCKKcBuMO5ZmOpUm6Z8MFsCV71IkUvuIf82vZ+iPL5eUPoVK
-	0WrzAcZl8HIeCeuK+jdw2/BnXCOtuzy9C/wp/LpUA7UsTq7QkwhELnKXybEK+45+a0SB
-	LxOg==
-X-Gm-Message-State: AOPr4FUQsCqHPShHQNkuVvwCRTYzWQNIRC6x2b9prMCCtTMxYFn37OjYWibSgHn2NYjpsdm57SqbGJObl5H+TQ==
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=adrc37HF8UMyikHzjm+UwY1fIqw1wFDnjuj1xJQ4lTc=;
+	b=byVzOsYc+tqBgguVQcPASl+PPzXnjzyikX6w63f/HcIhJGZDjkPcTL7glkuDBVGNk5
+	U8770dtYZOdK+9B47tbARk5coDgVrN29KTRQ5UVJ4/IgO5F4oJiTU9hMsTfBgZHtzRek
+	MgQq4/A9YbE1drnz2TQOgtsRlQihcunmI1vF/0keZxIg9nKirwQbFv90GquGq8J7LXqf
+	gFuzt4jRULCXWVbGwcRryg+RQMwXVARuXTQl/vvbkohY1JSc1coaby/8+XoTqbYSxcFL
+	EmtAl/FVjgyQ0P6jn7aNEH2IqguSGPWgfH9hdhv4LxeITCo65ePY+GXMXNIDCcUBpf1O
+	REgg==
+X-Gm-Message-State: AOPr4FVLo9GSnKoRL4uR2WDdjxkVOgaETUUSHdSromS1mmkyzw8cbk1adgb6O5MVaVu94DR4n3Dj4bfYecTW7SsC
+X-Received: by 10.107.135.211 with SMTP id r80mr17759919ioi.133.1461840739247; 
+	Thu, 28 Apr 2016 03:52:19 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.112.78.1 with SMTP id x1mr5674384lbw.64.1461840725501; Thu,
-	28 Apr 2016 03:52:05 -0700 (PDT)
-Received: by 10.112.124.10 with HTTP; Thu, 28 Apr 2016 03:52:05 -0700 (PDT)
+Received: by 10.107.9.106 with HTTP; Thu, 28 Apr 2016 03:51:59 -0700 (PDT)
 In-Reply-To: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
 References: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
-Date: Thu, 28 Apr 2016 16:22:05 +0530
-Message-ID: <CAOorjZSCC5505V81z-SO1xmcM0i+adSHC2cLzswt6PhW3Q3ixg@mail.gmail.com>
-From: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 28 Apr 2016 11:51:59 +0100
+Message-ID: <CAJTo0LZxD=ddhu4zkEZXi9=a4KufoiYnf7QG_-n5LgUHXifU_A@mail.gmail.com>
 To: S.Jaritz@esa-grimma.de
-Cc: yocto <yocto@yoctoproject.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: how to configure the build packages of a makefile based libary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,94 +66,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 10:52:10 -0000
+X-List-Received-Date: Thu, 28 Apr 2016 10:52:21 -0000
+Content-Type: multipart/alternative; boundary=001a113ed20afb52f205318951bf
+
+--001a113ed20afb52f205318951bf
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-If bins/libs are installed in non standard paths other than usr/bin or
-/usr/lib in image directory, then you need to add them explicitly in
-your recipe like
+On 28 April 2016 at 10:50, <S.Jaritz@esa-grimma.de> wrote:
 
-FILES_${PN} +=3D "/lib/libxxxx.so"
-
-On Thu, Apr 28, 2016 at 3:20 PM,  <S.Jaritz@esa-grimma.de> wrote:
-> Hej
->
-> I like to include the hiredis library. I created a recipe and modified th=
-e
-> EXTRA_OEMAKE. The compilation works (in the git directory object, "so" an=
-d
+> I like to include the hiredis library. I created a recipe and modified the
+> EXTRA_OEMAKE. The compilation works (in the git directory object, "so" and
 > "a" files are generated). But the generated files are not placed into
 > packages.
 >
 > Any ideas?
 >
-> below there is the "libhiredis.bb" file:
-> #########
-> SUMMARY =3D "libhiredis"
-> SECTION =3D "sek4"
-> LICENSE =3D "COPYING"
-> LIC_FILES_CHKSUM =3D
-> "file://${WORKDIR}/git/COPYING;md5=3Dd84d659a35c666d23233e54503aaea51"
->
-> # 0.13.3
-> # SRCREV =3D "010756025e8cefd1bc66c6d4ed3b1648ef6f1f95"
-> SRC_URI =3D "git://github.com/redis/hiredis.git;rev=3Dv0.13.3"
->
-> S =3D "${WORKDIR}/git/"
->
-> # we need to pass the Cxx parameter extra to the make call
-> EXTRA_OEMAKE =3D "'CC=3D${CC}' 'RANLIB=3D${RANLIB}' 'AR=3D${AR}' 'CFLAGS=
-=3D${CFLAGS}
-> -I${S}/include' 'BUILDDIR=3D${S}'"
-> #########
->
-> Regards!
-> Stefan
->
-> ------------------------------------------------------------
-> ESA Elektroschaltanlagen Grimma GmbH
-> Broner Ring 30
-> 04668 Grimma
-> Telefon: +49 3437 9211 176
-> Telefax: +49 3437 9211 26
-> E-Mail: s.jaritz@esa-grimma.de
-> Internet: www.esa-grimma.de
->
->
-> Gesch=C3=A4ftsf=C3=BChrer:
-> Dipl.-Ing. J=C3=B6rg Gaitzsch
-> J=C3=B6rg Reinker
->
-> Sitz der Gesellschaft: Grimma
-> Ust.-ID: DE 141784437
-> Amtsgericht: Leipzig, HRB 5159
-> Steuernummer: 238/108/00755
->
->
-> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte
-> Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=C3=BCmli=
-ch
-> erhalten
-> haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie die=
-se
-> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-> Mail
-> ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If yo=
-u
-> are
-> not the intended recipient (or have received this e-mail in error) please
-> notify the sender immediately and destroy this e-mail. Any unauthorized
-> copying, disclosure or distribution of the material in this e-mail is
-> strictly
-> forbidden.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
+You need to look at the makefile to see if it has an install target, and if
+it does what it's called, and if it has a way of controlling where files
+actually go (both respecting $prefix instead of /usr, and letting you
+relocate via ${D} so it doesn't try and install to /usr on your build
+machine).  If it does all of those right then you can write a do_install()
+that just calls the right make commands.  Chances are that it does
+something wrong and it's easier to just write a do_install() that creates
+directories and copies files manually.
+
+This is why it doesn't happen automatically unless you're using something
+like automake - there's no standard way.
+
+Ross
+
+--001a113ed20afb52f205318951bf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 28 April 2016 at 10:50,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jarit=
+z@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wr=
+ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif"=
+>I like to include the hiredis library.
+I created a recipe and modified the EXTRA_OEMAKE. The compilation works
+(in the git directory object, &quot;so&quot; and &quot;a&quot; files are
+generated). But the generated files are not placed into packages.</font>
+<br>
+<br><font size=3D"2" face=3D"sans-serif">Any ideas?</font>
+<br></blockquote></div><br>You need to look at the makefile to see if it ha=
+s an install target, and if it does what it&#39;s called, and if it has a w=
+ay of controlling where files actually go (both respecting $prefix instead =
+of /usr, and letting you relocate via ${D} so it doesn&#39;t try and instal=
+l to /usr on your build machine).=C2=A0 If it does all of those right then =
+you can write a do_install() that just calls the right make commands.=C2=A0=
+ Chances are that it does something wrong and it&#39;s easier to just write=
+ a do_install() that creates directories and copies files manually.</div><d=
+iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">This is why i=
+t doesn&#39;t happen automatically unless you&#39;re using something like a=
+utomake - there&#39;s no standard way.</div><div class=3D"gmail_extra"><br>=
+</div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a113ed20afb52f205318951bf--
