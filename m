@@ -1,62 +1,31 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC0C9E00DC9; Thu, 28 Apr 2016 05:44:38 -0700 (PDT)
+	id 36C34E00DC6; Thu, 28 Apr 2016 05:57:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BD92E00DC1
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 05:44:35 -0700 (PDT)
-Received: by mail-ig0-f177.google.com with SMTP id u10so102264888igr.1
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 05:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rqyEEHSUu8L9ELVyfaDb4SqYOTJLvxHClih492XZevI=;
-	b=03JYp8lYm2ugU9OQ7R4Yyhhlc/y/dSPEysQoeWA+D8iBSHbPCiHbbfUewoYSy74l5c
-	GXHnkcjmRVReK3IOTdgmOofRwyv7wdXn974kqgisnk79E92GXeyoQvnowXUbBTnolqLp
-	+2F2q6jVMmfwim3m1khE/02KhkHl2QcCWZPvadNeMoQkZupbTczmO1UZCjABonbkwSoY
-	lL+uWz/me05mLUnGhN5Jo9Fje7L/Cu/d9hFw0kXt5NTqNCkVtXgxx7Z8ISD2KVNTDAzc
-	nX2SmLEk/WyBkND11B++ePWCrg4MAsT1kAdH/mkwfJNVt2wFaOx2uk54O7IK8Ozhrimc
-	CAeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rqyEEHSUu8L9ELVyfaDb4SqYOTJLvxHClih492XZevI=;
-	b=DQ9IbCVrRv72FP/LTbcJFeBvvDjThQBuKPavVItQelprtBVbnXJKJ/SNjJyveqhz7C
-	+JFC6jhb2I3riI1KUaygJ6zfo5yV3u7z0Z2NFMr2ufjydNw9RIua+NvBk8qS8kevelOs
-	yC8yGSnMBw+OPxN91EkkCBJXTlXbg/zMUNNRIEfZbp1GB2g6X9ydc9Gd0UOh1q8lS74F
-	8xrqHq9Ia1nvg/+/MeWxDqO3rYcoq/8Z4JyEFfnsA4pF3D5NGcL1m2BL/0A7DDwQvxZJ
-	g5of35GlOVyjFlKqD9OvmtOWIoOHZZJghUSv0gAirSCNlKE+yheAXEQ1gakdCRhfAM0U
-	WUoA==
-X-Gm-Message-State: AOPr4FWB9nyLcl+KmAf2vrOFtILLMDCkOjqEWjJa/VOC7MkPiWpr3TZfaeI85LjdRQ2W2pGdAurludo2tXGY4rTa
-X-Received: by 10.50.18.111 with SMTP id v15mr32147150igd.64.1461847473828;
-	Thu, 28 Apr 2016 05:44:33 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Thu, 28 Apr 2016 05:44:14 -0700 (PDT)
-In-Reply-To: <OF1318AFAF.4F1EB7F1-ONC1257FA3.0041651C-C1257FA3.0042D0D2@esa-grimma.de>
-References: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
-	<CAJTo0LZxD=ddhu4zkEZXi9=a4KufoiYnf7QG_-n5LgUHXifU_A@mail.gmail.com>
-	<OF1318AFAF.4F1EB7F1-ONC1257FA3.0041651C-C1257FA3.0042D0D2@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 28 Apr 2016 13:44:14 +0100
-Message-ID: <CAJTo0LbzDJ4=GcYO71VNeVA7RYqnWPpu_zxDPgKcNBBAune48g@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to configure the build packages of a makefile based libary
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB465E00DC1
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 05:57:51 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP; 28 Apr 2016 05:57:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="968383645"
+Received: from heimdall.fi.intel.com ([10.237.68.38])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Apr 2016 05:57:51 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 28 Apr 2016 15:56:22 +0300
+Message-Id: <cover.1461828099.git.jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.8.1
+Subject: [matchbox-sato][PATCH 0/2] Matchbox theme update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,40 +37,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Apr 2016 12:44:38 -0000
-Content-Type: multipart/alternative; boundary=089e014953cc64f8af05318ae390
+X-List-Received-Date: Thu, 28 Apr 2016 12:57:55 -0000
 
---089e014953cc64f8af05318ae390
-Content-Type: text/plain; charset=UTF-8
+Update the matchbox window manager theme to be more compatible with
+current GTK default themes. The theme is now gray and boring but
+hopefully does not clash with everything else as badly. The titlebar
+is much thinner in preparation for the separation of panel and
+titlebar: With client side decorations their integration is no longer
+possible.
 
-On 28 April 2016 at 13:09, <S.Jaritz@esa-grimma.de> wrote:
 
-> ERROR: QA Issue: libhiredis: Files/directories were installed but not
-> shipped in any package:
->   /usr/local
->
+This patchset is part of the quest to make Sato compatible with GTK+3.
+Complete WIP collection of patches can be found in jku/matchbox-wip
+branch at git://git.yoctoproject.org/poky-contrib
 
-It either hard-codes /usr/local as the prefix, or if it respects a prefix
-variable you should also pass in ${prefix} ${libdir} ${includedir} and so
-on.
+I'll try to send the rest of matchbox-* patchsets during this week.
 
-Ross
+Cheers,
+  Jussi
 
---089e014953cc64f8af05318ae390
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The following changes since commit e3ccc08d4a680d70fd4891fca966aa6ce503065c:
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 28 April 2016 at 13:09,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jarit=
-z@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif"=
->ERROR: QA Issue: libhiredis: Files/directories
-were installed but not shipped in any package:</font>
-<br><font size=3D"2" face=3D"sans-serif">=C2=A0 /usr/local</font>
-<br></blockquote></div><br>It either hard-codes /usr/local as the prefix, o=
-r if it respects a prefix variable you should also pass in ${prefix} ${libd=
-ir} ${includedir} and so on.</div><div class=3D"gmail_extra"><br></div><div=
- class=3D"gmail_extra">Ross</div></div>
+  Fix png file name after rename (2011-09-16 10:44:13 +0100)
 
---089e014953cc64f8af05318ae390--
+are available in the git repository at:
+
+  git://github.com/jku/matchbox-sato gtk3
+  https://github.com/jku/matchbox-sato/tree/gtk3
+
+Jussi Kukkonen (2):
+  Make titlebar more like default GTK3
+  Remove the qvga theme
+
+ Sato/matchbox/Makefile.am                  |  21 +-----
+ Sato/matchbox/arrow-down-active-qvga.png   | Bin 333 -> 0 bytes
+ Sato/matchbox/arrow-down-active.png        | Bin 511 -> 0 bytes
+ Sato/matchbox/arrow-down-qvga.png          | Bin 332 -> 0 bytes
+ Sato/matchbox/arrow-down.png               | Bin 556 -> 0 bytes
+ Sato/matchbox/close-button-active-qvga.png | Bin 400 -> 0 bytes
+ Sato/matchbox/close-button-active.png      | Bin 706 -> 251 bytes
+ Sato/matchbox/close-button-qvga.png        | Bin 362 -> 0 bytes
+ Sato/matchbox/close-button.png             | Bin 710 -> 251 bytes
+ Sato/matchbox/dia-left-edge-qvga.png       | Bin 218 -> 0 bytes
+ Sato/matchbox/dia-right-edge-qvga.png      | Bin 225 -> 0 bytes
+ Sato/matchbox/dia-tile-qvga.png            | Bin 188 -> 0 bytes
+ Sato/matchbox/open-menu-active.png         | Bin 0 -> 161 bytes
+ Sato/matchbox/open-menu.png                | Bin 0 -> 161 bytes
+ Sato/matchbox/theme-qvga.xml               | 109 -----------------------------
+ Sato/matchbox/{theme-vga.xml => theme.xml} |  67 ++++++++++--------
+ Sato/matchbox/titlebar-left-edge-qvga.png  | Bin 383 -> 0 bytes
+ Sato/matchbox/titlebar-right-edge-qvga.png | Bin 385 -> 0 bytes
+ Sato/matchbox/titlebar-tile-qvga.png       | Bin 267 -> 0 bytes
+ configure.ac                               |  16 +----
+ 20 files changed, 39 insertions(+), 174 deletions(-)
+ delete mode 100644 Sato/matchbox/arrow-down-active-qvga.png
+ delete mode 100644 Sato/matchbox/arrow-down-active.png
+ delete mode 100644 Sato/matchbox/arrow-down-qvga.png
+ delete mode 100644 Sato/matchbox/arrow-down.png
+ delete mode 100644 Sato/matchbox/close-button-active-qvga.png
+ delete mode 100644 Sato/matchbox/close-button-qvga.png
+ delete mode 100644 Sato/matchbox/dia-left-edge-qvga.png
+ delete mode 100644 Sato/matchbox/dia-right-edge-qvga.png
+ delete mode 100644 Sato/matchbox/dia-tile-qvga.png
+ create mode 100644 Sato/matchbox/open-menu-active.png
+ create mode 100644 Sato/matchbox/open-menu.png
+ delete mode 100644 Sato/matchbox/theme-qvga.xml
+ rename Sato/matchbox/{theme-vga.xml => theme.xml} (55%)
+ delete mode 100644 Sato/matchbox/titlebar-left-edge-qvga.png
+ delete mode 100644 Sato/matchbox/titlebar-right-edge-qvga.png
+ delete mode 100644 Sato/matchbox/titlebar-tile-qvga.png
+
+-- 
+2.8.1
+
+
