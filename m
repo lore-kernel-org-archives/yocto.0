@@ -1,6 +1,6 @@
 Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92D61E00DDA; Thu, 28 Apr 2016 06:05:34 -0700 (PDT)
+	id A2B4AE00DFC; Thu, 28 Apr 2016 06:05:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C58AE00DE7
-	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 06:04:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6B3AE00DDC
+	for <yocto@yoctoproject.org>; Thu, 28 Apr 2016 06:04:24 -0700 (PDT)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 28 Apr 2016 06:03:28 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 28 Apr 2016 06:03:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="794230410"
+X-IronPort-AV: E=Sophos;i="5.24,546,1455004800"; d="scan'208";a="794230397"
 Received: from heimdall.fi.intel.com ([10.237.68.38])
-	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2016 06:03:27 -0700
+	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2016 06:03:26 -0700
 From: Jussi Kukkonen <jussi.kukkonen@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 28 Apr 2016 16:03:02 +0300
-Message-Id: <b773252c2c05637100467b9051815f0aa588d785.1461830592.git.jussi.kukkonen@intel.com>
+Date: Thu, 28 Apr 2016 16:03:01 +0300
+Message-Id: <54e6474b85e4fbbafbab16333a10cf02adcc05e7.1461830592.git.jussi.kukkonen@intel.com>
 X-Mailer: git-send-email 2.8.1
 In-Reply-To: <d356f0c5b1dda0fe49944c2a5ce0d1650019ce21.1461830592.git.jussi.kukkonen@intel.com>
 References: <d356f0c5b1dda0fe49944c2a5ce0d1650019ce21.1461830592.git.jussi.kukkonen@intel.com>
 In-Reply-To: <cover.1461830592.git.jussi.kukkonen@intel.com>
 References: <cover.1461830592.git.jussi.kukkonen@intel.com>
-Subject: [matchbox-desktop-2][PATCH 09/16] More fixes
+Subject: [matchbox-desktop-2][PATCH 08/16] taku-table: port to GtkGrid
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,197 +46,144 @@ X-List-Received-Date: Thu, 28 Apr 2016 13:05:34 -0000
 From: Ross Burton <ross.burton@intel.com>
 
 ---
- libtaku/taku-table.c | 34 ++++++++++++----------------------
- libtaku/taku-tile.c  |  2 ++
- libtaku/xutil.c      |  3 +--
- libtaku/xutil.h      |  2 +-
- src/desktop.c        | 17 ++++++++++-------
- 5 files changed, 26 insertions(+), 32 deletions(-)
+ libtaku/taku-table.c | 44 ++++++++++++++++++++------------------------
+ libtaku/taku-table.h |  7 +++----
+ 2 files changed, 23 insertions(+), 28 deletions(-)
 
 diff --git a/libtaku/taku-table.c b/libtaku/taku-table.c
-index 058700e..fa7da18 100644
+index 67f630e..058700e 100644
 --- a/libtaku/taku-table.c
 +++ b/libtaku/taku-table.c
-@@ -190,19 +190,13 @@ reflow_foreach (gpointer widget, gpointer user_data)
-   /* Filter out unwanted items */
-   if (table->priv->filter != NULL) {
-     if (!taku_tile_matches_filter (tile, table->priv->filter)) {
--      gtk_container_child_set (container, GTK_WIDGET (widget),
--                               "left-attach", 0,
--                               "top-attach", 0,
--                               "width", 1,
--                               "height", 1,
--                               NULL);
--      gtk_widget_hide (widget);
-+      gtk_widget_set_child_visible (widget, FALSE);
-       return;
-     }
-   }
- 
-   /* We want this item. Align. */
--  gtk_widget_show (widget);
-+  gtk_widget_set_child_visible (widget, TRUE);
- 
-   gtk_container_child_set (container, GTK_WIDGET (widget),
-                            "left-attach", table->priv->x,
-@@ -247,12 +241,10 @@ reflow (TakuTable *table)
-   for (i = g_sequence_get_length (table->priv->seq);
-        i < table->priv->columns; i++) {
-     GtkWidget *dummy = gtk_label_new (NULL);
--    gtk_widget_show (dummy);
-+    gtk_widget_set_child_visible (dummy, TRUE);
- 
--    gtk_grid_attach (GTK_GRID (table),
--                     dummy,
--                     table->priv->x, table->priv->y,
--                     1, 1);
-+    gtk_grid_attach (GTK_GRID (table), dummy,
-+                     table->priv->x, table->priv->y, 1, 1);
-     table->priv->x++;
- 
-     table->priv->dummies = g_list_prepend (table->priv->dummies, dummy);
-@@ -314,19 +306,18 @@ calculate_columns (GtkWidget *widget)
-   TakuTable *table = TAKU_TABLE (widget);
-   PangoContext *context;
-   PangoFontMetrics *metrics;
--  int width, new_cols;
-+  int table_width, width, new_cols;
-   guint cell_text_width = DEFAULT_WIDTH;
--  GtkAllocation allocation;
- 
--  gtk_widget_get_allocation (widget, &allocation);
-+  table_width = gtk_widget_get_allocated_width (widget);
- 
-   /* If we are currently reflowing the tiles, or the final allocation hasn't
-      been decided yet, return */
-   if (!gtk_widget_get_realized (widget) ||
-       table->priv->reflowing ||
--      allocation.width <= 1)
-+      table_width <= 1) {
-     return;
--
-+  }
-   context = gtk_widget_get_pango_context (widget);
-   metrics = pango_context_get_metrics (context, gtk_widget_get_style (widget)->font_desc, NULL);
- 
-@@ -334,8 +325,7 @@ calculate_columns (GtkWidget *widget)
- 
-   width = PANGO_PIXELS
-           (cell_text_width * pango_font_metrics_get_approximate_char_width (metrics));
--  new_cols = MAX (1, allocation.width / width);
--
-+  new_cols = MAX (1, table_width / width);
-   if (table->priv->columns != new_cols) {
-     table->priv->columns = new_cols;
- 
-@@ -369,8 +359,8 @@ taku_table_unrealize (GtkWidget *widget)
- 
- static void
- on_size_allocate (GtkWidget     *widget,
--                          GtkAllocation *allocation,
--                          gpointer       user_data)
-+                  GtkAllocation *allocation,
-+                  gpointer       user_data)
- {
-   calculate_columns (widget);
- }
-diff --git a/libtaku/taku-tile.c b/libtaku/taku-tile.c
-index 802eb5d..974a164 100644
---- a/libtaku/taku-tile.c
-+++ b/libtaku/taku-tile.c
-@@ -35,6 +35,8 @@ taku_tile_class_init (TakuTileClass *klass)
- static void
- taku_tile_init (TakuTile *self)
- {
-+  gtk_widget_set_hexpand (GTK_WIDGET (self), TRUE);
-+  gtk_widget_set_vexpand (GTK_WIDGET (self), FALSE);
- }
- 
- /* TODO steal GtkButton's draw function and comment out the focus draw code */
-diff --git a/libtaku/xutil.c b/libtaku/xutil.c
-index 2cc2bad..3cd36bb 100644
---- a/libtaku/xutil.c
-+++ b/libtaku/xutil.c
-@@ -44,9 +44,8 @@ net_workarea_changed (WorkAreaFunc cb, GdkWindow *window)
-   int result, xres, real_format;
-   unsigned long items_read, items_left;
-   long *coords;
--
-   Atom workarea_atom = gdk_x11_get_xatom_by_name ("_NET_WORKAREA");
--  
-+
-   gdk_error_trap_push ();
-   result = XGetWindowProperty (gdk_x11_get_default_xdisplay (), GDK_ROOT_WINDOW (),
-                                workarea_atom, 0L, 4L, False,
-diff --git a/libtaku/xutil.h b/libtaku/xutil.h
-index 8673c22..9ecb805 100644
---- a/libtaku/xutil.h
-+++ b/libtaku/xutil.h
 @@ -1,4 +1,4 @@
 -/* 
 +/*
   * Copyright (C) 2007 OpenedHand Ltd
   *
   * This program is free software; you can redistribute it and/or modify it under
-diff --git a/src/desktop.c b/src/desktop.c
-index b7858b7..db6e800 100644
---- a/src/desktop.c
-+++ b/src/desktop.c
-@@ -48,8 +48,10 @@ on_item_added (TakuMenu *menu, TakuMenuItem *item, gpointer null)
+@@ -20,8 +20,9 @@
+ #include <gtk/gtk.h>
+ #include <string.h>
+ #include "taku-table.h"
++#include "taku-tile.h"
  
-   tile = taku_launcher_tile_new_from_item (item);
+-G_DEFINE_TYPE (TakuTable, taku_table, GTK_TYPE_TABLE);
++G_DEFINE_TYPE (TakuTable, taku_table, GTK_TYPE_GRID);
  
--  if (tile)
-+  if (tile) {
-+    gtk_widget_show (tile);
-     gtk_container_add (GTK_CONTAINER (table), tile);
-+  }
- }
+ #define GET_PRIVATE(o) \
+   (G_TYPE_INSTANCE_GET_PRIVATE ((o), TAKU_TYPE_TABLE, TakuTablePrivate))
+@@ -191,9 +192,9 @@ reflow_foreach (gpointer widget, gpointer user_data)
+     if (!taku_tile_matches_filter (tile, table->priv->filter)) {
+       gtk_container_child_set (container, GTK_WIDGET (widget),
+                                "left-attach", 0,
+-                               "right-attach", 1,
+                                "top-attach", 0,
+-                               "bottom-attach", 1,
++                               "width", 1,
++                               "height", 1,
+                                NULL);
+       gtk_widget_hide (widget);
+       return;
+@@ -205,9 +206,9 @@ reflow_foreach (gpointer widget, gpointer user_data)
  
- static void
-@@ -116,10 +118,11 @@ load_items (TakuMenu *menu)
-     if (!l->data)
-       continue;
-     tile = taku_launcher_tile_new_from_item (l->data);
--    if (tile)
-+    if (tile) {
-+      gtk_widget_show (tile);
-       gtk_container_add (GTK_CONTAINER (table), tile);
-+    }
+   gtk_container_child_set (container, GTK_WIDGET (widget),
+                            "left-attach", table->priv->x,
+-                           "right-attach", table->priv->x + 1,
+                            "top-attach", table->priv->y,
+-                           "bottom-attach", table->priv->y + 1,
++                           "width", 1,
++                           "height", 1,
+                            NULL);
+   if (++table->priv->x >= table->priv->columns) {
+     table->priv->x = 0;
+@@ -248,23 +249,14 @@ reflow (TakuTable *table)
+     GtkWidget *dummy = gtk_label_new (NULL);
+     gtk_widget_show (dummy);
+ 
+-    gtk_table_attach (GTK_TABLE (table),
+-                      dummy,
+-                      table->priv->x,
+-                      table->priv->x + 1,
+-                      table->priv->y,
+-                      table->priv->y + 1,
+-                      GTK_FILL | GTK_EXPAND,
+-                      GTK_FILL,
+-                      0,
+-                      0);
++    gtk_grid_attach (GTK_GRID (table),
++                     dummy,
++                     table->priv->x, table->priv->y,
++                     1, 1);
+     table->priv->x++;
+ 
+     table->priv->dummies = g_list_prepend (table->priv->dummies, dummy);
    }
 -
+-  /* Crop table */
+-  gtk_table_resize (GTK_TABLE (table), 1, 1);
  }
  
- #ifndef STANDALONE
-@@ -192,7 +195,7 @@ create_desktop (void)
- #else
-   x_monitor_workarea (gtk_widget_get_screen (window), workarea_changed);
- #endif
--  
-+
-   /* Navigation bar */
-   bar = TAKU_CATEGORY_BAR (taku_category_bar_new ());
-   gtk_widget_show (GTK_WIDGET (bar));
-@@ -223,8 +226,8 @@ create_desktop (void)
-   taku_category_bar_set_categories (bar, categories);
+ /*
+@@ -281,8 +273,7 @@ container_add (GtkContainer *container, GtkWidget *widget)
  
-   g_signal_connect (menu, "item-added", G_CALLBACK (on_item_added), NULL);
--  g_signal_connect (menu, "item-removed", G_CALLBACK (on_item_removed), NULL);  
--  
-+  g_signal_connect (menu, "item-removed", G_CALLBACK (on_item_removed), NULL);
-+
-   load_items (menu);
+   g_sequence_insert_sorted (self->priv->seq, widget, compare_tiles, NULL);
  
-   return window;
-@@ -235,7 +238,7 @@ destroy_desktop (void)
- {
-   while (categories) {
-     TakuLauncherCategory *category = categories->data;
--    
-+
-     taku_launcher_category_free (category);
+-  gtk_table_attach (GTK_TABLE (container), widget, 0, 1, 0, 1,
+-                    GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
++  gtk_grid_attach (GTK_GRID (container), widget, 0, 1, 1, 1);
  
-     categories = g_list_delete_link (categories, categories);
+   reflow (self);
+ 
+@@ -504,9 +495,14 @@ taku_table_init (TakuTable *self)
+ 
+   g_signal_connect (self, "size-allocate", G_CALLBACK (on_size_allocate), NULL);
+ 
+-  gtk_container_set_border_width (GTK_CONTAINER (self), 6);
+-  gtk_table_set_row_spacings (GTK_TABLE (self), 6);
+-  gtk_table_set_col_spacings (GTK_TABLE (self), 6);
++  g_object_set (self,
++                "border-width", 6,
++                "row-spacing", 6,
++                "column-spacing", 6,
++                "row-homogeneous", TRUE,
++                "column-homogeneous", TRUE,
++                NULL);
++
+   self->priv->columns = 0;
+ 
+   self->priv->reflowing = FALSE;
+diff --git a/libtaku/taku-table.h b/libtaku/taku-table.h
+index 625ebd9..585c5d4 100644
+--- a/libtaku/taku-table.h
++++ b/libtaku/taku-table.h
+@@ -1,4 +1,4 @@
+-/* 
++/*
+  * Copyright (C) 2007 OpenedHand Ltd
+  *
+  * This program is free software; you can redistribute it and/or modify it under
+@@ -20,7 +20,6 @@
+ #define _TAKU_TABLE
+ 
+ #include <gtk/gtk.h>
+-#include "taku-tile.h"
+ 
+ G_BEGIN_DECLS
+ 
+@@ -49,12 +48,12 @@ G_BEGIN_DECLS
+ typedef struct _TakuTablePrivate TakuTablePrivate;
+ 
+ typedef struct {
+-  GtkTable parent;
++  GtkGrid parent;
+   TakuTablePrivate *priv;
+ } TakuTable;
+ 
+ typedef struct {
+-  GtkTableClass parent_class;
++  GtkGridClass parent_class;
+ } TakuTableClass;
+ 
+ GType taku_table_get_type (void);
 -- 
 2.8.1
 
