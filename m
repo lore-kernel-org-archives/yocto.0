@@ -1,59 +1,40 @@
-Return-Path: <psiva87@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D414E00E54; Fri, 29 Apr 2016 02:46:19 -0700 (PDT)
+	id B1DF1E00E54; Fri, 29 Apr 2016 02:51:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (psiva87[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.65 listed in list.dnswl.org]
-Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
-	[209.85.215.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4206E00E50
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 02:46:15 -0700 (PDT)
-Received: by mail-lf0-f65.google.com with SMTP id m101so16866840lfi.1
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 02:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=2+IUZR7mwH4ZVU5NXAKEFod2jPEgZJdYx1YXVzvAUCU=;
-	b=rPAQGHnCh1NfrHVNkIKJ/U3Mn3UZFfEOuZIGTUK/U8g8UPhE6IL6IKHZd4nfQgAwc/
-	LwY0LtQG30VBm8ld7l0ibq5UYnJS1IpTpdIXlCq/KpjXOM18VahiVw/oyRtlCJCLmtMA
-	ncaJojw44AB6IyvgxIMCSP52qffZArtCZU0j3y5IypzBZOjUyMUFPvhkiMs3PrziYnYy
-	izsBmkTGVZOJmFwswnwMM+Uz7ZV2d0ux8H4kaX/LvKhiEMwSJl4NOVmmAPHz3iqE2GpC
-	dWoFyAPTVxMIvNqa2nGUAfExZNo9+MVYI/po3rlqIvAURn4CKr1/fdPsGMWA7F5jhun7
-	Byrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=2+IUZR7mwH4ZVU5NXAKEFod2jPEgZJdYx1YXVzvAUCU=;
-	b=MB2FYZ8kEYglnB0BX4Hbul1OcG5vccSgfuBKAnMCFvGBivIg/5QNfWF59Ag4XoebXi
-	XLJOcuHGGPJT2UKmSZXdoZObERTxFJZZ/RFf7+677iLiMz5Z0iMQT4eO/+xYwrRD87b+
-	euQc+uer0+1qCAUyrjggTUR1bTALrgMKk5J9d35l1EvmDj2wzdX+d8MAvBz8OUG+J7Ah
-	M9DGmmo0nclgeN1LgJZThA7eIx0uD4WyMcWBEwsbvh4Yqcu2qnH9SR+hNEYVORJf54/o
-	oWJ7r6PXM59zFYXgNqH1knl6btKQCwKVagBxPELDff4Fsgb00KERrmH7DZqyREB3VuSq
-	X69g==
-X-Gm-Message-State: AOPr4FWcKxyADcO507Bam5iZQLcoHizl0pQYwWuz5Pdpr4ie/TfTnZwVenDpGrOUuv4V/J8ugeDuy/0hMkXaKA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E02F6E00E50
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 02:51:28 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 29 Apr 2016 02:51:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,551,1455004800"; d="scan'208";a="794907689"
+Received: from ychia3-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.143.114])
+	by orsmga003.jf.intel.com with ESMTP; 29 Apr 2016 02:51:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Fri, 29 Apr 2016 21:51:22 +1200
+Message-ID: <2094217.rxhuCqpasC@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.7-300.fc23.x86_64; KDE/4.14.18; x86_64; ;
+	)
+In-Reply-To: <57230C27.6030900@mlbassoc.com>
+References: <5722E217.40108@mlbassoc.com>
+	<1564642.UuUWA349Vz@peggleto-mobl.ger.corp.intel.com>
+	<57230C27.6030900@mlbassoc.com>
 MIME-Version: 1.0
-X-Received: by 10.25.214.234 with SMTP id p103mr8746910lfi.35.1461923173708;
-	Fri, 29 Apr 2016 02:46:13 -0700 (PDT)
-Received: by 10.112.124.10 with HTTP; Fri, 29 Apr 2016 02:46:13 -0700 (PDT)
-Date: Fri, 29 Apr 2016 15:16:13 +0530
-Message-ID: <CAOorjZScGG9kG48=kpzcQv0b5m5ztTX5HmmpaVfrjh4HFD9nqA@mail.gmail.com>
-From: "SIVA SUBRAMANIAN.P" <psiva87@gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: Help on submitting patch to yocto projcet
+Cc: yocto@yoctoproject.org
+Subject: Re: Change in override behavior?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,13 +46,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 09:46:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 29 Apr 2016 09:51:30 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
-Can any one guide me on submitting or upstreaming  patch to
-git.yoctoproject.org recipe? Thanks in advance.
+On Fri, 29 Apr 2016 09:24:23 Gary Thomas wrote:
+> On 2016-04-29 09:16, Paul Eggleton wrote:
+> > On Fri, 29 Apr 2016 08:06:16 Gary Thomas wrote:
+> >> On 2016-04-29 07:08, Paul Eggleton wrote:
+> >>> On Fri, 29 Apr 2016 06:24:55 Gary Thomas wrote:
+> >>>> I used to be able to use something like this:
+> >>>>      VARIABLE = "xyz"
+> >>>> 
+> >>>> and maybe in a .bbappend use
+> >>>> 
+> >>>>      VARIABLE_mymachine = "xyzzy"
+> >>>> 
+> >>>> where 'mymachine' is in OVERRIDES, which resulted in
+> >>>> 
+> >>>>      VARIABLE = "xyzzy"
+> >>>> 
+> >>>> This doesn't seem to work the same today, what I get is
+> >>>> 
+> >>>>      VARIABLE = "xyz"
+> >>>>      VARIABLE_mymachine = "xyzzy"
+> >>>> 
+> >>>> Has this changed (recently)?  Why?  How to I make use of overrides?
+> >>>> 
+> >>>> Note: I'm using the latest Poky master (a9b503b26) updated 2016-04-28
+> >>> 
+> >>> When you say this is what you're seeing, how are you checking this?
+> >>> bitbake -e ? Which part of that output are you looking at?
+> >>> 
+> >>> You *will* now see VARIABLE_mymachine in bitbake -e output even if
+> >>> "mymachine" is in OVERRIDES - that's because the overridden values stay
+> >>> in the datastore instead of a "finalisation" step eliminating them, in
+> >>> order to allow OVERRIDES to be changed dynamically (possibly multiple
+> >>> times) and still get the datastore contents you expect. That change was
+> >>> made in the 2.0 release (jethro). However That should not affect the
+> >>> final value of VARIABLE if "mymachine" is in OVERRIDES however. Are you
+> >>> sure you are seeing what you think you're seeing? If so, is the bbappend
+> >>> in fact being applied? Because if what you describe was really happening
+> >>> then pretty much the entire system would be broken. I just checked a
+> >>> similar case here and I see the expected results.
+> >> 
+> >> Yes, I am using 'bitbake -e <recipe> | grep ^VARIABLE' to look at this.
+> >> 
+> >> In my main recipe, I have this:
+> >>     SOME_OTHER_VARIABLE ?= "${MACHINE}"
+> >> 
+> >> and my .bbappend for that recipe has these lines:
+> >>     SOME_OTHER_VARIABLE_my-target-A = "something-else1"
+> >>     SOME_OTHER_VARIABLE_my-target-B = "something-else2"
+> >> 
+> >> and local.conf has
+> >> 
+> >>     MACHINE="my-target-B"
+> >> 
+> >> With Yocto 2.0 (Poky ceeb52a2544) I get this:
+> >>     SOME_OTHER_VARIABLE = "something-else2"
+> >>     SOME_OTHER_VARIABLE_my-target-A = "something-else1"
+> >>     SOME_OTHER_VARIABLE_my-target-B = "something-else2"
+> >> 
+> >> With today's (Poky a9b503b26) I get this:
+> >>     SOME_OTHER_VARIABLE = "my-target-B"
+> >>     SOME_OTHER_VARIABLE_my-target-A = "something-else1"
+> >>     SOME_OTHER_VARIABLE_my-target-B = "something-else2"
+> >> 
+> >> I also use this mechanism to set COMPATIBLE_MACHINE a lot and
+> >> that doesn't seem to be working the same either.
+> >> 
+> >> Am I doing something incorrectly (and just got away with it for years)?
+> >> 
+> >> n.b. If you're interested, I can share the .bb/.bbappend files
+> >> with you privately (I can't put them on the public list)
+> > 
+> > Ah, one thing... do your machine names have uppercase characters in them
+> > (as your pseudo-examples above do)? If so that was a 2.1 change; anything
+> > that is to be used as an override must now be lower case (so DISTRO,
+> > MACHINE, etc.)
+>
+> Indeed, my machine names do have an upper case letter in them.
+> Any suggestions for how to handle this (short of renaming everything which
+> would be a HUGE chore)?
 
-Regards,
-Sivasubramanian
+It's no longer supported I'm afraid, BitBake's datastore is now coded to 
+expect lowercase for all override values. You say it's a huge chore but surely 
+a grep -l | xargs -n1 sed -i would do it?
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
