@@ -1,71 +1,41 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F639E00E58; Fri, 29 Apr 2016 04:12:15 -0700 (PDT)
+	id 1B819E00E5E; Fri, 29 Apr 2016 05:06:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BE9CE00E53
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 04:12:11 -0700 (PDT)
-Received: by mail-ig0-f170.google.com with SMTP id bi2so18873165igb.0
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 04:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=vIS6GRpQTNgiiJhog5LrDum17xpYp/BRTn3oeBZAlBI=;
-	b=wV2LsaZRl/3DSvxqrsJ4dgST/A1+enixCuEA57I3gy6YnJwIBr4NL+oTwqh//plWXv
-	2ocoWUZe6q/0yKFlABxHLYpL54kUDDzXF9c0XT8o5Ffznf1AVDKwqwUFj6t2o7RWsrIS
-	pVhfG6kHLIZWlYuBZB/JqixDd/8pHFqCMy90aDpKg8dJ80Ypr0JftxBcp1t22uVEkE9w
-	9P21RmCIGAcknAr4F6od/DfSazKNPrpamkVAUV4d4ugZxM2X2QzoNxPrZ9lK19i9I5t7
-	W8PRE2IYb8ppzsZsT237uXmDMpbb5AMv4qoKRZe8ywTiY1awnU/sjgkpt99JkOFHQ31w
-	S0TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=vIS6GRpQTNgiiJhog5LrDum17xpYp/BRTn3oeBZAlBI=;
-	b=Kl4zP34TkhJzZ+seEyixsZP6pqSG9nJGjtmgsi5tK2n3I2eF5RhqAHWPO5EPTxeTED
-	nIi8/6QHCXidRUDs5wWZ1ZJPL/EeuGEdAfQ0I269e8q4YJPIgCmkLGERSnNeQcaiX5Z3
-	A54OWRBWRNSwzXFUfuktcsX2c9QGjMjYwTDjLYYKcWdP4XSK3j9CLPLpswDEymf/pflE
-	r8yLCFhUA+R5fEzaY3VQEgF173Qu6uWUXmUYJgEzk5z3TbCoxxRnTUumSlElxaYB4rnX
-	j51B7nzlL6SIRBiG6YQYZOv25bfTyMwme5JYsOH96FPbnXuEyy25MAdx8HP26aUoIQ6W
-	rEmA==
-X-Gm-Message-State: AOPr4FUxd3X7uVWCadJ1a+UqtxSrmPGWRAAUkOlFzPR8ReS97HJrPHsemk5qxtAvUMLtYRUdMB1r1BLuikIYXzuP
-X-Received: by 10.50.18.111 with SMTP id v15mr3612206igd.64.1461928330832;
-	Fri, 29 Apr 2016 04:12:10 -0700 (PDT)
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E23BE00E5B
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 05:06:34 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20160429120618354_0684;
+	Fri, 29 Apr 2016 12:06:18 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=12338 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1aw7D1-0006lX-Qk; Fri, 29 Apr 2016 08:07:47 -0400
+Date: Fri, 29 Apr 2016 08:06:07 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Gary Thomas <gary@mlbassoc.com>
+In-Reply-To: <572204CA.1090309@mlbassoc.com>
+Message-ID: <alpine.LFD.2.20.1604290753250.4562@localhost.localdomain>
+References: <alpine.LFD.2.20.1604280808070.25680@localhost.localdomain>
+	<572204CA.1090309@mlbassoc.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Received: by 10.107.9.106 with HTTP; Fri, 29 Apr 2016 04:11:51 -0700 (PDT)
-In-Reply-To: <OFB3F7FD44.568863C7-ONC1257FA4.00364313-C1257FA4.0036E30E@esa-grimma.de>
-References: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
-	<CAJTo0LZxD=ddhu4zkEZXi9=a4KufoiYnf7QG_-n5LgUHXifU_A@mail.gmail.com>
-	<OF1318AFAF.4F1EB7F1-ONC1257FA3.0041651C-C1257FA3.0042D0D2@esa-grimma.de>
-	<CAJTo0LbzDJ4=GcYO71VNeVA7RYqnWPpu_zxDPgKcNBBAune48g@mail.gmail.com>
-	<1461857100201.50766@seescan.com>
-	<CAJTo0LbRp5X9-Q7y4pyXQyBtgRs5A1LnaCYzBHCq0AmTqrXgnw@mail.gmail.com>
-	<OF93501CEC.24CA3D84-ONC1257FA3.00576A53-C1257FA3.0058CC3A@esa-grimma.de>
-	<SIXPR04MB0668640023EA6AFE4596C0ADEC650@SIXPR04MB0668.apcprd04.prod.outlook.com>
-	<CAJTo0LY3yqttg6hf3saU+RoLco1_GmNRy7pT+wDciBFFHep0HQ@mail.gmail.com>
-	<OFAE948224.6BDA8DD0-ONC1257FA4.0028E4AF-C1257FA4.002B73A2@esa-grimma.de>
-	<CAJTo0La51T5zQZv0JbakTifLUNVv=n291fmrx=RhmLpDq+C7Gg@mail.gmail.com>
-	<OFB3F7FD44.568863C7-ONC1257FA4.00364313-C1257FA4.0036E30E@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 29 Apr 2016 12:11:51 +0100
-Message-ID: <CAJTo0LZgaYqZize00LWxVju_1zZnAai_O4TKyfcYApOyr_gcpQ@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Antwort: Re: how to configure the build packages of a makefile based libary
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: yocto@yoctoproject.org
+Subject: Re: what's the "standard" for adding .dts patches to a BSP layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,46 +47,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 11:12:15 -0000
-Content-Type: multipart/alternative; boundary=089e014953ccd8ca4e05319db684
+X-List-Received-Date: Fri, 29 Apr 2016 12:06:38 -0000
+Content-Type: text/plain; charset=US-ASCII
 
---089e014953ccd8ca4e05319db684
-Content-Type: text/plain; charset=UTF-8
+On Thu, 28 Apr 2016, Gary Thomas wrote:
 
-On 29 April 2016 at 10:59, <S.Jaritz@esa-grimma.de> wrote:
-
-> Finally we made it - Thanks to you all for helping me! I attached my bb
-> file for that case someone is searching for a bitbake recipe for building
-> the libhiredis
+> On 2016-04-28 14:14, Robert P. J. Day wrote:
+> >
+> >    looking for common practice here ... what's the canonical way
+> > that one should add content to a .dts file for a new board -- all
+> > at once, or broken into patches associated with corresponding .scc
+> > files that come into play only if one selects that functionality?
+> >
+> >    i ask since i'm a big fan of modularity, but that doesn't seem
+> > to work very well here. if i start with a baseline .dts file, and
+> > break the rest into optional patches, then based on what a
+> > developer selects for his build, some of those patches simply
+> > aren't going to apply very cleanly.
+> >
+> >    it would, of course, be easier to just add everything even
+> > potentially necessary to the single .dts file, since that's not
+> > really adding any actual functionality, just adding more detailed
+> > information about the target board (even if it's never used).
+> >
+> >    thoughts? am i overthinking this?
 >
+> One common way is to have a .dts (or .dtsi) file that includes all
+> of the sections you might want, but leave them disabled, hence not
+> changing the actual setup.  Then add snippets (via .scc or patch)
+> that enable the sections.  This is how the i.MX6 space
+> (FreeScale/NXP boards and products) is managed.
 
-If you submit the recipe to meta-oe then you can share development of the
-recipe with others.
+  i'm not sure that's a total solution, for the following general
+reason, which might be completely idiotic if i'm misunderstanding
+something.
 
-Oh, and I just noticed that you commented out SRCREV.  Ideally don't use a
-tag name in the SRC_URI but set SRCREV to that tag's hash, so caches and
-offline builds can work.
+  if i have *any* text file for which i can apply some subset of
+possible changes, and those changes are geographically close to each
+other, it seems possible that i'll have conflicting patches trying to
+be applied next to each other, no? i tried something like that a while
+back, and that's exactly what happened.
 
-Ross
+  as a trivial example (and, again, maybe i'm being clueless about
+this and missing an easy solution), say i have two possible lines i
+can add to the end of a text file via patches -- patch 1 appends the
+line:
 
---089e014953ccd8ca4e05319db684
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+  #include feature1
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 29 April 2016 at 10:59,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jarit=
-z@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif"=
->Finally we made it - Thanks to you all
-for helping me! I attached my bb file for that case someone is searching
-for a bitbake recipe for building the libhiredis</font>
-<br></blockquote></div><br>If you submit the recipe to meta-oe then you can=
- share development of the recipe with others.</div><div class=3D"gmail_extr=
-a"><br></div><div class=3D"gmail_extra">Oh, and I just noticed that you com=
-mented out SRCREV.=C2=A0 Ideally don&#39;t use a tag name in the SRC_URI bu=
-t set SRCREV to that tag&#39;s hash, so caches and offline builds can work.=
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross<=
-/div></div>
+while patch 2 appends the line
 
---089e014953ccd8ca4e05319db684--
+  #include feature2
+
+won't i run into trouble based on whether i apply one patch, or the
+other, or both? certainly, in some circumstances, *some* patch
+application is going to fail. this seems like a simple example of the
+more general issue -- it's probably a bad idea to allow the
+conditional application of a set of patches to the same text file.
+
+  the simplest solution i've come up with to retain some semblance of
+modularity is to have a base .dts file, then a number of specific
+.dtsi files, and just flat out include those .dtsi files, whether i
+need them or not. or am i missing something obvious?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
