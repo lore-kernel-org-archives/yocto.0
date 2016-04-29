@@ -1,47 +1,61 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0576E00791; Fri, 29 Apr 2016 08:16:54 -0700 (PDT)
+	id 5A67DE00791; Fri, 29 Apr 2016 08:23:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BF49E00566
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 08:16:51 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Apr 2016 08:16:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,552,1455004800"; 
-	d="scan'208,217";a="969231407"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by fmsmga002.fm.intel.com with ESMTP; 29 Apr 2016 08:16:51 -0700
-Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
-	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Fri, 29 Apr 2016 08:16:50 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.196]) by
-	fmsmsx118.amr.corp.intel.com ([10.18.116.18]) with mapi id
-	14.03.0248.002; Fri, 29 Apr 2016 08:16:50 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW18
-Thread-Index: AdGiKfhZK8hd1cTcQqWDUSv5VPX2Pg==
-Date: Fri, 29 Apr 2016 15:16:49 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E57100796@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64AB9E00566
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 08:23:56 -0700 (PDT)
+Received: by mail-io0-f174.google.com with SMTP id 190so105241641iow.1
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 08:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=qQX71oAIXEDDAOiPnHkJ+teKPtSj/hDdbRqsnhTUul0=;
+	b=SxzLRejmmfNHcp52CHLnFidnFh0WfIFTAhJHx8D7GewWq+UTHSzgptpc0iuL1/2JHi
+	jnDAjtsJSrtFQnyT7UTs4fKfdaq+zdHK+8dOtCik5p/saXB9FUgpKAAePl5cWWgzzKu+
+	puDoi0NROmNbnXRCsXvNmo/NBGcRj/6s6z9DdrMqoog+sfMyUFiWTs4C10bYDfCboSZH
+	6Dg0LhYdiUmBJHDnAY8U/TyZkRGEfAZybsoSTtkAzKtmRwavMrJkbXOUtSTagYtM0avn
+	u069jIOHVqGCAN6FB8MYGGuCccAaXowisK/a67X9vdx93EaiqS+cKtJEvE9EhCl+w/NK
+	w4cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=qQX71oAIXEDDAOiPnHkJ+teKPtSj/hDdbRqsnhTUul0=;
+	b=R/Vqe3Z/hDPasPtiqzFDFbnjtjoXHGqAjM/t0NkKpPDBbf59mXYi9aB46J61Ug5vJD
+	gqt3yHQKPOgNnQVLiTBjzYSDa1sAuiEditZkQ3hL8a+TDDlykDY+dhZPUPkigDnQFCoz
+	eSbUH3Zy7KEmhlfpMLj8DMfibiZWsWFXASYlDWHNk1ui6t2jCXT4WNEvAnogCe7temaX
+	Ud9uvM3CRA57msZfvMSdvESH4hBcFGJH18ojFKV3ZzCmN9CtNFD7W1oJ2BncAxALrMJ0
+	/BX83QxAbuFkdgiZXE3rKZ6IISTw6SoPhcCVnGy5hce/n72bjCEw8DXjSy5Glqd2c8GF
+	QVPg==
+X-Gm-Message-State: AOPr4FVb+92DaZsKyQRUDf8bMZUGp7YQkVyXQ3lP8eAmHU+3TlXJXOEyvJJjJP71w365eCLysgSNpY32SlwwR3/2
+X-Received: by 10.107.135.211 with SMTP id r80mr26891216ioi.133.1461943436357; 
+	Fri, 29 Apr 2016 08:23:56 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto Project Status WW18
+Received: by 10.107.9.106 with HTTP; Fri, 29 Apr 2016 08:23:37 -0700 (PDT)
+In-Reply-To: <d18ab41e50dee480aa2d9f6216bef6005499327c.1461925753.git.jussi.kukkonen@intel.com>
+References: <cover.1461925753.git.jussi.kukkonen@intel.com>
+	<d18ab41e50dee480aa2d9f6216bef6005499327c.1461925753.git.jussi.kukkonen@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 29 Apr 2016 16:23:37 +0100
+Message-ID: <CAJTo0LZRYKTx97hzJVMWh-8P1iuJ1cLYUoabB+aNfgdub-My+A@mail.gmail.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [matchbox-terminal][PATCH 1/1] Upgrade to current Vte and Gtk+ versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,686 +67,335 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 15:16:55 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57100796fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 29 Apr 2016 15:23:59 -0000
+Content-Type: multipart/alternative; boundary=001a113ed20a34df410531a13bc0
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57100796fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a113ed20a34df410531a13bc0
+Content-Type: text/plain; charset=UTF-8
 
-Current Dev Position: YP 2.2 M1
+Merged and pushed, thanks Jussi.  I've started tagging the last GTK+ 2
+commit with 'GTK+2'.
 
-Next Deadline: YP 2.2 cut off: June 13, 2016
+Ross
 
+On 29 April 2016 at 11:41, Jussi Kukkonen <jussi.kukkonen@intel.com> wrote:
 
-SWAT team rotation: Randy -> Benjamin
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-*        YP 2.1 M4.rc2 is going to become the final 2.1 release!
-
-*        WDD started to rise again unfortunately.
-
-*        Whilst master is moving forward from the release branch, Richard/R=
-oss are taking a bit of a break from pushing it aggressively, equally we do=
-n't want a large patch backlog.
-
-*        Armin has kindly volunteered to be the maintainer of the 2.1 (krog=
-oth) stable branch. Thanks Armin!
-
-*        Post release we'll be working on the 1.8.2 point release.
-
-*        A meta-intel release should also be following soon.
-
-
-Key YP 2.2 Dates:
-
-*        YP 2.2 M1 cut off would be: 6/13/16
-
-*        YP 2.2 M1 release would be: 6/24/16
-
-*        YP 2.2 M2 cut off would be: 7/18/16
-
-*        YP 2.2 M2 release would be: 7/29/16
-
-*        YP 2.2 M3 cut off would be: 8/29/16
-
-*        YP 2.2 M3 release would be: 9/9/16
-
-*        YP 2.2 M4 cut off would be: 10/3/16
-
-*        YP 2.2 M4 release would be: 10/28/16
-
-
-Tracking Metrics:
-
-            WDD 2458 (last week 2394)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57100796fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+> ---
+>  Makefile.am  |  4 ++--
+>  configure.ac |  2 +-
+>  main.c       | 49 +++++++++++++++++++++++++++++++++++++++----------
+>  3 files changed, 42 insertions(+), 13 deletions(-)
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:288980206;
-	mso-list-template-ids:518055314;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:770199561;
-	mso-list-template-ids:1850382402;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:1344555333;
-	mso-list-template-ids:768757788;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.2 M1</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.2 cut off: June 13, 2016</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Randy -&gt; Benjamin</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.1 M4.rc2 is going to become =
-the final 2.1 release!<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">WDD started to rise again unfortu=
-nately.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Whilst master is moving forward f=
-rom the release branch, Richard/Ross are taking a bit of a break from pushi=
-ng it aggressively, equally we don&#8217;t want a
- large patch backlog.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Armin has kindly volunteered to b=
-e the maintainer of the 2.1 (krogoth) stable branch. Thanks Armin!<o:p></o:=
-p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Post release we&#8217;ll be worki=
-ng on the 1.8.2 point release.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">A meta-intel release should also =
-be following soon.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.2 Dates:<=
-/span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M1 cut off would be: 6/13/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M1 release would be: 6/24/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M2 cut off would be: 7/18/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M2 release would be: 7/29/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M3 cut off would be: 8/29/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M3 release would be: 9/9/1=
-6<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M4 cut off would be: 10/3/=
-16<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
-4;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">YP 2.2 M4 release would be: 10/28=
-/16<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2458 (last week 2394)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.2_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.2_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.2_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.2_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
-gestions for other information you&#8217;d like to see on this weekly statu=
-s update, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> diff --git a/Makefile.am b/Makefile.am
+> index 480fbc0..ef2125c 100644
+> --- a/Makefile.am
+> +++ b/Makefile.am
+> @@ -1,6 +1,6 @@
+> -AM_CPPFLAGS = $(VTE_CFLAGS)
+> +AM_CPPFLAGS = $(MBTERM_CFLAGS)
+>  AM_CFLAGS = -Wall
+> -LDADD = $(VTE_LIBS)
+> +LDADD = $(MBTERM_LIBS)
+>
+>  bin_PROGRAMS = matchbox-terminal
+>  matchbox_terminal_SOURCES = main.c
+> diff --git a/configure.ac b/configure.ac
+> index d46da3d..0257274 100644
+> --- a/configure.ac
+> +++ b/configure.ac
+> @@ -7,7 +7,7 @@ AM_CONFIG_HEADER(config.h)
+>  AC_PROG_CPP
+>  AC_PROG_CC
+>
+> -PKG_CHECK_MODULES(VTE, vte)
+> +PKG_CHECK_MODULES(MBTERM, glib-2.0 gtk+-3.0 vte-2.91)
+>
+>  AC_OUTPUT([
+>  Makefile
+> diff --git a/main.c b/main.c
+> index bda26d1..0d4597c 100644
+> --- a/main.c
+> +++ b/main.c
+> @@ -18,13 +18,15 @@
+>
+>  #include <gtk/gtk.h>
+>  #include <vte/vte.h>
+> +#include <glib.h>
+>
+>  static void
+>  on_window_title_changed (VteTerminal *terminal, GtkWindow *window)
+>  {
+>    char *title;
+>
+> -  title = g_strdup_printf ("%s - Terminal", terminal->window_title);
+> +  title = g_strdup_printf ("%s - Terminal",
+> +                           vte_terminal_get_window_title (terminal));
+>    gtk_window_set_title (window, title);
+>    g_free (title);
+>  }
+> @@ -38,16 +40,22 @@ on_eof (VteTerminal *terminal, gpointer user_data)
+>  int
+>  main (int argc, char **argv)
+>  {
+> -  GtkWidget *window, *box, *terminal, *scrollbar;
+> -
+> +  GtkWidget *window, *terminal, *scrolled_win;
+> +  GError *err = NULL;
+> +  char *cmd;
+> +  char **cmd_argv = NULL;
+> +  int cmd_argc;
+> +
+>    gtk_init (&argc, &argv);
+>
+>    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+>    g_signal_connect (window, "destroy", gtk_main_quit, NULL);
+>    gtk_window_set_title (GTK_WINDOW (window), "Terminal");
+>
+> -  box = gtk_hbox_new (FALSE, 0);
+> -  gtk_container_add (GTK_CONTAINER (window), box);
+> +  scrolled_win = gtk_scrolled_window_new (NULL, NULL);
+> +  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(scrolled_win),
+> +                                  GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
+> +  gtk_container_add (GTK_CONTAINER (window), scrolled_win);
+>
+>    terminal = g_object_connect
+>      (vte_terminal_new (),
+> @@ -57,17 +65,38 @@ main (int argc, char **argv)
+>       /* Child is trying to control the terminal */
+>       "signal::window-title-changed", on_window_title_changed, window,
+>       NULL);
+> -  gtk_box_pack_start (GTK_BOX (box), terminal, TRUE, TRUE, 0);
+> +  gtk_container_add (GTK_CONTAINER (scrolled_win), terminal);
+> +
+> +  cmd = vte_get_user_shell ();
+> +  if (!cmd)
+> +    cmd = g_strdup (g_getenv ("SHELL"));
+> +  if (!cmd)
+> +    cmd = g_strdup ("/bin/sh");
+> +
+> +  if (!g_shell_parse_argv(cmd, &cmd_argc, &cmd_argv, &err)) {
+> +    g_printerr ("Failed to parse shell command line '%s'\n", cmd);
+> +  } else if (!vte_terminal_spawn_sync (VTE_TERMINAL (terminal),
+> +                                       VTE_PTY_DEFAULT,
+> +                                       NULL,
+> +                                       cmd_argv,
+> +                                       NULL,
+> +                                       G_SPAWN_SEARCH_PATH,
+> +                                       NULL,
+> +                                       NULL,
+> +                                       NULL,
+> +                                       NULL,
+> +                                       &err)) {
+> +    g_printerr ("Failed to spawn shell: %s\n", err->message);
+> +    g_error_free (err);
+> +  }
+>
+> -  scrollbar = gtk_vscrollbar_new (VTE_TERMINAL (terminal)->adjustment);
+> -  gtk_box_pack_start (GTK_BOX (box), scrollbar, FALSE, FALSE, 0);
+>
+> -  vte_terminal_fork_command (VTE_TERMINAL (terminal),
+> -                             NULL, NULL, NULL, NULL, TRUE, TRUE, TRUE);
+> +  gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
+>
+>    gtk_widget_show_all (window);
+>
+>    gtk_main ();
+>
+> +  g_free (cmd);
+>    return 0;
+>  }
+> --
+> 2.8.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E57100796fmsmsx111amrcor_--
+--001a113ed20a34df410531a13bc0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Merged and pushed, thanks Jussi.=C2=A0 I&#39;ve started ta=
+gging the last GTK+ 2 commit with &#39;GTK+2&#39;.<div><br></div><div>Ross<=
+/div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 29 =
+April 2016 at 11:41, Jussi Kukkonen <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@intel.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex">Signed-off-by: Jussi Kuk=
+konen &lt;<a href=3D"mailto:jussi.kukkonen@intel.com">jussi.kukkonen@intel.=
+com</a>&gt;<br>
+---<br>
+=C2=A0Makefile.am=C2=A0 |=C2=A0 4 ++--<br>
+=C2=A0<a href=3D"http://configure.ac" rel=3D"noreferrer" target=3D"_blank">=
+configure.ac</a> |=C2=A0 2 +-<br>
+=C2=A0main.c=C2=A0 =C2=A0 =C2=A0 =C2=A0| 49 +++++++++++++++++++++++++++++++=
+++++++++----------<br>
+=C2=A03 files changed, 42 insertions(+), 13 deletions(-)<br>
+<br>
+diff --git a/Makefile.am b/Makefile.am<br>
+index 480fbc0..ef2125c 100644<br>
+--- a/Makefile.am<br>
++++ b/Makefile.am<br>
+@@ -1,6 +1,6 @@<br>
+-AM_CPPFLAGS =3D $(VTE_CFLAGS)<br>
++AM_CPPFLAGS =3D $(MBTERM_CFLAGS)<br>
+=C2=A0AM_CFLAGS =3D -Wall<br>
+-LDADD =3D $(VTE_LIBS)<br>
++LDADD =3D $(MBTERM_LIBS)<br>
+<br>
+=C2=A0bin_PROGRAMS =3D matchbox-terminal<br>
+=C2=A0matchbox_terminal_SOURCES =3D main.c<br>
+diff --git a/<a href=3D"http://configure.ac" rel=3D"noreferrer" target=3D"_=
+blank">configure.ac</a> b/<a href=3D"http://configure.ac" rel=3D"noreferrer=
+" target=3D"_blank">configure.ac</a><br>
+index d46da3d..0257274 100644<br>
+--- a/<a href=3D"http://configure.ac" rel=3D"noreferrer" target=3D"_blank">=
+configure.ac</a><br>
++++ b/<a href=3D"http://configure.ac" rel=3D"noreferrer" target=3D"_blank">=
+configure.ac</a><br>
+@@ -7,7 +7,7 @@ AM_CONFIG_HEADER(config.h)<br>
+=C2=A0AC_PROG_CPP<br>
+=C2=A0AC_PROG_CC<br>
+<br>
+-PKG_CHECK_MODULES(VTE, vte)<br>
++PKG_CHECK_MODULES(MBTERM, glib-2.0 gtk+-3.0 vte-2.91)<br>
+<br>
+=C2=A0AC_OUTPUT([<br>
+=C2=A0Makefile<br>
+diff --git a/main.c b/main.c<br>
+index bda26d1..0d4597c 100644<br>
+--- a/main.c<br>
++++ b/main.c<br>
+@@ -18,13 +18,15 @@<br>
+<br>
+=C2=A0#include &lt;gtk/gtk.h&gt;<br>
+=C2=A0#include &lt;vte/vte.h&gt;<br>
++#include &lt;glib.h&gt;<br>
+<br>
+=C2=A0static void<br>
+=C2=A0on_window_title_changed (VteTerminal *terminal, GtkWindow *window)<br=
+>
+=C2=A0{<br>
+=C2=A0 =C2=A0char *title;<br>
+<br>
+-=C2=A0 title =3D g_strdup_printf (&quot;%s - Terminal&quot;, terminal-&gt;=
+window_title);<br>
++=C2=A0 title =3D g_strdup_printf (&quot;%s - Terminal&quot;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0vte_terminal_get_window_title (terminal));<br>
+=C2=A0 =C2=A0gtk_window_set_title (window, title);<br>
+=C2=A0 =C2=A0g_free (title);<br>
+=C2=A0}<br>
+@@ -38,16 +40,22 @@ on_eof (VteTerminal *terminal, gpointer user_data)<br>
+=C2=A0int<br>
+=C2=A0main (int argc, char **argv)<br>
+=C2=A0{<br>
+-=C2=A0 GtkWidget *window, *box, *terminal, *scrollbar;<br>
+-<br>
++=C2=A0 GtkWidget *window, *terminal, *scrolled_win;<br>
++=C2=A0 GError *err =3D NULL;<br>
++=C2=A0 char *cmd;<br>
++=C2=A0 char **cmd_argv =3D NULL;<br>
++=C2=A0 int cmd_argc;<br>
++<br>
+=C2=A0 =C2=A0gtk_init (&amp;argc, &amp;argv);<br>
+<br>
+=C2=A0 =C2=A0window =3D gtk_window_new (GTK_WINDOW_TOPLEVEL);<br>
+=C2=A0 =C2=A0g_signal_connect (window, &quot;destroy&quot;, gtk_main_quit, =
+NULL);<br>
+=C2=A0 =C2=A0gtk_window_set_title (GTK_WINDOW (window), &quot;Terminal&quot=
+;);<br>
+<br>
+-=C2=A0 box =3D gtk_hbox_new (FALSE, 0);<br>
+-=C2=A0 gtk_container_add (GTK_CONTAINER (window), box);<br>
++=C2=A0 scrolled_win =3D gtk_scrolled_window_new (NULL, NULL);<br>
++=C2=A0 gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(scrolled_win),<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 GTK_POLICY_NEVER, GTK_POLICY_=
+ALWAYS);<br>
++=C2=A0 gtk_container_add (GTK_CONTAINER (window), scrolled_win);<br>
+<br>
+=C2=A0 =C2=A0terminal =3D g_object_connect<br>
+=C2=A0 =C2=A0 =C2=A0(vte_terminal_new (),<br>
+@@ -57,17 +65,38 @@ main (int argc, char **argv)<br>
+=C2=A0 =C2=A0 =C2=A0 /* Child is trying to control the terminal */<br>
+=C2=A0 =C2=A0 =C2=A0 &quot;signal::window-title-changed&quot;, on_window_ti=
+tle_changed, window,<br>
+=C2=A0 =C2=A0 =C2=A0 NULL);<br>
+-=C2=A0 gtk_box_pack_start (GTK_BOX (box), terminal, TRUE, TRUE, 0);<br>
++=C2=A0 gtk_container_add (GTK_CONTAINER (scrolled_win), terminal);<br>
++<br>
++=C2=A0 cmd =3D vte_get_user_shell ();<br>
++=C2=A0 if (!cmd)<br>
++=C2=A0 =C2=A0 cmd =3D g_strdup (g_getenv (&quot;SHELL&quot;));<br>
++=C2=A0 if (!cmd)<br>
++=C2=A0 =C2=A0 cmd =3D g_strdup (&quot;/bin/sh&quot;);<br>
++<br>
++=C2=A0 if (!g_shell_parse_argv(cmd, &amp;cmd_argc, &amp;cmd_argv, &amp;err=
+)) {<br>
++=C2=A0 =C2=A0 g_printerr (&quot;Failed to parse shell command line &#39;%s=
+&#39;\n&quot;, cmd);<br>
++=C2=A0 } else if (!vte_terminal_spawn_sync (VTE_TERMINAL (terminal),<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0VTE_PTY_D=
+EFAULT,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0cmd_argv,=
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0G_SPAWN_S=
+EARCH_PATH,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;err)=
+) {<br>
++=C2=A0 =C2=A0 g_printerr (&quot;Failed to spawn shell: %s\n&quot;, err-&gt=
+;message);<br>
++=C2=A0 =C2=A0 g_error_free (err);<br>
++=C2=A0 }<br>
+<br>
+-=C2=A0 scrollbar =3D gtk_vscrollbar_new (VTE_TERMINAL (terminal)-&gt;adjus=
+tment);<br>
+-=C2=A0 gtk_box_pack_start (GTK_BOX (box), scrollbar, FALSE, FALSE, 0);<br>
+<br>
+-=C2=A0 vte_terminal_fork_command (VTE_TERMINAL (terminal),<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0NULL, NULL, NULL, NULL, TRUE, TRUE, TRUE);<b=
+r>
++=C2=A0 gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);<br>
+<br>
+=C2=A0 =C2=A0gtk_widget_show_all (window);<br>
+<br>
+=C2=A0 =C2=A0gtk_main ();<br>
+<br>
++=C2=A0 g_free (cmd);<br>
+=C2=A0 =C2=A0return 0;<br>
+=C2=A0}<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+2.8.1<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+
+--001a113ed20a34df410531a13bc0--
