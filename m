@@ -1,40 +1,72 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96FDBE00E46; Fri, 29 Apr 2016 00:54:43 -0700 (PDT)
+	id AF6EEE00E49; Fri, 29 Apr 2016 01:31:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.181 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C80BE00E42
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 00:54:38 -0700 (PDT)
-In-Reply-To: <CAJTo0LY3yqttg6hf3saU+RoLco1_GmNRy7pT+wDciBFFHep0HQ@mail.gmail.com>
-References: <OFCE91FA1F.8F1BAE31-ONC1257FA3.0034C745-C1257FA3.00360637@esa-grimma.de>
-	<CAJTo0LZxD=ddhu4zkEZXi9=a4KufoiYnf7QG_-n5LgUHXifU_A@mail.gmail.com>
-	<OF1318AFAF.4F1EB7F1-ONC1257FA3.0041651C-C1257FA3.0042D0D2@esa-grimma.de>
-	<CAJTo0LbzDJ4=GcYO71VNeVA7RYqnWPpu_zxDPgKcNBBAune48g@mail.gmail.com>
-	<1461857100201.50766@seescan.com>
-	<CAJTo0LbRp5X9-Q7y4pyXQyBtgRs5A1LnaCYzBHCq0AmTqrXgnw@mail.gmail.com>
-	<OF93501CEC.24CA3D84-ONC1257FA3.00576A53-C1257FA3.0058CC3A@esa-grimma.de>
-	<SIXPR04MB0668640023EA6AFE4596C0ADEC650@SIXPR04MB0668.apcprd04.prod.outlook.com>
-	<CAJTo0LY3yqttg6hf3saU+RoLco1_GmNRy7pT+wDciBFFHep0HQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
+	[209.85.213.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78288E00E46
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 01:30:58 -0700 (PDT)
+Received: by mail-ig0-f181.google.com with SMTP id s8so13991734ign.0
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 01:30:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=QrGbY15mE94mPmsHUk7v4VItKGwlwWx9lZDHrt8u4Xo=;
+	b=a0qxIcBYjvEOOLLDqvBmitXhWsyutQ3pDDLQOn5IWgeWZb17JqluqsnO8trq9ZWsYg
+	05HwPExv0GbyfNTxXM+BzPhE5qDL712DR3w1MGQ+HL7k21DN/vs8IamfTG9oUNlrjEkp
+	vNhM1QKp862maescfS4uaENPLQz+63Gp1Yx4bShtj2JmRYh9COVeFw17GpVd62P0VFkY
+	++qY0r3lZMpfLITOWN5NteQz1H/cwxck9LAB0uGIVabVay+u1x3cf0xMOdR1NNfqqc8m
+	w8OK9GlB+IRfUJBJoIAnIL7/ql9RypylB3Xp8J16kkfiDmEQL3WcHgMsTPuB9798sLPh
+	xyDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=QrGbY15mE94mPmsHUk7v4VItKGwlwWx9lZDHrt8u4Xo=;
+	b=HatTHXeN0eI94ZTOZB37DurBshDr8cLIO5hwG2oV7l16HxYAh2Zuk0hY6i0e4LmzaL
+	K54bA4/Y1eEHEnjVK9O5/bD02T9Rm0n23YWFsakcvxFf/Q4GAk4MvCOPO/Z6Ceye/oxz
+	gqMyQqMvwA/bWY5FsMJRckDaURhagPuTf7pOYJIVlhmnHaDKbPj83Dc6llm/1SAgEenB
+	eHO2K5jtVc69ue4iBjhTTrpubCUc1lbvNTa6KMeaoNfvNQ2SZW5GGNsC68dtqCvJohvO
+	hTB/yVhQFdOnHzKb2Gnc9uPGYRFn8nHYsO8JtstnL4NHp86qI8CxcJW9fJbchf5FReme
+	JOtA==
+X-Gm-Message-State: AOPr4FWdiML5q7r9NwI+pyInD9gF86aGl3vw+nUCg+a0SQeA7Yt8pJcn4G0lv4A7riUAJptLgDnuw/spUw4Gzq5/
+X-Received: by 10.50.233.40 with SMTP id tt8mr3031998igc.78.1461918657572;
+	Fri, 29 Apr 2016 01:30:57 -0700 (PDT)
 MIME-Version: 1.0
-X-KeepSent: AE948224:6BDA8DD0-C1257FA4:0028E4AF;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OFAE948224.6BDA8DD0-ONC1257FA4.0028E4AF-C1257FA4.002B73A2@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Fri, 29 Apr 2016 09:54:36 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 29.04.2016 09:54:40,
-	Serialize complete at 29.04.2016 09:54:40
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Antwort: Re: Antwort: Re: how to configure the build packages of a makefile based libary
+Received: by 10.107.9.106 with HTTP; Fri, 29 Apr 2016 01:30:38 -0700 (PDT)
+In-Reply-To: <2D704C56-775E-4E1A-BFBD-0C14455EFE1A@gmail.com>
+References: <B1D22563-F31B-4EF1-90D6-16EB391134D5@gmail.com>
+	<CACS+7ZSpWgziO+GF++25dM7kgP4SZ_GDV+-DcEMQ_YUGyEEnfQ@mail.gmail.com>
+	<CAMKF1spQn114r9dCAk9z7c3hw-NJp3pVoVP+f3gao2mhLTBHYg@mail.gmail.com>
+	<CAMKF1spwimpQwSE38B5jWmyZXwMKy6znMEF9p-NmTM4mGGr+4g@mail.gmail.com>
+	<CAJTo0Lb25x1H44nGn05d6qBVLDpyiaZ3XW40fdrAWcP_D+qYwg@mail.gmail.com>
+	<CAJTo0LZZ3Hs_yrm5ceik4j8Orv-UQ9T72Wu=R_PCRKw4Y9-WCw@mail.gmail.com>
+	<CAMKF1sozR3_Mhy5PKSaKCo7S2yHrtLzTNrUURFhN38gV0AbkYQ@mail.gmail.com>
+	<246f9c39-736b-7ed6-b69a-69d8c4369236@windriver.com>
+	<B59F2ADC-CB7F-44CF-9AD7-AD779FC2EEC9@gmail.com>
+	<748495f9-7383-ce65-a41b-7343aa1c6004@windriver.com>
+	<2D704C56-775E-4E1A-BFBD-0C14455EFE1A@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 29 Apr 2016 09:30:38 +0100
+Message-ID: <CAJTo0LZKvjbMQnbHXXYZqd8b=q8s=Rh-VAajj3xH3hLTN5sCrQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>,
+	OE Core mailing list <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 6 Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,293 +78,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Apr 2016 07:54:43 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 002B73A0C1257FA4_="
+X-List-Received-Date: Fri, 29 Apr 2016 08:31:02 -0000
+Content-Type: multipart/alternative; boundary=f46d0428757146868f05319b7603
 
---=_alternative 002B73A0C1257FA4_=
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--f46d0428757146868f05319b7603
+Content-Type: text/plain; charset=UTF-8
 
-Hej
+Took it for another ride on our AB last night:
 
-sorry for the user -> usr misswriting. Now the packing works fine. Thanks=20
-for the help - now I understand much better how makefiles are processed.=20
-There is only the licence problem left. Are there some common way how to=20
-handle this?
-below goes the bb file.
-##############
-SUMMARY =3D "libhiredis"
-SECTION =3D "sek4"
-LICENSE =3D "COPYING"
-LIC=5FFILES=5FCHKSUM =3D "file://$
-{WORKDIR}/git/COPYING;md5=3Dd84d659a35c666d23233e54503aaea51"
+http://errors.yoctoproject.org/Errors/Latest/?filter=ab893d4e1c3efc1ee73c6cfbbb9a64036c63d93c&type=commit
 
-# 0.13.3
-# SRCREV =3D "010756025e8cefd1bc66c6d4ed3b1648ef6f1f95"
-SRC=5FURI =3D "git://github.com/redis/hiredis.git;rev=3Dv0.13.3"
+The systemd-sysusers stuff I failed to remove, and is broken.
 
-S =3D "${WORKDIR}/git/"
+There's a pango-native failure that appears to be caused by GIR.
 
-EXTRA=5FOEMAKE =3D "'PREFIX=3D/usr/'"
+And two SDK image test failures caused by transient network problems.
 
-do=5Fcompile() {
-        oe=5Frunmake all 'CC=3D${CC}'
-}
-
-do=5Finstall() {
-        oe=5Frunmake install 'DESTDIR=3D${D}'
-}
-#############
-
-The commandline outputs:
-#############
-NOTE: Executing RunQueue Tasks
-WARNING: QA Issue: libhiredis: /libhiredis-staticdev/usr/lib/libhiredis.a=20
-is owned by uid 1000, which is the same as the user running bitbake. This=20
-may be due to host contamination [host-user-contaminated]
-WARNING: QA Issue: libhiredis: /libhiredis/usr/lib/libhiredis.so.0.13 is=20
-owned by uid 1000, which is the same as the user running bitbake. This may =
-
-be due to host contamination [host-user-contaminated]
-WARNING: QA Issue: libhiredis:=20
-/libhiredis-dev/usr/lib/pkgconfig/hiredis.pc is owned by uid 1000, which=20
-is the same as the user running bitbake. This may be due to host=20
-contamination [host-user-contaminated]
-#############
-
-regards!
-
-Stefan Jaritz
-
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
-
-
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
-
-
-Von:    "Burton, Ross" <ross.burton@intel.com>
-An:     YUKATHARSANI JEYACHANDRA <yukatharsanij@tataelxsi.co.in>
-Kopie:  "S.Jaritz@esa-grimma.de" <S.Jaritz@esa-grimma.de>,=20
-"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Datum:  28.04.2016 18:26
-Betreff:        Re: [yocto] Antwort: Re: how to configure the build=20
-packages of a makefile based libary
-
-
-
-
-On 28 April 2016 at 17:18, YUKATHARSANI JEYACHANDRA <
-yukatharsanij@tataelxsi.co.in> wrote:
-Use INSANE=5FSKIP=5F${PN} =3D "installed-vs-shipped"  in your recipe to avo=
-id=20
-this error. Orelse, add FILES=5F${PN} +=3D "/usr/local/" in your recipe.
-No.
-
-*Only* use installed-vs-shipped if you're incapable of a) packaging the=20
-files or b) deleting the files in a do=5Finstall=5Fappend.  Skipping that=20
-warning means you won't notice new files being added to the install that=20
-you don't package, which could result in broken packages.
+Looking good!
 
 Ross
 
---=_alternative 002B73A0C1257FA4_=
-Content-Type: text/html; charset="ISO-8859-1"
+On 28 April 2016 at 16:29, Khem Raj <raj.khem@gmail.com> wrote:
+
+>
+> > On Apr 28, 2016, at 8:19 AM, Mark Hatle <mark.hatle@windriver.com>
+> wrote:
+> >
+> > On 4/28/16 2:10 AM, Khem Raj wrote:
+> >>
+> >>> On Apr 27, 2016, at 11:06 AM, Mark Hatle <mark.hatle@windriver.com>
+> wrote:
+> >>>
+> >>> On 4/27/16 12:53 PM, Khem Raj wrote:
+> >>>> thanks I think most of them come to these categories. So any help in
+> >>>> fixing them is welcome.
+> >>>>
+> >>>> 1. kernel older than 4.4, backport needed fixed into these branches or
+> >>>> move to newer kernels.
+> >>>> 2. uboot dont have gcc6 compiler header files, backport the needed
+> fixes
+> >>>> 2. meta-qt4 needs to use gnu++98
+> >>>> 3. gcc6 providing its own stdlib.h in libstdc++
+> >>>> 4. gcc6 swtiching to gnu++14 for C++ as default.
+> >>>> 5. GPLv2-only versions of recipes are simply old will need fixing
+> >>>
+> >>> From a -very- brief look, I suspect each of these fixes will be fairly
+> simple.
+> >>> So as we move into the next oe-core phase, we should be able get
+> through this
+> >>> pretty quickly.
+> >>
+> >> I think yes, they are trivial, except the GPL-2.0 packages which might
+> need patching
+> >>
+> >
+> > Ha, actually that was what I was referring to.  The couple I looked at
+> seemed to
+> > be trivial.. :)
+>
+> yes they are just the fact that compiler has gone stricter compliance with
+> standards compared
+> to when code was written. In worst case we might downgrade -std for these
+> recipe but that
+> may not be enough in some cases
+> >
+> > If someone doesn't get to it first, I expect some of my guys will in
+> about a month.
+> >
+>
+> OK cool. I think we should make it merge worthy and get it early into
+> master and fix the fallouts
+>
+>
+> > --Mark
+>
+>
+
+--f46d0428757146868f05319b7603
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<font size=3D2 face=3D"sans-serif">Hej</font>
+<div dir=3D"ltr">Took it for another ride on our AB last night:<div><br></d=
+iv><div><a href=3D"http://errors.yoctoproject.org/Errors/Latest/?filter=3Da=
+b893d4e1c3efc1ee73c6cfbbb9a64036c63d93c&amp;type=3Dcommit">http://errors.yo=
+ctoproject.org/Errors/Latest/?filter=3Dab893d4e1c3efc1ee73c6cfbbb9a64036c63=
+d93c&amp;type=3Dcommit</a><br></div><div><br></div><div>The systemd-sysuser=
+s stuff I failed to remove, and is broken.</div><div><br></div><div>There&#=
+39;s a pango-native failure that appears to be caused by GIR.</div><div><br=
+></div><div>And two SDK image test failures caused by transient network pro=
+blems.</div><div><br></div><div>Looking good!</div><div><br></div><div>Ross=
+</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 28=
+ April 2016 at 16:29, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.=
+khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<=
+br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
+:1px #ccc solid;padding-left:1ex"><span class=3D""><br>
+&gt; On Apr 28, 2016, at 8:19 AM, Mark Hatle &lt;<a href=3D"mailto:mark.hat=
+le@windriver.com">mark.hatle@windriver.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On 4/28/16 2:10 AM, Khem Raj wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; On Apr 27, 2016, at 11:06 AM, Mark Hatle &lt;<a href=3D"mailto=
+:mark.hatle@windriver.com">mark.hatle@windriver.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On 4/27/16 12:53 PM, Khem Raj wrote:<br>
+&gt;&gt;&gt;&gt; thanks I think most of them come to these categories. So a=
+ny help in<br>
+&gt;&gt;&gt;&gt; fixing them is welcome.<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; 1. kernel older than 4.4, backport needed fixed into these=
+ branches or<br>
+&gt;&gt;&gt;&gt; move to newer kernels.<br>
+&gt;&gt;&gt;&gt; 2. uboot dont have gcc6 compiler header files, backport th=
+e needed fixes<br>
+&gt;&gt;&gt;&gt; 2. meta-qt4 needs to use gnu++98<br>
+&gt;&gt;&gt;&gt; 3. gcc6 providing its own stdlib.h in libstdc++<br>
+&gt;&gt;&gt;&gt; 4. gcc6 swtiching to gnu++14 for C++ as default.<br>
+&gt;&gt;&gt;&gt; 5. GPLv2-only versions of recipes are simply old will need=
+ fixing<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; From a -very- brief look, I suspect each of these fixes will b=
+e fairly simple.<br>
+&gt;&gt;&gt; So as we move into the next oe-core phase, we should be able g=
+et through this<br>
+&gt;&gt;&gt; pretty quickly.<br>
+&gt;&gt;<br>
+&gt;&gt; I think yes, they are trivial, except the GPL-2.0 packages which m=
+ight need patching<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt; Ha, actually that was what I was referring to.=C2=A0 The couple I look=
+ed at seemed to<br>
+&gt; be trivial.. :)<br>
 <br>
-<br><font size=3D2 face=3D"sans-serif">sorry for the user -&gt; usr misswri=
-ting.
-Now the packing works fine. Thanks for the help - now I understand much
-better how makefiles are processed. There is only the licence problem left.
-Are there some common way how to handle this?</font>
-<br><font size=3D2 face=3D"sans-serif">below goes the bb file.</font>
-<br><font size=3D2 face=3D"sans-serif">##############</font>
-<br><font size=3D2 face=3D"sans-serif">SUMMARY =3D &quot;libhiredis&quot;</=
-font>
-<br><font size=3D2 face=3D"sans-serif">SECTION =3D &quot;sek4&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">LICENSE =3D &quot;COPYING&quot;</fon=
-t>
-<br><font size=3D2 face=3D"sans-serif">LIC=5FFILES=5FCHKSUM =3D &quot;</fon=
-t><a href=3Dfile://$/><font size=3D2 color=3Dblue face=3D"sans-serif">file:=
-//$</font></a><font size=3D2 face=3D"sans-serif">{WORKDIR}/git/COPYING;md5=
-=3Dd84d659a35c666d23233e54503aaea51&quot;</font>
+</span>yes they are just the fact that compiler has gone stricter complianc=
+e with standards compared<br>
+to when code was written. In worst case we might downgrade -std for these r=
+ecipe but that<br>
+may not be enough in some cases<br>
+<span class=3D"">&gt;<br>
+&gt; If someone doesn&#39;t get to it first, I expect some of my guys will =
+in about a month.<br>
+&gt;<br>
 <br>
-<br><font size=3D2 face=3D"sans-serif"># 0.13.3</font>
-<br><font size=3D2 face=3D"sans-serif"># SRCREV =3D &quot;010756025e8cefd1b=
-c66c6d4ed3b1648ef6f1f95&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">SRC=5FURI =3D &quot;git://github.com=
-/redis/hiredis.git;rev=3Dv0.13.3&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">S =3D &quot;${WORKDIR}/git/&quot;</f=
-ont>
-<br>
-<br><font size=3D2 face=3D"sans-serif">EXTRA=5FOEMAKE =3D &quot;'PREFIX=3D/=
-usr/'&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">do=5Fcompile() {</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; oe=5Frun=
-make
-all 'CC=3D${CC}'</font>
-<br><font size=3D2 face=3D"sans-serif">}</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">do=5Finstall() {</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; oe=5Frun=
-make
-install 'DESTDIR=3D${D}'</font>
-<br><font size=3D2 face=3D"sans-serif">}</font>
-<br><font size=3D2 face=3D"sans-serif">#############</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">The commandline outputs:</font>
-<br><font size=3D2 face=3D"sans-serif">#############</font>
-<br><font size=3D2 face=3D"sans-serif">NOTE: Executing RunQueue Tasks</font>
-<br><font size=3D2 face=3D"sans-serif">WARNING: QA Issue: libhiredis: /libh=
-iredis-staticdev/usr/lib/libhiredis.a
-is owned by uid 1000, which is the same as the user running bitbake. This
-may be due to host contamination [host-user-contaminated]</font>
-<br><font size=3D2 face=3D"sans-serif">WARNING: QA Issue: libhiredis: /libh=
-iredis/usr/lib/libhiredis.so.0.13
-is owned by uid 1000, which is the same as the user running bitbake. This
-may be due to host contamination [host-user-contaminated]</font>
-<br><font size=3D2 face=3D"sans-serif">WARNING: QA Issue: libhiredis: /libh=
-iredis-dev/usr/lib/pkgconfig/hiredis.pc
-is owned by uid 1000, which is the same as the user running bitbake. This
-may be due to host contamination [host-user-contaminated]</font>
-<br><font size=3D2 face=3D"sans-serif">#############</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">regards!<br>
-<br>
-Stefan Jaritz<br>
-<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+</span>OK cool. I think we should make it merge worthy and get it early int=
+o master and fix the fallouts<br>
 <br>
 <br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
+&gt; --Mark<br>
 <br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-<br>
-<br>
-<br>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
-nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Burton, Ross&quot;
-&lt;ross.burton@intel.com&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
-bsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">YUKATHARSANI JEYACHANDRA
-&lt;yukatharsanij@tataelxsi.co.in&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
- &nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;S.Jaritz@esa-grimma.d=
-e&quot;
-&lt;S.Jaritz@esa-grimma.de&gt;, &quot;yocto@yoctoproject.org&quot; &lt;yoct=
-o@yoctoproject.org&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
- &nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">28.04.2016 18:26</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
-p;
-&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
-Antwort: Re: how to configure the build packages of a makefile based libary=
-</font>
-<br>
-<hr noshade>
-<br>
-<br>
-<br>
-<br><font size=3D3>On 28 April 2016 at 17:18, YUKATHARSANI JEYACHANDRA &lt;=
-</font><a href=3Dmailto:yukatharsanij@tataelxsi.co.in target=3D=5Fblank><fo=
-nt size=3D3 color=3Dblue><u>yukatharsanij@tataelxsi.co.in</u></font></a><fo=
-nt size=3D3>&gt;
-wrote:</font>
-<p><font size=3D3>Use INSANE=5FSKIP=5F${PN} =3D &quot;installed-vs-shipped&=
-quot;&nbsp;
-in your recipe to avoid this error. Orelse, add FILES=5F${PN} +=3D &quot;/u=
-sr/local/&quot;
-in your recipe.</font>
-<p><font size=3D3>No.</font>
-<br>
-<br><font size=3D3>*Only* use installed-vs-shipped if you're incapable of
-a) packaging the files or b) deleting the files in a do=5Finstall=5Fappend.=
-&nbsp;
-Skipping that warning means you won't notice new files being added to the
-install that you don't package, which could result in broken packages.</fon=
-t>
-<br>
-<br><font size=3D3>Ross</font>
-<br>
+</blockquote></div><br></div>
 
---=_alternative 002B73A0C1257FA4_=--
+--f46d0428757146868f05319b7603--
