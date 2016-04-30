@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21B76E00D6F; Fri, 29 Apr 2016 19:19:44 -0700 (PDT)
+	id 539D2E00D84; Fri, 29 Apr 2016 19:26:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,56 +18,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.181 listed in list.dnswl.org]
-Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EAD2E00D58
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 19:19:43 -0700 (PDT)
-Received: by mail-pf0-f181.google.com with SMTP id c189so56272231pfb.3
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 19:19:43 -0700 (PDT)
+	*      [209.85.220.41 listed in list.dnswl.org]
+Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
+	[209.85.220.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B984EE00D7C;
+	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
+Received: by mail-pa0-f41.google.com with SMTP id r5so53213898pag.1;
+	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=naDVK9EIodc+gr6Az7BMdUE1QRkW75DL3IoKSVWyOWg=;
-	b=k+tdQ+KnhhtZXZ9RMZ5qiK+9f37zluYKJ40E9krtb1moCwOIfU8exPotaAReG5a3yz
-	dbi7H7iSqc6D16iJ0l09Y9r/zEyZPHavJ4eo9WnnGMCHzThrnJuX+Xv00yTPYA+pBLZn
-	9TCFqg8+u50qwf49yEDQ3ICpBZ56v94zYur9o5GW/ojD0Cbo9bw6EDvv2U6qvo8KOHob
-	RYfbvkfJ96rNk0q8FdvZCvGiSQrUYkpySNPpDXUIWw7sTDqK/Z8KkHhi0OkoDMpxsWHz
-	9UGpds0tYofjYLbBXqFOwESb5/4rw4qzhwSx1++YMHXRBzDAXpT9ky42C9dhFoQkSJXp
-	KAqA==
+	:to; bh=2gIcGiACtDXU78P5XD4W+wGCxOj3UPx8C5Iu9Q+5qpA=;
+	b=m9QuCqYFiL8eAVDVVzLxoTiwlWqWDb1rm9AbelJrlqNLbmdGes+x243L7U8gVjT6u7
+	UbwHcbjjd8j0A1cTl5/Jhfcpe3WFpHEuB5C8PRDif6MKtzGG2cZlbBwo48HqoxPLiP5p
+	cKGrokETXf2oWObD1y8CvgrARRT5EznwlOnJi7YZOB6Q31KTfot/stD8LEfaUW4YFUoA
+	Qrh2VuqAowH0ZUHEFmbPN0cYuU3uCBkXfn9ZsvKY4sZT2FOzuAHIdV2NqM/j3p292PlF
+	LaoRAvu2H1acXXmsYKNwi/makoOBoMLYMaEdqIyq6GWmxoZW0xcMt2Z/cpBbVpjyVW7J
+	UMYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=naDVK9EIodc+gr6Az7BMdUE1QRkW75DL3IoKSVWyOWg=;
-	b=TScJp8jQe8nsu5hKx6CScIRuRAP8YiLIl5TBWUVmjf4wiu2poM7Cu+pe3E6cJXXl6R
-	GIOFwxFN8nPLPmzsMZo5TcdY+i5W7dyUIv/Nh190GCj1YXWClgDyIojA452k9QFvblzg
-	/36bsatSjBMFHShK3ECDlAK6k9jBnr4ermjRERFfjLXdYATSQCTNF0aBoHLRo6rhowzd
-	nRYI33OtGp6H1yVMPfI911jKFVcMFHwjqclCjfeqhyRURGIKunIrH9kz+bfPexKsJLP+
-	akMm5Ryi2TRsstcslqPbtalbs2vWIFVlwN2tWV7lIhicwJ4bn8jojUdAj4s/1DOAF/qB
-	yiTg==
-X-Gm-Message-State: AOPr4FXpKiKF7apVk96DxuT0RDqWyXYS8u4Bm7IdDjqldrdaUCk9L7zCj2ORpcfak0YSuw==
-X-Received: by 10.98.35.212 with SMTP id q81mr34245424pfj.108.1461982782992;
-	Fri, 29 Apr 2016 19:19:42 -0700 (PDT)
+	bh=2gIcGiACtDXU78P5XD4W+wGCxOj3UPx8C5Iu9Q+5qpA=;
+	b=VzEZFtLHxsJ8P1VA+EObYkhDZV7udS3z3bonvYAl4tJfBFOCcYXdrdmqbg6FVxkf4U
+	InavDEi7CY12J7GwTeCvsf2Ins6+BM+wGMD4GMoTMAJJDubBs58GP3APIjp5V+7Uj9Lt
+	fQPN+bai5ZK4g/U7um5ru+iEeKtp0gzZOnq3UmlDdVMgxunJbh196cDBO2OnicXMYwfU
+	nsgFuWczySGWjmYfr7bsVHAvEj0Y9sRb1c1FglK8wjORD9hPlylFO+VhYWF88V0rDWoM
+	aHhMmm7xM9q+XpFmTnsorSzNaHuE1mFZL+yLNlbxkjjHNVZgMToS++qfyfTt8PUxiMF/
+	iTbg==
+X-Gm-Message-State: AOPr4FVrk9q336oG3q5mJKTSs13IU+xhFdm3AJDarevx8gTfbrJK6s5SXrx/xd/FdNWMfQ==
+X-Received: by 10.66.246.165 with SMTP id xx5mr33877023pac.87.1461983192006;
+	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
 Received: from ?IPv6:2601:646:8800:5a9a:9475:a54c:5e22:a356?
 	([2601:646:8800:5a9a:9475:a54c:5e22:a356])
 	by smtp.gmail.com with ESMTPSA id
-	zs16sm27029630pab.13.2016.04.29.19.19.40
+	87sm26730285pfq.93.2016.04.29.19.26.30
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 29 Apr 2016 19:19:40 -0700 (PDT)
+	Fri, 29 Apr 2016 19:26:31 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
 X-Pgp-Agent: GPGMail 2.6b2
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <4240230.kXqFvlgrOF@peggleto-mobl.ger.corp.intel.com>
-Date: Fri, 29 Apr 2016 19:19:36 -0700
-Message-Id: <CED9050A-0F3B-483A-85D9-D5EDF2214031@gmail.com>
-References: <5722E217.40108@mlbassoc.com>
-	<2094217.rxhuCqpasC@peggleto-mobl.ger.corp.intel.com>
-	<572330DA.4020009@mlbassoc.com>
-	<4240230.kXqFvlgrOF@peggleto-mobl.ger.corp.intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1461919494.5465.79.camel@linuxfoundation.org>
+Date: Fri, 29 Apr 2016 19:26:26 -0700
+Message-Id: <199F5178-FEB0-4D4C-9BC1-402E3FA6AB97@gmail.com>
+References: <1461919494.5465.79.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
 X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
-Subject: Re: Change in override behavior?
+Cc: meta-freescale <meta-freescale@yoctoproject.org>,
+	yocto <yocto@yoctoproject.org>
+Subject: Re: Removing builds of meta-fsl-* from the autobuilder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,36 +77,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Apr 2016 02:19:44 -0000
-X-Groupsio-MsgNum: 29778
+X-List-Received-Date: Sat, 30 Apr 2016 02:26:34 -0000
+X-Groupsio-MsgNum: 29779
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_A7B257C7-E0A3-43F7-9975-75FB9756AB33";
+	boundary="Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_A7B257C7-E0A3-43F7-9975-75FB9756AB33
+--Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 
-> On Apr 29, 2016, at 3:09 AM, Paul Eggleton =
-<paul.eggleton@linux.intel.com> wrote:
+> On Apr 29, 2016, at 1:44 AM, Richard Purdie =
+<richard.purdie@linuxfoundation.org> wrote:
 >=20
->>=20
->> By experimentation, I have found that XYZ_append_<MACHINE> seems to =
-do
->> the correct thing, even when <MACHINE> has upper case letters.  Maybe =
-this
->> is an oversight that will be fixed?
+> NXP has decided to lower its contributions to the support of the
+> project and is no longer eligible for the level of automated testing
+> we've been making of meta-fsl-ppc and meta-fsl-arm. As such we're =
+going
+> to disable those builds going forward.
+
+I think that will ease out the pressure on system quite a bit
+and testing toolchain changes will become a bit easier for me :)
+
+Do we want to consider adding some popular community board BSP layers
+
 >=20
+> I don't like doing that but equally this does put a considerable load
+> on the infrastructure and the people running the builds and triaging
+> bugs and this is what we warned would have to happen.
 
-This seems to be an oversight and should be fixed for consistency. =
-packagers may have
-gripes about using uppercase too, not sure how thats working out in your =
-case.
+agreed.
+
+>=20
+> Beth: Could you make the necessary changes please?
+>=20
+> Richard
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_A7B257C7-E0A3-43F7-9975-75FB9756AB33
+--Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -119,9 +132,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlckFjwACgkQuwUzVZGdMxQTtwCfXZtS5xiTp4KTWvdnqnPhWqNY
-O0EAmgJ9PJlYo1L9sKA3AxvIK4tLILr3
-=UAD8
+iEYEARECAAYFAlckF9YACgkQuwUzVZGdMxT3hACfTqul5mWBssF9B9qeOn7HeHLr
+3z8An1UXEfc/zbkOKmmlQB4gIzH7paqp
+=Pdey
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_A7B257C7-E0A3-43F7-9975-75FB9756AB33--
+--Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7--
