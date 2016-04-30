@@ -1,71 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 539D2E00D84; Fri, 29 Apr 2016 19:26:34 -0700 (PDT)
+	id 79230E00D7F; Fri, 29 Apr 2016 20:36:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B984EE00D7C;
-	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
-Received: by mail-pa0-f41.google.com with SMTP id r5so53213898pag.1;
-	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=2gIcGiACtDXU78P5XD4W+wGCxOj3UPx8C5Iu9Q+5qpA=;
-	b=m9QuCqYFiL8eAVDVVzLxoTiwlWqWDb1rm9AbelJrlqNLbmdGes+x243L7U8gVjT6u7
-	UbwHcbjjd8j0A1cTl5/Jhfcpe3WFpHEuB5C8PRDif6MKtzGG2cZlbBwo48HqoxPLiP5p
-	cKGrokETXf2oWObD1y8CvgrARRT5EznwlOnJi7YZOB6Q31KTfot/stD8LEfaUW4YFUoA
-	Qrh2VuqAowH0ZUHEFmbPN0cYuU3uCBkXfn9ZsvKY4sZT2FOzuAHIdV2NqM/j3p292PlF
-	LaoRAvu2H1acXXmsYKNwi/makoOBoMLYMaEdqIyq6GWmxoZW0xcMt2Z/cpBbVpjyVW7J
-	UMYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=2gIcGiACtDXU78P5XD4W+wGCxOj3UPx8C5Iu9Q+5qpA=;
-	b=VzEZFtLHxsJ8P1VA+EObYkhDZV7udS3z3bonvYAl4tJfBFOCcYXdrdmqbg6FVxkf4U
-	InavDEi7CY12J7GwTeCvsf2Ins6+BM+wGMD4GMoTMAJJDubBs58GP3APIjp5V+7Uj9Lt
-	fQPN+bai5ZK4g/U7um5ru+iEeKtp0gzZOnq3UmlDdVMgxunJbh196cDBO2OnicXMYwfU
-	nsgFuWczySGWjmYfr7bsVHAvEj0Y9sRb1c1FglK8wjORD9hPlylFO+VhYWF88V0rDWoM
-	aHhMmm7xM9q+XpFmTnsorSzNaHuE1mFZL+yLNlbxkjjHNVZgMToS++qfyfTt8PUxiMF/
-	iTbg==
-X-Gm-Message-State: AOPr4FVrk9q336oG3q5mJKTSs13IU+xhFdm3AJDarevx8gTfbrJK6s5SXrx/xd/FdNWMfQ==
-X-Received: by 10.66.246.165 with SMTP id xx5mr33877023pac.87.1461983192006;
-	Fri, 29 Apr 2016 19:26:32 -0700 (PDT)
-Received: from ?IPv6:2601:646:8800:5a9a:9475:a54c:5e22:a356?
-	([2601:646:8800:5a9a:9475:a54c:5e22:a356])
-	by smtp.gmail.com with ESMTPSA id
-	87sm26730285pfq.93.2016.04.29.19.26.30
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 29 Apr 2016 19:26:31 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1461919494.5465.79.camel@linuxfoundation.org>
-Date: Fri, 29 Apr 2016 19:26:26 -0700
-Message-Id: <199F5178-FEB0-4D4C-9BC1-402E3FA6AB97@gmail.com>
-References: <1461919494.5465.79.camel@linuxfoundation.org>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.3124)
-Cc: meta-freescale <meta-freescale@yoctoproject.org>,
-	yocto <yocto@yoctoproject.org>
-Subject: Re: Removing builds of meta-fsl-* from the autobuilder
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 332 seconds by postgrey-1.32 at yocto-www;
+	Fri, 29 Apr 2016 20:36:51 PDT
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3258EE00D78
+	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 20:36:51 -0700 (PDT)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id C30ED6FE17C6
+	for <yocto@yoctoproject.org>; Sat, 30 Apr 2016 03:32:05 +0000 (UTC)
+MIME-Version: 1.0
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20160430033205.C30ED6FE17C6@auh.yoctoproject.org>
+Date: Sat, 30 Apr 2016 03:32:05 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-04-30
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,64 +34,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Apr 2016 02:26:34 -0000
-X-Groupsio-MsgNum: 29779
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Sat, 30 Apr 2016 03:36:54 -0000
+Content-Type: multipart/mixed; boundary="===============2326408444359914635=="
 
---Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+--===============2326408444359914635==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
+AUH finished upgrade batch the result patches/logs can be found at:
+https://logs.yoctoproject.org/auh//20160428014037.tar.gz, next are the statistics:
 
-> On Apr 29, 2016, at 1:44 AM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->=20
-> NXP has decided to lower its contributions to the support of the
-> project and is no longer eligible for the level of automated testing
-> we've been making of meta-fsl-ppc and meta-fsl-arm. As such we're =
-going
-> to disable those builds going forward.
+Recipe upgrade statistics:
 
-I think that will ease out the pressure on system quite a bit
-and testing toolchain changes will become a bit easier for me :)
+    * Succeeded: 46
+        tcl, 8.6.5, Robert Yang <liezhi.yang@windriver.com>
+        clutter-gst-3.0, 3.0.18, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        libsoup-2.4, 2.54.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gdk-pixbuf, 2.34.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        ethtool, 4.5, Maxin B. John <maxin.john@intel.com>
+        python-dbus, 1.2.4, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        babeltrace, 1.3.2, Alexander Kanavin <alexander.kanavin@intel.com>
+        libdrm, 2.4.68, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gtk+, 2.24.30, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        pango, 1.40.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        wayland, 1.10.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        lttng-ust, 2.7.3+gitAUTOINC+64165fb5ce, Richard Purdie <richard.purdie@linuxfoundation.org>
+        man-pages, 4.05, Hongxu Jia <hongxu.jia@windriver.com>
+        json-glib, 1.2.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        lttng-modules, 2.7.3+gitAUTOINC+5362a1f260, Richard Purdie <richard.purdie@linuxfoundation.org>
+        inputproto, 2.3.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        glib-networking, 2.48.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python3-pip, 8.1.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        dbus-test, 1.10.8, Chen Qi <Qi.Chen@windriver.com>
+        msmtp, 1.6.4, Alexander Kanavin <alexander.kanavin@intel.com>
+        vala, 0.32.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        at-spi2-core, 2.20.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        hwlatdetect, 0.97, Alexander Kanavin <alexander.kanavin@intel.com>
+        pax-utils, 1.1.6, Hongxu Jia <hongxu.jia@windriver.com>
+        orc, 0.4.25, Maxin B. John <maxin.john@intel.com>
+        at-spi2-atk, 2.20.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        harfbuzz, 1.2.6, Maxin B. John <maxin.john@intel.com>
+        xkeyboard-config, 2.17, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        subversion, 1.9.4, Richard Purdie <richard.purdie@linuxfoundation.org>
+        pkgconfig, 0.29.1+gitAUTOINC+87152c05be, Maxin B. John <maxin.john@intel.com>
+        grep, 2.25, Chen Qi <Qi.Chen@windriver.com>
+        mc, 4.8.16, Maxin B. John <maxin.john@intel.com>
+        libtasn1, 4.8, Maxin B. John <maxin.john@intel.com>
+        bluez5, 5.39, Maxin B. John <maxin.john@intel.com>
+        sudo, 1.8.16, Chen Qi <Qi.Chen@windriver.com>
+        gsettings-desktop-schemas, 3.20.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        curl, 7.48.0, Chen Qi <Qi.Chen@windriver.com>
+        videoproto, 2.3.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        librsvg, 2.40.15, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gcr, 3.20.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        libsecret, 0.18.5, Alexander Kanavin <alexander.kanavin@intel.com>
+        python-pygobject, 3.21.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        lttng-tools, 2.7.2+gitAUTOINC+85e7d60abd, Richard Purdie <richard.purdie@linuxfoundation.org>
+        xrandr, 1.5.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        liburcu, 0.9.2, Alexander Kanavin <alexander.kanavin@intel.com>
+        mpfr, 3.1.4, Richard Purdie <richard.purdie@linuxfoundation.org>
+    * Failed(do_compile): 2
+        nss, 3.23, Alexander Kanavin <alexander.kanavin@intel.com>
+        dropbear, 2016.73, Jussi Kukkonen <jussi.kukkonen@intel.com>
+    * Failed(do_fetch): 1
+        git, 2.8.1, Robert Yang <liezhi.yang@windriver.com>
+    * Failed(do_configure): 15
+        gstreamer1.0-plugins-good, 1.8.1, Maxin B. John <maxin.john@intel.com>
+        db, 6.2.23, Maxin B. John <maxin.john@intel.com>
+        python-scons, 2.5.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libinput, 1.2.902, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        ccache, 3.2.5, Wenzong Fan <wenzong.fan@windriver.com>
+        gstreamer1.0-rtsp-server, 1.8.1, Maxin B. John <maxin.john@intel.com>
+        libxkbcommon, 0.6.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        atk, 2.20.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        sysstat, 11.3.3, Chen Qi <Qi.Chen@windriver.com>
+        epiphany, 3.20.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        clutter-gtk-1.0, 1.8.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python-mako, 1.0.4, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libbsd, 0.8.3, Robert Yang <liezhi.yang@windriver.com>
+        iso-codes, 3.67, Alexander Kanavin <alexander.kanavin@intel.com>
+        docbook-xsl-stylesheets, 1.79.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+    * Failed(other errors): 49
+        busybox, 1.24.2, Chen Qi <Qi.Chen@windriver.com>
+        acpid, 2.0.27, Maxin B. John <maxin.john@intel.com>
+        btrfs-tools, 4.5.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        kexec-tools, 2.0.12, Alexander Kanavin <alexander.kanavin@intel.com>
+        gettext, 0.19.7, Wenzong Fan <wenzong.fan@windriver.com>
+        xserver-xorg, 1.18.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gstreamer1.0-plugins-base, 1.8.1, Maxin B. John <maxin.john@intel.com>
+        fontconfig, 2.11.95, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        pixman, 0.34.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python-setuptools, 20.10.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        prelink, 20151030.+gitAUTOINC+927979bbd1, Mark Hatle <mark.hatle@windriver.com>
+        util-linux, 2.28, Chen Qi <Qi.Chen@windriver.com>
+        dbus, 1.10.8, Chen Qi <Qi.Chen@windriver.com>
+        gdb, 7.11, Richard Purdie <richard.purdie@linuxfoundation.org>
+        rt-tests, 0.97, Alexander Kanavin <alexander.kanavin@intel.com>
+        cairo, 1.15.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        elfutils, 0.166, Hongxu Jia <hongxu.jia@windriver.com>
+        connman, 1.32, Maxin B. John <maxin.john@intel.com>
+        systemtap, 3.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        gnu-efi, 3.0.4, Robert Yang <liezhi.yang@windriver.com>
+        clutter-1.0, 1.26.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        webkitgtk, 2.12.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        libarchive, 3.1.901a, Alexander Kanavin <alexander.kanavin@intel.com>
+        lsbinitscripts, 9.66, Ross Burton <ross.burton@intel.com>
+        libnewt, 0.52.19, Hongxu Jia <hongxu.jia@windriver.com>
+        python-git, 2.0.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        watchdog, 5.15, Alexander Kanavin <alexander.kanavin@intel.com>
+        perl, 5.24.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        qemu, 2.5.1, Aníbal Limón <anibal.limon@linux.intel.com>
+        systemtap-uprobes, 3.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        glib-2.0, 2.48.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        expat, 2.1.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python-numpy, 1.11.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        sysprof, 3.20.0+gitAUTOINC+aaf81c5cfb, Alexander Kanavin <alexander.kanavin@intel.com>
+        python3-setuptools, 20.10.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        icu, 57.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        gstreamer1.0-plugins-bad, 1.8.1, Maxin B. John <maxin.john@intel.com>
+        gtk+3, 3.20.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        weston, 1.10.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        file, 5.26, Robert Yang <liezhi.yang@windriver.com>
+        texinfo, 6.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        cmake, 3.5.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        sqlite3, 3.12.2, Maxin B. John <maxin.john@intel.com>
+        libcap, 2.25, Robert Yang <liezhi.yang@windriver.com>
+        iproute2, 4.5.0, Maxin B. John <maxin.john@intel.com>
+        slang, 2.3.0, Kai Kang <kai.kang@windriver.com>
+        gzip, 1.8, Chen Qi <Qi.Chen@windriver.com>
+        nasm, 2.12.01, Richard Purdie <richard.purdie@linuxfoundation.org>
+        gstreamer1.0, 1.8.1, Maxin B. John <maxin.john@intel.com>
+    * Failed(get_env): 1
+        libnewt-python, 0.52.19, Hongxu Jia <hongxu.jia@windriver.com>
 
-Do we want to consider adding some popular community board BSP layers
+    TOTAL: attempted=114 succeeded=46(40.35%) failed=68(59.65%)
 
->=20
-> I don't like doing that but equally this does put a considerable load
-> on the infrastructure and the people running the builds and triaging
-> bugs and this is what we warned would have to happen.
+Recipe upgrade statistics per Maintainer:
 
-agreed.
+    Alexander Kanavin <alexander.kanavin: attempted=19 succeeded=6(31.58%) failed=13(68.42%)
+    Alejandro Hernandez <alejandro.hernandez: attempted=11 succeeded=3(27.27%) failed=8(72.73%)
+    Ross Burton <ross.burton: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Kai Kang <kai.kang: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Aníbal Limón <anibal.limon: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Hongxu Jia <hongxu.jia: attempted=5 succeeded=2(40.00%) failed=3(60.00%)
+    Jussi Kukkonen <jussi.kukkonen: attempted=34 succeeded=18(52.94%) failed=16(47.06%)
+    Richard Purdie <richard.purdie: attempted=7 succeeded=5(71.43%) failed=2(28.57%)
+    Mark Hatle <mark.hatle: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Robert Yang <liezhi.yang: attempted=6 succeeded=1(16.67%) failed=5(83.33%)
+    Chen Qi <Qi.Chen: attempted=9 succeeded=4(44.44%) failed=5(55.56%)
+    Maxin B. John <maxin.john: attempted=17 succeeded=7(41.18%) failed=10(58.82%)
+    Wenzong Fan <wenzong.fan: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
 
->=20
-> Beth: Could you make the necessary changes please?
->=20
-> Richard
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlckF9YACgkQuwUzVZGdMxT3hACfTqul5mWBssF9B9qeOn7HeHLr
-3z8An1UXEfc/zbkOKmmlQB4gIzH7paqp
-=Pdey
------END PGP SIGNATURE-----
-
---Apple-Mail=_5C42E53E-2123-4B39-8596-D739421C02A7--
+--===============2326408444359914635==--
