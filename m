@@ -1,28 +1,57 @@
-Return-Path: <auh@auh.yoctoproject.org>
+Return-Path: <sanzi.voicu@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79230E00D7F; Fri, 29 Apr 2016 20:36:54 -0700 (PDT)
+	id ECA4FE00D84; Sat, 30 Apr 2016 03:29:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sanzi.voicu[at]yahoo.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [98.139.213.152 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 332 seconds by postgrey-1.32 at yocto-www;
-	Fri, 29 Apr 2016 20:36:51 PDT
-Received: from auh.yoctoproject.org (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3258EE00D78
-	for <yocto@yoctoproject.org>; Fri, 29 Apr 2016 20:36:51 -0700 (PDT)
-Received: from auh.yoctoproject.org (localhost [127.0.0.1])
-	by auh.yoctoproject.org (Postfix) with ESMTP id C30ED6FE17C6
-	for <yocto@yoctoproject.org>; Sat, 30 Apr 2016 03:32:05 +0000 (UTC)
-MIME-Version: 1.0
-From: auh@auh.yoctoproject.org
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm11-vm1.bullet.mail.bf1.yahoo.com
+	(nm11-vm1.bullet.mail.bf1.yahoo.com [98.139.213.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89906E00CA1
+	for <yocto@yoctoproject.org>; Sat, 30 Apr 2016 03:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1462012166; bh=DkCyYR+7hoEOXRS0Lqysx+i9qU29IOMLs2lcR5TEkLM=;
+	h=From:To:Cc:Subject:Date:From:Subject;
+	b=Vax4XZX1Q0Mn6Ug+rcAcmXrIFD7+GUUz5t0cKg3bLDDDFtnKDIU0BESCoqp3QAM5r4gbgEvu4uJbnwdP4nBuKsyxQABRVqDK2PdDA0vrNufcRZS1WDvTt/kAxmtHHmdysQIBOv/n50Hjegz+x6L1BemzXuJyZgVNHKwjSQTP3iaMfyFWxGmusqw2OhT3tZ74yeXBr6dQBsqEFjT5/I49alYb2rIvYEzBM2nZmrwfa2TdQwtVWqIu+c861T5ET2LPGh8RxGlncCr0B05LtTI1iWndRTHN1jswqnnDHYs9HGSO2RIINoR9i/aFmN4/OMcuehKHphKhYqMfqdulBfCZcQ==
+Received: from [66.196.81.171] by nm11.bullet.mail.bf1.yahoo.com with NNFMP;
+	30 Apr 2016 10:29:26 -0000
+Received: from [98.139.211.193] by tm17.bullet.mail.bf1.yahoo.com with NNFMP;
+	30 Apr 2016 10:29:26 -0000
+Received: from [127.0.0.1] by smtp202.mail.bf1.yahoo.com with NNFMP;
+	30 Apr 2016 10:29:26 -0000
+X-Yahoo-Newman-Id: 326157.39199.bm@smtp202.mail.bf1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: I_88kVgVM1le4Z8UPUVntZ_x66a2AmF_tjcGdcV7yKcD1CB
+	PQkncOaSOcgw5cKfk8NIilN.FkoyYXPfRF6HtelO8Mr8Vm0s0ZsX_tRLKpGL
+	jovaQLybOpWQnnsSQ6l1fQX4zTnkZygteTcQYEvGIhCePKWgYJYDSudojgEn
+	AFpEHsiGCeE5siTS6YSDAKDFEsV3Z5plUK93.BsroZPW.dWumo_ReLVpdTdq
+	kQjK60QXqbJwUQu2VlrrFc0ApJV78I7Wn98Xcr_75xd4BIiyCHq7AbLPKcfg
+	TZfP3R38tX7UE94w03j23VYNPSd3rTwZEi34F4VaH7ieXLshd7wXE.9sMOhE
+	yx8gBRcGU7zQ59PX3OPdqiZ9B4_nG8YxLxM6Ug1H1X_7R_KSqL4LYmho_QZh
+	8Rr4kKie5D6ed_N._hHJov4Oo3vT66_TsdzD8sBw4PgHyqxpy1wcFgfOyn8I
+	2Wepy.YdfJnA5AUYEe_YJcLYu4bEAPuqojeEo63raIccPkSo9WpzIPmlm8DD
+	5VeF1DYjH4km.XzuvtS.DrdqYjKRsuT1aT.Ecn91Zyx8-
+X-Yahoo-SMTP: I18nf8WswBCbDnbjxFg1KGYs2dWSvlUt
+From: "Sanziana.Voicu" <sanzi.voicu@yahoo.com>
 To: yocto@yoctoproject.org
-Message-Id: <20160430033205.C30ED6FE17C6@auh.yoctoproject.org>
-Date: Sat, 30 Apr 2016 03:32:05 +0000 (UTC)
-Subject: [AUH] Upgrade status: 2016-04-30
+Date: Sat, 30 Apr 2016 13:29:20 +0300
+Message-Id: <1462012161-17330-1-git-send-email-sanzi.voicu@yahoo.com>
+X-Mailer: git-send-email 2.5.0
+Subject: [PATCH 1/1] CGL Requirements Template Parser first draft
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,156 +63,299 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Apr 2016 03:36:54 -0000
-Content-Type: multipart/mixed; boundary="===============2326408444359914635=="
+X-List-Received-Date: Sat, 30 Apr 2016 10:29:31 -0000
 
---===============2326408444359914635==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Sanziana Voicu <sanzi.voicu@yahoo.com>
 
-AUH finished upgrade batch the result patches/logs can be found at:
-https://logs.yoctoproject.org/auh//20160428014037.tar.gz, next are the statistics:
+The script creates three arrays for each type of requirement, based on
+a template. The arrays are ordered for a highly costumisable search.
+This script is the first component of a calculator/automatic template
+parser and updater tool.
 
-Recipe upgrade statistics:
+Signed-off-by: Sanziana Voicu <sanzi.voicu@yahoo.com>
+---
+ scripts/open.pl | 270 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 270 insertions(+)
+ create mode 100644 scripts/open.pl
 
-    * Succeeded: 46
-        tcl, 8.6.5, Robert Yang <liezhi.yang@windriver.com>
-        clutter-gst-3.0, 3.0.18, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        libsoup-2.4, 2.54.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        gdk-pixbuf, 2.34.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        ethtool, 4.5, Maxin B. John <maxin.john@intel.com>
-        python-dbus, 1.2.4, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        babeltrace, 1.3.2, Alexander Kanavin <alexander.kanavin@intel.com>
-        libdrm, 2.4.68, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        gtk+, 2.24.30, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        pango, 1.40.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        wayland, 1.10.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        lttng-ust, 2.7.3+gitAUTOINC+64165fb5ce, Richard Purdie <richard.purdie@linuxfoundation.org>
-        man-pages, 4.05, Hongxu Jia <hongxu.jia@windriver.com>
-        json-glib, 1.2.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        lttng-modules, 2.7.3+gitAUTOINC+5362a1f260, Richard Purdie <richard.purdie@linuxfoundation.org>
-        inputproto, 2.3.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        glib-networking, 2.48.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python3-pip, 8.1.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        dbus-test, 1.10.8, Chen Qi <Qi.Chen@windriver.com>
-        msmtp, 1.6.4, Alexander Kanavin <alexander.kanavin@intel.com>
-        vala, 0.32.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        at-spi2-core, 2.20.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        hwlatdetect, 0.97, Alexander Kanavin <alexander.kanavin@intel.com>
-        pax-utils, 1.1.6, Hongxu Jia <hongxu.jia@windriver.com>
-        orc, 0.4.25, Maxin B. John <maxin.john@intel.com>
-        at-spi2-atk, 2.20.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        harfbuzz, 1.2.6, Maxin B. John <maxin.john@intel.com>
-        xkeyboard-config, 2.17, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        subversion, 1.9.4, Richard Purdie <richard.purdie@linuxfoundation.org>
-        pkgconfig, 0.29.1+gitAUTOINC+87152c05be, Maxin B. John <maxin.john@intel.com>
-        grep, 2.25, Chen Qi <Qi.Chen@windriver.com>
-        mc, 4.8.16, Maxin B. John <maxin.john@intel.com>
-        libtasn1, 4.8, Maxin B. John <maxin.john@intel.com>
-        bluez5, 5.39, Maxin B. John <maxin.john@intel.com>
-        sudo, 1.8.16, Chen Qi <Qi.Chen@windriver.com>
-        gsettings-desktop-schemas, 3.20.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        curl, 7.48.0, Chen Qi <Qi.Chen@windriver.com>
-        videoproto, 2.3.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        librsvg, 2.40.15, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        gcr, 3.20.0, Alexander Kanavin <alexander.kanavin@intel.com>
-        libsecret, 0.18.5, Alexander Kanavin <alexander.kanavin@intel.com>
-        python-pygobject, 3.21.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        lttng-tools, 2.7.2+gitAUTOINC+85e7d60abd, Richard Purdie <richard.purdie@linuxfoundation.org>
-        xrandr, 1.5.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        liburcu, 0.9.2, Alexander Kanavin <alexander.kanavin@intel.com>
-        mpfr, 3.1.4, Richard Purdie <richard.purdie@linuxfoundation.org>
-    * Failed(do_compile): 2
-        nss, 3.23, Alexander Kanavin <alexander.kanavin@intel.com>
-        dropbear, 2016.73, Jussi Kukkonen <jussi.kukkonen@intel.com>
-    * Failed(do_fetch): 1
-        git, 2.8.1, Robert Yang <liezhi.yang@windriver.com>
-    * Failed(do_configure): 15
-        gstreamer1.0-plugins-good, 1.8.1, Maxin B. John <maxin.john@intel.com>
-        db, 6.2.23, Maxin B. John <maxin.john@intel.com>
-        python-scons, 2.5.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        libinput, 1.2.902, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        ccache, 3.2.5, Wenzong Fan <wenzong.fan@windriver.com>
-        gstreamer1.0-rtsp-server, 1.8.1, Maxin B. John <maxin.john@intel.com>
-        libxkbcommon, 0.6.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        atk, 2.20.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        sysstat, 11.3.3, Chen Qi <Qi.Chen@windriver.com>
-        epiphany, 3.20.1, Alexander Kanavin <alexander.kanavin@intel.com>
-        clutter-gtk-1.0, 1.8.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python-mako, 1.0.4, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        libbsd, 0.8.3, Robert Yang <liezhi.yang@windriver.com>
-        iso-codes, 3.67, Alexander Kanavin <alexander.kanavin@intel.com>
-        docbook-xsl-stylesheets, 1.79.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-    * Failed(other errors): 49
-        busybox, 1.24.2, Chen Qi <Qi.Chen@windriver.com>
-        acpid, 2.0.27, Maxin B. John <maxin.john@intel.com>
-        btrfs-tools, 4.5.1, Alexander Kanavin <alexander.kanavin@intel.com>
-        kexec-tools, 2.0.12, Alexander Kanavin <alexander.kanavin@intel.com>
-        gettext, 0.19.7, Wenzong Fan <wenzong.fan@windriver.com>
-        xserver-xorg, 1.18.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        gstreamer1.0-plugins-base, 1.8.1, Maxin B. John <maxin.john@intel.com>
-        fontconfig, 2.11.95, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        pixman, 0.34.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python-setuptools, 20.10.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        prelink, 20151030.+gitAUTOINC+927979bbd1, Mark Hatle <mark.hatle@windriver.com>
-        util-linux, 2.28, Chen Qi <Qi.Chen@windriver.com>
-        dbus, 1.10.8, Chen Qi <Qi.Chen@windriver.com>
-        gdb, 7.11, Richard Purdie <richard.purdie@linuxfoundation.org>
-        rt-tests, 0.97, Alexander Kanavin <alexander.kanavin@intel.com>
-        cairo, 1.15.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        elfutils, 0.166, Hongxu Jia <hongxu.jia@windriver.com>
-        connman, 1.32, Maxin B. John <maxin.john@intel.com>
-        systemtap, 3.0, Alexander Kanavin <alexander.kanavin@intel.com>
-        gnu-efi, 3.0.4, Robert Yang <liezhi.yang@windriver.com>
-        clutter-1.0, 1.26.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        webkitgtk, 2.12.1, Alexander Kanavin <alexander.kanavin@intel.com>
-        libarchive, 3.1.901a, Alexander Kanavin <alexander.kanavin@intel.com>
-        lsbinitscripts, 9.66, Ross Burton <ross.burton@intel.com>
-        libnewt, 0.52.19, Hongxu Jia <hongxu.jia@windriver.com>
-        python-git, 2.0.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        watchdog, 5.15, Alexander Kanavin <alexander.kanavin@intel.com>
-        perl, 5.24.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        qemu, 2.5.1, Aníbal Limón <anibal.limon@linux.intel.com>
-        systemtap-uprobes, 3.0, Alexander Kanavin <alexander.kanavin@intel.com>
-        glib-2.0, 2.48.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        expat, 2.1.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python-numpy, 1.11.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        sysprof, 3.20.0+gitAUTOINC+aaf81c5cfb, Alexander Kanavin <alexander.kanavin@intel.com>
-        python3-setuptools, 20.10.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        icu, 57.1, Alexander Kanavin <alexander.kanavin@intel.com>
-        gstreamer1.0-plugins-bad, 1.8.1, Maxin B. John <maxin.john@intel.com>
-        gtk+3, 3.20.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        weston, 1.10.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        file, 5.26, Robert Yang <liezhi.yang@windriver.com>
-        texinfo, 6.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        cmake, 3.5.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        sqlite3, 3.12.2, Maxin B. John <maxin.john@intel.com>
-        libcap, 2.25, Robert Yang <liezhi.yang@windriver.com>
-        iproute2, 4.5.0, Maxin B. John <maxin.john@intel.com>
-        slang, 2.3.0, Kai Kang <kai.kang@windriver.com>
-        gzip, 1.8, Chen Qi <Qi.Chen@windriver.com>
-        nasm, 2.12.01, Richard Purdie <richard.purdie@linuxfoundation.org>
-        gstreamer1.0, 1.8.1, Maxin B. John <maxin.john@intel.com>
-    * Failed(get_env): 1
-        libnewt-python, 0.52.19, Hongxu Jia <hongxu.jia@windriver.com>
+diff --git a/scripts/open.pl b/scripts/open.pl
+new file mode 100644
+index 0000000..dc229a5
+--- /dev/null
++++ b/scripts/open.pl
+@@ -0,0 +1,270 @@
++#!/usr/bin/perluse strict;
++
++use warnings;
++use diagnostics;
++use open ':std', ':encoding(UTF-8)';
++use Spreadsheet::ParseExcel;
++use Spreadsheet::ParseXLSX;
++
++my $parser = Spreadsheet::ParseExcel->new();
++my $workbook = $parser->parse('ECGL 5.0 for PPC Registration - P204x.xls');   
++
++my $avl_p1=1;
++my $avl_p2=1;
++my $index_p1=1;
++my $index_p2=1;
++
++
++#Worksheet Requirements
++my $worksheet = $workbook->worksheet(1);
++
++
++my $id = $worksheet->get_cell( 1, 0 );
++my $i = 1;
++my $aux = substr $id->value(), 0, 3;
++my @p1 = ();
++my @p2 = ();
++
++#AVL - Availability Requirements
++while ( $aux eq "AVL") {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();
++		$index_p2=$index_p2+1;	
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $cls_p1=$index_p1;
++my $cls_p2=$index_p2;
++
++
++#CLS - Clustering Requirements
++while ( ( $aux eq "CFH" ) || ( $aux eq "CSM" ) || ( $aux eq "CCM" ) || ( $aux eq "CAF" ) || ( $aux eq "CDI" ) ) {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();
++		$index_p2=$index_p2+1;	
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $srv_p1=$index_p1;
++my $srv_p2=$index_p2;
++
++#SRV - Serviceabilitu Requirements
++while ( ( $aux eq "SMM" ) || ( $aux eq "SPM" ) || ( $aux eq "SFA" ) ) {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();
++		$index_p2=$index_p2+1;	
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $prf_p1=$index_p1;
++my $prf_p2=$index_p2;
++
++#PRF - Performance Requirements
++while ( $aux eq "PRF" ) {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();
++		$index_p2=$index_p2+1;	
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $std_p1=$index_p1;
++my $std_p2=$index_p2;
++
++#STD - Standards Requirements
++while ( $aux eq "STD" ) {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();		
++		$index_p2=$index_p2+1;
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $sec_p1=$index_p1;
++my $sec_p2=$index_p2;
++
++#SEC - Security Requirements
++while ( $aux eq "SEC" ) {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();		
++		$index_p2=$index_p2+1;
++	}
++
++	$i=$i+1;
++	$id = $worksheet->get_cell( $i, 0 );
++	$aux = substr $id->value(), 0, 3;
++
++}
++
++my $pms_p1=$index_p1;
++my $pms_p2=$index_p2;
++
++#HW - Hardware Requirements
++my ( $row_min, $row_max ) = $worksheet->row_range();
++while ( $aux eq "PMS") {
++	$priority = $worksheet->get_cell( $i, 2 );
++
++	if ( $priority->value() eq "P1") {
++		$p1[1][$index_p1] = $id->value();
++		get_package_name_p1();
++		$index_p1=$index_p1+1;
++	}
++	else {
++		$p2[1][$index_p2] = $id->value();
++		get_package_name_p2();
++		$index_p2=$index_p2+1;	
++	}
++	$i=$i+1;
++	if ( $i != $row_max+1 ) {
++		$id = $worksheet->get_cell( $i, 0 );
++		$aux = substr $id->value(), 0, 3;
++	}
++
++}
++
++#Extragerea numelor pachetelor pentru P1.
++sub get_package_name_p1{
++
++   	$id = $worksheet->get_cell( $i, 3 );
++   	$aux = $id->value();
++   	$name=substr $aux, 0, 8;
++
++   	if ( $aux eq "not" ) {
++   		$p1[2][$index_p1] ="not";
++   	}
++   	else {
++  		if ( $name eq "Kernel (" ) {
++  			$p1[2][$index_p1] ="kernel";
++  		}
++  		else {
++   			if ( $aux eq "Kernel / Package Combination") {
++   				$id = $worksheet->get_cell( $i, 4 );
++   				$aux = $id->value();
++   				$p1[2][$index_p1] = $aux . "_k";
++   			}
++   			else {
++   				$id = $worksheet->get_cell( $i, 4 );
++   				$aux = $id->value();
++   				$p1[2][$index_p1] = $aux;
++   			}
++   		}
++   	}	
++}
++
++#Extragerea numelor pachetelor pentru P2.
++sub get_package_name_p2{
++
++   	$id = $worksheet->get_cell( $i, 3 );
++   	$aux = $id->value();
++   	$name=substr $aux, 0, 8;
++
++   	if ( $aux eq "Not" ) {
++   		$p2[2][$index_p2] ="Not";
++   	}
++   	else {
++  		if ( $name eq "Kernel (" ) {
++  			$p2[2][$index_p2] ="kernel";
++  		}
++  		else {
++   			if ( $aux eq "Kernel / Package Combination") {
++   				$id = $worksheet->get_cell( $i, 4 );
++   				$aux = $id->value();
++   				$p2[2][$index_p2] = $aux . "_k";
++   			}
++   			else {
++   				$id = $worksheet->get_cell( $i, 4 );
++   				$aux = $id->value();
++   				$p2[2][$index_p2] = $aux;
++   			}
++   		}
++   	}	
++}
++
++#Gaps
++my @g = ();
++
++$worksheet = $workbook->worksheet(2);
++
++$id = $worksheet->get_cell( 1, 0 );
++my $index_g = 1;
++
++( $row_min, $row_max ) = $worksheet->row_range(); 
++
++while ( $index_g <= $row_max ) {
++	$g[$index_g] = $id->value();
++	$index_g=$index_g+1;
++	if ( $index_g != $row_max+1 ) {
++		$id = $worksheet->get_cell( $index_g, 0 );
++	}
++}
+\ No newline at end of file
+-- 
+2.5.0
 
-    TOTAL: attempted=114 succeeded=46(40.35%) failed=68(59.65%)
 
-Recipe upgrade statistics per Maintainer:
-
-    Alexander Kanavin <alexander.kanavin: attempted=19 succeeded=6(31.58%) failed=13(68.42%)
-    Alejandro Hernandez <alejandro.hernandez: attempted=11 succeeded=3(27.27%) failed=8(72.73%)
-    Ross Burton <ross.burton: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Kai Kang <kai.kang: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Aníbal Limón <anibal.limon: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Hongxu Jia <hongxu.jia: attempted=5 succeeded=2(40.00%) failed=3(60.00%)
-    Jussi Kukkonen <jussi.kukkonen: attempted=34 succeeded=18(52.94%) failed=16(47.06%)
-    Richard Purdie <richard.purdie: attempted=7 succeeded=5(71.43%) failed=2(28.57%)
-    Mark Hatle <mark.hatle: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Robert Yang <liezhi.yang: attempted=6 succeeded=1(16.67%) failed=5(83.33%)
-    Chen Qi <Qi.Chen: attempted=9 succeeded=4(44.44%) failed=5(55.56%)
-    Maxin B. John <maxin.john: attempted=17 succeeded=7(41.18%) failed=10(58.82%)
-    Wenzong Fan <wenzong.fan: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
-
---===============2326408444359914635==--
