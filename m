@@ -1,6 +1,6 @@
 Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D7A3E00D5E; Mon,  2 May 2016 00:48:57 -0700 (PDT)
+	id 6E414E00D58; Mon,  2 May 2016 01:22:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,49 +13,49 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.214.174 listed in list.dnswl.org]
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F057DE00D57
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 00:48:53 -0700 (PDT)
-Received: by mail-ob0-f174.google.com with SMTP id x1so58569638obt.0
-	for <yocto@yoctoproject.org>; Mon, 02 May 2016 00:48:53 -0700 (PDT)
+	*      [209.85.218.41 listed in list.dnswl.org]
+Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
+	[209.85.218.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07D83E00D4F
+	for <yocto@yoctoproject.org>; Mon,  2 May 2016 01:22:44 -0700 (PDT)
+Received: by mail-oi0-f41.google.com with SMTP id x19so181300976oix.2
+	for <yocto@yoctoproject.org>; Mon, 02 May 2016 01:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nPDLzGPp2fp60+SHsVdITAUkx73+OAeg8mpP/MVcJLs=;
-	b=uQgiD2YWl3MNjgoz2AURhVauFFsOr16431545JZBr+SYmdm0VkN1e3HB12MXnRxdwb
-	g2n3iUIakGIUrJGOK6QZvQsEF2DlGBBm/VdCukY5cKi+FFgjrOQjifKVLgJPxZ8N0472
-	lWEST5Ye2+h9Hr90AEYHwrTj80trXQG7HUIkADNPkQEcxOSKVLKlkJutJ0M/wM7K58P3
-	OkdHJwdOagffwLzCnrXC6btX8ZNw6s9mcLVUe+41srdo2DFAJ91yZsauX02TWBH42cG7
-	z6rXofTPvWPZg3MVW0kLIDAYiOSuxO5TDyVUNAbvy34uOEfpwjH0KN9M1BEiV7sxVefk
-	fgEg==
+	:cc; bh=nCJjvt8OMvA2SfmlCWv7h3WQMOWuxqWvTqqWH2MuBPQ=;
+	b=ORVBFG94N6inhuqIqpcXiMmX/ARnL4lFkdXJTlMogMqh11S/3bAHXHjJCzEswCA2zR
+	WPzUjHogfixWoaHVrq1SzQz7lv6igmgMc+oQHy6RQmMicSTvVFmx8TTPlLRc5iBp4zC3
+	w6gd77lKMr5dqSCCplorj+OiGjg7gCg+NjbNBBWu7sBERH8myZQC6HCbcQgO9WkurqDb
+	tqoAEerUt2bbBsUtvoF/gFLBx2ZwDbvnZ3c9gQeV5Hg2A8xf9pinayHQ/OrwSdHXId6C
+	mFu/mcD/mZsF7pxISHeIqYtb+vLzuLQ9rsAMT7Y8WirbaBeDoabw7V7xNbffrp7TvsfY
+	CKgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=nPDLzGPp2fp60+SHsVdITAUkx73+OAeg8mpP/MVcJLs=;
-	b=AjfZmfo+eHkenbhMjDBu6V3NPOJ+1FxIIaNPmz4mTyFKElM+6zfBk5POrz8vmQ+d3J
-	pkOUlhHVirL2e3ovwRv5PaMyEn95rUONLirx9X+zotfuDknOq4QxrtilFl4GDREozgHC
-	fKxHu6D+h0c6eaw0vJ0WrmVx0ErT2k2nbpExbznyc5fhRxyf73V+1M4M9MmKKzxCDAvQ
-	R10biiFLUbOEhdto5p5gILWsxolBatPN6u1KGWIt7Vasqbe3tosXZAzlSgBOQSmQcyCv
-	EfL9soYX3G6GfC9vquEhnSoqV03qQIKG5msgfywNnK6kDvYoQvDGZmyLIl9JAxSxWPRl
-	rX8Q==
-X-Gm-Message-State: AOPr4FV7GpcFassbvA9mgICxb/0lvpd6+ngEgIONmxRysOfJZvf5O3CRz9ark5UT0Lmu7ksZS5uE3k1Vxpo4+oxL
-X-Received: by 10.182.60.198 with SMTP id j6mr14732808obr.12.1462175332816;
-	Mon, 02 May 2016 00:48:52 -0700 (PDT)
+	bh=nCJjvt8OMvA2SfmlCWv7h3WQMOWuxqWvTqqWH2MuBPQ=;
+	b=mUpsu5aWTMx68sBlb39k3nIy1YPQopeloCojhwAWLyXH+Z5STeixldpFifbTzKLzzM
+	saBRdao0KdhDF3F1n49//8mEDF/yOuKGcEpFjvM+Je8KkE8PmNhoQFRxEigRHgCaFltc
+	o2Nq2gFWamVAhIc0VCjDrlTykIgCtUhp+TKqxwsco+N2WNu4gVVhB6OhY/vld3tTZY6D
+	Oo6ZJ52CcdWBLHXC3XGH7WfYeF/8/sTIgV3v2WAMbxmPg1qBq3D1TBOmsCzdTwA4KrTj
+	J8V4TeQ/QLCOeoa15rLzTDFOukPkKkuvv+FAKW3wNwTLHZXPF0tY5dTEZZ/DzJsLcoxo
+	gsjQ==
+X-Gm-Message-State: AOPr4FV2MJVra+Lx+DAHlkL3prFo0rdLdiCzd2S9i47gdxOoWz6rFaAttrwKrxPLVjzq/bsuWw29PBzbS1Idwz5o
+X-Received: by 10.157.12.168 with SMTP id b37mr13280602otb.4.1462177363866;
+	Mon, 02 May 2016 01:22:43 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.202.173.193 with HTTP; Mon, 2 May 2016 00:48:23 -0700 (PDT)
-In-Reply-To: <CAJTo0Lbg14X-m8BarjZtD7SQW7_tTmSL0XvnOTTq-sawO+9iSQ@mail.gmail.com>
-References: <cover.1461913316.git.jussi.kukkonen@intel.com>
-	<50e502ee999733a064eb5b45ba87450648485929.1461913316.git.jussi.kukkonen@intel.com>
-	<CAJTo0Lbg14X-m8BarjZtD7SQW7_tTmSL0XvnOTTq-sawO+9iSQ@mail.gmail.com>
+Received: by 10.202.173.193 with HTTP; Mon, 2 May 2016 01:22:14 -0700 (PDT)
+In-Reply-To: <CAJTo0LZs7fBXjUwskfcjCwN6eWKxmPxxtFpmABG06dodyR736w@mail.gmail.com>
+References: <cover.1461926785.git.jussi.kukkonen@intel.com>
+	<570f4f447c75829576e4c22cf3ce8ce676a80936.1461926785.git.jussi.kukkonen@intel.com>
+	<CAJTo0LZs7fBXjUwskfcjCwN6eWKxmPxxtFpmABG06dodyR736w@mail.gmail.com>
 From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Mon, 2 May 2016 10:48:23 +0300
-Message-ID: <CAHiDW_G+M+q9Jq6FXr=eqCcLcy7EEjHn-ZKjwHy09uN-oKs4sg@mail.gmail.com>
+Date: Mon, 2 May 2016 11:22:14 +0300
+Message-ID: <CAHiDW_FPgQCgPc-a0iXkcsqOXg16hvnjdNLQcJbeuwdCRHeiEQ@mail.gmail.com>
 To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [screenshot][PATCH 1/1] Quick port to Gtk/Gdk 3
+Subject: Re: [matchbox-config-gtk][PATCH 1/1] Port to Gtk+3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,23 +67,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 07:48:57 -0000
+X-List-Received-Date: Mon, 02 May 2016 08:22:48 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 29 April 2016 at 18:46, Burton, Ross <ross.burton@intel.com> wrote:
-> The stock ones look easy to fix, the device ones less so so unless I'm wrong
-> we can leave those for now.
+On 29 April 2016 at 18:36, Burton, Ross <ross.burton@intel.com> wrote:
+> Hi,
+>
+> mb-appearance.c: In function 'new_frame':
+> mb-appearance.c:352:3: warning: 'gtk_alignment_get_type' is deprecated
+> [-Wdeprecated-declarations]
+>    *align = g_object_new (GTK_TYPE_ALIGNMENT,
+>    ^
+> In file included from /usr/include/gtk-3.0/gtk/gtk.h:248:0,
+>                  from mb-appearance.c:28:
+> /usr/include/gtk-3.0/gtk/deprecated/gtkalignment.h:77:12: note: declared
+> here
+>  GType      gtk_alignment_get_type   (void) G_GNUC_CONST;
+>             ^
+> mb-appearance.c: In function 'main':
+> mb-appearance.c:385:41: warning: 'GtkStock' is deprecated
+> [-Wdeprecated-declarations]
+>                                          GTK_STOCK_CLOSE,
+> GTK_RESPONSE_CLOSE,
+>                                          ^
+>
+> Should be simple to fix?
 
-The grab code was trickier with current API (which is why I left it as
-is), but I took another look and it turns out that code has never
-actually been used...
+I was sure I handled these already ... but no, sorry about that. I
+pushed a commit into the same branch to fix the above issues:
 
-So I removed _grab_lock() and _release_lock(), and replaced STOCK
-items with text.
-I've added these changes to the same branch (should now compile
-without warnings):
-  git://github.com/jku/sato-screenshot gtk3
-  https://github.com/jku/sato-screenshot/tree/gtk3
+  git://github.com/jku/matchbox-config-gtk gtk3
+  https://github.com/jku/matchbox-config-gtk/tree/gtk3
 
 Jussi
 
