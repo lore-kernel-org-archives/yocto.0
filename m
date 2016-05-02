@@ -1,40 +1,29 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17D64E00D6D; Mon,  2 May 2016 06:13:50 -0700 (PDT)
+	id 72148E00D7A; Mon,  2 May 2016 06:25:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [46.105.58.226 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 4208 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 May 2016 06:13:47 PDT
-Received: from 3.mo2.mail-out.ovh.net (3.mo2.mail-out.ovh.net [46.105.58.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65AA4E00D67
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 06:13:47 -0700 (PDT)
-Received: from player169.ha.ovh.net (b9.ovh.net [213.186.33.59])
-	by mo2.mail-out.ovh.net (Postfix) with ESMTP id 1E28910008C7
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 13:56:03 +0200 (CEST)
-Received: from nuc.betafive.co.uk
-	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
-	(Authenticated sender: paul@betafive.co.uk)
-	by player169.ha.ovh.net (Postfix) with ESMTPSA id 5327558007C;
-	Mon,  2 May 2016 13:56:02 +0200 (CEST)
-Date: Mon, 2 May 2016 12:57:23 +0100
-From: Paul Barker <paul@paulbarker.me.uk>
-To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <20160502125723.4b1b3e98@nuc.betafive.co.uk>
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A503E00D74
+	for <yocto@yoctoproject.org>; Mon,  2 May 2016 06:25:54 -0700 (PDT)
+To: yocto <yocto@yoctoproject.org>
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 4635048442797328809
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekkedrledugdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Subject: [meta-raspberrypi] License of rpi-mkimage
+X-KeepSent: 827D5F19:0E3908F9-C1257FA7:004902B6;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF827D5F19.0E3908F9-ONC1257FA7.004902B6-C1257FA7.0049C7C7@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Mon, 2 May 2016 15:25:52 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 02.05.2016 15:25:57,
+	Serialize complete at 02.05.2016 15:25:57
+Subject: HG Parameters for the fetcher
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,47 +35,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 13:13:50 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 May 2016 13:25:59 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 0049C7C5C1257FA7_="
 
-Hi,
+--=_alternative 0049C7C5C1257FA7_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I'm looking at the license conditions for various bits of the software
-required to build a Linux image using meta-raspberrypi.
+Hej,
 
-I like to package up and redistribute everything I use to build an
-image as this guarantees that people can re-build similar images. I
-also think that in the case of RaspberyPi the GitHub repositories are
-enormous and I'd like to package up small tar files of just the bits
-that are actually needed to build an image. Before I do that I want to
-make sure that this is allowed by the relevant licenses.
+Actually I try to build a recipe for a Mercurial SCM. The hg sources are=20
+local. In my bb File I have this lines:
 
-I'm confused by the RaspberryPi 'tools' repository
-(https://github.com/raspberrypi/tools) and the rpi-mkimage recipe in
-meta-raspberrypi (recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb) which
-pulls from this repository. There is no clear license information in
-the tools repository. The rpi-mkimage recipe contains a local License
-file (recipes-bsp/rpi-mkimage/rpi-mkimage/License) which appears to be
-the Broadcom MIT-style license. No files in the tools repository confirm
-that this is the correct license for this software.
 
-Two scripts in the tools repository which are installed by the
-rpi-mkimage recipe, mkknlimg and knlinfo, have a header saying
-"Licensed under the terms of the GNU General Public License." however
-it's unclear which version of the GPL is meant here and I can't find a
-copy of the full license text in the tools repository. It does look
-like this code isn't under the Broadcom/MIT-style license which is
-specified for the rpi-mkimage recipe though.
+SRCREV =3D "486c7001d4e5"
+SRC=5FURI =3D "hg://myHG"
 
-I've raised an issue upstream to clarify the licensing
-(https://github.com/raspberrypi/tools/issues/58). However I wanted to
-let you know what I've found.
+I got the error:
 
-Does anyone have any additional info on the license of this software?
+ERROR: Logfile of failure stored in:=20
+/home/user/myTC/poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/myHG/=
+0.1-r0/temp/log.do=5Ffetch.27908
+Log data follows:
+| DEBUG: Executing python function do=5Ffetch
+| DEBUG: Executing python function base=5Fdo=5Ffetch
+| DEBUG: Python function base=5Fdo=5Ffetch finished
+| DEBUG: Python function do=5Ffetch finished
+| ERROR: Function failed: URL: 'hg://myHG' is missing the required=20
+parameter 'module'
+ERROR: Task 4=20
+(/home/user/myTC/poky/meta-sek4/recipes-test/deamons/myHG=5F0.1.bb,=20
+do=5Ffetch) failed with exit code '1'
 
-Hope I've not poked too much of a wasps nest open here!
 
-Thanks,
-Paul Barker
+Any ideas?
 
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 0049C7C5C1257FA7_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej,</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Actually I try to build a recipe for
+a Mercurial SCM. The hg sources are local. In my bb File I have this lines:=
+</font>
+<br>
+<br>
+<br><font size=3D2 face=3D"sans-serif">SRCREV =3D &quot;486c7001d4e5&quot;<=
+/font>
+<br><font size=3D2 face=3D"sans-serif">SRC=5FURI =3D &quot;hg://myHG&quot;<=
+/font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I got the error:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">ERROR: Logfile of failure stored in:
+/home/user/myTC/poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/myHG/=
+0.1-r0/temp/log.do=5Ffetch.27908</font>
+<br><font size=3D2 face=3D"sans-serif">Log data follows:</font>
+<br><font size=3D2 face=3D"sans-serif">| DEBUG: Executing python function d=
+o=5Ffetch</font>
+<br><font size=3D2 face=3D"sans-serif">| DEBUG: Executing python function b=
+ase=5Fdo=5Ffetch</font>
+<br><font size=3D2 face=3D"sans-serif">| DEBUG: Python function base=5Fdo=
+=5Ffetch
+finished</font>
+<br><font size=3D2 face=3D"sans-serif">| DEBUG: Python function do=5Ffetch =
+finished</font>
+<br><font size=3D2 face=3D"sans-serif">| ERROR: Function failed: URL: 'hg:/=
+/myHG'
+is missing the required parameter 'module'</font>
+<br><font size=3D2 face=3D"sans-serif">ERROR: Task 4 (/home/user/myTC/poky/=
+meta-sek4/recipes-test/deamons/myHG=5F0.1.bb,
+do=5Ffetch) failed with exit code '1'</font>
+<br>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Any ideas?<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 0049C7C5C1257FA7_=--
