@@ -1,58 +1,40 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <paul@paulbarker.me.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7356E00D64; Mon,  2 May 2016 03:44:26 -0700 (PDT)
+	id 17D64E00D6D; Mon,  2 May 2016 06:13:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.50 listed in list.dnswl.org]
+	*      [46.105.58.226 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
-	[209.85.218.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F540E00D58
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 03:44:23 -0700 (PDT)
-Received: by mail-oi0-f50.google.com with SMTP id x201so184391350oif.3
-	for <yocto@yoctoproject.org>; Mon, 02 May 2016 03:44:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=tdtLFbbI0BtZpw+ySVJxDGLJLHnPomxefpnHA1ZLzPc=;
-	b=ZQOql3DtwQ8R62hCDXTbO74iNQ5n7CEL38uOZk0IfTbrWHF0np04UPzaB8YvE76jzJ
-	OI116um/aTOgH7LV2cw1LIzipXAQuj5h7xMzetgekp+X6anaKQDp9utc9VW1KzaA9bd2
-	ee16+dYujqdC1rsxUqco3tTy3Zk5NtvEsosagxjEZYJ7yM1EKMkm4J9t7LRDc+HL0rWO
-	nNviKYHmc8FlwabCedjOatR+SjNq7hLeoslBJWTW/Qnwiyj2BH7qj6G1QhqzDC567RfF
-	jHQ5vJvdmlGOf5qz6GLK4/oPnVkpwzUVApJUpFqkHmg9XqLGXLV7QkUbQxv093iVdFn8
-	2k7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=tdtLFbbI0BtZpw+ySVJxDGLJLHnPomxefpnHA1ZLzPc=;
-	b=RHWSIEt8IMad53PvCdXD0iHNYFozvdRNhb/33n9gUGi+Pf+YxUoaEsFjvwKwdWV/Ht
-	NE7hGW8uGJJbFgag3h9US96eBMiOjy9Shc5yH3RNAqBN4q62ect4bIS7EZJ4UAQSS26a
-	q2g1mllSltifKC7GyOQPq6Z2h0LieGnnU7ZB2owFvoFjrGLt8ixgpc3jvp/nhZ/GYve8
-	o0aHb9HXyqUc8MuoDLP3cBGrYq+w9k+B/L07ph1r9KQOavrOLlFAgbOeaxE9TK20XaOL
-	wvNaPT8kHngqTnbjpzoNCTRt8FyVOEq9mJvF4LqkKMoJWKkGNYZ6YYkGcK3eSvAPOa3b
-	SmEg==
-X-Gm-Message-State: AOPr4FWwtxm8a1IP6ED6rda9luNc73yc6BcD/sfNjmFOD2Ybwz590O2UkhBDXkSWcm7FS5Fa33c7LsNrqyKmvhxK
-X-Received: by 10.202.60.138 with SMTP id j132mr12958298oia.201.1462185862606; 
-	Mon, 02 May 2016 03:44:22 -0700 (PDT)
+X-Greylist: delayed 4208 seconds by postgrey-1.32 at yocto-www;
+	Mon, 02 May 2016 06:13:47 PDT
+Received: from 3.mo2.mail-out.ovh.net (3.mo2.mail-out.ovh.net [46.105.58.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65AA4E00D67
+	for <yocto@yoctoproject.org>; Mon,  2 May 2016 06:13:47 -0700 (PDT)
+Received: from player169.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo2.mail-out.ovh.net (Postfix) with ESMTP id 1E28910008C7
+	for <yocto@yoctoproject.org>; Mon,  2 May 2016 13:56:03 +0200 (CEST)
+Received: from nuc.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
+	(Authenticated sender: paul@betafive.co.uk)
+	by player169.ha.ovh.net (Postfix) with ESMTPSA id 5327558007C;
+	Mon,  2 May 2016 13:56:02 +0200 (CEST)
+Date: Mon, 2 May 2016 12:57:23 +0100
+From: Paul Barker <paul@paulbarker.me.uk>
+To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>
+Message-ID: <20160502125723.4b1b3e98@nuc.betafive.co.uk>
+X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 10.202.173.193 with HTTP; Mon, 2 May 2016 03:43:53 -0700 (PDT)
-In-Reply-To: <cover.1461830592.git.jussi.kukkonen@intel.com>
-References: <cover.1461830592.git.jussi.kukkonen@intel.com>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Mon, 2 May 2016 13:43:53 +0300
-Message-ID: <CAHiDW_GebR2LB8Jous2VS+ADdmzO0AMt8aZZXRBRdWc4Y7Zy5A@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [matchbox-desktop-2][PATCH 00/16] Upgrade to GTK+3
+X-Ovh-Tracer-Id: 4635048442797328809
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekkedrledugdeghecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+Subject: [meta-raspberrypi] License of rpi-mkimage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,15 +46,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 10:44:26 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 02 May 2016 13:13:50 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 28 April 2016 at 16:02, Jussi Kukkonen <jussi.kukkonen@intel.com> wrote:
-> Code still uses some deprecated API, but nothing that I expect to be
-> removed in the next GTK+ releases.
+Hi,
 
-I'll have a another go at fixing these deprecation warnings and will
-let you know : feel free to review the other patches though.
+I'm looking at the license conditions for various bits of the software
+required to build a Linux image using meta-raspberrypi.
 
-Jussi
+I like to package up and redistribute everything I use to build an
+image as this guarantees that people can re-build similar images. I
+also think that in the case of RaspberyPi the GitHub repositories are
+enormous and I'd like to package up small tar files of just the bits
+that are actually needed to build an image. Before I do that I want to
+make sure that this is allowed by the relevant licenses.
+
+I'm confused by the RaspberryPi 'tools' repository
+(https://github.com/raspberrypi/tools) and the rpi-mkimage recipe in
+meta-raspberrypi (recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb) which
+pulls from this repository. There is no clear license information in
+the tools repository. The rpi-mkimage recipe contains a local License
+file (recipes-bsp/rpi-mkimage/rpi-mkimage/License) which appears to be
+the Broadcom MIT-style license. No files in the tools repository confirm
+that this is the correct license for this software.
+
+Two scripts in the tools repository which are installed by the
+rpi-mkimage recipe, mkknlimg and knlinfo, have a header saying
+"Licensed under the terms of the GNU General Public License." however
+it's unclear which version of the GPL is meant here and I can't find a
+copy of the full license text in the tools repository. It does look
+like this code isn't under the Broadcom/MIT-style license which is
+specified for the rpi-mkimage recipe though.
+
+I've raised an issue upstream to clarify the licensing
+(https://github.com/raspberrypi/tools/issues/58). However I wanted to
+let you know what I've found.
+
+Does anyone have any additional info on the license of this software?
+
+Hope I've not poked too much of a wasps nest open here!
+
+Thanks,
+Paul Barker
 
