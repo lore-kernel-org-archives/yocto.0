@@ -1,26 +1,80 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Harinath.maddela@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4C68E00D45; Sun,  1 May 2016 21:27:09 -0700 (PDT)
+	id C0C7CE00D47; Sun,  1 May 2016 22:44:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.101.56 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F0EEE00D3B
-	for <yocto@yoctoproject.org>; Sun,  1 May 2016 21:27:06 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 1663484A9211
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 00:27:06 -0400 (EDT)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from IND01-BO1-obe.outbound.protection.outlook.com
+	(mail-bo1ind01on0056.outbound.protection.outlook.com [104.47.101.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B49BFE00D43
+	for <yocto@yoctoproject.org>; Sun,  1 May 2016 22:44:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=inedasystems.onmicrosoft.com; s=selector1-inedasystems-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=ipCS0weNJI0Rbzc4GLXQshzkViiOFLQrV+okZUZX1n8=;
+	b=dxcjVqFVwve2XSoWOa9c8Nm+3OuwWnSX1tS5pJEqPgMncKd7TyQtvhcV/+J8CmINhD2QN3VtZFCtcP6hhtlUoTgb5/GJQXqZpyUxgfLu+qH0IOgw9L/rcxxPwAIx10KChHX5DzvuhL/PhqtSL+wgQpoua/Xe+8Wy6Bgk1wKfnss=
+Received: from PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM (10.164.140.137) by
+	PN1PR01MB0336.INDPRD01.PROD.OUTLOOK.COM (10.164.140.140) with Microsoft
+	SMTP Server (TLS) id 15.1.477.8; Mon, 2 May 2016 05:44:29 +0000
+Received: from PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM ([10.164.140.137]) by
+	PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM ([10.164.140.137]) with mapi id
+	15.01.0477.015; Mon, 2 May 2016 05:44:29 +0000
+From: Harinath maddelal <Harinath.maddela@inedasystems.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Error while buildng SGX
+Thread-Index: AQHRoVFBiLXzqbXXxUGm3oZY8ypKv5+hyKEAgANcKQs=
+Date: Mon, 2 May 2016 05:44:29 +0000
+Message-ID: <PN1PR01MB03335EB964C553EDFD8B3C9BEF790@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>
+References: <PN1PR01MB03339D46A7D7D48583BF087AEF650@PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM>,
+	<CAMKF1spbbhuJsxrKg_hW+nrzXn8oG7iXiejDmTxusUgqFebmeQ@mail.gmail.com>
+In-Reply-To: <CAMKF1spbbhuJsxrKg_hW+nrzXn8oG7iXiejDmTxusUgqFebmeQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+	header.d=none; gmail.com;
+	dmarc=none action=none header.from=inedasystems.com; 
+x-originating-ip: [175.101.7.226]
+x-ms-office365-filtering-correlation-id: d77a756f-3439-4ad6-9100-08d3724cd446
+x-microsoft-exchange-diagnostics: 1; PN1PR01MB0336;
+	5:KkeXUAr+YqkIdNfbqfZ3OIfMIG0VA+nnN4dentXZNs4rhIBHUfdGsy21U1gwpbDYm+lyot74ajZYL+Azup1xWJlzsTm6g7WTEU0s1y1TYzfKoh3l5kogVJO/s2LZgNUXBrc4aPBK6VCvR4RBIPtHPw==;
+	24:STSQdF4pS17wAVqZdSyjX8FkKemcfgyfJem7J2KI75F88u5OToqnVPSGq+oIkRioTVk5sYqxNM95f80JB92f9ham35h5EKc08PqIIqW2VuE=;
+	7:HHRfXcdo+mSkTZV/U+v/FhISsHARlv2SZ1NcMmP/6N70QV1J8AL5M4TLSFF0/OcGhGXO0hChm8hARkTFtqHCx0e/xxoNBuV6MvmlUwZlJWMCZDDG2ohh4RM7NvOlNJw/9qA6zCoOIsv7y2X0dpfHYf1sDeR4XwGH7hqNqg8Bi/kKzUxRA8UJqk0b0JZRa4ST;
+	20:kZIXJrNwdV/XPswiwqSvzMncMcimQruFRv3HXWnrijXA6MmbMmuM0tB+oUPz4+ioSUeHYArV+OkZOeg5vTHuBepsfB6grPNKCoyeruDlAoDljgf4omdMAzx2BSX9WL+TNSxkDi6vy3JJlhJYSfkmyUivoEdssGCOBesqj3p2kbs=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:PN1PR01MB0336;
+x-microsoft-antispam-prvs: <PN1PR01MB033686557E3E10B95F55B12CEF790@PN1PR01MB0336.INDPRD01.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(102415293)(102615271)(9101521072)(2401047)(8121501046)(5005006)(10201501046)(3002001);
+	SRVR:PN1PR01MB0336; BCL:0; PCL:0; RULEID:; SRVR:PN1PR01MB0336; 
+x-forefront-prvs: 0930AAFAD9
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(377454003)(53474002)(24454002)(53754006)(51874003)(15975445007)(586003)(77096005)(81166005)(66066001)(3846002)(102836003)(5890100001)(3660700001)(16601075003)(106116001)(99936001)(9686002)(3280700002)(122556002)(189998001)(6116002)(19580405001)(33656002)(5004730100002)(10400500002)(19580395003)(2900100001)(2906002)(2950100001)(87936001)(4326007)(92566002)(86362001)(5008740100001)(76176999)(50986999)(54356999)(1220700001)(11100500001)(110136002)(5003600100002)(1096002)(5002640100001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:PN1PR01MB0336;
+	H:PN1PR01MB0333.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 02 May 2016 04:27:06 -0000
-Message-ID: <20160502042706.1387.66301@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: inedasystems.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2016 05:44:29.2597 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 854eba29-8407-45bb-9043-7b8b086143dd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN1PR01MB0336
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Error while buildng SGX
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,202 +86,389 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 04:27:09 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 May 2016 05:44:36 -0000
+X-Groupsio-MsgNum: 29785
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_PN1PR01MB03335EB964C553EDFD8B3C9BEF790PN1PR01MB0333INDP_"
 
-This mail was sent out by Recipe reporting system.
+--_002_PN1PR01MB03335EB964C553EDFD8B3C9BEF790PN1PR01MB0333INDP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+> The same builds fine when i use my local gcc of version 4.8.3.
 
-You can check the detail information at:
+By this i mean we are using our local copy of mips toolchain(mips-linux-gnu=
+-gcc-4.8.3)
 
-http://recipes.yoctoproject.org/
+So i have used poky mips toolchain to build the entire poky(except SGX).
+SGX is built with our local copy of mips toolchain (as it was giving the bu=
+ild errors when built with poky mips toolchain, log file attached for refer=
+ence)
 
-Package               Version       Upstream version      Maintainer           NoUpgradeReason
---------------------  ------------  --------------------  -------------------  ------------------------------
-texinfo               6.0           6.1                   Alejandro Hernandez
-perl                  5.22.1        5.24.0                Alejandro Hernandez
-python-dbus           1.2.0         1.2.4                 Alejandro Hernandez
-python-git            1.0.2         2.0.2                 Alejandro Hernandez
-python-mako           1.0.3         1.0.4                 Alejandro Hernandez
-python-numpy          1.10.4        1.11.0                Alejandro Hernandez
-python-pygobject      3.18.2        3.21.0                Alejandro Hernandez
-python-scons          2.4.1         2.5.0                 Alejandro Hernandez
-python3-pip           8.0.0         8.1.1                 Alejandro Hernandez
-python3-setuptools    19.4          20.10.1               Alejandro Hernandez
-python-setuptools     19.4          20.10.1               Alejandro Hernandez
-perl-native           5.22.1        5.24.0                Alejandro Hernandez
-python-scons-native   2.4.1         2.5.0                 Alejandro Hernandez
-liberation-fonts      1.04          2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gcr                   3.18.0        3.20.0                Alexander Kanavin
-gnome-desktop3        3.18.2        3.20.1                Alexander Kanavin
-libsecret             0.18.4        0.18.5                Alexander Kanavin
-watchdog              5.14          5.15                  Alexander Kanavin
-kexec-tools           2.0.11        2.0.12                Alexander Kanavin
-btrfs-tools           4.4           4.5.1                 Alexander Kanavin
-sysprof               1.2.0+gitX    3.20.0+gitAUTOINC...  Alexander Kanavin
-systemtap-uprobes     2.9           3.0                   Alexander Kanavin
-systemtap             2.9           3.0                   Alexander Kanavin
-epiphany              3.18.4        3.20.1                Alexander Kanavin
-hwlatdetect           0.96          0.97                  Alexander Kanavin
-rt-tests              0.96          0.97                  Alexander Kanavin
-webkitgtk             2.10.7        2.12.2                Alexander Kanavin
-icu                   56.1          57.1                  Alexander Kanavin
-liburcu               0.9.1         0.9.2                 Alexander Kanavin
-nss                   3.21          3.23                  Alexander Kanavin
-babeltrace            1.3.1         1.3.2                 Alexander Kanavin
-libarchive            3.1.2         3.2.0                 Alexander Kanavin
-gnutls                3.4.9         3.4.11                Alexander Kanavin
-msmtp                 1.6.3         1.6.4                 Alexander Kanavin
-mkelfimage            4.0+gitX      4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
-iso-codes             3.65          3.67                  Alexander Kanavin
-apt                   1.0.10.1      1.2.11                Aníbal Limón
-qemu                  2.5.0         2.5.1                 Aníbal Limón
-pinentry              0.9.2         0.9.7                 Armin Kuster
-linux-libc-headers    4.4           4.5.2                 Bruce Ashfield
-guilt-native          0.35+gitX     0.36+gitAUTOINC+2...  Bruce Ashfield
-dbus-test             1.10.6        1.10.8                Chen Qi
-dbus                  1.10.6        1.10.8                Chen Qi
-util-linux            2.27.1        2.28                  Chen Qi
-curl                  7.47.1        7.48.0                Chen Qi
-byacc                 20150711      20160324              Chen Qi
-gzip                  1.6           1.8                   Chen Qi
-sudo                  1.8.15        1.8.16                Chen Qi
-sysstat               11.2.0        11.3.3                Chen Qi
-grep                  2.23          2.25                  Chen Qi
-build-appliance-i...  14.0.0        15.0.0                Cristian Iorga
-dhcp                  4.3.3         4.3.4                 Hongxu Jia
-ncurses               6.0+20160213  6.0+20160319          Hongxu Jia
-pax-utils             1.1.5         1.1.6                 Hongxu Jia
-createrepo            0.4.11        0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-libgcrypt             1.6.5         1.7.0                 Hongxu Jia
-man-pages             4.04          4.05                  Hongxu Jia
-libnewt-python        0.52.18       0.52.19               Hongxu Jia
-libnewt               0.52.18       0.52.19               Hongxu Jia
-elfutils              0.164         0.166                 Hongxu Jia
-pango                 1.38.1        1.40.1                Jussi Kukkonen
-mesa                  11.1.1        11.2.1                Jussi Kukkonen
-libinput              1.1.4         1.2.902               Jussi Kukkonen
-wayland               1.9.0         1.10.0                Jussi Kukkonen
-gtk-icon-utils-na...  3.18.8        3.20.3                Jussi Kukkonen
-xrandr                1.4.3         1.5.0                 Jussi Kukkonen
-xf86-input-evdev      2.10.1        2.10.2                Jussi Kukkonen
-xf86-input-synaptics  1.8.3         1.8.99.1              Jussi Kukkonen
-gsettings-desktop...  3.19.3        3.20.0                Jussi Kukkonen
-dropbear              2015.71       2016.73               Jussi Kukkonen
-expat                 2.1.0         2.1.1                 Jussi Kukkonen
-weston                1.9.0         1.10.0                Jussi Kukkonen
-glib-2.0              2.46.2        2.48.0                Jussi Kukkonen
-glib-networking       2.46.1        2.48.1                Jussi Kukkonen
-libxkbcommon          0.5.0         0.6.1                 Jussi Kukkonen
-pixman                0.32.8        0.34.0                Jussi Kukkonen
-xkeyboard-config      2.16          2.17                  Jussi Kukkonen
-inputproto            2.3.1         2.3.2                 Jussi Kukkonen
-videoproto            2.3.2         2.3.3                 Jussi Kukkonen
-matchbox-terminal     0.0+gitX      2+gitAUTOINC+452b...  Jussi Kukkonen
-xserver-xorg          1.18.0        1.18.3                Jussi Kukkonen
-cmake                 3.4.3         3.5.2                 Jussi Kukkonen
-docbook-xsl-style...  1.78.1        1.79.1                Jussi Kukkonen
-at-spi2-atk           2.18.1        2.20.1                Jussi Kukkonen
-at-spi2-core          2.18.3        2.20.1                Jussi Kukkonen
-atk                   2.18.0        2.20.0                Jussi Kukkonen
-libdrm                2.4.67        2.4.68                Jussi Kukkonen
-vala                  0.30.1        0.32.0                Jussi Kukkonen
-libgpg-error          1.21          1.22                  Jussi Kukkonen
-libsoup-2.4           2.52.2        2.54.1                Jussi Kukkonen
-vte                   0.28.2        0.44.1                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.16        3.0.18                Jussi Kukkonen
-gdk-pixbuf            2.32.3        2.34.0                Jussi Kukkonen
-gtk+3                 3.18.8        3.20.3                Jussi Kukkonen
-gtk+                  2.24.29       2.24.30               Jussi Kukkonen
-json-glib             1.0.4         1.2.0                 Jussi Kukkonen
-librsvg               2.40.13       2.40.15               Jussi Kukkonen
-cairo                 1.14.6        1.15.2                Jussi Kukkonen
-clutter-1.0           1.24.2        1.26.0                Jussi Kukkonen
-clutter-gtk-1.0       1.6.6         1.8.0                 Jussi Kukkonen
-fontconfig            2.11.94       2.11.95               Jussi Kukkonen
-mesa-demos            8.2.0         8.3.0                 Jussi Kukkonen
-mesa-gl               11.1.1        11.2.1                Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69        0.9.71                Jussi Kukkonen
-slang                 2.2.4         2.3.0                 Kai Kang
-uclibc                1.0.12+gitX   1.0.14                Khem Raj
-prelink               1.0+gitX      20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0         4.7.0                 Matthew McClintock
-acpid                 2.0.26        2.0.27                Maxin B. John
-bluez5                5.37          5.39                  Maxin B. John
-connman               1.31          1.32                  Maxin B. John
-iproute2              4.4.0         4.5.0                 Maxin B. John
-gstreamer1.0-libav    1.7.2+gitX    1.8.1                 Maxin B. John
-gstreamer1.0          1.7.2+gitX    1.8.1+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.1+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.1                 Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.1+gitAUTOINC+...  Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX    1.8.1+gitAUTOINC+...  Maxin B. John
-orc                   0.4.24        0.4.25                Maxin B. John
-gstreamer1.0-rtsp...  1.6.2         1.8.1                 Maxin B. John
-db                    6.0.30        6.2.23                Maxin B. John
-libtasn1              4.7           4.8                   Maxin B. John
-sqlite3               3.11.0        3.12.2                Maxin B. John
-ethtool               4.2           4.5                   Maxin B. John
-mc                    4.8.15        4.8.16                Maxin B. John
-harfbuzz              1.2.3         1.2.6                 Maxin B. John
-pkgconfig             0.29+gitX     0.29.1+gitAUTOINC...  Maxin B. John
-gdb-cross-canadia...  7.10.1        7.11                  No maintainer
-gdb-cross-i586        7.10.1        7.11                  No maintainer
-xf86-input-libinput   0.16.0        0.19.0                No maintainer
-ffmpeg                3.0           3.0.2                 No maintainer
-cantarell-fonts       0.0.21+gitX   0.13+gitAUTOINC+7...  No maintainer
-gcc-source-5.3.0      5.3.0         6.1.0                 No maintainer
-libsolv               0.6.19        0.6.20                No maintainer
-ifupdown              0.8.2         0.8.10                No maintainer
-uclibc-initial        1.0.12+gitX   1.0.14                No maintainer
-apt-native            1.0.10.1      1.2.11                No maintainer
-cmake-native          3.4.3         3.5.2                 No maintainer
-gobject-introspec...  1.46.0        1.48.0                No maintainer
-sgmlspl-native        1.1+gitX      1.03+gitAUTOINC+f...  No maintainer
-lttng-modules         2.7.1+gitX    2.7.3+gitAUTOINC+...  Richard Purdie
-lttng-tools           2.7.1+gitX    2.7.2+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.1+gitX    2.7.3+gitAUTOINC+...  Richard Purdie
-gdb                   7.10.1        7.11                  Richard Purdie
-nasm                  2.11.08       2.12.01               Richard Purdie
-subversion            1.9.3         1.9.4                 Richard Purdie
-mpfr                  3.1.3         3.1.4                 Richard Purdie
-gnu-efi               3.0.3         3.0.4                 Robert Yang
-file                  5.25          5.26                  Robert Yang
-git                   2.7.4         2.8.2                 Robert Yang
-tcl                   8.6.4         8.6.5                 Robert Yang
-libbsd                0.8.2         0.8.3                 Robert Yang
-libcap                2.24          2.25                  Robert Yang
-mklibs-native         0.1.40        0.1.41                Robert Yang
-base-passwd           3.5.29        3.5.39                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.64          9.66                  Ross Burton
-alsa-utils            1.1.0         1.1.1                 Tanu Kaskinen
-alsa-plugins          1.1.0         1.1.1                 Tanu Kaskinen
-alsa-utils-scripts    1.1.0         1.1.1                 Tanu Kaskinen
-ccache                3.2.4         3.2.5                 Wenzong Fan
-gettext               0.19.6        0.19.7                Wenzong Fan
-chkconfig             1.3.58        1.7                   Wenzong Fan          Version 1.5 requires selinux
+Is there any way to build the complete poky using local mips toolchain rath=
+er than using the poky mips toolchain? I just want to know how to use our l=
+ocal toolchain setup to build entire poky.
 
-Upgradable count: 156
-Upgradable total count: 162
+Kindly help me in this regard
 
-The based commit is:
+Thanks and Regards,
+Harinath
 
-commit 1a0e56630c5c27d8899dd0979ae0b86bbe227881
-Author: Robert Yang <liezhi.yang@windriver.com>
-Date:   Thu Apr 21 20:21:22 2016 -0700
 
-    utils.bbclass: note for deprecated base_contains
-    
-    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+________________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Saturday, April 30, 2016 7:41:40 AM
+To: Harinath maddelal
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Error while buildng SGX
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+On Thu, Apr 28, 2016 at 6:34 AM, Harinath maddelal
+<Harinath.maddela@inedasystems.com> wrote:
+> Hi all,
+>
+>
+> When i build sgx using yocto, im getting following errors.
+>
+> The same builds fine when i use my local gcc of version 4.8.3.
+>
+>
+> I have used 1.8.1 Yocto its using 4.9.2 gcc.
+>
+>
+> Can you please help me resolve the issue. Thanks in advance
+>
+>
+> Following is the console build error log
 
+Please provide compiler cmdline for the failing compile, most probably
+its due to messed up -isystem
+on cmdline
+
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
+
+--_002_PN1PR01MB03335EB964C553EDFD8B3C9BEF790PN1PR01MB0333INDP_
+Content-Type: application/octet-stream; name="log.do_compile"
+Content-Description: log.do_compile
+Content-Disposition: attachment; filename="log.do_compile"; size=17633;
+	creation-date="Mon, 02 May 2016 05:38:36 GMT";
+	modification-date="Mon, 02 May 2016 05:38:36 GMT"
+Content-Transfer-Encoding: base64
+
+REVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19jb21waWxlCioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgpCdWlsZGluZyBTR1gg
+VXNlciBNb2RlCioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKgp1c2VyIG1vZGUgY2xlYW4gYnVpbGQKICBSTSAgICAgICBldXJhc2lhY29uL2Jp
+bmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZQogIEhPU1RfQ0MgIHNlcnZpY2VzNC9zcnZpbml0
+L2RldmljZXMvc2d4L3NneF9pbml0LnVzZS5hc20KICBIT1NUX0NDICBzZXJ2aWNlczQvc3J2aW5p
+dC9kZXZpY2VzL3NneC9zZ3hfdGltZXIudXNlLmFzbQogIEhPU1RfQ0MgIHNlcnZpY2VzNC9zcnZp
+bml0L2RldmljZXMvc2d4L3NneF91dGlscy5hc20KICBIT1NUX0NDICBzZXJ2aWNlczQvc3J2aW5p
+dC9kZXZpY2VzL3NneC9zZ3hfdXRpbHNfbm90M2QuYXNtCiAgQ0MgICAgICAgY29kZWdlbi9waXhl
+dmVudC9waXhldmVudHBiZXNldHVwLmMKICBDQyAgICAgICBjb2RlZ2VuL3VzZWdlbi91c2VnZW5f
+Y29udmVyc2lvbi5jCiAgQ1AgICAgICAgZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4
+X3JlbGVhc2UvdGFyZ2V0L2dsc2x0ZXN0MV92ZXJ0c2hhZGVyLnR4dAogIENQICAgICAgIGV1cmFz
+aWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9nbHNsdGVzdDFfZnJh
+Z3NoYWRlckEudHh0CiAgQ1AgICAgICAgZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4
+X3JlbGVhc2UvdGFyZ2V0L2dsc2x0ZXN0MV9mcmFnc2hhZGVyQi50eHQKICBHRU4gICAgICBldXJh
+c2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQvaW5zdGFsbC5zaAog
+IEdFTiAgICAgIGV1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3Rhcmdl
+dC9yYy5wdnIKSW4gZmlsZSBpbmNsdWRlZCBmcm9tIGh3ZGVmcy91c2Vjb2RlZ2VuLmg6MTM6MCwK
+ICAgICAgICAgICAgICAgICBmcm9tIGNvZGVnZW4vdXNlZ2VuL3VzZWdlbl9jb252ZXJzaW9uLmM6
+MTg6CmluY2x1ZGU0L3NneGFwaS5oOjIwOjIyOiBmYXRhbCBlcnJvcjogdW5pc3RkLmg6IE5vIHN1
+Y2ggZmlsZSBvciBkaXJlY3RvcnkKICAgI2luY2x1ZGUgPHVuaXN0ZC5oPgogICAgICAgICAgICAg
+ICAgICAgICAgXgogIENDICAgICAgIHNlcnZpY2VzNC9zcnZpbml0L2Vudi9saW51eC9wdnJzcnZj
+dGwuYwpjb21waWxhdGlvbiB0ZXJtaW5hdGVkLgptYWtlWzFdOiAqKiogW2V1cmFzaWFjb24vYmlu
+YXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9pbnRlcm1lZGlhdGVzL3VzZWdlbi91
+c2VnZW5fY29udmVyc2lvbi5vXSBFcnJvciAxCm1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1bmZp
+bmlzaGVkIGpvYnMuLi4uCnNlcnZpY2VzNC9zcnZpbml0L2Vudi9saW51eC9wdnJzcnZjdGwuYzo3
+OjI1OiBmYXRhbCBlcnJvcjogc3lzL3N5c2NhbGwuaDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9y
+eQogI2luY2x1ZGUgPHN5cy9zeXNjYWxsLmg+CiAgICAgICAgICAgICAgICAgICAgICAgICBeCmNv
+bXBpbGF0aW9uIHRlcm1pbmF0ZWQuCm1ha2VbMV06ICoqKiBbZXVyYXNpYWNvbi9iaW5hcnkyX2lu
+Y2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2ludGVybWVkaWF0ZXMvcHZyc3J2Y3RsL3B2cnNy
+dmN0bC5vXSBFcnJvciAxCm1ha2U6ICoqKiBbYnVpbGRdIEVycm9yIDIKCkluc3RhbGxpbmcgUG93
+ZXJWUiBDb25zdW1lci9FbWJlZGRlZCBEREsgJ3NneGRka19NQUlOQDM3NDIxNTknIG9uIGhvc3QK
+CkZpbGUgc3lzdGVtIGluc3RhbGxhdGlvbiByb290IGlzIC9ob21lL2hhcmluYXRobS95b2N0by0x
+LjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hf
+RERLX2Zvcl9MaW51eF8xLjE0Ly4uL291dAoKVW5pbnN0YWxsaW5nIGV4aXN0aW5nIHZlcnNpb24g
+c2d4ZGRrX01BSU5AMzc0MjE1OQpVbmluc3RhbGxhdGlvbiBjb21wbGV0ZWQuCmNob3duOiBjaGFu
+Z2luZyBvd25lcnNoaXAgb2YgJy9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAv
+d29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8x
+LjE0Ly4uL291dC9ldGMvaW5pdC5kL3JjLnB2cic6IE9wZXJhdGlvbiBub3QgcGVybWl0dGVkCmJv
+b3Qgc2NyaXB0IHJjLnB2ciAtPiAvZXRjL2luaXQuZC9yYy5wdnIKY2hvd246IGNoYW5naW5nIG93
+bmVyc2hpcCBvZiAnL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21p
+cHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvLi4v
+b3V0L3Vzci9sb2NhbC9iaW4vZ2xzbHRlc3QxX3ZlcnRzaGFkZXIudHh0JzogT3BlcmF0aW9uIG5v
+dCBwZXJtaXR0ZWQKc2hhZGVyIGdsc2x0ZXN0MV92ZXJ0c2hhZGVyLnR4dCAtPiAvdXNyL2xvY2Fs
+L2Jpbi9nbHNsdGVzdDFfdmVydHNoYWRlci50eHQKY2hvd246IGNoYW5naW5nIG93bmVyc2hpcCBv
+ZiAnL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwt
+cG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvLi4vb3V0L3Vzci9s
+b2NhbC9iaW4vZ2xzbHRlc3QxX2ZyYWdzaGFkZXJBLnR4dCc6IE9wZXJhdGlvbiBub3QgcGVybWl0
+dGVkCnNoYWRlciBnbHNsdGVzdDFfZnJhZ3NoYWRlckEudHh0IC0+IC91c3IvbG9jYWwvYmluL2ds
+c2x0ZXN0MV9mcmFnc2hhZGVyQS50eHQKY2hvd246IGNoYW5naW5nIG93bmVyc2hpcCBvZiAnL2hv
+bWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1s
+aW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvLi4vb3V0L3Vzci9sb2NhbC9i
+aW4vZ2xzbHRlc3QxX2ZyYWdzaGFkZXJCLnR4dCc6IE9wZXJhdGlvbiBub3QgcGVybWl0dGVkCnNo
+YWRlciBnbHNsdGVzdDFfZnJhZ3NoYWRlckIudHh0IC0+IC91c3IvbG9jYWwvYmluL2dsc2x0ZXN0
+MV9mcmFnc2hhZGVyQi50eHQKCkluc3RhbGxhdGlvbiBjb21wbGV0ZSEKCioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgpCdWlsZGluZyBTR1gg
+S2VybmVsIE1vZGUKKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqCmtlcm5lbCBtb2RlIGNsZWFuIGJ1aWxkCiAgUk0gICAgICAgZXVyYXNpYWNv
+bi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UKbWFrZSAtQyAvaG9tZS9oYXJpbmF0aG0v
+eW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvZGhydXZhLXBva3ktbGludXgvbGludXgteW9jdG8t
+Y3VzdG9tLzMuMTAuNjAtcjAvbGludXgtZGhydXZhLXN0YW5kYXJkLWJ1aWxkIFwKCUtCVUlMRF9T
+UkM9L2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrLXNoYXJlZC9kaHJ1
+dmEva2VybmVsLXNvdXJjZSBcCglLQlVJTERfRVhUTU9EPSIvaG9tZS9oYXJpbmF0aG0veW9jdG8t
+MS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dY
+X0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFk
+MV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQiIC1mIC9ob21lL2hhcmluYXRobS95b2N0by0x
+LjguMS9idWlsZC90bXAvd29yay1zaGFyZWQvZGhydXZhL2tlcm5lbC1zb3VyY2UvTWFrZWZpbGUg
+XAoJCiAgTEQgICAgICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsv
+bWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9l
+dXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3Rhcmdl
+dC9rYnVpbGQvYnVpbHQtaW4ubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4x
+L2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtf
+Zm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGlu
+dXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC8zcmRwYXJ0eS9idWZmZXJjbGFzc19l
+eGFtcGxlL2J1ZmZlcmNsYXNzX2V4YW1wbGUubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lv
+Y3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIw
+L1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5j
+ZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC8zcmRwYXJ0eS9idWZm
+ZXJjbGFzc19leGFtcGxlL2J1ZmZlcmNsYXNzX2V4YW1wbGVfbGludXgubwogIENDIFtNXSAgL2hv
+bWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1s
+aW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lh
+Y29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2Vz
+NC8zcmRwYXJ0eS9idWZmZXJjbGFzc19leGFtcGxlL2J1ZmZlcmNsYXNzX2V4YW1wbGVfcHJpdmF0
+ZS5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsv
+bWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9l
+dXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3Rhcmdl
+dC9rYnVpbGQvc2VydmljZXM0LzNyZHBhcnR5L2RjX2luY2RoYWQxL2luY2RoYWQxZmJfZGlzcGxh
+eWNsYXNzLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAv
+d29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8x
+LjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2Uv
+dGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vZW52L2xpbnV4L29zZnVuYy5vCiAgQ0MgW01d
+ICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1w
+b2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1
+cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2Vy
+dmljZXM0L3NydmttL2Vudi9saW51eC9tdXRpbHMubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGht
+L3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4w
+LXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJf
+aW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9lbnYv
+bGludXgvbW1hcC5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQv
+dG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGlu
+dXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxl
+YXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2Vudi9saW51eC9tb2R1bGUubwogIEND
+IFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIy
+ZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9r
+bS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxk
+L3NlcnZpY2VzNC9zcnZrbS9lbnYvbGludXgvcGR1bXAubwogIENDIFtNXSAgL2hvbWUvaGFyaW5h
+dGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gv
+MS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFy
+eTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9l
+bnYvbGludXgvcHJvYy5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVp
+bGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3Jf
+TGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9y
+ZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2Vudi9saW51eC9wdnJfYnJpZGdl
+X2subwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3Jr
+L21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQv
+ZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJn
+ZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9lbnYvbGludXgvcHZyX2RlYnVnLm8KICBDQyBbTV0g
+IC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBv
+a3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVy
+YXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2
+aWNlczQvc3J2a20vZW52L2xpbnV4L21tLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0
+by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9T
+R1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2Ro
+YWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vZW52L2xpbnV4
+L211dGV4Lm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAv
+d29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8x
+LjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2Uv
+dGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vZW52L2xpbnV4L2V2ZW50Lm8KICBDQyBbTV0g
+IC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBv
+a3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVy
+YXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2
+aWNlczQvc3J2a20vZW52L2xpbnV4L29zcGVycHJvYy5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0
+aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8x
+LjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5
+Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2Nv
+bW1vbi9idWZmZXJfbWFuYWdlci5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44
+LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RE
+S19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9s
+aW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2NvbW1vbi9kZXZpY2Vt
+ZW0ubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3Jr
+L21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQv
+ZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJn
+ZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9jb21tb24vaGFuZGxlLm8KICBDQyBbTV0gIC9ob21l
+L2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGlu
+dXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNv
+bi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQv
+c3J2a20vY29tbW9uL2hhc2gubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4x
+L2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtf
+Zm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGlu
+dXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9jb21tb24vbGlzdHMubwog
+IENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMz
+MnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNp
+YV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1
+aWxkL3NlcnZpY2VzNC9zcnZrbS9jb21tb24vbWVtLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRo
+bS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEu
+MC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnky
+X2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vY29t
+bW9uL21lbV9kZWJ1Zy5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVp
+bGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3Jf
+TGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9y
+ZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2NvbW1vbi9tZXRyaWNzLm8KICBD
+QyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJy
+MmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFf
+a20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWls
+ZC9zZXJ2aWNlczQvc3J2a20vY29tbW9uL29zZnVuY19jb21tb24ubwogIENDIFtNXSAgL2hvbWUv
+aGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51
+eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29u
+L2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9z
+cnZrbS9jb21tb24vcGR1bXBfY29tbW9uLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0
+by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9T
+R1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2Ro
+YWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vY29tbW9uL3Bl
+cnByb2MubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93
+b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEu
+MTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90
+YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9jb21tb24vcG93ZXIubwogIENDIFtNXSAgL2hv
+bWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1s
+aW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lh
+Y29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2Vz
+NC9zcnZrbS9jb21tb24vcHZyc3J2Lm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0x
+LjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hf
+RERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQx
+X2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vY29tbW9uL3JhLm8K
+ICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBz
+MzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFz
+aWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2ti
+dWlsZC9zZXJ2aWNlczQvc3J2a20vY29tbW9uL3JlZmNvdW50Lm8KICBDQyBbTV0gIC9ob21lL2hh
+cmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgv
+c2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9i
+aW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2
+a20vY29tbW9uL3Jlc21hbi5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEv
+YnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19m
+b3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51
+eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2JyaWRnZWQvYnJpZGdlZF9z
+dXBwb3J0Lm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAv
+d29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8x
+LjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2Uv
+dGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vYnJpZGdlZC9icmlkZ2VkX3B2cl9icmlkZ2Uu
+bwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21p
+cHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVy
+YXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQv
+a2J1aWxkL3NlcnZpY2VzNC9zeXN0ZW0vaW5jZGhhZDEvc3lzY29uZmlnLm8KICBDQyBbTV0gIC9o
+b21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3kt
+bGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNp
+YWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNl
+czQvc3lzdGVtL2luY2RoYWQxL3N5c3V0aWxzLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95
+b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1y
+MC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2lu
+Y2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vY29tbW9u
+L2RldmljZWNsYXNzLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWls
+ZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9M
+aW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3Jl
+bGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vY29tbW9uL3F1ZXVlLm8KICBDQyBb
+TV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVs
+LXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20v
+ZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9z
+ZXJ2aWNlczQvc3J2a20vYnJpZGdlZC9zZ3gvYnJpZGdlZF9zZ3hfYnJpZGdlLm8KICBDQyBbTV0g
+IC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBv
+a3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVy
+YXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2
+aWNlczQvc3J2a20vZGV2aWNlcy9zZ3gvc2d4aW5pdC5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0
+aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8x
+LjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5
+Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2Rl
+dmljZXMvc2d4L3NneHBvd2VyLm8KICBDQyBbTV0gIC9ob21lL2hhcmluYXRobS95b2N0by0xLjgu
+MS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERL
+X2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xp
+bnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9zZXJ2aWNlczQvc3J2a20vZGV2aWNlcy9zZ3gvc2d4
+cmVzZXQubwogIENDIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93
+b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEu
+MTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90
+YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZrbS9kZXZpY2VzL3NneC9zZ3h1dGlscy5vCiAgQ0Mg
+W01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJl
+bC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2tt
+L2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQv
+c2VydmljZXM0L3NydmttL2RldmljZXMvc2d4L3NneGtpY2subwogIENDIFtNXSAgL2hvbWUvaGFy
+aW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9z
+Z3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2Jp
+bmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3NlcnZpY2VzNC9zcnZr
+bS9kZXZpY2VzL3NneC9zZ3h0cmFuc2Zlci5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9j
+dG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAv
+U0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNk
+aGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2RldmljZXMv
+c2d4L21tdS5vCiAgQ0MgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1w
+L3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhf
+MS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNl
+L3RhcmdldC9rYnVpbGQvc2VydmljZXM0L3NydmttL2RldmljZXMvc2d4L3BiLm8KICBMRCBbTV0g
+IC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBv
+a3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVy
+YXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9wdnJz
+cnZrbS5vCiAgTEQgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dv
+cmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4x
+NC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3Rh
+cmdldC9rYnVpbGQvYmNfZXhhbXBsZS5vCiAgTEQgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8t
+MS44LjEvYnVpbGQvdG1wL3dvcmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dY
+X0RES19mb3JfTGludXhfMS4xNC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFk
+MV9saW51eF9yZWxlYXNlL3RhcmdldC9rYnVpbGQvZGNfaW5jZGhhZDEubwogIEJ1aWxkaW5nIG1v
+ZHVsZXMsIHN0YWdlIDIuCiAgTU9EUE9TVCAzIG1vZHVsZXMKICBDQyAgICAgIC9ob21lL2hhcmlu
+YXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4
+LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5h
+cnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9iY19leGFtcGxlLm1vZC5v
+CiAgQ0MgICAgICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmsvbWlw
+czMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4xNC9ldXJh
+c2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3RhcmdldC9r
+YnVpbGQvZGNfaW5jZGhhZDEubW9kLm8KICBDQyAgICAgIC9ob21lL2hhcmluYXRobS95b2N0by0x
+LjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hf
+RERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVyYXNpYWNvbi9iaW5hcnkyX2luY2RoYWQx
+X2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9wdnJzcnZrbS5tb2QubwogIExEIFtNXSAgL2hv
+bWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1s
+aW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lh
+Y29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL2RjX2luY2Ro
+YWQxLmtvCiAgTEQgW01dICAvaG9tZS9oYXJpbmF0aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dv
+cmsvbWlwczMycjJlbC1wb2t5LWxpbnV4L3NneC8xLjAtcjAvU0dYX0RES19mb3JfTGludXhfMS4x
+NC9ldXJhc2lhX2ttL2V1cmFzaWFjb24vYmluYXJ5Ml9pbmNkaGFkMV9saW51eF9yZWxlYXNlL3Rh
+cmdldC9rYnVpbGQvYmNfZXhhbXBsZS5rbwogIExEIFtNXSAgL2hvbWUvaGFyaW5hdGhtL3lvY3Rv
+LTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NH
+WF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhh
+ZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL3B2cnNydmttLmtvCm1ha2UgLUMgL2hvbWUv
+aGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL2RocnV2YS1wb2t5LWxpbnV4L2xp
+bnV4LXlvY3RvLWN1c3RvbS8zLjEwLjYwLXIwL2xpbnV4LWRocnV2YS1zdGFuZGFyZC1idWlsZCBc
+CglLQlVJTERfU1JDPS9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay1z
+aGFyZWQvZGhydXZhL2tlcm5lbC1zb3VyY2UgXAoJS0JVSUxEX0VYVE1PRD0iL2hvbWUvaGFyaW5h
+dGhtL3lvY3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gv
+MS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFy
+eTJfaW5jZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkIiAtZiAvaG9tZS9oYXJpbmF0
+aG0veW9jdG8tMS44LjEvYnVpbGQvdG1wL3dvcmstc2hhcmVkL2RocnV2YS9rZXJuZWwtc291cmNl
+L01ha2VmaWxlIFwKCW1vZHVsZXNfaW5zdGFsbAogIElOU1RBTEwgL2hvbWUvaGFyaW5hdGhtL3lv
+Y3RvLTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIw
+L1NHWF9EREtfZm9yX0xpbnV4XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5j
+ZGhhZDFfbGludXhfcmVsZWFzZS90YXJnZXQva2J1aWxkL2JjX2V4YW1wbGUua28KICBJTlNUQUxM
+IC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90bXAvd29yay9taXBzMzJyMmVsLXBv
+a3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51eF8xLjE0L2V1cmFzaWFfa20vZXVy
+YXNpYWNvbi9iaW5hcnkyX2luY2RoYWQxX2xpbnV4X3JlbGVhc2UvdGFyZ2V0L2tidWlsZC9kY19p
+bmNkaGFkMS5rbwogIElOU1RBTEwgL2hvbWUvaGFyaW5hdGhtL3lvY3RvLTEuOC4xL2J1aWxkL3Rt
+cC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NHWF9EREtfZm9yX0xpbnV4
+XzEuMTQvZXVyYXNpYV9rbS9ldXJhc2lhY29uL2JpbmFyeTJfaW5jZGhhZDFfbGludXhfcmVsZWFz
+ZS90YXJnZXQva2J1aWxkL3B2cnNydmttLmtvCiAgREVQTU9EICAzLjEwLjYwLXlvY3RvLXN0YW5k
+YXJkCmRlcG1vZDogV0FSTklORzogY291bGQgbm90IG9wZW4gL2hvbWUvaGFyaW5hdGhtL3lvY3Rv
+LTEuOC4xL2J1aWxkL3RtcC93b3JrL21pcHMzMnIyZWwtcG9reS1saW51eC9zZ3gvMS4wLXIwL1NH
+WF9EREtfZm9yX0xpbnV4XzEuMTQvLi4vb3V0L2xpYi9tb2R1bGVzLzMuMTAuNjAteW9jdG8tc3Rh
+bmRhcmQvbW9kdWxlcy5vcmRlcjogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpkZXBtb2Q6IFdB
+Uk5JTkc6IGNvdWxkIG5vdCBvcGVuIC9ob21lL2hhcmluYXRobS95b2N0by0xLjguMS9idWlsZC90
+bXAvd29yay9taXBzMzJyMmVsLXBva3ktbGludXgvc2d4LzEuMC1yMC9TR1hfRERLX2Zvcl9MaW51
+eF8xLjE0Ly4uL291dC9saWIvbW9kdWxlcy8zLjEwLjYwLXlvY3RvLXN0YW5kYXJkL21vZHVsZXMu
+YnVpbHRpbjogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQpERUJVRzogU2hlbGwgZnVuY3Rpb24g
+ZG9fY29tcGlsZSBmaW5pc2hlZAo=
+
+--_002_PN1PR01MB03335EB964C553EDFD8B3C9BEF790PN1PR01MB0333INDP_--
