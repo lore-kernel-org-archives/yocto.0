@@ -1,52 +1,31 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D89A9E00D41; Tue,  3 May 2016 02:41:46 -0700 (PDT)
+	id 67C1DE00D57; Tue,  3 May 2016 04:30:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.180.34 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp-out10.electric.net (smtp-out10.electric.net
-	[185.38.180.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98052E00CD2
-	for <yocto@yoctoproject.org>; Tue,  3 May 2016 02:41:44 -0700 (PDT)
-Received: from 1axWpq-0007im-Ta by out10c.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>)
-	id 1axWpq-0007jg-UN; Tue, 03 May 2016 02:41:42 -0700
-Received: by emcmailer; Tue, 03 May 2016 02:41:42 -0700
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out10c.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>)
-	id 1axWpq-0007im-Ta; Tue, 03 May 2016 02:41:42 -0700
-Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0294.000; Tue, 3 May 2016 11:41:42 +0200
-From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: "sanzi.voicu@yahoo.com" <sanzi.voicu@yahoo.com>
-Thread-Topic: [meta-cgl][PATCH] CGL Requirements Template Parser first draft
-Thread-Index: AQHRosswrnCn9KXGLUqvfLEvgLXhcZ+m2PWA
-Date: Tue, 3 May 2016 09:41:40 +0000
-Message-ID: <1462268519.3297.15.camel@sestows129.enea.se>
-References: <1462012161-17330-1-git-send-email-sanzi.voicu@yahoo.com>
-	<1462012161-17330-2-git-send-email-sanzi.voicu@yahoo.com>
-In-Reply-To: <1462012161-17330-2-git-send-email-sanzi.voicu@yahoo.com>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.141.157]
-MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: Adrian.Dudau@enea.com
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-cgl][PATCH] CGL Requirements Template Parser first draft
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8343E00D4F
+	for <yocto@yoctoproject.org>; Tue,  3 May 2016 04:30:12 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 03 May 2016 04:30:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,572,1455004800"; d="scan'208";a="971489171"
+Received: from heimdall.fi.intel.com ([10.237.68.153])
+	by fmsmga002.fm.intel.com with ESMTP; 03 May 2016 04:30:10 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  3 May 2016 14:30:01 +0300
+Message-Id: <cover.1462274044.git.jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.8.1
+Subject: [matchbox-panel-2][PATCH 00/25] Upgrade to Gtk+3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,24 +37,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2016 09:41:46 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C8927298FC378A4AAF745E829274E540@local>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 03 May 2016 11:30:15 -0000
 
-T24gbMO2ciwgMjAxNi0wNC0zMCBhdCAxMzoyOSArMDMwMCwgU2FuemlhbmEuVm9pY3Ugd3JvdGU6
-DQo+IEZyb206IFNhbnppYW5hIFZvaWN1IDxzYW56aS52b2ljdUB5YWhvby5jb20+DQo+IA0KPiBU
-aGUgc2NyaXB0IGNyZWF0ZXMgdGhyZWUgYXJyYXlzIGZvciBlYWNoIHR5cGUgb2YgcmVxdWlyZW1l
-bnQsIGJhc2VkIG9uDQo+IGEgdGVtcGxhdGUuIFRoZSBhcnJheXMgYXJlIG9yZGVyZWQgZm9yIGEg
-aGlnaGx5IGNvc3R1bWlzYWJsZSBzZWFyY2guDQo+IFRoaXMgc2NyaXB0IGlzIHRoZSBmaXJzdCBj
-b21wb25lbnQgb2YgYSBjYWxjdWxhdG9yL2F1dG9tYXRpYyB0ZW1wbGF0ZQ0KPiBwYXJzZXIgYW5k
-IHVwZGF0ZXIgdG9vbC4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFNhbnppYW5hIFZvaWN1IDxzYW56
-aS52b2ljdUB5YWhvby5jb20+DQo+IC0tLQ0KPiAgKnNuaXAqDQoNCkhpIFNhbnppYW5hLA0KDQpD
-YW4geW91IHBsZWFzZSBzZW5kIGEgY292ZXIgbGV0dGVyIGZpcnN0IHdpdGggd2hhdCB5b3UgeW91
-IGFyZSB0cnlpbmcgdG8NCmFjaGlldmUgYW5kIGhvdyAtIHNvbWV0aGluZyBsaWtlIGEgZGVzaWdu
-IHByb3Bvc2FsLiBBcyBpdCBpcyByaWdodCBub3cgSQ0KZmluZCBpdCBoYXJkIHRvIHJldmlldyB0
-aGlzIHBhdGNoIHdpdGhvdXQga25vd2luZyB3aGF0IHRoZSBmaW5hbCBhaW0gaXMuDQoNCkFsc28g
-dGhlIHBhdGNoIHRvIG5lZWRzIGEgYmV0dGVyIHN1YmplY3QgdG8gYmUgbWVyZ2VkIGludG8gdGhl
-IGxheWVyDQpzdGFuZGFsb25lIDopDQoNCmJlc3QgcmVnYXJkcywNCi0tQWRyaWFuDQo=
+Apologies for one more patch bomb: This is an upgrade for
+matchbox-panel-2 to use modern dependencies, mostly Gtk+3. Most
+commits are again from Ross, I just fixed bugs and replaced some
+deprecated code.
+
+
+This patchset is part of the quest to make Sato compatible with GTK+3.
+Complete WIP collection of patches can be found in jku/matchbox-wip
+branch at git://git.yoctoproject.org/poky-contrib
+
+
+  -Jussi
+
+The following changes since commit a0b5fca04da208990f3c40e65dbb045da4cdb35e:
+
+  showdesktop: Make sure active state is initialized (2016-03-21 11:27:08 +0000)
+
+are available in the git repository at:
+
+  git://github.com/jku/matchbox-panel-2 gtk3
+  https://github.com/jku/matchbox-panel-2/tree/gtk3
+
+Jussi Kukkonen (6):
+  Fix a crash on startup
+  Don't use deprecated GtkMisc
+  Update .pc-file to require Gtk+-3.0
+  Draw systray icons in their actual locations
+  mb-panel: size request needs to be set before realize
+  windowselector: Port to ScalingImage2
+
+Ross Burton (19):
+  build: check for GTK+3, and require 3.0
+  windowselector: port to GTK+ 3
+  startup: port to GTK+ 3
+  startup-notify: port to GTK+ 3
+  showdesktop: port to GTK+ 3
+  launcher: port to GTK+ 3
+  mb-panel: port to GTK+3
+  notify: port to GTK+ 3
+  systray: port to GTK+ 3
+  data: ship our own icons here instead of in sato-icon-theme
+  po: update POTFILES.in
+  build: bump version to 2.9
+  scaling-image: fix whitespace
+  scaling-image: port to GTK+ 3 API
+  mb-panel: allow resizing, but hide the grip
+  mb-panel: replace --titlebar with --mode
+  scaling-image2: revised and slimmer scaling image implementation
+  applets: add scaling-image2 to the test harness
+  showdesktop: port to use scaling-image2
+
+ Makefile.am                              |   2 +-
+ applets/Makefile.applets                 |   3 +-
+ applets/launcher/launcher.c              |  12 +-
+ applets/notify/applet.c                  |  19 +-
+ applets/notify/mb-notification.c         |  40 +-
+ applets/showdesktop/showdesktop.c        |  28 +-
+ applets/startup-notify/startup.c         |  65 ++-
+ applets/startup/startup.c                |  63 +--
+ applets/systray/Makefile.am              |  20 +-
+ applets/systray/fixedtip.c               | 275 ++++++++++
+ applets/systray/fixedtip.h               |  68 +++
+ applets/systray/na-marshal.list          |   3 -
+ applets/systray/na-tray-child.c          | 526 +++++++++++++++++++
+ applets/systray/na-tray-child.h          |  71 +++
+ applets/systray/na-tray-manager.c        | 570 +++++++++++---------
+ applets/systray/na-tray-manager.h        |  32 +-
+ applets/systray/na-tray.c                | 865 +++++++++++++++++++++++++++++++
+ applets/systray/na-tray.h                |  76 +++
+ applets/systray/systray.c                |  91 +---
+ applets/windowselector/windowselector.c  |  43 +-
+ configure.ac                             |  11 +-
+ data/16x16/panel-task-switcher.png       | Bin 0 -> 432 bytes
+ data/16x16/panel-user-desktop.png        | Bin 0 -> 393 bytes
+ data/22x22/panel-task-switcher.png       | Bin 0 -> 636 bytes
+ data/22x22/panel-user-desktop.png        | Bin 0 -> 517 bytes
+ data/32x32/panel-task-switcher.png       | Bin 0 -> 965 bytes
+ data/32x32/panel-user-desktop.png        | Bin 0 -> 734 bytes
+ data/48x48/panel-task-switcher.png       | Bin 0 -> 1588 bytes
+ data/48x48/panel-user-desktop.png        | Bin 0 -> 1115 bytes
+ data/64x64/panel-task-switcher.png       | Bin 0 -> 2328 bytes
+ data/64x64/panel-user-desktop.png        | Bin 0 -> 1491 bytes
+ data/Makefile.am                         |  18 +
+ matchbox-panel.pc.in                     |   2 +-
+ matchbox-panel/Makefile.am               |   4 +-
+ matchbox-panel/mb-panel-scaling-image.c  |  37 +-
+ matchbox-panel/mb-panel-scaling-image2.c | 451 ++++++++++++++++
+ matchbox-panel/mb-panel-scaling-image2.h |  64 +++
+ matchbox-panel/mb-panel.c                | 401 +++++++-------
+ po/POTFILES.in                           |  24 +-
+ 39 files changed, 3209 insertions(+), 675 deletions(-)
+ create mode 100644 applets/systray/fixedtip.c
+ create mode 100644 applets/systray/fixedtip.h
+ delete mode 100644 applets/systray/na-marshal.list
+ create mode 100644 applets/systray/na-tray-child.c
+ create mode 100644 applets/systray/na-tray-child.h
+ create mode 100644 applets/systray/na-tray.c
+ create mode 100644 applets/systray/na-tray.h
+ create mode 100644 data/16x16/panel-task-switcher.png
+ create mode 100644 data/16x16/panel-user-desktop.png
+ create mode 100644 data/22x22/panel-task-switcher.png
+ create mode 100644 data/22x22/panel-user-desktop.png
+ create mode 100644 data/32x32/panel-task-switcher.png
+ create mode 100644 data/32x32/panel-user-desktop.png
+ create mode 100644 data/48x48/panel-task-switcher.png
+ create mode 100644 data/48x48/panel-user-desktop.png
+ create mode 100644 data/64x64/panel-task-switcher.png
+ create mode 100644 data/64x64/panel-user-desktop.png
+ create mode 100644 data/Makefile.am
+ create mode 100644 matchbox-panel/mb-panel-scaling-image2.c
+ create mode 100644 matchbox-panel/mb-panel-scaling-image2.h
+
+-- 
+2.8.1
+
 
