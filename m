@@ -1,35 +1,63 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <nick.pongratz@singlewire.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73309E0077F; Tue,  3 May 2016 09:07:22 -0700 (PDT)
+	id 6513CE00736; Tue,  3 May 2016 09:12:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30001E006D3
-	for <yocto@yoctoproject.org>; Tue,  3 May 2016 09:07:16 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga103.fm.intel.com with ESMTP; 03 May 2016 09:07:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,573,1455004800"; d="scan'208";a="96394682"
-Received: from tzanussi-mobl.amr.corp.intel.com (HELO localhost)
-	([10.255.82.108])
-	by fmsmga004.fm.intel.com with ESMTP; 03 May 2016 09:07:06 -0700
-From: Tom Zanussi <tom.zanussi@linux.intel.com>
-To: scott.m.rifenbark@intel.com,
-	yocto@yoctoproject.org
-Date: Tue,  3 May 2016 11:07:04 -0500
-Message-Id: <9f1a135e7c094d39f95224450d16f815f6514682.1462291308.git.tom.zanussi@linux.intel.com>
-X-Mailer: git-send-email 1.9.3
-In-Reply-To: <cover.1462291308.git.tom.zanussi@linux.intel.com>
-References: <cover.1462291308.git.tom.zanussi@linux.intel.com>
-Subject: [PATCH 1/1] kernel-dev: Fix the locations of .config and source directory
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E07DE006C7
+	for <yocto@yoctoproject.org>; Tue,  3 May 2016 09:12:41 -0700 (PDT)
+Received: by mail-qk0-f174.google.com with SMTP id x7so11056835qkd.3
+	for <yocto@yoctoproject.org>; Tue, 03 May 2016 09:12:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=singlewire.com; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=N1tNUB6GU08UfCZsr4/JCe2HPfKNhIKtDGC9jSh2sio=;
+	b=p56V5FUEu9gTTu/nH/croj9cD3GxebI4NxibS1e7RwcfExKGmWbGR8Az7JFlXUAOLM
+	k4I9Q3DRpqR+Q4l7lR4ttILysoKclCIWlh1vrz6PVjkXPIqo4yzQVNH4oBsW6oVCqvch
+	nh+sAbF5DDmXs2xbWmwfD3ElFzeV85PtKRCSg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=N1tNUB6GU08UfCZsr4/JCe2HPfKNhIKtDGC9jSh2sio=;
+	b=BJDxc4jzWCFGrxzOv5DTRbly4RerScy7qE3wONuMV2EA6fWWEPhH7qTCxrY7kO4A4d
+	ovycjFKhucTnAXT03tiEMLHmI3uYH2gkk8evJsTxZBRrFDw9lGanKcQd/VKDXHEJg3lO
+	ZVNvzo868iouE7odCazswA/5dkhI1eiXPeXC69DYCPcOmHD6t7naVn0n2sGLj+w5EGIi
+	STr6Oo4XcH9U5gHnmj64r97YaPgN/JXPAoSFu7zbHWm28TIvYcgjTsdLAE3QUl8i2tV/
+	bleDqTf1zI8OSUYBhpZHmowPWMrjmjEWtNBkitS8PN2BoL4taEbu2gPSkmilmyD0fL+9
+	9m5g==
+X-Gm-Message-State: AOPr4FWaPE0yjm8mwed08JBCCGRhy9pEGi77mOVcmms3tVvy3wQ3XBXjBDuMQHK4MF5fPHm2vt82ojM1V/Hu7pf9
+MIME-Version: 1.0
+X-Received: by 10.159.39.98 with SMTP id a89mr1497533uaa.22.1462291961264;
+	Tue, 03 May 2016 09:12:41 -0700 (PDT)
+Received: by 10.176.68.3 with HTTP; Tue, 3 May 2016 09:12:41 -0700 (PDT)
+In-Reply-To: <CABcZANn_eqBn4+kfXib=hHzSBYHo5rYVMJuxeKuo4xKVth0-zg@mail.gmail.com>
+References: <CALf_N3bfJ5etAAVs5JAF7mX=HQ60BQ9P02ragzdk4y1JGv5KCA@mail.gmail.com>
+	<CABcZANkp8WvE3OXFxXcrKV_mi2WwPiyPqwjrgVYHOzQTL3Tk9w@mail.gmail.com>
+	<CALf_N3aXL1Lpk1ds1M+XLYH59dB=ha1BByUQtpAFQs=gkp_=aA@mail.gmail.com>
+	<CABcZANn_eqBn4+kfXib=hHzSBYHo5rYVMJuxeKuo4xKVth0-zg@mail.gmail.com>
+Date: Tue, 3 May 2016 11:12:41 -0500
+Message-ID: <CAC2M0xUK2o6Muq028jsRTqcULQT8dtAKK3jfP6BUpFJTpMCTmw@mail.gmail.com>
+From: Nick Pongratz <nick.pongratz@singlewire.com>
+To: Christopher Larson <clarson@kergoth.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: What version of Jethro do we get with - git clone -b jethro git://git.yoctoproject.org/poky.git ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,72 +69,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2016 16:07:22 -0000
+X-List-Received-Date: Tue, 03 May 2016 16:12:45 -0000
+Content-Type: multipart/alternative; boundary=94eb2c124820e8fba90531f260ee
 
-The locations of the kernel .config file and source directory moved a
-couple releases ago; update the documentation accordingly.
+--94eb2c124820e8fba90531f260ee
+Content-Type: text/plain; charset=UTF-8
 
-Also, add a note explaining how to expand variables, which serves a
-couple of purposes:
+And list of tags can be found here:
 
-  * For curious readers, shows them how to demystify where these
-    variables come from and how their used.
-  * For suspicious readers, shows them how they can verify that the
-    variables in the documentation are actually correct.
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/refs/tags
 
-Fixes [YOCTO #9124].
-
-Signed-off-by: Tom Zanussi <tom.zanussi@linux.intel.com>
----
- documentation/kernel-dev/kernel-dev-common.xml | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
-
-diff --git a/documentation/kernel-dev/kernel-dev-common.xml b/documentation/kernel-dev/kernel-dev-common.xml
-index 261471c..5bd12be 100644
---- a/documentation/kernel-dev/kernel-dev-common.xml
-+++ b/documentation/kernel-dev/kernel-dev-common.xml
-@@ -384,9 +384,7 @@
- 
-             <para>
-                 The resulting <filename>.config</filename> file is
--                located in
--                <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink><filename>}</filename> under the
--                <filename>linux-${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-PACKAGE_ARCH'><filename>PACKAGE_ARCH</filename></ulink><filename>}-${<ulink url='&YOCTO_DOCS_REF_URL;#var-LINUX_KERNEL_TYPE'><filename>LINUX_KERNEL_TYPE</filename></ulink>}-build</filename> directory.
-+                located in the build directory,  <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-B'><filename>B</filename></ulink><filename>}</filename>, which expands to <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink><filename>}</filename><filename>/linux-</filename><filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-PACKAGE_ARCH'><filename>PACKAGE_ARCH</filename></ulink><filename>}-${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-LINUX_KERNEL_TYPE'><filename>LINUX_KERNEL_TYPE</filename></ulink><filename>}-build</filename>.
-                 You can use the entire <filename>.config</filename> file as the
-                 <filename>defconfig</filename> file as described in the
-                 "<link linkend='changing-the-configuration'>Changing the Configuration</link>" section.
-@@ -396,6 +394,19 @@
-                 section in the Yocto Project Development Manual.
-             </para>
- 
-+            <note>
-+              If you're ever confused about what a variable expands
-+              to, you can determine that unequivocally by looking at
-+              the output of the <filename>bitbake -e</filename> command:
-+
-+	      <literallayout class='monospaced'>
-+     $ bitbake -e virtual/kernel
-+              </literallayout>
-+
-+	      Search the output for the variable you're interested in
-+	      and you can see exactly how it's expanded and used.
-+            </note>
-+
-             <para>
-                 A better method is to create a configuration fragment using the
-                 differences between two configuration files: one previously
-@@ -512,8 +523,7 @@
-                 </literallayout>
-                 Taking this step ensures you have the sources prepared
-                 and the configuration completed.
--                You can find the sources in the
--                <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink><filename>}/linux</filename> directory.
-+                You can find the sources in the symlinked <filename>source/</filename> directory just off the build directory, in other words <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-B'><filename>B</filename></ulink><filename>}/source</filename>, which expands to <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink><filename>}</filename><filename>/linux-</filename><filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-PACKAGE_ARCH'><filename>PACKAGE_ARCH</filename></ulink><filename>}-${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-LINUX_KERNEL_TYPE'><filename>LINUX_KERNEL_TYPE</filename></ulink><filename>}-build/source</filename>.  The directory pointed to by the <filename>source/</filename> symlink is also known as <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-STAGING_KERNEL_DIR'><filename>STAGING_KERNEL_DIR</filename></ulink><filename>}</filename>
-             </para>
- 
-             <para>
--- 
-1.9.3
+Nick Pongratz
+Singlewire Software
 
 
+On Tue, May 3, 2016 at 10:32 AM, Christopher Larson <clarson@kergoth.com>
+wrote:
+
+>
+> On Tue, May 3, 2016 at 3:31 PM, Mark T <mtl1nuxd3v@gmail.com> wrote:
+>
+>> Hi Christopher,
+>>
+>> Thanks. What is the command option to specify the tag and is there a list
+>> or tags available ?
+>>
+>
+> https://git-scm.com/book/en/v2
+> --
+> Christopher Larson
+> clarson at kergoth dot com
+> Founder - BitBake, OpenEmbedded, OpenZaurus
+> Maintainer - Tslib
+> Senior Software Engineer, Mentor Graphics
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--94eb2c124820e8fba90531f260ee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">And list of tags can be found here:<div><br></div><div><a =
+href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/refs/tags">http://gi=
+t.yoctoproject.org/cgit/cgit.cgi/poky/refs/tags</a><br></div><div><br></div=
+><div>Nick Pongratz</div><div>Singlewire Software</div><div><br></div></div=
+><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, May 3, 2=
+016 at 10:32 AM, Christopher Larson <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:clarson@kergoth.com" target=3D"_blank">clarson@kergoth.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><br><div class=3D=
+"gmail_extra"><div class=3D"gmail_quote"><span class=3D"">On Tue, May 3, 20=
+16 at 3:31 PM, Mark T <span dir=3D"ltr">&lt;<a href=3D"mailto:mtl1nuxd3v@gm=
+ail.com" target=3D"_blank">mtl1nuxd3v@gmail.com</a>&gt;</span> wrote:<br><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr"><div><div><div>Hi Christopher,<br><br></div=
+>Thanks. What is the command option to specify the tag and is there a list =
+or tags available ?</div></div></div></blockquote><div><br></div></span><di=
+v><a href=3D"https://git-scm.com/book/en/v2" target=3D"_blank">https://git-=
+scm.com/book/en/v2</a>=C2=A0</div></div><span class=3D"">-- <br><div>Christ=
+opher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedd=
+ed, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Gr=
+aphics</div>
+</span></div></div>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--94eb2c124820e8fba90531f260ee--
