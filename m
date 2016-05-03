@@ -1,17 +1,14 @@
-Return-Path: <mikehabibi@gmail.com>
+Return-Path: <mtl1nuxd3v@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 557F1E00CF9; Tue,  3 May 2016 06:58:18 -0700 (PDT)
+	id B571CE006C7; Tue,  3 May 2016 08:19:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mikehabibi[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+	mail provider *      (mtl1nuxd3v[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,46 +17,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D252E00D6B
-	for <yocto@yoctoproject.org>; Tue,  3 May 2016 06:58:13 -0700 (PDT)
-Received: by mail-ig0-f176.google.com with SMTP id u10so116118431igr.1
-	for <yocto@yoctoproject.org>; Tue, 03 May 2016 06:58:13 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.170 listed in list.dnswl.org]
+Received: from mail-yw0-f170.google.com (mail-yw0-f170.google.com
+	[209.85.161.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63297E00566
+	for <yocto@yoctoproject.org>; Tue,  3 May 2016 08:18:57 -0700 (PDT)
+Received: by mail-yw0-f170.google.com with SMTP id g133so21333366ywb.2
+	for <yocto@yoctoproject.org>; Tue, 03 May 2016 08:18:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=ui/fQudFxQBvXVAgxPxw/B5d040sIumYfmltpB7p694=;
-	b=rvFUI/+m6bXzEIB5jwLwS1DS97Or+zI8Sx5217/4EtKPDYUvpcgFqnnd5clflMKJg3
-	srT3aWOvNaNzmymmRIDm2+TG7oExQG9K3yBgKDwsnQ025CB2oWIuLskIy/BbgF9fuiAF
-	Ov1VlW3z4ubT1t2s9CJbqjjgwOwQBoN3PO7e78nCbAHDfQvlWkvInrXZccVPlUa7+aP7
-	edWrmYmuh05Ef2nLUcoexD8OyZbnV0tCfTiumeM+9FDMvVOJeXzX2gDgpT3ExqVT1FHC
-	8T1f//bruhObSI4sV5O95Y29wWi4RKI0VLkuC5YIEQaQgbdjN1QEMg905RQ9NPNapL8v
-	EDMQ==
+	h=mime-version:date:message-id:subject:from:to;
+	bh=3PQapsvUKx9/vVmWzA3oisMNedff2VejW7wSZZO5oGM=;
+	b=Q5AWsCtE/FLBCausxew2EAK4n3rnnb+CvGDx+23sP7n8OC8LvVJv0hNwcgqcKFZSBp
+	JfWgxPovVXLmId9h/OdVMRNRCy9oYszmYBmAJs1ybrL5smN5J4zOpStW7VtQo6vlyTeP
+	kPgRiorTWnlrzVqMDtwIqws9VqrH8DR8Y3Bfw9zmm6pNoVGTHF+haASq55bmHkfu1wVi
+	AKhZ5PgV4g1esuQ8Ryp1QjgXW98hA4108HUJL1C01p2MLLW86HbYNqhTAlkJQhIs1QoA
+	0GQ5LL31kzJOUqmSqi7o8MBLYH4OaOPi5G94+z/Qxpg7EH+7wQinBs5XddW1miqNHvgm
+	eiNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=ui/fQudFxQBvXVAgxPxw/B5d040sIumYfmltpB7p694=;
-	b=Sg0PPKTT4FBKKmetOKcntSFm7/+OQoJC8QzOX3TKjWguG5ARpbdpEaqYvPbrVpDIm+
-	v2Z+wTbYtfeCtRojph9v8aqOPboKWZ5YltRvnyxTtKOGkILFRulqPeQyQQfW2WuEOvmR
-	hZk3GGykVSqvXNKwxCSfS70Z2Er8rrUUysLiDMLvfJKlpCjvoRNI3xDht+nOxLZiXBkR
-	s5jcU23wklsZ6NGJutrm/txUY93s/kHM6fwacgw6h6N9DGzxSzc5RP4pMC+iNu0V309+
-	V9LGFPERNJG/NJcJGETHFPE7SHL6Z5XRq99iw58rczDJBKnQQ5eRNtaou0xO6Nn/tZca
-	T/vA==
-X-Gm-Message-State: AOPr4FVWGghftL0StsSwNgcaorAFDTRm/mJm6/HoTqRazeRyfXMoymrYWk7KNKYaNFWM+3cqOUFY1pdLw7b3Ng==
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=3PQapsvUKx9/vVmWzA3oisMNedff2VejW7wSZZO5oGM=;
+	b=N1ZoRbLOPocwpn0pNy+pBCCYkwyHk3vy07UxBbTBEc+4nmqDZJVItRX7kjf89siBoe
+	oNtLE+O1VxNp3n8E9uCHeMWzyqEdz4H2zyzqNPfV7R2liFRshZ/bfgdkwSu+JlRWUxk2
+	ZGDnr2D+d0l1pEV/OUkaXcSMCHS8aq6TaWjQ+uRxG/yyQlcV/GaBfiQ8l/xPqTLPh2bS
+	8D6U0ok8y1uW/byBBnG0MuS0wCEyRJf/2O2P87/hgh99brmqb86q+NeLlWYeFNGMpvSE
+	CLEpqG2oYadlo8OmamaN5mrKLoE7qaGVuv8dvKdo8kIaLR7HsuvHXqTbJcOmnyS8c9Pg
+	JecA==
+X-Gm-Message-State: AOPr4FWI+YNVRJ3LJ+5s7VPPBL+deFgHbChHd5WCOsrOJ51CCZBkYMc214cvtz+i1IBg9Y3sueckkzq6LGjvBA==
 MIME-Version: 1.0
-X-Received: by 10.50.13.74 with SMTP id f10mr27495947igc.55.1462283892100;
-	Tue, 03 May 2016 06:58:12 -0700 (PDT)
-Received: by 10.79.81.67 with HTTP; Tue, 3 May 2016 06:58:12 -0700 (PDT)
-In-Reply-To: <1736594.NP63oMXEmq@peggleto-mobl.ger.corp.intel.com>
-References: <CAOsp8o9u4CdCgH4SruASbyvKY_iDbG07wgPECg5ntSE5mSTTqg@mail.gmail.com>
-	<1736594.NP63oMXEmq@peggleto-mobl.ger.corp.intel.com>
-Date: Tue, 3 May 2016 08:58:12 -0500
-Message-ID: <CAOsp8o_8sWueYfzYqtS6D-zB4731Mf+JvMUE=Ff=Kckj1Wz7Ww@mail.gmail.com>
-From: Michael Habibi <mikehabibi@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Build toolchain only (crosstools substitute?)
+X-Received: by 10.13.240.65 with SMTP id z62mr1484533ywe.314.1462288736519;
+	Tue, 03 May 2016 08:18:56 -0700 (PDT)
+Received: by 10.37.36.82 with HTTP; Tue, 3 May 2016 08:18:56 -0700 (PDT)
+Date: Tue, 3 May 2016 16:18:56 +0100
+Message-ID: <CALf_N3bfJ5etAAVs5JAF7mX=HQ60BQ9P02ragzdk4y1JGv5KCA@mail.gmail.com>
+From: Mark T <mtl1nuxd3v@gmail.com>
+To: yocto@yoctoproject.org
+Subject: What version of Jethro do we get with - git clone -b jethro git://git.yoctoproject.org/poky.git ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,133 +66,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 May 2016 13:58:18 -0000
-Content-Type: multipart/alternative; boundary=089e013c6f5ef316ec0531f07fdc
+X-List-Received-Date: Tue, 03 May 2016 15:19:00 -0000
+Content-Type: multipart/alternative; boundary=94eb2c034e60b315500531f1a06a
 
---089e013c6f5ef316ec0531f07fdc
+--94eb2c034e60b315500531f1a06a
 Content-Type: text/plain; charset=UTF-8
 
-If I needed to modify glibc or gcc build options (hypothetically speaking,
-to turn on profiling or debug), I assume I can do that with bbappends and
-the like?
+Hi,
 
-Thanks Paul
+When we started working with Yocto we cloned via -
 
-On Mon, May 2, 2016 at 11:51 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
+git clone -b jethro git://git.yoctoproject.org/poky.git  mydir/
+cd mydir
+git clone git://git.yoctoproject.org/meta-intel -b jethro
 
-> Hi Michael,
->
-> On Mon, 02 May 2016 16:38:16 Michael Habibi wrote:
-> > I have been a few months out of researching Yocto, so I'm having trouble
-> > caching it all back in (a lot to absorb!). Excuse me if this is answered
-> > clearly in the documentation (I glanced around and I know you can build
-> > relocatable toolchains, etc, but I suppose I'm asking more of a
-> > philosophical question).
-> >
-> > I have long-term plans to change our distribution at work over from a
-> > custom distribution to one built by Yocto - but this is a few months to a
-> > year out.
-> >
-> > In the mean time, we need a new toolchain simply to update our glibc and
-> > gcc packages. I understand that yocto 2.1 can build gcc 5.3 w/ glibc 2.23
-> > support. I was wondering if this would be considered an appropriate
-> > exercise to use the yocto framework to build solely a toolchain to be
-> used
-> > with a custom distribution (understanding that the custom distribution
-> > would have to be modified to source and use the new toolchain).
-> >
-> > We typically use crosstools to generate the toolchain, but it is a bit
-> > outdated and only builds gcc 5.2 (which has some bugs that were fixed in
-> > 5.3). Essentially I want to use Yocto recipes as a substitute for
-> > crosstools-ng.
->
-> If you build (or download) our SDK that should give you what you need:
->
->
-> http://www.yoctoproject.org/docs/2.1/sdk-manual/sdk-manual.html#sdk-building-an-sdk-installer
->
-> If it's just the toolchain you need you can ignore the bits about
-> the extensible SDK - the standard SDK is what you want. There's
-> some more explanatory stuff towards the top of that manual as well.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
+If we do the same a month or so later do we get the same version ?  we
+suspect not the distro version has changed.
 
---089e013c6f5ef316ec0531f07fdc
+Is there a way we can clone the same version all the time ?
+
+Secondly, what should be considered a stable version to clone ?
+
+Thanks,
+Mark
+
+--94eb2c034e60b315500531f1a06a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">If I needed to modify glibc or gcc build options (hypothet=
-ically speaking, to turn on profiling or debug), I assume I can do that wit=
-h bbappends and the like?<div><br></div><div>Thanks Paul</div></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, May 2, 2016 at 1=
-1:51 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleto=
-n@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;<=
-/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex">Hi Michael,<br>
-<span class=3D""><br>
-On Mon, 02 May 2016 16:38:16 Michael Habibi wrote:<br>
-&gt; I have been a few months out of researching Yocto, so I&#39;m having t=
-rouble<br>
-&gt; caching it all back in (a lot to absorb!). Excuse me if this is answer=
-ed<br>
-&gt; clearly in the documentation (I glanced around and I know you can buil=
-d<br>
-&gt; relocatable toolchains, etc, but I suppose I&#39;m asking more of a<br=
->
-&gt; philosophical question).<br>
-&gt;<br>
-&gt; I have long-term plans to change our distribution at work over from a<=
-br>
-&gt; custom distribution to one built by Yocto - but this is a few months t=
-o a<br>
-&gt; year out.<br>
-&gt;<br>
-&gt; In the mean time, we need a new toolchain simply to update our glibc a=
-nd<br>
-&gt; gcc packages. I understand that yocto 2.1 can build gcc 5.3 w/ glibc 2=
-.23<br>
-&gt; support. I was wondering if this would be considered an appropriate<br=
->
-&gt; exercise to use the yocto framework to build solely a toolchain to be =
-used<br>
-&gt; with a custom distribution (understanding that the custom distribution=
-<br>
-&gt; would have to be modified to source and use the new toolchain).<br>
-&gt;<br>
-&gt; We typically use crosstools to generate the toolchain, but it is a bit=
-<br>
-&gt; outdated and only builds gcc 5.2 (which has some bugs that were fixed =
-in<br>
-&gt; 5.3). Essentially I want to use Yocto recipes as a substitute for<br>
-&gt; crosstools-ng.<br>
-<br>
-</span>If you build (or download) our SDK that should give you what you nee=
-d:<br>
-<br>
-=C2=A0 <a href=3D"http://www.yoctoproject.org/docs/2.1/sdk-manual/sdk-manua=
-l.html#sdk-building-an-sdk-installer" rel=3D"noreferrer" target=3D"_blank">=
-http://www.yoctoproject.org/docs/2.1/sdk-manual/sdk-manual.html#sdk-buildin=
-g-an-sdk-installer</a><br>
-<br>
-If it&#39;s just the toolchain you need you can ignore the bits about<br>
-the extensible SDK - the standard SDK is what you want. There&#39;s<br>
-some more explanatory stuff towards the top of that manual as well.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br></div>
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>When we started working wi=
+th Yocto we cloned via -<br><br>git clone -b jethro git://<a href=3D"http:/=
+/git.yoctoproject.org/poky.git">git.yoctoproject.org/poky.git</a>=C2=A0 myd=
+ir/<br>cd mydir<br>git clone git://<a href=3D"http://git.yoctoproject.org/m=
+eta-intel">git.yoctoproject.org/meta-intel</a> -b jethro<br><br></div>If we=
+ do the same a month or so later do we get the same version ?=C2=A0 we susp=
+ect not the distro version has changed.<br><br></div>Is there a way we can =
+clone the same version all the time ?<br><div><div><br></div><div>Secondly,=
+ what should be considered a stable version to clone ?<br><br></div><div>Th=
+anks,<br></div><div>Mark<br></div></div></div>
 
---089e013c6f5ef316ec0531f07fdc--
+--94eb2c034e60b315500531f1a06a--
