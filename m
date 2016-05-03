@@ -1,43 +1,38 @@
-Return-Path: <alejandro.delcastillo@ni.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DDEAE00CC8; Mon,  2 May 2016 16:51:27 -0700 (PDT)
+	id 6C043E00D31; Mon,  2 May 2016 21:51:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [130.164.80.24 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2364 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 May 2016 16:51:21 PDT
-Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFAC7E00CB0
-	for <yocto@yoctoproject.org>; Mon,  2 May 2016 16:51:21 -0700 (PDT)
-Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
-	[130.164.19.135])
-	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	u42NBtfL019036; Mon, 2 May 2016 18:11:55 -0500
-Received: from delcastillo2.natinst.com ([130.164.14.198])
-	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2016050218111912-579641 ;
-	Mon, 2 May 2016 18:11:19 -0500 
-From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-To: opkg-devel@googlegroups.com, yocto@yoctoproject.org
-Date: Mon, 2 May 2016 18:11:47 -0500
-Message-Id: <1462230707-21773-1-git-send-email-alejandro.delcastillo@ni.com>
-X-Mailer: git-send-email 1.9.1
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 05/02/2016 06:11:19 PM,
-	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 05/02/2016 06:11:19 PM,
-	Serialize complete at 05/02/2016 06:11:19 PM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2016-05-02_15:, , signatures=0
-Subject: [PATCH] opkg-build: return error if Version is missing
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8239AE00D21
+	for <yocto@yoctoproject.org>; Mon,  2 May 2016 21:51:36 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga101.fm.intel.com with ESMTP; 02 May 2016 21:51:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,571,1455004800"; d="scan'208";a="967426118"
+Received: from cwtan-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.147.219])
+	by orsmga002.jf.intel.com with ESMTP; 02 May 2016 21:51:33 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Michael Habibi <mikehabibi@gmail.com>
+Date: Tue, 03 May 2016 16:51:31 +1200
+Message-ID: <1736594.NP63oMXEmq@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.8-300.fc23.x86_64; KDE/4.14.18; x86_64; ;
+	)
+In-Reply-To: <CAOsp8o9u4CdCgH4SruASbyvKY_iDbG07wgPECg5ntSE5mSTTqg@mail.gmail.com>
+References: <CAOsp8o9u4CdCgH4SruASbyvKY_iDbG07wgPECg5ntSE5mSTTqg@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Build toolchain only (crosstools substitute?)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,34 +44,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 May 2016 23:51:27 -0000
+X-List-Received-Date: Tue, 03 May 2016 04:51:39 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-If Version is missing in a control file, opkg-build reports an error to
-stdout, but returns 0. Fix condition on pkg_appears_sane to properly
-return an error if Version is missing.
+Hi Michael,
 
-Suggested-by: Thomas de Schampheleire <patrickdepinguin@gmail.com>
-Signed-off-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
----
- opkg-build | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Mon, 02 May 2016 16:38:16 Michael Habibi wrote:
+> I have been a few months out of researching Yocto, so I'm having trouble
+> caching it all back in (a lot to absorb!). Excuse me if this is answered
+> clearly in the documentation (I glanced around and I know you can build
+> relocatable toolchains, etc, but I suppose I'm asking more of a
+> philosophical question).
+> 
+> I have long-term plans to change our distribution at work over from a
+> custom distribution to one built by Yocto - but this is a few months to a
+> year out.
+> 
+> In the mean time, we need a new toolchain simply to update our glibc and
+> gcc packages. I understand that yocto 2.1 can build gcc 5.3 w/ glibc 2.23
+> support. I was wondering if this would be considered an appropriate
+> exercise to use the yocto framework to build solely a toolchain to be used
+> with a custom distribution (understanding that the custom distribution
+> would have to be modified to source and use the new toolchain).
+> 
+> We typically use crosstools to generate the toolchain, but it is a bit
+> outdated and only builds gcc 5.2 (which has some bugs that were fixed in
+> 5.3). Essentially I want to use Yocto recipes as a substitute for
+> crosstools-ng.
 
-diff --git a/opkg-build b/opkg-build
-index 82a0a51..ebbf5a3 100755
---- a/opkg-build
-+++ b/opkg-build
-@@ -86,8 +86,9 @@ You probably want to chown these to a system user: " >&2
- 	pkg=`required_field Package`
- 	[ "$?" -ne 0 ] && PKG_ERROR=1
- 
--	version=`required_field Version | sed 's/Version://; s/^.://g;'`
-+	version=`required_field Version`
- 	[ "$?" -ne 0 ] && PKG_ERROR=1
-+	version=`echo $version | sed 's/Version://; s/^.://g;'`
- 
- 	arch=`required_field Architecture`
- 	[ "$?" -ne 0 ] && PKG_ERROR=1
+If you build (or download) our SDK that should give you what you need:
+
+  http://www.yoctoproject.org/docs/2.1/sdk-manual/sdk-manual.html#sdk-building-an-sdk-installer
+
+If it's just the toolchain you need you can ignore the bits about
+the extensible SDK - the standard SDK is what you want. There's
+some more explanatory stuff towards the top of that manual as well.
+
+Cheers,
+Paul
+
 -- 
-1.9.1
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
