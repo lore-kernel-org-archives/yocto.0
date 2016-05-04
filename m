@@ -1,43 +1,42 @@
-Return-Path: <petter@technux.se>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CDFB8E00566; Tue,  3 May 2016 22:53:49 -0700 (PDT)
+	id B0BBEE00927; Wed,  4 May 2016 04:21:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.85 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [195.74.38.229 listed in list.dnswl.org]
-Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-06.binero.net
-	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3307E0048B
-	for <yocto@yoctoproject.org>; Tue,  3 May 2016 22:53:41 -0700 (PDT)
-X-Halon-ID: 8ad9811f-11bc-11e6-927c-005056917a89
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Wed,  4 May 2016 07:53:36 +0200 (CEST)
+Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D15E00870
+	for <yocto@yoctoproject.org>; Wed,  4 May 2016 04:21:11 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
+	via TCP (outbound) with ESMTPS id 20160504112109303_0485
+	for <yocto@yoctoproject.org>; Wed, 04 May 2016 11:21:09 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=22293 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1axut6-0001cv-GI
+	for yocto@yoctoproject.org; Wed, 04 May 2016 07:22:40 -0400
+Date: Wed, 4 May 2016 07:20:47 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1605040709320.20578@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Date: Wed, 04 May 2016 07:53:29 +0200
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <1461895063-25231-1-git-send-email-net147@gmail.com>
-References: <1461895063-25231-1-git-send-email-net147@gmail.com>
-Message-ID: <3875f4714534e7f8c761e0054311d7a4@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Fix do_image_rpi_sdimg tashhash mismatch
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: docs: standardizing on "+=" versus "_append" for clarity
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,128 +45,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 May 2016 05:53:49 -0000
-Content-Type: multipart/alternative;
-	boundary="=_97738e5591bf029eafd2071dd8055d66"
+X-List-Received-Date: Wed, 04 May 2016 11:21:18 -0000
+Content-Type: text/plain; charset=US-ASCII
 
---=_97738e5591bf029eafd2071dd8055d66
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
 
- 
+  when i teach OE/YP classes, a moderately regular question is when to
+use "+=" versus "_append", given that some of the docs confusingly
+bounce back and forth for no apparent reason.
 
-2016-04-29 03:57 skrev Jonathan Liu: 
+  eg: in-progress kernel dev manual, section 2.2.3, contains snippets:
 
-> IMAGE_CMD_rpi-sdimg() uses
-the IMAGEDATESTAMP variable, so the taskhash
-> of the function keeps
-changing. This results in a taskhash mismatch
-> error.
-> 
-> Fix this by
-excluding the IMAGEDATESTAMP variable from the checksum.
-> 
-> Change-Id:
-Ie6f30ad29e279d5312ec655ac4a3bf246c8a04de
-> Signed-off-by: Jonathan Liu
-<net147@gmail.com>
-> ---
-> classes/sdcard_image-rpi.bbclass | 1 +
-> 1
-file changed, 1 insertion(+)
-> 
-> diff --git
-a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
->
-index 1b055bd..989d77a 100644
-> --- a/classes/sdcard_image-rpi.bbclass
->
-+++ b/classes/sdcard_image-rpi.bbclass
-> @@ -67,6 +67,7 @@ SDIMG =
-"${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
-> FATPAYLOAD ?=
-""
-> 
-> IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
->
-+IMAGE_CMD_rpi-sdimg[vardepsexclude] = "IMAGEDATESTAMP"
-> 
->
-IMAGE_CMD_rpi-sdimg () {
-> 
-> -- 
-> 2.8.0
+     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+     SRC_URI += "file://defconfig"
 
-Hi Andrei, 
+     ... snip ...
 
-Any plans for
-merging this patch soon? I have been using it in my tree for quite some
-time and the fix seems reasonable and solves the annoying taskhash
-problem when creating the image. 
+     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+     SRC_URI += "file://8250.cfg"
 
-BR Petter 
+but down in section 2.7, we see:
 
-Petter Mabäcker
+     SRC_URI_append = " file://test.scc"
 
-Technux
-<petter@technux.se>
-www.technux.se
- 
+     ... snip ...
 
---=_97738e5591bf029eafd2071dd8055d66
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
+     KERNEL_FEATURES_append = " test.scc"
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2016-04-29 03:57 skrev Jonathan Liu:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<pre>IMAGE_CMD_rpi-sdimg() uses the IMAGEDATESTAMP variable, so the taskhas=
-h
-of the function keeps changing. This results in a taskhash mismatch
-error.
+and in section 3.2:
 
-Fix this by excluding the IMAGEDATESTAMP variable from the checksum.
+     KERNEL_FEATURES += "features/netfilter/netfilter.scc"
 
-Change-Id: Ie6f30ad29e279d5312ec655ac4a3bf246c8a04de
-Signed-off-by: Jonathan Liu &lt;<a href=3D"mailto:net147@gmail.com">net147@=
-gmail.com</a>&gt;
----
- classes/sdcard_image-rpi.bbclass | 1 +
- 1 file changed, 1 insertion(+)
+     ... snip ...
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bb=
-class
-index 1b055bd..989d77a 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -67,6 +67,7 @@ SDIMG =3D "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-s=
-dimg"
- FATPAYLOAD ?=3D ""
-=20
- IMAGEDATESTAMP =3D "<a href=3D"mailto:${@time.strftime">${@time.strftime</=
-a>('%Y.%m.%d',time.gmtime())}"
-+IMAGE_CMD_rpi-sdimg[vardepsexclude] =3D "IMAGEDATESTAMP"
-=20
- IMAGE_CMD_rpi-sdimg () {
-=20
-<span class=3D"sig">--=20
-2.8.0
-</span></pre>
-</blockquote>
-<p>Hi Andrei,</p>
-<p>Any plans for merging this patch soon? I have been using it in my tree f=
-or quite some time and the fix seems reasonable and solves the annoying tas=
-khash problem when creating the image.</p>
-<p>BR Petter</p>
-<div>
-<pre>Petter Mab&auml;cker
+     KERNEL_FEATURES_append_qemux86 = " cfg/sound.scc"
 
-Technux &lt;petter@technux.se&gt;
-www.technux.se</pre>
-</div>
-</body></html>
+i understand that there are times when you *want* _append to delay
+processing until the end, and i understand that conditional appending
+with OVERRIDES requires the "_append" syntax, but other than these
+special cases, is there an encouraged standard to use "+=" if either
+syntax will do?
 
---=_97738e5591bf029eafd2071dd8055d66--
+rday
+
+p.s. i can assure people that it's exactly this kind of bouncing back
+and forth that confuses readers, who suddenly think, "wait a minute, i
+thought i understood this, but maybe i don't."
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
