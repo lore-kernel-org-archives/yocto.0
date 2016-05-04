@@ -1,55 +1,66 @@
-Return-Path: <ronaldo@brc2.com>
+Return-Path: <btv1==9320d3c0336==Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88E02E00C66; Wed,  4 May 2016 07:02:27 -0700 (PDT)
+	id 359ADE00C6E; Wed,  4 May 2016 07:41:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F951E00C4B
-	for <yocto@yoctoproject.org>; Wed,  4 May 2016 07:02:23 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id f63so7950823oig.0
-	for <yocto@yoctoproject.org>; Wed, 04 May 2016 07:02:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=brc2-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:date:message-id:subject:from:to;
-	bh=TK2E/eoFfy3E6CECwVils5IPu0N4Awz/8ZB9Z6K4J1Y=;
-	b=f8iSm9OTyRmTynpTrMAiMhFud+eorjx3HDR5NxIb1T7KWKlh2xNS9uzSd9uX8eYxUw
-	cnVpnbk/kP+OTqvxLutQSKShF9dHcR3FDZcpmVImQrHK2sGvgcrrLnaulxBW5XFP0IJY
-	ZzQrZMN0DEySS8tuU+nWGgCYu6IKIQb/OLr7iaLwWoAupnoUJcGypLJ2Cccz+ncuimm1
-	j7oCD3h7A+kcmXdAjIfq2tJ/zheg3bDZ4WEessBC0CKnciz6G0XnUrFbyZsN6WjSDtzA
-	PwZwuKyEDMcLse5kOko7P6BzXx7O3xNHFuX3CKQRKDi/O2QizU9Hn58OJ1sNOEZqhHfX
-	j9BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
-	bh=TK2E/eoFfy3E6CECwVils5IPu0N4Awz/8ZB9Z6K4J1Y=;
-	b=T08wLggPOzGzJjVaFdIa5HmierK/pY419TQPABttVhWeyDypm6xUBcNDCzallFKha0
-	I99+fH+U0GqI7AxOkSsx6FUjmeyjbZu9j0Q9ccR+7qguy3M5PWe+9M/J3FhTznAHkTlW
-	FHTXf4WT60aoYx2mPVhufgAYuVoa6AGthEfEBOhkzceFeP+SLPsumq9yJyfeVaRx8Kv0
-	Ymlii23yzLoJb0przUI5V/2jyrzBiT7ZsTVo2fuGrLxSzeXSjlnXSE5+djV1WNlvsxNl
-	gDgbwaT3zaexdJ2Pic9jbAKdoqRrk4963ftRgo/rFt4JcQ6IloJy2N9TC3htduI7E+0A
-	M3Ig==
-X-Gm-Message-State: AOPr4FWMCotwrwtoOgemnwNCv92f/IB0vI8gIPEuHMAVUfgKJuYzN/R5PPCyHTjrjF20DDMIGetB8LV3OieFPA==
+X-Greylist: delayed 753 seconds by postgrey-1.32 at yocto-www;
+	Wed, 04 May 2016 07:41:20 PDT
+Received: from mail.seescan.com (mail3.seescan.com [69.43.145.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C35EE00C4B
+	for <yocto@yoctoproject.org>; Wed,  4 May 2016 07:41:20 -0700 (PDT)
+X-ASG-Debug-ID: 1462372126-0b39aa668924b7f0001-yzSStA
+Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
+	ESMTP id IoWoCKRSJzCJv91f (version=TLSv1
+	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO);
+	Wed, 04 May 2016 07:28:46 -0700 (PDT)
+X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Wed, 4 May 2016 07:28:45 -0700
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Wed, 4 May 2016 07:28:45 -0700
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: Ronald Oakes <ronaldo@brc2.com>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Problems building core-minimal-rt on Jethro (2.0.1) and
+	Krogoth (2.1)
+X-ASG-Orig-Subj: Re: [yocto] Problems building core-minimal-rt on Jethro
+	(2.0.1) and Krogoth (2.1)
+Thread-Index: AQHRpg22wx1ZNgPfp0yOeOnQpGjTPJ+o1kfA
+Date: Wed, 4 May 2016 14:28:44 +0000
+Message-ID: <1462372115521.39756@seescan.com>
+References: <CALRMKQrH5LpDC5pGK_ef_r2rxPC1t7vTqb=nB=1Go=xx7m3VtA@mail.gmail.com>
+In-Reply-To: <CALRMKQrH5LpDC5pGK_ef_r2rxPC1t7vTqb=nB=1Go=xx7m3VtA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
 MIME-Version: 1.0
-X-Received: by 10.157.13.227 with SMTP id 90mr4433676ots.79.1462370543164;
-	Wed, 04 May 2016 07:02:23 -0700 (PDT)
-Received: by 10.202.45.65 with HTTP; Wed, 4 May 2016 07:02:23 -0700 (PDT)
-Date: Wed, 4 May 2016 08:02:23 -0600
-Message-ID: <CALRMKQrH5LpDC5pGK_ef_r2rxPC1t7vTqb=nB=1Go=xx7m3VtA@mail.gmail.com>
-From: Ronald Oakes <ronaldo@brc2.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Problems building core-minimal-rt on Jethro (2.0.1) and Krogoth (2.1)
+X-Barracuda-Connect: UNKNOWN[192.168.11.30]
+X-Barracuda-Start-Time: 1462372126
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
+X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
+X-Barracuda-Scan-Msg-Size: 2314
+X-Virus-Scanned: by bsmtpd at seescan.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.2237 1.0000 -0.7055
+X-Barracuda-Spam-Score: -0.71
+X-Barracuda-Spam-Status: No,
+	SCORE=-0.71 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.29289
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+Subject: Re: Problems building core-minimal-rt on Jethro (2.0.1) and	Krogoth (2.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,49 +72,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 May 2016 14:02:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 04 May 2016 14:41:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-My project will need to be real-time (we're probably putting a crystal
-controlled clock in), so I'd like to have the real-time kernel.  So,
-I've been attempting to build core-minimal-rt on both 2.0.1 and 2.1.
-I get errors on both, albeit different errors.
-
-Jethro:
-
-On 2.0.1, the do-patch for linux-yocto-rt-* fails, ultimately with the
-message: "Your branch is behind 'origin/standard/preempt-rt/base' by
-691 commits, and can be fast-forwarded." followed by "(use "git pull"
-to update your local branch)"
-
-I get this error on all distros, including poky-bleeding.  I've not
-been successful in disabling the mirrors just for linux-yocto-rt.  I
-am now trying a build, albeit on my slow machine (two cores, where if
-I don't force bitbake into running one task at a time, it hangs),
-after deleting everything except the conf directory to see if that
-makes any difference
-
-Krogoth:
-
-On 2.1, the error message occurs very quickly:
-
-ERROR: Nothing PROVIDES 'linux-yocto-rt' (but
-/home/ron/yocto_2.1/poky/meta/recipes-rt/images/core-image-rt.bb
-DEPENDS on or otherwise requires it)
-ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel
-set to linux-yocto, not linux-yocto-rt
-ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel
-set to linux-yocto, not linux-yocto-rt
-NOTE: Target 'linux-yocto-rt' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['linux-yocto-rt']
-NOTE: Target 'core-image-rt' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['core-image-rt', 'linux-yocto-rt']
-ERROR: Required build target 'core-image-rt' has no buildable providers.
-Missing or unbuildable dependency chain was: ['core-image-rt', 'linux-yocto-rt']
-
----
-
-Any clues as how to work around either?
-
-Ron Oakes
+Perhaps you could cd to the source directory and do:=0A=
+=0A=
+ $ git pull=0A=
+=0A=
+Then try to rebuild.=0A=
+=0A=
+Frederick=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Ronald Oakes <ronaldo@brc2.com>=0A=
+Sent: Wednesday, May 4, 2016 7:02 AM=0A=
+To: Yocto discussion list=0A=
+Subject: [yocto] Problems building core-minimal-rt on Jethro (2.0.1) and   =
+     Krogoth (2.1)=0A=
+=0A=
+My project will need to be real-time (we're probably putting a crystal=0A=
+controlled clock in), so I'd like to have the real-time kernel.  So,=0A=
+I've been attempting to build core-minimal-rt on both 2.0.1 and 2.1.=0A=
+I get errors on both, albeit different errors.=0A=
+=0A=
+Jethro:=0A=
+=0A=
+On 2.0.1, the do-patch for linux-yocto-rt-* fails, ultimately with the=0A=
+message: "Your branch is behind 'origin/standard/preempt-rt/base' by=0A=
+691 commits, and can be fast-forwarded." followed by "(use "git pull"=0A=
+to update your local branch)"=0A=
+=0A=
+I get this error on all distros, including poky-bleeding.  I've not=0A=
+been successful in disabling the mirrors just for linux-yocto-rt.  I=0A=
+am now trying a build, albeit on my slow machine (two cores, where if=0A=
+I don't force bitbake into running one task at a time, it hangs),=0A=
+after deleting everything except the conf directory to see if that=0A=
+makes any difference=0A=
+=0A=
+Krogoth:=0A=
+=0A=
+On 2.1, the error message occurs very quickly:=0A=
+=0A=
+ERROR: Nothing PROVIDES 'linux-yocto-rt' (but=0A=
+/home/ron/yocto_2.1/poky/meta/recipes-rt/images/core-image-rt.bb=0A=
+DEPENDS on or otherwise requires it)=0A=
+ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel=0A=
+set to linux-yocto, not linux-yocto-rt=0A=
+ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel=0A=
+set to linux-yocto, not linux-yocto-rt=0A=
+NOTE: Target 'linux-yocto-rt' is unbuildable, removing...=0A=
+Missing or unbuildable dependency chain was: ['linux-yocto-rt']=0A=
+NOTE: Target 'core-image-rt' is unbuildable, removing...=0A=
+Missing or unbuildable dependency chain was: ['core-image-rt', 'linux-yocto=
+-rt']=0A=
+ERROR: Required build target 'core-image-rt' has no buildable providers.=0A=
+Missing or unbuildable dependency chain was: ['core-image-rt', 'linux-yocto=
+-rt']=0A=
+=0A=
+---=0A=
+=0A=
+Any clues as how to work around either?=0A=
+=0A=
+Ron Oakes=0A=
+--=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
