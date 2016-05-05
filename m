@@ -1,70 +1,64 @@
-Return-Path: <marcelo.magallon@hpe.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 161D0E00DC8; Wed,  4 May 2016 21:42:04 -0700 (PDT)
+	id 304CAE00DD7; Thu,  5 May 2016 03:52:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.118 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 8279 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 May 2016 21:41:54 PDT
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0118.outbound.protection.outlook.com [207.46.100.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBCEFE00DC4
-	for <yocto@yoctoproject.org>; Wed,  4 May 2016 21:41:54 -0700 (PDT)
-Authentication-Results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=hpe.com; 
-Received: from nyx.americas.hpqcorp.net (201.196.243.174) by
-	DF4PR84MB0300.NAMPRD84.PROD.OUTLOOK.COM (10.162.193.26) with Microsoft
-	SMTP Server (TLS) id 15.1.485.9; Thu, 5 May 2016 02:08:50 +0000
-Date: Wed, 4 May 2016 20:08:42 -0600
-From: "Marcelo E. Magallon" <marcelo.magallon@hpe.com>
-To: <yocto@yoctoproject.org>
-Message-ID: <20160505020837.GA20829@nyx.americas.hpqcorp.net>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3133E00D7F
+	for <yocto@yoctoproject.org>; Thu,  5 May 2016 03:52:07 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id v200so2725519wmv.1
+	for <yocto@yoctoproject.org>; Thu, 05 May 2016 03:52:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=/uP4nITLMibnduUu0+8ycl18F28ycEooyXPsWdPeovI=;
+	b=ZS0OFVRke5bXq8APBtpXplTN6gDO63GD41fzJcdDT3DRiTa7XpTdtd605Dvsx2OIUE
+	yLTYNknQGcxklA/8I77WI3a29dKEINqOJw+PdOxVlxzUWzL4M9ceJAlBWmlyFElWSqe5
+	mNbSo03TSYRucp3h1ALpoMcmcKTkG3hEZBTiMDA8ShrgXVF3LZ0lnnW7o/K/LvoZiyUa
+	W5icKhYD6c4yH0oUWn27GA+AWrlBZbfO8LywegRlGOrpm3QvLT9jaR6yrI3CEca1cLne
+	2nvyWm3NkLmBA1iLR0j6+bBw6S5OhEN2v1U26i8XBIFHStwtTESGh3mVsGlKQRwe2qlq
+	9xbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=/uP4nITLMibnduUu0+8ycl18F28ycEooyXPsWdPeovI=;
+	b=Ww+s4SXi0hh9mAwV/wDY1V8mAYhdlai+vUqlS9GwoJlySPjWjQMAaG5x8xBcfxsXDo
+	ta4nlZNwLopsPv1yP+Svk7ofHB4RqLMwoM5XO2ORWQq84OrGCHNSIXIhNgsmXJ//kkZP
+	cFtlzxnwZRmKcU68K5DYocYjVB8GqT1dYsxz9Ln5Ey5917cJecpZV65zQHJEUPAESl93
+	ohA3JdLC/b4jKLx+0zfpSJ/7jyOXA5+rs4NySje50D1qqLrcMNHJuQLOCLyG0DInp2/d
+	+mglq/gURBDGMD3ao7XCBsO3aOa1ybRPLg8tUOj0gzMxTS/jQVOsBrUNHuwK48+VWv+S
+	octQ==
+X-Gm-Message-State: AOPr4FWJ6ikNDdXJdopBkmAj2BGkEGVxrlbylrpa3EXiqyW73bufEnbaeUrm3pECbXw1xg==
+X-Received: by 10.194.86.129 with SMTP id p1mr13258114wjz.117.1462445526681;
+	Thu, 05 May 2016 03:52:06 -0700 (PDT)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	r75sm2563516wme.18.2016.05.05.03.52.06
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 05 May 2016 03:52:06 -0700 (PDT)
+Date: Thu, 5 May 2016 12:52:04 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Andreas =?iso-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
+Message-ID: <20160505105204.GC1401@resin.home>
+References: <1462018164-10212-1-git-send-email-schnitzeltony@googlemail.com>
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-Originating-IP: [201.196.243.174]
-X-ClientProxiedBy: SN1PR07CA0006.namprd07.prod.outlook.com (10.162.170.144) To
-	DF4PR84MB0300.NAMPRD84.PROD.OUTLOOK.COM (10.162.193.26)
-X-MS-Office365-Filtering-Correlation-Id: 35f82d52-f5cc-46ee-4eb9-08d3748a33a1
-X-Microsoft-Exchange-Diagnostics: 1; DF4PR84MB0300;
-	2:xCsrzBrTufwa73OX9akSmd5aeSR4WTINXatwHxAnARssMa1PvB1ZmVZypECjSgvzHbqI3Z2rJWq4oj3WijPUGL7sYTzKEml8HnxbxGwY323BFpGYhszdSXZp3OOKiuViGUyzKIxpWtmLnAc//gIFj3IWvG5QOhxmOPKO1Mz9+e77xUpSK59cnNcsvmY/KfVO;
-	3:0XTdKZ4jCNEGc3iZoqZi4OgR4k0Plk2xKjyOGXon4goAWsfdm5+n9yK94Uwu9EqGGIj8rme9S/qukYG+rwc0stmkfXkT93AB6P6IGO0DZQEAY8cKBpuxFem4MJGp/bgv;
-	25:oArN/MQWYchh8MutUdpqtJJuzTHgqjBsXa8mdGzv5H0ziiyg9rKIwDzT1wlgcrDjHsGzty0FMPa/oRpvDlfNh0f4nYi7D/HwO34NpWTZQgGJRDCMCKUWdEe8z9afnq3ORST/Hpnt8OC9lYRPHSgNWupMwNW0ptWt/3X9DSudTSOdG4yUKVjMSjr64SlTMQ7AOx40bQokePDCR0fnjXBamRtSuXgCYcgr89q5T1SjrUAg81/LOnng6mkGJuo1TJRi3uYBUzZjC10oxur4V5xZ89syUMl+NSo5+CJRi7FUzqbPyCTS2cTeV5O3xeFqpYSuYjzu9/+mGm+6rhWPAeonVlJFjm/olFDsNWjebRqQhw/h5Nzo+spPrRWhP1qoXZSLOoPw+I4BJwlsWIXMiRun3AcBnI8lv9nb/IKu8NiYFroRfTVwDGHo7eY5RUdIpcjN
-X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DF4PR84MB0300;
-X-Microsoft-Exchange-Diagnostics: 1; DF4PR84MB0300;
-	20:fZ/bkQ3gOUp9dxo3yx3NwEs9vzKx8j/q2LUmgEzaJdLsBQpE1ZSjQeZe3yNbrhzNznF9eIiUD+fQ2IOI1KPiGgUszmNrrzgegnQBloJLMo7K5sZsI2rBuHnZc9MM0kibUaens8hsH+wmQGe0faKHagx0YNtxxXaGGKmLjo6Cib6mSVjVicZsBvmNTaADXMsdDbtdMNiK6eUBunvvgtYW1KYi8TmSP9vVM6YHC4LE7euBX3ydjudj+AsCTHpPExt5jtklKZkp6quqTnLtWQG+56Ge2F3+pACNGiSKkffxiF4qkwvI3hS3YbFNA54YHkYLWg+wuzn9zIOthNWHAsftdw==;
-	4:CqA+WNiytR+mfjzZyKqjo4ELuzPnJXYa0DeGlKPmDw1E6ILnXqqI38pIXcY4s3R/9EPE4B/CNGEoKMz8JShQj7JKQxyS/D9obqzkSHqoLgwFdw3z+nwyKaGr8+4hRNQaGmN4qj8AAL10Dh4+mWosew5SThOnwPCTxqpmPJG21cU1IF5w2kjQzL8OiKpTuXlBFfQPuRPM76n/Gj+FHBMmaal3Md2wPddKhdAfbNYD4oSHqOKGU5D9cmMUtAl3n1ay3jiH2VNAYNwilo5/COp9koDveqQ6LEZDQjLVSPmVXA46hVO6AqIUJhxxQDKDEAFxnDvQ/yiPworo37hr6CEJqY8PSMY+ULfJyWPgWXXjN9cmcHY0iGOA3T8BZCOmgFRbr5ITtrxes2gfJZ0DldjdNwuq5V06lQq3pbXGRI8iXy0=
-X-Microsoft-Antispam-PRVS: <DF4PR84MB0300A4A06555216599D3FD65967C0@DF4PR84MB0300.NAMPRD84.PROD.OUTLOOK.COM>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(9101531026)(9101521098)(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
-	SRVR:DF4PR84MB0300; BCL:0; PCL:0; RULEID:; SRVR:DF4PR84MB0300; 
-X-Forefront-PRVS: 0933E9FD8D
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10019020)(4630300001)(6009001)(33656002)(450100001)(92566002)(42186005)(9686002)(4001350100001)(110136002)(2906002)(50466002)(189998001)(107886002)(97756001)(77096005)(50986999)(3846002)(5008740100001)(6116002)(83506001)(66066001)(81166005)(229853001)(54356999)(23726003)(1076002)(86362001)(5004730100002)(47776003)(586003)(46406003)(2351001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DF4PR84MB0300;
-	H:nyx.americas.hpqcorp.net; FPR:; SPF:None; MLV:sfv; LANG:en; 
-X-Microsoft-Exchange-Diagnostics: 1; DF4PR84MB0300;
-	23:Kv/pMo0JLkwBUB1WPFd24EijRkTSOU746UcyAdR9fq/JAh7LW3yWqC7OP4g/v5u5g+ItsNGE54QM2/vcn/3hHMGlf9Ba/wJmIMwagew/GWcX105re/Trj7oe/Wp5z7qB9fObYBIXmsa33MZetY0QR05Eb6/SCO46hfjB2GIRM3+a+rkNX6gFCj7gPKC479KedqGfoCeM33rsQdDzK5Voz1a51/Sukcm2ucIBYZWE7QrSa7RBNIHSNz9gZqnhMMIHmN4TyAbQlgu0Z8ijk4IsalDtxVeXgoKfV+ZVQmKbC6esDyep78roUFJr3BIrgY2sYT1+IN4cR6tDGv3jbXcBngNCZYIKCG8qfAlCIwsn8eSLvzQjbpAkum4RKTuJL2vRH7astjHq2+0fiqizL5Zdmmc+1USnS4fbg+u4BE3c8K3cqZjr0Esd8+0dMT0YJColLgC2mqSj0oM/cMcBIl+d95GMSo5pOip1DMtVmM6Bg68Sbdmz5aCHCGtIdmKZUb+mW4VQcBGRtXQdBwlcJVpZ5lbADzP8UwDsGV0Jq+5/7y0yG5us9dEWU0RRvyYDO0CfoJApOtyaKhM9HDrKZwk/PdncVoLUxgk7a7EcFTptuyGfmq4XWhUa983Rdsu2QOBcinjawUh+6/sJGsHyl5nMY6c1g9NGxvuKmFqtw42Rjsd/E7b04TwRky13RbdPKUPVPYo+LzsWKop57Ppi5tL8rYmrppus0kjZJNVSknFO5GkBd3xNwojHG3XE3L7yPVKQWzedBGg04z8w2C83XbYe75mVkLQlvAe3PNAbwDlEJ8eufO98l+NN2XXoUbgh84cBVEXusNBD+b55O/w8Od2wExi+ZK6B/9U8LGPtW+nV+FAoF+kg+LG2lGoTD942V8Wr
-X-Microsoft-Exchange-Diagnostics: 1; DF4PR84MB0300;
-	5:if5ZQDsSVRRzwlvxiO7H7NMiLuhKiIBq6dI63MXDmtIOUaP6ptD0TzkqvYs3vj1cVEtFaMLG1HKE/H/+busG20zK3LElyubEKCV+iiHS7i+8qZdi64RbsX40/Ob+0VHw/8sk8RNscWIODF2gi4QgoA==;
-	24:OBeWkmn+Ft/7xLdLVBec3oaFDupgkR0ph8/iB/w9ej9v+Py51DZgM8ASuX7vFw7gvNyTLg4P1MRSEZk9qG6snIwSecYFIeOnEinFM1xlHRw=;
-	7:1Zw3HoHoFiQBxnVeVlZOe2Af3gjP6c5JgkDr7xwLa9/PDdSLL1dbz0qOzSSXJc7Je7leOOYD/L3lpgZa+6sd22K222GhAaKtFY50Z+nfPQMsoq2FYLp4Dv6MGTaMi5x2ZE3AuRI/on1MyAHRUjRu05dVjDy9DVszpeyQ60Cqe7a+9gX47L/N8EzqyMR6L+r8
-SpamDiagnosticOutput: 1:23
-SpamDiagnosticMetadata: NSPM
-X-OriginatorOrg: hpe.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2016 02:08:50.2077 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DF4PR84MB0300
-Subject: Multiple MACHINEs in a single build?
+In-Reply-To: <1462018164-10212-1-git-send-email-schnitzeltony@googlemail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] replace base_contains by bb.utils.contains
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,29 +70,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 May 2016 04:42:04 -0000
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 May 2016 10:52:12 -0000
+X-Groupsio-MsgNum: 29862
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="L6iaP+gRLNZHKoI4"
 Content-Disposition: inline
 
-Hi,
+--L6iaP+gRLNZHKoI4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I suspect this is documented in a FAQ somewhere, but I'm failing to hit
-the correct keywords when googling...
+On Sat, Apr 30, 2016 at 02:09:24PM +0200, Andreas M=FCller wrote:
+> Signed-off-by: Andreas M=FCller <schnitzeltony@googlemail.com>
+> ---
+>  recipes-connectivity/bluez5/bluez5_%.bbappend | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-connectivity/bluez5/bluez5_%.bbappend b/recipes-conn=
+ectivity/bluez5/bluez5_%.bbappend
+> index eec52e0..89798a4 100644
+> --- a/recipes-connectivity/bluez5/bluez5_%.bbappend
+> +++ b/recipes-connectivity/bluez5/bluez5_%.bbappend
+> @@ -13,7 +13,7 @@ do_install_append_raspberrypi3() {
+>      install -d ${D}/lib/firmware/brcm/
+>      install -m 0644 ${WORKDIR}/BCM43430A1.hcd ${D}/lib/firmware/brcm/BCM=
+43430A1.hcd
+>
+> -    if ${@base_contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d=
+)}; then
+> +    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false=
+', d)}; then
+>          install -d ${D}${systemd_unitdir}/system
+>          install -m 0644 ${WORKDIR}/brcm43438.service ${D}${systemd_unitd=
+ir}/system
+>      fi
 
-Is there a way to support building images for multiple MACHINEs in a
-single workspace at the same time?
+Merged to master. Thanks.
 
-This works:
+--
+Andrei Gherzan
 
-	$ MACHINE=qemux86 bitbake core-image-minimal
-	$ MACHINE=qemux86-64 bitbake core-image-minimal
+--L6iaP+gRLNZHKoI4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-and bitbake parallelizes the build across tasks. What I'm trying to
-figure out is if it's possible to run two bitbake instances with
-different MACHINE values on different hosts but writing to the same
-workspace (say, over NFS).
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-Thanks!
+iQIcBAEBCAAGBQJXKyXUAAoJEHO76Gt+erfPEUkQAJJbLFLB+htM2cvOSkV7AlLI
+73+YoVY+V+53xkw+eGbbNkXsloTnk4+VmxW2P4uhQJy9WcTnnBCLWBh6QkONzjPl
+SIFrQNKsrWaTwoHtxuoQcj14o9YXXAtdIGmNQ+2MIugSD6uhTRAYXmZVaoM9VKDg
+xMg85hrjC1qlp7lNSMOlMT+w2kSvOaj57jVbBx3d8TdXttgYDckyNhL0J37dx9Lr
+0KqanfhkIqrZwjHE3cMm8USj+dQzfjy2k3mEc4OMzY8pirbjcSnbyd377PJpSEKm
+QPd/gYht/tuQXRg0FOMkrVOLB5gi86tEWU/3+48h2LZ7PRbHgpgd3HBXVjWiUU5Q
+HU0AHbg0FjRyIdmoQken1Qgk0wEwEkZNxVZG7ERXBF+GkyCm+rzjPPEaZ4D5mBJ1
+XNFXOeii7KugiLoUUk8IfiSGeWNRY7Pv3TdSbAhktmVjquehnKEYHyiwISVDazgz
+l4E9bjMb7YW0UABaTQc3jIyIsiVl6gd0RMzM943EK4wQIsO6rENsTx2YuMA+kCMN
+gAYQy2m/8OwS1UZ81sOh9K5uszgLFCqlcHlddnNCQrqyld05tPERbxQlGbbUxEh7
+u7SFqAf96Oki6gNcQ4Sy2lxukF8BrxSYdyWYp+KUOKgv60bA4I416e6Ttgb8lw+w
+y4xrInCwgZ6+42Q3XbFU
+=J3LH
+-----END PGP SIGNATURE-----
 
-Marcelo
-
+--L6iaP+gRLNZHKoI4--
