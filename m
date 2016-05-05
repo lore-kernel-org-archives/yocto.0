@@ -1,55 +1,40 @@
-Return-Path: <pknopf@medxchange.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E24A9E00DB3; Thu,  5 May 2016 10:57:44 -0700 (PDT)
+	id 49D39E00DFD; Thu,  5 May 2016 11:36:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.181 listed in list.dnswl.org]
-Received: from mail-yw0-f181.google.com (mail-yw0-f181.google.com
-	[209.85.161.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D844E008EA
-	for <yocto@yoctoproject.org>; Thu,  5 May 2016 10:57:41 -0700 (PDT)
-Received: by mail-yw0-f181.google.com with SMTP id g133so133915424ywb.2
-	for <yocto@yoctoproject.org>; Thu, 05 May 2016 10:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=medxchange-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jTfouUSWrYaO+cD6Ktqmes5Hy0OKEhIaFrcx9OwghhM=;
-	b=037tXfh0Dpc2O88MReratZp4UGpqlbi9j6wPTH70ieoJx6CPoCVarFgM7g7WtFwE7x
-	1YhvjIL39LtW2E9neuPZvoPdYPNHsxtZ3lMjDKVjLhVLPnJjLYIARrsOmrRMr7cEciFf
-	G7CRI2bBOHBQEIf+8mC/USFe3agwlAOr6NCgpfF8YpGjoOTvwylNFG92fU8rvlaYmPlw
-	qmJcgCmphEIkkx0u4JluMXESKOqHUtY31b1Guzob1XZg16eGMVOUiPxBSeim/tXvkjkB
-	YpTtma6OBieqiM0WvwuzIXolr9+sLaT7XH1njI1IwtoDd3lPrXZtIpPcchuSwuEVpiaq
-	ub3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jTfouUSWrYaO+cD6Ktqmes5Hy0OKEhIaFrcx9OwghhM=;
-	b=lSiKmvouKfDU6SZj1xuTKi/1e9OSXOq9U1+F8xPIqf1GC2FH6rHHWfpljqrP0d2qHj
-	lL/d2jBRPqMMtr7xo1GskgccezPwQLI1xVK7rz/wyX5Pvx6qYM9FqfOsy6IOnH1mj0DT
-	7a/hN2L6uSeYovd6sax/KdWPgJdmOYwa9DKc0Sb9NEm6qODYbMWU+ril6/JxElOCgcyl
-	M88swEvAn8WOLwfXAHpEJHeuYSIA/fYNLZf3ioa7/ureFEcNJk6LrqZkwm0N14Efx1fv
-	axDn78wdzTaH0OSRRZiyfDNKDtHudnCGGUGX+2TDKAs6sDEynrFSaLfE0MnN+TqWPFtj
-	n0Zg==
-X-Gm-Message-State: AOPr4FVL8Nst8d/25oWevJAVxyDCdVp2BgBaLCvgsv2gnUhpZTvITUoxpDLYK0uHTQ8zG+7d+2rfBTURNygvgg==
-X-Received: by 10.159.41.167 with SMTP id s36mr7047874uas.48.1462471060718;
-	Thu, 05 May 2016 10:57:40 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D36B5E00DF7
+	for <yocto@yoctoproject.org>; Thu,  5 May 2016 11:36:38 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u45IaaJf009952
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 5 May 2016 11:36:36 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
+	Thu, 5 May 2016 11:36:36 -0700
+To: "Mihaylov, Emil" <emilmih@gmail.com>, <yocto@yoctoproject.org>
+References: <ccfc2b5b-74fa-ed1e-37b6-6dc0ed7ecb27@gmail.com>
+	<fb5c7b87-82bd-f1cd-9070-d99aa4046146@windriver.com>
+	<e83997e2-d496-eaa7-0921-64ef4d669f36@gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <bff7e85c-a2e4-5049-3840-48a4b1c344d9@windriver.com>
+Date: Thu, 5 May 2016 13:36:35 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+	Gecko/20100101 Thunderbird/45.0
 MIME-Version: 1.0
-From: Paul Knopf <pknopf@medxchange.com>
-Date: Thu, 05 May 2016 17:57:31 +0000
-Message-ID: <CABfz71eh5ONgNF2aDmZfrJ8sexms3nEv=iNWgA9ChRGfHxKS0A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: udev automount.rules not running on boot
+In-Reply-To: <e83997e2-d496-eaa7-0921-64ef4d669f36@gmail.com>
+Subject: Re: oracle-jse-jdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,40 +46,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 May 2016 17:57:45 -0000
-Content-Type: multipart/alternative; boundary=001a114cbbf4119a3605321c1405
+X-List-Received-Date: Thu, 05 May 2016 18:36:39 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---001a114cbbf4119a3605321c1405
-Content-Type: text/plain; charset=UTF-8
+On 5/5/16 12:43 PM, Mihaylov, Emil wrote:
+> hi Mark,
+> 
+> my oracle-jse-jdk_1.7.0.bb
+> 
+> looks like this
+> 
+> -----------------------------------------------
+> 
+> # Automatically choose java package based on target architecture
+> DEPENDS += "libav gtk+ libxslt libxtst"
 
-I am using the automount.rules in udev-extra-conf.
+DEPENDS says it needs to be there before the package builds.
 
-If I boot up with a block device plugged in, nothing is mounted. If I plug
-in the device AFTER the machine is booted, it shows up (in /run/media/*).
+RDEPENDS_<package> says it needs to be to install.
 
-How do I get these rules to be applied on boot?
--- 
+The dependency error indicates that there was no package anywhere in the system
+providing that specific provide.  You should look at libav and see if it has a
+matching provide.  If it does not, then you are still lacking whatever is
+necessary for this to work.
 
-Thanks,
-Paul Knopf
-Software Engineer
-Med X Change, Inc
-pknopf@medxchange.com
+--Mark
 
---001a114cbbf4119a3605321c1405
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+> def get_java_pkg(d):
+>        TA = d.getVar('TARGET_ARCH', True)
+>        if TA == "i586":
+>                javaPkg = "oracle-jse-jdk-i586"
+>        elif TA == "x86_64":
+>                javaPkg = "oracle-jse-jdk-x86-64"
+>        else:
+>                raise bb.parse.SkipPackage("The target architecture '%s' is not
+> supported by the meta-oracle-java layer" %TA)
+>       
+>        return javaPkg
+> 
+> JAVA_PKG = "${@get_java_pkg(d)}"
+> 
+> require ${JAVA_PKG}.inc
+> 
+> -----------------------------------------
+> 
+> still error
+> 
+> thanks Emil
+> 
+> 
+> 
+> On 5/5/2016 10:11 AM, Mark Hatle wrote:
+>> DEPENDS' and the packages associated RDEPENDS.
+> 
 
-<div dir=3D"ltr">I am using the automount.rules in udev-extra-conf.<div><br=
-></div><div>If I boot up with a block device plugged in, nothing is mounted=
-. If I plug in the device AFTER the machine is booted, it shows up (in /run=
-/media/*).</div><div><br></div><div>How do I get these rules to be applied =
-on boot?</div></div><div dir=3D"ltr">-- <br></div><div dir=3D"ltr"><p dir=
-=3D"ltr">Thanks,<br>
-Paul Knopf<br>
-Software Engineer<br>
-Med X Change, Inc<br>
-<a href=3D"mailto:pknopf@medxchange.com">pknopf@medxchange.com</a></p>
-</div>
 
---001a114cbbf4119a3605321c1405--
