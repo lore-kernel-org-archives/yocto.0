@@ -1,37 +1,69 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <emilmih@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 170F1E00DEF; Thu,  5 May 2016 10:11:39 -0700 (PDT)
+	id A8719E00DEC; Thu,  5 May 2016 10:43:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (emilmih[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2EABE00DE9
-	for <yocto@yoctoproject.org>; Thu,  5 May 2016 10:11:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u45HBX6K005414
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 5 May 2016 10:11:33 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Thu, 5 May 2016 10:11:32 -0700
-To: "Mihaylov, Emil" <emilmih@gmail.com>, <yocto@yoctoproject.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A8D3E00C2B
+	for <yocto@yoctoproject.org>; Thu,  5 May 2016 10:43:12 -0700 (PDT)
+Received: by mail-pf0-f171.google.com with SMTP id 206so40216636pfu.0
+	for <yocto@yoctoproject.org>; Thu, 05 May 2016 10:43:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to; bh=i+VlFnH1gxBxT4k7z59Uo1BASTo7szxxaSm04VP9JaU=;
+	b=A5fIkzFiYUJU/cNH3hGGay/NwEMqrrNSXdFfSJOh8yRlW+XXiQJKwdrAASoeLoY56O
+	Q0PRf93nlatQDW1pp/SZSLNSLW/66odg3rpqqBNgUtkX2AywGaYPZx2MzYbi3bAasaoF
+	9K1spFj1wJ8wSngabvJ3x1KzL+HshhaxsUb+G55fBdMZojDTuVyDCwa/dM/XR9uJi7j8
+	1ZPooXEDZQvBdBod0fXn7vY/tXqn4/b93VlX6/vVZQ0k53BolFMN+0gvL+QlK1Vw8uLE
+	z213EXQN04PdGMdULlnotwnqAEASUdFKHmJLY8Yfw63B4DHy0ZMF2qAp1WEKu61KhSLO
+	uBnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=i+VlFnH1gxBxT4k7z59Uo1BASTo7szxxaSm04VP9JaU=;
+	b=OhKAyWvXvFZqVV+dfvckCyAehecD5JosnhIHsZSzvuoqizV6f34AowCpbmhOo7V+qL
+	qyx6fEdNErJhYRADMAVAWBL3DphOk7bcd3kOun2gUPf7RKCx/JYEocvn259k7gaXU4jI
+	c1QjGplpcB6TumRuJFTqB4NfL8MBX+rj4HDSaxrTGwueDncwPPq2Ejn4L8JonUZZVk7+
+	LZ0MBlevVQABSFSv6P4jlJLvL8II5pJbQa2KI7pQkpUC9iQr10pV7VY/SXgfhmq4g0eQ
+	dQwadrbowNGoY8xnShQf5vvLDovDcUICkpbjbtCj1E7ubHHpit3udAqduogCPDfFnGeb
+	CDhg==
+X-Gm-Message-State: AOPr4FWU4wutOavt578mkg24KyWPqA0n2LHB+eRa67WRfjBDGYoHZo2QZKHLm1gz1eB/GA==
+X-Received: by 10.98.31.65 with SMTP id f62mr22436305pff.83.1462470191464;
+	Thu, 05 May 2016 10:43:11 -0700 (PDT)
+Received: from [10.8.100.105] (rrcs-74-62-253-130.west.biz.rr.com.
+	[74.62.253.130]) by smtp.gmail.com with ESMTPSA id
+	yl5sm15173670pac.38.2016.05.05.10.43.09
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 05 May 2016 10:43:09 -0700 (PDT)
+To: Mark Hatle <mark.hatle@windriver.com>, yocto@yoctoproject.org
 References: <ccfc2b5b-74fa-ed1e-37b6-6dc0ed7ecb27@gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <fb5c7b87-82bd-f1cd-9070-d99aa4046146@windriver.com>
-Date: Thu, 5 May 2016 12:11:31 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.0
+	<fb5c7b87-82bd-f1cd-9070-d99aa4046146@windriver.com>
+From: "Mihaylov, Emil" <emilmih@gmail.com>
+Message-ID: <e83997e2-d496-eaa7-0921-64ef4d669f36@gmail.com>
+Date: Thu, 5 May 2016 10:43:08 -0700
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.0
 MIME-Version: 1.0
-In-Reply-To: <ccfc2b5b-74fa-ed1e-37b6-6dc0ed7ecb27@gmail.com>
+In-Reply-To: <fb5c7b87-82bd-f1cd-9070-d99aa4046146@windriver.com>
 Subject: Re: oracle-jse-jdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,42 +76,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 May 2016 17:11:39 -0000
-Content-Type: text/plain; charset="windows-1252"
+X-List-Received-Date: Thu, 05 May 2016 17:43:15 -0000
+Content-Type: multipart/alternative;
+	boundary="------------37C29CC6DCC9C82ACF730290"
+
+--------------37C29CC6DCC9C82ACF730290
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 5/5/16 11:57 AM, Mihaylov, Emil wrote:
-> ython-argparse@lib32_x86 pciutils@x86_64 python-multiprocessing@lib32_x86
-> libxml2@lib32_x86
-> | Loading cache...
-> | Updating cache...               ######################################## [100%]
-> |
-> | Computing transaction...error: Can't install
-> oracle-jse-jdk-1.7.0-u67r0@x86_64: no package provides
-> libavcodec.so.52(LIBAVCODEC_52)(64bit)
-> |
-> | Saving cache...
-> |
-> 
-> Hi i am getting this error when i add oracle-jse-jdk recipe,
+hi Mark,
 
-The error means that the oracle-jse-jdk -package- (produced from the recipe)
-requires the 'libavcodec.so.52' library, with the specific soname of
-LIBAVCODEC_52 (64-bit version).
+my oracle-jse-jdk_1.7.0.bb
 
-There was apparently nothing in your build that provides this dependency, so the
-installation failed.
+looks like this
 
-You will need to identify what recipe provides this (libav?) and add this to the
-recipes (oracle-jse-jdk) 'DEPENDS' and the packages associated RDEPENDS.
+-----------------------------------------------
 
---Mark
+# Automatically choose java package based on target architecture
+DEPENDS += "libav gtk+ libxslt libxtst"
+def get_java_pkg(d):
+        TA = d.getVar('TARGET_ARCH', True)
+        if TA == "i586":
+                javaPkg = "oracle-jse-jdk-i586"
+        elif TA == "x86_64":
+                javaPkg = "oracle-jse-jdk-x86-64"
+        else:
+                raise bb.parse.SkipPackage("The target architecture '%s' 
+is not supported by the meta-oracle-java layer" %TA)
 
-> Any idea how to solve the issue
-> 
-> thanks
-> 
-> 
-> 
+        return javaPkg
+
+JAVA_PKG = "${@get_java_pkg(d)}"
+
+require ${JAVA_PKG}.inc
+
+-----------------------------------------
+
+still error
+
+thanks Emil
 
 
+
+On 5/5/2016 10:11 AM, Mark Hatle wrote:
+> DEPENDS' and the packages associated RDEPENDS.
+
+
+--------------37C29CC6DCC9C82ACF730290
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>hi Mark,</p>
+    <p>my oracle-jse-jdk_1.7.0.bb</p>
+    <p>looks like this <br>
+    </p>
+    <p>-----------------------------------------------<br>
+    </p>
+    <p># Automatically choose java package based on target architecture<br>
+      <font color="#ff0000">DEPENDS += "libav gtk+ libxslt libxtst"</font><br>
+      def get_java_pkg(d):<br>
+             TA = d.getVar('TARGET_ARCH', True)<br>
+             if TA == "i586":<br>
+                     javaPkg = "oracle-jse-jdk-i586"<br>
+             elif TA == "x86_64":<br>
+                     javaPkg = "oracle-jse-jdk-x86-64"<br>
+             else:<br>
+                     raise bb.parse.SkipPackage("The target architecture
+      '%s' is not supported by the meta-oracle-java layer" %TA)<br>
+             <br>
+             return javaPkg<br>
+      <br>
+      JAVA_PKG = "${@get_java_pkg(d)}"<br>
+      <br>
+      require ${JAVA_PKG}.inc<br>
+    </p>
+    <p>-----------------------------------------</p>
+    <p>still error <br>
+    </p>
+    <p>thanks Emil</p>
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 5/5/2016 10:11 AM, Mark Hatle wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:fb5c7b87-82bd-f1cd-9070-d99aa4046146@windriver.com"
+      type="cite">
+      <pre wrap="">DEPENDS' and the packages associated RDEPENDS.
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------37C29CC6DCC9C82ACF730290--
