@@ -1,66 +1,44 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72201E00D5F; Sat,  7 May 2016 07:15:26 -0700 (PDT)
+	id 61E6FE00874; Sat,  7 May 2016 09:17:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.68 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 093DFE00C8B
-	for <yocto@yoctoproject.org>; Sat,  7 May 2016 07:15:24 -0700 (PDT)
-Received: by mail-pa0-f68.google.com with SMTP id yl2so12336909pac.1
-	for <yocto@yoctoproject.org>; Sat, 07 May 2016 07:15:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=xoFtVmre/Xih2G76Qlzhfy1qq+k7zlRe7slmOBrGDOM=;
-	b=RyKJm+JqXVeWCsy0RV8P1AUev/1TtxeVwhvQv/KiP2W7Ax3hUknj6fzdgQcjUE12eF
-	uoYoXR+iMGTuz1He7QElGImDOcTTFM4YqSgG/syHcwQ6dEilyEfa60pUFBtMUw5TwUPM
-	E3u8by0bLAHqSsYaxivSdm/wvd8c97UFPNH2i5PDW8EH7Tdh8GK5vP9c3qx0laDBFixS
-	92R2Vgyn72MVLkSKwd/FhnY3VmdUIrxlO7D3gUBPhW0dhVMHy5xJjiu4oVvHlJAipQt6
-	j4pQ9w8dHaARjmtONYsTuAiAIT6vdw9De2cWUkNvZqKcpjJV2Qjr6cw8lFoBRSQGuh0F
-	rRpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=xoFtVmre/Xih2G76Qlzhfy1qq+k7zlRe7slmOBrGDOM=;
-	b=PqLJ4APN+qj6BXP8e0Iq6Trvm3DririQC2RrEsjKXsGjkeEoV4bvbdZ2FZxlfzkToS
-	KjtMuPG+z5gsxiYABwoLRUGNjgd3AibyrG0umi5Hc6tb0kOsxOgOp3KDjkJf77EMd4gj
-	CPfAGNDcfyFb3SIaNvZNxtQhE9DlpMyFcvMP8OVD6kHTwIJwpwtrgS2uIOc0IpXC5CW5
-	yaxGe9m6OLDuNgEC31G3T+hpWk5TvuXBXXPzfhswiLae9W+yxh5AO4wCmBl1FB9MRdEQ
-	DxvwgVFJm58gEqj2m4c66ZaPevcUfFJMV1mRhss4TkaATNnx9FieEcpJd/OWcVSbOB5Q
-	4Eaw==
-X-Gm-Message-State: AOPr4FXnbj9cShSt5+5lpUItM9Ia5XQYaf5OqOTZ5HUnDJwO9qrXECNOyBQpQ7Bek+PT2A==
-X-Received: by 10.66.79.197 with SMTP id l5mr36715190pax.61.1462630523752;
-	Sat, 07 May 2016 07:15:23 -0700 (PDT)
-Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
-	y66sm28585654pfy.66.2016.05.07.07.15.21 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 07 May 2016 07:15:22 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat,  7 May 2016 07:15:18 -0700
-Message-Id: <1462630518-1636-3-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.3.5
-In-Reply-To: <1462630518-1636-1-git-send-email-akuster808@gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2A74E007A2
+	for <yocto@yoctoproject.org>; Sat,  7 May 2016 09:17:37 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga104.fm.intel.com with ESMTP; 07 May 2016 09:17:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.24,589,1455004800"; d="scan'208,217";a="99006317"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga004.fm.intel.com with ESMTP; 07 May 2016 09:17:36 -0700
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Sat, 7 May 2016 09:17:35 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.2.68]) by
+	ORSMSX115.amr.corp.intel.com ([169.254.4.60]) with mapi id
+	14.03.0248.002; Sat, 7 May 2016 09:17:35 -0700
+From: "Randle, William C" <william.c.randle@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-security][PATCH 3/3] clamav: Fix new QA warning
+Thread-Index: AQHRqGtc8lrOlfKmpUiH47Ww2qX2mJ+uHG4A
+Date: Sat, 7 May 2016 16:17:35 +0000
+Message-ID: <1462637854.2259.35.camel@intel.com>
 References: <1462630518-1636-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 3/3] clamav: Fix new QA warning
+	<1462630518-1636-3-git-send-email-akuster808@gmail.com>
+In-Reply-To: <1462630518-1636-3-git-send-email-akuster808@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.111.100]
+MIME-Version: 1.0
+Subject: Re: [meta-security][PATCH 3/3] clamav: Fix new QA warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,29 +50,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 May 2016 14:15:26 -0000
+X-List-Received-Date: Sat, 07 May 2016 16:17:40 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_1462637854225935camelintelcom_"
 
-NOTE:meta-security/recipes-security/clamav/clamav_0.99.1.bb: base_contains is deprecated, please use bb.utils.contains instead.
+--_000_1462637854225935camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/clamav/clamav_0.99.1.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+T24gYSByZWxhdGVkIG5vdGUsIENsYW1BViAwLjk5LjIgaGFzIGJlZW4gcmVsZWFzZWQuDQoNCk9u
+IFNhdCwgMjAxNi0wNS0wNyBhdCAwNzoxNSAtMDcwMCwgQXJtaW4gS3VzdGVyIHdyb3RlOg0KDQpO
+T1RFOm1ldGEtc2VjdXJpdHkvcmVjaXBlcy1zZWN1cml0eS9jbGFtYXYvY2xhbWF2XzAuOTkuMS5i
+YjogYmFzZV9jb250YWlucyBpcyBkZXByZWNhdGVkLCBwbGVhc2UgdXNlIGJiLnV0aWxzLmNvbnRh
+aW5zIGluc3RlYWQuDQoNClNpZ25lZC1vZmYtYnk6IEFybWluIEt1c3RlciA8YWt1c3RlcjgwOEBn
+bWFpbC5jb208bWFpbHRvOmFrdXN0ZXI4MDhAZ21haWwuY29tPj4NCi0tLQ0KIHJlY2lwZXMtc2Vj
+dXJpdHkvY2xhbWF2L2NsYW1hdl8wLjk5LjEuYmIgfCAyICstDQogMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQoNCmRpZmYgLS1naXQgYS9yZWNpcGVzLXNlY3Vy
+aXR5L2NsYW1hdi9jbGFtYXZfMC45OS4xLmJiIGIvcmVjaXBlcy1zZWN1cml0eS9jbGFtYXYvY2xh
+bWF2XzAuOTkuMS5iYg0KaW5kZXggZWRjY2M3OC4uNDYxMDE1ZiAxMDA2NDQNCi0tLSBhL3JlY2lw
+ZXMtc2VjdXJpdHkvY2xhbWF2L2NsYW1hdl8wLjk5LjEuYmINCisrKyBiL3JlY2lwZXMtc2VjdXJp
+dHkvY2xhbWF2L2NsYW1hdl8wLjk5LjEuYmINCkBAIC0zMCw3ICszMCw3IEBAIEdJRCA9ICJjbGFt
+YXYiDQoNCiBQQUNLQUdFQ09ORklHID89ICJuY3Vyc2VzIG9wZW5zc2wgYnoyIHpsaWIgIg0KIFBB
+Q0tBR0VDT05GSUcgKz0gIiAke0BiYi51dGlscy5jb250YWluczxtYWlsdG86JHtAYmIudXRpbHMu
+Y29udGFpbnM+KCJESVNUUk9fRkVBVFVSRVMiLCAiaXB2NiIsICJpcHY2IiwgIiIsIGQpfSINCi1Q
+QUNLQUdFQ09ORklHICs9ICIke0BiYXNlX2NvbnRhaW5zKCdESVNUUk9fRkVBVFVSRVMnLCAnc3lz
+dGVtZCcsICdzeXN0ZW1kJywgJycsIGQpfSINCitQQUNLQUdFQ09ORklHICs9ICIke0BiYi51dGls
+cy5jb250YWluczxtYWlsdG86JHtAYmIudXRpbHMuY29udGFpbnM+KCdESVNUUk9fRkVBVFVSRVMn
+LCAnc3lzdGVtZCcsICdzeXN0ZW1kJywgJycsIGQpfSINCiBQQUNLQUdFQ09ORklHW3BjcmVdID0g
+Ii0td2l0aC1wY3JlPSR7U1RBR0lOR19MSUJESVJ9LCAgLS13aXRob3V0LXBjcmUsIGxpYnBjcmUi
+DQogUEFDS0FHRUNPTkZJR1t4bWxdID0gIi0td2l0aC14bWw9JHtTVEFHSU5HX0xJQkRJUn0vLi4s
+IC0td2l0aC14bWw9bm8sIGxpYnhtbDIsIg0KIFBBQ0tBR0VDT05GSUdbanNvbl0gPSAiLS13aXRo
+LWxpYmpzb249JHtTVEFHSU5HX0xJQkRJUn0sIC0td2l0aG91dC1saWJqc29uLCBqc29uLCINCi0t
+DQoyLjMuNQ0KDQoNCg==
 
-diff --git a/recipes-security/clamav/clamav_0.99.1.bb b/recipes-security/clamav/clamav_0.99.1.bb
-index edccc78..461015f 100644
---- a/recipes-security/clamav/clamav_0.99.1.bb
-+++ b/recipes-security/clamav/clamav_0.99.1.bb
-@@ -30,7 +30,7 @@ GID = "clamav"
- 
- PACKAGECONFIG ?= "ncurses openssl bz2 zlib "
- PACKAGECONFIG += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
--PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
-+PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
- PACKAGECONFIG[pcre] = "--with-pcre=${STAGING_LIBDIR},  --without-pcre, libpcre"
- PACKAGECONFIG[xml] = "--with-xml=${STAGING_LIBDIR}/.., --with-xml=no, libxml2,"
- PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json,"
--- 
-2.3.5
+--_000_1462637854225935camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <9116C53D8F169449843136D9FC68108E@intel.com>
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNmN2Y3
+ZjciIHRleHQ9IiMyYzJjMmMiIGxpbms9IiM0YTkwZDkiIHZsaW5rPSIjNGE5MGQ5Ij4NCjxkaXY+
+T24gYSByZWxhdGVkIG5vdGUsIENsYW1BViAwLjk5LjIgaGFzIGJlZW4gcmVsZWFzZWQuPC9kaXY+
+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5PbiBTYXQsIDIwMTYtMDUtMDcgYXQgMDc6MTUgLTA3
+MDAsIEFybWluIEt1c3RlciB3cm90ZTo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0K
+PHByZT5OT1RFOm1ldGEtc2VjdXJpdHkvcmVjaXBlcy1zZWN1cml0eS9jbGFtYXYvY2xhbWF2XzAu
+OTkuMS5iYjogYmFzZV9jb250YWlucyBpcyBkZXByZWNhdGVkLCBwbGVhc2UgdXNlIGJiLnV0aWxz
+LmNvbnRhaW5zIGluc3RlYWQuDQoNClNpZ25lZC1vZmYtYnk6IEFybWluIEt1c3RlciAmbHQ7PGEg
+aHJlZj0ibWFpbHRvOmFrdXN0ZXI4MDhAZ21haWwuY29tIj5ha3VzdGVyODA4QGdtYWlsLmNvbTwv
+YT4mZ3Q7DQotLS0NCiByZWNpcGVzLXNlY3VyaXR5L2NsYW1hdi9jbGFtYXZfMC45OS4xLmJiIHwg
+MiAmIzQzOy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oJiM0MzspLCAxIGRlbGV0aW9u
+KC0pDQoNCmRpZmYgLS1naXQgYS9yZWNpcGVzLXNlY3VyaXR5L2NsYW1hdi9jbGFtYXZfMC45OS4x
+LmJiIGIvcmVjaXBlcy1zZWN1cml0eS9jbGFtYXYvY2xhbWF2XzAuOTkuMS5iYg0KaW5kZXggZWRj
+Y2M3OC4uNDYxMDE1ZiAxMDA2NDQNCi0tLSBhL3JlY2lwZXMtc2VjdXJpdHkvY2xhbWF2L2NsYW1h
+dl8wLjk5LjEuYmINCiYjNDM7JiM0MzsmIzQzOyBiL3JlY2lwZXMtc2VjdXJpdHkvY2xhbWF2L2Ns
+YW1hdl8wLjk5LjEuYmINCkBAIC0zMCw3ICYjNDM7MzAsNyBAQCBHSUQgPSAmcXVvdDtjbGFtYXYm
+cXVvdDsNCiANCiBQQUNLQUdFQ09ORklHID89ICZxdW90O25jdXJzZXMgb3BlbnNzbCBiejIgemxp
+YiAmcXVvdDsNCiBQQUNLQUdFQ09ORklHICYjNDM7PSAmcXVvdDsgPGEgaHJlZj0ibWFpbHRvOiR7
+QGJiLnV0aWxzLmNvbnRhaW5zIj4ke0BiYi51dGlscy5jb250YWluczwvYT4oJnF1b3Q7RElTVFJP
+X0ZFQVRVUkVTJnF1b3Q7LCAmcXVvdDtpcHY2JnF1b3Q7LCAmcXVvdDtpcHY2JnF1b3Q7LCAmcXVv
+dDsmcXVvdDssIGQpfSZxdW90Ow0KLVBBQ0tBR0VDT05GSUcgJiM0Mzs9ICZxdW90OyR7QGJhc2Vf
+Y29udGFpbnMoJ0RJU1RST19GRUFUVVJFUycsICdzeXN0ZW1kJywgJ3N5c3RlbWQnLCAnJywgZCl9
+JnF1b3Q7DQomIzQzO1BBQ0tBR0VDT05GSUcgJiM0Mzs9ICZxdW90OzxhIGhyZWY9Im1haWx0bzok
+e0BiYi51dGlscy5jb250YWlucyI+JHtAYmIudXRpbHMuY29udGFpbnM8L2E+KCdESVNUUk9fRkVB
+VFVSRVMnLCAnc3lzdGVtZCcsICdzeXN0ZW1kJywgJycsIGQpfSZxdW90Ow0KIFBBQ0tBR0VDT05G
+SUdbcGNyZV0gPSAmcXVvdDstLXdpdGgtcGNyZT0ke1NUQUdJTkdfTElCRElSfSwgIC0td2l0aG91
+dC1wY3JlLCBsaWJwY3JlJnF1b3Q7DQogUEFDS0FHRUNPTkZJR1t4bWxdID0gJnF1b3Q7LS13aXRo
+LXhtbD0ke1NUQUdJTkdfTElCRElSfS8uLiwgLS13aXRoLXhtbD1ubywgbGlieG1sMiwmcXVvdDsN
+CiBQQUNLQUdFQ09ORklHW2pzb25dID0gJnF1b3Q7LS13aXRoLWxpYmpzb249JHtTVEFHSU5HX0xJ
+QkRJUn0sIC0td2l0aG91dC1saWJqc29uLCBqc29uLCZxdW90Ow0KLS0gDQoyLjMuNQ0KDQo8L3By
+ZT4NCjwvYmxvY2txdW90ZT4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
+--_000_1462637854225935camelintelcom_--
