@@ -1,59 +1,60 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <pknopf@medxchange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3480AE00ED3; Mon,  9 May 2016 06:07:50 -0700 (PDT)
+	id BECABE00ED6; Mon,  9 May 2016 06:43:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
+	*      [209.85.213.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 901AEE00B4A
-	for <yocto@yoctoproject.org>; Mon,  9 May 2016 06:07:46 -0700 (PDT)
-Received: by mail-io0-f179.google.com with SMTP id f89so171082541ioi.0
-	for <yocto@yoctoproject.org>; Mon, 09 May 2016 06:07:46 -0700 (PDT)
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EAFBE00B60
+	for <yocto@yoctoproject.org>; Mon,  9 May 2016 06:43:12 -0700 (PDT)
+Received: by mail-vk0-f49.google.com with SMTP id o133so65950894vka.0
+	for <yocto@yoctoproject.org>; Mon, 09 May 2016 06:43:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=0bE5yOhysPt7481PD/7ZW1a0rpSGLiNwbcHxj2DkBpk=;
-	b=Y7jSkJ+n5jKTPFMD8NFz9fnSbRfevyDB7w34FkYYEqOao9EN20fs9r6+wnZV7vhNa7
-	vUR9n1P9jTm5L9l+3ZtlIXggOZrTbzMgk+8V+3nPuSx/JP1k+mwaNZv59XHr+daANglQ
-	nYUueAsgUIovxEp0mF8Kz7QNbJfwAVXQdW4O/KM08qqHs2HbnhJgu8TbF0sjc9cYULfE
-	qZejMVkAzJ86pf3X1ZYwas7+aB/IzYiohfT+JEE9tgOHKg2uGzPLmoOO5WMirPvFJ8rb
-	gw3V++RGUXOF59Q034UZyS9v4W7TZ72U1YMR5Hfm4lyNxXbgx1J1WXpYr5qwDugeV6e/
-	Iwmw==
+	d=medxchange-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=4/WtdfHNDwXsIV+XbTT/gRx442bCl85czb4Q3M866kw=;
+	b=eD4x/F44MWADjWTuEDjTK4uJ4VWHfqSaG6Wq9RCgMSRXyiVXPaCQ02+PpBArdGEvDt
+	Zej/zL3Rv4ag0UAVKS9bhiF4FW1OSKewlZyjVe6TpununaOj7hL1kFw4y6JVEQiNp3Jx
+	WwT5Qnz5VPVjgoSulDeUB7fbGmh/1+H7b7ox0VVQ4cEV5TkSm+vIb8Iv/Qj0UcHk/qzS
+	mYS06Fl9gpnEDUqxj0bNyJWa73e/hSLOTOcEcdoB6HcoNNE5pkV05j8WtBbHtMgTRhzG
+	PTe2WxJ3RYGtjTKJQWQZ5uPev3PmMNn8Jf6HyFZI+yj0b1uki7Rb5idChl/OGedzKFmX
+	hwdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=0bE5yOhysPt7481PD/7ZW1a0rpSGLiNwbcHxj2DkBpk=;
-	b=O33cOrcnk/zL2S6w4kSEmVVmKYVOT6a1eNd+qcAI8ISRcym6az5Jp5Yl9yJs/IBlWj
-	t/FDaw2vC1tyrfZWSq6O6iQW3NOtuNENzWwjIUPoTpn/5bk2gKsGZSgjkGqBp+AnEjcx
-	+XYOL/ZOkP3JFCytCmUVNwWyfw71V6+lr82Jrwd3RpC1HmV4bBGDY4lu+KsAbrXoxQfC
-	v9YLpr/AjIQq2U60Qv1zuREfROX76Khn+MbArSPb90GXzqtfVVdb9Q+uLfb1iAvByF2p
-	xiuK8CZ55NNOAxHdpC1GlUXklz/RjLXb6CkJv8qBBqDPh/55Z9WcTHXUIPAuZ5F9/zZd
-	o/nA==
-X-Gm-Message-State: AOPr4FWwazJD/h3fuHy74kLlNBQQUYW0BbnkL+mBs17qFkTy0Edm58QxGf7yu6R0V0JMWsQFLXSoe3cQ+bMn9unW
-X-Received: by 10.107.14.142 with SMTP id 136mr35599760ioo.94.1462799265260;
-	Mon, 09 May 2016 06:07:45 -0700 (PDT)
+	bh=4/WtdfHNDwXsIV+XbTT/gRx442bCl85czb4Q3M866kw=;
+	b=dN0F7BIiCw7HVet3aol6+8Qu8z2NGVH6k9j7YykJfITiW688Mri99Ww9Vemild9FvE
+	POXM4S0vx7rQsiIZ/JOFh8I3vvj61uURB3VM4LSPgHrcWQSeiEyh+OonzE67oWwro47s
+	3Io50m04Hp/KxWi1ta7HQ3POSL1jhki8/5Gh+3DASWTvIiw58B0NrMfjMWtvglI9g2tX
+	vClGdp7z5x56EgajEyLew+Oo+lFxVgePOVUM52l7L1QITcCI18r8oL9u7bIoR/e1J22Q
+	u2NyHrTf0I2k0hRAm5iKQXZY5W5aZr6GlXOM6hbweT82znZ/AeMhgy+z0LosFN/Vq49n
+	pUOA==
+X-Gm-Message-State: AOPr4FWlZSPZtivC3Mx3x1UP1JpsfXYEtwQoa97Yduwp+V4JFVPlSm/SzO4nkbSrtnMNE8X/lvYSs/U1vN+lFg==
+X-Received: by 10.31.228.133 with SMTP id b127mr6466769vkh.90.1462801391859;
+	Mon, 09 May 2016 06:43:11 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.3.140 with HTTP; Mon, 9 May 2016 06:07:05 -0700 (PDT)
-In-Reply-To: <1462797050-22054-1-git-send-email-joshua.g.lock@intel.com>
-References: <1462797050-22054-1-git-send-email-joshua.g.lock@intel.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Mon, 9 May 2016 14:07:05 +0100
-Message-ID: <CAPhnLPAVUqm0c5BmfzwSa0-7Xg3Jkihh2rpB0f5smYqCmovPPw@mail.gmail.com>
-To: Joshua Lock <joshua.g.lock@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH v2] bin/buildlogger: add new script to aid SWAT process
+References: <CABfz71et_oJJH1TM-HTHeW4UO2qJGtPH1nhDsyzcFqbqE6truQ@mail.gmail.com>
+	<DF27FF27-F925-4CC9-A2D4-E07FF0704B7F@gmail.com>
+In-Reply-To: <DF27FF27-F925-4CC9-A2D4-E07FF0704B7F@gmail.com>
+From: Paul Knopf <pknopf@medxchange.com>
+Date: Mon, 09 May 2016 13:43:02 +0000
+Message-ID: <CABfz71c8p_MXRUA5XhdE3R=C_5iYt9ndjm-RXPvNopX7ynQteA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Using multiple versions of package (PACKAGECONFIG) in the same bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,477 +66,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 May 2016 13:07:50 -0000
+X-List-Received-Date: Mon, 09 May 2016 13:43:16 -0000
+Content-Type: multipart/alternative; boundary=94eb2c094fb856d072053268fdcd
+
+--94eb2c094fb856d072053268fdcd
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, pushed to master, currently working on getting it into production.
+Thanks,
 
--b
+What I winded up doing is using bbappend to remove fstab from base-files. I
+then created two separate packages with different fstab files, and added
+each of them into their own image.
 
-On 9 May 2016 at 13:30, Joshua Lock <joshua.g.lock@intel.com> wrote:
-> buildlogger will be started with the autobuilder and, when correctly
-> configured, monitor the AB's JSON API for newly started builds. When one is
-> detected information about the build will be posted to the wiki.
+On Sun, May 8, 2016 at 1:09 PM Khem Raj <raj.khem@gmail.com> wrote:
+
+> On May 8, 2016, at 6:50 AM, Paul Knopf <pknopf@medxchange.com> wrote:
 >
-> Requires a ConfigParser (ini) style configuration file at
-> AB_BASE/etc/buildlogger.conf formatted as follows:
+> I have two rootfs. My main image, and the initramfs image for the kernel
+> (INITRAMFS_IAMGE and INITRAMFS_IMAGE_BUNDLE).
 >
-> [wikiuser]
-> username = botuser
-> password = botuserpassword
+> I need to provide different fstab files for each build.
 >
-> [wiki]
-> pagetitle = BuildLog
+> I have added a .bbappend for the base-files recipe to use a customized
+> fstab.
 >
-> Signed-off-by: Joshua Lock <joshua.g.lock@intel.com>
-> ---
-> Changes since v1:
-> * Add example buildlogger conf file
-> * Only start buildlogger when BUILDLOG_TO_WIKI is True
-> * Move the wiki and builder api url's to the config file
+> In the bbappend file, I'd like to add PACKAGECONFIG support to the packag=
+e
+> to customize it for each rootfs.
 >
->  .gitignore                      |   2 +
->  bin/buildlogger                 | 277 ++++++++++++++++++++++++++++++++++++++++
->  config/autobuilder.conf.example |   2 +
->  etc/buildlogger.conf.example    |   8 ++
->  yocto-start-autobuilder         |   9 ++
->  yocto-stop-autobuilder          |  45 ++++---
->  6 files changed, 324 insertions(+), 19 deletions(-)
->  create mode 100755 bin/buildlogger
->  create mode 100644 etc/buildlogger.conf.example
+> However, it seems that I can only PACKAGECONFIG for a recipe in the
+> local.conf. How do I add features to a package at a "image-recipe.bb"
+> level?
 >
-> diff --git a/.gitignore b/.gitignore
-> index 3f9505b..48c8a85 100644
-> --- a/.gitignore
-> +++ b/.gitignore
-> @@ -8,6 +8,7 @@
->  ###################################################
->  buildset-config
->  config/autobuilder.conf
-> +etc/buildlogger.conf
+> Maybe I should create a separate recipe all together that overwrite fstab=
+?
+> Then, I can include this "base-files-overrite-fstab" in the appropriate
+> image recipe?
 >
->  # Everything else #
->  ###################
-> @@ -25,6 +26,7 @@ yocto-controller/controller.cfg
->  yocto-controller/state.sqlite
->  yocto-controller/twistd.log*
->  yocto-controller/buildbot.tac
-> +yocto-controller/logger.log
->  yocto-worker/build-appliance/build(newcommits)
->  yocto-worker/buildbot.tac
->  yocto-worker/janitor.log
-> diff --git a/bin/buildlogger b/bin/buildlogger
-> new file mode 100755
-> index 0000000..635d55f
-> --- /dev/null
-> +++ b/bin/buildlogger
-> @@ -0,0 +1,277 @@
-> +#!/usr/bin/env python3
-> +'''
-> +Created on May 5, 2016
-> +
-> +__author__ = "Joshua Lock"
-> +__copyright__ = "Copyright 2016, Intel Corporation"
-> +__credits__ = ["Joshua Lock"]
-> +__license__ = "GPL"
-> +__version__ = "2.0"
-> +__maintainer__ = "Joshua Lock"
-> +__email__ = "joshua.g.lock@intel.com"
-> +'''
-> +
-> +# We'd probably benefit from using some caching, but first we'd need the AB API
-> +# to include
-> +#
-> +# We can set repo url, branch & commit for a bunch of repositorys.
-> +# Do they all get built for nightly?
-> +
-> +try:
-> +    import configparser
-> +except ImportError:
-> +    import ConfigParser as configparser
-> +import json
-> +import os
-> +import requests
-> +import signal
-> +import sys
-> +import time
-> +
-> +abapi = ''
-> +# Wiki editing params
-> +un = ''
-> +pw = ''
-> +wikiapi = ''
-> +title = ''
-> +
-> +last_logged = ''
-> +# TODO: probably shouldn't write files in the same location as the script?
-> +cachefile = 'buildlogger.lastbuild'
-> +tmpfile = '/tmp/.buildlogger.pid'
-> +
-> +
-> +# Load configuration information from an ini
-> +def load_config(configfile):
-> +    global un
-> +    global pw
-> +    global title
-> +    global wikiapi
-> +    global abapi
-> +    success = False
-> +
-> +    if os.path.exists(configfile):
-> +        try:
-> +            config = configparser.ConfigParser()
-> +            config.read(configfile)
-> +            un = config.get('wiki', 'username')
-> +            pw = config.get('wiki', 'password')
-> +            title = config.get('wiki', 'pagetitle')
-> +            wikiapi = config.get('wiki', 'apiuri')
-> +            abapi = config.get('builder', 'apiuri')
-> +            success = True
-> +        except configparser.Error as ex:
-> +            print('Failed to load buildlogger configuration with error: %s' % str(ex))
-> +    else:
-> +        print('Config file %s does not exist, please create and populate it.' % configfile)
-> +
-> +    return success
-> +
-> +# we can't rely on the built in JSON parser in the requests module because
-> +# the JSON we get from the wiki begins with a UTF-8 BOM which chokes
-> +# json.loads().
-> +# Thus we decode the raw resonse content into a string and load that into a
-> +# JSON object ourselves.
-> +#
-> +# http://en.wikipedia.org/wiki/Byte_Order_Mark
-> +# http://bugs.python.org/issue18958
-> +def parse_json(response):
-> +    text = response.content.decode('utf-8-sig')
-> +
-> +    return json.loads(text)
-> +
-> +
-> +# Get the current content of the BuildLog page -- to make the wiki page as
-> +# useful as possible the most recent log entry should be at the top, to
-> +# that end we need to edit the whole page so that we can insert the new entry
-> +# after the log but before the other entries.
-> +# This method fetches the current page content, splits out the blurb and
-> +# returns a pair:
-> +# 1) the blurb
-> +# 2) the current entries
-> +def wiki_get_content():
-> +    params = '?format=json&action=query&prop=revisions&rvprop=content&titles='
-> +    req = requests.get(wikiapi+params+title)
-> +    parsed = parse_json(req)
-> +    pageid = sorted(parsed['query']['pages'].keys())[-1]
-> +    content = parsed['query']['pages'][pageid]['revisions'][0]['*']
-> +    blurb, entries = content.split('==', 1)
-> +    # ensure we keep only a single newline after the blurb
-> +    blurb = blurb.strip() + "\n"
-> +    entries = '=='+entries
-> +
-> +    return blurb, entries
-> +
-> +
-> +# Login to the wiki and return cookies for the logged in session
-> +def wiki_login():
-> +    payload = {
-> +        'action': 'login',
-> +        'lgname': un,
-> +        'lgpassword': pw,
-> +        'utf8': '',
-> +        'format': 'json'
-> +    }
-> +    req1 = requests.post(wikiapi, data=payload)
-> +    parsed = parse_json(req1)
-> +    login_token = parsed['login']['token']
-> +
-> +    payload['lgtoken'] = login_token
-> +    req2 = requests.post(wikiapi, data=payload, cookies=req1.cookies)
-> +
-> +    return req2.cookies.copy()
-> +
-> +
-> +# Post the new page contents *content* with a summary of the action *summary*
-> +def wiki_post_page(content, summary, cookies):
-> +    params = '?format=json&action=query&prop=info|revisions&intoken=edit&rvprop=timestamp&titles='
-> +    req = requests.get(wikiapi+params+title, cookies=cookies)
-> +
-> +    parsed = parse_json(req)
-> +    pageid = sorted(parsed['query']['pages'].keys())[-1]
-> +    edit_token = parsed['query']['pages'][pageid]['edittoken']
-> +
-> +    edit_cookie = cookies.copy()
-> +    edit_cookie.update(req.cookies)
-> +
-> +    payload = {
-> +        'action': 'edit',
-> +        'assert': 'user',
-> +        'title': title,
-> +        'summary': summary,
-> +        'text': content,
-> +        'token': edit_token,
-> +        'utf8': '',
-> +        'format': 'json'
-> +    }
-> +
-> +    req = requests.post(wikiapi, data=payload, cookies=edit_cookie)
-> +    if not req.status_code == requests.codes.ok:
-> +        print("Unexpected status code %s received when trying to post entry to"
-> +              "the wiki." % req.status_code)
-> +        return False
-> +    else:
-> +        return True
-> +
-> +
-> +# Extract required info about the last build from the Autobuilder's JSON API
-> +# and format it for entry into the BuildLog, along with a summary of the edit
-> +def ab_last_build_to_entry(build_json, build_id):
-> +    build_info = build_json[build_id]
-> +    builder = build_info.get('builderName', 'Unknown builder')
-> +    reason = build_info.get('reason', 'No reason given')
-> +    buildid = build_info.get('number', '')
-> +    buildbranch = ''
-> +    chash = ''
-> +    for prop in build_info.get('properties'):
-> +        if prop[0] == 'branch':
-> +            buildbranch = prop[1]
-> +        # TODO: is it safe to assume we're building from the poky repo? Or at
-> +        # least only to log the poky commit hash.
-> +        if prop[0] == 'commit_poky':
-> +            chash = prop[1]
-> +
-> +    urlfmt = 'https://autobuilder.yoctoproject.org/main/builders/%s/builds/%s/'
-> +    url = urlfmt % (builder, buildid)
-> +    sectionfmt = '==[%s %s %s - %s %s]=='
-> +    section_title = sectionfmt % (url, builder, buildid, buildbranch, chash)
-> +    summaryfmt = 'Adding new BuildLog entry for build %s (%s)'
-> +    summary = summaryfmt % (buildid, chash)
-> +    content = "* '''Build ID''' - %s\n" % chash
-> +    content = content + '* ' + reason + '\n'
-> +    new_entry = '%s\n%s\n' % (section_title, content)
-> +
-> +    return new_entry, summary
-> +
-> +
-> +# Write the last logged build id to a file
-> +def write_last_build(buildid):
-> +    with open(cachefile, 'w') as fi:
-> +        fi.write(buildid)
-> +
-> +
-> +# Read last logged buildid from a file
-> +def read_last_build():
-> +    last_build = ''
-> +    try:
-> +        with open(cachefile, 'r') as fi:
-> +            last_build = fi.readline()
-> +    except FileNotFoundError as ex:
-> +        # A build hasn't been logged yet
-> +        pass
-> +    except Exception as e:
-> +        print('Error reading last build %s' % str(e))
-> +
-> +    return last_build
-> +
-> +
-> +def watch_for_builds(configfile):
-> +    if not load_config(configfile):
-> +        print('Failed to start buildlogger.')
-> +        sys.exit(1)
-> +    last_logged = read_last_build()
-> +
-> +    while True:
-> +        # wait a minute...
-> +        time.sleep(60)
-> +
-> +        builds = requests.get(abapi)
-> +
-> +        if not builds:
-> +            print("Failed to fetch Autobuilder data. Exiting.")
-> +            continue
-> +        try:
-> +            build_json = builds.json()
-> +        except Exception as e:
-> +            print("Failed to decode JSON: %s" % str(e))
-> +            continue
-> +
-> +        last_build = sorted(build_json.keys())[-1]
-> +        # If a new build is detected, post a new entry to the BuildLog
-> +        if last_build != last_logged:
-> +            new_entry, summary = ab_last_build_to_entry(build_json, last_build)
-> +            blurb, entries = wiki_get_content()
-> +            entries = new_entry+entries
-> +            cookies = wiki_login()
-> +            if wiki_post_page(blurb+entries, summary, cookies):
-> +                write_last_build(last_build)
-> +                last_logged = last_build
-> +                print("Entry posted:\n%s\n" % new_entry)
-> +            else:
-> +                print("Failed to post new entry.")
-> +
-> +    sys.exit(0)
-> +
-> +
-> +if __name__ == "__main__":
-> +    if len(sys.argv) < 2:
-> +        print('Please specify the path to the config file on the command line as the first argument.')
-> +        sys.exit(1)
-> +
-> +    # Check to see if this is running already. If so, kill it and rerun
-> +    if os.path.exists(tmpfile) and os.path.isfile(tmpfile):
-> +        print("A prior PID file exists. Attempting to kill.")
-> +        with open(tmpfile, 'r') as f:
-> +            pid=f.readline()
-> +        try:
-> +            os.kill(int(pid), signal.SIGKILL)
-> +            # We need to sleep for a second or two just to give the SIGKILL time
-> +            time.sleep(2)
-> +        except OSError as ex:
-> +            print("""We weren't able to kill the prior buildlogger. Trying again.""")
-> +            pass
-> +        # Check if the process that we killed is alive.
-> +        try:
-> +           os.kill(int(pid), 0)
-> +        except OSError as ex:
-> +           pass
-> +    elif os.path.exists(tmpfile) and not os.path.isfile(tmpfile):
-> +        raise Exception("""/tmp/.buildlogger.pid is a directory, remove it to continue.""")
-> +    try:
-> +        os.unlink(tmpfile)
-> +    except:
-> +        pass
-> +    with open(tmpfile, 'w') as f:
-> +        f.write(str(os.getpid()))
-> +
-> +    watch_for_builds(sys.argv[1])
-> diff --git a/config/autobuilder.conf.example b/config/autobuilder.conf.example
-> index 335b356..9179d14 100644
-> --- a/config/autobuilder.conf.example
-> +++ b/config/autobuilder.conf.example
-> @@ -81,3 +81,5 @@ QA_MAIL_CC = "buildcc@localhost"
->  QA_MAIL_BCC = "buildbcc@localhost"
->  QA_MAIL_SIG = "Multiline\nSig\nLine"
 >
-> +[Buildlogger]
-> +BUILDLOG_TO_WIKI = False
-> diff --git a/etc/buildlogger.conf.example b/etc/buildlogger.conf.example
-> new file mode 100644
-> index 0000000..459961c
-> --- /dev/null
-> +++ b/etc/buildlogger.conf.example
-> @@ -0,0 +1,8 @@
-> +[wiki]
-> +username = BuildlogBotUser
-> +password = InsertPasswordHere
-> +pagetitle = BuildLogPageTitle
-> +apiuri = https://wiki.yoctoproject.org/wiki/api.php
-> +
-> +[builder]
-> +apiuri = https://autobuilder.yoctoproject.org/main/json/builders/nightly/builds/_all
-> diff --git a/yocto-start-autobuilder b/yocto-start-autobuilder
-> index 85b748d..9bc8838 100755
-> --- a/yocto-start-autobuilder
-> +++ b/yocto-start-autobuilder
-> @@ -72,6 +72,15 @@ if os.path.isfile(os.path.join(AB_BASE, ".setupdone")):
->          os.chdir(os.path.join(AB_BASE, "yocto-controller"))
->          subprocess.call(["make", "start"])
->          os.chdir(AB_BASE)
-> +        if os.environ["BUILDLOG_TO_WIKI"] == "True":
-> +            logger_log = open('yocto-controller/buildlogger.log', 'a')
-> +            logger_log.write('[ buildlogger started: %s ]\n' % datetime.datetime.now())
-> +            subprocess.Popen('python bin/buildlogger ' + os.path.join(AB_BASE, 'etc/buildlogger.conf'),
-> +                            shell=True, stdin=None,
-> +                            stdout=logger_log,
-> +                            stderr=logger_log,
-> +                            close_fds=True)
-> +            logger_log.close()
+> you can write a shell function doing this in image recipe and then hook i=
+t
+> up to tweak the rootfs after its created during image build.
 >
->      if sys.argv[1] == "worker" or sys.argv[1] == "both":
->          if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
-> diff --git a/yocto-stop-autobuilder b/yocto-stop-autobuilder
-> index a313b27..df5fd34 100755
-> --- a/yocto-stop-autobuilder
-> +++ b/yocto-stop-autobuilder
-> @@ -48,30 +48,18 @@ for section_name in parser.sections():
->      for name, value in parser.items(section_name):
->          os.environ[name.upper()] = value.strip('"').strip("'")
+> your_func() {
+> =E2=80=A6..
+> }
 >
-> -if sys.argv[1] == "controller" or sys.argv[1] == "both":
-> -    os.chdir(os.path.join(AB_BASE, "yocto-controller"))
-> -    subprocess.call(["make", "stop"])
-> -    os.chdir(AB_BASE)
+> ROOTFS_POSTPROCESS_COMMAND +=3D =E2=80=9Cyour_functon;=E2=80=9D
 >
-> -if sys.argv[1] == "worker" or sys.argv[1] == "both":
-> -    if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
-> -        os.chdir(AB_BASE)
-> -        subprocess.call([os.path.join(AB_BASE, "ab-prserv"), "stop"])
-> -
-> -    os.chdir(os.path.join(AB_BASE, "yocto-worker"))
-> -    subprocess.call(["make", "stop"])
-> -    os.chdir(AB_BASE)
-> -    tmpfile = '/tmp/.buildworker-janitor'+os.getcwd().replace('/', '-')
-> -    if os.path.exists(tmpfile) and os.path.isfile(tmpfile):
-> +def killpid(pidfile):
-> +    if os.path.exists(pidfile) and os.path.isfile(pidfile):
->          print("A prior PID file exists. Attempting to kill.")
-> -        with open(tmpfile, 'r') as f:
-> +        with open(pidfile, 'r') as f:
->              pid=f.readline()
->          try:
->              os.kill(int(pid), signal.SIGKILL)
->              # We need to sleep for a second or two just to give the SIGKILL time
->              time.sleep(2)
->          except OSError as ex:
-> -            print("""We weren't able to kill the prior buildworker-janitor. Trying again.""")
-> +            print("""We weren't able to kill the owner of %s, trying again.""" % pidfile)
->              pass
->          # Check if the process that we killed is alive.
->          try:
-> @@ -80,10 +68,29 @@ if sys.argv[1] == "worker" or sys.argv[1] == "both":
->                                HINT:use signal.SIGKILL or signal.SIGABORT""")
->          except OSError as ex:
->             pass
-> -    elif os.path.exists(tmpfile) and not os.path.isfile(tmpfile):
-> -        raise Exception(tmpfile + """ is a directory. Remove it to continue.""")
-> +    elif os.path.exists(pidfile) and not os.path.isfile(pidfile):
-> +        raise Exception(pidfile + """ is a directory. Remove it to continue.""")
->      try:
-> -        os.unlink(tmpfile)
-> +        os.unlink(pidfile)
->      except:
->          pass
 >
-> +if sys.argv[1] == "controller" or sys.argv[1] == "both":
-> +    os.chdir(os.path.join(AB_BASE, "yocto-controller"))
-> +    subprocess.call(["make", "stop"])
-> +    os.chdir(AB_BASE)
-> +    tmpfile = '/tmp/.buildlogger.pid'
-> +    killpid(tmpfile)
-> +
-> +
-> +if sys.argv[1] == "worker" or sys.argv[1] == "both":
-> +    if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
-> +        os.chdir(AB_BASE)
-> +        subprocess.call([os.path.join(AB_BASE, "ab-prserv"), "stop"])
-> +
-> +    os.chdir(os.path.join(AB_BASE, "yocto-worker"))
-> +    subprocess.call(["make", "stop"])
-> +    os.chdir(AB_BASE)
-> +    tmpfile = '/tmp/.buildworker-janitor'+os.getcwd().replace('/', '-')
-> +    killpid(tmpfile)
-> +
-> --
-> 2.5.5
+>
+> Thanks,
+> Paul Knopf
+> Software Engineer
+> Med X Change, Inc
+> pknopf@medxchange.com
 >
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
+> --
 
+Thanks,
+Paul Knopf
+Software Engineer
+Med X Change, Inc
+pknopf@medxchange.com
 
+--94eb2c094fb856d072053268fdcd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+<div dir=3D"ltr">Thanks,<div><br></div><div>What I winded up doing is using=
+ bbappend to remove fstab from base-files. I then created two separate pack=
+ages with different fstab files, and added each of them into their own imag=
+e.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sun, May 8=
+, 2016 at 1:09 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.kh=
+em@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div st=
+yle=3D"word-wrap:break-word"><div><blockquote type=3D"cite"><div>On May 8, =
+2016, at 6:50 AM, Paul Knopf &lt;<a href=3D"mailto:pknopf@medxchange.com" t=
+arget=3D"_blank">pknopf@medxchange.com</a>&gt; wrote:</div><br><div><div di=
+r=3D"ltr"><div>I have two rootfs. My main image, and the initramfs image fo=
+r the kernel (INITRAMFS_IAMGE and INITRAMFS_IMAGE_BUNDLE).</div><div><br></=
+div><div>I need to provide different fstab files for each build.</div><div>=
+<br></div><div>I have added a .bbappend for the base-files recipe to use a =
+customized fstab.</div><div><br></div><div>In the bbappend file, I&#39;d li=
+ke to add PACKAGECONFIG support to the package to customize it for each roo=
+tfs.</div><div><br></div><div>However, it seems that I can only PACKAGECONF=
+IG for a recipe in the local.conf. How do I add features to a package at a =
+&quot;<a href=3D"http://image-recipe.bb/" target=3D"_blank">image-recipe.bb=
+</a>&quot; level?</div><div><br></div><div>Maybe I should create a separate=
+ recipe all together that overwrite fstab? Then, I can include this &quot;b=
+ase-files-overrite-fstab&quot; in the appropriate image recipe?</div></div>=
+</div></blockquote><div><br></div></div></div><div style=3D"word-wrap:break=
+-word"><div><div>you can write a shell function doing this in image recipe =
+and then hook it up to tweak the rootfs after its created during image buil=
+d.</div><div><br></div><div>your_func() {</div><div>=E2=80=A6..</div><div>}=
+</div><div><br></div><div>ROOTFS_POSTPROCESS_COMMAND +=3D =E2=80=9Cyour_fun=
+cton;=E2=80=9D</div><div>=C2=A0</div><blockquote type=3D"cite"><div></div><=
+/blockquote></div></div><div style=3D"word-wrap:break-word"><div><blockquot=
+e type=3D"cite"><div><div dir=3D"ltr"><br clear=3D"all"><div><div><div dir=
+=3D"ltr"><div>Thanks,</div><div>Paul Knopf</div><div>Software Engineer</div=
+><div>Med X Change, Inc</div><div><a href=3D"mailto:pknopf@medxchange.com" =
+target=3D"_blank">pknopf@medxchange.com</a></div></div></div></div>
+</div></div></blockquote></div></div><div style=3D"word-wrap:break-word"><d=
+iv><blockquote type=3D"cite"><div>
+-- <br>_______________________________________________<br>yocto mailing lis=
+t<br><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo/yoct=
+o" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br><=
+/div></blockquote></div></div></blockquote></div><div dir=3D"ltr">-- <br></=
+div><div dir=3D"ltr"><p dir=3D"ltr">Thanks,<br>
+Paul Knopf<br>
+Software Engineer<br>
+Med X Change, Inc<br>
+<a href=3D"mailto:pknopf@medxchange.com">pknopf@medxchange.com</a></p>
+</div>
 
+--94eb2c094fb856d072053268fdcd--
