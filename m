@@ -1,40 +1,66 @@
-Return-Path: <todor.minchev@intel.com>
+Return-Path: <btv1==9370c4ed2b5==Fred.Ollinger@seescan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 896ADE004A0; Mon,  9 May 2016 08:23:40 -0700 (PDT)
+	id EC041E004A0; Mon,  9 May 2016 08:51:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16664E00343
-	for <yocto@yoctoproject.org>; Mon,  9 May 2016 08:23:38 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 09 May 2016 08:23:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,601,1455004800"; d="scan'208";a="949299892"
-Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
-	by orsmga001.jf.intel.com with ESMTP; 09 May 2016 08:23:06 -0700
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.130]) by
-	irsmsx110.ger.corp.intel.com ([169.254.15.57]) with mapi id
-	14.03.0248.002; Mon, 9 May 2016 16:23:04 +0100
-From: "Minchev, Todor" <todor.minchev@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [ANNOUNCEMENT] Chameleonsocks 1.0 is now available
-Thread-Index: AQHRqgaumJFx/H7cgEiRTyNXSwyFAA==
-Date: Mon, 9 May 2016 15:23:04 +0000
-Message-ID: <1462807384.6968.19.camel@intel.com>
-Accept-Language: en-GB, en-US
+X-Greylist: delayed 1114 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 May 2016 08:51:19 PDT
+Received: from mail.seescan.com (mail3.seescan.com [69.43.145.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D5EE00343
+	for <yocto@yoctoproject.org>; Mon,  9 May 2016 08:51:19 -0700 (PDT)
+X-ASG-Debug-ID: 1462807964-0b39aa668a27d270001-yzSStA
+Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
+	ESMTP id LDtP7fRzRzolP9Zx (version=TLSv1
+	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 09 May 2016 08:32:44 -0700 (PDT)
+X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
+Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
+	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Mon, 9 May 2016 08:32:44 -0700
+Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
+	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
+	15.00.1044.021; Mon, 9 May 2016 08:32:44 -0700
+From: Fred Ollinger <Fred.Ollinger@seescan.com>
+To: Paul Knopf <pknopf@medxchange.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Recipe that creates empty /var/log directory is
+	auto-mounted to /var/volatile/log
+X-ASG-Orig-Subj: Re: [yocto] Recipe that creates empty /var/log directory is
+	auto-mounted to /var/volatile/log
+Thread-Index: AQHRqfuDkAXa4CrD+Ui2JZjOPREC6Z+wu89H
+Date: Mon, 9 May 2016 15:32:43 +0000
+Message-ID: <1462807953706.30266@seescan.com>
+References: <CABfz71cxNpHg5u13k_brL=2+fGTc2zK7E-OTMW3Gn9ndsWsnMw@mail.gmail.com>
+In-Reply-To: <CABfz71cxNpHg5u13k_brL=2+fGTc2zK7E-OTMW3Gn9ndsWsnMw@mail.gmail.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.7.197.100]
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [50.59.178.108]
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Chameleonsocks 1.0 is now available
+X-Barracuda-Connect: UNKNOWN[192.168.11.30]
+X-Barracuda-Start-Time: 1462807964
+X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
+X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
+X-Barracuda-Scan-Msg-Size: 1565
+X-Virus-Scanned: by bsmtpd at seescan.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.4999 1.0000 0.0000
+X-Barracuda-Spam-Score: 0.50
+X-Barracuda-Spam-Status: No, SCORE=0.50 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=BSF_RULE7568M
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.29430
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.50 BSF_RULE7568M          Custom Rule 7568M
+Subject: Re: Recipe that creates empty /var/log directory is	auto-mounted to /var/volatile/log
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,25 +72,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 May 2016 15:23:40 -0000
+X-List-Received-Date: Mon, 09 May 2016 15:51:23 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4F5AAE05A59DC64F86CF0B295801D0DF@intel.com>
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Q2hhbWVsZW9uc29ja3MgcHJvdmlkZXMgY29udGFpbmVyaXplZCBzeXN0ZW0td2lkZSByZWRzb2Nr
-cy1iYXNlZCBUQ1ANCnJlZGlyZWN0b3IgdG8gZ2VuZXJpYyBTT0NLUyBvciBIVFRQIHByb3hpZXMu
-IEl0IGlzIHBhcnRpY3VsYXJseSB1c2VmdWwNCmZvciBwZW9wbGUgd2hvIHVzZSBZb2N0byBvbiBm
-aXJld2FsbGVkIG5ldHdvcmtzIHdoZXJlIHRoZSByZWFsIEludGVybmV0DQppcyBhY2Nlc3NlZCB0
-aHJvdWdoIHByb3hpZXMuDQoNClRoZSBpbnN0YWxsZXIgc2NyaXB0IGNhbiBiZSBkb3dubG9hZGVk
-IGZyb20gdGhlIHVwc3RyZWFtIHJlcG9zaXRvcnk6DQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9jcm9w
-cy9jaGFtZWxlb25zb2Nrcw0KDQpUaGlzIHJlbGVhc2UgaW5jbHVkZXMgdGhlIGZvbGxvd2luZyBm
-dW5jdGlvbmFsaXR5Og0KDQotLWluc3RhbGwgICAgICA6IEluc3RhbGwgY2hhbWVsZW9uc29ja3MN
-Ci0tdXBncmFkZSAgICAgIDogVXBncmFkZSBleGlzdGluZyBpbnN0YWxsYXRpb24NCi0tdW5pbnN0
-YWxsICAgIDogVW5pbnN0YWxsIGNoYW1lbGVvbnNvY2tzDQotLWluc3RhbGwtdWkgICA6IEluc3Rh
-bGwgY29udGFpbmVyIG1hbmFnZW1lbnQgVUkNCi0tdW5pbnN0YWxsLXVpIDogVW5pbnN0YWxsIGNv
-bnRhaW5lciBtYW5hZ2VtZW50IFVJDQotLXN0YXJ0ICAgICAgICA6IFN0b3AgY2hhbWVsZW9uc29j
-a3MNCi0tc3RvcCAgICAgICAgIDogU3RhcnQgY2hhbWVsZW9uc29ja3MNCi0tdmVyc2lvbiAgICAg
-IDogRGlzcGxheSBjaGFtZWxlb25zb2NrcyB2ZXJzaW9uDQoNCi0tLS0NClRvZG9yIE1pbmNoZXYN
-CkludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudGVyDQo=
+Some people choose a read-only file system. Thus /var/log is not writable.
+
+
+However, some software expects to use the hard coded path of /var/log.
+
+
+Thus, there's a symlink to the ramdisk to solve both problems.
+
+________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Paul Knopf <pknopf@medxchange.com>
+Sent: Monday, May 9, 2016 7:02 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Recipe that creates empty /var/log directory is auto-mount=
+ed to /var/volatile/log
+
+I have a simple recipe that places files on the system.
+
+-------------
+do_install() {
+  # create this directory, because our "normal" fstab file will mount a log=
+ partition to it.
+  install -d ${D}/var/log
+  install -d ${D}${sysconfdir}
+  install -m 0644 ${WORKDIR}/fstab-normal ${D}${sysconfdir}/fstab
+}
+-------------
+
+The fstab-normal file has an entry that mounts a partition to this created =
+/var/log directory.
+
+-------------
+/dev/mmcblk0p3       /var/log             auto       defaults  0  0
+-------------
+
+However, when the package get's created, /var/log gets pointed to /var/vola=
+tile/log. Where is this happening, and why?
+
+-------------
+pknopf@ubuntu:~/Git/recipes/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-g=
+nueabi/base-files-fstab-normal/1.0-r0/package$ tree
+.
+??? etc
+?   ??? fstab
+??? var
+    ??? log -> volatile/log
+    ??? volatile
+        ??? log
+
+-------------
+
+Thanks,
+Paul Knopf
+Software Engineer
+Med X Change, Inc
+pknopf@medxchange.com<mailto:pknopf@medxchange.com>
 
