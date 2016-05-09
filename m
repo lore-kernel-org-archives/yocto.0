@@ -1,31 +1,34 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B03D5E00EC3; Mon,  9 May 2016 04:06:24 -0700 (PDT)
+	id B7172E00EC3; Mon,  9 May 2016 04:13:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29BC8E008BA
-	for <yocto@yoctoproject.org>; Mon,  9 May 2016 04:06:22 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 09 May 2016 04:06:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.24,600,1455004800"; d="scan'208";a="949146079"
-Received: from jlock-mobl2.ger.corp.intel.com ([10.252.11.52])
-	by orsmga001.jf.intel.com with ESMTP; 09 May 2016 04:06:22 -0700
-From: Joshua Lock <joshua.g.lock@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  9 May 2016 12:06:18 +0100
-Message-Id: <1462791978-16776-1-git-send-email-joshua.g.lock@intel.com>
-X-Mailer: git-send-email 2.5.5
-Subject: [yocto-autobuilder][PATCH] bin/buildlogger: add new script to aid SWAT process
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BA3EE008BA
+	for <yocto@yoctoproject.org>; Mon,  9 May 2016 04:12:58 -0700 (PDT)
+In-Reply-To: <1462200617361.8222@comcast.com>
+References: <OF827D5F19.0E3908F9-ONC1257FA7.004902B6-C1257FA7.0049C7C7@esa-grimma.de>
+	<1462200617361.8222@comcast.com>
+To: "Jeyachandran,
+	Yukatharsani (Contractor)" <Yukatharsani_Jeyachandran@comcast.com>
+MIME-Version: 1.0
+X-KeepSent: 9A47E771:541A58B3-C1257FAE:003CA31E;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF9A47E771.541A58B3-ONC1257FAE.003CA31E-C1257FAE.003D9C0A@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Mon, 9 May 2016 13:12:56 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 09.05.2016 13:12:59,
+	Serialize complete at 09.05.2016 13:12:59
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: HG Parameters for the fetcher
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,422 +40,381 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 May 2016 11:06:24 -0000
+X-List-Received-Date: Mon, 09 May 2016 11:13:02 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 003D9C09C1257FAE_="
 
-buildlogger will be started with the autobuilder and, when correctly
-configured, monitor the AB's JSON API for newly started builds. When one is
-detected information about the build will be posted to the wiki.
+--=_alternative 003D9C09C1257FAE_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Requires a ConfigParser (ini) style configuration file at
-AB_BASE/etc/buildlogger.conf formatted as follows:
+Thanks,
 
-[wikiuser]
-username = botuser
-password = botuserpassword
+What is when the HG comes over SSH with authentication? Like:
 
-[wiki]
-pagetitle = BuildLog
+SRC=5FURI =3D "hg://myHG/ABC;module=3D"dev";protocol=3Dssh;rev=3D42"
 
-Signed-off-by: Joshua Lock <joshua.g.lock@intel.com>
----
- .gitignore              |   2 +
- bin/buildlogger         | 273 ++++++++++++++++++++++++++++++++++++++++++++++++
- yocto-start-autobuilder |   8 ++
- yocto-stop-autobuilder  |  45 ++++----
- 4 files changed, 309 insertions(+), 19 deletions(-)
- create mode 100755 bin/buildlogger
+with user for example "yocto"
 
-diff --git a/.gitignore b/.gitignore
-index 3f9505b..48c8a85 100644
---- a/.gitignore
-+++ b/.gitignore
-@@ -8,6 +8,7 @@
- ###################################################
- buildset-config
- config/autobuilder.conf
-+etc/buildlogger.conf
- 
- # Everything else #
- ###################
-@@ -25,6 +26,7 @@ yocto-controller/controller.cfg
- yocto-controller/state.sqlite
- yocto-controller/twistd.log*
- yocto-controller/buildbot.tac
-+yocto-controller/logger.log
- yocto-worker/build-appliance/build(newcommits)
- yocto-worker/buildbot.tac
- yocto-worker/janitor.log
-diff --git a/bin/buildlogger b/bin/buildlogger
-new file mode 100755
-index 0000000..7b39f92
---- /dev/null
-+++ b/bin/buildlogger
-@@ -0,0 +1,273 @@
-+#!/usr/bin/env python3
-+'''
-+Created on May 5, 2016
-+
-+__author__ = "Joshua Lock"
-+__copyright__ = "Copyright 2016, Intel Corporation"
-+__credits__ = ["Joshua Lock"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Joshua Lock"
-+__email__ = "joshua.g.lock@intel.com"
-+'''
-+
-+# We'd probably benefit from using some caching, but first we'd need the AB API
-+# to include
-+#
-+# We can set repo url, branch & commit for a bunch of repositorys.
-+# Do they all get built for nightly?
-+
-+try:
-+    import configparser
-+except ImportError:
-+    import ConfigParser as configparser
-+import json
-+import os
-+import requests
-+import signal
-+import sys
-+import time
-+
-+abapi = "https://autobuilder.yoctoproject.org/main/json/builders/nightly/builds/_all"
-+# Wiki editing params
-+un = ''
-+pw = ''
-+wikiapi = "https://wiki.yoctoproject.org/wiki/api.php"
-+title = ''
-+
-+last_logged = ''
-+# TODO: probably shouldn't write files in the same location as the script?
-+cachefile = 'buildlogger.lastbuild'
-+tmpfile = '/tmp/.buildlogger.pid'
-+
-+
-+# Load configuration information from an ini
-+def load_config(configfile):
-+    global un
-+    global pw
-+    global title
-+    success = False
-+
-+    if os.path.exists(configfile):
-+        try:
-+            config = configparser.ConfigParser()
-+            config.read(configfile)
-+            un = config.get('wikiuser', 'username')
-+            pw = config.get('wikiuser', 'password')
-+            title = config.get('wiki', 'pagetitle')
-+            success = True
-+        except configparser.Error as ex:
-+            print('Failed to load buildlogger configuration with error: %s' % str(ex))
-+    else:
-+        print('Config file %s does not exist, please create and populate it.' % configfile)
-+
-+    return success
-+
-+# we can't rely on the built in JSON parser in the requests module because
-+# the JSON we get from the wiki begins with a UTF-8 BOM which chokes
-+# json.loads().
-+# Thus we decode the raw resonse content into a string and load that into a
-+# JSON object ourselves.
-+#
-+# http://en.wikipedia.org/wiki/Byte_Order_Mark
-+# http://bugs.python.org/issue18958
-+def parse_json(response):
-+    text = response.content.decode('utf-8-sig')
-+
-+    return json.loads(text)
-+
-+
-+# Get the current content of the BuildLog page -- to make the wiki page as
-+# useful as possible the most recent log entry should be at the top, to
-+# that end we need to edit the whole page so that we can insert the new entry
-+# after the log but before the other entries.
-+# This method fetches the current page content, splits out the blurb and
-+# returns a pair:
-+# 1) the blurb
-+# 2) the current entries
-+def wiki_get_content():
-+    params = '?format=json&action=query&prop=revisions&rvprop=content&titles='
-+    req = requests.get(wikiapi+params+title)
-+    parsed = parse_json(req)
-+    pageid = sorted(parsed['query']['pages'].keys())[-1]
-+    content = parsed['query']['pages'][pageid]['revisions'][0]['*']
-+    blurb, entries = content.split('==', 1)
-+    # ensure we keep only a single newline after the blurb
-+    blurb = blurb.strip() + "\n"
-+    entries = '=='+entries
-+
-+    return blurb, entries
-+
-+
-+# Login to the wiki and return cookies for the logged in session
-+def wiki_login():
-+    payload = {
-+        'action': 'login',
-+        'lgname': un,
-+        'lgpassword': pw,
-+        'utf8': '',
-+        'format': 'json'
-+    }
-+    req1 = requests.post(wikiapi, data=payload)
-+    parsed = parse_json(req1)
-+    login_token = parsed['login']['token']
-+
-+    payload['lgtoken'] = login_token
-+    req2 = requests.post(wikiapi, data=payload, cookies=req1.cookies)
-+
-+    return req2.cookies.copy()
-+
-+
-+# Post the new page contents *content* with a summary of the action *summary*
-+def wiki_post_page(content, summary, cookies):
-+    params = '?format=json&action=query&prop=info|revisions&intoken=edit&rvprop=timestamp&titles='
-+    req = requests.get(wikiapi+params+title, cookies=cookies)
-+
-+    parsed = parse_json(req)
-+    pageid = sorted(parsed['query']['pages'].keys())[-1]
-+    edit_token = parsed['query']['pages'][pageid]['edittoken']
-+
-+    edit_cookie = cookies.copy()
-+    edit_cookie.update(req.cookies)
-+
-+    payload = {
-+        'action': 'edit',
-+        'assert': 'user',
-+        'title': title,
-+        'summary': summary,
-+        'text': content,
-+        'token': edit_token,
-+        'utf8': '',
-+        'format': 'json'
-+    }
-+
-+    req = requests.post(wikiapi, data=payload, cookies=edit_cookie)
-+    if not req.status_code == requests.codes.ok:
-+        print("Unexpected status code %s received when trying to post entry to"
-+              "the wiki." % req.status_code)
-+        return False
-+    else:
-+        return True
-+
-+
-+# Extract required info about the last build from the Autobuilder's JSON API
-+# and format it for entry into the BuildLog, along with a summary of the edit
-+def ab_last_build_to_entry(build_json, build_id):
-+    build_info = build_json[build_id]
-+    builder = build_info.get('builderName', 'Unknown builder')
-+    reason = build_info.get('reason', 'No reason given')
-+    buildid = build_info.get('number', '')
-+    buildbranch = ''
-+    chash = ''
-+    for prop in build_info.get('properties'):
-+        if prop[0] == 'branch':
-+            buildbranch = prop[1]
-+        # TODO: is it safe to assume we're building from the poky repo? Or at
-+        # least only to log the poky commit hash.
-+        if prop[0] == 'commit_poky':
-+            chash = prop[1]
-+
-+    urlfmt = 'https://autobuilder.yoctoproject.org/main/builders/%s/builds/%s/'
-+    url = urlfmt % (builder, buildid)
-+    sectionfmt = '==[%s %s %s - %s %s]=='
-+    section_title = sectionfmt % (url, builder, buildid, buildbranch, chash)
-+    summaryfmt = 'Adding new BuildLog entry for build %s (%s)'
-+    summary = summaryfmt % (buildid, chash)
-+    content = "* '''Build ID''' - %s\n" % chash
-+    content = content + '* ' + reason + '\n'
-+    new_entry = '%s\n%s\n' % (section_title, content)
-+
-+    return new_entry, summary
-+
-+
-+# Write the last logged build id to a file
-+def write_last_build(buildid):
-+    with open(cachefile, 'w') as fi:
-+        fi.write(buildid)
-+
-+
-+# Read last logged buildid from a file
-+def read_last_build():
-+    last_build = ''
-+    try:
-+        with open(cachefile, 'r') as fi:
-+            last_build = fi.readline()
-+    except FileNotFoundError as ex:
-+        # A build hasn't been logged yet
-+        pass
-+    except Exception as e:
-+        print('Error reading last build %s' % str(e))
-+
-+    return last_build
-+
-+
-+def watch_for_builds(configfile):
-+    if not load_config(configfile):
-+        print('Failed to start buildlogger.')
-+        sys.exit(1)
-+    last_logged = read_last_build()
-+
-+    while True:
-+        # wait a minute...
-+        time.sleep(60)
-+
-+        builds = requests.get(abapi)
-+
-+        if not builds:
-+            print("Failed to fetch Autobuilder data. Exiting.")
-+            continue
-+        try:
-+            build_json = builds.json()
-+        except Exception as e:
-+            print("Failed to decode JSON: %s" % str(e))
-+            continue
-+
-+        last_build = sorted(build_json.keys())[-1]
-+        # If a new build is detected, post a new entry to the BuildLog
-+        if last_build != last_logged:
-+            new_entry, summary = ab_last_build_to_entry(build_json, last_build)
-+            blurb, entries = wiki_get_content()
-+            entries = new_entry+entries
-+            cookies = wiki_login()
-+            if wiki_post_page(blurb+entries, summary, cookies):
-+                write_last_build(last_build)
-+                last_logged = last_build
-+                print("Entry posted:\n%s\n" % new_entry)
-+            else:
-+                print("Failed to post new entry.")
-+
-+    sys.exit(0)
-+
-+
-+if __name__ == "__main__":
-+    if len(sys.argv) < 2:
-+        print('Please specify the path to the config file on the command line as the first argument.')
-+        sys.exit(1)
-+
-+    # Check to see if this is running already. If so, kill it and rerun
-+    if os.path.exists(tmpfile) and os.path.isfile(tmpfile):
-+        print("A prior PID file exists. Attempting to kill.")
-+        with open(tmpfile, 'r') as f:
-+            pid=f.readline()
-+        try:
-+            os.kill(int(pid), signal.SIGKILL)
-+            # We need to sleep for a second or two just to give the SIGKILL time
-+            time.sleep(2)
-+        except OSError as ex:
-+            print("""We weren't able to kill the prior buildlogger. Trying again.""")
-+            pass
-+        # Check if the process that we killed is alive.
-+        try:
-+           os.kill(int(pid), 0)
-+        except OSError as ex:
-+           pass
-+    elif os.path.exists(tmpfile) and not os.path.isfile(tmpfile):
-+        raise Exception("""/tmp/.buildlogger.pid is a directory, remove it to continue.""")
-+    try:
-+        os.unlink(tmpfile)
-+    except:
-+        pass
-+    with open(tmpfile, 'w') as f:
-+        f.write(str(os.getpid()))
-+
-+    watch_for_builds(sys.argv[1])
-diff --git a/yocto-start-autobuilder b/yocto-start-autobuilder
-index 85b748d..f8154c1 100755
---- a/yocto-start-autobuilder
-+++ b/yocto-start-autobuilder
-@@ -72,6 +72,14 @@ if os.path.isfile(os.path.join(AB_BASE, ".setupdone")):
-         os.chdir(os.path.join(AB_BASE, "yocto-controller"))
-         subprocess.call(["make", "start"])
-         os.chdir(AB_BASE)
-+        logger_log = open('yocto-controller/buildlogger.log', 'a')
-+        logger_log.write('[ buildlogger started: %s ]\n' % datetime.datetime.now())
-+        subprocess.Popen('python bin/buildlogger ' + os.path.join(AB_BASE, 'etc/buildlogger.conf'),
-+                        shell=True, stdin=None,
-+                        stdout=logger_log,
-+                        stderr=logger_log,
-+                        close_fds=True)
-+        logger_log.close()
- 
-     if sys.argv[1] == "worker" or sys.argv[1] == "both":
-         if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
-diff --git a/yocto-stop-autobuilder b/yocto-stop-autobuilder
-index a313b27..df5fd34 100755
---- a/yocto-stop-autobuilder
-+++ b/yocto-stop-autobuilder
-@@ -48,30 +48,18 @@ for section_name in parser.sections():
-     for name, value in parser.items(section_name):
-         os.environ[name.upper()] = value.strip('"').strip("'")
- 
--if sys.argv[1] == "controller" or sys.argv[1] == "both":
--    os.chdir(os.path.join(AB_BASE, "yocto-controller"))
--    subprocess.call(["make", "stop"])
--    os.chdir(AB_BASE)
- 
--if sys.argv[1] == "worker" or sys.argv[1] == "both":
--    if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
--        os.chdir(AB_BASE)
--        subprocess.call([os.path.join(AB_BASE, "ab-prserv"), "stop"])
--
--    os.chdir(os.path.join(AB_BASE, "yocto-worker"))
--    subprocess.call(["make", "stop"])
--    os.chdir(AB_BASE)
--    tmpfile = '/tmp/.buildworker-janitor'+os.getcwd().replace('/', '-')
--    if os.path.exists(tmpfile) and os.path.isfile(tmpfile):
-+def killpid(pidfile):
-+    if os.path.exists(pidfile) and os.path.isfile(pidfile):
-         print("A prior PID file exists. Attempting to kill.")
--        with open(tmpfile, 'r') as f:
-+        with open(pidfile, 'r') as f:
-             pid=f.readline()
-         try: 
-             os.kill(int(pid), signal.SIGKILL)
-             # We need to sleep for a second or two just to give the SIGKILL time
-             time.sleep(2)
-         except OSError as ex:
--            print("""We weren't able to kill the prior buildworker-janitor. Trying again.""")
-+            print("""We weren't able to kill the owner of %s, trying again.""" % pidfile)
-             pass
-         # Check if the process that we killed is alive.
-         try: 
-@@ -80,10 +68,29 @@ if sys.argv[1] == "worker" or sys.argv[1] == "both":
-                               HINT:use signal.SIGKILL or signal.SIGABORT""")
-         except OSError as ex:
-            pass
--    elif os.path.exists(tmpfile) and not os.path.isfile(tmpfile):
--        raise Exception(tmpfile + """ is a directory. Remove it to continue.""")
-+    elif os.path.exists(pidfile) and not os.path.isfile(pidfile):
-+        raise Exception(pidfile + """ is a directory. Remove it to continue.""")
-     try:
--        os.unlink(tmpfile)
-+        os.unlink(pidfile)
-     except:
-         pass
- 
-+if sys.argv[1] == "controller" or sys.argv[1] == "both":
-+    os.chdir(os.path.join(AB_BASE, "yocto-controller"))
-+    subprocess.call(["make", "stop"])
-+    os.chdir(AB_BASE)
-+    tmpfile = '/tmp/.buildlogger.pid'
-+    killpid(tmpfile)
-+
-+
-+if sys.argv[1] == "worker" or sys.argv[1] == "both":
-+    if os.environ["PRSERV_HOST"] and os.environ["PRSERV_HOST"] == "localhost":
-+        os.chdir(AB_BASE)
-+        subprocess.call([os.path.join(AB_BASE, "ab-prserv"), "stop"])
-+
-+    os.chdir(os.path.join(AB_BASE, "yocto-worker"))
-+    subprocess.call(["make", "stop"])
-+    os.chdir(AB_BASE)
-+    tmpfile = '/tmp/.buildworker-janitor'+os.getcwd().replace('/', '-')
-+    killpid(tmpfile)
-+
--- 
-2.5.5
+I think the syntax could be: SRC=5FURI =3D=20
+"hg://yocto@myHG/ABC;module=3D"dev";protocol=3Dssh;rev=3D42"
+
+Regards
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
 
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    "Jeyachandran, Yukatharsani (Contractor)"=20
+<Yukatharsani=5FJeyachandran@comcast.com>
+An:     "S.Jaritz@esa-grimma.de" <S.Jaritz@esa-grimma.de>, yocto=20
+<yocto@yoctoproject.org>
+Datum:  02.05.2016 16:50
+Betreff:        Re: [yocto] HG Parameters for the fetcher
+
+
+
+Hi,
+
+Add your source file in this below format:-
+
+For Example:-
+
+SRCREV =3D "${AUTOREV}"
+SRC=5FURI =3D "svn or git ://<repo>;module=3D" ";protocol=3Dhttps or ssh"
+
+Thanks and Regards,
+Yukatharsani J.
+
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on=20
+behalf of S.Jaritz@esa-grimma.de <S.Jaritz@esa-grimma.de>
+Sent: Monday, May 2, 2016 9:25 AM
+To: yocto
+Subject: [yocto] HG Parameters for the fetcher=20
+=20
+Hej,=20
+
+Actually I try to build a recipe for a Mercurial SCM. The hg sources are=20
+local. In my bb File I have this lines:=20
+
+
+SRCREV =3D "486c7001d4e5"=20
+SRC=5FURI =3D "hg://myHG"=20
+
+I got the error:=20
+
+ERROR: Logfile of failure stored in:=20
+/home/user/myTC/poky/build/tmp/work/cortexa5hf-vfp-poky-linux-gnueabi/myHG/=
+0.1-r0/temp/log.do=5Ffetch.27908=20
+
+Log data follows:=20
+| DEBUG: Executing python function do=5Ffetch=20
+| DEBUG: Executing python function base=5Fdo=5Ffetch=20
+| DEBUG: Python function base=5Fdo=5Ffetch finished=20
+| DEBUG: Python function do=5Ffetch finished=20
+| ERROR: Function failed: URL: 'hg://myHG' is missing the required=20
+parameter 'module'=20
+ERROR: Task 4=20
+(/home/user/myTC/poky/meta-sek4/recipes-test/deamons/myHG=5F0.1.bb,=20
+do=5Ffetch) failed with exit code '1'=20
+
+
+Any ideas?
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 003D9C09C1257FAE_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Thanks,</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">What is when the HG comes over SSH w=
+ith
+authentication? Like:</font>
+<br>
+<br><font size=3D3 face=3D"Calibri"><i>SRC=5FURI =3D &quot;hg://myHG/ABC;mo=
+dule=3D&quot;dev&quot;;protocol=3Dssh;rev=3D42&quot;</i></font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">with user for example &quot;yocto&qu=
+ot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I think the syntax could be: </font>=
+<font size=3D3 face=3D"Calibri"><i>SRC=5FURI
+=3D &quot;hg://yocto@myHG/ABC;module=3D&quot;dev&quot;;protocol=3Dssh;rev=
+=3D42&quot;</i></font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Jeyachandran,
+Yukatharsani (Contractor)&quot; &lt;Yukatharsani=5FJeyachandran@comcast.com=
+&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;S.Jaritz@esa-grimma.d=
+e&quot;
+&lt;S.Jaritz@esa-grimma.de&gt;, yocto &lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">02.05.2016 16:50</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+HG Parameters for the fetcher</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><font size=3D3 face=3D"Calibri"><i>Hi,<br>
+<br>
+Add your source file in this below format:-<br>
+<br>
+For Example:-<br>
+<br>
+SRCREV =3D &quot;${AUTOREV}&quot;</i></font>
+<br><font size=3D3 face=3D"Calibri"><i>SRC=5FURI =3D &quot;</i></font><a hr=
+ef=3Dsvn://%3cmy/><font size=3D3 color=3Dblue face=3D"Calibri"><i><u>svn
+or git ://&lt;</u></i></font></a><font size=3D3 face=3D"Calibri"><i>repo&gt=
+;;module=3D&quot;
+&quot;;protocol=3Dhttps or ssh&quot;</i></font>
+<br>
+<br><font size=3D3 face=3D"Calibri">Thanks and Regards,</font>
+<br><font size=3D3 face=3D"Calibri">Yukatharsani J.</font>
+<p>
+<hr>
+<br><font size=3D2 face=3D"Calibri"><b>From:</b> yocto-bounces@yoctoproject=
+.org
+&lt;yocto-bounces@yoctoproject.org&gt; on behalf of S.Jaritz@esa-grimma.de
+&lt;S.Jaritz@esa-grimma.de&gt;<b><br>
+Sent:</b> Monday, May 2, 2016 9:25 AM<b><br>
+To:</b> yocto<b><br>
+Subject:</b> [yocto] HG Parameters for the fetcher</font><font size=3D3 col=
+or=3D#2f2f2f face=3D"Calibri">
+</font>
+<br><font size=3D3 color=3D#2f2f2f face=3D"Calibri">&nbsp;</font>
+<br><font size=3D2 color=3D#2f2f2f face=3D"sans-serif">Hej,</font><font siz=
+e=3D3 color=3D#2f2f2f face=3D"Calibri">
+<br>
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+Actually I try to build a recipe for a Mercurial SCM. The hg sources are
+local. In my bb File I have this lines:</font><font size=3D3 color=3D#2f2f2=
+f face=3D"Calibri">
+<br>
+<br>
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+SRCREV =3D &quot;486c7001d4e5&quot;</font><font size=3D3 color=3D#2f2f2f fa=
+ce=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+SRC=5FURI =3D &quot;hg://myHG&quot;</font><font size=3D3 color=3D#2f2f2f fa=
+ce=3D"Calibri">
+<br>
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+I got the error:</font><font size=3D3 color=3D#2f2f2f face=3D"Calibri"> <br>
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+ERROR: Logfile of failure stored in: /home/user/myTC/poky/build/tmp/work/co=
+rtexa5hf-vfp-poky-linux-gnueabi/myHG/0.1-r0/temp/log.do=5Ffetch.27908</font=
+><font size=3D3 color=3D#2f2f2f face=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+Log data follows:</font><font size=3D3 color=3D#2f2f2f face=3D"Calibri"> </=
+font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+| DEBUG: Executing python function do=5Ffetch</font><font size=3D3 color=3D=
+#2f2f2f face=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+| DEBUG: Executing python function base=5Fdo=5Ffetch</font><font size=3D3 c=
+olor=3D#2f2f2f face=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+| DEBUG: Python function base=5Fdo=5Ffetch finished</font><font size=3D3 co=
+lor=3D#2f2f2f face=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+| DEBUG: Python function do=5Ffetch finished</font><font size=3D3 color=3D#=
+2f2f2f face=3D"Calibri">
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+| ERROR: Function failed: URL: 'hg://myHG' is missing the required parameter
+'module'</font><font size=3D3 color=3D#2f2f2f face=3D"Calibri"> </font><fon=
+t size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+ERROR: Task 4 (/home/user/myTC/poky/meta-sek4/recipes-test/deamons/myHG=5F0=
+.1.bb,
+do=5Ffetch) failed with exit code '1'</font><font size=3D3 color=3D#2f2f2f =
+face=3D"Calibri">
+<br>
+<br>
+</font><font size=3D2 color=3D#2f2f2f face=3D"sans-serif"><br>
+Any ideas?<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 color=3Dblue =
+face=3D"sans-serif"><u>www.esa-grimma.de</u></font></a><font size=3D2 color=
+=3D#2f2f2f face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+
+--=_alternative 003D9C09C1257FAE_=--
