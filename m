@@ -1,44 +1,34 @@
-Return-Path: <christrobridge@hotmail.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3AC0E00B9F; Tue, 10 May 2016 06:57:26 -0700 (PDT)
+	id 3071CE00BA1; Tue, 10 May 2016 07:17:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (christrobridge[at]hotmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from DUB004-OMC4S10.hotmail.com (dub004-omc4s10.hotmail.com
-	[157.55.2.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C44BAE00B7A
-	for <yocto@yoctoproject.org>; Tue, 10 May 2016 06:57:21 -0700 (PDT)
-Received: from DUB130-W19 ([157.55.2.71]) by DUB004-OMC4S10.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Tue, 10 May 2016 06:57:19 -0700
-X-TMN: [l6EfuSq6XgP8wsPrcGWe8CmNWJrTSNKV]
-X-Originating-Email: [christrobridge@hotmail.com]
-Message-ID: <DUB130-W19EB88C4F751D5BB05C761DA710@phx.gbl>
-From: Chris Trobridge <christrobridge@hotmail.com>
-To: "Esponde, Joel" <joel.esponde@honeywell.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 10 May 2016 14:57:19 +0100
-Importance: Normal
-In-Reply-To: <F6CD090A69E64C4289DC608E1C5D2024253EE422@DE08W1305.global.ds.honeywell.com>
-References: <DUB130-W50FCEBE5B5238A97737A77DA700@phx.gbl>,
-	<DUB130-W83F603206C6CE9B5D84029DA710@phx.gbl>,
-	<F6CD090A69E64C4289DC608E1C5D2024253EE345@DE08W1305.global.ds.honeywell.com>,
-	<DUB130-W57477F296DFD10B36D06BDA710@phx.gbl>,
-	<F6CD090A69E64C4289DC608E1C5D2024253EE422@DE08W1305.global.ds.honeywell.com>
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD6ADE00B89
+	for <yocto@yoctoproject.org>; Tue, 10 May 2016 07:17:17 -0700 (PDT)
+In-Reply-To: <F6CD090A69E64C4289DC608E1C5D2024253EE36B@DE08W1305.global.ds.honeywell.com>
+References: <OFC4AEB901.A588C143-ONC1257FAE.0051F9D2-C1257FAE.0053090F@esa-grimma.de>	<06a1adbdf434d7992e40e72f452cedae@technux.se>
+	<F6CD090A69E64C4289DC608E1C5D2024253EE36B@DE08W1305.global.ds.honeywell.com>
+To: "Esponde, Joel" <Joel.Esponde@Honeywell.com>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 10 May 2016 13:57:19.0559 (UTC)
-	FILETIME=[DE501570:01D1AAC3]
-Subject: Re: Formulating Recipe for out-of-tree kernel module
+X-KeepSent: 5D135CC9:9530B806-C1257FAF:004D0ED7;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF5D135CC9.9530B806-ONC1257FAF.004D0ED7-C1257FAF.004E7BD8@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Tue, 10 May 2016 16:17:14 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 10.05.2016 16:17:19,
+	Serialize complete at 10.05.2016 16:17:19
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-bounces@yoctoproject.org
+Subject: Antwort: Re: How to build a simple kernel modul
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,798 +40,505 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 May 2016 13:57:26 -0000
+X-List-Received-Date: Tue, 10 May 2016 14:17:22 -0000
 Content-Type: multipart/alternative;
-	boundary="_9651b651-a3e6-47bd-ace0-8415c45bfcc4_"
+	boundary="=_alternative 004E7BD8C1257FAF_="
 
---_9651b651-a3e6-47bd-ace0-8415c45bfcc4_
-Content-Type: text/plain; charset="iso-8859-1"
+--=_alternative 004E7BD8C1257FAF_=
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Joel=2C
-I can build the module but I am trying to find out the best way to do this =
-with yocto/bitbake.
-The build process for the second module I have requires the location of the=
- first and then does copy the Module.symvers and accesses the header files =
-and ".version" file.
-The question was more about how it should find these.
-What I have just tried out=2C is to copy the above files  (Module.symvers=
-=2C .version and include/* to ${STAGING_KERNEL_BUILDDIR}/out-of-tree/${PN}=
-=2C which is hence easily accessible by the second recipe.
-This works but may not be the preferred way?  I suspect the preferred way i=
-s to build in the kernel.
-Cheers=2CChris
+Thanks so far!
 
-From: Joel.Esponde@Honeywell.com
-To: christrobridge@hotmail.com=3B yocto@yoctoproject.org
-Subject: RE: [yocto] Formulating Recipe for out-of-tree kernel module
-Date: Tue=2C 10 May 2016 13:29:30 +0000
+I have 3 questions for my understanding:
 
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-Ok! I better understand your need now.=0A=
-The fix solves the case where an out of tree module is dependent of a kerne=
-l module which is not built as a built-in module.=0A=
-=0A=
- =0A=
-Just in case=2C did you have a look on these links?=0A=
-http://stackoverflow.com/a/33718934/1729117=0A=
-https://www.kernel.org/doc/Documentation/kbuild/modules.txt=0A=
- (Chapter 6.2 and 6.3)=0A=
- =0A=
-=0A=
-Jo=EBl Esponde=0A=
-Honeywell=0A=
-| Sensing and Productivity Solutions=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-=0A=
-De : Chris Trobridge [mailto:christrobridge@hotmail.com]=0A=
+1.) How to define extra Include Paths if the module needs some extra=20
+Includes?
+        Like the "mach/gpio.h", which should be under=20
+"<Kernel-Dir>/arch/arm/mach-at91/include" and is needed for the PIN=20
+definitions.
+        Should it be done at the Makefile like:
+                CFLAGS=5Fhello.o +=3D  -I${COMPILER=5FINCLUDE}=20
+-I${KERNEL=5FDIR}/arch/arm/mach-at91/include
+        1.1) What are the equivalents to ${COMPILER=5FINCLUDE} and=20
+${KERNEL=5FDIR} in Yocto?
+        1.2) Should it be done in the Makefile or at the bb-File?
+2.) How to activate/deactivate the Driver in the "local.conf"?
+3.) How does the process works with cmake?
+        3.1) Is it enough to inherit after modul cmake?
+        like @ hello-mod=5F0.1.bb -> "inherit module cmake"
 
-=0A=
-Envoy=E9 : mardi 10 mai 2016 13:28
-=0A=
-=C0 : Esponde=2C Joel=3B yocto@yoctoproject.org
-=0A=
-Objet : RE: [yocto] Formulating Recipe for out-of-tree kernel module=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-Thanks Joel=2C=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-I am on Krogoth.=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-My reading of that patch is that it allows out-of-tree modules to depend on=
- symbols from the kernel but I don't see how it would help with depending o=
-n another out-of-tree module?=0A=
-  Those symbols are not added to the kernel Module.symvers.=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-I've been following some other usage I read that 'out-of-tree' means compil=
-ing outside/after the kernel build=2C which may not be 100% accurate?=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-Anyway=2C it suggests to me that copying the first module's Module.symvers =
-to the shared kernel staging area and then referencing that from the second=
- module is probably better than=0A=
- my current solution=2C provided I don't break any conventions on using the=
- staging area.=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-Cheers=2C=0A=
-=0A=
-=0A=
-Chris=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-From:=0A=
-Joel.Esponde@Honeywell.com
-=0A=
-To: christrobridge@hotmail.com=3B=0A=
-yocto@yoctoproject.org
-=0A=
-Subject: RE: [yocto] Formulating Recipe for out-of-tree kernel module
-=0A=
-Date: Tue=2C 10 May 2016 10:06:37 +0000=0A=
-=0A=
-Hi=2C=0A=
- =0A=
-There is a bitbake issue that prevents building an out-of-tree module that =
-is dependent of another out-of-tree module.=0A=
-This issue has been fixed recently:=0A=
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=3Dmaster-next&id=
-=3Da9cc27e6916e5affe8b0cc431c3e89abd7681643=0A=
- =0A=
-This fix has been released on yocto 2.1 (krogoth).=0A=
-So if you are using an older Yocto project=2C you will have to fix two reci=
-pes manually.=0A=
- =0A=
-I hope this will help!=0A=
- =0A=
-=0A=
-Jo=EBl Esponde=0A=
-Honeywell=0A=
-| Sensing and Productivity Solutions=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-=0A=
-De :=0A=
-yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]=0A=
-De la part de Chris Trobridge
-=0A=
-Envoy=E9 : mardi 10 mai 2016 08:59
-=0A=
+
+With kind regards!
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    "Esponde, Joel" <Joel.Esponde@Honeywell.com>
+An:     "petter@technux.se" <petter@technux.se>, "yocto@yoctoproject.org"=20
+<yocto@yoctoproject.org>
+Datum:  10.05.2016 12:30
+Betreff:        Re: [yocto] How to build a simple kernel modul
+Gesendet von:   yocto-bounces@yoctoproject.org
+
+
+
+Hi,
+=20
+And here is a hello world module example:
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/recipes-k=
+ernel/hello-mod
+=20
+Jo=EBl Esponde
+Honeywell | Sensing and Productivity Solutions
+=20
+De : yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org
+] De la part de Petter Mab=E4cker
+Envoy=E9 : mardi 10 mai 2016 06:51
 =C0 : yocto@yoctoproject.org
-=0A=
-Objet : Re: [yocto] Formulating Recipe for out-of-tree kernel module=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-At the risk of answering my own question...=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-Splitting a driver package into a module recipe and a separate recipe for u=
-ser-mode utilities works in that each recipe uses the appropriate build pro=
-cess and puts files in the=0A=
- appropriate subdirectory of /work/.=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-I still don't see a way to build one out-of-tree module against another.  I=
- am interested in opinion on this.  Should I try to get these drivers built=
- in tree?  They seem to be=0A=
- the only two out-of-tree drivers in the build at present.  There is also s=
-ome facility to add extra modules to the dahdi linux build=2C although achi=
-eving this with bitbake could be challenging too.
-=0A=
+Objet : Re: [yocto] How to build a simple kernel modul
+=20
+2016-05-09 17:06 skrev S.Jaritz@esa-grimma.de:
+Hej,=20
 
-=0A=
-Cheers=2C=0A=
-=0A=
-=0A=
-Chris=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-From:=0A=
-christrobridge@hotmail.com
-=0A=
-To: yocto@yoctoproject.org
-=0A=
-Date: Mon=2C 9 May 2016 12:15:26 +0100
-=0A=
-Subject: [yocto] Formulating Recipe for out-of-tree kernel module=0A=
-=0A=
-I am looking to produce a recipe for the amfeltec usb-fxs adaptor (http://a=
-mfeltec.com/products/piranha-usb-fxs-adapter/)=2C=0A=
- with the intention of contributing this to the meta-telephony layer.=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-However=2C I have found a few obstacles to getting a clean recipe:=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-The makefile produces both a kernel module and a user utility=2C with the l=
-atter being hard-coded to build with g++.  I can produce a recipe to produc=
-e one or other of the components but not both.  Given=0A=
- the structure of the build directories=2C should this be be achievable=2C =
-or should I be spitting up the recipe in two?=0A=
-Dahdi header files and Modules.symvers are required.  A header file is used=
- to deduce the version of Dahdi=2C Modules.symvers is required for the modu=
-le build process.  Hence=2C requires the location of=0A=
- the Dahdi source/build directory.  This can be set relative to the amfelte=
-c work directory but this feels wrong.=0A=
-=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-=0A=
-In more general terms my questions are:=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-Should I split a recipe into kernel and non-kernel components?=0A=
-How should one out-of-tree recipe access the headers/Module.symvers from an=
-other (should that recipe be installing them in ${STAGING_KERNEL_DIR} (or s=
-omewhere else)?)=0A=
-=0A=
- =0A=
-=0A=
-=0A=
-Cheers=2C=0A=
-=0A=
-=0A=
-=0A=
-Chris=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-=0A=
+I want to build a recipe for a simple GPIO Module. I found no tutorial at=20
+the documentation. What is the comon way to build a simple kernel module?=20
 
-=0A=
--- _______________________________________________ yocto mailing list yocto=
-@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
- 		 	   		  =
+The Makefile looks like:=20
+#########=20
+obj-m +=3D ledmodule.o=20
 
---_9651b651-a3e6-47bd-ace0-8415c45bfcc4_
-Content-Type: text/html; charset="iso-8859-1"
+SRC :=3D $(shell pwd)=20
+
+all: modules=20
+
+modules:=20
+        $(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=20
+
+modules=5Finstall:=20
+        $(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=5Finstall=20
+
+clean:=20
+        rm -rf *.o *.ko *.mod.c=20
+#########=20
+The recipe contains:=20
+#########=20
+SUMMARY =3D "ledmodule"=20
+SECTION =3D ""=20
+LICENSE =3D "CLOSED"=20
+
+inherit module=20
+
+SRC=5FURI =3D "file://ledmodule.c \=20
+        file://Makefile \=20
+        "=20
+S =3D "${WORKDIR}/ledmodule-0.1"=20
+#########=20
+
+Regards
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+Hi,
+
+There are actually some guides for this, see lab4 in:
+https://www.yoctoproject.org/sites/default/files/kernel-lab-2.1=5F0.pdf
+But to simply build a module using bitbake, you can just do:
+$ bitbake ledmodule
+then you will find your recipe and the module in the ./tmp/work/ structure =
+
+(assuming you are not inheriting 'rm=5Fwork' in local.conf...).
+=20
+if you just want to compile it, you can run:
+$ bitbake ledmodule -c compile
+=20
+BR Petter
+Petter Mab=E4cker
+=20
+Technux <petter@technux.se>
+www.technux.se--=20
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+--=_alternative 004E7BD8C1257FAF_=
+Content-Type: text/html; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>Thanks Joel=2C<div><br></div><di=
-v>I can build the module but I am trying to find out the best way to do thi=
-s with yocto/bitbake.</div><div><br></div><div>The build process for the se=
-cond module I have requires the location of the first and then does copy th=
-e Module.symvers and accesses the header files and ".version" file.</div><d=
-iv><br></div><div>The question was more about how it should find these.</di=
-v><div><br></div><div>What I have just tried out=2C is to copy the above fi=
-les &nbsp=3B(Module.symvers=2C .version and include/* to&nbsp=3B${STAGING_K=
-ERNEL_BUILDDIR}/out-of-tree/${PN}=2C which is hence easily accessible by th=
-e second recipe.</div><div><br></div><div>This works but may not be the pre=
-ferred way? &nbsp=3BI suspect the preferred way is to build in the kernel.<=
-/div><div><br></div><div>Cheers=2C</div><div>Chris<br><br><div><hr id=3D"st=
-opSpelling">From: Joel.Esponde@Honeywell.com<br>To: christrobridge@hotmail.=
-com=3B yocto@yoctoproject.org<br>Subject: RE: [yocto] Formulating Recipe fo=
-r out-of-tree kernel module<br>Date: Tue=2C 10 May 2016 13:29:30 +0000<br><=
-br>=0A=
-=0A=
-=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass p.ecxMsoNormal=2C .ExternalClass li.ecxMsoNormal=2C .Externa=
-lClass div.ecxMsoNormal {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass a:link=2C .ExternalClass span.ecxMsoHyperlink {=0A=
-color:blue=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxMsoHyperlinkFollowed {=0A=
-color:purple=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p.ecxmsonormal=2C .ExternalClass li.ecxmsonormal=2C .Externa=
-lClass div.ecxmsonormal {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p.ecxmsochpdefault=2C .ExternalClass li.ecxmsochpdefault=2C =
-.ExternalClass div.ecxmsochpdefault {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p.ecxmsonormal1=2C .ExternalClass li.ecxmsonormal1=2C .Exter=
-nalClass div.ecxmsonormal1 {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p.ecxmsochpdefault1=2C .ExternalClass li.ecxmsochpdefault1=
-=2C .ExternalClass div.ecxmsochpdefault1 {=0A=
-font-size:10.0pt=3B=0A=
-font-family:"Times New Roman"=2Cserif=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxmsohyperlink {=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxmsohyperlinkfollowed {=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxemailstyle18 {=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxemailstyle19 {=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxmsohyperlink1 {=0A=
-color:blue=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxmsohyperlinkfollowed1 {=0A=
-color:purple=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxemailstyle181 {=0A=
-font-family:"Calibri"=2Csans-serif=3B=0A=
-color:#400000=3B=0A=
-font-weight:normal=3B=0A=
-font-style:normal=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxemailstyle191 {=0A=
-font-family:"Calibri"=2Csans-serif=3B=0A=
-color:#400000=3B=0A=
-font-weight:normal=3B=0A=
-font-style:normal=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxEmailStyle30 {=0A=
-font-family:"Calibri"=2Csans-serif=3B=0A=
-color:#400000=3B=0A=
-font-weight:normal=3B=0A=
-font-style:normal=3B=0A=
-}=0A=
-=0A=
-.ExternalClass .ecxMsoChpDefault {=0A=
-font-size:10.0pt=3B=0A=
-}=0A=
-=0A=
-.ExternalClass div.ecxWordSection1 {=0A=
-}=0A=
-=0A=
-.ExternalClass ol {=0A=
-}=0A=
-=0A=
-.ExternalClass ul {=0A=
-}=0A=
-=0A=
---></style>=0A=
-=0A=
-=0A=
-<div class=3D"ecxWordSection1">=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">Ok! I =
-better understand your need now.</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">The fi=
-x solves the case where an out of tree module is dependent of a kernel modu=
-le which is not built as a built-in module.=0A=
-</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">Just i=
-n case=2C did you have a look on these links?</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B"><a hre=
-f=3D"http://stackoverflow.com/a/33718934/1729117" target=3D"_blank">http://=
-stackoverflow.com/a/33718934/1729117</a></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B"><a hre=
-f=3D"https://www.kernel.org/doc/Documentation/kbuild/modules.txt" target=3D=
-"_blank">https://www.kernel.org/doc/Documentation/kbuild/modules.txt</a>=0A=
- (Chapter 6.2 and 6.3)</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:10.0pt=
-=3Bfont-family:&quot=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">Jo=EB=
-l Esponde</span></b></p>=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:9.0pt=
-=3Bfont-family:&quot=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">Honey=
-well=0A=
-</span></b><span lang=3D"EN-US" style=3D"font-size:9.0pt=3Bfont-family:&quo=
-t=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">| Sensing and Productivi=
-ty Solutions</span></p>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"">&nbsp=3B</span></=
-p>=0A=
-<div style=3D"border:none=3Bborder-left:solid blue 1.5pt=3Bpadding:0cm 0cm =
-0cm 4.0pt=3B">=0A=
-<div>=0A=
-<div style=3D"border:none=3Bborder-top:solid #E1E1E1 1.0pt=3Bpadding:3.0pt =
-0cm 0cm 0cm=3B">=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt=
-=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">De&nbsp=3B:</span><=
-/b><span lang=3D"EN-US" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCal=
-ibri&quot=3B=2Csans-serif=3B"> Chris Trobridge [mailto:christrobridge@hotma=
-il.com]=0A=
-<br>=0A=
-<b>Envoy=E9&nbsp=3B:</b> mardi 10 mai 2016 13:28<br>=0A=
-<b>=C0&nbsp=3B:</b> Esponde=2C Joel=3B yocto@yoctoproject.org<br>=0A=
-<b>Objet&nbsp=3B:</b> RE: [yocto] Formulating Recipe for out-of-tree kernel=
- module</span></p>=0A=
-</div>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US">&nbsp=3B</span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">Thanks Joel=2C</span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">I am on Krogoth.</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">My reading of that patch is that it all=
-ows out-of-tree modules to depend on symbols from the kernel but I don't se=
-e how it would help with depending on another out-of-tree module?=0A=
- &nbsp=3BThose symbols are not added to the kernel Module.symvers.</span></=
-p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">I've been following some other usage I =
-read that 'out-of-tree' means compiling outside/after the kernel build=2C w=
-hich may not be 100% accurate?</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">Anyway=2C it suggests to me that copyin=
-g the first module's Module.symvers to the shared kernel staging area and t=
-hen referencing that from the second module is probably better than=0A=
- my current solution=2C provided I don't break any conventions on using the=
- staging area.</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2Csans-serif=3B">Cheers=2C</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal" style=3D""><span style=3D"font-family:&quot=3BCal=
-ibri&quot=3B=2Csans-serif=3B">Chris</span></p>=0A=
-<div>=0A=
-<div class=3D"ecxMsoNormal" align=3D"center" style=3D"text-align:center=3B"=
-><span style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">=0A=
-<hr size=3D"2" width=3D"100%" align=3D"center">=0A=
-</span></div>=0A=
-<p class=3D"ecxMsoNormal" style=3D""><span lang=3D"EN-US" style=3D"font-fam=
-ily:&quot=3BCalibri&quot=3B=2Csans-serif=3B">From:=0A=
-</span><a href=3D"mailto:Joel.Esponde@Honeywell.com"><span lang=3D"EN-US" s=
-tyle=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">Joel.Esponde@H=
-oneywell.com</span></a><span lang=3D"EN-US" style=3D"font-family:&quot=3BCa=
-libri&quot=3B=2Csans-serif=3B"><br>=0A=
-To: </span><a href=3D"mailto:christrobridge@hotmail.com"><span lang=3D"EN-U=
-S" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">christrobr=
-idge@hotmail.com</span></a><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">=3B=0A=
-</span><a href=3D"mailto:yocto@yoctoproject.org"><span lang=3D"EN-US" style=
-=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">yocto@yoctoproject=
-.org</span></a><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&qu=
-ot=3B=2Csans-serif=3B"><br>=0A=
-Subject: RE: [yocto] Formulating Recipe for out-of-tree kernel module<br>=
-=0A=
-Date: Tue=2C 10 May 2016 10:06:37 +0000</span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">Hi=2C<=
-/span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Cs=
-ans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">There =
-is a bitbake issue that prevents building an out-of-tree module that is dep=
-endent of another out-of-tree module.</span><span lang=3D"EN-US" style=3D"f=
-ont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">This i=
-ssue has been fixed recently:</span><span lang=3D"EN-US" style=3D"font-fami=
-ly:&quot=3BCalibri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><a href=3D"http://git.yoctoproject.org/cgit/cgit.=
-cgi/poky/commit/?h=3Dmaster-next&amp=3Bid=3Da9cc27e6916e5affe8b0cc431c3e89a=
-bd7681643" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:11.0pt=
-=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">http://git.yoctopro=
-ject.org/cgit/cgit.cgi/poky/commit/?h=3Dmaster-next&amp=3Bid=3Da9cc27e6916e=
-5affe8b0cc431c3e89abd7681643</span></a><span lang=3D"EN-US" style=3D"font-f=
-amily:&quot=3BCalibri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">This f=
-ix has been released on yocto 2.1 (krogoth).</span><span lang=3D"EN-US" sty=
-le=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">So if =
-you are using an older Yocto project=2C you will have to fix two recipes ma=
-nually.</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quo=
-t=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">I hope=
- this will help!</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCa=
-libri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt=3B=
-font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3Bcolor:#400000=3B">&nbsp=
-=3B</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2Csans-serif=3B"></span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:10.0pt=
-=3Bfont-family:&quot=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">Jo=EB=
-l Esponde</span></b><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalib=
-ri&quot=3B=2Csans-serif=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:9.0pt=
-=3Bfont-family:&quot=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">Honey=
-well=0A=
-</span></b><span lang=3D"EN-US" style=3D"font-size:9.0pt=3Bfont-family:&quo=
-t=3BArial&quot=3B=2Csans-serif=3Bcolor:#707070=3B">| Sensing and Productivi=
-ty Solutions</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibr=
-i&quot=3B=2Csans-serif=3B"></span></p>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-<div style=3D"border:none=3Bborder-left:solid blue 1.5pt=3Bpadding:0cm 0cm =
-0cm 4.0pt=3B">=0A=
-<div>=0A=
-<div style=3D"border:none=3Bborder-top:solid #E1E1E1 1.0pt=3Bpadding:3.0pt =
-0cm 0cm 0cm=3B">=0A=
-<p class=3D"ecxMsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11.0pt=
-=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">De&nbsp=3B:</span><=
-/b><span lang=3D"EN-US" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCal=
-ibri&quot=3B=2Csans-serif=3B">=0A=
-</span><a href=3D"mailto:yocto-bounces@yoctoproject.org"><span lang=3D"EN-U=
-S" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-s=
-erif=3B">yocto-bounces@yoctoproject.org</span></a><span lang=3D"EN-US" styl=
-e=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B=
-"> [</span><a href=3D"mailto:yocto-bounces@yoctoproject.org"><span lang=3D"=
-EN-US" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=3B=2Csa=
-ns-serif=3B">mailto:yocto-bounces@yoctoproject.org</span></a><span lang=3D"=
-EN-US" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=3B=2Csa=
-ns-serif=3B">]=0A=
-<b>De la part de</b> Chris Trobridge<br>=0A=
-<b>Envoy=E9&nbsp=3B:</b> mardi 10 mai 2016 08:59<br>=0A=
-<b>=C0&nbsp=3B:</b> </span><a href=3D"mailto:yocto@yoctoproject.org"><span =
-lang=3D"EN-US" style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=
-=3B=2Csans-serif=3B">yocto@yoctoproject.org</span></a><span lang=3D"EN-US" =
-style=3D"font-size:11.0pt=3Bfont-family:&quot=3BCalibri&quot=3B=2Csans-seri=
-f=3B"><br>=0A=
-<b>Objet&nbsp=3B:</b> Re: [yocto] Formulating Recipe for out-of-tree kernel=
- module</span><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quo=
-t=3B=2Csans-serif=3B"></span></p>=0A=
-</div>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-<div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">At the risk of answering my own questio=
-n...</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">Splitting a driver package into a modul=
-e recipe and a separate recipe for user-mode utilities works in that each r=
-ecipe uses the appropriate build process and puts files in the=0A=
- appropriate subdirectory of /work/.</span></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">I still don't see a way to build one ou=
-t-of-tree module against another. &nbsp=3BI am interested in opinion on thi=
-s. &nbsp=3BShould I try to get these drivers built in tree? &nbsp=3BThey se=
-em to be=0A=
- the only two out-of-tree drivers in the build at present. &nbsp=3BThere is=
- also some facility to add extra modules to the dahdi linux build=2C althou=
-gh achieving this with bitbake could be challenging too.<br>=0A=
-<br>=0A=
-</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">=
-Cheers=2C</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2Csans-serif=3B">Chris</span></p>=0A=
-<div>=0A=
-<div class=3D"ecxMsoNormal" align=3D"center" style=3D"text-align:center=3B"=
-><span style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">=0A=
-<hr size=3D"2" width=3D"100%" align=3D"center">=0A=
-</span></div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">From:=0A=
-</span><a href=3D"mailto:christrobridge@hotmail.com"><span lang=3D"EN-US" s=
-tyle=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">christrobridge=
-@hotmail.com</span></a><span lang=3D"EN-US" style=3D"font-family:&quot=3BCa=
-libri&quot=3B=2Csans-serif=3B"><br>=0A=
-To: </span><a href=3D"mailto:yocto@yoctoproject.org"><span lang=3D"EN-US" s=
-tyle=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">yocto@yoctopro=
-ject.org</span></a><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibr=
-i&quot=3B=2Csans-serif=3B"><br>=0A=
-Date: Mon=2C 9 May 2016 12:15:26 +0100<br>=0A=
-Subject: [yocto] Formulating Recipe for out-of-tree kernel module</span></p=
->=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">I am looking to produce a recipe for th=
-e amfeltec usb-fxs adaptor (</span><a href=3D"http://amfeltec.com/products/=
-piranha-usb-fxs-adapter/" target=3D"_blank"><span lang=3D"EN-US" style=3D"f=
-ont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">http://amfeltec.com/pro=
-ducts/piranha-usb-fxs-adapter/</span></a><span lang=3D"EN-US" style=3D"font=
--family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">)=2C=0A=
- with the intention of contributing this to the meta-telephony layer.</span=
-></p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">However=2C I have found a few obstacles=
- to getting a clean recipe:</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<ul>=0A=
-<li class=3D"ecxMsoNormal" style=3D"">=0A=
-<span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-se=
-rif=3B">The makefile produces both a kernel module and a user utility=2C wi=
-th the latter being hard-coded to build with g++. &nbsp=3BI can produce a r=
-ecipe to produce one or other of the components but not both. &nbsp=3BGiven=
-=0A=
- the structure of the build directories=2C should this be be achievable=2C =
-or should I be spitting up the recipe in two?</span></li><li class=3D"ecxMs=
-oNormal" style=3D"">=0A=
-<span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-se=
-rif=3B">Dahdi header files and Modules.symvers are required. &nbsp=3BA head=
-er file is used to deduce the version of Dahdi=2C&nbsp=3BModules.symvers&nb=
-sp=3Bis required for the&nbsp=3Bmodule build process. &nbsp=3BHence=2C requ=
-ires the location of=0A=
- the Dahdi source/build directory. &nbsp=3BThis can be set relative to the =
-amfeltec work directory but this feels wrong.</span></li></ul>=0A=
-</div>=0A=
-<div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">In more general terms my questions are:=
-</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<ul>=0A=
-<li class=3D"ecxMsoNormal" style=3D"">=0A=
-<span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-se=
-rif=3B">Should I split a recipe into kernel and non-kernel components?</spa=
-n></li><li class=3D"ecxMsoNormal" style=3D"">=0A=
-<span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-se=
-rif=3B">How should one out-of-tree recipe access the headers/Module.symvers=
- from another (should that recipe be installing them in ${STAGING_KERNEL_DI=
-R} (or somewhere else)?)</span></li></ul>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">Cheers=2C</span></p>=0A=
-</div>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">Chris</span></p>=0A=
-</div>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B">&nbsp=3B</span></p>=0A=
-</div>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2Csans-serif=3B"><br>=0A=
--- _______________________________________________ yocto mailing list </spa=
-n><a href=3D"mailto:yocto@yoctoproject.org"><span lang=3D"EN-US" style=3D"f=
-ont-family:&quot=3BCalibri&quot=3B=2Csans-serif=3B">yocto@yoctoproject.org<=
-/span></a><span style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-serif=
-=3B">=0A=
-</span><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"=
-_blank"><span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2Csans-serif=3B">https://lists.yoctoproject.org/listinfo/yocto</span></a><=
-span lang=3D"EN-US" style=3D"font-family:&quot=3BCalibri&quot=3B=2Csans-ser=
-if=3B"></span></p>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div>=0A=
-</div></div></div> 		 	   		  </div></body>
-</html>=
+<font size=3D2 face=3D"sans-serif">Thanks so far!</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I have 3 questions for my understand=
+ing:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">1.) How to define extra Include Paths
+if the module needs some extra Includes?</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Like
+the &quot;mach/gpio.h&quot;, which should be under &quot;&lt;Kernel-Dir&gt;=
+/arch/arm/mach-at91/include&quot;
+and is needed for the PIN definitions.</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Should
+it be done at the Makefile like:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; CFLAGS=5Fhello.o +=3D &nbsp;-I${COMPILER=5FINCLUDE}
+-I${KERNEL=5FDIR}/arch/arm/mach-at91/include</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1.1)
+What are the equivalents to ${COMPILER=5FINCLUDE} and ${KERNEL=5FDIR} in Yo=
+cto?</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1.2)
+Should it be done in the Makefile or at the bb-File?</font>
+<br><font size=3D2 face=3D"sans-serif">2.) How to activate/deactivate the D=
+river
+in the &quot;local.conf&quot;?</font>
+<br><font size=3D2 face=3D"sans-serif">3.) How does the process works with
+cmake?</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 3.1)
+Is it enough to inherit after modul cmake?</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; like
+@ hello-mod=5F0.1.bb -&gt; &quot;inherit module cmake&quot;</font>
+<br>
+<br>
+<br><font size=3D2 face=3D"sans-serif">With kind regards!<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Esponde, Joel&quot;
+&lt;Joel.Esponde@Honeywell.com&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;petter@technux.se&quo=
+t;
+&lt;petter@technux.se&gt;, &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoc=
+toproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">10.05.2016 12:30</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+How to build a simple kernel modul</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Gesendet von: &nbsp;=
+ &nbsp;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">yocto-bounces@yoctop=
+roject.org</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><font size=3D3 color=3D#400000 face=3D"Calibri">Hi,</font>
+<br><font size=3D3 color=3D#400000 face=3D"Calibri">&nbsp;</font>
+<br><font size=3D3 color=3D#400000 face=3D"Calibri">And here is a hello wor=
+ld
+module example:</font>
+<br><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-ske=
+leton/recipes-kernel/hello-mod"><font size=3D3 color=3Dblue face=3D"Calibri=
+"><u>http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/reci=
+pes-kernel/hello-mod</u></font></a>
+<br><font size=3D3 color=3D#400000 face=3D"Calibri">&nbsp;</font>
+<br><font size=3D3 color=3D#808080 face=3D"Arial"><b>Jo=EBl Esponde</b></fo=
+nt>
+<br><font size=3D3 color=3D#808080 face=3D"Arial"><b>Honeywell </b>| Sensing
+and Productivity Solutions</font>
+<br><font size=3D3 face=3D"Times New Roman">&nbsp;</font>
+<br><font size=3D3 face=3D"Calibri"><b>De :</b> yocto-bounces@yoctoproject.=
+org
+[</font><a href=3D"mailto:yocto-bounces@yoctoproject.org"><font size=3D3 fa=
+ce=3D"Calibri">mailto:yocto-bounces@yoctoproject.org</font></a><font size=
+=3D3 face=3D"Calibri">]
+<b>De la part de</b> Petter Mab=E4cker<b><br>
+Envoy=E9 :</b> mardi 10 mai 2016 06:51<b><br>
+=C0 :</b> yocto@yoctoproject.org<b><br>
+Objet :</b> Re: [yocto] How to build a simple kernel modul</font>
+<br><font size=3D3 face=3D"Times New Roman">&nbsp;</font>
+<p><font size=3D3 face=3D"sans-serif">2016-05-09 17:06 skrev </font><a href=
+=3D"mailto:S.Jaritz@esa-grimma.de"><font size=3D3 color=3Dblue face=3D"sans=
+-serif"><u>S.Jaritz@esa-grimma.de</u></font></a><font size=3D3 face=3D"sans=
+-serif">:</font>
+<br><font size=3D3 face=3D"Arial">Hej,</font><font size=3D3 face=3D"sans-se=
+rif">
+<br>
+</font><font size=3D3 face=3D"Arial"><br>
+I want to build a recipe for a simple GPIO Module. I found no tutorial
+at the documentation. What is the comon way to build a simple kernel module=
+?</font><font size=3D3 face=3D"sans-serif">
+<br>
+</font><font size=3D3 face=3D"Arial"><br>
+The Makefile looks like:</font><font size=3D3 face=3D"sans-serif"> </font><=
+font size=3D3 face=3D"Arial"><br>
+#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
+ace=3D"Arial"><br>
+obj-m +=3D ledmodule.o</font><font size=3D3 face=3D"sans-serif"> <br>
+</font><font size=3D3 face=3D"Arial"><br>
+SRC :=3D $(shell pwd)</font><font size=3D3 face=3D"sans-serif"> <br>
+</font><font size=3D3 face=3D"Arial"><br>
+all: modules</font><font size=3D3 face=3D"sans-serif"> <br>
+</font><font size=3D3 face=3D"Arial"><br>
+modules:</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 fa=
+ce=3D"Arial"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;$(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules</=
+font><font size=3D3 face=3D"sans-serif">
+<br>
+</font><font size=3D3 face=3D"Arial"><br>
+modules=5Finstall:</font><font size=3D3 face=3D"sans-serif"> </font><font s=
+ize=3D3 face=3D"Arial"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;$(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=
+=5Finstall</font><font size=3D3 face=3D"sans-serif">
+<br>
+</font><font size=3D3 face=3D"Arial"><br>
+clean:</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=
+=3D"Arial"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;rm -rf *.o *.ko *.mod.c</font><font size=3D3 fa=
+ce=3D"sans-serif">
+</font><font size=3D3 face=3D"Arial"><br>
+#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
+ace=3D"Arial"><br>
+The recipe contains:</font><font size=3D3 face=3D"sans-serif"> </font><font=
+ size=3D3 face=3D"Arial"><br>
+#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
+ace=3D"Arial"><br>
+SUMMARY =3D &quot;ledmodule&quot;</font><font size=3D3 face=3D"sans-serif">=
+ </font><font size=3D3 face=3D"Arial"><br>
+SECTION =3D &quot;&quot;</font><font size=3D3 face=3D"sans-serif"> </font><=
+font size=3D3 face=3D"Arial"><br>
+LICENSE =3D &quot;CLOSED&quot;</font><font size=3D3 face=3D"sans-serif"> <b=
+r>
+</font><font size=3D3 face=3D"Arial"><br>
+inherit module</font><font size=3D3 face=3D"sans-serif"> <br>
+</font><font size=3D3 face=3D"Arial"><br>
+SRC=5FURI =3D &quot;</font><a href=3Dfile://sek4=5Fledmodule.c/><font size=
+=3D3 color=3Dblue face=3D"Arial"><u>file://ledmodule.c</u></font></a><font =
+size=3D3 face=3D"Arial">
+\</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=3D"A=
+rial"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;</font><a href=3Dfile://Makefile/><font size=3D=
+3 color=3Dblue face=3D"Arial"><u>file://Makefile</u></font></a><font size=
+=3D3 face=3D"Arial">
+\</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=3D"A=
+rial"><br>
+ &nbsp; &nbsp; &nbsp; &nbsp;&quot;</font><font size=3D3 face=3D"sans-serif">
+</font><font size=3D3 face=3D"Arial"><br>
+S =3D &quot;${WORKDIR}/ledmodule-0.1&quot;</font><font size=3D3 face=3D"san=
+s-serif">
+</font><font size=3D3 face=3D"Arial"><br>
+#########</font><font size=3D3 face=3D"sans-serif"> <br>
+</font><font size=3D3 face=3D"Arial"><br>
+Regards<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: </font><a href=3D"mailto:s.jaritz@esa-grimma.de"><font size=3D3 col=
+or=3Dblue face=3D"Arial"><u>s.jaritz@esa-grimma.de</u></font></a><font size=
+=3D3 face=3D"Arial"><br>
+Internet: </font><a href=3D"http://www.esa-grimma.de/"><font size=3D3 color=
+=3Dblue face=3D"Arial"><u>www.esa-grimma.de</u></font></a><font size=3D3 fa=
+ce=3D"Arial"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<p><font size=3D3 face=3D"sans-serif">Hi,</font>
+<p><font size=3D3 face=3D"sans-serif"><br>
+There are actually some guides for this, see lab4 in:</font><font size=3D3 =
+color=3Dblue face=3D"sans-serif"><u><br>
+</u></font><a href=3D"https://www.yoctoproject.org/sites/default/files/kern=
+el-lab-2.1=5F0.pdf"><font size=3D3 color=3Dblue face=3D"sans-serif"><u>http=
+s://www.yoctoproject.org/sites/default/files/kernel-lab-2.1=5F0.pdf</u></fo=
+nt></a>
+<p><font size=3D3 face=3D"sans-serif">But to simply build a module using bi=
+tbake,
+you can just do:</font>
+<p><font size=3D3 face=3D"sans-serif">$ bitbake ledmodule</font>
+<p><font size=3D3 face=3D"sans-serif">then you will find your recipe and the
+module in the ./tmp/work/ structure (assuming you are not inheriting 'rm=5F=
+work'
+in local.conf...).</font>
+<p><font size=3D3 face=3D"sans-serif">&nbsp;</font>
+<p><font size=3D3 face=3D"sans-serif">if you just want to compile it, you c=
+an
+run:</font>
+<p><font size=3D3 face=3D"sans-serif">$ bitbake ledmodule -c compile</font>
+<p><font size=3D3 face=3D"sans-serif">&nbsp;</font>
+<p><font size=3D3 face=3D"sans-serif">BR Petter</font>
+<br><font size=3D3 face=3D"Courier New">Petter Mab=E4cker</font>
+<br><font size=3D3 face=3D"Courier New">&nbsp;</font>
+<br><font size=3D3 face=3D"Courier New">Technux &lt;</font><a href=3Dmailto=
+:petter@technux.se><font size=3D3 color=3Dblue face=3D"Courier New"><u>pett=
+er@technux.se</u></font></a><font size=3D3 face=3D"Courier New">&gt;</font>
+<br><a href=3Dhttp://www.technux.se/><font size=3D3 color=3Dblue face=3D"Co=
+urier New"><u>www.technux.se</u></font></a><tt><font size=3D2>--
+<br>
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F<br>
+yocto mailing list<br>
+yocto@yoctoproject.org<br>
+</font></tt><a href=3Dhttps://lists.yoctoproject.org/listinfo/yocto><tt><fo=
+nt size=3D2>https://lists.yoctoproject.org/listinfo/yocto</font></tt></a><t=
+t><font size=3D2><br>
+</font></tt>
+<br>
 
---_9651b651-a3e6-47bd-ace0-8415c45bfcc4_--
+--=_alternative 004E7BD8C1257FAF_=--
