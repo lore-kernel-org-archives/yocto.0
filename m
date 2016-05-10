@@ -1,34 +1,64 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3071CE00BA1; Tue, 10 May 2016 07:17:22 -0700 (PDT)
+	id 891ACE00D69; Tue, 10 May 2016 07:53:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD6ADE00B89
-	for <yocto@yoctoproject.org>; Tue, 10 May 2016 07:17:17 -0700 (PDT)
-In-Reply-To: <F6CD090A69E64C4289DC608E1C5D2024253EE36B@DE08W1305.global.ds.honeywell.com>
-References: <OFC4AEB901.A588C143-ONC1257FAE.0051F9D2-C1257FAE.0053090F@esa-grimma.de>	<06a1adbdf434d7992e40e72f452cedae@technux.se>
-	<F6CD090A69E64C4289DC608E1C5D2024253EE36B@DE08W1305.global.ds.honeywell.com>
-To: "Esponde, Joel" <Joel.Esponde@Honeywell.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E1C3E00D57
+	for <yocto@yoctoproject.org>; Tue, 10 May 2016 07:53:05 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id n129so182351308wmn.1
+	for <yocto@yoctoproject.org>; Tue, 10 May 2016 07:53:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=W2uJPIRSsYLsoADzUUaHFbXWu1jSnV6S11uiSjNv9Kk=;
+	b=T/GqOspxcnwV12G+xmGv/fXELisOZzxq+5KueSUEZrDioVidOZXwTML7/zcGnghjro
+	xwNb6kQRr4gzDUOQK+ZDbqeCqrPG3kOKAauCmM3Uqpgs4vnNind6nYVqfW3eooX+Ihlu
+	51N0lyuZM3sEonobewDitCa0YP5lW4d5P6kc/qE2b5e9fpF/e2uW4qKyZ8ZX6CpF30hZ
+	j7rI/sGQkgGAIDzUAQjC7APl6FBj6xPdUOWQolHtM09I+86S/rmJ/6VMZ/7wAS+C8SEu
+	8X9pU0BmKuYMLVdF38Iu/Ykp4yMW6UxvK/kb4U5tttW4+fRMUIoDGjB9SBHh+0aUCcj6
+	zVrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=W2uJPIRSsYLsoADzUUaHFbXWu1jSnV6S11uiSjNv9Kk=;
+	b=FHvQC8dEw//Dqz6BRSCpKUZnEmSb3sBdsGQ9yaLq1+caamLnNnM8v+RP8+mi7yyhOa
+	LP6R29D/8iowmk2cWuJtuLIwNl9jyAi1J0X4VqsHukzpjFVpTXpFLfaTgOpaf9Mtzn4m
+	RP8aXGwEybcm8q8BlSzyBrgv+bJ/wNHgn2LHFGNmuY2VsY1lUujsaEs3oHhJEjA8CD63
+	Ih85LO0JwKcRSCkERg9h0w007gDF3gigLRDe9C9ioBIJiaxmLC+RsgXXA1gazylZCjuL
+	unKty+X3fMj3A3mlVlPFZ1qbDBS6Wk1mYOyX0+vnudDTKYxmpa+cG1d5qxqZ0+UxNGom
+	ENwg==
+X-Gm-Message-State: AOPr4FXaCuQJd2ECyBGT/nuBgDgfPJPWUyymn83MtUYLEbElDHzy1+DQSMvoQ0ANzZXM/A==
+X-Received: by 10.28.17.211 with SMTP id 202mr15981520wmr.59.1462891984885;
+	Tue, 10 May 2016 07:53:04 -0700 (PDT)
+Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	lm1sm2940633wjc.25.2016.05.10.07.53.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 10 May 2016 07:53:03 -0700 (PDT)
+Date: Tue, 10 May 2016 16:52:57 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20160510145257.GA19964@resin.home>
+References: <1460399310-15649-1-git-send-email-twoerner@gmail.com>
 MIME-Version: 1.0
-X-KeepSent: 5D135CC9:9530B806-C1257FAF:004D0ED7;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OF5D135CC9.9530B806-ONC1257FAF.004D0ED7-C1257FAF.004E7BD8@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Tue, 10 May 2016 16:17:14 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 10.05.2016 16:17:19,
-	Serialize complete at 10.05.2016 16:17:19
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-bounces@yoctoproject.org
-Subject: Antwort: Re: How to build a simple kernel modul
+In-Reply-To: <1460399310-15649-1-git-send-email-twoerner@gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-chip][PATCH] u-boot-chip: fix md5sum
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,505 +70,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 May 2016 14:17:22 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 004E7BD8C1257FAF_="
+X-List-Received-Date: Tue, 10 May 2016 14:53:09 -0000
+X-Groupsio-MsgNum: 29926
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="d6Gm4EdcadzBjdND"
+Content-Disposition: inline
 
---=_alternative 004E7BD8C1257FAF_=
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--d6Gm4EdcadzBjdND
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks so far!
+On Mon, Apr 11, 2016 at 02:28:30PM -0400, Trevor Woerner wrote:
+> The u-boot master and chip/stable branches have diverged such that the md5sums
+> of the License README files are now different. The latest master branch has
+> added a "SIL OPEN FONT LICENSE (OFL-1.1)" license.
+>
+> diff:
+> 	--- chip/stable-README	2016-04-10 02:05:30.783023170 -0400
+> 	+++ upstream-README	2016-04-11 13:48:34.973027406 -0400
+> 	@@ -67,4 +67,5 @@
+> 	 IBM PIBS (PowerPC Initialization and		IBM-pibs			ibm-pibs.txt
+> 		Boot Software) license
+> 	 ISC License					ISC		Y		isc.txt			https://spdx.org/licenses/ISC
+> 	+SIL OPEN FONT LICENSE (OFL-1.1)		OFL-1.1		Y		OFL.txt			https://spdx.org/licenses/OFL-1.1.html
+> 	 X11 License					X11				x11.txt			https://spdx.org/licenses/X11.html
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  recipes-bsp/u-boot/u-boot-chip_git.bb | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
+> index 2342478..60db3e0 100644
+> --- a/recipes-bsp/u-boot/u-boot-chip_git.bb
+> +++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
+> @@ -2,6 +2,8 @@ require recipes-bsp/u-boot/u-boot.inc
+>
+>  DESCRIPTION = "U-Boot port for C.H.I.P. boards"
+>
+> +LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
+> +
+>  DEPENDS += "dtc-native"
+>  PROVIDES += "u-boot"
+>
+> --
+> 2.7.0.rc3
+>
 
-I have 3 questions for my understanding:
+Hi. Merged to master. Thanks.
 
-1.) How to define extra Include Paths if the module needs some extra=20
-Includes?
-        Like the "mach/gpio.h", which should be under=20
-"<Kernel-Dir>/arch/arm/mach-at91/include" and is needed for the PIN=20
-definitions.
-        Should it be done at the Makefile like:
-                CFLAGS=5Fhello.o +=3D  -I${COMPILER=5FINCLUDE}=20
--I${KERNEL=5FDIR}/arch/arm/mach-at91/include
-        1.1) What are the equivalents to ${COMPILER=5FINCLUDE} and=20
-${KERNEL=5FDIR} in Yocto?
-        1.2) Should it be done in the Makefile or at the bb-File?
-2.) How to activate/deactivate the Driver in the "local.conf"?
-3.) How does the process works with cmake?
-        3.1) Is it enough to inherit after modul cmake?
-        like @ hello-mod=5F0.1.bb -> "inherit module cmake"
+--
+Andrei Gherzan
 
+--d6Gm4EdcadzBjdND
+Content-Type: application/pgp-signature; name="signature.asc"
 
-With kind regards!
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-Stefan Jaritz
-Entwickler
+iQIcBAEBCAAGBQJXMfXJAAoJEHO76Gt+erfP/T0P/RK6+ASsXzJaoEwt/I8+0cCT
+GzUn3xApss6geROpoWcaKmXanOOSZI7vePbYKlxCpnBfrK5Q613lWLdEPG7cZS45
+BZpGdJUzxIa1BAH9FVhRsKe5MINiMa8g5pqw4b7jETrMnIN35i+mqRVFVT4Stor3
+GOoIkaAl6B2UECXyG7U1h6bCKN6k/wVzvfj/5y6IrXWXRxgCWXQPypeswNc+TmwV
+jGhm8OkUmhL2ieO8thFkB7NWyQdMK/hdpZmz/VJQ6k3q05+zFg+p9cth4pOQZSmk
+Dko92hi2tbpt6bEeqd8qDIi+6WAGzPz6DtdBDs33pqtV6OeAxME7X8QdbHKBU+mg
+OY+ZirYY07GOcMjF28SoT7ZV4oyAQn7e/j4GAsJZ8SB/Q/hQrAo5ZwuM+6XjdT6S
+V4T85Cix2Z9LqptV/UgaRxbxJvPCcmhju29vGwvi7PZifsp/beBe7h1iXYAjKeG8
+kyOuNve7R1JJ6ng2Co0Dens0OpQ+k9tyifkrT2K4R3vv/2X4U4c1K0JVTKAZ/FwV
+3NEyE02zNIcxlE8UmQ/byzooc4DgP/S2RU64R/szTuLCXsW+e3MpRD0fFR5V06E+
+/i3TL01Rlh1M91XkpI7O1OgZnKRbyZf/9zKODyfiTdzuih8f0TYvQqL+uW/k/6/S
+64TntbDk0XEkDPge3PfH
+=XVIj
+-----END PGP SIGNATURE-----
 
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
-
-
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
-
-
-Von:    "Esponde, Joel" <Joel.Esponde@Honeywell.com>
-An:     "petter@technux.se" <petter@technux.se>, "yocto@yoctoproject.org"=20
-<yocto@yoctoproject.org>
-Datum:  10.05.2016 12:30
-Betreff:        Re: [yocto] How to build a simple kernel modul
-Gesendet von:   yocto-bounces@yoctoproject.org
-
-
-
-Hi,
-=20
-And here is a hello world module example:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/recipes-k=
-ernel/hello-mod
-=20
-Jo=EBl Esponde
-Honeywell | Sensing and Productivity Solutions
-=20
-De : yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org
-] De la part de Petter Mab=E4cker
-Envoy=E9 : mardi 10 mai 2016 06:51
-=C0 : yocto@yoctoproject.org
-Objet : Re: [yocto] How to build a simple kernel modul
-=20
-2016-05-09 17:06 skrev S.Jaritz@esa-grimma.de:
-Hej,=20
-
-I want to build a recipe for a simple GPIO Module. I found no tutorial at=20
-the documentation. What is the comon way to build a simple kernel module?=20
-
-The Makefile looks like:=20
-#########=20
-obj-m +=3D ledmodule.o=20
-
-SRC :=3D $(shell pwd)=20
-
-all: modules=20
-
-modules:=20
-        $(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=20
-
-modules=5Finstall:=20
-        $(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=5Finstall=20
-
-clean:=20
-        rm -rf *.o *.ko *.mod.c=20
-#########=20
-The recipe contains:=20
-#########=20
-SUMMARY =3D "ledmodule"=20
-SECTION =3D ""=20
-LICENSE =3D "CLOSED"=20
-
-inherit module=20
-
-SRC=5FURI =3D "file://ledmodule.c \=20
-        file://Makefile \=20
-        "=20
-S =3D "${WORKDIR}/ledmodule-0.1"=20
-#########=20
-
-Regards
-
-Stefan Jaritz
-Entwickler
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
-
-
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
-
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-Hi,
-
-There are actually some guides for this, see lab4 in:
-https://www.yoctoproject.org/sites/default/files/kernel-lab-2.1=5F0.pdf
-But to simply build a module using bitbake, you can just do:
-$ bitbake ledmodule
-then you will find your recipe and the module in the ./tmp/work/ structure =
-
-(assuming you are not inheriting 'rm=5Fwork' in local.conf...).
-=20
-if you just want to compile it, you can run:
-$ bitbake ledmodule -c compile
-=20
-BR Petter
-Petter Mab=E4cker
-=20
-Technux <petter@technux.se>
-www.technux.se--=20
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-
---=_alternative 004E7BD8C1257FAF_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<font size=3D2 face=3D"sans-serif">Thanks so far!</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I have 3 questions for my understand=
-ing:</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">1.) How to define extra Include Paths
-if the module needs some extra Includes?</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Like
-the &quot;mach/gpio.h&quot;, which should be under &quot;&lt;Kernel-Dir&gt;=
-/arch/arm/mach-at91/include&quot;
-and is needed for the PIN definitions.</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; Should
-it be done at the Makefile like:</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp; &nbsp; &nbsp; CFLAGS=5Fhello.o +=3D &nbsp;-I${COMPILER=5FINCLUDE}
--I${KERNEL=5FDIR}/arch/arm/mach-at91/include</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1.1)
-What are the equivalents to ${COMPILER=5FINCLUDE} and ${KERNEL=5FDIR} in Yo=
-cto?</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 1.2)
-Should it be done in the Makefile or at the bb-File?</font>
-<br><font size=3D2 face=3D"sans-serif">2.) How to activate/deactivate the D=
-river
-in the &quot;local.conf&quot;?</font>
-<br><font size=3D2 face=3D"sans-serif">3.) How does the process works with
-cmake?</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; 3.1)
-Is it enough to inherit after modul cmake?</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; like
-@ hello-mod=5F0.1.bb -&gt; &quot;inherit module cmake&quot;</font>
-<br>
-<br>
-<br><font size=3D2 face=3D"sans-serif">With kind regards!<br>
-<br>
-Stefan Jaritz<br>
-Entwickler<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-<br>
-<br>
-<br>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
-nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Esponde, Joel&quot;
-&lt;Joel.Esponde@Honeywell.com&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
-bsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;petter@technux.se&quo=
-t;
-&lt;petter@technux.se&gt;, &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoc=
-toproject.org&gt;</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
- &nbsp;
-&nbsp;</font><font size=3D1 face=3D"sans-serif">10.05.2016 12:30</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
-p;
-&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
-How to build a simple kernel modul</font>
-<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Gesendet von: &nbsp;=
- &nbsp;
-&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">yocto-bounces@yoctop=
-roject.org</font>
-<br>
-<hr noshade>
-<br>
-<br>
-<br><font size=3D3 color=3D#400000 face=3D"Calibri">Hi,</font>
-<br><font size=3D3 color=3D#400000 face=3D"Calibri">&nbsp;</font>
-<br><font size=3D3 color=3D#400000 face=3D"Calibri">And here is a hello wor=
-ld
-module example:</font>
-<br><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-ske=
-leton/recipes-kernel/hello-mod"><font size=3D3 color=3Dblue face=3D"Calibri=
-"><u>http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/reci=
-pes-kernel/hello-mod</u></font></a>
-<br><font size=3D3 color=3D#400000 face=3D"Calibri">&nbsp;</font>
-<br><font size=3D3 color=3D#808080 face=3D"Arial"><b>Jo=EBl Esponde</b></fo=
-nt>
-<br><font size=3D3 color=3D#808080 face=3D"Arial"><b>Honeywell </b>| Sensing
-and Productivity Solutions</font>
-<br><font size=3D3 face=3D"Times New Roman">&nbsp;</font>
-<br><font size=3D3 face=3D"Calibri"><b>De :</b> yocto-bounces@yoctoproject.=
-org
-[</font><a href=3D"mailto:yocto-bounces@yoctoproject.org"><font size=3D3 fa=
-ce=3D"Calibri">mailto:yocto-bounces@yoctoproject.org</font></a><font size=
-=3D3 face=3D"Calibri">]
-<b>De la part de</b> Petter Mab=E4cker<b><br>
-Envoy=E9 :</b> mardi 10 mai 2016 06:51<b><br>
-=C0 :</b> yocto@yoctoproject.org<b><br>
-Objet :</b> Re: [yocto] How to build a simple kernel modul</font>
-<br><font size=3D3 face=3D"Times New Roman">&nbsp;</font>
-<p><font size=3D3 face=3D"sans-serif">2016-05-09 17:06 skrev </font><a href=
-=3D"mailto:S.Jaritz@esa-grimma.de"><font size=3D3 color=3Dblue face=3D"sans=
--serif"><u>S.Jaritz@esa-grimma.de</u></font></a><font size=3D3 face=3D"sans=
--serif">:</font>
-<br><font size=3D3 face=3D"Arial">Hej,</font><font size=3D3 face=3D"sans-se=
-rif">
-<br>
-</font><font size=3D3 face=3D"Arial"><br>
-I want to build a recipe for a simple GPIO Module. I found no tutorial
-at the documentation. What is the comon way to build a simple kernel module=
-?</font><font size=3D3 face=3D"sans-serif">
-<br>
-</font><font size=3D3 face=3D"Arial"><br>
-The Makefile looks like:</font><font size=3D3 face=3D"sans-serif"> </font><=
-font size=3D3 face=3D"Arial"><br>
-#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
-ace=3D"Arial"><br>
-obj-m +=3D ledmodule.o</font><font size=3D3 face=3D"sans-serif"> <br>
-</font><font size=3D3 face=3D"Arial"><br>
-SRC :=3D $(shell pwd)</font><font size=3D3 face=3D"sans-serif"> <br>
-</font><font size=3D3 face=3D"Arial"><br>
-all: modules</font><font size=3D3 face=3D"sans-serif"> <br>
-</font><font size=3D3 face=3D"Arial"><br>
-modules:</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 fa=
-ce=3D"Arial"><br>
- &nbsp; &nbsp; &nbsp; &nbsp;$(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules</=
-font><font size=3D3 face=3D"sans-serif">
-<br>
-</font><font size=3D3 face=3D"Arial"><br>
-modules=5Finstall:</font><font size=3D3 face=3D"sans-serif"> </font><font s=
-ize=3D3 face=3D"Arial"><br>
- &nbsp; &nbsp; &nbsp; &nbsp;$(MAKE) -C $(KERNEL=5FSRC) M=3D$(SRC) modules=
-=5Finstall</font><font size=3D3 face=3D"sans-serif">
-<br>
-</font><font size=3D3 face=3D"Arial"><br>
-clean:</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=
-=3D"Arial"><br>
- &nbsp; &nbsp; &nbsp; &nbsp;rm -rf *.o *.ko *.mod.c</font><font size=3D3 fa=
-ce=3D"sans-serif">
-</font><font size=3D3 face=3D"Arial"><br>
-#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
-ace=3D"Arial"><br>
-The recipe contains:</font><font size=3D3 face=3D"sans-serif"> </font><font=
- size=3D3 face=3D"Arial"><br>
-#########</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 f=
-ace=3D"Arial"><br>
-SUMMARY =3D &quot;ledmodule&quot;</font><font size=3D3 face=3D"sans-serif">=
- </font><font size=3D3 face=3D"Arial"><br>
-SECTION =3D &quot;&quot;</font><font size=3D3 face=3D"sans-serif"> </font><=
-font size=3D3 face=3D"Arial"><br>
-LICENSE =3D &quot;CLOSED&quot;</font><font size=3D3 face=3D"sans-serif"> <b=
-r>
-</font><font size=3D3 face=3D"Arial"><br>
-inherit module</font><font size=3D3 face=3D"sans-serif"> <br>
-</font><font size=3D3 face=3D"Arial"><br>
-SRC=5FURI =3D &quot;</font><a href=3Dfile://sek4=5Fledmodule.c/><font size=
-=3D3 color=3Dblue face=3D"Arial"><u>file://ledmodule.c</u></font></a><font =
-size=3D3 face=3D"Arial">
-\</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=3D"A=
-rial"><br>
- &nbsp; &nbsp; &nbsp; &nbsp;</font><a href=3Dfile://Makefile/><font size=3D=
-3 color=3Dblue face=3D"Arial"><u>file://Makefile</u></font></a><font size=
-=3D3 face=3D"Arial">
-\</font><font size=3D3 face=3D"sans-serif"> </font><font size=3D3 face=3D"A=
-rial"><br>
- &nbsp; &nbsp; &nbsp; &nbsp;&quot;</font><font size=3D3 face=3D"sans-serif">
-</font><font size=3D3 face=3D"Arial"><br>
-S =3D &quot;${WORKDIR}/ledmodule-0.1&quot;</font><font size=3D3 face=3D"san=
-s-serif">
-</font><font size=3D3 face=3D"Arial"><br>
-#########</font><font size=3D3 face=3D"sans-serif"> <br>
-</font><font size=3D3 face=3D"Arial"><br>
-Regards<br>
-<br>
-Stefan Jaritz<br>
-Entwickler<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: </font><a href=3D"mailto:s.jaritz@esa-grimma.de"><font size=3D3 col=
-or=3Dblue face=3D"Arial"><u>s.jaritz@esa-grimma.de</u></font></a><font size=
-=3D3 face=3D"Arial"><br>
-Internet: </font><a href=3D"http://www.esa-grimma.de/"><font size=3D3 color=
-=3Dblue face=3D"Arial"><u>www.esa-grimma.de</u></font></a><font size=3D3 fa=
-ce=3D"Arial"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
-<p><font size=3D3 face=3D"sans-serif">Hi,</font>
-<p><font size=3D3 face=3D"sans-serif"><br>
-There are actually some guides for this, see lab4 in:</font><font size=3D3 =
-color=3Dblue face=3D"sans-serif"><u><br>
-</u></font><a href=3D"https://www.yoctoproject.org/sites/default/files/kern=
-el-lab-2.1=5F0.pdf"><font size=3D3 color=3Dblue face=3D"sans-serif"><u>http=
-s://www.yoctoproject.org/sites/default/files/kernel-lab-2.1=5F0.pdf</u></fo=
-nt></a>
-<p><font size=3D3 face=3D"sans-serif">But to simply build a module using bi=
-tbake,
-you can just do:</font>
-<p><font size=3D3 face=3D"sans-serif">$ bitbake ledmodule</font>
-<p><font size=3D3 face=3D"sans-serif">then you will find your recipe and the
-module in the ./tmp/work/ structure (assuming you are not inheriting 'rm=5F=
-work'
-in local.conf...).</font>
-<p><font size=3D3 face=3D"sans-serif">&nbsp;</font>
-<p><font size=3D3 face=3D"sans-serif">if you just want to compile it, you c=
-an
-run:</font>
-<p><font size=3D3 face=3D"sans-serif">$ bitbake ledmodule -c compile</font>
-<p><font size=3D3 face=3D"sans-serif">&nbsp;</font>
-<p><font size=3D3 face=3D"sans-serif">BR Petter</font>
-<br><font size=3D3 face=3D"Courier New">Petter Mab=E4cker</font>
-<br><font size=3D3 face=3D"Courier New">&nbsp;</font>
-<br><font size=3D3 face=3D"Courier New">Technux &lt;</font><a href=3Dmailto=
-:petter@technux.se><font size=3D3 color=3Dblue face=3D"Courier New"><u>pett=
-er@technux.se</u></font></a><font size=3D3 face=3D"Courier New">&gt;</font>
-<br><a href=3Dhttp://www.technux.se/><font size=3D3 color=3Dblue face=3D"Co=
-urier New"><u>www.technux.se</u></font></a><tt><font size=3D2>--
-<br>
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F<br>
-yocto mailing list<br>
-yocto@yoctoproject.org<br>
-</font></tt><a href=3Dhttps://lists.yoctoproject.org/listinfo/yocto><tt><fo=
-nt size=3D2>https://lists.yoctoproject.org/listinfo/yocto</font></tt></a><t=
-t><font size=3D2><br>
-</font></tt>
-<br>
-
---=_alternative 004E7BD8C1257FAF_=--
+--d6Gm4EdcadzBjdND--
