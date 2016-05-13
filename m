@@ -1,26 +1,63 @@
-Return-Path: <auh@auh.yoctoproject.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A28BDE00C18; Thu, 12 May 2016 17:43:32 -0700 (PDT)
+	id AD666E00C44; Thu, 12 May 2016 22:43:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.67 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from auh.yoctoproject.org (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5204E00BF8
-	for <yocto@yoctoproject.org>; Thu, 12 May 2016 17:43:27 -0700 (PDT)
-Received: from auh.yoctoproject.org (localhost [127.0.0.1])
-	by auh.yoctoproject.org (Postfix) with ESMTP id 0274E6FE17CF
-	for <yocto@yoctoproject.org>; Fri, 13 May 2016 00:44:29 +0000 (UTC)
-MIME-Version: 1.0
-From: auh@auh.yoctoproject.org
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
+	[209.85.220.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72F3BE00C1E
+	for <yocto@yoctoproject.org>; Thu, 12 May 2016 22:43:14 -0700 (PDT)
+Received: by mail-pa0-f67.google.com with SMTP id yl2so7769039pac.1
+	for <yocto@yoctoproject.org>; Thu, 12 May 2016 22:43:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=GwPPEnkBq1Ewd+wAxuQ5Bpw73XOT4oXUEI4y57X/3lU=;
+	b=ukVCEt8tsRQcfAGf7qQV8ynwo/AZPH8hluPk6H+U5fYT9qBU5XsCbBdmwPPF9RriJD
+	wL/j/dJ07SBkITSprsBlmUNAdCMBZ7gMxfk2tV6gxEEFdYWY4FRDUDI82YWh8iCB7s/O
+	jwUIwSr2muIs3zMlnAEHdHKs9nBshtDCidKHoXmn3l+jSb34aGoybU0TqCHxfZto29J0
+	w09njjhFJQWhLgqw5DPKRWARLT/vmOAspoHdLiQeT9T2v+v9/8lVbvFJWKBgKlAElwID
+	1y+IvqwL8eyyXpdoqp/IOFLvALyQEMcwY4Waye/5A2kEcvDSpyJyaEcyxakRitIaV+FL
+	o6ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=GwPPEnkBq1Ewd+wAxuQ5Bpw73XOT4oXUEI4y57X/3lU=;
+	b=UyZI/icvQWlZ26EMqfOC/4ilHtLrFpKc8DUg20nalTOJi+wN6pG5PEwafghG6xDLsS
+	dH7t0dL/tQWDi3edwEUwM9datDwxzoRNoT9LztPl18uMOIjgJEORcROhsPb7QRsiTEPz
+	nW/FdmTfekyTUQIKM1jkg+rSt4R/vv/TlX3su424meLAz/BHH9JW+AhkwCNpvL4X/l0S
+	wPSGxZjw7o4i+fyMmjToyZx42kN3W/49Vr4KFpPWTws03iaiKANNKFVru9IJYQBt2b1O
+	NWGFmhWAb6ObPY5XbaYDnziUtb7yjaQfF+FaabdUa/rBtyWi5QaH0gZJR9FblJV15lCU
+	trfQ==
+X-Gm-Message-State: AOPr4FUV3C7ScuFWrgIcL+ZEX8gbJQFvqXeL1qxL/K9Yb71U6jSFtjV97nvlnKZrJeoeXA==
+X-Received: by 10.66.66.42 with SMTP id c10mr19865262pat.119.1463118194466;
+	Thu, 12 May 2016 22:43:14 -0700 (PDT)
+Received: from haswell.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
+	i6sm23900209pfc.65.2016.05.12.22.43.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 12 May 2016 22:43:13 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Message-Id: <20160513004429.0274E6FE17CF@auh.yoctoproject.org>
-Date: Fri, 13 May 2016 00:44:29 +0000 (UTC)
-Subject: [AUH] Upgrade status: 2016-05-13
+Date: Thu, 12 May 2016 22:43:03 -0700
+Message-Id: <1463118184-2174-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.8.2
+Subject: [meta-raspberrypi][PATCH 1/2] linux-rpi: Enable kconf options to enable initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,62 +69,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 May 2016 00:43:32 -0000
-Content-Type: multipart/mixed; boundary="===============3970517643002190266=="
+X-List-Received-Date: Fri, 13 May 2016 05:43:16 -0000
 
---===============3970517643002190266==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Additionally add few few file systems e.g. squashfs, overlayfs
+to support booting with initramfs
 
-AUH finished upgrade batch the result patches/logs can be found at:
-https://logs.yoctoproject.org/auh//20160512000003.tar.gz, next are the statistics:
+Drop checking for target triplet to set EABI, rpi probaly should
+not have any legacy into OABI world.
 
-Recipe upgrade statistics:
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ recipes-kernel/linux/linux-rpi.inc | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
 
-    * Failed(do_compile): 1
-        ruby, 2.3.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-    * Failed(do_configure): 2
-        libinput, 1.3.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        epiphany, 3.20.2, Alexander Kanavin <alexander.kanavin@intel.com>
-    * Succeeded: 10
-        ofono, 1.18, Maxin B. John <maxin.john@intel.com>
-        xf86-input-synaptics, 1.8.99.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        harfbuzz, 1.2.7, Maxin B. John <maxin.john@intel.com>
-        glib-networking, 2.48.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        wayland, 1.10.91, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        augeas, 1.5.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        mc, 4.8.17, Maxin B. John <maxin.john@intel.com>
-        matchbox-terminal, 2+gitAUTOINC+452bca2534, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        xf86-input-evdev, 2.10.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        man-pages, 4.06, Hongxu Jia <hongxu.jia@windriver.com>
-    * Failed(other errors): 15
-        python-git, 2.0.2, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        gstreamer1.0-plugins-bad, 1.8.1, Maxin B. John <maxin.john@intel.com>
-        btrfs-tools, 4.5.3, Alexander Kanavin <alexander.kanavin@intel.com>
-        qemu, 2.6.0, Aníbal Limón <anibal.limon@linux.intel.com>
-        glib-2.0, 2.48.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python3-pip, 8.1.2, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        dosfstools, 4.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        python-setuptools, 21.0.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-        libpam, 1.3.0, Maxin B. John <maxin.john@intel.com>
-        weston, 1.10.91, Jussi Kukkonen <jussi.kukkonen@intel.com>
-        ltp, 20160510, Robert Yang <liezhi.yang@windriver.com>
-        iso-codes, 3.68, Alexander Kanavin <alexander.kanavin@intel.com>
-        webkitgtk, 2.12.2, Alexander Kanavin <alexander.kanavin@intel.com>
-        libarchive, 3.2.0, Alexander Kanavin <alexander.kanavin@intel.com>
-        python3-setuptools, 21.0.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+diff --git a/recipes-kernel/linux/linux-rpi.inc b/recipes-kernel/linux/linux-rpi.inc
+index fae78b7..1755685 100644
+--- a/recipes-kernel/linux/linux-rpi.inc
++++ b/recipes-kernel/linux/linux-rpi.inc
+@@ -18,6 +18,8 @@ UDEV_GE_141 ?= "1"
+ CMDLINE_DEBUG ?= '${@base_conditional("DISTRO_TYPE", "release", "quiet", "debug", d)}'
+ CMDLINE_append = " ${CMDLINE_DEBUG}"
+ 
++KERNEL_INITRAMFS ?= '${@base_conditional("INITRAMFS_IMAGE_BUNDLE", "1", "1", "", d)}'
++
+ # Set a variable in .configure
+ # $1 - Configure variable to be set
+ # $2 - value [n/y/value]
+@@ -38,15 +40,10 @@ do_configure_prepend() {
+     CONF_SED_SCRIPT=""
+ 
+     # oabi / eabi support
+-    if [ "${TARGET_OS}" = "linux-gnueabi" -o  "${TARGET_OS}" = "linux-uclibceabi" ]; then
+-        kernel_configure_variable AEABI y
+-        if [ "${ARM_KEEP_OABI}" = "1" ] ; then
+-            kernel_configure_variable OABI_COMPAT y
+-        else
+-            kernel_configure_variable OABI_COMPAT n
+-        fi
++    kernel_configure_variable AEABI y
++    if [ "${ARM_KEEP_OABI}" = "1" ] ; then
++        kernel_configure_variable OABI_COMPAT y
+     else
+-        kernel_configure_variable AEABI n
+         kernel_configure_variable OABI_COMPAT n
+     fi
+ 
+@@ -103,7 +100,14 @@ do_configure_prepend() {
+         kernel_configure_variable ROOT_NFS y
+         kernel_configure_variable CMDLINE "\"${CMDLINE_NFSROOT_USB}\""
+     fi
+-
++    if [ ! -z "${KERNEL_INITRAMFS}" ]; then
++        kernel_configure_variable BLK_DEV_INITRD y
++        kernel_configure_variable INITRAMFS_SOURCE ""
++        kernel_configure_variable RD_GZIP y
++        kernel_configure_variable OVERLAY_FS y
++        kernel_configure_variable SQUASHFS y
++        kernel_configure_variable UBIFS_FS y
++    fi
+     # Activate CONFIG_LEGACY_PTYS
+     kernel_configure_variable LEGACY_PTYS y
+ 
+-- 
+2.8.2
 
-    TOTAL: attempted=28 succeeded=10(35.71%) failed=18(64.29%)
 
-Recipe upgrade statistics per Maintainer:
-
-    Alejandro Hernandez <alejandro.hernandez: attempted=5 succeeded=0(0.00%) failed=5(100.00%)
-    Alexander Kanavin <alexander.kanavin: attempted=5 succeeded=0(0.00%) failed=5(100.00%)
-    Aníbal Limón <anibal.limon: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Jussi Kukkonen <jussi.kukkonen: attempted=10 succeeded=6(60.00%) failed=4(40.00%)
-    Hongxu Jia <hongxu.jia: attempted=1 succeeded=1(100.00%) failed=0(0.00%)
-    Robert Yang <liezhi.yang: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
-    Maxin B. John <maxin.john: attempted=5 succeeded=3(60.00%) failed=2(40.00%)
-
---===============3970517643002190266==--
