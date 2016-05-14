@@ -1,41 +1,57 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <sanzi.voicu@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20F11E00D63; Sat, 14 May 2016 03:16:49 -0700 (PDT)
+	id 56A93E00D6D; Sat, 14 May 2016 05:03:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.163 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sanzi.voicu[at]yahoo.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [98.139.213.95 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2D12E00D4C
-	for <yocto@yoctoproject.org>; Sat, 14 May 2016 03:16:44 -0700 (PDT)
-Received: from localhost.localdomain (111-250-208-151.dynamic.hinet.net
-	[111.250.208.151])
-	by msfrf2604.sfr.fr (SMTP Server) with ESMTP id E25211C004CB1;
-	Sat, 14 May 2016 12:16:43 +0200 (CEST)
-Received: from localhost.localdomain (111-250-208-151.dynamic.hinet.net
-	[111.250.208.151])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2604.sfr.fr (SMTP Server) with ESMTPSA;
-	Sat, 14 May 2016 12:16:41 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm8-vm0.bullet.mail.bf1.yahoo.com
+	(nm8-vm0.bullet.mail.bf1.yahoo.com [98.139.213.95])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBBDFE00D63
+	for <yocto@yoctoproject.org>; Sat, 14 May 2016 05:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1463227411; bh=lb0JTDo2iV4IeT7+iosrO13AU2efkkdTNadU8nUd+3w=;
+	h=From:To:Cc:Subject:Date:From:Subject;
+	b=Fes9makKuEcMbFH4nkSOsse823M2Igf5Y+WP9mkTBr1YTLYQ1VBBOBhRMsqV73mhRteH4APD7SIHyfG8jxq9/dDLEKpgulcyeoYvaU6kRdkDBvdB9XV9SV7gcoxKrPi0SYgqQIYHNnqLj0eEl3X0rOL/ThhNwH/Wd/o7FOJjSCwIsWKr3sXNPmIxK0FHtrny0wByoc5PFINprl5rgKDE46wCufFOeEtjj1gmpw28l44+zDKSWJsc7i11bk184Dyy3WHqcV/GFt/pg0EkBEVE17yZX5ibyj4nh7alRl9/5sMmOZAv84a+9WBKH+7Y3uyfJuNLiKuNyZxUqvns1EIGRw==
+Received: from [98.139.170.178] by nm8.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 May 2016 12:03:31 -0000
+Received: from [68.142.230.65] by tm21.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 May 2016 12:03:31 -0000
+Received: from [127.0.0.1] by smtp222.mail.bf1.yahoo.com with NNFMP;
+	14 May 2016 12:03:31 -0000
+X-Yahoo-Newman-Id: 706573.68469.bm@smtp222.mail.bf1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: YF_cXYUVM1nS4U6hCny.Kb3lrbuAySOwOYhypVrXXoUTvRU
+	Hm4_cg7js7OONE6vr3WlCD.Z9uQ2jZ0km_4x1u.pitgFGsYoBMa7G45NEp78
+	gJtHSezyrBG6wc4Kk9yZbgSJ3e5rcpPXkyearlZGueZfTLeTrv2kievWqozm
+	efC.z6HkTaXTN5czmtXjtKzV4D9r6wrqzfwbkSho6ondRxhrf.cBPPXMvTli
+	FgIspA.8e6UccFtUJ6cKQsrl141xmpwAPspsQ6ErqBg5pJwQ7zE4hXLuT00c
+	_h6aspMdXtpsYRmTrCEhOSkdRT91bhRxF5lqhFqJdciAXRPHhUIVMs4.shSj
+	iyNJGITunI8SLUescrDOPzVLHox9Fm.lxahsQfPXraar9PsyQgpEoAbyTObC
+	liObas9nb9IhanHhu0vE.dDSVN2AIvyGUN8dD7lfR1RK5iTr6wW7B01JdQ0W
+	EEwWnA_9adco28cyDu6i2y97uZh3Rbauo.FE8iOeLRizaIh0m2yPBat1YlNs
+	KhGe04OHkvbFsK4Y8f_xvuxEjqNVAPi1AbS4MCDlGqDrcTv5izw2nqI4Z4Ok -
+X-Yahoo-SMTP: I18nf8WswBCbDnbjxFg1KGYs2dWSvlUt
+From: "Sanziana.Voicu" <sanzi.voicu@yahoo.com>
 To: yocto@yoctoproject.org
-Date: Sat, 14 May 2016 18:15:52 +0800
-Message-Id: <1463220952-67318-2-git-send-email-herve.jourdain@neuf.fr>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1463220952-67318-1-git-send-email-herve.jourdain@neuf.fr>
-References: <1463220952-67318-1-git-send-email-herve.jourdain@neuf.fr>
-X-sfr-mailing: LEGIT
-MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v2 1/1] Support for .dtbo files for dtb overlays, required by firmware after 2016/04/12
+Date: Sat, 14 May 2016 15:03:25 +0300
+Message-Id: <1463227406-4269-1-git-send-email-sanzi.voicu@yahoo.com>
+X-Mailer: git-send-email 2.5.0
+Subject: [meta-cgl][PATCH] CGL recipes compliance calculator first draft
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,200 +63,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 May 2016 10:16:49 -0000
+X-List-Received-Date: Sat, 14 May 2016 12:03:36 -0000
 
-Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+From: Sanziana Voicu <sanzi.voicu@yahoo.com>
+
+Signed-off-by: Sanziana Voicu <sanzi.voicu@yahoo.com>
 ---
- classes/linux-raspberrypi-base.bbclass             |  4 +--
- classes/sdcard_image-rpi.bbclass                   |  6 ++--
- conf/machine/include/rpi-base.inc                  | 30 +++++++++----------
- .../0002-fix-dtbo-rules.patch                      | 35 ++++++++++++++++++++++
- .../0001-fix-dtbo-rules.patch                      | 27 +++++++++++++++++
- recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  1 +
- recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
- 7 files changed, 84 insertions(+), 20 deletions(-)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-fix-dtbo-rules.patch
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+ meta-cgl-common/classes/cgl-calc.bbclass           |  21 ++++
+ .../recipes-cgl/corosync/corosync_1.4.7.bb         |   7 +-
+ .../recipes-cgl/pacemaker/pacemaker_1.1.13.bb      |   7 +-
+ scripts/script.py                                  | 117 +++++++++++++++++++++
+ 4 files changed, 150 insertions(+), 2 deletions(-)
+ create mode 100644 meta-cgl-common/classes/cgl-calc.bbclass
+ create mode 100755 scripts/script.py
 
-diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
-index 40beef1..f2f0a5a 100644
---- a/classes/linux-raspberrypi-base.bbclass
-+++ b/classes/linux-raspberrypi-base.bbclass
-@@ -32,8 +32,8 @@ def get_dts(d, ver):
- def split_overlays(d, out):
-     dts = get_dts(d, None)
-     if out:
--        overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter_out('\S+\.dtbo$', dts, d)
-     else:
--        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter('\S+\.dtbo$', dts, d)
- 
-     return overlays
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 4dfd7a3..e510ce0 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -110,7 +110,7 @@ IMAGE_CMD_rpi-sdimg () {
- 		;;
- 	*)
- 		if test -n "${DTS}"; then
--			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
-+			# Device Tree Overlays are assumed to be suffixed by '.dtbo' string and will be put in a dedicated folder
- 			DT_OVERLAYS="${@split_overlays(d, 0)}"
- 			DT_ROOT="${@split_overlays(d, 1)}"
- 
-@@ -124,9 +124,9 @@ IMAGE_CMD_rpi-sdimg () {
- 			# Copy device tree overlays to dedicated folder
- 			mmd -i ${WORKDIR}/boot.img overlays
- 			for DTB in ${DT_OVERLAYS}; do
--				DTB_BASE_NAME=`basename ${DTB} .dtb`
-+				DTB_BASE_NAME=`basename ${DTB} ".dtbo"`
- 
--				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
-+				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtbo ::overlays/${DTB_BASE_NAME}.dtbo
- 			done
- 		fi
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::${SDIMG_KERNELIMAGE}
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index 56ca83e..47eb23b 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -22,21 +22,21 @@ KERNEL_DEVICETREE ?= " \
-     bcm2709-rpi-2-b.dtb \
-     bcm2710-rpi-3-b.dtb \
-     \
--    overlays/hifiberry-amp-overlay.dtb \
--    overlays/hifiberry-dac-overlay.dtb \
--    overlays/hifiberry-dacplus-overlay.dtb \
--    overlays/hifiberry-digi-overlay.dtb \
--    overlays/i2c-rtc-overlay.dtb \
--    overlays/iqaudio-dac-overlay.dtb \
--    overlays/iqaudio-dacplus-overlay.dtb \
--    overlays/lirc-rpi-overlay.dtb \
--    overlays/pitft22-overlay.dtb \
--    overlays/pitft28-resistive-overlay.dtb \
--    overlays/pps-gpio-overlay.dtb \
--    overlays/rpi-ft5406-overlay.dtb \
--    overlays/w1-gpio-overlay.dtb \
--    overlays/w1-gpio-pullup-overlay.dtb \
--    overlays/pi3-miniuart-bt-overlay.dtb \
-+    overlays/hifiberry-amp.dtbo \
-+    overlays/hifiberry-dac.dtbo \
-+    overlays/hifiberry-dacplus.dtbo \
-+    overlays/hifiberry-digi.dtbo \
-+    overlays/i2c-rtc.dtbo \
-+    overlays/iqaudio-dac.dtbo \
-+    overlays/iqaudio-dacplus.dtbo \
-+    overlays/lirc-rpi.dtbo \
-+    overlays/pitft22.dtbo \
-+    overlays/pitft28-resistive.dtbo \
-+    overlays/pps-gpio.dtbo \
-+    overlays/rpi-ft5406.dtbo \
-+    overlays/w1-gpio.dtbo \
-+    overlays/w1-gpio-pullup.dtbo \
-+    overlays/pi3-miniuart-bt.dtbo \
-     "
- KERNEL_IMAGETYPE ?= "Image"
- 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.1/0002-fix-dtbo-rules.patch b/recipes-kernel/linux/linux-raspberrypi-4.1/0002-fix-dtbo-rules.patch
+diff --git a/meta-cgl-common/classes/cgl-calc.bbclass b/meta-cgl-common/classes/cgl-calc.bbclass
 new file mode 100644
-index 0000000..25564c2
+index 0000000..81660d6
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.1/0002-fix-dtbo-rules.patch
-@@ -0,0 +1,35 @@
-+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-+index afd559d..06819fd 100644
-+--- a/arch/arm/Makefile
-++++ b/arch/arm/Makefile
-+@@ -322,6 +322,8 @@ $(INSTALL_TARGETS):
-+ 
-+ %.dtb: | scripts
-+ 	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-++%.dtbo: | scripts
-++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-+ 
-+ PHONY += dtbs dtbs_install
-+ 
-+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-+index 79e8661..d9bc367 100644
-+--- a/scripts/Makefile.lib
-++++ b/scripts/Makefile.lib
-+@@ -292,6 +292,17 @@ cmd_dtc = mkdir -p $(dir ${dtc-tmp}) ; \
-+ $(obj)/%.dtb: $(src)/%.dts FORCE
-+ 	$(call if_changed_dep,dtc)
-+ 
-++quiet_cmd_dtco = DTCO    $@
-++cmd_dtco = mkdir -p $(dir ${dtc-tmp}) ; \
-++	$(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-++	$(objtree)/scripts/dtc/dtc -@ -H epapr -O dtb -o $@ -b 0 \
-++		-i $(dir $<) $(DTC_FLAGS) \
-++		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
-++	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
-++
-++$(obj)/%.dtbo: $(src)/%-overlay.dts FORCE
-++	$(call if_changed_dep,dtco)
-++
-+ dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
-+ 
-+ # Bzip2
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
-new file mode 100644
-index 0000000..ef04a72
++++ b/meta-cgl-common/classes/cgl-calc.bbclass
+@@ -0,0 +1,21 @@
++
++do_cgl_calc() {
++	NO_COMPLY="NO"
++	if [ -z "${CGL_ID}" ]; then
++		echo "${NO_COMPLY}" > calculator.txt	
++	else
++		echo "${CGL_ID}" > calculator.txt
++	fi
++	if [ -z "${PRIORITY}" ]; then
++		echo "${NO_COMPLY}" >> calculator.txt	
++	else
++		echo "${PRIORITY}" >> calculator.txt
++	fi
++	if [ -z "${DISCLOSURE}" ]; then
++		echo "${NO_COMPLY}" >> calculator.txt	
++	else
++		echo "${DISCLOSURE}" >> calculator.txt
++	fi
++}
++
++addtask cgl_calc after do_fetch before do_build
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.7.bb b/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.7.bb
+index 019a2f4..98b75e6 100644
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.7.bb
++++ b/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.7.bb
+@@ -4,7 +4,7 @@ several default APIs and libraries, default configuration files, and an init \
+ script."
+ HOMEPAGE = "http://corosync.github.io/corosync/"
+ 
+-inherit autotools pkgconfig update-rc.d useradd
++inherit autotools pkgconfig update-rc.d useradd cgl-calc
+ 
+ SRC_URI = "http://build.clusterlabs.org/corosync/releases/${BPN}-${PV}.tar.gz \
+            file://groff-desc-path.patch \
+@@ -58,3 +58,8 @@ USERADD_PACKAGES = "${PN}"
+ GROUPADD_PARAM_${PN} = "haclient"
+ USERADD_PARAM_${PN} = "-M --home  ${localstatedir}/lib/heartbeat -g haclient hacluster"
+ 
++CGL_ID="CFH.2.0,CCM.2.2"
++PRIORITY="P1,P1"
++DISCLOSURE="${PN},${PN}"
++
++
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.13.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.13.bb
+index d2e2395..84c8c84 100755
+--- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.13.bb
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.13.bb
+@@ -26,7 +26,7 @@ SRC_URI = "https://github.com/ClusterLabs/${PN}/archive/Pacemaker-${PV}.zip \
+ SRC_URI[md5sum] = "d84a5173306727a981a4f87e36007595"
+ SRC_URI[sha256sum] = "e963bc59a5d98a3e3441ea5cccb42aa67f9d7934b80c8818e19ae91c5da48331"
+ 
+-inherit autotools-brokensep pkgconfig systemd python-dir useradd
++inherit autotools-brokensep pkgconfig systemd python-dir useradd cgl-calc
+ 
+ S="${WORKDIR}/pacemaker-Pacemaker-${PV}"
+ 
+@@ -90,3 +90,8 @@ SYSTEMD_SERVICE_${PN}-remote += "pacemaker_remote.service"
+ USERADD_PACKAGES = "${PN}"
+ USERADD_PARAM_${PN} = "-r -g haclient -s ${base_sbindir}/nologin hacluster"
+ GROUPADD_PARAM_${PN} = "-r haclient"
++
++CGL_ID="AVL.25.0,CAF.2.1,CAF.2.2"
++PRIORITY="P1,P1,P1"
++DISCLOSURE="${PN},${PN},${PN}"
++
+diff --git a/scripts/script.py b/scripts/script.py
+new file mode 100755
+index 0000000..e033fa4
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
-@@ -0,0 +1,27 @@
-+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-+index a2e7cf7..673c1cb 100644
-+--- a/arch/arm/Makefile
-++++ b/arch/arm/Makefile
-+@@ -333,6 +333,8 @@ $(INSTALL_TARGETS):
-+ 
-+ %.dtb: | scripts
-+ 	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-++%.dtbo: | scripts
-++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-+ 
-+ PHONY += dtbs dtbs_install
-+ 
-+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-+index 3079c4f..6cc3766 100644
-+--- a/scripts/Makefile.lib
-++++ b/scripts/Makefile.lib
-+@@ -293,7 +293,8 @@ $(obj)/%.dtb: $(src)/%.dts FORCE
-+ 	$(call if_changed_dep,dtc)
-+ 
-+ quiet_cmd_dtco = DTCO    $@
-+-cmd_dtco = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-++cmd_dtco = mkdir -p $(dir ${dtc-tmp}) ; \
-++	$(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-+ 	$(objtree)/scripts/dtc/dtc -@ -H epapr -O dtb -o $@ -b 0 \
-+ 		-i $(dir $<) $(DTC_FLAGS) \
-+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-index 79fac66..4d02ea6 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-@@ -5,6 +5,7 @@ LINUX_VERSION ?= "4.1.21"
- SRCREV = "ff45bc0e8917c77461b2901e2743e6339bb70413"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y \
-            file://0001-dts-add-overlay-for-pitft22.patch \
-+           file://0002-fix-dtbo-rules.patch \
-           "
- 
- require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-index f6e1005..831ac5a 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-@@ -4,5 +4,6 @@ LINUX_VERSION ?= "4.4.8"
- 
- SRCREV = "fe7ad6aa5c6940817fe971d80a7b2a1d6052190a"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
-+           file://0001-fix-dtbo-rules.patch \
- "
- require linux-raspberrypi.inc
++++ b/scripts/script.py
+@@ -0,0 +1,117 @@
++#!/usr/bin/python
++
++import os, sys
++
++# The value represents the total number of P! requirements available 
++# inside the CGL 5.0 template
++p1_reqs = 113
++files_no = 0
++cnt = 0
++nr = 0
++
++def compliance_calc(reqs_len):
++	number_p1=0;
++	for i in range(0,reqs_len):
++			number_p1=number_p1+1
++	procent=float(number_p1)/p1_reqs*100.
++	print "CGL compliance: %.2f%%" % procent
++
++build_dir = os.environ.get('BUILDDIR')
++if not build_dir:
++	print "Source the build environment before executing this script!"
++	sys.exit(1)
++director = build_dir + "/tmp/work"
++
++def populate_compl(content, files):
++	temp = content.split('\n')
++	global cnt
++
++	for j in range(0, len(temp[0].split(",")) ):
++		ID[cnt] = temp[0].split(",")[j]
++		P[cnt] = temp[1].split(",")[j]
++		D[cnt] = temp[2].split(",")[j]
++
++		if ID[cnt].split('.')[0] == "AVL":
++			shadow[cnt]=1
++		if ID[cnt].split('.')[0] == "CFH":
++			shadow[cnt]=2
++		if ID[cnt].split('.')[0] == "CSM":
++			shadow[cnt]=3
++		if ID[cnt].split('.')[0] == "CCM":
++			shadow[cnt]=4
++		if ID[cnt].split('.')[0] == "CAF":
++			shadow[cnt]=5
++		if ID[cnt].split('.')[0] == "CDIAG":
++			shadow[cnt]=6
++		if ID[cnt].split('.')[0] == "SMM":
++			shadow[cnt]=7
++		if ID[cnt].split('.')[0] == "SPM":
++			shadow[cnt]=8
++		if ID[cnt].split('.')[0] == "SFA":
++			shadow[cnt]=9
++		if ID[cnt].split('.')[0] == "PRF":
++			shadow[cnt]=10
++		if ID[cnt].split('.')[0] == "STD":
++			shadow[cnt]=12
++		if ID[cnt].split('.')[0] == "SEC":
++			shadow[cnt]=13
++		if ID[cnt].split('.')[0] == "PMS":
++			shadow[cnt]=14		
++		cnt=cnt+1
++
++def sort_reqs():
++	for i in range(0, nr-1):
++		for j in range(i+1, nr):
++			if shadow[i] > shadow[j]:
++				aux=shadow[i]
++				shadow[i]=shadow[j]
++				shadow[j]=aux
++				aux=ID[i]
++				ID[i]=ID[j]
++				ID[j]=aux
++				aux=P[i]
++				P[i]=P[j]
++				P[j]=aux
++				aux=D[i]
++				D[i]=D[j]
++				D[j]=aux;
++			else:
++				if shadow[i]==shadow[j]:
++					if ID[i]>ID[j]:
++						aux=shadow[i]
++						shadow[i]=shadow[j]
++						shadow[j]=aux
++						aux=ID[i]
++						ID[i]=ID[j]
++						ID[j]=aux
++						aux=P[i]
++						P[i]=P[j]
++						P[j]=aux
++						aux=D[i]
++						D[i]=D[j]
++						D[j]=aux		
++
++for root, dirs, files in os.walk(director):
++    for file in files:
++    	if  file == "calculator.txt" :
++    		files_no = files_no + 1
++
++    		f = open(os.path.join(root, file))
++    		temp = f.read().split('\n')
++    		nr=nr+len(temp[1].split(","))
++
++ID = [None] * nr
++P = [None] * nr
++D = [None] * nr
++shadow = [0] * nr
++
++for root, dirs, files in os.walk(director):
++    for file in files:
++    	if  file == "calculator.txt" :
++			f = open(os.path.join(root, file))
++			content=f.read()
++			populate_compl(content, files_no)
++			f.close()
++
++sort_reqs()
++compliance_calc(nr)
 -- 
-2.7.4
+2.5.0
 
 
