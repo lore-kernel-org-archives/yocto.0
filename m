@@ -1,42 +1,39 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30105E00D4F; Sat, 14 May 2016 02:25:46 -0700 (PDT)
+	id 1C026E00D4A; Sat, 14 May 2016 03:16:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	UPPERCASE_50_75 autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.20 listed in list.dnswl.org]
+	*      [93.17.128.163 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 UPPERCASE_50_75 message body is 50-75% uppercase
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B68BE00D64
-	for <yocto@yoctoproject.org>; Sat, 14 May 2016 02:25:41 -0700 (PDT)
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1FBEE00D01
+	for <yocto@yoctoproject.org>; Sat, 14 May 2016 03:16:27 -0700 (PDT)
 Received: from localhost.localdomain (111-250-208-151.dynamic.hinet.net
 	[111.250.208.151])
-	by msfrf2630.sfr.fr (SMTP Server) with ESMTP id D8BCA1C000C1F;
-	Sat, 14 May 2016 11:25:40 +0200 (CEST)
+	by msfrf2604.sfr.fr (SMTP Server) with ESMTP id 7C4221C004CA7;
+	Sat, 14 May 2016 12:16:26 +0200 (CEST)
 Received: from localhost.localdomain (111-250-208-151.dynamic.hinet.net
 	[111.250.208.151])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2630.sfr.fr (SMTP Server) with ESMTPSA;
-	Sat, 14 May 2016 11:25:39 +0200 (CEST)
+	by msfrf2604.sfr.fr (SMTP Server) with ESMTPSA;
+	Sat, 14 May 2016 12:16:24 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (LOGIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Sat, 14 May 2016 17:25:05 +0800
-Message-Id: <1463217905-63424-2-git-send-email-herve.jourdain@neuf.fr>
+Date: Sat, 14 May 2016 18:15:51 +0800
+Message-Id: <1463220952-67318-1-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1463217905-63424-1-git-send-email-herve.jourdain@neuf.fr>
-References: <1463217905-63424-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [PATCH v2 1/1] Support for .dtbo files for dtb overlays
+Subject: [meta-raspberrypi][PATCH v2 0/1] Support for .dtbo files for dtb overlays, required by firmware after 2016/04/12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,71 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 May 2016 09:25:46 -0000
+X-List-Received-Date: Sat, 14 May 2016 10:16:31 -0000
 
-Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
----
- meta/recipes-kernel/linux/linux-dtb.inc | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+Please disregard v1, there was 1 patch missing for 4.4 kernel...
 
-diff --git a/meta/recipes-kernel/linux/linux-dtb.inc b/meta/recipes-kernel/linux/linux-dtb.inc
-index 651a19e..ee60b6d 100644
---- a/meta/recipes-kernel/linux/linux-dtb.inc
-+++ b/meta/recipes-kernel/linux/linux-dtb.inc
-@@ -33,23 +33,25 @@ do_compile_append() {
- do_install_append() {
- 	for DTB in ${KERNEL_DEVICETREE}; do
- 		DTB=`normalize_dtb "${DTB}"`
--		DTB_BASE_NAME=`basename ${DTB} .dtb`
-+		DTB_EXT=${DTB##*.}
-+		DTB_BASE_NAME=`basename ${DTB} ."${DTB_EXT}"`
- 		DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
- 		DTB_PATH=`get_real_dtb_path_in_kernel "${DTB}"`
--		install -m 0644 ${DTB_PATH} ${D}/${KERNEL_IMAGEDEST}/devicetree-${DTB_SYMLINK_NAME}.dtb
-+		install -m 0644 ${DTB_PATH} ${D}/${KERNEL_IMAGEDEST}/devicetree-${DTB_SYMLINK_NAME}.${DTB_EXT}
- 	done
- }
- 
- do_deploy_append() {
- 	for DTB in ${KERNEL_DEVICETREE}; do
- 		DTB=`normalize_dtb "${DTB}"`
--		DTB_BASE_NAME=`basename ${DTB} .dtb`
-+		DTB_EXT=${DTB##*.}
-+		DTB_BASE_NAME=`basename ${DTB} ."${DTB_EXT}"`
- 		DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
- 		DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
- 		DTB_PATH=`get_real_dtb_path_in_kernel "${DTB}"`
- 		install -d ${DEPLOYDIR}
--		install -m 0644 ${DTB_PATH} ${DEPLOYDIR}/${DTB_NAME}.dtb
--		ln -sf ${DTB_NAME}.dtb ${DEPLOYDIR}/${DTB_SYMLINK_NAME}.dtb
-+		install -m 0644 ${DTB_PATH} ${DEPLOYDIR}/${DTB_NAME}.${DTB_EXT}
-+		ln -sf ${DTB_NAME}.${DTB_EXT} ${DEPLOYDIR}/${DTB_SYMLINK_NAME}.${DTB_EXT}
- 	done
- }
- 
-@@ -57,9 +59,10 @@ pkg_postinst_kernel-devicetree () {
- 	cd /${KERNEL_IMAGEDEST}
- 	for DTB in ${KERNEL_DEVICETREE}
- 	do
-+		DTB_EXT=${DTB##*.}
- 		DTB_BASE_NAME=`basename ${DTB} | awk -F "." '{print $1}'`
- 		DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
--		update-alternatives --install /${KERNEL_IMAGEDEST}/${DTB_BASE_NAME}.dtb ${DTB_BASE_NAME}.dtb /boot/devicetree-${DTB_SYMLINK_NAME}.dtb ${KERNEL_PRIORITY} || true
-+		update-alternatives --install /${KERNEL_IMAGEDEST}/${DTB_BASE_NAME}.${DTB_EXT} ${DTB_BASE_NAME}.${DTB_EXT} /boot/devicetree-${DTB_SYMLINK_NAME}.${DTB_EXT} ${KERNEL_PRIORITY} || true
- 	done
- }
- 
-@@ -67,8 +70,9 @@ pkg_postrm_kernel-devicetree () {
- 	cd /${KERNEL_IMAGEDEST}
- 	for DTB in ${KERNEL_DEVICETREE}
- 	do
-+		DTB_EXT=${DTB##*.}
- 		DTB_BASE_NAME=`basename ${DTB} | awk -F "." '{print $1}'`
- 		DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTB_BASE_NAME}/g"`
--		update-alternatives --remove ${DTB_BASE_NAME}.dtb /boot/devicetree-${DTB_SYMLINK_NAME}.dtb ${KERNEL_PRIORITY} || true
-+		update-alternatives --remove ${DTB_BASE_NAME}.${DTB_EXT} /boot/devicetree-${DTB_SYMLINK_NAME}.${DTB_EXT} ${KERNEL_PRIORITY} || true
- 	done
- }
+The firmware after 2016/04/12 () seems to have altered the behavior of device tree loading on RaspberryPi: for overlays, it loads only .dtbo files, not .dtb anymore.
+Also, it does not check for -overlay extension, so the name of the overlay that is placed in the "overlays" directory must be <overlay_name>.dtbo, instead of <overlay_name>-overlay.dtb.
+
+This patch tries to address this issue for 4.4 and 4.1 kernels.
+It must be used in conjunction with another patch to meta/recipes-kernel/linux-dtb.inc, which will allow the processing of .dtbo files, instead of only .dtb.
+
+.dtb are still used, but only for the "real" device trees (not the overlays).
+
+This is in line with the behavior of kernels 4.4.6+
+
+Herve Jourdain (1):
+  Support for .dtbo files for dtb overlays, required by firmware after
+    2016/04/12
+
+ classes/linux-raspberrypi-base.bbclass             |  4 +--
+ classes/sdcard_image-rpi.bbclass                   |  6 ++--
+ conf/machine/include/rpi-base.inc                  | 30 +++++++++----------
+ .../0002-fix-dtbo-rules.patch                      | 35 ++++++++++++++++++++++
+ .../0001-fix-dtbo-rules.patch                      | 13 ++++++++
+ recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  1 +
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb      |  1 +
+ 7 files changed, 70 insertions(+), 20 deletions(-)
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.1/0002-fix-dtbo-rules.patch
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+
 -- 
 2.7.4
 
