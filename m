@@ -1,6 +1,6 @@
 Return-Path: <sanzi.voicu@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56A93E00D6D; Sat, 14 May 2016 05:03:36 -0700 (PDT)
+	id BA737E00D83; Sat, 14 May 2016 05:05:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (sanzi.voicu[at]yahoo.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [98.139.213.95 listed in list.dnswl.org]
+	*      [72.30.239.77 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,38 +19,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm8-vm0.bullet.mail.bf1.yahoo.com
-	(nm8-vm0.bullet.mail.bf1.yahoo.com [98.139.213.95])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBBDFE00D63
-	for <yocto@yoctoproject.org>; Sat, 14 May 2016 05:03:32 -0700 (PDT)
+Received: from nm34-vm5.bullet.mail.bf1.yahoo.com
+	(nm34-vm5.bullet.mail.bf1.yahoo.com [72.30.239.77])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 332B9E00D63
+	for <yocto@yoctoproject.org>; Sat, 14 May 2016 05:05:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1463227411; bh=lb0JTDo2iV4IeT7+iosrO13AU2efkkdTNadU8nUd+3w=;
-	h=From:To:Cc:Subject:Date:From:Subject;
-	b=Fes9makKuEcMbFH4nkSOsse823M2Igf5Y+WP9mkTBr1YTLYQ1VBBOBhRMsqV73mhRteH4APD7SIHyfG8jxq9/dDLEKpgulcyeoYvaU6kRdkDBvdB9XV9SV7gcoxKrPi0SYgqQIYHNnqLj0eEl3X0rOL/ThhNwH/Wd/o7FOJjSCwIsWKr3sXNPmIxK0FHtrny0wByoc5PFINprl5rgKDE46wCufFOeEtjj1gmpw28l44+zDKSWJsc7i11bk184Dyy3WHqcV/GFt/pg0EkBEVE17yZX5ibyj4nh7alRl9/5sMmOZAv84a+9WBKH+7Y3uyfJuNLiKuNyZxUqvns1EIGRw==
-Received: from [98.139.170.178] by nm8.bullet.mail.bf1.yahoo.com with NNFMP;
-	14 May 2016 12:03:31 -0000
-Received: from [68.142.230.65] by tm21.bullet.mail.bf1.yahoo.com with NNFMP;
-	14 May 2016 12:03:31 -0000
+	t=1463227412; bh=lb0JTDo2iV4IeT7+iosrO13AU2efkkdTNadU8nUd+3w=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject;
+	b=aS6CMFym9MEW52VTeJluGkm0DdHrqMFcPPOuAbkit6CX4eKT4GUP3e0LbGoGwjF/DGYQyWfh7VOO+jEmXhMF93RasWDOJ7Ij1mxTcDPMY9OB8YIGvnDtvnZ7KryLSPK+7gPm55BuLYjKamRz0puf2U+1c9LvIPZsHL8Lx54zFGIIec9er7ApDXBGhtkvcGfCILw2VEXtxVFcgdVxL7seTSx+x0/GWGuakzb/mbVMHGkQpUwsoz7GjGR9GyZoU38UjjRZ5TMhqm0L5qrWkuanZfI+suX6nc02RuT4U0ZC27RGeBYEWht0L9R972S2JfqPGCAOIme239kPRx0t4fSH/w==
+Received: from [98.139.215.141] by nm34.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 May 2016 12:03:32 -0000
+Received: from [68.142.230.65] by tm12.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 May 2016 12:03:32 -0000
 Received: from [127.0.0.1] by smtp222.mail.bf1.yahoo.com with NNFMP;
-	14 May 2016 12:03:31 -0000
-X-Yahoo-Newman-Id: 706573.68469.bm@smtp222.mail.bf1.yahoo.com
+	14 May 2016 12:03:32 -0000
+X-Yahoo-Newman-Id: 843011.68469.bm@smtp222.mail.bf1.yahoo.com
 X-Yahoo-Newman-Property: ymail-3
-X-YMail-OSG: YF_cXYUVM1nS4U6hCny.Kb3lrbuAySOwOYhypVrXXoUTvRU
-	Hm4_cg7js7OONE6vr3WlCD.Z9uQ2jZ0km_4x1u.pitgFGsYoBMa7G45NEp78
-	gJtHSezyrBG6wc4Kk9yZbgSJ3e5rcpPXkyearlZGueZfTLeTrv2kievWqozm
-	efC.z6HkTaXTN5czmtXjtKzV4D9r6wrqzfwbkSho6ondRxhrf.cBPPXMvTli
-	FgIspA.8e6UccFtUJ6cKQsrl141xmpwAPspsQ6ErqBg5pJwQ7zE4hXLuT00c
-	_h6aspMdXtpsYRmTrCEhOSkdRT91bhRxF5lqhFqJdciAXRPHhUIVMs4.shSj
-	iyNJGITunI8SLUescrDOPzVLHox9Fm.lxahsQfPXraar9PsyQgpEoAbyTObC
-	liObas9nb9IhanHhu0vE.dDSVN2AIvyGUN8dD7lfR1RK5iTr6wW7B01JdQ0W
-	EEwWnA_9adco28cyDu6i2y97uZh3Rbauo.FE8iOeLRizaIh0m2yPBat1YlNs
-	KhGe04OHkvbFsK4Y8f_xvuxEjqNVAPi1AbS4MCDlGqDrcTv5izw2nqI4Z4Ok -
+X-YMail-OSG: H1gPcuMVM1lQvBLt6diSqc52gpDTWpAUDEA6MtKxw0m2R.v
+	JmjaeH9eaJ6CxhhnHk44dtLSMt1_GDbYGnHtD8CjShZ1mtgB4iXNjSwNlSuO
+	mTszxTSetWVouoK4CAP16EIeBt29Au_KuhBt_cy9mm65JpftKQek.E7vfkdK
+	cWqLCuclAVhlPHiYRWb_FDwOOlwHXBayaLDLKJa5nxpKWN8GeW0hPRYra3sR
+	P4Kef0Ua5OhRUbsEzEJQ_0V2BCnRYUxp7Qqb8NEQxYw1LZO3BWckh4iIR4Wf
+	5jmk7_Pp_XBKMPoyd_Xes2hQNxkU16.agoXdeyVKJQNViuIPlaEXcP1Y3nOZ
+	W4HJj56lOuhA5lGh35FFtkVcCfRQU6qVgREX8GgK69utJuZ8J4W41Hck2hQl
+	3Nf_NNODe8Klnl3nRcuS4ITohowyyQqHLLJyyQf_035Uusnt6s3_ARWQDbtl
+	F470E6cUhMiWoffkOlK0naIKRK.r58Z_kT5dvFSQooEWM6E7rY0Vi9HjgtIf
+	w1lpluZkH5dZfQ6m_gSsl27HXhDlH6V92aTx5PF_I7zrdlsw3lbTu_2NHkJo -
 X-Yahoo-SMTP: I18nf8WswBCbDnbjxFg1KGYs2dWSvlUt
 From: "Sanziana.Voicu" <sanzi.voicu@yahoo.com>
 To: yocto@yoctoproject.org
-Date: Sat, 14 May 2016 15:03:25 +0300
-Message-Id: <1463227406-4269-1-git-send-email-sanzi.voicu@yahoo.com>
+Date: Sat, 14 May 2016 15:03:26 +0300
+Message-Id: <1463227406-4269-2-git-send-email-sanzi.voicu@yahoo.com>
 X-Mailer: git-send-email 2.5.0
+In-Reply-To: <1463227406-4269-1-git-send-email-sanzi.voicu@yahoo.com>
+References: <1463227406-4269-1-git-send-email-sanzi.voicu@yahoo.com>
 Subject: [meta-cgl][PATCH] CGL recipes compliance calculator first draft
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,7 +65,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 May 2016 12:03:36 -0000
+X-List-Received-Date: Sat, 14 May 2016 12:05:45 -0000
 
 From: Sanziana Voicu <sanzi.voicu@yahoo.com>
 
