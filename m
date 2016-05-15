@@ -1,73 +1,59 @@
-Return-Path: <matt@madison.systems>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7B9FE00CFF; Sun, 15 May 2016 10:29:47 -0700 (PDT)
+	id 3301DE00D10; Sun, 15 May 2016 10:42:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (balazovic.peter[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47898E00CF1
-	for <yocto@yoctoproject.org>; Sun, 15 May 2016 10:29:43 -0700 (PDT)
-Received: by mail-pa0-f46.google.com with SMTP id bt5so56343569pac.3
-	for <yocto@yoctoproject.org>; Sun, 15 May 2016 10:29:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=madison-systems.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=TGQssgX5Za8/JojDncH8xFXA1EamK8VYeq64tHivU7M=;
-	b=AKJKIqiZILsW+rzhfalo8aoGce8zdBt7yNv5oJfJ1drgHxxRyF/20L352FAuzQXv05
-	Ptz+q1jj3pL/LYztzetbJ0vnL3OJ0ZQyR/DfXQLHHk6bOyeaLbNYtqtMrkZDheL5Wig5
-	iYj4xTMCDlYF3XT5bL48dVpjQJcwtagTEnrjytAZOLaI3Rd94s0YtGq6KP7FZ4QAufIC
-	yqBhzklCreLeOqKRLCsshpfs3BhEAtjOBe4acX1nJU4ODWmZQ1OsDgvrwkb5Bb/Pvk8h
-	vGncU0Ek6J+ipRk210uVeIZ+XmrdyFkjwZ3+rqT7PumN8NDzNRxZYgf3rafwTSLyOix6
-	m2xA==
+Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BAB1E00CFF
+	for <yocto@yoctoproject.org>; Sun, 15 May 2016 10:42:28 -0700 (PDT)
+Received: by mail-lf0-f54.google.com with SMTP id m64so108953741lfd.1
+	for <yocto@yoctoproject.org>; Sun, 15 May 2016 10:42:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=BdAQhn70PpzXLpTgKSVQRmzqYC9uasfNszA6+Ef97AE=;
+	b=ozq9oNKvR/h8ZVToH4M3wofgLkWZzulS49bWYUqSfYBPA902Nf6jfFptRLolxLYbxd
+	iX+k9y0A3vncMBk1886VVFOkkxtH9MzmN9ZjofTI0/yPwguM6xmCoXdYC9OPB+yVwH/j
+	kw8updYLKipta1RuZODKx6T1iyrpCCLwfFC1n6vJp7aY2A3zOTCNPzdXR5UkZIdU5r1v
+	FK/R7AXgOM5BsYB4qbK4fk0hMMMk3LHpTPPw8DnRlnPD7Sv9FoZnno068PojuoQk5JtS
+	uZK5DNMWBXQjUpKLoU/9P4AAW1AsCfgITQzx2xweAsOFrIILF/+PkUJ+84AJ+4WBrYzT
+	k89A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=TGQssgX5Za8/JojDncH8xFXA1EamK8VYeq64tHivU7M=;
-	b=BadJq9d764zE4NH5OwQV3X0RcLpDNPAuP/Fiq9jRN5EfzB3Kup2XEOuaq32sxjIsqK
-	D5na8cH8/eSZD3om6MVDBwesnveeE2bYYYZ2Z9uKW5kmAl0BaZErmCAOhJ6Qcal+sJMQ
-	XwUwVxdYVeTUxEDt3uU/4tsF6SqPrTnlC3tqU0c/N4KYqoOzgUd/yrPJN1os/OLQJeXk
-	r4o6AnigmqR0RqCoPbtvEKmcDFIH3r3924RCZVHcDC2FfH+IBPoQKFLNJ8fHaEbDQsvx
-	eDvo2uwHS8U2aTt/WBr04VBfKim2YdfEZWmQaTVnC9ebV/GzerlUmImDFGv8vhy10WOU
-	eHBQ==
-X-Gm-Message-State: AOPr4FVLVWScE7cDv8U7qGMww1zZVAQeAncvTuicSWkS2zOaqSSnGGKcyBRsLT1oDNgW2A==
-X-Received: by 10.66.172.165 with SMTP id bd5mr39470073pac.128.1463333383250; 
-	Sun, 15 May 2016 10:29:43 -0700 (PDT)
-Received: from [172.16.1.13]
-	(70.90.175.93-BusName-ca.sfba.hfc.comcastbusiness.net.
-	[70.90.175.93]) by smtp.gmail.com with ESMTPSA id
-	dh4sm41689605pad.37.2016.05.15.10.29.41
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 15 May 2016 10:29:42 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-From: Matt Madison <matt@madison.systems>
-In-Reply-To: <2b5a99dd-ca48-a77f-9acd-bcfebe479884@eumx.net>
-Date: Sun, 15 May 2016 10:29:40 -0700
-Message-Id: <0F4D52DD-BB7E-4449-B5B2-5D90A683ABC3@madison.systems>
-References: <CABfz71dsLkf5W9LDsEewXj2Rmw715jqqMFvwKE7WYT=83iAs6g@mail.gmail.com>
-	<CAMKF1so7vzL4iKu5LiBKNK2cNBbV_0fuRoD_c7aVaN8x+kAh3Q@mail.gmail.com>
-	<CABfz71dAJ4L6rKFgCOQgYNdqmr9jk5UaSLkMO=2PJ58gMBCLkw@mail.gmail.com>
-	<CABfz71e32ixS10u7Wyr+XnZm+N93s6tPNorYNRqf276xh5ay9Q@mail.gmail.com>
-	<CAMKF1srhr1uYJq53LZ+CKUNqYPAv3uq2onv3PtY=nVVyz7+bgA@mail.gmail.com>
-	<CABfz71fcyMhkU3oH7msO8p2rAp1x4wozU9ordW2ZP7dqQVCNGQ@mail.gmail.com>
-	<CABfz71c3eZDAXRJ-2RcqjnwAe9bhfkqz8aF1FHFiPYSVwA5ZBg@mail.gmail.com>
-	<2b5a99dd-ca48-a77f-9acd-bcfebe479884@eumx.net>
-To: Jack Mitchell <ml@embed.me.uk>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: machine arch files for Jetson TX1 (Quad-core ARMCortex-A57 MPCore Processor)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=BdAQhn70PpzXLpTgKSVQRmzqYC9uasfNszA6+Ef97AE=;
+	b=U+YwhNmPR9JNtuDf9vkpmOO/OPceu6KJzpH5YAnZ819qywpHCL4s7ZuhgnubgfUeue
+	l2Iq4uTL/WVFf5mX19Cuc0gQZcxpHwJx7LouAuCp9QBf9KEP2J58LLMrAQW1EIIsDaZx
+	UoxdbQr7oECGWlqfQxFKFd/JVoWQgjGdH4XE51iKgVlxHC35wIEhUv5L1cPrSMFpJ3g+
+	MZq0K1BDA3Okv5cLTuVjjj5RJmGqsxB0JOv7rwrb4OnnyXHB+INJmP7EoNbsAeN/YD0K
+	CCaXLIhYsN3KSNWZX9xI7OJjc0Arv45I89IgA1QNYtmil470ycWTzV/yxaINzGcLPgLL
+	fZsA==
+X-Gm-Message-State: AOPr4FUtc8ZM6ikZxzVHHIOvMMJhqU/05bhw2yc/FtzyCW4wtaHbdPl2T2TH7S48F6yYbl+X8YT0EmbCnqMTyg==
+MIME-Version: 1.0
+X-Received: by 10.25.18.102 with SMTP id h99mr10376607lfi.127.1463334146582;
+	Sun, 15 May 2016 10:42:26 -0700 (PDT)
+Received: by 10.25.35.81 with HTTP; Sun, 15 May 2016 10:42:26 -0700 (PDT)
+Date: Sun, 15 May 2016 19:42:26 +0200
+Message-ID: <CAFq4t4g_HXb2h4Vhy+ctcP_XQCPOTfRiyeWBTJf4DEnOO5VXaw@mail.gmail.com>
+From: Peter Balazovic <balazovic.peter@gmail.com>
+To: yocto@yoctoproject.org
+Subject: build yocto/linux under windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,51 +65,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 May 2016 17:29:48 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 15 May 2016 17:42:30 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 15 May 2016, at 04:25 , Jack Mitchell <ml@embed.me.uk> wrote:
->=20
-> On 14/05/16 23:46, Paul Knopf wrote:
->> This is what I am thinking.
->>=20
->> DEFAULTTUNE =3D "cortexa9hf"
->> require conf/machine/include/tune-cortexa9.inc
->>=20
->> Does this sound right? I am using "hf" because in the crosstools-ng
->> has CT_ARCH_FLOAT=3D"hard", and cortexa9 because of
->> CT_ARCH_CPU=3D"cortex-a9" and CT_ARCH_TUNE=3D"cortex-a9".
->>=20
->> Sorry, I'm that familiar with embedded processors. Any guidance would
->> be greatly appreciated.
->> <snip>
->=20
-> Someone has already started having a go.
->=20
-> https://github.com/watatuki/meta-jetson-tx1
->=20
-> Easiest way to check for support in OE is to google meta + devboard =
-name. Usually turns something up :)
+Dears,
 
-There=E2=80=99s also https://github.com/madisongh/meta-tegra.=20
+i'm looking for a way to build Yocto/Linux and develop for my embedded
+target i.mx processor platform under Windows?
+Is there a way to build Yocto/Linux under Windows and to have
+cross-compiler toolchain to be run under windows?
+Actually I would like to know how to run cross-compiler toolchain under windows?
 
--Matt
-
-
->=20
-> Cheers,
-> Jack.
->=20
-> ---
-> Jack Mitchell
-> Embedded Linux Consultant
-> www.tuxable.co.uk
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Thank you.
 
