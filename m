@@ -1,56 +1,52 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <matt@madison.systems>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 154D0E00DD3; Mon, 16 May 2016 06:48:30 -0700 (PDT)
+	id 19C23E00DDF; Mon, 16 May 2016 07:47:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72CA7E00D31
-	for <yocto@yoctoproject.org>; Mon, 16 May 2016 06:48:27 -0700 (PDT)
-Received: by mail-qk0-f178.google.com with SMTP id n63so96466578qkf.0
-	for <yocto@yoctoproject.org>; Mon, 16 May 2016 06:48:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.50 listed in list.dnswl.org]
+Received: from mail-lf0-f50.google.com (mail-lf0-f50.google.com
+	[209.85.215.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 816ABE00DDA
+	for <yocto@yoctoproject.org>; Mon, 16 May 2016 07:47:11 -0700 (PDT)
+Received: by mail-lf0-f50.google.com with SMTP id m64so117501533lfd.1
+	for <yocto@yoctoproject.org>; Mon, 16 May 2016 07:47:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=madison-systems.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=VxNpz3aFO5PXNibHPG/maDi9o81Lj9zRSdERESrWaZc=;
-	b=Z/2Duq0MfcZfF1u1851jvVN83U4hHRl0/J46WjBdaW0bLEjU6xFCCzHrX30xW2erNX
-	791qH6qrweBFfqQDnc2d6pTegMKStTvfDm7gU+HTR045FOWmUy3lM+CPIW64s7NkHLGD
-	37f/8CbO2cOVmSogLGp//FfC+9Eq6KXZtw8YtgA0F5WADAx99wMBBVhoHFCwZHH5rCkm
-	iBQZVQczXnYqv1+2YgzqFsHj8Z6yWk9NT2L0w3c1/B1VfljzDgEPlQLmy8wYooz7wtvb
-	cyeHPXOCBpR5QhzgdaTSL80g1iii5HMsYHXxiByzXq6Nyfs9FfM3kfBVmgA0ktZfhWB9
-	3Tpg==
+	:cc:content-transfer-encoding;
+	bh=glFtEcnqgLkGaUwwlLR6G35BRI6q9pCEBKIhKD7ZtLM=;
+	b=laOsXVS5LWCAkOqD/mItXk/K01h71LjmW2fihSpg1zBta5pvQSPJ/nukDSsFueo1dQ
+	G1wbVBrgcM8eqsQ3KGkYsE8+hACQOKQFc2433zRG6QYurPDa8IgeXa7ZoLwqnTDm+tYE
+	K5W0WnIPFT+yrimMNXZgTRsWFwxxln2xX3SvVdkBQ0gaIzC6vxUDR+NAaNTqR7WZtp1G
+	2Y+8Jpqr6SiEUdXt/LkROL7vHeKGoIGcWfsQ0Sdo5gvnwTapTEcl7h03rx0C16Ci6iBF
+	K3D7GPWinxl/ZPZTEN2V9SLjRfVKAkNeyZ3MJUdDLeSABd+Ae2yzsOwA+YyF1DgTOqgg
+	+74A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=VxNpz3aFO5PXNibHPG/maDi9o81Lj9zRSdERESrWaZc=;
-	b=fOKCliwdqwhGEhv9Gq3zKfPukzrl5yMGtSWSjP04Funtc4fCfmb3GCaT4fQHAG86RQ
-	y1/BLlor/AvPQ/ysYpE2jRpzUF1XjL2+0tKh0KbsbtOCP7CQ0QjG8iXlF4iXlFWrermU
-	0KOzHfpRbM9ueHfpzfB9nt7bq1TJqhT6kY0/+mky+aoyQpBnaSqEsrAvnb0p7T/a0BWu
-	403bDJZrOvS8pAkGSa30YWrfUFCmTMtg9IVm0XLIeYyfXMRnC9tmDcy5A5JK3MFVCkTb
-	bHHt8Fjpem8z2Rpex3OkBPkZ1Lz2ERuheL/wfZcNYBH9k0v2swYvyj+gDNM4erxjq8lu
-	k3jQ==
-X-Gm-Message-State: AOPr4FXOipJ/JudQjpFnBT2bwAdrro9GcZj8uLNJ7UjqWd6VzLLSq//TMhRXYiJZVGB29mw3J/g/It/03XTrGg==
+	:message-id:subject:from:to:cc:content-transfer-encoding;
+	bh=glFtEcnqgLkGaUwwlLR6G35BRI6q9pCEBKIhKD7ZtLM=;
+	b=UBASP3dHr5eoJOsitQgXn/bLwa/V2Lxz0MpD4zDcSAFPEAaK4kMvrEO8TD0n2W4Fvz
+	y1G9E8To/0D+8hFAWLM1u9Lo7VUuO4hVc2kaAYLgLdbW6tgZ5ai7WVKmAtkbNvLx2Mwz
+	JBWu7vITPyUT3N/ObcX3RLnbwDrF56T5loDqbQib6DtuiDZsuFYDdFWCcQVeTLge9427
+	mQec5gxV4i2iu+9QwHpY1ehCehncetk/sKiCBMBSEzap99mNW1z6F1FBMCsybuTQPdUu
+	K5sS6sE+jqRAapfdfT91WDH4wGQwo2hnosmghyyh1c4uPgsFnxGLG4B9/p8QcKVfroBX
+	vpuw==
+X-Gm-Message-State: AOPr4FX7Ei9Bfl6PTIyNbBlWMmC9O8+qBZRPnHWqenicHDMJcWRBJN/gzlKfgdLQeXPVUTLJl4i11PTMtKy+wg==
 MIME-Version: 1.0
-X-Received: by 10.55.207.214 with SMTP id v83mr13286787qkl.152.1463406507321; 
-	Mon, 16 May 2016 06:48:27 -0700 (PDT)
-Received: by 10.55.130.196 with HTTP; Mon, 16 May 2016 06:48:27 -0700 (PDT)
+X-Received: by 10.25.39.141 with SMTP id n135mr11460595lfn.98.1463410030345;
+	Mon, 16 May 2016 07:47:10 -0700 (PDT)
+Received: by 10.25.31.131 with HTTP; Mon, 16 May 2016 07:47:10 -0700 (PDT)
 In-Reply-To: <d8eca3ae-86db-35c1-951e-696dbab4b901@balister.org>
 References: <CABfz71dsLkf5W9LDsEewXj2Rmw715jqqMFvwKE7WYT=83iAs6g@mail.gmail.com>
 	<CAMKF1so7vzL4iKu5LiBKNK2cNBbV_0fuRoD_c7aVaN8x+kAh3Q@mail.gmail.com>
@@ -62,11 +58,11 @@ References: <CABfz71dsLkf5W9LDsEewXj2Rmw715jqqMFvwKE7WYT=83iAs6g@mail.gmail.com>
 	<2b5a99dd-ca48-a77f-9acd-bcfebe479884@eumx.net>
 	<0F4D52DD-BB7E-4449-B5B2-5D90A683ABC3@madison.systems>
 	<d8eca3ae-86db-35c1-951e-696dbab4b901@balister.org>
-Date: Mon, 16 May 2016 06:48:27 -0700
-Message-ID: <CAMKF1sqO1Y=K+s8rjcr_xmjg1nggbcU4_uCN2HYW0CNf_-5E6g@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 16 May 2016 07:47:10 -0700
+Message-ID: <CAGgRHJq73XZ9FfRPLExVUQ7VXdychKSEL0h4JNfCWmsMNEQ_pQ@mail.gmail.com>
+From: Matt Madison <matt@madison.systems>
 To: Philip Balister <philip@balister.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: machine arch files for Jetson TX1 (Quad-core ARMCortex-A57 MPCore Processor)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -79,166 +75,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 May 2016 13:48:30 -0000
-Content-Type: multipart/alternative; boundary=001a1145b81807f4190532f5e124
-
---001a1145b81807f4190532f5e124
+X-List-Received-Date: Mon, 16 May 2016 14:47:16 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Monday, May 16, 2016, Philip Balister <philip@balister.org> wrote:
-
+On Mon, May 16, 2016 at 6:09 AM, Philip Balister <philip@balister.org> wrot=
+e:
 > On 05/15/2016 01:29 PM, Matt Madison wrote:
-> > On 15 May 2016, at 04:25 , Jack Mitchell <ml@embed.me.uk <javascript:;>=
->
-> wrote:
-> >>
-> >> On 14/05/16 23:46, Paul Knopf wrote:
-> >>> This is what I am thinking.
-> >>>
-> >>> DEFAULTTUNE =3D "cortexa9hf"
-> >>> require conf/machine/include/tune-cortexa9.inc
-> >>>
-> >>> Does this sound right? I am using "hf" because in the crosstools-ng
-> >>> has CT_ARCH_FLOAT=3D"hard", and cortexa9 because of
-> >>> CT_ARCH_CPU=3D"cortex-a9" and CT_ARCH_TUNE=3D"cortex-a9".
-> >>>
-> >>> Sorry, I'm that familiar with embedded processors. Any guidance would
-> >>> be greatly appreciated.
-> >>> <snip>
-> >>
-> >> Someone has already started having a go.
-> >>
-> >> https://github.com/watatuki/meta-jetson-tx1
-> >>
-> >> Easiest way to check for support in OE is to google meta + devboard
-> name. Usually turns something up :)
-> >
-> > There=E2=80=99s also https://github.com/madisongh/meta-tegra.
+>> On 15 May 2016, at 04:25 , Jack Mitchell <ml@embed.me.uk> wrote:
+>>>
+>>> On 14/05/16 23:46, Paul Knopf wrote:
+>>>> This is what I am thinking.
+>>>>
+>>>> DEFAULTTUNE =3D "cortexa9hf"
+>>>> require conf/machine/include/tune-cortexa9.inc
+>>>>
+>>>> Does this sound right? I am using "hf" because in the crosstools-ng
+>>>> has CT_ARCH_FLOAT=3D"hard", and cortexa9 because of
+>>>> CT_ARCH_CPU=3D"cortex-a9" and CT_ARCH_TUNE=3D"cortex-a9".
+>>>>
+>>>> Sorry, I'm that familiar with embedded processors. Any guidance would
+>>>> be greatly appreciated.
+>>>> <snip>
+>>>
+>>> Someone has already started having a go.
+>>>
+>>> https://github.com/watatuki/meta-jetson-tx1
+>>>
+>>> Easiest way to check for support in OE is to google meta + devboard nam=
+e. Usually turns something up :)
+>>
+>> There=E2=80=99s also https://github.com/madisongh/meta-tegra.
 >
 > Please add your layers to the layer index as soon as possible so people
 > can search there. This helps prevent duplicate layers.
->
+
+Thanks for reminding me.  I held off initially, until I had enough
+content and testing done, but it's in not-too-bad shape right now.  I
+just submitted this and another layer I've been working on.
+
+Thanks,
+-Matt
+
 > Any chance the TX1 people can combine efforts so we only have one bsp
 > for this board?
-
-It would be better to unite all jetson boards in single layer imo
-
 >
 > Philip
 >
 >
 >
 >
-> >
-> > -Matt
-> >
-> >
-> >>
-> >> Cheers,
-> >> Jack.
-> >>
-> >> ---
-> >> Jack Mitchell
-> >> Embedded Linux Consultant
-> >> www.tuxable.co.uk
-> >>
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org <javascript:;>
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <javascript:;>
-> https://lists.yoctoproject.org/listinfo/yocto
->
+>>
+>> -Matt
+>>
+>>
+>>>
+>>> Cheers,
+>>> Jack.
+>>>
+>>> ---
+>>> Jack Mitchell
+>>> Embedded Linux Consultant
+>>> www.tuxable.co.uk
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
---001a1145b81807f4190532f5e124
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<br><br>On Monday, May 16, 2016, Philip Balister &lt;<a href=3D"mailto:phil=
-ip@balister.org">philip@balister.org</a>&gt; wrote:<br><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex">On 05/15/2016 01:29 PM, Matt Madison wrote:<br>
-&gt; On 15 May 2016, at 04:25 , Jack Mitchell &lt;<a href=3D"javascript:;" =
-onclick=3D"_e(event, &#39;cvml&#39;, &#39;ml@embed.me.uk&#39;)">ml@embed.me=
-.uk</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On 14/05/16 23:46, Paul Knopf wrote:<br>
-&gt;&gt;&gt; This is what I am thinking.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; DEFAULTTUNE =3D &quot;cortexa9hf&quot;<br>
-&gt;&gt;&gt; require conf/machine/include/tune-cortexa9.inc<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Does this sound right? I am using &quot;hf&quot; because in th=
-e crosstools-ng<br>
-&gt;&gt;&gt; has CT_ARCH_FLOAT=3D&quot;hard&quot;, and cortexa9 because of<=
-br>
-&gt;&gt;&gt; CT_ARCH_CPU=3D&quot;cortex-a9&quot; and CT_ARCH_TUNE=3D&quot;c=
-ortex-a9&quot;.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Sorry, I&#39;m that familiar with embedded processors. Any gui=
-dance would<br>
-&gt;&gt;&gt; be greatly appreciated.<br>
-&gt;&gt;&gt; &lt;snip&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Someone has already started having a go.<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"https://github.com/watatuki/meta-jetson-tx1" target=3D"=
-_blank">https://github.com/watatuki/meta-jetson-tx1</a><br>
-&gt;&gt;<br>
-&gt;&gt; Easiest way to check for support in OE is to google meta + devboar=
-d name. Usually turns something up :)<br>
-&gt;<br>
-&gt; There=E2=80=99s also <a href=3D"https://github.com/madisongh/meta-tegr=
-a" target=3D"_blank">https://github.com/madisongh/meta-tegra</a>.<br>
-<br>
-Please add your layers to the layer index as soon as possible so people<br>
-can search there. This helps prevent duplicate layers.<br>
-<br>
-Any chance the TX1 people can combine efforts so we only have one bsp<br>
-for this board?</blockquote><div>It would be better to unite all jetson boa=
-rds in single layer imo=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<br>
-Philip<br>
-<br>
-<br>
-<br>
-<br>
-&gt;<br>
-&gt; -Matt<br>
-&gt;<br>
-&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Cheers,<br>
-&gt;&gt; Jack.<br>
-&gt;&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt; Jack Mitchell<br>
-&gt;&gt; Embedded Linux Consultant<br>
-&gt;&gt; <a href=3D"http://www.tuxable.co.uk" target=3D"_blank">www.tuxable=
-.co.uk</a><br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href=3D"javascript:;" onclick=3D"_e(event, &#39;cvml&#39;, &#39=
-;yocto@yoctoproject.org&#39;)">yocto@yoctoproject.org</a><br>
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=
-=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"javascript:;" onclick=3D"_e(event, &#39;cvml&#39;, &#39;yocto@yo=
-ctoproject.org&#39;)">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote>
-
---001a1145b81807f4190532f5e124--
