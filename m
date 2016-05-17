@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E7C5E00D4C; Tue, 17 May 2016 02:43:54 -0700 (PDT)
+	id 09E35E00DA3; Tue, 17 May 2016 02:43:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,30 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95209E00CC2
-	for <yocto@yoctoproject.org>; Tue, 17 May 2016 02:43:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5172CE00D4C
+	for <yocto@yoctoproject.org>; Tue, 17 May 2016 02:43:57 -0700 (PDT)
 Received: from localhost.localdomain (111-250-202-28.dynamic.hinet.net
 	[111.250.202.28])
-	by msfrf2629.sfr.fr (SMTP Server) with ESMTP id 44D341C00141C;
-	Tue, 17 May 2016 11:43:49 +0200 (CEST)
+	by msfrf2629.sfr.fr (SMTP Server) with ESMTP id 944241C001423;
+	Tue, 17 May 2016 11:43:56 +0200 (CEST)
 Received: from localhost.localdomain (111-250-202-28.dynamic.hinet.net
 	[111.250.202.28])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2629.sfr.fr (SMTP Server) with ESMTPSA;
-	Tue, 17 May 2016 11:43:47 +0200 (CEST)
+	Tue, 17 May 2016 11:43:54 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (LOGIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Tue, 17 May 2016 17:43:28 +0800
-Message-Id: <1463478209-57439-1-git-send-email-herve.jourdain@neuf.fr>
+Date: Tue, 17 May 2016 17:43:29 +0800
+Message-Id: <1463478209-57439-2-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
-X-sfr-mailing: LEGIT
+In-Reply-To: <1463478209-57439-1-git-send-email-herve.jourdain@neuf.fr>
+References: <1463478209-57439-1-git-send-email-herve.jourdain@neuf.fr>
 MIME-Version: 1.0
-Subject: [matchbox-keyboard][PATCH 0/1] Addition of french keyboard
+X-sfr-mailing: LEGIT
+Subject: [matchbox-keyboard][PATCH 1/1] Addition of french keyboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,23 +47,512 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2016 09:43:54 -0000
+X-List-Received-Date: Tue, 17 May 2016 09:43:59 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The layout added is the one for French (France).
-The behaviour for the CAPS keys is the same as Ubuntu (which is different from the behaviour in Windows).
-In addition to the layout, a patch has been necessary to support a "caps" tag, that sets the value of the key when the CAPS action modifier is in effect.
-There is no impact when the tag is not used in the xml description of the layout, therefore there should be no impact on previously existing keyboards.
-This feature is needed for the french keyboard - at least - in order to handle the uppercase accented letters, that are the ones accessible when caps is on, for some keys.
-Test has been done using sato.
-
-Herve Jourdain (1):
-  Addition of french keyboard
-
+Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+---
  .../files/0002-add-french-keyboard.patch           | 477 +++++++++++++++++++++
  .../matchbox-keyboard/matchbox-keyboard_git.bb     |   1 +
- 2 files changed, 478 insertions(+), 0 deletions(-)
+ 2 files changed, 478 insertions(+)
  create mode 100644 meta/recipes-sato/matchbox-keyboard/files/0002-add-french-keyboard.patch
 
+diff --git a/meta/recipes-sato/matchbox-keyboard/files/0002-add-french-keyboard.patch b/meta/recipes-sato/matchbox-keyboard/files/0002-add-french-keyboard.patch
+new file mode 100644
+index 0000000..c6dc5f7
+--- /dev/null
++++ b/meta/recipes-sato/matchbox-keyboard/files/0002-add-french-keyboard.patch
+@@ -0,0 +1,477 @@
++diff --git a/layouts/Makefile.am b/layouts/Makefile.am
++index b439041..ed40256 100644
++--- a/layouts/Makefile.am
+++++ b/layouts/Makefile.am
++@@ -1,4 +1,4 @@
++ keyboardsdir = $(datadir)/matchbox-keyboard
++ dist_keyboards_DATA = keyboard.xml keyboard-extended.xml keyboard-dvorak.xml \
++ 		      keyboard-us.xml keyboard-ru.xml keyboard-fi.xml        \
++-		      keyboard-numpad.xml
+++		      keyboard-fr.xml keyboard-numpad.xml
++diff --git a/layouts/keyboard-fr.xml b/layouts/keyboard-fr.xml
++--- a/layouts/keyboard-fr.xml
+++++ b/layouts/keyboard-fr.xml
++@@ -0,0 +1,343 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<keyboard>
+++
+++<!--
+++
+++ FR keyboard layout by Herve Jourdain <herve.jourdain@neuf.fr>
+++
+++-->
+++
+++<options>
+++<!-- not yet implemented -->
+++</options>
+++
+++<layout id="default keyboard">
+++
+++  <row>
+++    <space width="500" extended="true"/>
+++
+++    <key fill="true">
+++	  <default display="Esc" action="escape" />
+++    </key>
+++    <key>
+++	  <default display="²" />
+++	  <shifted display="³" />
+++    </key>
+++    <key>
+++	  <default display="&amp;" />
+++	  <shifted display="1" />
+++    </key>
+++    <key>
+++	  <default display="é" />
+++	  <shifted display='2' />
+++	  <mod1 display='~' />
+++	  <caps display="É" />
+++    </key>
+++    <key>
+++	  <default display="&quot;" />
+++	  <shifted display="3" />
+++	  <mod1 display="#" />
+++    </key>
+++    <key>
+++	  <default display="'" />
+++	  <shifted display="4" />
+++	  <mod1 display="{" />
+++    </key>
+++    <key>
+++	  <default display="(" />
+++	  <shifted display="5" />
+++	  <mod1 display="[" />
+++    </key>
+++    <key>
+++	  <default display="-" />
+++	  <shifted display="6" />
+++	  <mod1 display="|" />
+++    </key>
+++    <key>
+++	  <default display="è" />
+++	  <shifted display="7" />
+++	  <mod1 display='`' />
+++	  <caps display="È" />
+++    </key>
+++    <key>
+++	  <default display="_" />
+++	  <shifted display="8" />
+++	  <mod1 display='\' />
+++    </key>
+++    <key>
+++	  <default display="ç" />
+++	  <shifted display="9" />
+++	  <mod1 display='^' />
+++	  <caps display="Ç" />
+++    </key>
+++    <key>
+++	  <default display="à" />
+++	  <shifted display="0" />
+++	  <mod1 display='@' />
+++	  <caps display="À" />
+++    </key>
+++    <key>
+++	  <default display=")" />
+++	  <shifted display="°" />
+++	  <mod1 display="]" />
+++    </key>
+++    <key>
+++	  <default display="=" />
+++	  <shifted display="+" />
+++	  <mod1 display="}" />
+++    </key>
+++    <key>
+++	  <default display="*" />
+++	  <shifted display="µ" />
+++    </key>
+++
+++    <key fill="true">
+++	  <default display="Suppr" action="backspace"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++
+++    <key width="4000"  extended="true">
+++	  <default display="Début" action="home"/>
+++    </key>
+++    <key width="4000"  extended="true">
+++	  <default display="Préc" action="pageup"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++  </row>
+++
+++  <row>
+++    <space width="500" extended="true"/>
+++
+++    <key fill="true">
+++	  <default display="Tab" action="tab"/>
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="a" />
+++	  <shifted display="A" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="z" />
+++	  <shifted display="Z" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="e" />
+++	  <shifted display="E" />
+++	  <mod1 display="€" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="r" />
+++	  <shifted display="R" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="t" />
+++	  <shifted display="T" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="y" />
+++	  <shifted display="Y" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="u" />
+++	  <shifted display="U" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="i" />
+++	  <shifted display="I" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="o" />
+++	  <shifted display="O" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="p" />
+++	  <shifted display="P" />
+++    </key>
+++    <key>
+++	  <default display="^" action="xkeysym:dead_circumflex"/>
+++	  <shifted display="¨" action="xkeysym:dead_diaeresis"/>
+++    </key>
+++    <key>
+++	  <default display="$" />
+++	  <shifted display="£" />
+++	  <mod1 display="ø" />
+++    </key>
+++    <key>
+++	  <default display="Préc" action="pageup"/>
+++    </key>
+++    <key>
+++	  <default display="Suiv" action="pagedown"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++
+++    <key width="4000"  extended="true">
+++	  <default display="Fin" action="end"/>
+++    </key>
+++    <key width="4000"  extended="true">
+++	  <default display="Suiv" action="pagedown"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++  </row>
+++
+++  <row>
+++    <space width="500" extended="true"/>
+++
+++    <key fill="true">
+++	  <default display="Caps" action="modifier:caps"/>
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="q" />
+++	  <shifted display="Q" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="s" />
+++	  <shifted display="S" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="d" />
+++	  <shifted display="D" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="f" />
+++	  <shifted display="F" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="g" />
+++	  <shifted display="G" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="h" />
+++	  <shifted display="H" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="j" />
+++	  <shifted display="J" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="k" />
+++	  <shifted display="K" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="l" />
+++	  <shifted display="L" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="m" />
+++	  <shifted display="M" />
+++    </key>
+++    <key>
+++	  <default display="ù" />
+++	  <shifted display="%" />
+++	  <caps display="Ù" />
+++    </key>
+++    <key fill="true">
+++	  <default display="Entrée" action="return"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++    <space width="4000"  extended="true" />
+++    <space width="4000"  extended="true" />
+++    <space width="500" extended="true"/>
+++  </row>
+++
+++  <row>
+++    <space width="500" extended="true"/>
+++
+++    <key fill="true">
+++	  <default display="Maj" action="modifier:shift"/>
+++    </key>
+++    <key>
+++	  <default display="&lt;" />
+++	  <shifted display="&gt;" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="w" />
+++	  <shifted display="W" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="x" />
+++	  <shifted display="X" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="c" />
+++	  <shifted display="C" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="v" />
+++	  <shifted display="V" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="b" />
+++	  <shifted display="B" />
+++    </key>
+++    <key obey-caps='true'>
+++	  <default display="n" />
+++	  <shifted display="N" />
+++    </key>
+++    <key>
+++	  <default display="," />
+++	  <shifted display="?" />
+++    </key>
+++    <key>
+++	  <default display=";" />
+++	  <shifted display="." />
+++    </key>
+++    <key>
+++	  <default display=":" />
+++	  <shifted display="/" />
+++    </key>
+++    <key>
+++	  <default display="!" />
+++	  <shifted display="§" />
+++    </key>
+++    <key fill="true">
+++	  <default display="Maj" action="modifier:shift"/>
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++    <space width="4000"  extended="true" />
+++    <space width="4000"  extended="true" />
+++    <space width="500" extended="true"/>
+++  </row>
+++
+++  <row>
+++    <space width="500" extended="true"/>
+++
+++    <key fill="true">
+++	  <default display="Ctrl" action="modifier:ctrl"/>
+++    </key>
+++    <key>
+++	  <default display="Alt" action="modifier:alt"/>
+++    </key>
+++    <key width="12000">
+++	  <default display=" " action="space" />
+++    </key>
+++    <key>
+++	  <default display="AGR" action="modifier:mod1"/>
+++    </key>
+++
+++    <key>
+++	  <default display="&#x2191;" action="up" />
+++    </key>
+++    <key>
+++	  <default display="&#x2193;" action="down" />
+++    </key>
+++    <key>
+++	  <default display="&#x2190;" action="left" />
+++    </key>
+++    <key>
+++	  <default display="&#x2192;" action="right" />
+++    </key>
+++
+++    <space width="500" extended="true"/>
+++    <space width="4000"  extended="true" />
+++    <space width="4000"  extended="true" />
+++    <space width="500" extended="true"/>
+++  </row>
+++
+++</layout>
+++
+++</keyboard>
++diff --git a/src/matchbox-keyboard.h b/src/matchbox-keyboard.h
++index 4dd258f..430b08b 100644
++--- a/src/matchbox-keyboard.h
+++++ b/src/matchbox-keyboard.h
++@@ -116,6 +116,7 @@ typedef enum
++ {
++   MBKeyboardKeyStateNormal = 0,
++   MBKeyboardKeyStateShifted,
+++  MBKeyboardKeyStateCaps,
++   MBKeyboardKeyStateMod1,
++   MBKeyboardKeyStateMod2,
++   MBKeyboardKeyStateMod3,
++diff --git a/src/matchbox-keyboard.c b/src/matchbox-keyboard.c
++index 9f9bb7d..3ed98c0 100644
++--- a/src/matchbox-keyboard.c
+++++ b/src/matchbox-keyboard.c
++@@ -200,6 +200,9 @@ mb_kbd_keys_current_state(MBKeyboard *kbd)
++   if (mb_kbd_has_state(kbd, MBKeyboardStateShifted))
++     return MBKeyboardKeyStateShifted;
++ 
+++  if (mb_kbd_has_state(kbd, MBKeyboardStateCaps))
+++    return MBKeyboardKeyStateCaps;
+++
++   if (mb_kbd_has_state(kbd, MBKeyboardStateMod1))
++     return MBKeyboardKeyStateMod1;
++ 
++diff --git a/src/matchbox-keyboard-key.c b/src/matchbox-keyboard-key.c
++index 0555c9c..c086fbe 100644
++--- a/src/matchbox-keyboard-key.c
+++++ b/src/matchbox-keyboard-key.c
++@@ -413,9 +413,13 @@ mb_kbd_key_press(MBKeyboardKey *key)
++ 
++   state = mb_kbd_keys_current_state(key->kbd);
++ 
++-  if (mb_kbd_has_state(key->kbd, MBKeyboardStateCaps)
++-      && mb_kbd_key_get_obey_caps(key))
++-    state = MBKeyboardKeyStateShifted;
+++  if (mb_kbd_has_state(key->kbd, MBKeyboardStateCaps))
+++  {
+++    if (mb_kdb_key_has_state (key, MBKeyboardKeyStateCaps))
+++      state = MBKeyboardKeyStateCaps;
+++    else if (mb_kbd_key_get_obey_caps(key))
+++      state = MBKeyboardKeyStateShifted;
+++  }
++ 
++   /* XXX below fakekey mods probably better in ui */
++ 
++@@ -616,6 +620,7 @@ mb_kbd_key_dump_key(MBKeyboardKey *key)
++     {
++       /* MBKeyboardKeyStateNormal  */ "Normal",
++       /* MBKeyboardKeyStateShifted */ "Shifted" ,
+++      /* MBKeyboardKeyStateCaps    */ "Caps" ,
++       /* MBKeyboardKeyStateMod1,    */ "Mod1" ,
++       /* MBKeyboardKeyStateMod2,    */ "Mod2" ,
++       /* MBKeyboardKeyStateMod3,    */ "Mod3" 
++diff --git a/src/config-parser.c b/src/config-parser.c
++index 15a973e..13ee6d6 100644
++--- a/src/config-parser.c
+++++ b/src/config-parser.c
++@@ -326,6 +326,10 @@ config_handle_key_subtag(MBKeyboardConfigState *state,
++     {
++       keystate = MBKeyboardKeyStateShifted;
++     }
+++  else if (streq(tag, "caps"))
+++    {
+++      keystate = MBKeyboardKeyStateCaps;
+++    }
++   else if (streq(tag, "mod1"))
++     {
++       keystate = MBKeyboardKeyStateMod1;
++@@ -548,6 +552,7 @@ config_xml_start_cb(void *data, const char *tag, const char **attr)
++   else if (streq(tag, "normal") 
++ 	   || streq(tag, "default")
++ 	   || streq(tag, "shifted")
+++	   || streq(tag, "caps")
++ 	   || streq(tag, "mod1")
++ 	   || streq(tag, "mod2")
++ 	   || streq(tag, "mod3"))
++diff --git a/src/matchbox-keyboard-ui-cairo-backend.c b/src/matchbox-keyboard-ui-cairo-backend.c
++index 3b7a401..3f15ac8 100644
++--- a/src/matchbox-keyboard-ui-cairo-backend.c
+++++ b/src/matchbox-keyboard-ui-cairo-backend.c
++@@ -174,9 +174,13 @@ mb_kbd_ui_cairo_redraw_key(MBKeyboardUI  *ui, MBKeyboardKey *key)
++ 
++   state = mb_kbd_keys_current_state(kbd); 
++ 
++-  if (mb_kbd_has_state(kbd, MBKeyboardStateCaps)
++-      && mb_kbd_key_get_obey_caps(key))
++-    state = MBKeyboardKeyStateShifted;
+++  if (mb_kbd_has_state(kbd, MBKeyboardStateCaps))
+++    {
+++      if (mb_kdb_key_has_state (key, MBKeyboardKeyStateCaps))
+++        state = MBKeyboardKeyStateCaps;
+++      else if (mb_kbd_key_get_obey_caps(key))
+++        state = MBKeyboardKeyStateShifted;
+++    }
++ 
++   if (!mb_kdb_key_has_state(key, state))
++     {
++diff --git a/src/matchbox-keyboard-ui-xft-backend.c b/src/matchbox-keyboard-ui-xft-backend.c
++index 9a3c6d2..2790591 100644
++--- a/src/matchbox-keyboard-ui-xft-backend.c
+++++ b/src/matchbox-keyboard-ui-xft-backend.c
++@@ -212,9 +212,13 @@ mb_kbd_ui_xft_redraw_key(MBKeyboardUI  *ui, MBKeyboardKey *key)
++ 
++   state = mb_kbd_keys_current_state(kbd); 
++ 
++-  if (mb_kbd_has_state(kbd, MBKeyboardStateCaps)
++-      && mb_kbd_key_get_obey_caps(key))
++-    state = MBKeyboardKeyStateShifted;
+++  if (mb_kbd_has_state(kbd, MBKeyboardStateCaps))
+++    {
+++      if (mb_kdb_key_has_state (key, MBKeyboardKeyStateCaps))
+++        state = MBKeyboardKeyStateCaps;
+++      else if (mb_kbd_key_get_obey_caps(key))
+++        state = MBKeyboardKeyStateShifted;
+++    }
++ 
++   if (!mb_kdb_key_has_state(key, state))
++     {
+diff --git a/meta/recipes-sato/matchbox-keyboard/matchbox-keyboard_git.bb b/meta/recipes-sato/matchbox-keyboard/matchbox-keyboard_git.bb
+index eba1970..6d9d943 100644
+--- a/meta/recipes-sato/matchbox-keyboard/matchbox-keyboard_git.bb
++++ b/meta/recipes-sato/matchbox-keyboard/matchbox-keyboard_git.bb
+@@ -16,6 +16,7 @@ PR = "r4"
+ 
+ SRC_URI = "git://git.yoctoproject.org/${BPN};branch=matchbox-keyboard-0-1 \
+            file://0001-desktop-file-Hide-the-keyboard-from-app-list.patch \
++           file://0002-add-french-keyboard.patch \
+            file://80matchboxkeyboard.sh"
+ 
+ S = "${WORKDIR}/git"
 -- 
 2.7.4
 
