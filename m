@@ -1,69 +1,60 @@
-Return-Path: <matt@madison.systems>
+Return-Path: <christian.fuchs@fos4x.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19C23E00DDF; Mon, 16 May 2016 07:47:16 -0700 (PDT)
+	id CF526E00D72; Tue, 17 May 2016 01:14:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.215.50 listed in list.dnswl.org]
-Received: from mail-lf0-f50.google.com (mail-lf0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 816ABE00DDA
-	for <yocto@yoctoproject.org>; Mon, 16 May 2016 07:47:11 -0700 (PDT)
-Received: by mail-lf0-f50.google.com with SMTP id m64so117501533lfd.1
-	for <yocto@yoctoproject.org>; Mon, 16 May 2016 07:47:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=madison-systems.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-transfer-encoding;
-	bh=glFtEcnqgLkGaUwwlLR6G35BRI6q9pCEBKIhKD7ZtLM=;
-	b=laOsXVS5LWCAkOqD/mItXk/K01h71LjmW2fihSpg1zBta5pvQSPJ/nukDSsFueo1dQ
-	G1wbVBrgcM8eqsQ3KGkYsE8+hACQOKQFc2433zRG6QYurPDa8IgeXa7ZoLwqnTDm+tYE
-	K5W0WnIPFT+yrimMNXZgTRsWFwxxln2xX3SvVdkBQ0gaIzC6vxUDR+NAaNTqR7WZtp1G
-	2Y+8Jpqr6SiEUdXt/LkROL7vHeKGoIGcWfsQ0Sdo5gvnwTapTEcl7h03rx0C16Ci6iBF
-	K3D7GPWinxl/ZPZTEN2V9SLjRfVKAkNeyZ3MJUdDLeSABd+Ae2yzsOwA+YyF1DgTOqgg
-	+74A==
+	*      [74.125.82.51 listed in list.dnswl.org]
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3D18E00D0C
+	for <yocto@yoctoproject.org>; Tue, 17 May 2016 01:14:55 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id e201so128950943wme.0
+	for <yocto@yoctoproject.org>; Tue, 17 May 2016 01:14:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fos4x.de; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=xI/Om9xVglaUcxqlXOrRkdq5sMkeUtrznwXdv8E9LPs=;
+	b=N+vyIKaF3zjwQa0gxluowZztNC8mmSecqVkgsVESAVOGccL/+yYAs/hKGoBPJSLT8M
+	5XHduYOpCK/UnTm7fZ3yVYOCojesurSufx2UJbReRsExxrM5SVlqFXUJAzoMCSMqdyR1
+	5Q/Zd0TbgyEPaxDEqYc2PuTHAqY28tEYw25EI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-transfer-encoding;
-	bh=glFtEcnqgLkGaUwwlLR6G35BRI6q9pCEBKIhKD7ZtLM=;
-	b=UBASP3dHr5eoJOsitQgXn/bLwa/V2Lxz0MpD4zDcSAFPEAaK4kMvrEO8TD0n2W4Fvz
-	y1G9E8To/0D+8hFAWLM1u9Lo7VUuO4hVc2kaAYLgLdbW6tgZ5ai7WVKmAtkbNvLx2Mwz
-	JBWu7vITPyUT3N/ObcX3RLnbwDrF56T5loDqbQib6DtuiDZsuFYDdFWCcQVeTLge9427
-	mQec5gxV4i2iu+9QwHpY1ehCehncetk/sKiCBMBSEzap99mNW1z6F1FBMCsybuTQPdUu
-	K5sS6sE+jqRAapfdfT91WDH4wGQwo2hnosmghyyh1c4uPgsFnxGLG4B9/p8QcKVfroBX
-	vpuw==
-X-Gm-Message-State: AOPr4FX7Ei9Bfl6PTIyNbBlWMmC9O8+qBZRPnHWqenicHDMJcWRBJN/gzlKfgdLQeXPVUTLJl4i11PTMtKy+wg==
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=xI/Om9xVglaUcxqlXOrRkdq5sMkeUtrznwXdv8E9LPs=;
+	b=hTEAYHw03B2z3XYU8Ck/h/VU2JUTRIDAxVNwO+66UkpBdy1AijjZmM2UA4swZB3FgO
+	fP5suJaYKVhbL24vreDcD7c08eiumu6WTOn8ht2ZyKR8GL5mN2od+szKMd6m/jak4y/h
+	i98T98BRQSXMTp8yrdTbQpBfFpe8fjg3iEHnajwmB0ggJCSxhQOoNuqhO/+Ts1Cqlddx
+	FEcTnct6q2GBNKlYorPlx6X+VDlAh9WcSihoLoaba6q2GIA3bcwmZAE9zL9q3p7wUN0c
+	AjkXdsOI2XdHU1LAARxZuAGLe5SCNz3FIvHqXiItQnZDo0i9RTqf9Zp8JLegZe5mPAaS
+	Ec2A==
+X-Gm-Message-State: AOPr4FW0Gan6qsojC2l9U1qDOLkN6LWZ37C1XVS7kjNrkoy3X0m0iiGSUWJh4F5+TkPsaA==
+X-Received: by 10.194.148.142 with SMTP id ts14mr26237647wjb.39.1463472894176; 
+	Tue, 17 May 2016 01:14:54 -0700 (PDT)
+Received: from [10.0.102.17] (pd907f7af.dip0.t-ipconnect.de. [217.7.247.175])
+	by smtp.googlemail.com with ESMTPSA id
+	i4sm1644931wjj.49.2016.05.17.01.14.52 for <yocto@yoctoproject.org>
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 17 May 2016 01:14:53 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Christian Fuchs <christian.fuchs@fos4x.de>
+Message-ID: <bf3219da-4a88-f071-fa00-b46b2872afc5@fos4x.de>
+Date: Tue, 17 May 2016 10:14:52 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.1.0
 MIME-Version: 1.0
-X-Received: by 10.25.39.141 with SMTP id n135mr11460595lfn.98.1463410030345;
-	Mon, 16 May 2016 07:47:10 -0700 (PDT)
-Received: by 10.25.31.131 with HTTP; Mon, 16 May 2016 07:47:10 -0700 (PDT)
-In-Reply-To: <d8eca3ae-86db-35c1-951e-696dbab4b901@balister.org>
-References: <CABfz71dsLkf5W9LDsEewXj2Rmw715jqqMFvwKE7WYT=83iAs6g@mail.gmail.com>
-	<CAMKF1so7vzL4iKu5LiBKNK2cNBbV_0fuRoD_c7aVaN8x+kAh3Q@mail.gmail.com>
-	<CABfz71dAJ4L6rKFgCOQgYNdqmr9jk5UaSLkMO=2PJ58gMBCLkw@mail.gmail.com>
-	<CABfz71e32ixS10u7Wyr+XnZm+N93s6tPNorYNRqf276xh5ay9Q@mail.gmail.com>
-	<CAMKF1srhr1uYJq53LZ+CKUNqYPAv3uq2onv3PtY=nVVyz7+bgA@mail.gmail.com>
-	<CABfz71fcyMhkU3oH7msO8p2rAp1x4wozU9ordW2ZP7dqQVCNGQ@mail.gmail.com>
-	<CABfz71c3eZDAXRJ-2RcqjnwAe9bhfkqz8aF1FHFiPYSVwA5ZBg@mail.gmail.com>
-	<2b5a99dd-ca48-a77f-9acd-bcfebe479884@eumx.net>
-	<0F4D52DD-BB7E-4449-B5B2-5D90A683ABC3@madison.systems>
-	<d8eca3ae-86db-35c1-951e-696dbab4b901@balister.org>
-Date: Mon, 16 May 2016 07:47:10 -0700
-Message-ID: <CAGgRHJq73XZ9FfRPLExVUQ7VXdychKSEL0h4JNfCWmsMNEQ_pQ@mail.gmail.com>
-From: Matt Madison <matt@madison.systems>
-To: Philip Balister <philip@balister.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: machine arch files for Jetson TX1 (Quad-core ARMCortex-A57 MPCore Processor)
+Subject: Curl recipe not applying DISTRO_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,73 +66,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 May 2016 14:47:16 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 17 May 2016 08:14:57 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 16, 2016 at 6:09 AM, Philip Balister <philip@balister.org> wrot=
-e:
-> On 05/15/2016 01:29 PM, Matt Madison wrote:
->> On 15 May 2016, at 04:25 , Jack Mitchell <ml@embed.me.uk> wrote:
->>>
->>> On 14/05/16 23:46, Paul Knopf wrote:
->>>> This is what I am thinking.
->>>>
->>>> DEFAULTTUNE =3D "cortexa9hf"
->>>> require conf/machine/include/tune-cortexa9.inc
->>>>
->>>> Does this sound right? I am using "hf" because in the crosstools-ng
->>>> has CT_ARCH_FLOAT=3D"hard", and cortexa9 because of
->>>> CT_ARCH_CPU=3D"cortex-a9" and CT_ARCH_TUNE=3D"cortex-a9".
->>>>
->>>> Sorry, I'm that familiar with embedded processors. Any guidance would
->>>> be greatly appreciated.
->>>> <snip>
->>>
->>> Someone has already started having a go.
->>>
->>> https://github.com/watatuki/meta-jetson-tx1
->>>
->>> Easiest way to check for support in OE is to google meta + devboard nam=
-e. Usually turns something up :)
->>
->> There=E2=80=99s also https://github.com/madisongh/meta-tegra.
->
-> Please add your layers to the layer index as soon as possible so people
-> can search there. This helps prevent duplicate layers.
+Hello everybody,
 
-Thanks for reminding me.  I held off initially, until I had enough
-content and testing done, but it's in not-too-bad shape right now.  I
-just submitted this and another layer I've been working on.
+I am using Yocto version 1.8 and I'm having trouble compiling curl on a 
+64-bit machine running Debian Wheezy 7.10.
 
-Thanks,
--Matt
+The recipe always creates a libcurl.so.5 library, which I understand is 
+due to an error regarding the size of off_t picked up by autotools. From 
+the recipe:
 
-> Any chance the TX1 people can combine efforts so we only have one bsp
-> for this board?
+> # see 
+> https://lists.yoctoproject.org/pipermail/poky/2013-December/009435.html
+> # We should ideally drop ac_cv_sizeof_off_t from site files but until 
+> then
+> EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'largefile', 
+> 'ac_cv_sizeof_off_t=8', '', d)}"
+As far as I understand bitbake this last line should add the string 
+'ac_cv_sizeoff_off_t=8' to EXTRA_OECONF, if 'largefile' is set in 
+DISTRO_FEATURES. When I checked the DISTRO_FEATURES variable with 
+"bitbake -e curl", 'largefile' was indeed set.
+> DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia 
+> usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ipv4 ipv6 
+> libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets 
+> libc-charsets libc-crypt                                         
+> libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt libc-fmtmsg 
+> libc-fstab libc-ftraverse                                  
+> libc-getlogin libc-idn libc-inet-anl libc-libm libc-locales 
+> libc-locale-code                                    libc-memusage 
+> libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn 
+> libc-streams libc-sunrpc libc-utmp libc-utmpx libc-wordexp 
+> libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc 
+> libc-posix-wchar-io largefile multiarch tiny pam keyboard usbhost ext2 
+> ipv6 pcmcia pulseaudio sysvinit"
+
+However the configure log shows that configure is called without 
+'ac_cv_sizeoff_off_t=8':
+> NOTE: Running 
+> /data/jenkins/workspace/kOS/build/tmp/work/core2-32-fos4x-linux/curl/7.40.0-r0/curl-7.40.0/configure 
+> --build=x86_64-linux           --host=i586-fos4x-linux 
+> --target=i586-fos4x-linux           --prefix=/usr --exec_prefix=/usr 
+>           --bindir=/usr/bin --sbindir=/usr/sbin           
+> --libexecdir=/usr/lib/curl --datadir=/usr/share           
+> --sysconfdir=/etc --sharedstatedir=/com           --localstatedir=/var 
+> --libdir=/usr/lib           --includedir=/usr/include 
+> --oldincludedir=/usr/include --infodir=/usr/share/info 
+> --mandir=/usr/share/man           --disable-silent-rules 
+> --disable-dependency-tracking 
+> --with-libtool-sysroot=/data/jenkins/workspace/kOS/build/tmp/sysroots/fos4x 
+> --without-libidn --enable-crypto-auth --disable-ldap                 
+> --disable-ldaps --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt  
+> --with-gnutls --enable-ipv6 --without-libssh2 --without-librtmp 
+> --disable-smb --without-ssl 
+> --with-zlib=/data/jenkins/workspace/kOS/build/tmp/sysroots/fos4x/usr/lib/../ 
 >
-> Philip
->
->
->
->
->>
->> -Matt
->>
->>
->>>
->>> Cheers,
->>> Jack.
->>>
->>> ---
->>> Jack Mitchell
->>> Embedded Linux Consultant
->>> www.tuxable.co.uk
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
+...
+> configure: WARNING: This libcurl built is probably not ABI compatible 
+> with previous
+> configure: WARNING: builds! You MUST read lib/README.curl_off_t to 
+> figure it out.
+
+When I try to compile this recipe with the exact same settings on a 
+test-machine running Ubuntu 14.04 everything works fine, configure is 
+called with 'ac_cv_sizeoff_off_t=8', no ABI issues are detected and 
+libcurl.so.4 is produced.
+> NOTE: Running 
+> /scratch/working/build/tmp/work/core2-32-fos4x-linux/curl/7.40.0-r0/curl-7.40.0/configure 
+> --build=x86_64-linux         --host=i586-fos4x-linux 
+> --target=i586-fos4x-linux           --prefix=/usr 
+> --exec_prefix=/usr          --bindir=/usr    /bin 
+> --sbindir=/usr/sbin         --libexecdir=/usr/lib/curl 
+> --datadir=/usr/share        --sysconfdir=/etc 
+> --sharedstatedir=/com           --localstatedir=/var 
+> --libdir=/usr/lib           --includedir=/usr/include --oldinc 
+> ludedir=/usr/include --infodir=/usr/share/info 
+> --mandir=/usr/share/man         --disable-silent-rules 
+> --disable-dependency-tracking 
+> --with-libtool-sysroot=/scratch/working/build/tmp/sysroots/fos4x 
+> --without-libidn                 - -enable-crypto-auth                 
+> --disable-ldap --disable-ldaps 
+> --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt 
+> ac_cv_sizeof_off_t=8 --with-gnutls --enable-ipv6 --without-libssh2 
+> --without-librtmp --disable-smb --without-ssl -- 
+> with-zlib=/scratch/working/build/tmp/sysroots/fos4x/usr/lib/../
+
+Could somebody give me a hint, how I can fix this?
+
+Best regards,
+Christian
+
+-- 
+Christian Fuchs, M.Sc. - Software-Developer
+fos4X GmbH - www.fos4x.de - T +49 89 999 542 15 - F +49 89 999 542 01
+Thalkirchner Str. 210, Geb. 6 - D-81371 München; AG München HRB 189 218
+Managing Directors: Dr. Lars Hoffmann, Dr. Mathias Müller
+
 
