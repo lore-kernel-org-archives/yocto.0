@@ -1,59 +1,64 @@
-Return-Path: <andrew@aj.id.au>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 412DBE00CF0; Tue, 17 May 2016 06:15:46 -0700 (PDT)
+	id 1B085E00CF0; Tue, 17 May 2016 06:21:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [66.33.216.122 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 43216 seconds by postgrey-1.32 at yocto-www;
-	Tue, 17 May 2016 06:15:44 PDT
-Received: from hapkido.dreamhost.com (hapkido.dreamhost.com [66.33.216.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCB20E00CE6
-	for <yocto@yoctoproject.org>; Tue, 17 May 2016 06:15:44 -0700 (PDT)
-Received: from homiemail-a17.g.dreamhost.com (sub3.mail.dreamhost.com
-	[69.163.253.7])
-	by hapkido.dreamhost.com (Postfix) with ESMTP id ECB58ABED1
-	for <yocto@yoctoproject.org>; Mon, 16 May 2016 18:15:27 -0700 (PDT)
-Received: from homiemail-a17.g.dreamhost.com (localhost [127.0.0.1])
-	by homiemail-a17.g.dreamhost.com (Postfix) with ESMTP id EB6A92B206E;
-	Mon, 16 May 2016 18:15:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=aj.id.au; h=message-id
-	:subject:from:reply-to:to:cc:date:content-type:mime-version; s=
-	aj.id.au; bh=07f7ec+2s3MCshwDrDT4LbxMnUA=; b=b4tUxsUCXjJchmEGiOl
-	OvfJ+d++9HwEw9ZeuYw7Xs+H6cavGWciILKu0aLUkgGZvVN/oPMazb2TOqtdOEmE
-	B5ReasdOwMSd0woa3pj+9Lt+hCLOGiFx/RodVEZDStQLcmjCaN4eRmLprDQ0THcW
-	2lJnbZutCoM+ZkyIW5Izgtyw=
-Received: from keelia (unknown [203.0.153.9])
-	(using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: andrew@aj.id.au)
-	by homiemail-a17.g.dreamhost.com (Postfix) with ESMTPSA id 168E42B2065; 
-	Mon, 16 May 2016 18:15:24 -0700 (PDT)
-Message-ID: <1463447715.2703.112.camel@aj.id.au>
-From: Andrew Jeffery <andrew@aj.id.au>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 17 May 2016 10:45:15 +0930
-Organization: IBM OzLabs
-X-Mailer: Evolution 3.18.5.2-0ubuntu1 
-Mime-Version: 1.0
-Cc: Patrick Williams <patrick@stwcx.xyz>, OpenBMC <openbmc@lists.ozlabs.org>
-Subject: Extending runqemu/runqemu-internal with new machines
+Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
+	[209.85.223.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7DFAE00CE6
+	for <yocto@yoctoproject.org>; Tue, 17 May 2016 06:21:00 -0700 (PDT)
+Received: by mail-io0-f177.google.com with SMTP id 190so22593264iow.1
+	for <yocto@yoctoproject.org>; Tue, 17 May 2016 06:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=v6c75U8Mb/krRVfZfvgU+3PCr8W4QK4bjK0/oTP7qug=;
+	b=FF4PMbWsor5v72301WTTVJxruNprB15T+3/YJwEt4UwjRYjV4uCAeZhBSAWuppTTmV
+	RIj36TGi7QW7caCtJ8s47nA2+y6Eym4PEeaA/4/n/jMuvWyGDDGjerQeF1m2DA3tJamM
+	1KD+DnNNV4F1mCc6bAHSm9MXXFHg9ZJEXZxdGjJ8ic436pDJVt9rx+ldDj6CAk2dKTjs
+	JuTKIvuU3a589L1yrq5xVk0+D/iXeAMJp0oCTT4NcPVMfqYR0mCHf5MftG48IGL8Kful
+	PyxYRDMqdbbjCqTi1ait7to62jfeXO8qUxx0YIwq1grSEWj6PTsf2Sn1/YP4n4a8bKRx
+	Vq7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=v6c75U8Mb/krRVfZfvgU+3PCr8W4QK4bjK0/oTP7qug=;
+	b=ZPJieAsGchGoD5F27lAaD1ryz0ZAWTPexdMOlqh7Qqm2Q0pSqFmU3RyZSCzysKWnVz
+	C9Dh91xeGKuxSmo715l07b0y9fUD+LnFTi9fCLfS8L+Pz2nX7rAkBgRdZcc5KuR6LGrL
+	ACZQ+6ZF3O8cd1n0z7CfumzgYFgfHNEwuorUQMcrASQMZ5nsLmp5Y/zoQ8Z04rw+qNwL
+	tSsTdTsOf2aezx810i6qmWMR4Ys3locM1joZQ5iePMxPd1BfHwcRTXJGD1+niJkbiCNH
+	uIlvvdISL5X299cosflbLiq8Wx9JwnkDRHNP/VTfV5BHzDQa3ttHIHzqBYCjiiEqN6Rb
+	tWYQ==
+X-Gm-Message-State: AOPr4FW4uM3um3amlMjWJq63zhqpSvcxxd6vPhndSk5B4NhMhGDyGZfyDJvWD5SqdLsYO4MqB9q1wjW5M7PtD2ux
+X-Received: by 10.36.120.87 with SMTP id p84mr1077481itc.38.1463491259932;
+	Tue, 17 May 2016 06:20:59 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Tue, 17 May 2016 06:20:40 -0700 (PDT)
+In-Reply-To: <1463447715.2703.112.camel@aj.id.au>
+References: <1463447715.2703.112.camel@aj.id.au>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 17 May 2016 14:20:40 +0100
+Message-ID: <CAJTo0LbX7qrAc5e0OSJzTJ=ish7rLuGzm9LA7LbKF4DK+jy+PA@mail.gmail.com>
+To: andrew@aj.id.au
+Cc: Yocto Project <yocto@yoctoproject.org>, OpenBMC <openbmc@lists.ozlabs.org>,
+	Patrick Williams <patrick@stwcx.xyz>
+Subject: Re: Extending runqemu/runqemu-internal with new machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: andrew@aj.id.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,69 +67,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 May 2016 13:15:46 -0000
-X-Groupsio-MsgNum: 30012
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-pUkIokhvVy5Imflxox41"
+X-List-Received-Date: Tue, 17 May 2016 13:21:04 -0000
+Content-Type: multipart/alternative; boundary=001a114ac70aae5c220533099cd6
 
---=-pUkIokhvVy5Imflxox41
-Content-Type: text/plain; charset="UTF-8"
+--001a114ac70aae5c220533099cd6
+Content-Type: text/plain; charset=UTF-8
+
+On 17 May 2016 at 02:15, Andrew Jeffery <andrew@aj.id.au> wrote:
+
+> Is there a better way to work that might avoid these issues?
+> Alternatively, should we start looking at reworking the
+> runqemu/runqemu-internal scripts such that we don't have to patch them
+> to support our use-case? If so, what sort of approach would the
+> community be happy with?
+>
+
+Dig back a few weeks and you'll a RFC series by Robert Yang refactoring
+runqemu for exactly this problem.  I've not yet looked at it myself but if
+you could see if that solves your problems then that would be much
+appreciated.
+
+Ross
+
+--001a114ac70aae5c220533099cd6
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 17 May 2016 at 02:15, Andrew Jeffery <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:andrew@aj.id.au" target=3D"_blank">andrew@aj.id.au</a>&gt;</span> wrot=
+e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div>Is there a better way to work tha=
+t might avoid these issues?<br>
+Alternatively, should we start looking at reworking the<br>
+runqemu/runqemu-internal scripts such that we don&#39;t have to patch them<=
+br>
+to support our use-case? If so, what sort of approach would the<br>
+community be happy with?</div></blockquote></div><br>Dig back a few weeks a=
+nd you&#39;ll a RFC series by Robert Yang refactoring runqemu for exactly t=
+his problem.=C2=A0 I&#39;ve not yet looked at it myself but if you could se=
+e if that solves your problems then that would be much appreciated.</div><d=
+iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
+iv>
 
-I'm interested in how to best extend the runqemu/runqemu-internal
-scripts to add support for more specific machine types. The OpenBMC
-project[1] (which uses Yocto) has been working on upstreaming support
-for the Aspeed AST2400 and AST2500 SoCs[3] in the kernel and qemu, and
-we'd like to run the same configuration in qemu as we do on hardware.
-
-As it stands the qemuarm configuration runs a versatilepb machine, but
-as we have more relevant machine types in upstream qemu (e.g. palmetto-
-bmc) we'd like to invoke them instead.
-
-In the OpenBMC repo we have Yocto as a subtree to which we apply
-updates from upstream. Given that, it's best if we have no changes to
-the subtree so that upstream patches apply without fuss. If we want to
-provide additional machine types in runqemu/runqemu-internal it seems
-that we cannot avoid carrying patches to the scripts, which will need
-to be reworked when we apply the upstream patches.
-
-Is there a better way to work that might avoid these issues?
-Alternatively, should we start looking at reworking the
-runqemu/runqemu-internal scripts such that we don't have to patch them
-to support our use-case? If so, what sort of approach would the
-community be happy with?
-
-Cheers,
-
-Andrew
-
-[1]=C2=A0https://github.com/openbmc/docs#openbmc-goals
-[2]=C2=A0https://github.com/openbmc/openbmc/
-[3]=C2=A0http://www.aspeedtech.com/products.php?fPath=3D20
-
---=-pUkIokhvVy5Imflxox41
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCgAGBQJXOnCjAAoJEJ0dnzgO5LT53sEQAI0tLg8W0hfqMFhQdaiVElsF
-sdVZEQGlj7nZFvLS+WCrADs6+mxiJtpmAnw57fN7SkDAwkPrjC6bYR+286NqarmA
-jj67hkgBr7tjKPCnNkeVmjzwgG/qcRU/UmDtHAPIlGIRtIZw16Nlx5mjbxjW/ErU
-0G3NYpw6SLeQIyL2JxWoGaO34dxOnktODsUg2myxFiFwvzx88pjl2AISai9V/eTn
-4wCjNCOjxu9m9JaCx6k7/ktdRHVS/ZSxNh9xwmpJXnGoahsMkHuQEj1t5f16wDd5
-/thYYQDACeiAK4Kg5wD+AyhXd2vFKZS1AIOui29vZ5srb2jUikZTDaNfEKVPLlDq
-9ow4eQyvCABlVFv86/ghKON0jVACu92yTW9N8PZR2k7WZThY2rGBQn5dYbQo4nqM
-1AFuefwYP4sibFxkWCu/RPWZzQi1xjHqfBD0ps3jBRlULeZEecyaRs/WaQcERYZ2
-Tdwcb9zepB2buZRjVXIoRvUpuLQTdezP+n7i8qY+TE0ZxDK26vHJhYyKZBmUcOI+
-v21km0mcNTTF8qcr1hnHo1GA0Y5aAeFmAvr++SKCBsB0gnvJIYzZtOX9OT1C+w/P
-oiFKG6kovNjGHL+jO5ZSAR3w5tWkpLnfj3MGxXfr/awsSAj4NL4EYH0sgj98Z/Sj
-XKsrpPciYq3h/Kfx+hW1
-=fIxi
------END PGP SIGNATURE-----
-
---=-pUkIokhvVy5Imflxox41--
+--001a114ac70aae5c220533099cd6--
