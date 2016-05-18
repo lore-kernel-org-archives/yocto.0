@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5F8CE009BF; Wed, 18 May 2016 10:25:42 -0700 (PDT)
+	id 19C9EE009BF; Wed, 18 May 2016 10:32:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,33 +13,34 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      [score: 0.0000]
 	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A336BE00888
-	for <yocto@yoctoproject.org>; Wed, 18 May 2016 10:25:39 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBB1CE00888
+	for <yocto@yoctoproject.org>; Wed, 18 May 2016 10:32:39 -0700 (PDT)
 Received: from [192.168.1.105] (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])
-	by msfrf2618.sfr.fr (SMTP Server) with ESMTP id 4AAD41C007C0C;
-	Wed, 18 May 2016 19:25:39 +0200 (CEST)
+	by msfrf2613.sfr.fr (SMTP Server) with ESMTP id 07C151C00183B;
+	Wed, 18 May 2016 19:32:39 +0200 (CEST)
 Received: from [192.168.1.105] (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])	(using TLSv1
 	with cipher ECDHE-RSA-AES256-SHA (256/256 bits))	(No client certificate
 	requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2618.sfr.fr (SMTP Server) with ESMTPSA;
-	Wed, 18 May 2016 19:25:38 +0200 (CEST)
+	by msfrf2613.sfr.fr (SMTP Server) with ESMTPSA;
+	Wed, 18 May 2016 19:32:38 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (PLAIN)
 	smtp.auth=herve.jourdain@neuf.fr
 References: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
-	<1463574082-126198-3-git-send-email-herve.jourdain@neuf.fr>
-	<8CECD805-B6E5-4AED-93F4-CC026062A309@gmail.com>
+	<1463574082-126198-6-git-send-email-herve.jourdain@neuf.fr>
+	<722F295F-4BEE-4E0A-9078-BB24EF9BAAE2@gmail.com>
+	<F57461B0-379F-4CA7-8A72-F993A6BFC155@neuf.fr>
 Mime-Version: 1.0 (1.0)
-In-Reply-To: <8CECD805-B6E5-4AED-93F4-CC026062A309@gmail.com>
-Message-Id: <566CADDD-A0E3-4827-9740-D45016E1D0C4@neuf.fr>
+In-Reply-To: <F57461B0-379F-4CA7-8A72-F993A6BFC155@neuf.fr>
+Message-Id: <5E856D17-B2AF-4439-A778-1F1A93B4103B@neuf.fr>
 X-Mailer: iPad Mail (13D15)
 From: Herve Jourdain <herve.jourdain@neuf.fr>
-Date: Thu, 19 May 2016 01:25:34 +0800
+Date: Thu, 19 May 2016 01:32:35 +0800
 To: Khem Raj <raj.khem@gmail.com>
 X-sfr-mailing: LEGIT
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/8] Support for vc4 graphics driver: add vc4-kms-v3d to the overlays
+Subject: Re: [meta-raspberrypi][PATCH 5/8] Support for vc4 graphics driver: upgrade 4.4 kernel to 4.4.10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,93 +52,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 May 2016 17:25:43 -0000
+X-List-Received-Date: Wed, 18 May 2016 17:32:43 -0000
 Content-Type: text/plain; charset=gb2312
 Content-Transfer-Encoding: quoted-printable
 
-Hi Khem,
-
-Well, it seems to be the way it will be activated in the future as well, thr=
-ough a device tree overlay.
-The rationale being that people may not want/need the VC4 driver, because th=
-ey prefer to use userland or other reasons, and that only the persons who wa=
-nt to activate it will load the overlay.
-One thing to remember is that vc4 has the potential to conflict with other p=
-ieces, and it might not be for everybody (the firmware patch helps in that r=
-egards, but before it, weston/drm was conflicting with the splash screen for=
- instance on my test setup, creating very disturbing images).
-
-If your question is, will userland disappear one day and vc4 graphics becomi=
-ng the only graphics driver, the overlay could be included in the base devic=
-e tree itself, in like a few years from now, then I clearly don't have an an=
-swer to that...
-
-But I believe the overlay will stick some time around.
+One thing I didn't make configurable, but that maybe could be, is the parame=
+ter passed to the overlay.
+I selected cma-256, based on experience from other people, and because my co=
+nfiguration is RPI2/3 with 1G of memory.
+I realize it might not work well with RPI0/1, which have less memory availab=
+le...
+So even if I believe cma-256 is a good default value, it might be made selec=
+table by the user, if we want to consider vc4 on RPI0/1.
+I'd very much like to hear other people's opinion about that...
 
 Herve
 
-> Le 19 mai 2016 =A8=A4 00:53, Khem Raj <raj.khem@gmail.com> a =A8=A6crit :
+> Le 19 mai 2016 =A8=A4 00:43, Herve Jourdain <herve.jourdain@neuf.fr> a =A8=
+=A6crit :
 >=20
+> Hi Khem,
 >=20
->> On May 18, 2016, at 5:21 AM, Herve Jourdain <herve.jourdain@neuf.fr> wrot=
-e:
->>=20
->> This patch series enables the support for the VC4 graphics driver from Er=
-ic Anholt.
->> Add vc4-kms-v3d overlay if 'vc4graphics' is in MACHINE_FEATURES.
->> (This patch has a dependency on the patch that enables the support of .dt=
-bo overlay files)
->>=20
->> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
->> ---
->> recipes-bsp/bootfiles/rpi-config_git.bb | 8 ++++++++
->> 1 file changed, 8 insertions(+)
->>=20
->> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfi=
-les/rpi-config_git.bb
->> index 4bc8eb7..79e436d 100644
->> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
->> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
->> @@ -19,6 +19,8 @@ PITFT=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitf=
-t", "1", "0", d)}"
->> PITFT22=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0", d=
-)}"
->> PITFT28r=3D"${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0"=
-, d)}"
->>=20
->> +VC4GRAPHICS=3D"${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "=
-1", "0", d)}"
->> +
->> inherit deploy
->>=20
->> do_deploy() {
->> @@ -102,6 +104,12 @@ do_deploy() {
->>        echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
->>        echo "enable_uart=3D1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt=
+> Yes, I've seen that you had sent a patch to upgrade to some revision of 4.=
+4.9.
+> Here, I upgrade to 4.4.10, but VC4 should work with the 4.4.9 revision you=
+ sent before.
+> I mostly bumped to 4.4.10 because the firmware bumped to 4.4.10 - and the f=
+irmware bump is mandatory for VC4 to work effectively on RPI.
+>=20
+> Herve
+>=20
+>> Le 19 mai 2016 =A8=A4 00:27, Khem Raj <raj.khem@gmail.com> a =A8=A6crit :=
 
->>    fi
->> +
->> +    # VC4 Graphics support
->> +    if [ "${VC4GRAPHICS}" =3D "1" ]; then
->> +        echo "# Enable VC4 Graphics" >>${DEPLOYDIR}/bcm2835-bootfiles/co=
-nfig.txt
->> +        echo "dtoverlay=3Dvc4-kms-v3d,cma-256" >>${DEPLOYDIR}/bcm2835-bo=
-otfiles/config.txt
->> +    fi
->=20
->=20
-> will this keep appending overtime ?
->=20
->> }
 >>=20
->> addtask deploy before do_package after do_install
->> --
->> 2.7.4
 >>=20
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
+>>> On May 18, 2016, at 5:21 AM, Herve Jourdain <herve.jourdain@neuf.fr> wro=
+te:
+>>>=20
+>>> This patch series enables the support for the VC4 graphics driver from E=
+ric Anholt.
+>>> Kernel upgrade to 4.4.10 (some 4.4.9 version would be enough, but the re=
+quired firmware supports 4.4.10, so bump it anyway)
+>>=20
+>> I have sent a patch for similar update. Have you looked at that
+>>=20
+>>>=20
+>>> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+>>> ---
+>>> recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+>>> 1 file changed, 2 insertions(+), 2 deletions(-)
+>>>=20
+>>> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-ker=
+nel/linux/linux-raspberrypi_4.4.bb
+>>> index 831ac5a..0bc6531 100644
+>>> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+>>> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+>>> @@ -1,8 +1,8 @@
+>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+>>>=20
+>>> -LINUX_VERSION ?=3D "4.4.8"
+>>> +LINUX_VERSION ?=3D "4.4.10"
+>>>=20
+>>> -SRCREV =3D "fe7ad6aa5c6940817fe971d80a7b2a1d6052190a"
+>>> +SRCREV =3D "4c2795dd50f98fa162cb53190eb557be44f92f58"
+>>> SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branc=
+h=3Drpi-4.4.y \
+>>>          file://0001-fix-dtbo-rules.patch \
+>>> "
+>>> --
+>>> 2.7.4
+>>>=20
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
 
