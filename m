@@ -1,43 +1,62 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 025C5E00E26; Wed, 18 May 2016 01:36:25 -0700 (PDT)
+	id 61AE6E00C70; Wed, 18 May 2016 03:39:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.1 listed in list.dnswl.org]
+	*      [209.85.213.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1548E00E23
-	for <yocto@yoctoproject.org>; Wed, 18 May 2016 01:36:21 -0700 (PDT)
-Received: from nbhjo (111-250-207-159.dynamic.hinet.net [111.250.207.159])
-	by msfrf2614.sfr.fr (SMTP Server) with ESMTP id C1FF21C0074C7;
-	Wed, 18 May 2016 10:36:20 +0200 (CEST)
-Received: from nbhjo (111-250-207-159.dynamic.hinet.net
-	[111.250.207.159])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2614.sfr.fr (SMTP Server) with ESMTPSA;
-	Wed, 18 May 2016 10:36:18 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Jussi Kukkonen' <jussi.kukkonen@intel.com>
-References: <1463550682-59043-1-git-send-email-herve.jourdain@neuf.fr>
-	<CAHiDW_HEC=bsV3NzNos25Rj9SB7vRjJzEDuJiggFdgfr1T37dg@mail.gmail.com>
-In-Reply-To: <CAHiDW_HEC=bsV3NzNos25Rj9SB7vRjJzEDuJiggFdgfr1T37dg@mail.gmail.com>
-Date: Wed, 18 May 2016 10:36:14 +0200
-Message-ID: <015801d1b0e0$5a4b1d10$0ee15730$@neuf.fr>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15383E00C4F
+	for <yocto@yoctoproject.org>; Wed, 18 May 2016 03:38:58 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id m9so24859687ige.1
+	for <yocto@yoctoproject.org>; Wed, 18 May 2016 03:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=fKHg71dYaaNYS2snO81XGxTSz97iDLiqrXQs/BSLsAo=;
+	b=vXtHlMO7nMoAFsFheC2PIRm7XLpk7SOnUlGfRFUUY6h3MXuwXoQQoaoPd9B3G2/FYS
+	NXGztNNHHsuHUZisP8JlOnVT7CwoYXgVjCX3GVa0lI6zOo0vh67mtwHKfiIpWO0Re4Ho
+	7c/W8tiBLsiPH4h9fAfV21kIEqDT4iX1ECl6zZICQdmKYnEoLx8XBi+pDxDMEFY6aW+n
+	er1ie3g6UK69M+gcELWS2C5CtAaDJwSRgx1jo67B327jX08yc0RtSyuP5kXlWvvJRBpt
+	ql0anuaTeVb9Id94dFBEAR9taIzYkCR6mVLKRfE0WbjUv+zWAVwPkPB/YFOrscMU+3UU
+	1Qlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=fKHg71dYaaNYS2snO81XGxTSz97iDLiqrXQs/BSLsAo=;
+	b=M4B/P0OhP8l4YsMbO7OsoEQapK5nXtoVscer5h16Xip9U1EzBu8tf4RT2WbIvh5MyY
+	Pe3WnuBXlhSozquBGdEAfPPholNG3yrh+VqCrNZ0PaBy8VaR/KhrkmZA++tsvj6zAhGt
+	j0vFDAw+ldhKm29kFufJ9oZir3+DGVszh5Uc+CMfzNA/qSEkZjGac8CG6fNxfBOK1C+y
+	0H4hHMLB+KPQ8kVrswoKh459KM9L6ozICzHqxvkB7dTIu+9HNPbcG+p3I68MuMWeYuTJ
+	Lj2GewOe2lSa6qvEEE9fulc1K3duxbxvjqfNOh7n6X7IpvAeuvnbsdsqPbk1OiE5EwsH
+	RkBw==
+X-Gm-Message-State: AOPr4FVrI+0AgsYbO55s4I68sh9ox0PTx9Dl3q44+oieaVionQbIySF9QMMNwF4EWBylEdMMD+1KcqFZq8y5d8Qx
+X-Received: by 10.50.60.132 with SMTP id h4mr17928781igr.78.1463567938330;
+	Wed, 18 May 2016 03:38:58 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQIpQWBtEowYwmBHNo00AlrkMOXN+wJsMTBOnvvcSRA=
-X-sfr-mailing: LEGIT
-Cc: 'Yocto Project' <yocto@yoctoproject.org>
-Subject: Re: [matchbox-keyboard][PATCH ] Support of "caps" tag
+Received: by 10.107.162.6 with HTTP; Wed, 18 May 2016 03:38:38 -0700 (PDT)
+In-Reply-To: <4be89ee9-9d84-ede0-ee24-cd55c9c4cf8a@fos4x.de>
+References: <bf3219da-4a88-f071-fa00-b46b2872afc5@fos4x.de>
+	<CAMKF1sqkeLzhgppY0Pf2rUXwYHOXwjQo+L=arawCmUF52vtO0A@mail.gmail.com>
+	<4be89ee9-9d84-ede0-ee24-cd55c9c4cf8a@fos4x.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 18 May 2016 11:38:38 +0100
+Message-ID: <CAJTo0La7EH5dwtpQMxYnjTytpQKaRJRoSRdMq248qGYneqYgcw@mail.gmail.com>
+To: Christian Fuchs <christian.fuchs@fos4x.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Curl recipe not applying DISTRO_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,59 +68,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 May 2016 08:36:25 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 18 May 2016 10:39:03 -0000
+Content-Type: multipart/alternative; boundary=bcaec5015c9b11bda005331b77ba
+
+--bcaec5015c9b11bda005331b77ba
+Content-Type: text/plain; charset=UTF-8
+
+On 18 May 2016 at 08:58, Christian Fuchs <christian.fuchs@fos4x.de> wrote:
+
+> I just checked and EXTRA_OECONF is not correctly expanded. It is missing
+> the "ac_cv_sizeof_off_t=8" part that is present on the Ubuntu machine.
+>
+
+Have you verified that DISTRO_FEATURES is identical on both?
+
+Ross
+
+--bcaec5015c9b11bda005331b77ba
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
 
-OK, thanks, v2 is on the way...
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 18 May 2016 at 08:58, Christian Fuchs <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:christian.fuchs@fos4x.de" target=3D"_blank">christian.fuchs@fos4x.de<=
+/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":854" cl=
+ass=3D"a3s aXjCH">I just checked and EXTRA_OECONF is not correctly expanded=
+. It is missing the &quot;ac_cv_sizeof_off_t=3D8&quot; part that is present=
+ on the Ubuntu machine.<br></div></blockquote></div><br>Have you verified t=
+hat DISTRO_FEATURES is identical on both?</div><div class=3D"gmail_extra"><=
+br></div><div class=3D"gmail_extra">Ross</div></div>
 
-Herve
-
------Original Message-----
-From: Jussi Kukkonen [mailto:jussi.kukkonen@intel.com]=20
-Sent: mercredi 18 mai 2016 09:55
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [yocto] [matchbox-keyboard][PATCH ] Support of "caps" tag
-
-On 18 May 2016 at 08:51, Herve Jourdain <herve.jourdain@neuf.fr> wrote:
-> This patch allows the support of a "caps" tag, that defines the value =
-of the key when the CAPS action modifier is in effect.
-> This feature is needed for the french keyboard - at least - in order =
-to handle the uppercase accented letters, that are the ones accessible =
-when caps is on, for some keys.
-> There is no impact when the tag is not used in the xml description of =
-the layout, therefore there should be no impact on keyboards not using =
-this tag.
-> Tests have been done using sato.
-
-Please write this message as the actual patch commit message: when it's =
-in a cover letter it will not end up in the git log where it's most =
-needed.
-
-Otherwise patch looks good to me.
-
-Jussi
-
-> Herve Jourdain (1):
->   Support of "caps" tag
->
->  src/config-parser.c                      |  5 +++++
->  src/matchbox-keyboard-key.c              | 11 ++++++++---
->  src/matchbox-keyboard-ui-cairo-backend.c | 10 +++++++---
->  src/matchbox-keyboard-ui-xft-backend.c   | 10 +++++++---
->  src/matchbox-keyboard.c                  |  3 +++
->  src/matchbox-keyboard.h                  |  1 +
->  6 files changed, 31 insertions(+), 9 deletions(-)
->
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--bcaec5015c9b11bda005331b77ba--
