@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 064D9E00E53; Wed, 18 May 2016 05:23:18 -0700 (PDT)
+	id B6BDCE00E39; Wed, 18 May 2016 05:23:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,30 +12,30 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23019E00E31
-	for <yocto@yoctoproject.org>; Wed, 18 May 2016 05:23:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10CC9E00E30
+	for <yocto@yoctoproject.org>; Wed, 18 May 2016 05:23:22 -0700 (PDT)
 Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])
-	by msfrf2622.sfr.fr (SMTP Server) with ESMTP id 3C1571C000AD7;
-	Wed, 18 May 2016 14:23:11 +0200 (CEST)
+	by msfrf2622.sfr.fr (SMTP Server) with ESMTP id 740C51C000ACC;
+	Wed, 18 May 2016 14:23:21 +0200 (CEST)
 Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2622.sfr.fr (SMTP Server) with ESMTPSA;
-	Wed, 18 May 2016 14:22:14 +0200 (CEST)
+	Wed, 18 May 2016 14:23:16 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (PLAIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Wed, 18 May 2016 20:21:15 +0800
-Message-Id: <1463574082-126198-2-git-send-email-herve.jourdain@neuf.fr>
+Date: Wed, 18 May 2016 20:21:16 +0800
+Message-Id: <1463574082-126198-3-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
 References: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 1/8] Support for vc4 graphics driver: change the default providers
+Subject: [meta-raspberrypi][PATCH 2/8] Support for vc4 graphics driver: add vc4-kms-v3d to the overlays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,33 +47,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 May 2016 12:23:18 -0000
+X-List-Received-Date: Wed, 18 May 2016 12:23:22 -0000
 
 This patch series enables the support for the VC4 graphics driver from Eric Anholt.
-Configure the default providers, depending on whether 'vc4graphics' is in MACHINE_FEATURES or not.
+Add vc4-kms-v3d overlay if 'vc4graphics' is in MACHINE_FEATURES.
+(This patch has a dependency on the patch that enables the support of .dtbo overlay files)
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 ---
- conf/machine/include/rpi-default-providers.inc | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ recipes-bsp/bootfiles/rpi-config_git.bb | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index cabbd43..0bc8838 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -3,8 +3,8 @@
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
- PREFERRED_PROVIDER_u-boot ?= "u-boot-rpi"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
--PREFERRED_PROVIDER_virtual/egl ?= "userland"
--PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
--PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
--PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
-+PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "userland", d)}"
-+PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "userland", d)}"
-+PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
-+PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "mesa", "mesa-gl", d)}"
- PREFERRED_PROVIDER_jpeg ?= "jpeg"
+diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
+index 4bc8eb7..79e436d 100644
+--- a/recipes-bsp/bootfiles/rpi-config_git.bb
++++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+@@ -19,6 +19,8 @@ PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft", "1", "0", d)}"
+ PITFT22="${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0", d)}"
+ PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0", d)}"
+ 
++VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1", "0", d)}"
++
+ inherit deploy
+ 
+ do_deploy() {
+@@ -102,6 +104,12 @@ do_deploy() {
+         echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+         echo "enable_uart=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+     fi
++
++    # VC4 Graphics support
++    if [ "${VC4GRAPHICS}" = "1" ]; then
++        echo "# Enable VC4 Graphics" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
++        echo "dtoverlay=vc4-kms-v3d,cma-256" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
++    fi
+ }
+ 
+ addtask deploy before do_package after do_install
 -- 
 2.7.4
 
