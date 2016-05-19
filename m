@@ -1,65 +1,66 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <piotr.lewicki@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83D97E00E77; Thu, 19 May 2016 08:24:36 -0700 (PDT)
+	id 63ED7E00E8B; Thu, 19 May 2016 08:26:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FSL_HELO_HOME,RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  1.0 FSL_HELO_HOME FSL_HELO_HOME
+	*      [74.125.82.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A800DE00E6C
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:24:34 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id w143so21836374wmw.3
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:24:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=Fvi0xcwNyxVFPCium/C3CrY/JEOdHVO0V2YTVDs46vc=;
-	b=tik5Y0ozNWqmkGqwqnooZw+sp2AusUTHsEYMvM76z55CY34wAoJ96H79zoV+Or8U/+
-	tVpMpnqgmrLTVvW73q0F7hs5R1FAItC4vxRZzkXCY07UUtgoau++wcdJp67n5qyRHVs2
-	XtdFMoHChaaOphS6tzQ3VPS2wUt+7GioqnlZ71/Ex/loTzhmEbrAabzeLcv91vMhBkEW
-	lH2xgriRqv1mz2C7ah8iJOn+5NDx0Z7GVonJElbWCro9SqoGzURH0nzMBueXRE1zbYMp
-	Qfwy3KC2LKPtKekeUMzMJ5++u2Bh1aeP+RQDWE3ypP+cgoZJ0hPewC32xQpZEOP58SY1
-	x/nw==
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DF6AE00E90
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:26:17 -0700 (PDT)
+Received: by mail-wm0-f49.google.com with SMTP id r12so85732247wme.0
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:26:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=5KE+9bCdv1UBRK/6dIwrirD8oammWsaNH8f8Ep9SQzg=;
+	b=JQVHg3XdaddaP1IqbtL30IZLa9jHAfOqeINpC0AxNSV2FcFGW+hG/UVredncQdJuo4
+	6Ts+kcnCQHAP13ew11lI8JysrRfJ9R4SMNwAJtJXPZnu1xiYUzmP9PipsXeYMIe1jaWH
+	oTqPHjdrmM8lfcFKNLRlAtVJPunlvynkFh87zAj2Mh8W/d0O0lUkpldY5hoPNYvKSgd8
+	9t+U/KdM/4ag1Wdjqj5nQXLGS5YCKBCUXfYk478DXHT7stj++FFz0F6S7PFRcF9NEDC0
+	UHECMnoZ7FtLSA3v56spWmBT4VSePNgxJ9aQDSwiy//iHfvXcAhLx6uXcp4ungXqdWOh
+	SGUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Fvi0xcwNyxVFPCium/C3CrY/JEOdHVO0V2YTVDs46vc=;
-	b=fjLn75HqzU7+bCUNNWVwAUPRWT23D6ft4PDtbJnmH50bPtk84evHAcBImYQoUSa+AL
-	BILuxLbCwhiaSAtjdGJpQ2Rns6SpocIaOq4JIo/crja/BM85R9XMS2PepsLgOZe7ne/e
-	T7DA8CteQB1Gtc4gghAtRHbnQ4n4Tv7MPXR/4pkfzAbyTuAenwj9Z2KqfAIHoIr/LFEU
-	cpcYY5Tu1viPRfOyIlpl0bYPYrXD1/dKy1Fjo8DR3LBKceX/5INNnvEWeaeITdgKTeHY
-	qwhaVKx01/Nzc3GE0KReOqK+VBnURrfavL8NXDKatVa7cPTIl/+X97FCltGq5MlEqKQ4
-	PIDQ==
-X-Gm-Message-State: AOPr4FVbUhgA/ndgs/+09sdjr8qQV7z+U3Ff3feT5RCS0PNGlENfa0GRgoPSp9ADUYU4Mw==
-X-Received: by 10.194.165.226 with SMTP id zb2mr15316426wjb.172.1463671473975; 
-	Thu, 19 May 2016 08:24:33 -0700 (PDT)
-Received: from resin.home (ip5f5acdbc.dynamic.kabel-deutschland.de.
-	[95.90.205.188]) by smtp.gmail.com with ESMTPSA id
-	p129sm15358820wmd.13.2016.05.19.08.24.33
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 19 May 2016 08:24:33 -0700 (PDT)
-Date: Thu, 19 May 2016 17:24:31 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20160519152431.GD9848@resin.home>
-References: <1463157153-19020-1-git-send-email-raj.khem@gmail.com>
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=5KE+9bCdv1UBRK/6dIwrirD8oammWsaNH8f8Ep9SQzg=;
+	b=DK8Tgm+hX4tC26ZDGVJM34mnt5XEPJG2gjCcWgFIcqA8ywDW1fwRyCUirEWexm+4i9
+	xeasYvRFakTR6yEvlfw6QD8qyR6CvaJIkukF504fsXwuZht+ahbMbSHBD7JphzvS5XXM
+	BmIR8XVWKb/z1+LB64uE7lDehvKKLobeL1M5pdVwSuFbDEIJhQYmQRCkt32kepVHKc+Q
+	EfNZarl3u6m7PIDJPAxP6bV7k995TdlS1OYpN+4kibTqetPpQWqB4klIE5jGk8iLHpMo
+	hZQzPQ8NOn477ck3istb9U2V650tibpiMfJAKlGNtsNgaORCSU8OV2MsZ6D6C5Koocfm
+	3Z1g==
+X-Gm-Message-State: AOPr4FXhKRTvhNjkLCyMoTR4yolY3B+FwYQl47pY2/tcLShBeBstAZTupgakN01FvGpxeg==
+X-Received: by 10.194.58.110 with SMTP id p14mr15427092wjq.2.1463671576894;
+	Thu, 19 May 2016 08:26:16 -0700 (PDT)
+Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
+	b15sm35774357wmd.1.2016.05.19.08.26.15
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Thu, 19 May 2016 08:26:16 -0700 (PDT)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <573DAE5A.6000707@elfin.de> <20160519143914.GA3601@resin.home>
+From: "piotr.lewicki" <piotr.lewicki@elfin.de>
+Message-ID: <573DDB17.5050007@elfin.de>
+Date: Thu, 19 May 2016 17:26:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.7.2
 MIME-Version: 1.0
-In-Reply-To: <1463157153-19020-1-git-send-email-raj.khem@gmail.com>
-User-Agent: Mutt/1.6.1 (2016-04-27)
+In-Reply-To: <20160519143914.GA3601@resin.home>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/2] userland: Update to tip of tree
+Subject: Re: [meta-raspberrypi][Question] How to build an hwup image for raspberrypi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,45 +72,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2016 15:24:36 -0000
-X-Groupsio-MsgNum: 30079
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8w3uRX/HFJGApMzv"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 19 May 2016 15:26:27 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---8w3uRX/HFJGApMzv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, May 13, 2016 at 09:32:32AM -0700, Khem Raj wrote:
-> Drop the patch which is upstreamed slightly differently
-> use VMCS_INSTALL_PREFIX to /usr via EXTRA_OECMAKE
+On 19.05.2016 16:39, Andrei Gherzan wrote:
+> On Thu, May 19, 2016 at 02:15:22PM +0200, piotr.lewicki wrote:
+>> Hello,
+>> I'm trying to build a Yocto image for raspberrypi3.
+>> I'm using only two layers:
+>> - poky (krogoth: rev eff84a76acea1a0842194106a66684511f409842)
+>> - meta-raspberrypi (master: rev 9912d38e97671704822d1aa05312a0439cb650d3)
+>>
+>> I have built it by cloning both layers from git (and changing poky branch),
+>> then I sourced poky (source poky/oe-init-build-env), added meta-raspberrypi
+>> layer in conf/bblayers.conf and in conf/local.conf changed MACHINE to
+>> raspberrypi3.
+>>
+> I just tested the same revisions as you mentioned and the board boot for
+> me. How do you test the board? Over serial?
 >
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> If you are using serial I suspecte you are not setting the serial
+> console. if you are using tty1 (hdmi) you need to add the specific
+> console argument to cmdline.
+I'm using hdmi. Where can I find those console arguments?
+>
+>> Then I have built "rpi-hwup-image" using bitbake and dd'd it to an SD card.
+>>
+>> Unfortunately rpi-hwup-image does not work on raspberry pi 3.
+>> Boot screen halts when 4 raspberry logos show up and that's it.
+>>
+>> On the other hand I have tried the same SD card with raspberry pi 2 and it
+>> booted up (!?).
+>>
+>> Can you tell me if there is still support for meta-raspberrypi layer?
+>> I found that this layer does not follow Yocto project naming convention for
+>> branches (I think that the latest is "jethro", but nothing newer besides
+>> "master").
+>> Does this mean that there is no stable and up-to-date branch apart from
+>> master?
+>>
+> What do you mean rpi is not following the yocto project naming
+> convention? It does miss a branch for the last yocto release but there
+> are already for the old ones.
+Maybe I explained that wrong, but I've noticed that it's missing krogoth 
+branch.
+I think that if something like this occurs users are a little bit 
+confused and have to choose between old branch (potentially outdated) 
+and a master branch (potentially unstable).
+>
+>> Has anybody built a raspberrypi3 image?
+>> Could you tell me which layers and which branches should I use?
+>>
+>>
+>> Thanks,
+>> Piotr Lewicki
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> --
+> Andrei Gherzan
+__
 
-Merged to master. Thanks.
---
-Andrei Gherzan
+BR,
+Piotr Lewicki
 
---8w3uRX/HFJGApMzv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJXPdqvAAoJEHO76Gt+erfPa7AP/2PVQJ3XSlNmwJXRpO50TxcS
-zNh2wle/xf7So79xg0G/vdT+o/AFPVGSNnjmGWwouLVjm1HYTL3Bwowh8AIHWPci
-19zNbYqlmdikJgHqbF/z8v32lDFErbxiqzor3Gv4Yq1ipUr/26Luq0tYt32d6VLA
-0HAqZhodxEnBfoHmtxzboqVm5guwb/Lr/id9j7uo/PyEcebNIFg3U6vj8u7uEMxI
-+GIv0mVoqAf+OwaU3P8KedFqmdKJlLmFg0mHwu5x0940vUbUmBl2cKduImuwRRWB
-Nd4slPcGzMa5B0/DmTFboEFOo8m8P6Su99WFzsVcUJ+UmtUXnndZ1I/XZe83PnlH
-uQosWe/WPmQP1hNvqEHWGFJnb1Z/VgkEMCiPkwo6WBo3jLlFTmLMOEDV+fYbR/x7
-5eeuJeQIFjRAz5lTe8lWk0QsSMhZoYrQ1FRAnalMIEUz8jufOPqQQWxpOUW1GfOk
-a4shIBODtaBbR0DegkpcOeey//q+XQZL6GGCNDei6KCttU9bDgNUfZXlDvFnwzFP
-71EnkyV5125ux03IcTxoRHQ1ZRwA65EIi2WgY/bBH+fuHxh34JPd7t5RSWEkv7jG
-zTHJees5lp41TWV7e0OEj2qoeC79xFQ3t1PyG1s8Temb8sDA4PxDhvoc+Q8l6o5w
-tL+xrrdkZBW+tB2rLMxH
-=1oHT
------END PGP SIGNATURE-----
-
---8w3uRX/HFJGApMzv--
