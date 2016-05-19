@@ -1,37 +1,63 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD0A5E00E6C; Thu, 19 May 2016 10:27:01 -0700 (PDT)
+	id 64DDDE00E91; Thu, 19 May 2016 12:20:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_20,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0766]
-X-Greylist: delayed 3022 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 May 2016 10:26:58 PDT
-Received: from intranet.lincoln.ln-systems.com (post.ln-systems.com
-	[62.49.123.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C5C7E00D91
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 10:26:58 -0700 (PDT)
-Received: from LNSYSCH3 (firewall-ext.lincoln.ln-systems.com [62.49.123.65])
-	by intranet.lincoln.ln-systems.com (8.13.1/8.13.1) with ESMTP id
-	u4JGaJuU026865
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 17:36:25 +0100
-From: "Colin Helliwell" <colin.helliwell@ln-systems.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 19 May 2016 17:36:26 +0100
-Organization: LN Systems Limited
-Message-ID: <048d01d1b1ec$9a70b190$cf5214b0$@ln-systems.com>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF53FE00E88
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 12:20:37 -0700 (PDT)
+Received: by mail-io0-f171.google.com with SMTP id 190so120186723iow.1
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 12:20:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=2Lb+hNBpqStHrhSRfRMMLGWfgYWmFIuDpuhH9h/47dI=;
+	b=JmFjljq1p5ZNPnGrHpk7/ZzNyOP/XSZJ0xvXHy02edNd5eYaoQtwss8zvgVASSzK1i
+	EC0MRv0k1b0aLDYPLogT7smCXR6JgZPXwVppKgTPXAvkyyyw7AUGAc8wFVkj7JB7KeBs
+	vbVHw2kIGLYrChgtxGk3e89N3+4tMUp5GkadgDJsgspjGu/LZV23Q1MLkBtwYQvYdmrJ
+	jUoMLf67BKSKCy7HYqA2ad3SqqSw4WFP94IKtaMeJGq3WIEXGhmTzSb0KPTrLa5U3K7g
+	GkaMWIvTVQMhlQLyxHVBZpaeJlRLw9ou86wNaoH/Tna2RZ/78xf0WZdovxB2ta+Rmo+d
+	DhzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=2Lb+hNBpqStHrhSRfRMMLGWfgYWmFIuDpuhH9h/47dI=;
+	b=dUc7cdK+ZN1H7LOE68UqyE7hZJtfnP5FpDAYIQznqW15G1tBrbFzTIJuRHeBluvcn5
+	A7fnLEy1/Vs+N91Jt+zImOhyqdshHo7vricdYLdKdkq3NC6ydxrI8pic3/DZ0y9F76Zb
+	P7T78ePHzNhOq9z/yhd1SWi6wcgyZersjgCIjDCxPNf6B1qQ2YcMTGlxJHeura3z/OuN
+	sMgPIh0TIzlGksn4nkbIkAzPzjfgQuBZIAiqA4I/tYsx2EUVmJ7FQCGzuIWT1y02fmP0
+	2Fuwm8jqKVz+EqNVtZLQDTiQEB5Rsie9WUleSXHY/oYGyFgrLAQwzeDVNJqXwWgZM7YV
+	vdaw==
+X-Gm-Message-State: AOPr4FVu8VazWf4b33PTSNQ5qnkF4olLSbb9vqvtxosqCYZZ0Ho0XNWAXqDL7/F6oxK1nd2rB7dRETViQltC9Ca8
+X-Received: by 10.107.135.211 with SMTP id r80mr11925838ioi.133.1463685636737; 
+	Thu, 19 May 2016 12:20:36 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdGx7G2+aB4lczjpTQe9XbleIIsjmg==
-Subject: How to pre-install a .deb file into rootfs
+Received: by 10.107.162.6 with HTTP; Thu, 19 May 2016 12:20:17 -0700 (PDT)
+In-Reply-To: <048d01d1b1ec$9a70b190$cf5214b0$@ln-systems.com>
+References: <048d01d1b1ec$9a70b190$cf5214b0$@ln-systems.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 19 May 2016 20:20:17 +0100
+Message-ID: <CAJTo0Lb_4+uwAz+1J3Byvpkr2cj2RQJYTAyEx3bf96Kcnd_Qvg@mail.gmail.com>
+To: colin.helliwell@ln-systems.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to pre-install a .deb file into rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,115 +66,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2016 17:27:01 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_048E_01D1B1F4.FC378A90"
-Content-Language: en-gb
+X-List-Received-Date: Thu, 19 May 2016 19:20:38 -0000
+Content-Type: multipart/alternative; boundary=001a113ed20a70e47c053336de85
 
-------=_NextPart_000_048E_01D1B1F4.FC378A90
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--001a113ed20a70e47c053336de85
+Content-Type: text/plain; charset=UTF-8
 
-I have a recipe (for kura) which uses a do_compile to run kura's build
-process, and this in itself generates a .deb (i.e. I'm not doing anything
-within the *recipe* to create the .deb - it's done for me by kura's build
-steps). I can copy the .deb to the target and use dpkg on there to install
-it.
+On 19 May 2016 at 17:36, Colin Helliwell <colin.helliwell@ln-systems.com>
+wrote:
 
-However I'd like to have it 'pre-installed' into the rootfs instead. I've
-referred to tips such as
-https://lists.yoctoproject.org/pipermail/yocto/2014-July/020583.html - but a
-couple of questions/issues:
+> I have a recipe (for kura) which uses a do_compile to run kura's build
+> process, and this in itself generates a .deb (i.e. I'm not doing anything
+> within the *recipe* to create the .deb - it's done for me by kura's build
+> steps). I can copy the .deb to the target and use dpkg on there to install
+> it.
+>
+>
+It really would be best to stop Kura from writing debs and instead find the
+directory that Kura stages the deb in and copy that directly to ${D} in
+your do_install.
 
-1. What internal variables can I use - at this stage in the bitbake - to set
-'/path/to/' to point to the recipe's directory?
+Ross
 
-2. Even if I [temporarily] hard-code the full path to the .deb in the image
-recipe, the ROOTFS_POSTPROCESS_COMMAND 'dpkg' step is error-free but all I'm
-seeing in the rootfs is the .zip that the .deb contains i.e. it doesn't seem
-to be doing actual installation of the package?  (I'm not too familiar with
-.deb's, so I'm not sure which part of its content actually triggers/defines
-the copying & installation of the enclosed files - I guess this doesn't get
-shown by a 'dpkg --contents'?)
-
- 
-
-
-------=_NextPart_000_048E_01D1B1F4.FC378A90
-Content-Type: text/html;
-	charset="us-ascii"
+--001a113ed20a70e47c053336de85
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>I have a recipe (for kura) which uses a do_compile to =
-run kura's build process, and this in itself generates a .deb (i.e. I'm =
-not doing anything within the *recipe* to create the .deb - it's done =
-for me by kura's build steps). I can copy the .deb to the target and use =
-dpkg on there to install it.<o:p></o:p></p><p class=3DMsoNormal>However =
-I'd like to have it 'pre-installed' into the rootfs instead. I've =
-referred to tips such as =
-https://lists.yoctoproject.org/pipermail/yocto/2014-July/020583.html - =
-but a couple of questions/issues:<o:p></o:p></p><p class=3DMsoNormal>1. =
-What internal variables can I use - at this stage in the bitbake - to =
-set '/path/to/' to point to the recipe's directory?<o:p></o:p></p><p =
-class=3DMsoNormal>2. Even if I [temporarily] hard-code the full path to =
-the .deb in the image recipe, the ROOTFS_POSTPROCESS_COMMAND 'dpkg' step =
-is error-free but all I'm seeing in the rootfs is the .zip that the .deb =
-contains i.e. it doesn't seem to be doing actual installation of the =
-package? &nbsp;(I'm not too familiar with .deb's, so I'm not sure which =
-part of its content actually triggers/defines the copying &amp; =
-installation of the enclosed files - I guess this doesn't get shown by a =
-'dpkg --contents'?)<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 19 May 2016 at 17:36, Colin Helliwell <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:colin.helliwell@ln-systems.com" target=3D"_blank">colin.helliwell@ln-=
+systems.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p clas=
+s=3D"MsoNormal">I have a recipe (for kura) which uses a do_compile to run k=
+ura&#39;s build process, and this in itself generates a .deb (i.e. I&#39;m =
+not doing anything within the *recipe* to create the .deb - it&#39;s done f=
+or me by kura&#39;s build steps). I can copy the .deb to the target and use=
+ dpkg on there to install it.<u></u><u></u></p><p class=3D"MsoNormal"></p><=
+/blockquote></div><br>It really would be best to stop Kura from writing deb=
+s and instead find the directory that Kura stages the deb in and copy that =
+directly to ${D} in your do_install.</div><div class=3D"gmail_extra"><br></=
+div><div class=3D"gmail_extra">Ross</div></div>
 
-------=_NextPart_000_048E_01D1B1F4.FC378A90--
+--001a113ed20a70e47c053336de85--
