@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4267E00E68; Thu, 19 May 2016 08:13:23 -0700 (PDT)
+	id 83D97E00E77; Thu, 19 May 2016 08:24:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,66 +8,58 @@ X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,FSL_HELO_HOME,RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	*  1.0 FSL_HELO_HOME FSL_HELO_HOME
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FA2DE00D86
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:13:20 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id w143so21755495wmw.3
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:13:20 -0700 (PDT)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A800DE00E6C
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:24:34 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id w143so21836374wmw.3
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 08:24:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=PyxBSnaTJzobgtTg1kbCqQWwce0eUO2aI7w14xrjYyw=;
-	b=Lo9SERYPgTzvxwInM1jNYMvGY9qB+ZV/jjlOQvQzDYFf+GdtC6O1VigN81ZVtB9eWt
-	DvuuE8KkR/jdkif0ZGVz+moLGWdzgr96ohnUzRIQtLZBN5cF2AhInjxKDwgdK/R55JZN
-	D6hNvUvigkvi3YBSqOIMQuca4qcxNwDToehhEJ+4plfvkiFQ7UyMc6FCVWsqc9epwISQ
-	b2Kln7RdVr4/fOE63fJqe6CmZxFnw19ccVj2VgaF+zhKJhO547tTkeYViJnO7l6fxpmH
-	2Gtfg2VQ1ucayD6jaagIJ13zV0pC63sQXXrwYYZSMnRL6T0x9woRCY0218APSKrv82bN
-	BcpA==
+	bh=Fvi0xcwNyxVFPCium/C3CrY/JEOdHVO0V2YTVDs46vc=;
+	b=tik5Y0ozNWqmkGqwqnooZw+sp2AusUTHsEYMvM76z55CY34wAoJ96H79zoV+Or8U/+
+	tVpMpnqgmrLTVvW73q0F7hs5R1FAItC4vxRZzkXCY07UUtgoau++wcdJp67n5qyRHVs2
+	XtdFMoHChaaOphS6tzQ3VPS2wUt+7GioqnlZ71/Ex/loTzhmEbrAabzeLcv91vMhBkEW
+	lH2xgriRqv1mz2C7ah8iJOn+5NDx0Z7GVonJElbWCro9SqoGzURH0nzMBueXRE1zbYMp
+	Qfwy3KC2LKPtKekeUMzMJ5++u2Bh1aeP+RQDWE3ypP+cgoZJ0hPewC32xQpZEOP58SY1
+	x/nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=PyxBSnaTJzobgtTg1kbCqQWwce0eUO2aI7w14xrjYyw=;
-	b=h3dwxg+JueBlDfZ3f5jo6chOMUQ/FlhREXpxlX4bQBsuG5w98dyUDAkvqwlORZPzhe
-	ZACkxWEuhPzIeUbzINacE36WU3gU/XV2rh/5TDWbx5KWEGppxL+wfZ/6h2lLc7Ayk/wG
-	3N6zQbiwqO+eFDK36Dj0icR2gwgOO1KHnudHNZK55iJU/t9V6hH4dU1rUEjR5I9Uefp5
-	wfTLQBx8EG9aNE+UPz2yEyU2h3r+U039F0SYyKEXFqKQF1ZsQb9vobkqUh9etbzcP1Aq
-	IeRba43Wv8j+nyWnrzyWnyOJaY4oXTJ/OVodfvngh9+1wv0JMMRZNN6OfLlFhZFhtw95
-	CmBw==
-X-Gm-Message-State: AOPr4FVdmMzL2d296DXa8TF+LHEJdgf6uNnzFLcZK6wSFGDNIJ/1tQT8FfNT5Oa2CaJrEg==
-X-Received: by 10.28.234.130 with SMTP id g2mr15175616wmi.42.1463670799587;
-	Thu, 19 May 2016 08:13:19 -0700 (PDT)
+	bh=Fvi0xcwNyxVFPCium/C3CrY/JEOdHVO0V2YTVDs46vc=;
+	b=fjLn75HqzU7+bCUNNWVwAUPRWT23D6ft4PDtbJnmH50bPtk84evHAcBImYQoUSa+AL
+	BILuxLbCwhiaSAtjdGJpQ2Rns6SpocIaOq4JIo/crja/BM85R9XMS2PepsLgOZe7ne/e
+	T7DA8CteQB1Gtc4gghAtRHbnQ4n4Tv7MPXR/4pkfzAbyTuAenwj9Z2KqfAIHoIr/LFEU
+	cpcYY5Tu1viPRfOyIlpl0bYPYrXD1/dKy1Fjo8DR3LBKceX/5INNnvEWeaeITdgKTeHY
+	qwhaVKx01/Nzc3GE0KReOqK+VBnURrfavL8NXDKatVa7cPTIl/+X97FCltGq5MlEqKQ4
+	PIDQ==
+X-Gm-Message-State: AOPr4FVbUhgA/ndgs/+09sdjr8qQV7z+U3Ff3feT5RCS0PNGlENfa0GRgoPSp9ADUYU4Mw==
+X-Received: by 10.194.165.226 with SMTP id zb2mr15316426wjb.172.1463671473975; 
+	Thu, 19 May 2016 08:24:33 -0700 (PDT)
 Received: from resin.home (ip5f5acdbc.dynamic.kabel-deutschland.de.
 	[95.90.205.188]) by smtp.gmail.com with ESMTPSA id
-	g132sm15454850wme.0.2016.05.19.08.13.18
+	p129sm15358820wmd.13.2016.05.19.08.24.33
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 19 May 2016 08:13:18 -0700 (PDT)
-Date: Thu, 19 May 2016 17:13:17 +0200
+	Thu, 19 May 2016 08:24:33 -0700 (PDT)
+Date: Thu, 19 May 2016 17:24:31 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Andreas =?iso-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
-Message-ID: <20160519151317.GC9848@resin.home>
-References: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
-	<1463574082-126198-6-git-send-email-herve.jourdain@neuf.fr>
-	<722F295F-4BEE-4E0A-9078-BB24EF9BAAE2@gmail.com>
-	<F57461B0-379F-4CA7-8A72-F993A6BFC155@neuf.fr>
-	<5E856D17-B2AF-4439-A778-1F1A93B4103B@neuf.fr>
-	<CALbNGRSiO_PNDx1sxpCqLS75pyj9jfDBWAQQPhNgUBj8hZScOA@mail.gmail.com>
-	<CALbNGRSPbcfuyxaRxQcux01wKJmtSrG-ViK=sP8q82KM7AwtxQ@mail.gmail.com>
-	<024301d1b18e$5e9cc5e0$1bd651a0$@neuf.fr>
-	<CALbNGRQT6mBkosf2psOY5qWv9KLdv=3DXXwJNEBHZxS64eGzeA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20160519152431.GD9848@resin.home>
+References: <1463157153-19020-1-git-send-email-raj.khem@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CALbNGRQT6mBkosf2psOY5qWv9KLdv=3DXXwJNEBHZxS64eGzeA@mail.gmail.com>
+In-Reply-To: <1463157153-19020-1-git-send-email-raj.khem@gmail.com>
 User-Agent: Mutt/1.6.1 (2016-04-27)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 5/8] Support for vc4 graphics driver: upgrade 4.4 kernel to 4.4.10
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/2] userland: Update to tip of tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,73 +71,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2016 15:13:24 -0000
-X-Groupsio-MsgNum: 30078
+X-List-Received-Date: Thu, 19 May 2016 15:24:36 -0000
+X-Groupsio-MsgNum: 30079
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ctP54qlpMx3WjD+/"
+	protocol="application/pgp-signature"; boundary="8w3uRX/HFJGApMzv"
 Content-Disposition: inline
 
---ctP54qlpMx3WjD+/
-Content-Type: text/plain; charset=iso-8859-1
+--8w3uRX/HFJGApMzv
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 19, 2016 at 08:28:00AM +0200, Andreas M=FCller wrote:
-> On Thu, May 19, 2016 at 7:21 AM, Herve Jourdain <herve.jourdain@neuf.fr> =
-wrote:
-> > Hi Andreas,
-> >
-> > I've been able to do some testing with the latest 4.1 kernel.
-> > So it can actually "work" in a way, but both the device tree overlay an=
-d the driver in the kernel are "old".
-> > This has an impact on stability: I can definitely start wayland/weston,=
- and it's "responsive", BUT after I started playing out with the demo appli=
-cations, it quickly crashed...
-> > So we could either try to backport the newer driver / dt overlay to the=
- 4.1, which could be possible, or we could just support vc4graphics only fo=
-r 4.4.10+...
-> >
-> > Since 4.1 is not heavily maintained anymore on github, since 4.4 is now=
- the default revision on github, and since development branches for 4.5 and=
- 4.6 are already there on github, I would personally be inclined to support=
- vc4graphics only for 4.4.10+...
-> > And I would also be in favor of moving the default version of the kerne=
-l to the 4.4 series...
-> >
-> > What do you think is the best option there?
-> >
-> No need to backport to 4.1. 4.4 is fine. One question: are you able to
-> change screen resolution for HDMI monitor (elder sdl fullscreen games
-> need that)? This was not possible for kernel 4.1.
+On Fri, May 13, 2016 at 09:32:32AM -0700, Khem Raj wrote:
+> Drop the patch which is upstreamed slightly differently
+> use VMCS_INSTALL_PREFIX to /usr via EXTRA_OECMAKE
 >
-> Just to avoid misunderstandings: I like this patch series very much
-> and would be happy to see it applied.
->
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
 
-Santa heard you.
-
+Merged to master. Thanks.
 --
 Andrei Gherzan
 
---ctP54qlpMx3WjD+/
+--8w3uRX/HFJGApMzv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXPdgNAAoJEHO76Gt+erfPqkoP/2GYVq++fqaPl50nxPY9z6xd
-RMeylVl08GeOQnUovuNcjIRTPDCuSH8dArf/nn9prpzzgbeH/bE3r+bEs+HfNfm7
-qQhkm+TRsek5edaW0/B+Ibjd4EkeNBOJShEBTwQnyHDefkMnrbDbRz6VVy5hfIfl
-OJNmR9bnNwiiR09/oxz0OF8I4GeWP8LEUY4sdK+qQDwOKBWHdDuCZGotgtO7qStp
-wR0xcm3CZrnRiWx6kv+LCCIpCWgk0fjNSHL6BDpo/WyQoooN578BlpFVSM2s6yE6
-xgIQ4CAqNONVHRjQiFn/uoeIHimO8tp4Z61qjlzx9f8TLzIHVBxpUgxgF3zvlO4w
-c5/E3KVMHEhIq8k+vmA+6R9AKvh+85vOFUfg0r5yimdcFpCCVKd5yM8OEJK8Mknn
-8bRv1UeeIxVnJjojzWqX7wX0y2/2yPPfp43iHNpikLPgJGD9p0HuNKA2mA9e8ggZ
-WovDBOAkiZMaaZUfWSAfvtQmsd7hNoSqQZGmuBQuUXUyty3d8wN8wJ3LBg/FmJOH
-vtbC6O0g5YacA8f6LUeT6P+EksbJ02lf/uV+LG0zrJVdarFX8ru0q3IQWWKV3XbD
-CzvueSjtkC9XJF0bgPJ562HsbJGa/nDVzJUMMhQmqQwfdYD4H0UhZnpYQ3MS5Hrf
-F5qLEfKTsZubOm5STwaV
-=V1re
+iQIcBAEBCAAGBQJXPdqvAAoJEHO76Gt+erfPa7AP/2PVQJ3XSlNmwJXRpO50TxcS
+zNh2wle/xf7So79xg0G/vdT+o/AFPVGSNnjmGWwouLVjm1HYTL3Bwowh8AIHWPci
+19zNbYqlmdikJgHqbF/z8v32lDFErbxiqzor3Gv4Yq1ipUr/26Luq0tYt32d6VLA
+0HAqZhodxEnBfoHmtxzboqVm5guwb/Lr/id9j7uo/PyEcebNIFg3U6vj8u7uEMxI
++GIv0mVoqAf+OwaU3P8KedFqmdKJlLmFg0mHwu5x0940vUbUmBl2cKduImuwRRWB
+Nd4slPcGzMa5B0/DmTFboEFOo8m8P6Su99WFzsVcUJ+UmtUXnndZ1I/XZe83PnlH
+uQosWe/WPmQP1hNvqEHWGFJnb1Z/VgkEMCiPkwo6WBo3jLlFTmLMOEDV+fYbR/x7
+5eeuJeQIFjRAz5lTe8lWk0QsSMhZoYrQ1FRAnalMIEUz8jufOPqQQWxpOUW1GfOk
+a4shIBODtaBbR0DegkpcOeey//q+XQZL6GGCNDei6KCttU9bDgNUfZXlDvFnwzFP
+71EnkyV5125ux03IcTxoRHQ1ZRwA65EIi2WgY/bBH+fuHxh34JPd7t5RSWEkv7jG
+zTHJees5lp41TWV7e0OEj2qoeC79xFQ3t1PyG1s8Temb8sDA4PxDhvoc+Q8l6o5w
+tL+xrrdkZBW+tB2rLMxH
+=1oHT
 -----END PGP SIGNATURE-----
 
---ctP54qlpMx3WjD+/--
+--8w3uRX/HFJGApMzv--
