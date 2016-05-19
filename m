@@ -1,63 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E3B1E00E61; Thu, 19 May 2016 07:17:44 -0700 (PDT)
+	id A1ED2E00E69; Thu, 19 May 2016 07:17:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA37DE00E5A
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 07:17:40 -0700 (PDT)
-Received: by mail-qk0-f169.google.com with SMTP id x7so48644051qkd.3
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 07:17:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=p9YjeIhNPYy9Ov2G7uSdCHyj31u969hsRZK0ZFfqQUc=;
-	b=NHruZ7Ydmncur6QjkcCovOoY2/6WzzuJM9PUtBGQMvYBsCwfIBer5YbBRy+Puvrrwi
-	SRU1XHKKUAMCQm8sLeYplqzuKwIK9uE7q0P2l+pRH5imnx57S6SNk1UDrcxRR3XzlrIQ
-	Q1hnqDoQt3z3k5ZFBD2+cgH1scbC3YRl08h95lMHDjkAgUw97h5iOx4AskdoGOg2crqW
-	jLmBdBPrqzSEM2Vb3+xiJcMGx7oTWhLSKd8xKrq/jmU3vUGHiXaghSj1yzAwrh9/qKLs
-	YBkrtMmHkXT4jTHdw5kt5PbGa3zru5CYlIWP/s6ww+yigonUD473iSCyIGh4U8RcS0hG
-	zcnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=p9YjeIhNPYy9Ov2G7uSdCHyj31u969hsRZK0ZFfqQUc=;
-	b=FWcs7GlFHLBUjPnThnVoffcywG7ecryqhSzJbjxj8wKwT91bamfcyDxZUR5Z3N++If
-	PQOKVIi9/3n/ufWqx7JtWfYL62u73c+O/fvUTi4IqaqcD/Csli7uztzO/OU80bRfngpA
-	tV3TXTRg1f2Qg1z5KzdBJmhfGvor6Ly107Eo7i58nkmuYLKLIYcMAN46osIl90YAn1g2
-	GC8oEwtPaiADPwph3qOpAPiOWRCTFVIofLx2Ajr9tjQMlbwV0k/VfHrmAGNK57Wm4yDg
-	c5nHm/rDl4G51+JwUzvkg7ze+8zzbe04djXD9MEYTyxtoAfUkbdBDofV/xdsxo1Phiu/
-	sJNw==
-X-Gm-Message-State: AOPr4FXbdeS2QnBc6BYoAZjOH/JUwIBcvbVdWS8uTj+jCEI0qcQ+PUVjlZ78LZ7RYKzq4ZdxrKrFuOiTfc50fw==
-X-Received: by 10.55.207.214 with SMTP id v83mr15027310qkl.152.1463667459488; 
-	Thu, 19 May 2016 07:17:39 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCB54E00E6B
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 07:17:50 -0700 (PDT)
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Received: by 10.55.130.196 with HTTP; Thu, 19 May 2016 07:17:10 -0700 (PDT)
-In-Reply-To: <573DAE5A.6000707@elfin.de>
-References: <573DAE5A.6000707@elfin.de>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 19 May 2016 07:17:10 -0700
-Message-ID: <CAMKF1srUeXLpESxNx6zNYEixW+3VE0TC694vEcGgzmwX=EaM8g@mail.gmail.com>
-To: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][Question] How to build an hwup image for raspberrypi3
+X-KeepSent: 0859DF87:3987D4E7-C1257FB8:004CE373;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF0859DF87.3987D4E7-ONC1257FB8.004CE373-C1257FB8.004E88F0@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Thu, 19 May 2016 16:17:48 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 19.05.2016 16:17:52,
+	Serialize complete at 19.05.2016 16:17:52
+Subject: How to include packages for the cmake build process?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,52 +35,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 May 2016 14:17:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 19 May 2016 14:17:54 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 004E88EFC1257FB8_="
 
-On Thu, May 19, 2016 at 5:15 AM, piotr.lewicki <piotr.lewicki@elfin.de> wrote:
-> Hello,
-> I'm trying to build a Yocto image for raspberrypi3.
-> I'm using only two layers:
-> - poky (krogoth: rev eff84a76acea1a0842194106a66684511f409842)
-> - meta-raspberrypi (master: rev 9912d38e97671704822d1aa05312a0439cb650d3)
->
-> I have built it by cloning both layers from git (and changing poky branch),
-> then I sourced poky (source poky/oe-init-build-env), added meta-raspberrypi
-> layer in conf/bblayers.conf and in conf/local.conf changed MACHINE to
-> raspberrypi3.
->
-> Then I have built "rpi-hwup-image" using bitbake and dd'd it to an SD card.
->
-> Unfortunately rpi-hwup-image does not work on raspberry pi 3.
-> Boot screen halts when 4 raspberry logos show up and that's it.
->
-> On the other hand I have tried the same SD card with raspberry pi 2 and it
-> booted up (!?).
+--=_alternative 004E88EFC1257FB8_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-set
+Hej
 
-ENABLE_UART = "1"
+I have some general question. Actual I am try to build an older software.=20
+It is based on cmake. At the build process doxygen, python, sed,=20
+dbusxx-xml2cpp are called. They are included via the=20
+"findprogram"/"find=5Fpackage" command.
 
-in local.conf
+How to include external programs like python, sed etc. in my build=20
+toolchain? Do I use DPENDS =3D " python"?
 
->
-> Can you tell me if there is still support for meta-raspberrypi layer?
-> I found that this layer does not follow Yocto project naming convention for
-> branches (I think that the latest is "jethro", but nothing newer besides
-> "master").
-> Does this mean that there is no stable and up-to-date branch apart from
-> master?
->
-> Has anybody built a raspberrypi3 image?
-> Could you tell me which layers and which branches should I use?
->
->
-> Thanks,
-> Piotr Lewicki
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The weak points are in the Makefile.txt when:
 
+find=5Fpackage(PythonInterp REQUIRED)
+
+As example I add a non working recipe for doxygen:
+
+####### doxygen=5F1.8.bb #######
+DESCRIPTION =3D "Utilities for generating documentation from source code"
+HOMEPAGE =3D "http://www.doxygen.org/"
+SECTION =3D "console/utils"
+LICENSE =3D "GPLv2"
+LIC=5FFILES=5FCHKSUM =3D "file://LICENSE;md5=3Db380c86cea229fa42b9e543fc491=
+f5eb"
+
+DEPENDS =3D "flex-native bison-native python-native"
+
+inherit cmake
+
+SRCREV =3D "a6d4f4df45febe588c38de37641513fd576b998f"
+SRC=5FURI =3D "git://github.com/doxygen/doxygen.git"
+
+S =3D "${WORKDIR}/git"
+
+#EXTRA=5FOECONF =3D "--prefix ${prefix}"
+
+BBCLASSEXTEND =3D "native"
+#####################
+
+Mit freundlichen Gr=FC=DFen
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 004E88EFC1257FB8_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I have some general question. Actual
+I am try to build an older software. It is based on cmake. At the build
+process doxygen, python, sed, dbusxx-xml2cpp are called. They are included
+via the &quot;findprogram&quot;/&quot;find=5Fpackage&quot; command.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">How to include external programs like
+python, sed etc. in my build toolchain? Do I use DPENDS =3D &quot; python&q=
+uot;?</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">The weak points are in the Makefile.=
+txt
+when:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">find=5Fpackage(PythonInterp REQUIRED=
+)</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">As example I add a non working recipe
+for doxygen:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">####### doxygen=5F1.8.bb #######</fo=
+nt>
+<br><font size=3D2 face=3D"sans-serif">DESCRIPTION =3D &quot;Utilities for =
+generating
+documentation from source code&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">HOMEPAGE =3D &quot;</font><a href=3D=
+http://www.doxygen.org/><font size=3D2 face=3D"sans-serif">http://www.doxyg=
+en.org/</font></a><font size=3D2 face=3D"sans-serif">&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">SECTION =3D &quot;console/utils&quot=
+;</font>
+<br><font size=3D2 face=3D"sans-serif">LICENSE =3D &quot;GPLv2&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">LIC=5FFILES=5FCHKSUM =3D &quot;</fon=
+t><a href=3D"file://LICENSE;md5=3Db380c86cea229fa42b9e543fc491f5eb/"><font =
+size=3D2 face=3D"sans-serif">file://LICENSE;md5=3Db380c86cea229fa42b9e543fc=
+491f5eb</font></a><font size=3D2 face=3D"sans-serif">&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">DEPENDS =3D &quot;flex-native bison-=
+native
+python-native&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">inherit cmake</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">SRCREV =3D &quot;a6d4f4df45febe588c3=
+8de37641513fd576b998f&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">SRC=5FURI =3D &quot;git://github.com=
+/doxygen/doxygen.git&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">S =3D &quot;${WORKDIR}/git&quot;</fo=
+nt>
+<br>
+<br><font size=3D2 face=3D"sans-serif">#EXTRA=5FOECONF =3D &quot;--prefix $=
+{prefix}&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">BBCLASSEXTEND =3D &quot;native&quot;=
+</font>
+<br><font size=3D2 face=3D"sans-serif">#####################</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Mit freundlichen Gr=FC=DFen<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 004E88EFC1257FB8_=--
