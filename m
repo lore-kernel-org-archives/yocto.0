@@ -1,42 +1,39 @@
-Return-Path: <daicy.fnst@cn.fujitsu.com>
+Return-Path: <krueger@ind.rwth-aachen.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20164E00EB1; Thu, 19 May 2016 18:50:21 -0700 (PDT)
+	id 59944E00EC9; Thu, 19 May 2016 21:45:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.3 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 3.4 DATE_IN_PAST_96_XX Date: is 96 hours or more before
-	Received: date
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.130.5.187 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 May 2016 18:50:17 PDT
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A842CE00EA7
-	for <yocto@yoctoproject.org>; Thu, 19 May 2016 18:50:17 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; 
-   d="scan'208";a="6724679"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 20 May 2016 09:49:05 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
-	by cn.fujitsu.com (Postfix) with ESMTP id 8C5AC42B670A
-	for <yocto@yoctoproject.org>; Fri, 20 May 2016 09:49:04 +0800 (CST)
-Received: from localhost.localdomain (10.167.226.24) by
-	G08CNEXCHPEKD02.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.279.2; Fri, 20 May 2016 09:49:04 +0800
-From: Dai Caiyun <daicy.fnst@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Message-ID: <1456613609-11183-1-git-send-email-daicy.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 1.7.9.5
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Thu, 19 May 2016 21:45:36 PDT
+Received: from mx-out-2.rwth-aachen.de (mx-out-2.rwth-aachen.de
+	[134.130.5.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AF9EE00EC4
+	for <yocto@yoctoproject.org>; Thu, 19 May 2016 21:45:36 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,337,1459807200"; d="scan'208";a="439994414"
+Received: from mail.ind.rwth-aachen.de ([137.226.238.9])
+	by mx-2.rz.rwth-aachen.de with ESMTP; 20 May 2016 06:44:32 +0200
+Received: from [192.168.178.104] (aftr-88-153-7-189.unity-media.net
+	[88.153.7.189])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.ind.rwth-aachen.de (Postfix) with ESMTP id 2638716741C9
+	for <yocto@yoctoproject.org>; Fri, 20 May 2016 06:44:30 +0200 (CEST)
+To: yocto@yoctoproject.org
+From: public-hk@iks.rwth-aachen.de
+Message-ID: <05bb0eaa-71c1-f850-e7e4-f028bbe8b715@ind.rwth-aachen.de>
+Date: Fri, 20 May 2016 08:44:28 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.1.0
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.24]
-X-yoursite-MailScanner-ID: 8C5AC42B670A.AFAAF
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: daicy.fnst@cn.fujitsu.com
-Cc: Dai Caiyun <daicy.fnst@cn.fujitsu.com>
-Subject: [meta-qt4][PATCH] qt4-native: Warning Fix
+Subject: Newbie Question regarding custom layer and populate_rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,35 +45,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-Date: Fri, 20 May 2016 01:50:21 -0000
-X-Original-Date: Sun, 28 Feb 2016 01:53:29 +0300
-X-List-Received-Date: Fri, 20 May 2016 01:50:21 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 May 2016 04:45:38 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-The warning is as following:
-    WARNING: File '...tmp/sysroots/x86_64-linux/usr/lib/libQtCore.so.4.8.7'
-    from qt4-native was already stripped, this will prevent future debugging!
-    WARNING: File '...tmp/sysroots/x86_64-linux/usr/lib/libQtGui.so.4.8.7'
-    from qt4-native was already stripped, this will prevent future debugging!
-    ......
+Hi all,
+I have recently started to use Yocto. I also figured out a lot y myself
+already. However, there is one problem I just can not solve. Sorry if
+this is a dumb question..
 
-Signed-off-by: Dai Caiyun <daicy.fnst@cn.fujitsu.com>
----
- recipes-qt4/qt4/qt4-native_4.8.7.bb | 1 +
- 1 file changed, 1 insertion(+)
+My purpose is to create a customized distro for the Raspberry 2 which I
+managed to get up and running. Yesterday, I tried to create a customized
+splash image on bootup. That can be done via the psplash tool.
 
-diff --git a/recipes-qt4/qt4/qt4-native_4.8.7.bb b/recipes-qt4/qt4/qt4-native_4.8.7.bb
-index 494d663..f0e5caa 100644
---- a/recipes-qt4/qt4/qt4-native_4.8.7.bb
-+++ b/recipes-qt4/qt4/qt4-native_4.8.7.bb
-@@ -4,3 +4,4 @@ TOBUILD := "src/tools/bootstrap ${TOBUILD}"
- 
- SRC_URI[md5sum] = "d990ee66bf7ab0c785589776f35ba6ad"
- SRC_URI[sha256sum] = "e2882295097e47fe089f8ac741a95fef47e0a73a3f3cdf21b56990638f626ea0"
-+INHIBIT_SYSROOT_STRIP = "1"
--- 
-1.8.4.2
+The current image that I create incorporates a recipe from the layer
+meta-raspberry/recipes-core/psplash which adds a bbappend File and a
+corresponding header which origins back to PNG file. This rule is
+responsible for the typical bootup screen.
 
+I myself created another layer meta-myproject and added a copy of the
+same subfolder meta-myproject/recipes-core/psplash with ANOTHER header
+file originating from ANOTHER image file. Also, I copied the
+configuration file from meta-raspberry/conf to meta-myproject/conf (with
+some minor adaptations) and added my new layer meta-myproject to the
+bblayers-conf file in my main build folder.
 
+Once running bitbake, I see that the psplash rules given in the
+meta-raspberry layer causes a psplash-raspberry to be created. And due
+to my new layer meta-myproject another version is created named
+psplash-myproject. That all to be reviewd in tmp/work subfolder of my
+build folder. So, that all worked out rather well.
+If I afterwards run the step to create the root file system
+(populate_rootfs), only the psplash-raspberry package seems to be
+installed: There is only
+/usr/bin/psplash-raspberry but there is no /usr/bin/psplash-myproject.
+
+Copying the psplash-myproject binary to the raspberry manually and
+setting up everything allows to display my image.
+
+I also tried to deactivate the original recipe from
+meta-raspberry/recipes-core/psplash by using BBMASK. This, however leads
+to an error message during bitbake complaining that the RDEPENDENCY
+psplash-raspberry can not be resoved.
+
+So here are the questions:
+1) Why my version of the psplash executable - even though it was built -
+is not installed in the root fs?
+2) I have been able to review the logs from build steps and almost
+everything related to the package creation in tmp/work subfolder of my
+build project. But how can I see which packages are installed during the
+populate_rootfs step? There seems to be no dedicated log file.
+
+I'd appreciate any assistance.
+
+Thank you and best regards
+
+Hauke
 
 
