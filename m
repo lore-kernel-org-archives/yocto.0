@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 64AFCE00ED8; Fri, 20 May 2016 03:37:42 -0700 (PDT)
+	id D2BC4E00EDE; Fri, 20 May 2016 03:39:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,59 +9,64 @@ X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: *  1.0 FSL_HELO_HOME FSL_HELO_HOME
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C041E00ED5
-	for <yocto@yoctoproject.org>; Fri, 20 May 2016 03:37:38 -0700 (PDT)
-Received: by mail-wm0-f47.google.com with SMTP id v200so3948728wmv.1
-	for <yocto@yoctoproject.org>; Fri, 20 May 2016 03:37:38 -0700 (PDT)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7EFBE00EE5
+	for <yocto@yoctoproject.org>; Fri, 20 May 2016 03:39:38 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id s63so13484902wme.2
+	for <yocto@yoctoproject.org>; Fri, 20 May 2016 03:39:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=70cZQCRClj8A78jEC2N9ensd9IZP4EaIr2fF0TMCbL8=;
-	b=UNQyZKIAolDtxw3iMKr3Hl6RYTWitcFla9ses+oFfRuUo/Uq/UGVuW4vSQl+O2v+7I
-	qDAlvONTsX90zPrq+bCoXkgpcdLx95fARQalNxtSEgG7BrktRsHRkhmOy621r3ZLxZbW
-	+sf18mSJHMoNgeTTnJK8U+3MgllelaU0J2F5Nszz55IvynEkqFGIdGNlKt4Fypoo3q64
-	ZMwiNIiOKXzt0whgz56ot161hUAvyzMzTI9Mis2Dzlf+j4H3Beygyu/jkBehD3OY0Anw
-	5SBxW3L/coTUsslqwCDS2sIpMabubKrQSRaVIVvdRd/JiiibOxb3fopWvFvu7I0Vxt2U
-	ag4w==
+	bh=EdLjGBt/B+4RTqngG7r8IC5o+nXnX8tnw9xqLBTlWa4=;
+	b=U/tEOy6DQxFdneDxjiwmAinUV1lMoVn2b0NTyooN1cQ5sdKGirC8X/eYZw+5mxMFW8
+	EK0mvAt6W+Dc40owjadVWixd7x/LOgePyH5Ok786gVPkclW3rowNXrqTf9vzB7HYf2Wd
+	16yr1mv2iNqHdt8P12LQJkbtwiGVQ4/AF7okTL25iDqe1+CZoDB6kvfEqM45guP/3reR
+	iyzB4S3pus5k0okZly8QH6nHH/sRsOTXMgUqcR5r4o3WAOBHjjzjECGW3kGX2K5EpPYA
+	N2dwB9V8qnK6JTh/m28C7ElHxMiDl4k7Cj12ekwjo3VEpiWUjupR2v7ohgYG6x95/+Ns
+	eOFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=70cZQCRClj8A78jEC2N9ensd9IZP4EaIr2fF0TMCbL8=;
-	b=JQWhqOBJmsk+/tWHqxbyyphpIXANtX510C4cA9IOfEfv6K4U4hwdaQ5tNiH8PZtIgX
-	06ma9j4K5sh2F5t6PfWpxWg6RkWF2z1/qi+Egizu+yHcs4+CUDRpDTm28CKnUzPT3mYA
-	MK3NCPkEcTLEjCq8T6AomGmTcjYAjxQsKnNmYDfcqeMxWWlZ9nCf8eyPhCI18qwG9M99
-	0eXnYwo3Qgb64/AqrHsZmPsULG0GHD2UcEajbDX0Mjd/ffyFtqehboXGelbKQNNpmcO+
-	Wp62wKSvI/N0644qy/i9ZwHlDvyenI8/MGXCNgva+h2VH2Cqfzq3+tsyitfLyrzmRM02
-	Visg==
-X-Gm-Message-State: AOPr4FXlTp6V7jgbl4EoZEPnu5J683OZTs8bm0DBqdwAdaiVdovx2WiAklD3m8mslnWEqQ==
-X-Received: by 10.28.126.133 with SMTP id z127mr2862050wmc.68.1463740657318;
-	Fri, 20 May 2016 03:37:37 -0700 (PDT)
+	bh=EdLjGBt/B+4RTqngG7r8IC5o+nXnX8tnw9xqLBTlWa4=;
+	b=HycBQCKV6ByRVNILAsXntjbYUV2FW71KSYOEIxAaIKcWMLcWZpGH5xLnRHfLmT0HXD
+	GLrKGvfIzYjrNQ1rK34Ij8/a/llPwenzS0RqBcWKTNijC9S4GcxD77m646BJ8mifvcLf
+	nd6xwhNUn2Zr5vyuZzX4zgQPvX3F8NyCT87ERvqoka18wexjq7uGPc5JKllRBiXJMKgv
+	3EgVZ/sLn0IOiUkPdVvHltxmoUIpU1TOiWQD5bKRDctZ/qpiZWKL3oIZPed0vpsXV+VE
+	WSeBQYiuP6MgSyZn9nOH0T4Cmsdsrp+YB4WMQDwXXfrSeW7nlFDeQWd6O9s4xIO+AvC8
+	tJMg==
+X-Gm-Message-State: AOPr4FW54nQWIhrpKJ+kfI+nsguP9HR3UZQIkGsdQD7+dXC76l4VI4eVOVrfjwEhX6rb1A==
+X-Received: by 10.28.186.195 with SMTP id k186mr2813901wmf.44.1463740778275;
+	Fri, 20 May 2016 03:39:38 -0700 (PDT)
 Received: from resin.home ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id w82sm3941839wmw.5.2016.05.20.03.37.35
+	by smtp.gmail.com with ESMTPSA id
+	lf9sm19103203wjc.44.2016.05.20.03.39.37
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 20 May 2016 03:37:35 -0700 (PDT)
-Date: Fri, 20 May 2016 12:37:33 +0200
+	Fri, 20 May 2016 03:39:37 -0700 (PDT)
+Date: Fri, 20 May 2016 12:39:35 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20160520103733.GH9848@resin.home>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20160520103935.GI9848@resin.home>
 References: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
-	<1463574082-126198-3-git-send-email-herve.jourdain@neuf.fr>
-	<20160519145702.GE3601@resin.home>
-	<03c501d1b278$1217bbe0$364733a0$@neuf.fr>
+	<1463574082-126198-6-git-send-email-herve.jourdain@neuf.fr>
+	<722F295F-4BEE-4E0A-9078-BB24EF9BAAE2@gmail.com>
+	<F57461B0-379F-4CA7-8A72-F993A6BFC155@neuf.fr>
+	<5E856D17-B2AF-4439-A778-1F1A93B4103B@neuf.fr>
+	<CALbNGRSiO_PNDx1sxpCqLS75pyj9jfDBWAQQPhNgUBj8hZScOA@mail.gmail.com>
+	<20160519151111.GB9848@resin.home>
+	<CAMKF1sobZFxrWtiPQYtzqKEnZyqFCAR9Mgf=9BuS9gj5k-ynhw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <03c501d1b278$1217bbe0$364733a0$@neuf.fr>
+In-Reply-To: <CAMKF1sobZFxrWtiPQYtzqKEnZyqFCAR9Mgf=9BuS9gj5k-ynhw@mail.gmail.com>
 User-Agent: Mutt/1.6.1 (2016-04-27)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/8] Support for vc4 graphics driver: add vc4-kms-v3d to the overlays
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 5/8] Support for vc4 graphics driver: upgrade 4.4 kernel to 4.4.10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,53 +78,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2016 10:37:42 -0000
-X-Groupsio-MsgNum: 30102
+X-List-Received-Date: Fri, 20 May 2016 10:39:56 -0000
+X-Groupsio-MsgNum: 30103
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wayzTnRSUXKNfBqd"
+	protocol="application/pgp-signature"; boundary="byLs0wutDcxFdwtm"
 Content-Disposition: inline
 
---wayzTnRSUXKNfBqd
-Content-Type: text/plain; charset=us-ascii
+--byLs0wutDcxFdwtm
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 20, 2016 at 11:14:50AM +0200, Herve Jourdain wrote:
-> Hi Andrei,
+On Thu, May 19, 2016 at 09:02:04AM -0700, Khem Raj wrote:
+> On Thu, May 19, 2016 at 8:11 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> > On Wed, May 18, 2016 at 11:46:39PM +0200, Andreas M=FCller wrote:
+> >> On Wed, May 18, 2016 at 7:32 PM, Herve Jourdain <herve.jourdain@neuf.f=
+r> wrote:
+> >> > One thing I didn't make configurable, but that maybe could be, is th=
+e parameter passed to the overlay.
+> >> > I selected cma-256, based on experience from other people, and becau=
+se my configuration is RPI2/3 with 1G of memory.
+> >> > I realize it might not work well with RPI0/1, which have less memory=
+ available...
+> >> > So even if I believe cma-256 is a good default value, it might be ma=
+de selectable by the user, if we want to consider vc4 on RPI0/1.
+> >> I played around with vc4 to but did not manage to get it work for an
+> >> elder version 4.1 of kernel.
+> >>
+> >> I did in rpi-config:
+> >>
+> >> CMA_SIZE =3D "cma-256"
+> >> CMA_SIZE_raspberrypi =3D "cma-64"
 >
-> While I totally agree with that, the other lines above do not add the
-> space...
-> And I've been asked before to not modify the formatting - albeit that was in
-> a case of spaces replacing tabs, which is slightly different - which is why
-> I did this way.
-> Do you want me to do the modification only for my 2 lines, or also for the
-> other similar lines - while I'm at it...
+>
+> >
+> > I sent reply about this too. This is definitely one solution would I
+> > would rather have a CMA_SIZE default value and a python function to
+> > check its match with board variant. Cause in this way a user might be
+> > able to use cma-96 on rapsberrypi.
+> >
+> >> CMA_SIZE_raspberrypi0 =3D "cma-128"
+>
+>
+> setting CMA_SIZE should be moved into machine.conf file IMO
 >
 
-Definitely what we have now is not perfect in terms of formatting. But,
-if a change touches lines that we can improve in formatting too, I would
-definitely do it.
+That's actually a good idea. I would say to have it in machine as a
+default value for that specific machine. And then be able to overwrite
+it as user needs. Optionally have a python function to check that what
+user requested makes sense for the selected board.
+
 --
 Andrei Gherzan
 
---wayzTnRSUXKNfBqd
+--byLs0wutDcxFdwtm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXPujqAAoJEHO76Gt+erfPZcAQAMK7IoVh/74tUJb+V4MVSeBi
-ayN2+9ZAKCoXGoXKttoNzgvTHd0g4EezJ5DmOB2+oOqQYZSqM6lyUFavWvq2i3pN
-fndqKQJw0EqbncSLzF92ZuhQYNMMK5yvx4H7nFHd/uYZz4CPsIFYG+JQTEWDc/Ae
-Qc2uQE/agmCokOnKMU4OJiwoCTegbz/r6ndD/+gRq22a6GsWMJE7TmaQSArOJDo7
-hTI/PaLMP7KGSfKjvRGqbDForqg+EBr2tj+pkvSZAe1Onh5i7jclFAj64eSo34FR
-DoLPlUbcMuMXmLSg/ntEC1cwfzYGWvr3acB5mugYSSv99fsLheNBzGYhXLxU6f4a
-PqNRt+mWfpxycKbRtD5hMD4hn2aV0wnltXELAnFJgQP2HnDi8wXOdpgvr+7ZoSZY
-+ZdlaP1hIW8ne300nBCL+ZegX38dOy5YxeVhTWEvf+lHpiG3IvzQgj/Lxem+vqE4
-6guVmIVahFcAA0GQSn7pZB0Gxp67JX0yOvY8yJYfo76UEcRA/71uJCwnr9PrCXSA
-t2ea8vQyHR2UdWBe4PZjhCIp9tueKz9a7PNWwLW4SG3pBJCmBh9C8NcnpOjndAmR
-tIrQmr496sQG+mkhydM1HWLVTVRauVvWHoR0/WzQCuu+07rOzJKV7BM+LNCiuC5v
-rFKfGIOu3PvVc4R3lkVG
-=sqCC
+iQIcBAEBCAAGBQJXPulnAAoJEHO76Gt+erfPxCUP/1GsCX9iVFcpy13Xha4SUYkn
+82KmK3ZwIsvhIkR+t87vLU4UtQ0cMmQBKsXlyevoKaEMuqvZ9hKamZZ66Ui5TvYU
+Ph0nwpjS9lZ2HJups3lg032ERr6Q7TAAE5Sv0KLioia8LpWqinhKZuYI4cGzT1o0
+ts4yvZWivTu+437XfFHzAtaBJ6+wZ5Wh4mCmON6Hr1ylliS/SRheHzf8YYKMtkCl
+0LQ2foYCPLn/G55WRrA8b+l4gUZrs1yQMcvp3vh8Kpo6xyY3TrdmgNXu7Ro+3F0T
+JYI1+qkGEl4VpbvPVPniPvSb9JiMZb4YXa8b1HOPr10WtEVzzAI3Lu1OXOu+Mq2n
+USxs2hSsIGaiN1Qgta3xNfgmVC3bwoHL6ZFWEP8oKDe6+veGnCJ3mxdu/AEz6u1T
+R5rzija6djDFZGDO+6FeHDtm8Kb3AH43UTw/kVT4nJGPfWPbeb60ww24uF+IT0dg
+9QExRWmVMI5i5MgqVW6kOe9ug1SnzAgU53pxhBhzPfZKR+aNzpkPj8PhFzJSJnaR
+qUTeIRqAfQSWNWUg6hF/A1K5daMh8x5o8ZvQfjoHhfx5ym28h3m2grh01oGTjMMI
+r+hBJOwf/n4wrqdaDytLx/jGISYN1nfOdyeQmPymQIKGEGVBtxCnioseL3R45zh0
+RxCAJtAwgSHYujQRJ7gn
+=Y1bA
 -----END PGP SIGNATURE-----
 
---wayzTnRSUXKNfBqd--
+--byLs0wutDcxFdwtm--
