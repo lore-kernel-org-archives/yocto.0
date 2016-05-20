@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 074BCE00EDF; Fri, 20 May 2016 01:28:38 -0700 (PDT)
+	id C710AE00C45; Fri, 20 May 2016 02:15:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,30 +12,33 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8894CE00EA9
-	for <yocto@yoctoproject.org>; Fri, 20 May 2016 01:28:37 -0700 (PDT)
-Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
-	[111.250.207.159])
-	by msfrf2604.sfr.fr (SMTP Server) with ESMTP id EFB841C003814;
-	Fri, 20 May 2016 10:28:36 +0200 (CEST)
-Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CFEEE00BE7
+	for <yocto@yoctoproject.org>; Fri, 20 May 2016 02:14:56 -0700 (PDT)
+Received: from nbhjo (111-250-207-159.dynamic.hinet.net [111.250.207.159])
+	by msfrf2609.sfr.fr (SMTP Server) with ESMTP id 7BC0F1C001C35;
+	Fri, 20 May 2016 11:14:55 +0200 (CEST)
+Received: from nbhjo (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])	(using TLSv1.2
-	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
+	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2604.sfr.fr (SMTP Server) with ESMTPSA;
-	Fri, 20 May 2016 10:28:35 +0200 (CEST)
+	by msfrf2609.sfr.fr (SMTP Server) with ESMTPSA;
+	Fri, 20 May 2016 11:14:53 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (LOGIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: yocto@yoctoproject.org
-Date: Fri, 20 May 2016 16:27:44 +0800
-Message-Id: <1463732864-63931-6-git-send-email-herve.jourdain@neuf.fr>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1463732864-63931-1-git-send-email-herve.jourdain@neuf.fr>
-References: <1463732864-63931-1-git-send-email-herve.jourdain@neuf.fr>
-X-sfr-mailing: LEGIT
+To: 'Andrei Gherzan' <andrei@gherzan.ro>
+References: <1463574082-126198-1-git-send-email-herve.jourdain@neuf.fr>
+	<1463574082-126198-3-git-send-email-herve.jourdain@neuf.fr>
+	<20160519145702.GE3601@resin.home>
+In-Reply-To: <20160519145702.GE3601@resin.home>
+Date: Fri, 20 May 2016 11:14:50 +0200
+Message-ID: <03c501d1b278$1217bbe0$364733a0$@neuf.fr>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v3 5/5] Support for .dtbo files for dtb overlays, required by kernels 4.4.6+
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQEtUi5bhiN/8kFfLyNrCwxIn2H/LwIzqYEmArTy4+eg4wX3sA==
+X-sfr-mailing: LEGIT
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 2/8] Support for vc4 graphics driver: add vc4-kms-v3d to the overlays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,51 +50,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2016 08:28:38 -0000
+X-List-Received-Date: Fri, 20 May 2016 09:15:00 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Language: fr
 
-Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-Patch the kernel, which has faulty rules to generate .dtbo the way yocto does
+Hi Andrei,
 
-Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
----
- .../0001-fix-dtbo-rules.patch                      | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
+While I totally agree with that, the other lines above do not add the
+space...
+And I've been asked before to not modify the formatting - albeit that was in
+a case of spaces replacing tabs, which is slightly different - which is why
+I did this way.
+Do you want me to do the modification only for my 2 lines, or also for the
+other similar lines - while I'm at it...
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
-new file mode 100644
-index 0000000..ef04a72
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi-4.4/0001-fix-dtbo-rules.patch
-@@ -0,0 +1,27 @@
-+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-+index a2e7cf7..673c1cb 100644
-+--- a/arch/arm/Makefile
-++++ b/arch/arm/Makefile
-+@@ -333,6 +333,8 @@ $(INSTALL_TARGETS):
-+ 
-+ %.dtb: | scripts
-+ 	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-++%.dtbo: | scripts
-++	$(Q)$(MAKE) $(build)=$(boot)/dts MACHINE=$(MACHINE) $(boot)/dts/$@
-+ 
-+ PHONY += dtbs dtbs_install
-+ 
-+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-+index 3079c4f..6cc3766 100644
-+--- a/scripts/Makefile.lib
-++++ b/scripts/Makefile.lib
-+@@ -293,7 +293,8 @@ $(obj)/%.dtb: $(src)/%.dts FORCE
-+ 	$(call if_changed_dep,dtc)
-+ 
-+ quiet_cmd_dtco = DTCO    $@
-+-cmd_dtco = $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-++cmd_dtco = mkdir -p $(dir ${dtc-tmp}) ; \
-++	$(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-+ 	$(objtree)/scripts/dtc/dtc -@ -H epapr -O dtb -o $@ -b 0 \
-+ 		-i $(dir $<) $(DTC_FLAGS) \
-+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
--- 
-2.7.4
+Herve
+
+-----Original Message-----
+From: Andrei Gherzan [mailto:andrei@gherzan.ro] 
+Sent: jeudi 19 mai 2016 16:57
+To: Herve Jourdain <herve.jourdain@neuf.fr>
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-raspberrypi][PATCH 2/8] Support for vc4 graphics
+driver: add vc4-kms-v3d to the overlays
+
+On Wed, May 18, 2016 at 08:21:16PM +0800, Herve Jourdain wrote:
+> This patch series enables the support for the VC4 graphics driver from
+Eric Anholt.
+> Add vc4-kms-v3d overlay if 'vc4graphics' is in MACHINE_FEATURES.
+> (This patch has a dependency on the patch that enables the support of
+.dtbo overlay files)
+>
+> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+> ---
+>  recipes-bsp/bootfiles/rpi-config_git.bb | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb
+b/recipes-bsp/bootfiles/rpi-config_git.bb
+> index 4bc8eb7..79e436d 100644
+> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+> @@ -19,6 +19,8 @@ PITFT="${@bb.utils.contains("MACHINE_FEATURES", "pitft",
+"1", "0", d)}"
+>  PITFT22="${@bb.utils.contains("MACHINE_FEATURES", "pitft22", "1", "0",
+d)}"
+>  PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0",
+d)}"
+>
+> +VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1",
+"0", d)}"
+> +
+>  inherit deploy
+>
+>  do_deploy() {
+> @@ -102,6 +104,12 @@ do_deploy() {
+>          echo "# Enable UART" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>          echo "enable_uart=1" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+>      fi
+> +
+> +    # VC4 Graphics support
+> +    if [ "${VC4GRAPHICS}" = "1" ]; then
+> +        echo "# Enable VC4 Graphics"
+>>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+> +        echo "dtoverlay=vc4-kms-v3d,cma-256"
+>>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+
+NIT: space after >>
+
+--
+Andrei Gherzan
 
 
