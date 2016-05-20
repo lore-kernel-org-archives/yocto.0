@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84F7AE00ED5; Fri, 20 May 2016 01:28:23 -0700 (PDT)
+	id 171D7E00ED5; Fri, 20 May 2016 01:28:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,30 +12,30 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AE96E00ED0
-	for <yocto@yoctoproject.org>; Fri, 20 May 2016 01:28:21 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3278E00ED1
+	for <yocto@yoctoproject.org>; Fri, 20 May 2016 01:28:27 -0700 (PDT)
 Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])
-	by msfrf2604.sfr.fr (SMTP Server) with ESMTP id 211581C003814;
-	Fri, 20 May 2016 10:28:21 +0200 (CEST)
+	by msfrf2604.sfr.fr (SMTP Server) with ESMTP id 350711C003812;
+	Fri, 20 May 2016 10:28:27 +0200 (CEST)
 Received: from localhost.localdomain (111-250-207-159.dynamic.hinet.net
 	[111.250.207.159])	(using TLSv1.2
 	with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))	(No client
 	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
 	by msfrf2604.sfr.fr (SMTP Server) with ESMTPSA;
-	Fri, 20 May 2016 10:28:19 +0200 (CEST)
+	Fri, 20 May 2016 10:28:25 +0200 (CEST)
 Authentication-Results: sfr.fr; auth=pass (LOGIN)
 	smtp.auth=herve.jourdain@neuf.fr
 From: Herve Jourdain <herve.jourdain@neuf.fr>
 To: yocto@yoctoproject.org
-Date: Fri, 20 May 2016 16:27:40 +0800
-Message-Id: <1463732864-63931-2-git-send-email-herve.jourdain@neuf.fr>
+Date: Fri, 20 May 2016 16:27:41 +0800
+Message-Id: <1463732864-63931-3-git-send-email-herve.jourdain@neuf.fr>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1463732864-63931-1-git-send-email-herve.jourdain@neuf.fr>
 References: <1463732864-63931-1-git-send-email-herve.jourdain@neuf.fr>
 X-sfr-mailing: LEGIT
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH v3 1/5] Support for .dtbo files for dtb overlays, required by kernels 4.4.6+
+Subject: [meta-raspberrypi][PATCH v3 2/5] Support for .dtbo files for dtb overlays, required by kernels 4.4.6+
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,31 +47,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 May 2016 08:28:23 -0000
+X-List-Received-Date: Fri, 20 May 2016 08:28:29 -0000
 
 Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-Add support for both variants of overlays ("-overlay.dtb" and ".dtbo")
+Add support for both extensions for overlays (".dtb" and ".dtbo")
 
 Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
 ---
- classes/linux-raspberrypi-base.bbclass | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ classes/sdcard_image-rpi.bbclass | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
-index 40beef1..2eca037 100644
---- a/classes/linux-raspberrypi-base.bbclass
-+++ b/classes/linux-raspberrypi-base.bbclass
-@@ -33,7 +33,9 @@ def split_overlays(d, out):
-     dts = get_dts(d, None)
-     if out:
-         overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter_out('\S+\.dtbo$', overlays, d)
-     else:
--        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d)
-+        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d) + \
-+                   " " + oe.utils.str_filter('\S+\.dtbo$', dts, d)
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 4dfd7a3..b3a8bc0 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -110,7 +110,7 @@ IMAGE_CMD_rpi-sdimg () {
+ 		;;
+ 	*)
+ 		if test -n "${DTS}"; then
+-			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
++			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' (4.1.x) or by '.dtbo' (4.4.9+) string and will be put in a dedicated folder
+ 			DT_OVERLAYS="${@split_overlays(d, 0)}"
+ 			DT_ROOT="${@split_overlays(d, 1)}"
  
-     return overlays
+@@ -124,9 +124,10 @@ IMAGE_CMD_rpi-sdimg () {
+ 			# Copy device tree overlays to dedicated folder
+ 			mmd -i ${WORKDIR}/boot.img overlays
+ 			for DTB in ${DT_OVERLAYS}; do
+-				DTB_BASE_NAME=`basename ${DTB} .dtb`
++				DTB_EXT=${DTB##*.}
++				DTB_BASE_NAME=`basename ${DTB} ."${DTB_EXT}"`
+ 
+-				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
++				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.${DTB_EXT} ::overlays/${DTB_BASE_NAME}.${DTB_EXT}
+ 			done
+ 		fi
+ 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::${SDIMG_KERNELIMAGE}
 -- 
 2.7.4
 
