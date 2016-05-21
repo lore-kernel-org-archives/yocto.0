@@ -1,60 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <bsoren@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E5C8E00F70; Sat, 21 May 2016 12:24:25 -0700 (PDT)
+	id 46B56E00B54; Sat, 21 May 2016 16:53:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bsoren[at]hotmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [65.55.116.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0003]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E008E00F69
-	for <yocto@yoctoproject.org>; Sat, 21 May 2016 12:24:18 -0700 (PDT)
-Received: by mail-ig0-f176.google.com with SMTP id bi2so11913460igb.0
-	for <yocto@yoctoproject.org>; Sat, 21 May 2016 12:24:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=H5YVEmVgMaoSeZr8G3mlq4VVqG4CLDv3dVYtLpC3h+A=;
-	b=YNXFk5NJGck32FlWdM5WwXDFTFE6BQmUAbH6J/rNLhdVhMGl3R7LXoait0FFBpXRHL
-	o3Fq88CsbmjIbYZjdN4/r+cByhIl5Fr8bEEhxjmTBkQBVshNBrM77ixKW6TUKG8pHQqM
-	6POyaI4Mgar2wMi7BQe1JoN+b17OpnbLjVqWtV/mhuGv4+sUP5HrS6avCi2PTEYguMKN
-	0OpQcZFT5hISxSrj1KimzFrIUN3WeFrmlSeZPXt6TR2AIIcj9Pv5HxdOTB+kZwvbyf8y
-	R2rtdJGgHWaC711Woad44B5sktjbSyUQbPwNT7iQXHa3UUUou9Q1/SuUmMH2qrty6N17
-	HkBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=H5YVEmVgMaoSeZr8G3mlq4VVqG4CLDv3dVYtLpC3h+A=;
-	b=mrJEzKcR7gjcWxL2zEmp3HrMJP2V8T8AP7Pds5k/il9LYlyOCf+UPWkFEHiTQZBgFJ
-	UnBBw3eCPlfX5X9XKeb+unfszqEt/n3TvzccDwcqe7GS0Ra2OoGSura5TWqjQ2Rupmnv
-	I7MOvXxFQDSQJyT9G0TND4nFcJyaBGVIUrCTzpQl2QpoJEGBqHUGvhrfx7YLPps/F+PR
-	w80/YgXCtcrb+4I2o5kzBt8Oc5aCPy7uGktQzb+1rPaLgD0zs7D9q4UzCAGmKg3sLgeH
-	xlhVMZEszFkMYzcBuKzZPT9XYw0Dsuu7q6hRhhAQe7fRdUCG115ARRlPEesAzxgn4RpM
-	KjRw==
-X-Gm-Message-State: ALyK8tJ5F3CbyugcLJqXf74OOODXj1F8lmcEj2EDW2gC/6kTBMO9sgsZR1QhmUdp8sd+4nFkizkK3imjzQhZGESx
-X-Received: by 10.50.6.201 with SMTP id d9mr459674iga.78.1463858658250; Sat,
-	21 May 2016 12:24:18 -0700 (PDT)
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Sat, 21 May 2016 16:53:46 PDT
+Received: from BLU004-OMC3S9.hotmail.com (blu004-omc3s9.hotmail.com
+	[65.55.116.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4BA0E009C3
+	for <yocto@yoctoproject.org>; Sat, 21 May 2016 16:53:46 -0700 (PDT)
+Received: from BLU171-W108 ([65.55.116.74]) by BLU004-OMC3S9.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
+	Sat, 21 May 2016 16:52:45 -0700
+X-TMN: [EjxwSyNzb2+wIQmS1+oOGi6VV7GYRgf8]
+X-Originating-Email: [bsoren@hotmail.com]
+Message-ID: <BLU171-W1085648A84ED37DD927FDC3C84C0@phx.gbl>
+From: Bjorn Sorensen <bsoren@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sun, 22 May 2016 01:52:44 +0200
+Importance: Normal
 MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Sat, 21 May 2016 12:23:58 -0700 (PDT)
-In-Reply-To: <6741EAAB26B57F4995668065CB62D86B50802B52@fmsmsx116.amr.corp.intel.com>
-References: <6741EAAB26B57F4995668065CB62D86B50802B52@fmsmsx116.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sat, 21 May 2016 20:23:58 +0100
-Message-ID: <CAJTo0LYHv_3hqhKd21ib8ivGwVH2njjrTKdB04UdVeL5-41G9Q@mail.gmail.com>
-To: "Sywula, Krzysztof M" <krzysztof.m.sywula@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: documentation change - DISTRO_FEATURES
+X-OriginalArrivalTime: 21 May 2016 23:52:45.0229 (UTC)
+	FILETIME=[DF03F5D0:01D1B3BB]
+Subject: populate_sysroot error, need SSTATE_DUPWHITELIST variable. How?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,39 +45,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 May 2016 19:24:25 -0000
-Content-Type: multipart/alternative; boundary=e89a8f6465b153b8cb05335f270a
+X-List-Received-Date: Sat, 21 May 2016 23:53:50 -0000
+Content-Type: multipart/alternative;
+	boundary="_92c73068-e567-45b1-88c2-cef0e4a0a0f0_"
 
---e89a8f6465b153b8cb05335f270a
-Content-Type: text/plain; charset=UTF-8
+--_92c73068-e567-45b1-88c2-cef0e4a0a0f0_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 20 May 2016 at 21:17, Sywula, Krzysztof M <krzysztof.m.sywula@intel.com>
-wrote:
+Hi=2CI need to have two separate recipes for "libftdi" and "ftdi-eeprom" in=
+ my meta layer=2C which both of them are build dependencies for one package=
+. The issue is that the said packages are actually in one tarball and when =
+I build "libftdi" it builds both of them. So then when the "ftdi-eeprom" re=
+cipe gets called and tries to install its files=2C I get a "populate_sysroo=
+t" error.
+I read the error and looks like that I need to set a SSTATE_DUPWHITELIST to=
+ allow the files to be written over the others (since they are basically th=
+e same files just from two recipes).=20
+I dont know how & where to configure this variable. Also could not find any=
+ documentation about SSTATE_DUPWHITELIST either. I would highly appreciate =
+if somebody could help me with that or give me instructions.
+Error:ERROR: The recipe ftdi-eeprom is trying to install files into a share=
+d area when those files already exist. Those files and their manifest locat=
+ion are:=0A=
+   /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftd=
+i1.a=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so.2.3.0=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so.2.3.0=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.a=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so.2=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so.2=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/UseLibFTDI1.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/LibFTDI1Config.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/LibFTDI1ConfigVersion.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/pkgconfi=
+g/libftdi1.pc=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/pkgconfi=
+g/libftdipp1.pc=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/include/libf=
+tdi1/ftdi.h=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/include/libf=
+tdi1/ftdi.hpp=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/bin/crossscr=
+ipts/libftdi1-config=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+Please verify which recipe should provide the above files.=0A=
+The build has stopped as continuing in this scenario WILL break things=2C i=
+f not now=2C possibly in the future (we've seen builds fail several months =
+later).... output deleted.Thanks a lot! 		 	   		  =
 
-> I recommend we add =E2=80=98bluez5=E2=80=99 to 11.2 Distro Features secti=
-on as that=E2=80=99s
-> where people go to find available values for DISTRO_FEATURES variable.
->
->
-Agreed.  I've forwarded this to Scott to ensure it gets done.
-
-Ross
-
---e89a8f6465b153b8cb05335f270a
-Content-Type: text/html; charset=UTF-8
+--_92c73068-e567-45b1-88c2-cef0e4a0a0f0_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 May 2016 at 21:17, Sywula, Krzysztof M <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:krzysztof.m.sywula@intel.com" target=3D"_blank">krzysztof.m.sywu=
-la@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p cla=
-ss=3D"MsoNormal">I recommend we add =E2=80=98bluez5=E2=80=99 to 11.2 Distro=
- Features section as that=E2=80=99s where people go to find available value=
-s for DISTRO_FEATURES variable.<u></u><u></u></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>Agreed.=C2=A0 I&#39;ve fo=
-rwarded this to Scott to ensure it gets done.</div><div class=3D"gmail_extr=
-a"><br></div><div class=3D"gmail_extra">Ross</div></div>
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'><p style=3D"margin-bottom: 1em=
+=3B border: 0px=3B clear: both=3B color: rgb(36=2C 39=2C 41)=3B line-height=
+: 19.5px=3B background-color: rgb(255=2C 255=2C 255)=3B"><font face=3D"Aria=
+l=2C sans-serif" size=3D"3">Hi=2C</font></p><p style=3D"margin-bottom: 1em=
+=3B border: 0px=3B clear: both=3B color: rgb(36=2C 39=2C 41)=3B line-height=
+: 19.5px=3B background-color: rgb(255=2C 255=2C 255)=3B"><font face=3D"Aria=
+l=2C sans-serif" size=3D"3">I need to have two separate recipes for "libftd=
+i" and "ftdi-eeprom" in my meta layer=2C which both of them are build depen=
+dencies for one package. The issue is that the said packages are actually i=
+n one tarball and when I build "libftdi" it builds both of them. So then wh=
+en the "ftdi-eeprom" recipe gets called and tries to install its files=2C I=
+ get a "<span style=3D"white-space: pre-wrap=3B">populate_sysroot" error.</=
+span></font></p><p style=3D"margin-bottom: 1em=3B border: 0px=3B clear: bot=
+h=3B color: rgb(36=2C 39=2C 41)=3B line-height: 19.5px=3B background-color:=
+ rgb(255=2C 255=2C 255)=3B"><font face=3D"Arial=2C sans-serif" size=3D"3"><=
+span style=3D"white-space: pre-wrap=3B"><br></span></font></p><p style=3D"m=
+argin-bottom: 1em=3B border: 0px=3B clear: both=3B color: rgb(36=2C 39=2C 4=
+1)=3B line-height: 19.5px=3B background-color: rgb(255=2C 255=2C 255)=3B"><=
+font face=3D"Arial=2C sans-serif" size=3D"3"><span style=3D"white-space: pr=
+e-wrap=3B">I read the error and looks like that I need to set a SSTATE_DUPW=
+HITELIST to allow the files to be written over the others (since they are b=
+asically the same files just from two recipes).&nbsp=3B</span></font></p><p=
+ style=3D"margin-bottom: 1em=3B border: 0px=3B clear: both=3B color: rgb(36=
+=2C 39=2C 41)=3B line-height: 19.5px=3B background-color: rgb(255=2C 255=2C=
+ 255)=3B"><font face=3D"Arial=2C sans-serif" size=3D"3"><span style=3D"whit=
+e-space: pre-wrap=3B"><br></span></font></p><p style=3D"margin-bottom: 1em=
+=3B border: 0px=3B clear: both=3B color: rgb(36=2C 39=2C 41)=3B line-height=
+: 19.5px=3B background-color: rgb(255=2C 255=2C 255)=3B"><font face=3D"Aria=
+l=2C sans-serif" size=3D"3"><span style=3D"white-space: pre-wrap=3B">I dont=
+ know how &amp=3B where to configure this variable. Also could not find any=
+ documentation about SSTATE_DUPWHITELIST either. I would highly appreciate =
+if somebody could help me with that or give me instructions.</span></font><=
+/p><p style=3D"margin-bottom: 1em=3B border: 0px=3B clear: both=3B color: r=
+gb(36=2C 39=2C 41)=3B line-height: 19.5px=3B background-color: rgb(255=2C 2=
+55=2C 255)=3B"><font face=3D"Arial=2C sans-serif" size=3D"3"><span style=3D=
+"white-space: pre-wrap=3B"><br></span></font></p><p style=3D"margin-bottom:=
+ 1em=3B border: 0px=3B clear: both=3B color: rgb(36=2C 39=2C 41)=3B line-he=
+ight: 19.5px=3B background-color: rgb(255=2C 255=2C 255)=3B"><font face=3D"=
+Arial=2C sans-serif" size=3D"3"><span style=3D"white-space: pre-wrap=3B"><u=
+>Error:</u></span></font></p><pre id=3D"code" class=3D"brush: text=3B plain=
+-text" style=3D"margin-top: 0px=3B margin-bottom: 0px=3B padding: 10px=3B w=
+hite-space: pre-wrap=3B word-wrap: break-word=3B font-size: 12px=3B">ERROR:=
+ The recipe ftdi-eeprom is trying to install files into a shared area when =
+those files already exist. Those files and their manifest location are:=0A=
+   /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftd=
+i1.a=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so.2.3.0=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so.2.3.0=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.a=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdip=
+p1.so.2=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/libftdi1=
+.so.2=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/UseLibFTDI1.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/LibFTDI1Config.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/cmake/li=
+bftdi1/LibFTDI1ConfigVersion.cmake=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/pkgconfi=
+g/libftdi1.pc=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/lib/pkgconfi=
+g/libftdipp1.pc=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/include/libf=
+tdi1/ftdi.h=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/include/libf=
+tdi1/ftdi.hpp=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+ /home/soroush/yocto/ros-bbb/build/tmp/sysroots/beaglebone/usr/bin/crossscr=
+ipts/libftdi1-config=0A=
+ Matched in manifest-beaglebone-libftdi.populate_sysroot=0A=
+Please verify which recipe should provide the above files.=0A=
+The build has stopped as continuing in this scenario WILL break things=2C i=
+f not now=2C possibly in the future (we've seen builds fail several months =
+later).... output deleted.</pre><pre id=3D"code" class=3D"brush: text=3B pl=
+ain-text" style=3D"margin-top: 0px=3B margin-bottom: 0px=3B padding: 10px=
+=3B white-space: pre-wrap=3B word-wrap: break-word=3B font-size: 12px=3B">T=
+hanks a lot!</pre> 		 	   		  </div></body>
+</html>=
 
---e89a8f6465b153b8cb05335f270a--
+--_92c73068-e567-45b1-88c2-cef0e4a0a0f0_--
