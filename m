@@ -1,60 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <contact@jgueytat.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36AFCE00D76; Sun, 22 May 2016 02:00:41 -0700 (PDT)
+	id 9EAD1E00DE3; Sun, 22 May 2016 10:46:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.70.183.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD87BE00D06
-	for <yocto@yoctoproject.org>; Sun, 22 May 2016 02:00:38 -0700 (PDT)
-Received: by mail-it0-f45.google.com with SMTP id z189so14172077itg.0
-	for <yocto@yoctoproject.org>; Sun, 22 May 2016 02:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Cft3XrP9T1GkMXoJtWwLYm9zX6a0Wsuwfij+/QOfkMc=;
-	b=ACAR6tqMnAUfFG5gx+va3v+agIgZ4JJOIw2147lUDHqJON8CpsWkLUk8Sl4+W/OeAC
-	Fr9OuIceGIgzk2kTMtMyK6O+5MPzwlRWXMO8osQV02EUefuE8rp2a8q6lG9gn+2eOyO/
-	b7ivYY5Slwsawx5z8baCud45NuTE4xL7EOP3j7vIkHbuMbqDlvC/Q7Tp9w2TlO4VgaSj
-	yXeLqbh2BHoEtuExWZ9hu6bZitwmUinMl9i1qv1ZY+jVlL+2AsUoMCHOdza+IvgkPnJN
-	HI5Sl9HAaTCyOxMLpEkqFQGvHKry25taQm9m/DCtzttf5BH+3xlBH+IyYSff89yV1kwU
-	fV6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Cft3XrP9T1GkMXoJtWwLYm9zX6a0Wsuwfij+/QOfkMc=;
-	b=epUDcvND5IXOW71j7jsk4QD9wIkZVWpuJURkTAnfXLySZBV95nZidpzTdzHJqhXfN9
-	W/gpXBk+SiixfX/akCzMfG+G63E+9ujyW4j7Iey7eDjtuTCPFiIKo5thXQ3CmAAhu2ua
-	dhKdENbcAP57eaSaXGQviUJv4jPXVyfpCZKtlxHdN8hxHrneP/DpJviZAMablGfwTUDx
-	cNb3WUIqwjfL96vIdQBbsiQAaA1g9La1iDde9aEdaSLAivnwImQm5OatAfZXmK7eavZR
-	P9ykNUK0ekPn1PZNLBTG2h4odbLuX2Q4ex0zYf8SqbCi6KRtGgDD3LfR3waoZLsNGi29
-	6kOA==
-X-Gm-Message-State: ALyK8tKQeR8nn5QNmRtr9RphsTWSAI3qIwBL7z0idFu3FfRYyeOQoMFEwn1YHL1cMw+/ds1nwsWxC8WLzHnUNyNC
-X-Received: by 10.36.217.79 with SMTP id p76mr307441itg.38.1463907637601; Sun,
-	22 May 2016 02:00:37 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Sun, 22 May 2016 02:00:18 -0700 (PDT)
-In-Reply-To: <BLU171-W1085648A84ED37DD927FDC3C84C0@phx.gbl>
-References: <BLU171-W1085648A84ED37DD927FDC3C84C0@phx.gbl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sun, 22 May 2016 10:00:18 +0100
-Message-ID: <CAJTo0LZ_PzKa8BMNvYmYtNa8ddO-PY0DLgjQcOTqnqaRrZiQaw@mail.gmail.com>
-To: Bjorn Sorensen <bsoren@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: populate_sysroot error, need SSTATE_DUPWHITELIST variable. How?
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+	[217.70.183.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51C9FE007E4
+	for <yocto@yoctoproject.org>; Sun, 22 May 2016 10:46:27 -0700 (PDT)
+Received: from mfilter25-d.gandi.net (mfilter25-d.gandi.net [217.70.178.153])
+	by relay4-d.mail.gandi.net (Postfix) with ESMTP id A585D1720A9
+	for <yocto@yoctoproject.org>; Sun, 22 May 2016 19:46:25 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mfilter25-d.gandi.net
+Received: from relay4-d.mail.gandi.net ([IPv6:::ffff:217.70.183.196])
+	by mfilter25-d.gandi.net (mfilter25-d.gandi.net [::ffff:10.0.15.180])
+	(amavisd-new, port 10024)
+	with ESMTP id F-FDhcfEeX3c for <yocto@yoctoproject.org>;
+	Sun, 22 May 2016 19:46:24 +0200 (CEST)
+X-Originating-IP: 77.154.202.160
+Received: from localhost.localdomain (160.202.154.77.rev.sfr.net
+	[77.154.202.160]) (Authenticated sender: contact@jgueytat.fr)
+	by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 0AE9717209D
+	for <yocto@yoctoproject.org>; Sun, 22 May 2016 19:46:23 +0200 (CEST)
+From: Julien Gueytat <contact@jgueytat.fr>
+To: yocto@yoctoproject.org
+Date: Sun, 22 May 2016 19:46:23 +0200
+Message-Id: <1463939183-14049-1-git-send-email-contact@jgueytat.fr>
+X-Mailer: git-send-email 1.9.1
+Subject: [psplash][PATCH] Add fbdev option to set the proper /dev/fbX.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,51 +46,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 May 2016 09:00:41 -0000
-Content-Type: multipart/alternative; boundary=001a1145ed9eb9415a05336a8e5a
+X-List-Received-Date: Sun, 22 May 2016 17:46:32 -0000
 
---001a1145ed9eb9415a05336a8e5a
-Content-Type: text/plain; charset=UTF-8
+It works exactly the same way than the angle parameter:
+ * --angle <-> /etc/rotation file
+ * --fbdev <-> /etc/fbdev file
 
-On 22 May 2016 at 00:52, Bjorn Sorensen <bsoren@hotmail.com> wrote:
+Signed-off-by: Julien Gueytat <contact@jgueytat.fr>
+---
+ psplash-fb.c | 16 ++++++++++------
+ psplash-fb.h |  4 ++--
+ psplash.c    | 57 ++++++++++++++++++++++++++++++++-------------------------
+ 3 files changed, 44 insertions(+), 33 deletions(-)
 
-> I need to have two separate recipes for "libftdi" and "ftdi-eeprom" in my
-> meta layer, which both of them are build dependencies for one package. The
-> issue is that the said packages are actually in one tarball and when I
-> build "libftdi" it builds both of them. So then when the "ftdi-eeprom"
-> recipe gets called and tries to install its files, I get a "populate_sysroot"
-> error.
->
->
-Why don't you change the recipes so that ftdi-eeprom only installs the
-eeprom portions and not libftdi?  Or just don't build depend on libftdi if
-ftdi-eeprom is also building libftdi?
+diff --git a/psplash-fb.c b/psplash-fb.c
+index 8daaf6f..d344e5a 100644
+--- a/psplash-fb.c
++++ b/psplash-fb.c
+@@ -99,18 +99,20 @@ attempt_to_change_pixel_format (PSplashFB *fb,
+ }
+ 
+ PSplashFB*
+-psplash_fb_new (int angle)
++psplash_fb_new (int angle, int fbdev_id)
+ {
+   struct fb_var_screeninfo fb_var;
+   struct fb_fix_screeninfo fb_fix;
+   int                      off;
+-  char                    *fbdev;
++  char                     fbdev[9] = "/dev/fb0";
+ 
+   PSplashFB *fb = NULL;
+ 
+-  fbdev = getenv("FBDEV");
+-  if (fbdev == NULL)
+-    fbdev = "/dev/fb0";
++  if (fbdev_id > 0 && fbdev_id < 10)
++    {
++        // Conversion from integer to ascii.
++        fbdev[7] = fbdev_id + 48;
++    }
+ 
+   if ((fb = malloc (sizeof(PSplashFB))) == NULL)
+     {
+@@ -124,7 +126,9 @@ psplash_fb_new (int angle)
+ 
+   if ((fb->fd = open (fbdev, O_RDWR)) < 0)
+     {
+-      perror ("Error opening /dev/fb0");
++      fprintf(stderr,
++              "Error opening %s\n",
++              fbdev);
+       goto fail;
+     }
+ 
+diff --git a/psplash-fb.h b/psplash-fb.h
+index a4a0f4c..d0dce10 100644
+--- a/psplash-fb.h
++++ b/psplash-fb.h
+@@ -38,7 +38,7 @@ typedef struct PSplashFB
+   char		*data;
+   char		*base;
+ 
+-  int            angle;
++  int            angle, fbdev_id;
+   int            real_width, real_height;
+ 
+   enum RGBMode   rgbmode;
+@@ -55,7 +55,7 @@ void
+ psplash_fb_destroy (PSplashFB *fb);
+ 
+ PSplashFB*
+-psplash_fb_new (int angle);
++psplash_fb_new (int angle, int fbdev_id);
+ 
+ void
+ psplash_fb_draw_rect (PSplashFB    *fb, 
+diff --git a/psplash.c b/psplash.c
+index 04d3d49..992e199 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -205,35 +205,41 @@ int
+ main (int argc, char** argv) 
+ {
+   char      *tmpdir;
+-  int        pipe_fd, i = 0, angle = 0, ret = 0;
++  int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
+   PSplashFB *fb;
+   bool       disable_console_switch = FALSE;
+-  
++
+   signal(SIGHUP, psplash_exit);
+   signal(SIGINT, psplash_exit);
+   signal(SIGQUIT, psplash_exit);
+ 
+-  while (++i < argc)
+-    {
+-      if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
+-        {
+-	  disable_console_switch = TRUE;
+-	  continue;
+-	}
++  while (++i < argc) {
++    if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
++      {
++        disable_console_switch = TRUE;
++        continue;
++      }
++
++    if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
++      {
++        if (++i >= argc) goto fail;
++        angle = atoi(argv[i]);
++        continue;
++      }
++
++    if (!strcmp(argv[i],"-f") || !strcmp(argv[i],"--fbdev"))
++      {
++        if (++i >= argc) goto fail;
++        fbdev_id = atoi(argv[i]);
++        continue;
++      }
+ 
+-      if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
+-        {
+-	  if (++i >= argc) goto fail;
+-	  angle = atoi(argv[i]);
+-	  continue;
+-	}
+-      
+     fail:
+       fprintf(stderr, 
+-	      "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>]\n", 
+-	      argv[0]);
++              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
++              argv[0]);
+       exit(-1);
+-    }
++  }
+ 
+   tmpdir = getenv("TMPDIR");
+ 
+@@ -245,10 +251,10 @@ main (int argc, char** argv)
+   if (mkfifo(PSPLASH_FIFO, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP))
+     {
+       if (errno!=EEXIST) 
+-	{
+-	  perror("mkfifo");
+-	  exit(-1);
+-	}
++	    {
++	      perror("mkfifo");
++	      exit(-1);
++	    }
+     }
+ 
+   pipe_fd = open (PSPLASH_FIFO,O_RDONLY|O_NONBLOCK);
+@@ -262,10 +268,11 @@ main (int argc, char** argv)
+   if (!disable_console_switch)
+     psplash_console_switch ();
+ 
+-  if ((fb = psplash_fb_new(angle)) == NULL) {
++  if ((fb = psplash_fb_new(angle,fbdev_id)) == NULL)
++    {
+ 	  ret = -1;
+ 	  goto fb_fail;
+-  }
++    }
+ 
+   /* Clear the background with #ecece1 */
+   psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
+-- 
+1.9.1
 
-Ross
 
---001a1145ed9eb9415a05336a8e5a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 22 May 2016 at 00:52, Bjorn Sorensen <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:bsoren@hotmail.com" target=3D"_blank">bsoren@hotmail.com</a>&gt;</span=
-> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><p style=3D"margin-bottom:1em;bo=
-rder:0px;clear:both;color:rgb(36,39,41);line-height:19.5px;background-color=
-:rgb(255,255,255)"><font face=3D"Arial, sans-serif" size=3D"3">I need to ha=
-ve two separate recipes for &quot;libftdi&quot; and &quot;ftdi-eeprom&quot;=
- in my meta layer, which both of them are build dependencies for one packag=
-e. The issue is that the said packages are actually in one tarball and when=
- I build &quot;libftdi&quot; it builds both of them. So then when the &quot=
-;ftdi-eeprom&quot; recipe gets called and tries to install its files, I get=
- a &quot;<span style=3D"white-space:pre-wrap">populate_sysroot&quot; error.=
-</span></font></p><p style=3D"margin-bottom:1em;border:0px;clear:both;color=
-:rgb(36,39,41);line-height:19.5px;background-color:rgb(255,255,255)"></p></=
-blockquote></div><br>Why don&#39;t you change the recipes so that ftdi-eepr=
-om only installs the eeprom portions and not libftdi?=C2=A0 Or just don&#39=
-;t build depend on libftdi if ftdi-eeprom is also building libftdi?</div><d=
-iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
-iv>
-
---001a1145ed9eb9415a05336a8e5a--
