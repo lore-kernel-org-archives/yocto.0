@@ -1,38 +1,62 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E142E00E1E; Mon, 23 May 2016 00:56:17 -0700 (PDT)
+	id 824ACE00E49; Mon, 23 May 2016 02:21:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [194.25.134.85 listed in list.dnswl.org]
+	*      [209.85.214.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0276]
-X-Greylist: delayed 373 seconds by postgrey-1.32 at yocto-www;
-	Mon, 23 May 2016 00:56:13 PDT
-Received: from mailout11.t-online.de (mailout11.t-online.de [194.25.134.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74091E00E10
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 00:56:13 -0700 (PDT)
-Received: from fwd00.aul.t-online.de (fwd00.aul.t-online.de [172.20.26.147])
-	by mailout11.t-online.de (Postfix) with SMTP id 1D9694257AEA
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 09:49:59 +0200 (CEST)
-Received: from [192.168.2.113]
-	(EXHQc-ZUghuO3Dr2sWPRm65P-8ZZJYT1uLxFG+1eF5JN0NDZdOiUkhOVc9lV-lHwvh@[79.199.39.213])
-	by fwd00.t-online.de with (TLSv1:ECDHE-RSA-AES256-SHA encrypted)
-	esmtp id 1b4kcb-4cbMOW0; Mon, 23 May 2016 09:49:53 +0200
-From: Markus Volk <f_l_k@t-online.de>
-Message-Id: <2313E880-9ADC-4AE1-A22B-8ACE0799C4D1@t-online.de>
-Date: Mon, 23 May 2016 09:49:52 +0200
-To: Yocto discussion list <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Mailer: Apple Mail (2.3124)
-X-ID: EXHQc-ZUghuO3Dr2sWPRm65P-8ZZJYT1uLxFG+1eF5JN0NDZdOiUkhOVc9lV-lHwvh
-X-TOI-MSGID: fc907f63-9fa0-4d37-83c2-ccf3db136921
-Subject: useradd.bbclass: Strip trailing ';' in cmd params
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f43.google.com (mail-it0-f43.google.com
+	[209.85.214.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57DEFE00E21
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 02:21:13 -0700 (PDT)
+Received: by mail-it0-f43.google.com with SMTP id e62so26929273ita.1
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 02:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=bLW8cLLN52SYNtSpp8fMkD68NhfJe5yBbVrzWr1J0BA=;
+	b=2OUTdHsIsAyyS3To0mMe4n02mqigEqPBRifJz23qKH27YFTFz7YlZDtvbDv2Z9Gkfw
+	xwkrdN6cAflqZo9FdRA5aeGeCMaHPgNMnrZBti3G7W8whT/4ftWAb71IDP4SpN6DVRCg
+	NqF3ScVfD/Un35O3qirrm3/ndXyQU5q8QDPZcyP3w58TrqemZgs9JsCC1Y/u3AMKZuRl
+	S0Yso+2kE/Fc6T5DNixuNSErLYsuPJwP0pqXODYIgZY4hvzaZHB9Hfz4qAUj+tDCF0kv
+	zr6Tgf/1Zxczz0Ubh+GOzmk7k37oCqpqHIKz78dxJZK2EXaMe4RS1aZNJWctJI5PZJ8U
+	AORg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=bLW8cLLN52SYNtSpp8fMkD68NhfJe5yBbVrzWr1J0BA=;
+	b=AWDVXG5glWUSVEv0SWLD5Eye5kiIH958AenyUZgO/g1mUY5NIU8Hw6HgfzlBH7C96U
+	xgYyQcedpvB5XyU5xlIIYzym4SZVD3JFW89wWv9aKIYxR2j/oJwvY4Mz1PnDo1ezP95m
+	iUKdfWvc6Fy3HJuavJBDDXLf/eXas3HftN5tCQ+QkcYSFclaC2xnmvBseUbZxEKKlCWG
+	IANmgwt9M/++hBMgT5YHW4rl3TwdaO10/oT+70qFd80xjel2uyk4XuRIX+iC0B7zfZ0q
+	LWJEOEONkcRgMohDlj0xNa/BVHUpCmbidpaGJZhjiD6G5aTHmzQH0+0s5BLg50P9sFEA
+	onqw==
+X-Gm-Message-State: AOPr4FUkBSCCGVX0hH9VI2W3e7mvjtqBwXOI0GjLppcrfhqws7qNRJRq+ccoeUufs3HLd7Yes2ObQA16B5uBp/u3
+X-Received: by 10.36.57.211 with SMTP id l202mr12048349ita.22.1463995273088;
+	Mon, 23 May 2016 02:21:13 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Mon, 23 May 2016 02:20:53 -0700 (PDT)
+In-Reply-To: <BLU171-W28EBFEE16CCBA0BB11F9CFC84D0@phx.gbl>
+References: <BLU171-W1085648A84ED37DD927FDC3C84C0@phx.gbl>
+	<CAJTo0LZ_PzKa8BMNvYmYtNa8ddO-PY0DLgjQcOTqnqaRrZiQaw@mail.gmail.com>
+	<BLU171-W28EBFEE16CCBA0BB11F9CFC84D0@phx.gbl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 23 May 2016 10:20:53 +0100
+Message-ID: <CAJTo0LZawADfHxD4A93KiP+mB5ZzSe+mVf7zYruzosEgVFo+Jw@mail.gmail.com>
+To: Bjorn Sorensen <bsoren@hotmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: populate_sysroot error, need SSTATE_DUPWHITELIST variable. How?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,71 +68,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2016 07:56:17 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632"
+X-List-Received-Date: Mon, 23 May 2016 09:21:17 -0000
+Content-Type: multipart/alternative; boundary=001a114ab3ca34baf005337ef62d
 
---Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632
+--001a114ab3ca34baf005337ef62d
+Content-Type: text/plain; charset=UTF-8
+
+On 22 May 2016 at 22:19, Bjorn Sorensen <bsoren@hotmail.com> wrote:
+
+> Its the other way around, actually libftdi builds eeprom. I am still a
+> newbie with Yocto and dont have the knowledge to manipulate the builds from
+> the recipe like you suggested.
+> Although I managed the workaround by adding the SSTATE_DUPWHITELIST
+> variable to the recipe and list the conflicting files in the list.
+> it all worked out!
+>
+
+Did it work on the target?  You've now got two target packages that contain
+the same files, so you'll have to be careful that they don't get installed
+at the same time, or diverge.  If libftdi builds eeprom, then why do you
+need another recipe for ftdi-eeprom?
+
+It really would be best to fix the packaging, instead of working around
+broken packaging with SSTATE_DUPWHITELIST.
+
+Ross
+
+--001a114ab3ca34baf005337ef62d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-Hello,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 22 May 2016 at 22:19, Bjorn Sorensen <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:bsoren@hotmail.com" target=3D"_blank">bsoren@hotmail.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Its the other w=
+ay around, actually libftdi builds eeprom. I am still a newbie with Yocto a=
+nd dont have the knowledge to manipulate the builds from the recipe like yo=
+u suggested.=C2=A0<div>Although I managed the workaround by adding the SSTA=
+TE_DUPWHITELIST variable to the recipe and list the conflicting files in th=
+e list.<div>it all worked out!</div><div></div></div></div></blockquote></d=
+iv><br>Did it work on the target?=C2=A0 You&#39;ve now got two target packa=
+ges that contain the same files, so you&#39;ll have to be careful that they=
+ don&#39;t get installed at the same time, or diverge.=C2=A0 If libftdi bui=
+lds eeprom, then why do you need another recipe for ftdi-eeprom?</div><div =
+class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">It really would =
+be best to fix the packaging, instead of working around broken packaging wi=
+th SSTATE_DUPWHITELIST.</div><div class=3D"gmail_extra"><br></div><div clas=
+s=3D"gmail_extra">Ross</div></div>
 
-just to mention =E2=80=A6
-
-=
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa35147adb9=
-96d515c3d27f62555d9c969cd8 =
-<http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa35147adb=
-996d515c3d27f62555d9c969cd8>
-
-results in a do_rootfs loop here if an attached whitspace exists in =
-USERADD_PARAM_${PN}
-
-this fixes my problem:
-=
-https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1e211c0a1=
-6d054f3622045334a5 =
-<https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1e211c0a=
-16d054f3622045334a5>
-
-regards,
-
-Markus=
-
---Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">Hello,<div class=3D""><br class=3D""></div><div class=3D"">just=
- to mention =E2=80=A6</div><div class=3D""><br class=3D""></div><div =
-class=3D""><a =
-href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa3=
-5147adb996d515c3d27f62555d9c969cd8" =
-class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553=
-fa35147adb996d515c3d27f62555d9c969cd8</a></div><div class=3D""><br =
-class=3D""></div><div class=3D"">results in a do_rootfs loop here if an =
-attached whitspace exists in&nbsp;<span style=3D"color: rgb(51, 51, 51); =
-font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; =
-white-space: pre-wrap; background-color: rgb(255, 255, 255);" =
-class=3D"">USERADD_PARAM_${PN}</span></div><div class=3D""><span =
-style=3D"color: rgb(51, 51, 51); font-family: Consolas, 'Liberation =
-Mono', Menlo, Courier, monospace; white-space: pre-wrap; =
-background-color: rgb(255, 255, 255);" class=3D""><br =
-class=3D""></span></div><div class=3D""><span style=3D"color: rgb(51, =
-51, 51); font-family: Consolas, 'Liberation Mono', Menlo, Courier, =
-monospace; white-space: pre-wrap; background-color: rgb(255, 255, 255);" =
-class=3D"">this fixes my problem:</span></div><div class=3D""><a =
-href=3D"https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1=
-e211c0a16d054f3622045334a5" =
-class=3D"">https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1e=
-ba1e211c0a16d054f3622045334a5</a></div><div class=3D""><br =
-class=3D""></div><div class=3D"">regards,</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Markus</div></body></html>=
-
---Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632--
+--001a114ab3ca34baf005337ef62d--
