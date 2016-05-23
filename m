@@ -1,26 +1,38 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF4E8E00E08; Sun, 22 May 2016 21:28:54 -0700 (PDT)
+	id 9E142E00E1E; Mon, 23 May 2016 00:56:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 706CAE00E04
-	for <yocto@yoctoproject.org>; Sun, 22 May 2016 21:28:52 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 3B0AE84ABD98
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 00:28:50 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 23 May 2016 04:28:50 -0000
-Message-ID: <20160523042850.29596.78330@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.85 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0276]
+X-Greylist: delayed 373 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 May 2016 00:56:13 PDT
+Received: from mailout11.t-online.de (mailout11.t-online.de [194.25.134.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74091E00E10
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 00:56:13 -0700 (PDT)
+Received: from fwd00.aul.t-online.de (fwd00.aul.t-online.de [172.20.26.147])
+	by mailout11.t-online.de (Postfix) with SMTP id 1D9694257AEA
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 09:49:59 +0200 (CEST)
+Received: from [192.168.2.113]
+	(EXHQc-ZUghuO3Dr2sWPRm65P-8ZZJYT1uLxFG+1eF5JN0NDZdOiUkhOVc9lV-lHwvh@[79.199.39.213])
+	by fwd00.t-online.de with (TLSv1:ECDHE-RSA-AES256-SHA encrypted)
+	esmtp id 1b4kcb-4cbMOW0; Mon, 23 May 2016 09:49:53 +0200
+From: Markus Volk <f_l_k@t-online.de>
+Message-Id: <2313E880-9ADC-4AE1-A22B-8ACE0799C4D1@t-online.de>
+Date: Mon, 23 May 2016 09:49:52 +0200
+To: Yocto discussion list <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-ID: EXHQc-ZUghuO3Dr2sWPRm65P-8ZZJYT1uLxFG+1eF5JN0NDZdOiUkhOVc9lV-lHwvh
+X-TOI-MSGID: fc907f63-9fa0-4d37-83c2-ccf3db136921
+Subject: useradd.bbclass: Strip trailing ';' in cmd params
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,210 +44,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2016 04:28:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 23 May 2016 07:56:17 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632"
 
-This mail was sent out by Recipe reporting system.
+--Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hello,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+just to mention =E2=80=A6
 
-You can check the detail information at:
+=
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa35147adb9=
+96d515c3d27f62555d9c969cd8 =
+<http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa35147adb=
+996d515c3d27f62555d9c969cd8>
 
-http://recipes.yoctoproject.org/
+results in a do_rootfs loop here if an attached whitspace exists in =
+USERADD_PARAM_${PN}
 
-Package               Version            Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------------  --------------------  -------------------  ------------------------------
-texinfo               6.0                6.1                   Alejandro Hernandez
-ruby                  2.2.5              2.3.1                 Alejandro Hernandez
-perl                  5.22.1             5.24.0                Alejandro Hernandez
-python-dbus           1.2.0              1.2.4                 Alejandro Hernandez
-python-git            1.0.2              2.0.2                 Alejandro Hernandez
-python-mako           1.0.3              1.0.4                 Alejandro Hernandez
-python-numpy          1.10.4             1.11.0                Alejandro Hernandez
-python-pygobject      3.18.2             3.21.0                Alejandro Hernandez
-python-scons          2.4.1              2.5.0                 Alejandro Hernandez
-python-pexpect        4.0.1              4.1.0                 Alejandro Hernandez
-python3-setuptools    19.4               21.2.1                Alejandro Hernandez
-python3-pip           8.0.0              8.1.2                 Alejandro Hernandez
-python-setuptools     19.4               21.2.1                Alejandro Hernandez
-perl-native           5.22.1             5.24.0                Alejandro Hernandez
-python-scons-native   2.4.1              2.5.0                 Alejandro Hernandez
-liberation-fonts      1.04               2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
-gcr                   3.18.0             3.20.0                Alexander Kanavin
-gnome-desktop3        3.18.2             3.20.2                Alexander Kanavin
-libsecret             0.18.4             0.18.5                Alexander Kanavin
-watchdog              5.14               5.15                  Alexander Kanavin
-kexec-tools           2.0.11             2.0.12                Alexander Kanavin
-btrfs-tools           4.4                4.5.3                 Alexander Kanavin
-sysprof               1.2.0+gitX         3.20.0+gitAUTOINC...  Alexander Kanavin
-systemtap-uprobes     2.9                3.0                   Alexander Kanavin
-systemtap             2.9                3.0                   Alexander Kanavin
-mkelfimage            4.0+gitX           4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
-hwlatdetect           0.96               2.0                   Alexander Kanavin
-rt-tests              0.96               2.0                   Alexander Kanavin
-webkitgtk             2.12.1             2.12.2                Alexander Kanavin
-boost                 1.60.0             1.61.0                Alexander Kanavin
-gdbm                  1.11               1.12                  Alexander Kanavin
-icu                   56.1               57.1                  Alexander Kanavin
-bjam-native           1.60.0             1.61.0                Alexander Kanavin
-libksba               1.3.3              1.3.4                 Alexander Kanavin
-liburcu               0.9.1              0.9.2                 Alexander Kanavin
-babeltrace            1.3.1              1.3.2                 Alexander Kanavin
-libarchive            3.1.2              3.2.0                 Alexander Kanavin
-gnutls                3.4.9              3.5.0                 Alexander Kanavin
-msmtp                 1.6.3              1.6.4                 Alexander Kanavin
-epiphany              3.18.4             3.20.2                Alexander Kanavin
-iso-codes             3.65               3.68                  Alexander Kanavin
-apt                   1.0.10.1           1.2.12                Aníbal Limón
-dpkg                  1.18.4             1.18.7                Aníbal Limón
-pinentry              0.9.2              0.9.7                 Armin Kuster
-linux-libc-headers    4.4                4.6                   Bruce Ashfield
-linux-yocto-rt        4.4.10+gitX        4.4.11+gitAUTOINC...  Bruce Ashfield
-linux-yocto           4.4.10+gitX        4.4.11+gitAUTOINC...  Bruce Ashfield
-linux-yocto-tiny      4.4.10+gitX        4.4.11+gitAUTOINC...  Bruce Ashfield
-guilt-native          0.35+gitX          0.36+gitAUTOINC+2...  Bruce Ashfield
-pciutils              3.4.1              3.5.1                 Chen Qi
-resolvconf            1.78               1.79                  Chen Qi
-dbus-test             1.10.6             1.10.8                Chen Qi
-dbus                  1.10.6             1.10.8                Chen Qi
-systemd               229+gitX           230+gitAUTOINC+3a...  Chen Qi
-util-linux            2.27.1             2.28                  Chen Qi
-tar                   1.28               1.29                  Chen Qi
-curl                  7.47.1             7.49.0                Chen Qi
-byacc                 20150711           20160324              Chen Qi
-gzip                  1.6                1.8                   Chen Qi
-sudo                  1.8.15             1.8.16                Chen Qi
-sysstat               11.2.0             11.3.4                Chen Qi
-grep                  2.23               2.25                  Chen Qi
-build-appliance-i...  14.0.0             15.0.0                Cristian Iorga
-u-boot-fw-utils       v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
-dhcp                  4.3.3              4.3.4                 Hongxu Jia
-ncurses               6.0+20160213       6.0+20160319          Hongxu Jia
-gnupg                 2.1.11             2.1.12                Hongxu Jia
-pax-utils             1.1.5              1.1.6                 Hongxu Jia
-createrepo            0.4.11             0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-libgcrypt             1.6.5              1.7.0                 Hongxu Jia
-libnewt-python        0.52.18            0.52.19               Hongxu Jia
-man-pages             4.04               4.06                  Hongxu Jia
-libnewt               0.52.18            0.52.19               Hongxu Jia
-help2man-native       1.47.3             1.47.4                Hongxu Jia
-wayland               1.10.0             1.10.92               Jussi Kukkonen
-weston                1.10.0             1.10.92               Jussi Kukkonen
-gtk-icon-utils-na...  3.18.8             3.20.5                Jussi Kukkonen
-xf86-input-synaptics  1.8.3              1.8.99.1              Jussi Kukkonen
-libxcb                1.11.1             1.12                  Jussi Kukkonen
-dropbear              2015.71            2016.73               Jussi Kukkonen
-xcb-proto             1.11               1.12                  Jussi Kukkonen
-matchbox-terminal     0.0+gitX           2+gitAUTOINC+452b...  Jussi Kukkonen
-docbook-xsl-style...  1.78.1             1.79.1                Jussi Kukkonen
-sato-screenshot       0.1+gitX           2+gitAUTOINC+3a96...  Jussi Kukkonen
-at-spi2-atk           2.18.1             2.20.1                Jussi Kukkonen
-at-spi2-core          2.18.3             2.20.2                Jussi Kukkonen
-atk                   2.18.0             2.20.0                Jussi Kukkonen
-vala                  0.30.1             0.32.0                Jussi Kukkonen
-libevdev              1.4.6              1.5.1                 Jussi Kukkonen
-augeas                1.4.0              1.5.0                 Jussi Kukkonen
-libgpg-error          1.21               1.22                  Jussi Kukkonen
-vte                   0.28.2             0.44.2                Jussi Kukkonen       matchbox-terminal needs to ...
-clutter-gst-3.0       3.0.16             3.0.18                Jussi Kukkonen
-dosfstools            3.0.28             4.0                   Jussi Kukkonen
-gtk+3                 3.18.8             3.20.5                Jussi Kukkonen
-gtk+                  2.24.29            2.24.30               Jussi Kukkonen
-cairo                 1.14.6             1.15.2                Jussi Kukkonen
-clutter-1.0           1.24.2             1.26.0                Jussi Kukkonen
-clutter-gtk-1.0       1.6.6              1.8.0                 Jussi Kukkonen
-fontconfig            2.11.94            2.11.95               Jussi Kukkonen
-mesa-demos            8.2.0              8.3.0                 Jussi Kukkonen
-linuxdoc-tools-na...  0.9.69             0.9.72                Jussi Kukkonen
-slang                 2.2.4              2.3.0                 Kai Kang
-uclibc                1.0.12+gitX        1.0.14                Khem Raj
-prelink               1.0+gitX           20151030.+gitAUTO...  Mark Hatle
-rpm                   5.4.16             5.4.17                Mark Hatle
-libpfm4               4.6.0              4.7.0                 Matthew McClintock
-iproute2              4.5.0              4.6.0                 Maxin B. John
-gstreamer1.0-plug...  1.7.2+gitX         1.8.1+gitAUTOINC+...  Maxin B. John
-db                    6.0.30             6.2.23                Maxin B. John
-ofono                 1.17               1.18                  Maxin B. John
-sqlite3               3.12.2             3.13.0                Maxin B. John
-libpam                1.2.1              1.3.0                 Maxin B. John
-python3-git           1.0.2              2.0.2                 No maintainer
-ffmpeg                3.0                3.0.2                 No maintainer
-gdb-cross-canadia...  7.11               20131001              No maintainer
-gdb-cross-i586        7.11               20131001              No maintainer
-cantarell-fonts       0.0.21+gitX        0.13+gitAUTOINC+7...  No maintainer
-gcc-source-5.3.0      5.3.0              6.1.0                 No maintainer
-ifupdown              0.8.2              0.8.12                No maintainer
-uclibc-initial        1.0.12+gitX        1.0.14                No maintainer
-apt-native            1.0.10.1           1.2.12                No maintainer
-gobject-introspec...  1.46.0             1.48.0                No maintainer
-wayland-protocols     1.3                1.4                   No maintainer
-mc                    4.8.16             4.8.17                No maintainer
-sgmlspl-native        1.1+gitX           1.03+gitAUTOINC+f...  No maintainer
-xf86-input-libinput   0.16.0             0.19.0                No maintainer
-lttng-tools           2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
-lttng-ust             2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
-gdb                   7.11               20131001              Richard Purdie
-nasm                  2.11.08            2.12.01               Richard Purdie
-subversion            1.9.3              1.9.4                 Richard Purdie
-lttng-modules         2.7.3+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
-gnu-efi               3.0.3              3.0.4                 Robert Yang
-e2fsprogs             1.42.99+1.43+gitX  1.43                  Robert Yang
-file                  5.25               5.27                  Robert Yang
-git                   2.8.2              2.8.3                 Robert Yang
-make                  4.1                4.2                   Robert Yang
-tcl                   8.6.4              8.6.5                 Robert Yang
-libbsd                0.8.2              0.8.3                 Robert Yang
-libcap                2.24               2.25                  Robert Yang
-ltp                   20160126           20160510              Robert Yang
-autogen-native        5.18.6             5.18.9                Robert Yang
-mklibs-native         0.1.40             0.1.41                Robert Yang
-base-passwd           3.5.29             3.5.39                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.64               9.66                  Ross Burton
-alsa-utils            1.1.0              1.1.1                 Tanu Kaskinen
-alsa-lib              1.1.0              1.1.1                 Tanu Kaskinen
-pulseaudio            8.0                8.99.1                Tanu Kaskinen
-alsa-plugins          1.1.0              1.1.1                 Tanu Kaskinen
-alsa-utils-scripts    1.1.0              1.1.1                 Tanu Kaskinen
-ccache                3.2.4              3.2.5                 Wenzong Fan
-gettext               0.19.6             0.19.7                Wenzong Fan
-chkconfig             1.3.58             1.7                   Wenzong Fan          Version 1.5 requires selinux
+this fixes my problem:
+=
+https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1e211c0a1=
+6d054f3622045334a5 =
+<https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1e211c0a=
+16d054f3622045334a5>
 
-Upgradable count: 150
-Upgradable total count: 156
+regards,
 
-The based commit is:
+Markus=
 
-commit 048c901fc32a1fd9a6c4b6f68f618101dfdf94ad
-Author: Martin Jansa <martin.jansa@gmail.com>
-Date:   Fri Apr 29 19:46:09 2016 +0200
+--Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-    linux-yocto-rt, core-image-rt*: Explicitly skip when PREFERRED_PROVIDER_virtual/kernel isn't set to linux-yocto-rt
-    
-    * just like linux-yocto-dev is doing
-    * fixes following errors in world builds:
-      ERROR: Nothing PROVIDES 'linux-yocto-rt' (but /home/jenkins/oe/world/shr-core/openembedded-core/meta/recipes-rt/images/core-image-rt-sdk.bb DEPENDS on or otherwise requires it)
-      ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel set to linux-yocto, not linux-yocto-rt
-      ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel set to linux-yocto, not linux-yocto-rt
-      ERROR: Required build target 'core-image-rt-sdk' has no buildable providers.
-      Missing or unbuildable dependency chain was: ['core-image-rt-sdk', 'linux-yocto-rt']
-    
-      ERROR: Nothing PROVIDES 'linux-yocto-rt' (but /home/jenkins/oe/world/shr-core/openembedded-core/meta/recipes-rt/images/core-image-rt.bb DEPENDS on or otherwise requires it)
-      ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel set to linux-yocto, not linux-yocto-rt
-      ERROR: linux-yocto-rt was skipped: PREFERRED_PROVIDER_virtual/kernel set to linux-yocto, not linux-yocto-rt
-      ERROR: Required build target 'core-image-rt' has no buildable providers.
-      Missing or unbuildable dependency chain was: ['core-image-rt', 'linux-yocto-rt']
-    
-    Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">Hello,<div class=3D""><br class=3D""></div><div class=3D"">just=
+ to mention =E2=80=A6</div><div class=3D""><br class=3D""></div><div =
+class=3D""><a =
+href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553fa3=
+5147adb996d515c3d27f62555d9c969cd8" =
+class=3D"">http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D553=
+fa35147adb996d515c3d27f62555d9c969cd8</a></div><div class=3D""><br =
+class=3D""></div><div class=3D"">results in a do_rootfs loop here if an =
+attached whitspace exists in&nbsp;<span style=3D"color: rgb(51, 51, 51); =
+font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; =
+white-space: pre-wrap; background-color: rgb(255, 255, 255);" =
+class=3D"">USERADD_PARAM_${PN}</span></div><div class=3D""><span =
+style=3D"color: rgb(51, 51, 51); font-family: Consolas, 'Liberation =
+Mono', Menlo, Courier, monospace; white-space: pre-wrap; =
+background-color: rgb(255, 255, 255);" class=3D""><br =
+class=3D""></span></div><div class=3D""><span style=3D"color: rgb(51, =
+51, 51); font-family: Consolas, 'Liberation Mono', Menlo, Courier, =
+monospace; white-space: pre-wrap; background-color: rgb(255, 255, 255);" =
+class=3D"">this fixes my problem:</span></div><div class=3D""><a =
+href=3D"https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1eba1=
+e211c0a16d054f3622045334a5" =
+class=3D"">https://github.com/neutrino-hd/meta-neutrino/commit/a8a442ecc1e=
+ba1e211c0a16d054f3622045334a5</a></div><div class=3D""><br =
+class=3D""></div><div class=3D"">regards,</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Markus</div></body></html>=
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+--Apple-Mail=_5E07492C-4C40-40F2-8217-C2D93F10C632--
