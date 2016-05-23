@@ -1,59 +1,43 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <krueger@ind.rwth-aachen.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3B8AE00E39; Mon, 23 May 2016 07:24:25 -0700 (PDT)
+	id 0ADBEE004A0; Mon, 23 May 2016 10:17:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.50 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.130.5.186 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
-	[209.85.218.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53B95E00CB0
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 07:24:23 -0700 (PDT)
-Received: by mail-oi0-f50.google.com with SMTP id b65so135470535oia.1
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 07:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DVEDerTNirfeD3yYXlrkl1GqcMc8RTgrQRQj3IPllqg=;
-	b=BDVUVoXCDmlxWG+OWSmSH0rRMArO4Be/uusWXSm3rDpYxHqJbLLzal416i7Ccdt0h/
-	Lf4juwmllAffO437dIbTfjoIiLQiCf7oYe/Hg1R10Mw6nsr2jF3HwZT0wYO6uPuhGaZZ
-	+4b0c2OxtlBzGMbVOa3oAMlGx0UbuKxfPQscniYzwn2Zd3GBp8AsUF3hzDCk25qmqDRi
-	knGS2KmzKtFxSwRiRNZj8ICvcT/lULHaGU2wd8Csf6vwMz6M/OD6L8BiG3gzXkX0u++2
-	g8kBder/mihrdQHTjFpnOh/bGfejSa4OvZh8I4OSBdVSPOP2RJ9nsuIzDC4jZhmMIB1S
-	yHxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DVEDerTNirfeD3yYXlrkl1GqcMc8RTgrQRQj3IPllqg=;
-	b=VWs7h1pd0PbyJpgmn0EiTtGhT7DeyFUxamNhz2n7JoDoJs8POTq0wV6Q1NPM9pEG0R
-	90Z7HKkUWR4CEdIT1bMBAZ1QVq0Zxiyy4VyBVOKRjUL9PL7hvtSRZ0L7VD7vcr0XX+y9
-	5r/dFIWCsOoujMkaiffnmuqTSpMXHzlrc+lKHeFGQkG5K7y6ddyu96i27F0um7GOzomZ
-	F5jCTrlmFiqwsK+Ocs0TqG/bRYyTAUVS6JdhLIr4Iuo7RuiDrukB7kXKT0lyS0CAVubi
-	7Tks0QPUIACgDRi24g8ha8idQIMh5IgCyasJV9YIgTmIvsjJ1k9n/6X4gXtlmYOmwkcw
-	6djw==
-X-Gm-Message-State: AOPr4FVbzMth5zwjPNBvlXDSnF96LYWIBsB2XwmDTOEfFcDh8w2wq6sqE5ob3dUncD9i5nDJodkoMdlBIz2zbSVL
-X-Received: by 10.157.37.66 with SMTP id j2mr9927145otd.119.1464013462875;
-	Mon, 23 May 2016 07:24:22 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mx-out-1.rwth-aachen.de (mx-out-1.rwth-aachen.de
+	[134.130.5.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E564E003D9
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:17:27 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,356,1459807200"; 
+	d="scan'208,217";a="529797690"
+Received: from mail.iks.rwth-aachen.de (HELO mail.ind.rwth-aachen.de)
+	([137.226.238.9])
+	by mx-1.rz.rwth-aachen.de with ESMTP; 23 May 2016 19:17:26 +0200
+Received: from [192.168.178.104] (aftr-88-153-6-143.unity-media.net
+	[88.153.6.143])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.ind.rwth-aachen.de (Postfix) with ESMTP id EF52016741F3
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 19:17:25 +0200 (CEST)
+From: public-hk@iks.rwth-aachen.de
+To: yocto@yoctoproject.org
+References: <05bb0eaa-71c1-f850-e7e4-f028bbe8b715@ind.rwth-aachen.de>
+	<1463721900.2210.11.camel@hibento.de>
+Message-ID: <921c8a5c-5f65-2b8f-67da-a01d1ef69a06@ind.rwth-aachen.de>
+Date: Mon, 23 May 2016 21:17:25 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.1.0
 MIME-Version: 1.0
-Received: by 10.202.61.5 with HTTP; Mon, 23 May 2016 07:23:53 -0700 (PDT)
-In-Reply-To: <OFD3CFEA30.52570675-ONC1257FBC.0049688D-C1257FBC.004AD217@esa-grimma.de>
-References: <OFD3CFEA30.52570675-ONC1257FBC.0049688D-C1257FBC.004AD217@esa-grimma.de>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Mon, 23 May 2016 17:23:53 +0300
-Message-ID: <CAHiDW_FWrZ_1LVLuNL5aRUuZ-pEfFvDL4Tog40+=9=N8qdYWNQ@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How can I set a recipe that its binaries become available at cross-compile time?
+In-Reply-To: <1463721900.2210.11.camel@hibento.de>
+Subject: Re: Newbie Question regarding custom layer and populate_rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,32 +49,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2016 14:24:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 23 May 2016 17:17:32 -0000
+Content-Type: multipart/alternative;
+	boundary="------------80A6795CE29304D96537C6BC"
 
-On 23 May 2016 at 16:37,  <S.Jaritz@esa-grimma.de> wrote:
-> Hej
+--------------80A6795CE29304D96537C6BC
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+Hi Stephan, hi Herrie,
+
+thank you for your replies to my question.
+
+>> So here are the questions:
+>> 1) Why my version of the psplash executable - even though it was built -
+>> is not installed in the root fs?
+> Did you manually build your splash recipe (bitbake psplash-myproject)?
+> This does not include it in an image yet. It must be added to image
+> features either manually or through a dependency. 
+> The psplash-raspberry package seems to be included in the dependencies
+> here
+> https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51 - maybe there is a chance to override this in your local.conf
+> The cleanest way might be to include this in an own machine definition
+> and override it afterwards.
+
+I have finally added a machine raspberry2p which includes the original
+raspberrypi2 machine definition - and then defines another SPLASH reference.
+That worked.
+
 >
-> I a cmake based application, some code generation via dbusxx-xml2cpp. It is
-> provided by the dbuss-c++ lib. A recipe can be found under:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/meta-ivi-demo/recipes-extended/dbus-c++?id=b90c2a20744e1e82b2169a88e68d7677bec907b6
+>> 2) I have been able to review the logs from build steps and almost
+>> everything related to the package creation in tmp/work subfolder of my
+>> build project. But how can I see which packages are installed during the
+>> populate_rootfs step? There seems to be no dedicated log file.
+> There is a rather complex conglomerate of piped commands here, which
+> does this: https://community.freescale.com/docs/DOC-94953 
 
-You shouldn't need a separate native recipe: 'BBCLASSEXTEND =
-"native"' in the main recipe should work.
+What helped my a lot were the commands
 
-> It working and it's compiling & linking, "dbusxx-xml2cpp" is included at the
-> native build.
->
-> How can I set a recipe that its binaries become available at cross-compile
-> time?
+bitbake-layers show-layers and
+bitbake -g </image>/ && emacs pn-depends.dot
 
-If dbus-c++ installs the binaries properly and another recipe depends
-on dbus-c++-native then the binaries should be in the native sysroot
-during the other recipes build. As an example see dbus-glib and
-connman-gnome in oe-core: dbus-glib-native provides dbus-binding-tool
-which connman-gnome uses during build.
+That reference is a really valuable link!
 
-HTH,
-  Jussi
+Thank you and best regards
 
+Hauke
+
+
+--------------80A6795CE29304D96537C6BC
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hi Stephan, hi Herrie,</p>
+    thank you for your replies to my question.<br>
+    <br>
+    <blockquote cite="mid:1463721900.2210.11.camel@hibento.de"
+      type="cite">
+      <blockquote type="cite">
+        <pre wrap="">So here are the questions:
+1) Why my version of the psplash executable - even though it was built -
+is not installed in the root fs?
+</pre>
+      </blockquote>
+      <pre wrap="">Did you manually build your splash recipe (bitbake psplash-myproject)?
+This does not include it in an image yet. It must be added to image
+features either manually or through a dependency. 
+The psplash-raspberry package seems to be included in the dependencies
+here
+<a class="moz-txt-link-freetext" href="https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51">https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51</a> - maybe there is a chance to override this in your local.conf
+The cleanest way might be to include this in an own machine definition
+and override it afterwards.
+</pre>
+    </blockquote>
+    <br>
+    I have finally added a machine raspberry2p which includes the
+    original raspberrypi2 machine definition - and then defines another
+    SPLASH reference.<br>
+    That worked.<br>
+    <br>
+    <blockquote cite="mid:1463721900.2210.11.camel@hibento.de"
+      type="cite"><br>
+      <blockquote type="cite">
+        <pre wrap="">2) I have been able to review the logs from build steps and almost
+everything related to the package creation in tmp/work subfolder of my
+build project. But how can I see which packages are installed during the
+populate_rootfs step? There seems to be no dedicated log file.
+</pre>
+      </blockquote>
+      <pre wrap="">There is a rather complex conglomerate of piped commands here, which
+does this: <a class="moz-txt-link-freetext" href="https://community.freescale.com/docs/DOC-94953">https://community.freescale.com/docs/DOC-94953</a> 
+</pre>
+    </blockquote>
+    <br>
+    What helped my a lot were the commands <br>
+    <br>
+    bitbake-layers show-layers and<br>
+    bitbake -g &lt;<em>image&gt;</em> &amp;&amp; emacs pn-depends.dot <br>
+    <br>
+    That reference is a really valuable link!<br>
+    <br>
+    Thank you and best regards<br>
+    <br>
+    Hauke<br>
+    <br>
+  </body>
+</html>
+
+--------------80A6795CE29304D96537C6BC--
