@@ -1,43 +1,71 @@
-Return-Path: <krueger@ind.rwth-aachen.de>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0ADBEE004A0; Mon, 23 May 2016 10:17:32 -0700 (PDT)
+	id 60B71E004F1; Mon, 23 May 2016 10:26:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.130.5.186 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-out-1.rwth-aachen.de (mx-out-1.rwth-aachen.de
-	[134.130.5.186])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E564E003D9
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:17:27 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,356,1459807200"; 
-	d="scan'208,217";a="529797690"
-Received: from mail.iks.rwth-aachen.de (HELO mail.ind.rwth-aachen.de)
-	([137.226.238.9])
-	by mx-1.rz.rwth-aachen.de with ESMTP; 23 May 2016 19:17:26 +0200
-Received: from [192.168.178.104] (aftr-88-153-6-143.unity-media.net
-	[88.153.6.143])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.ind.rwth-aachen.de (Postfix) with ESMTP id EF52016741F3
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 19:17:25 +0200 (CEST)
-From: public-hk@iks.rwth-aachen.de
-To: yocto@yoctoproject.org
-References: <05bb0eaa-71c1-f850-e7e4-f028bbe8b715@ind.rwth-aachen.de>
-	<1463721900.2210.11.camel@hibento.de>
-Message-ID: <921c8a5c-5f65-2b8f-67da-a01d1ef69a06@ind.rwth-aachen.de>
-Date: Mon, 23 May 2016 21:17:25 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
-	Thunderbird/45.1.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAAF8E00343
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:26:37 -0700 (PDT)
+Received: by mail-pa0-f47.google.com with SMTP id qo8so64841511pab.1
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:26:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=rbzZcHFaAm9YwthTrL41BInJs3Nx5R55AxuFsdaHVpY=;
+	b=n3HuGRnK2MSC37Lz0Fm1f1kx0lRSoMM78pRY8T5H/xO6H7EP/1CbUGx/RuoYR7Komd
+	CO8GGs9u9OhQWRjMRU4+13qlP3Zesm7nCDdBOjuoFxX2yuCtOkJVp5q3W2ML6J4ZqKvh
+	H965OAFcP/j6Kto8C6k53MjBq/hyJdIAcL4Ok4wNNBZu+97fIFhQaz4nPsuqH2E4aH5+
+	KbpV7fW5hWsxP9c10ec851rZyExyHZcmM5DLofxTfB7osfhpWhxvKchFGFUq+6He84Bp
+	ud1dB0WxnvUU2iT730cVHDBs5Qi6LunanROc9IAEiWbvq7JRbbGCsm5j9jz4OZf3oUdD
+	hBCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=rbzZcHFaAm9YwthTrL41BInJs3Nx5R55AxuFsdaHVpY=;
+	b=YGcgZKav8UzRaYDFiinJNDVkugPAvqh8I03OGJiV7waunp7gxBK8rVH12APBZ5UIx4
+	zTfGLLrxRjVjJtg/sbOsUnQVp3V+tY9VVgxqO/r7oS+zsFA28ORDd1EwzJNBchzWmSET
+	fy5QFVGlqSEeYMywPWvTmZnGCz9eVXwUkbdBCCIi7R6ukLkjpeWtwLv1OelyoD/TXeiJ
+	M/AyMYkgS+eJ+IN+e4DuRhfA5oNLSO3qVLyerL0VM4YAaRZszmYVImXkXukHpf2XJxkp
+	pBO3E6tIrCJfUwtfzfYL2sX5Brc1vtkbPD0iZXamH7ZM1eG7e84skw0g5E5cJvtgSy8c
+	R1zA==
+X-Gm-Message-State: AOPr4FU8ZkGrk5/q9Ye6/ecOkeW2vaWzbTee5Pm9Ay4wUNcCtdbiIw+QIH4JLQj5E9SLdg==
+X-Received: by 10.66.81.70 with SMTP id y6mr28843111pax.121.1464024392400;
+	Mon, 23 May 2016 10:26:32 -0700 (PDT)
+Received: from [192.168.18.4] (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207]) by smtp.googlemail.com with ESMTPSA id
+	s14sm46957259pag.7.2016.05.23.10.26.30
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 23 May 2016 10:26:31 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
+References: <5735F40F.1000402@gmail.com>
+	<82AEE06F-34F3-4751-A742-D3DE921AA652@gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <57433D40.1070606@gmail.com>
+Date: Mon, 23 May 2016 10:26:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-In-Reply-To: <1463721900.2210.11.camel@hibento.de>
-Subject: Re: Newbie Question regarding custom layer and populate_rootfs
+In-Reply-To: <82AEE06F-34F3-4751-A742-D3DE921AA652@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: errors.yoctoproject
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,117 +77,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2016 17:17:32 -0000
-Content-Type: multipart/alternative;
-	boundary="------------80A6795CE29304D96537C6BC"
-
---------------80A6795CE29304D96537C6BC
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
-
-Hi Stephan, hi Herrie,
-
-thank you for your replies to my question.
-
->> So here are the questions:
->> 1) Why my version of the psplash executable - even though it was built -
->> is not installed in the root fs?
-> Did you manually build your splash recipe (bitbake psplash-myproject)?
-> This does not include it in an image yet. It must be added to image
-> features either manually or through a dependency. 
-> The psplash-raspberry package seems to be included in the dependencies
-> here
-> https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51 - maybe there is a chance to override this in your local.conf
-> The cleanest way might be to include this in an own machine definition
-> and override it afterwards.
-
-I have finally added a machine raspberry2p which includes the original
-raspberrypi2 machine definition - and then defines another SPLASH reference.
-That worked.
-
->
->> 2) I have been able to review the logs from build steps and almost
->> everything related to the package creation in tmp/work subfolder of my
->> build project. But how can I see which packages are installed during the
->> populate_rootfs step? There seems to be no dedicated log file.
-> There is a rather complex conglomerate of piped commands here, which
-> does this: https://community.freescale.com/docs/DOC-94953 
-
-What helped my a lot were the commands
-
-bitbake-layers show-layers and
-bitbake -g </image>/ && emacs pn-depends.dot
-
-That reference is a really valuable link!
-
-Thank you and best regards
-
-Hauke
+X-List-Received-Date: Mon, 23 May 2016 17:26:38 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 
---------------80A6795CE29304D96537C6BC
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>Hi Stephan, hi Herrie,</p>
-    thank you for your replies to my question.<br>
-    <br>
-    <blockquote cite="mid:1463721900.2210.11.camel@hibento.de"
-      type="cite">
-      <blockquote type="cite">
-        <pre wrap="">So here are the questions:
-1) Why my version of the psplash executable - even though it was built -
-is not installed in the root fs?
-</pre>
-      </blockquote>
-      <pre wrap="">Did you manually build your splash recipe (bitbake psplash-myproject)?
-This does not include it in an image yet. It must be added to image
-features either manually or through a dependency. 
-The psplash-raspberry package seems to be included in the dependencies
-here
-<a class="moz-txt-link-freetext" href="https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51">https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine/include/rpi-base.inc#n51</a> - maybe there is a chance to override this in your local.conf
-The cleanest way might be to include this in an own machine definition
-and override it afterwards.
-</pre>
-    </blockquote>
-    <br>
-    I have finally added a machine raspberry2p which includes the
-    original raspberrypi2 machine definition - and then defines another
-    SPLASH reference.<br>
-    That worked.<br>
-    <br>
-    <blockquote cite="mid:1463721900.2210.11.camel@hibento.de"
-      type="cite"><br>
-      <blockquote type="cite">
-        <pre wrap="">2) I have been able to review the logs from build steps and almost
-everything related to the package creation in tmp/work subfolder of my
-build project. But how can I see which packages are installed during the
-populate_rootfs step? There seems to be no dedicated log file.
-</pre>
-      </blockquote>
-      <pre wrap="">There is a rather complex conglomerate of piped commands here, which
-does this: <a class="moz-txt-link-freetext" href="https://community.freescale.com/docs/DOC-94953">https://community.freescale.com/docs/DOC-94953</a> 
-</pre>
-    </blockquote>
-    <br>
-    What helped my a lot were the commands <br>
-    <br>
-    bitbake-layers show-layers and<br>
-    bitbake -g &lt;<em>image&gt;</em> &amp;&amp; emacs pn-depends.dot <br>
-    <br>
-    That reference is a really valuable link!<br>
-    <br>
-    Thank you and best regards<br>
-    <br>
-    Hauke<br>
-    <br>
-  </body>
-</html>
+On 05/13/2016 10:59 AM, Khem Raj wrote:
+> don’t think so
+> 
+> just do
+> 
+> echo `git config --get user.name` > ${HOME}/.oe-send-error
+> echo `git config --get user.email` >> ${HOME}/.oe-send-error
+> 
+> and it should be able to send
 
---------------80A6795CE29304D96537C6BC--
+thanks. I got it working
+
+- armin
+> 
+>> On May 13, 2016, at 8:34 AM, akuster808 <akuster808@gmail.com> wrote:
+>>
+>> Do I need an account enabled to submit to errors.yoctoproject?
+>>
+>> - armin
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> 
+
