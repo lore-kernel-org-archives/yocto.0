@@ -1,41 +1,59 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DC65E00B33; Tue, 24 May 2016 05:32:02 -0700 (PDT)
+	id D852AE00B65; Tue, 24 May 2016 06:44:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9223E00B1E
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 05:31:59 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u4OCVhOC026841; Tue, 24 May 2016 13:31:43 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id KbzzJD7mLdLn; Tue, 24 May 2016 13:31:43 +0100 (BST)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u4OCVeEL026838
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 24 May 2016 13:31:41 +0100
-Message-ID: <1464093100.9570.54.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, Gary Thomas
-	<gary@mlbassoc.com>
-Date: Tue, 24 May 2016 13:31:40 +0100
-In-Reply-To: <4240230.kXqFvlgrOF@peggleto-mobl.ger.corp.intel.com>
-References: <5722E217.40108@mlbassoc.com>
-	<2094217.rxhuCqpasC@peggleto-mobl.ger.corp.intel.com>
-	<572330DA.4020009@mlbassoc.com>
-	<4240230.kXqFvlgrOF@peggleto-mobl.ger.corp.intel.com>
-X-Mailer: Evolution 3.16.5-1ubuntu3.1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Change in override behavior?
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DCDAE00B52
+	for <yocto@yoctoproject.org>; Tue, 24 May 2016 06:44:22 -0700 (PDT)
+Received: by mail-io0-f180.google.com with SMTP id t40so12266596ioi.0
+	for <yocto@yoctoproject.org>; Tue, 24 May 2016 06:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=XlIDh3tcCk9VqKa0wWcM5ep7l+XxH8H8+AhFK2xFL1g=;
+	b=YN9B1h3fLGtLQ1wh8A7LDLe9ZnOZ5ihVRTYB/5J7DM1sZIusZ5qMNyzd+lsmnI/rYQ
+	jx7ptcVKoYmYgwqzASHSifG6sysUj7MFwZr05F1yoGJjH+KFrutvC6o2nJgB7h5UaQHA
+	RHbarNtxhTtV9JTw2ZQFDkEaynqFHxKjUTrEk6/fOauhanq7PXtYqOqvGHIYWT+J5jdx
+	M9JcDCs6GKhOzFempRrEdzjvrSnQhdyZD9KDWYV9yb2ygzNE9l1Kx/mbG8/68pR69c4D
+	B18ZkkYQOfoYt5hyZAT/ifiFmuvbWppL08p/XtsbKHThOh5cy+6uvNGm/cER9kg/9W1n
+	lL7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=XlIDh3tcCk9VqKa0wWcM5ep7l+XxH8H8+AhFK2xFL1g=;
+	b=eXZozj7uM8uxXisRo8AZ7O24xVnoYsTmVDzjFdwUwlNRpkooWkiyH6L+Vw7J2ZaRv8
+	doOlAQUlbVPhNzrV0VPEg36TvZEPMNAjI8A6Fu7p0AnMf0dCXsBqB5cr9nzqYZrAXOVv
+	GXN32g8YdzdC93BdKIK8hvUszF+dbOIWFO1nm64KKsIvhaWrOeBQdLLF6i4gSQziGx5R
+	Vr0RcZodzryLa2UslU4CUnvADDmbeE1ly4KJd+T6gkSrXkZ2B3FF5Vwqny0O2JrlwNR3
+	fe0bQqKqBjs24U7/anjdtiiQ3j2tQNlSilL05S3gpey+8FWWlTMZFpKOyqVFi1qHD7JS
+	KUYw==
+X-Gm-Message-State: AOPr4FVfHb7/qntsORGJDgi58KK9hI+gi0z7tyNfC8ZLq1gBo6HsOYUdT4LBNprNXgdzMUl8i8GEGFUZAz+tvrba
+X-Received: by 10.107.14.142 with SMTP id 136mr16132896ioo.94.1464097461581;
+	Tue, 24 May 2016 06:44:21 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.48.131 with HTTP; Tue, 24 May 2016 06:43:42 -0700 (PDT)
+In-Reply-To: <1464055945-9731-1-git-send-email-tracy.graydon@intel.com>
+References: <1464055945-9731-1-git-send-email-tracy.graydon@intel.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Tue, 24 May 2016 14:43:42 +0100
+Message-ID: <CAPhnLPA5GT+QOYnWjQuV+AwaFJNeZGPY5+TmBBt_GgoEPu6pKQ@mail.gmail.com>
+To: "Graydon, Tracy" <tracy.graydon@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,74 +65,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 May 2016 12:32:02 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 24 May 2016 13:44:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, 2016-04-29 at 22:09 +1200, Paul Eggleton wrote:
-> On Fri, 29 Apr 2016 12:00:58 Gary Thomas wrote:
-> > On 2016-04-29 11:51, Paul Eggleton wrote:
-> > > On Fri, 29 Apr 2016 09:24:23 Gary Thomas wrote:
-> > > > On 2016-04-29 09:16, Paul Eggleton wrote:
-> > > > Indeed, my machine names do have an upper case letter in them.
-> > > > Any suggestions for how to handle this (short of renaming
-> > > > everything
-> > > > which
-> > > > would be a HUGE chore)?
-> > > 
-> > > It's no longer supported I'm afraid, BitBake's datastore is now
-> > > coded to
-> > > expect lowercase for all override values. You say it's a huge
-> > > chore but
-> > > surely a grep -l | xargs -n1 sed -i would do it?
-> > 
-> > If I were to rename my target (MACHINE), I'd then have to go
-> > through
-> > and rename all of the directories in the recipes that hold machine
-> > customizations and there are quite a few of those.  Similarly I'd
-> > have to rework all the recipes that use the old names (with upper
-> > case
-> > letters) to the new ones.  Not impossible, but quite a lot of work.
-> 
-> That is unfortunate, but again should be pretty easy to automate
-> (assuming 
-> they are local of course and not proliferated across many users'
-> build 
-> machines).
-> 
-> > Short of actually renaming the target machines, I could add an
-> > additional
-> > override (in <MACHINE>.conf) that is lowercase only and update just
-> > the
-> > recipes to use that instead.
-> > 
-> > By experimentation, I have found that XYZ_append_<MACHINE> seems to
-> > do
-> > the correct thing, even when <MACHINE> has upper case letters. 
-> >  Maybe this
-> > is an oversight that will be fixed?
-> 
-> I'm not sure - Richard?
+pulled into master. thanks!
 
-Sorry for the delay in getting to this. It does sound like there is a
-codepath in bitbake which is still recognising variables with mixed
-case. I took a quick look and think this change appears to address it:
+-b
 
-diff --git a/bitbake/lib/bb/data_smart.py b/bitbake/lib/bb/data_smart.py
-index 25c412c..ec6709f 100644
---- a/bitbake/lib/bb/data_smart.py
-+++ b/bitbake/lib/bb/data_smart.py
-@@ -39,7 +39,7 @@ from bb.COW  import COWDictBase
- logger = logging.getLogger("BitBake.Data")
- 
- __setvar_keyword__ = ["_append", "_prepend", "_remove"]
--__setvar_regexp__ = re.compile('(?P<base>.*?)(?P<keyword>_append|_prepend|_remove)(_(?P<add>.*))?$')
-+__setvar_regexp__ = re.compile('(?P<base>.*?)(?P<keyword>_append|_prepend|_remove)(_(?P<add>[^A-Z]*))?$')
- __expand_var_regexp__ = re.compile(r"\${[^{}@\n\t :]+}")
- __expand_python_regexp__ = re.compile(r"\${@.+?}")
+On 24 May 2016 at 03:12, Graydon, Tracy <tracy.graydon@intel.com> wrote:
+> Remove the step for syncing the staged release to downloads directory. We
+> pretty much NEVER do the sync to downloads at the time we do staging. Sync
+> happens much later, as a separate process. We don't need this in the release
+> script.
+>
+> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+> ---
+>  bin/release_scripts/release.py | 12 +-----------
+>  1 file changed, 1 insertion(+), 11 deletions(-)
+>
+> diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
+> index 3d4ce39..2b4d21c 100755
+> --- a/bin/release_scripts/release.py
+> +++ b/bin/release_scripts/release.py
+> @@ -488,17 +488,7 @@ if __name__ == '__main__':
+>          print "Generating the master md5sum table."
+>          gen_rel_md5(RELEASE_DIR, REL_MD5_FILE)
+>
+> -    # 8) sync to downloads
+> -    if REL_TYPE == "milestone":
+> -        DL_DIR = os.path.join(DL_BASE, "milestones", RELEASE)
+> -        print "DL_DIR for milestones: %s" %DL_DIR
+> -    else:
+> -        DL_DIR = os.path.join(DL_BASE, RELEASE)
+> -        print "DL_DIR for point/major: %s" %DL_DIR
+> -    print "Publishing release to downloads."
+> -    sync_it(RELEASE_DIR, DL_DIR, "")
+> -
+> -    # 9) Publish the ADT repo. The default is NOT to publish the ADT. The ADT
+> +    # 8) Publish the ADT repo. The default is NOT to publish the ADT. The ADT
+>      # is deprecated as of 2.1_M1. However, we need to retain backward
+>      # compatability for point releases, etc. We do this step after all the other
+>      #  stuff because we want the symlinks to have been converted, extraneous
+> --
+> 2.7.0
+>
 
 
-Cheers,
 
-Richard
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
