@@ -1,73 +1,46 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21BB7E00BE0; Tue, 24 May 2016 08:43:22 -0700 (PDT)
+	id 13926E00BE0; Tue, 24 May 2016 08:47:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f195.google.com (mail-ig0-f195.google.com
-	[209.85.213.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA8EAE00BA1
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 08:43:18 -0700 (PDT)
-Received: by mail-ig0-f195.google.com with SMTP id i11so2390680igh.2
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 08:43:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=nI2tgQ39O1CJgZ51iRgiwgUGU87pRCIr9ZQpgeu3lj4=;
-	b=1HPq2CoUCh6QpzQacMSkmFCAFS9w3TXXwtvNXevAqQSrRLoRIxi9vPXWUr7GU3UytF
-	azDfb1BU6d5VImOM2YSCKj9l1TDkToylWX0/dQ1WSti2VlqQGA1xXDBqe+fh9gh0YJ9C
-	IrwyWQCMtkrlR24hVPH6ZITOOovDyzWPEMpiGsrNAfz2InleEam4fqdhJij/+9EJSXtP
-	F1xCyCiNSjkECrPPoyXK4ec5uWhn0H9RpTIroMwWVRpF2qxT4cYxm6jcPVkquXcjjJ++
-	XYzKNLw9kwJ47kTihJHJKNOf+iJLV9LZAtTJ0vMybEJRgFZdVFqcqg4UxpwXgXEqQyEW
-	AwKw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kergoth-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=nI2tgQ39O1CJgZ51iRgiwgUGU87pRCIr9ZQpgeu3lj4=;
-	b=XDp48l/1j63+sRHWQ5O1DP+lPVBGA2Lck7GLLMugomDW4XxnsNJ15b016UIHpJH7Fc
-	ywoG86D7chnF5QHi1zycIK82LpWlUumz4BFp+A0xV6Y0zjicDUa/sd1zVg787Tw61cu8
-	/p9g2AhyWbBjZB0GoXSCCCtxAaFBY6954iuhod/LZM89+l0cAU44IEcHVR2K1ODUIcOy
-	HDaclWesEENmKR4ATUntvSeWGud2FSzFXF0GGFaI/MRUvAmJtsJbt8IGfvBeTBE5LCW6
-	Z5F1OjGUncpAU1yeCvtFuMz0dIYHFYNh7YfBjdLK7uq7sHDhfOe0/cM6nLtqTayUuJZE
-	YjbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=nI2tgQ39O1CJgZ51iRgiwgUGU87pRCIr9ZQpgeu3lj4=;
-	b=kWrVKZCJ5FTvgzxMN5Q24abaY3h59Qt6c5Pv8gcBjBUY3fZ7mDs/pUBFcPXbbszWyU
-	iNB7ks1Tg7WkG6neRF3auwB8vM17WsT7k4IcByraHayOvEMZve5BYiZTp5gyIe6NOgPy
-	cQrSd0uIX+pdl2wJqSJDmsOkY3SGf5bKtXyzkYVzPo2ds9cCJHhDmYRUdX3AJ4xaWqq0
-	mAQMNvvvhDt0aXtyV6ucucRRPU53dmzcrn/OMuCWYoTDQHNrnWMqHpyQHN7TwG90KDv5
-	Zx3d2ORczuE3sQbMjvChg7JVdSymSi6K8lVDCGulXgg1DieSOsa0d92pQXj7uQwjlm5e
-	Rj1w==
-X-Gm-Message-State: AOPr4FWpWGZm4eUzJ6VcMBJzQI5DlRImsF4PWWymeNd6FOssPCGMnMrWUHcBBzhuOQ4RIv8yoYpNiIgxJ/Cnjw==
-X-Received: by 10.50.123.161 with SMTP id mb1mr19072954igb.20.1464104597459;
-	Tue, 24 May 2016 08:43:17 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36B14E00BA1
+	for <yocto@yoctoproject.org>; Tue, 24 May 2016 08:47:09 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 24 May 2016 08:46:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,360,1459839600"; d="scan'208";a="983754926"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga002.jf.intel.com with ESMTP; 24 May 2016 08:46:55 -0700
+Received: from orsmsx162.amr.corp.intel.com (10.22.240.85) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.248.2; Tue, 24 May 2016 08:46:54 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.2.84]) by
+	ORSMSX162.amr.corp.intel.com ([169.254.3.111]) with mapi id
+	14.03.0248.002; Tue, 24 May 2016 08:46:55 -0700
+From: "Randle, William C" <william.c.randle@intel.com>
+To: "Graydon, Tracy" <tracy.graydon@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [yocto-autobuilder][PATCH] bin/release_scripts/release.py
+Thread-Index: AQHRtWE1OBNie2/1QEmNeD+CcqkidZ/IsZKA
+Date: Tue, 24 May 2016 15:46:54 +0000
+Message-ID: <1464104813.2920.21.camel@intel.com>
+References: <1464055651-9492-1-git-send-email-tracy.graydon@intel.com>
+In-Reply-To: <1464055651-9492-1-git-send-email-tracy.graydon@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.7.199.54]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.100.5 with HTTP; Tue, 24 May 2016 08:42:58 -0700 (PDT)
-In-Reply-To: <CAPYQ8X7m6OyFjQ+5VLRZtfMnSMufM=irU_SCKa4ydjoFPGvkFw@mail.gmail.com>
-References: <CAPYQ8X7m6OyFjQ+5VLRZtfMnSMufM=irU_SCKa4ydjoFPGvkFw@mail.gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Tue, 24 May 2016 08:42:58 -0700
-X-Google-Sender-Auth: GkeG9ExwtPQQSFJCqjpabqmp-tI
-Message-ID: <CABcZAN=nuEL=G7Dv=D9iJ419h6t_HuqZ-kjdxUa6rC=DM1+XBA@mail.gmail.com>
-To: Michael Hu <pxmyhdev@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Retrieve SRCREV variable value outside of a specific recipe (not modifying it)
+Subject: Re: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,59 +52,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 May 2016 15:43:22 -0000
-Content-Type: multipart/alternative; boundary=001a1135e7ea721dc20533986a10
+X-List-Received-Date: Tue, 24 May 2016 15:47:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <064BB944752242489028D9B2782260A7@intel.com>
+Content-Transfer-Encoding: base64
 
---001a1135e7ea721dc20533986a10
-Content-Type: text/plain; charset=UTF-8
+T24gTW9uLCAyMDE2LTA1LTIzIGF0IDE5OjA3IC0wNzAwLCBHcmF5ZG9uLCBUcmFjeSB3cm90ZToN
+Cj4gRml4ZWQgdGhlIHBhdGggZm9yIHRoZSBwdWJsaXNoaW5nIG9mIHRoZSBlY2xpcHNlIHBsdWdp
+bnMuIFRoZXkgd2VyZQ0KPiBnb2luZyB0byB0aGUgd3Jvbmcgc3ViZGlyZWN0b3J5IHVuZGVyIGRv
+d25sb2Fkcy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEdyYXlkb24sIFRyYWN5IDx0cmFjeS5ncmF5
+ZG9uQGludGVsLmNvbT4NCj4gLS0tDQo+IMKgYmluL3JlbGVhc2Vfc2NyaXB0cy9yZWxlYXNlLnB5
+IHwgMjIgKysrKysrKysrKystLS0tLS0tLS0tLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNl
+cnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9iaW4vcmVsZWFz
+ZV9zY3JpcHRzL3JlbGVhc2UucHkgYi9iaW4vcmVsZWFzZV9zY3JpcHRzL3JlbGVhc2UucHkNCj4g
+aW5kZXggNTFjZDYwNy4uM2Q0Y2UzOSAxMDA3NTUNCj4gLS0tIGEvYmluL3JlbGVhc2Vfc2NyaXB0
+cy9yZWxlYXNlLnB5DQo+ICsrKyBiL2Jpbi9yZWxlYXNlX3NjcmlwdHMvcmVsZWFzZS5weQ0KPiBA
+QCAtMzQwLDE4ICszNDAsMTggQEAgZGVmIHB1Ymxpc2hfYWR0KHJlbF9pZCwgcmVsX3R5cGUsIG9w
+dHMpOg0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoFFFTVVfVEFSR0VUID0gb3MucGF0aC5q
+b2luKEFEVF9ST09URlMsIGRpcm5hbWUpDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcHJp
+bnQgIlFFTVVfU1JDOiAlcyIgJVFFTVVfU1JDDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+c3luY19pdChRRU1VX1NSQywgUUVNVV9UQVJHRVQsICIiKQ0KPiAtDQo+IMKgwqDCoMKgwqDCoMKg
+wqDCoHN5bmNfaXQoSVBLX0RJUiwgQURUX0lQSywgIiIpDQo+IMKgwqDCoMKgwqByZXR1cm4NCj4g
+wqANCj4gwqBpZiBfX25hbWVfXyA9PSAnX19tYWluX18nOg0KPiAtDQo+ICvCoMKgwqDCoA0KPiDC
+oMKgwqDCoMKgb3Muc3lzdGVtKCJjbGVhciIpDQo+IMKgwqDCoMKgwqBwcmludA0KPiAtDQo+ICvC
+oMKgwqANCj4gwqDCoMKgwqDCoFZIT1NUUyA9ICIvc3J2L3d3dy92aG9zdHMiDQo+IMKgwqDCoMKg
+wqBBQl9CQVNFID0gb3MucGF0aC5qb2luKFZIT1NUUywNCj4gImF1dG9idWlsZGVyLnlvY3RvcHJv
+amVjdC5vcmcvcHViL3JlbGVhc2VzIikNCj4gLcKgwqDCoMKgRExfQkFTRSA9IG9zLnBhdGguam9p
+bihWSE9TVFMsDQo+ICJkb3dubG9hZHMueW9jdG9wcm9qZWN0Lm9yZy9yZWxlYXNlcy95b2N0byIp
+DQo+ICvCoMKgwqDCoERMX0RJUiA9IG9zLnBhdGguam9pbihWSE9TVFMsICJkb3dubG9hZHMueW9j
+dG9wcm9qZWN0Lm9yZy9yZWxlYXNlcyIpDQo+ICvCoMKgwqDCoERMX0JBU0UgPSBvcy5wYXRoLmpv
+aW4oRExfRElSLCAiL3JlbGVhc2VzL3lvY3RvIikNCj4gwqDCoMKgwqDCoEFEVF9CQVNFID0gb3Mu
+cGF0aC5qb2luKFZIT1NUUywgImFkdHJlcG8ueW9jdG9wcm9qZWN0Lm9yZyIpDQo+IMKgDQpTbyBp
+cyB0aGUgaW50ZW50IGlzIHRvIGNyZWF0ZSBhIG5ldyBETF9CQVNFDQpkaXJlY3RvcnnCoGRvd25s
+b2Fkcy55b2N0b3Byb2plY3Qub3JnL3JlbGVhc2VzL3JlbGVhc2VzL3lvY3RvIG9yIHNob3VsZCB0
+aGF0IGJlOg0KwqAgwqAgRExfQkFTRSA9IG9zLnBhdGguam9pbihETF9ESVIsICIveW9jdG8iKQ0K
+DQrCoCDCoCAtQmlsbA0K
 
-On Tue, May 24, 2016 at 7:32 AM, Michael Hu <pxmyhdev@gmail.com> wrote:
-
-> Hi,
->
-> My goal is to pull recipe's SRCREV variable into a top level *.bbclass
-> file. I understand we can use SRCREV_pn-<recipe_name> to modify the
-> revision on the fly outside of recipe in configuration files but when I
-> print out SRCREV information using ${SRCREV_pn-recipename} all I got back
-> is the recipe name instead of SREREV value for that specific recipe.
->
-> Is there a way to retrieve SREREV value outside of recipe?
->
-
-One recipe cannot access metadata from another, nor can config metadata
-access recipe metadata, by design. I'd recommend enabling buildhistory and
-using the buildhistory-collect-srcrevs script, which dumps SRCREV_pn- lines
-for recipes, for use in a .conf/.inc/.bbclass.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a1135e7ea721dc20533986a10
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-ue, May 24, 2016 at 7:32 AM, Michael Hu <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:pxmyhdev@gmail.com" target=3D"_blank">pxmyhdev@gmail.com</a>&gt;</span=
-> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></d=
-iv><div>My goal is to pull recipe&#39;s SRCREV variable into a top level *.=
-bbclass file. I understand we can use SRCREV_pn-&lt;recipe_name&gt; to modi=
-fy the revision on the fly outside of recipe in configuration files but whe=
-n I print out SRCREV information using ${SRCREV_pn-recipename} all I got ba=
-ck is the recipe name instead of SREREV value for that specific recipe.</di=
-v><div><br></div><div>Is there a way to retrieve SREREV value outside of re=
-cipe?</div></div></blockquote><div><br></div><div>One recipe cannot access =
-metadata from another, nor can config metadata access recipe metadata, by d=
-esign. I&#39;d recommend enabling buildhistory and using the buildhistory-c=
-ollect-srcrevs script, which dumps SRCREV_pn- lines for recipes, for use in=
- a .conf/.inc/.bbclass.</div></div>-- <br><div class=3D"gmail_signature">Ch=
-ristopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, OpenEm=
-bedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer, Mento=
-r Graphics</div>
-</div></div>
-
---001a1135e7ea721dc20533986a10--
