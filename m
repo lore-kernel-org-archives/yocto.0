@@ -1,71 +1,31 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60B71E004F1; Mon, 23 May 2016 10:26:38 -0700 (PDT)
+	id 341BFE008B8; Mon, 23 May 2016 19:07:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAAF8E00343
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:26:37 -0700 (PDT)
-Received: by mail-pa0-f47.google.com with SMTP id qo8so64841511pab.1
-	for <yocto@yoctoproject.org>; Mon, 23 May 2016 10:26:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=rbzZcHFaAm9YwthTrL41BInJs3Nx5R55AxuFsdaHVpY=;
-	b=n3HuGRnK2MSC37Lz0Fm1f1kx0lRSoMM78pRY8T5H/xO6H7EP/1CbUGx/RuoYR7Komd
-	CO8GGs9u9OhQWRjMRU4+13qlP3Zesm7nCDdBOjuoFxX2yuCtOkJVp5q3W2ML6J4ZqKvh
-	H965OAFcP/j6Kto8C6k53MjBq/hyJdIAcL4Ok4wNNBZu+97fIFhQaz4nPsuqH2E4aH5+
-	KbpV7fW5hWsxP9c10ec851rZyExyHZcmM5DLofxTfB7osfhpWhxvKchFGFUq+6He84Bp
-	ud1dB0WxnvUU2iT730cVHDBs5Qi6LunanROc9IAEiWbvq7JRbbGCsm5j9jz4OZf3oUdD
-	hBCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=rbzZcHFaAm9YwthTrL41BInJs3Nx5R55AxuFsdaHVpY=;
-	b=YGcgZKav8UzRaYDFiinJNDVkugPAvqh8I03OGJiV7waunp7gxBK8rVH12APBZ5UIx4
-	zTfGLLrxRjVjJtg/sbOsUnQVp3V+tY9VVgxqO/r7oS+zsFA28ORDd1EwzJNBchzWmSET
-	fy5QFVGlqSEeYMywPWvTmZnGCz9eVXwUkbdBCCIi7R6ukLkjpeWtwLv1OelyoD/TXeiJ
-	M/AyMYkgS+eJ+IN+e4DuRhfA5oNLSO3qVLyerL0VM4YAaRZszmYVImXkXukHpf2XJxkp
-	pBO3E6tIrCJfUwtfzfYL2sX5Brc1vtkbPD0iZXamH7ZM1eG7e84skw0g5E5cJvtgSy8c
-	R1zA==
-X-Gm-Message-State: AOPr4FU8ZkGrk5/q9Ye6/ecOkeW2vaWzbTee5Pm9Ay4wUNcCtdbiIw+QIH4JLQj5E9SLdg==
-X-Received: by 10.66.81.70 with SMTP id y6mr28843111pax.121.1464024392400;
-	Mon, 23 May 2016 10:26:32 -0700 (PDT)
-Received: from [192.168.18.4] (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by smtp.googlemail.com with ESMTPSA id
-	s14sm46957259pag.7.2016.05.23.10.26.30
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 23 May 2016 10:26:31 -0700 (PDT)
-To: Khem Raj <raj.khem@gmail.com>
-References: <5735F40F.1000402@gmail.com>
-	<82AEE06F-34F3-4751-A742-D3DE921AA652@gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <57433D40.1070606@gmail.com>
-Date: Mon, 23 May 2016 10:26:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-In-Reply-To: <82AEE06F-34F3-4751-A742-D3DE921AA652@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: errors.yoctoproject
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 984F2E00873
+	for <yocto@yoctoproject.org>; Mon, 23 May 2016 19:07:33 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga103.fm.intel.com with ESMTP; 23 May 2016 19:07:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,358,1459839600"; d="scan'208";a="109226172"
+Received: from tgraydonws.ostc.intel.com ([10.54.69.46])
+	by fmsmga004.fm.intel.com with ESMTP; 23 May 2016 19:07:33 -0700
+From: "Graydon, Tracy" <tracy.graydon@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 May 2016 19:07:31 -0700
+Message-Id: <1464055651-9492-1-git-send-email-tracy.graydon@intel.com>
+X-Mailer: git-send-email 2.7.0
+Subject: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,35 +37,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 May 2016 17:26:38 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 24 May 2016 02:07:37 -0000
 
 
+Fixed the path for the publishing of the eclipse plugins. They were
+going to the wrong subdirectory under downloads.
 
-On 05/13/2016 10:59 AM, Khem Raj wrote:
-> don’t think so
-> 
-> just do
-> 
-> echo `git config --get user.name` > ${HOME}/.oe-send-error
-> echo `git config --get user.email` >> ${HOME}/.oe-send-error
-> 
-> and it should be able to send
+Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+---
+ bin/release_scripts/release.py | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-thanks. I got it working
+diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
+index 51cd607..3d4ce39 100755
+--- a/bin/release_scripts/release.py
++++ b/bin/release_scripts/release.py
+@@ -340,18 +340,18 @@ def publish_adt(rel_id, rel_type, opts):
+             QEMU_TARGET = os.path.join(ADT_ROOTFS, dirname)
+             print "QEMU_SRC: %s" %QEMU_SRC
+             sync_it(QEMU_SRC, QEMU_TARGET, "")
+-
+         sync_it(IPK_DIR, ADT_IPK, "")
+     return
+ 
+ if __name__ == '__main__':
+-
++    
+     os.system("clear")
+     print
+-
++   
+     VHOSTS = "/srv/www/vhosts"
+     AB_BASE = os.path.join(VHOSTS, "autobuilder.yoctoproject.org/pub/releases")
+-    DL_BASE = os.path.join(VHOSTS, "downloads.yoctoproject.org/releases/yocto")
++    DL_DIR = os.path.join(VHOSTS, "downloads.yoctoproject.org/releases")
++    DL_BASE = os.path.join(DL_DIR, "/releases/yocto")
+     ADT_BASE = os.path.join(VHOSTS, "adtrepo.yoctoproject.org")
+ 
+     # List of the directories we delete from all releases
+@@ -380,7 +380,7 @@ if __name__ == '__main__':
+                       help="Use when you need to publish the ADT repo to a custom location. i.e. python adtcopy -b yocto-2.0_M1.rc1 -a 1.8+snaphot")
+ 
+     (options, args) = parser.parse_args()
+-
++ 
+     REL_TYPE = ""
+     MILESTONE = ""
+     if options.poky:
+@@ -427,12 +427,12 @@ if __name__ == '__main__':
+         print "Build ID is a required argument."
+         print "Please use -h or --help for options."
+         sys.exit()
+-
++   
+     if not (RELEASE and RC and REL_ID and REL_TYPE):
+         print "Can't determine the release type. Check your args."
+         print "You gave me: %s" %options.build
+         sys.exit()
+-
++    
+     print "RC_DIR: %s" %RC_DIR
+     print "RELEASE: %s" %RELEASE
+     print "RC: %s" %RC
+@@ -442,7 +442,7 @@ if __name__ == '__main__':
+         print "MILESTONE: %s" %MILESTONE
+     print
+ 
+-    PLUGIN_DIR = os.path.join(DL_BASE, "eclipse-plugin", REL_ID)
++    PLUGIN_DIR = os.path.join(DL_DIR, "eclipse-plugin", REL_ID)
+     RELEASE_DIR = os.path.join(AB_BASE, RELEASE)
+     MACHINES = os.path.join(RELEASE_DIR, "machines")
+     BSP_DIR = os.path.join(RELEASE_DIR, 'bsptarballs')
+@@ -455,7 +455,7 @@ if __name__ == '__main__':
+     # For all releases:
+     # 1) Rsync the rc candidate to a staging dir where all work happens
+     sync_it(RC_SOURCE, RELEASE_DIR, UNLOVED)
+-
++    
+     # 2) Convert the symlinks in build-appliance dir.
+     print "Converting the build-appliance symlink."
+     convert_symlinks(BUILD_APP_DIR)
+@@ -469,7 +469,7 @@ if __name__ == '__main__':
+         nuke_cruft(dirname, CRUFT_LIST)
+     print "Generating fresh md5sums."
+     gen_md5sum(MACHINES)
+-
++    
+     # For major and point releases
+     if REL_TYPE == "major" or REL_TYPE == "point":
+         # 4) Fix up the eclipse and poky tarballs
+@@ -487,7 +487,7 @@ if __name__ == '__main__':
+         # 7) Generate the master md5sum file for the release (for all releases)
+         print "Generating the master md5sum table."
+         gen_rel_md5(RELEASE_DIR, REL_MD5_FILE)
+-
++    
+     # 8) sync to downloads
+     if REL_TYPE == "milestone":
+         DL_DIR = os.path.join(DL_BASE, "milestones", RELEASE)
+-- 
+2.7.0
 
-- armin
-> 
->> On May 13, 2016, at 8:34 AM, akuster808 <akuster808@gmail.com> wrote:
->>
->> Do I need an account enabled to submit to errors.yoctoproject?
->>
->> - armin
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> 
 
