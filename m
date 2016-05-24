@@ -1,59 +1,60 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <pxmyhdev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D852AE00B65; Tue, 24 May 2016 06:44:25 -0700 (PDT)
+	id E0CAAE00BA1; Tue, 24 May 2016 07:32:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pxmyhdev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DCDAE00B52
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 06:44:22 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id t40so12266596ioi.0
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 06:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=XlIDh3tcCk9VqKa0wWcM5ep7l+XxH8H8+AhFK2xFL1g=;
-	b=YN9B1h3fLGtLQ1wh8A7LDLe9ZnOZ5ihVRTYB/5J7DM1sZIusZ5qMNyzd+lsmnI/rYQ
-	jx7ptcVKoYmYgwqzASHSifG6sysUj7MFwZr05F1yoGJjH+KFrutvC6o2nJgB7h5UaQHA
-	RHbarNtxhTtV9JTw2ZQFDkEaynqFHxKjUTrEk6/fOauhanq7PXtYqOqvGHIYWT+J5jdx
-	M9JcDCs6GKhOzFempRrEdzjvrSnQhdyZD9KDWYV9yb2ygzNE9l1Kx/mbG8/68pR69c4D
-	B18ZkkYQOfoYt5hyZAT/ifiFmuvbWppL08p/XtsbKHThOh5cy+6uvNGm/cER9kg/9W1n
-	lL7w==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.180 listed in list.dnswl.org]
+Received: from mail-yw0-f180.google.com (mail-yw0-f180.google.com
+	[209.85.161.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 864B2E00B5F
+	for <yocto@yoctoproject.org>; Tue, 24 May 2016 07:32:33 -0700 (PDT)
+Received: by mail-yw0-f180.google.com with SMTP id x189so17363601ywe.3
+	for <yocto@yoctoproject.org>; Tue, 24 May 2016 07:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=6/Olf31ns95XlW/Y009+8qyoVwhqIhkagPvaSNDBOGU=;
+	b=FPXuRtc0HXNaDxx5c0eh7PB+6EApik2tS9MhcPL1QEb3dx+SuLJa1qP21mXeqKFouu
+	oKaCHZc5NuTQgtQB0hKPcBlGVB2ASp6T38OpUFWjzR+auznvGv+5v8hErJnWlmdKvvRM
+	bfdiQcgnPPNRbcdWPpygwtiYUodUEfcEXzwc+r3MC29rr7eV2K3kV+1Qf8e/WxSB6Ueu
+	C05HHTdxWzPafgPxx6F6JT2o5CprfAMNpPfrS0JXHVMczAXshvkYNgpy+h6xVQs4BWpY
+	cUJBxilN/+M6f6h7Xq+KhKScNwe6h6YZ+AADB2JfM2bS3zIFg3KcOTEya/U1FkBtZxcw
+	UWqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=XlIDh3tcCk9VqKa0wWcM5ep7l+XxH8H8+AhFK2xFL1g=;
-	b=eXZozj7uM8uxXisRo8AZ7O24xVnoYsTmVDzjFdwUwlNRpkooWkiyH6L+Vw7J2ZaRv8
-	doOlAQUlbVPhNzrV0VPEg36TvZEPMNAjI8A6Fu7p0AnMf0dCXsBqB5cr9nzqYZrAXOVv
-	GXN32g8YdzdC93BdKIK8hvUszF+dbOIWFO1nm64KKsIvhaWrOeBQdLLF6i4gSQziGx5R
-	Vr0RcZodzryLa2UslU4CUnvADDmbeE1ly4KJd+T6gkSrXkZ2B3FF5Vwqny0O2JrlwNR3
-	fe0bQqKqBjs24U7/anjdtiiQ3j2tQNlSilL05S3gpey+8FWWlTMZFpKOyqVFi1qHD7JS
-	KUYw==
-X-Gm-Message-State: AOPr4FVfHb7/qntsORGJDgi58KK9hI+gi0z7tyNfC8ZLq1gBo6HsOYUdT4LBNprNXgdzMUl8i8GEGFUZAz+tvrba
-X-Received: by 10.107.14.142 with SMTP id 136mr16132896ioo.94.1464097461581;
-	Tue, 24 May 2016 06:44:21 -0700 (PDT)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=6/Olf31ns95XlW/Y009+8qyoVwhqIhkagPvaSNDBOGU=;
+	b=I2ebRlnsvsojfu9k/muT3+djNo0Sdg1A7Yh24EQSesPL0h92pdL1WqxSvrkMzGYGKO
+	BF9/M7n4lnUcTAir7j/AYrGrWuAuWFaNKY3wqpLu1aZ7NGMVAekehPesImwe5K5PRaBe
+	+jwJNkdcqFEfmybDel3j2I1KE9b5iNwbhT0xUR3LlvD+mbRyIZvOc97j3imyD4xSGqoh
+	+WQYTLe1CUz4BLOoRN8aMNmR2f0CNtN4ypJdLR797lqzg5r/Zn+DxNSu+QnQSP7hAlrD
+	VL3sPD8cSA1dtLKlRz6Eh0epfrKCGJ/k9MJC4T9azXEbBIhpWkT67ogzi5klB+GnB1AP
+	DMkA==
+X-Gm-Message-State: ALyK8tKtWcTnLSxSiUbVi1aKP6C5qqVjgvGdDc/PPiShAjGr+Hc9xFboaUY/zpY1umYnWy2ArJ4A0Us+u7DhAQ==
 MIME-Version: 1.0
-Received: by 10.107.48.131 with HTTP; Tue, 24 May 2016 06:43:42 -0700 (PDT)
-In-Reply-To: <1464055945-9731-1-git-send-email-tracy.graydon@intel.com>
-References: <1464055945-9731-1-git-send-email-tracy.graydon@intel.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Tue, 24 May 2016 14:43:42 +0100
-Message-ID: <CAPhnLPA5GT+QOYnWjQuV+AwaFJNeZGPY5+TmBBt_GgoEPu6pKQ@mail.gmail.com>
-To: "Graydon, Tracy" <tracy.graydon@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
+X-Received: by 10.37.74.202 with SMTP id x193mr2658987yba.24.1464100352561;
+	Tue, 24 May 2016 07:32:32 -0700 (PDT)
+Received: by 10.37.111.8 with HTTP; Tue, 24 May 2016 07:32:32 -0700 (PDT)
+Date: Tue, 24 May 2016 10:32:32 -0400
+Message-ID: <CAPYQ8X7m6OyFjQ+5VLRZtfMnSMufM=irU_SCKa4ydjoFPGvkFw@mail.gmail.com>
+From: Michael Hu <pxmyhdev@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Retrieve SRCREV variable value outside of a specific recipe (not modifying it)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,55 +66,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 May 2016 13:44:25 -0000
+X-List-Received-Date: Tue, 24 May 2016 14:32:36 -0000
+Content-Type: multipart/alternative; boundary=001a113e66006e25790533976d38
+
+--001a113e66006e25790533976d38
 Content-Type: text/plain; charset=UTF-8
 
-pulled into master. thanks!
+Hi,
 
--b
+My goal is to pull recipe's SRCREV variable into a top level *.bbclass
+file. I understand we can use SRCREV_pn-<recipe_name> to modify the
+revision on the fly outside of recipe in configuration files but when I
+print out SRCREV information using ${SRCREV_pn-recipename} all I got back
+is the recipe name instead of SREREV value for that specific recipe.
 
-On 24 May 2016 at 03:12, Graydon, Tracy <tracy.graydon@intel.com> wrote:
-> Remove the step for syncing the staged release to downloads directory. We
-> pretty much NEVER do the sync to downloads at the time we do staging. Sync
-> happens much later, as a separate process. We don't need this in the release
-> script.
->
-> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
-> ---
->  bin/release_scripts/release.py | 12 +-----------
->  1 file changed, 1 insertion(+), 11 deletions(-)
->
-> diff --git a/bin/release_scripts/release.py b/bin/release_scripts/release.py
-> index 3d4ce39..2b4d21c 100755
-> --- a/bin/release_scripts/release.py
-> +++ b/bin/release_scripts/release.py
-> @@ -488,17 +488,7 @@ if __name__ == '__main__':
->          print "Generating the master md5sum table."
->          gen_rel_md5(RELEASE_DIR, REL_MD5_FILE)
->
-> -    # 8) sync to downloads
-> -    if REL_TYPE == "milestone":
-> -        DL_DIR = os.path.join(DL_BASE, "milestones", RELEASE)
-> -        print "DL_DIR for milestones: %s" %DL_DIR
-> -    else:
-> -        DL_DIR = os.path.join(DL_BASE, RELEASE)
-> -        print "DL_DIR for point/major: %s" %DL_DIR
-> -    print "Publishing release to downloads."
-> -    sync_it(RELEASE_DIR, DL_DIR, "")
-> -
-> -    # 9) Publish the ADT repo. The default is NOT to publish the ADT. The ADT
-> +    # 8) Publish the ADT repo. The default is NOT to publish the ADT. The ADT
->      # is deprecated as of 2.1_M1. However, we need to retain backward
->      # compatability for point releases, etc. We do this step after all the other
->      #  stuff because we want the symlinks to have been converted, extraneous
-> --
-> 2.7.0
->
+Is there a way to retrieve SREREV value outside of recipe?
 
+Thanks,
+Michael
 
+--001a113e66006e25790533976d38
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+<div dir=3D"ltr">Hi,<div><br></div><div>My goal is to pull recipe&#39;s SRC=
+REV variable into a top level *.bbclass file. I understand we can use SRCRE=
+V_pn-&lt;recipe_name&gt; to modify the revision on the fly outside of recip=
+e in configuration files but when I print out SRCREV information using ${SR=
+CREV_pn-recipename} all I got back is the recipe name instead of SREREV val=
+ue for that specific recipe.</div><div><br></div><div>Is there a way to ret=
+rieve SREREV value outside of recipe?</div><div><br></div><div>Thanks,</div=
+><div>Michael</div></div>
 
+--001a113e66006e25790533976d38--
