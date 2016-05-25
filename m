@@ -1,45 +1,64 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F19BE00C18; Tue, 24 May 2016 16:50:54 -0700 (PDT)
+	id 6326BE00CCD; Wed, 25 May 2016 00:11:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FF3BE00756
-	for <yocto@yoctoproject.org>; Tue, 24 May 2016 16:50:50 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 24 May 2016 16:50:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,360,1459839600"; d="scan'208";a="984025436"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 24 May 2016 16:50:50 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.244]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.1.174]) with mapi id
-	14.03.0248.002; Tue, 24 May 2016 16:50:49 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: "Randle, William C" <william.c.randle@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
-Thread-Index: AQHRthQ01FZ8o+WgaEqY65TNqerFUp/IwgeA
-Date: Tue, 24 May 2016 23:50:48 +0000
-Message-ID: <D36A36C1.D27A%tracy.graydon@intel.com>
-References: <1464131193-25397-1-git-send-email-tracy.graydon@intel.com>
-	<1464132605.2920.54.camel@intel.com>
-In-Reply-To: <1464132605.2920.54.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.6.4.160422
-x-originating-ip: [10.254.177.82]
-MIME-Version: 1.0
-Subject: Re: [yocto-autobuilder][PATCH] bin/release_scripts/release.py
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
+	[209.85.220.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D261E00C8F
+	for <yocto@yoctoproject.org>; Wed, 25 May 2016 00:11:47 -0700 (PDT)
+Received: by mail-pa0-f68.google.com with SMTP id yl2so4305204pac.1
+	for <yocto@yoctoproject.org>; Wed, 25 May 2016 00:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=XliJqHu3dzywOEpR7daJg5Ev4uCommb0yf5CWA4kTJw=;
+	b=Db3rQol3CQh/D4jlcA6oPDNCKCDbw9k7TczW9mA8V8zjkL1kX0QwAtVd479EgWdchh
+	qqzusvotkkrDeT1FpV1eIAQNRDr8s6SfFF0BdR8n8mWxduOhpSsMpcFraqm4V5Hytwj+
+	SZ3KSXP67Up+2NlNU1fSwm5j1HZ5CgljocvkjpPZ6PC9aJLBDadaMXyFez4VV5V5QnyY
+	waZPNhi4jpMdpvaLlMvW4hLUnu4rxlyStyLtZGWO6MGlvN1UQsec1a1/EcmS8c9snbD4
+	paNuS2c1ZJLSepZE0U6sIlF/mm616Rpy5I+NyuDoDIw7Q23R1fMSGyLzLGWe5s24X2dI
+	pBNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=XliJqHu3dzywOEpR7daJg5Ev4uCommb0yf5CWA4kTJw=;
+	b=YTWGRWPW476KOgrKryGAPCzRhDSyjhvYN07T4QQ11Egm2Uk9g3eNRtfVUUmNafVS0/
+	DRnf+gHSfRRaT40WXj8aSCW2ZUlUuLI/aggfw/HxbYoIoxYllU2aGu2XZD/jISR0Nplv
+	k1RVPjC1uRjfIf4WBQP/yexOrhHS+WkJW+5F8Ca2BCyIKboPnwZUh4VOBwtKLfAdGuKn
+	+HxYpg18fcoB6JKzHK3AyhrSobFlpYBxg5M67kWxkfpY3AH4zVnVZ+s68vfctrZMwIlp
+	3cdkqqZCu7ulZLokLzkyb31LPni6t/Kyit9/bvM3oST4oj3sWXIQvkEpiY6iPK8X6BX8
+	gf7A==
+X-Gm-Message-State: ALyK8tLtiYhYN58IXuUP0/7+Bmp7up6bZqAOb2dzZh7zHEYza3Jf5y6Vq0CQ7/FNUZrQNQ==
+X-Received: by 10.66.159.102 with SMTP id xb6mr3390120pab.73.1464160306856;
+	Wed, 25 May 2016 00:11:46 -0700 (PDT)
+Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
+	by smtp.gmail.com with ESMTPSA id
+	i29sm8194891pfi.18.2016.05.25.00.11.44
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 25 May 2016 00:11:46 -0700 (PDT)
+From: Shrikant Bobade <bobadeshrikant@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 May 2016 12:41:36 +0530
+Message-Id: <1464160296-28577-1-git-send-email-bobadeshrikant@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
+Subject: [meta-selinux][PATCH 1/2] refpolicy_common.inc: enable conditional systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,36 +70,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 May 2016 23:50:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D41335005F68034586DFCA9A2D96773D@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 25 May 2016 07:11:48 -0000
 
-T24gMDUvMjQvMTYsIDQ6MzAgUE0sICJSYW5kbGUsIFdpbGxpYW0gQyIgPHdpbGxpYW0uYy5yYW5k
-bGVAaW50ZWwuY29tPg0Kd3JvdGU6DQoNCj5PbiBUdWUsIDIwMTYtMDUtMjQgYXQgMTY6MDYgLTA3
-MDAsIEdyYXlkb24sIFRyYWN5IHdyb3RlOg0KPj4gR2V0IHJpZCBvZiB0aGUgZXh0cmFuZW91cyBE
-TF9CQVNFIGxpbmUuIEl0J3Mgbm90IHVzZWQgYW5kIHNob3VsZCBoYXZlDQo+PiBiZWVuIHJlbW92
-ZWQgd2hlbiBJIGZpeGVkIHRoZSBlY2xpcHNlLXBsdWdpbiByZWxlYXNlIHBhdGguDQo+PiANCj4+
-IFNpZ25lZC1vZmYtYnk6IEdyYXlkb24sIFRyYWN5IDx0cmFjeS5ncmF5ZG9uQGludGVsLmNvbT4N
-Cj4+IC0tLQ0KPj4gIGJpbi9yZWxlYXNlX3NjcmlwdHMvcmVsZWFzZS5weSB8IDEgLQ0KPj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9uKC0pDQo+PiANCj4+IGRpZmYgLS1naXQgYS9iaW4vcmVs
-ZWFzZV9zY3JpcHRzL3JlbGVhc2UucHkNCj4+Yi9iaW4vcmVsZWFzZV9zY3JpcHRzL3JlbGVhc2Uu
-cHkNCj4+IGluZGV4IDJiNGQyMWMuLjg5ZjY4YmUgMTAwNzU1DQo+PiAtLS0gYS9iaW4vcmVsZWFz
-ZV9zY3JpcHRzL3JlbGVhc2UucHkNCj4+ICsrKyBiL2Jpbi9yZWxlYXNlX3NjcmlwdHMvcmVsZWFz
-ZS5weQ0KPj4gQEAgLTM1MSw3ICszNTEsNiBAQCBpZiBfX25hbWVfXyA9PSAnX19tYWluX18nOg0K
-Pj4gICAgICBWSE9TVFMgPSAiL3Nydi93d3cvdmhvc3RzIg0KPj4gICAgICBBQl9CQVNFID0gb3Mu
-cGF0aC5qb2luKFZIT1NUUywNCj4+ICJhdXRvYnVpbGRlci55b2N0b3Byb2plY3Qub3JnL3B1Yi9y
-ZWxlYXNlcyIpDQo+PiAgICAgIERMX0RJUiA9IG9zLnBhdGguam9pbihWSE9TVFMsDQo+PiJkb3du
-bG9hZHMueW9jdG9wcm9qZWN0Lm9yZy9yZWxlYXNlcyIpDQo+PiAtICAgIERMX0JBU0UgPSBvcy5w
-YXRoLmpvaW4oRExfRElSLCAiL3JlbGVhc2VzL3lvY3RvIikNCj4+ICAgICAgQURUX0JBU0UgPSBv
-cy5wYXRoLmpvaW4oVkhPU1RTLCAiYWR0cmVwby55b2N0b3Byb2plY3Qub3JnIikNCj4+ICANCj4+
-ICAgICAgIyBMaXN0IG9mIHRoZSBkaXJlY3RvcmllcyB3ZSBkZWxldGUgZnJvbSBhbGwgcmVsZWFz
-ZXMNCj4NCj5TaW5jZSB5b3VyIHByZXZpb3VzIHZlcnNpb24gb2YgdGhpcyBwYXRjaCBoYXMgbm90
-IHlldCBiZWVuIGFwcGxpZWQgdG8NCj5tYXN0ZXIsIEkNCj53b3VsZCB0aGluayBpdCB3b3VsZCBi
-ZSBiZXR0ZXIgdG8gaW5jb3Jwb3JhdGUgdGhpcyBhcyBwYXJ0IG9mIGEgVjIgb2YgeW91cg0KPnBy
-ZXZpb3VzIHBhdGNoLCByYXRoZXIgdGhhbiBhIG5ldyBwYXRjaCBvbiB0b3Agb2YgYW4gYXMgeWV0
-IHVuYXBwbGllZA0KPnBhdGNoLg0KDQpBaCwgeW91IGFyZSByaWdodC4gSSB0aG91Z2h0IGl0IGhh
-ZCBiZWVuIHB1bGxlZCBpbiBhbHJlYWR5LiBJ4oCZbGwgcmViYXNlLg0KDQo+DQo+ICAgIC1CaWxs
-DQoNCg0K
+From: Shrikant Bobade <shrikant_bobade@mentor.com>
+
+refpolicy now introduced systemd support using POLICY_SYSTEMD variable,
+with systemd enabled setup we need the refpolicy with systemd support, so
+enable systemd support based on DISTRO_FEATURES.
+
+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+---
+ recipes-security/refpolicy/refpolicy_common.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 6112c28..1d3b93f 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -40,7 +40,7 @@ POLICY_DISTRO ?= "redhat"
+ POLICY_UBAC ?= "n"
+ POLICY_UNK_PERMS ?= "allow"
+ POLICY_DIRECT_INITRC ?= "n"
+-POLICY_SYSTEMD ?= "n"
++POLICY_SYSTEMD ?= "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'y', 'n', d)}"
+ POLICY_MONOLITHIC ?= "n"
+ POLICY_CUSTOM_BUILDOPT ?= ""
+ POLICY_QUIET ?= "y"
+-- 
+1.9.1
+
 
