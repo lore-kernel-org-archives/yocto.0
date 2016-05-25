@@ -1,41 +1,59 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2D32E00D11; Wed, 25 May 2016 08:04:27 -0700 (PDT)
+	id F3182E00D18; Wed, 25 May 2016 08:07:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mtownsend1973[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C41A0E00D11
-	for <yocto@yoctoproject.org>; Wed, 25 May 2016 08:04:24 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20160525150416406_0485;
-	Wed, 25 May 2016 15:04:16 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [216.191.234.70] (port=33545 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1b5aNb-000818-Hb; Wed, 25 May 2016 11:05:51 -0400
-Date: Wed, 25 May 2016 11:03:37 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: akuster <akuster@mvista.com>
-In-Reply-To: <5745BE14.7030402@mvista.com>
-Message-ID: <alpine.LFD.2.20.1605251101310.30271@localhost.localdomain>
-References: <alpine.LFD.2.20.1605250613310.21121@localhost.localdomain>
-	<5745BE14.7030402@mvista.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16119E00D11
+	for <yocto@yoctoproject.org>; Wed, 25 May 2016 08:07:38 -0700 (PDT)
+Received: by mail-lf0-f42.google.com with SMTP id e131so19536011lfb.0
+	for <yocto@yoctoproject.org>; Wed, 25 May 2016 08:07:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=LdrdWxijVefF6njsgqvzWGd1emQDy7oVOsHIZ5HKxeQ=;
+	b=G6om2Nc1GOze+lpZUGqRntadkTPVcX3jIYlp8jgLGpaiHbeOZTC+1aOAvh5juCXa6L
+	LEYZ2OwkszHlaYEH0IiLWWJeOV8jM4eFIapYACIepVTP6pQ0GwvilwHw7DtCo1qzkw6Q
+	ybJhOOzgcPCeDm5PY/V99FewbG5TgcI6IiFecxzKY/pEnHGTIowB1UyiY00VmHjjnxKa
+	0ZbFYqx7MIG6k07qB39bVF9a7DgNl3B1HgKUt4lTiWkfGJOeFZhzimq9Lurk0h7SWeET
+	chIOdJl6UzFpRHv0k5waqV3UZbrbc09L/i16vSWBT4xTj34ko5sSrSrgx7WeLofCCaQ2
+	STtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=LdrdWxijVefF6njsgqvzWGd1emQDy7oVOsHIZ5HKxeQ=;
+	b=PwG+/ZrfYN3nRZvDEPtXlMSS178hOlKxbKMVG4DOgd94f/ozCrQQDSTFuRQSA/RdJp
+	bUfJ3gOVomZ9F8+4iNRsxjkTjd0EMbQiMzAy07PhiKtGMlfMenCh2AISmtTWb0GdNZrF
+	O1IZyxIYWjd0jn3ZESXzviPEsedOP8NeUpAZZJOC2x5PwCIz4QEqP4bNLekDx6JmWqIR
+	pTioTdxudazIq8xKhjwI46D41stQ3yDenPbbEAwwF8XF0ZkwSyGSR4W7ifeZpekwh6oW
+	009mJavU73vjLU+iZOjN2d/gOy8yMxCyG2furUqxcpARE3i2ZqLm7D1hjrVJAfaJLahx
+	8M2g==
+X-Gm-Message-State: ALyK8tIGB2r+7mqmXjF17vjcDD02jjze4lvs8OICadqqxhvnRBrZWrdIlbWs6by9T9soE48CjsQygdxI+maoiA==
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: any pointers to a yocto-based image to use as a live install utility?
+X-Received: by 10.25.145.198 with SMTP id t189mr1088558lfd.157.1464188857229; 
+	Wed, 25 May 2016 08:07:37 -0700 (PDT)
+Received: by 10.25.210.129 with HTTP; Wed, 25 May 2016 08:07:37 -0700 (PDT)
+Date: Wed, 25 May 2016 16:07:37 +0100
+Message-ID: <CABatt_w=BzX5MUg45tjWu+fRqZUr0r2QoduV3fiecfSsvoCw+w@mail.gmail.com>
+From: Martin Townsend <mtownsend1973@gmail.com>
+To: yocto@yoctoproject.org
+Subject: mount bind /var/lib and package management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,50 +65,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 May 2016 15:04:28 -0000
-Content-Type: multipart/mixed; BOUNDARY="8323328-809113422-1464188619=:30271"
+X-List-Received-Date: Wed, 25 May 2016 15:07:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
---8323328-809113422-1464188619=:30271
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8BIT
+Hi,
 
-On Wed, 25 May 2016, akuster wrote:
+When using a read only rootfs it mount --binds /var/lib into
+/var/volatile/lib which lives in tmpfs and makes sense.  The problem
+is that I use dpkg but I'm assuming other package management tools use
+/var/lib as their admin dir.
 
-> Robert,
->
-> On 05/25/2016 03:18 AM, Robert P. J. Day wrote:
-> >
-> >   specifically in the context of powerpc systems, are there any
-> > suggestions for an image that could be used to boot an older powerpc
-> > system, running completely out of ram, and using that as an install
-> > utility which would then be responsible for detecting/formatting a
-> > hard drive, creating/formatting filesystems, downloading/installing
-> > the OS, post-install configuration and so on?
->
-> This sounds like an installer MV has and that I have been given approval
-> to release (just haven’t had the time to submit it).  Its X86 centric ie
-> uses grub and support efi
->
-> It boots up from an iso image and runs a ncurses based interface that
-> allows you to select HD, create partitions and filesystem types. It will
-> install what ever image you built. It creates grub conf and installs it.
-> The installer bit is written in python.
+Wouldn't this break package updates as the dpkg database files etc
+will then be updated in tmpfs so a power cycle would means the changes
+are lost? Or am I missing something?
 
-  given that it's based on grub, how compatible would it be with a
-powerpc target? what i need is *specifically* for powerpc. and what
-i'm after can't require a graphical interface, it needs to be
-script-based as it will have to run on remote systems.
+I tried to mount bind all directories except dpkg which I managed to
+get working but other systemd services failed as they expected
+/var/lib to be writeable (the service that creates /var/lib/machines).
+I suppose I could alter this to remount / rw first but gave up at this
+point.
 
-rday
+The next thing I tried was to use a new admindir for dpkg, ie
+/lib/dpkg which I have working but I had to hack a lot of files
+changing /var/lib to /lib including files for apt-get native.  I'm not
+confident that I've got them all.
 
--- 
+Is there another solution I haven't thought of?
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Thanks in advance,
+Martin.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323328-809113422-1464188619=:30271--
