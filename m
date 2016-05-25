@@ -1,37 +1,32 @@
 Return-Path: <prvs=946f89120=Richard.Leitner@skidata.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AC40E00CD3; Wed, 25 May 2016 01:00:43 -0700 (PDT)
+	id 0663DE00CF5; Wed, 25 May 2016 01:02:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [91.230.2.99 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 25 May 2016 01:00:40 PDT
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A77D3E00CC5
-	for <yocto@yoctoproject.org>; Wed, 25 May 2016 01:00:40 -0700 (PDT)
+Received: from mail2.skidata.com (mail2.skidata.com [80.120.57.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1337CE00CF4
+	for <yocto@yoctoproject.org>; Wed, 25 May 2016 01:01:56 -0700 (PDT)
 X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: A2CpBACcWkVX/0oKEKxbhQoGt2uCHYF2hhECgXISAQEBAQEBAYEMhEMBAQEDAScLAVYLDQEKCSUPAkYGAQwGAgKII8RuAQEBBwIlhieETIoZBYgEkDOBVo4zhE+DCReFRI9MJw2EHWyJCH8BAQE
-X-IPAS-Result: A2CpBACcWkVX/0oKEKxbhQoGt2uCHYF2hhECgXISAQEBAQEBAYEMhEMBAQEDAScLAVYLDQEKCSUPAkYGAQwGAgKII8RuAQEBBwIlhieETIoZBYgEkDOBVo4zhE+DCReFRI9MJw2EHWyJCH8BAQE
-To: Julien Gueytat <contact@jgueytat.fr>, <yocto@yoctoproject.org>
-References: <1463939183-14049-1-git-send-email-contact@jgueytat.fr>
+X-IronPort-Anti-Spam-Result: A2CrBACcWkVX/0oKEKxbhQoGt2uEE4YHCgKCBAEBAQEBAYENhEQBAQR4ARALDQsJFg8JAwIBAgFFBg0BBQICzREBAQEBAQEBAwEBAQEjhieETIQPAXuEchwBBJg3gVaOM4dYFwyFOI9MhFFsiEk/fwEBAQ
+X-IPAS-Result: A2CrBACcWkVX/0oKEKxbhQoGt2uEE4YHCgKCBAEBAQEBAYENhEQBAQR4ARALDQsJFg8JAwIBAgFFBg0BBQICzREBAQEBAQEBAwEBAQEjhieETIQPAXuEchwBBJg3gVaOM4dYFwyFOI9MhFFsiEk/fwEBAQ
+To: <yocto@yoctoproject.org>
+References: <1460710190-22696-1-git-send-email-richard.leitner@skidata.com>
 From: Richard Leitner <richard.leitner@skidata.com>
-Message-ID: <57455B94.10500@skidata.com>
-Date: Wed, 25 May 2016 10:00:20 +0200
+Message-ID: <57455C1E.3040906@skidata.com>
+Date: Wed, 25 May 2016 10:02:38 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Icedove/38.8.0
 MIME-Version: 1.0
-In-Reply-To: <1463939183-14049-1-git-send-email-contact@jgueytat.fr>
+In-Reply-To: <1460710190-22696-1-git-send-email-richard.leitner@skidata.com>
 X-Originating-IP: [172.16.60.30]
 X-ClientProxiedBy: sdex1srv.skidata.net (172.16.10.92) To sdex1srv.skidata.net
 	(172.16.10.92)
-Subject: Re: [psplash][PATCH] Add fbdev option to set the proper /dev/fbX.
+Subject: Re: [psplash][PATCH] psplash: add option to read startup message from file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,166 +38,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 May 2016 08:00:43 -0000
+X-List-Received-Date: Wed, 25 May 2016 08:02:00 -0000
 Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi Julien,
-comments on the code are below.
-On 05/22/2016 07:46 PM, Julien Gueytat wrote:
-> It works exactly the same way than the angle parameter:
->  * --angle <-> /etc/rotation file
->  * --fbdev <-> /etc/fbdev file
+Any comments/updates on that patch of mine?
+
+
+On 04/15/2016 10:49 AM, Richard Leitner wrote:
+> This patch adds an option to read the displayed message from a file.
+> Additionally the maximum length for the read string can be defined.
+> If both, a message (STARTUP_MSG) and a file (STARTUP_MSG_FILE) are
+> defined the content of the file will be appended to the message.
+> The string will be cutted after the given maximum number of chars.
 > 
-> Signed-off-by: Julien Gueytat <contact@jgueytat.fr>
+> For these changes the following defines were introduced:
+>   PSPLASH_STARTUP_MSG_MAX_LEN ... maximum lenght of the complete message
+>   PSPLASH_STARTUP_MSG_FILE ...... path to the file to read
+> 
+> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 > ---
->  psplash-fb.c | 16 ++++++++++------
->  psplash-fb.h |  4 ++--
->  psplash.c    | 57 ++++++++++++++++++++++++++++++++-------------------------
->  3 files changed, 44 insertions(+), 33 deletions(-)
+>  psplash-config.h |  5 +++++
+>  psplash.c        | 29 ++++++++++++++++++++++++++++-
+>  2 files changed, 33 insertions(+), 1 deletion(-)
 > 
-> diff --git a/psplash-fb.c b/psplash-fb.c
-> index 8daaf6f..d344e5a 100644
-> --- a/psplash-fb.c
-> +++ b/psplash-fb.c
-> @@ -99,18 +99,20 @@ attempt_to_change_pixel_format (PSplashFB *fb,
->  }
+> diff --git a/psplash-config.h b/psplash-config.h
+> index 82bb76d..7fa44fa 100644
+> --- a/psplash-config.h
+> +++ b/psplash-config.h
+> @@ -21,6 +21,11 @@
 >  
->  PSplashFB*
-> -psplash_fb_new (int angle)
-> +psplash_fb_new (int angle, int fbdev_id)
->  {
->    struct fb_var_screeninfo fb_var;
->    struct fb_fix_screeninfo fb_fix;
->    int                      off;
-> -  char                    *fbdev;
-> +  char                     fbdev[9] = "/dev/fb0";
+>  /* Text to output on program start; if undefined, output nothing */
+>  #define PSPLASH_STARTUP_MSG ""
+> +#define PSPLASH_STARTUP_MSG_MAX_LEN 32
+> +
+> +/* File to read and display its first line on program start;
+> + * if undefined, output nothing; if MSG is defined also, append to it */
+> +#define PSPLASH_STARTUP_MSG_FILE ""
 >  
->    PSplashFB *fb = NULL;
->  
-> -  fbdev = getenv("FBDEV");
-> -  if (fbdev == NULL)
-> -    fbdev = "/dev/fb0";
-> +  if (fbdev_id > 0 && fbdev_id < 10)
-> +    {
-> +        // Conversion from integer to ascii.
-> +        fbdev[7] = fbdev_id + 48;
-> +    }
-
-You removed the possiblity to get the fb device from FBDEV!
-Please don't to that as people may rely on that feature!
-
-If you like to add a fbdev commandline option make sure it can co-exist
-with the already available methods for setting this option.
-And don't forget to add documentation!
-
->  
->    if ((fb = malloc (sizeof(PSplashFB))) == NULL)
->      {
-
-...
-
-> @@ -205,35 +205,41 @@ int
->  main (int argc, char** argv) 
->  {
->    char      *tmpdir;
-> -  int        pipe_fd, i = 0, angle = 0, ret = 0;
-> +  int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
+>  /* Bool indicating if the image is fullscreen, as opposed to split screen */
+>  #define PSPLASH_IMG_FULLSCREEN 0
+> diff --git a/psplash.c b/psplash.c
+> index 04d3d49..b7d2d28 100644
+> --- a/psplash.c
+> +++ b/psplash.c
+> @@ -208,6 +208,9 @@ main (int argc, char** argv)
+>    int        pipe_fd, i = 0, angle = 0, ret = 0;
 >    PSplashFB *fb;
 >    bool       disable_console_switch = FALSE;
-> -  
-> +
+> +  char       msg[PSPLASH_STARTUP_MSG_MAX_LEN];
+> +  int        msglen;
+> +  FILE      *fd_msg;
+>    
 >    signal(SIGHUP, psplash_exit);
 >    signal(SIGINT, psplash_exit);
->    signal(SIGQUIT, psplash_exit);
+> @@ -298,9 +301,33 @@ main (int argc, char** argv)
 >  
-> -  while (++i < argc)
-> -    {
-> -      if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
-> -        {
-> -	  disable_console_switch = TRUE;
-> -	  continue;
-> -	}
-> +  while (++i < argc) {
-> +    if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
-> +      {
-> +        disable_console_switch = TRUE;
-> +        continue;
-> +      }
-> +
-> +    if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
-> +      {
-> +        if (++i >= argc) goto fail;
-> +        angle = atoi(argv[i]);
-> +        continue;
-> +      }
-> +
-> +    if (!strcmp(argv[i],"-f") || !strcmp(argv[i],"--fbdev"))
-> +      {
-> +        if (++i >= argc) goto fail;
-> +        fbdev_id = atoi(argv[i]);
-> +        continue;
-> +      }
+>    psplash_draw_progress (fb, 0);
 >  
-> -      if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
-> -        {
-> -	  if (++i >= argc) goto fail;
-> -	  angle = atoi(argv[i]);
-> -	  continue;
-> -	}
-> -      
->      fail:
->        fprintf(stderr, 
-> -	      "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>]\n", 
-> -	      argv[0]);
-> +              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
-> +              argv[0]);
->        exit(-1);
-> -    }
-> +  }
-
-Please use the same coding style everywhere in psplash.
-
-Furthermore please avoid/remove trailing whitespaces in new/changed code
-
->  
->    tmpdir = getenv("TMPDIR");
->  
-> @@ -245,10 +251,10 @@ main (int argc, char** argv)
->    if (mkfifo(PSPLASH_FIFO, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP))
->      {
->        if (errno!=EEXIST) 
-> -	{
-> -	  perror("mkfifo");
-> -	  exit(-1);
-> -	}
-> +	    {
-> +	      perror("mkfifo");
-> +	      exit(-1);
-> +	    }
->      }
-
-This change is irrelevant for new fbdev option.
-Please send this whitespace fix as a separate patch.
-
->  
->    pipe_fd = open (PSPLASH_FIFO,O_RDONLY|O_NONBLOCK);
-> @@ -262,10 +268,11 @@ main (int argc, char** argv)
->    if (!disable_console_switch)
->      psplash_console_switch ();
->  
-> -  if ((fb = psplash_fb_new(angle)) == NULL) {
-> +  if ((fb = psplash_fb_new(angle,fbdev_id)) == NULL)
+> +  memset(msg, 0, PSPLASH_STARTUP_MSG_MAX_LEN);
+> +  msglen = 0;
+>  #ifdef PSPLASH_STARTUP_MSG
+> -  psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
+> +  snprintf(msg, PSPLASH_STARTUP_MSG_MAX_LEN, "%s", PSPLASH_STARTUP_MSG);
+> +  msglen = strlen(msg);
+>  #endif
+> +#ifdef PSPLASH_STARTUP_MSG_FILE
+> +  fd_msg = fopen (PSPLASH_STARTUP_MSG_FILE, "r");
+> +  if (fd_msg)
 > +    {
->  	  ret = -1;
->  	  goto fb_fail;
-> -  }
+> +      if (msglen == 0)
+> +        {
+> +          fgets (msg, PSPLASH_STARTUP_MSG_MAX_LEN, fd_msg);
+> +        }
+> +      else
+> +        {
+> +          fgets (&msg[msglen + 1], PSPLASH_STARTUP_MSG_MAX_LEN - msglen - 1, fd_msg);
+> +          msg[msglen] = ' ';
+> +        }
+> +      fclose (fd_msg);
 > +    }
+> +  msglen = strlen(msg);
+> +#endif
+> +
+> +  /* draw message if we have one */
+> +  if (msglen > 0)
+> +    psplash_draw_msg (fb, msg);
 >  
->    /* Clear the background with #ecece1 */
->    psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
+>    psplash_main (fb, pipe_fd, 0);
+>  
 > 
-
-IMHO in this case fixing the whitespace is fine because the if clause
-needs to be adopted for the new option.
 
