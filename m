@@ -1,65 +1,64 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 433E5E00D4E; Wed, 25 May 2016 18:50:08 -0700 (PDT)
+	id BA584E00DA9; Thu, 26 May 2016 03:22:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f169.google.com (mail-yw0-f169.google.com
-	[209.85.161.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2E31E00D44
-	for <yocto@yoctoproject.org>; Wed, 25 May 2016 18:50:06 -0700 (PDT)
-Received: by mail-yw0-f169.google.com with SMTP id h19so63932873ywc.0
-	for <yocto@yoctoproject.org>; Wed, 25 May 2016 18:50:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=8xz3r5NxocUTKN0yZIB850L0rV4iK7HgnO2w3l/8ufY=;
-	b=KqIHs+33tE6/js+LMRMeQ3Jg7fWHI4JymWxQ9S6jdXLDNKymOJYKFad0qX40xc7iiN
-	b49qFzeKKnca4FXGzKQOj8W0QyNwX5ICeo7m+3TViqbE1IynjizdKhD8fS5dsi4Dl+6H
-	Y3L13TEZERBh1RNvZxAC3rafOo0OQCWcDtzMFUOndUjFiRLNv+sa4ZcRPULI1QBw88kY
-	w3bcU9eCt11JH/eMeBvjBuinh+RyVq9EJ0ejmwWq6fcN+U9w2yfLesKnZMq/CgSSM6PM
-	apV8UY4Bc4xAqDoCBztFLAQAHAncPI3nbrsLNRQ5LAfhjMTL/HLt0kvUPuHyVXtwArmW
-	gx1w==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.65 listed in list.dnswl.org]
+Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
+	[209.85.215.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 016B3E00DA4
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 03:22:36 -0700 (PDT)
+Received: by mail-lf0-f65.google.com with SMTP id d132so5620865lfb.3
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 03:22:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=10IB7c4xmV7d018st7Y6oeqkxjD9vBVIBDkATzZrDyY=;
+	b=esouWEmLZAbUj7Ck7pMguKugw+KA9aCw5qUTtJ09a+v9B90+M6SGs6i7gvjdS7fN1H
+	HBqiTUcmugYXn5USAzTg9m6o20J+nPVGLgWUUfASYF/OiYTWNUbBQevK9kGHWR/ziRLg
+	XBxmROcKZy2Jne+TfBa5t3EvvLRpMSsCrrTmDV59ZZ5UhLGLvYHD6RIkzQ69jbOK08zW
+	NYU/6yIXvPuUCWv0BTMeD/2FqTGi9nwnqj9JS5I91ln+IetMYYkRGF46RSPcIVOAESkQ
+	uPx19jE7yNFORdZiXYtOA7ZTgYiE27RGqv0qRUJ6QHCFMl9vKpjt5BWTDxgPLCguiqC6
+	W1jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=8xz3r5NxocUTKN0yZIB850L0rV4iK7HgnO2w3l/8ufY=;
-	b=SaytWNdJz1AJkuT3Sx+HDrD2O0hJda3m0Qoov5sWHaTzwCOBVZxzqd8k23k6cjlraH
-	QlzAl9rQrB5N43QYlyrGF14y0FLnBupgP4C6JJaWvB5zJqUSxo/7AOOAT9OYBMNCY0/l
-	fOFdAg8SUgDv+GfD3tJpyR/biR4wocmDLHthgOW49AwC14a0pKedDzUjafebScT0J/45
-	7C4Hnu5biw6ZTLRIKgDHtPMxwtH/u3hsmp9KyDKytZ7GtC8mN2VPfKN2kzsLhSeKz6HI
-	CQrrWlpkXvHDtaWOFIVLje964ovemuECrGtfWqR0g+Vw/KTJh5Ob65t0CIV4UCiKFEZp
-	WRRA==
-X-Gm-Message-State: ALyK8tJuigGV1isHCJtQK5ugKPbUng6CnPTHxMM40jlPYaL01E4bGSKnUKSsNQ1KTMNbsr2g
-X-Received: by 10.13.248.2 with SMTP id i2mr4344720ywf.134.1464227405141;
-	Wed, 25 May 2016 18:50:05 -0700 (PDT)
-Received: from [10.43.100.29] ([50.233.148.158])
-	by smtp.googlemail.com with ESMTPSA id
-	o5sm1102911ywo.38.2016.05.25.18.50.04
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 25 May 2016 18:50:04 -0700 (PDT)
-To: Thomas Perrot <thomas.perrot@tupi.fr>, yocto@yoctoproject.org
-References: <1464164678-30438-1-git-send-email-thomas.perrot@tupi.fr>
-From: akuster <akuster@mvista.com>
-Message-ID: <5746564B.3060303@mvista.com>
-Date: Wed, 25 May 2016 18:50:03 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
-MIME-Version: 1.0
-In-Reply-To: <1464164678-30438-1-git-send-email-thomas.perrot@tupi.fr>
-Subject: Re: [meta-security][PATCH] Use bb.utils.contains instead of base_contains because it is deprecated
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=10IB7c4xmV7d018st7Y6oeqkxjD9vBVIBDkATzZrDyY=;
+	b=GeQ9F56clkHIXBLaYlW5J3k3yTZbR0xjyray9rqaLhyPHUo3Oe0G3I6+3N+jRKPRG9
+	6E/HsLSWfp8pQrmev8EmO2WiUy8idN6jVEzRnvwV33MVvrGiRkXws+NSsqq9tJI19oJv
+	2qcZ3FABQ12stUUXA11nUh4bM1b4eAViNFQmFegVV/MNdLKKC/QtJi35MTIwD6ZKjLkt
+	IpkOjWUHVocM9//y+Kv+EXVavF7N3wPpGWPpM7JXrhX6C93RErUZ08DZsvV6/5GrsDRT
+	7U9O5j3FoVZNmIo9kCwnazbVby4RDJRW7E1d2j+XHpuQC9x0LNXvkkUEXiF/tK8s8W+U
+	TquA==
+X-Gm-Message-State: ALyK8tKtEr3LG4nMfFd+Do2LdwRxo2asgUHyHW4j1RsJRYOyVqZbZzh0KAw7e7lnlsbErA==
+X-Received: by 10.194.205.134 with SMTP id lg6mr8514902wjc.153.1464258154823; 
+	Thu, 26 May 2016 03:22:34 -0700 (PDT)
+Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
+	by smtp.gmail.com with ESMTPSA id
+	q125sm2755905wmd.19.2016.05.26.03.22.29
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 26 May 2016 03:22:30 -0700 (PDT)
+From: Shrikant Bobade <bobadeshrikant@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 26 May 2016 15:52:05 +0530
+Message-Id: <1464258125-30592-1-git-send-email-bobadeshrikant@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
+Subject: [meta-selinux][PATCH] refpolicy-minimum_git: add systemd dependent policy modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,94 +70,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 May 2016 01:50:08 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 May 2016 10:22:39 -0000
 
+From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
+with systemd enabled refpolicy-minimum build breaks due to missing dependent
+policy modules, so add the dependent modules: clock, systemd, udev
+conditionally based on DISTRO_FEATURES.
 
-On 05/25/2016 01:24 AM, Thomas Perrot wrote:
-> Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
-> ---
->  recipes-kernel/linux/linux-yocto_4.1.bbappend | 8 ++++----
+dependent systemd policy modules needed to fix these errors:
 
-merged.
+* Failed to resolve 'adjtime_t' in typeattributeset statement at line 138 of
+.. modules/100/init/cil
 
->  recipes-security/clamav/clamav_0.99.1.bb      | 2 +-
->  recipes-security/sssd/sssd_1.13.3.bb          | 2 +-
->  recipes-tpm/trousers/trousers_0.3.13.bb       | 4 ++--
+* Failed to resolve 'systemd_kmod_conf_t' in typeattributeset statement at
+line 141 of.. moules/100/init/cil
 
-these last three are fixed in master-next. I just merged over master-next.
+* Failed to resolve 'udev_t' in typeattributeset statement at line 143 of
+modules/100/init/cil semodule:  Failed!
 
-Thanks,
+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+---
+ recipes-security/refpolicy/refpolicy-minimum_git.bb | 2 ++
+ 1 file changed, 2 insertions(+)
 
-- armin
->  4 files changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/recipes-kernel/linux/linux-yocto_4.1.bbappend b/recipes-kernel/linux/linux-yocto_4.1.bbappend
-> index 1043d5c..dc90e31 100644
-> --- a/recipes-kernel/linux/linux-yocto_4.1.bbappend
-> +++ b/recipes-kernel/linux/linux-yocto_4.1.bbappend
-> @@ -2,8 +2,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.1:"
->  
->  # Tomoyo kernel support
->  SRC_URI += "\
-> -	${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://ccs-tools-yocto.4.1.patch', '', d)} \
-> -	${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://ccs-tools-yocto_security.patch', '', d)} \
-> -	${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.cfg', '', d)} \
-> -	${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.scc', '', d)} \
-> +	${@bb.utils.contains('DISTRO_FEATURES', 'tomoyo', ' file://ccs-tools-yocto.4.1.patch', '', d)} \
-> +	${@bb.utils.contains('DISTRO_FEATURES', 'tomoyo', ' file://ccs-tools-yocto_security.patch', '', d)} \
-> +	${@bb.utils.contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.cfg', '', d)} \
-> +	${@bb.utils.contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.scc', '', d)} \
->  	"
-> diff --git a/recipes-security/clamav/clamav_0.99.1.bb b/recipes-security/clamav/clamav_0.99.1.bb
-> index edccc78..461015f 100644
-> --- a/recipes-security/clamav/clamav_0.99.1.bb
-> +++ b/recipes-security/clamav/clamav_0.99.1.bb
-> @@ -30,7 +30,7 @@ GID = "clamav"
->  
->  PACKAGECONFIG ?= "ncurses openssl bz2 zlib "
->  PACKAGECONFIG += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
-> -PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
-> +PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
->  PACKAGECONFIG[pcre] = "--with-pcre=${STAGING_LIBDIR},  --without-pcre, libpcre"
->  PACKAGECONFIG[xml] = "--with-xml=${STAGING_LIBDIR}/.., --with-xml=no, libxml2,"
->  PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json,"
-> diff --git a/recipes-security/sssd/sssd_1.13.3.bb b/recipes-security/sssd/sssd_1.13.3.bb
-> index d538af3..fd4f2a2 100644
-> --- a/recipes-security/sssd/sssd_1.13.3.bb
-> +++ b/recipes-security/sssd/sssd_1.13.3.bb
-> @@ -24,7 +24,7 @@ CACHED_CONFIGUREVARS = "ac_cv_member_struct_ldap_conncb_lc_arg=no \
->      "
->  
->  PACKAGECONFIG ?="nss"
-> -PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
-> +PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
->  
->  PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
->  PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
-> diff --git a/recipes-tpm/trousers/trousers_0.3.13.bb b/recipes-tpm/trousers/trousers_0.3.13.bb
-> index 7001788..e274972 100644
-> --- a/recipes-tpm/trousers/trousers_0.3.13.bb
-> +++ b/recipes-tpm/trousers/trousers_0.3.13.bb
-> @@ -17,7 +17,7 @@ SRC_URI[md5sum] = "ad508f97b406f6e48cd90e85d78e7ca8"
->  SRC_URI[sha256sum] = "bb908e4a3c88a17b247a4fc8e0fff3419d8a13170fe7bdfbe0e2c5c082a276d3"
->  
->  inherit autotools pkgconfig useradd update-rc.d
-> -inherit ${@base_contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
-> +inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
->  
->  PACKAGECONFIG ?= "gmp "
->  PACKAGECONFIG[gmp] = "--with-gmp, --with-gmp=no, gmp"
-> @@ -33,7 +33,7 @@ do_install_append() {
->      install -d ${D}${sysconfdir}/udev/rules.d
->      install -m 0644 ${WORKDIR}/trousers-udev.rules ${D}${sysconfdir}/udev/rules.d/45-trousers.rules
->  
-> -    if ${@base_contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-> +    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
->          install -d ${D}${systemd_unitdir}/system
->          install -m 0644 ${WORKDIR}/tcsd.service ${D}${systemd_unitdir}/system/
->          sed -i -e 's#@SBINDIR@#${sbindir}#g' ${D}${systemd_unitdir}/system/tcsd.service
-> 
+diff --git a/recipes-security/refpolicy/refpolicy-minimum_git.bb b/recipes-security/refpolicy/refpolicy-minimum_git.bb
+index 47ed558..04ceadd 100644
+--- a/recipes-security/refpolicy/refpolicy-minimum_git.bb
++++ b/recipes-security/refpolicy/refpolicy-minimum_git.bb
+@@ -17,6 +17,8 @@ CORE_POLICY_MODULES = "unconfined \
+ 	application libraries miscfiles logging userdomain \
+ 	init mount modutils getty authlogin locallogin \
+ 	"
++#systemd dependent policy modules
++CORE_POLICY_MODULES += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'clock systemd udev', '', d)}"
+ 
+ # nscd caches libc-issued requests to the name service.
+ # Without nscd.pp, commands want to use these caches will be blocked.
+-- 
+1.9.1
+
 
