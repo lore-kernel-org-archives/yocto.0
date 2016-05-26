@@ -1,58 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 379BFE00DCA; Thu, 26 May 2016 09:07:54 -0700 (PDT)
+	id AE93DE00DC6; Thu, 26 May 2016 09:36:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.48 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8407E009AC
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 09:07:48 -0700 (PDT)
-Received: by mail-it0-f48.google.com with SMTP id z123so49023944itg.0
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 09:07:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=V/fzOEdBsm0JZx4JwlR9RSdqUXa4L55JxYrtSpCw6f0=;
-	b=i3llF0PYvDLg+hU9JCJviRbCvnKBIeSSeBTwS3TS+3I4SKhk1qICmjoFEJWv1rpuZ9
-	8mEoElAtnCDShNnvxKVfK/QQTRYUZFcRM+lfPoofBstZNhYFuJzoRbTBOXsBkKjRZ2Yu
-	rTOoR2LOfzXkw1cHhg9GHkGjp11B0+XxQ1Hg4C11Dcmw0Q1crBwkFFKEM/sHLB0MF51X
-	2QtVrR40afNQc+yble3IfDELQFIEaiTEOQRHmBJW2EYG7f1YyEFI1Ss01nENYG8Vpi2y
-	Q4VdFp43aCmLt/8n0yim6vWbhVhjQW/pEamCgF/iPAVfJ2TBC7p2ka6VrqSiNSDG0pZu
-	QQcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=V/fzOEdBsm0JZx4JwlR9RSdqUXa4L55JxYrtSpCw6f0=;
-	b=VpV39suTghp6X2eD6b+Y/uOfujqimIvkyeXhbhBV0tcKjQUDO0g/x3UWWNr7Ji0DIk
-	6R9PBujPS7wT5NmyJa1EE8v3dN9yV2ZufZSPk9wPU74oRQ7u3J/XeavvwROfQuAiX1QZ
-	RfXXeJQc3iQ5ssewymiKZa5kGx+c/sJaed4h0ZzNbqY4re/p897Sy55MDI6007QdX7H/
-	ygl5aXAmKNgCUCd9zOY5yMUOHT+iHS3ZdfUUc160aclAuUxIZnRfuQFzuIDuS7F3xoiZ
-	yUpC09/n85JGLzQG6/33jFdONlO5GuXmjrZgNKJ8E3bFP4xHwoJKlQl7sZuWRj+JMSFX
-	Ve3g==
-X-Gm-Message-State: ALyK8tJd35xrG2NjjawHsWbEDrT+E64qSU+nY4nhI6QCfdsW85qoofwvY+4hmqMFcc+k1htQ4ppZF+pqNvVewoyF
-X-Received: by 10.36.57.211 with SMTP id l202mr3962362ita.22.1464278867430;
-	Thu, 26 May 2016 09:07:47 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Thu, 26 May 2016 09:07:28 -0700 (PDT)
-In-Reply-To: <5fd08a77744a4c39943de4111eadd535@Ek.usurf.usu.edu>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from Perses.usurf.usu.edu (unknown [129.123.197.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BE28E009AC
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 09:36:23 -0700 (PDT)
+Received: from EK.usurf.usu.edu (172.31.35.73) by Perses.usurf.usu.edu
+	(172.31.35.68) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Thu, 26 May 2016 10:36:23 -0600
+Received: from EK.usurf.usu.edu (172.31.35.73) by Ek.usurf.usu.edu
+	(172.31.35.73) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Thu, 26 May 2016 10:36:22 -0600
+Received: from EK.usurf.usu.edu ([172.31.191.13]) by Ek.usurf.usu.edu
+	([172.31.191.13]) with mapi id 15.00.1104.000; Thu, 26 May 2016 10:36:22
+	-0600
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] DEPENDS problem with core-image-full-cmdline
+Thread-Index: AQHRt2fjPGIqNwxbtk+i7DSj2Ouu6w==
+Date: Thu, 26 May 2016 16:36:22 +0000
+Message-ID: <35cb4951b7994fd1a323e3da04d7978b@Ek.usurf.usu.edu>
 References: <5fd08a77744a4c39943de4111eadd535@Ek.usurf.usu.edu>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 26 May 2016 17:07:28 +0100
-Message-ID: <CAJTo0LY-0iaFzY=fQSagQWHikUiMYo2P8wWvpetW1H23BTqKcA@mail.gmail.com>
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+	<CAJTo0LY-0iaFzY=fQSagQWHikUiMYo2P8wWvpetW1H23BTqKcA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.31.22.119]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: DEPENDS problem with core-image-full-cmdline
 X-BeenThere: yocto@yoctoproject.org
@@ -66,34 +48,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 May 2016 16:07:54 -0000
-Content-Type: multipart/alternative; boundary=001a114ab3cabedad30533c0fdcb
+X-List-Received-Date: Thu, 26 May 2016 16:36:25 -0000
+X-Groupsio-MsgNum: 30193
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_35cb4951b7994fd1a323e3da04d7978bEkusurfusuedu_"
 
---001a114ab3cabedad30533c0fdcb
-Content-Type: text/plain; charset=UTF-8
-
-On 26 May 2016 at 17:01, Jonathan Haws <Jonathan.Haws@sdl.usu.edu> wrote:
-
-> However, when building core-image-full-cmdline, I get the following errors.
->
-
-The error is in the batctl recipe, does that also have a DEPENDS=libnl?
-
-Ross
-
---001a114ab3cabedad30533c0fdcb
-Content-Type: text/html; charset=UTF-8
+--_002_35cb4951b7994fd1a323e3da04d7978bEkusurfusuedu_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 26 May 2016 at 17:01, Jonathan Haws <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:Jonathan.Haws@sdl.usu.edu" target=3D"_blank">Jonathan.Haws@sdl.usu.edu<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":33k" cl=
-ass=3D"a3s aXjCH m154edcf21fef659d">However, when building core-image-full-=
-cmdline, I get the following errors.<br></div></blockquote></div><br>The er=
-ror is in the batctl recipe, does that also have a DEPENDS=3Dlibnl?</div><d=
-iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
-iv>
+>     However, when building core-image-full-cmdline, I get the following=
+=0A=
+>     errors.=0A=
+>=0A=
+>=0A=
+> The error is in the batctl recipe, does that also have a DEPENDS=3Dlibnl?=
+=0A=
+>=0A=
+=0A=
+Oh geez...I feel sheepish!=0A=
+=0A=
+Attached is my updated batctl recipe - still giving the same errors.=0A=
+=0A=
+ERROR: oe_runmake failed=0A=
+ERROR: Function failed: do_compile (log file is located at =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_compile.68518)=0A=
+ERROR: Logfile of failure stored in: =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_compile.68518=0A=
+Log data follows:=0A=
+| DEBUG: Executing shell function do_compile=0A=
+| NOTE: make -j 32 -e MAKEFLAGS=3D=0A=
+| Makefile:56: *** No libnl-3.0 development libraries found!.  Stop.=0A=
+| ERROR: oe_runmake failed=0A=
+| ERROR: Function failed: do_compile (log file is located at =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_compile.68518)=0A=
+ERROR: Task 581 =0A=
+(/opt/yocto/poky/meta-sdl/meta-sigma/recipes-batman/batman/batctl_2016.1.bb=
+, =0A=
+do_compile) failed with exit code '1'=0A=
+NOTE: Tasks Summary: Attempted 3480 tasks of which 3473 didn't need to =0A=
+be rerun and 1 failed.=0A=
+=0A=
+=0A=
+I did find that if I do:=0A=
+=0A=
+DEPENDS +=3D " batman-adv libnl"=0A=
+=0A=
+instead of=0A=
+=0A=
+DEPENDS_${PN} +=3D " batman-adv libnl"=0A=
+=0A=
+the problem goes away.  Can someone explain the difference?  As I =0A=
+understood it, _${PN} basically created a DEPENDS variable for this =0A=
+specific package and avoided touching others.  Is that not the case? =0A=
+Can someone point me to the right section in the docs that would =0A=
+enlighten me?=0A=
+=0A=
+Thanks!=0A=
+=0A=
+As an aside, with this DEPENDS fix I have a set of fully functional =0A=
+recipes for batman-adv, batctl, and alfred if anyone is interested.  I =0A=
+wasn't able to find any online that were up to date with the latest =0A=
+Yocto releases and latest batman-adv.=0A=
+=0A=
+=0A=
 
---001a114ab3cabedad30533c0fdcb--
+--_002_35cb4951b7994fd1a323e3da04d7978bEkusurfusuedu_
+Content-Type: text/plain; name="batctl_2016.1.bb"
+Content-Description: batctl_2016.1.bb
+Content-Disposition: attachment; filename="batctl_2016.1.bb"; size=739;
+	creation-date="Thu, 26 May 2016 16:36:22 GMT";
+	modification-date="Thu, 26 May 2016 16:36:22 GMT"
+Content-Transfer-Encoding: base64
+
+REVTQ1JJUFRJT04gPSAiQ29udHJvbCBhcHBsaWNhdGlvbiBmb3IgQi5BLlQuTS5BLk4uIHJvdXRp
+bmcgcHJvdG9jb2wga2VybmVsIG1vZHVsZSBmb3IgbXVsdGktaG9wIGFkLWhvYyBtZXNoIG5ldHdv
+cmtzLiIKSE9NRVBBR0UgPSAiaHR0cDovL3d3dy5vcGVuLW1lc2gubmV0LyIKU0VDVElPTiA9ICJj
+b25zb2xlL25ldHdvcmsiClBSSU9SSVRZID0gIm9wdGlvbmFsIgpMSUNFTlNFID0gIkdQTHYzIgpM
+SUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly8uLi9DT1BZSU5HO21kNT1kMzIyMzliY2I2NzM0NjNh
+Yjg3NGU4MGQ0N2ZhZTUwNCIKCkRFUEVORFMgKz0gIiBiYXRtYW4tYWR2IGxpYm5sIgpSREVQRU5E
+U18ke1BOfSArPSAiIGtlcm5lbC1tb2R1bGUtYmF0bWFuLWFkdiIKUyA9ICIke1dPUktESVJ9L2dp
+dCIKClNSQ1JFViA9ICI3YTNkNTYzNDY2ZjM2OGI5YjUwMTkxZjQ0MWI3NzViYWU0NmE3N2NhIgpT
+UkNfVVJJID0gImdpdDovL2dpdC5vcGVuLW1lc2gub3JnL2JhdGN0bC5naXQgXAogICAgICAgICAg
+IGZpbGU6Ly9DT1BZSU5HIFwKICAgICAgICAgICBmaWxlOi8vMDAwMF9iYXRjdGxfbWFrZWZpbGUt
+ZmxhZ3MucGF0Y2ggXAogICAgICAgICAgIgoKUFYgPSAiMjAxNi4xX2dpdCR7U1JDUkVWfSIKCmRv
+X2NvbXBpbGUoKSB7CiAgb2VfcnVubWFrZQp9Cgpkb19pbnN0YWxsKCkgewogIGluc3RhbGwgLWQg
+JHtEfSR7YmluZGlyfQogIGluc3RhbGwgLW0gMDc1NSBiYXRjdGwgJHtEfSR7YmluZGlyfQp9Cg==
+
+--_002_35cb4951b7994fd1a323e3da04d7978bEkusurfusuedu_--
