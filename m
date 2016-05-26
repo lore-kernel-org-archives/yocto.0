@@ -1,61 +1,41 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <Jonathan.Haws@sdl.usu.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62E6BE00D01; Thu, 26 May 2016 07:16:11 -0700 (PDT)
+	id 191D0E00DC6; Thu, 26 May 2016 09:02:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	WEIRD_QUOTING autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
-	*  0.0 WEIRD_QUOTING BODY: Weird repeated double-quotation marks
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 383DFE00B6F
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 07:16:07 -0700 (PDT)
-Received: by mail-it0-f41.google.com with SMTP id z189so82966461itg.0
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 07:16:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=U9qp/dFmO9FWN0gjk50IqZpTy24VblJFM9Z6LWcG9II=;
-	b=ZxLPtM9DKq5+1c7hj6ediUzXSGX549wRev/seAizb9SKay+Kkb+40p3EKgF1TyJazC
-	l2ZmC5Laan4A6W4oH4hyp1be2UkTf9kws1I9/3wzFr0UVtKZMwDjB1qnTQsDi+0EAubp
-	eNCJdqTubis4npMS8fz6xL9nLgiIPU5DdwsrhbyXnF3Pr6Dm2dTZfwnwx1xXMl8dfzYe
-	FxngsIhlk0M12ofSgZwujPm0n4ccVGz8I8ITqNZNCdl76kB7jNvWo+OEyvC/d9af+5yE
-	8XYAXLadBS2e0gj3LRRhSj+nvgFKSCP+Fw3Rw8b79e8TBt72dVtSUj6+j3SEsoCtWORL
-	PboA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=U9qp/dFmO9FWN0gjk50IqZpTy24VblJFM9Z6LWcG9II=;
-	b=V9a/lhoafmqYc6laS7loZyJX7c0NtvBcjCZJr2lxX73BCpSXkJ9E+IdswwU1R+1rCd
-	TS1D+7q5mLjAvvjLD76nfGPWINm/ItaJzm+3iZaNNPQK5ViebUCTx7en56+JN7/jZcOW
-	cW+Y3WSuOVNZ1PkY6aiY9Bk29IO3Fff25dqRvq33j+6zVyUWHmfNh/Sn3x/6LN8nx9mZ
-	L1CnOktwlyaI0e0isUXVYebwgRo2q0vkvI8TmJ5HgVKhyQSjBiXp4V4BFYfzZAAvExHQ
-	4p2GJlbFkBAIs1nu7p9zujw9okMNG6na1zji3WF7rJo+WRNp/DcY78KNLKGMa+no6G2f
-	CVgQ==
-X-Gm-Message-State: ALyK8tISvc4rZ3vWM0Uh6rXlnEK2bJ/29cEHHvE9qdRYYq7hzTYHdK22EST5xRcEDOSpBrfpq/qCiju0uJ98z9Ef
-X-Received: by 10.36.16.67 with SMTP id 64mr3375889ity.88.1464272167133; Thu,
-	26 May 2016 07:16:07 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Thu, 26 May 2016 09:02:44 PDT
+Received: from Perses.usurf.usu.edu (unknown [129.123.197.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A54FE009AC
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 09:02:44 -0700 (PDT)
+Received: from EK.usurf.usu.edu (172.31.35.73) by Perses.usurf.usu.edu
+	(172.31.35.68) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Thu, 26 May 2016 10:01:41 -0600
+Received: from EK.usurf.usu.edu (172.31.35.73) by Ek.usurf.usu.edu
+	(172.31.35.73) with Microsoft SMTP Server (TLS) id 15.0.1104.5;
+	Thu, 26 May 2016 10:01:40 -0600
+Received: from EK.usurf.usu.edu ([172.31.191.13]) by Ek.usurf.usu.edu
+	([172.31.191.13]) with mapi id 15.00.1104.000; Thu, 26 May 2016 10:01:40
+	-0600
+From: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: DEPENDS problem with core-image-full-cmdline
+Thread-Index: AQHRt2fjPGIqNwxbtk+i7DSj2Ouu6w==
+Date: Thu, 26 May 2016 16:01:40 +0000
+Message-ID: <5fd08a77744a4c39943de4111eadd535@Ek.usurf.usu.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.31.22.119]
 MIME-Version: 1.0
-Received: by 10.107.48.131 with HTTP; Thu, 26 May 2016 07:15:27 -0700 (PDT)
-In-Reply-To: <1464208089-6911-1-git-send-email-william.c.randle@intel.com>
-References: <1464208089-6911-1-git-send-email-william.c.randle@intel.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Thu, 26 May 2016 15:15:27 +0100
-Message-ID: <CAPhnLPCsOhKVc8ViPmeNZ2wLQO2DxUC4_a1YFmH6mYxg9oWtyg@mail.gmail.com>
-To: Bill Randle <william.c.randle@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] GetLayerVersion.py: set new layer version only if cmd was sucessful and not already set
+Subject: DEPENDS problem with core-image-full-cmdline
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,59 +47,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 May 2016 14:16:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 26 May 2016 16:02:47 -0000
+X-Groupsio-MsgNum: 30191
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_5fd08a77744a4c39943de4111eadd535Ekusurfusuedu_"
 
-Ok, this looks right. Let me test it and then pull.
+--_002_5fd08a77744a4c39943de4111eadd535Ekusurfusuedu_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 25 May 2016 at 21:28, Bill Randle <william.c.randle@intel.com> wrote:
-> Fixed a bug where GetLayerVersion set the layerversion to -1 when a
-> meta-poky layer.conf was not found.
->
-> Signed-off-by: Bill Randle <william.c.randle@intel.com>
-> ---
->  .../autobuilder/buildsteps/GetLayerVersion.py             | 15 ++++++---------
->  1 file changed, 6 insertions(+), 9 deletions(-)
->
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/GetLayerVersion.py b/lib/python2.7/site-packages/autobuilder/buildsteps/GetLayerVersion.py
-> index de5c203..3f167e8 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/GetLayerVersion.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/GetLayerVersion.py
-> @@ -44,15 +44,12 @@ class GetLayerVersion(ShellCommand):
->          ShellCommand.start(self)
->
->      def commandComplete(self, cmd):
-> -        result = cmd.logs['stdio'].getText()
-> -        layerv= result.replace("LAYERVERSION_" + self.layerfile, "").replace("=","").replace(' ','').replace('"','').replace("'",'').strip()
-> -        if cmd.didFail():
-> -           layerv = "-1"
-> -        if self.getProperty('layerversion_' + self.layerfile):
-> -            self.finished(SUCCESS)
-> -        else:
-> -            self.setProperty('layerversion_' + self.layerfile, layerv, "Setting Layer Version")
-> -            self.finished(SUCCESS)
-> +        if not cmd.didFail():
-> +            result = cmd.logs['stdio'].getText()
-> +            layerv = result.replace("LAYERVERSION_" + self.layerfile, "").replace("=","").replace(' ','').replace('"','').replace("'",'').strip()
-> +            if not self.getProperty('layerversion_' + self.layerfile):
-> +                self.setProperty('layerversion_' + self.layerfile, layerv, "Setting Layer Version")
-> +        self.finished(SUCCESS)
->
->      def getText(self, cmd, results):
->          return ShellCommand.getText(self, cmd, results)
-> --
-> 2.5.5
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I'm working on a recipe for batman-adv, which depends on libnl at build =0A=
+time.=0A=
+=0A=
+I've attached my recipe for batman-adv.  It's pretty straightforward, =0A=
+but the DEPENDS variable doesn't seem to work when I build =0A=
+core-image-full-cmdline.  If I clean both libnl and batman-adv, then =0A=
+bitbake batman-adv, it works as expected - libnl is built first, =0A=
+followed by batman-adv.=0A=
+=0A=
+However, when building core-image-full-cmdline, I get the following errors.=
+=0A=
+=0A=
+Thoughts?=0A=
+=0A=
+Thanks!=0A=
+Jon=0A=
+=0A=
+=0A=
+ERROR: oe_runmake failed=0A=
+ERROR: Function failed: do_configure (log file is located at =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_configure.98063)=0A=
+ERROR: Logfile of failure stored in: =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_configure.98063=0A=
+Log data follows:=0A=
+| DEBUG: Executing python function sysroot_cleansstate=0A=
+| DEBUG: Python function sysroot_cleansstate finished=0A=
+| DEBUG: Executing shell function do_configure=0A=
+| NOTE: make -e MAKEFLAGS=3D clean=0A=
+| Makefile:56: *** No libnl-3.0 development libraries found!.  Stop.=0A=
+| ERROR: oe_runmake failed=0A=
+| ERROR: Function failed: do_configure (log file is located at =0A=
+/opt/yocto/poky/build-vbox/tmp/work/corei7-64-sigma-linux/batctl/2016.1_git=
+7a3d563466f368b9b50191f441b775bae46a77ca-r0/temp/log.do_configure.98063)=0A=
+ERROR: Task 580 =0A=
+(/opt/yocto/poky/meta-sdl/meta-sigma/recipes-batman/batman/batctl_2016.1.bb=
+, =0A=
+do_configure) failed with exit code '1'=0A=
+NOTE: Tasks Summary: Attempted 2290 tasks of which 2282 didn't need to =0A=
+be rerun and 1 failed.=0A=
+=0A=
+=0A=
+=0A=
+-- =0A=
+Jonathan R. Haws=0A=
+Embedded Engineer=0A=
+Space Dynamics Laboratory=0A=
+jhaws@sdl.usu.edu=0A=
 
+--_002_5fd08a77744a4c39943de4111eadd535Ekusurfusuedu_
+Content-Type: text/plain; name="batman-adv_2016.1.bb"
+Content-Description: batman-adv_2016.1.bb
+Content-Disposition: attachment; filename="batman-adv_2016.1.bb"; size=806;
+	creation-date="Thu, 26 May 2016 16:01:40 GMT";
+	modification-date="Thu, 26 May 2016 16:01:40 GMT"
+Content-Transfer-Encoding: base64
 
+U1VNTUFSWSA9ICJCLkEuVC5NLkEuTi4gQWR2YW5jZWQgS2VybmVsIE1vZHVsZSIKREVTQ1JJUFRJ
+T04gPSAiS2VybmVsIG1vZHVsZSBwcm92aWRpbmcgYmF0bWFuLWFkdiBtZXNoIG5ldHdvcmtpbmcg
+Y2FwYWJpbGl0aWVzIgpMSUNFTlNFID0gIkdQTHYzIgpMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6
+Ly8uLi9DT1BZSU5HO21kNT1kMzIyMzliY2I2NzM0NjNhYjg3NGU4MGQ0N2ZhZTUwNCIKCmluaGVy
+aXQgbW9kdWxlCgpERVBFTkRTID0gIiBsaWJubCIKUkRFUEVORFNfJHtQTn0gPSAiIGtlcm5lbC1t
+b2R1bGUtbGliY3JjMzJjIGtlcm5lbC1tb2R1bGUtYnJpZGdlIgpTID0gIiR7V09SS0RJUn0vZ2l0
+IgoKU1JDUkVWID0gIjAxYTNhYTQzOTZlM2RhY2RlZTI5YTFjZTk2MDU3ZjUxZDAyZDRkZDAiClNS
+Q19VUkkgPSAiZ2l0Oi8vZ2l0Lm9wZW4tbWVzaC5vcmcvYmF0bWFuLWFkdi5naXQgXAogICAgICAg
+ICAgIGZpbGU6Ly9DT1BZSU5HIFwKICAgICAgICAgICBmaWxlOi8vMDAwMF9iYXRtYXYtYWR2X21h
+a2VmaWxlLUtFUk5FTFBBVEgucGF0Y2g7cGF0Y2hkaXI9JHtTfTtzdHJpcGxldmVsPTAgXAogICAg
+ICAgICAgIgoKUFYgPSAiMjAxNi4xX2dpdCR7U1JDUkVWfSIKCiMgVGhlIGluaGVyaXQgb2YgbW9k
+dWxlLmJiY2xhc3Mgd2lsbCBhdXRvbWF0aWNhbGx5IG5hbWUgbW9kdWxlIHBhY2thZ2VzIHdpdGgK
+IyAia2VybmVsLW1vZHVsZS0iIHByZWZpeCBhcyByZXF1aXJlZCBieSB0aGUgb2UtY29yZSBidWls
+ZCBlbnZpcm9ubWVudC4KS0VSTkVMX01PRFVMRV9BVVRPTE9BRCArPSAiIGxpYmNyYzMyYyBiYXRt
+YW4tYWR2Igo=
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--_002_5fd08a77744a4c39943de4111eadd535Ekusurfusuedu_--
