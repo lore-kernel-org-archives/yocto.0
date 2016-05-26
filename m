@@ -1,64 +1,39 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <surya.n@easyarm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE1CFE00DBD; Thu, 26 May 2016 06:11:24 -0700 (PDT)
+	id 4D37CE00DBE; Thu, 26 May 2016 06:26:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
-	[209.85.220.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B448E00DBD
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 06:11:23 -0700 (PDT)
-Received: by mail-pa0-f65.google.com with SMTP id yl2so9003085pac.1
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 06:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=X/OKrP7SW2XthO5AgpFJkmYnl5NDHbKLkisF0a9Iqwc=;
-	b=RkZ5+aDrCsYENxXKp1JVCnYCK3EnKW25UXctq286ooL0uLPW3Jpy8Qo53s74Uh0qtB
-	PJ0UYUvYOse0maBesYdy1G0fNrKnsvYNyyThuhZ+7eM5rPOG5n+RG+tGaf7eMujD9Hvk
-	qpjSg1hIxwZgA332XlFhqYsMMmF0lbeRA95tO/oIu8I64hQ23TEeExf+8VmSFnhussiW
-	TA6M4rZzIh4zrDyLUY4y21P8UP21OceIQ+9vMiHMTypftFYetqlbDmP9X5xV/7Ejzw9c
-	l9H64bDuu9GIzPkUBBXIMKWOQwZLRrlDSMTPIfpE6cpF0+CQm2+QgROQrMXS37yC2Mdd
-	G81Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=X/OKrP7SW2XthO5AgpFJkmYnl5NDHbKLkisF0a9Iqwc=;
-	b=KOfxFXBGcaEmWIDD5C/Ad9dM+45Yjc5/4kpbYka1fexEGjV4If+c2hNp2Wjtn31b0V
-	HrOcrNQIOeCE1IStiS0Kbxx0moGvCdTpLSXFP1/uOj5cyvLs0tJ27JsN3aAuitTgTUeM
-	uok9OwAYhDQExRy37sLjxNONlGz/Adnsa8SRGf3yXDsM4XnsGeFYkDyXhSCGtkUmH9m7
-	zl+HvBXeSMbZGofseOF+Yf7+qHxmIimlQMT9WSLqhLalm+NO8uPO/FXF2XqKt+8KsWSY
-	RzcDUAcEXehySPu48Up0XSLJVDw2eh2O2r5Qf6oZ3WBhDqFrfuTOtU3qkO+xY2MzB6sX
-	bK+A==
-X-Gm-Message-State: ALyK8tK1sm7r4iGjH2gPcdymc/ighRj2FbqDo4LEr/Iif6oraX0bfriOu08lSjtdQ3sUzQ==
-X-Received: by 10.66.21.102 with SMTP id u6mr13983869pae.118.1464268282794;
-	Thu, 26 May 2016 06:11:22 -0700 (PDT)
-Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
-	by smtp.gmail.com with ESMTPSA id
-	s8sm20541048pav.39.2016.05.26.06.11.20
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 26 May 2016 06:11:22 -0700 (PDT)
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from linux8.hostguy.com (linux8.hostguy.com [144.76.114.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02F22E00DB7
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 06:26:24 -0700 (PDT)
+Received: from [106.51.36.173] (port=36272 helo=[192.168.1.17])
+	by linux8.hostguy.com with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <surya.n@easyarm.com>) id 1b5vIo-003lOG-U0
+	for yocto@yoctoproject.org; Thu, 26 May 2016 18:56:21 +0530
+Message-ID: <5746F979.3070206@easyarm.com>
+Date: Thu, 26 May 2016 13:26:17 +0000
+From: Surya <surya.n@easyarm.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Thu, 26 May 2016 18:41:05 +0530
-Message-Id: <1464268265-14388-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH] libselinux_git: fix warnings of unavailable patches
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - linux8.hostguy.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - easyarm.com
+X-Get-Message-Sender-Via: linux8.hostguy.com: authenticated_id:
+	surya.n@easyarm.com
+X-Authenticated-Sender: linux8.hostguy.com: surya.n@easyarm.com
+Subject: Ethernet issues in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,37 +45,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 May 2016 13:11:24 -0000
+X-List-Received-Date: Thu, 26 May 2016 13:26:28 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020609000200090500010606"
 
-From: Shrikant Bobade <shrikant_bobade@mentor.com>
+--------------020609000200090500010606
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Drop unavailable patches entry to fix the warning, even we are using
-libselinux v2.5 these warnings pop-up during recipes parsing.
+Hello all,
 
-WARNING:..libselinux_git.bb: Unable to get checksum for libselinux SRC_URI
-entry libselinux-get-pywrap-depends-on-selinux.py.patch: file could not be
-found
-WARNING:..libselinux_git.bb: Unable to get checksum for libselinux SRC_URI
-entry libselinux-mount-procfs-before-check.patch: file could not be found
+Recently i have builded yocto rootfs for am335x.  I am getting some 
+strange issues with eth0 & eth1 port.
 
-Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
----
- recipes-security/selinux/libselinux_git.bb | 2 --
- 1 file changed, 2 deletions(-)
+As i am trying to make eth0 port down manually by "ifconfig eth0 down", 
+but its not happening as per expected. It suddenly turns up within 2/3 
+seconds.
 
-diff --git a/recipes-security/selinux/libselinux_git.bb b/recipes-security/selinux/libselinux_git.bb
-index 20b5534..d2e4a32 100644
---- a/recipes-security/selinux/libselinux_git.bb
-+++ b/recipes-security/selinux/libselinux_git.bb
-@@ -11,7 +11,5 @@ SRC_URI += "\
- 	file://libselinux-make-O_CLOEXEC-optional.patch \
- 	file://libselinux-make-SOCK_CLOEXEC-optional.patch \
- 	file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
--	file://libselinux-get-pywrap-depends-on-selinux.py.patch \
- 	file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
--	file://libselinux-mount-procfs-before-check.patch \
- 	"
--- 
-1.9.1
+Scenario:
+================
+
+root@phycore-ge-am335x: 
+<mailto:root@phycore-ge-am335x:>~# ifconfig eth0 down
+
+root@phycore-ge-am335x: <mailto:root@phycore-ge-am335x:>~# [ 
+2987.129897] net eth0: initializing cpsw version 1.12 (0)
+[ 2987.145498] net eth0: phy found : id is : 0x7c0f1
+[ 2987.160812] 8021q: adding VLAN 0 to HW filter on device eth0
+[ 2987.167287] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[ 2989.145225] libphy: 4a101000.mdio:00 - Link is Up - 100/Full
+[ 2989.151696] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+
+It seems the error is with "systemd-network.service".
 
 
+Can i get any suggestion regarding this.
+
+
+
+Thanks
+Surya
+
+--------------020609000200090500010606
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hello all,<br>
+    <br>
+    Recently i have builded yocto rootfs for am335x.&nbsp; I am getting some
+    strange issues with eth0 &amp; eth1 port.<br>
+    <br>
+    As i am trying to make eth0 port down manually by "ifconfig eth0
+    down", but its not happening as per expected. It suddenly turns up
+    within 2/3 seconds. <br>
+    <br>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">Scenario:</span><br style="color:
+      rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">================</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <br style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;"><a
+        href="mailto:root@phycore-ge-am335x:" onclick="return
+        rcmail.command('compose','root@phycore-ge-am335x:',this)"
+        style="color: rgb(1, 134, 186);">root@phycore-ge-am335x:</a>~#&nbsp;ifconfig&nbsp;eth0&nbsp;down</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <br style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <a href="mailto:root@phycore-ge-am335x:" onclick="return
+      rcmail.command('compose','root@phycore-ge-am335x:',this)"
+      style="color: rgb(1, 134, 186); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">root@phycore-ge-am335x:</a><span
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255); display: inline !important;
+      float: none;">~# [ 2987.129897] net eth0: initializing cpsw
+      version 1.12 (0)</span><br style="color: rgb(51, 51, 51);
+      font-family: monospace; font-size: 11.818181991577148px;
+      font-style: normal; font-variant: normal; font-weight: normal;
+      letter-spacing: normal; line-height: normal; orphans: auto;
+      text-align: start; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">[&nbsp;2987.145498]&nbsp;net&nbsp;eth0:&nbsp;phy&nbsp;found&nbsp;:&nbsp;id&nbsp;is&nbsp;:&nbsp;0x7c0f1</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">[&nbsp;2987.160812]&nbsp;8021q:&nbsp;adding&nbsp;VLAN&nbsp;0&nbsp;to&nbsp;HW&nbsp;filter&nbsp;on&nbsp;device&nbsp;eth0</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">[&nbsp;2987.167287]&nbsp;IPv6:&nbsp;ADDRCONF(NETDEV_UP):&nbsp;eth0:&nbsp;link&nbsp;is&nbsp;not&nbsp;ready</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">[&nbsp;2989.145225]&nbsp;libphy:&nbsp;4a101000.mdio:00&nbsp;-&nbsp;Link&nbsp;is&nbsp;Up&nbsp;-&nbsp;100/Full</span><br
+      style="color: rgb(51, 51, 51); font-family: monospace; font-size:
+      11.818181991577148px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: normal;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255);">
+    <span style="color: rgb(51, 51, 51); font-family: monospace;
+      font-size: 11.818181991577148px; font-style: normal; font-variant:
+      normal; font-weight: normal; letter-spacing: normal; line-height:
+      normal; orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; widows: auto; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); white-space: nowrap;">[&nbsp;2989.151696]&nbsp;IPv6:&nbsp;ADDRCONF(NETDEV_CHANGE):&nbsp;eth0:&nbsp;link&nbsp;becomes&nbsp;ready</span><br>
+    <br>
+    It seems the error is with "systemd-network.service".<br>
+    <br>
+    <br>
+    Can i get any suggestion regarding this.<br>
+    <br>
+    <br>
+    <br>
+    Thanks<br>
+    Surya<br>
+  </body>
+</html>
+
+--------------020609000200090500010606--
