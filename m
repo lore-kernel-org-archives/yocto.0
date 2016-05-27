@@ -1,42 +1,26 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFA60E00E01; Thu, 26 May 2016 22:56:20 -0700 (PDT)
+	id 65E4AE00E0B; Thu, 26 May 2016 23:25:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.3 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 3.4 DATE_IN_PAST_96_XX Date: is 96 hours or more before
-	Received: date
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Thu, 26 May 2016 22:56:16 PDT
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55932E00D49
-	for <yocto@yoctoproject.org>; Thu, 26 May 2016 22:56:16 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; 
-   d="scan'208";a="6963659"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 27 May 2016 13:55:10 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (unknown [10.167.33.80])
-	by cn.fujitsu.com (Postfix) with ESMTP id 6B7B7489F98A
-	for <yocto@yoctoproject.org>; Fri, 27 May 2016 13:55:05 +0800 (CST)
-Received: from localhost.localdomain (10.167.226.93) by
-	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.279.2; Fri, 27 May 2016 13:55:05 +0800
-From: Lei Maohui <leimaohui@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 17 May 2016 13:30:39 -0700
-Message-ID: <1463517039-25658-1-git-send-email-leimaohui@cn.fujitsu.com>
-X-Mailer: git-send-email 1.9.1
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52060E00D49
+	for <yocto@yoctoproject.org>; Thu, 26 May 2016 23:25:30 -0700 (PDT)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 416BF6FE17CF
+	for <yocto@yoctoproject.org>; Fri, 27 May 2016 06:26:49 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.93]
-X-yoursite-MailScanner-ID: 6B7B7489F98A.AE4DE
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: leimaohui@cn.fujitsu.com
-Subject: [meta-security][PATCH] samhain: Avoid empty source archiver
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20160527062649.416BF6FE17CF@auh.yoctoproject.org>
+Date: Fri, 27 May 2016 06:26:49 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-05-27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,49 +32,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2016 05:56:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 27 May 2016 06:25:34 -0000
+Content-Type: multipart/mixed; boundary="===============2028644098401574614=="
 
-It is better to put necessary work into do_patch task than add a new task.
-Otherwise,you can not get correct source code in some functions(such as archiver.bbclass).
+--===============2028644098401574614==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lei Maohui <leimaohui@cn.fujitsu.com>
----
- recipes-security/samhain/samhain.inc | 17 +++++++----------
- 1 file changed, 7 insertions(+), 10 deletions(-)
+AUH finished upgrade batch the result patches/logs can be found at:
+https://logs.yoctoproject.org/auh//20160526000003.tar.gz, next are the statistics:
 
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index 23bc8f5..5c0142b 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -25,17 +25,14 @@ INITSCRIPT_PARAMS ?= "defaults"
- 
- PACKAGECONFIG ??= ""
- 
--# We have to unpack the tar ball twice to get to the source.
--# Also as soon as OE gets the tar ball it unpacks and
--# proceeds to apply the patches. But what you still have after
--# the first unpack is another tar ball. So we do a do_unpack_extra()
--# and tell OE to do the second unpack before do_patch(), otherwise
--# do_patch() will fail when trying to apply the patches.
--do_unpack_extra () {
--	cd ${WORKDIR}
--	tar -xzvf samhain-${PV}.tar.gz
-+do_unpack_samhain() {
-+    cd ${WORKDIR}
-+    tar -xzvf samhain-${PV}.tar.gz
-+}
-+
-+python do_unpack_append() {
-+    bb.build.exec_func('do_unpack_samhain', d)
- }
--addtask unpack_extra after do_unpack before do_patch
- 
- do_configure_prepend_arm() {
-     export sh_cv___va_copy=yes
--- 
-1.8.4.2
+Recipe upgrade statistics:
 
+    * Failed(do_fetch): 5
+        gdb, 20131001, Richard Purdie <richard.purdie@linuxfoundation.org>
+        git, 2.8.3, Robert Yang <liezhi.yang@windriver.com>
+        lttng-tools, 2.8.0+gitAUTOINC+a0f518a0b5, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-modules, 2.8.0+gitAUTOINC+4a24ffe737, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-ust, 2.8.0+gitAUTOINC+c2c1079732, Richard Purdie <richard.purdie@linuxfoundation.org>
+    * Failed(get_env): 1
+        boost, 1.61.0, Alexander Kanavin <alexander.kanavin@intel.com>
+    * Failed(do_configure): 1
+        libxcb, 1.12, Jussi Kukkonen <jussi.kukkonen@intel.com>
+    * Succeeded: 10
+        gdbm, 1.12, Alexander Kanavin <alexander.kanavin@intel.com>
+        curl, 7.49.0, Chen Qi <Qi.Chen@windriver.com>
+        libevdev, 1.5.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        wayland, 1.10.93, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        pciutils, 3.5.1, Chen Qi <Qi.Chen@windriver.com>
+        at-spi2-core, 2.20.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        xcb-proto, 1.12, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        hwlatdetect, 2.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        sato-screenshot, 2+gitAUTOINC+3a9688e8a0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        webkitgtk, 2.12.3, Alexander Kanavin <alexander.kanavin@intel.com>
+    * Failed(other errors): 15
+        python-git, 2.0.3, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        file, 5.27, Robert Yang <liezhi.yang@windriver.com>
+        tar, 1.29, Chen Qi <Qi.Chen@windriver.com>
+        gtk+3, 3.20.6, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        weston, 1.10.93, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        e2fsprogs, 1.43, Robert Yang <liezhi.yang@windriver.com>
+        rpm, 5.4.17, Mark Hatle <mark.hatle@windriver.com>
+        python-pexpect, 4.1.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        make, 4.2, Robert Yang <liezhi.yang@windriver.com>
+        python-setuptools, 21.2.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        pulseaudio, 8.99.1, Tanu Kaskinen <tanuk@iki.fi>
+        sysstat, 11.3.4, Chen Qi <Qi.Chen@windriver.com>
+        rt-tests, 2.0, Alexander Kanavin <alexander.kanavin@intel.com>
+        python3-setuptools, 21.2.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        u-boot-mkimage, v2016.05+gitAUTOINC+aeaec0e682, Denys Dmytriyenko <denis@denix.org>
 
+    TOTAL: attempted=32 succeeded=10(31.25%) failed=22(68.75%)
 
+Recipe upgrade statistics per Maintainer:
 
+    Alejandro Hernandez <alejandro.hernandez: attempted=4 succeeded=0(0.00%) failed=4(100.00%)
+    Alexander Kanavin <alexander.kanavin: attempted=5 succeeded=3(60.00%) failed=2(40.00%)
+    Denys Dmytriyenko <denis: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Jussi Kukkonen <jussi.kukkonen: attempted=8 succeeded=5(62.50%) failed=3(37.50%)
+    Richard Purdie <richard.purdie: attempted=4 succeeded=0(0.00%) failed=4(100.00%)
+    Tanu Kaskinen <tanuk: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Robert Yang <liezhi.yang: attempted=4 succeeded=0(0.00%) failed=4(100.00%)
+    Chen Qi <Qi.Chen: attempted=4 succeeded=2(50.00%) failed=2(50.00%)
+    Mark Hatle <mark.hatle: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+
+--===============2028644098401574614==--
