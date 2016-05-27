@@ -1,68 +1,33 @@
-Return-Path: <gstroz@qti.qualcomm.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42E90E00DE3; Fri, 27 May 2016 15:33:42 -0700 (PDT)
+	id DAEC9E00E6E; Fri, 27 May 2016 16:24:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [199.106.114.251 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from wolverine02.qualcomm.com (wolverine02.qualcomm.com
-	[199.106.114.251])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C728EE00DB3
-	for <yocto@yoctoproject.org>; Fri, 27 May 2016 15:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
-	s=qcdkim; t=1464388418; x=1495924418;
-	h=from:to:cc:subject:date:message-id:references:
-	in-reply-to:mime-version;
-	bh=LVpOqMoLfhqDixkzohdZqyRdz4AHFTwQUAmnlVJOh7k=;
-	b=jt9A6EMFXA6BaLTKyNfz365aXGBjWBuSHIpD+de4szOC0vmXV6X1Cl5W
-	/5sKZhG1TB3xi03VswBxNd3mnnNAcAGYV2GvqHJyw6O8+Dz0b8s7XNGTm
-	l66CNWpkGFJSf/OhutWS28BJXx9U8A9HLSHrpWoKCbkGds4RptN4CIyMr 0=;
-X-IronPort-AV: E=Sophos;i="5.26,376,1459839600"; 
-	d="scan'208,217";a="291582571"
-Received: from ironmsg02-lv.qualcomm.com ([10.47.202.183])
-	by wolverine02.qualcomm.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	27 May 2016 15:33:35 -0700
-X-IronPort-AV: E=McAfee;i="5700,7163,8178"; a="35109417"
-Received: from nalasexr02e.na.qualcomm.com ([10.49.56.55])
-	by ironmsg02-lv.qualcomm.com with ESMTP/TLS/RC4-SHA;
-	27 May 2016 15:33:34 -0700
-Received: from nalasexr02c.na.qualcomm.com (10.49.56.27) by
-	nalasexr02e.na.qualcomm.com (10.49.56.55) with Microsoft SMTP Server
-	(TLS) id 15.0.1178.4; Fri, 27 May 2016 15:33:34 -0700
-Received: from nalasexr02c.na.qualcomm.com ([10.49.56.27]) by
-	nalasexr02c.na.qualcomm.com ([10.49.56.27]) with mapi id 15.00.1178.000;
-	Fri, 27 May 2016 15:33:34 -0700
-From: "Stroz, Glenn" <gstroz@qti.qualcomm.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] On target gdb support for multiple architectures?
-Thread-Index: AdG3macJMDi96tkSQ8yW/FGLHX3nFQAiT8YAABEVvXA=
-Date: Fri, 27 May 2016 22:33:34 +0000
-Message-ID: <a153850802674ed7beeb5ed23ff56369@nalasexr02c.na.qualcomm.com>
-References: <402820becd8447d1a6740c206eeab042@nalasexr02c.na.qualcomm.com>
-	<CAMKF1sqt2QLtiesu7A7Q8XXxNDWZywwFFb+-yvsXbYYZa_iG9w@mail.gmail.com>
-In-Reply-To: <CAMKF1sqt2QLtiesu7A7Q8XXxNDWZywwFFb+-yvsXbYYZa_iG9w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.47.70.6]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7345AE00DEC;
+	Fri, 27 May 2016 16:24:45 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 27 May 2016 16:24:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,376,1459839600"; d="scan'208";a="976052905"
+Received: from unknown (HELO tgraydon-mac01.local) ([10.254.7.25])
+	by fmsmga001.fm.intel.com with ESMTP; 27 May 2016 16:24:45 -0700
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+From: Tracy Graydon <tracy.graydon@intel.com>
+Message-ID: <5748D73C.6040401@intel.com>
+Date: Fri, 27 May 2016 16:24:44 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.5.1
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: On target gdb support for multiple architectures?
+Subject: [ANNOUNCEMENT] Yocto Project 1.8.2 (Fido 13.0.2) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,242 +39,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 May 2016 22:33:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_a153850802674ed7beeb5ed23ff56369nalasexr02cnaqualcommco_"
+X-List-Received-Date: Fri, 27 May 2016 23:24:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---_000_a153850802674ed7beeb5ed23ff56369nalasexr02cnaqualcommco_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello,
 
-SW4gdGhpcyBjYXNlIHRoZXJlIGlzIG5vdC4gSXQgYXBwZWFycyBhcyBpZiB0aGUgYWFyY2g2NCBi
-aW5hcnkgZ2V0cyBwcmlvcml0eS4NCg0Kcm9vdEBxY29tLWJzcDovIyBmaW5kIC1uYW1lIGdkYg0K
-ZmluZDogLi9wcm9jLzc2Mzk6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCi4vdXNyL3NoYXJl
-L2dkYg0KLi91c3IvYmluL2dkYg0KZmluZDogLi9zeXMva2VybmVsL3NsYWIvTDJUUC9JUHY2OiBO
-byBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQpmaW5kOiAuL3N5cy9rZXJuZWwvc2xhYi9MMlRQL0lQ
-OiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQpyb290QHFjb20tYnNwOi8jDQoNCi91c3Ivc2hh
-cmUvZ2RiIGlzIGEgZm9sZGVyDQoNCg0KVGhlIGltYWdlIGZpbGUgaGFzIHRoZSBmb2xsb3dpbmc6
-DQoNCklNQUdFX0lOU1RBTEwgKz0gImdkYiINCklNQUdFX0lOU1RBTEwgKz0gImxpYjMyLWdkYiIN
-Cg0KSWRlYWxseSB3ZSB3b3VsZCBsaWtlIG9uZSBiaW5hcnkgdGhhdCBpcyBjYXBhYmxlIG9mIGRl
-YnVnZ2luZyBib3RoIGFyY2hpdGVjdHVyZXMsIGJ1dCB0d28gYmluYXJpZXMgd291bGQgYmUgYSBz
-aG9ydCB0ZXJtIHdvcmthcm91bmQuDQoNCi1HbGVubg0KDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRv
-OnJhai5raGVtQGdtYWlsLmNvbV0NClNlbnQ6IEZyaWRheSwgTWF5IDI3LCAyMDE2IDEyOjIwIEFN
-DQpUbzogU3Ryb3osIEdsZW5uIDxnc3Ryb3pAcXRpLnF1YWxjb21tLmNvbT4NCkNjOiB5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBPbiB0YXJnZXQgZ2RiIHN1cHBv
-cnQgZm9yIG11bHRpcGxlIGFyY2hpdGVjdHVyZXM/DQoNCg0KVGhlcmUgc2hvdWxkIGJlIHR3byBn
-ZGIgZXhlY3V0YWJsZXMgb24geW91ciB0YXJnZXQuDQpPbiBNYXkgMjYsIDIwMTYgMzozNCBQTSwg
-IlN0cm96LCBHbGVubiIgPGdzdHJvekBxdGkucXVhbGNvbW0uY29tPG1haWx0bzpnc3Ryb3pAcXRp
-LnF1YWxjb21tLmNvbT4+IHdyb3RlOg0KSGVsbG8sDQoNCldl4oCZcmUgdHJ5aW5nIHRvIHNldHVw
-IG91ciB0YXJnZXQgZm9yIG9uYm9hcmQgZGVidWdnaW5nLiBXZSBoYXZlIG11bHRpcGxlIGFyY2hp
-dGVjdHVyZXMgYmVpbmcgYnVpbHQgd2l0aCBtdWx0aWxpYi4gQW4gYXJtdjcgdmFyaWFudCB3aGlj
-aCBpcyAzMiBiaXQgYW5kIGFuIGFybXY4IHZhcmlhbnQgd2hpY2ggaXMgNjQgYml0LiBXZSB3b3Vs
-ZCBsaWtlIHRoZSBnZGIgaW5zdGFsbGVkIGluIHRoZSBpbWFnZSB0byBzdXBwb3J0IGJvdGggYXJj
-aGl0ZWN0dXJlcy4gUmlnaHQgbm93LCBldmVuIHdoZW4gYWRkaW5nIGJvdGggZ2RiIGFuZCBsaWIz
-Mi1nZGIgdG8gdGhlIGltYWdlIHdlIHNlZSBpdCBvbmx5IHN1cHBvcnRzIGFhcmNoNjQuDQoNCiMN
-CiMgTXVsdGlsaWIgY29uZmlndXJhdGlvbg0KIw0KIyBUaGlzIHNldHMgYW55IHBhY2thZ2VzIHBy
-ZXByZW5kZWQgd2l0aCBsaWIzMi0gdG8gYmUgYnVpbHQgd2l0aA0KIyB0aGUgYXJtdjdhIHR1bmlu
-ZyAoMzIgYml0KSBpbnN0ZWFkIG9mIDY0IGJpdCBhYXJjaC4NCiMNCnJlcXVpcmUgY29uZi9tdWx0
-aWxpYi5jb25mDQpNVUxUSUxJQlMgPSAibXVsdGlsaWI6bGliMzIiDQpERUZBVUxUVFVORV92aXJ0
-Y2xhc3MtbXVsdGlsaWItbGliMzIgPSAiYXJtdjdhLW5lb24iDQoNCldoZW4gYWRkaW5nIGxpYjMy
-LWdkYiBhbmQgZ2RiIHRvIGltYWdlOg0KKGdkYikgc2V0IGFyY2hpdGVjdHVyZQ0KUmVxdWlyZXMg
-YW4gYXJndW1lbnQuIFZhbGlkIGFyZ3VtZW50cyBhcmUgYWFyY2g2NCwgYWFyY2g2NDppbHAzMiwg
-YXV0by4NCg0KV2hlbiBhZGRpbmcgb25seSBsaWIzMi1nZGIgdG8gaW1hZ2U6DQooZ2RiKSBzZXQg
-YXJjaGl0ZWN0dXJlDQpSZXF1aXJlcyBhbiBhcmd1bWVudC4gVmFsaWQgYXJndW1lbnRzIGFyZSBh
-cm0sIGFybXYyLCBhcm12MmEsIGFybXYzLCBhcm12M20sIGFybXY0LCBhcm12NHQsIGFybXY1LCBh
-cm12NXQsIGFybXY1dGUsIHhzY2FsZSwgZXA5MzEyLCBpd21teHQsIGl3bW14dDIsIGF1dG8uDQoN
-CklzIHRoZXJlIGFueSBtZXRob2Qgb2YgZ2V0dGluZyB0aGUgYnVpbGQgc3lzdGVtIHRvIGNvbWJp
-bmUgdGhlIHR3byBsaXN0cyBvZiBhcmNoaXRlY3R1cmVzIGludG8gb25lIGJpbmFyeSB0aGF0IHN1
-cHBvcnRzIHRoZW0gYWxsPw0KDQpUaGFua3MsDQpHbGVubg0KDQotLQ0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBz
-Oi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
+The latest release of the Yocto Project 1.8.2 (fido-13.0.2) is now available
+for download at:
 
---_000_a153850802674ed7beeb5ed23ff56369nalasexr02cnaqualcommco_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/poky-fido-13.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.8.2/poky-fido-13.0.2.tar.bz2
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1zdHlsZS1wcmlv
-cml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0K
-CW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4u
-RW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1
-bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
-LHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0K
-CW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3Bh
-Z2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8
-bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFb
-ZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0i
-ZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91
-dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJi
-bHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SW4gdGhpcyBjYXNl
-IHRoZXJlIGlzIG5vdC4gSXQgYXBwZWFycyBhcyBpZiB0aGUgYWFyY2g2NCBiaW5hcnkgZ2V0cyBw
-cmlvcml0eS4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+cm9v
-dEBxY29tLWJzcDovIyBmaW5kIC1uYW1lIGdkYjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5maW5kOiAuL3By
-b2MvNzYzOTogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4uL3Vz
-ci9zaGFyZS9nZGI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+Li91c3IvYmluL2dkYjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
-OTdEIj5maW5kOiAuL3N5cy9rZXJuZWwvc2xhYi9MMlRQL0lQdjY6IE5vIHN1Y2ggZmlsZSBvciBk
-aXJlY3Rvcnk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+ZmluZDogLi9zeXMva2VybmVsL3NsYWIvTDJUUC9J
-UDogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5yb290QHFjb20t
-YnNwOi8jPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4vdXNyL3No
-YXJlL2dkYiBpcyBhIGZvbGRlcjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoZSBpbWFnZSBmaWxlIGhhcyB0aGUgZm9s
-bG93aW5nOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SU1BR0Vf
-SU5TVEFMTCAmIzQzOz0gJnF1b3Q7Z2RiJnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPklNQUdFX0lO
-U1RBTEwgJiM0Mzs9ICZxdW90O2xpYjMyLWdkYiZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWY7Y29sb3I6IzFGNDk3RCI+SWRlYWxseSB3ZSB3b3VsZCBsaWtlIG9uZSBiaW5hcnkgdGhh
-dCBpcyBjYXBhYmxlIG9mIGRlYnVnZ2luZyBib3RoIGFyY2hpdGVjdHVyZXMsIGJ1dCB0d28gYmlu
-YXJpZXMgd291bGQgYmUgYSBzaG9ydCB0ZXJtIHdvcmthcm91bmQuDQo8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPi1HbGVubjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
-bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBLaGVtIFJhaiBbbWFp
-bHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIE1heSAy
-NywgMjAxNiAxMjoyMCBBTTxicj4NCjxiPlRvOjwvYj4gU3Ryb3osIEdsZW5uICZsdDtnc3Ryb3pA
-cXRpLnF1YWxjb21tLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gT24gdGFyZ2V0IGdkYiBzdXBwb3J0
-IGZvciBtdWx0aXBsZSBhcmNoaXRlY3R1cmVzPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHA+VGhlcmUgc2hvdWxkIGJl
-IHR3byBnZGIgZXhlY3V0YWJsZXMgb24geW91ciB0YXJnZXQuPG86cD48L286cD48L3A+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gTWF5IDI2LCAyMDE2IDM6MzQgUE0sICZxdW90O1N0
-cm96LCBHbGVubiZxdW90OyAmbHQ7PGEgaHJlZj0ibWFpbHRvOmdzdHJvekBxdGkucXVhbGNvbW0u
-Y29tIj5nc3Ryb3pAcXRpLnF1YWxjb21tLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9w
-Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0ND
-Q0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJn
-aW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IZWxs
-byw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
-dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPldl4oCZcmUgdHJ5aW5nIHRvIHNldHVwIG91
-ciB0YXJnZXQgZm9yIG9uYm9hcmQgZGVidWdnaW5nLiBXZSBoYXZlIG11bHRpcGxlIGFyY2hpdGVj
-dHVyZXMgYmVpbmcgYnVpbHQgd2l0aCBtdWx0aWxpYi4gQW4gYXJtdjcgdmFyaWFudCB3aGljaCBp
-cyAzMiBiaXQgYW5kIGFuIGFybXY4IHZhcmlhbnQgd2hpY2ggaXMNCiA2NCBiaXQuIFdlIHdvdWxk
-IGxpa2UgdGhlIGdkYiBpbnN0YWxsZWQgaW4gdGhlIGltYWdlIHRvIHN1cHBvcnQgYm90aCBhcmNo
-aXRlY3R1cmVzLiBSaWdodCBub3csIGV2ZW4gd2hlbiBhZGRpbmcgYm90aCBnZGIgYW5kIGxpYjMy
-LWdkYiB0byB0aGUgaW1hZ2Ugd2Ugc2VlIGl0IG9ubHkgc3VwcG9ydHMgYWFyY2g2NC48bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
-YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
-cmdpbi1ib3R0b20tYWx0OmF1dG8iPiM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
-YXV0byI+IyBNdWx0aWxpYiBjb25maWd1cmF0aW9uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG8iPiM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+IyBU
-aGlzIHNldHMgYW55IHBhY2thZ2VzIHByZXByZW5kZWQgd2l0aCBsaWIzMi0gdG8gYmUgYnVpbHQg
-d2l0aDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
-aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4jIHRoZSBhcm12N2Eg
-dHVuaW5nICgzMiBiaXQpIGluc3RlYWQgb2YgNjQgYml0IGFhcmNoLjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
-YXJnaW4tYm90dG9tLWFsdDphdXRvIj4jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
-OmF1dG8iPnJlcXVpcmUgY29uZi9tdWx0aWxpYi5jb25mPG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
-b3R0b20tYWx0OmF1dG8iPk1VTFRJTElCUyA9ICZxdW90O211bHRpbGliOmxpYjMyJnF1b3Q7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3At
-YWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkRFRkFVTFRUVU5FX3ZpcnRjbGFz
-cy1tdWx0aWxpYi1saWIzMiA9ICZxdW90O2FybXY3YS1uZW9uJnF1b3Q7PG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
-LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90
-dG9tLWFsdDphdXRvIj5XaGVuIGFkZGluZyBsaWIzMi1nZGIgYW5kIGdkYiB0byBpbWFnZTo8bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
-bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+KGdkYikgc2V0IGFyY2hpdGVjdHVy
-ZTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4t
-dG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5SZXF1aXJlcyBhbiBhcmd1
-bWVudC4gVmFsaWQgYXJndW1lbnRzIGFyZSBhYXJjaDY0LCBhYXJjaDY0OmlscDMyLCBhdXRvLjxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
-c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+V2hlbiBhZGRpbmcgb25seSBsaWIzMi1nZGIgdG8g
-aW1hZ2U6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
-cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPihnZGIpIHNldCBh
-cmNoaXRlY3R1cmU8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+UmVxdWly
-ZXMgYW4gYXJndW1lbnQuIFZhbGlkIGFyZ3VtZW50cyBhcmUgYXJtLCBhcm12MiwgYXJtdjJhLCBh
-cm12MywgYXJtdjNtLCBhcm12NCwgYXJtdjR0LCBhcm12NSwgYXJtdjV0LCBhcm12NXRlLCB4c2Nh
-bGUsIGVwOTMxMiwgaXdtbXh0LCBpd21teHQyLCBhdXRvLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
-YXV0byI+SXMgdGhlcmUgYW55IG1ldGhvZCBvZiBnZXR0aW5nIHRoZSBidWlsZCBzeXN0ZW0gdG8g
-Y29tYmluZSB0aGUgdHdvIGxpc3RzIG9mIGFyY2hpdGVjdHVyZXMgaW50byBvbmUgYmluYXJ5IHRo
-YXQgc3VwcG9ydHMgdGhlbSBhbGw/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGFua3Ms
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
-b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkdsZW5uPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
-b3R0b206MTIuMHB0Ij48YnI+DQotLTxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0i
-bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+
-PGJyPg0KPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lv
-Y3RvIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3Rp
-bmZvL3lvY3RvPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+A gpg signed version of these release notes is available at:
 
---_000_a153850802674ed7beeb5ed23ff56369nalasexr02cnaqualcommco_--
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/RELEASENOTES
+
+Full pass test report is available at:
+
+https://wiki.yoctoproject.org/wiki/WW21_-_2016-05-13_-_Full_Pass_1.8.2
+
+Thanks go out to everyone for all their hard work during this release!
+
+Sincerely,
+
+Tracy Graydon
+Yocto Project
+Build and Release
+
+-------------------
+yocto-1.8.2 Errata
+---------------------
+
+Release Name: eclipse-poky-kepler-fido-13.0.2
+Branch: kepler/fido
+Tag: kepler/fido-13.0.2
+Hash: cf60ac293629fc8ecd6c4eb3709a6f334b499d0c
+md5: dbc764d5c8687d29480b165997ad516e
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/eclipse-poky-kepler-fido-13.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.8.2/eclipse-poky-kepler-fido-13.0.2.tar.bz2
+
+Release Name: eclipse-poky-luna-fido-13.0.2
+Branch: luna/fido
+Tag: luna/fido-13.0.2
+Hash: 45aa5c77523bdf051d548fff4305382942db2ebb
+md5: 619373f7c5b57d6e8e1f059a8fc2beb0
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/eclipse-poky-luna-fido-13.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.8.2/eclipse-poky-luna-fido-13.0.2.tar.bz2
+
+Release Name: meta-qt3-fido-13.0.2
+Branch: fido
+Tag: fido-13.0.2
+Hash: 83bcdf8ee8c194707daa34d852f619844d30f287
+md5: 871c02a81702de34be4571b3f9601272
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/meta-qt3-fido-13.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.8.2/meta-qt3-fido-13.0.2.tar.bz2
+
+Release Name: poky-fido-13.0.2
+Branch: fido
+Tag: fido-13.0.2
+Hash: c9f0a99050ec0050f0dbcd55d0cd2ab18848113f
+md5: 9eaa656682e0e76b2d051ff50d272ac2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.8.2/poky-fido-13.0.2.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.8.2/poky-fido-13.0.2.tar.bz2
+
+
+----------------
+ Known Issues
+----------------
+n/a
+
+----------------
+Security Fixes
+----------------
+openssl: 1.0.2d -> 1.0.2h (mainly for CVEs)
+bind: CVE-2016-1285 CVE-2016-1286
+dhcp: CVE-2015-8605
+openssl: Security fix CVE-2016-0800
+wpa-supplicant: Fix CVE-2015-8041
+git: Security fixes CVE-2015-7545
+nettle: Security fix CVE-2015-8804
+nettle: Security fix CVE-2015-8803 and CVE-2015-8805
+bind: Security fix CVE-2015-8461
+rpcbind: Security Advisory - rpcbind - CVE-2015-7236
+curl: Secuirty fix CVE-2016-0755
+curl: Security fix CVE-2016-0754
+libgcrypt: Security fix CVE-2015-7511
+libpng: Security fix CVE-2015-8472
+libpng: Security fix CVE-2015-8126
+gdk-pixbuf: Security fix CVE-2015-7674
+librsvg: Security fix CVE-2015-7558
+tiff: Security fix CVE-2015-8784
+tiff: Security fix CVE-2015-8781
+foomatic-filters: Security fixes CVE-2015-8327
+foomatic-filters: Security fix CVE-2015-8560
+qemu: Security fix CVE-2016-2198
+libbsd: Security fix CVE-2016-2090
+glibc: Security fix CVE-2015-7547
+dpkg: Security fix CVE-2015-0860
+bind: Security fix CVE-2015-8704
+libxml2: Security fix CVE-2015-8710
+libxml2: Security fix CVE-2015-8241
+qemu: Security fix CVE-2015-7295
+qemu: Security fix CVE-2016-1568
+qemu: Security fix CVE-2015-8345
+qemu: Security fix CVE-2015-7512
+qemu: Security fix CVE-2015-7504
+qemu: Security fix CVE-2015-8504
+subversion: fix CVE-2015-3187
+subversion: fix CVE-2015-3184
+openssl: Security fix CVE-2016-0701
+openssl: Security fix CVE-2015-3197
+glibc: CVE-2015-8776
+glibc: CVE-2015-9761
+glibc: CVE-2015-8779
+glibc: CVE-2015-8777
+openssh: CVE-2016-077x
+libxml2: security fix CVE-2015-5312
+libxml2: security fix CVE-2015-8242
+libxml2: security fix CVE-2015-7500
+libxml2: security fix CVE-2015-7499
+libxml2: security fix CVE-2015-7497
+libxml2: security fix CVE-2015-7498
+libxml2: security fix CVE-2015-8035
+libxml2: security fix CVE-2015-7942
+libxml2: security fix CVE-2015-8317
+libxml2: security fix CVE-2015-7941
+openssl: fix for CVE-2015-3195
+openssl: fix for CVE-2015-3194
+openssl: fix for CVE-2015-3193
+grub2: Fix CVE-2015-8370
+bind: CVE-2015-8000
+libxml2: fix CVE-2015-7942 and CVE-2015-8035
+readline: actually apply readline63-003 (aka CVE-2014-2524)
+openssh: Backport CVE-2015-5600 fix
+unzip: CVE-2015-7696, CVE-2015-7697
+libxslt: CVE-2015-7995
+
+
+----------------
+Fixes
+----------------
+build-appliance-image: Update to fido head revision
+openssl: prevent ABI break from earlier fido releases
+conf/local.conf.sample: comment out ASSUME_PROVIDED=libsdl-native
+build-appliance-image: Update to fido head revision
+bitbake: tests/fetch: ensure fetch tests preserve current dir
+bitbake: bb/tests/fetch: Update cups url
+gtk+_2.24.25: backport a fix for building with newer host perl
+tzdata: update to 2016d
+tzcode: update to 2016d
+tzcode: update to 2016c
+tzdata: update to 2016c
+tzcode: update to 2016b
+tzdata: update to 2016b
+busybox_git: Fix SRCREV
+busybox: Backport patch to fix zcip false-conflict
+populate_sdk_base: Ensure PKGDATA_DIR exists
+scripts/oe-pkgdata-util: Fix variable name in error handling
+xorg-lib: allow native building without x11 DISTRO_FEATURES
+base: check for existing prefix when expanding names in PACKAGECONFIG
+libsdl: expand PACKAGECONFIG and enable native builds
+libsdl: depends on libglu when both x11 and opengl
+testimage: Handle ipk/deb packaging format tests correctly
+build-appliance-image: Update to fido head revision
+poky.conf: Bump version for 1.8.2 fido release
+build-appliance-image: Update to fido head revision
+documentation: Final bits for the 1.8.2 manual set
+nettle: The variable named p in the patch file was incorrectly named.
+kernel.bbclass: do not mv/link sources when externalsrc enabled
+libpcre: Security fixes and package update.
+tzdata: remove 2015d version
+rpmresolve.c: Fix unfreed pointers that keep DB opened
+tzdata: reinstate changes reverted in 2014c upgrade
+tzdata: update to 2016a
+tzcode: update to 2016a
+logrotate: do not move binary logrotate to /usr/bin
+libxml2: remove files for easier maintenance
+texinfo: don't create dependency on INHERIT variable
+openssl: fix SRC_URI
+gcc-4.9: backport from gcc trunk r212178
+feature-arm-thumb.inc: Fix ARMPKGSFX_THUMB value
+allarch: Force TARGET_*FLAGS variable values
+layer.conf: Add missing dependency for allarch package initramfs-framework
+layer.conf: Add several allarch dependency exclusions
+linux-dtb.inc: drop unused DTB_NAME variable from do_install
+linux-firmware: rtl8192cx: Add latest available firmware
+bitbake: toaster: Rework mimetype guessing to fix artifact downloads
+toasterconf: remove master as a branch option from fido release
+bash: Disable custom memory allocator
+tzdata: reinstate changes reverted in 2014c upgrade
+tzdata: update to 2015g
+tzcode: update to 2015g
+glibc: fix the big endian loader name on AArch64
+fontcache: allow to pass extra parameters and environment to fc-cache
+gettext_0.16.1: add -lrt and -lpthread to LDFLAGS for uclibc builds
+gettext_0.16.1: remove obsolete uclibc specific patch
+libiconv_1.11.1: fix LICENSE declaration, LGPL -> LGPLv2.0
+libiconv_1.11.1: merge build and packaging fixes from libiconv_1.14
+uclibc: backport upstream fix for SH4
+oprofile: update --with-kernel option to find perf_event.h
+init-install-efi.sh: Avoid /mnt/mtab creation if already present
+systemd: fix networking setup when ipv6 modules are missing
+systemd: add PACKAGECONFIG for qrencode
+systemd: fix tmpfiles location when multilib in use
+documentation: Updates to support a 1.8.1 YP manual release.
+toaster-manual: Updated to remove 'master' as the default branch
+ref-manual: Corrected example to modify extrauser root password example
+bitbake: toaster: buildinfohelper Skip packages we have no build info about
+ref-manual: Fixed typo in 1.6 migration section for BitBake
+poky.ent: Added "findutils" and "which" packages to Fedora essentials.
+ref-manual: Fix to QA error message.
+ref-manual: Fixed grammar issue in the oelint.bbclass section.
+ref-manual: Updated UNKNOW_CONFIGURE_WHITELIST variable
+kernel-dev: Added kernel-devsrc information for building on target
+poky.ent: Updated the YOCTO_RELEASE_NOTES variable
+ref-manual: Updated the UNKNOWN_CONFIGURE_WHITELIST variable.
+kernel-dev: Added new requirement for working with yocto-linux-custom.bb
+ref-manual: Updated ARCHIVER_MODE and archiver.bbclass
+ref-manual: Fixed "TBD" section cross-reference in KBUILD_DEFCONFIG
+kernel-dev: Added new "in-tree" defconfig file section.
+dev-manual: Added new section on "defconfig" files.
+kernel-dev: Added detail to start of generating config file
+documentation: Updated customization layers to point to XSL mirrors
+ref-manual: Removed PRINC entry from the glossary
+toaster-manual: Added detail for the URL to access Web Interface
+ref-manual: Added new variable description UNKNOWN_CONFIGURE_WHITELIST
+ref-manual: Updated EXTRA_IMAGE_FEATURES variable
+dev-manual: Updates to kernel configuration in the "Kernel Modification Workflow" section
+dev-manual: Added a link to reference defconfig files.
+dev-manual: Minor edits to "Configuring the Kernel" section.
+ref-manual: Added new glossary description for KBUILD_DEFCONFIG.
+adt-manual: Updated the "Getting the Images" section for eclipse-debug
+ref-manual: Added and updated variables to support calling functions
+ref-manual: Added 'ptest' to the list of Distro Features
+ref-manual: Updates to the "Speeding Up the Build" section
+ref-manual, dev-manual: Added info about make race work-around
+ref-manual: Formatting fixes and tag fix.
+ref-manual: Updates to BB_NUMBER_THREADS and PARALLEL_MAKE
+ref-manual: Added descriptions for four new variables
+adt-manual: Emphasis on populate_sdk as bitbake method for building toolchain
+dev-manual: Updated requirements for writing a new test.
+ref-manual: Added new variable description for ARCHIVER_MODE
+
