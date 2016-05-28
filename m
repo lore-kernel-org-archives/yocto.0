@@ -1,60 +1,58 @@
-Return-Path: <rm.santos.caldas@gmail.com>
+Return-Path: <henry@kittyhawk.aero>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E72CE005BB; Sat, 28 May 2016 12:35:31 -0700 (PDT)
+	id E3312E005BB; Sat, 28 May 2016 12:44:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rm.santos.caldas[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B87CAE00522
-	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:35:29 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id a136so9727393wme.0
-	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.174 listed in list.dnswl.org]
+Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
+	[209.85.161.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9928CE00522
+	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:44:51 -0700 (PDT)
+Received: by mail-yw0-f174.google.com with SMTP id h19so133874647ywc.0
+	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:44:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kittyhawk-aero.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=vGncMq6b0H+1wHBjzp9Bkaehaf95uMWiOyFuvZtSyn0=;
-	b=rKo1jlhBNi26w1/uUJM21h80SEXMibugVWThC/uzwvpb2FoxH6m/kCha5ushFiUHu8
-	MLzll8bHMQ93o10LGIGPQDBB1aMMZiz7gb1+S9/oEBc9RPZAU2xVpdtthIvNAPeSxlmC
-	RHNJBaIwzcLVCCKL8RA42IDeItiunguETcJOKvb5EYqyVmcQL+4A89F1mDPrT97ZfX+p
-	KpC1NVPa63oywMDv8blucOednmBr6kmjZNauVL1K3u8a8tGl6LmFIBqAyR4ZSLQ8GE0f
-	xm3j6upRy1f8FJWAcGc6UD1iByHASnyZFB8YwzqxzRA/bpjQrrV07We0zvwDkYgyjz9w
-	ehKw==
+	:cc; bh=F8y3JbchGyCzw/dfnoMMI1Ohx4EOos9o57+/EsejL0E=;
+	b=1tTh7doZRyWX8tnifFqs5Msfvu2F5XswrICMyGrUpG7tlDJ3+3bI5MqtFiQZnLygBn
+	UMbdKazMBXlOKQBbDGPzO1SNFEGcteZiwjMHL31Z3r/A29Uje8zyFJfVIM1WiZgNDQ/v
+	s2f+U45lYKvlGNx0Brc85p5AT8DN0+YtVNi07fNfna6Bi02/UkqtjnpnKP4yJBfUHlbw
+	TtXkKywSYrjK7d+jlZ4rnV2N/jHw5McWVPXN/Cm92LyHh2jSRxLKr6r9W7qx7oTwMMyg
+	A3ftMwlpiRrgBXun5PP2lv2dHgHj1xtiW9x1cujbFwU0EUgvf4qLgJ1OLbttqNMQIu3m
+	nneg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc;
-	bh=vGncMq6b0H+1wHBjzp9Bkaehaf95uMWiOyFuvZtSyn0=;
-	b=MfH/R3U3BCC1vnUIEMJWfA1UwZV+gETPyIxCG4IGI3wjBy6ycMbGp+a2aBLNf0CWAz
-	UtSDR30eJtysH+3/uZ/xYUbs+PsoblYjl0jJNSszb29Qn3oCXY6SjWmukft4diEw+7jC
-	EWbsr5QgiiW4giDgpclxyuVyqvPsG8IPm8XQ26SAJyam5487Wz1gOaprgrfCZmtE4Lmm
-	mRnRWQvvIUYO/cNsN/uBHwwHYF8EXTsMCNX33H3Ffb4/R3rjIKpfgZaAP6ZXlkge27lo
-	Op/BfYUDrREt3ho4dR51h9HxValXRiXdR6xpz4R/Yz6XYg5nw6T6hmbUK4029UUq2qhk
-	8SGw==
-X-Gm-Message-State: ALyK8tKd2TEeAl/YLlcu7zNcKxjZZgREadII17ZFrCUueQ5hPOmtxQVGD/ESn1urmfpoZxUki+d9s+nYKPITtQ==
+	bh=F8y3JbchGyCzw/dfnoMMI1Ohx4EOos9o57+/EsejL0E=;
+	b=Oe6bo0Pqr6IDfVEJsGhJIdl8Z36xpBDCMA+DV5Djrp+ZGagvbF5iKf8l1yoK2QreqQ
+	jZQQVTeL0JnntcYio0YOOTDPYAb8ANAnujttotJDa2fVOt81aJIRDc+T8w1IzsbVGxni
+	AtgtsinZGc7VJ5rLhUK1zBpwuQvUjORKPQ4GDXKJG1xbqTTzRLi/nWd+Lez5FD2IhHNH
+	aFU0vP67cRvbhJbCQCdCLlTt8/hKMBQP0ZpmNo4mJZ2tCj/jUZbJCuHy6tthWkLnYYvB
+	3XGbUn18r2TzfVjeycdI0fKmuGMMtwMS6A+/G29nb2rOmRYHx5nX3tltWHM93U1/M9ED
+	DJvg==
+X-Gm-Message-State: ALyK8tISifzSmdX2c9TVaz7a6fFeECE/bYFyVwGPp1ai/C4egLqQP7bx1PoN7Nwg70PwKYEJKe8vyFBSOGqOXjIV
 MIME-Version: 1.0
-X-Received: by 10.28.113.67 with SMTP id m64mr4355832wmc.3.1464464128450; Sat,
-	28 May 2016 12:35:28 -0700 (PDT)
-Received: by 10.194.81.105 with HTTP; Sat, 28 May 2016 12:35:28 -0700 (PDT)
-In-Reply-To: <CABvT5oUNfyd1Q8z9cZeH4Xj=rttdr2D_h94=WoCQLkesv42PVw@mail.gmail.com>
+X-Received: by 10.129.20.214 with SMTP id 205mr2598159ywu.161.1464464690396;
+	Sat, 28 May 2016 12:44:50 -0700 (PDT)
+Received: by 10.129.89.8 with HTTP; Sat, 28 May 2016 12:44:50 -0700 (PDT)
+In-Reply-To: <CA+21M5ARVPuecHSmEOUR2jftTS=4RhTrJbmwV=VGQKRUyQO-bg@mail.gmail.com>
 References: <CABvT5oUNfyd1Q8z9cZeH4Xj=rttdr2D_h94=WoCQLkesv42PVw@mail.gmail.com>
-Date: Sat, 28 May 2016 20:35:28 +0100
-Message-ID: <CA+21M5ARVPuecHSmEOUR2jftTS=4RhTrJbmwV=VGQKRUyQO-bg@mail.gmail.com>
-From: Renato Caldas <rm.santos.caldas@gmail.com>
-To: Henry Hallam <henry@kittyhawk.aero>
+	<CA+21M5ARVPuecHSmEOUR2jftTS=4RhTrJbmwV=VGQKRUyQO-bg@mail.gmail.com>
+Date: Sat, 28 May 2016 12:44:50 -0700
+Message-ID: <CABvT5oXhY_u368BRe9HW76_vOUGkCzTKirtNoJjjVNAUP3xcbw@mail.gmail.com>
+From: Henry Hallam <henry@kittyhawk.aero>
+To: Renato Caldas <rm.santos.caldas@gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Problem baking 'perl' on Debian-unstable
 X-BeenThere: yocto@yoctoproject.org
@@ -68,66 +66,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 May 2016 19:35:31 -0000
+X-List-Received-Date: Sat, 28 May 2016 19:44:55 -0000
 Content-Type: text/plain; charset=UTF-8
 
-2016-05-28 20:17 GMT+01:00 Henry Hallam <henry@kittyhawk.aero>:
-> Hi folks,
+On Sat, May 28, 2016 at 12:35 PM, Renato Caldas
+<rm.santos.caldas@gmail.com> wrote:
+> It's not just Debian, there's a bug report here:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=9673
 >
-> I know Debian unstable is not a tested/supported distribution, but it
-> worked fine for me for the past 6 months until recently, and I figure
-> we'll want Yocto to work on Debian Stretch when it's released next
-> year.  I suspect what I'm seeing is a Debian bug rather than a Yocto
-> one, but I'd love some help tracking it down so I can report it.
->
-> I've narrowed the reproducing test case to the following:
->
-> * Set up host with an up-to-date Debian unstable distribution on amd64
-> * Checkout a clean copy of 'poky', either on the 'krogoth' or 'jethro'
-> branch (I've tried yocto-2.0.0, -2.0.1 and -2.1 as well as the tip of
-> jethro, krogoth and master)
-> * source oe-init-build-env
-> * Edit local.conf to set MACHINE to qemuarm
-> * bitbake perl
->
-> The build fails at the split_and_strip_files function of the
-> do_package step.  The target binutils
-> arm-poky-linux-gnueabi-{objcopy,strip} fail to process
-> .../package/usr/lib/perl/ptest/generate_uudmap because it is an x86-64
-> executable and those tools are presumably only built to be able to
-> handle target (ARM) binaries.  I'm not sure whether generate_uudmap is
-> supposed to be built for native or target architecture.
->
-> https://gist.github.com/henryhallam/de0d2c8ac99bab2c6b9f0ecd41dd4c72
->
-> I've reproduced this on several different systems running up-to-date
-> Debian Unstable, and confirmed that everything builds correctly on a
-> VM running Debian Stable (Jessie).
->
-> I'm somewhat at a loss as to how to proceed further.  I did try
-> rolling back the 'perl' Debian package from its current version
-> 5.22.2-1 to 5.22.1-10 and corresponding dependencies, which made no
-> difference.  I'm not sure the host system perl is relevant at all,
-> though.
->
-> Any advice appreciated,
+> I've already submitted a patch that should solve this:
+> http://patches.openembedded.org/patch/123675/
 
-Hi Henry,
+Much appreciated Renato, your patch solved the problem for me.  Looks
+like Debian introduced a new version of tar (1.29-1) last week.
 
-It's not just Debian, there's a bug report here:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=9673
-
-I've already submitted a patch that should solve this:
-http://patches.openembedded.org/patch/123675/
-
-Cheers,
-  Renato
-
->
-> Henry
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Henry
 
