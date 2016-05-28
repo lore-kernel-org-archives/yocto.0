@@ -1,66 +1,56 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <henry@kittyhawk.aero>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8059BE00EAF; Fri, 27 May 2016 23:08:34 -0700 (PDT)
+	id DAEA7E00E3C; Sat, 28 May 2016 12:17:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.67 listed in list.dnswl.org]
-Received: from mail-lf0-f67.google.com (mail-lf0-f67.google.com
-	[209.85.215.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1FADE00EA4
-	for <yocto@yoctoproject.org>; Fri, 27 May 2016 23:08:31 -0700 (PDT)
-Received: by mail-lf0-f67.google.com with SMTP id 65so10243543lfq.1
-	for <yocto@yoctoproject.org>; Fri, 27 May 2016 23:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=xnrKJUxjYJDiZyi2lR87PrhwTa7FkR7G2D8FWpvklbk=;
-	b=shwQ4azQA7F4OKWHcgGYDIxtyFR4M+zJUWxhhOr9STQ7hL6AGkk2YzyAWUPlOqVoLS
-	j9Mpnlz1cc1wM4Zk/+5GPCuEud9HswKu1aeYQVBVFptvXcpug4bpVv5s8H6eYc7CHyhQ
-	UnnayF703baD8FDjRdxyWSuX9Woa8Q/A6onnNWf3xCJa0wvBBmKApj0ZHkcSyeyMQITU
-	O12KO4xmxy4E5dWxERTmNojV39zvU+FvjdhdqsVdMoe+hBtby9u2lXIsHzMCLWIlYOGd
-	we5mjiDbwcoTJOoKfC4sEM5jS/HnQpsdQI1yPEikR2Y0OjAjvCixJpjVyNst1/Duv6VR
-	SeNQ==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.178 listed in list.dnswl.org]
+Received: from mail-yw0-f178.google.com (mail-yw0-f178.google.com
+	[209.85.161.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F622E00522
+	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:17:01 -0700 (PDT)
+Received: by mail-yw0-f178.google.com with SMTP id h19so133571016ywc.0
+	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:17:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kittyhawk-aero.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:date:message-id:subject:from:to;
+	bh=93qqRbzCcKv9BziviwgkGvadktTamlIUql06ZAySP2Y=;
+	b=JVWYxrqSvMQlsJnCkf8f8462EdLshod560feusrtl7Wl2uKdbiTyxOYTvDdtOfvLSX
+	I1LCS5IE217J3zsrTvDeDaqG3L3Wr8IdLFNk9BjjvMIzsjGqF972aVNH61MMJL5pF/wO
+	zkE4zYYtlGj4R9NxGXBcOA622Z+jdkhwjRJcZofMbYhUtDWskKTlanXI5JKpnKBISAcD
+	WfxYn4lC3YPo+YDqEPMuH2RW8CwSgl7D7e1oShQ5wuXN1/OCcbSeISXowXtMgTiTRWaS
+	DqtHsMJJ3CIV6NU61MbtgTP7Fyjd/zsFpT7LuRgKP23w7b3y7FpmBUnAGhFT1axMEfXf
+	cdDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=xnrKJUxjYJDiZyi2lR87PrhwTa7FkR7G2D8FWpvklbk=;
-	b=I+g7Cn89U83X8+be1RDtIbIf7QqDuvuEbfKHd6rgAHm1nMcbiL31aJEzNJfnDBfiGd
-	hfTmsfNL91+Lrf4DIqHT1h4FUhgAvLxOrKVhBYHswA9eE8OvtIMYrBy7RQX8ITLB0iM4
-	GtYEaU9irojLHRpShxwBALGZ7WPwWVvWc3Oo9eV9EZ9hGsN+XP/1QGbPzeX3MhNOLCTG
-	9HpE9JYJ/yE8qJvrJ/RQt3Uoh7e703XoIMtBl2zJN+0JR0LbRFvDY0JOd2Zf2r3E1oWN
-	r/AmxKFGpjw4kYC4Gxk539P60inFBpqtEdB4OV0bhoKENKPiKW6iF4zOBp0LWliM+nIU
-	zLxQ==
-X-Gm-Message-State: ALyK8tL6ICnjO9ZzVYpu4TXASpxfC8wKxmiz68aWYA4IBi7XAUAKg8Gr1Wv6lMJfykylvl8f+YQXw6jhx9W2ig==
-X-Received: by 10.25.208.137 with SMTP id h131mr5676531lfg.215.1464415709140; 
-	Fri, 27 May 2016 23:08:29 -0700 (PDT)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+	bh=93qqRbzCcKv9BziviwgkGvadktTamlIUql06ZAySP2Y=;
+	b=LVKnzgtgmth/8Yv7j+Q42TvkIIcPNqXrF/RxkT9Q9jnLv3GUkUSJCjQLTUfjFKFga9
+	n+i3DbdFmwq3XzFXezQ8acY0kujSCJMwmzRpsxcTmoaxa4zuS9zpV68v87H9h7x9LkDg
+	+IaF8HpPdFj/mjJORJZJ4aoOFqZj5DtJJ81yo48HYcUlYrB/rV2LSNGx/7OKzC0bQ6Xl
+	qsNT61Jdr33RCIwTsc8z8QKNzLSsSCcGAuPSVTHXeoOZ2awXqfkeBW97I1A5GAi9EH+h
+	9UsKJRhUSxu84aRCdcnl1tWIhRLUceWCEB8vQ9byOA9K8vo/71OBeOXF3LaVayTPpCKr
+	xUoQ==
+X-Gm-Message-State: ALyK8tJYsZ0rQYh2I0/KV+ejuiDb1Yx7DKW3gReZA6qyFV9Zg0t1+fl2wvNvbkHNDshIAHH6rl1+KUI16SWHD47R
 MIME-Version: 1.0
-Received: by 10.25.42.132 with HTTP; Fri, 27 May 2016 23:07:59 -0700 (PDT)
-In-Reply-To: <a153850802674ed7beeb5ed23ff56369@nalasexr02c.na.qualcomm.com>
-References: <402820becd8447d1a6740c206eeab042@nalasexr02c.na.qualcomm.com>
-	<CAMKF1sqt2QLtiesu7A7Q8XXxNDWZywwFFb+-yvsXbYYZa_iG9w@mail.gmail.com>
-	<a153850802674ed7beeb5ed23ff56369@nalasexr02c.na.qualcomm.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 28 May 2016 09:07:59 +0300
-Message-ID: <CAMKF1soJo3dYv5rAG6PguiVmyMkj2JS=TjBtOp=S46qvJ==LAQ@mail.gmail.com>
-To: "Stroz, Glenn" <gstroz@qti.qualcomm.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: On target gdb support for multiple architectures?
+X-Received: by 10.129.20.214 with SMTP id 205mr2541935ywu.161.1464463020804;
+	Sat, 28 May 2016 12:17:00 -0700 (PDT)
+Received: by 10.129.89.8 with HTTP; Sat, 28 May 2016 12:17:00 -0700 (PDT)
+Date: Sat, 28 May 2016 12:17:00 -0700
+Message-ID: <CABvT5oUNfyd1Q8z9cZeH4Xj=rttdr2D_h94=WoCQLkesv42PVw@mail.gmail.com>
+From: Henry Hallam <henry@kittyhawk.aero>
+To: yocto@yoctoproject.org, hongxu.jia@windriver.com, 
+	Robert Yang <liezhi.yang@windriver.com>
+Subject: Problem baking 'perl' on Debian-unstable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,150 +62,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 May 2016 06:08:34 -0000
+X-List-Received-Date: Sat, 28 May 2016 19:17:04 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 28, 2016 at 1:33 AM, Stroz, Glenn <gstroz@qti.qualcomm.com> wro=
-te:
-> In this case there is not. It appears as if the aarch64 binary gets
-> priority.
->
->
->
-> root@qcom-bsp:/# find -name gdb
->
-> find: ./proc/7639: No such file or directory
->
-> ./usr/share/gdb
->
-> ./usr/bin/gdb
->
-> find: ./sys/kernel/slab/L2TP/IPv6: No such file or directory
->
-> find: ./sys/kernel/slab/L2TP/IP: No such file or directory
->
-> root@qcom-bsp:/#
->
->
->
-> /usr/share/gdb is a folder
->
->
->
->
->
-> The image file has the following:
->
->
->
-> IMAGE_INSTALL +=3D "gdb"
->
-> IMAGE_INSTALL +=3D "lib32-gdb"
->
->
->
-> Ideally we would like one binary that is capable of debugging both
+Hi folks,
 
-Keep in mind that mutlilib was a adhoc solution to keep running 32bit softw=
-are
-on 64bit arches. So minimally all you get is a 32bit runtime which is capab=
-le of
-doing the same. Since these programs are debugged well and are supposed to =
-run
-out of box due to there legacy, to have multllib tools has less value.
+I know Debian unstable is not a tested/supported distribution, but it
+worked fine for me for the past 6 months until recently, and I figure
+we'll want Yocto to work on Debian Stretch when it's released next
+year.  I suspect what I'm seeing is a Debian bug rather than a Yocto
+one, but I'd love some help tracking it down so I can report it.
 
-having said that, you can add --enable-targets=3D<options> for gdb and
-binutils as well
-to get some capabilities to debug the system.
+I've narrowed the reproducing test case to the following:
 
-> architectures, but two binaries would be a short term workaround.
->
->
->
-> -Glenn
->
->
->
-> From: Khem Raj [mailto:raj.khem@gmail.com]
-> Sent: Friday, May 27, 2016 12:20 AM
-> To: Stroz, Glenn <gstroz@qti.qualcomm.com>
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] On target gdb support for multiple architectures?
->
->
->
-> There should be two gdb executables on your target.
->
-> On May 26, 2016 3:34 PM, "Stroz, Glenn" <gstroz@qti.qualcomm.com> wrote:
->
-> Hello,
->
->
->
-> We=E2=80=99re trying to setup our target for onboard debugging. We have m=
-ultiple
-> architectures being built with multilib. An armv7 variant which is 32 bit
-> and an armv8 variant which is 64 bit. We would like the gdb installed in =
-the
-> image to support both architectures. Right now, even when adding both gdb
-> and lib32-gdb to the image we see it only supports aarch64.
->
->
->
-> #
->
-> # Multilib configuration
->
-> #
->
-> # This sets any packages preprended with lib32- to be built with
->
-> # the armv7a tuning (32 bit) instead of 64 bit aarch.
->
-> #
->
-> require conf/multilib.conf
->
-> MULTILIBS =3D "multilib:lib32"
->
-> DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7a-neon"
->
->
->
-> When adding lib32-gdb and gdb to image:
->
-> (gdb) set architecture
->
-> Requires an argument. Valid arguments are aarch64, aarch64:ilp32, auto.
->
->
->
-> When adding only lib32-gdb to image:
->
-> (gdb) set architecture
->
-> Requires an argument. Valid arguments are arm, armv2, armv2a, armv3, armv=
-3m,
-> armv4, armv4t, armv5, armv5t, armv5te, xscale, ep9312, iwmmxt, iwmmxt2,
-> auto.
->
->
->
-> Is there any method of getting the build system to combine the two lists =
-of
-> architectures into one binary that supports them all?
->
->
->
-> Thanks,
->
-> Glenn
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+* Set up host with an up-to-date Debian unstable distribution on amd64
+* Checkout a clean copy of 'poky', either on the 'krogoth' or 'jethro'
+branch (I've tried yocto-2.0.0, -2.0.1 and -2.1 as well as the tip of
+jethro, krogoth and master)
+* source oe-init-build-env
+* Edit local.conf to set MACHINE to qemuarm
+* bitbake perl
+
+The build fails at the split_and_strip_files function of the
+do_package step.  The target binutils
+arm-poky-linux-gnueabi-{objcopy,strip} fail to process
+.../package/usr/lib/perl/ptest/generate_uudmap because it is an x86-64
+executable and those tools are presumably only built to be able to
+handle target (ARM) binaries.  I'm not sure whether generate_uudmap is
+supposed to be built for native or target architecture.
+
+https://gist.github.com/henryhallam/de0d2c8ac99bab2c6b9f0ecd41dd4c72
+
+I've reproduced this on several different systems running up-to-date
+Debian Unstable, and confirmed that everything builds correctly on a
+VM running Debian Stable (Jessie).
+
+I'm somewhat at a loss as to how to proceed further.  I did try
+rolling back the 'perl' Debian package from its current version
+5.22.2-1 to 5.22.1-10 and corresponding dependencies, which made no
+difference.  I'm not sure the host system perl is relevant at all,
+though.
+
+Any advice appreciated,
+
+Henry
 
