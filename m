@@ -1,60 +1,62 @@
-Return-Path: <henry@kittyhawk.aero>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3312E005BB; Sat, 28 May 2016 12:44:54 -0700 (PDT)
+	id 89C82E00EB0; Sun, 29 May 2016 08:59:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.174 listed in list.dnswl.org]
-Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
-	[209.85.161.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9928CE00522
-	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:44:51 -0700 (PDT)
-Received: by mail-yw0-f174.google.com with SMTP id h19so133874647ywc.0
-	for <yocto@yoctoproject.org>; Sat, 28 May 2016 12:44:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=kittyhawk-aero.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=F8y3JbchGyCzw/dfnoMMI1Ohx4EOos9o57+/EsejL0E=;
-	b=1tTh7doZRyWX8tnifFqs5Msfvu2F5XswrICMyGrUpG7tlDJ3+3bI5MqtFiQZnLygBn
-	UMbdKazMBXlOKQBbDGPzO1SNFEGcteZiwjMHL31Z3r/A29Uje8zyFJfVIM1WiZgNDQ/v
-	s2f+U45lYKvlGNx0Brc85p5AT8DN0+YtVNi07fNfna6Bi02/UkqtjnpnKP4yJBfUHlbw
-	TtXkKywSYrjK7d+jlZ4rnV2N/jHw5McWVPXN/Cm92LyHh2jSRxLKr6r9W7qx7oTwMMyg
-	A3ftMwlpiRrgBXun5PP2lv2dHgHj1xtiW9x1cujbFwU0EUgvf4qLgJ1OLbttqNMQIu3m
-	nneg==
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3836E00B9F
+	for <yocto@yoctoproject.org>; Sun, 29 May 2016 08:59:08 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id n129so15177175wmn.1
+	for <yocto@yoctoproject.org>; Sun, 29 May 2016 08:59:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=NNvlGtqWVVGggMdRkMgl9HXzb2qJBf1BJpfmM2jXXEs=;
+	b=0NL9YH68fDcxA3KK5Bp4aReXg0B8O2/vZSFQh6HV2o1dZRaYsEbao9O8G4EU+5QqZp
+	sJTF3D3IrKuk/BigMwnL13YkzRW5F+obTWcYewK7r39Mg8rBtcf3EwMc/LE5cCKr1Pwn
+	9W6yx1joQTQcD9DnHdtV2XvPo1lBfGnIyHw4tITrEgisf07v7LxdB4HU1pHDuWFV/Ufy
+	weBMvLybVhv0HsYNkGDdr1V3OiPHHaj78LWbiwl0vsXPGNp3mJ0UspDq0mjJicslQh+5
+	wVIVRsN3b5MXAtl7ft9LZpzJJtM1xyiBoNGIsimNXwceXEDBV2l2qcG7hAN22jJjGpoR
+	UeWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=F8y3JbchGyCzw/dfnoMMI1Ohx4EOos9o57+/EsejL0E=;
-	b=Oe6bo0Pqr6IDfVEJsGhJIdl8Z36xpBDCMA+DV5Djrp+ZGagvbF5iKf8l1yoK2QreqQ
-	jZQQVTeL0JnntcYio0YOOTDPYAb8ANAnujttotJDa2fVOt81aJIRDc+T8w1IzsbVGxni
-	AtgtsinZGc7VJ5rLhUK1zBpwuQvUjORKPQ4GDXKJG1xbqTTzRLi/nWd+Lez5FD2IhHNH
-	aFU0vP67cRvbhJbCQCdCLlTt8/hKMBQP0ZpmNo4mJZ2tCj/jUZbJCuHy6tthWkLnYYvB
-	3XGbUn18r2TzfVjeycdI0fKmuGMMtwMS6A+/G29nb2rOmRYHx5nX3tltWHM93U1/M9ED
-	DJvg==
-X-Gm-Message-State: ALyK8tISifzSmdX2c9TVaz7a6fFeECE/bYFyVwGPp1ai/C4egLqQP7bx1PoN7Nwg70PwKYEJKe8vyFBSOGqOXjIV
-MIME-Version: 1.0
-X-Received: by 10.129.20.214 with SMTP id 205mr2598159ywu.161.1464464690396;
-	Sat, 28 May 2016 12:44:50 -0700 (PDT)
-Received: by 10.129.89.8 with HTTP; Sat, 28 May 2016 12:44:50 -0700 (PDT)
-In-Reply-To: <CA+21M5ARVPuecHSmEOUR2jftTS=4RhTrJbmwV=VGQKRUyQO-bg@mail.gmail.com>
-References: <CABvT5oUNfyd1Q8z9cZeH4Xj=rttdr2D_h94=WoCQLkesv42PVw@mail.gmail.com>
-	<CA+21M5ARVPuecHSmEOUR2jftTS=4RhTrJbmwV=VGQKRUyQO-bg@mail.gmail.com>
-Date: Sat, 28 May 2016 12:44:50 -0700
-Message-ID: <CABvT5oXhY_u368BRe9HW76_vOUGkCzTKirtNoJjjVNAUP3xcbw@mail.gmail.com>
-From: Henry Hallam <henry@kittyhawk.aero>
-To: Renato Caldas <rm.santos.caldas@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem baking 'perl' on Debian-unstable
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+	:in-reply-to:references;
+	bh=NNvlGtqWVVGggMdRkMgl9HXzb2qJBf1BJpfmM2jXXEs=;
+	b=O2RWJb5KHO5rudXwL9IFgb6l9Q8IGW5PwYh7Lzhp2ef+5qd2AMv3zfgBcnLfGQ+Mhp
+	qCi83AdOnU7Sc9UPRn9b1PbbrhC9GeafWN4qY5LPgsgfUAJuRx7JBwgSjUZ5hG5gGEU/
+	LDvmGiIB7rCucU6p06yotm++5A40HQPpBaIgnZ+5FNpkmEctmV4s0qtF5scEXjH9NCQO
+	VmOVsy0zj8VYGL+ORZlW41qmlStGi9v+VlwslxHU0r4MsQax4nYIGHSnEHLm01hDU1xN
+	eeDxl3xqnaRcxCVXTKZHLP9Gbr/Xa1UnsE7vv2MnlYvlOspLUIW6QCWkFvji2U/6si1J
+	xz0g==
+X-Gm-Message-State: ALyK8tId1ElWogCJiPEI2BpOSHw+2gK4Zj5yMAWjuXUZbmmdsp6rBK2Cz5I9rvQZSI/jDw==
+X-Received: by 10.28.186.7 with SMTP id k7mr7607370wmf.36.1464537547609;
+	Sun, 29 May 2016 08:59:07 -0700 (PDT)
+Received: from dev-jessie.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
+	by smtp.gmail.com with ESMTPSA id
+	kq9sm29834872wjc.26.2016.05.29.08.59.06
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 29 May 2016 08:59:06 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+To: yocto@yoctoproject.org
+Date: Sun, 29 May 2016 16:59:08 +0100
+Message-Id: <1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 2.1.4
+In-Reply-To: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
+References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
+Subject: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Allow override of PV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,19 +68,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 May 2016 19:44:55 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 29 May 2016 15:59:10 -0000
 
-On Sat, May 28, 2016 at 12:35 PM, Renato Caldas
-<rm.santos.caldas@gmail.com> wrote:
-> It's not just Debian, there's a bug report here:
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=9673
->
-> I've already submitted a patch that should solve this:
-> http://patches.openembedded.org/patch/123675/
+PV is now set in each version of the linux-raspberrypi recipe instead of in
+linux-raspberrypi.inc. This allows linux-raspberrypi.inc to be used in custom
+kernel recipes in another layer which require a different PV value.
 
-Much appreciated Renato, your patch solved the problem for me.  Looks
-like Debian introduced a new version of tar (1.29-1) last week.
+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+---
+ recipes-kernel/linux/linux-raspberrypi.inc     | 1 -
+ recipes-kernel/linux/linux-raspberrypi_3.18.bb | 1 +
+ recipes-kernel/linux/linux-raspberrypi_4.1.bb  | 1 +
+ recipes-kernel/linux/linux-raspberrypi_4.4.bb  | 1 +
+ 4 files changed, 3 insertions(+), 1 deletion(-)
 
-Henry
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index 4799c74..dd477cd 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -13,7 +13,6 @@ SRC_URI += " \
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+ PE = "1"
+-PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+ KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+index 1110b71..b16a1d7 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+ LINUX_VERSION ?= "3.18.16"
++PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ SRCREV = "1bb18c8f721ef674a447f3622273f2e2de7a205c"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+index 79fac66..9e1572e 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+ LINUX_VERSION ?= "4.1.21"
++PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ SRCREV = "ff45bc0e8917c77461b2901e2743e6339bb70413"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y \
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+index ba47b22..12bb43a 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+ LINUX_VERSION ?= "4.4.9"
++PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ SRCREV = "3b440738b5c1adc3ec3ee72ceca799d1b8d264df"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
+-- 
+2.1.4
+
 
