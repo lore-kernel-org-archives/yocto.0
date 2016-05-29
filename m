@@ -1,6 +1,6 @@
 Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4D68E00EB2; Sun, 29 May 2016 08:59:11 -0700 (PDT)
+	id 45290E00EB2; Sun, 29 May 2016 08:59:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,48 +15,48 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE85EE00E22
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD1F1E00B9F
 	for <yocto@yoctoproject.org>; Sun, 29 May 2016 08:59:10 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id q62so15226697wmg.3
+Received: by mail-wm0-f68.google.com with SMTP id n129so15177446wmn.1
 	for <yocto@yoctoproject.org>; Sun, 29 May 2016 08:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=CyVjIS5+ENjUnzpCDw+3KdUAj6L0hJIE33PV7WwbleI=;
-	b=e7FGxjcR7QmwaOH2Ce46GaoejXKtJ3hkn7faHtG87CBCdR9t82cCHpaeuTQDDrS5eJ
-	CpuTNfy5r6qD/yG4U1Y3I5Rg4TI/b+qoUiLoBazfzbf6t2774YS2A5NU+4s9yXgMywu1
-	JQK7oDePVMjyRZjUgtzWmHhSRAHiCC3AsI6p/6CRxCMzdieFltztyGP7CRMIXU0uQ+Ei
-	VUFca5YwMyGCP5w8aeZ9VkuoRnhpAnhTRqT4cS4fiIhm/gZSCcWU8jIJtCtRzzm0mtB6
-	inICh00oKj0C6q5mMxydO+KP7ikMk3mNgwdmdyVYAZopCIqloVrkzYidkD+GJm62fmdk
-	wrOA==
+	bh=PMa0a6YJZVZAIUkjiWz8APMDc+iAI0qlLv6378bPbS0=;
+	b=lPUEzFJ/fbaSQQE1f3Y2/B3NGLubV0+Lg0/XVc68lU1T7GkPwCgufGVu9I4ZRJa9vY
+	/usHbfXq9lm1+PNZP6qLMMvNYfR59/MvrdeW7Caw/oOK54MgKFb3dmT8ky7MIneUodVA
+	7i3+18YDCEMtkA3c9cNxh0IA+9v7CdL/166IQ9y46qc2OE1RaAs4XwigAo7TBo05gUpD
+	SiOwGEqBhMrIJQ7veIzBmfY7odrBcV1oR7l95gKGIlCHOBnZ7fBY55AEZdojrkJInkGJ
+	BfwpTk1Tjb6vaHqlj2pTEOS1CqqWQg4PGbhnBbjDDC34moftIEGeOjh5gLeh9yVfNRJh
+	ydIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
 	:in-reply-to:references;
-	bh=CyVjIS5+ENjUnzpCDw+3KdUAj6L0hJIE33PV7WwbleI=;
-	b=i0pd/RDyfy6POIx7FAD1YC+DkYFbPRCafNQeff2VFIiCUdlYqRxaPQ8Y0s8AgAe7yn
-	OQnMRvk5z6rZTJTwBGESD5zrb8ZqgCtfpMHae2VT8PkVeeLKFl+WmLB10cDvHeNiJnQ+
-	2K4qio2nC06KTicte5ANIso1gpy40pGcpHNHR/6T6l8nKw5gnwp9zDM3bQHs96eX8iFe
-	XTujDZ8zCQQJcmJZJRHxJklJT6bNx/Jj+paTEuz0Hy8xbVEARPGRRtWTrM3VtqI3JkPM
-	kNMPurTOrnUfo5k9jjXWCvn6dwR6EiVXdENsWn/hT+tOSLu9easev2bdy5tTicM2XZv2
-	0+Ug==
-X-Gm-Message-State: ALyK8tLTWjHtuL2xRHF8yqk7JrSs2Pyo17zdPlPpixttE5zv+CcUZUhLTVOO/E258lheaw==
-X-Received: by 10.194.116.9 with SMTP id js9mr27194874wjb.112.1464537549377;
-	Sun, 29 May 2016 08:59:09 -0700 (PDT)
+	bh=PMa0a6YJZVZAIUkjiWz8APMDc+iAI0qlLv6378bPbS0=;
+	b=MgVV6UOf+sBZ9WCQsiVCDgpLkLp7woOY9MCETWl6tXNN4dcerNHJ49nv/p6b8BAtO3
+	9hP/1/4eQ4oBASWegLjhco1fRCQ7ldLUjEgRfSDRSRck0B/rCkElwFkIDSNQx99KIieL
+	qU+KkhXzqxJFlfn2O0vQdVmQvNKvmhTy/oqIQP81wLHy/zi1BvKGbxOACiYxtu7ZNC28
+	BSpKp1M6o5BCPKmHGAYqNSo0q05mf65Jjn9CzWS07P89XG+8MhUTx6jK3BaOOZ1sfxt8
+	dk4Oe/0gG9pw7yAb3xUzOFNGYWqtj/Cj2hEyoHq+rbnWeBjeiivCAKaZgbD3k0jaRMWO
+	hi7w==
+X-Gm-Message-State: ALyK8tIUjBDs2R6UJcMUcuEIQiax1hB2xFALkiH3HvpjiJqR1TRlBfEOmay2OBR8UAe0Hg==
+X-Received: by 10.194.71.80 with SMTP id s16mr26490122wju.157.1464537550150;
+	Sun, 29 May 2016 08:59:10 -0700 (PDT)
 Received: from dev-jessie.betafive.co.uk
 	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
 	by smtp.gmail.com with ESMTPSA id
-	kq9sm29834872wjc.26.2016.05.29.08.59.08
+	kq9sm29834872wjc.26.2016.05.29.08.59.09
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 29 May 2016 08:59:08 -0700 (PDT)
+	Sun, 29 May 2016 08:59:09 -0700 (PDT)
 Sender: Paul Barker <paul.betafive@gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
 To: yocto@yoctoproject.org
-Date: Sun, 29 May 2016 16:59:10 +0100
-Message-Id: <1464537553-24915-4-git-send-email-paul@paulbarker.me.uk>
+Date: Sun, 29 May 2016 16:59:11 +0100
+Message-Id: <1464537553-24915-5-git-send-email-paul@paulbarker.me.uk>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
 References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
-Subject: [meta-raspberrypi][PATCH 3/6] u-boot: Use mainline u-boot recipe from oe-core
+Subject: [meta-raspberrypi][PATCH 4/6] rpi-mkimage: Remove unused recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,109 +68,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 May 2016 15:59:11 -0000
+X-List-Received-Date: Sun, 29 May 2016 15:59:12 -0000
 
-The repository used by u-boot-rpi has not been updated since 2012. In the
-meantime, mailine u-boot has gained Raspberry Pi support. All we need to do is
-set UBOOT_MACHINE to an appropriate value in the machine config files.
-
-Currently configs are only provided for raspberrypi and raspberrypi2. The master
-branch of u-boot now also appears to have a config file for raspberrypi3 so
-support for this can be added in the future when u-boot is upgraded in oe-core.
-
-The mainline u-boot recipe creates the file "u-boot.bin" instead of
-"u-boot.img".
+The rpi-mkimage tools are no longer used. Recent Raspberry Pi firmware can
+directly boot a Linux kernel image using device tree and mainline u-boot
+supports Raspberry Pi without the use of these tools.
 
 Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
 ---
- classes/sdcard_image-rpi.bbclass               |  2 +-
- conf/machine/include/rpi-default-providers.inc |  1 -
- conf/machine/raspberrypi.conf                  |  2 ++
- conf/machine/raspberrypi2.conf                 |  2 ++
- recipes-bsp/u-boot/u-boot-rpi_git.bb           | 29 --------------------------
- 5 files changed, 5 insertions(+), 31 deletions(-)
- delete mode 100644 recipes-bsp/u-boot/u-boot-rpi_git.bb
+ recipes-bsp/rpi-mkimage/rpi-mkimage/License        | 25 ----------------------
+ .../open-files-relative-to-script.patch            | 17 ---------------
+ recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb         | 22 -------------------
+ 3 files changed, 64 deletions(-)
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage/License
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage/open-files-relative-to-script.patch
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 4dfd7a3..20bd314 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -105,7 +105,7 @@ IMAGE_CMD_rpi-sdimg () {
- 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
- 	case "${KERNEL_IMAGETYPE}" in
- 	"uImage")
--		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.img ::${SDIMG_KERNELIMAGE}
-+		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.bin ::${SDIMG_KERNELIMAGE}
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
- 		;;
- 	*)
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index cabbd43..359870d 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -1,7 +1,6 @@
- # RaspberryPi BSP default providers
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
--PREFERRED_PROVIDER_u-boot ?= "u-boot-rpi"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
- PREFERRED_PROVIDER_virtual/egl ?= "userland"
- PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
-diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
-index 0f95f1a..72beeb8 100644
---- a/conf/machine/raspberrypi.conf
-+++ b/conf/machine/raspberrypi.conf
-@@ -8,3 +8,5 @@ require conf/machine/include/tune-arm1176jzf-s.inc
- include conf/machine/include/rpi-base.inc
- 
- SERIAL_CONSOLE = "115200 ttyAMA0"
-+
-+UBOOT_MACHINE = "rpi_config"
-diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
-index b6346e6..d50ef70 100644
---- a/conf/machine/raspberrypi2.conf
-+++ b/conf/machine/raspberrypi2.conf
-@@ -8,3 +8,5 @@ require conf/machine/include/tune-cortexa7.inc
- include conf/machine/include/rpi-base.inc
- 
- SERIAL_CONSOLE = "115200 ttyAMA0"
-+
-+UBOOT_MACHINE = "rpi_2_config"
-diff --git a/recipes-bsp/u-boot/u-boot-rpi_git.bb b/recipes-bsp/u-boot/u-boot-rpi_git.bb
+diff --git a/recipes-bsp/rpi-mkimage/rpi-mkimage/License b/recipes-bsp/rpi-mkimage/rpi-mkimage/License
 deleted file mode 100644
-index 3e8d377..0000000
---- a/recipes-bsp/u-boot/u-boot-rpi_git.bb
+index 2582681..0000000
+--- a/recipes-bsp/rpi-mkimage/rpi-mkimage/License
 +++ /dev/null
-@@ -1,29 +0,0 @@
--DESCRIPTION = "U-Boot port for RaspberryPi"
+@@ -1,25 +0,0 @@
+-Copyright (c) 2012, Broadcom Europe Ltd
+-All rights reserved.
 -
--require recipes-bsp/u-boot/u-boot.inc
+-Redistribution and use in source and binary forms, with or without
+-modification, are permitted provided that the following conditions are met:
+-    * Redistributions of source code must retain the above copyright
+-      notice, this list of conditions and the following disclaimer.
+-    * Redistributions in binary form must reproduce the above copyright
+-      notice, this list of conditions and the following disclaimer in the
+-      documentation and/or other materials provided with the distribution.
+-    * Neither the name of the copyright holder nor the
+-      names of its contributors may be used to endorse or promote products
+-      derived from this software without specific prior written permission.
 -
--DEPENDS += "rpi-mkimage-native"
+-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -
--PROVIDES += "u-boot"
+diff --git a/recipes-bsp/rpi-mkimage/rpi-mkimage/open-files-relative-to-script.patch b/recipes-bsp/rpi-mkimage/rpi-mkimage/open-files-relative-to-script.patch
+deleted file mode 100644
+index fa9e88b..0000000
+--- a/recipes-bsp/rpi-mkimage/rpi-mkimage/open-files-relative-to-script.patch
++++ /dev/null
+@@ -1,17 +0,0 @@
+-When using open, use path relative to imagetool-uncompressed.py
 -
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
+-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 -
--SRCREV = "6709570cdc947c2a546f96d571551acf4474778c"
--SRC_URI = "git://github.com/gonzoua/u-boot-pi.git;branch=rpi"
+-Index: git/mkimage/imagetool-uncompressed.py
+-===================================================================
+---- a/mkimage/imagetool-uncompressed.py
+-+++ b/mkimage/imagetool-uncompressed.py
+-@@ -18,7 +18,7 @@ re_line = re.compile(r"0x(?P<value>[0-9a
+- mem = [0 for i in range(32768)]
+- 
+- def load_to_mem(name, addr):
+--   f = open(name)
+-+   f = open(os.path.dirname(__file__) + '/' + name)
+- 
+-    for l in f.readlines():
+-       m = re_line.match(l)
+diff --git a/recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb b/recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb
+deleted file mode 100644
+index cce91d7..0000000
+--- a/recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb
++++ /dev/null
+@@ -1,22 +0,0 @@
+-SUMMARY = "RaspberryPi tool to produce kernel.img"
+-LICENSE = "Broadcom"
+-LIC_FILES_CHKSUM = "file://${WORKDIR}/License;md5=957f6640d5e2d2acfce73a36a56cb32f"
+-SECTION = "bootloader"
+-
+-DEPENDS = "python"
+-
+-SRCREV = "f5642106425d430e1f82ee064121a5fd0e05a386"
+-SRC_URI = " \
+-    git://github.com/raspberrypi/tools.git;branch=master;protocol=git \
+-    file://License \
+-    file://open-files-relative-to-script.patch \
+-"
 -
 -S = "${WORKDIR}/git"
 -
--UBOOT_MACHINE = "rpi_b"
--UBOOT_MAKE_TARGET = "u-boot.bin"
--UBOOT_SUFFIX = "img"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--do_compile_append() {
--    # Create kernel.img from uboot.bin and name it u-boot.img
--    ${STAGING_BINDIR_NATIVE}/imagetool-uncompressed.py u-boot.bin
--    mv kernel.img u-boot.img
+-do_install () {
+-    install -d ${D}${bindir}
+-    install -t ${D}${bindir} mkimage/*
 -}
+-
+-BBCLASSEXTEND = "native"
 -- 
 2.1.4
 
