@@ -1,66 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0173E00C31; Sun, 29 May 2016 11:20:23 -0700 (PDT)
+	id 5B03AE00C39; Sun, 29 May 2016 21:26:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
-	[209.85.215.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9F20E00C2D
-	for <yocto@yoctoproject.org>; Sun, 29 May 2016 11:20:22 -0700 (PDT)
-Received: by mail-lf0-f65.google.com with SMTP id w16so10217960lfd.0
-	for <yocto@yoctoproject.org>; Sun, 29 May 2016 11:20:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc; bh=Ug5fhYq8wuX3tLTZdqbfdByk36SOZBqYo8YsYm/VOpk=;
-	b=DmhltZs/4+tpAoItGKLY+xme2JuF6XcU3rNCtvOmV7buQM+7FPVCcK9nsVmdSPXWZc
-	wU7NQ7WUAWNT4JYs5YxnJSutJVSv8I+vBS5PGOcbcLLVEtOF84qHVp8b5M1JAaToCBAx
-	ztmijhZx2h4dxVJdmFZZ+N0JjRuXCf6RVH/PcPyb3e10F6RtpoCgJn99J5Tke0kPaf0M
-	j92Qklk0d+h7d4ZsMfP3k1vt5Kq0EPvipu+RjuKYV1nQIgVmXnOtzvD/g5jle+m3klYa
-	j57PtuNgI5BX0hSVvYRCT23GQrjJGohaCe1YbAl6beySVKa7qgQeE/6dB9DlcgVQClW4
-	XEBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc;
-	bh=Ug5fhYq8wuX3tLTZdqbfdByk36SOZBqYo8YsYm/VOpk=;
-	b=g4/vY1Od10YeRsuIjPYECpus84AlAmxXZsFgNElxpbi5sd57ywDSq7YtIT+ghGLKik
-	Nc3/BpF8YQlfmxBDhXvOOx/cHB6Lxl4xYwnhd/DxYckguzocP9PK/d4reRAOaM/BE7lN
-	6vBbQVECN8Jtey+kq+DJWgKhrv13OG4pbBnx+5uZd6jWRA/bXqvbKuQycUFyqUyNF6S3
-	oMKFihQz2rkX+OAKxyie23se7osBcjsJZ/q0q1A99AobzSpOydYIq7BnnWtkxgkiuDlO
-	r/HiNHSIBqafkAd4nUgmu5746WOeI6V1EINKxoQTzbMKFY0h+ZWPA5fLEGEqMwDg7WzV
-	fURA==
-X-Gm-Message-State: ALyK8tKzfjgVaVTH4E5YfXvyLXD530GZVBqSXfKPk+qkuJl/wAv4j3A5/1k8nD1EhqYEBk8/4ZqBUxfMkTBEpw==
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 670E8E00C1F
+	for <yocto@yoctoproject.org>; Sun, 29 May 2016 21:26:08 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 5A5C280B9CEC
+	for <yocto@yoctoproject.org>; Mon, 30 May 2016 00:26:06 -0400 (EDT)
 MIME-Version: 1.0
-X-Received: by 10.25.161.132 with SMTP id k126mr674323lfe.101.1464546021097;
-	Sun, 29 May 2016 11:20:21 -0700 (PDT)
-Received: by 10.25.42.132 with HTTP; Sun, 29 May 2016 11:20:21 -0700 (PDT)
-Received: by 10.25.42.132 with HTTP; Sun, 29 May 2016 11:20:21 -0700 (PDT)
-In-Reply-To: <1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
-References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
-	<1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
-Date: Sun, 29 May 2016 21:20:21 +0300
-Message-ID: <CAMKF1sqhn+RckCxE0Kf68MFdNQMVP5d8K_8Rg3WkSaACsEbv_g@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Allow override of PV
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 30 May 2016 04:26:06 -0000
+Message-ID: <20160530042606.22906.46015@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,211 +32,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 May 2016 18:20:24 -0000
-Content-Type: multipart/alternative; boundary=001a113f21ec584a540533ff314b
+X-List-Received-Date: Mon, 30 May 2016 04:26:10 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a113f21ec584a540533ff314b
-Content-Type: text/plain; charset=UTF-8
+This mail was sent out by Recipe reporting system.
 
-On May 29, 2016 9:00 AM, "Paul Barker" <paul@paulbarker.me.uk> wrote:
->
-> PV is now set in each version of the linux-raspberrypi recipe instead of
-in
-> linux-raspberrypi.inc. This allows linux-raspberrypi.inc to be used in
-custom
-> kernel recipes in another layer which require a different PV value.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-You  can also use weak define. Instead of duplicated value in each recipe
->
-> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-> ---
->  recipes-kernel/linux/linux-raspberrypi.inc     | 1 -
->  recipes-kernel/linux/linux-raspberrypi_3.18.bb | 1 +
->  recipes-kernel/linux/linux-raspberrypi_4.1.bb  | 1 +
->  recipes-kernel/linux/linux-raspberrypi_4.4.bb  | 1 +
->  4 files changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc
-b/recipes-kernel/linux/linux-raspberrypi.inc
-> index 4799c74..dd477cd 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi.inc
-> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
-> @@ -13,7 +13,6 @@ SRC_URI += " \
->  COMPATIBLE_MACHINE = "raspberrypi"
->
->  PE = "1"
-> -PV = "${LINUX_VERSION}+git${SRCPV}"
->
->  # NOTE: For now we pull in the default config from the RPi kernel GIT
-tree.
->  KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-> index 1110b71..b16a1d7 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-> @@ -1,6 +1,7 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->
->  LINUX_VERSION ?= "3.18.16"
-> +PV = "${LINUX_VERSION}+git${SRCPV}"
->
->  SRCREV = "1bb18c8f721ef674a447f3622273f2e2de7a205c"
->  SRC_URI = "git://
-github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> index 79fac66..9e1572e 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> @@ -1,6 +1,7 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->
->  LINUX_VERSION ?= "4.1.21"
-> +PV = "${LINUX_VERSION}+git${SRCPV}"
->
->  SRCREV = "ff45bc0e8917c77461b2901e2743e6339bb70413"
->  SRC_URI = "git://
-github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y \
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> index ba47b22..12bb43a 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-> @@ -1,6 +1,7 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->
->  LINUX_VERSION ?= "4.4.9"
-> +PV = "${LINUX_VERSION}+git${SRCPV}"
->
->  SRCREV = "3b440738b5c1adc3ec3ee72ceca799d1b8d264df"
->  SRC_URI = "git://
-github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
-> --
-> 2.1.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-,
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
---001a113f21ec584a540533ff314b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+You can check the detail information at:
 
-<p dir=3D"ltr"><br>
-On May 29, 2016 9:00 AM, &quot;Paul Barker&quot; &lt;<a href=3D"mailto:paul=
-@paulbarker.me.uk">paul@paulbarker.me.uk</a>&gt; wrote:<br>
-&gt;<br>
-&gt; PV is now set in each version of the linux-raspberrypi recipe instead =
-of in<br>
-&gt; linux-raspberrypi.inc. This allows linux-raspberrypi.inc to be used in=
- custom<br>
-&gt; kernel recipes in another layer which require a different PV value.</p=
->
-<p dir=3D"ltr">You=C2=A0 can also use weak define. Instead of duplicated va=
-lue in each recipe<br>
-&gt;<br>
-&gt; Signed-off-by: Paul Barker &lt;<a href=3D"mailto:paul@paulbarker.me.uk=
-">paul@paulbarker.me.uk</a>&gt;<br>
-&gt; ---<br>
-&gt; =C2=A0recipes-kernel/linux/linux-raspberrypi.inc=C2=A0 =C2=A0 =C2=A0| =
-1 -<br>
-&gt; =C2=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.18.bb=
-">linux-raspberrypi_3.18.bb</a> | 1 +<br>
-&gt; =C2=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.1.bb"=
->linux-raspberrypi_4.1.bb</a>=C2=A0 | 1 +<br>
-&gt; =C2=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4.bb"=
->linux-raspberrypi_4.4.bb</a>=C2=A0 | 1 +<br>
-&gt; =C2=A04 files changed, 3 insertions(+), 1 deletion(-)<br>
-&gt;<br>
-&gt; diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kern=
-el/linux/linux-raspberrypi.inc<br>
-&gt; index 4799c74..dd477cd 100644<br>
-&gt; --- a/recipes-kernel/linux/linux-raspberrypi.inc<br>
-&gt; +++ b/recipes-kernel/linux/linux-raspberrypi.inc<br>
-&gt; @@ -13,7 +13,6 @@ SRC_URI +=3D &quot; \<br>
-&gt; =C2=A0COMPATIBLE_MACHINE =3D &quot;raspberrypi&quot;<br>
-&gt;<br>
-&gt; =C2=A0PE =3D &quot;1&quot;<br>
-&gt; -PV =3D &quot;${LINUX_VERSION}+git${SRCPV}&quot;<br>
-&gt;<br>
-&gt; =C2=A0# NOTE: For now we pull in the default config from the RPi kerne=
-l GIT tree.<br>
-&gt; =C2=A0KERNEL_DEFCONFIG_raspberrypi ?=3D &quot;bcmrpi_defconfig&quot;<b=
-r>
-&gt; diff --git a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_=
-3.18.bb">linux-raspberrypi_3.18.bb</a> b/recipes-kernel/linux/<a href=3D"ht=
-tp://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a><br>
-&gt; index 1110b71..b16a1d7 100644<br>
-&gt; --- a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.18.bb=
-">linux-raspberrypi_3.18.bb</a><br>
-&gt; +++ b/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.18.bb=
-">linux-raspberrypi_3.18.bb</a><br>
-&gt; @@ -1,6 +1,7 @@<br>
-&gt; =C2=A0FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}-${PV}:&quot;=
-<br>
-&gt;<br>
-&gt; =C2=A0LINUX_VERSION ?=3D &quot;3.18.16&quot;<br>
-&gt; +PV =3D &quot;${LINUX_VERSION}+git${SRCPV}&quot;<br>
-&gt;<br>
-&gt; =C2=A0SRCREV =3D &quot;1bb18c8f721ef674a447f3622273f2e2de7a205c&quot;<=
-br>
-&gt; =C2=A0SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi=
-/linux.git;protocol=3Dgit;branch=3Drpi-3.18.y">github.com/raspberrypi/linux=
-.git;protocol=3Dgit;branch=3Drpi-3.18.y</a> \<br>
-&gt; diff --git a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_=
-4.1.bb">linux-raspberrypi_4.1.bb</a> b/recipes-kernel/linux/<a href=3D"http=
-://linux-raspberrypi_4.1.bb">linux-raspberrypi_4.1.bb</a><br>
-&gt; index 79fac66..9e1572e 100644<br>
-&gt; --- a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.1.bb"=
->linux-raspberrypi_4.1.bb</a><br>
-&gt; +++ b/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.1.bb"=
->linux-raspberrypi_4.1.bb</a><br>
-&gt; @@ -1,6 +1,7 @@<br>
-&gt; =C2=A0FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}-${PV}:&quot;=
-<br>
-&gt;<br>
-&gt; =C2=A0LINUX_VERSION ?=3D &quot;4.1.21&quot;<br>
-&gt; +PV =3D &quot;${LINUX_VERSION}+git${SRCPV}&quot;<br>
-&gt;<br>
-&gt; =C2=A0SRCREV =3D &quot;ff45bc0e8917c77461b2901e2743e6339bb70413&quot;<=
-br>
-&gt; =C2=A0SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi=
-/linux.git;protocol=3Dgit;branch=3Drpi-4.1.y">github.com/raspberrypi/linux.=
-git;protocol=3Dgit;branch=3Drpi-4.1.y</a> \<br>
-&gt; diff --git a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_=
-4.4.bb">linux-raspberrypi_4.4.bb</a> b/recipes-kernel/linux/<a href=3D"http=
-://linux-raspberrypi_4.4.bb">linux-raspberrypi_4.4.bb</a><br>
-&gt; index ba47b22..12bb43a 100644<br>
-&gt; --- a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4.bb"=
->linux-raspberrypi_4.4.bb</a><br>
-&gt; +++ b/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_4.4.bb"=
->linux-raspberrypi_4.4.bb</a><br>
-&gt; @@ -1,6 +1,7 @@<br>
-&gt; =C2=A0FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}-${PV}:&quot;=
-<br>
-&gt;<br>
-&gt; =C2=A0LINUX_VERSION ?=3D &quot;4.4.9&quot;<br>
-&gt; +PV =3D &quot;${LINUX_VERSION}+git${SRCPV}&quot;<br>
-&gt;<br>
-&gt; =C2=A0SRCREV =3D &quot;3b440738b5c1adc3ec3ee72ceca799d1b8d264df&quot;<=
-br>
-&gt; =C2=A0SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi=
-/linux.git;protocol=3Dgit;branch=3Drpi-4.4.y">github.com/raspberrypi/linux.=
-git;protocol=3Dgit;branch=3Drpi-4.4.y</a> \<br>
-&gt; --<br>
-&gt; 2.1.4<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-, </p>
+http://recipes.yoctoproject.org/
 
---001a113f21ec584a540533ff314b--
+Package               Version            Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------------  --------------------  -------------------  ------------------------------
+texinfo               6.0                6.1                   Alejandro Hernandez
+ruby                  2.2.5              2.3.1                 Alejandro Hernandez
+perl                  5.22.1             5.24.0                Alejandro Hernandez
+python-dbus           1.2.0              1.2.4                 Alejandro Hernandez
+python-git            1.0.2              2.0.3                 Alejandro Hernandez
+python-mako           1.0.3              1.0.4                 Alejandro Hernandez
+python-numpy          1.10.4             1.11.0                Alejandro Hernandez
+python-pygobject      3.18.2             3.21.0                Alejandro Hernandez
+python-scons          2.4.1              2.5.0                 Alejandro Hernandez
+python-pexpect        4.0.1              4.1.0                 Alejandro Hernandez
+python3-setuptools    19.4               21.2.2                Alejandro Hernandez
+swig                  3.0.8              3.0.9                 Alejandro Hernandez
+python3-pip           8.0.0              8.1.2                 Alejandro Hernandez
+python-setuptools     19.4               21.2.2                Alejandro Hernandez
+perl-native           5.22.1             5.24.0                Alejandro Hernandez
+python-scons-native   2.4.1              2.5.0                 Alejandro Hernandez
+liberation-fonts      1.04               2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+gcr                   3.18.0             3.20.0                Alexander Kanavin
+gnome-desktop3        3.18.2             3.20.2                Alexander Kanavin
+libsecret             0.18.4             0.18.5                Alexander Kanavin
+watchdog              5.14               5.15                  Alexander Kanavin
+kexec-tools           2.0.11             2.0.12                Alexander Kanavin
+btrfs-tools           4.4                4.5.3                 Alexander Kanavin
+sysprof               1.2.0+gitX         3.20.0+gitAUTOINC...  Alexander Kanavin
+systemtap-uprobes     2.9                3.0                   Alexander Kanavin
+systemtap             2.9                3.0                   Alexander Kanavin
+mkelfimage            4.0+gitX           4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
+hwlatdetect           0.96               2.0                   Alexander Kanavin
+rt-tests              0.96               2.0                   Alexander Kanavin
+webkitgtk             2.12.1             2.12.3                Alexander Kanavin
+boost                 1.60.0             1.61.0                Alexander Kanavin
+gdbm                  1.11               1.12                  Alexander Kanavin
+icu                   56.1               57.1                  Alexander Kanavin
+bjam-native           1.60.0             1.61.0                Alexander Kanavin
+libksba               1.3.3              1.3.4                 Alexander Kanavin
+liburcu               0.9.1              0.9.2                 Alexander Kanavin
+libxslt               1.1.28             1.1.29                Alexander Kanavin
+babeltrace            1.3.1              1.3.2                 Alexander Kanavin
+libarchive            3.1.2              3.2.0                 Alexander Kanavin
+gnutls                3.4.9              3.5.0                 Alexander Kanavin
+msmtp                 1.6.3              1.6.4                 Alexander Kanavin
+epiphany              3.18.4             3.20.2                Alexander Kanavin
+iso-codes             3.65               3.68                  Alexander Kanavin
+apt                   1.0.10.1           1.2.12                Aníbal Limón
+dpkg                  1.18.4             1.18.7                Aníbal Limón
+pinentry              0.9.2              0.9.7                 Armin Kuster
+linux-libc-headers    4.4                4.6                   Bruce Ashfield
+guilt-native          0.35+gitX          0.36+gitAUTOINC+2...  Bruce Ashfield
+pciutils              3.4.1              3.5.1                 Chen Qi
+resolvconf            1.78               1.79                  Chen Qi
+dbus-test             1.10.6             1.10.8                Chen Qi
+dbus                  1.10.6             1.10.8                Chen Qi
+systemd               229+gitX           230+gitAUTOINC+3a...  Chen Qi
+util-linux            2.27.1             2.28                  Chen Qi
+tar                   1.28               1.29                  Chen Qi
+curl                  7.47.1             7.49.0                Chen Qi
+byacc                 20150711           20160324              Chen Qi
+gzip                  1.6                1.8                   Chen Qi
+sudo                  1.8.15             1.8.16                Chen Qi
+sysstat               11.2.0             11.3.4                Chen Qi
+grep                  2.23               2.25                  Chen Qi
+build-appliance-i...  14.0.0             15.0.0                Cristian Iorga
+u-boot-fw-utils       v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+dhcp                  4.3.3              4.3.4                 Hongxu Jia
+libxml2               2.9.3              2.9.4                 Hongxu Jia
+ncurses               6.0+20160213       6.0+20160319          Hongxu Jia
+gnupg                 2.1.11             2.1.12                Hongxu Jia
+pax-utils             1.1.5              1.1.6                 Hongxu Jia
+createrepo            0.4.11             0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.5              1.7.0                 Hongxu Jia
+libnewt-python        0.52.18            0.52.19               Hongxu Jia
+libnewt               0.52.18            0.52.19               Hongxu Jia
+man-pages             4.04               4.06                  Hongxu Jia
+help2man-native       1.47.3             1.47.4                Hongxu Jia
+libinput              1.3.0              1.3.1                 Jussi Kukkonen
+wayland               1.10.0             1.10.93               Jussi Kukkonen
+weston                1.10.0             1.10.93               Jussi Kukkonen
+gtk-icon-utils-na...  3.18.8             3.20.6                Jussi Kukkonen
+xf86-input-synaptics  1.8.3              1.8.99.1              Jussi Kukkonen
+gsettings-desktop...  3.20.0             3.21.2                Jussi Kukkonen
+libxcb                1.11.1             1.12                  Jussi Kukkonen
+libxfixes             5.0.1              5.0.2                 Jussi Kukkonen
+xcb-proto             1.11               1.12                  Jussi Kukkonen
+matchbox-terminal     0.0+gitX           2+gitAUTOINC+452b...  Jussi Kukkonen
+docbook-xsl-style...  1.78.1             1.79.1                Jussi Kukkonen
+sato-screenshot       0.1+gitX           2+gitAUTOINC+3a96...  Jussi Kukkonen
+at-spi2-atk           2.18.1             2.20.1                Jussi Kukkonen
+at-spi2-core          2.18.3             2.20.2                Jussi Kukkonen
+atk                   2.18.0             2.20.0                Jussi Kukkonen
+vala                  0.30.1             0.32.0                Jussi Kukkonen
+libevdev              1.4.6              1.5.1                 Jussi Kukkonen
+augeas                1.4.0              1.5.0                 Jussi Kukkonen
+libgpg-error          1.21               1.22                  Jussi Kukkonen
+vte                   0.28.2             0.44.2                Jussi Kukkonen       matchbox-terminal needs to ...
+clutter-gst-3.0       3.0.16             3.0.18                Jussi Kukkonen
+dosfstools            3.0.28             4.0                   Jussi Kukkonen
+gtk+3                 3.18.8             3.20.6                Jussi Kukkonen
+gtk+                  2.24.29            2.24.30               Jussi Kukkonen
+cairo                 1.14.6             1.15.2                Jussi Kukkonen
+clutter-1.0           1.24.2             1.26.0                Jussi Kukkonen
+clutter-gtk-1.0       1.6.6              1.8.0                 Jussi Kukkonen
+linuxdoc-tools-na...  0.9.69             0.9.72                Jussi Kukkonen
+slang                 2.2.4              2.3.0                 Kai Kang
+uclibc                1.0.12+gitX        1.0.15                Khem Raj
+prelink               1.0+gitX           20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.16             5.4.17                Mark Hatle
+libpfm4               4.6.0              4.7.0                 Matthew McClintock
+bluez5                5.39               5.40                  Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX         1.8.1+gitAUTOINC+...  Maxin B. John
+libpng                1.6.21             1.6.22                Maxin B. John
+db                    6.0.30             6.2.23                Maxin B. John
+ofono                 1.17               1.18                  Maxin B. John
+libpam                1.2.1              1.3.0                 Maxin B. John
+python3-git           1.0.2              2.0.3                 No maintainer
+ffmpeg                3.0                3.0.2                 No maintainer
+gdb-cross-canadia...  7.11               20131001              No maintainer
+gdb-cross-i586        7.11               20131001              No maintainer
+cantarell-fonts       0.0.21+gitX        0.13+gitAUTOINC+7...  No maintainer
+gcc-source-5.3.0      5.3.0              6.1.0                 No maintainer
+ifupdown              0.8.2              0.8.12                No maintainer
+uclibc-initial        1.0.12+gitX        1.0.15                No maintainer
+apt-native            1.0.10.1           1.2.12                No maintainer
+gobject-introspec...  1.46.0             1.48.0                No maintainer
+wayland-protocols     1.3                1.4                   No maintainer
+mc                    4.8.16             4.8.17                No maintainer
+sgmlspl-native        1.1+gitX           1.03+gitAUTOINC+f...  No maintainer
+xf86-input-libinput   0.16.0             0.19.0                No maintainer
+lttng-tools           2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+gdb                   7.11               20131001              Richard Purdie
+nasm                  2.11.08            2.12.01               Richard Purdie
+subversion            1.9.3              1.9.4                 Richard Purdie
+lttng-modules         2.7.3+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+gnu-efi               3.0.3              3.0.4                 Robert Yang
+e2fsprogs             1.42.99+1.43+gitX  1.43                  Robert Yang
+file                  5.25               5.27                  Robert Yang
+git                   2.8.2              2.8.3                 Robert Yang
+make                  4.1                4.2                   Robert Yang
+tcl                   8.6.4              8.6.5                 Robert Yang
+libbsd                0.8.2              0.8.3                 Robert Yang
+libcap                2.24               2.25                  Robert Yang
+ltp                   20160126           20160510              Robert Yang
+autogen-native        5.18.6             5.18.10               Robert Yang
+mklibs-native         0.1.40             0.1.41                Robert Yang
+base-passwd           3.5.29             3.5.39                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.64               9.66                  Ross Burton
+alsa-utils            1.1.0              1.1.1                 Tanu Kaskinen
+pulseaudio            8.0                8.99.2                Tanu Kaskinen
+alsa-plugins          1.1.0              1.1.1                 Tanu Kaskinen
+alsa-utils-scripts    1.1.0              1.1.1                 Tanu Kaskinen
+ccache                3.2.4              3.2.5                 Wenzong Fan
+gettext               0.19.6             0.19.7                Wenzong Fan
+chkconfig             1.3.58             1.7                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 149
+Upgradable total count: 155
+
+The based commit is:
+
+commit bb4ead9b7b1400c37a72d148d9775bdf4210ec37
+Author: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date:   Tue May 24 11:54:00 2016 -0400
+
+    linux-yocto/4.4: integrate v4.4.11
+    
+    Updating to the korg stable release.
+    
+    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+
