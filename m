@@ -1,42 +1,38 @@
-Return-Path: <contact@jgueytat.fr>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7708E00DD1; Tue, 31 May 2016 15:11:40 -0700 (PDT)
+	id 5B395E00DD1; Tue, 31 May 2016 16:57:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.70.183.197 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net
-	[217.70.183.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 117A8E00DC6
-	for <yocto@yoctoproject.org>; Tue, 31 May 2016 15:11:38 -0700 (PDT)
-Received: from mfilter18-d.gandi.net (mfilter18-d.gandi.net [217.70.178.146])
-	by relay5-d.mail.gandi.net (Postfix) with ESMTP id F14CB41C090
-	for <yocto@yoctoproject.org>; Wed,  1 Jun 2016 00:11:37 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mfilter18-d.gandi.net
-Received: from relay5-d.mail.gandi.net ([IPv6:::ffff:217.70.183.197])
-	by mfilter18-d.gandi.net (mfilter18-d.gandi.net [::ffff:10.0.15.180])
-	(amavisd-new, port 10024)
-	with ESMTP id Mc2ZPs2obRSC for <yocto@yoctoproject.org>;
-	Wed,  1 Jun 2016 00:11:36 +0200 (CEST)
-X-Originating-IP: 37.71.25.165
-Received: from Happy.wifirst.net (165.25.71.37.rev.sfr.net [37.71.25.165])
-	(Authenticated sender: contact@jgueytat.fr)
-	by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 7A02341C087
-	for <yocto@yoctoproject.org>; Wed,  1 Jun 2016 00:11:36 +0200 (CEST)
-From: Julien Gueytat <contact@jgueytat.fr>
-To: yocto@yoctoproject.org
-Date: Wed,  1 Jun 2016 00:11:35 +0200
-Message-Id: <1464732695-28729-2-git-send-email-contact@jgueytat.fr>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1464732695-28729-1-git-send-email-contact@jgueytat.fr>
-References: <1464732695-28729-1-git-send-email-contact@jgueytat.fr>
-Subject: [psplash][PATCH v2 2/2] Add --fbdev option to psplash like --rotation.
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1797DE00DC6
+	for <yocto@yoctoproject.org>; Tue, 31 May 2016 16:57:44 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 31 May 2016 16:57:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,398,1459839600"; d="scan'208";a="988446989"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
+	([10.255.146.125])
+	by orsmga002.jf.intel.com with ESMTP; 31 May 2016 16:57:37 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Diego <diego.ml@zoho.com>
+Date: Wed, 01 Jun 2016 11:57:34 +1200
+Message-ID: <16838317.pTU33ZpYG7@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.4.9-300.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
+References: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Per image customizations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,180 +44,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 May 2016 22:11:40 -0000
+X-List-Received-Date: Tue, 31 May 2016 23:57:46 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-A new fbdev file is needed and should be overrided if needed.
-The number contained in fbdev will be used as X in /dev/fbX.
+Hi Diego,
 
-By overriding fbdev you can have a splash screen on another
-framebuffer than /dev/fbO.
+On Tue, 31 May 2016 18:05:19 Diego wrote:
+> I've asked this question on IRC, but haven't received complete enough
+> replies, so posting here.
+> 
+> I have my own layer with my recipes and customizations. In my layer I have
+> two images, one which is the "regular OS" that runs the product
+> application, and one which is the "flash OS", a minimal ramdisk OS that
+> flashes the disks. I want the two images to have different fstab and
+> inittab files: what is the correct way to do that? I know how to handle
+> machine / arch specific differences, but I don't think there's a way to
+> "dress a package depending on the image it gets included in", right?
+> 
+> Should I create my own IMAGE_FEATURE and hack my fstab and inittab when
+> rootfs is created, sort of how the "read-only-rootfs" feature was done?
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/core-image.
+> bbclass?h=fido#n77
 
-The getenv(FBDEV) line has been replaced by this option since
-the environment variables are not read yet when psplash starts.
+You can do that, yes. The only other possibility is outright replacing the 
+package providing the file (since you are free to specify whatever packages 
+you want in the image, though you may have to break up packagegroup-core-boot 
+to do it). This only works of course if either there are no dependencies on 
+the package or you can satisfy any dependencies that might exist. It could be 
+that for your "flash OS" image there aren't any, but it depends what it has in 
+it.
 
-Signed-off-by: Julien Gueytat <contact@jgueytat.fr>
----
- AUTHORS      |  1 +
- psplash-fb.c | 16 ++++++++++------
- psplash-fb.h |  4 ++--
- psplash.c    | 49 ++++++++++++++++++++++++++++---------------------
- 4 files changed, 41 insertions(+), 29 deletions(-)
+It may be simpler just to hack it after the fact though. Note that you don't 
+have to add an IMAGE_FEATURES item to do that - you could simply create a 
+shell/python function and add a call to it in ROOTFS_POSTPROCESS_COMMAND. If 
+the changes to the files are substantial you could even supply the alternative 
+files in a separate package and then move them over the top of the original 
+ones in the postprocessing function to save jumping through hoops adding files 
+to the image recipe.
 
-diff --git a/AUTHORS b/AUTHORS
-index 953d867..1a9d938 100644
---- a/AUTHORS
-+++ b/AUTHORS
-@@ -1,6 +1,7 @@
- List of contributors (in alphabetical order):
- 
- Aws Ismail <aws.ismail@windriver.com>
-+Julien Gueytat <contact@jgueytat.fr>
- Juro Bystricky <juro.bystricky@intel.com>
- Khem Raj <raj.khem@gmail.com>
- Matthew Allum <mallum@openedhand.com>
-diff --git a/psplash-fb.c b/psplash-fb.c
-index 8daaf6f..d344e5a 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -99,18 +99,20 @@ attempt_to_change_pixel_format (PSplashFB *fb,
- }
- 
- PSplashFB*
--psplash_fb_new (int angle)
-+psplash_fb_new (int angle, int fbdev_id)
- {
-   struct fb_var_screeninfo fb_var;
-   struct fb_fix_screeninfo fb_fix;
-   int                      off;
--  char                    *fbdev;
-+  char                     fbdev[9] = "/dev/fb0";
- 
-   PSplashFB *fb = NULL;
- 
--  fbdev = getenv("FBDEV");
--  if (fbdev == NULL)
--    fbdev = "/dev/fb0";
-+  if (fbdev_id > 0 && fbdev_id < 10)
-+    {
-+        // Conversion from integer to ascii.
-+        fbdev[7] = fbdev_id + 48;
-+    }
- 
-   if ((fb = malloc (sizeof(PSplashFB))) == NULL)
-     {
-@@ -124,7 +126,9 @@ psplash_fb_new (int angle)
- 
-   if ((fb->fd = open (fbdev, O_RDWR)) < 0)
-     {
--      perror ("Error opening /dev/fb0");
-+      fprintf(stderr,
-+              "Error opening %s\n",
-+              fbdev);
-       goto fail;
-     }
- 
-diff --git a/psplash-fb.h b/psplash-fb.h
-index a4a0f4c..d0dce10 100644
---- a/psplash-fb.h
-+++ b/psplash-fb.h
-@@ -38,7 +38,7 @@ typedef struct PSplashFB
-   char		*data;
-   char		*base;
- 
--  int            angle;
-+  int            angle, fbdev_id;
-   int            real_width, real_height;
- 
-   enum RGBMode   rgbmode;
-@@ -55,7 +55,7 @@ void
- psplash_fb_destroy (PSplashFB *fb);
- 
- PSplashFB*
--psplash_fb_new (int angle);
-+psplash_fb_new (int angle, int fbdev_id);
- 
- void
- psplash_fb_draw_rect (PSplashFB    *fb, 
-diff --git a/psplash.c b/psplash.c
-index 507202f..992e199 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -205,35 +205,41 @@ int
- main (int argc, char** argv) 
- {
-   char      *tmpdir;
--  int        pipe_fd, i = 0, angle = 0, ret = 0;
-+  int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
-   PSplashFB *fb;
-   bool       disable_console_switch = FALSE;
--  
-+
-   signal(SIGHUP, psplash_exit);
-   signal(SIGINT, psplash_exit);
-   signal(SIGQUIT, psplash_exit);
- 
--  while (++i < argc)
--    {
--      if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
--        {
--	  disable_console_switch = TRUE;
--	  continue;
--	}
-+  while (++i < argc) {
-+    if (!strcmp(argv[i],"-n") || !strcmp(argv[i],"--no-console-switch"))
-+      {
-+        disable_console_switch = TRUE;
-+        continue;
-+      }
-+
-+    if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
-+      {
-+        if (++i >= argc) goto fail;
-+        angle = atoi(argv[i]);
-+        continue;
-+      }
-+
-+    if (!strcmp(argv[i],"-f") || !strcmp(argv[i],"--fbdev"))
-+      {
-+        if (++i >= argc) goto fail;
-+        fbdev_id = atoi(argv[i]);
-+        continue;
-+      }
- 
--      if (!strcmp(argv[i],"-a") || !strcmp(argv[i],"--angle"))
--        {
--	  if (++i >= argc) goto fail;
--	  angle = atoi(argv[i]);
--	  continue;
--	}
--      
-     fail:
-       fprintf(stderr, 
--	      "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>]\n", 
--	      argv[0]);
-+              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
-+              argv[0]);
-       exit(-1);
--    }
-+  }
- 
-   tmpdir = getenv("TMPDIR");
- 
-@@ -262,10 +268,11 @@ main (int argc, char** argv)
-   if (!disable_console_switch)
-     psplash_console_switch ();
- 
--  if ((fb = psplash_fb_new(angle)) == NULL) {
-+  if ((fb = psplash_fb_new(angle,fbdev_id)) == NULL)
-+    {
- 	  ret = -1;
- 	  goto fb_fail;
--  }
-+    }
- 
-   /* Clear the background with #ecece1 */
-   psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
+Cheers,
+Paul
+
 -- 
-1.9.1
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
