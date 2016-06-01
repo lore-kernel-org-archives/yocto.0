@@ -1,63 +1,78 @@
-Return-Path: <oleksandr.poznyak@gmail.com>
+Return-Path: <pdemetrotion@winsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB776E00EFC; Wed,  1 Jun 2016 05:54:05 -0700 (PDT)
+	id 0847EE00F01; Wed,  1 Jun 2016 06:28:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (oleksandr.poznyak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.111.85 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5F95E00E32
-	for <yocto@yoctoproject.org>; Wed,  1 Jun 2016 05:54:02 -0700 (PDT)
-Received: by mail-qk0-f178.google.com with SMTP id y126so13294376qke.1
-	for <yocto@yoctoproject.org>; Wed, 01 Jun 2016 05:54:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to; 
-	bh=qLbJw+gN6w53bkAwDvINCDwrWLnciZ2DjoupGJW1kR8=;
-	b=AIRzHFr++MCeaneS32YXwgEjCXdM5WW+obMcrl08bdmwTlHM/gpT5vvxBXy73EIo3Z
-	bZKiofbghsp5wvW3gDyPYm1lknxOk2Tk4sIU46vhaCtOSr+/rR6mHgTu6PYQu6UR/Cve
-	Y5W9XxIxmNH3C/norH87X3E3JaEk4rv4DiNT8vhvJQe6tPxFT835heTxWHu+2uhECNue
-	3LW4oSx76G9WxZKI4scZF/h6LTKLzHEg8SnBH5DS4K21TMWTzRYf1RMUonIdaHeYhoiy
-	9c+Z0FLPxMgkN8ow0xBn/4WoxPgbqV/Ii03rh80WyFHMOgSiPGH+RtAuFykYuCGzmGhj
-	43jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to;
-	bh=qLbJw+gN6w53bkAwDvINCDwrWLnciZ2DjoupGJW1kR8=;
-	b=OMGsQcy8ht+A/4ygx24Qw+VdWui+4sjDK8vHVfpBdXLyjNDJDdx4OeUq4gQdqkrJRj
-	1gY3jHS9qMf9AjfoikyQkjDK8KSxBzIavRpBG8zEzSqpMBCk2m3yhsNi8C0WA6zEodaW
-	F0pIlO5LDCjI6XFfHOvGxU0ZhLsmP9y3KwoWdVo5VMjbv+wZOHXUBz/1cvYKiXhZ/ExE
-	rcCdQx+2sXNmRwHHA+qlj9UDPBI8ZxZuMoLIHlcU/hhLLfJTb9YDEIorJzC6AvcINCEo
-	HD6VZ5C4a7Aq5hbYe9bwOeqt/ybwM77d8USSFXze3Gb/RfXhilOxEB/+YZk7ENOCyIE1
-	uoRQ==
-X-Gm-Message-State: ALyK8tL2Grzb9/F5OLXQEvHxjdIiLWqpqzJicGiMROHJf2rvpmTTU2RoHg0Na7Ivnj2Law7i7iMgMO2hnOG/uQ==
+X-Greylist: delayed 1095 seconds by postgrey-1.32 at yocto-www;
+	Wed, 01 Jun 2016 06:27:59 PDT
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bon0085.outbound.protection.outlook.com [157.56.111.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90554E00E31
+	for <yocto@yoctoproject.org>; Wed,  1 Jun 2016 06:27:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=winsystemsinc.onmicrosoft.com; s=selector1-winsystems-com;
+	h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=xqQ7gGquqbauMOwgu+/VXJD9wlrfFq1ALVlUSSrG2Fs=;
+	b=L0lpvSoKMrSxkZNqkQXBShZpA4+qfhAslwYOZyotkN+U3QkRbEOZbdzaf9FH6KZYNWRCZJP5FdpTweAeF0AFX8ab5a0Mfo1SzRqvrJdwhSW0ywAWcuJ1ry7K81LETUxPrAJntYiVit8XUESGj8mqI6+AysekCBUU60C8KWk5z3w=
+Received: from CO2PR01MB2184.prod.exchangelabs.com (10.166.91.149) by
+	CO2PR01MB2181.prod.exchangelabs.com (10.166.91.146) with Microsoft SMTP
+	Server (TLS) id 15.1.506.9; Wed, 1 Jun 2016 12:55:09 +0000
+Received: from CO2PR01MB2184.prod.exchangelabs.com ([10.166.91.149]) by
+	CO2PR01MB2184.prod.exchangelabs.com ([10.166.91.149]) with mapi id
+	15.01.0506.013; Wed, 1 Jun 2016 12:55:09 +0000
+From: Paul DeMetrotion <pdemetrotion@winsystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Recipe Debug - QA Issue
+Thread-Index: AdG8BNNjvzuqu3WvR72ElwP38yl0Ng==
+Date: Wed, 1 Jun 2016 12:55:09 +0000
+Message-ID: <CO2PR01MB2184C310EE183297732FDFE0BF470@CO2PR01MB2184.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=winsystems.com;
+x-originating-ip: [50.84.106.250]
+x-ms-office365-filtering-correlation-id: 99d35bcc-9077-4fbe-8be9-08d38a1bf6a0
+x-microsoft-exchange-diagnostics: 1; CO2PR01MB2181;
+	5:HQ0WIaNuepVT9ieDcOnLviSHvAxUAjewZhAyBZyZT9nWctfRjo6BX/lBUK8m0+BPjOZ6AypNVSJGVzjJA1BXGiMuMoYkiNjthYRYJ/O5EHzZ2h5ymCzXLXz8injWll6ap49LA61NRXorEs0JgSTjSA==;
+	24:t+HJbdUkemc85MmsxKFjk8VdxRRFs07QoC37U4xUo6iTK+bbcMgdsaTDT14IS0iPvAwihgINHge+sPsr7LA3JWbThqZRXwixA4ZaEkByUqo=;
+	7:NDV/aMwBx4viye5p5sI1ISapxMgoj9Dw8OSDTYkPLg60443W4tI+59TDmMkP/QFZdWv0RIGUrLskjQbLs8bQZHGoSJBJiyUSm/87Ah5emIzscSsK8lIsmh7OphXaMTqHIi5A1NiT5z8AXepGkLeE0SzsY23DIHzSVx+UPRDHZKJyTu3zBsvEm6tnGfVnAEDV
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CO2PR01MB2181;
+x-microsoft-antispam-prvs: <CO2PR01MB2181371FC36A8B6A948981F8BF470@CO2PR01MB2181.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040130)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6041072)(6043046);
+	SRVR:CO2PR01MB2181; BCL:0; PCL:0; RULEID:; SRVR:CO2PR01MB2181; 
+x-forefront-prvs: 096029FF66
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(54356999)(50986999)(18717965001)(19580395003)(10400500002)(5004730100002)(8936002)(19625215002)(81166006)(11100500001)(87936001)(19300405004)(19609705001)(19617315012)(77096005)(8676002)(15975445007)(33656002)(2501003)(74316001)(1730700003)(2351001)(6116002)(3280700002)(16236675004)(586003)(86362001)(5002640100001)(107886002)(110136002)(189998001)(5008740100001)(5003600100002)(229853001)(3660700001)(5630700001)(122556002)(92566002)(102836003)(5640700001)(2906002)(2900100001)(790700001)(3846002)(450100001)(66066001)(9686002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CO2PR01MB2181;
+	H:CO2PR01MB2184.prod.exchangelabs.com; FPR:; SPF:None;
+	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-Received: by 10.200.50.220 with SMTP id a28mr3367626qtb.13.1464785642257;
-	Wed, 01 Jun 2016 05:54:02 -0700 (PDT)
-Received: by 10.237.49.35 with HTTP; Wed, 1 Jun 2016 05:54:02 -0700 (PDT)
-In-Reply-To: <CAEeWub+cVQYTwub5Gk6BLhMR0+6+VpALkpHLyAMg4oArX2iBTQ@mail.gmail.com>
-References: <CAEeWub+cVQYTwub5Gk6BLhMR0+6+VpALkpHLyAMg4oArX2iBTQ@mail.gmail.com>
-Date: Wed, 1 Jun 2016 15:54:02 +0300
-Message-ID: <CAEeWubLs_Gzh9p8WcjDOU=TmKU1vVMY3x_+GCG8c9a4c0Ce9CA@mail.gmail.com>
-From: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Changelog creation for a list of recipes
+X-OriginatorOrg: winsystems.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2016 12:55:09.4276 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 499305db-9394-4200-97fb-d233902786c6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR01MB2181
+Subject: Recipe Debug - QA Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,61 +84,492 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jun 2016 12:54:06 -0000
-Content-Type: multipart/alternative; boundary=001a11404eace105e9053436fb2d
+X-List-Received-Date: Wed, 01 Jun 2016 13:28:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CO2PR01MB2184C310EE183297732FDFE0BF470CO2PR01MB2184prod_"
 
---001a11404eace105e9053436fb2d
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-I believe that it would be great to have a special variable that triggers
-changelog creation for the specific recipe.
-
-For example:
-
-PN = "my_recipe"
-
-SRC_URI = "git://${SOME_GIT_REPO};protocol=ssh"
-SRCREV = "${AUTOREV}"
-PV = "1+git${SRCPV}"
-
-CHANGELOG = "1"
-
-This should produce ${DEPLOY_DIR}/changelog file and add there changes in
-repos of specific recipes in a simple form:
-
-For example:
-
-my_recipe:
-    #5410 Add some features to my_recipe
-    Signed-off-by: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
-    Oleksandr Poznyak
-
-This will make inergration of Yocto into any CI tool (Jenkins for ex.) much
-easier.
-
-Thanks,
-Oleksandr Poznyak!
-
---001a11404eace105e9053436fb2d
-Content-Type: text/html; charset=UTF-8
+--_000_CO2PR01MB2184C310EE183297732FDFE0BF470CO2PR01MB2184prod_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div>Hi,<=
-br><br>I believe that it would be great to have a special variable that tri=
-ggers changelog creation for the specific recipe.<br><br>For example:<br><b=
-r>PN =3D &quot;my_recipe&quot;<br><br>SRC_URI =3D &quot;git://${SOME_GIT_RE=
-PO};protocol=3Dssh&quot;<br>SRCREV =3D &quot;${AUTOREV}&quot;<br>PV =3D &qu=
-ot;1+git${SRCPV}&quot;<br><br>CHANGELOG =3D &quot;1&quot;<br><br>This shoul=
-d produce ${DEPLOY_DIR}/changelog file and add there changes in repos of sp=
-ecific recipes in a simple form:<br><br>For example:<br><br>my_recipe:<br>=
-=C2=A0=C2=A0=C2=A0 #5410 Add some features to my_recipe<br>=C2=A0=C2=A0=C2=
-=A0 Signed-off-by: Oleksandr Poznyak &lt;<a href=3D"mailto:oleksandr.poznya=
-k@gmail.com" target=3D"_blank">oleksandr.poznyak@gmail.com</a>&gt;<br>=C2=
-=A0=C2=A0=C2=A0 Oleksandr Poznyak<br><br>This will make inergration of Yoct=
-o into any CI tool (Jenkins for ex.) much easier.<br><br></div>Thanks,<br><=
-/div>Oleksandr Poznyak!<br></div>
-</div><br></div>
+I have created a simple (?) recipe to copy some existing drivers and script=
+s into my kernel image. I am getting the following error when I attempt to =
+bitbake the recipe. Is this a license issue?
 
---001a11404eace105e9053436fb2d--
+ERROR: QA Issue: rs9113: Files/directories were installed but not shipped
+  /lib
+  /lib/modules
+  /lib/modules/kernel
+  /lib/modules/kernel/drivers
+  /lib/modules/kernel/drivers/net
+  /lib/modules/kernel/drivers/net/wireless
+  /lib/modules/kernel/drivers/net/wireless/redpine
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_ccmp.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/onebox_common_gpl.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_tkip.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_wep.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_scan_sta.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_acl.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_nongpl.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_gpl.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/wlan_xauth.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/onebox_gpl.ko
+  /lib/modules/kernel/drivers/net/wireless/redpine/onebox_nongpl.ko [instal=
+led-vs-shipped]
+
+Here is the recipe. I have all of the files to be copied in the same direct=
+ory as the recipe.
+
+DESCRIPTION =3D "Install of redpine drivers and scripts"
+
+LICENSE =3D "MIT"
+LIC_FILES_CHKSUM =3D "file://${COREBASE}/LICENSE;md5=3D4d92cd373abda3937c2b=
+c47fbc49d690 \
+                    file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c=
+80a0384361b4de20420"
+
+kmoddir =3D "/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/red=
+pine"
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}:"
+
+SRC_URI_append =3D " \
+    file://onebox_common_gpl.ko \
+    file://onebox_gpl.ko \
+    file://onebox_nongpl.ko \
+    file://onebox_wlan_gpl.ko \
+    file://onebox_wlan_nongpl.ko \
+    file://wlan.ko \
+    file://wlan_wep.ko \
+    file://wlan_ccmp.ko \
+    file://wlan_tkip.ko \
+    file://wlan_acl.ko \
+    file://wlan_scan_sta.ko \
+    file://wlan_xauth.ko \
+    file://wlan_enable.sh \
+    file://wlan_disable.sh \
+"
+
+do_install_append() {
+    mkdir -p ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/onebox_common_gpl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/onebox_gpl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/onebox_nongpl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/onebox_wlan_gpl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/onebox_wlan_nongpl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_wep.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_ccmp.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_tkip.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_acl.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_scan_sta.ko ${D}${kmoddir}
+    install -m 0755 ${WORKDIR}/wlan_xauth.ko ${D}${kmoddir}
+    mkdir -p ${D}/etc/redpine
+    install -m 0755 ${WORKDIR}/wlan_enable.sh ${D}/etc/redpine
+    install -m 0755 ${WORKDIR}/wlan_disable.sh ${D}/etc/redpine
+}
+
+FILES_${PN}_append =3D " \
+    ${D}${kmoddir}/onebox_common_gpl.ko \
+    ${D}${kmoddir}/onebox_gpl.ko \
+    ${D}${kmoddir}/onebox_nongpl.ko \
+    ${D}${kmoddir}/onebox_wlan_gpl.ko \
+    ${D}${kmoddir}/onebox_wlan_nongpl.ko \
+    ${D}${kmoddir}/wlan.ko \
+    ${D}${kmoddir}/wlan_wep.ko \
+    ${D}${kmoddir}/wlan_ccmp.ko \
+    ${D}${kmoddir}/wlan_tkip.ko \
+    ${D}${kmoddir}/wlan_acl.ko \
+    ${D}${kmoddir}/wlan_scan_sta.ko \
+    ${D}${kmoddir}/wlan_xauth.ko \
+    ${D}/etc/redpine/wlan_enable.sh \
+    ${D}/etc/redpine/wlan_disable.sh \
+"
+
+Paul DeMetrotion
+Software Guru
+WinSystems, Inc.
+(972) 571-8657
+www.winsystems.com<http://www.winsystems.com/>
+
+
+--_000_CO2PR01MB2184C310EE183297732FDFE0BF470CO2PR01MB2184prod_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I have created a simple (?) recipe to copy some exis=
+ting drivers and scripts into my kernel image. I am getting the following e=
+rror when I attempt to bitbake the recipe. Is this a license issue?<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">ERROR: QA Issue: rs9113: Files/directories were installed but not ship=
+ped<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan.ko<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_ccmp.ko<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/onebox_common_=
+gpl.ko<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_tkip.ko<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_wep.ko<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_scan_sta.=
+ko<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_acl.ko<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_no=
+ngpl.ko<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_gp=
+l.ko<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/wlan_xauth.ko<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/onebox_gpl.ko<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp; /lib/modules/kernel/drivers/net/wireless/redpine/onebox_nongpl.=
+ko [installed-vs-shipped]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here is the recipe. I have all of the files to be co=
+pied in the same directory as the recipe.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">DESCRIPTION =3D &quot;Install of redpine drivers and scripts&quot;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">LICENSE =3D &quot;MIT&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">LIC_FILES_CHKSUM =3D &quot;file://${COREBASE}/LICENSE;md5=3D4d92cd373a=
+bda3937c2bc47fbc49d690 \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://${COREBASE}/meta/COPYIN=
+G.MIT;md5=3D3da9cfbcb788c80a0384361b4de20420&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">kmoddir =3D &quot;/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wi=
+reless/redpine&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}:&quot;<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">SRC_URI_append =3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://onebox_common_gpl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://onebox_gpl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://onebox_nongpl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://onebox_wlan_gpl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://onebox_wlan_nongpl.ko \<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_wep.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_ccmp.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_tkip.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_acl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_scan_sta.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_xauth.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_enable.sh \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; file://wlan_disable.sh \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">do_install_append() {
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp;&nbsp;mkdir -p ${D}${kmoddir}
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp;&nbsp;install -m 0755 ${WORKDIR}/onebox_common_gpl.k=
+o ${D}${kmoddir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/onebox_gpl.ko ${D}${kmod=
+dir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/onebox_nongpl.ko ${D}${k=
+moddir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/onebox_wlan_gpl.ko ${D}$=
+{kmoddir}
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp;&nbsp;install -m 0755 ${WORKDIR}/onebox_wlan_nongpl.=
+ko ${D}${kmoddir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan.ko ${D}${kmoddir}<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_wep.ko ${D}${kmoddi=
+r}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_ccmp.ko ${D}${kmodd=
+ir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_tkip.ko ${D}${kmodd=
+ir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_acl.ko ${D}${kmoddi=
+r}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_scan_sta.ko ${D}${k=
+moddir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_xauth.ko ${D}${kmod=
+dir}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; mkdir -p ${D}/etc/redpine
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp;&nbsp;install -m 0755 ${WORKDIR}/wlan_enable.sh ${D}=
+/etc/redpine<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/wlan_disable.sh ${D}/etc=
+/redpine<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">}<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">FILES_${PN}_append =3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/onebox_common_gpl.ko \<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/onebox_gpl.ko \<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/onebox_nongpl.ko \<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/onebox_wlan_gpl.ko \<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/onebox_wlan_nongpl.ko \<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_wep.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_ccmp.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_tkip.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_acl.ko \<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_scan_sta.ko \<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}${kmoddir}/wlan_xauth.ko \<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}/etc/redpine/wlan_enable.sh \<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&nbsp;&nbsp;&nbsp; ${D}/etc/redpine/wlan_disable.sh \<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.5pt;font-family:Consolas;color:black;background:white;mso-highlight:wh=
+ite">&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Paul DeMetrotion<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Software Guru<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">WinSystems, Inc. <o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">(972) 571-8657<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a href=3D"http://www.=
+winsystems.com/"><span style=3D"color:blue">www.winsystems.com</span></a>
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_CO2PR01MB2184C310EE183297732FDFE0BF470CO2PR01MB2184prod_--
