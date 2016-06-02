@@ -1,53 +1,68 @@
-Return-Path: <Adrian.Dudau@enea.com>
+Return-Path: <oleksandr.poznyak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53584E00C8F; Thu,  2 Jun 2016 02:44:43 -0700 (PDT)
+	id 4DD50E00CE1; Thu,  2 Jun 2016 05:07:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.38.180.40 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (oleksandr.poznyak[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp-out10.electric.net (smtp-out10.electric.net
-	[185.38.180.40])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8736FE00C70
-	for <yocto@yoctoproject.org>; Thu,  2 Jun 2016 02:44:39 -0700 (PDT)
-Received: from 1b8PB8-00018b-T5 by out10a.electric.net with emc1-ok (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>)
-	id 1b8PB8-000197-Uj; Thu, 02 Jun 2016 02:44:38 -0700
-Received: by emcmailer; Thu, 02 Jun 2016 02:44:38 -0700
-Received: from [192.36.1.72] (helo=mx-3.enea.com)
-	by out10a.electric.net with esmtps (TLSv1:AES128-SHA:128) (Exim 4.87)
-	(envelope-from <Adrian.Dudau@enea.com>)
-	id 1b8PB8-00018b-T5; Thu, 02 Jun 2016 02:44:38 -0700
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0294.000; Thu, 2 Jun 2016 11:44:37 +0200
-From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: "vaduvajanalexandru@yahoo.com" <vaduvajanalexandru@yahoo.com>
-Thread-Topic: [yocto] [meta-cgl][PATCH 1/2] Added device manager multipath
-	support for root file system
-Thread-Index: AQHRvLNg9jD7n6kXSkKljcjPQCHTGQ==
-Date: Thu, 2 Jun 2016 09:44:37 +0000
-Message-ID: <1464860695.24948.4.camel@sestows129.enea.se>
-References: <1462874748-57412-1-git-send-email-adrian.dudau@enea.com>
-	<1765661136.531886.1462979722629.JavaMail.yahoo@mail.yahoo.com>
-In-Reply-To: <1765661136.531886.1462979722629.JavaMail.yahoo@mail.yahoo.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.141.157]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f67.google.com (mail-qg0-f67.google.com
+	[209.85.192.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5CACE00CB0
+	for <yocto@yoctoproject.org>; Thu,  2 Jun 2016 05:07:38 -0700 (PDT)
+Received: by mail-qg0-f67.google.com with SMTP id l75so15751432qgd.3
+	for <yocto@yoctoproject.org>; Thu, 02 Jun 2016 05:07:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc; bh=vdUc/fYu/YQ2vvq98rpT/jDz6Fa6QjnO5vWF/XUoRg0=;
+	b=b9BjNy/4PBldkJzFqYFjXt1GXylHaiCpnbKJwLNaLxsP6PfkP7PPZq4gYVXhCrb710
+	rI5LXrRbbhCugNNKVr1fHNumq9Dv3oQuaF/uUc6uI7EQSNM/M2qX15/W3K0OoxJSvoce
+	8vlDMpGDmJ9IdJFbvgbR8y/VBHcqUT6NtzmPWLKZW9NKiWyYb5lUdOkLh588zLWomCie
+	p+C6F4XoJknimUB0j+UP530x0vbbCz60c9ffqiBkU2oObaFooom8YCa2CBFAJVQrItSW
+	AOpwGI7XYL2mECH6+abNV1rwTmVDAzKUS0ofggF1yih/icdMBmyGARIMhYoV+5BxlNQN
+	PAEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc;
+	bh=vdUc/fYu/YQ2vvq98rpT/jDz6Fa6QjnO5vWF/XUoRg0=;
+	b=h0YhAEJUj8EfkfognOwCKNyOwRwzlr/7zYPohRDofb2x34NX7ilXXZVeyc3WTlSe/k
+	r2d2lL808VsOz8B7P+3xV7Jlof+e4hlhJCvv0GCwDX2gygJoZCZyVsHFd1a6mZ8nKBAZ
+	MqlMV/ZmsPIj8mPkzH7Z47eUA6LnsiQ5vIO8wXXij6ksiCNuz/YOP6lz1FjhZp70mNTv
+	2QPdQZX244eO2xYh6O2jhbqYF7vP0sjRmBHCjr2Nc+gLdSPGaBXJcHuxRo6+cBwMKbW3
+	M9e96ua2ZmzMGcMKHtSWyIjjQJK69p0G94C+6CbttnfaUCa0/uTp9ZIZSbMB6+LdobP6
+	YYrg==
+X-Gm-Message-State: ALyK8tI6esbP2Xmuq0Vm0Gzpw9vpS/pUtOpxpjiA4cynsGvrZWZYcYrmLpLKfLFf2i0ToZ0J70kLkR6JZLut2g==
 MIME-Version: 1.0
-X-Outbound-IP: 192.36.1.72
-X-Env-From: Adrian.Dudau@enea.com
-X-PolicySMART: 6551647
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
+X-Received: by 10.140.93.97 with SMTP id c88mr40108856qge.64.1464869257690;
+	Thu, 02 Jun 2016 05:07:37 -0700 (PDT)
+Received: by 10.237.49.35 with HTTP; Thu, 2 Jun 2016 05:07:37 -0700 (PDT)
+In-Reply-To: <CO2PR01MB21840F2DD89161EFD52F8DC9BF470@CO2PR01MB2184.prod.exchangelabs.com>
+References: <CO2PR01MB2184C310EE183297732FDFE0BF470@CO2PR01MB2184.prod.exchangelabs.com>
+	<CAEeWubK4M7HaF5thz-eNsot+P50bwR+gXLJPg-OupORFY2wKmQ@mail.gmail.com>
+	<CO2PR01MB2184B876419EA3E195B8C861BF470@CO2PR01MB2184.prod.exchangelabs.com>
+	<CAEeWubKnA=K9tvFR9ok8COyVJsqJ-1ixK+D0zq2Weyi7veCAag@mail.gmail.com>
+	<CO2PR01MB21840F2DD89161EFD52F8DC9BF470@CO2PR01MB2184.prod.exchangelabs.com>
+Date: Thu, 2 Jun 2016 15:07:37 +0300
+Message-ID: <CAEeWubJP_Vr2cZZaOY2Kg_ZdQrn4SDqPB9xJgQ6qiVotc7Dh8w@mail.gmail.com>
+From: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
+To: Paul DeMetrotion <pdemetrotion@winsystems.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-cgl][PATCH 1/2] Added device manager multipath support for root file system
+Subject: Re: Recipe Debug - QA Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,216 +74,860 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Jun 2016 09:44:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2D0CBBDBC2E03B49ADD5F35E7F8E6BB0@local>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 02 Jun 2016 12:07:42 -0000
+Content-Type: multipart/alternative; boundary=001a113a2e1cbf490d05344a7349
 
-T24gb25zLCAyMDE2LTA1LTExIGF0IDE1OjE1ICswMDAwLCBBbGV4YW5kcnUgVmFkdXZhIHdyb3Rl
-Og0KPiBIZWxsbyBBZGksDQo+ICANCj4gQ2Fubm90IHRoaXMgdHdvIHBhdGNoZXMgYmUgcmVkb25l
-IGJ5Og0KPiAgICAgICAgICAgICAgICByZW1vdmluZyBmcm9tICAiW1BBVENIIDEvMl0gQWRkZWQg
-ZGV2aWNlIG1hbmFnZXINCj4gbXVsdGlwYXRoIHN1cHBvcnQgZm9yIHJvb3QgZmlsZSBzeXN0ZW0i
-IHRoZSBsaW5lICIrSU1BR0VfQ0xBU1NFUyArPQ0KPiAiaW1hZ2VfdHlwZXNfdWJvb3QiIg0KPiAg
-ICAgICAgICAgICAgICBvbmx5IGtlZXBpbmcgaW4gIltQQVRDSCAyLzJdIGRpc3RybzogTW92ZSBJ
-TUFHRV9DTEFTU0VTDQo+IGluaGVyaXRhbmNlIiAgdGhlIGxpbmUgZnJvbSAiIHBva3ktY2dsLmNv
-bmYiLg0KPiANCj4gDQo+IEFsc28gdGhpcyBwYXRjaCBoYXMgYm90aCByZXF1aXJlIGFuZCBpbmhl
-cml0IGFuZCBpbiBteSBvcGluaW9uIHRoZQ0KPiBpbmhlcml0IGxpbmUgY2FuIGJlIHJlbW92ZWQg
-c2luY2UgdGhlIGNvcmUtaW1hZ2UtY2dsIGFsc28gYWRkcyBpdA0KPiBpbmRpcmVjdGx5Lg0KPiAN
-Cj4gDQo+IEFub3RoZXIgb2JqZWN0aW9uIGZvciB0aGlzIHBhdGNoIGlzIHRoYXQgaXQgc2hvdWxk
-IGJlIGJyb2tlbiBpbiBtb3JlDQo+IHBpZWNlczogbXVsdGlwYXRoLCBpbWFnZXMsIGluaXRyZHNj
-cmlwdHMgYW5kIGNvbmZfc2V0dXAgb3IgaW4gYW5vdGhlcg0KPiBmb3JtYXQuIEhhdmluZyBpdCBs
-aWtlIHRoaXMgaXMgdG9vIGJpZyBhbmQgaW4gY2FzZSBvZiBhIHJldmVydCB0b28NCj4gbXVjaCBm
-dW5jdGlvbmFsaXR5IGNvdWxkIGJlIGxvc3Qgb3IgcmVwbGljYXRlZC4NCg0KWW91J3JlIHByb2Jh
-Ymx5IHJpZ2h0IGl0IHdvdWxkIGJlIGdvb2QgdG8gcmV3b3JrIHRoaXMgcGF0Y2gsIGJ1dCBzaW5j
-ZQ0KSSdtIG5vdCB0aGUgb3JpZ2luYWwgYXV0aG9yIGFuZCBJIGRvbid0IGhhdmUgYWxsb2NhdGVk
-IHRpbWUgZm9yIGl0IHRoZXNlDQpkYXlzIGl0IG1heSBiZSBhIHdoaWxlIHVudGlsIEkgY2FuIGdl
-dCBhcm91bmQgdG8gZG8gaXQuIA0KDQpJJ2xsIG1lcmdlIHRoZSBvdGhlciB0d28gcmVnYXJkaW5n
-IFNlbGludXggdGhvdWdoLg0KDQotLUFkcmlhbg0KDQo+ICANCj4gIA0KPiBUaGFua3MsDQo+IEFs
-ZXggVi4NCj4gDQo+IA0KPiANCj4gDQo+IE9uIFR1ZXNkYXksIE1heSAxMCwgMjAxNiAxOjA4IFBN
-LCBBZHJpYW4gRHVkYXUgPGFkcmlhbi5kdWRhdUBlbmVhLmNvbT4NCj4gd3JvdGU6DQo+IA0KPiAN
-Cj4gDQo+IEZyb206IE1hdHMgTGlsamVncmVuIDxtYXRzLmxpbGplZ3JlbkBlbmVhLmNvbT4NCj4g
-DQo+IFRoaXMgaXMgaW1wbGVtZW50ZWQgdXNpbmcgYW4gaW5pdHJhbWZzLCBidWlsdCBieQ0KPiBj
-b3JlLWltYWdlLWNnbC1pbml0cmFtZnMgaW1hZ2UNCj4gcmVjaXBlLiBNdWx0aXBhdGggZGV2aWNl
-IGNvbmZpZ3VyYXRpb25zIGFyZSBkb25lIHVzaW5nIGtlcm5lbCBib290DQo+IHBhcmFtZXRlcnMu
-DQo+IFRoZSBtdWx0aXBhdGgtcm9vdC1ob3d0by5tZCBleHBsYWlucyBob3cgdG8gdXNlIHRoaXMu
-DQo+IA0KPiBBbHNvIG5vdGUgdGhhdCB0aGUgbWV0YS1jZ2wvc2NyaXB0cy9jb25mX3NldHVwLnNo
-IHdpbGwgbm93IGFsc28gYWRkIGENCj4gQkJNQVNLDQo+IGVudHJ5IHRvIG1hc2sgb3V0IHRoZSBt
-ZXRhLXZpcnR1YWxpemF0aW9uJ3MgdmVyc2lvbiBvZg0KPiBtdWx0aXBhdGgtdG9vbHMsIHNpbmNl
-DQo+IHdlIG5lZWQgdGhlIG5ld2VyIHJlY2lwZSBpbiB0aGUgbWV0YS1vcGVuZW1iZWRkZWQvbWV0
-YS1vZSBpbnN0ZWFkLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWF0cyBMaWxqZWdyZW4gPG1hdHMu
-bGlsamVncmVuQGVuZWEuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBZHJpYW4gRHVkYXUgPGFkcmlh
-bi5kdWRhdUBlbmVhLmNvbT4NCj4gLS0tDQo+IG1ldGEtY2dsLWNvbW1vbi9pbWFnZXMvY29yZS1p
-bWFnZS1jZ2wtaW5pdHJhbWZzLmJiIHwgIDIyICsrKw0KPiBtZXRhLWNnbC1jb21tb24vaW1hZ2Vz
-L2NvcmUtaW1hZ2UtY2dsLmJiICAgICAgICAgIHwgIDIgKw0KPiAuLi4vcGFja2FnZWdyb3Vwcy9w
-YWNrYWdlZ3JvdXAtY2dsLW1pZGRsZXdhcmUuYmIgIHwgIDggKy0NCj4gLi4uL3JlY2lwZXMtY29y
-ZS9pbml0cmRzY3JpcHRzL2ZpbGVzL2luaXQtYm9vdC5zaCAgfCAxNzkNCj4gKysrKysrKysrKysr
-KysrKysrKysrDQo+IC4uLi9pbml0cmRzY3JpcHRzL2luaXRyYW1mcy1jZ2wtYm9vdF8xLjAuYmIg
-ICAgICAgIHwgIDE0ICsrDQo+IHNjcmlwdHMvY29uZl9zZXR1cC5zaCAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHwgIDIgKw0KPiA2IGZpbGVzIGNoYW5nZWQsIDIyMCBpbnNlcnRpb25zKCsp
-LCA3IGRlbGV0aW9ucygtKQ0KPiBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1jZ2wtY29tbW9uL2lt
-YWdlcy9jb3JlLWltYWdlLWNnbC1pbml0cmFtZnMuYmINCj4gY3JlYXRlIG1vZGUgMTAwNjQ0DQo+
-IG1ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNvcmUvaW5pdHJkc2NyaXB0cy9maWxlcy9pbml0LWJv
-b3Quc2gNCj4gY3JlYXRlIG1vZGUgMTAwNjQ0DQo+IG1ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNv
-cmUvaW5pdHJkc2NyaXB0cy9pbml0cmFtZnMtY2dsLWJvb3RfMS4wLmJiDQo+IGNyZWF0ZSBtb2Rl
-IDEwMDc1NSBzY3JpcHRzL2NvbmZfc2V0dXAuc2gNCj4gDQo+IGRpZmYgLS1naXQgYS9tZXRhLWNn
-bC1jb21tb24vaW1hZ2VzL2NvcmUtaW1hZ2UtY2dsLWluaXRyYW1mcy5iYg0KPiBiL21ldGEtY2ds
-LWNvbW1vbi9pbWFnZXMvY29yZS1pbWFnZS1jZ2wtaW5pdHJhbWZzLmJiDQo+IG5ldyBmaWxlIG1v
-ZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAuLjg0NWZhMDcNCj4gLS0tIC9kZXYvbnVsbA0KPiAr
-KysgYi9tZXRhLWNnbC1jb21tb24vaW1hZ2VzL2NvcmUtaW1hZ2UtY2dsLWluaXRyYW1mcy5iYg0K
-PiBAQCAtMCwwICsxLDIyIEBADQo+ICtyZXF1aXJlIGNvcmUtaW1hZ2UtY2dsLmJiDQo+ICsNCj4g
-KyMgUmVjaXBlIGlzIGJhc2VkIG9uIGNvcmUtaW1hZ2UtbWluaW1hbC5iYg0KPiArREVTQ1JJUFRJ
-T04gPSAiSW5pdHJhbWZzIHVzZWQgdG8gbW91bnQgbXVsdGlwYXRoIGRldmljZSBhcyByb290IGZp
-bGUNCj4gc3lzdGVtIg0KPiArDQo+ICtQQUNLQUdFX0lOU1RBTEwgPSAiaW5pdHJhbWZzLWNnbC1i
-b290IGJ1c3lib3ggYmFzZS1wYXNzd2QgdWRldg0KPiAke1JPT1RGU19CT09UU1RSQVBfSU5TVEFM
-TH0iDQo+ICsNCj4gKyMgRG8gbm90IHBvbGx1dGUgdGhlIGluaXRyZCBpbWFnZSB3aXRoIHJvb3Rm
-cyBmZWF0dXJlcw0KPiArSU1BR0VfRkVBVFVSRVMgPSAiIg0KPiArDQo+ICtleHBvcnQgSU1BR0Vf
-QkFTRU5BTUUgPSAiY29yZS1pbWFnZS1jZ2wtaW5pdHJhbWZzIg0KPiArSU1BR0VfTElOR1VBUyA9
-ICIiDQo+ICsNCj4gK0xJQ0VOU0UgPSAiTUlUIg0KPiArDQo+ICtJTUFHRV9GU1RZUEVTID0gImNw
-aW8uZ3oudS1ib290Ig0KPiArSU1BR0VfQ0xBU1NFUyArPSAiaW1hZ2VfdHlwZXNfdWJvb3QiDQo+
-ICtpbmhlcml0IGNvcmUtaW1hZ2UNCj4gKw0KPiArSU1BR0VfUk9PVEZTX1NJWkUgPSAiODE5MiIN
-Cj4gKw0KPiArQkFEX1JFQ09NTUVOREFUSU9OUyArPSAiYnVzeWJveC1zeXNsb2ciDQo+IGRpZmYg
-LS1naXQgYS9tZXRhLWNnbC1jb21tb24vaW1hZ2VzL2NvcmUtaW1hZ2UtY2dsLmJiDQo+IGIvbWV0
-YS1jZ2wtY29tbW9uL2ltYWdlcy9jb3JlLWltYWdlLWNnbC5iYg0KPiBpbmRleCBkMTIzOTFiLi41
-OTc1NjAxIDEwMDY0NA0KPiAtLS0gYS9tZXRhLWNnbC1jb21tb24vaW1hZ2VzL2NvcmUtaW1hZ2Ut
-Y2dsLmJiDQo+ICsrKyBiL21ldGEtY2dsLWNvbW1vbi9pbWFnZXMvY29yZS1pbWFnZS1jZ2wuYmIN
-Cj4gQEAgLTIxLDYgKzIxLDggQEAgSU1BR0VfSU5TVEFMTCArPSAiXA0KPiAgICAga2VybmVsLW1v
-ZHVsZXMgXA0KPiAgICAgIg0KPiANCj4gK0lNQUdFX0ZTVFlQRVMgKz0gIiBleHQzLmd6Ig0KPiAr
-DQo+ICMga2V4ZWMtdG9vbHMgZG9lc24ndCB3b3JrIG9uIE1pcHMNCj4gS0VYRUNUT09MU19taXBz
-ID89ICIiDQo+IEtFWEVDVE9PTFNfbWlwc2VsID89ICIiDQo+IGRpZmYgLS1naXQNCj4gYS9tZXRh
-LWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2dsLW1pZGRsZXdhcmUuYmIN
-Cj4gYi9tZXRhLWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2dsLW1pZGRs
-ZXdhcmUuYmINCj4gaW5kZXggNDQ4ZTAzOC4uYjBjMmNhYyAxMDA2NDQNCj4gLS0tIGEvbWV0YS1j
-Z2wtY29tbW9uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNnbC1taWRkbGV3YXJlLmJiDQo+
-ICsrKyBiL21ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jZ2wtbWlk
-ZGxld2FyZS5iYg0KPiBAQCAtMTgsMTQgKzE4LDggQEAgREhDUCA9ICIgXA0KPiAgICAgIg0KPiAN
-Cj4gTVVMVElQQVRIX1RPT0xTID0gIiBcDQo+IC0gICAgbGlibXBhdGhwZXJzaXN0IFwNCj4gLSAg
-ICBtcGF0aHBlcnNpc3QgXA0KPiArICAgIG11bHRpcGF0aC10b29scyBcDQo+ICAgICBrcGFydHgg
-XA0KPiAtICAgIGxpYm11bHRpcGF0aCBcDQo+IC0gICAgbXVsdGlwYXRoIFwNCj4gLSAgICBtdWx0
-aXBhdGhkIFwNCj4gLSAgICBsaWJtdWx0aXBhdGgtZGV2IFwNCj4gLSAgICBsaWJtcGF0aHBlcnNp
-c3QtZGV2IFwNCj4gICAgICINCj4gDQo+IFJERVBFTkRTX3BhY2thZ2Vncm91cC1jZ2wtbWlkZGxl
-d2FyZSA9ICJcDQo+IGRpZmYgLS1naXQNCj4gYS9tZXRhLWNnbC1jb21tb24vcmVjaXBlcy1jb3Jl
-L2luaXRyZHNjcmlwdHMvZmlsZXMvaW5pdC1ib290LnNoDQo+IGIvbWV0YS1jZ2wtY29tbW9uL3Jl
-Y2lwZXMtY29yZS9pbml0cmRzY3JpcHRzL2ZpbGVzL2luaXQtYm9vdC5zaA0KPiBuZXcgZmlsZSBt
-b2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwLi5mY2FkZmM2DQo+IC0tLSAvZGV2L251bGwNCj4g
-KysrIGIvbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY29yZS9pbml0cmRzY3JpcHRzL2ZpbGVzL2lu
-aXQtYm9vdC5zaA0KPiBAQCAtMCwwICsxLDE3OSBAQA0KPiArIyEvYmluL3NoIC1ldQ0KPiArDQo+
-ICsjIEZhaWwgZnVuY3Rpb24sIGVpdGhlciBjYWxsZWQgZXhwbGljaXRseSBvciB3aGVuIHNoZWxs
-IHdpbGwgcXVpdA0KPiArZmFpbCAoKSB7DQo+ICsgICAgIyBBdm9pZCByZWN1cnNpdmUgdHJhcHMN
-Cj4gKyAgICB0cmFwICcnIEVSUiBFWElUDQo+ICsNCj4gKyAgICAjIElmIG1lc3NhZ2UgcHJvdmlk
-ZWQsIHByaW50IGl0DQo+ICsgICAgWyAtbiAnJHsxOi19JyBdICYmIGVjaG8gJEANCj4gKw0KPiAr
-ICAgICMgR2VuZXJpYyBlcnJvciBtZXNzYWdlIGFuZCBzaGVsbCBhY2Nlc3MNCj4gKyAgICBlY2hv
-ICJFcnJvciBvY2N1cmVkLCBnaXZpbmcgYSBzaGVsbCINCj4gKyAgICBleGVjIHNoDQo+ICt9DQo+
-ICsNCj4gK3RyYXAgZmFpbCBFUlIgRVhJVA0KPiArDQo+ICtpbnRlcnJ1cHQgKCkgew0KPiArICAg
-IGVjaG8gIlVzZXIgaW50ZXJydXB0IHJlY2VpdmVkLCBnaXZpbmcgYSBzaGVsbC4gV2hlbiBleGl0
-aW5nDQo+IHNoZWxsLCBleGVjdXRpb24gd2lsbCBjb250aW51ZS4iDQo+ICsgICAgc2gNCj4gK30N
-Cj4gKw0KPiArdHJhcCBpbnRlcnJ1cHQgSU5UDQo+ICsNCj4gKyMgRmluZCBzZXNzaW9uIElEIGZv
-ciBhbiBpU0NTSSBkaXNrIGdpdmVuIGl0cyBJUU4gbmFtZQ0KPiAraXFuX3RvX3NpZCAoKSB7DQo+
-ICsgICAgaXNjc2lhZG0gLW0gc2Vzc2lvbiB8IGZncmVwICQxIHwgc2VkIC1yICdzLy4qXFsoWzAt
-OV0pXF0uKi9cMS8nDQo+ICt9DQo+ICsNCj4gKyMgRmluZCBkZXZpY2UgbmFtZSwgd2l0aG91dCBw
-YXRoLCBmb3IgYW4gaVNDU0kgZGlzayBnaXZlbiBpdHMgSVFODQo+IG5hbWUNCj4gK2lxbl90b19k
-ZXYgKCkgew0KPiArICAgIGlzY3NpYWRtIC1tIHNlc3Npb24gLXIgJChpcW5fdG9fc2lkICQxKSAt
-UDMgfCBzZWQgLXJuDQo+ICdzLy4qQXR0YWNoZWQgc2NzaSBkaXNrIChbYS16QS1aMC05X10rKS4q
-L1wxL3AnDQo+ICt9DQo+ICsNCj4gKyMgUGFyc2UgaW5wdXQgcGFyYW1ldGVycyBleHBlY3Rpbmcg
-bmFtZT12YWx1ZSBwYWlycy4NCj4gKyMgTmFtZSBvbmx5IG1hdGNoZXMga25vd24gcGFyYW1ldGVy
-cy4NCj4gKyMgT24gbWF0Y2gsIHNldCB2YXJpYWJsZSA8bmFtZT4gdG8gdmFsdWUgPHZhbHVlPi4N
-Cj4gKyMgRS5nLiBnaXZlbiAicGFyc2VfY21kbGluZSB0cnl0aGlzPSJvaywgZG8gaXQiDQo+ICsj
-IHRoZSBzaGVsbCB2YXJpYWJsZSAidHJ5dGhpcyIgd2lsbCBub3cgaGF2ZSB0aGUgdmFsdWUgIm9r
-LCBkbyBpdCIuDQo+ICtwYXJzZV9jbWRsaW5lICgpIHsNCj4gKyAgICBpc2NzaV9jaGFwX3VzZXI9
-IiINCj4gKyAgICBpc2NzaV9jaGFwX3B3ZD0iIg0KPiArICAgIGlzY3NpX2Rldj0iIg0KPiArICAg
-IGlzY3NpX2RlYnVnPTANCj4gKw0KPiArICAgIHdoaWxlIFsgLW4gIiR7MTotfSIgXTsgZG8NCj4g
-KyAgICAgICAgbmFtZT0iJHsxJSU9Kn0iDQo+ICsgICAgICAgIHZhbD0iJHsxIyo9fSINCj4gKyAg
-ICAgICAgY2FzZSAkbmFtZSBpbg0KPiArICAgICAgICAgICAgaXNjc2lfY2hhcF91c2VyfGlzY3Np
-X2NoYXBfcHcpDQo+ICsgICAgICAgICAgICAgICAgZXZhbCAkbmFtZT1cIiR2YWxcIjs7DQo+ICsg
-ICAgICAgICAgICBpc2NzaV9kZXYpDQo+ICsgICAgICAgICAgICAgICAgZXZhbCAkbmFtZT1cIiRp
-c2NzaV9kZXYgJHZhbFwiDQo+ICsgICAgICAgICAgICAgICAgOzsNCj4gKyAgICAgICAgICAgIGlz
-Y3NpX2RlYnVnKQ0KPiArICAgICAgICAgICAgICAgIHNldCAteA0KPiArICAgICAgICAgICAgICAg
-IGlzY3NpX2RlYnVnPTENCj4gKyAgICAgICAgICAgICAgICA7Ow0KPiArICAgICAgICBlc2FjDQo+
-ICsgICAgICAgIHNoaWZ0DQo+ICsgICAgZG9uZQ0KPiArDQo+ICsgICAgWyAtbiAiJHtpc2NzaV9k
-ZXZ9IiBdIHx8IGZhaWwgIk1hbmRhdG9yeSBrZXJuZWwgYm9vdCBwYXJhbWV0ZXINCj4gJ2lzY3Np
-X2Rldicgbm90IGdpdmVuLiINCj4gKw0KPiArfQ0KPiArDQo+ICtQQVRIPS9zYmluOi9iaW46L3Vz
-ci9zYmluOi91c3IvYmluDQo+ICsNCj4gK2VjaG8gIk1vdW50aW5nIC9wcm9jIg0KPiArbW91bnQg
-LXQgcHJvYyBwcm9jIC9wcm9jDQo+ICsNCj4gK0tFUk5FTF9DTURMSU5FPSIkKGNhdCAvcHJvYy9j
-bWRsaW5lKSINCj4gKw0KPiArZWNobyAiUGFyc2luZyBrZXJuZWwgcGFyYW1ldGVycyINCj4gK3Bh
-cnNlX2NtZGxpbmUgJEtFUk5FTF9DTURMSU5FDQo+ICsNCj4gK2VjaG8gIk1vdW50aW5nIC9zeXMi
-DQo+ICttb3VudCAtdCBzeXNmcyBzeXNmcyAvc3lzDQo+ICsNCj4gKyMgdWRldiBpcyBuZWVkZWQg
-Zm9yIG11bHRpcGF0aA0KPiArZWNobyAiU3RhcnRpbmcgdWRldiINCj4gKy9ldGMvaW5pdC5kL3Vk
-ZXYgc3RhcnQNCj4gKw0KPiArIyBBZGQgQ0hBUCBhdXRlbnRoaWNhdGlvbiwgaWYgZ2l2ZW4gYXMg
-a2VybmVsIGJvb3QgcGFyYW1ldGVycw0KPiArZWNobyAiQ29uZmlndXJpbmcgaVNDU0kiDQo+ICtb
-IC1uICIkaXNjc2lfY2hhcF91c2VyIiAtbyAtbiAiJGlzY3NpX2NoYXBfcHciIF0gJiYgY2F0IDw8
-RU9GDQo+ID4+IC9ldGMvaXNjc2kvaXNjc2lkLmNvbmYNCj4gK25vZGUuc2Vzc2lvbi5hdXRoLmF1
-dGhtZXRob2QgPSBDSEFQDQo+ICtFT0YNCj4gK1sgLW4gIiRpc2NzaV9jaGFwX3VzZXIiIF0gJiYg
-Y2F0IDw8RU9GID4+IC9ldGMvaXNjc2kvaXNjc2lkLmNvbmYNCj4gK25vZGUuc2Vzc2lvbi5hdXRo
-LnVzZXJuYW1lID0gJGlzY3NpX2NoYXBfdXNlcg0KPiArRU9GDQo+ICtbIC1uICIkaXNjc2lfY2hh
-cF9wdyIgXSAmJiBjYXQgPDxFT0YgPj4gL2V0Yy9pc2NzaS9pc2NzaWQuY29uZg0KPiArbm9kZS5z
-ZXNzaW9uLmF1dGgucGFzc3dvcmQgPSAkaXNjc2lfY2hhcF9wdw0KPiArRU9GDQo+ICsNCj4gK2Vj
-aG8gPj4gL2V0Yy9pc2NzaS9pc2NzaWQuY29uZg0KPiArDQo+ICtlY2hvICJTdGFydGluZyBpU0NT
-SSBkYWVtb24iDQo+ICsvZXRjL2luaXQuZC9pc2NzaWQgcmVzdGFydA0KPiArDQo+ICtlY2hvICJE
-aXNjb3ZlcmluZyBpU0NTSSBkZXZpY2VzIg0KPiArDQo+ICtmb3IgZGV2IGluICRpc2NzaV9kZXY7
-IGRvDQo+ICsgICAgdGFyZ2V0X2lwPSIke2RldiUlOip9Ig0KPiArICAgIGRldl9uYW1lPSIke2Rl
-diMqOn0iDQo+ICsgICAgZWNobyAiTG9nZ2luZyBpbiB0byBpc2NzaSBkZXZpY2VzOiAkZGV2X25h
-bWUsIHRhcmdldDogJHRhcmdldF9pcCINCj4gKyAgICBpc2NzaWFkbSAtLW1vZGUgZGlzY292ZXJ5
-ZGIgLS10eXBlIHNlbmR0YXJnZXRzIC0tZGlzY292ZXINCj4gLS1wb3J0YWwgJHRhcmdldF9pcA0K
-PiArICAgIGlzY3NpYWRtIC0tbW9kZSBub2RlIC0tdGFyZ2V0bmFtZSAkZGV2X25hbWUgLS1sb2dp
-biAtLXBvcnRhbA0KPiAkdGFyZ2V0X2lwDQo+ICtkb25lDQo+ICsNCj4gK2VjaG8gIkNvbmZpZ3Vy
-aW5nIG11bHRpcGF0aCINCj4gK2NhdCA8PEVPRiA+IC9ldGMvbXVsdGlwYXRoLmNvbmYNCj4gK2Rl
-ZmF1bHRzIHsNCj4gKyAgICAgICAgcGF0aF9ncm91cGluZ19wb2xpY3kgICAgbXVsdGlidXMNCj4g
-KyAgICAgICAgIyBJZiBubyBwYXRoLCB0aGVuIHF1ZXVlIHJlcXVlc3RzDQo+ICsgICAgICAgIG5v
-X3BhdGhfcmV0cnkgcXVldWUNCj4gK30NCj4gK2RldmljZXMgew0KPiArICAgICAgICBkZXZpY2Ug
-ew0KPiArICAgICAgICAgICAgICAgIHZlbmRvciAgICAgICAgICAgICAgICAgIElFVA0KPiArICAg
-ICAgICAgICAgICAgIHByb2R1Y3QgICAgICAgICAgICAgICAgVklSVFVBTC1ESVNLDQo+ICsgICAg
-ICAgICAgICAgICAgcGF0aF9ncm91cGluZ19wb2xpY3kgICAgbXVsdGlidXMNCj4gKyAgICAgICAg
-fQ0KPiArfQ0KPiArYmxhY2tsaXN0IHsNCj4gKyAgICAgICAgZGV2bm9kZSAiLioiDQo+ICt9DQo+
-ICtibGFja2xpc3RfZXhjZXB0aW9ucyB7DQo+ICskKGZvciBkZXYgaW4gJGlzY3NpX2RldjsgZG8N
-Cj4gKyAgICBlY2hvICIgICAgICAgIGRldm5vZGUgIFwiXiQoaXFuX3RvX2RldiAke2RldiMqOn0p
-XCIiDQo+ICsgIGRvbmUpDQo+ICsgICAgICAgIHByb3BlcnR5ICAiLioiDQo+ICt9DQo+ICtFT0YN
-Cj4gKw0KPiArZWNobyAiU3RhcnRpbmcgbXVsdGlwYXRoIGRhZW1vbiINCj4gKyMgTWFrZSBzdXJl
-IGxvY2sgZmlsZSBkaXJlY3RvcnkgZXhpc3RzDQo+ICtta2RpciAtcCAvdmFyL2xvY2svc3Vic3lz
-L211bHRpcGF0aGQNCj4gKy9ldGMvaW5pdC5kL211bHRpcGF0aGQgc3RhcnQNCj4gKw0KPiArbXBh
-dGhfdGVtcGxhdGU9Jy9kZXYvZGlzay9ieS1pZC9kbS11dWlkLW1wYXRoLSonDQo+ICsNCj4gK2Vj
-aG8gIldhaXRpbmcgZm9yIG1wYXRoIGRldmljZSB0byBhcHBlYXIiDQo+ICt3aGlsZSBbIC16ICIk
-KGxzICRtcGF0aF90ZW1wbGF0ZSAyPi9kZXYvbnVsbCkiIF07IGRvDQo+ICsgICAgc2xlZXAgMQ0K
-PiArZG9uZQ0KPiArTVBBVEhfREVWPSIkKGxzICRtcGF0aF90ZW1wbGF0ZSkiDQo+ICtlY2hvICJt
-cGF0aCBkZXZpY2U6ICRNUEFUSF9ERVYiDQo+ICsNCj4gK2VjaG8gIk1vdW50aW5nIG1wYXRoIGRl
-dmljZSAkTVBBVEhfREVWIg0KPiArbW91bnQgJE1QQVRIX0RFViAvbW50DQo+ICsNCj4gK2VjaG8g
-IlN0b3BwaW5nIG11bHRpcGF0aCBkYWVtb24iDQo+ICsjIFNob3VsZCBiZSB1c2luZyAiL2V0Yy9p
-bml0LmQvbXVsdGlwYXRoZCBzdG9wIiwgYnV0IGRpZCBub3Qgd29yay4NCj4gKyMgR290ICJraWxs
-YWxsOiAvc2Jpbi9tdWx0aXBhdGhkOiBubyBwcm9jZXNzIGtpbGxlZCIuDQo+ICsjIEtpbGwgdGhl
-IHByb2Nlc3MgYmFzZWQgb24gdGhlIHNhdmVkIHBpZC4NCj4gK2tpbGwgJChjYXQgL3J1bi9tdWx0
-aXBhdGhkLnBpZCkNCj4gKw0KPiArZWNobyAiTW92aW5nIGlzY3NpIHBpZCBhbmQgbG9jayBmaWxl
-cyINCj4gK2NwIC9ydW4vaXNjc2lkLnBpZCAvbW50L3J1bi9pc2NzaWQucGlkDQo+ICtjcCAvcnVu
-L2xvY2svaXNjc2kvKiAvbW50L3J1bi9sb2NrL2lzY3NpDQo+ICsNCj4gKyMgSW4gY2FzZSBpc2Nz
-aV9kZWJ1ZyBpcyBnaXZlbiwgb3BlbiBhIHNoZWxsIGF0IHRoaXMgcG9pbnQNCj4gK2lmIFsgJGlz
-Y3NpX2RlYnVnIC1lcSAxIF07IHRoZW4NCj4gKyAgICBlY2hvICJpc2NzaV9kZWJ1ZyBnaXZlbiwg
-b3BlbmluZyBhIHNoZWxsLiBXaGVuIGV4aXRpbmcgc2hlbGwsDQo+IGJvb3Qgd2lsbCBjb250aW51
-ZS4iDQo+ICsgICAgc2gNCj4gK2ZpDQo+ICsNCj4gKyMgdWRldiBuZWVkcyB0byBiZSByZXN0YXJ0
-IHdoZW4gcmVhbCBpbml0IHJ1bnMsIHNvIHN0b3AgaXQNCj4gK2VjaG8gIlN0b3BwaW5nIHVkZXYi
-DQo+ICsvZXRjL2luaXQuZC91ZGV2IHN0b3ANCj4gKw0KPiArZWNobyAiTW92aW5nIHN5cywgcHJv
-YyBhbmQgZGV2IG1vdW50cyB0byBuZXcgcm9vdCINCj4gK21vdW50IC0tbW92ZSAvc3lzIC9tbnQv
-c3lzDQo+ICttb3VudCAtLW1vdmUgL3Byb2MgL21udC9wcm9jDQo+ICttb3VudCAtLW1vdmUgL2Rl
-diAvbW50L2Rldg0KPiArDQo+ICtlY2hvICJTd2l0Y2hpbmcgdG8gbmV3IHJvb3QiDQo+ICtleGVj
-IHN3aXRjaF9yb290IC9tbnQgL3NiaW4vaW5pdCAkS0VSTkVMX0NNRExJTkUNCj4gZGlmZiAtLWdp
-dA0KPiBhL21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNvcmUvaW5pdHJkc2NyaXB0cy9pbml0cmFt
-ZnMtY2dsLWJvb3RfMS4wLmJiDQo+IGIvbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY29yZS9pbml0
-cmRzY3JpcHRzL2luaXRyYW1mcy1jZ2wtYm9vdF8xLjAuYmINCj4gbmV3IGZpbGUgbW9kZSAxMDA2
-NDQNCj4gaW5kZXggMDAwMDAwMC4uNTI2NWJmMA0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKw0KPiBi
-L21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNvcmUvaW5pdHJkc2NyaXB0cy9pbml0cmFtZnMtY2ds
-LWJvb3RfMS4wLmJiDQo+IEBAIC0wLDAgKzEsMTQgQEANCj4gK1NVTU1BUlkgPSAiU3VwcG9ydCBm
-b3IgaGF2aW5nIG11bHRpcGF0aCBpU0NTSSBkZXZpY2VzIGFzIHJvb3QgZmlsZQ0KPiBzeXN0ZW0i
-DQo+ICtMSUNFTlNFID0gIk1JVCINCj4gK0xJQ19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovLyR7
-Q09SRUJBU0V9L21ldGEtY2dsL0NPUFlJTkcuTUlUO21kNT04MzhjMzY2ZjY5YjcyYzVkZjA1Yzk2
-ZGZmNzliMzVmMiINCj4gK1NSQ19VUkkgPSAiZmlsZTovL2luaXQtYm9vdC5zaCINCj4gKw0KPiAr
-ZG9faW5zdGFsbCgpIHsNCj4gKyAgICAgICAgaW5zdGFsbCAtbSAwNzU1ICR7V09SS0RJUn0vaW5p
-dC1ib290LnNoICR7RH0vaW5pdA0KPiArfQ0KPiArDQo+ICtpbmhlcml0IGFsbGFyY2gNCj4gKw0K
-PiArUkRFUEVORFNfJHtQTn0gKz0gIm11bHRpcGF0aC10b29scyBrcGFydHggaXNjc2ktaW5pdGlh
-dG9yLXV0aWxzIg0KPiArDQo+ICtGSUxFU18ke1BOfSArPSAiIC9pbml0ICINCj4gZGlmZiAtLWdp
-dCBhL3NjcmlwdHMvY29uZl9zZXR1cC5zaCBiL3NjcmlwdHMvY29uZl9zZXR1cC5zaA0KPiBuZXcg
-ZmlsZSBtb2RlIDEwMDc1NQ0KPiBpbmRleCAwMDAwMDAwLi5hYWQ4ZTcxDQo+IC0tLSAvZGV2L251
-bGwNCj4gKysrIGIvc2NyaXB0cy9jb25mX3NldHVwLnNoDQo+IEBAIC0wLDAgKzEsMiBAQA0KPiAr
-IyEvYmluL2Jhc2gNCj4gK2VjaG8gLWUgJ1xuQkJNQVNLID0NCj4gIm1ldGEtdmlydHVhbGl6YXRp
-b24vcmVjaXBlcy1leHRlbmRlZC9tdWx0aXBhdGgtdG9vbHMvbXVsdGlwYXRoLXRvb2xzX2dpdC5i
-YiInID4+IGNvbmYvbG9jYWwuY29uZg0KPiAtLSANCj4gMS45LjENCj4gDQo+IC0tIA0KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0byBtYWls
-aW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCj4gDQo+IA0KPiANCg0KDQo=
+--001a113a2e1cbf490d05344a7349
+Content-Type: text/plain; charset=UTF-8
 
+Also, try this to get KERNEL_VERSION:
+
+KERNEL_VERSION="${@base_read_file('${STAGING_KERNEL_BUILDDIR}/kernel-abiversion')
+
+kmoddir =
+"/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/redpine"
+
+On Wed, Jun 1, 2016 at 8:44 PM, Paul DeMetrotion <
+pdemetrotion@winsystems.com> wrote:
+
+> That removed the QA error. Thanks you.
+>
+>
+>
+> Problems remain because none of the 12 driver files are being copied to
+> the image while the two shell script files are copied.
+>
+>
+>
+> Paul DeMetrotion
+>
+> Software Guru
+>
+> WinSystems, Inc.
+>
+> (972) 571-8657
+>
+> www.winsystems.com
+>
+>
+>
+> *From:* Oleksandr Poznyak [mailto:oleksandr.poznyak@gmail.com]
+> *Sent:* Wednesday, June 01, 2016 11:20 AM
+>
+> *To:* Paul DeMetrotion
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Recipe Debug - QA Issue
+>
+>
+>
+> oops!
+>
+> FILES_${PN} += "${base_libdir}"
+>
+> That's it
+>
+>
+>
+> On Wed, Jun 1, 2016 at 6:42 PM, Paul DeMetrotion <
+> pdemetrotion@winsystems.com> wrote:
+>
+> Thanks for your suggestions. I changed it to the simple one-line
+> modification but still have the same issue. I even commented the
+> FILES_${PN} line and have the same issue. It appears that the problem is
+> with the do_install_append() section.
+>
+>
+>
+> Paul DeMetrotion
+>
+> Software Guru
+>
+> WinSystems, Inc.
+>
+> (972) 571-8657
+>
+> www.winsystems.com
+>
+>
+>
+> *From:* Oleksandr Poznyak [mailto:oleksandr.poznyak@gmail.com]
+> *Sent:* Wednesday, June 01, 2016 8:40 AM
+> *To:* Paul DeMetrotion
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Recipe Debug - QA Issue
+>
+>
+>
+> Hi,
+> 1) It's more common to use FILES_${PN} += ...
+> 2) Please, remove ${D} from FILES_${PN}
+>
+> Try this:
+>
+> FILES_${PN} += " \
+>     ${kmoddir}/onebox_common_gpl.ko \
+>     ${kmoddir}/onebox_gpl.ko \
+>     ${kmoddir}/onebox_nongpl.ko \
+>     ${kmoddir}/onebox_wlan_gpl.ko \
+>     ${kmoddir}/onebox_wlan_nongpl.ko \
+>     ${kmoddir}/wlan.ko \
+>     ${kmoddir}/wlan_wep.ko \
+>     ${kmoddir}/wlan_ccmp.ko \
+>     ${kmoddir}/wlan_tkip.ko \
+>     ${kmoddir}/wlan_acl.ko \
+>     ${kmoddir}/wlan_scan_sta.ko \
+>     ${kmoddir}/wlan_xauth.ko \
+>     /etc/redpine/wlan_enable.sh \
+>     /etc/redpine/wlan_disable.sh \
+> "
+>
+> Moreover, You may simplify it:
+>
+> FILES_${PN} += "${kmoddir} /etc/redpine"
+>
+>
+>
+> On Wed, Jun 1, 2016 at 3:55 PM, Paul DeMetrotion <
+> pdemetrotion@winsystems.com> wrote:
+>
+> I have created a simple (?) recipe to copy some existing drivers and
+> scripts into my kernel image. I am getting the following error when I
+> attempt to bitbake the recipe. Is this a license issue?
+>
+>
+>
+> ERROR: QA Issue: rs9113: Files/directories were installed but not shipped
+>
+>   /lib
+>
+>   /lib/modules
+>
+>   /lib/modules/kernel
+>
+>   /lib/modules/kernel/drivers
+>
+>   /lib/modules/kernel/drivers/net
+>
+>   /lib/modules/kernel/drivers/net/wireless
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_ccmp.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/onebox_common_gpl.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_tkip.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_wep.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_scan_sta.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_acl.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_nongpl.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_gpl.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/wlan_xauth.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/onebox_gpl.ko
+>
+>   /lib/modules/kernel/drivers/net/wireless/redpine/onebox_nongpl.ko
+> [installed-vs-shipped]
+>
+>
+>
+> Here is the recipe. I have all of the files to be copied in the same
+> directory as the recipe.
+>
+>
+>
+> DESCRIPTION = "Install of redpine drivers and scripts"
+>
+>
+>
+> LICENSE = "MIT"
+>
+> LIC_FILES_CHKSUM =
+> "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
+>
+>
+> file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+>
+>
+>
+> kmoddir =
+> "/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/redpine"
+>
+>
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}:"
+>
+>
+>
+> SRC_URI_append = " \
+>
+>     file://onebox_common_gpl.ko \
+>
+>     file://onebox_gpl.ko \
+>
+>     file://onebox_nongpl.ko \
+>
+>     file://onebox_wlan_gpl.ko \
+>
+>     file://onebox_wlan_nongpl.ko \
+>
+>     file://wlan.ko \
+>
+>     file://wlan_wep.ko \
+>
+>     file://wlan_ccmp.ko \
+>
+>     file://wlan_tkip.ko \
+>
+>     file://wlan_acl.ko \
+>
+>     file://wlan_scan_sta.ko \
+>
+>     file://wlan_xauth.ko \
+>
+>     file://wlan_enable.sh \
+>
+>     file://wlan_disable.sh \
+>
+> "
+>
+>
+>
+> do_install_append() {
+>
+>     mkdir -p ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/onebox_common_gpl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/onebox_gpl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/onebox_nongpl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/onebox_wlan_gpl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/onebox_wlan_nongpl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_wep.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_ccmp.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_tkip.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_acl.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_scan_sta.ko ${D}${kmoddir}
+>
+>     install -m 0755 ${WORKDIR}/wlan_xauth.ko ${D}${kmoddir}
+>
+>     mkdir -p ${D}/etc/redpine
+>
+>     install -m 0755 ${WORKDIR}/wlan_enable.sh ${D}/etc/redpine
+>
+>     install -m 0755 ${WORKDIR}/wlan_disable.sh ${D}/etc/redpine
+>
+> }
+>
+>
+>
+> FILES_${PN}_append = " \
+>
+>     ${D}${kmoddir}/onebox_common_gpl.ko \
+>
+>     ${D}${kmoddir}/onebox_gpl.ko \
+>
+>     ${D}${kmoddir}/onebox_nongpl.ko \
+>
+>     ${D}${kmoddir}/onebox_wlan_gpl.ko \
+>
+>     ${D}${kmoddir}/onebox_wlan_nongpl.ko \
+>
+>     ${D}${kmoddir}/wlan.ko \
+>
+>     ${D}${kmoddir}/wlan_wep.ko \
+>
+>     ${D}${kmoddir}/wlan_ccmp.ko \
+>
+>     ${D}${kmoddir}/wlan_tkip.ko \
+>
+>     ${D}${kmoddir}/wlan_acl.ko \
+>
+>     ${D}${kmoddir}/wlan_scan_sta.ko \
+>
+>     ${D}${kmoddir}/wlan_xauth.ko \
+>
+>     ${D}/etc/redpine/wlan_enable.sh \
+>
+>     ${D}/etc/redpine/wlan_disable.sh \
+>
+> "
+>
+>
+>
+> Paul DeMetrotion
+>
+> Software Guru
+>
+> WinSystems, Inc.
+>
+> (972) 571-8657
+>
+> www.winsystems.com
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+>
+
+--001a113a2e1cbf490d05344a7349
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Also, try this to get KERNEL_VERSION:<br><br>KERNEL_VERSIO=
+N=3D&quot;${@base_read_file(&#39;${STAGING_KERNEL_BUILDDIR}/kernel-abiversi=
+on&#39;)<br><br>kmoddir =3D &quot;/lib/modules/${KERNEL_VERSION}/kernel/dri=
+vers/net/wireless/redpine&quot;<br></div><div class=3D"gmail_extra"><br><di=
+v class=3D"gmail_quote">On Wed, Jun 1, 2016 at 8:44 PM, Paul DeMetrotion <s=
+pan dir=3D"ltr">&lt;<a href=3D"mailto:pdemetrotion@winsystems.com" target=
+=3D"_blank">pdemetrotion@winsystems.com</a>&gt;</span> wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">
+
+
+
+
+
+<div link=3D"blue" vlink=3D"purple" lang=3D"EN-US">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">That removed the QA error=
+. Thanks you.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Problems remain because n=
+one of the 12 driver files are being copied to the image while the two shel=
+l script files are copied.<u></u><u></u></span></p><span class=3D"">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Paul DeMetrotion<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Software Guru<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">WinSystems, Inc.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><a href=3D"tel:%28972%29%=
+20571-8657" value=3D"+19725718657" target=3D"_blank">(972) 571-8657</a><u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><a href=3D"http://www.win=
+systems.com/" target=3D"_blank">www.winsystems.com</a>
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+</span><div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0=
+pt 0in 0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Oleksand=
+r Poznyak [mailto:<a href=3D"mailto:oleksandr.poznyak@gmail.com" target=3D"=
+_blank">oleksandr.poznyak@gmail.com</a>]
+<br>
+<b>Sent:</b> Wednesday, June 01, 2016 11:20 AM</span></p><div><div class=3D=
+"h5"><br>
+<b>To:</b> Paul DeMetrotion<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Recipe Debug - QA Issue<u></u><u></u></div></di=
+v><p></p>
+</div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">oops!<u></u><u></u></=
+p>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">FILES_${PN} +=3D &quo=
+t;${base_libdir}&quot;<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">That&#39;s it<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On Wed, Jun 1, 2016 at 6:42 PM, Paul DeMetrotion &lt=
+;<a href=3D"mailto:pdemetrotion@winsystems.com" target=3D"_blank">pdemetrot=
+ion@winsystems.com</a>&gt; wrote:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks for your suggestio=
+ns. I changed it to the simple one-line modification but still have the
+ same issue. I even commented the FILES_${PN} line and have the same issue.=
+ It appears that the problem is with the do_install_append() section.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Paul DeMetrotion</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Software Guru</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">WinSystems, Inc.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><a href=3D"tel:%28972%29%=
+20571-8657" target=3D"_blank">(972) 571-8657</a></span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><a href=3D"http://www.win=
+systems.com/" target=3D"_blank">www.winsystems.com</a>
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Oleksand=
+r Poznyak [mailto:<a href=3D"mailto:oleksandr.poznyak@gmail.com" target=3D"=
+_blank">oleksandr.poznyak@gmail.com</a>]
+<br>
+<b>Sent:</b> Wednesday, June 01, 2016 8:40 AM<br>
+<b>To:</b> Paul DeMetrotion<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Recipe Debug - QA Issue</span><u></u><u></u></p=
+>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi,<br>
+1) It&#39;s more common to use FILES_${PN} +=3D ...<br>
+2) Please, remove ${D} from FILES_${PN}<br>
+<br>
+Try this:<br>
+<br>
+FILES_${PN} +=3D &quot; \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/onebox_common_gpl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/onebox_gpl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/onebox_nongpl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/onebox_wlan_gpl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/onebox_wlan_nongpl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_wep.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_ccmp.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_tkip.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_acl.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_scan_sta.ko \<br>
+=C2=A0=C2=A0=C2=A0 ${kmoddir}/wlan_xauth.ko \<br>
+=C2=A0=C2=A0=C2=A0 /etc/redpine/wlan_enable.sh \<br>
+=C2=A0=C2=A0=C2=A0 /etc/redpine/wlan_disable.sh \<br>
+&quot;<br>
+<br>
+Moreover, You may simplify it:<br>
+<br>
+FILES_${PN} +=3D &quot;${kmoddir} /etc/redpine&quot;<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">On Wed, Jun 1, 2016 at 3:55 PM, Paul DeMetrotion &lt=
+;<a href=3D"mailto:pdemetrotion@winsystems.com" target=3D"_blank">pdemetrot=
+ion@winsystems.com</a>&gt; wrote:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">I have created a simple (?) recipe to copy some exis=
+ting drivers and scripts into my kernel image. I am getting the following e=
+rror when I attempt to bitbake the recipe. Is this
+ a license issue?<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">ERROR: QA Issue: rs9113: Files/directories were installed but not sh=
+ipped</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine</span><u></u=
+><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan.ko</spa=
+n><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_ccmp.ko=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/onebox_commo=
+n_gpl.ko</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_tkip.ko=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_wep.ko<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_scan_st=
+a.ko</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_acl.ko<=
+/span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_=
+nongpl.ko</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/onebox_wlan_=
+gpl.ko</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/wlan_xauth.k=
+o</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/onebox_gpl.k=
+o</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0 /lib/modules/kernel/drivers/net/wireless/redpine/onebox_nongp=
+l.ko [installed-vs-shipped]</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Here is the recipe. I have all of the files to be co=
+pied in the same directory as the recipe.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">DESCRIPTION =3D &quot;Install of redpine drivers and scripts&quot;</=
+span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">LICENSE =3D &quot;MIT&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">LIC_FILES_CHKSUM =3D &quot;file://${COREBASE}/LICENSE;md5=3D4d92cd37=
+3abda3937c2bc47fbc49d690 \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+<a>
+file://${COREBASE}/meta/COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4de20420<=
+/a>&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">kmoddir =3D &quot;/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/=
+wireless/redpine&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}:&quot;</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">SRC_URI_append =3D &quot; \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://onebox_common_gpl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://onebox_gpl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://onebox_nongpl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://onebox_wlan_gpl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://onebox_wlan_nongpl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_wep.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_ccmp.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_tkip.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_acl.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_scan_sta.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_xauth.ko</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_enable.sh</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0
+<a>file://wlan_disable.sh</a> \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">do_install_append() {
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0=C2=A0mkdir -p ${D}${kmoddir}
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0=C2=A0install -m 0755 ${WORKDIR}/onebox_common_gpl=
+.ko ${D}${kmoddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/onebox_gpl.ko ${D}${km=
+oddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/onebox_nongpl.ko ${D}$=
+{kmoddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/onebox_wlan_gpl.ko ${D=
+}${kmoddir}
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0=C2=A0install -m 0755 ${WORKDIR}/onebox_wlan_nongp=
+l.ko ${D}${kmoddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan.ko ${D}${kmoddir}=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_wep.ko ${D}${kmod=
+dir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_ccmp.ko ${D}${kmo=
+ddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_tkip.ko ${D}${kmo=
+ddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_acl.ko ${D}${kmod=
+dir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_scan_sta.ko ${D}$=
+{kmoddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_xauth.ko ${D}${km=
+oddir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 mkdir -p ${D}/etc/redpine
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0=C2=A0install -m 0755 ${WORKDIR}/wlan_enable.sh ${=
+D}/etc/redpine</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/wlan_disable.sh ${D}/e=
+tc/redpine</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">}</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">FILES_${PN}_append =3D &quot; \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/onebox_common_gpl.ko \</span><u></=
+u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/onebox_gpl.ko \</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/onebox_nongpl.ko \</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/onebox_wlan_gpl.ko \</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/onebox_wlan_nongpl.ko \</span><u><=
+/u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan.ko \</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_wep.ko \</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_ccmp.ko \</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_tkip.ko \</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_acl.ko \</span><u></u><u></u>=
+</p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_scan_sta.ko \</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}${kmoddir}/wlan_xauth.ko \</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}/etc/redpine/wlan_enable.sh \</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">=C2=A0=C2=A0=C2=A0 ${D}/etc/redpine/wlan_disable.sh \</span><u></u><=
+u></u></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none">
+<span style=3D"font-size:9.5pt;font-family:Consolas;color:black;background:=
+white">&quot;</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d">Paul DeMetrotion</span=
+><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d">Software Guru</span><u=
+></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d">WinSystems, Inc.
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d"><a href=3D"tel:%28972%=
+29%20571-8657" target=3D"_blank">(972) 571-8657</a></span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d"><a href=3D"http://www.=
+winsystems.com/" target=3D"_blank">www.winsystems.com</a>
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+
+--001a113a2e1cbf490d05344a7349--
