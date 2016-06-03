@@ -1,52 +1,58 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03A94E00DE5; Fri,  3 Jun 2016 12:46:11 -0700 (PDT)
+	id CC1C9E00DF0; Fri,  3 Jun 2016 12:58:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [188.165.55.104 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from 16.mo4.mail-out.ovh.net (16.mo4.mail-out.ovh.net
-	[188.165.55.104])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83C92E00DD7
-	for <yocto@yoctoproject.org>; Fri,  3 Jun 2016 12:46:07 -0700 (PDT)
-Received: from player773.ha.ovh.net (b9.ovh.net [213.186.33.59])
-	by mo4.mail-out.ovh.net (Postfix) with ESMTP id DB8CA10050C7
-	for <yocto@yoctoproject.org>; Fri,  3 Jun 2016 21:46:02 +0200 (CEST)
-Received: from nuc.betafive.co.uk
-	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
-	(Authenticated sender: paul@betafive.co.uk)
-	by player773.ha.ovh.net (Postfix) with ESMTPSA id E7F5D60007C;
-	Fri,  3 Jun 2016 21:46:00 +0200 (CEST)
-Date: Fri, 3 Jun 2016 20:47:45 +0100
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F6FFE00DE5
+	for <yocto@yoctoproject.org>; Fri,  3 Jun 2016 12:58:49 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id a136so1697192wme.0
+	for <yocto@yoctoproject.org>; Fri, 03 Jun 2016 12:58:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=pHBXT7b9Qc9Dyq/mjTTtVIo/3CaTd/yChQuWHrXSFFM=;
+	b=STWpqY/udSDaLJAuM62uBKqHCGExpp2eArQpJxr2lYk3eYKuLEmC7iV37zoOkBdG8T
+	ffKlagnVKjDfIJhgAFXezfrlDR/MqfCh8wTzUKHdMwKLKE1CU8Oqck+3D00pPd95Rpsa
+	phbb58zlaVZ9nTKegTZMWTTAB0W/Uwuzc3gCfYsKLNGmmY1qHHMbW/ygLl18ZEIRZTBR
+	6xS50ISiRwo4s4sK2uVx6Wcj5An9JoFV+2T0wxPUZk/C/2G8ggC8CQlluFXEtv1/Ia3I
+	Q2oU8S8SzeFBcmtRaGZ8/ikumj+8SfHof4+ukfGp2p2k7jUiky2MON+ce7lUOKZ0a2hK
+	f1AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+	bh=pHBXT7b9Qc9Dyq/mjTTtVIo/3CaTd/yChQuWHrXSFFM=;
+	b=ZQlKbF8aQe74DIzm+EyZMrplQFiZdi2v8XxECSnQLgiQQnlHvE+7g3bzE57HgzBJ/n
+	Mixw/P8cP97F1OL2GiurVJzzPS27Zh1vuR0KtrG7fo993GKfv47+oiZ7gb7j3g60FWUy
+	V57+UK5cn0uuFZOk0NLyacozAYZ1nEsU+Q4kBt2HMUeSXirOAJEzaSN8Cxx+i9+w28UM
+	J+mtmvfPtm/lY1+tSLcL2M/ss00Z0eyU7avd2kSqXBKUim+uzSkl7K0U+fvAKlY43JmA
+	aftipjy8zKfD+S3YEkdFAGEtic/Yh3Ait2seUh/W9jvWrLR5uz9ARrn0eI0UBYGfITph
+	U4IA==
+X-Gm-Message-State: ALyK8tIFDltKEd75mXAKdi1F95fA6HB07TrD5dXvmcBV8461x8nX35KmkGtoTb4SDn4VpA==
+X-Received: by 10.28.46.83 with SMTP id u80mr964275wmu.35.1464983928511;
+	Fri, 03 Jun 2016 12:58:48 -0700 (PDT)
+Received: from dev-jessie.betafive.co.uk
+	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
+	by smtp.gmail.com with ESMTPSA id v5sm7219500wjv.36.2016.06.03.12.58.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 03 Jun 2016 12:58:47 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-To: Ionel Badisor <ionelbadisor@gmail.com>
-Message-ID: <20160603204745.15425713@nuc.betafive.co.uk>
-In-Reply-To: <259f2b97-1f00-7d6e-785e-1e6887f933c1@gmail.com>
-References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
-	<1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
-	<CAMKF1sqhn+RckCxE0Kf68MFdNQMVP5d8K_8Rg3WkSaACsEbv_g@mail.gmail.com>
-	<20160530091128.31b01008@nuc.betafive.co.uk>
-	<CAMKF1srR=kqT5h4n+o7GSXtEO2yntURB+Ak70RxMJgd0+swucw@mail.gmail.com>
-	<20160530231646.7557d3b4@nuc.betafive.co.uk>
-	<CAMKF1sry_vLP59S+FJyHtUpEYBxdnQ-QUMJcSjdPu4TQ7y5D7Q@mail.gmail.com>
-	<20160601185500.30c54bd7@nuc.betafive.co.uk>
-	<9933cb0e-fccc-1b87-134d-06a9ca273b12@gmail.com>
-	<20160602222519.48afd77f@nuc.betafive.co.uk>
-	<259f2b97-1f00-7d6e-785e-1e6887f933c1@gmail.com>
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-X-Ovh-Tracer-Id: 16031125826593393042
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekledrieefgddufeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Allow override of PV
+To: yocto@yoctoproject.org
+Date: Fri,  3 Jun 2016 20:58:56 +0100
+Message-Id: <1464983940-32210-1-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 2.1.4
+Subject: [meta-raspberrypi][PATCH V2 0/4] Drop rpi-mkimage and use upstream u-boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,77 +64,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jun 2016 19:46:11 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 03 Jun 2016 19:58:54 -0000
 
-On Fri, 3 Jun 2016 09:07:37 +0300
-Ionel Badisor <ionelbadisor@gmail.com> wrote:
+Changes for V2:
+    * Don't remove linux-raspberrypi 3.18 just yet
+    * Drop move of PV setting out of linux-raspberrypi.inc
 
-> On 06/03/2016 12:25 AM, Paul Barker wrote:
-> > On Thu, 2 Jun 2016 10:59:37 +0300
-> > Ionel Badisor <ionelbadisor@gmail.com> wrote:
-> >
-> >> On 06/01/2016 08:55 PM, Paul Barker wrote:
-> >>> On Tue, 31 May 2016 10:39:03 +0300
-> >>> Khem Raj <raj.khem@gmail.com> wrote:
-> >>>
-> >>>> On May 30, 2016 3:15 PM, "Paul Barker" <paul@paulbarker.me.uk>
-> >>>> wrote:
-> >>>>>
-> >>>>>
-> >>>>> I'm trying to build from a source archive instead of a git
-> >>>>> repository (to avoid a ~1.3GB git clone operation) so the use of
-> >>>>> ${SRCPV} is causing me trouble.
-> >>>>>
-> >>>>
-> >>>> Can you override the whole PV
-> >>>
-> >>> I've given this another look and I can get the recipe to parse if
-> >>> I require linux-raspberrypi.inc before setting PV instead of
-> >>> afterwards. However do_kernel_configme then gets confused looking
-> >>> for a "standard/raspberrypi" configuration. It only works if I
-> >>> modify linux-raspberrypi.inc as per my patch and set PV before
-> >>> requiring that include file.
-> >>>
-> >>> I'm starting to think that I might be doing something wrong here -
-> >>> is there a supported way to build a kernel from an archive instead
-> >>> of a git repository within OE?
-> >>>
-> >>> Thanks,
-> >>> Paul Barker
-> >>>
-> >> Are you trying to avoid repeated cloning operation to save bandwith
-> >> and time or you are trying to save disk space?
-> >
-> > I'm trying to reduce "time to first build" on a new build machine as
-> > well as the amount of space/bandwidth needed to mirror downloaded
-> > files.
-> >
-> > Instead of setting PV in each recipe I could just duplicate
-> > linux-raspberrypi.inc into my own layer with the change I need.
-> > That's probably the simplest approach for now, I'll just have to
-> > keep my eye on meta-raspberrypi going forward for any changes to
-> > linux-raspberrypi.inc which I'd need to incorporate.
-> >
-> Maybe you can use the `DL_DIR ?= "/path/to/downloads/"` in your 
-> conf/local.conf file for multiple build directories and if you want
-> you can copy downloads directory to new machine and point to it the
-> new local.conf  then all do_fetch operations are already performed,
-> except new changes in which case the git fetch operation is performed
-> when git is used and takes less time then when fetching entire
-> archive.
-> 
-> note: multiple builds on same machine can use same downloads
-> directory.
+Paul Barker (4):
+  linux-raspberrypi: rpi-mkimage is no longer needed
+  u-boot: Use mainline u-boot recipe from oe-core
+  rpi-mkimage: Remove unused recipe
+  sdcard_image-rpi: Always install dtb files
 
-I'm planning to release this as part of a distro layer in the future.
-Not all build machines will be under my control if others use the
-layer.
+ classes/sdcard_image-rpi.bbclass                   | 42 +++++++++++-----------
+ conf/machine/include/rpi-default-providers.inc     |  1 -
+ conf/machine/raspberrypi.conf                      |  2 ++
+ conf/machine/raspberrypi2.conf                     |  2 ++
+ recipes-bsp/rpi-mkimage/rpi-mkimage/License        | 25 -------------
+ .../open-files-relative-to-script.patch            | 17 ---------
+ recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb         | 22 ------------
+ recipes-bsp/u-boot/u-boot-rpi_git.bb               | 29 ---------------
+ recipes-kernel/linux/linux-raspberrypi.inc         | 18 ----------
+ 9 files changed, 25 insertions(+), 133 deletions(-)
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage/License
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage/open-files-relative-to-script.patch
+ delete mode 100644 recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb
+ delete mode 100644 recipes-bsp/u-boot/u-boot-rpi_git.bb
 
-I'm going to drop this patch for now as I can maintain my own copy of
-linux-raspberrypi.inc. I think it'd be good to get the other changes
-into master.
+-- 
+2.1.4
 
-V2 incoming.
 
