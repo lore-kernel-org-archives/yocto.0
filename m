@@ -1,61 +1,40 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 646FEE00DEA; Fri,  3 Jun 2016 12:58:57 -0700 (PDT)
+	id 25EAFE00DEC; Fri,  3 Jun 2016 14:51:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2125E00DEE
-	for <yocto@yoctoproject.org>; Fri,  3 Jun 2016 12:58:52 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id m124so612801wme.3
-	for <yocto@yoctoproject.org>; Fri, 03 Jun 2016 12:58:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=6tjnz0+DsDvQU2Jqd5oGo79gOI8CmMxLBzZjI6nNsZo=;
-	b=xyRy9cQJAmCpXen1OxwbV4u0zi2cpq7Godh8BAMTGjcm03IxmmkpQinBSetXjBTvxC
-	1Tmo/eK7EstQa+UD0wuCHKaU0aPycQH7o3jTIbSXkxTjQki7RHzVAT+zK7fwlw1958m2
-	opzHZAYfxLCPV+1DXxxvEanTkXsXrRdNSwB7VpYkM4kpBr4j0VU3ylfDwEHrj28tXdbB
-	KVYzkxc22GcKm0R3duqr0K1nEdDQrAffQQcpdquV+K8E6ucMGOW5HFd3goYawrd7pijU
-	QGOOfILy6bGicWCxdYxIftXKZo0V3GisxxnWSMn206759gm1LTBnP8vDgJOGS+MO29mB
-	N+tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-	:in-reply-to:references;
-	bh=6tjnz0+DsDvQU2Jqd5oGo79gOI8CmMxLBzZjI6nNsZo=;
-	b=Wnhax40+c9f97Lgnc3KdkUBtRw9ZS8YGJyE8UGT7MojVzrww5sR1rUvriOQ0Mn3NWT
-	faAd8HnYSfLly+POgOk6VbmV2yq6w1lutJDJhk5LYIeHqj+X0SSBaPx7IXoaXCSsibwx
-	Hb7Ar4O40Mw4z9YGVhH3POllGlsXJdFk6IG/MJIPeKKodz9s9BeTLj+mcFnanabfGQ0+
-	fZjQ70xjOpe7XoYKgjrpMWQbzvwcWQoB5jDHY/+uy0iaqcA1u8j4lcuT6QPixT8TG+2Y
-	VaDPecYptF/dPUNnIqz3eMCs125A+21jGXKbrxum/8K6y4w7OfgUtBcTPQaRfij1So2C
-	7F/w==
-X-Gm-Message-State: ALyK8tJB3YZmefL+FK85m6kVv+MIU41z0Uv6wdnwzwzQJm0c1xI8HQ9q6Cy2C95Lom1Q2A==
-X-Received: by 10.28.152.130 with SMTP id a124mr1028268wme.98.1464983932116;
-	Fri, 03 Jun 2016 12:58:52 -0700 (PDT)
-Received: from dev-jessie.betafive.co.uk
-	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
-	by smtp.gmail.com with ESMTPSA id v5sm7219500wjv.36.2016.06.03.12.58.51
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 03 Jun 2016 12:58:51 -0700 (PDT)
-Sender: Paul Barker <paul.betafive@gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-To: yocto@yoctoproject.org
-Date: Fri,  3 Jun 2016 20:59:00 +0100
-Message-Id: <1464983940-32210-5-git-send-email-paul@paulbarker.me.uk>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1464983940-32210-1-git-send-email-paul@paulbarker.me.uk>
-References: <1464983940-32210-1-git-send-email-paul@paulbarker.me.uk>
-Subject: [meta-raspberrypi][PATCH V2 4/4] sdcard_image-rpi: Always install dtb files
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [130.164.80.24 listed in list.dnswl.org]
+Received: from ni.com (skprod3.natinst.com [130.164.80.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1339E00BE7
+	for <yocto@yoctoproject.org>; Fri,  3 Jun 2016 14:51:21 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	u53LpKiL017976; Fri, 3 Jun 2016 16:51:20 -0500
+Received: from delcastillo2.natinst.com ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2016060316511991-493781 ;
+	Fri, 3 Jun 2016 16:51:19 -0500 
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+To: opkg-devel@googlegroups.com, yocto@yoctoproject.org
+Date: Fri, 3 Jun 2016 16:51:18 -0500
+Message-Id: <1464990678-28527-1-git-send-email-alejandro.delcastillo@ni.com>
+X-Mailer: git-send-email 1.9.1
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 06/03/2016 04:51:20 PM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 06/03/2016 04:51:20 PM,
+	Serialize complete at 06/03/2016 04:51:20 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2016-06-03_11:, , signatures=0
+Subject: [opkg-utils PATCH] arfile.py: remove dependency on python-future
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,73 +46,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jun 2016 19:58:57 -0000
+X-List-Received-Date: Fri, 03 Jun 2016 21:51:23 -0000
 
-We now need dtb files when booting via u-boot.
+Python-future provides a python2 compatible object class (provides next
+method). Since method is not used, remove dependency.
 
-Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+Signed-off-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
 ---
- classes/sdcard_image-rpi.bbclass | 40 ++++++++++++++++++++--------------------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+ arfile.py | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 20bd314..3b4f13f 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -103,32 +103,32 @@ IMAGE_CMD_rpi-sdimg () {
- 	rm -f ${WORKDIR}/boot.img
- 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
- 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
-+	if test -n "${DTS}"; then
-+		# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
-+		DT_OVERLAYS="${@split_overlays(d, 0)}"
-+		DT_ROOT="${@split_overlays(d, 1)}"
-+
-+		# Copy board device trees to root folder
-+		for DTB in ${DT_ROOT}; do
-+			DTB_BASE_NAME=`basename ${DTB} .dtb`
-+
-+			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::${DTB_BASE_NAME}.dtb
-+		done
-+
-+		# Copy device tree overlays to dedicated folder
-+		mmd -i ${WORKDIR}/boot.img overlays
-+		for DTB in ${DT_OVERLAYS}; do
-+			DTB_BASE_NAME=`basename ${DTB} .dtb`
-+
-+			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
-+		done
-+	fi
- 	case "${KERNEL_IMAGETYPE}" in
- 	"uImage")
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.bin ::${SDIMG_KERNELIMAGE}
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
- 		;;
- 	*)
--		if test -n "${DTS}"; then
--			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
--			DT_OVERLAYS="${@split_overlays(d, 0)}"
--			DT_ROOT="${@split_overlays(d, 1)}"
--
--			# Copy board device trees to root folder
--			for DTB in ${DT_ROOT}; do
--				DTB_BASE_NAME=`basename ${DTB} .dtb`
--
--				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::${DTB_BASE_NAME}.dtb
--			done
--
--			# Copy device tree overlays to dedicated folder
--			mmd -i ${WORKDIR}/boot.img overlays
--			for DTB in ${DT_OVERLAYS}; do
--				DTB_BASE_NAME=`basename ${DTB} .dtb`
--
--				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
--			done
--		fi
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::${SDIMG_KERNELIMAGE}
- 		;;
- 	esac
+diff --git a/arfile.py b/arfile.py
+index 4bab526..1c42bc7 100644
+--- a/arfile.py
++++ b/arfile.py
+@@ -7,7 +7,6 @@ of GNU General Public License v2 or later.
+ """
+ from __future__ import absolute_import
+ from __future__ import print_function
+-from builtins import object
+ import sys
+ import os
+ import tarfile 
 -- 
-2.1.4
+1.9.1
 
 
