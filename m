@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2681E00C7D; Sat,  4 Jun 2016 16:15:33 -0700 (PDT)
+	id 3EAD2E00C5D; Sat,  4 Jun 2016 16:15:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +16,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8C67E00BE0
-	for <yocto@yoctoproject.org>; Sat,  4 Jun 2016 16:15:30 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id b124so14729910pfb.0
-	for <yocto@yoctoproject.org>; Sat, 04 Jun 2016 16:15:30 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD0FCE00C37
+	for <yocto@yoctoproject.org>; Sat,  4 Jun 2016 16:15:32 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id 62so14692919pfd.3
+	for <yocto@yoctoproject.org>; Sat, 04 Jun 2016 16:15:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=gBUoUBG5XAug74+rmA3NYhOcph/sG4L1vLDDLK2WVRg=;
-	b=scuRJteqrndBkVytFSAVNjsafDc13T32IsCQKV288K/ePuByOGiPJTqXo9AiG/DOBa
-	ir2IO9CofHKVQ1lxtK77mvdlzKbQZROgnIeUMSNIAWRkPvQqrF5sPc2jmvGsUgtCPWrH
-	1COASS+JTeID1haDl/Uw2xbhAa1rh/EhUDaulrScjtGL0XzxUEmF18ZERfqDkZqAugx1
-	ZWhxrhxU5LlIVOK6VOwMpl8Ch44OofnLWJRw8X2YD9Kf1W/lLtgBmn7q+KPiefNtVip3
-	V7RfB8rZ5bQTr3aFdRsV9fNxeNeGtvxFNrFhgYQgs2IGkMZtKgVlowRIyBGF0aRC5CtL
-	ZmgQ==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=COf+a5mXZ4ycfViJg9ZJ56MXKx7r9gyyyihjV1U4eBw=;
+	b=z14dbGnTbI8Oja9IEFDawHMiIFLrMcC24LDTHpBN1oR5rIEXrgPlr7kFxJ7YUpR1Ow
+	qhXLrdDk4fUFattjE4ImAiJCnTuB3aESjidj5bTZoxOQkDGChhLRPBwLxIHrcnHy8jtL
+	oW0io+mUKzrm/W+cZENCXUvTqc3qHh3y9ctni4F+AbKFQphwuNBhEhsORkMiNcWoCabD
+	bkdC4NRQPT7FkR/9MD/K3djZ8/QTZpn45CnKWvOIXBfwyWUtutOLsoJu4JV+h1H9U7fP
+	OCToUOBFJQrhwuNlUQIQoN8sqwlkgMwZg7GTVHpF+hewOZ+ewVqFGdlnEVpi+EGIsDL/
+	ophw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=gBUoUBG5XAug74+rmA3NYhOcph/sG4L1vLDDLK2WVRg=;
-	b=m2gJjbPiA3VsEINbtBT4JXqKp0fDiPGusbtFGmsJjlkrQ0fN2wgim9QIGAmQt48kR/
-	EOx+YUVgsEwmdha5CfU82VrzA8QkNuf8gTvrXuzJWlr8AhFzSFm2sh3UwRFedoELxYtD
-	5fs+u9cn4CPLqHNYj9nBpDAKJ37fZ3af30G8DBje2P+x5pQ7nwzyOztrtHxV/BRFmFxc
-	1kyVIObU0hUYMFfNr+mPMoGQ1NQTipfvszWQyy8muQ8u2SJuvWCoImLgNVMcFIokZ3Pl
-	jcfm9s62e1OROjSHisEYKFwOgaV01GIpBCx+wcDHwkei/L6m4PjR5ITTiCw6dswK3gSz
-	jwxg==
-X-Gm-Message-State: ALyK8tJ1V58jSAx1Xlr3W7KR8i0EMEiuwsWlFNFlRV9IlnJSvAAIQU63ZPw5PIQm4qJelw==
-X-Received: by 10.98.112.9 with SMTP id l9mr15331050pfc.149.1465082129930;
-	Sat, 04 Jun 2016 16:15:29 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=COf+a5mXZ4ycfViJg9ZJ56MXKx7r9gyyyihjV1U4eBw=;
+	b=ECFZu6f8Gk87iNDyux0zfqwfWDubVeO5gQ+XCuoljblscMBRtqskQTD9V8Y7PIMSNv
+	LBueRgel8+AYObDyL1QR+l9TkcSk7mYbc96GNlAgth8ZMirPTX27bM6+5XyThSAAZ3ed
+	sxs2VFI+L3dC6aB9pNUVGtkVpIJ9omynSG0p8TBG+uT50+jRpYI7UWUpt5FKUpJ/mF4k
+	ngUz+14201UEmJ3mWiv5w+SpEDp7YepD20z34vrid1GNA09CqAh1QzW9QKz+AcwPI5vH
+	eXT8iTE2Y3SilDNnrxQkC/ajJ7HGWCeAzMiLcK7+VOrypNuhkp+fmmI4rWrLyYTZNfOA
+	uqug==
+X-Gm-Message-State: ALyK8tIxLN3M4OTE1A1m+fvPz61pi01htPOC/CfgcOj7xuINMJx/wxs1AauolDfyDHJ6dQ==
+X-Received: by 10.98.43.209 with SMTP id r200mr15368166pfr.24.1465082131990;
+	Sat, 04 Jun 2016 16:15:31 -0700 (PDT)
 Received: from akuster-ThinkPad-X240.mvista.com ([223.196.115.131])
 	by smtp.gmail.com with ESMTPSA id
-	dr4sm15084273pac.11.2016.06.04.16.15.27 for <yocto@yoctoproject.org>
+	dr4sm15084273pac.11.2016.06.04.16.15.30 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 04 Jun 2016 16:15:28 -0700 (PDT)
+	Sat, 04 Jun 2016 16:15:31 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat,  4 Jun 2016 16:15:23 -0700
-Message-Id: <1465082124-28161-1-git-send-email-akuster808@gmail.com>
+Date: Sat,  4 Jun 2016 16:15:24 -0700
+Message-Id: <1465082124-28161-2-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH 1/2] nmap: fix several new QA warnings.
+In-Reply-To: <1465082124-28161-1-git-send-email-akuster808@gmail.com>
+References: <1465082124-28161-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] samhain: update to 4.1.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,73 +72,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Jun 2016 23:15:33 -0000
+X-List-Received-Date: Sat, 04 Jun 2016 23:15:34 -0000
 
-WARNING: nmap-7.12-r0 do_package: QA Issue: nmap: Files/directories were installed but not shipped in any package:
-  /usr/lib
-  /usr/bin/ndiff
-  /usr/bin/nping
-  /usr/bin/ncat
-  /usr/lib/python2.7
-  /usr/lib/python2.7/site-packages
-  /usr/lib/python2.7/site-packages/ndiff.pyc
-  /usr/lib/python2.7/site-packages/ndiff.py
-Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
-nmap: 8 installed and not shipped files. [installed-vs-shipped]
+4.1.4:
+  - Fix for issues with re-evaluation of paths with wildcard patterns:
+        - no re-evaluation if no match at process startup
+        - if same pattern used for a file=.. and dir=.. directive, only
+          one (the first in config file) is re-evaluated
 
-remove crazyness and let the system figure out packaging info
-remove ndiff.py* as the compiled version is installed in /usr/bin
-  and remove the leftover python site-package cruft.
+  - Fix for issues with new directories created when inotify is used:
+        - recursion depth is not properly set for new directory
+        - directory gets watched even if recursion depth should be below zero
+
+4.1.3:
+  - Fix for a regression in DNS resolving if samhain is compiled
+    with '--enable-static'
+
+  - On Cygwin/Windows, the default for the 'AvoidBlock' option is now 'off'
+    because of problems reported for this platform.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/nmap/nmap_7.12.bb | 23 +++++++++--------------
- 1 file changed, 9 insertions(+), 14 deletions(-)
+ .../samhain/{samhain-client_4.1.2.bb => samhain-client_4.1.4.bb}      | 0
+ .../samhain/{samhain-server_4.1.2.bb => samhain-server_4.1.4.bb}      | 0
+ recipes-security/samhain/samhain.inc                                  | 4 ++--
+ 3 files changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-security/samhain/{samhain-client_4.1.2.bb => samhain-client_4.1.4.bb} (100%)
+ rename recipes-security/samhain/{samhain-server_4.1.2.bb => samhain-server_4.1.4.bb} (100%)
 
-diff --git a/recipes-security/nmap/nmap_7.12.bb b/recipes-security/nmap/nmap_7.12.bb
-index 47cd7b6..dadff3d 100644
---- a/recipes-security/nmap/nmap_7.12.bb
-+++ b/recipes-security/nmap/nmap_7.12.bb
-@@ -10,10 +10,10 @@ SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
- SRC_URI[md5sum] = "0764f4dabe7cccda3c49fc3990b62a8a"
- SRC_URI[sha256sum] = "63df082a87c95a189865d37304357405160fc6333addcf5b84204c95e0539b04"
+diff --git a/recipes-security/samhain/samhain-client_4.1.2.bb b/recipes-security/samhain/samhain-client_4.1.4.bb
+similarity index 100%
+rename from recipes-security/samhain/samhain-client_4.1.2.bb
+rename to recipes-security/samhain/samhain-client_4.1.4.bb
+diff --git a/recipes-security/samhain/samhain-server_4.1.2.bb b/recipes-security/samhain/samhain-server_4.1.4.bb
+similarity index 100%
+rename from recipes-security/samhain/samhain-server_4.1.2.bb
+rename to recipes-security/samhain/samhain-server_4.1.4.bb
+diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
+index 5c0142b..907f431 100644
+--- a/recipes-security/samhain/samhain.inc
++++ b/recipes-security/samhain/samhain.inc
+@@ -9,8 +9,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+ 	   file://${INITSCRIPT_NAME}.default \
+ 	  "
  
--inherit autotools-brokensep pkgconfig distro_features_check
-+inherit autotools-brokensep pkgconfig python-dir distro_features_check
+-SRC_URI[md5sum] = "9112612fe569a0c92c7479ed2ef3b6f0"
+-SRC_URI[sha256sum] = "bb32321b3dc8450351d99e90d25182a029bef1e46b9a0439ade1ca0a744eadb8"
++SRC_URI[md5sum] = "1ab697b7000d0a272d9ade05bb1bc6e0"
++SRC_URI[sha256sum] = "32ee7477af11d9f2f64f30b9cb316c351897c1c994c7b98b0ef17fc0ca5e1d1a"
  
--PACKAGECONFIG = "ncat nping ndiff pcap"
--PACKAGECONFIG += " ${@bb.utils.contains("IMAGE_FEATURES", "x11-base", "zenmap", "", d)}"
-+PACKAGECONFIG ?= "ncat nping ndiff pcap"
-+PACKAGECONFIG += " ${@bb.utils.contains('IMAGE_FEATURES', 'x11-base', 'zenmap', '', d)}"
+ S = "${WORKDIR}/samhain-${PV}"
  
- PACKAGECONFIG[pcap] = "--with-pcap=linux, --without-pcap, libpcap, libpcap"
- PACKAGECONFIG[ssl] = "--with-openssl=${STAGING_LIBDIR}/.., --without-openssl, openssl, openssl"
-@@ -38,19 +38,14 @@ do_configure() {
-     oe_runconf
- }
- 
-+do_install_append () {
-+   # remove python dir, its not used or installed
-+   rm -fr ${D}/${libdir}
-+}
- 
--PACKAGES = "${PN} ${PN}-dbg ${PN}-doc"
--
--FILES_${PN} = "${bindir}/nmap ${datadir}/nmap/* ${bindir}/uninstall_ndiff"
--
--# append packages if enabled
--FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ncat", "${bindir}/ncat ${target_datadir}/ncat", "", d)}"
--FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "nping", "${bindir}/nping", "", d)}"
--FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ndiff", "${bindir}/ndiff ${libdir}/python${PYTHON_BASEVERSION}/site-packages/ndiff.py*", "", d)}"
--
--PACKAGES += "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${PN}-zenmap", "", d)}"
-+PACKAGES += "${@bb.utils.contains('PACKAGECONFIG', 'zenmap', '${PN}-zenmap', '', d)}"
- 
--FILES_${PN}-zenmap = "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${bindir}/*zenmap ${bindir}/xnmap ${datadir}/applications/*  ${bindir}/nmapfe ${datadir}/zenmap/* ${libdir}/python${PYTHON_BASEVERSION}/site-packages/radialnet/* ${libdir}/python${PYTHON_BASEVERSION}/site-packages/zenmap*", "", d)}"
-+FILES_${PN}-zenmap = "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${bindir}/*zenmap ${bindir}/xnmap ${datadir}/applications/*  ${bindir}/nmapfe ${datadir}/zenmap/* ${PYTHON_SITEPACKAGES_DIR}/radialnet/* ${PYTHON_SITEPACKAGES_DIR}/zenmap*", "", d)}"
- 
- RDEPENDS_${PN} = "python"
- RDEPENDS_${PN}-zenmap = "nmap"
 -- 
 1.9.1
 
