@@ -1,83 +1,42 @@
-Return-Path: <ionelbadisor@gmail.com>
+Return-Path: <predivan@mts.rs>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7A6AE00D98; Thu,  2 Jun 2016 23:08:46 -0700 (PDT)
+	id 43E74E00D68; Sun,  5 Jun 2016 11:37:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ionelbadisor[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.200.12.198 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B075CE008FF
-	for <yocto@yoctoproject.org>; Thu,  2 Jun 2016 23:08:45 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id a136so21061785wme.0
-	for <yocto@yoctoproject.org>; Thu, 02 Jun 2016 23:08:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:subject:to:references:cc:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding;
-	bh=BGvwtH9wKevCWytrrNFN6r/eWiwSHmbSZm61mdRf13o=;
-	b=s/ZYjDUZPIZmUCUmEBnxumcHUKNacgt9nwrESDBP2AUWj5P6CEp6AxLtftxvX8LVw5
-	BQ8TzQBhU4ZYWpue6de854QvKGiA+xQayH609ecX+UiOlVrWX7gp9tBtwI/DNz/07K+R
-	69BF1gxpLR3bJTjbEFDousKPLa9vnGmEyIVnHm3wlDhr+ASZvDDaPuFbswb33OBLnVCc
-	0w9coJBJ6CaHNR1SiC/RO9BwoAI+aR3hNZXzcyg+akguQ6hb73grm0ReYdX1mbAlVPOa
-	QfzFWf4jo5JwOkVr2tiRxP0rpSJwQ9xvOxb4VCyWlCMOcjfB7eDNqUznrGhcqBLAOHPW
-	OKNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:subject:to:references:cc:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=BGvwtH9wKevCWytrrNFN6r/eWiwSHmbSZm61mdRf13o=;
-	b=mS7vCM6z9k91cVecBJkFOxyCbjGdhYlwG36OckzszwIOvzVgP7vCz++Jeb48l0Z1t+
-	jpSm1DSiS4QRW7jB2TAw7SM0p0CCiV5V0m5+ke04f55EF8c+XGlyTc0VmW3Rh4/fo8qb
-	ZWBg6gt1E50O/iMkca8cBE745Q4rsEcSPFnyb7i0KcG5GvA8U0+6qMw698yqugfCGcOm
-	o25PXgBUeLAJYLBzdPOel6nD1ihxrBCwqzrbL4W/IMzhgKw/eKhRo7Bxp16TrOtPE1g8
-	CMU1MnAJwMZbekRn0NZze0TkptETE2I3xB68q89+aaHnlkwmDfkwlHe1SQ24+TRsUU9o
-	7kCQ==
-X-Gm-Message-State: ALyK8tK2FSov832+x4yvZ6uc9EY1rGXiD1bWSbAp0yCvlFym+bSDP81jqYwsfFJoaCrLew==
-X-Received: by 10.194.94.165 with SMTP id dd5mr1602612wjb.31.1464934124056;
-	Thu, 02 Jun 2016 23:08:44 -0700 (PDT)
-Received: from [172.168.0.70] ([217.10.196.2])
-	by smtp.googlemail.com with ESMTPSA id
-	y76sm4666868wmd.3.2016.06.02.23.08.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 02 Jun 2016 23:08:43 -0700 (PDT)
-From: Ionel Badisor <ionelbadisor@gmail.com>
-X-Google-Original-From: Ionel Badisor <ionel.badisor@gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
-	<1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
-	<CAMKF1sqhn+RckCxE0Kf68MFdNQMVP5d8K_8Rg3WkSaACsEbv_g@mail.gmail.com>
-	<20160530091128.31b01008@nuc.betafive.co.uk>
-	<CAMKF1srR=kqT5h4n+o7GSXtEO2yntURB+Ak70RxMJgd0+swucw@mail.gmail.com>
-	<20160530231646.7557d3b4@nuc.betafive.co.uk>
-	<CAMKF1sry_vLP59S+FJyHtUpEYBxdnQ-QUMJcSjdPu4TQ7y5D7Q@mail.gmail.com>
-	<20160601185500.30c54bd7@nuc.betafive.co.uk>
-	<9933cb0e-fccc-1b87-134d-06a9ca273b12@gmail.com>
-	<20160602222519.48afd77f@nuc.betafive.co.uk>
-Message-ID: <259f2b97-1f00-7d6e-785e-1e6887f933c1@gmail.com>
-Date: Fri, 3 Jun 2016 09:07:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.1.0
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Sun, 05 Jun 2016 11:37:20 PDT
+Received: from e11mailgw05.open.telekom.rs (e11mailgw05.open.telekom.rs
+	[212.200.12.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 425BCE00D35
+	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 11:37:20 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A2AiGQD0b1RX/69sV11cgzqBDLkahAkShXoEgR9NAQEBAQEBZidBAQEBAgEGBoQzHBc5DxMhKhCIWphAh2COJYsAhieOZwWIAocWiTCOHAqBaYRQiGVFjkpLVIE2gQOBNzqCdII4gwOCNQEBAQ
+X-IPAS-Result: A2AiGQD0b1RX/69sV11cgzqBDLkahAkShXoEgR9NAQEBAQEBZidBAQEBAgEGBoQzHBc5DxMhKhCIWphAh2COJYsAhieOZwWIAocWiTCOHAqBaYRQiGVFjkpLVIE2gQOBNzqCdII4gwOCNQEBAQ
+X-IronPort-AV: E=Sophos;i="5.26,423,1459807200"; d="scan'208";a="74084881"
+Received: from 93-87-108-175.dynamic.isp.telekom.rs (HELO deus.skynet)
+	([93.87.108.175])
+	by e12mailgw05.open.telekom.rs with ESMTP; 05 Jun 2016 20:36:11 +0200
+Date: Sun, 5 Jun 2016 20:36:11 +0200
+From: Predrag Ivanovic <predivan@mts.rs>
+To: yocto@yoctoproject.org
+Message-ID: <20160605203611.1e1db65d@deus.skynet>
+Organization: Skynet Redux
+X-Mailer: Claws Mail 3.13.2 (GTK+ 2.24.29; x86_64-unknown-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20160602222519.48afd77f@nuc.betafive.co.uk>
 X-Mailman-Approved-At: Mon, 06 Jun 2016 07:18:26 -0700
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Allow override of PV
+Subject: [Poky][krogoth]ERROR: glibc-2.23-r0 do_package: Fatal QA errors found, failing task.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: yocto@yoctoproject.org, Predrag Ivanovic <predivan@mts.rs>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -86,62 +45,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jun 2016 06:08:46 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Sun, 05 Jun 2016 18:37:24 -0000
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 06/03/2016 12:25 AM, Paul Barker wrote:
-> On Thu, 2 Jun 2016 10:59:37 +0300
-> Ionel Badisor <ionelbadisor@gmail.com> wrote:
->
->> On 06/01/2016 08:55 PM, Paul Barker wrote:
->>> On Tue, 31 May 2016 10:39:03 +0300
->>> Khem Raj <raj.khem@gmail.com> wrote:
->>>
->>>> On May 30, 2016 3:15 PM, "Paul Barker" <paul@paulbarker.me.uk>
->>>> wrote:
->>>>>
->>>>>
->>>>> I'm trying to build from a source archive instead of a git
->>>>> repository (to avoid a ~1.3GB git clone operation) so the use of
->>>>> ${SRCPV} is causing me trouble.
->>>>>
->>>>
->>>> Can you override the whole PV
->>>
->>> I've given this another look and I can get the recipe to parse if I
->>> require linux-raspberrypi.inc before setting PV instead of
->>> afterwards. However do_kernel_configme then gets confused looking
->>> for a "standard/raspberrypi" configuration. It only works if I
->>> modify linux-raspberrypi.inc as per my patch and set PV before
->>> requiring that include file.
->>>
->>> I'm starting to think that I might be doing something wrong here -
->>> is there a supported way to build a kernel from an archive instead
->>> of a git repository within OE?
->>>
->>> Thanks,
->>> Paul Barker
->>>
->> Are you trying to avoid repeated cloning operation to save bandwith
->> and time or you are trying to save disk space?
->
-> I'm trying to reduce "time to first build" on a new build machine as
-> well as the amount of space/bandwidth needed to mirror downloaded
-> files.
->
-> Instead of setting PV in each recipe I could just duplicate
-> linux-raspberrypi.inc into my own layer with the change I need. That's
-> probably the simplest approach for now, I'll just have to keep my eye
-> on meta-raspberrypi going forward for any changes to
-> linux-raspberrypi.inc which I'd need to incorporate.
->
-Maybe you can use the `DL_DIR ?= "/path/to/downloads/"` in your 
-conf/local.conf file for multiple build directories and if you want you 
-can copy downloads directory to new machine and point to it the new 
-local.conf  then all do_fetch operations are already performed, except 
-new changes in which case the git fetch operation is performed when git 
-is used and takes less time then when fetching entire archive.
 
-note: multiple builds on same machine can use same downloads directory.
+Hi.
+As an learning experiment, I've tried to build RPi2 image, but the build fails on, what I presume, is one of the Poky core elements.
+Since it's mentioned in the meta-raspberrypi/README that it relies on Poky master branch, I tried that,  but I get the same error.
+I realize that I am trying to build on the unsupported distribution, but the only complaint I got from bitbake, before touching conf/sanity.conf, 
+was that the diffstat and makeinfo are missing.
+But, I've searched the ML and the bugtracker, and couldn't found any mention of this behaviour (nobody else complained), so I must've
+broken something.
+If that's the case, I apologize.
+
+Build log:
+---
+biitbake rpi-basic-image
+<snip>
+Build Configuration:
+BB_VERSION        = "1.30.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Crux-3.2"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "raspberrypi2"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.1"
+TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4 callconvention-hard cortexa7"
+TARGET_FPU        = "hard"
+meta
+meta-poky
+meta-yocto-bsp    = "krogoth:8f51f6153a09f8048fb4c4ce9cf4a19655240de4"
+meta-raspberrypi  = "master:69840c0bbe03c2e61601e2377c8e2adc264e0478"
+<snip>
+WARNING: quilt-native-0.64-r0 do_fetch: Couldn't load checksums from donestamp /home/pedja/stuff/lab/yocto/poky/rpi2-build/downloads/quilt-0.64.tar.gz.done: ValueError (msg: unsupported pickle protocol: 4)
+<snip>
+ERROR: glibc-2.23-r0 do_package: QA Issue: glibc: Files/directories were installed but not shipped in any package:
+  /usr/share
+Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
+glibc: 1 installed and not shipped files. [installed-vs-shipped]
+ERROR: glibc-2.23-r0 do_package: Fatal QA errors found, failing task.
+ERROR: glibc-2.23-r0 do_package: Function failed: do_package
+ERROR: Logfile of failure stored in: /home/pedja/stuff/lab/yocto/poky/rpi2-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/glibc/2.23-r0/temp/log.do_package.7423
+ERROR: Task 519 (/home/pedja/stuff/lab/yocto/poky/meta/recipes-core/glibc/glibc_2.23.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 513 tasks of which 0 didn't need to be rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+  /home/pedja/stuff/lab/yocto/poky/meta/recipes-core/glibc/glibc_2.23.bb, do_package
+Summary: There were 31 WARNING messages shown.
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+---
+
+Configuration diff (mine and default):
+---
+diff -Naur conf.default/bblayers.conf conf.rpi2/bblayers.conf
+--- conf.default/bblayers.conf	2016-04-30 21:35:23.000000000 +0200
++++ conf.rpi2/bblayers.conf	2016-06-04 21:30:09.000000000 +0200
+@@ -6,7 +6,8 @@
+ BBFILES ?= ""
+
+ BBLAYERS ?= " \
+-  /home/pedja/stuff/lab/yocto/poky/meta \
+-  /home/pedja/stuff/lab/yocto/poky/meta-poky \
+-  /home/pedja/stuff/lab/yocto/poky/meta-yocto-bsp \
+-  "
++  /home/pedja/stuff/lab/yocto/poky/meta \
++  /home/pedja/stuff/lab/yocto/poky/meta-poky \
++  /home/pedja/stuff/lab/yocto/poky/meta-yocto-bsp \
++  /home/pedja/stuff/lab/yocto/poky/meta-raspberrypi \
++"
+diff -Naur conf.default/local.conf conf.rpi2/local.conf
+--- conf.default/local.conf	2016-04-30 21:35:23.000000000 +0200
++++ conf.rpi2/local.conf	2016-06-05 18:20:47.000000000 +0200
+@@ -34,8 +34,15 @@
+ #MACHINE ?= "mpc8315e-rdb"
+ #MACHINE ?= "edgerouter"
+ #
++#  From meta-raspberrypi
++#
++#MACHINE ?= "raspberrypi"
++#MACHINE ?= "raspberrypi0"
++MACHINE ?= "raspberrypi2"
++#MACHINE ?= "raspberrypi3"
+
+ #
+ # Where to place downloads
+@@ -105,7 +112,7 @@
+ #  - 'package_rpm' for rpm style packages
+ # E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
+ # We default to rpm:
+-PACKAGE_CLASSES ?= "package_rpm"
++PACKAGE_CLASSES ?= "package_ipk"
+
+ #
+ # SDK target architecture
+@@ -178,7 +185,7 @@
+ # Supported values are auto, gnome, xfce, rxvt, screen, konsole (KDE 3.x only), none
+ # Note: currently, Konsole support only works for KDE 3.x due to the way
+ # newer Konsole versions behave
+-#OE_TERMINAL = "auto"
++OE_TERMINAL = "xfce"
+ # By default disable interactive patch resolution (tasks will just fail instead):
+ PATCHRESOLVE = "noop"
+----
+
+Pedja
 
