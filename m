@@ -1,74 +1,61 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8104E00D7C; Sun,  5 Jun 2016 13:08:56 -0700 (PDT)
+	id 63F94E00D85; Sun,  5 Jun 2016 14:16:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
-	[209.85.214.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAE2BE00D4C
-	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 13:08:53 -0700 (PDT)
-Received: by mail-it0-f65.google.com with SMTP id i65so3139046ith.3
-	for <yocto@yoctoproject.org>; Sun, 05 Jun 2016 13:08:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=H10MO9+T08UHg6w6xuf+Nf+fo5ubRwSJ1FQN5mGyQZs=;
-	b=J8E+n/bNdbFIkLeSYMDN0rxoj6o+pFwIKU6I9OlS+TeLRkhJj0hHYgNNsclBwnmVo5
-	RSIiZAWMqhaWZN9i5nh7EKLdN/4LpEy+qFKnkDhO54BdXOHj6QrJJ9yZ8LEWAk4MgTIS
-	dphXpwUQZenGfgW/YNMBwOBp004L0NRYPTJpDPBEZfvbO24U4wubhUb6XFWjUZgK96LG
-	nrBuDPg3i3RMV18E7438y0I6KPDOj+1RSyiEsyz2WwI4JbXgIk5T7gMeqlmVuuChLhJ8
-	8cCIvPSOUspddbtiQHEW4Iv2IC2jsk1M5wj3hsLyi+9n64NL2z6JNIZlbMfIMVw7VMku
-	xIXw==
+Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
+	[209.85.214.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D999BE00D68
+	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 14:16:02 -0700 (PDT)
+Received: by mail-it0-f41.google.com with SMTP id n126so9589702itd.1
+	for <yocto@yoctoproject.org>; Sun, 05 Jun 2016 14:16:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=gPOpP6vE3sao4s12zfM7nsQgTsZyaRZbktIpSBSLi3o=;
+	b=nzQwJHoxrne5RgytvpsCRoh4k+Q7NH743eS305SjGko7sOm8HmRGCB5svk+cAHjkPq
+	OY1Hcza0YxSkYjaZpl1ZnSe3BHOJmH/JQSIbgeT+wq0it5YiyUICp3v0TbuK7X157as+
+	N5CmtszzJvuO33Ep9Ir1cPB7p9wOriShiWL8vXNNsjQoL9YmZ72koj3UmlJu8kySleLC
+	qjXAPgm/AHVpt0VPsCHyxAu4nE7fxHVFD18ZQVvgDrRVIcONCPSI7mx+tuChaWBwYE6f
+	N8Cd1KIwARf8woMTeIjruHvwNRVZ5bTjKwd7E1ptG4OyIZ+2lbIq1Euc/pDpf0QOVkFd
+	443Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=H10MO9+T08UHg6w6xuf+Nf+fo5ubRwSJ1FQN5mGyQZs=;
-	b=X7arrXtf9RzXHJfIoJbkXCn4pq33vPLQITTCf9asWbL3YhsebpRunDXU1BoQYwerhB
-	3jO3e/t607iCTGYcIlZ+l2L4FxJXHxorzBoVTOeeY9U1RBnJGImM8ZVgh6uvE9Lm7ILh
-	ioTZKgmiqreH38J0k7L/FTH1yJuz/MnzcHsgGUzD34iVKTqIdKKoYSCTzJnZBMBhY6qr
-	2tMrXW6a5BR+5jKD+ybQWfVc+TbN49XiU8r2WqHa8hFxioDaGhwko7udu6HFqFJanIHQ
-	XTHaDVoQcTC58HqSJ3dXfIWUwNVV/CP3feGiz/DFZC/j45FrqnOza7tQu1Ccp8hPsqAN
-	1uHg==
-X-Gm-Message-State: ALyK8tKqm9+Dz7wmbukka6PnXBGcA30cCc9b0sg+hG/82Iybb1Jrge6woQL7kuMJE9rFsw==
-X-Received: by 10.36.11.84 with SMTP id 81mr11871943itd.89.1465157332621;
-	Sun, 05 Jun 2016 13:08:52 -0700 (PDT)
-Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	k20sm5502141iok.14.2016.06.05.13.08.51
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 05 Jun 2016 13:08:51 -0700 (PDT)
-Date: Sun, 5 Jun 2016 16:08:54 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20160605200854.GA14930@openSUSE-i7.site>
-References: <20160604230019.GA1506@openSUSE-i7.site>
-	<CANwerB3L4J79WB4V18DtqZTj92fQXWgWyDKpUQ8cRStt08NNxg@mail.gmail.com>
-	<20160605122132.2a8c70a1@nuc.betafive.co.uk>
-	<013701d1bf23$d3fba520$7bf2ef60$@neuf.fr>
-	<20160605125800.GA5652@openSUSE-i7.site>
-	<013801d1bf3a$5bb10030$13130090$@neuf.fr>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=gPOpP6vE3sao4s12zfM7nsQgTsZyaRZbktIpSBSLi3o=;
+	b=B8E9SIPMxXSNLmCDFdimXZDHUMnAgEbgbtxlwchtJcIuPNsdWi3K0hoZqbXE+X9FXB
+	qfJ8PzRdrvZbUDGjYUhPMUiclRh90QdgLhYaZFOIKy+JP7h1OXlQrpiRXO8I1UQ9VYXz
+	iJ6s8UyxQP0wiX1IZc8trx4q+7KhvRRj1S9pfC3CVY9j+p45Yml+6Q+ulR6J0yd/HU86
+	jo6QkM8h+/YYPa+25wqf8kR+E/aRb5RLySNUrAGQ0hOlcJS3DpU8rTkcW+3Ie1wLdHjD
+	I/N7E235sRmB3MkfgDDRyO29d2U6PhiIdTpwDiLrSBO0pAEi5mfdyfyUjvpbe/XzUFnS
+	Wofg==
+X-Gm-Message-State: ALyK8tKPA6tevaBoxOCsMXyZx+69UqMBj4kuyggJK8oANDG7ns+EPvppAMCwFAMpkXdSCNNbxJ9FOReXV44Cj/od
+X-Received: by 10.36.246.75 with SMTP id u72mr12802766ith.38.1465161362058;
+	Sun, 05 Jun 2016 14:16:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <013801d1bf3a$5bb10030$13130090$@neuf.fr>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: 'Yocto Project' <yocto@yoctoproject.org>
-Subject: Re: gcc-6.1 and raspi
+Received: by 10.107.162.6 with HTTP; Sun, 5 Jun 2016 14:15:42 -0700 (PDT)
+In-Reply-To: <1464732695-28729-2-git-send-email-contact@jgueytat.fr>
+References: <1464732695-28729-1-git-send-email-contact@jgueytat.fr>
+	<1464732695-28729-2-git-send-email-contact@jgueytat.fr>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Sun, 5 Jun 2016 22:15:42 +0100
+Message-ID: <CAJTo0LbcSVF9NX2yojP+CgE1=GHwbq1eyRNVyTxN7F19ucb4Rg@mail.gmail.com>
+To: Julien Gueytat <contact@jgueytat.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [psplash][PATCH v2 2/2] Add --fbdev option to psplash like --rotation.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,23 +67,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Jun 2016 20:08:57 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Sun, 05 Jun 2016 21:16:03 -0000
+Content-Type: multipart/alternative; boundary=94eb2c11898086442605348e769c
 
-On Sun 2016-06-05 @ 04:55:47 PM, Herve Jourdain wrote:
-> It seems like you are building the 4.1.21 kernel.
-> Did you set PREFERRED_VERSION_linux-raspberrypi = "4.4.%" in your
-> distro.conf or local.conf?
+--94eb2c11898086442605348e769c
+Content-Type: text/plain; charset=UTF-8
 
-I was trying to save myself the time required to rebuild with the 4.4 kernel.
-I knew from my experiments that the result was the same for both, but here it
-is anyway:
+On 31 May 2016 at 23:11, Julien Gueytat <contact@jgueytat.fr> wrote:
 
-	ERROR: linux-raspberrypi-1_4.4.9+gitAUTOINC+3b440738b5-r0 do_rpiboot_mkimage: Function failed: do_rpiboot_mkimage
-	Log data follows:
-	| DEBUG: Executing shell function do_rpiboot_mkimage
-	| Usage: mkknlimg [--dtok] [--283x] <vmlinux|zImage|bzImage> <outfile>
-	| WARNING: /z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/1_4.4.9+gitAUTOINC+3b440738b5-r0/temp/run.do_rpiboot_mkimage.18615:1 exit 1 from '/z/layerindex-master/raspi2/tmp/sysroots/x86_64-linux/usr/bin/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}'
-	| ERROR: Function failed: do_rpiboot_mkimage (log file is located at /z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/1_4.4.9+gitAUTOINC+3b440738b5-r0/temp/log.do_rpiboot_mkimage.18615)
+> A new fbdev file is needed and should be overrided if needed.
+> The number contained in fbdev will be used as X in /dev/fbX.
+>
+> By overriding fbdev you can have a splash screen on another
+> framebuffer than /dev/fbO.
+>
+> The getenv(FBDEV) line has been replaced by this option since
+> the environment variables are not read yet when psplash starts.
 
+
+These have been pushed to psplash master, thanks Julien.
+
+Ross
+
+--94eb2c11898086442605348e769c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 31 May 2016 at 23:11, Julien Gueytat <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:contact@jgueytat.fr" target=3D"_blank">contact@jgueytat.fr</a>&gt;</sp=
+an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">A new fbdev f=
+ile is needed and should be overrided if needed.<br>
+The number contained in fbdev will be used as X in /dev/fbX.<br>
+<br>
+By overriding fbdev you can have a splash screen on another<br>
+framebuffer than /dev/fbO.<br>
+<br>
+</span>The getenv(FBDEV) line has been replaced by this option since<br>
+the environment variables are not read yet when <span class=3D"il">psplash<=
+/span> starts.</blockquote></div><br>These have been pushed to psplash mast=
+er, thanks Julien.</div><div class=3D"gmail_extra"><br></div><div class=3D"=
+gmail_extra">Ross</div></div>
+
+--94eb2c11898086442605348e769c--
