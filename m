@@ -1,61 +1,50 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63F94E00D85; Sun,  5 Jun 2016 14:16:03 -0700 (PDT)
+	id 4EB6CE00D8C; Sun,  5 Jun 2016 14:38:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
+	*      [93.17.128.1 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D999BE00D68
-	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 14:16:02 -0700 (PDT)
-Received: by mail-it0-f41.google.com with SMTP id n126so9589702itd.1
-	for <yocto@yoctoproject.org>; Sun, 05 Jun 2016 14:16:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=gPOpP6vE3sao4s12zfM7nsQgTsZyaRZbktIpSBSLi3o=;
-	b=nzQwJHoxrne5RgytvpsCRoh4k+Q7NH743eS305SjGko7sOm8HmRGCB5svk+cAHjkPq
-	OY1Hcza0YxSkYjaZpl1ZnSe3BHOJmH/JQSIbgeT+wq0it5YiyUICp3v0TbuK7X157as+
-	N5CmtszzJvuO33Ep9Ir1cPB7p9wOriShiWL8vXNNsjQoL9YmZ72koj3UmlJu8kySleLC
-	qjXAPgm/AHVpt0VPsCHyxAu4nE7fxHVFD18ZQVvgDrRVIcONCPSI7mx+tuChaWBwYE6f
-	N8Cd1KIwARf8woMTeIjruHvwNRVZ5bTjKwd7E1ptG4OyIZ+2lbIq1Euc/pDpf0QOVkFd
-	443Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=gPOpP6vE3sao4s12zfM7nsQgTsZyaRZbktIpSBSLi3o=;
-	b=B8E9SIPMxXSNLmCDFdimXZDHUMnAgEbgbtxlwchtJcIuPNsdWi3K0hoZqbXE+X9FXB
-	qfJ8PzRdrvZbUDGjYUhPMUiclRh90QdgLhYaZFOIKy+JP7h1OXlQrpiRXO8I1UQ9VYXz
-	iJ6s8UyxQP0wiX1IZc8trx4q+7KhvRRj1S9pfC3CVY9j+p45Yml+6Q+ulR6J0yd/HU86
-	jo6QkM8h+/YYPa+25wqf8kR+E/aRb5RLySNUrAGQ0hOlcJS3DpU8rTkcW+3Ie1wLdHjD
-	I/N7E235sRmB3MkfgDDRyO29d2U6PhiIdTpwDiLrSBO0pAEi5mfdyfyUjvpbe/XzUFnS
-	Wofg==
-X-Gm-Message-State: ALyK8tKPA6tevaBoxOCsMXyZx+69UqMBj4kuyggJK8oANDG7ns+EPvppAMCwFAMpkXdSCNNbxJ9FOReXV44Cj/od
-X-Received: by 10.36.246.75 with SMTP id u72mr12802766ith.38.1465161362058;
-	Sun, 05 Jun 2016 14:16:02 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Sun, 5 Jun 2016 14:15:42 -0700 (PDT)
-In-Reply-To: <1464732695-28729-2-git-send-email-contact@jgueytat.fr>
-References: <1464732695-28729-1-git-send-email-contact@jgueytat.fr>
-	<1464732695-28729-2-git-send-email-contact@jgueytat.fr>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sun, 5 Jun 2016 22:15:42 +0100
-Message-ID: <CAJTo0LbcSVF9NX2yojP+CgE1=GHwbq1eyRNVyTxN7F19ucb4Rg@mail.gmail.com>
-To: Julien Gueytat <contact@jgueytat.fr>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [psplash][PATCH v2 2/2] Add --fbdev option to psplash like --rotation.
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAA58E00D85
+	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 14:38:07 -0700 (PDT)
+Received: from [192.168.1.101] (111-250-192-53.dynamic.hinet.net
+	[111.250.192.53])
+	by msfrf2615.sfr.fr (SMTP Server) with ESMTP id B6A801C00042F;
+	Sun,  5 Jun 2016 23:38:06 +0200 (CEST)
+Received: from [192.168.1.101] (111-250-192-53.dynamic.hinet.net
+	[111.250.192.53])	(using TLSv1
+	with cipher ECDHE-RSA-AES256-SHA (256/256 bits))	(No client certificate
+	requested)	(Authenticated sender: herve.jourdain@neuf.fr)
+	by msfrf2615.sfr.fr (SMTP Server) with ESMTPSA;
+	Sun,  5 Jun 2016 23:38:05 +0200 (CEST)
+Authentication-Results: sfr.fr; auth=pass (PLAIN)
+	smtp.auth=herve.jourdain@neuf.fr
+Mime-Version: 1.0 (1.0)
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+X-Mailer: iPhone Mail (13D15)
+In-Reply-To: <20160605200854.GA14930@openSUSE-i7.site>
+Date: Mon, 6 Jun 2016 05:38:00 +0800
+Message-Id: <9F045CFD-18FB-4C5A-A39E-0B5CEAF87395@neuf.fr>
+References: <20160604230019.GA1506@openSUSE-i7.site>
+	<CANwerB3L4J79WB4V18DtqZTj92fQXWgWyDKpUQ8cRStt08NNxg@mail.gmail.com>
+	<20160605122132.2a8c70a1@nuc.betafive.co.uk>
+	<013701d1bf23$d3fba520$7bf2ef60$@neuf.fr>
+	<20160605125800.GA5652@openSUSE-i7.site>
+	<013801d1bf3a$5bb10030$13130090$@neuf.fr>
+	<20160605200854.GA14930@openSUSE-i7.site>
+To: Trevor Woerner <twoerner@gmail.com>
+X-sfr-mailing: LEGIT
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: gcc-6.1 and raspi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,47 +56,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Jun 2016 21:16:03 -0000
-Content-Type: multipart/alternative; boundary=94eb2c11898086442605348e769c
+X-List-Received-Date: Sun, 05 Jun 2016 21:38:12 -0000
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-B424DCCE-A38A-4852-93A7-78E4FB0CCFAD
+Content-Transfer-Encoding: 7bit
 
---94eb2c11898086442605348e769c
-Content-Type: text/plain; charset=UTF-8
-
-On 31 May 2016 at 23:11, Julien Gueytat <contact@jgueytat.fr> wrote:
-
-> A new fbdev file is needed and should be overrided if needed.
-> The number contained in fbdev will be used as X in /dev/fbX.
->
-> By overriding fbdev you can have a splash screen on another
-> framebuffer than /dev/fbO.
->
-> The getenv(FBDEV) line has been replaced by this option since
-> the environment variables are not read yet when psplash starts.
-
-
-These have been pushed to psplash master, thanks Julien.
-
-Ross
-
---94eb2c11898086442605348e769c
-Content-Type: text/html; charset=UTF-8
+--Apple-Mail-B424DCCE-A38A-4852-93A7-78E4FB0CCFAD
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 31 May 2016 at 23:11, Julien Gueytat <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:contact@jgueytat.fr" target=3D"_blank">contact@jgueytat.fr</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">A new fbdev f=
-ile is needed and should be overrided if needed.<br>
-The number contained in fbdev will be used as X in /dev/fbX.<br>
-<br>
-By overriding fbdev you can have a splash screen on another<br>
-framebuffer than /dev/fbO.<br>
-<br>
-</span>The getenv(FBDEV) line has been replaced by this option since<br>
-the environment variables are not read yet when <span class=3D"il">psplash<=
-/span> starts.</blockquote></div><br>These have been pushed to psplash mast=
-er, thanks Julien.</div><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra">Ross</div></div>
+Hi,
 
---94eb2c11898086442605348e769c--
+This one is a different issue, that was caused by a patch in oe 1 week ago.
+I did send a patch to solve it last wednesday, I believe.
+The root cause is KERNEL_OUTPUT has been removed from kernel.bbclass, but me=
+ta-raspberrypi uses it.
+This is the link to the patch:
+http://article.gmane.org/gmane.linux.embedded.yocto.general/30093/
+
+Herve
+
+> On 6 juin 2016, at 04:08, Trevor Woerner <twoerner@gmail.com> wrote:
+>=20
+>> On Sun 2016-06-05 @ 04:55:47 PM, Herve Jourdain wrote:
+>> It seems like you are building the 4.1.21 kernel.
+>> Did you set PREFERRED_VERSION_linux-raspberrypi =3D "4.4.%" in your
+>> distro.conf or local.conf?
+>=20
+> I was trying to save myself the time required to rebuild with the 4.4 kern=
+el.
+> I knew from my experiments that the result was the same for both, but here=
+ it
+> is anyway:
+>=20
+>    ERROR: linux-raspberrypi-1_4.4.9+gitAUTOINC+3b440738b5-r0 do_rpiboot_mk=
+image: Function failed: do_rpiboot_mkimage
+>    Log data follows:
+>    | DEBUG: Executing shell function do_rpiboot_mkimage
+>    | Usage: mkknlimg [--dtok] [--283x] <vmlinux|zImage|bzImage> <outfile>
+>    | WARNING: /z/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux=
+-gnueabi/linux-raspberrypi/1_4.4.9+gitAUTOINC+3b440738b5-r0/temp/run.do_rpib=
+oot_mkimage.18615:1 exit 1 from '/z/layerindex-master/raspi2/tmp/sysroots/x8=
+6_64-linux/usr/bin/mkknlimg --dtok ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}'
+>    | ERROR: Function failed: do_rpiboot_mkimage (log file is located at /z=
+/layerindex-master/raspi2/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-ras=
+pberrypi/1_4.4.9+gitAUTOINC+3b440738b5-r0/temp/log.do_rpiboot_mkimage.18615)=
+
+
+--Apple-Mail-B424DCCE-A38A-4852-93A7-78E4FB0CCFAD
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div>Hi,</div><div><br></div><div>This one i=
+s a different issue, that was caused by a patch in oe 1 week ago.</div><div>=
+I did send a patch to solve it last wednesday, I believe.</div><div>The root=
+ cause is KERNEL_OUTPUT has been removed from kernel.bbclass, but meta-raspb=
+errypi uses it.</div><div>This is the link to the patch:</div><div><a href=3D=
+"http://article.gmane.org/gmane.linux.embedded.yocto.general/30093/match=3Dr=
+aspberrypi">http://article.gmane.org/gmane.linux.embedded.yocto.general/3009=
+3/</a><br><br><div>Herve</div></div><div><br>On 6 juin 2016, at 04:08, Trevo=
+r Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&g=
+t; wrote:<br><br></div><blockquote type=3D"cite"><div><span>On Sun 2016-06-0=
+5 @ 04:55:47 PM, Herve Jourdain wrote:</span><br><blockquote type=3D"cite"><=
+span>It seems like you are building the 4.1.21 kernel.</span><br></blockquot=
+e><blockquote type=3D"cite"><span>Did you set PREFERRED_VERSION_linux-raspbe=
+rrypi =3D "4.4.%" in your</span><br></blockquote><blockquote type=3D"cite"><=
+span>distro.conf or local.conf?</span><br></blockquote><span></span><br><spa=
+n>I was trying to save myself the time required to rebuild with the 4.4 kern=
+el.</span><br><span>I knew from my experiments that the result was the same f=
+or both, but here it</span><br><span>is anyway:</span><br><span></span><br><=
+span> &nbsp; &nbsp;ERROR: linux-raspberrypi-1_4.4.9+gitAUTOINC+3b440738b5-r0=
+ do_rpiboot_mkimage: Function failed: do_rpiboot_mkimage</span><br><span> &n=
+bsp; &nbsp;Log data follows:</span><br><span> &nbsp; &nbsp;| DEBUG: Executin=
+g shell function do_rpiboot_mkimage</span><br><span> &nbsp; &nbsp;| Usage: m=
+kknlimg [--dtok] [--283x] &lt;vmlinux|zImage|bzImage&gt; &lt;outfile&gt;</sp=
+an><br><span> &nbsp; &nbsp;| WARNING: /z/layerindex-master/raspi2/tmp/work/r=
+aspberrypi2-poky-linux-gnueabi/linux-raspberrypi/1_4.4.9+gitAUTOINC+3b440738=
+b5-r0/temp/run.do_rpiboot_mkimage.18615:1 exit 1 from '/z/layerindex-master/=
+raspi2/tmp/sysroots/x86_64-linux/usr/bin/mkknlimg --dtok ${KERNEL_OUTPUT} ${=
+KERNEL_OUTPUT}'</span><br><span> &nbsp; &nbsp;| ERROR: Function failed: do_r=
+piboot_mkimage (log file is located at /z/layerindex-master/raspi2/tmp/work/=
+raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/1_4.4.9+gitAUTOINC+3b44073=
+8b5-r0/temp/log.do_rpiboot_mkimage.18615)</span><br></div></blockquote></bod=
+y></html>=
+
+--Apple-Mail-B424DCCE-A38A-4852-93A7-78E4FB0CCFAD--
