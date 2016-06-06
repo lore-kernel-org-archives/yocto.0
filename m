@@ -1,63 +1,26 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 544ECE00D8C; Sun,  5 Jun 2016 17:07:44 -0700 (PDT)
+	id 8B24FE00DAC; Sun,  5 Jun 2016 21:00:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.66 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
-	[209.85.220.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BCC4E00CB2
-	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 17:07:40 -0700 (PDT)
-Received: by mail-pa0-f66.google.com with SMTP id gp3so10442764pac.2
-	for <yocto@yoctoproject.org>; Sun, 05 Jun 2016 17:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=xvyXfU29oj/yk1pHZILPib07qEZtNppTCq7NSHSqvK4=;
-	b=E2MiRgylb+EephBaisi3a8wfk+PT9HC78jEgIzR1mlg0cuakprNwRIVPQdV/8i9xB5
-	qCQLXzhsCB+u3GYKwy/uw4jArPbyvpnSHBpqnAr92lYJPiD0lUqqy9VkK+L2hEszSHYZ
-	/TXPh3Ww20632I0fFzg3TZDPX5YuMP7fIFZi0ekNgrLxEHjNpm5Jq6eQ9OWvfzJdMTux
-	cfAAX2G54oSmVKjUwt75gowrJyAwIMu6nK+DYNJW8evqOhItfjRrwoI3kK7KGGY9Wzkk
-	KQFuGoLGq/eUW+gl0nApdBoj75BlHeSWxZ0vkRYRBP48H7sgaAn3RlmooO+CXBT3ifwa
-	6drA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=xvyXfU29oj/yk1pHZILPib07qEZtNppTCq7NSHSqvK4=;
-	b=JVB8vG9tij1d9l+2VPLh+AIAPInRxNO/7eKWYR+aZC7yPeH3E9vwibLCAs3697RmBL
-	a3aWjVj2jx5TS5iI+TADFMHTiYlCHWIeafO3G+z5PZmi+U1BRTlrICx5h1PWwggAFlHA
-	NIX0MGn2Ojj9GgkFwoIACs3iBkiTbNJUbX41kKv1nHzywxCblzxTnvVs/LkvT+oKwEpI
-	Y1Cy5e6HXBKZ7hCmVkDrSbhhZF1dvmT6FDcA8aOjYvhTRgFqYZLnRo99uZ+kCeEXqBwE
-	aRaduwUS/ilOHMGFSSs6hyFU9G3Spj6jRxcmFB3IZSj5v5vUk0GlY97jCf2VsJy9cQCY
-	BUmA==
-X-Gm-Message-State: ALyK8tKUFmJbEWx4lBOH6LoW8xOMd3aIkFu3lMKGeTpXmq74nQMPKSZ0IlfTwcsoemQ3+A==
-X-Received: by 10.66.54.35 with SMTP id g3mr21420473pap.30.1465171660076;
-	Sun, 05 Jun 2016 17:07:40 -0700 (PDT)
-Received: from akuster-ThinkPad-X240.mvista.com ([223.196.115.131])
-	by smtp.gmail.com with ESMTPSA id r7sm2854110pfb.79.2016.06.05.17.07.37
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 05 Jun 2016 17:07:38 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76885E00D68
+	for <yocto@yoctoproject.org>; Sun,  5 Jun 2016 21:00:16 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 76F2384820AC
+	for <yocto@yoctoproject.org>; Mon,  6 Jun 2016 00:00:14 -0400 (EDT)
+MIME-Version: 1.0
+From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Sun,  5 Jun 2016 17:07:32 -0700
-Message-Id: <1465171652-27598-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] tripwire: update to 2.4.3.1
+Date: Mon, 06 Jun 2016 04:00:14 -0000
+Message-ID: <20160606040014.7042.76234@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,165 +32,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jun 2016 00:07:44 -0000
+X-List-Received-Date: Mon, 06 Jun 2016 04:00:19 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-this also fixes clang and gcc 5.3 build issues
+This mail was sent out by Recipe reporting system.
 
-remove merged patches
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../files/tripwire_add_aarch64_to_configure.patch  | 29 -----------------
- .../tripwire/files/tripwire_add_ppc64.patch        | 35 --------------------
- .../{tripwire_2.4.2.2.bb => tripwire_2.4.3.1.bb}   | 38 +++++++---------------
- 3 files changed, 12 insertions(+), 90 deletions(-)
- delete mode 100644 recipes-security/tripwire/files/tripwire_add_aarch64_to_configure.patch
- delete mode 100644 recipes-security/tripwire/files/tripwire_add_ppc64.patch
- rename recipes-security/tripwire/{tripwire_2.4.2.2.bb => tripwire_2.4.3.1.bb} (69%)
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-diff --git a/recipes-security/tripwire/files/tripwire_add_aarch64_to_configure.patch b/recipes-security/tripwire/files/tripwire_add_aarch64_to_configure.patch
-deleted file mode 100644
-index fdaa494..0000000
---- a/recipes-security/tripwire/files/tripwire_add_aarch64_to_configure.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--tripwire: Add aach64 support
--
--Upstream-Status: Submitted to tripwire-dev
--
--Signed-off-by: Armin Kuster <akuster@mvista.com>
--
--
--Index: config.sub
--===================================================================
----- a/config.sub
--+++ b/config.sub
--@@ -223,7 +223,7 @@ esac
-- case $basic_machine in
-- 	# Recognize the basic CPU types without company name.
-- 	# Some are omitted here because they have special meanings below.
---	tahoe | i860 | ia64 | m32r | m68k | m68000 | m88k | ns32k | arc \
--+	tahoe | i860 | ia64 | m32r | m68k | m68000 | m88k | ns32k | aarch64 | aarch64be |arc \
-- 	        | arm | arme[lb] | arm[bl]e | armv[2345] | armv[345][lb] | strongarm | xscale \
-- 		| pyramid | mn10200 | mn10300 | tron | a29k \
-- 		| 580 | i960 | h8300 \
--@@ -267,7 +267,7 @@ case $basic_machine in
-- 	# Recognize the basic CPU types with company name.
-- 	# FIXME: clean up the formatting here.
-- 	vax-* | tahoe-* | i*86-* | i860-* | ia64-* | m32r-* | m68k-* | m68000-* \
---	      | m88k-* | sparc-* | ns32k-* | fx80-* | arc-* | c[123]* \
--+	      | m88k-* | sparc-* | ns32k-* | fx80-* | arc-* | c[123]* | aarch64-* | aarch64be-*  \
-- 	      | arm-*  | armbe-* | armle-* | armv*-* | strongarm-* | xscale-* \
-- 	      | mips-* | pyramid-* | tron-* | a29k-* | romp-* | rs6000-* \
-- 	      | power-* | none-* | 580-* | cray2-* | h8300-* | h8500-* | i960-* \
-diff --git a/recipes-security/tripwire/files/tripwire_add_ppc64.patch b/recipes-security/tripwire/files/tripwire_add_ppc64.patch
-deleted file mode 100644
-index 0f43017..0000000
---- a/recipes-security/tripwire/files/tripwire_add_ppc64.patch
-+++ /dev/null
-@@ -1,35 +0,0 @@
--tripwire:
--
--Powerpc64 is not supported in the current tripwier release.
--
-- configure: error: /bin/sh ./config.sub powerpc64-poky-linux failed
-- | Configure failed. The contents of all config.log files follows to aid debugging
--
--Submitted upstream to  Tripwire devel mailing list
--
--http://sourceforge.net/p/tripwire/mailman/message/32776415/
--
--Signed-off-By: Armin Kuster <akuster808@gmail.com>
--
--Index: tripwire-2.4.2.2-src/config.sub
--===================================================================
----- tripwire-2.4.2.2-src.orig/config.sub
--+++ tripwire-2.4.2.2-src/config.sub
--@@ -233,7 +233,7 @@ case $basic_machine in
-- 		| alpha | alphaev[4-8] | alphaev56 | alphapca5[67] \
-- 		| alphaev6[78] \
-- 		| we32k | ns16k | clipper | i370 | sh | sh[34] \
---		| powerpc | powerpcle \
--+		| powerpc | powerpcle | powerpc64 \
-- 		| 1750a | dsp16xx | pdp10 | pdp11 \
-- 		| mips16 | mips64 | mipsel | mips64el \
-- 		| mips64orion | mips64orionel | mipstx39 | mipstx39el \
--@@ -280,7 +280,7 @@ case $basic_machine in
-- 	      | we32k-* | cydra-* | ns16k-* | pn-* | np1-* | xps100-* \
-- 	      | clipper-* | orion-* \
-- 	      | sparclite-* | pdp10-* | pdp11-* | sh-* | sh[34]-* | sh[34]eb-* \
---	      | powerpc-* | powerpcle-* | sparc64-* | sparcv9-* | sparcv9b-* | sparc86x-* \
--+	      | powerpc-* | powerpcle-* | powerpc64-* | sparc64-* | sparcv9-* | sparcv9b-* | sparc86x-* \
-- 	      | mips16-* | mips64-* | mipsel-* \
-- 	      | mips64el-* | mips64orion-* | mips64orionel-* \
-- 	      | mips64vr4100-* | mips64vr4100el-* | mips64vr4300-* | mips64vr4300el-* \
-diff --git a/recipes-security/tripwire/tripwire_2.4.2.2.bb b/recipes-security/tripwire/tripwire_2.4.3.1.bb
-similarity index 69%
-rename from recipes-security/tripwire/tripwire_2.4.2.2.bb
-rename to recipes-security/tripwire/tripwire_2.4.3.1.bb
-index 55c4013..3ea0806 100644
---- a/recipes-security/tripwire/tripwire_2.4.2.2.bb
-+++ b/recipes-security/tripwire/tripwire_2.4.3.1.bb
-@@ -6,21 +6,20 @@ SECTION = "security Monitor/Admin"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
- 
--SRC_URI = "${SOURCEFORGE_MIRROR}/project/${BPN}/${BPN}-src/${BPN}-${PV}/${BPN}-${PV}-src.tar.bz2 \
--	   file://tripwire.cron \
--	   file://tripwire.sh \
--	   file://tripwire.txt \
--	   file://twcfg.txt \
--	   file://twinstall.sh \
--	   file://twpol-yocto.txt \
--	   file://tripwire_add_ppc64.patch \
--       file://tripwire_add_aarch64_to_configure.patch \
--       file://add_armeb_arch.patch \
-+SRCREV = "210a394b1ce63da7ac51a866ac2e68d439308701"
-+
-+SRC_URI = "\
-+	git://github.com/Tripwire/tripwire-open-source.git \
-+	file://tripwire.cron \
-+	file://tripwire.sh \
-+	file://tripwire.txt \
-+	file://twcfg.txt \
-+	file://twinstall.sh \
-+	file://twpol-yocto.txt \
-        "
--SRC_URI[md5sum] = "2462ea16fb0b5ae810471011ad2f2dd6"
--SRC_URI[sha256sum] = "e09a7bdca9302e704cc62067399e0b584488f825b0e58c82ad6d54cd2e899fad"
-+#PV = "2.4.3.1+git${SRCPV}"
- 
--S = "${WORKDIR}/tripwire-${PV}-src"
-+S = "${WORKDIR}/git"
- 
- inherit autotools-brokensep update-rc.d
- 
-@@ -32,18 +31,6 @@ TRIPWIRE_TARGET = "${TARGET_SYS}"
- CXXFLAGS += "-fno-strict-aliasing"
- EXTRA_OECONF = "--disable-openssl  --enable-static --sysconfdir=/etc/tripwire"
- 
--do_configure () {
--    #
--    # sed bits taken from http://www.linuxfromscratch.org/blfs/view/svn/postlfs/tripwire.html
--    #
--    sed -i -e 's/!Equal/!this->Equal/' src/cryptlib/algebra.h                &&
--    sed -i -e '/stdtwadmin.h/i#include <unistd.h>' src/twadmin/twadmincl.cpp &&
--    sed -i -e 's/eArchiveOpen e\([^)]*)\)/throw ( eArchiveOpen\1 )/' \
--    -e '/throw e;/d' src/core/archive.cpp                             &&
--
--    oe_runconf
--}
--
- do_install () {
-     install -d ${D}${libdir} ${D}${datadir} ${D}${base_libdir}
-     install -d ${D}${sysconfdir} ${D}${mandir} ${D}${sbindir}
-@@ -77,5 +64,4 @@ FILES_${PN} += "${libdir} ${docdir}/${PN}/*"
- FILES_${PN}-dbg += "${sysconfdir}/${PN}/.debug"
- FILES_${PN}-staticdev += "${localstatedir}/lib/${PN}/lib*.a"
- 
--
- RDEPENDS_${PN} += " perl nano msmtp cronie"
--- 
-1.9.1
+You can check the detail information at:
 
+http://recipes.yoctoproject.org/
+
+Package               Version            Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------------  --------------------  -------------------  ------------------------------
+texinfo               6.0                6.1                   Alejandro Hernandez
+ruby                  2.2.5              2.3.1                 Alejandro Hernandez
+perl                  5.22.1             5.24.0                Alejandro Hernandez
+python-dbus           1.2.0              1.2.4                 Alejandro Hernandez
+python-git            1.0.2              2.0.5                 Alejandro Hernandez
+python-mako           1.0.3              1.0.4                 Alejandro Hernandez
+python-numpy          1.10.4             1.11.0                Alejandro Hernandez
+python-pygobject      3.18.2             3.21.0                Alejandro Hernandez
+python-scons          2.4.1              2.5.0                 Alejandro Hernandez
+python-pexpect        4.0.1              4.1.0                 Alejandro Hernandez
+python3-setuptools    19.4               22.0.0                Alejandro Hernandez
+python3-pip           8.0.0              8.1.2                 Alejandro Hernandez
+eudev                 3.1.5              3.2                   Alejandro Hernandez
+python-setuptools     19.4               22.0.0                Alejandro Hernandez
+perl-native           5.22.1             5.24.0                Alejandro Hernandez
+python-scons-native   2.4.1              2.5.0                 Alejandro Hernandez
+liberation-fonts      1.04               2.00.1                Alexander Kanavin    2.x depends on fontforge pa...
+bjam-native           1.60.0             1.61.0                Alexander Kanavin
+gnome-desktop3        3.18.2             3.20.2                Alexander Kanavin
+watchdog              5.14               5.15                  Alexander Kanavin
+kexec-tools           2.0.11             2.0.12                Alexander Kanavin
+btrfs-tools           4.4                4.5.3                 Alexander Kanavin
+sysprof               1.2.0+gitX         3.20.0+gitAUTOINC...  Alexander Kanavin
+systemtap-uprobes     2.9                3.0                   Alexander Kanavin
+systemtap             2.9                3.0                   Alexander Kanavin
+mkelfimage            4.0+gitX           4.4+gitAUTOINC+58...  Alexander Kanavin    mkelfimage has been removed...
+hwlatdetect           0.96               2.0                   Alexander Kanavin
+rt-tests              0.96               2.0                   Alexander Kanavin
+webkitgtk             2.12.1             2.12.3                Alexander Kanavin
+boost                 1.60.0             1.61.0                Alexander Kanavin
+gdbm                  1.11               1.12                  Alexander Kanavin
+icu                   56.1               57.1                  Alexander Kanavin
+libksba               1.3.3              1.3.4                 Alexander Kanavin
+libxslt               1.1.28             1.1.29                Alexander Kanavin
+gnutls                3.4.9              3.5.0                 Alexander Kanavin
+msmtp                 1.6.4              1.6.5                 Alexander Kanavin
+epiphany              3.18.4             3.20.2                Alexander Kanavin
+iso-codes             3.65               3.68                  Alexander Kanavin
+apt                   1.0.10.1           1.2.12                Aníbal Limón
+dpkg                  1.18.4             1.18.7                Aníbal Limón
+pinentry              0.9.2              0.9.7                 Armin Kuster
+linux-libc-headers    4.4                4.6.1                 Bruce Ashfield
+guilt-native          0.35+gitX          0.36+gitAUTOINC+2...  Bruce Ashfield
+pciutils              3.4.1              3.5.1                 Chen Qi
+resolvconf            1.78               1.79                  Chen Qi
+dbus-test             1.10.6             1.10.8                Chen Qi
+dbus                  1.10.6             1.10.8                Chen Qi
+systemd               229+gitX           230+gitAUTOINC+3a...  Chen Qi
+util-linux            2.27.1             2.28                  Chen Qi
+tar                   1.28               1.29                  Chen Qi
+curl                  7.47.1             7.49.1                Chen Qi
+byacc                 20150711           20160324              Chen Qi
+gzip                  1.6                1.8                   Chen Qi
+sudo                  1.8.15             1.8.16                Chen Qi
+sysstat               11.2.0             11.3.4                Chen Qi
+grep                  2.23               2.25                  Chen Qi
+build-appliance-i...  14.0.0             15.0.0                Cristian Iorga
+u-boot-fw-utils       v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2016.03+gitX      v2016.05+gitAUTOI...  Denys Dmytriyenko
+dhcp                  4.3.3              4.3.4                 Hongxu Jia
+libxml2               2.9.3              2.9.4                 Hongxu Jia
+ncurses               6.0+20160213       6.0+20160319          Hongxu Jia
+gnupg                 2.1.11             2.1.12                Hongxu Jia
+pax-utils             1.1.5              1.1.6                 Hongxu Jia
+createrepo            0.4.11             0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+libgcrypt             1.6.5              1.7.0                 Hongxu Jia
+ghostscript           9.18               9.19                  Hongxu Jia
+libnewt-python        0.52.18            0.52.19               Hongxu Jia
+man-pages             4.04               4.06                  Hongxu Jia
+libnewt               0.52.18            0.52.19               Hongxu Jia
+help2man-native       1.47.3             1.47.4                Hongxu Jia
+libinput              1.3.0              1.3.1                 Jussi Kukkonen
+wayland               1.10.0             1.11.0                Jussi Kukkonen
+weston                1.10.0             1.11.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.18.8             3.20.6                Jussi Kukkonen
+xf86-input-evdev      2.10.2             2.10.3                Jussi Kukkonen
+xf86-input-synaptics  1.8.3              1.8.99.1              Jussi Kukkonen
+matchbox-theme-sato   0.2+gitX           2+gitAUTOINC+e3cc...  Jussi Kukkonen
+libxfixes             5.0.1              5.0.2                 Jussi Kukkonen
+matchbox-terminal     0.0+gitX           2+gitAUTOINC+452b...  Jussi Kukkonen
+matchbox-config-gtk   0.0+gitX           2+gitAUTOINC+3ed7...  Jussi Kukkonen
+sato-screenshot       0.1+gitX           2+gitAUTOINC+3a96...  Jussi Kukkonen
+settings-daemon       0.0+gitX           2+gitAUTOINC+957f...  Jussi Kukkonen
+at-spi2-atk           2.18.1             2.20.1                Jussi Kukkonen
+at-spi2-core          2.18.3             2.20.2                Jussi Kukkonen
+atk                   2.18.0             2.20.0                Jussi Kukkonen
+vala                  0.30.1             0.32.0                Jussi Kukkonen
+augeas                1.4.0              1.5.0                 Jussi Kukkonen
+gsettings-desktop...  3.20.0             3.21.2                Jussi Kukkonen
+vte                   0.28.2             0.44.2                Jussi Kukkonen       matchbox-terminal needs to ...
+dosfstools            3.0.28             4.0                   Jussi Kukkonen
+gtk+3                 3.18.8             3.20.6                Jussi Kukkonen
+cairo                 1.14.6             1.15.2                Jussi Kukkonen
+clutter-gtk-1.0       1.6.6              1.8.0                 Jussi Kukkonen
+linuxdoc-tools-na...  0.9.69             0.9.72                Jussi Kukkonen
+slang                 2.2.4              2.3.0                 Kai Kang
+uclibc                1.0.12+gitX        1.0.15                Khem Raj
+prelink               1.0+gitX           20151030.+gitAUTO...  Mark Hatle
+rpm                   5.4.16             5.4.17                Mark Hatle
+libpfm4               4.6.0              4.7.0                 Matthew McClintock
+iw                    4.3                4.7                   Maxin B. John
+gstreamer1.0-plug...  1.7.2+gitX         1.8.1+gitAUTOINC+...  Maxin B. John
+db                    6.0.30             6.2.23                Maxin B. John
+ofono                 1.17               1.18                  Maxin B. John
+python3-git           1.0.2              2.0.5                 No maintainer
+ffmpeg                3.0                3.0.2                 No maintainer
+gdb-cross-canadia...  7.11               20131001              No maintainer
+gdb-cross-i586        7.11               20131001              No maintainer
+python3-mako          1.0.3              1.0.4                 No maintainer
+gcc-source-5.3.0      5.3.0              6.1.0                 No maintainer
+ifupdown              0.8.2              0.8.12                No maintainer
+uclibc-initial        1.0.12+gitX        1.0.15                No maintainer
+apt-native            1.0.10.1           1.2.12                No maintainer
+gobject-introspec...  1.46.0             1.48.0                No maintainer
+wayland-protocols     1.3                1.4                   No maintainer
+mc                    4.8.16             4.8.17                No maintainer
+cantarell-fonts       0.0.21+gitX        0.13+gitAUTOINC+7...  No maintainer
+sgmlspl-native        1.1+gitX           1.03+gitAUTOINC+f...  No maintainer
+xf86-input-libinput   0.16.0             0.19.0                No maintainer
+lttng-tools           2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+lttng-ust             2.7.1+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+gdb                   7.11               20131001              Richard Purdie
+nasm                  2.11.08            2.12.01               Richard Purdie
+subversion            1.9.3              1.9.4                 Richard Purdie
+lttng-modules         2.7.3+gitX         2.8.0+gitAUTOINC+...  Richard Purdie
+gnu-efi               3.0.3              3.0.4                 Robert Yang
+e2fsprogs             1.42.99+1.43+gitX  1.43                  Robert Yang
+file                  5.25               5.27                  Robert Yang
+git                   2.8.2              2.8.3                 Robert Yang
+make                  4.1                4.2                   Robert Yang
+tcl                   8.6.4              8.6.5                 Robert Yang
+libbsd                0.8.2              0.8.3                 Robert Yang
+libcap                2.24               2.25                  Robert Yang
+strace                4.11               4.12                  Robert Yang
+ltp                   20160126           20160510              Robert Yang
+autogen-native        5.18.6             5.18.10               Robert Yang
+mklibs-native         0.1.40             0.1.41                Robert Yang
+base-passwd           3.5.29             3.5.39                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.64               9.66                  Ross Burton
+alsa-utils            1.1.0              1.1.1                 Tanu Kaskinen
+pulseaudio            8.0                8.99.2                Tanu Kaskinen
+alsa-plugins          1.1.0              1.1.1                 Tanu Kaskinen
+alsa-utils-scripts    1.1.0              1.1.1                 Tanu Kaskinen
+ccache                3.2.4              3.2.5                 Wenzong Fan
+gettext               0.19.6             0.19.7                Wenzong Fan
+chkconfig             1.3.58             1.7                   Wenzong Fan          Version 1.5 requires selinux
+
+Upgradable count: 141
+Upgradable total count: 147
+
+The based commit is:
+
+commit 554719e3f65e468f89a96d4869766d3ff7a8012e
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Sun Jun 5 22:52:42 2016 +0100
+
+    lib/oe/package_manager: adapt for Python 3
+    
+    string.rstrip() doesn't exist in Python 3, so use the .rstrip method on the
+    object itself instead.
+    
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
