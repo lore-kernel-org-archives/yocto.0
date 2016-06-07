@@ -1,40 +1,66 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 099B8E00C8F; Tue,  7 Jun 2016 15:20:54 -0700 (PDT)
+	id 5BC84E00C80; Tue,  7 Jun 2016 16:07:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (edwingate8[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D535E00C80
-	for <yocto@yoctoproject.org>; Tue,  7 Jun 2016 15:20:49 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u57MKUPU009856; Tue, 7 Jun 2016 23:20:30 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 06QWiqnSBlBW; Tue,  7 Jun 2016 23:20:30 +0100 (BST)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	u57MKQB3009852
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 7 Jun 2016 23:20:27 +0100
-Message-ID: <1465338026.13979.88.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Date: Tue, 07 Jun 2016 23:20:26 +0100
-In-Reply-To: <2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
-References: <575456D5.4080800@mlbassoc.com>
-	<CAJTo0LYaBXixDk1vzzt=wFtqYzsFQAtanUa3Hgu-CB86kHGdOw@mail.gmail.com>
-	<CAJTo0La74HkwkgqQZwECS2ruzSe-guCCBJFG0_u=e1FBT8q3CA@mail.gmail.com>
-	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
-X-Mailer: Evolution 3.16.5-1ubuntu3.1 
-Mime-Version: 1.0
-Cc: Gary Thomas <gary@mlbassoc.com>
-Subject: Re: What's this
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
+	[209.85.220.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BDDCE00C49
+	for <yocto@yoctoproject.org>; Tue,  7 Jun 2016 16:07:28 -0700 (PDT)
+Received: by mail-qk0-f196.google.com with SMTP id i187so10929653qkd.1
+	for <yocto@yoctoproject.org>; Tue, 07 Jun 2016 16:07:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=TKs2DwcUQVNIuaOOYpZ9KEQowwvBLX8l2UwJtvgoZG0=;
+	b=qeLWEEm5psKD2uCk2ujHVshfk1dvviRgoRL52Nli+Z3oW9HQRnq2voDcYwwqIX3WBE
+	T3n7FXCQ/Zle5go87Mah0P1cqy0IiNzu00+FkXoIdSZlOzG26zsTdyD+L3RIv0oHOXY9
+	vbZctPVwVZrlOGFY3ueYonyjJDk3siQyIiF6cMAE6Za/St+g69KiXBBGGuCTMrOKdUT6
+	dBgyphvZez+sUUiLdsprQ7xDAl/XstPDldrySX3kKCHbvGjSxTN/PaRJjFcPE9XY57R3
+	/vYJ9x5NrTNjh3odtSMC/yWQTkEv5jTlsGvwt67CmIfgFGuGwH6MtKvpC7uHdID6YnaB
+	+4Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=TKs2DwcUQVNIuaOOYpZ9KEQowwvBLX8l2UwJtvgoZG0=;
+	b=d46xd0OjbuSK4V4deAtTIrK/9xihH3nRmCjdmmYh5lb+YhW3HbKPcKff7dqiADQSLK
+	tl5u5KZuprDNAYHxuA/SRdOIzuJDoAeVR4KnRR+WgqX9tIDyy0I/kGiIt8HYQ5vzu+UE
+	ljPR7qL43Su9Er6WYLPqHbCdUupC3ev7Y9lx+zqHoD4FGYGyRyQCZv7ONQMLPsqBiAby
+	zWEARFFAweIt6LvffB6HlP3x+ExTwbOyQsPgNqJMz8NOiVNVMcfK/pEfajpAHzMZVdG6
+	JGdYSSQkeUtymrYir5B8MkbVxrFrVVNvvDZXyBa2P4mZUGD6i5r9cmPBpJzFh+OFS8oD
+	dbtw==
+X-Gm-Message-State: ALyK8tI64aCCpo5MAaC2vX/UhLe6NiLBqicObuOtJJVTtarvOf9WFkHdnRK383GIiR+lA4i/e/ctDcuG2pAF+Q==
+X-Received: by 10.55.207.74 with SMTP id e71mr2011545qkj.64.1465340847751;
+	Tue, 07 Jun 2016 16:07:27 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.200.56.35 with HTTP; Tue, 7 Jun 2016 16:07:26 -0700 (PDT)
+In-Reply-To: <1857108.OcXCc2mBxV@peggleto-mobl.ger.corp.intel.com>
+References: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
+	<56359783.XqWORYcO5G@peggleto-mobl.ger.corp.intel.com>
+	<CAGMdoFkJa_K26VhOK4DDnqpwPG3+a+5mT+Z5BQqmpauAjtKr=w@mail.gmail.com>
+	<1857108.OcXCc2mBxV@peggleto-mobl.ger.corp.intel.com>
+From: Edward Wingate <edwingate8@gmail.com>
+Date: Tue, 7 Jun 2016 16:07:26 -0700
+Message-ID: <CAGMdoF=KA=wmKu=+Zd6UOaQ=waZQgjvCQz=z8h+QtUgbYXoiTA@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org, Diego <diego.ml@zoho.com>
+Subject: Re: Per image customizations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,65 +72,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jun 2016 22:20:54 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Jun 2016 23:07:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
-> On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
-> > On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
-> > wrote:
-> > > It means the hash calculated my the bitbake master was different
-> > > to the
-> > > hash calculated when the worker started up.  This usually means
-> > > that
-> > > you're
-> > > using something like ${TIME} in the recipe but not marking it
-> > > appropriatly
-> > > so the cache ignores it.  Do you have a base-files bbappend that
-> > > writes a
-> > > timestamp?
-> > 
-> > The always wise Joshua reminds me that if your DISTRO_VERSION
-> > contains
-> > ${DATETIME} then this happens.  If you're doing this then you'll
-> > want to
-> > set [vardepsexclude] on DISTRO_VERSION to stop the DATETIME from
-> > getting
-> > into the cache (or not put the current date/time into the distro
-> > version).
-> 
-> I think we need to handle this situation better - if it's really
-> worth 
-> producing an error about then it's worth producing an error message
-> that 
-> people can actually understand, particularly as it's recently added 
-> validation.
+On Tue, Jun 7, 2016 at 1:47 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+>
+> So what this will give you is alternative packages to be installed instead of
+> sysvinit-inittab in your image.
 
-It was silently running into problems due to this all along but not
-reporting it. Its now reporting it which is better than silently things
-behaving strangely.
+I was under the (mistaken) impression that my recipe will run in
+addition to, not instead of, sysvinit-inittab (occurring after it and
+overwriting its inittab with my custom version).
 
-Its very hard for bitbake to know why the hashes differ, it only knows
-the values afterwards and hence that they've changed, the information
-about how that hash was constructed is not present in any of bitbake's
-caches. That implies to have better messages we need to write out more
-data.
+> Have you verified (by way of the image manifest written next to the image file) that this package
+> is actually being installed?
 
-I did add a patch to make bitbake write out data to allow
-reconstruction of basehash (which is part of taskhash). Sadly the
-parsing performance was diabolical (10 times slower). I think that
-could perhaps be improved if the files don't require an atomic move
-during creation but I haven't had time to look further at it.
+The manifest shows both sysvinit-inittab and my package being
+installed in the image, but sysvinit-inittab's inittab apparently
+takes precedence over mine.
 
-So whilst I do agree, what is the price people are willing to pay to
-have those better messages?
+> What steps have you taken to ensure that it does get installed in preference to sysvinit-inittab?
 
-Cheers,
+None, due to my mistaken impression.  After investigating your kind
+inference with help of Yocto manual, I replaced in my recipe:
+DEPENDS += " sysvinit-inittab"
+with:
+RREPLACES_${PN} = "sysvinit-inittab"
 
-Richard
-
-
-
-
+and it appears to be working now.  I've been using Yocto for a year
+now, but still feel like I'm barely scratching the surface of it.  I
+tend to get things to work by floundering about, so even though it
+does works, I would appreciate knowing if this was the most proper
+course of action.  Thanks!
 
