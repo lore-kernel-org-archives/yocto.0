@@ -1,67 +1,63 @@
-Return-Path: <oleksandr.poznyak@gmail.com>
+Return-Path: <piotr.lewicki@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6ED4AE00BC2; Tue,  7 Jun 2016 03:51:45 -0700 (PDT)
+	id 5F477E00BCE; Tue,  7 Jun 2016 05:11:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (oleksandr.poznyak[at]gmail.com)
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.180 listed in list.dnswl.org]
-Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F9FFE00B5F
-	for <yocto@yoctoproject.org>; Tue,  7 Jun 2016 03:51:42 -0700 (PDT)
-Received: by mail-qk0-f180.google.com with SMTP id s186so66143331qkc.1
-	for <yocto@yoctoproject.org>; Tue, 07 Jun 2016 03:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Bw5/aSWwLmjmvqIXVmJ3ne/8X/z/R4uaRkDHhUOer7c=;
-	b=F/9Hlq2guV0PlZ4i3jc+JnFSzreUYjs/YR4qSeIqRGJtKOSYm+Trp72Q2iH35jhtMv
-	e5rRldH1d9oyotZJMbMO4kplNHTF9IcJpO5XHs1CKd30NCY6DPtvElydy3seuj7392lY
-	mWOQ+r6CeUwsXM9KX1/U9OdZ3mntUboqT3jVfOqX7tSI+NE6wC0WPvJyXwwpiUu6oykY
-	t/nhQwt9rjT9ba9X0xJosHNPTc/1qrLiLVO2PbjhDRKJh0DhwJWF41/eRvtKM/bIxGIw
-	IQJgpU0h4+fLQIkdI7TYxqxrGsWYLatqvBauHUiGXcgzQHEMm/fl/46sXyLymbLzlBVd
-	Qi3A==
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E32AFE00B5F
+	for <yocto@yoctoproject.org>; Tue,  7 Jun 2016 05:11:01 -0700 (PDT)
+Received: by mail-wm0-f49.google.com with SMTP id r5so8593804wmr.0
+	for <yocto@yoctoproject.org>; Tue, 07 Jun 2016 05:11:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=mj8djP2Bp+cqrUzDeMAEdbffTMMlRO3+rzRr6+w8HPk=;
+	b=ittfyBqKMD7d28wetcU96KZYaYCeqIXSmxw6LrDiFgYlo5uvk/vtnC7uhPMZV1twiV
+	dBeabgzXmph0INL2bjsFEd9JmtUMxoak116uh3l2mpE2728I5BW0xtlAwsdN0Y1Fdwno
+	rfz5lT3EFUR15/YthfRv0j0Zw6rFZyOBIa39D8qvZrpBkDi9G3MVdKouHFk2c/rbfZ2C
+	ZdE//SW0tZfFzvW5aUlBeS4qrnFcUw01VgoulMhsCPvGUJZmD5VqlXxNxyC17KRvw3QX
+	wP8B24lYIoy96p8BveTDW9Rdns6ObRVWRq1MXscASt1UdFQa8f0IrtmxoLvnt04QXh98
+	GCnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Bw5/aSWwLmjmvqIXVmJ3ne/8X/z/R4uaRkDHhUOer7c=;
-	b=lttPiz1aMTkgLLh5CEA48+k06r72+Bgr1kmxb/TkCTPihSmY+U4F9H1W6JgphCDQTt
-	POuvsywd+RvZjSY5jAbE2wbPykkKqqW4R8lwceI0kMBSnAMngAL9kiPQIxIdg7Tejs0/
-	eY71oRIj+BjlfM2qwe55sAe9derVm0iRSFypMp1pl474wU91Q2tlkd4VYr6sSILwD9SZ
-	Gc/V8Bsa4BUXvA57nb/FNsZ2JmCoD+DMaGxcO1FjqKLA4U9j/UrVd9SyMWjJbnlZdnOt
-	dc+atG+X41vND/T8tGt4DWA9ED0fJ/wldGa0jj1DqGi1ab92uNnzCMgaLtQmuVjrr7yP
-	8ojw==
-X-Gm-Message-State: ALyK8tL1LEWozhQZV4/Pq8yphnGgtkn+uluUhX8jHlINgDF0ZxtqTYNwF26LKK4l9eZ0lBcknzC+ae6LoZxXOA==
-X-Received: by 10.55.40.68 with SMTP id o65mr19533157qkh.201.1465296701544;
-	Tue, 07 Jun 2016 03:51:41 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=mj8djP2Bp+cqrUzDeMAEdbffTMMlRO3+rzRr6+w8HPk=;
+	b=ApdCKDFC31nofXBDRj0UtEef77KKHuykEiQShjU2PEqrvMgDsJUgsutyBYyI4TU4Mp
+	HFCLGajNuzZEtprlM53L99pzt38mBnEn8qxOxnLeNjjZSqDUNHDDFLYeMR7+GDhiCuW1
+	873Abj4uTm/P22qxmOs5Ouv0bYoFo26IHrNq0LP9v/CFR+citlwTXJQ23AEFOn4lVKao
+	jZKJPg2N644/LQzYbxXC/J20Kd1uMaGTg4/KVAg8W6maO6WyzWZUWU8KbbIRjjzhJCUx
+	ihpyeZ0tVe4JSVEuELaMMrsO93rfqCXfxx4+BjceUXZKj/IWWZz/7oKqcxJlRompdM/w
+	QiaQ==
+X-Gm-Message-State: ALyK8tLLInO7/v1OiLHnwyi/XOpi4k9qm9bB8ptBhGzaiRDjy8ZHy6eaccF+diuL0kiubQ==
+X-Received: by 10.194.221.137 with SMTP id qe9mr5833009wjc.21.1465301460219;
+	Tue, 07 Jun 2016 05:11:00 -0700 (PDT)
+Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
+	b63sm14498571wmb.0.2016.06.07.05.10.59 for <yocto@yoctoproject.org>
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 07 Jun 2016 05:10:59 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: "piotr.lewicki" <piotr.lewicki@elfin.de>
+Message-ID: <5756B9D2.3000700@elfin.de>
+Date: Tue, 7 Jun 2016 14:10:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-Received: by 10.237.32.36 with HTTP; Tue, 7 Jun 2016 03:51:41 -0700 (PDT)
-In-Reply-To: <56359783.XqWORYcO5G@peggleto-mobl.ger.corp.intel.com>
-References: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
-	<CAGMdoF=40Z=5MRZ-YBvZrfrYO9pJ9WTixu36FqRiX0i3zvNkKw@mail.gmail.com>
-	<CAEeWubJaaGLOVWdcS0uc=tv_cYkGRMFa2prLJ6jnDJAah+8G8Q@mail.gmail.com>
-	<56359783.XqWORYcO5G@peggleto-mobl.ger.corp.intel.com>
-From: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
-Date: Tue, 7 Jun 2016 13:51:41 +0300
-Message-ID: <CAEeWubLmjJJLfZ4=t69anDDtL6EruoXL7kHknmTP33EBgLiwRQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org, Diego <diego.ml@zoho.com>
-Subject: Re: Per image customizations
+Subject: DISTRO_FEATURES modification from image recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,72 +69,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jun 2016 10:51:45 -0000
-Content-Type: multipart/alternative; boundary=001a1141c04e62fd260534adf92a
+X-List-Received-Date: Tue, 07 Jun 2016 12:11:07 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a1141c04e62fd260534adf92a
-Content-Type: text/plain; charset=UTF-8
+Hi,
+Is it possible to manipulate DISTRO_FEATURES from my image recipe file?
 
-Thanks, Paul. You are absolutely correct.
+In my case I added line:
+DISTRO_FEATURES += " systemd"
 
-On Tue, Jun 7, 2016 at 1:20 PM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
+to local.conf and it worked (added systemd), but when I moved this line 
+to my image.bb recipe I got build errors:
 
-> On Tue, 07 Jun 2016 00:10:58 Oleksandr Poznyak wrote:
-> > Unfortunately You can't have two *.bbappend files per one package
-> (recipe).
->
-> Let's clarify that for the benefit of others reading along - you absolutely
-> *can* have multiple bbappends per recipe. To answer the original question
-> though, no you cannot have bbappends conditionally applied based on what
-> image
-> is being built - you cannot have other recipes built differently based on
-> the
-> image being built *period*. Other than what gets shared via the sysroot,
-> recipes are largely independent of eachother, and that's by design.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
+ERROR: Required build target 'my-image' has no buildable providers.
+Missing or unbuildable dependency chain was: ['my-image', 'my-app', 
+'systemd']
 
---001a1141c04e62fd260534adf92a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I already have in my image recipe line:
+DISTRO_FEATURES_append = " gles2"
+so I tried to add systemd to it like so:
+DISTRO_FEATURES_append = " gles2 systemd"
+but it didn't help.
 
-<div dir=3D"ltr">Thanks, Paul. You are absolutely correct.<br></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Jun 7, 2016 at 1=
-:20 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton=
-@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Tue, 07 =
-Jun 2016 00:10:58 Oleksandr Poznyak wrote:<br>
-&gt; Unfortunately You can&#39;t have two *.bbappend files per one package =
-(recipe).<br>
-<br>
-</span>Let&#39;s clarify that for the benefit of others reading along - you=
- absolutely<br>
-*can* have multiple bbappends per recipe. To answer the original question<b=
-r>
-though, no you cannot have bbappends conditionally applied based on what im=
-age<br>
-is being built - you cannot have other recipes built differently based on t=
-he<br>
-image being built *period*. Other than what gets shared via the sysroot,<br=
->
-recipes are largely independent of eachother, and that&#39;s by design.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
+Can you help a me?
+What should I put and where to enable distro-feature: systemd without 
+manipulating with local.conf? Is that possible?
 
---001a1141c04e62fd260534adf92a--
+
+Thanks
+Piotr Lewicki
+
