@@ -1,67 +1,40 @@
-Return-Path: <oleksandr.poznyak@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00911E00CCC; Wed,  8 Jun 2016 01:58:32 -0700 (PDT)
+	id 28C1AE00CBE; Wed,  8 Jun 2016 02:00:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (oleksandr.poznyak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E37E00927
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 01:58:29 -0700 (PDT)
-Received: by mail-qk0-f172.google.com with SMTP id p22so707701qka.2
-	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 01:58:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=RnNnCvIrG3YsmkPMjigpwDDtugu7gfn8EvI4XNW7dcA=;
-	b=b+Q9jy0W/aVDSVr+5cEnG0zSqCEve6sSNA09ZNZ2rhIindy2iScfHK56dueOBCROSy
-	m6eVt/g5AwHXeC3+bGnMpmdaPCFiPmSLY54X065UO+tODMzDM6mzrI/a6i4Ly2dcqkzv
-	gVvb7K7WbGhWLauLKZw4j5anKbY2+4G2yIUNYdzmwOc/jYLVuTsM9qP6syxB1dtDQMuS
-	bxzdpWScCjwkq0Uolzo94d9belrgHGTOTjdns85Dz43RBy+HSxXt9XWMHJcI5g/Itb6z
-	eQKQXXOKt8YQvOYmVrEi3oBLZM0sYX0odGxi6+bwB4IeRlDVu3fmXXgm2hmJ2EDOrfGc
-	GpYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=RnNnCvIrG3YsmkPMjigpwDDtugu7gfn8EvI4XNW7dcA=;
-	b=R1PyHOn696tqHfmsanKN4QM1H1jYIiUqaidt2dtMxKel9bDYxLu4RwvmI903YBPwbW
-	6OTgiHWGfSTtrzrsaswp5WOMO8fC2be3a7JCz0jxjkGLQrNGrDjH9IQwcJvLT3AXCnWF
-	THRJp2nryIPU7fECTsSt+Dn/ft2omqPzRLNiDSiKs2kVnLGy402m90p9kGIpKEJorvBM
-	lWWKFXrlMy46yeLZZb9DiLbnU1YrdtwAqSiSPUTNvIHrj5DoinXiPbhV4NDle2vteknh
-	O4hXqloCUoGc5U3LjsLRywwyHtk11w5T7GPz144CLqB+tZkBec/DSSkAAI3TV5ZtPdZN
-	t7/g==
-X-Gm-Message-State: ALyK8tJgLAA1XbI6AZTjodnWfLaAarcFrKq/jnnjog137SIpgIk3GHF/sMuYq1hXu4+J4euO6fDoLnNn7xBBvw==
-X-Received: by 10.55.40.68 with SMTP id o65mr3248733qkh.201.1465376309325;
-	Wed, 08 Jun 2016 01:58:29 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91B7AE00CF0
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:00:17 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Jun 2016 01:59:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,438,1459839600"; d="scan'208";a="983221576"
+Received: from ntjioe-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.145.211])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Jun 2016 01:59:52 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Wed, 08 Jun 2016 20:59:50 +1200
+Message-ID: <1804687.ljF0T5WDxz@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.10 (Linux/4.5.5-201.fc23.x86_64; KDE/4.14.20; x86_64; ;
+	)
+In-Reply-To: <1465338026.13979.88.camel@linuxfoundation.org>
+References: <575456D5.4080800@mlbassoc.com>
+	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
+	<1465338026.13979.88.camel@linuxfoundation.org>
 MIME-Version: 1.0
-Received: by 10.237.32.36 with HTTP; Wed, 8 Jun 2016 01:58:28 -0700 (PDT)
-In-Reply-To: <6693315.UnGygSzkB8@peggleto-mobl.ger.corp.intel.com>
-References: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
-	<1857108.OcXCc2mBxV@peggleto-mobl.ger.corp.intel.com>
-	<CAGMdoF=KA=wmKu=+Zd6UOaQ=waZQgjvCQz=z8h+QtUgbYXoiTA@mail.gmail.com>
-	<6693315.UnGygSzkB8@peggleto-mobl.ger.corp.intel.com>
-From: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
-Date: Wed, 8 Jun 2016 11:58:28 +0300
-Message-ID: <CAEeWubL6=JcOBLbFdHmuikXuAvryCECnVHJ7fx5J2oShhnU7FA@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org, Diego <diego.ml@zoho.com>
-Subject: Re: Per image customizations
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: What's this
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,184 +46,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 08:58:33 -0000
-Content-Type: multipart/alternative; boundary=001a1141c04e6136100534c0822d
+X-List-Received-Date: Wed, 08 Jun 2016 09:00:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a1141c04e6136100534c0822d
-Content-Type: text/plain; charset=UTF-8
+On Tue, 07 Jun 2016 23:20:26 Richard Purdie wrote:
+> On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
+> > On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
+> > > On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
+> > > wrote:
+> > > > It means the hash calculated my the bitbake master was different
+> > > > to the hash calculated when the worker started up.  This usually means
+> > > > that you're using something like ${TIME} in the recipe but not marking 
+> > > > it appropriatly so the cache ignores it.  Do you have a base-files
+> > > > bbappend that writes a timestamp?
+> > > 
+> > > The always wise Joshua reminds me that if your DISTRO_VERSION
+> > > contains ${DATETIME} then this happens.  If you're doing this then
+> > > you'll want to set [vardepsexclude] on DISTRO_VERSION to stop the
+> > > DATETIME from getting into the cache (or not put the current date/time
+> > > into the distro version).
+> > 
+> > I think we need to handle this situation better - if it's really
+> > worth producing an error about then it's worth producing an error message
+> > that people can actually understand, particularly as it's recently added
+> > validation.
+> 
+> It was silently running into problems due to this all along but not
+> reporting it. Its now reporting it which is better than silently things
+> behaving strangely.
 
-Hi, Edward.
-Your approach is valid. But RREPLACES is not enough.
+What are the actual consequences in a situation like this where we have 
+something like ${DATETIME} in another variable referenced by the task?
 
-You should define that your package and original ones are conflicting and
-that it provides the same as original one for other packages.
+I haven't looked at all of the code involved (and that's probably the root of 
+my problem) but I don't quite understand how this is coming about. DATE and 
+TIME are supposed to be determined at the start of the build and explicitly 
+passed to the worker, so they don't change during the build. What am I 
+missing?
+ 
+> Its very hard for bitbake to know why the hashes differ, it only knows
+> the values afterwards and hence that they've changed, the information
+> about how that hash was constructed is not present in any of bitbake's
+> caches. That implies to have better messages we need to write out more
+> data.
+> 
+> I did add a patch to make bitbake write out data to allow
+> reconstruction of basehash (which is part of taskhash). Sadly the
+> parsing performance was diabolical (10 times slower). I think that
+> could perhaps be improved if the files don't require an atomic move
+> during creation but I haven't had time to look further at it.
+> 
+> So whilst I do agree, what is the price people are willing to pay to
+> have those better messages?
 
-So in your recipe:
+Clearly a 10x slowdown is unacceptable, hopefully we can find another way of 
+dealing with this. I guess if we're able to do nothing else a brief 
+explanation of what to look for (i.e. variables that might change with time) 
+in the error message would be helpful, but I hope we can do better than that.
 
-RPROVIDES_${PN} = "sysvinit-inittab"
-RREPLACES_${PN} = "sysvinit-inittab"
-RCONFLICTS_${PN} = "sysvinit-inittab"
+Cheers,
+Paul
 
-Thanks,
-Oleksandr Poznyak!
+-- 
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
-On Wed, Jun 8, 2016 at 2:23 AM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
-
-> On Tue, 07 Jun 2016 16:07:26 Edward Wingate wrote:
-> > On Tue, Jun 7, 2016 at 1:47 PM, Paul Eggleton
-> > <paul.eggleton@linux.intel.com> wrote:
-> > > So what this will give you is alternative packages to be installed
-> instead
-> > > of sysvinit-inittab in your image.
-> >
-> > I was under the (mistaken) impression that my recipe will run in
-> > addition to, not instead of, sysvinit-inittab (occurring after it and
-> > overwriting its inittab with my custom version).
->
-> The recipe will build in addition to sysvinit-inittab yes, but do_install
-> for
-> that recipe is just assembling the files ready for packaging - it doesn't
-> directly install files into the image. When it comes time to assemble the
-> image, all that is being done when you distil it down is that we install a
-> bunch of packages.
->
-> > > Have you verified (by way of the image manifest written next to the
-> image
-> > > file) that this package is actually being installed?
-> >
-> > The manifest shows both sysvinit-inittab and my package being
-> > installed in the image, but sysvinit-inittab's inittab apparently
-> > takes precedence over mine.
->
-> Hmm, that is strange, because as they install the same file they ought to
-> conflict. Perhaps as suggested elsewhere in this thread this is a bug (or
-> at
-> least undesirable behaviour) in rpm.
->
-> > > What steps have you taken to ensure that it does get installed in
-> > > preference to sysvinit-inittab?
-> >
-> > None, due to my mistaken impression.  After investigating your kind
-> > inference with help of Yocto manual, I replaced in my recipe:
-> > DEPENDS += " sysvinit-inittab"
-> > with:
-> > RREPLACES_${PN} = "sysvinit-inittab"
-> >
-> > and it appears to be working now.  I've been using Yocto for a year
-> > now, but still feel like I'm barely scratching the surface of it.  I
-> > tend to get things to work by floundering about, so even though it
-> > does works, I would appreciate knowing if this was the most proper
-> > course of action.  Thanks!
->
-> I guess here you are getting into functionality that is not very
-> well-defined,
-> and you're also dealing with behaviour of the package manager rather than
-> the
-> build system itself (though I appreciate the lines are blurred from usage
-> perspective). I guess it would help though if we would document a working
-> procedure to do this kind of thing as it does come up from time to time.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---001a1141c04e6136100534c0822d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi, Edward.<br>Your approach is valid. But RREPLACES is no=
-t enough.<br><br>You should define that your package and original ones are =
-conflicting and that it provides the same as original one for other package=
-s.<br><br>So in your recipe:<br><br>RPROVIDES_${PN} =3D &quot;sysvinit-init=
-tab&quot;<br>RREPLACES_${PN} =3D &quot;sysvinit-inittab&quot;<br>RCONFLICTS=
-_${PN} =3D &quot;sysvinit-inittab&quot;<br><br>Thanks,<br>Oleksandr Poznyak=
-!<div><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_qu=
-ote">On Wed, Jun 8, 2016 at 2:23 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggle=
-ton@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
-><span class=3D"">On Tue, 07 Jun 2016 16:07:26 Edward Wingate wrote:<br>
-&gt; On Tue, Jun 7, 2016 at 1:47 PM, Paul Eggleton<br>
-&gt; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@lin=
-ux.intel.com</a>&gt; wrote:<br>
-&gt; &gt; So what this will give you is alternative packages to be installe=
-d instead<br>
-&gt; &gt; of sysvinit-inittab in your image.<br>
-&gt;<br>
-&gt; I was under the (mistaken) impression that my recipe will run in<br>
-&gt; addition to, not instead of, sysvinit-inittab (occurring after it and<=
-br>
-&gt; overwriting its inittab with my custom version).<br>
-<br>
-</span>The recipe will build in addition to sysvinit-inittab yes, but do_in=
-stall for<br>
-that recipe is just assembling the files ready for packaging - it doesn&#39=
-;t<br>
-directly install files into the image. When it comes time to assemble the<b=
-r>
-image, all that is being done when you distil it down is that we install a<=
-br>
-bunch of packages.<br>
-<span class=3D""><br>
-&gt; &gt; Have you verified (by way of the image manifest written next to t=
-he image<br>
-&gt; &gt; file) that this package is actually being installed?<br>
-&gt;<br>
-&gt; The manifest shows both sysvinit-inittab and my package being<br>
-&gt; installed in the image, but sysvinit-inittab&#39;s inittab apparently<=
-br>
-&gt; takes precedence over mine.<br>
-<br>
-</span>Hmm, that is strange, because as they install the same file they oug=
-ht to<br>
-conflict. Perhaps as suggested elsewhere in this thread this is a bug (or a=
-t<br>
-least undesirable behaviour) in rpm.<br>
-<span class=3D""><br>
-&gt; &gt; What steps have you taken to ensure that it does get installed in=
-<br>
-&gt; &gt; preference to sysvinit-inittab?<br>
-&gt;<br>
-&gt; None, due to my mistaken impression.=C2=A0 After investigating your ki=
-nd<br>
-&gt; inference with help of Yocto manual, I replaced in my recipe:<br>
-&gt; DEPENDS +=3D &quot; sysvinit-inittab&quot;<br>
-&gt; with:<br>
-&gt; RREPLACES_${PN} =3D &quot;sysvinit-inittab&quot;<br>
-&gt;<br>
-&gt; and it appears to be working now.=C2=A0 I&#39;ve been using Yocto for =
-a year<br>
-&gt; now, but still feel like I&#39;m barely scratching the surface of it.=
-=C2=A0 I<br>
-&gt; tend to get things to work by floundering about, so even though it<br>
-&gt; does works, I would appreciate knowing if this was the most proper<br>
-&gt; course of action.=C2=A0 Thanks!<br>
-<br>
-</span>I guess here you are getting into functionality that is not very wel=
-l-defined,<br>
-and you&#39;re also dealing with behaviour of the package manager rather th=
-an the<br>
-build system itself (though I appreciate the lines are blurred from usage<b=
-r>
-perspective). I guess it would help though if we would document a working<b=
-r>
-procedure to do this kind of thing as it does come up from time to time.<br=
->
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
-
---001a1141c04e6136100534c0822d--
