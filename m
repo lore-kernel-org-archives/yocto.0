@@ -1,71 +1,69 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 109E1E00CE8; Wed,  8 Jun 2016 07:35:07 -0700 (PDT)
+	id CDD45E00CED; Wed,  8 Jun 2016 11:01:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.244.64.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (edwingate8[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 19590 seconds by postgrey-1.32 at yocto-www;
-	Wed, 08 Jun 2016 07:35:00 PDT
-Received: from mx18-13.smtp.antispamcloud.com (mx18-13.smtp.antispamcloud.com
-	[207.244.64.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B099E00CB8
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 07:35:00 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx18.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1bAZTK-0006MP-TA; Wed, 08 Jun 2016 11:08:26 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 8 Jun 2016 11:08:19 +0200
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, Paul Eggleton
-	<paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
-References: <575456D5.4080800@mlbassoc.com>
-	<CAJTo0LYaBXixDk1vzzt=wFtqYzsFQAtanUa3Hgu-CB86kHGdOw@mail.gmail.com>
-	<CAJTo0La74HkwkgqQZwECS2ruzSe-guCCBJFG0_u=e1FBT8q3CA@mail.gmail.com>
-	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
-	<1465338026.13979.88.camel@linuxfoundation.org>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <5757E081.7000402@topic.nl>
-Date: Wed, 8 Jun 2016 11:08:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.194 listed in list.dnswl.org]
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A11F2E00CCA
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 11:01:13 -0700 (PDT)
+Received: by mail-qt0-f194.google.com with SMTP id 72so588894qtb.0
+	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 11:01:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=tyvCtSSHSv4Ry7V1/meuXY35OuijzJAH6nl6fMvu57I=;
+	b=jchGP3RD2G2rvXPj0mb1M8Tm86Pu9ZYyewYrqTMHZjsKN8zcFx2KpO2UA3/15GgNIV
+	bg429PIjFnJ28bCO6qDM0KtzrCg58kg4xFFgdNe+ZVzSWOboAbDARoRgcycWLdE3is6P
+	2N29UWzKbny9ygGSh6+5kMaJF5eQbB8e8R3i5ZrpRfIOB1nPKxp5eE7lilZUDkMnzQ24
+	Ti1l35bkFFFnbcCSyh3W5iAoURFbd9Fsn+ZtSpI963ibcFVwJ3TBvRBbgV7w66ejaTHz
+	9wcvEqu81SyDzIXRqPlzaImej8bWyHgWE/NngfTBnAiCv9p7328oSJb77Jaj9exE1EEX
+	kLCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=tyvCtSSHSv4Ry7V1/meuXY35OuijzJAH6nl6fMvu57I=;
+	b=XFmvNKmIHs6hC1iuyLNx/R2rP18u7NyaUHf9qneraecs0GuWMSWVVYssz00kE9JxkT
+	iJ4HaDWa0ISnlNRNtzeZCX+zMT08j3h20+0Mg5O+6FaBhAamCf0iiNc3YQtawbtZsNTE
+	pmJyAw0NKAvuGYHJfjBli0C6eROS+nKR8MMhHKWLMeXkTFWh6GhLcJpg9QxSSjexYWTl
+	/FgxBiWbGBt6P8YG9L//SuCX8PoBu7GrDxZV9bz6eB/9sCTqT+8oPLgnnfv7iuHCak9V
+	JCCJjfsb38JnFv+aB1Y02iADy0VwzvKg/FaH4fTkz9iFUhiyuEHX5IX1/P3oWnZi7Q0t
+	EAtg==
+X-Gm-Message-State: ALyK8tKCJif6HYJIUhVRiWClA0CKUkSLyIrTXKJX0dn3H5nNMqrjOHOHNSdpAnim16ZxRbYxWQ9ltr++SNIb0w==
+X-Received: by 10.237.41.5 with SMTP id s5mr6034498qtd.71.1465408873160; Wed,
+	08 Jun 2016 11:01:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1465338026.13979.88.camel@linuxfoundation.org>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw2qn2YSnBaxCIAHbc091Tc1/63A71K+jqMokMNyfk/adbyaQChaP+zhgmYFtvQOnVip6
-	+Pl+XObyWSi+5qFJUocGH/YYgvV0QgfTypJwMtkIUG+JqvchcqeUSTK+P0oOE+QJjXGCAey6Oofy
-	fMIm8WhIn4aj8xVVMkQZd9s9Pp2a3AcPwSEsPa5+EzCIl51Pjydf0sGju/j28j5r0hGtJYz6s7w7
-	zb5BAKWE25eLs3OnItlcci/xhcZ+tBOfALGaxSG7X+t1TW39Ja77LGPpOwAoFFGehu/LjH1dgy1A
-	6CWEjwsD088NtsGHV99RTGFzjhZeQYHXdMcG3xNMo40KqiAhEWyJzIkwSFAW0Pw8uiKeSfwEntQd
-	IVrxCCuXDwWnGCrn4AewWnpS5DUxt4NS/udzmGKvPRvC08RKufiNuNl/92PNDpgLsd6Ddd/s7VM5
-	3iu8T/iw/hWryOzpe3vaR/z3uFL8N7VKh/CG+lj0Rj1mdfvusPD6mLi4Bm+7u7WSpLH600st9eU/
-	nkJwwvEP/eiRVYKU9W9tbmVXJBqdHHDmFmZOz2bO4w7flXGSMbAWocG0WCljDbUTmCn27mgGERKB
-	gwNZt6OqE37gGsPxkW2/mWxgBaaPt9++LWwpCu5NcYjZXQ7W+MICam90hBzYtU+FVHWJ3UYsockG
-	/KOUjXDUlq+BQEhIP40l441Jczqzm+CbYzyeEen7f/5Yn9cmKSy4ixWSYWIo3iDqxvNn8MbZbxI0
-	hoiocxB6HC+2IRaY/g==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Originating-IP: 88.159.208.100
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.04)
-X-Recommended-Action: accept
-Cc: Gary Thomas <gary@mlbassoc.com>
-Subject: Re: What's this
+Received: by 10.200.56.35 with HTTP; Wed, 8 Jun 2016 11:01:12 -0700 (PDT)
+In-Reply-To: <CAEeWubL6=JcOBLbFdHmuikXuAvryCECnVHJ7fx5J2oShhnU7FA@mail.gmail.com>
+References: <1806509.T1rfjxOZVE@ip-192-168-197-87.eu-west-1.compute.internal>
+	<1857108.OcXCc2mBxV@peggleto-mobl.ger.corp.intel.com>
+	<CAGMdoF=KA=wmKu=+Zd6UOaQ=waZQgjvCQz=z8h+QtUgbYXoiTA@mail.gmail.com>
+	<6693315.UnGygSzkB8@peggleto-mobl.ger.corp.intel.com>
+	<CAEeWubL6=JcOBLbFdHmuikXuAvryCECnVHJ7fx5J2oShhnU7FA@mail.gmail.com>
+From: Edward Wingate <edwingate8@gmail.com>
+Date: Wed, 8 Jun 2016 11:01:12 -0700
+Message-ID: <CAGMdoFny4KP+EN9=Seg0B3RdL6S98AeiH38QJCgwPU3KHbx0TQ@mail.gmail.com>
+To: Oleksandr Poznyak <oleksandr.poznyak@gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, Diego <diego.ml@zoho.com>,
+	yocto@yoctoproject.org
+Subject: Re: Per image customizations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,94 +75,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 14:35:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Wed, 08 Jun 2016 18:01:19 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 08-06-16 00:20, Richard Purdie wrote:
-> On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
->> On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
->>> On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
->>> wrote:
->>>> It means the hash calculated my the bitbake master was different
->>>> to the
->>>> hash calculated when the worker started up.  This usually means
->>>> that
->>>> you're
->>>> using something like ${TIME} in the recipe but not marking it
->>>> appropriatly
->>>> so the cache ignores it.  Do you have a base-files bbappend that
->>>> writes a
->>>> timestamp?
->>>
->>> The always wise Joshua reminds me that if your DISTRO_VERSION
->>> contains
->>> ${DATETIME} then this happens.  If you're doing this then you'll
->>> want to
->>> set [vardepsexclude] on DISTRO_VERSION to stop the DATETIME from
->>> getting
->>> into the cache (or not put the current date/time into the distro
->>> version).
+On Wed, Jun 8, 2016 at 1:58 AM, Oleksandr Poznyak
+<oleksandr.poznyak@gmail.com> wrote:
+> Hi, Edward.
+> Your approach is valid. But RREPLACES is not enough.
+>
+> You should define that your package and original ones are conflicting and
+> that it provides the same as original one for other packages.
+>
+> So in your recipe:
+>
+> RPROVIDES_${PN} =3D "sysvinit-inittab"
+> RREPLACES_${PN} =3D "sysvinit-inittab"
+> RCONFLICTS_${PN} =3D "sysvinit-inittab"
+
+Thank you, Oleksandr and Paul, for your help and clarification.
+
+And in case my hijacking of this thread caused OP's last question to
+be ignored, I apologize and wish to put the thread back on track for
+him:
+
+On Mon, Jun 6, 2016 at 6:27 AM, Diego <diego.ml@zoho.com> wrote:
+> Hi Oleksandr,
+>
+> In data venerd=C3=AC 3 giugno 2016 20:56:32, Oleksandr Poznyak ha scritto=
+:
+>> I found that that=E2=80=99s an issue with rpm packages. I didn't expect =
+there might
+>> be some issue with rpm. If you really don't care which package managemen=
+t
+>> system to use, switch to deb:
 >>
->> I think we need to handle this situation better - if it's really
->> worth
->> producing an error about then it's worth producing an error message
->> that
->> people can actually understand, particularly as it's recently added
->> validation.
+>> PACKAGE_CLASSES =3D "package_deb"
+>>
 >
-> It was silently running into problems due to this all along but not
-> reporting it. Its now reporting it which is better than silently things
-> behaving strangely.
->
-> Its very hard for bitbake to know why the hashes differ, it only knows
-> the values afterwards and hence that they've changed, the information
-> about how that hash was constructed is not present in any of bitbake's
-> caches. That implies to have better messages we need to write out more
-> data.
->
-> I did add a patch to make bitbake write out data to allow
-> reconstruction of basehash (which is part of taskhash). Sadly the
-> parsing performance was diabolical (10 times slower). I think that
-> could perhaps be improved if the files don't require an atomic move
-> during creation but I haven't had time to look further at it.
->
-> So whilst I do agree, what is the price people are willing to pay to
-> have those better messages?
-
-I have a build machine that every so often runs into "basehash mismatch"=20
-problems (but never when you want it to, such as now), so getting some=20
-information on what might cause it would be "priceless". I'd happily let th=
-e=20
-machine run for 10 days straight if at the end I get a message that I can w=
-ork=20
-with.
-
-Which implies that any performance hit is acceptable, if there's a switch t=
-o=20
-enable and disable that extra diagnostic. Oh dear, just what we need, yet=20
-another switch...
-
-M.
-
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
-
+> Thanks for looking at the problem, unfortunately migrating away from rpm =
+is
+> not an option for me at the moment. Is there a bug report for this rpm
+> problem? Should I open one?
 
