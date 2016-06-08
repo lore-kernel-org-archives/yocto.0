@@ -1,62 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DB35E00CD8; Wed,  8 Jun 2016 02:29:05 -0700 (PDT)
+	id 2D8DEE00CEC; Wed,  8 Jun 2016 04:31:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 736E7E00927
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:29:00 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id z189so121784418itg.0
-	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 02:29:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=xuNxDUtvjYwCGkwDHbedc5hkQThoygYSr6qmUdNaHmY=;
-	b=PDH8kKTU0GjGx6E6yCoojA6Bhf1jPOsE99fg7N40HeaEQRP4LbLR39rEcDCf3LSWo2
-	B19n4FyTmt6jA+B343au8Ur+gKzzYuFaU2n3Ui7+7lXNOvurOABS+IzXVkbnGeFD87Ls
-	HqRgcMx9PNsO92FGrOPw4/QLMAbXxzc8/TSTv4b3Z23n6kA7RIt0Hvs0YY7ZmqAoWIAk
-	HXRJZKcNOrmrOpJxKySod2kli23+bCk6TosjGjg73sjO3g1emMxZuuM3Jedib0UfBzzb
-	QZclHDWDbmxv0bKgm5DcQfWiVMpro3N1j2D+XrHfefjcN96lOsvd9CO5JAkLCsXs7dxh
-	0Lpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=xuNxDUtvjYwCGkwDHbedc5hkQThoygYSr6qmUdNaHmY=;
-	b=YIREfGoGDXXLsB1zVwJBTgZpNTjvibzP0/EAHj3PD20Y6AszpzeieURJQzolgiQKQU
-	UfMu5Jjd7vr4dScVmvBszMIoSc9ROTSz4ysx5pXLy1ETpvxJ8hMDiACniWz/LKYtUzoP
-	CqoU5yUV34oq/ywV5eZ49/aGdJ3aiL6GD3rLE/FJ33h3dAkTyYD5NYv6t1wztGIXVbgS
-	WLKAPR9MiTSvUqQ/KClRnVDQ7KF1RswGocPGiRM7qi5F4XYVD203a8ePrDe/YSubRi53
-	7HIah4I+CEep0ffPi76DLXYjkWUPUh3gqkBsZ9czt4yu6X+mrOtuQQsmvYp6G6AClV1Z
-	ECYg==
-X-Gm-Message-State: ALyK8tLMcPKM6r9cFOENlv6cjMSS71YgoI55A8jBTDCAerT7+VfhVGjUoAaifMnPF0OnuFOSYIXfxOBpeGh7dzdj
-X-Received: by 10.36.17.134 with SMTP id 128mr6382375itf.83.1465378140302;
-	Wed, 08 Jun 2016 02:29:00 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Wed, 8 Jun 2016 02:28:40 -0700 (PDT)
-In-Reply-To: <5757E356.4060309@elfin.de>
-References: <5756B9D2.3000700@elfin.de>
-	<CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com>
-	<5757E356.4060309@elfin.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 8 Jun 2016 10:28:40 +0100
-Message-ID: <CAJTo0LZPtighVcO4kryfofzhDKt_ZXe5-z9a_VR01JzOWPFFgQ@mail.gmail.com>
-To: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: DISTRO_FEATURES modification from image recipe?
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9191CE00CE5
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 04:31:01 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u58BUgeA014533; Wed, 8 Jun 2016 12:30:42 +0100
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Pl9ityUEbHFm; Wed,  8 Jun 2016 12:30:42 +0100 (BST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u58BUaS8014528
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 8 Jun 2016 12:30:37 +0100
+Message-ID: <1465385436.13979.97.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Wed, 08 Jun 2016 12:30:36 +0100
+In-Reply-To: <1804687.ljF0T5WDxz@peggleto-mobl.ger.corp.intel.com>
+References: <575456D5.4080800@mlbassoc.com>
+	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
+	<1465338026.13979.88.camel@linuxfoundation.org>
+	<1804687.ljF0T5WDxz@peggleto-mobl.ger.corp.intel.com>
+X-Mailer: Evolution 3.16.5-1ubuntu3.1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: What's this
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,42 +46,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 09:29:05 -0000
-Content-Type: multipart/alternative; boundary=001a1143f53a83c5ad0534c0ef8e
+X-List-Received-Date: Wed, 08 Jun 2016 11:31:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a1143f53a83c5ad0534c0ef8e
-Content-Type: text/plain; charset=UTF-8
+On Wed, 2016-06-08 at 20:59 +1200, Paul Eggleton wrote:
+> On Tue, 07 Jun 2016 23:20:26 Richard Purdie wrote:
+> > On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
+> > > On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
+> > > > On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
+> > > > wrote:
+> > > > > It means the hash calculated my the bitbake master was
+> > > > > different
+> > > > > to the hash calculated when the worker started up.  This
+> > > > > usually means
+> > > > > that you're using something like ${TIME} in the recipe but
+> > > > > not marking 
+> > > > > it appropriatly so the cache ignores it.  Do you have a base
+> > > > > -files
+> > > > > bbappend that writes a timestamp?
+> > > > 
+> > > > The always wise Joshua reminds me that if your DISTRO_VERSION
+> > > > contains ${DATETIME} then this happens.  If you're doing this
+> > > > then
+> > > > you'll want to set [vardepsexclude] on DISTRO_VERSION to stop
+> > > > the
+> > > > DATETIME from getting into the cache (or not put the current
+> > > > date/time
+> > > > into the distro version).
+> > > 
+> > > I think we need to handle this situation better - if it's really
+> > > worth producing an error about then it's worth producing an error
+> > > message
+> > > that people can actually understand, particularly as it's
+> > > recently added
+> > > validation.
+> > 
+> > It was silently running into problems due to this all along but not
+> > reporting it. Its now reporting it which is better than silently
+> > things
+> > behaving strangely.
+> 
+> What are the actual consequences in a situation like this where we 
+> have something like ${DATETIME} in another variable referenced by the
+> task?
 
-On 8 June 2016 at 10:20, piotr.lewicki <piotr.lewicki@elfin.de> wrote:
+A mismatch means the cached internal values bitbake is using on the
+cooker/server side don't match what the worker is actually doing. Its
+hard to say for sure exactly what impact that would have.
 
-> I actually want to enable systemd in all packages, but my current DISTRO
-> is "poky".
-> Can you point me some documentation where I can get information on how to
-> create a distro file based on poky and add systemd there?
->
+If for example its in a do_build task, it means that some invalid data
+may be written out to the do_build sigdata file and confuse later build
+analysis based on those files. You can usually tell such a file by the
+fact its named with one hash name but when you compute the value from
+the entries in the file, you get a different hash.
 
-http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#creating-your-own-distribution
+If its a more important task like do_install, it could mean something
+doesn't rerun when it should, or vice versa and the effect of a corrupt
+sidinfo/sigdata is more significant.
 
-Ross
+With the changes to error in these cases, we get to know about cases of
+mismatch and we went and fixed the majority of causes of these. I
+believe those mismatches were in part at fault for things like diffsigs
+not working as expected in some cases.
 
---001a1143f53a83c5ad0534c0ef8e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+> I haven't looked at all of the code involved (and that's probably the
+> root of my problem) but I don't quite understand how this is coming
+> about. DATE and TIME are supposed to be determined at the start of
+> the build and explicitly passed to the worker, so they don't change
+> during the build. What am I missing?
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 8 June 2016 at 10:20, piotr.lewicki <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:piotr.lewicki@elfin.de" target=3D"_blank">piotr.lewicki@elfin.de</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border=
--left-style:solid;padding-left:1ex"><div text=3D"#000000" bgcolor=3D"#FFFFF=
-F">I actually want to enable systemd in all packages, but my current
-    DISTRO is &quot;poky&quot;.<br>
-    Can you point me some documentation where I can get information on
-    how to create a distro file based on poky and add systemd there?<br></d=
-iv></blockquote></div><br><a href=3D"http://www.yoctoproject.org/docs/2.1/m=
-ega-manual/mega-manual.html#creating-your-own-distribution">http://www.yoct=
-oproject.org/docs/2.1/mega-manual/mega-manual.html#creating-your-own-distri=
-bution</a><br></div><div class=3D"gmail_extra"><br></div><div class=3D"gmai=
-l_extra">Ross</div></div>
+Bitbake computes the hashes at parse time and caches them. At run time,
+it then builds a new data store in the worker. These errors come about
+when the values in the cache from parsing don't match the runtime
+execution environment.
+ 
+> > Its very hard for bitbake to know why the hashes differ, it only
+> > knows
+> > the values afterwards and hence that they've changed, the
+> > information
+> > about how that hash was constructed is not present in any of
+> > bitbake's
+> > caches. That implies to have better messages we need to write out
+> > more
+> > data.
+> > 
+> > I did add a patch to make bitbake write out data to allow
+> > reconstruction of basehash (which is part of taskhash). Sadly the
+> > parsing performance was diabolical (10 times slower). I think that
+> > could perhaps be improved if the files don't require an atomic move
+> > during creation but I haven't had time to look further at it.
+> > 
+> > So whilst I do agree, what is the price people are willing to pay
+> > to
+> > have those better messages?
+> 
+> Clearly a 10x slowdown is unacceptable, hopefully we can find another
+> way of 
+> dealing with this. I guess if we're able to do nothing else a brief 
+> explanation of what to look for (i.e. variables that might change
+> with time) 
+> in the error message would be helpful, but I hope we can do better
+> than that.
 
---001a1143f53a83c5ad0534c0ef8e--
+So do I, its a time problem on my part to look into it. As mentioned
+above, I believe this problem was meaning diffsigs was unreliable and
+it was having other unknown impact on builds rebuilding when they
+shouldn't or vice versa. I believe those are important to fix. We need
+better sstate hash debugging/telemetry but exactly how to do this
+without performance impact remains to be seen. I'm continue to think on
+it (along with too many other issues) but am open to ideas.
+
+Cheers,
+
+Richard
+
