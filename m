@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78211E00CFE; Wed,  8 Jun 2016 06:21:10 -0700 (PDT)
+	id A96A2E00CF4; Wed,  8 Jun 2016 06:21:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,25 +12,25 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CCFE00CF3
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 06:20:56 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 179B5E00CEC
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 06:20:55 -0700 (PDT)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Jun 2016 06:20:53 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 08 Jun 2016 06:20:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,439,1459839600"; d="scan'208";a="824133728"
+X-IronPort-AV: E=Sophos;i="5.26,439,1459839600"; d="scan'208";a="824133632"
 Received: from mshirsix-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.147.125])
-	by orsmga003.jf.intel.com with ESMTP; 08 Jun 2016 06:20:51 -0700
+	by orsmga003.jf.intel.com with ESMTP; 08 Jun 2016 06:20:45 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 Jun 2016 01:19:58 +1200
-Message-Id: <2e7cb445da013364c6c7c5fcb0c0b3432357afad.1465391621.git.paul.eggleton@linux.intel.com>
+Date: Thu,  9 Jun 2016 01:19:56 +1200
+Message-Id: <a47859e9d8854106bc982a6ae309b3ced08e1b47.1465391621.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.5.5
 In-Reply-To: <cover.1465391621.git.paul.eggleton@linux.intel.com>
 References: <cover.1465391621.git.paul.eggleton@linux.intel.com>
 In-Reply-To: <cover.1465391621.git.paul.eggleton@linux.intel.com>
 References: <cover.1465391621.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH v2 05/15] Increase size of Recipe provides and license fields
+Subject: [layerindex-web][PATCH v2 03/15] update.py: allow updating all branches with one command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,39 +44,50 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 08 Jun 2016 13:21:10 -0000
 
-Fix "data truncated" warnings/errors when loading data for OE-Core:
-* PROVIDES for recipe packagegroup-base is ~1452 characters
-* LICENSE for recipe linux-firmware is ~1053 characters
+Allow updating multiple branches, and if no branches are specified,
+update all branches that have a new "updates_enabled" flag field set to
+True. This avoids the need to have a separate shell script which runs
+update.py for each branch (and thus has hardcoded knowledge of each
+active branch in the index, i.e. it needs to be kept up-to-date in
+addition to the database.)
 
-(These aren't shown with SQLite, only with something like MariaDB where
-column sizes are enforced.)
+The migration will default updates_enabled to True for all branches so
+if you wish to take advantage of this functionality, the flag will need
+to be set to False for any branches that shouldn't be updated.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- TODO                                               |   1 -
- ...ld_recipe_license__chg_field_recipe_provides.py | 202 +++++++++++++++++++++
- layerindex/models.py                               |   4 +-
- 3 files changed, 204 insertions(+), 3 deletions(-)
- create mode 100644 layerindex/migrations/0012_auto__chg_field_recipe_license__chg_field_recipe_provides.py
+ README                                             |   7 +-
+ .../0011_auto__add_field_branch_updates_enabled.py | 198 +++++++++++++++++++++
+ layerindex/models.py                               |   1 +
+ layerindex/update.py                               |  70 ++++----
+ 4 files changed, 239 insertions(+), 37 deletions(-)
+ create mode 100644 layerindex/migrations/0011_auto__add_field_branch_updates_enabled.py
 
-diff --git a/TODO b/TODO
-index 9ab7aa7..b5e8974 100644
---- a/TODO
-+++ b/TODO
-@@ -11,7 +11,6 @@ TODO:
+diff --git a/README b/README
+index 84edee2..ff0a7a5 100644
+--- a/README
++++ b/README
+@@ -119,11 +119,8 @@ On a regular basis you need to run the update script:
+ path/to/layerindex/update.py
  
- Bugs
- * Duplication of first maintainer when editing to add a second?
--* PROVIDES column appears to be too short for some recipes
+ This will fetch all of the layer repositories, analyse their contents
+-and update the database with the results. Note that if you set up more
+-than just the master branch in the database, you will need to run the
+-script once for each branch using -b (or --branch) to specify the
+-branch name. Run the script with --help for further information on
+-available options.
++and update the database with the results. Run the script with --help for
++further information on available options.
  
- Other
- * Full-text search on layer contents
-diff --git a/layerindex/migrations/0012_auto__chg_field_recipe_license__chg_field_recipe_provides.py b/layerindex/migrations/0012_auto__chg_field_recipe_license__chg_field_recipe_provides.py
+ 
+ Maintenance
+diff --git a/layerindex/migrations/0011_auto__add_field_branch_updates_enabled.py b/layerindex/migrations/0011_auto__add_field_branch_updates_enabled.py
 new file mode 100644
-index 0000000..52cc264
+index 0000000..5e2d4bf
 --- /dev/null
-+++ b/layerindex/migrations/0012_auto__chg_field_recipe_license__chg_field_recipe_provides.py
-@@ -0,0 +1,202 @@
++++ b/layerindex/migrations/0011_auto__add_field_branch_updates_enabled.py
+@@ -0,0 +1,198 @@
 +# -*- coding: utf-8 -*-
 +from south.utils import datetime_utils as datetime
 +from south.db import db
@@ -87,20 +98,16 @@ index 0000000..52cc264
 +class Migration(SchemaMigration):
 +
 +    def forwards(self, orm):
++        # Adding field 'Branch.updates_enabled'
++        db.add_column('layerindex_branch', 'updates_enabled',
++                      self.gf('django.db.models.fields.BooleanField')(default=True),
++                      keep_default=False)
 +
-+        # Changing field 'Recipe.license'
-+        db.alter_column('layerindex_recipe', 'license', self.gf('django.db.models.fields.CharField')(max_length=2048))
-+
-+        # Changing field 'Recipe.provides'
-+        db.alter_column('layerindex_recipe', 'provides', self.gf('django.db.models.fields.CharField')(max_length=2048))
 +
 +    def backwards(self, orm):
++        # Deleting field 'Branch.updates_enabled'
++        db.delete_column('layerindex_branch', 'updates_enabled')
 +
-+        # Changing field 'Recipe.license'
-+        db.alter_column('layerindex_recipe', 'license', self.gf('django.db.models.fields.CharField')(max_length=100))
-+
-+        # Changing field 'Recipe.provides'
-+        db.alter_column('layerindex_recipe', 'provides', self.gf('django.db.models.fields.CharField')(max_length=255))
 +
 +    models = {
 +        'auth.group': {
@@ -243,9 +250,9 @@ index 0000000..52cc264
 +            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
 +            'inherits': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
 +            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'license': ('django.db.models.fields.CharField', [], {'max_length': '2048', 'blank': 'True'}),
++            'license': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
 +            'pn': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
-+            'provides': ('django.db.models.fields.CharField', [], {'max_length': '2048', 'blank': 'True'}),
++            'provides': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
 +            'pv': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
 +            'section': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
 +            'summary': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
@@ -281,22 +288,115 @@ index 0000000..52cc264
 +    complete_apps = ['layerindex']
 \ No newline at end of file
 diff --git a/layerindex/models.py b/layerindex/models.py
-index 6c5f65f..8d82846 100644
+index e0d85ea..6c5f65f 100644
 --- a/layerindex/models.py
 +++ b/layerindex/models.py
-@@ -238,10 +238,10 @@ class Recipe(models.Model):
-     summary = models.CharField(max_length=200, blank=True)
-     description = models.TextField(blank=True)
-     section = models.CharField(max_length=100, blank=True)
--    license = models.CharField(max_length=100, blank=True)
-+    license = models.CharField(max_length=2048, blank=True)
-     homepage = models.URLField(blank=True)
-     bugtracker = models.URLField(blank=True)
--    provides = models.CharField(max_length=255, blank=True)
-+    provides = models.CharField(max_length=2048, blank=True)
-     bbclassextend = models.CharField(max_length=100, blank=True)
-     inherits = models.CharField(max_length=255, blank=True)
-     updated = models.DateTimeField(auto_now = True)
+@@ -19,6 +19,7 @@ class Branch(models.Model):
+     bitbake_branch = models.CharField(max_length=50)
+     short_description = models.CharField(max_length=50, blank=True)
+     sort_priority = models.IntegerField(blank=True, null=True)
++    updates_enabled = models.BooleanField('Enable updates', default=True, help_text='Enable automatically updating layer metadata for this branch via the update script')
+ 
+     updated = models.DateTimeField(auto_now = True, default = datetime.now)
+ 
+diff --git a/layerindex/update.py b/layerindex/update.py
+index f7cb25c..ee4138d 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -57,8 +57,8 @@ def main():
+     %prog [options]""")
+ 
+     parser.add_option("-b", "--branch",
+-            help = "Specify branch to update",
+-            action="store", dest="branch", default='master')
++            help = "Specify branch(es) to update (use commas to separate multiple). Default is all enabled branches.",
++            action="store", dest="branch", default='')
+     parser.add_option("-l", "--layer",
+             help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
+             action="store", dest="layers")
+@@ -92,14 +92,19 @@ def main():
+ 
+     utils.setup_django()
+     import settings
+-    from layerindex.models import LayerItem
++    from layerindex.models import Branch, LayerItem
+ 
+     logger.setLevel(options.loglevel)
+ 
+-    branch = utils.get_branch(options.branch)
+-    if not branch:
+-        logger.error("Specified branch %s is not valid" % options.branch)
+-        sys.exit(1)
++    if options.branch:
++        branches = options.branch.split(',')
++        for branch in branches:
++            if not utils.get_branch(branch):
++                logger.error("Specified branch %s is not valid" % branch)
++                sys.exit(1)
++    else:
++        branchquery = Branch.objects.filter(updates_enabled=True)
++        branches = [branch.name for branch in branchquery]
+ 
+     fetchdir = settings.LAYER_FETCH_DIR
+     if not fetchdir:
+@@ -164,31 +169,32 @@ def main():
+         # We now do this by calling out to a separate script; doing otherwise turned out to be
+         # unreliable due to leaking memory (we're using bitbake internals in a manner in which
+         # they never get used during normal operation).
+-        for layer in layerquery:
+-            if layer.vcs_url in failedrepos:
+-                logger.info("Skipping update of layer %s as fetch of repository %s failed" % (layer.name, layer.vcs_url))
+-
+-            urldir = layer.get_fetch_dir()
+-            repodir = os.path.join(fetchdir, urldir)
+-
+-            cmd = 'python update_layer.py -l %s -b %s' % (layer.name, options.branch)
+-            if options.reload:
+-                cmd += ' --reload'
+-            if options.fullreload:
+-                cmd += ' --fullreload'
+-            if options.nocheckout:
+-                cmd += ' --nocheckout'
+-            if options.dryrun:
+-                cmd += ' -n'
+-            if options.loglevel == logging.DEBUG:
+-                cmd += ' -d'
+-            elif options.loglevel == logging.ERROR:
+-                cmd += ' -q'
+-            logger.debug('Running layer update command: %s' % cmd)
+-            ret = run_command_interruptible(cmd)
+-            if ret == 254:
+-                # Interrupted by user, break out of loop
+-                break
++        for branch in branches:
++            for layer in layerquery:
++                if layer.vcs_url in failedrepos:
++                    logger.info("Skipping update of layer %s as fetch of repository %s failed" % (layer.name, layer.vcs_url))
++
++                urldir = layer.get_fetch_dir()
++                repodir = os.path.join(fetchdir, urldir)
++
++                cmd = 'python update_layer.py -l %s -b %s' % (layer.name, branch)
++                if options.reload:
++                    cmd += ' --reload'
++                if options.fullreload:
++                    cmd += ' --fullreload'
++                if options.nocheckout:
++                    cmd += ' --nocheckout'
++                if options.dryrun:
++                    cmd += ' -n'
++                if options.loglevel == logging.DEBUG:
++                    cmd += ' -d'
++                elif options.loglevel == logging.ERROR:
++                    cmd += ' -q'
++                logger.debug('Running layer update command: %s' % cmd)
++                ret = run_command_interruptible(cmd)
++                if ret == 254:
++                    # Interrupted by user, break out of loop
++                    break
+ 
+     finally:
+         utils.unlock_file(lockfile)
 -- 
 2.5.5
 
