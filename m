@@ -1,37 +1,71 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A98D1E00D57; Wed,  8 Jun 2016 06:21:57 -0700 (PDT)
+	id 109E1E00CE8; Wed,  8 Jun 2016 07:35:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [207.244.64.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44AC9E00D18
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 06:21:17 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP; 08 Jun 2016 06:21:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,439,1459839600"; d="scan'208";a="824134110"
-Received: from mshirsix-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.147.125])
-	by orsmga003.jf.intel.com with ESMTP; 08 Jun 2016 06:21:13 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  9 Jun 2016 01:20:05 +1200
-Message-Id: <64ad015d363361ed43ca999727f8b139975fa735.1465391621.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.5.5
-In-Reply-To: <cover.1465391621.git.paul.eggleton@linux.intel.com>
-References: <cover.1465391621.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1465391621.git.paul.eggleton@linux.intel.com>
-References: <cover.1465391621.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH v2 12/15] Handle Python 2 and Python 3 branches in the same index
+X-Greylist: delayed 19590 seconds by postgrey-1.32 at yocto-www;
+	Wed, 08 Jun 2016 07:35:00 PDT
+Received: from mx18-13.smtp.antispamcloud.com (mx18-13.smtp.antispamcloud.com
+	[207.244.64.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B099E00CB8
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 07:35:00 -0700 (PDT)
+Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
+	helo=TOP-EX01.TOPIC.LOCAL)
+	by mx18.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1bAZTK-0006MP-TA; Wed, 08 Jun 2016 11:08:26 +0200
+Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 8 Jun 2016 11:08:19 +0200
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, Paul Eggleton
+	<paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
+References: <575456D5.4080800@mlbassoc.com>
+	<CAJTo0LYaBXixDk1vzzt=wFtqYzsFQAtanUa3Hgu-CB86kHGdOw@mail.gmail.com>
+	<CAJTo0La74HkwkgqQZwECS2ruzSe-guCCBJFG0_u=e1FBT8q3CA@mail.gmail.com>
+	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
+	<1465338026.13979.88.camel@linuxfoundation.org>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <5757E081.7000402@topic.nl>
+Date: Wed, 8 Jun 2016 11:08:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
+MIME-Version: 1.0
+In-Reply-To: <1465338026.13979.88.camel@linuxfoundation.org>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw2qn2YSnBaxCIAHbc091Tc1/63A71K+jqMokMNyfk/adbyaQChaP+zhgmYFtvQOnVip6
+	+Pl+XObyWSi+5qFJUocGH/YYgvV0QgfTypJwMtkIUG+JqvchcqeUSTK+P0oOE+QJjXGCAey6Oofy
+	fMIm8WhIn4aj8xVVMkQZd9s9Pp2a3AcPwSEsPa5+EzCIl51Pjydf0sGju/j28j5r0hGtJYz6s7w7
+	zb5BAKWE25eLs3OnItlcci/xhcZ+tBOfALGaxSG7X+t1TW39Ja77LGPpOwAoFFGehu/LjH1dgy1A
+	6CWEjwsD088NtsGHV99RTGFzjhZeQYHXdMcG3xNMo40KqiAhEWyJzIkwSFAW0Pw8uiKeSfwEntQd
+	IVrxCCuXDwWnGCrn4AewWnpS5DUxt4NS/udzmGKvPRvC08RKufiNuNl/92PNDpgLsd6Ddd/s7VM5
+	3iu8T/iw/hWryOzpe3vaR/z3uFL8N7VKh/CG+lj0Rj1mdfvusPD6mLi4Bm+7u7WSpLH600st9eU/
+	nkJwwvEP/eiRVYKU9W9tbmVXJBqdHHDmFmZOz2bO4w7flXGSMbAWocG0WCljDbUTmCn27mgGERKB
+	gwNZt6OqE37gGsPxkW2/mWxgBaaPt9++LWwpCu5NcYjZXQ7W+MICam90hBzYtU+FVHWJ3UYsockG
+	/KOUjXDUlq+BQEhIP40l441Jczqzm+CbYzyeEen7f/5Yn9cmKSy4ixWSYWIo3iDqxvNn8MbZbxI0
+	hoiocxB6HC+2IRaY/g==
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Originating-IP: 88.159.208.100
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 88.159.208.100
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=88.159.208.100@topic.nl
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.04)
+X-Recommended-Action: accept
+Cc: Gary Thomas <gary@mlbassoc.com>
+Subject: Re: What's this
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,363 +77,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 13:21:57 -0000
+X-List-Received-Date: Wed, 08 Jun 2016 14:35:07 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-Add a model to support setting a python command and virtualenv per
-branch, which allows you to parse master with python3 and krogoth with
-python2 for example.
+=EF=BB=BFOn 08-06-16 00:20, Richard Purdie wrote:
+> On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
+>> On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
+>>> On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
+>>> wrote:
+>>>> It means the hash calculated my the bitbake master was different
+>>>> to the
+>>>> hash calculated when the worker started up.  This usually means
+>>>> that
+>>>> you're
+>>>> using something like ${TIME} in the recipe but not marking it
+>>>> appropriatly
+>>>> so the cache ignores it.  Do you have a base-files bbappend that
+>>>> writes a
+>>>> timestamp?
+>>>
+>>> The always wise Joshua reminds me that if your DISTRO_VERSION
+>>> contains
+>>> ${DATETIME} then this happens.  If you're doing this then you'll
+>>> want to
+>>> set [vardepsexclude] on DISTRO_VERSION to stop the DATETIME from
+>>> getting
+>>> into the cache (or not put the current date/time into the distro
+>>> version).
+>>
+>> I think we need to handle this situation better - if it's really
+>> worth
+>> producing an error about then it's worth producing an error message
+>> that
+>> people can actually understand, particularly as it's recently added
+>> validation.
+>
+> It was silently running into problems due to this all along but not
+> reporting it. Its now reporting it which is better than silently things
+> behaving strangely.
+>
+> Its very hard for bitbake to know why the hashes differ, it only knows
+> the values afterwards and hence that they've changed, the information
+> about how that hash was constructed is not present in any of bitbake's
+> caches. That implies to have better messages we need to write out more
+> data.
+>
+> I did add a patch to make bitbake write out data to allow
+> reconstruction of basehash (which is part of taskhash). Sadly the
+> parsing performance was diabolical (10 times slower). I think that
+> could perhaps be improved if the files don't require an atomic move
+> during creation but I haven't had time to look further at it.
+>
+> So whilst I do agree, what is the price people are willing to pay to
+> have those better messages?
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- README                                             |  22 ++-
- layerindex/admin.py                                |   1 +
- ...ronment__add_field_branch_update_environment.py | 218 +++++++++++++++++++++
- layerindex/models.py                               |  19 +-
- layerindex/update.py                               |   7 +-
- 5 files changed, 259 insertions(+), 8 deletions(-)
- create mode 100644 layerindex/migrations/0013_auto__add_pythonenvironment__add_field_branch_update_environment.py
+I have a build machine that every so often runs into "basehash mismatch"=20
+problems (but never when you want it to, such as now), so getting some=20
+information on what might cause it would be "priceless". I'd happily let th=
+e=20
+machine run for 10 days straight if at the end I get a message that I can w=
+ork=20
+with.
 
-diff --git a/README b/README
-index b3374c9..fa5c3b2 100644
---- a/README
-+++ b/README
-@@ -99,17 +99,27 @@ Setup instructions:
-         next to your login name at the top right, click on the
-         newly added layer entry, and then click on "Publish Layer".
- 
--5. Set the site name (as displayed in the top bar and page titles) by
-+5. If you need to support multiple branches of OpenEmbedded/BitBake
-+   where some require Python 2.x and others require Python 3.x, then
-+   you will need to set up "Python environment" records through the
-+   admin interface to correspond to these so that the right Python
-+   version gets used to parse the branch, and then set the
-+   "Update environment" field on each branch record to point to the
-+   appropriate environment. If you're using virtualenv you will need
-+   separate virtual environments set up for Python 2 and 3 which you
-+   should point to in the Python environment record.
-+
-+6. Set the site name (as displayed in the top bar and page titles) by
-    going into the admin interface (http://127.0.0.1:8000/admin/),
-    clicking on "Sites" at the bottom, and editing the first entry,
-    setting "Display name" to the desired name.
- 
--6. You may wish to customise some of the page templates to suit your
-+7. You may wish to customise some of the page templates to suit your
-    installation, in particular:
-    * templates/base.html
-    * templates/layerindex/about.html
- 
--7. To use layerindex-web with Docker containers, refer to docker/README
-+8. To use layerindex-web with Docker containers, refer to docker/README
-    keeping in mind you'll need to set up Docker properly as part of the
-    setup process.
- 
-@@ -156,7 +166,7 @@ Bundled nv.d3.js is redistributed under the Apache License 2.0.
- 
- Bundled d3.js is redistributed under the BSD License.
- 
--All other content is copyright (C) 2013 Intel Corporation and licensed
--under the MIT license (unless otherwise noted) - see COPYING.MIT for
--details.
-+All other content is copyright (C) 2013-2016 Intel Corporation and
-+licensed under the MIT license (unless otherwise noted) - see
-+COPYING.MIT for details.
- 
-diff --git a/layerindex/admin.py b/layerindex/admin.py
-index 77f660b..accb954 100644
---- a/layerindex/admin.py
-+++ b/layerindex/admin.py
-@@ -115,3 +115,4 @@ admin.site.register(BBAppend, BBAppendAdmin)
- admin.site.register(BBClass, BBClassAdmin)
- admin.site.register(RecipeChangeset, RecipeChangesetAdmin)
- admin.site.register(ClassicRecipe, ClassicRecipeAdmin)
-+admin.site.register(PythonEnvironment)
-diff --git a/layerindex/migrations/0013_auto__add_pythonenvironment__add_field_branch_update_environment.py b/layerindex/migrations/0013_auto__add_pythonenvironment__add_field_branch_update_environment.py
-new file mode 100644
-index 0000000..d4c80c6
---- /dev/null
-+++ b/layerindex/migrations/0013_auto__add_pythonenvironment__add_field_branch_update_environment.py
-@@ -0,0 +1,218 @@
-+# -*- coding: utf-8 -*-
-+from south.utils import datetime_utils as datetime
-+from south.db import db
-+from south.v2 import SchemaMigration
-+from django.db import models
-+
-+
-+class Migration(SchemaMigration):
-+
-+    def forwards(self, orm):
-+        # Adding model 'PythonEnvironment'
-+        db.create_table('layerindex_pythonenvironment', (
-+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-+            ('python_command', self.gf('django.db.models.fields.CharField')(default='python', max_length=255)),
-+            ('virtualenv_path', self.gf('django.db.models.fields.CharField')(blank=True, max_length=255)),
-+        ))
-+        db.send_create_signal('layerindex', ['PythonEnvironment'])
-+
-+        # Adding field 'Branch.update_environment'
-+        db.add_column('layerindex_branch', 'update_environment',
-+                      self.gf('django.db.models.fields.related.ForeignKey')(blank=True, to=orm['layerindex.PythonEnvironment'], on_delete=models.SET_NULL, null=True),
-+                      keep_default=False)
-+
-+
-+    def backwards(self, orm):
-+        # Deleting model 'PythonEnvironment'
-+        db.delete_table('layerindex_pythonenvironment')
-+
-+        # Deleting field 'Branch.update_environment'
-+        db.delete_column('layerindex_branch', 'update_environment_id')
-+
-+
-+    models = {
-+        'auth.group': {
-+            'Meta': {'object_name': 'Group'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-+            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'to': "orm['auth.Permission']", 'symmetrical': 'False'})
-+        },
-+        'auth.permission': {
-+            'Meta': {'unique_together': "(('content_type', 'codename'),)", 'ordering': "('content_type__app_label', 'content_type__model', 'codename')", 'object_name': 'Permission'},
-+            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-+        },
-+        'auth.user': {
-+            'Meta': {'object_name': 'User'},
-+            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-+            'email': ('django.db.models.fields.EmailField', [], {'blank': 'True', 'max_length': '75'}),
-+            'first_name': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '30'}),
-+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'to': "orm['auth.Group']", 'related_name': "'user_set'", 'symmetrical': 'False'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-+            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-+            'last_name': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '30'}),
-+            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'to': "orm['auth.Permission']", 'related_name': "'user_set'", 'symmetrical': 'False'}),
-+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-+        },
-+        'contenttypes.contenttype': {
-+            'Meta': {'unique_together': "(('app_label', 'model'),)", 'ordering': "('name',)", 'db_table': "'django_content_type'", 'object_name': 'ContentType'},
-+            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-+        },
-+        'layerindex.bbappend': {
-+            'Meta': {'object_name': 'BBAppend'},
-+            'filename': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'filepath': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"})
-+        },
-+        'layerindex.bbclass': {
-+            'Meta': {'object_name': 'BBClass'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-+        },
-+        'layerindex.branch': {
-+            'Meta': {'object_name': 'Branch'},
-+            'bitbake_branch': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-+            'short_description': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '50'}),
-+            'sort_priority': ('django.db.models.fields.IntegerField', [], {'blank': 'True', 'null': 'True'}),
-+            'update_environment': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'to': "orm['layerindex.PythonEnvironment']", 'on_delete': 'models.SET_NULL', 'null': 'True'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True', 'auto_now': 'True'}),
-+            'updates_enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'})
-+        },
-+        'layerindex.classicrecipe': {
-+            'Meta': {'object_name': 'ClassicRecipe', '_ormbases': ['layerindex.Recipe']},
-+            'classic_category': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'cover_comment': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'cover_layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'to': "orm['layerindex.LayerBranch']", 'on_delete': 'models.SET_NULL', 'null': 'True'}),
-+            'cover_pn': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'cover_status': ('django.db.models.fields.CharField', [], {'default': "'U'", 'max_length': '1'}),
-+            'cover_verified': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'recipe_ptr': ('django.db.models.fields.related.OneToOneField', [], {'unique': 'True', 'primary_key': 'True', 'to': "orm['layerindex.Recipe']"})
-+        },
-+        'layerindex.layerbranch': {
-+            'Meta': {'object_name': 'LayerBranch'},
-+            'actual_branch': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '80'}),
-+            'branch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.Branch']"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerItem']"}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'auto_now': 'True'}),
-+            'vcs_last_commit': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'null': 'True'}),
-+            'vcs_last_fetch': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'null': 'True'}),
-+            'vcs_last_rev': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '80'}),
-+            'vcs_subdir': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '40'})
-+        },
-+        'layerindex.layerdependency': {
-+            'Meta': {'object_name': 'LayerDependency'},
-+            'dependency': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerItem']", 'related_name': "'dependents_set'"}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']", 'related_name': "'dependencies_set'"})
-+        },
-+        'layerindex.layeritem': {
-+            'Meta': {'object_name': 'LayerItem'},
-+            'classic': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-+            'description': ('django.db.models.fields.TextField', [], {}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'index_preference': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-+            'layer_type': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
-+            'mailing_list_url': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'}),
-+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '40'}),
-+            'status': ('django.db.models.fields.CharField', [], {'default': "'N'", 'max_length': '1'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'auto_now': 'True'}),
-+            'usage_url': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'vcs_url': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'vcs_web_file_base_url': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'vcs_web_tree_base_url': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'vcs_web_url': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'})
-+        },
-+        'layerindex.layermaintainer': {
-+            'Meta': {'object_name': 'LayerMaintainer'},
-+            'email': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'responsibility': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '200'}),
-+            'status': ('django.db.models.fields.CharField', [], {'default': "'A'", 'max_length': '1'})
-+        },
-+        'layerindex.layernote': {
-+            'Meta': {'object_name': 'LayerNote'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerItem']"}),
-+            'text': ('django.db.models.fields.TextField', [], {})
-+        },
-+        'layerindex.machine': {
-+            'Meta': {'object_name': 'Machine'},
-+            'description': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'auto_now': 'True'})
-+        },
-+        'layerindex.pythonenvironment': {
-+            'Meta': {'object_name': 'PythonEnvironment'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-+            'python_command': ('django.db.models.fields.CharField', [], {'default': "'python'", 'max_length': '255'}),
-+            'virtualenv_path': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'})
-+        },
-+        'layerindex.recipe': {
-+            'Meta': {'object_name': 'Recipe'},
-+            'bbclassextend': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'blacklisted': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'bugtracker': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'}),
-+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'filename': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'filepath': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'homepage': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'inherits': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '255'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']"}),
-+            'license': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '2048'}),
-+            'pn': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'provides': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '2048'}),
-+            'pv': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'section': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '200'}),
-+            'updated': ('django.db.models.fields.DateTimeField', [], {'blank': 'True', 'auto_now': 'True'})
-+        },
-+        'layerindex.recipechange': {
-+            'Meta': {'object_name': 'RecipeChange'},
-+            'bugtracker': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'}),
-+            'changeset': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.RecipeChangeset']"}),
-+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-+            'homepage': ('django.db.models.fields.URLField', [], {'blank': 'True', 'max_length': '200'}),
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'license': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'recipe': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.Recipe']", 'related_name': "'+'"}),
-+            'section': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'}),
-+            'summary': ('django.db.models.fields.CharField', [], {'blank': 'True', 'max_length': '100'})
-+        },
-+        'layerindex.recipechangeset': {
-+            'Meta': {'object_name': 'RecipeChangeset'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
-+        },
-+        'layerindex.recipefiledependency': {
-+            'Meta': {'object_name': 'RecipeFileDependency'},
-+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-+            'layerbranch': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.LayerBranch']", 'related_name': "'+'"}),
-+            'path': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '255'}),
-+            'recipe': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['layerindex.Recipe']"})
-+        }
-+    }
-+
-+    complete_apps = ['layerindex']
-\ No newline at end of file
-diff --git a/layerindex/models.py b/layerindex/models.py
-index e753fbe..3a5796d 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -1,6 +1,6 @@
- # layerindex-web - model definitions
- #
--# Copyright (C) 2013 Intel Corporation
-+# Copyright (C) 2013-2016 Intel Corporation
- #
- # Licensed under the MIT license, see COPYING.MIT for details
- 
-@@ -14,12 +14,29 @@ import re
- import posixpath
- 
- 
-+class PythonEnvironment(models.Model):
-+    name = models.CharField(max_length=50)
-+    python_command = models.CharField(max_length=255, default='python')
-+    virtualenv_path = models.CharField(max_length=255, blank=True)
-+
-+    def get_command(self):
-+        if self.virtualenv_path:
-+            cmd = '. %s/bin/activate; %s' % (self.virtualenv_path, self.python_command)
-+        else:
-+            cmd = self.python_command
-+        return cmd
-+
-+    def __str__(self):
-+        return self.name
-+
-+
- class Branch(models.Model):
-     name = models.CharField(max_length=50)
-     bitbake_branch = models.CharField(max_length=50)
-     short_description = models.CharField(max_length=50, blank=True)
-     sort_priority = models.IntegerField(blank=True, null=True)
-     updates_enabled = models.BooleanField('Enable updates', default=True, help_text='Enable automatically updating layer metadata for this branch via the update script')
-+    update_environment = models.ForeignKey(PythonEnvironment, blank=True, null=True, on_delete=models.SET_NULL)
- 
-     updated = models.DateTimeField(auto_now = True, default = datetime.now)
- 
-diff --git a/layerindex/update.py b/layerindex/update.py
-index 157d46f..ac7de5e 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -177,7 +177,12 @@ def main():
-                 urldir = layer.get_fetch_dir()
-                 repodir = os.path.join(fetchdir, urldir)
- 
--                cmd = 'python update_layer.py -l %s -b %s' % (layer.name, branch)
-+                branchobj = utils.get_branch(branch)
-+                if branchobj.update_environment:
-+                    cmdprefix = branchobj.update_environment.get_command()
-+                else:
-+                    cmdprefix = 'python'
-+                cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch)
-                 if options.reload:
-                     cmd += ' --reload'
-                 if options.fullreload:
--- 
-2.5.5
+Which implies that any performance hit is acceptable, if there's a switch t=
+o=20
+enable and disable that extra diagnostic. Oh dear, just what we need, yet=20
+another switch...
+
+M.
+
+
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Embedded Products
+Eindhovenseweg 32-C, NL-5683 KH Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+
 
 
