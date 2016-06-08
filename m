@@ -1,67 +1,60 @@
-Return-Path: <piotr.lewicki@elfin.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66FADE00CD8; Wed,  8 Jun 2016 02:20:28 -0700 (PDT)
+	id 9DB35E00CD8; Wed,  8 Jun 2016 02:29:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+	*      [209.85.214.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 921D7E00927
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:20:24 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id n184so172098223wmn.1
-	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 02:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to;
-	bh=js+G1zZviQL66hrYfLXbj+oD4daJzY/81JISlphK6a4=;
-	b=Hb1ZKwR26I7YjVDmGWqcXmd1MVm5qAIVE35nrNcjgVFm69rd86XlBs0XmQmznEgvbk
-	K/70imnre8jfaZkGu+tjvXjXM/IER0LfW7R9i4L8/KRjoYrPRzO1hY5W71LFBmlaQfWa
-	OKsSMVZQ3cluJtSoOD6Rb9176BknfZ/Zm0OOWyrluxp7UrnqceC1nIBE/LrGdsGNbAD7
-	ze1kTB9HX31FUmsyYhAHHlaaN/ABU76T+lolp/LNeosy7iQ4ypm/TgMWeizSoKtzhMS+
-	QHjmbnvmKOlgLURpLwKg9XuKQToSfUpeolne5MhZy963LboyFRzsNbP5dp5+dumxnTMt
-	QR3Q==
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 736E7E00927
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:29:00 -0700 (PDT)
+Received: by mail-it0-f53.google.com with SMTP id z189so121784418itg.0
+	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 02:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=xuNxDUtvjYwCGkwDHbedc5hkQThoygYSr6qmUdNaHmY=;
+	b=PDH8kKTU0GjGx6E6yCoojA6Bhf1jPOsE99fg7N40HeaEQRP4LbLR39rEcDCf3LSWo2
+	B19n4FyTmt6jA+B343au8Ur+gKzzYuFaU2n3Ui7+7lXNOvurOABS+IzXVkbnGeFD87Ls
+	HqRgcMx9PNsO92FGrOPw4/QLMAbXxzc8/TSTv4b3Z23n6kA7RIt0Hvs0YY7ZmqAoWIAk
+	HXRJZKcNOrmrOpJxKySod2kli23+bCk6TosjGjg73sjO3g1emMxZuuM3Jedib0UfBzzb
+	QZclHDWDbmxv0bKgm5DcQfWiVMpro3N1j2D+XrHfefjcN96lOsvd9CO5JAkLCsXs7dxh
+	0Lpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=js+G1zZviQL66hrYfLXbj+oD4daJzY/81JISlphK6a4=;
-	b=hwNOAPvSkQKvTPlfjStceG1nH+hgasi/n6f1RGMjO1a1ZnUJS/Xv02nWQClNKYVufJ
-	MDEBIA/8QhlIXAOzI0uZ+V10SYU+UdHHRnqq3/ZrdUOhB1WQVloZvCITdKAne9aq1GWl
-	BCmxSUpidgZ6eemSVJ5z8LIrU5/JgW7yk5TRgM8+zQo01DO072YR73NsZopRw1q5xM0v
-	SEFtkh6IvX/Y53up12naKcI84GPoPNOlWvzCxNZDSygVzF8Tyu19xOCc5lKXmkIVRJaZ
-	sGUqb+02dgPzGpLQfDUuKPZ+442nuTD7IrlltduEi+kjCzcg/n00Xq/eiX39jGxowyq6
-	+pIA==
-X-Gm-Message-State: ALyK8tJ+2CT5p9zav3ujyBgXG7YPqmatHkvtgxPXH7rt1FHpzDqld4jUyeEQtZcDw7MA6g==
-X-Received: by 10.194.103.4 with SMTP id fs4mr3778984wjb.10.1465377623835;
-	Wed, 08 Jun 2016 02:20:23 -0700 (PDT)
-Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
-	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
-	o129sm23508256wmb.17.2016.06.08.02.20.22
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 08 Jun 2016 02:20:23 -0700 (PDT)
-To: "Burton, Ross" <ross.burton@intel.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=xuNxDUtvjYwCGkwDHbedc5hkQThoygYSr6qmUdNaHmY=;
+	b=YIREfGoGDXXLsB1zVwJBTgZpNTjvibzP0/EAHj3PD20Y6AszpzeieURJQzolgiQKQU
+	UfMu5Jjd7vr4dScVmvBszMIoSc9ROTSz4ysx5pXLy1ETpvxJ8hMDiACniWz/LKYtUzoP
+	CqoU5yUV34oq/ywV5eZ49/aGdJ3aiL6GD3rLE/FJ33h3dAkTyYD5NYv6t1wztGIXVbgS
+	WLKAPR9MiTSvUqQ/KClRnVDQ7KF1RswGocPGiRM7qi5F4XYVD203a8ePrDe/YSubRi53
+	7HIah4I+CEep0ffPi76DLXYjkWUPUh3gqkBsZ9czt4yu6X+mrOtuQQsmvYp6G6AClV1Z
+	ECYg==
+X-Gm-Message-State: ALyK8tLMcPKM6r9cFOENlv6cjMSS71YgoI55A8jBTDCAerT7+VfhVGjUoAaifMnPF0OnuFOSYIXfxOBpeGh7dzdj
+X-Received: by 10.36.17.134 with SMTP id 128mr6382375itf.83.1465378140302;
+	Wed, 08 Jun 2016 02:29:00 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Wed, 8 Jun 2016 02:28:40 -0700 (PDT)
+In-Reply-To: <5757E356.4060309@elfin.de>
 References: <5756B9D2.3000700@elfin.de>
 	<CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com>
-From: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Message-ID: <5757E356.4060309@elfin.de>
-Date: Wed, 8 Jun 2016 11:20:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com>
+	<5757E356.4060309@elfin.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 8 Jun 2016 10:28:40 +0100
+Message-ID: <CAJTo0LZPtighVcO4kryfofzhDKt_ZXe5-z9a_VR01JzOWPFFgQ@mail.gmail.com>
+To: "piotr.lewicki" <piotr.lewicki@elfin.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: DISTRO_FEATURES modification from image recipe?
 X-BeenThere: yocto@yoctoproject.org
@@ -75,95 +68,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 09:20:28 -0000
-Content-Type: multipart/alternative;
-	boundary="------------020505040909000505080707"
+X-List-Received-Date: Wed, 08 Jun 2016 09:29:05 -0000
+Content-Type: multipart/alternative; boundary=001a1143f53a83c5ad0534c0ef8e
 
---------------020505040909000505080707
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a1143f53a83c5ad0534c0ef8e
+Content-Type: text/plain; charset=UTF-8
 
-Thanks.
-I actually want to enable systemd in all packages, but my current DISTRO 
-is "poky".
-Can you point me some documentation where I can get information on how 
-to create a distro file based on poky and add systemd there?
+On 8 June 2016 at 10:20, piotr.lewicki <piotr.lewicki@elfin.de> wrote:
 
-Thanks,
-Piotr
-
-On 07.06.2016 15:53, Burton, Ross wrote:
+> I actually want to enable systemd in all packages, but my current DISTRO
+> is "poky".
+> Can you point me some documentation where I can get information on how to
+> create a distro file based on poky and add systemd there?
 >
-> On 7 June 2016 at 13:10, piotr.lewicki <piotr.lewicki@elfin.de 
-> <mailto:piotr.lewicki@elfin.de>> wrote:
->
->     Is it possible to manipulate DISTRO_FEATURES from my image recipe
->     file?
->
->
-> No.  You should control distro features in your distro configuration 
-> or if they're for local tweaking in your local.conf.  Would it be 
-> helpful if you explained why you want to enable systemd in some images 
-> but not others?  In this case the systemd feature isn't exclusive with 
-> sysvinit, you can enable both and pick on a per-image basis what init 
-> system is used.
->
-> Ross
 
+http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#creating-your-own-distribution
 
---------------020505040909000505080707
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Ross
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Thanks. <br>
-    I actually want to enable systemd in all packages, but my current
-    DISTRO is "poky".<br>
+--001a1143f53a83c5ad0534c0ef8e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 8 June 2016 at 10:20, piotr.lewicki <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:piotr.lewicki@elfin.de" target=3D"_blank">piotr.lewicki@elfin.de</a>&gt=
+;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border=
+-left-style:solid;padding-left:1ex"><div text=3D"#000000" bgcolor=3D"#FFFFF=
+F">I actually want to enable systemd in all packages, but my current
+    DISTRO is &quot;poky&quot;.<br>
     Can you point me some documentation where I can get information on
-    how to create a distro file based on poky and add systemd there?<br>
-    <br>
-    Thanks,<br>
-    Piotr<br>
-    <br>
-    <div class="moz-cite-prefix">On 07.06.2016 15:53, Burton, Ross
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On 7 June 2016 at 13:10,
-            piotr.lewicki <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:piotr.lewicki@elfin.de" target="_blank">piotr.lewicki@elfin.de</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div id=":22a" class="a3s aXjCH m1552ac731f87a60f">Is it
-                possible to manipulate DISTRO_FEATURES from my image
-                recipe file?<br>
-              </div>
-            </blockquote>
-          </div>
-          <br>
-          No.  You should control distro features in your distro
-          configuration or if they're for local tweaking in your
-          local.conf.  Would it be helpful if you explained why you want
-          to enable systemd in some images but not others?  In this case
-          the systemd feature isn't exclusive with sysvinit, you can
-          enable both and pick on a per-image basis what init system is
-          used.</div>
-        <div class="gmail_extra"><br>
-        </div>
-        <div class="gmail_extra">Ross</div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+    how to create a distro file based on poky and add systemd there?<br></d=
+iv></blockquote></div><br><a href=3D"http://www.yoctoproject.org/docs/2.1/m=
+ega-manual/mega-manual.html#creating-your-own-distribution">http://www.yoct=
+oproject.org/docs/2.1/mega-manual/mega-manual.html#creating-your-own-distri=
+bution</a><br></div><div class=3D"gmail_extra"><br></div><div class=3D"gmai=
+l_extra">Ross</div></div>
 
---------------020505040909000505080707--
+--001a1143f53a83c5ad0534c0ef8e--
