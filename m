@@ -1,42 +1,69 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <piotr.lewicki@elfin.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95B4DE00CCC; Wed,  8 Jun 2016 02:18:25 -0700 (PDT)
+	id 66FADE00CD8; Wed,  8 Jun 2016 02:20:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D08E00927
-	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:18:23 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 6802768A01A; Wed,  8 Jun 2016 10:18:21 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 0CB2368A019;
-	Wed,  8 Jun 2016 10:18:05 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id A6E9B67403BC;
-	Wed,  8 Jun 2016 11:18:05 +0200 (CEST)
-To: Mike Looijmans <mike.looijmans@topic.nl>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-References: <575456D5.4080800@mlbassoc.com>
-	<CAJTo0LYaBXixDk1vzzt=wFtqYzsFQAtanUa3Hgu-CB86kHGdOw@mail.gmail.com>
-	<CAJTo0La74HkwkgqQZwECS2ruzSe-guCCBJFG0_u=e1FBT8q3CA@mail.gmail.com>
-	<2350549.ml0Nc00s8v@peggleto-mobl.ger.corp.intel.com>
-	<1465338026.13979.88.camel@linuxfoundation.org>
-	<5757E081.7000402@topic.nl>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <5757E2CD.3000107@mlbassoc.com>
-Date: Wed, 8 Jun 2016 11:18:05 +0200
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 921D7E00927
+	for <yocto@yoctoproject.org>; Wed,  8 Jun 2016 02:20:24 -0700 (PDT)
+Received: by mail-wm0-f43.google.com with SMTP id n184so172098223wmn.1
+	for <yocto@yoctoproject.org>; Wed, 08 Jun 2016 02:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to;
+	bh=js+G1zZviQL66hrYfLXbj+oD4daJzY/81JISlphK6a4=;
+	b=Hb1ZKwR26I7YjVDmGWqcXmd1MVm5qAIVE35nrNcjgVFm69rd86XlBs0XmQmznEgvbk
+	K/70imnre8jfaZkGu+tjvXjXM/IER0LfW7R9i4L8/KRjoYrPRzO1hY5W71LFBmlaQfWa
+	OKsSMVZQ3cluJtSoOD6Rb9176BknfZ/Zm0OOWyrluxp7UrnqceC1nIBE/LrGdsGNbAD7
+	ze1kTB9HX31FUmsyYhAHHlaaN/ABU76T+lolp/LNeosy7iQ4ypm/TgMWeizSoKtzhMS+
+	QHjmbnvmKOlgLURpLwKg9XuKQToSfUpeolne5MhZy963LboyFRzsNbP5dp5+dumxnTMt
+	QR3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=js+G1zZviQL66hrYfLXbj+oD4daJzY/81JISlphK6a4=;
+	b=hwNOAPvSkQKvTPlfjStceG1nH+hgasi/n6f1RGMjO1a1ZnUJS/Xv02nWQClNKYVufJ
+	MDEBIA/8QhlIXAOzI0uZ+V10SYU+UdHHRnqq3/ZrdUOhB1WQVloZvCITdKAne9aq1GWl
+	BCmxSUpidgZ6eemSVJ5z8LIrU5/JgW7yk5TRgM8+zQo01DO072YR73NsZopRw1q5xM0v
+	SEFtkh6IvX/Y53up12naKcI84GPoPNOlWvzCxNZDSygVzF8Tyu19xOCc5lKXmkIVRJaZ
+	sGUqb+02dgPzGpLQfDUuKPZ+442nuTD7IrlltduEi+kjCzcg/n00Xq/eiX39jGxowyq6
+	+pIA==
+X-Gm-Message-State: ALyK8tJ+2CT5p9zav3ujyBgXG7YPqmatHkvtgxPXH7rt1FHpzDqld4jUyeEQtZcDw7MA6g==
+X-Received: by 10.194.103.4 with SMTP id fs4mr3778984wjb.10.1465377623835;
+	Wed, 08 Jun 2016 02:20:23 -0700 (PDT)
+Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
+	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
+	o129sm23508256wmb.17.2016.06.08.02.20.22
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 08 Jun 2016 02:20:23 -0700 (PDT)
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <5756B9D2.3000700@elfin.de>
+	<CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com>
+From: "piotr.lewicki" <piotr.lewicki@elfin.de>
+Message-ID: <5757E356.4060309@elfin.de>
+Date: Wed, 8 Jun 2016 11:20:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.8.0
 MIME-Version: 1.0
-In-Reply-To: <5757E081.7000402@topic.nl>
-Subject: Re: What's this
+In-Reply-To: <CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: DISTRO_FEATURES modification from image recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,78 +75,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jun 2016 09:18:25 -0000
+X-List-Received-Date: Wed, 08 Jun 2016 09:20:28 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020505040909000505080707"
+
+--------------020505040909000505080707
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2016-06-08 11:08, Mike Looijmans wrote:
-> On 08-06-16 00:20, Richard Purdie wrote:
->> On Wed, 2016-06-08 at 09:24 +1200, Paul Eggleton wrote:
->>> On Tue, 07 Jun 2016 17:20:12 Burton, Ross wrote:
->>>> On 7 June 2016 at 17:02, Burton, Ross <ross.burton@intel.com>
->>>> wrote:
->>>>> It means the hash calculated my the bitbake master was different
->>>>> to the
->>>>> hash calculated when the worker started up.  This usually means
->>>>> that
->>>>> you're
->>>>> using something like ${TIME} in the recipe but not marking it
->>>>> appropriatly
->>>>> so the cache ignores it.  Do you have a base-files bbappend that
->>>>> writes a
->>>>> timestamp?
->>>>
->>>> The always wise Joshua reminds me that if your DISTRO_VERSION
->>>> contains
->>>> ${DATETIME} then this happens.  If you're doing this then you'll
->>>> want to
->>>> set [vardepsexclude] on DISTRO_VERSION to stop the DATETIME from
->>>> getting
->>>> into the cache (or not put the current date/time into the distro
->>>> version).
->>>
->>> I think we need to handle this situation better - if it's really
->>> worth
->>> producing an error about then it's worth producing an error message
->>> that
->>> people can actually understand, particularly as it's recently added
->>> validation.
->>
->> It was silently running into problems due to this all along but not
->> reporting it. Its now reporting it which is better than silently things
->> behaving strangely.
->>
->> Its very hard for bitbake to know why the hashes differ, it only knows
->> the values afterwards and hence that they've changed, the information
->> about how that hash was constructed is not present in any of bitbake's
->> caches. That implies to have better messages we need to write out more
->> data.
->>
->> I did add a patch to make bitbake write out data to allow
->> reconstruction of basehash (which is part of taskhash). Sadly the
->> parsing performance was diabolical (10 times slower). I think that
->> could perhaps be improved if the files don't require an atomic move
->> during creation but I haven't had time to look further at it.
->>
->> So whilst I do agree, what is the price people are willing to pay to
->> have those better messages?
->
-> I have a build machine that every so often runs into "basehash mismatch" problems (but never when you want it to, such
-> as now), so getting some information on what might cause it would be "priceless". I'd happily let the machine run for 10
-> days straight if at the end I get a message that I can work with.
->
-> Which implies that any performance hit is acceptable, if there's a switch to enable and disable that extra diagnostic.
-> Oh dear, just what we need, yet another switch...
->
+Thanks.
+I actually want to enable systemd in all packages, but my current DISTRO 
+is "poky".
+Can you point me some documentation where I can get information on how 
+to create a distro file based on poky and add systemd there?
 
-I wonder if it could be something as simple as an NTP time update
-which happens periodically on my build machine?  Since I've only
-ever seen this message _once_ after literally thousands of builds,
-it is a rare bird indeed!
+Thanks,
+Piotr
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+On 07.06.2016 15:53, Burton, Ross wrote:
+>
+> On 7 June 2016 at 13:10, piotr.lewicki <piotr.lewicki@elfin.de 
+> <mailto:piotr.lewicki@elfin.de>> wrote:
+>
+>     Is it possible to manipulate DISTRO_FEATURES from my image recipe
+>     file?
+>
+>
+> No.  You should control distro features in your distro configuration 
+> or if they're for local tweaking in your local.conf.  Would it be 
+> helpful if you explained why you want to enable systemd in some images 
+> but not others?  In this case the systemd feature isn't exclusive with 
+> sysvinit, you can enable both and pick on a per-image basis what init 
+> system is used.
+>
+> Ross
 
+
+--------------020505040909000505080707
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Thanks. <br>
+    I actually want to enable systemd in all packages, but my current
+    DISTRO is "poky".<br>
+    Can you point me some documentation where I can get information on
+    how to create a distro file based on poky and add systemd there?<br>
+    <br>
+    Thanks,<br>
+    Piotr<br>
+    <br>
+    <div class="moz-cite-prefix">On 07.06.2016 15:53, Burton, Ross
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAJTo0LZa_9kevvq-P0qD21WtmYuVt7=ogt4VU2xCS6xX=LWetw@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div class="gmail_extra"><br>
+          <div class="gmail_quote">On 7 June 2016 at 13:10,
+            piotr.lewicki <span dir="ltr">&lt;<a moz-do-not-send="true"
+                href="mailto:piotr.lewicki@elfin.de" target="_blank">piotr.lewicki@elfin.de</a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <div id=":22a" class="a3s aXjCH m1552ac731f87a60f">Is it
+                possible to manipulate DISTRO_FEATURES from my image
+                recipe file?<br>
+              </div>
+            </blockquote>
+          </div>
+          <br>
+          No.  You should control distro features in your distro
+          configuration or if they're for local tweaking in your
+          local.conf.  Would it be helpful if you explained why you want
+          to enable systemd in some images but not others?  In this case
+          the systemd feature isn't exclusive with sysvinit, you can
+          enable both and pick on a per-image basis what init system is
+          used.</div>
+        <div class="gmail_extra"><br>
+        </div>
+        <div class="gmail_extra">Ross</div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------020505040909000505080707--
