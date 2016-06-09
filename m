@@ -1,46 +1,60 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8047AE00D54; Thu,  9 Jun 2016 11:56:26 -0700 (PDT)
+	id 751D1E00D72; Thu,  9 Jun 2016 12:47:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.57 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
-	[168.127.0.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5317E00CB5
-	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 11:56:19 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,446,1459832400"; d="scan'208,217";a="79891277"
-Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
-	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	09 Jun 2016 13:56:14 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
-	Thu, 9 Jun 2016 13:56:13 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Installing openvswitch
-Thread-Index: AdHCYTYEkoZCyiTbT2WEZBabi/CIkwALwC4AAAQNpHA=
-Date: Thu, 9 Jun 2016 18:56:13 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA5FDB96@RCHEXMBP1.fnc.net.local>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
+	[209.85.214.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF3C1E00D69
+	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 12:47:44 -0700 (PDT)
+Received: by mail-it0-f44.google.com with SMTP id z189so163559284itg.0
+	for <yocto@yoctoproject.org>; Thu, 09 Jun 2016 12:47:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=q10OChcKLwAuSS5r9m7SIpqsZnouBPhTfk2Wuj6HijQ=;
+	b=IbBh/hTfwBv/2jex6zXDQPL4yrICpZEAsZuDqxvCdlyZQ8Lt+5isEJy2tI+Qsrgstg
+	SEeE0AkoCsdt+QEhV0pRv1u7kVuo0vKnh30jtZJxJMraH1SQiwV2MpHtfDWe2QNSXeyf
+	xiEX9du84qf1VHZEb/OpZ+Glf/DLCLCvRRIwhy2EuHYLjXhUjX+ewQLCKneUR9zFDLz3
+	Pv5xRlZJYUC02s50NxJHqaXj5dCQzvuJXH3+V1uIcTxeX5IZCXQQKvHGLjAqNTn2XRHX
+	+c2+aIVdDcTGfNILFGCbLEpkoRJzpWpVTI7M7uWGprbf1rWMGTk6hVy2p1QoGCFnt6Q1
+	OIzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=q10OChcKLwAuSS5r9m7SIpqsZnouBPhTfk2Wuj6HijQ=;
+	b=HPjeCzNyrsuxWuCHVU//nEnR+8nKKKocy8q+oJJTkmI58jYTETUHVBqJZ9ywLKNriX
+	qa10CnyAtNApbKNyBCG6OZhCxzbD+TSWR4QgYrQwJB4vpuDHz/ScXPTu0DxnCJi9ydJ1
+	5bEEHgyC9l5NOlO6y5XuZkgvNoLg5b5j1P0uHBExgZlZZpMOTXrpNQhUHJvhdIAB4JfI
+	vU5x65IpG8916X5+j6D1orEjTF9DHTaE+MxOdZL2eITrdfS4FUq7YGr2B1GJEjwqHKcp
+	s3B6q44I8/Yq+NVXAGneRxcKpZEAy2fR/ik4RsYjqsNk1wL58eGDAjHbuI9ySmuzYB1w
+	D4VQ==
+X-Gm-Message-State: ALyK8tIlO47UHfbacRS2FmG58B7oBPCDBAZuAI1pPMq/QTf9iC2D1cPeQ/wesJTr24aqFE7NqfF26kyF+k4CWjwB
+X-Received: by 10.36.120.193 with SMTP id p184mr25433683itc.22.1465501663567; 
+	Thu, 09 Jun 2016 12:47:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Thu, 9 Jun 2016 12:47:24 -0700 (PDT)
+In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA5FDB96@RCHEXMBP1.fnc.net.local>
 References: <111ACD726EC3464BAED310F5EA7BEBDA5FD845@RCHEXMBP1.fnc.net.local>
 	<CAJTo0LZePKfYZK+8Zkv6pGsaOXx_DsKsF-5ROSV7Kh+Y6BrG8w@mail.gmail.com>
-In-Reply-To: <CAJTo0LZePKfYZK+8Zkv6pGsaOXx_DsKsF-5ROSV7Kh+Y6BrG8w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22382.001
-x-tm-as-result: No--53.919600-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
+	<111ACD726EC3464BAED310F5EA7BEBDA5FDB96@RCHEXMBP1.fnc.net.local>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 9 Jun 2016 20:47:24 +0100
+Message-ID: <CAJTo0LYZeh4qAW4PmDzc6vtTfd=199mprK=w-AY66JmNdmdspw@mail.gmail.com>
+To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Installing openvswitch
 X-BeenThere: yocto@yoctoproject.org
@@ -54,203 +68,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jun 2016 18:56:26 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA5FDB96RCHEXMBP1fncnetlo_"
+X-List-Received-Date: Thu, 09 Jun 2016 19:47:45 -0000
+Content-Type: multipart/alternative; boundary=001a114aa4281339a60534ddb2db
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDB96RCHEXMBP1fncnetlo_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a114aa4281339a60534ddb2db
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SGkgUm9zcywNCg0KSSBzZWUgdGhlIGZvbGxvd2luZyBmaWxlcyB1bmRlciAvbWV0YS12aXJ0dWFs
-aXphdGlvbi9yZWNpcGVzLW5ldHdvcmtpbmcvb3BlbnZzd2l0Y2gvOg0KDQotICAgICAgICBmaWxl
-cy8NCg0KLSAgICAgICAgb3BlbnZzd2l0Y2hfMS4xMC4wLmJiDQoNCi0gICAgICAgIG9wZW52c3dp
-dGNoXzIuMC4wLmJiDQoNClNvLCBJIGp1c3Qgd2VudCB0byAvcmVwby9wb2t5L2J1aWxkL2NvbmYv
-YmJsYXllcnMuY29uZiBhbmQgdGhlIGZvbGxvd2luZyBsaW5lIGlzIGFscmVhZHkgcHJlc2VudCB0
-aGVyZToNCiAgL2RhdGEvdXNlcnMvbXJhamFzZS91bHAvcmVwby9wb2t5L21ldGEtdmlydHVhbGl6
-YXRpb24gXA0KDQpEb2VzbuKAmXQgdGhhdCBpbmNsdWRlIHRoZSBvcGVudnN3aXRjaCBmb2xkZXIg
-YXMgd2VsbD8gSWYgaXQgaXMsIHdoYXQgZWxzZSBkbyBJIG5lZWQgdG8gYWRkL2NoYW5nZT8NCg0K
-VGhhbmtzLA0KTW9uaWNhDQoNCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9u
-QGludGVsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBKdW5lIDA5LCAyMDE2IDEwOjQ4IEFNDQpUbzog
-UmFqYXNla2FyYW4sIE1vbmljYSA8TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPg0K
-Q2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEluc3RhbGxp
-bmcgb3BlbnZzd2l0Y2gNCg0KDQpPbiA5IEp1bmUgMjAxNiBhdCAxNjoxMywgUmFqYXNla2FyYW4s
-IE1vbmljYSA8TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPG1haWx0bzpNb25pY2Eu
-UmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+PiB3cm90ZToNCkkgYW0gbmV3IHRvIHRoZSBZb2N0
-byBwcm9qZWN0LiBDb3VsZCBzb21lb25lIHBsZWFzZSBnaXZlIG1lIGluZm9ybWF0aW9uIG9uIGhv
-dyB0byBpbnN0YWxsIG9wZW52c3dpdGNoID8gSSBoYXZlIGFscmVhZHkgZG9uZSB0aGUgc2FtZSBp
-biBvdGhlciBMaW51eCBPU3MgYnV0IG5vIGlkZWEgb24gaG93IHRvIGRvIHRoZSBzYW1lIGZvciBZ
-b2N0by4NCg0KVGhlIG1ldGEtdmlydHVhbGl6YXRpb24gbGF5ZXIgKGh0dHA6Ly9sYXllcnMub3Bl
-bmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXIvbWV0YS12aXJ0dWFs
-aXphdGlvbi8pIGhhcyBhIHJlY2lwZSBmb3Igb3BlbnZzd2l0Y2gsIHNvIGFkZCB0aGF0IHRvIHlv
-dXIgYmJsYXllcnMuY29uZiBhbmQgYWRkIHRoZSBwYWNrYWdlcyB5b3UgbmVlZCB0byB5b3VyIGlt
-YWdlLg0KDQpSb3NzDQo=
+On 9 June 2016 at 19:56, Rajasekaran, Monica <
+Monica.Rajasekaran@us.fujitsu.com> wrote:
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDB96RCHEXMBP1fncnetlo_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Doesn=E2=80=99t that include the openvswitch folder as well? If it is, wh=
+at else
+> do I need to add/change?
+>
+>
+You need to actually add the packages that you want to your image.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
-MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
-IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0
-b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcg
-Um9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
-OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnAuTXNv
-TGlzdFBhcmFncmFwaCwgbGkuTXNvTGlzdFBhcmFncmFwaCwgZGl2Lk1zb0xpc3RQYXJhZ3JhcGgN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5OjM0Ow0KCW1hcmdpbi10b3A6MGluOw0KCW1hcmdpbi1yaWdo
-dDowaW47DQoJbWFyZ2luLWJvdHRvbTowaW47DQoJbWFyZ2luLWxlZnQ6LjVpbjsNCgltYXJnaW4t
-Ym90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMg
-TmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpw
-ZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xv
-cjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9u
-MQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47
-fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmlu
-aXRpb25zICovDQpAbGlzdCBsMA0KCXttc28tbGlzdC1pZDoxNTc2OTM1NTQ2Ow0KCW1zby1saXN0
-LXR5cGU6aHlicmlkOw0KCW1zby1saXN0LXRlbXBsYXRlLWlkczoyMDUxMjEzNiAxODE1NTI5MzY0
-IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3Njk4NjkxIDY3Njk4NjkzIDY3Njk4Njg5IDY3
-Njk4NjkxIDY3Njk4NjkzO30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtc3RhcnQtYXQ6
-MDsNCgltc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6LTsN
-Cgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxl
-ZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmOw0KCW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7DQoJbXNvLWJpZGktZm9udC1m
-YW1pbHk6IlRpbWVzIE5ldyBSb21hbiI7fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVu
-dDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMN
-Cgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsN
-Cgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxl
-ZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlz
-dCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJv
-bDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0K
-CW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVs
-LW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWls
-eToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
-cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpu
-b25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1
-aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2
-ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZl
-bC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0K
-CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCglt
-c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxp
-c3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
-ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5n
-ZGluZ3M7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowaW47fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTow
-aW47fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVs
-dHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlk
-bWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2Vu
-ZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJw
-dXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5IaSBSb3NzLDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SSBzZWUgdGhlIGZvbGxvd2luZyBmaWxlcyB1bmRl
-ciAvbWV0YS12aXJ0dWFsaXphdGlvbi9yZWNpcGVzLW5ldHdvcmtpbmcvb3BlbnZzd2l0Y2gvOjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0i
-dGV4dC1pbmRlbnQ6LS4yNWluO21zby1saXN0OmwwIGxldmVsMSBsZm8xIj48IVtpZiAhc3VwcG9y
-dExpc3RzXT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1zby1s
-aXN0Oklnbm9yZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21h
-biZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L3Nw
-YW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
-PmZpbGVzLyZuYnNwOw0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQ
-YXJhZ3JhcGgiIHN0eWxlPSJ0ZXh0LWluZGVudDotLjI1aW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxm
-bzEiPjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
-c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4tPHNwYW4gc3R5bGU9ImZvbnQ6Ny4wcHQgJnF1
-b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsNCjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+b3BlbnZzd2l0Y2hfMS4xMC4wLmJiJm5ic3A7DQo8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9InRleHQtaW5k
-ZW50Oi0uMjVpbjttc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+PCFbaWYgIXN1cHBvcnRMaXN0c10+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJtc28tbGlzdDpJZ25v
-cmUiPi08c3BhbiBzdHlsZT0iZm9udDo3LjBwdCAmcXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDsi
-PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0KPC9zcGFuPjwvc3Bh
-bj48L3NwYW4+PCFbZW5kaWZdPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5vcGVudnN3
-aXRjaF8yLjAuMC5iYjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-U28sIEkganVzdCB3ZW50IHRvIC9yZXBvL3Bva3kvYnVpbGQvY29uZi9iYmxheWVycy5jb25mIGFu
-ZCB0aGUgZm9sbG93aW5nIGxpbmUgaXMgYWxyZWFkeSBwcmVzZW50IHRoZXJlOjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj4mbmJzcDsgL2RhdGEvdXNlcnMvbXJhamFzZS91bHAvcmVwby9wb2t5L21ldGEtdmly
-dHVhbGl6YXRpb24gXDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-RG9lc27igJl0IHRoYXQgaW5jbHVkZSB0aGUgb3BlbnZzd2l0Y2ggZm9sZGVyIGFzIHdlbGw/IElm
-IGl0IGlzLCB3aGF0IGVsc2UgZG8gSSBuZWVkIHRvIGFkZC9jaGFuZ2U/PG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxp
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+
-PC9pPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj5Nb25pY2ENCjxvOnA+PC9vOnA+PC9zcGFuPjwvaT48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9t
-Ojwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5i
-dXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBKdW5lIDA5LCAy
-MDE2IDEwOjQ4IEFNPGJyPg0KPGI+VG86PC9iPiBSYWphc2VrYXJhbiwgTW9uaWNhICZsdDtNb25p
-Y2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIEluc3RhbGxp
-bmcgb3BlbnZzd2l0Y2g8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24g
-OSBKdW5lIDIwMTYgYXQgMTY6MTMsIFJhamFzZWthcmFuLCBNb25pY2EgJmx0OzxhIGhyZWY9Im1h
-aWx0bzpNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20iIHRhcmdldD0iX2JsYW5rIj5N
-b25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpw
-PjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAj
-Q0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7
-bWFyZ2luLXJpZ2h0OjBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
-bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkgYW0gbmV3IHRvIHRo
-ZSBZb2N0byBwcm9qZWN0LiBDb3VsZCBzb21lb25lIHBsZWFzZSBnaXZlIG1lIGluZm9ybWF0aW9u
-IG9uIGhvdyB0byBpbnN0YWxsIG9wZW52c3dpdGNoID8gSSBoYXZlIGFscmVhZHkgZG9uZSB0aGUg
-c2FtZSBpbiBvdGhlciBMaW51eCBPU3MgYnV0IG5vIGlkZWEgb24gaG93IHRvIGRvDQogdGhlIHNh
-bWUgZm9yIFlvY3RvLjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48YnI+DQpUaGUgbWV0YS12aXJ0dWFsaXphdGlvbiBsYXllciAoPGEg
-aHJlZj0iaHR0cDovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvYnJhbmNoL21h
-c3Rlci9sYXllci9tZXRhLXZpcnR1YWxpemF0aW9uLyI+aHR0cDovL2xheWVycy5vcGVuZW1iZWRk
-ZWQub3JnL2xheWVyaW5kZXgvYnJhbmNoL21hc3Rlci9sYXllci9tZXRhLXZpcnR1YWxpemF0aW9u
-LzwvYT4pIGhhcyBhIHJlY2lwZSBmb3Igb3BlbnZzd2l0Y2gsIHNvIGFkZCB0aGF0IHRvDQogeW91
-ciBiYmxheWVycy5jb25mIGFuZCBhZGQgdGhlIHBhY2thZ2VzIHlvdSBuZWVkIHRvIHlvdXIgaW1h
-Z2UuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PlJvc3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+Ross
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDB96RCHEXMBP1fncnetlo_--
+--001a114aa4281339a60534ddb2db
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 9 June 2016 at 19:56, Rajasekaran, Monica <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Monica.Rajasekaran@us.fujitsu.com" target=3D"_blank">Monica.Raja=
+sekaran@us.fujitsu.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex"><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quo=
+t;Calibri&quot;,sans-serif;color:#1f497d">Doesn=E2=80=99t that include the =
+openvswitch folder as well? If it is, what else do I need to add/change?<u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>You need to actually add =
+the packages that you want to your image.</div><div class=3D"gmail_extra"><=
+br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a114aa4281339a60534ddb2db--
