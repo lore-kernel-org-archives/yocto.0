@@ -1,60 +1,60 @@
-Return-Path: <roman.shaposhnikov@globallogic.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE9A9E00D54; Thu,  9 Jun 2016 09:03:40 -0700 (PDT)
+	id 05CA0E00D72; Thu,  9 Jun 2016 09:04:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.45 listed in list.dnswl.org]
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3ECAE00CAC
-	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 09:03:37 -0700 (PDT)
-Received: by mail-it0-f45.google.com with SMTP id z189so158165462itg.0
-	for <yocto@yoctoproject.org>; Thu, 09 Jun 2016 09:03:37 -0700 (PDT)
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514CAE00D6E
+	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 09:04:09 -0700 (PDT)
+Received: by mail-io0-f180.google.com with SMTP id 5so41971508ioy.1
+	for <yocto@yoctoproject.org>; Thu, 09 Jun 2016 09:04:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=globallogic.com; s=google;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ugfKRYgVnPRT9ecxpJQco80Rce0Jj6k23X6/8j/qwXc=;
-	b=DxdBkFMGzlRuueNjz787L6GvCqrDwPu/Xkb+LlRUcactUYVo6zmQA8oLxpJMK4u9ZC
-	4D2iGBIzby5EaDsSewLJGr+M0iszpo27GzAiEPPjVpwg3bRg6kEfuhYaABJW+2IULIV4
-	WQHy4eEX1n0CNXhRgnIuIDQ460aYH+IxhwDkU=
+	:cc; bh=Iv55natdIjw/1EVYgUe9F5DZMB4RF0Vp20Qw3lLU8K0=;
+	b=quGZrwn/1e+ESBZ/nlIXUKQ656+41+ZOV5ooVb5iXVg4RntbwXP4U2W2k4XEcTvlQj
+	bQsnA70u1ZIyX2MsBWoEH5slxzgrc+pUeUBPi83dSibvpteXKL/GwSUPs7G2TOWcxgsF
+	WyfW/SdYF7ZeVWkpo12o7BKG2ZblsyQ4zEoc2hYm0a7MyiFuyD+ZI9OrTrtkpRj1co2k
+	D8cmcIrScUvsoY5eFkFp3gZ9Db/nNgJcxIHWWYWujMtlgONUJYTwthgUwlodqih0GGZ6
+	VUZd/Nu7Ymf/etn+9GuqfugLM2GmorQY9+SxXoTopD17qp7E3WyhAUCjU1xn2HHsbHK/
+	01vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=ugfKRYgVnPRT9ecxpJQco80Rce0Jj6k23X6/8j/qwXc=;
-	b=erWqShs6mcbR3BlgyJXqPzCUSozTOBGelhQmmrfSIEAKIguf0IjDrbEVjA4sFoSDQx
-	h9gCr/iD3eGSAbl36/8aXHRS9sKKDyD+5EtwABFbUDTzP7rBcuBZd7i7OlryTmu0qpqT
-	WQXmkVI/BXFXJdKVE0l6oQGQHwKucFkJ+VrPfH35qACL9j+JwcLxF7JyuVZU+j7xujcg
-	c+K7PJelBcH7CSYIugGT+ov+rITKUA66ji5WG3YYORgieKNmBOGgPaq34dxdi4+0nexZ
-	KsTcO6x62HIOcK8yMvzpkoJ4gAcST6rsWqQ7V16T2xNAzJt2aneeSvwb2kgdV7neGmQ7
-	gOHg==
-X-Gm-Message-State: ALyK8tJhCX8SqIHgNUcTQ2KZE8Vjc5qGlN4AoXbJN4cBAeU6/RS7SKFTQcCc5HXbvN8nox8XxI8i9fG3lZp86ZWD
-X-Received: by 10.36.116.83 with SMTP id o80mr18211051itc.8.1465488216754;
-	Thu, 09 Jun 2016 09:03:36 -0700 (PDT)
+	bh=Iv55natdIjw/1EVYgUe9F5DZMB4RF0Vp20Qw3lLU8K0=;
+	b=XuTzGqnwCsyTlIr6NAYrDj0cuTgk1xqbuFU6VWlYKSaa/MjErtVeTvWfajtRQd02Pq
+	9DC8Ir0y1EP9xKf3CrL/gDirRG7JMOQIDp11ThXLePEegUSZP8s+71kVisXdl39ZolRj
+	Bcamf8RhuyqYp76YIejnaEyCSIxhQYpVon2S1m440wpNfO7vhIJA5JoSt5rX3ede/pa3
+	WkzJ0YHuMJQahoKjEZKXnq8ckzp/ZMp9d+yVSp/bUA6l3inSXzjcTKZiKh3a9A7STaBX
+	O4fJ2jESrIxUHNmY9pq/WKQW9RpclpiD3iLC6wYNdN5sAR7nImYCewuyAoB+2yvZ76qz
+	prPg==
+X-Gm-Message-State: ALyK8tKKV9E8vyTWYYbroYC4fXp5d08iGXypE/Z7YmKmkY/hC0TSARfHdYDP+hHcixKzxiYshXUEmnUro8/vrnG2
+X-Received: by 10.107.138.201 with SMTP id c70mr17799234ioj.148.1465488249461; 
+	Thu, 09 Jun 2016 09:04:09 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.9.41 with HTTP; Thu, 9 Jun 2016 09:03:17 -0700 (PDT)
-In-Reply-To: <OF23BF867D.425FC638-ONC1257FCD.004F586E-C1257FCD.0051B840@esa-grimma.de>
-References: <OF23BF867D.425FC638-ONC1257FCD.004F586E-C1257FCD.0051B840@esa-grimma.de>
-From: Roman Shaposhnikov <roman.shaposhnikov@globallogic.com>
-Date: Thu, 9 Jun 2016 19:03:17 +0300
-Message-ID: <CAN27R1ZpUFs589V8TmYGKO29_tvWTmjO=8pN6J7zQsdC8AEZ_g@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
+Received: by 10.107.162.6 with HTTP; Thu, 9 Jun 2016 09:03:50 -0700 (PDT)
+In-Reply-To: <CAGMdoFnEYZ_qPL4=zem10xHfogbcVRB+Zo9yZdWium0OwvXYsw@mail.gmail.com>
+References: <CAGMdoFnEYZ_qPL4=zem10xHfogbcVRB+Zo9yZdWium0OwvXYsw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 9 Jun 2016 17:03:50 +0100
+Message-ID: <CAJTo0LazbRgW=xxF5cHMv0LtvUUxh7fjh8WQPoTOc7STtWpzfg@mail.gmail.com>
+To: Edward Wingate <edwingate8@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: License problems when switching form RPM to DEB - looking for a easy way to fix it
+Subject: Re: Python module from git repo recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,384 +66,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jun 2016 16:03:40 -0000
-Content-Type: multipart/alternative; boundary=001a114abf5a952ba80534da9021
+X-List-Received-Date: Thu, 09 Jun 2016 16:04:32 -0000
+Content-Type: multipart/alternative; boundary=001a113e8e6a883e690534da9260
 
---001a114abf5a952ba80534da9021
+--001a113e8e6a883e690534da9260
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+On 9 June 2016 at 16:58, Edward Wingate <edwingate8@gmail.com> wrote:
 
-Looks like this is not a license issue. There is no
-'runtime-reverse/mycontrol' link and it's not depend from license
-information.
-So, just a guess, is this package generated as RPROVIDES?
-
-On Thu, Jun 9, 2016 at 5:52 PM, <S.Jaritz@esa-grimma.de> wrote:
-
-> Hej
->
-> I switched from RPM to DEB because the board configuration should be
-> handled by a package manager. By doing so I ran into a QA problem. All th=
-e
-> software provided by my colleagues I maked with
->
-> LICENSE =3D "CLOSED"
->
-> because they do not provide a license file. This works fine with the rpm
-> generator, but when I use the debian generator - the QA from the
-> "do_rootfs" fails with:
-> ########################
-> ERROR: core-image-minimal-1.0-r0 do_rootfs: Error executing a python
-> function in exec_python_func() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure
-> was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:license_create_manifest(d)
->      0003:
-> File: '/home/user/myTC/poky/meta/classes/license.bbclass', lineno: 48,
-> function: license_create_manifest
->      0044:    pkg_dic =3D {}
->      0045:    for pkg in sorted(image_list_installed_packages(d)):
->      0046:        pkg_info =3D os.path.join(d.getVar('PKGDATA_DIR', True)=
-,
->      0047:                                'runtime-reverse', pkg)
->  *** 0048:        pkg_name =3D os.path.basename(os.readlink(pkg_info))
->      0049:
->      0050:        pkg_dic[pkg_name] =3D
-> oe.packagedata.read_pkgdatafile(pkg_info)
->      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
->      0052:            pkg_lic_name =3D "LICENSE_" + pkg_name
-> Exception: OSError: [Errno 2] No such file or directory:
-> '/home/user/myTC/poky/build/tmp/sysroots/sama5d3xek/pkgdata/runtime-rever=
-se/mycontrol'
->
-> ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed:
-> license_create_manifest
-> ERROR: Logfile of failure stored in:
-> /home/user/myTC/poky/build/tmp/work/sama5d3xek-poky-linux-gnueabi/core-im=
-age-minimal/1.0-r0/temp/log.do_rootfs.69642
-> ERROR: Task 9 (/home/user/myTC/poky/meta/recipes-core/images/
-> core-image-minimal.bb, do_rootfs) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2383 tasks of which 2382 didn't need to be
-> rerun and 1 failed.
-> No currently running tasks (2012 of 2388)
-> ########################
->
-> Is there a way to avoid that or do I have to provide for every recipe a
-> license file?
->
-> I found a contribution about that:
-> https://www.yoctoproject.org/blogs/khem/2014/suppliment-common-licenses-y=
-octo-project
->
-> But ${LAYERDIR} seem not to be set. Maybe a small example can explain my
-> problem in a good way. I have a layer with the following struct and
-> modifications:
->
-> meta-myLayer
-> |- licenses
-> |    -> myLicense
-> |- recipes-my
-> |    -> myrecipe.bb
->
-> @meta-myLayer:
-> LICENSE_PATH +=3D "${LAYERDIR}/licenses"
->
-> @myrecipe.bb
-> LICENSE =3D "myLicense"
->
-> Where is my error/what do I have to do for avoiding to add for every
-> recipe a license file?
->
-> Regards!
->
-> Stefan Jaritz
-> Entwickler
->
-> ------------------------------------------------------------
-> ESA Elektroschaltanlagen Grimma GmbH
-> Broner Ring 30
-> 04668 Grimma
-> Telefon: +49 3437 9211 176
-> Telefax: +49 3437 9211 26
-> E-Mail: s.jaritz@esa-grimma.de
-> Internet: www.esa-grimma.de
->
->
-> Gesch=C3=A4ftsf=C3=BChrer:
-> Dipl.-Ing. J=C3=B6rg Gaitzsch
-> J=C3=B6rg Reinker
->
-> Sitz der Gesellschaft: Grimma
-> Ust.-ID: DE 141784437
-> Amtsgericht: Leipzig, HRB 5159
-> Steuernummer: 238/108/00755
->
->
-> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte
-> Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=C3=BCmli=
-ch
-> erhalten
-> haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie die=
-se
-> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-> Mail
-> ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If yo=
-u
-> are
-> not the intended recipient (or have received this e-mail in error) please
-> notify the sender immediately and destroy this e-mail. Any unauthorized
-> copying, disclosure or distribution of the material in this e-mail is
-> strictly
-> forbidden.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> Does anyone have an example of a recipe that installs a python module
+> from a git repo?  There is a python module that is not regularly
+> updated on PyPI, but its git repo is up to date.  All the examples of
+> python module recipes I can find uses PyPI:
 >
 
+Just change the SRC_URI to a git URI, that's all you need to do.
 
---=20
+Ross
 
-Roman Shaposhnikov | Lead Software Engineer | GlobalLogic Inc.
-
-Leaders in Software R&D Services
-
-ARGENTINA | CHINA | INDIA | ISRAEL | UKRAINE | UK | USA
-
-Mobile +380-97-977-7722
-
-www.globallogic.com
-
-Disclaimer: http://www.globallogic.com/email_disclaimer.txt
-
---001a114abf5a952ba80534da9021
+--001a113e8e6a883e690534da9260
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Stefan,<br><br></div>Looks like this is not a lice=
-nse issue. There is no &#39;runtime-reverse/mycontrol&#39; link and it&#39;=
-s not depend from license information.<br>So, just a guess, is this package=
- generated as RPROVIDES?<br></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Thu, Jun 9, 2016 at 5:52 PM,  <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:S.Jaritz@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimm=
-a.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><font face=3D"=
-sans-serif" size=3D"2">Hej</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">I switched from RPM to DEB because=
- the
-board configuration should be handled by a package manager. By doing so
-I ran into a QA problem. All the software provided by my colleagues I maked
-with </font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">LICENSE =3D &quot;CLOSED&quot;</fo=
-nt>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">because they do not provide a lice=
-nse
-file. This works fine with the rpm generator, but when I use the debian
-generator - the QA from the &quot;do_rootfs&quot; fails with:</font>
-<br><font face=3D"sans-serif" size=3D"2">########################</font>
-<br><font face=3D"sans-serif" size=3D"2">ERROR: core-image-minimal-1.0-r0 d=
-o_rootfs:
-Error executing a python function in exec_python_func() autogenerated:</fon=
-t>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">The stack trace of python calls th=
-at
-resulted in this exception/failure was:</font>
-<br><font face=3D"sans-serif" size=3D"2">File: &#39;exec_python_func() auto=
-generated&#39;,
-lineno: 2, function: &lt;module&gt;</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00001:</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0*** 0002:license_create_mani=
-fest(d)</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00003:</font>
-<br><font face=3D"sans-serif" size=3D"2">File: &#39;/home/user/myTC/poky/me=
-ta/classes/license.bbclass&#39;,
-lineno: 48, function: license_create_manifest</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00044: =C2=A0 =
-=C2=A0pkg_dic
-=3D {}</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00045: =C2=A0 =
-=C2=A0for
-pkg in sorted(image_list_installed_packages(d)):</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00046: =C2=A0 =
-=C2=A0
-=C2=A0 =C2=A0pkg_info =3D os.path.join(d.getVar(&#39;PKGDATA_DIR&#39;, True=
-),</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00047: =C2=A0 =
-=C2=A0
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0
-=C2=A0 =C2=A0 =C2=A0&#39;runtime-reverse&#39;, pkg)</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0*** 0048: =C2=A0 =C2=A0 =C2=
-=A0
-=C2=A0pkg_name =3D os.path.basename(os.readlink(pkg_info))</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00049:</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00050: =C2=A0 =
-=C2=A0
-=C2=A0 =C2=A0pkg_dic[pkg_name] =3D oe.packagedata.read_pkgdatafile(pkg_info=
-)</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00051: =C2=A0 =
-=C2=A0
-=C2=A0 =C2=A0if not &quot;LICENSE&quot; in pkg_dic[pkg_name].keys():</font>
-<br><font face=3D"sans-serif" size=3D"2">=C2=A0 =C2=A0 =C2=A00052: =C2=A0 =
-=C2=A0
-=C2=A0 =C2=A0 =C2=A0 =C2=A0pkg_lic_name =3D &quot;LICENSE_&quot; + pkg_name=
-</font>
-<br><font face=3D"sans-serif" size=3D"2">Exception: OSError: [Errno 2] No s=
-uch
-file or directory: &#39;/home/user/myTC/poky/build/tmp/sysroots/sama5d3xek/=
-pkgdata/runtime-reverse/mycontrol&#39;</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">ERROR: core-image-minimal-1.0-r0 d=
-o_rootfs:
-Function failed: license_create_manifest</font>
-<br><font face=3D"sans-serif" size=3D"2">ERROR: Logfile of failure stored i=
-n:
-/home/user/myTC/poky/build/tmp/work/sama5d3xek-poky-linux-gnueabi/core-imag=
-e-minimal/1.0-r0/temp/log.do_rootfs.69642</font>
-<br><font face=3D"sans-serif" size=3D"2">ERROR: Task 9 (/home/user/myTC/pok=
-y/meta/recipes-core/images/<a href=3D"http://core-image-minimal.bb" target=
-=3D"_blank">core-image-minimal.bb</a>,
-do_rootfs) failed with exit code &#39;1&#39;</font>
-<br><font face=3D"sans-serif" size=3D"2">NOTE: Tasks Summary: Attempted 238=
-3
-tasks of which 2382 didn&#39;t need to be rerun and 1 failed.</font>
-<br><font face=3D"sans-serif" size=3D"2">No currently running tasks (2012 o=
-f
-2388)</font>
-<br><font face=3D"sans-serif" size=3D"2">########################</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">Is there a way to avoid that or do=
- I
-have to provide for every recipe a license file?</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">I found a contribution about that:=
- </font><a href=3D"https://www.yoctoproject.org/blogs/khem/2014/suppliment-=
-common-licenses-yocto-project" target=3D"_blank"><font color=3D"blue" face=
-=3D"sans-serif" size=3D"2">https://www.yoctoproject.org/blogs/khem/2014/sup=
-pliment-common-licenses-yocto-project</font></a>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">But ${LAYERDIR} seem not to be set=
-.
-Maybe a small example can explain my problem in a good way. I have a layer
-with the following struct and modifications:</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">meta-myLayer</font>
-<br><font face=3D"sans-serif" size=3D"2">|- licenses</font>
-<br><font face=3D"sans-serif" size=3D"2">| =C2=A0 =C2=A0-&gt; myLicense</fo=
-nt>
-<br><font face=3D"sans-serif" size=3D"2">|- recipes-my</font>
-<br><font face=3D"sans-serif" size=3D"2">| =C2=A0 =C2=A0-&gt; <a href=3D"ht=
-tp://myrecipe.bb" target=3D"_blank">myrecipe.bb</a></font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">@meta-myLayer:</font>
-<br><font size=3D"3">LICENSE_PATH +=3D &quot;${LAYERDIR}/licenses&quot;</fo=
-nt>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">@<a href=3D"http://myrecipe.bb" ta=
-rget=3D"_blank">myrecipe.bb</a></font>
-<br><font face=3D"sans-serif" size=3D"2">LICENSE =3D &quot;myLicense&quot;<=
-/font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">Where is my error/what do I have t=
-o
-do for avoiding to add for every recipe a license file?</font>
-<br>
-<br><font face=3D"sans-serif" size=3D"2">Regards!</font>
-<br><font face=3D"sans-serif" size=3D"2"><br>
-Stefan Jaritz<br>
-Entwickler<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: <a href=3D"tel:%2B49%203437%209211%20176" value=3D"+4934379211176"=
- target=3D"_blank">+49 3437 9211 176</a><br>
-Telefax: <a href=3D"tel:%2B49%203437%209211%2026" value=3D"+493437921126" t=
-arget=3D"_blank">+49 3437 9211 26</a><br>
-E-Mail: <a href=3D"mailto:s.jaritz@esa-grimma.de" target=3D"_blank">s.jarit=
-z@esa-grimma.de</a><br>
-Internet: </font><a href=3D"http://www.esa-grimma.de" target=3D"_blank"><fo=
-nt face=3D"sans-serif" size=3D"2">www.esa-grimma.de</font></a><font face=3D=
-"sans-serif" size=3D"2"><br>
-<br>
-<br>
-Gesch=C3=A4ftsf=C3=BChrer:<br>
-Dipl.-Ing. J=C3=B6rg Gaitzsch<br>
-J=C3=B6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte I=
-nformationen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=C3=BCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font><br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail=
-_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div d=
-ir=3D"ltr"><div><div dir=3D"ltr">
-<p style=3D"margin:0px"><span style=3D"font-family:&#39;Calibri&#39;;font-s=
-ize:10pt;font-weight:600;color:#333333">Roman Shaposhnikov |=C2=A0</span><s=
-pan style=3D"color:rgb(51,51,51);font-family:Calibri;font-size:13.3333px;fo=
-nt-weight:600">Lead Software Engineer=C2=A0</span><span style=3D"color:rgb(=
-51,51,51);font-family:Calibri;font-size:10pt;font-weight:600">| GlobalLogic=
- Inc.=C2=A0</span></p><p style=3D"margin:0px"><span style=3D"font-family:&#=
-39;Calibri&#39;;font-size:10pt;font-weight:600;color:#333399">Leaders in So=
-ftware R&amp;D Services</span></p>
-<p style=3D"margin:0px"><font color=3D"#333333" face=3D"Calibri"><span styl=
-e=3D"font-size:13.3333330154419px;font-weight:600">ARGENTINA | CHINA | INDI=
-A | ISRAEL | UKRAINE | UK | USA</span></font><br></p>
-<p style=3D"margin:0px"><span style=3D"font-family:&#39;Calibri&#39;;font-s=
-ize:10pt;font-weight:600;color:#333333">Mobile +380-97-977-7722</span></p>
-<p style=3D"margin:0px"><a href=3D"http://www.globallogic.com/" target=3D"_=
-blank"><span style=3D"font-family:&#39;Times New Roman&#39;;font-size:10pt;=
-font-weight:600;color:#0000ff">www.globallogic.com</span></a></p>
-<p style=3D"margin:0px"><span style=3D"font-family:Calibri;font-size:10pt;f=
-ont-weight:600;font-style:italic;color:rgb(0,0,128)">Disclaimer: </span><a =
-href=3D"http://www.globallogic.com/email_disclaimer.txt" style=3D"font-size=
-:12.8000001907349px" target=3D"_blank"><span style=3D"font-family:&#39;Time=
-s New Roman&#39;;font-size:10pt;font-weight:600;font-style:italic;color:#00=
-0080">http://www.globallogic.com/email_disclaimer.txt</span></a><br></p></d=
-iv></div></div></div></div></div>
-</div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 9 June 2016 at 16:58, Edward Wingate <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:edwingate8@gmail.com" target=3D"_blank">edwingate8@gmail.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":491" class=3D"a3=
+s aXjCH m15535e3cb0a463eb">Does anyone have an example of a recipe that ins=
+talls a python module<br>
+from a git repo?=C2=A0 There is a python module that is not regularly<br>
+updated on PyPI, but its git repo is up to date.=C2=A0 All the examples of<=
+br>
+python module recipes I can find uses PyPI:</div></blockquote></div><br>Jus=
+t change the SRC_URI to a git URI, that&#39;s all you need to do.</div><div=
+ class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div=
+>
 
---001a114abf5a952ba80534da9021--
+--001a113e8e6a883e690534da9260--
