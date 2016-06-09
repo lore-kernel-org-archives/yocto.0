@@ -1,6 +1,6 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <edwingate8@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C738E00D57; Thu,  9 Jun 2016 10:29:07 -0700 (PDT)
+	id 62735E00D57; Thu,  9 Jun 2016 10:35:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
+	mail provider *      (edwingate8[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,54 +18,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9F69E00D4F
-	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 10:29:03 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id t190so3246588pfb.2
-	for <yocto@yoctoproject.org>; Thu, 09 Jun 2016 10:29:03 -0700 (PDT)
+	*      [209.85.192.48 listed in list.dnswl.org]
+Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
+	[209.85.192.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8110E00D4F
+	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 10:35:42 -0700 (PDT)
+Received: by mail-qg0-f48.google.com with SMTP id p34so24123556qgp.1
+	for <yocto@yoctoproject.org>; Thu, 09 Jun 2016 10:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=Veyrb38jsfBlzdEP9j5EDV6AY+GjFbdJu0lcALFLESM=;
-	b=PPGl4OLBV9zDOdQMF8dpPBfmQKm37TV8bLmlM98Qpsq/rL4Apf8rSWK1g5NdZseEdg
-	q66rFnyZoBalL2i7I66mNnh0tlhJHUqLVQwYVqFjBoqJjqUxR00/Y4FtYFH4G8weYnQU
-	/SngFD5Cs8hnd0Sj3oroY9VTuVjGkwt/9SzTwTxOBUKekSb8P4JjbiaLtUH6hRRYKQA9
-	aaPa+2vIcExwPI9cAuenFvUll9X3RfNvVTgf0Gtpn6Lxunr/UbmV0sIDiObz1jDi1+VT
-	bEHLiHIshV23HVRokTR2BiT3jiUL14mfFn733H5cVYQhHJqZ8IFf0bBMXB/Ioy9TfuL2
-	F/7g==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hm2pwrRh/uogm/KN0CLcQ+SEcnaa4j0U8cV0JUj6YXA=;
+	b=e7NtcoVuyIq/b5NuHCOExVtBcjHsYJVdSkIZmTIue3pmYAwmisPePhu+hL8/TZtonD
+	93f44bauyqxv+fSN6roZIx3at3Tpaxa3FIQaVmX4pmxygnh63Dkb0uVFTRgDRX1AkHOT
+	H/d8dseEalH15ybDSzdd1H1osGkhSFwS9js2BRFXEndrJqz7apULJ56AAERW1J4RvMJy
+	G0Nj0Errc6PNKFaljrOfxVJRAHoyKRJ6/UyOFtmZQX5Ky0tdCxq3DqrHJ+VggA/fVKAV
+	6EMd0ZUEl3XLTNamGC7p85VARw9lVYWwqVxuuUoFG2K6M964lWL4FCI7EF1uI64UgHXT
+	MuIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:user-agent
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	bh=Veyrb38jsfBlzdEP9j5EDV6AY+GjFbdJu0lcALFLESM=;
-	b=WpVtHr+i19mVXDU9slhHZ/4ULM0VanfyNyZ5/M0ZK0/Dg15AKHo400UFJ615l9S3P8
-	ZvwA+BJKK3x55mbiIVVshqB4E8i+7Bk5i/uRlB09b8zpAEM68GseAhrieI/+tBjcmMy8
-	VMnKqRJUO++r/i6C+ZWJxK8vYwVqmLOyNQ5GSdZywG6q2ysZwfwDO1C5B//ijlC/7ZEd
-	7XlE84s1kDaKQiZknV8wITUp+gBH5fvO0YXGtot9dHOjwzms/UqutCPCHm+/oBYEm+JW
-	FaeeCJg6ujAXI7XCJw2uwoK5dt0JALfTRDFzTxEyAurdXTvdpB2k/LaGsCs11f+zguVk
-	BQrg==
-X-Gm-Message-State: ALyK8tLidUyk9C/ZOLP6THSGcSFY3YcGDd1ojudlFLgHf666OlCb6GqjOjEu8voDN6bCYA==
-X-Received: by 10.98.5.196 with SMTP id 187mr5626751pff.133.1465493342820;
-	Thu, 09 Jun 2016 10:29:02 -0700 (PDT)
-Received: from rjs-zotac.streifs.net (ip68-7-48-20.sd.sd.cox.net. [68.7.48.20])
-	by smtp.gmail.com with ESMTPSA id
-	xn3sm11423358pab.32.2016.06.09.10.28.54
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Thu, 09 Jun 2016 10:28:59 -0700 (PDT)
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 09 Jun 2016 10:28:53 -0700
-Message-ID: <14822256.OY8cr5cEx1@rjs-zotac.streifs.net>
-User-Agent: KMail/4.14.10 (Linux/4.4.10-200.fc22.x86_64+debug; KDE/4.14.17;
-	x86_64; ; )
-In-Reply-To: <OFE919EA27.F1B27E75-ONC1257FCD.0052E7E6-C1257FCD.0054015A@esa-grimma.de>
-References: <OF631D75D9.DBAD0BFE-ONC1257FCD.0030963E-C1257FCD.00317358@esa-grimma.de>
-	<CAHiDW_HFdwtg+eQDVzvwPKKA18ruRisYyiqbUZ5W0WDW6HqhCg@mail.gmail.com>
-	<OFE919EA27.F1B27E75-ONC1257FCD.0052E7E6-C1257FCD.0054015A@esa-grimma.de>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hm2pwrRh/uogm/KN0CLcQ+SEcnaa4j0U8cV0JUj6YXA=;
+	b=Wf+cusQ0bFAR0U8ADP7Qv/KsymCo7NoPZbkbyhk2k1JUXWR5ON6iQWMCMTnQaa4J7M
+	7ptfBaRDw5qi54Ek6HzvaqhEq5Y8mYMYrnGSyvTDTPE334Ug+N+rVBMiowoh/iRm78Y+
+	ntA3RG2ZdsUC5aXb2Eul90sTje1xDn863BCQiga+BR9cPW7GsOZLEN3wrcuzvUyQMVYD
+	TTvNeddJIVVPxh4U0aGaHXOJenauTaaNw2XM/EP53KGoMKODq1E2T8/Kv0Sl3ocVXpCO
+	eS6cfTTVAnuXWzur6/MDEmx9B7pHMsBV++MM3vW8D2F/UlaTlJrycf6M+RrzLb4h1fOA
+	9PpQ==
+X-Gm-Message-State: ALyK8tKkGyzB4KEun0xnqOF7yYtJrhZp2I3En67VmtAbt13Yj3aQMw9p4plcUykn8z6AjVjwKKmwLwK80RbOig==
+X-Received: by 10.140.156.149 with SMTP id c143mr11552075qhc.58.1465493741854; 
+	Thu, 09 Jun 2016 10:35:41 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Antwort: Re: Problems with do_rootfs when changing the user password
+Received: by 10.200.56.35 with HTTP; Thu, 9 Jun 2016 10:35:41 -0700 (PDT)
+In-Reply-To: <CABcZANnBsAnTVyRiF6rWTJMRZQBaLEXUS4TKc6dZfJGTO3-1jA@mail.gmail.com>
+References: <CAGMdoFnEYZ_qPL4=zem10xHfogbcVRB+Zo9yZdWium0OwvXYsw@mail.gmail.com>
+	<CAJTo0LazbRgW=xxF5cHMv0LtvUUxh7fjh8WQPoTOc7STtWpzfg@mail.gmail.com>
+	<CABcZANnBsAnTVyRiF6rWTJMRZQBaLEXUS4TKc6dZfJGTO3-1jA@mail.gmail.com>
+From: Edward Wingate <edwingate8@gmail.com>
+Date: Thu, 9 Jun 2016 10:35:41 -0700
+Message-ID: <CAGMdoFnJ0xWy6U+0=jhdk4hUD4mCGM-RnTbwQ3F0iKP23DGFqQ@mail.gmail.com>
+To: Christopher Larson <clarson@kergoth.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Python module from git repo recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,38 +71,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jun 2016 17:29:07 -0000
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 09 Jun 2016 17:35:45 -0000
+Content-Type: text/plain; charset=UTF-8
 
-SGksCgo+IAo+IEhvdyBhcmUgdGhlIHN0ZXBzIHRvIChyZSlzZXQgdGhlIHJvb3QgcGFzc3dvcmQ/
-CgpJIGFtIHVzaW5nIHNvbWV0aGluZyBsaWtlIHRoaXMgdG8gc2V0IHBhc3N3b3JkczoKCmluaGVy
-aXQgZXh0cmF1c2VycwoKIyBzZXQgaW1hZ2Ugcm9vdCBwYXNzd29yZApST09UX1BBU1NXT1JEID0g
-InNlY3JldCIKREVWX1BBU1NXT1JEID0gImhhY2ttZSIKCkVYVFJBX1VTRVJTX1BBUkFNUyA9ICJc
-CiAgICBncm91cGFkZCBkZXZlbG9wZXJzOyBcCiAgICB1c2VyYWRkIC1wIGBvcGVuc3NsIHBhc3N3
-ZCAke0RFVl9QQVNTV09SRH1gIGRldmVsb3BlcjsgXAogICAgdXNlcmFkZCAtZyBkZXZlbG9wZXJz
-IGRldmVsb3BlcjsgXAogICAgdXNlcm1vZCAtcCBgb3BlbnNzbCBwYXNzd2QgJHtST09UX1BBU1NX
-T1JEfWAgcm9vdDsgXAoiCgAKCj4gCj4gSWYgeW91IGxpa2UgSSB3b3VsZCBwcmVmZXIgdG8gc29s
-dmUgdGhpcyBxdWVzdGlvbiBsaWtlIGEgdHV0b3JpYWwuCj4gCgpTaGFtZWxlc3MgcGx1ZyBoZXJl
-LCBwbGVhc2UgZXhjdXNlOiBJIGFtIGV4cGxhaW5pbmcgdGhpcyBhbmQgbW9yZSBpbiBteSBib29r
-ICJFbWJlZGRlZCBMaW51eCBTeXN0ZW1zIHdpdGggdGhlIFlvY3RvIFByb2plY3QiLgoKPiBUaGUg
-c3RhcnRpbmcgcG9pbnQgaXMgYSBvd24gbGF5ZXIgKCJteUxheWVyIikgYW5kIGEgcGFzc3dvcmQg
-Cj4gKCJteU5ld1Bhc3N3b3JkMTIzNCIpLgo+IAoKVXNpbmcgeW91ciBvd24gbGF5ZXIgZm9yIHlv
-dXIgY3VzdG9tIGRpc3Ryby9pbWFnZSBjb25maWd1cmF0aW9uIGlzIHRoZSB3YXkgdG8gZ28uIEp1
-c3QgcHV0IHRoZSBjb2RlIGFib3ZlIGludG8geW91ciBpbWFnZSByZWNpcGUgbGlrZSB0aGlzOgoK
-U1VNTUFSWSA9ICJDdXN0b20gaW1hZ2UgcmVjaXBlIGZyb20gc2NyYXRjaCIKREVTQ1JJUFRJT04g
-PSAiRGlyZWN0bHkgYXNzaWduIElNQUdFX0lOU1RBTEwgYW5kIElNQUdFX0ZFQVRVUkVTIGZvciBc
-CiAgICAgICAgICAgICAgIGZvciBkaXJlY3QgY29udHJvbCBvdmVyIGltYWdlIGNvbnRlbnRzLiIK
-CkxJQ0VOU0UgPSAiTUlUIgoKIyBXZSBhcmUgdXNpbmcgdGhlIGFzc2lnbm1lbnQgb3BlcmF0b3Ig
-KD0pIGJlbG93IHRvIHB1cnBvc2VseSBvdmVyd3JpdGUKIyB0aGUgZGVmYXVsdCBmcm9tIHRoZSBj
-b3JlLWltYWdlIGNsYXNzLgpJTUFHRV9JTlNUQUxMID0gInBhY2thZ2Vncm91cC1jb3JlLWJvb3Qg
-cGFja2FnZWdyb3VwLWJhc2UtZXh0ZW5kZWQgXAogICAgICAgICAgICAgICAgICR7Q09SRV9JTUFH
-RV9FWFRSQV9JTlNUQUxMfSIKCmluaGVyaXQgY29yZS1pbWFnZQppbmhlcml0IGV4dHJhdXNlcnMK
-CiMgc2V0IGltYWdlIHJvb3QgcGFzc3dvcmQKUk9PVF9QQVNTV09SRCA9ICJzZWNyZXQiCkRFVl9Q
-QVNTV09SRCA9ICJoYWNrbWUiCgpFWFRSQV9VU0VSU19QQVJBTVMgPSAiXAogICBncm91cGFkZCBk
-ZXZlbG9wZXJzOyBcCiAgIHVzZXJhZGQgLXAgYG9wZW5zc2wgcGFzc3dkICR7REVWX1BBU1NXT1JE
-fWAgZGV2ZWxvcGVyOyBcCiAgIHVzZXJhZGQgLWcgZGV2ZWxvcGVycyBkZXZlbG9wZXI7IFwKICAg
-dXNlcm1vZCAtcCBgb3BlbnNzbCBwYXNzd2QgJHtST09UX1BBU1NXT1JEfWAgcm9vdDsgXAogICAi
-CgpCZXN0IHJlZ2FyZHMsClJ1ZGkK
+Thanks all!  Was having a fit trying to get it to work until
+Christopher's advice to set S to ${WORKDIR}/git.
 
+On Thu, Jun 9, 2016 at 9:59 AM, Christopher Larson <clarson@kergoth.com> wrote:
+>
+> On Thu, Jun 9, 2016 at 9:03 AM, Burton, Ross <ross.burton@intel.com> wrote:
+>>
+>> On 9 June 2016 at 16:58, Edward Wingate <edwingate8@gmail.com> wrote:
+>>>
+>>> Does anyone have an example of a recipe that installs a python module
+>>> from a git repo?  There is a python module that is not regularly
+>>> updated on PyPI, but its git repo is up to date.  All the examples of
+>>> python module recipes I can find uses PyPI:
+>>
+>>
+>> Just change the SRC_URI to a git URI, that's all you need to do.
+>
+>
+> And S to ${WORKDIR}/git, set SRCREV, and depending on whether you're
+> tracking a branch or a tag, add SRCPV to PV :)
+> --
+> Christopher Larson
+> clarson at kergoth dot com
+> Founder - BitBake, OpenEmbedded, OpenZaurus
+> Maintainer - Tslib
+> Senior Software Engineer, Mentor Graphics
 
