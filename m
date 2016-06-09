@@ -1,51 +1,38 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73891E00D72; Thu,  9 Jun 2016 13:57:51 -0700 (PDT)
+	id 60CF9E00D72; Thu,  9 Jun 2016 14:22:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.56 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
-	[168.127.0.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65C25E00D69
-	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 13:57:45 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,446,1459832400"; d="scan'208,217";a="77897309"
-Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
-	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	09 Jun 2016 15:57:47 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0294.000;
-	Thu, 9 Jun 2016 15:57:45 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Installing openvswitch
-Thread-Index: AdHCYTYEkoZCyiTbT2WEZBabi/CIkwALwC4AAAQNpHAABE53AAAKVOowABJg22A=
-Date: Thu, 9 Jun 2016 20:57:43 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA5FDC66@RCHEXMBP1.fnc.net.local>
-References: <111ACD726EC3464BAED310F5EA7BEBDA5FD845@RCHEXMBP1.fnc.net.local>
-	<CAJTo0LZePKfYZK+8Zkv6pGsaOXx_DsKsF-5ROSV7Kh+Y6BrG8w@mail.gmail.com>
-	<111ACD726EC3464BAED310F5EA7BEBDA5FDB96@RCHEXMBP1.fnc.net.local>
-	<CAJTo0LYZeh4qAW4PmDzc6vtTfd=199mprK=w-AY66JmNdmdspw@mail.gmail.com>
-	<111ACD726EC3464BAED310F5EA7BEBDA5FDBEF@RCHEXMBP1.fnc.net.local>
-In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA5FDBEF@RCHEXMBP1.fnc.net.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22382.002
-x-tm-as-result: No--50.746400-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 340EDE00D69
+	for <yocto@yoctoproject.org>; Thu,  9 Jun 2016 14:22:24 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga103.jf.intel.com with ESMTP; 09 Jun 2016 14:22:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,446,1459839600"; 
+	d="asc'?scan'208";a="119206125"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.164])
+	([10.219.5.164])
+	by fmsmga004.fm.intel.com with ESMTP; 09 Jun 2016 14:22:23 -0700
+To: pidge@toganlabs.com, "Randle, William C" <william.c.randle@intel.com>,
+	"Lock, Joshua G" <joshua.g.lock@intel.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <5759DE3F.9040002@linux.intel.com>
+Date: Thu, 9 Jun 2016 16:23:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Installing openvswitch
+Subject: [yocto-autobuilder] [RFC] Add support for generate bitbake error reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,147 +44,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jun 2016 20:57:51 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA5FDC66RCHEXMBP1fncnetlo_"
+X-List-Received-Date: Thu, 09 Jun 2016 21:22:28 -0000
+X-Groupsio-MsgNum: 30442
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="uH8hWjhfwvJhdj5wcWxgvxqTWXNv2jBsk"
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDC66RCHEXMBP1fncnetlo_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--uH8hWjhfwvJhdj5wcWxgvxqTWXNv2jBsk
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIGZvciB0aGUgaW5mby4gSXQgd29ya2VkIG9uY2UgSSBhZGRlZCB0aGUgb3BlbnZzd2l0
-Y2ggcGFja2FnZSB1c2luZyBpbWFnZV9pbnN0YWxsLg0KDQpUaGFua3MsDQpNb25pY2ENCg0KRnJv
-bTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgUmFqYXNla2FyYW4sIE1vbmljYQ0KU2VudDog
-VGh1cnNkYXksIEp1bmUgMDksIDIwMTYgMjo1NCBQTQ0KVG86IEJ1cnRvbiwgUm9zcyA8cm9zcy5i
-dXJ0b25AaW50ZWwuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJl
-OiBbeW9jdG9dIEluc3RhbGxpbmcgb3BlbnZzd2l0Y2gNCg0KT2theSB0aGFua3MuIEnigJltIGFz
-c3VtaW5nIGJ5IHBhY2thZ2VzIHlvdSBtZWFuIHRoZSB2YXJpb3VzIGRlcGVuZGVuY3kgcGFja2Fn
-ZXMgZm9yIG9wZW52c3dpdGNoLg0KDQpBbmQsIG9uY2UgSSBhZGQgYW5kIGJyaW5nIHVwIHRoZSBp
-bWFnZSwgZG8gSSBqdXN0IHN0YXJ0IG92cyBieSB0aGUgdXN1YWwgcHJvY2VkdXJlIG9yIGlzIHRo
-ZSBwcm9jZWR1cmUgZGlmZmVyZW50ID8NCg0KVGhhbmtzLA0KTW9uaWNhDQoNCkZyb206IEJ1cnRv
-biwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NClNlbnQ6IFRodXJzZGF5LCBK
-dW5lIDA5LCAyMDE2IDI6NDcgUE0NClRvOiBSYWphc2VrYXJhbiwgTW9uaWNhIDxNb25pY2EuUmFq
-YXNla2FyYW5AdXMuZnVqaXRzdS5jb208bWFpbHRvOk1vbmljYS5SYWphc2VrYXJhbkB1cy5mdWpp
-dHN1LmNvbT4+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEluc3RhbGxpbmcgb3BlbnZzd2l0Y2gN
-Cg0KDQpPbiA5IEp1bmUgMjAxNiBhdCAxOTo1NiwgUmFqYXNla2FyYW4sIE1vbmljYSA8TW9uaWNh
-LlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPG1haWx0bzpNb25pY2EuUmFqYXNla2FyYW5AdXMu
-ZnVqaXRzdS5jb20+PiB3cm90ZToNCkRvZXNu4oCZdCB0aGF0IGluY2x1ZGUgdGhlIG9wZW52c3dp
-dGNoIGZvbGRlciBhcyB3ZWxsPyBJZiBpdCBpcywgd2hhdCBlbHNlIGRvIEkgbmVlZCB0byBhZGQv
-Y2hhbmdlPw0KDQpZb3UgbmVlZCB0byBhY3R1YWxseSBhZGQgdGhlIHBhY2thZ2VzIHRoYXQgeW91
-IHdhbnQgdG8geW91ciBpbWFnZS4NCg0KUm9zcw0K
+Hi folks,
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDC66RCHEXMBP1fncnetlo_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Currently we support to send error reports to errors.yoctoproject.org
+about failing tasks on bitbake using SendErrorReport buildstep but we
+have a lack of bitbake related errors like exceptions.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10
-eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
-CWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
-LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4
-LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3Jk
-U2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
-IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
-PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
-RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij5UaGFua3MgZm9yIHRoZSBpbmZvLiBJdCB3b3JrZWQgb25jZSBJIGFkZGVkIHRoZSBvcGVudnN3
-aXRjaCBwYWNrYWdlIHVzaW5nIGltYWdlX2luc3RhbGwuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxp
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+
-PC9pPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj5Nb25pY2ENCjxvOnA+PC9vOnA+PC9zcGFuPjwvaT48L3A+DQo8L2Rpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
-LXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmIj4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9j
-dG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5SYWphc2Vr
-YXJhbiwgTW9uaWNhPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBKdW5lIDA5LCAyMDE2IDI6
-NTQgUE08YnI+DQo8Yj5Ubzo8L2I+IEJ1cnRvbiwgUm9zcyAmbHQ7cm9zcy5idXJ0b25AaW50ZWwu
-Y29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1
-YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBJbnN0YWxsaW5nIG9wZW52c3dpdGNoPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPk9rYXkgdGhhbmtzLiBJ4oCZbSBhc3N1bWluZyBieSBwYWNrYWdlcyB5b3UgbWVh
-biB0aGUgdmFyaW91cyBkZXBlbmRlbmN5IHBhY2thZ2VzIGZvciBvcGVudnN3aXRjaC48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkFuZCwgb25jZSBJIGFkZCBhbmQg
-YnJpbmcgdXAgdGhlIGltYWdlLCBkbyBJIGp1c3Qgc3RhcnQgb3ZzIGJ5IHRoZSB1c3VhbCBwcm9j
-ZWR1cmUgb3IgaXMgdGhlIHByb2NlZHVyZSBkaWZmZXJlbnQgPzxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48aT48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvaT48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+TW9uaWNhDQo8bzpwPjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3Nw
-YW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IEJ1cnRvbiwgUm9zcyBbPGEgaHJlZj0ibWFpbHRvOnJv
-c3MuYnVydG9uQGludGVsLmNvbSI+bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbTwvYT5dDQo8
-YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIEp1bmUgMDksIDIwMTYgMjo0NyBQTTxicj4NCjxi
-PlRvOjwvYj4gUmFqYXNla2FyYW4sIE1vbmljYSAmbHQ7PGEgaHJlZj0ibWFpbHRvOk1vbmljYS5S
-YWphc2VrYXJhbkB1cy5mdWppdHN1LmNvbSI+TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3Uu
-Y29tPC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3By
-b2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjxicj4NCjxiPlN1YmplY3Q6PC9i
-PiBSZTogW3lvY3RvXSBJbnN0YWxsaW5nIG9wZW52c3dpdGNoPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPk9uIDkgSnVuZSAyMDE2IGF0IDE5OjU2LCBSYWphc2VrYXJhbiwg
-TW9uaWNhICZsdDs8YSBocmVmPSJtYWlsdG86TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3Uu
-Y29tIiB0YXJnZXQ9Il9ibGFuayI+TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPC9h
-PiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYu
-MHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLXJpZ2h0OjBpbjtt
-YXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
-Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPkRvZXNu4oCZdCB0aGF0IGluY2x1ZGUgdGhlIG9wZW52c3dpdGNo
-IGZvbGRlciBhcyB3ZWxsPyBJZiBpdCBpcywgd2hhdCBlbHNlIGRvIEkgbmVlZCB0byBhZGQvY2hh
-bmdlPzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PGJyPg0KWW91IG5lZWQgdG8gYWN0dWFsbHkgYWRkIHRoZSBwYWNrYWdl
-cyB0aGF0IHlvdSB3YW50IHRvIHlvdXIgaW1hZ2UuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJvc3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+A bug exist to implement this support into Error report web [1], i'm
+working on it but for generate bitbake error reports there's a need of
+some process monitoring the bitbake output in this case the Yocto
+Autobuilder.
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA5FDC66RCHEXMBP1fncnetlo_--
+This email is for review my current implementation for generate bitbake
+error reports in the Autobuilder [2] next i'll try to explain how it work=
+s.
+
+I aadded a BitbakeShellCommand [3] class for use in the buildsteps that
+executes bitbake the main objective of this class is to have common
+operations to be made in bitbake commands like create error reports if
+fails.
+
+For create error reports this class add an stdio observer to look at
+bitbake output and if bitbake fails review the bitbake output for
+identify if the failure is an non-related task error [4]. If the
+observer found bitbake error creates an Error report with the
+information in the master controller.
+
+In order to send the bitbake error to Error report web the controller
+transfer the report to the worker using a new DownloadDirectory
+implementation that i made [5], the SendErrorReport buildstep works on
+the worker side so it's easy to transfer the reports from master to
+worker instead of send it by master.
+
+Finally to complete with the job of have the bitbake errors reports the
+Error report web changes need  (i'm working on it) to be integrated
+first in order to don't break anything.
+
+Please review it and provide me feedback.
+
+Cheers,
+	alimon
+
+[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7583
+[2]
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=3Dcont=
+rib/alimon/devel
+[3]
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tree/lib/pyth=
+on2.7/site-packages/autobuilder/lib/buildsteps.py?h=3Dcontrib/alimon/deve=
+l#n92
+[4]
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tree/lib/pyth=
+on2.7/site-packages/autobuilder/lib/buildsteps.py?h=3Dcontrib/alimon/deve=
+l#n53
+[5]
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?h=3Dc=
+ontrib/alimon/devel&id=3D4022920bb0e56d1eef3dfe7c5e9b4699f801cdf1
+
+
+--uH8hWjhfwvJhdj5wcWxgvxqTWXNv2jBsk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJXWd5CAAoJEGJqcE9h3glgNXsP/jKUTUcaMvLqr4ha7ckXvny1
+ZL5DD4W86VZjAqVQ026p+u83G4Z0QUfrv0JF9SkTWXX4J0SBXXV8zS8F0oMFBIGx
+JMa6BySFQz2W2M/FUgGObGX0ID0TUJ7UVFEx2EPbZ4+8eVIp7+7Fzu9/8gaZ+mHG
+NCdVsVKYbr+xjTS64wplk9LobSBxLXxj8lYGE/5GzMLRmimslDet8DFnItnt5E1w
+QsCtd/xyNsaO0ZdLfxAekILN6ZoCto9Psqr8iJrwND6zRh5C4TauT7a8LfM/zrkI
+WFMpt8EJe8IhXAz5gQ1rLVIbg2KfkYg6PmAlvmQoe1AihJWbtysIsNnzMncSG5Dw
+0i7+ElPPiRh4B+g63xK2wwZnbbYo+QbcWhCO4HBO72To9W1CCb2zCC8L0POJ3xBe
+lzZrajd7iPuXypmJ+/7ne9rAN1gAxIv1ww9MqxGrqqTaVW6xwEWbg9nUJoiR9Txf
+2MnGOCIx2k12BK7tW2NiuxxoBYlKcYSVM3YUw1mBt1X87PNDKHoL2N1sDRpyqA8m
+q9+7/rs+W7LbJHnHMQxw3Uy9kwJKb3eYwgmL7vqrJ1M/CHX/Fe1G6viiXTNycwfh
+9IpZlyWkO7JhiMAkRLqRaS6BEUkEQGVgNG7CgYhcw5OmeAJOCxMsb/G7o5SZnsSF
+dfUdjqU3r4MhXfWeUDq1
+=/UM/
+-----END PGP SIGNATURE-----
+
+--uH8hWjhfwvJhdj5wcWxgvxqTWXNv2jBsk--
