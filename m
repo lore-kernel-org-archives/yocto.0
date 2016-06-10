@@ -1,60 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32C99E00D00; Fri, 10 Jun 2016 01:42:35 -0700 (PDT)
+	id A49F6E00CD9; Fri, 10 Jun 2016 02:09:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.6 DATE_IN_PAST_03_06 Date: is 3 to 6 hours before
+	Received: date
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 513AFE00CC7
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 01:42:32 -0700 (PDT)
-Received: by mail-io0-f177.google.com with SMTP id 5so60013597ioy.1
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 01:42:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=OWjmMT2FPHu0IyDuG1c+G5Wd9gCov+PKBbDt8CzsDjs=;
-	b=Ml2qvK7Wl5zRaVvRV1eHBnEd3I7eLbzHDjS7ccuMpJKBC5ZUWNSZ448J+ocQYGT5rj
-	vDLY1Jc6kYCgdgOcMG5ozfkUdhVqEF6McrKJTeRrZWjlex8XEpGkRBb20so4gTNsExkZ
-	6VxuUMiXPuLfIdP7xxDXPADJVsmL+54eWS5EoMkD3FZkpkIMmb4UKBr6XTYuL10UxCTw
-	K+Wfju8ddb3bcTdruGZpeLiLca609qaMivEoSnwi/K3msK14nVtCFvr7f+nH4R16xejv
-	rURIQ5dt5zRdpNzjEXIzBNa2NgMe10z5c0kEWrmmeIB38KYAfj8eUBBPLgiPUpIQok94
-	OA4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=OWjmMT2FPHu0IyDuG1c+G5Wd9gCov+PKBbDt8CzsDjs=;
-	b=QCDeYoB1n2hSuWDc0aB+BAAH+exFVZYrBYUAqBvTJLR6oSmWTxDkyFfdSeio3MByDR
-	wzFZXf+VBZ/7oUqaDpyjD9P4zpIrIqK2xk3rBvYjPInwcjrwLYMnsrM58cR4DDUj9MrL
-	c3fsf5GbTQZsCX5ZU+QxODDtizLvmqmyiBa37mIkoI1sDgHT79xkBx6v88DiWitcguv0
-	hUb7DJgoiFwKJk5CZI5U8KeQp2gig9SiqrF1UQs0R2NcVd0rKWdoVCkeMHtV9b2TON0p
-	ejnqPK+k8SYDpFOGhhI/8IfTpKz2jgJOifpFseUOwAlE7jBVJN9MTqNrXA+DAExN0Lpd
-	qClg==
-X-Gm-Message-State: ALyK8tJcONvWwpfoZUSi18npVRDYxHAvtG0Mux0LLwTykBQOl5Q+Y8qvx+ERoasN8djouJRJ5o5PxaMIOlBxxESA
-X-Received: by 10.107.135.137 with SMTP id r9mr2159810ioi.133.1465548152325;
-	Fri, 10 Jun 2016 01:42:32 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 363DBE00CC0
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 02:08:58 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga104.fm.intel.com with ESMTP; 10 Jun 2016 02:08:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,449,1459839600"; d="scan'208";a="825402612"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
+	by orsmga003.jf.intel.com with ESMTP; 10 Jun 2016 02:08:56 -0700
+Date: Fri, 10 Jun 2016 07:16:03 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: S.Jaritz@esa-grimma.de
+Message-ID: <20160610041602.GA2776@mbabyjoh-desk.ger.corp.intel.com>
+References: <OF631D75D9.DBAD0BFE-ONC1257FCD.0030963E-C1257FCD.00317358@esa-grimma.de>
+	<CAHiDW_HFdwtg+eQDVzvwPKKA18ruRisYyiqbUZ5W0WDW6HqhCg@mail.gmail.com>
+	<OFE919EA27.F1B27E75-ONC1257FCD.0052E7E6-C1257FCD.0054015A@esa-grimma.de>
 MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Fri, 10 Jun 2016 01:42:12 -0700 (PDT)
-In-Reply-To: <575A7CAF.2050207@mlbassoc.com>
-References: <575A7B40.9050509@mlbassoc.com> <575A7CAF.2050207@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 10 Jun 2016 09:42:12 +0100
-Message-ID: <CAJTo0LZenM_UO1QRzWCVDGyurcyzKNrYnHVYjmCSpyJNfjK85w@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Another python3 error?
+In-Reply-To: <OFE919EA27.F1B27E75-ONC1257FCD.0052E7E6-C1257FCD.0054015A@esa-grimma.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: Antwort: Re: Problems with do_rootfs when changing the user password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,41 +43,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jun 2016 08:42:35 -0000
-Content-Type: multipart/alternative; boundary=001a113ec842055b4b0534e885a4
+X-List-Received-Date: Fri, 10 Jun 2016 09:09:00 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a113ec842055b4b0534e885a4
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-On 10 June 2016 at 09:39, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> Any hints on which (and why it's not being recommended by the sanity
-> checker)?
+On Thu, Jun 09, 2016 at 05:17:33PM +0200, S.Jaritz@esa-grimma.de wrote:
 >
+>Hej
+>
+>Thanks for the infos. I figured out that the common tutorial under meta-skeleton
+>does not covers the change of the root password. Although "usermod -P" does not exits.
+>Now the "usermod -p" wants a encrypted password. Looks like most of the examples at the
+>www are little outdated. My question is now:
+>
+>How are the steps to (re)set the root password?
+>
+>If you like I would prefer to solve this question like a tutorial.
+>
+>The starting point is a own layer ("myLayer") and a password ("myNewPassword1234").
 
-It's not recommended by the sanity checker because its only needed by
-depexp and on a X11-less build server will pull in vast numbers of packages.
+I would suggest to update this wiki page instead of starting something from scratch:
 
-It's the python2 GTK+2 bindings, so something like python-gtk is a good
-start.
+https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_password
 
-Ross
+>Regards!
+>
+>Stefan Jaritz
 
---001a113ec842055b4b0534e885a4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Warm Regards,
+Maxin
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 10 June 2016 at 09:39, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><div id=3D":3j8" class=3D"a3s aXjCH =
-m15539779920bdc87">Any hints on which (and why it&#39;s not being recommend=
-ed by the sanity checker)?<br></div></blockquote><div><br></div><div>It&#39=
-;s not recommended by the sanity checker because its only needed by depexp =
-and on a X11-less build server will pull in vast numbers of packages.</div>=
-<div><br></div><div>It&#39;s the python2 GTK+2 bindings, so something like =
-python-gtk is a good start.</div><div><br></div><div>Ross</div></div><br></=
-div></div>
-
---001a113ec842055b4b0534e885a4--
