@@ -1,60 +1,128 @@
-Return-Path: <pxmyhdev@gmail.com>
+Return-Path: <bartosz.woronicz@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 738FEE00DE6; Fri, 10 Jun 2016 11:13:03 -0700 (PDT)
+	id 1C809E00DF0; Fri, 10 Jun 2016 12:00:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pxmyhdev[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, MISSING_HEADERS, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.112.131 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.0 MISSING_HEADERS Missing To: header
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f172.google.com (mail-yw0-f172.google.com
-	[209.85.161.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA68E00D71
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 11:13:01 -0700 (PDT)
-Received: by mail-yw0-f172.google.com with SMTP id z186so55364880ywd.2
-	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 11:13:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=tOWGNUcapRH4YssM7F1St4yWbCrXZcITHh6u8aKZJmc=;
-	b=lL4BWFuO5XJNMEYKeAEdeJZ5DO5PTgWHUejlIZndRAVk9W1Kel+X9meCcVOEbw1kJD
-	LXZvewikVqIpDs3H2eFjFdNTPRuvLryBtueKLAHZjv1tvwcrfBXM0jqphadi26nHqH8b
-	3Mw2BeJXNUS9KLh63jqfDsHCbO5rW2X54URDh0JVICAtJtjYpTR0HhWqyZJtAHQ2HqQ6
-	iN69jxkU0WqhUpjScs6imDYvHw2Syv50ltSaUUjzggujQ8sJ4Wjg5C4IvGZgjuWl7XAt
-	Oy5WoXgo4isMBXe9Oz3KLfQe38AtVlBUtIhtJonlQZcW4EylBrgzG6y2tLDpaiGXQFLn
-	Db1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=tOWGNUcapRH4YssM7F1St4yWbCrXZcITHh6u8aKZJmc=;
-	b=PZ4sRTeIGcXHLbdfYrmNCgQOXqhZxlp7yEOkX/3qBsOIVUPfi2Si0py9wvmoSLv9tu
-	jyzb7khaehD8T8XJXMh0IHVeYEedBdiInDrGZ3BZufjbZ3yAKeRyUZE9I5Cv2CLqGWa5
-	eiB0+ztNKZKcYBA0hl0rLhgn8uT0zGGvvYOw62QQuWaY6L8X6jYpfF3M/EYnfOrfkwcv
-	xpDZGxAHBf8WdQravKKXjl2vHvDHU67Zhbb9NsKXL5stc92kwurXs6pL3psLrL3XcVP8
-	Hy6XLGFyOMkulBxIQPIo+9MyHxIHNqdyFbq2Wcc7daMmtpuVAJAT07DAStz2/g0CCYCw
-	CyJw==
-X-Gm-Message-State: ALyK8tJceii81kdwDhcSd3t+sWLxudqbY1yOoReGWWD8jnHyuvvpQZx/pASLcloJJhZfPOrsfJQhLafC0a9TkQ==
-X-Received: by 10.13.211.134 with SMTP id v128mr1885857ywd.272.1465582380235; 
-	Fri, 10 Jun 2016 11:13:00 -0700 (PDT)
+X-Greylist: delayed 8274 seconds by postgrey-1.32 at yocto-www;
+	Fri, 10 Jun 2016 12:00:44 PDT
+Received: from emea01-am1-obe.outbound.protection.outlook.com
+	(mail-am1on0131.outbound.protection.outlook.com [157.56.112.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA79AE00DED
+	for <yocto@yoctoproject.org>; Fri, 10 Jun 2016 12:00:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com; 
+	s=selector1-nokia-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=iNWXl+jlXzDM7BAGS/d9YBD6Tft6jDj5Y7yLzv/BYbQ=;
+	b=YPnRwMpk3aYWoJRKu+CdwNCiAcpeIpuosT6RkTAfBLtW1+h/oImTWZQWb5IPI1uNsQku2V++Lqdbeywib/0L8aVWc94HJZ1kg60p9nkVhUtF+Wht7BBykgjjpymzSvdMVPsAu1ugMxT/6INVtCHlTlsx0B3cw5RjlxLj/r9KMzk=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=bartosz.woronicz@nokia.com; 
+Received: from [10.154.187.104] (131.228.32.168) by
+	AM2PR07MB1042.eurprd07.prod.outlook.com (10.162.37.27) with Microsoft
+	SMTP Server (TLS) id 15.1.506.9; Fri, 10 Jun 2016 16:28:32 +0000
+References: <5756E529.3000500@nokia.com>
+	<CAJTo0LYx16CNV_bvxC_Oe6738YfqvMwK38vC47jnK-HMHUmAyg@mail.gmail.com>
+CC: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
+Message-ID: <575AEAAC.9020701@nokia.com>
+Date: Fri, 10 Jun 2016 18:28:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-Received: by 10.37.223.214 with HTTP; Fri, 10 Jun 2016 11:12:59 -0700 (PDT)
-From: Michael Hu <pxmyhdev@gmail.com>
-Date: Fri, 10 Jun 2016 14:12:59 -0400
-Message-ID: <CAPYQ8X7beSjV7JhuMBsamZXt_SDV7xNnpka7tzRQDSTg76vAag@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: do_patch through Yocto fails while "git am" succeed
+In-Reply-To: <CAJTo0LYx16CNV_bvxC_Oe6738YfqvMwK38vC47jnK-HMHUmAyg@mail.gmail.com>
+X-Originating-IP: [131.228.32.168]
+X-ClientProxiedBy: AM5PR0501CA0002.eurprd05.prod.outlook.com (10.164.187.12)
+	To AM2PR07MB1042.eurprd07.prod.outlook.com (10.162.37.27)
+X-MS-Office365-Filtering-Correlation-Id: f4c20d8f-1447-4471-3fd2-08d3914c43d9
+X-Microsoft-Exchange-Diagnostics: 1; AM2PR07MB1042;
+	2:Izgz6rjsjU9c3AcgMdIoY2UQ/Pro42JZLOefuT0XhMWEVA+RUlO6oO9rMo+3dEx2ogUaOuChOfQAI2GTOn8+h7vun7vhs6wtYB5ri2vFw8pH6OZJfq8Xa4HbFakviLq5BLQ7JLaOT7DmJLJXAb52uXK+n6MHdj/t+Xwvd8N05R6c1Z/D5kBYCxeut/Mjz5RY;
+	3:xD8tP4rO2Jn5QR+Dz2rtYPAPaLfrg/CIHp/l8YR3uq27x+KBsgV3oELabHj/t8jpBmB9OMMZEbNNQIjFHufF7iOSPahCp9WQe6kwqLg7V/XERj8OYTwSiUCF2H/qgwQ9
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:AM2PR07MB1042;
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; AM2PR07MB1042;
+	25:CEe6rCjkMl88AC4/i7UTqJ2s/O91F+GFzePMEX1ga?=
+	=?us-ascii?Q?s/go6O8m63jrP40vgyWs9XMM2k+3SKJEmu7WSsN89hwgQ8ZtEtRtSWbzZnTc?=
+	=?us-ascii?Q?hGGHLU2kw/Q1oXn0vF5gp49Fv3TyB0oeGfBHKJlhn0Vp8vliNXnBQFLPxior?=
+	=?us-ascii?Q?N/Hnaqa+6iNCHYvqKq1QsB0f/ezJoq4CX2Ccusk3BzE8jKUPB7+jDXkKWlY7?=
+	=?us-ascii?Q?PZYdhciHZBINkZ5aXpyqIRQXVmrKfsvKpbPbbSw/mehDe/HuZ9SrR/hMjwnS?=
+	=?us-ascii?Q?DnAEwE4wiI35jTNcp+PJJYc9AwZFvPEDD7pxHWEDSEF4n0xiJEPGsWHHnTfY?=
+	=?us-ascii?Q?H3orhTHW3LzyKWg+P9wceax/GwnwqY/2WH/UQKhv5J/+b64YF+UYBN7hz4aO?=
+	=?us-ascii?Q?+H1qUC3Jn2/syG/6XPkXkyUebd6/Zh0+cRURnE7tqnBWnSqBAZbNR+HYvZhN?=
+	=?us-ascii?Q?AsdRm01KDtvBPER2kMLWpe4uHzjJur7UlW74Os+zH6e9zTOwvmlQ0Ayy+qkC?=
+	=?us-ascii?Q?rJEC3MOKc+dCugsQO/FPK+Y0ONsmnoKv4hJZEqFe1uuo2aeoSxPq1kgbbOp4?=
+	=?us-ascii?Q?+3M9XaeRotK3+3D5i18OdaCU0YiDzt1W7WBQIMfkAjbAkGVx0/IZZ5BUub8r?=
+	=?us-ascii?Q?cNSrnXESGwDo/2Ys1fq+nXthaNe1WoOZ/gdxfMXykHS484pmDSuKgYx/DFmA?=
+	=?us-ascii?Q?q6HQyRvNj/fJT2yKq862jqL0L8N83/8Qg06eWVXPewksHBkS99iLQKth9nZA?=
+	=?us-ascii?Q?H+M1JfujaMZgaYjimrc+PLlWCv4osCWogv7KI/ynf8NwVBuzoiE83b9PEuq1?=
+	=?us-ascii?Q?x9JAv1RMsGnWMCYDdHo0+BYN0w8vDjn0M4BN1NJ2q9ClZF8SADC7GDkSme9o?=
+	=?us-ascii?Q?tBYB/PYXd9OqATolbxx2RoE445Oam64wNP87uNRFuz6HHu29Bu/d18Htgq9C?=
+	=?us-ascii?Q?ripLKBQ7BNS+YzEjZ/EbmpaIVd13tdi3p9ZBvu8IWYA9N+4Y7Ui1np5cQkb0?=
+	=?us-ascii?Q?s0=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; AM2PR07MB1042;
+	20:Ul4hWhK6CDA18XKN7ZnkDln63h767fDr2u+DxSExfY6QHemsVusvxRC74QARrlvE9HeOEnZYmwGTWZAPR0mUhfvz8FCac8SMOE/6cDRJL5UJnfzisvL+FnV2HKEsPk87HkduWgYS64DRLsVq+se1PZ/VqpM4X+jACUN5WXCh0BGlHC6yYf+ro6DfiWx2pnF9kDsXxXq6VOOLVYgnMdJFgYgjF7Y+l6IvXPXTODIh58btC1ctND8XieKGATQh0CUIh6GBNHqnZQYmS816vtBEYlRqRNw79kttfXhmCyJjc900tWsyZAkhHfW+iVu87fXw5A3ZIFGIQlkGJOgomf1urQB1XN1Q6RaYLCnXgTPBgReed2WYQuXYmnHxyZ1EKuvLeilplBvBwamSSGLFEGbj/3xHCtEWDwsM+u16PgtYyPEcWpH1fpkj7BfhahVCpFAWRBZc8V9nHfwEhjvANHNaWUdZEefs2D0ZNFemXVc/GqhlNTruLefdkGcgFhO3JuQN;
+	4:7aPfzrxs2Q9S/8zrtv/cSVQw8jcahPAlMEw1XZS2Y7lJU7JAQtbm+ymCGfZ7GFbdnMGFOCm/xFylCx1lM0Dks2jfkqyQ1Z2w6NYXiniMM5JMbEHrg0akx5VWeJEcZ59hKG9jl4McdQSn3soRS8qMav7zigww9Kfdff+PSkmTEBPUbZN7Ydq27FYpaCqQDKZOsAXQb/njNDmkISZE7IfEORrxEkNmk2MIL2saYUs+8auJeL/jKk+WAg1XN7SqwvPaRacUXyjrgNK7kZY4oBlSFjpnKMWoItZMPF/vRn3O2oyp0jyJ5jItRnAjWkIMabAIpzHLRQcSFToOCR35JNukWHryfMczU+fv+YHLjUdjkkjhLUoY5oa4L9iYU1+0+IkQVN3AUpCHKl8X4WfAaEq5CR7URKVNiXiVnmz2GCR/m4U=
+X-Microsoft-Antispam-PRVS: <AM2PR07MB10429CD20285E9A3639DC1B381500@AM2PR07MB1042.eurprd07.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:(82608151540597);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046);
+	SRVR:AM2PR07MB1042; BCL:0; PCL:0; RULEID:; SRVR:AM2PR07MB1042; 
+X-Forefront-PRVS: 096943F07A
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(4630300001)(6049001)(7916002)(199003)(189002)(71364002)(24454002)(16236675004)(36756003)(2950100001)(68736007)(4001350100001)(450100001)(512874002)(76176999)(5004730100002)(97736004)(59896002)(50986999)(54356999)(101416001)(65816999)(87266999)(64126003)(65806001)(189998001)(15975445007)(4001450100002)(42186005)(77096005)(1671002)(33656002)(5008740100001)(86362001)(92566002)(6116002)(81156014)(81166006)(59246006)(3846002)(109986004)(19617315012)(19580405001)(19580395003)(80316001)(586003)(4326007)(8676002)(2906002)(106356001)(83506001)(84326002)(105586002)(66066001)(110136002)(270700001)(65956001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM2PR07MB1042; H:[10.154.187.104];
+	FPR:; SPF:None; PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: nokia.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; AM2PR07MB1042;
+	23:txEzvM1tpa2kzQ9Pa63CSBROaU0kzfJlS2hyYHuFJ?=
+	=?us-ascii?Q?4U5o9qvRBGxAQlCiCZilZYpTUc31ke75F+98wy2L1xOPbOBccBMED75ezx4/?=
+	=?us-ascii?Q?9Q2xLBuhJuJwr1i5FZusMiYIZfp4Q8UUUCZ7qa0u4li/zRS7L/IVWajMyGUj?=
+	=?us-ascii?Q?ZkTiXx3iuOigYH8BAPDxf8WlxE7vdUq+kJIynexkzQHDpwqV/pXbmRGkIBh8?=
+	=?us-ascii?Q?LIMmkPPTbm7BX4/wOQ502nOLl6UxRYKMYKHO7wD6oWCIx7Zldbg8QnXOlnGB?=
+	=?us-ascii?Q?rIcx17s6+BGShpEZ9HKTCkyoYvRhOgl4uDPljxYdPpMTU7GvdthR1vKH0SW8?=
+	=?us-ascii?Q?We2CMueWFeMYqannuY98+sYWBZ7Gj1sYZRWXe6xQbTJst1pYfQHrxqqHaXCl?=
+	=?us-ascii?Q?fL+9/TaNpt/rahne/hFqyrObRWq+JHlaaxxi+Og1zxQjuiagRPYmHu2rg+FC?=
+	=?us-ascii?Q?iksgiGEjcw1rKADqrEtCMYJ+9LmA/FtWjlaRPqmbYpuDcmdDqeamQaW/n72b?=
+	=?us-ascii?Q?YGYIrwpzVdj3moASd0VdOwm0MOuZaOeo1QRdKUm4SzUfHLuRuez/O/9rahFN?=
+	=?us-ascii?Q?N9Ske7jgv79qihVxi8zeOzrit0nWOnxu9rcDHhW6qQCVDbcvFAzZbPzzsiBr?=
+	=?us-ascii?Q?sqnKC+Lwjq30+GuGc+57raGVuwkAjcz16uHIy/mvCagzxeIevJUDqy8JEC26?=
+	=?us-ascii?Q?g6uULxDBnKa2jxKVgEzTRqA0XrHbmEixh6hRE80iNZk9lTbwcBvGkP+/MDVX?=
+	=?us-ascii?Q?YN2smrv+VEFwETtly8ifaKUwphZxLOZBDKpm/kjHBl1WGhpT5FmIJo8cv5iN?=
+	=?us-ascii?Q?+DuqSzTNPfR9r4cUX6qSOwX3tjlF1voPabFPKf7rAbGrF38/R68K2bShijnY?=
+	=?us-ascii?Q?o9aoqTOO6si4Ivvqmyp+efFaj7GvaPgUwd+MVJ+nZm27NBd9vztu6UcEGUae?=
+	=?us-ascii?Q?SFU6pKQuqtAnvwIuXMmbuhF2aCLJDPkVh08VP70599uRBs1mPOCAbh7LqX/z?=
+	=?us-ascii?Q?hCsey1xb/gtRBKxp+m1LYjUF1g4VJjORwZpxwmYS8G8X3+bdVgO3KGyCGrSp?=
+	=?us-ascii?Q?b7OhYDneiEZQ3O0RaED9cvk/7IhOkKCV3RvbLMUUJOjUdyFau/v5EEvGWAmT?=
+	=?us-ascii?Q?VB4PCvus81mxIlDckZitzDpv9AfmZqpRFvdzYvrwaj5zagcM2Ma6QzPDPW+N?=
+	=?us-ascii?Q?w4H5ZxksbsKpS5TRxmdXuohPXn8+o+SgUZCG94E6nYxDWGFJeOB8Dh3CNN5m?=
+	=?us-ascii?Q?V8DCH38Uf7TPQv5zXv2M7Blk+T/f7nNrwM3Z5y7YCzvmX4vtVUq9QReIZZ3g?=
+	=?us-ascii?Q?fj6eycXUGnm0h7u3eOxxNukdkpZQeWkLecYXH5XlUS8v/OdvIvFYmwQo5RyU?=
+	=?us-ascii?Q?/D3hAiqyWUXxH++L2OXd/lbQFJs12wKSWzXIl5ze6kUt3858kXFhpwoEv3HK?=
+	=?us-ascii?Q?8sr/ymlOIPIeAE6IbEmMuqcBisYVfs=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; AM2PR07MB1042;
+	5:IC/P5nGySQNzLscU9FzjTe9r7BwMbudKAh1emhWCqkB0NwKXmxmxLe7JZubgKpbA9HR/laMFJ3MlLbvkqDWPWMMvQ8sZJNsZ6qpSIrG8Aj4nNK8kismZaqCw/tohc9oBHSNxoimroVPYAGcjagfLBQ==;
+	24:Kp0LTyr2OjryQ6EBSAEOtjX9TVtO8JRnddndPtLBdKkfKbfIoVZQHQLjlVqJbR5NSQeOvq0FjkfI3QnorBv8bj5nIsrMwKDCJKGWgCk36k0=;
+	7:PwWG0AeRDZJdaxxKf//hVLDp7z2hk1deScGUMy6o8o6gY+eS2sRJFvvupONCxI1wTpAZoLQ+UUs9Qu6RS1bFXa3RoC1mexcMBIFI9ym1U7aTy4z9xbopxP+MhemrtZyqOV2RcedbClKtIbyeNQzH9xG54Gnlozn8uK7z/dhq33dVguO/o97AaHVRPHfTEBbDrqZWDMpor6soqSDwSxcZlYyC561/EgGqtJfOBhpxTTs=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2016 16:28:32.9193 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM2PR07MB1042
+Subject: Re: [PULL] fixes in Dependency Explorer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,61 +134,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jun 2016 18:13:03 -0000
-Content-Type: multipart/alternative; boundary=001a114daa9c29c0f30534f07da2
+X-List-Received-Date: Fri, 10 Jun 2016 19:00:48 -0000
+Content-Type: multipart/alternative;
+	boundary="------------060003080609000109080900"
 
---001a114daa9c29c0f30534f07da2
-Content-Type: text/plain; charset=UTF-8
+--------------060003080609000109080900
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Does anyone know what's the difference between using Yocto to apply patches
-and apply patch directly using git command?
+Yeah, sure. I will send them on Monday. Thanks!
 
-I am trying to apply patches for arm-trusted-firmware through yocto by
-extending arm-trusted-firmware.bb file, in .bbappend file, I have:
+Kind regards,
+Bartosz Woronicz
+Engineer, Software Configuration (SCM)
+Nokia Networks - PL/Wroclaw
 
-SRC_URI = "file://<some patch name>"
+On 10.06.2016 13:58, Burton, Ross wrote:
+> Hi Bartosz,
+>
+> Please can you re-send these to the bitbake list?
+>
+> Thanks,
+> Ross
+>
+> On 7 June 2016 at 16:15, Woronicz, Bartosz ( NSN - PL/Wroclaw) 
+> <bartosz.woronicz@nokia.com <mailto:bartosz.woronicz@nokia.com>> wrote:
+>
+>
+>     -- 
+>     Kind regards,
+>     Bartosz Woronicz
+>     Engineer, Software Configuration (SCM)
+>     Nokia Networks - PL/Wroclaw
+>
+>
+>     --
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-I got the following error:
-ERROR: arm-trusted-firmware-1.2 do_patch: Command Error: 'quilt --quiltrc
-/build/tmp/sysroots/x86_64-linux/etc/quiltrc push' exited with 1  Output:
-Applying patch 0002-csu_dma-Added-support-to-load-PL-bitstream.patch
-(Stripping trailing CRs from patch.)
-... some files can be patched
-patching file <failed file>
-Hunk #1 FAILED at 41.
-1 out of 1 hunk FAILED -- rejects in file <failed file>
-Patch 0002-csu_dma-Added-support-to-load-PL-bitstream.patch does not apply
-(enforce with -f)
 
-However, if using "git am <patch>" under cloned arm-trusted-firmware git
-repo, the patches are successfully patched.
+--------------060003080609000109080900
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 
-What could be the difference?
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Yeah, sure. I will send them on Monday. Thanks!<br>
+    <pre class="moz-signature" cols="72">Kind regards,
+Bartosz Woronicz
+Engineer, Software Configuration (SCM)
+Nokia Networks - PL/Wroclaw</pre>
+    <div class="moz-cite-prefix">On 10.06.2016 13:58, Burton, Ross
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAJTo0LYx16CNV_bvxC_Oe6738YfqvMwK38vC47jnK-HMHUmAyg@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <div dir="ltr">Hi Bartosz,
+        <div><br>
+        </div>
+        <div>Please can you re-send these to the bitbake list?</div>
+        <div><br>
+        </div>
+        <div>Thanks,</div>
+        <div>Ross</div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">On 7 June 2016 at 16:15, Woronicz,
+          Bartosz ( NSN - PL/Wroclaw) <span dir="ltr">&lt;<a
+              moz-do-not-send="true"
+              href="mailto:bartosz.woronicz@nokia.com" target="_blank"><a class="moz-txt-link-abbreviated" href="mailto:bartosz.woronicz@nokia.com">bartosz.woronicz@nokia.com</a></a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex"><span
+              class="HOEnZb"><font color="#888888"><br>
+                -- <br>
+                Kind regards,<br>
+                Bartosz Woronicz<br>
+                Engineer, Software Configuration (SCM)<br>
+                Nokia Networks - PL/Wroclaw<br>
+                <br>
+              </font></span><br>
+            --<br>
+            _______________________________________________<br>
+            yocto mailing list<br>
+            <a moz-do-not-send="true"
+              href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+            <a moz-do-not-send="true"
+              href="https://lists.yoctoproject.org/listinfo/yocto"
+              rel="noreferrer" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+            <br>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-Thanks!
-
---001a114daa9c29c0f30534f07da2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Does anyone know what&#39;s the difference between using Y=
-octo to apply patches and apply patch directly using git command?<div><br><=
-/div><div>I am trying to apply patches for arm-trusted-firmware through yoc=
-to by extending <a href=3D"http://arm-trusted-firmware.bb">arm-trusted-firm=
-ware.bb</a> file, in .bbappend file, I have:</div><div><br></div><div>SRC_U=
-RI =3D &quot;file://&lt;some patch name&gt;&quot;</div><div><br></div><div>=
-I got the following error:</div><div><div>ERROR: arm-trusted-firmware-1.2 d=
-o_patch: Command Error: &#39;quilt --quiltrc /build/tmp/sysroots/x86_64-lin=
-ux/etc/quiltrc push&#39; exited with 1 =C2=A0Output:</div><div>Applying pat=
-ch 0002-csu_dma-Added-support-to-load-PL-bitstream.patch</div><div>(Strippi=
-ng trailing CRs from patch.)</div><div>... some files can be patched=C2=A0<=
-/div><div>patching file &lt;failed file&gt;</div><div>Hunk #1 FAILED at 41.=
-</div><div>1 out of 1 hunk FAILED -- rejects in file &lt;failed file&gt;</d=
-iv><div>Patch 0002-csu_dma-Added-support-to-load-PL-bitstream.patch does no=
-t apply (enforce with -f)</div><div><br></div><div>However, if using &quot;=
-git am &lt;patch&gt;&quot; under cloned arm-trusted-firmware git repo, the =
-patches are successfully patched.</div></div><div><br></div><div>What could=
- be the difference?</div><div><br></div><div>Thanks!</div><div><br></div></=
-div>
-
---001a114daa9c29c0f30534f07da2--
+--------------060003080609000109080900--
