@@ -1,33 +1,39 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CFA37E00B45; Sun, 12 Jun 2016 01:40:31 -0700 (PDT)
+	id 0C20FE00C66; Sun, 12 Jun 2016 06:47:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.85 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 957E3E00B04
-	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 01:40:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id u5C8eSTe000888
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 01:40:28 -0700
-Received: from ala-blade48.wrs.com (147.11.105.68) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Sun, 12 Jun 2016 01:40:27 -0700
-From: Robert Yang <liezhi.yang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Sun, 12 Jun 2016 01:40:26 -0700
-Message-ID: <1465720826-4636-2-git-send-email-liezhi.yang@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1465720826-4636-1-git-send-email-liezhi.yang@windriver.com>
-References: <1465720826-4636-1-git-send-email-liezhi.yang@windriver.com>
+Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1682E00AD2
+	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 06:47:40 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
+	via TCP (outbound) with ESMTPS id 20160612134720178_0485
+	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 13:47:20 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=28988 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bC5l7-0000SG-EM
+	for yocto@yoctoproject.org; Sun, 12 Jun 2016 09:49:01 -0400
+Date: Sun, 12 Jun 2016 09:46:38 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1606120943400.10156@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 2/2] sepolgen: inherit python-dir
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: any way to start culling (or updating) yocto web pages?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,55 +45,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Jun 2016 08:40:31 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sun, 12 Jun 2016 13:47:44 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-Fixed:
-sepolgen-1.2.3: sepolgen: Files/directories were installed but not shipped in any package:
-  /usr
-  /usr/lib
-  /usr/lib/python
-  /usr/lib/python/site-packages
-  /usr/lib/python/site-packages/sepolgen
-  /usr/lib/python/site-packages/sepolgen/lex.py
-  /usr/lib/python/site-packages/sepolgen/matching.py
-  /usr/lib/python/site-packages/sepolgen/sepolgeni18n.py
-  /usr/lib/python/site-packages/sepolgen/__init__.py
-  /usr/lib/python/site-packages/sepolgen/classperms.py
-  /usr/lib/python/site-packages/sepolgen/refparser.py
-  /usr/lib/python/site-packages/sepolgen/module.py
-  /usr/lib/python/site-packages/sepolgen/objectmodel.py
-  /usr/lib/python/site-packages/sepolgen/interfaces.py
-  /usr/lib/python/site-packages/sepolgen/access.py
-  /usr/lib/python/site-packages/sepolgen/output.py
-  /usr/lib/python/site-packages/sepolgen/refpolicy.py
-  /usr/lib/python/site-packages/sepolgen/defaults.py
-  /usr/lib/python/site-packages/sepolgen/audit.py
-  /usr/lib/python/site-packages/sepolgen/yacc.py
-  /usr/lib/python/site-packages/sepolgen/util.py
-  /usr/lib/python/site-packages/sepolgen/policygen.py
-Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
-sepolgen: 22 installed and not shipped files. [installed-vs-shipped]
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
----
- recipes-security/selinux/sepolgen.inc | 2 ++
- 1 file changed, 2 insertions(+)
+  more nitpicky pedantry, but is there any value in removing obviously
+dated references from some of the YP web pages? i just googled on
+"openembedded smart package manager", and the very first hit took me
+here:
 
-diff --git a/recipes-security/selinux/sepolgen.inc b/recipes-security/selinux/sepolgen.inc
-index b5729ae..daf213d 100644
---- a/recipes-security/selinux/sepolgen.inc
-+++ b/recipes-security/selinux/sepolgen.inc
-@@ -19,6 +19,8 @@ FILES_${PN} = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
- 
- DEPENDS += "python"
- 
-+inherit python-dir
-+
- FILES_${PN} += "${libdir}/python${PYTHON_BASEVERSION}/site-packages \
- 		/var/lib/sepolgen"
- 
+https://www.yoctoproject.org/blogs/khem/2013/get-smart-smart-package-manager
+
+which talks about smart "coming out" with YP 1.4, from back in 2013. i
+suspect there's more of that.
+
+rday
+
 -- 
-2.7.4
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
