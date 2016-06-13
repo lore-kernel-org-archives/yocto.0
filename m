@@ -1,66 +1,109 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <hramasub@in.ibm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F75CE00E8E; Mon, 13 Jun 2016 09:02:24 -0700 (PDT)
+	id 9A615E00E8E; Mon, 13 Jun 2016 09:34:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	HTML_MIME_NO_HTML_TAG,MIME_HTML_ONLY,RCVD_IN_DNSWL_LOW autolearn=no
+	version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.179 listed in list.dnswl.org]
+	*      [148.163.156.1 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9138DE00E85
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 09:02:21 -0700 (PDT)
-Received: by mail-pf0-f179.google.com with SMTP id c2so47529598pfa.2
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 09:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=dFVH1W+ZuakymR57m+nY5LRObiRmmaSwjnspnFqa4xs=;
-	b=16tPr7AqESdFb1WB+V46WZW7/3QIfKbykkQ3AM4lJmRf3/KNdsYZfvWVCdirIQkhAx
-	V5uKlOfj3Z3Qdgs/cUJ0YafVjYnZ1fv9PGkKaG8PnOge7Qt4lVvT1dhdDV++POCsdiQl
-	TuEHhHa3pQJVLGYw/ta7hqGx1E0ARiZ8fkXVmiaKo7TnY9lLczp0Sr/ruq1WSOjxVdYy
-	HCsgK21jXCZLu+s59jyr6daXZkxp7YjpFKSTod+PuHWyaseVO3WzrQcit878CIzfQcDJ
-	b+jyIl0jyEmzvUI5gdVHq8GpKuwpdWn/YWB1LeCex/cE4UfS3x5WzzeaZxXymDpGhIOk
-	92SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=dFVH1W+ZuakymR57m+nY5LRObiRmmaSwjnspnFqa4xs=;
-	b=A+e2f3rGvcFXEg1m0eLQNGRGaMqw1MZbwvErA/3vnRkOzDTS4Gx+EpSkd2EuDSZog5
-	5Tep1uqTU0lHHNKl8GdhuNUia8KrCqIv+sL4xzXeNAyY9CA44ndYFezshR2bnFJD1qx8
-	lDMQ1vOfqGxclpEnsiMcWoPozwDkFz5NCvYI6COlvP1a1f4W8JmToPpccqAFIt/7T6t8
-	kjuZWDSakU5F1kg26qrLzSZ0fBNiZApZ1m1Xaj8JEX92Euwv/o1ogT4plHdELij2x9yE
-	66Hxy+R5z7baMIH0G+6QfWn9JBGG5IL/SFh7EGrSwcrM4jTSxN5DoqhqTdHcbIuKQV70
-	fzNg==
-X-Gm-Message-State: ALyK8tITSpRl2QNCUstDfM5yZFA7CnaRLn9idKOPePbHZrs+zC4oxobSY/bj7r6RFa4uWTQt
-X-Received: by 10.98.102.25 with SMTP id a25mr14495341pfc.65.1465833740502;
-	Mon, 13 Jun 2016 09:02:20 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:3123:fb4c:c37d:c171?
-	([2601:202:4001:9ea0:3123:fb4c:c37d:c171])
-	by smtp.googlemail.com with ESMTPSA id
-	o193sm18953850pfo.12.2016.06.13.09.02.19 for <yocto@yoctoproject.org>
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Mon, 13 Jun 2016 09:02:19 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+	*  0.4 HTML_MIME_NO_HTML_TAG HTML-only message, but there is no HTML tag
+X-Greylist: delayed 6513 seconds by postgrey-1.32 at yocto-www;
+	Mon, 13 Jun 2016 09:34:52 PDT
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+	[148.163.156.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69DA6E00E88
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 09:34:52 -0700 (PDT)
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.16.0.11/8.16.0.11) with SMTP id
+	u5DEic6r096351
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 10:46:18 -0400
+Received: from e28smtp02.in.ibm.com (e28smtp02.in.ibm.com [125.16.236.2])
+	by mx0a-001b2d01.pphosted.com with ESMTP id 23geqn2d82-1
+	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 10:46:18 -0400
+Received: from localhost
+	by e28smtp02.in.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use
+	Only! Violators will be prosecuted
+	for <yocto@yoctoproject.org> from <hramasub@in.ibm.com>;
+	Mon, 13 Jun 2016 20:16:15 +0530
+Received: from d28dlp01.in.ibm.com (9.184.220.126)
+	by e28smtp02.in.ibm.com (192.168.1.132) with IBM ESMTP SMTP Gateway:
+	Authorized Use Only! Violators will be prosecuted; 
+	Mon, 13 Jun 2016 20:16:11 +0530
+X-IBM-Helo: d28dlp01.in.ibm.com
+X-IBM-MailFrom: hramasub@in.ibm.com
+X-IBM-RcptTo: yocto@yoctoproject.org
+Received: from d28relay04.in.ibm.com (d28relay04.in.ibm.com [9.184.220.61])
+	by d28dlp01.in.ibm.com (Postfix) with ESMTP id AFD94E0040
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 20:19:46 +0530 (IST)
+Received: from d50lp03.ny.us.ibm.com (d50lp03.extnet.ibm.com [146.89.104.211])
+	by d28relay04.in.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+	u5DEjXIP49479894
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 20:15:34 +0530
+Received: from localhost
+	by d50lp03.ny.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use
+	Only! Violators will be prosecuted
+	for <yocto@yoctoproject.org> from <hramasub@in.ibm.com>;
+	Mon, 13 Jun 2016 10:46:08 -0400
+Received: from smtp.notes.na.collabserv.com (192.155.248.93)
+	by d50lp03.ny.us.ibm.com (158.87.18.22) with IBM ESMTP SMTP Gateway:
+	Authorized Use Only! Violators will be prosecuted; 
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256/256)
+	Mon, 13 Jun 2016 10:46:07 -0400
+X-IBM-Helo: smtp.notes.na.collabserv.com
+X-IBM-MailFrom: hramasub@in.ibm.com
+X-IBM-RcptTo: yocto@yoctoproject.org
+Received: from /spool/local
+	by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
+	for <yocto@yoctoproject.org> from <hramasub@in.ibm.com>;
+	Mon, 13 Jun 2016 14:46:06 -0000
+Received: from us1a3-smtp04.a3.dal06.isc4sb.com (10.106.154.237)
+	by smtp.notes.na.collabserv.com (10.106.227.39) with
+	smtp.notes.na.collabserv.com ESMTP; Mon, 13 Jun 2016 14:46:04 -0000
+Received: from us1a3-mail111.a3.dal06.isc4sb.com ([10.146.45.113])
+	by us1a3-smtp04.a3.dal06.isc4sb.com
+	with ESMTP id 2016061314460153-315054 ;
+	Mon, 13 Jun 2016 14:46:01 +0000 
+In-Reply-To: 
+From: "Hariharasubramanian Ramasubramanian" <hramasub@in.ibm.com>
 To: yocto@yoctoproject.org
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155E57185190@fmsmsx111.amr.corp.intel.com>
-From: akuster <akuster@mvista.com>
-Message-ID: <575ED90A.6020901@mvista.com>
-Date: Mon, 13 Jun 2016 09:02:18 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.5.1
+Date: Mon, 13 Jun 2016 14:46:02 +0000
+Sensitivity: 
+References: 
 MIME-Version: 1.0
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E57185190@fmsmsx111.amr.corp.intel.com>
-Subject: Re: Yocto Project Status WW24
+Importance: Normal
+X-Priority: 3 (Normal)
+X-Mailer: Lotus Domino Web Server Build V851SAAS_05232016_FP5.1 June 03, 2016
+X-LLNOutbound: False
+X-Disclaimed: 10271
+X-TNEFEvaluated: 1
+x-cbid: 16061314-0004-0000-0000-0000029FE361
+X-IBM-ISS-SpamDetectors: Score=0.439231; BY=0.282969; FL=0; FP=0; FZ=0; HX=0; 
+	KW=0; PH=0; SC=0.439231; ST=0; TS=0; UL=0; ISC=
+X-IBM-ISS-DetailInfo: BY=3.00005375; HX=3.00000240; KW=3.00000007;
+	PH=3.00000004; SC=3.00000170; SDB=6.00715719; UDB=6.00333409;
+	UTC=2016-06-13 14:46:04
+x-cbparentid: 16061314-3202-0000-0000-000000BEC4EC
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+X-Content-Scanned: Fidelis XPS MAILER
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+Message-Id: <OF48437C7C.95D4B031-ON00257FD1.0050D5C9-00257FD1.00511E6D@notes.na.collabserv.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2016-06-13_08:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	spamscore=0 suspectscore=2
+	malwarescore=0 phishscore=0 adultscore=0 bulkscore=0 classifier=spam
+	adjust=0 reason=mlx scancount=1 engine=8.0.1-1604210000
+	definitions=main-1606130166
+Subject: IPMI server using OpenIPMI ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,93 +115,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2016 16:02:24 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 Jun 2016 16:34:55 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
+<div class=3D"socmaildefaultfont" dir=3D"ltr" style=3D"font-family:Arial;fo=
+nt-size:10.5pt" ><div dir=3D"ltr" ><div>This OpenIPMI recipe (https://layer=
+s.openembedded.org/layerindex/recipe/24126/) is enabled by the OpenClovis l=
+ayer.</div>
+<div><br>While OpenIPMI is a framework for implementing an IPMI management =
+"client" tool, it does provide a "lanserv" module. This module acts as an I=
+PMI simulator (on qemu) which helps in verifying/testing OpenIPMI client it=
+self.</div>
+<div>&nbsp;</div>
+<div>I am currently evaluating the usage of "lanserv" module within OpenIPM=
+I for implementing an IPMI server on the BMC(baseboard management controlle=
+r) for the OpenBMC project (<a href=3D"https://github.com/openbmc" >https:/=
+/github.com/openbmc</a>).</div>
+<div>&nbsp;</div>
+<div>Can this list comment/provide guidance on :<br>a) are there openembedd=
+ed/yocto based projects which use OpenIPMI (lanserv) to build an IPMI serve=
+r ?<br>b) alternate opensource IPMI toolkit/framework for implementing the =
+IPMI server on the BMC ?</div>
+<div>&nbsp;</div>
+<div>Thanks in advance,<br>Hari !</div></div></div><BR>
 
-
-On 06/10/2016 08:21 AM, Jolley, Stephen K wrote:
-> Current Dev Position: YP 2.2 M1
-> 
-> Next Deadline: YP 2.2 cut off: June 13, 2016 [3 days - Monday!]
-> 
-> 
-> SWAT team rotation: Jussi -> Maxim
-> 
-> https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-> 
-> 
-> Key Status/Updates:
-> 
-> *        We continue to see various python v3 issues however these are on the most part comparatively minor.
-> 
-> *        The Centos 7 auobuilder issues look to have been caused by XFS, switching to ext4 seems to have resolved it.
-> 
-> *        We're expecting some large patchsets for toaster bootstrap v2 -> v3 and changes to move OE-Core/Sato to gtk3+, am hoping to get these into M1.
-> 
-> *        Richard is starting a discussion on multi-configuration builds on the openembedded-architecture list.
-> 
-> *        YP 2.0.2 was released last week
-> 
-> *        We're now working on 2.1.1 with trial builds in preparation for a release
-
-Can I get a sense of when this might happen? when is a code freeze for
-this. I am wondering if I have time for another pass through master and
-submitted patches. As the Yocto Project follows a more formalized
-process, I am hoping I can get a heads up on when a new release is going
-to happen.
-
-- armin
-> 
-> *        2.2 M1 is due next week
-> 
-> 
-> Key YP 2.2 Dates:
-> 
-> *        YP 2.2 M1 cut off would be: 6/13/16
-> 
-> *        YP 2.2 M1 release would be: 6/24/16
-> 
-> *        YP 2.2 M2 cut off would be: 7/18/16
-> 
-> *        YP 2.2 M2 release would be: 7/29/16
-> 
-> *        YP 2.2 M3 cut off would be: 8/29/16
-> 
-> *        YP 2.2 M3 release would be: 9/9/16
-> 
-> *        YP 2.2 M4 cut off would be: 10/3/16
-> 
-> *        YP 2.2 M4 release would be: 10/28/16
-> 
-> 
-> Tracking Metrics:
-> 
->             WDD 2599 (last week 2622)
-> 
-> (https://wiki.yoctoproject.org/charts/combo.html)
-> 
-> 
-> Key Status Links for YP:
-> 
-> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
-> 
-> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
-> 
-> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
-> 
-> [If anyone has suggestions for other information you'd like to see on this weekly status update, let us know!]
-> 
-> Thanks,
-> 
-> Stephen K. Jolley
-> Yocto Project Program Manager
-> INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-> *   Work Telephone:        (503) 712-0534
-> *    Cell:               (208) 244-4460
-> * Email:                            stephen.k.jolley@intel.com
-> 
-> 
-> 
 
