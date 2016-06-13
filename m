@@ -1,67 +1,69 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20216E00E8E; Mon, 13 Jun 2016 08:53:06 -0700 (PDT)
+	id 2F75CE00E8E; Mon, 13 Jun 2016 09:02:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.214.10 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 24436 seconds by postgrey-1.32 at yocto-www;
-	Mon, 13 Jun 2016 08:53:03 PDT
-Received: from gt-egress-002.mailchannels.net
-	(barb.maple.relay.mailchannels.net [23.83.214.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D00E00E88
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 08:53:02 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 711EE62A77;
-	Mon, 13 Jun 2016 15:53:00 +0000 (UTC)
-Received: from hp181.hostpapa.com
-	(ip-10-123-105-117.us-west-2.compute.internal [10.123.105.117])
-	by relay.mailchannels.net (Postfix) with ESMTPA id C00E46308B;
-	Mon, 13 Jun 2016 15:52:58 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.25.19.46])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.6.14); Mon, 13 Jun 2016 15:53:00 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1465833179972:95519700
-X-MC-Ingress-Time: 1465833179972
-Received: from ip-217-103-177-37.ip.prioritytelecom.net
-	([217.103.177.37]:43642 helo=[10.191.255.204])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1bCUAa-003Hfo-Kg; Mon, 13 Jun 2016 17:52:58 +0200
-Message-ID: <1465833171.25504.1.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	"Randle, William C" <william.c.randle@intel.com>, "Lock, Joshua G"
-	<joshua.g.lock@intel.com>, "michael@yoctoproject.org"
-	<halstead@yoctoproject.org>
-Date: Mon, 13 Jun 2016 16:52:51 +0100
-In-Reply-To: <575ECC93.9000600@linux.intel.com>
-References: <5759DE3F.9040002@linux.intel.com>
-	<1465807715.4615.14.camel@toganlabs.com>
-	<575ECC93.9000600@linux.intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder] [RFC] Add support for generate bitbake error reports
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9138DE00E85
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 09:02:21 -0700 (PDT)
+Received: by mail-pf0-f179.google.com with SMTP id c2so47529598pfa.2
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 09:02:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=dFVH1W+ZuakymR57m+nY5LRObiRmmaSwjnspnFqa4xs=;
+	b=16tPr7AqESdFb1WB+V46WZW7/3QIfKbykkQ3AM4lJmRf3/KNdsYZfvWVCdirIQkhAx
+	V5uKlOfj3Z3Qdgs/cUJ0YafVjYnZ1fv9PGkKaG8PnOge7Qt4lVvT1dhdDV++POCsdiQl
+	TuEHhHa3pQJVLGYw/ta7hqGx1E0ARiZ8fkXVmiaKo7TnY9lLczp0Sr/ruq1WSOjxVdYy
+	HCsgK21jXCZLu+s59jyr6daXZkxp7YjpFKSTod+PuHWyaseVO3WzrQcit878CIzfQcDJ
+	b+jyIl0jyEmzvUI5gdVHq8GpKuwpdWn/YWB1LeCex/cE4UfS3x5WzzeaZxXymDpGhIOk
+	92SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=dFVH1W+ZuakymR57m+nY5LRObiRmmaSwjnspnFqa4xs=;
+	b=A+e2f3rGvcFXEg1m0eLQNGRGaMqw1MZbwvErA/3vnRkOzDTS4Gx+EpSkd2EuDSZog5
+	5Tep1uqTU0lHHNKl8GdhuNUia8KrCqIv+sL4xzXeNAyY9CA44ndYFezshR2bnFJD1qx8
+	lDMQ1vOfqGxclpEnsiMcWoPozwDkFz5NCvYI6COlvP1a1f4W8JmToPpccqAFIt/7T6t8
+	kjuZWDSakU5F1kg26qrLzSZ0fBNiZApZ1m1Xaj8JEX92Euwv/o1ogT4plHdELij2x9yE
+	66Hxy+R5z7baMIH0G+6QfWn9JBGG5IL/SFh7EGrSwcrM4jTSxN5DoqhqTdHcbIuKQV70
+	fzNg==
+X-Gm-Message-State: ALyK8tITSpRl2QNCUstDfM5yZFA7CnaRLn9idKOPePbHZrs+zC4oxobSY/bj7r6RFa4uWTQt
+X-Received: by 10.98.102.25 with SMTP id a25mr14495341pfc.65.1465833740502;
+	Mon, 13 Jun 2016 09:02:20 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:3123:fb4c:c37d:c171?
+	([2601:202:4001:9ea0:3123:fb4c:c37d:c171])
+	by smtp.googlemail.com with ESMTPSA id
+	o193sm18953850pfo.12.2016.06.13.09.02.19 for <yocto@yoctoproject.org>
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Mon, 13 Jun 2016 09:02:19 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <9ADD3FDE8B189B4AA2F8A3C711F8155E57185190@fmsmsx111.amr.corp.intel.com>
+From: akuster <akuster@mvista.com>
+Message-ID: <575ED90A.6020901@mvista.com>
+Date: Mon, 13 Jun 2016 09:02:18 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.5.1
+MIME-Version: 1.0
+In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E57185190@fmsmsx111.amr.corp.intel.com>
+Subject: Re: Yocto Project Status WW24
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -70,106 +72,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2016 15:53:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 13 Jun 2016 16:02:24 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2016-06-13 at 10:09 -0500, An=C3=ADbal Lim=C3=B3n wrote:
->=20
-> On 06/13/2016 03:48 AM, Beth 'pidge' Flanagan wrote:
-> >=20
-> > On Thu, 2016-06-09 at 16:23 -0500, An=C3=ADbal Lim=C3=B3n wrote:
-> > >=20
-> > > Hi folks,
-> > >=20
-> > > Currently we support to send error reports to
-> > > errors.yoctoproject.org
-> > > about failing tasks on bitbake using SendErrorReport buildstep
-> > > but we
-> > > have a lack of bitbake related errors like exceptions.
-> > >=20
-> > > A bug exist to implement this support into Error report web [1],
-> > > i'm
-> > > working on it but for generate bitbake error reports there's a
-> > > need
-> > > of
-> > > some process monitoring the bitbake output in this case the Yocto
-> > > Autobuilder.
-> > >=20
-> > > This email is for review my current implementation for generate
-> > > bitbake
-> > > error reports in the Autobuilder [2] next i'll try to explain how
-> > > it
-> > > works.
-> > >=20
-> > > I aadded a BitbakeShellCommand [3] class for use in the
-> > > buildsteps
-> > > that
-> > > executes bitbake the main objective of this class is to have
-> > > common
-> > > operations to be made in bitbake commands like create error
-> > > reports
-> > > if
-> > > fails.
-> > >=20
-> > > For create error reports this class add an stdio observer to look
-> > > at
-> > > bitbake output and if bitbake fails review the bitbake output for
-> > > identify if the failure is an non-related task error [4]. If the
-> > > observer found bitbake error creates an Error report with the
-> > > information in the master controller.
-> > >=20
-> > > In order to send the bitbake error to Error report web the
-> > > controller
-> > > transfer the report to the worker using a new DownloadDirectory
-> > > implementation that i made [5], the SendErrorReport buildstep
-> > > works
-> > > on
-> > > the worker side so it's easy to transfer the reports from master
-> > > to
-> > > worker instead of send it by master.
-> > >=20
-> > > Finally to complete with the job of have the bitbake errors
-> > > reports
-> > > the
-> > > Error report web changes need=C2=A0=C2=A0(i'm working on it) to be
-> > > integrated
-> > > first in order to don't break anything.
-> > >=20
-> > > Please review it and provide me feedback.
-> > >=20
-> >=20
-> > 1. fix the commit message to ea1d5b35bc77bad5d2
-> > 2. in same, why are you removing buildset-config.controller/poky-
-> > tiny.conf? I believe this is still supported (and even if it isn't
-> > in
-> > master, we maintain backwards compatibility)
-> Thanks for notice the removal of poky-tiny it wasn't my intention, i
-> did
-> an script to update the buildsets and seems that don't work well.
-> I'll
-> fix the last commit message ea1d5b35bc77bad5d2 and also include the
-> poky-tiny buildset.
->=20
 
-Great, if you can get this onto a dev cluster (halstead should have
-info here on connection), I'd be interested in seeing what a nightly
-and a nightly-arm do.
 
--b
+On 06/10/2016 08:21 AM, Jolley, Stephen K wrote:
+> Current Dev Position: YP 2.2 M1
+> 
+> Next Deadline: YP 2.2 cut off: June 13, 2016 [3 days - Monday!]
+> 
+> 
+> SWAT team rotation: Jussi -> Maxim
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+> 
+> 
+> Key Status/Updates:
+> 
+> *        We continue to see various python v3 issues however these are on the most part comparatively minor.
+> 
+> *        The Centos 7 auobuilder issues look to have been caused by XFS, switching to ext4 seems to have resolved it.
+> 
+> *        We're expecting some large patchsets for toaster bootstrap v2 -> v3 and changes to move OE-Core/Sato to gtk3+, am hoping to get these into M1.
+> 
+> *        Richard is starting a discussion on multi-configuration builds on the openembedded-architecture list.
+> 
+> *        YP 2.0.2 was released last week
+> 
+> *        We're now working on 2.1.1 with trial builds in preparation for a release
 
-> >=20
-> >=20
-> >=20
-> > As a whole, I like what is being done here. I would like this put
-> > on
-> > the devel cluster before bringing it into production, just to smoke
-> > test this, both with nightly builds and single builds. I can't see
-> > anything that would obviously blow up though.
-> >=20
-> > cheers,
-> >=20
-> >=20
-> > -b
-> >=20
+Can I get a sense of when this might happen? when is a code freeze for
+this. I am wondering if I have time for another pass through master and
+submitted patches. As the Yocto Project follows a more formalized
+process, I am hoping I can get a heads up on when a new release is going
+to happen.
+
+- armin
+> 
+> *        2.2 M1 is due next week
+> 
+> 
+> Key YP 2.2 Dates:
+> 
+> *        YP 2.2 M1 cut off would be: 6/13/16
+> 
+> *        YP 2.2 M1 release would be: 6/24/16
+> 
+> *        YP 2.2 M2 cut off would be: 7/18/16
+> 
+> *        YP 2.2 M2 release would be: 7/29/16
+> 
+> *        YP 2.2 M3 cut off would be: 8/29/16
+> 
+> *        YP 2.2 M3 release would be: 9/9/16
+> 
+> *        YP 2.2 M4 cut off would be: 10/3/16
+> 
+> *        YP 2.2 M4 release would be: 10/28/16
+> 
+> 
+> Tracking Metrics:
+> 
+>             WDD 2599 (last week 2622)
+> 
+> (https://wiki.yoctoproject.org/charts/combo.html)
+> 
+> 
+> Key Status Links for YP:
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
+> 
+> [If anyone has suggestions for other information you'd like to see on this weekly status update, let us know!]
+> 
+> Thanks,
+> 
+> Stephen K. Jolley
+> Yocto Project Program Manager
+> INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+> *   Work Telephone:        (503) 712-0534
+> *    Cell:               (208) 244-4460
+> * Email:                            stephen.k.jolley@intel.com
+> 
+> 
+> 
 
