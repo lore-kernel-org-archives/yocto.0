@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18B2BE005A9; Mon, 13 Jun 2016 16:31:29 -0700 (PDT)
+	id 15D82E007EF; Mon, 13 Jun 2016 16:31:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16A5DE0073D
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A727E0073D
 	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 16:31:28 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga102.fm.intel.com with ESMTP; 13 Jun 2016 16:31:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,468,1459839600"; d="scan'208";a="1001247096"
+X-IronPort-AV: E=Sophos;i="5.26,468,1459839600"; d="scan'208";a="1001247104"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.51])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2016 16:31:27 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2016 16:31:28 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 13 Jun 2016 18:32:15 -0500
-Message-Id: <1465860736-26581-8-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon, 13 Jun 2016 18:32:16 -0500
+Message-Id: <1465860736-26581-9-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: belen.barros.pena@linux.intel.com
-Subject: [[PATCH][error-report-web] 7/8] views/templates: Add support for display different type of errors
+Subject: [[PATCH][error-report-web] 8/8] Post/{models, views}.py: Add FAILURE field on BuildFailure model
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,132 +41,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2016 23:31:29 -0000
+X-List-Received-Date: Mon, 13 Jun 2016 23:31:30 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Now we have a set of different type of errors not only Recipe ones
-this change enable support for display it based on design did by
-Belen Barros [1].
+In order to support filters using django Paginator adds a FAILURE
+field by default contains "RECIPE: TASK" when ERROR_TYPE is Recipe
+instead contains only "TASK".
 
 [YOCTO #7583]
 
-[1] https://bugzilla.yoctoproject.org/attachment.cgi?id=3214
-
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- Post/views.py                | 16 +++++-----------
- templates/error-details.html | 13 ++++++++++++-
- templates/latest-errors.html | 19 +++++++++++--------
- 3 files changed, 28 insertions(+), 20 deletions(-)
+ Post/migrations/0006_buildfailure_failure.py | 28 ++++++++++++++++++++++++++++
+ Post/models.py                               |  1 +
+ Post/parser.py                               |  6 +++++-
+ Post/views.py                                |  1 +
+ templates/latest-errors.html                 |  5 +----
+ 5 files changed, 36 insertions(+), 5 deletions(-)
+ create mode 100644 Post/migrations/0006_buildfailure_failure.py
 
+diff --git a/Post/migrations/0006_buildfailure_failure.py b/Post/migrations/0006_buildfailure_failure.py
+new file mode 100644
+index 0000000..b3e30bf
+--- /dev/null
++++ b/Post/migrations/0006_buildfailure_failure.py
+@@ -0,0 +1,28 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import migrations, models
++
++def populate_failure(apps, schema_editor):
++    model = apps.get_model("Post", "BuildFailure")
++    for build_failure in model.objects.all():
++        if build_failure.BUILD.ERROR_TYPE == "Recipe":
++            build_failure.FAILURE = "%s: %s" \
++                    (build_failure.RECIPE, build_failure.TASK)
++        else:
++            build_failure.FAILURE = build_failure.TASK
++        build_failure.save()
++
++class Migration(migrations.Migration):
++    dependencies = [
++        ('Post', '0005_build_error_type'),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name='buildfailure',
++            name='FAILURE',
++            field=models.CharField(max_length=1024, blank=True),
++        ),
++        migrations.RunPython(populate_failure)
++    ]
+diff --git a/Post/models.py b/Post/models.py
+index bec2abd..07694fe 100644
+--- a/Post/models.py
++++ b/Post/models.py
+@@ -50,6 +50,7 @@ class BuildFailure(models.Model):
+     ERROR_DETAILS = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE))
+     BUILD = models.ForeignKey(Build)
+     LEV_DISTANCE = models.IntegerField(blank=True, null=True)
++    FAILURE = models.CharField(max_length=1024, blank=True)
+ 
+     def get_similar_fails(self):
+         if self.LEV_DISTANCE is None:
+diff --git a/Post/parser.py b/Post/parser.py
+index 295870f..2ef35c1 100644
+--- a/Post/parser.py
++++ b/Post/parser.py
+@@ -92,7 +92,11 @@ class Parser:
+                 recipe = package
+                 recipe_version = "unknown"
+ 
+-            f = BuildFailure(TASK = str(fail['task']), RECIPE = recipe, RECIPE_VERSION = recipe_version, ERROR_DETAILS = fail['log'].encode('utf-8'), BUILD = b)
++            if b.ERROR_TYPE = "Recipe":
++                failure = "%s: %s" % (recipe, str(fail['task']))
++            else:
++                failure = str(fail['task'])
++            f = BuildFailure(TASK = str(fail['task']), RECIPE = recipe, RECIPE_VERSION = recipe_version, ERROR_DETAILS = fail['log'].encode('utf-8'), BUILD = b, FAILURE = failure)
+ 
+             f.save()
+ 
 diff --git a/Post/views.py b/Post/views.py
-index 0455baa..6b57977 100644
+index 6b57977..41f0e2b 100644
 --- a/Post/views.py
 +++ b/Post/views.py
-@@ -134,18 +134,13 @@ def search(request, mode=results_mode.LATEST, **kwargs):
-          'field' : 'BUILD__DATE',
-          'disable_toggle' : True,
+@@ -141,6 +141,7 @@ def search(request, mode=results_mode.LATEST, **kwargs):
          },
--        {'name': 'Recipe',
--         'clclass' : 'recipe',
--         'field' : 'RECIPE',
-+        {'name': 'Error type',
-+         'clclass' : 'error_type',
-+         'field' : 'BUILD__ERROR_TYPE',
-          'disable_toggle' : True,
-         },
--        {'name': 'Recipe version',
--         'clclass': 'recipe_version',
--         'field' : 'RECIPE_VERSION',
--        },
--        {'name': 'Task',
--         'clclass': 'task',
--         'field' : 'TASK',
-+        {'name': 'Failure',
-+         'clclass': 'failure',
+         {'name': 'Failure',
+          'clclass': 'failure',
++         'field' : 'FAILURE',
           'disable_toggle' : True,
          },
          {'name': 'Machine',
-@@ -156,7 +151,6 @@ def search(request, mode=results_mode.LATEST, **kwargs):
-         {'name': 'Distro',
-          'clclass': 'distro',
-          'field': 'BUILD__DISTRO',
--         'disable_toggle' : True,
-         },
-         {'name': 'Build system',
-          'clclass': 'build_sys',
-diff --git a/templates/error-details.html b/templates/error-details.html
-index 62ec75f..e5bf758 100644
---- a/templates/error-details.html
-+++ b/templates/error-details.html
-@@ -9,7 +9,11 @@
-     <a class="btn pull-left back-btn" style="margin-top:7px;" href="#">
-       <i class="icon-arrow-left"></i>
-     </a>
--    <h1 style="margin-left:60px;">{{detail.RECIPE}}-{{detail.RECIPE_VERSION}} {{detail.TASK}} </h1>
-+    <h1 style="margin-left:60px;">
-+        {% if detail.BUILD.ERROR_TYPE == "Recipe" %}
-+        {{detail.RECIPE}}-{{detail.RECIPE_VERSION}}
-+        {% endif %}
-+        {{detail.TASK}} </h1>
-   </div>
-   <div class="row span8">
-     <pre>{{detail.ERROR_DETAILS}}</pre>
-@@ -20,12 +24,19 @@
-       <dl class="dl-vertical">
-         <dt>Submitted on:</dt>
-         <dd>{{ detail.BUILD.DATE|date:"d/m/y H:i"}}</dd>
-+        <dt>Error type:</dt>
-+        <dd>{{ detail.BUILD.ERROR_TYPE }}</dd>
-+        {% if detail.BUILD.ERROR_TYPE == "Recipe" %}
-         <dt>Task:</dt>
-         <dd>{{ detail.TASK }}</dd>
-         <dt>Recipe:</dt>
-         <dd>{{detail.RECIPE }} </dd>
-         <dt>Recipe version:</dt>
-         <dd>{{ detail.RECIPE_VERSION }}</dd>
-+        {% else %}
-+        <dt>Command:</dt>
-+        <dd>{{ detail.TASK }}</dd>
-+        {% endif %}
-         <dt>Machine:</dt>
-         <dd>{{ detail.BUILD.MACHINE }}</dd>
-         <dt>Distro:</dt>
 diff --git a/templates/latest-errors.html b/templates/latest-errors.html
-index 56f612a..77a54af 100644
+index 77a54af..a4418b5 100644
 --- a/templates/latest-errors.html
 +++ b/templates/latest-errors.html
-@@ -127,18 +127,21 @@
-               {% url "details" build_fail.id as details_url %}
-               <tr class="data">
-                 <td class="submitted_on"> <a href="{{details_url}}">{{ build_fail.BUILD.DATE|date:"d/m/y H:i"}}</a></td>
--                <td class="recipe"><a href="{{details_url}}">{{ build_fail.RECIPE }}</a>
--                  <a class="filter" href="#" data-filter="{{build_fail.RECIPE}}" data-type="recipe">
--                    <i class="icon-filter hover" title="Filter by {{build_fail.RECIPE}}"></i>
-+
-+                <td class="error_type"><a href="{{details_url}}">{{ build_fail.BUILD.ERROR_TYPE }}</a>
-+                  <a class="filter" href="#" data-filter="{{build_fail.BUILD.ERROR_TYPE}}" data-type="error_type">
-+                    <i class="icon-filter hover" title="Filter by {{build_fail.BUILD.ERROR_TYPE}}"></i>
-                   </a>
-                 </td>
--                <td class="recipe_version"><a href="{{details_url}}" {% if build_fail.RECIPE_VERSION|length > 13 %}class="tooltip-me" data-toggle="tooltip" title="{{ build_fail.RECIPE_VERSION }}"{%endif%}>{{ build_fail.RECIPE_VERSION|truncatechars:13 }}</a></td>
--                <td class="task"><a href="{{details_url}}">{{ build_fail.TASK }}</a>
--                  <a class="filter"  href="#" data-filter="{{build_fail.TASK}}" data-type="task">
--                    <i class="icon-filter hover" title="Filter by {{build_fail.TASK}}"></i>
--                  </a>
+@@ -136,10 +136,7 @@
  
-+                <td class="failure">
-+                    <a href="{{details_url}}">
-+                        {% if build_fail.BUILD.ERROR_TYPE == "Recipe" %}
-+                        {{ build_fail.RECIPE }}:
-+                        {% endif %}
-+                        {{ build_fail.TASK }}</a>
+                 <td class="failure">
+                     <a href="{{details_url}}">
+-                        {% if build_fail.BUILD.ERROR_TYPE == "Recipe" %}
+-                        {{ build_fail.RECIPE }}:
+-                        {% endif %}
+-                        {{ build_fail.TASK }}</a>
++                        {{ build_fail.FAILURE }}</a>
                  </td>
-+
+ 
                  <td class="machine"><a href="{{details_url}}">{{ build_fail.BUILD.MACHINE }}</a>
-                   <a class="filter"  href="#" data-filter="{{build_fail.BUILD.MACHINE}}" data-type="machine">
-                     <i class="icon-filter hover" title="Filter by {{build_fail.BUILD.MACHINE}}"></i>
 -- 
 2.1.4
 
