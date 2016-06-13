@@ -1,62 +1,33 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00742E005BB; Mon, 13 Jun 2016 15:01:31 -0700 (PDT)
+	id 62956E006D8; Mon, 13 Jun 2016 16:31:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B683E0059B
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 15:01:27 -0700 (PDT)
-Received: by mail-io0-f175.google.com with SMTP id 5so132167081ioy.1
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 15:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=yE+tKsaXnHCI86FJuJIDyn2rPdpSKKCxzM8APkkoUpE=;
-	b=iA7pyAe4SZrE0S/T0L/DldBDjmDfIWHTsTuFQJc9EsuwHihRiw1b+nXh/PZvkL8gEG
-	h/PoW8RKYgkqJQNwuyM1/oZ8Hd+pMOUE0wqK2D8O2yO5P+GEC6LInnQ43hGDyd81uuCC
-	PaC73gCdPpEPSEJ/inGrwraU4hPXA33hgzmD0EzqpMQtGmD3KFaYlhsZ/rV97ovZrC7T
-	rzG0SQeV3MkYPoxDOTxEXUaORYeKJFGqDhbMrbpf7mt0mtRNUsqSv9OupWAh1amPI7y8
-	E6JUx/LJCmdyN7K1NEHydR+SBDKOOD8btQWlTDQzpzQ/Jw+/Ahhc2C/JalfgjOWRq/IL
-	adaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=yE+tKsaXnHCI86FJuJIDyn2rPdpSKKCxzM8APkkoUpE=;
-	b=NVP1BZeKkDCSjOm6F69vcPdcR71t69Y54qDfJuSHRIhCotHj536A5tg4t9XckvL/+S
-	LR75N2XVe/LZDTOcB7w9t1zyDBFvxtGTzbWe6ZcWYLVTJrG8pdWMbzzMsjhjpHkeM+Fy
-	9cvNImdvva4RVBNIpwP2I6/ZxfI9qJmlHjG2Y5vhSz/5TCi9GMfZj0oiQxuwngS6dtg7
-	O8Cgvi/P/z5YPcrKBfBhnrexvl3DugDxTl1fYanzBElZ2DTBlONfxbm2H8Ccg07E0nww
-	yOGaRtSI1iLhS62FHctqVacKex94IArI3JNqR1eXew7vIbbPJD401VFm0YnImG3Ujz5e
-	i3ow==
-X-Gm-Message-State: ALyK8tIqVh0JY2WTBlB9KWQ+PW99xNiPXE6mffGAdqufKsmHFXETyxy/0bx3dQgvrKSKfNU+XTMDZrDgbDvOHg==
-X-Received: by 10.107.131.212 with SMTP id n81mr26247524ioi.126.1465855287399; 
-	Mon, 13 Jun 2016 15:01:27 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C19CBE00566
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 16:31:25 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 13 Jun 2016 16:31:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,468,1459839600"; d="scan'208";a="1001247055"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.51])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2016 16:31:21 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 13 Jun 2016 18:32:08 -0500
+Message-Id: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.79.130.66 with HTTP; Mon, 13 Jun 2016 15:01:08 -0700 (PDT)
-In-Reply-To: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
-References: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Mon, 13 Jun 2016 15:01:08 -0700
-X-Google-Sender-Auth: kcQXkpG3euGASImsuPO8MEpSgz4
-Message-ID: <CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
-To: Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Mounting USB drives on a "read-only-rootfs" based system
+Cc: belen.barros.pena@linux.intel.com
+Subject: [[PATCH][error-report-web] 0/8] Allow other type of errors and django 1.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,120 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2016 22:01:32 -0000
-Content-Type: multipart/alternative; boundary=001a113ec32eb29eca05353007c3
-
---001a113ec32eb29eca05353007c3
+X-List-Received-Date: Mon, 13 Jun 2016 23:31:26 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Afaik usb storage is already automounted by udev on /run/media/, so there's
-no need to use /media for that purpose.
+The next patches enables support of django 1.8 LTS (two patches) and the other
+are for enable to display other type of errors not only task related ones based
+on design [1].
 
-On Mon, Jun 13, 2016 at 2:22 PM, Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com>
-wrote:
+Also the changes could be reviewed at,
 
-> Hello,
->
->
->
-> New to the list here, so I=E2=80=99m sorry if this question has been aske=
-d before,
-> but I couldn=E2=80=99t find a direct answer to it.
->
->
->
-> I have a yocto image that was built using the following bb script line:
-> IMAGE_FEATURES +=3D " read-only-rootfs".
->
->
->
-> As this image eventually resides on a static flash device, it must be
-> read-only.  However, the system hardware supports removable media (SD car=
-d
-> and USB drives), and I=E2=80=99d like to be able to mount and write to th=
-ose
-> removable drives / partitions for data logging purposes.  What needs to b=
-e
-> done in order to make the /media directory auto-mountable when a
-> =E2=80=9Cread-only=E2=80=9D image is specified by the build script?
->
->
->
-> Thanks.
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+http://git.yoctoproject.org/cgit/cgit.cgi/error-report-web/log/?h=alimon/devel
+
+[1] https://bugzilla.yoctoproject.org/attachment.cgi?id=3214
+
+Aníbal Limón (8):
+  requirements.txt: Update requeriments for use 1.8 LTS Django version.
+  urls.py: RedirectView, fix warnings about change of default value in
+    django 1.9
+  Post/models.py: Increase the TASK field length
+  Post/migrations/0003_auto_20150603_0913.py: Replace tabs for spaces
+  Post/models.py: Build model add support for Error type.
+  Post/{models,parser}.py: Add support for receive/store error_type.
+  views/templates: Add support for display different type of errors
+  Post/{models,views}.py: Add FAILURE field on BuildFailure model
+
+ Post/migrations/0003_auto_20150603_0913.py   |  6 +++---
+ Post/migrations/0004_auto_20160530_1126.py   | 20 ++++++++++++++++++++
+ Post/migrations/0005_build_error_type.py     | 19 +++++++++++++++++++
+ Post/migrations/0006_buildfailure_failure.py | 28 ++++++++++++++++++++++++++++
+ Post/models.py                               | 20 +++++++++++++++++++-
+ Post/parser.py                               | 17 ++++++++++++++---
+ Post/views.py                                | 17 ++++++-----------
+ project/urls.py                              |  4 ++--
+ requirements.txt                             |  2 +-
+ templates/error-details.html                 | 13 ++++++++++++-
+ templates/latest-errors.html                 | 16 ++++++++--------
+ 11 files changed, 132 insertions(+), 30 deletions(-)
+ create mode 100644 Post/migrations/0004_auto_20160530_1126.py
+ create mode 100644 Post/migrations/0005_build_error_type.py
+ create mode 100644 Post/migrations/0006_buildfailure_failure.py
+
+-- 
+2.1.4
 
 
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a113ec32eb29eca05353007c3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Afaik usb storage is already automounted by udev on /run/m=
-edia/, so there&#39;s no need to use /media for that purpose.<br><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Jun 13, 2016 at 2:2=
-2 PM, Jeffrey D Boyer <span dir=3D"ltr">&lt;<a href=3D"mailto:Jeffrey.D.Boy=
-er@jci.com" target=3D"_blank">Jeffrey.D.Boyer@jci.com</a>&gt;</span> wrote:=
-<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div>
-<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">New to the list here, so I=E2=80=99m sorry if this q=
-uestion has been asked before, but I couldn=E2=80=99t find a direct answer =
-to it.=C2=A0
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I have a yocto image that was built using the follow=
-ing bb script line: IMAGE_FEATURES +=3D &quot; read-only-rootfs&quot;.=C2=
-=A0
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">As this image eventually resides on a static flash d=
-evice, it must be read-only.=C2=A0 However, the system hardware supports re=
-movable media (SD card and USB drives), and I=E2=80=99d like to be able to =
-mount and write to those removable drives / partitions
- for data logging purposes.=C2=A0 What needs to be done in order to make th=
-e /media directory auto-mountable when a =E2=80=9Cread-only=E2=80=9D image =
-is specified by the build script?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature" data-smartmail=3D"gmail_signature">Christopher Larso=
-n<br>clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZau=
-rus<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics</div=
->
-</div></div>
-
---001a113ec32eb29eca05353007c3--
