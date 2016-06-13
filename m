@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2FA6E006D8; Mon, 13 Jun 2016 16:31:28 -0700 (PDT)
+	id D075CE005A9; Mon, 13 Jun 2016 16:31:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 032B8E005A9
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 16:31:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48F46E006B3
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 16:31:26 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
 	by fmsmga102.fm.intel.com with ESMTP; 13 Jun 2016 16:31:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,468,1459839600"; d="scan'208";a="1001247072"
+X-IronPort-AV: E=Sophos;i="5.26,468,1459839600"; d="scan'208";a="1001247075"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.51])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2016 16:31:23 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 13 Jun 2016 16:31:24 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 13 Jun 2016 18:32:10 -0500
-Message-Id: <1465860736-26581-3-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon, 13 Jun 2016 18:32:11 -0500
+Message-Id: <1465860736-26581-4-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: belen.barros.pena@linux.intel.com
-Subject: [[PATCH][error-report-web] 2/8] urls.py: RedirectView, fix warnings about change of default value in django 1.9
+Subject: [[PATCH][error-report-web] 3/8] Post/models.py: Increase the TASK field length
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +45,57 @@ X-List-Received-Date: Mon, 13 Jun 2016 23:31:28 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-RemovedInDjango19Warning: Default value of 'RedirectView.permanent' will
-change from True to False in Django 1.9. Set an explicit value to
-silence this warning.
-  url(r'^$', RedirectView.as_view(pattern_name="main")),
+Now bitbake exception/errors can be published into ERW so
+TASK in bitbake is the command line executed.
 
-RemovedInDjango19Warning: Default value of 'RedirectView.permanent' will
-change from True to False in Django 1.9. Set an explicit value to
-silence this warning.
-  url(r'^Errors/Search/Args/$',
-RedirectView.as_view(pattern_name="Post.views.search",query_string=True),
-{'mode':results_mode.SEARCH }),
-
-[YOCTO #9733]
+[YOCTO #7583]
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- project/urls.py | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Post/migrations/0004_auto_20160530_1126.py | 20 ++++++++++++++++++++
+ Post/models.py                             |  2 +-
+ 2 files changed, 21 insertions(+), 1 deletion(-)
+ create mode 100644 Post/migrations/0004_auto_20160530_1126.py
 
-diff --git a/project/urls.py b/project/urls.py
-index 7b6f643..0e8f39c 100644
---- a/project/urls.py
-+++ b/project/urls.py
-@@ -37,7 +37,7 @@ urlpatterns = patterns('',
-     url(r'^(?i)ClientPost/JSON/$', 'Post.views.addData', { 'return_json' : True }),
-     url(r'^(?i)Errors/$', 'Post.views.default', name="main"),
-     url(r'^(?i)Statistics/$', TemplateView.as_view(template_name="home.html"), name = "statistics"),
--    url(r'^$', RedirectView.as_view(pattern_name="main")),
-+    url(r'^$', RedirectView.as_view(pattern_name="main", permanent=True)),
-     # Url for backwards compatibility with old search links
--    url(r'^Errors/Search/Args/$', RedirectView.as_view(pattern_name="Post.views.search",query_string=True), {'mode':results_mode.SEARCH }),
-+    url(r'^Errors/Search/Args/$', RedirectView.as_view(pattern_name="Post.views.search",query_string=True,permanent=True), {'mode':results_mode.SEARCH }),
- )
+diff --git a/Post/migrations/0004_auto_20160530_1126.py b/Post/migrations/0004_auto_20160530_1126.py
+new file mode 100644
+index 0000000..936454d
+--- /dev/null
++++ b/Post/migrations/0004_auto_20160530_1126.py
+@@ -0,0 +1,20 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import models, migrations
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('Post', '0003_auto_20150603_0913'),
++    ]
++
++    operations = [
++        migrations.AlterField(
++            model_name='buildfailure',
++            name='TASK',
++            field=models.CharField(max_length=1024),
++            preserve_default=True,
++        ),
++    ]
+diff --git a/Post/models.py b/Post/models.py
+index d1bae38..84f8abf 100644
+--- a/Post/models.py
++++ b/Post/models.py
+@@ -27,7 +27,7 @@ class Build(models.Model):
+     LINK_BACK = models.TextField(max_length=300, blank=True, null=True)
+ 
+ class BuildFailure(models.Model):
+-    TASK = models.CharField(max_length=200)
++    TASK = models.CharField(max_length=1024)
+     RECIPE= models.CharField(max_length=250)
+     RECIPE_VERSION = models.CharField(max_length=200)
+     ERROR_DETAILS = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE))
 -- 
 2.1.4
 
