@@ -1,33 +1,44 @@
-Return-Path: <martin@spotwise.com>
+Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57046E004F1; Mon, 13 Jun 2016 14:39:21 -0700 (PDT)
+	id 052BDE0059B; Mon, 13 Jun 2016 14:47:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0165]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.201.84.163 listed in list.dnswl.org]
-X-Greylist: delayed 903 seconds by postgrey-1.32 at yocto-www;
-	Mon, 13 Jun 2016 14:39:19 PDT
-Received: from sender163-mail.zoho.com (sender163-mail.zoho.com
-	[74.201.84.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4E6E004F1
-	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 14:39:19 -0700 (PDT)
-Received: from [10.1.1.92] (c-4ab0e055.17-2-64736c10.cust.bredbandsbolaget.se
-	[85.224.176.74]) by mx.zohomail.com
-	with SMTPS id 1465853054631205.18428755735215;
-	Mon, 13 Jun 2016 14:24:14 -0700 (PDT)
-From: Martin Bergek <martin@spotwise.com>
-Message-Id: <D37DD58C-C544-4AAA-B130-5BA818C711E4@spotwise.com>
-Date: Mon, 13 Jun 2016 23:24:08 +0200
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Mailer: Apple Mail (2.3124)
-Subject: [meta-raspberrypi] PL2303 instability on RPi 3 but not on RPi 2
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [168.127.0.57 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
+	[168.127.0.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEA48E004F1
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 14:47:09 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,468,1459832400"; d="scan'208,217";a="80024115"
+Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
+	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	13 Jun 2016 16:47:02 -0500
+Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
+	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0294.000;
+	Mon, 13 Jun 2016 16:47:02 -0500
+From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: resolvconf nameserver 
+Thread-Index: AdHFvOsHsfo3RuapQJGz8vfzjWKb4Q==
+Date: Mon, 13 Jun 2016 21:47:01 +0000
+Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA5FE22C@RCHEXMBP1.fnc.net.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [168.127.136.253]
+x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22390.003
+x-tm-as-result: No--49.035700-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
+MIME-Version: 1.0
+Subject: resolvconf nameserver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,32 +50,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jun 2016 21:39:21 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 13 Jun 2016 21:47:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA5FE22CRCHEXMBP1fncnetlo_"
+
+--_000_111ACD726EC3464BAED310F5EA7BEBDA5FE22CRCHEXMBP1fncnetlo_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,=20
+Hi,
 
-I am testing an image on a system including a PL2303 (USB to serial =
-bridge) and have noticed an issue on the Raspberry Pi 3. The system will =
-run fine for an hour or two but then the kernel logs the following =
-error:
+How do I add a dns nameserver ? I am able to ping 8.8.8.8 but not google.co=
+m
+I thought it would be the usual method as in other linux versions such as U=
+buntu. But there is no /etc/resolv.conf file.
 
-	pl2303 ttyUSB0: usb_serial_generic_read_bulk_callback - urb =
-stopped: -32
+I tried including "resolvconf" to my image. But that only created a directo=
+ry called "resolv.conf.d" under /etc. The directory has two files called "b=
+ase" and "head" which don't provide much information.
 
-After this there is no more data coming from the USB device and I have =
-to either reboot or disconnect/connect the USB device - neither of which =
-is acceptable in my application.
-
-This is on kernel 4.4.9 and it happens only on the Raspberry Pi 3. On =
-Raspberry Pi 2 the exact same firmware runs flawlessly.
-
-Has anyone else come across this or have some suggestions on how to =
-solve it? Or how to pinpoint the cause?
+Still trying to find where I could add a nameserver to resolve hostnames ? =
+or there is no other way and I should just add them into /etc/hosts?
 
 Thanks,
-Martin Bergek
+Monica
 
 
+--_000_111ACD726EC3464BAED310F5EA7BEBDA5FE22CRCHEXMBP1fncnetlo_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">How do I add a dns nameserver ? I am able to ping 8.=
+8.8.8 but not google.com<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">I thought it would be the usual method as in other l=
+inux versions such as Ubuntu. But there is no /etc/resolv.conf file.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I tried including &#8220;resolvconf&#8221; to my ima=
+ge. But that only created a directory called &#8220;resolv.conf.d&#8221; un=
+der /etc. The directory has two files called &#8220;base&#8221; and &#8220;=
+head&#8221; which don&#8217;t provide much information.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Still trying to find where I could add a nameserver =
+to resolve hostnames ? or there is no other way and I should just add them =
+into /etc/hosts?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><i>Thanks,<o:p></o:p></i></p>
+<p class=3D"MsoNormal"><i>Monica <o:p></o:p></i></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_111ACD726EC3464BAED310F5EA7BEBDA5FE22CRCHEXMBP1fncnetlo_--
