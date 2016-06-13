@@ -1,39 +1,36 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <hayashi.kunihiko@socionext.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C20FE00C66; Sun, 12 Jun 2016 06:47:44 -0700 (PDT)
+	id C309EE00CB2; Sun, 12 Jun 2016 18:41:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1682E00AD2
-	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 06:47:40 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20160612134720178_0485
-	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 13:47:20 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [216.191.234.70] (port=28988 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bC5l7-0000SG-EM
-	for yocto@yoctoproject.org; Sun, 12 Jun 2016 09:49:01 -0400
-Date: Sun, 12 Jun 2016 09:46:38 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1606120943400.10156@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+X-Spam-Level: *
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_40,FSL_HELO_BARE_IP_2
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2511]
+	*  1.5 FSL_HELO_BARE_IP_2 FSL_HELO_BARE_IP_2
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Sun, 12 Jun 2016 18:41:23 PDT
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E40DAE00CA5
+	for <yocto@yoctoproject.org>; Sun, 12 Jun 2016 18:41:23 -0700 (PDT)
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+	by mx.socionext.com with ESMTP; 13 Jun 2016 10:40:18 +0900
+Received: from mail.mfilter.local (unknown [10.213.24.61])
+	by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 4AE67180113
+	for <yocto@yoctoproject.org>; Mon, 13 Jun 2016 10:40:18 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP;
+	Mon, 13 Jun 2016 10:40:18 +0900
+Received: from [10.213.136.190] (unknown [10.213.136.190])
+	by kinkan.css.socionext.com (Postfix) with ESMTP id 810271A1639;
+	Mon, 13 Jun 2016 10:40:17 +0900 (JST)
+Date: Mon, 13 Jun 2016 10:40:17 +0900
+From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To: yocto@yoctoproject.org
+Message-Id: <20160613104017.70D6.4A936039@socionext.com>
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: any way to start culling (or updating) yocto web pages?
+X-Mailer: Becky! ver. 2.70 [ja]
+Subject: How to set KCONFIG_MODE for defconfig and fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,30 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Jun 2016 13:47:44 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Mon, 13 Jun 2016 01:41:24 -0000
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
 
+Hello, all
 
-  more nitpicky pedantry, but is there any value in removing obviously
-dated references from some of the YP web pages? i just googled on
-"openembedded smart package manager", and the very first hit took me
-here:
+Now I'm trying to build my own kernel with linux-yocto recipe,
+and I make kernel configuration fragments (".cfg" file) according to
+"Linux Kernel Development Manual", and my fragments can't be applied
+to the kernel at all.
 
-https://www.yoctoproject.org/blogs/khem/2013/get-smart-smart-package-manager
+I find that linux-yocto recipe uses "allnoconfig" as default, and
+configurations that my fragments depend on are disabled.
 
-which talks about smart "coming out" with YP 1.4, from back in 2013. i
-suspect there's more of that.
+> KCONFIG_MODE = "--allnoconfig"
 
-rday
+I assume that KCONFIG_MODE has the option of "configme" script,
+but this option is undocumented on any manuals.
 
--- 
+If I apply "defconfig" and my additional fragments as it is,
+how do I set KCONFIG_MODE in my recipe? (null string or another option?)
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Regards,
+---
+Kunihiko Hayashi
+:hayashi.kunihiko@socionext.com
 
 
