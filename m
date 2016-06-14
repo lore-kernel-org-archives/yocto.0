@@ -1,65 +1,68 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <michael.g.wood@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 684D8E00A7B; Tue, 14 Jun 2016 06:18:32 -0700 (PDT)
+	id E8C30E00A7F; Tue, 14 Jun 2016 06:30:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [148.251.71.2 listed in list.dnswl.org]
+	*      [209.85.220.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx26-02.smtp.antispamcloud.com (mx26-02.smtp.antispamcloud.com
-	[148.251.71.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70B39E009CD
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 06:18:27 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx26.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1bCoEa-0003Z5-4O; Tue, 14 Jun 2016 15:18:25 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 14 Jun 2016 15:18:22 +0200
-To: Christopher Larson <clarson@kergoth.com>, Jeffrey D Boyer
-	<Jeffrey.D.Boyer@jci.com>
-References: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
-	<CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <5760041E.1010809@topic.nl>
-Date: Tue, 14 Jun 2016 15:18:22 +0200
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4515E009CD
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 06:30:08 -0700 (PDT)
+Received: by mail-pa0-f47.google.com with SMTP id hl6so56612182pac.2
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 06:30:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding;
+	bh=194/adng2RJi2YS5uvtVCFOCmQW6ZFWdMaphZzKIzfk=;
+	b=LahYrS5lUQ6iKIayjxusOuAQDasy3F2WYxaFgtqrRfp02BasZ2S+neJRR7NC0LMx5U
+	iI1mw1LconsqW0urSxLv1bmk9XsDkWm0DycGTlZFnqh5Q7b/rImxBYAujV7TSg3DlWqC
+	GetoNknpg/b36JDX2h7yGP/BvgBjv6N6WiWXUnxHsp4u18hY3SkwRxHcLJCzlW5b2re5
+	gZCZfPUJZq4LW28DQIX1eElD0QJ0qWyZUFYBYi3O9oI9uMFrJ4iThw+2+n+0Oh7OjTRe
+	dbqF1MRap74cdxnPIHyWUJ2LPPqEJHvB7vHmx87VwccjU1oGJT50nrztBCtUjgTiiDjO
+	BKig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:to:references:cc:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=194/adng2RJi2YS5uvtVCFOCmQW6ZFWdMaphZzKIzfk=;
+	b=MvAO+AxuLp5ptY8wY3YRntrrGodfzesOB66Joy/K5t66X/7QqQFWg9pOC46N4mHh7V
+	dTls4XpZ7EGRnamFWrT+adMYgik3jgGzZxdP7Hso9FbgyqDjwgx31R109Yp8uRETgtSF
+	/+VfjYEQz18Kk0qv42o4tW6UwPfDqwxn/u0mGnMq2xPwOXeuRvr5Qss+NLoHpdVo0FlM
+	Y/oQ8FsfOz9lb7gOOP60J0Y8V55NuHqZQa36tTVVKV9h6CAHrMq2Xwc3ZWMz3v1vhzr9
+	YPqK/rFnPnnRLRpqFUBnX+nU4UNtZtGEc6r7RG+UwYlFVTgVXBtC8dwxaR5RYqO6Pp/C
+	UHuA==
+X-Gm-Message-State: ALyK8tKYTTDButJF3XqE+VMAaRaZjt2mb972b9gwtp36UUuINS4ubZlhCbSyhsS1HycuTtgT
+X-Received: by 10.66.73.138 with SMTP id l10mr28054984pav.92.1465911007677;
+	Tue, 14 Jun 2016 06:30:07 -0700 (PDT)
+Received: from [192.168.2.143] ([83.217.123.106])
+	by smtp.googlemail.com with ESMTPSA id
+	c15sm45594148pfj.65.2016.06.14.06.30.05
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Tue, 14 Jun 2016 06:30:06 -0700 (PDT)
+To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>,
+	yocto@yoctoproject.org
+References: <1465860736-26581-1-git-send-email-anibal.limon@linux.intel.com>
+	<1465860736-26581-6-git-send-email-anibal.limon@linux.intel.com>
+From: Michael Wood <michael.g.wood@intel.com>
+Message-ID: <576006DB.6050708@intel.com>
+Date: Tue, 14 Jun 2016 14:30:03 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.8.0
 MIME-Version: 1.0
-In-Reply-To: <CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarwwXW6ykJtePZQ8GUv0lmyriQMQf8FYQA882I/zAiDSnloPx4yxn0/nJkKjvnkEcuNiPL
-	7pxro+JxyHRDCppgPfTDpJxxYwML4QEFO4rejcoTB1ON6HovqIvxtmjUuhcoviuLs85zA/yHEgrq
-	vKfKLjPw+Lxqd/jtI5dgi/GqPWkFFA0m2PO8nVwvvtYcFiyKWIyY8Gyrh5dcaydCjh55fziT6L31
-	7/p6ioncOp25t+mRVjRUy0x2AKc9FHMbmlOoMvGX+ObfaU6whL8xq/xH+avyvQ7CbINIDcS5wpWy
-	+I5YvF3K7LgeiuH5eCStSiiSVJeFB9XoTpMnYKYB1MU+b9NrzOR53mK2sN34HMy+JoRFY4+4QY0s
-	jn2opeJJeXfjJME2PcThwZvQzlAUa/De200n/t9mSP8PaFvoZGGW7zDZn0Omwyz83+od6yXM3xg5
-	3lJa8Sow8yJBTz7nPOPnRKhbLPp9n350Mbemie5JWWm/nCVm/AhWHHHCeRDROo40UY9D2cFVeTvb
-	bla5RrV04KsyFJGu1KuteTIpNas3M99P9sA1bpq1kbtcn4wFfZA5vK0hIR8cIf6lYHZizJx95IFo
-	h9VoIekQHpwUfpYnEThm28255xp92yCh00dIPzg1xAwBM+jtfJKPf5O2qlJYN1JIA9KaOYgo8Znc
-	cQYAY4RwkFGbSwuCRP+egHh4WzRqYA==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Originating-IP: 88.159.208.100
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.15)
-X-Recommended-Action: accept
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Mounting USB drives on a "read-only-rootfs" based system
+In-Reply-To: <1465860736-26581-6-git-send-email-anibal.limon@linux.intel.com>
+Cc: belen.barros.pena@linux.intel.com
+Subject: Re: [[PATCH][error-report-web] 5/8] Post/models.py: Build model add support for Error type.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,94 +74,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jun 2016 13:18:32 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 14 Jun 2016 13:30:12 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-=EF=BB=BFYup, even mdev based images do that with current OE.
+On 14/06/16 00:32, Aníbal Limón wrote:
+> In order to support other errors not only Recipe ones adds
+> a ERROR_TYPE field to the Build model defaults to "Recipe".
+>
+> Add a class for store BuildErrorType currently supported
+> Recipe, Core, Bitbake selftest and OE selftest.
+>
+> [YOCTO #7583]
+>
+> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+> ---
+>   Post/migrations/0005_build_error_type.py | 19 +++++++++++++++++++
+>   Post/models.py                           |  7 +++++++
+>   2 files changed, 26 insertions(+)
+>   create mode 100644 Post/migrations/0005_build_error_type.py
+>
+> diff --git a/Post/migrations/0005_build_error_type.py b/Post/migrations/0005_build_error_type.py
+> new file mode 100644
+> index 0000000..96cdf8c
+> --- /dev/null
+> +++ b/Post/migrations/0005_build_error_type.py
+> @@ -0,0 +1,19 @@
+> +# -*- coding: utf-8 -*-
+> +from __future__ import unicode_literals
+> +
+> +from django.db import migrations, models
+> +
+> +
+> +class Migration(migrations.Migration):
+> +
+> +    dependencies = [
+> +        ('Post', '0004_auto_20160530_1126'),
+> +    ]
+> +
+> +    operations = [
+> +        migrations.AddField(
+> +            model_name='build',
+> +            name='ERROR_TYPE',
+> +            field=models.CharField(default=b'Recipe', max_length=64),
+> +        ),
+> +    ]
+> diff --git a/Post/models.py b/Post/models.py
+> index 84f8abf..f8d9916 100644
+> --- a/Post/models.py
+> +++ b/Post/models.py
+> @@ -11,6 +11,12 @@ from datetime import datetime
+>   
+>   import Levenshtein
+>   
+> +class BuildErrorType(object):
+> +    RECIPE = "Recipe"
+> +    BITBAKE_CORE = "Core"
+> +    BITBAKE_SELFTEST = "Bitbake selftest"
+> +    OE_SELFTEST = "OE selftest"
+> +
+>   # Create your models here.
+>   class Build(models.Model):
+>       DATE = models.DateTimeField('Submit date', blank=True, null=True)
+> @@ -25,6 +31,7 @@ class Build(models.Model):
+>       NAME = models.CharField(max_length=50)
+>       EMAIL = models.CharField(max_length=50)
+>       LINK_BACK = models.TextField(max_length=300, blank=True, null=True)
+> +    ERROR_TYPE = models.CharField(max_length=64, default=BuildErrorType.RECIPE)
+>   
+>   class BuildFailure(models.Model):
+>       TASK = models.CharField(max_length=1024)
 
-I'd expect "/media" to symlink to "run/media" on most devices (regardless=20
-whether the rootfs is read-only or not). Check if that's the case on your s=
-ystem.
+Thanks for the patches.
 
-On 14-06-16 00:01, Christopher Larson wrote:
-> Afaik usb storage is already automounted by udev on /run/media/, so there=
-'s no
-> need to use /media for that purpose.
->
-> On Mon, Jun 13, 2016 at 2:22 PM, Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com
-> <mailto:Jeffrey.D.Boyer@jci.com>> wrote:
->
->     Hello,____
->
->     __ __
->
->     New to the list here, so I=E2=80=99m sorry if this question has been =
-asked before,
->     but I couldn=E2=80=99t find a direct answer to it. ____
->
->     __ __
->
->     I have a yocto image that was built using the following bb script lin=
-e:
->     IMAGE_FEATURES +=3D " read-only-rootfs". ____
->
->     __ __
->
->     As this image eventually resides on a static flash device, it must be
->     read-only.  However, the system hardware supports removable media (SD=
- card
->     and USB drives), and I=E2=80=99d like to be able to mount and write t=
-o those
->     removable drives / partitions for data logging purposes.  What needs =
-to be
->     done in order to make the /media directory auto-mountable when a
->     =E2=80=9Cread-only=E2=80=9D image is specified by the build script?__=
-__
->
->     __ __
->
->     Thanks.____
->
->     __ __
->
->
->     --
->    =20
+Ideally we wouldn't use a char field here as if the type string ever 
+changed the database could end up with multiple versions of the type 
+strings depending on when the type was saved, it would be possible to 
+handle that with migrations but it would be pretty messy. It also allows 
+any arbitrary chars which we probably don't want if it's something we're 
+going to be filtering on.  Here is an example from Toaster on how it can 
+be done with the choices option and an enum style.
 
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
+|OUTCOME_NA = -1 OUTCOME_SUCCESS = 0 OUTCOME_COVERED = 1 OUTCOME_CACHED = 
+2 OUTCOME_PREBUILT = 3 OUTCOME_FAILED = 4 OUTCOME_EMPTY = 5 TASK_OUTCOME 
+= ( (OUTCOME_NA, 'Not Available'), (OUTCOME_SUCCESS, 'Succeeded'), 
+(OUTCOME_COVERED, 'Covered'), (OUTCOME_CACHED, 'Cached'), 
+(OUTCOME_PREBUILT, 'Prebuilt'), (OUTCOME_FAILED, 'Failed'), 
+(OUTCOME_EMPTY, 'Empty'), ) ||outcome = models.IntegerField(choices=TASK_OUTCOME, default=OUTCOME_NA)|
 
 
 
-
-
-_______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
-> --
-> Christopher Larson
-> clarson at kergoth dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Maintainer - Tslib
-> Senior Software Engineer, Mentor Graphics
->
->
+Michael
 
 
