@@ -1,71 +1,61 @@
-Return-Path: <btv1==973eb3babd0==Fred.Ollinger@seescan.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67EA3E00C1F; Tue, 14 Jun 2016 09:01:58 -0700 (PDT)
+	id 942BAE00C1F; Tue, 14 Jun 2016 09:41:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.seescan.com (mail3.seescan.com [69.43.145.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0153EE00C02
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 09:01:54 -0700 (PDT)
-X-ASG-Debug-ID: 1465920113-0b39aa1573fec40001-yzSStA
-Received: from WRIGHT.seescan.com ([192.168.11.30]) by mail.seescan.com with
-	ESMTP id PeS5u6IrwR9HeoCj (version=TLSv1
-	cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO);
-	Tue, 14 Jun 2016 09:01:53 -0700 (PDT)
-X-Barracuda-Envelope-From: Fred.Ollinger@seescan.com
-Received: from WRIGHT.seescan.com (192.168.11.30) by WRIGHT.seescan.com
-	(192.168.11.30) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Tue, 14 Jun 2016 09:01:53 -0700
-Received: from WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa]) by
-	WRIGHT.seescan.com ([fe80::e4a9:8176:6f01:abfa%12]) with mapi id
-	15.00.1044.021; Tue, 14 Jun 2016 09:01:53 -0700
-From: Fred Ollinger <Fred.Ollinger@seescan.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Jeffrey D Boyer
-	<Jeffrey.D.Boyer@jci.com>
-Thread-Topic: [yocto] Mounting USB drives on a "read-only-rootfs" based system
-X-ASG-Orig-Subj: Re: [yocto] Mounting USB drives on a "read-only-rootfs" based
-	system
-Thread-Index: AdHFuMNyfcoYoG6/QWuF1oCmyic8agAQP+UAACAItAAAAQ2QgAABZ90A//+kcJ0=
-Date: Tue, 14 Jun 2016 16:01:52 +0000
-Message-ID: <1465920093479.94024@seescan.com>
-References: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
-	<CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
-	<5760041E.1010809@topic.nl>
-	<ea5b572b51f542459e034c49f2f05d76@BN3PR97MB0132.062d.mgd.msft.net>,
-	<CAJTo0LanVXcMNzpcaeA45L2+1Y1PGDYJt6hxgcJ-Q7k_LV0rbA@mail.gmail.com>
-In-Reply-To: <CAJTo0LanVXcMNzpcaeA45L2+1Y1PGDYJt6hxgcJ-Q7k_LV0rbA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [50.59.178.108]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58A3DE00BFF
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 09:41:43 -0700 (PDT)
+Received: by mail-io0-f178.google.com with SMTP id 5so152814483ioy.1
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 09:41:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=F8vgdbuFq8/P2s140f4VzjLB4td3wpU1Mbk61lC/skQ=;
+	b=vHEVUyrollPFts9EucskwTohAzXRgPLP+EUMFFrMxa0nCcbN9RYa7TH3b1fI/N2/2a
+	IS0JK17EAHbFuBbrLE/yWZkkxy4v0OqxLClC7+JKPGVx7LJ1+9aCzMiao6YFLXrFCDaD
+	lb2QvtpCGPwmockPnUhoT9wa4efP1qlLsi3Md16lOGoQB/s35ZrO5oXCQAZVBXvycK+M
+	WNcsNe4rXeDe600+/U5h1kjdlaEA+73W9co91LAxbMnLCCNV+NZg7oZnUuOo0VrzChjz
+	Od9btVIEZO6vK19Lu4OMObUAfQm73gqh9W/eS1EG+m6QCbPVljg4/MwL9UbY5Da6YqGj
+	k5jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=F8vgdbuFq8/P2s140f4VzjLB4td3wpU1Mbk61lC/skQ=;
+	b=PgeYvVrn2FPP7IwUyJEh9XEzhlXg3x9PQ/4ZLG6gdxqvGOKcFOs6/ded8pM0Frf+hb
+	f2OFPiYwiZEIP1D3R1VTYkfUliFqv86hVgRT4mnKKf4SxE9Um1PZAHp+LVhxty0DXK+t
+	H3JyiDuEJQ0VL6zJdoPDVFOvd0MUKABo6wOp93hhzfEzp5yqB2GjIdlt2aBcNJ1HUdha
+	C3X1FCUXTwO74BHAqDVsoAJabEwQQGv+av1TJTTDyXdOn0cE4ql57hFiyIF9akWZQpfN
+	0lfnQadxDcP48PG2ZUWwVVtlL0sCvnXQPax/HgK7W5emv+r+LDst4Ylk68tJXKJWaZd6
+	sqkg==
+X-Gm-Message-State: ALyK8tL2BwTIRBtDYbIp7gVvpjObNhobGXbzjeoPS4dOSZmlHOvG35eXew4+Jt3yhawSUbX9R2/UgINMzrDaNADo
+X-Received: by 10.107.135.137 with SMTP id r9mr35372219ioi.133.1465922503185; 
+	Tue, 14 Jun 2016 09:41:43 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[192.168.11.30]
-X-Barracuda-Start-Time: 1465920113
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
-X-Barracuda-URL: https://barracuda.seescan.com:443/cgi-mod/mark.cgi
-X-Barracuda-Scan-Msg-Size: 1204
-X-Virus-Scanned: by bsmtpd at seescan.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0142 1.0000 -1.9285
-X-Barracuda-Spam-Score: -1.93
-X-Barracuda-Spam-Status: No,
-	SCORE=-1.93 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
-	tests=BSF_SC0_MISMATCH_TO
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.30429
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    Envelope rcpt doesn't match header
+Received: by 10.107.162.6 with HTTP; Tue, 14 Jun 2016 09:41:23 -0700 (PDT)
+In-Reply-To: <C440BA31B54DCD4AAC682D2365C8FEE703C9DE63@ORSMSX113.amr.corp.intel.com>
+References: <C440BA31B54DCD4AAC682D2365C8FEE703C9DE63@ORSMSX113.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 14 Jun 2016 17:41:23 +0100
+Message-ID: <CAJTo0LbNu96SabhoEOJYbGKmAhWPt6P_EiAmr9WEMe71_nmqEQ@mail.gmail.com>
+To: "Dey, Megha" <megha.dey@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Christopher Larson <clarson@kergoth.com>
-Subject: Re: Mounting USB drives on a "read-only-rootfs" based system
+	"poky@yoctoproject.org" <poky@yoctoproject.org>
+Subject: Re: Script being installed under /etc/init.d instead of /usr/lib/systemd folder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,45 +67,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jun 2016 16:01:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 14 Jun 2016 16:41:47 -0000
+Content-Type: multipart/alternative; boundary=001a113ec842122c1f05353fae0f
+
+--001a113ec842122c1f05353fae0f
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-There's also bind mounts as an option.
+On 9 June 2016 at 02:11, Dey, Megha <megha.dey@intel.com> wrote:
 
+> However, I do have a script recipe which is currently placed as a bbappen=
+d
+> to initscripts (meta/recipes-core/initscripts/initscript_..bb) in my cust=
+om
+> meta layer.
+>
+>
+>
+> This script even after shifting to systemd, is being placed in the
+> /etc/init.d/ folder, and hence doesn=E2=80=99t run on boot. I want this t=
+o be
+> placed in the /usr/lib/system.d/ folder instead. How would I be able to d=
+o
+> this?
+>
+>
+sysv-style init scripts go into /etc/init.d, systemd units do into
+/lib/system.d  As this is your append then it is up to you to place the
+file in the right location.
 
-       The bind mounts.
-              Since Linux 2.4.0 it is possible to remount part of the file =
-hierarchy somewhere else.  The call is:
-
-                     mount --bind olddir newdir
-
-              or by using this fstab entry:
-
-                     /olddir /newdir none bind
-
-              After this call the same contents are accessible in two place=
-s.  One can also remount a single  file  (on  a
-              single file).
-
-________________________________
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of Burton, Ross <ross.burton@intel.com>
-Sent: Tuesday, June 14, 2016 7:28 AM
-To: Jeffrey D Boyer
-Cc: yocto@yoctoproject.org; Christopher Larson
-Subject: Re: [yocto] Mounting USB drives on a "read-only-rootfs" based syst=
-em
-
-
-On 14 June 2016 at 14:48, Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com<mailto:J=
-effrey.D.Boyer@jci.com>> wrote:
-FYI, I'm running 3.14 kernel.  Is this a job for aufs?  If so, how would I =
-go about configuring it?
-
-If you want to support arbitrary mounts then it's probably simplest to eith=
-er change /media to be a symlink to /run/media, or put a tmpfs on /media.
+If you're installing a traditional init script then /etc/init.d is the
+right place for it to be installed, if you're attempting to install a
+systemd unit then look at the documentation for the systemd class.
 
 Ross
 
+--001a113ec842122c1f05353fae0f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 9 June 2016 at 02:11, Dey, Megha <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:megha.dey@intel.com" target=3D"_blank">megha.dey@intel.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal">However, I =
+do have a script recipe which is currently placed as a bbappend to initscri=
+pts (meta/recipes-core/initscripts/initscript_..bb) in my custom meta layer=
+.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">This script even after shifting to systemd, is being=
+ placed in the /etc/init.d/ folder, and hence doesn=E2=80=99t run on boot. =
+I want this to be placed in the /usr/lib/system.d/ folder instead. How woul=
+d I be able to do this?<u></u><u></u></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>sysv-style init scripts g=
+o into /etc/init.d, systemd units do into /lib/system.d =C2=A0As this is yo=
+ur append then it is up to you to place the file in the right location.</di=
+v><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">If you&#3=
+9;re installing a traditional init script then /etc/init.d is the right pla=
+ce for it to be installed, if you&#39;re attempting to install a systemd un=
+it then look at the documentation for the systemd class.</div><div class=3D=
+"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a113ec842122c1f05353fae0f--
