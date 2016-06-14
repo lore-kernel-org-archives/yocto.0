@@ -1,68 +1,40 @@
-Return-Path: <piotr.lewicki@elfin.de>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CD23E00B5F; Tue, 14 Jun 2016 08:32:59 -0700 (PDT)
+	id 24528E00C1D; Tue, 14 Jun 2016 08:56:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64B08E00B5F
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 08:32:55 -0700 (PDT)
-Received: by mail-wm0-f51.google.com with SMTP id n184so127229204wmn.1
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 08:32:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=8q2GJrys6DOMPdaYIp0JatbBOXrwTpEUDihiIBC2Sq8=;
-	b=Srz5MRmcL1aRX4sWyFezSxARJRx8rG3mb8h5NN5jdH5yY1d2rXdRj0qeFwA8G/mMWq
-	ms4T6CvdgAHZxj6t3QDci2Frtk+F/i/MREHi4htpiD9NFrZXIcqAVy2nqbSBgPdiv5AI
-	A5Bk0nPXOa8SqgicPujBnQBykNgtFRghafHIGYokebj5TYbYwd4I9ylJpHSN6rIXVQ6h
-	pMhYPwzvGxRIf10JQKGJdpjx/ZGsifkYkDAs2WUhxfuaScr+aPPwif2X8wHyeUMt6XbB
-	bznB4QAN/D4hwJi2l/s4ZgKmaRwQFPfYRWvudsi7QbSfASEGkhUDLotrCnjEmEjHQ3of
-	f6tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=8q2GJrys6DOMPdaYIp0JatbBOXrwTpEUDihiIBC2Sq8=;
-	b=FaBpfHcz4+lbTcdI2GXPUV54f46esi0Ri/Ljd1y2hmPa3hT1Mgt7lEduPTl/wk0y6w
-	lI820dqGzoypgx/KVnAOdCTJJ+2VOHlCH/jdkd6rHMvI4itDP9N9ZkBnNUC759lPCdrT
-	fNWpwpkZoGUoUk0fCmNR1x0/UhqBjPlwb3AhYlhWLLIpOWydm+zzgA1nHUOo8/ZdG9nm
-	pGK7r8+gQ6unduoCF/E48Rpy2uGrxS+Bh7dm0w8CE9gKQ9fb95ihZgZIXint4cTBYIpv
-	U0xhxKXm+lfpX7MDaXgzEyeLVr9tK5ovzl5w7Do1bgBc/aUqOlcVyr+P01kpDYonY9Yx
-	g8+w==
-X-Gm-Message-State: ALyK8tI+XGx28JXj9AHeForMTgiDdLDjgUUDvxuElkfzlAOI+Ye4cp3lZNFoDQNzxr3XqA==
-X-Received: by 10.28.88.206 with SMTP id m197mr6735135wmb.43.1465918374348;
-	Tue, 14 Jun 2016 08:32:54 -0700 (PDT)
-Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
-	[94.79.174.114])
-	by smtp.gmail.com with ESMTPSA id 75sm4715840wml.15.2016.06.14.08.32.53
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Tue, 14 Jun 2016 08:32:53 -0700 (PDT)
-To: "Dey, Megha" <megha.dey@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-References: <C440BA31B54DCD4AAC682D2365C8FEE703C9DE63@ORSMSX113.amr.corp.intel.com>
-From: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Message-ID: <576023A5.90006@elfin.de>
-Date: Tue, 14 Jun 2016 17:32:53 +0200
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8505E00BFF
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 08:56:20 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 14 Jun 2016 08:56:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,471,1459839600"; 
+	d="asc'?scan'208";a="827916020"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.51]) ([10.219.5.51])
+	by orsmga003.jf.intel.com with ESMTP; 14 Jun 2016 08:56:17 -0700
+To: "Lock, Joshua G" <joshua.g.lock@intel.com>,
+	"pidge@toganlabs.com" <pidge@toganlabs.com>,
+	"Randle, William C" <william.c.randle@intel.com>
+References: <5759DE3F.9040002@linux.intel.com>
+	<1465916993.2814.14.camel@intel.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <57602958.70402@linux.intel.com>
+Date: Tue, 14 Jun 2016 10:57:12 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-In-Reply-To: <C440BA31B54DCD4AAC682D2365C8FEE703C9DE63@ORSMSX113.amr.corp.intel.com>
-Subject: Re: Script being installed under /etc/init.d instead of /usr/lib/systemd folder
+In-Reply-To: <1465916993.2814.14.camel@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder] [RFC] Add support for generate bitbake error reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,214 +46,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jun 2016 15:32:59 -0000
-Content-Type: multipart/alternative;
-	boundary="------------000705080503060506010305"
+X-List-Received-Date: Tue, 14 Jun 2016 15:56:23 -0000
+X-Groupsio-MsgNum: 30511
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="nUrh7B91IxRIwgDhIbUDWVIaOpJnN0DbS"
 
---------------000705080503060506010305
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Take a look at example from my some-recipe.bb
-:
-
-inherit systemd
-
-SYSTEMD_SERVICE_${PN} = "some-recipe.service"
-
-do_install_append () {
-     install -d ${D}${systemd_unitdir}/system
-     install -m 0644 ${S}/configs/some-recipe.service 
-${D}${systemd_unitdir}/system
-}
-
-First in your recipe inherit from "systemd".
-Then install your systemd service file in 
-"${D}${systemd_unitdir}/system" (there is also a variable for this 
-directory, I think it's ${systemd_system_unitdir} or something similar).
-Remember to create a directory before placing a file there.
-
-In the last step use "SYSTEMD_SERVICE_${PN}" where you specify systemd 
-services that should be run.
-
-I hope that helps..
-
-Best regards,
-Piotr Lewicki
+--nUrh7B91IxRIwgDhIbUDWVIaOpJnN0DbS
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
-On 09.06.2016 03:11, Dey, Megha wrote:
->
-> Hi,
->
-> I am trying to use the systemd init system from the existing system. I 
-> have added the following to my conf file:
->
-> DISTRO_FEATURES_append = " systemd"
->
-> VIRTUAL-RUNTIME_init_manager = "systemd"
->
-> VIRTUAL-RUNTIME_initscripts = ""
->
-> DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
->
-> I have also added the ‘systemd’ binary to the INSTALL_APPEND.
->
-> When I boot the resulting image, I do see systemd up and running and I 
-> am able to start and stop services.
->
-> However, I do have a script recipe which is currently placed as a 
-> bbappend to initscripts 
-> (meta/recipes-core/initscripts/initscript_..bb) in my custom meta layer.
->
-> This script even after shifting to systemd, is being placed in the 
-> /etc/init.d/ folder, and hence doesn’t run on boot. I want this to be 
-> placed in the /usr/lib/system.d/ folder instead. How would I be able 
-> to do this?
->
-> Is it because this script is an append to initscripts, it by default 
-> gets installed under /etc/init.d? If so, where should I place the recipe?
->
-> Thanks,
->
-> Megha
->
->
->
+
+On 06/14/2016 10:09 AM, Lock, Joshua G wrote:
+> On Thu, 2016-06-09 at 16:23 -0500, An=C3=ADbal Lim=C3=B3n wrote:
+>> Hi folks,
+>>
+>> Currently we support to send error reports to errors.yoctoproject.org
+>> about failing tasks on bitbake using SendErrorReport buildstep but we
+>> have a lack of bitbake related errors like exceptions.
+>>
+>> A bug exist to implement this support into Error report web [1], i'm
+>> working on it but for generate bitbake error reports there's a need
+>> of
+>> some process monitoring the bitbake output in this case the Yocto
+>> Autobuilder.
+>>
+>> This email is for review my current implementation for generate
+>> bitbake
+>> error reports in the Autobuilder [2] next i'll try to explain how it
+>> works.
+>>
+>> I aadded a BitbakeShellCommand [3] class for use in the buildsteps
+>> that
+>> executes bitbake the main objective of this class is to have common
+>> operations to be made in bitbake commands like create error reports
+>> if
+>> fails.
+>>
+>> For create error reports this class add an stdio observer to look at
+>> bitbake output and if bitbake fails review the bitbake output for
+>> identify if the failure is an non-related task error [4]. If the
+>> observer found bitbake error creates an Error report with the
+>> information in the master controller.
+>>
+>> In order to send the bitbake error to Error report web the controller
+>> transfer the report to the worker using a new DownloadDirectory
+>> implementation that i made [5], the SendErrorReport buildstep works
+>> on
+>> the worker side so it's easy to transfer the reports from master to
+>> worker instead of send it by master.
+>>
+>> Finally to complete with the job of have the bitbake errors reports
+>> the
+>> Error report web changes need  (i'm working on it) to be integrated
+>> first in order to don't break anything.
+>>
+>> Please review it and provide me feedback.
+>=20
+> This would've been much easier to review as a series of patches.
+>=20
+> After a quick read via the gitweb the series as a whole looks good.
+>=20
+> A couple of review comments:
+>=20
+> In a04b41d37c29191318386455d8d958ff815a3a10 "lib/buildsteps.py: Add
+> BitbakeLogLineObserver for BitbakeShellCommands." you have a comment
+>=20
+> "discard line that are not errors and line that is recipe task errors"
+>=20
+> but the lines are not actually discarded, afaict  from a cursory read
+> through they aren't used in the rest of the series
+> unless errors['bitbake'] =3D=3D True?=20
+>=20
+> Could we move the error['log'].append() to after the if statement which=
+
+> checks whether this is a bitbake error?
+
+Yes and i'll update the commit message to be more consistent.
+
+>=20
+> Minor nit, in caf472bc696053227825c5a102feef3e17574ba2 "lib/buildsteps:=
+
+> BitbakeShellCommand add support for create error reports"
+> in get_error_report_bitbake_dir() you use both " and ' for strings.
+>=20
+> Same in 40279597615c49bc4f4f067cbab937584b626671
+
+I'll fix the typos for only use "".
+
+	alimon
+
+>=20
+> Regards,
+>=20
+> Joshua
+>=20
+>>
+>> Cheers,
+>> 	alimon
+>>
+>> [1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7583
+>> [2]
+>> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=3Dc=
+o
+>> ntrib/alimon/devel
+>> [3]
+>> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tree/lib/
+>> python2.7/site-
+>> packages/autobuilder/lib/buildsteps.py?h=3Dcontrib/alimon/devel#n92
+>> [4]
+>> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tree/lib/
+>> python2.7/site-
+>> packages/autobuilder/lib/buildsteps.py?h=3Dcontrib/alimon/devel#n53
+>> [5]
+>> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?h
+>> =3Dcontrib/alimon/devel&id=3D4022920bb0e56d1eef3dfe7c5e9b4699f801cdf1
 
 
---------------000705080503060506010305
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+--nUrh7B91IxRIwgDhIbUDWVIaOpJnN0DbS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Take a look at example from my some-recipe.bb<br>
-    :<br>
-    <br>
-    inherit systemd<br>
-    <br>
-    SYSTEMD_SERVICE_${PN} = "some-recipe.service"<br>
-    <br>
-    do_install_append () {<br>
-        install -d ${D}${systemd_unitdir}/system<br>
-        install -m 0644 ${S}/configs/some-recipe.service
-    ${D}${systemd_unitdir}/system<br>
-    }<br>
-    <br>
-    First in your recipe inherit from "systemd".<br>
-    Then install your systemd service file in
-    "${D}${systemd_unitdir}/system" (there is also a variable for this
-    directory, I think it's ${systemd_system_unitdir} or something
-    similar).<br>
-    Remember to create a directory before placing a file there.<br>
-    <br>
-    In the last step use "SYSTEMD_SERVICE_${PN}" where you specify
-    systemd services that should be run.<br>
-    <br>
-    I hope that helps..<br>
-    <br>
-    Best regards,<br>
-    Piotr Lewicki<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 09.06.2016 03:11, Dey, Megha wrote:<br>
-    </div>
-    <blockquote
-cite="mid:C440BA31B54DCD4AAC682D2365C8FEE703C9DE63@ORSMSX113.amr.corp.intel.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hi,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I am trying to use the systemd init system
-          from the existing system. I have added the following to my
-          conf file:<o:p></o:p></p>
-        <p class="MsoNormal">DISTRO_FEATURES_append = " systemd"<o:p></o:p></p>
-        <p class="MsoNormal">VIRTUAL-RUNTIME_init_manager = "systemd"<o:p></o:p></p>
-        <p class="MsoNormal">VIRTUAL-RUNTIME_initscripts = ""<o:p></o:p></p>
-        <p class="MsoNormal">DISTRO_FEATURES_BACKFILL_CONSIDERED +=
-          "sysvinit"<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I have also added the ‘systemd’ binary to
-          the INSTALL_APPEND.<o:p></o:p></p>
-        <p class="MsoNormal">When I boot the resulting image, I do see
-          systemd up and running and I am able to start and stop
-          services.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">However, I do have a script recipe which is
-          currently placed as a bbappend to initscripts
-          (meta/recipes-core/initscripts/initscript_..bb) in my custom
-          meta layer.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">This script even after shifting to systemd,
-          is being placed in the /etc/init.d/ folder, and hence doesn’t
-          run on boot. I want this to be placed in the
-          /usr/lib/system.d/ folder instead. How would I be able to do
-          this?<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Is it because this script is an append to
-          initscripts, it by default gets installed under /etc/init.d?
-          If so, where should I place the recipe?
-          <o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thanks,<o:p></o:p></p>
-        <p class="MsoNormal">Megha<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
---------------000705080503060506010305--
+iQIcBAEBAgAGBQJXYClaAAoJEGJqcE9h3glg7YwP/iRJh8igw7Qe8gA+s5rhWKPU
+YdQLnLv2C2isaBgUV9lP/qYgOdM1DRiERrqB0OHJoeN5g5Cu+g68+s1ixOVjrIdE
+KuXDp+ZtPkUj0WjC+K8hrdjbCMWIYmUnBXzvXU5uJpwMeigGYXY3y1dRS2+kB5HE
+OaZpzLtXx+1M+DgdFfOoptOTXIQU+pCnKIc+PIDY1gX2j4upWk7jYDlVTyQLJVVS
+W6HGoOSEQm6ACEd4kYA1vJutK8xytc0G8Mm73u2OEEagKhWEIrmqgQYN4XFy/Yo9
+cCpdz8P14N/Y8aXEIRh5oTtR4eHQsS5MhP6tMtl1SfBC8H+0g81RMZ/1lDT6/C2S
+eUFdStJrPIwwNvosRXgZbmbbs/9yOzXe80cLFrQ8MqORcESt0L2qT/SIB8e5YkXY
+CyZz2RlvOX4jzUQh/oVRW6mGqDREC+l3gc5h5moUBwIoa0899uIHg334yh0YZeXo
+KovMPBu7MSya+1IiPDbhAjHwL/gxUGemZA8AnwRPyxMS8TG/MYVwg2GlVVEs0jTm
+3qRKP5T4XyMv8a63rxeVmv1qjmtpDCbeHYDKQEGTUWgb8jYOABKKgDn2TCY2rzNC
+b/XhSdKRVtfCXVTb9T/dxZc844D9/Qvk9LGbkPBou0wQ4FxEu66YIckcjVdkVJ4x
+6GaWUKRbdbw4svxwTqzx
+=bDq5
+-----END PGP SIGNATURE-----
+
+--nUrh7B91IxRIwgDhIbUDWVIaOpJnN0DbS--
