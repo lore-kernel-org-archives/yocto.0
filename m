@@ -1,41 +1,29 @@
-Return-Path: <lists@webconect.ch>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7AF8E00956; Tue, 14 Jun 2016 00:37:04 -0700 (PDT)
+	id 89703E009AC; Tue, 14 Jun 2016 02:58:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_20,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.26.49.174 listed in list.dnswl.org]
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1056]
-X-Greylist: delayed 1301 seconds by postgrey-1.32 at yocto-www;
-	Tue, 14 Jun 2016 00:37:01 PDT
-Received: from mxout014.mail.hostpoint.ch (mxout014.mail.hostpoint.ch
-	[217.26.49.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E5F7E007DA
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 00:37:01 -0700 (PDT)
-Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
-	by mxout014.mail.hostpoint.ch with esmtp (Exim 4.84 (FreeBSD))
-	(envelope-from <lists@webconect.ch>)
-	id 1bCiZC-000Nez-Gg; Tue, 14 Jun 2016 09:15:18 +0200
-Received: from 77-58-230-166.dclient.hispeed.ch ([77.58.230.166]
-	helo=webconect.local) by asmtp012.mail.hostpoint.ch with esmtpsa
-	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.84 (FreeBSD))
-	(envelope-from <lists@webconect.ch>)
-	id 1bCiZC-000Lge-Cl; Tue, 14 Jun 2016 09:15:18 +0200
-X-Authenticated-Sender-Id: lists@webconect.ch
-Date: Tue, 14 Jun 2016 09:15:18 +0200
-From: Elias Diem <lists@webconect.ch>
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04DEAE00956
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 02:58:24 -0700 (PDT)
 To: yocto@yoctoproject.org
-Message-ID: <20160614071518.GA14846@webconect.local>
-Mail-Followup-To: yocto@yoctoproject.org,
-	Urs =?utf-8?Q?F=C3=A4ssler?= <urs@bitzgi.ch>
 MIME-Version: 1.0
-Cc: Urs =?utf-8?Q?F=C3=A4ssler?= <urs@bitzgi.ch>
-Subject: Customization for nginx
+X-KeepSent: 49157488:A2BE990F-C1257FD2:00360E4B;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF49157488.A2BE990F-ONC1257FD2.00360E4B-C1257FD2.0036C820@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Tue, 14 Jun 2016 11:58:21 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 14.06.2016 11:58:28,
+	Serialize complete at 14.06.2016 11:58:28
+Subject: [Found Error] Re: License problems when switching form RPM to DEB - looking for a easy way to fix it
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,35 +35,503 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jun 2016 07:37:04 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
+X-List-Received-Date: Tue, 14 Jun 2016 09:58:30 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 0036C81FC1257FD2_="
 
-Hi
+--=_alternative 0036C81FC1257FD2_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-With jethro, I used to use the following .bbappend to use
-my config for nginx:
+Hej
 
-<file name="nginx_1.9.5.bbappend">
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+I found the error at the QA check of the debian packages. The deb QA modul =
 
-</file>
+has problems resolving the links into the=20
+"sysroots/<machine>/pkgdata/runtime-resolve". This is because there is a=20
+lowcase conversation of the recipe name:
 
-My nginx.conf was inside the corresponding files directory.
+p.e.:
 
-Since krogoth, which uses nginx 1.9.14, this does not seem 
-to work any more. My config file is not used any more. The 
-.bbappend file how has the name nginx_1.9.14.bbappend of 
-course.
+"helloMyWorld.bb"
 
-What could be the reason for this?
+the name of the link is "helloMyWorld"
 
-Or, alternatively: where can I debug this?
+the QA module is searching for: "hellomyworld"
+
+by renaming the recipe to lowcase letters solves the error. Maybe someone=20
+can fix it.
+
+Regards!
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
 
--- 
-Greetings
-Elias
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+----- Weitergeleitet von Stefan Jaritz/User/ESA-Grimma/DE am 14.06.2016=20
+11:50 -----
+
+Von:    Stefan Jaritz/User/ESA-Grimma/DE
+An:     "Burton, Ross" <ross.burton@intel.com>,=20
+roman.shaposhnikov@globallogic.com
+Kopie:  "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Datum:  13.06.2016 13:32
+Betreff:        Antwort: Re: [yocto] License problems when switching form=20
+RPM to DEB - looking for a easy way to fix it
+
+
+Hej
+
+I deleted the tmp and rebuild it. But the error stays. I added a licence=20
+file to the repro and added the
+
+LICENSE=3D"ESA"
+LIC=5FFILES=5FCHKSUM=3D"files://ESAlicense.txt;md5=3D.."
+
+What's the connection between the LICENSE and LIC=5FFILES=5FCHKSUM field?
+How the license manifest is build?
+
+I think the error is releated to the point, that there is possibly no=20
+LICENSE entry connected to "ESA" or "CLOSED".
+Below the error print:
+##############
+ERROR: core-image-minimal-1.0-r0 do=5Frootfs: Error executing a python=20
+function in exec=5Fpython=5Ffunc() autogenerated:
+
+The stack trace of python calls that resulted in this exception/failure=20
+was:
+File: 'exec=5Fpython=5Ffunc() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:license=5Fcreate=5Fmanifest(d)
+     0003:
+File: '/home/user/myTC/poky/meta/classes/license.bbclass', lineno: 48,=20
+function: license=5Fcreate=5Fmanifest
+     0044:    pkg=5Fdic =3D {}
+     0045:    for pkg in sorted(image=5Flist=5Finstalled=5Fpackages(d)):
+     0046:        pkg=5Finfo =3D os.path.join(d.getVar('PKGDATA=5FDIR', Tru=
+e),
+     0047:                                'runtime-reverse', pkg)
+ *** 0048:        pkg=5Fname =3D os.path.basename(os.readlink(pkg=5Finfo))
+     0049:
+     0050:        pkg=5Fdic[pkg=5Fname] =3D=20
+oe.packagedata.read=5Fpkgdatafile(pkg=5Finfo)
+     0051:        if not "LICENSE" in pkg=5Fdic[pkg=5Fname].keys():
+     0052:            pkg=5Flic=5Fname =3D "LICENSE=5F" + pkg=5Fname
+Exception: OSError: [Errno 2] No such file or directory:=20
+'/home/user/myTC/poky/build/tmp/sysroots/sama5d3xek/pkgdata/runtime-reverse=
+/mycontrol'
+
+ERROR: core-image-minimal-1.0-r0 do=5Frootfs: Function failed:=20
+license=5Fcreate=5Fmanifest
+ERROR: Logfile of failure stored in:=20
+/home/user/myTC/poky/build/tmp/work/sama5d3xek-poky-linux-gnueabi/core-imag=
+e-minimal/1.0-r0/temp/log.do=5Frootfs.22140
+ERROR: Task 9=20
+(/home/user/myTC/poky/meta/recipes-core/images/core-image-minimal.bb,=20
+do=5Frootfs) failed with exit code '1'
+##############
+
+Regards!
+
+Stefan Jaritz
+
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
 
 
 
+Von:    "Burton, Ross" <ross.burton@intel.com>
+An:     S.Jaritz@esa-grimma.de
+Kopie:  "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Datum:  09.06.2016 18:21
+Betreff:        Re: [yocto] License problems when switching form RPM to=20
+DEB - looking for a easy way to fix it
+
+
+
+
+On 9 June 2016 at 15:52, <S.Jaritz@esa-grimma.de> wrote:
+I switched from RPM to DEB because the board configuration should be=20
+handled by a package manager. By doing so I ran into a QA problem. All the =
+
+software provided by my colleagues I maked with=20
+
+Note that deb is the least-tested package manager, we generally recommend=20
+rpm or opkg over deb.  If you switched to deb because of the size of the=20
+tools on the target compared to rpm (as smart pulls in Python, it's not=20
+small) then you'll really like opkg.
+=20
+LICENSE =3D "CLOSED"=20
+
+because they do not provide a license file. This works fine with the rpm=20
+generator, but when I use the debian generator - the QA from the=20
+"do=5Frootfs" fails with:=20
+[snip]
+
+Very interesting, and I have seen this occasionally.  Does deleting your=20
+tmp/ and rebuilding from sstate solve this?
+
+Ross
+
+
+--=_alternative 0036C81FC1257FD2_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I found the error at the QA check of
+the debian packages. The deb QA modul has problems resolving the links
+into the &quot;sysroots/&lt;machine&gt;/pkgdata/runtime-resolve&quot;.
+This is because there is a lowcase conversation of the recipe name:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">p.e.:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">&quot;helloMyWorld.bb&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">the name of the link is &quot;helloM=
+yWorld&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">the QA module is searching for: &quo=
+t;hellomyworld&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">by renaming the recipe to lowcase le=
+tters
+solves the error. Maybe someone can fix it.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards!<br>
+<br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br><font size=3D1 color=3D#800080 face=3D"sans-serif">----- Weitergeleitet=
+ von
+Stefan Jaritz/User/ESA-Grimma/DE am 14.06.2016 11:50 -----</font>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">Stefan Jaritz/User/ESA-Grim=
+ma/DE</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Burton, Ross&quot;
+&lt;ross.burton@intel.com&gt;, roman.shaposhnikov@globallogic.com</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;yocto@yoctoproject.or=
+g&quot;
+&lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">13.06.2016 13:32</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Antwort: Re:
+[yocto] License problems when switching form RPM to DEB - looking for a
+easy way to fix it</font>
+<br>
+<hr noshade>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I deleted the tmp and rebuild it. But
+the error stays. I added a licence file to the repro and added the</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">LICENSE=3D&quot;ESA&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">LIC=5FFILES=5FCHKSUM=3D&quot;files:/=
+/ESAlicense.txt;md5=3D..&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">What's the connection between the LI=
+CENSE
+and LIC=5FFILES=5FCHKSUM field?</font>
+<br><font size=3D2 face=3D"sans-serif">How the license manifest is build?</=
+font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I think the error is releated to the
+point, that there is possibly no LICENSE entry connected to &quot;ESA&quot;
+or &quot;CLOSED&quot;.</font>
+<br><font size=3D2 face=3D"sans-serif">Below the error print:</font>
+<br><font size=3D2 face=3D"sans-serif">##############</font>
+<br><font size=3D2 face=3D"sans-serif">ERROR: core-image-minimal-1.0-r0 do=
+=5Frootfs:
+Error executing a python function in exec=5Fpython=5Ffunc() autogenerated:<=
+/font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">The stack trace of python calls that
+resulted in this exception/failure was:</font>
+<br><font size=3D2 face=3D"sans-serif">File: 'exec=5Fpython=5Ffunc() autoge=
+nerated',
+lineno: 2, function: &lt;module&gt;</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0001:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp;*** 0002:license=5Fcreate=5Fma=
+nifest(d)</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0003:</font>
+<br><font size=3D2 face=3D"sans-serif">File: '/home/user/myTC/poky/meta/cla=
+sses/license.bbclass',
+lineno: 48, function: license=5Fcreate=5Fmanifest</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0044: &nbsp; &nb=
+sp;pkg=5Fdic
+=3D {}</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0045: &nbsp; &nb=
+sp;for
+pkg in sorted(image=5Flist=5Finstalled=5Fpackages(d)):</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0046: &nbsp; &nb=
+sp;
+&nbsp; &nbsp;pkg=5Finfo =3D os.path.join(d.getVar('PKGDATA=5FDIR', True),</=
+font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0047: &nbsp; &nb=
+sp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;'runtime-reverse', pkg)</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp;*** 0048: &nbsp; &nbsp; &nbsp;
+&nbsp;pkg=5Fname =3D os.path.basename(os.readlink(pkg=5Finfo))</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0049:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0050: &nbsp; &nb=
+sp;
+&nbsp; &nbsp;pkg=5Fdic[pkg=5Fname] =3D oe.packagedata.read=5Fpkgdatafile(pk=
+g=5Finfo)</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0051: &nbsp; &nb=
+sp;
+&nbsp; &nbsp;if not &quot;LICENSE&quot; in pkg=5Fdic[pkg=5Fname].keys():</f=
+ont>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp;0052: &nbsp; &nb=
+sp;
+&nbsp; &nbsp; &nbsp; &nbsp;pkg=5Flic=5Fname =3D &quot;LICENSE=5F&quot; + pk=
+g=5Fname</font>
+<br><font size=3D2 face=3D"sans-serif">Exception: OSError: [Errno 2] No such
+file or directory: '/home/user/myTC/poky/build/tmp/sysroots/sama5d3xek/pkgd=
+ata/runtime-reverse/mycontrol'</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">ERROR: core-image-minimal-1.0-r0 do=
+=5Frootfs:
+Function failed: license=5Fcreate=5Fmanifest</font>
+<br><font size=3D2 face=3D"sans-serif">ERROR: Logfile of failure stored in:
+/home/user/myTC/poky/build/tmp/work/sama5d3xek-poky-linux-gnueabi/core-imag=
+e-minimal/1.0-r0/temp/log.do=5Frootfs.22140</font>
+<br><font size=3D2 face=3D"sans-serif">ERROR: Task 9 (/home/user/myTC/poky/=
+meta/recipes-core/images/core-image-minimal.bb,
+do=5Frootfs) failed with exit code '1'</font>
+<br><font size=3D2 face=3D"sans-serif">##############</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards!</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Stefan Jaritz<br>
+<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Burton, Ross&quot;
+&lt;ross.burton@intel.com&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">S.Jaritz@esa-grimma.de</fon=
+t>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;yocto@yoctoproject.or=
+g&quot;
+&lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">09.06.2016 18:21</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+License problems when switching form RPM to DEB - looking for a easy way
+to fix it</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br>
+<br><font size=3D3>On 9 June 2016 at 15:52, &lt;</font><a href=3D"mailto:S.=
+Jaritz@esa-grimma.de" target=3D=5Fblank><font size=3D3 color=3Dblue><u>S.Ja=
+ritz@esa-grimma.de</u></font></a><font size=3D3>&gt;
+wrote:</font>
+<br><font size=3D2 face=3D"sans-serif">I switched from RPM to DEB because t=
+he
+board configuration should be handled by a package manager. By doing so
+I ran into a QA problem. All the software provided by my colleagues I maked
+with </font>
+<br>
+<br><font size=3D3>Note that deb is the least-tested package manager, we
+generally recommend rpm or opkg over deb.&nbsp; If you switched to deb
+because of the size of the tools on the target compared to rpm (as smart
+pulls in Python, it's not small) then you'll really like opkg.</font>
+<br><font size=3D3>&nbsp;</font>
+<br><font size=3D2 face=3D"sans-serif">LICENSE =3D &quot;CLOSED&quot;</font=
+><font size=3D3>
+<br>
+</font><font size=3D2 face=3D"sans-serif"><br>
+because they do not provide a license file. This works fine with the rpm
+generator, but when I use the debian generator - the QA from the &quot;do=
+=5Frootfs&quot;
+fails with:</font><font size=3D3> </font>
+<br><font size=3D3>[snip]</font>
+<br>
+<br><font size=3D3>Very interesting, and I have seen this occasionally.&nbs=
+p;
+Does deleting your tmp/ and rebuilding from sstate solve this?</font>
+<br>
+<br><font size=3D3>Ross</font>
+<br>
+<br>
+
+--=_alternative 0036C81FC1257FD2_=--
