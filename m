@@ -1,39 +1,39 @@
-Return-Path: <pascal.bach@siemens.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 183EEE00CA5; Wed, 15 Jun 2016 04:33:58 -0700 (PDT)
+	id 61696E00CA6; Wed, 15 Jun 2016 05:43:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [194.138.37.39 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from lizzard.sbs.de (lizzard.sbs.de [194.138.37.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 928A9E00C9C
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 04:33:51 -0700 (PDT)
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-	by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id u5FBXnfo013716
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
-	Wed, 15 Jun 2016 13:33:49 +0200
-Received: from [139.16.77.141] (MD1FZU9C.ww002.siemens.net [139.16.77.141])
-	by mail2.sbs.de (8.15.2/8.15.2) with ESMTPS id u5FBXnST027991
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Wed, 15 Jun 2016 13:33:49 +0200
-To: "Woronicz, Bartosz (Nokia - PL/Wroclaw)" <bartosz.woronicz@nokia.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <57613330.9080100@siemens.com>
-	<VI1PR07MB1053319307849C7A12BE1E9581550@VI1PR07MB1053.eurprd07.prod.outlook.com>
-From: Pascal Bach <pascal.bach@siemens.com>
-Message-ID: <57613D1C.5060001@siemens.com>
-Date: Wed, 15 Jun 2016 13:33:48 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.7.2
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C977E00C9E
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 05:43:49 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20160615124345554_0486
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 12:43:45 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [216.191.234.70] (port=28003 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bDACE-0002pF-Eb
+	for yocto@yoctoproject.org; Wed, 15 Jun 2016 08:45:26 -0400
+Date: Wed, 15 Jun 2016 08:43:01 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1606150839230.9417@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <VI1PR07MB1053319307849C7A12BE1E9581550@VI1PR07MB1053.eurprd07.prod.outlook.com>
-Subject: Re: Yocto git server via http and mirror tarballs
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: is there an actual "compiler-gcc6.h" patch?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,58 +45,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 11:33:58 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 Jun 2016 12:43:53 -0000
+Content-Type: text/plain; charset=US-ASCII
 
 
-> I set in .gitconfig to always use https:// (don't forget 'git' at the end of path) instead git:// for yoctoproject url
->
-> [url "https://git.yoctoproject.org/git/"]
->         insteadOf = git://git.yoctoproject.org/
+  following on a post to the list from back on jun 1:
 
-I would pefer a solution that can be handled at the distro/site.conf level so that not very developer has to change their .gitconfig.
-However this is a good work around, thanks.
+https://www.mail-archive.com/yocto@yoctoproject.org/msg29568.html
 
->
-> Kind regards,
-> Bartosz Woronicz
-> Engineer, Software Configuration (SCM)
-> Nokia Networks - PL/Wroclaw
->
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Pascal Bach
-> Sent: Wednesday, June 15, 2016 12:51 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Yocto git server via http and mirror tarballs
->
-> Hi
->
-> Because of firewall restrictions I'm not always not able to access the git.yoctoproject.org via the git protocol but I'm required to use http.
->
-> By default most of the recipes in Poky recipes use the git protocol not the http protocol. For example yocto-kernel-tools points to repositories "git://git.yoctoproject.org/yocto-kernel-tools" instead of "http://git.yoctoproject.org/git/yocto-kernel-tools".
->
-> To work around this issue I added a mirror rules for rewriting the protocol like this:
->
-> MIRRORS += "\
->     git://git.yoctoproject.org/.*                               git://git.yoctoproject.org/git/PATH;protocol=http \n \
->     "
->
-> This seems to work and I'm able to fetch the sources even when git access is not possible.
->
-> But when I then enable BB_GENERATE_MIRROR_TARBALLS = "1" I'm starting to get different tarball names depending on what protocol was used.
-> For example "git2_git.yoctoproject.org.yocto-kernel-tools.git.tar.gz" vs "git2_git.yoctoproject.org.git.yocto-kernel-tools.git.tar.gz".
->
-> I assume this happens because the first tarball was create while git access was possible, while the second one was created when only http was possible:
-> git.yoctoproject.org/git => git.yoctoproject.org.git
-> git.yoctoproject.org     => git.yoctoproject.org
->
-> Is there any way to prevent the tarballs from having different names? For example derive the name always from the original URL not the mirror one?
->
-> Or is there a better way to achieve what we are doing with MIRROR?
->
-> Thanks for your help.
->
-> Pascal
+i figured it wouldn't be hard to find the place where that header file
+was added to the master branch for (in this case) the 4.1 kernel, but
+i just checked the git repo, master branch, and i don't see that file
+there, but i see that a patch to add it was submitted back on june 2:
+
+https://github.com/Freescale/meta-fsl-arm/blob/master/recipes-kernel/linux/linux-ls1/Fix-the-compile-issue-under-gcc6.patch
+
+so what is the status of this? am i just reading this incorrectly? or
+doing something wrong?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
