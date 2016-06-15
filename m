@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42216E00C82; Tue, 14 Jun 2016 17:12:22 -0700 (PDT)
+	id 3B127E00C82; Tue, 14 Jun 2016 17:17:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,50 +15,50 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65B59E00C7D
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 17:12:20 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id r5so2072044wmr.0
-	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 17:12:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B9D5E00C7D
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 17:17:06 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id 187so95212wmz.1
+	for <yocto@yoctoproject.org>; Tue, 14 Jun 2016 17:17:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=Yp0ceVZvgU43+E2NtkRD+GeZHi7brCy1wFdxUBz/sRM=;
-	b=A1iv2RjMrThqM0bvmmAQI+7yC78HFUXTsVx3d3BKPyJV/18LR8WNjwTqvYNlwBZDFm
-	OrkZckAnzh+UJZGKeP17ti4SRemGRoHosNjymVTB8v6ViCdMvrzraEq1o5rcKUjgBY70
-	OvHXVMg6gPMULYacMAipRhc/MAk1rBeSU+GTN4FeAW0VHS8uMHjW5K3vTrrXdwqua630
-	JBbB/FN35EN3MAnR4t9xcABBFmjWhaiMMwPEszlYtOFgyCiokMmtLsuUD/v1q6Xp/Yde
-	d1A3/g6b3ggtl2rBDP54gd4VMtoLmQ/aZi8b54wy21Kb+RU/EMlXMsVLyvAPMtCh+bJ0
-	sH5Q==
+	bh=6VhOVa6JW9EolVJWtzxzI8IfS+Y2pp8l1upXWaaBtQs=;
+	b=ak226jbfbsPtJ+a72ZeNpJ45raXMCovbSDZ/j0LBcdoQa/klTuuJPb9C/+H+SRSVzu
+	JmLHI/zlmMwB7NAPDHUFO5RUajwy6U6uj5yHzJn9i5TLtssei7hp4RVLK9Fme7Q2xVHW
+	4PDcAl1klV9avYk0eunwT1CukBkgY2AysvE1jj8eN2pSxTUVohy0uDWrdKgIK4toyNmi
+	UxK/rakwytewsU4cxCmhn3zxD/3SlQSUNkJcYC1+qjvSVgXyb+DHvpvFXqEASv2b4XmS
+	vYyWtw6uuy5BmzciziT8ENz/iuZoeRR8yTWMF7bV7DnfKaJnC8kAHJFQYLVoSMAu4El5
+	A3Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Yp0ceVZvgU43+E2NtkRD+GeZHi7brCy1wFdxUBz/sRM=;
-	b=Ef7wrTU+gprNcC8ruxowie4+YDXjQX4zxZz6/87UEOzehn2tCbr3uFqmOa/tmkztAD
-	LDhL+Pc/j/HgeZqFCxerlythmGSqH3MQdwg8/IklVviXns838eAujr38lv9hWU1FQErY
-	2ei8yQ2eBu+xG5B0bohvaQGwGaa8CJJhL+1qZVc1t5tJZIaT316PaB8wE8zs06Lw5okz
-	MIPe2obJVilED3bHK+gDAMA5dGmufG3umED2cXcPilp/vCMpIPAdpdat7t+ljoAOJgCK
-	SupA8jSdoqUNjuamoLfAIzBLHEsocl9gr21v/EQWWwK/s9jRM4Dm7ZM4RUBUXka/ULFx
-	QCOA==
-X-Gm-Message-State: ALyK8tLyx39Ue/IsSPVMTuB1ruRXbfpK4xmx2totxlHtYf/muzkkoZF/abFAHjgv5t0K5w==
-X-Received: by 10.194.101.233 with SMTP id fj9mr8303532wjb.54.1465949540151;
-	Tue, 14 Jun 2016 17:12:20 -0700 (PDT)
+	bh=6VhOVa6JW9EolVJWtzxzI8IfS+Y2pp8l1upXWaaBtQs=;
+	b=U5LiNuiBjImEYg1YkZQ0OyDwuXzXkrGqGDM5oxn+eeo55nUFZKj6N3zvLLDPC0GtCr
+	qXoxtvMwo3C+Ri01F6Z6IamjC4OAn8shJxEDqq2Uj0DJtsi4c6zK8s29sbQT6vTnAcWA
+	It1y3+K0GvZ1ntwTZm6v8P/LyWsRF3DeFGAQ0Z1xWPdf6k1pO1S3Afaz5JyazqZxsPb5
+	4nD6xwolx/T+JiFvo0a7B7RguGXdLSV0/+kZednHo4AD7xgAK1GJ9+BmrPnL3IJeRJmt
+	IS1CBoUGwo0Lc7kyjr7QQAK1v/cC2Hz8jCYldptsvjzFQzGVNkwZ2hIfZG70pFtgnURO
+	sS8Q==
+X-Gm-Message-State: ALyK8tKlFYps4SyhV+w+VXHS6iq8u2bd+RBVjQXotT7zmvxBFdA8t8/GGfZY7BU1mXADcQ==
+X-Received: by 10.28.194.87 with SMTP id s84mr7719607wmf.59.1465949825900;
+	Tue, 14 Jun 2016 17:17:05 -0700 (PDT)
 Received: from resin ([85.255.232.185]) by smtp.gmail.com with ESMTPSA id
-	jf3sm4681743wjb.41.2016.06.14.17.12.18
+	a198sm1042227wme.16.2016.06.14.17.17.04
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 14 Jun 2016 17:12:19 -0700 (PDT)
-Date: Wed, 15 Jun 2016 01:12:12 +0100
+	Tue, 14 Jun 2016 17:17:04 -0700 (PDT)
+Date: Wed, 15 Jun 2016 01:17:00 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20160615001212.GF22479@resin>
-References: <1464641195-88380-1-git-send-email-herve.jourdain@neuf.fr>
-	<1464641195-88380-4-git-send-email-herve.jourdain@neuf.fr>
+To: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <20160615001700.GG22479@resin>
+References: <1464537553-24915-1-git-send-email-paul@paulbarker.me.uk>
+	<1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
 MIME-Version: 1.0
-In-Reply-To: <1464641195-88380-4-git-send-email-herve.jourdain@neuf.fr>
+In-Reply-To: <1464537553-24915-2-git-send-email-paul@paulbarker.me.uk>
 User-Agent: Mutt/1.6.1 (2016-04-27)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH v4 3/5] rpi-base.inc: support for .dtbo files for dtb overlays
+Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Allow override of PV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,116 +70,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 00:12:22 -0000
-X-Groupsio-MsgNum: 30528
+X-List-Received-Date: Wed, 15 Jun 2016 00:17:10 -0000
+X-Groupsio-MsgNum: 30529
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3oCie2+XPXTnK5a5"
+	protocol="application/pgp-signature"; boundary="3xoW37o/FfUZJwQG"
 Content-Disposition: inline
 
---3oCie2+XPXTnK5a5
+--3xoW37o/FfUZJwQG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, May 31, 2016 at 04:46:33AM +0800, Herve Jourdain wrote:
-> Kernel 4.4.6+ on RaspberryPi support .dtbo files for overlays, instead of .dtb.
-> Add support for both variants of overlays ("-overlay.dtb" and ".dtbo") for the default KERNEL_DEVICETREE variable
+On Sun, May 29, 2016 at 04:59:08PM +0100, Paul Barker wrote:
+> PV is now set in each version of the linux-raspberrypi recipe instead of in
+> linux-raspberrypi.inc. This allows linux-raspberrypi.inc to be used in custom
+> kernel recipes in another layer which require a different PV value.
 >
-> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
 > ---
->  conf/machine/include/rpi-base.inc | 36 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 35 insertions(+), 1 deletion(-)
+>  recipes-kernel/linux/linux-raspberrypi.inc     | 1 -
+>  recipes-kernel/linux/linux-raspberrypi_3.18.bb | 1 +
+>  recipes-kernel/linux/linux-raspberrypi_4.1.bb  | 1 +
+>  recipes-kernel/linux/linux-raspberrypi_4.4.bb  | 1 +
+>  4 files changed, 3 insertions(+), 1 deletion(-)
 >
-> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-> index 56ca83e..2c9d8e0 100644
-> --- a/conf/machine/include/rpi-base.inc
-> +++ b/conf/machine/include/rpi-base.inc
-> @@ -16,7 +16,7 @@ XSERVER = " \
->      "
+> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+> index 4799c74..dd477cd 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+> @@ -13,7 +13,6 @@ SRC_URI += " \
+>  COMPATIBLE_MACHINE = "raspberrypi"
 >
->  # Really supported starting from linux-raspberrypi 3.18.y only
-> -KERNEL_DEVICETREE ?= " \
-> +KERNEL_DEVICETREE_OVERLAYS_DTB = " \
->      bcm2708-rpi-b.dtb \
->      bcm2708-rpi-b-plus.dtb \
->      bcm2709-rpi-2-b.dtb \
-> @@ -38,6 +38,40 @@ KERNEL_DEVICETREE ?= " \
->      overlays/w1-gpio-pullup-overlay.dtb \
->      overlays/pi3-miniuart-bt-overlay.dtb \
->      "
-> +KERNEL_DEVICETREE_OVERLAYS_DTBO = " \
-> +    bcm2708-rpi-b.dtb \
-> +    bcm2708-rpi-b-plus.dtb \
-> +    bcm2709-rpi-2-b.dtb \
-> +    bcm2710-rpi-3-b.dtb \
-> +    \
-> +    overlays/hifiberry-amp.dtbo \
-> +    overlays/hifiberry-dac.dtbo \
-> +    overlays/hifiberry-dacplus.dtbo \
-> +    overlays/hifiberry-digi.dtbo \
-> +    overlays/i2c-rtc.dtbo \
-> +    overlays/iqaudio-dac.dtbo \
-> +    overlays/iqaudio-dacplus.dtbo \
-> +    overlays/lirc-rpi.dtbo \
-> +    overlays/pitft22.dtbo \
-> +    overlays/pitft28-resistive.dtbo \
-> +    overlays/pps-gpio.dtbo \
-> +    overlays/rpi-ft5406.dtbo \
-> +    overlays/w1-gpio.dtbo \
-> +    overlays/w1-gpio-pullup.dtbo \
-> +    overlays/pi3-miniuart-bt.dtbo \
-> +    "
-> +
-> +def cmpver_strings(ver1, ver2, truevalue, falsevalue):
-> +    from distutils.version import LooseVersion
-> +    ver1 = ''.join(ch for ch in ver1 if ch in '0123456789.')
-> +    ver2 = ''.join(ch for ch in ver2 if ch in '0123456789.')
-> +    if LooseVersion(ver1) >= LooseVersion(ver2):
-> +        return truevalue
-> +    else:
-> +        return falsevalue
-> +
-> +KERNEL_DEVICETREE ?= "${@cmpver_strings("${PREFERRED_VERSION_linux-raspberrypi}", "4.4", "${KERNEL_DEVICETREE_OVERLAYS_DTBO}", "${KERNEL_DEVICETREE_OVERLAYS_DTB}")}"
-> +
->  KERNEL_IMAGETYPE ?= "Image"
+>  PE = "1"
+> -PV = "${LINUX_VERSION}+git${SRCPV}"
 >
+>  # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+>  KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> index 1110b71..b16a1d7 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> @@ -1,6 +1,7 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>
+>  LINUX_VERSION ?= "3.18.16"
+> +PV = "${LINUX_VERSION}+git${SRCPV}"
+>
+>  SRCREV = "1bb18c8f721ef674a447f3622273f2e2de7a205c"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> index 79fac66..9e1572e 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> @@ -1,6 +1,7 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>
+>  LINUX_VERSION ?= "4.1.21"
+> +PV = "${LINUX_VERSION}+git${SRCPV}"
+>
+>  SRCREV = "ff45bc0e8917c77461b2901e2743e6339bb70413"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.1.y \
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> index ba47b22..12bb43a 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
+> @@ -1,6 +1,7 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>
+>  LINUX_VERSION ?= "4.4.9"
+> +PV = "${LINUX_VERSION}+git${SRCPV}"
+>
+>  SRCREV = "3b440738b5c1adc3ec3ee72ceca799d1b8d264df"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
 
-Can we avoid this duplication by translating dtbo->dtb for kernels
-before 4.4? And I would suggest doing this in
-linux-raspberrypi-base.bbclass . What do you think? We should reuse code
-there for version too.
-
->  MACHINE_FEATURES += "apm usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I'm not really happy in duplicating PV. Wouldn't a weak assignment work
+for you? PV ?= "${LINUX_VERSION}+git${SRCPV}" . So you can overwrite it
+as you want.
 
 --
 Andrei Gherzan
 
---3oCie2+XPXTnK5a5
+--3xoW37o/FfUZJwQG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXYJ1cAAoJEHO76Gt+erfPI8cP/ii6DHS454LmETFaiC7nVf05
-aZQef0R++ww+edfju8fwf6XSi2YhDBwdlzQHn7cqd4mG8mwZSYwDmMsh+mD+UY4W
-12SlyNzzpnEegPRA914eIjdgbegGvDO8AokHEd1vatakNCNO4mC0MWoQc2k6kszl
-bMhjwk2TzxhhRi+dlYwBFTiqL5+kCZNNCahJXVN3YnR0AXytfwRJfrhGNA/yh+Pr
-QeT/LsmoHlxuDIpAZiDOlxLDJYO38ir5jluO8e+0W3FHsGnLMBa5ES/dfeyRKnbO
-dtPWIJTPTsMEwMAAGRcQuIUDSJCNVgEJxBQPsA8Gl/sQAce44L7TUiUlh2g0guHM
-bTA6cUsK8e6WwXEn7ChAWa5ZtjbAix/EXT5gqcTJSWutxVYlzyjVGsnxlXWMegoU
-AGdKL/mvqS0H54DerZOwcyEf9H7WDrpILX2nEQfbNHy9fT6A5qKq9a2Jv2Mn+HLZ
-68ZylUrt5mU8sLIbhqHcj5BzaWfeFiX50wgasirXEoGo6Nar7RQihf2+1n0g2FHC
-t8g64iiRskPNxBbFYCut0KEPz2Jo4D2VdY9ZDH9rZX/i43VO2dvLox68dydzdOWp
-6mMlxvhrL6eF8rKHs5QQLgVIomea94sz9P+5pqeft9vigfkitjde8BYWomjeA1Di
-lm1kkrj9Le3kbJeIB76S
-=10k0
+iQIcBAEBCAAGBQJXYJ58AAoJEHO76Gt+erfP6pwP/Ax2tCX8NjMuow2GoiuG6A3l
+ooVh0+KTVbC8+MNUZhhpF6QZ7ACSE/3n7/rsPLuDQoBojB2xuwnKR6WGbtI3HRTT
+d43YdpI/tkbKUg1MNkDal2brd2vZnv6yFCMtB6Duu/eAC1VW0G6kgICJKcyhrpZM
+lXXT8QwwLjO+1xqNsVsWF5NmXJMKW24czss4IKPMjOcER2PjmlWN2rZruZEtc1Qt
+8zQnmHP3+9Rm5jfmoHknv5ctiYJTVmnLTGlJhVwhnkIvGiG1qyPjWBdpY4ZWqBpZ
+Tkxt1mOQTE88Kgk8KtlwJef9IyW+zYOgKtFJ9Df8KCQTODSju5eBQz4NFbu0yr0b
+do1dFPVkJzJyMCS+Ra5pb3CZTgUtLAbuDL+wKi3WeSsg9INPanV0E0ad9INJh2Ns
+QmNyRdIBxeeN05U9lmlfp/ThtabGjULJ2kORBwsGPoqNwGxHVEyEDPnpuPWswR3F
+IHoNbFEtH+dEcCEsyFCL+GDjikdTNdrZe8v9FtQGieXIkozygdZELQh7Fa+OCubM
+dLXXeTWBtFGz9nOX7L7k4aKV+X82/P7XBbUdNScRu53Z+g690p8uFpHnkdzZpGFk
+tBbmqYEFYOF/j8bjpfrCeaK25qvhS5H/m/VACgsKk+2rHam3qBn7iqH14iIG8OEP
+5S0e7Y0PLfXN9duNzYF+
+=7gax
 -----END PGP SIGNATURE-----
 
---3oCie2+XPXTnK5a5--
+--3xoW37o/FfUZJwQG--
