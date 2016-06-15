@@ -1,60 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A2CAE00C8B; Wed, 15 Jun 2016 02:31:26 -0700 (PDT)
+	id 5A41EE00C8B; Wed, 15 Jun 2016 02:37:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bobadeshrikant[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58D90E00C7D
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:31:22 -0700 (PDT)
-Received: by mail-io0-f175.google.com with SMTP id 5so17712005ioy.1
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:31:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rWF/hdg/Y5NsYlj0qSIxaPCq/jX4ZwB7GI0wMhpA9rc=;
-	b=thWHKvIF/iP3TZ4D/aSQTqwk/ltXI02q9iOBbnr+VOjkQN+Z3gead5SUBa8tCsEKPu
-	lAiOgGaN62JVwUy40Zv0BYbnYRb3ISqbunFT/9AQ5fLxxweip7Yx1j2Iur2VwPlgews/
-	B5z6hO0Yw/wqB9rCxVolFmaQ2TJaVPT6Hequ6EpCZzNWSNkpHyOnbL35sN8Wgi2aE3DJ
-	qxJy76rPKM+k5aQg1XXVCEJsLustFi4uXwnV8zSWDVnGnkhXtM/UiXXdSN2157cVDQ/b
-	fgzBsBXxyQQkmwiIQvijD8THz4p2A0Hb+W+96MbAxTSigApwgRF0lf3TeeRZ9E9iMFDs
-	XMLQ==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6B26E00C7D
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:37:34 -0700 (PDT)
+Received: by mail-it0-f67.google.com with SMTP id e5so2412155ith.2
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=i4+z0qkR/KSorf5w6knDDXbVrVsquZnFqIZswcL86J0=;
+	b=HvFwQ3zFHdJGDBqsYcthU3ADH+xXaJEhI+SYmlbBNuzPpx9opc7yoZvb2W/uUQHDOV
+	STH/ZHBSe1dB8nuYqP13+z8E7qa9vrMZx6A4uhl3SslPtoUNa2AxvnINxOojus4Sn7BX
+	oRwbXiWrrYX4KwONAhzBbOFA2NZhGxk+rGP7e7wlumDpODV1cdrVxGvJBLHKgRV3Qj9I
+	Nuq+lPbEVay2XcR5R0HPHZmA14rVd0h3TTCo81Ue//6BmD/+TcigFt7qj5zSw8AWAZ+m
+	S9biblPpZCIiCQ8ZP0cRlojOvCMQhLa1qT+0bARvFRCseZSb475Uk2vAheprVdc1Sn80
+	EL1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rWF/hdg/Y5NsYlj0qSIxaPCq/jX4ZwB7GI0wMhpA9rc=;
-	b=ij+BRkuKQyYpZGh8FtdaxjsnC4tWC1Uv3gqRW3Xb3I9xbIHRhs+gtLfKIcJu6UhRw8
-	Ml9DAHp2mYyem+wlObzhPKOUSV6JrEcY9P/u0xSTfwRi45OQAYoue/WhmIH3H5iqv47z
-	pQhtQcWjYLb7Ljlvigxkz+DgaEUCAzHIRIgMolfhUA8XK+F9c4H1fQ5LjPya6IyJukfa
-	7Z6LC3R3i/O5z/8LqgkTRi8CIkB8wTQKUyr6A8fE+ufaIoTrji3FLaCEQgMX9FsmnKWx
-	eZFnv9nMkDM2S8SBsiVE4hcSegtyxxwZeVQlcCvd73IlqCE71PrmZyiEuOYHUndo/2Xx
-	bIbA==
-X-Gm-Message-State: ALyK8tLMp5krV8AYusLnaakZsiDOEf8zERezgbnRNDiDz2e907ITGdv2HUJ8pMq/RYx+wPazDX3bS/RbbxGJM4d4
-X-Received: by 10.107.138.201 with SMTP id c70mr36942081ioj.148.1465983081701; 
-	Wed, 15 Jun 2016 02:31:21 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Wed, 15 Jun 2016 02:31:02 -0700 (PDT)
-In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
-References: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 15 Jun 2016 10:31:02 +0100
-Message-ID: <CAJTo0Lb3p=KJhk0+WUcNBWpR0Zp5VsCsxtoqqvAy6EMGQm+KFw@mail.gmail.com>
-To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.1 powerpc64 e6500 - postinstall intercept hook problems
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=i4+z0qkR/KSorf5w6knDDXbVrVsquZnFqIZswcL86J0=;
+	b=hnoA1XxkemgpeHmnQptLvTfHp1chvmxNFmO32chi0gI33TOaX+XTUfu7gJASOFdxTK
+	nSYxQ+4M/+G/PAAcL1VkApLI1jXWOH93O6ddnk5K7DfhRfZPAbc+d6BZ+0wJftWVE/+M
+	5gVpD+4c7asMoYTfvPPl1126XEsFQCeMBxiqRLKJFLZHF6oZm2184MdzU8LYLfcT0UAb
+	ov2q/NGHx8gjc88K7dwn1Uq1KhfYtzwfuHRsOwAlECUBbIhzzClFZzF3z74Uwhg5uhNZ
+	HrPgC2UEVt1JoQycft0DSrH92JDQjJhU3e8lOn0b+Rq96NgEmEb9uMP6WG+KRombOn+n
+	3BJQ==
+X-Gm-Message-State: ALyK8tLA/9sa/I+/zEVV7RTdlI7LJ8MXPUUP+lPw+O5xoZOX+UY+dAiCOu+fOH1SyPdqOg==
+X-Received: by 10.36.48.138 with SMTP id q132mr15539094itq.82.1465983453897;
+	Wed, 15 Jun 2016 02:37:33 -0700 (PDT)
+Received: from shrikant-VirtualBox.inp.mentorg.com ([139.181.35.34])
+	by smtp.gmail.com with ESMTPSA id
+	h193sm9710735ioe.40.2016.06.15.02.37.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 15 Jun 2016 02:37:33 -0700 (PDT)
+From: Shrikant Bobade <bobadeshrikant@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 15 Jun 2016 15:07:13 +0530
+Message-Id: <1465983433-13244-1-git-send-email-bobadeshrikant@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
+Subject: [meta-selinux][PATCH] eudev: add wildcard version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,54 +70,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 09:31:26 -0000
-Content-Type: multipart/alternative; boundary=001a113e8e6ad4f8d405354dc831
+X-List-Received-Date: Wed, 15 Jun 2016 09:37:36 -0000
 
---001a113e8e6ad4f8d405354dc831
-Content-Type: text/plain; charset=UTF-8
+From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-On 15 June 2016 at 09:27, Anicic Damir (PSI) <damir.anicic@psi.ch> wrote:
+eudev version at poky updated to v3.2 from v3.1.5, so moving it to use
+wildcard in order to fix the parsing error.
 
-> The problem seems to be missing qemu-ppc64, see down "exit code: 127".
-> qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built,
-> but qemu-ppc64 is missing.
->
+Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+---
+ recipes-core/eudev/eudev_%.bbappend     | 3 +++
+ recipes-core/eudev/eudev_3.1.5.bbappend | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ create mode 100644 recipes-core/eudev/eudev_%.bbappend
+ delete mode 100644 recipes-core/eudev/eudev_3.1.5.bbappend
 
-Fixing this is trivial, add ppc64 to QEMU_TARGETS in qemu.inc.
+diff --git a/recipes-core/eudev/eudev_%.bbappend b/recipes-core/eudev/eudev_%.bbappend
+new file mode 100644
+index 0000000..e1e7cd1
+--- /dev/null
++++ b/recipes-core/eudev/eudev_%.bbappend
+@@ -0,0 +1,3 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++inherit enable-selinux
+diff --git a/recipes-core/eudev/eudev_3.1.5.bbappend b/recipes-core/eudev/eudev_3.1.5.bbappend
+deleted file mode 100644
+index e1e7cd1..0000000
+--- a/recipes-core/eudev/eudev_3.1.5.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-inherit enable-selinux
+-- 
+1.9.1
 
 
-> If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin
-> which is in PATH),
-> then I get "Invalid instruction" from my qemu-ppc64.
->
-
-Can you test this again with QEMU_TARGETS changed to see what happens with
-our own (patched) qemu?
-
-Ross
-
---001a113e8e6ad4f8d405354dc831
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 15 June 2016 at 09:27, Anicic Damir (PSI) <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:damir.anicic@psi.ch" target=3D"_blank">damir.anicic@psi.ch</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"direction:=
-ltr;font-family:Tahoma;color:#000000;font-size:10pt">The problem seems to b=
-e missing qemu-ppc64, see down &quot;exit code: 127&quot;. <br>
-qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built, =
-but qemu-ppc64 is missing.<br></div></blockquote><div><br></div><div>Fixing=
- this is trivial, add ppc64 to QEMU_TARGETS in qemu.inc.</div><div>=C2=A0</=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex"><div style=3D"direction:ltr;font-family:=
-Tahoma;color:#000000;font-size:10pt">
-If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin which=
- is in PATH),<br>
-then I get &quot;Invalid instruction&quot; from my qemu-ppc64.</div></block=
-quote></div><br>Can you test this again with QEMU_TARGETS changed to see wh=
-at happens with our own (patched) qemu?</div><div class=3D"gmail_extra"><br=
-></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a113e8e6ad4f8d405354dc831--
