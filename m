@@ -1,66 +1,60 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 37797E00C8B; Wed, 15 Jun 2016 02:04:08 -0700 (PDT)
+	id 8A2CAE00C8B; Wed, 15 Jun 2016 02:31:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 3394 seconds by postgrey-1.32 at yocto-www;
-	Wed, 15 Jun 2016 02:04:02 PDT
-Received: from mx36-56.antispamcloud.com (mx36-56.antispamcloud.com
-	[209.126.121.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5FE8E00C7D
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:04:02 -0700 (PDT)
-Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
-	helo=TOP-EX01.TOPIC.LOCAL)
-	by mx36.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1bD5rA-00042d-Oj; Wed, 15 Jun 2016 10:07:26 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 15 Jun 2016 10:07:20 +0200
-To: Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com>, Christopher Larson
-	<clarson@kergoth.com>
-References: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
-	<CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
-	<5760041E.1010809@topic.nl>
-	<ea5b572b51f542459e034c49f2f05d76@BN3PR97MB0132.062d.mgd.msft.net>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <57610CB8.4050904@topic.nl>
-Date: Wed, 15 Jun 2016 10:07:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58D90E00C7D
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:31:22 -0700 (PDT)
+Received: by mail-io0-f175.google.com with SMTP id 5so17712005ioy.1
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:31:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rWF/hdg/Y5NsYlj0qSIxaPCq/jX4ZwB7GI0wMhpA9rc=;
+	b=thWHKvIF/iP3TZ4D/aSQTqwk/ltXI02q9iOBbnr+VOjkQN+Z3gead5SUBa8tCsEKPu
+	lAiOgGaN62JVwUy40Zv0BYbnYRb3ISqbunFT/9AQ5fLxxweip7Yx1j2Iur2VwPlgews/
+	B5z6hO0Yw/wqB9rCxVolFmaQ2TJaVPT6Hequ6EpCZzNWSNkpHyOnbL35sN8Wgi2aE3DJ
+	qxJy76rPKM+k5aQg1XXVCEJsLustFi4uXwnV8zSWDVnGnkhXtM/UiXXdSN2157cVDQ/b
+	fgzBsBXxyQQkmwiIQvijD8THz4p2A0Hb+W+96MbAxTSigApwgRF0lf3TeeRZ9E9iMFDs
+	XMLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rWF/hdg/Y5NsYlj0qSIxaPCq/jX4ZwB7GI0wMhpA9rc=;
+	b=ij+BRkuKQyYpZGh8FtdaxjsnC4tWC1Uv3gqRW3Xb3I9xbIHRhs+gtLfKIcJu6UhRw8
+	Ml9DAHp2mYyem+wlObzhPKOUSV6JrEcY9P/u0xSTfwRi45OQAYoue/WhmIH3H5iqv47z
+	pQhtQcWjYLb7Ljlvigxkz+DgaEUCAzHIRIgMolfhUA8XK+F9c4H1fQ5LjPya6IyJukfa
+	7Z6LC3R3i/O5z/8LqgkTRi8CIkB8wTQKUyr6A8fE+ufaIoTrji3FLaCEQgMX9FsmnKWx
+	eZFnv9nMkDM2S8SBsiVE4hcSegtyxxwZeVQlcCvd73IlqCE71PrmZyiEuOYHUndo/2Xx
+	bIbA==
+X-Gm-Message-State: ALyK8tLMp5krV8AYusLnaakZsiDOEf8zERezgbnRNDiDz2e907ITGdv2HUJ8pMq/RYx+wPazDX3bS/RbbxGJM4d4
+X-Received: by 10.107.138.201 with SMTP id c70mr36942081ioj.148.1465983081701; 
+	Wed, 15 Jun 2016 02:31:21 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ea5b572b51f542459e034c49f2f05d76@BN3PR97MB0132.062d.mgd.msft.net>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw2ZJFVxz8gx98PpQXwylg7GRvwwxOJx3doQ0G9N22B3qcOizynlqHMLYpxwQSN6rHEQ3
-	GlTDBW/f6pOUbImGIBLDpJxxYwML4QEFO4rejcoTB1ON6HovqIvxtmjUuhcoviuLs85zA/yHEgrq
-	vKfKLjPw+Lxqd/jtI5dgi/GqPWkFFJ9owWVPz12mktd2H4eQoIyY8Gyrh5dcaydCjh55fziT6L31
-	7/p6ioncOp25t+mRVjRUy0x2AKc9FHMbmlOoMvGX+ObfaU6whL8xq/xH+avyvQ7CbINIDcS5wpWy
-	+I5YvF3K7LgeiuH5eCStSiiSVJeFB9XoTpMnYKYB1MU+b9NrzOR53mK2sN34HMy+JoRFY4+4QY0s
-	jn2opeJJeXfjJME2PcThwZvQzlAUa/De200n/t9mSP8PaFvoZGGW7zDZn0Omwyz83+od6yXM3xg5
-	3lJa8Sow8yJBTz7nPOPnRKhbLPp9n350Mbemie5JWWm/nCVm/AhWHHHCeRDROo40UY9D2cFVeTvb
-	bla5RrV04KsyFJGu1KuteTIpNas3M99Pv535EWTPad0aO6lKcCtW6K0hIR8cIf6lYHZizJx95IFo
-	h9VoIekQHpwUfpYnEThmPqynlLtqAOJgPXwSJyHNEt6xJPJ0xxPL9Fup9dJTlL3Dn3AnUp/IgRFm
-	TKeqmapZC0alLBSoLUwNq02/+YVsRw==
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Originating-IP: 88.159.208.100
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 88.159.208.100
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=88.159.208.100@topic.nl
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.11)
-X-Recommended-Action: accept
+Received: by 10.107.162.6 with HTTP; Wed, 15 Jun 2016 02:31:02 -0700 (PDT)
+In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
+References: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 15 Jun 2016 10:31:02 +0100
+Message-ID: <CAJTo0Lb3p=KJhk0+WUcNBWpR0Zp5VsCsxtoqqvAy6EMGQm+KFw@mail.gmail.com>
+To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Mounting USB drives on a "read-only-rootfs" based system
+Subject: Re: Yocto 2.1 powerpc64 e6500 - postinstall intercept hook problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,65 +66,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 09:04:08 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Wed, 15 Jun 2016 09:31:26 -0000
+Content-Type: multipart/alternative; boundary=001a113e8e6ad4f8d405354dc831
+
+--001a113e8e6ad4f8d405354dc831
+Content-Type: text/plain; charset=UTF-8
+
+On 15 June 2016 at 09:27, Anicic Damir (PSI) <damir.anicic@psi.ch> wrote:
+
+> The problem seems to be missing qemu-ppc64, see down "exit code: 127".
+> qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built,
+> but qemu-ppc64 is missing.
+>
+
+Fixing this is trivial, add ppc64 to QEMU_TARGETS in qemu.inc.
+
+
+> If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin
+> which is in PATH),
+> then I get "Invalid instruction" from my qemu-ppc64.
+>
+
+Can you test this again with QEMU_TARGETS changed to see what happens with
+our own (patched) qemu?
+
+Ross
+
+--001a113e8e6ad4f8d405354dc831
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 14-06-16 15:48, Jeffrey D Boyer wrote:
-> Sorry, /media is not a symlink and there is no /run/media link or directo=
-ry present on my running system.  When I insert an SD card, for example, I =
-get a bit of text on the debug serial port that a card has been detected, b=
-ut I don't see a mount point anywhere after that.
->
-> 	root@mySys:/# mmc1: new high speed SDHC card at address 1234
-> 	mmcblk1: mmc1:1234 SA04G 3.63 GiB
-> 	 mmcblk1: p1
->
-> It should be noted that if I exclude the " read-only-rootfs" option in th=
-e bb script, a normal read/write kernel image is produced and the action of=
- inserting an SD card under those conditions will automatically produce a m=
-ount point at /media/mmcblk1p1
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 15 June 2016 at 09:27, Anicic Damir (PSI) <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:damir.anicic@psi.ch" target=3D"_blank">damir.anicic@psi.ch</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"direction:=
+ltr;font-family:Tahoma;color:#000000;font-size:10pt">The problem seems to b=
+e missing qemu-ppc64, see down &quot;exit code: 127&quot;. <br>
+qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built, =
+but qemu-ppc64 is missing.<br></div></blockquote><div><br></div><div>Fixing=
+ this is trivial, add ppc64 to QEMU_TARGETS in qemu.inc.</div><div>=C2=A0</=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><div style=3D"direction:ltr;font-family:=
+Tahoma;color:#000000;font-size:10pt">
+If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin which=
+ is in PATH),<br>
+then I get &quot;Invalid instruction&quot; from my qemu-ppc64.</div></block=
+quote></div><br>Can you test this again with QEMU_TARGETS changed to see wh=
+at happens with our own (patched) qemu?</div><div class=3D"gmail_extra"><br=
+></div><div class=3D"gmail_extra">Ross</div></div>
 
-Apparently your distro or image or whatever is lacking some directories. Th=
-e=20
-/run/media should have been created automagically.
-
-Are you using udev or mdev for hotplug?
-
-For mdev, I implemented the automounting using /run/media and that should a=
-lso=20
-work on read-only-rootfs systems. So I can probably figure out what's wrong=
-=20
-with your config.
-
-For udev, I don't have a clue, sorry...
-
-
-> FYI, I'm running 3.14 kernel.  Is this a job for aufs?  If so, how would =
-I go about configuring it?
-
-No, it's not related to autofs or aufs or whatever. It's plain simple udev =
-or=20
-mdev.
-
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
-
-
+--001a113e8e6ad4f8d405354dc831--
