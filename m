@@ -1,6 +1,6 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25B00E00D35; Wed, 15 Jun 2016 13:29:11 -0700 (PDT)
+	id E86E5E00D3B; Wed, 15 Jun 2016 13:35:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,40 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [168.127.0.57 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EBF5E00D31
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 13:29:10 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 15 Jun 2016 13:29:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,477,1459839600"; d="scan'208";a="998428470"
-Received: from ctan86-mobl2.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.141.217])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2016 13:29:07 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Woronicz, Bartosz ( NSN - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
-Date: Thu, 16 Jun 2016 08:29:05 +1200
-Message-ID: <2437618.ZGTpyCUF7t@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.10 (Linux/4.5.6-200.fc23.x86_64; KDE/4.14.20; x86_64; ;
-	)
-In-Reply-To: <57616B51.7070001@nokia.com>
-References: <57616B51.7070001@nokia.com>
+Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
+	[168.127.0.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 552E7E00D34
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 13:35:47 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,477,1459832400"; d="scan'208";a="80116662"
+Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
+	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	15 Jun 2016 15:35:44 -0500
+Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
+	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0294.000;
+	Wed, 15 Jun 2016 15:35:43 -0500
+From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] autoreconf
+Thread-Index: AdHHQradspqdggSsRDmRJnaYuJFirQAKyDOAAAovToA=
+Date: Wed, 15 Jun 2016 20:35:42 +0000
+Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA6000E2@RCHEXMBP1.fnc.net.local>
+References: <111ACD726EC3464BAED310F5EA7BEBDA6000AA@RCHEXMBP1.fnc.net.local>
+	<7482070.IBUNiqSIt6@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <7482070.IBUNiqSIt6@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [168.127.136.253]
+x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22394.002
+x-tm-as-result: No--42.967400-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Additional layers with class and conf
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: autoreconf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,34 +53,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 20:29:11 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 15 Jun 2016 20:35:56 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 15 Jun 2016 16:50:57 Woronicz, Bartosz wrote:
-> I got two layers, meta-x and meta-y , meta-x got meta-y in
-> bblayers.conf.   in meta-y contains conf/layer.conf with BBPATH .=
-> ":${LAYERDIR}", plus classes/my.bbclass plus local.conf containing
-> INHERIT += "my"
+Hi Paul,
 
-Do you mean you put local.conf in a conf subdirectory of a layer? If so,
-that's not really expected to work.
+Thank you. This is in the target.=20
 
-> when I ran bitbake -e my-image, the INHERIT doesn't seem to contain "my"
-> 
-> When I put it directly in layer.conf it works, but what to add to
-> layer.conf to make bitbake to look for other *.conf files in meta-y/conf/ ??
+Thanks,
+Monica=20
 
-You don't, at least not in that way. The correct way to do things like this is
-to create a custom distro and then set DISTRO to point to it. Your distro conf 
-file can then set these kinds of things.
+-----Original Message-----
+From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
+Sent: Wednesday, June 15, 2016 3:25 PM
+To: Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] autoreconf
 
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creating-your-own-distribution
+Hi Monica,
+
+On Wed, 15 Jun 2016 20:17:16 Rajasekaran, Monica wrote:
+> What is the package to install autoreconf ? (Ubuntu equivalent:=20
+> apt-get install dh-autoreconf )
+>=20
+> I am getting the following error for one of my applications:
+> "autoreconf: command not found"
+
+autoreconf is part of autoconf.
+
+Where is this? On the target or within the build system?
 
 Cheers,
 Paul
 
--- 
+--=20
 
 Paul Eggleton
 Intel Open Source Technology Centre
