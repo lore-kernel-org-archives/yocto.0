@@ -1,61 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <pascal.bach@siemens.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80433E00C9C; Wed, 15 Jun 2016 03:53:17 -0700 (PDT)
+	id 681C6E00C9C; Wed, 15 Jun 2016 04:03:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [194.138.37.39 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7106E00C86
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 03:53:11 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id z189so101909591itg.0
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 03:53:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=FCgU7aq/uEY34IAq5z9L4ThnfOgF2GLvo/Q7ps2/YII=;
-	b=DyuPpWzXqtte6k6of70j1DhpIl2gWYsyOQIjn7O8Iq2O0WqqOkybmKNaVRBQLvxgaF
-	Q5mH7UFAJIdMktRKP77CB0iA/vTg2XGu7N4M4Wvsdors2TM6zcVyYLzUsJ9xPhlB/mTS
-	mdvpB65M3TPSFpkRdfFrHeUww3jMV8EddntWJjNTpX6QLFdkyFCgG0W4o7Gjnoci9ilk
-	1St1qNEMD/qHkX5zc4LPFjiz6o87AzD40TkdPW4EHh0KkPFCsspaDZD1pU6nkie1/3Gh
-	08pnyiU0TXr1gNgKbfma+sbLPYGolb18UGh+WEcu5SKeNsE5+804hFMWe1dn202tZhlC
-	LAhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=FCgU7aq/uEY34IAq5z9L4ThnfOgF2GLvo/Q7ps2/YII=;
-	b=mAVpkPiXXOzuqc0BrYA35IAQDhLuXJeSpXgiopOXi9AvIoUdqkz3YKtvrqo8owIYUJ
-	9vAUTK6l9oPFgLnWaEPf8NS1kF5GfXrqFvozjC/L8NFldQMZnzuBBBgms1VD0G/QRidc
-	t4P87x4b4npNV31C6rYVC5ruqY3kib6Xco09ZHsLiM/9s5fDk899mmmCy3PDLzTjZMnE
-	dDuirTSCuPgzKclLIWFagHFwLlQOz/plJAGg4+jH+0y1y2mQL3Xz9O3Az+VW6svSa2NW
-	xMHF8B6J+zU++I48sVe1hF3xKaci2BSbM6e3gKV8HGN45g2Tr+DygWGUlR55hjgZtTx4
-	F5mw==
-X-Gm-Message-State: ALyK8tIRoK4C76ND+GstmKRc86LA2m5tznQeoagUButQFRshDYUUpLXvm46VCz/GEfiiMNn4YZ7anjRXagtYUC0z
-X-Received: by 10.36.57.211 with SMTP id l202mr34661518ita.22.1465987990768;
-	Wed, 15 Jun 2016 03:53:10 -0700 (PDT)
+X-Greylist: delayed 711 seconds by postgrey-1.32 at yocto-www;
+	Wed, 15 Jun 2016 04:03:25 PDT
+Received: from lizzard.sbs.de (lizzard.sbs.de [194.138.37.39])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F4FAE00C86
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 04:03:25 -0700 (PDT)
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+	by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id u5FApSEa024218
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 12:51:28 +0200
+Received: from [139.16.77.141] (MD1FZU9C.ww002.siemens.net [139.16.77.141])
+	by mail2.sbs.de (8.15.2/8.15.2) with ESMTPS id u5FApSBZ018104
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 12:51:28 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Pascal Bach <pascal.bach@siemens.com>
+Message-ID: <57613330.9080100@siemens.com>
+Date: Wed, 15 Jun 2016 12:51:28 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.7.2
 MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Wed, 15 Jun 2016 03:52:51 -0700 (PDT)
-In-Reply-To: <CAJTo0Lb3p=KJhk0+WUcNBWpR0Zp5VsCsxtoqqvAy6EMGQm+KFw@mail.gmail.com>
-References: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
-	<CAJTo0Lb3p=KJhk0+WUcNBWpR0Zp5VsCsxtoqqvAy6EMGQm+KFw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 15 Jun 2016 11:52:51 +0100
-Message-ID: <CAJTo0LZssukXZ4KEktWTBpYQbBN6uWZ8EbOoLYyN=PSc2fpQgw@mail.gmail.com>
-To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.1 powerpc64 e6500 - postinstall intercept hook problems
+Subject: Yocto git server via http and mirror tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,39 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 10:53:17 -0000
-Content-Type: multipart/alternative; boundary=001a114ab3ca6f647005354eed52
+X-List-Received-Date: Wed, 15 Jun 2016 11:03:30 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a114ab3ca6f647005354eed52
-Content-Type: text/plain; charset=UTF-8
+Hi
 
-On 15 June 2016 at 10:31, Burton, Ross <ross.burton@intel.com> wrote:
+Because of firewall restrictions I'm not always not able to access the git.yoctoproject.org via the git protocol but I'm required to use http.
 
-> Fixing this is trivial, add ppc64 to QEMU_TARGETS in qemu.inc.
->
+By default most of the recipes in Poky recipes use the git protocol not the http protocol. For example yocto-kernel-tools points to repositories "git://git.yoctoproject.org/yocto-kernel-tools" instead of "http://git.yoctoproject.org/git/yocto-kernel-tools".
 
-I'm wrong - this is more complicated as there's numerous options for
-ppc64.  I've filed https://bugzilla.yoctoproject.org/show_bug.cgi?id=9778
-to track this.  Obviously we need qemuppc64 in oe-core to test this.
+To work around this issue I added a mirror rules for rewriting the protocol like this:
 
-Ross
+MIRRORS += "\
+    git://git.yoctoproject.org/.*                               git://git.yoctoproject.org/git/PATH;protocol=http \n \
+    "
 
---001a114ab3ca6f647005354eed52
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This seems to work and I'm able to fetch the sources even when git access is not possible.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 15 June 2016 at 10:31, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;<=
-/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-l=
-eft-style:solid;padding-left:1ex"><div>Fixing this is trivial, add ppc64 to=
- QEMU_TARGETS in qemu.inc.</div><span class=3D""><div></div></span></blockq=
-uote></div><br>I&#39;m wrong - this is more complicated as there&#39;s nume=
-rous options for ppc64.=C2=A0 I&#39;ve filed=C2=A0<a href=3D"https://bugzil=
-la.yoctoproject.org/show_bug.cgi?id=3D9778">https://bugzilla.yoctoproject.o=
-rg/show_bug.cgi?id=3D9778</a> to track this.=C2=A0 Obviously we need qemupp=
-c64 in oe-core to test this.</div><div class=3D"gmail_extra"><br></div><div=
- class=3D"gmail_extra">Ross</div></div>
+But when I then enable BB_GENERATE_MIRROR_TARBALLS = "1" I'm starting to get different tarball names depending on what protocol was used.
+For example "git2_git.yoctoproject.org.yocto-kernel-tools.git.tar.gz" vs "git2_git.yoctoproject.org.git.yocto-kernel-tools.git.tar.gz".
 
---001a114ab3ca6f647005354eed52--
+I assume this happens because the first tarball was create while git access was possible, while the second one was created when only http was possible:
+git.yoctoproject.org/git => git.yoctoproject.org.git
+git.yoctoproject.org     => git.yoctoproject.org
+
+Is there any way to prevent the tarballs from having different names? For example derive the name always from the original URL not the mirror one?
+
+Or is there a better way to achieve what we are doing with MIRROR?
+
+Thanks for your help.
+
+Pascal
+
