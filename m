@@ -1,40 +1,66 @@
-Return-Path: <damir.anicic@psi.ch>
+Return-Path: <mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7FD20E00C8B; Wed, 15 Jun 2016 01:30:25 -0700 (PDT)
+	id 37797E00C8B; Wed, 15 Jun 2016 02:04:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [82.130.99.26 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 187 seconds by postgrey-1.32 at yocto-www;
-	Wed, 15 Jun 2016 01:30:21 PDT
-Received: from edge20.ethz.ch (edge20.ethz.ch [82.130.99.26])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5D48E00C7D
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 01:30:21 -0700 (PDT)
-Received: from CAS12.d.ethz.ch (172.31.38.212) by edge20.ethz.ch
-	(82.130.99.26) with Microsoft SMTP Server (TLS) id 14.3.266.1;
-	Wed, 15 Jun 2016 10:27:09 +0200
-Received: from MBX114.d.ethz.ch ([fe80::4875:1a61:8b1c:148]) by
-	CAS12.d.ethz.ch ([fe80::7861:4ecb:7c42:cad4%10]) with mapi id
-	14.03.0266.001; Wed, 15 Jun 2016 10:27:12 +0200
-From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto 2.1 powerpc64 e6500 - postinstall intercept hook problems
-Thread-Index: AdHG3YmZmye/wfM7QHi/1yJMuZDFRg==
-Date: Wed, 15 Jun 2016 08:27:10 +0000
-Message-ID: <DB23C91B06C303459B24BC3208AF424A20F40A94@MBX114.d.ethz.ch>
-Accept-Language: en-US, de-DE, de-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [129.129.145.249]
+X-Greylist: delayed 3394 seconds by postgrey-1.32 at yocto-www;
+	Wed, 15 Jun 2016 02:04:02 PDT
+Received: from mx36-56.antispamcloud.com (mx36-56.antispamcloud.com
+	[209.126.121.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5FE8E00C7D
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 02:04:02 -0700 (PDT)
+Received: from 100-208.ftth.onsbrabantnet.nl ([88.159.208.100]
+	helo=TOP-EX01.TOPIC.LOCAL)
+	by mx36.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1bD5rA-00042d-Oj; Wed, 15 Jun 2016 10:07:26 +0200
+Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 15 Jun 2016 10:07:20 +0200
+To: Jeffrey D Boyer <Jeffrey.D.Boyer@jci.com>, Christopher Larson
+	<clarson@kergoth.com>
+References: <f732c861dc8642279465a6e9707f8b83@BN3PR97MB0132.062d.mgd.msft.net>
+	<CABcZANkeE_RumUN=6D8n8zFQW8hEb-nRQgXBbc5ZMPkZniPLjA@mail.gmail.com>
+	<5760041E.1010809@topic.nl>
+	<ea5b572b51f542459e034c49f2f05d76@BN3PR97MB0132.062d.mgd.msft.net>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <57610CB8.4050904@topic.nl>
+Date: Wed, 15 Jun 2016 10:07:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-Subject: Yocto 2.1 powerpc64 e6500 - postinstall intercept hook problems
+In-Reply-To: <ea5b572b51f542459e034c49f2f05d76@BN3PR97MB0132.062d.mgd.msft.net>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
+	NXFr4uarw2ZJFVxz8gx98PpQXwylg7GRvwwxOJx3doQ0G9N22B3qcOizynlqHMLYpxwQSN6rHEQ3
+	GlTDBW/f6pOUbImGIBLDpJxxYwML4QEFO4rejcoTB1ON6HovqIvxtmjUuhcoviuLs85zA/yHEgrq
+	vKfKLjPw+Lxqd/jtI5dgi/GqPWkFFJ9owWVPz12mktd2H4eQoIyY8Gyrh5dcaydCjh55fziT6L31
+	7/p6ioncOp25t+mRVjRUy0x2AKc9FHMbmlOoMvGX+ObfaU6whL8xq/xH+avyvQ7CbINIDcS5wpWy
+	+I5YvF3K7LgeiuH5eCStSiiSVJeFB9XoTpMnYKYB1MU+b9NrzOR53mK2sN34HMy+JoRFY4+4QY0s
+	jn2opeJJeXfjJME2PcThwZvQzlAUa/De200n/t9mSP8PaFvoZGGW7zDZn0Omwyz83+od6yXM3xg5
+	3lJa8Sow8yJBTz7nPOPnRKhbLPp9n350Mbemie5JWWm/nCVm/AhWHHHCeRDROo40UY9D2cFVeTvb
+	bla5RrV04KsyFJGu1KuteTIpNas3M99Pv535EWTPad0aO6lKcCtW6K0hIR8cIf6lYHZizJx95IFo
+	h9VoIekQHpwUfpYnEThmPqynlLtqAOJgPXwSJyHNEt6xJPJ0xxPL9Fup9dJTlL3Dn3AnUp/IgRFm
+	TKeqmapZC0alLBSoLUwNq02/+YVsRw==
+X-Report-Abuse-To: spam@mx99.antispamcloud.com
+X-Originating-IP: 88.159.208.100
+X-SpamExperts-Domain: topic.nl
+X-SpamExperts-Username: 88.159.208.100
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=88.159.208.100@topic.nl
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.11)
+X-Recommended-Action: accept
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Mounting USB drives on a "read-only-rootfs" based system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,203 +72,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 08:30:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB23C91B06C303459B24BC3208AF424A20F40A94MBX114dethzch_"
-
---_000_DB23C91B06C303459B24BC3208AF424A20F40A94MBX114dethzch_
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 15 Jun 2016 09:04:08 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi !
+=EF=BB=BFOn 14-06-16 15:48, Jeffrey D Boyer wrote:
+> Sorry, /media is not a symlink and there is no /run/media link or directo=
+ry present on my running system.  When I insert an SD card, for example, I =
+get a bit of text on the debug serial port that a card has been detected, b=
+ut I don't see a mount point anywhere after that.
+>
+> 	root@mySys:/# mmc1: new high speed SDHC card at address 1234
+> 	mmcblk1: mmc1:1234 SA04G 3.63 GiB
+> 	 mmcblk1: p1
+>
+> It should be noted that if I exclude the " read-only-rootfs" option in th=
+e bb script, a normal read/write kernel image is produced and the action of=
+ inserting an SD card under those conditions will automatically produce a m=
+ount point at /media/mmcblk1p1
 
-I am trying to build Yocto 2.1 for PowerPC64, e6500 CPU.
+Apparently your distro or image or whatever is lacking some directories. Th=
+e=20
+/run/media should have been created automagically.
 
-I managed to build, with warnings that some steps will be postponed to firs=
-t boot,
-but if I add "read-only-rootfs" then warnings change to errors.
+Are you using udev or mdev for hotplug?
 
-The problem seems to be missing qemu-ppc64, see down "exit code: 127".
-qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built, =
-but qemu-ppc64 is missing.
+For mdev, I implemented the automounting using /run/media and that should a=
+lso=20
+work on read-only-rootfs systems. So I can probably figure out what's wrong=
+=20
+with your config.
 
-If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin which=
- is in PATH),
-then I get "Invalid instruction" from my qemu-ppc64.
-
-
-My build (core-image-psi-gfa-cmd is basically core-image-full-cmdline ):
-
-  Build Configuration:
-  BB_VERSION        =3D "1.30.0"
-  BUILD_SYS         =3D "x86_64-linux"
-  NATIVELSBSTRING   =3D "ScientificLinux-6.4"
-  TARGET_SYS        =3D "powerpc64-poky-linux"
-  MACHINE           =3D "powerpc64-ppc64e6500"
-  DISTRO            =3D "gfa-ppc64e6500"
-  DISTRO_VERSION    =3D "2.1"
-  TUNE_FEATURES     =3D "m64 fpu-hard e6500 altivec"
-  TARGET_FPU        =3D ""
-  meta
-  meta-poky
-  meta-yocto-bsp
-  meta-gfa          =3D "krogoth-gfa-v2:898a78357e72fb80f1f8e26ba90bad5b7b0=
-54a4f"
-
-  NOTE: Preparing RunQueue
-  NOTE: Executing SetScene Tasks
-  NOTE: Executing RunQueue Tasks
-  WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: The postinstall interce=
-pt hook 'update_gio_module_cache' failed (exit code: 127)! See log for deta=
-ils!
-  WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: The postinstalls for th=
-e following packages will be postponed for first boot: libglib-2.0-0
-  WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: [log_check] core-image-=
-psi-gfa-cmd: found a warning message in the logfile (keyword 'WARNING:'):
-  [log_check] WARNING: The postinstall intercept hook 'update_gio_module_ca=
-che' failed (exit code: 127)! See log for details!
-
-  WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: [log_check] core-image-=
-psi-gfa-cmd: found a warning message in the logfile (keyword 'WARNING:'):
-  [log_check] WARNING: The postinstalls for the following packages will be =
-postponed for first boot: libglib-2
+For udev, I don't have a clue, sorry...
 
 
-If I build core-image-psi-gfa-cmd ( which is basicaly core-image-lsb-sdk ),
-then there are few more postinstall problems, too:
-  The postinstalls for the following packages will be postponed for first b=
-oot:
-                 libgdk-pixbuf-2.0-loader-ico libgdk-pixbuf-2.0-loader-bmp =
-libgdk-pixbuf-2.0-loader-jpeg
-                 libgdk-pixbuf-2.0-loader-png   libgdk-pixbuf-2.0-loader-gi=
-f libgdk-pixbuf-2.0-loader-xpm libgdk-pixbuf-2.0-loader-ani
+> FYI, I'm running 3.14 kernel.  Is this a job for aufs?  If so, how would =
+I go about configuring it?
 
-all with the same qemu-ppc64 problem.
+No, it's not related to autofs or aufs or whatever. It's plain simple udev =
+or=20
+mdev.
 
 
-I have additionally eudev postinstall problem (generating hwdb.bin) -probab=
-ly also qemu related
-
-
-Please help.
 
 Kind regards,
 
-Damir
+Mike Looijmans
+System Expert
+
+TOPIC Embedded Products
+Eindhovenseweg 32-C, NL-5683 KH Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
 
 
 
---_000_DB23C91B06C303459B24BC3208AF424A20F40A94MBX114dethzch_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hi !<br>
-<br>
-I am trying to build Yocto 2.1 for PowerPC64, e6500 CPU.<br>
-<br>
-I managed to build, with warnings that some steps will be postponed to firs=
-t boot,<br>
-but if I add &quot;read-only-rootfs&quot; then warnings change to errors.<b=
-r>
-<br>
-The problem seems to be missing qemu-ppc64, see down &quot;exit code: 127&q=
-uot;. <br>
-qemu-* executables ( tmp/sysroots/x86_64-linux/usr/bin/qemu-* ) are built, =
-but qemu-ppc64 is missing.<br>
-<br>
-If I build qemu-ppc64 (qemu 2.6) myself (install it to /usr/local/bin which=
- is in PATH),<br>
-then I get &quot;Invalid instruction&quot; from my qemu-ppc64.<br>
-<br>
-<br>
-My build (core-image-psi-gfa-cmd is basically core-image-full-cmdline ):<br=
->
-<br>
-&nbsp; Build Configuration: <br>
-&nbsp; BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.30.=
-0&quot;<br>
-&nbsp; BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;=
-x86_64-linux&quot;<br>
-&nbsp; NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;ScientificLinux-6.4&quot;<br>
-&nbsp; TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;power=
-pc64-poky-linux&quot;<br>
-&nbsp; MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-=3D &quot;powerpc64-ppc64e6500&quot;<br>
-&nbsp; DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; =3D &quot;gfa-ppc64e6500&quot;<br>
-&nbsp; DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;2.1&quot;<br>
-&nbsp; TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m64 fpu-hard e6500 a=
-ltivec&quot;<br>
-&nbsp; TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;&quot=
-;<br>
-&nbsp; meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; <br>
-&nbsp; meta-poky&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-&nbsp; meta-yocto-bsp&nbsp;&nbsp;&nbsp; <br>
-&nbsp; meta-gfa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &=
-quot;krogoth-gfa-v2:898a78357e72fb80f1f8e26ba90bad5b7b054a4f&quot;<br>
-<br>
-&nbsp; NOTE: Preparing RunQueue<br>
-&nbsp; NOTE: Executing SetScene Tasks<br>
-&nbsp; NOTE: Executing RunQueue Tasks<br>
-&nbsp; WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: The postinstall in=
-tercept hook 'update_gio_module_cache' failed (exit code: 127)! See log for=
- details!<br>
-&nbsp; WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: The postinstalls f=
-or the following packages will be postponed for first boot: libglib-2.0-0<b=
-r>
-&nbsp; WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: [log_check] core-i=
-mage-psi-gfa-cmd: found a warning message in the logfile (keyword 'WARNING:=
-'):<br>
-&nbsp; [log_check] WARNING: The postinstall intercept hook 'update_gio_modu=
-le_cache' failed (exit code: 127)! See log for details!<br>
-<br>
-&nbsp; WARNING: core-image-psi-gfa-cmd-1.0-r0 do_rootfs: [log_check] core-i=
-mage-psi-gfa-cmd: found a warning message in the logfile (keyword 'WARNING:=
-'):<br>
-&nbsp; [log_check] WARNING: The postinstalls for the following packages wil=
-l be postponed for first boot: libglib-2<br>
-<br>
-<br>
-If I build core-image-psi-gfa-cmd ( which is basicaly core-image-lsb-sdk ),=
-<br>
-then there are few more postinstall problems, too:<br>
-&nbsp; The postinstalls for the following packages will be postponed for fi=
-rst boot:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; libgdk-pixbuf-2.0-loader-ico libgdk-pixbuf-2.0-loader=
--bmp libgdk-pixbuf-2.0-loader-jpeg<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; libgdk-pixbuf-2.0-loader-png&nbsp;&nbsp; libgdk-pixbu=
-f-2.0-loader-gif libgdk-pixbuf-2.0-loader-xpm libgdk-pixbuf-2.0-loader-ani<=
-br>
-<br>
-all with the same qemu-ppc64 problem.<br>
-<br>
-<br>
-I have additionally eudev postinstall problem (generating hwdb.bin) -probab=
-ly also qemu related<br>
-<br>
-<br>
-Please help.<br>
-<br>
-Kind regards,<br>
-<br>
-Damir<br>
-<br>
-<br>
-</div>
-</body>
-</html>
 
---_000_DB23C91B06C303459B24BC3208AF424A20F40A94MBX114dethzch_--
+
