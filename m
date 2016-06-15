@@ -1,42 +1,39 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43C13E00CBB; Wed, 15 Jun 2016 06:16:19 -0700 (PDT)
+	id 1EAE9E00CB5; Wed, 15 Jun 2016 06:19:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F0C5E00CB0
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 06:16:15 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160615131612640_0685;
-	Wed, 15 Jun 2016 06:16:12 -0700
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [216.191.234.70] (port=46315 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bDAhc-00062v-Mm; Wed, 15 Jun 2016 09:17:52 -0400
-Date: Wed, 15 Jun 2016 09:15:29 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Martin Jansa <martin.jansa@gmail.com>
-In-Reply-To: <20160615131251.GE2569@jama>
-Message-ID: <alpine.LFD.2.20.1606150913440.9895@localhost.localdomain>
-References: <alpine.LFD.2.20.1606150839230.9417@localhost.localdomain>
-	<alpine.LFD.2.20.1606150849540.25853@localhost.localdomain>
-	<20160615131251.GE2569@jama>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
-MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there an actual "compiler-gcc6.h" patch?
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C75A2E00CB0
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 06:19:33 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga102.fm.intel.com with ESMTP; 15 Jun 2016 06:19:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,476,1459839600"; d="scan'208";a="122342188"
+Received: from jlock-mobl2.ger.corp.intel.com ([10.252.11.173])
+	by fmsmga004.fm.intel.com with ESMTP; 15 Jun 2016 06:19:17 -0700
+Message-ID: <1465996755.2995.5.camel@linux.intel.com>
+From: Joshua G Lock <joshua.g.lock@linux.intel.com>
+To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
+	"pidge@toganlabs.com"
+	<pidge@toganlabs.com>, "Randle, William C" <william.c.randle@intel.com>
+Date: Wed, 15 Jun 2016 14:19:15 +0100
+In-Reply-To: <576038D0.3090100@linux.intel.com>
+References: <5759DE3F.9040002@linux.intel.com>
+	<1465916993.2814.14.camel@intel.com> <57602958.70402@linux.intel.com>
+	<576038D0.3090100@linux.intel.com>
+X-Mailer: Evolution 3.20.2 (3.20.2-1.fc24) 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder] [RFC] Add support for generate bitbake error reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,63 +45,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jun 2016 13:16:19 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Wed, 15 Jun 2016 13:19:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 15 Jun 2016, Martin Jansa wrote:
+On Tue, 2016-06-14 at 12:03 -0500, Aníbal Limón wrote:
+> 
+> On 06/14/2016 10:57 AM, Aníbal Limón wrote:
+> > 
+> > 
+> > On 06/14/2016 10:09 AM, Lock, Joshua G wrote:
+> > > On Thu, 2016-06-09 at 16:23 -0500, Aníbal Limón wrote:
+> > > > Hi folks,
+> > > > 
+> > > > Currently we support to send error reports to
+> > > > errors.yoctoproject.org
+> > > > about failing tasks on bitbake using SendErrorReport buildstep
+> > > > but we
+> > > > have a lack of bitbake related errors like exceptions.
+> > > > 
+> > > > A bug exist to implement this support into Error report web
+> > > > [1], i'm
+> > > > working on it but for generate bitbake error reports there's a
+> > > > need
+> > > > of
+> > > > some process monitoring the bitbake output in this case the
+> > > > Yocto
+> > > > Autobuilder.
+> > > > 
+> > > > This email is for review my current implementation for generate
+> > > > bitbake
+> > > > error reports in the Autobuilder [2] next i'll try to explain
+> > > > how it
+> > > > works.
+> > > > 
+> > > > I aadded a BitbakeShellCommand [3] class for use in the
+> > > > buildsteps
+> > > > that
+> > > > executes bitbake the main objective of this class is to have
+> > > > common
+> > > > operations to be made in bitbake commands like create error
+> > > > reports
+> > > > if
+> > > > fails.
+> > > > 
+> > > > For create error reports this class add an stdio observer to
+> > > > look at
+> > > > bitbake output and if bitbake fails review the bitbake output
+> > > > for
+> > > > identify if the failure is an non-related task error [4]. If
+> > > > the
+> > > > observer found bitbake error creates an Error report with the
+> > > > information in the master controller.
+> > > > 
+> > > > In order to send the bitbake error to Error report web the
+> > > > controller
+> > > > transfer the report to the worker using a new DownloadDirectory
+> > > > implementation that i made [5], the SendErrorReport buildstep
+> > > > works
+> > > > on
+> > > > the worker side so it's easy to transfer the reports from
+> > > > master to
+> > > > worker instead of send it by master.
+> > > > 
+> > > > Finally to complete with the job of have the bitbake errors
+> > > > reports
+> > > > the
+> > > > Error report web changes need  (i'm working on it) to be
+> > > > integrated
+> > > > first in order to don't break anything.
+> > > > 
+> > > > Please review it and provide me feedback.
+> > > 
+> > > This would've been much easier to review as a series of patches.
+> > > 
+> > > After a quick read via the gitweb the series as a whole looks
+> > > good.
+> > > 
+> > > A couple of review comments:
+> > > 
+> > > In a04b41d37c29191318386455d8d958ff815a3a10 "lib/buildsteps.py:
+> > > Add
+> > > BitbakeLogLineObserver for BitbakeShellCommands." you have a
+> > > comment
+> > > 
+> > > "discard line that are not errors and line that is recipe task
+> > > errors"
+> > > 
+> > > but the lines are not actually discarded, afaict  from a cursory
+> > > read
+> > > through they aren't used in the rest of the series
+> > > unless errors['bitbake'] == True? 
+> > > 
+> > > Could we move the error['log'].append() to after the if statement
+> > > which
+> > > checks whether this is a bitbake error?
+> > 
+> > Yes and i'll update the commit message to be more consistent.
+> > 
+> > > 
+> > > Minor nit, in caf472bc696053227825c5a102feef3e17574ba2
+> > > "lib/buildsteps:
+> > > BitbakeShellCommand add support for create error reports"
+> > > in get_error_report_bitbake_dir() you use both " and ' for
+> > > strings.
+> > > 
+> > > Same in 40279597615c49bc4f4f067cbab937584b626671
+> > 
+> > I'll fix the typos for only use "".
+> > 
+> > 	alimon
+> > 
+> I updated the branch with the changes suggested now at,
+> 
+> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=co
+> ntrib/alimon/devel
 
-> On Wed, Jun 15, 2016 at 08:51:11AM -0400, Robert P. J. Day wrote:
-> > On Wed, 15 Jun 2016, Robert P. J. Day wrote:
-> >
-> > >
-> > >   following on a post to the list from back on jun 1:
-> > >
-> > > https://www.mail-archive.com/yocto@yoctoproject.org/msg29568.html
-> > >
-> > > i figured it wouldn't be hard to find the place where that header file
-> > > was added to the master branch for (in this case) the 4.1 kernel, but
-> > > i just checked the git repo, master branch, and i don't see that file
-> > > there, but i see that a patch to add it was submitted back on june 2:
-> > >
-> > > https://github.com/Freescale/meta-fsl-arm/blob/master/recipes-kernel/linux/linux-ls1/Fix-the-compile-issue-under-gcc6.patch
-> > >
-> > > so what is the status of this? am i just reading this incorrectly? or
-> > > doing something wrong?
-> >
-> >   i do realize that that patch referred to above was for the
-> > meta-fsl-arm repo, i just assumed it would work its way into master in
-> > short order. but i could be totally off-base here.
->
-> Backport this change to your kernel:
->
-> From cb984d101b30eb7478d32df56a0023e4603cba7f Mon Sep 17 00:00:00 2001
-> From: Joe Perches <joe@perches.com>
-> Date: Thu, 25 Jun 2015 15:01:02 -0700
-> Subject: [PATCH] compiler-gcc: integrate the various compiler-gcc[345].h files
->
-> As gcc major version numbers are going to advance rather rapidly in the
-> future, there's no real value in separate files for each compiler
-> version.
->
-> Deduplicate some of the macros #defined in each file too.
->
-> Neaten comments using normal kernel commenting style.
+Is that the right location? For example I still see log lines being
+appended to error['log'] *before* the check to discard lines in:
 
-  amusingly, i *just* noticed that the current standard/base branch no
-longer had the various versions of that file, and said to myself,
-"huh, i guess they just merged them all." so using the standard/base
-branch is going to resolve this for me. thanks.
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?h=c
+ontrib/alimon/devel&id=742e5bf33934c4ec9de9136a854e190aaf8ba0b3
 
-rday
++    def _handleError(self, line):
++        if not hasattr(self.step, 'errors'):
++            self.step.errors = {}
++            self.step.errors['bitbake'] = False
++            self.step.errors['log'] = []
++
++        # save all the log for be able to get report variables like
++        # machine, target, distro, etc
++        self.step.errors['log'].append(line)
++
++        # discard line that are not errors and line that
++        # is recipe task errors
++        if (not self.rexp_error.match(line)) or \
++                self.rexp_pnpv_error.match(line) or \
++                self.rexp_task_error.match(line) or \
++                self.rexp_log_error.match(line):
++            return
++
++        # if not match recipe task type is a bitbake exception/error
++        self.step.errors['bitbake'] = True
 
--- 
+whereas I think we only need to save log lines when it's a bitbake
+error, i.e:
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
++    def _handleError(self, line):
++        if not hasattr(self.step, 'errors'):
++            self.step.errors = {}
++            self.step.errors['bitbake'] = False
++            self.step.errors['log'] = []
++
++        # discard line that are not errors and line that
++        # is recipe task errors
++        if (not self.rexp_error.match(line)) or \
++                self.rexp_pnpv_error.match(line) or \
++                self.rexp_task_error.match(line) or \
++                self.rexp_log_error.match(line):
++            return
++
++        # save all the log for be able to get report variables like
++  
+      # machine, target, distro, etc
++        self.step.errors['log'].ap
+pend(line)
++
++        # if not match recipe task type is a bitbake exception/error
++        self.step.errors['bitbake'] = True
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Further 
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commit/?h=c
+ontrib/alimon/devel&id=2523c869855d8e2393b9dd7142c0992908444584
 
+still has typo's in the commit title and message.
+
+Finally, please don't end the subject line of commit messages with a
+period.
+
+Regards,
+
+Joshua
+
+> 	alimon
+> 
+> > > 
+> > > Regards,
+> > > 
+> > > Joshua
+> > > 
+> > > > 
+> > > > Cheers,
+> > > > 	alimon
+> > > > 
+> > > > [1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=7583
+> > > > [2]
+> > > > http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log
+> > > > /?h=co
+> > > > ntrib/alimon/devel
+> > > > [3]
+> > > > http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tre
+> > > > e/lib/
+> > > > python2.7/site-
+> > > > packages/autobuilder/lib/buildsteps.py?h=contrib/alimon/devel#n
+> > > > 92
+> > > > [4]
+> > > > http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/tre
+> > > > e/lib/
+> > > > python2.7/site-
+> > > > packages/autobuilder/lib/buildsteps.py?h=contrib/alimon/devel#n
+> > > > 53
+> > > > [5]
+> > > > http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/com
+> > > > mit/?h
+> > > > =contrib/alimon/devel&id=4022920bb0e56d1eef3dfe7c5e9b4699f801cd
+> > > > f1
+> > 
+> > 
+> > 
+> 
 
