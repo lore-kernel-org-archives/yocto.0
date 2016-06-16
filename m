@@ -1,17 +1,16 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <zhenhua.luo@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90B84E00D57; Wed, 15 Jun 2016 18:32:46 -0700 (PDT)
+	id 423E7E00D63; Wed, 15 Jun 2016 19:33:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.55.234.86 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,51 +19,65 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
-	[209.85.220.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62CDEE00D53
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 18:32:44 -0700 (PDT)
-Received: by mail-pa0-f67.google.com with SMTP id us13so2516520pab.1
-	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 18:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
-	:to; bh=bDjx3EWNZ74vcfqlLPaABFH88EQSyw1rmBpNCNyE68w=;
-	b=kX3sAj6dewTZH3XRHdFzGyGIVWZaErItIWn3H1ave5L+ozKwZUk+Rgqbop+FAwjR2s
-	xjybVssY+MCgAUwD06uH+rfGy0fSNCubYWCRB6Y+3numvEJB6WiAq4RIQ81xj+MLH0Qj
-	0jck54g5AgNJygfYSpnzSwNHjV0LZQAxcmWLCPv42wylB+8Q0S0YBGlmAtO431e2c+Ng
-	AmAxF9uNlsjpga+dk28XbXSJNOgxTcEL7Drb/d8O2/IKauwvfcR/llrtgfG/9YHeRCN5
-	AnJkhEW7dAd89zwaOjFkBihE/wCwSrCZbpcJWMxjXdqgmYyc5PB9SvNJDgE8Qd630R8d
-	3WUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=bDjx3EWNZ74vcfqlLPaABFH88EQSyw1rmBpNCNyE68w=;
-	b=US0cElmc7IFd1ft3ME2EFek5gW7NCCfhDIdi6DmFI0o6Nwmt9nWMxd26OJcDp60esC
-	Mfw6ZGUjn8QYztE6p9pc8Mm9IUtOZvAWphsIKxObRHthSBIGj0fmhBhchTIZUpUNXVOj
-	ZStmz8F9xzPa1WW0sLcyM+Y0WS1f5CWSDKF1k16mRCHceBM4xpfbuWkC79il0a96UROn
-	+9rEpt4ek3jlhO4+ktzxuxxzlAf4+fREpCysjLZxr6LJ4U9kjIsRLeI7ktxlKTatZxSq
-	/m3yOq0qfvxytx8pVptHLuNkVuFtlL5EdQ69C7BydzTfGB4hgH4bE2zxn6D/pCAnanqB
-	uY7A==
-X-Gm-Message-State: ALyK8tJVCehvtSRP+outEKMxwU6N2Ogda5F+zucgSuPKAWenmmU/KI3Rigt2VIT3b0sWkg==
-X-Received: by 10.66.221.66 with SMTP id qc2mr1919477pac.147.1466040763655;
-	Wed, 15 Jun 2016 18:32:43 -0700 (PDT)
-Received: from [192.168.0.6] (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	x187sm55758903pfx.87.2016.06.15.18.32.42
-	(version=TLSv1/SSLv3 cipher=OTHER);
-	Wed, 15 Jun 2016 18:32:42 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Pgp-Agent: GPGMail 2.6b2
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <014d01d1c318$5e41b150$1ac513f0$@gasera.fi>
-Date: Wed, 15 Jun 2016 18:32:38 -0700
-Message-Id: <3034ED0A-55DC-4B0B-9FF8-C34A2D3C9D73@gmail.com>
-References: <014d01d1c318$5e41b150$1ac513f0$@gasera.fi>
-To: Andreas Enbacka <andreas.enbacka@gasera.fi>
-X-Mailer: Apple Mail (2.3124)
-Cc: yocto@yoctoproject.org
-Subject: Re: Handling of partial Yocto image updates
+Received: from emea01-db3-obe.outbound.protection.outlook.com
+	(mail-db3on0086.outbound.protection.outlook.com [157.55.234.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CBECE00D5B
+	for <yocto@yoctoproject.org>; Wed, 15 Jun 2016 19:33:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=QaaYKjatikcIxbrsyaDofUrplLB36raxIEsSkg5uc5Q=;
+	b=yBlE8vcDiWeOsN4nVWHyP1IaEDaaNS1FhXId8PnTvH52mtLEf0GW9scjEHB3MuZvjt2xEUuWB5Ukws4PC9hNnHRO9Q95ShLDfqGPIC9fMynpvyc/4XHe2pRrjncftFG09oFLXd/wHtiReyROiGBiTzGZH1f9BrSur9bjLbqjH8c=
+Received: from DB3PR04MB0684.eurprd04.prod.outlook.com
+	(2a01:111:e400:943c::14) by DB3PR04MB0683.eurprd04.prod.outlook.com
+	(2a01:111:e400:943c::13) with Microsoft SMTP Server (TLS) id 15.1.517.8;
+	Thu, 16 Jun 2016 02:33:49 +0000
+Received: from DB3PR04MB0684.eurprd04.prod.outlook.com
+	([fe80::cc2b:ef35:1b5f:50ca]) by
+	DB3PR04MB0684.eurprd04.prod.outlook.com
+	([fe80::cc2b:ef35:1b5f:50ca%18]) with mapi id 15.01.0501.018;
+	Thu, 16 Jun 2016 02:33:48 +0000
+From: Zhenhua Luo <zhenhua.luo@nxp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: The linux login prompt delays about 5 seconds with systemd
+	rootfs 
+Thread-Index: AdHHdwpTERGufJn6ROqkf552+1IppA==
+Date: Thu, 16 Jun 2016 02:33:48 +0000
+Message-ID: <DB3PR04MB0684431F4D11AB64C705942CEE560@DB3PR04MB0684.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=zhenhua.luo@nxp.com; 
+x-originating-ip: [199.59.226.141]
+x-ms-office365-filtering-correlation-id: 98d7ee62-3685-4833-f49b-08d3958ea5b5
+x-microsoft-exchange-diagnostics: 1; DB3PR04MB0683;
+	6:/Q7xOUkhBD5mGXJkUQXHBl6hMLstSuRBB1m/ZVSvuqZ9TpAmK2Qi1pejmo8sLV7XLSZ5w+839OzDXDrhNuIVV/BvL9nFpRQ4wWbtkBIBk4thJk1hGy3zXTRNouOHXLbWFfzNURlUpiygnxTzwMQ0enQWQIuSvtFejIdY+eMZYLWHbCTDFod4Pnu/i5bjrnwNRCg8ziH9iYe3tjMIyjIJ1o3z0IyvpAfYI/nf8maYzIAT6+dKSU4dVDZA6Cohantvm6TYDWdt6egSDX7zf2lukhaxzvn1gzsZDdCFd2sU0H3HRkQ6xWcsmksvv5T3sALp;
+	5:VEcqUDnS6mC+hrFQt9lcPy9772ZmIE26iptLpX+0DLZ9UZ8T2XP8LAAHNMlpNnyW+wo+Z/c3um+GPc5Gm9UiApFGITHK+rcUKy9OHUMWqC1YNyTB19yngVXkvWD9obQ+y11i8pOpDMIS3MfzOVPJ1Q==;
+	24:prU4g9lyvP973bVbWRTDWuegjXsoQsBmBIStXWYbd8H7S8GctyRMT7dEpKXbs+uWBv3hXn1+Df6c5SNkmYrMn1KfbZRN5yIDE7jB25SJeIw=;
+	7:fKG2fBVjYTrNN8QKMiwevr5P4W+cQK29MBYPuNsHr1XinE+sGgw7fyicFv5kl2RC33uEXXQmuNhuuygPhDkydht7rG59QHMeOhTk84CGs6wFX+K0aqW0mr+ioAOVL44DrMpV/U/xcM6qShS/3VAKCGfEyHFzExEndMSa8dvB5uE/cPzYPg/dXf2yfwza6+rZWp7JW+7V8L15ZtKh4vTvFQ==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB3PR04MB0683;
+x-microsoft-antispam-prvs: <DB3PR04MB06831D5050730D2D4410BBC2EE560@DB3PR04MB0683.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046)(6055026);
+	SRVR:DB3PR04MB0683; BCL:0; PCL:0; RULEID:; SRVR:DB3PR04MB0683; 
+x-forefront-prvs: 09752BC779
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(199003)(53754006)(189002)(5003600100002)(74316001)(19580395003)(33656002)(87936001)(97736004)(229853001)(76576001)(68736007)(586003)(3846002)(106356001)(107886002)(9686002)(790700001)(92566002)(2351001)(6116002)(110136002)(66066001)(19625215002)(5002640100001)(16236675004)(5640700001)(86362001)(189998001)(54356999)(5630700001)(3660700001)(50986999)(105586002)(450100001)(3280700002)(2900100001)(101416001)(102836003)(15975445007)(5250100002)(5008740100001)(8676002)(8936002)(81156014)(81166006)(1730700003)(2501003)(5004730100002)(2906002)(19300405004);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DB3PR04MB0683;
+	H:DB3PR04MB0684.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; CAT:NONE; LANG:en; CAT:NONE; 
+received-spf: None (protection.outlook.com: nxp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2016 02:33:48.4931 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR04MB0683
+Subject: The linux login prompt delays about 5 seconds with systemd rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,196 +89,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2016 01:32:46 -0000
-X-Groupsio-MsgNum: 30567
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_B290075E-F266-48D9-8264-BE0EAD9C7E2C";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_B290075E-F266-48D9-8264-BE0EAD9C7E2C
+X-List-Received-Date: Thu, 16 Jun 2016 02:33:55 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_58DCDF68-CDFC-4A7E-9508-998A5A67658C"
+	boundary="_000_DB3PR04MB0684431F4D11AB64C705942CEE560DB3PR04MB0684eurp_"
 
---Apple-Mail=_58DCDF68-CDFC-4A7E-9508-998A5A67658C
+--_000_DB3PR04MB0684431F4D11AB64C705942CEE560DB3PR04MB0684eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+
+Hello all,
+
+I try to add the following lines in local.conf to enable systemd, the core-=
+image-minimal rootfs can be built successfully.
+DISTRO_FEATURES_append =3D " systemd"
+VIRTUAL-RUNTIME_init_manager =3D "systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+VIRTUAL-RUNTIME_initscripts =3D ""
+
+When the systemd rootfs is used to bootup the board,  After the last system=
+d service startup log is printed, the console will wait about 5 seconds bef=
+ore the linux login prompt appears.
+[  OK  ] Started D-Bus System Message Bus.
+         Starting Login Service...
+[  OK  ] Started Login Service.
+<wait about 5 seconds>
+Poky (Yocto Project Reference Distro) 2.1+snapshot-20160616 t1040d4rdb ttyS=
+0
+
+t1040d4rdb login:
+
+Does somebody know if the delay time can be customized and how to set it?
 
 
-> On Jun 10, 2016, at 6:02 AM, Andreas Enbacka =
-<andreas.enbacka@gasera.fi> wrote:
->=20
-> Hello,
->=20
-> I would like to ask the community what is the preferred way of =
-handling partial image / package updates using Yocto, once an image has =
-been deployed to a production system?
-> In most cases, once we have an image deployed it might be necessary to =
-update some individual packages and e.g., configuration files, and it is =
-not desired to update / replace the entire image. What is the Yocto best =
-practices concerning this? Any information would be greatly appreciated.
->=20
+Best Regards,
 
-Usually, you can setup feed servers and maintain feeds, see how angstrom =
-distribution is doing it. It involves some setup and discipline of =
-ensuring that package upgrade
-paths are honored and kept intact when making changes to recipes and =
-also maintain a PR server to manage revisions.
+Zhenhua
 
-Other option is to do full firmware upgrade and you have to have =
-mechanisms of your own e.g. via initramfs or other methods like TR69 =
-agents etc. yocto/OE does not
-have default tooling for this
-
-there are commercial solutions like resin.io and mender.io which offers =
-OTA solutions on yocto/OE as well.
-
-> Best regards,
-> Andreas Enbacka
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_58DCDF68-CDFC-4A7E-9508-998A5A67658C
+--_000_DB3PR04MB0684431F4D11AB64C705942CEE560DB3PR04MB0684eurp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jun 10, 2016, at 6:02 AM, Andreas Enbacka &lt;<a =
-href=3D"mailto:andreas.enbacka@gasera.fi" =
-class=3D"">andreas.enbacka@gasera.fi</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;"><div style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; =
-font-family: Calibri, sans-serif;" class=3D"">Hello,<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D"">I would like to ask the community what is the =
-preferred way of handling partial image / package updates using Yocto, =
-once an image has been deployed to a production system?<span =
-class=3D"Apple-converted-space">&nbsp;</span><o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D"">In most cases, once we have an image deployed =
-it might be necessary to update some individual packages and e.g., =
-configuration files, and it is not desired to update / replace the =
-entire image. What is the Yocto best practices concerning this? Any =
-information would be greatly appreciated.<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></span></div></div></div></blockquote><div><br =
-class=3D""></div><div>Usually, you can setup feed servers and maintain =
-feeds, see how angstrom distribution is doing it. It involves some setup =
-and discipline of ensuring that package upgrade</div><div>paths are =
-honored and kept intact when making changes to recipes and also maintain =
-a PR server to manage revisions.</div><div><br class=3D""></div><div>Other=
- option is to do full firmware upgrade and you have to have mechanisms =
-of your own e.g. via initramfs or other methods like TR69 agents etc. =
-yocto/OE does not</div><div>have default tooling for this</div><div><br =
-class=3D""></div><div>there are commercial solutions like <a =
-href=3D"http://resin.io" class=3D"">resin.io</a> and <a =
-href=3D"http://mender.io" class=3D"">mender.io</a> which offers OTA =
-solutions on yocto/OE as well.</div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div class=3D"WordSection1" =
-style=3D"page: WordSection1; font-family: Times-Roman; font-size: 14px; =
-font-style: normal; font-variant-caps: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div style=3D"margin: =
-0cm 0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><span lang=3D"EN-US" class=3D"">Best regards,<o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D"">Andreas Enbacka<span =
-class=3D"Apple-converted-space">&nbsp;</span><o:p =
-class=3D""></o:p></span></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><span =
-lang=3D"EN-US" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></span></div></div><span style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-float: none; display: inline !important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-float: none; display: inline !important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-float: none; display: inline !important;" class=3D"">yocto mailing =
-list</span><br style=3D"font-family: Times-Roman; font-size: 14px; =
-font-style: normal; font-variant-caps: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: rgb(149, 79, =
-114); text-decoration: underline; font-family: Times-Roman; font-size: =
-14px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
-Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;" class=3D""><a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
- style=3D"color: rgb(149, 79, 114); text-decoration: underline; =
-font-family: Times-Roman; font-size: 14px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello all, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I try to add the following lines in local.conf to en=
+able systemd, the core-image-minimal rootfs can be built successfully.
+<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">DISTRO_FEATURES_append =
+=3D &quot; systemd&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">VIRTUAL-RUNTIME_init_mana=
+ger =3D &quot;systemd&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">DISTRO_FEATURES_BACKFILL_=
+CONSIDERED =3D &quot;sysvinit&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">VIRTUAL-RUNTIME_initscrip=
+ts =3D &quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When the systemd rootfs is used to bootup the board,=
+ &nbsp;After the last systemd service startup log is printed, the console w=
+ill wait about 5 seconds before the linux login prompt appears.
+<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">[&nbsp; OK&nbsp; ] Starte=
+d D-Bus System Message Bus.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; Starting Login Service...<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">[&nbsp; OK&nbsp; ] Starte=
+d Login Service.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"color:r=
+ed">&lt;wait about 5 seconds&gt;</span><o:p></o:p></b></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Poky (Yocto Project Refer=
+ence Distro) 2.1&#43;snapshot-20160616 t1040d4rdb ttyS0<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">t1040d4rdb login:<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Does somebody know if the delay time can be customiz=
+ed and how to set it?
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Zhenhua <o:p></o:p></p>
+</div>
+</body>
+</html>
 
---Apple-Mail=_58DCDF68-CDFC-4A7E-9508-998A5A67658C--
-
---Apple-Mail=_B290075E-F266-48D9-8264-BE0EAD9C7E2C
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAldiAbkACgkQuwUzVZGdMxTkbwCcCvnZjURqmiBaF5ap4ut9fysV
-apEAn3Bs9WO2/t5+7Sa3Meg+YeQWuy8w
-=UNd3
------END PGP SIGNATURE-----
-
---Apple-Mail=_B290075E-F266-48D9-8264-BE0EAD9C7E2C--
+--_000_DB3PR04MB0684431F4D11AB64C705942CEE560DB3PR04MB0684eurp_--
