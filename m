@@ -1,66 +1,67 @@
 Return-Path: <bartosz.woronicz@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE0CBE00D72; Thu, 16 Jun 2016 06:15:06 -0700 (PDT)
+	id DEA70E00D71; Thu, 16 Jun 2016 06:17:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [157.56.112.123 listed in list.dnswl.org]
+	*      [157.56.112.120 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from emea01-am1-obe.outbound.protection.outlook.com
-	(mail-am1on0123.outbound.protection.outlook.com [157.56.112.123])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F96CE00D6E
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 06:15:02 -0700 (PDT)
+	(mail-am1on0120.outbound.protection.outlook.com [157.56.112.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52963E00D6B
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 06:17:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com; 
 	s=selector1-nokia-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=99NHdwy8QWUUmyw0uflZqVtjaT8mETSI4L71j0wfMDw=;
-	b=iBAYJ5QlrH1m8Jc7ruhY5qhoEPtfo0aNKYoCMhhyy3xaazquMkXBCss1RS6aMVik4Ar7yF+QhjmQWDa1Rod8fmbpvz4/1GzFhzC9k7/rvn3JXI9+/CWoOsxMqjXxuRhKN6vctrliyVUpmu8rx+lxWHYntfJC0xjvU6o8y2+S+kc=
+	bh=7ffUFmwNETN8fCrCG4vFSeh95xl2QpB4mvsdASEsvJQ=;
+	b=qHQliSFKS1p6Lu9IqXDTi648WOjKVk9SVkMHequgVGz8nVMXQqPPQt/n32mCWloANlWqSTHTKITN5XfI2vW+FUeiGXPwgD2YzqxLGcM9YyFAm/SfwjRp09OfCElEpjf9DZ6nN4Jw6KXy3FFtXB7vPS2xlLRUC5i4zh07qCWGyHc=
 Received: from VI1PR07MB1053.eurprd07.prod.outlook.com (10.161.111.145) by
 	VI1PR07MB1056.eurprd07.prod.outlook.com (10.161.111.148) with Microsoft
-	SMTP Server (TLS) id 15.1.523.12; Thu, 16 Jun 2016 13:00:31 +0000
+	SMTP Server (TLS) id 15.1.523.12; Thu, 16 Jun 2016 13:03:27 +0000
 Received: from VI1PR07MB1053.eurprd07.prod.outlook.com ([10.161.111.145]) by
 	VI1PR07MB1053.eurprd07.prod.outlook.com ([10.161.111.145]) with mapi id
-	15.01.0511.017; Thu, 16 Jun 2016 13:00:31 +0000
+	15.01.0511.017; Thu, 16 Jun 2016 13:03:27 +0000
 From: "Woronicz, Bartosz (Nokia - PL/Wroclaw)" <bartosz.woronicz@nokia.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Z. <winotu.email@gmail.com>
 Thread-Topic: [yocto] Additional layers with class and conf
-Thread-Index: AQHRxxVXZzC6ZcZwrEGFbS3fHjV1Lp/q+vSAgAEUhfA=
-Date: Thu, 16 Jun 2016 13:00:31 +0000
-Message-ID: <VI1PR07MB1053B4DC8702D6E18472936881560@VI1PR07MB1053.eurprd07.prod.outlook.com>
+Thread-Index: AQHRxxVXZzC6ZcZwrEGFbS3fHjV1Lp/q6AQAgAEoKbA=
+Date: Thu, 16 Jun 2016 13:03:27 +0000
+Message-ID: <VI1PR07MB105309BE11C9F6241FECBBD881560@VI1PR07MB1053.eurprd07.prod.outlook.com>
 References: <57616B51.7070001@nokia.com>
-	<2437618.ZGTpyCUF7t@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <2437618.ZGTpyCUF7t@peggleto-mobl.ger.corp.intel.com>
+	<CAEjjReKap3QniWcA_+_DQhoLn_wnRugBZZZL448yvkE0HGogWg@mail.gmail.com>
+In-Reply-To: <CAEjjReKap3QniWcA_+_DQhoLn_wnRugBZZZL448yvkE0HGogWg@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=bartosz.woronicz@nokia.com; 
 x-originating-ip: [131.228.2.8]
-x-ms-office365-filtering-correlation-id: b01b94a9-cc79-4380-7b6c-08d395e632b8
+x-ms-office365-filtering-correlation-id: 53573a95-45f1-4e86-fff1-08d395e69be2
 x-microsoft-exchange-diagnostics: 1; VI1PR07MB1056;
-	6:8alKqywUEYpORXRSlUedx1wZ0gW5CUJXld1BcaLsM/xeR9MDtNj1z2h4OgJ/gb7Cpn1OGZmNaF+O9VJmC1fcEUn7cLWWGTym+71sP35j9UMbAi7fPof7Dh1o47xhxUo7pZBUZIB0m/d45F1h5TlUt2Y9uxUbSYfChTreddm9xW2KTrpOSQMmFPKPe+/uWwlSvSeEinoMAVjVmf9BWR0E+5n+mlBH+bCEkxUtzzfEKvwNb/MPuLAJqzP9u9ZTkQq3S64rEPzvqQ3qO5GNrOdsaXwN+xUUddtshfdowxRTJzw=;
-	5:jUiIjPIkemsd8wEhcdppwQLLBfmSi7CVAKd3Nu8ekA25/EguJq7E+dmwtV1/+DwxDHnBD9wNSt5bRInqMYKEsuZzje9LtQDSYc8LqYQevSno6y9QrdFbQ2fCQ3NufqJx/vEZX2QWB2vXBbNcWM6HVg==;
-	24:U49A/ii5zauw9aLUXjGRyJCRkuUgifQ53Ksg6JxkMB/nBbxoQXSsgKrcnjN6AYGVjsiyZ793zZcNChZBQXGRPfZEhzSbDVT8vyHxFz5uzdE=;
-	7:iTk0q9ucEYVfj2sYXfe+nR+2feFnIYjbRD7B+OAq6TnjR+xdgyreCKtF668uVY5tquKkIlPpLehNkS/rAFSJUxG8DlH8BkEVi8skTnIDxLfGc5lC8q/yp7+7GIU3gjHo0M/Pm8Qku6E9XItbEbI+vvPeq5fix0+WQaeZeHN70riWfjCtBj4s2oT6euPrQz0Icc7z6FtrrBArBVK7UohOEg==
+	6:9FDRWldI1QOjElR+7/VzgzigajHPJ0RwJ9f/s339rA97fZT/2ysBhzAtVOXY+INl0C+q9EdeR9Howp+TveyOCge+q0ZYtXa/xbUVYT4lT+Qih1gDFlg47N3eHlr77UNsKLpxkkJs8c1xEi6pMyhPF+uVfracvofUtRbihUraRcZ7RGas0J0yANyXf5y9rUVhDNN0J/d+I41c89+C1H5PuV8cpbLzFNci3v0EvT9TYTlsNBmbWo0Mepwg4SINmqyzNYOPfH05/tBgZaHrxr2Rckn0EN+y0cdxCRmImSQLYxE=;
+	5:ijTvKN5Vm+YGJSMjaVk4g4LK5aBwkjJ4JXwzmbqXUtxpwE/WWyUenepXBXZmLhvT/oq1WZZnCHdUJqIkU4Fjz976g3WPmr/ywzRv7nzxuFA/YixVe+WGXx+XLHh1IDHs54gcJPKVRL4pdDaeaq0r2A==;
+	24:PhgxABEB318vnaMIjbXRTkZfijYdFa3cuZgX22QQqZPL9bJl6EFY1MNVwKpsalo9+tcBp9W3l7h+Zq2+ilZEL4+mv4awo5qarxH6JSqS0Fo=;
+	7:TfpbShrzGa/JDCukoETeTfgZ7sihsrZq5qDBb1ykTQZrW+LK5MUZynF7cnpgS6CF2LC8joYIkf3zZ9luL4L1+lKI/Q1OeKCE2vAWlsLGCxsQDvczbN4Dl00pCw6IaOPTynqmMvheV9FOs1fS+6pm9WExIviCCVYwt14AsZo5qbc9EhUZnylb3CkfVoXi3iH919zDunP+HLjIzHTPnIMQQw==
 x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:VI1PR07MB1056;
-x-microsoft-antispam-prvs: <VI1PR07MB1056E9B926D8AA26924AE8ED81560@VI1PR07MB1056.eurprd07.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(82608151540597)(228905959029699);
+x-microsoft-antispam-prvs: <VI1PR07MB1056D517B60BF01E3938431281560@VI1PR07MB1056.eurprd07.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(82608151540597)(21748063052155);
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
 	RULEID:(601004)(2401047)(5005006)(8121501046)(3002001)(10201501046);
 	SRVR:VI1PR07MB1056; BCL:0; PCL:0; RULEID:; SRVR:VI1PR07MB1056; 
 x-forefront-prvs: 09752BC779
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(979002)(6009001)(7916002)(199003)(24454002)(13464003)(189002)(71364002)(377454003)(19580395003)(19580405001)(11100500001)(5004730100002)(74316001)(2906002)(9686002)(106116001)(3846002)(50986999)(4326007)(106356001)(105586002)(76176999)(101416001)(3280700002)(10400500002)(5003600100002)(3660700001)(54356999)(189998001)(87936001)(68736007)(5002640100001)(92566002)(122556002)(33656002)(5008740100001)(77096005)(81156014)(2950100001)(8676002)(8936002)(2900100001)(6116002)(76576001)(86362001)(97736004)(66066001)(110136002)(81166006)(586003)(15975445007)(102836003)(969003)(989001)(999001)(1009001)(1019001);
+	SFS:(10019020)(7916002)(199003)(24454002)(189002)(71364002)(377454003)(19580395003)(19580405001)(11100500001)(5004730100002)(9326002)(74316001)(2906002)(9686002)(106116001)(19609705001)(3846002)(19625215002)(19617315012)(50986999)(790700001)(4326007)(106356001)(105586002)(76176999)(101416001)(3280700002)(10400500002)(5003600100002)(3660700001)(54356999)(189998001)(7906002)(87936001)(15395725005)(68736007)(16236675004)(5002640100001)(92566002)(122556002)(33656002)(5008740100001)(77096005)(81156014)(2950100001)(8676002)(8936002)(2900100001)(6116002)(76576001)(86362001)(97736004)(66066001)(110136002)(81166006)(586003)(15975445007)(102836003)(19300405004)(10126625002);
 	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR07MB1056;
 	H:VI1PR07MB1053.eurprd07.prod.outlook.com; FPR:; SPF:None;
 	PTR:InfoNoRecords; A:1; MX:1; CAT:NONE; LANG:en; CAT:NONE; 
@@ -70,7 +71,7 @@ spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2016 13:00:31.2995 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2016 13:03:27.6764 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 5d471751-9675-428d-917b-70f44f9630b0
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB1056
@@ -87,58 +88,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2016 13:15:06 -0000
+X-List-Received-Date: Thu, 16 Jun 2016 13:17:56 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR07MB105309BE11C9F6241FECBBD881560VI1PR07MB1053eurp_"
 
-That's a good point, I took a look at it. But for now I rather rely on poky=
- distro. Later, possibly I will put my classes in INHERIT to mydistro.conf.
+--_000_VI1PR07MB105309BE11C9F6241FECBBD881560VI1PR07MB1053eurp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks!
+SGksDQoNCkkgdGhvdWdodCBsb2NhbC5jb25mIGlzIGF1dG9tYXRpY2FsbHkgcmVhZCwgYnV0IEkg
+d2FzIHdyb25nLiBGb3IgdGltZSBiZWluZyBJIHB1dCDigJggSU5IRVJJVCArPSDigJxteeKAnSDi
+gJkgaW4gbGF5ZXIuY29uZi4gTGF0ZXIgb24gSSB3aWxsIHRoaW5rIG9mIG15IG93biBkaXN0cm8g
+bWV0YS4NCg0KTWF5YmUgSSBhbSB3cm9uZywgYnV0IHlvY3RvIGlzIG1pc3NpbmcgYWJpbGl0eSB0
+byBoYXZlIGtpbmQgb2YgdXRpbGl0eSBtZXRhIGxheWVyLiBCdXQgbWF5YmUgaXQgaXMganVzdCB1
+bm5lY2Vzc2FyeSBibG9hdC4NCg0KS2luZCByZWdhcmRzLA0KQmFydG9zeiBXb3Jvbmljeg0KRW5n
+aW5lZXIsIFNvZnR3YXJlIENvbmZpZ3VyYXRpb24gKFNDTSkNCk5va2lhIE5ldHdvcmtzIC0gUEwv
+V3JvY2xhdw0KDQpGcm9tOiBDaHJpcyBaLiBbbWFpbHRvOndpbm90dS5lbWFpbEBnbWFpbC5jb21d
+DQpTZW50OiBXZWRuZXNkYXksIEp1bmUgMTUsIDIwMTYgOToyMSBQTQ0KVG86IFdvcm9uaWN6LCBC
+YXJ0b3N6IChOb2tpYSAtIFBML1dyb2NsYXcpIDxiYXJ0b3N6Lndvcm9uaWN6QG5va2lhLmNvbT4N
+CkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBBZGRpdGlv
+bmFsIGxheWVycyB3aXRoIGNsYXNzIGFuZCBjb25mDQoNCkhJLA0KSGF2ZSB5b3UgY2hlY2tlZCBm
+dWxsIG91dHB1dCBvZiAtZSBiaXRiYWtlIHJ1biA/IFdlcmUgSU5IRVJJVCB2YXJpYWJsZSBpcyBy
+ZXNvbHZlZCA/IFRvIGNoZWNrIGlmICouY29uZiBmaWxlIHdhcyBjaGVja2VkID8gTWF5YmUgc29t
+ZSBjb25mcyBjaGFuZ2UgSU5IRVJJVCB2YXJpYWJsZXMgZHVyaW5nIHBhcnNpbmcuDQpCciwNCkta
+DQoNCk9uIFdlZCwgSnVuIDE1LCAyMDE2IGF0IDQ6NTAgUE0sIFdvcm9uaWN6LCBCYXJ0b3N6ICgg
+TlNOIC0gUEwvV3JvY2xhdykgPGJhcnRvc3oud29yb25pY3pAbm9raWEuY29tPG1haWx0bzpiYXJ0
+b3N6Lndvcm9uaWN6QG5va2lhLmNvbT4+IHdyb3RlOg0KSSBnb3QgdHdvIGxheWVycywgbWV0YS14
+IGFuZCBtZXRhLXkgLCBtZXRhLXggZ290IG1ldGEteSBpbiBiYmxheWVycy5jb25mLiAgIGluIG1l
+dGEteSBjb250YWlucyBjb25mL2xheWVyLmNvbmYgd2l0aCBCQlBBVEggLj0gIjoke0xBWUVSRElS
+fSIsIHBsdXMgY2xhc3Nlcy9teS5iYmNsYXNzIHBsdXMgbG9jYWwuY29uZiBjb250YWluaW5nIElO
+SEVSSVQgKz0gIm15Ig0Kd2hlbiBJIHJhbiBiaXRiYWtlIC1lIG15LWltYWdlLCB0aGUgSU5IRVJJ
+VCBkb2Vzbid0IHNlZW0gdG8gY29udGFpbiAibXkiDQoNCldoZW4gSSBwdXQgaXQgZGlyZWN0bHkg
+aW4gbGF5ZXIuY29uZiBpdCB3b3JrcywgYnV0IHdoYXQgdG8gYWRkIHRvIGxheWVyLmNvbmYgdG8g
+bWFrZSBiaXRiYWtlIHRvIGxvb2sgZm9yIG90aGVyICouY29uZiBmaWxlcyBpbiBtZXRhLXkvY29u
+Zi8gPz8NCg0KTXkgYmJsYXllcnMuY29uZi5zYW1wbGUgaXMgbW9kaWZpZWQgaW4gbWV0YS14ICh0
+aGUgcHJvamVjdCBtZXRhKSwgd2hpY2ggaXMgY29waWVkIG92ZXIgdG8gJEJVSUxERElSIHdoZW4g
+aSBydW4gb2UtaW5pdC1idWlsZC1lbnYgLA0KaGVyZSBpcyBtZXRhLXkvY29uZi9sYXllci5jb25m
+ICA6ICBodHRwOi8vcGFzdGViaW4uY29tL21oeGU5SzVDDQoNCndoZW4gSSByYW4NCmJpdGJha2Ug
+LWUgbXktaW1hZ2UNCmkgc2VlDQpCQlBBVEg9Ii92YXIvZnB3b3JrL21hc3RpZXIvbXlwcm9qZWN0
+L3Bva3kvbWV0YS15b2N0bzovdmFyL2Zwd29yay9tYXN0aWVyL215cHJvamVjdC9teW1hY2hpbmU6
+L3Zhci9mcHdvcmsvbWFzdGllci9teXByb2plY3QvcG9reS9tZXRhOi92YXIvZnB3b3JrL21hc3Rp
+ZXIvbXlwcm9qZWN0L3Bva3kvbWV0YS15b2N0by1ic3A6L3Zhci9mcHdvcmsvbWFzdGllci9teXBy
+b2plY3QvbWV0YS14Oi92YXIvZnB3b3JrL21hc3RpZXIvbXlwcm9qZWN0L21ldGEteSINCg0Kd2hl
+cmUgIm15bWFjaGluZSIgaXMgbXkgQlVJTERESVINCg0KLS0NCktpbmQgcmVnYXJkcywNCkJhcnRv
+c3ogV29yb25pY3oNCkVuZ2luZWVyLCBTb2Z0d2FyZSBDb25maWd1cmF0aW9uIChTQ00pDQpOb2tp
+YSBOZXR3b3JrcyAtIFBML1dyb2NsYXcNCg0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJv
+amVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-Kind regards,
-Bartosz Woronicz
-Engineer, Software Configuration (SCM)
-Nokia Networks - PL/Wroclaw
+--_000_VI1PR07MB105309BE11C9F6241FECBBD881560VI1PR07MB1053eurp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLmhvZW56Yg0KCXttc28t
+c3R5bGUtbmFtZTpob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxlLXR5cGU6
+cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29s
+b3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25s
+eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlv
+bjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0
+IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
+ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
+ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
+aGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
+aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6IzFGNDk3RCI+SGksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj5JIHRob3VnaHQgbG9jYWwuY29uZiBpcyBhdXRvbWF0aWNhbGx5IHJlYWQsIGJ1
+dCBJIHdhcyB3cm9uZy4gRm9yIHRpbWUgYmVpbmcgSSBwdXQg4oCYIElOSEVSSVQgJiM0Mzs9IOKA
+nG154oCdIOKAmSBpbiBsYXllci5jb25mLiBMYXRlciBvbiBJIHdpbGwgdGhpbmsgb2YgbXkgb3du
+IGRpc3RybyBtZXRhLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
+TWF5YmUgSSBhbSB3cm9uZywgYnV0IHlvY3RvIGlzIG1pc3NpbmcgYWJpbGl0eSB0byBoYXZlIGtp
+bmQgb2YgdXRpbGl0eSBtZXRhIGxheWVyLiBCdXQgbWF5YmUgaXQgaXMganVzdCB1bm5lY2Vzc2Fy
+eSBibG9hdC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPktpbmQg
+cmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+QmFydG9zeiBXb3JvbmljejxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEIj5FbmdpbmVlciwgU29mdHdhcmUgQ29uZmlndXJhdGlvbiAoU0NNKTxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEIj5Ob2tpYSBOZXR3b3JrcyAtIFBML1dyb2NsYXc8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+ZiI+IENocmlzIFouIFttYWlsdG86d2lub3R1LmVtYWlsQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNl
+bnQ6PC9iPiBXZWRuZXNkYXksIEp1bmUgMTUsIDIwMTYgOToyMSBQTTxicj4NCjxiPlRvOjwvYj4g
+V29yb25pY3osIEJhcnRvc3ogKE5va2lhIC0gUEwvV3JvY2xhdykgJmx0O2JhcnRvc3oud29yb25p
+Y3pAbm9raWEuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxi
+cj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBBZGRpdGlvbmFsIGxheWVycyB3aXRoIGNs
+YXNzIGFuZCBjb25mPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5ISSw8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206
+MTIuMHB0Ij5IYXZlIHlvdSBjaGVja2VkIGZ1bGwgb3V0cHV0IG9mIC1lIGJpdGJha2UgcnVuID8g
+V2VyZSBJTkhFUklUIHZhcmlhYmxlIGlzIHJlc29sdmVkID8gVG8gY2hlY2sgaWYgKi5jb25mIGZp
+bGUgd2FzIGNoZWNrZWQgPyBNYXliZSBzb21lIGNvbmZzIGNoYW5nZSBJTkhFUklUIHZhcmlhYmxl
+cyBkdXJpbmcgcGFyc2luZy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+QnIsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+S1o8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPk9uIFdlZCwgSnVuIDE1LCAyMDE2IGF0IDQ6NTAgUE0sIFdvcm9u
+aWN6LCBCYXJ0b3N6ICggTlNOIC0gUEwvV3JvY2xhdykgJmx0OzxhIGhyZWY9Im1haWx0bzpiYXJ0
+b3N6Lndvcm9uaWN6QG5va2lhLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJhcnRvc3oud29yb25pY3pA
+bm9raWEuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBj
+bSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SSBnb3QgdHdvIGxheWVycywgbWV0YS14IGFuZCBtZXRhLXkgLCBt
+ZXRhLXggZ290IG1ldGEteSBpbiBiYmxheWVycy5jb25mLiZuYnNwOyAmbmJzcDtpbiBtZXRhLXkg
+Y29udGFpbnMgY29uZi9sYXllci5jb25mIHdpdGggQkJQQVRIIC49ICZxdW90Ozoke0xBWUVSRElS
+fSZxdW90OywgcGx1cyBjbGFzc2VzL215LmJiY2xhc3MgcGx1cyBsb2NhbC5jb25mIGNvbnRhaW5p
+bmcgSU5IRVJJVCAmIzQzOz0gJnF1b3Q7bXkmcXVvdDs8YnI+DQp3aGVuIEkgcmFuIGJpdGJha2Ug
+LWUgbXktaW1hZ2UsIHRoZSBJTkhFUklUIGRvZXNuJ3Qgc2VlbSB0byBjb250YWluICZxdW90O215
+JnF1b3Q7PGJyPg0KPGJyPg0KV2hlbiBJIHB1dCBpdCBkaXJlY3RseSBpbiBsYXllci5jb25mIGl0
+IHdvcmtzLCBidXQgd2hhdCB0byBhZGQgdG8gbGF5ZXIuY29uZiB0byBtYWtlIGJpdGJha2UgdG8g
+bG9vayBmb3Igb3RoZXIgKi5jb25mIGZpbGVzIGluIG1ldGEteS9jb25mLyA/Pzxicj4NCjxicj4N
+Ck15IGJibGF5ZXJzLmNvbmYuc2FtcGxlIGlzIG1vZGlmaWVkIGluIG1ldGEteCAodGhlIHByb2pl
+Y3QgbWV0YSksIHdoaWNoIGlzIGNvcGllZCBvdmVyIHRvICRCVUlMRERJUiB3aGVuIGkgcnVuIG9l
+LWluaXQtYnVpbGQtZW52ICw8YnI+DQpoZXJlIGlzIG1ldGEteS9jb25mL2xheWVyLmNvbmYmbmJz
+cDsgOiZuYnNwOyA8YSBocmVmPSJodHRwOi8vcGFzdGViaW4uY29tL21oeGU5SzVDIiB0YXJnZXQ9
+Il9ibGFuayI+DQpodHRwOi8vcGFzdGViaW4uY29tL21oeGU5SzVDPC9hPjxicj4NCjxicj4NCndo
+ZW4gSSByYW48YnI+DQpiaXRiYWtlIC1lIG15LWltYWdlPGJyPg0KaSBzZWU8YnI+DQpCQlBBVEg9
+JnF1b3Q7L3Zhci9mcHdvcmsvbWFzdGllci9teXByb2plY3QvcG9reS9tZXRhLXlvY3RvOi92YXIv
+ZnB3b3JrL21hc3RpZXIvbXlwcm9qZWN0L215bWFjaGluZTovdmFyL2Zwd29yay9tYXN0aWVyL215
+cHJvamVjdC9wb2t5L21ldGE6L3Zhci9mcHdvcmsvbWFzdGllci9teXByb2plY3QvcG9reS9tZXRh
+LXlvY3RvLWJzcDovdmFyL2Zwd29yay9tYXN0aWVyL215cHJvamVjdC9tZXRhLXg6L3Zhci9mcHdv
+cmsvbWFzdGllci9teXByb2plY3QvbWV0YS15JnF1b3Q7PGJyPg0KPGJyPg0Kd2hlcmUgJnF1b3Q7
+bXltYWNoaW5lJnF1b3Q7IGlzIG15IEJVSUxERElSPHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgi
+Pjxicj4NCjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPi0tIDwvc3Bhbj48YnI+DQo8c3BhbiBj
+bGFzcz0iaG9lbnpiIj5LaW5kIHJlZ2FyZHMsPC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2Vu
+emIiPkJhcnRvc3ogV29yb25pY3o8L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+RW5n
+aW5lZXIsIFNvZnR3YXJlIENvbmZpZ3VyYXRpb24gKFNDTSk8L3NwYW4+PGJyPg0KPHNwYW4gY2xh
+c3M9ImhvZW56YiI+Tm9raWEgTmV0d29ya3MgLSBQTC9Xcm9jbGF3PC9zcGFuPjxicj4NCjxicj4N
+CjxzcGFuIGNsYXNzPSJob2VuemIiPi0tIDwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpi
+Ij5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48
+YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0K
+PHNwYW4gY2xhc3M9ImhvZW56YiI+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5v
+cmciIHRhcmdldD0iX2JsYW5rIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjwvc3Bhbj48YnI+
+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj48YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
+dC5vcmcvbGlzdGluZm8veW9jdG8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL2xpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PC9zcGFuPjwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
------Original Message-----
-From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
-Sent: Wednesday, June 15, 2016 10:29 PM
-To: Woronicz, Bartosz (Nokia - PL/Wroclaw) <bartosz.woronicz@nokia.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Additional layers with class and conf
-
-On Wed, 15 Jun 2016 16:50:57 Woronicz, Bartosz wrote:
-> I got two layers, meta-x and meta-y , meta-x got meta-y in
-> bblayers.conf.   in meta-y contains conf/layer.conf with BBPATH .=3D
-> ":${LAYERDIR}", plus classes/my.bbclass plus local.conf containing
-> INHERIT +=3D "my"
-
-Do you mean you put local.conf in a conf subdirectory of a layer? If so,
-that's not really expected to work.
-
-> when I ran bitbake -e my-image, the INHERIT doesn't seem to contain "my"
->=20
-> When I put it directly in layer.conf it works, but what to add to
-> layer.conf to make bitbake to look for other *.conf files in meta-y/conf/=
- ??
-
-You don't, at least not in that way. The correct way to do things like this=
- is
-to create a custom distro and then set DISTRO to point to it. Your distro c=
-onf=20
-file can then set these kinds of things.
-
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creatin=
-g-your-own-distribution
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--_000_VI1PR07MB105309BE11C9F6241FECBBD881560VI1PR07MB1053eurp_--
