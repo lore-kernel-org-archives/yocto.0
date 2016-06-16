@@ -1,6 +1,6 @@
-Return-Path: <PStath@Axxcelera.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF649E00D2E; Thu, 16 Jun 2016 07:28:56 -0700 (PDT)
+	id B4A2EE00D90; Thu, 16 Jun 2016 09:41:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,31 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.axxcelera.com
-	(static-96-253-69-114.rcmdva.fios.verizon.net [96.253.69.114])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36753E00D1A
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 07:28:54 -0700 (PDT)
-Received: from RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845]) by
-	RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845%10]) with mapi id
-	14.03.0123.003; Thu, 16 Jun 2016 10:28:54 -0400
-From: "Stath, Paul" <PStath@Axxcelera.com>
-To: Joe MacDonald <Joe_MacDonald@mentor.com>
-Thread-Topic: [yocto] ifenslave recipe
-Thread-Index: AdHHzvCriO+O5Zr0Sa2noKI6QbMYdgAKgNWA///A4m8=
-Date: Thu, 16 Jun 2016 14:28:53 +0000
-Message-ID: <5B5D636C5F0AA747B37D0EFC72B563C42D6F7D2E@RIC-MS02.MWSG.int>
-References: <5B5D636C5F0AA747B37D0EFC72B563C42D6F7CCF@RIC-MS02.MWSG.int>,
-	<20160616140023.GD4918@mentor.com>
-In-Reply-To: <20160616140023.GD4918@mentor.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.10.10.129]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ifenslave recipe
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6F6E00D82
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 09:41:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u5GGeGvR030757; Thu, 16 Jun 2016 17:41:12 +0100
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Dh1Yuy3ltKQG; Thu, 16 Jun 2016 17:41:12 +0100 (BST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	u5GGfATK030874
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 16 Jun 2016 17:41:11 +0100
+Message-ID: <1466095270.13979.279.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 16 Jun 2016 17:41:10 +0100
+In-Reply-To: <1466073839.13979.263.camel@linuxfoundation.org>
+References: <0A5D9A624DF90343892F8F3FE7DE525A01FB0CBE@fmsmsx101.amr.corp.intel.com>
+	<1466073839.13979.263.camel@linuxfoundation.org>
+X-Mailer: Evolution 3.16.5-1ubuntu3.1 
+Mime-Version: 1.0
+Subject: Re: Test Cycle Report for Yocto Project master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,75 +44,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2016 14:28:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Jun 2016 16:41:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
->> I'm looking at adding support for NIC bonding into our distribution.=0A=
->>=0A=
->> Along with bonding support in the kernel, I would like to build the 'ife=
-nslave'=0A=
->> utility program.=0A=
->>=0A=
->> In checking the OpenEmbedded Layer Index, I find recipes-support/ifensla=
-ve/=0A=
->> ifenslave_1.1.0.bb in the meta-networking layer.=0A=
->>=0A=
->> This recipe has a SRC_URI for a version of 'ifenslave.c'=0A=
->> (ifenslace-2.6_1.1.0.org.tar.gz) which I hazard to guess is based on the=
-=0A=
->> ifenslave distributed with the 2.6 kernel sources.=0A=
->>=0A=
->> The documentation for bonding (http://www.linuxfoundation.org/collaborat=
-e/=0A=
->> workgroups/networking/bonding) recommends using the 'ifenslave.c' distri=
-buted=0A=
->> with the kernel sources.  It does indicate that sources from an earlier =
-kernel=0A=
->> should still work, but may not support new functionallity.=0A=
->=0A=
->=0A=
-> Actually, ifenslave has been gone from the kernel sources tree for some=
-=0A=
-> time now:=0A=
->=0A=
-> commit b1098bbe1b24d5d90cff92fbd716d2ef4bed2cff=0A=
-> Author: Cong Wang <amwang@redhat.com>=0A=
-> Date:   Mon May 27 15:49:16 2013 +0000=0A=
-> =0A=
->     bonding: remove ifenslave.c from kernel source=0A=
->=0A=
->     As Stephen proposed:=0A=
->     Since bonding supports configuration via iproute (netlink) and sysfs,=
- I think=0A=
->     it is time to purge the old ifenslave code out of Documentation/netwo=
-rking=0A=
->     and update the documentation.=0A=
->=0A=
->     Suggested-by: Stephen Hemminger <stephen@networkplumber.org>=0A=
->     Cc: Stephen Hemminger <stephen@networkplumber.org>=0A=
->     Cc: Jay Vosburgh <fubar@us.ibm.com>=0A=
->     Cc: "David S. Miller" <davem@davemloft.net>=0A=
->     Signed-off-by: Cong Wang <amwang@redhat.com>=0A=
->     Signed-off-by: David S. Miller <davem@davemloft.net>=0A=
->=0A=
-> so if anything that's probably an argument for us purging the recipe in=
-=0A=
-> meta-networking too.=0A=
-=0A=
-So, barking up the wrong tree.   ;-)=0A=
-The perils of supporting a product that is still using a 3.2 kernel.=0A=
-=0A=
-I'll verify that the ifenslave functionality can be replaced by iproute2,=
-=0A=
-and forget about ifenslave, like I have forgotten about ifconfig.=0A=
-=0A=
-Thanks for the updated references!=0A=
-=0A=
---=0A=
-Paul Stath=0A=
-Senior Software Engineer=0A=
-Axxcelera Broadband Wireless=0A=
-Richmond, VA 23228=
+On Thu, 2016-06-16 at 11:43 +0100, Richard Purdie wrote:
+> Hi Jose,
+> 
+> Thanks for this, its useful.
+> 
+> On Tue, 2016-06-14 at 13:08 +0100, Perez Carranza, Jose wrote:
+> > -         Toaster - NameError when trying to search a table due
+> > Django, this one is blocking around 30% of the execution : 9749 [1]
+> 
+> I'm hoping this one has been fixed/merged but am not 100% sure.
+
+It wasn't but a patch has now been sent out and merged.
+
+> > -         Build Appliance : bitbake fails to build image this one
+> > is
+> > blocking 50% of the  execution of the component: 9758 [2]
+> 
+> I know there have been some fixes here, we need to retest this to see
+> if we're doing better.
+
+There are several issues here. I've provided two patches for some of
+them, Juro will follow up with another.
+
+> > -         Failed to extract rootfs by using runqemu-extract-sd: is
+> > blocking around 11% of the execution of ADT in 2 ditros: 9761 [3]
+> 
+>Unknown :(
+
+Ed is working on this one.
+
+> > -         Missing smart packages: 9754 duplicated of 9717 [4]
+> 
+> Bill/Alejandero working on it but no patch yet.
+
+Still no patch yet.
+
+> > -         Parse logs failed: 9520 [8]
+> 
+> This bug looks very confused with potentially multiple different
+> issues. Not sure one status :(
+
+Still not sure about this.
+
+So we're making some progress...
+
+Cheers,
+
+Richard
 
