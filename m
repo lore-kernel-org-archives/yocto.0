@@ -1,40 +1,40 @@
-Return-Path: <roy_garrard@selinc.com>
+Return-Path: <damir.anicic@psi.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBED3E00DB6; Thu, 16 Jun 2016 14:49:06 -0700 (PDT)
+	id 88C4BE009BF; Thu, 16 Jun 2016 23:36:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.117.214.142 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [82.130.75.186 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0006]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1294 seconds by postgrey-1.32 at yocto-www;
-	Thu, 16 Jun 2016 14:49:04 PDT
-Received: from scamp.selinc.com (scamp.selinc.com [74.117.214.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14A76E00708
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 14:49:04 -0700 (PDT)
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by scamp.selinc.com (8.16.0.11/8.16.0.11) with ESMTP id u5GLRUo9001786
-	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 14:27:30 -0700
-To: yocto@yoctoproject.org
+X-Greylist: delayed 183 seconds by postgrey-1.32 at yocto-www;
+	Thu, 16 Jun 2016 23:36:51 PDT
+Received: from edge10.ethz.ch (edge10.ethz.ch [82.130.75.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FD4CE00874
+	for <yocto@yoctoproject.org>; Thu, 16 Jun 2016 23:36:51 -0700 (PDT)
+Received: from CAS21.d.ethz.ch (172.31.51.111) by edge10.ethz.ch
+	(82.130.75.186) with Microsoft SMTP Server (TLS) id 14.3.266.1;
+	Fri, 17 Jun 2016 08:33:46 +0200
+Received: from MBX214.d.ethz.ch ([fe80::5c68:3688:18d4:cbf7]) by
+	CAS21.d.ethz.ch ([fe80::55ba:c4a5:d8a7:ab62%10]) with mapi id
+	14.03.0266.001; Fri, 17 Jun 2016 08:33:46 +0200
+From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: NTP
+Thread-Index: AdHIYjLtaLvw7YatSsmjey1JAIUiog==
+Date: Fri, 17 Jun 2016 06:33:45 +0000
+Message-ID: <DB23C91B06C303459B24BC3208AF424A20F480DC@MBX214.d.ethz.ch>
+Accept-Language: en-US, de-DE, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [129.129.145.249]
 MIME-Version: 1.0
-X-KeepSent: B0C3001F:A9BFE0D2-88257FD4:0072F99A;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0.1FP3 SHF227 March 23, 2015
-Message-ID: <OFB0C3001F.A9BFE0D2-ON88257FD4.0072F99A-87257FD4.0075DE50@selinc.com>
-From: roy_garrard@selinc.com
-Date: Thu, 16 Jun 2016 15:27:28 -0600
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP3 HF515|April 25,
-	2015) at 06/16/2016 02:27:30 PM,
-	Serialize complete at 06/16/2016 02:27:30 PM
-X-Proofpoint-Virus-Version: vendor=nai engine=5800 definitions=8198
-	signatures=670732
-Subject: Mercurial Fetcher and AUTOREV
+Subject: NTP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,207 +46,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jun 2016 21:49:06 -0000
+X-List-Received-Date: Fri, 17 Jun 2016 06:36:55 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="=_alternative 0075DE4E87257FD4_="
+	boundary="_000_DB23C91B06C303459B24BC3208AF424A20F480DCMBX214dethzch_"
 
---=_alternative 0075DE4E87257FD4_=
-Content-Type: text/plain; charset="US-ASCII"
+--_000_DB23C91B06C303459B24BC3208AF424A20F480DCMBX214dethzch_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I'm trying to get a bitbake file to pull down the latest revision of a 
-mercurial repo when it builds. It's unfortunately undocumented (
-https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html#auto-revisions
-), though there are a few mailing list posts on the topic. None of my 
-attempts to recreate their methods have panned out.
+Hi!
 
-This is what the .bb file looks like:
+I just realised that ntpd + ntpdate is not part of Yocto 2.1
 
-###############################################################################
-# Variables for locations.
-###############################################################################
-SRC_URI = "hg://selhg//hg/products/test;rev=${SRCREV}
-;protocol=ssh;branch=default;module=root"
-SRCREV = "${AUTOREV}"
+I found http://layers.openembedded.org/layerindex/recipe/2299/
 
-# Sources are downloaded to an hg subdirectory when pulling a repo.
-S = "${WORKDIR}/hg"
-
-###############################################################################
-# The version of the library we're going to install.
-###############################################################################
-# Set PV to SRCPV so bitbake knows it should always check SRC_URI for a 
-new
-# version of the application.
-PV = "${SRCPV}"
-PR = "r0"
-PE = "1"
+but how to get it?
 
 
-And here's the relevant part of the output error:
+--_000_DB23C91B06C303459B24BC3208AF424A20F480DCMBX214dethzch_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-
-/usr/bin/env hg up -C -r AUTOINC
-| DEBUG: Python function base_do_unpack finished
-| DEBUG: Python function do_unpack finished
-| ERROR: Function failed: Fetcher failure: Fetch command failed with exit 
-code 255, output:
-| abort: unknown revision 'AUTOINC'!
-| 
-NOTE: recipe test-1_AUTOINC+AUTOINC-r0: task do_unpack: Failed
-DEBUG: Teardown for bitbake-worker
-NOTE: Tasks Summary: Attempted 361 tasks of which 359 didn't need to be 
-rerun and 1 failed.
-
-Summary: 1 task failed:
-  /home/roygarr/git/poky/meta/recipes-core/test/test_0.0.1.bb, do_unpack
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
-
-The problem seems to be that AUTOREV is resolving to AUTOINC instead of a 
-hash number. There are a few mumblings across the forums that this has to 
-do with the PV and SRCREV variables, but I haven't been able to connect 
-the dots.
-
-I have had some success in recreating this with the Git fetcher. The .bb 
-file is almost identical, but something about it works out in a more 
-positive way. My money's on the "rev=" argument that the hg fetcher needs 
-but the git fetcher doesn't.
-
-###############################################################################
-# Variables for locations.
-###############################################################################
-SRC_URI = 
-"git://lpul-hg.ad.selinc.com/git/repos/products/test;protocol=ssh;branch=master"
-SRCREV = "${AUTOREV}"
-
-# Sources are downloaded to a git subdirectory when pulling a repo.
-S = "${WORKDIR}/git"
-
-###############################################################################
-# The version of the library we're going to install.
-###############################################################################
-# Set PV to SRCPV so bitbake knows it should always check SRC_URI for a 
-new
-# version of the application.
-PV = "${SRCPV}"
-PR = "r0"
-PE = "1"
-
-...
-
-DEBUG: Executing task do_clean
-NOTE: recipe test-1_AUTOINC+1072c0d5c6-r0: task do_clean: Started
-NOTE: recipe test-1_AUTOINC+1072c0d5c6-r0: task do_clean: Succeeded
-
-
-Any insight you can offer would be appreciated.
-
-- Roy, Intern at SEL
-
-
---=_alternative 0075DE4E87257FD4_=
-Content-Type: text/html; charset="US-ASCII"
-
-<font size=2 face="sans-serif">I'm trying to get a bitbake file to pull
-down the latest revision of a mercurial repo when it builds. It's unfortunately
-undocumented (</font><a href="https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html#auto-revisions"><font size=2 color=blue face="sans-serif">https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html#auto-revisions</font></a><font size=2 face="sans-serif">),
-though there are a few mailing list posts on the topic. None of my attempts
-to recreate their methods have panned out.</font>
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hi!<br>
 <br>
-<br><font size=2 face="sans-serif">This is what the .bb file looks like:</font>
+I just realised that ntpd &#43; ntpdate is not part of Yocto 2.1<br>
 <br>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># Variables for locations.</font>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console">SRC_URI = &quot;hg://selhg//hg/products/test;<b>rev=${SRCREV}</b>;protocol=ssh;branch=default;module=root&quot;</font>
-<br><font size=2 face="Lucida Console">SRCREV = &quot;${AUTOREV}&quot;</font>
+I found <a href=3D"http://layers.openembedded.org/layerindex/recipe/2299/" =
+target=3D"_blank">
+http://layers.openembedded.org/layerindex/recipe/2299/</a><br>
 <br>
-<br><font size=2 face="Lucida Console"># Sources are downloaded to an hg
-subdirectory when pulling a repo.</font>
-<br><font size=2 face="Lucida Console">S = &quot;${WORKDIR}/hg&quot;</font>
+but how to get it?<br>
 <br>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># The version of the library we're
-going to install.</font>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># Set PV to SRCPV so bitbake knows
-it should always check SRC_URI for a new</font>
-<br><font size=2 face="Lucida Console"># version of the application.</font>
-<br><font size=2 face="Lucida Console">PV = &quot;${SRCPV}&quot;</font>
-<br><font size=2 face="Lucida Console">PR = &quot;r0&quot;</font>
-<br><font size=2 face="Lucida Console">PE = &quot;1&quot;</font>
-<br>
-<br>
-<br><font size=2 face="sans-serif">And here's the relevant part of the
-output error:</font>
-<br>
-<br>
-<br><font size=2 face="Lucida Console">/usr/bin/env hg up -C -r AUTOINC</font>
-<br><font size=2 face="Lucida Console">| DEBUG: Python function base_do_unpack
-finished</font>
-<br><font size=2 face="Lucida Console">| DEBUG: Python function do_unpack
-finished</font>
-<br><font size=2 face="Lucida Console">| ERROR: Function failed: Fetcher
-failure: Fetch command failed with exit code 255, output:</font>
-<br><font size=2 face="Lucida Console">| abort: unknown revision 'AUTOINC'!</font>
-<br><font size=2 face="Lucida Console">| </font>
-<br><font size=2 face="Lucida Console">NOTE: recipe <b>test-1_AUTOINC+AUTOINC-r0</b>:
-task do_unpack: Failed</font>
-<br><font size=2 face="Lucida Console">DEBUG: Teardown for bitbake-worker</font>
-<br><font size=2 face="Lucida Console">NOTE: Tasks Summary: Attempted 361
-tasks of which 359 didn't need to be rerun and 1 failed.</font>
-<br>
-<br><font size=2 face="Lucida Console">Summary: 1 task failed:</font>
-<br><font size=2 face="Lucida Console">&nbsp; /home/roygarr/git/poky/meta/recipes-core/test/test_0.0.1.bb,
-do_unpack</font>
-<br><font size=2 face="Lucida Console">Summary: There was 1 ERROR message
-shown, returning a non-zero exit code.</font>
-<br>
-<br>
-<br><font size=2 face="sans-serif">The problem seems to be that AUTOREV
-is resolving to AUTOINC instead of a hash number. There are a few mumblings
-across the forums that this has to do with the PV and SRCREV variables,
-but I haven't been able to connect the dots.</font>
-<br>
-<br><font size=2 face="sans-serif">I have had some success in recreating
-this with the Git fetcher. The .bb file is almost identical, but something
-about it works out in a more positive way. My money's on the &quot;rev=&quot;
-argument that the hg fetcher needs but the git fetcher doesn't.</font>
-<br>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># Variables for locations.</font>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console">SRC_URI = &quot;git://lpul-hg.ad.selinc.com/git/repos/products/test;protocol=ssh;branch=master&quot;</font>
-<br><font size=2 face="Lucida Console">SRCREV = &quot;${AUTOREV}&quot;</font>
-<br>
-<br><font size=2 face="Lucida Console"># Sources are downloaded to a git
-subdirectory when pulling a repo.</font>
-<br><font size=2 face="Lucida Console">S = &quot;${WORKDIR}/git&quot;</font>
-<br>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># The version of the library we're
-going to install.</font>
-<br><font size=2 face="Lucida Console">###############################################################################</font>
-<br><font size=2 face="Lucida Console"># Set PV to SRCPV so bitbake knows
-it should always check SRC_URI for a new</font>
-<br><font size=2 face="Lucida Console"># version of the application.</font>
-<br><font size=2 face="Lucida Console">PV = &quot;${SRCPV}&quot;</font>
-<br><font size=2 face="Lucida Console">PR = &quot;r0&quot;</font>
-<br><font size=2 face="Lucida Console">PE = &quot;1&quot;</font>
-<br>
-<br><font size=2 face="Lucida Console">...</font>
-<br>
-<br><font size=2 face="Lucida Console">DEBUG: Executing task do_clean</font>
-<br><font size=2 face="Lucida Console">NOTE: recipe <b>test-1_AUTOINC+1072c0d5c6-r0</b>:
-task do_clean: Started</font>
-<br><font size=2 face="Lucida Console">NOTE: recipe test-1_AUTOINC+1072c0d5c6-r0:
-task do_clean: Succeeded</font>
-<br>
-<br>
-<br><font size=2 face="sans-serif">Any insight you can offer would be appreciated.</font>
-<br>
-<br><font size=2 face="sans-serif">- Roy, Intern at SEL</font>
-<br>
-<br>
+</div>
+</body>
+</html>
 
---=_alternative 0075DE4E87257FD4_=--
+--_000_DB23C91B06C303459B24BC3208AF424A20F480DCMBX214dethzch_--
