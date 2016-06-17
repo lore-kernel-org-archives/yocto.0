@@ -1,68 +1,65 @@
-Return-Path: <piotr.lewicki@elfin.de>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF1A0E00972; Fri, 17 Jun 2016 00:02:05 -0700 (PDT)
+	id BDCE4E00DA2; Fri, 17 Jun 2016 00:03:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+	*      [209.85.192.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 080F5E0071C
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2016 00:02:02 -0700 (PDT)
-Received: by mail-wm0-f54.google.com with SMTP id a66so87465573wme.0
-	for <yocto@yoctoproject.org>; Fri, 17 Jun 2016 00:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=elfin.de; s=google;
+Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
+	[209.85.192.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E76D2E00972
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2016 00:03:16 -0700 (PDT)
+Received: by mail-pf0-f173.google.com with SMTP id h14so12849503pfe.1
+	for <yocto@yoctoproject.org>; Fri, 17 Jun 2016 00:03:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=cxIbGGEqdZMEqeZEGdQqKv/11olFWTjtcdcSEPmeh7Y=;
-	b=RnDLrMN4nEjf8cYWGF8q9esbfFdr0y8XCyQB7yxmKixWnzlIe36YNVefYU271Z83Ru
-	vj0iGwxgAID1Th9xYA/40DPEBsi4Q4ZRswvpbhvXvX8gFXSutWSa9MFSGuHwF5fOYMI2
-	Xham/coTvrSyrkRnazo60+0faoA2Oul0qDllwFVQ3iNJ8R/nQl5WS2OZsN7dM/4Go3yP
-	UMCeHnYJnvXMkdBYgw5WtNio0WEuwxEdYf07ZSRFIembMxY4zWsGGkdVYKV66Rl9vKeS
-	/JIvq2bny79CmbAyXwfpuMWDci/3ZSdX4zGFIacLVAuj18+AnTHIh28LFgI8u39IcN2a
-	hTjw==
+	:in-reply-to:content-transfer-encoding;
+	bh=xFzCXNC5PBa0y+bgOp8fJ/hNxDApJXzSWFuRnSTPeO0=;
+	b=rs6FWDqbRP2SOKGnnYk3hNWgrdKFpbVRWAXne9vHLIc5Ky+bSfX8cT+515YSLrvgDg
+	apGs50B35QUwier6djVZeT1oVOTuG3bNUXgytKTL9fDo/mD2HQDhWeZEnx9aMSxxtn21
+	MSBAorPURc7enYK2qvuKAwR8i/eR3f7Gns19btrJKL4pu8W9Tpr36GnRDW/xBzYZwZf8
+	w6VJMHJDrwO1pFKMYmVMoFQ6g/36XCtxJpQWbRWeHmuw7dbdmtDIz64c36GTJW+aDigu
+	tZPJISCFnA2+25MLbeuPCbNEDir5OXSIIzTyWzMHwNOVcsCfFcoeWz9Ucj7DvaP2NDAb
+	WCyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=cxIbGGEqdZMEqeZEGdQqKv/11olFWTjtcdcSEPmeh7Y=;
-	b=L+4VsEA/eo6N57zYHlLOxHKXIZy7DKkWe7c8fqfzeseukhtWo+z1M0gFjYeBDF6cST
-	yTRWhqk6Uh9L4RGB48heSRRP9rO6a/9FbPWbyhzNC8sokIa7+xx8MjG+loJX5AyiOWTR
-	HC1h9YRJRGSqdX6V0d0KvnwnhcE2WoohAcjNCzQRgaJFaDt6BWUTIHgklLD1yoz/F88S
-	pGCvyHpHEe/riObgZS2p77a14CUbRkdExxiU2mh/T32mgY4VpzvKe45pwvpMVgmab8Na
-	1M/0/Y5ymsjLnhu5ylI2B+8rK8g4qonPXKxAFVfnMAab1uhj6cQR2r1m5/+3S+/CWpTD
-	0mDg==
-X-Gm-Message-State: ALyK8tLgmfL9rqUi/A3m8esEs9gbY32swAuHZquA3fx1heQ6oeqUwtnovgCNreqwbdN6ww==
-X-Received: by 10.28.125.81 with SMTP id y78mr676189wmc.5.1466146921601;
-	Fri, 17 Jun 2016 00:02:01 -0700 (PDT)
-Received: from [192.168.2.170] (b2b-94-79-174-114.unitymedia.biz.
-	[94.79.174.114]) by smtp.gmail.com with ESMTPSA id
-	g3sm47260153wjb.47.2016.06.17.00.02.00
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=xFzCXNC5PBa0y+bgOp8fJ/hNxDApJXzSWFuRnSTPeO0=;
+	b=kVtkl1QBoGZy5+8tHk+VKGvA7OWcjpU5GrAEmqnAhgfwEWIpk6TkESTJQXyTY+WF6G
+	scwv+xH8L+LlR6b9+Qrp/IP45vtVXA1Ogd4eCjdPW+sNrZEQlnIDrCczLCOCS45xY5K8
+	hWp6Ub5Sdd86FhsSUoBiDvil6vGAFlDJHliyRixJIzv4zYt/JLfXsQr8ooLDmQaxxQHr
+	+vWFIExEvVWwYjBEsvJYP7sCi/wJRtXiJmdiq1c8WJbCA8yherMoxTYgXdtB+wLG0j6q
+	ORNMxFpxqU42KytzVbPkOji/Ge1AmRrJxpyntR1e8fgfyj7jfX1Vs6f17ffoUD13p+Z1
+	XAgA==
+X-Gm-Message-State: ALyK8tIRgLeuAU2UGEHTz8cXVxWsC0+db2FB/SC40S9Nx2abUxp+660MVmPlm+HcoSXDmG7j
+X-Received: by 10.98.33.23 with SMTP id h23mr813880pfh.42.1466146995730;
+	Fri, 17 Jun 2016 00:03:15 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:5808:665b:2662:9a?
+	([2601:202:4001:9ea0:5808:665b:2662:9a])
+	by smtp.googlemail.com with ESMTPSA id
+	d65sm21768567pfa.45.2016.06.17.00.03.14 for <yocto@yoctoproject.org>
 	(version=TLSv1/SSLv3 cipher=OTHER);
-	Fri, 17 Jun 2016 00:02:01 -0700 (PDT)
-To: "Anicic Damir (PSI)" <damir.anicic@psi.ch>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	Fri, 17 Jun 2016 00:03:15 -0700 (PDT)
+To: yocto@yoctoproject.org
 References: <DB23C91B06C303459B24BC3208AF424A20F480DC@MBX214.d.ethz.ch>
-	<57639CF0.70105@elfin.de>
-	<DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch>
-From: "piotr.lewicki" <piotr.lewicki@elfin.de>
-Message-ID: <5763A068.6050409@elfin.de>
-Date: Fri, 17 Jun 2016 09:02:00 +0200
+From: akuster <akuster@mvista.com>
+Message-ID: <5763A0B1.7040303@mvista.com>
+Date: Fri, 17 Jun 2016 00:03:13 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+	Thunderbird/38.5.1
 MIME-Version: 1.0
-In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch>
+In-Reply-To: <DB23C91B06C303459B24BC3208AF424A20F480DC@MBX214.d.ethz.ch>
 Subject: Re: NTP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -75,96 +72,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jun 2016 07:02:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------000007040900050606020709"
-
---------------000007040900050606020709
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Fri, 17 Jun 2016 07:03:39 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-> I am new to Yocto, so please explain a bit more.
-Not all of the recipes can be found in poky layers.
-You can use multiple layers together to be able to access more recipes 
-(and features like bbclasses, etc.).
-You will find more info in the manual.
->
-> All I have done is:
->   git clone -b krogoth git://git.yoctoproject.org/poky.git
->
-> How do I now add layers ?
-http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#enabling-your-layer
-You will find the whole manual quite useful.
->
-> Or can I somehow clone Yocto 2.1 with all layers ?
-I don't think that's possible.
->
-> Damir
->
 
-Best regards,
-Piotr Lewicki
 
---------------000007040900050606020709
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+On 06/16/2016 11:33 PM, Anicic Damir (PSI) wrote:
+> Hi!
+> 
+> I just realised that ntpd + ntpdate is not part of Yocto 2.1
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <blockquote
-      cite="mid:DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch"
-      type="cite">
-      <div style="direction: ltr;font-family: Tahoma;color:
-        #000000;font-size: 10pt;">I am new to Yocto, so please explain a
-        bit more.<br>
-      </div>
-    </blockquote>
-    Not all of the recipes can be found in poky layers.<br>
-    You can use multiple layers together to be able to access more
-    recipes (and features like bbclasses, etc.).<br>
-    You will find more info in the manual.<br>
-    <blockquote
-      cite="mid:DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch"
-      type="cite">
-      <div style="direction: ltr;font-family: Tahoma;color:
-        #000000;font-size: 10pt;">
-        <br>
-        All I have done is:<br>
-          git clone -b krogoth git://git.yoctoproject.org/poky.git<br>
-        <br>
-        How do I now add layers ?<br>
-      </div>
-    </blockquote>
-<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#enabling-your-layer">http://www.yoctoproject.org/docs/2.1/dev-manual/dev-manual.html#enabling-your-layer</a><br>
-    You will find the whole manual quite useful.<br>
-    <blockquote
-      cite="mid:DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch"
-      type="cite">
-      <div style="direction: ltr;font-family: Tahoma;color:
-        #000000;font-size: 10pt;">
-        <br>
-        Or can I somehow clone Yocto 2.1 with all layers ?<br>
-      </div>
-    </blockquote>
-    I don't think that's possible.<br>
-    <blockquote
-      cite="mid:DB23C91B06C303459B24BC3208AF424A20F4A510@MBX214.d.ethz.ch"
-      type="cite">
-      <div style="direction: ltr;font-family: Tahoma;color:
-        #000000;font-size: 10pt;">
-        <br>
-        Damir<br>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-    Best regards,<br>
-    Piotr Lewicki<br>
-  </body>
-</html>
+ntpdate is in the ntpdate package and ntpd is in the ntp package.
 
---------------000007040900050606020709--
+The ntp recipe is in meta-openembedded/meta-networking
+
+you will need to append these to your image install.
+
+- armin
+> 
+> I found http://layers.openembedded.org/layerindex/recipe/2299/
+> 
+> but how to get it?
+> 
+> 
+> 
+> 
+
