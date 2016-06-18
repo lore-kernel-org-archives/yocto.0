@@ -1,6 +1,6 @@
 Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF355E00E51; Sat, 18 Jun 2016 04:06:54 -0700 (PDT)
+	id 37AE9E00E02; Sat, 18 Jun 2016 04:06:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,55 +8,55 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F188FE00CD0
-	for <yocto@yoctoproject.org>; Sat, 18 Jun 2016 04:06:51 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id c82so342236wme.3
-	for <yocto@yoctoproject.org>; Sat, 18 Jun 2016 04:06:51 -0700 (PDT)
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36738E00CCD
+	for <yocto@yoctoproject.org>; Sat, 18 Jun 2016 04:06:53 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id r201so3303378wme.0
+	for <yocto@yoctoproject.org>; Sat, 18 Jun 2016 04:06:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=CyVjIS5+ENjUnzpCDw+3KdUAj6L0hJIE33PV7WwbleI=;
-	b=DWCiyIYFQ5+ar8uWYEkJWZoIcW7Eh/Me7Kvum6zwQT0Gi4zY/X5Tp1ML8AnwgWS96p
-	uZvVPncANcwL2bxgDv2HHSjnSxXVDiNMRPzsMexqoKkuZPsgcizN57/OuZtu4AKAPLI6
-	j2xf8HpuwQ5cSqoVl140OICPD9G2ZH1JN10wSQYdpd5WnfafU2hn4CNIfWn+D90BSejK
-	kGabiv4QcugkztNcZ2Y0jNPIrdyNqOSeDl0lgpG46i2z5cpacl9RaVgsx6nuNnE+TqqW
-	izjb5y05J19nk0E+/N/mZj978c4j/DvZ3TPiO6XOKtCqU3yRIU5Y5irHgQnvooTmkDMA
-	jxBQ==
+	bh=6tjnz0+DsDvQU2Jqd5oGo79gOI8CmMxLBzZjI6nNsZo=;
+	b=Nor7X3u/0wOND05ErxiB7iN30iKkaQB8t8+0QTPn9bQB2kMgNRh78Fl1Sx06bqPnCc
+	Cb8xsIc4sG9z/hp6DdKnZoG6owEjyn2XFwcdrbtML+1qZvFGMaSliXxcvaUQiPE1AYTt
+	PWebZd4pv41jbi+qnGF4mpYpWavnjDQBTSYFz0YWnOXdE9ltpGd1sWLfqSZyRc+Ooj7z
+	/anZlBjhAlBSx0tNw95r7acfQ3vLu3GQN/CPvXbdoQd9KxyQC//yRr6W/wkdFFd+Kiu8
+	g2XuoNU6VwP3ppJb0ApJ6eeo4Qqt+wyac1IGItvQ9lkiPPurULlbXqhKj/A2DWRc/jV/
+	Jxkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
 	:in-reply-to:references;
-	bh=CyVjIS5+ENjUnzpCDw+3KdUAj6L0hJIE33PV7WwbleI=;
-	b=NunJ9nP5hIqnUEOzwS7hrO0Ol90YYWf5zOBKzxCmt5sEEFR4lxCiZXwJELn5ppHfvk
-	MfwXsjypZyDKKqbPeDTZZcYJV/FLIwqDm/TpsX2ULWQwR/m1bOsNX2sya3W6RoNkQvKE
-	uBXv8+F8Hgcb+yaNZfGksiw+pKsvDz9dlGJ57bqMWc6k8WNIKsdIph94AMx/3+Ay8cPa
-	STx+Vu30K6KpbbArJIospbFzP8pM24xzmJZgVsCxggcuPTa+VN+h2UdQpNAMI4GV4iEv
-	2VKRnyrYvB4AV1MLTbSXTs3pe+BANzvoSVjHoV6YUCBJW4GeQ1/+3uckE+NOh4EzI3db
-	8s0Q==
-X-Gm-Message-State: ALyK8tJazGcwNJbYdwJ0TgrC9/nX6KBZ4/Mq0bNAVlDsbn9hj93tAQlYaowmhXnzPuucXg==
-X-Received: by 10.194.201.70 with SMTP id jy6mr7022821wjc.150.1466248011215;
-	Sat, 18 Jun 2016 04:06:51 -0700 (PDT)
+	bh=6tjnz0+DsDvQU2Jqd5oGo79gOI8CmMxLBzZjI6nNsZo=;
+	b=Tfv24xrSDmZaW1BYNOv1qfDZyAA4T/+O+O8hPoJVwv0yWwZYBav9LOG9O/DJnMcEb/
+	h4JfaZ4TaCc6IsISFNKzOxkEeUV0znRzCKe4rEAyUqVo1vk6lxPTyFBl2Qpr0pGokqTy
+	DEOwQmcH+/15Tws0uzL/m5Y08blmPdvVDrNYhho6lUHcd4tOmwkGGGEnRL02xhD1Ivam
+	UyFGoEA+48w1m7pqJqV6++VmRKJXKXTkiPRD9CxI61zsME/lmNjHHWaFEATQfVWt1SSH
+	30ijZ4X9ifCWG8PYhY+Sttyj7q2uPKeHh1CHFLLN98s3pzCnfTGrmF9BEVDO6xo6Xnc/
+	BKJg==
+X-Gm-Message-State: ALyK8tJjgB9ldCMQULgRWf+PAzgkzjNYb2XuPWcRKMvp82TAnIu8RaTqsNqLLY1G5TK/OQ==
+X-Received: by 10.194.34.202 with SMTP id b10mr6661419wjj.47.1466248012871;
+	Sat, 18 Jun 2016 04:06:52 -0700 (PDT)
 Received: from dev-jessie.betafive.co.uk
 	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net. [86.27.96.131])
 	by smtp.gmail.com with ESMTPSA id
-	u71sm3201406wmu.13.2016.06.18.04.06.50
+	u71sm3201406wmu.13.2016.06.18.04.06.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 18 Jun 2016 04:06:50 -0700 (PDT)
+	Sat, 18 Jun 2016 04:06:52 -0700 (PDT)
 Sender: Paul Barker <paul.betafive@gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
 To: yocto@yoctoproject.org
-Date: Sat, 18 Jun 2016 12:07:04 +0100
-Message-Id: <1466248026-4838-3-git-send-email-paul@paulbarker.me.uk>
+Date: Sat, 18 Jun 2016 12:07:06 +0100
+Message-Id: <1466248026-4838-5-git-send-email-paul@paulbarker.me.uk>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1466248026-4838-1-git-send-email-paul@paulbarker.me.uk>
 References: <1466248026-4838-1-git-send-email-paul@paulbarker.me.uk>
-Subject: [meta-raspberrypi][PATCH V3 2/4] u-boot: Use mainline u-boot recipe from oe-core
+Subject: [meta-raspberrypi][PATCH V3 4/4] sdcard_image-rpi: Always install dtb files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,109 +68,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Jun 2016 11:06:54 -0000
+X-List-Received-Date: Sat, 18 Jun 2016 11:06:55 -0000
 
-The repository used by u-boot-rpi has not been updated since 2012. In the
-meantime, mailine u-boot has gained Raspberry Pi support. All we need to do is
-set UBOOT_MACHINE to an appropriate value in the machine config files.
-
-Currently configs are only provided for raspberrypi and raspberrypi2. The master
-branch of u-boot now also appears to have a config file for raspberrypi3 so
-support for this can be added in the future when u-boot is upgraded in oe-core.
-
-The mainline u-boot recipe creates the file "u-boot.bin" instead of
-"u-boot.img".
+We now need dtb files when booting via u-boot.
 
 Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
 ---
- classes/sdcard_image-rpi.bbclass               |  2 +-
- conf/machine/include/rpi-default-providers.inc |  1 -
- conf/machine/raspberrypi.conf                  |  2 ++
- conf/machine/raspberrypi2.conf                 |  2 ++
- recipes-bsp/u-boot/u-boot-rpi_git.bb           | 29 --------------------------
- 5 files changed, 5 insertions(+), 31 deletions(-)
- delete mode 100644 recipes-bsp/u-boot/u-boot-rpi_git.bb
+ classes/sdcard_image-rpi.bbclass | 40 ++++++++++++++++++++--------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
 diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 4dfd7a3..20bd314 100644
+index 20bd314..3b4f13f 100644
 --- a/classes/sdcard_image-rpi.bbclass
 +++ b/classes/sdcard_image-rpi.bbclass
-@@ -105,7 +105,7 @@ IMAGE_CMD_rpi-sdimg () {
+@@ -103,32 +103,32 @@ IMAGE_CMD_rpi-sdimg () {
+ 	rm -f ${WORKDIR}/boot.img
+ 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
  	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
++	if test -n "${DTS}"; then
++		# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
++		DT_OVERLAYS="${@split_overlays(d, 0)}"
++		DT_ROOT="${@split_overlays(d, 1)}"
++
++		# Copy board device trees to root folder
++		for DTB in ${DT_ROOT}; do
++			DTB_BASE_NAME=`basename ${DTB} .dtb`
++
++			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::${DTB_BASE_NAME}.dtb
++		done
++
++		# Copy device tree overlays to dedicated folder
++		mmd -i ${WORKDIR}/boot.img overlays
++		for DTB in ${DT_OVERLAYS}; do
++			DTB_BASE_NAME=`basename ${DTB} .dtb`
++
++			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
++		done
++	fi
  	case "${KERNEL_IMAGETYPE}" in
  	"uImage")
--		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.img ::${SDIMG_KERNELIMAGE}
-+		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.bin ::${SDIMG_KERNELIMAGE}
+ 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.bin ::${SDIMG_KERNELIMAGE}
  		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
  		;;
  	*)
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index cabbd43..359870d 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -1,7 +1,6 @@
- # RaspberryPi BSP default providers
- 
- PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
--PREFERRED_PROVIDER_u-boot ?= "u-boot-rpi"
- PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
- PREFERRED_PROVIDER_virtual/egl ?= "userland"
- PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
-diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
-index 0f95f1a..72beeb8 100644
---- a/conf/machine/raspberrypi.conf
-+++ b/conf/machine/raspberrypi.conf
-@@ -8,3 +8,5 @@ require conf/machine/include/tune-arm1176jzf-s.inc
- include conf/machine/include/rpi-base.inc
- 
- SERIAL_CONSOLE = "115200 ttyAMA0"
-+
-+UBOOT_MACHINE = "rpi_config"
-diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
-index b6346e6..d50ef70 100644
---- a/conf/machine/raspberrypi2.conf
-+++ b/conf/machine/raspberrypi2.conf
-@@ -8,3 +8,5 @@ require conf/machine/include/tune-cortexa7.inc
- include conf/machine/include/rpi-base.inc
- 
- SERIAL_CONSOLE = "115200 ttyAMA0"
-+
-+UBOOT_MACHINE = "rpi_2_config"
-diff --git a/recipes-bsp/u-boot/u-boot-rpi_git.bb b/recipes-bsp/u-boot/u-boot-rpi_git.bb
-deleted file mode 100644
-index 3e8d377..0000000
---- a/recipes-bsp/u-boot/u-boot-rpi_git.bb
-+++ /dev/null
-@@ -1,29 +0,0 @@
--DESCRIPTION = "U-Boot port for RaspberryPi"
+-		if test -n "${DTS}"; then
+-			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
+-			DT_OVERLAYS="${@split_overlays(d, 0)}"
+-			DT_ROOT="${@split_overlays(d, 1)}"
 -
--require recipes-bsp/u-boot/u-boot.inc
+-			# Copy board device trees to root folder
+-			for DTB in ${DT_ROOT}; do
+-				DTB_BASE_NAME=`basename ${DTB} .dtb`
 -
--DEPENDS += "rpi-mkimage-native"
+-				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::${DTB_BASE_NAME}.dtb
+-			done
 -
--PROVIDES += "u-boot"
+-			# Copy device tree overlays to dedicated folder
+-			mmd -i ${WORKDIR}/boot.img overlays
+-			for DTB in ${DT_OVERLAYS}; do
+-				DTB_BASE_NAME=`basename ${DTB} .dtb`
 -
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
--
--SRCREV = "6709570cdc947c2a546f96d571551acf4474778c"
--SRC_URI = "git://github.com/gonzoua/u-boot-pi.git;branch=rpi"
--
--S = "${WORKDIR}/git"
--
--UBOOT_MACHINE = "rpi_b"
--UBOOT_MAKE_TARGET = "u-boot.bin"
--UBOOT_SUFFIX = "img"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--do_compile_append() {
--    # Create kernel.img from uboot.bin and name it u-boot.img
--    ${STAGING_BINDIR_NATIVE}/imagetool-uncompressed.py u-boot.bin
--    mv kernel.img u-boot.img
--}
+-				mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTB_BASE_NAME}.dtb ::overlays/${DTB_BASE_NAME}.dtb
+-			done
+-		fi
+ 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::${SDIMG_KERNELIMAGE}
+ 		;;
+ 	esac
 -- 
 2.1.4
 
