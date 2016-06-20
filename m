@@ -1,6 +1,6 @@
 Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DB18E00474; Mon, 20 Jun 2016 09:19:12 -0700 (PDT)
+	id 13080E00474; Mon, 20 Jun 2016 09:22:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,39 +8,41 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.56 listed in list.dnswl.org]
+	*      [168.127.0.57 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
-	[168.127.0.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74238E003D9
-	for <yocto@yoctoproject.org>; Mon, 20 Jun 2016 09:19:04 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,499,1459832400"; d="scan'208";a="78266301"
-Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
-	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	20 Jun 2016 11:19:00 -0500
+Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
+	[168.127.0.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39AC8E003D9
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2016 09:22:42 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,499,1459832400"; d="scan'208";a="80264747"
+Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
+	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	20 Jun 2016 11:22:38 -0500
 Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
-	Mon, 20 Jun 2016 11:19:00 -0500
+	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0294.000;
+	Mon, 20 Jun 2016 11:22:37 -0500
 From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: Khem Raj <raj.khem@gmail.com>
+To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>, Khem Raj
+	<raj.khem@gmail.com>
 Thread-Topic: [yocto] autoreconf
-Thread-Index: AdHHQradspqdggSsRDmRJnaYuJFirQAKyDOAAAovToD//7NpgIAAUspg//+u/AD/+hJIoIAMTtaA//8wAlAAP8OlgAAKV+Qw
-Date: Mon, 20 Jun 2016 16:18:59 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA60071C@RCHEXMBP1.fnc.net.local>
+Thread-Index: AdHHQradspqdggSsRDmRJnaYuJFirQAKyDOAAAovToD//7NpgIAAUspg//+u/AD/+hJIoIAMTtaA//8wAlAAP8OlgAAKV+QwABSdB7A=
+Date: Mon, 20 Jun 2016 16:22:36 +0000
+Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600730@RCHEXMBP1.fnc.net.local>
 References: <111ACD726EC3464BAED310F5EA7BEBDA6000AA@RCHEXMBP1.fnc.net.local>
 	<88768378-90A2-41F2-A8A3-64BC892145B6@gmail.com>
 	<111ACD726EC3464BAED310F5EA7BEBDA6005D6@RCHEXMBP1.fnc.net.local>
 	<19818178.f818cBogRg@peggleto-mobl.ger.corp.intel.com>
 	<111ACD726EC3464BAED310F5EA7BEBDA600703@RCHEXMBP1.fnc.net.local>
 	<CAMKF1sr5ej_Ot0XN8VgZMAGeexCMoEpeYi7+z2SqzffbzYu0oA@mail.gmail.com>
-In-Reply-To: <CAMKF1sr5ej_Ot0XN8VgZMAGeexCMoEpeYi7+z2SqzffbzYu0oA@mail.gmail.com>
+	<111ACD726EC3464BAED310F5EA7BEBDA60071C@RCHEXMBP1.fnc.net.local>
+In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA60071C@RCHEXMBP1.fnc.net.local>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [168.127.136.253]
 x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22404.000
-x-tm-as-result: No--53.223900-0.000000-31
+x-tm-as-result: No--51.751400-0.000000-31
 x-tm-as-user-approved-sender: Yes
 x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
@@ -58,14 +60,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jun 2016 16:19:12 -0000
+X-List-Received-Date: Mon, 20 Jun 2016 16:22:46 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-WWVzLCBJIGRpZCB0aGUgc2FtZS4gDQoNClRoYW5rcywNCk1vbmljYQ0KDQoNCi0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNv
-bV0gDQpTZW50OiBNb25kYXksIEp1bmUgMjAsIDIwMTYgMTE6MTUgQU0NClRvOiBSYWphc2VrYXJh
+SXQgd29ya2VkIGJ5IHJlcGxhY2luZyBsaWJjYXAtbmcgd2l0aCBqdXN0ICJsaWJjYXAiLg0KDQpU
+aGFua3MsDQpNb25pY2EgDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHlv
+Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9w
+cm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIFJhamFzZWthcmFuLCBNb25pY2ENClNlbnQ6IE1vbmRh
+eSwgSnVuZSAyMCwgMjAxNiAxMToxOSBBTQ0KVG86IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5j
+b20+DQpDYzogUGF1bCBFZ2dsZXRvbiA8cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRlbC5jb20+OyB5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhdXRvcmVjb25mDQoN
+ClllcywgSSBkaWQgdGhlIHNhbWUuIA0KDQpUaGFua3MsDQpNb25pY2ENCg0KDQotLS0tLU9yaWdp
+bmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5j
+b21dDQpTZW50OiBNb25kYXksIEp1bmUgMjAsIDIwMTYgMTE6MTUgQU0NClRvOiBSYWphc2VrYXJh
 biwgTW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQpDYzogUGF1bCBF
 Z2dsZXRvbiA8cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRlbC5jb20+OyB5b2N0b0B5b2N0b3Byb2pl
 Y3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhdXRvcmVjb25mDQoNCk9uIE1vbiwgSnVuIDIw
@@ -149,5 +158,8 @@ IFRlY2hub2xvZ3kgQ2VudHJlDQo+PiA+PiAtLQ0KPj4gPj4gX19fX19fX19fX19fX19fX19fX19f
 X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+ID4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4g
 Pj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gPj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
 Y3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+PiA+DQo+PiA+DQo+Pg0KPj4NCj4NCj4gLS0NCj4NCj4g
-UGF1bCBFZ2dsZXRvbg0KPiBJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRyZQ0K
+UGF1bCBFZ2dsZXRvbg0KPiBJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9sb2d5IENlbnRyZQ0KLS0N
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBt
+YWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCmh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0K
 
