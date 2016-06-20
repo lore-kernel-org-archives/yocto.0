@@ -1,48 +1,68 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3C68E0049B; Mon, 20 Jun 2016 09:12:28 -0700 (PDT)
+	id E6197E0049B; Mon, 20 Jun 2016 09:15:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.57 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
-	[168.127.0.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D70B9E0045E
-	for <yocto@yoctoproject.org>; Mon, 20 Jun 2016 09:12:23 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,499,1459832400"; d="scan'208";a="80264294"
-Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
-	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	20 Jun 2016 11:12:18 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
-	Mon, 20 Jun 2016 11:12:17 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] autoreconf
-Thread-Index: AdHHQradspqdggSsRDmRJnaYuJFirQAKyDOAAAovToD//7NpgIAAUspg//+u/AD/+hJIoIAMTtaA//8wAlA=
-Date: Mon, 20 Jun 2016 16:12:17 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600703@RCHEXMBP1.fnc.net.local>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8989E003D9
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2016 09:15:25 -0700 (PDT)
+Received: by mail-qk0-f176.google.com with SMTP id p10so168493829qke.3
+	for <yocto@yoctoproject.org>; Mon, 20 Jun 2016 09:15:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=L7+9xiywSP8FrAQiJxSoD6eAbntCn8m9rnbYsmfLyS4=;
+	b=Y4lm9EV96/x7BK2aLqpd9BOHfJInqwq2KNMh/ncrYZtNSvakwSF3yP6WMhc7fnqv3V
+	MrKsnVGs4wTmp/41H5HYML3OKmGHcMXxH6pJtbIAEMY4TWw2+BbH9Uf1NtN4VldbmP/q
+	F4QVmB5gC5BJJFSLovt0M1WatyNAMg7hBdPpTkfX31ZDgiqhKvDymC/UoO+nAMam4Vnl
+	Ssd5nlEOkst4mD9KlKC+QfpZzprir+3FaL8wBATqUMna1BwJRH0u4xHhOxNCyGIWdlWB
+	/TZsm2IJefaqwXQr75CpZtQb3u31dCoWRXdX+ELsSZbbkZqhRDUeBiKkUVNoacYmjjBK
+	l9eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=L7+9xiywSP8FrAQiJxSoD6eAbntCn8m9rnbYsmfLyS4=;
+	b=WoFOTjeryN6u8M3Vp8NK5tahdJh/hEbCKmIKhhFgj8ehTmkW1Rq3mpiM/M3LJK57s+
+	3LfKlbCTRI5YINlk0W6Jn0xZof+E+dRQ4vl2xmavRPT7mxEhFHBMeyT0b2PNTYw3ANGF
+	sGPAx0ouow08kO2saJ8f67p0V5t797hK+XaJUU4hfUrv/1bz+6DeXX1we2bdei7l+rXx
+	2PfgS7LHH4nMrqaUDp2vqjpLkLv9W9eO6yi1YcQEcVluUOP2YSDKd+8VPvtfJINHudHs
+	q2uE2RFg88SZJv9yO4GP90/lnSi0m5K38m+Qyje/ZWV08QXs5F/cOPQwqhP0Dbsdn1xV
+	Rbmw==
+X-Gm-Message-State: ALyK8tJ3jOBf913i4lOTo+VAqDCWUXDgshDLP68ycZgxrEQNDmH1JfpQE7AipuOs7nePjLm0bmxnsCC+uuqYFw==
+X-Received: by 10.55.141.134 with SMTP id p128mr20693881qkd.102.1466439325099; 
+	Mon, 20 Jun 2016 09:15:25 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.8.133 with HTTP; Mon, 20 Jun 2016 09:14:55 -0700 (PDT)
+In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA600703@RCHEXMBP1.fnc.net.local>
 References: <111ACD726EC3464BAED310F5EA7BEBDA6000AA@RCHEXMBP1.fnc.net.local>
 	<88768378-90A2-41F2-A8A3-64BC892145B6@gmail.com>
 	<111ACD726EC3464BAED310F5EA7BEBDA6005D6@RCHEXMBP1.fnc.net.local>
 	<19818178.f818cBogRg@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <19818178.f818cBogRg@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22404.000
-x-tm-as-result: No--57.556600-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<111ACD726EC3464BAED310F5EA7BEBDA600703@RCHEXMBP1.fnc.net.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 20 Jun 2016 09:14:55 -0700
+Message-ID: <CAMKF1sr5ej_Ot0XN8VgZMAGeexCMoEpeYi7+z2SqzffbzYu0oA@mail.gmail.com>
+To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: autoreconf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,85 +75,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jun 2016 16:12:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 20 Jun 2016 16:15:30 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIFBhdWwgYW5kIEtoZW0sIHRoYXQgd29ya2VkIQ0KDQpJIGFsc28gdHJpZWQgYWRkaW5n
-IGxpYmNhcC1uZyBidXQgaXQgZ2l2ZXMgbWUgdGhlIGZvbGxvd2luZyBlcnJvcjoNCg0KRVJST1I6
-IE5vdGhpbmcgUlBST1ZJREVTICdsaWJjYXAtbmcnIChidXQgL2RhdGEvdXNlcnMvbXJhamFzZS9s
-MTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L21ldGEtZnNzLXByb2R1Y3QvcmVjaXBl
-cy1jb3JlL2ltYWdlcy9mc3MtaW1hZ2UtZnVsbC5iYiBSREVQRU5EUyBvbiBvciBvdGhlcndpc2Ug
-cmVxdWlyZXMgaXQpDQoNCkJ1dCwgSSBzZWUgaXQgcHJlc2VudCBhdCBodHRwOi8vZ2l0LnlvY3Rv
-cHJvamVjdC5vcmcvY2dpdC5jZ2kvcG9reS9wbGFpbi9tZXRhL3JlY2lwZXMtc3VwcG9ydC9saWJj
-YXAtbmcvLi4uLi4/Pw0KDQpUaGFua3MsDQpNb25pY2EgDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQpGcm9tOiBQYXVsIEVnZ2xldG9uIFttYWlsdG86cGF1bC5lZ2dsZXRvbkBsaW51eC5p
-bnRlbC5jb21dIA0KU2VudDogU3VuZGF5LCBKdW5lIDE5LCAyMDE2IDU6MTQgUE0NClRvOiBSYWph
-c2VrYXJhbiwgTW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQpDYzog
-S2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1
-YmplY3Q6IFJlOiBbeW9jdG9dIGF1dG9yZWNvbmYNCg0KSGkgTW9uaWNhLA0KDQpBcyBzaG93biBp
-biBLaGVtJ3Mgb3JpZ2luYWwgZXhhbXBsZSB5b3UgbmVlZCB0byBhZGQgdGhpcyB0aHJvdWdoIEVY
-VFJBX0lNQUdFX0ZFQVRVUkVTLCBub3QgSU1BR0VfSU5TVEFMTCAoc2luY2UgdG9vbHMtc2RrIGlz
-IGEgZmVhdHVyZSBuYW1lLCBub3QgYSBwYWNrYWdlIG5hbWUpLg0KDQpDaGVlcnMsDQpQYXVsDQoN
-Ck9uIFN1biwgMTkgSnVuIDIwMTYgMjA6MjM6NTMgUmFqYXNla2FyYW4sIE1vbmljYSB3cm90ZToN
-Cj4gSSBhZGRlZCB0aGUgZm9sbG93aW5nIGxpbmUgdG8gbXkgcmVjaXBlIGZpbGUsDQo+IA0KPiBJ
-TUFHRV9JTlNUQUxMICs9ICJ0b29scy1zZGsiDQo+IA0KPiBCdXQgdGhlcmUgd2FzIHRoZSBmb2xs
-b3dpbmcgZXJyb3Igd2l0aCB0aGUgYnVpbGQ6DQo+IA0KPiBFUlJPUjogTm90aGluZyBSUFJPVklE
-RVMgJ3Rvb2xzLXNkaycgKGJ1dCANCj4gL2RhdGEvdXNlcnMvbXJhamFzZS9sMTAwX2xhYmVsX2Jh
-c2VkX3IxMDBwb2MvcmVwby9wb2t5L21ldGEtZnNzLXByb2R1Yw0KPiB0L3JlYyBpcGVzLWNvcmUv
-aW1hZ2VzL2Zzcy1pbWFnZS1mdWxsLmJiIFJERVBFTkRTIG9uIG9yIG90aGVyd2lzZSANCj4gcmVx
-dWlyZXMgaXQpDQo+IE5PVEU6IFJ1bnRpbWUgdGFyZ2V0ICd0b29scy1zZGsnIGlzIHVuYnVpbGRh
-YmxlLCByZW1vdmluZy4uLg0KPiBNaXNzaW5nIG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hh
-aW4gd2FzOiBbJ3Rvb2xzLXNkayddDQo+IEVSUk9SOiBSZXF1aXJlZCBidWlsZCB0YXJnZXQgJ2Zz
-cy1pbWFnZS1mdWxsJyBoYXMgbm8gYnVpbGRhYmxlIHByb3ZpZGVycy4NCj4gTWlzc2luZyBvciB1
-bmJ1aWxkYWJsZSBkZXBlbmRlbmN5IGNoYWluIHdhczogWydmc3MtaW1hZ2UtZnVsbCcsIA0KPiAn
-dG9vbHMtc2RrJ10NCiANCj4gQW55IGlkZWEgb24gdGhpcz8NCj4gDQo+IFRoYW5rcywNCj4gTW9u
-aWNhDQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLaGVtIFJhaiBb
-bWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCj4gU2VudDogV2VkbmVzZGF5LCBKdW5lIDE1LCAy
-MDE2IDM6NDggUE0NCj4gVG86IFJhamFzZWthcmFuLCBNb25pY2EgPE1vbmljYS5SYWphc2VrYXJh
-bkB1cy5mdWppdHN1LmNvbT4NCj4gQ2M6IFBhdWwgRWdnbGV0b24gPHBhdWwuZWdnbGV0b25AbGlu
-dXguaW50ZWwuY29tPjsgDQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6
-IFt5b2N0b10gYXV0b3JlY29uZg0KPiANCj4gVGhhdCBtaWdodCB3b3JrLCBob3dldmVyIHlvdSBt
-aWdodCBuZWVkIG1vcmUgcGFja2FnZXMsIHNvIGFkZGluZyANCj4gdG9vbHMtc2RrIHdpbGwgY292
-ZXIgYWxsIG9mIHRoZW0gaW4gb25lIGdvDQogDQo+IA0KPiA+IE9uIEp1biAxNSwgMjAxNiwgYXQg
-MTo0NyBQTSwgUmFqYXNla2FyYW4sIE1vbmljYSANCj4gPiA8TW9uaWNhLlJhamFzZWthcmFuQHVz
-LmZ1aml0c3UuY29tPiB3cm90ZToNCiANCj4gPiBIaSBSYWosDQo+ID4gDQo+ID4gV2lsbCBhZGRp
-bmcgYSBsaW5lIGluIHRoZSBpbWFnZSdzIHJlY2lwZSBmaWxlIGxpa2UgdGhpcyB3b3JrID8NCj4g
-PiANCj4gPiBJTUFHRV9JTlNUQUxMID0g4oCdYXV0b2NvbmbigJ0NCj4gPiANCj4gPiBJIGluc3Rh
-bGxlZCAiZ2l0IiBhbmQgInJlc29sdmNvbmYiIGluIHRoZSBzYW1lIHdheS4gSnVzdCBub3Qgc3Vy
-ZSANCj4gPiBhYm91dCB0aGUgcGFja2FnZSBuYW1lIHRoaXMgdGltZS4NCiANCj4gPiBUaGFua3Ms
-DQo+ID4gTW9uaWNhDQo+ID4gDQo+ID4gDQo+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0N
-Cj4gPiBGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCj4gPiBTZW50
-OiBXZWRuZXNkYXksIEp1bmUgMTUsIDIwMTYgMzo0MiBQTQ0KPiA+IFRvOiBSYWphc2VrYXJhbiwg
-TW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQo+ID4gQ2M6IFBhdWwg
-RWdnbGV0b24gPHBhdWwuZWdnbGV0b25AbGludXguaW50ZWwuY29tPjsgDQo+ID4geW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KPiA+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIGF1dG9yZWNvbmYNCj4gPiAN
-Cj4gPiBZb3UgbmVlZCB0byBhZGQgYXV0b2NvbmYgdG8geW91ciB0YXJnZXQgaW1hZ2UsIGlmIHlv
-dSBkbyBub3QgdXNlIA0KPiA+IE9ubGluZSBwYWNrYWdlIG1hbmFnZW1lbnQNCiANCj4gPiBFWFRS
-QV9JTUFHRV9GRUFUVVJFU19hcHBlbmQgPSDigJwgdG9vbHMtc2Rr4oCdDQo+ID4gDQo+ID4gaW4g
-bG9jYWwuY29uZiBtaWdodCBoZWxwDQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4+IE9uIEp1biAxNSwg
-MjAxNiwgYXQgMTozNSBQTSwgUmFqYXNla2FyYW4sIE1vbmljYSANCj4gPj4gPE1vbmljYS5SYWph
-c2VrYXJhbkB1cy5mdWppdHN1LmNvbT4gd3JvdGU6DQogDQo+ID4+IEhpIFBhdWwsDQo+ID4+IA0K
-PiA+PiBUaGFuayB5b3UuIFRoaXMgaXMgaW4gdGhlIHRhcmdldC4NCj4gPj4gDQo+ID4+IFRoYW5r
-cywNCj4gPj4gTW9uaWNhDQo+ID4+IA0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-PiA+PiBGcm9tOiBQYXVsIEVnZ2xldG9uIFttYWlsdG86cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRl
-bC5jb21dDQo+ID4+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSAxNSwgMjAxNiAzOjI1IFBNDQo+ID4+
-IFRvOiBSYWphc2VrYXJhbiwgTW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5j
-b20+DQo+ID4+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4+IFN1YmplY3Q6IFJlOiBb
-eW9jdG9dIGF1dG9yZWNvbmYNCj4gPj4gDQo+ID4+IEhpIE1vbmljYSwNCj4gPj4gDQo+ID4+IE9u
-IFdlZCwgMTUgSnVuIDIwMTYgMjA6MTc6MTYgUmFqYXNla2FyYW4sIE1vbmljYSB3cm90ZToNCj4g
-Pj4gDQo+ID4+PiBXaGF0IGlzIHRoZSBwYWNrYWdlIHRvIGluc3RhbGwgYXV0b3JlY29uZiA/IChV
-YnVudHUgZXF1aXZhbGVudDoNCj4gPj4+IGFwdC1nZXQgaW5zdGFsbCBkaC1hdXRvcmVjb25mICkN
-Cj4gPj4+IA0KPiA+Pj4gSSBhbSBnZXR0aW5nIHRoZSBmb2xsb3dpbmcgZXJyb3IgZm9yIG9uZSBv
-ZiBteSBhcHBsaWNhdGlvbnM6DQo+ID4+PiAiYXV0b3JlY29uZjogY29tbWFuZCBub3QgZm91bmQi
-DQo+ID4+IA0KPiA+PiANCj4gPj4gYXV0b3JlY29uZiBpcyBwYXJ0IG9mIGF1dG9jb25mLg0KPiA+
-PiANCj4gPj4gV2hlcmUgaXMgdGhpcz8gT24gdGhlIHRhcmdldCBvciB3aXRoaW4gdGhlIGJ1aWxk
-IHN5c3RlbT8NCj4gPj4gDQo+ID4+IENoZWVycywNCj4gPj4gUGF1bA0KPiA+PiANCj4gPj4gLS0N
-Cj4gPj4gDQo+ID4+IFBhdWwgRWdnbGV0b24NCj4gPj4gSW50ZWwgT3BlbiBTb3VyY2UgVGVjaG5v
-bG9neSBDZW50cmUNCj4gPj4gLS0NCj4gPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18NCj4gPj4geW9jdG8gbWFpbGluZyBsaXN0DQo+ID4+IHlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmcNCj4gPj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3Rp
-bmZvL3lvY3RvDQo+ID4gDQo+ID4gDQo+IA0KPiANCg0KLS0gDQoNClBhdWwgRWdnbGV0b24NCklu
-dGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJlDQo=
+On Mon, Jun 20, 2016 at 9:12 AM, Rajasekaran, Monica
+<Monica.Rajasekaran@us.fujitsu.com> wrote:
+> Thanks Paul and Khem, that worked!
+>
+> I also tried adding libcap-ng but it gives me the following error:
+
+where did you add it to ? it is a package so you have to add it to IMAGE_IN=
+STALL
+
+>
+> ERROR: Nothing RPROVIDES 'libcap-ng' (but /data/users/mrajase/l100_label_=
+based_r100poc/repo/poky/meta-fss-product/recipes-core/images/fss-image-full=
+.bb RDEPENDS on or otherwise requires it)
+>
+> But, I see it present at http://git.yoctoproject.org/cgit.cgi/poky/plain/=
+meta/recipes-support/libcap-ng/.....??
+>
+> Thanks,
+> Monica
+>
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: Sunday, June 19, 2016 5:14 PM
+> To: Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+> Cc: Khem Raj <raj.khem@gmail.com>; yocto@yoctoproject.org
+> Subject: Re: [yocto] autoreconf
+>
+> Hi Monica,
+>
+> As shown in Khem's original example you need to add this through EXTRA_IM=
+AGE_FEATURES, not IMAGE_INSTALL (since tools-sdk is a feature name, not a p=
+ackage name).
+>
+> Cheers,
+> Paul
+>
+> On Sun, 19 Jun 2016 20:23:53 Rajasekaran, Monica wrote:
+>> I added the following line to my recipe file,
+>>
+>> IMAGE_INSTALL +=3D "tools-sdk"
+>>
+>> But there was the following error with the build:
+>>
+>> ERROR: Nothing RPROVIDES 'tools-sdk' (but
+>> /data/users/mrajase/l100_label_based_r100poc/repo/poky/meta-fss-produc
+>> t/rec ipes-core/images/fss-image-full.bb RDEPENDS on or otherwise
+>> requires it)
+>> NOTE: Runtime target 'tools-sdk' is unbuildable, removing...
+>> Missing or unbuildable dependency chain was: ['tools-sdk']
+>> ERROR: Required build target 'fss-image-full' has no buildable providers=
+.
+>> Missing or unbuildable dependency chain was: ['fss-image-full',
+>> 'tools-sdk']
+>
+>> Any idea on this?
+>>
+>> Thanks,
+>> Monica
+>>
+>> -----Original Message-----
+>> From: Khem Raj [mailto:raj.khem@gmail.com]
+>> Sent: Wednesday, June 15, 2016 3:48 PM
+>> To: Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+>> Cc: Paul Eggleton <paul.eggleton@linux.intel.com>;
+>> yocto@yoctoproject.org
+>> Subject: Re: [yocto] autoreconf
+>>
+>> That might work, however you might need more packages, so adding
+>> tools-sdk will cover all of them in one go
+>
+>>
+>> > On Jun 15, 2016, at 1:47 PM, Rajasekaran, Monica
+>> > <Monica.Rajasekaran@us.fujitsu.com> wrote:
+>
+>> > Hi Raj,
+>> >
+>> > Will adding a line in the image's recipe file like this work ?
+>> >
+>> > IMAGE_INSTALL =3D =E2=80=9Dautoconf=E2=80=9D
+>> >
+>> > I installed "git" and "resolvconf" in the same way. Just not sure
+>> > about the package name this time.
+>
+>> > Thanks,
+>> > Monica
+>> >
+>> >
+>> > -----Original Message-----
+>> > From: Khem Raj [mailto:raj.khem@gmail.com]
+>> > Sent: Wednesday, June 15, 2016 3:42 PM
+>> > To: Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+>> > Cc: Paul Eggleton <paul.eggleton@linux.intel.com>;
+>> > yocto@yoctoproject.org
+>> > Subject: Re: [yocto] autoreconf
+>> >
+>> > You need to add autoconf to your target image, if you do not use
+>> > Online package management
+>
+>> > EXTRA_IMAGE_FEATURES_append =3D =E2=80=9C tools-sdk=E2=80=9D
+>> >
+>> > in local.conf might help
+>> >
+>> >
+>> >
+>> >> On Jun 15, 2016, at 1:35 PM, Rajasekaran, Monica
+>> >> <Monica.Rajasekaran@us.fujitsu.com> wrote:
+>
+>> >> Hi Paul,
+>> >>
+>> >> Thank you. This is in the target.
+>> >>
+>> >> Thanks,
+>> >> Monica
+>> >>
+>> >> -----Original Message-----
+>> >> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+>> >> Sent: Wednesday, June 15, 2016 3:25 PM
+>> >> To: Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+>> >> Cc: yocto@yoctoproject.org
+>> >> Subject: Re: [yocto] autoreconf
+>> >>
+>> >> Hi Monica,
+>> >>
+>> >> On Wed, 15 Jun 2016 20:17:16 Rajasekaran, Monica wrote:
+>> >>
+>> >>> What is the package to install autoreconf ? (Ubuntu equivalent:
+>> >>> apt-get install dh-autoreconf )
+>> >>>
+>> >>> I am getting the following error for one of my applications:
+>> >>> "autoreconf: command not found"
+>> >>
+>> >>
+>> >> autoreconf is part of autoconf.
+>> >>
+>> >> Where is this? On the target or within the build system?
+>> >>
+>> >> Cheers,
+>> >> Paul
+>> >>
+>> >> --
+>> >>
+>> >> Paul Eggleton
+>> >> Intel Open Source Technology Centre
+>> >> --
+>> >> _______________________________________________
+>> >> yocto mailing list
+>> >> yocto@yoctoproject.org
+>> >> https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>> >
+>>
+>>
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
