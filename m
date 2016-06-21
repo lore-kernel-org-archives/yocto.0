@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31E92E009BF; Tue, 21 Jun 2016 16:08:10 -0700 (PDT)
+	id 0FADFE009CB; Tue, 21 Jun 2016 16:08:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55E8FE009BF
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:09 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F401E009CB
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:10 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:10 -0700
+	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631815"
+X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631822"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.159])
-	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:08 -0700
+	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:09 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 21 Jun 2016 18:07:40 -0500
-Message-Id: <1466550472-1365-4-git-send-email-anibal.limon@linux.intel.com>
+Date: Tue, 21 Jun 2016 18:07:41 -0500
+Message-Id: <1466550472-1365-5-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: joshua.g.lock@intel.com
-Subject: [[yocto-autobuilder][PATCHv2] 03/15] lib/buildsteps: BitbakeShellCommand add support for create error reports
+Subject: [[yocto-autobuilder][PATCHv2] 04/15] lib/ABTools: Add functions for get errordir path in controller and worker
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,109 +41,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 23:08:10 -0000
+X-List-Received-Date: Tue, 21 Jun 2016 23:08:11 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-When bitbake command fails and isn't a recipe task failure then create
-an error report and store into yocto-controller folder for be able to
-transfer to the worker in order to send to the Error report web.
+get_error_report_controller_dir: Returns controller error report dir
+where bitbake exception/errors are stored.
+
+get_error_report_worker_dir: Returns controller error report dir
+where recipe task failures are stored.
+
+Also update the current sources to use that functions.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- .../site-packages/autobuilder/lib/buildsteps.py    | 63 +++++++++++++++++++++-
- 1 file changed, 62 insertions(+), 1 deletion(-)
+ .../autobuilder/buildsteps/SendErrorReport.py           | 16 +++++++---------
+ lib/python2.7/site-packages/autobuilder/lib/ABTools.py  | 17 +++++++++++++++++
+ .../site-packages/autobuilder/lib/buildsteps.py         | 10 ++--------
+ 3 files changed, 26 insertions(+), 17 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-index 9822b3c..7354c83 100644
---- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-+++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
-@@ -13,9 +13,15 @@ __email__ = "anibal.limon@linux.intel.com"
- import os
- import re
- 
-+import time
-+import json
-+import codecs
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py b/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
+index 33f9fe3..23e94b1 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
+@@ -9,8 +9,12 @@ __version__ = "2.0"
+ __maintainer__ = "Elizabeth Flanagan"
+ __email__ = "pidge@toganlabs.com"
+ '''
++
++import os
 +
  from buildbot.steps.shell import ShellCommand
- from buildbot.process.buildstep import LogLineObserver
+-from autobuilder.config import *
++
++from lib.ABTools import get_error_report_worker_dir
+ 
+ class SendErrorReport(ShellCommand):
+     haltOnFailure = False
+@@ -18,7 +22,6 @@ class SendErrorReport(ShellCommand):
+     name = "SendErrorReport"
+     def __init__(self, factory, argdict=None, **kwargs):
+         self.factory = factory
+-        self.workerdir=os.path.join(os.path.join(YOCTO_ABBASE, "yocto-worker"))
+         for k, v in argdict.iteritems():
+             setattr(self, k, v)
+         # Timeout needs to be passed to LoggingBuildStep as a kwarg
+@@ -27,17 +30,12 @@ class SendErrorReport(ShellCommand):
+         ShellCommand.__init__(self, **kwargs)
+ 
+     def start(self):
+-        self.workerdir=os.path.join(os.path.join(YOCTO_ABBASE, "yocto-worker"))
+         self.buildername=self.getProperty("buildername")
+         self.buildnumber=self.getProperty("buildnumber")
++        self.errordir = get_error_report_worker_dir(self.buildername)
+         self.layerversion_core = self.getProperty("layerversion_core")
+         self.command=""
+-        if os.environ.get('ERROR_REPORT_DIR') is None:
+-            self.errordir=os.path.join(os.path.join(
+-                            self.workerdir, self.buildername),
+-                            "build/build/tmp/log/error-report/")
+-        else:
+-            self.errordir=os.environ.get('ERROR_REPORT_DIR')
++
+         if int(self.layerversion_core) < 4:
+             self.command = "echo 'Skipping Step.'"
+         else:
+diff --git a/lib/python2.7/site-packages/autobuilder/lib/ABTools.py b/lib/python2.7/site-packages/autobuilder/lib/ABTools.py
+index a665373..579ae85 100644
+--- a/lib/python2.7/site-packages/autobuilder/lib/ABTools.py
++++ b/lib/python2.7/site-packages/autobuilder/lib/ABTools.py
+@@ -10,7 +10,9 @@ __maintainer__ = "Elizabeth Flanagan"
+ __email__ = "elizabeth.flanagan@intel.com"
+ '''
+ 
++import os
  
 +from autobuilder.config import YOCTO_ABBASE
-+
- DEFAULT_SHELL = 'bash'
  
- class ShellCommandCleanEnv(ShellCommand):
-@@ -86,6 +92,12 @@ class BitbakeLogLineObserver(LogLineObserver):
-     def errLineReceived(self, line):
-         self._handleError(line)
+ def capitalize(word):
+     return ' '.join([s[0].upper() + s[1:] for s in word.split(' ')])
+@@ -18,3 +20,18 @@ def capitalize(word):
+ def stringToBool(v):
+     return v.lower() in ("true", "t", "1")
  
-+def get_error_report_bitbake_dir(buildername, buildnumber):
++def get_error_report_controller_dir(buildername, buildnumber):
 +    errordir_base = os.path.join(YOCTO_ABBASE, 'yocto-controller', buildername,
 +            'error-report')
 +    errordir = os.path.join(errordir_base, str(buildnumber))
 +    return errordir
 +
++def get_error_report_worker_dir(buildername):
++    if os.environ.get('ERROR_REPORT_DIR') is None:
++        workerdir = os.path.join(YOCTO_ABBASE, 'yocto-worker')
++        errordir = os.path.join(workerdir, buildername,
++                'build/build/tmp/log/error-report/')
++    else:
++        errordir = os.environ.get('ERROR_REPORT_DIR')
++
++    return errordir
+diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+index 7354c83..9f63a2b 100644
+--- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
++++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+@@ -20,7 +20,7 @@ import codecs
+ from buildbot.steps.shell import ShellCommand
+ from buildbot.process.buildstep import LogLineObserver
+ 
+-from autobuilder.config import YOCTO_ABBASE
++from lib.ABTools import get_error_report_controller_dir
+ 
+ DEFAULT_SHELL = 'bash'
+ 
+@@ -92,12 +92,6 @@ class BitbakeLogLineObserver(LogLineObserver):
+     def errLineReceived(self, line):
+         self._handleError(line)
+ 
+-def get_error_report_bitbake_dir(buildername, buildnumber):
+-    errordir_base = os.path.join(YOCTO_ABBASE, 'yocto-controller', buildername,
+-            'error-report')
+-    errordir = os.path.join(errordir_base, str(buildnumber))
+-    return errordir
+-
  class BitbakeShellCommand(ShellCommand):
      def __init__(self, factory, argdict=None, **kwargs):
          super(BitbakeShellCommand, self).__init__(**kwargs)
-@@ -93,6 +105,55 @@ class BitbakeShellCommand(ShellCommand):
-         self.stdio_observer = BitbakeLogLineObserver()
-         self.addLogObserver('stdio', self.stdio_observer)
+@@ -143,7 +137,7 @@ class BitbakeShellCommand(ShellCommand):
+         buildername = self.getProperty('buildername')
+         buildnumber = self.getProperty('buildnumber')
  
-+    def _get_variables(self, log):
-+        vrs = {}
-+
-+        rexp = re.compile("^(.*)=.*\"(.*)\"$")
-+        for line in log:
-+            m = rexp.match(line)
-+            if m:
-+                vrs[m.group(1).rstrip()] = m.group(2)
-+
-+        return vrs
-+
-+    def _createBitbakeErrorReport(self, log):
-+        vrs = self._get_variables(log)
-+
-+        report = {}
-+        report['machine'] = vrs['MACHINE']
-+        report['build_sys'] = vrs['BUILD_SYS']
-+        report['nativelsb'] = vrs['NATIVELSBSTRING']
-+        report['distro'] = vrs['DISTRO']
-+        report['target_sys'] = vrs['TARGET_SYS']
-+
-+        report['component'] = 'bitbake'
-+        report['branch_commit'] = self.getProperty('branch') + ': ' + \
-+                self.getProperty('got_revision')
-+
-+        failure = {}
-+        failure['package'] = "bitbake-%s" % vrs['BB_VERSION']
-+        failure['task'] = self.command
-+        failure['log'] = "\n".join(log)
-+
-+        report['failures'] = [failure]
-+
-+        return report
-+
-+    def _saveBitbakeErrorReport(self, report):
-+        buildername = self.getProperty('buildername')
-+        buildnumber = self.getProperty('buildnumber')
-+
-+        errordir = get_error_report_bitbake_dir(buildername, buildnumber)
-+        if not os.path.exists(errordir):
-+            os.makedirs(errordir)
-+
-+        filename = os.path.join(errordir, "error_report_bitbake_%d.txt" % \
-+                int(time.time()))
-+        with codecs.open(filename, 'w', 'utf-8') as f:
-+            json.dump(report, f, indent=4, sort_keys=True)
-+
-     def commandComplete(self, cmd):
-         if cmd.didFail():
--            pass
-+            if self.errors['bitbake']:
-+                report = self._createBitbakeErrorReport(self.errors['log'])
-+                self._saveBitbakeErrorReport(report)
+-        errordir = get_error_report_bitbake_dir(buildername, buildnumber)
++        errordir = get_error_report_controller_dir(buildername, buildnumber)
+         if not os.path.exists(errordir):
+             os.makedirs(errordir)
+ 
 -- 
 2.1.4
 
