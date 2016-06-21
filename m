@@ -1,64 +1,38 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <JSchluechtermann@FORCEAmerica.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F5FDE00997; Tue, 21 Jun 2016 11:15:50 -0700 (PDT)
+	id 42064E009B8; Tue, 21 Jun 2016 12:38:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [64.198.112.134 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
-	[209.85.213.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A50E7E00972
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 11:15:45 -0700 (PDT)
-Received: by mail-vk0-f67.google.com with SMTP id v188so3612750vkf.3
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 11:15:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=ObwN5A5YjG986BXptvXnZ+0LQETQ24F6lBwlt7ntVo4=;
-	b=VL39MVVRgZDDiakzqzX1vOUR0viNnq2I6uKV8gVCggqLFF4QuTLHCboYX134R2EUUg
-	CkdNnHu59whcDYKG7kiYZX5ItgMvNFHBbCk9p2pBkzYDc3wComaB9GSm24/wRbY8oedW
-	k5d6BdAh8P4xNHcaAAWJ/OrZ84fMnn+jNOr28ZFz5nLiNqkrLt5sL5jPzUg0Ipv6LsJY
-	vLtk42S4HwjHmpPIdRGLRvq1eSuyBuLkgw03ECeXkCCKlGJxeGuZqVu0JiIYwxUyjBRM
-	jzmoEKjlCYnMeLTbOcJcuEXs43CK2yy372XI/nD4aB+Z9VMWLSX+0GoWqMxo5/MPGjsG
-	yvcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=ObwN5A5YjG986BXptvXnZ+0LQETQ24F6lBwlt7ntVo4=;
-	b=GHdarKRSY9gTOaI+gy1DCNHq3L0aOvnUqXr7vNmOGwYNt59bDcueuBLxybXNcTytI3
-	+O4n6s+w7TsBiDFe8uw7N4rwYqwg//FPiqpHbKi5G5+yvEwqgnTlPuuW1W0BQKkg9zEQ
-	DzN7Ds484Tb9SWW+q7tNKIAw56jtVZKhCw7UT/j7y1C2lNg4nZEHFVLjEiEQGgPbPGvF
-	3tKS6lSCyxRKqbkkD3Pu/bwiAK6P/ttPdQxD+mzqgqo0DQyeOD8X/WcagOjSTQx1Bg6r
-	ylXQ4H95BgJ07PgmWaWTjpLshGABxsn/5ipMt9tmSctEENRWKsqG5i1AeXvJcCLYJhwK
-	CVuQ==
-X-Gm-Message-State: ALyK8tKxYxB7beTQjfGwnWxuz9HZJIKTAO26Ana1pMVz3B71dpZfmPo3FGXb5qVajC+PCgw8k6HSUWuvsTqFPQ==
-X-Received: by 10.31.53.75 with SMTP id c72mr10384654vka.62.1466532945173;
-	Tue, 21 Jun 2016 11:15:45 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Tue, 21 Jun 2016 12:38:13 PDT
+Received: from webmail.forceamerica.com (webmail.forceamerica.com
+	[64.198.112.134])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87601E009A0
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 12:38:13 -0700 (PDT)
+Received: from Corp-EX10.forceamerica.com ([10.100.101.44]) by
+	Corp-EX10.forceamerica.com ([10.100.101.44]) with mapi id
+	14.03.0123.003; Tue, 21 Jun 2016 14:37:06 -0500
+From: John Schluechtermann <JSchluechtermann@FORCEAmerica.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issues with Jethro qemu-native package build
+Thread-Index: AdHL8y3GswHkNwd+RLWcXqE7IDuD+g==
+Date: Tue, 21 Jun 2016 19:37:06 +0000
+Message-ID: <28FBBE02F609FB4B8B4F047102C7B7360144C767FE@Corp-EX10.forceamerica.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.8.41]
 MIME-Version: 1.0
-Received: by 10.176.1.50 with HTTP; Tue, 21 Jun 2016 11:15:44 -0700 (PDT)
-In-Reply-To: <OFBE39B056.C95DF73C-ONC1257FD9.002D81E4-C1257FD9.002F013D@esa-grimma.de>
-References: <OFBE39B056.C95DF73C-ONC1257FD9.002D81E4-C1257FD9.002F013D@esa-grimma.de>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Tue, 21 Jun 2016 15:15:44 -0300
-Message-ID: <CAF3SDA78SR_MBTry3r4FFgea38aJFKOBOZX+OeRnOi8eFtf5iA@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: installation of kernel modules
+Subject: Issues with Jethro qemu-native package build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,105 +44,230 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 18:15:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 21 Jun 2016 19:38:17 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_"
+
+--_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Take a look at deploy folder if your packages (rpm in my case) are
-being created. I have faced problems where files go to -dev.rpm
-packages and the yocto silently refuses to create empty .rpm package.
+I have a custom image that I am trying to make the SDK for using bitbake (c=
+ustom image name) -c populate_sdk.  When performing this step the following=
+ error is encountered.
 
-Regards,
+| ERROR: User requested feature uuid
+|        configure was not able to find it.
+|        Install libuuid devel
 
-2016-06-21 5:33 GMT-03:00  <S.Jaritz@esa-grimma.de>:
-> Hej
->
-> I have a problem when running do_rootfs() with some own kernel drivers
-> included.
->
-> My kernel recipe builds some easy GPIO drivers.
->
-> # They come as one package:
-> myKernelModules:
->         -> a.ko
->         -> b.ko
->         -> c.ko
->
-> # I build a recipe which creates:
-> myKernelModules.bb
->         -> packages-split/myKernelModules
->         -> packages-split/kernel-module-a
->         -> packages-split/kernel-module-b
->         -> packages-split/kernel-module-c
->         -> packages-split/myKernelModules-.....
->
-> # I try to pack/install my Module by adding to layer.conf:
->
-> IMAGE_INSTALL_append=3D" myKernelModules"
->
-> When I try to build the rootfs I got that error:
->
-> The following packages have unmet dependencies:
->  myKernelModules : Depends: kernel-module-a but it is not installable
->                Depends: kernel-module-b but it is not installable
->                Depends: kernel-module-c but it is not installable
-> E: Unable to correct problems, you have held broken packages.
->
-> Any idea how to fix this problem?
->
-> Regards!
->
-> Stefan Jaritz
->
-> ------------------------------------------------------------
-> ESA Elektroschaltanlagen Grimma GmbH
-> Broner Ring 30
-> 04668 Grimma
-> Telefon: +49 3437 9211 176
-> Telefax: +49 3437 9211 26
-> E-Mail: s.jaritz@esa-grimma.de
-> Internet: www.esa-grimma.de
->
->
-> Gesch=C3=A4ftsf=C3=BChrer:
-> Dipl.-Ing. J=C3=B6rg Gaitzsch
-> J=C3=B6rg Reinker
->
-> Sitz der Gesellschaft: Grimma
-> Ust.-ID: DE 141784437
-> Amtsgericht: Leipzig, HRB 5159
-> Steuernummer: 238/108/00755
->
->
-> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte
-> Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=C3=BCmli=
-ch
-> erhalten
-> haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie die=
-se
-> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-> Mail
-> ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If yo=
-u
-> are
-> not the intended recipient (or have received this e-mail in error) please
-> notify the sender immediately and destroy this e-mail. Any unauthorized
-> copying, disclosure or distribution of the material in this e-mail is
-> strictly
-> forbidden.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Can someone point me to what I do not have configured correctly so I can ge=
+t past this issue.
+
+The local.conf is as follows:
+MACHINE ??=3D "var-som-mx6"
+DL_DIR ?=3D "${BSPDIR}/downloads/"
+DISTRO ?=3D 'fsl-imx-x11'
+PACKAGE_CLASSES ?=3D "package_rpm"
+SDKMACHINE ?=3D "x86_64"
+EXTRA_IMAGE_FEATURES =3D " debug-tweaks tools-debug eclipse-debug"
+USER_CLASSES ?=3D "buildstats image-mklibs"
+PATCHRESOLVE =3D "noop"
+
+BB_DISKMON_DIRS =3D "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K \
+    ABORT,/tmp,10M,1K"
+PACKAGECONFIG_append_pn-qemu-native =3D " sdl"
+PACKAGECONFIG_append_pn-nativesdk-qemu =3D " sdl"
+ASSUME_PROVIDED +=3D "libsdl-native"
+
+CONF_VERSION =3D "1"
+
+ACCEPT_FSL_EULA =3D "1"
+IMAGE_INSTALL_append =3D " tcf-agent openssh-sftp-server "
+BUILD_LDFLAGS_prepend_pn-qemu-native =3D "-Wl,-rpath-link,/lib/x86_64-linux=
+-gnu"
 
 
 
---=20
-"Do or do not. There is no try"
-  Yoda Master
+Any help is greatly appreciated!
 
+-          John
+______________________________________
+John Schluechtermann
+Senior Software Engineer
+
+FORCE America, Inc.
+1601 Airport Road | Waukesha, WI 53188
+Office: 262-513-2335 | Fax: 2628963510
+E-Mail: jschluechtermann@forceamerica.com
+www.forceamerica.com<http://www.forceamerica.com>
+100% Employee Owned
+
+The information contained in this message and any attachment may be proprie=
+tary, confidential, and privileged or subject to the work product doctrine =
+and thus protected from disclosure. If the reader of this message is not th=
+e intended recipient, or an employee or agent responsible for delivering th=
+is message to the intended recipient, you are hereby notified that any diss=
+emination, distribution or copying of this communication is strictly prohib=
+ited. If you have received this communication in error, please notify me im=
+mediately by replying to this message and deleting it and all copies and ba=
+ckups thereof. Thank you.
+
+--_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style>
+<!--
+@font-face
+	{font-family:Wingdings}
+@font-face
+	{font-family:Wingdings}
+@font-face
+	{font-family:Calibri}
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif"}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif"}
+span.EmailStyle17
+	{font-family:"Calibri","sans-serif";
+	color:windowtext}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif"}
+@page WordSection1
+	{margin:1.0in 1.0in 1.0in 1.0in}
+div.WordSection1
+	{}
+ol
+	{margin-bottom:0in}
+ul
+	{margin-bottom:0in}
+-->
+</style>
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I have a custom image that I am trying to make the S=
+DK for using bitbake (custom image name) &#8211;c populate_sdk.&nbsp; When =
+performing this step the following error is encountered.</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">| ERROR: User requested feature uuid</p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; configur=
+e was not able to find it.</p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Install =
+libuuid devel</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">Can someone point me to what I do not have configure=
+d correctly so I can get past this issue.</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">The local.conf is as follows:</p>
+<p class=3D"MsoNormal">MACHINE ??=3D &quot;var-som-mx6&quot;</p>
+<p class=3D"MsoNormal">DL_DIR ?=3D &quot;${BSPDIR}/downloads/&quot;</p>
+<p class=3D"MsoNormal">DISTRO ?=3D 'fsl-imx-x11'</p>
+<p class=3D"MsoNormal">PACKAGE_CLASSES ?=3D &quot;package_rpm&quot;</p>
+<p class=3D"MsoNormal">SDKMACHINE ?=3D &quot;x86_64&quot;</p>
+<p class=3D"MsoNormal">EXTRA_IMAGE_FEATURES =3D &quot; debug-tweaks tools-d=
+ebug eclipse-debug&quot;</p>
+<p class=3D"MsoNormal">USER_CLASSES ?=3D &quot;buildstats image-mklibs&quot=
+;</p>
+<p class=3D"MsoNormal">PATCHRESOLVE =3D &quot;noop&quot;</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">BB_DISKMON_DIRS =3D &quot;\</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${TMPDIR},1G,100K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${DL_DIR},1G,100K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${SSTATE_DIR},1G,100K \=
+</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,/tmp,100M,100K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${TMPDIR},100M,1K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${DL_DIR},100M,1K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${SSTATE_DIR},100M,1K \</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,/tmp,10M,1K&quot;</p>
+<p class=3D"MsoNormal">PACKAGECONFIG_append_pn-qemu-native =3D &quot; sdl&q=
+uot;</p>
+<p class=3D"MsoNormal">PACKAGECONFIG_append_pn-nativesdk-qemu =3D &quot; sd=
+l&quot;</p>
+<p class=3D"MsoNormal">ASSUME_PROVIDED &#43;=3D &quot;libsdl-native&quot;</=
+p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">CONF_VERSION =3D &quot;1&quot;</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">ACCEPT_FSL_EULA =3D &quot;1&quot;</p>
+<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; tcf-agent openssh-sf=
+tp-server &quot;</p>
+<p class=3D"MsoNormal">BUILD_LDFLAGS_prepend_pn-qemu-native =3D &quot;-Wl,-=
+rpath-link,/lib/x86_64-linux-gnu&quot;</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal">&nbsp;</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
+imes New Roman&quot;,&quot;serif&quot;">&nbsp;</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
+imes New Roman&quot;,&quot;serif&quot;">Any help is greatly appreciated!</s=
+pan></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in"><span style=3D"f=
+ont-size:12.0pt; font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
+><span style=3D"">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span style=3D"font-size:12.0pt; font-family:&quot;Tim=
+es New Roman&quot;,&quot;serif&quot;">John</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
+imes New Roman&quot;,&quot;serif&quot;">___________________________________=
+___
+</span></p>
+<p class=3D"MsoNormal" style=3D""><b><span style=3D"font-size:10.0pt; font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">John Schluechtermann</span=
+></b><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;"><br>
+Senior Software Engineer<br>
+<b><br>
+FORCE America, Inc.</b> <br>
+1601 Airport Road <b>| </b>Waukesha, WI 53188 <b><br>
+Office: </b>262-513-2335<b> | Fax: </b>2628963510<br>
+<b>E-Mail: </b>jschluechtermann@forceamerica.com<br>
+<a href=3D"http://www.forceamerica.com"><span style=3D"color:blue">www.forc=
+eamerica.com</span></a></span></p>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:10.0pt; font-family:&quo=
+t;Arial&quot;,&quot;sans-serif&quot;">100% Employee Owned</span></i></p>
+<p class=3D"MsoNormal">&nbsp;</p>
+</div>
+<p class=3D"MsoNormal" style=3D"color:#0000FF"><span class=3D"auto-style1">=
+<em>The information contained in this message and any attachment may be pro=
+prietary, confidential, and privileged or subject to the work product doctr=
+ine and thus protected from disclosure.
+ If the reader of this message is not the intended recipient, or an employe=
+e or agent responsible for delivering this message to the intended recipien=
+t, you are hereby notified that any dissemination, distribution or copying =
+of this communication is strictly
+ prohibited. If you have received this communication in error, please notif=
+y me immediately by replying to this message and deleting it and all copies=
+ and backups thereof. Thank you.</em></span>
+</p>
+</body>
+</html>
+
+--_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_--
