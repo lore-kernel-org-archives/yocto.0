@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5C16E00B54; Tue, 21 Jun 2016 16:08:19 -0700 (PDT)
+	id CACA3E00B7A; Tue, 21 Jun 2016 16:08:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F19EE00B04
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64089E00B74
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:20 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:20 -0700
+	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631891"
+X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631897"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.159])
-	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:18 -0700
+	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:19 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 21 Jun 2016 18:07:51 -0500
-Message-Id: <1466550472-1365-15-git-send-email-anibal.limon@linux.intel.com>
+Date: Tue, 21 Jun 2016 18:07:52 -0500
+Message-Id: <1466550472-1365-16-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: joshua.g.lock@intel.com
-Subject: [[yocto-autobuilder][PATCHv2] 14/15] autobuilder/buildsteps: Rename DownloadBitbakeErrorReports to DownloadErrorReports
+Subject: [[yocto-autobuilder][PATCHv2] 15/15] buildset-config: Update references from DownloadBitbakeErrorReports to DownloadErrorReports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 23:08:19 -0000
+X-List-Received-Date: Tue, 21 Jun 2016 23:08:31 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -51,108 +51,778 @@ reference of bitbake in the buildstep.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- .../buildsteps/DownloadBitbakeErrorReports.py      | 42 ----------------------
- .../autobuilder/buildsteps/DownloadErrorReports.py | 42 ++++++++++++++++++++++
- 2 files changed, 42 insertions(+), 42 deletions(-)
- delete mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DownloadErrorReports.py
+ buildset-config.controller/build-appliance.conf         | 2 +-
+ buildset-config.controller/buildtools.conf              | 2 +-
+ buildset-config.controller/nightly-arm-lsb.conf         | 2 +-
+ buildset-config.controller/nightly-arm.conf             | 2 +-
+ buildset-config.controller/nightly-arm64.conf           | 2 +-
+ buildset-config.controller/nightly-deb-non-deb.conf     | 2 +-
+ buildset-config.controller/nightly-deb.conf             | 2 +-
+ buildset-config.controller/nightly-ipk.conf             | 2 +-
+ buildset-config.controller/nightly-mips-lsb.conf        | 2 +-
+ buildset-config.controller/nightly-mips.conf            | 2 +-
+ buildset-config.controller/nightly-mips64.conf          | 2 +-
+ buildset-config.controller/nightly-multilib.conf        | 2 +-
+ buildset-config.controller/nightly-musl.conf            | 2 +-
+ buildset-config.controller/nightly-no-x11.conf          | 2 +-
+ buildset-config.controller/nightly-non-gpl3.conf        | 2 +-
+ buildset-config.controller/nightly-oe-selftest.conf     | 2 +-
+ buildset-config.controller/nightly-oecore.conf          | 2 +-
+ buildset-config.controller/nightly-ppc-lsb.conf         | 2 +-
+ buildset-config.controller/nightly-ppc.conf             | 2 +-
+ buildset-config.controller/nightly-qa-extras.conf       | 2 +-
+ buildset-config.controller/nightly-qa-logrotate.conf    | 2 +-
+ buildset-config.controller/nightly-qa-pam.conf          | 2 +-
+ buildset-config.controller/nightly-qa-skeleton.conf     | 2 +-
+ buildset-config.controller/nightly-qa-systemd.conf      | 2 +-
+ buildset-config.controller/nightly-qa-targetbuilds.conf | 2 +-
+ buildset-config.controller/nightly-rpm-non-rpm.conf     | 2 +-
+ buildset-config.controller/nightly-rpm.conf             | 2 +-
+ buildset-config.controller/nightly-uclibc.conf          | 2 +-
+ buildset-config.controller/nightly-world-lsb.conf       | 2 +-
+ buildset-config.controller/nightly-world.conf           | 2 +-
+ buildset-config.controller/nightly-x32.conf             | 2 +-
+ buildset-config.controller/nightly-x86-64-lsb.conf      | 2 +-
+ buildset-config.controller/nightly-x86-64.conf          | 2 +-
+ buildset-config.controller/nightly-x86-lsb.conf         | 2 +-
+ buildset-config.controller/nightly-x86.conf             | 2 +-
+ buildset-config.controller/nightly.conf                 | 2 +-
+ buildset-config.controller/poky-tiny.conf               | 2 +-
+ buildset-config.examples/awesomefirmware.conf           | 2 +-
+ buildset-config.freescale/nightly-fsl-arm-lsb.conf      | 2 +-
+ buildset-config.freescale/nightly-fsl-arm.conf          | 2 +-
+ buildset-config.freescale/nightly-fsl-ppc-lsb.conf      | 2 +-
+ buildset-config.freescale/nightly-fsl-ppc.conf          | 2 +-
+ buildset-config.iot-devkit/iot-devkit.conf              | 2 +-
+ buildset-config.kernel/kernel-arm-lsb.conf              | 2 +-
+ buildset-config.kernel/kernel-arm.conf                  | 2 +-
+ buildset-config.kernel/kernel-arm64.conf                | 2 +-
+ buildset-config.kernel/kernel-mips-lsb.conf             | 2 +-
+ buildset-config.kernel/kernel-mips.conf                 | 2 +-
+ buildset-config.kernel/kernel-ppc-lsb.conf              | 2 +-
+ buildset-config.kernel/kernel-ppc.conf                  | 2 +-
+ buildset-config.kernel/kernel-x86-64-lsb.conf           | 2 +-
+ buildset-config.kernel/kernel-x86-64.conf               | 2 +-
+ buildset-config.kernel/kernel-x86-lsb.conf              | 2 +-
+ buildset-config.kernel/kernel-x86.conf                  | 2 +-
+ buildset-config.kernel/nightly-kernel.conf              | 2 +-
+ buildset-config.tizen/nightly-tizen-ivi.conf            | 2 +-
+ buildset-config.tizen/nightly-tizen.conf                | 2 +-
+ buildset-config.tizen/nightly.conf                      | 2 +-
+ 58 files changed, 58 insertions(+), 58 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
-deleted file mode 100644
-index fe20247..0000000
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
-+++ /dev/null
-@@ -1,42 +0,0 @@
--'''
--Created on Jan 1, 2016
--
--__author__ = "Anibal (alimon) Limon"
--__copyright__ = "Copyright 2016, Intel Corp."
--__credits__ = ["Anibal Limon"]
--__license__ = "GPL"
--__version__ = "2.0"
--__maintainer__ = "Anibal Limon"
--__email__ = "anibal.limon@linux.intel.com"
--'''
--
--import os
--from buildbot.steps.transfer import DirectoryDownload
--from buildbot.process.buildstep import SKIPPED
--
--from lib.ABTools import get_error_report_worker_dir, \
--        get_error_report_controller_dir
--
--class DownloadBitbakeErrorReports(DirectoryDownload):
--    """
--        Transfer from master to slave the error reports when bitbake
--        fails.
--    """
--    name = "DownloadBitbakeErrorReports"
--
--    def __init__(self, factory, argdict=None, **kwargs):
--        super(DownloadBitbakeErrorReports, self).__init__(
--                "", "")
--
--    def start(self):
--        buildername = self.getProperty('buildername')
--        buildnumber = self.getProperty('buildnumber')
--
--        self.mastersrc = get_error_report_controller_dir(buildername,
--                buildnumber)
--        self.slavedest = get_error_report_worker_dir(buildername)
--
--        if not os.path.exists(self.mastersrc):
--            return SKIPPED
--
--        super(DownloadBitbakeErrorReports, self).start()
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadErrorReports.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadErrorReports.py
-new file mode 100644
-index 0000000..696f56c
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadErrorReports.py
-@@ -0,0 +1,42 @@
-+'''
-+Created on Jan 1, 2016
-+
-+__author__ = "Anibal (alimon) Limon"
-+__copyright__ = "Copyright 2016, Intel Corp."
-+__credits__ = ["Anibal Limon"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Anibal Limon"
-+__email__ = "anibal.limon@linux.intel.com"
-+'''
-+
-+import os
-+from buildbot.steps.transfer import DirectoryDownload
-+from buildbot.process.buildstep import SKIPPED
-+
-+from lib.ABTools import get_error_report_worker_dir, \
-+        get_error_report_controller_dir
-+
-+class DownloadErrorReports(DirectoryDownload):
-+    """
-+        Transfer from master to slave the error reports when bitbake
-+        fails.
-+    """
-+    name = "DownloadErrorReports"
-+
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        super(DownloadErrorReports, self).__init__(
-+                "", "")
-+
-+    def start(self):
-+        buildername = self.getProperty('buildername')
-+        buildnumber = self.getProperty('buildnumber')
-+
-+        self.mastersrc = get_error_report_controller_dir(buildername,
-+                buildnumber)
-+        self.slavedest = get_error_report_worker_dir(buildername)
-+
-+        if not os.path.exists(self.mastersrc):
-+            return SKIPPED
-+
-+        super(DownloadErrorReports, self).start()
+diff --git a/buildset-config.controller/build-appliance.conf b/buildset-config.controller/build-appliance.conf
+index 4101b67..5150876 100644
+--- a/buildset-config.controller/build-appliance.conf
++++ b/buildset-config.controller/build-appliance.conf
+@@ -19,7 +19,7 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'universe -c fetch'}},
+         {'BuildImages': {'images': 'build-appliance-image'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishLayerTarballs':{}},
+         {'PublishArtifacts': {'artifacts': ['build-appliance', 'md5sums']}}]
+diff --git a/buildset-config.controller/buildtools.conf b/buildset-config.controller/buildtools.conf
+index a04c894..f9a1319 100644
+--- a/buildset-config.controller/buildtools.conf
++++ b/buildset-config.controller/buildtools.conf
+@@ -15,6 +15,6 @@ steps: [{'SetDest':{}},
+         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildapp': True}},
+         {'BuildImages': {'images': 'uninative-tarball'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['buildtools-tarball', 'uninative', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-arm-lsb.conf b/buildset-config.controller/nightly-arm-lsb.conf
+index 68ce6c1..eb8d3eb 100644
+--- a/buildset-config.controller/nightly-arm-lsb.conf
++++ b/buildset-config.controller/nightly-arm-lsb.conf
+@@ -25,7 +25,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky-lsb'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemuarm', 'beagleboard', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-arm.conf b/buildset-config.controller/nightly-arm.conf
+index 1941fed..5b80ac5 100644
+--- a/buildset-config.controller/nightly-arm.conf
++++ b/buildset-config.controller/nightly-arm.conf
+@@ -25,7 +25,7 @@ steps: [{'SetDest':{}},
+         {'RunESDKSanityTests': {'images': 'core-image-minimal core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemuarm', 'beagleboard', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-arm64.conf b/buildset-config.controller/nightly-arm64.conf
+index 670b83e..32a5492 100644
+--- a/buildset-config.controller/nightly-arm64.conf
++++ b/buildset-config.controller/nightly-arm64.conf
+@@ -23,7 +23,7 @@ steps: [{'SetDest':{}},
+         {'RunSDKSanityTests': {'images': 'core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemuarm64', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-deb-non-deb.conf b/buildset-config.controller/nightly-deb-non-deb.conf
+index a31c0f1..b97d81f 100644
+--- a/buildset-config.controller/nightly-deb-non-deb.conf
++++ b/buildset-config.controller/nightly-deb-non-deb.conf
+@@ -12,5 +12,5 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.controller/nightly-deb.conf b/buildset-config.controller/nightly-deb.conf
+index f1f4001..d2a251b 100644
+--- a/buildset-config.controller/nightly-deb.conf
++++ b/buildset-config.controller/nightly-deb.conf
+@@ -12,5 +12,5 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.controller/nightly-ipk.conf b/buildset-config.controller/nightly-ipk.conf
+index cdebd02..943ff01 100644
+--- a/buildset-config.controller/nightly-ipk.conf
++++ b/buildset-config.controller/nightly-ipk.conf
+@@ -12,5 +12,5 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'RunSanityTests': {'images' : 'core-image-minimal core-image-sato core-image-sato-sdk'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.controller/nightly-mips-lsb.conf b/buildset-config.controller/nightly-mips-lsb.conf
+index eac6d93..81faaad 100644
+--- a/buildset-config.controller/nightly-mips-lsb.conf
++++ b/buildset-config.controller/nightly-mips-lsb.conf
+@@ -26,7 +26,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky-lsb'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemumips', 'routerstationpro', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-mips.conf b/buildset-config.controller/nightly-mips.conf
+index 9714924..e419ce4 100644
+--- a/buildset-config.controller/nightly-mips.conf
++++ b/buildset-config.controller/nightly-mips.conf
+@@ -29,7 +29,7 @@ steps: [{'SetDest':{}},
+         {'RunESDKSanityTests': {'images': 'core-image-minimal core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemumips', 'routerstationpro', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-mips64.conf b/buildset-config.controller/nightly-mips64.conf
+index c35088f..13f8573 100644
+--- a/buildset-config.controller/nightly-mips64.conf
++++ b/buildset-config.controller/nightly-mips64.conf
+@@ -23,7 +23,7 @@ steps: [{'SetDest':{}},
+         {'RunSDKSanityTests': {'images': 'core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemumips64', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-multilib.conf b/buildset-config.controller/nightly-multilib.conf
+index 6481019..9dce758 100644
+--- a/buildset-config.controller/nightly-multilib.conf
++++ b/buildset-config.controller/nightly-multilib.conf
+@@ -37,5 +37,5 @@ steps: [{'SetDest':{}},
+                             'buildhistory' : False, 'multilib': 'lib64',
+                             'distro': 'poky'}},
+         {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.controller/nightly-musl.conf b/buildset-config.controller/nightly-musl.conf
+index 2d1dce5..1f6aba5 100644
+--- a/buildset-config.controller/nightly-musl.conf
++++ b/buildset-config.controller/nightly-musl.conf
+@@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
+                             'atextappend' : '\nTCLIBC="musl"\n' }},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+ 
+diff --git a/buildset-config.controller/nightly-no-x11.conf b/buildset-config.controller/nightly-no-x11.conf
+index 0feb6cd..4ef1b35 100644
+--- a/buildset-config.controller/nightly-no-x11.conf
++++ b/buildset-config.controller/nightly-no-x11.conf
+@@ -15,6 +15,6 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'GetBitbakeVersion': {}},
+         {'BuildImages': {'images': 'world'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}}]
+diff --git a/buildset-config.controller/nightly-non-gpl3.conf b/buildset-config.controller/nightly-non-gpl3.conf
+index 3368263..c392e97 100644
+--- a/buildset-config.controller/nightly-non-gpl3.conf
++++ b/buildset-config.controller/nightly-non-gpl3.conf
+@@ -14,5 +14,5 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-minimal core-image-basic'}},
+         {'CheckForGPLv3':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.controller/nightly-oe-selftest.conf b/buildset-config.controller/nightly-oe-selftest.conf
+index 1aa3309..6962eef 100644
+--- a/buildset-config.controller/nightly-oe-selftest.conf
++++ b/buildset-config.controller/nightly-oe-selftest.conf
+@@ -15,6 +15,6 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs': ['meta-selftest']}},
+         {'RunOeSelftest': {}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+ 	]
+diff --git a/buildset-config.controller/nightly-oecore.conf b/buildset-config.controller/nightly-oecore.conf
+index dcee52d..e06b06d 100644
+--- a/buildset-config.controller/nightly-oecore.conf
++++ b/buildset-config.controller/nightly-oecore.conf
+@@ -24,7 +24,7 @@ steps: [{'SetDest':{}},
+                             'distro': 'oecore', 'buildhistory' : False}},
+         {'BuildToolchainImages': {}},
+         {'BuildImages': {'images': '-c populate_sdk_ext core-image-minimal'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}
+         ]
+ 
+diff --git a/buildset-config.controller/nightly-ppc-lsb.conf b/buildset-config.controller/nightly-ppc-lsb.conf
+index e596720..7cf05c1 100644
+--- a/buildset-config.controller/nightly-ppc-lsb.conf
++++ b/buildset-config.controller/nightly-ppc-lsb.conf
+@@ -26,7 +26,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky-lsb'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemuppc', 'mpc8315e-rdb', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-ppc.conf b/buildset-config.controller/nightly-ppc.conf
+index d6a8537..16413c3 100644
+--- a/buildset-config.controller/nightly-ppc.conf
++++ b/buildset-config.controller/nightly-ppc.conf
+@@ -28,7 +28,7 @@ steps: [{'SetDest':{}},
+         {'RunESDKSanityTests': {'images': 'core-image-minimal core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemuppc', 'mpc8315e-rdb', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-qa-extras.conf b/buildset-config.controller/nightly-qa-extras.conf
+index dcb03f0..2ec7b50 100644
+--- a/buildset-config.controller/nightly-qa-extras.conf
++++ b/buildset-config.controller/nightly-qa-extras.conf
+@@ -18,6 +18,6 @@ steps: [{'SetDest':{}},
+                             'distro': 'poky', 'buildhistory' : False,
+                             'atextappend' : '\nROOT_HOME = "/root"\n'}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images': 'core-image-minimal'}}]
+diff --git a/buildset-config.controller/nightly-qa-logrotate.conf b/buildset-config.controller/nightly-qa-logrotate.conf
+index 779fddb..41dd135 100644
+--- a/buildset-config.controller/nightly-qa-logrotate.conf
++++ b/buildset-config.controller/nightly-qa-logrotate.conf
+@@ -13,7 +13,7 @@ steps: [{'SetDest':{}},
+                             'atextappend' : '\nIMAGE_INSTALL_append = " logrotate"\n'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'logrotate'}}]
+ 
+diff --git a/buildset-config.controller/nightly-qa-pam.conf b/buildset-config.controller/nightly-qa-pam.conf
+index c790bf5..5cec2c8 100644
+--- a/buildset-config.controller/nightly-qa-pam.conf
++++ b/buildset-config.controller/nightly-qa-pam.conf
+@@ -14,6 +14,6 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+         {'SendErrorReport': {}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'pam'}}]
+ 
+diff --git a/buildset-config.controller/nightly-qa-skeleton.conf b/buildset-config.controller/nightly-qa-skeleton.conf
+index a0461eb..c29ca7b 100644
+--- a/buildset-config.controller/nightly-qa-skeleton.conf
++++ b/buildset-config.controller/nightly-qa-skeleton.conf
+@@ -13,7 +13,7 @@ steps: [{'SetDest':{}},
+                             'atextappend' : '\nIMAGE_INSTALL_append = " service hello-mod"\n'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs': ['meta-skeleton']}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'skeletoninit'}}]
+ 
+diff --git a/buildset-config.controller/nightly-qa-systemd.conf b/buildset-config.controller/nightly-qa-systemd.conf
+index fdf61c6..f95021dc 100644
+--- a/buildset-config.controller/nightly-qa-systemd.conf
++++ b/buildset-config.controller/nightly-qa-systemd.conf
+@@ -23,6 +23,6 @@ steps: [{'SetDest':{}},
+                             'buildhistory' : False, 'distro': 'poky',
+                             'initmgr' : 'systemd'}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'systemd'}}]
+diff --git a/buildset-config.controller/nightly-qa-targetbuilds.conf b/buildset-config.controller/nightly-qa-targetbuilds.conf
+index fd3d0da..e31af26 100644
+--- a/buildset-config.controller/nightly-qa-targetbuilds.conf
++++ b/buildset-config.controller/nightly-qa-targetbuilds.conf
+@@ -27,7 +27,7 @@ steps: [{'SetDest':{}},
+         {'CreateAutoConf': {'machine': 'qemuppc', 'SDKMACHINE' : 'x86_64',
+                             'buildhistory' : False, 'distro': 'poky'}},
+         {'BuildImages': {'images': 'core-image-sato-sdk'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images': 'core-image-sato-sdk',
+                             'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}}]
+diff --git a/buildset-config.controller/nightly-rpm-non-rpm.conf b/buildset-config.controller/nightly-rpm-non-rpm.conf
+index b8b4c2a..5290d6d 100644
+--- a/buildset-config.controller/nightly-rpm-non-rpm.conf
++++ b/buildset-config.controller/nightly-rpm-non-rpm.conf
+@@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
+                             'packages': 'rpm'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images' : 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images' : 'core-image-minimal core-image-sato core-image-sato-sdk'}}]
+diff --git a/buildset-config.controller/nightly-rpm.conf b/buildset-config.controller/nightly-rpm.conf
+index f03a12f..2ea2d6e 100644
+--- a/buildset-config.controller/nightly-rpm.conf
++++ b/buildset-config.controller/nightly-rpm.conf
+@@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
+                             'packages': 'rpm'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images' : 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'RunSanityTests': {'images' : 'core-image-minimal core-image-sato core-image-sato-sdk'}}]
+diff --git a/buildset-config.controller/nightly-uclibc.conf b/buildset-config.controller/nightly-uclibc.conf
+index 4063040..40931a7 100644
+--- a/buildset-config.controller/nightly-uclibc.conf
++++ b/buildset-config.controller/nightly-uclibc.conf
+@@ -13,6 +13,6 @@ steps: [{'SetDest':{}},
+                             'atextappend' : '\nTCLIBC="uclibc"\n' }},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+ 
+diff --git a/buildset-config.controller/nightly-world-lsb.conf b/buildset-config.controller/nightly-world-lsb.conf
+index 1117f06..afd4b7c 100644
+--- a/buildset-config.controller/nightly-world-lsb.conf
++++ b/buildset-config.controller/nightly-world-lsb.conf
+@@ -21,7 +21,7 @@ steps: [{'SetDest':{}},
+                             'distro': 'poky-lsb'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'world'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
+ 
+diff --git a/buildset-config.controller/nightly-world.conf b/buildset-config.controller/nightly-world.conf
+index 53b7286..cb0f6e6 100644
+--- a/buildset-config.controller/nightly-world.conf
++++ b/buildset-config.controller/nightly-world.conf
+@@ -13,7 +13,7 @@ steps: [{'SetDest':{}},
+                             'distro': 'poky'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'world'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
+ 
+diff --git a/buildset-config.controller/nightly-x32.conf b/buildset-config.controller/nightly-x32.conf
+index 42d38ac..2ec5b87 100644
+--- a/buildset-config.controller/nightly-x32.conf
++++ b/buildset-config.controller/nightly-x32.conf
+@@ -20,7 +20,7 @@ steps: [{'SetDest':{}},
+                             'buildhistory' : False, 'x32': True,
+                             'distro': 'poky'}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'x32lib'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['md5sums']}}]
+diff --git a/buildset-config.controller/nightly-x86-64-lsb.conf b/buildset-config.controller/nightly-x86-64-lsb.conf
+index 704c508..b0bb0a5 100644
+--- a/buildset-config.controller/nightly-x86-64-lsb.conf
++++ b/buildset-config.controller/nightly-x86-64-lsb.conf
+@@ -26,7 +26,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky-lsb'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemux86-64', 'genericx86-64', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-x86-64.conf b/buildset-config.controller/nightly-x86-64.conf
+index 6a003f5..92e5866 100644
+--- a/buildset-config.controller/nightly-x86-64.conf
++++ b/buildset-config.controller/nightly-x86-64.conf
+@@ -30,7 +30,7 @@ steps: [{'SetDest':{}},
+         {'RunESDKSanityTests': {'images': 'core-image-minimal core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemux86-64', 'genericx86-64', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-x86-lsb.conf b/buildset-config.controller/nightly-x86-lsb.conf
+index ea7f58e..34b6780 100644
+--- a/buildset-config.controller/nightly-x86-lsb.conf
++++ b/buildset-config.controller/nightly-x86-lsb.conf
+@@ -26,7 +26,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky-lsb'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemux86', 'genericx86', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly-x86.conf b/buildset-config.controller/nightly-x86.conf
+index e965c8f..a5c9f0a 100644
+--- a/buildset-config.controller/nightly-x86.conf
++++ b/buildset-config.controller/nightly-x86.conf
+@@ -30,7 +30,7 @@ steps: [{'SetDest':{}},
+         {'RunESDKSanityTests': {'images': 'core-image-minimal core-image-sato'}},
+         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['qemux86', 'genericx86', 'ipk', 'rpm', 'deb', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.controller/nightly.conf b/buildset-config.controller/nightly.conf
+index 2734bf7..2ac83dc 100644
+--- a/buildset-config.controller/nightly.conf
++++ b/buildset-config.controller/nightly.conf
+@@ -152,7 +152,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'adt-installer'}},
+         {'PublishArtifacts': {'artifacts': ['adt-installer-QA', 'adtrepo-dev']}},
+         {'BitbakeSelftest': {}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'TriggerBuilds': {'schedulerName': 'buildhistory',
+                            'waitForFinish': 'False',
+diff --git a/buildset-config.controller/poky-tiny.conf b/buildset-config.controller/poky-tiny.conf
+index 291e031..1ddbf6f 100644
+--- a/buildset-config.controller/poky-tiny.conf
++++ b/buildset-config.controller/poky-tiny.conf
+@@ -12,7 +12,7 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['tiny', 'md5sums']}}]
+ 
+diff --git a/buildset-config.examples/awesomefirmware.conf b/buildset-config.examples/awesomefirmware.conf
+index d4bb436..7f51027 100644
+--- a/buildset-config.examples/awesomefirmware.conf
++++ b/buildset-config.examples/awesomefirmware.conf
+@@ -29,7 +29,7 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-minimal'}},
+         {'CreateGPLTarball': {}},
+         {'PublishArtifacts': {'artifacts': ['genericx86-64']}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'SendQAEmail': {}},
+diff --git a/buildset-config.freescale/nightly-fsl-arm-lsb.conf b/buildset-config.freescale/nightly-fsl-arm-lsb.conf
+index fd4178c..83bb110 100644
+--- a/buildset-config.freescale/nightly-fsl-arm-lsb.conf
++++ b/buildset-config.freescale/nightly-fsl-arm-lsb.conf
+@@ -35,7 +35,7 @@ steps: [{'SetDest':{}},
+                             'devkernel' : False}},
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk LSB-QT-IMAGES'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['imx53qsb', 'imx6qsabresd', 'imx28evk', 'md5sums']}}]
+diff --git a/buildset-config.freescale/nightly-fsl-arm.conf b/buildset-config.freescale/nightly-fsl-arm.conf
+index 16b88c6..ae99fb2 100644
+--- a/buildset-config.freescale/nightly-fsl-arm.conf
++++ b/buildset-config.freescale/nightly-fsl-arm.conf
+@@ -40,7 +40,7 @@ steps: [{'SetDest':{}},
+                             'devkernel' : False}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['imx53qsb', 'imx6qsabresd', 'imx28evk', 'ipk', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.freescale/nightly-fsl-ppc-lsb.conf b/buildset-config.freescale/nightly-fsl-ppc-lsb.conf
+index 2b6defc..5db62cd 100644
+--- a/buildset-config.freescale/nightly-fsl-ppc-lsb.conf
++++ b/buildset-config.freescale/nightly-fsl-ppc-lsb.conf
+@@ -25,7 +25,7 @@ steps: [{'SetDest':{}},
+         {'GetBitbakeVersion': {}},        
+         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk LSB-QT-IMAGES'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['p1022ds', 'md5sums']}}]
+diff --git a/buildset-config.freescale/nightly-fsl-ppc.conf b/buildset-config.freescale/nightly-fsl-ppc.conf
+index eaf2e8d..ba4250c 100644
+--- a/buildset-config.freescale/nightly-fsl-ppc.conf
++++ b/buildset-config.freescale/nightly-fsl-ppc.conf
+@@ -26,7 +26,7 @@ steps: [{'SetDest':{}},
+         {'BuildToolchainImages': {}},
+         {'BuildImages': {'images': '-c populate_sdk_ext core-image-minimal'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'UploadToasterEventlog': {}},
+         {'PublishArtifacts': {'artifacts': ['p1022ds', 'ipk', 'toolchain', 'md5sums']}}]
+diff --git a/buildset-config.iot-devkit/iot-devkit.conf b/buildset-config.iot-devkit/iot-devkit.conf
+index bd4c024..795c805 100644
+--- a/buildset-config.iot-devkit/iot-devkit.conf
++++ b/buildset-config.iot-devkit/iot-devkit.conf
+@@ -29,6 +29,6 @@ steps: [{'SetDest':{}},
+           'meta-openembedded/meta-filesystems']}},
+         {'BuildImages': {'images': 'iot-devkit-image iot-devkit-prof-image iot-devkit-prof-dev-image'}},
+         {'PublishLayerTarballs':{}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'PublishArtifacts': {'artifacts': ['quark', 'ipk', 'md5sums']}}]
+diff --git a/buildset-config.kernel/kernel-arm-lsb.conf b/buildset-config.kernel/kernel-arm-lsb.conf
+index b317085..95536b9 100644
+--- a/buildset-config.kernel/kernel-arm-lsb.conf
++++ b/buildset-config.kernel/kernel-arm-lsb.conf
+@@ -55,6 +55,6 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+ 
+diff --git a/buildset-config.kernel/kernel-arm.conf b/buildset-config.kernel/kernel-arm.conf
+index d4b6400..16022c6 100644
+--- a/buildset-config.kernel/kernel-arm.conf
++++ b/buildset-config.kernel/kernel-arm.conf
+@@ -49,6 +49,6 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+ 
+diff --git a/buildset-config.kernel/kernel-arm64.conf b/buildset-config.kernel/kernel-arm64.conf
+index dd4a10b..eb4e868 100644
+--- a/buildset-config.kernel/kernel-arm64.conf
++++ b/buildset-config.kernel/kernel-arm64.conf
+@@ -49,6 +49,6 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+ 
+diff --git a/buildset-config.kernel/kernel-mips-lsb.conf b/buildset-config.kernel/kernel-mips-lsb.conf
+index fe703fc..3f39bbf 100644
+--- a/buildset-config.kernel/kernel-mips-lsb.conf
++++ b/buildset-config.kernel/kernel-mips-lsb.conf
+@@ -55,5 +55,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-mips.conf b/buildset-config.kernel/kernel-mips.conf
+index 679dd61..ffecf9e 100644
+--- a/buildset-config.kernel/kernel-mips.conf
++++ b/buildset-config.kernel/kernel-mips.conf
+@@ -49,5 +49,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-ppc-lsb.conf b/buildset-config.kernel/kernel-ppc-lsb.conf
+index d0017c8..3477b91 100644
+--- a/buildset-config.kernel/kernel-ppc-lsb.conf
++++ b/buildset-config.kernel/kernel-ppc-lsb.conf
+@@ -55,5 +55,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-ppc.conf b/buildset-config.kernel/kernel-ppc.conf
+index 7b1b212..6facc69 100644
+--- a/buildset-config.kernel/kernel-ppc.conf
++++ b/buildset-config.kernel/kernel-ppc.conf
+@@ -49,5 +49,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-x86-64-lsb.conf b/buildset-config.kernel/kernel-x86-64-lsb.conf
+index af7eb26..996efdd 100644
+--- a/buildset-config.kernel/kernel-x86-64-lsb.conf
++++ b/buildset-config.kernel/kernel-x86-64-lsb.conf
+@@ -55,5 +55,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-x86-64.conf b/buildset-config.kernel/kernel-x86-64.conf
+index 1edc34c..f11512d 100644
+--- a/buildset-config.kernel/kernel-x86-64.conf
++++ b/buildset-config.kernel/kernel-x86-64.conf
+@@ -49,5 +49,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-x86-lsb.conf b/buildset-config.kernel/kernel-x86-lsb.conf
+index 0d456fb..e3631c4 100644
+--- a/buildset-config.kernel/kernel-x86-lsb.conf
++++ b/buildset-config.kernel/kernel-x86-lsb.conf
+@@ -55,5 +55,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/kernel-x86.conf b/buildset-config.kernel/kernel-x86.conf
+index b830449..17d1e30 100644
+--- a/buildset-config.kernel/kernel-x86.conf
++++ b/buildset-config.kernel/kernel-x86.conf
+@@ -49,5 +49,5 @@ steps: [{'SetDest':{}},
+         {'SyncPersistDB' : {'distro' : 'poky'}},
+         {'BuildImages': {'images': 'core-image-kernel-dev'}},
+         {'RunSanityTests': {'images': 'core-image-kernel-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}]
+diff --git a/buildset-config.kernel/nightly-kernel.conf b/buildset-config.kernel/nightly-kernel.conf
+index 36b5c84..981f7d8 100644
+--- a/buildset-config.kernel/nightly-kernel.conf
++++ b/buildset-config.kernel/nightly-kernel.conf
+@@ -58,6 +58,6 @@ steps: [{'SetDest':{}},
+                            'kernel-x86-64': {}, 'kernel-x86-64-lsb': {},
+                            'kernel-x86': {}, 'kernel-x86-lsb': {}, 'kernel-arm64': {}},
+                            'schedulerNames_nowait' : {}}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'SendQAEmail': {}}]
+diff --git a/buildset-config.tizen/nightly-tizen-ivi.conf b/buildset-config.tizen/nightly-tizen-ivi.conf
+index 7fc5b35..f1735a6 100644
+--- a/buildset-config.tizen/nightly-tizen-ivi.conf
++++ b/buildset-config.tizen/nightly-tizen-ivi.conf
+@@ -19,6 +19,6 @@ steps: [{'SetDest':{}},
+               'meta-tizen/meta-tizen-common-share', 'meta-tizen/meta-tizen-common-devtools', \
+               'meta-tizen/meta-tizen-common-demo', 'meta-tizen/meta-tizen-ivi']}},
+         {'BuildImages': {'images': 'tizen-ivi-Modello-image'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}
+         ]
+diff --git a/buildset-config.tizen/nightly-tizen.conf b/buildset-config.tizen/nightly-tizen.conf
+index 288d866..c969bb9 100644
+--- a/buildset-config.tizen/nightly-tizen.conf
++++ b/buildset-config.tizen/nightly-tizen.conf
+@@ -18,7 +18,7 @@ steps: [{'SetDest':{}},
+               'meta-tizen/meta-tizen-common-share', 'meta-tizen/meta-tizen-common-devtools', \
+               'meta-tizen/meta-tizen-common-demo']}},
+         {'BuildImages': {'images': 'tizen-common-core-image-crosswalk-dev'}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}}
+         ]
+ 
+diff --git a/buildset-config.tizen/nightly.conf b/buildset-config.tizen/nightly.conf
+index f097b22..3abefab 100644
+--- a/buildset-config.tizen/nightly.conf
++++ b/buildset-config.tizen/nightly.conf
+@@ -42,7 +42,7 @@ steps: [{'SetDest':{}},
+         {'TriggerBuilds': {'schedulerName': 'main-build', 'waitForFinish': 'True',
+                            'schedulerNames': {'nightly-tizen-ivi': {}, 'nightly-tizen': {}},
+                            'schedulerNames_nowait' : {}}},
+-        {'DownloadBitbakeErrorReports': {}},
++        {'DownloadErrorReports': {}},
+         {'SendErrorReport': {}},
+         {'TriggerBuilds': {'schedulerName': 'buildhistory',
+                            'waitForFinish': 'False',
 -- 
 2.1.4
 
