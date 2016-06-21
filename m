@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26EA9E009F4; Tue, 21 Jun 2016 16:08:12 -0700 (PDT)
+	id DE738E00B52; Tue, 21 Jun 2016 16:08:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBB9CE009CB
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A93A7E00AD2
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 16:08:13 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:12 -0700
+	by fmsmga103.fm.intel.com with ESMTP; 21 Jun 2016 16:08:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631834"
+X-IronPort-AV: E=Sophos;i="5.26,507,1459839600"; d="scan'208";a="1002631859"
 Received: from alimonb-mobl1.zpn.intel.com ([10.219.5.159])
-	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:11 -0700
+	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2016 16:08:13 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 21 Jun 2016 18:07:43 -0500
-Message-Id: <1466550472-1365-7-git-send-email-anibal.limon@linux.intel.com>
+Date: Tue, 21 Jun 2016 18:07:45 -0500
+Message-Id: <1466550472-1365-9-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: joshua.g.lock@intel.com
-Subject: [[yocto-autobuilder][PATCHv2] 06/15] autobuilder/buildsteps: Add DownloadBitbakeErrorReports step
+Subject: [[yocto-autobuilder][PATCHv2] 08/15] lib/buildsteps.py: BitbakeShellCommand add support for error_type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,68 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 23:08:12 -0000
+X-List-Received-Date: Tue, 21 Jun 2016 23:08:14 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Now the worker is responsible of sending error reports to
-ERW so in order to don't duplicate functionality add this step
-for download bitbake error reports generated in master AB.
+When generate bitbake error reports two type of errors could be happen
+a bitbake generic one or when is running bitbake-selftest.
+
+Also split the command removing environment only leave the bitbake
+command and it's arguments.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- .../buildsteps/DownloadBitbakeErrorReports.py      | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
+ lib/python2.7/site-packages/autobuilder/lib/buildsteps.py | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
-new file mode 100644
-index 0000000..fe20247
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DownloadBitbakeErrorReports.py
-@@ -0,0 +1,42 @@
-+'''
-+Created on Jan 1, 2016
+diff --git a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+index 9f63a2b..0977518 100644
+--- a/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
++++ b/lib/python2.7/site-packages/autobuilder/lib/buildsteps.py
+@@ -126,7 +126,13 @@ class BitbakeShellCommand(ShellCommand):
+ 
+         failure = {}
+         failure['package'] = "bitbake-%s" % vrs['BB_VERSION']
+-        failure['task'] = self.command
++        if 'bitbake-selftest' in self.command:
++            report['error_type'] = 'B'
++            failure['task'] = self.command[self.command.find('bitbake-selftest'):]
++        else:
++            report['error_type'] = 'C'
++            failure['task'] = self.command[self.command.find('bitbake'):]
 +
-+__author__ = "Anibal (alimon) Limon"
-+__copyright__ = "Copyright 2016, Intel Corp."
-+__credits__ = ["Anibal Limon"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Anibal Limon"
-+__email__ = "anibal.limon@linux.intel.com"
-+'''
-+
-+import os
-+from buildbot.steps.transfer import DirectoryDownload
-+from buildbot.process.buildstep import SKIPPED
-+
-+from lib.ABTools import get_error_report_worker_dir, \
-+        get_error_report_controller_dir
-+
-+class DownloadBitbakeErrorReports(DirectoryDownload):
-+    """
-+        Transfer from master to slave the error reports when bitbake
-+        fails.
-+    """
-+    name = "DownloadBitbakeErrorReports"
-+
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        super(DownloadBitbakeErrorReports, self).__init__(
-+                "", "")
-+
-+    def start(self):
-+        buildername = self.getProperty('buildername')
-+        buildnumber = self.getProperty('buildnumber')
-+
-+        self.mastersrc = get_error_report_controller_dir(buildername,
-+                buildnumber)
-+        self.slavedest = get_error_report_worker_dir(buildername)
-+
-+        if not os.path.exists(self.mastersrc):
-+            return SKIPPED
-+
-+        super(DownloadBitbakeErrorReports, self).start()
+         failure['log'] = "\n".join(log)
+ 
+         report['failures'] = [failure]
 -- 
 2.1.4
 
