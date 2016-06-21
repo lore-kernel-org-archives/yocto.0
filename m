@@ -1,41 +1,42 @@
-Return-Path: <sridhar.pitchai@outlook.com>
+Return-Path: <damir.anicic@psi.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B589CE00B48; Tue, 21 Jun 2016 07:22:00 -0700 (PDT)
+	id 19E9AE00984; Tue, 21 Jun 2016 07:29:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_20,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sridhar.pitchai[at]outlook.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [65.55.116.84 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [82.130.75.186 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1428]
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 Jun 2016 07:21:36 PDT
-Received: from BLU004-OMC3S9.hotmail.com (blu004-omc3s9.hotmail.com
-	[65.55.116.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 328B8E009A0
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 07:21:36 -0700 (PDT)
-Received: from BLU402-EAS169 ([65.55.116.72]) by BLU004-OMC3S9.hotmail.com
-	over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
-	Tue, 21 Jun 2016 07:20:34 -0700
-X-TMN: [8QUiMJqa0L5XMhAIh09I6wrKuhCCcjnv]
-X-Originating-Email: [sridhar.pitchai@outlook.com]
-Message-ID: <BLU402-EAS1698ACB5C59CFDA811114DAEB2B0@phx.gbl>
-Date: Tue, 21 Jun 2016 14:20:34 +0000
-From: Sridhar Pitchai <sridhar.pitchai@outlook.com>
-To: <yocto@yoctoproject.org>
-In-Reply-To: <BLU168-W471A7D6D8ADF364C276C1FEB2B0@phx.gbl>
-References: <BLU168-W471A7D6D8ADF364C276C1FEB2B0@phx.gbl>
+Received: from edge10.ethz.ch (edge10.ethz.ch [82.130.75.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E3A2E00948
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 07:29:07 -0700 (PDT)
+Received: from CAS20.d.ethz.ch (172.31.51.110) by edge10.ethz.ch
+	(82.130.75.186) with Microsoft SMTP Server (TLS) id 14.3.266.1;
+	Tue, 21 Jun 2016 16:29:02 +0200
+Received: from MBX214.d.ethz.ch ([fe80::5c68:3688:18d4:cbf7]) by
+	CAS20.d.ethz.ch ([fe80::2cd8:4907:7776:c56d%10]) with mapi id
+	14.03.0266.001; Tue, 21 Jun 2016 16:29:05 +0200
+From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto 2.1 perl problem
+Thread-Index: AdHLvNR7cxzv77rzRP67xRQlJO9sav//8I0AgAAm3zY=
+Date: Tue, 21 Jun 2016 14:29:05 +0000
+Message-ID: <DB23C91B06C303459B24BC3208AF424A20F4CFB7@MBX214.d.ethz.ch>
+References: <DB23C91B06C303459B24BC3208AF424A20F4CF40@MBX214.d.ethz.ch>,
+	<a2cff31a-909e-988c-562b-29289f8c79c9@linux.intel.com>
+In-Reply-To: <a2cff31a-909e-988c-562b-29289f8c79c9@linux.intel.com>
+Accept-Language: en-US, de-DE, de-CH
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [129.129.145.249]
 MIME-Version: 1.0
-X-Mailer: Outlook for iOS and Android
-X-OriginalArrivalTime: 21 Jun 2016 14:20:34.0956 (UTC)
-	FILETIME=[136244C0:01D1CBC8]
-Subject: meta-go
+Subject: Re: Yocto 2.1 perl problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,70 +48,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 14:22:00 -0000
+X-List-Received-Date: Tue, 21 Jun 2016 14:29:12 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="----=_Part_14053_715017326.1466518834237"
+	boundary="_000_DB23C91B06C303459B24BC3208AF424A20F4CFB7MBX214dethzch_"
 
-------=_Part_14053_715017326.1466518834237
-Content-Type: text/plain; charset="UTF-8"
+--_000_DB23C91B06C303459B24BC3208AF424A20F4CFB7MBX214dethzch_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Ah, I have even deleted everything (repo, downloads, build dir)
+and started from scratch.:
+  git clone -b krogoth git://git.yoctoproject.org/poky.git
+  add my meta-gfa/*
+  source oe-init-build-env
+  adjust local.conf + bblayers.conf
+  bitbake core-image-psi-gfa-cmd --continue
 
-Hi,I am trying to write a recipe to compile a go program. i am using meta-g=
-o for go compiler.=C2=A0
-getting the following error
-"=C2=A0# runtime/cgo| ../../../../../../../../../sysroots/x86_64-linux/usr/=
-lib/x86_64-openswitch-linux/go/src/runtime/cgo/cgo.go:54:19: fatal error: e=
-rrno.h: No such file or directory
-"
-here is my recipe.=C2=A0
-"
-inherit goDEPENDS =3D " nanomsg linux-libc-headers "
-FILESEXTRAPATHS_prepend =3D "${THISDIR}:"SRC_URI +=3D "file://${PV}/anchor.=
-tgz"S =3D "${WORKDIR}/anchor"
+simple everything from scratch:
+
+and everything builds except:
+
+ERROR: perl-5.22.1-r0 do_package: objcopy failed with exit code 256 (cmd wa=
+s 'powerpc64-poky-linux-objcopy' --only-keep-debug '/home/anicic/yocto-2.1-=
+all/build/ppc64e6500/tmp/work/ppc64e6500-poky-linux/perl/5.22.1-r0/package/=
+usr/lib64/perl/ptest/generate_uudmap' '/home/anicic/yocto-2.1-all/build/ppc=
+64e6500/tmp/work/ppc64e6500-poky-linux/perl/5.22.1-r0/package/usr/lib64/per=
+l/ptest/.debug/generate_uudmap'):
+powerpc64-poky-linux-objcopy: Unable to recognise the format of the input f=
+ile `/home/anicic/yocto-2.1-all/build/ppc64e6500/tmp/work/ppc64e6500-poky-l=
+inux/perl/5.22.1-r0/package/usr/lib64/perl/ptest/generate_uudmap'
+ERROR: perl-5.22.1-r0 do_package: Function failed: split_and_strip_files
+ERROR: Logfile of failure stored in: /home/anicic/yocto-2.1-all/build/ppc64=
+e6500/tmp/work/ppc64e6500-poky-linux/perl/5.22.1-r0/temp/log.do_package.423=
+7
+ERROR: Task 1691 (/home/anicic/yocto-2.1-all/poky/meta/recipes-devtools/per=
+l/perl_5.22.1.bb, do_package) failed with exit code '1'
+
+Any suggestions?
 
 
-do_compile() {=C2=A0 cd ${S}/reltools && make -I${S}/include}
-"
-I am getting error for missing header files. Can someone help me address it=
-.
-Thanks,Sridhar
-
- =09=09 =09   =09=09 =20
-
-
-=09
-
-------=_Part_14053_715017326.1466518834237
-Content-Type: text/html; charset="utf-8"
+--_000_DB23C91B06C303459B24BC3208AF424A20F4CFB7MBX214dethzch_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+</head>
+<body ocsi=3D"0" fpstyle=3D"1" bgcolor=3D"#FFFFFF">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Ah, I have even deleted everything (repo, downloads, build dir)<br>
+and started from scratch.:<br>
+&nbsp; git clone -b krogoth git://git.yoctoproject.org/poky.git <br>
+&nbsp; add my meta-gfa/*<br>
+&nbsp; source oe-init-build-env<br>
+&nbsp; adjust local.conf &#43; bblayers.conf<br>
+&nbsp; bitbake core-image-psi-gfa-cmd --continue<br>
+<br>
+simple everything from scratch:<br>
+<br>
+and everything builds except:<br>
+<br>
+ERROR: perl-5.22.1-r0 do_package: objcopy failed with exit code 256 (cmd wa=
+s 'powerpc64-poky-linux-objcopy' --only-keep-debug '/home/anicic/yocto-2.1-=
+all/build/ppc64e6500/tmp/work/ppc64e6500-poky-linux/perl/5.22.1-r0/package/=
+usr/lib64/perl/ptest/generate_uudmap'
+ '/home/anicic/yocto-2.1-all/build/ppc64e6500/tmp/work/ppc64e6500-poky-linu=
+x/perl/5.22.1-r0/package/usr/lib64/perl/ptest/.debug/generate_uudmap'):<br>
+powerpc64-poky-linux-objcopy: Unable to recognise the format of the input f=
+ile `/home/anicic/yocto-2.1-all/build/ppc64e6500/tmp/work/ppc64e6500-poky-l=
+inux/perl/5.22.1-r0/package/usr/lib64/perl/ptest/generate_uudmap'<br>
+ERROR: perl-5.22.1-r0 do_package: Function failed: split_and_strip_files<br=
+>
+ERROR: Logfile of failure stored in: /home/anicic/yocto-2.1-all/build/ppc64=
+e6500/tmp/work/ppc64e6500-poky-linux/perl/5.22.1-r0/temp/log.do_package.423=
+7<br>
+ERROR: Task 1691 (/home/anicic/yocto-2.1-all/poky/meta/recipes-devtools/per=
+l/perl_5.22.1.bb, do_package) failed with exit code '1'<br>
+<br>
+Any suggestions?<br>
+<br>
+</div>
+</body>
+</html>
 
-=09=09<div id=3D"compose" contenteditable=3D"true" style=3D"padding-left: 2=
-0px; padding-right: 20px; padding-bottom: 8px;"><br></div><div class=3D"gma=
-il_quote"><style><!--.hmmessage P{margin:0px;padding:0px}body.hmmessage{fon=
-t-size: 12pt;font-family:Calibri}--></style><div dir=3D"ltr">Hi,<div>I am t=
-rying to write a recipe to compile a go program. i am using meta-go for go =
-compiler.&nbsp;</div><div><br></div><div>getting the following error</div><=
-div><br></div><div>"</div><div><div>&nbsp;# runtime/cgo</div><div>| ../../.=
-./../../../../../../sysroots/x86_64-linux/usr/lib/x86_64-openswitch-linux/g=
-o/src/runtime/cgo/cgo.go:54:19: fatal error: errno.h: No such file or direc=
-tory</div></div><div><br></div><div>"</div><div><br></div><div>here is my r=
-ecipe.&nbsp;</div><div><br></div><div>"</div><div><div><br></div><div>inher=
-it go</div><div>DEPENDS =3D " nanomsg linux-libc-headers "</div><div><br></=
-div><div>FILESEXTRAPATHS_prepend =3D "${THISDIR}:"</div><div>SRC_URI +=3D "=
-file://${PV}/anchor.tgz"</div><div>S =3D "${WORKDIR}/anchor"</div><div><br>=
-</div><div><br></div><div><br></div><div>do_compile() {</div><div><span sty=
-le=3D"font-size: 12pt;">&nbsp; cd ${S}/reltools &amp;&amp; make -I${S}/incl=
-ude</span></div><div>}</div><div><br></div><div><span style=3D"font-size: 1=
-2pt;">"</span></div></div><div><span style=3D"font-size: 12pt;"><br></span>=
-</div><div><span style=3D"font-size: 12pt;">I am getting error for missing =
-header files. Can someone help me address it.</span></div><div><span style=
-=3D"font-size: 12pt;"><br></span></div><div><span style=3D"font-size: 12pt;=
-">Thanks,</span></div><div><span style=3D"font-size: 12pt;">Sridhar</span><=
-/div><div><span style=3D"font-size: 12pt;"><br></span></div><div><span styl=
-e=3D"font-size: 12pt;"><br></span></div> =09=09 =09   =09=09  </div><br><br=
-></div>
-=09
-
-------=_Part_14053_715017326.1466518834237--
+--_000_DB23C91B06C303459B24BC3208AF424A20F4CFB7MBX214dethzch_--
