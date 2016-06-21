@@ -1,60 +1,32 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DCE6AE00708; Tue, 21 Jun 2016 00:02:13 -0700 (PDT)
+	id CDD00E007E4; Tue, 21 Jun 2016 01:33:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [23.83.214.10 listed in list.dnswl.org]
-	*  0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [213.46.252.136 listed in dnsbl.sorbs.net]
-Received: from gt-egress-002.mailchannels.net
-	(barb.maple.relay.mailchannels.net [23.83.214.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9542BE004F1
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 00:02:09 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 9F982A09A5;
-	Tue, 21 Jun 2016 06:54:03 +0000 (UTC)
-Received: from hp181.hostpapa.com
-	(ip-10-123-105-117.us-west-2.compute.internal [10.123.105.117])
-	by relay.mailchannels.net (Postfix) with ESMTPA id B644FA01D1;
-	Tue, 21 Jun 2016 06:54:02 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.135.9.54])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.6.14); Tue, 21 Jun 2016 06:54:03 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1466492043074:2604434401
-X-MC-Ingress-Time: 1466492043073
-Received: from [213.46.252.136] (port=58104 helo=[192.168.227.30])
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1bFFZQ-001mYR-2M; Tue, 21 Jun 2016 08:54:01 +0200
-Message-ID: <1466492027.2196.0.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: Bill Randle <william.c.randle@intel.com>, yocto@yoctoproject.org
-Date: Tue, 21 Jun 2016 08:53:47 +0200
-In-Reply-To: <1466434811-32660-1-git-send-email-william.c.randle@intel.com>
-References: <1466434811-32660-1-git-send-email-william.c.randle@intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Subject: Re: [yocto-autobuilder][PATCH] nightly-world-lsb.conf: skip Publish step so artifacts don't overwrite nightly-world ones
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3D3EE006D8
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 01:33:27 -0700 (PDT)
+To: yocto@yoctoproject.org
+MIME-Version: 1.0
+X-KeepSent: BE39B056:C95DF73C-C1257FD9:002D81E4;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OFBE39B056.C95DF73C-ONC1257FD9.002D81E4-C1257FD9.002F013D@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Tue, 21 Jun 2016 10:33:25 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 21.06.2016 10:33:30,
+	Serialize complete at 21.06.2016 10:33:30
+Subject: installation of kernel modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -63,50 +35,201 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 07:02:14 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 21 Jun 2016 08:33:31 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 002F013AC1257FD9_="
+
+--=_alternative 002F013AC1257FD9_=
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2016-06-20 at 08:00 -0700, Bill Randle wrote:
-> Signed-off-by: Bill Randle <william.c.randle@intel.com>
-> ---
-> =C2=A0buildset-config.controller/nightly-world-lsb.conf | 5 +++--
-> =C2=A01 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/buildset-config.controller/nightly-world-lsb.conf
-> b/buildset-config.controller/nightly-world-lsb.conf
-> index 4c9994c..f755920 100644
-> --- a/buildset-config.controller/nightly-world-lsb.conf
-> +++ b/buildset-config.controller/nightly-world-lsb.conf
-> @@ -21,6 +21,7 @@ steps: [{'SetDest':{}},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0'distro': 'poky-lsb'}},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'CreateBBLayersC=
-onf': {'buildprovider' : 'yocto'}},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'BuildImages': {=
-'images': 'world'}},
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'SendErrorReport': {}=
-},
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'PublishArtifacts': {=
-'artifacts': ['ipk', 'rpm', 'deb']}}]
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'SendErrorReport': {}=
-}]
-> +# skip Publish step so artifacts don't overwrite nightly-world ones
-> +#=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{'PublishArtifacts': =
-{'artifacts': ['ipk', 'rpm', 'deb']}}]
-> =C2=A0
+Hej
 
-It would be best here to just remove the lines rather than comment them
-out. Please resubmit with the lines removed.
+I have a problem when running do=5Frootfs() with some own kernel drivers=20
+included.
 
-> --=C2=A0
-> 2.5.5
->=20
+My kernel recipe builds some easy GPIO drivers.
+
+# They come as one package:
+myKernelModules:
+        -> a.ko
+        -> b.ko
+        -> c.ko
+
+# I build a recipe which creates:
+myKernelModules.bb
+        -> packages-split/myKernelModules
+        -> packages-split/kernel-module-a
+        -> packages-split/kernel-module-b
+        -> packages-split/kernel-module-c
+        -> packages-split/myKernelModules-.....
+
+# I try to pack/install my Module by adding to layer.conf:
+=20
+IMAGE=5FINSTALL=5Fappend=3D" myKernelModules"=20
+
+When I try to build the rootfs I got that error:
+
+The following packages have unmet dependencies:
+ myKernelModules : Depends: kernel-module-a but it is not installable
+               Depends: kernel-module-b but it is not installable
+               Depends: kernel-module-c but it is not installable
+E: Unable to correct problems, you have held broken packages.
+
+Any idea how to fix this problem?
+
+Regards!
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
 
---=20
-Beth 'pidge' Flanagan <pidge@toganlabs.com>
-toganlabs.com
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
 
 
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 002F013AC1257FD9_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I have a problem when running do=5Fr=
+ootfs()
+with some own kernel drivers included.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">My kernel recipe builds some easy GP=
+IO
+drivers.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif"># They come as one package:</font>
+<br><font size=3D2 face=3D"sans-serif">myKernelModules:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+a.ko</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+b.ko</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+c.ko</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif"># I build a recipe which creates:</f=
+ont>
+<br><font size=3D2 face=3D"sans-serif">myKernelModules.bb</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+packages-split/myKernelModules</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+packages-split/kernel-module-a</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+packages-split/kernel-module-b</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+packages-split/kernel-module-c</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; -&gt;
+packages-split/myKernelModules-.....</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif"># I try to pack/install my Module by
+adding to layer.conf:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; </font>
+<br><font size=3D2 face=3D"sans-serif">IMAGE=5FINSTALL=5Fappend=3D&quot; my=
+KernelModules&quot;
+&nbsp; &nbsp; &nbsp; &nbsp;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">When I try to build the rootfs I got
+that error:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">The following packages have unmet de=
+pendencies:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp;myKernelModules : Depends: ker=
+nel-module-a
+but it is not installable</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp;
+&nbsp; &nbsp;Depends: kernel-module-b but it is not installable</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp;
+&nbsp; &nbsp;Depends: kernel-module-c but it is not installable</font>
+<br><font size=3D2 face=3D"sans-serif">E: Unable to correct problems, you h=
+ave
+held broken packages.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Any idea how to fix this problem?</f=
+ont>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards!<br>
+<br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 002F013AC1257FD9_=--
