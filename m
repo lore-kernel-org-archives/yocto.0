@@ -1,38 +1,64 @@
-Return-Path: <JSchluechtermann@FORCEAmerica.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42064E009B8; Tue, 21 Jun 2016 12:38:17 -0700 (PDT)
+	id CC867E009C9; Tue, 21 Jun 2016 15:13:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [64.198.112.134 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 Jun 2016 12:38:13 PDT
-Received: from webmail.forceamerica.com (webmail.forceamerica.com
-	[64.198.112.134])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87601E009A0
-	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 12:38:13 -0700 (PDT)
-Received: from Corp-EX10.forceamerica.com ([10.100.101.44]) by
-	Corp-EX10.forceamerica.com ([10.100.101.44]) with mapi id
-	14.03.0123.003; Tue, 21 Jun 2016 14:37:06 -0500
-From: John Schluechtermann <JSchluechtermann@FORCEAmerica.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Issues with Jethro qemu-native package build
-Thread-Index: AdHL8y3GswHkNwd+RLWcXqE7IDuD+g==
-Date: Tue, 21 Jun 2016 19:37:06 +0000
-Message-ID: <28FBBE02F609FB4B8B4F047102C7B7360144C767FE@Corp-EX10.forceamerica.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.8.41]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CD3BE009AC
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 15:13:34 -0700 (PDT)
+Received: by mail-qk0-f180.google.com with SMTP id p10so41524255qke.3
+	for <yocto@yoctoproject.org>; Tue, 21 Jun 2016 15:13:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=/2EO9dAi8SinqyCNjFqYoCqkXlBAPC9zHs4z9O3edJo=;
+	b=iimt54D/H+QFDS+P9rmvO6NW4hI10QIfFzXV4u4x5KUyLqV6FKQ8EQImZS4P785FZn
+	qE9GnRRz+JZWBe89npV960MGJ9pdg1zkQamnd/DQ2VEEbfknQ8sym/YAYo6DY1LdqosH
+	ajirREu8I5gIuK3+2GPeOxUv9Lphr8ldT5mqofRDTw8reAm/mmN3L+UIiW8BTYHr9ywC
+	SST1to6N+g8Ms/K65YmCgD4chtPovLahfrPUllwQDmxPpNRNgaDJOJvriISEjvtaGfsw
+	Mvh4/6R3Imp74B5Kiju3dt8qh+5jjkRNWnBFQdbcP4wvpjk0C5D2bEIQzx4O2n1BalW8
+	Vyqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=/2EO9dAi8SinqyCNjFqYoCqkXlBAPC9zHs4z9O3edJo=;
+	b=LA5xqfgUHR7YQhNk+xl8FKHrBqcLbvkqqq+2XqYjFG1S2rxh+w/Bw0LidCng0UDElB
+	NRPUoYtN2/ND3gW7XiRiHQ+IsCjZlb1O+ZkYUKMIXS5zMREq6vw6Q1HK9/IjfuqScSaV
+	hJxG1P2CfzjTSzSyKNtamYgnD4hNLEd8LRKpYk+id2jmwKh2oBfw7YRhqGxSBYKpL3Kh
+	BuNvj/Ke4RFrLdriqZfzurAGLloHuxRk2fM8AwF8zL9mJcshWVcyXdTfRZccZ/C8fFBN
+	tUYtvfSj5GshjBUha5c8Fbn9qfGRdAUaUNllUIl32gDXE1lj5TGzhpmO7nY8AXUYX826
+	9p0Q==
+X-Gm-Message-State: ALyK8tLYB/D8X4vPv+/r1Th0OXz7UIPCw7Hde7T/TCcbC5/8A9FJdj0s9hoCJktUZfwF/GOIa/rXWRI5sa3Mdg==
+X-Received: by 10.55.39.141 with SMTP id n135mr34305474qkn.149.1466547213231; 
+	Tue, 21 Jun 2016 15:13:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Issues with Jethro qemu-native package build
+Received: by 10.55.8.133 with HTTP; Tue, 21 Jun 2016 15:13:03 -0700 (PDT)
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377986CD4F67D@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377986CD4F67D@AZ-US1EXMB03.global.avaya.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 21 Jun 2016 15:13:03 -0700
+Message-ID: <CAMKF1srWbstzuXTk_pahxdoA=XcAZ9M_0rV2yF-n_RwhNoi-gw@mail.gmail.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Sharing header files between out-of-tree KLMs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,230 +70,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jun 2016 19:38:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_"
-
---_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 21 Jun 2016 22:13:39 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I have a custom image that I am trying to make the SDK for using bitbake (c=
-ustom image name) -c populate_sdk.  When performing this step the following=
- error is encountered.
+may be first one stages the header into build sysroot and otherone
+adds a DEPENDS on the first one and expects it in
+<sysroot>/usr/include/<yourmodule/
 
-| ERROR: User requested feature uuid
-|        configure was not able to find it.
-|        Install libuuid devel
-
-Can someone point me to what I do not have configured correctly so I can ge=
-t past this issue.
-
-The local.conf is as follows:
-MACHINE ??=3D "var-som-mx6"
-DL_DIR ?=3D "${BSPDIR}/downloads/"
-DISTRO ?=3D 'fsl-imx-x11'
-PACKAGE_CLASSES ?=3D "package_rpm"
-SDKMACHINE ?=3D "x86_64"
-EXTRA_IMAGE_FEATURES =3D " debug-tweaks tools-debug eclipse-debug"
-USER_CLASSES ?=3D "buildstats image-mklibs"
-PATCHRESOLVE =3D "noop"
-
-BB_DISKMON_DIRS =3D "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    STOPTASKS,/tmp,100M,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K \
-    ABORT,/tmp,10M,1K"
-PACKAGECONFIG_append_pn-qemu-native =3D " sdl"
-PACKAGECONFIG_append_pn-nativesdk-qemu =3D " sdl"
-ASSUME_PROVIDED +=3D "libsdl-native"
-
-CONF_VERSION =3D "1"
-
-ACCEPT_FSL_EULA =3D "1"
-IMAGE_INSTALL_append =3D " tcf-agent openssh-sftp-server "
-BUILD_LDFLAGS_prepend_pn-qemu-native =3D "-Wl,-rpath-link,/lib/x86_64-linux=
--gnu"
-
-
-
-Any help is greatly appreciated!
-
--          John
-______________________________________
-John Schluechtermann
-Senior Software Engineer
-
-FORCE America, Inc.
-1601 Airport Road | Waukesha, WI 53188
-Office: 262-513-2335 | Fax: 2628963510
-E-Mail: jschluechtermann@forceamerica.com
-www.forceamerica.com<http://www.forceamerica.com>
-100% Employee Owned
-
-The information contained in this message and any attachment may be proprie=
-tary, confidential, and privileged or subject to the work product doctrine =
-and thus protected from disclosure. If the reader of this message is not th=
-e intended recipient, or an employee or agent responsible for delivering th=
-is message to the intended recipient, you are hereby notified that any diss=
-emination, distribution or copying of this communication is strictly prohib=
-ited. If you have received this communication in error, please notify me im=
-mediately by replying to this message and deleting it and all copies and ba=
-ckups thereof. Thank you.
-
---_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Wed, Jun 8, 2016 at 6:11 AM, Vuille, Martin (Martin)
+<vmartin@avaya.com> wrote:
+> I am building two out-of-tree KLMs with separate yocto recipes.
 >
-<style>
-<!--
-@font-face
-	{font-family:Wingdings}
-@font-face
-	{font-family:Wingdings}
-@font-face
-	{font-family:Calibri}
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-a:link, span.MsoHyperlink
-	{color:blue;
-	text-decoration:underline}
-a:visited, span.MsoHyperlinkFollowed
-	{color:purple;
-	text-decoration:underline}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif"}
-span.EmailStyle17
-	{font-family:"Calibri","sans-serif";
-	color:windowtext}
-.MsoChpDefault
-	{font-family:"Calibri","sans-serif"}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
-div.WordSection1
-	{}
-ol
-	{margin-bottom:0in}
-ul
-	{margin-bottom:0in}
--->
-</style>
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I have a custom image that I am trying to make the S=
-DK for using bitbake (custom image name) &#8211;c populate_sdk.&nbsp; When =
-performing this step the following error is encountered.</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">| ERROR: User requested feature uuid</p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; configur=
-e was not able to find it.</p>
-<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Install =
-libuuid devel</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">Can someone point me to what I do not have configure=
-d correctly so I can get past this issue.</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">The local.conf is as follows:</p>
-<p class=3D"MsoNormal">MACHINE ??=3D &quot;var-som-mx6&quot;</p>
-<p class=3D"MsoNormal">DL_DIR ?=3D &quot;${BSPDIR}/downloads/&quot;</p>
-<p class=3D"MsoNormal">DISTRO ?=3D 'fsl-imx-x11'</p>
-<p class=3D"MsoNormal">PACKAGE_CLASSES ?=3D &quot;package_rpm&quot;</p>
-<p class=3D"MsoNormal">SDKMACHINE ?=3D &quot;x86_64&quot;</p>
-<p class=3D"MsoNormal">EXTRA_IMAGE_FEATURES =3D &quot; debug-tweaks tools-d=
-ebug eclipse-debug&quot;</p>
-<p class=3D"MsoNormal">USER_CLASSES ?=3D &quot;buildstats image-mklibs&quot=
-;</p>
-<p class=3D"MsoNormal">PATCHRESOLVE =3D &quot;noop&quot;</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">BB_DISKMON_DIRS =3D &quot;\</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${TMPDIR},1G,100K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${DL_DIR},1G,100K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,${SSTATE_DIR},1G,100K \=
-</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; STOPTASKS,/tmp,100M,100K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${TMPDIR},100M,1K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${DL_DIR},100M,1K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,${SSTATE_DIR},100M,1K \</p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ABORT,/tmp,10M,1K&quot;</p>
-<p class=3D"MsoNormal">PACKAGECONFIG_append_pn-qemu-native =3D &quot; sdl&q=
-uot;</p>
-<p class=3D"MsoNormal">PACKAGECONFIG_append_pn-nativesdk-qemu =3D &quot; sd=
-l&quot;</p>
-<p class=3D"MsoNormal">ASSUME_PROVIDED &#43;=3D &quot;libsdl-native&quot;</=
-p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">CONF_VERSION =3D &quot;1&quot;</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">ACCEPT_FSL_EULA =3D &quot;1&quot;</p>
-<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; tcf-agent openssh-sf=
-tp-server &quot;</p>
-<p class=3D"MsoNormal">BUILD_LDFLAGS_prepend_pn-qemu-native =3D &quot;-Wl,-=
-rpath-link,/lib/x86_64-linux-gnu&quot;</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal">&nbsp;</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
-imes New Roman&quot;,&quot;serif&quot;">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
-imes New Roman&quot;,&quot;serif&quot;">Any help is greatly appreciated!</s=
-pan></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in"><span style=3D"f=
-ont-size:12.0pt; font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><span style=3D"">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><span style=3D"font-size:12.0pt; font-family:&quot;Tim=
-es New Roman&quot;,&quot;serif&quot;">John</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt; font-family:&quot;T=
-imes New Roman&quot;,&quot;serif&quot;">___________________________________=
-___
-</span></p>
-<p class=3D"MsoNormal" style=3D""><b><span style=3D"font-size:10.0pt; font-=
-family:&quot;Arial&quot;,&quot;sans-serif&quot;">John Schluechtermann</span=
-></b><span style=3D"font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;"><br>
-Senior Software Engineer<br>
-<b><br>
-FORCE America, Inc.</b> <br>
-1601 Airport Road <b>| </b>Waukesha, WI 53188 <b><br>
-Office: </b>262-513-2335<b> | Fax: </b>2628963510<br>
-<b>E-Mail: </b>jschluechtermann@forceamerica.com<br>
-<a href=3D"http://www.forceamerica.com"><span style=3D"color:blue">www.forc=
-eamerica.com</span></a></span></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10.0pt; font-family:&quo=
-t;Arial&quot;,&quot;sans-serif&quot;">100% Employee Owned</span></i></p>
-<p class=3D"MsoNormal">&nbsp;</p>
-</div>
-<p class=3D"MsoNormal" style=3D"color:#0000FF"><span class=3D"auto-style1">=
-<em>The information contained in this message and any attachment may be pro=
-prietary, confidential, and privileged or subject to the work product doctr=
-ine and thus protected from disclosure.
- If the reader of this message is not the intended recipient, or an employe=
-e or agent responsible for delivering this message to the intended recipien=
-t, you are hereby notified that any dissemination, distribution or copying =
-of this communication is strictly
- prohibited. If you have received this communication in error, please notif=
-y me immediately by replying to this message and deleting it and all copies=
- and backups thereof. Thank you.</em></span>
-</p>
-</body>
-</html>
+>
+>
+> One of the KLMs depends on a data structure defined in the other one. At
+>
+> present the structure definition is simply duplicated in both KLMs=E2=80=
+=99 source.
+>
+> I would prefer to define it in a header that one KLM can export and the
+> other
+>
+> can #include.
+>
+>
+>
+> Is there a recommended/canonical way to do this?
+>
+>
+>
+> MV
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_28FBBE02F609FB4B8B4F047102C7B7360144C767FECorpEX10force_--
