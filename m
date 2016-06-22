@@ -1,45 +1,60 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 086C7E00AA2; Wed, 22 Jun 2016 11:25:16 -0700 (PDT)
+	id 49C4DE00AD8; Wed, 22 Jun 2016 12:18:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.56 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
-	[168.127.0.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CFD0E00A44
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 11:25:11 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,509,1459832400"; d="scan'208,217";a="78358098"
-Received: from rchexhcp2.fnc.net.local ([168.127.134.76])
-	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	22 Jun 2016 13:25:08 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP2.fnc.net.local ([168.127.134.76]) with mapi id 14.03.0294.000;
-	Wed, 22 Jun 2016 13:25:07 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Error applying patch - openvswitch
-Thread-Index: AdHMkw194/p20ixUTZulCrLDbODXUgAKtwWAAAmfCVAADFWDUA==
-Date: Wed, 22 Jun 2016 18:25:07 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600E27@RCHEXMBP1.fnc.net.local>
-References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
-	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com> 
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22408.001
-x-tm-as-result: No--50.867000-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1600E00A6D
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 12:18:40 -0700 (PDT)
+Received: by mail-it0-f53.google.com with SMTP id a5so108324899ita.1
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 12:18:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=v5UxrZ15jNpi5SwsLCLG8buz1NtRyljKFaIQqteCrhw=;
+	b=Ff47SafglvkR6r/2d65tfXI/kDH4T4Se2s+sQTuMMAeeZo7BKrfwjOrBP0YDpEwyJ2
+	chdHIrHXZkReBQ/OgwWZhUmVdTxb3z2bNi288XFwbUK/mi3B7DfPJk7q0NhRRU8hrQYE
+	WpruSe24If6tKnyz8HBHaJlfZ7TGUhB4GiCadPBoDeqlYHEMEzrpJ3b+GFrJO4Lal9jZ
+	YYb1O2ehRaoHSZ6SZibAXmPzK2Pun6Zva7aZkKMXGghnhqNs2aRQhv6/1rhY9M9xFUe5
+	/AiF96UvU0YPqNVotOfCnIgabNzstehIo1ZgXV679uafkcTDoMzO+8ffGExGq5sld70N
+	RuRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=v5UxrZ15jNpi5SwsLCLG8buz1NtRyljKFaIQqteCrhw=;
+	b=EcewyiJO+R2hBBGt6/xzbSX1JiXfLlDUWgo7WwI5TRPxvDWT+uLE4/D1eRWE33oNA2
+	4ie2oCzrC3xfphbivlL6tqIOYFuAsiQx7fG7NkQXsosfK8snnRBD9QND57cx9b69Eq85
+	hAle72DZcy1gWy7LU29Ou90jPbLT88LuHFCqPgpRy0zd37YoCpU4FyLbOeFoZRzfnNNz
+	tdIL8B4gmYi64QUn7v2uYE8vv7yn8jtjsFXuw0/kAwlZMCirkEmN6KlhTM8rihG8TLwN
+	jkZWjHuHmKHSdX5aHpxBxTmEQ+1uJ/iJpxZ/zGd9I6KQgjFtKSyANnxtseF4chvHbrWP
+	jmkw==
+X-Gm-Message-State: ALyK8tK+G45KVSSbKFmtGnrP2qpnxzkjQ0JgsZOAo/ZSn0JspI5VqlTwkPM4kw5il/naApu6/+ZhkeBRekWxvB0U
+X-Received: by 10.36.2.71 with SMTP id 68mr17241245itu.38.1466623118819; Wed,
+	22 Jun 2016 12:18:38 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Wed, 22 Jun 2016 12:18:19 -0700 (PDT)
+In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA600E27@RCHEXMBP1.fnc.net.local>
+References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
+	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
+	<111ACD726EC3464BAED310F5EA7BEBDA600E27@RCHEXMBP1.fnc.net.local>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 22 Jun 2016 20:18:19 +0100
+Message-ID: <CAJTo0La0PcLZtTbozgspB9nr6O81aq5rpjcHekiCQ2kZWYbAtg@mail.gmail.com>
+To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Error applying patch - openvswitch
 X-BeenThere: yocto@yoctoproject.org
@@ -53,187 +68,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 18:25:16 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA600E27RCHEXMBP1fncnetlo_"
+X-List-Received-Date: Wed, 22 Jun 2016 19:18:43 -0000
+Content-Type: multipart/alternative; boundary=001a1144b1d00466370535e2ce41
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600E27RCHEXMBP1fncnetlo_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a1144b1d00466370535e2ce41
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SGkgUm9zcywNCg0KQWZ0ZXIgYXBwbHlpbmcgdGhlIHBhdGNoZXMsIEkgYnJvdWdodCB1cCBteSBv
-cGVudnN3aXRjaCB3aGljaCB3b3JrcyBjb3JyZWN0bHkgYWxvbmdzaWRlIHRoZSBjb250cm9sbGVy
-IGJ1dCBJIGRvbuKAmXQgc2VlIGFueSBvZiB0aGUgcHJpbnQgc3RhdGVtZW50cyBJIGFkZGVkIHRv
-IHZpZXcgdGhlIGNoYW5nZXMgaW5zaWRlLiBJcyB0aGVyZSBhIHdheSB0byBjaGVjayB0aGUgdXBk
-YXRlZCBzb3VyY2UgY29kZSB3aXRoIG15IHBhdGNoIGluIHRoZSB0YXJnZXQgbWFjaGluZSA/DQoN
-ClRoYW5rcywNCk1vbmljYQ0KDQpGcm9tOiBSYWphc2VrYXJhbiwgTW9uaWNhDQpTZW50OiBXZWRu
-ZXNkYXksIEp1bmUgMjIsIDIwMTYgMTA6MTYgQU0NClRvOiAnQnVydG9uLCBSb3NzJyA8cm9zcy5i
-dXJ0b25AaW50ZWwuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJF
-OiBbeW9jdG9dIEVycm9yIGFwcGx5aW5nIHBhdGNoIC0gb3BlbnZzd2l0Y2gNCg0KSGkgUm9zcywN
-Cg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5LiBJIHBsYWNlZCBib3RoIG9yaWdpbmFsIGFuZCB1cGRh
-dGVkIGZpbGVzIGluIHRoZSBzYW1lIGRpcmVjdG9yeSB3aGVyZSB0aGUgb3JpZ2luYWwgaXMgYW5k
-IHJhbiB0aGUgY29tbWFuZCB0byBnZW5lcmF0ZSBwYXRjaCBmaWxlLiBMb2NhdGlvbnMgd2VyZSB1
-cGRhdGVkIGNvcnJlY3RseSBhbmQgaXQgd29ya2VkLg0KDQpUaGFua3MsDQpNb25pY2ENCg0KRnJv
-bTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogV2Vk
-bmVzZGF5LCBKdW5lIDIyLCAyMDE2IDk6NDAgQU0NClRvOiBSYWphc2VrYXJhbiwgTW9uaWNhIDxN
-b25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb208bWFpbHRvOk1vbmljYS5SYWphc2VrYXJh
-bkB1cy5mdWppdHN1LmNvbT4+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVycm9yIGFwcGx5aW5n
-IHBhdGNoIC0gb3BlbnZzd2l0Y2gNCg0KDQpPbiAyMiBKdW5lIDIwMTYgYXQgMTU6MzQsIFJhamFz
-ZWthcmFuLCBNb25pY2EgPE1vbmljYS5SYWphc2VrYXJhbkB1cy5mdWppdHN1LmNvbTxtYWlsdG86
-TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPj4gd3JvdGU6DQp8ZGlmZiAtLWdpdCBk
-YXRhL3VzZXJzL21yYWphc2UvbDEwMF9sYWJlbF9iYXNlZF9yMTAwcG9jL3JlcG8vcG9reS9idWls
-ZC90bXAvd29yay9jb3JlMi02NC1lbmVhLWxpbnV4L29wZW52c3dpdGNoLzIuMC4wLXIwL29wZW52
-c3dpdGNoLTIuMC4wL29mcHJvdG8vb2Zwcm90by5jIGRhdGEvdXNlcnMvbXJhamFzZS9leHRyYS9v
-ZnByb3RvLmMNCnxpbmRleCBlYTgxMmFkLi43NmMzNTVmIDEwMDY0NA0KfC0tLSBkYXRhL3VzZXJz
-L21yYWphc2UvbDEwMF9sYWJlbF9iYXNlZF9yMTAwcG9jL3JlcG8vcG9reS9idWlsZC90bXAvd29y
-ay9jb3JlMi02NC1lbmVhLWxpbnV4L29wZW52c3dpdGNoLzIuMC4wLXIwL29wZW52c3dpdGNoLTIu
-MC4wL29mcHJvdG8vb2Zwcm90by5jDQp8KysrIGRhdGEvdXNlcnMvbXJhamFzZS9leHRyYS9vZnBy
-b3RvLmMNCg0KVGhpcyBpcyB0aGUgcHJvYmxlbSwgeW91ciBmaWxlbmFtZSBwYXRocyBhcmUgbWVz
-c2VkIHVwIGJlY2F1c2Ugb2YgaG93IHlvdSBnZW5lcmF0ZWQgdGhlIHBhdGNoOiBpdCBsb29rcyBs
-aWtlIHlvdXIgZGF0YS8gZGlyZWN0b3J5IGlzIGdpdC1tYW5hZ2VkIHNvIGdpdCBkaWQgd2hhdCB5
-b3UgdG9sZCBpdCBhbmQgZ2VuZXJhdGVkIGEgcGF0Y2ggd2l0aCB0aGUgZnVsbCBwYXRocyBpbi4N
-Cg0KVGhlIGVhc3kgc29sdXRpb24gaGVyZSBpcyB0byB1c2UgImRldnRvb2wgbW9kaWZ5IiAoc2Vl
-IHRoZSBtYW51YWwpIGJ1dCB5b3UgY2FuIGhhbmQtZWRpdCB0aGUgcGF0Y2ggdG8gcmVtb3ZlIGV2
-ZXJ5dGhpbmcgZnJvbSBkYXRhLyB0byAyLjAuMC1yMC8gYW5kIGl0IHNob3VsZCBhcHBseS4NCg0K
-Um9zcw0K
+On 22 June 2016 at 19:25, Rajasekaran, Monica <
+Monica.Rajasekaran@us.fujitsu.com> wrote:
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600E27RCHEXMBP1fncnetlo_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> After applying the patches, I brought up my openvswitch which works
+> correctly alongside the controller but I don=E2=80=99t see any of the pri=
+nt
+> statements I added to view the changes inside. Is there a way to check th=
+e
+> updated source code with my patch in the target machine ?
+>
+>
+Not really, but looking in the work directory (tmp/work) will tell you if
+it got applied.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10
-eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
-CWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
-LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4
-LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3Jk
-U2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
-IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
-PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
-RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij5IaSBSb3NzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+QWZ0
-ZXIgYXBwbHlpbmcgdGhlIHBhdGNoZXMsIEkgYnJvdWdodCB1cCBteSBvcGVudnN3aXRjaCB3aGlj
-aCB3b3JrcyBjb3JyZWN0bHkgYWxvbmdzaWRlIHRoZSBjb250cm9sbGVyIGJ1dCBJIGRvbuKAmXQg
-c2VlIGFueSBvZiB0aGUgcHJpbnQgc3RhdGVtZW50cyBJIGFkZGVkIHRvDQogdmlldyB0aGUgY2hh
-bmdlcyBpbnNpZGUuIElzIHRoZXJlIGEgd2F5IHRvIGNoZWNrIHRoZSB1cGRhdGVkIHNvdXJjZSBj
-b2RlIHdpdGggbXkgcGF0Y2ggaW4gdGhlIHRhcmdldCBtYWNoaW5lID88bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0KPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
-RjQ5N0QiPlRoYW5rcyw8bzpwPjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPk1vbmljYQ0KPG86cD48L286
-cD48L3NwYW4+PC9pPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+
-DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7
-cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBSYWphc2VrYXJh
-biwgTW9uaWNhDQo8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBKdW5lIDIyLCAyMDE2IDEw
-OjE2IEFNPGJyPg0KPGI+VG86PC9iPiAnQnVydG9uLCBSb3NzJyAmbHQ7cm9zcy5idXJ0b25AaW50
-ZWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxi
-PlN1YmplY3Q6PC9iPiBSRTogW3lvY3RvXSBFcnJvciBhcHBseWluZyBwYXRjaCAtIG9wZW52c3dp
-dGNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhpIFJvc3MsPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
-ZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MgZm9yIHlvdXIgcmVwbHkuIEkgcGxhY2VkIGJvdGgg
-b3JpZ2luYWwgYW5kIHVwZGF0ZWQgZmlsZXMgaW4gdGhlIHNhbWUgZGlyZWN0b3J5IHdoZXJlIHRo
-ZSBvcmlnaW5hbCBpcyBhbmQgcmFuIHRoZSBjb21tYW5kIHRvIGdlbmVyYXRlIHBhdGNoIGZpbGUu
-IExvY2F0aW9ucw0KIHdlcmUgdXBkYXRlZCBjb3JyZWN0bHkgYW5kIGl0IHdvcmtlZC48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpwPjwvbzpw
-Pjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOiMxRjQ5N0QiPk1vbmljYQ0KPG86cD48L286cD48L3NwYW4+PC9pPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24sIFJvc3MgWzxhIGhy
-ZWY9Im1haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb20iPm1haWx0bzpyb3NzLmJ1cnRvbkBpbnRl
-bC5jb208L2E+XQ0KPGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwgSnVuZSAyMiwgMjAxNiA5
-OjQwIEFNPGJyPg0KPGI+VG86PC9iPiBSYWphc2VrYXJhbiwgTW9uaWNhICZsdDs8YSBocmVmPSJt
-YWlsdG86TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tIj5Nb25pY2EuUmFqYXNla2Fy
-YW5AdXMuZnVqaXRzdS5jb208L2E+Jmd0Ozxicj4NCjxiPkNjOjwvYj4gPGEgaHJlZj0ibWFpbHRv
-OnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0K
-PGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIEVycm9yIGFwcGx5aW5nIHBhdGNoIC0gb3BlbnZz
-d2l0Y2g8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjIgSnVuZSAy
-MDE2IGF0IDE1OjM0LCBSYWphc2VrYXJhbiwgTW9uaWNhICZsdDs8YSBocmVmPSJtYWlsdG86TW9u
-aWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tIiB0YXJnZXQ9Il9ibGFuayI+TW9uaWNhLlJh
-amFzZWthcmFuQHVzLmZ1aml0c3UuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8
-YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAx
-LjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi10
-b3A6NS4wcHQ7bWFyZ2luLXJpZ2h0OjBpbjttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
-dHRvbS1hbHQ6YXV0byI+fGRpZmYgLS1naXQgZGF0YS91c2Vycy9tcmFqYXNlL2wxMDBfbGFiZWxf
-YmFzZWRfcjEwMHBvYy9yZXBvL3Bva3kvYnVpbGQvdG1wL3dvcmsvY29yZTItNjQtZW5lYS1saW51
-eC9vcGVudnN3aXRjaC8yLjAuMC1yMC9vcGVudnN3aXRjaC0yLjAuMC9vZnByb3RvL29mcHJvdG8u
-YyBkYXRhL3VzZXJzL21yYWphc2UvZXh0cmEvb2Zwcm90by5jPG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
-bi1ib3R0b20tYWx0OmF1dG8iPnxpbmRleCBlYTgxMmFkLi43NmMzNTVmIDEwMDY0NDxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
-dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj58LS0tIGRhdGEvdXNlcnMvbXJhamFzZS9s
-MTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUyLTY0
-LWVuZWEtbGludXgvb3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gtMi4wLjAvb2Zwcm90
-by9vZnByb3RvLmM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+fCYjNDM7
-JiM0MzsmIzQzOyBkYXRhL3VzZXJzL21yYWphc2UvZXh0cmEvb2Zwcm90by5jPG86cD48L286cD48
-L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NClRo
-aXMgaXMgdGhlIHByb2JsZW0sIHlvdXIgZmlsZW5hbWUgcGF0aHMgYXJlIG1lc3NlZCB1cCBiZWNh
-dXNlIG9mIGhvdyB5b3UgZ2VuZXJhdGVkIHRoZSBwYXRjaDogaXQgbG9va3MgbGlrZSB5b3VyIGRh
-dGEvIGRpcmVjdG9yeSBpcyBnaXQtbWFuYWdlZCBzbyBnaXQgZGlkIHdoYXQgeW91IHRvbGQgaXQg
-YW5kIGdlbmVyYXRlZCBhIHBhdGNoIHdpdGggdGhlIGZ1bGwgcGF0aHMgaW4uPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBlYXN5IHNvbHV0
-aW9uIGhlcmUgaXMgdG8gdXNlICZxdW90O2RldnRvb2wgbW9kaWZ5JnF1b3Q7IChzZWUgdGhlIG1h
-bnVhbCkgYnV0IHlvdSBjYW4gaGFuZC1lZGl0IHRoZSBwYXRjaCB0byByZW1vdmUgZXZlcnl0aGlu
-ZyBmcm9tIGRhdGEvIHRvIDIuMC4wLXIwLyBhbmQgaXQgc2hvdWxkIGFwcGx5LjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Ross
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600E27RCHEXMBP1fncnetlo_--
+--001a1144b1d00466370535e2ce41
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 22 June 2016 at 19:25, Rajasekaran, Monica <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Monica.Rajasekaran@us.fujitsu.com" target=3D"_blank">Monica.Raja=
+sekaran@us.fujitsu.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex"><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quo=
+t;Calibri&quot;,sans-serif;color:#1f497d">After applying the patches, I bro=
+ught up my openvswitch which works correctly alongside the controller but I=
+ don=E2=80=99t see any of the print statements I added to
+ view the changes inside. Is there a way to check the updated source code w=
+ith my patch in the target machine ?<u></u><u></u></span></p>
+<div>
+<p class=3D"MsoNormal"></p></div></blockquote></div><br>Not really, but loo=
+king in the work directory (tmp/work) will tell you if it got applied.</div=
+><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div>=
+</div>
+
+--001a1144b1d00466370535e2ce41--
