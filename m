@@ -1,29 +1,70 @@
-Return-Path: <S.Jaritz@esa-grimma.de>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD42FE00AA2; Wed, 22 Jun 2016 09:14:30 -0700 (PDT)
+	id ABFFCE00A6D; Wed, 22 Jun 2016 09:51:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0FD4E009F6
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 09:14:27 -0700 (PDT)
-To: yocto@yoctoproject.org
-MIME-Version: 1.0
-X-KeepSent: 375FEAD7:2DA56C67-C1257FDA:0058120C;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0 March 08, 2013
-Message-ID: <OF375FEAD7.2DA56C67-ONC1257FDA.0058120C-C1257FDA.00593682@esa-grimma.de>
-From: S.Jaritz@esa-grimma.de
-Date: Wed, 22 Jun 2016 18:14:26 +0200
-X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
-	9.0.1FP3 HF42|February 03, 2015) at 22.06.2016 18:14:29,
-	Serialize complete at 22.06.2016 18:14:29
-Subject: How to re-set the libary path for the package manager/QA module
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.66 listed in list.dnswl.org]
+Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
+	[209.85.220.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89B1DE009F6
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 09:51:02 -0700 (PDT)
+Received: by mail-pa0-f66.google.com with SMTP id fg1so4353079pad.3
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 09:51:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:mime-version:from:in-reply-to:date:cc:message-id:references
+	:to; bh=rxykhvJcWGwr4FnIfMBV2iZ2Qjkb9K79uDr9sTmAY2I=;
+	b=Wyz59Z7M3N1N7ZW/y7KuiBEsl7K0JyfRThdmAD+pLAHtcqzWid2bXGB3o7U5q1cWs+
+	SjS1sofDtmB44HBlprpI2Olxw0qUPJSvzgqiq+XVXWw5UZpZF9RLFuPdO38/racAAfFZ
+	uYmMwx+aU5+iqHwYr0iC5TLGtfnZDda5Nr0qwF8qLU/rdAh4S3vTMBCIMxy+7i/9pJRB
+	gG0Vk6X9c1JKgZoI7aOdPogK0FgJIv2iu+7qei0BVxzjgklRqjEhTYmxbTxRG4A27OrT
+	lqsLCLSCD2hZ17Tyyh/zQbmXsxJISZpF3Hve+455GCvojjEt6kkbLvvU4FhKYoGZs1m/
+	VHhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:subject:mime-version:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=rxykhvJcWGwr4FnIfMBV2iZ2Qjkb9K79uDr9sTmAY2I=;
+	b=E8Z3nho8BRAO7rCLHyECgFmw85mS0g1RwEbTQenvk5QraGuyS8Cdj5E8lhusga8c66
+	hMMkd1H214vixJanukf3w50PJVfVyP0vjNLwsCS7mPJOyesfzQ2t1uw9dnBUYwZ4Q9Kr
+	d8y7f6KWx8kuitSLBtxtasgRYMYBD5AXhhRTArN2N9troikTcw8L87FojopT2rUi2K4Z
+	bTEjNMkY6Ypr4HXEc2OpLa3os/K//gYzCsq7VUea6cQy8OJfgjhB7H42VF5VxqjIGLfa
+	7PUG6PQ8FLzR5vcvlmSZP5kUQbf+gqGn4tw+eVuyz6nYwYjlNq/7UPDUqjsAL0BlhlV8
+	707A==
+X-Gm-Message-State: ALyK8tKFjMuQSRgyLkxcIsL8Q6rtdhBQhuNYWihq3quMYx+/2RPuJv2LNJQd14LGc9xlxA==
+X-Received: by 10.66.190.71 with SMTP id go7mr35157121pac.146.1466614261560;
+	Wed, 22 Jun 2016 09:51:01 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:fcd1:61e:b1e8:f28?
+	([2601:646:8882:b8c:fcd1:61e:b1e8:f28])
+	by smtp.gmail.com with ESMTPSA id 69sm939668pfc.90.2016.06.22.09.51.00
+	(version=TLSv1/SSLv3 cipher=OTHER);
+	Wed, 22 Jun 2016 09:51:00 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Pgp-Agent: GPGMail 2.6b2
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <OF375FEAD7.2DA56C67-ONC1257FDA.0058120C-C1257FDA.00593682@esa-grimma.de>
+Date: Wed, 22 Jun 2016 09:50:52 -0700
+Message-Id: <2651D050-7001-4193-AFA4-E5AE71841234@gmail.com>
+References: <OF375FEAD7.2DA56C67-ONC1257FDA.0058120C-C1257FDA.00593682@esa-grimma.de>
+To: S.Jaritz@esa-grimma.de
+X-Mailer: Apple Mail (2.3124)
+Cc: yocto@yoctoproject.org
+Subject: Re: How to re-set the libary path for the package manager/QA module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,166 +76,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 16:14:30 -0000
+X-List-Received-Date: Wed, 22 Jun 2016 16:51:05 -0000
+X-Groupsio-MsgNum: 30705
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_AF129317-4A5B-41F1-B26E-6DC26BCE6C1E";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_AF129317-4A5B-41F1-B26E-6DC26BCE6C1E
 Content-Type: multipart/alternative;
-	boundary="=_alternative 00593680C1257FDA_="
+	boundary="Apple-Mail=_AC7E55F2-0F01-4CCA-BBCF-EF5E8C0D3E8E"
 
---=_alternative 00593680C1257FDA_=
-Content-Type: text/plain; charset="ISO-8859-1"
+--Apple-Mail=_AC7E55F2-0F01-4CCA-BBCF-EF5E8C0D3E8E
 Content-Transfer-Encoding: quoted-printable
-
-Hej
-
-I want to build a library. It comes with a cmake based build. In these=20
-process the library is build and deployed together with 2 links. Like=20
-that:
-
-libMyLib:
-usr/lib/test/mylib.so
-usr/lib/test/mylib.so.0
-usr/lib/test/mylib.so.1.0.0
-
-mylib.so and mylib.so.0 are links to mylib.so.1.0.0
-
-The packing works fine but the QA tells: "
-Files/directories were installed but not shipped in any package:
-  /usr/lib/test/mylib.so.0
-  /usr/lib/test/mylib.so.1.0.0
-  /usr/lib/test/mylib.so
-"
-
-Any ideas how to set the
-
-FILES=5F${PN} +=3D "${libdir}/test/*.so.*"
-
-in a right way?
-
-Regards!
-
-Stefan Jaritz
-Entwickler
-
-------------------------------------------------------------
-ESA Elektroschaltanlagen Grimma GmbH
-Broner Ring 30
-04668 Grimma
-Telefon: +49 3437 9211 176
-Telefax: +49 3437 9211 26
-E-Mail: s.jaritz@esa-grimma.de
-Internet: www.esa-grimma.de
+Content-Type: text/plain;
+	charset=utf-8
 
 
-Gesch=E4ftsf=FChrer:
-Dipl.-Ing. J=F6rg Gaitzsch
-J=F6rg Reinker
+> On Jun 22, 2016, at 9:14 AM, S.Jaritz@esa-grimma.de wrote:
+>=20
+> Any ideas how to set the
+>=20
+> FILES_${PN} +=3D "${libdir}/test/*.so.*"
+>=20
+> in a right way?
 
-Sitz der Gesellschaft: Grimma
-Ust.-ID: DE 141784437
-Amtsgericht: Leipzig, HRB 5159
-Steuernummer: 238/108/00755
+FILES_${PN} +=3D =E2=80=9C${libdir}/test/*"
 
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
-Informationen.=20
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
-erhalten=20
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
-Mail=20
-ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-
-are=20
-not the intended recipient (or have received this e-mail in error) please=20
-notify the sender immediately and destroy this e-mail. Any unauthorized=20
-copying, disclosure or distribution of the material in this e-mail is=20
-strictly=20
-forbidden.
-
---=_alternative 00593680C1257FDA_=
-Content-Type: text/html; charset="ISO-8859-1"
+--Apple-Mail=_AC7E55F2-0F01-4CCA-BBCF-EF5E8C0D3E8E
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<font size=3D2 face=3D"sans-serif">Hej</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I want to build a library. It comes
-with a cmake based build. In these process the library is build and deployed
-together with 2 links. Like that:</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">libMyLib:</font>
-<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so</font>
-<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so.0</font>
-<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so.1.0.0</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">mylib.so and mylib.so.0 are links to
-mylib.so.1.0.0</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">The packing works fine but the QA te=
-lls:
-&quot;</font>
-<br><font size=3D2 face=3D"sans-serif">Files/directories were installed but
-not shipped in any package:</font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so.0</fon=
-t>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so.1.0.0<=
-/font>
-<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so</font>
-<br><font size=3D2 face=3D"sans-serif">&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Any ideas how to set the</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">FILES=5F${PN} +=3D &quot;${libdir}/t=
-est/*.so.*&quot;</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">in a right way?</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Regards!<br>
-<br>
-Stefan Jaritz<br>
-Entwickler<br>
-<br>
-------------------------------------------------------------<br>
-ESA Elektroschaltanlagen Grimma GmbH<br>
-Broner Ring 30<br>
-04668 Grimma<br>
-Telefon: +49 3437 9211 176<br>
-Telefax: +49 3437 9211 26<br>
-E-Mail: s.jaritz@esa-grimma.de<br>
-Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
-serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
-<br>
-<br>
-Gesch=E4ftsf=FChrer:<br>
-Dipl.-Ing. J=F6rg Gaitzsch<br>
-J=F6rg Reinker<br>
-<br>
-Sitz der Gesellschaft: Grimma<br>
-Ust.-ID: DE 141784437<br>
-Amtsgericht: Leipzig, HRB 5159<br>
-Steuernummer: 238/108/00755<br>
-<br>
-<br>
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen.
-<br>
-Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
-erhalten <br>
-haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
-<br>
-Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-Mail <br>
-ist nicht gestattet.<br>
-<br>
-This e-mail may contain confidential and/or privileged information. If
-you are <br>
-not the intended recipient (or have received this e-mail in error) please
-<br>
-notify the sender immediately and destroy this e-mail. Any unauthorized
-<br>
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly
-<br>
-forbidden.</font>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Jun 22, 2016, at 9:14 AM, <a =
+href=3D"mailto:S.Jaritz@esa-grimma.de" =
+class=3D"">S.Jaritz@esa-grimma.de</a> wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><font size=3D"2" =
+face=3D"sans-serif" style=3D"font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D"">Any ideas how to set the</font><span =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><br style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D""><font size=3D"2" face=3D"sans-serif" style=3D"font-style:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D"">FILES_${PN} +=3D =
+"${libdir}/test/*.so.*"</font><span style=3D"font-family: Times-Roman; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
+none; display: inline !important;" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><br style=3D"font-family: =
+Times-Roman; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D""><font size=3D"2" face=3D"sans-serif" style=3D"font-style:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D"">in a right =
+way?</font><span style=3D"font-family: Times-Roman; font-size: 14px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; display: =
+inline !important;" class=3D""><span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Times-Roman; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""></div></blockquote></div><br =
+class=3D""><div class=3D"">FILES_${PN} +=3D =
+=E2=80=9C${libdir}/test/*"</div></body></html>=
 
---=_alternative 00593680C1257FDA_=--
+--Apple-Mail=_AC7E55F2-0F01-4CCA-BBCF-EF5E8C0D3E8E--
+
+--Apple-Mail=_AF129317-4A5B-41F1-B26E-6DC26BCE6C1E
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAldqwfAACgkQuwUzVZGdMxRvigCfT94OasrxuEYvBTpX4XKJJIwq
+aagAn1oETvEgbpm1/ccpZ3aq37mDKcWo
+=uiam
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_AF129317-4A5B-41F1-B26E-6DC26BCE6C1E--
