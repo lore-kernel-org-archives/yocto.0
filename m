@@ -1,48 +1,29 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47295E00AA2; Wed, 22 Jun 2016 08:16:38 -0700 (PDT)
+	id AD42FE00AA2; Wed, 22 Jun 2016 09:14:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.56 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
-	[168.127.0.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 836CAE00A44
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 08:16:34 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,509,1459832400"; d="scan'208,217";a="78350174"
-Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
-	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	22 Jun 2016 10:16:31 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
-	Wed, 22 Jun 2016 10:16:29 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Error applying patch - openvswitch
-Thread-Index: AdHMkw194/p20ixUTZulCrLDbODXUgAKtwWAAAmfCVA=
-Date: Wed, 22 Jun 2016 15:16:29 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600D18@RCHEXMBP1.fnc.net.local>
-References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
-	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
-In-Reply-To: <CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22408.000
-x-tm-as-result: No--49.158300-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0FD4E009F6
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 09:14:27 -0700 (PDT)
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error applying patch - openvswitch
+X-KeepSent: 375FEAD7:2DA56C67-C1257FDA:0058120C;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF375FEAD7.2DA56C67-ONC1257FDA.0058120C-C1257FDA.00593682@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Wed, 22 Jun 2016 18:14:26 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 22.06.2016 18:14:29,
+	Serialize complete at 22.06.2016 18:14:29
+Subject: How to re-set the libary path for the package manager/QA module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,136 +35,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 15:16:38 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 22 Jun 2016 16:14:30 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_"
+	boundary="=_alternative 00593680C1257FDA_="
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--=_alternative 00593680C1257FDA_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgUm9zcywNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5LiBJIHBsYWNlZCBib3RoIG9yaWdpbmFs
-IGFuZCB1cGRhdGVkIGZpbGVzIGluIHRoZSBzYW1lIGRpcmVjdG9yeSB3aGVyZSB0aGUgb3JpZ2lu
-YWwgaXMgYW5kIHJhbiB0aGUgY29tbWFuZCB0byBnZW5lcmF0ZSBwYXRjaCBmaWxlLiBMb2NhdGlv
-bnMgd2VyZSB1cGRhdGVkIGNvcnJlY3RseSBhbmQgaXQgd29ya2VkLg0KDQpUaGFua3MsDQpNb25p
-Y2ENCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0K
-U2VudDogV2VkbmVzZGF5LCBKdW5lIDIyLCAyMDE2IDk6NDAgQU0NClRvOiBSYWphc2VrYXJhbiwg
-TW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQpDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRXJyb3IgYXBwbHlpbmcgcGF0Y2gg
-LSBvcGVudnN3aXRjaA0KDQoNCk9uIDIyIEp1bmUgMjAxNiBhdCAxNTozNCwgUmFqYXNla2FyYW4s
-IE1vbmljYSA8TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPG1haWx0bzpNb25pY2Eu
-UmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+PiB3cm90ZToNCnxkaWZmIC0tZ2l0IGRhdGEvdXNl
-cnMvbXJhamFzZS9sMTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93
-b3JrL2NvcmUyLTY0LWVuZWEtbGludXgvb3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gt
-Mi4wLjAvb2Zwcm90by9vZnByb3RvLmMgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8u
-Yw0KfGluZGV4IGVhODEyYWQuLjc2YzM1NWYgMTAwNjQ0DQp8LS0tIGRhdGEvdXNlcnMvbXJhamFz
-ZS9sMTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUy
-LTY0LWVuZWEtbGludXgvb3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gtMi4wLjAvb2Zw
-cm90by9vZnByb3RvLmMNCnwrKysgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYw0K
-DQpUaGlzIGlzIHRoZSBwcm9ibGVtLCB5b3VyIGZpbGVuYW1lIHBhdGhzIGFyZSBtZXNzZWQgdXAg
-YmVjYXVzZSBvZiBob3cgeW91IGdlbmVyYXRlZCB0aGUgcGF0Y2g6IGl0IGxvb2tzIGxpa2UgeW91
-ciBkYXRhLyBkaXJlY3RvcnkgaXMgZ2l0LW1hbmFnZWQgc28gZ2l0IGRpZCB3aGF0IHlvdSB0b2xk
-IGl0IGFuZCBnZW5lcmF0ZWQgYSBwYXRjaCB3aXRoIHRoZSBmdWxsIHBhdGhzIGluLg0KDQpUaGUg
-ZWFzeSBzb2x1dGlvbiBoZXJlIGlzIHRvIHVzZSAiZGV2dG9vbCBtb2RpZnkiIChzZWUgdGhlIG1h
-bnVhbCkgYnV0IHlvdSBjYW4gaGFuZC1lZGl0IHRoZSBwYXRjaCB0byByZW1vdmUgZXZlcnl0aGlu
-ZyBmcm9tIGRhdGEvIHRvIDIuMC4wLXIwLyBhbmQgaXQgc2hvdWxkIGFwcGx5Lg0KDQpSb3NzDQo=
+Hej
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I want to build a library. It comes with a cmake based build. In these=20
+process the library is build and deployed together with 2 links. Like=20
+that:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
-MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
-cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhpIFJvc3MsPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MgZm9yIHlvdXIgcmVwbHkuIEkgcGxhY2Vk
-IGJvdGggb3JpZ2luYWwgYW5kIHVwZGF0ZWQgZmlsZXMgaW4gdGhlIHNhbWUgZGlyZWN0b3J5IHdo
-ZXJlIHRoZSBvcmlnaW5hbCBpcyBhbmQgcmFuIHRoZSBjb21tYW5kIHRvIGdlbmVyYXRlIHBhdGNo
-IGZpbGUuIExvY2F0aW9ucw0KIHdlcmUgdXBkYXRlZCBjb3JyZWN0bHkgYW5kIGl0IHdvcmtlZC48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpw
-PjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPk1vbmljYQ0KPG86cD48L286cD48L3NwYW4+PC9pPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
-bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24sIFJvc3Mg
-W21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVz
-ZGF5LCBKdW5lIDIyLCAyMDE2IDk6NDAgQU08YnI+DQo8Yj5Ubzo8L2I+IFJhamFzZWthcmFuLCBN
-b25pY2EgJmx0O01vbmljYS5SYWphc2VrYXJhbkB1cy5mdWppdHN1LmNvbSZndDs8YnI+DQo8Yj5D
-Yzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5
-b2N0b10gRXJyb3IgYXBwbHlpbmcgcGF0Y2ggLSBvcGVudnN3aXRjaDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAyMiBKdW5lIDIwMTYgYXQgMTU6MzQsIFJhamFzZWth
-cmFuLCBNb25pY2EgJmx0OzxhIGhyZWY9Im1haWx0bzpNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVq
-aXRzdS5jb20iIHRhcmdldD0iX2JsYW5rIj5Nb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5j
-b208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3Jk
-ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAw
-aW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG8iPnxkaWZmIC0tZ2l0IGRhdGEvdXNlcnMvbXJhamFzZS9sMTAwX2xhYmVsX2Jh
-c2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUyLTY0LWVuZWEtbGludXgv
-b3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gtMi4wLjAvb2Zwcm90by9vZnByb3RvLmMg
-ZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj58aW5kZXggZWE4MTJhZC4uNzZjMzU1ZiAxMDA2NDQ8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
-bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+fC0tLSBkYXRhL3VzZXJzL21yYWphc2UvbDEw
-MF9sYWJlbF9iYXNlZF9yMTAwcG9jL3JlcG8vcG9reS9idWlsZC90bXAvd29yay9jb3JlMi02NC1l
-bmVhLWxpbnV4L29wZW52c3dpdGNoLzIuMC4wLXIwL29wZW52c3dpdGNoLTIuMC4wL29mcHJvdG8v
-b2Zwcm90by5jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
-LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPnwmIzQzOyYj
-NDM7JiM0MzsgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYzxvOnA+PC9vOnA+PC9w
-Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQpUaGlz
-IGlzIHRoZSBwcm9ibGVtLCB5b3VyIGZpbGVuYW1lIHBhdGhzIGFyZSBtZXNzZWQgdXAgYmVjYXVz
-ZSBvZiBob3cgeW91IGdlbmVyYXRlZCB0aGUgcGF0Y2g6IGl0IGxvb2tzIGxpa2UgeW91ciBkYXRh
-LyBkaXJlY3RvcnkgaXMgZ2l0LW1hbmFnZWQgc28gZ2l0IGRpZCB3aGF0IHlvdSB0b2xkIGl0IGFu
-ZCBnZW5lcmF0ZWQgYSBwYXRjaCB3aXRoIHRoZSBmdWxsIHBhdGhzIGluLjxvOnA+PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgZWFzeSBzb2x1dGlv
-biBoZXJlIGlzIHRvIHVzZSAmcXVvdDtkZXZ0b29sIG1vZGlmeSZxdW90OyAoc2VlIHRoZSBtYW51
-YWwpIGJ1dCB5b3UgY2FuIGhhbmQtZWRpdCB0aGUgcGF0Y2ggdG8gcmVtb3ZlIGV2ZXJ5dGhpbmcg
-ZnJvbSBkYXRhLyB0byAyLjAuMC1yMC8gYW5kIGl0IHNob3VsZCBhcHBseS48bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+libMyLib:
+usr/lib/test/mylib.so
+usr/lib/test/mylib.so.0
+usr/lib/test/mylib.so.1.0.0
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_--
+mylib.so and mylib.so.0 are links to mylib.so.1.0.0
+
+The packing works fine but the QA tells: "
+Files/directories were installed but not shipped in any package:
+  /usr/lib/test/mylib.so.0
+  /usr/lib/test/mylib.so.1.0.0
+  /usr/lib/test/mylib.so
+"
+
+Any ideas how to set the
+
+FILES=5F${PN} +=3D "${libdir}/test/*.so.*"
+
+in a right way?
+
+Regards!
+
+Stefan Jaritz
+Entwickler
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+--=_alternative 00593680C1257FDA_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Hej</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I want to build a library. It comes
+with a cmake based build. In these process the library is build and deployed
+together with 2 links. Like that:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">libMyLib:</font>
+<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so</font>
+<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so.0</font>
+<br><font size=3D2 face=3D"sans-serif">usr/lib/test/mylib.so.1.0.0</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">mylib.so and mylib.so.0 are links to
+mylib.so.1.0.0</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">The packing works fine but the QA te=
+lls:
+&quot;</font>
+<br><font size=3D2 face=3D"sans-serif">Files/directories were installed but
+not shipped in any package:</font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so.0</fon=
+t>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so.1.0.0<=
+/font>
+<br><font size=3D2 face=3D"sans-serif">&nbsp; /usr/lib/test/mylib.so</font>
+<br><font size=3D2 face=3D"sans-serif">&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Any ideas how to set the</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">FILES=5F${PN} +=3D &quot;${libdir}/t=
+est/*.so.*&quot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">in a right way?</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards!<br>
+<br>
+Stefan Jaritz<br>
+Entwickler<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+
+--=_alternative 00593680C1257FDA_=--
