@@ -1,65 +1,41 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5820E009EF; Wed, 22 Jun 2016 06:00:01 -0700 (PDT)
+	id DB7F8E00AA2; Wed, 22 Jun 2016 07:21:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.206.85 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
-	[209.85.213.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868F2E009BF
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 05:59:54 -0700 (PDT)
-Received: by mail-vk0-f52.google.com with SMTP id c2so30326042vkg.1
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 05:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=N9uMnq5Z7Mc68R3gqyGs9n0ycNFKWDEUp4QQpx/Z4MU=;
-	b=wha1+x3O0XJGT3LVEN2dTZbpAgVuQvhOjNSc9tbGqOPj/sYesVIrtlxfFGAb1MLvjH
-	7s8HTgZHU4NxDQ3cJECCEZt5QvoV/kaXgCOXrK3x19AVSbgJI18zxzMRdtFYNCnfTveI
-	z2lYRn262ldiRe8b0gm72GkmE7iBOLoLRbD9krY975uauUwlb6tOJRZu6MYHmSoKEqwj
-	e4bpCVPyq5G3Q6o+RsimTEzQkrhGrxh59xdVuOjLD1tiTgMss1MOR0J+T9xmJ3vjBy2N
-	ZK90LNF+De4o1SsYihI6WXh+Kp21lpGhgKtlXvcrccO0+v0RIiPXpSe9MgBGcm7oDlyM
-	0Q1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=N9uMnq5Z7Mc68R3gqyGs9n0ycNFKWDEUp4QQpx/Z4MU=;
-	b=XZckLeqCPzm2VWo6XrTrxizsn0NC8bTQUG/WV+yuSwkmokKe8LfX3yrstofMbDzUAc
-	/ukxBI+6TrvSZpSFaTXJ2QoqGA2NPa+u3bHSvnWv7RNWickyNjpUuNBYvue9t1RL9frx
-	+EKrsOqNas55zT2sdZKOEM0eK0KIW/4h9wbXE162kzWmT2h1GT5aTA4BdMf1f2SEiTa0
-	74waMEcP/dKLMmNN9pCXS7jOZOVD3Bmugf2z+YJw8J6xhcfAc7nA/JMy5yv8pWqT3Ut2
-	QNAOEalo+cxi8/WM7oNw8rRFy9+uc5Lt2RUJ34zkcgyIjqrXiS3TNhn6MaAjgofCncil
-	YasQ==
-X-Gm-Message-State: ALyK8tLv/NxbFHw8Rb02L2FYQQT7Vl4Gy4fugkT3SgkMEO1LG6Dy3maAJagbpxtWejZaj/7+ogGgG5cdTKDk6Q==
-X-Received: by 10.176.64.132 with SMTP id i4mr9929099uad.14.1466600394170;
-	Wed, 22 Jun 2016 05:59:54 -0700 (PDT)
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81718E00A44
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 07:21:25 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20160622142122641_0685;
+	Wed, 22 Jun 2016 07:21:22 -0700
+X-RC-FROM: <rpjday@crashcourse.ca>
+Received: from [216.191.234.70] (port=15214 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bFj3Y-000493-24; Wed, 22 Jun 2016 10:23:04 -0400
+Date: Wed, 22 Jun 2016 10:20:38 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: "Daniel." <danielhilst@gmail.com>
+In-Reply-To: <CAF3SDA56FGwK7inSaOxdr9s4gZMX6V65WzNmjmjafJkebT72YQ@mail.gmail.com>
+Message-ID: <alpine.LFD.2.20.1606221017510.27720@localhost.localdomain>
+References: <alpine.LFD.2.20.1606220556090.21955@localhost.localdomain>
+	<CAF3SDA56FGwK7inSaOxdr9s4gZMX6V65WzNmjmjafJkebT72YQ@mail.gmail.com>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Received: by 10.176.1.50 with HTTP; Wed, 22 Jun 2016 05:59:53 -0700 (PDT)
-In-Reply-To: <CAMKF1srWbstzuXTk_pahxdoA=XcAZ9M_0rV2yF-n_RwhNoi-gw@mail.gmail.com>
-References: <30C2D590D16A5C46ADFE6521910377986CD4F67D@AZ-US1EXMB03.global.avaya.com>
-	<CAMKF1srWbstzuXTk_pahxdoA=XcAZ9M_0rV2yF-n_RwhNoi-gw@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Wed, 22 Jun 2016 09:59:53 -0300
-Message-ID: <CAF3SDA7sfRcdqFDLmVWJZPkCYLSaexJ+6r-VvjtBV-JaFN5oDA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Sharing header files between out-of-tree KLMs
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there really an "INITRD_IMAGE" variable?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,60 +47,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 13:00:01 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 22 Jun 2016 14:21:30 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-You may want to add headers to the -dev packages and DEPENDS on it
-since you will not need headers at final image,
+On Wed, 22 Jun 2016, Daniel. wrote:
 
-Regards,
-
-2016-06-21 19:13 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
-> may be first one stages the header into build sysroot and otherone
-> adds a DEPENDS on the first one and expects it in
-> <sysroot>/usr/include/<yourmodule/
+> Well I'm in Daisy and I can see that variable, so I think that the
+> documentation is out of date :)
 >
-> On Wed, Jun 8, 2016 at 6:11 AM, Vuille, Martin (Martin)
-> <vmartin@avaya.com> wrote:
->> I am building two out-of-tree KLMs with separate yocto recipes.
->>
->>
->>
->> One of the KLMs depends on a data structure defined in the other one. At
->>
->> present the structure definition is simply duplicated in both KLMs=E2=80=
-=99 source.
->>
->> I would prefer to define it in a header that one KLM can export and the
->> other
->>
->> can #include.
->>
->>
->>
->> Is there a recommended/canonical way to do this?
->>
->>
->>
->> MV
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> [geckos@csi24 yocto-daisy]$ find sources/ -name "*.bb*" -exec grep
+> --color -H INITRD_IMAGE {} \;
+> sources/poky/meta/recipes-extended/images/core-image-testmaster.bb:INITRD_IMAGE
+> = "core-image-testmaster-initramfs"
+> sources/poky/meta/classes/image-live.bbclass:INITRD_IMAGE ?=
+> "core-image-minimal-initramfs"
+> sources/poky/meta/classes/image-live.bbclass:INITRD ?=
+> "${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE}-${MACHINE}.cpio.gz"
+> sources/poky/meta/classes/image-live.bbclass:do_bootimg[depends] +=
+> "${INITRD_IMAGE}:do_rootfs"
+> [geckos@csi24 yocto-daisy]$
 
+  it looks like there was a shift from INITRD_IMAGE to one of
+INITRD_IMAGE_VM or INITRD_IMAGE_LIVE on feb 24, 2016 in this commit in
+oe-core:
 
+commit e38c94d6bf83ed3ca7f046d9503e81b927487bf2
+Author: Robert Yang <liezhi.yang@windriver.com>
+Date:   Wed Feb 24 01:23:58 2016 -0800
 
---=20
-"Do or do not. There is no try"
-  Yoda Master
+    syslinux.bbclass: make vm and live can be built together
+
+    * The vm image(hdddirect, vmdk, qcow2, vdi) and live image (hddimg, iso)
+      couldn't be built together because the following vars settings are
+      conflicted:
+      - SYSLINUX_ROOT (/dev/sda2 vs /dev/ram0)
+      - LABELS (boot vs boot install)
+      - INITRD (None vs live install)
+      - SYSLINUX_CFG (see above)
+      Introduce new vars (SYSLINUX_ROOT_VM/_LIVE, the samilar to others) to
+      make them can work together, now we can build all of them together:
+
+      IMAGE_FSTYPES += "live iso hddimg hdddirect vmdk qcow2 vdi"
+
+    * Use SYSLINUX_CFG rather than SYSLINUXCFG to keep align with others
+      SYSLINUX vars.
+
+    * The SYSLINUX_TIMEOUT had been set, but it didn't work since
+      AUTO_SYSLINUXMENU wasn't set, this would cause confusions, so also set
+      AUTO_SYSLINUXMENU.
+
+    * Move SYSLINUX_PROMPT and SYSLINUX_TIMEOUT to syslinux.bbclass rather
+      than in separate classes since they are the same.
+
+    * Set SYSLINUX_TIMEOUT to 50 to have a unique timeout for syslinux.
+
+    [YOCTO #9161]
+
+    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+and i guess someone just didn't notice the remaining references to
+INITRD_IMAGE.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
