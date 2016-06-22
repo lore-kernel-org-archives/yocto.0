@@ -1,41 +1,70 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE05CE00A44; Wed, 22 Jun 2016 07:57:52 -0700 (PDT)
+	id EFF83E00B74; Wed, 22 Jun 2016 07:59:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,PLING_QUERY,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF992E00A44
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 07:57:49 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id u5MEvl06006580
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 22 Jun 2016 07:57:48 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.230) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.248.2;
-	Wed, 22 Jun 2016 07:57:44 -0700
-To: Kyle Russell <bkylerussell@gmail.com>
-References: <CAFrQVPMhmCAT+TfdOmQ95LsaTSc13=6GNvc=L=6cHmACGHRZgw@mail.gmail.com>
-	<856fbb9f-74bc-545b-f5e5-3405d452c0f2@windriver.com>
-	<CAFrQVPOE2bwaiQ9iDx8ogKuc_CCG2RjVu8NKfW-UOgp+LPLR8w@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <2dd61737-29f6-98e6-60e1-13625d355de9@windriver.com>
-Date: Wed, 22 Jun 2016 09:57:45 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
-	Gecko/20100101 Thunderbird/45.1.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
+Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
+	[209.85.213.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18DBBE00AD2
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 07:59:16 -0700 (PDT)
+Received: by mail-vk0-f51.google.com with SMTP id u64so65539131vkf.3
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 07:59:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=0ZSff88Gqr3MiA7BsXT6VlQ3SZtOMFV96YuGMLjcwRg=;
+	b=Du6YjDJ4rLnp5LLaZ6UN1X4MK2SpZOq9rPFmGK0qAVYDxEghBL1NA9wRub0NQzSE2s
+	6J1c4BGO/xsnwM4VBw1potgoL5xmnLU/4dCajjL9a/DHuXRuKzQrowA0XHjIFeYxgchk
+	vgbahH7hVM0V3KjLPK7XLFvshO6rBn1yzX/wCbXkqA3/fJyz3TabN1xisLg76e8JwpeI
+	1xZ2R2OBfEjgsfDeQo6z0+pwoUi4nJ6ZbdbvYsM+KzzDalzoUlmzeGJU2me2HHCUr6h3
+	0pvD8OrVFCuaU8n7px9KN00TZmZHpT/pga8PAFQfw8kYA+fLBqzlDvwrZ7wB0y88E6qk
+	gHPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=0ZSff88Gqr3MiA7BsXT6VlQ3SZtOMFV96YuGMLjcwRg=;
+	b=dvrjWHGuGUiIGkbIkeya6UJk4y//cIwYqZ43PvPHYC9q+3oglWwlMyQfRlN8sw1oV3
+	qugeeJm3SQwwPpGKEU03xJEBkH1aP3N4oHnsc37L6+H/vGHh4qvupOKor/d+Zm3YZYEF
+	5dSUS8nvcaIwV+GaoFh58C8JmVLKbpe+5erZLD57fiSSwEYnShEKU+m20SEQ33WFTrrP
+	kr7fGTsOmdiErg/6ZpNZ0Ln0GkKBURUJ3Vi0CPscOJ3pLnFziAr9yWAY7A1UyRtfwH20
+	azxUkQRExxiI+MfzGMNmoTCVvWPy1Nbu2IabeKcRdG41wtruKIY1zt5CCKeFuYaJOHmz
+	jdig==
+X-Gm-Message-State: ALyK8tISM9ukKXyXGpy7g4RuEOHzM+pJYO7x8st8/e1WADR0qz1dlyoQFTeuXcJ0vAtOxpWPxUIlEmoBCum5iw==
+X-Received: by 10.176.69.196 with SMTP id u62mr12446846uau.111.1466607555714; 
+	Wed, 22 Jun 2016 07:59:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFrQVPOE2bwaiQ9iDx8ogKuc_CCG2RjVu8NKfW-UOgp+LPLR8w@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: prelink support
+Received: by 10.176.1.50 with HTTP; Wed, 22 Jun 2016 07:59:15 -0700 (PDT)
+In-Reply-To: <CAF3SDA72vJ1W+zzM+=i+4y4VxjwU64SrdmgX93qubY7d_OFt6w@mail.gmail.com>
+References: <CAF3SDA5fWG_WyHHYAFDu3ZkRmv6ba+aV_8Ph6dy5avy71SQWsg@mail.gmail.com>
+	<CAMKF1sqMH+Z=7+1BTAEbiPm9kQO6NYbxY7-9OgRJ=wDYcFov0A@mail.gmail.com>
+	<CAF3SDA4k9M0GdWngzpE2P-=_jCoyaW_oUo6jmzNJ6uibu2hRPw@mail.gmail.com>
+	<CAF3SDA413PDn7J7wcNBsAW3f5gFJeD9x4X+rerYnz=xhQr1jWQ@mail.gmail.com>
+	<CAMKF1srtRCm2MD44U2Etf8VxsmV3xkaac80Z8rpAhM4Ubw-RHQ@mail.gmail.com>
+	<CAF3SDA6mJLEzJ+DuxwWCPPHa3k+ac==8m6sDzRO95TmmkGu9Hg@mail.gmail.com>
+	<CAF3SDA72vJ1W+zzM+=i+4y4VxjwU64SrdmgX93qubY7d_OFt6w@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+Date: Wed, 22 Jun 2016 11:59:15 -0300
+Message-ID: <CAF3SDA6GkCg4RBbitS67AuMRESP_A6NcQ+P62PkQk365k_ghpQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Crosscompiling python extensions with yocto generated toolchains!?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,101 +76,204 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 14:57:52 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 22 Jun 2016 14:59:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 6/22/16 3:06 AM, Kyle Russell wrote:
-> The cross_prelink_staging branch seems to work for our ARM Cortex-A53 configuration.
-> 
-> The only issue that I ran into was building src/rtld/dl-open.c.  I guess the
-> GCCVERSION we declared (4.9%) was defaulting to a language standard that didn't
-> support for loop initial declarations.
+The above script can also be founded here:
+https://gist.github.com/gkos/2fa8dd54712d0b92a3db52e472d9fc09
 
-What is the specific error you got?  This is the type of stuff I'd like to resolve.
+Regards,
 
-Are you using a branch and gcc that is part of OpenEmbedded?  If so, I need to
-know how to configure the system so I can attempt to reproduce and work around
-the issue.
+2016-06-22 11:57 GMT-03:00 Daniel. <danielhilst@gmail.com>:
+> Well, I've create a little script to create the needed variables used
+> by Yocto's python.
+>
+> Here it is:
+>
+> . $1
+> export BUILD_SYS=$(echo $CONFIGURE_FLAGS | tr -s ' ' '\n' | grep host
+> | cut -f2 -d=)
+> export HOST_SYS=$(echo $CONFIGURE_FLAGS | tr -s ' ' '\n' | grep build
+> | cut -f2 -d=)
+> export STAGING_INCDIR=${OECORE_TARGET_SYSROOT}/usr/include
+> export STAGING_LIBDIR=${OECORE_TARGET_SYSROOT}/usr/lib
+> export PATH=${OECORE_NATIVE_SYSROOT}/usr/bin/python-native:${PATH}
+>
+> I save it to a file and source it passing the environment-setup-*
+> scritp that lives at my ${TMPDIR} folder.
+>
+> After that I can crosscompile python extension to my target as usual
+> with `python setup.py build'
+>
+>
+> Regards,
+>
+>
+> 2016-06-20 17:43 GMT-03:00 Daniel. <danielhilst@gmail.com>:
+>> My first doubt was how to trully cross-compile python extensions. Since I
+>> can't find anything usefull on internet I ask my self: How OE does it? It
+>> seems that OE uses an patched distutils to get bits build. This "assumption"
+>> comes from what I see at distutils/sysconfig.py that lives at
+>> build/tmp/sysroot/.. folder. After more digging I found this patch:
+>> http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/recipes-devtools/python/python-native/12-distutils-prefix-is-inside-staging-area.patch?h=daisy
+>>
+>> The variables are aplied by this patch to the python-native (since I'm still
+>> in Daisy, shame on me). At the top of the patch we see:
+>>
+>> The proper prefix is inside our staging area.
+>>
+>> So I'll try to contact these people to track the "proper fix". Since
+>> crosscompiling python extensions is lacking of
+>>
+>> documentation reading the source and talking to the gurus is the only option
+>> avaible right now :) .
+>>
+>>
+>> Regards,
+>>
+>>
+>>
+>> 2016-06-20 16:23 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
+>>>
+>>> On Mon, Jun 20, 2016 at 12:08 PM, Daniel. <danielhilst@gmail.com> wrote:
+>>> > I've found this recipe "python-pycurl" with exports libcurl to python.
+>>> > What
+>>> > I did was build it and take a look at temp folder to stalk what line is
+>>> > used
+>>> > to compile that stuff. Here it is:
+>>> >
+>>> > distutils_do_compile() {
+>>> >
+>>> >
+>>> > STAGING_INCDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/include
+>>> > \
+>>> >
+>>> >
+>>> > STAGING_LIBDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/lib
+>>> > \
+>>> >          BUILD_SYS=x86_64-linux HOST_SYS=arm-poky-linux-gnueabi \
+>>> >
+>>> >
+>>> > /home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/x86_64-linux/usr/bin/python-native/python
+>>> > setup.py build  || \
+>>> >          bbfatal "python setup.py build_ext execution failed."
+>>> >
+>>> > }
+>>> >
+>>> >
+>>> > So I go to my extension's source folder and paste
+>>> >
+>>> > STAGING_INCDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/include
+>>> > \
+>>> >
+>>> > STAGING_LIBDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/lib
+>>> > \
+>>> > BUILD_SYS=x86_64-linux HOST_SYS=arm-poky-linux-gnueabi \
+>>> >
+>>> > /home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/x86_64-linux/usr/bin/python-native/python
+>>> > setup.py build
+>>> >
+>>> > and everything works fine, I got my extension compiled. So, in what
+>>> > magic
+>>> > are these enviroment variables envolved? STAGING_INCDIR
+>>> > and STAGING_LIBDIR are OE stuff, what are these BUILD_SYS and HOST_SYS
+>>> > related?! I'm still searching, anyway thanks Khen for
+>>> > pointing me meta-python sources. It helped me a lot.
+>>>
+>>>
+>>> OE has several classes where common operations are abstracted out and
+>>> you can see that in recipes
+>>> e.g. inherit setuptools etc. you should copy the recipe which is
+>>> closest to your package and modify it
+>>> to use your package source etc. and make other needed tweaks.
+>>>
+>>> >
+>>> > Regards,
+>>> >
+>>> >
+>>> > 2016-06-20 15:29 GMT-03:00 Daniel. <danielhilst@gmail.com>:
+>>> >>
+>>> >> Thank you Khem!!
+>>> >>
+>>> >> Regards,
+>>> >>
+>>> >> 2016-06-20 15:02 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
+>>> >>>
+>>> >>> On Mon, Jun 20, 2016 at 10:44 AM, Daniel. <danielhilst@gmail.com>
+>>> >>> wrote:
+>>> >>> > Hi everybody..
+>>> >>> >
+>>> >>> > I've been playing with python extensions. Now I want to compile a
+>>> >>> > simple
+>>> >>> > hello world extension
+>>> >>> > to my Yocto's target, but I really can't find any good resource
+>>> >>> > about
+>>> >>> > doing
+>>> >>> > it. So what is the teory behind it?
+>>> >>> >
+>>> >>> > I know that I need python headers "Python.h and others" and that I
+>>> >>> > need
+>>> >>> > distutils installed. After that everything is done by distutils and
+>>> >>> > setup.py
+>>> >>> > script, but what is done is a mistery. I found distutilscross on
+>>> >>> > internet
+>>> >>> > but no documentation about it!?
+>>> >>> >
+>>> >>> > How are python extensions cross-compiled by Yocto? Can somebody
+>>> >>> > point
+>>> >>> > me an
+>>> >>> > example?!
+>>> >>>
+>>> >>> take a look at meta-python.
+>>> >>>
+>>> >>> http://cgit.openembedded.org/meta-openembedded/tree/meta-python
+>>> >>>
+>>> >>> You might find some examples close to what you are looking for.
+>>> >>>
+>>> >>> >
+>>> >>> > Regards,
+>>> >>> >
+>>> >>> > --
+>>> >>> > "Do or do not. There is no try"
+>>> >>> >   Yoda Master
+>>> >>> >
+>>> >>> > --
+>>> >>> > _______________________________________________
+>>> >>> > yocto mailing list
+>>> >>> > yocto@yoctoproject.org
+>>> >>> > https://lists.yoctoproject.org/listinfo/yocto
+>>> >>> >
+>>> >>
+>>> >>
+>>> >>
+>>> >>
+>>> >> --
+>>> >> "Do or do not. There is no try"
+>>> >>   Yoda Master
+>>> >
+>>> >
+>>> >
+>>> >
+>>> > --
+>>> > "Do or do not. There is no try"
+>>> >   Yoda Master
+>>
+>>
+>>
+>>
+>> --
+>> "Do or do not. There is no try"
+>>   Yoda Master
+>
+>
+>
+> --
+> "Do or do not. There is no try"
+>   Yoda Master
 
---Mark
 
-> On Mon, Jun 20, 2016 at 9:15 AM, Mark Hatle <mark.hatle@windriver.com
-> <mailto:mark.hatle@windriver.com>> wrote:
-> 
->     On 6/20/16 7:24 AM, Kyle Russell wrote:
->     > It looks like the image-prelink support is still disabled in master because of
->     > an issue with IFUNC symbol relocation.
->     >
->     >
->     https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta-poky/conf/local.conf.sample?id=8debfea81e69d038bd2d56314b272cb74f5582ed
->     >
->     > Is there still a problem, or is it safe to reenable image-prelink?  I see
->     a "Fix
->     > ARM IFUNC support" in the prelink-cross repo, but that appears to have been
->     > committed several months before image-prelink was disabled.  We'd like to
->     enable
->     > image-prelink on a build off jethro.
->     >
->     > Any help or links to a recent discussion thread would be helpful.  Thanks!
->     >
->     >
-> 
->     The ARM fix is for a different IFUNC problem.
-> 
->     Disabling the prelinker was caused by a serious of problems that started with a
->     fork failure traced back to shared library processing orders.
-> 
->     (For comments below, I'm referring to the repository:
->     http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/)
-> 
->     The initial problem, IFUNC processing, showed that processing order of the
->     shared libraries could lead to a case where the wrong IFUNC was used.  We
->     believe this particular issues was fixed in the staging tree.
-> 
->     In the tree you'll see a cross_prelink_staging branch.  In that branch the fix
->     is commit ID: "8f55afd84b3580b1f1d6af904e8c2a39221055b7"  This fixes the 'fork'
->     issue by ensuring the proper sort order for shared library processing.  (This
->     was finally fixed in March.)
-> 
->     However with that we determined there was at least one more issue related to
->     section ordering.  The prelink test suite was failing due to various integrity
->     checks showing that once we prelinked something, we could not reverse the
->     process.  It has taken us months to identify the cause of the problem and the
->     solution.  (Cause BTW was a change in binutils-2.22 that no longer ensured that
->     the section order was sorted by offset order... a small amount of the prelink
->     processing needed to be changed to deal with that behavior.  It's taken far
->     longer to fix then we had ever expected.)
-> 
->     See commit (33be255d62af533189f1f7bc66c06602b703980a) in the
->     cross_prelink_staging branch.
-> 
->     With this commit, I think the two major issues have been resolved.  I've got a
->     small set of additional patches I need to put into place -- and then I have to
->     finish going through the regression suite to verify everything is working
->     properly.  (Seems like every time I get to this step, something else comes up
->     and I'm not getting it done...)
-> 
->     So if you've read this far, the point in all of this is that I THINK that the
->     cross_prelink_staging branch and current top commit
->     "33be255d62af533189f1f7bc66c06602b703980a" are working.  However, I've not
->     completed testing so I'm not sure of that yet.
-> 
->     If you can help with testing, you should modify your prelink recipe to use the
->     'cross_prelink_staging' branch, and the 33be255 commit.  Verify that this is
->     working for your use cases.  If you are using glib or graphical environments pay
->     particular attention to process startup messages that indicate failures.
-> 
->     If this IS working for you, I'd like a reply back with the architecture and
->     processor you are using so I can add that to my matrix.  (I'm traveling for the
->     next couple of days, and then should be back in the officer where I hope to
->     finish my regression testing, apply the last couple of patches from Gentoo
->     developers, regression test again and prepare a release version.)
-> 
->     Any help is appreciated, thanks for understanding why this is taking so long.
-> 
->     --Mark
-> 
-> 
 
+-- 
+"Do or do not. There is no try"
+  Yoda Master
 
