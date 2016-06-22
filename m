@@ -1,64 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C12FE00AD8; Wed, 22 Jun 2016 13:16:48 -0700 (PDT)
+	id 5AED3E00B7A; Wed, 22 Jun 2016 13:17:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18A98E00A6D
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
-Received: by mail-it0-f46.google.com with SMTP id f6so47661858ith.0
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=O8UwBf7Qz/tqAhPNypJ7x88bx5fIOBMYP/foTVwCGws=;
-	b=0PgH9qrqESzGKpskyxYbeGTAavkTqX91uNXDxbI4kmFxJAGQliWgqNk5MDe0WSk4/y
-	gM6bSJOP+q+FaUDelulDh5qCkMZVMQrpUEaE9bZB1bRhTp9YuvOl9ErWIVj7oUVOvAcj
-	R1kU4qPqQz9vBYtTkWY/xGjlLZUj4xC+G6cr6Jd/SR1059zjYMjyKWGolmRnlIDGKcqo
-	BAMU8SHjGHjoSqNmwP35akN4aKG/CrqyLEKHAy0irF3FiSCtU1nhcM8eOfayih6HuHDY
-	Gg+ev7M+1yklrJ+PDF5My+sYrYHaCOvQIqmN1T2WxGqWaPy5zMcgXk0Hi5t65JstgfKr
-	G2Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=O8UwBf7Qz/tqAhPNypJ7x88bx5fIOBMYP/foTVwCGws=;
-	b=Nc5A4pHC3YGRtws3N6oNGG21elbAe256wJyUoxrSjoa/+m9BCPl4DxVoPEJaIseLMQ
-	1LoIl1OAgkk4THvDYSwrDtte+HdmjA2Qma7/yofUE4RRUezhmbAu1dDGjIDCGa0KO5AY
-	BP2kJwWhz7axnCJiqXAnUpX0/9Z1YEQYrErj7DgHFT0uO9VakycUXx70aBviSpT7x6WA
-	PrcgPD4z0oklsumSJ1YD0rCkm4fDHORNwglFHr1vx9MDpFbrgQc0NDRetmrTtK6zVwDh
-	ejRfbI8zUbBtmfj9nwPMJ/gIRSCB8Iq0t053yYW1m7en198t1OtIbvGnibdTxXlROjwZ
-	Vgtg==
-X-Gm-Message-State: ALyK8tL/gyiSzsX0W95FK+vorV+4nEQoN9fhgL8l2T5wmVpOy/7l/uoRR/U7JIL3rFn9Aks/YEt9kXrz7XXnCRMD
-X-Received: by 10.36.48.80 with SMTP id q77mr16718941itq.83.1466626603401;
-	Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [192.55.52.120 listed in list.dnswl.org]
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26EA9E00B04
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:17:10 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga104.fm.intel.com with ESMTP; 22 Jun 2016 13:17:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,509,1459839600"; 
+	d="asc'?scan'208";a="981379212"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.159])
+	([10.219.5.159])
+	by orsmga001.jf.intel.com with ESMTP; 22 Jun 2016 13:17:08 -0700
+To: pidge@toganlabs.com, yocto@yoctoproject.org
+References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
+	<1466581487.3278.17.camel@toganlabs.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <576AF245.4000400@linux.intel.com>
+Date: Wed, 22 Jun 2016 15:17:09 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Wed, 22 Jun 2016 13:16:24 -0700 (PDT)
-In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA600F04@RCHEXMBP1.fnc.net.local>
-References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
-	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
-	<111ACD726EC3464BAED310F5EA7BEBDA600E27@RCHEXMBP1.fnc.net.local>
-	<CAJTo0La0PcLZtTbozgspB9nr6O81aq5rpjcHekiCQ2kZWYbAtg@mail.gmail.com>
-	<111ACD726EC3464BAED310F5EA7BEBDA600F04@RCHEXMBP1.fnc.net.local>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 22 Jun 2016 21:16:24 +0100
-Message-ID: <CAJTo0LYBMWTkE4HzLxgwZf_ewkEOZeVnMJ_EOqQ6NypwSJro-A@mail.gmail.com>
-To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error applying patch - openvswitch
+In-Reply-To: <1466581487.3278.17.camel@toganlabs.com>
+Cc: joshua.g.lock@intel.com
+Subject: Re: [[yocto-autobuilder][PATCHv2] 00/15] Add support for generate bitbake/oe-selftest error reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,156 +45,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 20:16:48 -0000
-Content-Type: multipart/alternative; boundary=001a11c007d8b7086d0535e39d92
+X-List-Received-Date: Wed, 22 Jun 2016 20:17:26 -0000
+X-Groupsio-MsgNum: 30715
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="nhLoIuNdN7Fw29UrOebMnJBen5vLVj7tR"
 
---001a11c007d8b7086d0535e39d92
-Content-Type: text/plain; charset=UTF-8
+--nhLoIuNdN7Fw29UrOebMnJBen5vLVj7tR
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Without sharing your recipe or the patch, nobody can help.  Check that the
-SRC_URI correctly contains the patch, that it ends with .patch or .diff to
-be applied as a patch automatically, and verify that you actually rebuilt
-the recipe.
-
-Ross
-
-On 22 June 2016 at 21:07, Rajasekaran, Monica <
-Monica.Rajasekaran@us.fujitsu.com> wrote:
-
-> The folders in tmp/work on my source machine don=E2=80=99t have today=E2=
-=80=99s date as
-> last modified.
->
->
->
-> Hmm=E2=80=A6 I don=E2=80=99t know what might be the mistake with applying=
- the patch.
->
->
->
-> *Thanks,*
->
-> *Monica *
->
->
->
-> *From:* Burton, Ross [mailto:ross.burton@intel.com]
-> *Sent:* Wednesday, June 22, 2016 2:18 PM
-> *To:* Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Error applying patch - openvswitch
->
->
->
->
->
-> On 22 June 2016 at 19:25, Rajasekaran, Monica <
-> Monica.Rajasekaran@us.fujitsu.com> wrote:
->
-> After applying the patches, I brought up my openvswitch which works
-> correctly alongside the controller but I don=E2=80=99t see any of the pri=
-nt
-> statements I added to view the changes inside. Is there a way to check th=
-e
-> updated source code with my patch in the target machine ?
->
->
-> Not really, but looking in the work directory (tmp/work) will tell you if
-> it got applied.
->
->
->
-> Ross
->
-
---001a11c007d8b7086d0535e39d92
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Without sharing your recipe or the patch, nobody can help.=
-=C2=A0 Check that the SRC_URI correctly contains the patch, that it ends wi=
-th .patch or .diff to be applied as a patch automatically, and verify that =
-you actually rebuilt the recipe.<div><br></div><div>Ross</div></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On 22 June 2016 at 21:07=
-, Rajasekaran, Monica <span dir=3D"ltr">&lt;<a href=3D"mailto:Monica.Rajase=
-karan@us.fujitsu.com" target=3D"_blank">Monica.Rajasekaran@us.fujitsu.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
 
+On 06/22/2016 02:44 AM, Beth 'pidge' Flanagan wrote:
+> On Tue, 2016-06-21 at 18:07 -0500, An=C3=ADbal Lim=C3=B3n wrote:
+>> This v2 adds support for generate also oe-selftest reports this is
+>> almost
+>> the previous version with changes requested in review [1], the next
+>> patches
+>> starts from patch,
+>>
+>> 	autobuilder/lib/{ABtools,builsteps}.py: Create
+>> save_error_report func
+>=20
+> A few comments.
+>=20
+> - Please rebase the last two commits. They can be merged into prior
+> commits.=20
+>=20
+> Example: 0eb495d93eefa9ead8f4b1242f251f1a2288db68 should be squashed
+> into 83b6707622128436b4ece9d4c2a89311b000c209
+>=20
+> We shouldn't need rename commits for a pull request that created the
+> original thing we're renaming.
+>=20
+> - Please fix the title for 83b6707622128436b4ece9d4c2a89311b000c209
+> 's/buiidsets/buildsets/'
+
+I squashed the changes now at,
+
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=3Dcont=
+rib/alimon/devel2
+
+	alimon
+>=20
+>=20
+> -b
+>=20
 
 
+--nhLoIuNdN7Fw29UrOebMnJBen5vLVj7tR
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d">The folders in tmp/work on my source =
-machine don=E2=80=99t have today=E2=80=99s date as last modified.
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d">Hmm=E2=80=A6 I don=E2=80=99t know wha=
-t might be the mistake with applying the patch.
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif;color:#1f497d">Thanks,<u></u><u></u></span></i></=
-p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif;color:#1f497d">Monica
-<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> Burton, Ross [mailto:<a href=
-=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</=
-a>]
-<br>
-<b>Sent:</b> Wednesday, June 22, 2016 2:18 PM<span class=3D""><br>
-<b>To:</b> Rajasekaran, Monica &lt;<a href=3D"mailto:Monica.Rajasekaran@us.=
-fujitsu.com" target=3D"_blank">Monica.Rajasekaran@us.fujitsu.com</a>&gt;<br=
->
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Error applying patch - openvswitch<u></u><u></u=
-></span></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">On 22 June 2016 at 19:25, Rajasekaran, Monica &lt;<a=
- href=3D"mailto:Monica.Rajasekaran@us.fujitsu.com" target=3D"_blank">Monica=
-.Rajasekaran@us.fujitsu.com</a>&gt; wrote:<u></u><u></u></p><div><div class=
-=3D"h5">
-<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0i=
-n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1f497d">After applying the patches, I brought=
- up my openvswitch which works correctly alongside the controller
- but I don=E2=80=99t see any of the print statements I added to view the ch=
-anges inside. Is there a way to check the updated source code with my patch=
- in the target machine ?</span><u></u><u></u></p>
-</blockquote>
-</div></div></div><div><div class=3D"h5">
-<p class=3D"MsoNormal"><br>
-Not really, but looking in the work directory (tmp/work) will tell you if i=
-t got applied.<u></u><u></u></p>
-</div></div></div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Ross<u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-</blockquote></div><br></div>
+iQIcBAEBAgAGBQJXavJHAAoJEGJqcE9h3glgJbIP/AutwHmVuI/TI3r26D33dwXT
+aoFPx9N2nkDWtMD7C/PqLrXeqPhcjbajMuN4/oNNXlFKi0xMSf1cYqO9njKzQoUz
+1K3c3zTvnloz/ao8tvIKwTzVNu8ybPs1QZ+EjfvjiUSm4gPj0hvadv34LhO6G6ic
+At5R6TLtjwteW0tKNLw8Ia5hQ+tSRXyvjp7xIUEdl/pVN2OoxYwqOrno6Rv/IBe0
+p185Dbi55VDpebtPIR7yuL+kujcb68t+xa/NIMPL1qEN0WDPIXYPd6PUuPQSUF//
+zEe4k72bZassC95yTQ1DT2nOM//jS4HBbHfqwTVgFIr4ulXEkFVyMeJKJ1Ng0WH4
+Mzr/0KBatQ+UEv/n+Q0Ti6U4gWhlQg1t1f1w/lFfGM+yE06s/RSmzO++4eUaS/nA
+rrWSfbtwpmyhrxSyGjt3O7lqbPcaS1gy678ieSC5u2Tef973ZWeEgCb1pQyLbgR5
+irKZCzJDoJ0Uhb0nTb2O8egywYZ8qkUFhqICN7byYyUkP0W5aH0nZgvPgUrYgUV6
+jLKk3gQToBAnpCkYKaWv6D3j8ztHuwOmXi8gAoR4p6CmBjgLGNPtLtY1wfAwt+ZD
+vTL9jMYIpl5ROrcb4srlcQaVFIuSxEJUlAaFhe62yjvSGadvHe46Ctklas2hPoXU
+6BzAyVU/dWJY/SNBk4zH
+=O2W2
+-----END PGP SIGNATURE-----
 
---001a11c007d8b7086d0535e39d92--
+--nhLoIuNdN7Fw29UrOebMnJBen5vLVj7tR--
