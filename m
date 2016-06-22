@@ -1,48 +1,62 @@
-Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5AEA3E00AF2; Wed, 22 Jun 2016 13:07:46 -0700 (PDT)
+	id 4C12FE00AD8; Wed, 22 Jun 2016 13:16:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [168.127.0.57 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from fncnmp04.fnc.fujitsu.com (fncnmp04.fnc.fujitsu.com
-	[168.127.0.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 251BBE00AA2
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:07:41 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.26,509,1459832400"; d="scan'208,217";a="80359936"
-Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
-	by fncnmp02.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
-	22 Jun 2016 15:07:39 -0500
-Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
-	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
-	Wed, 22 Jun 2016 15:07:38 -0500
-From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Error applying patch - openvswitch
-Thread-Index: AdHMkw194/p20ixUTZulCrLDbODXUgAKtwWAAAmfCVAADFWDUP//ngWAgABGuuA=
-Date: Wed, 22 Jun 2016 20:07:38 +0000
-Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600F04@RCHEXMBP1.fnc.net.local>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18A98E00A6D
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
+Received: by mail-it0-f46.google.com with SMTP id f6so47661858ith.0
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=O8UwBf7Qz/tqAhPNypJ7x88bx5fIOBMYP/foTVwCGws=;
+	b=0PgH9qrqESzGKpskyxYbeGTAavkTqX91uNXDxbI4kmFxJAGQliWgqNk5MDe0WSk4/y
+	gM6bSJOP+q+FaUDelulDh5qCkMZVMQrpUEaE9bZB1bRhTp9YuvOl9ErWIVj7oUVOvAcj
+	R1kU4qPqQz9vBYtTkWY/xGjlLZUj4xC+G6cr6Jd/SR1059zjYMjyKWGolmRnlIDGKcqo
+	BAMU8SHjGHjoSqNmwP35akN4aKG/CrqyLEKHAy0irF3FiSCtU1nhcM8eOfayih6HuHDY
+	Gg+ev7M+1yklrJ+PDF5My+sYrYHaCOvQIqmN1T2WxGqWaPy5zMcgXk0Hi5t65JstgfKr
+	G2Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=O8UwBf7Qz/tqAhPNypJ7x88bx5fIOBMYP/foTVwCGws=;
+	b=Nc5A4pHC3YGRtws3N6oNGG21elbAe256wJyUoxrSjoa/+m9BCPl4DxVoPEJaIseLMQ
+	1LoIl1OAgkk4THvDYSwrDtte+HdmjA2Qma7/yofUE4RRUezhmbAu1dDGjIDCGa0KO5AY
+	BP2kJwWhz7axnCJiqXAnUpX0/9Z1YEQYrErj7DgHFT0uO9VakycUXx70aBviSpT7x6WA
+	PrcgPD4z0oklsumSJ1YD0rCkm4fDHORNwglFHr1vx9MDpFbrgQc0NDRetmrTtK6zVwDh
+	ejRfbI8zUbBtmfj9nwPMJ/gIRSCB8Iq0t053yYW1m7en198t1OtIbvGnibdTxXlROjwZ
+	Vgtg==
+X-Gm-Message-State: ALyK8tL/gyiSzsX0W95FK+vorV+4nEQoN9fhgL8l2T5wmVpOy/7l/uoRR/U7JIL3rFn9Aks/YEt9kXrz7XXnCRMD
+X-Received: by 10.36.48.80 with SMTP id q77mr16718941itq.83.1466626603401;
+	Wed, 22 Jun 2016 13:16:43 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.162.6 with HTTP; Wed, 22 Jun 2016 13:16:24 -0700 (PDT)
+In-Reply-To: <111ACD726EC3464BAED310F5EA7BEBDA600F04@RCHEXMBP1.fnc.net.local>
 References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
 	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
 	<111ACD726EC3464BAED310F5EA7BEBDA600E27@RCHEXMBP1.fnc.net.local>
 	<CAJTo0La0PcLZtTbozgspB9nr6O81aq5rpjcHekiCQ2kZWYbAtg@mail.gmail.com>
-In-Reply-To: <CAJTo0La0PcLZtTbozgspB9nr6O81aq5rpjcHekiCQ2kZWYbAtg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [168.127.136.253]
-x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22408.002
-x-tm-as-result: No--50.558300-0.000000-31
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
+	<111ACD726EC3464BAED310F5EA7BEBDA600F04@RCHEXMBP1.fnc.net.local>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 22 Jun 2016 21:16:24 +0100
+Message-ID: <CAJTo0LYBMWTkE4HzLxgwZf_ewkEOZeVnMJ_EOqQ6NypwSJro-A@mail.gmail.com>
+To: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Error applying patch - openvswitch
 X-BeenThere: yocto@yoctoproject.org
@@ -56,114 +70,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 20:07:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA600F04RCHEXMBP1fncnetlo_"
+X-List-Received-Date: Wed, 22 Jun 2016 20:16:48 -0000
+Content-Type: multipart/alternative; boundary=001a11c007d8b7086d0535e39d92
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600F04RCHEXMBP1fncnetlo_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11c007d8b7086d0535e39d92
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-VGhlIGZvbGRlcnMgaW4gdG1wL3dvcmsgb24gbXkgc291cmNlIG1hY2hpbmUgZG9u4oCZdCBoYXZl
-IHRvZGF54oCZcyBkYXRlIGFzIGxhc3QgbW9kaWZpZWQuDQoNCkhtbeKApiBJIGRvbuKAmXQga25v
-dyB3aGF0IG1pZ2h0IGJlIHRoZSBtaXN0YWtlIHdpdGggYXBwbHlpbmcgdGhlIHBhdGNoLg0KDQpU
-aGFua3MsDQpNb25pY2ENCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25A
-aW50ZWwuY29tXQ0KU2VudDogV2VkbmVzZGF5LCBKdW5lIDIyLCAyMDE2IDI6MTggUE0NClRvOiBS
-YWphc2VrYXJhbiwgTW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQpD
-YzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRXJyb3IgYXBw
-bHlpbmcgcGF0Y2ggLSBvcGVudnN3aXRjaA0KDQoNCk9uIDIyIEp1bmUgMjAxNiBhdCAxOToyNSwg
-UmFqYXNla2FyYW4sIE1vbmljYSA8TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPG1h
-aWx0bzpNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+PiB3cm90ZToNCkFmdGVyIGFw
-cGx5aW5nIHRoZSBwYXRjaGVzLCBJIGJyb3VnaHQgdXAgbXkgb3BlbnZzd2l0Y2ggd2hpY2ggd29y
-a3MgY29ycmVjdGx5IGFsb25nc2lkZSB0aGUgY29udHJvbGxlciBidXQgSSBkb27igJl0IHNlZSBh
-bnkgb2YgdGhlIHByaW50IHN0YXRlbWVudHMgSSBhZGRlZCB0byB2aWV3IHRoZSBjaGFuZ2VzIGlu
-c2lkZS4gSXMgdGhlcmUgYSB3YXkgdG8gY2hlY2sgdGhlIHVwZGF0ZWQgc291cmNlIGNvZGUgd2l0
-aCBteSBwYXRjaCBpbiB0aGUgdGFyZ2V0IG1hY2hpbmUgPw0KDQpOb3QgcmVhbGx5LCBidXQgbG9v
-a2luZyBpbiB0aGUgd29yayBkaXJlY3RvcnkgKHRtcC93b3JrKSB3aWxsIHRlbGwgeW91IGlmIGl0
-IGdvdCBhcHBsaWVkLg0KDQpSb3NzDQo=
+Without sharing your recipe or the patch, nobody can help.  Check that the
+SRC_URI correctly contains the patch, that it ends with .patch or .diff to
+be applied as a patch automatically, and verify that you actually rebuilt
+the recipe.
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600F04RCHEXMBP1fncnetlo_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Ross
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
-MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
-cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoZSBmb2xkZXJzIGluIHRtcC93b3JrIG9u
-IG15IHNvdXJjZSBtYWNoaW5lIGRvbuKAmXQgaGF2ZSB0b2RheeKAmXMgZGF0ZSBhcyBsYXN0IG1v
-ZGlmaWVkLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5IbW3i
-gKYgSSBkb27igJl0IGtub3cgd2hhdCBtaWdodCBiZSB0aGUgbWlzdGFrZSB3aXRoIGFwcGx5aW5n
-IHRoZSBwYXRjaC4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9zcGFuPjwvaT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TW9uaWNhDQo8bzpwPjwvbzpwPjwv
-c3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+
-IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NCjxicj4NCjxiPlNl
-bnQ6PC9iPiBXZWRuZXNkYXksIEp1bmUgMjIsIDIwMTYgMjoxOCBQTTxicj4NCjxiPlRvOjwvYj4g
-UmFqYXNla2FyYW4sIE1vbmljYSAmbHQ7TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29t
-Jmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1Ympl
-Y3Q6PC9iPiBSZTogW3lvY3RvXSBFcnJvciBhcHBseWluZyBwYXRjaCAtIG9wZW52c3dpdGNoPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDIyIEp1bmUgMjAxNiBhdCAx
-OToyNSwgUmFqYXNla2FyYW4sIE1vbmljYSAmbHQ7PGEgaHJlZj0ibWFpbHRvOk1vbmljYS5SYWph
-c2VrYXJhbkB1cy5mdWppdHN1LmNvbSIgdGFyZ2V0PSJfYmxhbmsiPk1vbmljYS5SYWphc2VrYXJh
-bkB1cy5mdWppdHN1LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVv
-dGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFk
-ZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGlu
-Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
-c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
-PkFmdGVyIGFwcGx5aW5nIHRoZSBwYXRjaGVzLCBJIGJyb3VnaHQgdXAgbXkgb3BlbnZzd2l0Y2gg
-d2hpY2ggd29ya3MgY29ycmVjdGx5IGFsb25nc2lkZSB0aGUgY29udHJvbGxlcg0KIGJ1dCBJIGRv
-buKAmXQgc2VlIGFueSBvZiB0aGUgcHJpbnQgc3RhdGVtZW50cyBJIGFkZGVkIHRvIHZpZXcgdGhl
-IGNoYW5nZXMgaW5zaWRlLiBJcyB0aGVyZSBhIHdheSB0byBjaGVjayB0aGUgdXBkYXRlZCBzb3Vy
-Y2UgY29kZSB3aXRoIG15IHBhdGNoIGluIHRoZSB0YXJnZXQgbWFjaGluZSA/PC9zcGFuPjxvOnA+
-PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-YnI+DQpOb3QgcmVhbGx5LCBidXQgbG9va2luZyBpbiB0aGUgd29yayBkaXJlY3RvcnkgKHRtcC93
-b3JrKSB3aWxsIHRlbGwgeW91IGlmIGl0IGdvdCBhcHBsaWVkLjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+On 22 June 2016 at 21:07, Rajasekaran, Monica <
+Monica.Rajasekaran@us.fujitsu.com> wrote:
 
---_000_111ACD726EC3464BAED310F5EA7BEBDA600F04RCHEXMBP1fncnetlo_--
+> The folders in tmp/work on my source machine don=E2=80=99t have today=E2=
+=80=99s date as
+> last modified.
+>
+>
+>
+> Hmm=E2=80=A6 I don=E2=80=99t know what might be the mistake with applying=
+ the patch.
+>
+>
+>
+> *Thanks,*
+>
+> *Monica *
+>
+>
+>
+> *From:* Burton, Ross [mailto:ross.burton@intel.com]
+> *Sent:* Wednesday, June 22, 2016 2:18 PM
+> *To:* Rajasekaran, Monica <Monica.Rajasekaran@us.fujitsu.com>
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Error applying patch - openvswitch
+>
+>
+>
+>
+>
+> On 22 June 2016 at 19:25, Rajasekaran, Monica <
+> Monica.Rajasekaran@us.fujitsu.com> wrote:
+>
+> After applying the patches, I brought up my openvswitch which works
+> correctly alongside the controller but I don=E2=80=99t see any of the pri=
+nt
+> statements I added to view the changes inside. Is there a way to check th=
+e
+> updated source code with my patch in the target machine ?
+>
+>
+> Not really, but looking in the work directory (tmp/work) will tell you if
+> it got applied.
+>
+>
+>
+> Ross
+>
+
+--001a11c007d8b7086d0535e39d92
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Without sharing your recipe or the patch, nobody can help.=
+=C2=A0 Check that the SRC_URI correctly contains the patch, that it ends wi=
+th .patch or .diff to be applied as a patch automatically, and verify that =
+you actually rebuilt the recipe.<div><br></div><div>Ross</div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On 22 June 2016 at 21:07=
+, Rajasekaran, Monica <span dir=3D"ltr">&lt;<a href=3D"mailto:Monica.Rajase=
+karan@us.fujitsu.com" target=3D"_blank">Monica.Rajasekaran@us.fujitsu.com</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d">The folders in tmp/work on my source =
+machine don=E2=80=99t have today=E2=80=99s date as last modified.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d">Hmm=E2=80=A6 I don=E2=80=99t know wha=
+t might be the mistake with applying the patch.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:#1f497d">Thanks,<u></u><u></u></span></i></=
+p>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:#1f497d">Monica
+<u></u><u></u></span></i></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,sans-serif"> Burton, Ross [mailto:<a href=
+=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</=
+a>]
+<br>
+<b>Sent:</b> Wednesday, June 22, 2016 2:18 PM<span class=3D""><br>
+<b>To:</b> Rajasekaran, Monica &lt;<a href=3D"mailto:Monica.Rajasekaran@us.=
+fujitsu.com" target=3D"_blank">Monica.Rajasekaran@us.fujitsu.com</a>&gt;<br=
+>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Error applying patch - openvswitch<u></u><u></u=
+></span></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On 22 June 2016 at 19:25, Rajasekaran, Monica &lt;<a=
+ href=3D"mailto:Monica.Rajasekaran@us.fujitsu.com" target=3D"_blank">Monica=
+.Rajasekaran@us.fujitsu.com</a>&gt; wrote:<u></u><u></u></p><div><div class=
+=3D"h5">
+<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0i=
+n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d">After applying the patches, I brought=
+ up my openvswitch which works correctly alongside the controller
+ but I don=E2=80=99t see any of the print statements I added to view the ch=
+anges inside. Is there a way to check the updated source code with my patch=
+ in the target machine ?</span><u></u><u></u></p>
+</blockquote>
+</div></div></div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><br>
+Not really, but looking in the work directory (tmp/work) will tell you if i=
+t got applied.<u></u><u></u></p>
+</div></div></div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Ross<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div><br></div>
+
+--001a11c007d8b7086d0535e39d92--
