@@ -1,71 +1,48 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <Monica.Rajasekaran@us.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C27B6E00C2B; Wed, 22 Jun 2016 08:01:22 -0700 (PDT)
+	id 47295E00AA2; Wed, 22 Jun 2016 08:16:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,MISSING_HEADERS,PLING_QUERY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.51 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (danielhilst[at]gmail.com)
-	*  1.0 MISSING_HEADERS Missing To: header
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [168.127.0.56 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2903DE00C02
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 08:00:35 -0700 (PDT)
-Received: by mail-vk0-f51.google.com with SMTP id d185so65568895vkg.0
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 08:00:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:cc; 
-	bh=XxH9ZjekqRzd+tRWjNstznYbCB2IAOqURSIl7DEOz2k=;
-	b=FzpU0Zv2rnJEG2DyV3BQN8ZF1/pj0Wn02ciIFhPXkC2fR8WlchIMGZJCk2vCz9nbcz
-	ZRZraVJNTAFfHOVZeKbLsXNT6lURIVWrrpA6knvEGRqJdZ3E52570S+ScWCQifAVpwAs
-	QYCYzpmOI0uO8dLBEDfaeXsCARP28nur4ZfRoe4kZitHqzj9NYR0H4T5Y2ZrXOrBHYxy
-	0W3a5nl36HnPQOCly3O7wkVV2oLlUqT53AI8/58ben7f6E+VA4oEZIP6z7Xt40P6mkJC
-	oZ1TaZGdBJ/XYr3AINYSPN+wwwBgqCChWDjATTJ8t3aadFAo7NBGAMNj7lmB9e9XXhOX
-	ocJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:cc;
-	bh=XxH9ZjekqRzd+tRWjNstznYbCB2IAOqURSIl7DEOz2k=;
-	b=FlnFmocZJWBMzEbKgIFVQaHmKRBKY/8kjVAtIe3DghOvPZ9GGNEYzUwOi1xCVBTyyZ
-	eeOUocBCYqPEmTZ8pbbX8r1n56vXP6e7+XhbtbqtgoRwv4/1I3uf5DvjCuI78q137I45
-	QF1witkEl3CiaxOKAVJAYt6fb6LwfNNvf4n8xlGKKSSR37YES3Nzy/NGX7CdT99ZawVM
-	hEcvje0n3t1r2NyOEbnz6SfSHWgWfy76Zj9xYUBm0mwvXb6OkHXFla+8oq1G0MiJcryy
-	2KuaedEcA0hUJFxBw5ch9XXbaruFT92YEU1nE7+X9qwERnh9jsoE7p8rilomHJGqUwB+
-	hhjg==
-X-Gm-Message-State: ALyK8tKDHtid51LC6UJKBkwT3iHDO0N24LsxWSiAuVupj7J5YhQ1h/bWCHHpAkMIOjQ3SuE5didEMhbnZYWLsw==
-X-Received: by 10.31.192.14 with SMTP id q14mr8787748vkf.51.1466607634289;
-	Wed, 22 Jun 2016 08:00:34 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from fncnmp03.fnc.fujitsu.com (fncnmp03.fnc.fujitsu.com
+	[168.127.0.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 836CAE00A44
+	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 08:16:34 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.26,509,1459832400"; d="scan'208,217";a="78350174"
+Received: from rchexhcp1.fnc.net.local ([168.127.134.75])
+	by fncnmp01.fnc.fujitsu.com with ESMTP/TLS/AES256-SHA;
+	22 Jun 2016 10:16:31 -0500
+Received: from RCHEXMBP1.fnc.net.local ([169.254.2.106]) by
+	RCHEXHCP1.fnc.net.local ([168.127.134.75]) with mapi id 14.03.0294.000;
+	Wed, 22 Jun 2016 10:16:29 -0500
+From: "Rajasekaran, Monica" <Monica.Rajasekaran@us.fujitsu.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Error applying patch - openvswitch
+Thread-Index: AdHMkw194/p20ixUTZulCrLDbODXUgAKtwWAAAmfCVA=
+Date: Wed, 22 Jun 2016 15:16:29 +0000
+Message-ID: <111ACD726EC3464BAED310F5EA7BEBDA600D18@RCHEXMBP1.fnc.net.local>
+References: <111ACD726EC3464BAED310F5EA7BEBDA600CE1@RCHEXMBP1.fnc.net.local>
+	<CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
+In-Reply-To: <CAJTo0LYWdLr=uBy_vZ9GeiNQhxjRZbYubNSCzfOd3dFFDfJ-og@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [168.127.136.253]
+x-tm-as-product-ver: SMEX-10.2.0.3176-8.000.1202-22408.000
+x-tm-as-result: No--49.158300-0.000000-31
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Received: by 10.176.1.50 with HTTP; Wed, 22 Jun 2016 08:00:33 -0700 (PDT)
-In-Reply-To: <CAF3SDA6GkCg4RBbitS67AuMRESP_A6NcQ+P62PkQk365k_ghpQ@mail.gmail.com>
-References: <CAF3SDA5fWG_WyHHYAFDu3ZkRmv6ba+aV_8Ph6dy5avy71SQWsg@mail.gmail.com>
-	<CAMKF1sqMH+Z=7+1BTAEbiPm9kQO6NYbxY7-9OgRJ=wDYcFov0A@mail.gmail.com>
-	<CAF3SDA4k9M0GdWngzpE2P-=_jCoyaW_oUo6jmzNJ6uibu2hRPw@mail.gmail.com>
-	<CAF3SDA413PDn7J7wcNBsAW3f5gFJeD9x4X+rerYnz=xhQr1jWQ@mail.gmail.com>
-	<CAMKF1srtRCm2MD44U2Etf8VxsmV3xkaac80Z8rpAhM4Ubw-RHQ@mail.gmail.com>
-	<CAF3SDA6mJLEzJ+DuxwWCPPHa3k+ac==8m6sDzRO95TmmkGu9Hg@mail.gmail.com>
-	<CAF3SDA72vJ1W+zzM+=i+4y4VxjwU64SrdmgX93qubY7d_OFt6w@mail.gmail.com>
-	<CAF3SDA6GkCg4RBbitS67AuMRESP_A6NcQ+P62PkQk365k_ghpQ@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Wed, 22 Jun 2016 12:00:33 -0300
-Message-ID: <CAF3SDA7NVGwDBTpg3Drp7AxCEqSnRGdwvQPyO1SpsA7CKY1dsw@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Crosscompiling python extensions with yocto generated toolchains!?
+Subject: Re: Error applying patch - openvswitch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,213 +54,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jun 2016 15:01:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 22 Jun 2016 15:16:38 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_"
 
-s/founded/found/
+--_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-2016-06-22 11:59 GMT-03:00 Daniel. <danielhilst@gmail.com>:
-> The above script can also be founded here:
-> https://gist.github.com/gkos/2fa8dd54712d0b92a3db52e472d9fc09
->
-> Regards,
->
-> 2016-06-22 11:57 GMT-03:00 Daniel. <danielhilst@gmail.com>:
->> Well, I've create a little script to create the needed variables used
->> by Yocto's python.
->>
->> Here it is:
->>
->> . $1
->> export BUILD_SYS=$(echo $CONFIGURE_FLAGS | tr -s ' ' '\n' | grep host
->> | cut -f2 -d=)
->> export HOST_SYS=$(echo $CONFIGURE_FLAGS | tr -s ' ' '\n' | grep build
->> | cut -f2 -d=)
->> export STAGING_INCDIR=${OECORE_TARGET_SYSROOT}/usr/include
->> export STAGING_LIBDIR=${OECORE_TARGET_SYSROOT}/usr/lib
->> export PATH=${OECORE_NATIVE_SYSROOT}/usr/bin/python-native:${PATH}
->>
->> I save it to a file and source it passing the environment-setup-*
->> scritp that lives at my ${TMPDIR} folder.
->>
->> After that I can crosscompile python extension to my target as usual
->> with `python setup.py build'
->>
->>
->> Regards,
->>
->>
->> 2016-06-20 17:43 GMT-03:00 Daniel. <danielhilst@gmail.com>:
->>> My first doubt was how to trully cross-compile python extensions. Since I
->>> can't find anything usefull on internet I ask my self: How OE does it? It
->>> seems that OE uses an patched distutils to get bits build. This "assumption"
->>> comes from what I see at distutils/sysconfig.py that lives at
->>> build/tmp/sysroot/.. folder. After more digging I found this patch:
->>> http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/recipes-devtools/python/python-native/12-distutils-prefix-is-inside-staging-area.patch?h=daisy
->>>
->>> The variables are aplied by this patch to the python-native (since I'm still
->>> in Daisy, shame on me). At the top of the patch we see:
->>>
->>> The proper prefix is inside our staging area.
->>>
->>> So I'll try to contact these people to track the "proper fix". Since
->>> crosscompiling python extensions is lacking of
->>>
->>> documentation reading the source and talking to the gurus is the only option
->>> avaible right now :) .
->>>
->>>
->>> Regards,
->>>
->>>
->>>
->>> 2016-06-20 16:23 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
->>>>
->>>> On Mon, Jun 20, 2016 at 12:08 PM, Daniel. <danielhilst@gmail.com> wrote:
->>>> > I've found this recipe "python-pycurl" with exports libcurl to python.
->>>> > What
->>>> > I did was build it and take a look at temp folder to stalk what line is
->>>> > used
->>>> > to compile that stuff. Here it is:
->>>> >
->>>> > distutils_do_compile() {
->>>> >
->>>> >
->>>> > STAGING_INCDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/include
->>>> > \
->>>> >
->>>> >
->>>> > STAGING_LIBDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/lib
->>>> > \
->>>> >          BUILD_SYS=x86_64-linux HOST_SYS=arm-poky-linux-gnueabi \
->>>> >
->>>> >
->>>> > /home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/x86_64-linux/usr/bin/python-native/python
->>>> > setup.py build  || \
->>>> >          bbfatal "python setup.py build_ext execution failed."
->>>> >
->>>> > }
->>>> >
->>>> >
->>>> > So I go to my extension's source folder and paste
->>>> >
->>>> > STAGING_INCDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/include
->>>> > \
->>>> >
->>>> > STAGING_LIBDIR=/home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/pharosserver-imx6/usr/lib
->>>> > \
->>>> > BUILD_SYS=x86_64-linux HOST_SYS=arm-poky-linux-gnueabi \
->>>> >
->>>> > /home/geckos/yocto/yocto-daisy/build_x11/tmp/sysroots/x86_64-linux/usr/bin/python-native/python
->>>> > setup.py build
->>>> >
->>>> > and everything works fine, I got my extension compiled. So, in what
->>>> > magic
->>>> > are these enviroment variables envolved? STAGING_INCDIR
->>>> > and STAGING_LIBDIR are OE stuff, what are these BUILD_SYS and HOST_SYS
->>>> > related?! I'm still searching, anyway thanks Khen for
->>>> > pointing me meta-python sources. It helped me a lot.
->>>>
->>>>
->>>> OE has several classes where common operations are abstracted out and
->>>> you can see that in recipes
->>>> e.g. inherit setuptools etc. you should copy the recipe which is
->>>> closest to your package and modify it
->>>> to use your package source etc. and make other needed tweaks.
->>>>
->>>> >
->>>> > Regards,
->>>> >
->>>> >
->>>> > 2016-06-20 15:29 GMT-03:00 Daniel. <danielhilst@gmail.com>:
->>>> >>
->>>> >> Thank you Khem!!
->>>> >>
->>>> >> Regards,
->>>> >>
->>>> >> 2016-06-20 15:02 GMT-03:00 Khem Raj <raj.khem@gmail.com>:
->>>> >>>
->>>> >>> On Mon, Jun 20, 2016 at 10:44 AM, Daniel. <danielhilst@gmail.com>
->>>> >>> wrote:
->>>> >>> > Hi everybody..
->>>> >>> >
->>>> >>> > I've been playing with python extensions. Now I want to compile a
->>>> >>> > simple
->>>> >>> > hello world extension
->>>> >>> > to my Yocto's target, but I really can't find any good resource
->>>> >>> > about
->>>> >>> > doing
->>>> >>> > it. So what is the teory behind it?
->>>> >>> >
->>>> >>> > I know that I need python headers "Python.h and others" and that I
->>>> >>> > need
->>>> >>> > distutils installed. After that everything is done by distutils and
->>>> >>> > setup.py
->>>> >>> > script, but what is done is a mistery. I found distutilscross on
->>>> >>> > internet
->>>> >>> > but no documentation about it!?
->>>> >>> >
->>>> >>> > How are python extensions cross-compiled by Yocto? Can somebody
->>>> >>> > point
->>>> >>> > me an
->>>> >>> > example?!
->>>> >>>
->>>> >>> take a look at meta-python.
->>>> >>>
->>>> >>> http://cgit.openembedded.org/meta-openembedded/tree/meta-python
->>>> >>>
->>>> >>> You might find some examples close to what you are looking for.
->>>> >>>
->>>> >>> >
->>>> >>> > Regards,
->>>> >>> >
->>>> >>> > --
->>>> >>> > "Do or do not. There is no try"
->>>> >>> >   Yoda Master
->>>> >>> >
->>>> >>> > --
->>>> >>> > _______________________________________________
->>>> >>> > yocto mailing list
->>>> >>> > yocto@yoctoproject.org
->>>> >>> > https://lists.yoctoproject.org/listinfo/yocto
->>>> >>> >
->>>> >>
->>>> >>
->>>> >>
->>>> >>
->>>> >> --
->>>> >> "Do or do not. There is no try"
->>>> >>   Yoda Master
->>>> >
->>>> >
->>>> >
->>>> >
->>>> > --
->>>> > "Do or do not. There is no try"
->>>> >   Yoda Master
->>>
->>>
->>>
->>>
->>> --
->>> "Do or do not. There is no try"
->>>   Yoda Master
->>
->>
->>
->> --
->> "Do or do not. There is no try"
->>   Yoda Master
->
->
->
-> --
-> "Do or do not. There is no try"
->   Yoda Master
+SGkgUm9zcywNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5LiBJIHBsYWNlZCBib3RoIG9yaWdpbmFs
+IGFuZCB1cGRhdGVkIGZpbGVzIGluIHRoZSBzYW1lIGRpcmVjdG9yeSB3aGVyZSB0aGUgb3JpZ2lu
+YWwgaXMgYW5kIHJhbiB0aGUgY29tbWFuZCB0byBnZW5lcmF0ZSBwYXRjaCBmaWxlLiBMb2NhdGlv
+bnMgd2VyZSB1cGRhdGVkIGNvcnJlY3RseSBhbmQgaXQgd29ya2VkLg0KDQpUaGFua3MsDQpNb25p
+Y2ENCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0K
+U2VudDogV2VkbmVzZGF5LCBKdW5lIDIyLCAyMDE2IDk6NDAgQU0NClRvOiBSYWphc2VrYXJhbiwg
+TW9uaWNhIDxNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+DQpDYzogeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRXJyb3IgYXBwbHlpbmcgcGF0Y2gg
+LSBvcGVudnN3aXRjaA0KDQoNCk9uIDIyIEp1bmUgMjAxNiBhdCAxNTozNCwgUmFqYXNla2FyYW4s
+IE1vbmljYSA8TW9uaWNhLlJhamFzZWthcmFuQHVzLmZ1aml0c3UuY29tPG1haWx0bzpNb25pY2Eu
+UmFqYXNla2FyYW5AdXMuZnVqaXRzdS5jb20+PiB3cm90ZToNCnxkaWZmIC0tZ2l0IGRhdGEvdXNl
+cnMvbXJhamFzZS9sMTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93
+b3JrL2NvcmUyLTY0LWVuZWEtbGludXgvb3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gt
+Mi4wLjAvb2Zwcm90by9vZnByb3RvLmMgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8u
+Yw0KfGluZGV4IGVhODEyYWQuLjc2YzM1NWYgMTAwNjQ0DQp8LS0tIGRhdGEvdXNlcnMvbXJhamFz
+ZS9sMTAwX2xhYmVsX2Jhc2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUy
+LTY0LWVuZWEtbGludXgvb3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gtMi4wLjAvb2Zw
+cm90by9vZnByb3RvLmMNCnwrKysgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYw0K
+DQpUaGlzIGlzIHRoZSBwcm9ibGVtLCB5b3VyIGZpbGVuYW1lIHBhdGhzIGFyZSBtZXNzZWQgdXAg
+YmVjYXVzZSBvZiBob3cgeW91IGdlbmVyYXRlZCB0aGUgcGF0Y2g6IGl0IGxvb2tzIGxpa2UgeW91
+ciBkYXRhLyBkaXJlY3RvcnkgaXMgZ2l0LW1hbmFnZWQgc28gZ2l0IGRpZCB3aGF0IHlvdSB0b2xk
+IGl0IGFuZCBnZW5lcmF0ZWQgYSBwYXRjaCB3aXRoIHRoZSBmdWxsIHBhdGhzIGluLg0KDQpUaGUg
+ZWFzeSBzb2x1dGlvbiBoZXJlIGlzIHRvIHVzZSAiZGV2dG9vbCBtb2RpZnkiIChzZWUgdGhlIG1h
+bnVhbCkgYnV0IHlvdSBjYW4gaGFuZC1lZGl0IHRoZSBwYXRjaCB0byByZW1vdmUgZXZlcnl0aGlu
+ZyBmcm9tIGRhdGEvIHRvIDIuMC4wLXIwLyBhbmQgaXQgc2hvdWxkIGFwcGx5Lg0KDQpSb3NzDQo=
 
+--_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
+MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
+cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhpIFJvc3MsPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFua3MgZm9yIHlvdXIgcmVwbHkuIEkgcGxhY2Vk
+IGJvdGggb3JpZ2luYWwgYW5kIHVwZGF0ZWQgZmlsZXMgaW4gdGhlIHNhbWUgZGlyZWN0b3J5IHdo
+ZXJlIHRoZSBvcmlnaW5hbCBpcyBhbmQgcmFuIHRoZSBjb21tYW5kIHRvIGdlbmVyYXRlIHBhdGNo
+IGZpbGUuIExvY2F0aW9ucw0KIHdlcmUgdXBkYXRlZCBjb3JyZWN0bHkgYW5kIGl0IHdvcmtlZC48
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpw
+PjwvbzpwPjwvc3Bhbj48L2k+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGk+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPk1vbmljYQ0KPG86cD48L286cD48L3NwYW4+PC9pPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBCdXJ0b24sIFJvc3Mg
+W21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVz
+ZGF5LCBKdW5lIDIyLCAyMDE2IDk6NDAgQU08YnI+DQo8Yj5Ubzo8L2I+IFJhamFzZWthcmFuLCBN
+b25pY2EgJmx0O01vbmljYS5SYWphc2VrYXJhbkB1cy5mdWppdHN1LmNvbSZndDs8YnI+DQo8Yj5D
+Yzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5
+b2N0b10gRXJyb3IgYXBwbHlpbmcgcGF0Y2ggLSBvcGVudnN3aXRjaDxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAyMiBKdW5lIDIwMTYgYXQgMTU6MzQsIFJhamFzZWth
+cmFuLCBNb25pY2EgJmx0OzxhIGhyZWY9Im1haWx0bzpNb25pY2EuUmFqYXNla2FyYW5AdXMuZnVq
+aXRzdS5jb20iIHRhcmdldD0iX2JsYW5rIj5Nb25pY2EuUmFqYXNla2FyYW5AdXMuZnVqaXRzdS5j
+b208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3Jk
+ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAw
+aW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPnxkaWZmIC0tZ2l0IGRhdGEvdXNlcnMvbXJhamFzZS9sMTAwX2xhYmVsX2Jh
+c2VkX3IxMDBwb2MvcmVwby9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcmUyLTY0LWVuZWEtbGludXgv
+b3BlbnZzd2l0Y2gvMi4wLjAtcjAvb3BlbnZzd2l0Y2gtMi4wLjAvb2Zwcm90by9vZnByb3RvLmMg
+ZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj58aW5kZXggZWE4MTJhZC4uNzZjMzU1ZiAxMDA2NDQ8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+fC0tLSBkYXRhL3VzZXJzL21yYWphc2UvbDEw
+MF9sYWJlbF9iYXNlZF9yMTAwcG9jL3JlcG8vcG9reS9idWlsZC90bXAvd29yay9jb3JlMi02NC1l
+bmVhLWxpbnV4L29wZW52c3dpdGNoLzIuMC4wLXIwL29wZW52c3dpdGNoLTIuMC4wL29mcHJvdG8v
+b2Zwcm90by5jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
+LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPnwmIzQzOyYj
+NDM7JiM0MzsgZGF0YS91c2Vycy9tcmFqYXNlL2V4dHJhL29mcHJvdG8uYzxvOnA+PC9vOnA+PC9w
+Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQpUaGlz
+IGlzIHRoZSBwcm9ibGVtLCB5b3VyIGZpbGVuYW1lIHBhdGhzIGFyZSBtZXNzZWQgdXAgYmVjYXVz
+ZSBvZiBob3cgeW91IGdlbmVyYXRlZCB0aGUgcGF0Y2g6IGl0IGxvb2tzIGxpa2UgeW91ciBkYXRh
+LyBkaXJlY3RvcnkgaXMgZ2l0LW1hbmFnZWQgc28gZ2l0IGRpZCB3aGF0IHlvdSB0b2xkIGl0IGFu
+ZCBnZW5lcmF0ZWQgYSBwYXRjaCB3aXRoIHRoZSBmdWxsIHBhdGhzIGluLjxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgZWFzeSBzb2x1dGlv
+biBoZXJlIGlzIHRvIHVzZSAmcXVvdDtkZXZ0b29sIG1vZGlmeSZxdW90OyAoc2VlIHRoZSBtYW51
+YWwpIGJ1dCB5b3UgY2FuIGhhbmQtZWRpdCB0aGUgcGF0Y2ggdG8gcmVtb3ZlIGV2ZXJ5dGhpbmcg
+ZnJvbSBkYXRhLyB0byAyLjAuMC1yMC8gYW5kIGl0IHNob3VsZCBhcHBseS48bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
--- 
-"Do or do not. There is no try"
-  Yoda Master
-
+--_000_111ACD726EC3464BAED310F5EA7BEBDA600D18RCHEXMBP1fncnetlo_--
