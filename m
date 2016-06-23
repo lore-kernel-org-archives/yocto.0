@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3C3BE00C9B; Thu, 23 Jun 2016 14:34:58 -0700 (PDT)
+	id C1457E00C97; Thu, 23 Jun 2016 14:34:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5746EE00C7A
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:55 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id i123so7533621pfg.3
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:55 -0700 (PDT)
+	*      [209.85.220.67 listed in list.dnswl.org]
+Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
+	[209.85.220.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A445AE00C75
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
+Received: by mail-pa0-f67.google.com with SMTP id ts6so7350670pac.0
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=VtjRBmpT7G9Ee56I4ubTkewZ2Dk8GIjnMarTHpmAjJE=;
-	b=iIixKAGXoe/KvNsipHLlu4P4U2iD1PGG0LNdQ41KDrevQOk3HF0mZS9ar/xjxsFFHZ
-	7aAI7NB2moJlbJweWOprnLDHec6BitLgIv+jTykI9fj+Mr3Zmml5UQ9zJM6/cnISlseo
-	5VSb8Zo8Z6IYpkxXClyU9GVxDgGy+aD72DYRsNQs4aNRSS+HMKZZdauR06zFW05Jp3Pi
-	4hO+FV9PzPcO8PJ4ua7fYncIIc+J/Lt5jAgH1rC3808ufQyeu6HvKmm3qQP15IByV+Qg
-	QnWPjwHGBpqPYMs6d2x7OrRp2BNZASKpnyO1jAb21ZewyUUIOv/TZPboyEN9qbMCQJDN
-	/tqg==
+	bh=uCcSZdLjGO0FgjWCkPoxNeLaZMJX2N8y7XbRD166SPY=;
+	b=sxfyGgoBxoCisxzjzIyMmgEQTv9y2Bp/vb4xwKFBQQkRCB83rE27LLL2QUOOyUOC7V
+	YMjysOFX7ntjBiEUqGEkuQ8WZDC2pXW33UkvtxGirzoe1L0NnJRbDwXVYx9/oxK/wXhw
+	aFym+oLLIC7xbkdsTvQMl2jsjHw74T9bwT661ROVY3SlpFUDr9KB3vXcsYX+40TZAbzT
+	gYzCQmpyhvBtuvxdpNU7tBRaoeKpJxXSojAo9yXswce6A6YeJ7z4InDG+Gzh9qN5nNCD
+	xzK5KpGWOUAYXCrV7bvT1ZL6tr+ObRTijpUPBFWyJFEjjLaD3HTg9BJC5HhZWYdW+GVQ
+	a7Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=VtjRBmpT7G9Ee56I4ubTkewZ2Dk8GIjnMarTHpmAjJE=;
-	b=ahVpS8pVa4fXrAWEO9Fe1rn9cNkeRZpQO9wo3RdGLMF5f9nGusWDADHDpmwGVXuf6w
-	0+z7HEEU5+AOigRsD9mNpujw/1df66U65M5tfDutXKFgHm0b6zF0anFZeEJeflhnwvR0
-	3dUF4nniflCSXGu4tad1F5PL2d0/NDy18Ly5cceUm100arH69pQlaYxcp0QQBwZjdRM9
-	zX8uxcBelSO6zdE2XXJ6yvCruOnPUzD3hTbjM1LbJRN7UZmnbXir9Z0xFkJH0fEsD5WB
-	kOtaSpyRwpSq+FWJTjSQVoOXivGz7bLSIqwDDhwXAyrKgwe7VTE0UNSumXXAi4FUrNVG
-	Ydvg==
-X-Gm-Message-State: ALyK8tL8OKRDpqHPLg8m2Tw2EQ2jo15CybwVC274A2W0Qr2l+Pp0tGlzqasSmVvVZLF4fQ==
-X-Received: by 10.98.32.65 with SMTP id g62mr1033602pfg.12.1466717695462;
-	Thu, 23 Jun 2016 14:34:55 -0700 (PDT)
+	bh=uCcSZdLjGO0FgjWCkPoxNeLaZMJX2N8y7XbRD166SPY=;
+	b=Vxp+lSt/h5PD9zsvTrqjuKacru/WGS8ygzU9Ysx/I2hA+pBgPaHBtZVWbVl+a4HdrX
+	8c/XcvC6aARwEZaLEPE8m8SzMVozUj3HuGP3kgWiaGWuc99ooeaFHWfpz82aaHViSbp4
+	IZxnaZ+jR7vRuu0vfdkaiFWuAAoyrXCHDcA5NZq5vViCOsm1aaVtRvTPYcRYbF6mD2LM
+	DQfNC3hCnDjK1gXqkygwC9HOyZMG9Jiupji6wNqef7CQdEXp/jhVALM1z1h6A7aU4lRO
+	GcQi8S7dnhk245Mfv+L9XrJiLqyFco8mf6W/GbowMmll82uaBV2JM0Ci0upNdZyPk/wS
+	5gHw==
+X-Gm-Message-State: ALyK8tIOtC8AnZAzUJltSWS+J6x5QvjhkTIJkJWFZKE9gc51zb0VlNDlOJNxJvKgR3muDQ==
+X-Received: by 10.66.63.35 with SMTP id d3mr1202224pas.69.1466717694497;
+	Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
 Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
 	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	q127sm2277847pfb.34.2016.06.23.14.34.54
+	q127sm2277847pfb.34.2016.06.23.14.34.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
+	Thu, 23 Jun 2016 14:34:53 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 23 Jun 2016 14:34:30 -0700
-Message-Id: <20160623213431.5513-3-raj.khem@gmail.com>
+Date: Thu, 23 Jun 2016 14:34:29 -0700
+Message-Id: <20160623213431.5513-2-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.9.0
 In-Reply-To: <20160623213431.5513-1-raj.khem@gmail.com>
 References: <20160623213431.5513-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 3/4] linux-raspberrypi_4.4: Upgrade to 4.4.13
+Subject: [meta-raspberrypi][PATCH 2/4] firmware: Upgrade to 20160622
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,24 +76,21 @@ X-List-Received-Date: Thu, 23 Jun 2016 21:34:58 -0000
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- recipes-kernel/linux/linux-raspberrypi_4.4.bb | 4 ++--
+ recipes-bsp/common/firmware.inc | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_4.4.bb b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-index ba47b22..3291ffd 100644
---- a/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_4.4.bb
-@@ -1,8 +1,8 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+index bf11e4c..9df6156 100644
+--- a/recipes-bsp/common/firmware.inc
++++ b/recipes-bsp/common/firmware.inc
+@@ -1,5 +1,5 @@
+-RPIFW_SRCREV ?= "3816e1ce1e6ebc6d2bf0596dbd52849e16aa7e94"
+-RPIFW_DATE ?= "20160512"
++RPIFW_SRCREV ?= "390f53ed0fd79df274bdcc81d99e09fa262f03ab"
++RPIFW_DATE ?= "20160622"
+ RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
+ RPIFW_S ?= "${WORKDIR}/git"
  
--LINUX_VERSION ?= "4.4.9"
-+LINUX_VERSION ?= "4.4.13"
- 
--SRCREV = "3b440738b5c1adc3ec3ee72ceca799d1b8d264df"
-+SRCREV = "680be5e27a9593cf26079c6e5744a04cc2809d13"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.4.y \
- "
- require linux-raspberrypi.inc
 -- 
 2.9.0
 
