@@ -1,39 +1,57 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <chris@2net.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6929E00C2D; Thu, 23 Jun 2016 04:13:28 -0700 (PDT)
+	id A3A57E00C55; Thu, 23 Jun 2016 05:58:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_50,HTML_MESSAGE,
+	HTML_MIME_NO_HTML_TAG, MIME_HTML_ONLY, MISSING_MIMEOLE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AEA5E00C1F
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 04:13:26 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160623111323476_0685
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 04:13:23 -0700
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=44526 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bG2bD-0005SH-GV
-	for yocto@yoctoproject.org; Thu, 23 Jun 2016 07:15:07 -0400
-Date: Thu, 23 Jun 2016 07:12:43 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1606230705420.5826@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	*      [217.72.192.75 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.5000]
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+	*  0.4 HTML_MIME_NO_HTML_TAG HTML-only message, but there is no HTML tag
+	*  1.9 MISSING_MIMEOLE Message has X-MSMail-Priority, but no X-MimeOLE
+X-Greylist: delayed 312 seconds by postgrey-1.32 at yocto-www;
+	Thu, 23 Jun 2016 05:58:05 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B093E00C4B
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 05:58:05 -0700 (PDT)
+Received: from [10.113.67.13] ([94.197.121.71]) by mrelayeu.kundenserver.de
+	(mreue103) with ESMTPSA (Nemesis) id 0MP2NL-1bKix33MFr-006Qes;
+	Thu, 23 Jun 2016 14:52:43 +0200
+Date: Thu, 23 Jun 2016 13:28:20 +0200
+Message-ID: <ba5a35b2-3d49-436c-b64b-f4c318757da4@email.android.com>
+X-Android-Message-ID: <ba5a35b2-3d49-436c-b64b-f4c318757da4@email.android.com>
+In-Reply-To: <alpine.LFD.2.20.1606230625380.5059@localhost.localdomain>
+From: chris simmonds <chris@2net.co.uk>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Importance: Normal
+X-Priority: 3
+X-MSMail-Priority: Normal
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: what is "core-image-testmaster.bb" supposed to do?
+X-Provags-ID: V03:K0:t/13Nv/fGGtndMfooUFnXG2k1ZBNlklQC4GYIAp7aY3ghzx2icQ
+	muki+/3DQw2KbpNu7UdENcHeDEeHJzDJAil70f73Cm/AXJwptf1D0Sso4D2D87EbIQNAu75
+	DRBlflFzR/ZaT6xayG9uHIaK6pmvqA+DQwQTXn7KosqrLLenEHiH94W5PFegFwqWLCosYcn
+	789gFx1FaVIw8+URbw8zw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:avNKERnV0tY=:aaHDKMQDtXjLLHJLUmE3Na
+	PqS6ODWnjEIcIIJ8BilDK0UapHZ+1if/9P2btVG9ii4YeIZxQ7AmdGOTRE114Ur1HoV9+8nm8
+	7/zVVhPJExgSCJIAVhTptO0/AAR+EFvMyHz9PLTPa91iARBuic+8T0UV3kTNv2TfxVZMox7ae
+	WG2TME/nZeNpPgHWyPxFmhcqIq9ipW22wxxnLOoT9uxoMzqeAQIJ2gi6hjA/G9Z98Ea5uCVOv
+	eZ7klgH89/wXk+ky48ZH1j943JYmfzjTwipEzuvhBk9IoWm8+aUIjNt9OndOYR4NwAwB56H87
+	SuqLX3LKr0WtBGxPM9rqHKgjdX6hWQU8dK310uCns6gOzi82I/1HsLpShkgLOy2mYErwJ1vlF
+	qguwIaOdxY6McFDREtIN2kQFZWBHzmwLJ/nJ67QBrMFXZ/CuBjcCOCW8jMQxOO9mqjRdBpSJW
+	1kL7f0eTNdhPwpfNJnBJuIYAOVBcfNsm8w9a3wWNA98hF85f+RUz3hs4fxHYKuKGYcGpfhPVo
+	PqfhyNuRF2ouIm+a9o1ahR60I6V/fPtozVQg4fWiYHyclhlOkdK2WfuAbUjLSgnHfHqz3Fhvh
+	lG2MrZuaW1AV/2oi3QoXSdk3BIbX3VexpuBpJrMw/pFJ45eO3iaz684V2caxf+wm/l4SN++4k
+	zgOg8u/ue2bfx4Qb2cuygnYy7zQ63JKUoZ8LWDFGKXlsvlLkzzrFwlgFOS43m6YRkXixso4/0
+	/99SUJArZfw2GmCQU1cawnctz3yBsaMH+zChsA==
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a recipe for building a ppc-based installer image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,38 +63,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jun 2016 11:13:29 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Thu, 23 Jun 2016 12:58:08 -0000
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-
-  first question related to building an installer -- how is one
-supposed to use the recipe core-image-testmaster.bb?
-
-  i've already noted (i think) that it has a bug in that it uses the
-old (obsolete) variable INITRD_IMAGE, whereas the old occurrences of
-that were changed to either INITRD_IMAGE_VM or INITRD_IMAGE_LIVE. so
-it seems pretty clear that that recipe doesn't work at the moment.
-
-  however, if it *did* work, how would one use it? it appears that it
-builds both a simple initramfs, as well as a standard image. so would
-it boot to the initramfs, and use the installation tools there to
-install using the content from the standard image? is that what is
-supposed to be going on there? or am i misreading this?
-
-  in any event, it doesn't appear to work, and i get the feeling it's
-probably overkill for my needs, but i'm still curious as to how one
-would use it.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+PHAgZGlyPSJsdHIiPlJvYmVydCw8L3A+CjxwIGRpcj0ibHRyIj5IYXZlIHlvdSBsb29rZWQgYXQg
+dXNpbmcgZXhpc3RpbmcgdXBkYXRlcnMgc3VjaCBhcyBtZXRhLXN3dXBkYXRlIG9yIHN3dXBkIG9y
+IHJhdWM/IEknbSBzdXJlIG9uZSBvZiB0aG9zZSB3b3VsZCBkbyB3aGF0IHlvdSB3YW50LjwvcD4K
+PHAgZGlyPSJsdHIiPlJnZHMsIENocmlzIDwvcD4K
 
 
