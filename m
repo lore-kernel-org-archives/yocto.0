@@ -1,70 +1,72 @@
-Return-Path: <krussell7711@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56690E00BE0; Wed, 22 Jun 2016 18:38:06 -0700 (PDT)
+	id 7E418E00C29; Thu, 23 Jun 2016 03:21:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bkylerussell[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.176 listed in list.dnswl.org]
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f176.google.com (mail-yw0-f176.google.com
-	[209.85.161.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97275E00B54
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 18:38:02 -0700 (PDT)
-Received: by mail-yw0-f176.google.com with SMTP id v77so59172137ywg.0
-	for <yocto@yoctoproject.org>; Wed, 22 Jun 2016 18:38:02 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFB25E00C1D
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 03:21:12 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id 187so9621317wmz.1
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 03:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=JfBUR4YOiM0YmCCa/sEXumjSqPkS8IrGW4AXbnGZ268=;
-	b=xNbxQF61sTJ1Ee0CX4sdSrbF0JLpOzN6trEh0t4KJh/ciH2mmyJXf2DlVhpTuV/rD6
-	uSHupVJLjRYmS7XvyVo7AV8lH6LMzc0FMyS0UiMSmWxURaAIoRta8tlOOLwADUgj3gAY
-	oT1MFIrWo6ROAKnC5fLfVbztwwF4wW/OD2GAVVK3upkQwTivs6SnDuztsPhMPTrso9Ir
-	oOhSOY0P0HuhdJ+KIzmisx6atLQ0pTKkrpTYjZZY/g1d9D/tyHBQo9eGzI06bisKVQjs
-	oQ6WCtYabbg8JLoiaiernGY3ZP8yWV8oRysRAEzigL72Vmf6F+4U7HsoqYQyl0F3FuDX
-	OrlA==
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=qP7FBmyOFKII4gJ51w5TWStakw4luCd27DlbxFvcs3A=;
+	b=y1RQu1GlTFph4Ctfk665zYKbs8DHRizgwlHnzl3/FF2scWCQcT9XKCEo+JLx8gHdUF
+	cwfJOPq3dAJIXLFU3EK2H0tXLpJSKOBDu8DvUQcOQoAwJ2OHb8xHBohQJy0/7YODAL6r
+	bM51bi9DT614tPZJw8I8prBv9qqm3PrY9/qqty3T+EM1xx+vQ0WUlejTUAXbVEw8dRiX
+	VZFVwZ7Q3GZg+g8WcllfkaziJaYO2pNOTNt1aCqQCfZuraDIcR2bhBBzt7MOOnOnvxfi
+	pO+oEdmyqfpVjV5Wk+xst9wGVaB7zOD9IhVREeCWP1s4wY6p/rHr87ehE81UQF0cpdvL
+	ua+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=JfBUR4YOiM0YmCCa/sEXumjSqPkS8IrGW4AXbnGZ268=;
-	b=FJaxdGyMgf1bAOdQdUPXIXVZbcWfe74IZEz61nQKsEwiqW70EsZZkmnQYtreNe7Jat
-	FO62I1ligjPqVG55rLWhCVSCuNzGHziDxmIEVy9sxCHIrgLLdODZ4MuOeG9FniLe/Nkt
-	+de44vPYq06KBwhLpe9XPlmlzDUW0YBhk9prftv0c1hMOl/aEzc/b+Uw1vzThanVrPkN
-	tqBiNEwE/ddKVgwOCWhtNu0ebUTPaVTi0DPMeNkhSF6PWUusqZjjLBtWpM2jqic434BD
-	5Wp1aHfB0c5Yutje4acbGUwahklUacwrsuvuAjpdLEx43dXKLOLBQoU2NuZ/gZUe+Gmo
-	4K7g==
-X-Gm-Message-State: ALyK8tIPcZG50h/VwnNdEdTFNChBrsRjCLl6Xhjf1RUZxFtcWdzBt3gVQpuYNwch8mgRsrSFdYvFFFhZbUuq4g==
-X-Received: by 10.13.254.67 with SMTP id o64mr18547437ywf.145.1466645882176;
-	Wed, 22 Jun 2016 18:38:02 -0700 (PDT)
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=qP7FBmyOFKII4gJ51w5TWStakw4luCd27DlbxFvcs3A=;
+	b=IJykUAUR61hrSvhPWHjrRGCq3uEdoKuxuEbVTo2BUsOs6uDHNhY/s44I+7z+n+vGMw
+	ZuVmxmE4fs3rlE4U8nGdur+PD6zWvXAogWrImmwLZtRIo7x6DMtqFIEtprfD2W0s09v1
+	rXc8l0lhHHTA53zejnD5waQ6e87/eV6sHMH5IHZqh0YcliDA6hBWTwxPst/4BqTqoe5l
+	Hg6E4tp10vkf1XYW068oBUA2lOqm0UK+lDF7fDCxxtlyDl+y+CJRQnml/9vbBt81H657
+	GFxBUO+MMMkIzyQUpAhRL162bK9fJMg2q9sLXwhvvMHvue6NdIFfSah5H7pvBXI4Unp/
+	hazw==
+X-Gm-Message-State: ALyK8tIAR8Oy1eExcE+F1NRmWCEYh6r566u6aMOZpg4KZs3EwfGu3gx35hjlPrzXvwjOAg==
+X-Received: by 10.28.224.69 with SMTP id x66mr13034142wmg.89.1466677271460;
+	Thu, 23 Jun 2016 03:21:11 -0700 (PDT)
+Received: from localhost (ip-89-176-104-169.net.upcbroadband.cz.
+	[89.176.104.169])
+	by smtp.gmail.com with ESMTPSA id k6sm3650133wjz.28.2016.06.23.03.21.10
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 23 Jun 2016 03:21:10 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Thu, 23 Jun 2016 12:21:38 +0200
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Message-ID: <20160623102138.GA2567@jama>
+References: <13986bd3-af12-4768-0a4c-78447c33c8b6@linuxfoundation.org>
 MIME-Version: 1.0
-Sender: krussell7711@gmail.com
-Received: by 10.129.41.139 with HTTP; Wed, 22 Jun 2016 18:37:42 -0700 (PDT)
-In-Reply-To: <2dd61737-29f6-98e6-60e1-13625d355de9@windriver.com>
-References: <CAFrQVPMhmCAT+TfdOmQ95LsaTSc13=6GNvc=L=6cHmACGHRZgw@mail.gmail.com>
-	<856fbb9f-74bc-545b-f5e5-3405d452c0f2@windriver.com>
-	<CAFrQVPOE2bwaiQ9iDx8ogKuc_CCG2RjVu8NKfW-UOgp+LPLR8w@mail.gmail.com>
-	<2dd61737-29f6-98e6-60e1-13625d355de9@windriver.com>
-From: Kyle Russell <bkylerussell@gmail.com>
-Date: Wed, 22 Jun 2016 21:37:42 -0400
-X-Google-Sender-Auth: s6h2CF5XBF6PAkJ6klQM0H_rNoE
-Message-ID: <CAFrQVPNS7h9uAdh3Ctrh6F+-Y_EJZmEzfdApg03v99e3vYFOqg@mail.gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: prelink support
+In-Reply-To: <13986bd3-af12-4768-0a4c-78447c33c8b6@linuxfoundation.org>
+User-Agent: Mutt/1.6.1 (2016-04-27)
+Cc: yocto@yoctoproject.org, Paul Eggleton <paul.eggleton@linux.intel.com>,
+	bitbake-devel@lists.openembedded.org,
+	Openembedded-devel@lists.openembedded.org,
+	Openembedded-core@lists.openembedded.org
+Subject: Re: Patchwork users: Help test new version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,92 +78,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jun 2016 01:38:06 -0000
-Content-Type: multipart/alternative; boundary=94eb2c07f3c4d18c480535e81abb
+X-List-Received-Date: Thu, 23 Jun 2016 10:21:14 -0000
+X-Groupsio-MsgNum: 30720
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="tThc/1wpZn/ma/RB"
+Content-Disposition: inline
 
---94eb2c07f3c4d18c480535e81abb
-Content-Type: text/plain; charset=UTF-8
-
-On Wed, Jun 22, 2016 at 10:57 AM, Mark Hatle <mark.hatle@windriver.com>
-wrote:
-
-> What is the specific error you got?  This is the type of stuff I'd like to
-> resolve.
->
-
-I don't have the logs on me at the moment for the specific output, but
-there were two errors (one for 'int scope_cnt' and the other for 'unsigned
-int cnt') being declared in the for loop initialization, which isn't
-supported until -std=c99.  I was able to move the declaration to the
-beginning of _dl_show_scope just for testing and prelink finished compiling
-successfully.
-
-Are you using a branch and gcc that is part of OpenEmbedded?  If so, I need
-> to
-> know how to configure the system so I can attempt to reproduce and work
-> around
-> the issue.
->
-
-I think we're using the gcc compiler that's included in poky.  I was
-running poky at the following commit on jethro.
-
-ddbc131 toasterconf.json: exclude releases Toaster can't build
-
-The only configuration change that I'm aware of was setting GCCVERSION back
-to "4.9%" as recommended in
-http://www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#migration-2.0-gcc-5
-
-I had updated the SRCREV and branch in the prelink recipe to point to
-cross_prelink_staging as you suggested.  It simply seems that the version
-of dl-open.c on cross_prelink_staging just isn't compatible with gcc 4.9,
-which seems to default to C90.
-
-I can dig further into our setup and send specific steps tomorrow if you're
-not able to get similar results.
-
---94eb2c07f3c4d18c480535e81abb
-Content-Type: text/html; charset=UTF-8
+--tThc/1wpZn/ma/RB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Jun 22, 2016 at 10:57 AM, Mark Hatle <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:mark.hatle@windriver.com" target=3D"_blank">mark.hatle@windriver.com<=
-/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left=
--color:rgb(204,204,204);padding-left:1ex"><div id=3D":14r" class=3D"">What =
-is the specific error you got?=C2=A0 This is the type of stuff I&#39;d like=
- to resolve.<br></div></blockquote><div><br></div><div>I don&#39;t have the=
- logs on me at the moment for the specific output, but there were two error=
-s (one for &#39;int scope_cnt&#39; and the other for &#39;unsigned int cnt&=
-#39;) being declared in the for loop initialization, which isn&#39;t suppor=
-ted until -std=3Dc99.=C2=A0 I was able to move the declaration to the begin=
-ning of=C2=A0_dl_show_scope just for testing and prelink finished compiling=
- successfully.</div><div><br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
-border-left-color:rgb(204,204,204);padding-left:1ex"><div id=3D":14r" class=
-=3D"">Are you using a branch and gcc that is part of OpenEmbedded?=C2=A0 If=
- so, I need to<br>
-know how to configure the system so I can attempt to reproduce and work aro=
-und<br>
-the issue.</div></blockquote></div><br>I think we&#39;re using the gcc comp=
-iler that&#39;s included in poky.=C2=A0 I was running poky at the following=
- commit on jethro.</div><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra">ddbc131=C2=A0toasterconf.json: exclude releases Toaster can&#3=
-9;t build</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">The only configuration change that I&#39;m aware of was setting GCCVERS=
-ION back to &quot;4.9%&quot; as recommended in <a href=3D"http://www.yoctop=
-roject.org/docs/2.1/mega-manual/mega-manual.html#migration-2.0-gcc-5">http:=
-//www.yoctoproject.org/docs/2.1/mega-manual/mega-manual.html#migration-2.0-=
-gcc-5</a></div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">I had updated the SRCREV and branch in the prelink recipe to point to c=
-ross_prelink_staging as you suggested.=C2=A0 It simply seems that the versi=
-on of dl-open.c on cross_prelink_staging just isn&#39;t compatible with gcc=
- 4.9, which seems to default to C90.</div><div class=3D"gmail_extra"><br></=
-div><div class=3D"gmail_extra">I can dig further into our setup and send sp=
-ecific steps tomorrow if you&#39;re not able to get similar results.</div><=
-div class=3D"" style=3D"font-weight:bold;font-size:16.6667px;margin:1.5em 0=
-em 0.5em;padding:0em;color:rgb(255,255,255);font-family:sans-serif;backgrou=
-nd-color:rgb(51,51,51)"><span class=3D""></span></div></div>
+On Mon, Jun 20, 2016 at 10:47:16AM -0700, Michael Halstead wrote:
+> Hello,
+>=20
+> OpenEmbedded is nearly ready to upgrade to a new version of Patchwork.
+> The new version offers several new features that will allow OpenEmbedded
+> to improve developer workflow and automated checks on incoming patches.
+>=20
+> If you are a Patchwork user please visit
+> https://patchwork-next.openembedded.org/ and take a look. If you find
+> anything amiss please e-mail me directly and include patchwork in the
+> subject line.
+>=20
+> Thank you for your help upgrading this important system!
 
---94eb2c07f3c4d18c480535e81abb--
+I was using it to update meta-oe/master-next in last few days and it
+seems to work the same as old patchwork for me.
+
+But quite often I've noticed very slow response, is it running on
+slower HW while testing or is the new version just a lot slower?
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--tThc/1wpZn/ma/RB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAldruCgACgkQN1Ujt2V2gBwgPQCfYHbLjnHn3pjTP/YHXoUHWAVZ
+KocAoKj1yLQp5ooBXz9WUaXJypP1TJDT
+=ANzc
+-----END PGP SIGNATURE-----
+
+--tThc/1wpZn/ma/RB--
