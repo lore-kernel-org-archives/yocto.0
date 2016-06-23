@@ -1,40 +1,40 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC0FDE00C9E; Thu, 23 Jun 2016 08:07:16 -0700 (PDT)
+	id 2730DE00CA3; Thu, 23 Jun 2016 08:27:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD27E00C97
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 08:07:12 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20160623150703190_0485;
-	Thu, 23 Jun 2016 15:07:03 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-Received: from [216.191.234.70] (port=41418 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bG6FI-0007er-65; Thu, 23 Jun 2016 11:08:44 -0400
-Date: Thu, 23 Jun 2016 11:06:18 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: chris simmonds <chris@2net.co.uk>
-In-Reply-To: <ba5a35b2-3d49-436c-b64b-f4c318757da4@email.android.com>
-Message-ID: <alpine.LFD.2.20.1606231105030.8668@localhost.localdomain>
-References: <ba5a35b2-3d49-436c-b64b-f4c318757da4@email.android.com>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9BFDE00C9E
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 08:27:23 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga101.jf.intel.com with ESMTP; 23 Jun 2016 08:27:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,517,1459839600"; 
+	d="asc'?scan'208";a="1008254902"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.5.159])
+	([10.219.5.159])
+	by fmsmga002.fm.intel.com with ESMTP; 23 Jun 2016 08:27:22 -0700
+To: pidge@toganlabs.com, yocto@yoctoproject.org
+References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
+	<1466581487.3278.17.camel@toganlabs.com>
+	<576AF245.4000400@linux.intel.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <576BFFDD.2090500@linux.intel.com>
+Date: Thu, 23 Jun 2016 10:27:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is there a recipe for building a ppc-based installer image?
+In-Reply-To: <576AF245.4000400@linux.intel.com>
+Cc: joshua.g.lock@intel.com
+Subject: Re: [[yocto-autobuilder][PATCHv2] 00/15] Add support for generate bitbake/oe-selftest error reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,30 +46,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jun 2016 15:07:16 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Thu, 23 Jun 2016 15:27:26 -0000
+X-Groupsio-MsgNum: 30727
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="dS7B3BqU064N2ttAp3frlGurKsaKkN5lk"
 
-On Thu, 23 Jun 2016, chris simmonds wrote:
-
-> Robert,
->
-> Have you looked at using existing updaters such as meta-swupdate or
-> swupd or rauc? I'm sure one of those would do what you want.
-
-  huh ... i was unaware of any of those options, will have to check
-them out. but i would still like to figure out whether the classes and
-recipes that come with OE/poky can still do the job.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--dS7B3BqU064N2ttAp3frlGurKsaKkN5lk
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
+
+On 06/22/2016 03:17 PM, An=C3=ADbal Lim=C3=B3n wrote:
+>=20
+>=20
+> On 06/22/2016 02:44 AM, Beth 'pidge' Flanagan wrote:
+>> On Tue, 2016-06-21 at 18:07 -0500, An=C3=ADbal Lim=C3=B3n wrote:
+>>> This v2 adds support for generate also oe-selftest reports this is
+>>> almost
+>>> the previous version with changes requested in review [1], the next
+>>> patches
+>>> starts from patch,
+>>>
+>>> 	autobuilder/lib/{ABtools,builsteps}.py: Create
+>>> save_error_report func
+>>
+>> A few comments.
+>>
+>> - Please rebase the last two commits. They can be merged into prior
+>> commits.=20
+>>
+>> Example: 0eb495d93eefa9ead8f4b1242f251f1a2288db68 should be squashed
+>> into 83b6707622128436b4ece9d4c2a89311b000c209
+>>
+>> We shouldn't need rename commits for a pull request that created the
+>> original thing we're renaming.
+>>
+>> - Please fix the title for 83b6707622128436b4ece9d4c2a89311b000c209
+>> 's/buiidsets/buildsets/'
+>=20
+> I squashed the changes now at,
+>=20
+> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=3Dco=
+ntrib/alimon/devel2
+>=20
+> 	alimon
+
+Hi,
+
+The Error report web needed changes are now integrated [1], if you
+ack'ed the changes we could proceed to integrate/deploy these changes to
+enable send Bitbake/OE-seltest errors to ERW.
+
+[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7583#c14
+
+Cheers,
+	alimon
+
+>>
+>>
+>> -b
+>>
+>=20
+
+
+--dS7B3BqU064N2ttAp3frlGurKsaKkN5lk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJXa//gAAoJEGJqcE9h3glgVFMQAJc0keV2ls4TczniRkXCnPxS
+B+kHKX9baeaEJEFhUeFQ9ZIb2hStzYG+fE1563sPWXognuIAbzic3j9q3Ad8JM9h
+W/RVEhdCS3sBwDQYu6201zqdswMs0Sm8jX70dXqZ99HmSV0PlPS+gKplPskWu/EC
+OpoHwPV+aAr6X2zArb/mfVZYiZGy875OrYKTLraOl6WRZprd9crjR5AjxEQH4jJo
+q1jmwtsCK0t63arWLlIWeTXegTSQtlgpOGyeINXfOURQk40fWMnL0AhdYy2ckILp
+OztsESohPp2NuqHDs6fhV938npqKDGToPVx6i+mgkwqycCBbTA6q4oC+Ekx7qzYg
+hg2gcVgTIfKpDmGYtzug7pG2Ug/Ul62lRA3cg2MpJ54uebhXmVJ2tXeShrVqRCrD
+xk0gNjCNgLKMjNzHkT5KNA1ibN72ZliHqwAr9hEjZsfuW042qQSC+qpqfl7F7MKi
+k76OEx6sWUbYWE1PYOo7ogrS4aktD6b/2VN5yNj3ylySXwhoqbEpF5s5OtLLmJ6Z
+sBfeQx4DXEBAAkGB6S8PqV5H4Lyh6XARktFue5daybabZSsAjfNC/oelPAGfDeFy
+WyVtsEZhHA8PjmcM+GUfIO5tLhwCzsYK2rN+wREyrknMjOOu5g7p7wcNXSTlY+gb
+zyXLWRkErZpn5bdmvy9q
+=kSvn
+-----END PGP SIGNATURE-----
+
+--dS7B3BqU064N2ttAp3frlGurKsaKkN5lk--
