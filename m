@@ -1,72 +1,39 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E418E00C29; Thu, 23 Jun 2016 03:21:14 -0700 (PDT)
+	id 56424E00C29; Thu, 23 Jun 2016 03:42:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFB25E00C1D
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 03:21:12 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id 187so9621317wmz.1
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 03:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=qP7FBmyOFKII4gJ51w5TWStakw4luCd27DlbxFvcs3A=;
-	b=y1RQu1GlTFph4Ctfk665zYKbs8DHRizgwlHnzl3/FF2scWCQcT9XKCEo+JLx8gHdUF
-	cwfJOPq3dAJIXLFU3EK2H0tXLpJSKOBDu8DvUQcOQoAwJ2OHb8xHBohQJy0/7YODAL6r
-	bM51bi9DT614tPZJw8I8prBv9qqm3PrY9/qqty3T+EM1xx+vQ0WUlejTUAXbVEw8dRiX
-	VZFVwZ7Q3GZg+g8WcllfkaziJaYO2pNOTNt1aCqQCfZuraDIcR2bhBBzt7MOOnOnvxfi
-	pO+oEdmyqfpVjV5Wk+xst9wGVaB7zOD9IhVREeCWP1s4wY6p/rHr87ehE81UQF0cpdvL
-	ua+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=qP7FBmyOFKII4gJ51w5TWStakw4luCd27DlbxFvcs3A=;
-	b=IJykUAUR61hrSvhPWHjrRGCq3uEdoKuxuEbVTo2BUsOs6uDHNhY/s44I+7z+n+vGMw
-	ZuVmxmE4fs3rlE4U8nGdur+PD6zWvXAogWrImmwLZtRIo7x6DMtqFIEtprfD2W0s09v1
-	rXc8l0lhHHTA53zejnD5waQ6e87/eV6sHMH5IHZqh0YcliDA6hBWTwxPst/4BqTqoe5l
-	Hg6E4tp10vkf1XYW068oBUA2lOqm0UK+lDF7fDCxxtlyDl+y+CJRQnml/9vbBt81H657
-	GFxBUO+MMMkIzyQUpAhRL162bK9fJMg2q9sLXwhvvMHvue6NdIFfSah5H7pvBXI4Unp/
-	hazw==
-X-Gm-Message-State: ALyK8tIAR8Oy1eExcE+F1NRmWCEYh6r566u6aMOZpg4KZs3EwfGu3gx35hjlPrzXvwjOAg==
-X-Received: by 10.28.224.69 with SMTP id x66mr13034142wmg.89.1466677271460;
-	Thu, 23 Jun 2016 03:21:11 -0700 (PDT)
-Received: from localhost (ip-89-176-104-169.net.upcbroadband.cz.
-	[89.176.104.169])
-	by smtp.gmail.com with ESMTPSA id k6sm3650133wjz.28.2016.06.23.03.21.10
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Thu, 23 Jun 2016 03:21:10 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Thu, 23 Jun 2016 12:21:38 +0200
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Message-ID: <20160623102138.GA2567@jama>
-References: <13986bd3-af12-4768-0a4c-78447c33c8b6@linuxfoundation.org>
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F094FE00C1D
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 03:42:22 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20160623104220494_0684
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 10:42:20 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=42150 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bG277-0002XG-MM
+	for yocto@yoctoproject.org; Thu, 23 Jun 2016 06:44:01 -0400
+Date: Thu, 23 Jun 2016 06:41:35 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1606230625380.5059@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-In-Reply-To: <13986bd3-af12-4768-0a4c-78447c33c8b6@linuxfoundation.org>
-User-Agent: Mutt/1.6.1 (2016-04-27)
-Cc: yocto@yoctoproject.org, Paul Eggleton <paul.eggleton@linux.intel.com>,
-	bitbake-devel@lists.openembedded.org,
-	Openembedded-devel@lists.openembedded.org,
-	Openembedded-core@lists.openembedded.org
-Subject: Re: Patchwork users: Help test new version
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: is there a recipe for building a ppc-based installer image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,50 +45,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jun 2016 10:21:14 -0000
-X-Groupsio-MsgNum: 30720
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="tThc/1wpZn/ma/RB"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 23 Jun 2016 10:42:26 -0000
+Content-Type: text/plain; charset=US-ASCII
 
---tThc/1wpZn/ma/RB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 20, 2016 at 10:47:16AM -0700, Michael Halstead wrote:
-> Hello,
->=20
-> OpenEmbedded is nearly ready to upgrade to a new version of Patchwork.
-> The new version offers several new features that will allow OpenEmbedded
-> to improve developer workflow and automated checks on incoming patches.
->=20
-> If you are a Patchwork user please visit
-> https://patchwork-next.openembedded.org/ and take a look. If you find
-> anything amiss please e-mail me directly and include patchwork in the
-> subject line.
->=20
-> Thank you for your help upgrading this important system!
+  i've been fighting with this for a few days, so i'm going to
+describe what i'm *trying* to do, and if someone has a solution,
+terrific; in the meantime, i'm going to ask specific questions about
+particular recipe and class files, since i think i see all the
+*pieces* i want, i just don't know how to put them together to *get*
+what i want.
 
-I was using it to update meta-oe/master-next in last few days and it
-seems to work the same as old patchwork for me.
+  the scenario: powerpc target board, for which we already have
+working u-boot, kernel and rootfs, and which will have u-boot already
+installed as the basis for further adventures.
 
-But quite often I've noticed very slow response, is it running on
-slower HW while testing or is the new version just a lot slower?
+  as i *see* it, what i want to do is (and i'm willing to be
+corrected) build a basic kernel with an integrated initramfs that is
+loaded with installation utilities (fdisk, parted, mkfs, etc, etc.),
+and whose job it is to then fetch (from somewhere) the installable
+contents and load up the hard drive, then maybe use fw_setenv to tweak
+the u-boot env variables, and reboot to the full system. make sense
+so far?
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+  also, since it's ppc and u-boot, there's nothing grub or EFI related
+i will need, correct?
 
---tThc/1wpZn/ma/RB
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+  finally, i'd love to be able to test this on a qemuppc image first,
+so if there's a quick way to build a recipe that does this for
+qemuppc, that would be ducky.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+  as i see it, there are a number of images under both recipes-core
+and recipes-extended (those "testmaster" images) i've been looking at
+that seem to be relevant, but i've yet to find a combination that
+works.
 
-iEYEARECAAYFAldruCgACgkQN1Ujt2V2gBwgPQCfYHbLjnHn3pjTP/YHXoUHWAVZ
-KocAoKj1yLQp5ooBXz9WUaXJypP1TJDT
-=ANzc
------END PGP SIGNATURE-----
+  so i'm going to leave this very general description of what i'm
+after here, and follow up with more specific questions about some of
+those recipes, and about qemu sessions. and if someone already has a
+pointer to do all this, well, we're done.
 
---tThc/1wpZn/ma/RB--
+rday
+
+p.s. if i can get a general solution to this that is not written up
+elsewhere, i will be delighted to write it up for public consumption
+so everyone else can take advantage.
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
