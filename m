@@ -1,66 +1,79 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jswensen@mmm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1457E00C97; Thu, 23 Jun 2016 14:34:58 -0700 (PDT)
+	id 52E45E00C82; Thu, 23 Jun 2016 15:09:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.67 listed in list.dnswl.org]
-Received: from mail-pa0-f67.google.com (mail-pa0-f67.google.com
-	[209.85.220.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A445AE00C75
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
-Received: by mail-pa0-f67.google.com with SMTP id ts6so7350670pac.0
-	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=uCcSZdLjGO0FgjWCkPoxNeLaZMJX2N8y7XbRD166SPY=;
-	b=sxfyGgoBxoCisxzjzIyMmgEQTv9y2Bp/vb4xwKFBQQkRCB83rE27LLL2QUOOyUOC7V
-	YMjysOFX7ntjBiEUqGEkuQ8WZDC2pXW33UkvtxGirzoe1L0NnJRbDwXVYx9/oxK/wXhw
-	aFym+oLLIC7xbkdsTvQMl2jsjHw74T9bwT661ROVY3SlpFUDr9KB3vXcsYX+40TZAbzT
-	gYzCQmpyhvBtuvxdpNU7tBRaoeKpJxXSojAo9yXswce6A6YeJ7z4InDG+Gzh9qN5nNCD
-	xzK5KpGWOUAYXCrV7bvT1ZL6tr+ObRTijpUPBFWyJFEjjLaD3HTg9BJC5HhZWYdW+GVQ
-	a7Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=uCcSZdLjGO0FgjWCkPoxNeLaZMJX2N8y7XbRD166SPY=;
-	b=Vxp+lSt/h5PD9zsvTrqjuKacru/WGS8ygzU9Ysx/I2hA+pBgPaHBtZVWbVl+a4HdrX
-	8c/XcvC6aARwEZaLEPE8m8SzMVozUj3HuGP3kgWiaGWuc99ooeaFHWfpz82aaHViSbp4
-	IZxnaZ+jR7vRuu0vfdkaiFWuAAoyrXCHDcA5NZq5vViCOsm1aaVtRvTPYcRYbF6mD2LM
-	DQfNC3hCnDjK1gXqkygwC9HOyZMG9Jiupji6wNqef7CQdEXp/jhVALM1z1h6A7aU4lRO
-	GcQi8S7dnhk245Mfv+L9XrJiLqyFco8mf6W/GbowMmll82uaBV2JM0Ci0upNdZyPk/wS
-	5gHw==
-X-Gm-Message-State: ALyK8tIOtC8AnZAzUJltSWS+J6x5QvjhkTIJkJWFZKE9gc51zb0VlNDlOJNxJvKgR3muDQ==
-X-Received: by 10.66.63.35 with SMTP id d3mr1202224pas.69.1466717694497;
-	Thu, 23 Jun 2016 14:34:54 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	q127sm2277847pfb.34.2016.06.23.14.34.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 Jun 2016 14:34:53 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 23 Jun 2016 14:34:29 -0700
-Message-Id: <20160623213431.5513-2-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.9.0
-In-Reply-To: <20160623213431.5513-1-raj.khem@gmail.com>
-References: <20160623213431.5513-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 2/4] firmware: Upgrade to 20160622
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [136.229.8.41 listed in list.dnswl.org]
+X-Greylist: delayed 1036 seconds by postgrey-1.32 at yocto-www;
+	Thu, 23 Jun 2016 15:09:25 PDT
+Received: from smtp-277A-C.mmm.com (smtp-277a-c.mmm.com [136.229.8.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E17DE00C75
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 15:09:25 -0700 (PDT)
+Received: from mailgate02.mmm.com (unknown [136.229.2.28])
+	by Websense Email with ESMTPS id DA2A9BF19C6C7
+	for <yocto@yoctoproject.org>; Thu, 23 Jun 2016 21:52:05 +0000 (GMT)
+X-ExtLoop1: 1
+Received: from mail-bn1lp0139.outbound.protection.outlook.com (HELO
+	na01-bn1-obe.outbound.protection.outlook.com) ([207.46.163.139])
+	by mailgate02c.mmm.com with ESMTP/TLS/AES256-SHA;
+	23 Jun 2016 16:52:08 -0500
+Received: from BY2PR0301MB2117.namprd03.prod.outlook.com (10.163.197.146) by
+	BY2PR0301MB2120.namprd03.prod.outlook.com (10.163.197.149) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.523.12;
+	Thu, 23 Jun 2016 21:52:07 +0000
+Received: from BY2PR0301MB2117.namprd03.prod.outlook.com ([10.163.197.146]) by
+	BY2PR0301MB2117.namprd03.prod.outlook.com ([10.163.197.146]) with
+	mapi id 15.01.0523.019; Thu, 23 Jun 2016 21:52:07 +0000
+From: Jake Swensen <jswensen@mmm.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: question: yocto-bsp tool warnings
+Thread-Index: AQHRzZl3FanaSciqvEOuFjasRYPGDA==
+Date: Thu, 23 Jun 2016 21:52:07 +0000
+Message-ID: <BY2PR0301MB21179A1F8E3485090A97527BC52D0@BY2PR0301MB2117.namprd03.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=jswensen@mmm.com; 
+x-originating-ip: [132.245.81.165]
+x-ms-office365-filtering-correlation-id: 33206156-1734-4e56-8fe9-08d39bb09f32
+x-microsoft-exchange-diagnostics: 1; BY2PR0301MB2120;
+	6:xph+q4CHcxo63TbnUZT57sKjHGpIZeuzSg9Bv54P2rvIfFSvNQKGL+l8NsfcVTWNLfWtPadg60l0zUABwG2xjYAvT35C0jIQrDY69VtbH44whnJPoV0/IdyaQ9R39s6zBrCygW2Nl98hNSUlVoEm/PiabewpKnlHxCrH1+oEUqqCxvbE+LCfKja+pai/y5AabKSGBpvMQXZRmNUnKUs22Vm7lznfeCz6a/gZueb+CyuVRd4qGb8EW0+EG0ZQa+187y0E6irtlkiUo8/fmR008FwPXDm6T4SpxezW/Uspw0AA8tI5ivnFHCzJoIa6FAKp;
+	5:+mVYs4Q5oXfEJrU2H1ve4B4c86hxTyx5we5jiJbITz9Ffy8Fqu4A0nYkPSJPxiWsLpoVhkEvhDg4+WxjrVJYlvzqI31h1gawHknrZWe2LYc5/wDDVtLG3ciyKRnm5ykDMm0IdPzbVbUSFrLxSXDa4w==;
+	24:2O9TtZRb31AQauY8rwPwafIKAF6n+u8G+WJT7kD03lJDzRIWQM/0DfKjDGs8RqGRGn1ARK8bSbF7PgUbPzzNiRyDYj3A8KiVjq243JFKxJw=;
+	7:ln2R4fBF0v8Vk6IgPOGaH/vF3uujMcAy6rv1/MJ+0DAS6krSt42o//jWWBE3DyowlZG5n92au3rfy/BLSG1TCkYnvldpiTq2MvvFQoYbJyU/uVuNjpgYj7Ppo1Bq+lzeyDFCG8hCe5Jf4XlOtgDnTNAaPt0EAud9kIxQdwpO0sy1GrWPy/U4MqFcsvm6oI1/YC2d6yT483+AuJf15kJ/+TGvXhN0WJ//qCEK4rAaUG49ZYg0ni8gakps6LBPqHd8uzwoXLoPGT/LIC5P/Jxd4g==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR0301MB2120;
+x-microsoft-antispam-prvs: <BY2PR0301MB212092DFC40E8287A33F9C2CC52D0@BY2PR0301MB2120.namprd03.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(264703809997249);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);
+	SRVR:BY2PR0301MB2120; BCL:0; PCL:0; RULEID:;
+	SRVR:BY2PR0301MB2120; 
+x-forefront-prvs: 098291215C
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(199003)(189002)(92566002)(8676002)(1730700003)(81156014)(81166006)(586003)(99286002)(5002640100001)(87936001)(2900100001)(77096005)(2501003)(74316001)(15975445007)(10400500002)(110136002)(19580395003)(86362001)(107886002)(76576001)(9686002)(54356999)(50986999)(122556002)(450100001)(7696003)(97736004)(11100500001)(305945005)(102836003)(2906002)(101416001)(8936002)(105586002)(7846002)(2351001)(229853001)(5003600100003)(3846002)(106116001)(7736002)(6116002)(106356001)(3660700001)(66066001)(5640700001)(189998001)(3280700002)(68736007)(33656002)(533714002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR0301MB2120;
+	H:BY2PR0301MB2117.namprd03.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: mmm.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: mmm.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2016 21:52:07.5060 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: facac3c4-e2a5-4257-af76-205c8a821ddb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR0301MB2120
+Subject: question: yocto-bsp tool warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,26 +85,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jun 2016 21:34:58 -0000
+X-List-Received-Date: Thu, 23 Jun 2016 22:09:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- recipes-bsp/common/firmware.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I've been looking into setting up my own BSP layer based on the=20
+standard/beaglebone branch and I've run into some warnings I wasn't familia=
+r
+with. I created a test BSP with the yocto-bsp tool and set MACHINE=3Dtest,
+(which is the name of my meta layer) then ran it. This produced several=20
+warnings:
 
-diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-index bf11e4c..9df6156 100644
---- a/recipes-bsp/common/firmware.inc
-+++ b/recipes-bsp/common/firmware.inc
-@@ -1,5 +1,5 @@
--RPIFW_SRCREV ?= "3816e1ce1e6ebc6d2bf0596dbd52849e16aa7e94"
--RPIFW_DATE ?= "20160512"
-+RPIFW_SRCREV ?= "390f53ed0fd79df274bdcc81d99e09fa262f03ab"
-+RPIFW_DATE ?= "20160622"
- RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
- RPIFW_S ?= "${WORKDIR}/git"
- 
--- 
-2.9.0
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ After meta data application, the kernel tree branch is standard/test.
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ The SRC_URI specified branch standard/base.
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+=20
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ The branch will be forced to standard/base, but this means the board meta =
+data
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ (.scc files) do not match the SRC_URI specification.
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+=20
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ The meta data and branch standard/base should be inspected to ensure the p=
+roper
+WARNING: linux-yocto-4.4.10+gitAUTOINC+870134f4bf_13852755ec-r0.1 do_patch:=
+ kernel is being built.
 
+I found the patch which enabled this warning, but I'm unsure how to allevia=
+te
+it. I do intend to use the standard/test branch, but I'm not sure which
+SRC_URI is telling bitbake to build the standard/base.=20
+
+Any idea where to start looking?
+
+Patch that enabled the warnings: http://lists.openembedded.org/pipermail/op=
+enembedded-core/2016-April/119808.html
+
+
+    =
 
