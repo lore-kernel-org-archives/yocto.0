@@ -1,38 +1,29 @@
-Return-Path: <damir.anicic@psi.ch>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 633FDE00D08; Fri, 24 Jun 2016 01:48:14 -0700 (PDT)
+	id 89762E00D08; Fri, 24 Jun 2016 03:04:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [82.130.75.186 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from edge10.ethz.ch (edge10.ethz.ch [82.130.75.186])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF6DEE0073D
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 01:48:11 -0700 (PDT)
-Received: from CAS22.d.ethz.ch (172.31.51.112) by edge10.ethz.ch
-	(82.130.75.186) with Microsoft SMTP Server (TLS) id 14.3.266.1;
-	Fri, 24 Jun 2016 10:48:02 +0200
-Received: from MBX214.d.ethz.ch ([fe80::5c68:3688:18d4:cbf7]) by
-	CAS22.d.ethz.ch ([fe80::dd0e:466a:b055:c090%10]) with mapi id
-	14.03.0266.001; Fri, 24 Jun 2016 10:48:09 +0200
-From: "Anicic Damir (PSI)" <damir.anicic@psi.ch>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Powerpc64e6500 missing altivec option
-Thread-Index: AdHN9NkD/u2crsRSQHKmRtWNRpKACg==
-Date: Fri, 24 Jun 2016 08:48:08 +0000
-Message-ID: <DB23C91B06C303459B24BC3208AF424A20F4DBBB@MBX214.d.ethz.ch>
-Accept-Language: en-US, de-DE, de-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [129.129.145.249]
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C0AFE00756
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 03:04:25 -0700 (PDT)
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Subject: Powerpc64e6500 missing altivec option
+X-KeepSent: 5655FC7E:05CF4F10-C1257FDC:003605DC;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF5655FC7E.05CF4F10-ONC1257FDC.003605DC-C1257FDC.0037551C@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Fri, 24 Jun 2016 12:04:22 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 24.06.2016 12:04:26,
+	Serialize complete at 24.06.2016 12:04:26
+Subject: problem with installation pathes of recipes useing cmake + cpack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,90 +35,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 08:48:14 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 24 Jun 2016 10:04:29 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_DB23C91B06C303459B24BC3208AF424A20F4DBBBMBX214dethzch_"
+	boundary="=_alternative 0037551CC1257FDC_="
 
---_000_DB23C91B06C303459B24BC3208AF424A20F4DBBBMBX214dethzch_
-Content-Type: text/plain; charset="iso-8859-1"
+--=_alternative 0037551CC1257FDC_=
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
+Hej
 
-When I built only poky, I had
-  TUNE_FEATURES     =3D "m64 fpu-hard e6500 altivec"
-and everything was built with -maltivec
-and environment-setup-ppc64e6500-poky-linux contained -m altivec:
-  export CC=3D"powerpc64-poky-linux-gcc  -mhard-float -m64 -mcpu=3De6500 -m=
-altivec --sysroot=3D$SDKTARGETSYSROOT"
+I have several recipes which are based on cmake.  At cmake is the "make=20
+package" enabled. It is based on CPack(debian).
+
+I am using the predefined GNU installation dirs by=20
+"include(GNUInstallDirs)" and its variables like CMAKE=5FINSTALL=5FFULL=5FB=
+INDIR=20
+etc.
+(https://cmake.org/cmake/help/v3.0/module/GNUInstallDirs.html)
+
+CMAKE=5FINSTALL=5FFULL=5FBINDIR is set to /usr/local/bin by default, when=20
+building the package on my development machine outside of Yocto. That is=20
+fine.
+
+When building the same project in Yocto the CMAKE=5FINSTALL=5FFULL=5FBINDIR=
+ is=20
+set to usr/bin. Seems that the prefix is set by Yocto.
+
+Any ideas how to fix that problem?
+
+Regards
+
+Stefan
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
 
 
-It seems that since I added openembedded layers:
-    /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-oe \
-    /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-python \
-    /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-networking \
-build reports
-  TUNE_FEATURES     =3D "m64 fpu-hard e6500 altivec"
-but it builds without altivec,
-and environment-setup-ppc64e6500-poky-linux does not have -maltivec any mor=
-e:
-  export CC=3D"powerpc64-poky-linux-gcc  -mhard-float -m64 -mcpu=3De6500 --=
-sysroot=3D$SDKTARGETSYSROOT"
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
 
 
-Where does it get disabled, and how to enable it again?
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
 
-Damir
+This e-mail may contain confidential and/or privileged information. If you =
 
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
 
---_000_DB23C91B06C303459B24BC3208AF424A20F4DBBBMBX214dethzch_
-Content-Type: text/html; charset="iso-8859-1"
+--=_alternative 0037551CC1257FDC_=
+Content-Type: text/html; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hi!<br>
+<font size=3D2 face=3D"sans-serif">Hej</font>
 <br>
-When I built only poky, I had<br>
-&nbsp; TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m64 fpu-hard e6500 a=
-ltivec&quot;<br>
-and everything was built with -maltivec<br>
-and environment-setup-ppc64e6500-poky-linux contained -m altivec:<br>
-&nbsp; export CC=3D&quot;powerpc64-poky-linux-gcc&nbsp; -mhard-float -m64 -=
-mcpu=3De6500 -maltivec --sysroot=3D$SDKTARGETSYSROOT&quot;<br>
+<br><font size=3D2 face=3D"sans-serif">I have several recipes which are bas=
+ed
+on cmake. &nbsp;At cmake is the &quot;make package&quot; enabled. It is
+based on CPack(debian).</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">I am using the predefined GNU instal=
+lation
+dirs by &quot;include(GNUInstallDirs)&quot; and its variables like CMAKE=5F=
+INSTALL=5FFULL=5FBINDIR
+etc.</font>
+<br><font size=3D2 face=3D"sans-serif">(</font><a href=3Dhttps://cmake.org/=
+cmake/help/v3.0/module/GNUInstallDirs.html><font size=3D2 color=3Dblue face=
+=3D"sans-serif">https://cmake.org/cmake/help/v3.0/module/GNUInstallDirs.htm=
+l</font></a><font size=3D2 face=3D"sans-serif">)</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">CMAKE=5FINSTALL=5FFULL=5FBINDIR is s=
+et to
+/usr/local/bin by default, when building the package on my development
+machine outside of Yocto. That is fine.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">When building the same project in Yo=
+cto
+the CMAKE=5FINSTALL=5FFULL=5FBINDIR is set to usr/bin. Seems that the prefix
+is set by Yocto.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Any ideas how to fix that problem?</=
+font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Stefan<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
 <br>
 <br>
-It seems that since I added openembedded layers:<br>
-&nbsp;&nbsp;&nbsp; /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-o=
-e \<br>
-&nbsp;&nbsp;&nbsp; /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-p=
-ython \<br>
-&nbsp;&nbsp;&nbsp; /home/anicic/yocto-2.1-all/poky/meta-openembedded/meta-n=
-etworking \<br>
-build reports<br>
-&nbsp; TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m64 fpu-hard e6500 a=
-ltivec&quot;<br>
-but it builds without altivec,<br>
-and environment-setup-ppc64e6500-poky-linux does not have -maltivec any mor=
-e:<br>
-&nbsp; export CC=3D&quot;powerpc64-poky-linux-gcc&nbsp; -mhard-float -m64 -=
-mcpu=3De6500 --sysroot=3D$SDKTARGETSYSROOT&quot;<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
 <br>
 <br>
-Where does it get disabled, and how to enable it again?<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
 <br>
-Damir<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
 <br>
-</div>
-</body>
-</html>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
 
---_000_DB23C91B06C303459B24BC3208AF424A20F4DBBBMBX214dethzch_--
+--=_alternative 0037551CC1257FDC_=--
