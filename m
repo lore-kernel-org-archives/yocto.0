@@ -1,72 +1,60 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B843E00D26; Fri, 24 Jun 2016 03:49:06 -0700 (PDT)
+	id 72754E00D13; Fri, 24 Jun 2016 04:39:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_40,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.82.251.7 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2195]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 408 seconds by postgrey-1.32 at yocto-www;
-	Fri, 24 Jun 2016 03:48:43 PDT
-Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
-	[216.82.251.7])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD1FE00D09
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 03:48:43 -0700 (PDT)
-Received: from [216.82.250.51] by server-7.bemta-12.messagelabs.com id
-	B1/A4-23619-27E0D675; Fri, 24 Jun 2016 10:41:54 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphleJIrShJLcpLzFFi42LxThM+plvElxt
-	u8PMsm8Wkl2vYHBg92k/0sQUwRrFm5iXlVySwZrx5sZu5oFW54vDlyYwNjMfluxi5OIQEtjBK
-	zH15gBHOmXDpBBuEc5BRYuW5X0xdjJwcbAKGEld67jKC2CICphIvjn1hA7GFBWQkdrxbyQQRV
-	5SY9qITqkZPomFXN1icRUBV4uauv2A2r4C7xOyuLrAaRgFZiS+Nq5lBbGYBcYlbT+aD1UgICE
-	gs2XOeGcIWlXj5+B8rhG0gsXXpPhYIW0FiZXcDG0RvjsTEZRcZIeYLSpyc+QSsRgho75aFv1k
-	mMArPQrJiFpKWWUhaIOI6Egt2f2KDsLUlli18zQxjnznwmAlZfAEj+ypGjeLUorLUIl1DM72k
-	osz0jJLcxMwcXUNDI73c1OLixPTUnMSkYr3k/NxNjMBYqmdgYNzB2Djd6xCjJAeTkijvtEU54
-	UJ8SfkplRmJxRnxRaU5qcWHGGU4OJQkeDV4c8OFBItS01Mr0jJzgFENk5bg4FES4Z0CkuYtLk
-	jMLc5Mh0idYlSUEueNBEkIgCQySvPg2mCJ5BKjrJQwLyMDA4MQT0FqUW5mCar8K0ZxDkYlYd5
-	UkCk8mXklcNNfAS1mAlp8tz8bZHFJIkJKqoFxTanA2zsf1rTwCqe6Xk/PTKi8/6pg9hGj2tUv
-	o50CJf+bVhv3pPK9OKO6+c7nt77zbyd5BPbcnFRv7Hdt5a9Nq1h1Ih+eCv/8fm9w4izjh00V0
-	YYVX15wGZh57liw7MdMZ78vrPbPxOP0ju3du/3lzovf/9+OrNrJ7tO9zuxhlseB3dw6/EFJSi
-	zFGYmGWsxFxYkAdI7WRx8DAAA=
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-12.tower-108.messagelabs.com!1466764913!52595962!1
-X-Originating-IP: [75.102.19.198]
-X-StarScan-Received: 
-X-StarScan-Version: 8.46; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 18148 invoked from network); 24 Jun 2016 10:41:54 -0000
-Received: from unknown.ord.scnet.net (HELO HICGWSEXHC02.ad.harman.com)
-	(75.102.19.198)
-	by server-12.tower-108.messagelabs.com with AES128-SHA encrypted SMTP;
-	24 Jun 2016 10:41:54 -0000
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HICGWSEXHC02.ad.harman.com (10.10.23.73) with Microsoft SMTP Server
-	(TLS) id 14.3.235.1; Fri, 24 Jun 2016 05:41:53 -0500
-Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
-	HIBDWSMB03.ad.harman.com (10.99.236.93) with Microsoft SMTP Server
-	(TLS) id 15.0.1130.7; Fri, 24 Jun 2016 16:11:50 +0530
-Received: from HIBDWSMB02.ad.harman.com ([fe80::444c:b81a:f35e:c464]) by
-	HIBDWSMB02.ad.harman.com ([fe80::444c:b81a:f35e:c464%16]) with mapi id
-	15.00.1130.005; Fri, 24 Jun 2016 16:11:49 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: setcap using recipe
-Thread-Index: AdHOBQLlITj3tknLQROeJDdrbt+Enw==
-Date: Fri, 24 Jun 2016 10:41:49 +0000
-Message-ID: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
+	[209.85.214.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FA7BE00CE9
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 04:39:44 -0700 (PDT)
+Received: by mail-it0-f51.google.com with SMTP id a5so12908229ita.1
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 04:39:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=RWuJ8oNzpNWoK5M+zk5zXUH7PktFV/mR5/dkjXFEYfk=;
+	b=13S5uG+x1OTN5hryWRh3Cwzxeir8KquyLNBRr/VYIAxteiE+fl7dHy51kOvumiZyWB
+	XQxJnu18DjeVn4DjBr11HjrxTBEJTsrJqCsLgaydGXqaVr+Z71Z5n3Lob01Yup3HVKdd
+	VmekbCGS8sujSOjAlM3ckFrZgrLyFCbAP3riZBZf9ZHgl+qRyw7FvCflOVgjSB+kw+uU
+	mf+AXPJIjMwk6fXn/Ozl3l86HoAIVoNL6O4WINdlxwMCNo506YZcak6AxWm2AH3a5jW1
+	sKJHdGAE41R7RLwZovUOxRq499gEENo1n5aVyqnlqpkb/lCcm7SvMxiZRjY/qmhLAUiR
+	+lgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=RWuJ8oNzpNWoK5M+zk5zXUH7PktFV/mR5/dkjXFEYfk=;
+	b=ObGp2E6e2jrY31Ejc9J6HIYDU0Ab+frNJtlxfSspKhiv3jzJW/2HR/56kfMhL06KwG
+	j/9t/xWqnanm4B/68OTY2UlAEmov7nVPX36B+/7fxcZTKON97xsRyYF0peFETkHnHWBW
+	t3j8oXwH+i2ZspT/FgAydtec/1P9GqEd67Zlts5iVazwkeTKta4UJP/qgoxBfDuqCiaF
+	LkwdJwq5NHkglG7i9ALN1XyByRpLQhp0n3bRK8QgWywnHexNnI2rchutq99DeuMow4Ga
+	0+1La/zbV3WyVj14yb+KTUPau5KUjrYw6S7EVgsHFT57YKgJZXyKKJtV7STfXP9vrOh/
+	7pcA==
+X-Gm-Message-State: ALyK8tJ4hx1oXTkHJ2ytLUdgWR0CT71U03vtjRApPUF/GUIgjID42qKFmuOd22CwyV3H871q9WexH/Q7iQFBfzYw
+X-Received: by 10.36.48.80 with SMTP id q77mr5285182itq.83.1466768383399; Fri,
+	24 Jun 2016 04:39:43 -0700 (PDT)
 MIME-Version: 1.0
-Subject: setcap using recipe
+Received: by 10.107.162.6 with HTTP; Fri, 24 Jun 2016 04:39:23 -0700 (PDT)
+In-Reply-To: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
+References: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 24 Jun 2016 12:39:23 +0100
+Message-ID: <CAJTo0LYiA-mxZUuK8bOx64tFMvPmvRBBzExcQNfxsc5q6JvxMw@mail.gmail.com>
+To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: setcap using recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,154 +66,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 10:49:06 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_d023141f03804bacb323bdfb95daee19HIBDWSMB02adharmancom_"
+X-List-Received-Date: Fri, 24 Jun 2016 11:39:46 -0000
+Content-Type: multipart/alternative; boundary=001a11c007d875f478053604a0dc
 
---_000_d023141f03804bacb323bdfb95daee19HIBDWSMB02adharmancom_
-Content-Type: text/plain; charset="us-ascii"
+--001a11c007d875f478053604a0dc
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+On 24 June 2016 at 11:41, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote:
+
+> Is there a way to  add a capability to a binary (cap_net_raw+ep),into a
+> recipe?
+>
+>
+>
+> Example :
+>
+> do_install() {
+>
+>            install -d ${D}${bindir}
+>
+>            install -m 0755 helloworld ${D}${bindir}
+>
+>            install -d ${D}/lib/systemd/system
+>
+>            install -m 0755 hello.service ${D}/lib/systemd/system/
+>
+>            setcap cap_net_raw+ep  ${D}${bindir}/helloworld
+>
+> }
+>
+>
+>
+> If yes is this correct approach to achieve the same from  package recipe
+> itself ?
+>
+
+capabilities on files are just extended attributes, so assuming that you
+have a fairly recent Yocto and your host and target filesystems support
+extended attributes, yes this should work.
+
+Ross
+
+--001a11c007d875f478053604a0dc
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,</div><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On 24 June 2016 at 11:41, Kumar, Shrawa=
+n <span dir=3D"ltr">&lt;<a href=3D"mailto:Shrawan.Kumar@harman.com" target=
+=3D"_blank">Shrawan.Kumar@harman.com</a>&gt;</span> wrote:<br><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><p>Is there a way to =C2=A0add a capability to a binary (=
+cap_net_raw+ep),into a recipe?
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p>Example :<u></u><u></u></p>
+<p>do_install() {<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}$=
+{bindir}<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
+helloworld ${D}${bindir}<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}/=
+lib/systemd/system<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
+hello.service ${D}/lib/systemd/system/<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0setcap cap_=
+net_raw+ep=C2=A0 ${D}${bindir}/helloworld=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
+=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+<u></u><u></u></p>
+<p>}<u></u><u></u></p>
+<p><u></u>=C2=A0<u></u></p>
+<p>If yes is this correct approach to achieve the same from=C2=A0 package r=
+ecipe itself ?</p></blockquote></div><br>capabilities on files are just ext=
+ended attributes, so assuming that you have a fairly recent Yocto and your =
+host and target filesystems support extended attributes, yes this should wo=
+rk.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ro=
+ss</div></div>
 
-
-
-Is there a way to  add a capability to a binary (cap_net_raw+ep),into a rec=
-ipe?
-
-
-Example :
-
-do_install() {
-
-           install -d ${D}${bindir}
-
-           install -m 0755 helloworld ${D}${bindir}
-
-           install -d ${D}/lib/systemd/system
-
-           install -m 0755 hello.service ${D}/lib/systemd/system/
-
-           setcap cap_net_raw+ep  ${D}${bindir}/helloworld
-
-}
-
-
-
-If yes is this correct approach to achieve the same from  package recipe it=
-self ?
-
-
-
-
-
-Thanks and Regards
-
-Shrawan
-
-
---_000_d023141f03804bacb323bdfb95daee19HIBDWSMB02adharmancom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Hello All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Is there a way to &nbsp;add a capability to a bin=
-ary (cap_net_raw&#43;ep),into a recipe?
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Example :<o:p></o:p></p>
-<p class=3D"MsoPlainText">do_install() {<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
-&nbsp; install -d ${D}${bindir}<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
-&nbsp; install -m 0755 helloworld ${D}${bindir}<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
-&nbsp; install -d ${D}/lib/systemd/system<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
-&nbsp; install -m 0755 hello.service ${D}/lib/systemd/system/<o:p></o:p></p=
->
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; &nbsp;setcap cap_net_raw&#43;ep&nbsp; ${D}${bindir}/helloworld&nbsp;&=
-nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">}<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">If yes is this correct approach to achieve the sa=
-me from&nbsp; package recipe itself ?<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Thanks and Regards<o:p></o:p></p>
-<p class=3D"MsoPlainText">Shrawan<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_d023141f03804bacb323bdfb95daee19HIBDWSMB02adharmancom_--
+--001a11c007d875f478053604a0dc--
