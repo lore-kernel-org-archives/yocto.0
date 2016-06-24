@@ -1,60 +1,69 @@
-Return-Path: <pidge@toganlabs.com>
+Return-Path: <saeed.samy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7500E00EE3; Mon, 27 Jun 2016 05:28:55 -0700 (PDT)
+	id 75708E00D05; Thu, 23 Jun 2016 20:18:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [23.83.214.10 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (saeed.samy[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from barb.maple.relay.mailchannels.net
-	(barb.maple.relay.mailchannels.net [23.83.214.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39C8FE00EEB
-	for <yocto@yoctoproject.org>; Mon, 27 Jun 2016 05:28:36 -0700 (PDT)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 18673123C86;
-	Mon, 27 Jun 2016 12:28:36 +0000 (UTC)
-Received: from hp181.hostpapa.com (ip-10-229-5-85.us-west-2.compute.internal
-	[10.229.5.85])
-	by relay.mailchannels.net (Postfix) with ESMTPA id 62A57122FD4;
-	Mon, 27 Jun 2016 12:28:34 +0000 (UTC)
-X-Sender-Id: hostpapa|x-authuser|pidge@toganlabs.com
-Received: from hp181.hostpapa.com (hp181.hostpapa.com [10.92.147.53])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
-	by 0.0.0.0:2500 (trex/5.6.15); Mon, 27 Jun 2016 12:28:35 +0000
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostpapa|x-authuser|pidge@toganlabs.com
-X-MailChannels-Auth-Id: hostpapa
-X-MC-Loop-Signature: 1467030515082:3072581595
-X-MC-Ingress-Time: 1467030515081
-Received: from [176.252.54.16] (port=52876 helo=mion)
-	by hp181.hostpapa.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.86_1)
-	(envelope-from <pidge@toganlabs.com>)
-	id 1bHVeR-004DW3-GI; Mon, 27 Jun 2016 14:28:34 +0200
-Message-ID: <1467030508.31845.8.camel@toganlabs.com>
-From: Beth 'pidge' Flanagan <pidge@toganlabs.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
-	yocto@yoctoproject.org
-Date: Mon, 27 Jun 2016 14:28:28 +0200
-In-Reply-To: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1466550472-1365-1-git-send-email-anibal.limon@linux.intel.com>
-Organization: toganlabs.com
-X-Mailer: Evolution 3.18.5.2-0ubuntu3 
-Mime-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AuthUser: pidge@toganlabs.com
-Cc: joshua.g.lock@intel.com
-Subject: Re: [[yocto-autobuilder][PATCHv2] 00/15] Add support for generate bitbake/oe-selftest error reports
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2930E00D00;
+	Thu, 23 Jun 2016 20:18:12 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id c82so1625110wme.3;
+	Thu, 23 Jun 2016 20:18:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=tDtemS9zuxkT1lrK37Bcc0ohnl4HRAlsIc8AcpZ74N8=;
+	b=DbVMwN8f76cuIBvEvm45gGa/JwarLKKL7+Y9Ly+sDlQJHb4H6YHdIHqCsUqGzlVhlX
+	4KfZtpqwU6eCOqbBOmVi/1fGkCXZvZcB4z9qvwvlQ5+ciIjHwuRM1SbwOWyvP1tImX9Z
+	rCSehBRkxCBsnrdppKIwamfv/Vqzbzvcqp06OJ7wbQ0V60tAhH03JwfkLJK3fCxDSeW1
+	OwLVIjquYA6AQfzel+V3o34y5dpUlChqCVJ1tqhkQh6uS7dEDrrId9b+9bFk4m5waNGw
+	DEU9Ay11nhEhK6lqscmq/UpO07Tt06vcIy2fJO1uaK+FMfzbiNK5UYTQqJhydu9fTWP7
+	7sew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=tDtemS9zuxkT1lrK37Bcc0ohnl4HRAlsIc8AcpZ74N8=;
+	b=fdwDUsD4WTjejR8n8cLhQVpkn738YC/Gxh3SEEBizoLAa4MF+HzLvDq6PPfQBjmHHB
+	RlJ0Z7NNc8o1kAOrhzwtb6Z9fqHRfv+b0PP6HdObPhdFj5ai9LQSGe9HIC+B2KtxZv1f
+	tPr9p2I/3zeg2upoE0bQjvKDKIgyWJ+UyRxPvLAah29SGNtc5MXGfRXQe5i5ZUJ/qR5c
+	St3CxmXu7wTcvhRTOidrto1dXGwDnvFYoSXdNRXgMIjxQGCvlDaG1vGUGANmwrDYUONE
+	R8fD2jd7oW/fpK7BdakHSY/zoW2lR69rHzLvGgR7U26wVcsdgkIDgGoaqytcy+4Rc0GF
+	iXrg==
+X-Gm-Message-State: ALyK8tJp4VVUsmyhGP4WdMJFizwC9JB5eNL0UaCT5Tl3Mj9BhsvcxVbQmgRSlGPWZws5iw==
+X-Received: by 10.28.43.2 with SMTP id r2mr3426246wmr.33.1466738290883;
+	Thu, 23 Jun 2016 20:18:10 -0700 (PDT)
+Received: from [192.168.1.2] ([2.176.167.206])
+	by smtp.gmail.com with ESMTPSA id h8sm2939065wjg.9.2016.06.23.20.18.08
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 23 Jun 2016 20:18:10 -0700 (PDT)
+To: yocto-builds@yoctoproject.org
+From: "S.Sami" <saeed.samy@gmail.com>
+Message-ID: <b5d41264-70b8-9710-c51d-db45d3d17cd0@gmail.com>
+Date: Fri, 24 Jun 2016 07:48:05 +0430
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.1.1
+MIME-Version: 1.0
+X-Mailman-Approved-At: Mon, 27 Jun 2016 05:57:12 -0700
+Subject: override layer to literally rename all desired visible strings in a build, and python 2.7.9 error 132
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: pidge@toganlabs.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -63,227 +72,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jun 2016 12:28:56 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 24 Jun 2016 03:18:16 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Pulled into master, thanks!
+Hello.
+
+I am new to yocto, and for a project i am in need of modifying 
+openswitch build for a presenattion in a way that the final build ( for 
+this presentation it will be appliance ova) it shows another string or 
+better to say a new Distro instead of openswitch in the final build. 
+what i am looking for is a solution to change the name of all files and 
+folders in the final build so that they show "test" instead of openswitch.
+
+i have been told that it is possible by creating a new layer on top of 
+current openswitch ops-build repo. But since i am new to this i am 
+getting confused on the steps i should follow and thus it will take much 
+time.
+
+can anyone kindly guide me here on how should this be done? what are the 
+processes involved?
+
+one more thing is that any kind of change to the Distro name" 
+openswitch" or created files or folder names by the build process will 
+always result in a python_2.7.9 do_install error which interrupts the 
+process.
+
+Bellow is the error generated by python installation( i have used "test 
+"as the desired distro name).
+
+I will be so grateful if any one can help me get out of this situation.
+
+----------------------------------------------------------------------------------
 
 
--b
+DEBUG: SITE files ['endian-little', 'common-linux', 'common-glibc', 
+'bit-64', 'x86_64-linux', 'common']
+DEBUG: Executing shell function do_install
+NOTE: make -j 4 
+HOSTPGEN=/home/sasami/ops-build/build/tmp/sysroots/x86_64-linux/usr/bin/python-native/pgen 
+HOSTPYTHON=/home/sasami/ops-build/build/tmp/sysroots/x86_64-linux/usr/bin/python-native/python 
+CROSSPYTHONPATH=/home/sasami/ops-build/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/lib-dynload/ 
+STAGING_LIBDIR=/home/sasami/ops-build/build/tmp/sysroots/appliance/usr/lib 
+STAGING_INCDIR=/home/sasami/ops-build/build/tmp/sysroots/appliance/usr/include 
+STAGING_BASELIBDIR=/home/sasami/ops-build/build/tmp/sysroots/appliance/lib 
+BUILD_SYS=x86_64-linux HOST_SYS=x86_64-test-linux 
+DESTDIR=/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/image 
+LIBDIR=/usr/lib
+x86_64-test-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 
+-mfpmath=sse 
+--sysroot=/home/sasami/ops-build/build/tmp/sysroots/appliance -c 
+-fno-strict-aliasing  -O2 -pipe -g -feliminate-unused-debug-types 
+-DNDEBUG -g  -O3 -Wall -Wstrict-prototypes  -I. -IInclude 
+-I/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Include 
+-fPIC -DPy_BUILD_CORE -DPYTHONPATH='":plat-linux2:lib-tk:lib-old"' \
+         -DPREFIX='"/usr"' \
+         -DEXEC_PREFIX='"/usr"' \
+         -DVERSION='"2.7"' \
+-DVPATH='"/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9"' 
+\
+         -DLIB='"lib"' \
+         -o Modules/getpath.o 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Modules/getpath.c
+x86_64-test-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 
+-mfpmath=sse 
+--sysroot=/home/sasami/ops-build/build/tmp/sysroots/appliance -c 
+-fno-strict-aliasing  -O2 -pipe -g -feliminate-unused-debug-types 
+-DNDEBUG -g  -O3 -Wall -Wstrict-prototypes  -I. -IInclude 
+-I/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Include 
+-fPIC -DPy_BUILD_CORE \
+           -DSVNVERSION="\"`LC_ALL=C echo Unversioned directory`\"" \
+           -DHGVERSION="\"`LC_ALL=C hg id -i 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9`\"" 
+\
+           -DHGTAG="\"`LC_ALL=C hg id -t 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9`\"" 
+\
+           -DHGBRANCH="\"`LC_ALL=C hg id -b 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9`\"" 
+\
+           -o Modules/getbuildinfo.o 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Modules/getbuildinfo.c
+abort: repository 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9 
+not found!
+abort: repository 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9 
+not found!
+abort: repository 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9 
+not found!
+rm -f libpython2.7.a
+if test libpython2.7.so.1.0 != libpython2.7.so; then \
+         x86_64-test-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 
+-mfpmath=sse 
+--sysroot=/home/sasami/ops-build/build/tmp/sysroots/appliance -shared 
+-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -Wl,-hlibpython2.7.so.1.0 
+-o libpython2.7.so.1.0 Modules/getbuildinfo.o Parser/acceler.o 
+Parser/grammar1.o Parser/listnode.o Parser/node.o Parser/parser.o 
+Parser/parsetok.o Parser/bitset.o Parser/metagrammar.o 
+Parser/firstsets.o Parser/grammar.o Parser/pgen.o Parser/myreadline.o 
+Parser/tokenizer.o Objects/abstract.o Objects/boolobject.o 
+Objects/bufferobject.o Objects/bytes_methods.o Objects/bytearrayobject.o 
+Objects/capsule.o Objects/cellobject.o Objects/classobject.o 
+Objects/cobject.o Objects/codeobject.o Objects/complexobject.o 
+Objects/descrobject.o Objects/enumobject.o Objects/exceptions.o 
+Objects/genobject.o Objects/fileobject.o Objects/floatobject.o 
+Objects/frameobject.o Objects/funcobject.o Objects/intobject.o 
+Objects/iterobject.o Objects/listobject.o Objects/longobject.o 
+Objects/dictobject.o Objects/memoryobject.o Objects/methodobject.o 
+Objects/moduleobject.o Objects/object.o Objects/obmalloc.o 
+Objects/rangeobject.o Objects/setobject.o Objects/sliceobject.o 
+Objects/stringobject.o Objects/structseq.o Objects/tupleobject.o 
+Objects/typeobject.o Objects/weakrefobject.o Objects/unicodeobject.o 
+Objects/unicodectype.o Python/_warnings.o Python/Python-ast.o 
+Python/asdl.o Python/ast.o Python/bltinmodule.o Python/ceval.o 
+Python/compile.o Python/codecs.o Python/errors.o Python/frozen.o 
+Python/frozenmain.o Python/future.o Python/getargs.o 
+Python/getcompiler.o Python/getcopyright.o Python/getplatform.o 
+Python/getversion.o Python/graminit.o Python/import.o Python/importdl.o 
+Python/marshal.o Python/modsupport.o Python/mystrtoul.o 
+Python/mysnprintf.o Python/peephole.o Python/pyarena.o Python/pyctype.o 
+Python/pyfpe.o Python/pymath.o Python/pystate.o Python/pythonrun.o 
+Python/random.o Python/structmember.o Python/symtable.o 
+Python/sysmodule.o Python/traceback.o Python/getopt.o Python/pystrcmp.o 
+Python/pystrtod.o Python/dtoa.o Python/formatter_unicode.o 
+Python/formatter_string.o Python/dynload_shlib.o   Python/thread.o 
+Modules/config.o Modules/getpath.o Modules/main.o Modules/gcmodule.o  
+Modules/threadmodule.o  Modules/signalmodule.o Modules/posixmodule.o  
+Modules/errnomodule.o  Modules/pwdmodule.o Modules/_sre.o  
+Modules/_codecsmodule.o  Modules/_weakref.o Modules/zipimport.o  
+Modules/symtablemodule.o  Modules/md5module.o Modules/md5.o  
+Modules/xxsubtype.o   -lpthread -ldl  -lpthread -lutil  -lm ; \
+         ln -f libpython2.7.so.1.0 libpython2.7.so; \
+     else \
+         x86_64-test-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 
+-mfpmath=sse 
+--sysroot=/home/sasami/ops-build/build/tmp/sysroots/appliance -shared 
+-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -o libpython2.7.so 
+Modules/getbuildinfo.o Parser/acceler.o Parser/grammar1.o 
+Parser/listnode.o Parser/node.o Parser/parser.o Parser/parsetok.o 
+Parser/bitset.o Parser/metagrammar.o Parser/firstsets.o Parser/grammar.o 
+Parser/pgen.o Parser/myreadline.o Parser/tokenizer.o Objects/abstract.o 
+Objects/boolobject.o Objects/bufferobject.o Objects/bytes_methods.o 
+Objects/bytearrayobject.o Objects/capsule.o Objects/cellobject.o 
+Objects/classobject.o Objects/cobject.o Objects/codeobject.o 
+Objects/complexobject.o Objects/descrobject.o Objects/enumobject.o 
+Objects/exceptions.o Objects/genobject.o Objects/fileobject.o 
+Objects/floatobject.o Objects/frameobject.o Objects/funcobject.o 
+Objects/intobject.o Objects/iterobject.o Objects/listobject.o 
+Objects/longobject.o Objects/dictobject.o Objects/memoryobject.o 
+Objects/methodobject.o Objects/moduleobject.o Objects/object.o 
+Objects/obmalloc.o Objects/rangeobject.o Objects/setobject.o 
+Objects/sliceobject.o Objects/stringobject.o Objects/structseq.o 
+Objects/tupleobject.o Objects/typeobject.o Objects/weakrefobject.o 
+Objects/unicodeobject.o Objects/unicodectype.o Python/_warnings.o 
+Python/Python-ast.o Python/asdl.o Python/ast.o Python/bltinmodule.o 
+Python/ceval.o Python/compile.o Python/codecs.o Python/errors.o 
+Python/frozen.o Python/frozenmain.o Python/future.o Python/getargs.o 
+Python/getcompiler.o Python/getcopyright.o Python/getplatform.o 
+Python/getversion.o Python/graminit.o Python/import.o Python/importdl.o 
+Python/marshal.o Python/modsupport.o Python/mystrtoul.o 
+Python/mysnprintf.o Python/peephole.o Python/pyarena.o Python/pyctype.o 
+Python/pyfpe.o Python/pymath.o Python/pystate.o Python/pythonrun.o 
+Python/random.o Python/structmember.o Python/symtable.o 
+Python/sysmodule.o Python/traceback.o Python/getopt.o Python/pystrcmp.o 
+Python/pystrtod.o Python/dtoa.o Python/formatter_unicode.o 
+Python/formatter_string.o Python/dynload_shlib.o   Python/thread.o 
+Modules/config.o Modules/getpath.o Modules/main.o Modules/gcmodule.o  
+Modules/threadmodule.o  Modules/signalmodule.o Modules/posixmodule.o  
+Modules/errnomodule.o  Modules/pwdmodule.o Modules/_sre.o  
+Modules/_codecsmodule.o  Modules/_weakref.o Modules/zipimport.o  
+Modules/symtablemodule.o  Modules/md5module.o Modules/md5.o  
+Modules/xxsubtype.o   -lpthread -ldl  -lpthread -lutil  -lm ; \
+     fi
+x86_64-test-linux-ar rc libpython2.7.a Modules/getbuildinfo.o
+x86_64-test-linux-ar rc libpython2.7.a Parser/acceler.o 
+Parser/grammar1.o Parser/listnode.o Parser/node.o Parser/parser.o 
+Parser/parsetok.o Parser/bitset.o Parser/metagrammar.o 
+Parser/firstsets.o Parser/grammar.o Parser/pgen.o Parser/myreadline.o 
+Parser/tokenizer.o
+x86_64-test-linux-ar rc libpython2.7.a Objects/abstract.o 
+Objects/boolobject.o Objects/bufferobject.o Objects/bytes_methods.o 
+Objects/bytearrayobject.o Objects/capsule.o Objects/cellobject.o 
+Objects/classobject.o Objects/cobject.o Objects/codeobject.o 
+Objects/complexobject.o Objects/descrobject.o Objects/enumobject.o 
+Objects/exceptions.o Objects/genobject.o Objects/fileobject.o 
+Objects/floatobject.o Objects/frameobject.o Objects/funcobject.o 
+Objects/intobject.o Objects/iterobject.o Objects/listobject.o 
+Objects/longobject.o Objects/dictobject.o Objects/memoryobject.o 
+Objects/methodobject.o Objects/moduleobject.o Objects/object.o 
+Objects/obmalloc.o Objects/rangeobject.o Objects/setobject.o 
+Objects/sliceobject.o Objects/stringobject.o Objects/structseq.o 
+Objects/tupleobject.o Objects/typeobject.o Objects/weakrefobject.o 
+Objects/unicodeobject.o Objects/unicodectype.o
+x86_64-test-linux-ar rc libpython2.7.a Python/_warnings.o 
+Python/Python-ast.o Python/asdl.o Python/ast.o Python/bltinmodule.o 
+Python/ceval.o Python/compile.o Python/codecs.o Python/errors.o 
+Python/frozen.o Python/frozenmain.o Python/future.o Python/getargs.o 
+Python/getcompiler.o Python/getcopyright.o Python/getplatform.o 
+Python/getversion.o Python/graminit.o Python/import.o Python/importdl.o 
+Python/marshal.o Python/modsupport.o Python/mystrtoul.o 
+Python/mysnprintf.o Python/peephole.o Python/pyarena.o Python/pyctype.o 
+Python/pyfpe.o Python/pymath.o Python/pystate.o Python/pythonrun.o 
+Python/random.o Python/structmember.o Python/symtable.o 
+Python/sysmodule.o Python/traceback.o Python/getopt.o Python/pystrcmp.o 
+Python/pystrtod.o Python/dtoa.o Python/formatter_unicode.o 
+Python/formatter_string.o Python/dynload_shlib.o   Python/thread.o
+x86_64-test-linux-ar rc libpython2.7.a Modules/config.o 
+Modules/getpath.o Modules/main.o Modules/gcmodule.o
+x86_64-test-linux-ar rc libpython2.7.a Modules/threadmodule.o 
+Modules/signalmodule.o  Modules/posixmodule.o Modules/errnomodule.o  
+Modules/pwdmodule.o  Modules/_sre.o Modules/_codecsmodule.o  
+Modules/_weakref.o  Modules/zipimport.o Modules/symtablemodule.o  
+Modules/md5module.o Modules/md5.o Modules/xxsubtype.o
+Modules/posixmodule.o: In function `posix_tmpnam':
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Modules/posixmodule.c:7575: 
+warning: the use of `tmpnam_r' is dangerous, better use `mkstemp'
+Modules/posixmodule.o: In function `posix_tempnam':
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Modules/posixmodule.c:7522: 
+warning: the use of `tempnam' is dangerous, better use `mkstemp'
+x86_64-test-linux-ranlib libpython2.7.a
+x86_64-test-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 
+-mfpmath=sse 
+--sysroot=/home/sasami/ops-build/build/tmp/sysroots/appliance -Wl,-O1 
+-Wl,--hash-style=gnu -Wl,--as-needed -Xlinker -export-dynamic -o python \
+             Modules/python.o \
+             -L. -lpython2.7 -lpthread -ldl  -lpthread -lutil   -lm
+_PYTHON_PROJECT_BASE=/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/build 
+_PYTHON_HOST_PLATFORM=linux2-x86_64 
+PYTHONPATH=/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/build/build/lib.linux2-x86_64-2.7:/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Lib:/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/Python-2.7.9/Lib/plat-linux2 
+python2.7 -S -m sysconfig --generate-posix-vars ;\
+     if test $? -ne 0 ; then \
+         echo "generate-posix-vars failed" ; \
+         rm -f ./pybuilddir.txt ; \
+         exit 1 ; \
+     fi
+Illegal instruction (core dumped)
+make: *** [sharedmods] Error 132
+ERROR: oe_runmake failed
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_install (log file is located at 
+/home/sasami/ops-build/build/tmp/work/core2-64-test-linux/python/2.7.9-r1/temp/log.do_install.86396)
 
-On Tue, 2016-06-21 at 18:07 -0500, An=C3=ADbal Lim=C3=B3n wrote:
-> This v2 adds support for generate also oe-selftest reports this is
-> almost
-> the previous version with changes requested in review [1], the next
-> patches
-> starts from patch,
->=20
-> 	autobuilder/lib/{ABtools,builsteps}.py: Create
-> save_error_report func
->=20
-> Also the changes could be reviewed at [2].
->=20
-> [1] https://lists.yoctoproject.org/pipermail/yocto/2016-June/030515.h
-> tml
-> [2] http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?
-> h=3Dcontrib/alimon/devel
->=20
-> An=C3=ADbal Lim=C3=B3n (15):
-> =C2=A0 lib/buildsteps.py: Add BitbakeShellCommand class
-> =C2=A0 lib/buildsteps.py: Add BitbakeLogLineObserver for
-> =C2=A0=C2=A0=C2=A0=C2=A0BitbakeShellCommands.
-> =C2=A0 lib/buildsteps: BitbakeShellCommand add support for create error
-> =C2=A0=C2=A0=C2=A0=C2=A0reports
-> =C2=A0 lib/ABTools: Add functions for get errordir path in controller a=
-nd
-> =C2=A0=C2=A0=C2=A0=C2=A0worker
-> =C2=A0 buildbot: Add support for DirectoryDownload transfer step
-> =C2=A0 autobuilder/buildsteps: Add DownloadBitbakeErrorReports step
-> =C2=A0 buiidsets: Add DownloadBitbakeErrorReport step
-> =C2=A0 lib/buildsteps.py: BitbakeShellCommand add support for error_typ=
-e
-> =C2=A0 autobuilder/lib/buildsteps.py: BitbakeShellCommand update error
-> report
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0types.
-> =C2=A0 autobuilder/lib/{ABtools,builsteps}.py: Create save_error_report
-> func
-> =C2=A0 autobuilder/lib/ABTools.py: Add get_lsb_distro function
-> =C2=A0 buildsteps/RunOeSelftest.py: Add support for create/save error
-> reports
-> =C2=A0 nightly-oe-selftest.conf: Add steps for Download and Send error
-> =C2=A0=C2=A0=C2=A0=C2=A0report.
-> =C2=A0 autobuilder/buildsteps: Rename DownloadBitbakeErrorReports to
-> =C2=A0=C2=A0=C2=A0=C2=A0DownloadErrorReports
-> =C2=A0 buildset-config: Update references from DownloadBitbakeErrorRepo=
-rts
-> to
-> =C2=A0=C2=A0=C2=A0=C2=A0DownloadErrorReports
->=20
-> =C2=A0buildset-config.controller/build-appliance.conf=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/buildtools.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-arm-lsb.conf=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-arm.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-arm64.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0.../nightly-deb-non-deb.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-deb.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-ipk.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-mips-lsb.conf=C2=A0=C2=A0=C2=A0=
-|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-mips.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-mips64.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-multilib.conf=C2=A0=C2=A0=C2=A0=
-|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-musl.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-no-x11.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-non-gpl3.conf=C2=A0=C2=A0=C2=A0=
-|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0.../nightly-oe-selftest.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A05 +-
-> =C2=A0buildset-config.controller/nightly-oecore.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-ppc-lsb.conf=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-ppc.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-qa-extras.conf=C2=A0=C2=A0|=C2=
-=A0=C2=A0=C2=A01 +
-> =C2=A0.../nightly-qa-logrotate.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-qa-pam.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0.../nightly-qa-skeleton.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-qa-systemd.conf |=C2=A0=C2=A0=C2=
-=A01 +
-> =C2=A0.../nightly-qa-targetbuilds.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0.../nightly-rpm-non-rpm.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-rpm.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-uclibc.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-world-lsb.conf=C2=A0=C2=A0|=C2=
-=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-world.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-x32.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-x86-64-lsb.conf |=C2=A0=C2=A0=C2=
-=A01 +
-> =C2=A0buildset-config.controller/nightly-x86-64.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-x86-lsb.conf=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly-x86.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/nightly.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.controller/poky-tiny.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.examples/awesomefirmware.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.freescale/nightly-fsl-arm-lsb.conf |=C2=A0=C2=A0=C2=
-=A01 +
-> =C2=A0buildset-config.freescale/nightly-fsl-arm.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.freescale/nightly-fsl-ppc-lsb.conf |=C2=A0=C2=A0=C2=
-=A01 +
-> =C2=A0buildset-config.freescale/nightly-fsl-ppc.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.iot-devkit/iot-devkit.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-arm-lsb.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-arm.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-arm64.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-mips-lsb.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-mips.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-ppc-lsb.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-ppc.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-x86-64-lsb.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-x86-64.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-x86-lsb.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/kernel-x86.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.kernel/nightly-kernel.conf=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.tizen/nightly-tizen-ivi.conf=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.tizen/nightly-tizen.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A01 +
-> =C2=A0buildset-config.tizen/nightly.conf=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=
-=A0=C2=A0=C2=A01 +
-> =C2=A0.../autobuilder/buildsteps/BuildImages.py=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A07 +-
-> =C2=A0.../autobuilder/buildsteps/BuildToolchainImages.py |=C2=A0=C2=A0=C2=
-=A07 +-
-> =C2=A0.../autobuilder/buildsteps/DownloadErrorReports.py |=C2=A0=C2=A04=
-2 +++++++++
-> =C2=A0.../autobuilder/buildsteps/GetBitbakeVersion.py=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A06 +-
-> =C2=A0.../autobuilder/buildsteps/RunESDKSanityTests.py=C2=A0=C2=A0=C2=A0=
-|=C2=A0=C2=A0=C2=A06 +-
-> =C2=A0.../autobuilder/buildsteps/RunOeSelftest.py=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A046 +++++++++
-> =C2=A0.../autobuilder/buildsteps/RunSDKSanityTests.py=C2=A0=C2=A0=C2=A0=
-=C2=A0|=C2=A0=C2=A0=C2=A06 +-
-> =C2=A0.../autobuilder/buildsteps/RunSanityTests.py=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A0=C2=A06 +-
-> =C2=A0.../autobuilder/buildsteps/SendErrorReport.py=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A016 ++--
-> =C2=A0.../site-packages/autobuilder/lib/ABTools.py=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0|=C2=A0=C2=A059
-> ++++++++++++
-> =C2=A0.../site-packages/autobuilder/lib/buildsteps.py=C2=A0=C2=A0=C2=A0=
-=C2=A0| 104
-> +++++++++++++++++++++
-> =C2=A0.../buildbot/steps/transfer.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0|=C2=A0=C2=A086
-> ++++++++++++++++-
-> =C2=A0.../buildslave/commands/registry.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=
-=C2=A0=C2=A01 +
-> =C2=A0.../buildslave/commands/transfer.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|=C2=A0=
-=C2=A079
-> ++++++++++++++++
-> =C2=A072 files changed, 509 insertions(+), 24 deletions(-)
-> =C2=A0create mode 100644 lib/python2.7/site-
-> packages/autobuilder/buildsteps/DownloadErrorReports.py
->=20
---=20
-Beth 'pidge' Flanagan <pidge@toganlabs.com>
-toganlabs.com
+--------------------------------------------------------------------------------------------------
+
 
 
