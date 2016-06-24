@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91BCCE00D1E; Fri, 24 Jun 2016 06:09:31 -0700 (PDT)
+	id 2D141E00D29; Fri, 24 Jun 2016 06:11:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,54 +8,57 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DE6BE00D10
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 06:09:29 -0700 (PDT)
-Received: by mail-it0-f47.google.com with SMTP id a5so14664310ita.1
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 06:09:29 -0700 (PDT)
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8C2FE00D3B
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 06:10:41 -0700 (PDT)
+Received: by mail-io0-f178.google.com with SMTP id t74so98836207ioi.0
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 06:10:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=8u7v2e99iHC1DQsZ8On3BNGHkrOehhifNmhFluV/idE=;
-	b=mP7wjNqzxAth5KqivJnXlcFjGWVp3esLMyVE3i/PGNmisqWORVOY8+qTye8nSwuW31
-	VpjoBB2qf11OkTRyfObTL7/stbLGP5HxLzNsLAu2fcpMJa9p7TKZLt5Vd4J0Gssym1qL
-	mDGq2Yt1vbGVyj9DvsLvUQI7GDH76mzMcdO6nd+xZkvc6Zzcs9fkKgNI6IXz8qnhbNXo
-	lMhuM9Xlx/goAFGUJ1LU1OZAzCJB7vuFlGsjXGoNmpRDBIQbs7/0PJ4+gNFrm4kNBh1i
-	Ry08OCEzoK5aniUeqDosWA5JRz3udjFUA12YHLap8rlzUFGJzaGX3oPO7zND1FtDPdCM
-	HYFQ==
+	:cc; bh=uDW8+8e/jOTD7ZiUp1EAOInTStGbrLlXXPfJLQjVqDM=;
+	b=LpUjDv8IiS2N4oPeZ1rxuhCR6fG8+QzPcpXobo2/UBWoJ85NcDIy5dku+U3NzmLiAk
+	wZzx0PbYtKVMwiWMrKMRtRGdH1CIf5JWTpnjptXiu/YfR12DQkW0/41ttYM8Xatw7PX3
+	ZedbMoYpFPHWZK37qVuQOkMaXj/OP9RQrP1N49efGqKnoWgz0VeMWwT/2vWDZ5ZgWOi2
+	qjKIbhGsDY6pV2HPmAhyXDdGtecp4XEklCfXGQBskvbgjxN1PrG7R29PCPMGTzpTVSe4
+	2+m5W5XF89W/M96+fnOdSGkGOWUYBYTOG5InBn8ufuLDjIicdl9ln7b2BBhzRK5/sL2b
+	TVww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=8u7v2e99iHC1DQsZ8On3BNGHkrOehhifNmhFluV/idE=;
-	b=GhRfPWzqO+ZhQQ7vJOaomt6KtU5cvDYVpuucn6J6TyO1RSyJMapM1c+rVE2S2+xnQc
-	zPdfhkALV6nRMEI7/4pWk5rZp4bI0M7WzLzgJTx95RLHNgz5QnIrkAWQLg2mMfKqLH9X
-	/V06bNXZ2ITG18hmaCDjxw988ycQFpp432B0MwpQu0vL4G/rEhqmsWSNkwOewWjoSTsO
-	NfShNUL8IXtWp0CuywutqgrJHHpH2RlQ0OBE2aSBOYW0cUiJpx5gdGbHww5vc/mZCdL9
-	LSCL8oqSr6QNRSFBi+dlBBxWSwMYKE0WGeXjwT/wb1dPs0oSTL0m5ASViM4+RJBOZijA
-	ZfCQ==
-X-Gm-Message-State: ALyK8tKLD4cu9rVyMY1pV47M45TfM9wJOP9+X2LffYvVkEiCYiEiv0L6u9Z1WwlKq3L0Wg+YHMBNPFJSciOjac8g
-X-Received: by 10.36.217.68 with SMTP id p65mr6094747itg.38.1466773769077;
-	Fri, 24 Jun 2016 06:09:29 -0700 (PDT)
+	bh=uDW8+8e/jOTD7ZiUp1EAOInTStGbrLlXXPfJLQjVqDM=;
+	b=KyPk2ZwZZBe7MX+t/d9bFxW6up/YYxx8BrAL4daWH+wmHxEB0jsUB8zPsYAG8qDZcQ
+	G0ST6C91uP9rcuh+lZLZQOoh/zDRoLjjXpoLrYCiDAFpTIw1ccWfXlXfdmU2d8IroOuv
+	vopW0QEeaTrChjy1n0ZfI2A2oDtDXaNmAAkEBZ07NnsYeW0dwJVTikQ0+8dX5Jrk4j/V
+	OuYWneBstaUU4pVgj8TgiS9G00iwBvetLaHwcfZ1MKbHYT/UenbCpXJ0/3wSxKek84m+
+	I4KIOuPoytye7EDoSuvdZ4iYaUc7SAslQgnKf9LUECShU6NihmelAtN4uUrJU6Sme8+H
+	lztg==
+X-Gm-Message-State: ALyK8tJWU49CbDDQd51DNv6EIKstr3zD44CgSMt8h7kInogYvcL0NhPC5IHL6O2KP/B3COWpqyIL+01APYtYDM28
+X-Received: by 10.107.138.201 with SMTP id c70mr5333051ioj.148.1466773841393; 
+	Fri, 24 Jun 2016 06:10:41 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Fri, 24 Jun 2016 06:09:09 -0700 (PDT)
-In-Reply-To: <1462281517-4888-1-git-send-email-george.mccollister@gmail.com>
-References: <1462281517-4888-1-git-send-email-george.mccollister@gmail.com>
+Received: by 10.107.162.6 with HTTP; Fri, 24 Jun 2016 06:10:22 -0700 (PDT)
+In-Reply-To: <c3c0e392db09430d91496cf4def6c395@HIBDWSMB02.ad.harman.com>
+References: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
+	<CAJTo0LYiA-mxZUuK8bOx64tFMvPmvRBBzExcQNfxsc5q6JvxMw@mail.gmail.com>
+	<b57493dfacad490388b9bd3600179e65@HIBDWSMB02.ad.harman.com>
+	<CAJTo0Lbu3O3Qqo2be_t4=pXr-B=q=J-diKNm-ZuJsbW0C=0wpQ@mail.gmail.com>
+	<c3c0e392db09430d91496cf4def6c395@HIBDWSMB02.ad.harman.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 Jun 2016 14:09:09 +0100
-Message-ID: <CAJTo0LZYwm0575nfERJNTG5on89UjBgNN0CLh2X+oQD7FUnwmQ@mail.gmail.com>
-To: George McCollister <george.mccollister@gmail.com>, 
-	Peter Seebach <peter.seebach@windriver.com>
+Date: Fri, 24 Jun 2016 14:10:22 +0100
+Message-ID: <CAJTo0LZCxCYNL-C0LU5oKVwSzeQfY5DCJXsiHR1N_PwdcBHHTw@mail.gmail.com>
+To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [pseudo][PATCH] Add capset pseudo function that always succeeds
+Subject: Re: setcap using recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,213 +70,371 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 13:09:31 -0000
-Content-Type: multipart/alternative; boundary=001a114631b678e039053605e1ae
+X-List-Received-Date: Fri, 24 Jun 2016 13:11:06 -0000
+Content-Type: multipart/alternative; boundary=001a113e8e6ac84d70053605e556
 
---001a114631b678e039053605e1ae
+--001a113e8e6ac84d70053605e556
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I just discovered that this was never merged, Peter can you review it?
+Looks like using setcap directly is broken currently, there are two
+workarounds:
+
+1) use a postinst to invoke setcap on the target instead
+2) test the patch for pseudo that is on this list ([PATCH] Add capset
+pseudo function that always succeeds) and verify that it fixes the problem
+for you.
 
 Ross
 
-On 3 May 2016 at 14:18, George McCollister <george.mccollister@gmail.com>
-wrote:
+On 24 June 2016 at 13:31, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote:
 
-> The setcap utility supplied by libcap is used to set capabilities on a
-> file. Before setting a file's capabilities with cap_set_file() (which uses
-> setxattr()) it calls cap_set_flag(mycaps, CAP_EFFECTIVE, 1, &capflag,
-> CAP_SET). cap_set_flag() uses the capset syscall to raise the process'
-> effective capability. In most cases if the process isn't running as root
-> this will fail and setcap will exit with an error. Because setxattr is
-> intercepted by pseudo it's unnecessary for setcap to call capset().
+> I am using Yocto 2.0.2
 >
-> Override capset with a pseudo function that does nothing and always
-> returns 0.
 >
-> Signed-off-by: George McCollister <george.mccollister@gmail.com>
-> ---
->  ports/linux/guts/capset.c     | 13 +++++++++++++
->  ports/linux/portdefs.h        |  2 ++
->  ports/linux/pseudo_wrappers.c |  7 +++++++
->  ports/linux/wrapfuncs.in      |  1 +
->  4 files changed, 23 insertions(+)
->  create mode 100644 ports/linux/guts/capset.c
 >
-> diff --git a/ports/linux/guts/capset.c b/ports/linux/guts/capset.c
-> new file mode 100644
-> index 0000000..51e0cdf
-> --- /dev/null
-> +++ b/ports/linux/guts/capset.c
-> @@ -0,0 +1,13 @@
-> +/*
-> + * Copyright (c) 2016 Wind River Systems; see
-> + * guts/COPYRIGHT for information.
-> + *
-> + * int capset(cap_user_header_t hdrp, const cap_user_data_t datap)
-> + *     int rc = -1;
-> + */
-> +
-> +       rc = real_capset(hdrp, datap);
-> +
-> +/*     return rc;
-> + * }
-> + */
-> diff --git a/ports/linux/portdefs.h b/ports/linux/portdefs.h
-> index f0a0e40..d8c5020 100644
-> --- a/ports/linux/portdefs.h
-> +++ b/ports/linux/portdefs.h
-> @@ -25,3 +25,5 @@ GLIBC_COMPAT_SYMBOL(memcpy,2.2.5);
->  #elif defined(__i386__)
->  GLIBC_COMPAT_SYMBOL(memcpy,2.0);
->  #endif
-> +
-> +#include <linux/capability.h>
-> diff --git a/ports/linux/pseudo_wrappers.c b/ports/linux/pseudo_wrappers.c
-> index 26b29b0..c6c072b 100644
-> --- a/ports/linux/pseudo_wrappers.c
-> +++ b/ports/linux/pseudo_wrappers.c
-> @@ -31,3 +31,10 @@ int
->  pseudo_fstat64(int fd, struct stat64 *buf) {
->         return real___fxstat64(_STAT_VER, fd, buf);
->  }
-> +
-> +int pseudo_capset(cap_user_header_t hdrp, const cap_user_data_t datap) {
-> +       (void)hdrp;
-> +       (void)datap;
-> +
-> +       return 0;
-> +}
-> diff --git a/ports/linux/wrapfuncs.in b/ports/linux/wrapfuncs.in
-> index 3b8955a..578db35 100644
-> --- a/ports/linux/wrapfuncs.in
-> +++ b/ports/linux/wrapfuncs.in
-> @@ -51,3 +51,4 @@ int euidaccess(const char *path, int mode);
->  int getpw(uid_t uid, char *buf);
->  int getpwent_r(struct passwd *pwbuf, char *buf, size_t buflen, struct
-> passwd **pwbufp);
->  int getgrent_r(struct group *gbuf, char *buf, size_t buflen, struct group
-> **gbufp);
-> +int capset(cap_user_header_t hdrp, const cap_user_data_t datap); /*
-> real_func=pseudo_capset */
-> --
-> 2.8.0
+> Thanks and Regards
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Shrawan
+>
+>
+>
+> *From:* Burton, Ross [mailto:ross.burton@intel.com]
+> *Sent:* Friday, June 24, 2016 5:56 PM
+>
+> *To:* Kumar, Shrawan
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] setcap using recipe
+>
+>
+>
+> What version of OE/Yocto are you using?  Old versions of pseudo didn't
+> support xattrs at all.
+>
+>
+>
+> Ross
+>
+>
+>
+> On 24 June 2016 at 13:23, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote=
+:
+>
+> Thanks Ross for your quick turn around , I am getting below error
+>
+>
+>
+> =E2=80=9CUnable le to set CAP_SETFCAP effective capability: Operation not
+> permitted.=E2=80=9D
+>
+>
+>
+> But when I use    # *sudo* setcap cap_net_raw+ep  helloworld        on
+> command line I am able to set the cap.
+>
+>
+>
+> To achieve the sudo realization  in recipe , I tried  as below , but no
+> luck=E2=80=A6=E2=80=A6 Can you suggest something here  ?
+>
+>
+>
+> fakeroot do_install() {
+>
+>                     install -d ${D}${bindir}
+>
+>                     install -m 0755 helloworld ${D}${bindir}
+>
+>                     install -d ${D}/lib/systemd/system
+>
+>                     install -m 0755 hello.service ${D}/lib/systemd/system=
+/
+>
+>              setcap cap_net_raw+ep  ${D}${bindir}/helloworld
+>
+>
+>
+> }
+>
+>
+>
+> Thanks and Regards
+>
+> Shrawan
+>
+>
+>
+> *From:* Burton, Ross [mailto:ross.burton@intel.com]
+> *Sent:* Friday, June 24, 2016 5:09 PM
+> *To:* Kumar, Shrawan
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] setcap using recipe
+>
+>
+>
+> Hi,
+>
+>
+>
+> On 24 June 2016 at 11:41, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote=
+:
+>
+> Is there a way to  add a capability to a binary (cap_net_raw+ep),into a
+> recipe?
+>
+>
+>
+> Example :
+>
+> do_install() {
+>
+>            install -d ${D}${bindir}
+>
+>            install -m 0755 helloworld ${D}${bindir}
+>
+>            install -d ${D}/lib/systemd/system
+>
+>            install -m 0755 hello.service ${D}/lib/systemd/system/
+>
+>            setcap cap_net_raw+ep  ${D}${bindir}/helloworld
+>
+> }
+>
+>
+>
+> If yes is this correct approach to achieve the same from  package recipe
+> itself ?
+>
+>
+> capabilities on files are just extended attributes, so assuming that you
+> have a fairly recent Yocto and your host and target filesystems support
+> extended attributes, yes this should work.
+>
+>
+>
+> Ross
+>
+>
 >
 
---001a114631b678e039053605e1ae
+--001a113e8e6ac84d70053605e556
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I just discovered that this was never merged, Peter can yo=
-u review it?<div><br></div><div>Ross</div></div><div class=3D"gmail_extra">=
-<br><div class=3D"gmail_quote">On 3 May 2016 at 14:18, George McCollister <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:george.mccollister@gmail.com" target=
-=3D"_blank">george.mccollister@gmail.com</a>&gt;</span> wrote:<br><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex">The setcap utility supplied by libcap is used to set =
-capabilities on a<br>
-file. Before setting a file&#39;s capabilities with cap_set_file() (which u=
-ses<br>
-setxattr()) it calls cap_set_flag(mycaps, CAP_EFFECTIVE, 1, &amp;capflag,<b=
-r>
-CAP_SET). cap_set_flag() uses the capset syscall to raise the process&#39;<=
-br>
-effective capability. In most cases if the process isn&#39;t running as roo=
-t<br>
-this will fail and setcap will exit with an error. Because setxattr is<br>
-intercepted by pseudo it&#39;s unnecessary for setcap to call capset().<br>
-<br>
-Override capset with a pseudo function that does nothing and always<br>
-returns 0.<br>
-<br>
-Signed-off-by: George McCollister &lt;<a href=3D"mailto:george.mccollister@=
-gmail.com">george.mccollister@gmail.com</a>&gt;<br>
----<br>
-=C2=A0ports/linux/guts/capset.c=C2=A0 =C2=A0 =C2=A0| 13 +++++++++++++<br>
-=C2=A0ports/linux/portdefs.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 2 ++<br>
-=C2=A0ports/linux/pseudo_wrappers.c |=C2=A0 7 +++++++<br>
-=C2=A0ports/linux/<a href=3D"http://wrapfuncs.in" rel=3D"noreferrer" target=
-=3D"_blank">wrapfuncs.in</a>=C2=A0 =C2=A0 =C2=A0 |=C2=A0 1 +<br>
-=C2=A04 files changed, 23 insertions(+)<br>
-=C2=A0create mode 100644 ports/linux/guts/capset.c<br>
-<br>
-diff --git a/ports/linux/guts/capset.c b/ports/linux/guts/capset.c<br>
-new file mode 100644<br>
-index 0000000..51e0cdf<br>
---- /dev/null<br>
-+++ b/ports/linux/guts/capset.c<br>
-@@ -0,0 +1,13 @@<br>
-+/*<br>
-+ * Copyright (c) 2016 Wind River Systems; see<br>
-+ * guts/COPYRIGHT for information.<br>
-+ *<br>
-+ * int capset(cap_user_header_t hdrp, const cap_user_data_t datap)<br>
-+ *=C2=A0 =C2=A0 =C2=A0int rc =3D -1;<br>
-+ */<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0rc =3D real_capset(hdrp, datap);<br>
-+<br>
-+/*=C2=A0 =C2=A0 =C2=A0return rc;<br>
-+ * }<br>
-+ */<br>
-diff --git a/ports/linux/portdefs.h b/ports/linux/portdefs.h<br>
-index f0a0e40..d8c5020 100644<br>
---- a/ports/linux/portdefs.h<br>
-+++ b/ports/linux/portdefs.h<br>
-@@ -25,3 +25,5 @@ GLIBC_COMPAT_SYMBOL(memcpy,2.2.5);<br>
-=C2=A0#elif defined(__i386__)<br>
-=C2=A0GLIBC_COMPAT_SYMBOL(memcpy,2.0);<br>
-=C2=A0#endif<br>
-+<br>
-+#include &lt;linux/capability.h&gt;<br>
-diff --git a/ports/linux/pseudo_wrappers.c b/ports/linux/pseudo_wrappers.c<=
-br>
-index 26b29b0..c6c072b 100644<br>
---- a/ports/linux/pseudo_wrappers.c<br>
-+++ b/ports/linux/pseudo_wrappers.c<br>
-@@ -31,3 +31,10 @@ int<br>
-=C2=A0pseudo_fstat64(int fd, struct stat64 *buf) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 return real___fxstat64(_STAT_VER, fd, buf);<br>
-=C2=A0}<br>
-+<br>
-+int pseudo_capset(cap_user_header_t hdrp, const cap_user_data_t datap) {<b=
-r>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0(void)hdrp;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0(void)datap;<br>
-+<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
-+}<br>
-diff --git a/ports/linux/<a href=3D"http://wrapfuncs.in" rel=3D"noreferrer"=
- target=3D"_blank">wrapfuncs.in</a> b/ports/linux/<a href=3D"http://wrapfun=
-cs.in" rel=3D"noreferrer" target=3D"_blank">wrapfuncs.in</a><br>
-index 3b8955a..578db35 100644<br>
---- a/ports/linux/<a href=3D"http://wrapfuncs.in" rel=3D"noreferrer" target=
-=3D"_blank">wrapfuncs.in</a><br>
-+++ b/ports/linux/<a href=3D"http://wrapfuncs.in" rel=3D"noreferrer" target=
-=3D"_blank">wrapfuncs.in</a><br>
-@@ -51,3 +51,4 @@ int euidaccess(const char *path, int mode);<br>
-=C2=A0int getpw(uid_t uid, char *buf);<br>
-=C2=A0int getpwent_r(struct passwd *pwbuf, char *buf, size_t buflen, struct=
- passwd **pwbufp);<br>
-=C2=A0int getgrent_r(struct group *gbuf, char *buf, size_t buflen, struct g=
-roup **gbufp);<br>
-+int capset(cap_user_header_t hdrp, const cap_user_data_t datap); /* real_f=
-unc=3Dpseudo_capset */<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-2.8.0<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div>
+<div dir=3D"ltr">Looks like using setcap directly is broken currently, ther=
+e are two workarounds:<div><br></div><div>1) use a postinst to invoke setca=
+p on the target instead</div><div>2) test the patch for pseudo that is on t=
+his=C2=A0list ([PATCH] Add capset pseudo function that always succeeds) and=
+ verify that it fixes the problem for you.</div><div><br></div><div>Ross</d=
+iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 24 Ju=
+ne 2016 at 13:31, Kumar, Shrawan <span dir=3D"ltr">&lt;<a href=3D"mailto:Sh=
+rawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex">
 
---001a114631b678e039053605e1ae--
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I am using Yocto 2.0.2<u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks and Regards<u></u>=
+<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Shrawan<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Burton, =
+Ross [mailto:<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ros=
+s.burton@intel.com</a>]
+<br>
+<b>Sent:</b> Friday, June 24, 2016 5:56 PM</span></p><div><div class=3D"h5"=
+><br>
+<b>To:</b> Kumar, Shrawan<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] setcap using recipe<u></u><u></u></div></div><p=
+></p>
+</div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">What version of OE/Yocto are you using?=C2=A0 Old ve=
+rsions of pseudo didn&#39;t support xattrs at all.<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Ross<u></u><u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On 24 June 2016 at 13:23, Kumar, Shrawan &lt;<a href=
+=3D"mailto:Shrawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman=
+.com</a>&gt; wrote:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks Ross for your quic=
+k turn around , I am getting below error
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=E2=80=9CUnable le to set=
+ CAP_SETFCAP effective capability: Operation not permitted.=E2=80=9D</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">But when I use=C2=A0=C2=
+=A0=C2=A0 #
+<b>sudo</b> setcap cap_net_raw+ep =C2=A0helloworld =C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0on command line I am able to set the cap.</span><u></u><u=
+></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">To achieve the sudo reali=
+zation =C2=A0in recipe , I tried =C2=A0as below , but no luck=E2=80=A6=E2=
+=80=A6 Can you suggest something
+ here=C2=A0 ?</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">fakeroot do_install() {</=
+span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0=C2=A0 install -d ${D}${bindir}</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0=C2=A0 install -m 0755 helloworld ${D}${bindir}</span><u></u><u></u><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0=C2=A0 install -d ${D}/lib/systemd/system</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0=C2=A0 install -m 0755 hello.service ${D}/lib/systemd/system/</span><=
+u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 setcap cap_net_raw+ep=C2=
+=A0 ${D}${bindir}/helloworld</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">}</span><u></u><u></u></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks and Regards</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Shrawan</span><u></u><u><=
+/u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Burton, =
+Ross [mailto:<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ros=
+s.burton@intel.com</a>]
+<br>
+<b>Sent:</b> Friday, June 24, 2016 5:09 PM<br>
+<b>To:</b> Kumar, Shrawan<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] setcap using recipe</span><u></u><u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">On 24 June 2016 at 11:41, Kumar, Shrawan &lt;<a href=
+=3D"mailto:Shrawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman=
+.com</a>&gt; wrote:<u></u><u></u></p>
+<p>Is there a way to =C2=A0add a capability to a binary (cap_net_raw+ep),in=
+to a recipe?
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p>Example :<u></u><u></u></p>
+<p>do_install() {<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}$=
+{bindir}<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
+helloworld ${D}${bindir}<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}/=
+lib/systemd/system<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
+hello.service ${D}/lib/systemd/system/<u></u><u></u></p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0setcap cap_=
+net_raw+ep=C2=A0 ${D}${bindir}/helloworld=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
+=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <u></u><u></u></p>
+<p>}<u></u><u></u></p>
+<p>=C2=A0<u></u><u></u></p>
+<p>If yes is this correct approach to achieve the same from=C2=A0 package r=
+ecipe itself ?<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><br>
+capabilities on files are just extended attributes, so assuming that you ha=
+ve a fairly recent Yocto and your host and target filesystems support exten=
+ded attributes, yes this should work.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Ross<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+
+--001a113e8e6ac84d70053605e556--
