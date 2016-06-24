@@ -1,60 +1,75 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Shrawan.Kumar@harman.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09727E00D09; Fri, 24 Jun 2016 05:26:13 -0700 (PDT)
+	id 8A4D1E00D09; Fri, 24 Jun 2016 05:31:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.82.251.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD8DDE00CE9
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 05:26:10 -0700 (PDT)
-Received: by mail-it0-f48.google.com with SMTP id f6so12837386ith.0
-	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 05:26:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+SL1wuFhWXGaMJMEpLJV/9vWhDGdoQPd4sIaPWABirY=;
-	b=mIsBJurb/tf0rxZKnCIK7gojX6P92YhKaksfeDv52agD/3c5zwHo/HYOcAznxEjUqX
-	5UoOzyTtAAKW+/P34LSpSSLx5kS7JZKHK5FETodglGtY1EsXcZV8QrU60WH01OLBRxYp
-	H5Y1TInsZmJLw8D9pw2OE4iICFIAFXjEa3lOamEIn9BBG4WJhJh+AL4YZFxce5XXRFQK
-	8szhWXUGGvTMslA2BFRWTCXmYTUj5koXbLocQ19fmXn7q6oA0ykk2jKTAfm/QYfNQ0bD
-	LLaDAjoDCwxHQzxau/WttjELzFhu0k3/VkA2ZBF3YGQ8EKJTy0emG6x2y6lCqwmtb5aV
-	B3yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+SL1wuFhWXGaMJMEpLJV/9vWhDGdoQPd4sIaPWABirY=;
-	b=IoetbMbYm4i8nKi9Tu7Q8BrlNhKFoetLKZhjqNqw/t0/NrnteY3cM+LwPSYP1EcarN
-	DXIGTzwMxWb+Esd68d9ZzspL9krJgmv40TvOt7ys3vNC+BXMGmXBmGUvyU/ToHlGKHaX
-	OvPxDAXDlcvk7u5WvKQoZZiLfcLpxxbBeXWNi6YOs9Q7k6vQi6zYn8lIPd4lLkwUtBQH
-	TiyQD9zEi+PLp3ej2iTqUqXUE1GkmJ1uW0dljLTGZ0pAv+lRNg4b2jPEWoA7/asKsOBl
-	8TglO0KeRBwf6L+ll/+5o9QVQkS1pOJlQchpHD2WCxuSOwufPQIVy2/AGez1bNJD+CuT
-	hl8Q==
-X-Gm-Message-State: ALyK8tIrp7DqJWFf8byk/tzyEl+2Nsccbib4/JQFpaxy2G3ub8r9g2nQh6nvKF4MqqNNNxcxXWhwmvblL8zkvTMd
-X-Received: by 10.36.48.80 with SMTP id q77mr5481563itq.83.1466771170500; Fri,
-	24 Jun 2016 05:26:10 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.162.6 with HTTP; Fri, 24 Jun 2016 05:25:51 -0700 (PDT)
-In-Reply-To: <b57493dfacad490388b9bd3600179e65@HIBDWSMB02.ad.harman.com>
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 195D6E00CE9
+	for <yocto@yoctoproject.org>; Fri, 24 Jun 2016 05:31:48 -0700 (PDT)
+Received: from [216.82.251.36] by server-11.bemta-12.messagelabs.com id
+	07/2A-32341-4382D675; Fri, 24 Jun 2016 12:31:48 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGKsWRWlGSWpSXmKPExsXinSZ8TNdYIzf
+	cYM8fS4t5O+wtJr1cw+bA5LF4z0smj/YTfWwBTFGsmXlJ+RUJrBn9C2+wFrxbw1ixatNDxgbG
+	pasYuxi5OIQEtjBKLLiwmwXOOdnwBco5yChx810LexcjJwebgKHElZ67jCC2iICWxNnXj5lBb
+	GYBU4nJM1rAbGEBDYmLp9YyQ9RoSix7Oh/KdpO427MbyObgYBFQleh+EQIS5hVwl/iz5C07xK
+	4JTBLzdy4Gq+cUCJRomr2ODcRmFJCV+NK4GmqXuMStJ/OZQGwJARGJhxdPs0HYohIvH/9jhbA
+	NJLYu3ccCYStIrOxuYIPoTZNYcfYzI8RiQYmTM5+A1QgB3bNl4W+WCYxis5CsmIWkZRaSFoh4
+	jsSbH7fYZgG9wwz05vpd+hBhRYkp3Q/ZIWwNidY5c9kxxR0kpqztZYaw1SRm/F/LBmGvZpRo3
+	mmJrH4BI88qRo3i1KKy1CJdQwu9pKLM9IyS3MTMHF1DQyO93NTi4sT01JzEpGK95PzcTYzA9F
+	DPwMC4g3FSo9chRkkOJiVR3mmLcsKF+JLyUyozEosz4otKc1KLDzHKcHAoSfC2quWGCwkWpaa
+	nVqRl5gATFUxagoNHSYT3EEiat7ggMbc4Mx0idYpRUUqctwUkIQCSyCjNg2uDJcdLjLJSwryM
+	DAwMQjwFqUW5mSWo8q8YxTkYlYR5z4BM4cnMK4Gb/gpoMRPQ4rv92SCLSxIRUlINjAVzdCTZ6
+	rRsNBWkbP9MaLp6TTlxC/dNvuv2frP7eDu69/8+af5HpbxwfsWlGRxmP+prDZbrtJfofDv7Yb
+	1lTOEZJu55nt6/eY4sFX+f1cseKey+/+pxh9el5wVTdrur5OULOIpeP3Aq6JPhtR93GnoP3BY
+	5xJ5z613J50OS11giPs8w0+k5pMRSnJFoqMVcVJwIAI8odfmJAwAA
+X-Env-Sender: Shrawan.Kumar@harman.com
+X-Msg-Ref: server-10.tower-152.messagelabs.com!1466771507!27208598!1
+X-Originating-IP: [75.102.19.198]
+X-StarScan-Received: 
+X-StarScan-Version: 8.46; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 108059 invoked from network); 24 Jun 2016 12:31:47 -0000
+Received: from unknown.ord.scnet.net (HELO HICGWSEXHC03.ad.harman.com)
+	(75.102.19.198)
+	by server-10.tower-152.messagelabs.com with AES128-SHA encrypted SMTP;
+	24 Jun 2016 12:31:47 -0000
+Received: from HIBDWSMB08.ad.harman.com (10.99.236.98) by
+	HICGWSEXHC03.ad.harman.com (10.10.23.93) with Microsoft SMTP Server
+	(TLS) id 14.3.235.1; Fri, 24 Jun 2016 07:31:46 -0500
+Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
+	HIBDWSMB08.ad.harman.com (10.99.236.98) with Microsoft SMTP Server
+	(TLS) id 15.0.1130.7; Fri, 24 Jun 2016 18:01:43 +0530
+Received: from HIBDWSMB02.ad.harman.com ([fe80::444c:b81a:f35e:c464]) by
+	HIBDWSMB02.ad.harman.com ([fe80::444c:b81a:f35e:c464%16]) with mapi id
+	15.00.1130.005; Fri, 24 Jun 2016 18:01:43 +0530
+From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] setcap using recipe
+Thread-Index: AdHOBQLlITj3tknLQROeJDdrbt+En///s+KA//+ZVkCAAHOlgP//opCg
+Date: Fri, 24 Jun 2016 12:31:42 +0000
+Message-ID: <c3c0e392db09430d91496cf4def6c395@HIBDWSMB02.ad.harman.com>
 References: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
 	<CAJTo0LYiA-mxZUuK8bOx64tFMvPmvRBBzExcQNfxsc5q6JvxMw@mail.gmail.com>
 	<b57493dfacad490388b9bd3600179e65@HIBDWSMB02.ad.harman.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 Jun 2016 13:25:51 +0100
-Message-ID: <CAJTo0Lbu3O3Qqo2be_t4=pXr-B=q=J-diKNm-ZuJsbW0C=0wpQ@mail.gmail.com>
-To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
+	<CAJTo0Lbu3O3Qqo2be_t4=pXr-B=q=J-diKNm-ZuJsbW0C=0wpQ@mail.gmail.com>
+In-Reply-To: <CAJTo0Lbu3O3Qqo2be_t4=pXr-B=q=J-diKNm-ZuJsbW0C=0wpQ@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.99.236.43]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: setcap using recipe
 X-BeenThere: yocto@yoctoproject.org
@@ -68,270 +83,311 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jun 2016 12:26:13 -0000
-Content-Type: multipart/alternative; boundary=001a11c007d895b7820536054686
+X-List-Received-Date: Fri, 24 Jun 2016 12:31:50 -0000
+X-Groupsio-MsgNum: 30743
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_"
 
---001a11c007d895b7820536054686
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_004_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_
+Content-Type: multipart/alternative;
+	boundary="_000_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_"
 
-What version of OE/Yocto are you using?  Old versions of pseudo didn't
-support xattrs at all.
+--_000_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Ross
+SSBhbSB1c2luZyBZb2N0byAyLjAuMg0KDQpUaGFua3MgYW5kIFJlZ2FyZHMNClNocmF3YW4NCg0K
+RnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDog
+RnJpZGF5LCBKdW5lIDI0LCAyMDE2IDU6NTYgUE0NClRvOiBLdW1hciwgU2hyYXdhbg0KQ2M6IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIHNldGNhcCB1c2luZyBy
+ZWNpcGUNCg0KV2hhdCB2ZXJzaW9uIG9mIE9FL1lvY3RvIGFyZSB5b3UgdXNpbmc/ICBPbGQgdmVy
+c2lvbnMgb2YgcHNldWRvIGRpZG4ndCBzdXBwb3J0IHhhdHRycyBhdCBhbGwuDQoNClJvc3MNCg0K
+T24gMjQgSnVuZSAyMDE2IGF0IDEzOjIzLCBLdW1hciwgU2hyYXdhbiA8U2hyYXdhbi5LdW1hckBo
+YXJtYW4uY29tPG1haWx0bzpTaHJhd2FuLkt1bWFyQGhhcm1hbi5jb20+PiB3cm90ZToNClRoYW5r
+cyBSb3NzIGZvciB5b3VyIHF1aWNrIHR1cm4gYXJvdW5kICwgSSBhbSBnZXR0aW5nIGJlbG93IGVy
+cm9yDQoNCuKAnFVuYWJsZSBsZSB0byBzZXQgQ0FQX1NFVEZDQVAgZWZmZWN0aXZlIGNhcGFiaWxp
+dHk6IE9wZXJhdGlvbiBub3QgcGVybWl0dGVkLuKAnQ0KDQpCdXQgd2hlbiBJIHVzZSAgICAjIHN1
+ZG8gc2V0Y2FwIGNhcF9uZXRfcmF3K2VwICBoZWxsb3dvcmxkICAgICAgICBvbiBjb21tYW5kIGxp
+bmUgSSBhbSBhYmxlIHRvIHNldCB0aGUgY2FwLg0KDQpUbyBhY2hpZXZlIHRoZSBzdWRvIHJlYWxp
+emF0aW9uICBpbiByZWNpcGUgLCBJIHRyaWVkICBhcyBiZWxvdyAsIGJ1dCBubyBsdWNr4oCm4oCm
+IENhbiB5b3Ugc3VnZ2VzdCBzb21ldGhpbmcgaGVyZSAgPw0KDQpmYWtlcm9vdCBkb19pbnN0YWxs
+KCkgew0KICAgICAgICAgICAgICAgICAgICBpbnN0YWxsIC1kICR7RH0ke2JpbmRpcn0NCiAgICAg
+ICAgICAgICAgICAgICAgaW5zdGFsbCAtbSAwNzU1IGhlbGxvd29ybGQgJHtEfSR7YmluZGlyfQ0K
+ICAgICAgICAgICAgICAgICAgICBpbnN0YWxsIC1kICR7RH0vbGliL3N5c3RlbWQvc3lzdGVtDQog
+ICAgICAgICAgICAgICAgICAgIGluc3RhbGwgLW0gMDc1NSBoZWxsby5zZXJ2aWNlICR7RH0vbGli
+L3N5c3RlbWQvc3lzdGVtLw0KICAgICAgICAgICAgIHNldGNhcCBjYXBfbmV0X3JhdytlcCAgJHtE
+fSR7YmluZGlyfS9oZWxsb3dvcmxkDQoNCn0NCg0KVGhhbmtzIGFuZCBSZWdhcmRzDQpTaHJhd2Fu
+DQoNCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbTxtYWls
+dG86cm9zcy5idXJ0b25AaW50ZWwuY29tPl0NClNlbnQ6IEZyaWRheSwgSnVuZSAyNCwgMjAxNiA1
+OjA5IFBNDQpUbzogS3VtYXIsIFNocmF3YW4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1h
+aWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KU3ViamVjdDogUmU6IFt5b2N0b10gc2V0Y2Fw
+IHVzaW5nIHJlY2lwZQ0KDQpIaSwNCg0KT24gMjQgSnVuZSAyMDE2IGF0IDExOjQxLCBLdW1hciwg
+U2hyYXdhbiA8U2hyYXdhbi5LdW1hckBoYXJtYW4uY29tPG1haWx0bzpTaHJhd2FuLkt1bWFyQGhh
+cm1hbi5jb20+PiB3cm90ZToNCg0KSXMgdGhlcmUgYSB3YXkgdG8gIGFkZCBhIGNhcGFiaWxpdHkg
+dG8gYSBiaW5hcnkgKGNhcF9uZXRfcmF3K2VwKSxpbnRvIGEgcmVjaXBlPw0KDQoNCkV4YW1wbGUg
+Og0KDQpkb19pbnN0YWxsKCkgew0KDQogICAgICAgICAgIGluc3RhbGwgLWQgJHtEfSR7YmluZGly
+fQ0KDQogICAgICAgICAgIGluc3RhbGwgLW0gMDc1NSBoZWxsb3dvcmxkICR7RH0ke2JpbmRpcn0N
+Cg0KICAgICAgICAgICBpbnN0YWxsIC1kICR7RH0vbGliL3N5c3RlbWQvc3lzdGVtDQoNCiAgICAg
+ICAgICAgaW5zdGFsbCAtbSAwNzU1IGhlbGxvLnNlcnZpY2UgJHtEfS9saWIvc3lzdGVtZC9zeXN0
+ZW0vDQoNCiAgICAgICAgICAgc2V0Y2FwIGNhcF9uZXRfcmF3K2VwICAke0R9JHtiaW5kaXJ9L2hl
+bGxvd29ybGQNCg0KfQ0KDQoNCg0KSWYgeWVzIGlzIHRoaXMgY29ycmVjdCBhcHByb2FjaCB0byBh
+Y2hpZXZlIHRoZSBzYW1lIGZyb20gIHBhY2thZ2UgcmVjaXBlIGl0c2VsZiA/DQoNCmNhcGFiaWxp
+dGllcyBvbiBmaWxlcyBhcmUganVzdCBleHRlbmRlZCBhdHRyaWJ1dGVzLCBzbyBhc3N1bWluZyB0
+aGF0IHlvdSBoYXZlIGEgZmFpcmx5IHJlY2VudCBZb2N0byBhbmQgeW91ciBob3N0IGFuZCB0YXJn
+ZXQgZmlsZXN5c3RlbXMgc3VwcG9ydCBleHRlbmRlZCBhdHRyaWJ1dGVzLCB5ZXMgdGhpcyBzaG91
+bGQgd29yay4NCg0KUm9zcw0KDQo=
 
-On 24 June 2016 at 13:23, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote:
+--_000_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Thanks Ross for your quick turn around , I am getting below error
->
->
->
-> =E2=80=9CUnable le to set CAP_SETFCAP effective capability: Operation not
-> permitted.=E2=80=9D
->
->
->
-> But when I use    # *sudo* setcap cap_net_raw+ep  helloworld        on
-> command line I am able to set the cap.
->
->
->
-> To achieve the sudo realization  in recipe , I tried  as below , but no
-> luck=E2=80=A6=E2=80=A6 Can you suggest something here  ?
->
->
->
-> fakeroot do_install() {
->
->                     install -d ${D}${bindir}
->
->                     install -m 0755 helloworld ${D}${bindir}
->
->                     install -d ${D}/lib/systemd/system
->
->                     install -m 0755 hello.service ${D}/lib/systemd/system=
-/
->
->              setcap cap_net_raw+ep  ${D}${bindir}/helloworld
->
->
->
-> }
->
->
->
-> Thanks and Regards
->
-> Shrawan
->
->
->
-> *From:* Burton, Ross [mailto:ross.burton@intel.com]
-> *Sent:* Friday, June 24, 2016 5:09 PM
-> *To:* Kumar, Shrawan
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] setcap using recipe
->
->
->
-> Hi,
->
->
->
-> On 24 June 2016 at 11:41, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote=
-:
->
-> Is there a way to  add a capability to a binary (cap_net_raw+ep),into a
-> recipe?
->
->
->
-> Example :
->
-> do_install() {
->
->            install -d ${D}${bindir}
->
->            install -m 0755 helloworld ${D}${bindir}
->
->            install -d ${D}/lib/systemd/system
->
->            install -m 0755 hello.service ${D}/lib/systemd/system/
->
->            setcap cap_net_raw+ep  ${D}${bindir}/helloworld
->
-> }
->
->
->
-> If yes is this correct approach to achieve the same from  package recipe
-> itself ?
->
->
-> capabilities on files are just extended attributes, so assuming that you
-> have a fairly recent Yocto and your host and target filesystems support
-> extended attributes, yes this should work.
->
->
->
-> Ross
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
+IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
+aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9t
+Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
+bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnANCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdp
+bi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6
+MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIs
+InNlcmlmIjt9DQpwLk1zb0FjZXRhdGUsIGxpLk1zb0FjZXRhdGUsIGRpdi5Nc29BY2V0YXRlDQoJ
+e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiQmFsbG9vbiBUZXh0IENo
+YXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZTo4
+LjBwdDsNCglmb250LWZhbWlseToiVGFob21hIiwic2Fucy1zZXJpZiI7fQ0Kc3Bhbi5CYWxsb29u
+VGV4dENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltc28tc3R5
+bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkJhbGxvb24gVGV4dCI7DQoJZm9udC1m
+YW1pbHk6IlRhaG9tYSIsInNhbnMtc2VyaWYiO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
+ZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlw
+ZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47
+DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
+cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
+IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
+PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
+b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9
+ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
+Ij5JIGFtIHVzaW5nIFlvY3RvIDIuMC4yPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MgYW5kIFJlZ2FyZHM8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+U2hyYXdhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGlu
+IDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBS
+b3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IEZy
+aWRheSwgSnVuZSAyNCwgMjAxNiA1OjU2IFBNPGJyPg0KPGI+VG86PC9iPiBLdW1hciwgU2hyYXdh
+bjxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6
+PC9iPiBSZTogW3lvY3RvXSBzZXRjYXAgdXNpbmcgcmVjaXBlPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGF0IHZlcnNpb24gb2YgT0UvWW9jdG8gYXJlIHlv
+dSB1c2luZz8mbmJzcDsgT2xkIHZlcnNpb25zIG9mIHBzZXVkbyBkaWRuJ3Qgc3VwcG9ydCB4YXR0
+cnMgYXQgYWxsLjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5PbiAyNCBKdW5lIDIwMTYgYXQgMTM6MjMsIEt1bWFyLCBTaHJhd2FuICZsdDs8YSBocmVmPSJt
+YWlsdG86U2hyYXdhbi5LdW1hckBoYXJtYW4uY29tIiB0YXJnZXQ9Il9ibGFuayI+U2hyYXdhbi5L
+dW1hckBoYXJtYW4uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
+bG9yOiMxRjQ5N0QiPlRoYW5rcyBSb3NzIGZvciB5b3VyIHF1aWNrIHR1cm4gYXJvdW5kICwgSSBh
+bSBnZXR0aW5nIGJlbG93IGVycm9yDQo8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj4m
+bmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj7igJxVbmFibGUgbGUgdG8gc2V0
+IENBUF9TRVRGQ0FQIGVmZmVjdGl2ZSBjYXBhYmlsaXR5OiBPcGVyYXRpb24gbm90IHBlcm1pdHRl
+ZC7igJ08L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj5CdXQgd2hlbiBJIHVzZSZuYnNwOyZuYnNwOyZuYnNwOyAjDQo8
+Yj5zdWRvPC9iPiBzZXRjYXAgY2FwX25ldF9yYXcmIzQzO2VwICZuYnNwO2hlbGxvd29ybGQgJm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7b24gY29tbWFuZCBsaW5lIEkg
+YW0gYWJsZSB0byBzZXQgdGhlIGNhcC48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj4m
+bmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UbyBhY2hpZXZlIHRoZSBzdWRv
+IHJlYWxpemF0aW9uICZuYnNwO2luIHJlY2lwZSAsIEkgdHJpZWQgJm5ic3A7YXMgYmVsb3cgLCBi
+dXQgbm8gbHVja+KApuKApiBDYW4geW91IHN1Z2dlc3Qgc29tZXRoaW5nDQogaGVyZSZuYnNwOyA/
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+ZmFrZXJvb3QgZG9faW5zdGFsbCgpIHs8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IGluc3RhbGwgLWQgJHtEfSR7YmluZGlyfTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
+OiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsgaW5zdGFsbCAtbSAwNzU1IGhlbGxvd29ybGQgJHtEfSR7YmluZGlyfTwvc3Bhbj48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtZCAke0R9L2xpYi9zeXN0ZW1kL3N5c3RlbTwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtbSAwNzU1IGhlbGxvLnNlcnZpY2UgJHtE
+fS9saWIvc3lzdGVtZC9zeXN0ZW0vPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7IHNldGNhcCBjYXBfbmV0X3JhdyYjNDM7ZXAmbmJzcDsgJHtEfSR7YmluZGly
+fS9oZWxsb3dvcmxkPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPn08L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj4mbmJzcDs8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
+cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MgYW5kIFJlZ2FyZHM8L3NwYW4+
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5TaHJhd2FuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVy
+Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBp
+biAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9u
+LCBSb3NzIFttYWlsdG86PGEgaHJlZj0ibWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbSIgdGFy
+Z2V0PSJfYmxhbmsiPnJvc3MuYnVydG9uQGludGVsLmNvbTwvYT5dDQo8YnI+DQo8Yj5TZW50Ojwv
+Yj4gRnJpZGF5LCBKdW5lIDI0LCAyMDE2IDU6MDkgUE08YnI+DQo8Yj5Ubzo8L2I+IEt1bWFyLCBT
+aHJhd2FuPGJyPg0KPGI+Q2M6PC9iPiA8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0
+Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGI+
+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIHNldGNhcCB1c2luZyByZWNpcGU8L3NwYW4+PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4m
+bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij5IaSw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5P
+biAyNCBKdW5lIDIwMTYgYXQgMTE6NDEsIEt1bWFyLCBTaHJhd2FuICZsdDs8YSBocmVmPSJtYWls
+dG86U2hyYXdhbi5LdW1hckBoYXJtYW4uY29tIiB0YXJnZXQ9Il9ibGFuayI+U2hyYXdhbi5LdW1h
+ckBoYXJtYW4uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8cD5JcyB0aGVyZSBh
+IHdheSB0byAmbmJzcDthZGQgYSBjYXBhYmlsaXR5IHRvIGEgYmluYXJ5IChjYXBfbmV0X3JhdyYj
+NDM7ZXApLGludG8gYSByZWNpcGU/DQo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cD5FeGFtcGxlIDo8bzpwPjwvbzpwPjwvcD4N
+CjxwPmRvX2luc3RhbGwoKSB7PG86cD48L286cD48L3A+DQo8cD4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJHtEfSR7Ymlu
+ZGlyfTxvOnA+PC9vOnA+PC9wPg0KPHA+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0YWxsIC1tIDA3NTUgaGVsbG93b3JsZCAke0R9JHti
+aW5kaXJ9PG86cD48L286cD48L3A+DQo8cD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJHtEfS9saWIvc3lzdGVtZC9zeXN0
+ZW08bzpwPjwvbzpwPjwvcD4NCjxwPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtbSAwNzU1IGhlbGxvLnNlcnZpY2UgJHtEfS9s
+aWIvc3lzdGVtZC9zeXN0ZW0vPG86cD48L286cD48L3A+DQo8cD4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJm5ic3A7c2V0Y2FwIGNhcF9uZXRf
+cmF3JiM0MztlcCZuYnNwOyAke0R9JHtiaW5kaXJ9L2hlbGxvd29ybGQmbmJzcDsmbmJzcDsmbmJz
+cDsgJm5ic3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8bzpw
+PjwvbzpwPjwvcD4NCjxwPn08bzpwPjwvbzpwPjwvcD4NCjxwPiZuYnNwOzxvOnA+PC9vOnA+PC9w
+Pg0KPHA+SWYgeWVzIGlzIHRoaXMgY29ycmVjdCBhcHByb2FjaCB0byBhY2hpZXZlIHRoZSBzYW1l
+IGZyb20mbmJzcDsgcGFja2FnZSByZWNpcGUgaXRzZWxmID88bzpwPjwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48YnI+DQpjYXBhYmlsaXRpZXMgb24gZmlsZXMgYXJl
+IGp1c3QgZXh0ZW5kZWQgYXR0cmlidXRlcywgc28gYXNzdW1pbmcgdGhhdCB5b3UgaGF2ZSBhIGZh
+aXJseSByZWNlbnQgWW9jdG8gYW5kIHlvdXIgaG9zdCBhbmQgdGFyZ2V0IGZpbGVzeXN0ZW1zIHN1
+cHBvcnQgZXh0ZW5kZWQgYXR0cmlidXRlcywgeWVzIHRoaXMgc2hvdWxkIHdvcmsuPG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
+cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5Sb3NzPG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---001a11c007d895b7820536054686
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_--
 
-<div dir=3D"ltr">What version of OE/Yocto are you using?=C2=A0 Old versions=
- of pseudo didn&#39;t support xattrs at all.<div><br></div><div>Ross</div><=
-/div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 24 June 2=
-016 at 13:23, Kumar, Shrawan <span dir=3D"ltr">&lt;<a href=3D"mailto:Shrawa=
-n.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman.com</a>&gt;</spa=
-n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
-order-left:1px #ccc solid;padding-left:1ex">
+--_004_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_
+Content-Type: application/octet-stream; name="HelloWorld_0.1.bb"
+Content-Description: HelloWorld_0.1.bb
+Content-Disposition: attachment; filename="HelloWorld_0.1.bb"; size=793;
+	creation-date="Fri, 24 Jun 2016 12:07:09 GMT";
+	modification-date="Fri, 24 Jun 2016 12:07:09 GMT"
+Content-Transfer-Encoding: base64
 
+IwojIFRoaXMgZmlsZSB3YXMgZGVyaXZlZCBmcm9tIHRoZSAnSGVsbG8gV29ybGQhJyBleGFtcGxl
+IHJlY2lwZSBpbiB0aGUKIyBZb2N0byBQcm9qZWN0IERldmVsb3BtZW50IE1hbnVhbC4KIwoKU1VN
+TUFSWSA9ICJTaW1wbGUgaGVsbG93b3JsZCBhcHBsaWNhdGlvbiIKU0VDVElPTiA9ICJleGFtcGxl
+cyIKTElDRU5TRSA9ICJNSVQiCkxJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovLyR7Q09NTU9OX0xJ
+Q0VOU0VfRElSfS9NSVQ7bWQ1PTA4MzVhZGU2OThlMGJjZjg1MDZlY2RhMmY3YjRmMzAyIgppbmhl
+cml0IHN5c3RlbWQgCgoKU1JDX1VSSSA9ICJmaWxlOi8vaGVsbG93b3JsZC5jIFwKCWZpbGU6Ly9o
+ZWxsby5zZXJ2aWNlICIKClMgPSAiJHtXT1JLRElSfSIKCmRvX2NvbXBpbGUoKSB7CgkgICAgICR7
+Q0N9IGhlbGxvd29ybGQuYyAtbyBoZWxsb3dvcmxkCn0KCmZha2Vyb290IGRvX2luc3RhbGwoKSB7
+CgkgICAgIGluc3RhbGwgLWQgJHtEfSR7YmluZGlyfQoJICAgICBpbnN0YWxsIC1tIDA3NTUgaGVs
+bG93b3JsZCAke0R9JHtiaW5kaXJ9CgkgICAgIGluc3RhbGwgLWQgJHtEfS9saWIvc3lzdGVtZC9z
+eXN0ZW0KCSAgICAgaW5zdGFsbCAtbSAwNzU1IGhlbGxvLnNlcnZpY2UgJHtEfS9saWIvc3lzdGVt
+ZC9zeXN0ZW0vCiAgICAgICAgICAgICBzZXRjYXAgY2FwX25ldF9yYXcrZXAgICR7RH0ke2JpbmRp
+cn0vaGVsbG93b3JsZAoJICAgIAkKfQoKCgpTWVNURU1EX1NFUlZJQ0VfJHtQTn0gPSAiaGVsbG8u
+c2VydmljZSIKClNZU1RFTURfQVVUT19FTkFCTEVfJHtQTn0gPSAiZW5hYmxlIiAgCgoKCg==
 
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks Ross for your quic=
-k turn around , I am getting below error
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=E2=80=9CUnable le to set=
- CAP_SETFCAP effective capability: Operation not permitted.=E2=80=9D<u></u>=
-<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">But when I use=C2=A0=C2=
-=A0=C2=A0 #
-<b>sudo</b> setcap cap_net_raw+ep =C2=A0helloworld =C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0on command line I am able to set the cap.<u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">To achieve the sudo reali=
-zation =C2=A0in recipe , I tried =C2=A0as below , but no luck=E2=80=A6=E2=
-=80=A6 Can you suggest something here=C2=A0 ?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">fakeroot do_install() {<u=
-></u><u></u></span></p><span class=3D"">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0=C2=A0 install -d ${D}${bindir}<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0=C2=A0 install -m 0755 helloworld ${D}${bindir}<u></u><u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0=C2=A0 install -d ${D}/lib/systemd/system<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0=C2=A0 install -m 0755 hello.service ${D}/lib/systemd/system/<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 setcap cap_net_raw+ep=C2=
-=A0 ${D}${bindir}/helloworld<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
-=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">}<u></u><u></u></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-</span><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&=
-quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks and Regards=
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Shrawan<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Burton, =
-Ross [mailto:<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ros=
-s.burton@intel.com</a>]
-<br>
-<b>Sent:</b> Friday, June 24, 2016 5:09 PM<br>
-<b>To:</b> Kumar, Shrawan<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] setcap using recipe<u></u><u></u></span></p>
-</div><div><div class=3D"h5">
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">On 24 June 2016 at 11:41, Kumar, Shrawan &lt;<a href=
-=3D"mailto:Shrawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman=
-.com</a>&gt; wrote:<u></u><u></u></p>
-<p>Is there a way to =C2=A0add a capability to a binary (cap_net_raw+ep),in=
-to a recipe?
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p>Example :<u></u><u></u></p>
-<p>do_install() {<u></u><u></u></p>
-<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}$=
-{bindir}<u></u><u></u></p>
-<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
-helloworld ${D}${bindir}<u></u><u></u></p>
-<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -d ${D}/=
-lib/systemd/system<u></u><u></u></p>
-<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 install -m 0755 =
-hello.service ${D}/lib/systemd/system/<u></u><u></u></p>
-<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0setcap cap_=
-net_raw+ep=C2=A0 ${D}${bindir}/helloworld=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=
-=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <u></u><u></u></p>
-<p>}<u></u><u></u></p>
-<p>=C2=A0<u></u><u></u></p>
-<p>If yes is this correct approach to achieve the same from=C2=A0 package r=
-ecipe itself ?<u></u><u></u></p>
-</div>
-<p class=3D"MsoNormal"><br>
-capabilities on files are just extended attributes, so assuming that you ha=
-ve a fairly recent Yocto and your host and target filesystems support exten=
-ded attributes, yes this should work.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Ross<u></u><u></u></p>
-</div>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br></div>
-
---001a11c007d895b7820536054686--
+--_004_c3c0e392db09430d91496cf4def6c395HIBDWSMB02adharmancom_--
