@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BA67E009B4; Sun, 26 Jun 2016 09:28:53 -0700 (PDT)
+	id 5F689E00EA8; Sun, 26 Jun 2016 11:45:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
+	*      [209.85.220.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 519EFE00953
-	for <yocto@yoctoproject.org>; Sun, 26 Jun 2016 09:28:49 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id i123so13705025pfg.3
-	for <yocto@yoctoproject.org>; Sun, 26 Jun 2016 09:28:49 -0700 (PDT)
+Received: from mail-pa0-f65.google.com (mail-pa0-f65.google.com
+	[209.85.220.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A212FE00EA4
+	for <yocto@yoctoproject.org>; Sun, 26 Jun 2016 11:45:03 -0700 (PDT)
+Received: by mail-pa0-f65.google.com with SMTP id ts6so13518940pac.0
+	for <yocto@yoctoproject.org>; Sun, 26 Jun 2016 11:45:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id;
-	bh=6qpyJmKAB3+rzFMWXpH3omUOqCzRF3mF8yNlfrDlyhY=;
-	b=JoUOC0kD0uQc9SIaZHfTGUm4QmjKdZ5HBM7q33NH9vf+StbLuvPnbIcquwR0GFv/C9
-	6r8XuFU9UWaLUeEcv6W6qDLAwMZBbUhKB5/tMPf9Q7ml62fq5VhMkXW6lA4Yma8bhPgP
-	ACl277+fA31oa5OmTF7+lg9Fj/mfj+j7OkoHs0PYHJ3+4CFH+L2KBqi/FeEBTu1YYE9q
-	ZynPdZf/HTGWVsuDEujxSYH9OGLf+VjO98ve89Q6tJYEAzqc+YQ0R7fjX2g5IBCfOBOi
-	kU+pz1g0HCXnnkJ/SwJdZeFTWIUHFyqmxtwJMaqJ3q04LHzNjI7hs3ufYyU/yNCcXqRr
-	Fagw==
+	bh=WhY3l8HpdjTjrIH6qYdI2HjPkGcMI+xlZyxJpiyn0FU=;
+	b=Y7guZnb1Ks9IoifYuhI4vLp/Ip+NL4KQdkU7JO3MT6NOgAd6mqEVfZwtNuPX5uV/lA
+	AooudWjdO+nTQCqLH9I+wDsg/4uxNsROcc+2dNjOJCb6BsJ/vglhVvf/R5tSa0HCJgVO
+	0iKganuJfeH24JXyZz8+urkdKKz58rJuJu7Ytvc0G1tAk3gKlSEgN7b0IWQMm9kEQ2iw
+	XPEcFQ6QZB/DVEvxCMrrJ/lnXcSnI6BO3er85v98KkjJUR53rM+U42ATkkDMKuTRuv+D
+	zRXWNUvWmpVlA7qDAfawD6VLbxkctASa0MAzw/XeHrSdUmOpaOo8Fv5xxCSg1DuG3Zrh
+	AhGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=6qpyJmKAB3+rzFMWXpH3omUOqCzRF3mF8yNlfrDlyhY=;
-	b=OuWb9jbXWG5RPOLtnHcYPRYaja5EQaf+L+uzCyHqFwq1KYiD2JmbMeKR5r7UCw8i5m
-	9UFdO7kqFgbM/9BFtX+ZqXM5461dP3ux8KEd9j0c/GXm2nlCI5iCv9hC2MzPP0WjUvSP
-	88X1z1pN6W4o75BQV8pBaw2Xo6FXnmGBrYFGQqpGVLyFpijtjvReAvcTtnPNzkGphgwA
-	6Fh52U73wGjO50TA1C024A9nSbuJMgPh6y3m8dH7bBuurZaxr9X8/6M9eNqqk/hecnHf
-	PNDtzLh+/MTRMzvzIt5ku95ppZ/roBwLmeJpeNvIXrBtUXVCw4YsPlQoWj3PK9r8K5eu
-	yyIQ==
-X-Gm-Message-State: ALyK8tJ7K3cTgOMLISC39L/uD/yM1CR+mpglwSeJ73ScKZjnKASZ5yQh7cgCbSh5Ztn8Uw==
-X-Received: by 10.98.103.66 with SMTP id b63mr26049796pfc.141.1466958529136;
-	Sun, 26 Jun 2016 09:28:49 -0700 (PDT)
+	bh=WhY3l8HpdjTjrIH6qYdI2HjPkGcMI+xlZyxJpiyn0FU=;
+	b=EZmReiGLZuqGWW6oYa95PGf4WEW6EW35L+ZxQ75VZHuIj4BeVJTzElZDJYIy3hJMri
+	DPoSbfHYdtT4LHWeCXw9Fy/hs2fXw55bH4mOa/bCcyBDSafPzl8MBg7T6Z85sW/haxJb
+	9rIFl5x22mCBFDdT5LEPVT4VnRAhNk6Td6aZN1F0IntgyYoEm0g9lrxe02sG3iDslALT
+	U+j0Eno/DZj6aKZNV4UgvY5YqAHoNUhYsRE05Shj5Cso+s1d6nL+BtmZQstCD2SD029T
+	NxvlG5mB13jIyqgr45uFo9NOEjLccHIgHRAJ1q/8qrwkLgqPR6wL0sUuB0sUr9N/3K6v
+	1inA==
+X-Gm-Message-State: ALyK8tL6EdFAXqfrHFKuaxmrQgYkzFWVIDUNONo7GHtvFntx50QWmtKlmaHB6o69Y0VdIg==
+X-Received: by 10.67.7.98 with SMTP id db2mr39366pad.156.1466966702656;
+	Sun, 26 Jun 2016 11:45:02 -0700 (PDT)
 Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by smtp.gmail.com with ESMTPSA id
-	g189sm453890pfc.46.2016.06.26.09.28.47 for <yocto@yoctoproject.org>
+	[76.20.92.207])
+	by smtp.gmail.com with ESMTPSA id 6sm1403378pfs.29.2016.06.26.11.45.00
+	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 26 Jun 2016 09:28:48 -0700 (PDT)
+	Sun, 26 Jun 2016 11:45:01 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 26 Jun 2016 09:28:44 -0700
-Message-Id: <1466958524-18004-1-git-send-email-akuster808@gmail.com>
+Date: Sun, 26 Jun 2016 11:44:57 -0700
+Message-Id: <1466966697-20575-1-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.3.5
-Subject: [meta-security][PATCH] suricata: update to 3.0.2
+Subject: [meta-security][PATCH] suricata: package update to 3.1.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,83 +70,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Jun 2016 16:28:53 -0000
+X-List-Received-Date: Sun, 26 Jun 2016 18:45:07 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/suricata/libhtp_0.5.19.bb  | 15 --------
- recipes-security/suricata/libhtp_0.5.20.bb  | 15 ++++++++
  recipes-security/suricata/suricata.inc      |  6 +--
- recipes-security/suricata/suricata_3.0.1.bb | 58 -----------------------------
- recipes-security/suricata/suricata_3.0.2.bb | 58 +++++++++++++++++++++++++++++
- 5 files changed, 76 insertions(+), 76 deletions(-)
- delete mode 100644 recipes-security/suricata/libhtp_0.5.19.bb
- create mode 100644 recipes-security/suricata/libhtp_0.5.20.bb
- delete mode 100644 recipes-security/suricata/suricata_3.0.1.bb
- create mode 100644 recipes-security/suricata/suricata_3.0.2.bb
+ recipes-security/suricata/suricata_3.0.2.bb | 58 -----------------------------
+ recipes-security/suricata/suricata_3.1.bb   | 58 +++++++++++++++++++++++++++++
+ 3 files changed, 61 insertions(+), 61 deletions(-)
+ delete mode 100644 recipes-security/suricata/suricata_3.0.2.bb
+ create mode 100644 recipes-security/suricata/suricata_3.1.bb
 
-diff --git a/recipes-security/suricata/libhtp_0.5.19.bb b/recipes-security/suricata/libhtp_0.5.19.bb
-deleted file mode 100644
-index 8305f70..0000000
---- a/recipes-security/suricata/libhtp_0.5.19.bb
-+++ /dev/null
-@@ -1,15 +0,0 @@
--SUMMARY = "LibHTP is a security-aware parser for the HTTP protocol and the related bits and pieces."
--
--require suricata.inc
--
--LIC_FILES_CHKSUM = "file://../LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
--
--DEPENDS = "zlib"
--
--inherit autotools pkgconfig
--
--CFLAGS += "-D_DEFAULT_SOURCE"
--
--S = "${WORKDIR}/suricata-${VER}/${BPN}"
--
--RDEPENDS_${PN} += "zlib"
-diff --git a/recipes-security/suricata/libhtp_0.5.20.bb b/recipes-security/suricata/libhtp_0.5.20.bb
-new file mode 100644
-index 0000000..8305f70
---- /dev/null
-+++ b/recipes-security/suricata/libhtp_0.5.20.bb
-@@ -0,0 +1,15 @@
-+SUMMARY = "LibHTP is a security-aware parser for the HTTP protocol and the related bits and pieces."
-+
-+require suricata.inc
-+
-+LIC_FILES_CHKSUM = "file://../LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
-+
-+DEPENDS = "zlib"
-+
-+inherit autotools pkgconfig
-+
-+CFLAGS += "-D_DEFAULT_SOURCE"
-+
-+S = "${WORKDIR}/suricata-${VER}/${BPN}"
-+
-+RDEPENDS_${PN} += "zlib"
 diff --git a/recipes-security/suricata/suricata.inc b/recipes-security/suricata/suricata.inc
-index b46ad3d..9ddb405 100644
+index 9ddb405..178ad25 100644
 --- a/recipes-security/suricata/suricata.inc
 +++ b/recipes-security/suricata/suricata.inc
 @@ -2,8 +2,8 @@ HOMEPAGE = "http://suricata-ids.org/"
  SECTION = "security Monitor/Admin"
  LICENSE = "GPLv2"
  
--VER = "3.0.1"
-+VER = "3.0.2"
+-VER = "3.0.2"
++VER = "3.1"
  SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
  
--SRC_URI[md5sum] = "c5c8e5846b54546257954f3c759d9675"
--SRC_URI[sha256sum] = "74c685f8da51b3f038a7b8185bdbed274aca25daf64ac7ea01eea60636727f26"
-+SRC_URI[md5sum] = "ff231c3d7af32cb1c767fded2a13c391"
-+SRC_URI[sha256sum] = "264cbdc380717590a9c33d3b3dc92fc488f376873e869bf71601b1d4a9a8e601"
-diff --git a/recipes-security/suricata/suricata_3.0.1.bb b/recipes-security/suricata/suricata_3.0.1.bb
+-SRC_URI[md5sum] = "ff231c3d7af32cb1c767fded2a13c391"
+-SRC_URI[sha256sum] = "264cbdc380717590a9c33d3b3dc92fc488f376873e869bf71601b1d4a9a8e601"
++SRC_URI[md5sum] = "5473b078c6c13552fa241850518d30ed"
++SRC_URI[sha256sum] = "a05aa534166495a4d9ea6104a936bc8edb49376aeb3ba0b1b2a4d9687d016669"
+diff --git a/recipes-security/suricata/suricata_3.0.2.bb b/recipes-security/suricata/suricata_3.0.2.bb
 deleted file mode 100644
 index ead568a..0000000
---- a/recipes-security/suricata/suricata_3.0.1.bb
+--- a/recipes-security/suricata/suricata_3.0.2.bb
 +++ /dev/null
 @@ -1,58 +0,0 @@
 -SUMMARY = "The Suricata Engine is an Open Source Next Generation Intrusion Detection and Prevention Engine"
@@ -206,11 +161,11 @@ index ead568a..0000000
 -FILES_${PN}-dev += "/usr/lib/python2.7/site-packages"
 -
 -RDEPENDS_${PN} += " python"
-diff --git a/recipes-security/suricata/suricata_3.0.2.bb b/recipes-security/suricata/suricata_3.0.2.bb
+diff --git a/recipes-security/suricata/suricata_3.1.bb b/recipes-security/suricata/suricata_3.1.bb
 new file mode 100644
 index 0000000..ead568a
 --- /dev/null
-+++ b/recipes-security/suricata/suricata_3.0.2.bb
++++ b/recipes-security/suricata/suricata_3.1.bb
 @@ -0,0 +1,58 @@
 +SUMMARY = "The Suricata Engine is an Open Source Next Generation Intrusion Detection and Prevention Engine"
 +
