@@ -1,64 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 910ACE00990; Mon, 27 Jun 2016 07:29:39 -0700 (PDT)
+	id CF44CE00A75; Mon, 27 Jun 2016 09:36:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D615E00971
-	for <yocto@yoctoproject.org>; Mon, 27 Jun 2016 07:29:34 -0700 (PDT)
-Received: by mail-io0-f170.google.com with SMTP id t74so153730992ioi.0
-	for <yocto@yoctoproject.org>; Mon, 27 Jun 2016 07:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qt0-f196.google.com (mail-qt0-f196.google.com
+	[209.85.216.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25F3DE009DC
+	for <yocto@yoctoproject.org>; Mon, 27 Jun 2016 09:36:37 -0700 (PDT)
+Received: by mail-qt0-f196.google.com with SMTP id z36so3813806qtb.3
+	for <yocto@yoctoproject.org>; Mon, 27 Jun 2016 09:36:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Vvqw63eyYVsPWwM6iPmw5xgqBMH1YZ5aWWshxLLG/U8=;
-	b=WB/qoW4sOPnwYQFlaHvyzwJ7CTapImy1cP4DOJ4ZFvY58YDIlDj3d4kTRcXZfLjMwb
-	Ylf+lARZu4inOuiS4DRt0cEgERPA45tgqDUDiHm7xexCPuXtyy5oJMavtWUOazI+tt43
-	7xOlgy+j/85WTmRSVKoJEBPEZHH910MUUIY71qLjTAdaHRQA/+BDu7zc3ONtZXCGxYHe
-	p7Xh4EmpioT0NgEBNJCo+i3JfBlR/PgkJLmMyKA3RTEH6P3GKNKZMUQO9WkcHGlhE7DZ
-	aPqKsO/AHQLLN3mh93o+UUgsBqri1/ph+mL3gWGsNHPW5/dSSgm5gkmvpv6agXZnk7F5
-	IIbA==
+	:cc:content-transfer-encoding;
+	bh=5thLWRQVIKUaa0eAMWz6HrecuiYjojqMhO64I41nEis=;
+	b=UNjg9KeIyo7/31cB5diG850BuoE/xT+DdFktzbSSdcrWu+49qUwfzWn5qYfwQMUOuO
+	0Xy3NP2xlKkeDIzFTwANv93Jtl2STXcesV0MHSwKDsKAHNZK120y0ueIh12qhQtDCV2W
+	gtWCofHg0QLZ7NO1Rx+U1szSjPqx/mtE7alZrdaazdcKFQSMhRAToxAw3jmwA+T9DQeJ
+	2T/XvnZUXw/GRsVdbwIg9R2IWOVsZKhAJf3bkEjvrSEUlSLIE4DZ/DMhkoNuCtloen9Y
+	Hs2CPbh22brm1PZhaBjF0FWvsKW3+oHYnvxg4uQym+K8U4LPbtW/7/J6SVos+VZazfIR
+	ixZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Vvqw63eyYVsPWwM6iPmw5xgqBMH1YZ5aWWshxLLG/U8=;
-	b=LV6DuApJUbpNNw/6U1GnPNFFEN22SER5bQp/AiEbp+gLwCdt5IBEZHjsLdCh4SCDLK
-	WGPpMqCEBfey93Qf+KOvawHPLpKd0QEsfTZy7yKzrkA8WPY71FQz0dmFdnV5toouJqik
-	lYUCH6/tfWBGJtk/FpPIxM+R1gLPq5jYZHGzOUV4dpGEJyW+VrKQ/sv4/n+AMWdNbo5c
-	CTYz2z+BpVEW+l+jVypcNvJ8wQ5ZuFvwohj0r+20gTtV+P/D154QlV+HRDjpKjN9Y5J3
-	DyisTkMm7jUFStY/BEK9Y8aLmTNix2gzDAs81HqrU+Avwl3ehqem4N3qkY5JCtmUM5Gm
-	91mQ==
-X-Gm-Message-State: ALyK8tIO7ohmMTZ1VlpqCtGDNLl5Yo1B/F/3uXSnSUtIE8e9XVQvM8a9v/zXSmt2rkpPu9YW/3emMRP8d4mhi/kx
-X-Received: by 10.107.154.210 with SMTP id c201mr992129ioe.99.1467037774387;
-	Mon, 27 Jun 2016 07:29:34 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=5thLWRQVIKUaa0eAMWz6HrecuiYjojqMhO64I41nEis=;
+	b=Y3NW+d6CJzQ2hwbxXIBa6D+J0+BoJ4DA1OE/vevhTXJWyfNVRLChgAaHJ6oy4/xHfN
+	GpyJuGMFxeBvBNSuu4v+kuElItwmourPsaSjaN/HOkrNEU1QPk0mfohkXBnh/77yWrB3
+	CZyeC34Xw3ZuvfZT5lf6IrTkF/DfDYde6Xs406pIvivEgz9gOiPMmGsEBUJW00JEJAXl
+	0+gPniHzJ1lRf8R5HSoeepmuZhoCXWSx389FyElj743/dD7kr6YL1Od6Pwd5bCZbAET3
+	cLDP76v3DhOnwRp+Gr8/MHqgZ5S0SgsVU8Z41DRuetEA4T5zqfhk6aJ40Zv0sbl56IcY
+	3Csw==
+X-Gm-Message-State: ALyK8tLoEE0IbdnCErjvoCyiANw2C+etqrgFP0EMWUA9Nwa5PcZ0wwuSMLqyBBjzJCHKlPfSoyN3AGAlTqb7ZQ==
+X-Received: by 10.200.42.43 with SMTP id k40mr24660156qtk.98.1467045397191;
+	Mon, 27 Jun 2016 09:36:37 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.142.151 with HTTP; Mon, 27 Jun 2016 07:29:15 -0700 (PDT)
-In-Reply-To: <20160623161806.GE20922@asimov.austin.ibm.com>
-References: <20160622164325.GB20922@asimov.austin.ibm.com>
-	<CAJTo0Lb9zaufhDTaObFPYJK7ZU-H3bXD7-8y11+eAx=Btiwj4A@mail.gmail.com>
-	<CAJTo0LZiTspQ+46fcuMUvaa7uHqodtfG0cTkqXN51gytOr70Gg@mail.gmail.com>
-	<20160623161806.GE20922@asimov.austin.ibm.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 27 Jun 2016 15:29:15 +0100
-Message-ID: <CAJTo0LaPnJ=4A5qTfLMhU9EQvu21RaAWJgjCTj6275bv81AmLA@mail.gmail.com>
-To: Patrick Williams <patrick@stwcx.xyz>
-Cc: Yocto Maillist <yocto@yoctoproject.org>,
-	Bradley Bishop <bradleyb@fuzziesquirrel.com>
-Subject: Re: uninative support on non-x86 platforms
+Received: by 10.55.214.83 with HTTP; Mon, 27 Jun 2016 09:36:07 -0700 (PDT)
+In-Reply-To: <DB3PR04MB068442CB73636660A925BBFAEE210@DB3PR04MB0684.eurprd04.prod.outlook.com>
+References: <DB3PR04MB068442CB73636660A925BBFAEE210@DB3PR04MB0684.eurprd04.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 27 Jun 2016 09:36:07 -0700
+Message-ID: <CAMKF1sqzUPbS2ay9QVqOFZ7nnpLTX6ercDSC026aOSnC50jO7w@mail.gmail.com>
+To: Zhenhua Luo <zhenhua.luo@nxp.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Failed to cross compile kernel with Yocto toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,85 +70,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jun 2016 14:29:39 -0000
-Content-Type: multipart/alternative; boundary=001a1140fab66a308b05364359a8
-
---001a1140fab66a308b05364359a8
+X-List-Received-Date: Mon, 27 Jun 2016 16:36:38 -0000
 Content-Type: text/plain; charset=UTF-8
-
-On 23 June 2016 at 17:18, Patrick Williams <patrick@stwcx.xyz> wrote:
-
-> Thanks. We will give it a try.  I suspected there might be more to it than
-> that
-> based on this line:
->
-> UNINATIVE_LOADER ?=
-> "${STAGING_DIR}-uninative/${BUILD_ARCH}-linux/lib/${@bb.utils.contains('BUILD_ARCH',
-> 'x86_64', 'ld-linux-x86-64.so.2', 'ld-linux.so.2', d)}"
->
->
-> Which tag should we use to build this for publication?
->
-> I was discussing with two of my colleagues and they mentioned that there
-> is a free-for-opensource path to get a ppc64le virtual machine:
->     http://osuosl.org/services/powerdev/request_hosting
-> Would it be useful for us to set this up to build the uninative
-> tarballs?  I don't know what the process is for updating them for the
-> x86 builds.
->
-> It seems that the current autobuild runs on an x86 machine as well.
-> Would there be any interest in a ppc64le slave?
->
-
-For your own use, build a uninative-tarball using whatever commit of OE
-you're using currently.
-
-If it actually works and there's sufficient demand then it won't be
-difficult to build it and add it to the poky configuration, but the main
-requirement for that is that there is someone willing to fix any problems
-that appear.
-
-Ross
-
---001a1140fab66a308b05364359a8
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 23 June 2016 at 17:18, Patrick Williams <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:patrick@stwcx.xyz" target=3D"_blank">patrick@stwcx.xyz</a>&gt;</spa=
-n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
-order-left:1px #ccc solid;padding-left:1ex"><div id=3D":9t6" class=3D"a3s a=
-XjCH m1557e0e9fd0625d4">Thanks. We will give it a try.=C2=A0 I suspected th=
-ere might be more to it than that<br>
-based on this line:<br>
-<br>
-UNINATIVE_LOADER ?=3D &quot;${STAGING_DIR}-uninative/${BUILD_ARCH}-linux/li=
-b/${@bb.utils.contains(&#39;BUILD_ARCH&#39;, &#39;x86_64&#39;, &#39;ld-linu=
-x-x86-64.so.2&#39;, &#39;ld-linux.so.2&#39;, d)}&quot;<br>
-<br>
-<br>
-Which tag should we use to build this for publication?<br>
-<br>
-I was discussing with two of my colleagues and they mentioned that there<br=
+On Mon, Jun 27, 2016 at 1:16 AM, Zhenhua Luo <zhenhua.luo@nxp.com> wrote:
+> Hello all,
 >
-is a free-for-opensource path to get a ppc64le virtual machine:<br>
-=C2=A0 =C2=A0 <a href=3D"http://osuosl.org/services/powerdev/request_hostin=
-g" rel=3D"noreferrer" target=3D"_blank">http://osuosl.org/services/powerdev=
-/request_hosting</a><br>
-Would it be useful for us to set this up to build the uninative<br>
-tarballs?=C2=A0 I don&#39;t know what the process is for updating them for =
-the<br>
-x86 builds.<br>
-<br>
-It seems that the current autobuild runs on an x86 machine as well.<br>
-Would there be any interest in a ppc64le slave?</div></blockquote></div><di=
-v class=3D"gmail_extra"><br></div>For your own use, build a uninative-tarba=
-ll using whatever commit of OE you&#39;re using currently.</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra">If it actually works =
-and there&#39;s sufficient demand then it won&#39;t be difficult to build i=
-t and add it to the poky configuration, but the main requirement for that i=
-s that there is someone willing to fix any problems that appear.</div><div =
-class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+>
+>
+> I generate the Yocto toolchain by =E2=80=9Cbitbake meta-toolchain=E2=80=
+=9D, and use this
+> toolchain to cross-compile kernel, I met the following error. Is this a b=
+ug
+> or I missed something? My host Linux is Fedora 22.
 
---001a1140fab66a308b05364359a8--
+its better to start using bitbake -cpopulate_sdk <image name> to generate S=
+DKs.
+
+
+>
+>
+>
+> $ source /opt/poky/2.1+snapshot/environment-setup-ppce500mc-poky-linux
+>
+> $ cd linux/
+>
+> $ make corenet32_smp_defconfig
+>
+>   HOSTCC  scripts/kconfig/conf.o
+>
+> ccache: error: Could not find compiler "gcc" in PATH
+
+did you see if gcc is in your path after sourcing SDK env script ?
+
+
+>
+> scripts/Makefile.host:108: recipe for target 'scripts/kconfig/conf.o' fai=
+led
+>
+> make[1]: *** [scripts/kconfig/conf.o] Error 1
+>
+> Makefile:541: recipe for target 'corenet32_smp_defconfig' failed
+>
+> make: *** [corenet32_smp_defconfig] Error 2
+>
+>
+>
+>
+>
+> Best Regards,
+>
+>
+>
+> Zhenhua
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
