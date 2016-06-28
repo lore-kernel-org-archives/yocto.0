@@ -1,60 +1,35 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6EF63E00C9D; Tue, 28 Jun 2016 08:43:18 -0700 (PDT)
+	id 0EB5BE00C9C; Tue, 28 Jun 2016 08:57:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D04ADE00C72
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 08:43:16 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id t74so20451869ioi.0
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 08:43:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=wl5FAs1YMNBbVdXOqGxdIg/WURVyHScHrfN94PIc6Eo=;
-	b=QRgtG5loQra0zMLy0bpkyhJSSIrYEFoM2XCyqBUDjewXwXPZHXaz2BpJ8oGsKVQVgk
-	+aChJKak6Xi++1HGWKOyuXQYfMLYbngGr5Mav2U9Uct3wouSx8zgH4OTvLr9I5DZS9fH
-	zidvHv41RYg1o+gw/MSMeDI24DxDWtJHiGAjHyy3e2ztViCp32XOxQLlQrt664+joGb9
-	Hml52hbws5xp+Fg876sp3eAvGKt33myGeTFH8MO6C6ky4XDccH2ER1yJHtNOGz3Ne67n
-	18BB+I5THfPmX5ngkDbhWzJbWMT9ieKJfFHKkY6gdNkbaxGlGRJGEXiWlgXjjPsEVGyw
-	6IGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=wl5FAs1YMNBbVdXOqGxdIg/WURVyHScHrfN94PIc6Eo=;
-	b=Ee4n/ndsAfMW4yN5qFB85KEhw/WIBct6O2xwN19wUzioNUEJUiJJAQNGmvjfHBERnv
-	plQGrd3x3BabuT90hQ/KhvVHvD69ZC7ol0JIUaH1Ft9uqI+/1GDftKSVpr7eKC1fIRns
-	/TJZHERnLyvri1ICHnpdN5/8v7RRvVBMyITMIYxA51ysnd7lt7Zqm9PP9HqE8zmAb8RO
-	DE26ADImGCF8xq3VeZnScjmONSqvKY6Pq7JclpouvnVrDHIq98ROQYKngwd26M2qotn1
-	lMvWxFzNbqwnwtCb0WAAcCn9DE/9yE/DRa9+MWj4f4QWkehO9y1Pz8hGLmFeHCbJ7GPI
-	39BQ==
-X-Gm-Message-State: ALyK8tJwWzuPdpa7EJPMvzmSw21Zf9sf846+TPClzzd32odL0JBkv8KyzrtiTUN7sU8VkNwBShswENWyiqmdWabg
-X-Received: by 10.107.135.137 with SMTP id r9mr4654754ioi.133.1467128595958;
-	Tue, 28 Jun 2016 08:43:15 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.142.151 with HTTP; Tue, 28 Jun 2016 08:42:56 -0700 (PDT)
-In-Reply-To: <CACv_uOSvZc9gLG5c4g2V04F0gEwG6qfuLLoqQEX2TUT_1buGhw@mail.gmail.com>
-References: <CACv_uOSvZc9gLG5c4g2V04F0gEwG6qfuLLoqQEX2TUT_1buGhw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 28 Jun 2016 16:42:56 +0100
-Message-ID: <CAJTo0LYY=uGMHx6UEqnTGCi9Ja8NKuiCu=8msz_weL5gfy5eqg@mail.gmail.com>
-To: Austin Kim <augiekim@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to generate debug symbols but not copied to the image?
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EEECE00C72
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 08:57:51 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP; 28 Jun 2016 08:57:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.26,541,1459839600"; d="scan'208";a="726312997"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.16.145])
+	by FMSMGA003.fm.intel.com with ESMTP; 28 Jun 2016 08:57:39 -0700
+Message-ID: <1467129458.2906.0.camel@linux.intel.com>
+From: Joshua G Lock <joshua.g.lock@linux.intel.com>
+To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>, 
+	yocto@yoctoproject.org
+Date: Tue, 28 Jun 2016 16:57:38 +0100
+In-Reply-To: <1467125601-29760-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1467125601-29760-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: Evolution 3.20.3 (3.20.3-1.fc24) 
+Mime-Version: 1.0
+Subject: Re: [PATCH][yocto-autobuilder] nightly-world-lsb.conf: Update buildstep name DownloadBitbakeErrorReports -> DownloadErrorReports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,57 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2016 15:43:18 -0000
-Content-Type: multipart/alternative; boundary=001a113ec842cd70f70536587e12
+X-List-Received-Date: Tue, 28 Jun 2016 15:57:52 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---001a113ec842cd70f70536587e12
-Content-Type: text/plain; charset=UTF-8
+Merged to master, thanks,
 
-On 28 June 2016 at 16:38, Austin Kim <augiekim@gmail.com> wrote:
+Joshua
 
-> I'm wondering how to copy only stripped binary and leave debug symbols on
-> the host build machine. I'm running on the OS on a very tight HDD space so
-> I cannot put debug symbols into the image. So I tried
->
->
-> PACKAGE_DEBUG_SPLIT_STYLE = 'debug-without-src'
->
-> EXTRA_IMAGE_FEATURES = "dbg-pkgs"
->
-> But the output image is still bigger than the original image. Is there
-> anyway to keep the original size and keep debug symbols and source code in
-> the host so DBG may reference them during debugging?
->
+On Tue, 2016-06-28 at 09:53 -0500, Aníbal Limón wrote:
+> The reference of the buildsteps for download error reports was
+> updated [1] but,
+> i forget to update this one.
+> 
+> [1] http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/commi
+> t/?id=e1e7c3b86720786ae4f60da008f68d4cf5d58559
+> 
+> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+> ---
+>  buildset-config.controller/nightly-world-lsb.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/buildset-config.controller/nightly-world-lsb.conf
+> b/buildset-config.controller/nightly-world-lsb.conf
+> index ae3a621..afc7546 100644
+> --- a/buildset-config.controller/nightly-world-lsb.conf
+> +++ b/buildset-config.controller/nightly-world-lsb.conf
+> @@ -21,5 +21,5 @@ steps: [{'SetDest':{}},
+>                              'distro': 'poky-lsb'}},
+>          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+>          {'BuildImages': {'images': 'world'}},
+> -        {'DownloadBitbakeErrorReports': {}},
+> +        {'DownloadErrorReports': {}},
+>          {'SendErrorReport': {}}]
+> -- 
+> 2.1.4
+> 
 
-Adding dbg-pkgs to IMAGE_FEATURES says that you want full debugging on the
-target.  Simply don't set that and you'll get stripped binaries on the
-target but full debugging is available on the host for remote gdb (see
-IMAGE_GEN_DEBUGFS).
-
-Ross
-
---001a113ec842cd70f70536587e12
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 28 June 2016 at 16:38, Austin Kim <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:augiekim@gmail.com" target=3D"_blank">augiekim@gmail.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div>I&#39;m wondering how to copy =
-only stripped binary and leave debug symbols on the host build machine. I&#=
-39;m running on the OS on a very tight HDD space so I cannot put debug symb=
-ols into the image. So I tried=C2=A0</div><div><br></div><div><br></div><di=
-v>PACKAGE_DEBUG_SPLIT_STYLE =3D &#39;debug-without-src&#39;<br></div><div><=
-br></div><div>EXTRA_IMAGE_FEATURES =3D &quot;dbg-pkgs&quot;<br></div><div><=
-br></div><div>But the output image is still bigger than the original image.=
- Is there anyway to keep the original size and keep debug symbols and sourc=
-e code in the host so DBG may reference them during debugging?</div><span c=
-lass=3D"HOEnZb"><font color=3D"#888888"><div></div></font></span></blockquo=
-te></div><br>Adding dbg-pkgs to IMAGE_FEATURES says that you want full debu=
-gging on the target.=C2=A0 Simply don&#39;t set that and you&#39;ll get str=
-ipped binaries on the target but full debugging is available on the host fo=
-r remote gdb (see IMAGE_GEN_DEBUGFS).</div><div class=3D"gmail_extra"><br><=
-/div><div class=3D"gmail_extra">Ross</div></div>
-
---001a113ec842cd70f70536587e12--
