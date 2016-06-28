@@ -1,64 +1,52 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <richard.zhang@pica8.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6D39E00C2E; Tue, 28 Jun 2016 05:29:01 -0700 (PDT)
+	id E082DE00C40; Tue, 28 Jun 2016 05:56:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.249.122.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.65 listed in list.dnswl.org]
-Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
-	[209.85.213.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868A5E00C28
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 05:28:56 -0700 (PDT)
-Received: by mail-vk0-f65.google.com with SMTP id v188so1973313vkf.3
-	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 05:28:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=te2fufZ3gZ/oE1GwoN+Ly0PzDYozg4QnxD330mEkKSg=;
-	b=N+vvYzMA6T3QOteWF9VMN5Y7HuU5u5CLh0z6oJxSUV0m/IuoZTOPncONpBJajcXx0t
-	HaIbOIZGx02yzPl0IQ+9Jo7O0rOU6Kgs7eEzsrKHpU/UKoDFjKPlmHf0klPe4VkfpHrD
-	azVf+nRu023RQfKkpv8HnbLl4KRTRra3yFgIHL8vRbd3wQsiHnY0TpKsKyohE/Miy9q6
-	mtFrg9Yupbp16uCA9HxdAEcOKgFdZNc9uFp+WQATEAjCte4c7Er/PR3yKAINzdTbovhl
-	nPJmP5hAWhPFbmpa2AtXLNEObXEYdNS2P00KZvvJdywIhghBHGplRVTeIkN5HEPic8rE
-	DbLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=te2fufZ3gZ/oE1GwoN+Ly0PzDYozg4QnxD330mEkKSg=;
-	b=beIGtfP6Y3MeDBCiRb3dgaxUJgA7VKoMATmgH7tJMpaYGkTYMaKfjP5GEBB74jqn3P
-	sIbkKTC5fK88/oScE5DZUz0aEVrjXAdoGXBuANu3ujoUN7jFmKKCP71yCyc7ohOfk7O7
-	+iWMEQXnoObaK9nn0n/K5voM6eOFW/yyv3A1jj4SZiY2mdD+LJX2xfoNwkw4olUpoSX2
-	14F9IaGdttRrJ6I1/cIFRmxZhWgyqVp+aNnAianFX+Pbp0tw8HDs7HOhHZKWWrUWAriv
-	R4epDrtmh4xuz6LKVr0yzBMprwKAJV+r26ccg/9Z7u0g5+gWPVm/DrAAcMz+IIMkn9qa
-	hHYA==
-X-Gm-Message-State: ALyK8tJqemvZDBG+gx7PJ79NcSzlE7jjZkBKARJWT3mcs1dagrc7g55keJVsMHWrGuCS2ABMqSjFcisJUF7FuA==
-X-Received: by 10.31.70.193 with SMTP id t184mr368119vka.123.1467116936216;
-	Tue, 28 Jun 2016 05:28:56 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.176.1.50 with HTTP; Tue, 28 Jun 2016 05:28:55 -0700 (PDT)
-In-Reply-To: <3097479.6HfBUUWWdS@peggleto-mobl.ger.corp.intel.com>
+Received: from ld138.inmotionhosting.com (ld138.inmotionhosting.com
+	[192.249.122.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B12D5E00C2E
+	for <yocto@yoctoproject.org>; Tue, 28 Jun 2016 05:55:59 -0700 (PDT)
+Received: from [124.193.174.202] (port=37010 helo=[10.168.1.200])
+	by ld138.inmotionhosting.com with esmtpsa
+	(TLSv1.2:DHE-RSA-AES256-SHA:256) (Exim 4.86_1)
+	(envelope-from <richard.zhang@pica8.com>)
+	id 1bHsYU-00063v-7u; Tue, 28 Jun 2016 05:55:58 -0700
+To: "Daniel." <danielhilst@gmail.com>
 References: <57712C4E.6060400@pica8.com>
 	<CAF3SDA4njst=j_=hwa+xx3rTK21ct7NDXovvHQQeJ06b4zwreg@mail.gmail.com>
 	<3097479.6HfBUUWWdS@peggleto-mobl.ger.corp.intel.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Tue, 28 Jun 2016 09:28:55 -0300
-Message-ID: <CAF3SDA4PHS-msDQ3JyHhh2i2OEb4awd2DmwooYHpfN+HSKNyAg@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAF3SDA4PHS-msDQ3JyHhh2i2OEb4awd2DmwooYHpfN+HSKNyAg@mail.gmail.com>
+From: "richard.zhang" <richard.zhang@pica8.com>
+Message-ID: <b07a0f78-5f89-134c-ddfb-64259bf78e19@pica8.com>
+Date: Tue, 28 Jun 2016 20:54:35 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Icedove/45.1.0
+MIME-Version: 1.0
+In-Reply-To: <CAF3SDA4PHS-msDQ3JyHhh2i2OEb4awd2DmwooYHpfN+HSKNyAg@mail.gmail.com>
+X-OutGoing-Spam-Status: No, score=-102.9
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ld138.inmotionhosting.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - pica8.com
+X-Get-Message-Sender-Via: ld138.inmotionhosting.com: authenticated_id:
+	richard.zhang@pica8.com
+X-Authenticated-Sender: ld138.inmotionhosting.com: richard.zhang@pica8.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to add recipes to images not RPMs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -71,61 +59,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jun 2016 12:29:01 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 28 Jun 2016 12:56:04 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Ops, Yeah, you right Paul! IMAGE_INSTALL_append***
+Fine ,its work.
 
 Thanks
 
-2016-06-27 22:30 GMT-03:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
-> I think you mean IMAGE_INSTALL_append.
+
+在 2016年06月28日 20:28, Daniel. 写道:
+> Ops, Yeah, you right Paul! IMAGE_INSTALL_append***
 >
-> There is a section of the manual covering this:
+> Thanks
 >
->   http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
->
-> Cheers,
-> Paul
->
-> On Mon, 27 Jun 2016 11:22:52 Daniel. wrote:
->> Adding this to your local.conf?
+> 2016-06-27 22:30 GMT-03:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
+>> I think you mean IMAGE_INSTALL_append.
 >>
->> INSTALL_IMAGE_append = " your packages separeted by whitespaces"
+>> There is a section of the manual covering this:
 >>
->> 2016-06-27 10:38 GMT-03:00 richard zhang <richard.zhang@pica8.com>:
->> > Hi all
->> >
->> >     I try to add some ricepes to meta layer.The do_fetch and do_compile
->> >
->> > things are fine.
->> >
->> >     But when I went to image,there is no packages just added.
->> >     I find my packages in build/tmp/deploy/rpm .
->> >     How to add these packages to image.
->> >
->> >     I have do this when I use 'hob',but i don't know how to select them
->> >
->> > without 'hob'.
->> >
->> >
->> > best regard.
->> > Richard Zhang
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
+>>    http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
+>>
+>> Cheers,
+>> Paul
+>>
+>> On Mon, 27 Jun 2016 11:22:52 Daniel. wrote:
+>>> Adding this to your local.conf?
+>>>
+>>> INSTALL_IMAGE_append = " your packages separeted by whitespaces"
+>>>
+>>> 2016-06-27 10:38 GMT-03:00 richard zhang <richard.zhang@pica8.com>:
+>>>> Hi all
+>>>>
+>>>>      I try to add some ricepes to meta layer.The do_fetch and do_compile
+>>>>
+>>>> things are fine.
+>>>>
+>>>>      But when I went to image,there is no packages just added.
+>>>>      I find my packages in build/tmp/deploy/rpm .
+>>>>      How to add these packages to image.
+>>>>
+>>>>      I have do this when I use 'hob',but i don't know how to select them
+>>>>
+>>>> without 'hob'.
+>>>>
+>>>>
+>>>> best regard.
+>>>> Richard Zhang
+>>>>
+>>>> --
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>> --
+>>
+>> Paul Eggleton
+>> Intel Open Source Technology Centre
 >
-> --
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
 
-
-
--- 
-"Do or do not. There is no try"
-  Yoda Master
 
