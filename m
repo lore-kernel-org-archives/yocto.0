@@ -1,80 +1,64 @@
-Return-Path: <hgujulan@visteon.com>
+Return-Path: <winotu.email@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F42FE00E6E; Thu, 30 Jun 2016 01:06:53 -0700 (PDT)
+	id 41D7AE00E10; Thu, 30 Jun 2016 02:04:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.55.234.125 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (winotu.email[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 941 seconds by postgrey-1.32 at yocto-www;
-	Thu, 30 Jun 2016 01:06:49 PDT
-Received: from emea01-db3-obe.outbound.protection.outlook.com
-	(mail-db3on0125.outbound.protection.outlook.com [157.55.234.125])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBA4CE00E10
-	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 01:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=visteon.onmicrosoft.com; s=selector1-visteon-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=SUW4H6DsLWyejQRA10sTwVG6qce/ex61Fda01lgiSIg=;
-	b=tPdJFtyikWrNY3QzDTN5jVqEWnhtJPDQH3+okdYZGKNR6YntSlCp9aj61XyBAShNWyFjQb8w6KbS9Bsy/ScJkp6vu2y6UH8Fb2tq5W/Q6CF47l34P7kFTLzJavmL9j/0oUrJnILrrkjSTE86nwBCK+mpRq1Ebry3vQMExjoO+UU=
-Received: from DB5PR06MB1573.eurprd06.prod.outlook.com (10.164.41.11) by
-	DB5PR06MB1575.eurprd06.prod.outlook.com (10.164.41.13) with Microsoft
-	SMTP Server (TLS) id 15.1.528.8; Thu, 30 Jun 2016 07:51:06 +0000
-Received: from DB5PR06MB1573.eurprd06.prod.outlook.com ([10.164.41.11]) by
-	DB5PR06MB1573.eurprd06.prod.outlook.com ([10.164.41.11]) with mapi id
-	15.01.0534.010; Thu, 30 Jun 2016 07:51:06 +0000
-From: "Gujulan Elango, Hari Prasath (H.)" <hgujulan@visteon.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Package build files not getting copied to sysroots directory
-Thread-Index: AQHR0qPFx36SXbSwl0SHZWZBztB2eg==
-Date: Thu, 30 Jun 2016 07:51:05 +0000
-Message-ID: <DB5PR06MB157369E58A396E97FE19504FCF240@DB5PR06MB1573.eurprd06.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=hgujulan@visteon.com; 
-x-originating-ip: [25.164.34.4]
-x-ms-office365-filtering-correlation-id: f1035a18-f7b3-4a32-7170-08d3a0bb4a9d
-x-microsoft-exchange-diagnostics: 1; DB5PR06MB1575;
-	6:j2fYVNvyxdCyW3h9kVYeVeh5courcKvZiDvKlSX8+jjtVzqxvIymMctI0KY7xjlkEI0lWxn+DV5VfvtgBothZrCTxLKYwrjkzL39Drym+mgfOkLexugliqGiY1mWtU9UvDBfAdWvjKhYGPlWCglWWQzex2iZUnQzRngsObDtnsq6d0Fpll1WTWfk1pnh53e3+QPwHwmbUT0WXf6a3kUzCTz8rYxxR9h5ZEXyAg+W0IJvP3ywTgjiRVOeW35w1QRSnJ6WZ9LySH3p9D6RlRpfYkMAbP3SqJO1hHWtZ3tOcTOhSH059kHdFWkG+xrXFPP77EOeyPOh3tW7rpMDeGRK8A==;
-	5:VaTHSQQx8K6bYp9qoGFW1l0+EPzjYp/8mkJRmXLzQxDeoiq9UxQOiEVkwB7KGlPV0MqidxF/dngFlPF0QiZ7m4a7UXSeBj/iIN9Rjvu7gz+Z/0u65WBN5H2j6C4j6Akx230t5Z917n0ZCWNPVUy57Q==;
-	24:skVym3drqJVWstXEWQ+DrUXWjSFp783ABO2BqVZkuAR79f4RwFj26OkNW7KbpviKDbEOXPIGzrBI8LbRFXFTcr5P0hVaflciCHzKFbyyyIM=;
-	7:3+ZOKz4k7XKmd3D5pqk3ub9HFxXhPVaJJMrM8rGPjDgDdoCWGlCwhvpGmPTerJL48I+TrQZQ6c9KbN/BI670ZZtGy3OVZgDdw1trfg3TYSBYCPoQKTwhYkgkbbf1z1VVq1iuoFIohN6MSJq9GAX0Ci+PkT6pEY6VEViemwaYKd8awL1WE7+Hv0ly1BJYBdJ4x0gQ4Ias1eMTE1CUqGvwNjHmqYB5GJN7UEhIhnghtYXEWgvheqgu+IE36n+EX9pm
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB5PR06MB1575;
-x-microsoft-antispam-prvs: <DB5PR06MB15758692742DC3D8585471A2CF240@DB5PR06MB1575.eurprd06.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001)(6055026);
-	SRVR:DB5PR06MB1575; BCL:0; PCL:0; RULEID:; SRVR:DB5PR06MB1575; 
-x-forefront-prvs: 0989A7979C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(7916002)(189002)(199003)(57704003)(8676002)(1730700003)(189998001)(2900100001)(10400500002)(81166006)(81156014)(2906002)(97736004)(107886002)(77096005)(54356999)(16236675004)(5002640100001)(33656002)(110136002)(50986999)(11100500001)(19627405001)(6116002)(8936002)(102836003)(3846002)(2501003)(106116001)(229853001)(106356001)(9686002)(2351001)(105586002)(122556002)(76576001)(92566002)(450100001)(19625215002)(101416001)(3280700002)(586003)(5640700001)(3660700001)(5003600100003)(87936001)(74316001)(68736007)(66066001)(7846002)(7736002)(7696003)(86362001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB5PR06MB1575;
-	H:DB5PR06MB1573.eurprd06.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: visteon.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D195BE00D2D
+	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 02:04:06 -0700 (PDT)
+Received: by mail-vk0-f53.google.com with SMTP id c2so101083398vkg.1
+	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 02:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=NXrvBCK+eZfs8pXOvfHJwoGWdaj/wb/aof36fvc8hLc=;
+	b=nB/AcdV4JWebCp2nMUPYBb5QxfkCF6m4P5gSD8N6kjz98mwiFNajCnjz9lrNF7XIWG
+	zzUHZOe+51YgLSWhL2dlyrVbZdEa90LbsT9iy/fg8wldDTYvKxYvqdIlFzAdmv7oWHbV
+	aWfy87soSOyFSHjsSnqSV3kebjYMACceiYptHMcd7cid79VKVnoP5IVi34Xilr/L55f6
+	O1DcxurFvTEBv+m2InNauuCIC51wyGCkLx875faXsXeQnV9DefKgW6pKJ+b4dv/fbhSP
+	oROnjNq3fzZtxax1gIpPGmL2t+rydjRSbeF7h6armCCZo5iSLTIxlZWOENlzn45zD3uL
+	WggQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=NXrvBCK+eZfs8pXOvfHJwoGWdaj/wb/aof36fvc8hLc=;
+	b=bbq/z5BwOdrxdPTTNdnOJVDr7khzktt5kwbVSwx74EGeSfnKS+OHkMtzMrfzNbz3Qh
+	h1X0A0OgKFAg5nvxT8JQwBTgetV0EcD8C4MJRx+b3EegxG7blmnFoNZHKeHO1eC8rmWa
+	wuGUIm1xpBePx5lqWzY9XkLbg1qhEaeB6YNR8DZOXWMqBOWgOzXWDeSJ/lVfMVB3gSOl
+	3OcxehFLtqOMK6oSLQvAJlrZynl2IoAeP2G99H9kRL0JJmIvZS+va/v0NHIWqqMZd/2U
+	tgRca1AjDXwpzpsyaxekgAnZSCwCF27rvUfjaXnPHyOAZo8/cqPegKRZkfaqqQ7gkYs1
+	I5CQ==
+X-Gm-Message-State: ALyK8tKj2BIp26c/ZxtutpPdVztd6B7cKmpH1zgakjot9UDO4o3wg8dZy0KvOKRVHhNZ99VZyJzJ3wVR+YKdIw==
+X-Received: by 10.176.1.17 with SMTP id 17mr5148735uak.154.1467277445473; Thu,
+	30 Jun 2016 02:04:05 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: visteon.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2016 07:51:05.9371 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7a147aaf-01ec-498c-80a1-e34a8c63c548
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR06MB1575
-Subject: Package build files not getting copied to sysroots directory
+Received: by 10.159.32.106 with HTTP; Thu, 30 Jun 2016 02:04:05 -0700 (PDT)
+In-Reply-To: <DB5PR06MB157369E58A396E97FE19504FCF240@DB5PR06MB1573.eurprd06.prod.outlook.com>
+References: <DB5PR06MB157369E58A396E97FE19504FCF240@DB5PR06MB1573.eurprd06.prod.outlook.com>
+From: "Chris Z." <winotu.email@gmail.com>
+Date: Thu, 30 Jun 2016 11:04:05 +0200
+Message-ID: <CAEjjRe+E3-yR1dbg2tRn1JF1KNPFqk9q7vL+WVj42-JOiJm8Pg@mail.gmail.com>
+To: "Gujulan Elango, Hari Prasath (H.)" <hgujulan@visteon.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Package build files not getting copied to sysroots directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,49 +70,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jun 2016 08:06:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB5PR06MB157369E58A396E97FE19504FCF240DB5PR06MB1573eurp_"
+X-List-Received-Date: Thu, 30 Jun 2016 09:04:08 -0000
+Content-Type: multipart/alternative; boundary=001a113cfa70ecad2b05367b2639
 
---_000_DB5PR06MB157369E58A396E97FE19504FCF240DB5PR06MB1573eurp_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113cfa70ecad2b05367b2639
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+Check what files are added to the package of your distribution (deb, ipk )
+Variable FILES_ defines what files should be added to the packages ( -dev,
+-dbg, -doc ) which are installed in sysroot.
+
+bitbake.conf specify default files which should be packed.
+
+You can check bitbake -e <you_package> &> output.log , for FILES_  variable
+and check what files are search and where.
+
+Probably FILES_${PN} +=  would help. But that would be mi first try to find
+root cause.
+
+Also check temp/ log.do_   files
+
+
+On Thu, Jun 30, 2016 at 9:51 AM, Gujulan Elango, Hari Prasath (H.) <
+hgujulan@visteon.com> wrote:
+
+> Hello
+>
+>
+> I am trying to integrate the meta-ivi layer into my distribution. When I
+> am trying to build the audiomanager, some dependent package do_configure()
+> fails. It looks for some packageconfig files(.pc) file in the
+> tmp/sysroots/<machine_specifid_directory>, but this file is not there.
+>
+>
+> When I look into the dependent package build directory in
+> tmp/work/<arch-specific_dir>/<package_name>/, I am able to see the files in
+> the build output(libraries and .pc files). Any reason why it is not getting
+> copied into tmp/sysroots/ directory ? Do I need specify it somewhere
+> explicitly do get this done ?
+>
+>
+> Thanks & Regards,
+>
+> Hari Prasath
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a113cfa70ecad2b05367b2639
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello
+<div dir=3D"ltr"><div><div><div><div><div><div>Hi,<br><br></div>Check what =
+files are added to the package of your distribution (deb, ipk ) <br></div>V=
+ariable FILES_ defines what files should be added to the packages ( -dev, -=
+dbg, -doc ) which are installed in sysroot.<br><br></div>bitbake.conf speci=
+fy default files which should be packed.<br><br></div>You can check bitbake=
+ -e &lt;you_package&gt; &amp;&gt; output.log , for FILES_=C2=A0 variable an=
+d check what files are search and where.<br><br></div>Probably FILES_${PN} =
++=3D=C2=A0 would help. But that would be mi first try to find root cause.<b=
+r><br></div>Also check temp/ log.do_=C2=A0=C2=A0 files<br><div><div><div><d=
+iv><br></div></div></div></div></div><div class=3D"gmail_extra"><br><div cl=
+ass=3D"gmail_quote">On Thu, Jun 30, 2016 at 9:51 AM, Gujulan Elango, Hari P=
+rasath (H.) <span dir=3D"ltr">&lt;<a href=3D"mailto:hgujulan@visteon.com" t=
+arget=3D"_blank">hgujulan@visteon.com</a>&gt;</span> wrote:<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex">
 
 
-I am trying to integrate the meta-ivi layer into my distribution. When I am=
- trying to build the audiomanager, some dependent package do_configure() fa=
-ils. It looks for some packageconfig files(.pc) file in the tmp/sysroots/<m=
-achine_specifid_directory>, but this file is not there.
 
 
-When I look into the dependent package build directory in tmp/work/<arch-sp=
-ecific_dir>/<package_name>/, I am able to see the files in the build output=
-(libraries and .pc files). Any reason why it is not getting copied into tmp=
-/sysroots/ directory ? Do I need specify it somewhere explicitly do get thi=
-s done ?
-
-
-Thanks & Regards,
-
-Hari Prasath
-
---_000_DB5PR06MB157369E58A396E97FE19504FCF240DB5PR06MB1573eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;back=
-ground-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<div dir=3D"ltr">
+<div style=3D"font-size:12pt;color:#000000;background-color:#ffffff;font-fa=
+mily:Calibri,Arial,Helvetica,sans-serif">
 <p>Hello</p>
 <p><br>
 </p>
@@ -147,15 +168,22 @@ copied into tmp/sysroots/ directory ? Do I need
 </p>
 <p><br>
 </p>
-<div id=3D"Signature">Thanks &amp; Regards,
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
-ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
-<p style=3D"margin-top:0px; margin-bottom:0px">Hari Prasath<br>
+<div>Thanks &amp; Regards,
+<div style=3D"font-size:12pt;color:#000000;background-color:#ffffff;font-fa=
+mily:Calibri,Arial,Helvetica,sans-serif">
+<p style=3D"margin-top:0px;margin-bottom:0px">Hari Prasath<br>
 </p>
 </div>
 </div>
 </div>
-</body>
-</html>
+</div>
 
---_000_DB5PR06MB157369E58A396E97FE19504FCF240DB5PR06MB1573eurp_--
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--001a113cfa70ecad2b05367b2639--
