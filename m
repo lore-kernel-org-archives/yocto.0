@@ -1,17 +1,16 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <zhenhua.luo@nxp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94208E00990; Fri,  1 Jul 2016 08:02:18 -0700 (PDT)
+	id 1CFE0E00931; Fri,  1 Jul 2016 08:18:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.0.84 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +18,77 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
-	[209.85.220.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 571DBE00978
-	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 08:02:14 -0700 (PDT)
-Received: by mail-qk0-f196.google.com with SMTP id t2so931112qkh.2
-	for <yocto@yoctoproject.org>; Fri, 01 Jul 2016 08:02:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=oR/5+pkRJvB8t1xVIukukTFWeT64xgNgmRuMtgTBcJg=;
-	b=XO5lVMua92uFGyi9OJwmo++aEf4A3a2tX9r961is8uQ8i9ytZzbfOXlxJol0vky5Pw
-	X9rrXRpE7DWhfQ99iPcuPLd4no1/U9HK46ViyOpHzWoe+0pC0Ip6fx9vmap8JI9xuV9E
-	xF9FNWA2ktKSTRncUEr3XJLLS563h4V3ehZpYIu4hyWghQeG/nuJy9zx7FLzM3SHuYMc
-	CXRsteXZj0V4KB2vcmLUfrS9ZZq8QwJwXZh07UyNdz+lmfFIbX+mH1qa/zFYahv/H0OI
-	F9ljyr46MJ5z0xBFnOKX88KWCEPY8SN0TF+HTvH8z/nFm9bKItKWggBdOg/q2gWxt0KJ
-	KPfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=oR/5+pkRJvB8t1xVIukukTFWeT64xgNgmRuMtgTBcJg=;
-	b=eIF1rODIBZZYfz1t20DQkW56OJLgfbk2rrJh+7tjEoHgrwZmxAU08oIfMrdfFKh0wG
-	hNyvqWEYA1IRFV2X1wQKuQQNoVsRadRyzB6Ov53/uQbPEKE32ittdQR8oHmTNcdPwF57
-	8LnMzrGOCuwTR3Kp7fQBkk+wcZRXg1kGnHW43c5EL+hXofA4Au8gjXDREpkggFbWmC1t
-	nBmpE6/Fs5m1IuGXMO9sF8Zx6sDePP5aQpjA7AwUznzUQbiWL3Lw1tI8BIy4OfjBbV6Z
-	1NfQgRWesMVQnAsUKnElALgiNGJED02dHuiQQk8tGHffLs0MS3d98mJNTnYCXsrMHrE0
-	ZBPw==
-X-Gm-Message-State: ALyK8tLZELkv3EEl23MknWlwJlXLwL93OtbVo9PDlywWs6tknBInEclyHqUKi3B5jwu0dlQPWmtEGzEG7I932A==
-X-Received: by 10.55.178.195 with SMTP id b186mr3765106qkf.81.1467385333331;
-	Fri, 01 Jul 2016 08:02:13 -0700 (PDT)
+X-Greylist: delayed 10770 seconds by postgrey-1.32 at yocto-www;
+	Fri, 01 Jul 2016 08:18:44 PDT
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com
+	(mail-he1eur01on0084.outbound.protection.outlook.com [104.47.0.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09C6DE006D2
+	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 08:18:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=kK7BXBk6DZWFgmeJdFBoF+Htg0qIkNHHMk3BqdE8Q64=;
+	b=qAFyZFWgeQFC+pI3s1M4S8V6mZGgvSgIrm5t97p1GfJf4AAIxVokHC5Z1JKI+hoUh/LAu2T9833Sv1jJCPdvSxWxSQjqwSiDrCE1m04OM3sfSYlW/Hv9vuPj9uH1slWXAT5XLbspjuXqpT2GjOMXfdgM7sx2vFIO24bBbVLRTis=
+Received: from DB3PR04MB0684.eurprd04.prod.outlook.com (10.160.49.142) by
+	DB3PR04MB0684.eurprd04.prod.outlook.com (10.160.49.142) with Microsoft
+	SMTP Server (TLS) id 15.1.523.12; Fri, 1 Jul 2016 08:45:16 +0000
+Received: from DB3PR04MB0684.eurprd04.prod.outlook.com
+	([fe80::1d30:44c0:d745:ccc5]) by
+	DB3PR04MB0684.eurprd04.prod.outlook.com
+	([fe80::1d30:44c0:d745:ccc5%18]) with mapi id 15.01.0523.025;
+	Fri, 1 Jul 2016 08:45:16 +0000
+From: Zhenhua Luo <zhenhua.luo@nxp.com>
+To: Daniel. <danielhilst@gmail.com>
+Thread-Topic: [yocto] Failed to cross compile kernel with Yocto toolchain
+Thread-Index: AdHQTEHdkEKXnHfPRAm5aHur2N6VqwARb8SAABvUbbAAErRCEQAhKypAAAu1iIAAHJpIwAAnpOMAABj5c8A=
+Date: Fri, 1 Jul 2016 08:45:16 +0000
+Message-ID: <DB3PR04MB06840DD8C928F12BD653FE4AEE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
+References: <DB3PR04MB068442CB73636660A925BBFAEE210@DB3PR04MB0684.eurprd04.prod.outlook.com>
+	<CAMKF1sqzUPbS2ay9QVqOFZ7nnpLTX6ercDSC026aOSnC50jO7w@mail.gmail.com>
+	<DB3PR04MB0684EF56CBB04EE78720B595EE220@DB3PR04MB0684.eurprd04.prod.outlook.com>
+	<CAMKF1sr=7o2LnTtbgV=fEb+JMw2=vmvaN8b2iQSmZ1qJKd7SAw@mail.gmail.com>
+	<CAMKF1sqSM_jtKm0BCzcpDCDFwQZe6jOA_AO+7acq2Yq-N731-w@mail.gmail.com>
+	<CAMKF1soDAJ3hTV90UDTjwPc8U7G2x1m9jSLYnaaXGmJwbg7=FQ@mail.gmail.com>
+	<DB3PR04MB06844D91E4A18CAAFDFD6194EE230@DB3PR04MB0684.eurprd04.prod.outlook.com>
+	<CAF3SDA7koAq8Z6fqmddTCrnbAsrbfjvTTVSFhRX43WD+xNRQTQ@mail.gmail.com>
+	<DB3PR04MB0684768D40AAEB43CF618EF0EE240@DB3PR04MB0684.eurprd04.prod.outlook.com>
+	<CAF3SDA5Bf3shkBX+RqgRovCKtycByo3RFN8R80vXbfeRTvCKiQ@mail.gmail.com>
+In-Reply-To: <CAF3SDA5Bf3shkBX+RqgRovCKtycByo3RFN8R80vXbfeRTvCKiQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=zhenhua.luo@nxp.com; 
+x-originating-ip: [199.59.225.131]
+x-ms-office365-filtering-correlation-id: e4315f5d-184e-478d-2880-08d3a18c06ac
+x-microsoft-exchange-diagnostics: 1; DB3PR04MB0684;
+	6:3v9GnqhtO7sxYoQ02Zcp8nlwTaJIvg0rjB0mVLGJ6viccNx5jHy4pvGPt1bTRUtDP9EfaefK8RWli7+h9FKf00+yts5k6igF6V3NCgaTwuCKeFaoYh7Xe6C5QLYOJ1X1wVZXiXRg3w/CXlZFHBPnY3TNER7DjXltJ3vKwELOXZ6CTHgiOmwKRH8tbt3WSxqULHkgF9bMuxW2W+0Mr4VjYeVjqeUCFU5v+laL2cnNJI3XKWuye3COuWVNvtLCpOmTJyhNV6DBNObcFSTTpbEVuRTaP/DepQU5U+aIbWg6J8ggkgyYe74OA8xvsWmc/T0jcAu8Cc00bNBe4ywGgsJVSxllQTmG7vmTM5CSUFl/bcc=;
+	5:alH+aqsZ6ORdbgUH2zNBxRpEeaCsenEqN3WsscKn/avVHiMAGxbjO5X9nrct7Mfj7K+mP0Xnf2EU9zxdR9t60hM/VMMiME+oyHGCZ02JlfvJNzDdDEDY5YqWF0jm7pD84VU3QsaBT4oyqH8UL0+DBw==;
+	24:arnPC6V7eGiKJeldLFRa/rzpcDZNXol2k4dsO9Sj44GbKfDKGcuXhgiUiQhIi4yqya5qJAZjZcEzWZ1/PG3uVskrNGj4SiDV100K04nY/uQ=;
+	7:p6tt8paCyp3rJwWVEFvEoCjJT4ykLCYmlMuBOa0BE8bS3vyG0VDkfuAvg376l0CT6FLs7YH0kBWDXHMoD0NXNgJUAYAhdejf3OvPvWpbafqWEoWWUkeN4pn5Gk8GnLDFbQeGvRR1OJX+UqfJTexaGpPIhXKiRPzXs7zGmVG09L+D7LBuX1EMxOr4IxmN5BA4CuXKjjDIIw6FGZZOxxJBeNji6Fk5mY44mPdqgIs8Ft8udywgUYpoyN55/sDSqq+DH6rqK81y7qmiqS3caE3iqA==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB3PR04MB0684;
+x-microsoft-antispam-prvs: <DB3PR04MB0684A9AA78B0203C887BD10DEE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(166708455590820)(185117386973197)(83566789882024); 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001)(6055026);
+	SRVR:DB3PR04MB0684; BCL:0; PCL:0; RULEID:; SRVR:DB3PR04MB0684; 
+x-forefront-prvs: 0990C54589
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(7916002)(53754006)(199003)(377454003)(189002)(377424004)(13464003)(24454002)(5002640100001)(8676002)(3660700001)(81156014)(33656002)(76576001)(81166006)(15975445007)(97736004)(305945005)(68736007)(92566002)(74316002)(87936001)(86362001)(101416001)(2900100001)(8936002)(5250100002)(66066001)(110136002)(102836003)(1411001)(3846002)(6116002)(2950100001)(76176999)(586003)(54356999)(50986999)(93886004)(3280700002)(19580405001)(5003600100003)(7696003)(9686002)(11100500001)(105586002)(7736002)(1720100001)(19580395003)(106356001)(7846002)(4326007)(189998001)(2906002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DB3PR04MB0684;
+	H:DB3PR04MB0684.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: nxp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Fri, 1 Jul 2016 08:01:44 -0700 (PDT)
-In-Reply-To: <FD3EC9758442224FA81FA20FD6F1AE8C64431B8C@mx01.dti.lan>
-References: <FD3EC9758442224FA81FA20FD6F1AE8C64431B8C@mx01.dti.lan>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 1 Jul 2016 08:01:44 -0700
-Message-ID: <CAMKF1sqqduaAFkr8Hf3CfVfQ6xWdQd25qJ1ZVo2QYjbPBVz0AA@mail.gmail.com>
-To: Allan Chandler <allan.chandler@dti.com.au>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2016 08:45:16.7600 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR04MB0684
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Xorg failing with SEGV after Krogoth update
+Subject: Re: Failed to cross compile kernel with Yocto toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,455 +100,189 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jul 2016 15:02:18 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 01 Jul 2016 15:18:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Jun 30, 2016 at 10:24 PM, Allan Chandler
-<allan.chandler@dti.com.au> wrote:
-> We recently did (attempted? ) an upgrade of our Yocto embedded build system
-> from Fido to Krogoth and, other than one rather massive issue, it all went
-> well.
->
->
->
-> The massive issue is the fact that  X11 is apparently not starting
-> correctly. The embedded device boots okay since we can see in via a serial
-> console as well as connecting via SSH.
->
->
->
-> We've narrowed the actual issue down to the Xorg executable, after following
-> the process the the rc5.d Xserver satrtup scripts and xinit - basically,
-> Xorg is dumping core with the following output:
->
-
-may be you can enable coredump and collect it for offline post mortem
-setting ulimit -c unlimited e.g. when you run the suspected program will dump it
-
->
->
->     X.Org X Server 1.18.0
->
->     Release Date: 2015-11-09
->
->     X Protocol Version 11, Revision 0
->
->     Build Operating System: Linux 3.19.0-25-generic x86_64
->
->     Current Operating System: Linux imx6 3.14.28+g2b0ab6d #1 SMP PREEMPT Thu
-> Jun 30 12:20:09 AWST 2016 armv7l
->
->     Kernel command line: console=ttymxc0,115200 consoleblank=0
-> root=/dev/mmcblk3p2 rootwait
->
->     Build Date: 30 June 2016  01:38:24PM
->
->
->
->     Current version of pixman: 0.32.8
->
->             Before reporting problems, check http://wiki.x.org
->
->             to make sure that you have the latest version.
->
->     Markers: (--) probed, (**) from config file, (==) default setting,
->
->             (++) from command line, (!!) notice, (II) informational,
->
->             (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
->
->     (==) Log file: "/var/log/Xorg.0.log", Time: Fri Jul  1 00:12:43 2016
->
->     (==) Using config file: "/etc/X11/xorg.conf"
->
->     (==) Using system config directory "/usr/share/X11/xorg.conf.d"
->
->     (==) No Layout section.  Using the first Screen section.
->
->     (==) No screen section available. Using defaults.
->
->     (**) |-->Screen "Default Screen Section" (0)
->
->     (**) |   |-->Monitor "<default monitor>"
->
->     (==) No device specified for screen "Default Screen Section".
->
->             Using the first device section listed.
->
->     (**) |   |-->Device "i.MX Accelerated Framebuffer Device"
->
->     (==) No monitor specified for screen "Default Screen Section".
->
->             Using a default monitor configuration.
->
->     (**) Option "BlankTime" "0"
->
->     (**) Option "StandbyTime" "0"
->
->     (**) Option "SuspendTime" "0"
->
->     (**) Option "OffTime" "0"
->
->     (==) Automatically adding devices
->
->     (==) Automatically enabling devices
->
->     (==) Automatically adding GPU devices
->
->     (==) Max clients allowed: 256, resource mask: 0x1fffff
->
->     (WW) The directory "/usr/share/fonts/X11/misc/" does not exist.
->
->             Entry deleted from font path.
->
->     (WW) The directory "/usr/share/fonts/X11/TTF/" does not exist.
->
->             Entry deleted from font path.
->
->     (WW) The directory "/usr/share/fonts/X11/OTF/" does not exist.
->
->             Entry deleted from font path.
->
->     (WW) The directory "/usr/share/fonts/X11/Type1/" does not exist.
->
->             Entry deleted from font path.
->
->     (WW) The directory "/usr/share/fonts/X11/100dpi/" does not exist.
->
->             Entry deleted from font path.
->
->     (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
->
->             Entry deleted from font path.
->
->     (==) FontPath set to:
->
->
->
->     (==) ModulePath set to "/usr/lib/xorg/modules"
->
->     (II) The server relies on udev to provide the list of input devices.
->
->             If no devices become available, reconfigure udev or disable
-> AutoAddDevices.
->
->     (II) Loader magic: 0x1c3a20
->
->     (II) Module ABI versions:
->
->             X.Org ANSI C Emulation: 0.4
->
->             X.Org Video Driver: 20.0
->
->             X.Org XInput driver : 22.1
->
->             X.Org Server Extension : 9.0
->
->     (II) xfree86: Adding drm device (/dev/dri/card0)
->
->     (II) no primary bus or device found
->
->             falling back to /sys/devices/platform/Vivante GCCore/drm/card0
->
->     (II) LoadModule: "glx"
->
->     (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
->
->     (II) Module glx: vendor="X.Org Foundation"
->
->             compiled for 1.18.0, module version = 1.0.0
->
->             ABI class: X.Org Server Extension, version 9.0
->
->     (==) AIGLX enabled
->
->     (II) LoadModule: "vivante"
->
->     (II) Loading /usr/lib/xorg/modules/drivers/vivante_drv.so
->
->     (II) Module vivante: vendor="X.Org Foundation"
->
->             compiled for 1.18.0, module version = 1.0.0
->
->             Module class: X.Org Video Driver
->
->             ABI class: X.Org Video Driver, version 20.0
->
->     (II) VIVANTE: driver for vivante fb: VivanteGC500, VivanteGC2100,
->
->             VivanteGCCORE
->
->     (--) using VT number 3
->
->
->
->     (WW) Falling back to old probe method for vivante
->
->     (II) Loading sub module "fbdevhw"
->
->     (II) LoadModule: "fbdevhw"
->
->     (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
->
->     (II) Module fbdevhw: vendor="X.Org Foundation"
->
->             compiled for 1.18.0, module version = 0.0.2
->
->             ABI class: X.Org Video Driver, version 20.0
->
->     (II) VIVANTE(0): using default device
->
->     (II) VIVANTE(0): Device preferred mode 'fb0':U:1024x768p-60
->
->     (II) VIVANTE(0): Creating default Display subsection in Screen section
->
->             "Default Screen Section" for depth/fbbpp 16/16
->
->     (==) VIVANTE(0): Depth 16, (==) framebuffer bpp 16
->
->     (==) VIVANTE(0): RGB weight 565
->
->     (==) VIVANTE(0): Default visual is TrueColor
->
->     (==) VIVANTE(0): Using gamma correction (1.0, 1.0, 1.0)
->
->     (**) VIVANTE(0): Option "fbdev" "/dev/fb0"
->
->     (II) VIVANTE(0): checking modes against framebuffer device...
->
->     (II) VIVANTE(0): checking modes against monitor...
->
->     (II) VIVANTE(0): Use built in mode (bpp 16)
->
->     (--) VIVANTE(0): Virtual size is 0x0 (pitch 0)
->
->     (==) VIVANTE(0): DPI set to (96, 96)
->
->     (II) Loading sub module "fb"
->
->     (II) LoadModule: "fb"
->
->     (II) Loading /usr/lib/xorg/modules/libfb.so
->
->     (II) Module fb: vendor="X.Org Foundation"
->
->             compiled for 1.18.0, module version = 1.0.0
->
->             ABI class: X.Org ANSI C Emulation, version 0.4
->
->     (II) Loading sub module "exa"
->
->     (II) LoadModule: "exa"
->
->     (II) Loading /usr/lib/xorg/modules/libexa.so
->
->     (II) Module exa: vendor="X.Org Foundation"
->
->             compiled for 1.18.0, module version = 2.6.0
->
->             ABI class: X.Org Video Driver, version 20.0
->
->     (II) VIVANTE(0): printing discovered frame buffer 'fb0' supported modes:
->
->     (II) VIVANTE(0): Modeline "U:1024x768p-60"x0.0   65.00  1024 1064 1124
-> 1344  768 775 785 806 -hsync -vsync -csync (48.4 kHz eP)
->
->     (II) VIVANTE(0): Output DISP4 BG has no monitor section
->
->     (II) VIVANTE(0): Printing probed modes for output DISP4 BG
->
->     (II) VIVANTE(0): Modeline "U:1024x768p-60"x60.0   65.00  1024 1064 1124
-> 1344  768 775 785 806 -hsync -vsync -csync (48.4 kHz eP)
->
->     (II) VIVANTE(0): Output DISP4 BG connected
->
->     (II) VIVANTE(0): Using exact sizes for initial modes
->
->     (II) VIVANTE(0): Output DISP4 BG using initial mode U:1024x768p-60 +0+0
->
->     (II) VIVANTE(0): imxDisplayPreInit: virtual set 1024 x 768, display
-> width 0
->
->     (II) VIVANTE(0): FBDevPreInit: adjust display width 1024
->
->     (**) VIVANTE(0): PreInit done
->
->     (II) VIVANTE(0): Init mode for fb device
->
->     (II) VIVANTE(0): hardware: DISP4 BG (video memory: 8164kB)
->
->     (II) VIVANTE(0): FB Start = 0x75da6000  FB Base = 0x75da6000  FB Offset
-> = (nil) FB PhyBase 0x3c500000
->
->     (II) VIVANTE(0): reserve 4177920 bytes for on screen frame buffer; total
-> fb memory size 8359936 bytes; offset of shadow buffer 4177920
->
->     (II) VIVANTE(0): hardware: DISP4 BG (video memory: 8164kB)
->
->     (WW) VIVANTE(0): FBIOPAN_DISPLAY: Invalid argument
->
->     (II) VIVANTE(0): test Initializing EXA
->
->     (EE)
->
->     (EE) Backtrace:
->
->     (EE)
->
->     (EE) Segmentation fault at address 0xc
->
->     (EE)
->
->     Fatal server error:
->
->     (EE) Caught signal 11 (Segmentation fault). Server aborting
->
->     (EE)
->
->     (EE)
->
->     Please consult the The X.Org Foundation support
->
->              at http://wiki.x.org
->
->      for help.
->
->     (EE) Please also check the log file at "/var/log/Xorg.0.log" for
-> additional information.
->
->     (EE)
->
->     (EE) Server terminated with error (1). Closing log file.
->
->     Aborted
->
->
->
-> You can see in the final dozen lines or so that it gets a SIGSEGV. I've
-> searched for a solution online but the only close one I've discovered
-> (https://community.nxp.com/thread/327339) is for a different error.
->
->
->
-> For what it's worth, the working Fido variant is much the same (though with
-> different version numbers for components, primarily Xorg 1.16.3) but it
-> carries on after the "test Initializing EXA" line:
->
->
->
->     [2750328.650] (II) VIVANTE(0): test Initializing EXA
->
->     [2750328.650] (II) VIVANTE(0): (driver build from:
-> f2cae50cf6c3c924be2e06c43c819cb23ca1bf5c)
->
->     [2750328.654] (II) EXA(0): Driver allocated offscreen pixmaps
->
->     [2750328.654] (II) EXA(0): Driver registered support for the following
-> operations:
->
->     [2750328.654] (II)         Solid
->
->     [2750328.654] (II)         Copy
->
->     [2750328.654] (II)         Composite (RENDER acceleration)
->
->     [2750328.654] (II)         UploadToScreen
->
->     [2750328.670] (II) VIVANTE(0): Init SHM pixmap support
->
->     [2750328.670] (==) VIVANTE(0): Backing store enabled
->
->     [2750328.673] (==) VIVANTE(0): DPMS enabled
->
->     [2750328.673] (II) VIVANTE(0): RandR 1.2 enabled, ignore the following
-> RandR disabled message.
->
->     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
->
->     [2750328.674] drmOpenDevice: open result is 11, (OK)
->
->     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
->
->     [2750328.674] drmOpenDevice: open result is 11, (OK)
->
->     [2750328.674] drmOpenByBusid: Searching for BusID platform:Vivante
-> GCCore:00
->
->     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
->
->     [2750328.674] drmOpenDevice: open result is 11, (OK)
->
->     [2750328.674] drmOpenByBusid: drmOpenMinor returns 11
->
->     [2750328.674] drmOpenByBusid: drmGetBusid reports platform:Vivante
-> GCCore:00
->
->     [2750328.674] (II) [drm] DRM interface version 1.4
->
->     [2750328.674] (II) [drm] DRM open master succeeded.
->
->     [2750328.674] (II) VIVANTE(0): [drm] Using the DRM lock SAREA also for
-> drawables.
->
->     [2750328.674] (II) VIVANTE(0): [drm] framebuffer handle = 0x44700000
->
->     [2750328.674] (II) VIVANTE(0): [drm] added 1 reserved context for kernel
->
->     [2750328.674] (II) VIVANTE(0): X context handle = 0x1
->
->     [2750328.675] (II) VIVANTE(0): [drm] installed DRM signal handler
->
->     [2750328.675] (II) VIVANTE(0): [DRI] installation complete
->
->     [2750328.675] (--) RandR disabled
->
->     [2750328.702] (II) AIGLX: Screen 0 is not DRI2 capable
->
->     [2750328.702] (EE) AIGLX: reverting to software rendering
->
->     [2750328.751] (II) AIGLX: Loaded and initialized swrast
->
->     [2750328.751] (II) GLX: Initialized DRISWRAST GL provider for screen 0
->
->     [2750328.753] (II) VIVANTE(0): Setting screen physical size to 270 x 203
->
->
->
-> I'd appreciate any pointers on how best to debug/resolve this issue since I
-> cannot appear to get any more detailed information out of `Xorg` itself. Or,
-> alternatively, if anyone has seen this same (or very similar) problem, how
-> was it solved?
->
->
->
-> Cheers,
->
-> Al.
->
->
->
-> Allan Chandler | Software Engineer
->
-> DTI Group Ltd | Transit Security & Surveillance
->
-> 31 Affleck Road, Perth Airport, WA 6105, AU
->
-> P | F | allan.chandler@dti.com.au
->
->
->
-> Visit our website www.dti.com.au
->
-> The information contained in this email is confidential. If you receive this
-> email in error, please inform DTI Group Ltd via the above contact details.
-> If you are not the intended recipient, you may not use or disclose the
-> information contained in this email or attachments.
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+VGhhbmtzIGEgbG90IGZvciB5b3VyIGNvbW1lbnRzLCBEYW5pZWwuIA0KDQpDYW4gc29tZWJvZHkg
+cGxlYXNlIHNoZWQgbGlnaHQgb24gaG93IHRvIGZpeCB0aGUgaXNzdWUgaW4gWW9jdG8gcmVjaXBl
+cz8gIA0KDQoNCkJlc3QgUmVnYXJkcywNCg0KWmhlbmh1YQ0KDQo+IC0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQo+IEZyb206IERhbmllbC4gW21haWx0bzpkYW5pZWxoaWxzdEBnbWFpbC5jb21d
+DQo+IFNlbnQ6IEZyaWRheSwgSnVseSAwMSwgMjAxNiA0OjQ4IEFNDQo+IFRvOiBaaGVuaHVhIEx1
+byA8emhlbmh1YS5sdW9AbnhwLmNvbT4NCj4gQ2M6IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5j
+b20+OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIEZhaWxl
+ZCB0byBjcm9zcyBjb21waWxlIGtlcm5lbCB3aXRoIFlvY3RvIHRvb2xjaGFpbg0KPiANCj4gVGhl
+IHByb2JsZW0gaXMgdGhhdCBjY2FjaGUgaXMgbm90IGZpbmRpbmcgdGhlIGNvbXBpbGVyIGFmdGVy
+IGVudmlyb25tZW50LQ0KPiBzZXR1cCouc2ggaXMgc291cmNlZC5Zb3VyIGVycm9yIG1lc3NhZ2Ug
+Y2FuIGJlIGZvdWQgYXQ6DQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9jY2FjaGUvY2NhY2hlL2Jsb2Iv
+bWFzdGVyL2NjYWNoZS5jI0wyMDc1LiBJdCBzZWVtcyB0aGF0DQo+IGl0cyBzZWFyY2hpbmcgZm9y
+ICJnY2MiIHdoZW4gSSB0aG91Z2ggdGhhdCBrZXJuZWwgd291bGQgc2VhcmNoIGZvcg0KPiAiJHtD
+Uk9TU19DT01QSUxFfWdjYyINCj4gDQo+IDIwMTYtMDYtMjkgMjI6NTQgR01ULTAzOjAwIFpoZW5o
+dWEgTHVvIDx6aGVuaHVhLmx1b0BueHAuY29tPjoNCj4gPiBJIHRoaW5rIHlvdSBtZWFuIC91c3Iv
+bGliNjQvY2NhY2hlL2djYyBpbnN0ZWFkIG9mIC91c3IvbGliNjQvZ2NjLCBpdCBpcyBhIHZhbGlk
+DQo+IGxpbmsuDQo+ID4NCj4gPiAkIHNvdXJjZSAvb3B0L3Bva3kvMi4xK3NuYXBzaG90L2Vudmly
+b25tZW50LXNldHVwLXBwY2U1MDBtYy1wb2t5LQ0KPiBsaW51eA0KPiA+ICQgd2hpY2ggZ2NjDQo+
+ID4gL3Vzci9saWI2NC9jY2FjaGUvZ2NjDQo+ID4gJA0KPiA+ICQgbHMgLWwgL3Vzci9saWI2NC9j
+Y2FjaGUvZ2NjDQo+ID4gbHJ3eHJ3eHJ3eCAxIHJvb3Qgcm9vdCAxNiBKdW4gMjkgMTg6MjIgL3Vz
+ci9saWI2NC9jY2FjaGUvZ2NjIC0+DQo+ID4gLi4vLi4vYmluL2NjYWNoZSAkIGxzIC1sIC91c3Iv
+YmluL2NjYWNoZSAtcnd4ci14ci14IDEgcm9vdCByb290IDEyODU4NA0KPiA+IEphbiAyNiAxNDo1
+OCAvdXNyL2Jpbi9jY2FjaGUgJA0KPiA+DQo+ID4NCj4gPiBCZXN0IFJlZ2FyZHMsDQo+ID4NCj4g
+PiBaaGVuaHVhDQo+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJv
+bTogRGFuaWVsLiBbbWFpbHRvOmRhbmllbGhpbHN0QGdtYWlsLmNvbV0NCj4gPj4gU2VudDogV2Vk
+bmVzZGF5LCBKdW5lIDI5LCAyMDE2IDg6MTQgUE0NCj4gPj4gVG86IFpoZW5odWEgTHVvIDx6aGVu
+aHVhLmx1b0BueHAuY29tPg0KPiA+PiBDYzogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gPj4gU3ViamVjdDogUmU6IFt5b2N0b10gRmFpbGVk
+IHRvIGNyb3NzIGNvbXBpbGUga2VybmVsIHdpdGggWW9jdG8NCj4gPj4gdG9vbGNoYWluDQo+ID4+
+DQo+ID4+IElzIC91c3IvbGliNjQvZ2NjIGEgZmlsZSBvciBhIGxpbms/IElzIGl0IGEgdmFsaWQg
+bGluaz8NCj4gPj4NCj4gPj4gMjAxNi0wNi0yOSA1OjUyIEdNVC0wMzowMCBaaGVuaHVhIEx1byA8
+emhlbmh1YS5sdW9AbnhwLmNvbT46DQo+ID4+ID4gVGhlIC91c3IvbGliNjQvY2NhY2hlIGlzIGFk
+ZGVkIGluIFBBVEggYnkgL2V0Yy9wcm9maWxlLmQvY2NhY2hlLnNoDQo+ID4+ID4gd2hlbiBjY2Fj
+aGUgaXMgaW5zdGFsbGVkIG9uIEZlZG9yYSBob3N0LCB0aGUgaXNzdWUgZGlzYXBwZWFycyBpZg0K
+PiA+PiA+IG9uZSBvZiB0aGUgZm9sbG93aW5nIGNoYW5nZXMgaXMgZG9uZS4NCj4gPj4gPg0KPiA+
+PiA+IDEuICAgICAgIFJlbW92ZSAvdXNyL2xpYjY0L2NjYWNoZSBmcm9tIFBBVEgNCj4gPj4gPg0K
+PiA+PiA+IDIuICAgICAgIE1vdmUgL3Vzci9saWI2NC9jY2FjaGUgYWZ0ZXIgL3Vzci9iaW4gaW4g
+UEFUSA0KPiA+PiA+DQo+ID4+ID4gMy4gICAgICAgU2V0IENDQUNIRV9QQVRIIGVxdWFscyB0byBQ
+QVRIDQo+ID4+ID4NCj4gPj4gPiA0LiAgICAgICBVbnNldCBDQ0FDSEVfUEFUSA0KPiA+PiA+DQo+
+ID4+ID4NCj4gPj4gPg0KPiA+PiA+IEFub3RoZXIgb2JzZXJ2YXRpb24sIGJlZm9yZSBzb3VyY2lu
+Zw0KPiA+PiA+IGVudmlyb25tZW50LXNldHVwLTxjb3JlPi1wb2t5LWxpbnV4LA0KPiA+PiA+IGdj
+YyBjYW4gYmUgZm91bmQgZXZlbiBpZiAvdXNyL2xpYjY0L2NjYWNoZSBpcyBpbiBwcmVwZW5kIHRv
+IFBBVEgsDQo+ID4+ID4gYnV0IGFmdGVyIHNvdXJjaW5nIHRoZSBlbnZpcm9ubWVudC1zZXR1cC08
+Y29yZT4tcG9reS1saW51eCBzY3JpcHQsDQo+ID4+ID4gdGhlIGdjYyBjYW7igJl0IGJlIGZvdW5k
+LCB0aGlzIHNob3VsZCBiZSBhIGJ1ZyBvZiB0aGUNCj4gPj4gPiBlbnZpcm9ubWVudC1zZXR1cC08
+Y29yZT4tcG9reS1saW51eA0KPiA+PiA+IHNjcmlwdC4gU2hvdWxkIEkgb3BlbiBhIEJ1Z3ppbGxh
+IHRpY2tldCB0byB0cmFjayBpdD8NCj4gPj4gPg0KPiA+PiA+DQo+ID4+ID4NCj4gPj4gPiAkIGVj
+aG8gJFBBVEgNCj4gPj4gPg0KPiA+PiA+IC91c3IvbGliNjQvcXQtMy4zL2JpbjovdXNyL2xpYjY0
+L2NjYWNoZTovdXNyL2xvY2FsL2JpbjovdXNyL2JpbjovdXMNCj4gPj4gPiByL2wNCj4gPj4gPiBv
+Y2FsL3NiaW46L3Vzci9zYmluOi9ob21lL2Jqc2ltaWNzLy5sb2NhbC9iaW46L2hvbWUvYmpzaW1p
+Y3MvYmluDQo+ID4+ID4NCj4gPj4gPiB3aGljaCBnY2MNCj4gPj4gPg0KPiA+PiA+IC91c3IvbGli
+NjQvY2NhY2hlL2djYw0KPiA+PiA+DQo+ID4+ID4gJCBnY2MgLXYNCj4gPj4gPg0KPiA+PiA+IFVz
+aW5nIGJ1aWx0LWluIHNwZWNzLg0KPiA+PiA+DQo+ID4+ID4gQ09MTEVDVF9HQ0M9L3Vzci9iaW4v
+Z2NjDQo+ID4+ID4NCj4gPj4gPiBDT0xMRUNUX0xUT19XUkFQUEVSPS91c3IvbGliZXhlYy9nY2Mv
+eDg2XzY0LXJlZGhhdC1saW51eC81LjMuMS9sdG8tDQo+ID4+IHdyYQ0KPiA+PiA+IHBwZXINCj4g
+Pj4gPg0KPiA+PiA+IFRhcmdldDogeDg2XzY0LXJlZGhhdC1saW51eA0KPiA+PiA+DQo+ID4+ID4g
+Q29uZmlndXJlZCB3aXRoOiAuLi9jb25maWd1cmUgLS1lbmFibGUtYm9vdHN0cmFwDQo+ID4+ID4g
+LS1lbmFibGUtbGFuZ3VhZ2VzPWMsYysrLG9iamMsb2JqLWMrKyxmb3J0cmFuLGFkYSxnbyxsdG8N
+Cj4gPj4gPiAtLXByZWZpeD0vdXNyIC0tbWFuZGlyPS91c3Ivc2hhcmUvbWFuIC0taW5mb2Rpcj0v
+dXNyL3NoYXJlL2luZm8NCj4gPj4gPiAtLXdpdGgtYnVndXJsPWh0dHA6Ly9idWd6aWxsYS5yZWRo
+YXQuY29tL2J1Z3ppbGxhIC0tZW5hYmxlLXNoYXJlZA0KPiA+PiA+IC0tZW5hYmxlLXRocmVhZHM9
+cG9zaXggLS1lbmFibGUtY2hlY2tpbmc9cmVsZWFzZSAtLWVuYWJsZS1tdWx0aWxpYg0KPiA+PiA+
+IC0td2l0aC1zeXN0ZW0temxpYiAtLWVuYWJsZS1fX2N4YV9hdGV4aXQNCj4gPj4gPiAtLWRpc2Fi
+bGUtbGlidW53aW5kLWV4Y2VwdGlvbnMgLS1lbmFibGUtZ251LXVuaXF1ZS1vYmplY3QNCj4gPj4g
+PiAtLWVuYWJsZS1saW5rZXItYnVpbGQtaWQgLS13aXRoLWxpbmtlci1oYXNoLXN0eWxlPWdudQ0K
+PiA+PiA+IC0tZW5hYmxlLXBsdWdpbiAtLWVuYWJsZS1pbml0ZmluaS1hcnJheSAtLWRpc2FibGUt
+bGliZ2NqDQo+ID4+ID4gLS13aXRoLWRlZmF1bHQtbGlic3RkY3h4LWFiaT1nY2M0LWNvbXBhdGli
+bGUgLS13aXRoLWlzbA0KPiA+PiA+IC0tZW5hYmxlLWxpYm1weCAtLWVuYWJsZS1nbnUtaW5kaXJl
+Y3QtZnVuY3Rpb24gLS13aXRoLXR1bmU9Z2VuZXJpYw0KPiA+PiA+IC0td2l0aC1hcmNoXzMyPWk2
+ODYgLS1idWlsZD14ODZfNjQtcmVkaGF0LWxpbnV4DQo+ID4+ID4NCj4gPj4gPiBUaHJlYWQgbW9k
+ZWw6IHBvc2l4DQo+ID4+ID4NCj4gPj4gPiBnY2MgdmVyc2lvbiA1LjMuMSAyMDE2MDQwNiAoUmVk
+IEhhdCA1LjMuMS02KSAoR0NDKQ0KPiA+PiA+DQo+ID4+ID4gJA0KPiA+PiA+DQo+ID4+ID4gJCBz
+b3VyY2UgL29wdC9wb2t5LzIuMStzbmFwc2hvdC9lbnZpcm9ubWVudC1zZXR1cC1wcGNlNTAwbWMt
+cG9reS0NCj4gPj4gbGludXgNCj4gPj4gPg0KPiA+PiA+ICQNCj4gPj4gPg0KPiA+PiA+ICQgZWNo
+byAkUEFUSA0KPiA+PiA+DQo+ID4+ID4gL29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNyb290cy94
+ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluOi9vcHQvcA0KPiA+PiA+IG9reQ0KPiA+PiA+IC8y
+LjErc25hcHNob3Qvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL3NiaW46L29wdC9w
+b2t5LzIuMSsNCj4gPj4gPiBzbmENCj4gPj4gPiBwc2hvdC9zeXNyb290cy94ODZfNjQtcG9reXNk
+ay1saW51eC9iaW46L29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNyDQo+ID4+ID4gb290DQo+ID4+
+ID4gcy94ODZfNjQtcG9reXNkay1saW51eC9zYmluOi9vcHQvcG9reS8yLjErc25hcHNob3Qvc3lz
+cm9vdHMveDg2XzY0LQ0KPiA+PiA+IHBvaw0KPiA+PiA+IHlzZGstbGludXgvdXNyL2Jpbi8uLi94
+ODZfNjQtcG9reXNkay1saW51eC9iaW46L29wdC9wb2t5LzIuMStzbmFwc2gNCj4gPj4gPiBvdC8N
+Cj4gPj4gPiBzeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluL3Bvd2VycGMtcG9r
+eS1saW51eDovb3B0L3Bva3kvDQo+ID4+ID4gMi4xDQo+ID4+ID4gK3NuYXBzaG90L3N5c3Jvb3Rz
+L3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4vcG93ZXJwYy1wb2t5LWxpbnV4LQ0KPiA+PiA+
+ICt1Y2wNCj4gPj4gPiBpYmM6L29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNyb290cy94ODZfNjQt
+cG9reXNkay1saW51eC91c3IvYmluL3BvDQo+ID4+ID4gd2VyDQo+ID4+ID4gcGMtcG9reS1saW51
+eC1tdXNsOi91c3IvbGliNjQvcXQtMy4zL2JpbjovdXNyL2xpYjY0L2NjYWNoZTovdXNyL2xvYw0K
+PiA+PiA+IGFsLw0KPiA+PiA+IGJpbjovdXNyL2JpbjovdXNyL2xvY2FsL3NiaW46L3Vzci9zYmlu
+Oi9ob21lL2Jqc2ltaWNzLy5sb2NhbC9iaW46L2gNCj4gPj4gPiBvbWUNCj4gPj4gPiAvYmpzaW1p
+Y3MvYmluDQo+ID4+ID4NCj4gPj4gPiAkDQo+ID4+ID4NCj4gPj4gPiAkIHdoaWNoIGdjYw0KPiA+
+PiA+DQo+ID4+ID4gL3Vzci9saWI2NC9jY2FjaGUvZ2NjDQo+ID4+ID4NCj4gPj4gPiAkIGdjYyAt
+dg0KPiA+PiA+DQo+ID4+ID4gY2NhY2hlOiBlcnJvcjogQ291bGQgbm90IGZpbmQgY29tcGlsZXIg
+ImdjYyIgaW4gUEFUSA0KPiA+PiA+DQo+ID4+ID4gJA0KPiA+PiA+DQo+ID4+ID4NCj4gPj4gPg0K
+PiA+PiA+DQo+ID4+ID4NCj4gPj4gPiBCZXN0IFJlZ2FyZHMsDQo+ID4+ID4NCj4gPj4gPg0KPiA+
+PiA+DQo+ID4+ID4gWmhlbmh1YQ0KPiA+PiA+DQo+ID4+ID4NCj4gPj4gPg0KPiA+PiA+IEZyb206
+IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KPiA+PiA+IFNlbnQ6IFR1ZXNk
+YXksIEp1bmUgMjgsIDIwMTYgMTA6NDggUE0NCj4gPj4gPiBUbzogWmhlbmh1YSBMdW8gPHpoZW5o
+dWEubHVvQG54cC5jb20+DQo+ID4+ID4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gPj4g
+PiBTdWJqZWN0OiBSRTogW3lvY3RvXSBGYWlsZWQgdG8gY3Jvc3MgY29tcGlsZSBrZXJuZWwgd2l0
+aCBZb2N0bw0KPiA+PiA+IHRvb2xjaGFpbg0KPiA+PiA+DQo+ID4+ID4NCj4gPj4gPg0KPiA+PiA+
+IC91c3IvbGliNjQvY2NhY2hlIGlzIHVudXN1YWwgd2h5IGRvIHlvdSBoYXZlIGl0IGluIHBhdGgg
+YW5kIGlmIHlvdQ0KPiA+PiA+IHJlYWxseSBuZWVkIGl0IGFkZCBpdCBhZnRlciBhbGwgb3RoZXIg
+cGF0aHMuIENoZWNrIHlvdXIgZW52IGZpcnN0DQo+ID4+ID4NCj4gPj4gPg0KPiA+PiA+DQo+ID4+
+ID4gT24gSnVuIDI3LCAyMDE2IDEwOjU2IFBNLCAiWmhlbmh1YSBMdW8iIDx6aGVuaHVhLmx1b0Bu
+eHAuY29tPiB3cm90ZToNCj4gPj4gPg0KPiA+PiA+IEhlbGxvIEtoZW0sDQo+ID4+ID4NCj4gPj4g
+Pg0KPiA+PiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiA+PiBGcm9tOiBLaGVt
+IFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCj4gPj4gPj4gU2VudDogVHVlc2RheSwg
+SnVuZSAyOCwgMjAxNiAxMjozNiBBTQ0KPiA+PiA+PiBUbzogWmhlbmh1YSBMdW8gPHpoZW5odWEu
+bHVvQG54cC5jb20+DQo+ID4+ID4+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4+ID4+
+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIEZhaWxlZCB0byBjcm9zcyBjb21waWxlIGtlcm5lbCB3aXRo
+IFlvY3RvDQo+ID4+ID4+IHRvb2xjaGFpbg0KPiA+PiA+Pg0KPiA+PiA+PiBPbiBNb24sIEp1biAy
+NywgMjAxNiBhdCAxOjE2IEFNLCBaaGVuaHVhIEx1byA8emhlbmh1YS5sdW9AbnhwLmNvbT4NCj4g
+Pj4gPj4gd3JvdGU6DQo+ID4+ID4+ID4gSGVsbG8gYWxsLA0KPiA+PiA+PiA+DQo+ID4+ID4+ID4N
+Cj4gPj4gPj4gPg0KPiA+PiA+PiA+IEkgZ2VuZXJhdGUgdGhlIFlvY3RvIHRvb2xjaGFpbiBieSDi
+gJxiaXRiYWtlIG1ldGEtdG9vbGNoYWlu4oCdLCBhbmQNCj4gPj4gPj4gPiB1c2UgdGhpcyB0b29s
+Y2hhaW4gdG8gY3Jvc3MtY29tcGlsZSBrZXJuZWwsIEkgbWV0IHRoZSBmb2xsb3dpbmcgZXJyb3Iu
+DQo+ID4+ID4+ID4gSXMgdGhpcyBhIGJ1ZyBvciBJIG1pc3NlZCBzb21ldGhpbmc/IE15IGhvc3Qg
+TGludXggaXMgRmVkb3JhIDIyLg0KPiA+PiA+Pg0KPiA+PiA+PiBpdHMgYmV0dGVyIHRvIHN0YXJ0
+IHVzaW5nIGJpdGJha2UgLWNwb3B1bGF0ZV9zZGsgPGltYWdlIG5hbWU+IHRvDQo+ID4+ID4+IGdl
+bmVyYXRlIFNES3MuDQo+ID4+ID4+DQo+ID4+ID4+DQo+ID4+ID4+ID4NCj4gPj4gPj4gPg0KPiA+
+PiA+PiA+DQo+ID4+ID4+ID4gJCBzb3VyY2UNCj4gPj4gPj4gPiAvb3B0L3Bva3kvMi4xK3NuYXBz
+aG90L2Vudmlyb25tZW50LXNldHVwLXBwY2U1MDBtYy1wb2t5LQ0KPiA+PiA+PiBsaW51eA0KPiA+
+PiA+PiA+DQo+ID4+ID4+ID4gJCBjZCBsaW51eC8NCj4gPj4gPj4gPg0KPiA+PiA+PiA+ICQgbWFr
+ZSBjb3JlbmV0MzJfc21wX2RlZmNvbmZpZw0KPiA+PiA+PiA+DQo+ID4+ID4+ID4gICBIT1NUQ0Mg
+IHNjcmlwdHMva2NvbmZpZy9jb25mLm8NCj4gPj4gPj4gPg0KPiA+PiA+PiA+IGNjYWNoZTogZXJy
+b3I6IENvdWxkIG5vdCBmaW5kIGNvbXBpbGVyICJnY2MiIGluIFBBVEgNCj4gPj4gPj4NCj4gPj4g
+Pj4gZGlkIHlvdSBzZWUgaWYgZ2NjIGlzIGluIHlvdXIgcGF0aCBhZnRlciBzb3VyY2luZyBTREsg
+ZW52IHNjcmlwdD8NCj4gPj4gPg0KPiA+PiA+IFtMdW8gWmhlbmh1YS1CMTk1MzddIGdjYyBjYW4n
+dCBiZSBmb3VuZCBhZnRlciBzb3VyY2luZyB0aGUgU0RLIGVudiBzY3JpcHQuDQo+ID4+ID4gYnV0
+IHRoZSAvdXNyL2JpbiBpcyBpbiB0aGUgUEFUSCBlbnYgdmFyaWFibGUuDQo+ID4+ID4gJCBzb3Vy
+Y2UgL29wdC9wb2t5LzIuMStzbmFwc2hvdC9lbnZpcm9ubWVudC1zZXR1cC1wcGNlNTAwbWMtcG9r
+eS0NCj4gPj4gbGludXgNCj4gPj4gPiAkIGVjaG8gJFBBVEgNCj4gPj4gPiAvb3B0L3Bva3kvMi4x
+K3NuYXBzaG90L3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW46L29wdC9wDQo+
+ID4+ID4gb2t5DQo+ID4+ID4gLzIuMStzbmFwc2hvdC9zeXNyb290cy94ODZfNjQtcG9reXNkay1s
+aW51eC91c3Ivc2Jpbjovb3B0L3Bva3kvMi4xKw0KPiA+PiA+IHNuYQ0KPiA+PiA+IHBzaG90L3N5
+c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L2Jpbjovb3B0L3Bva3kvMi4xK3NuYXBzaG90L3N5
+c3INCj4gPj4gPiBvb3QNCj4gPj4gPiBzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3NiaW46L29wdC9w
+b2t5LzIuMStzbmFwc2hvdC9zeXNyb290cy94ODZfNjQtDQo+ID4+ID4gcG9rDQo+ID4+ID4geXNk
+ay1saW51eC91c3IvYmluLy4uL3g4Nl82NC1wb2t5c2RrLWxpbnV4L2Jpbjovb3B0L3Bva3kvMi4x
+K3NuYXBzaA0KPiA+PiA+IG90Lw0KPiA+PiA+IHN5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4
+L3Vzci9iaW4vcG93ZXJwYy1wb2t5LWxpbnV4Oi9vcHQvcG9reS8NCj4gPj4gPiAyLjENCj4gPj4g
+PiArc25hcHNob3Qvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi9wb3dlcnBj
+LXBva3ktbGludXgtDQo+ID4+ID4gK3VjbA0KPiA+PiA+IGliYzovb3B0L3Bva3kvMi4xK3NuYXBz
+aG90L3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4vcG8NCj4gPj4gPiB3ZXIN
+Cj4gPj4gPiBwYy1wb2t5LWxpbnV4LW11c2w6L3Vzci9saWI2NC9xdC0zLjMvYmluOi91c3IvbGli
+NjQvY2NhY2hlOi91c3IvbG9jDQo+ID4+ID4gYWwvDQo+ID4+ID4gYmluOi91c3IvYmluOi91c3Iv
+bG9jYWwvc2JpbjovdXNyL3NiaW46L2hvbWUvYmpzaW1pY3MvLmxvY2FsL2JpbjovaA0KPiA+PiA+
+IG9tZQ0KPiA+PiA+IC9ianNpbWljcy9iaW4NCj4gPj4gPiAkIGVjaG8gJENDQUNIRV9QQVRIDQo+
+ID4+ID4gL29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNyb290cy94ODZfNjQtcG9reXNkay0NCj4g
+Pj4gbGludXgvdXNyL2Jpbjovb3B0L3Bva3kvMi4xK3NuYXBzaG90L3N5c3Jvb3RzL3g4Nl82NC1w
+b2t5c2RrLQ0KPiA+PiBsaW51eC91c3IvYmluLy4uL3g4Nl82NC1wb2t5c2RrLQ0KPiA+PiBsaW51
+eC9iaW46L29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNyb290cy94ODZfNjQtcG9reXNkay0NCj4g
+Pj4gbGludXgvdXNyL2Jpbi9wb3dlcnBjLXBva3ktbGludXg6L29wdC9wb2t5LzIuMStzbmFwc2hv
+dC9zeXNyb290cy94ODZfDQo+ID4+IDY0LQ0KPiA+PiBwb2t5c2RrLWxpbnV4L3Vzci9iaW4vcG93
+ZXJwYy1wb2t5LWxpbnV4LQ0KPiA+PiB1Y2xpYmM6L29wdC9wb2t5LzIuMStzbmFwc2hvdC9zeXNy
+b290cy94ODZfNjQtcG9reXNkay0NCj4gPj4gbGludXgvdXNyL2Jpbi9wb3dlcnBjLXBva3ktbGlu
+dXgtbXVzbDoNCj4gPj4gPiAkIHdoaWNoIGdjYw0KPiA+PiA+IC91c3IvbGliNjQvY2NhY2hlL2dj
+Yw0KPiA+PiA+ICQgZ2NjIC12DQo+ID4+ID4NCj4gPj4gPiBjY2FjaGU6IGVycm9yOiBDb3VsZCBu
+b3QgZmluZCBjb21waWxlciAiZ2NjIiBpbiBQQVRIDQo+ID4+ID4NCj4gPj4gPiBCZXN0IFJlZ2Fy
+ZHMsDQo+ID4+ID4NCj4gPj4gPiBaaGVuaHVhDQo+ID4+ID4NCj4gPj4gPg0KPiA+PiA+PiA+IHNj
+cmlwdHMvTWFrZWZpbGUuaG9zdDoxMDg6IHJlY2lwZSBmb3IgdGFyZ2V0ICdzY3JpcHRzL2tjb25m
+aWcvY29uZi5vJw0KPiA+PiA+PiA+IGZhaWxlZA0KPiA+PiA+PiA+DQo+ID4+ID4+ID4gbWFrZVsx
+XTogKioqIFtzY3JpcHRzL2tjb25maWcvY29uZi5vXSBFcnJvciAxDQo+ID4+ID4+ID4NCj4gPj4g
+Pj4gPiBNYWtlZmlsZTo1NDE6IHJlY2lwZSBmb3IgdGFyZ2V0ICdjb3JlbmV0MzJfc21wX2RlZmNv
+bmZpZycgZmFpbGVkDQo+ID4+ID4+ID4NCj4gPj4gPj4gPiBtYWtlOiAqKiogW2NvcmVuZXQzMl9z
+bXBfZGVmY29uZmlnXSBFcnJvciAyDQo+ID4+ID4+ID4NCj4gPj4gPj4gPg0KPiA+PiA+PiA+DQo+
+ID4+ID4+ID4NCj4gPj4gPj4gPg0KPiA+PiA+PiA+IEJlc3QgUmVnYXJkcywNCj4gPj4gPj4gPg0K
+PiA+PiA+PiA+DQo+ID4+ID4+ID4NCj4gPj4gPj4gPiBaaGVuaHVhDQo+ID4+ID4+ID4NCj4gPj4g
+Pj4gPg0KPiA+PiA+PiA+IC0tDQo+ID4+ID4+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18NCj4gPj4gPj4gPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4gPj4g
+Pj4gPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4+ID4+ID4gaHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+ID4+ID4+ID4NCj4gPj4gPg0KPiA+PiA+DQo+
+ID4+ID4NCj4gPj4gPg0KPiA+PiA+IC0tDQo+ID4+ID4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NCj4gPj4gPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4gPj4g
+PiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
+Y3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+ID4+ID4NCj4gPj4NCj4gPj4NCj4gPj4NCj4gPj4gLS0N
+Cj4gPj4gIkRvIG9yIGRvIG5vdC4gVGhlcmUgaXMgbm8gdHJ5Ig0KPiA+PiAgIFlvZGEgTWFzdGVy
+DQo+IA0KPiANCj4gDQo+IC0tDQo+ICJEbyBvciBkbyBub3QuIFRoZXJlIGlzIG5vIHRyeSINCj4g
+ICBZb2RhIE1hc3Rlcg0K
 
