@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2DE0E00931; Fri,  1 Jul 2016 07:31:19 -0700 (PDT)
+	id 94208E00990; Fri,  1 Jul 2016 08:02:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.175 listed in list.dnswl.org]
+	*      [209.85.220.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,56 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f175.google.com (mail-qt0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6FDE006D2
-	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 07:31:17 -0700 (PDT)
-Received: by mail-qt0-f175.google.com with SMTP id m2so58562244qtd.1
-	for <yocto@yoctoproject.org>; Fri, 01 Jul 2016 07:31:17 -0700 (PDT)
+Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
+	[209.85.220.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 571DBE00978
+	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 08:02:14 -0700 (PDT)
+Received: by mail-qk0-f196.google.com with SMTP id t2so931112qkh.2
+	for <yocto@yoctoproject.org>; Fri, 01 Jul 2016 08:02:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=32h1QcOzmMEX3uzjG2RdS6VhAhklXPfHu2Q9XpXLDB8=;
-	b=uuUdAEfyh2pVFL8sTw/5Lyg2h5AlWzFFh2LmHsjs0vEQ4PEQQz9vOiqfFik3oAHmjJ
-	fo9V1xeq0Uc4zV3UWoxS/uQJTkSVsk4/YAPWJjZOtDI/l4EAKDCR1iV4F9CLl+M0Dplj
-	Hgib+oRBhw5liKa2qJBV//99dyKLMR1f8ogrLRtZ983XQZMUwZ6Tfw3OsurKzffeeMDH
-	18CnT6itTT8QXfK9rIIxidHGR734K+1CsNX4gCyBu19zbeWWshUDZdMPgRqQH8Z9/2Hf
-	TwxWRvnELzS+64e9px5fVQAgt9cYoa2luDXa5q+Jmc3H388MD4rnji4dftb7HHk9ZLYX
-	RoHQ==
+	:cc; bh=oR/5+pkRJvB8t1xVIukukTFWeT64xgNgmRuMtgTBcJg=;
+	b=XO5lVMua92uFGyi9OJwmo++aEf4A3a2tX9r961is8uQ8i9ytZzbfOXlxJol0vky5Pw
+	X9rrXRpE7DWhfQ99iPcuPLd4no1/U9HK46ViyOpHzWoe+0pC0Ip6fx9vmap8JI9xuV9E
+	xF9FNWA2ktKSTRncUEr3XJLLS563h4V3ehZpYIu4hyWghQeG/nuJy9zx7FLzM3SHuYMc
+	CXRsteXZj0V4KB2vcmLUfrS9ZZq8QwJwXZh07UyNdz+lmfFIbX+mH1qa/zFYahv/H0OI
+	F9ljyr46MJ5z0xBFnOKX88KWCEPY8SN0TF+HTvH8z/nFm9bKItKWggBdOg/q2gWxt0KJ
+	KPfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=32h1QcOzmMEX3uzjG2RdS6VhAhklXPfHu2Q9XpXLDB8=;
-	b=SA7MN0wOJdT2lNXkAXtcRyBZqLJDn4qfNi+jjbwqvVgq4BqMarAAztKoP84NrcdXwB
-	e1ML++rAzWOK3PwM7FAUu6hFr2R9k+0GVRMU2PHkoMmU1momcyXvbYZGNGHISdOtt6Bc
-	P9RtyAgEpjlxxtLvgAhWuhimc5qLcYy0c7SQsCQf3aRcPK4L94+XQNtNo/IEnzsa0c8j
-	aeIRPI4RJtIb1rC5IdxPc8JUHrGTCzYkAEp3IeWeZQUkfRoqs7rIoDMoYi+3RaUARAMo
-	woNRfXayZYH7jpKIV3ongnXH6rMdX0bOr2UjVp8W6TFxdibfdjm6NxZGvQRkmSRP9ych
-	OWoQ==
-X-Gm-Message-State: ALyK8tL5apf+MDuDBWcsZ3Hxva7pRLag5pG1RBM+ZEBO8nxiKb/tqZH++RKh7BfssDf4J5Wcipj7fMfAzAkaVg==
-X-Received: by 10.200.42.43 with SMTP id k40mr32895907qtk.98.1467383476515;
-	Fri, 01 Jul 2016 07:31:16 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=oR/5+pkRJvB8t1xVIukukTFWeT64xgNgmRuMtgTBcJg=;
+	b=eIF1rODIBZZYfz1t20DQkW56OJLgfbk2rrJh+7tjEoHgrwZmxAU08oIfMrdfFKh0wG
+	hNyvqWEYA1IRFV2X1wQKuQQNoVsRadRyzB6Ov53/uQbPEKE32ittdQR8oHmTNcdPwF57
+	8LnMzrGOCuwTR3Kp7fQBkk+wcZRXg1kGnHW43c5EL+hXofA4Au8gjXDREpkggFbWmC1t
+	nBmpE6/Fs5m1IuGXMO9sF8Zx6sDePP5aQpjA7AwUznzUQbiWL3Lw1tI8BIy4OfjBbV6Z
+	1NfQgRWesMVQnAsUKnElALgiNGJED02dHuiQQk8tGHffLs0MS3d98mJNTnYCXsrMHrE0
+	ZBPw==
+X-Gm-Message-State: ALyK8tLZELkv3EEl23MknWlwJlXLwL93OtbVo9PDlywWs6tknBInEclyHqUKi3B5jwu0dlQPWmtEGzEG7I932A==
+X-Received: by 10.55.178.195 with SMTP id b186mr3765106qkf.81.1467385333331;
+	Fri, 01 Jul 2016 08:02:13 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Fri, 1 Jul 2016 07:30:47 -0700 (PDT)
-In-Reply-To: <DB3PR04MB06840DD8C928F12BD653FE4AEE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
-References: <DB3PR04MB068442CB73636660A925BBFAEE210@DB3PR04MB0684.eurprd04.prod.outlook.com>
-	<CAMKF1sqzUPbS2ay9QVqOFZ7nnpLTX6ercDSC026aOSnC50jO7w@mail.gmail.com>
-	<DB3PR04MB0684EF56CBB04EE78720B595EE220@DB3PR04MB0684.eurprd04.prod.outlook.com>
-	<CAMKF1sr=7o2LnTtbgV=fEb+JMw2=vmvaN8b2iQSmZ1qJKd7SAw@mail.gmail.com>
-	<CAMKF1sqSM_jtKm0BCzcpDCDFwQZe6jOA_AO+7acq2Yq-N731-w@mail.gmail.com>
-	<CAMKF1soDAJ3hTV90UDTjwPc8U7G2x1m9jSLYnaaXGmJwbg7=FQ@mail.gmail.com>
-	<DB3PR04MB06844D91E4A18CAAFDFD6194EE230@DB3PR04MB0684.eurprd04.prod.outlook.com>
-	<CAF3SDA7koAq8Z6fqmddTCrnbAsrbfjvTTVSFhRX43WD+xNRQTQ@mail.gmail.com>
-	<DB3PR04MB0684768D40AAEB43CF618EF0EE240@DB3PR04MB0684.eurprd04.prod.outlook.com>
-	<CAF3SDA5Bf3shkBX+RqgRovCKtycByo3RFN8R80vXbfeRTvCKiQ@mail.gmail.com>
-	<DB3PR04MB06840DD8C928F12BD653FE4AEE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
+Received: by 10.55.214.83 with HTTP; Fri, 1 Jul 2016 08:01:44 -0700 (PDT)
+In-Reply-To: <FD3EC9758442224FA81FA20FD6F1AE8C64431B8C@mx01.dti.lan>
+References: <FD3EC9758442224FA81FA20FD6F1AE8C64431B8C@mx01.dti.lan>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 1 Jul 2016 07:30:47 -0700
-Message-ID: <CAMKF1spHpPnBXBkpDDaSFaCUmGFKgA3Obs+VsCT85iEzeut_Gg@mail.gmail.com>
-To: Zhenhua Luo <zhenhua.luo@nxp.com>
+Date: Fri, 1 Jul 2016 08:01:44 -0700
+Message-ID: <CAMKF1sqqduaAFkr8Hf3CfVfQ6xWdQd25qJ1ZVo2QYjbPBVz0AA@mail.gmail.com>
+To: Allan Chandler <allan.chandler@dti.com.au>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Failed to cross compile kernel with Yocto toolchain
+Subject: Re: Xorg failing with SEGV after Krogoth update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,350 +69,455 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jul 2016 14:31:19 -0000
+X-List-Received-Date: Fri, 01 Jul 2016 15:02:18 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-you can try to set HOSTCC=3D/usr/bin/gcc along when you call make may be
-via EXTRA_OEMAKE, problem you have is that kernel is expecting gcc to
-be used for host utilties and ccache has overrides for gcc which may
-not be working in all situations. Ideally you should just uninstall
-ccache from your build host.
+On Thu, Jun 30, 2016 at 10:24 PM, Allan Chandler
+<allan.chandler@dti.com.au> wrote:
+> We recently did (attempted? ) an upgrade of our Yocto embedded build system
+> from Fido to Krogoth and, other than one rather massive issue, it all went
+> well.
+>
+>
+>
+> The massive issue is the fact that  X11 is apparently not starting
+> correctly. The embedded device boots okay since we can see in via a serial
+> console as well as connecting via SSH.
+>
+>
+>
+> We've narrowed the actual issue down to the Xorg executable, after following
+> the process the the rc5.d Xserver satrtup scripts and xinit - basically,
+> Xorg is dumping core with the following output:
+>
 
-On Fri, Jul 1, 2016 at 1:45 AM, Zhenhua Luo <zhenhua.luo@nxp.com> wrote:
-> Thanks a lot for your comments, Daniel.
+may be you can enable coredump and collect it for offline post mortem
+setting ulimit -c unlimited e.g. when you run the suspected program will dump it
+
 >
-> Can somebody please shed light on how to fix the issue in Yocto recipes?
+>
+>     X.Org X Server 1.18.0
+>
+>     Release Date: 2015-11-09
+>
+>     X Protocol Version 11, Revision 0
+>
+>     Build Operating System: Linux 3.19.0-25-generic x86_64
+>
+>     Current Operating System: Linux imx6 3.14.28+g2b0ab6d #1 SMP PREEMPT Thu
+> Jun 30 12:20:09 AWST 2016 armv7l
+>
+>     Kernel command line: console=ttymxc0,115200 consoleblank=0
+> root=/dev/mmcblk3p2 rootwait
+>
+>     Build Date: 30 June 2016  01:38:24PM
 >
 >
-> Best Regards,
 >
-> Zhenhua
+>     Current version of pixman: 0.32.8
 >
->> -----Original Message-----
->> From: Daniel. [mailto:danielhilst@gmail.com]
->> Sent: Friday, July 01, 2016 4:48 AM
->> To: Zhenhua Luo <zhenhua.luo@nxp.com>
->> Cc: Khem Raj <raj.khem@gmail.com>; yocto@yoctoproject.org
->> Subject: Re: [yocto] Failed to cross compile kernel with Yocto toolchain
->>
->> The problem is that ccache is not finding the compiler after environment=
--
->> setup*.sh is sourced.Your error message can be foud at:
->> https://github.com/ccache/ccache/blob/master/ccache.c#L2075. It seems th=
-at
->> its searching for "gcc" when I though that kernel would search for
->> "${CROSS_COMPILE}gcc"
->>
->> 2016-06-29 22:54 GMT-03:00 Zhenhua Luo <zhenhua.luo@nxp.com>:
->> > I think you mean /usr/lib64/ccache/gcc instead of /usr/lib64/gcc, it i=
-s a valid
->> link.
->> >
->> > $ source /opt/poky/2.1+snapshot/environment-setup-ppce500mc-poky-
->> linux
->> > $ which gcc
->> > /usr/lib64/ccache/gcc
->> > $
->> > $ ls -l /usr/lib64/ccache/gcc
->> > lrwxrwxrwx 1 root root 16 Jun 29 18:22 /usr/lib64/ccache/gcc ->
->> > ../../bin/ccache $ ls -l /usr/bin/ccache -rwxr-xr-x 1 root root 128584
->> > Jan 26 14:58 /usr/bin/ccache $
->> >
->> >
->> > Best Regards,
->> >
->> > Zhenhua
->> >
->> >> -----Original Message-----
->> >> From: Daniel. [mailto:danielhilst@gmail.com]
->> >> Sent: Wednesday, June 29, 2016 8:14 PM
->> >> To: Zhenhua Luo <zhenhua.luo@nxp.com>
->> >> Cc: Khem Raj <raj.khem@gmail.com>; yocto@yoctoproject.org
->> >> Subject: Re: [yocto] Failed to cross compile kernel with Yocto
->> >> toolchain
->> >>
->> >> Is /usr/lib64/gcc a file or a link? Is it a valid link?
->> >>
->> >> 2016-06-29 5:52 GMT-03:00 Zhenhua Luo <zhenhua.luo@nxp.com>:
->> >> > The /usr/lib64/ccache is added in PATH by /etc/profile.d/ccache.sh
->> >> > when ccache is installed on Fedora host, the issue disappears if
->> >> > one of the following changes is done.
->> >> >
->> >> > 1.       Remove /usr/lib64/ccache from PATH
->> >> >
->> >> > 2.       Move /usr/lib64/ccache after /usr/bin in PATH
->> >> >
->> >> > 3.       Set CCACHE_PATH equals to PATH
->> >> >
->> >> > 4.       Unset CCACHE_PATH
->> >> >
->> >> >
->> >> >
->> >> > Another observation, before sourcing
->> >> > environment-setup-<core>-poky-linux,
->> >> > gcc can be found even if /usr/lib64/ccache is in prepend to PATH,
->> >> > but after sourcing the environment-setup-<core>-poky-linux script,
->> >> > the gcc can=E2=80=99t be found, this should be a bug of the
->> >> > environment-setup-<core>-poky-linux
->> >> > script. Should I open a Bugzilla ticket to track it?
->> >> >
->> >> >
->> >> >
->> >> > $ echo $PATH
->> >> >
->> >> > /usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/us
->> >> > r/l
->> >> > ocal/sbin:/usr/sbin:/home/bjsimics/.local/bin:/home/bjsimics/bin
->> >> >
->> >> > which gcc
->> >> >
->> >> > /usr/lib64/ccache/gcc
->> >> >
->> >> > $ gcc -v
->> >> >
->> >> > Using built-in specs.
->> >> >
->> >> > COLLECT_GCC=3D/usr/bin/gcc
->> >> >
->> >> > COLLECT_LTO_WRAPPER=3D/usr/libexec/gcc/x86_64-redhat-linux/5.3.1/lt=
-o-
->> >> wra
->> >> > pper
->> >> >
->> >> > Target: x86_64-redhat-linux
->> >> >
->> >> > Configured with: ../configure --enable-bootstrap
->> >> > --enable-languages=3Dc,c++,objc,obj-c++,fortran,ada,go,lto
->> >> > --prefix=3D/usr --mandir=3D/usr/share/man --infodir=3D/usr/share/in=
-fo
->> >> > --with-bugurl=3Dhttp://bugzilla.redhat.com/bugzilla --enable-shared
->> >> > --enable-threads=3Dposix --enable-checking=3Drelease --enable-multi=
-lib
->> >> > --with-system-zlib --enable-__cxa_atexit
->> >> > --disable-libunwind-exceptions --enable-gnu-unique-object
->> >> > --enable-linker-build-id --with-linker-hash-style=3Dgnu
->> >> > --enable-plugin --enable-initfini-array --disable-libgcj
->> >> > --with-default-libstdcxx-abi=3Dgcc4-compatible --with-isl
->> >> > --enable-libmpx --enable-gnu-indirect-function --with-tune=3Dgeneri=
-c
->> >> > --with-arch_32=3Di686 --build=3Dx86_64-redhat-linux
->> >> >
->> >> > Thread model: posix
->> >> >
->> >> > gcc version 5.3.1 20160406 (Red Hat 5.3.1-6) (GCC)
->> >> >
->> >> > $
->> >> >
->> >> > $ source /opt/poky/2.1+snapshot/environment-setup-ppce500mc-poky-
->> >> linux
->> >> >
->> >> > $
->> >> >
->> >> > $ echo $PATH
->> >> >
->> >> > /opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin:/opt/p
->> >> > oky
->> >> > /2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/sbin:/opt/poky/2.1+
->> >> > sna
->> >> > pshot/sysroots/x86_64-pokysdk-linux/bin:/opt/poky/2.1+snapshot/sysr
->> >> > oot
->> >> > s/x86_64-pokysdk-linux/sbin:/opt/poky/2.1+snapshot/sysroots/x86_64-
->> >> > pok
->> >> > ysdk-linux/usr/bin/../x86_64-pokysdk-linux/bin:/opt/poky/2.1+snapsh
->> >> > ot/
->> >> > sysroots/x86_64-pokysdk-linux/usr/bin/powerpc-poky-linux:/opt/poky/
->> >> > 2.1
->> >> > +snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/powerpc-poky-linux-
->> >> > +ucl
->> >> > ibc:/opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/po
->> >> > wer
->> >> > pc-poky-linux-musl:/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/loc
->> >> > al/
->> >> > bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/bjsimics/.local/bin:/h
->> >> > ome
->> >> > /bjsimics/bin
->> >> >
->> >> > $
->> >> >
->> >> > $ which gcc
->> >> >
->> >> > /usr/lib64/ccache/gcc
->> >> >
->> >> > $ gcc -v
->> >> >
->> >> > ccache: error: Could not find compiler "gcc" in PATH
->> >> >
->> >> > $
->> >> >
->> >> >
->> >> >
->> >> >
->> >> >
->> >> > Best Regards,
->> >> >
->> >> >
->> >> >
->> >> > Zhenhua
->> >> >
->> >> >
->> >> >
->> >> > From: Khem Raj [mailto:raj.khem@gmail.com]
->> >> > Sent: Tuesday, June 28, 2016 10:48 PM
->> >> > To: Zhenhua Luo <zhenhua.luo@nxp.com>
->> >> > Cc: yocto@yoctoproject.org
->> >> > Subject: RE: [yocto] Failed to cross compile kernel with Yocto
->> >> > toolchain
->> >> >
->> >> >
->> >> >
->> >> > /usr/lib64/ccache is unusual why do you have it in path and if you
->> >> > really need it add it after all other paths. Check your env first
->> >> >
->> >> >
->> >> >
->> >> > On Jun 27, 2016 10:56 PM, "Zhenhua Luo" <zhenhua.luo@nxp.com> wrote=
-:
->> >> >
->> >> > Hello Khem,
->> >> >
->> >> >
->> >> >> -----Original Message-----
->> >> >> From: Khem Raj [mailto:raj.khem@gmail.com]
->> >> >> Sent: Tuesday, June 28, 2016 12:36 AM
->> >> >> To: Zhenhua Luo <zhenhua.luo@nxp.com>
->> >> >> Cc: yocto@yoctoproject.org
->> >> >> Subject: Re: [yocto] Failed to cross compile kernel with Yocto
->> >> >> toolchain
->> >> >>
->> >> >> On Mon, Jun 27, 2016 at 1:16 AM, Zhenhua Luo <zhenhua.luo@nxp.com>
->> >> >> wrote:
->> >> >> > Hello all,
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> > I generate the Yocto toolchain by =E2=80=9Cbitbake meta-toolchai=
-n=E2=80=9D, and
->> >> >> > use this toolchain to cross-compile kernel, I met the following =
-error.
->> >> >> > Is this a bug or I missed something? My host Linux is Fedora 22.
->> >> >>
->> >> >> its better to start using bitbake -cpopulate_sdk <image name> to
->> >> >> generate SDKs.
->> >> >>
->> >> >>
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> > $ source
->> >> >> > /opt/poky/2.1+snapshot/environment-setup-ppce500mc-poky-
->> >> >> linux
->> >> >> >
->> >> >> > $ cd linux/
->> >> >> >
->> >> >> > $ make corenet32_smp_defconfig
->> >> >> >
->> >> >> >   HOSTCC  scripts/kconfig/conf.o
->> >> >> >
->> >> >> > ccache: error: Could not find compiler "gcc" in PATH
->> >> >>
->> >> >> did you see if gcc is in your path after sourcing SDK env script?
->> >> >
->> >> > [Luo Zhenhua-B19537] gcc can't be found after sourcing the SDK env =
-script.
->> >> > but the /usr/bin is in the PATH env variable.
->> >> > $ source /opt/poky/2.1+snapshot/environment-setup-ppce500mc-poky-
->> >> linux
->> >> > $ echo $PATH
->> >> > /opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin:/opt/p
->> >> > oky
->> >> > /2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/sbin:/opt/poky/2.1+
->> >> > sna
->> >> > pshot/sysroots/x86_64-pokysdk-linux/bin:/opt/poky/2.1+snapshot/sysr
->> >> > oot
->> >> > s/x86_64-pokysdk-linux/sbin:/opt/poky/2.1+snapshot/sysroots/x86_64-
->> >> > pok
->> >> > ysdk-linux/usr/bin/../x86_64-pokysdk-linux/bin:/opt/poky/2.1+snapsh
->> >> > ot/
->> >> > sysroots/x86_64-pokysdk-linux/usr/bin/powerpc-poky-linux:/opt/poky/
->> >> > 2.1
->> >> > +snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/powerpc-poky-linux-
->> >> > +ucl
->> >> > ibc:/opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/po
->> >> > wer
->> >> > pc-poky-linux-musl:/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/loc
->> >> > al/
->> >> > bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/bjsimics/.local/bin:/h
->> >> > ome
->> >> > /bjsimics/bin
->> >> > $ echo $CCACHE_PATH
->> >> > /opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-
->> >> linux/usr/bin:/opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-
->> >> linux/usr/bin/../x86_64-pokysdk-
->> >> linux/bin:/opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-
->> >> linux/usr/bin/powerpc-poky-linux:/opt/poky/2.1+snapshot/sysroots/x86_
->> >> 64-
->> >> pokysdk-linux/usr/bin/powerpc-poky-linux-
->> >> uclibc:/opt/poky/2.1+snapshot/sysroots/x86_64-pokysdk-
->> >> linux/usr/bin/powerpc-poky-linux-musl:
->> >> > $ which gcc
->> >> > /usr/lib64/ccache/gcc
->> >> > $ gcc -v
->> >> >
->> >> > ccache: error: Could not find compiler "gcc" in PATH
->> >> >
->> >> > Best Regards,
->> >> >
->> >> > Zhenhua
->> >> >
->> >> >
->> >> >> > scripts/Makefile.host:108: recipe for target 'scripts/kconfig/co=
-nf.o'
->> >> >> > failed
->> >> >> >
->> >> >> > make[1]: *** [scripts/kconfig/conf.o] Error 1
->> >> >> >
->> >> >> > Makefile:541: recipe for target 'corenet32_smp_defconfig' failed
->> >> >> >
->> >> >> > make: *** [corenet32_smp_defconfig] Error 2
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> > Best Regards,
->> >> >> >
->> >> >> >
->> >> >> >
->> >> >> > Zhenhua
->> >> >> >
->> >> >> >
->> >> >> > --
->> >> >> > _______________________________________________
->> >> >> > yocto mailing list
->> >> >> > yocto@yoctoproject.org
->> >> >> > https://lists.yoctoproject.org/listinfo/yocto
->> >> >> >
->> >> >
->> >> >
->> >> >
->> >> >
->> >> > --
->> >> > _______________________________________________
->> >> > yocto mailing list
->> >> > yocto@yoctoproject.org
->> >> > https://lists.yoctoproject.org/listinfo/yocto
->> >> >
->> >>
->> >>
->> >>
->> >> --
->> >> "Do or do not. There is no try"
->> >>   Yoda Master
->>
->>
->>
->> --
->> "Do or do not. There is no try"
->>   Yoda Master
+>             Before reporting problems, check http://wiki.x.org
+>
+>             to make sure that you have the latest version.
+>
+>     Markers: (--) probed, (**) from config file, (==) default setting,
+>
+>             (++) from command line, (!!) notice, (II) informational,
+>
+>             (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+>
+>     (==) Log file: "/var/log/Xorg.0.log", Time: Fri Jul  1 00:12:43 2016
+>
+>     (==) Using config file: "/etc/X11/xorg.conf"
+>
+>     (==) Using system config directory "/usr/share/X11/xorg.conf.d"
+>
+>     (==) No Layout section.  Using the first Screen section.
+>
+>     (==) No screen section available. Using defaults.
+>
+>     (**) |-->Screen "Default Screen Section" (0)
+>
+>     (**) |   |-->Monitor "<default monitor>"
+>
+>     (==) No device specified for screen "Default Screen Section".
+>
+>             Using the first device section listed.
+>
+>     (**) |   |-->Device "i.MX Accelerated Framebuffer Device"
+>
+>     (==) No monitor specified for screen "Default Screen Section".
+>
+>             Using a default monitor configuration.
+>
+>     (**) Option "BlankTime" "0"
+>
+>     (**) Option "StandbyTime" "0"
+>
+>     (**) Option "SuspendTime" "0"
+>
+>     (**) Option "OffTime" "0"
+>
+>     (==) Automatically adding devices
+>
+>     (==) Automatically enabling devices
+>
+>     (==) Automatically adding GPU devices
+>
+>     (==) Max clients allowed: 256, resource mask: 0x1fffff
+>
+>     (WW) The directory "/usr/share/fonts/X11/misc/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (WW) The directory "/usr/share/fonts/X11/TTF/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (WW) The directory "/usr/share/fonts/X11/OTF/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (WW) The directory "/usr/share/fonts/X11/Type1/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (WW) The directory "/usr/share/fonts/X11/100dpi/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (WW) The directory "/usr/share/fonts/X11/75dpi/" does not exist.
+>
+>             Entry deleted from font path.
+>
+>     (==) FontPath set to:
+>
+>
+>
+>     (==) ModulePath set to "/usr/lib/xorg/modules"
+>
+>     (II) The server relies on udev to provide the list of input devices.
+>
+>             If no devices become available, reconfigure udev or disable
+> AutoAddDevices.
+>
+>     (II) Loader magic: 0x1c3a20
+>
+>     (II) Module ABI versions:
+>
+>             X.Org ANSI C Emulation: 0.4
+>
+>             X.Org Video Driver: 20.0
+>
+>             X.Org XInput driver : 22.1
+>
+>             X.Org Server Extension : 9.0
+>
+>     (II) xfree86: Adding drm device (/dev/dri/card0)
+>
+>     (II) no primary bus or device found
+>
+>             falling back to /sys/devices/platform/Vivante GCCore/drm/card0
+>
+>     (II) LoadModule: "glx"
+>
+>     (II) Loading /usr/lib/xorg/modules/extensions/libglx.so
+>
+>     (II) Module glx: vendor="X.Org Foundation"
+>
+>             compiled for 1.18.0, module version = 1.0.0
+>
+>             ABI class: X.Org Server Extension, version 9.0
+>
+>     (==) AIGLX enabled
+>
+>     (II) LoadModule: "vivante"
+>
+>     (II) Loading /usr/lib/xorg/modules/drivers/vivante_drv.so
+>
+>     (II) Module vivante: vendor="X.Org Foundation"
+>
+>             compiled for 1.18.0, module version = 1.0.0
+>
+>             Module class: X.Org Video Driver
+>
+>             ABI class: X.Org Video Driver, version 20.0
+>
+>     (II) VIVANTE: driver for vivante fb: VivanteGC500, VivanteGC2100,
+>
+>             VivanteGCCORE
+>
+>     (--) using VT number 3
+>
+>
+>
+>     (WW) Falling back to old probe method for vivante
+>
+>     (II) Loading sub module "fbdevhw"
+>
+>     (II) LoadModule: "fbdevhw"
+>
+>     (II) Loading /usr/lib/xorg/modules/libfbdevhw.so
+>
+>     (II) Module fbdevhw: vendor="X.Org Foundation"
+>
+>             compiled for 1.18.0, module version = 0.0.2
+>
+>             ABI class: X.Org Video Driver, version 20.0
+>
+>     (II) VIVANTE(0): using default device
+>
+>     (II) VIVANTE(0): Device preferred mode 'fb0':U:1024x768p-60
+>
+>     (II) VIVANTE(0): Creating default Display subsection in Screen section
+>
+>             "Default Screen Section" for depth/fbbpp 16/16
+>
+>     (==) VIVANTE(0): Depth 16, (==) framebuffer bpp 16
+>
+>     (==) VIVANTE(0): RGB weight 565
+>
+>     (==) VIVANTE(0): Default visual is TrueColor
+>
+>     (==) VIVANTE(0): Using gamma correction (1.0, 1.0, 1.0)
+>
+>     (**) VIVANTE(0): Option "fbdev" "/dev/fb0"
+>
+>     (II) VIVANTE(0): checking modes against framebuffer device...
+>
+>     (II) VIVANTE(0): checking modes against monitor...
+>
+>     (II) VIVANTE(0): Use built in mode (bpp 16)
+>
+>     (--) VIVANTE(0): Virtual size is 0x0 (pitch 0)
+>
+>     (==) VIVANTE(0): DPI set to (96, 96)
+>
+>     (II) Loading sub module "fb"
+>
+>     (II) LoadModule: "fb"
+>
+>     (II) Loading /usr/lib/xorg/modules/libfb.so
+>
+>     (II) Module fb: vendor="X.Org Foundation"
+>
+>             compiled for 1.18.0, module version = 1.0.0
+>
+>             ABI class: X.Org ANSI C Emulation, version 0.4
+>
+>     (II) Loading sub module "exa"
+>
+>     (II) LoadModule: "exa"
+>
+>     (II) Loading /usr/lib/xorg/modules/libexa.so
+>
+>     (II) Module exa: vendor="X.Org Foundation"
+>
+>             compiled for 1.18.0, module version = 2.6.0
+>
+>             ABI class: X.Org Video Driver, version 20.0
+>
+>     (II) VIVANTE(0): printing discovered frame buffer 'fb0' supported modes:
+>
+>     (II) VIVANTE(0): Modeline "U:1024x768p-60"x0.0   65.00  1024 1064 1124
+> 1344  768 775 785 806 -hsync -vsync -csync (48.4 kHz eP)
+>
+>     (II) VIVANTE(0): Output DISP4 BG has no monitor section
+>
+>     (II) VIVANTE(0): Printing probed modes for output DISP4 BG
+>
+>     (II) VIVANTE(0): Modeline "U:1024x768p-60"x60.0   65.00  1024 1064 1124
+> 1344  768 775 785 806 -hsync -vsync -csync (48.4 kHz eP)
+>
+>     (II) VIVANTE(0): Output DISP4 BG connected
+>
+>     (II) VIVANTE(0): Using exact sizes for initial modes
+>
+>     (II) VIVANTE(0): Output DISP4 BG using initial mode U:1024x768p-60 +0+0
+>
+>     (II) VIVANTE(0): imxDisplayPreInit: virtual set 1024 x 768, display
+> width 0
+>
+>     (II) VIVANTE(0): FBDevPreInit: adjust display width 1024
+>
+>     (**) VIVANTE(0): PreInit done
+>
+>     (II) VIVANTE(0): Init mode for fb device
+>
+>     (II) VIVANTE(0): hardware: DISP4 BG (video memory: 8164kB)
+>
+>     (II) VIVANTE(0): FB Start = 0x75da6000  FB Base = 0x75da6000  FB Offset
+> = (nil) FB PhyBase 0x3c500000
+>
+>     (II) VIVANTE(0): reserve 4177920 bytes for on screen frame buffer; total
+> fb memory size 8359936 bytes; offset of shadow buffer 4177920
+>
+>     (II) VIVANTE(0): hardware: DISP4 BG (video memory: 8164kB)
+>
+>     (WW) VIVANTE(0): FBIOPAN_DISPLAY: Invalid argument
+>
+>     (II) VIVANTE(0): test Initializing EXA
+>
+>     (EE)
+>
+>     (EE) Backtrace:
+>
+>     (EE)
+>
+>     (EE) Segmentation fault at address 0xc
+>
+>     (EE)
+>
+>     Fatal server error:
+>
+>     (EE) Caught signal 11 (Segmentation fault). Server aborting
+>
+>     (EE)
+>
+>     (EE)
+>
+>     Please consult the The X.Org Foundation support
+>
+>              at http://wiki.x.org
+>
+>      for help.
+>
+>     (EE) Please also check the log file at "/var/log/Xorg.0.log" for
+> additional information.
+>
+>     (EE)
+>
+>     (EE) Server terminated with error (1). Closing log file.
+>
+>     Aborted
+>
+>
+>
+> You can see in the final dozen lines or so that it gets a SIGSEGV. I've
+> searched for a solution online but the only close one I've discovered
+> (https://community.nxp.com/thread/327339) is for a different error.
+>
+>
+>
+> For what it's worth, the working Fido variant is much the same (though with
+> different version numbers for components, primarily Xorg 1.16.3) but it
+> carries on after the "test Initializing EXA" line:
+>
+>
+>
+>     [2750328.650] (II) VIVANTE(0): test Initializing EXA
+>
+>     [2750328.650] (II) VIVANTE(0): (driver build from:
+> f2cae50cf6c3c924be2e06c43c819cb23ca1bf5c)
+>
+>     [2750328.654] (II) EXA(0): Driver allocated offscreen pixmaps
+>
+>     [2750328.654] (II) EXA(0): Driver registered support for the following
+> operations:
+>
+>     [2750328.654] (II)         Solid
+>
+>     [2750328.654] (II)         Copy
+>
+>     [2750328.654] (II)         Composite (RENDER acceleration)
+>
+>     [2750328.654] (II)         UploadToScreen
+>
+>     [2750328.670] (II) VIVANTE(0): Init SHM pixmap support
+>
+>     [2750328.670] (==) VIVANTE(0): Backing store enabled
+>
+>     [2750328.673] (==) VIVANTE(0): DPMS enabled
+>
+>     [2750328.673] (II) VIVANTE(0): RandR 1.2 enabled, ignore the following
+> RandR disabled message.
+>
+>     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
+>
+>     [2750328.674] drmOpenDevice: open result is 11, (OK)
+>
+>     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
+>
+>     [2750328.674] drmOpenDevice: open result is 11, (OK)
+>
+>     [2750328.674] drmOpenByBusid: Searching for BusID platform:Vivante
+> GCCore:00
+>
+>     [2750328.674] drmOpenDevice: node name is /dev/dri/card0
+>
+>     [2750328.674] drmOpenDevice: open result is 11, (OK)
+>
+>     [2750328.674] drmOpenByBusid: drmOpenMinor returns 11
+>
+>     [2750328.674] drmOpenByBusid: drmGetBusid reports platform:Vivante
+> GCCore:00
+>
+>     [2750328.674] (II) [drm] DRM interface version 1.4
+>
+>     [2750328.674] (II) [drm] DRM open master succeeded.
+>
+>     [2750328.674] (II) VIVANTE(0): [drm] Using the DRM lock SAREA also for
+> drawables.
+>
+>     [2750328.674] (II) VIVANTE(0): [drm] framebuffer handle = 0x44700000
+>
+>     [2750328.674] (II) VIVANTE(0): [drm] added 1 reserved context for kernel
+>
+>     [2750328.674] (II) VIVANTE(0): X context handle = 0x1
+>
+>     [2750328.675] (II) VIVANTE(0): [drm] installed DRM signal handler
+>
+>     [2750328.675] (II) VIVANTE(0): [DRI] installation complete
+>
+>     [2750328.675] (--) RandR disabled
+>
+>     [2750328.702] (II) AIGLX: Screen 0 is not DRI2 capable
+>
+>     [2750328.702] (EE) AIGLX: reverting to software rendering
+>
+>     [2750328.751] (II) AIGLX: Loaded and initialized swrast
+>
+>     [2750328.751] (II) GLX: Initialized DRISWRAST GL provider for screen 0
+>
+>     [2750328.753] (II) VIVANTE(0): Setting screen physical size to 270 x 203
+>
+>
+>
+> I'd appreciate any pointers on how best to debug/resolve this issue since I
+> cannot appear to get any more detailed information out of `Xorg` itself. Or,
+> alternatively, if anyone has seen this same (or very similar) problem, how
+> was it solved?
+>
+>
+>
+> Cheers,
+>
+> Al.
+>
+>
+>
+> Allan Chandler | Software Engineer
+>
+> DTI Group Ltd | Transit Security & Surveillance
+>
+> 31 Affleck Road, Perth Airport, WA 6105, AU
+>
+> P | F | allan.chandler@dti.com.au
+>
+>
+>
+> Visit our website www.dti.com.au
+>
+> The information contained in this email is confidential. If you receive this
+> email in error, please inform DTI Group Ltd via the above contact details.
+> If you are not the intended recipient, you may not use or disclose the
+> information contained in this email or attachments.
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
