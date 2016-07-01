@@ -1,76 +1,41 @@
-Return-Path: <tmatsuzawa@uievolution.com>
+Return-Path: <peter.bergin@tritech.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 168C5E00EFF; Thu, 30 Jun 2016 19:01:26 -0700 (PDT)
+	id 015BDE00F16; Thu, 30 Jun 2016 21:14:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.59.120.190 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1041 seconds by postgrey-1.32 at yocto-www;
-	Thu, 30 Jun 2016 19:01:23 PDT
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01on0087.outbound.protection.outlook.com [104.47.32.87])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54CC9E00E6D
-	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 19:01:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=tUdDiQO80UWWVWgo3sUCgRoc27W34+lxaGEAxV8evGU=;
-	b=amddbiBVFjkUk3aQomw3jT+EoUWbh5lfzSkSfLqDnbPjyYkLqRCUq+1ZStT925myIaag8GV4UtbVkGmyqZPoWMBv0Vj6yHCh0TS42e+BW65WLm1tazVlYkGdrQVXas1qcj/BUG9GYErLplOi9YbaPEFxEDR9Sf5p98SMlvXt74s=
-Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
-	SMTP Server (TLS) id 15.1.523.12; Fri, 1 Jul 2016 01:29:03 +0000
-Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
-	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0523.024; Fri, 1 Jul 2016 01:29:03 +0000
-From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Shorter build time?
-Thread-Index: AQHR0zfz8t/RS5a5ckC5nKnzjXT7MQ==
-Date: Fri, 1 Jul 2016 01:29:03 +0000
-Message-ID: <CY1PR0101MB1594413BBE9700E6A3EFC6E9D7250@CY1PR0101MB1594.prod.exchangelabs.com>
-Accept-Language: en-US
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 496 seconds by postgrey-1.32 at yocto-www;
+	Thu, 30 Jun 2016 21:14:15 PDT
+Received: from nic.tritech.se (tritech.se [46.59.120.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28EA5E00E77
+	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 21:14:15 -0700 (PDT)
+Received: from post.tritech.se (post.tritech.se [10.75.60.100])
+	by nic.tritech.se (8.14.4/8.14.4/Debian-4) with ESMTP id u6145rTh005811;
+	Fri, 1 Jul 2016 06:05:53 +0200
+Received: from POST.tritech.se ([10.75.60.100]) by post ([10.75.60.100]) with
+	mapi id 14.03.0279.002; Fri, 1 Jul 2016 06:05:47 +0200
+From: Peter Bergin <peter.bergin@tritech.se>
+To: Takashi Matsuzawa <tmatsuzawa@uievolution.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] ICECC build failures?
+Thread-Index: AQHR0zQQ9w4VZhvuCkOEYF0Vkz5wtA==
+Date: Fri, 1 Jul 2016 04:05:46 +0000
+Message-ID: <43F0718C449F6A46B393DA2BEC8E01280CACB052@post>
+References: <CY1PR0101MB15945556E27A16104116E87FD7250@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: sv-SE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=tmatsuzawa@uievolution.com; 
-x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: 96be2e4d-9ad9-4b95-a869-08d3a14f1623
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
-	6:iAJIuhYMKZxscU+4d5/PSw/ep+HN8DLZDma4+ZTrFg/PVxonXHIDmuc6q2ztblzLbjXEOYMvWa+T/028QsuqeDskPPyE0n8wE3mS0SfaRQQQZeQ+EKNLUhcurPwfCPct2vE+vbeNhJhDzYO8yhzfeHY60H7QEZnVu3XqGzdv2AqJIVysbrk4ZQ31aB0XZ6IcVxMgRRyG1jkWOR1k+03M5YmkP6JBhm9VeggD/0p9gNJEn57Qltvnq7e8TdfWRsnXbzpcDA5Bch2l5aGaQcc3Syj5jFVDvDy2Tfp5abzeTi65vM37AQD0ngwWbXZYfjCa;
-	5:m/kAEH/hKNMBpTHFnlv320mfE12PIDy1mjxCwLjkyPcKjxglvYip4d/0bgtfxRwh3M0IVpDH/TqrFCHIsZ0P8/xmmfla2PkNYK/J2TUL69ps0Mj2U9s5RHsntPRYa1oBpjzYRtPXrH4TINz/15SBPA==;
-	24:pdH1VI9ZQvdOtS3hA6764TCf1YTnkJLV5o6ifQKr1AurjAy5E+fbfxKXw5ShmCRQtuXH6ISzcvbNjXk+WhkXeHxRYc21GK6EYXUP1xfU+/M=;
-	7:tnLCIKzhbgSwvhXa+TFA6x5cXFJqUWVDSG2I0NxFedL+pV4dXAo2CE4g8ecAOIs4J2d1rtg28Ib1gJLLaJ28W68J0Mu7WcOv7DoDhHk5weQN2IJJzd1A71wP+025YyKddhPhOIQEGQP3NHLVlUZPxPOS7oP7YPlqXwbDuvY9bIS3lnvbjeWF6LcN4z5aob0qGdkNxkYymKTf0qWVxZLOb2UHrlMnDyRH2NevNqWshtsn76wUOamM1c13YiOeh2CnX9Y76l8tgZq0oVpxpWSGGQ==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1593;
-x-microsoft-antispam-prvs: <CY1PR0101MB15939FBEB6B1E0C82425E6A9D7250@CY1PR0101MB1593.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(2401047)(5005006)(8121501046)(10201501046)(3002001);
-	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1593; 
-x-forefront-prvs: 0990C54589
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(54094003)(199003)(189002)(8936002)(66066001)(3480700004)(68736007)(229853001)(101416001)(3660700001)(3846002)(6116002)(2501003)(3280700002)(50986999)(74316002)(9686002)(106356001)(5640700001)(54356999)(102836003)(105586002)(586003)(106116001)(81166006)(11100500001)(86362001)(450100001)(110136002)(7846002)(33656002)(189998001)(305945005)(2900100001)(77096005)(7736002)(92566002)(2351001)(87936001)(2906002)(5002640100001)(97736004)(1730700003)(8676002)(81156014)(122556002)(7696003)(107886002)(5003600100003)(10400500002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
-	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: uievolution.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [83.227.10.61]
 MIME-Version: 1.0
-X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2016 01:29:03.2843 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
-Subject: Shorter build time?
+Subject: Re: ICECC build failures?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,44 +47,248 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jul 2016 02:01:26 -0000
+X-List-Received-Date: Fri, 01 Jul 2016 04:14:19 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/alternative;
+	boundary="_000_43F0718C449F6A46B393DA2BEC8E01280CACB052post_"
+
+--_000_43F0718C449F6A46B393DA2BEC8E01280CACB052post_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
+On 07/01/2016 03:18 AM, Takashi Matsuzawa wrote:
 
 Hello Yocto.
 
-Well, this may not be a very new topic, but I wonder if you have recent sug=
-getions.
-So far I have tried the followings and see some improvement, making the bui=
-ld time to days to hours.
+Recently I am trying icecc with bitbake and amd halfway satisfied.
+Good to see batch of my compilation jobs consumed by my build machines on i=
+cemon
+is not bad.
 
-1) All of the directories, DL_DIR, SSTATE_CACHE, TMPDIR, DEPLOY_DIR are on =
-SSD.
-2) .repo and working directory (where I synch my recipes) also on SSD.
-3) Set BB_NUMBER_PARSE_THREADS/PARALLEL_MAKE/BB_NUMBER_THREADS to something=
- like 20, 30, etc.
-4) Enable use of ICECC.
-5) Use pigz, pbzip2, pxz instead of gzip, bzip2 and xz.
+However, I can see my builds fail in certain condition eveytime and
+wonder if it is a known issue and a workaround exists?
 
-I can see with 3-5), I am benefited from my multicore PCs and see some scal=
-ing effects (if I can add more PCs or CPU core.)
-However I think there is i the build not paralleled or distributed easily.
+Symptom is the follows.
 
-i) python tasks
-They say python has slimitation of being single thread, and could be a bott=
-le neck since most of yocto build tasks are in python, if not native/cross =
-toolchain jobs.
+1) Using x86_64 build host and build machies.  All of them are running
+Ubutnu 16.04.
+2) My image is based on Fido (18.0).
+3) I am just doing INHERIT +=3D "icecc" and the jobs are shared with
+build machines correctly.
+4) x86 (genericx86) build is OK with and without icecee.
+5) imx (sabre6qauto) build is OK without icecc, but NG (fails) with icecc.
 
-ii) zip / tar tasks
-e.g. seeing rootfs taking forever, jobs not distributed to the other machin=
-es.
-I understand it is writing files to one target tree and doing a bit tar/zip=
- for the files, being one big job though.
+The following is the failure log.
+It says relocation record error during linkage.  I googled for a while
+and learned similar error could be seen if there is binutils (libtool)
+version mistmatch.
 
-I wonder if I can do anything with i) and ii) at least to make them process=
-ed in parallel.
-ICECC only can dispatch gcc jobs I believe.
-Any previous attemps to do the similar to non-gcc jobs?
+Maybe a) the host-provided native toolchain and b) yocto-provided
+native/cross toolchain have version mismatch?  But I do not see this
+error when I am not using icecc.  I just think if it is OK without
+icecc, the same should be expected even if I use icecc (it just runs
+the same toolchain on different PCs?)
 
+=3D=3D=3D=3D
+| x86_64-pokysdk-linux-libtool: link: x86_64-pokysdk-linux-gcc
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
+dk-linux
+-shared   .libs/conf.o .libs/confmisc.o .libs/input.o .libs/output.o
+.libs/async.o .libs/error.o .libs/dlmisc.o .libs/socket.o
+.libs/shmarea.o .libs/userfile.o .libs/names.o   -Wl,--whole-archive
+control/.libs/libcontrol.a mixer/.libs/libmixer.a pcm/.libs/libpcm.a
+timer/.libs/libtimer.a rawmidi/.libs/librawmidi.a
+hwdep/.libs/libhwdep.a seq/.libs/libseq.a ucm/.libs/libucm.a
+alisp/.libs/libalisp.a -Wl,--no-whole-archive
+-L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
+pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib
+-L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
+pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
+-lm -ldl -lpthread -lrt
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
+dk-linux
+-O2 -Wl,--version-script=3DVersions -Wl,--no-undefined -Wl,-rpath-link
+-Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
+/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib
+-Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr=
+/lib
+-Wl,-O1 -Wl,-rpath-link
+-Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
+/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
+-Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
+-Wl,-O1   -Wl,-soname -Wl,libasound.so.2 -o .libs/libasound.so.2.0.0
+| /mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-linux/usr/libexec/x86_64-=
+pokysdk-linux/gcc/x86_64-pokysdk-linux/4.9.2/ld:
+.libs/conf.o: relocation R_X86_64_32 against `.rodata.str1.1' can not
+be used when making a shared object; recompile with -fPIC
+| .libs/conf.o: error adding symbols: Bad value
+| collect2: error: ld returned 1 exit status
+| Makefile:484: recipe for target 'libasound.la' failed
+| make[2]: *** [libasound.la] Error 1
+| make[2]: Leaving directory
+'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
+sdk-alsa-lib/1.0.28-r0/build/src'
+| Makefile:538: recipe for target 'all-recursive' failed
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory
+'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
+sdk-alsa-lib/1.0.28-r0/build/src'
+| Makefile:399: recipe for target 'all-recursive' failed
+| make: *** [all-recursive] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/natives=
+dk-alsa-lib/1.0.28-r0/temp/log.do_compile.31561)
+=3D=3D=3D=3D
+
+
+
+
+
+Some packages does not work with ICECC in a similar way some package do not=
+ work with PARALLEL_MAKE. You can work with the variable ICECC_USER_PACKAGE=
+_BL to disable ICECC compilation for the failing packages.
+
+
+Best regards,
+/Peter<http://www.yoctoproject.org/docs/2.0.2/mega-manual/mega-manual.html#=
+var-ICECC_USER_PACKAGE_BL>
+
+--_000_43F0718C449F6A46B393DA2BEC8E01280CACB052post_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body text=3D"#000000" bgcolor=3D"#FFFFFF">
+<div class=3D"moz-cite-prefix">Hi,<br>
+<br>
+On 07/01/2016 03:18 AM, Takashi Matsuzawa wrote:<br>
+</div>
+<blockquote cite=3D"mid:CY1PR0101MB15945556E27A16104116E87FD7250@CY1PR0101M=
+B1594.prod.exchangelabs.com" type=3D"cite">
+<pre wrap=3D"">Hello Yocto.=0A=
+=0A=
+Recently I am trying icecc with bitbake and amd halfway satisfied.=0A=
+Good to see batch of my compilation jobs consumed by my build machines on i=
+cemon=0A=
+is not bad.=0A=
+=0A=
+However, I can see my builds fail in certain condition eveytime and=0A=
+wonder if it is a known issue and a workaround exists?=0A=
+=0A=
+Symptom is the follows.=0A=
+=0A=
+1) Using x86_64 build host and build machies.&nbsp; All of them are running=
+=0A=
+Ubutnu 16.04.=0A=
+2) My image is based on Fido (18.0).=0A=
+3) I am just doing INHERIT &#43;=3D &quot;icecc&quot; and the jobs are shar=
+ed with=0A=
+build machines correctly.=0A=
+4) x86 (genericx86) build is OK with and without icecee.=0A=
+5) imx (sabre6qauto) build is OK without icecc, but NG (fails) with icecc.=
+=0A=
+=0A=
+The following is the failure log.=0A=
+It says relocation record error during linkage.&nbsp; I googled for a while=
+=0A=
+and learned similar error could be seen if there is binutils (libtool)=0A=
+version mistmatch.=0A=
+=0A=
+Maybe a) the host-provided native toolchain and b) yocto-provided=0A=
+native/cross toolchain have version mismatch?&nbsp; But I do not see this=
+=0A=
+error when I am not using icecc.&nbsp; I just think if it is OK without=0A=
+icecc, the same should be expected even if I use icecc (it just runs=0A=
+the same toolchain on different PCs?)=0A=
+=0A=
+=3D=3D=3D=3D=0A=
+| x86_64-pokysdk-linux-libtool: link: x86_64-pokysdk-linux-gcc=0A=
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
+dk-linux=0A=
+-shared&nbsp; &nbsp;.libs/conf.o .libs/confmisc.o .libs/input.o .libs/outpu=
+t.o=0A=
+.libs/async.o .libs/error.o .libs/dlmisc.o .libs/socket.o=0A=
+.libs/shmarea.o .libs/userfile.o .libs/names.o&nbsp; &nbsp;-Wl,--whole-arch=
+ive=0A=
+control/.libs/libcontrol.a mixer/.libs/libmixer.a pcm/.libs/libpcm.a=0A=
+timer/.libs/libtimer.a rawmidi/.libs/librawmidi.a=0A=
+hwdep/.libs/libhwdep.a seq/.libs/libseq.a ucm/.libs/libucm.a=0A=
+alisp/.libs/libalisp.a -Wl,--no-whole-archive=0A=
+-L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
+pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib=0A=
+-L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
+pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib=0A=
+-lm -ldl -lpthread -lrt=0A=
+--sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
+dk-linux=0A=
+-O2 -Wl,--version-script=3DVersions -Wl,--no-undefined -Wl,-rpath-link=0A=
+-Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
+/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib=0A=
+-Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr=
+/lib=0A=
+-Wl,-O1 -Wl,-rpath-link=0A=
+-Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
+/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib=0A=
+-Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib=
+=0A=
+-Wl,-O1&nbsp; &nbsp;-Wl,-soname -Wl,libasound.so.2 -o .libs/libasound.so.2.=
+0.0=0A=
+| /mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-linux/usr/libexec/x86_64-=
+pokysdk-linux/gcc/x86_64-pokysdk-linux/4.9.2/ld:=0A=
+.libs/conf.o: relocation R_X86_64_32 against `.rodata.str1.1' can not=0A=
+be used when making a shared object; recompile with -fPIC=0A=
+| .libs/conf.o: error adding symbols: Bad value=0A=
+| collect2: error: ld returned 1 exit status=0A=
+| Makefile:484: recipe for target 'libasound.la' failed=0A=
+| make[2]: *** [libasound.la] Error 1=0A=
+| make[2]: Leaving directory=0A=
+'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
+sdk-alsa-lib/1.0.28-r0/build/src'=0A=
+| Makefile:538: recipe for target 'all-recursive' failed=0A=
+| make[1]: *** [all-recursive] Error 1=0A=
+| make[1]: Leaving directory=0A=
+'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
+sdk-alsa-lib/1.0.28-r0/build/src'=0A=
+| Makefile:399: recipe for target 'all-recursive' failed=0A=
+| make: *** [all-recursive] Error 1=0A=
+| ERROR: oe_runmake failed=0A=
+| WARNING: exit code 1 from a shell command.=0A=
+| ERROR: Function failed: do_compile (log file is located at=0A=
+/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/natives=
+dk-alsa-lib/1.0.28-r0/temp/log.do_compile.31561)=0A=
+=3D=3D=3D=3D=0A=
+=0A=
+=0A=
+=0A=
+</pre>
+</blockquote>
+<br>
+Some packages does not work with ICECC in a similar way some package do not=
+ work with PARALLEL_MAKE. You can work with the variable<code> ICECC_USER_P=
+ACKAGE_BL to disable ICECC compilation for the failing packages.<br>
+<br>
+<br>
+Best regards,<br>
+/Peter</code><a class=3D"link" href=3D"http://www.yoctoproject.org/docs/2.0=
+.2/mega-manual/mega-manual.html#var-ICECC_USER_PACKAGE_BL" title=3D"ICECC_U=
+SER_PACKAGE_BL" style=3D"text-decoration: underline;=0A=
+      color: rgb(68, 68, 68); font-family: Verdana, Sans, sans-serif;=0A=
+      font-size: medium; font-style: normal; font-variant: normal;=0A=
+      font-weight: normal; letter-spacing: normal; line-height: 24px;=0A=
+      orphans: auto; text-align: start; text-indent: 0px;=0A=
+      text-transform: none; white-space: normal; widows: 1;=0A=
+      word-spacing: 0px; -webkit-text-stroke-width: 0px; background:=0A=
+      rgb(255, 255, 255);"><code class=3D"filename" style=3D"font-size:=0A=
+        medium; font-family: Courier, monospace;"></code></a>
+</body>
+</html>
+
+--_000_43F0718C449F6A46B393DA2BEC8E01280CACB052post_--
