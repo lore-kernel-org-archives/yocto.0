@@ -1,6 +1,6 @@
 Return-Path: <tmatsuzawa@uievolution.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E14DE00F04; Thu, 30 Jun 2016 18:16:18 -0700 (PDT)
+	id 168C5E00EFF; Thu, 30 Jun 2016 19:01:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,52 +12,52 @@ X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 899 seconds by postgrey-1.32 at yocto-www;
-	Thu, 30 Jun 2016 18:16:14 PDT
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
-	(mail-bl2nam02on0054.outbound.protection.outlook.com [104.47.38.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7875FE00EFB
-	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 18:16:14 -0700 (PDT)
+X-Greylist: delayed 1041 seconds by postgrey-1.32 at yocto-www;
+	Thu, 30 Jun 2016 19:01:23 PDT
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam01on0087.outbound.protection.outlook.com [104.47.32.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54CC9E00E6D
+	for <yocto@yoctoproject.org>; Thu, 30 Jun 2016 19:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=uievolution.onmicrosoft.com; s=selector1-uievolution-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=INFfkppWXtoP0Fa+gIvSNc5+v8mOgNS6Wl78jF3xFVA=;
-	b=rtXgp/9Ha3u0P2k1VESb3Su4Yt5/K7wU0uMQwhB6fH6bSPS9H3bdNGgG8ygUSaI1+M2hzqzrT2m8MoitdUZW8xEemWKxwIfm2VQgn1QY6raJCgjmBZvEcb4UXm5sYEOQgcZKitPGAkFL9bK4PRd5dg8rubLlKtKlfkvxrY1GEUk=
+	bh=tUdDiQO80UWWVWgo3sUCgRoc27W34+lxaGEAxV8evGU=;
+	b=amddbiBVFjkUk3aQomw3jT+EoUWbh5lfzSkSfLqDnbPjyYkLqRCUq+1ZStT925myIaag8GV4UtbVkGmyqZPoWMBv0Vj6yHCh0TS42e+BW65WLm1tazVlYkGdrQVXas1qcj/BUG9GYErLplOi9YbaPEFxEDR9Sf5p98SMlvXt74s=
 Received: from CY1PR0101MB1594.prod.exchangelabs.com (10.163.139.13) by
-	CY1PR0101MB1595.prod.exchangelabs.com (10.163.139.139) with Microsoft
-	SMTP Server (TLS) id 15.1.523.12; Fri, 1 Jul 2016 01:01:14 +0000
+	CY1PR0101MB1593.prod.exchangelabs.com (10.163.139.12) with Microsoft
+	SMTP Server (TLS) id 15.1.523.12; Fri, 1 Jul 2016 01:29:03 +0000
 Received: from CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) by
 	CY1PR0101MB1594.prod.exchangelabs.com ([10.163.139.13]) with mapi id
-	15.01.0523.024; Fri, 1 Jul 2016 01:01:14 +0000
+	15.01.0523.024; Fri, 1 Jul 2016 01:29:03 +0000
 From: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: ICECC build failures?
-Thread-Index: AQHR0zQQ9w4VZhvuCkOEYF0Vkz5wtA==
-Date: Fri, 1 Jul 2016 01:01:13 +0000
-Message-ID: <CY1PR0101MB15945556E27A16104116E87FD7250@CY1PR0101MB1594.prod.exchangelabs.com>
+Thread-Topic: Shorter build time?
+Thread-Index: AQHR0zfz8t/RS5a5ckC5nKnzjXT7MQ==
+Date: Fri, 1 Jul 2016 01:29:03 +0000
+Message-ID: <CY1PR0101MB1594413BBE9700E6A3EFC6E9D7250@CY1PR0101MB1594.prod.exchangelabs.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=tmatsuzawa@uievolution.com; 
 x-originating-ip: [132.245.44.5]
-x-ms-office365-filtering-correlation-id: 2e49707b-4b35-4bfc-614b-08d3a14b3345
-x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1595;
-	6:mnqvq5oSaQMsPudCnDuPHVISofT+1zSZ2MMjWSqxqAb4aPU+vQqulP566LQ04c0NrF+xZ3KHdtSHI3+UpViSbbl2LUq0oN8+l28KjPK0vY2PBRSBj6uaDMtqdy2xGNlGJm221l97sNHcAHB/LEMsoUpWpDmXXEydeHLhqeUTvycL98n41csgSNT+vh0V49ks0nDuUBL7FM8sSlw6l3Ip1CaGTVrdIo7b6K1d+YQNt9wO8pnt7JfCTKkNqwJT3PFyYSv94Nt4bYcPFhelFMvAj96VuyGO/OYh9nbrKT6b9XM3irv4vnNFO0ibtBSuGh+H;
-	5:uoyt8LyhodDKqW/m30QfcdAFqe6e7+nSWkk8k6I9fQsTzMjLMg6sAF6/YwIJjnVgrk+tJoyt1m51W5gPICbN3ZEVWkbN8lY3mVjqa2eqx9uJ/kvysR4ge6TkJPocdE5CLDbvHAaQL0sCFgwy6jIxwQ==;
-	24:lqNohttWZDViVeEuSOtAwNG/JVgSAqWBlTGAWxa6sh/1VRng7BT7Z46iDXbdp7+fMuIhpg2i8T+NBW/bt6BVT1Im7UQ6r8V195JK/dFq19A=;
-	7:GPZy8gbOQTrQe29csWg1iFxGg0n3oxQu/lFCIBQNJx7aZeL5MTc2kMIjQxUdm4Ccj5rzw1T2iLoRpJb5hQ0B7+u0RdbzVlztZDZ/rWyM3pBD78SIz5/vGEWuCfPj1gsTfz+HPR+lKzDmKnBO0YSwhUS8Z0uPwrefLuRUC4hGLO3LSainy7pyaQku94KirD4cDam/TdpNdLskH+J7UnUsEEU7aliXfFVPFuRqgSfF5I55CoXI/Q2ONqMyd+HWCsxgrnOraBixSXV75A/Z/2h/Zg==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1595;
-x-microsoft-antispam-prvs: <CY1PR0101MB15950B7922FEC107C12BDAF3D7250@CY1PR0101MB1595.prod.exchangelabs.com>
+x-ms-office365-filtering-correlation-id: 96be2e4d-9ad9-4b95-a869-08d3a14f1623
+x-microsoft-exchange-diagnostics: 1; CY1PR0101MB1593;
+	6:iAJIuhYMKZxscU+4d5/PSw/ep+HN8DLZDma4+ZTrFg/PVxonXHIDmuc6q2ztblzLbjXEOYMvWa+T/028QsuqeDskPPyE0n8wE3mS0SfaRQQQZeQ+EKNLUhcurPwfCPct2vE+vbeNhJhDzYO8yhzfeHY60H7QEZnVu3XqGzdv2AqJIVysbrk4ZQ31aB0XZ6IcVxMgRRyG1jkWOR1k+03M5YmkP6JBhm9VeggD/0p9gNJEn57Qltvnq7e8TdfWRsnXbzpcDA5Bch2l5aGaQcc3Syj5jFVDvDy2Tfp5abzeTi65vM37AQD0ngwWbXZYfjCa;
+	5:m/kAEH/hKNMBpTHFnlv320mfE12PIDy1mjxCwLjkyPcKjxglvYip4d/0bgtfxRwh3M0IVpDH/TqrFCHIsZ0P8/xmmfla2PkNYK/J2TUL69ps0Mj2U9s5RHsntPRYa1oBpjzYRtPXrH4TINz/15SBPA==;
+	24:pdH1VI9ZQvdOtS3hA6764TCf1YTnkJLV5o6ifQKr1AurjAy5E+fbfxKXw5ShmCRQtuXH6ISzcvbNjXk+WhkXeHxRYc21GK6EYXUP1xfU+/M=;
+	7:tnLCIKzhbgSwvhXa+TFA6x5cXFJqUWVDSG2I0NxFedL+pV4dXAo2CE4g8ecAOIs4J2d1rtg28Ib1gJLLaJ28W68J0Mu7WcOv7DoDhHk5weQN2IJJzd1A71wP+025YyKddhPhOIQEGQP3NHLVlUZPxPOS7oP7YPlqXwbDuvY9bIS3lnvbjeWF6LcN4z5aob0qGdkNxkYymKTf0qWVxZLOb2UHrlMnDyRH2NevNqWshtsn76wUOamM1c13YiOeh2CnX9Y76l8tgZq0oVpxpWSGGQ==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CY1PR0101MB1593;
+x-microsoft-antispam-prvs: <CY1PR0101MB15939FBEB6B1E0C82425E6A9D7250@CY1PR0101MB1593.prod.exchangelabs.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
 	RULEID:(2401047)(5005006)(8121501046)(10201501046)(3002001);
-	SRVR:CY1PR0101MB1595; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0101MB1595; 
+	SRVR:CY1PR0101MB1593; BCL:0; PCL:0; RULEID:;
+	SRVR:CY1PR0101MB1593; 
 x-forefront-prvs: 0990C54589
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(7916002)(199003)(189002)(106116001)(101416001)(11100500001)(66066001)(7696003)(8936002)(7846002)(3480700004)(5003600100003)(7736002)(2900100001)(229853001)(106356001)(105586002)(86362001)(2501003)(9686002)(122556002)(450100001)(5002640100001)(19580395003)(3660700001)(77096005)(2351001)(87936001)(81166006)(8676002)(1730700003)(3280700002)(81156014)(305945005)(10400500002)(107886002)(586003)(50986999)(68736007)(54356999)(5640700001)(33656002)(97736004)(6116002)(2906002)(3846002)(110136002)(102836003)(189998001)(92566002)(74316002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1595;
+	SFS:(10009020)(6009001)(7916002)(54094003)(199003)(189002)(8936002)(66066001)(3480700004)(68736007)(229853001)(101416001)(3660700001)(3846002)(6116002)(2501003)(3280700002)(50986999)(74316002)(9686002)(106356001)(5640700001)(54356999)(102836003)(105586002)(586003)(106116001)(81166006)(11100500001)(86362001)(450100001)(110136002)(7846002)(33656002)(189998001)(305945005)(2900100001)(77096005)(7736002)(92566002)(2351001)(87936001)(2906002)(5002640100001)(97736004)(1730700003)(8676002)(81156014)(122556002)(7696003)(107886002)(5003600100003)(10400500002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0101MB1593;
 	H:CY1PR0101MB1594.prod.exchangelabs.com; FPR:; SPF:None;
 	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 received-spf: None (protection.outlook.com: uievolution.com does not designate
@@ -66,11 +66,11 @@ spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: uievolution.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2016 01:01:13.7209 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2016 01:29:03.2843 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1595
-Subject: ICECC build failures?
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0101MB1593
+Subject: Shorter build time?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,95 +82,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jul 2016 01:16:18 -0000
+X-List-Received-Date: Fri, 01 Jul 2016 02:01:26 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+
 Hello Yocto.
 
-Recently I am trying icecc with bitbake and amd halfway satisfied.
-Good to see batch of my compilation jobs consumed by my build machines on i=
-cemon
-is not bad.
+Well, this may not be a very new topic, but I wonder if you have recent sug=
+getions.
+So far I have tried the followings and see some improvement, making the bui=
+ld time to days to hours.
 
-However, I can see my builds fail in certain condition eveytime and
-wonder if it is a known issue and a workaround exists?
+1) All of the directories, DL_DIR, SSTATE_CACHE, TMPDIR, DEPLOY_DIR are on =
+SSD.
+2) .repo and working directory (where I synch my recipes) also on SSD.
+3) Set BB_NUMBER_PARSE_THREADS/PARALLEL_MAKE/BB_NUMBER_THREADS to something=
+ like 20, 30, etc.
+4) Enable use of ICECC.
+5) Use pigz, pbzip2, pxz instead of gzip, bzip2 and xz.
 
-Symptom is the follows.
+I can see with 3-5), I am benefited from my multicore PCs and see some scal=
+ing effects (if I can add more PCs or CPU core.)
+However I think there is i the build not paralleled or distributed easily.
 
-1) Using x86_64 build host and build machies.=A0 All of them are running
-Ubutnu 16.04.
-2) My image is based on Fido (18.0).
-3) I am just doing INHERIT +=3D "icecc" and the jobs are shared with
-build machines correctly.
-4) x86 (genericx86) build is OK with and without icecee.
-5) imx (sabre6qauto) build is OK without icecc, but NG (fails) with icecc.
+i) python tasks
+They say python has slimitation of being single thread, and could be a bott=
+le neck since most of yocto build tasks are in python, if not native/cross =
+toolchain jobs.
 
-The following is the failure log.
-It says relocation record error during linkage.=A0 I googled for a while
-and learned similar error could be seen if there is binutils (libtool)
-version mistmatch.
+ii) zip / tar tasks
+e.g. seeing rootfs taking forever, jobs not distributed to the other machin=
+es.
+I understand it is writing files to one target tree and doing a bit tar/zip=
+ for the files, being one big job though.
 
-Maybe a) the host-provided native toolchain and b) yocto-provided
-native/cross toolchain have version mismatch?=A0 But I do not see this
-error when I am not using icecc.=A0 I just think if it is OK without
-icecc, the same should be expected even if I use icecc (it just runs
-the same toolchain on different PCs?)
-
-=3D=3D=3D=3D
-| x86_64-pokysdk-linux-libtool: link: x86_64-pokysdk-linux-gcc
---sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
-dk-linux
--shared=A0 =A0.libs/conf.o .libs/confmisc.o .libs/input.o .libs/output.o
-.libs/async.o .libs/error.o .libs/dlmisc.o .libs/socket.o
-.libs/shmarea.o .libs/userfile.o .libs/names.o=A0 =A0-Wl,--whole-archive
-control/.libs/libcontrol.a mixer/.libs/libmixer.a pcm/.libs/libpcm.a
-timer/.libs/libtimer.a rawmidi/.libs/librawmidi.a
-hwdep/.libs/libhwdep.a seq/.libs/libseq.a ucm/.libs/libucm.a
-alisp/.libs/libalisp.a -Wl,--no-whole-archive
--L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
-pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib
--L/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux/o=
-pt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
--lm -ldl -lpthread -lrt
---sysroot=3D/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokys=
-dk-linux
--O2 -Wl,--version-script=3DVersions -Wl,--no-undefined -Wl,-rpath-link
--Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
-/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr/lib
--Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/usr=
-/lib
--Wl,-O1 -Wl,-rpath-link
--Wl,/mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-nativesdk-pokysdk-linux=
-/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
--Wl,-rpath -Wl,/opt/narwhal/3.14.52-1.1.1/sysroots/x86_64-pokysdk-linux/lib
--Wl,-O1=A0 =A0-Wl,-soname -Wl,libasound.so.2 -o .libs/libasound.so.2.0.0
-| /mnt/ssd2/yocto/dev/tmp/imx-wk1/sysroots/x86_64-linux/usr/libexec/x86_64-=
-pokysdk-linux/gcc/x86_64-pokysdk-linux/4.9.2/ld:
-.libs/conf.o: relocation R_X86_64_32 against `.rodata.str1.1' can not
-be used when making a shared object; recompile with -fPIC
-| .libs/conf.o: error adding symbols: Bad value
-| collect2: error: ld returned 1 exit status
-| Makefile:484: recipe for target 'libasound.la' failed
-| make[2]: *** [libasound.la] Error 1
-| make[2]: Leaving directory
-'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
-sdk-alsa-lib/1.0.28-r0/build/src'
-| Makefile:538: recipe for target 'all-recursive' failed
-| make[1]: *** [all-recursive] Error 1
-| make[1]: Leaving directory
-'/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/native=
-sdk-alsa-lib/1.0.28-r0/build/src'
-| Makefile:399: recipe for target 'all-recursive' failed
-| make: *** [all-recursive] Error 1
-| ERROR: oe_runmake failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/mnt/ssd2/yocto/dev/tmp/imx-wk1/work/x86_64-nativesdk-pokysdk-linux/natives=
-dk-alsa-lib/1.0.28-r0/temp/log.do_compile.31561)
-=3D=3D=3D=3D
-
-
-
+I wonder if I can do anything with i) and ii) at least to make them process=
+ed in parallel.
+ICECC only can dispatch gcc jobs I believe.
+Any previous attemps to do the similar to non-gcc jobs?
 
