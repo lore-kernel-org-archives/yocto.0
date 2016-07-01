@@ -1,6 +1,6 @@
 Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D176E00A10; Fri,  1 Jul 2016 14:31:10 -0700 (PDT)
+	id 058F2E009DA; Fri,  1 Jul 2016 14:34:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,16 +10,16 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
 Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 407EBE009CF
-	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 14:31:06 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC27E009C9
+	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 14:34:13 -0700 (PDT)
 Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 23B3784A90A2
-	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 17:31:05 -0400 (EDT)
+	by packages.yoctoproject.org (Postfix) with ESMTP id DBF1A84A9096
+	for <yocto@yoctoproject.org>; Fri,  1 Jul 2016 17:34:11 -0400 (EDT)
 MIME-Version: 1.0
 From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Fri, 01 Jul 2016 21:31:05 -0000
-Message-ID: <20160701213105.6733.63437@packages.yoctoproject.org>
+Date: Fri, 01 Jul 2016 21:34:11 -0000
+Message-ID: <20160701213411.6828.88244@packages.yoctoproject.org>
 Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,7 +32,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jul 2016 21:31:10 -0000
+X-List-Received-Date: Fri, 01 Jul 2016 21:34:14 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
@@ -170,19 +170,18 @@ Upgradable total count: 112
 
 The based commit is:
 
-commit 3143920c541b55b543b9dcc12b18af4e0e4b7ae1
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Tue Jul 21 11:21:06 2015 -0400
+commit 53fcfe4348a2ca727844f2b0bd3fca2902cbdda0
+Author: Ross Burton <ross.burton@intel.com>
+Date:   Tue Jun 21 15:33:11 2016 +0100
 
-    linux-libc-headers: update to 4.1
+    lib/oeqa: add Galculator to SDK and runtime tests
     
-    Updating the libc-headers to match the 4.1 LTSI kernel version.
+    This is a GTK+3 application, so we don't need to ship GTK+ 2 in Sato just for
+    the SDK test suite.
     
-    We also tweak the logic in linux-libc-headers.inc to look in the
-    4.x subdirectory if a 4.x kernel is specified as the header source.
+    [ YOCTO #9780 ]
     
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
 
 Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
