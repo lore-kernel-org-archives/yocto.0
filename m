@@ -1,72 +1,28 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2527E008BC; Sat,  2 Jul 2016 07:22:41 -0700 (PDT)
+	id C7A95E00D5B; Sat,  2 Jul 2016 18:53:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD6ABE00575
-	for <yocto@yoctoproject.org>; Sat,  2 Jul 2016 07:22:38 -0700 (PDT)
-Received: by mail-it0-f46.google.com with SMTP id a5so39047492ita.1
-	for <yocto@yoctoproject.org>; Sat, 02 Jul 2016 07:22:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZMlp96MTlyCx5XW6M8CXiabZKMfS+xZhKFnD22Y2ibc=;
-	b=PUd533XI2u+P4rWHdCA9k2zvyudWDrYE8PvUK7ku8cW613vU6tkI2ZZP1SpwCP6HFv
-	bpkytS0e67sz+An6MvDjsaffd8+rl6YwMNWgMMiGyRXMVnnifV+PlTO7w9sBIQkhS9U7
-	/seHkQCZ3fTAN7WKwBhDMLu6lJ/JdHB4Jm2F4EsibV5C1JS+07ssYhlQ8YTxIQNFMy6L
-	eaOvssZmxmfoyZMI4+jYoak+406rEqfs3Egh0K3MvPvCPcT99Ufr9fP0nXDB3EaYR9rt
-	OXPAZCaAAjbd1seA7AYdjFKQjN4g7uOKiJRv6dEnQR9yl9PiwqdTmPGcCjSflAuXnuaW
-	eRSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZMlp96MTlyCx5XW6M8CXiabZKMfS+xZhKFnD22Y2ibc=;
-	b=hPwJ7TWA0yo36sASuuQhwfVTMMwytGyiw8mC2YZKIfJ4hTUD4zuntHCgcQcr+Zx5ld
-	C5K2d1gZwh5gFbPNMYORPshYNyAvXHfPx8IsemKq3i8jOL4mgxbrzgfUlf6VWzFvK5eC
-	f4lJ3lt4X/BdulH3Q1qtYaDAU5rJcq56fnxT1lb/pmw922TvdnqFlNjSe7UjstnJgATC
-	3r/++uxVWbOdyRRzoAvCfRwr1gKuy9C+pkhzKGy6ceuQtEpAnedStnn8i4pbs7L4Tq40
-	EmOkafZFB7BOwYfxkHmc162UH6h7F/tHFkQrj6G7cUidCDB3Bi6GZM2/3I3r6lbh7tjL
-	S6Cw==
-X-Gm-Message-State: ALyK8tKi1zL0wKrCN4Re35529f+B1hboTzFfRg6Ef4Ql/3/5ALq6+ve4FPNpZeP8HqbNKc1as1DJUxeMZWY0NDjm
-X-Received: by 10.36.120.71 with SMTP id p68mr2938653itc.22.1467469357641;
-	Sat, 02 Jul 2016 07:22:37 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 480 seconds by postgrey-1.32 at yocto-www;
+	Sat, 02 Jul 2016 18:53:29 PDT
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B200BE00D4F
+	for <yocto@yoctoproject.org>; Sat,  2 Jul 2016 18:53:29 -0700 (PDT)
+Received: from auh.yoctoproject.org (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 02D0F6FE110B
+	for <yocto@yoctoproject.org>; Sun,  3 Jul 2016 01:47:33 +0000 (UTC)
 MIME-Version: 1.0
-Received: by 10.107.142.151 with HTTP; Sat, 2 Jul 2016 07:22:18 -0700 (PDT)
-In-Reply-To: <5d1eeebd9e9e47cdbccf88c399c6d31c@HIBDWSMB02.ad.harman.com>
-References: <d023141f03804bacb323bdfb95daee19@HIBDWSMB02.ad.harman.com>
-	<CAJTo0LYiA-mxZUuK8bOx64tFMvPmvRBBzExcQNfxsc5q6JvxMw@mail.gmail.com>
-	<b57493dfacad490388b9bd3600179e65@HIBDWSMB02.ad.harman.com>
-	<CAJTo0Lbu3O3Qqo2be_t4=pXr-B=q=J-diKNm-ZuJsbW0C=0wpQ@mail.gmail.com>
-	<c3c0e392db09430d91496cf4def6c395@HIBDWSMB02.ad.harman.com>
-	<CAJTo0LZCxCYNL-C0LU5oKVwSzeQfY5DCJXsiHR1N_PwdcBHHTw@mail.gmail.com>
-	<0821b36bfa664ed49614099e658e46b9@HIBDWSMB02.ad.harman.com>
-	<CAF3SDA4+4NhbBskh=PxDGqJP1PFcwFOEHYEK04DOTVv7mKTRrg@mail.gmail.com>
-	<1980608174.6503.1467381831219.JavaMail.zimbra@evalan.com>
-	<CAF3SDA5jrx7n5C6WpFGKJSxnnwY=VJJ-EDdUYwYt45Z5xfTw9Q@mail.gmail.com>
-	<f7f70173e1304433b5bb00c0f8cec5bf@HIBDWSMB02.ad.harman.com>
-	<CAJTo0LaSUYdjYmxwV7OdbqKeic-B7pMZROEKvEpC7o0jetqxwQ@mail.gmail.com>
-	<5d1eeebd9e9e47cdbccf88c399c6d31c@HIBDWSMB02.ad.harman.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sat, 2 Jul 2016 15:22:18 +0100
-Message-ID: <CAJTo0LZEk44n27-nYQRrPNff_hbDruxVzJHHxFFojocXo-nZbw@mail.gmail.com>
-To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: setcap using recipe
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20160703014733.02D0F6FE110B@auh.yoctoproject.org>
+Date: Sun,  3 Jul 2016 01:47:33 +0000 (UTC)
+Subject: [AUH] Upgrade status: 2016-07-03
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,78 +34,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Jul 2016 14:22:42 -0000
-Content-Type: multipart/alternative; boundary=001a114a9388c807ba0536a7d5aa
+X-List-Received-Date: Sun, 03 Jul 2016 01:53:37 -0000
+Content-Type: multipart/mixed; boundary="===============8072952237974576571=="
 
---001a114a9388c807ba0536a7d5aa
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--===============8072952237974576571==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2 July 2016 at 11:37, Kumar, Shrawan <Shrawan.Kumar@harman.com> wrote:
+AUH finished upgrade batch the result patches/logs can be found at:
+https://logs.yoctoproject.org/auh//20160630215455.tar.gz, next are the statistics:
 
-> Post-installation scripts run immediately after installing a package on
-> the target *or during image creation when a package is included in an
-> image*.
->
-> Does  it not mean that we can set the file attributes(setcap) during
->  image creation ?
->
->
->
-> I understand the delayed approach of executing it on the target, but my
-> requirement is to do it on the build host. We do not want =E2=80=9Csetcap=
-=E2=80=9D  utility
-> to be present on the target.
->
->
-Then I suggest that you test the setcap patch that I pointed to earlier,
-you'll likely need the pseudo 1.8 upgrade that Joshua sent last night.
-This should ensure that setcap works in the pseudo environment.   Then
-follow the instructions in image_types.bbclass to ensure that xattrs are
-preserved when the image is created, and check your kernel configuration to
-confirm that xattrs are supported.  I recommend attempting to use fsetattr
-on the target directly to verify this. If all the pieces are in place then
-they should work.
+Recipe upgrade statistics:
 
-There's a number of bugs in bugzilla for tracking these issues (#9859 is
-the metabug tracking them).  Your help in solving this would be much
-appreciated!
+    * Failed(do_fetch): 6
+        python3-setuptools, 23.1.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        git, 2.9.0, Robert Yang <liezhi.yang@windriver.com>
+        lttng-ust, 2.8.1+gitAUTOINC+514a87f3b6, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-tools, 2.8.0+gitAUTOINC+a0f518a0b5, Richard Purdie <richard.purdie@linuxfoundation.org>
+        lttng-modules, 2.8.0+gitAUTOINC+4a24ffe737, Richard Purdie <richard.purdie@linuxfoundation.org>
+        babeltrace, 1.4.0, Alexander Kanavin <alexander.kanavin@intel.com>
+    * Failed(other errors): 22
+        bdwgc, 7.4.4, Alexander Kanavin <alexander.kanavin@intel.com>
+        slang, 2.3.0, Kai Kang <kai.kang@windriver.com>
+        lsbinitscripts, 9.66, Ross Burton <ross.burton@intel.com>
+        perl, 5.24.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        python-setuptools, 23.1.0, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        gdb, 7.11.1, Richard Purdie <richard.purdie@linuxfoundation.org>
+        fontconfig, 2.12.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        binutils, 2.26.1, Robert Yang <liezhi.yang@windriver.com>
+        cairo, 1.15.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        expat, 2.2.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        file, 5.28, Robert Yang <liezhi.yang@windriver.com>
+        u-boot-mkimage, v2016.05+gitAUTOINC+aeaec0e682, Denys Dmytriyenko <denis@denix.org>
+        nasm, 2.12.01, Richard Purdie <richard.purdie@linuxfoundation.org>
+        gettext, 0.19.8.1, Wenzong Fan <wenzong.fan@windriver.com>
+        rpm, 5.4.17, Mark Hatle <mark.hatle@windriver.com>
+        libpng, 1.6.23, Maxin B. John <maxin.john@intel.com>
+        gnu-efi, 3.0.4, Robert Yang <liezhi.yang@windriver.com>
+        prelink, 20151030.+gitAUTOINC+927979bbd1, Mark Hatle <mark.hatle@windriver.com>
+        cups, 2.1.4, Chen Qi <Qi.Chen@windriver.com>
+        wayland-protocols, 1.4, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        nss, 3.24, Alexander Kanavin <alexander.kanavin@intel.com>
+        bash-completion, 2.3, Alexander Kanavin <alexander.kanavin@intel.com>
+    * Succeeded: 47
+        libxfixes, 5.0.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        python3-git, 2.0.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libgpg-error, 1.23, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        e2fsprogs, 1.43.1, Robert Yang <liezhi.yang@windriver.com>
+        busybox, 1.25.0, Chen Qi <Qi.Chen@windriver.com>
+        sysstat, 11.3.5, Chen Qi <Qi.Chen@windriver.com>
+        vala, 0.32.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        xf86-input-evdev, 2.10.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        libevdev, 1.5.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        swig, 3.0.10, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        xkeyboard-config, 2.18, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gnupg, 2.1.13, Hongxu Jia <hongxu.jia@windriver.com>
+        libgcrypt, 1.7.1, Hongxu Jia <hongxu.jia@windriver.com>
+        sudo, 1.8.17p1, Chen Qi <Qi.Chen@windriver.com>
+        libarchive, 3.2.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        libsndfile1, 1.0.27, Tanu Kaskinen <tanuk@iki.fi>
+        gsettings-desktop-schemas, 3.21.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        augeas, 1.5.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        at-spi2-core, 2.20.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        at-spi2-atk, 2.20.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        vte, 0.44.2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        xf86-input-synaptics, 1.8.99.1, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        subversion, 1.9.4, Richard Purdie <richard.purdie@linuxfoundation.org>
+        gstreamer1.0-plugins-bad, 1.8.2, Maxin B. John <maxin.john@intel.com>
+        cronie, 1.5.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        libsolv, 0.6.22, Maxin B. John <maxin.john@intel.com>
+        wayland, 1.11.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        settings-daemon, 2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        libwnck3, 3.20.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        gstreamer1.0-plugins-good, 1.8.2, Maxin B. John <maxin.john@intel.com>
+        librsvg, 2.40.16, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        ethtool, 4.6, Maxin B. John <maxin.john@intel.com>
+        ltp, 20160510, Robert Yang <liezhi.yang@windriver.com>
+        gstreamer1.0, 1.8.2, Maxin B. John <maxin.john@intel.com>
+        matchbox-theme-sato, 2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gmp, 6.1.1, Robert Yang <liezhi.yang@windriver.com>
+        btrfs-tools, 4.6.1, Alexander Kanavin <alexander.kanavin@intel.com>
+        screen, 4.4.0, Maxin B. John <maxin.john@intel.com>
+        libinput, 1.3.3, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gstreamer1.0-rtsp-server, 1.8.2, Maxin B. John <maxin.john@intel.com>
+        sato-screenshot, 2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        ifupdown, 0.8.13, Maxin B. John <maxin.john@intel.com>
+        xf86-input-libinput, 0.19.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        gstreamer1.0-plugins-base, 1.8.2, Maxin B. John <maxin.john@intel.com>
+        libatomic-ops, 7.4.4, Maxin B. John <maxin.john@intel.com>
+        wget, 1.18, Robert Yang <liezhi.yang@windriver.com>
+        matchbox-config-gtk, 2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+    * Failed(do_compile): 7
+        util-linux, 2.28, Chen Qi <Qi.Chen@windriver.com>
+        gtk+3, 3.20.6, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        ruby, 2.3.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        python-git, 2.0.6, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        texinfo, 6.1, Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+        pulseaudio, 9.0, Tanu Kaskinen <tanuk@iki.fi>
+        ccache, 3.2.5, Wenzong Fan <wenzong.fan@windriver.com>
+    * Failed(do_configure): 6
+        weston, 1.11.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        atk, 2.20.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        clutter-gtk-1.0, 1.8.0, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        matchbox-terminal, 2, Jussi Kukkonen <jussi.kukkonen@intel.com>
+        pinentry, 0.9.7, Armin Kuster <akuster808@gmail.com>
+        epiphany, 3.20.3, Alexander Kanavin <alexander.kanavin@intel.com>
 
-Ross
+    TOTAL: attempted=88 succeeded=47(53.41%) failed=41(46.59%)
 
---001a114a9388c807ba0536a7d5aa
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Recipe upgrade statistics per Maintainer:
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 July 2016 at 11:37, Kumar, Shrawan <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:Shrawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar@harman.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNorma=
-l">Post-installation scripts run immediately after installing a package on =
-the target
-<b><u>or during image creation when a package is included in an image</u></=
-b>.<u></u><u></u></p>
-<p class=3D"MsoNormal">Does =C2=A0it not mean that we can set the file attr=
-ibutes(setcap) during =C2=A0image creation ?
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I understand the delayed approach of executing it on=
- the target, but my requirement is to do it on the build host. We do not wa=
-nt =E2=80=9Csetcap=E2=80=9D =C2=A0utility to be present on the target.<u></=
-u><u></u></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>Then I suggest that you t=
-est the setcap patch that I pointed to earlier, you&#39;ll likely need the =
-pseudo 1.8 upgrade that Joshua sent last night.=C2=A0 This should ensure th=
-at setcap works in the pseudo environment. =C2=A0 Then follow the instructi=
-ons in image_types.bbclass to ensure that xattrs are preserved when the ima=
-ge is created, and check your kernel configuration to confirm that xattrs a=
-re supported.=C2=A0 I recommend attempting to use fsetattr on the target di=
-rectly to verify this. If all the pieces are in place then they should work=
-.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ther=
-e&#39;s a number of bugs in bugzilla for tracking these issues (#9859 is th=
-e metabug tracking them).=C2=A0 Your help in solving this would be much app=
-reciated!</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">Ross</div></div>
+    Tanu Kaskinen <tanuk: attempted=2 succeeded=1(50.00%) failed=1(50.00%)
+    Jussi Kukkonen <jussi.kukkonen: attempted=28 succeeded=19(67.86%) failed=9(32.14%)
+    Richard Purdie <richard.purdie: attempted=6 succeeded=1(16.67%) failed=5(83.33%)
+    Armin Kuster <akuster808: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Denys Dmytriyenko <denis: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Mark Hatle <mark.hatle: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
+    Alejandro Hernandez <alejandro.hernandez: attempted=9 succeeded=3(33.33%) failed=6(66.67%)
+    Kai Kang <kai.kang: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
+    Hongxu Jia <hongxu.jia: attempted=2 succeeded=2(100.00%) failed=0(0.00%)
+    Maxin B. John <maxin.john: attempted=11 succeeded=10(90.91%) failed=1(9.09%)
+    Alexander Kanavin <alexander.kanavin: attempted=9 succeeded=4(44.44%) failed=5(55.56%)
+    Chen Qi <Qi.Chen: attempted=5 succeeded=3(60.00%) failed=2(40.00%)
+    Wenzong Fan <wenzong.fan: attempted=2 succeeded=0(0.00%) failed=2(100.00%)
+    Robert Yang <liezhi.yang: attempted=8 succeeded=4(50.00%) failed=4(50.00%)
+    Ross Burton <ross.burton: attempted=1 succeeded=0(0.00%) failed=1(100.00%)
 
---001a114a9388c807ba0536a7d5aa--
+--===============8072952237974576571==--
