@@ -1,70 +1,59 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F1DFE00DD3; Wed,  6 Jul 2016 02:39:35 -0700 (PDT)
+	id 13E5FE00DD3; Wed,  6 Jul 2016 02:46:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.48 listed in list.dnswl.org]
+	*      [209.85.214.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E83E00D36
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 02:39:32 -0700 (PDT)
-Received: by mail-lf0-f48.google.com with SMTP id f6so150919017lfg.0
-	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 02:39:32 -0700 (PDT)
+Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
+	[209.85.214.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE2CDE00D36
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 02:46:12 -0700 (PDT)
+Received: by mail-it0-f41.google.com with SMTP id j185so70866973ith.0
+	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 02:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:in-reply-to:organization
-	:user-agent; bh=4YyK9pKQX8lwCcbikV7tE65QS/x2+ncf/uZiWWZpm7s=;
-	b=zvrd+h4qM5oTa/ybLKOv+FdlXLJkkomqoPMrRMAsjZ+jasvXMYkxsnIz//VKAd06of
-	+EWX50e6fbQl9pu9wqKxjvoYQIEAYl4cB6ruc9tLMOy9z5Dta3Hgbdg822KriJXfcpw1
-	sNGQ2ek2+u9fEISgk2JUBFRAg758Usf4vnuHAnuIRF1qO0mVH71SDtyG8rsQT0O2Odoy
-	/K23FFekdGrTWLOR3oNkafoBaIzkgqWftb5n2AUkxJOmauzTpFYS5s2KBUbpCrPgcqUX
-	qYm0CKEO7xBPBV82Ynoocc1opUR5558dEu8T8j9t4vrKxXANxboLtkg3jKd10J0cuelD
-	eu3Q==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=cNiNiab1EmouGH4gZ5Ah5qhSJX7TvnPl9DqxYGdjb/Y=;
+	b=QhF/GhKX+d93VoXeE4r+T3BooeCR8fUTVIXsgoPOzyYCckCFnpE217SGyN5y8P1w75
+	qb8X40bqCq1cn4IvwmyuXsh8nO1x1CH0z5F7sF0XLKWUqmA+hsMugJs1Cg02QDjO/NB9
+	P/eNWX+c7sT3poOp/+Tw12+D3E8J2iHwsoqi4FT/BuIStcOAhQ6ZPEnscm9smS0i51vc
+	JD7wi6kSySnOv4YEYcmLYevnMpYUfr4T3kDbiy3BrsH74tPuWuSk8cS2Hsm7uzoo4mMN
+	AVCHrcsF9MZsK6qD3Tjx199tvy8PKVjsP+wDZq2JLbPk3V64QUNlaYODHMG1yVzBIur3
+	IixA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-disposition:in-reply-to
-	:organization:user-agent;
-	bh=4YyK9pKQX8lwCcbikV7tE65QS/x2+ncf/uZiWWZpm7s=;
-	b=Dn01+Q3/yryxcUlF6ljm9nDQNaRCcUx0HL9FrKOfhPbrqVWMVY+sZPeN8ZBCuJ3pPy
-	zEli4yDLEMK+GE2p/trRK9/kPJ2nNOnU9plSY9EpntT/gr+SvbW09SPzX7N71tHa1ykh
-	rZ9cys97dKjhiJ+XRtY6iypm/Jo1VWIApNtfzzkrq0TScgRD+XF2L83/bVDROQnMQG2J
-	UiVz0xtfQ3F7VEwkjLLjYSIxxMedbjNZKr5/Owod9igTY4QCdxPbdwRsb7VGwbqyAn+J
-	ZDF9+G413JGo+jp52LIQ+RkRpmvTqvNhqY1o8u/qqkc601ofifMFBqyqqz1SWkEnzX4Q
-	vByw==
-X-Gm-Message-State: ALyK8tLw5ydHNyJsbN9ct5AQKRPz5+rOwgMmabunYGdGgKh3lGOw9iywLkKA4J3yScD/6w==
-X-Received: by 10.25.82.10 with SMTP id g10mr6026609lfb.141.1467797970310;
-	Wed, 06 Jul 2016 02:39:30 -0700 (PDT)
-Received: from ad.chargestorm.se (213-64-218-130-no126.business.telia.com.
-	[213.64.218.130]) by smtp.gmail.com with ESMTPSA id
-	r132sm6344759lfr.17.2016.07.06.02.39.29 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 06 Jul 2016 02:39:29 -0700 (PDT)
-Date: Wed, 6 Jul 2016 11:39:28 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20160706093928.GB23993@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <OF0631568F.FA96A31C-ONC1257FE8.002F4202-C1257FE8.00335A95@esa-grimma.de>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=cNiNiab1EmouGH4gZ5Ah5qhSJX7TvnPl9DqxYGdjb/Y=;
+	b=Irfm/n89L1ANmgc8WMAaNBY+sIzwhSWrRV+c/T/kTxm8qDdHuRkxcFS9g0A3roC8Zs
+	RihEx07FFlKadVJIqnsWfSIE4m857sv1tEHYwMxOtvm17LA/nmo2BWRAIkCcx38LDh7R
+	ddl8Mm8evAQnyXzrPLJwqG5RDqPbQIiacAGMmp/BtTe3FZRlyVqHhaRIx8h7eS7ipDSU
+	sY5eeRa0mD6+w+eubvwVDPpiKc/mKAbLSgJUZxm11Lr64qZsDCB3Efcm7UbT0U3AugYx
+	BrbFKJQX8p7vQ0XiXsfWHpSZavC/BN47pLXgHYU83PjdCFemtsZdDO4cBwRktUsinGAy
+	Qhxg==
+X-Gm-Message-State: ALyK8tJSF2u1R5jtHikmjEu+oNpWxJZdipIlXgY3TNxsTzL4tsbrJ3NFwHyuJO/T873et2/izc96pAviWfp2ZxAD
+X-Received: by 10.36.121.21 with SMTP id z21mr19028606itc.38.1467798371537;
+	Wed, 06 Jul 2016 02:46:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <OF0631568F.FA96A31C-ONC1257FE8.002F4202-C1257FE8.00335A95@esa-grimma.de>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.6.0 (2016-04-01)
+Received: by 10.107.142.151 with HTTP; Wed, 6 Jul 2016 02:45:52 -0700 (PDT)
+In-Reply-To: <20160706093928.GB23993@ad.chargestorm.se>
+References: <OF0631568F.FA96A31C-ONC1257FE8.002F4202-C1257FE8.00335A95@esa-grimma.de>
+	<20160706093928.GB23993@ad.chargestorm.se>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Jul 2016 10:45:52 +0100
+Message-ID: <CAJTo0Lb9-p8=qt_qGqgfTWn33yxSkn_ABGM06q_UCoXaYCZXFw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to install a service generated by update-rc.d?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -77,38 +66,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jul 2016 09:39:35 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 06 Jul 2016 09:46:17 -0000
+Content-Type: multipart/alternative; boundary=001a114a95a089cdc10536f47007
 
-* S.Jaritz@esa-grimma.de <S.Jaritz@esa-grimma.de> [160706 11:22]:
-> I want to start a service that generates Sockets for the CAN Modules. 
-> Manually configuring the system is no problem, but I like to have it done 
-> by yocto. Below I give the code of my recipe (socketcan.bb):
+--001a114a95a089cdc10536f47007
+Content-Type: text/plain; charset=UTF-8
 
-> SUMMARY = "the config for the can socket interface"
-> SECTION = "CAN"
-> LICENSE = "CLOSED"
+On 6 July 2016 at 10:39, Anders Darander <anders@chargestorm.se> wrote:
 
-> inherit update-rc.d
+> > CONFFILES_${PN} += "${sysconfdir}/init.d/can_if"
+>
+> If this is the complete recipe, you never install can_if...
+>
 
-> RDEPENDS_${PN} = "initscripts"
+Which means the package is empty, which means it doesn't get generated,
+which explains why you can't add it to an image.
 
-> DEPENDS = "iproute2"
+Ross
 
-> SRC_URI = "file://can_if"
+--001a114a95a089cdc10536f47007
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-> INITSCRIPT_PARAMS = "start 02 2 3 4 5 . stop 01 0 1 6 ."
-> INITSCRIPT_NAME = "can_if"
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 6 July 2016 at 10:39, Anders Darander <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:anders@chargestorm.se" target=3D"_blank">anders@chargestorm.se</a>&gt=
+;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">&gt; CON=
+FFILES_${PN} +=3D &quot;${sysconfdir}/init.d/can_if&quot;<br>
+<br>
+</span>If this is the complete recipe, you never install can_if...<br></blo=
+ckquote></div><br>Which means the package is empty, which means it doesn&#3=
+9;t get generated, which explains why you can&#39;t add it to an image.</di=
+v><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div=
+></div>
 
-> CONFFILES_${PN} += "${sysconfdir}/init.d/can_if"
-
-If this is the complete recipe, you never install can_if...
-
-Cheers,
-Anders
-
--- 
-Anders Darander, Senior System Architect
-ChargeStorm AB / eStorm AB
-
+--001a114a95a089cdc10536f47007--
