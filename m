@@ -1,64 +1,39 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 045B4E00DF2; Wed,  6 Jul 2016 11:09:08 -0700 (PDT)
+	id DFD82E00DF4; Wed,  6 Jul 2016 11:19:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.80.204.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.42 listed in list.dnswl.org]
-Received: from mail-vk0-f42.google.com (mail-vk0-f42.google.com
-	[209.85.213.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5DD7E00DE4
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 11:09:05 -0700 (PDT)
-Received: by mail-vk0-f42.google.com with SMTP id b192so15624291vke.0
-	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 11:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=7wNqwJ5zIxt2iKzEsODi7E/NaB0tEmWt5GvOOF5uMyY=;
-	b=PZJ/oyUYNHIut7d08r+kl3l6XTGcoslnZpRZOlJ9JVrPCDzYb3qGeVtWugBIwSrMaS
-	uJTuCMymVdcrA9eHr+sgV3sD4L3+fYGPkURJj/tYyFWWgFN9ISjbdYY3HaPLpQxqj05j
-	LZO3RrRuN992n3svjgr6t9JFlc6AZ+x+YrnCHK2nXrQptMQBv28n/OKsWnt3eMih6egh
-	pT4Uu56URwM+UwYncx4EqYLTVazQJoUAfeh1DYzqRluJ220NHAJir6eZAYrBv5SuYtta
-	40Rv+B12MV1aWpxf4Q1nVn/lrEDPFoPCNIDnvorfiV9SovvuIBN2Uun8tUvOZOTEtxey
-	IezA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=7wNqwJ5zIxt2iKzEsODi7E/NaB0tEmWt5GvOOF5uMyY=;
-	b=QZlXuZnFA8MSVu7ulbC1Ufu/7RXSKHgl3MBNr4s51mmvBJS/GNKCMhcvBlWVKNENCe
-	l9Aj2AvPNPvsD7yu+77zm/q/9nDjgpVoSAb+w9h5UrQzP94VURKDMa81gdXD2OiZqZqi
-	lU6xqxF9TpTZt064whT3jkugvXNHbZdCXMT+6BTfq+isTD0x9p7myPXkU1L/g5qtgYbQ
-	kbp528ifJltChoUoeTm/QUfT5FJH9p6P98WmOToJ7J2OnTaSFIfr6GiY2/BgsKGM1vqC
-	Cy3kpIlnvh53W+4dRvgIfH+agASnf8f74yO0CPhggJwHqsEPTJV4L2L7n1ljToGBYOIO
-	SWTw==
-X-Gm-Message-State: ALyK8tKB+CuWSFx/6VfY5n71b8piT6XihZYQw/YEyGZla7ESKKutLoLwGTCLzvcnQ5F4AETznJM2u+DKFrDcfA==
-X-Received: by 10.31.192.14 with SMTP id q14mr10782245vkf.51.1467828544510;
-	Wed, 06 Jul 2016 11:09:04 -0700 (PDT)
+Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 978E8E00DF1
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 11:19:51 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
+	via TCP (outbound) with ESMTPS id 20160706181950130_0484
+	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 18:19:50 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=51676 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1bKrS3-0005Hb-CI
+	for yocto@yoctoproject.org; Wed, 06 Jul 2016 14:21:35 -0400
+Date: Wed, 6 Jul 2016 14:18:51 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.20.1607061409100.2101@localhost.localdomain>
+User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
 MIME-Version: 1.0
-Received: by 10.159.37.233 with HTTP; Wed, 6 Jul 2016 11:09:04 -0700 (PDT)
-In-Reply-To: <OF927BD932.09AFBA11-ONC1257FE8.00500F45-C1257FE8.005101E1@esa-grimma.de>
-References: <OF927BD932.09AFBA11-ONC1257FE8.00500F45-C1257FE8.005101E1@esa-grimma.de>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Wed, 6 Jul 2016 15:09:04 -0300
-Message-ID: <CAF3SDA4m2c0YrqaxBAzpROwbKeOdBPCMVekpkUQ7x02ScPo4yg@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to create a directory for an SD-Card mount?
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: how to tftp download a newer u-boot into RAM and simply execute it?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,97 +45,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jul 2016 18:09:08 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-install -d ${D}/media/sd1
-???
-
-2016-07-06 11:44 GMT-03:00  <S.Jaritz@esa-grimma.de>:
-> Hej
->
-> I managed to create and install a rule that should mount a sd card to
-> "/media/sd1".  To finish it, I need to create the directory "sd1" in medi=
-a.
-> My recipe for the rule looks like:
-> ###################
-> SUMMARY =3D "the udev rules for the board"
-> SECTION =3D "rules"
-> LICENSE =3D "CLOSED"
->
-> SRC_URI =3D "file://50-mmc.rules \
->         "
-> S =3D "${WORKDIR}"
->
-> do_install () {
->         install -d ${D}${sysconfdir}/udev/rules.d
->         install -m 0644 ${WORKDIR}/50-mmc.rules
-> ${D}${sysconfdir}/udev/rules.d/
-> }
-> ###################
-> How to create a dir in do_install which goes to the package?
->
-> By the way:
-> I was also appending fstab after this article
->
-> https://communities.intel.com/thread/49251
->
-> Is there an better way to uncomment/modify that one line in fstab?
->
-> Regards!
->
-> Stefan Jaritz
->
-> ------------------------------------------------------------
-> ESA Elektroschaltanlagen Grimma GmbH
-> Broner Ring 30
-> 04668 Grimma
-> Telefon: +49 3437 9211 176
-> Telefax: +49 3437 9211 26
-> E-Mail: s.jaritz@esa-grimma.de
-> Internet: www.esa-grimma.de
->
->
-> Gesch=C3=A4ftsf=C3=BChrer:
-> Dipl.-Ing. J=C3=B6rg Gaitzsch
-> J=C3=B6rg Reinker
->
-> Sitz der Gesellschaft: Grimma
-> Ust.-ID: DE 141784437
-> Amtsgericht: Leipzig, HRB 5159
-> Steuernummer: 238/108/00755
->
->
-> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte
-> Informationen.
-> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=C3=BCmli=
-ch
-> erhalten
-> haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie die=
-se
-> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
-> Mail
-> ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If yo=
-u
-> are
-> not the intended recipient (or have received this e-mail in error) please
-> notify the sender immediately and destroy this e-mail. Any unauthorized
-> copying, disclosure or distribution of the material in this e-mail is
-> strictly
-> forbidden.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+X-List-Received-Date: Wed, 06 Jul 2016 18:19:56 -0000
+Content-Type: text/plain; charset=US-ASCII
 
 
+  ok, i'm trying to do something on my MPC8315E-RDB that *should* be
+really simple, and i'm getting nowhere.
 
---=20
-"Do or do not. There is no try"
-  Yoda Master
+  currently on this machine, i have u-boot in NOR flash, and it's old
+but it will still boot the other images also stored in NOR flash:
+
+  U-Boot 1.3.0-rc2 (Mar 21 2008 - 16:00:02) MPC83XX
+
+i just built a new image from the current poky repo for precisely
+this target, and my generated artifacts include the newer u-boot
+binary image:
+
+  -rwxr-xr-x. 2 rpjday rpjday   423964 Jul  5 06:46
+	u-boot-mpc8315e-rdb-v2016.03+gitAUTOINC+df61a74e68-r0.bin
+
+rather than immediately write it to flash, i'd like to download and
+test it first, and everything i've seen suggests i should be able to:
+
+=> tftp 0x100000 u-boot-mpc8315e-rdb-v2016.03+gitAUTOINC+df61a74e68-r0.bin
+=> go 0x100000
+
+  well, the downloading seems to work fine:
+
+=> tftp 0x100000 u-boot-mpc8315e-rdb-v2016.03+gitAUTOINC+df61a74e68-r0.bin
+Speed: 1000, full duplex
+Using eTSEC0 device
+TFTP from server 192.168.1.13; our IP address is 192.168.1.127
+Filename 'u-boot-mpc8315e-rdb-v2016.03+gitAUTOINC+df61a74e68-r0.bin'.
+Load address: 0x100000
+Loading: #############################
+done
+Bytes transferred = 423964 (6781c hex)
+=>
+
+so the number of bytes transferred is correct. and then bad things
+happen:
+
+=> go 0x100000
+## Starting application at 0x00100000 ...
+NIP: 00100008 XER: 20000000 LR: 07FC6614 REGS: 07f2fcd0 TRAP: 0700 DAR: 00000000
+MSR: 0008b002 EE: 1 PR: 0 FP: 1 ME: 1 IR/DR: 00
+
+GPR00: 07FC6604 07F2FDC0 00000080 00000001 07F329E4 00000010 00000001 00000030
+GPR08: 00000041 00000020 00000006 FFFFFFFF 00000000 00000200 07FF9000 09FB2000
+GPR16: 00000000 00000000 00000000 00000000 00000000 FFFFFFFF 00000000 00000000
+GPR24: 07F32930 00000000 00000000 00000002 00100000 07F2FF4C 07FF98F8 07F329E4
+Call backtrace:
+07FC6604 07FD767C 07FD6D10 07FD6E98 07FC6110 07FB6BF8 07FB568C
+Program Check Exception
+Resetting the board.
+
+
+  am i missing something? downloading to the wrong address in RAM?
+jumping to the wrong entry point? i'mopen to suggestions, i know i've
+done this sort of thing before.
+
+  i'm willing to start a new configure and build from scratch if
+someone wants to supply a recipe. since this is the current YP powerpc
+reference board, it really should work out of the box, no?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
