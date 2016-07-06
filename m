@@ -1,17 +1,17 @@
 Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B61BCE00DED; Wed,  6 Jul 2016 06:11:44 -0700 (PDT)
+	id 38612E00DEB; Wed,  6 Jul 2016 06:20:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
 	*      [209.85.213.65 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (danielhilst[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,42 +21,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
 	[209.85.213.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E4AEE00DEA
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 06:11:40 -0700 (PDT)
-Received: by mail-vk0-f65.google.com with SMTP id m127so488821vkb.2
-	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 06:11:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 679ABE0077E
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 06:20:38 -0700 (PDT)
+Received: by mail-vk0-f65.google.com with SMTP id v6so32601113vkb.1
+	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 06:20:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=mX+1WLi8dweM1HSs/G5nCsd1yjmwPQyUfkIlFcYhw4c=;
-	b=P7UClDSEKz5yB2YZBfZaSGKXnf8VvxxP9df6pZ3QF95/68rlgKh4+gfSL6pN01ebua
-	7t2aVdxTE61vZXuTFnebHkHxVRXAsOSmIIWE+QlS6TCcWhFx28IrR7vzP7++WaS73D8w
-	qpb1p+InqsWvUHcZYLKhqsBOzMPDi5A3CU77XaEPl8uyJs9AwH09xxKVuNvBIZhWmeBN
-	oZHLCmXRUeZOA3XQbHKPJojPVTvrqEgFSGeU8Jt2O5dcYQJc5ifrpO70ZK3puMieuINV
-	B1sAZwuKtRWZccBl+uIRYnklyblx2sP7lOEQ4hvS9gzKX1GIxOGO+ugowi3w5KMyDGG/
-	OCSg==
+	:cc; bh=Lfh3kiymbn3B2ngBSOQkyF0I7/EzpgLI/HLtrLYPRNk=;
+	b=pfLLuyS5HOl/HcvrqVaPgSNFKlLbATH5l0YjUH6btIkKSZ4i9GjnLqPxO9HVVflicR
+	1go3sHVvTyLecDrzf8HAldOrIDlpcXPS4bzIPEev6bJIn1ugdQvDGeLFa6cX6w2htIhL
+	pY6lCYVph/ahwdnoj08WxgcxK2AHtqNtclYLCKM0J0HQDx7zkVYFS7ajyjb+abpO1MFa
+	mM4HcrvlfqMOMJ8h2Zng79U6FUjwvUV/IC2fMJ7cwUL7YcY9HDg8AijOGeoR8CtIPtkx
+	54ZODVZn6pqKncxW64MzXfMo44GX1yj+jd1LRTypgDTdAKCP6vnN8C97NOKVnnnnr2+i
+	6C1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=mX+1WLi8dweM1HSs/G5nCsd1yjmwPQyUfkIlFcYhw4c=;
-	b=Dz8x8VblNFfkpeuAPeTjEyA6PVgYIopx0IAI0xolZVrRs3QZkZIZeA0RoaXba/m8PJ
-	j5NhXm2wwOObt4C8en3ApQuAzXTiOjuctOhTcFMy4FZQGiK/3vt+rGpgPcTwdhmB9yHi
-	xr8cb5rDvuORrnFmtSYeMZlrFaK4QYeH/d2x23EJSWFgyfDYZmgFmD3EBadxXPtc9Q7N
-	mYwkx5pktHRGSFKzHT/YeYQUyv4QIbRMY2FOu/quM7z3WXQ5nn2gSj303PLdI7b46WTz
-	K18R4Xb+yk5zbc+iBE+HBneMrkFb8tsD/onRp4g26rGCTbWQCj89bwHv441cHAriylnR
-	FqEQ==
-X-Gm-Message-State: ALyK8tL5p3f+728+Ek1Xeiwt4iyv6zCOVMzFfcr7GXfmp4WPEcPMXZM4jOeHyu8BMiuTFlQtXA6NMQ8yiChxrA==
-X-Received: by 10.176.69.231 with SMTP id u94mr9787670uau.111.1467810699607;
-	Wed, 06 Jul 2016 06:11:39 -0700 (PDT)
+	bh=Lfh3kiymbn3B2ngBSOQkyF0I7/EzpgLI/HLtrLYPRNk=;
+	b=KQOrfsk+12M02oURxvpICn2eXSgwU5d1QcW/dMd0jmHzoekHMs4TUs6XnP4X1ztbkP
+	gkkNFvhPOlBIdmhWSH183rwpeZzqIfR5TNqVeIpmU+exxEvbimcxdp97RLO2nlgFa7Mq
+	ahDWb+fN4INM186YToCJNKCQeWWYu2qL+s5cpKgOSemMYLfjIxmKlY+xbWj9fir8ngi6
+	JfoaWSLowipAPAZ0xNBYnuJRARLIS1bkXQ4GwpgH83VRnO7BBEJ1HYwQTB+4fhYrJ1DJ
+	XaB1j+UcEGySgYmyYwKgE7/gyWiTdnXO1QTNGP2lK1rgzbbgqNQ7a4te5OwboeoJxp2B
+	/eJQ==
+X-Gm-Message-State: ALyK8tKoEwK7Jlux7RKmpPoY07nPDRfsh7wEfoimi+CLxsYHZZDGTqZ838IqKQkiSwUBE5i78ObkG5kfpkD1vQ==
+X-Received: by 10.176.69.231 with SMTP id u94mr9809127uau.111.1467811238439;
+	Wed, 06 Jul 2016 06:20:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.159.37.233 with HTTP; Wed, 6 Jul 2016 06:11:39 -0700 (PDT)
-In-Reply-To: <CAJTo0Lb9-p8=qt_qGqgfTWn33yxSkn_ABGM06q_UCoXaYCZXFw@mail.gmail.com>
+Received: by 10.159.37.233 with HTTP; Wed, 6 Jul 2016 06:20:37 -0700 (PDT)
+In-Reply-To: <CAF3SDA79+DQ3WFkUSAbbXLU27aNYPNmPNEzpBTaWvo58gNVzBA@mail.gmail.com>
 References: <OF0631568F.FA96A31C-ONC1257FE8.002F4202-C1257FE8.00335A95@esa-grimma.de>
 	<20160706093928.GB23993@ad.chargestorm.se>
 	<CAJTo0Lb9-p8=qt_qGqgfTWn33yxSkn_ABGM06q_UCoXaYCZXFw@mail.gmail.com>
+	<CAF3SDA79+DQ3WFkUSAbbXLU27aNYPNmPNEzpBTaWvo58gNVzBA@mail.gmail.com>
 From: "Daniel." <danielhilst@gmail.com>
-Date: Wed, 6 Jul 2016 10:11:39 -0300
-Message-ID: <CAF3SDA79+DQ3WFkUSAbbXLU27aNYPNmPNEzpBTaWvo58gNVzBA@mail.gmail.com>
+Date: Wed, 6 Jul 2016 10:20:37 -0300
+Message-ID: <CAF3SDA7W1jhyeuQQ71HBqvA3jBv54eXQU-wFH8p4ti4iHqrjXw@mail.gmail.com>
 To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to install a service generated by update-rc.d?
@@ -71,33 +72,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jul 2016 13:11:44 -0000
+X-List-Received-Date: Wed, 06 Jul 2016 13:20:40 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Isn't "libsocketcan" instead of only "socketcan"!?
+Oohhh I see, socketcan is your recipe, excuse me for my mistake.
+Andres and Burton are right, you need to install that file, eg:
 
-Regards,
+do_install() {
+    install -d "${D}${sysconfdir}/init.d/"
+    install -m 600 "${S}/can_if" "${D}${sysconfdir}/init.d/can_if"
+}
 
-2016-07-06 6:45 GMT-03:00 Burton, Ross <ross.burton@intel.com>:
+Change the second line to point to proper can_if file :)
+
+2016-07-06 10:11 GMT-03:00 Daniel. <danielhilst@gmail.com>:
+> Isn't "libsocketcan" instead of only "socketcan"!?
 >
-> On 6 July 2016 at 10:39, Anders Darander <anders@chargestorm.se> wrote:
+> Regards,
+>
+> 2016-07-06 6:45 GMT-03:00 Burton, Ross <ross.burton@intel.com>:
 >>
->> > CONFFILES_${PN} += "${sysconfdir}/init.d/can_if"
+>> On 6 July 2016 at 10:39, Anders Darander <anders@chargestorm.se> wrote:
+>>>
+>>> > CONFFILES_${PN} += "${sysconfdir}/init.d/can_if"
+>>>
+>>> If this is the complete recipe, you never install can_if...
 >>
->> If this is the complete recipe, you never install can_if...
+>>
+>> Which means the package is empty, which means it doesn't get generated,
+>> which explains why you can't add it to an image.
+>>
+>> Ross
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 >
 >
-> Which means the package is empty, which means it doesn't get generated,
-> which explains why you can't add it to an image.
->
-> Ross
 >
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> "Do or do not. There is no try"
+>   Yoda Master
 
 
 
