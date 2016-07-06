@@ -1,39 +1,37 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72534E00C5D; Wed,  6 Jul 2016 06:46:06 -0700 (PDT)
+	id 3CE39E00C60; Wed,  6 Jul 2016 07:23:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F18E2E0083D
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 06:46:04 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20160706134603218_0685
-	for <yocto@yoctoproject.org>; Wed, 06 Jul 2016 06:46:03 -0700
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [216.191.234.70] (port=26729 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1bKnB6-0005Kl-W0
-	for yocto@yoctoproject.org; Wed, 06 Jul 2016 09:47:49 -0400
-Date: Wed, 6 Jul 2016 09:45:04 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.20.1607060937040.30689@localhost.localdomain>
-User-Agent: Alpine 2.20 (LFD 67 2015-01-07)
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5C60E00855
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 07:23:16 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 1A6BF68A01B; Wed,  6 Jul 2016 15:23:15 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id B42C968A019;
+	Wed,  6 Jul 2016 15:23:11 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 5E0556740071;
+	Wed,  6 Jul 2016 16:23:11 +0200 (CEST)
+From: Gary Thomas <gary@mlbassoc.com>
+To: "Chris Z." <winotu.email@gmail.com>
+References: <577CD922.4000405@mlbassoc.com>
+	<CAEjjReJO62jjENv868u8owRazP0yBV+kBVG9yt2rxPBTxSfj2Q@mail.gmail.com>
+Message-ID: <577D144F.8050208@mlbassoc.com>
+Date: Wed, 6 Jul 2016 16:23:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.8.0
 MIME-Version: 1.0
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: for MPC8315E-RDB ref board, is CONFIG_SYS_MONITOR_LEN set too low?
+In-Reply-To: <CAEjjReJO62jjENv868u8owRazP0yBV+kBVG9yt2rxPBTxSfj2Q@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: What keeps sstate from being used?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,47 +43,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jul 2016 13:46:06 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Wed, 06 Jul 2016 14:23:20 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 2016-07-06 13:51, Chris Z. wrote:
+> Hi,
+>
+> Check:
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#shared-state-cache
+>
+> "... the build system detects changes in the "inputs" to a given task by creating a checksum (or signature) of the
+> task's inputs. If the checksum changes, the system assumes the inputs have changed and the task needs to be rerun. For
+> the second question, the shared state (sstate) code tracks which tasks add which output to the build process.... "
+>
 
-  it's possible i'm just hopelessly misreading something, but i just
-built (using pure defaults) an image for my MPC8315E-RDB dev kit, and
-while the current board config header file
-include/configs/MPC8315ERDB.h contains:
+I don't see how anything could have changed between the two runs.  Literally, I ran:
+   % bitbake target
+   ... failed with error building webkitgtk after some 6000 tasks
+   % mv tmp old
+   % bitbake target
 
-/*
- * The reserved memory
- */
-#define CONFIG_SYS_MONITOR_LEN  (384 * 1024) /* Reserve 384 kB for Mon */
+I traced this down to [at least] these tasks:
 
-the actual u-boot binary constructed for this target was:
+gthomas@europa:p0382_2016-01-13$ bitbake-diffsigs 
+sstate-cache/66/sstate:binutils-cross-arm::2.26:r0::3:66ee1a83fd248d206fd4fd9fb33ffe26_fetch.tgz.siginfo 
+sstate-cache/db/sstate:binutils-cross-arm::2.26:r0::3:dbdcf77671cb88d7220531471eae70a2_fetch.tgz.siginfo
+basehash changed from 366d439ed05d276413ffabf7423ebe44 to acc4c0150665538a4bdd394b6b6bda13
+Variable SRC_URI value changed from ' 
+git://sourceware.org/git/binutils-gdb.git;branch=binutils-${BINUPV}-branch;protocol=git 
+file://0002-configure-widen-the-regexp-for-SH-architectures.patch 
+file://0003-Point-scripts-location-to-libdir.patch 
+file://0004-Only-generate-an-RPATH-entry-if-LD_RUN_PATH-is-not-e.patch 
+file://0005-Explicitly-link-with-libm-on-uclibc.patch      file://0006-Use-libtool-2.4.patch 
+file://0007-Add-the-armv5e-architecture-to-binutils.patch 
+file://0008-don-t-let-the-distro-compiler-point-to-the-wrong-ins.patch 
+file://0009-warn-for-uses-of-system-directories-when-cross-linki.patch 
+file://0010-Fix-rpath-in-libtool-when-sysroot-is-enabled.patch 
+file://0011-Change-default-emulation-for-mips64-linux.patch      file://0012-Add-support-for-Netlogic-XLP.patch 
+file://0013-Fix-GOT-address-computations-in-initial-PLT-entries-.patch 
+file://0014-Correct-nios2-_gp-address-computation.patch 
+file://0015-fix-the-incorrect-assembling-for-ppc-wait-mnemonic.patch 
+file://MIPS-GAS-Fix-an-ISA-override-not-lifting-ABI-restrictions.patch ' to ' 
+git://sourceware.org/git/binutils-gdb.git;branch=binutils-${BINUPV}-branch;protocol=git 
+file://0002-configure-widen-the-regexp-for-SH-architectures.patch 
+file://0003-Point-scripts-location-to-libdir.patch 
+file://0004-Only-generate-an-RPATH-entry-if-LD_RUN_PATH-is-not-e.patch 
+file://0005-Explicitly-link-with-libm-on-uclibc.patch      file://0006-Use-libtool-2.4.patch 
+file://0007-Add-the-armv5e-architecture-to-binutils.patch 
+file://0008-don-t-let-the-distro-compiler-point-to-the-wrong-ins.patch 
+file://0009-warn-for-uses-of-system-directories-when-cross-linki.patch 
+file://0010-Fix-rpath-in-libtool-when-sysroot-is-enabled.patch 
+file://0011-Change-default-emulation-for-mips64-linux.patch      file://0012-Add-support-for-Netlogic-XLP.patch 
+file://0013-Fix-GOT-address-computations-in-initial-PLT-entries-.patch 
+file://0014-Correct-nios2-_gp-address-computation.patch 
+file://0015-fix-the-incorrect-assembling-for-ppc-wait-mnemonic.patch '
+Dependency on checksum of file MIPS-GAS-Fix-an-ISA-override-not-lifting-ABI-restrictions.patch was removed
 
-  -rwxr-xr-x. 2 rpjday rpjday 423964 Jul  5 06:46  \
-	u-boot-mpc8315e-rdb-v2016.03+gitAUTOINC+df61a74e68-r0.bin
+gthomas@europa:p0382_2016-01-13$ ls -l 
+sstate-cache/66/sstate:binutils-cross-arm::2.26:r0::3:66ee1a83fd248d206fd4fd9fb33ffe26_fetch.tgz.siginfo 
+sstate-cache/db/sstate:binutils-cross-arm::2.26:r0::3:dbdcf77671cb88d7220531471eae70a2_fetch.tgz.siginfo
+-rw-rw-r-- 1 gthomas gthomas 3966 Jul  6 09:16 
+sstate-cache/66/sstate:binutils-cross-arm::2.26:r0::3:66ee1a83fd248d206fd4fd9fb33ffe26_fetch.tgz.siginfo
+-rw-rw-r-- 1 gthomas gthomas 3787 Jun 28 05:55 
+sstate-cache/db/sstate:binutils-cross-arm::2.26:r0::3:dbdcf77671cb88d7220531471eae70a2_fetch.tgz.siginfo
 
-  given that that same file defines:
+Notice that the timestamp from today was 09:16.  I had updated my Poky/Yocto repo
+at 08:04 today and then immediately made the first run (seen above).  When I started
+the second run it was 11:57, and binutils-cross-arm was created (I think from setscene)
+at 12:00.  So why could these hashes have caused all those other ripples (which took
+until 14:15 to finish).
 
-  #if !defined(CONFIG_SYS_RAMBOOT)
-        #define CONFIG_ENV_IS_IN_FLASH  1
-        #define CONFIG_ENV_ADDR         \
-                        (CONFIG_SYS_MONITOR_BASE + CONFIG_SYS_MONITOR_LEN)
+I also saw some very weird behaviour in all of this.  I noticed that my virtual/kernel
+was totally rebuilt, but the image that's in the deploy directory came from the setscene
+task, i.e. the first run :-(
 
-isn't that going to result in persistent u-boot environment being
-saved over top of the tail end of u-boot in NOR flash?
+None of this seems quite right to me and I'd really like to understand it and, if needed,
+help figure out how to make it correct (and robust).
 
-  or am i just confused?
+I'll save the total state of everything in case I can provide more data...
 
-rday
+> On Wed, Jul 6, 2016 at 12:10 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>
+>     I just had a [nearly] complete build failed (building webkitgtk
+>     after some 6000 tasks).  I decided to try the 'rebuild from sstate'
+>     by removing my 'tmp' directory and rebuild.  Bitbake proceeded to
+>     run 2200 setscene tasks and then [it seems] started over on the
+>     build, rebuilding the target gcc, the kernel, who knows what else...
+>     These are all things that I thought had been completed before
+>     during the initial ~6000 steps.
+>
+>     What could be going on and why couldn't it just pick up using
+>     sstate from where it left off?
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
