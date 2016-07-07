@@ -1,60 +1,63 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C568DE00E59; Thu,  7 Jul 2016 07:46:33 -0700 (PDT)
+	id CBAD5E00E4F; Thu,  7 Jul 2016 08:18:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
-	[209.85.223.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7286AE00E5E
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 07:44:46 -0700 (PDT)
-Received: by mail-io0-f193.google.com with SMTP id l202so2527147ioe.3
-	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 07:44:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=deserted-net.20150623.gappssmtp.com; s=20150623;
-	h=sender:from:to:subject:date:message-id;
-	bh=1iuSo/7CJ5fXKJg9ZXyFTjiP9uXhnmnNm9Dxp1yrSic=;
-	b=qrpAsdLZMxdJf5QA1dVNHVgT9jKDlmfDWc686NveKl9uCpjNyt+GsOKEGiuMkHGhpA
-	D4gctTJFMpP8FgHAdK1IIiYT4wG6Xr8AabKHAealYbPtu+ZtKzxHk6YNf3NaXHB6Vt8G
-	17hbk4Xpxwie3jzDRJKnw9SlAwizyGcN6RCjsWEEiJ5CfAScmpMj2a6hbVTbm5NRxfpA
-	sMUtHBQIkR9fUFhM0/BptAkSsIg90+Woxdz7ya1xKXOuf3ureRcD2VQ0KVwY/XRDStO/
-	iNguMQ6a82kxXAqibC85KgYPwhzvpJGcnLL3WgR6VZctoLswcDaLB+vR8JF1roRVix8Y
-	JMEw==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.193 listed in list.dnswl.org]
+Received: from mail-qk0-f193.google.com (mail-qk0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDF3E00E44
+	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 08:18:04 -0700 (PDT)
+Received: by mail-qk0-f193.google.com with SMTP id r68so2271580qka.3
+	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 08:18:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=dfiM/JjpJRCECjEEjxp57y+ZcBgmJcN70vbap8Y9vpw=;
+	b=aAdQCe5OXxiuQQsiwqXRe4UVyN62fFfvUlZp5I4Jp5Or5oyjPxtoXuZuWEqrazp3tC
+	QMrW/V5BFG/iLoyub47CtET9OcCuBzAh2yo8iCYsJaVkMQygU8lMobOVU520kFalSXY3
+	XVBexy098aBXw8CKqFzCKCelli61TaNkCsmgVfX03go30BizfiapKNFlISGEyr0trfsd
+	oCoE7BAgwCupgmPBhpl+2KQtr+876MI2Qrlnd1B7puJtzA6u7+yTtQsDVTQHwL2qFKoB
+	YLxCmF+YZGziVUn0bcBkbWi318KGlDPZ+qUyAVYaV0l4N/NW6C/P6M155/DJcgdCE/WO
+	52Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:subject:date:message-id;
-	bh=1iuSo/7CJ5fXKJg9ZXyFTjiP9uXhnmnNm9Dxp1yrSic=;
-	b=UfWlQGBz8RWRFwxN+Ec8XihsXUZLrsQeFPGkHG6N4ZB4rdxBCVy16vRyfV5XHQ4ufO
-	GuTL2T4cwGQDeTE6ZmOoxd23ozkWUkijy7NUOOOsrDGNcByvayaFneGT4g3W58zBb/Lv
-	b9qf0AZQsSi7SPu0lGpyrCIGlWkc1k+K4awyOZML5rsIy0VBaoP8iEl724aEMW8j3gA4
-	ZGxrW5uaAO8xhl+oC78ZOZgmfwfDvLQpTCgr3ldcH3d6RqoCzrG2/GcjPb60i7T/M2LI
-	m6vq0DsMSTQlxhjGJMhbXEpI0dPSYGJIZ/jJx30oNIiOrE/BDDGpYc4tICe8nCgrYfNk
-	G/Sw==
-X-Gm-Message-State: ALyK8tL4h3j9qlp1q4E3HVQUKcqjW/E0z4fnueMmyfMq3FSzgGklQs3Ij+eaU6OBkrboqQ==
-X-Received: by 10.107.46.162 with SMTP id u34mr3338245iou.162.1467902685693;
-	Thu, 07 Jul 2016 07:44:45 -0700 (PDT)
-Received: from mir.deserted.net ([23.233.31.74])
-	by smtp.gmail.com with ESMTPSA id d71sm1762418ith.2.2016.07.07.07.44.44
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 07 Jul 2016 07:44:44 -0700 (PDT)
-Sender: Joe MacDonald <joe@deserted.net>
-From: Joe MacDonald <joe_macdonald@mentor.com>
-To: yocto@yoctoproject.org
-Date: Thu,  7 Jul 2016 10:44:46 -0400
-Message-Id: <1467902686-21900-1-git-send-email-joe_macdonald@mentor.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-selinux][PATCH] refpolicy: remove virtual prefix for runtime providers
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=dfiM/JjpJRCECjEEjxp57y+ZcBgmJcN70vbap8Y9vpw=;
+	b=GnrFMXVyn1FPlo7/XackFDshs9VVIy0LywCwvh4At6+K96dqY8e6VONTWvuk36DH/L
+	IBe8/4Is6nc5TIqfKB752FCBxbUZu8+zrhKLYgFgrzzHL/64MHE+dwgJOF9yJPQF8z1f
+	Ml6oRze5cSrFcn1IDIiMr8S30dSBiAxmGatlMBcT/juzfW6FqsWBs6XeFlToHXFxQ/qd
+	neQ/cdVEWWuGuelDxVPFmpfD+DqLl4pD1tO6pZ07mcqgmcV/5jqdZU7kbMVBokNDvvJD
+	aV82Ap2NE7IG2/T6lZGASf3nhwuxGe6PaWK/jC2k0qYbv8cV/zIG1tiNJjGA8LD3yShJ
+	cMKQ==
+X-Gm-Message-State: ALyK8tJ+pSG47HKLeZaguN8+a/gE4SE9m80ThNFmDPavEBMindx1HivlC7ER9P67bhwVu4N0HE1KM4Pjf8cM7w==
+X-Received: by 10.55.178.195 with SMTP id b186mr808637qkf.81.1467904683373;
+	Thu, 07 Jul 2016 08:18:03 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.214.83 with HTTP; Thu, 7 Jul 2016 08:17:34 -0700 (PDT)
+In-Reply-To: <CAFq4t4hb=aXarn8c13Vf-d=04Vz_MJBDKwFE+F32o6iQ7W8i3A@mail.gmail.com>
+References: <CAFq4t4hb=aXarn8c13Vf-d=04Vz_MJBDKwFE+F32o6iQ7W8i3A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 7 Jul 2016 08:17:34 -0700
+Message-ID: <CAMKF1sr6TKbBZY+dXiwafWnQ8Xffc2=ixU--L3-LnjZGQ2ATrg@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: USB cam device
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,70 +69,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 14:46:33 -0000
+X-List-Received-Date: Thu, 07 Jul 2016 15:18:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-In keeping with the approach of only providing a single default policy at
-runtime, we were originally using a virtual/refpolicy dependency and
-filling it with one of our specific refpolicy implementations.  This works
-well enough for some package systems, but fails for others (specifically
-deb, possibly more).
+On Thu, Jul 7, 2016 at 2:59 AM, Peter Balazovic
+<balazovic.peter@gmail.com> wrote:
+> Dears,
+>
+> I want to have my USB cam device to start numbering from /dev/video5
+> and not to assign an usual device (vide0) to the usb camera via UVC
+> driver
+>
+> What  should I modify to change it out of default?
 
-Since the intent was to only have one present in the default image anyway,
-we'll just throw out the 'virtual/' part of the RPROVIDES and related
-dependencies across the board.
-
-Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
----
-
-In terms of testing on this change, my primary approach was to compare
-before/after manifests and ensure that what lands on the filesystem image
-hasn't changed.  It is another subtle change to behaviour that I know
-isn't unanimously embraced anyway, so I'm happy to discuss alternative
-options.  My objective here was just to enable deb support (and to get my
-autobuilder to stop complaining about it).
-
- recipes-security/packagegroups/packagegroup-core-selinux.bb    | 2 +-
- recipes-security/packagegroups/packagegroup-selinux-minimal.bb | 2 +-
- recipes-security/refpolicy/refpolicy_common.inc                | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-index c6d22b7..9c74458 100644
---- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
-+++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-@@ -25,6 +25,6 @@ RDEPENDS_${PN} = " \
- 	selinux-autorelabel \
- 	selinux-init \
- 	selinux-labeldev \
--	virtual/refpolicy \
-+	refpolicy \
- 	coreutils \
- 	"
-diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-index 451ae8b..eac4b94 100644
---- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-+++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-@@ -22,5 +22,5 @@ RDEPENDS_${PN} = "\
- 	policycoreutils-sestatus \
- 	policycoreutils-setfiles \
- 	selinux-labeldev \
--	virtual/refpolicy \
-+	refpolicy \
- "
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index 1d3b93f..e1eac50 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -6,7 +6,7 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
- 
- PROVIDES += "virtual/refpolicy"
--RPROVIDES_${PN} += "virtual/refpolicy"
-+RPROVIDES_${PN} += "refpolicy"
- 
- # Specific config files for Poky
- SRC_URI += "file://customizable_types \
--- 
-1.9.1
-
+you might be able to do it with udev rules
+>
+> Thanks.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
