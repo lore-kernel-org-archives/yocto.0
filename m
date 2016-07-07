@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 612CDE00C40; Wed,  6 Jul 2016 20:33:00 -0700 (PDT)
+	id B8EC5E00C44; Wed,  6 Jul 2016 20:41:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,29 +10,29 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 333D9E00C1D
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 20:32:56 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga103.jf.intel.com with ESMTP; 06 Jul 2016 20:32:56 -0700
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62C82E00C1D
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 20:41:13 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 06 Jul 2016 20:41:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,322,1464678000"; d="scan'208";a="135066825"
+X-IronPort-AV: E=Sophos;i="5.28,322,1464678000"; d="scan'208";a="1012231769"
 Received: from lynhueyo-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.176.219])
-	by fmsmga004.fm.intel.com with ESMTP; 06 Jul 2016 20:32:52 -0700
+	by orsmga002.jf.intel.com with ESMTP; 06 Jul 2016 20:41:10 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Thu, 07 Jul 2016 15:32:49 +1200
-Message-ID: <1841758.LHKpjia4lP@peggleto-mobl.ger.corp.intel.com>
+To: yocto@yoctoproject.org, Ottavio Campana <o.campana@videotec.com>
+Date: Thu, 07 Jul 2016 15:41:08 +1200
+Message-ID: <1964715.oqk7be7Eao@peggleto-mobl.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.14.10 (Linux/4.5.7-202.fc23.x86_64; KDE/4.14.20; x86_64; ;
 	)
-In-Reply-To: <nlft2j$4vc$1@ger.gmane.org>
-References: <nlft2j$4vc$1@ger.gmane.org>
+In-Reply-To: <DB3PR04MB068425514BD2F5F577C7ACE1EE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
+References: <5637116E3E13BE46B0D936BF364783C1F350A1@MAIA.sede.videotec.com>
+	<DB3PR04MB068425514BD2F5F577C7ACE1EE250@DB3PR04MB0684.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: baremetal cross-compiler
+Subject: Re: customizing system configuration files in my image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,22 +44,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 03:33:00 -0000
+X-List-Received-Date: Thu, 07 Jul 2016 03:41:16 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Robert,
-
-On Tue, 05 Jul 2016 12:02:11 Robert Berger wrote:
-> According to the release notes it should be possible to build a
-> baremetal (no glibc/Linux) cross compiler with the YP. I just can't find
-> any information how this could be done.
+On Fri, 01 Jul 2016 09:55:38 Zhenhua Luo wrote:
+> On Fri, 01 Jul 2016 09:11:47 Ottavio Campana wrote:
+> > I would like to customize an image I am developing based on core image
+> > minimal.
+> > 
+> > Particularly, I'd like to customize the files /etc/network/interfaces and
+> > /etc/inittab .
+>
+> Usually I do it by adding bbappend of corresponding packages to override
+> original files, the interfaces is provided by init-ifupdown, the inittab is
+> provided by sysvinit-inittab.
 > 
-> I would like to build a native compiler e.g. for a Cortex-A3 and compile
-> FreeRTOS with it.
+> An example:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-core/in
+> it-ifupdown
 
-It looks like all you should need to do would be to set TCLIBC = "baremetal" 
-and build the toolchain. Juro, is there any more to it than that?
+FYI there is a shortcut to creating these - the "recipetool appendfile" 
+command. For example, say you have your desired custom inittab file locally as 
+"myinittab" and you want the bbappend to be created in meta-mylayer then you 
+would run:
+
+recipetool appendfile meta-mylayer /etc/inittab myinittab
+
+This will automatically determine which recipe is providing the file and how 
+to overwrite it with your version. You do need to have built that recipe for 
+this to work, but then that will already be the case if you have built the 
+image beforehand.
 
 Cheers,
 Paul
