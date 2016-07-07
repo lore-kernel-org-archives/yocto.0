@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AC4AE00E4F; Thu,  7 Jul 2016 08:27:01 -0700 (PDT)
+	id 7322EE00E4F; Thu,  7 Jul 2016 08:29:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.195 listed in list.dnswl.org]
+	*      [209.85.216.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f195.google.com (mail-qt0-f195.google.com
-	[209.85.216.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF56BE00E4F
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 08:27:00 -0700 (PDT)
-Received: by mail-qt0-f195.google.com with SMTP id f89so1337944qtd.0
-	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 08:27:00 -0700 (PDT)
+Received: from mail-qt0-f179.google.com (mail-qt0-f179.google.com
+	[209.85.216.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3AB3E00E4F
+	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 08:29:43 -0700 (PDT)
+Received: by mail-qt0-f179.google.com with SMTP id f89so10110568qtd.2
+	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 08:29:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ES06lOsgvKpIhLuExwE2mUcVC+gOxoVOiiaglz5pcV8=;
-	b=isRIKpehdEN8HyIGsYO55ts4ElNpF9hQcKvq/Gb+08E4HT+tltCE+DcYzeqRBjBGGL
-	LbqcWdEtIaPvuENzcCQv76ad4rj7BnOoasOE+dqWrDp8UcDgpAvwGNQniCbP3srAnOwk
-	fbuXhLLh08b5LGCvzQHUA71hXT/QU5inK/x8Yz86q2hCrASZ6l5bUgiBxs8GuUwrzLf2
-	BZ+LA/7jK9BZWjGhmgXIoV+9pSz5OOiDyjHUAEH61+SLxybLYlbxJ4m7GDCdEGuxDpJZ
-	MFIu9jLDtg1Ikmg+bNyYkk12vz0jPch2PqzKNL26ar2aCnLZm2N1irdDcgPHJl3dBAD+
-	I6Lw==
+	:cc; bh=UlKlttEYTQKOvUdZLmNMJB7Bm8KNVrY8sYnH965L6+s=;
+	b=Gv+eHN8O1USE2fIpFZHGbFKeEGrVMaEyQJNBemonzrUxyEJHIgsi/77XSyMvvSafzj
+	DeBl9N+KmHCsedHwZiZb757m4g11KiuVDcACyFNtpBqVLzeOU0LyXwOh04q1ScjHTe4u
+	pWaeq5tXCthvdhxIwpzSWsk0k6Cqyc3F99mrMCfdAvFwaY8D02HHsDWisStBcgy5rJMu
+	AOD6OXxHD5R162Ov4WkYihZMAXMsvfXBXZFYQBI0UHUJKEdP7MsH3WT5p9vDM1yXyPLz
+	59r/5V251gkfJco0eC4o1uP5WZcU3ydK6XwQA5PiKgW3l3bymyXONX4Oxm+IXqbydVAu
+	8C5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=ES06lOsgvKpIhLuExwE2mUcVC+gOxoVOiiaglz5pcV8=;
-	b=GcA2jMrURM0kGYTDhtg6kmqNIx6tJqUcSkB4XFdJ7Y7g4hHxj7WK6UD70voxrNzMdm
-	YuyaTMXqBzbpudpCZoklwNyIwLX7wv2FHcM3f0ynrD8Pv+8pczphNsNK7ZhHmsBLDcMS
-	5Matr+lMqLTpjq0VkAjRdGjY2Vvar6UEhqlI4TS3xvl+C8s4i0rKl2WmLgqa8n6+Hw3G
-	6OI47X/QjjEXop7OtFkDT9yLoqZlV9g8eihkHoW2ZpVbKGZNjNt3m/zwSnuYMkTQqezc
-	1e0Oi4K3SCEXcaS30T2jPii0n+o+V7XEnk5bQ2izAfV+QrzHDTAT2wDjEmbaLYcn/5F5
-	g/mQ==
-X-Gm-Message-State: ALyK8tI8UeKqa6+yVcE9NWOm9lfOsePjqrFXHAS5OFdO5WwTXosFkonRrHFuQnKzflat6OLJ98Hwpqk7NfCm7g==
-X-Received: by 10.200.51.76 with SMTP id u12mr1096155qta.55.1467905219243;
-	Thu, 07 Jul 2016 08:26:59 -0700 (PDT)
+	bh=UlKlttEYTQKOvUdZLmNMJB7Bm8KNVrY8sYnH965L6+s=;
+	b=UgscBFfPI+khIsoEdhqYxRBMc1vO+mMHFISVnYojfHKDw7wW6/ohGbSiZNjzxKyw8/
+	YvcBzYIaKknlQyXtv5TqB59DnpV2Iaho+C2xdJyeDx9NH/4sJQ7O5bMTwYYtWgpJulwF
+	BEfC/E3TYqbKytETw1jvYSC9Uo+Gcr9mONIm/caCmdDTqdJYm4sCsrh+oLek5lzXlnPI
+	aXhjSrDAxQslmeQFHJ7wKnTxmOlnPhbIKvh1t97bHwZYcYpNkBUjmjRDxTpv4Ko1QEC7
+	U1mJV8pBx5NZ4XZ/2EMcnTEj1kCSb7Ebv3BRQO+Nbd8KUrmfnRuI6OB8ZxnWlJ+0d60X
+	F4PQ==
+X-Gm-Message-State: ALyK8tLjO9vnMZ9WwRt4roBwblmTyivfsJQ+mBYeDR1I37KV2ZyWayQFTtwbhcMkWC1IVRR1UYnuCmbdDdQB5g==
+X-Received: by 10.200.37.9 with SMTP id 9mr1148936qtm.31.1467905382975; Thu,
+	07 Jul 2016 08:29:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Thu, 7 Jul 2016 08:26:29 -0700 (PDT)
-In-Reply-To: <CAFBcLwK0iSdL_oBNJV+PTdgBFR=sGuVWjXXeaxtvVs7-N0Z8Kg@mail.gmail.com>
-References: <CAFBcLwK0iSdL_oBNJV+PTdgBFR=sGuVWjXXeaxtvVs7-N0Z8Kg@mail.gmail.com>
+Received: by 10.55.214.83 with HTTP; Thu, 7 Jul 2016 08:29:13 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.20.1607070341590.7238@localhost.localdomain>
+References: <alpine.LFD.2.20.1607070341590.7238@localhost.localdomain>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 7 Jul 2016 08:26:29 -0700
-Message-ID: <CAMKF1sptzMNiA7z8AWY=vuYD5XOgwDMCXkdTO-0Kk4G=5YzNbg@mail.gmail.com>
-To: Alfonso Lima Astor <alfonsolimaastor@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Confused on how to use native sdk correctly
+Date: Thu, 7 Jul 2016 08:29:13 -0700
+Message-ID: <CAMKF1sr2DsXjC9jdzi6WHOwYw6BJykEqfBUKCdnqiexEvEJ=CQ@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is meta-mono layer actively supported?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,31 +69,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 15:27:01 -0000
+X-List-Received-Date: Thu, 07 Jul 2016 15:29:45 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Jul 7, 2016 at 12:40 AM, Alfonso Lima Astor
-<alfonsolimaastor@gmail.com> wrote:
-> Hello all,
+On Thu, Jul 7, 2016 at 12:50 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
 >
-> I am working on a project that creates applications for host and target
-> architectures. The target SDK works fine, but I am struggling to understand
-> how to use the host SDK. In my project, we have tools using QT libraries,
-> OpenCV libraries and headers and libraries from other packages.
+>   out of nowhere, a client of mine wants to port from WEC7 to linux
+> using YP; they already have a working app written in C# .NET and want
+> to drag it with them, obviously using mono.
 >
-> How am I supposed to use these libraries for the host build? just installing
-> them on my computer or adding them to the native sdk? What people do for other
-> projects?
+>   i see the YP wiki page on running .NET apps here:
 >
-> Having a look to the SDK environment setup script, it seems to me that
-> the native
-> SDK is meant to hold tools to support the cross compilation but not supposed to
-> be used for the native build. Is this correct?
+> https://wiki.yoctoproject.org/wiki/Building_and_running_embedded_Linux_.NET_applications_from_first_principles
+>
+> which looks like it has the info they need, given that i know
+> absolutely *zero* about C#/.NET/mono, but i might as well learn
+> something about it.
+>
+>   the history of that page suggests it's actively supported, can
+> anyone confirm that it really does walk one through how to incorporate
+> a .NET app in a YP image? given some time this weekend, i'll try to
+> follow how to add and run a simple example. thanks.
 
-thats is correct
+its supported. Try to add the layer to your bblayers.conf and add
+mono-helloworld to IMAGE_INSTALL to get a sample app.
 
 >
-> Thank you
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+>
 > --
 > _______________________________________________
 > yocto mailing list
