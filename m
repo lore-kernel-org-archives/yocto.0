@@ -1,40 +1,59 @@
-Return-Path: <Kexin.Hao@windriver.com>
+Return-Path: <sambaran.mail@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4C7FE00C40; Thu,  7 Jul 2016 01:30:01 -0700 (PDT)
+	id AB4C3E00C40; Thu,  7 Jul 2016 02:43:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sambaran.mail[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5DF1E00C1D
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 01:29:58 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id u678TpHN022400
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Jul 2016 01:29:52 -0700 (PDT)
-Received: from pek-khao-d1 (147.11.178.22) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.248.2;
-	Thu, 7 Jul 2016 01:29:51 -0700
-Date: Thu, 7 Jul 2016 16:29:46 +0800
-From: Kevin Hao <kexin.hao@windriver.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20160707082946.GC23595@pek-khao-d1>
-References: <alpine.LFD.2.20.1607061409100.2101@localhost.localdomain>
-	<CAME0jBQXFY7hvuZZ2Db3M_7kku7=0-b_UU6W9CBY17TVpym50w@mail.gmail.com>
-	<alpine.LFD.2.20.1607061508290.3259@localhost.localdomain>
-	<577D5DE0.5010706@windriver.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.171 listed in list.dnswl.org]
+Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
+	[209.85.216.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FB12E00C1D
+	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 02:43:20 -0700 (PDT)
+Received: by mail-qt0-f171.google.com with SMTP id c34so5630355qte.0
+	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 02:43:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=kSOeXJgEfLgN8jqYnoPxspExY+pJ/UAJOmxW1i/qEgs=;
+	b=Q63TGbhCUBF5hQWj6dkPtyESwD20JhVYd5ifqaGVSeoe1HeHaxWWJml+m/XP6WxFHe
+	W+7D2fL3XBNlPHgq41xucUNv+WEDu2Rnln6Dw9+xHP30YYCXG5sfnjMVSVDsNgma9Pzf
+	PY2pQxYSAhPi2f73fOHHVq9JzWriH4ekmsoXhRByajy8V2XMY/3LaBxePxxGWNQptt5T
+	Vh5VSGfeg5rYr65jyEhrIg6n6Eb/gkBEj/iuKDBjJZ8k9zPuq5Gdn1dOHu/smklD+wT/
+	++kbE3WgZQZGloi40WhsEpiFSwNaGAqhf0XdLm/ImBHhB9LICCDPlS5rK0+Ycax+Ayjx
+	ULaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=kSOeXJgEfLgN8jqYnoPxspExY+pJ/UAJOmxW1i/qEgs=;
+	b=lyjIoEwsxtJCrIO7f73dY22SFbQRdxXz9b/x7VyvRPY65gjoPX/mE/Q3v/W6FS5VPL
+	HefcOqbVFK2XTQI0XgGAlrSfpmRhxmaGJ0ka2QiABTszUn7rgjj4rmodHhFEEcb/0VAo
+	dDBYmxD/VA/aoQHh0gtZ8dC3j4mknD6q4Bp5V+PQviwVKwjoPozLNAaC1HzWHj8Tjc73
+	cCP+hf9qQePKQp7vL0CcZ1lzb8U1xum228qJ4cJVrCYz86a0pHmmcqucmabahKKqKKwO
+	N/6p1oF34E81M/0Bk1Hc/zLqpmKv55J1Idv6Rv2JV0irVQhyrbb6ZF7ZeEkSZUiDQVo3
+	fq3A==
+X-Gm-Message-State: ALyK8tLPRxg678QZlITNWj2hlZYsfbjUwaDhmCcnVWOcpEziVcXy8hCdpKgqoX8vEZzURJzYM0sSAyGFfceKZw==
+X-Received: by 10.237.50.199 with SMTP id z65mr42767205qtd.24.1467884599304;
+	Thu, 07 Jul 2016 02:43:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <577D5DE0.5010706@windriver.com>
-User-Agent: Mutt/1.6.1 (2016-04-27)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how to tftp download a newer u-boot into RAM and simply execute it?
+From: Sambaran Ghosh <sambaran.mail@gmail.com>
+Date: Thu, 07 Jul 2016 09:43:09 +0000
+Message-ID: <CADXrkTNJDZ_hgu_WNXOamSFE_iQcudB6G0Y8cB_coe0WFfM7Hw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Toaster build fails on Master branch Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,43 +65,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 08:30:01 -0000
-X-Groupsio-MsgNum: 30939
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4jXrM3lyYWu4nBt5"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 07 Jul 2016 09:43:25 -0000
+Content-Type: multipart/alternative; boundary=94eb2c1254621ce6520537088485
 
---4jXrM3lyYWu4nBt5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--94eb2c1254621ce6520537088485
+Content-Type: text/plain; charset=UTF-8
+
+While creating a toaster project with the Master Yocto branch,  build
+always fails. But if I select Krogoth or Jethro branch then builds
+succeeds. The major problem with sub-branches like Krogoth is that there
+few layers supported. Is everyone having similar problem? And do you have
+any solution?
+
+--94eb2c1254621ce6520537088485
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 06, 2016 at 03:37:04PM -0400, Bruce Ashfield wrote:
-> >=20
-> >    so, before i commit myself to this, who's the PPC/MPC8315E-RDB
-> > expert on this list who can confirm a stock u-boot should flash to NOR
-> > and just plain run?
+<span>While creating a toaster project with the Master Yocto branch, =C2=A0=
+build always fails. But if I select Krogoth or Jethro branch then builds su=
+cceeds. The major problem with sub-branches like Krogoth is that there few =
+layers supported. Is everyone having similar problem? And do you have any s=
+olution?=C2=A0</span>
 
-The ramboot is not supported for this board in u-boot. There do have some
-codes about ramboot in the startup code, but you can't expect it to work
-without some tweaking.
-
-Thanks,
-Kevin
-
---4jXrM3lyYWu4nBt5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQEcBAEBCAAGBQJXfhL6AAoJEJNY7TDerrFxeJgH/2dU5wevCRzcND9arXASqvx6
-y6cGjDakSPqSkC77lxRzvu8BGPMwX2FcV2JACI3aw4p4D5VP1jeLxCfNvxyj+pYQ
-opCDtJI+kWuBB3JQlFK04Zurb04+cUfIkm3jAqJVRAUgtTVdp7gR3bB+byv7BWTG
-GPuKPnHbTGkQEd7qjR4YQ3lrFqefVOSLn3jgxRYNq7BpU+OUUxpCBFr7OgrFm7kD
-U8mHv0Rv0IGlmXJr/VaCtM9QuczohlbHR9EXq4lSvcZGCF3tIH4zdwtbah+yrMSC
-chyUjzPE3btnvIIXLZshb/mnrm39WPGkH3Hik1Q/eULQQQFMWwKHyQke4I7+kLA=
-=MTaA
------END PGP SIGNATURE-----
-
---4jXrM3lyYWu4nBt5--
+--94eb2c1254621ce6520537088485--
