@@ -1,63 +1,33 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE2F1E00C40; Wed,  6 Jul 2016 23:02:56 -0700 (PDT)
+	id EF90FE00C40; Wed,  6 Jul 2016 23:13:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_HTML_ONLY,RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.244.64.182 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-Received: from mx18-13.smtp.antispamcloud.com (mx18-13.smtp.antispamcloud.com
-	[207.244.64.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97191E00C1D
-	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 23:02:52 -0700 (PDT)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx18.antispamcloud.com with esmtps (TLSv1:AES256-SHA:256)
-	(Exim 4.85) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1bL2OZ-0003Xj-8B
-	for yocto@yoctoproject.org; Thu, 07 Jul 2016 08:02:47 +0200
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 7 Jul 2016 08:02:41 +0200
-To: <yocto@yoctoproject.org>
-References: <OF927BD932.09AFBA11-ONC1257FE8.00500F45-C1257FE8.005101E1@esa-grimma.de>
-	<CAF3SDA4m2c0YrqaxBAzpROwbKeOdBPCMVekpkUQ7x02ScPo4yg@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <577DF081.4000603@topic.nl>
-Date: Thu, 7 Jul 2016 08:02:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.8.0
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0584E00C1D
+	for <yocto@yoctoproject.org>; Wed,  6 Jul 2016 23:13:42 -0700 (PDT)
+In-Reply-To: <577DF081.4000603@topic.nl>
+References: <OF927BD932.09AFBA11-ONC1257FE8.00500F45-C1257FE8.005101E1@esa-grimma.de>	<CAF3SDA4m2c0YrqaxBAzpROwbKeOdBPCMVekpkUQ7x02ScPo4yg@mail.gmail.com>
+	<577DF081.4000603@topic.nl>
+To: Mike Looijmans <mike.looijmans@topic.nl>
 MIME-Version: 1.0
-In-Reply-To: <CAF3SDA4m2c0YrqaxBAzpROwbKeOdBPCMVekpkUQ7x02ScPo4yg@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Filter-ID: s0sct1PQhAABKnZB5plbIbbvfIHzQjPVmPLZeVYSu3xU9luQrU+8/8qthi+0Jd/W6KAUC/fjyuDn
-	NXFr4uarw8AABa0l71MJhTGCVSA9t5V02KbWfB+BvCLafvmmGbn9dUv6vb7lzwh4VvH3mLi3t6mx
-	j3Zz/WM/IwRyPjIHIwA4N/bd+th5nnFBznvfhXkGg3fxxPXbsuNPmeCu4AAicDwJWw42swm4bO6g
-	acpMpzKAsmN/Lb+FQ/HEaohPJy4sx1hqmEa9iilDbgon2SBEMwR1Cbr/gA0Hb9IMgtxSpQPVCZ1m
-	y7qTGj+pYSPpnV3taEKYvM7FMBxCYVZUBGGA2ntmL1IOux+wiS7a7xut+NpifFDKEuqo+y7SM5LK
-	mlqkSSzm7P5LFQTh7xAIEq/JANELms9PgUTO7N3X8VVCH5Tejl+klpcKS8WcpGJHUE5QmdySlZou
-	9qHIGOZDEEo7O6ELVSrXu1Q3s0Dk1D5TiiVga8sJFDUhvJ7BMUbUKCRIMiPLyoQzvILSDO18VtgB
-	XV1z/z4WnEoC8C13cWABWljMJUuewaNdgFhoy6E5hGQo6J1fhOzjF0b4LXcjJZ5lojEMqtzJ1njt
-	3WX6t7gEp256Mn2LvZcHnl+qWjt8ZNLnihyMiH+f+SmwfmZ/JPSGbtlbWpw95PUjgvuRiAeCIlI=
-X-Report-Abuse-To: spam@mx99.antispamcloud.com
-X-Originating-IP: 37.74.225.130
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.08)
-X-Recommended-Action: accept
-Subject: Re: How to create a directory for an SD-Card mount?
+X-KeepSent: 1ABF546F:CEB962CF-C1257FE9:0021A297;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF1ABF546F.CEB962CF-ONC1257FE9.0021A297-C1257FE9.002235EB@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Thu, 7 Jul 2016 08:13:40 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 07.07.2016 08:13:43,
+	Serialize complete at 07.07.2016 08:13:43
+Cc: yocto@yoctoproject.org
+Subject: Antwort: Re: How to create a directory for an SD-Card mount?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,187 +39,563 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 06:02:57 -0000
-X-Groupsio-MsgNum: 30933
-Content-Type: multipart/related;
-	boundary="_dbb9666f-082f-4df3-94ea-0ce5eb16a600_"
+X-List-Received-Date: Thu, 07 Jul 2016 06:13:47 -0000
+X-Groupsio-MsgNum: 30934
+Content-Type: multipart/related; boundary="=_related 002235E9C1257FE9_="
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_
-Content-Type: text/html; charset="utf-8"; format=flowed
+--=_related 002235E9C1257FE9_=
+Content-Type: multipart/alternative; boundary="=_alternative 002235E9C1257FE9_="
+
+--=_alternative 002235E9C1257FE9_=
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<HTML><HEAD><!-- Template generated by Exclaimer Mail Disclaimers on 08:02:=
-41 donderdag, 7 juli 2016 -->
-<STYLE type=3Dtext/css>P.ImprintUniqueID {
-	MARGIN: 0cm 0cm 0pt
-}
-LI.ImprintUniqueID {
-	MARGIN: 0cm 0cm 0pt
-}
-DIV.ImprintUniqueID {
-	MARGIN: 0cm 0cm 0pt
-}
-TABLE.ImprintUniqueIDTable {
-	MARGIN: 0cm 0cm 0pt
-}
-DIV.Section1 {
-	page: Section1
-}
-</STYLE>
-</HEAD>
-<BODY>
-<P class=3DImprintUniqueID><div>On many embedded systems, /media/ is volati=
-le. So you probably need to create <br />an entry for a volatile dir.<br />=
-<br />Better is to create/delete the directory in the mount script. That al=
-so avoids <br />races, since creating a directory is an atomic operation. A=
-nd it allos you to <br />mount multiple devices.<br /><br />I&#39;m actuall=
-y surprised that this isn&#39;t already in place. Maybe you&#39;re missing =
-<br />some obscure udev package in your image?<br /><br />On 06-07-16 20:09=
-, Daniel. wrote:<br />&gt; install -d ${D}/media/sd1<br />&gt; ???<br />&gt=
-;<br />&gt; 2016-07-06 11:44 GMT-03:00 &nbsp;&lt;S.Jaritz@esa-grimma.de&gt;=
-:<br />&gt;&gt; Hej<br />&gt;&gt;<br />&gt;&gt; I managed to create and ins=
-tall a rule that should mount a sd card to<br />&gt;&gt; "/media/sd1". &nbs=
-p;To finish it, I need to create the directory "sd1" in media.<br />&gt;&gt=
-; My recipe for the rule looks like:<br />&gt;&gt; ###################<br /=
->&gt;&gt; SUMMARY =3D "the udev rules for the board"<br />&gt;&gt; SECTION =
-=3D "rules"<br />&gt;&gt; LICENSE =3D "CLOSED"<br />&gt;&gt;<br />&gt;&gt; =
-SRC_URI =3D "file://50-mmc.rules \<br />&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;"<br />&gt;&gt; S =3D "${WORKDIR}"<br />&gt;&gt=
-;<br />&gt;&gt; do_install () {<br />&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;install -d ${D}${sysconfdir}/udev/rules.d<br />&gt=
-;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;install -m 0644=
- ${WORKDIR}/50-mmc.rules<br />&gt;&gt; ${D}${sysconfdir}/udev/rules.d/<br /=
->&gt;&gt; }<br />&gt;&gt; ###################<br />&gt;&gt; How to create a=
- dir in do_install which goes to the package?<br />&gt;&gt;<br />&gt;&gt; B=
-y the way:<br />&gt;&gt; I was also appending fstab after this article<br /=
->&gt;&gt;<br />&gt;&gt; https://communities.intel.com/thread/49251<br />&gt=
-;&gt;<br />&gt;&gt; Is there an better way to uncomment/modify that one lin=
-e in fstab?<br />&gt;&gt;<br />&gt;&gt; Regards!<br />&gt;&gt;<br />&gt;&gt=
-; Stefan Jaritz<br />&gt;&gt;<br />&gt;&gt; -------------------------------=
------------------------------<br />&gt;&gt; ESA Elektroschaltanlagen Grimma=
- GmbH<br />&gt;&gt; Broner Ring 30<br />&gt;&gt; 04668 Grimma<br />&gt;&gt;=
- Telefon: +49 3437 9211 176<br />&gt;&gt; Telefax: +49 3437 9211 26<br />&g=
-t;&gt; E-Mail: s.jaritz@esa-grimma.de<br />&gt;&gt; Internet: www.esa-grimm=
-a.de<br />&gt;&gt;<br />&gt;&gt;<br />&gt;&gt; Gesch=C3=A4ftsf=C3=BChrer:<b=
-r />&gt;&gt; Dipl.-Ing. J=C3=B6rg Gaitzsch<br />&gt;&gt; J=C3=B6rg Reinker<=
-br />&gt;&gt;<br />&gt;&gt; Sitz der Gesellschaft: Grimma<br />&gt;&gt; Ust=
-.-ID: DE 141784437<br />&gt;&gt; Amtsgericht: Leipzig, HRB 5159<br />&gt;&g=
-t; Steuernummer: 238/108/00755<br />&gt;&gt;<br />&gt;&gt;<br />&gt;&gt; Di=
-ese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzte<br =
-/>&gt;&gt; Informationen.<br />&gt;&gt; Wenn Sie nicht der richtige Adressa=
-t sind oder diese E-Mail irrt=C3=BCmlich<br />&gt;&gt; erhalten<br />&gt;&g=
-t; haben, informieren Sie bitte sofort den Absender und l=C3=B6schen Sie di=
-ese<br />&gt;&gt; Nachricht. Das unerlaubte Kopieren sowie die unbefugte We=
-itergabe dieser<br />&gt;&gt; Mail<br />&gt;&gt; ist nicht gestattet.<br />=
-&gt;&gt;<br />&gt;&gt; This e-mail may contain confidential and/or privileg=
-ed information. If you<br />&gt;&gt; are<br />&gt;&gt; not the intended rec=
-ipient (or have received this e-mail in error) please<br />&gt;&gt; notify =
-the sender immediately and destroy this e-mail. Any unauthorized<br />&gt;&=
-gt; copying, disclosure or distribution of the material in this e-mail is<b=
-r />&gt;&gt; strictly<br />&gt;&gt; forbidden.<br />&gt;&gt; --<br />&gt;&g=
-t; </div></P>
-<P class=3DImprintUniqueID><FONT face=3DArial></FONT>&nbsp;</P>
-<P class=3DImprintUniqueID><FONT size=3D2 face=3DArial>Kind regards,</FONT>=
-</P>
-<P class=3DImprintUniqueID><FONT size=3D2 face=3DArial></FONT>&nbsp;</P>
-<P class=3DImprintUniqueID><font style=3D'font-family:Arial;font-size:10pt;=
-font-weight:bold;'>Mike Looijmans</font></P>
-<P class=3DImprintUniqueID><font style=3D'font-family:Arial;font-size:10pt;=
-'>System Expert</font></P>
-<P class=3DImprintUniqueID><FONT face=3DArial></FONT>&nbsp;</P>
-<P class=3DImprintUniqueID><FONT face=3DArial></FONT></P>
-<P class=3DImprintUniqueID><FONT face=3DArial></FONT></P>
-<P class=3DImprintUniqueID><img width=3D375 height=3D74 style=3D'border: 0p=
-x Solid ; 'src=3D"cid:imageb57089.PNG@23aab53b.4582332c"><BR /><BR /></P>
-<P class=3DImprintUniqueID>
-<TABLE class=3DImprintUniqueIDTable style=3D"HEIGHT: 72px; BORDER-COLLAPSE:=
- collapse; WIDTH: 475px" cellSpacing=3D0 cols=3D3 cellPadding=3D0 border=3D=
-0>
-  <TBODY>
-  <TR>
-    <TD style=3D"WIDTH: 205px">
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial><STRONG>TOPIC=
-=20
-      Products</STRONG></FONT></P></TD>
-    <TD style=3D"WIDTH: 29px">
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial></FONT>&nbsp;<=
-/P></TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial></FONT>&nbsp;<=
-/P></TD></TR>
-  <TR>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>Materiaalweg=20
-    4</FONT></P></TD>
-    <TD style=3D"WIDTH: 29px">
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial></FONT>&nbsp;<=
-/P></TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial></FONT>&nbsp;<=
-/P></TD></TR>
-  <TR>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>5681=20
-      RJ&nbsp;Best</FONT></P></TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>T:</FONT></P><=
-/TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>+31 (0) 499 33=
- 69=20
-      69</FONT></P></TD></TR>
-  <TR>
-    <TD style=3D"HEIGHT: 14px">
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>Postbus 440</F=
-ONT></P></TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>E:</FONT></P><=
-/TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1><font style=3D'font-family:=
-Arial;'>mike.looijmans@topicproducts.com</font></FONT></P></TD></TR>
-  <TR>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>5680 AK=20
-Best</FONT></P></TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial>W:</FONT></P><=
-/TD>
-    <TD>
-      <P class=3DImprintUniqueID><FONT size=3D1 face=3DArial><A href=3D"htt=
-p://www.topicproducts.com">www.topicproducts.com</A></FONT></P></TD></TR>
-  <TR>
-    <TD><FONT size=3D1 face=3DArial>The Netherlands</FONT></TD>
-    <TD><FONT face=3DArial></FONT></TD></TD>
-    <TD><FONT face=3DArial></FONT></TD>
-    <TD><FONT face=3DArial></FONT></TD></TR></TBODY></TABLE></P>
-<P class=3DImprintUniqueID><A href=3D"https://www.facebook.com/TopicProduct=
-s"><FONT face=3DArial><IMG id=3DIMG1 border=3D0 src=3D"cid:imagef129c8.JPG@=
-626c6fcb.4b801a9a" width=3D20 height=3D19 /> </FONT></A><A href=3D"https://=
-twitter.com/TopicProducts"><FONT face=3DArial><IMG id=3DIMG1 border=3D0 src=
-=3D"cid:image90c200.JPG@589e0182.4a882f4d" width=3D20 height=3D19 /></FONT>=
-</A><A href=3D"https://www.linkedin.com/company/topic-embedded-products"><F=
-ONT face=3DArial><IMG id=3DIMG1 border=3D0 src=3D"cid:imagef61004.JPG@91c6b=
-508.4ca79a8b" width=3D20 height=3D18 /></FONT></A><BR /><FONT color=3Dgreen=
- size=3D1 face=3DArial>Please consider the=20
-environment before printing this e-mail<BR /></FONT></P><BR /><A href=3D"ht=
-tp://topic.nl/vacancy/topic-zoekt-technische-software-engineers/"><font sty=
-le=3D'font-family:Arial;font-size:8pt;'>Topic zoekt gedreven (embedded) sof=
-tware specialisten!</font></A><BR /><BR />
-<P class=3DImprintUniqueID><div>___________________________________________=
-____<br />&gt;&gt; yocto mailing list<br />&gt;&gt; yocto@yoctoproject.org<=
-br />&gt;&gt; https://lists.yoctoproject.org/listinfo/yocto<br />&gt;&gt;<b=
-r />&gt;<br />&gt;<br />&gt;<br /><br /></div></P>
-<P><FONT face=3DArial></FONT></P>
-<P><FONT face=3DArial></FONT></P></FONT></EM></BODY></HTML>
+Problem solved! Thank you for the help.
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_
+It was solved by:
+
+do=5Finstall () {
+...
+install -d ${D}/media/sd1
+...
+}
+
+FILES=5F${PN} +=3D "media/sd1"
+
+@Mike:
+I am using the meta-atmel. The mount dir is created. In my case I have a=20
+rule which mounts the sd card to mount/sd1, That's why I need to create=20
+sd1. But good idea, maybee I will change the rule, so it creates (if=20
+needed) the dir to mount.
+
+Regards!
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    Mike Looijmans <mike.looijmans@topic.nl>
+An:     <yocto@yoctoproject.org>
+Datum:  07.07.2016 08:04
+Betreff:        Re: [yocto] How to create a directory for an SD-Card=20
+mount?
+Gesendet von:   yocto-bounces@yoctoproject.org
+
+
+
+On many embedded systems, /media/ is volatile. So you probably need to=20
+create=20
+an entry for a volatile dir.
+
+Better is to create/delete the directory in the mount script. That also=20
+avoids=20
+races, since creating a directory is an atomic operation. And it allos you =
+
+to=20
+mount multiple devices.
+
+I'm actually surprised that this isn't already in place. Maybe you're=20
+missing=20
+some obscure udev package in your image?
+
+On 06-07-16 20:09, Daniel. wrote:
+> install -d ${D}/media/sd1
+> ???
+>
+> 2016-07-06 11:44 GMT-03:00  <S.Jaritz@esa-grimma.de>:
+>> Hej
+>>
+>> I managed to create and install a rule that should mount a sd card to
+>> "/media/sd1".  To finish it, I need to create the directory "sd1" in=20
+media.
+>> My recipe for the rule looks like:
+>> ###################
+>> SUMMARY =3D "the udev rules for the board"
+>> SECTION =3D "rules"
+>> LICENSE =3D "CLOSED"
+>>
+>> SRC=5FURI =3D "file://50-mmc.rules \
+>>          "
+>> S =3D "${WORKDIR}"
+>>
+>> do=5Finstall () {
+>>          install -d ${D}${sysconfdir}/udev/rules.d
+>>          install -m 0644 ${WORKDIR}/50-mmc.rules
+>> ${D}${sysconfdir}/udev/rules.d/
+>> }
+>> ###################
+>> How to create a dir in do=5Finstall which goes to the package?
+>>
+>> By the way:
+>> I was also appending fstab after this article
+>>
+>> https://communities.intel.com/thread/49251
+>>
+>> Is there an better way to uncomment/modify that one line in fstab?
+>>
+>> Regards!
+>>
+>> Stefan Jaritz
+>>
+>> ------------------------------------------------------------
+>> ESA Elektroschaltanlagen Grimma GmbH
+>> Broner Ring 30
+>> 04668 Grimma
+>> Telefon: +49 3437 9211 176
+>> Telefax: +49 3437 9211 26
+>> E-Mail: s.jaritz@esa-grimma.de
+>> Internet: www.esa-grimma.de
+>>
+>>
+>> Gesch=E4ftsf=FChrer:
+>> Dipl.-Ing. J=F6rg Gaitzsch
+>> J=F6rg Reinker
+>>
+>> Sitz der Gesellschaft: Grimma
+>> Ust.-ID: DE 141784437
+>> Amtsgericht: Leipzig, HRB 5159
+>> Steuernummer: 238/108/00755
+>>
+>>
+>> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte
+>> Informationen.
+>> Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+>> erhalten
+>> haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+>> Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe=20
+dieser
+>> Mail
+>> ist nicht gestattet.
+>>
+>> This e-mail may contain confidential and/or privileged information. If=20
+you
+>> are
+>> not the intended recipient (or have received this e-mail in error)=20
+please
+>> notify the sender immediately and destroy this e-mail. Any unauthorized
+>> copying, disclosure or distribution of the material in this e-mail is
+>> strictly
+>> forbidden.
+>> --
+>>=20
+=20
+Kind regards,
+=20
+Mike Looijmans
+System Expert
+=20
+
+
+
+TOPIC Products
+=20
+=20
+
+Materiaalweg 4
+=20
+=20
+
+5681 RJ Best
+T:
++31 (0) 499 33 69 69
+
+Postbus 440
+E:
+mike.looijmans@topicproducts.com
+
+5680 AK Best
+W:
+www.topicproducts.com
+
+The Netherlands
+
+
+
+
+Please consider the environment before printing this e-mail
+
+Topic zoekt gedreven (embedded) software specialisten!
+
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+>
+--=20
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+--=_alternative 002235E9C1257FE9_=
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<font size=3D2 face=3D"sans-serif">Problem solved! Thank you for the help.<=
+/font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">It was solved by:</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">do=5Finstall () {</font>
+<br><font size=3D2 face=3D"sans-serif">...</font>
+<br><font size=3D2 face=3D"sans-serif">install -d ${D}/media/sd1</font>
+<br><font size=3D2 face=3D"sans-serif">...</font>
+<br><font size=3D2 face=3D"sans-serif">}</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">FILES=5F${PN} +=3D &quot;media/sd1&q=
+uot;</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">@Mike:</font>
+<br><font size=3D2 face=3D"sans-serif">I am using the meta-atmel. The mount
+dir is created. In my case I have a rule which mounts the sd card to mount/=
+sd1,
+That's why I need to create sd1. But good idea, maybee I will change the
+rule, so it creates (if needed) the dir to mount.</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Regards!</font>
+<br><font size=3D2 face=3D"sans-serif"><br>
+Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">Mike Looijmans &lt;mike.loo=
+ijmans@topic.nl&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&lt;yocto@yoctoproject.org&=
+gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">07.07.2016 08:04</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+How to create a directory for an SD-Card mount?</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Gesendet von: &nbsp;=
+ &nbsp;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">yocto-bounces@yoctop=
+roject.org</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><font size=3D3>On many embedded systems, /media/ is volatile. So you
+probably need to create <br>
+an entry for a volatile dir.<br>
+<br>
+Better is to create/delete the directory in the mount script. That also
+avoids <br>
+races, since creating a directory is an atomic operation. And it allos
+you to <br>
+mount multiple devices.<br>
+<br>
+I'm actually surprised that this isn't already in place. Maybe you're missi=
+ng
+<br>
+some obscure udev package in your image?<br>
+<br>
+On 06-07-16 20:09, Daniel. wrote:<br>
+&gt; install -d ${D}/media/sd1<br>
+&gt; ???<br>
+&gt;<br>
+&gt; 2016-07-06 11:44 GMT-03:00 &nbsp;&lt;S.Jaritz@esa-grimma.de&gt;:<br>
+&gt;&gt; Hej<br>
+&gt;&gt;<br>
+&gt;&gt; I managed to create and install a rule that should mount a sd
+card to<br>
+&gt;&gt; &quot;/media/sd1&quot;. &nbsp;To finish it, I need to create the
+directory &quot;sd1&quot; in media.<br>
+&gt;&gt; My recipe for the rule looks like:<br>
+&gt;&gt; ###################<br>
+&gt;&gt; SUMMARY =3D &quot;the udev rules for the board&quot;<br>
+&gt;&gt; SECTION =3D &quot;rules&quot;<br>
+&gt;&gt; LICENSE =3D &quot;CLOSED&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; SRC=5FURI =3D &quot;</font><a href=3D"file://50-mmc.rules/"><font =
+size=3D3>file://50-mmc.rules</font></a><font size=3D3>
+\<br>
+&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&quot;<br>
+&gt;&gt; S =3D &quot;${WORKDIR}&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; do=5Finstall () {<br>
+&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;install -d ${D}${sysconfdir}/ude=
+v/rules.d<br>
+&gt;&gt; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;install -m 0644 ${WORKDIR}/50-mm=
+c.rules<br>
+&gt;&gt; ${D}${sysconfdir}/udev/rules.d/<br>
+&gt;&gt; }<br>
+&gt;&gt; ###################<br>
+&gt;&gt; How to create a dir in do=5Finstall which goes to the package?<br>
+&gt;&gt;<br>
+&gt;&gt; By the way:<br>
+&gt;&gt; I was also appending fstab after this article<br>
+&gt;&gt;<br>
+&gt;&gt; </font><a href=3Dhttps://communities.intel.com/thread/49251><font =
+size=3D3>https://communities.intel.com/thread/49251</font></a><font size=3D=
+3><br>
+&gt;&gt;<br>
+&gt;&gt; Is there an better way to uncomment/modify that one line in fstab?=
+<br>
+&gt;&gt;<br>
+&gt;&gt; Regards!<br>
+&gt;&gt;<br>
+&gt;&gt; Stefan Jaritz<br>
+&gt;&gt;<br>
+&gt;&gt; ------------------------------------------------------------<br>
+&gt;&gt; ESA Elektroschaltanlagen Grimma GmbH<br>
+&gt;&gt; Broner Ring 30<br>
+&gt;&gt; 04668 Grimma<br>
+&gt;&gt; Telefon: +49 3437 9211 176<br>
+&gt;&gt; Telefax: +49 3437 9211 26<br>
+&gt;&gt; E-Mail: s.jaritz@esa-grimma.de<br>
+&gt;&gt; Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D3>www.=
+esa-grimma.de</font></a><font size=3D3><br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Gesch=E4ftsf=FChrer:<br>
+&gt;&gt; Dipl.-Ing. J=F6rg Gaitzsch<br>
+&gt;&gt; J=F6rg Reinker<br>
+&gt;&gt;<br>
+&gt;&gt; Sitz der Gesellschaft: Grimma<br>
+&gt;&gt; Ust.-ID: DE 141784437<br>
+&gt;&gt; Amtsgericht: Leipzig, HRB 5159<br>
+&gt;&gt; Steuernummer: 238/108/00755<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzt=
+e<br>
+&gt;&gt; Informationen.<br>
+&gt;&gt; Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=
+=FCmlich<br>
+&gt;&gt; erhalten<br>
+&gt;&gt; haben, informieren Sie bitte sofort den Absender und l=F6schen Sie
+diese<br>
+&gt;&gt; Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe
+dieser<br>
+&gt;&gt; Mail<br>
+&gt;&gt; ist nicht gestattet.<br>
+&gt;&gt;<br>
+&gt;&gt; This e-mail may contain confidential and/or privileged information.
+If you<br>
+&gt;&gt; are<br>
+&gt;&gt; not the intended recipient (or have received this e-mail in error)
+please<br>
+&gt;&gt; notify the sender immediately and destroy this e-mail. Any unautho=
+rized<br>
+&gt;&gt; copying, disclosure or distribution of the material in this e-mail
+is<br>
+&gt;&gt; strictly<br>
+&gt;&gt; forbidden.<br>
+&gt;&gt; --<br>
+&gt;&gt; </font>
+<br><font size=3D3>&nbsp;</font>
+<br><font size=3D2 face=3D"Arial">Kind regards,</font>
+<br><font size=3D3>&nbsp;</font>
+<br><font size=3D2 face=3D"Arial"><b>Mike Looijmans</b></font>
+<br><font size=3D2 face=3D"Arial">System Expert</font>
+<br><font size=3D3>&nbsp;</font>
+<br><img src=3Dcid:=5F4=5F0CE7BCD40CE7BA68002235E8C1257FE9 style=3D"border:=
+0px solid;"><font size=3D3><br>
+</font>
+<br>
+<table width=3D475 style=3D"border-collapse:collapse;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial"><b>TOPIC
+Products</b></font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;"><font size=3D3>&nbsp;</font>
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D3>&nbsp;</font>
+<td width=3D5 valign=3Dtop style=3D"border-style:solid;border-color:#000000=
+;border-width:0px 0px 0px 0px;padding:0px 0px;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">Materiaa=
+lweg
+4</font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;"><font size=3D3>&nbsp;</font>
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D3>&nbsp;</font>
+<td width=3D5 valign=3Dtop style=3D"border-style:solid;border-color:#000000=
+;border-width:0px 0px 0px 0px;padding:0px 0px;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">5681
+RJ Best</font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">T:</font>
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">+31
+(0) 499 33 69 69</font>
+<td width=3D5 valign=3Dtop style=3D"border-style:solid;border-color:#000000=
+;border-width:0px 0px 0px 0px;padding:0px 0px;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">Postbus
+440</font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">E:</font>
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">mike.loo=
+ijmans@topicproducts.com</font>
+<td width=3D5 valign=3Dtop style=3D"border-style:solid;border-color:#000000=
+;border-width:0px 0px 0px 0px;padding:0px 0px;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">5680
+AK Best</font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">W:</font>
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><a href=3Dhttp://www.topicproducts.com=
+/><font size=3D1 color=3Dblue face=3D"Arial"><u>www.topicproducts.com</u></=
+font></a>
+<td width=3D5 valign=3Dtop style=3D"border-style:solid;border-color:#000000=
+;border-width:0px 0px 0px 0px;padding:0px 0px;">
+<tr height=3D8>
+<td width=3D151 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;"><font size=3D1 face=3D"Arial">The
+Netherlands</font>
+<td width=3D22 style=3D"border-style:solid;border-color:#000000;border-widt=
+h:0px 0px 0px 0px;padding:0px 0px;">
+<td width=3D295 style=3D"border-style:solid;border-color:#000000;border-wid=
+th:0px 0px 0px 0px;padding:0px 0px;">
+<td width=3D5 style=3D"border-style:solid;border-color:#000000;border-width=
+:0px 0px 0px 0px;padding:0px 0px;"></table>
+<br><a href=3Dhttps://www.facebook.com/TopicProducts><img src=3Dcid:=5F2=5F=
+0CE747640CE7C188002235E8C1257FE9 style=3D"border:0px solid;"></a><a href=3D=
+https://twitter.com/TopicProducts><img src=3Dcid:=5F2=5F0CE74AA80CE7C188002=
+235E8C1257FE9 style=3D"border:0px solid;"></a><a href=3D"https://www.linked=
+in.com/company/topic-embedded-products"><img src=3Dcid:=5F2=5F0CE74DEC0CE7C=
+188002235E8C1257FE9 style=3D"border:0px solid;"></a><font size=3D1 color=3D=
+#008000 face=3D"Arial"><br>
+Please consider the environment before printing this e-mail</font>
+<p><font size=3D3 color=3Dblue><u><br>
+</u></font><a href=3D"http://topic.nl/vacancy/topic-zoekt-technische-softwa=
+re-engineers/"><font size=3D1 color=3Dblue face=3D"Arial"><u>Topic
+zoekt gedreven (embedded) software specialisten!</u></font></a><font size=
+=3D3><br>
+</font>
+<br><font size=3D3>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; yocto@yoctoproject.org<br>
+&gt;&gt; </font><a href=3Dhttps://lists.yoctoproject.org/listinfo/yocto><fo=
+nt size=3D3>https://lists.yoctoproject.org/listinfo/yocto</font></a><font s=
+ize=3D3><br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+</font><tt><font size=3D2>-- <br>
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F<br>
+yocto mailing list<br>
+yocto@yoctoproject.org<br>
+</font></tt><a href=3Dhttps://lists.yoctoproject.org/listinfo/yocto><tt><fo=
+nt size=3D2>https://lists.yoctoproject.org/listinfo/yocto</font></tt></a><t=
+t><font size=3D2><br>
+</font></tt>
+<br>
+
+--=_alternative 002235E9C1257FE9_=--
+
+--=_related 002235E9C1257FE9_=
 Content-Type: image/png
+Content-ID: <_4_0CE7BCD40CE7BA68002235E8C1257FE9>
 Content-Transfer-Encoding: base64
-Content-ID: <imageb57089.PNG@23aab53b.4582332c>
-Content-Disposition: inline; filename="imageb57089.PNG"
-Content-Location: imageb57089.PNG
-Content-Description: imageb57089.PNG
 
 iVBORw0KGgoAAAANSUhEUgAAAXcAAABKCAYAAABAUxQ5AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAj
 JUlEQVR4Xu2dB3hUxd7G12sv2BGx4CWoiAXbvX7qp5/9Wi9XImETQBGkI0WKXlTkKogooheRSxGF
@@ -412,90 +758,62 @@ fK64N+zd6OzaDUP1vFvm2vcjHML9KhQuuGgKDh2sfbuVlP6L5ScDqgqF25gt2aag0GbaN1xJ6b9U
 ytwVDZPprlauYqAP0+kUioYrZe6Khgg29QgJNY7TVWgpgcE0hUINqCoU/obZuvP/AWT/4Z50Uf93
 AAAAAElFTkSuQmCC
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_
+--=_related 002235E9C1257FE9_=
 Content-Type: image/jpeg
+Content-ID: <_2_0CE747640CE7C188002235E8C1257FE9>
 Content-Transfer-Encoding: base64
-Content-ID: <imagef129c8.JPG@626c6fcb.4b801a9a>
-Content-Disposition: inline; filename="imagef129c8.JPG"
-Content-Location: imagef129c8.JPG
-Content-Description: imagef129c8.JPG
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/
 2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwM
 BwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
-DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAATABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEA
-AAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJx
-FDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNk
-ZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJ
-ytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
-BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMz
-UvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3
-eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna
-4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3/wDaq/bN1S5/aP8AGFj/AMJY8Z0nU57M
-Qrd+X5KpIyhdpPAAGMDjv1zXt/gj4T6zov7Jd98RvG2ofE5dTkMxsdK0yAlrWNVYx3FwrKT5J272
-fIAQjrmvzj/bY8Ppc/tk/EzzFGJfEN6QGH3lMzj8ehH4V9i/Ez46+No/+CHnhbVf+E014a7qHiaX
-Sru8F8ftFxYl7uM27t1MWxVXaeMAV+347K6scFglheWPtJQi3bXWN+z0dnf/AIc+Bw+IpyrVnVbf
-Km9/P1+4++f2Bvi7c/GL9k/wn4gur7+1JryGVTdB9/mhJXUfMeWwBjPfHeiuH/4JFaa1j/wT88BQ
-7DH5cdyu0jG3FzLxRX5NmtGEMbWhHZSkvxZ9Jh61b2UfRfkjqvjB+wh8JPiN46ute1jwTp13q2pf
-vrmcTTRec/QsVRwu44GSBknk5Nc4f+CdXwYnKxt4HtTGrAhft13tBz6ebRRU0c1xsIKEK00ktlJ2
-/M7pYWi5XcF9yPofwZ4E0f4eeFbHQ9E0+303SdNiENtbQAqkS9fxJJJJOSSSTkmiiivN5pN3b1Ov
-lS0R/9k=
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAA
+AAAAAAAAAAYHCAUJ/8QAKhAAAQMCBQQBBAMAAAAAAAAAAQIDBAURAAYHCBIJEyExgRQVFkEiMlH/
+xAAYAQADAQEAAAAAAAAAAAAAAAAEBgcCBf/EACcRAAEEAQIDCQAAAAAAAAAAAAEAAgMEEQUSIVGx
+EzEyQWFxkdHw/9oADAMBAAIRAxEAPwC/91O8yqSNx2cIP5Yts0mpvwwymX2+ylDikhPEnwABaw8f
+v3fF25K0qrVF2mTdRs61DU1NScLxhUumsEqitpSotyJCVJJ7R481LuAEEe7485d7GXkSd5OpncSL
+O5hmkBQ/skvLHz6I+MbC1M10zs30QsrVT80rwrlQzK7S5cwTj9RIglyW2Y61ey1wSlPE+LAYteoa
+bI2jUFXDd7mtJxx4jpzSFXnY6aUyEnAJ7/X9hb72DasP6ybT8p5glzPur0xp1JlBfPuhLq0j+RN1
+WAtf92wxB+kZSDE6fuQmi2pHabkp42txtJd8YYlGqVomXJWDyceqa6s0vYt9gpNrHsU0l1Dz3Ir1
+YyVTZdVqZLsp8OvNd5fgcilCwnkbC5AuT5Nz5xwHenVow48hpWR4paSsEI+ul2Bv/ndwwwfVv2hA
+1okdjHM/axJBFv8ACPhaDyRkik6eZTgUSiQI9MpVNaDUaMwOKGk+/kkkkk3JJJJJOGGGOCSSclGA
+DC//2Q==
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_
+--=_related 002235E9C1257FE9_=
 Content-Type: image/jpeg
+Content-ID: <_2_0CE74AA80CE7C188002235E8C1257FE9>
 Content-Transfer-Encoding: base64
-Content-ID: <image90c200.JPG@589e0182.4a882f4d>
-Content-Disposition: inline; filename="image90c200.JPG"
-Content-Location: image90c200.JPG
-Content-Description: image90c200.JPG
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/
 2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwM
 BwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
-DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAATABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEA
-AAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJx
-FDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNk
-ZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJ
-ytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
-BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMz
-UvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3
-eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna
-4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9RPhzfN8bfjF46bVPEmrrZ+H51hW3sbvy
-W3O7gZODgKFOAB+lc38Wfh747+Gen6tq8PiJr7QdOcyCdNRBnWDcAskicYxkBsZxWP8ACLWI9B+L
-/wAUtNjmhh1TXLyGeyWaVYhdeTLJvjVmwNxD5AJGdpA5ruf2kPEM/iL4EeJLO60mHwer2qlZorqJ
-zqbCRf8ARSvLYfknb02c8Zr9U5KtLFwhTtyS5FZpaJqOqV03q3qk/PY/m363TxOXVKlVy9pH2sua
-LlrJSnZSdnFKyi7ScdGmt9fb/wBlr4gXPj34HaLqd1cfbJpldTMDneFcqMk/SisH9hzT2tf2ZvDs
-e0rsEoIPGP3rUV8BmVKEcZVjHZSl+Z+0ZDisRUyzDVJat04N+riit8TvgL4R1PxlNfTaLC1zep58
-zLLIod2Jy20MAM9TgdeetYc3wA8ITwAto6ZUjBFxKMf+PUUVzRzLFxSjGrKy/vP/ADPUqcP5XUk5
-1MNTbd224Rbb+4978KeFtP8ACvh200/T7ZLWztYwkUSE4UdT1OSSSSSeSTRRRXJzN6tnqRhGK5Yq
-yR//2Q==
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAA
+AAAAAAAAAAUGBwQJ/8QAJxAAAQIGAgIBBQEAAAAAAAAAAQIDAAQFBgcREiEIMRMjJEGBoaL/xAAY
+AQADAQEAAAAAAAAAAAAAAAAFBgcECP/EACYRAAEDAwIFBQAAAAAAAAAAAAECAwQAESEFEhMiMUKR
+FEGBsdH/2gAMAwEAAhEDEQA/APUHHk45m3L98qqNyVVEpb76WUsSc0WlBS1rA2dHQSEnQA/kVzK9
+g33jSnVWrNXCqdodPWXA8ioAvpY5AJccR1rWwFa3qIfEtabt/MGUach1pqqVydZekkuuJaEz8Trn
+NtKlaHIhewCRviQO4u/khX5i4MFXFJzVKatJLkukpebmmlmoqC0/alIBVpfZPH1x763FP4bjUpKW
+7bDtFiBgEDIHX3PT5rm/1bciAtbpPETvVcE5IKrA4tbANjatx8Wb9evzB1Fqc2+mcefStPygk8wl
+ZSO/1CILwdp5lPGe3WyFJKA6NetfVVCEPUo7SZbgA7j91aNAkyHNNjrWclCb+BXNkvAlo1O83516
+isqmJwB55SXXEha1b5HiFAAn30PffvuIGdwHaK2ATR0bSRo/O6Nf6hCNcaW/wk858mhknTIan3Cp
+pJ5j2j8rc7SteQtq3ZWQkJcSsnKoCGmkKUAkez+dkkkkk9kmEIQIUTemZtCQkACv/9k=
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_
+--=_related 002235E9C1257FE9_=
 Content-Type: image/jpeg
+Content-ID: <_2_0CE74DEC0CE7C188002235E8C1257FE9>
 Content-Transfer-Encoding: base64
-Content-ID: <imagef61004.JPG@91c6b508.4ca79a8b>
-Content-Disposition: inline; filename="imagef61004.JPG"
-Content-Location: imagef61004.JPG
-Content-Description: imagef61004.JPG
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcG
 BwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwM
 DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAASABQDASIA
-AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
-AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
-ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
-p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
-AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
-BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
-U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
-uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6i+EP
-xt0H48fBf4l+L0/4SmfVvDeqxWiTCNVtYbmebaFuC5yxd3AyD/EMZJOdfx18N/ip8MvAOt+J9c8J
-ajp2i+HImuNRm82OWSCEAlpRCrF3jA3ZYAj5T1wc/L3wE/ah8N/sy/Aj41/DTxTYa9b+KPFHimxu
-lhjgiC2LWN7G80UwkdWST90wA2nnGSOo9H1X/gqB4C1P9r746ePini4+H/ib4HXwvpFo/kmW2uRb
-pHvlj8/ZHHuDncpY/MeOTj9brZLio1Z+wp3huut1aG1u95a67bH4jR4lwTowWIqpTtZq9rO9TVpp
-3taCtp8R+g//AASd+NVr8eP2RbbWbGW6ms4dXvbOIzoU4SQE7QSTtyxIz60Vwv8AwQP8O3Xh3/gn
-do4uLeSCK71i/uLZ2XC3MRkCiRDgZQsrAHviivzjO6UaWYVqcNlJr8T9W4frzr5ZQrVN5Qi/vR9Z
-658MPDXifUWvNS8PaHqF2wCtPc2EUshA6Asyk8YH5VTHwP8ABY/5lDwv/wCCqD2/2fYfkKKK68P/
-AAYlT+J+rOnhhS3hWONVREAVVUYCgdABRRRXgvc9VbH/2Q==
+AhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAYIBAUHCf/EAC0QAAEDBAIAAwYHAAAAAAAAAAEC
+AwQFBgcRABIICSETFSIxQWEjQlFWYpGV/8QAGAEAAgMAAAAAAAAAAAAAAAAABgcDBAX/xAAmEQAB
+AwMDAgcAAAAAAAAAAAABAgMRAAQxBSEyQXEGEzNRYaGx/9oADAMBAAIRAxEAPwC0OIs3UHO+GclX
+cg3Q9VrbqrURDobSmK1Jfe6hMgrO1Fa1gbB/MNbJO9tfOPMpY0sKtXNW7UqFPotutKfqL3tm3XGG
+QCVOhlKitbYHbagCPhPz0d1cwP4n7c8NODcz43ueDXGLlue6YUoMtsNBMJUGY2t1p0OLSpDn4SgB
+1PrrZHzHQqz5m9i1bxcZuvzpdfuDJVlItmlRFlkuRpCY6G+7jft+iG+wWeySo/EfT1Omo9pdyh5Y
+YRKMjrIhOI95O++KSzPiC1LCPPXC4gjEGVbkEbxCRHzXoV5Uuc4ucvCRFrEByU/DZq02I0p5BRoI
+c2eoJJ67USN/rxyA+Q5bMug+XnRhIjuMtSqvPfjLUNJkNFwJDiDobQVJUAfrrjgFqrKEXjqE4Cj+
+0wtJun3bJpw9Ug/Qq2ldxnbdy1RUuo2/RKhKUEgvSYLTrhA1odlJJ+g5hN4Us39pWx/lsfb+P2H9
+Djjlpj0x2qJzme5qSBpMdhlDaUoQlsAJSNAccccxlcjRG3xFf//Z
 
---_dbb9666f-082f-4df3-94ea-0ce5eb16a600_--
+--=_related 002235E9C1257FE9_=--
