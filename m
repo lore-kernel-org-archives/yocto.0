@@ -1,59 +1,43 @@
-Return-Path: <alfonsolimaastor@gmail.com>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A94FE00C40; Thu,  7 Jul 2016 00:41:25 -0700 (PDT)
+	id A6375E00C44; Thu,  7 Jul 2016 00:48:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alfonsolimaastor[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AA1CE00C1D
-	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 00:41:23 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id l202so13343693ioe.3
-	for <yocto@yoctoproject.org>; Thu, 07 Jul 2016 00:41:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=n1bqkcxboduP8JlrXissLLIWaDwMKK3MEGSLoPIz0eQ=;
-	b=rw8KqEWlrKmAg6eJvlHmYIZIGdJl4LWRkSAfodghprJIbOtAbSnb2lOXjnIf+7rv43
-	u9kVFgwOLY15kmndiw6fz91bohm8lu7M7pdD9mx0bgezudbR2uvVvDQdNTsik9Mm76Jv
-	9xAYIinV3k5d1PYfXwO9r0wr5eCnS3j3yEWKr1j78mVAHZs4X2B8uypgAFYHSu2kZUUG
-	KHh75LoOBVVE86LwNQFoCOxbluF9HWmC93ElSKAxZ33RFfUz7mJ8aypWEB0lKztXlTG0
-	SwQ/dMQ0K1fctK6s2MUVuzyhJW3aP9u+2PZ558MsVVk8nY/PCon7LSjfWho7bGAVb+5p
-	GLIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=n1bqkcxboduP8JlrXissLLIWaDwMKK3MEGSLoPIz0eQ=;
-	b=LSNDlF6Oyf0XNhY+aWbOcQusEz77HZB+dkqSW45GkJewEVv48FEGf+mzLAfzVPNpA6
-	V4AcsYtd7mN3oA6AVUoW89d3AKBVz3BgPRZPnLvs4nSW0JqN2Y+P/IwNGKou1us7To4C
-	5fOlYdct4mUhdAyaD3ysc8NqomL/WQyzF+hZOC8HJ6q0O4iA0E9C1N7cviOJX8/nNErE
-	aTqMgsXE4/WSFwuCsimfjs+Vz65Yaai7RKGyYiBY6l5lRy8ZLn8ISIQscP8z9PH2j9P+
-	GfCGOJ4/fNjz0iUt3y1vC7pjkz3JtkxVt5HJ0pWzUzomTjeyE5PCegPKiwqCBDFAWPIr
-	ESbQ==
-X-Gm-Message-State: ALyK8tJWho3+5P1sxMi4RgbnL5lDLeGTwDRDOH0FS5jqpaP5mbzDhgWLdA81fsdJWzQOhc9vo4HN65niFj9piQ==
-X-Received: by 10.107.33.193 with SMTP id h184mr1260317ioh.10.1467877282786;
-	Thu, 07 Jul 2016 00:41:22 -0700 (PDT)
+X-Greylist: delayed 129 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Jul 2016 00:48:00 PDT
+Received: from cit-hm8-gw01.bmw-carit.de (cit-hm8-mail01.bmw-carit.de
+	[212.118.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B23AE00C1D
+	for <yocto@yoctoproject.org>; Thu,  7 Jul 2016 00:48:00 -0700 (PDT)
+Received: from [172.20.0.50] (port=23972 helo=cit-hm8-mail01.bmw-carit.de)
+	by cit-hm8-gw01.bmw-carit.de with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1bL40H-00064x-1s; Thu, 07 Jul 2016 09:45:45 +0200
+Received: from ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad]) by
+	ULM-DC01.bmw-carit.intra ([fe80::41cf:62be:aacc:1aad%11]) with mapi id
+	14.03.0123.003; Thu, 7 Jul 2016 09:45:45 +0200
+X-CTCH-RefID: str=0001.0A0C0203.577E08A9.0147, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: Clemens Lang <Clemens.Lang@bmw-carit.de>
+To: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+Thread-Topic: [yocto] linux/limits.h: No such file or directory
+Thread-Index: AQHR1/QQSjIO26PZcUmqZTdCozHTy6AMdbcA
+Date: Thu, 7 Jul 2016 07:45:43 +0000
+Message-ID: <A67957CD-65BD-43D0-ABA6-7F14D62D82EC@bmw-carit.de>
+References: <CY1PR0101MB15942895A402A660E25E1963D73B0@CY1PR0101MB1594.prod.exchangelabs.com>
+In-Reply-To: <CY1PR0101MB15942895A402A660E25E1963D73B0@CY1PR0101MB1594.prod.exchangelabs.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.40.100.13]
 MIME-Version: 1.0
-Received: by 10.107.174.92 with HTTP; Thu, 7 Jul 2016 00:40:43 -0700 (PDT)
-From: Alfonso Lima Astor <alfonsolimaastor@gmail.com>
-Date: Thu, 7 Jul 2016 08:40:43 +0100
-Message-ID: <CAFBcLwK0iSdL_oBNJV+PTdgBFR=sGuVWjXXeaxtvVs7-N0Z8Kg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Confused on how to use native sdk correctly
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: linux/limits.h: No such file or directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,24 +49,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jul 2016 07:41:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 07 Jul 2016 07:48:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FB25A4E5F170844FAEA55D5881BD308D@bmw-carit.de>
+Content-Transfer-Encoding: base64
 
-Hello all,
-
-I am working on a project that creates applications for host and target
-architectures. The target SDK works fine, but I am struggling to understand
-how to use the host SDK. In my project, we have tools using QT libraries,
-OpenCV libraries and headers and libraries from other packages.
-
-How am I supposed to use these libraries for the host build? just installing
-them on my computer or adding them to the native sdk? What people do for other
-projects?
-
-Having a look to the SDK environment setup script, it seems to me that
-the native
-SDK is meant to hold tools to support the cross compilation but not supposed to
-be used for the native build. Is this correct?
-
-Thank you
+SGksDQoNClRha2FzaGkgTWF0c3V6YXdhIDx0bWF0c3V6YXdhQHVpZXZvbHV0aW9uLmNvbT4gd3Jv
+dGU6DQoNCj4gPmNvbmZpZ3VyZTogZXJyb3I6IEMgcHJlcHJvY2Vzc29yICJ4ODZfNjQtcG9reXNk
+ay1saW51eC1nY2MgLUUgIA0KPiAtLXN5c3Jvb3Q9L21udC9zc2QyLz55b2N0by9kZXYvdG1wL3g4
+Ni13azMvc3lzcm9vdHMveDg2XzY0LW5hdGl2ZXNkay1wb2t5c2RrLWxpbnV4ICANCj4gIiBmYWls
+cyBzYW5pdHkgY2hlY2sNCj4gPnwgU2VlIGBjb25maWcubG9nJyBmb3IgbW9yZSBkZXRhaWxzLg0K
+Pg0KPiBJZiBJIGxvb2sgaW50byBjb25maWcubG9nICANCj4gKGdjYy00LjkuMi9idWlsZC54ODZf
+NjQtcG9reXNkay1saW51eC54ODZfNjQtcG9reXNkay1saW51eC9saWJnY2MvY29uZmlnLmxvZykg
+IA0KPiBhcyBzdWdnZXN0ZWQsIEkgY2FuIHNlZSB0aGUgZm9sbG93aW5nLg0KPiBJdCBzYXlzIGxp
+bnV4L2xpbWl0cy5oIGlzIG5vdCBmb3VuZC4NCj4NCj4gKGluIGNvbmZpZy5sb2cpDQo+ID51c3Iv
+aW5jbHVkZS9iaXRzL2xvY2FsX2xpbS5oOjM4OjI2OiBmYXRhbCBlcnJvcjogbGludXgvbGltaXRz
+Lmg6IE5vIHN1Y2ggIA0KPiBmaWxlIG9yIGRpcmVjdG9yeQ0KDQpUaGlzIGxvb2tzIGEgbG90IGxp
+a2UgYSBwcm9ibGVtIHdl4oCZdmUgc2VlbiBhIHdoaWxlIGFnby4gU2VlDQogICBodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTUtSnVseS8wMjU4NTYuaHRt
+bA0Kd2hpY2ggaXMgdGhlIG1haWxpbmcgbGlzdCBwb3N0IGEgY29sbGVhZ3VlIHNlbnQgdG8gdGhl
+IGxpc3QgYmFjayB0aGVuLg0KDQpMb29raW5nIGF0IG91ciBnaXQgaGlzdG9yeSwgdGhlIHdvcmth
+cm91bmQgd2UgZGlkIGJhY2sgdGhlbiB3YXMgYWRkIGEgIA0KZGVwZW5kZW5jeSBmcm9tIGdjYy1j
+cm9zc3Nkay1pbml0aWFsIHRvIG5hdGl2ZXNkay1saW51eC1saWJjLWhlYWRlcnMgaWYgIA0KJFRB
+UkdFVF9PUyBzdGFydHMgd2l0aCDigJxsaW51eOKAnS4NCg0KDQpIVEgsDQpDbGVtZW5zDQotLSAN
+CkJNVyBDYXIgSVQgR21iSA0KQ2xlbWVucyBMYW5nDQpTcGV6aWFsaXN0IEVudHdpY2tsdW5nDQpM
+aXNlLU1laXRuZXItU3RyYcOfZSAxNA0KODkwODEgVWxtDQoNClRlbDogKzQ5LTczMS0zNzgwNDE4
+Mg0KTWFpbDogY2xlbWVucy5sYW5nQGJtdy1jYXJpdC5kZQ0KV2ViOiBodHRwOi8vd3d3LmJtdy1j
+YXJpdC5kZQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0NCkJNVyBDYXIgSVQgR21iSA0KR2VzY2jDpGZ0c2bDvGhyZXI6
+IE1pY2hhZWwgV8O8cnRlbmJlcmdlciB1bmQgQWxleGlzIFRyb2xpbg0KU2l0eiB1bmQgUmVnaXN0
+ZXJnZXJpY2h0OiBNw7xuY2hlbiBIUkIgMTM0ODEwDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
 
