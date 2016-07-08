@@ -1,6 +1,6 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <pknopf@medxchange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B232E009A0; Fri,  8 Jul 2016 12:18:52 -0700 (PDT)
+	id A8BF8E009B1; Fri,  8 Jul 2016 12:33:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,52 +8,52 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.47 listed in list.dnswl.org]
+	*      [209.85.213.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
-	[209.85.218.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C764EE0098A
-	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 12:18:50 -0700 (PDT)
-Received: by mail-oi0-f47.google.com with SMTP id s66so71832663oif.1
-	for <yocto@yoctoproject.org>; Fri, 08 Jul 2016 12:18:50 -0700 (PDT)
+Received: from mail-vk0-f44.google.com (mail-vk0-f44.google.com
+	[209.85.213.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 587A9E00990
+	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 12:33:31 -0700 (PDT)
+Received: by mail-vk0-f44.google.com with SMTP id b192so67300635vke.0
+	for <yocto@yoctoproject.org>; Fri, 08 Jul 2016 12:33:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	d=medxchange-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=EnLmS225eMzfHIFx5UEzjQdxcXnLbDby00VgxdzMaek=;
-	b=Xgk/DsdkCsgTKvg61KE3m4vQr0bDuvXmOH5ismdDCK982O41QbrnbCyy6bxVEMa3ob
-	lEfs2jBjPmNsvslA9UKssTEEdElvlGscuM/pwfejfAa1w6BazrInYoayJoxQHoib7cPK
-	9bAfU1d8vI2QIlN+n2WMlJmqJpj1S7t0/QSirIcSBbHUXwNSNs4eBRIq9rt1CcxwtXGT
-	HbjBRSfYT9bLWTIPoik2MhuPvMn6hMwAkikmBwAFjuQwcs6mYq/S/fn8nWcsU64cYgP4
-	RPnXQjHBZHXgsDVQfaVDvZ8C7lbXE6NPxhSB30VInWAOSY7CQ13UG+DtPkT7qT4vXL96
-	1dZw==
+	:cc; bh=kZSXwZWNwqTnwoKgZEspu+ZuFFfaA38aTjAilZcr5No=;
+	b=QENXPuQgG8Cvt4F2l9+RQdzqQgrWEsGp+wiroi9DHSitAl1nAvEaF+4aQOD7ABDkCz
+	4DSkoGHgM1TQn2n8MKoFGW/2BZcHG1fzmhqVZtM3whIoMYd2xJhMgz0N7q+wMpOlyC4P
+	dBaKyNTwA/c4I17YNbsQ6ucyL2XvpkuDqWBQNSM5SQaIewXb9Kt56JXhc/hROnAfxVtj
+	m7OhmbuaV+oDzl+JM3T+onhcpQklMFR9jux0EBlH58UdYQjA0lW2lg2D0Fh0LqWI31ag
+	9zC1YU2U9TPoRuIEuduKnJ/rBVrwQ8SsEx3qprXbUyFGDcewwm3i3sk/J6eRHOXSrVti
+	yhjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=EnLmS225eMzfHIFx5UEzjQdxcXnLbDby00VgxdzMaek=;
-	b=kqgXKFCSUUoAL04Uu1ZfaQ/TphuKdddm97qHJMFdhrvzDVT4TcwdSD0wTFCgzazAWY
-	Y2+mK4AfSM9tLKOu1RXDXYxi125Yl3VEFYs6c8Mg69ocN/aMyGnOQ0zct3m0Ts8yM5NR
-	g/Zj+zmRX2YImsE4RSnD1n8SQbXA3fbbqdfp+XpuiJ0T+8iK/HmAuhikpniPi7HPfgtD
-	UeE4sGfQCnAMxGpg5Rxou9QO2DMUGAKBImqOvMtBSOizbyfj1N7Lq1Lnsiaf3uf/ZCvY
-	44ty1laNXD0LdCIuiHJwUbjIAa3H4g72qDY3QPfRL7Xyj0PJQI+a5zqOfGa1DfierFcI
-	/wcQ==
-X-Gm-Message-State: ALyK8tKVz/ZkHLy/KZx68s78uPNUt/tP67+q7ZrcyGZA6Mil7oEyHm9HKyXKsZyj9OHyLC/ZO0V5Jrz4VK6yDDVh
-X-Received: by 10.202.81.65 with SMTP id f62mr4093516oib.51.1468005529458;
-	Fri, 08 Jul 2016 12:18:49 -0700 (PDT)
+	bh=kZSXwZWNwqTnwoKgZEspu+ZuFFfaA38aTjAilZcr5No=;
+	b=nAMzbuKerw4mnAGWsoytecHWCBIhbchbdznCQ+oslpXfQlrnkOcpXW9dNxVmVsMddh
+	0+LfoMPyg1lrr+T7yKw2cT9cyHXAXCU5yRiiYu7Uvm9EbTk1ssGCbT4FVng4eVSrMgkX
+	QkVPmvHwdPCqn0i6zszl2/PuKftLM061gbE20wX6WCoGYxz+KpRQj8uX2UCPtDpmRsIf
+	Ay9W5tjBRWr9rvavjuPE/siaDGCZIENGAmXgtiWiHQeViNoK+RKUEkVm3Z7gMynwcA2N
+	F7BQgBKf8DdmXYSF94ygzRq7wYQK8tPYBj6PzRFbdbuPEgBI8mJ+sxnXn02BIpmFE7/X
+	r9CQ==
+X-Gm-Message-State: ALyK8tJwifKtAi64ZX+xgNXR6wlyDV8iBTT02RVUmkYJ22ivTQIhS5gDVchjmoUTu+qCizIazKzUU3ORAkdEbg==
+X-Received: by 10.176.65.41 with SMTP id j38mr3574727uad.108.1468006410382;
+	Fri, 08 Jul 2016 12:33:30 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.202.79.83 with HTTP; Fri, 8 Jul 2016 12:18:20 -0700 (PDT)
+Received: by 10.31.179.137 with HTTP; Fri, 8 Jul 2016 12:33:29 -0700 (PDT)
 In-Reply-To: <OF52B3F086.41107611-ONC1257FEA.004BD493-C1257FEA.004CAF71@esa-grimma.de>
 References: <OF52B3F086.41107611-ONC1257FEA.004BD493-C1257FEA.004CAF71@esa-grimma.de>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Fri, 8 Jul 2016 22:18:20 +0300
-Message-ID: <CAHiDW_HS_Esr_=EX0TH5XeXffjeWY+yqnH+KR3nwB2zLh8__9w@mail.gmail.com>
+From: Paul Knopf <pknopf@medxchange.com>
+Date: Fri, 8 Jul 2016 15:33:29 -0400
+Message-ID: <CABfz71fmHo43NK1=DeNyGy-83DYb0Ja6FJGhjVufe2t8so6B5g@mail.gmail.com>
 To: S.Jaritz@esa-grimma.de
-Cc: Yocto Project <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: How to install 2 or more initscrips out form one recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -66,14 +66,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jul 2016 19:18:52 -0000
-Content-Type: multipart/alternative; boundary=001a113d6a3a1ccdc0053724ac2f
+X-List-Received-Date: Fri, 08 Jul 2016 19:33:34 -0000
+Content-Type: multipart/alternative; boundary=94eb2c1235929e86d8053724e0c4
 
---001a113d6a3a1ccdc0053724ac2f
+--94eb2c1235929e86d8053724e0c4
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 8 July 2016 at 16:57, <S.Jaritz@esa-grimma.de> wrote:
+Take a look at "initscripts_1.0.bb". A lot of init scripts are created in
+that single recipe.
+
+
+
+Thanks,
+Paul Knopf
+Software Engineer
+Med X Change, Inc
+pknopf@medxchange.com
+
+On Fri, Jul 8, 2016 at 9:57 AM, <S.Jaritz@esa-grimma.de> wrote:
 
 > Hej
 >
@@ -108,8 +119,7 @@ On 8 July 2016 at 16:57, <S.Jaritz@esa-grimma.de> wrote:
 > }
 >
 > INITSCRIPT_PACKAGES =3D "${PN} ${PN}_B ${PN}_C"
-
-INITSCRIPT_NAME_${PN} =3D "startA"
+> INITSCRIPT_NAME_${PN} =3D "startA"
 > INITSCRIPT_PARAMS_${PN} =3D "start 90 10"
 > INITSCRIPT_NAME_${PN}_B   =3D "startB"
 > INITSCRIPT_PARAMS_${PN}_B =3D "start 90 10"
@@ -121,22 +131,7 @@ INITSCRIPT_NAME_${PN} =3D "startA"
 > CONFFILES_${PN} +=3D "${sysconfdir}/init.d/startC"
 >
 > FILES_${PN} +=3D "${sysconfdir}/*"
->
-
-This puts all the init scripts in ${PN} when each should go into their own
-package. You'll also probably need to make sure the extra packages are
-created:
-    PACKAGES =3D+ "${PN}_B ${PN}_C"
-Check packages-split/-directory in WORKDIR to make sure all the files went
-to the right place.
-
-As a style comment: Underscore probably works in a package name but hyphen
-("${PN}-B") is the common choice.
-
-Jussi
-
-
-#############
+> #############
 >
 > The do_install works but initscript does not generates the link. I build
 > that after this document
@@ -196,16 +191,23 @@ u
 >
 >
 
---001a113d6a3a1ccdc0053724ac2f
+--94eb2c1235929e86d8053724e0c4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 8=
- July 2016 at 16:57,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jaritz@esa-=
-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wrote:<b=
-r><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204)=
-;padding-left:1ex"><font size=3D"2" face=3D"sans-serif">Hej</font>
+<div dir=3D"ltr">Take a look at &quot;<a href=3D"http://initscripts_1.0.bb"=
+>initscripts_1.0.bb</a>&quot;. A lot of init scripts are created in that si=
+ngle recipe.<div><br></div><div><br></div></div><div class=3D"gmail_extra">=
+<br clear=3D"all"><div><div class=3D"gmail_signature" data-smartmail=3D"gma=
+il_signature"><div dir=3D"ltr"><div>Thanks,</div><div>Paul Knopf</div><div>=
+Software Engineer</div><div>Med X Change, Inc</div><div><a href=3D"mailto:p=
+knopf@medxchange.com" target=3D"_blank">pknopf@medxchange.com</a></div></di=
+v></div></div>
+<br><div class=3D"gmail_quote">On Fri, Jul 8, 2016 at 9:57 AM,  <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:S.Jaritz@esa-grimma.de" target=3D"_blank">S.=
+Jaritz@esa-grimma.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><font size=3D"2" face=3D"sans-serif">Hej</font>
 <br>
 <br><font size=3D"2" face=3D"sans-serif">I run into a problem when I tried =
 to
@@ -268,10 +270,9 @@ a+x ${D}${sysconfdir}/init.d/startC</font>
 <br>
 <br><font size=3D"2" face=3D"sans-serif">INITSCRIPT_PACKAGES =3D &quot;${PN=
 } ${PN}_B
-${PN}_C&quot;</font>=C2=A0</blockquote><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:sol=
-id;border-left-color:rgb(204,204,204);padding-left:1ex"><font size=3D"2" fa=
-ce=3D"sans-serif">INITSCRIPT_NAME_${PN} =3D &quot;startA&quot;</font>
+${PN}_C&quot;</font>
+<br><font size=3D"2" face=3D"sans-serif">INITSCRIPT_NAME_${PN} =3D &quot;st=
+artA&quot;</font>
 <br><font size=3D"2" face=3D"sans-serif">INITSCRIPT_PARAMS_${PN} =3D &quot;=
 start
 90 10&quot;</font>
@@ -295,18 +296,7 @@ nfdir}/init.d/startC&quot;</font>
 <br>
 <br><font size=3D"2" face=3D"sans-serif">FILES_${PN} +=3D &quot;${sysconfdi=
 r}/*&quot;</font>
-<br></blockquote><div><br></div><div>This puts all the init scripts in=C2=
-=A0<span style=3D"font-family:sans-serif">${PN} when each should go into th=
-eir own package. You&#39;ll also probably need to make sure the extra packa=
-ges are created:</span></div><div>=C2=A0 =C2=A0 PACKAGES =3D+ &quot;${PN}_B=
- ${PN}_C&quot;<br></div><div>Check packages-split/-directory in WORKDIR to =
-make sure all the files went to the right place.<br></div><div><br></div><d=
-iv>As a style comment: Underscore probably works in a package name but hyph=
-en (&quot;${PN}-B&quot;) is the common choice.</div><div><br></div><div>Jus=
-si</div><div><br></div><div><br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:soli=
-d;border-left-color:rgb(204,204,204);padding-left:1ex"><font size=3D"2" fac=
-e=3D"sans-serif">#############</font>
+<br><font size=3D"2" face=3D"sans-serif">#############</font>
 <br>
 <br><font size=3D"2" face=3D"sans-serif">The do_install works but initscrip=
 t
@@ -374,6 +364,6 @@ yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div></div>
+<br></blockquote></div><br></div>
 
---001a113d6a3a1ccdc0053724ac2f--
+--94eb2c1235929e86d8053724e0c4--
