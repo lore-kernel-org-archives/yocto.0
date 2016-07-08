@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2E2DE00756; Fri,  8 Jul 2016 07:16:12 -0700 (PDT)
+	id D7D6FE00E96; Fri,  8 Jul 2016 07:52:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,46 +18,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.193 listed in list.dnswl.org]
-Received: from mail-qk0-f193.google.com (mail-qk0-f193.google.com
-	[209.85.220.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 682F9E006D8
-	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 07:16:10 -0700 (PDT)
-Received: by mail-qk0-f193.google.com with SMTP id g190so7629410qkc.2
-	for <yocto@yoctoproject.org>; Fri, 08 Jul 2016 07:16:09 -0700 (PDT)
+	*      [209.85.220.66 listed in list.dnswl.org]
+Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
+	[209.85.220.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 197CFE0073D
+	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 07:52:27 -0700 (PDT)
+Received: by mail-pa0-f66.google.com with SMTP id ib6so7581279pad.3
+	for <yocto@yoctoproject.org>; Fri, 08 Jul 2016 07:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=T3k4On8ydLNSNYpXjKKe/44wi208jJIQakWPUG1t7Q4=;
-	b=OFlAc4e30GujWda7uHNxKRIU+wmcU2YfUfiseVIVWHACC6PQAb8qNUkVc0ofK1xnW8
-	GdC6PXyXkxaJIn7dYZ8ENkCKYa9SBRr+zqlagW2N8ve/DUABr4d2qx6krY41/ElXSOaH
-	m7t1os5Th0SjifQi6dbeQnD3z63Kf/fTNzqbF9RLPip/sL7VrNo7ktEXMZhTE1D83Ohh
-	037+p2fMAspn6usJzhnPMhWXEGuunbqBORj7InTaWKRGshVTR07Liz01vKI/C6RJIoW0
-	9YtQEIcY3OLK1aizw9MpyELxmv2XnGKexmBQW8+tecMYFVssvSnjBsiP5iFbTh8+NtRv
-	RHfA==
+	h=from:to:cc:subject:date:message-id;
+	bh=xIuS5zX6u8WNgTOMJMY9CHaeTluxquZOr/SqYFIwuWo=;
+	b=C1ii/OCSIewnUowtotq1c/niA5dBWTO6OXQqej6DkIsB0OQvYrWk5qtSX9EqxoQIs/
+	5FD/xT+iZoStIsXR3sSiQcghPdrzCZCTIFki+OEmbpFlIl06j8V27BvIZ2r9YOqpJLB0
+	wXxjbCe3Ues3rrRI8NcH74qJn/MPyxl3Pb1NwUjTvwp/m7KiHoGZsKW03UZ/3DAxuCer
+	Kx0AY3ffyR8OpWqXEn5U1/c3STtxYhuzxswlmuFYatq4pUKia7zv+SQvMJSkwNKhbqfX
+	6LUPd7wcQmHzlJyvwAQ08QqJTMmZPMuvyV41a0VFyEYTYyX72bO/bC+742ArxhjCaaTo
+	lTQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=T3k4On8ydLNSNYpXjKKe/44wi208jJIQakWPUG1t7Q4=;
-	b=briW0WBLFe6QC3sh9N7oxc9jvf82iaDLrtGH9e7LvTvJR10qz4Zh+b12JLLZPIwrpb
-	vh3+ZG4kPrzJO0ndxsiv3TfpPawsPq482IHQc36vbeI8/shCmPtWtcf47RrHBCckV3e4
-	Wo+smA9M+ANvmsHkQh4ercsRZ4/S7Cmf0mbC0c/nOWBZAtNkHymi8Gsprb1CAyqP+iSH
-	5p/N53J4YOF7JE8ioQOsTVHpP9nCU0OKAOgHfWw0HNiwVKIfQ5SctreiNL3m8nHfloXQ
-	D8F9npZLX5pYXYQCRn8K60VuF1g9PIt5xRiui3/O0cuZ1mNRO+5pOPZshGKpgNjHTQuy
-	KUdw==
-X-Gm-Message-State: ALyK8tKUa87/hpToLuCswMeUujiFXOun953hJR/spgNPN2g9f59/m+DhPAVFf79ulDUT6+xUcw32GIJh0YoLig==
-X-Received: by 10.55.97.18 with SMTP id v18mr7513156qkb.102.1467987369473;
-	Fri, 08 Jul 2016 07:16:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.55.214.83 with HTTP; Fri, 8 Jul 2016 07:15:40 -0700 (PDT)
-In-Reply-To: <20160708131242.GB20442@resin.home>
-References: <1704123.nFWplM32RM@valkyrie> <20160708131242.GB20442@resin.home>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=xIuS5zX6u8WNgTOMJMY9CHaeTluxquZOr/SqYFIwuWo=;
+	b=lrylmb+jFTmfMBhhJUsk7yd7a4dKj0xnuEsQg8l6tQICgNoryWp3acx+kMcvZfTLeE
+	voL3ELPv6jcSOWwqPgWcrkes5ZBHov1PRW40oV1jM+beB0o7n65dTOp2fMoPapcQCqJS
+	LmqV7F3fie4qqVYw3MOBLbypnRwCmXtF7GA8rWu6ztEKoFuRZxOtVdd7s0eHc9nMmhOT
+	5S+tIkgvNuD8TU0rgeudch6ivPQXgP8ujqgnhJZ9JbgzWExFPh1LKNRQ4UPCoZjxzWYW
+	ACIrbm4HriQFw7xeSEea0IYnU0mn5Jnp9PkOicZgDPtVknbXhFmtnsdveQ6V6KmUDCna
+	ylgA==
+X-Gm-Message-State: ALyK8tJxdd2yrAAyXdyDYlpcEEizdM3MbAg/8nzE5XK3cfN5clFMksQir42ry9zwkUmJlA==
+X-Received: by 10.66.160.199 with SMTP id xm7mr10694921pab.78.1467989547333;
+	Fri, 08 Jul 2016 07:52:27 -0700 (PDT)
+Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
+	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
+	o84sm5254050pfj.95.2016.07.08.07.52.26
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 08 Jul 2016 07:52:26 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 8 Jul 2016 07:15:40 -0700
-Message-ID: <CAMKF1srZhfMfo9D3n4pbsDscxjJWAY2tiqOjc-3DWRM43fKx8g@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberry] Raspberry Pi 3
+To: yocto@yoctoproject.org
+Date: Fri,  8 Jul 2016 07:52:20 -0700
+Message-Id: <20160708145221.15596-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.9.0
+Subject: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Add the vardepexcludes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,12 +69,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jul 2016 14:16:13 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 08 Jul 2016 14:52:29 -0000
 
-On Fri, Jul 8, 2016 at 6:12 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->> MACHINE ??= "raspberrypi3"
+The problem reappears because we need to add to the variable
+and not assign
 
-can you change it to  MACHINE = "raspberrypi3"
-and retry
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ classes/sdcard_image-rpi.bbclass | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 6960aca..57cefea 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -72,8 +72,8 @@ SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
+ FATPAYLOAD ?= ""
+ 
+ IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
+-IMAGE_CMD_rpi-sdimg[vardepsexclude] = "IMAGEDATESTAMP"
+-IMAGE_CMD_rpi-sdimg[vardepsexclude] = "DATETIME"
++IMAGE_CMD_rpi-sdimg[vardepsexclude] += "IMAGEDATESTAMP"
++IMAGE_CMD_rpi-sdimg[vardepsexclude] += "DATETIME"
+ 
+ IMAGE_CMD_rpi-sdimg () {
+ 
+-- 
+2.9.0
+
 
