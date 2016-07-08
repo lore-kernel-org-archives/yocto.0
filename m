@@ -1,66 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D4F8E00E96; Fri,  8 Jul 2016 07:52:31 -0700 (PDT)
+	id 35633E00E9A; Fri,  8 Jul 2016 09:11:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.66 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f66.google.com (mail-pa0-f66.google.com
-	[209.85.220.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB9C4E00756
-	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 07:52:28 -0700 (PDT)
-Received: by mail-pa0-f66.google.com with SMTP id ts6so7673380pac.0
-	for <yocto@yoctoproject.org>; Fri, 08 Jul 2016 07:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=vdyLKk8W/Ld0PIBOVhpMpLgw+8tst1x/LwdKubSHbtI=;
-	b=Ahy8UHy+E4onOWK/J9SE9eFVcABB1psRTcgAfD9xI9/xWuf5du9wZyig1xVvgK9aot
-	F8lGAkaKDPVtF6meHBtBoo+0E4++P22N+r5+iBKonCq9gbJG0DFECPZdt+YKv8s07j/H
-	biF33OQaFiSzjEdEH0Q3TCU31jOFizJLxYb+LggIqwny5L27v1D/TuLvRhVVXeLKjzus
-	aw4nNRDEUZTdtPQYFVtS4HasxXUC4jjha59Fo4BtSHAHjRLarx4onaFk/6gkIf8izTSj
-	Hw0rovvSTyuRLeHlqb9u76uyY/Hp4TD5cRZHErzKnA5jQERw4bBA9YIHKbYS96x3tv7E
-	S/SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=vdyLKk8W/Ld0PIBOVhpMpLgw+8tst1x/LwdKubSHbtI=;
-	b=KYrqqP8yqKJ/YnJbmRwLiUgjRXC/A51UrNtQiHKgHBl9NPABpjcYu0CLH4Na8BtH17
-	Qj3OixC50mFTmiRSeFA57lZuvqncRNESwQ3VEJk5F1t7Kbtb2+lSi3lXvA8HXTo9eTmq
-	TPJzBgGuZzCMu5HxRRAVNrCNX9IcU7ZyJcgHg2THYn26Xf+waultFn7N8Egh5zFsBTPi
-	OnD0KWjxZZ+BBo6EkJqRH8bSlrudbXhLvWjjFbAPw6mq1e0k7Pj4gGjc2mGGGK0bOnZU
-	8gqbFjjj1MHeB68I7qTdIm+W+yGUGZ7yZMM1UBj3G656VqQuGlJ5eBKHzoZEda7ybw6L
-	x9GA==
-X-Gm-Message-State: ALyK8tKRWJhabhFoy1tDsH7xkyTCocMmCRev2/eS8CWcQoOXbOtFqakzw2ZcoZ7fajFgwA==
-X-Received: by 10.66.73.193 with SMTP id n1mr10868998pav.70.1467989548177;
-	Fri, 08 Jul 2016 07:52:28 -0700 (PDT)
-Received: from localhost.localdomain (c-76-102-32-192.hsd1.ca.comcast.net.
-	[76.102.32.192]) by smtp.gmail.com with ESMTPSA id
-	o84sm5254050pfj.95.2016.07.08.07.52.27
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 08 Jul 2016 07:52:27 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri,  8 Jul 2016 07:52:21 -0700
-Message-Id: <20160708145221.15596-2-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.9.0
-In-Reply-To: <20160708145221.15596-1-raj.khem@gmail.com>
-References: <20160708145221.15596-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH 2/2] gstreamer1.0-omx-1.2.0: Add patches and bbappend for 1.2.0 separately
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87926E009B1
+	for <yocto@yoctoproject.org>; Fri,  8 Jul 2016 09:11:09 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Jul 2016 09:11:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,330,1464678000"; 
+	d="scan'208,217";a="731485113"
+Received: from swold-mobl2.jf.intel.com ([10.254.96.90])
+	by FMSMGA003.fm.intel.com with ESMTP; 08 Jul 2016 09:11:09 -0700
+Message-ID: <1467994269.6912.374.camel@linux.intel.com>
+From: Saul Wold <sgw@linux.intel.com>
+To: Yocto Discussion <yocto@yoctoproject.org>, OpenEmbedded List
+	<openembedded-core@lists.openembedded.org>
+Date: Fri, 08 Jul 2016 09:11:09 -0700
+X-Mailer: Evolution 3.18.5.2 (3.18.5.2-1.fc23) 
+Mime-Version: 1.0
+Subject: Yocto Project Status WW28
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,591 +41,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jul 2016 14:52:31 -0000
+X-List-Received-Date: Fri, 08 Jul 2016 16:11:11 -0000
+Content-Type: multipart/alternative; boundary="=-WIKpIhVZP7+GnimLGfU3"
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- ...o-acquire-buffer-when-src-pad-isn-t-activ.patch |  48 ++++++++
- .../0001-config-files-path.patch                   | 137 +++++++++++++++++++++
- .../0002-fix-decoder-flushing.patch                |  16 +++
- .../0003-no-timeout-on-get-state.patch             |  16 +++
- ...erly-handle-drain-requests-while-flushing.patch |  69 +++++++++++
- ...-gst_omx_video_dec_set_format-if-there-s-.patch |  30 +++++
- ...-unref-allocator-after-getting-it-from-al.patch |  48 ++++++++
- ...mxvideodec-Use-gstglmemoryegl-for-the-RPi.patch | 115 +++++++++++++++++
- ..._%.bbappend => gstreamer1.0-omx_1.2.0.bbappend} |   8 +-
- ...mx_%.bbappend => gstreamer1.0-omx_git.bbappend} |   0
- 10 files changed, 484 insertions(+), 3 deletions(-)
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
- create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
- copy recipes-multimedia/gstreamer/{gstreamer1.0-omx_%.bbappend => gstreamer1.0-omx_1.2.0.bbappend} (70%)
- rename recipes-multimedia/gstreamer/{gstreamer1.0-omx_%.bbappend => gstreamer1.0-omx_git.bbappend} (100%)
+--=-WIKpIhVZP7+GnimLGfU3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-new file mode 100644
-index 0000000..815a7c2
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch
-@@ -0,0 +1,48 @@
-+From 2e111e52f96f0b942abda120c30a876629bd73fc Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-+Date: Mon, 25 May 2015 14:53:35 +0200
-+Subject: [PATCH] Don't try to acquire buffer when src pad isn't active
-+
-+This solves a race condition when setting the pipeline from PAUSE to
-+NULL while the decoder loop is still running. Without this patch, the
-+thread which interacts with the decode sink pad gets blocked here:
-+
-+  gst_element_change_state()
-+  gst_element_change_state_func()
-+  gst_element_pads_activate() --> Deactivating pads
-+  activate_pads()
-+  gst_pad_set_active()
-+  gst_pad_activate_mode()
-+  post_activate()
-+  GST_PAD_STREAM_LOCK()
-+
-+while gst_omx_port_acquire_buffer() gets stalled forever in
-+gst_omx_component_wait_message() waiting for a message that will never
-+arrive:
-+
-+  gst_omx_video_dec_loop()
-+  gst_omx_port_acquire_buffer()
-+  gst_omx_component_wait_message()
-+---
-+ omx/gstomxvideodec.c | 5 +++++
-+ 1 file changed, 5 insertions(+)
-+
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index cd24944..57a61dd 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -1247,6 +1247,11 @@ gst_omx_video_dec_loop (GstOMXVideoDec * self)
-+   GstClockTimeDiff deadline;
-+   OMX_ERRORTYPE err;
-+ 
-++  if (!gst_pad_is_active(GST_VIDEO_DECODER_SRC_PAD (self))) {
-++    GST_DEBUG_OBJECT (self, "Src pad not active, not acquiring buffer and flushing instead");
-++      goto flushing;
-++  }
-++
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+   port = self->eglimage ? self->egl_out_port : self->dec_out_port;
-+ #else
-+-- 
-+1.8.3.2
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
-new file mode 100644
-index 0000000..a7da922
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0001-config-files-path.patch
-@@ -0,0 +1,137 @@
-+--- a/config/bellagio/gstomx.conf
-++++ b/config/bellagio/gstomx.conf
-+@@ -1,6 +1,6 @@
-+ [omxmpeg4videodec]
-+ type-name=GstOMXMPEG4VideoDec
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_decoder.mpeg4
-+ rank=256
-+ in-port-index=0
-+@@ -9,7 +9,7 @@
-+ 
-+ [omxh264dec]
-+ type-name=GstOMXH264Dec
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_decoder.avc
-+ rank=256
-+ in-port-index=0
-+@@ -18,7 +18,7 @@
-+ 
-+ [omxmpeg4videoenc]
-+ type-name=GstOMXMPEG4VideoEnc
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.video_encoder.mpeg4
-+ rank=0
-+ in-port-index=0
-+@@ -27,7 +27,7 @@
-+ 
-+ [omxaacenc]
-+ type-name=GstOMXAACEnc
-+-core-name=/usr/local/lib/libomxil-bellagio.so.0
-++core-name=/usr/lib/libomxil-bellagio.so.0
-+ component-name=OMX.st.audio_encoder.aac
-+ rank=0
-+ in-port-index=0
-+--- a/config/rpi/gstomx.conf
-++++ b/config/rpi/gstomx.conf
-+@@ -1,6 +1,6 @@
-+ [omxmpeg2videodec]
-+ type-name=GstOMXMPEG2VideoDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -9,7 +9,7 @@
-+ 
-+ [omxmpeg4videodec]
-+ type-name=GstOMXMPEG4VideoDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -18,7 +18,7 @@
-+ 
-+ [omxh263dec]
-+ type-name=GstOMXH263Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -27,7 +27,7 @@
-+ 
-+ [omxh264dec]
-+ type-name=GstOMXH264Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -36,7 +36,7 @@
-+ 
-+ [omxtheoradec]
-+ type-name=GstOMXTheoraDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -45,7 +45,7 @@
-+ 
-+ [omxvp8dec]
-+ type-name=GstOMXVP8Dec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -54,7 +54,7 @@
-+ 
-+ [omxmjpegdec]
-+ type-name=GstOMXMJPEGDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=257
-+ in-port-index=130
-+@@ -63,7 +63,7 @@
-+ 
-+ [omxvc1dec]
-+ type-name=GstOMXWMVDec
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_decode
-+ rank=256
-+ in-port-index=130
-+@@ -73,7 +73,7 @@
-+ 
-+ [omxh264enc]
-+ type-name=GstOMXH264Enc
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.video_encode
-+ rank=257
-+ in-port-index=200
-+@@ -82,7 +82,7 @@
-+ 
-+ [omxanalogaudiosink]
-+ type-name=GstOMXAnalogAudioSink
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.audio_render
-+ rank=256
-+ in-port-index=100
-+@@ -92,7 +92,7 @@
-+ 
-+ [omxhdmiaudiosink]
-+ type-name=GstOMXHdmiAudioSink
-+-core-name=/opt/vc/lib/libopenmaxil.so
-++core-name=/usr/lib/libopenmaxil.so
-+ component-name=OMX.broadcom.audio_render
-+ rank=257
-+ in-port-index=100
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
-new file mode 100644
-index 0000000..d4c7c81
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0002-fix-decoder-flushing.patch
-@@ -0,0 +1,16 @@
-+diff --git a/omx/gstomx.c b/omx/gstomx.c
-+index 69696c4..c382019 100644
-+--- a/omx/gstomx.c
-++++ b/omx/gstomx.c
-+@@ -1508,8 +1508,8 @@ gst_omx_port_set_flushing (GstOMXPort * port, GstClockTime timeout,
-+     last_error = OMX_ErrorNone;
-+     gst_omx_component_handle_messages (comp);
-+     while (signalled && last_error == OMX_ErrorNone && !port->flushed
-+-        && port->buffers
-+-        && port->buffers->len > g_queue_get_length (&port->pending_buffers)) {
-++     /* && port->buffers
-++        && port->buffers->len > g_queue_get_length (&port->pending_buffers) */) {
-+       signalled = gst_omx_component_wait_message (comp, timeout);
-+       if (signalled)
-+         gst_omx_component_handle_messages (comp);
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
-new file mode 100644
-index 0000000..0a0050d
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0003-no-timeout-on-get-state.patch
-@@ -0,0 +1,16 @@
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index 0d4e7a1..a0d9c74 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -1697,9 +1697,9 @@ gst_omx_video_dec_stop (GstVideoDecoder * decoder)
-+   g_cond_broadcast (&self->drain_cond);
-+   g_mutex_unlock (&self->drain_lock);
-+ 
-+-  gst_omx_component_get_state (self->dec, 5 * GST_SECOND);
-++  gst_omx_component_get_state (self->dec, 0);
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+-  gst_omx_component_get_state (self->egl_render, 1 * GST_SECOND);
-++  gst_omx_component_get_state (self->egl_render, 0);
-+ #endif
-+ 
-+   gst_buffer_replace (&self->codec_data, NULL);
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
-new file mode 100644
-index 0000000..98689f3
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0004-Properly-handle-drain-requests-while-flushing.patch
-@@ -0,0 +1,69 @@
-+From 80dddfd13aaf2fe7272765f8cf291215fe375e28 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-+Date: Tue, 17 Nov 2015 16:51:27 +0000
-+Subject: [PATCH] Properly handle drain requests while flushing
-+
-+Without this commit the decoder streaming thread stops without ever attending
-+the drain request, leaving the decoder input thread waiting forever.
-+---
-+ omx/gstomx.c         |  7 +++++++
-+ omx/gstomxvideodec.c | 13 +++++++++++++
-+ 2 files changed, 20 insertions(+)
-+
-+diff --git a/omx/gstomx.c b/omx/gstomx.c
-+index 69696c4..f0cd890 100644
-+--- a/omx/gstomx.c
-++++ b/omx/gstomx.c
-+@@ -830,6 +830,13 @@ gst_omx_component_set_state (GstOMXComponent * comp, OMX_STATETYPE state)
-+ done:
-+ 
-+   gst_omx_component_handle_messages (comp);
-++
-++  if (err != OMX_ErrorNone && comp->last_error == OMX_ErrorNone) {
-++    GST_ERROR_OBJECT (comp->parent,
-++        "Last operation returned an error. Setting last_error manually.");
-++    comp->last_error = err;
-++  }
-++
-+   g_mutex_unlock (&comp->lock);
-+ 
-+   if (err != OMX_ErrorNone) {
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index d531f75..a26c4a6 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -1539,9 +1539,16 @@ component_error:
-+ flushing:
-+   {
-+     GST_DEBUG_OBJECT (self, "Flushing -- stopping task");
-++
-++    g_mutex_lock (&self->drain_lock);
-++    if (self->draining) {
-++      self->draining = FALSE;
-++      g_cond_broadcast (&self->drain_cond);
-++    }
-+     gst_pad_pause_task (GST_VIDEO_DECODER_SRC_PAD (self));
-+     self->downstream_flow_ret = GST_FLOW_FLUSHING;
-+     self->started = FALSE;
-++    g_mutex_unlock (&self->drain_lock);
-+     return;
-+   }
-+ 
-+@@ -1599,8 +1606,14 @@ flow_error:
-+       self->started = FALSE;
-+     } else if (flow_ret == GST_FLOW_FLUSHING) {
-+       GST_DEBUG_OBJECT (self, "Flushing -- stopping task");
-++      g_mutex_lock (&self->drain_lock);
-++      if (self->draining) {
-++        self->draining = FALSE;
-++        g_cond_broadcast (&self->drain_cond);
-++      }
-+       gst_pad_pause_task (GST_VIDEO_DECODER_SRC_PAD (self));
-+       self->started = FALSE;
-++      g_mutex_unlock (&self->drain_lock);
-+     }
-+     GST_VIDEO_DECODER_STREAM_UNLOCK (self);
-+     return;
-+-- 
-+1.8.3.2
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
-new file mode 100644
-index 0000000..b7a8753
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch
-@@ -0,0 +1,30 @@
-+From 12103842d5f347cf245e71071d0c44297bcdb1f9 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Enrique=20Oca=C3=B1a=20Gonz=C3=A1lez?= <eocanha@igalia.com>
-+Date: Fri, 4 Dec 2015 18:39:59 +0100
-+Subject: [PATCH] Don't abort gst_omx_video_dec_set_format() if there's a
-+ timeout releasing the buffers taken by the egl_render out port
-+
-+---
-+ omx/gstomxvideodec.c | 5 ++++-
-+ 1 file changed, 4 insertions(+), 1 deletion(-)
-+
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index 2368f34..da35e0d 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -1905,8 +1905,11 @@ gst_omx_video_dec_set_format (GstVideoDecoder * decoder,
-+               5 * GST_SECOND) != OMX_ErrorNone)
-+         return FALSE;
-+       if (gst_omx_port_wait_buffers_released (out_port,
-+-              1 * GST_SECOND) != OMX_ErrorNone)
-++              1 * GST_SECOND) != OMX_ErrorNone) {
-++#if !(defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL))
-+         return FALSE;
-++#endif
-++      }
-+       if (gst_omx_port_deallocate_buffers (self->dec_in_port) != OMX_ErrorNone)
-+         return FALSE;
-+       if (gst_omx_video_dec_deallocate_output_buffers (self) != OMX_ErrorNone)
-+-- 
-+2.1.4
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
-new file mode 100644
-index 0000000..ace60a6
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch
-@@ -0,0 +1,48 @@
-+From d2df0fb032c36b366a08a1355c4f4c816eb53447 Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Aur=C3=A9lien=20Zanelli?= <aurelien.zanelli@darkosphere.fr>
-+Date: Fri, 3 Jul 2015 00:26:48 +0200
-+Subject: [PATCH] omxvideodec: unref allocator after getting it from allocation
-+ query
-+
-+Otherwise a reference will be leaked for each allocator. It only happens
-+when target platform is Raspberry Pi and when we have GL support.
-+
-+https://bugzilla.gnome.org/show_bug.cgi?id=751867
-+---
-+ omx/gstomxvideodec.c | 20 ++++++++++++--------
-+ 1 file changed, 12 insertions(+), 8 deletions(-)
-+
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index cd24944..b8c3756 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -2530,14 +2530,18 @@ gst_omx_video_dec_decide_allocation (GstVideoDecoder * bdec, GstQuery * query)
-+         GstAllocationParams params;
-+ 
-+         gst_query_parse_nth_allocation_param (query, i, &allocator, &params);
-+-        if (allocator
-+-            && g_strcmp0 (allocator->mem_type,
-+-                GST_EGL_IMAGE_MEMORY_TYPE) == 0) {
-+-          found = TRUE;
-+-          gst_query_set_nth_allocation_param (query, 0, allocator, &params);
-+-          while (gst_query_get_n_allocation_params (query) > 1)
-+-            gst_query_remove_nth_allocation_param (query, 1);
-+-          break;
-++        if (allocator) {
-++          if (g_strcmp0 (allocator->mem_type, GST_EGL_IMAGE_MEMORY_TYPE) == 0) {
-++            found = TRUE;
-++            gst_query_set_nth_allocation_param (query, 0, allocator, &params);
-++            while (gst_query_get_n_allocation_params (query) > 1)
-++              gst_query_remove_nth_allocation_param (query, 1);
-++          }
-++
-++          gst_object_unref (allocator);
-++
-++          if (found)
-++            break;
-+         }
-+       }
-+ 
-+-- 
-+2.5.5
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
-new file mode 100644
-index 0000000..ed828c3
---- /dev/null
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx-1.2.0/0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch
-@@ -0,0 +1,115 @@
-+From 1cb902edb51d8f5d95f910b79b9b4c208550a7b6 Mon Sep 17 00:00:00 2001
-+From: Gwang Yoon Hwang <yoon@igalia.com>
-+Date: Wed, 20 Jan 2016 03:10:38 +0900
-+Subject: [PATCH] omxvideodec : Use gstglmemoryegl for the RPi
-+
-+Modified to use gstglmemoryegl to avoid texture creation/copy operations
-+at the glupload.
-+---
-+ omx/gstomxvideodec.c | 28 ++++++++++++++--------------
-+ 1 file changed, 14 insertions(+), 14 deletions(-)
-+
-+diff --git a/omx/gstomxvideodec.c b/omx/gstomxvideodec.c
-+index ec97731..c9d60ff 100644
-+--- a/omx/gstomxvideodec.c
-++++ b/omx/gstomxvideodec.c
-+@@ -38,7 +38,7 @@
-+ 
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+ #include <gst/gl/gl.h>
-+-#include <gst/gl/egl/gsteglimagememory.h>
-++#include <gst/gl/egl/gstglmemoryegl.h>
-+ #endif
-+ 
-+ #if defined (USE_OMX_TARGET_RPI) && defined(__GNUC__)
-+@@ -125,7 +125,7 @@ gst_omx_video_dec_class_init (GstOMXVideoDecClass * klass)
-+   klass->cdata.type = GST_OMX_COMPONENT_TYPE_FILTER;
-+   klass->cdata.default_src_template_caps =
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+-      GST_VIDEO_CAPS_MAKE_WITH_FEATURES (GST_CAPS_FEATURE_MEMORY_EGL_IMAGE,
-++      GST_VIDEO_CAPS_MAKE_WITH_FEATURES (GST_CAPS_FEATURE_MEMORY_GL_MEMORY,
-+       "RGBA") "; "
-+ #endif
-+       "video/x-raw, "
-+@@ -596,8 +596,8 @@ gst_omx_video_dec_allocate_output_buffers (GstOMXVideoDec * self)
-+     gst_structure_free (config);
-+ 
-+ #if defined (USE_OMX_TARGET_RPI) && defined (HAVE_GST_GL)
-+-    eglimage = self->eglimage && (allocator
-+-        && g_strcmp0 (allocator->mem_type, GST_EGL_IMAGE_MEMORY_TYPE) == 0);
-++    eglimage = self->eglimage
-++               && (allocator && GST_IS_GL_MEMORY_EGL_ALLOCATOR (allocator));
-+ #else
-+     /* TODO: Implement something that works for other targets too */
-+     eglimage = FALSE;
-+@@ -640,12 +640,12 @@ gst_omx_video_dec_allocate_output_buffers (GstOMXVideoDec * self)
-+     for (i = 0; i < min; i++) {
-+       GstBuffer *buffer;
-+       GstMemory *mem;
-++      GstGLMemoryEGL *gl_mem;
-+ 
-+       if (gst_buffer_pool_acquire_buffer (pool, &buffer, &params) != GST_FLOW_OK
-+           || gst_buffer_n_memory (buffer) != 1
-+           || !(mem = gst_buffer_peek_memory (buffer, 0))
-+-          || g_strcmp0 (mem->allocator->mem_type,
-+-              GST_EGL_IMAGE_MEMORY_TYPE) != 0) {
-++          || !GST_IS_GL_MEMORY_EGL_ALLOCATOR (mem->allocator)) {
-+         GST_INFO_OBJECT (self, "Failed to allocated %d-th EGLImage", i);
-+         g_list_free_full (buffers, (GDestroyNotify) gst_buffer_unref);
-+         g_list_free (images);
-+@@ -656,13 +656,13 @@ gst_omx_video_dec_allocate_output_buffers (GstOMXVideoDec * self)
-+         err = OMX_ErrorUndefined;
-+         goto done;
-+       }
-+-
-++      gl_mem = (GstGLMemoryEGL *)mem;
-+       buffers = g_list_append (buffers, buffer);
-+-      gst_egl_image_memory_set_orientation (mem,
-++      gst_gl_memory_egl_set_orientation (gl_mem,
-+           GST_VIDEO_GL_TEXTURE_ORIENTATION_X_NORMAL_Y_FLIP);
-+-      images = g_list_append (images, gst_egl_image_memory_get_image (mem));
-++      images = g_list_append (images, gst_gl_memory_egl_get_image (gl_mem));
-+       if (egl_display == EGL_NO_DISPLAY)
-+-        egl_display = gst_egl_image_memory_get_display (mem);
-++        egl_display = gst_gl_memory_egl_get_display (gl_mem);
-+     }
-+ 
-+     GST_DEBUG_OBJECT (self, "Allocated %d EGLImages successfully", min);
-+@@ -954,14 +954,14 @@ gst_omx_video_dec_reconfigure_output_port (GstOMXVideoDec * self)
-+         gst_caps_unref (state->caps);
-+       state->caps = gst_video_info_to_caps (&state->info);
-+       gst_caps_set_features (state->caps, 0,
-+-          gst_caps_features_new (GST_CAPS_FEATURE_MEMORY_EGL_IMAGE, NULL));
-++          gst_caps_features_new (GST_CAPS_FEATURE_MEMORY_GL_MEMORY, NULL));
-+ 
-+       /* try to negotiate with caps feature */
-+       if (!gst_video_decoder_negotiate (GST_VIDEO_DECODER (self))) {
-+ 
-+         GST_DEBUG_OBJECT (self,
-+             "Failed to negotiate with feature %s",
-+-            GST_CAPS_FEATURE_MEMORY_EGL_IMAGE);
-++            GST_CAPS_FEATURE_MEMORY_GL_MEMORY);
-+ 
-+         if (state->caps)
-+           gst_caps_replace (&state->caps, NULL);
-+@@ -2554,7 +2554,7 @@ gst_omx_video_dec_decide_allocation (GstVideoDecoder * bdec, GstQuery * query)
-+ 
-+         gst_query_parse_nth_allocation_param (query, i, &allocator, &params);
-+         if (allocator) {
-+-          if (g_strcmp0 (allocator->mem_type, GST_EGL_IMAGE_MEMORY_TYPE) == 0) {
-++          if (GST_IS_GL_MEMORY_EGL_ALLOCATOR (allocator)) {
-+             found = TRUE;
-+             gst_query_set_nth_allocation_param (query, 0, allocator, &params);
-+             while (gst_query_get_n_allocation_params (query) > 1)
-+@@ -2572,7 +2572,7 @@ gst_omx_video_dec_decide_allocation (GstVideoDecoder * bdec, GstQuery * query)
-+        * and if allocator is not of type memory EGLImage then fails */
-+       if (feature
-+           && gst_caps_features_contains (feature,
-+-              GST_CAPS_FEATURE_MEMORY_EGL_IMAGE) && !found) {
-++              GST_CAPS_FEATURE_MEMORY_GL_MEMORY) && !found) {
-+         return FALSE;
-+       }
-+     }
-+-- 
-+2.5.0
-+
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-similarity index 70%
-copy from recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
-copy to recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-index a13aad7..1e84abe 100644
---- a/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bbappend
-@@ -3,14 +3,16 @@
- #
- SRC_URI_append_rpi = " \
-              file://0001-config-files-path.patch \
--             file://0002-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
--             file://0003-fix-decoder-flushing.patch \
-+             file://0001-Don-t-try-to-acquire-buffer-when-src-pad-isn-t-activ.patch \
-+             file://0002-fix-decoder-flushing.patch \
-              file://0003-no-timeout-on-get-state.patch \
-              file://0004-Properly-handle-drain-requests-while-flushing.patch \
-              file://0005-Don-t-abort-gst_omx_video_dec_set_format-if-there-s-.patch \
-+             file://0006-omxvideodec-unref-allocator-after-getting-it-from-al.patch \
-+             file://0007-omxvideodec-Use-gstglmemoryegl-for-the-RPi.patch \
- "
- 
--FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx:"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx-1.2.0:"
- 
- GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
- GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
-similarity index 100%
-rename from recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
-rename to recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bbappend
--- 
-2.9.0
+Current Dev Position: YP 2.2 M2
+Next Deadline: YP 2.2 M2 cut off would
+be: 7/18/16
 
+SWAT team rotation: Bill -> Paul
+https://wiki.yoctoproject.org/wiki/Yoct
+o_Build_Failure_Swat_Team
 
+Key Status/Updates:
+ * M1 QA report is out however there are concerns about performanceregressions which have not been root caused. M1 will continue to bedelayed until we figure out those issues and the fact that medium+ bugsand high bugs are still assigned to M1.
+ * M2 patch merging is held up due to the shear volume of regressionswe’re seeing which are basically being left to Ross/RP to triage andfind the patches responsible. 
+ * We did upgrade pseudo after various issues which brings in severalxattr fixes and resolves the init problems we were seeing in pseudotowards the end of the last release properly, rather than theworkarounds we put in place.
+ * We’ve merged the progress patches from Paul so we get better feedbackduring the build for how various tasks are progressing.
+ * We’re looking likely to remove directfb from OE-Core since the projectappears to have died.
+ * 2.1.1 is in QA having had a successful build. We are working with areduced capacity QA team due to various changes at Intel/WindRiver sowe will have more limited QA testing of this unfortunately.
+
+Key YP 2.2 Dates:
+ * YP 2.2 M1 release would be: 6/24/16
+ * YP 2.2 M2 cut off would be: 7/18/16
+ * YP 2.2 M2 release would be: 7/29/16
+ * YP 2.2 M3 cut off would be: 8/29/16
+ * YP 2.2 M3 release would be: 9/9/16
+ * YP 2.2 M4 cut off would be: 10/3/16
+ * YP 2.2 M4 release would be: 10/28/16
+
+Tracking Metrics:
+	WDD 2747 (last week 2718)
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+Key Status Links for YP:
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features
+
+[If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
+
+--=-WIKpIhVZP7+GnimLGfU3
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div><span id=3D"docs-internal-guid-f2717342-cb44-=
+dd2f-4c8b-3a3213588c39"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; fo=
+nt-family: Arial; color: rgb(0, 0, 0); background-color: transparent; verti=
+cal-align: baseline; white-space: pre-wrap;">Current Dev Position: YP 2.2 M=
+2</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
+bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: A=
+rial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: b=
+aseline; white-space: pre-wrap;">Next Deadline: YP 2.2 M2 cut off would be:=
+ 7/18/16</span></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; fon=
+t-family: Arial; color: rgb(0, 0, 0); background-color: transparent; vertic=
+al-align: baseline; white-space: pre-wrap;">SWAT team rotation: Bill -&gt; =
+Paul</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team" style=3D"text-decoration:none;"><span style=3D"font-size:=
+ 14.666666666666666px; font-family: Consolas; color: rgb(17, 85, 204); back=
+ground-color: transparent; text-decoration: underline; vertical-align: base=
+line; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yocto_Buil=
+d_Failure_Swat_Team</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666=
+66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
+sparent; vertical-align: baseline; white-space: pre-wrap;">Key Status/Updat=
+es:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"lt=
+r" style=3D"list-style-type: disc; font-size: 14.666666666666666px; font-fa=
+mily: Arial; color: rgb(0, 0, 0); background-color: transparent; vertical-a=
+lign: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; backgroun=
+d-color: transparent; vertical-align: baseline; white-space: pre-wrap;">M1 =
+QA report is out however there are concerns about performance regressions w=
+hich have not been root caused. M1 will continue to be delayed until we fig=
+ure out those issues and the fact that medium+ bugs and high bugs are still=
+ assigned to M1.</span></p></li><li dir=3D"ltr" style=3D"list-style-type: d=
+isc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, =
+0); background-color: transparent; vertical-align: baseline;"><p dir=3D"ltr=
+" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
+=3D"font-size: 14.666666666666666px; background-color: transparent; vertica=
+l-align: baseline; white-space: pre-wrap;">M2 patch merging is held up due =
+to the shear volume of regressions we=E2=80=99re seeing which are basically=
+ being left to Ross/RP to triage and find the patches responsible. </span><=
+/p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.66666=
+6666666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tr=
+ansparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.6666666=
+66666666px; background-color: transparent; vertical-align: baseline; white-=
+space: pre-wrap;">We did upgrade pseudo after various issues which brings i=
+n several xattr fixes and resolves the init problems we were seeing in pseu=
+do towards the end of the last release properly, rather than the workaround=
+s we put in place.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:=
+ disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0=
+, 0); background-color: transparent; vertical-align: baseline;"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span styl=
+e=3D"font-size: 14.666666666666666px; background-color: transparent; vertic=
+al-align: baseline; white-space: pre-wrap;">We=E2=80=99ve merged the progre=
+ss patches from Paul so we get better feedback during the build for how var=
+ious tasks are progressing.</span></p></li><li dir=3D"ltr" style=3D"list-st=
+yle-type: disc; font-size: 14.666666666666666px; font-family: Arial; color:=
+ rgb(0, 0, 0); background-color: transparent; vertical-align: baseline;"><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><=
+span style=3D"font-size: 14.666666666666666px; background-color: transparen=
+t; vertical-align: baseline; white-space: pre-wrap;">We=E2=80=99re looking =
+likely to remove directfb from OE-Core since the project appears to have di=
+ed.</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-siz=
+e: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backgroun=
+d-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"li=
+ne-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:=
+ 14.666666666666666px; background-color: transparent; vertical-align: basel=
+ine; white-space: pre-wrap;">2.1.1 is in QA having had a successful build. =
+We are working with a reduced capacity QA team due to various changes at In=
+tel/WindRiver so we will have more limited QA testing of this unfortunately=
+.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; =
+font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; ver=
+tical-align: baseline; white-space: pre-wrap;">Key YP 2.2 Dates:</span></p>=
+<ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"li=
+st-style-type: disc; font-size: 14.666666666666666px; font-family: Arial; c=
+olor: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline=
+;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t;"><span style=3D"font-size: 14.666666666666666px; background-color: trans=
+parent; vertical-align: baseline; white-space: pre-wrap;">YP 2.2 M1 release=
+ would be: 6/24/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type:=
+ disc; font-size: 14.666666666666666px; font-family: Arial; color: rgb(0, 0=
+, 0); background-color: transparent; vertical-align: baseline;"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span styl=
+e=3D"font-size: 14.666666666666666px; background-color: transparent; vertic=
+al-align: baseline; white-space: pre-wrap;">YP 2.2 M2 cut off would be: 7/1=
+8/16</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-si=
+ze: 14.666666666666666px; font-family: Arial; color: rgb(0, 0, 0); backgrou=
+nd-color: transparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size=
+: 14.666666666666666px; background-color: transparent; vertical-align: base=
+line; white-space: pre-wrap;">YP 2.2 M2 release would be: 7/29/16</span></p=
+></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 14.6666666=
+66666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: tran=
+sparent; vertical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
+666666px; background-color: transparent; vertical-align: baseline; white-sp=
+ace: pre-wrap;">YP 2.2 M3 cut off would be: 8/29/16</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type: disc; font-size: 14.666666666666666px; f=
+ont-family: Arial; color: rgb(0, 0, 0); background-color: transparent; vert=
+ical-align: baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666666666px; bac=
+kground-color: transparent; vertical-align: baseline; white-space: pre-wrap=
+;">YP 2.2 M3 release would be: 9/9/16</span></p></li><li dir=3D"ltr" style=
+=3D"list-style-type: disc; font-size: 14.666666666666666px; font-family: Ar=
+ial; color: rgb(0, 0, 0); background-color: transparent; vertical-align: ba=
+seline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
+tom:0pt;"><span style=3D"font-size: 14.666666666666666px; background-color:=
+ transparent; vertical-align: baseline; white-space: pre-wrap;">YP 2.2 M4 c=
+ut off would be: 10/3/16</span></p></li><li dir=3D"ltr" style=3D"list-style=
+-type: disc; font-size: 14.666666666666666px; font-family: Arial; color: rg=
+b(0, 0, 0); background-color: transparent; vertical-align: baseline;"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><spa=
+n style=3D"font-size: 14.666666666666666px; background-color: transparent; =
+vertical-align: baseline; white-space: pre-wrap;">YP 2.2 M4 release would b=
+e: 10/28/16</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 14.666666666=
+666666px; font-family: Arial; color: rgb(0, 0, 0); background-color: transp=
+arent; vertical-align: baseline; white-space: pre-wrap;">Tracking Metrics:<=
+/span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt;"><span style=3D"font-size: 14.666666666666666px; font-family: Ari=
+al; color: rgb(0, 0, 0); background-color: transparent; vertical-align: bas=
+eline; white-space: pre-wrap;"><span class=3D"Apple-tab-span" style=3D"whit=
+e-space:pre;">	</span></span><span style=3D"font-size: 14.666666666666666px=
+; font-family: Arial; color: rgb(0, 0, 0); background-color: transparent; v=
+ertical-align: baseline; white-space: pre-wrap;">WDD 2747 (last week 2718)<=
+/span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt;text-indent: 36pt;"><span style=3D"font-size: 14.666666666666666px=
+; font-family: Consolas; color: rgb(0, 0, 0); background-color: transparent=
+; vertical-align: baseline; white-space: pre-wrap;">(</span><a href=3D"http=
+s://wiki.yoctoproject.org/charts/combo.html" style=3D"text-decoration:none;=
+"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; color=
+: rgb(17, 85, 204); background-color: transparent; text-decoration: underli=
+ne; vertical-align: baseline; white-space: pre-wrap;">https://wiki.yoctopro=
+ject.org/charts/combo.html</span></a><span style=3D"font-size: 14.666666666=
+666666px; font-family: Consolas; color: rgb(0, 0, 0); background-color: tra=
+nsparent; vertical-align: baseline; white-space: pre-wrap;">)</span></p><br=
+><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;=
+"><span style=3D"font-size: 14.666666666666666px; font-family: Arial; color=
+: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; wh=
+ite-space: pre-wrap;">Key Status Links for YP:</span></p><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https:=
+//wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status" style=3D"text-decor=
+ation:none;"><span style=3D"font-size: 14.666666666666666px; font-family: C=
+onsolas; color: rgb(17, 85, 204); background-color: transparent; text-decor=
+ation: underline; vertical-align: baseline; white-space: pre-wrap;">https:/=
+/wiki.yoctoproject.org/wiki/Yocto_Project_v2.2_Status</span></a></p><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a hr=
+ef=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule" style=3D"text-=
+decoration:none;"><span style=3D"font-size: 14.666666666666666px; font-fami=
+ly: Consolas; color: rgb(17, 85, 204); background-color: transparent; text-=
+decoration: underline; vertical-align: baseline; white-space: pre-wrap;">ht=
+tps://wiki.yoctoproject.org/wiki/Yocto_2.2_Schedule</span></a></p><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=
+=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.2_Features" style=3D"text-de=
+coration:none;"><span style=3D"font-size: 14.666666666666666px; font-family=
+: Consolas; color: rgb(17, 85, 204); background-color: transparent; text-de=
+coration: underline; vertical-align: baseline; white-space: pre-wrap;">http=
+s://wiki.yoctoproject.org/wiki/Yocto_2.2_Features</span></a></p><br><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span=
+ style=3D"font-size: 14.666666666666666px; font-family: Arial; color: rgb(0=
+, 0, 0); background-color: transparent; vertical-align: baseline; white-spa=
+ce: pre-wrap;">[If anyone has suggestions for other information you=E2=80=
+=99d like to see on this weekly status update, let us know!]</span></p><div=
+><span style=3D"font-size: 14.666666666666666px; font-family: Arial; color:=
+ rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; whi=
+te-space: pre-wrap;"><br></span></div></span></div></body></html>
+
+--=-WIKpIhVZP7+GnimLGfU3--
