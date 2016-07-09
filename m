@@ -1,44 +1,31 @@
-Return-Path: <paul@paulbarker.me.uk>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A08AE00CF9; Sat,  9 Jul 2016 05:05:29 -0700 (PDT)
+	id 9B175E00D79; Sat,  9 Jul 2016 11:28:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [178.33.107.29 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 6601 seconds by postgrey-1.32 at yocto-www;
-	Sat, 09 Jul 2016 05:05:25 PDT
-Received: from 15.mo5.mail-out.ovh.net (15.mo5.mail-out.ovh.net
-	[178.33.107.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0377EE009C9
-	for <yocto@yoctoproject.org>; Sat,  9 Jul 2016 05:05:25 -0700 (PDT)
-Received: from player688.ha.ovh.net (b7.ovh.net [213.186.33.57])
-	by mo5.mail-out.ovh.net (Postfix) with ESMTP id BFF1E1000F47
-	for <yocto@yoctoproject.org>; Sat,  9 Jul 2016 11:36:01 +0200 (CEST)
-Received: from nuc.betafive.co.uk
-	(cpc11-shep11-2-0-cust130.8-3.cable.virginm.net [86.27.96.131])
-	(Authenticated sender: paul@betafive.co.uk)
-	by player688.ha.ovh.net (Postfix) with ESMTPSA id C74C720069;
-	Sat,  9 Jul 2016 11:35:59 +0200 (CEST)
-Date: Sat, 9 Jul 2016 10:35:58 +0100
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Hammad Ahmed <hammadahmed85@gmail.com>
-Message-ID: <20160709103558.140ffe32@nuc.betafive.co.uk>
-In-Reply-To: <CACibCHofyRnNQXuK_G2N9jeQ6ATEo5HG4vEp88PDa6+8hVABtg@mail.gmail.com>
-References: <CACibCHofyRnNQXuK_G2N9jeQ6ATEo5HG4vEp88PDa6+8hVABtg@mail.gmail.com>
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.25; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-X-Ovh-Tracer-Id: 14231656299736369419
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeeltddrfeefgdduhecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] u-boot doesnt boot kernel
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 417F6E00D04
+	for <yocto@yoctoproject.org>; Sat,  9 Jul 2016 11:28:37 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 09 Jul 2016 11:28:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,337,1464678000"; d="scan'208";a="992033564"
+Received: from timo-fedora.jf.intel.com ([10.7.201.162])
+	by orsmga001.jf.intel.com with ESMTP; 09 Jul 2016 11:28:38 -0700
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Sat,  9 Jul 2016 11:29:00 -0700
+Message-Id: <1468088943-27081-1-git-send-email-timothy.t.orling@linux.intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [eclipse-poky][mars][PATCH 0/3] Update to Mars.2 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,40 +37,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Jul 2016 12:05:29 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 09 Jul 2016 18:28:41 -0000
 
-On Fri, 8 Jul 2016 21:04:24 -0400
-Hammad Ahmed <hammadahmed85@gmail.com> wrote:
+Update the dependencies to the latest Mars.2 (4.5.2) release.
+Fix broken installation of the plugin due to upstream moving
+ deprecated rse.terminals plugin to a different update site.
+While we're at it, do some additional cleanup.
 
-> Hi,
-> I wanted to boot with u-boot so I added:
-> 
-> KERNEL_IMAGETYPE = "uImage"
-> 
-> u-boot builds fine but when I boot up my raspberrypi, u-boot doesnt
-> start the kernel.
-> 
+Tim Orling (3):
+  Update to Mars.2 and new TM 4.0 sites
+  org.yocto.sdk.site: add TM 4.0 Updates site to category.xml
+  Cleanup - drop all references to ADT and HOB
 
-Setting the environment variables for a successful boot is currently a
-manual process.
+ .../org.yocto.bc.headless.build/build.properties   |  4 +--
+ features/org.yocto.bc/feature.properties           |  4 +--
+ features/org.yocto.bc/feature.xml                  |  2 +-
+ .../org.yocto.doc.headless.build/build.properties  |  4 +--
+ features/org.yocto.doc/feature.properties          |  2 +-
+ features/org.yocto.doc/feature.xml                 |  2 +-
+ .../org.yocto.sdk.headless.build/build.properties  |  4 +--
+ .../org.yocto.sdk.headless.build/customTargets.xml |  2 +-
+ features/org.yocto.sdk.site/category.xml           |  7 ++--
+ features/org.yocto.sdk.site/site.xml               |  6 ++--
+ features/org.yocto.sdk/feature.properties          |  6 ++--
+ features/org.yocto.sdk/feature.xml                 |  9 ++---
+ .../sourceTemplateFeature/feature.properties       |  6 ++--
+ .../sourceTemplatePlugin/plugin.properties         |  6 ++--
+ .../build.properties                               |  4 +--
+ features/org.yocto.utils/feature.properties        |  4 +--
+ features/org.yocto.utils/feature.xml               |  2 +-
+ plugins/org.yocto.bc.ui/.classpath                 |  2 +-
+ plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |  3 +-
+ .../yocto/bc/ui/actions/LaunchToasterDialog.java   |  2 +-
+ .../org/yocto/bc/ui/builder/BitbakeBuilder.java    |  2 +-
+ .../bc/ui/builder/BitbakeCommanderNature.java      |  6 ++--
+ plugins/org.yocto.cmake.managedbuilder/.classpath  |  2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |  6 ++--
+ .../META-INF/MANIFEST.MF                           |  4 +--
+ .../OSGI-INF/l10n/bundle.properties                |  4 ++-
+ plugins/org.yocto.doc.user/.classpath              |  2 +-
+ plugins/org.yocto.doc.user/META-INF/MANIFEST.MF    |  4 +--
+ plugins/org.yocto.remote.utils/.classpath          |  2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |  6 ++--
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    | 10 +++---
+ plugins/org.yocto.remote.utils/build.properties    |  2 +-
+ plugins/org.yocto.sdk.ide.doc.user/.classpath      |  2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |  6 ++--
+ .../META-INF/MANIFEST.MF                           |  4 +--
+ .../cheatsheets/createNewHelloWorldProject.xml     | 12 +++----
+ plugins/org.yocto.sdk.ide/.classpath               |  2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |  6 ++--
+ plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF     |  4 +--
+ .../OSGI-INF/l10n/bundle.properties                |  4 +--
+ .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |  6 ++--
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  | 16 ++++-----
+ .../src/org/yocto/sdk/ide/YoctoSDKPlugin.java      |  4 +--
+ .../yocto/sdk/ide/preferences/LoggerConstants.java |  6 ++--
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |  2 +-
+ plugins/org.yocto.sdk.remotetools/.classpath       |  2 +-
+ .../.settings/org.eclipse.jdt.core.prefs           |  6 ++--
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF | 11 +++---
+ plugins/org.yocto.sdk.remotetools/plugin.xml       |  2 +-
+ scripts/setup.sh                                   | 42 +++++++++++++++-------
+ 50 files changed, 144 insertions(+), 124 deletions(-)
 
-U-boot commands needed for my board (the dtb at least may need to change for
-other models):
-    setenv fdtfile bcm2807-rpi-b.dtb
-    setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
-    setenv do_load_files 'mmc dev 0; fatload mmc 0:1 ${kernel_addr_r} uImage; fatload mmc 0:1 ${fdt_addr_r} ${fdtfile};'
-    setenv do_boot_files 'bootm ${kernel_addr_r} - ${fdt_addr_r};'
-    setenv bootcmd 'run do_load_files do_boot_files'
-    saveenv
-    boot
+-- 
+2.7.4
 
-My board here was a Raspberry Pi B+.
-
-I'll have another look at this and see if I can generate a uEnv.txt
-with sensible defaults during the build process.
-
-Thanks,
-Paul Barker
 
