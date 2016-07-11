@@ -1,31 +1,35 @@
 Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6E18E00DE7; Mon, 11 Jul 2016 03:51:52 -0700 (PDT)
+	id 6A21DE00DFC; Mon, 11 Jul 2016 03:52:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25BACE00DC8
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2016 03:51:47 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga104.fm.intel.com with ESMTP; 11 Jul 2016 03:51:47 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC1BDE00DCA
+	for <yocto@yoctoproject.org>; Mon, 11 Jul 2016 03:52:06 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP; 11 Jul 2016 03:52:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,346,1464678000"; d="scan'208";a="1004524363"
+X-IronPort-AV: E=Sophos;i="5.28,346,1464678000"; d="scan'208";a="732493225"
 Received: from heimdall.fi.intel.com ([10.237.68.147])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Jul 2016 03:51:47 -0700
+	by FMSMGA003.fm.intel.com with ESMTP; 11 Jul 2016 03:52:05 -0700
 From: Jussi Kukkonen <jussi.kukkonen@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 11 Jul 2016 13:51:34 +0300
-Message-Id: <cover.1468233661.git.jussi.kukkonen@intel.com>
+Date: Mon, 11 Jul 2016 13:51:57 +0300
+Message-Id: <b5643d2a8d71b0b76290df9e114a00577a8f320b.1468233661.git.jussi.kukkonen@intel.com>
 X-Mailer: git-send-email 2.8.1
-Subject: [libmatchbox][PATCH 0/4] Add xsetting-client in tree + fixes
+In-Reply-To: <ec40860b1e5560a9afc16573c67ae4ec69cd999b.1468233661.git.jussi.kukkonen@intel.com>
+References: <ec40860b1e5560a9afc16573c67ae4ec69cd999b.1468233661.git.jussi.kukkonen@intel.com>
+In-Reply-To: <cover.1468233661.git.jussi.kukkonen@intel.com>
+References: <cover.1468233661.git.jussi.kukkonen@intel.com>
+Subject: [libmatchbox][PATCH 2/4] Use correct size with memset calls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,51 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jul 2016 10:51:52 -0000
+X-List-Received-Date: Mon, 11 Jul 2016 10:52:07 -0000
 
-Add an internal copy of xsettings-client into libmatchbox: it was
-never meant to be a shared library.
+Found with -Wsizeof-pointer-memaccess.
 
-Other commits avoid deprecated API use or fix problems found by
-modern gcc with -Wall.
+Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
+---
+ libmb/hash.c   | 2 +-
+ libmb/mbmenu.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Jussi
-
-
-The following changes since commit 9f7cf8895ae2d39c465c04cc78e918c157420269:
-
-  tests: link to X11 (2013-12-10 11:45:28 +0000)
-
-are available in the git repository at:
-
-  git://github.com/jku/libmatchbox xsettings
-  https://github.com/jku/libmatchbox/tree/xsettings
-
-Jussi Kukkonen (4):
-  Don't use deprecated XKeycodeToKeysym
-  Use correct size with memset calls
-  Remove unused pointer dereferences
-  Keep an internal copy of xsettings-client
-
- COPYING.MIT              |  18 ++
- configure.ac             |  68 ------
- libmb/Makefile.am        |   8 +-
- libmb/hash.c             |   2 +-
- libmb/mbexp.c            |   6 +-
- libmb/mbmenu.c           |  15 +-
- libmb/mbmenu.h           |   7 +-
- libmb/mbtray.c           |  61 +----
- libmb/xsettings-client.c | 577 +++++++++++++++++++++++++++++++++++++++++++++++
- libmb/xsettings-client.h |  72 ++++++
- libmb/xsettings-common.c | 264 ++++++++++++++++++++++
- libmb/xsettings-common.h | 110 +++++++++
- 12 files changed, 1057 insertions(+), 151 deletions(-)
- create mode 100644 COPYING.MIT
- create mode 100644 libmb/xsettings-client.c
- create mode 100644 libmb/xsettings-client.h
- create mode 100644 libmb/xsettings-common.c
- create mode 100644 libmb/xsettings-common.h
-
+diff --git a/libmb/hash.c b/libmb/hash.c
+index 0226c7d..a867883 100644
+--- a/libmb/hash.c
++++ b/libmb/hash.c
+@@ -75,7 +75,7 @@ struct nlist *hash_add(struct hash *h, char *key, char *val)
+ 
+ void hash_empty(struct hash *h)
+ {
+-   memset(h->hashtab, 0, sizeof(h->hashtab));
++   memset(h->hashtab, 0, sizeof(*h->hashtab));
+ }
+ 
+ void 
+diff --git a/libmb/mbmenu.c b/libmb/mbmenu.c
+index 5e4106e..6e35bed 100644
+--- a/libmb/mbmenu.c
++++ b/libmb/mbmenu.c
+@@ -1065,7 +1065,7 @@ static MBMenuMenu *
+ new_menu(MBMenu *mb, char *title, int depth)
+ {
+   MBMenuMenu *menu = (MBMenuMenu *)malloc(sizeof(MBMenuMenu));
+-   memset(menu, 0, sizeof(menu));
++   memset(menu, 0, sizeof(*menu));
+    menu->items = NULL;
+ 
+    MENUDBG("adding menu -> %s, (%i) \n", title, depth);
 -- 
 2.8.1
 
