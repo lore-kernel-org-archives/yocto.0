@@ -1,65 +1,65 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <gstroz@qti.qualcomm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B3D2E00E83; Mon, 11 Jul 2016 06:37:08 -0700 (PDT)
+	id 64F67E00DF8; Mon, 11 Jul 2016 12:42:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.67 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (danielhilst[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [199.106.114.251 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0185]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
-	[209.85.213.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 677B2E00DEC
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2016 06:37:05 -0700 (PDT)
-Received: by mail-vk0-f67.google.com with SMTP id v6so14923180vkb.1
-	for <yocto@yoctoproject.org>; Mon, 11 Jul 2016 06:37:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+goWbS/5KEPEGyDhfsMGxfy4htobsfLoWf3ABxoJJHQ=;
-	b=SgotVvSFg5Ao7lvHd8C4uaebXxpRmbaCu0h+Jqg6CsCuR8gk7A5h5raiKQpydiJRSN
-	zRPX2OZa/j+4hrJmITJunFyu4xLNo1i7tRJkbRM8ebQ27P/7zSOwCTNP3W8hkynhCNie
-	eblwQzeCvYYijrObUpO8hGHQsE7i6aBBjkr1k2OueAapXRuCsxpfKRASNMkk9Pne6y7w
-	cHPmRzev8hKYw+n3tF7fKwp27rH1lX5z2UAHh/GY2z5RaUApHgopQUOE8fPH7KjfkwOa
-	j4S81NguVBA4kLc0Uk9x/H4yE3wTDMIaN82ZOAsZwpCVZyu5OOvgZeV7v5eyd3qnO+Vx
-	37Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+goWbS/5KEPEGyDhfsMGxfy4htobsfLoWf3ABxoJJHQ=;
-	b=nFv61oT4T3Mis4b/fQy6oO+PZHF2mlGLb4dgIw9JJRblNUTsvkAZAsKxwlLsMA1LnQ
-	yGn5dGPh80K7jL193KwY3wTxX4k+qrrmO59ODJOLzE23/Nf1rIgJRvqykD6zSke835Qn
-	iYIUEgOLmMLm/o8a3u8H0nIZRWQ5Zar5S6ZvvH7Kaa21evdjwXMTTbRquyrM0Pah59te
-	axCYcDsbAz9IxnPrtKNpA2RHxK7CtCf72xvqHYJQQRU2xSMDkBIcgeDabDEAYD0iUU8E
-	/iDiCVC+SJUeOVOZzmZt/nL9ityxXZrLshAsyqQBBzDB9062xN2xraU9T4KF7pPu4Cow
-	6OHQ==
-X-Gm-Message-State: ALyK8tLAnt6s9dzNWr/uZN+CMUjsz/kwaoMwiyFy7VO29UXjCjzX/YWErGaMB3r641bgrwHfo45sFgdBALLg4Q==
-X-Received: by 10.31.226.133 with SMTP id z127mr9872989vkg.116.1468244224596; 
-	Mon, 11 Jul 2016 06:37:04 -0700 (PDT)
+X-Greylist: delayed 122 seconds by postgrey-1.32 at yocto-www;
+	Mon, 11 Jul 2016 12:42:06 PDT
+Received: from wolverine02.qualcomm.com (wolverine02.qualcomm.com
+	[199.106.114.251])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CED96E00DD0
+	for <yocto@yoctoproject.org>; Mon, 11 Jul 2016 12:42:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
+	s=qcdkim; t=1468266126; x=1499802126;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=3iko+ewWxxtMLaACcnvloOJeag+V7qdjTH9hUaFZyx4=;
+	b=zMjVq30mnJBK/GsqvV9WnZ+vUQ5pdk5c57z4T0Aj6ZJ1jPFVR576KmM0
+	xD97GgiDYZ2EVnIUWoGSTg8dBqPVki/KewyRfht5P6nCyGpI+A7IfcGwX
+	covA9yzWFrRuNqPG9IqNt3JIkGx6uMioFgBZ7gIRA7xPBWgf6/7Cv5y0i I=;
+X-IronPort-AV: E=Sophos;i="5.28,348,1464678000"; 
+	d="scan'208,217";a="302604330"
+Received: from unknown (HELO ironmsg02-R.qualcomm.com) ([10.53.140.106])
+	by wolverine02.qualcomm.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	11 Jul 2016 12:39:20 -0700
+X-IronPort-AV: E=McAfee;i="5700,7163,8223"; a="768529995"
+Received: from nasanexm02e.na.qualcomm.com ([10.85.0.86])
+	by ironmsg02-R.qualcomm.com with ESMTP/TLS/RC4-SHA;
+	11 Jul 2016 12:39:20 -0700
+Received: from NASANEXM02C.na.qualcomm.com (10.85.0.43) by
+	nasanexm02e.na.qualcomm.com (10.85.0.86) with Microsoft SMTP Server
+	(TLS) id 15.0.1178.4; Mon, 11 Jul 2016 12:39:19 -0700
+Received: from NASANEXM02C.na.qualcomm.com ([10.85.0.43]) by
+	NASANEXM02C.na.qualcomm.com ([10.85.0.43]) with mapi id 15.00.1178.000;
+	Mon, 11 Jul 2016 12:39:19 -0700
+From: "Stroz, Glenn" <gstroz@qti.qualcomm.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: SysVinit scripts not being populated in busybox-mdev package 
+Thread-Index: AdHbqxwgiETzznArTzS6U7X/dimDLA==
+Date: Mon, 11 Jul 2016 19:39:18 +0000
+Message-ID: <90e371145c81434598ecc656ed9df48d@NASANEXM02C.na.qualcomm.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.47.70.6]
 MIME-Version: 1.0
-Received: by 10.159.37.233 with HTTP; Mon, 11 Jul 2016 06:37:04 -0700 (PDT)
-In-Reply-To: <20160711002711.07076803@nuc.betafive.co.uk>
-References: <CACibCHofyRnNQXuK_G2N9jeQ6ATEo5HG4vEp88PDa6+8hVABtg@mail.gmail.com>
-	<20160709103558.140ffe32@nuc.betafive.co.uk>
-	<20160711002711.07076803@nuc.betafive.co.uk>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Mon, 11 Jul 2016 10:37:04 -0300
-Message-ID: <CAF3SDA4eb3XHEtTbD1zRt2rprHCey3dD8u07PZk1raOtbbcRow@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] u-boot doesnt boot kernel
+Subject: SysVinit scripts not being populated in busybox-mdev package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,54 +71,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jul 2016 13:37:08 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 11 Jul 2016 19:42:09 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_90e371145c81434598ecc656ed9df48dNASANEXM02Cnaqualcommco_"
 
-Hi Hammad,
+--_000_90e371145c81434598ecc656ed9df48dNASANEXM02Cnaqualcommco_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-As Paul said the u-boot need some configuration so it can boot the
-kernel. Usually it looks for bootcmd variable and try to run it so at
-last this variable need to be setted. User's usually make this one
-(bootcmd) call a miriad of another commands to retrieve kernel from
-ftp, or nand, load it to memoby and boot it.
+In the busybox.inc recipe include file there are lines where a SysVinit scr=
+ipt should be started when the mdev package is installed:
 
-Take a look at www.denx.de/wiki/DULG/Manual for more information.
+INITSCRIPT_PACKAGES =3D "${PN}-httpd ${PN}-syslog ${PN}-udhcpd ${PN}-mdev $=
+{PN}-hwclock"
 
-Regards,
+INITSCRIPT_NAME_${PN}-mdev =3D "mdev"
+INITSCRIPT_PARAMS_${PN}-mdev =3D "start 03 S ."
 
-2016-07-10 20:27 GMT-03:00 Paul Barker <paul@paulbarker.me.uk>:
-> On Sat, 9 Jul 2016 10:35:58 +0100
-> Paul Barker <paul@paulbarker.me.uk> wrote:
+We've switched our device manager to mdev but we don't see the SysVInit scr=
+ipt being populated on the device. I checked the packages-split folder and =
+I see it's also not being populated here. Other packages using INITSCRIPT_N=
+AME and INITSCRIPT_PARAMS are being populated in the packages-split folder =
+and then are visible on the device. Is this a known issue?
+
+poky/build/tmp/work/aarch64-poky-linux/busybox/1.23.2-r0/packages-split/bus=
+ybox-mdev$ find
+.
+./etc
+./etc/mdev
+./etc/mdev/find-touchscreen.sh
+./etc/mdev/mdev-mount.sh
+./etc/mdev.conf
+./etc/init.d
+./etc/init.d/mdev
+
+-Glenn
+
+
+--_000_90e371145c81434598ecc656ed9df48dNASANEXM02Cnaqualcommco_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->> On Fri, 8 Jul 2016 21:04:24 -0400
->> Hammad Ahmed <hammadahmed85@gmail.com> wrote:
->>
->> > Hi,
->> > I wanted to boot with u-boot so I added:
->> >
->> > KERNEL_IMAGETYPE = "uImage"
->> >
->> > u-boot builds fine but when I boot up my raspberrypi, u-boot doesnt
->> > start the kernel.
->> >
->>
->
-> I've just sent a patch series which should allow u-boot to start the
-> kernel without needing to type in a bunch of manual commands.
->
-> You can get the patches from the mailing list or use the
-> 'pbarker/u-boot' branch of https://gitlab.com/oryx/meta-raspberrypi.
->
-> Let me know if this works for you.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">In the busybox.inc recipe include file there are lin=
+es where a SysVinit script should be started when the mdev package is insta=
+lled:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">INITSCRIPT_PACKAGES =3D &quot;${PN}-httpd ${PN}-sysl=
+og ${PN}-udhcpd ${PN}-mdev ${PN}-hwclock&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">INITSCRIPT_NAME_${PN}-mdev =3D &quot;mdev&quot;<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">INITSCRIPT_PARAMS_${PN}-mdev =3D &quot;start 03 S .&=
+quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We&#8217;ve switched our device manager to mdev but =
+we don&#8217;t see the SysVInit script being populated on the device. I che=
+cked the packages-split folder and I see it&#8217;s also not being populate=
+d here. Other packages using INITSCRIPT_NAME and INITSCRIPT_PARAMS
+ are being populated in the packages-split folder and then are visible on t=
+he device. Is this a known issue?
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">poky/build/tmp/work/aarch64-poky-linux/busybox/1.23.=
+2-r0/packages-split/busybox-mdev$ find<o:p></o:p></p>
+<p class=3D"MsoNormal">.<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/mdev<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/mdev/find-touchscreen.sh<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/mdev/mdev-mount.sh<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/mdev.conf<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/init.d<o:p></o:p></p>
+<p class=3D"MsoNormal">./etc/init.d/mdev<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">-Glenn<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
-
--- 
-"Do or do not. There is no try"
-  Yoda Master
-
+--_000_90e371145c81434598ecc656ed9df48dNASANEXM02Cnaqualcommco_--
