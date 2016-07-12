@@ -1,6 +1,6 @@
-Return-Path: <simon.bolek@googlemail.com>
+Return-Path: <stiffstone@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3768E00F25; Tue, 12 Jul 2016 15:06:45 -0700 (PDT)
+	id 6801EE00F46; Tue, 12 Jul 2016 12:49:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (simon.bolek[at]googlemail.com)
+	mail provider *      (stiffstone[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+	*      [209.85.218.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,42 +20,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21DD5E00E6D
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 15:06:43 -0700 (PDT)
-Received: by mail-io0-f173.google.com with SMTP id 38so29766965iol.0
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 15:06:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA8DDE00E62
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 12:49:37 -0700 (PDT)
+Received: by mail-oi0-f46.google.com with SMTP id r2so38556886oih.2
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 12:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=YLRiUMQZIeayREc+WMLlUWeBRchNiY2NoK6XE79K0yU=;
-	b=qg05pGTW9oQcQuwh06Awoy/6ctNOX7oPyBCohxjUmfv7Cn30ysoP101ir0/+F4kfOK
-	LuJAtj0TRJLnZCHgJC7EcacN1/K/eDgs5LYctrYjNzhSyKLlfxth+k3caNFCfOqj1hZU
-	mPksyYDloPib4K6Z3vCHG1ftQMP1zfheR5yxMcy024/CjFRyNFnU7QmeYzWGpp2QhqR9
-	+kpezPJuCR1OKgdN5ng74FGStGDdM8RzKkRiElUKctEN6DY/xbfsxD6xS+GKx9YFJUsL
-	Xnu9n/lohW816mEefFqCJsZbnoVYLS21ntniE3C9aj4LCZG1zLyi2woo3+W7U6cwxh+A
-	RNRQ==
+	bh=8pz476BTQ4Vu81TQlSBfDznnndUu+NkP/xYrENbmwcM=;
+	b=esrig5T+V678zKdZO2kdO3lA9XClb1ujo7GTvw4638WzxhTZ4hoYzvBVsWlgJtV1OB
+	c5k2nNTnFnsLHlVXq/0/rV/GFWq0MuyPdDbWVGmxM7aI63cTbl8ypBammF95I8YO6ULE
+	onKRiEmy0t4vQnNoVDT0MwPLzgQBva53b5Xwa7gEhCxyeoV54eSs61gOijLw82i297Wi
+	TA4GZ83FXDW7zWQFa8JXkJC1bi3Kv+HqcTkDqysMxvz80QWVkwrnNrxHJ2ya73KT9gsZ
+	qDq30P05JepE+AK4pt3kMT+ZZr3m9CRow1CrTfxe7sB6TVRajeCpsKgG49abXlPjqr4k
+	CJ/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=YLRiUMQZIeayREc+WMLlUWeBRchNiY2NoK6XE79K0yU=;
-	b=hn0ahBeZuc36eLvWL+NkxQdU7v02rjuAa+IwFMWV2KUEakJwdWNIQvUPPv75cUm1Zx
-	n6susDU1DlvNiyGimOoLBxfHgzJowiX+hfb+Q8+1Q1OG5w9IFgeXM/8tExHW6YzmCFh0
-	fbBMGbBXcjgqzEJOT8pdec2Uiyq/pq/01nCF2ki8Zqy42061AKx43VvCWV2swesOH3fY
-	iVbISVfpJMyju/pxp77scREXjvUEFBcPg1BGPK4fbLzs8A6r0isfuJD/BtaRY9dAd6LG
-	YvwWV9NctW7XCQjICo8EAIYARs7PWG8gtEB9Owi2R2JQn8N42xv37K4TikIwdjIJpApI
-	YarQ==
-X-Gm-Message-State: ALyK8tKPjENDrfSbxXrzJoYRKF+akHPTGHTp/+eKCCy+1EMuY8R80u0d+vepLLWs06ls+mi7Kf6PHhIXqg5cAw==
-X-Received: by 10.107.59.201 with SMTP id i192mr5424830ioa.89.1468361202955;
-	Tue, 12 Jul 2016 15:06:42 -0700 (PDT)
+	bh=8pz476BTQ4Vu81TQlSBfDznnndUu+NkP/xYrENbmwcM=;
+	b=jtbqNmiw4h1s0BH0FycKwSZk0bfQeBvZ/Wgqurz2LKMCOyhGU8jV7zpJhoNmsxCDX+
+	NMhRf1fvHKl7mRWP6sulbXrBaZSFuPAebCMG/FCdUc9a1zm5PpOSTgzFEJhit08CR84m
+	Bqmq4YF1o3/YJnX2h0RX5G2elSzCRqF3zoajY8VL4BvEaxJGndLe8yt18/Cd2d3BO+Af
+	CevZQMn5s6V85RRuF+rrh2BT3rnVvoUqR6xUhfvqR0xMTWleqCTqR772oI/Z96l1JCHN
+	owhgwHG2AVTdKbDGy+A5/q7GDYpvx1KPBYbkDpt2QR+RR3Oa3M9kfVYkctBzJfmranbV
+	yrmw==
+X-Gm-Message-State: ALyK8tJT+UhsxY9JZ29LH3E9BgjKy6pgTxvnba707EpWZlU5HdE7kZnS7CLluvT3h9Yr+RaeoFjJwZtBsYaF8A==
+X-Received: by 10.202.186.136 with SMTP id k130mr14472451oif.38.1468352976437; 
+	Tue, 12 Jul 2016 12:49:36 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.36.55.135 with HTTP; Tue, 12 Jul 2016 15:06:23 -0700 (PDT)
-From: Simon Bolek <simon.bolek@googlemail.com>
-Date: Wed, 13 Jul 2016 00:06:23 +0200
-Message-ID: <CAEfap_AqC5ksgt1Zx_CJtaZ=yGQ0swyGSAV5ZC4+vZmV28SZJQ@mail.gmail.com>
+Received: by 10.202.48.129 with HTTP; Tue, 12 Jul 2016 12:49:36 -0700 (PDT)
+From: Yile Ku <stiffstone@gmail.com>
+Date: Tue, 12 Jul 2016 13:49:36 -0600
+Message-ID: <CAAGP=A_N+zCxn-nYdQXo1U7_=h3hFv-_+4pXznKokOLE20VQHw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: Re: [genericx86-jethro] core-image-sato HDDIMG 'install' - no, hard drive selected - /etc/fstab no such file or directory, (Simon Bolek)
+X-Mailman-Approved-At: Tue, 12 Jul 2016 16:11:04 -0700
+Subject: bitbake problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,285 +67,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2016 22:06:45 -0000
-Content-Type: multipart/alternative; boundary=94eb2c063e9ee77afa0537777b95
+X-List-Received-Date: Tue, 12 Jul 2016 19:49:40 -0000
+Content-Type: multipart/alternative; boundary=001a113cdf3690c9ea0537759157
 
---94eb2c063e9ee77afa0537777b95
+--001a113cdf3690c9ea0537759157
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi, so looking at the previous yocto image, that was working fine, I see
-that under rootfs there is
-/lib/modules/3.10.34-ltsi-yocto-standard with some files inside.
-There are no such files in the jethro core-image-sato rootfs.
-Can that be the reason, why my SSD hard drive does not get recognized?
-How do i get the modules into rootfs?
+Is there someone who can explain how yocto checks these dependencies?  I
+need to debug this issue.
 
-thank you and kind regards
-Simon :-)
+Thanks ahead of time.
+Y-
 
-Viele Gr=C3=BCsse
-Simon Bolek :-)
+ERROR: Unable to install packages. Command
+'/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/sysroots/x86_64-linux/usr/bin/smart
+--data-dir=/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/fsl-image-full/1.0-r0/rootfs/var/lib/smart
+install -y libgcc1@ppc64e6500 gcc@ppc64e6500 libgcc-s-dev@ppc64e6500
+run-postinsts@all usdpaa-apps-staticdev@b4860qds_64b ldd@ppc64e6500
+usdpaa-apps@b4860qds_64b packagegroup-core-ssh-openssh@all apptrk@ppc64e6500
+asf@b4860qds_64b udev-extraconf@ppc64e6500 pme-tools@ppc64e6500
+eth-config@ppc64e6500 openssh-sftp-server@ppc64e6500 mtd-utils@ppc64e6500
+kmod@ppc64e6500 usdpaa-staticdev@b4860qds_64b util-linux@ppc64e6500
+fm-ucode-image@ppc64e6500 dpa-offload-dev@b4860qds_64b
+mtd-utils-jffs2@ppc64e6500 e2fsprogs-tune2fs@ppc64e6500
+packagegroup-core-eclipse-debug@all libpixman-1-0@ppc64e6500 g++@ppc64e6500
+gcov@ppc64e6500 dosfstools@ppc64e6500 libglib-2.0-0@ppc64e6500
+e2fsprogs-e2fsck@ppc64e6500 packagegroup-fsl-core@all
+packagegroup-fsl-extend@all packagegroup-core-boot@b4860qds_64b
+packagegroup-core-full-cmdline@all sysklogd@ppc64e6500
+merge-files@ppc64e6500 packagegroup-core-buildessential@all
+rcw-image@b4860qds_64b usdpaa@b4860qds_64b packagegroup-core-nfs-server@all
+hypervisor-partman@ppc64e6500 ceetm@b4860qds_64b
+dpa-offload-staticdev@b4860qds_64b libc6-dev@ppc64e6500
+usdpaa-dev@b4860qds_64b e2fsprogs-mke2fs@ppc64e6500 libgcov-dev@ppc64e6500
+sysfsutils@ppc64e6500 qoriq-debug@b4860qds_64b mtd-utils-ubifs@ppc64e6500
+kernel-image-3.12.37-rt51-qoriq-sdk-v1.8+gf488de6@b4860qds_64b
+bash@ppc64e6500 gnuradio@ppc64e6500 libelf1@ppc64e6500 dtc@ppc64e6500
+gdbserver@ppc64e6500 packagegroup-core-tools-debug@b4860qds_64b
+hyperrelay@ppc64e6500 tcf-qoriqdbg@ppc64e6500 sysstat@ppc64e6500
+fmc@b4860qds_64b e2fsprogs@ppc64e6500 net-tools@ppc64e6500 cpp@ppc64e6500
+eglibc-utils@ppc64e6500 kernel-devicetree@b4860qds_64b binutils@ppc64e6500
+u-boot-qoriq-images@b4860qds_64b libgcc1@lib32_ppce6500 gcc@lib32_ppce6500
+libgcov-dev@lib32_ppce6500 libgcc-s-dev@lib32_ppce6500 g++@lib32_ppce6500
+binutils@lib32_ppce6500 ldd@lib32_ppce6500 gcov@lib32_ppce6500
+cpp@lib32_ppce6500 eglibc-utils@lib32_ppce6500 eglibc-dev@lib32_ppce6500'
+returned 1:
+Loading cache...
+Updating cache...               ########################################
+[100%]
 
-mit freundlichem Gruss / kind regards / pozdrawiam
-Simon P. Bolek
-------------------------------------------------------
-Dipl. Inf. Simon P. Bolek
-SAP Integration Architect
-Business Mobile and IVI Solutions
-mailto: simon.bolek@arcom-ivi.de
-http://www.arcom-ivi.de/
-XING: https://www.xing.com/profile/SimonP_Bolek
+Computing transaction...error: Can't install gnuradio-3.7.5-r0@ppc64e6500:
+no package provides libvolk.so.0.0.0()(64bit)
 
-On Tue, Jul 12, 2016 at 12:46 PM, <yocto-request@yoctoproject.org> wrote:
 
->
->
->
-> Today's Topics:
->
->    4. [genericx86-jethro] core-image-sato HDDIMG 'install' - no
->       hard drive selected - /etc/fstab no such file or directory
->       (Simon Bolek)
->
->
->
-> ------------------------------
->
-> Message: 4
->
-> Hello everyone!
->
-> I am trying to install genericx86 core-image-sato (jethro) HDDIMG to an
-> atom-pc.
-> For this 2GB USB stick is used.
-> When choosing 'install' option from boot menu I get the message:
->
-> "Searching for hard drives...
-> No hard drive selected. Installation aborted."
->
-> Installatiion stops and i get the console.
-> When I try to run fsck, it says: can't read '/etc/fstab': No such file or
-> directory
->
-> fdisk -l  shows only the partitions of USB stick.
->
-> After I choose 'boot' option to boot into live image, SDD drive is under
-> /dev/sdb and USB installation stick under /dev/sda,
->
-> What recipe/package is my installation missing? The SSD hard drive is not
-> recognized for some reason. With previous yocto releases this package lis=
-t
-> DID work fine.
-> So there is something missing in the background.
-> Do you have any idea what this might be?
->
-> Below is my package list from local.conf.
->
-> thank you and kind regards
-> Simon :-)
->
-> EXTRA_IMAGE_FEATURES =3D "debug-tweaks ssh-server-openssh"
-> IMAGE_INSTALL_append =3D " make \
->      initscripts \
->      grub \
->      initramfs-boot \
->      syslinux \
->      initramfs-live-install \
->      initramfs-live-install-efi \
->      initramfs-live-boot \
->      xinit \
->      xwininfo \
->      openssh-sftp \
->      openssh-sftp-server \
->      qtbase-plugins \
->      qtconnectivity \
->      qtdeclarative \
->      qtdeclarative-plugins \
->      qtdeclarative-tools \
->      qtdeclarative-qmlplugins \
->      qtenginio \
->      qtlocation \
->      qtmultimedia \
->      qtmultimedia-plugins \
->      qtmultimedia-qmlplugins \
->      qtsystems \
-> "
->
-> Viele Gr?sse
-> Simon Bolek :-)
->
-> mit freundlichem Gruss / kind regards / pozdrawiam
-> Simon P. Bolek
-> ------------------------------------------------------
-> Dipl. Inf. Simon P. Bolek
-> SAP Integration Architect
-> Business Mobile and IVI Solutions
-> mailto: simon.bolek@arcom-ivi.de
-> http://www.arcom-ivi.de/
-> XING: https://www.xing.com/profile/SimonP_Bolek
-> -------------- next part --------------
-> An HTML attachment was scrubbed...
-> URL: <
-> http://lists.yoctoproject.org/pipermail/yocto/attachments/20160712/795fcc=
-82/attachment.html
-> >
->
-> ------------------------------
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> End of yocto Digest, Vol 70, Issue 43
-> *************************************
->
+ERROR: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/fsl-image-full/1.0-r0/temp/log.do_rootfs.20153
+ERROR: Task 7
+(/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/meta-fsl-networking/images/
+fsl-image-full.bb, do_rootfs) failed with exit code '1'
 
---94eb2c063e9ee77afa0537777b95
+--001a113cdf3690c9ea0537759157
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi, so looking at the previous yocto image, that was worki=
-ng fine, I see that under rootfs there is <br>
-/lib/modules/3.10.34-ltsi-yocto-standard with some files inside. <br>
-There are no such files in the jethro core-image-sato rootfs. <br>
-Can that be the reason, why my SSD hard drive does not get recognized?<br>
-How do i get the modules into rootfs?<br>
-<br>
-thank you and kind regards<br>
-Simon :-)<div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gm=
-ail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><di=
-v dir=3D"ltr"><div>Viele Gr=C3=BCsse<br>Simon Bolek :-)<br><br>mit freundli=
-chem Gruss / kind regards / pozdrawiam<br>Simon P. Bolek<br>---------------=
----------------------------------------<br>Dipl. Inf. Simon P. Bolek<br>SAP=
- Integration Architect<br><div>Business=C2=A0<span style=3D"font-family:ari=
-al,sans-serif;font-size:13px;border-collapse:collapse">Mobile and IVI Solut=
-ions</span><div>mailto: <a href=3D"mailto:simon.bolek@arcom-ivi.de" target=
-=3D"_blank">simon.bolek@arcom-ivi.de</a><div><a href=3D"http://www.arcom-iv=
-i.de/" target=3D"_blank">http://www.arcom-ivi.de/</a><br>XING: <a href=3D"h=
-ttps://www.xing.com/profile/SimonP_Bolek" target=3D"_blank">https://www.xin=
-g.com/profile/SimonP_Bolek</a><br></div></div></div></div></div></div></div=
-></div></div>
-<br><div class=3D"gmail_quote">On Tue, Jul 12, 2016 at 12:46 PM,  <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:yocto-request@yoctoproject.org" target=3D"_b=
-lank">yocto-request@yoctoproject.org</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><br>
-<br>
-<br>
-Today&#39;s Topics:<br>
-<br>
-=C2=A0=C2=A0 4. [genericx86-jethro] core-image-sato HDDIMG &#39;install&#39=
-; - no<br>
-=C2=A0 =C2=A0 =C2=A0 hard drive selected - /etc/fstab no such file or direc=
-tory<br>
-=C2=A0 =C2=A0 =C2=A0 (Simon Bolek)<br>
-<br>
-<br>
-<br>
-------------------------------<br>
-<br>
-Message: 4<br>
-<br>
-Hello everyone!<br>
-<br>
-I am trying to install genericx86 core-image-sato (jethro) HDDIMG to an<br>
-atom-pc.<br>
-For this 2GB USB stick is used.<br>
-When choosing &#39;install&#39; option from boot menu I get the message:<br=
->
-<br>
-&quot;Searching for hard drives...<br>
-No hard drive selected. Installation aborted.&quot;<br>
-<br>
-Installatiion stops and i get the console.<br>
-When I try to run fsck, it says: can&#39;t read &#39;/etc/fstab&#39;: No su=
-ch file or<br>
-directory<br>
-<br>
-fdisk -l=C2=A0 shows only the partitions of USB stick.<br>
-<br>
-After I choose &#39;boot&#39; option to boot into live image, SDD drive is =
-under<br>
-/dev/sdb and USB installation stick under /dev/sda,<br>
-<br>
-What recipe/package is my installation missing? The SSD hard drive is not<b=
-r>
-recognized for some reason. With previous yocto releases this package list<=
-br>
-DID work fine.<br>
-So there is something missing in the background.<br>
-Do you have any idea what this might be?<br>
-<br>
-Below is my package list from local.conf.<br>
-<br>
-thank you and kind regards<br>
-Simon :-)<br>
-<br>
-EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks ssh-server-openssh&quot;<br>
-IMAGE_INSTALL_append =3D &quot; make \<br>
-=C2=A0 =C2=A0 =C2=A0initscripts \<br>
-=C2=A0 =C2=A0 =C2=A0grub \<br>
-=C2=A0 =C2=A0 =C2=A0initramfs-boot \<br>
-=C2=A0 =C2=A0 =C2=A0syslinux \<br>
-=C2=A0 =C2=A0 =C2=A0initramfs-live-install \<br>
-=C2=A0 =C2=A0 =C2=A0initramfs-live-install-efi \<br>
-=C2=A0 =C2=A0 =C2=A0initramfs-live-boot \<br>
-=C2=A0 =C2=A0 =C2=A0xinit \<br>
-=C2=A0 =C2=A0 =C2=A0xwininfo \<br>
-=C2=A0 =C2=A0 =C2=A0openssh-sftp \<br>
-=C2=A0 =C2=A0 =C2=A0openssh-sftp-server \<br>
-=C2=A0 =C2=A0 =C2=A0qtbase-plugins \<br>
-=C2=A0 =C2=A0 =C2=A0qtconnectivity \<br>
-=C2=A0 =C2=A0 =C2=A0qtdeclarative \<br>
-=C2=A0 =C2=A0 =C2=A0qtdeclarative-plugins \<br>
-=C2=A0 =C2=A0 =C2=A0qtdeclarative-tools \<br>
-=C2=A0 =C2=A0 =C2=A0qtdeclarative-qmlplugins \<br>
-=C2=A0 =C2=A0 =C2=A0qtenginio \<br>
-=C2=A0 =C2=A0 =C2=A0qtlocation \<br>
-=C2=A0 =C2=A0 =C2=A0qtmultimedia \<br>
-=C2=A0 =C2=A0 =C2=A0qtmultimedia-plugins \<br>
-=C2=A0 =C2=A0 =C2=A0qtmultimedia-qmlplugins \<br>
-=C2=A0 =C2=A0 =C2=A0qtsystems \<br>
-&quot;<br>
-<br>
-Viele Gr?sse<br>
-Simon Bolek :-)<br>
-<br>
-mit freundlichem Gruss / kind regards / pozdrawiam<br>
-Simon P. Bolek<br>
-------------------------------------------------------<br>
-Dipl. Inf. Simon P. Bolek<br>
-SAP Integration Architect<br>
-Business Mobile and IVI Solutions<br>
-mailto: <a href=3D"mailto:simon.bolek@arcom-ivi.de">simon.bolek@arcom-ivi.d=
-e</a><br>
-<a href=3D"http://www.arcom-ivi.de/" rel=3D"noreferrer" target=3D"_blank">h=
-ttp://www.arcom-ivi.de/</a><br>
-XING: <a href=3D"https://www.xing.com/profile/SimonP_Bolek" rel=3D"noreferr=
-er" target=3D"_blank">https://www.xing.com/profile/SimonP_Bolek</a><br>
--------------- next part --------------<br>
-An HTML attachment was scrubbed...<br>
-URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
-ts/20160712/795fcc82/attachment.html" rel=3D"noreferrer" target=3D"_blank">=
-http://lists.yoctoproject.org/pipermail/yocto/attachments/20160712/795fcc82=
-/attachment.html</a>&gt;<br>
-<br>
-------------------------------<br>
-<span class=3D""><font color=3D"#888888"><br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br>
-<br>
-End of yocto Digest, Vol 70, Issue 43<br>
-*************************************<br>
-</font></span></blockquote></div><br></div></div>
+<div dir=3D"ltr"><div><div>Is there someone who can explain how yocto check=
+s these dependencies?=C2=A0 I need to debug this issue.<br><br></div>Thanks=
+ ahead of time.<br></div>Y-<br><div><div><br>ERROR: Unable to install packa=
+ges. Command &#39;/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2=
+e-v2/tmp/sysroots/x86_64-linux/usr/bin/smart --data-dir=3D/opt/Freescale/Qo=
+rIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linu=
+x/fsl-image-full/1.0-r0/rootfs/var/lib/smart install -y libgcc1@ppc64e6500 =
+gcc@ppc64e6500 libgcc-s-dev@ppc64e6500 run-postinsts@all usdpaa-apps-static=
+dev@b4860qds_64b ldd@ppc64e6500 usdpaa-apps@b4860qds_64b packagegroup-core-=
+ssh-openssh@all apptrk@ppc64e6500 asf@b4860qds_64b udev-extraconf@ppc64e650=
+0 pme-tools@ppc64e6500 eth-config@ppc64e6500 openssh-sftp-server@ppc64e6500=
+ mtd-utils@ppc64e6500 kmod@ppc64e6500 usdpaa-staticdev@b4860qds_64b util-li=
+nux@ppc64e6500 fm-ucode-image@ppc64e6500 dpa-offload-dev@b4860qds_64b mtd-u=
+tils-jffs2@ppc64e6500 e2fsprogs-tune2fs@ppc64e6500 packagegroup-core-eclips=
+e-debug@all libpixman-1-0@ppc64e6500 g++@ppc64e6500 gcov@ppc64e6500 dosfsto=
+ols@ppc64e6500 libglib-2.0-0@ppc64e6500 e2fsprogs-e2fsck@ppc64e6500 package=
+group-fsl-core@all packagegroup-fsl-extend@all packagegroup-core-boot@b4860=
+qds_64b packagegroup-core-full-cmdline@all sysklogd@ppc64e6500 merge-files@=
+ppc64e6500 packagegroup-core-buildessential@all rcw-image@b4860qds_64b usdp=
+aa@b4860qds_64b packagegroup-core-nfs-server@all hypervisor-partman@ppc64e6=
+500 ceetm@b4860qds_64b dpa-offload-staticdev@b4860qds_64b libc6-dev@ppc64e6=
+500 usdpaa-dev@b4860qds_64b e2fsprogs-mke2fs@ppc64e6500 libgcov-dev@ppc64e6=
+500 sysfsutils@ppc64e6500 qoriq-debug@b4860qds_64b mtd-utils-ubifs@ppc64e65=
+00 kernel-image-3.12.37-rt51-qoriq-sdk-v1.8+gf488de6@b4860qds_64b bash@ppc6=
+4e6500 gnuradio@ppc64e6500 libelf1@ppc64e6500 dtc@ppc64e6500 gdbserver@ppc6=
+4e6500 packagegroup-core-tools-debug@b4860qds_64b hyperrelay@ppc64e6500 tcf=
+-qoriqdbg@ppc64e6500 sysstat@ppc64e6500 fmc@b4860qds_64b e2fsprogs@ppc64e65=
+00 net-tools@ppc64e6500 cpp@ppc64e6500 eglibc-utils@ppc64e6500 kernel-devic=
+etree@b4860qds_64b binutils@ppc64e6500 u-boot-qoriq-images@b4860qds_64b lib=
+gcc1@lib32_ppce6500 gcc@lib32_ppce6500 libgcov-dev@lib32_ppce6500 libgcc-s-=
+dev@lib32_ppce6500 g++@lib32_ppce6500 binutils@lib32_ppce6500 ldd@lib32_ppc=
+e6500 gcov@lib32_ppce6500 cpp@lib32_ppce6500 eglibc-utils@lib32_ppce6500 eg=
+libc-dev@lib32_ppce6500&#39; returned 1:<br>Loading cache...<br>Updating ca=
+che...=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 ######################################## [100%]<br><br>Comp=
+uting transaction...error: Can&#39;t install gnuradio-3.7.5-r0@ppc64e6500: =
+no package provides libvolk.so.0.0.0()(64bit)<br><br><br>ERROR: Function fa=
+iled: do_rootfs<br>ERROR: Logfile of failure stored in: /opt/Freescale/QorI=
+Q-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/=
+fsl-image-full/1.0-r0/temp/log.do_rootfs.20153<br>ERROR: Task 7 (/opt/Frees=
+cale/QorIQ-SDK-V1.8-20150619-yocto/meta-fsl-networking/images/<a href=3D"ht=
+tp://fsl-image-full.bb">fsl-image-full.bb</a>, do_rootfs) failed with exit =
+code &#39;1&#39;<br><br></div></div></div>
 
---94eb2c063e9ee77afa0537777b95--
+--001a113cdf3690c9ea0537759157--
