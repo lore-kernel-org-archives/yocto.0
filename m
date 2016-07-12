@@ -1,61 +1,66 @@
-Return-Path: <stiffstone@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6801EE00F46; Tue, 12 Jul 2016 12:49:40 -0700 (PDT)
+	id 24BB5E0049A; Tue, 12 Jul 2016 16:27:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stiffstone[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.46 listed in list.dnswl.org]
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
-	[209.85.218.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA8DDE00E62
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 12:49:37 -0700 (PDT)
-Received: by mail-oi0-f46.google.com with SMTP id r2so38556886oih.2
-	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 12:49:37 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
+Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAADFE0043B
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 16:27:20 -0700 (PDT)
+Received: by mail-qk0-f170.google.com with SMTP id s63so28967274qkb.2
+	for <yocto@yoctoproject.org>; Tue, 12 Jul 2016 16:27:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=8pz476BTQ4Vu81TQlSBfDznnndUu+NkP/xYrENbmwcM=;
-	b=esrig5T+V678zKdZO2kdO3lA9XClb1ujo7GTvw4638WzxhTZ4hoYzvBVsWlgJtV1OB
-	c5k2nNTnFnsLHlVXq/0/rV/GFWq0MuyPdDbWVGmxM7aI63cTbl8ypBammF95I8YO6ULE
-	onKRiEmy0t4vQnNoVDT0MwPLzgQBva53b5Xwa7gEhCxyeoV54eSs61gOijLw82i297Wi
-	TA4GZ83FXDW7zWQFa8JXkJC1bi3Kv+HqcTkDqysMxvz80QWVkwrnNrxHJ2ya73KT9gsZ
-	qDq30P05JepE+AK4pt3kMT+ZZr3m9CRow1CrTfxe7sB6TVRajeCpsKgG49abXlPjqr4k
-	CJ/w==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=ogmsDGBzSYZeP88Fx3LrKR38YBbgIZ4YjdX5+c+8DGw=;
+	b=0izVcCI2hmXxtwCtJC1g1UggJBsyVNpAD1t1OI+PCqGUwQRavt+rTTFDhY2HoTMxPV
+	aB2QpBBC2cUKPiuybqZns5eCI0fULpFUY54IN4LHn42aCfTs0Sr7sbPqxUMZMEQLEVT7
+	Nd6ySyceMJnLKAF+AQ/IJDh9RBPTm5odxpgIPQBFuTIX77wfZMDPsCiZlfbg1lc1yUOZ
+	8KlIF5t1QUMPBGFkhmWIQEttauioWUVtGs9gpWcO5rXDoS0Pc2d3xDS3Lheq8O6kr06M
+	1Lwdz1QjrlyRiuBIzwUylWPCuT6l1qvlEW98nU2jpD8hWMRZTTXdTyBTzAEzq6vcxYTr
+	kdxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8pz476BTQ4Vu81TQlSBfDznnndUu+NkP/xYrENbmwcM=;
-	b=jtbqNmiw4h1s0BH0FycKwSZk0bfQeBvZ/Wgqurz2LKMCOyhGU8jV7zpJhoNmsxCDX+
-	NMhRf1fvHKl7mRWP6sulbXrBaZSFuPAebCMG/FCdUc9a1zm5PpOSTgzFEJhit08CR84m
-	Bqmq4YF1o3/YJnX2h0RX5G2elSzCRqF3zoajY8VL4BvEaxJGndLe8yt18/Cd2d3BO+Af
-	CevZQMn5s6V85RRuF+rrh2BT3rnVvoUqR6xUhfvqR0xMTWleqCTqR772oI/Z96l1JCHN
-	owhgwHG2AVTdKbDGy+A5/q7GDYpvx1KPBYbkDpt2QR+RR3Oa3M9kfVYkctBzJfmranbV
-	yrmw==
-X-Gm-Message-State: ALyK8tJT+UhsxY9JZ29LH3E9BgjKy6pgTxvnba707EpWZlU5HdE7kZnS7CLluvT3h9Yr+RaeoFjJwZtBsYaF8A==
-X-Received: by 10.202.186.136 with SMTP id k130mr14472451oif.38.1468352976437; 
-	Tue, 12 Jul 2016 12:49:36 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=ogmsDGBzSYZeP88Fx3LrKR38YBbgIZ4YjdX5+c+8DGw=;
+	b=Kl+ejtQzTGUBunC9ubTk0NIna2ew0PtNTpffFHEfZWw3JRuVZKUp3gkdXw7fpnzq0W
+	4sgLrZ+CGkfziCuqcQ8iiRS+O+M83QJFtHyvKJLMaQYd3CFowqDgwQcYJRsnkWNdvjsu
+	lChXqp+as3z9X0HFeVKVui1wUS/iIJ+1Du2kAWBz0k41BXiB1dBEtktLlEuuw9UST/Se
+	y7dHBSLbfvdyEwBcFmhyYQ746mZOH7ly9lkTjNAmiaZ8x/BWLlPsrNWUHCM8gRHYYIZd
+	IKj9dK6r9l6Kmx766LK21JY+VWh+UAvOUU4SbJHjAKjT2jEcEUwPeL1neh2IgvyS5GYo
+	UFJw==
+X-Gm-Message-State: ALyK8tLu11jBYhmYrEYhSrogqgFcwDMHkTrgBxk15giIj3Wo2wcXwiCjpSLVKq31vX6oE/AAbUgZYRe60036Mw==
+X-Received: by 10.55.97.80 with SMTP id v77mr6771570qkb.41.1468366040228; Tue,
+	12 Jul 2016 16:27:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.202.48.129 with HTTP; Tue, 12 Jul 2016 12:49:36 -0700 (PDT)
-From: Yile Ku <stiffstone@gmail.com>
-Date: Tue, 12 Jul 2016 13:49:36 -0600
-Message-ID: <CAAGP=A_N+zCxn-nYdQXo1U7_=h3hFv-_+4pXznKokOLE20VQHw@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Tue, 12 Jul 2016 16:11:04 -0700
-Subject: bitbake problem
+Received: by 10.55.214.83 with HTTP; Tue, 12 Jul 2016 16:26:50 -0700 (PDT)
+In-Reply-To: <CY1PR0101MB159434803789B80D34BE5E66D7300@CY1PR0101MB1594.prod.exchangelabs.com>
+References: <CY1PR0101MB15942895A402A660E25E1963D73B0@CY1PR0101MB1594.prod.exchangelabs.com>
+	<A67957CD-65BD-43D0-ABA6-7F14D62D82EC@bmw-carit.de>
+	<CY1PR0101MB159434803789B80D34BE5E66D7300@CY1PR0101MB1594.prod.exchangelabs.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 12 Jul 2016 16:26:50 -0700
+Message-ID: <CAMKF1soDoA7xh_oCHgHXzyQ8PpE_BVW+4XiV-9SApauWx4rS-w@mail.gmail.com>
+To: Takashi Matsuzawa <tmatsuzawa@uievolution.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: linux/limits.h: No such file or directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,112 +72,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jul 2016 19:49:40 -0000
-Content-Type: multipart/alternative; boundary=001a113cdf3690c9ea0537759157
-
---001a113cdf3690c9ea0537759157
+X-List-Received-Date: Tue, 12 Jul 2016 23:27:25 -0000
 Content-Type: text/plain; charset=UTF-8
-
-Is there someone who can explain how yocto checks these dependencies?  I
-need to debug this issue.
-
-Thanks ahead of time.
-Y-
-
-ERROR: Unable to install packages. Command
-'/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/sysroots/x86_64-linux/usr/bin/smart
---data-dir=/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/fsl-image-full/1.0-r0/rootfs/var/lib/smart
-install -y libgcc1@ppc64e6500 gcc@ppc64e6500 libgcc-s-dev@ppc64e6500
-run-postinsts@all usdpaa-apps-staticdev@b4860qds_64b ldd@ppc64e6500
-usdpaa-apps@b4860qds_64b packagegroup-core-ssh-openssh@all apptrk@ppc64e6500
-asf@b4860qds_64b udev-extraconf@ppc64e6500 pme-tools@ppc64e6500
-eth-config@ppc64e6500 openssh-sftp-server@ppc64e6500 mtd-utils@ppc64e6500
-kmod@ppc64e6500 usdpaa-staticdev@b4860qds_64b util-linux@ppc64e6500
-fm-ucode-image@ppc64e6500 dpa-offload-dev@b4860qds_64b
-mtd-utils-jffs2@ppc64e6500 e2fsprogs-tune2fs@ppc64e6500
-packagegroup-core-eclipse-debug@all libpixman-1-0@ppc64e6500 g++@ppc64e6500
-gcov@ppc64e6500 dosfstools@ppc64e6500 libglib-2.0-0@ppc64e6500
-e2fsprogs-e2fsck@ppc64e6500 packagegroup-fsl-core@all
-packagegroup-fsl-extend@all packagegroup-core-boot@b4860qds_64b
-packagegroup-core-full-cmdline@all sysklogd@ppc64e6500
-merge-files@ppc64e6500 packagegroup-core-buildessential@all
-rcw-image@b4860qds_64b usdpaa@b4860qds_64b packagegroup-core-nfs-server@all
-hypervisor-partman@ppc64e6500 ceetm@b4860qds_64b
-dpa-offload-staticdev@b4860qds_64b libc6-dev@ppc64e6500
-usdpaa-dev@b4860qds_64b e2fsprogs-mke2fs@ppc64e6500 libgcov-dev@ppc64e6500
-sysfsutils@ppc64e6500 qoriq-debug@b4860qds_64b mtd-utils-ubifs@ppc64e6500
-kernel-image-3.12.37-rt51-qoriq-sdk-v1.8+gf488de6@b4860qds_64b
-bash@ppc64e6500 gnuradio@ppc64e6500 libelf1@ppc64e6500 dtc@ppc64e6500
-gdbserver@ppc64e6500 packagegroup-core-tools-debug@b4860qds_64b
-hyperrelay@ppc64e6500 tcf-qoriqdbg@ppc64e6500 sysstat@ppc64e6500
-fmc@b4860qds_64b e2fsprogs@ppc64e6500 net-tools@ppc64e6500 cpp@ppc64e6500
-eglibc-utils@ppc64e6500 kernel-devicetree@b4860qds_64b binutils@ppc64e6500
-u-boot-qoriq-images@b4860qds_64b libgcc1@lib32_ppce6500 gcc@lib32_ppce6500
-libgcov-dev@lib32_ppce6500 libgcc-s-dev@lib32_ppce6500 g++@lib32_ppce6500
-binutils@lib32_ppce6500 ldd@lib32_ppce6500 gcov@lib32_ppce6500
-cpp@lib32_ppce6500 eglibc-utils@lib32_ppce6500 eglibc-dev@lib32_ppce6500'
-returned 1:
-Loading cache...
-Updating cache...               ########################################
-[100%]
-
-Computing transaction...error: Can't install gnuradio-3.7.5-r0@ppc64e6500:
-no package provides libvolk.so.0.0.0()(64bit)
-
-
-ERROR: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/fsl-image-full/1.0-r0/temp/log.do_rootfs.20153
-ERROR: Task 7
-(/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/meta-fsl-networking/images/
-fsl-image-full.bb, do_rootfs) failed with exit code '1'
-
---001a113cdf3690c9ea0537759157
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Is there someone who can explain how yocto check=
-s these dependencies?=C2=A0 I need to debug this issue.<br><br></div>Thanks=
- ahead of time.<br></div>Y-<br><div><div><br>ERROR: Unable to install packa=
-ges. Command &#39;/opt/Freescale/QorIQ-SDK-V1.8-20150619-yocto/build_bae-c2=
-e-v2/tmp/sysroots/x86_64-linux/usr/bin/smart --data-dir=3D/opt/Freescale/Qo=
-rIQ-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linu=
-x/fsl-image-full/1.0-r0/rootfs/var/lib/smart install -y libgcc1@ppc64e6500 =
-gcc@ppc64e6500 libgcc-s-dev@ppc64e6500 run-postinsts@all usdpaa-apps-static=
-dev@b4860qds_64b ldd@ppc64e6500 usdpaa-apps@b4860qds_64b packagegroup-core-=
-ssh-openssh@all apptrk@ppc64e6500 asf@b4860qds_64b udev-extraconf@ppc64e650=
-0 pme-tools@ppc64e6500 eth-config@ppc64e6500 openssh-sftp-server@ppc64e6500=
- mtd-utils@ppc64e6500 kmod@ppc64e6500 usdpaa-staticdev@b4860qds_64b util-li=
-nux@ppc64e6500 fm-ucode-image@ppc64e6500 dpa-offload-dev@b4860qds_64b mtd-u=
-tils-jffs2@ppc64e6500 e2fsprogs-tune2fs@ppc64e6500 packagegroup-core-eclips=
-e-debug@all libpixman-1-0@ppc64e6500 g++@ppc64e6500 gcov@ppc64e6500 dosfsto=
-ols@ppc64e6500 libglib-2.0-0@ppc64e6500 e2fsprogs-e2fsck@ppc64e6500 package=
-group-fsl-core@all packagegroup-fsl-extend@all packagegroup-core-boot@b4860=
-qds_64b packagegroup-core-full-cmdline@all sysklogd@ppc64e6500 merge-files@=
-ppc64e6500 packagegroup-core-buildessential@all rcw-image@b4860qds_64b usdp=
-aa@b4860qds_64b packagegroup-core-nfs-server@all hypervisor-partman@ppc64e6=
-500 ceetm@b4860qds_64b dpa-offload-staticdev@b4860qds_64b libc6-dev@ppc64e6=
-500 usdpaa-dev@b4860qds_64b e2fsprogs-mke2fs@ppc64e6500 libgcov-dev@ppc64e6=
-500 sysfsutils@ppc64e6500 qoriq-debug@b4860qds_64b mtd-utils-ubifs@ppc64e65=
-00 kernel-image-3.12.37-rt51-qoriq-sdk-v1.8+gf488de6@b4860qds_64b bash@ppc6=
-4e6500 gnuradio@ppc64e6500 libelf1@ppc64e6500 dtc@ppc64e6500 gdbserver@ppc6=
-4e6500 packagegroup-core-tools-debug@b4860qds_64b hyperrelay@ppc64e6500 tcf=
--qoriqdbg@ppc64e6500 sysstat@ppc64e6500 fmc@b4860qds_64b e2fsprogs@ppc64e65=
-00 net-tools@ppc64e6500 cpp@ppc64e6500 eglibc-utils@ppc64e6500 kernel-devic=
-etree@b4860qds_64b binutils@ppc64e6500 u-boot-qoriq-images@b4860qds_64b lib=
-gcc1@lib32_ppce6500 gcc@lib32_ppce6500 libgcov-dev@lib32_ppce6500 libgcc-s-=
-dev@lib32_ppce6500 g++@lib32_ppce6500 binutils@lib32_ppce6500 ldd@lib32_ppc=
-e6500 gcov@lib32_ppce6500 cpp@lib32_ppce6500 eglibc-utils@lib32_ppce6500 eg=
-libc-dev@lib32_ppce6500&#39; returned 1:<br>Loading cache...<br>Updating ca=
-che...=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 ######################################## [100%]<br><br>Comp=
-uting transaction...error: Can&#39;t install gnuradio-3.7.5-r0@ppc64e6500: =
-no package provides libvolk.so.0.0.0()(64bit)<br><br><br>ERROR: Function fa=
-iled: do_rootfs<br>ERROR: Logfile of failure stored in: /opt/Freescale/QorI=
-Q-SDK-V1.8-20150619-yocto/build_bae-c2e-v2/tmp/work/b4860qds_64b-fsl-linux/=
-fsl-image-full/1.0-r0/temp/log.do_rootfs.20153<br>ERROR: Task 7 (/opt/Frees=
-cale/QorIQ-SDK-V1.8-20150619-yocto/meta-fsl-networking/images/<a href=3D"ht=
-tp://fsl-image-full.bb">fsl-image-full.bb</a>, do_rootfs) failed with exit =
-code &#39;1&#39;<br><br></div></div></div>
+On Mon, Jul 11, 2016 at 10:42 PM, Takashi Matsuzawa
+<tmatsuzawa@uievolution.com> wrote:
+> Hello, thank you for your suggestion.
+>
+> Yes, I was aware of the post, but I was not sure if you came up with a
+> workaround..
+>
+>
+> In fact, my problem was gone once I physically (not by -c cleansstate,
+> cleanall, etc.) removed SSTATE_CACHE directory.
+>
+> (I think bitbake fails in unclear errors if previous build attempts faile=
+d
+> or interrupted and leaving files in irregular states.)
 
---001a113cdf3690c9ea0537759157--
+There are several cases which may be out of control for bitbake to handle d=
+uring
+build. however we consider and try to solve the cases as we understand
+them and can fail deterministic way we fix them. There however could
+be local issues to your workspace which are hard to reproduce unless
+you delve into your env and find
+out when it happens. We will we happy to help
+
+>
+>
+> Building everything from scratch was a pain (more than 1 day for my build
+> machines), so if I see the same issue next time, I will try your workarou=
+nd.
+>
+>
+>
+> ________________________________
+> From: Clemens Lang <Clemens.Lang@bmw-carit.de>
+> Sent: Thursday, July 7, 2016 4:45 PM
+> To: Takashi Matsuzawa
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] linux/limits.h: No such file or directory
+>
+> Hi,
+>
+> Takashi Matsuzawa <tmatsuzawa@uievolution.com> wrote:
+>
+>> >configure: error: C preprocessor "x86_64-pokysdk-linux-gcc -E
+>>
+>> --sysroot=3D/mnt/ssd2/>yocto/dev/tmp/x86-wk3/sysroots/x86_64-nativesdk-p=
+okysdk-linux
+>> " fails sanity check
+>> >| See `config.log' for more details.
+>>
+>> If I look into config.log
+>>
+>> (gcc-4.9.2/build.x86_64-pokysdk-linux.x86_64-pokysdk-linux/libgcc/config=
+.log)
+>> as suggested, I can see the following.
+>> It says linux/limits.h is not found.
+>>
+>> (in config.log)
+>> >usr/include/bits/local_lim.h:38:26: fatal error: linux/limits.h: No suc=
+h
+>> file or directory
+>
+> This looks a lot like a problem we=E2=80=99ve seen a while ago. See
+>    https://lists.yoctoproject.org/pipermail/yocto/2015-July/025856.html
+> which is the mailing list post a colleague sent to the list back then.
+>
+> Looking at our git history, the workaround we did back then was add a
+> dependency from gcc-crosssdk-initial to nativesdk-linux-libc-headers if
+> $TARGET_OS starts with =E2=80=9Clinux=E2=80=9D.
+>
+>
+> HTH,
+> Clemens
+> --
+> BMW Car IT GmbH
+> Clemens Lang
+> Spezialist Entwicklung
+> Lise-Meitner-Stra=C3=9Fe 14
+> 89081 Ulm
+>
+> Tel: +49-731-37804182
+> Mail: clemens.lang@bmw-carit.de
+> Web: http://www.bmw-carit.de
+> --------------------------------------------------------------------
+> BMW Car IT GmbH
+> Gesch=C3=A4ftsf=C3=BChrer: Michael W=C3=BCrtenberger und Alexis Trolin
+> Sitz und Registergericht: M=C3=BCnchen HRB 134810
+> --------------------------------------------------------------------
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
