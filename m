@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1314E00D9C; Wed, 13 Jul 2016 04:52:41 -0700 (PDT)
+	id 5B864E00DAB; Wed, 13 Jul 2016 04:54:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,58 +8,58 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+	*      [74.125.82.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C94E1E00D81
-	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 04:52:39 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id x83so5586132wma.3
-	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 04:52:39 -0700 (PDT)
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE08DE00D81
+	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 04:54:09 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id i5so5618526wmg.2
+	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 04:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=hJzgkoHAIvEVloI5gcjEfztsUUv63NvGB1BlM8wiCgQ=;
-	b=iSrqm8KUqV00DyhmJANXv1T0d1dXjkTuK7GTkD0DVsTC4OBObE8v4YT5jMZ6Bf4UzP
-	Q4HXTgEWN/7+N3K6AD9pvzTyaMB4JIk8bj5Z1YLEVychc1lCsIoG2zvEjwGFpnL0N1aJ
-	lrUb9rjqg+yismyqp5UsvMOLdOJXZgOxY1ZJlfZokfaODc0LnfCousOlS4phsU5W8GSy
-	6XnRW8tsPSo+QhEJlO5sYtusDOUhKYGcioaz4UbMIo4hDXHMbb3Ngj18Pi60SI4q0xNY
-	edUL8OfGA2fbnAqPfdazPBjNeeOHWhRtLLhLuGfcZYJG4a5xzxnc3VcRqrc0BH/LEAaC
-	Yqkw==
+	bh=yxPG/yYTXAMrP1OJUBCcZHtmBZJKiVyYXkpiSqL8j50=;
+	b=dSWaC0vAAyUHk/VXksZb6+cHyUnfws3yjboeYcagBHu2twD+bixj0qUsqnbUbGhPT2
+	TTwGLjofWne16SKsTzYD/g84nXCZwx//RPcMKEpPNZDtXgdabSAI1ULkLUvpV0psHikW
+	LxFQxoKoKNV4+CiRS0HyaY/lCN4ZdaGyXr7JFEjj7XHJgeZ0C/3tFVaAiWvg8mEmr8+W
+	Fnnt+s1IE+GNuCIQq2mU752BQ1IgLwnmSUJ/zrFlgCMNtu7rtbEzHHQv6Es815D9PNf4
+	klMkTz2CMz7en+xMCVtVA4nAz68i+6zitt1nUayyjuJoTiFWJhMK7SoanCUfpTDpB6lJ
+	anMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=hJzgkoHAIvEVloI5gcjEfztsUUv63NvGB1BlM8wiCgQ=;
-	b=h3B53TlvxDNvKrFjvXPyXCGapsIMvy7QdUVEd9Jsqyl+uqI2b7kulZTSbgffpzhVVQ
-	ME47xo5JxSliEUIFGi9I2ADChFZSfCdfQEmz6H043Ip6cDRriJzlBV/7UJ7cUA9F2XOy
-	pPoTYJnhrfh5dobtVTOjAaR5W/8pczugrh7XQXKnF0GQLx2VXPMMhrbVlHntm2zTQ4Cz
-	+x6rm7Wj1AY9S5Z46KEU/DFXHj4x2lx9KrhBfcYQisMPMIx0DtCdJobEixz5jzzqQQex
-	Fhymjfn++L8gj+yhDol/A+OhwChW/PSw3FbfNdsdOb0AQ9AigQ494dU2sqUgf4Aaej5v
-	Rpxw==
-X-Gm-Message-State: ALyK8tKX/nOU+qK1S99jiWYkL72XLxeuOLFJ+Y2i1FQHF17ctTXYybr7S4fiPs9Ix1Ne+A==
-X-Received: by 10.195.13.166 with SMTP id ez6mr534406wjd.16.1468410758080;
-	Wed, 13 Jul 2016 04:52:38 -0700 (PDT)
+	bh=yxPG/yYTXAMrP1OJUBCcZHtmBZJKiVyYXkpiSqL8j50=;
+	b=Pc9xQXl7utqgQzWn7Z2U2PqDmTjyGG6O/GOYVh0r6gKw0KZY6EgX5DfL92pcYETlhB
+	42lIeV2EMkF0GBL3qBpq9EtYAuBuy3RC1skD44kG0SqtvyBD/09bQZ8rZCT9dU0Z26IY
+	f+opZjeqHkc7ABORBVeL/2zflzfEB425PW792c05SRl36giE/zFgk3yBAkAPHH13zLKd
+	XyOKK4/w28mT6HGV07JiRrzfdHhcb84X4NXxBsLLIEWG4dWPzumq24rbCK62brMYVUYf
+	I+amGH1v4WqCcgvMj4X56ERvF0Ib361HBysad5CsRQx67mAfH4jctvrWBh11IhWQfnZT
+	Ymyw==
+X-Gm-Message-State: ALyK8tI4Evt/YnXUltkUcRcp6Kq6H8l3X0cUGkqDeyGfDrE3gWI41gx03gx1DP8DxTKovA==
+X-Received: by 10.28.234.16 with SMTP id i16mr19549812wmh.76.1468410848631;
+	Wed, 13 Jul 2016 04:54:08 -0700 (PDT)
 Received: from resin.home (host109-152-128-245.range109-152.btcentralplus.com.
-	[109.152.128.245]) by smtp.gmail.com with ESMTPSA id
-	b203sm1421172wmh.20.2016.07.13.04.52.36
+	[109.152.128.245])
+	by smtp.gmail.com with ESMTPSA id i4sm524434wja.1.2016.07.13.04.54.07
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 13 Jul 2016 04:52:37 -0700 (PDT)
-Date: Wed, 13 Jul 2016 12:52:35 +0100
+	Wed, 13 Jul 2016 04:54:07 -0700 (PDT)
+Date: Wed, 13 Jul 2016 12:54:05 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <20160713115235.GD21822@resin.home>
+Message-ID: <20160713115405.GE21822@resin.home>
 References: <1468192676-22030-1-git-send-email-paul@paulbarker.me.uk>
-	<1468192676-22030-3-git-send-email-paul@paulbarker.me.uk>
+	<1468192676-22030-4-git-send-email-paul@paulbarker.me.uk>
 MIME-Version: 1.0
-In-Reply-To: <1468192676-22030-3-git-send-email-paul@paulbarker.me.uk>
+In-Reply-To: <1468192676-22030-4-git-send-email-paul@paulbarker.me.uk>
 User-Agent: Mutt/1.6.2 (2016-07-01)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/3] u-boot-scr: Add recipe to create u-boot boot script
+Subject: Re: [meta-raspberrypi][PATCH 3/3] sdcard_image-rpi.bbclass: Include boot script when using u-boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,117 +71,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jul 2016 11:52:41 -0000
-X-Groupsio-MsgNum: 31026
+X-List-Received-Date: Wed, 13 Jul 2016 11:54:11 -0000
+X-Groupsio-MsgNum: 31027
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="g7w8+K/95kPelPD2"
+	protocol="application/pgp-signature"; boundary="vmttodhTwj0NAgWp"
 Content-Disposition: inline
 
---g7w8+K/95kPelPD2
+--vmttodhTwj0NAgWp
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Hi Paul,
 
-On Mon, Jul 11, 2016 at 12:17:55AM +0100, Paul Barker wrote:
-> Upstream u-boot searches the boot partition for a script named 'boot.scr'. If
-> this file exists it is executed as a sequence of u-boot commands in order to
-> boot the system. This script must be compiled using the mkimage command to
-> ensure that it is understood by u-boot.
->
+On Mon, Jul 11, 2016 at 12:17:56AM +0100,Paul Barker wrote:
 > Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
 > ---
->  recipes-bsp/u-boot-scr/files/raspberrypi/boot.cmd  |  6 ++++++
->  recipes-bsp/u-boot-scr/files/raspberrypi0/boot.cmd |  6 ++++++
->  recipes-bsp/u-boot-scr/files/raspberrypi2/boot.cmd |  6 ++++++
->  recipes-bsp/u-boot-scr/files/raspberrypi3/boot.cmd |  6 ++++++
->  recipes-bsp/u-boot-scr/u-boot-scr.bb               | 20 ++++++++++++++++++++
->  5 files changed, 44 insertions(+)
->  create mode 100644 recipes-bsp/u-boot-scr/files/raspberrypi/boot.cmd
->  create mode 100644 recipes-bsp/u-boot-scr/files/raspberrypi0/boot.cmd
->  create mode 100644 recipes-bsp/u-boot-scr/files/raspberrypi2/boot.cmd
->  create mode 100644 recipes-bsp/u-boot-scr/files/raspberrypi3/boot.cmd
->  create mode 100644 recipes-bsp/u-boot-scr/u-boot-scr.bb
+>  classes/sdcard_image-rpi.bbclass | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/recipes-bsp/u-boot-scr/files/raspberrypi/boot.cmd b/recipes-bsp/u-boot-scr/files/raspberrypi/boot.cmd
-> new file mode 100644
-> index 0000000..c86c758
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot-scr/files/raspberrypi/boot.cmd
-> @@ -0,0 +1,6 @@
-> +setenv fdtfile bcm2708-rpi-b.dtb
-> +setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
-> +mmc dev 0
-> +fatload mmc 0:1 ${kernel_addr_r} uImage
-> +fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
-> +bootm ${kernel_addr_r} - ${fdt_addr_r}
-> diff --git a/recipes-bsp/u-boot-scr/files/raspberrypi0/boot.cmd b/recipes-bsp/u-boot-scr/files/raspberrypi0/boot.cmd
-> new file mode 100644
-> index 0000000..c86c758
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot-scr/files/raspberrypi0/boot.cmd
-> @@ -0,0 +1,6 @@
-> +setenv fdtfile bcm2708-rpi-b.dtb
-> +setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
-> +mmc dev 0
-> +fatload mmc 0:1 ${kernel_addr_r} uImage
-> +fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
-> +bootm ${kernel_addr_r} - ${fdt_addr_r}
-> diff --git a/recipes-bsp/u-boot-scr/files/raspberrypi2/boot.cmd b/recipes-bsp/u-boot-scr/files/raspberrypi2/boot.cmd
-> new file mode 100644
-> index 0000000..aa4ea64
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot-scr/files/raspberrypi2/boot.cmd
-> @@ -0,0 +1,6 @@
-> +setenv fdtfile bcm2709-rpi-2-b.dtb
-> +setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
-> +mmc dev 0
-> +fatload mmc 0:1 ${kernel_addr_r} uImage
-> +fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
-> +bootm ${kernel_addr_r} - ${fdt_addr_r}
-> diff --git a/recipes-bsp/u-boot-scr/files/raspberrypi3/boot.cmd b/recipes-bsp/u-boot-scr/files/raspberrypi3/boot.cmd
-> new file mode 100644
-> index 0000000..2950856
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot-scr/files/raspberrypi3/boot.cmd
-> @@ -0,0 +1,6 @@
-> +setenv fdtfile bcm2710-rpi-3-b.dtb
-> +setenv bootargs 'earlyprintk console=tty0 console=ttyAMA0 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait noinitrd'
-> +mmc dev 0
-> +fatload mmc 0:1 ${kernel_addr_r} uImage
-> +fatload mmc 0:1 ${fdt_addr_r} ${fdtfile}
-> +bootm ${kernel_addr_r} - ${fdt_addr_r}
-> diff --git a/recipes-bsp/u-boot-scr/u-boot-scr.bb b/recipes-bsp/u-boot-scr/u-boot-scr.bb
+> diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+> index 6960aca..20be56f 100644
+> --- a/classes/sdcard_image-rpi.bbclass
+> +++ b/classes/sdcard_image-rpi.bbclass
+> @@ -55,7 +55,7 @@ IMAGE_DEPENDS_rpi-sdimg = " \
+>  			dosfstools-native \
+>  			virtual/kernel:do_deploy \
+>  			${IMAGE_BOOTLOADER} \
+> -			${@bb.utils.contains('KERNEL_IMAGETYPE', 'uImage', 'u-boot', '',d)} \
+> +			${@bb.utils.contains('KERNEL_IMAGETYPE', 'uImage', 'u-boot u-boot-scr', '',d)} \
 
-I think we should brand this recipe to be rpi specific. Something like
-rpi-u-boot-scr.bb to avoid clash with other layers. I think I saw this
-exactly recipe name in the past.
+Should uboot RDEPEND on u-boot-scr? In my head this would make more
+sense and we can avoid this change if so.
 
-> new file mode 100644
-> index 0000000..310bf3d
-> --- /dev/null
-> +++ b/recipes-bsp/u-boot-scr/u-boot-scr.bb
-> @@ -0,0 +1,20 @@
-> +SUMMARY = "U-boot boot scripts for Raspberry Pi"
-> +LICENSE = "MIT"
-> +LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-> +
-> +DEPENDS = "u-boot-mkimage-native"
-> +
-> +SRC_URI = "file://boot.cmd"
-> +
-> +do_compile() {
-> +    mkimage -A arm -T script -C none -n "Boot script" -d "${WORKDIR}/boot.cmd" boot.scr
-> +}
-> +
-> +inherit deploy
-> +
-> +do_deploy() {
-> +    install -d ${DEPLOYDIR}
-> +    install -m 0644 boot.scr ${DEPLOYDIR}
-> +}
-> +
-> +addtask do_deploy after do_compile before do_build
+>  			"
+>
+>  # SD card image name
+> @@ -128,6 +128,7 @@ IMAGE_CMD_rpi-sdimg () {
+>  	"uImage")
+>  		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.bin ::${SDIMG_KERNELIMAGE}
+>  		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
+> +		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/boot.scr ::boot.scr
+>  		;;
+>  	*)
+>  		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::${SDIMG_KERNELIMAGE}
 > --
 > 2.1.4
 >
@@ -191,31 +123,28 @@ exactly recipe name in the past.
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
-I would expect uboot to RDEPEND on this recipe too. As without it the
-board doesn't autoboot.
-
 --
 Andrei Gherzan
 
---g7w8+K/95kPelPD2
+--vmttodhTwj0NAgWp
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJXhiuDAAoJEHO76Gt+erfPjGsQAIDVrxay0zLaU2WklS3wWR4O
-H1MVqjTuVd5rJXi2ayqBsApD8zSV8ugRgpig4+NYrdQ4AppQc7IQ9zAxj+4r400D
-NwzQQ7xOsjSYUKZLWlDJkme3MQ6EnILGm+fdBjZSDIwLJvxlqH15h1X0Rx4FEJTv
-cPjF+h167NAOKsg6oR/ix9LMzKBdQvEB/68zDxnxhk5VL2SfkpWhp7fLkoD4n5NP
-Q44KQhB1agWiQtDEcYSQ31v+w0qSlpifYXcE5BHscataIPC2Y643RmH88DLqAuEZ
-p+eYLnblSzu4AeEUn9cSvppim/DxdKdpqmWIq1uemqxGjixHsdpNEbzIhXIBxHKD
-gk4xdqaxZoAk1uQ1oDVVKsyNtTPAcPQigc2bfYtETTLr8KyBYaSWY7A7oLmvdVu2
-Ozety+O9daeY10FG70vTS67qB0Yh6tE/JSPZPXXigmP3kQzsfvZxPxgCz66a9+l2
-ZlMhfWk46agH/XDx9+7AUcmlfvvpKljmLJvM51qRjIaFcTlSC9OrnGFcjVlcbFsx
-g2mrfo3J0QcJBwF7RrCZAx+bWfViNQcxnDMkrlYGYvgcPLQ02yZsieN6bkZ65Iu+
-FWZyp5y+z70rXjtAiPkdhRe8+3objuTQCRjjSqKUGJLdsEq9xutyrqN016vdGYJ3
-BzYhP27BXQz4IcKnYV//
-=Co/L
+iQIcBAEBCAAGBQJXhivdAAoJEHO76Gt+erfPrQIQAIBwwsmYwhF315dfCkJg1Mmb
+X++C9gn3dYe2dN29kGH7jkUTfLQKT6xojOwgM0SLbpr12IpFFFAbmAxugllTbaOP
+0oZjI2lUpAZtkvPrlL/HS5JX3K9LH9PsWhSMd2AF5kwWiR68EzdIPPncZvw/UHjb
+FB430R9uEFMkLND7MAxegYXqCS43zQXu6/A2F7p6S6rLHyzT+kMOiqrMq5773Lue
+j5y6wRZM96JuxCsi0PKvRvtskbuidI4wTvBzdlqovxRRatPrggGDJGHKphZvJWC8
+aYbdQTnkWvTOemlhNZe3Ir0o76GA9IrMBbHnq41Py9kn1I1YQq4O+h4l47a5OzkL
+yiTMaA2TQ1vU936Y1eRohzKN39pnRrfz4vkE4RkSyp+X37F7jq8T+w5W6gNwdRPk
+MWB+OFVKfY69u/cUHlmJXcusZodOyUjrnViQeJjkyvv4UBj/wYeAa8OZ7Kayzo+5
+Krpa+JPzt+XEMQRSRm/tEojIo4Eqt2ot4zIOtigmUBGDHxJf8ZgIzKcnPf8YMncb
+8o7jpjSr6y/OMLl7ms/ociFs9xsjA/Kyy30j19oG+0GAs+qPtVZ3IEpSmynnnSMW
+mL32UYdLx8IyaeWUhk8FvE3mVqCMjb9wjqBai7cruKAg3y7iGZ1W/YH+1n+1ZdSw
+mp9yrnBjtRxvDCIZvHgd
+=RfqF
 -----END PGP SIGNATURE-----
 
---g7w8+K/95kPelPD2--
+--vmttodhTwj0NAgWp--
