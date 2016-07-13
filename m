@@ -1,50 +1,62 @@
-Return-Path: <jose.perez.carranza@intel.com>
+Return-Path: <robert.l.terrell.ihi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E337E00D8D; Thu, 14 Jul 2016 12:22:39 -0700 (PDT)
+	id 54863E00DCE; Wed, 13 Jul 2016 08:55:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (robert.l.terrell.ihi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4301AE00D3B
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 12:22:35 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga102.jf.intel.com with ESMTP; 14 Jul 2016 12:22:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.28,364,1464678000"; 
-	d="scan'208,217";a="846443759"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by orsmga003.jf.intel.com with ESMTP; 14 Jul 2016 12:22:35 -0700
-Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.248.2; Thu, 14 Jul 2016 12:22:31 -0700
-Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.196]) by
-	FMSMSX154.amr.corp.intel.com ([10.18.116.70]) with mapi id
-	14.03.0248.002; Thu, 14 Jul 2016 12:22:31 -0700
-From: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Test Report for Yocto Project 2.1.1 rc1 release 
-Thread-Index: AdHd2KVnKbPCjaUuTwGPW+YZhiML8Q==
-Date: Thu, 14 Jul 2016 19:22:30 +0000
-Message-ID: <0A5D9A624DF90343892F8F3FE7DE525A01FB953B@fmsmsx101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjc2ZTE5ODctY2JiNi00ZDYxLWEzNjMtYmE5YWEyMjQwMjM0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6InlKY0U3SjBWZ3IyZ3FzQUlrbzlUWklrZHQwdSthZHpFc1wvWm9zd29OcVhnPSJ9
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
+	[209.85.213.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B412E00D55
+	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 08:55:54 -0700 (PDT)
+Received: by mail-vk0-f46.google.com with SMTP id j126so17241585vkg.3
+	for <yocto@yoctoproject.org>; Wed, 13 Jul 2016 08:55:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=/Gg1uQSIGA7zLQ1yC+fz7Ue6hDQ4BU6eKA2IVuj1vzQ=;
+	b=z75LyFPo3EVJtrXrT+kn+2NaC1+uLSeaGkFh9OORcb7YI2IJAoIvKNaqYLzaq7iH6O
+	+RD99fH2az3m2pydyOYi24TqAMxTr7fXWwb+PnUoVDI/lGGS8sktH6kQ1iI4Qm3SM7pL
+	HU7uKJTq0BlVBfthz8v4EY4KYe8HhoihtulJTL9q+30+T5XIrG7HuC9iJHgPlg1QQIFp
+	gnSwbQvBKeV8PsIndwL0OBma/tWJBKV/+S5RtQSDJEWqZGAeqC7rTQMF2P3usPoWu44C
+	q7T8sKCzlLCzSrZcIDosGOcPg35q9inm/kdgJ9x8Pj6/zTDDZhvF50tNi0MCgpAz1gqC
+	nwUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=/Gg1uQSIGA7zLQ1yC+fz7Ue6hDQ4BU6eKA2IVuj1vzQ=;
+	b=TrbnZKyZ158aAeR+QhvNKpf/j+HEopdKPzLU98UlEPs5NWzh6kddaG33LeNx+FVfPF
+	hyJIxBSKxrcyAAhPcE/ItDLcujl0WpeMu64g/+M1GsQ5ebEQWiGZFj5+zFkPhf6HGibI
+	WglvBGnVxHD2b+gxKO0xbkmn8wMsuB88yFHs93gykF6op9h2BUYTU65NhAGcivAiazFR
+	mMovF77VtlwGO0SYX9OvlOinz3i1e4Z/DCqlnVH1kA0sVmffK/fRgiy/WC6sCpDNOHRz
+	Aa5xC18lg94oTREuStGMSwqpPm6fjuZjrhfVvJdWI5IOryfz2ot7GzV8FPN8EfYaIzdq
+	uBXA==
+X-Gm-Message-State: ALyK8tJ0/VmCwNv6Tqprtmra8gouZpDCOSyXuy2vP33srpPcz4Z90wQZWEx7gRwXC8yO04Pty6BzW4p/MztHFQ==
+X-Received: by 10.176.2.202 with SMTP id 68mr4415091uah.7.1468425353280; Wed,
+	13 Jul 2016 08:55:53 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Lock, Joshua G" <joshua.g.lock@intel.com>, "Purdie,
-	Richard" <richard.purdie@intel.com>, "Cobbley,
-	David A" <david.a.cobbley@intel.com>, "Wold, Saul" <saul.wold@intel.com>
-Subject: Test Report for Yocto Project 2.1.1 rc1 release
+Received: by 10.176.64.103 with HTTP; Wed, 13 Jul 2016 08:55:52 -0700 (PDT)
+From: robert terrell <robert.l.terrell.ihi@gmail.com>
+Date: Wed, 13 Jul 2016 10:55:52 -0500
+Message-ID: <CAKKsEznOCQW1UbKf=jPujSxxBELch1m+T3nKvoXc5iKWZAUD6w@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Thu, 14 Jul 2016 14:31:47 -0700
+Cc: j.carpenter.ihi@gmail.com
+Subject: yocto krogoth can't get apache2 with php to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,405 +68,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2016 19:22:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0A5D9A624DF90343892F8F3FE7DE525A01FB953Bfmsmsx101amrcor_"
+X-List-Received-Date: Wed, 13 Jul 2016 15:55:55 -0000
+Content-Type: multipart/alternative; boundary=001a113b18a08fc3dd0537866b83
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A01FB953Bfmsmsx101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113b18a08fc3dd0537866b83
+Content-Type: text/plain; charset=UTF-8
+
+Thank you in advance.  Could really use the help.
+
+I have to get php5 working in apache2.
+
+yocto@yocto-H8SGL:~/poky/build$ bitbake core-image-lsb
+Loading cache: 100%
+|#########################################################################################################|
+ETA:  00:00:00
+Loaded 2379 entries from dependency cache.
+Parsing recipes: 100%
+|#######################################################################################################|
+Time: 00:00:01
+Parsing of 1829 .bb files complete (1828 cached, 1 parsed). 2379 targets,
+116 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        = "1.30.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "x86_64-poky-linux"
+MACHINE           = "intel-corei7-64"
+DISTRO            = "poky-lsb"
+DISTRO_VERSION    = "2.1.1"
+TUNE_FEATURES     = "m64 corei7"
+TARGET_FPU        = ""
+meta
+meta-poky
+meta-yocto-bsp    = "krogoth:98c57bb512ea6790db8604fcf0b88c81651d2ab4"
+meta-intel        = "krogoth:b8c199201ffe026485a14e1fcfc398e2b3551512"
+meta-oe
+meta-python
+meta-networking
+meta-webserver    = "master:303d9ea960e2d88281079a4e71abe2cf8c815184"
+
+NOTE: Preparing RunQueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: php-5.6.18-r0 do_compile: oe_runmake failed
+ERROR: php-5.6.18-r0 do_compile: Function failed: do_compile (log file is
+located at
+/home/yocto/poky/build/tmp/work/corei7-64-poky-linux/php/5.6.18-r0/temp/log.do_compile.11301)
+ERROR: Logfile of failure stored in:
+/home/yocto/poky/build/tmp/work/corei7-64-poky-linux/php/5.6.18-r0/temp/log.do_compile.11301
+
+Here is where it fails
+
+ -lmcrypt -lltdl -lbz2 -lz -lm -lxml2 -lxml2 -lxml2 -lcrypt -lxml2 -lxml2
+-lxml2 -lxml2 -lcrypt  -o sapi/cgi/php-cgi
+|
+/home/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/5.3.0/ld:
+TSRM/.libs/TSRM.o: undefined reference to symbol 'pthread_sigmask@
+@GLIBC_2.2.5'
+| /home/yocto/poky/build/tmp/sysroots/intel-corei7-64/lib/libpthread.so.0:
+error adding symbols: DSO missing from command line
+| collect2: error: ld returned 1 exit status
+| make: *** [sapi/fpm/php-fpm] Error 1
+
+
+Again thanks for any help.
+
+bobt
+
+--001a113b18a08fc3dd0537866b83
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi
-
-Here is the final report for QA Test Cycle on Yocto Project 2.1.1 rc1 relea=
-se :
-
-* Bugs Summary
-
-** High / M+
-
--         test_rpm_query_nonroot  - Failed to create new user - need to be =
-backported to 2.1.2 : 8988 [1]
-
--         test_parselogs failed on udevd[342] inotify_add_watch /dev/loop: =
-9520 [2]
-
--         Failed to build gst-player for qemuarm64 on Fedora23 i686: 9286 [=
-3]
-
--         Failed to build nativesdk-glibc for qemumips and qemumips64 on Fe=
-dora 23 i686 - need to be backported to 2.1.2: 9287 [4]
-
--        [Krogoth] Failed to build pkgconfig-native on Fedora24: 9897 [5]
-
-** Other bugs
-
--        Failed to build iptables with extensible sdk on Fedora 23 i686 - -=
- need to be backported to 2.1.2: 9048 [6]
-
--        test_parselogs (oeqa.runtime.parselogs.ParseLogsTest) - - need to =
-be backported to 2.1.2: 9271 [7]
-
-* Important Notes
-               - Performance test was already applied on GDC machines, with=
- not much difference in times between 2.1 and 2.1.1  [8]
-               - Performance test now have 2 stages form 1.6 to 2.1 with RO=
- results and 2.1 and forward with GDC results [9]
-- Some components were not tested due QA resources bandwidth (Eclipse Plug =
-In, Meta-Yocto, BSP Manual TCs, Toaster Manual TCs)
-
-* Full Report : https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test=
-_Cycle_2.1.1_rc1
-
-*  Links
-1- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D8988
-2- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9520
-3- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9286
-4- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9287
-5- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9897
-6- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9048
-7- https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9271
-8- https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_=
-rc1#Performance_Charts
-9- https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_=
-rc1#Build_Performance_Test
-
-
-Regards,
-Jos=E9
-
-
---_000_0A5D9A624DF90343892F8F3FE7DE525A01FB953Bfmsmsx101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-converted-space
-	{mso-style-name:apple-converted-space;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:384180877;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2063527846 -1782560276 67698713 67698715 67698703 67=
-698713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:%1-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:686490666;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1696978606 -1691342450 67698691 67698693 67698689 6=
-7698691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-start-at:9;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.75in;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:5.25in;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the final report for QA Test Cycle on Yocto =
-Project 2.1.1 rc1 release :<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">*<b> Bugs Summary<o:p></o:p></b></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">** High / M&#43; <o:p></o=
-:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>&nbsp;test_rpm_query_nonroot&nbsp; - Failed to crea=
-te new user - need to be backported to 2.1.2 : 8988 [1]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>&nbsp;test_parselogs failed on udevd[342] inotify_a=
-dd_watch /dev/loop: 9520 [2]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>&nbsp;Failed to build gst-player for qemuarm64 on F=
-edora23 i686: 9286 [3]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>&nbsp;Failed to build nativesdk-glibc for qemumips =
-and qemumips64 on Fedora 23 i686 - need to be backported to 2.1.2: 9287 [4]=
-<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]><span style=3D"font-size:9.5pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black;background:white">[Krogoth] Failed to buil=
-d pkgconfig-native on Fedora24: 9897 [5]</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">** Other bugs <o:p></o:p>=
+<div dir=3D"ltr"><p>Thank you in advance.=C2=A0 Could really use the help.<=
+br>
 </p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>Failed to build iptables with extensible sdk on Fed=
-ora 23 i686 - - need to be backported to 2.1.2: 9048 [6]<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:1.25in;text-indent:-.25i=
-n;mso-list:l1 level1 lfo1">
-<![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=3D"font:7=
-.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-</span></span><![endif]>test_parselogs (oeqa.runtime.parselogs.ParseLogsTes=
-t) - - need to be backported to 2.1.2: 9271 [7]<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">*<b> Important Notes <o:p></o:p></b></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Performance test was already applied on =
-GDC machines, with not much difference in times between 2.1 and 2.1.1 &nbsp=
-;[8]<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Performance test now have 2 stages form =
-1.6 to 2.1 with RO results and 2.1 and forward with GDC results [9]<o:p></o=
-:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">- Some components were no=
-t tested due QA resources bandwidth (Eclipse Plug In, Meta-Yocto, BSP Manua=
-l TCs, Toaster Manual TCs)
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">*<b> Full Report : <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_rc1">
-https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_rc1=
-</a> <o:p>
-</o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>* &nbsp;Links&nbsp;&nbsp; <o:p></o:p></b></p>
-<p class=3D"MsoNormal">1- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D8988">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D8988</a><o:p></o:p></p>
-<p class=3D"MsoNormal">2- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9520">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9520</a><o:p></o:p></p>
-<p class=3D"MsoNormal">3- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9286">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9286</a> <o:p></o:p></p=
->
-<p class=3D"MsoNormal">4- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9287">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9287</a> <o:p></o:p></p=
->
-<p class=3D"MsoNormal">5- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9897">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9897</a> <o:p></o:p></p=
->
-<p class=3D"MsoNormal">6- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9048">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9048</a> <o:p></o:p></p=
->
-<p class=3D"MsoNormal">7- <a href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D9271">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D9271</a> <o:p></o:p></p=
->
-<p class=3D"MsoNormal">8- <a href=3D"https://wiki.yoctoproject.org/wiki/WW2=
-8_-_2016-07-07_-_Test_Cycle_2.1.1_rc1#Performance_Charts">
-https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_rc1=
-#Performance_Charts</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal">9- <a href=3D"https://wiki.yoctoproject.org/wiki/WW2=
-8_-_2016-07-07_-_Test_Cycle_2.1.1_rc1#Build_Performance_Test">
-https://wiki.yoctoproject.org/wiki/WW28_-_2016-07-07_-_Test_Cycle_2.1.1_rc1=
-#Build_Performance_Test</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>Jos=E9</b><b><span style=3D"font-family:&quot;Ari=
-al&quot;,sans-serif"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<p>I have to get php5 working in apache2.=C2=A0 <br>
+</p>
+<p>yocto@yocto-H8SGL:~/poky/build$ bitbake core-image-lsb<br>
+Loading cache: 100%=20
+|##########################################################################=
+###############################|
+ ETA:=C2=A0 00:00:00<br>
+Loaded 2379 entries from dependency cache.<br>
+Parsing recipes: 100%=20
+|##########################################################################=
+#############################|
+ Time: 00:00:01<br>
+Parsing of 1829 .bb files complete (1828 cached, 1 parsed). 2379 targets, 1=
+16 skipped, 0 masked, 0 errors.<br>
+NOTE: Resolving any missing task queue dependencies<br>
+  <br>
+Build Configuration:<br>
+BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.30.0&quot;=
+<br>
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-=
+linux&quot;<br>
+NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;universal&quot;<br>
+TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-poky-=
+linux&quot;<br>
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;intel-corei7-64&quot;<br>
+DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+=3D &quot;poky-lsb&quot;<br>
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;2.1.1&quot;<br>
+TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;m64 corei7&quot;<br>
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;&quot;<br>
+meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 <br>
+meta-poky=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>
+meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D &quot;krogoth:98c57bb512ea6790db8604fc=
+f0b88c81651d2ab4&quot;<br>
+meta-intel=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;krogoth:b8c1=
+99201ffe026485a14e1fcfc398e2b3551512&quot;<br>
+meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>
+meta-python=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>
+meta-networking=C2=A0=C2=A0 <br>
+meta-webserver=C2=A0=C2=A0=C2=A0 =3D &quot;master:303d9ea960e2d88281079a4e7=
+1abe2cf8c815184&quot;<br>
+  <br>
+NOTE: Preparing RunQueue<br>
+NOTE: Executing SetScene Tasks<br>
+NOTE: Executing RunQueue Tasks<br>
+ERROR: php-5.6.18-r0 do_compile: oe_runmake failed<br>
+ERROR: php-5.6.18-r0 do_compile: Function failed: do_compile (log file=20
+is located at=20
+/home/yocto/poky/build/tmp/work/corei7-64-poky-linux/php/5.6.18-r0/temp/log=
+.do_compile.11301)<br>
+ERROR: Logfile of failure stored in:=20
+/home/yocto/poky/build/tmp/work/corei7-64-poky-linux/php/5.6.18-r0/temp/log=
+.do_compile.11301</p><p>Here is where it fails</p><p>=C2=A0-lmcrypt -lltdl =
+-lbz2 -lz -lm -lxml2 -lxml2 -lxml2 -lcrypt -lxml2 -lxml2 -lxml2 -lxml2 -lcr=
+ypt=C2=A0 -o sapi/cgi/php-cgi<br>| /home/yocto/poky/build/tmp/sysroots/x86_=
+64-linux/usr/libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/5.3.0/ld: TSRM=
+/.libs/TSRM.o: undefined reference to symbol &#39;pthread_sigmask@@GLIBC_2.=
+2.5&#39;<br>| /home/yocto/poky/build/tmp/sysroots/intel-corei7-64/lib/libpt=
+hread.so.0: error adding symbols: DSO missing from command line<br>| collec=
+t2: error: ld returned 1 exit status<br>| make: *** [sapi/fpm/php-fpm] Erro=
+r 1<br><br></p><p><br></p><p>Again thanks for any help.<br>
+</p>
+<p>bobt</p></div>
 
---_000_0A5D9A624DF90343892F8F3FE7DE525A01FB953Bfmsmsx101amrcor_--
+--001a113b18a08fc3dd0537866b83--
