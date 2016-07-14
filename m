@@ -1,37 +1,32 @@
-Return-Path: <philip@balister.org>
+Return-Path: <william.c.randle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 155F3E00D0A; Thu, 14 Jul 2016 10:03:46 -0700 (PDT)
+	id 8907FE00D0A; Thu, 14 Jul 2016 10:05:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.55.52.120 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id B209EE0095F
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 10:03:42 -0700 (PDT)
-Received: (qmail 18965 invoked by uid 1003); 14 Jul 2016 17:03:41 -0000
-Received: from unknown (HELO ?192.168.11.142?)
-	(philip@opensdr.com@108.44.115.86)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	14 Jul 2016 17:03:40 -0000
-To: "openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Message-ID: <4037473c-25e3-015d-25fb-be5cd3ece4bc@balister.org>
-Date: Thu, 14 Jul 2016 13:03:39 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.1.1
-MIME-Version: 1.0
-Subject: Save the dates (OEDEM and Yocto Project Developer Day)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0033FE0095F
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 10:05:56 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga104.fm.intel.com with ESMTP; 14 Jul 2016 10:05:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,363,1464678000"; d="scan'208";a="1016960559"
+Received: from wcrandle-mobl1.amr.corp.intel.com (HELO
+	wcrandle-mobl1.jf.intel.com) ([10.7.199.71])
+	by orsmga002.jf.intel.com with ESMTP; 14 Jul 2016 10:05:56 -0700
+From: Bill Randle <william.c.randle@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 14 Jul 2016 10:05:48 -0700
+Message-Id: <1468515952-12949-1-git-send-email-william.c.randle@intel.com>
+X-Mailer: git-send-email 2.5.5
+Subject: [yocto-autobuilder][PATCH 0/4] autobuilder: make toaster eventlog creation optional
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,20 +38,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2016 17:03:46 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 14 Jul 2016 17:05:57 -0000
 
-ELCE is in Berlin this year on Oct 11-13 (Tuesday-Thursday). After
-conversations with the Yocto Project, we've worked out that there will
-be a Yocto Project developer day on Monday, Oct 10 and OEDEM
-(OpenEmbedded developer meeting) on Friday, Oct 14.
+Currently, a toaster eventlog is generated for most all machine specific
+images (e.g., nightly-arm, nightly-x86, etc.) and placed in the top-level
+build directory. Having it in the top level dir causes inotify overflow in
+bitbake, due to the large number of changes to the file.
 
-The Yocto Project developer day is basically a training class with
-beginner and advanced topics.
+This set of patches (1) make generation of the eventlog optional, by
+having a user selection in the Forced Build web pages, (2) places the
+eventlog in build/tmp/log, instead of build and (3) adds a timestamp to
+the eventlog filename since multiple event logs can be generated during
+a multi-image buildset and otherwise only the last one would otherwise
+be saved.
 
-The OpenEmbedded developer meeting is a chance to talk with developers
-about various project topics. We'll work out the agenda closer to ELCE.
+[YOCTO #9884]
 
-Philip
+Bill Randle (4):
+  remote_kick.py: add default entry for new 'create_eventlog' property
+  BuildImages.py: build toaster eventlog only when requested
+  UploadToasterEventlog.py: handle multiple eventlog files
+  buildset-config.controller: add new 'create_eventlog' forced build
+    property
+
+ bin/remote_kick.py                                 |  1 +
+ buildset-config.controller/nightly-arm-lsb.conf    |  4 ++++
+ buildset-config.controller/nightly-arm.conf        |  4 ++++
+ buildset-config.controller/nightly-arm64.conf      |  4 ++++
+ buildset-config.controller/nightly-mips-lsb.conf   |  4 ++++
+ buildset-config.controller/nightly-mips.conf       |  4 ++++
+ buildset-config.controller/nightly-mips64.conf     |  4 ++++
+ buildset-config.controller/nightly-no-x11.conf     |  4 ++++
+ buildset-config.controller/nightly-ppc-lsb.conf    |  4 ++++
+ buildset-config.controller/nightly-ppc.conf        |  4 ++++
+ buildset-config.controller/nightly-x32.conf        |  4 ++++
+ buildset-config.controller/nightly-x86-64-lsb.conf |  4 ++++
+ buildset-config.controller/nightly-x86-64.conf     |  4 ++++
+ buildset-config.controller/nightly-x86-lsb.conf    |  4 ++++
+ buildset-config.controller/nightly-x86.conf        |  4 ++++
+ buildset-config.controller/nightly.conf            |  7 ++++++-
+ .../autobuilder/buildsteps/BuildImages.py          | 24 +++++++++++++++++-----
+ .../buildsteps/UploadToasterEventlog.py            | 16 +++++++++++-----
+ 18 files changed, 93 insertions(+), 11 deletions(-)
+
+-- 
+2.5.5
+
 
