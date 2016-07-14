@@ -1,58 +1,31 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <S.Jaritz@esa-grimma.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49BE5E00CC4; Thu, 14 Jul 2016 04:05:08 -0700 (PDT)
+	id D28C5E00CC7; Thu, 14 Jul 2016 04:23:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C158EE00C6E
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 04:05:05 -0700 (PDT)
-Received: by mail-it0-f41.google.com with SMTP id f6so43944499ith.1
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 04:05:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rYZbM0Yam/Yx3ICgX1OoVM7GR4MNLcmY3kOzBt8/7yY=;
-	b=Liokqu8O0ocopJ638maa1QU15c/8UbxEGw7DduqByI+zeQZRXTgnwgxxcpYpf1/bVm
-	JkDIhF7P8PjB4IUKkp5WbUsmm0tYTBTk931sw/P6bfBkGcTBv/00krAtSCf2MpW2CTQz
-	fXgagieUiaSa6pQg2YwhIlNUxB1dnbazNsrxpmUSi/23216gdGdfhz6+YzRUdxdVisj3
-	av7tMocja1Z3ecIY/MQzlpv84Dhv5ZXXMuqtPDQsCwFzKX3YOdrJ42UGBCU2dOIL7Y6T
-	IN6iN3VH6oyH//QOkrXwc726pZ+hOY8uqo6jHkeFy2t+7bCCrAITJdICK1+XSrmGXRpS
-	uvbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rYZbM0Yam/Yx3ICgX1OoVM7GR4MNLcmY3kOzBt8/7yY=;
-	b=gE0FCJO52g+ukyd0SySWQs+iOc4890Ig30NvSP0MQ5j+aPQ8PcHmF0eejJm1PTix2f
-	NtFaCnvHMLYEYmovDROnCAEtZG06U2uUI/+6p/O+yTIj/tRQ5mWAXp6bTHKJPyoOLvCy
-	++esWurJpkDUG2w73UzV/uDsRA31ivOwgrP13CvMUrDoaFir7Pybm5zwGhDecyAfbzyp
-	jals4cf/8rdKttxO1+mrhKZdFLiboSd9oA9vS5tmw805b+oiyDiMuV2AUyemPj6R2M0K
-	NqLUwvU4u0Aw+R0dzusWIvBUQ0D5CVoXMH8RPLOnKWtHYq8Pq4Bqn0gaxUXkD5vWbDT3
-	69BA==
-X-Gm-Message-State: ALyK8tLLQxTHSoUBggVk/aumjKtMqA6/SwFiRyh09s5K/2KAShCgcAS1hYEi6eWbI9wutN5lEgToOCVn1DGMqbhs
-X-Received: by 10.36.147.198 with SMTP id y189mr13821948itd.83.1468494304999; 
-	Thu, 14 Jul 2016 04:05:04 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.18.17 with HTTP; Thu, 14 Jul 2016 04:04:45 -0700 (PDT)
-In-Reply-To: <OFD35E02B2.8525365B-ONC1257FF0.0037D0AB-C1257FF0.00390219@esa-grimma.de>
+Received: from gse01.esa-grimma.de (gse01.esa-grimma.de [62.41.26.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A1DE00B52
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 04:23:35 -0700 (PDT)
+In-Reply-To: <CAJTo0LY-aC=c_Ae=3KCTVkc9ST8hsZNHh75iAbYbtnECuNVufw@mail.gmail.com>
 References: <OFD35E02B2.8525365B-ONC1257FF0.0037D0AB-C1257FF0.00390219@esa-grimma.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 Jul 2016 12:04:45 +0100
-Message-ID: <CAJTo0LY-aC=c_Ae=3KCTVkc9ST8hsZNHh75iAbYbtnECuNVufw@mail.gmail.com>
-To: S.Jaritz@esa-grimma.de
+	<CAJTo0LY-aC=c_Ae=3KCTVkc9ST8hsZNHh75iAbYbtnECuNVufw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+MIME-Version: 1.0
+X-KeepSent: 1FCAEB80:C6ECF7E1-C1257FF0:003E79FE;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0 March 08, 2013
+Message-ID: <OF1FCAEB80.C6ECF7E1-ONC1257FF0.003E79FE-C1257FF0.003E948E@esa-grimma.de>
+From: S.Jaritz@esa-grimma.de
+Date: Thu, 14 Jul 2016 13:23:32 +0200
+X-MIMETrack: Serialize by Router on GSE01/Server/ESA-Grimma/DE(Release
+	9.0.1FP3 HF42|February 03, 2015) at 14.07.2016 13:23:37,
+	Serialize complete at 14.07.2016 13:23:37
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Problems finding python when using a cmake recipe
 X-BeenThere: yocto@yoctoproject.org
@@ -66,87 +39,225 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2016 11:05:08 -0000
-Content-Type: multipart/alternative; boundary=94eb2c089e14678dee053796799f
+X-List-Received-Date: Thu, 14 Jul 2016 11:23:39 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 003E948EC1257FF0_="
 
---94eb2c089e14678dee053796799f
-Content-Type: text/plain; charset=UTF-8
+--=_alternative 003E948EC1257FF0_=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+It works fine! Problem solved
+
+Stefan Jaritz
+
+------------------------------------------------------------
+ESA Elektroschaltanlagen Grimma GmbH
+Broner Ring 30
+04668 Grimma
+Telefon: +49 3437 9211 176
+Telefax: +49 3437 9211 26
+E-Mail: s.jaritz@esa-grimma.de
+Internet: www.esa-grimma.de
+
+
+Gesch=E4ftsf=FChrer:
+Dipl.-Ing. J=F6rg Gaitzsch
+J=F6rg Reinker
+
+Sitz der Gesellschaft: Grimma
+Ust.-ID: DE 141784437
+Amtsgericht: Leipzig, HRB 5159
+Steuernummer: 238/108/00755
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte=20
+Informationen.=20
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich=20
+erhalten=20
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese=20
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser=20
+Mail=20
+ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+
+are=20
+not the intended recipient (or have received this e-mail in error) please=20
+notify the sender immediately and destroy this e-mail. Any unauthorized=20
+copying, disclosure or distribution of the material in this e-mail is=20
+strictly=20
+forbidden.
+
+
+
+Von:    "Burton, Ross" <ross.burton@intel.com>
+An:     S.Jaritz@esa-grimma.de
+Kopie:  "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Datum:  14.07.2016 13:05
+Betreff:        Re: [yocto] Problems finding python when using a cmake=20
+recipe
+
+
+
 
 On 14 July 2016 at 11:22, <S.Jaritz@esa-grimma.de> wrote:
+I want to create a recipe for an application. This application is=20
+generated through cmake. In the cmake file "CMakeLists.txt" is the=20
+passage:=20
+##############=20
+include(FindPythonInterp)=20
+include(FindPythonLibs)=20
+....=20
+add=5Fcustom=5Fcommand(OUTPUT "${CMAKE=5FBINARY=5FDIR}/error.cpp"=20
+"${CMAKE=5FBINARY=5FDIR}/error.hpp"non=5Fexistant=5Ffile=20
+    COMMENT "create error.cpp"=20
+    COMMAND ${PYTHON=5FEXECUTABLE} "${CMAKE=5FSOURCE=5FDIR}/mc2cpp.py"=20
+"${CMAKE=5FSOURCE=5FDIR}/Common/ErrorCodes/Error=5FBuild/Errors.mc"=20
+"${CMAKE=5FBINARY=5FDIR}/error"=20
+)=20
+##############=20
 
-> I want to create a recipe for an application. This application is
-> generated through cmake. In the cmake file "CMakeLists.txt" is the passage:
-> ##############
-> include(FindPythonInterp)
-> include(FindPythonLibs)
-> ....
-> add_custom_command(OUTPUT "${CMAKE_BINARY_DIR}/error.cpp"
-> "${CMAKE_BINARY_DIR}/error.hpp"non_existant_file
->     COMMENT "create error.cpp"
->     COMMAND ${PYTHON_EXECUTABLE} "${CMAKE_SOURCE_DIR}/mc2cpp.py"
-> "${CMAKE_SOURCE_DIR}/Common/ErrorCodes/Error_Build/Errors.mc"
-> "${CMAKE_BINARY_DIR}/error"
-> )
-> ##############
->
-> This generates a header and a cpp file, which contains some error codes.
-> When executing the cmake in my common environment it works fine. Under
-> Bitbake it fails. Python is not found.
->
+This generates a header and a cpp file, which contains some error codes.=20
+When executing the cmake in my common environment it works fine. Under=20
+Bitbake it fails. Python is not found.=20
 
-This is because the cmake class stops cmake from finding binaries on the
-host.  I'm not convinced this is the right thing to do but haven't had the
+This is because the cmake class stops cmake from finding binaries on the=20
+host.  I'm not convinced this is the right thing to do but haven't had the =
+
 time to research the problem.
 
-Add OECMAKE_FIND_ROOT_PATH_MODE_PROGRAM = "BOTH" to your recipe after
-inherit cmake and it will look for and find the Python interpretter in
+Add OECMAKE=5FFIND=5FROOT=5FPATH=5FMODE=5FPROGRAM =3D "BOTH" to your recipe=
+ after=20
+inherit cmake and it will look for and find the Python interpretter in=20
 /usr/bin.
 
 Ross
 
---94eb2c089e14678dee053796799f
-Content-Type: text/html; charset=UTF-8
+--=_alternative 003E948EC1257FF0_=
+Content-Type: text/html; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 14 July 2016 at 11:22,  <span dir=3D"ltr">&lt;<a href=3D"mailto:S.Jaritz=
-@esa-grimma.de" target=3D"_blank">S.Jaritz@esa-grimma.de</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:=
-solid;padding-left:1ex"><font size=3D"2" face=3D"sans-serif">I want to crea=
-te a recipe for an application.
+<font size=3D2 face=3D"sans-serif">It works fine! Problem solved</font>
+<br>
+<br><font size=3D2 face=3D"sans-serif">Stefan Jaritz<br>
+<br>
+------------------------------------------------------------<br>
+ESA Elektroschaltanlagen Grimma GmbH<br>
+Broner Ring 30<br>
+04668 Grimma<br>
+Telefon: +49 3437 9211 176<br>
+Telefax: +49 3437 9211 26<br>
+E-Mail: s.jaritz@esa-grimma.de<br>
+Internet: </font><a href=3D"www.esa-grimma.de"><font size=3D2 face=3D"sans-=
+serif">www.esa-grimma.de</font></a><font size=3D2 face=3D"sans-serif"><br>
+<br>
+<br>
+Gesch=E4ftsf=FChrer:<br>
+Dipl.-Ing. J=F6rg Gaitzsch<br>
+J=F6rg Reinker<br>
+<br>
+Sitz der Gesellschaft: Grimma<br>
+Ust.-ID: DE 141784437<br>
+Amtsgericht: Leipzig, HRB 5159<br>
+Steuernummer: 238/108/00755<br>
+<br>
+<br>
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen.
+<br>
+Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FCmlich
+erhalten <br>
+haben, informieren Sie bitte sofort den Absender und l=F6schen Sie diese
+<br>
+Nachricht. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser
+Mail <br>
+ist nicht gestattet.<br>
+<br>
+This e-mail may contain confidential and/or privileged information. If
+you are <br>
+not the intended recipient (or have received this e-mail in error) please
+<br>
+notify the sender immediately and destroy this e-mail. Any unauthorized
+<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+<br>
+forbidden.</font>
+<br>
+<br>
+<br>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Von: &nbsp; &nbsp; &=
+nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;Burton, Ross&quot;
+&lt;ross.burton@intel.com&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">An: &nbsp; &nbsp; &n=
+bsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">S.Jaritz@esa-grimma.de</fon=
+t>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Kopie: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">&quot;yocto@yoctoproject.or=
+g&quot;
+&lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Datum: &nbsp; &nbsp;=
+ &nbsp;
+&nbsp;</font><font size=3D1 face=3D"sans-serif">14.07.2016 13:05</font>
+<br><font size=3D1 color=3D#5f5f5f face=3D"sans-serif">Betreff: &nbsp; &nbs=
+p;
+&nbsp; &nbsp;</font><font size=3D1 face=3D"sans-serif">Re: [yocto]
+Problems finding python when using a cmake recipe</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br>
+<br><font size=3D3>On 14 July 2016 at 11:22, &lt;</font><a href=3D"mailto:S=
+.Jaritz@esa-grimma.de" target=3D=5Fblank><font size=3D3 color=3Dblue><u>S.J=
+aritz@esa-grimma.de</u></font></a><font size=3D3>&gt;
+wrote:</font>
+<br><font size=3D2 face=3D"sans-serif">I want to create a recipe for an app=
+lication.
 This application is generated through cmake. In the cmake file &quot;CMakeL=
 ists.txt&quot;
-is the passage:</font>
-<br><font size=3D"2" face=3D"sans-serif">##############</font>
-<br><font size=3D"2" face=3D"sans-serif">include(FindPythonInterp)</font>
-<br><font size=3D"2" face=3D"sans-serif">include(FindPythonLibs)</font>
-<br><font size=3D"2" face=3D"sans-serif">....</font>
-<br><font size=3D"2" face=3D"sans-serif">add_custom_command(OUTPUT &quot;${=
-CMAKE_BINARY_DIR}/error.cpp&quot;
-&quot;${CMAKE_BINARY_DIR}/error.hpp&quot;non_existant_file</font>
-<br><font size=3D"2" face=3D"sans-serif">=C2=A0 =C2=A0 COMMENT &quot;create=
- error.cpp&quot;</font>
-<br><font size=3D"2" face=3D"sans-serif">=C2=A0 =C2=A0 COMMAND ${PYTHON_EXE=
-CUTABLE}
-&quot;${CMAKE_SOURCE_DIR}/mc2cpp.py&quot; &quot;${CMAKE_SOURCE_DIR}/Common/=
-ErrorCodes/Error_Build/Errors.mc&quot;
-&quot;${CMAKE_BINARY_DIR}/error&quot;</font>
-<br><font size=3D"2" face=3D"sans-serif">)</font>
-<br><font size=3D"2" face=3D"sans-serif">##############</font>
+is the passage:</font><font size=3D3> </font><font size=3D2 face=3D"sans-se=
+rif"><br>
+##############</font><font size=3D3> </font><font size=3D2 face=3D"sans-ser=
+if"><br>
+include(FindPythonInterp)</font><font size=3D3> </font><font size=3D2 face=
+=3D"sans-serif"><br>
+include(FindPythonLibs)</font><font size=3D3> </font><font size=3D2 face=3D=
+"sans-serif"><br>
+....</font><font size=3D3> </font><font size=3D2 face=3D"sans-serif"><br>
+add=5Fcustom=5Fcommand(OUTPUT &quot;${CMAKE=5FBINARY=5FDIR}/error.cpp&quot;=
+ &quot;${CMAKE=5FBINARY=5FDIR}/error.hpp&quot;non=5Fexistant=5Ffile</font><=
+font size=3D3>
+</font><font size=3D2 face=3D"sans-serif"><br>
+&nbsp; &nbsp; COMMENT &quot;create error.cpp&quot;</font><font size=3D3>
+</font><font size=3D2 face=3D"sans-serif"><br>
+&nbsp; &nbsp; COMMAND ${PYTHON=5FEXECUTABLE} &quot;${CMAKE=5FSOURCE=5FDIR}/=
+mc2cpp.py&quot;
+&quot;${CMAKE=5FSOURCE=5FDIR}/Common/ErrorCodes/Error=5FBuild/Errors.mc&quo=
+t;
+&quot;${CMAKE=5FBINARY=5FDIR}/error&quot;</font><font size=3D3> </font><fon=
+t size=3D2 face=3D"sans-serif"><br>
+)</font><font size=3D3> </font><font size=3D2 face=3D"sans-serif"><br>
+##############</font><font size=3D3> <br>
+</font><font size=3D2 face=3D"sans-serif"><br>
+This generates a header and a cpp file, which contains some error codes.
+When executing the cmake in my common environment it works fine. Under
+Bitbake it fails. Python is not found.</font><font size=3D3> </font>
+<br><font size=3D3><br>
+This is because the cmake class stops cmake from finding binaries on the
+host.&nbsp; I'm not convinced this is the right thing to do but haven't
+had the time to research the problem.</font>
 <br>
-<br><font size=3D"2" face=3D"sans-serif">This generates a header and a cpp =
-file,
-which contains some error codes. When executing the cmake in my common
-environment it works fine. Under Bitbake it fails. Python is not found.</fo=
-nt>
-<br></blockquote></div><br>This is because the cmake class stops cmake from=
- finding binaries on the host.=C2=A0 I&#39;m not convinced this is the righ=
-t thing to do but haven&#39;t had the time to research the problem.</div><d=
-iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Add=C2=A0OECM=
-AKE_FIND_ROOT_PATH_MODE_PROGRAM =3D &quot;BOTH&quot; to your recipe after i=
-nherit cmake and it will look for and find the Python interpretter in /usr/=
-bin.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">R=
-oss</div></div>
+<br><font size=3D3>Add&nbsp;OECMAKE=5FFIND=5FROOT=5FPATH=5FMODE=5FPROGRAM =
+=3D &quot;BOTH&quot;
+to your recipe after inherit cmake and it will look for and find the Python
+interpretter in /usr/bin.</font>
+<br>
+<br><font size=3D3>Ross</font>
+<br>
 
---94eb2c089e14678dee053796799f--
+--=_alternative 003E948EC1257FF0_=--
