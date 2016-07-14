@@ -1,86 +1,35 @@
-Return-Path: <zhenhua.luo@nxp.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39FFFE00E93; Thu, 14 Jul 2016 00:35:29 -0700 (PDT)
+	id 5AECFE00E8B; Thu, 14 Jul 2016 02:38:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.84 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 14452 seconds by postgrey-1.32 at yocto-www;
-	Thu, 14 Jul 2016 00:35:23 PDT
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0084.outbound.protection.outlook.com [104.47.2.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61FC6E00E88
-	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 00:35:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=Nh9E8fu7N9EYc1my8c/F9H+fRwYxLY34oEfGjYkFEf0=;
-	b=iVUVaBk+GySE0aNmdUWUyS53jbwEp6iuGvhS1uySpDIWNiAKDDQRscoUeeAgAim+Romzw9gq2Myq6v+qth8+jqAlWe2jVosAbN5YBhzMxnP/3S5DJ8ZKlB5M7EghflJxmarMhkYVYZe2tfh77IsGgG/WZgUuHw0Azj20cc5fK3c=
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com (10.169.225.139) by
-	DB6PR0401MB2629.eurprd04.prod.outlook.com (10.169.225.138) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.528.16; Thu, 14 Jul 2016 03:01:02 +0000
-Received: from DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) by
-	DB6PR0401MB2630.eurprd04.prod.outlook.com ([10.169.225.139]) with
-	mapi id 15.01.0528.026; Thu, 14 Jul 2016 03:01:02 +0000
-From: Zhenhua Luo <zhenhua.luo@nxp.com>
-To: Yile Ku <stiffstone@gmail.com>
-Thread-Topic: [yocto] bitbake problem
-Thread-Index: AQHR3JLCCFHhOaWUS0ORXTtcrtI1GaAXOz+g
-Date: Thu, 14 Jul 2016 03:01:02 +0000
-Message-ID: <DB6PR0401MB263003E173E7E5F2F98CF10BEE320@DB6PR0401MB2630.eurprd04.prod.outlook.com>
-References: <CAAGP=A_N+zCxn-nYdQXo1U7_=h3hFv-_+4pXznKokOLE20VQHw@mail.gmail.com>
-In-Reply-To: <CAAGP=A_N+zCxn-nYdQXo1U7_=h3hFv-_+4pXznKokOLE20VQHw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=zhenhua.luo@nxp.com; 
-x-originating-ip: [199.59.225.131]
-x-ms-office365-filtering-correlation-id: 00698cd0-9524-4d82-8063-08d3ab931700
-x-microsoft-exchange-diagnostics: 1; DB6PR0401MB2629;
-	6:TAq7P40A62y8cnlGJ/Z0StVKGIM9TWIQUxhWSKkDQQi8ADZUc9OktzHULipQYYQD8JksF5qG4jwvCpaIpDTzgOnIDjEbWadeb40cSnDRm6JYOpd78QIjVslo+554O1QxHD+d/dSgGukU3OtNGhf3QdhABD0fj4Yn/tpiQnce0Y7HbaNFS4JsjtxUr7qeboFPslt0OJJW4UnGQUCxhDSPQ/O5nolJsfI726DevULXtnVZ1okBC/MexqSVlbvJRLPluzLMw8m2KYXCftOqFcFDDgaqQ0FMeZHuK528MLUMiBM7H4IIhzrwraaj1st5GcFFWlGsePLK8uzWWp62JxUanw==;
-	5:qPIyhQ0b0IX3kpaqH08Yg5NMmyo5SDfLnFHLjcC2b7BGUuOA8QY/G00VeGsy48biDtbrljtx9p/Ubat3QeF6SFBOLt6tyzNpZHr5wHkBPBq1Ve+Eup0d4b6HpeJ/Ws9SKTjT5k7BFnETZtV9QiQQJQ==;
-	24:5cPCiYgjFkyMkC9/0cuL4rXXY35+Juqpx3oLzWy9uQOQ9+SXJPPNP336nxPvnn6WRfXWv5QGg6a0Ap/QcYmp9rWQY2q6rNA2txxhEXra3oQ=;
-	7:XemAiDbUey26uwpaUsF/XZsldlbYJoFSzKfgE5gnoiSyClsnI3qd5GFrC+LSBk4z0i+7qUBpSKASilDF6cwHpkN8WZGQ6BgK7hRGPp1zrwQo+5JhtpubzJFDr/swBz7+5VwXsja8EKqVST5dU5afTA/LCs/i0V+ibek5N+w9wRomwcBNUnT8p3eDClkbzo1wfyTAlYwpNiqYLZA/16FVMcxNqK7b8+0jV9JeRb3FK9sVGJpwpBoMueLnUWUuVyJn
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB6PR0401MB2629;
-x-microsoft-antispam-prvs: <DB6PR0401MB262963F9D06FFCCDB1D3FAB1EE320@DB6PR0401MB2629.eurprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001)(6055026);
-	SRVR:DB6PR0401MB2629; BCL:0; PCL:0; RULEID:;
-	SRVR:DB6PR0401MB2629; 
-x-forefront-prvs: 00032065B2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(7916002)(199003)(377454003)(189002)(97736004)(3846002)(6116002)(86362001)(19300405004)(790700001)(102836003)(106356001)(110136002)(8936002)(189998001)(74316002)(7906003)(105586002)(9686002)(16601075003)(2906002)(4326007)(106116001)(5002640100001)(122556002)(8676002)(586003)(81156014)(10400500002)(81166006)(1680700002)(92566002)(2950100001)(11100500001)(76576001)(68736007)(66066001)(101416001)(19617315012)(19580405001)(15975445007)(19580395003)(3280700002)(77096005)(16236675004)(2900100001)(3660700001)(551934003)(5003600100003)(87936001)(33656002)(7736002)(7846002)(7696003)(50986999)(1411001)(54356999)(19625215002)(76176999)(19609705001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DB6PR0401MB2629;
-	H:DB6PR0401MB2630.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: nxp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2016 03:01:02.2501 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2629
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bitbake problem
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EAD6E00CFE
+	for <yocto@yoctoproject.org>; Thu, 14 Jul 2016 02:38:40 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga101.fm.intel.com with ESMTP; 14 Jul 2016 02:38:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.28,361,1464678000"; d="scan'208";a="138993744"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.42.195])
+	by fmsmga004.fm.intel.com with ESMTP; 14 Jul 2016 02:38:38 -0700
+Message-ID: <1468489117.2701.4.camel@linux.intel.com>
+From: Joshua G Lock <joshua.g.lock@linux.intel.com>
+To: Bill Randle <william.c.randle@intel.com>, yocto@yoctoproject.org
+Date: Thu, 14 Jul 2016 10:38:37 +0100
+In-Reply-To: <1467836200-30512-3-git-send-email-william.c.randle@intel.com>
+References: <1467836200-30512-1-git-send-email-william.c.randle@intel.com>
+	<1467836200-30512-3-git-send-email-william.c.randle@intel.com>
+X-Mailer: Evolution 3.20.3 (3.20.3-1.fc24) 
+Mime-Version: 1.0
+Subject: Re: [yocto-autobuilder][PATCH 2/2] publish build artifacts for wic images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -92,275 +41,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jul 2016 07:35:29 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB6PR0401MB263003E173E7E5F2F98CF10BEE320DB6PR0401MB2630_"
+X-List-Received-Date: Thu, 14 Jul 2016 09:38:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---_000_DB6PR0401MB263003E173E7E5F2F98CF10BEE320DB6PR0401MB2630_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Wed, 2016-07-06 at 13:16 -0700, Bill Randle wrote:
+> Publish the wic images created by the nightly-wic build so they are
+> available for QA testing.
+> 
+> [YOCTO #9397]
+> 
+> Signed-off-by: Bill Randle <william.c.randle@intel.com>
+> ---
+>  buildset-config.controller/nightly-wic.conf        |  8 ++---
+>  .../autobuilder/buildsteps/PublishArtifacts.py     | 35
+> ++++++++++++++++------
+>  2 files changed, 28 insertions(+), 15 deletions(-)
+> 
+> diff --git a/buildset-config.controller/nightly-wic.conf b/buildset-
+> config.controller/nightly-wic.conf
+> index 7d2ae88..27584cb 100644
+> --- a/buildset-config.controller/nightly-wic.conf
+> +++ b/buildset-config.controller/nightly-wic.conf
+> @@ -19,10 +19,6 @@ steps: [{'SetDest':{}},
+>          {'BuildImages':{'images':'core-image-sato'}},
+>          {'CreateWicImages':{'wic_img_type':'directdisk',
+> 'target_img':'core-image-sato'}},
+>          {'CreateWicImages':{'wic_img_type':'directdisk-gpt',
+> 'target_img':'core-image-sato'}},
+> -        {'CreateWicImages':{'wic_img_type':'mkefidisk',
+> 'target_img':'core-image-sato'}}]
+> -
+> -
+> -
+> -
+> -
+> +        {'CreateWicImages':{'wic_img_type':'mkefidisk',
+> 'target_img':'core-image-sato'}},
+> +        {'PublishArtifacts': {'artifacts': ['qemux86-64',
+> 'genericx86-64']}}]
+>  
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> index 952a458..f9df16c 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/PublishArtifacts.py
+> @@ -174,7 +174,14 @@ class PublishArtifacts(ShellCommand):
+>                      artifact_name, deploy_image_dir =
+> self.getDeployNames(artifact, buildername)
+>                      command += self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>                      command=command+"mkdir -p " + DEST + "/" +
+> QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
+> -                    command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> +                    if "-wic" in buildername:
+> +                        deploy_image_dir += "/*/*/build";
+> +                        command=command+"cp --no-dereference --
+> preserve=links " + \
+> +                                    deploy_image_dir + "/*\.direct "
+> + \
+> +                                    deploy_image_dir +
+> "/*\.direct.md5sum " + \
+> +                                    DEST + "/" + QEMU_PUBLISH_DIR +
+> "/" + artifact_name + ";"
+> +                    else:
+> +                        command=command+"cp -R --no-dereference --
+> preserve=links " + \
+>                                      deploy_image_dir + \
+>                                      "/*" + artifact + "* " + DEST +
+> "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
+>                  elif "mpc8315e" in artifact:
+> @@ -213,18 +220,26 @@ class PublishArtifacts(ShellCommand):
+>                         "genericx86-64" in artifact:
+>                          command = command+"echo 'Skipping copy of
+> genericx86-64.'; "
+>                      else:
+> -                        command=command+"mkdir -p " + DEST + "/"+
+> MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> -                        if "beagle" in artifact:
+> -                            command=command+"cp -R --no-dereference
+> --preserve=links " + \
+> +                        command += self.generateMD5cmd(artifact,
+> deploy_image_dir)
 
-WW91IGNhbiBkbyB0aGUgZm9sbG93aW5nIGNoZWNrLg0KDQoxLiAgICAgICBGaW5kIG91dCB0aGUg
-cGFja2FnZSB3aGljaCBwcm9kdWNlcyBsaWJ2b2xrLnNvLjAuMC4wLCBJIHRoaW5rIGl0IHNob3Vs
-ZCBiZSB2b2xrLg0KDQoyLiAgICAgICBDaGVjayBpZiB0aGUgYmluYXJ5IHBhY2thZ2UgaXMgZ2Vu
-ZXJhdGVkLCB3aGljaCBpbmNsdWRlcyB0aG9zZSBkeW5hbWljIGxpYnJhcmllcy4gSXQgaXMgcG9z
-c2libGUgdGhhdCB0aG9zZSBsaWJyYXJpZXMgYXJlIGdlbmVyYXRlZCBhbmQgbm90IHNoaXBwZWQg
-aW4gYW55IHBhY2thZ2UuDQoNCjMuICAgICAgIFVwZGF0ZSB0aGUgcmVjaXBlIG9mIHZvbGQgdG8g
-Zml4IGFib3ZlIHByb2JsZW1zIHRvIGVuc3VyZSB0aGUgc2hhcmUgbGlicmFyaWVzIGFyZSBzaGlw
-cGVkIGluIGNvcnJlc3BvbmRpbmcgYmluYXJ5IHBhY2thZ2UgYW5kIGluY2x1ZGVkIGluIHJvb3Rm
-cy4NCg0KDQpCZXN0IFJlZ2FyZHMsDQoNClpoZW5odWENCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBP
-biBCZWhhbGYgT2YgWWlsZSBLdQ0KU2VudDogV2VkbmVzZGF5LCBKdWx5IDEzLCAyMDE2IDM6NTAg
-QU0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIGJpdGJha2Ug
-cHJvYmxlbQ0KDQpJcyB0aGVyZSBzb21lb25lIHdobyBjYW4gZXhwbGFpbiBob3cgeW9jdG8gY2hl
-Y2tzIHRoZXNlIGRlcGVuZGVuY2llcz8gIEkgbmVlZCB0byBkZWJ1ZyB0aGlzIGlzc3VlLg0KVGhh
-bmtzIGFoZWFkIG9mIHRpbWUuDQpZLQ0KDQpFUlJPUjogVW5hYmxlIHRvIGluc3RhbGwgcGFja2Fn
-ZXMuIENvbW1hbmQgJy9vcHQvRnJlZXNjYWxlL1FvcklRLVNESy1WMS44LTIwMTUwNjE5LXlvY3Rv
-L2J1aWxkX2JhZS1jMmUtdjIvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmluL3NtYXJ0
-IC0tZGF0YS1kaXI9L29wdC9GcmVlc2NhbGUvUW9ySVEtU0RLLVYxLjgtMjAxNTA2MTkteW9jdG8v
-YnVpbGRfYmFlLWMyZS12Mi90bXAvd29yay9iNDg2MHFkc182NGItZnNsLWxpbnV4L2ZzbC1pbWFn
-ZS1mdWxsLzEuMC1yMC9yb290ZnMvdmFyL2xpYi9zbWFydCBpbnN0YWxsIC15IGxpYmdjYzFAcHBj
-NjRlNjUwMCBnY2NAcHBjNjRlNjUwMCBsaWJnY2Mtcy1kZXZAcHBjNjRlNjUwMCBydW4tcG9zdGlu
-c3RzQGFsbCB1c2RwYWEtYXBwcy1zdGF0aWNkZXZAYjQ4NjBxZHNfNjRiIGxkZEBwcGM2NGU2NTAw
-IHVzZHBhYS1hcHBzQGI0ODYwcWRzXzY0YiBwYWNrYWdlZ3JvdXAtY29yZS1zc2gtb3BlbnNzaEBh
-bGwgYXBwdHJrQHBwYzY0ZTY1MDAgYXNmQGI0ODYwcWRzXzY0YiB1ZGV2LWV4dHJhY29uZkBwcGM2
-NGU2NTAwIHBtZS10b29sc0BwcGM2NGU2NTAwIGV0aC1jb25maWdAcHBjNjRlNjUwMCBvcGVuc3No
-LXNmdHAtc2VydmVyQHBwYzY0ZTY1MDAgbXRkLXV0aWxzQHBwYzY0ZTY1MDAga21vZEBwcGM2NGU2
-NTAwIHVzZHBhYS1zdGF0aWNkZXZAYjQ4NjBxZHNfNjRiIHV0aWwtbGludXhAcHBjNjRlNjUwMCBm
-bS11Y29kZS1pbWFnZUBwcGM2NGU2NTAwIGRwYS1vZmZsb2FkLWRldkBiNDg2MHFkc182NGIgbXRk
-LXV0aWxzLWpmZnMyQHBwYzY0ZTY1MDAgZTJmc3Byb2dzLXR1bmUyZnNAcHBjNjRlNjUwMCBwYWNr
-YWdlZ3JvdXAtY29yZS1lY2xpcHNlLWRlYnVnQGFsbCBsaWJwaXhtYW4tMS0wQHBwYzY0ZTY1MDAg
-ZysrQHBwYzY0ZTY1MDAgZ2NvdkBwcGM2NGU2NTAwIGRvc2ZzdG9vbHNAcHBjNjRlNjUwMCBsaWJn
-bGliLTIuMC0wQHBwYzY0ZTY1MDA8bWFpbHRvOmxpYmdsaWItMi4wLTBAcHBjNjRlNjUwMD4gZTJm
-c3Byb2dzLWUyZnNja0BwcGM2NGU2NTAwIHBhY2thZ2Vncm91cC1mc2wtY29yZUBhbGwgcGFja2Fn
-ZWdyb3VwLWZzbC1leHRlbmRAYWxsIHBhY2thZ2Vncm91cC1jb3JlLWJvb3RAYjQ4NjBxZHNfNjRi
-IHBhY2thZ2Vncm91cC1jb3JlLWZ1bGwtY21kbGluZUBhbGwgc3lza2xvZ2RAcHBjNjRlNjUwMCBt
-ZXJnZS1maWxlc0BwcGM2NGU2NTAwIHBhY2thZ2Vncm91cC1jb3JlLWJ1aWxkZXNzZW50aWFsQGFs
-bCByY3ctaW1hZ2VAYjQ4NjBxZHNfNjRiIHVzZHBhYUBiNDg2MHFkc182NGIgcGFja2FnZWdyb3Vw
-LWNvcmUtbmZzLXNlcnZlckBhbGwgaHlwZXJ2aXNvci1wYXJ0bWFuQHBwYzY0ZTY1MDAgY2VldG1A
-YjQ4NjBxZHNfNjRiIGRwYS1vZmZsb2FkLXN0YXRpY2RldkBiNDg2MHFkc182NGIgbGliYzYtZGV2
-QHBwYzY0ZTY1MDAgdXNkcGFhLWRldkBiNDg2MHFkc182NGIgZTJmc3Byb2dzLW1rZTJmc0BwcGM2
-NGU2NTAwIGxpYmdjb3YtZGV2QHBwYzY0ZTY1MDAgc3lzZnN1dGlsc0BwcGM2NGU2NTAwIHFvcmlx
-LWRlYnVnQGI0ODYwcWRzXzY0YiBtdGQtdXRpbHMtdWJpZnNAcHBjNjRlNjUwMCBrZXJuZWwtaW1h
-Z2UtMy4xMi4zNy1ydDUxLXFvcmlxLXNkay12MS44K2dmNDg4ZGU2QGI0ODYwcWRzXzY0YjxtYWls
-dG86a2VybmVsLWltYWdlLTMuMTIuMzctcnQ1MS1xb3JpcS1zZGstdjEuOCtnZjQ4OGRlNkBiNDg2
-MHFkc182NGI+IGJhc2hAcHBjNjRlNjUwMCBnbnVyYWRpb0BwcGM2NGU2NTAwIGxpYmVsZjFAcHBj
-NjRlNjUwMCBkdGNAcHBjNjRlNjUwMCBnZGJzZXJ2ZXJAcHBjNjRlNjUwMCBwYWNrYWdlZ3JvdXAt
-Y29yZS10b29scy1kZWJ1Z0BiNDg2MHFkc182NGIgaHlwZXJyZWxheUBwcGM2NGU2NTAwIHRjZi1x
-b3JpcWRiZ0BwcGM2NGU2NTAwIHN5c3N0YXRAcHBjNjRlNjUwMCBmbWNAYjQ4NjBxZHNfNjRiIGUy
-ZnNwcm9nc0BwcGM2NGU2NTAwIG5ldC10b29sc0BwcGM2NGU2NTAwIGNwcEBwcGM2NGU2NTAwIGVn
-bGliYy11dGlsc0BwcGM2NGU2NTAwIGtlcm5lbC1kZXZpY2V0cmVlQGI0ODYwcWRzXzY0YiBiaW51
-dGlsc0BwcGM2NGU2NTAwIHUtYm9vdC1xb3JpcS1pbWFnZXNAYjQ4NjBxZHNfNjRiIGxpYmdjYzFA
-bGliMzJfcHBjZTY1MDAgZ2NjQGxpYjMyX3BwY2U2NTAwIGxpYmdjb3YtZGV2QGxpYjMyX3BwY2U2
-NTAwIGxpYmdjYy1zLWRldkBsaWIzMl9wcGNlNjUwMCBnKytAbGliMzJfcHBjZTY1MDAgYmludXRp
-bHNAbGliMzJfcHBjZTY1MDAgbGRkQGxpYjMyX3BwY2U2NTAwIGdjb3ZAbGliMzJfcHBjZTY1MDAg
-Y3BwQGxpYjMyX3BwY2U2NTAwIGVnbGliYy11dGlsc0BsaWIzMl9wcGNlNjUwMCBlZ2xpYmMtZGV2
-QGxpYjMyX3BwY2U2NTAwJyByZXR1cm5lZCAxOg0KTG9hZGluZyBjYWNoZS4uLg0KVXBkYXRpbmcg
-Y2FjaGUuLi4gICAgICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIFsxMDAlXQ0KDQpDb21wdXRpbmcgdHJhbnNhY3Rpb24uLi5lcnJvcjogQ2FuJ3QgaW5z
-dGFsbCBnbnVyYWRpby0zLjcuNS1yMEBwcGM2NGU2NTAwPG1haWx0bzpnbnVyYWRpby0zLjcuNS1y
-MEBwcGM2NGU2NTAwPjogbm8gcGFja2FnZSBwcm92aWRlcyBsaWJ2b2xrLnNvLjAuMC4wKCkoNjRi
-aXQpDQoNCg0KRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogZG9fcm9vdGZzDQpFUlJPUjogTG9nZmls
-ZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL29wdC9GcmVlc2NhbGUvUW9ySVEtU0RLLVYxLjgtMjAx
-NTA2MTkteW9jdG8vYnVpbGRfYmFlLWMyZS12Mi90bXAvd29yay9iNDg2MHFkc182NGItZnNsLWxp
-bnV4L2ZzbC1pbWFnZS1mdWxsLzEuMC1yMC90ZW1wL2xvZy5kb19yb290ZnMuMjAxNTMNCkVSUk9S
-OiBUYXNrIDcgKC9vcHQvRnJlZXNjYWxlL1FvcklRLVNESy1WMS44LTIwMTUwNjE5LXlvY3RvL21l
-dGEtZnNsLW5ldHdvcmtpbmcvaW1hZ2VzL2ZzbC1pbWFnZS1mdWxsLmJiPGh0dHA6Ly9mc2wtaW1h
-Z2UtZnVsbC5iYj4sIGRvX3Jvb3RmcykgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0K
+If I'm reading this patch correctly this change moves the addition of
+generateMD5cmd() to the command string into the else block of the
+"layerversion_yoctobsp < 2" check, whereas before it was appended
+regardless after the if/else statement. Was that change intentional?
 
---_000_DB6PR0401MB263003E173E7E5F2F98CF10BEE320DB6PR0401MB2630_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Regards,
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJ
-cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
-cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
-aW5lO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNvTGlzdFBhcmFncmFwaCwgZGl2Lk1zb0xp
-c3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5OjM0Ow0KCW1hcmdpbi10b3A6MGluOw0K
-CW1hcmdpbi1yaWdodDowaW47DQoJbWFyZ2luLWJvdHRvbTowaW47DQoJbWFyZ2luLWxlZnQ6LjVp
-bjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
-bWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28t
-c3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBl
-OmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdl
-IFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4yNWlu
-IDEuMGluIDEuMjVpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30N
-Ci8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjk4OTEzNjg1
-ODsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6NDA1NDM4
-OTQwIDY3Njk4NzAzIDY3Njk4NzEzIDY3Njk4NzE1IDY3Njk4NzAzIDY3Njk4NzEzIDY3Njk4NzE1
-IDY3Njk4NzAzIDY3Njk4NzEzIDY3Njk4NzE1O30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2
-ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFy
-Z2luLWxlZnQ6LjI1aW47DQoJdGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwwOmxldmVsMg0K
-CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDphbHBoYS1sb3dlcjsNCgltc28tbGV2ZWwtdGFiLXN0
-b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6
-Ljc1aW47DQoJdGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28tbGV2
-ZWwtbnVtYmVyLWZvcm1hdDpyb21hbi1sb3dlcjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOnJpZ2h0Ow0KCW1hcmdpbi1sZWZ0OjEuMjVpbjsN
-Cgl0ZXh0LWluZGVudDotOS4wcHQ7fQ0KQGxpc3QgbDA6bGV2ZWw0DQoJe21zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVm
-dDoxLjc1aW47DQoJdGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwwOmxldmVsNQ0KCXttc28t
-bGV2ZWwtbnVtYmVyLWZvcm1hdDphbHBoYS1sb3dlcjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9u
-ZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6Mi4yNWlu
-Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjt9DQpAbGlzdCBsMDpsZXZlbDYNCgl7bXNvLWxldmVsLW51
-bWJlci1mb3JtYXQ6cm9tYW4tbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNv
-LWxldmVsLW51bWJlci1wb3NpdGlvbjpyaWdodDsNCgltYXJnaW4tbGVmdDoyLjc1aW47DQoJdGV4
-dC1pbmRlbnQ6LTkuMHB0O30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtdGFiLXN0b3A6
-bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6My4y
-NWluOw0KCXRleHQtaW5kZW50Oi0uMjVpbjt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YWxwaGEtbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJ
-bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1sZWZ0OjMuNzVpbjsNCgl0
-ZXh0LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXIt
-Zm9ybWF0OnJvbWFuLWxvd2VyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246cmlnaHQ7DQoJbWFyZ2luLWxlZnQ6NC4yNWluOw0KCXRleHQtaW5k
-ZW50Oi05LjBwdDt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQp1bA0KCXttYXJnaW4tYm90
-dG9tOjBpbjt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVk
-ZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0t
-PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0K
-PG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+
-PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxp
-bms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPllvdSBjYW4gZG8gdGhlIGZvbGxv
-d2luZyBjaGVjay4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFy
-YWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjI1aW47dGV4dC1pbmRlbnQ6LS4yNWluO21zby1s
-aXN0OmwwIGxldmVsMSBsZm8xIj4NCjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-Zjtjb2xvcjojMUY0OTdEIj48c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4xLjxzcGFuIHN0
-eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyI+Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L3NwYW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkZpbmQgb3V0IHRoZSBwYWNrYWdlIHdoaWNo
-IHByb2R1Y2VzIGxpYnZvbGsuc28uMC4wLjAsIEkgdGhpbmsgaXQgc2hvdWxkIGJlIHZvbGsuDQo8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9
-Im1hcmdpbi1sZWZ0Oi4yNWluO3RleHQtaW5kZW50Oi0uMjVpbjttc28tbGlzdDpsMCBsZXZlbDEg
-bGZvMSI+DQo8IVtpZiAhc3VwcG9ydExpc3RzXT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+PHNwYW4gc3R5bGU9Im1zby1saXN0Oklnbm9yZSI+Mi48c3BhbiBzdHlsZT0iZm9udDo3LjBw
-dCAmcXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDsiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOw0KPC9zcGFuPjwvc3Bhbj48L3NwYW4+PCFbZW5kaWZdPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-Zjtjb2xvcjojMUY0OTdEIj5DaGVjayBpZiB0aGUgYmluYXJ5IHBhY2thZ2UgaXMgZ2VuZXJhdGVk
-LCB3aGljaCBpbmNsdWRlcyB0aG9zZSBkeW5hbWljIGxpYnJhcmllcy4gSXQgaXMgcG9zc2libGUg
-dGhhdCB0aG9zZSBsaWJyYXJpZXMgYXJlIGdlbmVyYXRlZCBhbmQgbm90IHNoaXBwZWQNCiBpbiBh
-bnkgcGFja2FnZS4gPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJh
-Z3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDouMjVpbjt0ZXh0LWluZGVudDotLjI1aW47bXNvLWxp
-c3Q6bDAgbGV2ZWwxIGxmbzEiPg0KPCFbaWYgIXN1cHBvcnRMaXN0c10+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJtc28tbGlzdDpJZ25vcmUiPjMuPHNwYW4gc3R5
-bGU9ImZvbnQ6Ny4wcHQgJnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VXBkYXRlIHRoZSByZWNpcGUgb2Ygdm9sZCB0
-byBmaXggYWJvdmUgcHJvYmxlbXMgdG8gZW5zdXJlIHRoZSBzaGFyZSBsaWJyYXJpZXMgYXJlIHNo
-aXBwZWQgaW4gY29ycmVzcG9uZGluZyBiaW5hcnkgcGFja2FnZSBhbmQgaW5jbHVkZWQgaW4gcm9v
-dGZzLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+QmVzdCBSZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+Wmhlbmh1YTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xp
-ZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5
-bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMu
-MHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-ZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9w
-cm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9u
-IEJlaGFsZiBPZiA8L2I+WWlsZSBLdTxicj4NCjxiPlNlbnQ6PC9iPiBXZWRuZXNkYXksIEp1bHkg
-MTMsIDIwMTYgMzo1MCBBTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxi
-cj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIGJpdGJha2UgcHJvYmxlbTxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SXMgdGhlcmUgc29tZW9uZSB3aG8gY2FuIGV4cGxh
-aW4gaG93IHlvY3RvIGNoZWNrcyB0aGVzZSBkZXBlbmRlbmNpZXM/Jm5ic3A7IEkgbmVlZCB0byBk
-ZWJ1ZyB0aGlzIGlzc3VlLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5UaGFua3MgYWhlYWQgb2YgdGltZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+WS08bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48YnI+DQpFUlJPUjogVW5h
-YmxlIHRvIGluc3RhbGwgcGFja2FnZXMuIENvbW1hbmQgJy9vcHQvRnJlZXNjYWxlL1FvcklRLVNE
-Sy1WMS44LTIwMTUwNjE5LXlvY3RvL2J1aWxkX2JhZS1jMmUtdjIvdG1wL3N5c3Jvb3RzL3g4Nl82
-NC1saW51eC91c3IvYmluL3NtYXJ0IC0tZGF0YS1kaXI9L29wdC9GcmVlc2NhbGUvUW9ySVEtU0RL
-LVYxLjgtMjAxNTA2MTkteW9jdG8vYnVpbGRfYmFlLWMyZS12Mi90bXAvd29yay9iNDg2MHFkc182
-NGItZnNsLWxpbnV4L2ZzbC1pbWFnZS1mdWxsLzEuMC1yMC9yb290ZnMvdmFyL2xpYi9zbWFydA0K
-IGluc3RhbGwgLXkgbGliZ2NjMUBwcGM2NGU2NTAwIGdjY0BwcGM2NGU2NTAwIGxpYmdjYy1zLWRl
-dkBwcGM2NGU2NTAwIHJ1bi1wb3N0aW5zdHNAYWxsIHVzZHBhYS1hcHBzLXN0YXRpY2RldkBiNDg2
-MHFkc182NGIgbGRkQHBwYzY0ZTY1MDAgdXNkcGFhLWFwcHNAYjQ4NjBxZHNfNjRiIHBhY2thZ2Vn
-cm91cC1jb3JlLXNzaC1vcGVuc3NoQGFsbCBhcHB0cmtAcHBjNjRlNjUwMCBhc2ZAYjQ4NjBxZHNf
-NjRiIHVkZXYtZXh0cmFjb25mQHBwYzY0ZTY1MDANCiBwbWUtdG9vbHNAcHBjNjRlNjUwMCBldGgt
-Y29uZmlnQHBwYzY0ZTY1MDAgb3BlbnNzaC1zZnRwLXNlcnZlckBwcGM2NGU2NTAwIG10ZC11dGls
-c0BwcGM2NGU2NTAwIGttb2RAcHBjNjRlNjUwMCB1c2RwYWEtc3RhdGljZGV2QGI0ODYwcWRzXzY0
-YiB1dGlsLWxpbnV4QHBwYzY0ZTY1MDAgZm0tdWNvZGUtaW1hZ2VAcHBjNjRlNjUwMCBkcGEtb2Zm
-bG9hZC1kZXZAYjQ4NjBxZHNfNjRiIG10ZC11dGlscy1qZmZzMkBwcGM2NGU2NTAwIGUyZnNwcm9n
-cy10dW5lMmZzQHBwYzY0ZTY1MDANCiBwYWNrYWdlZ3JvdXAtY29yZS1lY2xpcHNlLWRlYnVnQGFs
-bCBsaWJwaXhtYW4tMS0wQHBwYzY0ZTY1MDAgZyYjNDM7JiM0MztAcHBjNjRlNjUwMCBnY292QHBw
-YzY0ZTY1MDAgZG9zZnN0b29sc0BwcGM2NGU2NTAwDQo8YSBocmVmPSJtYWlsdG86bGliZ2xpYi0y
-LjAtMEBwcGM2NGU2NTAwIj5saWJnbGliLTIuMC0wQHBwYzY0ZTY1MDA8L2E+IGUyZnNwcm9ncy1l
-MmZzY2tAcHBjNjRlNjUwMCBwYWNrYWdlZ3JvdXAtZnNsLWNvcmVAYWxsIHBhY2thZ2Vncm91cC1m
-c2wtZXh0ZW5kQGFsbCBwYWNrYWdlZ3JvdXAtY29yZS1ib290QGI0ODYwcWRzXzY0YiBwYWNrYWdl
-Z3JvdXAtY29yZS1mdWxsLWNtZGxpbmVAYWxsIHN5c2tsb2dkQHBwYzY0ZTY1MDAgbWVyZ2UtZmls
-ZXNAcHBjNjRlNjUwMA0KIHBhY2thZ2Vncm91cC1jb3JlLWJ1aWxkZXNzZW50aWFsQGFsbCByY3ct
-aW1hZ2VAYjQ4NjBxZHNfNjRiIHVzZHBhYUBiNDg2MHFkc182NGIgcGFja2FnZWdyb3VwLWNvcmUt
-bmZzLXNlcnZlckBhbGwgaHlwZXJ2aXNvci1wYXJ0bWFuQHBwYzY0ZTY1MDAgY2VldG1AYjQ4NjBx
-ZHNfNjRiIGRwYS1vZmZsb2FkLXN0YXRpY2RldkBiNDg2MHFkc182NGIgbGliYzYtZGV2QHBwYzY0
-ZTY1MDAgdXNkcGFhLWRldkBiNDg2MHFkc182NGIgZTJmc3Byb2dzLW1rZTJmc0BwcGM2NGU2NTAw
-DQogbGliZ2Nvdi1kZXZAcHBjNjRlNjUwMCBzeXNmc3V0aWxzQHBwYzY0ZTY1MDAgcW9yaXEtZGVi
-dWdAYjQ4NjBxZHNfNjRiIG10ZC11dGlscy11Ymlmc0BwcGM2NGU2NTAwDQo8YSBocmVmPSJtYWls
-dG86a2VybmVsLWltYWdlLTMuMTIuMzctcnQ1MS1xb3JpcS1zZGstdjEuOCYjNDM7Z2Y0ODhkZTZA
-YjQ4NjBxZHNfNjRiIj5rZXJuZWwtaW1hZ2UtMy4xMi4zNy1ydDUxLXFvcmlxLXNkay12MS44JiM0
-MztnZjQ4OGRlNkBiNDg2MHFkc182NGI8L2E+IGJhc2hAcHBjNjRlNjUwMCBnbnVyYWRpb0BwcGM2
-NGU2NTAwIGxpYmVsZjFAcHBjNjRlNjUwMCBkdGNAcHBjNjRlNjUwMCBnZGJzZXJ2ZXJAcHBjNjRl
-NjUwMCBwYWNrYWdlZ3JvdXAtY29yZS10b29scy1kZWJ1Z0BiNDg2MHFkc182NGINCiBoeXBlcnJl
-bGF5QHBwYzY0ZTY1MDAgdGNmLXFvcmlxZGJnQHBwYzY0ZTY1MDAgc3lzc3RhdEBwcGM2NGU2NTAw
-IGZtY0BiNDg2MHFkc182NGIgZTJmc3Byb2dzQHBwYzY0ZTY1MDAgbmV0LXRvb2xzQHBwYzY0ZTY1
-MDAgY3BwQHBwYzY0ZTY1MDAgZWdsaWJjLXV0aWxzQHBwYzY0ZTY1MDAga2VybmVsLWRldmljZXRy
-ZWVAYjQ4NjBxZHNfNjRiIGJpbnV0aWxzQHBwYzY0ZTY1MDAgdS1ib290LXFvcmlxLWltYWdlc0Bi
-NDg2MHFkc182NGIgbGliZ2NjMUBsaWIzMl9wcGNlNjUwMA0KIGdjY0BsaWIzMl9wcGNlNjUwMCBs
-aWJnY292LWRldkBsaWIzMl9wcGNlNjUwMCBsaWJnY2Mtcy1kZXZAbGliMzJfcHBjZTY1MDAgZyYj
-NDM7JiM0MztAbGliMzJfcHBjZTY1MDAgYmludXRpbHNAbGliMzJfcHBjZTY1MDAgbGRkQGxpYjMy
-X3BwY2U2NTAwIGdjb3ZAbGliMzJfcHBjZTY1MDAgY3BwQGxpYjMyX3BwY2U2NTAwIGVnbGliYy11
-dGlsc0BsaWIzMl9wcGNlNjUwMCBlZ2xpYmMtZGV2QGxpYjMyX3BwY2U2NTAwJyByZXR1cm5lZCAx
-Ojxicj4NCkxvYWRpbmcgY2FjaGUuLi48YnI+DQpVcGRhdGluZyBjYWNoZS4uLiZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IFsxMDAlXTxicj4NCjxicj4NCkNvbXB1dGluZyB0cmFuc2FjdGlvbi4uLmVycm9yOiBDYW4ndCBp
-bnN0YWxsIDxhIGhyZWY9Im1haWx0bzpnbnVyYWRpby0zLjcuNS1yMEBwcGM2NGU2NTAwIj4NCmdu
-dXJhZGlvLTMuNy41LXIwQHBwYzY0ZTY1MDA8L2E+OiBubyBwYWNrYWdlIHByb3ZpZGVzIGxpYnZv
-bGsuc28uMC4wLjAoKSg2NGJpdCk8YnI+DQo8YnI+DQo8YnI+DQpFUlJPUjogRnVuY3Rpb24gZmFp
-bGVkOiBkb19yb290ZnM8YnI+DQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjog
-L29wdC9GcmVlc2NhbGUvUW9ySVEtU0RLLVYxLjgtMjAxNTA2MTkteW9jdG8vYnVpbGRfYmFlLWMy
-ZS12Mi90bXAvd29yay9iNDg2MHFkc182NGItZnNsLWxpbnV4L2ZzbC1pbWFnZS1mdWxsLzEuMC1y
-MC90ZW1wL2xvZy5kb19yb290ZnMuMjAxNTM8YnI+DQpFUlJPUjogVGFzayA3ICgvb3B0L0ZyZWVz
-Y2FsZS9Rb3JJUS1TREstVjEuOC0yMDE1MDYxOS15b2N0by9tZXRhLWZzbC1uZXR3b3JraW5nL2lt
-YWdlcy88YSBocmVmPSJodHRwOi8vZnNsLWltYWdlLWZ1bGwuYmIiPmZzbC1pbWFnZS1mdWxsLmJi
-PC9hPiwgZG9fcm9vdGZzKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
-Pg0K
+Joshua
 
---_000_DB6PR0401MB263003E173E7E5F2F98CF10BEE320DB6PR0401MB2630_--
+> +                        if "-wic" in buildername:
+> +                            deploy_image_dir += "/*/*/build";
+> +                            command=command+"mkdir -p " + DEST + "/"
+> + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+> +                            command=command+"cp --no-dereference --
+> preserve=links " + \
+> +                                    deploy_image_dir + "/*\.direct "
+> + \
+> +                                    deploy_image_dir +
+> "/*\.direct.md5sum " + \
+> +                                    DEST + "/" + MACHINE_PUBLISH_DIR
+> + "/" + artifact_name + ";"
+> +                        else:
+> +                            command=command+"mkdir -p " + DEST +
+> "/"+ MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> +                            if "beagle" in artifact:
+> +                                command=command+"cp -R --no-
+> dereference --preserve=links " + \
+>                                               deploy_image_dir + \
+>                                               "/*Image* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> -                            command=command+"cp -R --no-dereference
+> --preserve=links " + \
+> +                                command=command+"cp -R --no-
+> dereference --preserve=links " + \
+>                                               deploy_image_dir + \
+>                                               "/u-boot* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> -                        command=command+"cp -R --no-dereference --
+> preserve=links " + \
+> +                            command=command+"cp -R --no-dereference
+> --preserve=links " + \
+>                                           deploy_image_dir + \
+>                                           "/*"+artifact+"* " + DEST +
+> "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+> -                    command += self.generateMD5cmd(artifact,
+> deploy_image_dir)
+>              self.command = command
+>          else:
+>              self.command = "echo 'Skipping Step.'"
+> @@ -241,8 +256,10 @@ class PublishArtifacts(ShellCommand):
+>          artifact_name = artifact
+>          if "-lsb" in buildername:
+>              artifact_name = artifact_name + "-lsb"
+> -        if artifact_name is "md5sums":
+> -            deploy_dir_image = os.path.join(self.tmpdir,
+> "deploy/images/")
+> +        if "-wic" in buildername:
+> +            deploy_dir_image =
+> os.path.join(os.path.join(self.tmpdir, "deploy/wic_images/"),
+> artifact)
+> +        elif artifact_name is "md5sums":
+> +            deploy_dir_image = os.path.join(self.tmpdir,
+> "deploy/images/")
+>          else:
+>              if self.layerversion_core is not None and
+> int(self.layerversion_core) > 2:
+>                  deploy_dir_image =
+> os.path.join(os.path.join(self.tmpdir, "deploy/images/"), artifact)
+
